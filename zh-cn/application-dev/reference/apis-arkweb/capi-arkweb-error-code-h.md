@@ -25,6 +25,7 @@
 | 名称                                    | typedef关键字 | 描述 |
 |---------------------------------------|------------|----|
 | [ArkWeb_ErrorCode](#arkweb_errorcode) | ArkWeb_ErrorCode  | 定义ArkWeb NDK接口异常错误码。  |
+| [ArkWeb_BlanklessErrorCode](#arkweb_blanklesserrorcode) | ArkWeb_BlanklessErrorCode  | 定义无白屏加载的异常错误码。  |
 
 ## 枚举类型说明
 
