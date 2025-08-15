@@ -1,4 +1,10 @@
 # 无障碍控制操作
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zhanghangkai10241-->
+<!--Designer: @lmleon-->
+<!--Tester: @fredyuan0912-->
+<!--Adviser: @HelloCrease-->
 
 在开启无障碍模式后，需要判断是否拦截无障碍控制操作。
 
@@ -138,9 +144,6 @@ type AccessibilityActionInterceptCallback = (action: AccessibilityAction) => Acc
 @Component
 struct SwitchBootcamp {
   @State private isOn: boolean = false;
-  isPolygon(event: TouchEvent) {
-    return true;
-  }
 
   build() {
     NavDestination() {

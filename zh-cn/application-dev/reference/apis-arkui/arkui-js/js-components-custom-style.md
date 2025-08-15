@@ -1,4 +1,10 @@
 # 继承样式 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @seaside_wu1-->
+<!--Designer: @shiyu_huang-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 >

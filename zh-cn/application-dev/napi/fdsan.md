@@ -1,4 +1,10 @@
 # fdsan使用指导
+<!--Kit: NDK Development-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @liyiming13-->
+<!--Designer: @huang_huijin-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 ## 1. 功能介绍
 

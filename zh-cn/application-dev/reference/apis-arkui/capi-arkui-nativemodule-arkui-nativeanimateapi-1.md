@@ -34,6 +34,10 @@ int32_t (*animateTo)(ArkUI_ContextHandle context, ArkUI_AnimateOption* option, A
 
 显式动画接口。
 
+> **说明：**
+>
+> event闭包中要设置的组件属性，必须在其之前设置过。
+
 **参数：**
 
 | 参数项                                                                                                 | 描述 |

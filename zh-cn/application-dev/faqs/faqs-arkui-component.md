@@ -718,14 +718,13 @@ struct MyComponent {
 @Entry
 @Component
 struct SideBarContainerExample {
-  normalIcon : Resource = $r("app.media.icon")
+  normalIcon: Resource = $r("app.media.icon")
   selectedIcon: Resource = $r("app.media.icon")
   @State arr: number[] = [1, 2, 3]
   @State current: number = 1
 
   build() {
-    SideBarContainer(SideBarContainerType.Embed)
-    {
+    SideBarContainer(SideBarContainerType.Embed) {
       Column() {
         ForEach(this.arr, (item, index) => {
           Column({ space: 5 }) {
@@ -752,13 +751,15 @@ struct SideBarContainerExample {
     }
     .sideBarWidth(150)
     .minSideBarWidth(50)
-    .controlButton({left:32,
-      top:32,
-      width:32,
-      height:32, 
-      icons:{shown: $r("app.media.icon"),
+    .controlButton({
+      left: 32,
+      top: 32,
+      width: 32,
+      height: 32,
+      icons: { shown: $r("app.media.icon"),
         hidden: $r("app.media.icon"),
-        switching: $r("app.media.icon")}})
+        switching: $r("app.media.icon") }
+    })
     .maxSideBarWidth(300)
     .onChange((value: boolean) => {
       console.info('status:' + value)

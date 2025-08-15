@@ -63,7 +63,8 @@ QoS等级更高的任务相对等级更低的可能被分配更多的CPU时间�
 
 ### QoS对线程执行的优化
 
-#### 优化前
+**优化前**
+
 ![qosfigure1.png](./figures/qosfigure1.png)
 
 线程1和线程2是某程序的两个关键线程，线程1在运行时会触发新任务线程2，等线程2执行完后会唤醒线程1继续执行。在未标记这两个线程的QoS等级之前，其优先执行顺序低于线程3和线程4；此时线程1和线程2的执行效果如上图所示：
@@ -74,7 +75,8 @@ QoS等级更高的任务相对等级更低的可能被分配更多的CPU时间�
 
 3. 线程1优先级低，运行过程中长时间被其它线程抢占。
 
-#### 优化后
+**优化后**
+
 ![qosfigure2.png](./figures/qosfigure2.png)
 
 合理标记线程1和线程2的QoS等级后，两个线程的执行优化效果如上图所示：
@@ -108,22 +110,24 @@ QoS等级更高的任务相对等级更低的可能被分配更多的CPU时间�
 
 ### OH_QoS_SetThreadQoS
 
-#### 声明
+**声明**
 ```{.c}
 int OH_QoS_SetThreadQoS(QoS_Level level);
 ```
 
-#### 参数
+**参数**
+
 QoS_Level level
 * 该参数用于描述要为任务设置的QoS等级。
 
-#### 返回值
+**返回值**
 * 若成功则返回0，失败则返回-1。
 
-#### 描述
+**描述**
+
 为某个任务设置指定的QoS等级。设置当前任务的QoS等级。开发者可以根据当前任务的重要程度，为其标记不同等级的QoS，从而获得不同的调度供给。参考[QoS实践指导](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-thread-priority-setting)。
 
-#### 样例
+**样例**
 ```
 #include <stdio.h>
 #include "qos/qos.h"
@@ -145,21 +149,22 @@ int func()
 
 ### OH_QoS_ResetThreadQoS
 
-#### 声明
+**声明**
 ```{.c}
 int OH_QoS_ResetThreadQoS();
 ```
 
-#### 参数
+**参数**
 * 无。
 
-#### 返回值
+**返回值**
 * 若成功则返回0，失败则返回-1。
 
-#### 描述
+**描述**
+
 取消某个任务设置的QoS等级。取消当前任务的QoS等级。参考[QoS实践指导](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-thread-priority-setting)。
 
-#### 样例
+**样例**
 ```
 #include <stdio.h>
 #include "qos/qos.h"
@@ -181,22 +186,24 @@ int func()
 
 ### OH_QoS_GetThreadQoS
 
-#### 声明
+**声明**
 ```{.c}
 int OH_QoS_GetThreadQoS(QoS_Level *level);
 ```
 
-#### 参数
+**参数**
+
 QoS_Level *level
 * 该参数用于存储任务已经设置的QoS等级。
 
-#### 返回值
+**返回值**
 * 若成功则返回0，失败则返回-1。
 
-#### 描述
+**描述**
+
 获取某个任务之前最近一次设置的QoS等级；如果之前未设置任何QoS等级，则返回-1。查看当前任务的QoS等级。参考[QoS实践指导](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-thread-priority-setting)。
 
-#### 样例
+**样例**
 ```
 #include <stdio.h>
 #include "qos/qos.h"

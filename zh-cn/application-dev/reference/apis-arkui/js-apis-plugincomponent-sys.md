@@ -1,10 +1,16 @@
 # @ohos.pluginComponent (PluginComponentManager)(系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @dutie123-->
+<!--Designer: @lmleon-->
+<!--Tester: @fredyuan0912-->
+<!--Adviser: @HelloCrease-->
 
 用于给插件组件的使用方请求组件与数据，使用方发送组件模板和数据。如需实现插件模板的显示，请参考[PluginComponent](arkui-ts/ts-basic-components-plugincomponent-sys.md)。
 
 > **说明：**
 >
-> - 本模块首批接口从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块首批接口从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.pluginComponent (PluginComponentManager)](js-apis-plugincomponent.md)。
 

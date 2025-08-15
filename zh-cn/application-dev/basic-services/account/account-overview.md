@@ -1,5 +1,12 @@
 # 账号管理概述
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
+
 ## 简介
 
 系统支持在一台设备上创建多个本地系统账号，以允许多个用户使用同一台设备。多个用户的数据按系统账号进行隔离，以保证不同用户数据的安全性。
@@ -33,5 +40,5 @@
 
 针对账号管理开发，有以下相关实例可供参考：
 
-- [应用账号管理](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/AppAccountManager)
-- [分布式账号管理（仅支持系统应用）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DistributedAppDev/DistributedAccount)
+- [应用账号管理](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/AppAccountManager)
+- [分布式账号管理（仅支持系统应用）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DistributedAppDev/DistributedAccount)

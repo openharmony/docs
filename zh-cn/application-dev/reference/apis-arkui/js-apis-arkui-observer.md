@@ -1,5 +1,12 @@
 # @ohos.arkui.observer (无感监听)
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Designer: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
+
 提供UI组件行为变化的无感监听能力。
 
 > **说明：**
@@ -411,7 +418,7 @@ on(type: 'scrollEvent', callback: Callback\<ScrollEventInfo\>): void
 
 **示例：**
 
-参考[offscrollevent](#uiobserveroffscrollevent12-1)示例。
+参考[uiObserver.off('scrollEvent')](#uiobserveroffscrollevent12-1)示例。
 
 ## uiObserver.off('scrollEvent')<sup>12+</sup>
 
@@ -432,7 +439,7 @@ off(type: 'scrollEvent', callback?: Callback\<ScrollEventInfo\>): void
 
 **示例：**
 
-参考[offscrollevent](#uiobserveroffscrollevent12-1)示例。
+参考[uiObserver.off('scrollEvent')](#uiobserveroffscrollevent12-1)示例。
 
 ## uiObserver.on('scrollEvent')<sup>12+</sup>
 
@@ -454,7 +461,7 @@ on(type: 'scrollEvent', options: ObserverOptions, callback: Callback\<ScrollEven
 
 **示例：**
 
-参考[offscrollevent](#uiobserveroffscrollevent12-1)示例。
+参考[uiObserver.off('scrollEvent')](#uiobserveroffscrollevent12-1)示例。
 
 ## uiObserver.off('scrollEvent')<sup>12+</sup>
 
@@ -665,7 +672,7 @@ import { uiObserver } from '@kit.ArkUI';
 @Component
 struct Index {
   @State density: number = 0;
-  @State message: string = '未注册监听'
+  @State message: string = '未注册监听';
 
   densityUpdateCallback = (info: uiObserver.DensityInfo) => {
     this.density = info.density;
@@ -899,7 +906,7 @@ struct Index {
         .onClick(() => {
           uiObserver.on('didLayout', this.getUIContext(), this.didLayoutCallback);
         })
-      Button('解除布局完成s监听')
+      Button('解除布局完成监听')
         .onClick(() => {
           uiObserver.off('didLayout', this.getUIContext(), this.didLayoutCallback);
         })

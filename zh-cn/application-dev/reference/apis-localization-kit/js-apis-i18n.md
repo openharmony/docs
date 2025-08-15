@@ -1,5 +1,12 @@
 # @ohos.i18n (国际化-I18n)
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--Designer: @sunyaozu-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
+
 本模块提供系统相关的或者增强的[国际化](../../internationalization/i18n-l10n.md)能力，包括区域管理、电话号码处理、日历等，相关接口为[ECMA 402](https://dev.ecma-international.org/publications-and-standards/standards/ecma-402/)标准中未定义的补充接口。[Intl模块](js-apis-intl.md)提供了ECMA 402标准定义的基础国际化接口，与本模块共同使用可提供完整地国际化能力。
 
 >  **说明：**
@@ -280,9 +287,11 @@ static getSystemRegion(): string
   let systemRegion: string = i18n.System.getSystemRegion(); // 如果系统地区为中国，systemRegion = 'CN'
   ```
 
-### getSystemLocale<sup>9+</sup>
+### getSystemLocale<sup>(deprecated)</sup>
 
 static getSystemLocale(): string
+
+> 从API version 9开始支持，从API version 20开始废弃，建议使用[System.getSystemLocaleInstance](#getsystemlocaleinstance20)代替。
 
 获取系统当前设置的区域。
 
@@ -299,6 +308,28 @@ static getSystemLocale(): string
 **示例：**
   ```ts
   let systemLocale: string = i18n.System.getSystemLocale(); // 如果系统语言为简体中文、地区为中国，systemLocale = 'zh-Hans-CN'
+  ```
+
+### getSystemLocaleInstance<sup>20+</sup>
+
+static getSystemLocaleInstance(): Intl.Locale
+
+获取系统当前设置的区域对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
+
+**返回值：**
+| 类型     | 说明      |
+| ------ | ------- |
+| [Intl.Locale](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) | 系统区域对象。 |
+
+**示例：**
+  ```ts
+  import { i18n } from '@kit.LocalizationKit';
+
+  let systemLocale: Intl.Locale = i18n.System.getSystemLocaleInstance();
   ```
 
 ### is24HourClock<sup>9+</sup>
@@ -2058,7 +2089,7 @@ let timeZone: i18n.TimeZone = i18n.getTimeZone(tzId);
 let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
 let date = new Date(2025, 4, 13);
 let zoneOffsetTransition: i18n.ZoneOffsetTransition =
-    zoneRules.nextTransition(date.getTime()); // 获取2025年5月13日以后的下一个时间跳变对象
+    zoneRules.nextTransition(date.getTime()); // 获取2025年5月13日以后的下一个时区跳变对象
 zoneOffsetTransition.getMilliseconds(); // 跳变点的时间戳: 1762074000000
 zoneOffsetTransition.getOffsetAfter(); // 跳变后的偏移量: -28800000
 zoneOffsetTransition.getOffsetBefore(); // 跳变前的偏移量: -25200000
@@ -2080,7 +2111,7 @@ let dateFormat: string =
 
 nextTransition(date?: number): ZoneOffsetTransition
 
-获取指定时间的下一个时间跳变对象。
+获取指定时间的下一个时区跳变对象。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2096,7 +2127,7 @@ nextTransition(date?: number): ZoneOffsetTransition
 
 | 类型       | 说明         |
 | -------- | ---------- |
-| [ZoneOffsetTransition](#zoneoffsettransition20) | 时间跳变对象。 |
+| [ZoneOffsetTransition](#zoneoffsettransition20) | 时区跳变对象。 |
 
 **示例：**
 ```ts
@@ -2118,7 +2149,7 @@ let zoneOffsetTransition: i18n.ZoneOffsetTransition = zoneRules.nextTransition(d
 
 getMilliseconds(): number
 
-获取时间跳变点的时间戳。
+获取时区跳变点的时间戳。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2128,7 +2159,7 @@ getMilliseconds(): number
 
 | 类型       | 说明         |
 | -------- | ---------- |
-| number | 从1970年1月1日0时0分0秒到时间跳变点之间的毫秒数，例如：1762074000000，单位：毫秒。如果当前时区[原始偏移量](#getrawoffset)保持不变并且不使用夏令时，则返回0。|
+| number | 从1970年1月1日0时0分0秒到时区跳变点之间的毫秒数，例如：1762074000000，单位：毫秒。如果当前时区[原始偏移量](#getrawoffset)保持不变并且不使用夏令时，则返回0。|
 
 **示例：**
 ```ts
@@ -2138,7 +2169,7 @@ let timeZone: i18n.TimeZone = i18n.getTimeZone('America/Tijuana');
 let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
 let date = new Date(2025, 4, 13);
 let zoneOffsetTransition: i18n.ZoneOffsetTransition =
-    zoneRules.nextTransition(date.getTime()); // 获取2025年5月13日以后的下一个时间跳变对象
+    zoneRules.nextTransition(date.getTime()); // 获取2025年5月13日以后的下一个时区跳变对象
 zoneOffsetTransition.getMilliseconds(); // 跳变点的时间戳: 1762074000000
 ```
 
@@ -2146,7 +2177,7 @@ zoneOffsetTransition.getMilliseconds(); // 跳变点的时间戳: 1762074000000
 
 getOffsetAfter(): number
 
-获取时间跳变后的偏移量。
+获取时区跳变后的偏移量。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2156,7 +2187,7 @@ getOffsetAfter(): number
 
 | 类型       | 说明         |
 | -------- | ---------- |
-| number | 时间跳变后的偏移量，表示跳变后的时间相对于标准时间（协调世界时UTC）的时间差，单位：毫秒。例如：-28800000表示跳变后的时间比标准时间慢28800000毫秒（8小时）。 |
+| number | 时区跳变后的偏移量，表示跳变后的时间相对于标准时间（协调世界时UTC）的时间差，单位：毫秒。例如：-28800000表示跳变后的时间比标准时间慢28800000毫秒（8小时）。 |
 
 **示例：**
 ```ts
@@ -2166,7 +2197,7 @@ let timeZone: i18n.TimeZone = i18n.getTimeZone('America/Tijuana');
 let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
 let date = new Date(2025, 4, 13);
 let zoneOffsetTransition: i18n.ZoneOffsetTransition =
-    zoneRules.nextTransition(date.getTime()); // 获取2025年5月13日以后的下一个时间跳变对象
+    zoneRules.nextTransition(date.getTime()); // 获取2025年5月13日以后的下一个时区跳变对象
 zoneOffsetTransition.getOffsetAfter(); // 跳变后的偏移量: -28800000
 ```
 
@@ -2174,7 +2205,7 @@ zoneOffsetTransition.getOffsetAfter(); // 跳变后的偏移量: -28800000
 
 getOffsetBefore(): number
 
-获取时间跳变前的偏移量。
+获取时区跳变前的偏移量。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2184,7 +2215,7 @@ getOffsetBefore(): number
 
 | 类型       | 说明         |
 | -------- | ---------- |
-| number | 时间跳变前的偏移量，表示跳变前的时间相对于标准时间（协调世界时UTC）的时间差，单位：毫秒。例如：-25200000表示跳变前的时间比标准时间慢25200000毫秒（7小时）。 |
+| number | 时区跳变前的偏移量，表示跳变前的时间相对于标准时间（协调世界时UTC）的时间差，单位：毫秒。例如：-25200000表示跳变前的时间比标准时间慢25200000毫秒（7小时）。 |
 
 **示例：**
 ```ts
@@ -2194,7 +2225,7 @@ let timeZone: i18n.TimeZone = i18n.getTimeZone('America/Tijuana');
 let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
 let date = new Date(2025, 4, 13);
 let zoneOffsetTransition: i18n.ZoneOffsetTransition =
-    zoneRules.nextTransition(date.getTime()); // 获取2025年5月13日以后的下一个时间跳变对象
+    zoneRules.nextTransition(date.getTime()); // 获取2025年5月13日以后的下一个时区跳变对象
 zoneOffsetTransition.getOffsetBefore(); // 跳变前的偏移量: -25200000
 ```
 
@@ -2386,7 +2417,7 @@ static isWhitespace(char: string): boolean
 
 ### isRTL<sup>9+</sup>
 
-static isRTL(char: string): boolean
+static isRTL(ch: string): boolean
 
 判断输入的字符是否是从右到左语言的字符。
 
@@ -2398,7 +2429,7 @@ static isRTL(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -2860,7 +2891,7 @@ static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: Intl
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 890001   | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001   | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 
@@ -2883,7 +2914,7 @@ try {
 
 static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl.Locale): string
 
-从API version 18开始支持，从API version 20开始废弃，建议使用[getUnicodeWrappedFilePath](#getunicodewrappedfilepath20)替代。
+> 从API version 18开始支持，从API version 20开始废弃，建议使用[getUnicodeWrappedFilePath](#getunicodewrappedfilepath20)替代。
 
 对文件路径进行本地化处理。<br>例如，将/data/out/tmp本地化处理后生成tmp/out/data/。
 
@@ -3053,7 +3084,7 @@ constructor(icsPath: String)
 
 |   参数名  |      类型      | 必填 |     说明      |
 | --------- | ------------- | ---- | ------------- |
-| icsPath   | String | 是   | 在设备上有应用读取权限的iCalendar格式的ics文件路径。  |
+| icsPath   | String | 是   | 在设备上有应用读取权限的iCalendar格式的ics文件路径。iCalendar格式是一种标准的互联网日历格式，用于存储日历数据。 |
 
 **错误码：**
 
@@ -3069,6 +3100,7 @@ constructor(icsPath: String)
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // 需要将'/system/lib/US.ics'替换为实际ics文件路径
     let holidayManager = new i18n.HolidayManager('/system/lib/US.ics');
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -3226,7 +3258,7 @@ getSimpleDateTimeFormatByPattern(pattern: string, locale?: Intl.Locale): SimpleD
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 ```ts
@@ -3245,7 +3277,7 @@ try {
 
 getSimpleDateTimeFormatByPattern(pattern: string, locale?: intl.Locale): SimpleDateTimeFormat
 
-从API version 18开始支持，从API version 20开始废弃，建议使用[getSimpleDateTimeFormatByPattern](#i18ngetsimpledatetimeformatbypattern20)替代。
+> 从API version 18开始支持，从API version 20开始废弃，建议使用[getSimpleDateTimeFormatByPattern](#i18ngetsimpledatetimeformatbypattern20)替代。
 
 通过模式字符串获取SimpleDateTimeFormat对象。与[getSimpleDateTimeFormatBySkeleton](#i18ngetsimpledatetimeformatbyskeletondeprecated)接口获取的对象在格式化后显示差异请参考[SimpleDateTimeFormat.format](#format18)的示例。
 
@@ -3317,7 +3349,7 @@ getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: Intl.Locale): Simpl
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 ```ts
@@ -3336,7 +3368,7 @@ try {
 
 getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleDateTimeFormat
 
-从API version 18开始支持，从API version 20开始废弃，建议使用[getSimpleDateTimeFormatBySkeleton](#i18ngetsimpledatetimeformatbyskeleton20)替代。
+> 从API version 18开始支持，从API version 20开始废弃，建议使用[getSimpleDateTimeFormatBySkeleton](#i18ngetsimpledatetimeformatbyskeleton20)替代。
 
 通过框架字符串获取SimpleDateTimeFormat对象。与[getSimpleDateTimeFormatByPattern](#i18ngetsimpledatetimeformatbypatterndeprecated)接口获取的对象在格式化后显示差异请参考[SimpleDateTimeFormat.format](#format18)的示例。
 
@@ -3456,7 +3488,7 @@ getSimpleNumberFormatBySkeleton(skeleton: string, locale?: Intl.Locale): SimpleN
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 ```ts
@@ -3475,7 +3507,7 @@ try {
 
 getSimpleNumberFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleNumberFormat
 
-从API version 18开始支持，从API version 20开始废弃，建议使用[getSimpleNumberFormatBySkeleton](#i18ngetsimplenumberformatbyskeleton20)替代。
+> 从API version 18开始支持，从API version 20开始废弃，建议使用[getSimpleNumberFormatBySkeleton](#i18ngetsimplenumberformatbyskeleton20)替代。
 
 通过框架字符串获取SimpleNumberFormat对象。
 
@@ -3690,9 +3722,9 @@ format(value: number): StyledString
 
 getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
 
-获取指定国家的本地化名称。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[System.getDisplayCountry](#getdisplaycountry9)替代。
 
-从API version 9开始不再维护，建议使用[System.getDisplayCountry](#getdisplaycountry9)代替。
+获取指定国家的本地化名称。
 
 **系统能力：** SystemCapability.Global.I18n
 
@@ -3720,9 +3752,9 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 
 getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string
 
-获取指定语言的本地化显示文本。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[System.getDisplayLanguage](#getdisplaylanguage9)替代。
 
-从API version 9开始不再维护，建议使用[System.getDisplayLanguage](#getdisplaylanguage9)代替。
+获取指定语言的本地化显示文本。
 
 **系统能力：** SystemCapability.Global.I18n
 
@@ -3751,9 +3783,9 @@ getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): st
 
 getSystemLanguage(): string
 
-获取系统语言。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[System.getSystemLanguage](#getsystemlanguage9)替代。
 
-从API version 9开始不再维护，建议使用[System.getSystemLanguage](#getsystemlanguage9)代替。
+获取系统语言。
 
 **系统能力：** SystemCapability.Global.I18n
 
@@ -3773,9 +3805,9 @@ getSystemLanguage(): string
 
 getSystemRegion(): string
 
-获取系统地区。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[System.getSystemRegion](#getsystemregion9)替代。
 
-从API version 9开始不再维护，建议使用[System.getSystemRegion](#getsystemregion9)代替。
+获取系统地区。
 
 **系统能力：** SystemCapability.Global.I18n
 
@@ -3795,9 +3827,9 @@ getSystemRegion(): string
 
 getSystemLocale(): string
 
-获取系统区域ID。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[System.getSystemLocaleInstance](#getsystemlocaleinstance20)代替。
 
-从API version 9开始不再维护，建议使用[System.getSystemLocale](#getsystemlocale9)代替。
+获取系统区域ID。
 
 **系统能力：** SystemCapability.Global.I18n
 
@@ -3817,9 +3849,9 @@ getSystemLocale(): string
 
 is24HourClock(): boolean
 
-判断系统时间是否为24小时制。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[System.is24HourClock](#is24hourclock9)替代。
 
-从API version 9开始不再维护，建议使用[System.is24HourClock](#is24hourclock9)代替。
+判断系统时间是否为24小时制。
 
 **系统能力：** SystemCapability.Global.I18n
 
@@ -3839,9 +3871,9 @@ is24HourClock(): boolean
 
 set24HourClock(option: boolean): boolean
 
-修改系统时间的24小时制设置。
+> 从API version 7开始支持，从API version 9开始废弃，替代接口仅支持系统应用使用。
 
-从API version 9开始不再维护，替代接口仅支持系统应用使用。
+修改系统时间的24小时制设置。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
@@ -3870,9 +3902,9 @@ set24HourClock(option: boolean): boolean
 
 addPreferredLanguage(language: string, index?: number): boolean
 
-在系统偏好语言列表的指定位置添加偏好语言。
+> 从API version 8开始支持，从API version 9开始废弃，替代接口仅支持系统应用使用。
 
-从API version 8开始支持，从API version 9开始不再维护，替代接口仅支持系统应用使用。
+在系统偏好语言列表的指定位置添加偏好语言。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
@@ -3904,9 +3936,9 @@ addPreferredLanguage(language: string, index?: number): boolean
 
 removePreferredLanguage(index: number): boolean
 
-从系统偏好语言列表中移除指定位置的偏好语言。
+> 从API version 8开始支持，从API version 9开始废弃，替代接口仅支持系统应用使用。
 
-从API version 8开始支持，从API version 9开始不再维护，替代接口仅支持系统应用使用。
+从系统偏好语言列表中移除指定位置的偏好语言。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
@@ -3936,9 +3968,9 @@ removePreferredLanguage(index: number): boolean
 
 getPreferredLanguageList(): Array&lt;string&gt;
 
-获取系统偏好语言列表。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[System.getPreferredLanguageList](#getpreferredlanguagelist9)替代。
 
-从API version 8开始支持，从API version 9开始不再维护，建议使用[System.getPreferredLanguageList](#getpreferredlanguagelist9)代替。
+获取系统偏好语言列表。
 
 **系统能力：** SystemCapability.Global.I18n
 
@@ -3958,9 +3990,9 @@ getPreferredLanguageList(): Array&lt;string&gt;
 
 getFirstPreferredLanguage(): string
 
-获取偏好语言列表中的第一个语言。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[System.getFirstPreferredLanguage](#getfirstpreferredlanguage9)替代。
 
-从API version 8开始支持，从API version 9开始不再维护，建议使用[System.getFirstPreferredLanguage](#getfirstpreferredlanguage9)代替。
+获取偏好语言列表中的第一个语言。
 
 **系统能力：** SystemCapability.Global.I18n
 
@@ -3983,9 +4015,9 @@ getFirstPreferredLanguage(): string
 
 unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
 
-将fromUnit的单位转换为toUnit的单位，并根据区域与风格进行格式化。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[unitConvert](#unitconvert9)替代。
 
-从API version 8开始支持，从API version 9开始不再维护，建议使用[unitConvert](#unitconvert9)代替。
+将fromUnit的单位转换为toUnit的单位，并根据区域与风格进行格式化。
 
 **系统能力：** SystemCapability.Global.I18n
 
@@ -4013,9 +4045,9 @@ unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string,
 
 isDigit(char: string): boolean
 
-判断输入的字符是否是数字。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[isDigit](#isdigit9)替代。
 
-从API version 8开始支持，从API version 9开始不再维护，建议使用[isDigit](#isdigit9)代替。
+判断输入的字符是否是数字。
 
 **系统能力：** SystemCapability.Global.I18n
 
@@ -4036,9 +4068,9 @@ isDigit(char: string): boolean
 
 isSpaceChar(char: string): boolean
 
-判断输入的字符是否是空格符。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[isSpaceChar](#isspacechar9)替代。
 
-从API version 8开始支持，从API version 9开始不再维护，建议使用[isSpaceChar](#isspacechar9)代替。
+判断输入的字符是否是空格符。
 
 **系统能力：** SystemCapability.Global.I18n
 
@@ -4059,9 +4091,9 @@ isSpaceChar(char: string): boolean
 
 isWhitespace(char: string): boolean
 
-判断输入的字符是否是空白符。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[isWhitespace](#iswhitespace9)替代。
 
-从API version 8开始支持，从API version 9开始不再维护，建议使用[isWhitespace](#iswhitespace9)代替。
+判断输入的字符是否是空白符。
 
 **系统能力：** SystemCapability.Global.I18n
 
@@ -4080,11 +4112,11 @@ isWhitespace(char: string): boolean
 
 ### isRTL<sup>(deprecated)</sup>
 
-isRTL(char: string): boolean
+isRTL(ch: string): boolean
+
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[isRTL](#isrtl9)替代。
 
 判断输入的字符是否是从右到左语言的字符。
-
-从API version 8开始支持，从API version 9开始不再维护，建议使用[isRTL](#isrtl9)代替。
 
 **系统能力：** SystemCapability.Global.I18n
 
@@ -4092,7 +4124,7 @@ isRTL(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
+| ch | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -4105,9 +4137,9 @@ isRTL(char: string): boolean
 
 isIdeograph(char: string): boolean
 
-判断输入的字符是否是表意文字。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[isIdeograph](#isideograph9)替代。
 
-从API version 8开始支持，从API version 9开始不再维护，建议使用[isIdeograph](#isideograph9)代替。
+判断输入的字符是否是表意文字。
 
 **系统能力：** SystemCapability.Global.I18n
 
@@ -4128,9 +4160,9 @@ isIdeograph(char: string): boolean
 
 isLetter(char: string): boolean
 
-判断输入的字符是否是字母。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[isLetter](#isletter9)替代。
 
-从API version 8开始支持，从API version 9开始不再维护，建议使用[isLetter](#isletter9)代替。
+判断输入的字符是否是字母。
 
 **系统能力：** SystemCapability.Global.I18n
 
@@ -4151,9 +4183,9 @@ isLetter(char: string): boolean
 
 isLowerCase(char: string): boolean
 
-判断输入的字符是否是小写字母。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[isLowerCase](#islowercase9)替代。
 
-从API version 8开始支持，从API version 9开始不再维护，建议使用[isLowerCase](#islowercase9)代替。
+判断输入的字符是否是小写字母。
 
 **系统能力：** SystemCapability.Global.I18n
 
@@ -4174,9 +4206,9 @@ isLowerCase(char: string): boolean
 
 isUpperCase(char: string): boolean
 
-判断输入的字符是否是大写字母。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[isUpperCase](#isuppercase9)替代。
 
-从API version 8开始支持，从API version 9开始不再维护，建议使用[isUpperCase](#isuppercase9)代替。
+判断输入的字符是否是大写字母。
 
 **系统能力：** SystemCapability.Global.I18n
 
@@ -4197,9 +4229,9 @@ isUpperCase(char: string): boolean
 
 getType(char: string): string
 
-获取输入的字符的一般类别值。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[getType](#gettype9)替代。
 
-从API version 8开始支持，从API version 9开始不再维护，建议使用[getType](#gettype9)代替。
+获取输入的字符的一般类别值。
 
 **系统能力：** SystemCapability.Global.I18n
 

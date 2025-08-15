@@ -1,4 +1,10 @@
 # 会话管理(C/C++)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 相机使用预览、拍照、录像、元数据功能前，均需要创建相机会话。
 

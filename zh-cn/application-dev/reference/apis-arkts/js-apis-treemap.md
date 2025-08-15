@@ -1,4 +1,10 @@
 # @ohos.util.TreeMap (非线性容器TreeMap)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 TreeMap可用于存储具有关联关系的key-value键值对集合，存储元素中key值唯一，每个key对应一个value。
 
@@ -42,7 +48,7 @@ import { TreeMap } from '@kit.ArkTS';
 
 constructor(comparator?:(firstValue: K, secondValue: K) => boolean)
 
-TreeMap的构造函数，支持通过比较函数对元素进行升序或降序排序。
+TreeMap的构造函数，支持通过比较函数使元素按照自定义规则排序。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

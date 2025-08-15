@@ -1,4 +1,10 @@
 # @ohos.enterprise.restrictions （限制类策略）(系统接口)
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--Designer: @liuzuming-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供设置通用限制类策略能力，包括禁用或启用设备打印、HDC等能力。
 

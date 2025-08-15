@@ -1,4 +1,10 @@
 # @ohos.enterprise.adminManager（企业设备管理）(系统接口)
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--Designer: @liuzuming-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供企业设备管理能力，使设备具备企业场景下所需的定制能力。
 

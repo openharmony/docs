@@ -1,4 +1,10 @@
 # oh_display_manager.h
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## 概述
 
@@ -244,7 +250,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayRefreshR
 
 | 参数项 | 描述 |
 | -- | -- |
-| uint32_t *refreshRate | 屏幕的刷新率，该参数应为整数，单位为hz，此处作为出参返回。 |
+| uint32_t *refreshRate | 屏幕的刷新率，该参数应为整数，单位为Hz，此处作为出参返回。 |
 
 **返回：**
 

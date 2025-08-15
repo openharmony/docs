@@ -1,4 +1,9 @@
 # Performance Optimization Practices (for System Applications Only) (ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 
@@ -14,18 +19,18 @@ The deferred stream configuration feature decouples stream configuration and sta
 
 ![deferred-surface-scene](figures/deferred-surface-scene.png)
 
-Before optimization: Stream configuration depends on a **Surface** object, which is available after UI loading is complete. In other words, you can create a session, configure input and output streams, and start the session only after the UI is loaded. The camera HDI is responsible for stream configuration.
+Before optimization: Stream configuration depends on a Surface object, which is available after UI loading is complete. In other words, you can create a session, configure input and output streams, and start the session only after the UI is loaded. The camera HDI is responsible for stream configuration.
 
-After optimization: Stream configuration does not depend on the **Surface** object. UI loading and stream configuration are executed concurrently. After the parameters are prepared, you can create a session.
+After optimization: Stream configuration does not depend on the Surface object. UI loading and stream configuration are executed concurrently. After the parameters are prepared, you can create a session.
 
 ### Available APIs
 
-Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
+Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 | API| Description|
 | ---- | ---- |
-| createDeferredPreviewOutput(profile: Profile): Promise\<PreviewOutput> | Creates a deferred **PreviewOutput** instance and adds it, instead of a common **PreviewOutput** instance, to the data stream during stream configuration.|
-| addDeferredSurface(surfaceId: string): Promise\<void> | Adds a surface for delayed preview. This API can run after [session.commitConfig](../../reference/apis-camera-kit/js-apis-camera.md#commitconfig11) or [session.start](../../reference/apis-camera-kit/js-apis-camera.md#start11) is called.|
+| createDeferredPreviewOutput(profile: Profile): Promise\<PreviewOutput> | Creates a deferred PreviewOutput instance and adds it, instead of a common PreviewOutput instance, to the data stream during stream configuration.|
+| addDeferredSurface(surfaceId: string): Promise\<void> | Adds a surface for delayed preview. This API can run after [session.commitConfig](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#commitconfig11) or [session.start](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#start11) is called.|
 
 ### Development Example
 
@@ -65,7 +70,7 @@ In this way, the photo capture process is optimized, which fulfills the processi
 
 ### Available APIs
 
-Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
+Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 | API| Description|
 | ---- | ---- |
@@ -136,7 +141,7 @@ Generally, the startup of the camera application is triggered when the user touc
 
 ### Available APIs
 
-Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
+Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 | API| Description|
 | ---- | ---- |
@@ -172,7 +177,7 @@ For details about how to obtain the context, see [Obtaining the Context of UIAbi
 
 - **Camera application**
 
-  To use the prelaunch feature, the camera application must configure the **ohos.permission.CAMERA** permission.
+  To use the prelaunch feature, the camera application must configure the ohos.permission.CAMERA permission.
 
   For details about how to request and verify the permissions, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 

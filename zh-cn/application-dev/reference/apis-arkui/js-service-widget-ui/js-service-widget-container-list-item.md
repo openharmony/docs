@@ -1,5 +1,11 @@
 # list-item
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @yylong-->
+<!--Designer: @yylong-->
+<!--Tester: @liuzhenshuo-->
+<!--Adviser: @HelloCrease-->
 
 &lt;[list](js-service-widget-container-list.md)&gt;的子组件，用来展示列表具体item。
 

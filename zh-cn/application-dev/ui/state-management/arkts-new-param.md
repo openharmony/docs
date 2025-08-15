@@ -1,4 +1,10 @@
 # \@Param：组件外部输入
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 
 为了增强子组件接受外部参数输入的能力，开发者可以使用\@Param装饰器。
@@ -10,6 +16,7 @@
 >
 > 从API version 12开始，在\@ComponentV2装饰的自定义组件中支持使用\@Param装饰器。
 >
+> 从API version 12开始，该装饰器支持在原子化服务中使用。
 
 ## 概述
 

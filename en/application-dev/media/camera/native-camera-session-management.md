@@ -1,4 +1,9 @@
 # Camera Session Management (C/C++)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 Before using the camera application for preview, photo capture, video recording, and metadata management, you must create a camera session.
 
@@ -8,7 +13,7 @@ You can implement the following functions in the session:
 
   Configuring an input stream is to add a device input, which means that the user selects a camera for photo capture. Configuring an output stream is to select a data output mode. For example, to implement photo capture, you must configure both the preview stream and photo stream as the output stream. The data of the preview stream is displayed on the **XComponent**, and that of the photo stream is saved to the Gallery application through the ImageReceiver API.
 
-- Perform more operations on the camera hardware. For example, add the flash and adjust the focal length. For details about the supported configurations and APIs, see [Camera API Reference](../../reference/apis-camera-kit/_o_h___camera.md).
+- Perform more operations on the camera hardware. For example, add the flash and adjust the focal length. For details about the supported configurations and APIs, see [Camera API Reference](../../reference/apis-camera-kit/capi-oh-camera.md).
 
 - Control session switching. The application can switch the camera mode by removing and adding output streams. For example, to switch from photo capture to video recording, the application must remove the photo output stream and add the video output stream.
 
@@ -39,7 +44,7 @@ After the session configuration is complete, the application must commit the con
    )
    ```
 
-3. Call [OH_CameraManager_CreateCaptureSession()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_createcapturesession) in the CameraManager class to create a session.
+3. Call [OH_CameraManager_CreateCaptureSession()](../../reference/apis-camera-kit/capi-camera-manager-h.md#oh_cameramanager_createcapturesession) to create a session.
 
    ```c++
    Camera_CaptureSession* CreateCaptureSession(Camera_Manager* cameraManager)
@@ -53,7 +58,7 @@ After the session configuration is complete, the application must commit the con
    }
    ```
 
-4. Call [OH_CaptureSession_SetSessionMode()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_setsessionmode) in the CaptureSession class to set the session mode.
+4. Call [OH_CaptureSession_SetSessionMode()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_setsessionmode) to set the session mode.
 
    ```c++
    Camera_ErrorCode SetSessionMode(Camera_CaptureSession* captureSession)
@@ -66,7 +71,7 @@ After the session configuration is complete, the application must commit the con
    }
    ```
 
-5. Call [OH_CaptureSession_BeginConfig()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_beginconfig) in the CaptureSession class to start configuration for the session.
+5. Call [OH_CaptureSession_BeginConfig()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_beginconfig) to configure the session.
 
    ```c++
    Camera_ErrorCode BeginConfig(Camera_CaptureSession* captureSession)
@@ -79,9 +84,9 @@ After the session configuration is complete, the application must commit the con
    }
    ```
 
-6. Configure the session. You can call [OH_CaptureSession_AddInput()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_addinput) to add an input stream to the session, and call [OH_CaptureSession_AddPreviewOutput()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_addpreviewoutput) and [OH_CaptureSession_AddPhotoOutput()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_addphotooutput) to add output streams to the session. The code snippet below uses adding the preview stream **previewOutput** and photo stream **photoOutput** as an example to implement the photo capture and preview mode.
+6. Configure the session. You can call [OH_CaptureSession_AddInput()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_addinput) to add an input stream to the session, and call [OH_CaptureSession_AddPreviewOutput()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_addpreviewoutput) and [OH_CaptureSession_AddPhotoOutput()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_addphotooutput) to add output streams to the session. The code snippet below uses adding the preview stream **previewOutput** and photo stream **photoOutput** as an example to implement the photo capture and preview mode.
 
-   After the configuration, call [OH_CaptureSession_CommitConfig()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_commitconfig) and [OH_CaptureSession_Start()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_start) in the CaptureSession class in sequence to commit the configuration and start the session.
+   After the configuration, call [OH_CaptureSession_CommitConfig()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_commitconfig) and [OH_CaptureSession_Start()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_start) to commit the configuration and start the session.
 
    ```c++
    Camera_ErrorCode StartSession(Camera_CaptureSession* captureSession, Camera_Input* cameraInput,
@@ -124,7 +129,7 @@ After the session configuration is complete, the application must commit the con
    }
    ```
 
-7. Control the session. You can call [OH_CaptureSession_Stop()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_stop) in the CaptureSession class to stop the session, and call [OH_CaptureSession_RemovePhotoOutput()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_removephotooutput) and [OH_CaptureSession_AddVideoOutput()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_addvideooutput) in this class to switch to another session. The code snippet below uses removing the photo stream **photoOutput** and adding the video stream **videoOutput** as an example to complete the switching from photo capture to video recording.
+7. Control the session. You can call [OH_CaptureSession_Stop()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_stop) to stop the session, and call [OH_CaptureSession_RemovePhotoOutput()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_removephotooutput) and [OH_CaptureSession_AddVideoOutput()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_addvideooutput) to switch to another session. The code snippet below uses removing the photo stream **photoOutput** and adding the video stream **videoOutput** as an example to complete the switching from photo capture to video recording.
 
    ```c++
    Camera_ErrorCode ReloadSession(Camera_CaptureSession* captureSession, Camera_PhotoOutput* photoOutput,

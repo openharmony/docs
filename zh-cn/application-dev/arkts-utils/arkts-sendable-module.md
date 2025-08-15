@@ -1,4 +1,10 @@
 # 共享模块
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 共享模块是进程内只会加载一次的模块，使用"use shared"这一指令来标记一个模块是否为共享模块。
 
@@ -19,17 +25,23 @@
   共享模块在同一进程内仅加载一次，可在不同线程间共享。<br/>
   共享模块加载时，导入的非共享模块不会立即加载。在共享模块内访问依赖的非共享模块导出变量时，当前线程会懒加载对应的非共享模块。非共享模块在线程间隔离，不同线程访问时会进行一次懒加载。<br/>
   由于side-effects-import不涉及导出变量，因此不会被加载，也不受支持。
+  ```ts
+  // test.ets
+  console.info("This runs immediately when imported");
+  ```
 
   ```ts
-  // 不允许使用side-effects-import
-  import "./sharedModule";
+  // sharedModule.ets
+  // 不允许使用side-effects-import，编译报错
+  import "./test";
+  "use shared"
   ```
 
 - 共享模块导出的变量必须是可共享对象。
 
   共享模块在并发实例间可共享，因此导出的所有对象必须是可共享的。可共享对象参考[Sendable支持的数据类型](arkts-sendable.md#sendable支持的数据类型)。
 
-- 共享模块不允许直接导出模块。
+- 共享模块不支持re-export写法。
 
   ```ts
   // test.ets
@@ -41,8 +53,8 @@
   // share.ets
   // 共享模块
   'use shared'
-  export * from './test'; // 编译报错，不允许直接导出模块
-  export {num, str} from './test'; // 正确示例，导出对象合集
+  export * from './test'; // 编译报错
+  export {num, str} from './test'; // 产生运行时报错
   ```
 
 
@@ -53,13 +65,13 @@
   // test.ets
   import { num } from './A'; // 支持静态加载
 
-  import worker from '@ohos.worker';
+  import { worker } from '@kit.ArkTS';
   let wk = new worker.ThreadWorker("./A"); // 不支持其他方式加载共享模块, 将产生运行时报错
-  
+  ```
+  ```ts
   // A.ets
   'use shared'
-  
-  export {num, str} from './test';
+  export let num: number = 10;
   ```
 
 ## 使用示例
@@ -94,7 +106,7 @@
    
    export let singletonA = new SingletonA();
    ```
-   <!-- @[export_sendable_object](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/sharedModule.ets) -->
+   <!-- @[export_sendable_object](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/sharedModule.ets) -->
 
 2. 在多个线程中操作共享模块导出的对象。
 
@@ -144,4 +156,4 @@
      }
    }
    ```
-   <!-- @[ multi_thread_operate_exported_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/ArktsSendableModule.ets) -->
+   <!-- @[ multi_thread_operate_exported_obj](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/ArktsSendableModule.ets) -->

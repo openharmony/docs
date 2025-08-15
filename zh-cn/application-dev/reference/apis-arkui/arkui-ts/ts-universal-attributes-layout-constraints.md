@@ -1,4 +1,10 @@
 # 布局约束
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @camlostshi-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 通过组件的宽高比和显示优先级约束组件显示效果。
 

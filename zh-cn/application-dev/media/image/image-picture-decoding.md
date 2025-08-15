@@ -1,4 +1,10 @@
 # 使用ImageSource完成多图对象解码
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 将所支持格式的图片文件解码成[Picture](image-overview.md)。当前支持的图片文件格式包括JPEG、HEIF。
 
@@ -28,10 +34,13 @@
       import { fileIo as fs } from '@kit.CoreFileKit';
 
       function getFileFd(context: Context): number | undefined {
-        const filePath: string = context.cacheDir + '/test.jpg';
+        const filePath: string = context.filesDir + '/test.jpg';
         const file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
-        const fd: number = file?.fd;
-        return fd;
+        if (file != undefined) {
+          const fd: number = file.fd;
+          return fd;
+        }
+        return undefined;
       }
       ```
 

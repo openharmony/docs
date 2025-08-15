@@ -1,12 +1,17 @@
 # User File Overview
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wang_zhangjun; @zhuangzhuang-->
+<!--SE: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 User files are the private [images, videos](../media/medialibrary/photoAccessHelper-overview.md), audio clips, and documents of the user who has logged in to the device.
 
-- User files are stored in a directory, whose owner is the user who has logged in to the device.
+1. User files are stored in a directory, whose owner is the user who has logged in to the device.
 
-- User files can be stored in [built-in storage](#built-in-storage) and [external storage](#external-storage) of the device.
+2. User files can be stored in [built-in storage](#built-in-storage) and [external storage](#external-storage) of the device.
 
-- An application cannot access user files without user authorization, or the operations on user files must be performed by the user.
+3. An application cannot access user files without user authorization, or the operations on user files must be performed by the user.
 
 ## User File Storage
 

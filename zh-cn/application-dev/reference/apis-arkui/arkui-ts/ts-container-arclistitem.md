@@ -1,5 +1,12 @@
 # ArcListItem
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @yylong-->
+<!--Designer: @yylong-->
+<!--Tester: @liuzhenshuo-->
+<!--Adviser: @HelloCrease-->
+
 用来展示列表具体子组件，必须配合[ArcList](ts-container-arclist.md)来使用。
 
 > **说明：**

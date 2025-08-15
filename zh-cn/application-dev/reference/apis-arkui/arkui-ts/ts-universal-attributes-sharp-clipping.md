@@ -1,4 +1,10 @@
 # 形状裁剪
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 用于对组件进行裁剪、遮罩处理。
 

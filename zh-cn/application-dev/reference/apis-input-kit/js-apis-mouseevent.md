@@ -92,13 +92,13 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@kit.InputKit';
 
 | 名称             | 类型        | 只读   | 可选   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| action         | [Action](#action)      | 否    | 否    | 鼠标事件动作。                                   |
-| screenX        | number      | 否    | 否    | 鼠标光标在屏幕中的横坐标。                             |
-| screenY        | number      | 否    | 否    | 鼠标光标在屏幕中的纵坐标。                             |
-| windowX        | number      | 否    | 否    | 鼠标所在窗口的横坐标。                               |
-| windowY        | number      | 否    | 否    | 鼠标所在窗口的纵坐标。                               |
-| rawDeltaX      | number      | 否    | 否    | 鼠标本次操作横坐标偏移值。 |
-| rawDeltaY      | number      | 否    | 否    | 鼠标本次操作纵坐标偏移值。                          |
+| action         | [Action](#action)      | 否    | 否    | 鼠标事件动作。                         |
+| screenX        | number      | 否    | 否    | 该鼠标事件以指定屏幕左上角为原点的相对坐标系的X坐标。当前仅支持整数。 |
+| screenY        | number      | 否    | 否    | 该鼠标事件以指定屏幕左上角为原点的相对坐标系的Y坐标。当前仅支持整数。 |
+| windowX        | number      | 否    | 否    | 鼠标所在窗口左上角为原点的相对坐标系的X坐标。当前仅支持整数。  |
+| windowY        | number      | 否    | 否    | 鼠标所在窗口左上角为原点的相对坐标系的Y坐标。当前仅支持整数。  |
+| rawDeltaX      | number      | 否    | 否    | 鼠标当前事件相对于上次事件的X坐标偏移值。当前仅支持整数。 |
+| rawDeltaY      | number      | 否    | 否    | 鼠标当前事件相对于上次事件的Y坐标偏移值。当前仅支持整数。 |
 | button         | [Button](#button)      | 否    | 否    | 鼠标按钮。                       |        
 | pressedButtons | [Button](#button)[]    | 否    | 否    | 当前处于按下状态的鼠标按钮。                              |
 | axes           | [AxisValue](#axisvalue)[] | 否    | 否    | 事件包含的所有轴数据。                               |
@@ -112,5 +112,5 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@kit.InputKit';
 | numLock        | boolean     | 否    | 否    | 当前numLock是否处于激活状态。 <br>true表示激活状态，false表示处于未激活状态。                        |
 | scrollLock     | boolean     | 否    | 否    | 当前scrollLock是否处于激活状态。 <br>true表示激活状态，false表示处于未激活状态。                     |
 | toolType<sup>11+</sup> | [ToolType](#tooltype11) | 否    | 否    | 工具类型。                     |
-| globalX<sup>20+</sup> | number | 否    | 是    | 鼠标光标位置相对于主屏幕左上角的X坐标。<!--Del-->作为入参时，若接口参数中的[MouseEventData.useGlobalCoordinate](./js-apis-inputeventclient-sys.md#mouseeventdata11)为true，该值必填，当前仅支持整数。若为false，该值无需填写，使用当前屏幕坐标计算注入事件。<!--DelEnd-->作为出参时，由系统上报。 |
-| globalY<sup>20+</sup> | number | 否    | 是    | 鼠标光标位置相对于主屏幕左上角的Y坐标。<!--Del-->作为入参时，若接口参数中的[MouseEventData.useGlobalCoordinate](./js-apis-inputeventclient-sys.md#mouseeventdata11)为true，该值必填，当前仅支持整数。若为false，该值无需填写，使用当前屏幕坐标计算注入事件。<!--DelEnd-->作为出参时，由系统上报。 |
+| globalX<sup>20+</sup> | number | 否    | 是    | 该鼠标事件以主屏左上角为原点的全局坐标系的X坐标。<!--Del-->作为入参时，若接口参数中的[MouseEventData.useGlobalCoordinate](./js-apis-inputeventclient-sys.md#mouseeventdata11)为true，该值必填，当前仅支持整数。若为false，该值无需填写，使用指定屏幕左上角为原点的相对坐标系的X坐标计算注入事件。<!--DelEnd-->作为出参时，由系统上报。 |
+| globalY<sup>20+</sup> | number | 否    | 是    | 该鼠标事件以主屏左上角为原点的全局坐标系的Y坐标。<!--Del-->作为入参时，若接口参数中的[MouseEventData.useGlobalCoordinate](./js-apis-inputeventclient-sys.md#mouseeventdata11)为true，该值必填，当前仅支持整数。若为false，该值无需填写，使用指定屏幕左上角为原点的相对坐标系的Y坐标计算注入事件。<!--DelEnd-->作为出参时，由系统上报。 |

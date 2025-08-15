@@ -1,4 +1,10 @@
 # 应用接入AVSession场景介绍
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 音视频应用在实现音视频功能的同时，需要接入媒体会话即AVSession Kit，下文将提供一些典型的接入AVSession的展示和控制场景，方便开发者根据场景进行适配。
 
@@ -18,7 +24,7 @@ AVSession会对后台的音频播放、VOIP通话做约束，所以通常来说�
 
 1. 确定应用需要创建的会话类型，[创建对应的会话](#创建不同类型的会话)，不同类型决定了播控中心展示的控制模板样式。
 2. 按需[创建后台任务](#创建后台任务)。
-3. [设置必要的元数据（Metadata）](#设置元数据)，以在播控中心展示响应的信息，包括不限于：当前媒体的ID（assetId），上一首媒体的ID（previousAssetId），下一首媒体的ID（nextAssetId），标题（title），专辑作者（author），专辑名称（album），词作者（writer），媒体时长（duration）等属性。
+3. [设置必要的元数据（Metadata）](#设置元数据)，以在播控中心展示相应的信息，包括不限于：当前媒体的ID（assetId），上一首媒体的ID（previousAssetId），下一首媒体的ID（nextAssetId），标题（title），专辑作者（author），专辑名称（album），词作者（writer），媒体时长（duration）等属性。
 4. [设置播放相关的状态](#设置播放状态)，包括不限于：当前媒体的播放状态（state）、播放位置（position）、播放倍速（speed）、缓冲时间（bufferedTime）、循环模式（loopMode）、是否收藏（isFavorite）、正在播放的媒体Id（activeItemId）、自定义媒体数据（extras）等属性。
 5. 按需[注册不同的控制命令](#注册控制命令)，包括不限于：播放/暂停、上下一首、快进快退、收藏、循环模式、进度条。
 6. 应用退出或者无对应业务时，注销会话。
@@ -415,54 +421,76 @@ struct Index {
 
 ### 快进快退
 
-系统支持三种快进快退的时长，应用可以通过接口进行设置；同时注册快进快退的回调命令，以响应控制。
+系统支持三种快进/快退的时长，应用可以通过接口进行设置；同时注册快进/快退的回调命令，以响应控制。
 
-```ts
-import { avSession as AVSessionManager } from '@kit.AVSessionKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+> **说明：**
+>
+> 应用注册快进/快退及上/下一首资源切换的命令时，在播控中心的显示存在实际差异。
 
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
+- **当AVSessionType是audio时：**
 
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(async () => {
-          let context = this.getUIContext().getHostContext() as Context;
-          // 假设已经创建了一个session，如何创建session可以参考之前的案例。
-          let type: AVSessionManager.AVSessionType = 'audio';
-          let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+    | 应用注册的事件组合 | 播放中心显示按钮 | 按钮是否可用 |
+    | ------------ | ------------ | ------------ |
+    | 未注册任何事件 | “上一首”、“下一首” | 所有按钮置灰，无法点击。 |
+    | 注册上一首/下一首事件 | “上一首”、“下一首” | 注册上一首事件 →“上一首”按钮可用。<br>注册下一首事件 →“下一首”按钮可用。<br>未注册对应事件的按钮不可用。  |
+    | 注册快进/快退事件 | “上一首”、“下一首”|  所有按钮置灰，无法点击。 |
+    | 注册上一首/下一首及快进/快退事件 | “上一首”、“下一首” | 注册上一首事件 →“上一首”按钮可用。<br>注册下一首事件 →“下一首”按钮可用。<br>未注册对应事件的按钮不可用。  |
 
-          // 设置支持的快进快退的时长设置给AVSession。
-          let metadata: AVSessionManager.AVMetadata = {
-            assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体。
-            title: 'TITLE',
-            mediaImage: 'IMAGE',
-            skipIntervals: AVSessionManager.SkipIntervals.SECONDS_10,
-          };
-          session.setAVMetadata(metadata).then(() => {
-            console.info(`SetAVMetadata successfully`);
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
-          });
+- **当AVSessionType是video时：**
 
-          session.on('fastForward', (time ?: number) => {
-            console.info(`on fastForward , do fastForward task`);
-            // do some tasks ···
-          });
-          session.on('rewind', (time ?: number) => {
-            console.info(`on rewind , do rewind task`);
-            // do some tasks ···
-          });
-        })
+    | 应用注册的事件组合 | 播放中心显示按钮 | 按钮是否可用 |
+    | ------------ | ------------ | ------------ |
+    | 未注册任何事件 | “快进”、“快退” | 所有按钮置灰，无法点击。 |
+    | 注册上一首/下一首事件 | “上一首”、“下一首” | 注册上一首事件 →“上一首”按钮可用。<br>注册下一首事件 →“下一首”按钮可用。<br>未注册对应事件的按钮不可用。  |
+    | 注册快进/快退事件 | “快进”、“快退”|  注册快进事件 →“快进”按钮可用。<br>注册快退事件 →“快退”按钮可用。<br>未注册对应事件的按钮不可用。 |
+    | 注册上一首/下一首及快进/快退事件 | “快进”、“快退”|  注册快进事件 →“快进”按钮可用。<br>注册快退事件 →“快退”按钮可用。<br>未注册对应事件的按钮不可用。 |
+
+  ```ts
+  import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  @Entry
+  @Component
+  struct Index {
+    @State message: string = 'hello world';
+
+    build() {
+      Column() {
+        Text(this.message)
+          .onClick(async () => {
+            let context = this.getUIContext().getHostContext() as Context;
+            // 假设已经创建了一个session，如何创建session可以参考之前的案例。
+            let type: AVSessionManager.AVSessionType = 'audio';
+            let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+
+            // 设置支持的快进快退的时长设置给AVSession。
+            let metadata: AVSessionManager.AVMetadata = {
+              assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体。
+              title: 'TITLE',
+              mediaImage: 'IMAGE',
+              skipIntervals: AVSessionManager.SkipIntervals.SECONDS_10,
+            };
+            session.setAVMetadata(metadata).then(() => {
+              console.info(`SetAVMetadata successfully`);
+            }).catch((err: BusinessError) => {
+              console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+            });
+
+            session.on('fastForward', (time ?: number) => {
+              console.info(`on fastForward , do fastForward task`);
+              // do some tasks ···
+            });
+            session.on('rewind', (time ?: number) => {
+              console.info(`on rewind , do rewind task`);
+              // do some tasks ···
+            });
+          })
+      }
+      .width('100%')
+      .height('100%')
     }
-    .width('100%')
-    .height('100%')
   }
-}
-```
+  ```
 
 ### 收藏
 

@@ -1,4 +1,10 @@
 # @ohos.inputMethod (输入法框架) (系统接口)
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--Designer: @andeszhang-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 本模块主要面向普通前台应用（备忘录、信息、设置等系统应用），提供对输入法（输入法应用）的控制、管理能力，包括显示/隐藏输入法软键盘、切换输入法、获取所有输入法列表等等。
 
@@ -54,26 +60,36 @@ switchInputMethod(bundleName: string, subtypeId?: string): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let currentIme = inputMethod.getCurrentInputMethod();
-try {
-  inputMethod.switchInputMethod(currentIme.name).then(() => {
+async function switchInputMethodWithSubtype() {
+  // 1. 获取当前输入法
+  const currentIme = inputMethod.getCurrentInputMethod();
+  if (!currentIme) {
+    console.error("Failed to get current input method");
+    return;
+  }
+  // 2. 切换输入法
+  try {
+    await inputMethod.switchInputMethod(currentIme.name);
     console.info('Succeeded in switching inputmethod.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
-  })
-} catch (err) {
-  console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
-}
-let currentImeSubType = inputMethod.getCurrentInputMethodSubtype();
-try {
-  inputMethod.switchInputMethod(currentIme.name, currentImeSubType.id).then(() => {
+  } catch (err) {
+    console.error(`Failed to switch input method: Code: ${err.code}, Message: ${err.message}`);
+    return;
+  }
+  // 3. 获取当前输入法子类型
+  const currentSubtype = inputMethod.getCurrentInputMethodSubtype();
+  if (!currentSubtype) {
+    console.error("Failed to get current input subtype");
+    return;
+  }
+  // 4. 切换输入法子类型
+  try {
+    await inputMethod.switchInputMethod(currentIme.name, currentSubtype.id);
     console.info('Succeeded in switching inputmethod.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
-  })
-} catch (err) {
-  console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
+  } catch (err) {
+    console.error(`Failed to switch input subtype: Code: ${err.code}, Message: ${err.message}`);
+  }
 }
+switchInputMethodWithSubtype();
 ```
 
 ## InputMethodSetting<sup>8+</sup>
@@ -113,7 +129,7 @@ try {
     console.info('Succeeded in subscribing imeShow event.');
   });
 } catch(err) {
-  console.error(`Failed to unsubscribing imeShow. err: ${JSON.stringify(err)}`);
+  console.error(`Failed to subscribing imeShow. Code: ${err.code}, Message: ${err.message}`);
 }
 ```
 
@@ -151,7 +167,7 @@ try {
     console.info('Succeeded in subscribing imeHide event.');
   });
 } catch(err) {
-  console.error(`Failed to unsubscribing imeHide. err: ${JSON.stringify(err)}`);
+  console.error(`Failed to subscribing imeHide. Code: ${err.code}, Message: ${err.message}`);
 }
 ```
 
@@ -178,7 +194,7 @@ off(type: 'imeShow', callback?: (info: Array\<InputWindowInfo>) => void): void
 try {
   inputMethodSetting.off('imeShow');
 } catch(err) {
-  console.error(`Failed to unsubscribing imeShow. err: ${JSON.stringify(err)}`);
+  console.error(`Failed to unsubscribing imeShow. Code: ${err.code}, Message: ${err.message}`);
 }
 ```
 
@@ -205,7 +221,7 @@ off(type: 'imeHide', callback?: (info: Array\<InputWindowInfo>) => void): void
 try {
   inputMethodSetting.off('imeHide');
 } catch(err) {
-  console.error(`Failed to unsubscribing imeHide. err: ${JSON.stringify(err)}`);
+  console.error(`Failed to unsubscribing imeHide. Code: ${err.code}, Message: ${err.message}`);
 }
 ```
 
@@ -301,14 +317,18 @@ enableInputMethod(bundleName: string, extensionName: string, enabledState: Enabl
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let currentIme = inputMethod.getCurrentInputMethod();
-try {
+function enableInputMethodSafely() {
+  const currentIme = inputMethod.getCurrentInputMethod();
+  if (!currentIme) {
+    console.error("Failed to get current input method");
+    return;
+  }
+
   inputMethodSetting.enableInputMethod(currentIme.name, currentIme.id, inputMethod.EnabledState.BASIC_MODE).then(() => {
     console.info('Succeeded in enable inputmethod.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to enableInputMethod. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to enableInputMethod. Code: ${err.code}, message: ${err.message}`);
+  });
 }
+enableInputMethodSafely();
 ```

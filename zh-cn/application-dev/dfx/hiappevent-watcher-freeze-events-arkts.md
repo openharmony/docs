@@ -2,7 +2,7 @@
 
 ## 简介
 
-本文介绍如何使用HiAppEvent提供的ArkTs接口订阅应用无响应事件。接口的详细使用说明（参数限制、取值范围等）请参考[@ohos.hiviewdfx.hiAppEvent (应用事件打点)ArkTS API文档](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)。
+本文介绍如何使用HiAppEvent提供的ArkTS接口订阅应用无响应事件。接口的详细使用说明（参数限制、取值范围等）请参考[@ohos.hiviewdfx.hiAppEvent (应用事件打点)ArkTS API文档](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)。
 
 ## 接口说明
 
@@ -118,7 +118,7 @@
 
 ### 验证观察者是否订阅到应用无响应事件
 
-1. 应用应用无响应退出后，重新进入应用可以在Log窗口看到对系统事件数据的处理日志：
+1. 应用无响应退出后，重新进入应用可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
    HiAppEvent onReceive: domain=OS

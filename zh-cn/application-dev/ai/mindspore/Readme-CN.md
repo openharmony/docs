@@ -1,5 +1,12 @@
 # MindSpore Lite Kit（昇思推理框架服务）
 
+<!--Kit: MindSpore Lite Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @zhuguodong8-->
+<!--Designer: @zhuguodong8; @jjfeing-->
+<!--Tester: @principal87-->
+<!--Adviser: @ge-yafang-->
+
 - [MindSpore Lite Kit简介](MindSpore-Lite-Kit-Introduction.md)
 - [使用MindSpore Lite进行模型转换](mindspore-lite-converter-guidelines.md)
 - 模型部署<!--deployment-->

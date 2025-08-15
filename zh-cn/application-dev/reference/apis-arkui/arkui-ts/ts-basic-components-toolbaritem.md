@@ -1,4 +1,10 @@
 # ToolBarItem
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 通过[toolbar](ts-universal-attributes-toolbar.md#toolbar)通用属性为窗口标题栏添加工具栏项。
 

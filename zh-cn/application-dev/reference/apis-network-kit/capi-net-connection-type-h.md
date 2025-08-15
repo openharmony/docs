@@ -47,6 +47,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| **NETCONN_MAX_RTT_NUM** | 4 | 
 | **NETCONN_MAX_NET_SIZE** | 32 | 
 | **NETCONN_MAX_BEARER_TYPE_SIZE** | 32 | 
 | **NETCONN_MAX_CAP_SIZE** | 32 | 

@@ -64,24 +64,24 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 | ----------- | ------ | ---- | ---- | ----------------------------------- |
 | id          | number | 否    | 否    | 触屏事件标识。                                |
 | pressedTime | number | 否    | 否    | 按下时间戳，单位：μs。                           |
-| screenX     | number | 否    | 否    | 触屏位置所属的屏幕x坐标。                        |
-| screenY     | number | 否    | 否    | 触屏位置所属的屏幕y坐标。                        |
-| windowX     | number | 否    | 否    | 触屏位置在窗口中的x坐标。                        |
-| windowY     | number | 否    | 否    | 触屏位置在窗口中的y坐标。                        |
+| screenX     | number | 否    | 否    | 该触屏事件以指定屏幕左上角为原点的相对坐标系的X坐标。当前仅支持整数。    |
+| screenY     | number | 否    | 否    | 该触屏事件以指定屏幕左上角为原点的相对坐标系的Y坐标。当前仅支持整数。    |
+| windowX     | number | 否    | 否    | 触屏所在窗口左上角为原点的相对坐标系的X坐标。当前仅支持整数。 |
+| windowY     | number | 否    | 否    | 触屏所在窗口左上角为原点的相对坐标系的Y坐标。当前仅支持整数。 |
 | pressure    | number | 否    | 否    | 压力值，取值范围是[0.0, 1.0]，0.0表示不支持。       |
-| width       | number | 否    | 否    | 触屏区域的宽度。                           |
-| height      | number | 否    | 否    | 触屏区域的高度。                           |
+| width       | number | 否    | 否    | 触屏区域的宽度。当前仅支持整数。         |
+| height      | number | 否    | 否    | 触屏区域的高度。当前仅支持整数。         |
 | tiltX       | number | 否    | 否    | 相对YZ平面的角度，取值的范围[-90, 90]，其中正值是向右倾斜。 |
 | tiltY       | number | 否    | 否    | 相对XZ平面的角度，取值的范围[-90, 90]，其中正值是向下倾斜。 |
-| toolX       | number | 否    | 否    | 工具区域的中心点x坐标。                           |
-| toolY       | number | 否    | 否    | 工具区域的中心点y坐标。                           |
-| toolWidth   | number | 否    | 否    | 工具区域宽度。                              |
-| toolHeight  | number | 否    | 否    | 工具区域高度。                              |
-| rawX        | number | 否    | 否    | 输入设备上的x坐标。                          |
-| rawY        | number | 否    | 否    | 输入设备上的y坐标。                           |
+| toolX       | number | 否    | 否    | 工具区域的中心点以指定屏幕左上角为原点的相对坐标系的X坐标。当前仅支持整数。  |
+| toolY       | number | 否    | 否    | 工具区域的中心点以指定屏幕左上角为原点的相对坐标系的Y坐标。当前仅支持整数。  |
+| toolWidth   | number | 否    | 否    | 工具区域宽度。当前仅支持整数。  |
+| toolHeight  | number | 否    | 否    | 工具区域高度。当前仅支持整数。  |
+| rawX        | number | 否    | 否    | 输入设备上的X坐标。当前仅支持整数。 |
+| rawY        | number | 否    | 否    | 输入设备上的Y坐标。当前仅支持整数。 |
 | toolType    | [ToolType](#tooltype) | 否    | 否    | 工具类型。                                |
-| globalX<sup>20+</sup> | number | 否    | 是    | 触屏位置相对于主屏幕左上角的X坐标。<!--Del-->作为入参时，若接口参数中的[TouchEventData.useGlobalCoordinate](./js-apis-inputeventclient-sys.md#toucheventdata11)为true，该值必填，当前仅支持整数。若为false，该值无需填写，使用当前屏幕坐标计算注入事件。<!--DelEnd-->作为出参时，由系统上报。 |
-| globalY<sup>20+</sup> | number | 否    | 是    | 触屏位置相对于主屏幕左上角的Y坐标。<!--Del-->作为入参时，若接口参数中的[TouchEventData.useGlobalCoordinate](./js-apis-inputeventclient-sys.md#toucheventdata11)为true，该值必填，当前仅支持整数。若为false，该值无需填写，使用当前屏幕坐标计算注入事件。<!--DelEnd-->作为出参时，由系统上报。 |
+| globalX<sup>20+</sup> | number | 否    | 是    | 该触屏事件以主屏左上角为原点的全局坐标系的X坐标。<!--Del-->作为入参时，若接口参数中的[TouchEventData.useGlobalCoordinate](./js-apis-inputeventclient-sys.md#toucheventdata11)为true，该值必填，当前仅支持整数。若为false，该值无需填写，使用指定屏幕左上角为原点的相对坐标系的X坐标计算注入事件。<!--DelEnd-->作为出参时，由系统上报。 |
+| globalY<sup>20+</sup> | number | 否    | 是    | 该触屏事件以主屏左上角为原点的全局坐标系的Y坐标。<!--Del-->作为入参时，若接口参数中的[TouchEventData.useGlobalCoordinate](./js-apis-inputeventclient-sys.md#toucheventdata11)为true，该值必填，当前仅支持整数。若为false，该值无需填写，使用指定屏幕左上角为原点的相对坐标系的Y坐标计算注入事件。<!--DelEnd-->作为出参时，由系统上报。 |
 
 ## TouchEvent
 

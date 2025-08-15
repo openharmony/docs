@@ -13,23 +13,146 @@
 import { missionManager } from '@kit.AbilityKit';
 ```
 
-## 属性
+## MissionListener
+
+### onMissionCreated
+
+onMissionCreated(mission: number): void
+
+当系统创建任务时会触发该回调函数。
 
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称        | 类型                 | 必填 | 说明                                                         |
-| ----------- | -------- | ---- | ------------------------------------------------------------ |
-| onMissionCreated    | function               | 否   | 表示当系统创建任务时回调执行。                                |
-| onMissionDestroyed   | function               | 否   | 表示当系统销毁任务时回调执行。 |
-| onMissionSnapshotChanged   | function               | 否   | 表示当系统更新任务缩略图时回调执行。 |
-| onMissionMovedToFront   | function               | 否   | 表示当系统将任务移动到前台时回调执行。 |
-| onMissionLabelUpdated<sup>9+</sup>   | function               | 否   | 表示当系统更新任务标签时回调执行。 |
-| onMissionIconUpdated<sup>9+</sup>   | function               | 否   | 表示当系统更新任务图标时回调执行。 |
-| onMissionClosed<sup>9+</sup>   | function               | 否   | 表示当系统关闭任务时回调执行。 |
+**参数**：
 
-**示例：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| mission | number | 是 | 表示创建的任务ID。 |
+
+**示例**：
+
+详细示例请见[onMissionClosed](#onmissionclosed9)。
+
+### onMissionDestroyed
+
+onMissionDestroyed(mission: number): void
+
+当系统销毁任务时会触发该回调函数。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| mission | number | 是 | 表示销毁的任务ID。 |
+
+**示例**：
+
+详细示例请见[onMissionClosed](#onmissionclosed9)。
+
+### onMissionSnapshotChanged
+
+onMissionSnapshotChanged(mission: number): void
+
+当系统更新任务缩略图时会触发该回调函数。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| mission | number | 是 | 表示任务ID。 |
+
+**示例**：
+
+详细示例请见[onMissionClosed](#onmissionclosed9)。
+
+### onMissionMovedToFront
+
+onMissionMovedToFront(mission: number): void
+
+当系统将任务移动到前台时会触发该回调函数。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| mission | number | 是 | 表示任务ID。 |
+
+**示例**：
+
+详细示例请见[onMissionClosed](#onmissionclosed9)。
+
+### onMissionLabelUpdated<sup>9+</sup>
+
+onMissionLabelUpdated(mission: number): void
+
+当系统更新任务标签时会触发该回调函数。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| mission | number | 是 | 表示任务ID。 |
+
+**示例**：
+
+详细示例请见[onMissionClosed](#onmissionclosed9)。
+
+### onMissionIconUpdated<sup>9+</sup>
+
+onMissionIconUpdated(mission: number, icon: image.PixelMap): void
+
+当系统更新任务图标时会触发该回调函数。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| mission | number | 是 | 表示任务ID。 |
+| icon | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 表示更新的任务图标。 |
+
+**示例**：
+
+详细示例请见[onMissionClosed](#onmissionclosed9)。
+
+### onMissionClosed<sup>9+</sup>
+
+onMissionClosed(mission: number): void
+
+当系统关闭任务时会触发该回调函数。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| mission | number | 是 | 表示关闭的任务ID。 |
+
+**示例**：
 ```ts
 import { missionManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';

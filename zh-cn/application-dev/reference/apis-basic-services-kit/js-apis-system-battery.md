@@ -1,5 +1,12 @@
 # @system.battery (电量信息)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--Designer: @wangyantian0-->
+<!--Tester: @alien0208-->
+<!--Adviser: @w_Machine_cc-->
+
 该模块提供充电状态及剩余电量的查询功能。
 
 >  **说明：**

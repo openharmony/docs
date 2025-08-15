@@ -1,4 +1,10 @@
 # Class (ControllerHandler)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @weixin_41848015-->
+<!--Designer: @libing23232323-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 设置用户新建Web组件的WebviewController对象。示例代码参考[onWindowNew事件](./arkts-basic-components-web-events.md#onwindownew9)。
 

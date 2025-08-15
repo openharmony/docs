@@ -1,5 +1,12 @@
 # 使用嵌入式用户身份认证控件
 
+<!--Kit: User Authentication Kit-->
+<!--Subsystem: UserIAM-->
+<!--Owner: @WALL_EYE-->
+<!--Designer: @lichangting518-->
+<!--Tester: @jane_lz-->
+<!--Adviser: @zengyawen-->
+
 提供应用界面上展示的人脸、指纹认证图标，功能包括：
 
 1. 提供嵌入式人脸、指纹认证控件图标，应用可集成。

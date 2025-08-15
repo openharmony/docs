@@ -1,4 +1,10 @@
 # 模态转场
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 
 模态转场是新的界面覆盖在旧的界面上，旧的界面不消失的一种转场方式。

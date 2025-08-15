@@ -1,4 +1,10 @@
 # HSP
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 HSP（Harmony Shared Package）是动态共享包，包含代码、C++库、资源和配置文件，通过HSP可以实现代码和资源的共享。HSP不支持独立发布，而是跟随宿主应用的APP包一起发布，与宿主应用同进程，具有相同的包名和生命周期。
 > **说明：**
@@ -17,7 +23,7 @@ HSP（Harmony Shared Package）是动态共享包，包含代码、C++库、资�
 ## 约束限制
 
 - HSP不支持在设备上单独安装/运行，需要与依赖该HSP的HAP一起安装/运行。从API version 18开始，HAP的版本号须大于等于HSP版本号。API version 17及之前版本，HSP的版本号必须与HAP版本号一致。
-- 从API version 14开始HSP支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md#声明配置)组件，但不支持具有入口能力的UIAbility（即skill标签配置了entity.system.home和ohos.want.action.home）。配置UIAbility的方法参考[模块中添加UIAbility](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-add-new-ability#section18658758104318)，HSP中UIAbility的启动方式与[应用内启动UIAbility](../application-models/uiability-intra-device-interaction.md)方法相同。API version 13及之前版本，不支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md#声明配置)组件。
+- 从API version 14开始HSP支持在配置文件中[声明UIAbility](../application-models/uiability-overview.md#声明配置)组件，但不支持具有入口能力的UIAbility（即skill标签配置了entity.system.home和ohos.want.action.home）。配置UIAbility的方法参考[模块中添加UIAbility](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-add-new-ability#section18658758104318)，HSP中UIAbility的启动方式与[应用内启动UIAbility](../application-models/uiability-intra-device-interaction.md)方法相同。API version 13及之前版本，不支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md#声明配置)组件。
 - 从API version 18开始HSP支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件，但不支持具有入口能力的ExtensionAbility（即skill标签配置了entity.system.home和ohos.want.action.home）。HSP中配置ExtensionAbility的方法参考[模块中添加ExtensionAbility](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-add-new-ability#section18891639459)。 API version 17及之前版本，不支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件。
 - HSP可以依赖其他HAR或HSP，也可以被HAP或者HSP依赖集成，但不支持循环依赖，也不支持依赖传递。
 
@@ -29,12 +35,15 @@ HSP（Harmony Shared Package）是动态共享包，包含代码、C++库、资�
 
 
 ## 创建
-通过DevEco Studio创建一个HSP模块，详见[创建HSP模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hsp#section7717162312546)，以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：
+使用DevEco Studio创建一个用于调用C++代码的HSP模块。并在“Configure New Module”页面中启用“Enable native”选项。详见[创建HSP模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hsp#section7717162312546)，以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：
 ```
 MyApplication
 ├── library
 │   ├── src
 │   │   └── main
+|   |       ├── cpp
+|   |       |   ├── CMakeLists.txt    //C++原生代码编译的配置文件 
+|   |       |   └── napi_init.cpp     //NAPI模块初始化的C++文件
 │   │       ├── ets
 │   │       │   └── pages
 │   │       │       └── index.ets     //模块library的页面文件
@@ -186,6 +195,7 @@ export { nativeMulti } from './src/main/ets/utils/nativeTest';
 // entry/src/main/ets/pages/index.ets
 import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
 import { BusinessError } from "@kit.BasicServicesKit";
+import { application} from '@kit.AbilityKit';
 
 const TAG = 'Index';
 
@@ -244,7 +254,7 @@ struct Index {
         })
 
         ListItem() {
-          Text($r('app.string.get_string_value'))
+          Text(ResManager.getDesc())
             .fontSize(18)
             .textAlign(TextAlign.Start)
             .width('100%')
@@ -259,15 +269,19 @@ struct Index {
         .margin({ top: 10, bottom: 10 })
         .padding({ left: 12, right: 12, top: 4, bottom: 4 })
         .onClick(() => {
-          // 先通过当前上下文获取hsp模块的上下文，再获取hsp模块的resourceManager，然后再调用resourceManager的接口获取资源
-          this.getUIContext()?.getHostContext()?.resourceManager.getStringValue(ResManager.getDesc())
-            .then(value => {
-              console.log('getStringValue is ' + value);
-              this.message = 'getStringValue is ' + value;
-            })
-            .catch((err: BusinessError) => {
-              console.error('getStringValue promise error is ' + err);
-            });
+          // 先通过当前application.createModuleContext获取hsp模块的上下文，再获取hsp模块的resourceManager，然后再调用resourceManager的接口获取资源
+          application.createModuleContext(this.getUIContext()?.getHostContext(), "library").then((context:Context)=>{
+              context.resourceManager.getStringValue(ResManager.getDesc().id)
+              .then(value => {
+                console.log('getStringValue is ' + value);
+                this.message = 'getStringValue is ' + value;
+              })
+              .catch((err: BusinessError) => {
+                console.error('getStringValue promise error is ' + err);
+              });
+          }).catch((err: BusinessError) => {
+            console.error('createModuleContext promise error is ' + err);
+          });
         })
 
         ListItem() {

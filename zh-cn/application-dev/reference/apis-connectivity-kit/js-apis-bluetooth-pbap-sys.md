@@ -1,5 +1,12 @@
 # @ohos.bluetooth.pbap (蓝牙pbap模块)(系统接口)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+<!--Adviser: @zhang_yixin13-->
+
 pbap模块提供了访问电话簿相关功能的方法。
 
 > **说明：**

@@ -160,7 +160,7 @@ struct CustomDialogExampleTwo {
   controllerTwo?: CustomDialogController
   build() {
     Column() {
-      Text('I'm the second dialog box')
+      Text('I am the second dialog box')
         .fontSize(30)
         .height(100)
       Button('Close Second Dialog Box')
@@ -296,7 +296,7 @@ struct CustomDialogUser {
 }
 ```
 
-![en-us_image_custom](figures/en-us_image_custom.gif)
+
 
 ### Example 2: Opening a Dialog Box Outside the Main Window
 

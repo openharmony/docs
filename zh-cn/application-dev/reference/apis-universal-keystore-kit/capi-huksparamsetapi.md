@@ -1,5 +1,12 @@
 # HuksParamSetApi
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 HUKS参数集支持密钥管理接口的使用，包括初始化参数集、添加参数、构造参数集、释放参数集等生命周期管理函数， 还包括获取参数、复制参数集、查询参数集、检查有效性等函数。

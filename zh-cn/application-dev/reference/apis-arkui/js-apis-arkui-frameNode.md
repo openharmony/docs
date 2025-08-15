@@ -1,4 +1,10 @@
 # FrameNode
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 FrameNode表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeController.md)可通过[BuilderNode](./js-apis-arkui-builderNode.md)持有的FrameNode将其挂载到[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)上，也可通过FrameNode获取[RenderNode](./js-apis-arkui-renderNode.md)，挂载到其他FrameNode上。最佳实践请参考[组件动态创建-组件动态添加、更新和删除](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-ui-dynamic-operations#section153921947151012)。
 
@@ -85,7 +91,7 @@ type UIStatesChangeHandler = (node: FrameNode, currentUIStates: number) => void
 
 | 参数名   | 类型                      | 必填 | 说明                                                     |
 | -------- | ----------------------------- | ---- | ------------------------------------------------------------ |
-| node    | [FrameNode](#framenode) | 是   | 触发UI状态变化的节点。                                            |
+| node    | [FrameNode](#framenode-1) | 是   | 触发UI状态变化的节点。                                            |
 | currentUIStates    | number         | 是   | 回调触发时当前的UI状态。<br>可以通过位与运算判断当前包含哪些[UIState](#uistate20)状态。<br>位与运算方法：if (currentState & UIState.PRESSED == UIState.PRESSED)。                                            |
 
 
@@ -190,7 +196,7 @@ appendChild(node: FrameNode): void
 
 | 参数名 | 类型                    | 必填 | 说明                  |
 | ------ | ----------------------- | ---- | --------------------- |
-| node   | [FrameNode](#framenode) | 是   | 需要添加的FrameNode。<br/>**说明：**<br/> node节点不可以为声明式创建的节点，即不可修改的FrameNode。仅有从BuilderNode中获取的声明式节点可以作为子节点。若子节点不符合规格，则抛出异常信息。<br/> node节点不可以拥有父节点，否则抛出异常信息。|
+| node   | [FrameNode](#framenode-1) | 是   | 需要添加的FrameNode。<br/>**说明：**<br/> node节点不可以为声明式创建的节点，即不可修改的FrameNode。仅有从BuilderNode中获取的声明式节点可以作为子节点。若子节点不符合规格，则抛出异常信息。<br/> node节点不可以拥有父节点，否则抛出异常信息。|
 
 **错误码：**
 
@@ -216,8 +222,8 @@ insertChildAfter(child: FrameNode, sibling: FrameNode | null): void
 
 | 参数名  | 类型                                      | 必填 | 说明                                                                         |
 | ------- | ----------------------------------------- | ---- | ---------------------------------------------------------------------------- |
-| child   | [FrameNode](#framenode)                   | 是   | 需要添加的子节点。<br/>**说明：**<br/> child节点不可以为声明式创建的节点，即不可修改的FrameNode。仅有从BuilderNode中获取的声明式节点可以作为子节点。若子节点不符合规格，则抛出异常信息。<br/> child节点不可以拥有父节点，否则抛出异常信息。                                                           |
-| sibling | [FrameNode](#framenode)&nbsp;\|&nbsp;null | 是   | 新节点将插入到该节点之后。若该参数设置为空，则新节点将插入到首个子节点之前。 |
+| child   | [FrameNode](#framenode-1)                   | 是   | 需要添加的子节点。<br/>**说明：**<br/> child节点不可以为声明式创建的节点，即不可修改的FrameNode。仅有从BuilderNode中获取的声明式节点可以作为子节点。若子节点不符合规格，则抛出异常信息。<br/> child节点不可以拥有父节点，否则抛出异常信息。                                                           |
+| sibling | [FrameNode](#framenode-1)&nbsp;\|&nbsp;null | 是   | 新节点将插入到该节点之后。若该参数设置为空，则新节点将插入到首个子节点之前。 |
 
 **错误码：**
 
@@ -243,7 +249,7 @@ removeChild(node: FrameNode): void
 
 | 参数名 | 类型                    | 必填 | 说明               |
 | ------ | ----------------------- | ---- | ------------------ |
-| node   | [FrameNode](#framenode) | 是   | 需要删除的子节点。 |
+| node   | [FrameNode](#framenode-1) | 是   | 需要删除的子节点。 |
 
 **错误码：**
 
@@ -295,7 +301,7 @@ getChild(index: number): FrameNode | null
 
 | 类型                            | 说明                                                          |
 | ------------------------------- | ------------------------------------------------------------- |
-| [FrameNode](#framenode) \| null | 子节点。若该FrameNode不包含所查询的子节点，则返回空对象null。 |
+| [FrameNode](#framenode-1) \| null | 子节点。若该FrameNode不包含所查询的子节点，则返回空对象null。 |
 
 **示例：**
 
@@ -322,7 +328,7 @@ getChild(index: number, expandMode?: ExpandMode): FrameNode | null
 
 | 类型                            | 说明                                                          |
 | ------------------------------- | ------------------------------------------------------------- |
-| [FrameNode](#framenode) \| null | 子节点。若该FrameNode不包含所查询的子节点，则返回空对象null。 |
+| [FrameNode](#framenode-1) \| null | 子节点。若该FrameNode不包含所查询的子节点，则返回空对象null。 |
 
 **示例：**
 
@@ -382,7 +388,7 @@ getFirstChild(): FrameNode | null
 
 | 类型                            | 说明                                                      |
 | ------------------------------- | --------------------------------------------------------- |
-| [FrameNode](#framenode) \| null | 首个子节点。若该FrameNode不包含子节点，则返回空对象null。 |
+| [FrameNode](#framenode-1) \| null | 首个子节点。若该FrameNode不包含子节点，则返回空对象null。 |
 
 **示例：**
 
@@ -402,7 +408,7 @@ getNextSibling(): FrameNode | null
 
 | 类型                            | 说明                                                                                 |
 | ------------------------------- | ------------------------------------------------------------------------------------ |
-| [FrameNode](#framenode) \| null | 当前FrameNode的下一个同级节点。若该FrameNode不包含下一个同级节点，则返回空对象null。 |
+| [FrameNode](#framenode-1) \| null | 当前FrameNode的下一个同级节点。若该FrameNode不包含下一个同级节点，则返回空对象null。 |
 
 **示例：**
 
@@ -422,7 +428,7 @@ getPreviousSibling(): FrameNode | null
 
 | 类型                             | 说明                                                                                 |
 | -------------------------------- | ------------------------------------------------------------------------------------ |
-| [FrameNode](#framenode) \| null | 当前FrameNode的上一个同级节点。若该FrameNode不包含上一个同级节点，则返回空对象null。 |
+| [FrameNode](#framenode-1) \| null | 当前FrameNode的上一个同级节点。若该FrameNode不包含上一个同级节点，则返回空对象null。 |
 
 **示例：**
 
@@ -442,7 +448,7 @@ getParent(): FrameNode | null
 
 | 类型                             | 说明                                                                 |
 | -------------------------------- | -------------------------------------------------------------------- |
-| [FrameNode](#framenode) \| null | 当前FrameNode的父节点。若该FrameNode不包含父节点，则返回空对象null。 |
+| [FrameNode](#framenode-1) \| null | 当前FrameNode的父节点。若该FrameNode不包含父节点，则返回空对象null。 |
 
 **示例：**
 
@@ -489,7 +495,7 @@ moveTo(targetParent: FrameNode, index?: number): void
 
 | 参数名        | 类型                    | 必填 | 说明                  |
 | ------------ | ----------------------- | ---- | --------------------- |
-| targetParent | [FrameNode](#framenode) | 是   | 目标父节点。<br/>**说明：**<br/>targetParent节点不可以为声明式创建的节点，即不可修改的FrameNode。若目标父节点不符合规格，则抛出异常信息。 |
+| targetParent | [FrameNode](#framenode-1) | 是   | 目标父节点。<br/>**说明：**<br/>targetParent节点不可以为声明式创建的节点，即不可修改的FrameNode。若目标父节点不符合规格，则抛出异常信息。 |
 | index        | number                  | 否   | 子节点序列号。当前FrameNode将被添加到目标FrameNode对应序列号的子节点之前，若目标FrameNode有n个节点，index取值范围为[0, n-1]。<br/>若参数无效或不指定，则添加到目标FrameNode的最后。<br/>默认值：-1 |
 
 **错误码：**
@@ -1475,7 +1481,7 @@ struct Index {
 
 get commonAttribute(): CommonAttribute
 
-获取FrameNode中持有的CommonAttribute接口，用于设置[通用属性](./arkui-ts/ts-component-general-attributes.md)。
+获取FrameNode中持有的CommonAttribute接口，用于设置[通用属性](./arkui-ts/ts-component-general-attributes.md)和[通用事件](./arkui-ts/ts-component-general-events.md)。
 
 仅可以修改自定义节点的属性。
 
@@ -1487,13 +1493,13 @@ get commonAttribute(): CommonAttribute
 
 | 类型                                                           | 说明                                                                                                             |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| CommonAttribute | 获取FrameNode中持有的CommonAttribute接口，用于设置通用属性。|
+| CommonAttribute | 获取FrameNode中持有的CommonAttribute接口，用于设置通用属性和通用事件。|
 
 > **说明：**
 >
 > FrameNode的效果参考对齐方式为顶部起始端的[Stack](./arkui-ts/ts-container-stack.md)容器组件。
 >
-> FrameNode的属性支持范围参考[CommonModifier](./arkui-ts/ts-universal-attributes-attribute-modifier.md#自定义modifier)。
+> FrameNode的属性支持范围参考[CommonModifier](./arkui-ts/ts-universal-attributes-attribute-modifier.md#attribute支持范围)。
 
 **示例：**
 
@@ -2034,6 +2040,8 @@ getInteractionEventBindingInfo(eventType: EventQueryType): InteractionEventBindi
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
 | eventType | [EventQueryType](./arkui-ts/ts-appendix-enums.md#eventquerytype19) | 是  | 要查询的交互事件类型。 |
@@ -2086,6 +2094,8 @@ addSupportedUIStates(uiStates: number, statesChangeHandler: UIStatesChangeHandle
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名   | 类型                      | 必填 | 说明                                                     |
 | -------- | ----------------------------- | ---- | ------------------------------------------------------------ |
 | uiStates    | number | 是   | 需要处理目标节点的UI状态。<br>可以通过位或计算同时指定设置多个状态，如：targetUIStates = UIState.PRESSED &nbsp;\|&nbsp; UIState.FOCUSED。                                       |
@@ -2106,6 +2116,8 @@ removeSupportedUIStates(uiStates: number): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名  | 类型 | 必填 | 说明                                                     |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
 | uiStates  | number  | 是   | 需要删除的UI状态。<br>可以通过位或计算同时指定删除多个状态，如：removeUIStates = UIState.PRESSED &nbsp;\|&nbsp; UIState.FOCUSED。                          |
@@ -2123,6 +2135,8 @@ createAnimation(property: AnimationPropertyType, startValue: Optional\<number[]>
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
 
 | 参数名  | 类型 | 必填 | 说明                                                     |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
@@ -2151,6 +2165,8 @@ cancelAnimations(properties: AnimationPropertyType[]): boolean
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
 | 参数名  | 类型 | 必填 | 说明                                                     |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
 | properties  | [AnimationPropertyType](./arkui-ts/ts-appendix-enums.md#animationpropertytype20)\[\] | 是   | 待取消的动画属性枚举数组。可以一次取消一个节点上的多个属性的动画。 |
@@ -2175,6 +2191,8 @@ getNodePropertyValue(property: AnimationPropertyType): number[]
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名  | 类型 | 必填 | 说明                                                     |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
 | property  | [AnimationPropertyType](./arkui-ts/ts-appendix-enums.md#animationpropertytype20) | 是   | 动画属性枚举。 |
@@ -2191,7 +2209,7 @@ getNodePropertyValue(property: AnimationPropertyType): number[]
 
 ## TypedFrameNode<sup>12+</sup>
 
-TypedFrameNode继承自[FrameNode](#framenode)，用于声明具体类型的FrameNode。
+TypedFrameNode继承自[FrameNode](#framenode-1)，用于声明具体类型的FrameNode。
 
 ### 属性
 
@@ -5423,7 +5441,7 @@ onUpdateChild?(id: number, node: FrameNode): void
 
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| id | number | 是   | 复用节点索引值。 |
+| id | number | 是   | 复用节点的id。 |
 | node | FrameNode | 是   | 被复用的FrameNode节点。 |
 
 ### attachNodeAdapter<sup>12+</sup>

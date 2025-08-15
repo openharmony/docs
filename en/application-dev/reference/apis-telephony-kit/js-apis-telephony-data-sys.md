@@ -48,7 +48,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
 | 8300004  | No SIM card found.                           |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 | 8301001  | SIM card is not activated.                   |
 
 **Example**
@@ -103,7 +103,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
 | 8300004  | No SIM card found.                           |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 | 8301001  | SIM card is not activated.                   |
 
 **Example**
@@ -150,7 +150,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **Example**
 
@@ -195,7 +195,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202      | Non-system applications use system APIs.     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **Example**
 
@@ -240,7 +240,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **Example**
 
@@ -285,7 +285,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202      | Non-system applications use system APIs.     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **Example**
 
@@ -331,7 +331,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **Example**
 
@@ -384,7 +384,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **Example**
 
@@ -430,7 +430,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **Example**
 
@@ -483,7 +483,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **Example**
 

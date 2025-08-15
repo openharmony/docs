@@ -1,4 +1,10 @@
 # 解决Web组件本地资源跨域问题
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 ## 拦截本地资源跨域
 

@@ -1,4 +1,10 @@
 # @ohos.distributedHardware.mechanicManager (机械体控制模块)
+<!--Kit: Mechanic Kit-->
+<!--Subsystem: Mechanic-->
+<!--Owner: @hobbycao-->
+<!--Designer: @saga2025-->
+<!--Tester: @zhaodengqi-->
+<!--Adviser: @foryourself-->
 
 本模块提供与机械设备交互的能力，包括设备连接状态监听、跟踪控制和跟踪状态监听功能。
 
@@ -134,7 +140,7 @@ setCameraTrackingEnabled(isEnabled: boolean): void
 | -------- | ------- |
 | 33300001 | Service exception. |
 | 33300002 | Device not connected. |
-| 33300003 | Device not supported. |
+| 33300003 | Feature not supported. |
 
 **示例：**
 
@@ -156,7 +162,7 @@ getCameraTrackingEnabled(): boolean
 
 | 类型    | 说明       |
 | ------- | --------- |
-| boolean | 摄像头跟踪启用状态，摄像头跟踪启用状态，true表示摄像头跟踪已启用，false表示摄像头跟踪已禁用。|
+| boolean | 摄像头跟踪启用状态，true表示已启用，false表示已禁用。|
 
 **错误码：**
 

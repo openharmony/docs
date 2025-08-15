@@ -1,5 +1,12 @@
 # 使用瀑布流
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fangyuhao-->
+<!--Designer: @zcdqs-->
+<!--Tester: @liuzhenshuo-->
+<!--Adviser: @HelloCrease-->
+
 ArkUI开发框架在NDK接口提供了瀑布流容器组件，通过瀑布流自身的排列规则，将不同大小的"项目"自上而下如瀑布般紧密布局。
 
 ## 接入ArkTS页面
@@ -203,7 +210,7 @@ struct SectionOption {
     int32_t crossCount;
     float columnsGap;
     float rowsGap;
-    // top right bottom left
+    // {上外边距，右外边距，下外边距，左外边距}
     ArkUI_Margin margin{0, 0, 0, 0};
     float (*onGetItemMainSizeByIndex)(int32_t itemIndex);
     void *userData;
@@ -255,7 +262,7 @@ private:
 使用ArkUIWaterflowNode类管理Waterflow。支持通过SetLazyAdapter为其设置一个FlowItemAdapter，通过SetSection为其设置分段。
 
 ```c++
-//Waterflow.h
+//waterflow.h
 
 #ifndef MYAPPLICATION_WATERFLOW_H
 #define MYAPPLICATION_WATERFLOW_H

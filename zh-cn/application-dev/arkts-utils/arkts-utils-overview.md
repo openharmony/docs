@@ -1,4 +1,10 @@
 # ArkTS基础类库概述
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 ArkTS基础类库是一个功能齐全的API集合，设计了一系列关键且实用的功能模块。
 

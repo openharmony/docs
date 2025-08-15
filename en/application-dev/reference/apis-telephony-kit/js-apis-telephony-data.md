@@ -1,6 +1,6 @@
 # @ohos.telephony.data (Cellular Data)
 
-The **data** module provides basic mobile data management functions. You can obtain the default slot of the SIM card used for mobile data, and obtain the uplink and downlink connection status of cellular data services and connection status of the packet switched (PS) domain. Besides, you can check whether cellular data services and data roaming are enabled.
+The **data** module provides basic mobile data management functions. With the APIs provided by this module, you can obtain the default slot of the SIM card used for mobile data, obtain the cellular data flow type and connection status, and check whether cellular data and roaming are enabled.
 
 > **NOTE**
 >
@@ -151,7 +151,7 @@ data.getCellularDataFlowType().then((contextData: data.DataFlowType) => {
 
 getCellularDataState(callback: AsyncCallback\<DataConnectState\>): void
 
-Obtains the connection status of the packet switched (PS) domain. This API uses an asynchronous callback to return the result.
+Obtains the cellular data connection status. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CellularData
 
@@ -180,7 +180,7 @@ data.getCellularDataState((err: BusinessError, contextData: data.DataConnectStat
 
 getCellularDataState(): Promise\<DataConnectState\>
 
-Obtains the connection status of the PS domain. This API uses a promise to return the result.
+Obtains the cellular data connection status. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.CellularData
 
@@ -230,7 +230,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **Example**
 
@@ -272,7 +272,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.                           |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **Example**
 
@@ -312,7 +312,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.                           |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Internal error.                          |
 
 **Example**
 
@@ -357,7 +357,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **Example**
 
@@ -407,7 +407,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **Example**
 
@@ -455,7 +455,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 8300001  | Invalid parameter value.                                     |
 | 8300002  | Operation failed. Cannot connect to service.                 |
 | 8300003  | System internal error.                                       |
-| 8300999  | Unknown error code.                                          |
+| 8300999  | Internal error.                                          |
 
 **Example**
 
@@ -498,9 +498,9 @@ console.log("Result: "+ data.getDefaultCellularDataSimId());
 
 queryAllApns(): Promise\<Array\<ApnInfo\>\>
 
-Obtains the access point name (APN) of the default SIM card used for mobile data.
+Obtains the access point name (APN) of the default SIM card used for mobile data. This API returns the result asynchronously.
 
-**Required permissions**: ohos.permission.MANAGE_APN_SETTING
+**Required permissions**: ohos.permission.MANAGE_APN_SETTING (Restricted permission used only to connect to the mobile data private network for office tasks. For details, see [Restricted Permissions](../../security/AccessToken/restricted-permissions.md#ohospermissionmanage_apn_setting).)
 
 **System capability**: SystemCapability.Telephony.CellularData
 
@@ -508,7 +508,7 @@ Obtains the access point name (APN) of the default SIM card used for mobile data
 
 | Type             | Description                                        |
 | ------ |--------------------------------------------|
-| Promise\<Array\<ApnInfo\>\> | APN list of the default SIM card used for mobile data.|
+| Promise\<Array\<[ApnInfo](#apninfo16)\>\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -534,17 +534,24 @@ data.queryAllApns().then((data: Array<data.ApnInfo>) => {
 
 queryApnIds(apnInfo: ApnInfo): Promise\<Array\<number\>\>
 
-Obtains the APN ID corresponding to the specified **ApnInfo**.
+Obtains the APN ID corresponding to the specified **ApnInfo**. This API returns the result asynchronously.
 
-**Required permissions**: ohos.permission.MANAGE_APN_SETTING
+**Required permissions**: ohos.permission.MANAGE_APN_SETTING (Restricted permission used only to connect to the mobile data private network for office tasks. For details, see [Restricted Permissions](../../security/AccessToken/restricted-permissions.md#ohospermissionmanage_apn_setting).)
 
 **System capability**: SystemCapability.Telephony.CellularData
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                    |
+| ------ | ------ | ---- | ---------------------------------------- |
+| apnInfo | [ApnInfo](#apninfo16) | Yes  | APN to query.|
+
 
 **Return value**
 
 | Type             | Description                         |
 | ------ |-----------------------------|
-| Promise\<Array\<number\>\> | List of APN IDs corresponding to the specified **ApnInfo**.|
+| Promise\<Array\<number\>\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -578,21 +585,27 @@ data.queryApnIds(apnInfo).then((data: Array<number>) => {
 
 setPreferredApn(apnId: number): Promise\<boolean\>
 
-Sets the APN indicated by the specified APN ID as the preferred APN.
+Sets the APN corresponding to the specified **apnId** as the preferred APN. This API returns the result asynchronously.
 
 > **NOTE**
 >
 > If the input APN ID is invalid, the default preferred APN configured by the carrier is used.
 
-**Required permissions**: ohos.permission.MANAGE_APN_SETTING
+**Required permissions**: ohos.permission.MANAGE_APN_SETTING (Restricted permission used only to connect to the mobile data private network for office tasks. For details, see [Restricted Permissions](../../security/AccessToken/restricted-permissions.md#ohospermissionmanage_apn_setting).)
 
 **System capability**: SystemCapability.Telephony.CellularData
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                    |
+| ------ | ------ | ---- | ---------------------------------------- |
+| apnId | number | Yes  | APN ID, which can be obtained by calling [queryApnIds](#dataqueryapnids16).|
 
 **Return value**
 
 | Type             | Description                    |
 | ------ |------------------------|
-| Promise\<boolean\> | Promise used to return the result, which is **false** if no SIM card is inserted.|
+| Promise\<boolean\> | Promise used to return the result. If no SIM card is installed, the value **false** is returned.|
 
 **Error codes**
 
@@ -612,6 +625,42 @@ data.setPreferredApn(apnId).then((data: boolean) => {
     console.info(`setPreferredApn success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`setPreferredApn failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## data.getActiveApnName<sup>20+</sup>
+
+getActiveApnName(): Promise\<string\>
+
+Obtains the access point name (APN) of the default SIM card used for mobile data. This API returns the result asynchronously.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Return value**
+
+| Type             | Description                                        |
+| ------ |--------------------------------------------|
+| Promise\<string\> | Promise used to return the result. If mobile data is not activated, an empty string is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+
+**Example**
+
+```ts
+import { data } from '@kit.TelephonyKit';
+
+data.getActiveApnName().then((data: string) => {
+    console.info(`getActiveApnName success, promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+    console.error(`getActiveApnName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 

@@ -1,4 +1,10 @@
 # 动态属性设置
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 动态设置组件的属性，支持开发者在属性设置时使用if/else语法，且根据需要使用多态样式设置属性。
 
@@ -47,7 +53,7 @@ attributeModifier(modifier: AttributeModifier\<T>): T
 >  在以下回调函数中，当对instance对象的同一个属性重复设置相同的值或对象时，不会触发该属性的更新。
 
 ### applyNormalAttribute
-applyNormalAttribute(instance: T) : void
+applyNormalAttribute?(instance: T) : void
 
 组件普通状态时的样式。
 
@@ -55,8 +61,14 @@ applyNormalAttribute(instance: T) : void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名    | 类型   | 必填   | 说明                                                                                                         |
+| -------- | ------- | ------ | ------------------------------------------------------------------------------------------------------------ |
+| instance | T       | 是     | 组件的属性类，用来标识进行属性设置的组件的类型，比如Button组件的ButtonAttribute，Text组件的TextAttribute等。 |
+
 ### applyPressedAttribute
-applyPressedAttribute(instance: T) : void
+applyPressedAttribute?(instance: T) : void
 
 组件按压状态的样式。
 
@@ -64,8 +76,14 @@ applyPressedAttribute(instance: T) : void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名    | 类型   | 必填   | 说明                                                                                                         |
+| -------- | ------- | ------ | ------------------------------------------------------------------------------------------------------------ |
+| instance | T       | 是     | 组件的属性类，用来标识进行属性设置的组件的类型，比如Button组件的ButtonAttribute，Text组件的TextAttribute等。 |
+
 ### applyFocusedAttribute
-applyFocusedAttribute(instance: T) : void
+applyFocusedAttribute?(instance: T) : void
 
 组件获焦状态的样式。
 
@@ -73,8 +91,14 @@ applyFocusedAttribute(instance: T) : void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名    | 类型   | 必填   | 说明                                                                                                         |
+| -------- | ------- | ------ | ------------------------------------------------------------------------------------------------------------ |
+| instance | T       | 是     | 组件的属性类，用来标识进行属性设置的组件的类型，比如Button组件的ButtonAttribute，Text组件的TextAttribute等。 |
+
 ### applyDisabledAttribute
-applyDisabledAttribute(instance: T) : void
+applyDisabledAttribute?(instance: T) : void
 
 组件禁用状态的样式。
 
@@ -82,8 +106,14 @@ applyDisabledAttribute(instance: T) : void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名    | 类型   | 必填   | 说明                                                                                                         |
+| -------- | ------- | ------ | ------------------------------------------------------------------------------------------------------------ |
+| instance | T       | 是     | 组件的属性类，用来标识进行属性设置的组件的类型，比如Button组件的ButtonAttribute，Text组件的TextAttribute等。 |
+
 ### applySelectedAttribute
-applySelectedAttribute(instance: T) : void
+applySelectedAttribute?(instance: T) : void
 
 组件选中状态的样式。
 
@@ -95,9 +125,9 @@ applySelectedAttribute(instance: T) : void
 
 **参数：**
 
-| 参数     | 描述                                                                                                         |
-| -------- | ------------------------------------------------------------------------------------------------------------ |
-| instance | 组件的属性类，用来标识进行属性设置的组件的类型，比如Button组件的ButtonAttribute，Text组件的TextAttribute等。 |
+| 参数名    | 类型   | 必填   | 说明                                                                                                         |
+| -------- | ------- | ------ | ------------------------------------------------------------------------------------------------------------ |
+| instance | T       | 是     | 组件的属性类，用来标识进行属性设置的组件的类型，比如Button组件的ButtonAttribute，Text组件的TextAttribute等。 |
 
 **instance参数支持范围：**
 
@@ -175,7 +205,7 @@ struct attributeDemo {
 
 ### 示例2（组件绑定Modifier实现按压态效果）
 
-该示例通过Button绑定Modifier实现了按压态的效果。如果配合状态管理V2使用，详情见：[Modifier与makeObserved](../../../ui/state-management/arkts-v1-v2-migration.md#modifier)。
+该示例通过Button绑定Modifier实现了按压态的效果。如果配合状态管理V2使用，详情见：[Modifier与makeObserved](../../../ui/state-management/arkts-v1-v2-migration-application-and-others.md#modifier)。
 
 ```ts
 // xxx.ets
@@ -250,7 +280,7 @@ struct Index {
             this.width1 = 10;
             console.log(TEST_TAG, "setGroup1");
           } else {
-            this.width1 = 10;
+            this.height1 = 10;
             console.log(TEST_TAG, "setGroup2");
           }
         })

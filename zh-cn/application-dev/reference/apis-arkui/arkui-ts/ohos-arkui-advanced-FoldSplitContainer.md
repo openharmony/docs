@@ -1,4 +1,10 @@
 # FoldSplitContainer
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fenglinbailu-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 
 FoldSplitContainer分栏布局，实现折叠屏二分栏、三分栏在展开态、悬停态以及折叠态的区域控制。
@@ -29,7 +35,7 @@ FoldSplitContainer({
   expandedLayoutOptions: ExpandedRegionLayoutOptions,
   hoverModeLayoutOptions: HoverModeRegionLayoutOptions,
   foldedLayoutOptions: FoldedRegionLayoutOptions,
-  animationOptions?: AnimateParam,
+  animationOptions?: AnimateParam | null,
   onHoverStatusChange?: OnHoverStatusChangeHandler
 })
 

@@ -1,5 +1,12 @@
 # ListItemGroup
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @yylong-->
+<!--Designer: @yylong-->
+<!--Tester: @liuzhenshuo-->
+<!--Adviser: @HelloCrease-->
+
 该组件用来展示列表item分组，宽度默认充满[List](ts-container-list.md)组件，必须配合List组件来使用。
 
 > **说明：**
@@ -36,6 +43,8 @@ ListItemGroup(options?: ListItemGroupOptions)
 ## ListItemGroupOptions对象说明
 
 ListItemGroup组件参数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

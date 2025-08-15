@@ -1,4 +1,10 @@
 # 使用HiCollie检测业务线程卡死卡顿问题（C/C++）
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @rr_cn-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
 ## 简介
 
@@ -20,7 +26,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 1. 业务线程卡顿OH_HiCollie_Init_JankDetection故障规格，请参考[主线程超时事件检测原理](hiappevent-watcher-mainthreadjank-events.md)。
 
 2. 业务线程卡死故障：
-   （1）0OH_HiCollie_Init_StuckDetection检测原理：应用的watchdog线程会周期性进行业务线程判活检测。当判活检测超过3s没有被执行，上报BUSSINESS_THREAD_BLOCK_3S线程告警事件；超过6s依然没有被执行，会上报BUSSINESS_THREAD_BLOCK_6S线程卡死事件。两个事件根据系统匹配规则生成appfreeze故障日志。
+   （1）OH_HiCollie_Init_StuckDetection检测原理：应用的watchdog线程会周期性进行业务线程判活检测。当判活检测超过3s没有被执行，上报BUSSINESS_THREAD_BLOCK_3S线程告警事件；超过6s依然没有被执行，会上报BUSSINESS_THREAD_BLOCK_6S线程卡死事件。两个事件根据系统匹配规则生成appfreeze故障日志。
 
    （2）OH_HiCollie_Init_StuckDetectionWithTimeout检测原理：应用的watchdog线程会周期性进行业务线程判活检测。当判活检测超过stuckTimeout时间没有被执行，上报BUSSINESS_THREAD_BLOCK_3S告警事件；超过stuckTimeout \* 2时间，依然没有被执行，会上报BUSSINESS_THREAD_BLOCK_6S线程卡死事件。两个事件匹配生成appfreeze故障日志。
 
@@ -94,8 +100,8 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    
    void StartDelayTimer()
    {
-     //等待10s
-     std::chrono::seconds delay(10);
+     //等待1s
+     std::chrono::seconds delay(1);
      OH_LOG_INFO(LogType::LOG_APP, "OH_HiCollie_Init_JankDetection delay before");
      std::this_thread::sleep_for(delay);
      OH_LOG_INFO(LogType::LOG_APP, "OH_HiCollie_Init_JankDetection delay after");
@@ -110,7 +116,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
        HiCollie_DetectionParam param {0};
        // 初始化线程卡顿监控函数
        int initResult = OH_HiCollie_Init_JankDetection(&beginFunc_, &endFunc_, param);
-       // 线程启动10s内，不进行检测
+       // 线程启动1s内，不进行检测
        StartDelayTimer();
        // 成功结果：0
        OH_LOG_INFO(LogType::LOG_APP, "OH_HiCollie_Init_JankDetection: %{public}d", initResult);
@@ -131,7 +137,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
        // 创建子线程
        std::thread threadObj(TestJankDetection);
        // 执行TestJankDetection任务
-       threadObj.detach();
+       threadObj.join();
        return 0;
    }
    
@@ -175,8 +181,6 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    #undef LOG_TAG
    #define LOG_TAG "StruckTest"
    
-   // 检查当前线程是否正常执行：1-正常，0-卡死
-   const int64_t CHECK_BUSSINESS_THREAD_IS_ALIVE = 1;
    // 自定义休眠时间，模拟卡死场景
    const int64_t BLOCK_TIME = 3; 
    // 设置应用线程执行任务情况标志位, true-正常，false-卡死
@@ -279,8 +283,6 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    #undef LOG_TAG
    #define LOG_TAG "StruckTest"
    
-   // 检查当前线程是否正常执行， 1-正常， 0-卡死
-   const int64_t CHECK_BUSSINESS_THREAD_IS_ALIVE = 1;
    // 自定义休眠时间，模拟卡死场景
    const int64_t BLOCK_TIME = 5; 
    // 设置应用线程执行任务情况标志位, true-正常， false-卡死
@@ -456,7 +458,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 6. 点击DevEco Studio界面中的运行按钮，运行应用工程。
 
 7. 在DevEco Studio的底部，切换到“Log”窗口，过滤自定义的LOG_TAG。
-   （1）等待10s，再点击“testHiCollieJankNdk”按钮（线程启动10s内，不进行卡顿检测）。
+   （1）点击“testHiCollieJankNdk”按钮。
 
    此时窗口将显示通过OH_HiCollie_Init_JankDetection接口获取的应用业务线程采样栈的超时信息。可以通过订阅hiappevent获取对应的事件，参见[订阅主线程超时事件](hiappevent-watcher-mainthreadjank-events-arkts.md)。
 

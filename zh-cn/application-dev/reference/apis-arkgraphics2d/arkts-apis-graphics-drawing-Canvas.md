@@ -1,4 +1,10 @@
 # Class (Canvas)
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphic-->
+<!--Owner: @hangmengxin-->
+<!--Designer: @wangyanglan-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
 
 > **说明：**
 >
@@ -940,9 +946,9 @@ getWidth(): number
 
 **返回值：**
 
-| 类型   | 必填 | 说明           |
-| ------ | ---- | -------------- |
-| number | 是   | 返回画布的宽度，该参数为浮点数。 |
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 返回画布的宽度，该参数为浮点数。 |
 
 **示例：**
 
@@ -969,9 +975,9 @@ getHeight(): number
 
 **返回值：**
 
-| 类型   | 必填 | 说明           |
-| ------ | ---- | -------------- |
-| number | 是   | 返回画布的高度，该参数为浮点数。 |
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 返回画布的高度，该参数为浮点数。 |
 
 **示例：**
 
@@ -1363,6 +1369,14 @@ drawSingleCharacterWithFeatures(text: string, font: Font, x: number, y: number, 
 | y | number | 是 | 所绘制字符基线左端点的纵坐标，该参数为浮点数。 |
 | features | Array\<[FontFeature](arkts-apis-graphics-drawing-i.md#fontfeature20)\> | 是 | 字体特征对象数组。参数为空数组时使用TTF(TrueType Font)文件中预设的字体特征。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[图形绘制与显示错误码](../apis-arkgraphics2d/errorcode-drawing.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 25900001 | Parameter error. Possible causes: Incorrect parameter range. |
+
 **示例：**
 
 ```ts
@@ -1678,7 +1692,7 @@ class DrawingRenderNode extends RenderNode {
     const canvas = context.canvas;
     let rect: common2D.Rect = {left: 10, right: 200, top: 100, bottom: 300};
     canvas.drawRect(rect);
-    let saveCount = canvas.save();
+    canvas.save();
   }
 }
 ```
@@ -2400,7 +2414,41 @@ import { image } from '@kit.ImageKit';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
-    let pixelMap: image.PixelMap = globalThis.getInstance().getPixelMap("test_2.jpg");
+    const width = 1000;
+    const height = 1000;
+    const bufferSize = width * height * 4;
+    const color: ArrayBuffer = new ArrayBuffer(bufferSize);
+
+    const colorData = new Uint8Array(color);
+    const blockSize = 50;
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        const index = (y * width + x) * 4; // 计算当前像素的索引
+        const blockX = Math.floor(x / blockSize);
+        const blockY = Math.floor(y / blockSize);
+
+        // 通过方块坐标的奇偶性决定颜色
+        if ((blockX + blockY) % 2 === 0) {
+          // 红色方块 (R, G, B, A)
+          colorData[index] = 255;     // R
+          colorData[index + 1] = 0;   // G
+          colorData[index + 2] = 0;   // B
+        } else {
+          // 蓝色方块
+          colorData[index] = 0;       // R
+          colorData[index + 1] = 0;   // G
+          colorData[index + 2] = 255; // B
+        }
+        colorData[index + 3] = 255;   // Alpha 始终为 255（不透明）
+      }
+    }
+
+    let opts : image.InitializationOptions = {
+      editable: true,
+      pixelFormat: 3,
+      size: { height, width }
+    }
+    let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
     canvas.drawImage(pixelMap, 0, 0); // 原图
     let center: common2D.Rect = { left: 20, top: 10, right: 50, bottom: 40 };
     let dst: common2D.Rect = { left: 70, top: 0, right: 100, bottom: 30 };
@@ -2410,7 +2458,6 @@ class DrawingRenderNode extends RenderNode {
   }
 }
 ```
-![zh-ch_image_Nine.png](figures/zh-ch_image_Nine.png)
 
 ## drawImageLattice<sup>18+</sup>
 
@@ -2448,7 +2495,41 @@ import { image } from '@kit.ImageKit';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
-    let pixelMap: image.PixelMap = globalThis.getInstance().getPixelMap("test_3.jpg");
+    const width = 1000;
+    const height = 1000;
+    const bufferSize = width * height * 4;
+    const color: ArrayBuffer = new ArrayBuffer(bufferSize);
+
+    const colorData = new Uint8Array(color);
+    const blockSize = 50;
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        const index = (y * width + x) * 4; // 计算当前像素的索引
+        const blockX = Math.floor(x / blockSize);
+        const blockY = Math.floor(y / blockSize);
+
+        // 通过方块坐标的奇偶性决定颜色
+        if ((blockX + blockY) % 2 === 0) {
+          // 红色方块 (R, G, B, A)
+          colorData[index] = 255;     // R
+          colorData[index + 1] = 0;   // G
+          colorData[index + 2] = 0;   // B
+        } else {
+          // 蓝色方块
+          colorData[index] = 0;       // R
+          colorData[index + 1] = 0;   // G
+          colorData[index + 2] = 255; // B
+        }
+        colorData[index + 3] = 255;   // Alpha 始终为 255（不透明）
+      }
+    }
+
+    let opts : image.InitializationOptions = {
+      editable: true,
+      pixelFormat: 3,
+      size: { height, width }
+    }
+    let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
     canvas.drawImage(pixelMap, 0, 0); // 原图
     let xDivs: Array<number> = [28, 36, 44, 52];
     let yDivs: Array<number> = [28, 36, 44, 52];
@@ -2460,4 +2541,3 @@ class DrawingRenderNode extends RenderNode {
   }
 }
 ```
-![zh-ch_image_Lattice.png](figures/zh-ch_image_Lattice.png)

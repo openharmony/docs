@@ -1,4 +1,10 @@
 # 组件内容填充方式
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 用于决定在组件的宽高动画过程中，如何将动画最终的组件内容绘制在组件上。
 

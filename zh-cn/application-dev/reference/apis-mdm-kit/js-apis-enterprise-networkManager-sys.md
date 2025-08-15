@@ -1,4 +1,10 @@
 # @ohos.enterprise.networkManager（网络管理）(系统接口)
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--Designer: @liuzuming-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供设备网络管理能力，包括查询设备IP地址、MAC地址信息等。
 

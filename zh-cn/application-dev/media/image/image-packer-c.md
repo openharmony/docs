@@ -1,4 +1,10 @@
 # 使用Image_NativeModule完成图片编码
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 图像编码类，用于创建以及释放ImagePacker实例。
 

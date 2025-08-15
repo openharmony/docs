@@ -1,4 +1,10 @@
 # 预览(C/C++)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 预览是启动相机后看见的画面，通常在拍照和录像前执行。
 

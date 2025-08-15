@@ -1,5 +1,12 @@
 # 时域可分层视频编码
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zhanghongran-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
+<!--Adviser: @zengyawen-->
+
 ## 基础概念
 
 ### 时域可分层视频编码介绍
@@ -122,19 +129,20 @@
     ```c++
     constexpr int32_t TGOP_SIZE = 3; 
     // 2.1 创建配置用临时AVFormat。
-    OH_AVFormat *format = OH_AVFormat_Create();
+    auto format = std::shared_ptr<OH_AVFormat>(OH_AVFormat_Create(), OH_AVFormat_Destroy);
+    if (format == nullptr) {
+        // 异常处理。
+    }
     // 2.2 填充使能参数键值对。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY, 1);
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY, 1);
     // 2.3 (可选)填充TGOP大小和TGOP内参考模式键值对。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE, TGOP_SIZE);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE, ADJACENT_REFERENCE);
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE, TGOP_SIZE);
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE, ADJACENT_REFERENCE);
     // 2.4 参数配置。
-    int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
+    int32_t ret = OH_VideoEncoder_Configure(videoEnc, format.get());
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
-    // 2.5 配置完成后销毁临时AVFormat。
-    OH_AVFormat_Destroy(format);
     ```
 
 3. （可选）在运行阶段输出轮转中获取码流对应时域层级信息。
@@ -150,7 +158,7 @@
     {
         // 注：若涉及复杂处理流程，建议相关。
         struct OH_AVCodecBufferAttr attr;
-        (void)buffer->GetBufferAttr(attr);
+        (void)buffer->OH_AVBuffer_GetBufferAttr(buffer, &attr);
         // 刷新I帧后POC归零。
         if (attr.flags & AVCODEC_BUFFER_FLAG_KEY_FRAME) {
             outPoc = 0;
@@ -216,7 +224,9 @@
     // 1.3 确定支持的LTR数目。
     if (isSupported) {
         OH_AVFormat *properties = OH_AVCapability_GetFeatureProperties(cap, VIDEO_ENCODER_LONG_TERM_REFERENCE);
-        OH_AVFormat_GetIntValue(properties, OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT, &supportedLTRCount);
+        if (!OH_AVFormat_GetIntValue(properties, OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT, &supportedLTRCount)) {
+            // 异常处理。
+        }
         OH_AVFormat_Destroy(properties);
         // 1.4 判断LTR是否满足结构需求。
         isSupported = supportedLTRCount >= NEEDED_LTR_COUNT;
@@ -239,11 +249,13 @@
         // - 写入编码码流。
         // - 通知编码器码流结束。
         // - 随帧参数写入。
-        OH_AVFormat *format = OH_AVBuffer_GetParameter(buffer);
-        OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR, 1);
-        OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR, 4);
-        OH_AVBuffer_SetParameter(buffer, format);
-        OH_AVFormat_Destroy(format);
+        auto format = std::shared_ptr<OH_AVFormat>(OH_AVBuffer_GetParameter(buffer), OH_AVFormat_Destroy);
+        if (format == nullptr) {
+            // 异常处理。
+        }
+        OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR, 1);
+        OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR, 4);
+        OH_AVBuffer_SetParameter(buffer, format.get());
         // 通知编码器buffer输入完成。
         OH_VideoEncoder_PushInputBuffer(codec, index);
     }
@@ -307,16 +319,17 @@
     ```c++
     constexpr int32_t TGOP_SIZE = 3;
     // 3.1 创建配置用临时AVFormat。
-    OH_AVFormat *format = OH_AVFormat_Create();
+    auto format = std::shared_ptr<OH_AVFormat>(OH_AVFormat_Create(), OH_AVFormat_Destroy);
+    if (format == nullptr) {
+        // 异常处理。
+    }
     // 3.2 填充使能LTR个数键值对。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT, NEEDED_LTR_COUNT);
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT, NEEDED_LTR_COUNT);
     // 3.3 参数配置。
-    int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
+    int32_t ret = OH_VideoEncoder_Configure(videoEnc, format.get());
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
-    // 3.4 配置完成后销毁临时AVFormat。
-    OH_AVFormat_Destroy(format);
     ```
 
 4. （可选）在运行阶段输出轮转中获取码流对应时域层级信息。

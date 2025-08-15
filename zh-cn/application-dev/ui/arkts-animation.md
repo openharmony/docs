@@ -1,4 +1,10 @@
 # 动画概述
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 
 UI（用户界面）中包含开发者与设备进行交互时所看到的各种组件（如时间、壁纸等）。属性作为接口，用于控制组件的行为。例如，开发者可通过位置属性调整组件在屏幕上的位置。

@@ -1,4 +1,10 @@
 # Repeat
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liubihao-->
+<!--Designer: @lixingchi1-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 > 

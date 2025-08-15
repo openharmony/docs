@@ -1,5 +1,12 @@
 # 删除关键资产(C/C++)
 
+<!--Kit: Asset Store Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @JeremyXu-->
+<!--Designer: @skye_you-->
+<!--Tester: @nacyli-->
+<!--Adviser: @zengyawen-->
+
 ## 接口介绍
 
 可通过API文档查看删除关键资产的接口[OH_Asset_Remove](../../reference/apis-asset-store-kit/capi-asset-api-h.md#oh_asset_remove)的详细介绍。
@@ -51,18 +58,18 @@
    #include "asset/asset_api.h"
 
    void RemoveAsset() {
-      static const char *ALIAS = "demo_alias";
-      Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
+       static const char *ALIAS = "demo_alias";
+       Asset_Blob alias = {(uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS};
 
-      Asset_Attr attr[] = {
-         { .tag = ASSET_TAG_ALIAS, .value.blob = alias }, // 此处指定别名删除单条关键资产，也可不指定别名删除多条关键资产
-      };
+       Asset_Attr attr[] = {
+           {.tag = ASSET_TAG_ALIAS, .value.blob = alias}, // 此处指定别名删除单条关键资产，也可不指定别名删除多条关键资产。
+       };
 
-      int32_t ret = OH_Asset_Remove(attr, sizeof(attr) / sizeof(attr[0]));
-      if (ret == ASSET_SUCCESS) {
-         // Asset removed successfully.
-      } else {
-         // Failed to remove Asset.
-      }
+       int32_t ret = OH_Asset_Remove(attr, sizeof(attr) / sizeof(attr[0]));
+       if (ret == ASSET_SUCCESS) {
+           // 删除关键资产成功。
+       } else {
+           // 删除关键资产失败。
+       }
    }
    ```

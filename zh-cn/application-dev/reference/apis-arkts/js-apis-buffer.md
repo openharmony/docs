@@ -1,4 +1,10 @@
 # @ohos.buffer (Buffer)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 Buffer对象用于表示固定长度的字节序列，是专门存放二进制数据的缓存区。
 
@@ -1156,8 +1162,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
   0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
-console.info(buf.readBigUInt64BE(0).toString());
-// 输出结果：7161960797921896816
+console.info(buf.readBigUInt64LE(0).toString());
+// 输出结果：8100120198111388771
 
 let buf1 = buffer.allocUninitializedFromPool(8);
 let result = buf1.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);

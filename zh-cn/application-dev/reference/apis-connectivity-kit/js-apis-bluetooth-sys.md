@@ -1,5 +1,12 @@
 # @ohos.bluetooth (蓝牙)（系统接口）
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+<!--Adviser: @zhang_yixin13-->
+
 蓝牙模块提供了基础的传统蓝牙能力以及BLE的扫描、广播等功能。
 
 > **说明：**

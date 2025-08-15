@@ -1,4 +1,10 @@
 # Environment：设备环境查询
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zzq212050299-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 如果开发者需要获取应用程序运行设备的环境参数（如多语言、深浅色模式等）以进行不同的场景判断，可以使用Environment设备环境查询。
 
@@ -23,7 +29,7 @@ Environment提供了读取系统环境变量并将其值写入AppStorage的功�
 
 ### 从UI中访问Environment参数
 
-- 使用Environment.envProp将设备运行的环境变量存入AppStorage中。
+- 使用Environment.[envProp](../../reference/apis-arkui/arkui-ts/ts-state-management.md#envprop10)将设备运行的环境变量存入AppStorage中。
 
   ```ts
   // 将设备的语言code存入AppStorage，默认值为en

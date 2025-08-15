@@ -1,4 +1,10 @@
 # Hyperlink
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @hddgzw-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 超链接组件，组件宽高范围内点击实现跳转。
 

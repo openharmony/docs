@@ -1,4 +1,10 @@
 # @ohos.enterprise.accountManager（账户管理）(系统接口)
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--Designer: @liuzuming-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供设备帐户管理能力，包括禁止创建本地用户等。
 

@@ -1,4 +1,9 @@
 # Subscribing to State Changes of a Remote Object
+<!--Kit: IPC Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @xdx19211@luodonghui0157-->
+<!--SE: @zhaopeng_gitee-->
+<!--TSE: @maxiaorong2-->
 
 IPC/RPC allows you to subscribe to the state changes of a remote stub object. When the remote stub object dies, a death notification will be sent to your local proxy. To subscribe to death notifications, you need to call the [registerDeathRecipient](../reference/apis-ipc-kit/js-apis-rpc.md#registerdeathrecipient9-1) API. To unsubscribe from death notifications, call the [unregisterDeathRecipient](../reference/apis-ipc-kit/js-apis-rpc.md#unregisterdeathrecipient9-1) API.
 
@@ -14,7 +19,9 @@ IPC/RPC subscription is applicable to the following scenarios:<br>
 1. In IPC, the proxy object needs to detect the status of the process hosting the remote stub object.
 2. In RPC, the proxy object needs to detect the status of the process hosting the remote stub object, or the DSoftBus connection status on which RPC depends.
 When the proxy detects the death of the remote stub object, proxy objects and clear local resources should be cleared.
-> **NOTE**<br>Subscription to death notifications of anonymous stub objects (not registered with SAMgr) is supported in IPC, but not in RPC.
+> **NOTE**
+> 
+> Subscription to death notifications of anonymous stub objects (not registered with SAMgr) is supported in IPC, but not in RPC.
 
 ## **Development Using ArkTS APIs**
 

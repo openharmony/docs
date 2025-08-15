@@ -6,7 +6,7 @@
 
 ArkUI提供多种弹出框，不同类型的弹出框具备不同的蒙层定制能力。详情请参阅下表：
 
-|                   |autoCancel|maskRect|isModal|immersiveMode|maskColor|transition|maskTransition|
+|         接口&组件          |autoCancel|maskRect|isModal|immersiveMode|maskColor|transition|maskTransition|
 | ----------------- | ------ |------ |------ |------ |------ |------ | ------ |
 |[openCustomDialog](arkts-uicontext-custom-dialog.md)|支持|支持|支持|支持|支持|支持|支持|
 |[openCustomDialogWithController](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#opencustomdialogwithcontroller18)|支持|支持|支持|支持|支持|支持|支持|
@@ -64,7 +64,6 @@ ArkUI提供多种弹出框，不同类型的弹出框具备不同的蒙层定制
     .onClick(() => {
       this.getUIContext().getPromptAction().openCustomDialog(this.autoCancelOpt)
     })
-// xxx.ets
 ```
  ![dialog_mask_autoCancel](figures/dialog_mask_autoCancel.gif)
 
@@ -84,7 +83,6 @@ Button("openCustomDialog isModal:false")
   .onClick(() => {
     this.getUIContext().getPromptAction().openCustomDialog(this.modalOpt)
   })
-// xxx.ets
 ```
  ![dialog_mask_modal](figures/dialog_mask_modal.PNG)
 
@@ -117,7 +115,6 @@ Button("openCustomDialog isModal:false")
     .onClick(() => {
       this.getUIContext().getPromptAction().openCustomDialog(this.maskOpt)
     })
-// xxx.ets
 ```
  ![dialog_mask_mask](figures/dialog_mask_mask.PNG)
 
@@ -141,7 +138,6 @@ Button("openCustomDialog isModal:false")
         immersiveMode: this.immersiveMode,
       })
     })
-// xxx.ets
 ```
  ![dialog_mask_immersiveMode](figures/dialog_mask_immersiveMode.gif)
 
@@ -165,7 +161,6 @@ Button("openCustomDialog isModal:false")
     .onClick(() => {
       this.getUIContext().getPromptAction().openCustomDialog(this.transitionOpt);
     })
-// xxx.ets
 ```
  ![dialog_mask_transition](figures/dialog_mask_transition.gif)
 
@@ -184,7 +179,6 @@ Button("openCustomDialog isModal:false")
           .combine(TransitionEffect.rotate({ z: 1, angle: 180 })),
       });
     })
-// xxx.ets
 ```
  ![dialog_mask_maskTransition](figures/dialog_mask_maskTransition.gif)
 

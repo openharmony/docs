@@ -1,5 +1,12 @@
 # @ohos.identifier.oaid (开放匿名设备标识服务)
 
+<!--Kit: Ads Kit-->
+<!--Subsystem: Advertising-->
+<!--Owner: @SukiEvas-->
+<!--Designer: @zhansf1988-->
+<!--Tester: @hongmei_may-->
+<!--Adviser: @RayShih-->
+
 本模块提供开放匿名设备标识符（Open Anonymous Device Identifier, 以下简称OAID）的获取能力。
 
 > **说明：**<br/>
@@ -40,15 +47,10 @@ getOAID(): Promise&lt;string&gt;
 
 ```ts
 import { identifier } from '@kit.AdsKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
-identifier.getOAID().then((data) => {
+identifier.getOAID().then((data: string) => {
   const oaid: string = data;
-  hilog.info(0x0000, 'testTag', `Succeed in getting oaid. Oaid is ${oaid}`);
-}).catch((err: BusinessError) => {
-  hilog.error(0x0000, 'testTag', `Fail to get oaid. Code is ${err.code}, message is ${err.message}`);
-})
+});
 ```
 
 ## identifier.getOAID
@@ -80,14 +82,11 @@ getOAID(callback: AsyncCallback&lt;string&gt;): void
 ```ts
 import { identifier } from '@kit.AdsKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
- 
+
 identifier.getOAID((err: BusinessError, data: string) => {
   if (err.code) {
-    hilog.error(0x0000, 'testTag', `Fail to get oaid. Code is ${err.code}, message is ${err.message}`);
-  } else {
-    const oaid: string = data;
-    hilog.info(0x0000, 'testTag', `Succeed in getting oaid. Oaid is ${oaid}`);
+    return;
   }
+  const oaid: string = data;
 });
 ```

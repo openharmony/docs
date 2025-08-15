@@ -1,5 +1,11 @@
 # Function Flow Runtime Concurrent Queue (C)
 
+<!--Kit: Function Flow Runtime Kit-->
+<!--Subsystem: Resourceschedule-->
+<!--Owner: @chuchihtung; @yanleo-->
+<!--SE: @geoffrey_guo; @huangyouzhong-->
+<!--TSE: @lotsof; @sunxuhao-->
+
 ## Overview
 
 The FFRT concurrent queue provides the capability of setting the priority and queue concurrency. Tasks in the queue can be executed on multiple threads at the same time, achieving better effects.
@@ -118,11 +124,11 @@ The main FFRT APIs involved in the preceding example are as follows:
 
 | Name                                                                                              | Description                  |
 | -------------------------------------------------------------------------------------------------- | ---------------------- |
-| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_create)                                     | Creates a queue.            |
-| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_destroy)                                   | Destroys a queue.            |
-| [ffrt_task_attr_set_queue_priority](ffrt-api-guideline-c.md#ffrt_task_attr_set_queue_priority)     | Sets the priority of a task in a queue.  |
-| [ffrt_queue_attr_set_max_concurrency](ffrt-api-guideline-c.md#ffrt_queue_attr_set_max_concurrency) | Sets the concurrency of the concurrent queue.|
-| [ffrt_queue_submit_h_f](ffrt-api-guideline-c.md#ffrt_queue_submit_h_f)                             | Submits a task to a queue.  |
+| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_t)                                     | Creates a queue.            |
+| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_t)                                   | Destroys a queue.            |
+| [ffrt_task_attr_set_queue_priority](ffrt-api-guideline-c.md#ffrt_task_attr_t)     | Sets the priority of a task in a queue.  |
+| [ffrt_queue_attr_set_max_concurrency](ffrt-api-guideline-c.md#ffrt_queue_attr_t) | Sets the concurrency of the concurrent queue.|
+| [ffrt_queue_submit_h_f](ffrt-api-guideline-c.md#ffrt_queue_t)                             | Submits a task to a queue.  |
 
 > **NOTE**
 >

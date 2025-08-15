@@ -1,5 +1,12 @@
 # native_huks_type.h
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 提供huks中的枚举变量、结构体定义与宏定义。

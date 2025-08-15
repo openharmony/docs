@@ -38,7 +38,7 @@ Defines the user age group detection result.
 
 ## userStatus.on('userAgeGroupDetected')
 
- on(type: 'userAgeGroupDetected', callback: Callback&lt;userclassification&gt;): void;
+ on(type: 'userAgeGroupDetected', callback: Callback&lt;UserClassification&gt;): void;
 
 Enables the age group detection function.
 

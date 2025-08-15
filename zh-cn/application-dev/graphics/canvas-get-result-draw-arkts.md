@@ -1,5 +1,12 @@
 # 画布的获取与绘制结果的显示（ArkTS）
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hangmengxin-->
+<!--Designer: @wangyanglan-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
+
 
 ## 场景介绍
 
@@ -58,7 +65,7 @@ export class MyNodeController extends NodeController {
       this.myRenderNode.pivot = { x: 0.2, y: 0.8 };
       this.myRenderNode.scale = { x: 1, y: 1 };
       renderNode.appendChild(this.myRenderNode);
-      renderNode.clipToFrame = true
+      renderNode.clipToFrame = true;
     }
     return this.rootNode;
   }
@@ -114,7 +121,7 @@ export class MyRenderNode extends RenderNode {
   }
 
   async draw(context: DrawContext) {
-    const canvas = context.canvas
+    const canvas = context.canvas;
     if (this.pixelMap != null) {
       // 4.1 利用3中创建的PixelMap构造离屏Canvas
       const canvas_ = new drawing.Canvas(this.pixelMap);
@@ -199,5 +206,5 @@ struct RenderTest {
 
 针对Drawing(ArkTS)的开发，有以下相关实例可供参考：
 
-- [ArkTSGraphicsDraw (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/ArkTSGraphicsDraw)
+- [ArkTSGraphicsDraw (API14)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/ArkTSGraphicsDraw)
 <!--RP1End-->

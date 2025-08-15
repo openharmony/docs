@@ -4,7 +4,7 @@ The **Web** component provides the focus management functionality for you to eff
 
 - Application scenarios of common APIs for controlling the focus of the **Web** component and ArkUI component:
 
-  1. Use **requestFocus** to request the focus for a **Web** component: When an application has multiple components, you can use [requestFocus](../reference/apis-arkweb/js-apis-webview.md#requestfocus) of the **Web** component to move the focus to the **Web** component.
+  1. Use **requestFocus** to request the focus for a **Web** component: When an application has multiple components, you can use [requestFocus](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#requestfocus) of the **Web** component to move the focus to the **Web** component.
   2. Change the **Web** component style based on the focus state: The component listens for focus event to modify the component style, such as the border and background color. This provides visual and interactive feedback.
 
 - Application scenarios of common APIs for controlling the focus of the HTML5 element in the **Web** component:
@@ -19,16 +19,15 @@ For details about the focus, focus chain, and focus navigation of the **Web** co
 - Focus:
     - Component focus: unique interactive element on the current application UI.
     - Element focus: unique interactive element on the current web page.
-    - When a user indirectly interacts with an application by using input devices such as a keyboard, a remote control, or a joystick, focus-based navigation and interaction are important input means.
 - Focus navigation:
-    - Focus navigation: refers to the behavior of focus shifting between components in an application. This process is transparent to the user and can be monitored through **onFocus** and **onBlur** events.
+    - Focus navigation: refers to the behavior of focus shifting between components in an application. This process is transparent to the user but can be monitored through **onFocus** and **onBlur** events.
     - Element focus navigation: refers to the behavior of focus shifting between elements on a web page. This behavior complies with the W3C standard. You can obtain the changes by listening for the **focus** (triggered when the element obtains the focus) and **blur** (triggered when the element loses the focus) events.
 
 ## Focus Traversal Guidelines
 Focus traversal can be divided into active and passive based on how it is triggered. For details, see [Focus Traversal Guidelines](../ui/arkts-common-events-focus-event.md#focus-traversal-guidelines).
 
 ### Active Focus Traversal
-Refers to focus movement initiated by deliberate actions, such as keyboard shortcuts (**Tab**, **Shift+Tab**) and clicks/touches (gesture, mouse, or touchpad).
+Refers to focus movement initiated by deliberate actions, such as keyboard shortcuts (Tab, Shift+Tab) and clicks/touches (gesture, mouse, or touchpad).
 
 - requestFocus
 
@@ -46,17 +45,18 @@ Refers to focus movement initiated by deliberate actions, such as keyboard short
 ### Passive Focus Traversal
 Passive focus traversal occurs when the focus automatically shifts due to system actions or other operations without developer intervention, reflecting the default behavior of the focus system.
 
-Currently, passive focus traversal occurs in the following scenarios:
+Passive focus traversal occurs in the following scenarios:
 
-- Component removal: If a focused **Web** component is removed, the system tries to shift focus to the next available sibling, following a back-to-front order. If no siblings are focusable, focus is released to the parent component.
+- Component removal: If a focused **Web** component is removed, the system tries to shift focus to the next available sibling, following a back-to-front order. If no components at the same level are focusable, focus is released to the parent component.
 
 - Attribute change: Changing a component's **focusable** or **enabled** to **false**, or **visibility** to invisible causes the system to automatically move focus to another focusable component, using the same method as for component removal.
 
 - Invisible **Web** components: In scenarios such as application foreground and background switchover, page switchover, and navigation, a focused **Web** component will lose focus and be focused again.
 
-- Web page loading: When the **Web** component loads a web page through **src**, **loadUrl**, and **loadData**, the focus is obtained by default. However, if the **Web** component is not focusable, the focus fails to be obtained. The common causes are as follows: The parent component cannot be focused during the animation. The **Web** component or its parent component is set to be not focusable on the application side. The application can call [requestFocus](../reference/apis-arkweb/js-apis-webview.md#requestfocus) to obtain the focus again. When the focus is obtained successfully, the **onFocus** and **w3c focus** events on the application side are reported.
+- Web page loading: When the **Web** component loads a web page through **src**, **loadUrl**, and **loadData**, the focus is obtained by default. However, if the **Web** component is not focusable, the focus fails to be obtained. The common causes are as follows: The parent component cannot be focused during the animation. The **Web** component or its parent component is set to be not focusable on the application side. The application can call [requestFocus](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#requestfocus) to obtain the focus again. When the focus is obtained successfully, the **onFocus** and **w3c focus** events on the application side are reported.
 
-- **autofocus**: Elements with the **autofocus** style are focused by default after web pages are loaded. If the element supports text input, the cursor blinks in the text box, but the soft keyboard is not displayed.
+- **autofocus**: Elements with the **autofocus** style are focused by default after web pages are loaded. If the element supports text input, the cursor blinks in the text box, but the soft keyboard is not displayed. For details about how to automatically display the soft keyboard, see [Automatically Displaying the Soft Keyboard](web-docking-softkeyboard.md#automatically-displaying-the-soft-keyboard).
+
 
 - Menu display: By default, the ArkUI component with the **overlay** attribute is focused. When the **Web** component is used together with this type of component such as [menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md), [datepicker](../reference/apis-arkui/arkui-ts/ts-basic-components-datepicker.md), [timepicker](../reference/apis-arkui/arkui-ts/ts-basic-components-timepicker.md), drop-down list box, and dialog box, the **Web** component loses focus.
 
@@ -64,10 +64,11 @@ Currently, passive focus traversal occurs in the following scenarios:
 
 - [onFocus](../reference/apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus): common focus obtaining callback API on the application side. When a component bound to this API is focused, the callback responses.
 - [onBlur](../reference/apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur): common defocus callback API on the application side. When a component bound to this API loses focus, the callback responses.
-- [requestFocus](../reference/apis-arkweb/js-apis-webview.md#requestfocus): an API for requesting focus on the application side.
+- To enable the component to proactively obtain focus, invoke the [requestFocus](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#requestfocus) API on the application side.
+- To set whether a **Web** component can obtain the focus, set the [focusable](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable) attribute. The **Web** component can obtain the focus by default.
 
 **Example**
-1. requestFocus can be used to move the focus to the **Web** component.
+1. Use the **requestFocus** API to allow the **Web** component to proactively obtain the focus.
 2. The **onFocus** and **onBlur** APIs are usually used in pairs to listen for the focus changes of the component.
 
 ```ts

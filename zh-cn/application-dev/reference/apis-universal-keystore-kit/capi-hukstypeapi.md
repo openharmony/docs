@@ -1,5 +1,12 @@
 # HuksTypeApi
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 定义HUKS类型的头文件，声明各种宏、枚举、数据结构、错误码等。

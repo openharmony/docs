@@ -1,4 +1,10 @@
 # 自定义组件的自定义布局
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @song-song-song-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 如果需要通过测算的方式布局自定义组件内子组件的位置，建议使用以下接口：
 

@@ -409,10 +409,6 @@ on(type: 'callStateChange', options: ObserverOptions, callback: Callback\<CallSt
 
 订阅通话状态变化事件，使用callback方式作为异步方法。
 
-> **说明：**
->
-> 获取电话号码时需要ohos.permission.READ_CALL_LOG权限，该权限为系统权限。
-
 **系统能力**：SystemCapability.Telephony.StateRegistry
 
 **参数：**
@@ -421,7 +417,7 @@ on(type: 'callStateChange', options: ObserverOptions, callback: Callback\<CallSt
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | 是   | 通话状态变化事件，参数固定为'callStateChange'。               |
 | options  | [ObserverOptions](#observeroptions11)                        | 是   | 电话相关事件订阅参数可选项。                                  |
-| callback | Callback\<[CallStateInfo](#callstateinfo11)\>                | 是   | 以callback形式异步返回结果，参考call的[CallState](js-apis-call.md#callstate)。<br />number：电话号码。 |
+| callback | Callback\<[CallStateInfo](#callstateinfo11)\>                | 是   | 以callback形式异步返回结果。<br/>应用可获取到CallStateInfo。<br/>其中，三方应用仅能获取state通话状态。number受系统权限管控，仅面向系统应用开放。 |
 
 **错误码：**
 

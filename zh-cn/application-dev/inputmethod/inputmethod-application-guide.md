@@ -1,4 +1,10 @@
 # 实现一个输入法应用
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--Designer: @andeszhang-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 [InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md)提供了onCreate()和onDestroy()生命周期回调，根据需要重写对应的回调方法。InputMethodExtensionAbility的生命周期如下：
 
@@ -17,6 +23,7 @@
 
 ## 开发步骤 
 
+<!--RP1-->
 开发者在实现一个输入法应用时，需要在DevEco Studio工程中新建一个InputMethodExtensionAbility，具体步骤如下：
 
 1. 在工程Module对应的ets目录下，右键选择“New > Directory”，新建一个目录，并命名为InputMethodExtensionAbility。
@@ -33,6 +40,7 @@
 │         └── KeyboardKeyData.ts			    # 键盘属性定义
 ├── resources/base/profile/main_pages.json  
 ```
+<!--RP1End-->
 
 ## 文件介绍
 
@@ -58,6 +66,7 @@
    }
    ```
 
+<!--RP2-->
 2. KeyboardController.ts文件。
 
    ```ts
@@ -158,7 +167,7 @@
    
    export default keyboardController;
    ```
-
+<!--RP2End-->
 3. KeyboardKeyData.ts文件。
 
    定义软键盘的按键显示内容。
@@ -314,6 +323,7 @@
    }
    ```
 
+<!--Del-->
 5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册InputMethodExtensionAbility，type标签需要设置为“inputMethod”，srcEntry标签表示当前InputMethodExtensionAbility组件所对应的代码路径。
 
    ```json
@@ -333,9 +343,12 @@
      }
    }
    ```
+<!--DelEnd-->
 
-<!--RP1-->
-<!--RP1End-->
+
+<!--RP3-->
+
+<!--RP3End-->
 
 ## 约束与限制
 
@@ -349,4 +362,4 @@
 
 针对InputMethodExtensionAbility开发，有以下相关实例可供参考：
 
-- [轻量级输入法](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/InputMethod/KikaInput)
+- [轻量级输入法](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Solutions/InputMethod/KikaInput)

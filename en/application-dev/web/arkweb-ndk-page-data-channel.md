@@ -4,7 +4,7 @@ The native **PostWebMessage** is provided to implement communication between the
 
 ## Applicable Application Architecture
 
-If an application is developed using both ArkTS and C++, or the application architecture is close to the applet architecture and has a built-in C++ environment, you are advised to use [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi), [ArkWeb_WebMessageAPI](../reference/apis-arkweb/_ark_web___web_message_a_p_i.md#arkweb_webmessageapi) and [ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md#arkweb_webmessageportapi) provided by ArkWeb on the native side to implement the **PostWebMessage** feature.
+If an application is developed using ArkTS and C++ language, or if its architecture is close to that of an applet and has a built-in C++ environment, you are advised to use the [ArkWeb_ControllerAPI](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md), [ArkWeb_WebMessageAPI](../reference/apis-arkweb/capi-web-arkweb-webmessageapi.md) and [ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/capi-web-arkweb-webmessageportapi.md) provided by ArkWeb on the native side to implement the PostWebMessage feature.
 
   ![arkweb_jsbridge_arch](figures/arkweb_jsbridge_arch.png)
 
@@ -27,25 +27,25 @@ If an application is developed using both ArkTS and C++, or the application arch
   // Define a webTag and pass it to WebviewController when it is created to establish the mapping between controller and webTag.
   webTag: string = 'ArkWeb1';
   controller: webview.WebviewController = new webview.WebviewController(this.webTag);
-  ...
+  // ...
   // Use aboutToAppear() to pass webTag to C++ through the Node-API. The webTag uniquely identifies the C++ ArkWeb component.
   aboutToAppear() {
     console.info("aboutToAppear")
     // Initialize the NDK API of the Web component.
     testNapi.nativeWebInit(this.webTag);
   }
-  ...
+  // ...
   ```
 
-### Obtaining API Struct Using the Native API
+### Obtaining API Structs Using the Native API
 
-To invoke the native APIs in the API structs, obtain the API structs on the ArkWeb native side first. You can pass different types of parameters in the [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi()) function to obtain the corresponding function pointer structs. The following APIs are provided: [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi), [ArkWeb_WebMessageAPI](../reference/apis-arkweb/_ark_web___web_message_a_p_i.md#arkweb_webmessageapi) and [ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md#arkweb_webmessageportapi).
+To invoke the native APIs, obtain the API structs on the ArkWeb native side first. You can pass different types of parameters in the [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/capi-arkweb-interface-h.md#oh_arkweb_getnativeapi) function to obtain the corresponding function pointer structs. This topic involves the obtaining of [ArkWeb_ControllerAPI](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md), [ArkWeb_WebMessageAPI](../reference/apis-arkweb/capi-web-arkweb-webmessageapi.md) and [ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/capi-web-arkweb-webmessageportapi.md).
 
   ```c++
   static ArkWeb_ControllerAPI *controller = nullptr;
   static ArkWeb_WebMessagePortAPI *webMessagePort = nullptr;
   static ArkWeb_WebMessageAPI *webMessage = nullptr;
-  ...
+  // ...
   controller = reinterpret_cast<ArkWeb_ControllerAPI *>(OH_ArkWeb_GetNativeAPI(ARKWEB_NATIVE_CONTROLLER));
   webMessagePort =
       reinterpret_cast<ArkWeb_WebMessagePortAPI *>(OH_ArkWeb_GetNativeAPI(ARKWEB_NATIVE_WEB_MESSAGE_PORT));
@@ -54,7 +54,7 @@ To invoke the native APIs in the API structs, obtain the API structs on the ArkW
 
 ### Sample Code
 
-Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missing) to check whether the function struct has the corresponding pointer before calling an API to avoid crash caused by mismatch between the SDK and the device ROM. You must use [createWebMessagePorts](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#createwebmessageports), [postWebMessage](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#postwebmessage) and [close](../reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md#close) in the UI thread.
+Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#enums) to check whether the function struct has the corresponding pointer before calling an API to avoid crash caused by mismatch between the SDK and the device ROM. [createWebMessagePorts](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md#createwebmessageports), [postWebMessage](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md#postwebmessage) and [close](../reference/apis-arkweb/capi-web-arkweb-webmessageportapi.md#close) must run in the UI thread.
 
 * Frontend page code:
 
@@ -432,7 +432,7 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missi
   }
   ```
 
-* ArkTS APIs exposed on the Node-API side:
+* ArkTS APIs exposed on the Node-API side
 
   ```javascript
   // entry/src/main/cpp/types/libentry/index.d.ts
@@ -449,7 +449,7 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missi
   export const postMessageThread: (webName: string) => void;
   ```
 
-* Compilation configuration on Node-API:
+* Compilation configuration on Node-API
 
   ```c++
   # entry/src/main/cpp/CMakeLists.txt
@@ -479,7 +479,7 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missi
   target_link_libraries(entry PUBLIC libace_napi.z.so ${hilog-lib} libohweb.so)
   ```
 
-* Node-API layer code:
+* Node-API layer code
 
   ```c++
   // entry/src/main/cpp/hello.cpp
@@ -605,6 +605,7 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missi
                   web_message_port_size);
       return nullptr;
   }
+
 
   // Send a message in the thread.
   void sendMessage(const char *webTag, const ArkWeb_WebMessagePtr message) {

@@ -1,4 +1,10 @@
 # native_audio_device_base.h
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
@@ -113,6 +119,7 @@ enum OH_AudioDevice_Type
 | AUDIO_DEVICE_TYPE_ACCESSORY = 26 | 附件设备，如遥控器上的麦克风。<br>**起始版本：** 18 |
 | AUDIO_DEVICE_TYPE_HDMI = 27 | HDMI设备（例如HDMI、ARC、eARC等）。<br>**起始版本：** 19 |
 | AUDIO_DEVICE_TYPE_LINE_DIGITAL = 28 | 有线数字设备（例如S/PDIF等）。<br>**起始版本：** 19 |
+| AUDIO_DEVICE_TYPE_HEARING_AID = 30 |  助听器设备。<br>**起始版本：** 20 |
 | AUDIO_DEVICE_TYPE_NEARLINK = 31 | 星闪设备。<br>**起始版本：** 20 |
 | AUDIO_DEVICE_TYPE_DEFAULT = 1000 | 默认设备类型。 |
 
@@ -252,7 +259,7 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceId(OH_AudioDeviceDescrip
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | AUDIODEVICE_SUCCESS 或 AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM。 |
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | AUDIOCOMMON_RESULT_SUCCESS 或 AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM。 |
 
 ### OH_AudioDeviceDescriptor_GetDeviceName()
 

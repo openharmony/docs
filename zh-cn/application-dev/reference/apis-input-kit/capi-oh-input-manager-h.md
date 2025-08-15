@@ -1,8 +1,17 @@
 # oh_input_manager.h
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## 概述
 
 提供事件注入和关键状态查询等功能。
+
+**引用文件：** <multimodalinput/oh_input_manager.h>
 
 **库：** libohinput.so
 
@@ -82,10 +91,10 @@
 | [void OH_Input_DestroyMouseEvent(struct Input_MouseEvent** mouseEvent)](#oh_input_destroymouseevent) | - | 销毁鼠标事件对象。 |
 | [void OH_Input_SetMouseEventAction(struct Input_MouseEvent* mouseEvent, int32_t action)](#oh_input_setmouseeventaction) | - | 设置鼠标事件的动作。 |
 | [int32_t OH_Input_GetMouseEventAction(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventaction) | - | 获取鼠标事件的动作。 |
-| [void OH_Input_SetMouseEventDisplayX(struct Input_MouseEvent* mouseEvent, int32_t displayX)](#oh_input_setmouseeventdisplayx) | - | 设置鼠标事件的光标在当前屏幕的X坐标。 |
-| [int32_t OH_Input_GetMouseEventDisplayX(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventdisplayx) | - | 获取鼠标事件的光标在当前屏幕的X坐标。 |
-| [void OH_Input_SetMouseEventDisplayY(struct Input_MouseEvent* mouseEvent, int32_t displayY)](#oh_input_setmouseeventdisplayy) | - | 设置鼠标事件的光标在当前屏幕的Y坐标。 |
-| [int32_t OH_Input_GetMouseEventDisplayY(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventdisplayy) | - | 获取鼠标事件的光标在当前屏幕的Y坐标。 |
+| [void OH_Input_SetMouseEventDisplayX(struct Input_MouseEvent* mouseEvent, int32_t displayX)](#oh_input_setmouseeventdisplayx) | - | 设置鼠标事件以指定屏幕左上角为原点的相对坐标系的X坐标。 |
+| [int32_t OH_Input_GetMouseEventDisplayX(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventdisplayx) | - | 获取鼠标事件以指定屏幕左上角为原点的相对坐标系的X坐标。 |
+| [void OH_Input_SetMouseEventDisplayY(struct Input_MouseEvent* mouseEvent, int32_t displayY)](#oh_input_setmouseeventdisplayy) | - | 设置鼠标事件以指定屏幕左上角为原点的相对坐标系的Y坐标。 |
+| [int32_t OH_Input_GetMouseEventDisplayY(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventdisplayy) | - | 获取鼠标事件以指定屏幕左上角为原点的相对坐标系的Y坐标。 |
 | [void OH_Input_SetMouseEventButton(struct Input_MouseEvent* mouseEvent, int32_t button)](#oh_input_setmouseeventbutton) | - | 设置鼠标事件的按键。 |
 | [int32_t OH_Input_GetMouseEventButton(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventbutton) | - | 获取鼠标事件的按键。 |
 | [void OH_Input_SetMouseEventAxisType(struct Input_MouseEvent* mouseEvent, int32_t axisType)](#oh_input_setmouseeventaxistype) | - | 设置鼠标轴事件的类型。 |
@@ -103,10 +112,10 @@
 | [int32_t OH_Input_GetTouchEventAction(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventaction) | - | 获取触屏事件的动作。 |
 | [void OH_Input_SetTouchEventFingerId(struct Input_TouchEvent* touchEvent, int32_t id)](#oh_input_settoucheventfingerid) | - | 设置触屏事件的手指ID。 |
 | [int32_t OH_Input_GetTouchEventFingerId(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventfingerid) | - | 获取触屏事件的手指ID。 |
-| [void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t displayX)](#oh_input_settoucheventdisplayx) | - | 设置触屏事件在当前屏幕的X坐标。 |
-| [int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventdisplayx) | - | 获取触屏事件在当前屏幕的X坐标。 |
-| [void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t displayY)](#oh_input_settoucheventdisplayy) | - | 设置触屏事件在当前屏幕的Y坐标。 |
-| [int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventdisplayy) | - | 获取触屏事件在当前屏幕的Y坐标。 |
+| [void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t displayX)](#oh_input_settoucheventdisplayx) | - | 设置触屏事件以指定屏幕左上角为原点的相对坐标系的X坐标。 |
+| [int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventdisplayx) | - | 获取触屏事件以指定屏幕左上角为原点的相对坐标系的X坐标。 |
+| [void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t displayY)](#oh_input_settoucheventdisplayy) | - | 设置触屏事件以指定屏幕左上角为原点的相对坐标系的Y坐标。 |
+| [int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventdisplayy) | - | 获取触屏事件以指定屏幕左上角为原点的相对坐标系的Y坐标。 |
 | [void OH_Input_SetTouchEventActionTime(struct Input_TouchEvent* touchEvent, int64_t actionTime)](#oh_input_settoucheventactiontime) | - | 设置触屏事件发生的时间。 |
 | [int64_t OH_Input_GetTouchEventActionTime(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventactiontime) | - | 获取触屏事件发生的时间。 |
 | [void OH_Input_SetTouchEventWindowId(struct Input_TouchEvent* touchEvent, int32_t windowId)](#oh_input_settoucheventwindowid) | - | 设置触屏事件的窗口Id。 |
@@ -120,10 +129,10 @@
 | [Input_Result OH_Input_DestroyAxisEvent(Input_AxisEvent** axisEvent)](#oh_input_destroyaxisevent) | - | 销毁轴事件对象实例。 |
 | [Input_Result OH_Input_SetAxisEventAction(Input_AxisEvent* axisEvent, InputEvent_AxisAction action)](#oh_input_setaxiseventaction) | - | 设置轴事件的动作。 |
 | [Input_Result OH_Input_GetAxisEventAction(const Input_AxisEvent* axisEvent, InputEvent_AxisAction *action)](#oh_input_getaxiseventaction) | - | 获取轴事件的动作。 |
-| [Input_Result OH_Input_SetAxisEventDisplayX(Input_AxisEvent* axisEvent, float displayX)](#oh_input_setaxiseventdisplayx) | - | 设置轴事件在当前屏幕的X坐标。 |
-| [Input_Result OH_Input_GetAxisEventDisplayX(const Input_AxisEvent* axisEvent, float* displayX)](#oh_input_getaxiseventdisplayx) | - | 获取轴事件在当前屏幕的X坐标。 |
-| [Input_Result OH_Input_SetAxisEventDisplayY(Input_AxisEvent* axisEvent, float displayY)](#oh_input_setaxiseventdisplayy) | - | 设置轴事件在当前屏幕的Y坐标。 |
-| [Input_Result OH_Input_GetAxisEventDisplayY(const Input_AxisEvent* axisEvent, float* displayY)](#oh_input_getaxiseventdisplayy) | - | 获取轴事件在当前屏幕的Y坐标。 |
+| [Input_Result OH_Input_SetAxisEventDisplayX(Input_AxisEvent* axisEvent, float displayX)](#oh_input_setaxiseventdisplayx) | - | 设置轴事件以指定屏幕左上角为原点的相对坐标系的X坐标。 |
+| [Input_Result OH_Input_GetAxisEventDisplayX(const Input_AxisEvent* axisEvent, float* displayX)](#oh_input_getaxiseventdisplayx) | - | 获取轴事件以指定屏幕左上角为原点的相对坐标系的X坐标。 |
+| [Input_Result OH_Input_SetAxisEventDisplayY(Input_AxisEvent* axisEvent, float displayY)](#oh_input_setaxiseventdisplayy) | - | 设置轴事件以指定屏幕左上角为原点的相对坐标系的Y坐标。 |
+| [Input_Result OH_Input_GetAxisEventDisplayY(const Input_AxisEvent* axisEvent, float* displayY)](#oh_input_getaxiseventdisplayy) | - | 获取轴事件以指定屏幕左上角为原点的相对坐标系的Y坐标。 |
 | [Input_Result OH_Input_SetAxisEventAxisValue(Input_AxisEvent* axisEvent,InputEvent_AxisType axisType, double axisValue)](#oh_input_setaxiseventaxisvalue) | - | 设置轴事件指定轴类型的轴值。 |
 | [Input_Result OH_Input_GetAxisEventAxisValue(const Input_AxisEvent* axisEvent,InputEvent_AxisType axisType, double* axisValue)](#oh_input_getaxiseventaxisvalue) | - | 获取轴事件指定轴类型的轴值。 |
 | [Input_Result OH_Input_SetAxisEventActionTime(Input_AxisEvent* axisEvent, int64_t actionTime)](#oh_input_setaxiseventactiontime) | - | 设置轴事件发生的时间。 |
@@ -180,24 +189,24 @@
 | [Input_Result OH_Input_GetDeviceVendor(Input_DeviceInfo *deviceInfo, int32_t *vendor)](#oh_input_getdevicevendor) | - | 获取输入设备的厂商信息。 |
 | [Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **address)](#oh_input_getdeviceaddress) | - | 获取输入设备的物理地址。 |
 | [Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state)](#oh_input_getfunctionkeystate) | - | 获取功能键状态。 |
-| [int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent)](#oh_input_injecttouchevent) | - | 使用当前屏幕坐标注入触屏事件。 |
-| [int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent)](#oh_input_injectmouseevent) | - | 使用当前屏幕坐标注入鼠标事件。 |
+| [int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent)](#oh_input_injecttouchevent) | - | 使用以指定屏幕左上角为原点的相对坐标系的坐标注入触屏事件。 |
+| [int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent)](#oh_input_injectmouseevent) | - | 使用以指定屏幕左上角为原点的相对坐标系的坐标注入鼠标事件。 |
 | [int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventdisplayid) | - | 获取鼠标事件的屏幕Id。 |
 | [Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count)](#oh_input_querymaxtouchpoints) | - | 查询设备支持的最大触屏报点数。 |
-| [int32_t OH_Input_InjectMouseEventGlobal(const struct Input_MouseEvent* mouseEvent)](#oh_input_injectmouseeventglobal) | - | 使用全局坐标注入鼠标事件。 |
-| [void OH_Input_SetMouseEventGlobalX(struct Input_MouseEvent* mouseEvent, int32_t globalX)](#oh_input_setmouseeventglobalx) | - | 设置鼠标事件的光标相对于主屏幕左上角的X坐标。 |
-| [int32_t OH_Input_GetMouseEventGlobalX(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventglobalx) | - | 获取鼠标事件的光标相对于主屏幕左上角的X坐标。 |
-| [void OH_Input_SetMouseEventGlobalY(struct Input_MouseEvent* mouseEvent, int32_t globalY)](#oh_input_setmouseeventglobaly) | - | 设置鼠标事件的光标相对于主屏幕左上角的Y坐标。 |
-| [int32_t OH_Input_GetMouseEventGlobalY(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventglobaly) | - | 获取鼠标事件的光标相对于主屏幕左上角的Y坐标。 |
-| [int32_t OH_Input_InjectTouchEventGlobal(const struct Input_TouchEvent* touchEvent)](#oh_input_injecttoucheventglobal) | - | 使用全局坐标注入触屏事件。 |
-| [void OH_Input_SetTouchEventGlobalX(struct Input_TouchEvent* touchEvent, int32_t globalX)](#oh_input_settoucheventglobalx) | - | 设置触屏事件的触摸位置相对于主屏幕左上角的X坐标。 |
-| [int32_t OH_Input_GetTouchEventGlobalX(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventglobalx) | - | 获取触屏事件的触摸位置相对于主屏幕左上角的X坐标。 |
-| [void OH_Input_SetTouchEventGlobalY(struct Input_TouchEvent* touchEvent, int32_t globalY)](#oh_input_settoucheventglobaly) | - | 设置触屏事件的触摸位置相对于主屏幕左上角的Y坐标。 |
-| [int32_t OH_Input_GetTouchEventGlobalY(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventglobaly) | - | 获取触屏事件的触摸位置相对于主屏幕左上角的Y坐标。 |
-| [Input_Result OH_Input_SetAxisEventGlobalX(struct Input_AxisEvent* axisEvent, int32_t globalX)](#oh_input_setaxiseventglobalx) | - | 设置轴事件相对于主屏幕左上角的X坐标。 |
-| [Input_Result OH_Input_GetAxisEventGlobalX(const Input_AxisEvent* axisEvent, int32_t* globalX)](#oh_input_getaxiseventglobalx) | - | 获取轴事件相对于主屏幕左上角的X坐标。 |
-| [Input_Result OH_Input_SetAxisEventGlobalY(struct Input_AxisEvent* axisEvent, int32_t globalY)](#oh_input_setaxiseventglobaly) | - | 设置轴事件相对于主屏幕左上角的Y坐标。 |
-| [Input_Result OH_Input_GetAxisEventGlobalY(const Input_AxisEvent* axisEvent, int32_t* globalY)](#oh_input_getaxiseventglobaly) | - | 获取轴事件相对于主屏幕左上角的Y坐标。 |
+| [int32_t OH_Input_InjectMouseEventGlobal(const struct Input_MouseEvent* mouseEvent)](#oh_input_injectmouseeventglobal) | - | 使用以主屏左上角为原点的全局坐标系的坐标注入鼠标事件。 |
+| [void OH_Input_SetMouseEventGlobalX(struct Input_MouseEvent* mouseEvent, int32_t globalX)](#oh_input_setmouseeventglobalx) | - | 设置鼠标事件以主屏左上角为原点的全局坐标系的X坐标。 |
+| [int32_t OH_Input_GetMouseEventGlobalX(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventglobalx) | - | 获取鼠标事件以主屏左上角为原点的全局坐标系的X坐标。 |
+| [void OH_Input_SetMouseEventGlobalY(struct Input_MouseEvent* mouseEvent, int32_t globalY)](#oh_input_setmouseeventglobaly) | - | 设置鼠标事件以主屏左上角为原点的全局坐标系的Y坐标。 |
+| [int32_t OH_Input_GetMouseEventGlobalY(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventglobaly) | - | 获取鼠标事件以主屏左上角为原点的全局坐标系的Y坐标。 |
+| [int32_t OH_Input_InjectTouchEventGlobal(const struct Input_TouchEvent* touchEvent)](#oh_input_injecttoucheventglobal) | - | 使用以主屏左上角为原点的全局坐标系的坐标注入触屏事件。 |
+| [void OH_Input_SetTouchEventGlobalX(struct Input_TouchEvent* touchEvent, int32_t globalX)](#oh_input_settoucheventglobalx) | - | 设置触屏事件以主屏左上角为原点的全局坐标系的X坐标。 |
+| [int32_t OH_Input_GetTouchEventGlobalX(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventglobalx) | - | 获取触屏事件以主屏左上角为原点的全局坐标系的X坐标。 |
+| [void OH_Input_SetTouchEventGlobalY(struct Input_TouchEvent* touchEvent, int32_t globalY)](#oh_input_settoucheventglobaly) | - | 设置触屏事件以主屏左上角为原点的全局坐标系的Y坐标。 |
+| [int32_t OH_Input_GetTouchEventGlobalY(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventglobaly) | - | 获取触屏事件以主屏左上角为原点的全局坐标系的Y坐标。 |
+| [Input_Result OH_Input_SetAxisEventGlobalX(struct Input_AxisEvent* axisEvent, int32_t globalX)](#oh_input_setaxiseventglobalx) | - | 设置轴事件以主屏左上角为原点的全局坐标系的X坐标。 |
+| [Input_Result OH_Input_GetAxisEventGlobalX(const Input_AxisEvent* axisEvent, int32_t* globalX)](#oh_input_getaxiseventglobalx) | - | 获取轴事件以主屏左上角为原点的全局坐标系的X坐标。 |
+| [Input_Result OH_Input_SetAxisEventGlobalY(struct Input_AxisEvent* axisEvent, int32_t globalY)](#oh_input_setaxiseventglobaly) | - | 设置轴事件以主屏左上角为原点的全局坐标系的Y坐标。 |
+| [Input_Result OH_Input_GetAxisEventGlobalY(const Input_AxisEvent* axisEvent, int32_t* globalY)](#oh_input_getaxiseventglobaly) | - | 获取轴事件以主屏左上角为原点的全局坐标系的Y坐标。 |
 | [Input_Result OH_Input_GetPointerLocation(int32_t *displayId, double *displayX, double *displayY)](#oh_input_getpointerlocation) | - | 获取鼠标在屏幕上的坐标点。 |
 
 ## 枚举类型说明
@@ -780,6 +789,10 @@ int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent* keyEvent)
 
 注入按键事件。
 
+如果当前处于用户未授权状态，调用该接口注入事件不生效。
+
+从API version 20开始，建议先使用[OH_Input_RequestInjection](#oh_input_requestinjection)请求授权。然后通过[OH_Input_QueryAuthorizedStatus](#oh_input_queryauthorizedstatus)查询授权状态，当授权状态为[AUTHORIZED](capi-oh-input-manager-h.md#input_injectionstatus)时，再使用该接口。
+
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
 **起始版本：** 12
@@ -1181,7 +1194,7 @@ void OH_Input_SetMouseEventDisplayX(struct Input_MouseEvent* mouseEvent, int32_t
 
 **描述**
 
-设置鼠标事件的光标在当前屏幕的X坐标。
+设置鼠标事件以指定屏幕左上角为原点的相对坐标系的X坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1193,7 +1206,7 @@ void OH_Input_SetMouseEventDisplayX(struct Input_MouseEvent* mouseEvent, int32_t
 | 参数项 | 描述 |
 | -- | -- |
 | struct [Input_MouseEvent](capi-input-input-mouseevent.md)* mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象。<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。 |
-| int32_t displayX | 鼠标光标在当前屏幕的X坐标。 |
+| int32_t displayX | 鼠标事件以指定屏幕左上角为原点的相对坐标系的X坐标。 |
 
 ### OH_Input_GetMouseEventDisplayX()
 
@@ -1203,7 +1216,7 @@ int32_t OH_Input_GetMouseEventDisplayX(const struct Input_MouseEvent* mouseEvent
 
 **描述**
 
-获取鼠标事件的光标在当前屏幕的X坐标。
+获取鼠标事件以指定屏幕左上角为原点的相对坐标系的X坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1220,7 +1233,7 @@ int32_t OH_Input_GetMouseEventDisplayX(const struct Input_MouseEvent* mouseEvent
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 鼠标光标在当前屏幕的X坐标。 |
+| int32_t | 鼠标事件以指定屏幕左上角为原点的相对坐标系的X坐标。 |
 
 ### OH_Input_SetMouseEventDisplayY()
 
@@ -1230,7 +1243,7 @@ void OH_Input_SetMouseEventDisplayY(struct Input_MouseEvent* mouseEvent, int32_t
 
 **描述**
 
-设置鼠标事件的光标在当前屏幕的Y坐标。
+设置鼠标事件以指定屏幕左上角为原点的相对坐标系的Y坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1242,7 +1255,7 @@ void OH_Input_SetMouseEventDisplayY(struct Input_MouseEvent* mouseEvent, int32_t
 | 参数项 | 描述 |
 | -- | -- |
 | struct [Input_MouseEvent](capi-input-input-mouseevent.md)* mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象。<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。 |
-| int32_t displayY | 鼠标光标在当前屏幕的Y坐标。 |
+| int32_t displayY | 鼠标事件以指定屏幕左上角为原点的相对坐标系的Y坐标。 |
 
 ### OH_Input_GetMouseEventDisplayY()
 
@@ -1252,7 +1265,7 @@ int32_t OH_Input_GetMouseEventDisplayY(const struct Input_MouseEvent* mouseEvent
 
 **描述**
 
-获取鼠标事件的光标在当前屏幕的Y坐标。
+获取鼠标事件以指定屏幕左上角为原点的相对坐标系的Y坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1269,7 +1282,7 @@ int32_t OH_Input_GetMouseEventDisplayY(const struct Input_MouseEvent* mouseEvent
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 鼠标光标在当前屏幕的Y坐标。 |
+| int32_t | 鼠标事件以指定屏幕左上角为原点的相对坐标系的Y坐标。 |
 
 ### OH_Input_SetMouseEventButton()
 
@@ -1685,7 +1698,7 @@ void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t
 
 **描述**
 
-设置触屏事件在当前屏幕的X坐标。
+设置触屏事件以指定屏幕左上角为原点的相对坐标系的X坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1697,7 +1710,7 @@ void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t
 | 参数项 | 描述 |
 | -- | -- |
 | struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 |
-| int32_t displayX | 触屏事件在当前屏幕的X坐标。 |
+| int32_t displayX | 触屏事件以指定屏幕左上角为原点的相对坐标系的X坐标。 |
 
 ### OH_Input_GetTouchEventDisplayX()
 
@@ -1707,7 +1720,7 @@ int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent
 
 **描述**
 
-获取触屏事件在当前屏幕的X坐标。
+获取触屏事件以指定屏幕左上角为原点的相对坐标系的X坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1724,7 +1737,7 @@ int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 触屏事件在当前屏幕的X坐标。 |
+| int32_t | 触屏事件以指定屏幕左上角为原点的相对坐标系的X坐标。 |
 
 ### OH_Input_SetTouchEventDisplayY()
 
@@ -1734,7 +1747,7 @@ void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t
 
 **描述**
 
-设置触屏事件在当前屏幕的Y坐标。
+设置触屏事件以指定屏幕左上角为原点的相对坐标系的Y坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1746,7 +1759,7 @@ void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t
 | 参数项 | 描述 |
 | -- | -- |
 | struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 |
-| int32_t displayY | 触屏事件在当前屏幕的Y坐标。 |
+| int32_t displayY | 触屏事件以指定屏幕左上角为原点的相对坐标系的Y坐标。 |
 
 ### OH_Input_GetTouchEventDisplayY()
 
@@ -1756,7 +1769,7 @@ int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent
 
 **描述**
 
-获取触屏事件在当前屏幕的Y坐标。
+获取触屏事件以指定屏幕左上角为原点的相对坐标系的Y坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1773,7 +1786,7 @@ int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 触屏事件在当前屏幕的Y坐标。 |
+| int32_t | 触屏事件以指定屏幕左上角为原点的相对坐标系的Y坐标。 |
 
 ### OH_Input_SetTouchEventActionTime()
 
@@ -2097,7 +2110,7 @@ Input_Result OH_Input_SetAxisEventDisplayX(Input_AxisEvent* axisEvent, float dis
 
 **描述**
 
-设置轴事件在当前屏幕的X坐标。
+设置轴事件以指定屏幕左上角为原点的相对坐标系的X坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2109,7 +2122,7 @@ Input_Result OH_Input_SetAxisEventDisplayX(Input_AxisEvent* axisEvent, float dis
 | 参数项 | 描述 |
 | -- | -- |
 | [Input_AxisEvent](capi-input-input-axisevent.md)* axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象。<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。 |
-| float displayX | 轴事件在当前屏幕的X坐标。 |
+| float displayX | 轴事件以指定屏幕左上角为原点的相对坐标系的X坐标。 |
 
 **返回：**
 
@@ -2125,7 +2138,7 @@ Input_Result OH_Input_GetAxisEventDisplayX(const Input_AxisEvent* axisEvent, flo
 
 **描述**
 
-获取轴事件在当前屏幕的X坐标。
+获取轴事件以指定屏幕左上角为原点的相对坐标系的X坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2137,7 +2150,7 @@ Input_Result OH_Input_GetAxisEventDisplayX(const Input_AxisEvent* axisEvent, flo
 | 参数项 | 描述 |
 | -- | -- |
 | const [Input_AxisEvent](capi-input-input-axisevent.md)* axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象。<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。 |
-| float* displayX | 出参，返回轴事件在当前屏幕的X坐标。 |
+| float* displayX | 出参，返回轴事件以指定屏幕左上角为原点的相对坐标系的X坐标。 |
 
 **返回：**
 
@@ -2153,7 +2166,7 @@ Input_Result OH_Input_SetAxisEventDisplayY(Input_AxisEvent* axisEvent, float dis
 
 **描述**
 
-设置轴事件在当前屏幕的Y坐标。
+设置轴事件以指定屏幕左上角为原点的相对坐标系的Y坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2165,7 +2178,7 @@ Input_Result OH_Input_SetAxisEventDisplayY(Input_AxisEvent* axisEvent, float dis
 | 参数项 | 描述 |
 | -- | -- |
 | [Input_AxisEvent](capi-input-input-axisevent.md)* axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象。<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。 |
-| float displayY | 轴事件在当前屏幕的Y坐标。 |
+| float displayY | 轴事件以指定屏幕左上角为原点的相对坐标系的Y坐标。 |
 
 **返回：**
 
@@ -2181,7 +2194,7 @@ Input_Result OH_Input_GetAxisEventDisplayY(const Input_AxisEvent* axisEvent, flo
 
 **描述**
 
-获取轴事件在当前屏幕的Y坐标。
+获取轴事件以指定屏幕左上角为原点的相对坐标系的Y坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2193,7 +2206,7 @@ Input_Result OH_Input_GetAxisEventDisplayY(const Input_AxisEvent* axisEvent, flo
 | 参数项 | 描述 |
 | -- | -- |
 | const [Input_AxisEvent](capi-input-input-axisevent.md)* axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象。<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。 |
-| float* displayY | 出参，返回轴事件在当前屏幕的Y坐标。 |
+| float* displayY | 出参，返回轴事件以指定屏幕左上角为原点的相对坐标系的Y坐标。 |
 
 **返回：**
 
@@ -3718,7 +3731,11 @@ int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent)
 
 **描述**
 
-使用当前屏幕坐标注入触屏事件。
+使用以指定屏幕左上角为原点的相对坐标系的坐标注入触屏事件。
+
+如果当前处于用户未授权状态，调用该接口注入事件不生效。
+
+从API version 20开始，建议先使用[OH_Input_RequestInjection](#oh_input_requestinjection)请求授权。然后通过[OH_Input_QueryAuthorizedStatus](#oh_input_queryauthorizedstatus)查询授权状态，当授权状态为[AUTHORIZED](capi-oh-input-manager-h.md#input_injectionstatus)时，再使用该接口。
 
 **起始版本：** 12
 
@@ -3743,7 +3760,11 @@ int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent)
 
 **描述**
 
-使用当前屏幕坐标注入鼠标事件。
+使用以指定屏幕左上角为原点的相对坐标系的坐标注入鼠标事件。
+
+如果当前处于用户未授权状态，调用该接口注入事件不生效。
+
+从API version 20开始，建议先使用[OH_Input_RequestInjection](#oh_input_requestinjection)请求授权。然后通过[OH_Input_QueryAuthorizedStatus](#oh_input_queryauthorizedstatus)查询授权状态，当授权状态为[AUTHORIZED](capi-oh-input-manager-h.md#input_injectionstatus)时，再使用该接口。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -3820,7 +3841,11 @@ int32_t OH_Input_InjectMouseEventGlobal(const struct Input_MouseEvent* mouseEven
 
 **描述**
 
-使用全局坐标注入鼠标事件。
+使用以主屏左上角为原点的全局坐标系的坐标注入鼠标事件。
+
+如果当前处于用户未授权状态，调用该接口注入事件不生效。
+
+建议先使用[OH_Input_RequestInjection](#oh_input_requestinjection)请求授权。然后通过[OH_Input_QueryAuthorizedStatus](#oh_input_queryauthorizedstatus)查询授权状态，当授权状态为[AUTHORIZED](capi-oh-input-manager-h.md#input_injectionstatus)时，再使用该接口。
 
 **起始版本：** 20
 
@@ -3843,7 +3868,7 @@ void OH_Input_SetMouseEventGlobalX(struct Input_MouseEvent* mouseEvent, int32_t 
 
 **描述**
 
-设置鼠标事件的光标相对于主屏幕左上角的X坐标。
+设置鼠标事件以主屏左上角为原点的全局坐标系的X坐标。
 
 **起始版本：** 20
 
@@ -3852,7 +3877,7 @@ void OH_Input_SetMouseEventGlobalX(struct Input_MouseEvent* mouseEvent, int32_t 
 | 参数项 | 描述 |
 | -- | -- |
 | const struct [Input_MouseEvent](capi-input-input-mouseevent.md)* mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象。<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。 |
-| int32_t globalX | 鼠标光标相对于主屏幕左上角的X坐标 |
+| int32_t globalX | 鼠标事件以主屏左上角为原点的全局坐标系的X坐标。 |
 
 ### OH_Input_GetMouseEventGlobalX()
 
@@ -3862,7 +3887,7 @@ int32_t OH_Input_GetMouseEventGlobalX(const struct Input_MouseEvent* mouseEvent)
 
 **描述**
 
-获取鼠标事件的光标相对于主屏幕左上角的X坐标。
+获取鼠标事件以主屏左上角为原点的全局坐标系的X坐标。
 
 **起始版本：** 20
 
@@ -3876,7 +3901,7 @@ int32_t OH_Input_GetMouseEventGlobalX(const struct Input_MouseEvent* mouseEvent)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 鼠标光标相对于主屏幕左上角的X坐标。 |
+| int32_t | 鼠标事件以主屏左上角为原点的全局坐标系的X坐标。 |
 
 ### OH_Input_SetMouseEventGlobalY()
 
@@ -3886,7 +3911,7 @@ void OH_Input_SetMouseEventGlobalY(struct Input_MouseEvent* mouseEvent, int32_t 
 
 **描述**
 
-设置鼠标事件的光标相对于主屏幕左上角的Y坐标。
+设置鼠标事件以主屏左上角为原点的全局坐标系的Y坐标。
 
 **起始版本：** 20
 
@@ -3895,7 +3920,7 @@ void OH_Input_SetMouseEventGlobalY(struct Input_MouseEvent* mouseEvent, int32_t 
 | 参数项 | 描述 |
 | -- | -- |
 | const struct [Input_MouseEvent](capi-input-input-mouseevent.md)* mouseEvent | 鼠标事件对象，通过[OH_Input_CreateMouseEvent](#oh_input_createmouseevent)接口可以创建鼠标事件对象。<br>使用完需使用[OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent)接口销毁鼠标事件对象。 |
-| int32_t globalY | 鼠标光标相对于主屏幕左上角的Y坐标。 |
+| int32_t globalY | 鼠标事件以主屏左上角为原点的全局坐标系的Y坐标。 |
 
 ### OH_Input_GetMouseEventGlobalY()
 
@@ -3905,7 +3930,7 @@ int32_t OH_Input_GetMouseEventGlobalY(const struct Input_MouseEvent* mouseEvent)
 
 **描述**
 
-获取鼠标事件的光标相对于主屏幕左上角的Y坐标。
+获取鼠标事件以主屏左上角为原点的全局坐标系的Y坐标。
 
 **起始版本：** 20
 
@@ -3919,7 +3944,7 @@ int32_t OH_Input_GetMouseEventGlobalY(const struct Input_MouseEvent* mouseEvent)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 鼠标光标相对于主屏幕左上角的Y坐标。 |
+| int32_t | 鼠标事件以主屏左上角为原点的全局坐标系的Y坐标。 |
 
 ### OH_Input_InjectTouchEventGlobal()
 
@@ -3929,7 +3954,11 @@ int32_t OH_Input_InjectTouchEventGlobal(const struct Input_TouchEvent* touchEven
 
 **描述**
 
-使用全局坐标注入触屏事件。
+使用以主屏左上角为原点的全局坐标系的坐标注入触屏事件。
+
+如果当前处于用户未授权状态，调用该接口注入事件不生效。
+
+建议先使用[OH_Input_RequestInjection](#oh_input_requestinjection)请求授权。然后通过[OH_Input_QueryAuthorizedStatus](#oh_input_queryauthorizedstatus)查询授权状态，当授权状态为[AUTHORIZED](capi-oh-input-manager-h.md#input_injectionstatus)时，再使用该接口。
 
 **起始版本：** 20
 
@@ -3953,7 +3982,7 @@ void OH_Input_SetTouchEventGlobalX(struct Input_TouchEvent* touchEvent, int32_t 
 
 **描述**
 
-设置触屏事件的触摸位置相对于主屏幕左上角的X坐标。
+设置触屏事件以主屏左上角为原点的全局坐标系的X坐标。
 
 **起始版本：** 20
 
@@ -3962,7 +3991,7 @@ void OH_Input_SetTouchEventGlobalX(struct Input_TouchEvent* touchEvent, int32_t 
 | 参数项 | 描述 |
 | -- | -- |
 | const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 | 
-| int32_t globalX | 触摸位置相对于主屏幕左上角的X坐标。 |
+| int32_t globalX | 触屏事件以主屏左上角为原点的全局坐标系的X坐标。 |
 
 ### OH_Input_GetTouchEventGlobalX()
 
@@ -3972,7 +4001,7 @@ int32_t OH_Input_GetTouchEventGlobalX(const struct Input_TouchEvent* touchEvent)
 
 **描述**
 
-获取触屏事件的触摸位置相对于主屏幕左上角的X坐标。
+获取触屏事件以主屏左上角为原点的全局坐标系的X坐标。
 
 **起始版本：** 20
 
@@ -3986,7 +4015,7 @@ int32_t OH_Input_GetTouchEventGlobalX(const struct Input_TouchEvent* touchEvent)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 触摸位置相对于主屏幕左上角的X坐标。 |
+| int32_t | 触屏事件以主屏左上角为原点的全局坐标系的X坐标。 |
 
 ### OH_Input_SetTouchEventGlobalY()
 
@@ -3996,7 +4025,7 @@ void OH_Input_SetTouchEventGlobalY(struct Input_TouchEvent* touchEvent, int32_t 
 
 **描述**
 
-设置触屏事件的触摸位置相对于主屏幕左上角的Y坐标。
+设置触屏事件以主屏左上角为原点的全局坐标系的Y坐标。
 
 **起始版本：** 20
 
@@ -4005,7 +4034,7 @@ void OH_Input_SetTouchEventGlobalY(struct Input_TouchEvent* touchEvent, int32_t 
 | 参数项 | 描述 |
 | -- | -- |
 | const struct [Input_TouchEvent](capi-input-input-touchevent.md)* touchEvent | 触屏事件对象，通过[OH_Input_CreateTouchEvent](#oh_input_createtouchevent)接口可以创建触屏事件对象。<br>使用完需使用[OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent)接口销毁触屏事件对象。 | 
-| int32_t globalY | 触摸位置相对于主屏幕左上角的Y坐标。 |
+| int32_t globalY | 触屏事件以主屏左上角为原点的全局坐标系的Y坐标。 |
 
 ### OH_Input_GetTouchEventGlobalY()
 
@@ -4015,7 +4044,7 @@ int32_t OH_Input_GetTouchEventGlobalY(const struct Input_TouchEvent* touchEvent)
 
 **描述**
 
-获取触屏事件的触摸位置相对于主屏幕左上角的Y坐标。
+获取触屏事件以主屏左上角为原点的全局坐标系的Y坐标。
 
 **起始版本：** 20
 
@@ -4029,7 +4058,7 @@ int32_t OH_Input_GetTouchEventGlobalY(const struct Input_TouchEvent* touchEvent)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 触摸位置相对于主屏幕左上角的Y坐标。 |
+| int32_t | 触屏事件以主屏左上角为原点的全局坐标系的Y坐标。 |
 
 ### OH_Input_SetAxisEventGlobalX()
 
@@ -4039,7 +4068,7 @@ Input_Result OH_Input_SetAxisEventGlobalX(struct Input_AxisEvent* axisEvent, int
 
 **描述**
 
-设置轴事件相对于主屏幕左上角的X坐标。
+设置轴事件以主屏左上角为原点的全局坐标系的X坐标。
 
 **起始版本：** 20
 
@@ -4048,7 +4077,7 @@ Input_Result OH_Input_SetAxisEventGlobalX(struct Input_AxisEvent* axisEvent, int
 | 参数项 | 描述 |
 | -- | -- |
 | const [Input_AxisEvent](capi-input-input-axisevent.md)* axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象。<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。 |
-| int32_t globalX | 轴事件相对于主屏幕左上角的X坐标。 |
+| int32_t globalX | 轴事件以主屏左上角为原点的全局坐标系的X坐标。 |
 
 **返回：**
 
@@ -4064,7 +4093,7 @@ Input_Result OH_Input_GetAxisEventGlobalX(const Input_AxisEvent* axisEvent, int3
 
 **描述**
 
-获取轴事件相对于主屏幕左上角的X坐标。
+获取轴事件以主屏左上角为原点的全局坐标系的X坐标。
 
 **起始版本：** 20
 
@@ -4073,7 +4102,7 @@ Input_Result OH_Input_GetAxisEventGlobalX(const Input_AxisEvent* axisEvent, int3
 | 参数项 | 描述 |
 | -- | -- |
 | const [Input_AxisEvent](capi-input-input-axisevent.md)* axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象。<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。 |
-| int32_t* globalX | 轴事件相对于主屏幕左上角的X坐标。 |
+| int32_t* globalX | 轴事件以主屏左上角为原点的全局坐标系的X坐标。 |
 
 **返回：**
 
@@ -4089,7 +4118,7 @@ Input_Result OH_Input_SetAxisEventGlobalY(struct Input_AxisEvent* axisEvent, int
 
 **描述**
 
-设置轴事件相对于主屏幕左上角的Y坐标。
+设置轴事件以主屏左上角为原点的全局坐标系的Y坐标。
 
 **起始版本：** 20
 
@@ -4098,7 +4127,7 @@ Input_Result OH_Input_SetAxisEventGlobalY(struct Input_AxisEvent* axisEvent, int
 | 参数项 | 描述 |
 | -- | -- |
 | const [Input_AxisEvent](capi-input-input-axisevent.md)* axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象。<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。 |
-| int32_t globalY | 轴事件相对于主屏幕左上角的Y坐标。 |
+| int32_t globalY | 轴事件以主屏左上角为原点的全局坐标系的Y坐标。 |
 
 **返回：**
 
@@ -4114,7 +4143,7 @@ Input_Result OH_Input_GetAxisEventGlobalY(const Input_AxisEvent* axisEvent, int3
 
 **描述**
 
-获取轴事件相对于主屏幕左上角的Y坐标。
+获取轴事件以主屏左上角为原点的全局坐标系的Y坐标。
 
 **起始版本：** 20
 
@@ -4123,7 +4152,7 @@ Input_Result OH_Input_GetAxisEventGlobalY(const Input_AxisEvent* axisEvent, int3
 | 参数项 | 描述 |
 | -- | -- |
 | const [Input_AxisEvent](capi-input-input-axisevent.md)* axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象。<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。 |
-| int32_t* globalY | 轴事件相对于主屏幕左上角的Y坐标。 |
+| int32_t* globalY | 轴事件以主屏左上角为原点的全局坐标系的Y坐标。 |
 
 **返回：**
 
