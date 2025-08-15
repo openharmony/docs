@@ -145,7 +145,7 @@
 
 - 当@Require装饰器和@BuilderParam装饰器一起使用时，@BuilderParam装饰器必须进行初始化。具体请参见[@Require装饰器和@BuilderParam装饰器联合使用](#require装饰器和builderparam装饰器联合使用)。
 
-- 在自定义组件尾随闭包的场景下，子组件有且仅有一个\@BuilderParam用来接收此尾随闭包，且此\@BuilderParam不能有参数。详情见[尾随闭包初始化组件](#尾随闭包初始化组件)。
+- 在自定义组件尾随闭包的场景下，子组件有且仅有一个\@BuilderParam用来接收此尾随闭包，且此\@BuilderParam装饰的方法不能有参数。详情见[尾随闭包初始化组件](#尾随闭包初始化组件)。
 
 ## 使用场景
 
