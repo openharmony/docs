@@ -2,8 +2,9 @@
 <!--Kit: Common-->
 <!--Subsystem: Common-->
 <!--Owner: @zhang_yixin13-->
-<!--SE: @lingminghw-->
-<!--TSE: @RayShih-->
+<!--Designer: @lingminghw-->
+<!--Tester: @RayShih-->
+<!--Adviser: @zhang_yixin13-->
 
 - 入门<!--application-getting-started-->
   <!--Del-->

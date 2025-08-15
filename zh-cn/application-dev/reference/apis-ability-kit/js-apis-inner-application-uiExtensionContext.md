@@ -3,8 +3,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @zhangyafei-echo-->
-<!--SE: @zhangyafei-echo-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @zhangyafei-echo-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 UIExtensionContext是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)，提供[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)的相关配置信息以及操作[UIAbility](js-apis-app-ability-uiAbility.md)的方法，如启动[UIAbility](js-apis-app-ability-uiAbility.md)等。
 

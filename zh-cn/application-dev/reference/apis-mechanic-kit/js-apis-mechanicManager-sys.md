@@ -2,8 +2,9 @@
 <!--Kit: Mechanic Kit-->
 <!--Subsystem: Mechanic-->
 <!--Owner: @hobbycao-->
-<!--SE: @saga2025-->
-<!--TSE: @zhaodengqi-->
+<!--Designer: @saga2025-->
+<!--Tester: @zhaodengqi-->
+<!--Adviser: @foryourself-->
 
 本模块提供与机械设备交互的能力，包括设备连接管理、控制和监控功能。
 
