@@ -7491,7 +7491,7 @@ try {
 
 createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;Window&gt;
 
-创建主窗口、子窗口或悬浮窗下的子窗口，使用Promise异步回调。
+创建主窗口、子窗口或悬浮窗下的子窗口，使用Promise异步回调。子窗口创建后默认是沉浸式布局，如果子窗口需要使用组件安全区方案，需要调用[setWindowLayoutFullScreen](arkts-apis-window-i.md#setWindowLayoutFullScreen9)退出沉浸式布局。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
