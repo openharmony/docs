@@ -23,7 +23,7 @@
   - [用户文件URI介绍](user-file-uri-intro.md)
   - [FileUri开发指导(C/C++)](native-fileuri-guidelines.md)
   - [获取用户目录环境(C/C++)](native-environment-guidelines.md)
-  - 选择与保存用户文件<!--Designerlect-save-user-file-->
+  - 选择与保存用户文件<!--select-save-user-file-->
     - [选择用户文件](select-user-file.md)
     - [保存用户文件](save-user-file.md)
     - [授权持久化](file-persistPermission.md)

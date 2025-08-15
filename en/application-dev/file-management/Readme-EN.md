@@ -23,7 +23,7 @@
   - [User File URI](user-file-uri-intro.md)
   - [FileUri Development (C/C++)](native-fileuri-guidelines.md)
   - [Obtaining the User Directory Environment (C/C++)](native-environment-guidelines.md)
-  - Selecting and Saving User Files<!--Designerlect-save-user-file-->
+  - Selecting and Saving User Files<!--select-save-user-file-->
     - [Selecting User Files](select-user-file.md)
     - [Saving User Files](save-user-file.md)
     - [Persisting Temporary Permissions (ArkTS)](file-persistPermission.md)

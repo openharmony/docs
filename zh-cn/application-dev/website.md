@@ -829,7 +829,7 @@
         - [用户文件URI介绍](file-management/user-file-uri-intro.md)
         - [FileUri开发指导(C/C++)](file-management/native-fileuri-guidelines.md)
         - [获取用户目录环境(C/C++)](file-management/native-environment-guidelines.md)
-        - 选择与保存用户文件<!--Designerlect-save-user-file-->
+        - 选择与保存用户文件<!--select-save-user-file-->
           - [选择用户文件](file-management/select-user-file.md)
           - [保存用户文件](file-management/save-user-file.md)
           - [授权持久化](file-management/file-persistPermission.md)
