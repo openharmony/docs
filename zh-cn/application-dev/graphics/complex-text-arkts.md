@@ -1033,7 +1033,7 @@ struct Font08 {
 | 底部对齐 | ![zh-cn_image_complexArkTsDemo2_2](figures/en_image_verticalAlignment_bottom.jpg) | 
 
 ### 示例四（上下标文本）
-这里以上标为例，呈现上下标文本排版特性。
+这里以下标样式为例，呈现上下标文本排版特性。
 
 ```ts
 import { NodeController, FrameNode, RenderNode, DrawContext, UIContext } from '@kit.ArkUI'
@@ -1055,7 +1055,7 @@ class MyRenderNode extends RenderNode {
       fontSize: 30,
     };
 
-    let superScriptStyle: text.TextStyle = {
+    let subScriptStyle: text.TextStyle = {
       color: {
         alpha: 255,
         red: 255,
@@ -1063,8 +1063,8 @@ class MyRenderNode extends RenderNode {
         blue: 0
       },
       fontSize: 30,
-      // 设置上标样式
-      badgeType: text.TextBadgeType.TEXT_SUPERSCRIPT
+      // 设置下标样式
+      badgeType: text.TextBadgeType.TEXT_SUBSCRIPT
     };
 
     let myParagraphStyle: text.ParagraphStyle = {
@@ -1078,7 +1078,7 @@ class MyRenderNode extends RenderNode {
     paragraphBuilder.pushStyle(myTextStyle);
     // 添加文本
     paragraphBuilder.addText("The chemical formula for water: H");
-    paragraphBuilder.pushStyle(superScriptStyle);
+    paragraphBuilder.pushStyle(subScriptStyle);
     paragraphBuilder.addText("2");
     paragraphBuilder.pushStyle(myTextStyle);
     paragraphBuilder.addText("o");
