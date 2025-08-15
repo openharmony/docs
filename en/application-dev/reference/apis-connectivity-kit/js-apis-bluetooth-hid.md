@@ -3,8 +3,8 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--SE: @chengguohong; @tangjia15-->
-<!--TSE: @wangfeng517-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
 
 The **hid** module provides Bluetooth capabilities based on Bluetooth Classic's Human Interface Device Profile (HID), and supports functions such as obtaining the connection status. All the APIs in this module are also accessible to devices using Bluetooth Low Energy (BLE)'s HID over GATT Profile (HOGP).
 > **NOTE**

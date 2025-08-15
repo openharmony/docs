@@ -3,8 +3,8 @@
 <!--Kit: Test Kit-->
 <!--Subsystem: Test-->
 <!--Owner: @inter515-->
-<!--SE: @inter515-->
-<!--TSE: @laonie666-->
+<!--Designer: @inter515-->
+<!--Tester: @laonie666-->
 
 
 ## 概述

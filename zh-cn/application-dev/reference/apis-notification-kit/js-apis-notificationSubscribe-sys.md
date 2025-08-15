@@ -2,8 +2,8 @@
 <!--Kit: Notification Kit-->
 <!--Subsystem: Notification-->
 <!--Owner: @michael_woo888-->
-<!--SE: @dongqingran; @wulong158-->
-<!--TSE: @wanghong1997-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
 
 本模块提供通知订阅、取消订阅、通知移除等，一般情况下，只有系统应用具有这些操作权限。
 

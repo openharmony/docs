@@ -3,8 +3,8 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--SE: @chengguohong; @tangjia15-->
-<!--TSE: @wangfeng517-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
 
 ## Introduction
 This topic walks you through how to implement basic Bluetooth settings, including enabling and disabling Bluetooth and obtaining the Bluetooth status. Before using Bluetooth-dependent functions, ensure that Bluetooth is enabled.
