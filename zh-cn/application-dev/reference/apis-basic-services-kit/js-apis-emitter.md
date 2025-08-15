@@ -1,4 +1,10 @@
 # @ohos.events.emitter (Emitter)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 本模块提供了在同一进程不同线程间或同一线程内发送和处理事件的能力，支持持续订阅事件、单次订阅事件、取消订阅事件及发送事件到事件队列。
 
@@ -43,7 +49,7 @@ let innerEvent: emitter.InnerEvent = {
 };
 
 let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
-  console.info(`eventData: ${JSON.stringify(eventData)}`);
+  console.info(`data type: ${typeof eventData.data}`);
 }
 
 // 收到eventId为1的事件后执行回调函数
@@ -73,7 +79,7 @@ on(eventId: string, callback:  Callback\<EventData\>): void
 import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
-  console.info(`eventData: ${JSON.stringify(eventData)}`);
+  console.info(`data type: ${typeof eventData.data}`);
 }
 // 收到eventId为"eventId"的事件后执行回调函数
 emitter.on(`eventId`, callback);
@@ -98,6 +104,7 @@ on<T\>(eventId: string, callback:  Callback\<GenericEventData<T\>\>): void
 
 **示例：**
 
+ArkTS1.1示例：
 ```ts
 import { Callback } from '@kit.BasicServicesKit';
 
@@ -113,9 +120,34 @@ class Sample {
 }
 
 let callback: Callback<emitter.GenericEventData<Sample>> = (eventData: emitter.GenericEventData<Sample>): void => {
-  console.info(`eventData: ${JSON.stringify(eventData?.data)}`);
+  console.info(`data type: ${typeof eventData.data}`);
   if (eventData?.data instanceof Sample) {
     eventData?.data?.printCount();
+  }
+}
+// 收到eventId为"eventId"的事件后执行回调函数
+emitter.on("eventId", callback);
+```
+
+ArkTS1.2示例：
+```ts
+import { Callback } from '@kit.BasicServicesKit';
+// ArkTS1.2中，不再依赖Sendable特性，无需添加@Sendable装饰器
+class Sample {
+  constructor() {
+    this.count = 100;
+  }
+  printCount() {
+    console.info('Print count : ' + this.count);
+  }
+  count: long;
+}
+
+let callback: Callback<emitter.GenericEventData<Sample>> = (eventData: emitter.GenericEventData<Sample>): void => {
+  console.info(`data type: ${typeof eventData.data}`);
+  if (eventData?.data instanceof Sample) {
+    let data: Sample = eventData?.data as Sample;
+    data.printCount();
   }
 }
 // 收到eventId为"eventId"的事件后执行回调函数
@@ -149,7 +181,7 @@ let innerEvent: emitter.InnerEvent = {
 };
 
 let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
-  console.info(`eventData: ${JSON.stringify(eventData)}`);
+  console.info(`data type: ${typeof eventData.data}`);
 }
 // 收到eventId为1的事件后执行该回调函数
 emitter.once(innerEvent, callback);
@@ -178,7 +210,7 @@ once(eventId: string, callback: Callback\<EventData\>): void
 import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
-  console.info(`eventData: ${JSON.stringify(eventData)}`);
+  console.info(`data type: ${typeof eventData.data}`);
 }
 // 收到eventId为"eventId"的事件后执行该回调函数
 emitter.once("eventId", callback);
@@ -203,6 +235,7 @@ once<T\>(eventId: string, callback: Callback\<GenericEventData<T\>\>): void
 
 **示例：**
 
+ArkTS1.1示例：
 ```ts
 import { Callback } from '@kit.BasicServicesKit';
 
@@ -218,7 +251,7 @@ class Sample {
 }
 
 let callback: Callback<emitter.GenericEventData<Sample>> = (eventData: emitter.GenericEventData<Sample>): void => {
-  console.info(`eventData: ${JSON.stringify(eventData?.data)}`);
+  console.info(`data type: ${typeof eventData.data}`);
   if (eventData?.data instanceof Sample) {
     eventData?.data?.printCount();
   }
@@ -227,9 +260,37 @@ let callback: Callback<emitter.GenericEventData<Sample>> = (eventData: emitter.G
 emitter.once("eventId", callback);
 ```
 
+ArkTS1.2示例：
+```ts
+import { Callback } from '@kit.BasicServicesKit';
+
+// ArkTS1.2中，不再依赖Sendable特性，无需添加@Sendable装饰器
+class Sample {
+  constructor() {
+    this.count = 100;
+  }
+  printCount() {
+    console.info('Print count : ' + this.count);
+  }
+  count: long;
+}
+
+let callback: Callback<emitter.GenericEventData<Sample>> = (eventData: emitter.GenericEventData<Sample>): void => {
+  console.info(`data type: ${typeof eventData.data}`);
+  if (eventData?.data instanceof Sample) {
+    let data: Sample = eventData?.data as Sample;
+    data.printCount();
+  }
+}
+// 收到eventId为"eventId"的事件后执行回调函数
+emitter.once("eventId", callback);
+```
+
 ## emitter.off
 
-off(eventId: number): void
+ArkTS1.1: off(eventId: number): void
+
+ArkTS1.2: off(eventId: long): void
 
 取消事件ID为eventId的所有订阅。
 
@@ -243,7 +304,7 @@ off(eventId: number): void
 
 | 参数名  | 类型   | 必填 | 说明     |
 | ------- | ------ | ---- | -------- |
-| eventId | number | 是   | 事件ID。 |
+| eventId | ArkTS1.1: number<br/>ArkTS1.2: long | 是   | 事件ID。 |
 
 **示例：**
 
@@ -279,7 +340,9 @@ emitter.off("eventId");
 
 ## emitter.off<sup>10+</sup>
 
-off(eventId: number, callback: Callback\<EventData\>): void
+ArkTS1.1: off(eventId: number, callback: Callback\<EventData\>): void
+
+ArkTS1.2: off(eventId: long, callback: Callback\<EventData\>): void
 
 取消事件ID为eventId且回调处理函数为callback的订阅。仅当已使用[on](#emitteron)或[once](#emitteronce)接口订阅callback时，该接口才生效。
 
@@ -293,7 +356,7 @@ off(eventId: number, callback: Callback\<EventData\>): void
 
 | 参数名  | 类型   | 必填 | 说明   |
 | ------- | ------ | ---- | ------ |
-| eventId | number | 是   | 事件ID。 |
+| eventId | ArkTS1.1: number<br/>ArkTS1.2: long | 是   | 事件ID。 |
 | callback | Callback\<[EventData](#eventdata)\> | 是   | 事件的回调处理函数。   |
 
 **示例：**
@@ -302,7 +365,7 @@ off(eventId: number, callback: Callback\<EventData\>): void
 import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
-  console.info(`eventData: ${JSON.stringify(eventData)}`);
+  console.info(`data type: ${typeof eventData.data}`);
 }
 // 取消eventID为1的事件回调处理函数，callback对象应使用订阅时的对象
 // 如果该回调处理函数没有被订阅，则不做任何处理
@@ -334,7 +397,7 @@ off(eventId: string, callback: Callback\<EventData\>): void
 import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
-  console.info(`eventData: ${JSON.stringify(eventData)}`);
+  console.info(`data type: ${typeof eventData.data}`);
 }
 // 取消eventID为"eventId"的事件回调处理函数，callback对象应使用订阅时的对象
 // 如果该回调处理函数没有被订阅，则不做任何处理
@@ -362,6 +425,7 @@ off<T\>(eventId: string, callback: Callback\<GenericEventData<T\>\>): void
 
 **示例：**
 
+ArkTS1.1示例：
 ```ts
 import { Callback } from '@kit.BasicServicesKit';
 
@@ -377,9 +441,36 @@ class Sample {
 }
 
 let callback: Callback<emitter.GenericEventData<Sample>> = (eventData: emitter.GenericEventData<Sample>): void => {
-  console.info(`eventData: ${JSON.stringify(eventData?.data)}`);
+  console.info(`data type: ${typeof eventData.data}`);
   if (eventData?.data instanceof Sample) {
     eventData?.data?.printCount();
+  }
+}
+// 取消eventID为"eventId"的事件回调处理函数，callback对象应使用订阅时的对象
+// 如果该回调处理函数没有被订阅，则不做任何处理
+emitter.off("eventId", callback);
+```
+
+ArkTS1.2示例：
+```ts
+import { Callback } from '@kit.BasicServicesKit';
+
+// ArkTS1.2中，不再依赖Sendable特性，无需添加@Sendable装饰器
+class Sample {
+  constructor() {
+    this.count = 100;
+  }
+  printCount() {
+    console.info('Print count : ' + this.count);
+  }
+  count: long;
+}
+
+let callback: Callback<emitter.GenericEventData<Sample>> = (eventData: emitter.GenericEventData<Sample>): void => {
+  console.info(`data type: ${typeof eventData.data}`);
+  if (eventData?.data instanceof Sample) {
+    let data: Sample = eventData?.data as Sample;
+    data.printCount();
   }
 }
 // 取消eventID为"eventId"的事件回调处理函数，callback对象应使用订阅时的对象
@@ -393,7 +484,9 @@ emit(event: InnerEvent, data?: EventData): void
 
 发送指定事件。
 
-该接口支持跨线程传输数据对象，需要遵循数据跨线程传输的规格约束，详见[线程间通信对象](../../arkts-utils/serializable-overview.md)。目前不支持使用[@State装饰器](../../ui/state-management/arkts-state.md)、[@Observed装饰器](../../ui/state-management/arkts-observed-and-objectlink.md)等装饰器修饰的复杂类型数据。
+ArkTS1.1: 该接口支持跨线程传输数据对象，需要遵循数据跨线程传输的规格约束，详见[线程间通信对象](../../arkts-utils/serializable-overview.md)。目前不支持使用[@State装饰器](../../ui/state-management/arkts-state.md)、[@Observed装饰器](../../ui/state-management/arkts-observed-and-objectlink.md)等装饰器修饰的复杂类型数据。
+
+ArkTS1.2: 该接口支持跨线程传输数据对象，需要遵循数据跨线程传输的规格约束，详见[ArkTS1.2并发迁移规则](../../quick-start/arkts-v1.1-v1.2-concurrency-rules.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -408,6 +501,7 @@ emit(event: InnerEvent, data?: EventData): void
 
 **示例：**
 
+ArkTS1.1示例：
 ```ts
 let eventData: emitter.EventData = {
   data: {
@@ -424,13 +518,33 @@ let innerEvent: emitter.InnerEvent = {
 emitter.emit(innerEvent, eventData);
 ```
 
+ArkTS1.2示例：
+```ts
+let record: Record<string, Object> = {
+  "content": "content",
+  "id": 1,
+}
+let eventData: emitter.EventData = {
+  data: record
+};
+
+let innerEvent: emitter.InnerEvent = {
+  eventId: 1,
+  priority: emitter.EventPriority.HIGH
+};
+
+emitter.emit(innerEvent, eventData);
+```
+
 ## emitter.emit<sup>11+</sup>
 
 emit(eventId: string, data?: EventData): void
 
 发送指定事件。
 
-该接口支持跨线程传输数据对象，需要遵循数据跨线程传输的规格约束，详见[线程间通信对象](../../arkts-utils/serializable-overview.md)。目前不支持使用[@State装饰器](../../ui/state-management/arkts-state.md)、[@Observed装饰器](../../ui/state-management/arkts-observed-and-objectlink.md)等装饰器修饰的复杂类型数据。
+ArkTS1.1: 该接口支持跨线程传输数据对象，需要遵循数据跨线程传输的规格约束，详见[线程间通信对象](../../arkts-utils/serializable-overview.md)。目前不支持使用[@State装饰器](../../ui/state-management/arkts-state.md)、[@Observed装饰器](../../ui/state-management/arkts-observed-and-objectlink.md)等装饰器修饰的复杂类型数据。
+
+ArkTS1.2: 该接口支持跨线程传输数据对象，需要遵循数据跨线程传输的规格约束，详见[ArkTS1.2并发迁移规则](../../quick-start/arkts-v1.1-v1.2-concurrency-rules.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -445,6 +559,7 @@ emit(eventId: string, data?: EventData): void
 
 **示例：**
 
+ArkTS1.1示例：
 ```ts
 let eventData: emitter.EventData = {
   data: {
@@ -456,13 +571,33 @@ let eventData: emitter.EventData = {
 emitter.emit("eventId", eventData);
 ```
 
+ArkTS1.2示例：
+```ts
+let record: Record<string, Object> = {
+  "content": "content",
+  "id": 1,
+}
+let eventData: emitter.EventData = {
+  data: record
+};
+
+let innerEvent: emitter.InnerEvent = {
+  eventId: 1,
+  priority: emitter.EventPriority.HIGH
+};
+
+emitter.emit("eventId", eventData);
+```
+
 ## emitter.emit<sup>12+</sup>
 
 emit<T\>(eventId: string, data?: GenericEventData<T\>): void
 
 发送指定事件。
 
-该接口支持跨线程传输数据对象，需要遵循数据跨线程传输的规格约束，详见[线程间通信对象](../../arkts-utils/serializable-overview.md)。目前不支持使用[@State装饰器](../../ui/state-management/arkts-state.md)、[@Observed装饰器](../../ui/state-management/arkts-observed-and-objectlink.md)等装饰器修饰的复杂类型数据。
+ArkTS1.1: 该接口支持跨线程传输数据对象，需要遵循数据跨线程传输的规格约束，详见[线程间通信对象](../../arkts-utils/serializable-overview.md)。目前不支持使用[@State装饰器](../../ui/state-management/arkts-state.md)、[@Observed装饰器](../../ui/state-management/arkts-observed-and-objectlink.md)等装饰器修饰的复杂类型数据。
+
+ArkTS1.2: 该接口支持跨线程传输数据对象，需要遵循数据跨线程传输的规格约束，详见[ArkTS1.2并发迁移规则](../../quick-start/arkts-v1.1-v1.2-concurrency-rules.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -477,8 +612,28 @@ emit<T\>(eventId: string, data?: GenericEventData<T\>): void
 
 **示例：**
 
+ArkTS1.1示例：
 ```ts
 @Sendable
+class Sample {
+  constructor() {
+    this.count = 100;
+  }
+  printCount() {
+    console.info('Print count : ' + this.count);
+  }
+  count: number;
+}
+
+let eventData: emitter.GenericEventData<Sample> = {
+  data: new Sample()
+};
+emitter.emit("eventId", eventData);
+```
+
+ArkTS1.2示例：
+```ts
+// ArkTS1.2中，不再依赖Sendable特性，无需添加@Sendable装饰器
 class Sample {
   constructor() {
     this.count = 100;
@@ -501,7 +656,9 @@ emit(eventId: string, options: Options, data?: EventData): void
 
 发送指定优先级事件。
 
-该接口支持跨线程传输数据对象，需要遵循数据跨线程传输的规格约束，详见[线程间通信对象](../../arkts-utils/serializable-overview.md)。目前不支持使用[@State装饰器](../../ui/state-management/arkts-state.md)、[@Observed装饰器](../../ui/state-management/arkts-observed-and-objectlink.md)等装饰器修饰的复杂类型数据。
+ArkTS1.1: 该接口支持跨线程传输数据对象，需要遵循数据跨线程传输的规格约束，详见[线程间通信对象](../../arkts-utils/serializable-overview.md)。目前不支持使用[@State装饰器](../../ui/state-management/arkts-state.md)、[@Observed装饰器](../../ui/state-management/arkts-observed-and-objectlink.md)等装饰器修饰的复杂类型数据。
+
+ArkTS1.2: 该接口支持跨线程传输数据对象，需要遵循数据跨线程传输的规格约束，详见[ArkTS1.2并发迁移规则](../../quick-start/arkts-v1.1-v1.2-concurrency-rules.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -517,6 +674,7 @@ emit(eventId: string, options: Options, data?: EventData): void
 
 **示例：**
 
+ArkTS1.1示例：
 ```ts
 let eventData: emitter.EventData = {
   data: {
@@ -532,13 +690,32 @@ let options: emitter.Options = {
 emitter.emit("eventId", options, eventData);
 ```
 
+ArkTS1.2示例：
+```ts
+let record: Record<string, Object> = {
+  "content": "content",
+  "id": 1,
+}
+let eventData: emitter.EventData = {
+  data: record
+};
+
+let options: emitter.Options = {
+  priority: emitter.EventPriority.HIGH
+};
+
+emitter.emit("eventId", options, eventData);
+```
+
 ## emitter.emit<sup>12+</sup>
 
 emit<T\>(eventId: string, options: Options, data?: GenericEventData<T\>): void
 
 发送指定优先级事件。
 
-该接口支持跨线程传输数据对象，需要遵循数据跨线程传输的规格约束，详见[线程间通信对象](../../arkts-utils/serializable-overview.md)。目前不支持使用[@State装饰器](../../ui/state-management/arkts-state.md)、[@Observed装饰器](../../ui/state-management/arkts-observed-and-objectlink.md)等装饰器修饰的复杂类型数据。
+ArkTS1.1: 该接口支持跨线程传输数据对象，需要遵循数据跨线程传输的规格约束，详见[线程间通信对象](../../arkts-utils/serializable-overview.md)。目前不支持使用[@State装饰器](../../ui/state-management/arkts-state.md)、[@Observed装饰器](../../ui/state-management/arkts-observed-and-objectlink.md)等装饰器修饰的复杂类型数据。
+
+ArkTS1.2: 该接口支持跨线程传输数据对象，需要遵循数据跨线程传输的规格约束，详见[ArkTS1.2并发迁移规则](../../quick-start/arkts-v1.1-v1.2-concurrency-rules.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -554,6 +731,7 @@ emit<T\>(eventId: string, options: Options, data?: GenericEventData<T\>): void
 
 **示例：**
 
+ArkTS1.1示例：
 ```ts
 @Sendable
 class Sample {
@@ -576,9 +754,34 @@ let eventData: emitter.GenericEventData<Sample> = {
 emitter.emit("eventId", options, eventData);
 ```
 
+ArkTS1.2示例：
+```ts
+// ArkTS1.2中，不再依赖Sendable特性，无需添加@Sendable装饰器
+class Sample {
+  constructor() {
+    this.count = 100;
+  }
+  printCount() {
+    console.info('Print count : ' + this.count);
+  }
+  count: number;
+}
+
+let options: emitter.Options = {
+  priority: emitter.EventPriority.HIGH
+};
+let eventData: emitter.GenericEventData<Sample> = {
+  data: new Sample()
+};
+
+emitter.emit("eventId", options, eventData);
+```
+
 ## emitter.getListenerCount<sup>11+</sup>
 
-getListenerCount(eventId: number | string): number
+ArkTS1.1: getListenerCount(eventId: number | string): number
+
+ArkTS1.2: getListenerCount(eventId: long | string): long
 
 获取指定事件的订阅数。
 
@@ -590,13 +793,13 @@ getListenerCount(eventId: number | string): number
 
 | 参数名  | 类型           | 必填 | 说明     |
 | ------- | -------------- | ---- | -------- |
-| eventId | number \| string | 是   | 事件ID，string类型的eventId取值为长度不超过10240字节的自定义字符串，且不可为空字符。 |
+| eventId | ArkTS1.1: number \| string<br/>ArkTS1.2: long \| string | 是   | 事件ID，string类型的eventId取值为长度不超过10240字节的自定义字符串，且不可为空字符。 |
 
 **返回值：**
 
 | 类型     | 说明         |
 | ------- |------------|
-| number | 指定事件的订阅数。 |
+| ArkTS1.1: number<br/>ArkTS1.2: long | 指定事件的订阅数。 |
 
 
 **示例：**
@@ -630,7 +833,7 @@ let count = emitter.getListenerCount("eventId");
 
 | 名称     | 类型                        | 只读 | 可选 | 说明                                 |
 | -------- | ------------------------------- | ---- | ---- | ------------------------------ |
-| eventId  | number                          | 否   | 否   | 事件ID，由开发者定义，用于辨别事件。 |
+| eventId  | ArkTS1.1: number<br/>ArkTS1.2: long | 否   | 否   | 事件ID，由开发者定义，用于辨别事件。 |
 | priority | [EventPriority](#eventpriority) | 否   | 是   | 事件的优先级，默认值为EventPriority.LOW。             |
 
 ## EventData
@@ -643,7 +846,7 @@ let count = emitter.getListenerCount("eventId");
 
 | 名称 | 类型           | 只读 | 可选 | 说明           |
 | ---- | ------------------ | ---- | ---- | -------------- |
-| data | { [key: string]: any } | 否   | 是   | 发送事件时传递的数据，支持数据类型包括Array、ArrayBuffer、Boolean、DataView、Date、Error、Map、Number、Object、Primitive（除了symbol）、RegExp、Set、String、TypedArray，数据大小最大为16M。 |
+| data | ArkTS1.1: { [key: string]: any }<br/>ArkTS1.2: Record<string, Object> \| ESObject | 否   | 是   | 发送事件时传递的数据，支持数据类型包括Array、ArrayBuffer、Boolean、DataView、Date、Error、Map、Number、Object、Primitive（除了symbol）、RegExp、Set、String、TypedArray，数据大小最大为16M。 |
 
 ## Options<sup>11+</sup>
 
@@ -667,4 +870,4 @@ let count = emitter.getListenerCount("eventId");
 
 | 名称     | 类型                            | 只读 | 可选 | 说明           |
 | -------- | ------------------------------- | ---- | ---- | -------------- |
-| data | T | 否   | 是   | 发送事件时传递的数据。T：泛型类型。 |
+| data | ArkTS1.1: T<br/>ArkTS1.2: T \| ESObject | 否   | 是   | 发送事件时传递的数据。T：泛型类型，ESObject：ArkTS1.2中ArkTS1.1对象的代理类型。 |
