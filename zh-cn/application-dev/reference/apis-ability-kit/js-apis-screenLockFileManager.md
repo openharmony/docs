@@ -13,7 +13,7 @@ import { screenLockFileManager } from '@kit.AbilityKit';
 
 ## AccessStatus
 
-枚举，锁屏下敏感数据访问权限申请的状态。
+表示锁屏下敏感数据访问权限申请的状态枚举。
 
  **系统能力：** SystemCapability.Security.ScreenLockFileManager
 
@@ -25,7 +25,7 @@ import { screenLockFileManager } from '@kit.AbilityKit';
 
 ## ReleaseStatus
 
-枚举，锁屏下敏感数据访问权限释放的状态。
+表示锁屏下敏感数据访问权限释放的状态枚举。
 
  **系统能力：** SystemCapability.Security.ScreenLockFileManager
 
@@ -36,7 +36,7 @@ import { screenLockFileManager } from '@kit.AbilityKit';
 
 ## KeyStatus<sup>18+</sup>
 
-枚举，锁屏下敏感数据访问权限的状态。
+表示锁屏下敏感数据访问权限的状态枚举。
 
  **系统能力：** SystemCapability.Security.ScreenLockFileManager
 
