@@ -4,7 +4,7 @@
 <!--Subsystem: Global-->
 <!--Owner: @yliupy-->
 <!--Designer: @sunyaozu-->
-<!--TSE: @lpw_work-->
+<!--Tester: @lpw_work-->
 
 |符号类型|符号名|
 | --- | --- |

@@ -3,7 +3,7 @@
 <!--Subsystem: Time-->
 <!--Owner: @huaxin05-->
 <!--Designer: @hu-kai45-->
-<!--TSE: @murphy1984-->
+<!--Tester: @murphy1984-->
 
 本模块主要由系统定时器功能组成。开发者可以使用定时功能实现定时服务，如闹钟等。
 

@@ -4,7 +4,7 @@
 <!--Subsystem: Ability-->
 <!--Owner: @altay; @Luobniz21-->
 <!--Designer: @altay-->
-<!--TSE: @lixueqing513-->
+<!--Tester: @lixueqing513-->
 
 ## 场景介绍
 

@@ -3,7 +3,7 @@
 <!--Subsystem: Common-->
 <!--Owner: @foryourself-->
 <!--Designer: @lingminghw-->
-<!--TSE: @RayShih-->
+<!--Tester: @RayShih-->
 
 - [SDK命令行工具简介](command-line-tools-overview.md)
 - [aa工具](aa-tool.md)

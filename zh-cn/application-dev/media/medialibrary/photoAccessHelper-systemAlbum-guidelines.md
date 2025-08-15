@@ -3,7 +3,7 @@
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
 <!--Designer: @liweilu1-->
-<!--TSE: @xchaosioda-->
+<!--Tester: @xchaosioda-->
 
 photoAccessHelper提供对收藏夹、视频相册、截屏和录屏相册的相关操作。
 

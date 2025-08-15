@@ -3,7 +3,7 @@
 <!--Subsystem: arkcompiler-->
 <!--Owner: @zju-wyx-->
 <!--Designer: @xiao-peiyang; @dengxinyu-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
 
 ## 如何排查功能异常
 

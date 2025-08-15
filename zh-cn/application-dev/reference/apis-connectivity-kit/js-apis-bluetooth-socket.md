@@ -4,7 +4,7 @@
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
 <!--Designer: @chengguohong; @tangjia15-->
-<!--TSE: @wangfeng517-->
+<!--Tester: @wangfeng517-->
 
 socket模块提供了操作和管理蓝牙socket的方法。
 

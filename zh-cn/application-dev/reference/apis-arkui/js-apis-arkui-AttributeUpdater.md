@@ -3,7 +3,7 @@
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiang-shouxing-->
 <!--Designer: @xiang-shouxing-->
-<!--TSE: @sally__-->
+<!--Tester: @sally__-->
 
 将属性直接设置给组件，无需标记为状态变量即可直接触发UI更新。
 

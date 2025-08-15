@@ -3,7 +3,7 @@
 <!--Subsystem: ArkUI-->
 <!--Owner: @txazo-->
 <!--Designer: @autojuan-->
-<!--TSE: @sunfei2021; @youzhi92-->
+<!--Tester: @sunfei2021; @youzhi92-->
 
 为开发者提供满足定制化诉求的Web高阶组件，屏蔽原生Web组件中无需关注的接口，并提供JS扩展能力。
 

@@ -4,7 +4,7 @@
 <!--Subsystem: Ability-->
 <!--Owner: @zhangyafei-echo; @xuzhihao666-->
 <!--Designer: @zhangyafei-echo-->
-<!--TSE: @lixueqing513-->
+<!--Tester: @lixueqing513-->
 
 sendableContextManager模块提供Context与[SendableContext](js-apis-inner-application-sendableContext.md)相互转换的能力。
 

@@ -4,7 +4,7 @@
 <!--Subsystem: Global-->
 <!--Owner: @liule_123-->
 <!--Designer: @buda_wy-->
-<!--TSE: @lpw_work-->
+<!--Tester: @lpw_work-->
 
 资源管理导入sendableResourceManager模块，通过调用[resourceToSendableResource](#sendableresourcemanagerresourcetosendableresource)和[sendableResourceToResource](#sendableresourcemanagersendableresourcetoresource)方法可以将[Resource](#resource)对象和[SendableResource](#sendableresource)对象进行互转。
 

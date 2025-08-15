@@ -3,7 +3,7 @@
 <!--Subsystem: Window-->
 <!--Owner: @waterwin-->
 <!--Designer: @nyankomiya-->
-<!--TSE: @qinliwen0417-->
+<!--Tester: @qinliwen0417-->
 
 ## 自由多窗模式
 

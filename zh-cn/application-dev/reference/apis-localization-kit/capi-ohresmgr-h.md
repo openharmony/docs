@@ -4,7 +4,7 @@
 <!--Subsystem: Global-->
 <!--Owner: @liule_123-->
 <!--Designer: @buda_wy-->
-<!--TSE: @lpw_work-->
+<!--Tester: @lpw_work-->
 
 ## 概述
 

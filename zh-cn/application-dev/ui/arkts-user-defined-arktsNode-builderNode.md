@@ -4,7 +4,7 @@
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiang-shouxing-->
 <!--Designer: @xiang-shouxing-->
-<!--TSE: @sally__-->
+<!--Tester: @sally__-->
 
 ## 概述
 

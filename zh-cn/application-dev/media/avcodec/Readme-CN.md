@@ -4,7 +4,7 @@
 <!--Subsystem: Multimedia-->
 <!--Owner: @zhanghongran; @mr-chencxy-->
 <!--Designer: @dpy2650--->
-<!--TSE: @cyakee; @baotianhao-->
+<!--Tester: @cyakee; @baotianhao-->
 
 - [AVCodec Kit简介](avcodec-kit-intro.md)
 - [AVCodec支持的格式](avcodec-support-formats.md)

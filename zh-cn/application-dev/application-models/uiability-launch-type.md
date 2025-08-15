@@ -4,7 +4,7 @@
 <!--Subsystem: Ability-->
 <!--Owner: @altay; @Luobniz21-->
 <!--Designer: @altay-->
-<!--TSE: @lixueqing513-->
+<!--Tester: @lixueqing513-->
 
 [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的启动模式是指UIAbility实例在启动时的不同呈现状态。针对不同的业务场景，系统提供了三种启动模式：
 

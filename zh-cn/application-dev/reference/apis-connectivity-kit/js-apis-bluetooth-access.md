@@ -4,7 +4,7 @@
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
 <!--Designer: @chengguohong; @tangjia15-->
-<!--TSE: @wangfeng517-->
+<!--Tester: @wangfeng517-->
 
 access模块提供了打开和关闭蓝牙、获取蓝牙状态的方法。
 

@@ -3,7 +3,7 @@
 <!--Subsystem: Ability-->
 <!--Owner: @cx983299475-->
 <!--Designer: @xueyulong-->
-<!--TSE: @chenmingze-->
+<!--Tester: @chenmingze-->
 ## 创建ArkTS卡片
 创建卡片当前有两种入口：
 

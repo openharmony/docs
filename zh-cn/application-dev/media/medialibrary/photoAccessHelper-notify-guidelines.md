@@ -3,7 +3,7 @@
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
 <!--Designer: @liweilu1-->
-<!--TSE: @xchaosioda-->
+<!--Tester: @xchaosioda-->
 
 photoAccessHelper提供监听指定媒体资源变更的接口。
 

@@ -4,7 +4,7 @@
 <!--Subsystem: Ability-->
 <!--Owner: @ccllee1-->
 <!--Designer: @ccllee1-->
-<!--TSE: @lixueqing513-->
+<!--Tester: @lixueqing513-->
 
 
 ## 如何获取设备横竖屏的状态变化通知(API 9)

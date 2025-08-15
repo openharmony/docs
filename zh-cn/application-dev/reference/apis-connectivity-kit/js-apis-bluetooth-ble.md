@@ -4,7 +4,7 @@
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
 <!--Designer: @chengguohong; @tangjia15-->
-<!--TSE: @wangfeng517-->
+<!--Tester: @wangfeng517-->
 
 提供了基于低功耗蓝牙（Bluetooth Low Energy）技术的蓝牙能力，支持发起BLE扫描、发送BLE广播报文、以及基于通用属性协议（Generic Attribute Profile，GATT）的连接和传输数据。
 

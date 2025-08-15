@@ -4,7 +4,7 @@
 <!--Subsystem: Applications-->
 <!--Owner: @qq_42718467-->
 <!--Designer: @huangxinwei-->
-<!--TSE: @z30055209-->
+<!--Tester: @z30055209-->
 
 本模块提供日历与日程管理能力，包括日历和日程的创建、删除、修改、查询等。
 

@@ -4,7 +4,7 @@
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
 <!--Designer: @chengguohong; @tangjia15-->
-<!--TSE: @wangfeng517-->
+<!--Tester: @wangfeng517-->
 
 ## 简介
 本指南主要提供了BLE扫描和BLE广播相关操作的开发指导。可以实现发现周边BLE设备和其他设备发现本机设备的场景。

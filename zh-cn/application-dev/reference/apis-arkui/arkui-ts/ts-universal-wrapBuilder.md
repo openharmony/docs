@@ -3,7 +3,7 @@
 <!--Subsystem: ArkUI-->
 <!--Owner: @zhangboren-->
 <!--Designer: @zhangboren-->
-<!--TSE: @TerryTsao-->
+<!--Tester: @TerryTsao-->
 
 使用wrapBuilder封装全局@Builder，可以帮助维护代码。开发指南见[wrapBuilder：封装全局@Builder](../../../ui/state-management/arkts-wrapBuilder.md)。
 

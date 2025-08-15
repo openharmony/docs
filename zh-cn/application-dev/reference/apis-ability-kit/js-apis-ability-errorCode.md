@@ -4,7 +4,7 @@
 <!--Subsystem: Ability-->
 <!--Owner: @duan-sizhao-->
 <!--Designer: @ccllee1-->
-<!--TSE: @lixueqing513-->
+<!--Tester: @lixueqing513-->
 
 ErrorCode定义启动Ability时返回的错误码，包括无效的参数、权限拒绝等。
 

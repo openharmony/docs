@@ -4,7 +4,7 @@
 <!--Subsystem: Communication-->
 <!--Owner: @amunra03-->
 <!--Designer: @wenxiaolin-->
-<!--TSE: @zs_111-->
+<!--Tester: @zs_111-->
 
 ## 简介
 电子设备上可能存在一个或多个安全单元（SecureElement，简称SE），比如有eSE(Embedded SE)和SIM卡。安全单元的访问控制，通过GPAC（GlobalPlatform Access Control）规范实现。

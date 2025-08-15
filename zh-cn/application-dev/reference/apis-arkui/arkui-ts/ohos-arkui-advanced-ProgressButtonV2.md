@@ -3,7 +3,7 @@
 <!--Subsystem: ArkUI-->
 <!--Owner: @fengluochenai-->
 <!--Designer: @YanSanzo-->
-<!--TSE: @tinygreyy-->
+<!--Tester: @tinygreyy-->
 
 
 文本下载按钮，可显示具体的下载进度。

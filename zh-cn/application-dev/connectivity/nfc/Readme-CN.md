@@ -4,7 +4,7 @@
 <!--Subsystem: Communication-->
 <!--Owner: @amunra03-->
 <!--Designer: @wenxiaolin-->
-<!--TSE: @zs_111-->
+<!--Tester: @zs_111-->
 
 - [NFC标签读写开发指南](nfc-tag-access-guide.md)
 - [HCE卡模拟开发指南](nfc-hce-guide.md)

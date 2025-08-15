@@ -3,7 +3,7 @@
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--Designer: @shilei123-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
 
 ## 简介
 

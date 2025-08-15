@@ -4,7 +4,7 @@
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @mzyan-->
 <!--Designer: @liyueric-->
-<!--TSE: @gcw_KuLfPSbe-->
+<!--Tester: @gcw_KuLfPSbe-->
 
 ## 通用
 

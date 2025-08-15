@@ -3,7 +3,7 @@
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
 <!--Designer: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Tester: @songyanhong-->
 
 设置组件的浮层。
 

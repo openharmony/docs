@@ -3,7 +3,7 @@
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @DaiHuina1997-->
 <!--Designer: @yao_dashuai-->
-<!--TSE: @kirl75;@zsw_zhushiwei-->
+<!--Tester: @kirl75;@zsw_zhushiwei-->
 
 ## 方舟正则运算与预期输出结果不一致场景
 

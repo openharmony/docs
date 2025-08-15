@@ -3,7 +3,7 @@
 <!--Subsystem: arkcompiler-->
 <!--Owner: @yangming4249-->
 <!--Designer: @ychen3--->
-<!--TSE: @zsw_zhushiwei-->
+<!--Tester: @zsw_zhushiwei-->
 
 OpenHarmony NDK中提供了OpenMP的动态库和静态库文件，支持开发者在Native应用中使用OpenMP。本文用于指导开发者在[DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/)中调用库文件使用OpenMP的并行化能力，更详细的使用示例和API标准请查看官方文档[clang-OpenMPSupport](https://clang.llvm.org/docs/OpenMPSupport.html)。
 

@@ -4,7 +4,7 @@
 <!--Subsystem: Communication-->
 <!--Owner: @amunra03-->
 <!--Designer: @wenxiaolin-->
-<!--TSE: @zs_111-->
+<!--Tester: @zs_111-->
 
 本模块是对NFC TagSession的使用说明。
 

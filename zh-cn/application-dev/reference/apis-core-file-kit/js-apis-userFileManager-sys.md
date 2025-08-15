@@ -3,7 +3,7 @@
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
 <!--Designer: @liweilu1-->
-<!--TSE: @xchaosioda-->
+<!--Tester: @xchaosioda-->
 
 该模块提供用户数据管理能力：包括访问、修改用户公共媒体数据信息等常用功能。
 

@@ -4,7 +4,7 @@
 <!--Subsystem: Ability-->
 <!--Owner: @littlejerry1-->
 <!--Designer: @ccllee1-->
-<!--TSE: @lixueqing513-->
+<!--Tester: @lixueqing513-->
 
 AbilityConstant提供Ability相关的枚举，包括WindowMode等。
 

@@ -4,7 +4,7 @@
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
 <!--Designer: @chengguohong; @tangjia15-->
-<!--TSE: @wangfeng517-->
+<!--Tester: @wangfeng517-->
 
 蓝牙模块提供了基础的传统蓝牙能力以及BLE的扫描、广播等功能。
 

@@ -4,7 +4,7 @@
 <!--Subsystem: MultimodalInput-->
 <!--Owner: @zhaoxueyuan-->
 <!--Designer: @hanruofei-->
-<!--TSE: @Lyuxin-->
+<!--Tester: @Lyuxin-->
 
 鼠标指针管理模块，用于查询和设置鼠标指针相关属性。
 

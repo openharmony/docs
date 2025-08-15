@@ -3,7 +3,7 @@
 <!--Subsystem: BundleManager-->
 <!--Owner: @xuyicong-->
 <!--Designer: @hanfeng6; @lihaitao-->
-<!--TSE: @kongjing2-->
+<!--Tester: @kongjing2-->
 
 ## 如何获取签名信息中的指纹信息
 

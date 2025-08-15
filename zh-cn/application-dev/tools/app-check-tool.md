@@ -3,7 +3,7 @@
 <!--Subsystem: BundleManager-->
 <!--Owner: @jsjzju-->
 <!--Designer: @jsjzju-->
-<!--TSE: @lixueqing513-->
+<!--Tester: @lixueqing513-->
 
 ## 简介
 

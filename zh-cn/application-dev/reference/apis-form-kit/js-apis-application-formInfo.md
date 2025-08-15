@@ -3,7 +3,7 @@
 <!--Subsystem: Ability-->
 <!--Owner: @cx983299475-->
 <!--Designer: @xueyulong-->
-<!--TSE: @chenmingze-->
+<!--Tester: @chenmingze-->
 formInfo模块提供了卡片信息和状态等相关类型和枚举。
 
 > **说明：**

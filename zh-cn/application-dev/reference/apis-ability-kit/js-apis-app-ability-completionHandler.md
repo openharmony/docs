@@ -4,7 +4,7 @@
  <!--Subsystem: Ability-->
  <!--Owner: @littlejerry1; @yangxuguang-huawei; @Luobniz21-->
  <!--Designer: @ccllee1-->
- <!--TSE: @lixueqing513-->
+ <!--Tester: @lixueqing513-->
 
 CompletionHandler作为[StartOptions](js-apis-app-ability-startOptions.md)的可选参数，用于处理拉起应用请求的结果。
 

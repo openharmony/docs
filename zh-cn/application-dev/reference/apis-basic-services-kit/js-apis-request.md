@@ -3,7 +3,7 @@
 <!--Subsystem: Request-->
 <!--Owner: @huaxin05-->
 <!--Designer: @hu-kai45-->
-<!--TSE: @murphy1984-->
+<!--Tester: @murphy1984-->
 
 request模块给应用提供上传下载文件、后台代理传输的基础功能。
 

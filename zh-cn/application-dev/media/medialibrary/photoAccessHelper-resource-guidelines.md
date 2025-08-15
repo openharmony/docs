@@ -3,7 +3,7 @@
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
 <!--Designer: @liweilu1-->
-<!--TSE: @xchaosioda-->
+<!--Tester: @xchaosioda-->
 
 应用可以通过photoAccessHelper的接口，对媒体资源（图片、视频）进行相关操作。
 

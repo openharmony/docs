@@ -3,7 +3,7 @@
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiang-shouxing-->
 <!--Designer: @xiang-shouxing-->
-<!--TSE: @sally__-->
+<!--Tester: @sally__-->
 
 如果需要在页面中获得当前Ability的Context，可调用getContext接口获取当前页面关联的UIAbilityContext或ExtensionContext。
 

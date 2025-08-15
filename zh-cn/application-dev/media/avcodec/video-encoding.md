@@ -4,7 +4,7 @@
 <!--Subsystem: Multimedia-->
 <!--Owner: @zhanghongran-->
 <!--Designer: @dpy2650--->
-<!--TSE: @cyakee-->
+<!--Tester: @cyakee-->
 
 开发者可以调用本模块的Native API接口，完成视频编码，即将未压缩的视频数据压缩成视频码流。
 

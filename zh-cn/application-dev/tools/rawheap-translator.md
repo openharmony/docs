@@ -3,7 +3,7 @@
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @wanghuan2025-->
 <!--Designer: @wanghuan2025-->
-<!--TSE: @kir175;@zsw_zhushiwei-->
+<!--Tester: @kir175;@zsw_zhushiwei-->
 
 ## 使用场景
 

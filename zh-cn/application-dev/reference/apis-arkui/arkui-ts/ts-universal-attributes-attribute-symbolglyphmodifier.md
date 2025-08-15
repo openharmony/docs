@@ -4,7 +4,7 @@
 <!--Subsystem: ArkUI-->
 <!--Owner: @hddgzw-->
 <!--Designer: @pssea-->
-<!--TSE: @jiaoaozihao-->
+<!--Tester: @jiaoaozihao-->
 
 开发者可使用SymbolGlyphModifier构建组件并配置属性，通过此SymbolGlyphModifier可调用所封装组件的属性和样式接口。
 

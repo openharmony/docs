@@ -4,7 +4,7 @@
 <!--Subsystem: Ability-->
 <!--Owner: @ccllee1-->
 <!--Designer: @ccllee1-->
-<!--TSE: @lixueqing513-->
+<!--Tester: @lixueqing513-->
 
 ## 应用模型的构成要素
 

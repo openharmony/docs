@@ -4,7 +4,7 @@
 <!--Subsystem: MultimodalInput-->
 <!--Owner: @zhaoxueyuan-->
 <!--Designer: @hanruofei-->
-<!--TSE: @Lyuxin-->
+<!--Tester: @Lyuxin-->
 
 uinput 可模拟用户操作，例如鼠标、键盘、触控板等设备，适用于稳定性等压力测试。
 

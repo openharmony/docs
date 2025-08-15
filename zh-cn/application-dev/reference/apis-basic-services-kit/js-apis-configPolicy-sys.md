@@ -4,7 +4,7 @@
 <!--Subsystem: Customization-->
 <!--Owner: @liule_123-->
 <!--Designer: @sunshine_1984-->
-<!--TSE: @lpw_work-->
+<!--Tester: @lpw_work-->
 
 配置策略提供按预先定义的定制配置层级获取对应定制配置目录和文件路径的能力。
 

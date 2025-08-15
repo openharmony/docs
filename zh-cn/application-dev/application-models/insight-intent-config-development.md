@@ -4,7 +4,7 @@
 <!--Subsystem: Ability-->
 <!--Owner: @zhangyafei-echo-->
 <!--Designer: @zhangyafei-echo-->
-<!--TSE: @lixueqing513-->
+<!--Tester: @lixueqing513-->
 
 ## 简介
 从API version 11及以上版本，支持通过配置文件开发意图。主要包含两个环节：

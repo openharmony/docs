@@ -3,7 +3,7 @@
 <!--Subsystem: Graphic-->
 <!--Owner: @hangmengxin-->
 <!--Designer: @wangyanglan-->
-<!--TSE: @nobuggers-->
+<!--Tester: @nobuggers-->
 
 
 ## 场景介绍

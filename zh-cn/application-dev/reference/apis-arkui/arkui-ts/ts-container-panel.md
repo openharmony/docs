@@ -4,7 +4,7 @@
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
 <!--Designer: @yangfan229-->
-<!--TSE: @lxl007-->
+<!--Tester: @lxl007-->
 
 可滑动面板，提供一种轻量的内容展示窗口，方便在不同尺寸中切换。
 

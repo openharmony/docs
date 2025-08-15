@@ -3,7 +3,7 @@
 <!--Subsystem: commonlibrary-->
 <!--Owner: @liyiming13-->
 <!--Designer: @huang_huijin-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
 
 ## 1. 功能介绍
 

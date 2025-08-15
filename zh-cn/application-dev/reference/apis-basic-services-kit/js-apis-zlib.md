@@ -3,7 +3,7 @@
 <!--Subsystem: BundleManager-->
 <!--Owner: @jinsenjun-->
 <!--Designer: @jinsenjun-->
-<!--TSE: @lixueqing-->
+<!--Tester: @lixueqing-->
 
 本模块提供压缩解压缩文件的能力。
 

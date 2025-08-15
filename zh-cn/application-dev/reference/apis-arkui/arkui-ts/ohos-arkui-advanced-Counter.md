@@ -3,7 +3,7 @@
 <!--Subsystem: ArkUI-->
 <!--Owner: @xieziang-->
 <!--Designer: @youzhi92-->
-<!--TSE: @TerryTsao-->
+<!--Tester: @TerryTsao-->
 
 Counter是用于精确调节数值的组件。
 

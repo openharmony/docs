@@ -3,7 +3,7 @@
 <!--Subsystem: DistributedHardware-->
 <!--Owner: @hobbycao-->
 <!--Designer: @saga_2025-->
-<!--TSE: @wei-guoqing1-->
+<!--Tester: @wei-guoqing1-->
 
 ## 简介
 
