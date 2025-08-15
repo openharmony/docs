@@ -1,12 +1,11 @@
 # 指定PEM格式字符串数据转换非对称密钥对(ArkTS)
-<!--Tester: @PAFT-->
-<!--Adviser: @zengyawen-->
 
 <!--Kit: Crypto Architecture Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @zxz--3-->
 <!--Designer: @lanming-->
-<!--TSE: @PAFT--> 
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
 
 以RSA为例，根据指定的非对称密钥字符串数据，生成非对称密钥对（KeyPair）。
 
