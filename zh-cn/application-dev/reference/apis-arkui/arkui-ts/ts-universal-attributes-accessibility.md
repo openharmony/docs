@@ -474,7 +474,7 @@ accessibilityDefaultFocus(focus: boolean):T
 
 accessibilityUseSamePage(pageMode: AccessibilitySamePageMode):T
 
-针对跨进程嵌入式显示的组件，例如EmbeddedComponent，其子树场景中出现的跳焦问题，可通过设置accessibilityUseSamePage属性解决。因跨进程嵌入式显示的组件启动进程的page事件与宿主page事件发送时序不一致，可能导致焦点从当前组件移至另一组件，此现象称为“跳焦”。
+针对跨进程嵌入式显示的组件，例如[EmbeddedComponent](ts-container-embedded-component.md)，其子树场景中出现的跳焦问题，可通过设置accessibilityUseSamePage属性解决。因跨进程嵌入式显示的组件启动进程的page事件与宿主page事件发送时序不一致，可能导致焦点从当前组件移至另一组件，此现象称为“跳焦”。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
