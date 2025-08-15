@@ -1,4 +1,10 @@
 # @ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 StaticSubscriberExtensionAbility模块提供静态订阅者ExtensionAbility类别的能力。
 
@@ -28,7 +34,7 @@ import { StaticSubscriberExtensionAbility } from '@kit.BasicServicesKit';
 
 ## StaticSubscriberExtensionAbility.onReceiveEvent
 
-onReceiveEvent(event: CommonEventData): void;
+onReceiveEvent(event: CommonEventData): void
 
 静态订阅者通用事件回调。
 
