@@ -5,6 +5,7 @@
 <!--Designer: @xueyulong-->
 <!--Tester: @chenmingze-->
 <!--Adviser: @Brilliantry_Rui-->
+
 formInfo模块提供了卡片信息和状态等相关类型和枚举。
 
 > **说明：**
@@ -245,3 +246,21 @@ import { formInfo } from '@kit.FormKit';
 | FORM_CENTER                  | 1    | 表示卡片位于桌面的卡片中心。     |
 | FORM_MANAGER                 | 2    | 表示卡片位于桌面的卡片管理器。   |
 <!--RP1--><!--RP1End-->
+
+## RunningFormInfo<sup>20+</sup>
+
+已经添加到桌面的卡片信息。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Ability.Form
+
+| 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
+| ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
+| formId  | string               | 是    | 否     | 卡片标识。                   |
+| bundleName  | string               | 是    | 否     | 卡片提供方所属包的Bundle名称。                   |
+| moduleName  | string               | 是    | 否     | 卡片所属模块的名称。                      |
+| abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
+| formName        | string               | 是    | 否     | 卡片名称。                                 |
+| dimension | number               | 是    | 否     | 卡片尺寸，取值及其对应含义请参考[FormDimension](#formdimension)。   |
+| formLocation | [FormLocation](#formlocation20)| 是    | 否     | 卡片位置信息。   |
