@@ -47,15 +47,10 @@ getOAID(): Promise&lt;string&gt;
 
 ```ts
 import { identifier } from '@kit.AdsKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
-identifier.getOAID().then((data) => {
+identifier.getOAID().then((data: string) => {
   const oaid: string = data;
-  hilog.info(0x0000, 'testTag', `Succeed in getting oaid. Oaid is ${oaid}`);
-}).catch((err: BusinessError) => {
-  hilog.error(0x0000, 'testTag', `Fail to get oaid. Code is ${err.code}, message is ${err.message}`);
-})
+});
 ```
 
 ## identifier.getOAID
@@ -87,14 +82,11 @@ getOAID(callback: AsyncCallback&lt;string&gt;): void
 ```ts
 import { identifier } from '@kit.AdsKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
- 
+
 identifier.getOAID((err: BusinessError, data: string) => {
   if (err.code) {
-    hilog.error(0x0000, 'testTag', `Fail to get oaid. Code is ${err.code}, message is ${err.message}`);
-  } else {
-    const oaid: string = data;
-    hilog.info(0x0000, 'testTag', `Succeed in getting oaid. Oaid is ${oaid}`);
+    return;
   }
+  const oaid: string = data;
 });
 ```
