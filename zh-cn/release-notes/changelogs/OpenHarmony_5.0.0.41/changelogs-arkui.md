@@ -217,7 +217,7 @@ borderImage中的边框外延距离（outset属性）在无需绘制的区域不
 
 默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
 
-## cl.arkui.4 CanvasRenderingContext2D和OffscreenCanvasRenderingContext2D的globalCompositeOperation属性变更为在绘制文本时生效
+## cl.arkui.4 画布组件在绘制文本时设置globalCompositeOperation、fillStyle和globalAlpha属性的效果变更
 
 **访问级别**
 
@@ -225,20 +225,22 @@ borderImage中的边框外延距离（outset属性）在无需绘制的区域不
 
 **变更原因**
 
-画布绘制的globalCompositeOperation属性在绘制文本时未生效，导致绘制效果与W3C有差异，故需要做绘制行为变更。
+使用画布组件（CanvasRenderingContext2D和OffscreenCanvasRenderingContext2D）进行文本绘制时，设置globalCompositeOperation属性和pattern样式的fillStyle属性无效；设置带透明度颜色的fillStyle属性，同时设置globalAlpha属性，文本的透明度仅由globalAlpha决定，不考虑fillStyle属性的颜色透明度。导致绘制效果与W3C标准存在差异，因此需要变更绘制行为。
 
 
 **变更影响**
 
 该变更为不兼容变更。
 
-变更前：CanvasRenderingContext2D和OffscreenCanvasRenderingContext2D的globalCompositeOperation属性在绘制文本时不生效。
+变更前：CanvasRenderingContext2D和OffscreenCanvasRenderingContext2D的globalCompositeOperation属性与fillStyle属性设置的pattern样式在绘制文本时不生效；fillStyle属性设置带透明度颜色并设置globalAlpha属性时，fillText绘制文本的透明度为globalAlpha属性值。
 
-变更后：CanvasRenderingContext2D和OffscreenCanvasRenderingContext2D的globalCompositeOperation属性在绘制文本时生效。
+变更后：CanvasRenderingContext2D和OffscreenCanvasRenderingContext2D的globalCompositeOperation属性与fillStyle属性设置的pattern样式在绘制文本时生效；fillStyle属性设置带透明度颜色并设置globalAlpha属性时，fillText绘制文本的透明度为颜色透明度×globalAlpha。
 
-| 变更前                                   | 变更后                                   |
-| ---------------------------------------- | ---------------------------------------- |
-| ![globalCompositeOperation_before](figures/globalCompositeOperation_before.png) | ![globalCompositeOperation_after](figures/globalCompositeOperation_after.png) |
+| 使用场景                                   | 变更前                                   | 变更后                                   |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| globalCompositeOperation与fillText组合使用 | ![globalCompositeOperation_before](figures/globalCompositeOperation_before.png) | ![globalCompositeOperation_after](figures/globalCompositeOperation_after.png) |
+| fillStyle设置pattern样式与fillText组合使用 | ![pattern_before](figures/pattern_before.png) | ![pattern_after](figures/pattern_after.png) |
+| globalAlpha设置透明度，fillStyle设置带透明度颜色，与fillText组合使用 | ![alpha_before](figures/alpha_before.png) | ![alpha_after](figures/alpha_after.png) |
 
 **起始API Level**
 
@@ -254,7 +256,7 @@ CanvasRenderingContext2D和OffscreenCanvasRenderingContext2D的fillText和stroke
 
 **适配指导**
 
-如果希望在绘制文本时globalCompositeOperation属性保持默认值，需要在fillText/strokeText方法前显式声明context.globalCompositeOperation = 'source-over'。
+若希望在绘制文本时globalCompositeOperation属性保持默认值，需在fillText/strokeText方法前声明context.globalCompositeOperation = 'source-over'；若希望pattern样式在绘制文本时不生效，需在fillText方法前指定所需的fillStyle；若希望文本透明度不受fillStyle颜色透明度的影响，需将fillStyle设置为不透明颜色。
 
 示例：
 
@@ -263,75 +265,6 @@ CanvasRenderingContext2D和OffscreenCanvasRenderingContext2D的fillText和stroke
 @Entry
 @Component
 struct FillText {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Canvas(this.context)
-        .width('100%')
-        .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.context.fillRect(0, 0, 150, 150)
-          this.context.globalCompositeOperation = 'source-out'
-          this.context.fillRect(50, 50, 50, 50) // 生效'source-out'模式
-          this.context.globalCompositeOperation = 'source-over' // globalCompositeOperation默认值
-          this.context.fillText('Hello World', 50, 50) // 生效'source-over'模式
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
-```
-
-## cl.arkui.5 CanvasRenderingContext2D和OffscreenCanvasRenderingContext2D的pattern样式变更为在fillText时生效
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-画布绘制的pattern样式在fillText时未生效，导致绘制效果与W3C有差异，故需要做绘制行为变更。
-
-
-**变更影响**
-
-该变更为不兼容变更。
-
-变更前：画布绘制设置fillStyle属性为pattern样式，在fillText时不生效。
-
-变更后：画布绘制设置fillStyle属性为pattern样式，在fillText时生效。
-
-| 变更前                                   | 变更后                                   |
-| ---------------------------------------- | ---------------------------------------- |
-| ![pattern_before](figures/pattern_before.png) | ![pattern_after](figures/pattern_after.png) |
-
-**起始API Level**
-
-8
-
-**变更发生版本**
-
-从OpenHarmony 5.0.0.41开始。
-
-**变更的接口/组件**
-
-CanvasRenderingContext2D和OffscreenCanvasRenderingContext2D的fillText接口。
-
-**适配指导**
-
-无需适配，变更后设置fillStyle属性为pattern样式，可以在fillText时生效。
-
-示例：
-
-```
-// xxx.ets
-@Entry
-@Component
-struct CreatePattern {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg")
@@ -341,82 +274,26 @@ struct CreatePattern {
       Canvas(this.context)
         .width('100%')
         .height('100%')
-        .backgroundColor('#ffff00')
         .onReady(() =>{
           this.context.font = '30vp sans-serif'
+
+          this.context.fillStyle = 'rgb(227, 248, 249)'
+          this.context.fillRect(0, 0, 150, 150)
+          this.context.fillStyle = 'rgb(39, 135, 217)'
+          this.context.globalCompositeOperation = 'xor' // 设置globalCompositeOperation为'xor'模式
+          this.context.fillText('Hello World', 50, 50) // 生效'xor'模式
+          this.context.globalCompositeOperation = 'source-over' // 设置globalCompositeOperation为默认值
+          this.context.fillText('Hello World', 50, 150) // 生效'source-over'模式
+
           let pattern = this.context.createPattern(this.img, 'repeat')
           if (pattern) {
-            this.context.fillStyle = pattern
+            this.context.fillStyle = pattern // 设置fillStyle为pattern样式
           }
-          this.context.fillText('Hello World', 50, 50)
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
-```
+          this.context.fillText('Hello World', 50, 250) // 生效pattern样式
 
-## cl.arkui.6 CanvasRenderingContext2D和OffscreenCanvasRenderingContext2D的fillStyle属性设置带透明度颜色并设置globalAlpha属性时，fillText绘制文本的透明度变更为颜色透明度×globalAlpha
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-画布绘制的fillStyle属性设置带透明度颜色并设置globalAlpha属性时，fillText绘制文本的透明度为globalAlpha，未计算颜色透明度，导致颜色效果不正确。
-
-
-**变更影响**
-
-该变更为不兼容变更。
-
-变更前：画布绘制的fillStyle属性设置带透明度颜色并设置globalAlpha属性时，fillText绘制文本的透明度为globalAlpha属性值。
-
-变更后：画布绘制的fillStyle属性设置带透明度颜色并设置globalAlpha属性时，fillText绘制文本的透明度为颜色透明度×globalAlpha。
-
-| 变更前                                   | 变更后                                   |
-| ---------------------------------------- | ---------------------------------------- |
-| ![alpha_before](figures/alpha_before.png) | ![alpha_after](figures/alpha_after.png) |
-
-**起始API Level**
-
-8
-
-**变更发生版本**
-
-从OpenHarmony 5.0.0.41开始。
-
-**变更的接口/组件**
-
-CanvasRenderingContext2D和OffscreenCanvasRenderingContext2D的fillText接口。
-
-**适配指导**
-
-无需适配，变更后fillText颜色效果正确。
-
-示例：
-
-```
-// xxx.ets
-@Entry
-@Component
-struct FillText {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Canvas(this.context)
-        .width('100%')
-        .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.context.font = '30vp sans-serif'
-          this.context.fillStyle = '#88FF0000' // 设置带透明度颜色
+          this.context.fillStyle = '#88FF0000' // 设置fillStyle为带透明度颜色
           this.context.globalAlpha = 0.5 // 设置画布透明度
-          this.context.fillText('Hello World', 50, 50)
+          this.context.fillText('Hello World', 50, 350) // 透明度为颜色透明度×globalAlpha
         })
     }
     .width('100%')
