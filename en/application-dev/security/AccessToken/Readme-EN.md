@@ -24,7 +24,7 @@
     - [Permissions for Enterprise Applications](permissions-for-enterprise-apps.md)
     - [Permissions for MDM Applications](permissions-for-mdm-apps.md)
   - [Application Permission Groups](app-permission-group-list.md)
-- Using Security Components<!--Designercurity-components-->
+- Using Security Components<!--security-components-->
   - [Security Component Overview](security-component-overview.md)
   - [Using PasteButton](pastebutton.md)
   - [Using SaveButton](savebutton.md)
