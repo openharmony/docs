@@ -2,8 +2,8 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yaozhupeng-->
-<!--SE: @yaozhupeng-->
-<!--TSE: @zhaoxiaoguang2-->
+<!--Designer: @yaozhupeng-->
+<!--Tester: @zhaoxiaoguang2-->
 
 > **说明：**
 >

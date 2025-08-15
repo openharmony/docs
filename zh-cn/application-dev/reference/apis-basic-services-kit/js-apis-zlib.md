@@ -2,8 +2,8 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @jinsenjun-->
-<!--SE: @jinsenjun-->
-<!--TSE: @lixueqing-->
+<!--Designer: @jinsenjun-->
+<!--Tester: @lixueqing-->
 
 本模块提供压缩解压缩文件的能力。
 

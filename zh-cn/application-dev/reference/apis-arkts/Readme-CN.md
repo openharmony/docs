@@ -2,8 +2,8 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025; @xliu-huanwei-->
-<!--SE: @weng-changcheng; @yuanyao14-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @weng-changcheng; @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
 
 - ArkTS API<!--arkts-arkts-->
   - @arkts.collections (ArkTS容器集)<!--js-apis-arkts-collections-->

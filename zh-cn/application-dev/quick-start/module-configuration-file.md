@@ -2,8 +2,8 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @hanfeng6-->
-<!--SE: @hanfeng6; @lihaitao-->
-<!--TSE: @kongjing2-->
+<!--Designer: @hanfeng6; @lihaitao-->
+<!--Tester: @kongjing2-->
 
 ## 配置文件示例
 

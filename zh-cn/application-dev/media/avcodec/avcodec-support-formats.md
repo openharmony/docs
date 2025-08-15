@@ -3,8 +3,8 @@
 <!--Kit: AVCodec Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @zhanghongran; @mr-chencxy-->
-<!--SE: @dpy2650--->
-<!--TSE: @cyakee-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
 
 ## 媒体编解码
 

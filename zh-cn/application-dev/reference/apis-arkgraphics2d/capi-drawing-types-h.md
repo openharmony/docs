@@ -2,8 +2,8 @@
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphic-->
 <!--Owner: @hangmengxin-->
-<!--SE: @wangyanglan-->
-<!--TSE: @nobuggers-->
+<!--Designer: @wangyanglan-->
+<!--Tester: @nobuggers-->
 
 ## 概述
 

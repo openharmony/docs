@@ -2,8 +2,8 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @SKY2001-->
-<!--SE: @yzkp-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @yzkp-->
+<!--Tester: @lixueqing513-->
 
 本模块用于监听当前应用进程的状态变化。为了便于表述，下文中将“应用进程”简称为“进程”。
 

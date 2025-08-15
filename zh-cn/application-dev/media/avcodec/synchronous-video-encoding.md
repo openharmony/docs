@@ -3,8 +3,8 @@
 <!--Kit: AVCodec Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @zhanghongran-->
-<!--SE: @dpy2650--->
-<!--TSE: @cyakee-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
 
 从API 20开始，支持视频编码同步模式。
 
