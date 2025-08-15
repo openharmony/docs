@@ -3,7 +3,7 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--SE: @chengguohong; @tangjia15-->
+<!--Designer: @chengguohong; @tangjia15-->
 <!--TSE: @wangfeng517-->
 
 access模块提供了打开和关闭蓝牙、获取蓝牙状态的方法。

@@ -3,7 +3,7 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @littlejerry1-->
-<!--SE: @ccllee1-->
+<!--Designer: @ccllee1-->
 <!--TSE: @lixueqing513-->
 
 AbilityConstant提供Ability相关的枚举，包括WindowMode等。

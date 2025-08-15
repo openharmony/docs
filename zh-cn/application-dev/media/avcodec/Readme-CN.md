@@ -3,7 +3,7 @@
 <!--Kit: AVCodec Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @zhanghongran; @mr-chencxy-->
-<!--SE: @dpy2650--->
+<!--Designer: @dpy2650--->
 <!--TSE: @cyakee; @baotianhao-->
 
 - [AVCodec Kit简介](avcodec-kit-intro.md)

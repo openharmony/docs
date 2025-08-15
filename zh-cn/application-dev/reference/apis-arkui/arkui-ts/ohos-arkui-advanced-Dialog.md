@@ -2,7 +2,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @fengluochenai-->
-<!--SE: @YanSanzo-->
+<!--Designer: @YanSanzo-->
 <!--TSE: @tinygreyy-->
 
 

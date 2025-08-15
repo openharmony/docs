@@ -3,7 +3,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @piggyguy;@jiyujia926;@yangfan229-->
-<!--SE: @piggyguy;@s10021109;@yangfan229-->
+<!--Designer: @piggyguy;@s10021109;@yangfan229-->
 <!--TSE: @fredyuan912-->
 
 >**说明：**

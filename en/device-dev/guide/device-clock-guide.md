@@ -54,13 +54,13 @@ To build such an app, we can create a page that has a flexible layout with two r
     ```
     <div class="container">    
         <stack class="stack">
-            <image src="/common/clock_bg.png" class="clock-bg"></image> <!--Set the clock face image.-->
+            <image src="/common/clock_bg.png" class="clock-bg"></image> <!--Designert the clock face image.-->
             <image src="/common/hour_hand.png" class="clock-hand"
-                   style="transform : rotate({{ hour * 30 + minute / 2 }}deg);"></image> <!--Set the hour hand image. (hour * 30) indicates that the hour hand rotates 30 degrees every hour. (minute / 2) indicates the rotation degrees per minute.-->
+                   style="transform : rotate({{ hour * 30 + minute / 2 }}deg);"></image> <!--Designert the hour hand image. (hour * 30) indicates that the hour hand rotates 30 degrees every hour. (minute / 2) indicates the rotation degrees per minute.-->
             <image src="/common/minute_hand.png" class="clock-hand"
-                   style="transform : rotate({{ minute * 6 + second / 10 }}deg);"></image> <!--Set the minute hand image. (minute * 6) indicates that the minute hand rotates 6 degrees every minute. (second / 10) indicates the rotation degrees per second.-->
+                   style="transform : rotate({{ minute * 6 + second / 10 }}deg);"></image> <!--Designert the minute hand image. (minute * 6) indicates that the minute hand rotates 6 degrees every minute. (second / 10) indicates the rotation degrees per second.-->
             <image src="/common/second_hand.png" class="clock-hand"
-                   style="transform : rotate({{ second * 6 }}deg);"></image> <!--Set the second hand image. (second * 6) indicates that the second hand rotates 6 degrees per second.-->
+                   style="transform : rotate({{ second * 6 }}deg);"></image> <!--Designert the second hand image. (second * 6) indicates that the second hand rotates 6 degrees per second.-->
        </stack>
     </div>
     ```

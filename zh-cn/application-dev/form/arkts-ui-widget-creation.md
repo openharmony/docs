@@ -2,7 +2,7 @@
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @cx983299475-->
-<!--SE: @xueyulong-->
+<!--Designer: @xueyulong-->
 <!--TSE: @chenmingze-->
 ## 创建ArkTS卡片
 创建卡片当前有两种入口：

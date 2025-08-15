@@ -3,7 +3,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @huyisuo-->
-<!--SE: @zhangboren-->
+<!--Designer: @zhangboren-->
 <!--TSE: @TerryTsao-->
 
 组件预览支持以自定义组件为最小单位进行预览，方便开发者查看单个自定义组件UI效果。

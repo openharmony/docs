@@ -2,7 +2,7 @@
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @cx983299475-->
-<!--SE: @xueyulong-->
+<!--Designer: @xueyulong-->
 <!--TSE: @chenmingze-->
 
 本文主要提供被动刷新的开发指导，刷新流程请参考[被动刷新概述](./arkts-ui-widget-interaction-overview.md#被动刷新)。

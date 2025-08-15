@@ -3,7 +3,7 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @amunra03-->
-<!--SE: @wenxiaolin-->
+<!--Designer: @wenxiaolin-->
 <!--TSE: @zs_111-->
 
 本模块是对NFC TagSession的使用说明。

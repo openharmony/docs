@@ -2,7 +2,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiang-shouxing-->
-<!--SE: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
 <!--TSE: @sally__-->
 
 自定义节点相关属性定义的详细信息。

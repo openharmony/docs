@@ -2,7 +2,7 @@
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
-<!--SE: @liweilu1-->
+<!--Designer: @liweilu1-->
 <!--TSE: @xchaosioda-->
 
 该模块提供用户数据管理能力：包括访问、修改用户公共媒体数据信息等常用功能。

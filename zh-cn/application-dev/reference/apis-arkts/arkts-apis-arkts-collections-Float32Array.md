@@ -2,7 +2,7 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
-<!--SE: @weng-changcheng-->
+<!--Designer: @weng-changcheng-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 > **说明：**
 >

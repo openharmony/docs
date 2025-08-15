@@ -2,7 +2,7 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @rr_cn-->
-<!--SE: @peterhuangyu-->
+<!--Designer: @peterhuangyu-->
 <!--TSE: @gcw_KuLfPSbe-->
 
 ## 简介

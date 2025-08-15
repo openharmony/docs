@@ -3,7 +3,7 @@
 <!--Kit: Localization Kit-->
 <!--Subsystem: Global-->
 <!--Owner: @liule_123-->
-<!--SE: @buda_wy-->
+<!--Designer: @buda_wy-->
 <!--TSE: @lpw_work-->
 
 ## 概述

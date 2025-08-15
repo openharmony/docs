@@ -2,7 +2,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @lushi871202-->
-<!--SE: @lushi871202-->
+<!--Designer: @lushi871202-->
 <!--TSE: @sally__-->
 
 本章节主要介绍UI的dump和调优能力，用于提高开发效率和优化开发者体验。

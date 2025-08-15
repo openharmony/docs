@@ -3,7 +3,7 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @amunra03-->
-<!--SE: @wenxiaolin-->
+<!--Designer: @wenxiaolin-->
 <!--TSE: @zs_111-->
 
 本模块主要用于管理NFC状态，包括打开和关闭NFC，读取NFC的状态等。

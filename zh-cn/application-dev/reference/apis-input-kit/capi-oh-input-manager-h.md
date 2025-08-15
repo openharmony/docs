@@ -3,7 +3,7 @@
 <!--Kit: Input Kit-->
 <!--Subsystem: MultimodalInput-->
 <!--Owner: @zhaoxueyuan-->
-<!--SE: @hanruofei-->
+<!--Designer: @hanruofei-->
 <!--TSE: @Lyuxin-->
 
 ## 概述

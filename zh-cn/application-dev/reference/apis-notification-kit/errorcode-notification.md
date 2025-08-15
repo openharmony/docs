@@ -2,7 +2,7 @@
 <!--Kit: Notification Kit-->
 <!--Subsystem: Notification-->
 <!--Owner: @michael_woo888-->
-<!--SE: @dongqingran; @wulong158-->
+<!--Designer: @dongqingran; @wulong158-->
 <!--TSE: @wanghong1997-->
 
 > **说明：**

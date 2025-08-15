@@ -2,7 +2,7 @@
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphic-->
 <!--Owner: @hangmengxin-->
-<!--SE: @wangyanglan-->
+<!--Designer: @wangyanglan-->
 <!--TSE: @nobuggers-->
 
 > **说明：**

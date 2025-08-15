@@ -3,7 +3,7 @@
 <!--Kit: AVCodec Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @zhanghongran-->
-<!--SE: @dpy2650--->
+<!--Designer: @dpy2650--->
 <!--TSE: @cyakee-->
 
 从API 20开始，支持视频解码同步模式。

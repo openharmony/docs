@@ -2,7 +2,7 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yaozhupeng-->
-<!--SE: @yaozhupeng-->
+<!--Designer: @yaozhupeng-->
 <!--TSE: @zhaoxiaoguang2-->
 
 > **说明：**

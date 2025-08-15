@@ -3,7 +3,7 @@
 <!--Kit: Localization Kit-->
 <!--Subsystem: Global-->
 <!--Owner: @yliupy-->
-<!--SE: @sunyaozu-->
+<!--Designer: @sunyaozu-->
 <!--TSE: @lpw_work-->
 
 ## 功能介绍

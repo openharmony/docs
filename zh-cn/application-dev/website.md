@@ -153,7 +153,7 @@
             - [窗口属性](application-models/window-properties.md)
             - [申请授权](application-models/request-permissions.md)
             - [跳转规则](application-models/redirection-rules.md)
-          - ServiceAbility组件开发指导<!--serviceability-->
+          - ServiceAbility组件开发指导<!--Designerrviceability-->
             - [ServiceAbility组件概述](application-models/serviceability-overview.md)
             - [ServiceAbility组件配置](application-models/serviceability-configuration.md)
             - [ServiceAbility的生命周期](application-models/serviceability-lifecycle.md)
@@ -291,7 +291,7 @@
             - [ArrayBuffer对象](arkts-utils/arraybuffer-object.md)
             - [SharedArrayBuffer对象](arkts-utils/shared-arraybuffer-object.md)
             - [Transferable对象（NativeBinding对象）](arkts-utils/transferabled-object.md)
-            - Sendable对象<!--sendable-object-->
+            - Sendable对象<!--Designerndable-object-->
               - [Sendable对象简介](arkts-utils/arkts-sendable.md)
               - [Sendable使用规则与约束](arkts-utils/sendable-constraints.md)
               - [异步锁](arkts-utils/arkts-async-lock-introduction.md)
@@ -829,7 +829,7 @@
         - [用户文件URI介绍](file-management/user-file-uri-intro.md)
         - [FileUri开发指导(C/C++)](file-management/native-fileuri-guidelines.md)
         - [获取用户目录环境(C/C++)](file-management/native-environment-guidelines.md)
-        - 选择与保存用户文件<!--select-save-user-file-->
+        - 选择与保存用户文件<!--Designerlect-save-user-file-->
           - [选择用户文件](file-management/select-user-file.md)
           - [保存用户文件](file-management/save-user-file.md)
           - [授权持久化](file-management/file-persistPermission.md)
@@ -973,7 +973,7 @@
             - [企业类应用可用权限](security/AccessToken/permissions-for-enterprise-apps.md)
             - [仅MDM应用可用权限](security/AccessToken/permissions-for-mdm-apps.md)
           - [应用权限组列表](security/AccessToken/app-permission-group-list.md)
-        - 使用安全控件<!--security-components-->
+        - 使用安全控件<!--Designercurity-components-->
           - [安全控件概述](security/AccessToken/security-component-overview.md)
           - [使用粘贴控件](security/AccessToken/pastebutton.md)
           - [使用保存控件](security/AccessToken/savebutton.md)
@@ -1397,9 +1397,9 @@
         - [获取用户动作开发指导](device/stationary/motion-guidelines.md)
         - [设备状态感知开发指导](device/stationary/deviceStatus-guidelines.md)
         - [用户状态感知开发指导](device/stationary/userStatus-guidelines.md)
-      - Sensor Service Kit（传感器服务）<!--sensor-service-kit-->
+      - Sensor Service Kit（传感器服务）<!--Designernsor-service-kit-->
         - [Sensor Service Kit开发简介](device/sensor/sensorservice-kit-intro.md)
-        - 传感器<!--sensor-->
+        - 传感器<!--Designernsor-->
           - [传感器开发概述](device/sensor/sensor-overview.md)
           - [传感器开发指导(ArkTS)](device/sensor/sensor-guidelines.md)
           - [传感器开发指导(C/C++)](device/sensor/sensor-guidelines-capi.md)
@@ -2991,7 +2991,7 @@
           - [时间滑动选择器弹窗 (TimePickerDialog)](reference/apis-arkui/arkui-ts/ts-methods-timepicker-dialog.md)
           - [文本滑动选择器弹窗 (TextPickerDialog)](reference/apis-arkui/arkui-ts/ts-methods-textpicker-dialog.md)
           - [弹出框 (Dialog)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)
-        - 卡片<!--service-widgets-->
+        - 卡片<!--Designerrvice-widgets-->
           - [FormLink](reference/apis-arkui/arkui-ts/ts-container-formlink.md)
           <!--Del-->
           - [FormComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)
@@ -4498,8 +4498,8 @@
           - [回旋镖错误码](reference/apis-multimodalawareness-kit/errorcode-metadataBinding.md)
           - [设备状态感知错误码](reference/apis-multimodalawareness-kit/errorcode-deviceStatus.md)
           - [用户状态感知错误码](reference/apis-multimodalawareness-kit/errorcode-userStatus.md)
-      - Sensor Service Kit（传感器服务）<!--sensor-service-api-->
-        - ArkTS API<!--sensor-service-arkts-->
+      - Sensor Service Kit（传感器服务）<!--Designernsor-service-api-->
+        - ArkTS API<!--Designernsor-service-arkts-->
           - [@ohos.sensor(传感器)](reference/apis-sensor-service-kit/js-apis-sensor.md)
           - [@ohos.vibrator(振动)](reference/apis-sensor-service-kit/js-apis-vibrator.md)
           <!--Del-->
@@ -4507,19 +4507,19 @@
           <!--DelEnd-->
           - [@ohos.sensor(传感器)(已废弃接口)](reference/apis-sensor-service-kit/js-apis-system-sensor.md)
           - [@ohos.vibrator(振动)(已废弃接口)](reference/apis-sensor-service-kit/js-apis-system-vibrate.md)
-        - C API<!--sensor-service-c-->
-          - 模块<!--sensor-service-module-->
+        - C API<!--Designernsor-service-c-->
+          - 模块<!--Designernsor-service-module-->
             - [Sensor](reference/apis-sensor-service-kit/_sensor.md)
             - [Vibrator](reference/apis-sensor-service-kit/_vibrator.md)
-          - 头文件<!--sensor-service-headerfile-->
+          - 头文件<!--Designernsor-service-headerfile-->
             - [oh_sensor.h](reference/apis-sensor-service-kit/oh_sensor_8h.md)
             - [oh_sensor_type.h](reference/apis-sensor-service-kit/oh_sensor_type_8h.md)
             - [vibrator.h](reference/apis-sensor-service-kit/vibrator_8h.md)
             - [vibrator_type.h](reference/apis-sensor-service-kit/vibrator_type_8h.md)
-          - 结构体<!--sensor-service-struct-->
+          - 结构体<!--Designernsor-service-struct-->
             - [Vibrator_Attribute](reference/apis-sensor-service-kit/_vibrator_attribute.md)
             - [Vibrator_File_Description](reference/apis-sensor-service-kit/_vibrator_file_description.md)
-        - 错误码<!--sensor-service-arkts-errcode-->
+        - 错误码<!--Designernsor-service-arkts-errcode-->
           - [Sensor错误码](reference/apis-sensor-service-kit/errorcode-sensor.md)
           - [Vibrator错误码](reference/apis-sensor-service-kit/errorcode-vibrator.md)
     - 调测调优<!--system-debug-optimize-api-->

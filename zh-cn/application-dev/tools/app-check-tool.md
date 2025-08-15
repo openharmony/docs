@@ -2,7 +2,7 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @jsjzju-->
-<!--SE: @jsjzju-->
+<!--Designer: @jsjzju-->
 <!--TSE: @lixueqing513-->
 
 ## 简介

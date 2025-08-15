@@ -2,7 +2,7 @@
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @cx983299475-->
-<!--SE: @xueyulong-->
+<!--Designer: @xueyulong-->
 <!--TSE: @chenmingze-->
 
 formError模块提供获取卡片错误码的能力。

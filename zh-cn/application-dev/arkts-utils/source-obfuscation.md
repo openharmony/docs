@@ -2,7 +2,7 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @zju-wyx-->
-<!--SE: @xiao-peiyang; @dengxinyu-->
+<!--Designer: @xiao-peiyang; @dengxinyu-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 术语清单

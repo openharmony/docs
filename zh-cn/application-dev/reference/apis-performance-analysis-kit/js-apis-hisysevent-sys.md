@@ -3,7 +3,7 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @lyj_love_code-->
-<!--SE: @tangyyan-->
+<!--Designer: @tangyyan-->
 <!--TSE: @gcw_KuLfPSbe-->
 
 本模块提供了系统事件打点能力，包括系统事件的埋点、落盘系统事件的订阅及已落盘的系统事件的查询能力。

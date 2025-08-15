@@ -3,7 +3,7 @@
 <!--Kit: AVCodec Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @mr-chencxy-->
-<!--SE: @dpy2650--->
+<!--Designer: @dpy2650--->
 <!--TSE: @baotianhao-->
 
 ## 概述

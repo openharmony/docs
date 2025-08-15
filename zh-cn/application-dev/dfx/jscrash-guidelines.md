@@ -2,7 +2,7 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @wanghuan2025-->
-<!--SE: @Maplestory-->
+<!--Designer: @Maplestory-->
 <!--TSE: @yufeifei-->
 
 ## 简介

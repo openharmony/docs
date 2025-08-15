@@ -2,7 +2,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
 <!--Owner: @oh_wangxk;@logn-->
-<!--SE: @hejunfei1991-->
+<!--Designer: @hejunfei1991-->
 <!--TSE: @qinliwen0417-->
 
 ## 概述

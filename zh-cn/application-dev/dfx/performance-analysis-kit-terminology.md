@@ -3,7 +3,7 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @mzyan-->
-<!--SE: @liyueric-->
+<!--Designer: @liyueric-->
 <!--TSE: @gcw_KuLfPSbe-->
 
 ## 通用

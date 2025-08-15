@@ -2,7 +2,7 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025; @xliu-huanwei-->
-<!--SE: @weng-changcheng; @yuanyao14-->
+<!--Designer: @weng-changcheng; @yuanyao14-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 
 - ArkTS API<!--arkts-arkts-->

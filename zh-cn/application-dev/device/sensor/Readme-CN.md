@@ -1,7 +1,7 @@
-# Sensor Service Kit（传感器服务）<!--sensor-service-kit-->
+# Sensor Service Kit（传感器服务）<!--Designernsor-service-kit-->
 
 - [Sensor Service Kit开发简介](sensorservice-kit-intro.md)
-- 传感器<!--sensor-->
+- 传感器<!--Designernsor-->
   - [传感器开发概述](sensor-overview.md)
   - [传感器开发指导(ArkTS)](sensor-guidelines.md)
   - [传感器开发指导(C/C++)](sensor-guidelines-capi.md)

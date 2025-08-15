@@ -3,7 +3,7 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @zexin_c-->
-<!--SE: @li-weifeng2-->
+<!--Designer: @li-weifeng2-->
 <!--TSE: @lixueqing513-->
 
 ## 概述

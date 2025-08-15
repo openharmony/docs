@@ -3,7 +3,7 @@
 <!--Kit: Input Kit-->
 <!--Subsystem: MultimodalInput-->
 <!--Owner: @zhaoxueyuan-->
-<!--SE: @hanruofei-->
+<!--Designer: @hanruofei-->
 <!--TSE: @Lyuxin-->
 
 按键设备的键码值，按键设备包括键盘、电源键、拍照键等。

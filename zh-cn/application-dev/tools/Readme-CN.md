@@ -2,7 +2,7 @@
 <!--Kit: Common-->
 <!--Subsystem: Common-->
 <!--Owner: @foryourself-->
-<!--SE: @lingminghw-->
+<!--Designer: @lingminghw-->
 <!--TSE: @RayShih-->
 
 - [SDK命令行工具简介](command-line-tools-overview.md)

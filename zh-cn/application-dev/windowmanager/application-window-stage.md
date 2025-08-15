@@ -2,7 +2,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
 <!--Owner: @waterwin-->
-<!--SE: @nyankomiya-->
+<!--Designer: @nyankomiya-->
 <!--TSE: @qinliwen0417-->
 
 ## 基本概念

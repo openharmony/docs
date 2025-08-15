@@ -2,7 +2,7 @@
 <!--Kit: NDK Development-->
 <!--Subsystem: commonlibrary-->
 <!--Owner: @liyiming13-->
-<!--SE: @huang_huijin-->
+<!--Designer: @huang_huijin-->
 <!--TSE: @kirl75; @zsw_zhushiwei-->
 
 ## 1. 功能介绍

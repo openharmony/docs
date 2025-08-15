@@ -3,7 +3,7 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--SE: @chengguohong; @tangjia15-->
+<!--Designer: @chengguohong; @tangjia15-->
 <!--TSE: @wangfeng517-->
 
 baseProfile模块提供了基础的profile方法。

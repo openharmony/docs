@@ -2,7 +2,7 @@
 <!--Kit: Form Kit-->	
 <!--Subsystem: Ability-->	
 <!--Owner: @cx983299475-->	
-<!--SE: @xueyulong-->	
+<!--Designer: @xueyulong-->	
 <!--TSE: @chenmingze-->
 
 卡片相关的配置文件主要包含[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)配置和卡片配置。
