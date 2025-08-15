@@ -246,6 +246,8 @@ struct Font08 {
        blue: 0
      },
      fontSize: 50,
+     // 当wordBreak为text.WordBreak.BREAK_HYPHEN时，需要设置语言偏好，段落会在不同语言偏好下呈现不同的文本断词效果
+     locale: "en-gb"
    };
    ```
 
@@ -312,6 +314,8 @@ class MyRenderNode extends RenderNode {
         blue: 0
       },
       fontSize: 50,
+      // 当wordBreak为text.WordBreak.BREAK_HYPHEN时，需要为段落设置语言偏好，段落会在不同语言偏好下呈现不同的文本断词效果
+      locale: "en-gb"
     };
     
     let myParagraphStyle: text.ParagraphStyle = {
@@ -331,6 +335,13 @@ class MyRenderNode extends RenderNode {
     paragraphBuilder.addText("Hello World Hello World Hello World Hello World Hello World Hello World " +
       "Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World " +
       "Hello World Hello World Hello World Hello World Hello World ");
+    // 当wordBreak为text.WordBreak.BREAK_HYPHEN时，替换文本内容为：
+    // paragraphBuilder.addText("Modern embedded systems require robust communication protocols and efficient memory " +
+    //   "management strategies. Developers often face challenges in optimizing performance while maintaining " +
+    //   "modularity and portability. By leveraging a layered architecture and structured logging, applications can " +
+    //   "detect anomalies and respond quickly to faults. This approach enhances reliability, especially in " +
+    //   "time-critical environments such as IoT devices and real-time operating systems.");
+
     // 生成段落
     let paragraph = paragraphBuilder.build();
     // 布局
@@ -430,9 +441,12 @@ struct Font08 {
 | -------- | -------- |
 | 文本对齐方式为text.TextAlign.LEFT，最大行数为3，断词策略为text.WordBreak.BREAK_WORD。 | ![zh-cn_image_0000002246563849](figures/zh-cn_image_0000002246563849.png) | 
 | 文本对齐方式为text.TextAlign.RIGHT，最大行数为3，断词策略为text.WordBreak.BREAK_WORD。 | ![zh-cn_image_0000002211443900](figures/zh-cn_image_0000002211443900.png) | 
-| 文本对齐方式为text.TextAlign.JUSTIFY ，最大行数为10 ，断词策略为text.WordBreak.BREAK_WORD。 | ![zh-cn_image_complexArkTsDemoJustify](figures/zh-cn_image_complexArkTsDemoJustify.png) | 
+| 文本对齐方式为text.TextAlign.JUSTIFY，最大行数为10，断词策略为text.WordBreak.BREAK_WORD。 | ![zh-cn_image_complexArkTsDemoJustify](figures/zh-cn_image_complexArkTsDemoJustify.png) | 
 | 文本对齐方式为text.TextAlign.LEFT，最大行数为3，断词策略为text.WordBreak.BREAK_ALL。 | ![zh-cn_image_0000002211603680](figures/zh-cn_image_0000002211603680.png) | 
-| 文本对齐方式为text.TextAlign.LEFT ，最大行数为10 ，断词策略为text.WordBreak.BREAK_ALL。 | ![zh-cn_image_0000002246563845](figures/zh-cn_image_0000002246563845.png) | 
+| 文本对齐方式为text.TextAlign.LEFT，最大行数为10，断词策略为text.WordBreak.BREAK_ALL。 | ![zh-cn_image_0000002246563845](figures/zh-cn_image_0000002246563845.png) | 
+| 文本对齐方式为text.TextAlign.LEFT，最大行数为10，断词策略为text.WordBreak.BREAK_HYPHEN，<br/>不设置语言偏好。段落无连字符“-”断词效果。 | ![ts_word_break_hyphen_locale_undefined.jpg](figures/ts_word_break_hyphen_locale_undefined.jpg) | 
+| 文本对齐方式为text.TextAlign.LEFT，最大行数为10，断词策略为text.WordBreak.BREAK_HYPHEN，<br/>语言偏好为en-gb（英式英语）。段落产生连字符“-”断词效果，并根据语言偏好呈现英式语言环境断词效果。 | ![ts_word_break_hyphen_local_en-gb.jpg](figures/ts_word_break_hyphen_local_en-gb.jpg) | 
+| 文本对齐方式为text.TextAlign.LEFT，最大行数为10，断词策略为text.WordBreak.BREAK_HYPHEN，<br/>语言偏好为en-us（美式英语）。段落产生连字符“-”断词效果，并根据语言偏好呈现美式语言环境断词效果。 | ![ts_word_break_hyphen_local_en-us.jpg](figures/ts_word_break_hyphen_local_en-us.jpg) | 
 
 
 ## 多样式文本绘制与显示
