@@ -457,6 +457,8 @@ struct Font08 {
 
 - **上下标：** 可以将任意字符处理成上标或下标，更精准表达文本含义。
 
+- **高对比度文字绘制：** 主要通过将深色文字变黑、浅色文字变白，增强文本的对比效果。
+
 ### 装饰线
 
 装饰线（[Decoration](../reference/apis-arkgraphics2d/js-apis-graphics-text.md#decoration)）是指在文本上方、下方或中间添加的装饰性线条，当前支持上划线、下划线、删除线。
@@ -534,6 +536,14 @@ let superScriptStyle: text.TextStyle = {
 ```
 
 具体使用效果可参见下文[示例四](#示例四上下标文本)。
+
+### 高对比度
+
+高对比度可将深色文字变黑、浅色文字变白。开发者可选择开启或关闭应用的高对比度文字渲染，或遵循系统设置中的高对比度文字配置。
+
+高对比度模式有3种，具体参考[TextHighContrast](../reference/apis-arkgraphics2d/js-apis-graphics-text.md#texthighcontrast20)。
+
+具体使用效果可参见下文[示例五](#示例五高对比度)。
 
 ### 示例一（装饰线、字体特征）
 这里以文本样式中的装饰线和字体特征为例，呈现多样式文本的绘制与显示。
@@ -1155,3 +1165,135 @@ struct Font08 {
 | -------- | -------- |
 | 上标文本 | ![zh-cn_image_complexArkTsDemo2_1](figures/en_image_subscript.jpg) | 
 | 下标文本 | ![zh-cn_image_complexArkTsDemo2_2](figures/en_image_superscript.jpg) | 
+
+### 示例五（高对比度）
+这里以高对比度为例，呈现高对比度文字的绘制与显示。
+```ts
+import { NodeController, FrameNode, RenderNode, DrawContext, UIContext} from '@kit.ArkUI'
+import { text } from '@kit.ArkGraphics2D'
+
+// 创建一个MyRenderNode类，并绘制文本。
+class MyRenderNode extends RenderNode {
+  async draw(context: DrawContext) {
+    let canvas = context.canvas;
+
+    // 开启APP的文字渲染高对比度配置
+    text.setTextHighContrast(text.TextHighContrast.TEXT_APP_ENABLE_HIGH_CONTRAST);
+
+    let myTextStyle: text.TextStyle = {
+      color: {
+        alpha: 255,
+        red: 111,
+        green: 255,
+        blue: 255
+      },
+      fontSize: 100,
+    };
+
+    let myParagraphStyle: text.ParagraphStyle = {
+      textStyle: myTextStyle,
+    };
+
+    let fontCollection = text.FontCollection.getGlobalInstance();
+    let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+
+    // 更新文本样式
+    paragraphBuilder.pushStyle(myTextStyle);
+    // 添加文本
+    paragraphBuilder.addText("Hello World");
+
+    // 生成段落
+    let paragraph = paragraphBuilder.build();
+    // 布局
+    paragraph.layoutSync(1250);
+    // 绘制文本
+    paragraph.paint(canvas, 10, 800);
+  }
+}
+
+// 创建一个MyRenderNode对象
+const textNode = new MyRenderNode()
+// 定义newNode的像素格式
+textNode.frame = {
+  x: 0,
+  y: 0,
+  width: 400,
+  height: 600
+}
+textNode.pivot = { x: 0.2, y: 0.8 }
+textNode.scale = { x: 1, y: 1 }
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode {
+    this.rootNode = new FrameNode(uiContext)
+    if (this.rootNode == null) {
+      return this.rootNode
+    }
+    const renderNode = this.rootNode.getRenderNode()
+    if (renderNode != null) {
+      renderNode.frame = {
+        x: 0,
+        y: 0,
+        width: 10,
+        height: 500
+      }
+      renderNode.pivot = { x: 0.2, y: 0.8 }
+    }
+    return this.rootNode
+  }
+
+  addNode(node: RenderNode): void {
+    if (this.rootNode == null) {
+      return
+    }
+    const renderNode = this.rootNode.getRenderNode()
+    if (renderNode != null) {
+      renderNode.appendChild(node)
+    }
+  }
+
+  clearNodes(): void {
+    if (this.rootNode == null) {
+      return
+    }
+    const renderNode = this.rootNode.getRenderNode()
+    if (renderNode != null) {
+      renderNode.clearChildren()
+    }
+  }
+}
+
+let myNodeController: MyNodeController = new MyNodeController()
+
+async function performTask() {
+  myNodeController.clearNodes()
+  myNodeController.addNode(textNode)
+}
+
+@Entry
+@Component
+struct Font08 {
+  build() {
+    Column() {
+      Row() {
+        NodeContainer(myNodeController)
+          .height('100%')
+          .width('100%')
+        Text("Test high contrast")
+          .onAppear(() => {
+              performTask();
+            })
+      }
+      .width('100%')
+    }
+  }
+}
+```
+具体示意效果如下所示：
+
+| 高对比度设置 | 示意效果 | 
+| -------- | -------- |
+| 不开启高对比度 | ![zh-cn_image_complexArkTsDemo5_1](figures/zh-cn_image_complexArkTsDemo5_1.png) | 
+| 开启高对比度 | ![zh-cn_image_complexArkTsDemo5_2](figures/zh-cn_image_complexArkTsDemo5_2.png) | 
