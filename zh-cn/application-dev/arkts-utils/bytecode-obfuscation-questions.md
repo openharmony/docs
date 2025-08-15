@@ -488,7 +488,7 @@ declare a2 {
 
 使用-keep-global-name选项将global配置到白名单中。
 
-API18 之后global 已加入系统的白名单，不需要开发者再使用 -keep-global-name 配置
+从API version 18开始，global 已加入系统的白名单，不需要开发者再使用 -keep-global-name 配置
 
 
 #### 案例四：使用Reflect.defineMetadata()，混淆后，提示找不到函数，导致程序异常
