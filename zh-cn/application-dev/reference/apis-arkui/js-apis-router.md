@@ -1442,7 +1442,7 @@ getParams(): Object
 >
 > 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 >
-> getParams只获取页面的参数，并不会清除页面关联的参数。
+> getParams只获取当前页面的参数，并不会清除页面关联的参数。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
