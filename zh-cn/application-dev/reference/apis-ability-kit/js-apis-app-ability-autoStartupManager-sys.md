@@ -7,7 +7,7 @@
 <!--Tester: @lixueqing513-->
 <!--Adviser: @huipeizi-->
 
-autoStartupManager模块提供注册、注销监听应用开机自启动状态变化的回调函数的能力。
+autoStartupManager模块提供应用开机自启动状态的监听能力，允许开发者通过回调机制感知应用自启动状态的变化。
 
 > **说明：**
 >
@@ -27,7 +27,7 @@ import { autoStartupManager } from '@kit.AbilityKit';
 
 on(type: 'systemAutoStartup', callback: AutoStartupCallback): void
 
-注册监听应用组件开机自启动状态变化。
+注册监听应用组件开机自启动状态变化的回调函数。
 
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
@@ -69,7 +69,7 @@ try {
 } catch (err) {
   let code = (err as BusinessError).code;
   let msg = (err as BusinessError).message;
-  console.error(`autostartupmanager on success, err code: ${code}, err msg: ${msg}.`);
+  console.error(`autostartupmanager on failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -77,7 +77,7 @@ try {
 
 off(type: 'systemAutoStartup', callback?: AutoStartupCallback): void
 
-注销监听应用组件开机自启动状态变化。
+注销监听应用组件开机自启动状态变化的回调函数。
 
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
@@ -119,7 +119,7 @@ try {
 } catch (err) {
   let code = (err as BusinessError).code;
   let msg = (err as BusinessError).message;
-  console.error(`autostartupmanager on success, err code: ${code}, err msg: ${msg}.`);
+  console.error(`autostartupmanager on failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
