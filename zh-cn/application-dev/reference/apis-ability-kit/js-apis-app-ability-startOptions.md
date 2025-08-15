@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @dsz2025; @yangxuguang-huawei; @Luobniz21-->
-<!--SE: @ccllee1-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 StartOptions可以作为启动UIAbility接口（例如[startAbility()](js-apis-inner-application-uiAbilityContext.md#startability-1)）的入参，用于指定目标UIAbility启动时的选项，包括但不局限于窗口模式、目标UIAbility启动时所在的屏幕等。
 
@@ -72,20 +73,24 @@ StartOptions用于指定启动目标UIAbility时的选项。
         }
       };
 
-      let color = new ArrayBuffer(0);
+      let color = new ArrayBuffer(512 * 512 * 4); // 创建一个ArrayBuffer对象，用于存储图像像素。该对象的大小为（height * width * 4）字节。
       let imagePixelMap: image.PixelMap;
       let windowParam: window.WindowCreateParams = {};
+      let bufferArr = new Uint8Array(color);
+      for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 0;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 255;
+      }
       image.createPixelMap(color, {
-        size: {
-          height: 100,
-          width: 100
-        }
+        editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 512, width: 512 }
       }).then((data) => {
         imagePixelMap = data;
         let options: StartOptions = {
           displayId: 0,
           startWindowIcon: imagePixelMap,
-          startWindowBackgroundColor: '#00000000',
+          startWindowBackgroundColor: '#E510FFFF',
           supportWindowModes: [
             bundleManager.SupportWindowMode.FULL_SCREEN,
             bundleManager.SupportWindowMode.SPLIT,

@@ -1,5 +1,12 @@
 # @ohos.app.ability.AbilityConstant (Ability相关常量)(系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @littlejerry1-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 AbilityConstant提供Ability相关的枚举，包括WindowMode等。
 
 > **说明：**
@@ -44,12 +51,12 @@ let option: StartOptions = {
 };
 
 // 确保从上下文获取到context
-class MyAbility extends UIAbility {
+export default class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.startAbility(want, option).then(() => {
       console.log('Succeed to start ability.');
     }).catch((error: BusinessError) => {
-      console.error('Failed to start ability with error: ${JSON.stringify(error)}');
+      console.error(`Failed to start ability with error: ${JSON.stringify(error)}`);
     });
   }
 }

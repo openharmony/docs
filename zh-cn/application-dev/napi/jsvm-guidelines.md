@@ -2,8 +2,9 @@
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @yuanxiaogou; @string_sz-->
-<!--SE: @knightaoko-->
-<!--TSE: @test_lzz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## 生命周期管理
 
@@ -192,7 +193,7 @@ static napi_value Add([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_call
         } else {
             OH_LOG_ERROR(LOG_APP, "JSVM:t1 OH_JSVM_CreateInt32 fail");
         }
-        int32_t num1;
+        int32_t num1 = 0;
         OH_JSVM_GetValueInt32(env, value, &num1);
         OH_LOG_INFO(LOG_APP, "JSVM:t1 num1 = %{public}d", num1);
         OH_JSVM_CloseHandleScope(env, handleScope);
@@ -208,7 +209,7 @@ static napi_value Add([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_call
         } else {
             OH_LOG_ERROR(LOG_APP, "JSVM:t2 OH_JSVM_CreateInt32 fail");
         }
-        int32_t num1;
+        int32_t num1 = 0;
         OH_JSVM_GetValueInt32(env, value, &num1);
         OH_LOG_INFO(LOG_APP, "JSVM:t2 num1 = %{public}d", num1);
         OH_JSVM_CloseHandleScope(env, handleScope);

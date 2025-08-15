@@ -2,8 +2,9 @@
 <!--Kit: Driver Development Kit-->
 <!--Subsystem: Driver-->
 <!--Owner: @lixinsheng2-->
-<!--SE: @w00373942-->
-<!--TSE: @dong-dongzhen-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
 
 ## 概述
 
@@ -23,7 +24,7 @@
 | -- | -- |
 | uint8_t* const address | 映射后的缓冲区地址。 |
 | const size_t size | 缓冲区大小。 |
-| uint32_t offset | 所使用的的缓冲区的偏移量，默认为0，表示没有偏移，从{@link address}开始。 |
+| uint32_t offset | 所使用的缓冲区的偏移量，默认为0，表示没有偏移，从{@link address}开始。 |
 | uint32_t bufferLength | 所使用的缓冲区的长度，默认等于{@link size}，表示使用全部的缓冲区。 |
 | uint32_t transferedLength | 实际传输的数据的长度。 |
 

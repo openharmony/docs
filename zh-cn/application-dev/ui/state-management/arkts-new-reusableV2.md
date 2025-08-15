@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiyujia926-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 为了降低反复创建销毁自定义组件带来的性能开销，开发者可以使用\@ReusableV2装饰[\@ComponentV2](./arkts-new-componentV2.md)装饰的自定义组件，达成组件复用的效果。
 
@@ -11,8 +12,9 @@
 
 >**说明：**
 >
->从API version 18开始，可以使用\@ReusableV2装饰\@ComponentV2装饰的自定义组件。
+> 从API version 18开始，可以使用\@ReusableV2装饰\@ComponentV2装饰的自定义组件。
 >
+> 从API version 18开始，该装饰器支持在原子化服务中使用。
 
 ## 概述
 

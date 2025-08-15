@@ -2,8 +2,9 @@
 <!--Kit: Common-->
 <!--Subsystem: Common-->
 <!--Owner: @zhang_yixin13-->
-<!--SE: @lingminghw-->
-<!--TSE: @RayShih-->
+<!--Designer: @lingminghw-->
+<!--Tester: @RayShih-->
+<!--Adviser: @zhang_yixin13-->
 
 - 入门<!--application-getting-started-->
   <!--Del-->
@@ -267,7 +268,7 @@
           - [通过标准化数据通路实现数据共享 (ArkTS)](database/unified-data-channels.md)
           - [通过标准化数据通路实现数据共享 (C/C++)](database/unified-data-channels-c.md)
       - [应用数据向量化 (ArkTS)](database/aip-data-intelligence-embedding.md)
-      - [SQLite调试工具](database/sqlite-database-debug-tool.md)
+      - [SQLite调试工具指导](database/sqlite-database-debug-tool.md)
       - [ArkData术语](database/data-terminology.md)
     - ArkTS（方舟编程语言）<!--arkts-->
       - [ArkTS简介](arkts-utils/arkts-overview.md)
@@ -292,9 +293,9 @@
           - [TaskPool简介](arkts-utils/taskpool-introduction.md)
           - [Worker简介](arkts-utils/worker-introduction.md)
           - [TaskPool与Worker对比 (TaskPool和Worker)](arkts-utils/taskpool-vs-worker.md)
-        - 并发线程间通信<!--interthead-communication-->
+        - 并发线程间通信<!--interthread-communication-->
           - [ArkTS线程间通信概述](arkts-utils/interthread-communication-overview.md)
-          - 线程间通信对象<!--interthead-communication-object-->
+          - 线程间通信对象<!--interthread-communication-object-->
             - [线程间通信对象概述](arkts-utils/serializable-overview.md)
             - [普通对象](arkts-utils/normal-object.md)
             - [ArrayBuffer对象](arkts-utils/arraybuffer-object.md)
@@ -310,7 +311,7 @@
               - [共享模块](arkts-utils/arkts-sendable-module.md)
               - [Sendable对象冻结](arkts-utils/sendable-freeze.md)
               - [Sendable使用场景](arkts-utils/sendable-guide.md)
-          - 线程间通信场景<!--interthead-communication-guide-->
+          - 线程间通信场景<!--interthread-communication-guide-->
             - [使用TaskPool执行独立的耗时任务](arkts-utils/independent-time-consuming-task.md)
             - [使用TaskPool执行多个耗时任务](arkts-utils/multi-time-consuming-tasks.md)
             - [TaskPool任务与宿主线程通信](arkts-utils/taskpool-communicates-with-mainthread.md)
@@ -1251,7 +1252,7 @@
           - [蓝牙设置](connectivity/bluetooth/br-development-guide.md)
           - 传统蓝牙<!--bluetooth-br-->
             - [查找设备](connectivity/bluetooth/br-discovery-development-guide.md)
-            - [配对连接设备](connectivity/bluetooth/br-pair-device-development-guide.md)
+            - [配对与连接设备](connectivity/bluetooth/br-pair-device-development-guide.md)
             - [连接和传输数据](connectivity/bluetooth/spp-development-guide.md)
           - 低功耗蓝牙<!--bluetooth-ble-->
             - [查找设备](connectivity/bluetooth/ble-development-guide.md)
@@ -1292,6 +1293,7 @@
         - 管理网络<!--network-kit-network-management-->
             - [统计网络流量消耗](network/net-statistics.md)
             - [使用网络防火墙](network/net-netfirewall.md)
+            - [扩展认证](network/net-eap.md)
             <!--Del-->
             - [网络共享（仅对系统应用开放）](network/net-sharing.md)
             - [以太网连接管理（仅对系统应用开放）](network/net-ethernet.md)
@@ -1622,6 +1624,7 @@
         - [视频编码](media/avcodec/video-encoding.md)
         - [视频编码同步模式](media/avcodec/synchronous-video-encoding.md)
         - [时域可分层视频编码](media/avcodec/video-encoding-temporal-scalability.md)
+        - [B帧视频编码](media/avcodec/video-encoding-b-frame.md)
         - [典型场景的视频编码配置](media/avcodec/video-encoding-configuration-typical-scenarios.md)
         - [ROI视频编码](media/avcodec/video-encoding-ROI.md)
         - [视频解码](media/avcodec/video-decoding.md)
@@ -1734,13 +1737,12 @@
       - Image Kit常见问题<!--image-faqs-->
         - [如何处理HEIF图片](media/image/image-faqs/heif-adapter-faq.md)
         - [如何获取图片的旋转角度信息](media/image/image-faqs/image-rotate-faq.md)
-      - 不再推荐使用<!--imagekit-not-recommended-->
-        - 图片开发指导(依赖JS对象)(C/C++)<!--image-native-js-objects-->
-          - [图片解码](media/image/image-decoding-native.md)
-          - [图片编码](media/image/image-encoding-native.md)
-          - [图像变换](media/image/image-transformation-native.md)
-          - [位图操作](media/image/image-pixelmap-operation-native.md)
-          - [图片接收](media/image/image-receiver-native.md)
+      - 图片开发指导(依赖JS对象)(不再推荐)<!--image-native-js-objects-->
+        - [图片解码](media/image/image-decoding-native.md)
+        - [图片编码](media/image/image-encoding-native.md)
+        - [图像变换](media/image/image-transformation-native.md)
+        - [位图操作](media/image/image-pixelmap-operation-native.md)
+        - [图片接收](media/image/image-receiver-native.md)
     - Media Kit（媒体服务）<!--media-kit-->
       - [Media Kit简介](media/media/media-kit-intro.md)
       - 媒体开发指导(ArkTS)<!--media-kit-dev--arkts-->
@@ -2615,7 +2617,23 @@
         - [智慧数据平台错误码](reference/apis-arkdata/errorcode-intelligence.md)
     - ArkTS（方舟编程语言）<!--arkts-api-->
       - ArkTS API<!--arkts-arkts-->
-        - [@arkts.collections (ArkTS容器集)](reference/apis-arkts/js-apis-arkts-collections.md)
+        - @arkts.collections (ArkTS容器集)<!--js-apis-arkts-collections-->
+          - [模块描述](reference/apis-arkts/arkts-apis-arkts-collections.md)
+          - [Class (Array)](reference/apis-arkts/arkts-apis-arkts-collections-Array.md)
+          - [Class (Map)](reference/apis-arkts/arkts-apis-arkts-collections-Map.md)
+          - [Class (Set)](reference/apis-arkts/arkts-apis-arkts-collections-Set.md)
+          - [Class (ArrayBuffer)](reference/apis-arkts/arkts-apis-arkts-collections-ArrayBuffer.md)
+          - [Class (Int8Array)](reference/apis-arkts/arkts-apis-arkts-collections-Int8Array.md)
+          - [Class (Uint8Array)](reference/apis-arkts/arkts-apis-arkts-collections-Uint8Array.md)
+          - [Class (Int16Array)](reference/apis-arkts/arkts-apis-arkts-collections-Int16Array.md)
+          - [Class (Uint16Array)](reference/apis-arkts/arkts-apis-arkts-collections-Uint16Array.md)
+          - [Class (Int32Array)](reference/apis-arkts/arkts-apis-arkts-collections-Int32Array.md)
+          - [Class (Uint32Array)](reference/apis-arkts/arkts-apis-arkts-collections-Uint32Array.md)
+          - [Class (Uint8ClampedArray)](reference/apis-arkts/arkts-apis-arkts-collections-Uint8ClampedArray.md)
+          - [Class (Float32Array)](reference/apis-arkts/arkts-apis-arkts-collections-Float32Array.md)
+          - [Class (BitVector)](reference/apis-arkts/arkts-apis-arkts-collections-BitVector.md)
+          - [Interface (ConcatArray)](reference/apis-arkts/arkts-apis-arkts-collections-ConcatArray.md)
+          - [Types](reference/apis-arkts/arkts-apis-arkts-collections-Types.md)
         - [@arkts.lang (ArkTS语言基础能力)](reference/apis-arkts/js-apis-arkts-lang.md)
         - [@arkts.math.Decimal (高精度数学库Decimal)](reference/apis-arkts/js-apis-arkts-decimal.md)
         - @arkts.utils (ArkTS工具库)<!--js-apis-arkts-utils-->
@@ -4405,6 +4423,7 @@
             - [sleep.h](reference/apis-ffrt-kit/capi-sleep-h.md)
             - [task.h](reference/apis-ffrt-kit/capi-task-h.md)
             - [timer.h](reference/apis-ffrt-kit/capi-timer-h.md)
+            - [fiber.h](reference/apis-ffrt-kit/capi-fiber-h.md)
             - [type_def.h](reference/apis-ffrt-kit/capi-type-def-h.md)
           - 结构体<!--function-flow-runtime-struct-->
             - [ffrt_cond_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-cond-t.md)
@@ -4421,6 +4440,7 @@
             - [ffrt_loop_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-loop-t.md)
             - [ffrt_queue_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-queue-t.md)
             - [ffrt_task_handle_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-task-handle-t.md)
+            - [ffrt_fiber_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-fiber-t.md)
       - Input Kit（多模输入服务）<!--input-api-->
         - ArkTS API<!--input-arkts-->
           - [@ohos.multimodalInput.inputDevice (输入设备)](reference/apis-input-kit/js-apis-inputdevice.md)
@@ -4578,6 +4598,8 @@
             - [Usb_DeviceArray](reference/apis-driverdevelopment-kit/capi-usbddk-usb-devicearray.md)
             - [UsbSerial_Params](reference/apis-driverdevelopment-kit/capi-serialddk-usbserial-params.md)
             - [UsbSerial_DeviceHandle](reference/apis-driverdevelopment-kit/capi-serialddk-usbserial-devicehandle.md)
+        - 错误码<!--driver-development-errcode-->
+          - [驱动错误码](reference/apis-driverdevelopment-kit/errorcode-deviceManager.md)
       - Multimodal Awareness Kit（多模态融合感知服务）<!--multimodal-awareness-api-->
         - ArkTS API<!--multimodal-awareness-arkts-->
           - [@ohos.stationary (设备状态感知框架)](reference/apis-multimodalawareness-kit/js-apis-stationary.md)

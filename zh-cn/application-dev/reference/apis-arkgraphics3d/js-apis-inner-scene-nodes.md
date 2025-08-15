@@ -2,8 +2,9 @@
 <!--Kit: ArkGraphics 3D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @zzhao0-->
-<!--SE: @zdustc-->
-<!--TSE: @zhangyue283-->
+<!--Designer: @zdustc-->
+<!--Tester: @zhangyue283-->
+<!--Adviser: @ge-yafang-->
 
 本模块提供3D图形中场景资源结点的类型及操作方法。
 
@@ -50,9 +51,11 @@ function layerMask() : void {
       let node : Node | null = result.getNodeByPath("rootNode_");
       if (node) {
           // 获取掩码的使能状态
-          let enabled: Boolean = node.layerMask.getEnabled(1);
+          let enabled: boolean = node.layerMask.getEnabled(1);
       }
     }
+  }).catch((error: Error) => {
+    console.error('Scene load failed:', error);
   });
 }
 ```
@@ -86,6 +89,8 @@ function layerMask() : void {
           node.layerMask.setEnabled(1, true);
       }
     }
+  }).catch((error: Error) => {
+    console.error('Scene load failed:', error);
   });
 }
 ```
@@ -129,6 +134,8 @@ function append() : void {
       // append 节点
       result.root?.children.get(0)?.children.append(node);
     }
+  }).catch((error: Error) => {
+    console.error('Scene load failed:', error);
   });
 }
 ```
@@ -156,9 +163,13 @@ function insertAfter() : void {
   scene.then(async (result: Scene) => {
     if (result) {
       let node : Node | null = result.getNodeByPath("rootNode/Scene/");
-      // insertAfter 节点
-      result.root?.children.get(0)?.children.insertAfter(node, null);
+      if (node) {
+        // insertAfter 节点
+        result.root?.children.get(0)?.children.insertAfter(node, null);
+      }
     }
+  }).catch((error: Error) => {
+    console.error('Scene load failed:', error);
   });
 }
 ```
@@ -185,9 +196,13 @@ function remove() : void {
   scene.then(async (result: Scene) => {
     if (result) {
       let node : Node | null = result.getNodeByPath("rootNode/Scene/");
-      // remove 节点
-      result.root?.children.remove(node);
+      if (node) {
+        // remove 节点
+        result.root?.children.remove(node);
+      }
     }
+  }).catch((error: Error) => {
+    console.error('Scene load failed:', error);
   });
 }
 ```
@@ -222,6 +237,8 @@ function get() : void {
       // 从children中get 0号节点
       result.root?.children.get(0)?.children.insertAfter(node, null);
     }
+  }).catch((error: Error) => {
+    console.error('Scene load failed:', error);
   });
 }
 ```
@@ -243,9 +260,13 @@ function clear() : void {
   scene.then(async (result: Scene) => {
     if (result) {
       let node : Node | null = result.getNodeByPath("rootNode/Scene/");
-      // 清空children节点
-      result.root?.children.clear();
+      if (node) {
+        // 清空 node 节点下的所有子节点
+        node.children.clear();
+      }
     }
+  }).catch((error: Error) => {
+    console.error('Scene load failed:', error);
   });
 }
 ```

@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiang-shouxing-->
-<!--SE: @xiang-shouxing-->
-<!--TSE: @sally__-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 UIContext实例对象。
 
@@ -274,11 +275,6 @@ getMediaQuery(): MediaQuery
 **示例：** 
 
 完整示例请参考[mediaquery示例](js-apis-mediaquery.md#示例)。
-
-<!--code_no_check-->
-```ts
-uiContext.getMediaQuery();
-```
 
 ## getRouter
 
@@ -1815,11 +1811,6 @@ getMeasureUtils(): MeasureUtils
 **示例：**
 
 完整示例请参考[MeasureUtils](arkts-apis-uicontext-measureutils.md)中的示例。
-
-<!--code_no_check-->
-```ts
-uiContext.getMeasureUtils();
-```
 
 ## getComponentSnapshot<sup>12+</sup>
 

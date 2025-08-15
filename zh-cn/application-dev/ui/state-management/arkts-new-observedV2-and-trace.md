@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiyujia926-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 为了增强状态管理框架对类对象中属性的观测能力，开发者可以使用\@ObservedV2装饰器和\@Trace装饰器装饰类以及类中的属性。
 
@@ -12,8 +13,11 @@
 
 >**说明：**
 >
->\@ObservedV2与\@Trace装饰器从API version 12开始支持。
+> \@ObservedV2与\@Trace装饰器从API version 12开始支持。
 >
+> 从API version 12开始，\@ObservedV2与\@Trace装饰器支持在ArkTS卡片中使用。
+>
+> 从API version 12开始，\@ObservedV2与\@Trace装饰器支持在原子化服务中使用。
 
 ## 概述
 

@@ -1,9 +1,10 @@
 # @ohos.zlib (Zip模块)
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
-<!--Owner: @jinsenjun-->
-<!--SE: @jinsenjun-->
-<!--TSE: @lixueqing-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供压缩解压缩文件的能力。
 

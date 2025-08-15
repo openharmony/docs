@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @DaiHuina1997-->
-<!--SE: @yao_dashuai-->
-<!--TSE: @kirl75;@zsw_zhushiwei-->
+<!--Designer: @yao_dashuai-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 ## 方舟正则运算与预期输出结果不一致场景
 
@@ -113,6 +114,25 @@
    let reg1 = /a(?:|x)$/;
    let reg2 = /a(?:x)?$/;
    let reg3 = /a(?:x){0,1}$/;
+   ```
+
+### 方舟字符串 `replace` 接口对于第一个参数为空字符串的场景与预期不一致
+
+   在使用字符串replace接口时，如果第一个参数是空字符串，则直接返回原始字符串。
+
+   ```ts
+   let str = "dddd"
+   let res = str.replace("", "abc");
+   console.info("res = " + res);
+   // 期望输出: res = abcdddd
+   // 实际输出: res = dddd
+   ```
+
+   规避方案：使用正则表达式 `/^/` 表示字符串起始符，作为第一个参数。
+
+   ```ts
+   let str = "dddd"
+   let res = str.replace(/^/, "abc");
    ```
 
 ## Async函数内部异常的处理机制

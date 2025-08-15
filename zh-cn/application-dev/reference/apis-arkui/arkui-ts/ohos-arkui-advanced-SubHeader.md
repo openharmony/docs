@@ -1,4 +1,10 @@
 # SubHeader
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fengluochenai-->
+<!--Designer: @YanSanzo-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @HelloCrease-->
 
 
 子标题，用于列表项顶部，将该组列表划分为一个区块，子标题名称用来概括该区块内容。也可以用于内容项顶部，子标题名称用来概括该区块内容。
@@ -391,7 +397,7 @@ struct SubHeaderExample {
 
 
 ### 示例8（右侧按钮自定义播报）
-从API version 18开始，该示例通过设置subheader的右侧按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
+从API version 18开始，该示例通过设置SubHeader的右侧按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
 import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
@@ -434,7 +440,7 @@ struct SubHeaderExample {
           value: 'selectDemo',
           selected: 0,
           onSelect: (index: number, value?: string) => {
-            console.log(`subheader onselect index : ${index}, value: ${value}`);
+            console.log(`SubHeader onSelect index : ${index}, value: ${value}`);
           }
         },
         operationType: OperationType.ICON_GROUP,
@@ -460,7 +466,7 @@ struct SubHeaderExample {
 ![figures/zh-cn_image_subheader_example08](figures/zh-cn_image_subheader_example08.png)
 
 ### 示例9（右侧按钮设置默认获焦）
-从API version 18开始，该示例通过设置subheader的右侧按钮属性defaultFocus使其默认获焦。
+从API version 18开始，该示例通过设置SubHeader的右侧按钮属性defaultFocus使其默认获焦。
 ```ts
 import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 

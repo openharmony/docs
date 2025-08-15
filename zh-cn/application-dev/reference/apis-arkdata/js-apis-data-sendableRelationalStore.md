@@ -2,8 +2,9 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @baijidong-->
-<!--SE: @widecode; @htt1997-->
-<!--TSE: @yippo; @logic42-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 该模块针对关系型数据库（Relational Database，RDB）提供了sendable支持。支持从查询结果集中获取sendable类型ValuesBucket用于并发实例间传递。
 
@@ -343,7 +344,7 @@ type Assets = collections.Array\<Asset>
 
 | 类型                                                                                               | 说明                              |
 | -------------------------------------------------------------------------------------------------- | --------------------------------- |
-| [collections.Array](../apis-arkts/js-apis-arkts-collections.md#collectionsarray)\<[Asset](#asset)> | 用于并发场景的Asset附件数据集合。 |
+| [collections.Array](../apis-arkts/arkts-apis-arkts-collections-Array.md)\<[Asset](#asset)> | 用于并发场景的Asset附件数据集合。 |
 
 ## ValueType
 
@@ -359,10 +360,10 @@ type ValueType = null | number | string | boolean | collections.Uint8Array | Ass
 | number  | 表示值类型为数字。   |
 | string  | 表示值类型为字符串。 |
 | boolean | 表示值类型为布尔值。 |
-| [collections.Uint8Array](../apis-arkts/js-apis-arkts-collections.md#collectionstypedarray) | 表示值类型为Uint8类型的数组。|
+| [collections.Uint8Array](../apis-arkts/arkts-apis-arkts-collections-Uint8Array.md) | 表示值类型为Uint8类型的数组。|
 | [Asset](#asset)  | 表示值类型为附件Asset。<br/>当字段类型是Asset时，在创建表的sql语句中，类型应当为：ASSET。             |
 | [Assets](#assets) | 表示值类型为附件数据集合Assets。<br/>当字段类型是Assets时，在创建表的sql语句中，类型应当为：ASSETS。 |
-| [collections.Float32Array](../apis-arkts/js-apis-arkts-collections.md#collectionstypedarray) | 表示值类型为浮点数组。<br/>当字段类型是collections.Float32Array时，在创建表的sql语句中，类型应当为：floatvector(128)。 |
+| [collections.Float32Array](../apis-arkts/arkts-apis-arkts-collections-Float32Array.md) | 表示值类型为浮点数组。<br/>当字段类型是collections.Float32Array时，在创建表的sql语句中，类型应当为：floatvector(128)。 |
 | bigint | 表示值类型为任意长度的整数。<br/>当字段类型是bigint时，在创建表的sql语句中，类型应当为：UNLIMITED INT，详见[通过关系型数据库实现数据持久化](../../database/data-persistence-by-rdb-store.md)。<br/>**说明：** <br>bigint类型字段不能比较大小，不适用以下谓词操作：between、notBetween、greaterThan、lessThan、greaterThanOrEqualTo、lessThanOrEqualTo、orderByAsc、orderByDesc。<br/>bigint类型字段的数据写入时，需通过BigInt()方法或在数据尾部添加'n'的方式明确为bigint类型，如'let data = BigInt(1234)'或'let data = 1234n'。<br/>bigint字段如果写入number类型的数据，则查询该数据的返回类型为number，而非bigint。 |
 
 ## ValuesBucket
@@ -375,7 +376,7 @@ type ValuesBucket = collections.Map<string, ValueType>
 
 | 类型                                                                                                          | 说明                                                                    |
 | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| [collections.Map](../apis-arkts/js-apis-arkts-collections.md#collectionsmap)<string, [ValueType](#valuetype)> | 并发场景的键值对数据存储，其中，键的类型为string，值的类型为ValueType。 |
+| [collections.Map](../apis-arkts/arkts-apis-arkts-collections-Map.md)<string, [ValueType](#valuetype)> | 并发场景的键值对数据存储，其中，键的类型为string，值的类型为ValueType。 |
 
 ## NonSendableBucket
 

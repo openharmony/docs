@@ -3,8 +3,9 @@
 <!--Kit: AVCodec Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @mr-chencxy-->
-<!--SE: @dpy2650--->
-<!--TSE: @baotianhao-->
+<!--Designer: @dpy2650--->
+<!--Tester: @baotianhao-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
@@ -3323,7 +3324,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES
 
 该键是可选的且只用于视频编码，在Configure阶段使用。
 
-详情请参见：[B帧视频编码](../../media/avcodec/video-encoding-b-frame.md#接口介绍-1)。
+详情请参见：[B帧视频编码](../../media/avcodec/video-encoding-b-frame.md#接口介绍)。
  
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase

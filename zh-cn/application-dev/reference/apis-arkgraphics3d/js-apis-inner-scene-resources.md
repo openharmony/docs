@@ -2,8 +2,9 @@
 <!--Kit: ArkGraphics 3D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @zzhao0-->
-<!--SE: @zdustc-->
-<!--TSE: @zhangyue283-->
+<!--Designer: @zdustc-->
+<!--Tester: @zhangyue283-->
+<!--Adviser: @ge-yafang-->
 
 本模块提供3D图形中常用的基本资源类型。
 
@@ -299,7 +300,7 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
 function onFinished() : void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
-    if (result) {
+    if (result && result.animations && result.animations[0]) {
       let anim: Animation = result.animations[0];
       // 注册回调函数
       anim.onFinished(()=>{
@@ -332,7 +333,7 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
 function onStarted() : void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
-    if (result) {
+    if (result && result.animations && result.animations[0]) {
       let anim: Animation = result.animations[0];
       // 注册回调函数
       anim.onStarted(()=>{
@@ -358,7 +359,7 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
 function pause() : void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
-    if (result) {
+    if (result && result.animations && result.animations[0]) {
       let anim: Animation = result.animations[0];
       // 暂停动画
       anim.pause();
@@ -382,7 +383,7 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
 function restart() : void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
-    if (result) {
+    if (result && result.animations && result.animations[0]) {
       let anim: Animation = result.animations[0];
       // 重启动画
       anim.restart();
@@ -411,7 +412,7 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
 function seek() : void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
-    if (result) {
+    if (result && result.animations && result.animations[0]) {
       let anim: Animation = result.animations[0];
       // 指定动画的播放进度到10%
       anim.seek(0.1);
@@ -435,7 +436,7 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
 function start() : void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
-    if (result) {
+    if (result && result.animations && result.animations[0]) {
       let anim: Animation = result.animations[0];
       // 开始动画
       anim.start();
@@ -459,7 +460,7 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
 function stop() : void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
-    if (result) {
+    if (result && result.animations && result.animations[0]) {
       let anim: Animation = result.animations[0];
       // 停止播放动画，并将动画的进度设置到未开始状态
       anim.stop();
@@ -482,7 +483,7 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
 function finish() : void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
-    if (result) {
+    if (result && result.animations && result.animations[0]) {
       let anim: Animation = result.animations[0];
       // 直接跳转到动画的最后，并将动画的进度设置到已结束状态。
       anim.finish();

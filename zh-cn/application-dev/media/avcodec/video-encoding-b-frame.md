@@ -3,8 +3,11 @@
 <!--Kit: AVCodec Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @jiangfan56-->
-<!--SE: @dpy2650--->
-<!--TSE: @cyakee-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
+<!--Adviser: @zengyawen-->
+
+从API 20开始，支持B帧视频编码。
 
 **双向预测帧**，又叫B帧（B frame），是视频编码标准中定义的主要帧类型之一。B帧与P帧的主要差别在于P帧仅支持前向预测，而B帧支持双向预测。
 
@@ -80,12 +83,12 @@ B帧编码预测过程同时利用前后帧的信息，可以显著降低信号�
     OH_AVFormat *format = OH_AVFormat_Create();
     // 2.2 填充使能参数键值对。
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME, 1);
-    // 2.4 参数配置。
+    // 2.3 参数配置。
     int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
-    // 2.5 配置完成后销毁临时AVFormat。
+    // 2.4 配置完成后销毁临时AVFormat。
     OH_AVFormat_Destroy(format);
     ```
 

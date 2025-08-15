@@ -2,8 +2,9 @@
 <!--Kit: Distributed Service Kit-->
 <!--Subsystem: DistributedSched-->
 <!--Owner: @hobbycao-->
-<!--SE: @gsxiaowen-->
-<!--TSE: @hanjiawei-->
+<!--Designer: @gsxiaowen-->
+<!--Tester: @hanjiawei-->
+<!--Adviser: @w_Machine_cc-->
 
 - [Distributed Service Kit简介](distributedservice-kit-intro.md)
 - [分布式设备管理](devicemanager-guidelines.md)

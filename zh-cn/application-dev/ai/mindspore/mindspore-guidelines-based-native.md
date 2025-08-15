@@ -3,8 +3,9 @@
 <!--Kit: MindSpore Lite Kit-->
 <!--Subsystem: AI-->
 <!--Owner: @zhuguodong8-->
-<!--SE: @zhuguodong8; @jjfeing-->
-<!--TSE: @principal87-->
+<!--Designer: @zhuguodong8; @jjfeing-->
+<!--Tester: @principal87-->
+<!--Adviser: @ge-yafang-->
 
 ## 场景说明
 

@@ -2,8 +2,9 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @my-2024-->
-<!--SE: @cuile44; @fysun17; @AnruiWang; @xd_94; @pancodax-->
-<!--TSE: @yippo; @logic42-->
+<!--Designer: @cuile44; @fysun17; @AnruiWang-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 > 说明：
 >

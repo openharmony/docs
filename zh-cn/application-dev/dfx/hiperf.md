@@ -3,13 +3,14 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @leiguangyu-->
-<!--SE: @Maplestroy-->
-<!--TSE: @gcw_KuLfPSbe-->
+<!--Designer: @Maplestroy-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
 hiperf是一款集成多种性能分析功能的命令行工具，可用于分析系统性能瓶颈、定位软件热点及优化代码效率，支持采集和统计程序运行时的性能数据。
 
 
-开发者可优先使用[Deveco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/)或[SmartPerf](https://gitee.com/openharmony/developtools_smartperf_host/releases)等图形前端工具直接采集函数调用栈和进行性能分析。若需要指定采集的事件、采样周期、采集时长、CPU核数等选项，可以使用 hiperf 命令行工具进行单独设置。采样数据 perf.data 文件可以使用 SmartPerf 工具打开并以可视化的界面进行展示，SmartPerf的操作可参考[使用说明](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_hiperf.md)；也可以通过[火焰图脚本](https://gitee.com/openharmony/developtools_hiperf/tree/master/script)对文件进行解析并转换为直观的图形，展示程序运行时的函数调用关系和资源消耗情况，火焰图脚本的使用可参考[使用说明](https://gitee.com/openharmony/developtools_hiperf/blob/master/README_zh.md#%E8%84%9A%E6%9C%AC)。
+开发者可优先使用[Deveco Studio](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-insight-session-time)或[SmartPerf](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/smartperf_host/ide/src/doc/md/quickstart_hiperf.md)等图形前端工具采集函数的调用栈，获取调用栈上各层函数的执行时间，通过泳道图等方式查看调用链信息进而进行性能分析。若需要指定采集的事件、采样周期、采集时长、CPU核数等选项，可以单独使用 hiperf 命令行工具。采样数据 perf.data 文件可以使用SmartPerf工具打开并以可视化的火焰图进行展示。
 
 
 本文档详细说明了hiperf命令行工具的使用方法，帮助开发者借助该工具进行详细的性能分析。

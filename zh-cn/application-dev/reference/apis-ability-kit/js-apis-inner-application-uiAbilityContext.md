@@ -3,8 +3,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @zhu-feimo-->
-<!--SE: @ccllee1-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 UIAbilityContext是[UIAbility](./js-apis-app-ability-uiAbility.md)组件的上下文，继承自[Context](./js-apis-inner-application-context.md)。各类Context之间的关联与差异详见[应用上下文Context](../../application-models/application-context-stage.md)。
 
@@ -2070,6 +2071,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ### moveAbilityToBackground<sup>12+<sup>
+
 moveAbilityToBackground(): Promise\<void>
 
 将处于前台的UIAbility移动到后台。使用Promise异步回调。仅支持在主线程调用。<br/><!--RP1--><!--RP1End-->
@@ -2086,7 +2088,7 @@ moveAbilityToBackground(): Promise\<void>
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码]。
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |

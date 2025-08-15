@@ -2,8 +2,9 @@
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
-<!--SE: @shilei123-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @shilei123-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 ## 简介
 
@@ -21,7 +22,7 @@ ArrayBuffer是ArkTS中的一种数据类型，用于表示通用的、固定长�
 | -------- | -------- |
 | napi_is_arraybuffer | 检查一个值是否为ArrayBuffer，以确保正在处理正确的数据类型。需要注意的是，此函数只能判断一个值是否为ArrayBuffer，而不能判断一个值是否为TypedArray。要判断一个值是否为TypedArray，可以使用napi_is_typedarray函数。 |
 | napi_get_arraybuffer_info | 获取给定的ArrayBuffer对象的相关信息，包括数据指针和数据长度。 |
-| napi_detach_arraybuffer | 将arraybuffer底层缓冲区与arraybuffer对象分离。分离后可以直接在C/C++中操作数据，而无需通过Node-API接口进行数据访问。 |
+| napi_detach_arraybuffer | 将ArrayBuffer底层缓冲区与ArrayBuffer对象分离。分离后可以直接在C/C++中操作数据，而无需通过Node-API接口进行数据访问。 |
 | napi_is_detached_arraybuffer | 判断给定的ArrayBuffer是否已经被分离。 |
 | napi_create_arraybuffer | 用于在Node-API模块中创建一个具有指定字节长度的ArkTS ArrayBuffer对象。 |
 

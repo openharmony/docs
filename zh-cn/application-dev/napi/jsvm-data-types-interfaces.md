@@ -2,8 +2,9 @@
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @yuanxiaogou; @string_sz-->
-<!--SE: @knightaoko-->
-<!--TSE: @test_lzz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## JSVM-API 的数据类型
 
@@ -59,7 +60,7 @@ typedef struct {
 
 ### JSVM_Value
 
-在C++代码中，表示JavaScript值。
+在C++代码中，用于表示JavaScript值。
 
 ### JSVM_Env
 

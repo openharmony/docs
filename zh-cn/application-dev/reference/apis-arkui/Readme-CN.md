@@ -1,9 +1,10 @@
 # ArkUI（方舟UI框架）
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @piggyguy;@xiang-shouxing;@yangfan229-->
-<!--SE: @piggyguy;@xiang-shouxing;@yangfan229-->
-<!--TSE: @fredyuan912-->
+<!--Owner: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Designer: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
 
 - ArkTS API<!--arkui-arkts-->
   - UI界面<!--ui-->

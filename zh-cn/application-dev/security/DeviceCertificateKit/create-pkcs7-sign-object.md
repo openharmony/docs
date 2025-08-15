@@ -3,8 +3,9 @@
 <!--Kit: Device Certificate Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @zxz--3-->
-<!--SE: @lanming-->
-<!--TSE: @PAFT-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
 
 从API 18开始，支持证书PKCS7签名。
 

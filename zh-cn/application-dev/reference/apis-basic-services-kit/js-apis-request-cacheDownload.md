@@ -2,8 +2,9 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Request-->
 <!--Owner: @huaxin05-->
-<!--SE: @hu-kai45-->
-<!--TSE: @murphy1984-->
+<!--Designer: @hu-kai45-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 request部件主要给应用提供上传下载文件、后台传输代理的基础能力。
 

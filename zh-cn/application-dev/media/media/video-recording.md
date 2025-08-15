@@ -2,8 +2,9 @@
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @shiwei75-->
-<!--SE: @HmQQQ-->
-<!--TSE: @xdlinc-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 
 当前仅支持[AVRecorder](media-kit-intro.md#avrecorder)开发视频录制，集成了音频捕获，音频编码，视频编码，音视频封装功能，适用于实现简单视频录制并直接得到视频本地文件的场景。
 
@@ -49,11 +50,12 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
 
    private avRecorder: media.AVRecorder | undefined = undefined;
 
-   media.createAVRecorder().then((recorder: media.AVRecorder) => {
-     this.avRecorder = recorder;
-   }, (error: BusinessError) => {
-     console.error('createAVRecorder failed');
-   });
+   try {
+     this.avRecorder = await media.createAVRecorder();
+   } catch (err) {
+     let error: BusinessError = err as BusinessError;
+     console.error(`Failed to create avRecorder, error code: ${error.code}, message: ${error.message}`);
+   }
    ```
 
 2. 设置业务需要的监听事件，监听状态变化及错误上报。
@@ -67,12 +69,12 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
    import { BusinessError } from '@kit.BasicServicesKit';
 
    // 状态上报回调函数。
-   this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
-     console.info('current state is: ' + state);
+   this.avRecorder?.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
+     console.info(`AVRecorder state is changed to ${state}, reason: ${reason}`);
    });
    // 错误上报回调函数。
-   this.avRecorder.on('error', (err: BusinessError) => {
-     console.error('error happened, error message is ' + err);
+   this.avRecorder?.on('error', (error: BusinessError) => {
+     console.error(`Error occurred in avRecorder, error code: ${error.code}, message: ${error.message}`);
    });
    ```
 
@@ -120,11 +122,14 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
      url: 'fd://' + fileFd.toString(), // 参考应用文件访问与管理开发示例新建并读写一个视频文件。
      metadata: videoMetaData
    };
-   this.avRecorder.prepare(avConfig).then(() => {
-     console.info('avRecorder prepare success');
-   }, (error: BusinessError) => {
-     console.error('avRecorder prepare failed');
-   });
+
+   try {
+     await this.avRecorder?.prepare(avConfig);
+     console.info('Succeeded in preparing avRecorder');
+   } catch (err) {
+     let error: BusinessError = err as BusinessError;
+     console.error(`Failed to prepare avRecorder, error code: ${error.code}, message: ${error.message}`);
+   }
    ```
 
 4. 获取视频录制需要的SurfaceID。
@@ -135,10 +140,10 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
 
-   this.avRecorder.getInputSurface().then((surfaceId: string) => {
-     console.info('avRecorder getInputSurface success');
+   this.avRecorder?.getInputSurface().then((surfaceId: string) => {
+     console.info('Succeeded in getting input surface');
    }, (error: BusinessError) => {
-     console.error('avRecorder getInputSurface failed');
+     console.error(`Failed to get input surface, error code: ${error.code}, message: ${error.message}`);
    });
    ```
 
@@ -169,7 +174,6 @@ import { fileIo as fs, fileUri } from '@kit.CoreFileKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 
-const TAG = 'VideoRecorderDemo:';
 export class VideoRecorderDemo extends CustomComponent {
   private context: Context;
   constructor() {
@@ -213,11 +217,11 @@ export class VideoRecorderDemo extends CustomComponent {
     if (this.avRecorder !== undefined) {
       // 状态机变化回调函数。
       this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
-        console.info(TAG + 'current state is: ' + state + ', reason is: ' + reason);
+        console.info(`AVRecorder state is changed to ${state}, reason: ${reason}`);
       });
       // 错误上报回调函数。
       this.avRecorder.on('error', (err: BusinessError) => {
-        console.error(TAG + 'error occurred, error message is: ' + err.message);
+        console.error(`Error occurred in avRecorder, error code: ${err.code}, message: ${err.message}`);
       });
     }
   }
