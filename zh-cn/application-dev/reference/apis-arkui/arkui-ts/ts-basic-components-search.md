@@ -1053,6 +1053,8 @@ onWillAttachIME(callback: Callback\<IMEClient>)
 
 在搜索框将要绑定输入法前触发该回调。
 
+<!--Del-->在搜索框将要绑定输入法前，可以通过`UIContext`的系统接口[setKeyboardAppearanceConfig](../js-apis-arkui-UIContext-sys.md#setkeyboardappearanceconfig20)设置键盘的样式。<!--DelEnd-->
+
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
