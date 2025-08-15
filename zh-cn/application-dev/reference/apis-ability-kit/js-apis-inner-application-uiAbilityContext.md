@@ -5,6 +5,7 @@
 <!--Owner: @zhu-feimo-->
 <!--Designer: @ccllee1-->
 <!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 UIAbilityContext是[UIAbility](./js-apis-app-ability-uiAbility.md)组件的上下文，继承自[Context](./js-apis-inner-application-context.md)。各类Context之间的关联与差异详见[应用上下文Context](../../application-models/application-context-stage.md)。
 
@@ -1877,11 +1878,13 @@ export default class EntryAbility extends UIAbility {
 
 showAbility(): Promise\<void>
 
-显示当前UIAbility。使用Promise异步回调。仅在2in1和tablet设备上生效。仅支持在主线程调用。
+显示当前UIAbility。使用Promise异步回调。仅支持在主线程调用。
 
 调用此接口前要求确保应用已添加至状态栏。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在2in1和tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 
@@ -1975,11 +1978,13 @@ export default class EntryAbility extends UIAbility {
 
 hideAbility(): Promise\<void>
 
-隐藏当前UIAbility。使用Promise异步回调。仅在2in1和tablet设备上生效。仅支持在主线程调用。
+隐藏当前UIAbility。使用Promise异步回调。仅支持在主线程调用。
 
 调用此接口前要求确保应用已添加至状态栏。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在2in1和tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 
@@ -2815,14 +2820,11 @@ setAbilityInstanceInfo(label: string, icon: image.PixelMap) : Promise&lt;void&gt
 
 设置当前UIAbility实例的图标和标签信息。图标与标签信息可在任务中心和快捷栏的界面中显示。使用Promise异步回调。
 
-
-> **说明**：
->
-> 仅支持2in1设备。
-
 **需要权限**： ohos.permission.SET_ABILITY_INSTANCE_INFO
 
 **系统能力**： SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **参数**：
 
@@ -3018,10 +3020,11 @@ startAppServiceExtensionAbility(want: Want): Promise\<void>
 
 > **说明：**
 >
-> - 当前仅支持2in1设备。
-> - 该接口的调用方必须为[AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)所属应用或者在AppServiceExtensionAbility支持的应用清单（即[extensionAbilities标签](../../quick-start/module-configuration-file.md#extensionabilities标签)的appIdentifierAllowList属性）中的应用。
+> 该接口的调用方必须为[AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)所属应用或者在AppServiceExtensionAbility支持的应用清单（即[extensionAbilities标签](../../quick-start/module-configuration-file.md#extensionabilities标签)的appIdentifierAllowList属性）中的应用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -3097,10 +3100,11 @@ stopAppServiceExtensionAbility(want: Want): Promise\<void>
 
 > **说明：**
 >
-> - 当前仅支持2in1设备。
-> - 该接口的调用方必须为[AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)所属应用或者在AppServiceExtensionAbility支持的应用清单（即[extensionAbilities标签](../../quick-start/module-configuration-file.md#extensionabilities标签)的appIdentifierAllowList属性）中的应用。
+> 该接口的调用方必须为[AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)所属应用或者在AppServiceExtensionAbility支持的应用清单（即[extensionAbilities标签](../../quick-start/module-configuration-file.md#extensionabilities标签)的appIdentifierAllowList属性）中的应用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -3172,10 +3176,11 @@ connectAppServiceExtensionAbility(want: Want, callback: ConnectOptions): number
 
 > **说明：**
 >
-> - 当前仅支持2in1设备。
-> - 如果[AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)实例未启动，该接口的调用方必须为AppServiceExtensionAbility所属应用或者在AppServiceExtensionAbility支持的应用清单（即[extensionAbilities标签](../../quick-start/module-configuration-file.md#extensionabilities标签)的appIdentifierAllowList属性）中的应用。
+> 如果[AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)实例未启动，该接口的调用方必须为AppServiceExtensionAbility所属应用或者在AppServiceExtensionAbility支持的应用清单（即[extensionAbilities标签](../../quick-start/module-configuration-file.md#extensionabilities标签)的appIdentifierAllowList属性）中的应用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -3256,11 +3261,9 @@ disconnectAppServiceExtensionAbility(connection: number): Promise\<void>
 
 断开连接之后，为了防止使用可能失效的remote对象进行通信，建议将连接成功时返回的remote对象设置为null。
 
-> **说明：**
->
-> - 当前仅支持2in1设备。
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
