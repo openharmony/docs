@@ -1842,6 +1842,7 @@
           - [复杂文本绘制与显示（ArkTS）](graphics/complex-text-arkts.md)
           - [简单文本绘制与显示（C/C++）](graphics/simple-text-c.md)
           - [复杂文本绘制与显示（C/C++）](graphics/complex-text-c.md)
+        - [文本开发常见问题](graphics/text-faqs.md)
       - [NativeBuffer开发指导 (C/C++)](graphics/native-buffer-guidelines.md)
       - [NativeImage开发指导 (C/C++)](graphics/native-image-guidelines.md)
       - [NativeVSync开发指导 (C/C++)](graphics/native-vsync-guidelines.md)
