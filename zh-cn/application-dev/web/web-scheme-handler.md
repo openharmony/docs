@@ -1,9 +1,10 @@
 # 拦截Web组件发起的网络请求
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @aohui-->
-<!--SE: @yaomingliu-->
-<!--TSE: @ghiker-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 [网络拦截接口(arkweb_scheme_handler.h)](../reference/apis-arkweb/capi-arkweb-scheme-handler-h.md)可以对Web组件发出的请求进行拦截，并为被拦截的请求提供自定义的响应头以及响应体。
 

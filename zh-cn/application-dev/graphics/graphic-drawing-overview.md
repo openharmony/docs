@@ -1,5 +1,11 @@
 # 图形绘制与显示开发概述
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hangmengxin-->
+<!--Designer: @wangyanglan-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
 
 ## 场景介绍
 

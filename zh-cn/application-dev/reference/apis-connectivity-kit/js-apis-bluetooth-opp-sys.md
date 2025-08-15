@@ -3,8 +3,9 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--SE: @chengguohong; @tangjia15-->
-<!--TSE: @wangfeng517-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+<!--Adviser: @zhang_yixin13-->
 
 OPP模块提供了使用蓝牙传输文件的功能，包括发送文件、接收文件和获取文件传输进度等。
 
@@ -103,7 +104,7 @@ sendFile(deviceId: string, fileHolds: Array&lt;FileHolder&lt;): Promise&lt;void&
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs} from '@kit.CoreFileKit';
 import { opp } from '@kit.ConnectivityKit';
 // 创建fileHolders
 try {
@@ -124,7 +125,7 @@ try {
         fileHolders.push(fileHolder);
     }
     oppProfile.sendFile("11:22:33:44:55:66", fileHolders);
-    // 等待文件传输完后，记得关闭文件描述符  fs.colse(file.fd);
+    // 等待文件传输完后，记得关闭文件描述符  fs.close(file.fd);
 } catch (err) {
       console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -171,12 +172,12 @@ setIncomingFileConfirmation(accept: boolean, fileFd: number): Promise&lt;void&gt
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs} from '@kit.CoreFileKit';
 import { opp } from '@kit.ConnectivityKit';
 // 创建fileHolders
 try {
     let oppProfile = opp.createOppServerProfile();
-    let pathDir = this.context.filesDir + "/test.jpg";
+    let pathDir = "/test.jpg"; // 应用根据实际情况填写路径
     let file = fs.openSync(pathDir, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
     oppProfile.setIncomingFileConfirmation(true, file.fd);
     // 接收完成后关闭  
@@ -394,7 +395,6 @@ off(type: 'receiveIncomingFile', callback?: Callback&lt;OppTransferInformation&g
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo } from '@kit.CoreFileKit';
 import { opp } from '@kit.ConnectivityKit';
 // 创建fileHolders
 try {
@@ -530,12 +530,11 @@ setLastReceivedFileUri(uri: string): Promise&lt;void&gt;
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo } from '@kit.CoreFileKit';
 import { opp } from '@kit.ConnectivityKit';
 // 创建fileHolders
 try {
     let oppProfile = opp.createOppServerProfile();
-    oppProfile.setLastReceivedFileUri("file://media/Photo/1/IMG_1739266559_000/screenshot_20250211_173419.jpg ");
+    oppProfile.setLastReceivedFileUri("file://media/Photo/1/IMG_1739266559_000/screenshot_20250211_173419.jpg"); // 应用根据实际情况填写路径
 } catch (err) {
       console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }

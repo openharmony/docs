@@ -3,8 +3,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @yylong-->
-<!--SE: @yylong-->
-<!--TSE: @liuzhenshuo-->
+<!--Designer: @yylong-->
+<!--Tester: @liuzhenshuo-->
+<!--Adviser: @HelloCrease-->
 
 弧形列表包含一系列列表项。适合连续、多行呈现同类数据，例如图片和文本。
 
@@ -288,6 +289,8 @@ onReachStart(handler: Optional\<VoidCallback>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
+**参数：**
+
 | 参数名  | 类型                                             | 必填 | 说明                     |
 | ------- | ------------------------------------------------ | ---- | ------------------------ |
 | handler | [Optional\<VoidCallback>](ts-types.md#voidcallback12) | 是   | 列表到达起始位置时触发。 |
@@ -304,6 +307,8 @@ ArcList边缘效果为弹簧效果时，划动经过末尾位置时触发一次�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
+**参数：**
+
 | 参数名  | 类型                                             | 必填 | 说明                     |
 | ------- | ------------------------------------------------ | ---- | ------------------------ |
 | handler | [Optional\<VoidCallback>](ts-types.md#voidcallback12) | 是   | 列表到达末尾位置时触发。 |
@@ -318,6 +323,8 @@ onScrollStart(handler: Optional\<VoidCallback>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
+**参数：**
+
 | 参数名  | 类型                                             | 必填 | 说明                 |
 | ------- | ------------------------------------------------ | ---- | -------------------- |
 | handler | [Optional\<VoidCallback>](ts-types.md#voidcallback12) | 是   | 列表滑动开始时触发。 |
@@ -331,6 +338,8 @@ onScrollStop(handler: Optional\<VoidCallback>)
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
+
+**参数：**
 
 | 参数名  | 类型                                             | 必填 | 说明                 |
 | ------- | ------------------------------------------------ | ---- | -------------------- |

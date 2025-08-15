@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @zhangboren-->
-<!--SE: @zhangboren-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @zhangboren-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 ArkUI提供轻量的UI元素复用机制\@Builder，其内部UI结构固定，仅与使用方进行数据传递。开发者可将重复使用的UI元素抽象成函数，在build函数中调用。
 
@@ -168,7 +169,7 @@ struct Parent {
 
 ## 限制条件
 
-1. \@Builder装饰的函数内部在没有使用[MutableBinding](../../reference/apis-arkui/js-apis-StateManagement.md#mutablebinding20)时不允许修改参数值，修改不会触发UI刷新。若[按引用传递参数](#按引用传递参数)且仅传入一个参数时，修改参数内部的属性会抛出运行时错误。使用MutableBinding可以帮助开发者在\@Builder装饰的函数内部修改参数值，请参考[在@Builder装饰的函数内部修改入参内容](#在builder装饰的函数内部修改入参内容)。
+1. \@Builder装饰的函数内部在没有使用[MutableBinding](../../reference/apis-arkui/js-apis-StateManagement.md#mutablebindingt20)时不允许修改参数值，修改不会触发UI刷新。若[按引用传递参数](#按引用传递参数)且仅传入一个参数时，修改参数内部的属性会抛出运行时错误。使用MutableBinding可以帮助开发者在\@Builder装饰的函数内部修改参数值，请参考[在@Builder装饰的函数内部修改入参内容](#在builder装饰的函数内部修改入参内容)。
 
 2. \@Builder按引用传递且仅传入一个参数时，才会触发动态渲染UI。请参考[按引用传递参数](#按引用传递参数)。
 
@@ -627,8 +628,8 @@ struct ChildPage {
 @Entry
 @ComponentV2
 struct ParentPage {
-  info1: Info = new Info("Tom", 25);
-  info2: Info = new Info("Tom", 25);
+  info1: Info = new Info('Tom', 25);
+  info2: Info = new Info('Tom', 25);
 
   @Builder
   privateBuilder() {
@@ -664,11 +665,11 @@ struct ParentPage {
       overBuilder(this.info2)
       ChildPage({ childInfo: this.info1 }) // 调用自定义组件
       ChildPage({ childInfo: this.info2 }) // 调用自定义组件
-      Button("change info1&info2")
+      Button('change info1&info2')
         .onClick(() => {
-          this.info1.name = "Cat"; // 修改Text1显示的info1的name值
+          this.info1.name = 'Cat'; // 修改Text1显示的info1的name值
           this.info1.age = 18; // 修改Text1显示的info1的age值
-          this.info2.name = "Cat"; // 修改Text2显示的info2的name值
+          this.info2.name = 'Cat'; // 修改Text2显示的info2的name值
           this.info2.age = 18; // 修改Text2显示的info2的age值
         })
     }
@@ -685,7 +686,7 @@ struct ParentPage {
 
 ```ts
 class Info {
-  name: string = "Tom";
+  name: string = 'Tom';
   age: number = 25;
 }
 
@@ -718,8 +719,8 @@ struct ChildPage {
 @Entry
 @ComponentV2
 struct ParentPage {
-  info1: Info = { name: "Tom", age: 25 };
-  @Local info2: Info = { name: "Tom", age: 25 };
+  info1: Info = { name: 'Tom', age: 25 };
+  @Local info2: Info = { name: 'Tom', age: 25 };
 
   @Builder
   privateBuilder() {
@@ -755,10 +756,10 @@ struct ParentPage {
       overBuilder({ name: this.info2.name, age: this.info2.age })
       ChildPage({ childInfo: this.info1 }) // 调用自定义组件
       ChildPage({ childInfo: this.info2 }) // 调用自定义组件
-      Button("change info1&info2")
+      Button('change info1&info2')
         .onClick(() => {
-          this.info1 = { name: "Cat", age: 18 }; // Text1不会刷新，原因是没有装饰器修饰监听不到值的改变
-          this.info2 = { name: "Cat", age: 18 }; // Text2会刷新，原因是有装饰器修饰，可以监听到值的改变
+          this.info1 = { name: 'Cat', age: 18 }; // Text1不会刷新，原因是没有装饰器修饰监听不到值的改变
+          this.info2 = { name: 'Cat', age: 18 }; // Text2会刷新，原因是有装饰器修饰，可以监听到值的改变
         })
     }
     .height('100%')
@@ -1527,7 +1528,7 @@ struct MakeBindingTest {
   }
 }
 ```
-MutableBinding的使用规格详见[状态管理API文档](../../reference/apis-arkui/js-apis-StateManagement.md#mutablebinding20)。
+MutableBinding的使用规格详见[状态管理API文档](../../reference/apis-arkui/js-apis-StateManagement.md#mutablebindingt20)。
 
 【正例】
 ```ts
@@ -1574,7 +1575,7 @@ struct MakeBindingTest {
 
 ### 在\@Builder装饰的函数内部修改入参内容
 
-不使用[MutableBinding](../../reference/apis-arkui/js-apis-StateManagement.md#mutablebinding20)的情况下，在\@Builder装饰的函数内部修改参数值，修改不会生效且可能造成运行时错误。
+不使用[MutableBinding](../../reference/apis-arkui/js-apis-StateManagement.md#mutablebindingt20)的情况下，在\@Builder装饰的函数内部修改参数值，修改不会生效且可能造成运行时错误。
 
 【反例】
 ```ts
@@ -1641,7 +1642,7 @@ struct Parent {
   }
 }
 ```
-正确使用[MutableBinding](../../reference/apis-arkui/js-apis-StateManagement.md#mutablebinding20)可以帮助开发者在\@Builder装饰的函数内部修改参数值。
+正确使用[MutableBinding](../../reference/apis-arkui/js-apis-StateManagement.md#mutablebindingt20)可以帮助开发者在\@Builder装饰的函数内部修改参数值。
 
 【正例】
 ```ts

@@ -1,9 +1,10 @@
 # Worker常驻线程通过TaskPool进行多任务并发处理
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
+<!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
-<!--SE: @weng-changcheng-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 ArkTS应用开发过程中，可以选择TaskPool或Worker线程进行多任务并发处理，也可以两种并发能力都选择。
 

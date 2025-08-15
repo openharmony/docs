@@ -1,5 +1,12 @@
 # 创建视频解码器和NativeWindow初始化并行
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zhanghongran-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
+<!--Adviser: @zengyawen-->
+
 ## 场景介绍
 
 为了解码Surface模式的正常创建，在XComponent尚未创建或OpenGL后处理（NativeImage）尚未初始化的情况下，可以创建一个空的surface，以确保视频解码器能够正常创建和运行。

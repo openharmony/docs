@@ -1,9 +1,10 @@
 # Node-API支持的数据类型和接口
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
-<!--SE: @shilei123-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @shilei123-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 ## Node-API的数据类型
 

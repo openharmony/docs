@@ -1,9 +1,10 @@
 # @ohos.util.HashMap (非线性容器HashMap)
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
-<!--SE: @yuanyao14-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 HashMap底层采用数组、链表和红黑树实现，支持高效查询、插入和删除。HashMap存储内容基于key-value的键值对映射，不允许重复的key，且一个key只能对应一个value。
 

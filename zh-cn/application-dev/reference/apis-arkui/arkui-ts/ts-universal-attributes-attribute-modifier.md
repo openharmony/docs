@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 动态设置组件的属性，支持开发者在属性设置时使用if/else语法，且根据需要使用多态样式设置属性。
 
@@ -60,6 +61,12 @@ applyNormalAttribute?(instance: T) : void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名    | 类型   | 必填   | 说明                                                                                                         |
+| -------- | ------- | ------ | ------------------------------------------------------------------------------------------------------------ |
+| instance | T       | 是     | 组件的属性类，用来标识进行属性设置的组件的类型，比如Button组件的ButtonAttribute，Text组件的TextAttribute等。 |
+
 ### applyPressedAttribute
 applyPressedAttribute?(instance: T) : void
 
@@ -68,6 +75,12 @@ applyPressedAttribute?(instance: T) : void
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型   | 必填   | 说明                                                                                                         |
+| -------- | ------- | ------ | ------------------------------------------------------------------------------------------------------------ |
+| instance | T       | 是     | 组件的属性类，用来标识进行属性设置的组件的类型，比如Button组件的ButtonAttribute，Text组件的TextAttribute等。 |
 
 ### applyFocusedAttribute
 applyFocusedAttribute?(instance: T) : void
@@ -78,6 +91,12 @@ applyFocusedAttribute?(instance: T) : void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名    | 类型   | 必填   | 说明                                                                                                         |
+| -------- | ------- | ------ | ------------------------------------------------------------------------------------------------------------ |
+| instance | T       | 是     | 组件的属性类，用来标识进行属性设置的组件的类型，比如Button组件的ButtonAttribute，Text组件的TextAttribute等。 |
+
 ### applyDisabledAttribute
 applyDisabledAttribute?(instance: T) : void
 
@@ -86,6 +105,12 @@ applyDisabledAttribute?(instance: T) : void
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型   | 必填   | 说明                                                                                                         |
+| -------- | ------- | ------ | ------------------------------------------------------------------------------------------------------------ |
+| instance | T       | 是     | 组件的属性类，用来标识进行属性设置的组件的类型，比如Button组件的ButtonAttribute，Text组件的TextAttribute等。 |
 
 ### applySelectedAttribute
 applySelectedAttribute?(instance: T) : void

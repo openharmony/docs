@@ -3,8 +3,9 @@
 <!--Kit: MindSpore Lite Kit-->
 <!--Subsystem: AI-->
 <!--Owner: @zhuguodong8-->
-<!--SE: @zhuguodong8; @jjfeing-->
-<!--TSE: @principal87-->
+<!--Designer: @zhuguodong8; @jjfeing-->
+<!--Tester: @principal87-->
+<!--Adviser: @ge-yafang-->
 
 ## 使用场景
 
@@ -22,7 +23,7 @@ MindSpore Lite是OpenHarmony内置的轻量化AI引擎，面向全场景构建�
 
 ## 亮点/优势
 
-MindSpore Lite提供面向不同硬件设备的AI模型推理能力，使能全场景智能应用，为开发者提供端到端的解决方案，使用MindSpore Lite的优势如下：
+MindSpore Lite提供面向不同硬件设备的AI模型推理能力，使用MindSpore Lite的优势如下：
 
 - 更优性能：高效的内核算法和汇编级优化，支持CPU、NNRt专用芯片高性能推理，最大化发挥硬件算力，最小化推理时延和功耗。
 - 轻量化：提供超轻量的解决方案，支持模型量化压缩，模型更小跑得更快，使能AI模型极限环境下的部署执行。

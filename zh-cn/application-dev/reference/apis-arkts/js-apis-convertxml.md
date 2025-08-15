@@ -1,9 +1,10 @@
 # @ohos.convertxml (xml转换JavaScript)
 <!--Kit: ArkTS-->
-<!--Subsystem: commonlibrary-->
-<!--Owner: @xliu-huanwei; @shilei123; @huanghello; @yuanyao14; @lzj0614-->
-<!--SE: @yuanyao14-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 本模块提供转换xml文本为JavaScript对象的功能。
 
@@ -24,7 +25,7 @@ import { convertxml } from '@kit.ArkTS';
 
 fastConvertToJSObject(xml: string, options?: ConvertOptions) : Object
 
-转换xml文本为JavaScript对象。
+转换xml文本为Object类型对象。
 
 > **说明：**
 >
@@ -87,7 +88,7 @@ try {
 
 convertToJSObject(xml: string, options?: ConvertOptions) : Object
 
-转换xml文本为JavaScript对象。
+转换xml文本为Object类型对象。
 
 > **说明：**
 >

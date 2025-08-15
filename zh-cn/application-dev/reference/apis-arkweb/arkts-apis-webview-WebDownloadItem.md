@@ -1,9 +1,10 @@
 # Class (WebDownloadItem)
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @aohui-->
-<!--SE: @yaomingliu-->
-<!--TSE: @ghiker-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
  表示下载任务，您可以使用此对象来操作相应的下载任务。
 

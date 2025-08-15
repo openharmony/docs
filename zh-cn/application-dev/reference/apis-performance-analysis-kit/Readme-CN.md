@@ -1,5 +1,12 @@
 # Performance Analysis Kit（性能分析服务）<!--performance-analysis-api-->
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @mzyan-->
+<!--Designer: @liyueric-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 - ArkTS API<!--performance-analysis-arkts-->
   - [@ohos.hichecker (检测模式)](js-apis-hichecker.md)
   - [@ohos.hidebug (Debug调试)](js-apis-hidebug.md)

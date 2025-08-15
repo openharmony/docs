@@ -1,4 +1,10 @@
 # 用户相册资源使用指导
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 photoAccessHelper提供用户相册相关的接口，支持创建和删除相册，以及添加和删除相册中的图片和视频资源。
 
@@ -37,7 +43,6 @@ photoAccessHelper提供用户相册相关的接口，支持创建和删除相册
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   try {
@@ -73,7 +78,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -128,7 +132,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -180,7 +183,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -239,7 +241,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -298,7 +299,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -356,7 +356,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();

@@ -1,17 +1,23 @@
 # Initiating User Authentication
 
+<!--Kit: User Authentication Kit-->
+<!--Subsystem: UserIAM-->
+<!--Owner: @WALL_EYE-->
+<!--SE: @lichangting518-->
+<!--TSE: @jane_lz-->
+
 A user authentication is required before an application accesses a critical functionality or sensitive data. This topic walks you through the process.
 
 ## Available APIs
 
 For details about the parameters, return values, and error codes, see [User Authentication](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthgetuserauthinstance10).
 
-| API| Description|
+| API| Description| 
 | -------- | -------- |
-| getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthInstance | Obtains a **UserAuthInstance** object for user authentication. The unified [user authentication widget](#user-authentication-widget) is also supported.|
-| on(type: 'result', callback: IAuthCallback): void | Subscribes to the user authentication result.|
-| off(type: 'result', callback?: IAuthCallback): void | Unsubscribes from the user authentication result.|
-| start(): void | Starts user authentication.|
+| getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthInstance | Obtains a **UserAuthInstance** object for user authentication. The unified [user authentication widget](#user-authentication-widget) is also supported.| 
+| on(type: 'result', callback: IAuthCallback): void | Subscribes to the user authentication result.| 
+| off(type: 'result', callback?: IAuthCallback): void | Unsubscribes from the user authentication result.| 
+| start(): void | Starts user authentication.| 
 
 ## User Authentication Widget
 
@@ -30,7 +36,7 @@ The following figure shows the style of the user authentication widget, which ca
 - ①: Title (**WidgetParam.title**) of the user authentication page, which cannot exceed 500 characters. You can set the title based on actual requirements.
 
 - ②: Text on the navigation button (**WidgetParam.navigationButtonText**), which cannot exceed 60 characters. It can be configured only in single fingerprint or facial authentication scenarios in API versions 10 to 17. Since API version 18, it can also be configured in the combined fingerprint and facial authentication.
-  
+   
   If biometric authentication fails, a button is displayed. The user can tap the button to switch to custom authentication.
 
 <!--Del-->
@@ -69,13 +75,13 @@ The user authentication widget supports the following types of authentication:
 
 2. Set [AuthParam](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#authparam10) (including the challenge, [UserAuthType](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthtype8), and [AuthTrustLevel](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#authtrustlevel8)), configure [WidgetParam](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#widgetparam10), and use [getUserAuthInstance](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthgetuserauthinstance10) to obtain a **UserAuthInstance** instance.
 
-3. Call [UserAuthInstance.on](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#on10) to subscribe to the authentication result.
+3. Use [UserAuthInstance.on](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#on10) to subscribe to the authentication result.
 
-4. Call [UserAuthInstance.start](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#start10) to start authentication. The authentication result [UserAuthResult](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthresult10) is returned through [IAuthCallback](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#iauthcallback10). If the authentication is successful, [UserAuthType](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthtype8) and token information (**AuthToken**) are returned.
+4. Use [UserAuthInstance.start](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#start10) to start authentication. The authentication result [UserAuthResult](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthresult10) is returned through [IAuthCallback](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#iauthcallback10). If the authentication is successful, [UserAuthType](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthtype8) and token information (**AuthToken**) are returned.
 
 **Example 1**
 
-Initiate facial authentication and lock screen password authentication at ATL3 or higher.
+ Initiate facial authentication and lock screen password authentication at ATL3 or higher.
 
 ```ts
 // API version 10
@@ -86,7 +92,18 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16; // Generate a 16-byte random number.
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   // Set authentication parameters.
   const authParam: userAuth.AuthParam = {
     challenge: randData,
@@ -97,7 +114,7 @@ try {
   const widgetParam: userAuth.WidgetParam = {
     title: 'Verify identity',
   };
-  // Obtain a UserAuthInstance object.
+  // Obtain an authentication object.
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.info('get userAuth instance success');
   // Subscribe to the authentication result.
@@ -134,7 +151,18 @@ let reuseUnlockResult: userAuth.ReuseUnlockResult = {
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.FACE],
@@ -145,7 +173,7 @@ try {
   const widgetParam: userAuth.WidgetParam = {
     title: 'Verify identity',
   };
-  // Obtain a UserAuthInstance object.
+  // Obtain an authentication object.
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.info('get userAuth instance success');
   // Subscribe to the authentication result.
@@ -182,7 +210,18 @@ let reuseUnlockResult: userAuth.ReuseUnlockResult = {
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.FACE],
@@ -193,7 +232,7 @@ try {
   const widgetParam: userAuth.WidgetParam = {
     title: 'Verify identity',
   };
-  // Obtain a UserAuthInstance object.
+  // Obtain an authentication object.
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.info('get userAuth instance success');
   // Subscribe to the authentication result.
@@ -226,7 +265,18 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -245,6 +295,8 @@ try {
     }
   });
   console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);

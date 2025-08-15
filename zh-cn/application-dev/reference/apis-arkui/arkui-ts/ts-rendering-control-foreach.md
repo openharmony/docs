@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @maorh-->
-<!--SE: @lixingchi1-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @lixingchi1-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @HelloCrease-->
 
 ForEach接口基于数组类型数据来进行循环渲染。
 

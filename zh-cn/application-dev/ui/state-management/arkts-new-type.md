@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @zzq212050299-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 为了实现序列化类时不丢失属性的复杂类型，开发者可以使用\@Type装饰器装饰类属性。
 
@@ -11,8 +12,9 @@
 
 >**说明：**
 >
->\@Type从API version 12开始支持。
+> \@Type从API version 12开始支持。
 >
+> 从API version 12开始，该装饰器支持在原子化服务中使用。
 
 ## 概述
 

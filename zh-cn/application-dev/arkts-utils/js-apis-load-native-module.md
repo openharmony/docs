@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @shilei123-->
-<!--SE: @yao_dashuai-->
-<!--TSE: @kirl75;@zsw_zhushiwei-->
+<!--Designer: @yao_dashuai-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 [loadNativeModule接口](../reference/common/js-apis-common-load-native-module.md)用于同步动态加载Native模块，目的是按需加载所需要的模块。使用该接口会增加加载so文件的时间，开发者需评估其对功能的影响。
 

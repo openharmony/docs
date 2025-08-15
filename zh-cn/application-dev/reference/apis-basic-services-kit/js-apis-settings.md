@@ -1,5 +1,12 @@
 # @ohos.settings (设置数据项名称)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Applications-->
+<!--Owner: @YingCong-->
+<!--Designer: @Kun_Wu-->
+<!--Tester: @dyx118186878-->
+<!--Adviser: @zhang_yixin13-->
+
 本模块提供访问设置数据项的能力。
 
 > **说明：**
@@ -665,6 +672,8 @@ unregisterKeyObserver(context: Context, name: string, domainName: string): boole
 **模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.Applications.Settings.Core
+
+**参数**：
 
 | 参数名   | 类型                   | 必填 | 说明                                                                                                                                                                                                                                               |
 | -------- | ---------------------- | ---- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

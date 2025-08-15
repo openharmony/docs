@@ -1,5 +1,12 @@
 # Class (UIObserver)
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Designer: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
+
 提供UI组件行为变化的无感监听能力。
 
 > **说明：**
@@ -227,9 +234,9 @@ struct PageOne {
   private text = '';
   private uniqueid = -1;
   aboutToAppear() {
-    let navigationuniqueid = this.queryNavigationInfo()?.uniqueId;
-    if (navigationuniqueid) {
-      this.uniqueid = navigationuniqueid.valueOf();
+    let navigationUniqueId = this.queryNavigationInfo()?.uniqueId;
+    if (navigationUniqueId) {
+      this.uniqueid = navigationUniqueId.valueOf();
     }
     this.text = JSON.stringify(this.uniqueid);
     this.getUIContext().getUIObserver().on('navDestinationUpdateByUniqueId', this.uniqueid, (info) => {
@@ -242,7 +249,7 @@ struct PageOne {
   build() {
     NavDestination() {
       Text("pageOne")
-      Text('navigationuniqueid是:' + this.text)
+      Text('navigationUniqueId是:' + this.text)
         .width('80%')
         .height(50)
         .margin(50)
@@ -319,7 +326,7 @@ on(type: 'scrollEvent', callback: Callback\<observer.ScrollEventInfo\>): void
 
 **示例：**
 
-请参考[offscrollevent示例](#offscrollevent12-1)
+参考[off('scrollEvent')](#offscrollevent12-1)示例。
 
 ## off('scrollEvent')<sup>12+</sup>
 
@@ -340,7 +347,7 @@ off(type: 'scrollEvent', callback?: Callback\<observer.ScrollEventInfo\>): void
 
 **示例：**
 
-请参考[offscrollevent示例](#offscrollevent12-1)
+参考[off('scrollEvent')](#offscrollevent12-1)示例。
 
 ## on('scrollEvent')<sup>12+</sup>
 
@@ -362,7 +369,7 @@ on(type: 'scrollEvent', options: observer.ObserverOptions, callback: Callback\<o
 
 **示例：**
 
-请参考[offscrollevent示例](#offscrollevent12-1)
+参考[off('scrollEvent')](#offscrollevent12-1)示例。
 
 ## off('scrollEvent')<sup>12+</sup>
 

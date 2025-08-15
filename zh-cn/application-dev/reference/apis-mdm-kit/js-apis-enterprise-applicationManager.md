@@ -2,8 +2,9 @@
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
 <!--Owner: @huanleima-->
-<!--SE: @liuzuming-->
-<!--TSE: @lpw_work-->
+<!--Designer: @liuzuming-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供应用管理能力，包括添加应用运行禁止名单、获取应用运行禁止名单、移除应用运行禁止名单等。
 
@@ -593,7 +594,7 @@ try {
 
 addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): void
 
-添加保活应用名单。通过本接口添加至保活名单的应用，禁止用户在设备上手动取消保活<!--RP6--><!--RP6End-->，但可通过[removeKeepAliveApps](#applicationmanagerremovekeepaliveapps14)接口将应用从保活名单中移除。如果将应用添加至应用禁止运行名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。<br>该接口仅在PC/2in1设备上生效。
+添加保活应用名单。<!--RP7--><!--RP7End-->通过本接口添加至保活名单的应用，禁止用户在设备上手动取消保活<!--RP6--><!--RP6End-->，但可通过[removeKeepAliveApps](#applicationmanagerremovekeepaliveapps14)接口将应用从保活名单中移除。如果将应用添加至应用禁止运行名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活应用名单，否则会报9200010冲突错误码。<br>该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -649,7 +650,7 @@ try {
 
 addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, disallowModify: boolean): void
 
-添加保活应用名单，并设置是否禁止用户手动取消保活。<br>通过本接口、[addKeepAliveApps](#applicationmanageraddkeepaliveapps14)接口均可添加保活应用名单，两个接口的设置可同时生效。同一用户下，保活应用名单最多支持包含5个应用。例如：若当前名单中已有3个应用，则最多还能通过本接口为当前用户添加2个应用。<br>如果通过[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)接口将应用添加至应用禁止运行名单，就不能将应用添加至保活，否则会冲突。<br>该接口仅在PC/2in1设备上生效。
+添加保活应用名单，并设置是否禁止用户手动取消保活。<br>通过本接口、[addKeepAliveApps](#applicationmanageraddkeepaliveapps14)接口均可添加保活应用名单，两个接口的设置可同时生效。同一用户下，保活应用名单最多支持包含5个应用。例如：若当前名单中已有3个应用，则最多还能通过本接口为当前用户添加2个应用。<br>如果通过[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)接口将应用添加至应用禁止运行名单，就不能将应用添加至保活应用名单，否则会报9200010冲突错误码。<br>该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 

@@ -1,4 +1,9 @@
 # @ohos.file.volumeManager (Volume Management) (System API)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wang_zhangjun; @zhuangzhuang-->
+<!--SE: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
 
 The **volumeManager** module provides APIs for querying and managing volumes and disks, including querying volume information, mounting or unmounting a volume, partitioning a disk, and formatting a volume.
 
@@ -548,7 +553,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 format(volumeId: string, fsType: string): Promise&lt;void&gt;
 
-Formats a volume. This API uses a promise to return the result. Currently, only the virtual file allocation table (VFAT) and exFAT file systems are supported. Only unmounted volumes can be formatted. After a volume is formatted, the UUID, mounting path, and description of the volume change.
+Formats a volume. This API uses a promise to return the result. Currently, only the virtual file allocation table (VFAT) and exFAT file systems are supported. Only unmounted volumes can be formatted. After a volume is formatted, the UUID, mounting path, and description of the volume will change.
 
 **Required permissions**: ohos.permission.MOUNT_FORMAT_MANAGER
 
@@ -599,7 +604,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 format(volumeId: string, fsType: string, callback: AsyncCallback&lt;void&gt;): void
 
-Formats a volume. This API uses an asynchronous callback to return the result. Currently, only the VFAT and exFAT file systems are supported. Only unmounted volumes can be formatted. After a volume is formatted, the UUID, mounting path, and description of the volume change.
+Formats a volume. This API uses an asynchronous callback to return the result. Currently, only the VFAT and exFAT file systems are supported. Only unmounted volumes can be formatted. After a volume is formatted, the UUID, mounting path, and description of the volume will change.
 
 **Required permissions**: ohos.permission.MOUNT_FORMAT_MANAGER
 

@@ -3,8 +3,9 @@
 <!--Kit: Universal Keystore Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @wutiantian-gitee-->
-<!--SE: @HighLowWorld-->
-<!--TSE: @wxy1234564846-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
 
 在密码学中，密钥派生函数（Key derivation function，KDF）使用伪随机函数从诸如主密码或密码的秘密值中派生出一个或多个密钥。
 

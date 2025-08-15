@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @mayaolll-->
-<!--SE: @jiangdayuan-->
-<!--TSE: @lxl007-->
+<!--Designer: @jiangdayuan-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 Navigation组件是路由导航的根视图容器，一般作为Page页面的根容器使用，其内部默认包含了标题栏、内容区和工具栏，其中内容区默认首页显示导航内容（Navigation的子组件）或非首页显示（[NavDestination](ts-basic-components-navdestination.md)的子组件），首页和非首页通过路由进行切换。
 
@@ -447,8 +448,8 @@ ignoreLayoutSafeArea(types?: Array&lt;LayoutSafeAreaType&gt;, edges?: Array&lt;L
 
 | 参数名 | 类型                                               | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| types  | Array <[LayoutSafeAreaType](ts-types.md#layoutsafeareatype12)> | 否   | 配置扩展安全区域的类型。<br />默认值：<br />[LayoutSafeAreaType.SYSTEM] |
-| edges  | Array <[LayoutSafeAreaEdge](ts-types.md#layoutsafeareaedge12)> | 否   | 配置扩展安全区域的方向。<br /> 默认值：<br />[LayoutSafeAreaEdge.TOP, LayoutSafeAreaEdge.BOTTOM]。|
+| types  | Array <[LayoutSafeAreaType](ts-universal-attributes-expand-safe-area.md#layoutsafeareatype12)> | 否   | 配置扩展安全区域的类型。<br />默认值：<br />[LayoutSafeAreaType.SYSTEM] |
+| edges  | Array <[LayoutSafeAreaEdge](ts-universal-attributes-expand-safe-area.md#layoutsafeareaedge12)> | 否   | 配置扩展安全区域的方向。<br /> 默认值：<br />[LayoutSafeAreaEdge.TOP, LayoutSafeAreaEdge.BOTTOM]。|
 
 >  **说明：**
 >   
@@ -541,7 +542,7 @@ enableModeChangeAnimation(isEnabled: Optional&lt;boolean&gt;)
 
 enableToolBarAdaptation(enable: Optional&lt;boolean&gt;)
 
-设置是否启用Navigation和NavDestination的工具栏自适应能力。该接口不适配于自定义菜单，使用该接口需采用[NavigationMenuItem](#navigationmenuitem)接口来定义[菜单](#menus)。
+设置是否启用Navigation和NavDestination的工具栏[toolbarConfiguration](#toolbarconfiguration10)自适应能力。关闭此能力后，底部工具栏[toolbarConfiguration](#toolbarconfiguration10)将不会再移动至页面右上角的菜单中。该接口不适配于自定义菜单，使用该接口需采用[NavigationMenuItem](#navigationmenuitem)接口来定义[菜单](#menus)。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -673,7 +674,7 @@ customNavContentTransition(delegate:(from: NavContentInfo, to: NavContentInfo, o
 
 | 参数名    | 类型                                                  | 必填 | 说明                    |
 | --------- | ----------------------------------------------------- | ---- | ----------------------- |
-| from      | [NavContentInfo](#navcontentinfo11)                   | 是   | 退场Destination的页面。 |
+| from      | [NavContentInfo](#navcontentinfo11)                   | 是   | 退场Destination的页面。 |	
 | to        | [NavContentInfo](#navcontentinfo11)                   | 是   | 进场Destination的页面。 |
 | operation | [NavigationOperation](#navigationoperation11枚举说明) | 是   | 转场类型。              |
 
@@ -1108,8 +1109,7 @@ pop(animated?: boolean): NavPathInfo | undefined
 
 | 类型          | 说明                       |
 | ----------- | ------------------------ |
-| [NavPathInfo](#navpathinfo10) | 返回栈顶NavDestination页面的信息。 |
-| undefined   | 当路由栈为空时返回undefined。      |
+| [NavPathInfo](#navpathinfo10)&nbsp;\|&nbsp;undefined | NavPathInfo：返回栈顶NavDestination页面的信息。<br/>undefined: 当路由栈为空时返回undefined。 |
 
 ### pop<sup>11+</sup>
 
@@ -1132,8 +1132,7 @@ pop(result: Object, animated?: boolean): NavPathInfo | undefined
 
 | 类型          | 说明                       |
 | ----------- | ------------------------ |
-| [NavPathInfo](#navpathinfo10) | 返回栈顶NavDestination页面的信息。 |
-| undefined   | 当路由栈为空时返回undefined。      |
+| [NavPathInfo](#navpathinfo10)&nbsp;\|&nbsp;undefined | NavPathInfo：返回栈顶NavDestination页面的信息。<br/>undefined: 当路由栈为空时返回undefined。  |
 
 ### popToName<sup>10+</sup>
 
@@ -1309,8 +1308,7 @@ getParamByIndex(index: number): unknown | undefined
 
 | 类型        | 说明                         |
 | --------- | -------------------------- |
-| unknown   | 返回对应NavDestination页面的参数信息，unkown可以是用户自定义的类型。 |
-| undefined | 传入index无效时返回undefined。     |
+| unknown&nbsp;\|&nbsp;undefined | unknown：返回对应NavDestination页面的参数信息，unkown可以是用户自定义的类型。<br/>undefined: 传入index无效时返回undefined。  |
 
 ### getParamByName<sup>10+</sup>
 
@@ -1472,6 +1470,8 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>, isEntry?: 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
 
 | 参数名    | 类型      | 必填   | 说明                   |
 | ----- | ------- | ---- | --------------------- |
@@ -1671,17 +1671,15 @@ Navigation首页名字。
 
 工具栏可配置参数。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称         | 类型                                       | 必填   | 说明                                       |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| value      | ResourceStr                              | 是    | 工具栏单个选项的显示文本。                            |
-| icon       | ResourceStr                              | 否    | 工具栏单个选项的图标资源路径。                          |
-| action     | () =&gt; void                            | 否    | 当前选项被选中的事件回调。                            |
-| status     | [ToolbarItemStatus](#toolbaritemstatus10枚举说明) | 否    | 工具栏单个选项的状态。<br/>默认值：ToolbarItemStatus.NORMAL |
-| activeIcon | ResourceStr                              | 否    | 工具栏单个选项处于ACTIVE态时的图标资源路径。                |
+| value      | ResourceStr                              | 是    | 工具栏单个选项的显示文本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                            |
+| icon       | ResourceStr                              | 否    | 工具栏单个选项的图标资源路径。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                          |
+| action     | () =&gt; void                            | 否    | 当前选项被选中的事件回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                            |
+| status     | [ToolbarItemStatus](#toolbaritemstatus10枚举说明) | 否    | 工具栏单个选项的状态。<br/>默认值：ToolbarItemStatus.NORMAL。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| activeIcon | ResourceStr                              | 否    | 工具栏单个选项处于ACTIVE态时的图标资源路径。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                |
 | symbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)        | 否    | 工具栏单个选项的symbol资源（优先级高于icon）。    <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。           |
 | activeSymbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)              | 否    | 工具栏单个选项处于ACTIVE态时的symbol资源（优先级高于activeIcon）。    <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。            |
 
@@ -3721,7 +3719,7 @@ class DerivedNavPathStack extends NavPathStack {
   // other function of base class...
 }
 
-class Param {
+class NewParam {
   info: string = "__default_param__";
 
   constructor(info: string) {
@@ -3748,7 +3746,7 @@ struct Index {
       Button('to Page One').margin(20).onClick(() => {
         this.derivedStack.pushPath({
           name: 'pageOne',
-          param: new Param('push pageOne in homePage when stack size: ' + this.derivedStack.size())
+          param: new NewParam('push pageOne in homePage when stack size: ' + this.derivedStack.size())
         });
       })
     }.navDestination(this.pageMap)
@@ -3783,7 +3781,7 @@ struct PageOne {
       Button('to Page One').margin(20).onClick(() => {
         this.derivedStack.pushPath({
           name: 'pageOne',
-          param: new Param('push pageOne in pageOne when stack size: ' + this.derivedStack.size())
+          param: new NewParam('push pageOne in pageOne when stack size: ' + this.derivedStack.size())
         });
       })
     }.title('Page One')
@@ -4536,7 +4534,7 @@ struct NavigationExample {
     },
   ]
 
-  @State toolItems:Array<ToolbarItem>= [
+  @State toolItems:Array<ToolbarItem> = [
     {
       value:'toolItem1',
       symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),

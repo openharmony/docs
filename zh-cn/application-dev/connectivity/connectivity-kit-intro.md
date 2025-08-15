@@ -1,5 +1,12 @@
 # Connectivity Kit简介
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+<!--Adviser: @zhang_yixin13-->
+
 ## Connectivity Kit开发概述
 
 移动终端设备已经深入人民日常生活的方方面面，如连接蓝牙耳机听音乐、连接WIFI上网、使用NFC进行一碰开门等已成为终端用户日常生活中常见的行为。
@@ -80,4 +87,4 @@ Connectivity能力作为系统为应用提供的一种基础通信服务，需�
 
 针对蓝牙相关的业务，有以下相关实例可供参考：
 
-- [`bluetooth`](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Bluetooth)
+- [bluetooth](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Bluetooth)

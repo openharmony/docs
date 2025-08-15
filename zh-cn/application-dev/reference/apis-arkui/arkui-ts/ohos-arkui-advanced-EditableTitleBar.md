@@ -1,4 +1,10 @@
 # EditableTitleBar
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fengluochenai-->
+<!--Designer: @YanSanzo-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @HelloCrease-->
 
 
 编辑型标题栏，适用于多选界面或者内容的编辑界面，一般采取左叉右勾的形式。
@@ -103,8 +109,8 @@ type EditableTitleBarItem = EditableTitleBarMenuItem
 | -------- | -------- | -------- | -------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 标题栏背景色。<br />默认值: '#00000000'|
 | backgroundBlurStyle | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 标题栏背景模糊样式。<br />默认值: BlurStyle.NONE|
-| safeAreaTypes | Array <[SafeAreaType](ts-types.md#safeareatype10)> | 否   | 非必填，配置扩展安全区域的类型。<br />默认值: [SafeAreaType.SYSTEM] |
-| safeAreaEdges  | Array <[SafeAreaEdge](ts-types.md#safeareaedge10)> | 否   | 非必填，配置扩展安全区域的方向。<br />默认值: [SafeAreaEdge.TOP] |
+| safeAreaTypes | Array <[SafeAreaType](ts-universal-attributes-expand-safe-area.md#safeareatype)> | 否   | 非必填，配置扩展安全区域的类型。<br />默认值: [SafeAreaType.SYSTEM] |
+| safeAreaEdges  | Array <[SafeAreaEdge](ts-universal-attributes-expand-safe-area.md#safeareaedge)> | 否   | 非必填，配置扩展安全区域的方向。<br />默认值: [SafeAreaEdge.TOP] |
 
 ## 事件
 不支持[通用事件](ts-component-general-events.md)。

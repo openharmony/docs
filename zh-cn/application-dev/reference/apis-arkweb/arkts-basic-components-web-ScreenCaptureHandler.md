@@ -1,9 +1,10 @@
 # Class (ScreenCaptureHandler)
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @qq_42700029-->
-<!--SE: @qiu-gongkai-->
-<!--TSE: @ghiker-->
+<!--Designer: @qiu-gongkai-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Web组件返回授权或拒绝屏幕捕获功能的对象。示例代码参考[onScreenCaptureRequest事件](./arkts-basic-components-web-events.md#onscreencapturerequest10)。
 

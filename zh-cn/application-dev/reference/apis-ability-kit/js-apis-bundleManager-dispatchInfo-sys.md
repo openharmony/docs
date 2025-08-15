@@ -1,4 +1,10 @@
 # DispatchInfo (系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 免安装结构体和接口版本信息类，通过接口[freeInstall.getDispatchInfo](js-apis-freeInstall-sys.md#getdispatchinfo)获取。
 

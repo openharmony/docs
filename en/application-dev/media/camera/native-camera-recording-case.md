@@ -1,4 +1,9 @@
 # Video Recording Practices (C/C++)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 
@@ -152,7 +157,7 @@ After obtaining the output stream capabilities supported by the camera, create a
 
         // Obtain the camera list.
         ret = OH_CameraManager_GetSupportedCameras(cameraManager, &cameras, &size);
-        if (cameras == nullptr || size < 0 || ret != CAMERA_OK) {
+        if (cameras == nullptr || size <= 0 || ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
             return;
         }
@@ -162,6 +167,11 @@ After obtaining the output stream capabilities supported by the camera, create a
             OH_LOG_ERROR(LOG_APP, "cameraPosition  =  %{public}d ", cameras[index].cameraPosition);  // Obtain the camera position.
             OH_LOG_ERROR(LOG_APP, "cameraType  =  %{public}d ", cameras[index].cameraType);          // Obtain the camera type.
             OH_LOG_ERROR(LOG_APP, "connectionType  =  %{public}d ", cameras[index].connectionType);  // Obtain the camera connection type.
+        }
+
+        if (size < cameraDeviceIndex + 1) {
+            OH_LOG_ERROR(LOG_APP, "cameraDeviceIndex is invalid.");
+            return;
         }
 
         // Obtain the output stream capability supported by the camera.
@@ -186,7 +196,7 @@ After obtaining the output stream capabilities supported by the camera, create a
         photoProfile = cameraOutputCapability->photoProfiles[0];
 
         if (cameraOutputCapability->videoProfiles == nullptr) {
-            OH_LOG_ERROR(LOG_APP, "videorofiles == null");
+            OH_LOG_ERROR(LOG_APP, "videoProfiles == null");
             return;
         }
         // Ensure that the aspect ratio of the preview stream is the same as that of the video stream. To record HDR videos, choose Camera_VideoProfile that supports HDR.
@@ -202,10 +212,13 @@ After obtaining the output stream capabilities supported by the camera, create a
                 break;
             }
         }
-
+        if (videoProfile == nullptr) {
+            OH_LOG_ERROR(LOG_APP, "Get videoProfile failed.");
+            return;
+        }
         // Create a VideoOutput instance.
         ret = OH_CameraManager_CreateVideoOutput(cameraManager, videoProfile, videoSurfaceId, &videoOutput);
-        if (videoProfile == nullptr || videoOutput == nullptr || ret != CAMERA_OK) {
+        if (videoOutput == nullptr || ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateVideoOutput failed.");
             return;
         }

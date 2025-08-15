@@ -1,4 +1,10 @@
 # @ohos.file.photoAccessHelper (相册管理模块)(系统接口)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 该模块提供相册管理模块能力，包括创建相册以及访问、修改相册中的媒体数据信息等。
 
@@ -642,11 +648,20 @@ async function getHiddenAlbumsView(phAccessHelper: photoAccessHelper.PhotoAccess
   };
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE, fetchOptions,
     async (err, fetchResult) => {
+      if (err !== undefined) {
+        console.error(`getHiddenAlbumsViewCallback failed with error: ${err.code}, ${err.message}`);
+        return;
+      }
       if (fetchResult === undefined) {
         console.error('getHiddenAlbumsViewCallback fetchResult is undefined');
         return;
       }
       let album = await fetchResult.getFirstObject();
+      if (album === undefined) {
+        console.error('getHiddenAlbumsViewCallback album is undefined');
+        fetchResult.close();
+        return;
+      }
       console.info('getHiddenAlbumsViewCallback successfully, album name: ' + album.albumName);
       fetchResult.close();
   });
@@ -699,6 +714,11 @@ async function getSysHiddenAlbum(phAccessHelper: photoAccessHelper.PhotoAccessHe
       return;
     }
     let hiddenAlbum: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    if (hiddenAlbum === undefined) {
+      console.error('getSysHiddenAlbumCallback hiddenAlbum is undefined');
+      fetchResult.close();
+      return;
+    }
     console.info('getSysHiddenAlbumCallback successfully, albumUri: ' + hiddenAlbum.albumUri);
     fetchResult.close();
   });
@@ -713,6 +733,11 @@ async function getHiddenAlbumsView(phAccessHelper: photoAccessHelper.PhotoAccess
       return;
     }
     let albums: Array<photoAccessHelper.Album> = await fetchResult.getAllObjects();
+    if (albums === undefined) {
+      console.error('getHiddenAlbumsViewCallback albums is undefined');
+      fetchResult.close();
+      return;
+    }
     console.info('getHiddenAlbumsViewCallback successfully, albums size: ' + albums.length);
 
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -723,6 +748,10 @@ async function getHiddenAlbumsView(phAccessHelper: photoAccessHelper.PhotoAccess
     for (let i = 0; i < albums.length; i++) {
       // 获取相册中的隐藏文件。
       albums[i].getAssets(fetchOption, (err, assetFetchResult) => {
+        if (assetFetchResult === undefined) {
+          console.error('getHiddenAlbumsViewCallback assetFetchResult is undefined');
+          return;
+        }
         console.info('album get hidden assets successfully, getCount: ' + assetFetchResult.getCount());
       });
     }
@@ -4221,7 +4250,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
-    console.info('requsetSourceCallbackDemo')
+    console.info('requestSourceCallbackDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
     let fetchOptions: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
@@ -4237,7 +4266,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
       }
     });
   } catch (err) {
-    console.error(`requsetSourceCallbackDemo failed with error: ${err.code}, ${err.message}`);
+    console.error(`requestSourceCallbackDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4280,7 +4309,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
-    console.info('requsetSourcePromiseDemo')
+    console.info('requestSourcePromiseDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
     let fetchOptions: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
@@ -4291,7 +4320,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     let fd = await photoAsset.requestSource();
     console.info('Source fd is ' + fd);
   } catch (err) {
-    console.error(`requsetSourcePromiseDemo failed with error: ${err.code}, ${err.message}`);
+    console.error(`requestSourcePromiseDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -5979,7 +6008,7 @@ setSupportedWatermarkType(watermarkType: WatermarkType): void
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| watermarkType | [WatermarkType](#watermarktype14) | 是   | 水印可编辑标识。 |
+| watermarkType | [WatermarkType](#watermarktype14) | 是   | 水印可编辑标识。<br>**注意：** 不支持传入WatermarkType.DEFAULT。 |
 
 **错误码：**
 
@@ -6426,7 +6455,7 @@ static createAlbumRequest(context: Context, name: string): MediaAlbumChangeReque
 
 相册名的参数规格为：
 - 相册名字符串长度为1~255。
-- 不允许出现非法字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- 不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - 英文字符大小写不敏感。
 - 相册名不允许重名。
 
@@ -6583,7 +6612,7 @@ async function example(context: Context, albumUri: string) {
     await photoAccessHelper.MediaAlbumChangeRequest.deleteAlbumsWithUri(context, [albumUri]);
     console.info('deleteAlbums successfully');
   } catch (err) {
-    console.error('deleteAlbumsWithUriDemo failed with error: ${err.code}, ${err.message}');
+    console.error(`deleteAlbumsWithUriDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -9453,6 +9482,7 @@ async function example(context: Context) {
 | OWNER_ALBUM_ID<sup>18+</sup>  | 'owner_album_id' | 照片所属的相册id。**系统接口**：此接口为系统接口。 |
 | IS_RECENT_SHOW<sup>18+</sup>  | 'is_recent_show' | 是否设置为最近显示。**系统接口**：此接口为系统接口。 |
 | SUM_SIZE<sup>19+</sup>  | 'sum(size)' | 文件大小总和。在fetchColumns中填入SUM_SIZE属性时，仅获取到第一个资产，并且属性中带有所有资产的总大小。**系统接口**：此接口为系统接口。 |
+| EXIF_ROTATE<sup>20+</sup>  | 'exif_rotate' | 文件的旋转角度信息。**系统接口**：此接口为系统接口。 |
 
 ## AlbumKeys
 
@@ -9572,7 +9602,7 @@ async function example(context: Context) {
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 |formId             |string               |是 | 卡片的ID，由图库创建卡片时提供。 |
-|assetUris          |Array&lt;string&gt;  |是 | 卡片绑定的图片或相册的uri集合。创建和更新卡片时assetUris不可为空，移除卡片时assetUris可以不传。  |
+|assetUris          |Array&lt;string&gt;  |是 | 卡片绑定的图片或相册的uri集合。<br>创建和更新卡片时，assetUris不可为空。<br>单次创建或更新卡片时，assetUris中的uri个数如果超出500个，则只创建或更新500个uri的监听，超出500个后的uri不会被注册。<br>移除卡片时，assetUris可省略。  |
 
 ## ResourceType<sup>11+</sup>
 

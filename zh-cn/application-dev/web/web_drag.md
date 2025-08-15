@@ -1,9 +1,10 @@
 # 使用Web组件的拖拽功能与网页交互
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
+<!--Subsystem: Web-->
 <!--Owner: @zourongchun-->
-<!--SE: @zhufenghao-->
-<!--TSE: @ghiker-->
+<!--Designer: @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 ArkWeb的拖拽功能使应用能够在网页中实现元素的拖放，用户可以长按可拖拽的元素，将其拖至可放置的元素上，然后松手完成放置。ArkWeb在网页内容中的拖拽功能满足H5标准。
 
@@ -24,7 +25,7 @@ ArkWeb拖拽不同于ArkUI的组件级拖拽，主要针对网页内容的拖拽
 
 | 监听方法    | 说明                                                  |
 | ----------- | ----------------------------------------------------- |
-| [onDragStart](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)  | 不支持该方法，不应该实现，否则会影响Web组件的拖拽行为。 |
+| [onDragStart](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)  | 禁止使用此方法，否则会影响Web组件的拖拽行为，造成拖拽逻辑不符合预期，如无法触发html拖拽事件监听，预览图无法创建或预览图错误，拖拽数据无法预置等。|
 |  [onDragEnter](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter) | 拖拽的元素进入Web区域。 |
 | [onDragMove](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)  | 拖拽的元素在Web区域移动。  |
 | [onDragLeave](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave) | 拖拽的元素离开Web区域。          |

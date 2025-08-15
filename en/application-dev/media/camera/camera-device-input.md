@@ -1,4 +1,9 @@
 # Device Input Management (ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 Before developing a camera application, request permissions by following the instructions provided in [Camera Development Preparations](camera-preparation.md).
 
@@ -6,7 +11,7 @@ A camera application invokes and controls a camera device to perform basic opera
 
 ## How to Develop
 
-Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
+Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 1. Import the camera module, which provides camera-related attributes and methods.
 
@@ -19,7 +24,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    >
    > Before any camera device input, you must complete camera management by following the instructions provided in [Camera Device Management](camera-device-management.md).
 
-2. Call [createCameraInput](../../reference/apis-camera-kit/js-apis-camera.md#createcamerainput) in the [cameraManager](../../reference/apis-camera-kit/js-apis-camera.md#cameramanager) class to create a camera input stream.
+2. Call [createCameraInput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createcamerainput) in the [cameraManager](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md) class to create a camera input stream.
 
    ```ts
    async function createInput(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): Promise<camera.CameraInput | undefined> {
@@ -44,7 +49,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    }
    ```
 
-3. Call [getSupportedSceneModes](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedscenemodes11) to obtain the list of scene modes supported by the current camera device. The list stores all the [SceneModes](../../reference/apis-camera-kit/js-apis-camera.md#scenemode11) supported by the camera device.
+3. Call [getSupportedSceneModes](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedscenemodes11) to obtain the list of scene modes supported by the current camera device. The list stores all the [SceneMode](../../reference/apis-camera-kit/arkts-apis-camera-e.md#scenemode11) supported by the camera device.
 
     ```ts
     function getSupportedSceneMode(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): Array<camera.SceneMode> {
@@ -62,7 +67,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
     }
     ```
 
-4. Call [getSupportedOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedoutputcapability11) to obtain all output streams supported by the current camera device, such as preview streams, photo streams, and video streams. The supported output streams are listed in the **profile** field in [CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability). Different types of output streams must be added based on the value of [SceneMode](../../reference/apis-camera-kit/js-apis-camera.md#scenemode11) specified by the camera device.
+4. Call [getSupportedOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedoutputcapability11) to obtain all output streams supported by the current camera device, such as preview streams, photo streams, and video streams. The supported output streams are listed in the **profile** field in [CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability). Different types of output streams must be added based on the value of [SceneMode](../../reference/apis-camera-kit/arkts-apis-camera-e.md#scenemode11) specified by the camera device.
 
    ```ts
    async function getSupportedOutputCapability(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager, sceneMode: camera.SceneMode): Promise<camera.CameraOutputCapability | undefined> {

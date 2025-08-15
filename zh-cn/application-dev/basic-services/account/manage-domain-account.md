@@ -3,8 +3,9 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Account-->
 <!--Owner: @steven-q-->
-<!--SE: @JiDong-CS1-->
-<!--TSE: @zhaimengchao-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
 
 用户可以在系统中添加域账号，后续可以域账号身份登录、使用系统。
 

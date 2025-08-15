@@ -3,8 +3,9 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--SE: @chengguohong; @tangjia15-->
-<!--TSE: @wangfeng517-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+<!--Adviser: @zhang_yixin13-->
 
 socket模块提供了操作和管理蓝牙socket的方法。
 
@@ -531,12 +532,12 @@ while (flag) {
   try {
     socket.sppReadAsync(clientNumber).then((outBuffer: ArrayBuffer) => {
       buffer = outBuffer;
+      if (buffer != null) {
+        console.info('sppRead success, data = ' + JSON.stringify(buffer));
+      } else {
+        console.error('sppRead error, data is null');
+      }
     });
-    if (buffer != null) {
-      console.info('sppRead success, data = ' + JSON.stringify(buffer));
-    } else {
-      console.error('sppRead error, data is null');
-    }
   } catch (err) {
     flag = 0;
     console.error('startSppRead errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);

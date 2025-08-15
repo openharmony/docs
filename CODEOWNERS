@@ -63,9 +63,9 @@ zh-cn/application-dev/application-models/canopenlink.md @Brilliantry_Rui  @chang
 
 
 [开发-Accessibility Kit]
-zh-cn/application-dev/kit-readme/Readme-Accessibility-Kit.md  @w_Machine_cc @lin-steven  @A_qqq
-zh-cn/application-dev/application-models/accessibilityKit.md @w_Machine_cc  @lin-steven  @A_qqq
-zh-cn/application-dev/application-models/accessibilityextensionability.md @w_Machine_cc  @lin-steven  @A_qqq
+zh-cn/application-dev/kit-readme/Readme-Accessibility-Kit.md  @w_Machine_cc @z7o  @A_qqq
+zh-cn/application-dev/application-models/accessibilityKit.md @w_Machine_cc  @z7o  @A_qqq
+zh-cn/application-dev/application-models/accessibilityextensionability.md @w_Machine_cc  @z7o  @A_qqq
 
 
 [开发-ArkData]
@@ -309,12 +309,12 @@ zh-cn/application-dev/calendarmanager/calendarmanager-guidelines.md @liuqian677 
 
 [开发-Connectivity Kit]
 zh-cn/application-dev/communication/bluetooth/  @zhang_yixin13 @xujiang1981 @enjoy_sunshine
-zh-cn/application-dev/communication/nfc/ @knpingan @zhang_yixin13 @projectmanagement-zhang @heli_bbd
-zh-cn/application-dev/communication/wlan/ @zhang_yixin13 @legendtau
+zh-cn/application-dev/communication/nfc/ @wenxiaolin @zhang_yixin13 @zs_111 
+zh-cn/application-dev/communication/wlan/ @zhang_yixin13  @furryfurry123
 
 
 [开发-Contacts Kit]
-zh-cn/application-dev/telephony/contacts-intro.md @zhang_yixin13 
+zh-cn/application-dev/telephony/contacts-intro.md @zhang_yixin13 @yanghaoqian @shangzhijie
 
 
 [开发-Core File Kit]
@@ -327,7 +327,7 @@ zh-cn/application-dev/device/externaldevice-guidelines.md @w_Machine_cc @w003739
 
 
 [开发-Form Kit]
-zh-cn/application-dev/form/  @Brilliantry_Rui @ylsnow  @cmz001   @zhaoshaohua_eiln
+zh-cn/application-dev/form/  @Brilliantry_Rui @ylsnow  @cmz001   @zhaoshaohua_eiln @tang_xian9109  @yangyuecheng
 
 
 [开发-DFX]
@@ -337,14 +337,14 @@ zh-cn/application-dev/dfx/ @foryourself
 zh-cn/application-dev/IDL/ @huipeizi  @ccllee  @lxfycode  @lixueqing513
 
 [开发-IME kit]
-zh-cn/application-dev/inputmethod/ @illybyy @murphy1984   @zhang_yixin13 @SuperShrimp 
-zh-cn/application-dev/kit-readme/Readme-IME-Kit.md @illybyy @murphy1984   @zhang_yixin13 @SuperShrimp 
-zh-cn/application-dev/inputmethod/Readme-CN.md @illybyy @murphy1984   @zhang_yixin13 @SuperShrimp 
-zh-cn/application-dev/inputmethod/custom_input_box_guide.md @illybyy @murphy1984   @zhang_yixin13 @SuperShrimp 
-zh-cn/application-dev/inputmethod/ime-kit-intro.md @illybyy @murphy1984   @zhang_yixin13 @SuperShrimp 
-zh-cn/application-dev/inputmethod/input_method_subtype_guide.md @illybyy @murphy1984  @zhang_yixin13 @SuperShrimp 
-zh-cn/application-dev/inputmethod/inputmethod_application_guide.md @illybyy @murphy1984  @zhang_yixin13 @SuperShrimp 
-zh-cn/application-dev/inputmethod/switch_inputmehod_guide.md @illybyy @murphy1984  @zhang_yixin13 @SuperShrimp 
+zh-cn/application-dev/inputmethod/ @illybyy @murphy1984   @zhang_yixin13  
+zh-cn/application-dev/kit-readme/Readme-IME-Kit.md @illybyy @murphy1984   @zhang_yixin13  
+zh-cn/application-dev/inputmethod/Readme-CN.md @illybyy @murphy1984   @zhang_yixin13  
+zh-cn/application-dev/inputmethod/custom_input_box_guide.md @illybyy @murphy1984   @zhang_yixin13  
+zh-cn/application-dev/inputmethod/ime-kit-intro.md @illybyy @murphy1984   @zhang_yixin13  
+zh-cn/application-dev/inputmethod/input_method_subtype_guide.md @illybyy @murphy1984  @zhang_yixin13  
+zh-cn/application-dev/inputmethod/inputmethod_application_guide.md @illybyy @murphy1984  @zhang_yixin13  
+zh-cn/application-dev/inputmethod/switch_inputmehod_guide.md @illybyy @murphy1984  @zhang_yixin13  
 
 [开发-Input kit]
 zh-cn/application-dev/device/input  @Brilliantry_Rui  @hanruofei @Lyuxin
@@ -425,7 +425,7 @@ zh-cn/application-dev/device/stationary-guidelines.md @mayunteng_1 @hu-zhiqiong 
 
 
 [开发-Network Kit]
-zh-cn/application-dev/network/ @zhang_yixin13 
+zh-cn/application-dev/network/ @zhang_yixin13 @guo-min_net @tongxilin
 
 
 [开发-Neural NetWork Runtime Kit]
@@ -467,9 +467,9 @@ zh-cn/application-dev/device/sensor/sensor-guidelines-as.md @hu-zhiqiong @lixian
 
 
 [开发-Telephony Kit]
-zh-cn/application-dev/telephony/telephony-overview.md @zhang_yixin13 
-zh-cn/application-dev/telephony/telephony-call.md @zhang_yixin13 
-zh-cn/application-dev/telephony/telephony-sms.md @zhang_yixin13 
+zh-cn/application-dev/telephony/telephony-overview.md @zhang_yixin13  @jiang_99 @wnazgul
+zh-cn/application-dev/telephony/telephony-call.md @zhang_yixin13  @jiang_99 @wnazgul
+zh-cn/application-dev/telephony/telephony-sms.md @zhang_yixin13  @jiang_99 @wnazgul
 
 
 [开发-Test Kit]
@@ -523,12 +523,12 @@ zh-cn/application-dev/reference/apis-ability-kit/js-apis-shortcut*.md @Brilliant
 zh-cn/application-dev/reference/apis-ability-kit/errorcode-bundle.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
 zh-cn/application-dev/reference/apis-ability-kit/errorcode-zlib.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
 
-zh-cn/application-dev/reference/apis-ability-kit/_bundle.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
-zh-cn/application-dev/reference/apis-ability-kit/native__interface__bundle.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
-zh-cn/application-dev/reference/apis-ability-kit/_o_h___native_bundle_application_info.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
-zh-cn/application-dev/reference/apis-ability-kit/_o_h___native_bundle_element_name.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
-zh-cn/application-dev/reference/apis-ability-kit/native_interface_bundle_metadata.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
-zh-cn/application-dev/reference/apis-ability-kit/native_interface_bundle_module_metadata.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/capi-native-bundle.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/capi-native-interface-bundle-h.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/capi-native-bundle-oh-nativebundle-applicationinfo.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/capi-native-bundle-oh-nativebundle-elementname.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/capi-native-bundle-oh-nativebundle-metadata.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/capi-native-bundle-oh-nativebundle-modulemetadata.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
 
 [API参考-Ability Kit-分布式]
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-distributedMissionManager.md @chenmingJay @nan-xiansen @iceice1001
@@ -548,12 +548,12 @@ zh-cn/application-dev/reference/apis-ability-kit/capi-ability-access-control-h.m
 
 
 [API参考-Accessibility kit]
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility.md @mupceet  @gaoxi785 @w_Machine_cc @lin-steven @A_qqq
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-GesturePath.md  @mupceet @gaoxi785 @w_Machine_cc @lin-steven @A_qqq
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md  @mupceet @chengxingzhen @w_Machine_cc @lin-steven @A_qqq
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext.md  @mupceet @chengxingzhen @w_Machine_cc @lin-steven @A_qqq
-zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-config-sys.md  @mupceet @gaoxi785 @w_Machine_cc @lin-steven @A_qqq
-zh-cn/application-dev/reference/apis-accessibility-kit/errorcode-accessibility.md  @w_Machine_cc @lin-steven @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility.md @mupceet  @gaoxi785 @w_Machine_cc @z7o @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-GesturePath.md  @mupceet @gaoxi785 @w_Machine_cc @z7o @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md  @mupceet @chengxingzhen @w_Machine_cc @z7o @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext.md  @mupceet @chengxingzhen @w_Machine_cc @z7o @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-config-sys.md  @mupceet @gaoxi785 @w_Machine_cc @z7o @A_qqq
+zh-cn/application-dev/reference/apis-accessibility-kit/errorcode-accessibility.md  @w_Machine_cc @z7o @A_qqq
 
 
 [API参考-ArkGraphics2D]
@@ -740,9 +740,9 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-counter.md	@ile
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flex.md	 @laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flowitem.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-folderstack.md @laigerendaqiu	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md	@Brilliantry_Rui @ylsnow  @cmz001   @zhaoshaohua_eiln 
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md			@Brilliantry_Rui @ylsnow @cmz001  @zhaoshaohua_eiln 
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md @Brilliantry_Rui @ylsnow @cmz001  @zhaoshaohua_eiln 
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md	@Brilliantry_Rui @ylsnow  @cmz001   @zhaoshaohua_eiln  @tang_xian9109  @yangyuecheng
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md			@Brilliantry_Rui @ylsnow @cmz001  @zhaoshaohua_eiln @tang_xian9109  @yangyuecheng
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md @Brilliantry_Rui @ylsnow @cmz001  @zhaoshaohua_eiln  @tang_xian9109  @yangyuecheng
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridcol.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridrow.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-grid.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
@@ -974,14 +974,14 @@ zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-request.md @zh
 zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-update.md @hughes802 @zhang_yixin13 @zhangzhengxue @mamba-ting
 
 [API参考-Basic Services Kit-时间时区、公共回调、系统设置]
-zh-cn/application-dev/reference/common/js-apis-timer.md @zhang_yixin13  @murphy1984 
+zh-cn/application-dev/reference/common/js-apis-timer.md   @ge-yafang
 zh-cn/application-dev/reference/apis-basic-services-kit/commonEvent-screenlock.md @zhang_yixin13
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-timer-sys.md @zhang_yixin13  @murphy1984 
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-time.md @zhang_yixin13  @murphy1984 
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-date-time-sys.md @zhang_yixin13 @murphy1984 
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-nonsys-time.md @zhang_yixin13 @murphy1984 
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-nonsys-date-time.md @zhang_yixin13 @murphy1984 
-zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-time.md @zhang_yixin13  @murphy1984 
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-timer-sys.md @zhang_yixin13  @murphy1984 @hu-kai45
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-time.md @zhang_yixin13  @murphy1984 @hu-kai45
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-date-time-sys.md @zhang_yixin13 @murphy1984 @hu-kai45
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-nonsys-time.md @zhang_yixin13 @murphy1984 @hu-kai45
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-nonsys-date-time.md @zhang_yixin13 @murphy1984 @hu-kai45
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-time.md @zhang_yixin13  @murphy1984 @hu-kai45
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-screen-lock-sys.md @zhang_yixin13   @murphy1984 @wangzhangjun 
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-screen-lock.md @zhang_yixin13 @murphy1984 @wangzhangjun 
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-wallpaper.md @zhang_yixin13 @murphy1984 @wangzhangjun
@@ -993,8 +993,8 @@ zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-screenlock.md 
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-capability*.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 
 [API参考-Basic Services Kit-启动恢复]
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-parameterV9.md  @zhang_yixin13 
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-device-info.md  @zhang_yixin13 
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-parameterV9.md  @zhang_yixin13 @liveery @liuhaonan2
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-device-info.md  @zhang_yixin13 @liveery @liuhaonan2
 
 [API参考-Basic Services Kit-压缩解压]
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-zlib.md  @Brilliantry_Rui @changzheng6   @kongjing2  @small_bricklayer
@@ -1005,57 +1005,57 @@ zh-cn/application-dev/reference/apis-calendar-kit/ @liuqian677 @jt_123456 @edoll
 
 
 [API参考-Connectivity Kit-bluetooth]
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-a2dp.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-access.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-baseProfile.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-ble.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-constant.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hfp.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hid.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-map.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pan.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pbap.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-socket.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetoothManager.md  @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-a2dp-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-access-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-baseProfile-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-constant-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hfp-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hid-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pan-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pbap-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-map-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-wearDetection-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetoothManager-sys.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
-zh-cn/application-dev/reference/apis-connectivity-kit/errorcode-bluetoothManager.md @zhang_yixin13 @xujiang1981 @quanli125 @enjoy_sunshine
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-a2dp.md  @zhang_yixin13  @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-access.md  @zhang_yixin13  @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-baseProfile.md  @zhang_yixin13 @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-ble.md  @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection.md  @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-constant.md  @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hfp.md  @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hid.md  @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-map.md  @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pan.md  @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pbap.md  @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-socket.md  @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetoothManager.md  @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-a2dp-sys.md @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-access-sys.md @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-baseProfile-sys.md @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection-sys.md @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-constant-sys.md @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hfp-sys.md @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hid-sys.md @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pan-sys.md @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pbap-sys.md @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-map-sys.md @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-wearDetection-sys.md @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetoothManager-sys.md @zhang_yixin13   @enjoy_sunshine @wangfeng517
+zh-cn/application-dev/reference/apis-connectivity-kit/errorcode-bluetoothManager.md @zhang_yixin13   @enjoy_sunshine @wangfeng517
 
 [API参考-Connectivity Kit-wifi]
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifi.md @legendtau @zhang_yixin13  @xiangkejin123
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiext.md @legendtau @zhang_yixin13  @xiangkejin123
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiManager.md @legendtau @zhang_yixin13  @xiangkejin123
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiManagerExt.md @legendtau @zhang_yixin13  @xiangkejin123
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiManager-sys.md @legendtau @zhang_yixin13  @xiangkejin123
-zh-cn/application-dev/reference/apis-connectivity-kit/errorcode-wifi.md @legendtau @zhang_yixin13  @xiangkejin123
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifi.md  @furryfurry123 @zhang_yixin13   
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiext.md  @furryfurry123 @zhang_yixin13   
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiManager.md  @furryfurry123 @zhang_yixin13   
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiManagerExt.md  @furryfurry123 @zhang_yixin13   
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiManager-sys.md  @furryfurry123 @zhang_yixin13   
+zh-cn/application-dev/reference/apis-connectivity-kit/errorcode-wifi.md  @furryfurry123 @zhang_yixin13   
 
 [API参考-Connectivity Kit-nfc]
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-cardEmulation.md @knpingan @zhang_yixin13 @projectmanagement-zhang @heli_bbd
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-connectedTag.md @knpingan @zhang_yixin13 @projectmanagement-zhang @heli_bbd
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-tagSession.md @knpingan @zhang_yixin13 @projectmanagement-zhang @heli_bbd
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-nfctech.md @knpingan @zhang_yixin13 @projectmanagement-zhang @heli_bbd
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-secureElement.md @knpingan @zhang_yixin13 @projectmanagement-zhang @heli_bbd
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-nfcController.md @knpingan @zhang_yixin13 @projectmanagement-zhang @heli_bbd
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-nfcTag.md @knpingan @zhang_yixin13 @projectmanagement-zhang @heli_bbd
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-cardEmulation-sys.md @knpingan @zhang_yixin13 @projectmanagement-zhang @heli_bbd
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-nfcTag-sys.md @knpingan @zhang_yixin13 @projectmanagement-zhang @heli_bbd
-zh-cn/application-dev/reference/apis-connectivity-kit/errorcode-nfc.md @knpingan @zhang_yixin13 @projectmanagement-zhang @heli_bbd
-zh-cn/application-dev/reference/apis-connectivity-kit/errorcode-se.md @knpingan @zhang_yixin13 @projectmanagement-zhang @heli_bbd
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-cardEmulation.md @wenxiaolin @zhang_yixin13 @zs_111 
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-connectedTag.md @wenxiaolin @zhang_yixin13 @zs_111 
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-tagSession.md @wenxiaolin @zhang_yixin13 @zs_111 
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-nfctech.md @wenxiaolin @zhang_yixin13 @zs_111 
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-secureElement.md @wenxiaolin @zhang_yixin13 @zs_111 
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-nfcController.md @wenxiaolin @zhang_yixin13 @zs_111 
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-nfcTag.md @wenxiaolin @zhang_yixin13 @zs_111 
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-cardEmulation-sys.md @wenxiaolin @zhang_yixin13 @zs_111 
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-nfcTag-sys.md @wenxiaolin @zhang_yixin13 @zs_111 
+zh-cn/application-dev/reference/apis-connectivity-kit/errorcode-nfc.md @wenxiaolin @zhang_yixin13 @zs_111 
+zh-cn/application-dev/reference/apis-connectivity-kit/errorcode-se.md @wenxiaolin @zhang_yixin13 @zs_111 
 
 
 [API参考-Contacts Kit]
-zh-cn/application-dev/reference/apis-contacts-kit/  @zhang_yixin13 
+zh-cn/application-dev/reference/apis-contacts-kit/  @zhang_yixin13 @shangzhijie @yanghaoqian
 
 
 [API参考-Core File Kit]
@@ -1069,7 +1069,7 @@ zh-cn/application-dev/reference/apis-performance-analysis-kit/ @foryourself
 
 [API参考-Distributedservice Kit]
 zh-cn/application-dev/reference/apis-distributedservice-kit/ @intermilano  @william-ligang @liuhonggang123 @w_Machine_cc
-zh-cn/application-dev/reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate.md @mayunteng_1 @liuhaonan2 @hu-zhiqiong @cococoler @alien0208 @w_Machine_cc
+zh-cn/application-dev/reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate.md @mayunteng_1 @liuhaonan2 @hu-zhiqiong @cococoler @alien0208 
 
 [API参考-Driverdevelopment kit]
 zh-cn/application-dev/reference/apis-driverdevelopment-kit/  @w_Machine_cc @w00373942 @dong-dongzhen
@@ -1077,12 +1077,12 @@ zh-cn/application-dev/reference/apis-driverdevelopment-kit/  @w_Machine_cc @w003
 
 
 [API参考-Form Kit]
-zh-cn/application-dev/reference/apis-form-kit/  @ylsnow  @cmz001  @Brilliantry_Rui  
+zh-cn/application-dev/reference/apis-form-kit/  @ylsnow  @cmz001  @Brilliantry_Rui  @tang_xian9109  @yangyuecheng
 
 
 
 [API参考-IME kit]
-zh-cn/application-dev/reference/apis-ime-kit/ @illybyy @murphy1984 @zhang_yixin13 @SuperShrimp
+zh-cn/application-dev/reference/apis-ime-kit/ @illybyy @murphy1984 @zhang_yixin13 
 
 
 [API参考-Input Kit]
@@ -1113,7 +1113,7 @@ zh-cn/application-dev/reference/apis-localization-kit/_raw_file_descriptor64.md 
 zh-cn/application-dev/reference/apis-localization-kit/errorcode-resource-manager.md   @Brilliantry_Rui @budda-wang @lpw_work 
 
 [API参考-Location Kit]
-zh-cn/application-dev/reference/apis-location-kit/ @cheng_guohong @RayShih @cheng_guohong @xiangkejin123
+zh-cn/application-dev/reference/apis-location-kit/ @cheng_guohong @RayShih @cheng_guohong  
 
 
 [API参考-Media]
@@ -1178,7 +1178,7 @@ zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-stationary.
 
 
 [API参考-Network Kit]
-zh-cn/application-dev/reference/apis-network-kit/ @zhang_yixin13 
+zh-cn/application-dev/reference/apis-network-kit/ @zhang_yixin13 @guo-min_net @tongxilin
 
 
 [API参考-Neural NetWork Runtime Kit]

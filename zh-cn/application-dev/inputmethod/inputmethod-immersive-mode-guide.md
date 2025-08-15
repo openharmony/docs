@@ -1,5 +1,10 @@
 # 输入法应用沉浸模式
-
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--Designer: @andeszhang-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 场景介绍
 
@@ -24,7 +29,7 @@
    import { inputMethodEngine } from '@kit.IMEKit';
 
    inputMethodEngine.getKeyboardDelegate().on("editorAttributeChanged", (attr : inputMethodEngine.EditorAttribute) => {
-      console.log("recv editorAttributeChanged, immersiveMode: " + attr.immersiveMode);
+      console.info("received editorAttributeChanged, immersiveMode: " + attr.immersiveMode);
    })
    ```
 

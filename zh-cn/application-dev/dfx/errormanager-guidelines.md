@@ -1,5 +1,12 @@
 # 错误管理开发指导
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @rr_cn-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## 场景介绍
 
 当应用的代码存在规范问题或错误时，会在运行中产生异常和错误，如应用未捕获异常等。在错误产生后，应用会异常退出。错误日志通常会保存在用户本地存储设备中，不方便开发者定位问题。所以，应用开发者可以使用错误管理的接口，在应用退出前，及时将相关错误及日志上报到开发者的服务平台来定位问题。
@@ -54,7 +61,7 @@
 
 > **注意：**
 >
-> 建议在异常回调函数处理的最后，增加同步退出操作，否则可能出现多次异常回调的现象。
+> 建议在异常回调函数处理的最后，增加同步退出操作，以避免多次异常回调。
 
 ### 单线程监听场景
 
@@ -71,7 +78,7 @@ let callback: errorManager.ErrorObserver = {
     onException: (errorObj) => {
         console.info('onException, name: ', errorObj.name);
         console.info('onException, message: ', errorObj.message);
-        if (typeof(errorObj.stack) === 'string') {
+        if (typeof(errorObj.stack) == 'string') {
             console.info('onException, stack: ', errorObj.stack);
         }
         //回调函数执行完，采用同步退出方式，避免多次触发异常
@@ -137,7 +144,7 @@ function errorFunc(observer: errorManager.GlobalError) {
     console.info("[Demo] result message :" + observer.message);
     console.info("[Demo] result stack :" + observer.stack);
     console.info("[Demo] result instanceName :" + observer.instanceName);
-    console.info("[Demo] result instaceType :" + observer.instanceType);
+    console.info("[Demo] result instanceType :" + observer.instanceType);
     //回调函数执行完，采用同步退出方式，避免多次触发异常
     let pro = new process.ProcessManager();
     pro.exit(0);
@@ -198,7 +205,7 @@ function promiseFunc(observer: errorManager.GlobalError) {
     console.info("[Demo] result message :" + observer.message);
     console.info("[Demo] result stack :" + observer.stack);
     console.info("[Demo] result instanceName :" + observer.instanceName);
-    console.info("[Demo] result instaceType :" + observer.instanceType);
+    console.info("[Demo] result instanceType :" + observer.instanceType);
     //回调函数执行完，采用同步退出方式，避免多次触发异常
     let pro = new process.ProcessManager();
     pro.exit(0);

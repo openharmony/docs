@@ -2,8 +2,9 @@
 <!--Kit: IPC Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @xdx19211@luodonghui0157-->
-<!--SE: @zhaopeng_gitee-->
-<!--TSE: @maxiaorong2-->
+<!--Designer: @zhaopeng_gitee-->
+<!--Tester: @maxiaorong2-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 概述
 
@@ -210,7 +211,7 @@ int OH_IPCSkeleton_SetMaxWorkThreadNum(const int maxThreadNum)
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数错误返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 其它情况返回[OH_IPC_ErrOH_IPC_ErrorCode#OH_IPC_INNER_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数错误返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 其它情况返回[OH_IPC_ErrorCode#OH_IPC_INNER_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCSkeleton_ResetCallingIdentity()
 
@@ -238,7 +239,7 @@ int OH_IPCSkeleton_ResetCallingIdentity(char **identity, int32_t *len, OH_IPC_Me
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数错误返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 内存分配失败返回[OH_IPC_ErrOH_IPC_ErrorCode#OH_IPC_MEM_ALLOCATOR_ERROR](capi-ipc-error-code-h.md)；<br> 其它情况返回[OH_IPC_ErrOH_IPC_ErrorCode#OH_IPC_INNER_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数错误返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 内存分配失败返回[OH_IPC_ErrorCode#OH_IPC_MEM_ALLOCATOR_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 其它情况返回[OH_IPC_ErrorCode#OH_IPC_INNER_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCSkeleton_SetCallingIdentity()
 
@@ -264,7 +265,7 @@ int OH_IPCSkeleton_SetCallingIdentity(const char *identity)
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数错误返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 其它情况返回[OH_IPC_ErrOH_IPC_ErrorCode#OH_IPC_INNER_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数错误返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 其它情况返回[OH_IPC_ErrorCode#OH_IPC_INNER_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCSkeleton_IsHandlingTransaction()
 

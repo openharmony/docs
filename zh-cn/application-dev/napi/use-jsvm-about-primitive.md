@@ -1,9 +1,10 @@
 # 使用JSVM-API接口进行primitive类相关开发
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
-<!--SE: @knightaoko-->
-<!--TSE: @test_lzz-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## 简介
 
@@ -77,7 +78,7 @@ const char *srcCallNative = R"JS(coerceToBool("123"))JS";
 
 预期结果：
 ```
-SVM OH_JSVM_CoerceToBool success:1
+JSVM OH_JSVM_CoerceToBool success:1
 ```
 
 ### OH_JSVM_CoerceToNumber

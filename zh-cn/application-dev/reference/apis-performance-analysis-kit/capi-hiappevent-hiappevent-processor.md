@@ -1,5 +1,12 @@
 # HiAppEvent_Processor
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @liujiaxing2024-->
+<!--Designer: @junjie_shi-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## 概述
 
 用于处理app事件上报的处理者。

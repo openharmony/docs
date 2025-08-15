@@ -1,4 +1,10 @@
 # Sensor Service Kit开发简介
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 ## 使用场景
 

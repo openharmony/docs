@@ -1,5 +1,12 @@
 # @ohos.accessibility (辅助功能)（系统接口）
 
+<!--Kit: Accessibility Kit-->
+<!--Subsystem: BarrierFree-->
+<!--Owner: @qiiiiiiian-->
+<!--Designer: @z7o-->
+<!--Tester: @A_qqq-->
+<!--Adviser: @w_Machine_cc-->
+
 本模块提供无障碍事件类型和无障碍节点元素可执行的操作。
 
 > **说明：**

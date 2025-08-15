@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 >
@@ -21,7 +22,7 @@ Internal error.
 
 **可能原因**
 
-无法获取正确的UI实例、空指针异常、UI实例内部状态校验异常等。
+无法获取正确的UI实例、空指针异常、UI实例内部状态校验异常、组件未上树无法查询到节点、截图尺寸超过硬件限制（硬件限制可能根据不同硬件平台有所不同）等。
 
 **处理步骤**
 

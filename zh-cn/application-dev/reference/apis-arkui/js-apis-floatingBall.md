@@ -1,4 +1,10 @@
 # @ohos.window.floatingBall (闪控球窗口)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @betafringe007-->
+<!--Designer: @zhoulin_-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 该模块提供闪控球的基础功能，包括判断设备是否支持闪控球功能，以及创建闪控球控制器来启动、更新或停止闪控球。适用于比价、搜题或抢单等场景，以小窗模式呈现内容。闪控球以悬浮小组件形式显示在其他应用之上，即时呈现应用的关键信息。
 
@@ -135,9 +141,9 @@ startFloatingBall(params: FloatingBallParams): Promise&lt;void&gt;
 |------------|------------|
 | 201 | Permission verification failed, usually returned by VerifyAccessToken. |
 | 1300019 | Wrong parameters for operating the floating ball. |
-| 1300020 | Failed to create the floating Ball window. |
-| 1300021 | Failed to start multiple floating Ball windows. |
-| 1300022 | Repeated floating Ball operation. |
+| 1300020 | Failed to create the floating ball window. |
+| 1300021 | Failed to start multiple floating ball windows. |
+| 1300022 | Repeated floating ball operation. |
 | 1300023 | Floating ball internal error. |
 | 1300024 | The floating ball window state is abnormal. |
 | 1300025 | The floating ball state does not support this operation. |
@@ -240,7 +246,7 @@ stopFloatingBall(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 |------------|------------|
-| 1300022 | Repeated floating Ball operation. |
+| 1300022 | Repeated floating ball operation. |
 | 1300023 | Floating ball internal error. |
 | 1300024 | The floating ball window state is abnormal. |
 
@@ -278,7 +284,7 @@ on(type: 'stateChange', callback: Callback&lt;FloatingBallState&gt;): void
 | 错误码ID | 错误信息 |
 |------------|------------|
 | 1300019 | Wrong parameters for operating the floating ball. |
-| 1300022 | Repeated floating Ball operation. |
+| 1300022 | Repeated floating ball operation. |
 | 1300023 | Floating ball internal error. |
 | 1300024 | The floating ball window state is abnormal. |
 
@@ -356,7 +362,7 @@ on(type: 'click', callback: Callback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 |------------|------------|
 | 1300019 | Wrong parameters for operating the floating ball. |
-| 1300022 | Repeated floating Ball operation. |
+| 1300022 | Repeated floating ball operation. |
 | 1300023 | Floating ball internal error. |
 | 1300024 | The floating ball window state is abnormal. |
 
@@ -543,7 +549,7 @@ try {
 | 名称 | 值 | 说明 |
 |------------|------------|------------|
 | STATIC | 1 | 静态布局，支持图标和标题。 |
-| NORMAL | 2 | 普通文本布局，支持标题和内容，主要使用不同颜色区分。 |
+| NORMAL | 2 | 普通文本布局，支持标题和内容。 |
 | EMPHATIC | 3 | 强调文本布局，支持标题和内容，使用不同字号区分。 |
 | SIMPLE | 4 | 纯文本布局，只支持标题，可双行展示。 |
 

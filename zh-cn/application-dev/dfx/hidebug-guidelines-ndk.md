@@ -3,8 +3,9 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @hello_harmony; @yu_haoqiaida-->
-<!--SE: @kutcherzhou1-->
-<!--TSE: @gcw_KuLfPSbe-->
+<!--Designer: @kutcherzhou1-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
 HiDebug C/C++接口功能独立，需要获取调试信息时直接调用。具体调用示例请参考下文。
 
@@ -316,7 +317,7 @@ OH_HiDebug_GetAppThreadCpuUsage接口返回的数据为链表结构。使用完�
        pcSize = -1; // 初始化pcSize为-1。
        siginfo_t si{0};
        si.si_signo = SIGUSR1;
-       if (syscall(SYS_rt_sigqueueinfo, getpid(), si.si_signo, &si) != 0) { // 发送信号给主线程以触发信号处理函数。
+       if (syscall(SYS_rt_tgsigqueueinfo, getpid(), getpid(), si.si_signo, &si) != 0) { // 发送信号给主线程以触发信号处理函数。
            BackTraceObject::GetInstance().Release();   
            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "TestTag", "failed send sig");
            return;

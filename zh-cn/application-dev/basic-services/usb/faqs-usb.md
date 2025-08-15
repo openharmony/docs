@@ -1,5 +1,12 @@
 # 常见问题
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 ## 手机USB连接个人电脑时使用usbManager.getDevices获取的设备列表为空
 
 ### 问题现象
