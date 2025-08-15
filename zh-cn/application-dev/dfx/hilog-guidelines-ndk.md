@@ -1,8 +1,9 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: liuyifeifei;buzhenwang-->
-<!--SE: shenchenkai-->
-<!--TSE: liyang2235-->
+<!--Owner: @liuyifeifei;@buzhenwang-->
+<!--Designer: @shenchenkai-->
+<!--Tester: @liyang2235-->
+<!--Adviser: @foryourself-->
 
 # 使用HiLog打印日志（C/C++）
 
