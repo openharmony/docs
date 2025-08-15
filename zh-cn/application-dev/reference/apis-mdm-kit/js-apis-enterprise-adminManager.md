@@ -248,7 +248,7 @@ setDelegatedPolicies(admin: Want, bundleName: string, policies: Array&lt;string&
 | 参数名        | 类型                                                    | 必填 | 说明               |
 | ------------- | ------------------------------------------------------- | ---- | ------------------ |
 | admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| bundleName | string                   | 是   | 被委托应用包名。被委托应用仅支持分发类型为enterprise_normal（企业普通应用）和enterprise_mdm（企业MDM应用）两种类型，开发者可在[Profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中查询分发类型字段app-distribution-type。 |
+| bundleName | string                   | 是   | 被委托应用包名。被委托应用仅支持分发类型为enterprise_normal（[企业普通应用](../../mdm/mdm-kit-term.md#企业普通应用)）和enterprise_mdm（企业MDM应用）两种类型，开发者可在[Profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中查询分发类型字段app-distribution-type。 |
 | policies |  Array&lt;string&gt;                   | 是   | [委托策略列表](#可委托策略列表)。 |
 
 **错误码**：
@@ -303,7 +303,7 @@ getDelegatedPolicies(admin: Want, bundleName: string): Array&lt;string&gt;
 | 参数名     | 类型                                                    | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
-| bundleName | string                                                  | 是   | 被委托应用包名。被委托应用仅支持分发类型为enterprise_normal（企业普通应用）和enterprise_mdm（企业MDM应用）两种类型，开发者可在[Profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中查询分发类型字段app-distribution-type。 |
+| bundleName | string                                                  | 是   | 被委托应用包名。被委托应用仅支持分发类型为enterprise_normal（[企业普通应用](../../mdm/mdm-kit-term.md#企业普通应用)）和enterprise_mdm（企业MDM应用）两种类型，开发者可在[Profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中查询分发类型字段app-distribution-type。 |
 
 
 **返回值：**
