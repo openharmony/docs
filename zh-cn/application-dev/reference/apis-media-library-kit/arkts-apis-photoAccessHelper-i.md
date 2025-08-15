@@ -24,7 +24,6 @@ title参数的规格如下：
 
 - 不应包含扩展名。
 - 文件名字符串长度为1~255。
-- 文件名中不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
