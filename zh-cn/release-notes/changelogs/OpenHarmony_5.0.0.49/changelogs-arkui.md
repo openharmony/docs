@@ -87,13 +87,13 @@ router.getState()
 在转场动画过程中改变正在消失节点的属性，可能造成数据访问异常，产生crash。例如，动画过程中将data置为undefined，Text组件增加默认转场不会立即被删除，在更新状态时，数据访问异常产生crash。因此，需要变更为在转场动画过程中，禁止更新消失节点的属性。
 
 ```
-class Mydata {
+class MyData {
   str: string;
   constructor(str: string) {
     this.str = str;
   }
 }
-@State data: Mydata|undefined = new MyData("branch");
+@State data: MyData|undefined = new MyData("branch");
 if (this.data) {
   // 对于删除时增加的默认转场，会延长组件生命周期。Text没有立即被删除，而是等转场动画结束后才被删除
   Text(this.data.str)

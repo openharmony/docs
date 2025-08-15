@@ -181,14 +181,14 @@ export default {
       promptAction.showToast({
         message: 'repeat'
       });
-      var repeatoptions = {
+      var repeatOptions = {
         duration: 2000,
         iterations: 1,
          direction: 'alternate',
          begin: 180,
          end: 240
        };
-        _this.animation.update(repeatoptions);
+        _this.animation.update(repeatOptions);
         _this.animation.play();
       };
   },
