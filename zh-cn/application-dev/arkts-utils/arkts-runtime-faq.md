@@ -200,7 +200,7 @@ ArkUI 状态管理框架会为使用状态变量装饰器（如 @State、@Trace�
 ```ts
 @Entry
 @ComponentV2
-   struct Index {
+struct Index {
    @Local p: number[] = [0, 1];
    @Local q: number[] = [2, 3];
    c: number[][] = [this.p, this.q];
