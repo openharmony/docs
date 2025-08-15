@@ -154,8 +154,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| MAX_NODE_SCOPE_NUM | 1000 | 
-| MAX_COMPONENT_EVENT_ARG_NUM | 12 | 
+| MAX_NODE_SCOPE_NUM 1000| 定义组件最大方法数量。 | 
+| MAX_COMPONENT_EVENT_ARG_NUM 12| 定义组件事件最大参数数量。 | 
 
 ## 枚举类型说明
 
@@ -2728,7 +2728,7 @@ int32_t OH_ArkUI_RegisterSystemColorModeChangeEvent(ArkUI_NodeHandle node,void* 
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t  | 错误码。<br>        [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>        [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。<br>        [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](capi-native-type-h.md#arkui_errorcode) 组件不支持该事件。 |
+| int32_t  | 错误码。<br>        [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>        [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。   |
 
 ### OH_ArkUI_UnregisterSystemColorModeChangeEvent()
 
@@ -2776,7 +2776,7 @@ int32_t OH_ArkUI_RegisterSystemFontStyleChangeEvent(ArkUI_NodeHandle node,void* 
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t  | 错误码。<br>        [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>        [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。<br>        [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](capi-native-type-h.md#arkui_errorcode) 组件不支持该事件。 |
+| int32_t  | 错误码。<br>        [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>        [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。 |
 
 ### OH_ArkUI_UnregisterSystemFontStyleChangeEvent()
 
