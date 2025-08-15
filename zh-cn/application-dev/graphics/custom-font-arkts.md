@@ -85,12 +85,12 @@
 
 6. 如果需要释放自定义字体，可以使用unloadFontSync接口。
 
-  ```ts
-  // 注销自定义字体
-  fontCollection.unloadFontSync(familyName)
-  // 注销之后需要刷新使用该fontCollection的节点
-  newNode.invalidate()
-  ```
+   ```ts
+   // 注销自定义字体
+   fontCollection.unloadFontSync(familyName)
+   // 注销之后需要刷新使用该fontCollection的节点
+   newNode.invalidate()
+   ```
 
 ## 完整示例
 
