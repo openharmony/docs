@@ -36,10 +36,10 @@ Web媒体策略的配置。
 
 | 名称             | 类型               | 只读 | 可选 | 说明                   |
 | -------------- | ---------------- | ---- | ---- | -------------------- |
-| scrollUp  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往上滚动时的嵌套滚动选项。 |
-| scrollDown | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往下滚动时的嵌套滚动选项。 |
-| scrollLeft  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往左滚动时的嵌套滚动选项。 |
-| scrollRight | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往右滚动时的嵌套滚动选项。 |
+| scrollUp  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往上滚动时的嵌套滚动选项。<br/>默认值：NestedScrollMode.SELF_FIRST。|
+| scrollDown | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往下滚动时的嵌套滚动选项。<br/>默认值：NestedScrollMode.SELF_FIRST。|
+| scrollLeft  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往左滚动时的嵌套滚动选项。<br/>默认值：NestedScrollMode.SELF_FIRST。|
+| scrollRight | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往右滚动时的嵌套滚动选项。<br/>默认值：NestedScrollMode.SELF_FIRST。|
 
 ## NativeMediaPlayerConfig<sup>12+</sup>
 
