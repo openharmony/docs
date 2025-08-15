@@ -3,8 +3,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @hanchen45; @Luobniz21-->
-<!--SE: @ccllee1-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 ## 概述
 
@@ -14,6 +15,8 @@
 
 - 账号密码自动填充：帮助用户自动填充已保存的账号密码，提高用户输入信息的效率。
 - 情景化自动填充：根据组件的使用场景实现手机号、地址等信息的自动填充。
+
+为了便于表述，本例中将提供[AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)能力的一方称为提供方，将启动AutoFillExtensionAbility的一方称为使用方。
 
 ## 接口说明
 
@@ -25,13 +28,9 @@
 | onSaveRequest(session: UIExtensionContentSession, request: SaveRequest, callback: SaveRequestCallback): void | 当发起自动保存或者手动保存时触发此回调函数。                 |
 | FillRequestCallback.onSuccess(response: FillResponse): void  | 自动填充或者生成密码时的回调对象，可以通过此回调通知客户端成功。 |
 
-## 开发步骤
+## 开发AutoFillExtensionAbility提供方
 
-为了便于表述，本例中将提供[AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)能力的一方称为提供方，将启动AutoFillExtensionAbility的一方称为使用方。
-
-### 开发AutoFillExtensionAbility提供方
-
-#### 生命周期
+### 生命周期
 
 [AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)提供了[onCreate](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#oncreate)、[onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onsessiondestroy)、[onForeground](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onforeground)、[onBackground](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onbackground)、[onDestroy](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#ondestroy)、[onSaveRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onsaverequest)和[onFillRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onfillrequest)生命周期回调，根据需要重写对应的回调方法。
 
@@ -43,7 +42,7 @@
 - **onSaveRequest**：表单中有数据存在并且切换页面时，会触发自动保存的生命周期回调。
 - **onFillRequest**：当fill request发送请求的时候，实现账号密码自动填充。
 
-#### 实现账号密码自动填充功能
+### 实现账号密码自动填充功能
 
 开发者在实现自动填充服务时，需要在DevEco Studio工程中手动新建一个AutoFillExtensionAbility。
 
@@ -303,7 +302,7 @@
       }
       ```
 
-#### 实现情景化自动填充功能
+### 实现情景化自动填充功能
 
 情景化自动填充的具体类型可参考[自动填充类型的定义](../reference/apis-ability-kit/js-apis-inner-application-autoFillType-sys.md)。
 
@@ -337,11 +336,11 @@
 
 3. 情景化自动填充与自动填充服务的实现基本一致。请参考[实现账号密码自动填充功能](#实现账号密码自动填充功能)。
 
-### 开发AutoFillExtensionAbility使用方
+## 开发AutoFillExtensionAbility使用方
 
 开发者可以在主页面中通过点击自动填充组件启动[AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)。 如在主页面中添加如下内容：
 
-#### 添加支持账号密码自动填充能力的组件
+### 添加支持账号密码自动填充能力的组件
 
 ```ts
 @Entry
@@ -415,7 +414,7 @@ struct Index {
 }
 ```
 
-#### 添加支持情景化自动填充能力的组件
+### 添加支持情景化自动填充能力的组件
 
 ```ts
 @Entry

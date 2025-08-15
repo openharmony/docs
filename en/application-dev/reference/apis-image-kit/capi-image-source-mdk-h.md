@@ -1,8 +1,13 @@
 # image_source_mdk.h
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 ## Overview
 
-The **image_source_mdk.h** file declares the APIs used to decode an image source into a PixelMap.
+The file declares the APIs used to decode an image source into a PixelMap.
 
 **Library**: libimage_source_ndk.z.so
 
@@ -38,7 +43,7 @@ The **image_source_mdk.h** file declares the APIs used to decode an image source
 | [int32_t OH_ImageSource_CreateFromUri(napi_env env, char* uri, size_t size,struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createfromuri) | Creates an ImageSource object at the JavaScript native layer based on the specified URI and [OhosImageSourceOps](capi-image-ohosimagesourceops.md) struct.|
 | [int32_t OH_ImageSource_CreateFromFd(napi_env env, int32_t fd,struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createfromfd) | Creates an ImageSource object at the JavaScript native layer based on the specified file descriptor and [OhosImageSourceOps](capi-image-ohosimagesourceops.md) struct.|
 | [int32_t OH_ImageSource_CreateFromData(napi_env env, uint8_t* data, size_t dataSize,struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createfromdata) | Creates an ImageSource object at the JavaScript native layer based on the specified image source buffer (defined by **data**) and [OhosImageSourceOps](capi-image-ohosimagesourceops.md) struct.|
-| [int32_t OH_ImageSource_CreateFromRawFile(napi_env env, RawFileDescriptor rawFile,struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createfromrawfile) | Creates an ImageSource object at the JavaScript native layer based on the specified [RawFileDescriptor](../apis-localization-kit/_raw_file_descriptor.md) and [OhosImageSourceOps](capi-image-ohosimagesourceops.md) structs.|
+| [int32_t OH_ImageSource_CreateFromRawFile(napi_env env, RawFileDescriptor rawFile,struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createfromrawfile) | Creates an ImageSource object at the JavaScript native layer based on the specified [RawFileDescriptor](../apis-localization-kit/capi-rawfile-rawfiledescriptor.md) and [OhosImageSourceOps](capi-image-ohosimagesourceops.md) structs.|
 | [int32_t OH_ImageSource_CreateIncremental(napi_env env, struct OhosImageSource* source, struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createincremental) | Creates an ImageSource object at the JavaScript native layer based on the specified [OhosImageSource](capi-image-ohosimagesource.md) and [OhosImageSourceOps](capi-image-ohosimagesourceops.md) structs. The image source data will be updated through [OH_ImageSource_UpdateData](#oh_imagesource_updatedata).|
 | [int32_t OH_ImageSource_CreateIncrementalFromData(napi_env env, uint8_t* data, size_t dataSize,struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createincrementalfromdata) | Creates an ImageSource object of the incremental type at the JavaScript native layer based on the specified image source buffer (defined by **data**) and [OhosImageSourceOps](capi-image-ohosimagesourceops.md) struct. The image data is updated through [OH_ImageSource_UpdateData](#oh_imagesource_updatedata).|
 | [int32_t OH_ImageSource_GetSupportedFormats(struct OhosImageSourceSupportedFormatList* res)](#oh_imagesource_getsupportedformats) | Obtains all supported decoding formats.|
@@ -198,7 +203,7 @@ int32_t OH_ImageSource_CreateFromRawFile(napi_env env, RawFileDescriptor rawFile
 
 **Description**
 
-Creates an ImageSource object at the JavaScript native layer based on the specified [RawFileDescriptor](../apis-localization-kit/_raw_file_descriptor.md) and [OhosImageSourceOps](capi-image-ohosimagesourceops.md) structs.
+Creates an ImageSource object at the JavaScript native layer based on the specified [RawFileDescriptor](../apis-localization-kit/capi-rawfile-rawfiledescriptor.md) and [OhosImageSourceOps](capi-image-ohosimagesourceops.md) structs.
 
 **Since**: 11
 
@@ -208,7 +213,7 @@ Creates an ImageSource object at the JavaScript native layer based on the specif
 | Name| Description|
 | -- | -- |
 | napi_env env | Pointer to the JNI environment.|
-| [RawFileDescriptor](../apis-localization-kit/_raw_file_descriptor.md) rawFile | Descriptor of the image source resource.|
+| [RawFileDescriptor](../apis-localization-kit/capi-rawfile-rawfiledescriptor.md) rawFile | Descriptor of the image source resource.|
 | struct [OhosImageSourceOps](capi-image-ohosimagesourceops.md)* ops | Pointer to the options for creating the image source.|
 | napi_value *res | Pointer to an ImageSource object at the JavaScript native layer.|
 

@@ -2,9 +2,10 @@
 
 <!--Kit: AVCodec Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @dpy2650-->
-<!--SE: @dpy2650--->
-<!--TSE: @cyakee-->
+<!--Owner: @zhanghongran-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
+<!--Adviser: @zengyawen-->
 
 开发者可以调用本模块的Native API接口，完成媒体数据的解封装相关操作，即从比特流数据中取出音频、视频、字幕等媒体sample，获得DRM相关信息。
 
@@ -198,7 +199,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    //    示例key仅为演示，实际应替换为用户自定义的字符串。
    //    例：封装时写入key为"com.openharmony.custom.meta.abc.efg"，
    //       获取时必须使用完整key，截断使用"com.openharmony.custom.meta.abc"会失败。
-   // 2. value类型需与封装时数据类型匹配（示例为string类型，int/float类型需调用对应接口）。
+   // 2. value类型需与封装时数据类型匹配，示例为string类型。其余类型需调用对应接口，支持int/float类型；API 20起，支持buffer类型。
    const char *customKey = "com.openharmony.custom.meta.string"; // 替换为实际封装时使用的完整key。
    const char *customValue;
    if (!OH_AVFormat_GetStringValue(customMetadataFormat, customKey, &customValue)) {

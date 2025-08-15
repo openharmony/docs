@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyujie43-->
-<!--SE: @weixin_52725220-->
-<!--TSE: @xiong0104-->
+<!--Designer: @weixin_52725220-->
+<!--Tester: @xiong0104-->
+<!--Adviser: @HelloCrease-->
 
 提供帧动画组件来实现逐帧播放图片的能力，可以配置需要播放的图片列表，每张图片可以配置时长。
 
@@ -84,7 +85,7 @@ duration(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 播放时长。<br/>value为0时，不播放图片。<br/>设置为负数时，取默认值。<br/>value的改变只会在下一次循环开始时生效。<br/>单位：毫秒<br/>默认值：1000ms |
+| value  | number | 是   | 播放时长。<br/>value为0时，不播放图片。<br/>value平均分配给单张图片的播放时长小于一帧时间，将导致播放异常。<br/>设置为负数时，取默认值。<br/>value的改变只会在下一次循环开始时生效。<br/>单位：毫秒<br/>默认值：1000ms |
 
 ### reverse
 
@@ -221,6 +222,12 @@ onStart(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                       |
+| -------- | ------------------------------------------ | ---- | -------------------------- |
+| event | () => void                               | 是    | 状态回调，动画开始播放时触发。 |
+
 ### onPause
 
 onPause(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
@@ -233,6 +240,12 @@ onPause(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                       |
+| -------- | ------------------------------------------ | ---- | -------------------------- |
+| event | () => void                               | 是    | 状态回调，动画暂停播放时触发。 |
+
 ### onRepeat
 
 onRepeat(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
@@ -242,6 +255,12 @@ onRepeat(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                       |
+| -------- | ------------------------------------------ | ---- | -------------------------- |
+| event | () => void                               | 是    | 状态回调，动画重复播放时触发。 |
 
 ### onCancel
 
@@ -255,6 +274,13 @@ onCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                       |
+| -------- | ------------------------------------------ | ---- | -------------------------- |
+| event | () => void                               | 是    | 状态回调，动画返回最初状态时触发。 |
+
 ### onFinish
 
 onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
@@ -267,6 +293,11 @@ onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                       |
+| -------- | ------------------------------------------ | ---- | -------------------------- |
+| event | () => void                               | 是    | 状态回调，动画播放完成时或者停止播放时触发。 |
 
 ## 示例
 

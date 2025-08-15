@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyujie43-->
-<!--SE: @weixin_52725220-->
-<!--TSE: @xiong0104-->
+<!--Designer: @weixin_52725220-->
+<!--Tester: @xiong0104-->
+<!--Adviser: @HelloCrease-->
 
 >**说明：**
 >
@@ -83,7 +84,7 @@ getImageAnalyzerSupportTypes(): ImageAnalyzerType[]
 
 **返回值:**
 
-| 类型     | 描述                      |
+| 类型     | 说明                      |
 | ------ | ----------------------- |
 | [ImageAnalyzerType[]](#imageanalyzertype) | 对应组件支持的分析类型。 |
 

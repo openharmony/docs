@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 拖拽事件是指在用户界面中，当用户拖动某个对象（如文件、控件或元素）时触发的一系列事件。这些事件允许开发者自定义拖拽行为，实现诸如拖放、调整位置等功能。
 
@@ -47,7 +48,7 @@ onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | D
 
 | 参数名      | 类型                            | 必填 | 说明               |
 | ----------- | ------------------------------- | ---- | ------------------ |
-| event    | (event: [DragEvent](#dragevent7), extraParams?: string) => [CustomBuilder](ts-types.md#custombuilder8) &nbsp;\|&nbsp; [DragItemInfo](#dragiteminfo说明)  | 是   | 回调函数。<br/> **说明：**<br/> event为拖拽事件信息。<br/> extraParams为拖拽事件额外信息。需要解析为Json格式，参考[extraParams](#extraparams说明)说明。<br/> CustomBuilder为拖拽过程中显示的组件信息，不支持全局builder。|
+| event    | (event: [DragEvent](#dragevent7), extraParams?: string) => [CustomBuilder](ts-types.md#custombuilder8) &nbsp;\|&nbsp; [DragItemInfo](#dragiteminfo)  | 是   | 回调函数。<br/> **说明：**<br/> event为拖拽事件信息。<br/> extraParams为拖拽事件额外信息。需要解析为Json格式，参考[extraParams](#extraparams说明)说明。<br/> CustomBuilder为拖拽过程中显示的组件信息，不支持全局builder。|
 
 **返回值：**
 
@@ -226,7 +227,7 @@ onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configura
 
 | 参数名        | 类型                                      | 必填 | 说明                                           |
 | :------------ | ----------------------------------------- | ---- | ---------------------------------------------- |
-| callback          | Callback\<[SpringLoadingContext](../js-apis-arkui-dragController.md#springloadingcontext20)\> \| null    | 是   | 悬停检测回调函数，为null时禁用悬停检测。 |
+| callback          | Callback\<[SpringLoadingContext](#springloadingcontext20)\> \| null    | 是   | 悬停检测回调函数，为null时禁用悬停检测。 |
 | configuration | [DragSpringLoadingConfiguration](../js-apis-arkui-dragController.md#dragspringloadingconfiguration20) | 否   | 悬停检测配置信息，为undefined时取[DragSpringLoadingConfiguration](../js-apis-arkui-dragController.md#dragspringloadingconfiguration20)默认值。  |
 
 **返回值：**
@@ -235,17 +236,17 @@ onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configura
 | -------- | -------- |
 | T | 返回当前组件。 |
 
-## DragItemInfo说明
+## DragItemInfo
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                     | 必填   | 描述                                |
-| --------- | ---------------------------------------- | ---- | --------------------------------- |
-| pixelMap  | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 否    | 设置拖拽过程中显示的图片。 |
-| builder   | [CustomBuilder](ts-types.md#custombuilder8) | 否    | 拖拽过程中显示自定义组件，如果设置了pixelMap，则忽略此值。<br /> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。|
-| extraInfo | string                                   | 否    | 拖拽项的描述。                           |
+| 名称      | 类型                  | 只读| 可选   | 说明                               |
+| --------- | ---------------------------------------- | ---- | ---- | --------------------------------- |
+| pixelMap  | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 否    |  是   |设置拖拽过程中显示的图片。 |
+| builder   | [CustomBuilder](ts-types.md#custombuilder8) | 否    |  是   |拖拽过程中显示自定义组件，如果设置了pixelMap，则忽略此值。<br /> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。|
+| extraInfo | string                                   | 否    |  是   |拖拽项的描述。                           |
 
 ## PreviewConfiguration<sup>15+</sup>
 
@@ -288,7 +289,7 @@ onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configura
 
 ### setData<sup>10+</sup>
 
-setData(unifiedData: UnifiedData)
+setData(unifiedData: UnifiedData): void
 
 向DragEvent中设置拖拽相关数据。
 
@@ -296,9 +297,11 @@ setData(unifiedData: UnifiedData)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
 | 参数名      | 类型                                                         | 必填 | 说明             |
 | ----------- | ------------------------------------------------------------ | ---- | ---------------- |
-| unifiedData | [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 是   | 拖拽相关的数据。 |
+| unifiedData | [UnifiedData](#unifieddata10) | 是   | 拖拽相关的数据。 |
 
 ### getData<sup>10+</sup>
 
@@ -339,17 +342,19 @@ getSummary(): Summary
 
 | 类型                                                         | 说明                                  |
 | ------------------------------------------------------------ | ------------------------------------- |
-| [Summary](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#summary) | 从DragEvent中获取拖拽相关数据的简介。 |
+| [Summary](#summary10) | 从DragEvent中获取拖拽相关数据的简介。 |
 
 ### setResult<sup>10+</sup>
 
-setResult(dragResult: DragResult)
+setResult(dragResult: DragResult): void
 
 向DragEvent中设置拖拽结果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
 
 | 参数名     | 类型                                | 必填 | 说明       |
 | ---------- | ----------------------------------- | ---- | ---------- |
@@ -537,6 +542,8 @@ startDataLoading(options: DataSyncOptions): string
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
 | 参数名  | 类型                                  | 必填 | 说明                                                         |
 | ------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
 | options | [DataSyncOptions](#datasyncoptions15) | 是   | 拖拽数据。数据传输过程中可使用[cancelDataLoading](../arkts-apis-uicontext-dragcontroller.md#canceldataloading15)接口取消。 |
@@ -547,7 +554,7 @@ startDataLoading(options: DataSyncOptions): string
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401       | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
+| 401       | Parameter error. |
 | 190003    | Operation not allowed for current pharse. |
 
 **返回值：** 
@@ -614,10 +621,11 @@ setDataLoadParams(dataLoadParams: DataLoadParams): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
 
 | 参数名   | 类型   | 必填    | 说明                                                         |
 | -------| -------| ------- | ------------------------------------------------------------ |
-| dataLoadParams | [DataLoadParams](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#dataloadparams20) |  是 | 落入操作时使用的数据加载参数。 |
+| dataLoadParams | [DataLoadParams](#dataloadparams20) |  是 | 落入操作时使用的数据加载参数。 |
 
 ### getX<sup>(deprecated)</sup>
 
@@ -708,20 +716,60 @@ getGlobalDisplayY(): number
 
 ## PreDragStatus<sup>12+</sup>枚举说明
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 值 | 说明 |
 | ---- | - | ----------------- |
-| ACTION_DETECTING_STATUS | 0 | 拖拽手势启动阶段。(按下50ms时触发) |
-| READY_TO_TRIGGER_DRAG_ACTION | 1 | 拖拽准备完成，可发起拖拽阶段。(按下500ms时触发) |
-| PREVIEW_LIFT_STARTED | 2 | 拖拽浮起动效发起阶段。(按下800ms时触发) |
-| PREVIEW_LIFT_FINISHED | 3 | 拖拽浮起动效结束阶段。(浮起动效完全结束时触发) |
-| PREVIEW_LANDING_STARTED | 4 | 拖拽落回动效发起阶段。(落回动效发起时触发) |
-| PREVIEW_LANDING_FINISHED | 5 | 拖拽落回动效结束阶段。(落回动效结束时触发) |
-| ACTION_CANCELED_BEFORE_DRAG | 6 | 拖拽浮起落位动效中断。(已满足READY_TO_TRIGGER_DRAG_ACTION状态后，未达到动效阶段，手指抬手时触发) |
-| PREPARING_FOR_DRAG_DETECTION<sup>18+</sup>  | 7 | 拖拽准备完成，可发起拖拽阶段。(按下350ms时触发) |
+| ACTION_DETECTING_STATUS | 0 | 拖拽手势启动阶段。(按下50ms时触发)<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| READY_TO_TRIGGER_DRAG_ACTION | 1 | 拖拽准备完成，可发起拖拽阶段。(按下500ms时触发)<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| PREVIEW_LIFT_STARTED | 2 | 拖拽浮起动效发起阶段。(按下800ms时触发)<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| PREVIEW_LIFT_FINISHED | 3 | 拖拽浮起动效结束阶段。(浮起动效完全结束时触发)<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| PREVIEW_LANDING_STARTED | 4 | 拖拽落回动效发起阶段。(落回动效发起时触发)<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| PREVIEW_LANDING_FINISHED | 5 | 拖拽落回动效结束阶段。(落回动效结束时触发)<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| ACTION_CANCELED_BEFORE_DRAG | 6 | 拖拽浮起落位动效中断。(已满足READY_TO_TRIGGER_DRAG_ACTION状态后，未达到动效阶段，手指抬手时触发)<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| PREPARING_FOR_DRAG_DETECTION<sup>18+</sup>  | 7 | 拖拽准备完成，可发起拖拽阶段。(按下350ms时触发)<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+
+## UnifiedData<sup>10+</sup>
+
+type UnifiedData = UnifiedData
+
+拖拽相关的数据。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明 |
+| ----- | ----------------- |
+| [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) |  拖拽相关的数据。|
+
+## Summary<sup>10+</sup>
+
+type Summary = Summary
+
+拖拽相关数据的简介。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明 |
+| ----- | ----------------- |
+| [Summary](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#summary) | 拖拽相关数据的简介。|
+
+## DataLoadParams<sup>20+</sup>
+
+type DataLoadParams = DataLoadParams
+
+落入操作时使用的数据加载参数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明 |
+| ----- | ----------------- |
+| [DataLoadParams](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#dataloadparams20) | 落入操作时使用的数据加载参数。|
 
 ## executeDropAnimation<sup>18+</sup>
 
@@ -735,7 +783,7 @@ executeDropAnimation(customDragAnimation: Callback\<void\>): void
 
 | 参数名    | 类型  | 必填 | 说明      |
 | ------ | ------ | --- | --------- |
-| customDropAnimation | Callback\<void\>  | 否 |在独立的接口中实现自定义落位动效。<br/> **说明：** <br/>1. 该接口仅在 onDrop 回调中使用有效。<br/> 2. 使用前需设置 useCustomDropAnimation 为 true，否则该接口不生效。<br/> 3. 不要在动画callback中实现与动效无关的逻辑，避免影响执行效率。|
+| customDropAnimation | Callback\<void\>  | 是 |在独立的接口中实现自定义落位动效。<br/> **说明：** <br/>1. 该接口仅在 onDrop 回调中使用有效。<br/> 2. 使用前需设置 useCustomDropAnimation 为 true，否则该接口不生效。<br/> 3. 不要在动画callback中实现与动效无关的逻辑，避免影响执行效率。|
 
 ## DataSyncOptions<sup>15+</sup>
 
@@ -777,6 +825,20 @@ type OnDragEventCallback = (event: DragEvent, extraParams?: string) => void
 | 名称     | 类型  | 只读 | 可选 | 说明           |
 | ------ | ------ | ---------------- | ------ | ------ |
 | disableDataPrefetch | bool  | 否  | 否  | 设置拖拽是否提前获取数据。true表示不提前获取数据，false表示提前获取数据，默认值为false。<br/>**说明：**<br/> 当使用startDataLoading获取数据时需设置该参数为true，防止拖拽提前获取数据。 |
+
+## SpringLoadingContext<sup>20+</sup>
+
+type SpringLoadingContext = SpringLoadingContext
+
+定义回调上下文信息的类，用于在悬停检测回调中传递给应用程序，使其能访问拖拽状态。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明 |
+| ----- | ----------------- |
+| [SpringLoadingContext](../js-apis-arkui-dragController.md#springloadingcontext20) | 定义回调上下文信息的类，用于在悬停检测回调中传递给应用程序，使其能访问拖拽状态。|
 
 ## 示例
 

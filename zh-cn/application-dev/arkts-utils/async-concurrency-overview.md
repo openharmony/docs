@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @wang_zhaoyong-->
-<!--SE: @weng-changcheng-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 
 Promise和async/await是标准的JS异步语法，提供异步并发能力。异步代码执行时会被挂起，稍后继续执行，确保同一时间只有一段代码在运行。以下是典型的异步并发使用场景：
@@ -20,7 +21,7 @@ Promise和async/await是标准的JS异步语法，提供异步并发能力。异
 
 Promise是一种用于处理异步操作的对象，可将异步操作转换为类似同步操作的风格，便于代码编写和维护。Promise通过状态机制管理异步操作的不同阶段，有三种状态：pending（进行中）、fulfilled（已完成，也叫resolved）和rejected（已拒绝）。创建后处于pending状态，异步操作完成后转换为fulfilled或rejected状态。
 
-Promise提供了then/catch/finally方法来注册回调函数，以处理异步操作的成功或失败结果。当Promise状态改变时，回调函数会被加入微任务队列等待执行，依赖事件循环机制在宏任务执行完成后优先执行微任务，从而保证回调函数的异步调度。
+Promise提供了then、catch、finally方法来注册回调函数，以处理异步操作的成功或失败结果。当Promise状态改变时，回调函数会被加入微任务队列等待执行，依赖事件循环机制在宏任务执行完成后优先执行微任务，从而保证回调函数的异步调度。
 
 最基本的用法是通过构造函数实例化一个Promise对象，传入一个带有两个参数的函数，称为executor函数。executor函数接收两个参数：resolve和reject，分别表示异步操作成功和失败时的回调函数。
 例如，以下代码创建了一个Promise对象并模拟了一个异步操作：
@@ -79,7 +80,7 @@ promise.finally(() => {
 ```
 <!-- @[promise_then_catch_handling](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
 
-在上述代码中，then方法的回调函数接收Promise对象的成功结果，并输出到控制台。如果Promise对象进入rejected状态，catch方法的回调函数接收错误对象，并输出到控制台。
+在上述代码中，then方法的回调函数接收Promise对象的成功结果，并输出至控制台。如果Promise对象进入rejected状态，catch方法的回调函数接收错误对象，并输出至控制台。
 
 > **说明：**
 >

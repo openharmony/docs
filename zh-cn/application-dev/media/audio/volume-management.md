@@ -2,8 +2,9 @@
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @songshenke-->
-<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
-<!--TSE: @Filger-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 本模块提供播放音量管理能力，包括对**系统音量**、**应用音量**和**音频流音量**的管理。
 
@@ -217,7 +218,8 @@ try {
 }
 ```
 
-### 监听活跃流变化
+<!--Del-->
+### 监听活跃流变化（仅对系统应用开放）
 
 通过设置监听事件，可以监听活跃流的变化。
 
@@ -234,3 +236,4 @@ audioVolumeManager.off('activeVolumeTypeChange', activeVolumeTypeChangeCallback)
 // 取消该事件的所有监听。
 audioVolumeManager.off('activeVolumeTypeChange');
 ```
+<!--DelEnd-->

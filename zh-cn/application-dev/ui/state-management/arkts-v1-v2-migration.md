@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @katabanga-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 概述
 ArkUI状态管理的主要职责是：负责将可观察数据的变化自动同步到UI界面，实现数据驱动的UI刷新，使开发者能更加够专注于UI界面的实现和设计。

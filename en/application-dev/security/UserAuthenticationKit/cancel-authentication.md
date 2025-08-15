@@ -1,5 +1,11 @@
 # Canceling User Authentication
 
+<!--Kit: User Authentication Kit-->
+<!--Subsystem: UserIAM-->
+<!--Owner: @WALL_EYE-->
+<!--SE: @lichangting518-->
+<!--TSE: @jane_lz-->
+
 Use **cancel()** to terminate the authentication process when needed.
 
 ## Available APIs
@@ -8,9 +14,9 @@ For details about the parameters, return value, and error codes, see [cancel](..
 
 This topic describes only the API for canceling authentication. For details about the APIs for initiating authentication, see [Initiating Authentication](start-authentication.md) and [User Authentication](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md).
 
-| API| Description|
+| API| Description| 
 | -------- | -------- |
-| cancel(): void | Cancels this user authentication.|
+| cancel(): void | Cancels this user authentication.| 
 
 ## How to Develop
 
@@ -30,7 +36,18 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   // Set authentication parameters.
   const authParam: userAuth.AuthParam = {
     challenge: randData,
@@ -41,7 +58,7 @@ try {
   const widgetParam: userAuth.WidgetParam = {
     title: 'Verify identity',
   };
-  // Obtain a UserAuthInstance object.
+  // Obtain an authentication object.
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.info('get userAuth instance success');
   // Start user authentication.

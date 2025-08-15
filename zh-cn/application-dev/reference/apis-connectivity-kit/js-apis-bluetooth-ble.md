@@ -3,8 +3,9 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--SE: @chengguohong; @tangjia15-->
-<!--TSE: @wangfeng517-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+<!--Adviser: @zhang_yixin13-->
 
 提供了基于低功耗蓝牙（Bluetooth Low Energy）技术的蓝牙能力，支持发起BLE扫描、发送BLE广播报文、以及基于通用属性协议（Generic Attribute Profile，GATT）的连接和传输数据。
 
@@ -1723,7 +1724,7 @@ import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 /* send response */
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
-cccValue[0] = 1123;
+cccValue[0] = 1;
 let serverResponse: ble.ServerResponse = {
     deviceId: 'XX:XX:XX:XX:XX:XX',
     transId: 0,
@@ -1775,7 +1776,7 @@ server端订阅client的特征值读请求事件，server端收到该事件后�
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
-cccValue[0] = 1123;
+cccValue[0] = 1;
 let gattServer: ble.GattServer = ble.createGattServer();
 function ReadCharacteristicReq(characteristicReadRequest: ble.CharacteristicReadRequest) {
     let deviceId: string = characteristicReadRequest.deviceId;
@@ -1972,7 +1973,7 @@ server端订阅client的描述符读请求事件，server端收到该事件后�
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
-descValue[0] = 1101;
+descValue[0] = 1;
 let gattServer: ble.GattServer = ble.createGattServer();
 function ReadDescriptorReq(descriptorReadRequest: ble.DescriptorReadRequest) {
     let deviceId: string = descriptorReadRequest.deviceId;
@@ -2167,7 +2168,6 @@ server端订阅GATT profile协议的连接状态变化事件。使用Callback异
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-import { constant } from '@kit.ConnectivityKit';
 let Connected = (bleConnectionChangeState: ble.BLEConnectionChangeState) => {
     let deviceId: string = bleConnectionChangeState.deviceId;
     let status: constant.ProfileConnectionState = bleConnectionChangeState.state;
@@ -2461,15 +2461,22 @@ client获取server端设备名称。使用Callback异步回调。
 **示例：**
 
 ```js
+import { ble, constant } from '@kit.ConnectivityKit';
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+let gattClient: ble.GattClientDevice = ble.createGattClientDevice("11:22:33:44:55:66");
+function ConnectStateChanged(state: ble.BLEConnectionChangeState) {
+    console.info('bluetooth connect state changed');
+    let connectState: ble.ProfileConnectionState = state.state;
+    if (connectState == constant.ProfileConnectionState.STATE_CONNECTED) {
+        gattClient.getDeviceName((err: BusinessError, data: string)=> {
+            console.info('device name err ' + JSON.stringify(err));
+            console.info('device name' + JSON.stringify(data));
+        })
+    }
+}
 // callback
 try {
-    let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
     gattClient.connect();
-    gattClient.getDeviceName((err: BusinessError, data: string)=> {
-        console.info('device name err ' + JSON.stringify(err));
-        console.info('device name' + JSON.stringify(data));
-    })
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -2509,14 +2516,22 @@ client获取远端蓝牙低功耗设备的名称。使用Promise异步回调。
 **示例：**
 
 ```js
+import { ble, constant } from '@kit.ConnectivityKit';
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+let gattClient: ble.GattClientDevice = ble.createGattClientDevice("11:22:33:44:55:66");
+gattClient.on('BLEConnectionStateChange', ConnectStateChanged);
+function ConnectStateChanged(state: ble.BLEConnectionChangeState) {
+    console.info('bluetooth connect state changed');
+    let connectState: ble.ProfileConnectionState = state.state;
+    if (connectState == constant.ProfileConnectionState.STATE_CONNECTED) {
+        gattClient.getDeviceName().then((data: string) => {
+            console.info('device name' + JSON.stringify(data));
+        })
+    }
+}
 // promise
 try {
-    let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
     gattClient.connect();
-    gattClient.getDeviceName().then((data: string) => {
-        console.info('device name' + JSON.stringify(data));
-    })
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -2565,6 +2580,7 @@ client获取server端支持的所有服务能力，即服务发现流程。使�
 **示例：**
 
 ```js
+import { ble, constant } from '@kit.ConnectivityKit';
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // callback 模式。
 let getServices = (code: BusinessError, gattServices: Array<ble.GattService>) => {
@@ -2578,11 +2594,17 @@ let getServices = (code: BusinessError, gattServices: Array<ble.GattService>) =>
         console.info('bluetooth serviceUuid is ' + services[i].serviceUuid);
     }
 }
+let device: ble.GattClientDevice = ble.createGattClientDevice("11:22:33:44:55:66");
+function ConnectStateChanged(state: ble.BLEConnectionChangeState) {
+    console.info('bluetooth connect state changed');
+    let connectState: ble.ProfileConnectionState = state.state;
+    if (connectState == constant.ProfileConnectionState.STATE_CONNECTED) {
+        device.getServices(getServices);
+    }
+}
 
 try {
-    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.connect();
-    device.getServices(getServices);
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -2622,14 +2644,21 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。使用Pr
 **示例：**
 
 ```js
+import { ble, constant } from '@kit.ConnectivityKit';
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // Promise 模式。
+let device: ble.GattClientDevice = ble.createGattClientDevice("11:22:33:44:55:66");
+function ConnectStateChanged(state: ble.BLEConnectionChangeState) {
+    console.info('bluetooth connect state changed');
+    let connectState: ble.ProfileConnectionState = state.state;
+    if (connectState == constant.ProfileConnectionState.STATE_CONNECTED) {
+        device.getServices().then((result: Array<ble.GattService>) => {
+            console.info('getServices successfully:' + JSON.stringify(result));
+        });
+    }
+}
 try {
-    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.connect();
-    device.getServices().then((result: Array<ble.GattService>) => {
-        console.info('getServices successfully:' + JSON.stringify(result));
-    });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -2686,7 +2715,7 @@ function readCcc(code: BusinessError, BLECharacteristic: ble.BLECharacteristic) 
   }
   console.info('bluetooth characteristic uuid: ' + BLECharacteristic.characteristicUuid);
   let value = new Uint8Array(BLECharacteristic.characteristicValue);
-  console.info('bluetooth characteristic value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
+  console.info('bluetooth characteristic value: ' + value[0]);
 }
 
 let descriptors: Array<ble.BLEDescriptor> = [];
@@ -2838,7 +2867,7 @@ function readDesc(code: BusinessError, BLEDescriptor: ble.BLEDescriptor) {
     }
     console.info('bluetooth descriptor uuid: ' + BLEDescriptor.descriptorUuid);
     let value = new Uint8Array(BLEDescriptor.descriptorValue);
-    console.info('bluetooth descriptor value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
+    console.info('bluetooth descriptor value: ' + value[0]);
 }
 
 let bufferDesc = new ArrayBuffer(2);
@@ -3132,9 +3161,9 @@ try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.writeDescriptorValue(descriptor, (err: BusinessError) => {
         if (err) {
-            console.error('notifyCharacteristicChanged callback failed');
+            console.error('writeDescriptorValue callback failed');
         } else {
-            console.info('notifyCharacteristicChanged callback successful');
+            console.info('writeDescriptorValue callback successful');
         }
     });
 } catch (err) {
@@ -4053,7 +4082,7 @@ import { ble } from '@kit.ConnectivityKit';
 let bleScanner: ble.BleScanner = ble.createBleScanner();
 try {
     bleScanner.stopScan();
-    console.info('startScan success');
+    console.info('stopScan success');
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }

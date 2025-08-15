@@ -3,8 +3,9 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: USB-->
 <!--Owner: @hwymlgitcode-->
-<!--SE: @w00373942-->
-<!--TSE: @dong-dongzhen-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
 
 - 开发USB服务<!--usb-dev-->
   - [USB服务开发概述](usbManager/usbHost-overview.md)

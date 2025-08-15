@@ -2,8 +2,9 @@
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @songshenke-->
-<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
-<!--TSE: @Filger-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 音振协同，表示在播放声音时，可同步发起振动。可用于来电通知、消息提醒等场景。
 
@@ -153,17 +154,18 @@ registerSourceFromFd(audioFd: AudioHapticFileDescriptor, hapticFd: AudioHapticFi
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-const context = getContext(this) as common.UIAbilityContext;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-const audioFile = await context.resourceManager.getRawFd('audioTest.ogg'); // 需要改成rawfile目录下的对应文件。
-const audioFd: audioHaptic.AudioHapticFileDescriptor = {
+let audioFile = context.resourceManager.getRawFdSync('audioTest.ogg'); // 需要改成rawfile目录下的对应文件。
+let audioFd: audioHaptic.AudioHapticFileDescriptor = {
   fd: audioFile.fd,
   offset: audioFile.offset,
   length: audioFile.length,
 };
 
-const hapticFile = await context.resourceManager.getRawFd('hapticTest.json'); // 需要改成rawfile目录下的对应文件。
-const hapticFd: audioHaptic.AudioHapticFileDescriptor = {
+let hapticFile = context.resourceManager.getRawFdSync('hapticTest.json'); // 需要改成rawfile目录下的对应文件。
+let hapticFd: audioHaptic.AudioHapticFileDescriptor = {
   fd: hapticFile.fd,
   offset: hapticFile.offset,
   length: hapticFile.length,
@@ -171,10 +173,10 @@ const hapticFd: audioHaptic.AudioHapticFileDescriptor = {
 let id = 0;
 
 audioHapticManagerInstance.registerSourceFromFd(audioFd, hapticFd).then((value: number) => {
-  console.info(`Promise returned with registered source id ${value}.`);
+  console.info('Succeeded in doing registerSourceFromFd.');
   id = value;
 }).catch ((err: BusinessError) => {
-  console.error(`Failed to register source ${err}`);
+  console.error(`Failed to registerSourceFromFd. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 

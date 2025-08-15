@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hddgzw-->
-<!--SE: @pssea-->
-<!--TSE: @jiaoaozihao-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 本模块提供注册自定义字体。
 
@@ -12,6 +13,8 @@
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的地方使用，参见[UIContext](./arkts-apis-uicontext-uicontext.md)说明。
+>
+> 推荐使用字体引擎的[loadFontSync](../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)接口注册自定义字体。
 
 ## 导入模块
 
@@ -54,7 +57,7 @@ registerFont(options: FontOptions): void
 | 名称         | 类型     | 只读 | 可选   | 说明           |
 | ---------- | ------ | ---- | ---- | ------------ |
 | familyName | string \| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | 否  | 否  | 设置注册的字体名称。   |
-| familySrc  | string \| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | 否  | 否  | 设置注册字体文件的路径。 |
+| familySrc  | string \| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | 否  | 否  | 设置注册字体文件的路径。<br/>**说明：**<br/>读取系统沙箱路径内的资源时，建议使用file://路径前缀的字符串，需要确保沙箱目录路径下的文件存在并且有可读权限。 |
 
 **示例：**
 

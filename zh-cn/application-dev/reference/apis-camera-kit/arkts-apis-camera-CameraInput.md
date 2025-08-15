@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -33,7 +34,7 @@ open(callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                  |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。当打开相机成功，err为undefined，否则为错误对象，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -65,7 +66,7 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
 
 open(): Promise\<void\>
 
-打开相机，通过Promise获取相机的状态。
+打开相机，使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -75,7 +76,7 @@ open(): Promise\<void\>
 
 | 类型           | 说明                      |
 | -------------- | ----------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -106,7 +107,7 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
 
 open(isSecureEnabled: boolean): Promise\<bigint\>
 
-打开相机，获取安全相机的句柄。
+打开相机。使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -122,7 +123,7 @@ open(isSecureEnabled: boolean): Promise\<bigint\>
 
 | 类型           | 说明                      |
 | -------------- | ----------------------- |
-| Promise\<bigint\> | 使用Promise的方式获取打开相机句柄。 |
+| Promise\<bigint\> | Promise对象，返回安全相机的句柄。 |
 
 **错误码：**
 
@@ -152,7 +153,7 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
 
 open(type: CameraConcurrentType): Promise\<void\>
 
-以指定的并发类型打开相机。
+以指定的并发类型打开相机。使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -168,7 +169,7 @@ open(type: CameraConcurrentType): Promise\<void\>
 
 | 类型           | 说明                      |
 | -------------- | ----------------------- |
-| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -209,7 +210,7 @@ close(callback: AsyncCallback\<void\>\): void
 
 | 参数名     | 类型                   | 必填 | 说明                  |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。当关闭相机成功，err为undefined，否则为错误对象。错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -239,7 +240,7 @@ function closeCameraInput(cameraInput: camera.CameraInput): void {
 
 close(): Promise\<void\>
 
-关闭相机，通过Promise获取状态。
+关闭相机，使用Promise异步回调。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -249,7 +250,7 @@ close(): Promise\<void\>
 
 | 类型           | 说明                      |
 | -------------- | ----------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -269,7 +270,7 @@ function closeCameraInput(cameraInput: camera.CameraInput): void {
     console.info('Promise returned with camera closed.');
   }).catch((error: BusinessError) => {
     console.error(`Failed to close the cameras, error code: ${error.code}.`);
-  });
+  }); 
 }
 ```
 

@@ -1,5 +1,12 @@
 # @ohos.ability.screenLockFileManager (锁屏敏感数据管理)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @hongjin-li_admin-->
+<!--Designer: @JerryH1011-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
+
 敏感数据密钥在锁屏后会触发销毁，销毁后敏感数据无法读写，需解锁屏幕触发恢复敏感数据密钥后方可访问。本模块提供应用锁屏下敏感数据保护的能力，支持申请和释放锁屏下敏感数据访问权限等。
 
 > **说明：**
@@ -13,7 +20,7 @@ import { screenLockFileManager } from '@kit.AbilityKit';
 
 ## AccessStatus
 
-枚举，锁屏下敏感数据访问权限申请的状态。
+表示锁屏下敏感数据访问权限申请的状态枚举。
 
  **系统能力：** SystemCapability.Security.ScreenLockFileManager
 
@@ -25,7 +32,7 @@ import { screenLockFileManager } from '@kit.AbilityKit';
 
 ## ReleaseStatus
 
-枚举，锁屏下敏感数据访问权限释放的状态。
+表示锁屏下敏感数据访问权限释放的状态枚举。
 
  **系统能力：** SystemCapability.Security.ScreenLockFileManager
 
@@ -36,7 +43,7 @@ import { screenLockFileManager } from '@kit.AbilityKit';
 
 ## KeyStatus<sup>18+</sup>
 
-枚举，锁屏下敏感数据访问权限的状态。
+表示锁屏下敏感数据访问权限的状态枚举。
 
  **系统能力：** SystemCapability.Security.ScreenLockFileManager
 

@@ -3,8 +3,9 @@
 <!--Kit: Ads Kit-->
 <!--Subsystem: Advertising-->
 <!--Owner: @SukiEvas-->
-<!--SE: @zhansf1988-->
-<!--TSE: @hongmei_may-->
+<!--Designer: @zhansf1988-->
+<!--Tester: @hongmei_may-->
+<!--Adviser: @RayShih-->
 
 本模块为设备厂商提供广告扩展能力，设备厂商可自主实现单广告位请求和多广告位请求的业务逻辑。
 
@@ -33,7 +34,7 @@ onLoadAd(adParam: advertising.AdRequestParams, adOptions: advertising.AdOptions,
 | 参数名       | 类型                                                                  | 必填 | 说明          |
 |--------------|-----------------------------------------------------------------------|-----|-------------|
 | adParam      | advertising.[AdRequestParams](js-apis-advertising.md#adrequestparams) | 是   | 广告请求参数。 |
-| adOptions    | advertising.[AdOptions](js-apis-advertising.md#adoptions)             | 是   | 广告配置。     |
+| adOptions    | advertising.[AdOptions](js-apis-advertising.md#adoptions)             | 是   | 广告配置参数。 |
 | respCallback | [RespCallback](js-apis-adsserviceextensionability.md#respcallback)    | 是   | 广告请求回调。 |
 
 **示例：**
@@ -85,7 +86,7 @@ onLoadAdWithMultiSlots(adParams: advertising.AdRequestParams[], adOptions: adver
 | 参数名       | 类型                                                                    | 必填 | 说明          |
 |--------------|-------------------------------------------------------------------------|-----|-------------|
 | adParams     | advertising.[AdRequestParams](js-apis-advertising.md#adrequestparams)[] | 是   | 广告请求参数。 |
-| adOptions    | advertising.[AdOptions](js-apis-advertising.md#adoptions)               | 是   | 广告配置。     |
+| adOptions    | advertising.[AdOptions](js-apis-advertising.md#adoptions)               | 是   | 广告配置参数。 |
 | respCallback | [RespCallback](js-apis-adsserviceextensionability.md#respcallback)      | 是   | 广告请求回调。 |
 
 **示例：**

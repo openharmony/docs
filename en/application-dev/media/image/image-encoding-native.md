@@ -1,4 +1,9 @@
 # Image Encoding
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 You can call the native APIs provided by the ImagePacker module to encode images, that is, to compress a PixelMap object into an image in the desired format.
 
@@ -53,10 +58,10 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
 
 3. Initialize resources.
 
-   Call **OH_ImagePacker_InitNative** to initialize the native encoder instance.
+   Call **OH_ImagePacker_InitNative** to initialize the encoder instance.
 
    ```cpp
-   // Initialize the native instance through napi_env and the created encoder instance.
+   // Initialize the instance through napi_env and the created encoder instance.
    ImagePacker_Native* nativePacker = OH_ImagePacker_InitNative(env, packer);
    ```
 

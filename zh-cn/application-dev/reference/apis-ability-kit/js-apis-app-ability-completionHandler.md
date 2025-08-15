@@ -1,11 +1,12 @@
-# @ohos.app.ability.CompletionHandler (拉端结果操作类)
+# @ohos.app.ability.CompletionHandler (拉起应用结果的操作类)
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @littlejerry1; @yangxuguang-huawei; @Luobniz21-->
-<!--SE: @ccllee1-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-CompletionHandler作为[StartOptions](js-apis-app-ability-startOptions.md)的可选参数，用于处理拉端请求的结果。
+CompletionHandler作为[StartOptions](js-apis-app-ability-startOptions.md)的可选参数，用于处理拉起应用请求的结果。
 
 
 > **说明：**
@@ -39,13 +40,13 @@ import { CompletionHandler } from '@kit.AbilityKit';
 
 ## CompletionHandler
 
-CompletionHandler提供了[onRequestSuccess](#onrequestsuccess)和[onRequestFailure](#onrequestfailure)两个回调函数，分别用来处理拉端成功和失败时的结果。
+CompletionHandler提供了[onRequestSuccess](#onrequestsuccess)和[onRequestFailure](#onrequestfailure)两个回调函数，分别用来处理拉起应用成功和失败时的结果。
 
 ### onRequestSuccess
 
 onRequestSuccess(elementName: ElementName, message: string): void
 
-拉端成功时的回调函数。
+拉起应用成功时的回调函数。
 
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -66,7 +67,7 @@ onRequestSuccess(elementName: ElementName, message: string): void
 
 onRequestFailure(elementName: ElementName, message: string): void
 
-拉端失败时的回调函数。
+拉起应用失败时的回调函数。
 
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 

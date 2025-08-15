@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hddgzw-->
-<!--SE: @pssea-->
-<!--TSE: @jiaoaozihao-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 方便灵活应用文本样式的对象，可通过TextController中的[setStyledString](./ts-basic-components-text.md#setstyledstring12)方法与Text组件绑定，可通过RichEditorStyledStringController中的[setStyledString](ts-basic-components-richeditor.md#setstyledstring12)方法与RichEditor组件绑定。
 
@@ -192,7 +193,7 @@ static fromHtml(html: string): Promise\<StyledString>
 
 | 类型              |       说明       |
 | ------- | --------------------------------- |
-| [StyledString](#styledstring) | 属性字符串。 |
+| Promise\<[StyledString](#styledstring)> | 属性字符串。 |
 
 **错误码**：
 

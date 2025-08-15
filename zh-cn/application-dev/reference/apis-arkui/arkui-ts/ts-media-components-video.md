@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @sd-wu-->
-<!--SE: @sunbees-->
-<!--TSE: @liuli0427-->
+<!--Designer: @sunbees-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 用于播放视频文件并控制其播放状态的组件。 
 
@@ -452,7 +453,7 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 | 名称       | 类型    | 只读 | 可选 | 说明                         |
 | ----------- | ------- | ---- | ---- | ---------------------------- |
-| showFirstFrame   | boolean | 否 | 是 | 当前视频是否配置首帧送显。<br/>true：开启首帧送显；false：关闭首帧送显。<br/>默认值：false      |
+| showFirstFrame   | boolean | 否 | 是 | 当前视频是否配置首帧送显，当开启首帧送显时，[VideoOptions对象](#videooptions对象说明)中的previewUri字段不生效。<br/>true：开启首帧送显；false：关闭首帧送显。<br/>默认值：false      |
 
 ## VideoController
 
@@ -604,7 +605,7 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 ### 示例1（视频播放基础用法）
 
-基础用法包括：控制栏、预览图、自动播放、播放速度、响应快捷键、控制器（开始播放、暂停播放、停止播放、重置avPlayer、跳转等）、首帧送显以及一些状态回调方法。
+基础用法包括：控制栏、预览图、自动播放、播放速度、响应快捷键（从API version 15开始，支持通过[enableShortcutKey](#enableshortcutkey15)设置组件开启快捷键响应）、控制器（开始播放、暂停播放、停止播放、重置AVPlayer、跳转等）、首帧送显（从API version 18开始，支持通过[posterOptions](#posteroptions18对象说明)设置视频播放的首帧送显选项）以及一些状态回调方法。
 
 ```ts
 // xxx.ets
@@ -624,10 +625,10 @@ struct VideoCreateComponent {
     Column() {
       Video({
         src: this.videoSrc,
-        previewUri: this.previewUri, //设置预览图
-        currentProgressRate: this.curRate, //设置播放速度
+        previewUri: this.previewUri, // 设置预览图
+        currentProgressRate: this.curRate, // 设置播放速度
         controller: this.controller,
-        posterOptions: { showFirstFrame: this.showFirstFrame } //关闭首帧送显
+        posterOptions: { showFirstFrame: this.showFirstFrame } // 关闭首帧送显
       })
         .width('100%')
         .height(600)
@@ -735,7 +736,7 @@ interface FullscreenObject {
 
 ### 示例2（图像分析功能）
 
-使用enableAnalyzer属性开启图像AI分析。
+通过enableAnalyzer属性开启图像AI分析。
 
 ```ts
 // xxx.ets
@@ -760,7 +761,7 @@ struct ImageAnalyzerExample {
         src: this.videoSrc,
         previewUri: this.previewUri,
         controller: this.controller,
-        imageAIOptions: this.options //设置图像AI分析选项
+        imageAIOptions: this.options // 设置图像AI分析选项
       })
         .width('100%')
         .height(600)
@@ -831,7 +832,7 @@ struct Index {
 ```
 ### 示例4（视频填充模式）
 
-使用objectFit属性设置视频填充模式。
+通过objectFit属性设置视频填充模式。
 
 ```ts
 // xxx.ets
@@ -840,7 +841,6 @@ struct Index {
 struct VideoObject {
   @State videoSrc: Resource = $rawfile('rabbit.mp4');
   @State previewUri: Resource = $r('app.media.tree');
-  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
   @State showControls: boolean = true;
   controller: VideoController = new VideoController();
 
@@ -850,39 +850,36 @@ struct VideoObject {
       Video({
         src: this.videoSrc,
         previewUri: this.previewUri,
-        currentProgressRate: this.curRate,
         controller: this.controller
       })
         .width(350)
         .height(230)
         .controls(this.showControls)
-        .objectFit(ImageFit.Contain)//设置视频填充模式为ImageFit.Contain
+        .objectFit(ImageFit.Contain) // 设置视频填充模式为ImageFit.Contain
         .margin(5)
 
       Text("ImageFit.Fill").fontSize(12)
       Video({
         src: this.videoSrc,
         previewUri: this.previewUri,
-        currentProgressRate: this.curRate,
         controller: this.controller
       })
         .width(350)
         .height(230)
         .controls(this.showControls)
-        .objectFit(ImageFit.Fill)//设置视频填充模式为ImageFit.Fill
+        .objectFit(ImageFit.Fill) // 设置视频填充模式为ImageFit.Fill
         .margin(5)
 
       Text("ImageFit.START").fontSize(12)
       Video({
         src: this.videoSrc,
         previewUri: this.previewUri,
-        currentProgressRate: this.curRate,
         controller: this.controller
       })
         .width(350)
         .height(230)
         .controls(this.showControls)
-        .objectFit(ImageFit.START)//设置视频填充模式为ImageFit.START
+        .objectFit(ImageFit.START) // 设置视频填充模式为ImageFit.START
         .margin(5)
     }.width('100%').alignItems(HorizontalAlign.Center)
   }
@@ -892,7 +889,7 @@ struct VideoObject {
 
 ### 示例5（onError事件上报错误码）
 
-以下示例以传入不存在的视频资源路径为例，展示了如何使Video组件能够通过onError事件获取错误码。
+从API version 20开始，支持通过[onError](#onerror)获取错误信息，该示例以传入不存在的视频资源路径为例。
 
 ```ts
 // xxx.ets
@@ -900,7 +897,6 @@ struct VideoObject {
 @Component
 struct VideoErrorComponent {
   @State videoSrc: string = "video.mp4"; // 传入不存在的视频资源路径。
-  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
   @State isAutoPlay: boolean = false;
   @State showControls: boolean = true;
   @State showFirstFrame: boolean = false;
@@ -911,7 +907,6 @@ struct VideoErrorComponent {
     Column() {
       Video({
         src: this.videoSrc,
-        currentProgressRate: this.curRate,
         controller: this.controller,
       })
         .width(200)

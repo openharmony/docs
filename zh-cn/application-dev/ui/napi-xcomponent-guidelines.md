@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @zjsxstar-->
-<!--SE: @sunbees-->
-<!--TSE: @liuli0427-->
+<!--Designer: @sunbees-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
@@ -1466,6 +1467,8 @@ Native侧
     target_link_libraries(nativerender PUBLIC ${EGL-lib} ${GLES-lib} ${hilog-lib} ${libace-lib} ${libnapi-lib} ${libuv-lib} libnative_window.so)
     ```
 
+<!--RP3-->上述用例具体实现可参考[NativeXComponent](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NativeXComponent)。<!--RP3End-->
+
 ![示意图](./figures/drawStar.jpeg)
 
 ## 使用NativeXComponent管理Surface生命周期
@@ -2402,6 +2405,7 @@ Native侧
 - [XComponent（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/XComponent)
 - [Native XComponent（API12）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkXComponent)
 - [OpenGL三棱椎（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkOpenGL)
+- [NativeXComponent（api19）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NativeXComponent)
 
 针对ArkTS XComponent的使用，有以下相关实例可供参考：
 

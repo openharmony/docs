@@ -3,8 +3,9 @@
 <!--Kit: Asset Store Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @JeremyXu-->
-<!--SE: @skye_you-->
-<!--TSE: @nacyli-->
+<!--Designer: @skye_you-->
+<!--Tester: @nacyli-->
+<!--Adviser: @zengyawen-->
 
 以下为管理群组关键资产使用示例，请先查看开发指导：
 
@@ -185,6 +186,7 @@ try {
     for (let i = 0; i < res.length; i++) {
       // 解析属性。
       let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
+      console.info(`Succeeded in getting accessibility, which is: ${accessibility}.`);
     }
   }).catch((err: BusinessError) => {
     console.error(`Failed to query Asset from the group. Code is ${err.code}, message is ${err.message}`);

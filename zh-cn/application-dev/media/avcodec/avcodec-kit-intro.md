@@ -1,4 +1,12 @@
 # AVCodec Kit简介
+
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zhanghongran; @mr-chencxy-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee; @baotianhao-->
+<!--Adviser: @zengyawen-->
+
 AVCodec Kit（Audio & Video Codec Kit，音视频编解码，封装解析）是媒体系统中的音视频的编解码、媒体文件的解析、封装、媒体数据输入等原子能力。
 基于性能考虑，AVCodec Kit仅提供C接口。
 

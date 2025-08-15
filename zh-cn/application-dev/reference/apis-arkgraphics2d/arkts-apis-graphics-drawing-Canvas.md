@@ -2,8 +2,9 @@
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphic-->
 <!--Owner: @hangmengxin-->
-<!--SE: @wangyanglan-->
-<!--TSE: @nobuggers-->
+<!--Designer: @wangyanglan-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
 
 > **说明：**
 >
@@ -945,9 +946,9 @@ getWidth(): number
 
 **返回值：**
 
-| 类型   | 必填 | 说明           |
-| ------ | ---- | -------------- |
-| number | 是   | 返回画布的宽度，该参数为浮点数。 |
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 返回画布的宽度，该参数为浮点数。 |
 
 **示例：**
 
@@ -974,9 +975,9 @@ getHeight(): number
 
 **返回值：**
 
-| 类型   | 必填 | 说明           |
-| ------ | ---- | -------------- |
-| number | 是   | 返回画布的高度，该参数为浮点数。 |
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 返回画布的高度，该参数为浮点数。 |
 
 **示例：**
 

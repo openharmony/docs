@@ -2,8 +2,9 @@
 <!--Kit: IPC Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @xdx19211@luodonghui0157-->
-<!--SE: @zhaopeng_gitee-->
-<!--TSE: @maxiaorong2-->
+<!--Designer: @zhaopeng_gitee-->
+<!--Tester: @maxiaorong2-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 概述
 
@@ -285,7 +286,7 @@ int OH_IPCParcel_RewindReadPosition(OHIPCParcel *parcel, uint32_t newReadPos)
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_RewindWritePosition()
 
@@ -312,7 +313,7 @@ int OH_IPCParcel_RewindWritePosition(OHIPCParcel *parcel, uint32_t newWritePos);
 
 | 类型 | 描述 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_WriteInt8()
 
@@ -339,7 +340,7 @@ int OH_IPCParcel_WriteInt8(OHIPCParcel *parcel, int8_t value)
 
 | 返回 | 说明 |
 | -----| ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 写入失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 写入失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_ReadInt8()
 
@@ -366,7 +367,7 @@ int OH_IPCParcel_ReadInt8(OHIPCParcel *parcel, int8_t *value)
 
 | 返回 | 描述 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 读取失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_READ_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 读取失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_WriteInt16()
 
@@ -392,7 +393,7 @@ int OH_IPCParcel_WriteInt16(OHIPCParcel *parcel, int16_t value)
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 写入失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 写入失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_ReadInt16()
 
@@ -419,7 +420,7 @@ int OH_IPCParcel_ReadInt16(const OHIPCParcel *parcel, int16_t *value)
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 读取失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_READ_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 读取失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_WriteInt32()
 
@@ -445,7 +446,7 @@ int OH_IPCParcel_WriteInt32(OHIPCParcel *parcel, int32_t value)
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 写入失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 写入失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_ReadInt32()
 
@@ -472,7 +473,7 @@ int OH_IPCParcel_ReadInt32(const OHIPCParcel *parcel, int32_t *value)
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 读取失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_READ_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 读取失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_WriteInt64()
 
@@ -498,7 +499,7 @@ int OH_IPCParcel_WriteInt64(OHIPCParcel *parcel, int64_t value)
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 写入失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 写入失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_ReadInt64()
 
@@ -525,7 +526,7 @@ int OH_IPCParcel_ReadInt16(const OHIPCParcel *parcel, int64_t *value)
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 读取失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_READ_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 读取失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_WriteFloat()
 
@@ -551,7 +552,7 @@ int OH_IPCParcel_WriteFloat(OHIPCParcel *parcel, float value)
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 写入失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 写入失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_ReadFloat()
 
@@ -578,7 +579,7 @@ int OH_IPCParcel_ReadFloat(const OHIPCParcel *parcel, float *value)
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 读取失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_READ_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 读取失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_WriteDouble()
 
@@ -604,7 +605,7 @@ int OH_IPCParcel_WriteDouble(OHIPCParcel *parcel, double value)
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 写入失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 写入失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_ReadDouble()
 
@@ -631,7 +632,7 @@ int OH_IPCParcel_ReadDouble(const OHIPCParcel *parcel, double *value)
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 读取失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_READ_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 读取失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_WriteString()
 
@@ -657,7 +658,7 @@ int OH_IPCParcel_WriteString(OHIPCParcel *parcel, const char *str)
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 写入失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 写入失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_ReadString()
 
@@ -710,7 +711,7 @@ int OH_IPCParcel_WriteBuffer(OHIPCParcel *parcel, const uint8_t *buffer, int32_t
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 写入失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 写入失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_ReadBuffer()
 
@@ -747,7 +748,7 @@ int OH_IPCParcel_WriteRemoteStub(OHIPCParcel *parcel, const OHIPCRemoteStub *stu
 
 **描述：**
 
-向OHIPCParcel对象写入OHIPCRRemoteStub对象。
+向OHIPCParcel对象写入OHIPCRemoteStub对象。
 
 **系统能力：** SystemCapability.Communication.IPC
 
@@ -764,7 +765,7 @@ int OH_IPCParcel_WriteRemoteStub(OHIPCParcel *parcel, const OHIPCRemoteStub *stu
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 写入失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 写入失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_ReadRemoteStub()
 
@@ -817,7 +818,7 @@ int OH_IPCParcel_WriteRemoteProxy(OHIPCParcel *parcel, const OHIPCRemoteProxy *p
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 写入失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 写入失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_ReadRemoteProxy()
 
@@ -869,7 +870,7 @@ int OH_IPCParcel_WriteFileDescriptor(OHIPCParcel *parcel, int32_t fd)
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 写入失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 写入失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_ReadFileDescriptor()
 
@@ -896,7 +897,7 @@ const unit8_t* OH_IPCParcel_ReadFileDescriptor(const OHIPCParcel *parcel, int32_
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 读取失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_READ_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 读取失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_Append()
 
@@ -923,7 +924,7 @@ OHIPCParcel对象数据拼接。
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 拼接失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 拼接失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_WriteInterfaceToken()
 
@@ -949,7 +950,7 @@ int OH_IPCParcel_WriteInterfaceToken(OHIPCParcel *parcel, const char *token)
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；<br> 写入失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 写入失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |
 
 ### OH_IPCParcel_ReadInterfaceToken()
 
@@ -978,4 +979,4 @@ int OH_IPCParcel_ReadInterfaceToken(const OHIPCParcel *parcel, char **token, int
 
 | 类型 | 说明 |
 | ---- | ---- |
-| int | 成功返回[OH_IPC_ErroeCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md)；<br> 参数不合法时返回[OH_IPC_ErroeCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md)；读取失败返回[OH_IPC_ErroeCode#OH_IPC_PARCEL_READ_ERROR](capi-ipc-error-code-h.md)。 |
+| int | 成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](capi-ipc-error-code-h.md#oh_ipc_errorcode)；<br> 参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)；读取失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR](capi-ipc-error-code-h.md#oh_ipc_errorcode)。 |

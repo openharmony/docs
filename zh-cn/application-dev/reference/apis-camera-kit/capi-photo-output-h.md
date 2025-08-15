@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
@@ -252,7 +253,7 @@ typedef void (*OH_PhotoOutput_EstimatedCaptureDuration)(Camera_PhotoOutput* phot
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)* photoOutput | 传递回调的拍照输出实例。 |
-|  int64_t duration | 回调传递的预计拍照时间。 |
+|  int64_t duration | 回调传递的预计拍照时间，单位毫秒。 |
 
 ### OH_PhotoOutput_PhotoAvailable()
 
@@ -831,7 +832,7 @@ Camera_ErrorCode OH_PhotoOutput_IsMirrorSupported(Camera_PhotoOutput* photoOutpu
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)* photoOutput | 拍照输出实例，用于检查是否支持镜像。 |
-| bool* isSupported | 是否支持镜像的结果。 |
+| bool* isSupported | 是否支持镜像的结果。true表示支持镜像，false表示不支持。 |
 
 **返回：**
 
@@ -934,7 +935,7 @@ Camera_ErrorCode OH_PhotoOutput_IsMovingPhotoSupported(Camera_PhotoOutput* photo
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)* photoOutput | 用于检查是否支持动态照片的拍照输出实例。 |
-| bool* isSupported | 是否支持动态照片的结果。 |
+| bool* isSupported | 是否支持动态照片的结果。true表示支持动态照片，false表示不支持。 |
 
 **返回：**
 
@@ -962,7 +963,7 @@ Camera_ErrorCode OH_PhotoOutput_EnableMovingPhoto(Camera_PhotoOutput* photoOutpu
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)* photoOutput | 用于启用或禁用动态照片的拍照输出实例。 |
-| bool enabled | 是否启用动态照片。 |
+| bool enabled | 是否启用动态照片。true表示启用动态照片，false表示不启用。 |
 
 **返回：**
 
