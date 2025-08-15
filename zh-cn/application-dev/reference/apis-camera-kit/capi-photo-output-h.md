@@ -826,7 +826,7 @@ Camera_ErrorCode OH_PhotoOutput_IsMirrorSupported(Camera_PhotoOutput* photoOutpu
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)* photoOutput | 拍照输出实例，用于检查是否支持镜像。 |
-| bool* isSupported | 是否支持镜像的结果。true表示支持镜像，false表示不支持 |
+| bool* isSupported | 是否支持镜像的结果。true表示支持镜像，false表示不支持。 |
 
 **返回：**
 
