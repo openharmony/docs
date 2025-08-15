@@ -8,7 +8,7 @@
 
 ## 概述
 
-Heapstatisics结构体，用于保存有关JavaScript堆内存使用情况的统计信息。
+用于保存有关JavaScript堆内存使用情况的统计信息。
 
 **起始版本：** 12
 
