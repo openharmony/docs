@@ -130,7 +130,7 @@ OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
 // 设置文本对齐方式为居中
 OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_CENTER);
 // 设置断词策略为 WORD_BREAK_TYPE_BREAK_ALL
-OH_Drawing_SetTypographyTextWordBreakType(typoStyle, OH_Drawing_WordBreakType::WORD_BREAK_TYPE_BREAK_ALL);
+OH_Drawing_SetTypographyTextWordBreakType(typoStyle, WORD_BREAK_TYPE_BREAK_ALL);
 // 设置最大行数为 10，行数大于 10 的部分不显示
 OH_Drawing_SetTypographyTextMaxLines(typoStyle, 10);
 
@@ -151,7 +151,7 @@ OH_Drawing_TypographyPaint(typography, canvas, positionBreakAll[0], positionBrea
 // 创建一个断词策略为 BREAK_WORD 的 TypographyStyle
 // OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
 // OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_CENTER);
-// OH_Drawing_SetTypographyTextWordBreakType(typoStyle, OH_Drawing_WordBreakType::WORD_BREAK_TYPE_BREAK_WORD);
+// OH_Drawing_SetTypographyTextWordBreakType(typoStyle, WORD_BREAK_TYPE_BREAK_WORD);
 // OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
 // OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
 // OH_Drawing_TypographyHandlerAddText(handler, text);
@@ -164,7 +164,7 @@ OH_Drawing_TypographyPaint(typography, canvas, positionBreakAll[0], positionBrea
 // OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
 // OH_Drawing_SetTypographyTextStyle(typoStyle, txtStyle);
 // OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_LEFT);
-// OH_Drawing_SetTypographyTextWordBreakType(typoStyle, OH_Drawing_WordBreakType::WORD_BREAK_TYPE_BREAK_HYPHEN);
+// OH_Drawing_SetTypographyTextWordBreakType(typoStyle, WORD_BREAK_TYPE_BREAK_HYPHEN);
 // OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
 // OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
 // OH_Drawing_TypographyHandlerAddText(handler, text);
