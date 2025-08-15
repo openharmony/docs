@@ -616,6 +616,7 @@ zh-cn/application-dev/reference/apis-arkts/js-apis-taskpool.md @gongjunsong @ge-
 
 [API参考-ArkUI-JS]
 zh-cn/application-dev/reference/apis-arkui/js-service-widget-ui/ @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-Prefetcher.md @liubihao
 
 [API参考-ArkUI-TS组件]
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-events-click.md	@jiangtao92	@piggyguy	@fredyuan0912	@HelloCrease
@@ -846,19 +847,20 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridcontainer.m
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-click.md	@jiangtao92	@piggyguy	@fredyuan0912	@HelloCrease
 
 
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md @jiyujia926 @seaside_wu @s10021109 @zhang_yixin13 @liubihao
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md @jiyujia926 @seaside_wu @s10021109 @zhang_yixin13 @liubihao
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md @jiyujia926 @seaside_wu @s10021109 @zhang_yixin13 @liubihao
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md @s10021109 @zhang_yixin13 @liubihao
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md @s10021109 @zhang_yixin13 @liubihao
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md @s10021109 @zhang_yixin13 @liubihao
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-state-management-sys.md @jiyujia926 @seaside_wu @s10021109 @zhang_yixin13
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md @jiyujia926 @seaside_wu @s10021109 
 zh-cn/application-dev/reference/apis-arkui/js-apis-StateManagement.md @jiyujia926 @seaside_wu @s10021109 @zhang_yixin13
 
-zh-cn/application-dev/ui/state-management/arkts-new-rendering-control-repeat.md @jiyujia926 @seaside_wu @s10021109 @zhang_yixin13 @liubihao
-zh-cn/application-dev/ui/state-management/arkts-rendering-control-foreach.md @jiyujia926 @seaside_wu @s10021109 @zhang_yixin13 @liubihao
-zh-cn/application-dev/ui/state-management/arkts-rendering-control-lazyforeach.md @jiyujia926 @seaside_wu @s10021109 @zhang_yixin13 @liubihao
-zh-cn/application-dev/ui/state-management/arkts-rendering-control-ifelse.md @jiyujia926 @seaside_wu @s10021109 @zhang_yixin13 @liubihao
+zh-cn/application-dev/ui/state-management/arkts-rendering-control-overview.md @s10021109 @zhang_yixin13 @liubihao
+zh-cn/application-dev/ui/state-management/arkts-new-rendering-control-repeat.md @s10021109 @zhang_yixin13 @liubihao
+zh-cn/application-dev/ui/state-management/arkts-rendering-control-foreach.md @s10021109 @zhang_yixin13 @liubihao
+zh-cn/application-dev/ui/state-management/arkts-rendering-control-lazyforeach.md @s10021109 @zhang_yixin13 @liubihao
+zh-cn/application-dev/ui/state-management/arkts-rendering-control-ifelse.md @s10021109 @zhang_yixin13 @liubihao
+zh-cn/application-dev/ui/state-management/arkts-lazyForEach-repeat-migration-guide.md @s10021109 @zhang_yixin13 @liubihao
 
- 
 [API参考-ArkUI-ArkTS]
 zh-cn/application-dev/reference/apis-arkui/js-apis-animator.md     @hehongyang9 @yangfan229 @H-xinwei  	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-componentSnapshot.md    @piggyguy  @fredyuan0912	@HelloCrease
