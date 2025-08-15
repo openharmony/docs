@@ -365,7 +365,7 @@
     - [时间滑动选择器弹窗 (TimePickerDialog)](arkui-ts/ts-methods-timepicker-dialog.md)
     - [文本滑动选择器弹窗 (TextPickerDialog)](arkui-ts/ts-methods-textpicker-dialog.md)
     - [弹出框 (Dialog)](arkui-ts/ohos-arkui-advanced-Dialog.md)
-  - 卡片<!--Designerrvice-widgets-->
+  - 卡片<!--service-widgets-->
     - [FormLink](arkui-ts/ts-container-formlink.md)
     <!--Del-->
     - [FormComponent (系统接口)](arkui-ts/ts-basic-components-formcomponent-sys.md)
