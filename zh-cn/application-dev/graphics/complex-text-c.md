@@ -205,8 +205,6 @@ OH_Drawing_DestroyTypography(typographyBreakWord);
 
 - **渐变色绘制：** 可以为文字提供颜色渐变效果，增强文字表现力。
 
-- **样式拷贝：** 支持拷贝文本样式、段落样式、阴影样式，重用代码提升效率。
-
 - **垂直对齐：** 调整文本在垂直方向排版位置，提升排版质量。
 
 - **上下标：** 可以将任意字符处理成上标或下标，更精准表达文本含义。
@@ -739,110 +737,6 @@ OH_Drawing_DestroyTypography(typography);
 
 ![zh-cn_image_gradient_c](figures/zh-cn_image_gradient_c.png)
 
-### 样式的拷贝、绘制与显示
-支持拷贝文本样式、段落样式、阴影样式，以便快速复制相关样式作用到不同文字上。
-
-| 接口定义 | 描述 | 
-| -------- | -------- |
-| OH_Drawing_TypographyStyle\* OH_Drawing_CopyTypographyStyle(OH_Drawing_TypographyStyle\* style) | 创建一个段落样式的对象副本，用于拷贝一个已有的段落样式对象。 | 
-| OH_Drawing_TextStyle* OH_Drawing_CopyTextStyle(OH_Drawing_TextStyle* style) | 创建一个文本样式的对象副本，用于拷贝一个已有的文本样式对象。 | 
-| OH_Drawing_TextShadow* OH_Drawing_CopyTextShadow(OH_Drawing_TextShadow* shadow) | 创建一个文本阴影的对象副本，用于拷贝一个已有的文本阴影对象。 | 
-
-示例及示意效果如下所示：
-
-```c++
-// 创建一个TypographyStyle，其中创建Typography时需要使用
-OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
-// 配置段落样式包括：使能自动间距、最大行数、省略号样式、省略号文本、对齐方式
-// 使能自动间距
-OH_Drawing_SetTypographyTextAutoSpace(typoStyle, true);
-// 设置段落最大行数为3行
-OH_Drawing_SetTypographyTextMaxLines(typoStyle, 3);
-// 设置省略号模式为尾部省略号
-OH_Drawing_SetTypographyTextEllipsisModal(typoStyle, ELLIPSIS_MODAL_TAIL);
-// 设置省略号文本
-OH_Drawing_SetTypographyTextEllipsis(typoStyle, "...");
-// 设置对齐方式为居中对齐
-OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_CENTER);
-
-OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
-// 设置文字颜色、大小、字重，不设置TextStyle会使用TypographyStyle中的默认TextStyle
-OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
-OH_Drawing_SetTextStyleFontSize(txtStyle, 100);
-// 设置文本的装饰线
-// 添加下划线
-OH_Drawing_SetTextStyleDecoration(txtStyle, TEXT_DECORATION_UNDERLINE);
-// 设置装饰线样式为波浪线样式
-OH_Drawing_SetTextStyleDecorationStyle(txtStyle, ARKUI_TEXT_DECORATION_STYLE_WAVY);
-// 设置下划线粗细
-OH_Drawing_SetTextStyleDecorationThicknessScale(txtStyle, 1);
-// 设置下划线颜色为蓝色
-OH_Drawing_SetTextStyleDecorationColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0xFF)); 
-
-// 设置阴影的颜色、偏移量、模糊半径
-// 创建阴影对象
-OH_Drawing_TextShadow *shadow = OH_Drawing_CreateTextShadow();
-// 设置阴影偏移量
-OH_Drawing_Point *offset = OH_Drawing_PointCreate(5, 5);
-// 定义阴影模糊半径
-double blurRadius = 4;
-OH_Drawing_SetTextShadow(shadow, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0x00, 0xFF), offset, blurRadius);
-
-// 拷贝阴影对象
-OH_Drawing_TextShadow *shadowCopy = OH_Drawing_CopyTextShadow(shadow);
-// 将拷贝出的阴影添加到文本样式中
-OH_Drawing_TextStyleAddShadow(txtStyle, shadowCopy);
-
-// 创建FontCollection，FontCollection用于管理字体匹配逻辑
-OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
-
-// 使用FontCollection和之前创建的TypographyStyle创建TypographyCreate。TypographyCreate用于创建Typography
-OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
-// 将段落一文本样式添加到handler中
-OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
-// 将段落一文本添加到handler中
-const char *text = "The text style, paragraph style, and text shadow of the copied text will be exactly the same as those of the original text.";
-OH_Drawing_TypographyHandlerAddText(handler, text);
-// 创建段落一，并将段落一按照排版宽度进行排版
-OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
-double layoutWidth = 1200;
-OH_Drawing_TypographyLayout(typography, layoutWidth);
-// 将段落一文本绘制到画布上
-double position[2] = {0, 500.0};
-OH_Drawing_TypographyPaint(typography, canvas, position[0], position[1]);
-
-// 生成第二段文本，其中，文本样式和段落样式均由第一段文本拷贝而来
-// 复制文本样式
-OH_Drawing_TextStyle *textsyleCopy = OH_Drawing_CopyTextStyle(txtStyle);
-// 复制段落样式
-OH_Drawing_TypographyStyle *typographyStyleCopy = OH_Drawing_CopyTypographyStyle(typoStyle);
-
-// 使用复制的样式创建段落二，后续可以观察段落一和段落二是否绘制效果一致
-OH_Drawing_TypographyCreate *handlerCopy = OH_Drawing_CreateTypographyHandler(typographyStyleCopy, fc);
-OH_Drawing_TypographyHandlerPushTextStyle(handlerCopy, textsyleCopy);
-OH_Drawing_TypographyHandlerAddText(handlerCopy, text);
-OH_Drawing_Typography *typographyCopy = OH_Drawing_CreateTypography(handlerCopy);
-OH_Drawing_TypographyLayout(typographyCopy, layoutWidth);
-// 将段落二文本绘制到画布上
-double positionCopy[2] = {0, 1200.0};
-OH_Drawing_TypographyPaint(typographyCopy, canvas, positionCopy[0], positionCopy[1]);
-
-// 释放内存
-OH_Drawing_DestroyFontCollection(fc);
-OH_Drawing_DestroyTypographyStyle(typoStyle);
-OH_Drawing_DestroyTextStyle(txtStyle);
-OH_Drawing_DestroyTypographyHandler(handler);
-OH_Drawing_DestroyTypography(typography);
-// 拷贝的段落样式也需要释放内存
-OH_Drawing_DestroyTypographyStyle(typographyStyleCopy);
-// 拷贝的文本样式也需要释放内存
-OH_Drawing_DestroyTextStyle(textsyleCopy);
-OH_Drawing_DestroyTypographyHandler(handlerCopy);
-OH_Drawing_DestroyTypography(typographyCopy);
-```
-	
-![zh-cn_image_styleCopy_1](figures/zh-cn_image_styleCopy_1.png)
-
 ### 垂直对齐
 
 **垂直对齐**用于调整文本在一行中垂直方向的排版位置。开启行高缩放或行内存在不同字号文本混排时使能垂直对齐，可以让文本实现顶部对齐、居中对齐、底部对齐或基线对齐（默认）。
@@ -978,3 +872,107 @@ OH_Drawing_DestroyTypography(typography);
 | -------- | -------- |
 | 不开启高对比度 | ![zh-cn_image_highContrast_1](figures/zh-cn_image_highContrast_1.png) | 
 | 开启高对比度 | ![zh-cn_image_highContrast_2](figures/zh-cn_image_highContrast_2.png) | 
+
+## 样式的拷贝、绘制与显示
+支持拷贝文本样式、段落样式、阴影样式，以便快速复制相关样式作用到不同文字上。
+
+| 接口定义 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_TypographyStyle\* OH_Drawing_CopyTypographyStyle(OH_Drawing_TypographyStyle\* style) | 创建一个段落样式的对象副本，用于拷贝一个已有的段落样式对象。 | 
+| OH_Drawing_TextStyle* OH_Drawing_CopyTextStyle(OH_Drawing_TextStyle* style) | 创建一个文本样式的对象副本，用于拷贝一个已有的文本样式对象。 | 
+| OH_Drawing_TextShadow* OH_Drawing_CopyTextShadow(OH_Drawing_TextShadow* shadow) | 创建一个文本阴影的对象副本，用于拷贝一个已有的文本阴影对象。 | 
+
+示例及示意效果如下所示：
+
+```c++
+// 创建一个TypographyStyle，其中创建Typography时需要使用
+OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+// 配置段落样式包括：使能自动间距、最大行数、省略号样式、省略号文本、对齐方式
+// 使能自动间距
+OH_Drawing_SetTypographyTextAutoSpace(typoStyle, true);
+// 设置段落最大行数为3行
+OH_Drawing_SetTypographyTextMaxLines(typoStyle, 3);
+// 设置省略号模式为尾部省略号
+OH_Drawing_SetTypographyTextEllipsisModal(typoStyle, ELLIPSIS_MODAL_TAIL);
+// 设置省略号文本
+OH_Drawing_SetTypographyTextEllipsis(typoStyle, "...");
+// 设置对齐方式为居中对齐
+OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_CENTER);
+
+OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
+// 设置文字颜色、大小、字重，不设置TextStyle会使用TypographyStyle中的默认TextStyle
+OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
+OH_Drawing_SetTextStyleFontSize(txtStyle, 100);
+// 设置文本的装饰线
+// 添加下划线
+OH_Drawing_SetTextStyleDecoration(txtStyle, TEXT_DECORATION_UNDERLINE);
+// 设置装饰线样式为波浪线样式
+OH_Drawing_SetTextStyleDecorationStyle(txtStyle, ARKUI_TEXT_DECORATION_STYLE_WAVY);
+// 设置下划线粗细
+OH_Drawing_SetTextStyleDecorationThicknessScale(txtStyle, 1);
+// 设置下划线颜色为蓝色
+OH_Drawing_SetTextStyleDecorationColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0xFF)); 
+
+// 设置阴影的颜色、偏移量、模糊半径
+// 创建阴影对象
+OH_Drawing_TextShadow *shadow = OH_Drawing_CreateTextShadow();
+// 设置阴影偏移量
+OH_Drawing_Point *offset = OH_Drawing_PointCreate(5, 5);
+// 定义阴影模糊半径
+double blurRadius = 4;
+OH_Drawing_SetTextShadow(shadow, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0x00, 0xFF), offset, blurRadius);
+
+// 拷贝阴影对象
+OH_Drawing_TextShadow *shadowCopy = OH_Drawing_CopyTextShadow(shadow);
+// 将拷贝出的阴影添加到文本样式中
+OH_Drawing_TextStyleAddShadow(txtStyle, shadowCopy);
+
+// 创建FontCollection，FontCollection用于管理字体匹配逻辑
+OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
+
+// 使用FontCollection和之前创建的TypographyStyle创建TypographyCreate。TypographyCreate用于创建Typography
+OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+// 将段落一文本样式添加到handler中
+OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+// 将段落一文本添加到handler中
+const char *text = "The text style, paragraph style, and text shadow of the copied text will be exactly the same as those of the original text.";
+OH_Drawing_TypographyHandlerAddText(handler, text);
+// 创建段落一，并将段落一按照排版宽度进行排版
+OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+double layoutWidth = 1200;
+OH_Drawing_TypographyLayout(typography, layoutWidth);
+// 将段落一文本绘制到画布上
+double position[2] = {0, 500.0};
+OH_Drawing_TypographyPaint(typography, canvas, position[0], position[1]);
+
+// 生成第二段文本，其中，文本样式和段落样式均由第一段文本拷贝而来
+// 复制文本样式
+OH_Drawing_TextStyle *textsyleCopy = OH_Drawing_CopyTextStyle(txtStyle);
+// 复制段落样式
+OH_Drawing_TypographyStyle *typographyStyleCopy = OH_Drawing_CopyTypographyStyle(typoStyle);
+
+// 使用复制的样式创建段落二，后续可以观察段落一和段落二是否绘制效果一致
+OH_Drawing_TypographyCreate *handlerCopy = OH_Drawing_CreateTypographyHandler(typographyStyleCopy, fc);
+OH_Drawing_TypographyHandlerPushTextStyle(handlerCopy, textsyleCopy);
+OH_Drawing_TypographyHandlerAddText(handlerCopy, text);
+OH_Drawing_Typography *typographyCopy = OH_Drawing_CreateTypography(handlerCopy);
+OH_Drawing_TypographyLayout(typographyCopy, layoutWidth);
+// 将段落二文本绘制到画布上
+double positionCopy[2] = {0, 1200.0};
+OH_Drawing_TypographyPaint(typographyCopy, canvas, positionCopy[0], positionCopy[1]);
+
+// 释放内存
+OH_Drawing_DestroyFontCollection(fc);
+OH_Drawing_DestroyTypographyStyle(typoStyle);
+OH_Drawing_DestroyTextStyle(txtStyle);
+OH_Drawing_DestroyTypographyHandler(handler);
+OH_Drawing_DestroyTypography(typography);
+// 拷贝的段落样式也需要释放内存
+OH_Drawing_DestroyTypographyStyle(typographyStyleCopy);
+// 拷贝的文本样式也需要释放内存
+OH_Drawing_DestroyTextStyle(textsyleCopy);
+OH_Drawing_DestroyTypographyHandler(handlerCopy);
+OH_Drawing_DestroyTypography(typographyCopy);
+```
+	
+![zh-cn_image_styleCopy_1](figures/zh-cn_image_styleCopy_1.png)
