@@ -86,7 +86,7 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
 
 onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
 
-即将离开刷新或关闭当前页面时触发此回调。刷新或关闭当前页面应先通过点击等方式获取焦点，才会触发此回调。
+即将完成页面刷新或关闭当前页面时触发此回调。刷新或关闭当前页面应先通过点击等方式获取焦点，才会触发此回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -94,7 +94,7 @@ onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
 
 | 参数名     | 类型                  | 必填   | 说明            |
 | ------- | --------------------- | ---- | --------------- |
-| callback     | Callback\<[OnBeforeUnloadEvent](./arkts-basic-components-web-i.md#onbeforeunloadevent12), boolean\>                | 是    | 即将离开刷新或关闭当前页面时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnBeforeUnloadEvent](./arkts-basic-components-web-i.md#onbeforeunloadevent12), boolean\>                | 是    | 即将完成页面刷新或关闭当前页面时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -527,7 +527,7 @@ onErrorReceive(callback: Callback\<OnErrorReceiveEvent\>)
 
 onHttpErrorReceive(callback: Callback\<OnHttpErrorReceiveEvent\>)
 
-网页加载资源遇到的HTTP错误（响应码>=400)时触发该回调。
+网页加载资源遇到的HTTP错误（响应码>=400）时触发该回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -535,7 +535,7 @@ onHttpErrorReceive(callback: Callback\<OnHttpErrorReceiveEvent\>)
 
 | 参数名      | 类型                                     | 必填   | 说明       |
 | -------- | ---------------------------------------- | ---- | ---------- |
-| callback  | Callback\<[OnHttpErrorReceiveEvent](./arkts-basic-components-web-i.md#onhttperrorreceiveevent12)\> | 是    | 网页收到加载资源加载HTTP错误时触发。 |
+| callback  | Callback\<[OnHttpErrorReceiveEvent](./arkts-basic-components-web-i.md#onhttperrorreceiveevent12)\> | 是    | 网页收到加载资源返回HTTP错误码时触发。 |
 
 **示例：**
 
@@ -772,7 +772,7 @@ onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
 
 onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
 
-通知应用程序页面document标题已更改，如果加载的页面未设置<title\>元素 指定的标题，ArkWeb将基于URL生成标题并返回给应用程序。
+当页面文档标题`<title>`元素发生变更时，触发回调。若当前页面未显示设置标题，ArkWeb将在加载完成前基于页面的URL生成标题并返回给应用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -780,7 +780,7 @@ onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
 
 | 参数名   | 类型   | 必填   | 说明          |
 | ----- | ------ | ---- | ------------- |
-| callback | Callback\<[OnTitleReceiveEvent](./arkts-basic-components-web-i.md#ontitlereceiveevent12)\> | 是    | 定义主应用程序文档标题更改时触发。 |
+| callback | Callback\<[OnTitleReceiveEvent](./arkts-basic-components-web-i.md#ontitlereceiveevent12)\> | 是    | 页面文档标题发生变更时触发 |
 
 **示例：**
 
@@ -1344,6 +1344,11 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
 通知用户加载资源时发生SSL错误，只支持主资源。
 如果需要支持子资源，请使用[OnSslErrorEvent](./arkts-basic-components-web-events.md#onsslerrorevent12)接口。
 
+> **说明：**
+>
+> - 主资源：浏览器加载网页的入口文件，通常是HTML文档。  
+> - 子资源：主资源中引用的依赖文件，由主资源解析过程中遇到特定标签时触发加载。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -1441,6 +1446,11 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
 onSslErrorEvent(callback: OnSslErrorEventCallback)
 
 通知用户加载资源（主资源+子资源）时发生SSL错误，如果只想处理主资源的SSL错误，请用[isMainFrame](./arkts-basic-components-web-WebResourceRequest.md#ismainframe)字段进行区分。
+
+> **说明：**
+>
+> - 主资源：浏览器加载网页的入口文件，通常是HTML文档。  
+> - 子资源：主资源中引用的依赖文件，由主资源解析过程中遇到特定标签时触发加载。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3717,13 +3727,14 @@ onIntelligentTrackingPreventionResult(callback: OnIntelligentTrackingPreventionC
 
 onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
 
-当URL将要加载到当前Web中时，让宿主应用程序有机会获得控制权，回调函数返回true将导致当前Web中止加载URL，而返回false则会导致Web继续照常加载URL。
+当URL将要加载到当前Web中时触发该回调，让宿主应用程序有机会获得控制权，判断是否阻止Web加载URL。
 
-POST请求不会触发该回调。
-
-iframe加载HTTP(s)协议或about:blank时不会触发该回调，加载非HTTP(s)协议的跳转可以触发。调用loadUrl(String)主动触发的跳转不会触发该回调。
-
-不要使用相同的URL调用loadUrl(String)方法，然后返回true。这样做会不必要地取消当前的加载并重新使用相同的URL开始新的加载。继续加载给定URL的正确方式是直接返回false，而不是调用loadUrl(String)。
+> **说明：**
+>
+> - POST请求不会触发该回调。  
+> - iframe加载HTTP(s)协议或about:blank时不会触发该回调，加载非HTTP(s)协议的跳转可以触发。  
+> - 调用loadUrl(String)主动触发的跳转不会触发该回调。  
+> - 不要使用相同的URL调用loadUrl(String)方法，然后返回true。这样做会不必要地取消当前的加载并重新使用相同的URL开始新的加载。继续加载给定URL的正确方式是直接返回false，而不是调用loadUrl(String)。  
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3731,7 +3742,7 @@ iframe加载HTTP(s)协议或about:blank时不会触发该回调，加载非HTTP(
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback       | [OnOverrideUrlLoadingCallback](./arkts-basic-components-web-t.md#onoverrideurlloadingcallback12) | 是 | onOverrideUrlLoading的回调。 |
+| callback       | [OnOverrideUrlLoadingCallback](./arkts-basic-components-web-t.md#onoverrideurlloadingcallback12) | 是 | onOverrideUrlLoading的回调。<br>返回值boolean。返回ture表示当前Web中止加载URL，返回false表示Web继续加载URL |
 
 **示例：**
 

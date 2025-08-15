@@ -74,7 +74,7 @@ void (*onPageEnd)(const char* webTag, ArkWeb_OnComponentCallback callback, void*
 
 **描述：**
 
-网页加载完成时触发该回调，且只在主frame触发。
+网页加载完成时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。
 
 **参数：**
 
