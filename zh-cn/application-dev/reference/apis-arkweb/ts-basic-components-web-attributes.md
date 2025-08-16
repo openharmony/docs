@@ -1453,7 +1453,7 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 > **说明：**
 >
-> - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未加载、渲染完毕。
+> - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未完全加载或渲染完毕。
 >
 > - 该脚本按照字典序执行，非数组本身顺序，若需数组本身顺序，建议使用[runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15)接口。
 >
@@ -1600,7 +1600,7 @@ runJavaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 > **说明：**
 >
-> - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未加载、渲染完毕。
+> - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未完全加载或渲染完毕。
 >
 > - 该脚本按照数组本身顺序执行。
 >
