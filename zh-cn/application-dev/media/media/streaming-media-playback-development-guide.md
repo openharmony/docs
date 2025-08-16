@@ -251,7 +251,7 @@ struct Index {
   @State currentTime: number = 0;
   @State percent: number = 0;
   @State isSwiping: boolean = false;
-  @State tag: string = 'StreamingMedia'
+  @State tag: string = 'StreamingMedia';
   private surfaceId: string = '';
   @State speedSelect: number = -1;
   public intervalID: number = -1;
@@ -630,9 +630,13 @@ struct Index {
   }
 
   @Builder
-  CoverXComponent() {...}
+  CoverXComponent() {
+    // ...
+  }
 
-  build() {...}
+  build() {
+    // ...
+  }
 }
 ```
 

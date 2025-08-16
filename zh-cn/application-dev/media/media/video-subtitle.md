@@ -35,7 +35,7 @@
     // 类成员定义用来显示的字幕字符串。
     @State subtitle: string = 'subtitleUpdate info';
     private avPlayer: media.AVPlayer | null = null;
-    private tag: string = ''
+    private tag: string = '';
 
     // 创建avPlayer实例对象。
     this.avPlayer = await media.createAVPlayer();
