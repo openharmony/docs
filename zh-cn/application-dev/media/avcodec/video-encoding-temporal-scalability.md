@@ -124,6 +124,11 @@
 
     若支持，则可以使能全局时域可分层特性。
 
+    ```c++
+    // 创建硬件编码器实例。
+    OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
+    ```
+
 2. 在配置阶段，配置全局时域分层编码特性参数。
 
     ```c++
@@ -152,19 +157,22 @@
     通过配置周期获取示例代码如下：
 
     ```c++
+    constexpr int32_t TGOP_SIZE = 3;
     uint32_t outPoc = 0;
     // 通过输出回调中有效帧数，获取TGOP内相对位置，对照配置确认层级。
     static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
-        // 注：若涉及复杂处理流程，建议相关。
         struct OH_AVCodecBufferAttr attr;
-        (void)buffer->OH_AVBuffer_GetBufferAttr(buffer, &attr);
+        OH_AVErrCode ret = OH_AVBuffer_GetBufferAttr(buffer, &attr);
+        if (ret != AV_ERR_OK) {
+            // 异常处理。
+         }
         // 刷新I帧后POC归零。
-        if (attr.flags & AVCODEC_BUFFER_FLAG_KEY_FRAME) {
+        if (attr.flags & AVCODEC_BUFFER_FLAGS_SYNC_FRAME) {
             outPoc = 0;
         }
         // 只有XPS的输出需要跳过。
-        if (attr.flags != AVCODEC_BUFFER_FLAG_CODEC_DATA) {
+        if (attr.flags != AVCODEC_BUFFER_FLAGS_CODEC_DATA) {
             int32_t tGopInner = outPoc % TGOP_SIZE;
             if (tGopInner == 0) {
                 // 时域关键帧，后续传输、解码流程不可丢弃。
@@ -274,7 +282,7 @@
     OH_AVCodecCallback cb;
     cb.onNeedInputBuffer = OnNeedInputBuffer;
     cb.onNewOutputBuffer = OnNewOutputBuffer;
-    OH_VideoEncoder_RegisterCallback(codec, cb, nullptr);
+    OH_VideoEncoder_RegisterCallback(videoEnc, cb, nullptr);
     ```
 
     Surface输入模式示例：
@@ -308,16 +316,16 @@
     // 2.3 注册数据回调。
     OH_AVCodecCallback cb;
     cb.onNewOutputBuffer = OnNewOutputBuffer;
-    OH_VideoEncoder_RegisterCallback(codec, cb, nullptr);
+    OH_VideoEncoder_RegisterCallback(videoEnc, cb, nullptr);
     // 2.4 注册随帧参数回调。
     OH_VideoEncoder_OnNeedInputParameter inParaCb = OnNeedInputParameter;
-    OH_VideoEncoder_RegisterParameterCallback(codec, inParaCb, nullptr);
+    OH_VideoEncoder_RegisterParameterCallback(videoEnc, inParaCb, nullptr);
     ```
 
 3. 在配置阶段，配置同时存在LTR最大数目。
 
     ```c++
-    constexpr int32_t TGOP_SIZE = 3;
+    constexpr int32_t NEEDED_LTR_COUNT = 5;
     // 3.1 创建配置用临时AVFormat。
     auto format = std::shared_ptr<OH_AVFormat>(OH_AVFormat_Create(), OH_AVFormat_Destroy);
     if (format == nullptr) {
