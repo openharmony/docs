@@ -594,7 +594,7 @@ private context: Context | undefined;
 constructor(context: Context) {
   this.context = context; // this.getUIContext().getHostContext();
 }
-let mgr = this.context.resourceManager;
+let mgr = this.context?.resourceManager;
 let fileDescriptor = await mgr.getRawFd("xxx.m3u8");
 
 let fd:string = fileDescriptor.fd.toString();
@@ -638,7 +638,7 @@ createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 let streams : Array<media.MediaStream> = [];
 streams.push({url: "http://xxx/480p.flv", width: 854, height: 480, bitrate: 800000});
 streams.push({url: "http://xxx/720p.flv", width: 1280, height: 720, bitrate: 2000000});
-streams.push({url: "http://xxx/1080p.flv", width: 1280, height: 720, bitrate: 2000000});
+streams.push({url: "http://xxx/1080p.flv", width: 1920, height: 1080, bitrate: 2000000});
 let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(streams);
 ```
 
