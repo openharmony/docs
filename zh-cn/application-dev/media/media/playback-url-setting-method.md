@@ -111,8 +111,8 @@
  // 创建avPlayer实例对象。
  this.avPlayer = await media.createAVPlayer();
  this.context = this.getUIContext().getHostContext() as common.UIAbilityContext;
- let 
  // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例。
+ let m3u8FileName = '';
  let filePath = `${this.context.filesDir}/${m3u8FileName}`; 
  // 通过fs.openSync获取文件句柄。
  let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
