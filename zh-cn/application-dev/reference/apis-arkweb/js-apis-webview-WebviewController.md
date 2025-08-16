@@ -3244,8 +3244,8 @@ scrollByWithResult(deltaX: number, deltaY: number): boolean
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ---------------------- |
-| deltaX | number   | 是   | 水平偏移量，其中水平向右为正方向。 |
-| deltaY | number   | 是   | 垂直偏移量，其中垂直向下为正方向。 |
+| deltaX | number   | 是   | 水平偏移量，其中水平向右为正方向。 <br>单位：vp。 |
+| deltaY | number   | 是   | 垂直偏移量，其中垂直向下为正方向。 <br>单位：vp。 |
 
 **返回值：**
 
@@ -8600,7 +8600,7 @@ struct Index {
 
 getScrollOffset(): ScrollOffset
 
-获取网页当前的滚动偏移量。
+获取网页当前的滚动偏移量（包含过滚动偏移量）。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8608,11 +8608,12 @@ getScrollOffset(): ScrollOffset
 
 | 类型                            | 说明                   |
 | :------------------------------ | ---------------------- |
-| [ScrollOffset](./js-apis-webview-i.md#scrolloffset13) | 网页当前的滚动偏移量。 |
+| [ScrollOffset](./js-apis-webview-i.md#scrolloffset13) | 网页当前的滚动偏移量（包含过滚动偏移量）。 |
 
 **示例：**
 
 ```ts
+// xxx.ets
 import { webview } from '@kit.ArkWeb';
 
 @Entry

@@ -1084,7 +1084,7 @@ onResourceLoad(callback: Callback\<OnResourceLoadEvent\>)
 
 onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
 
-当前页面显示比例的变化时触发该回调。
+当页面显示比例发生变化时，触发该回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1092,7 +1092,7 @@ onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnScaleChangeEvent](./ts-basic-components-web-i.md#onscalechangeevent12)\> | 是 | 当前页面显示比例的变化时触发。 |
+| callback | Callback\<[OnScaleChangeEvent](./ts-basic-components-web-i.md#onscalechangeevent12)\> | 是 | 当页面显示比例发生变化时，触发该回调。 |
 
 **示例：**
 
@@ -1976,7 +1976,7 @@ onScroll(callback: Callback\<OnScrollEvent\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnScrollEvent](./ts-basic-components-web-i.md#onscrollevent12)\> | 是 | 当滚动条滑动到指定位置时触发。 |
+| callback | Callback\<[OnScrollEvent](./ts-basic-components-web-i.md#onscrollevent12)\> | 是 | 当页面滑动到指定位置时触发。 |
 
 **示例：**
 
