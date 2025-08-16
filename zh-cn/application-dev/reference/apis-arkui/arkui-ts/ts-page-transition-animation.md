@@ -1,4 +1,10 @@
 # 页面间转场 (pageTransition)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 当路由([router](../js-apis-router.md))进行切换时，可以通过在pageTransition函数中自定义页面入场和页面退场的转场动效。详细指导请参考[页面转场动画](../../../ui/arkts-page-transition-animation.md)。
 
@@ -260,6 +266,7 @@ struct Index {
 
   build() {
     Column() {
+      // $r("app.media.transition_image1")需要替换为开发者所需的图像资源文件。
       Image($r("app.media.transition_image1")).width('100%').height('100%')
     }
     .width('100%')
@@ -300,6 +307,7 @@ struct Page1 {
 
   build() {
     Column() {
+      // $r("app.media.transition_image2")需要替换为开发者所需的图像资源文件。
       Image($r("app.media.transition_image2")).width('100%').height('100%') // 图片存放在media文件夹下
     }
     .width('100%')
@@ -341,6 +349,7 @@ struct Page1 {
 struct Index {
   build() {
     Column() {
+      // $r('app.media.bg1')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.bg1')).width('100%').height('100%') // 图片存放在media文件夹下
     }
     .onClick(() => {
@@ -368,6 +377,7 @@ struct Index {
 struct Page1 {
   build() {
     Column() {
+      // $r('app.media.bg2')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.bg2')).width('100%').height('100%') // 图片存放在media文件夹下
     }
     .onClick(() => {
