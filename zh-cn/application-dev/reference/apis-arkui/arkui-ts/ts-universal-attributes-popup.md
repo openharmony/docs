@@ -278,7 +278,7 @@ struct PopupExample {
   // Popup构造器定义弹框内容
   @Builder popupBuilder() {
     Row({ space: 2 }) {
-      // icon仅作示例，请替换为实际使用的图片。
+      // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
       Image($r("app.media.icon")).width(24).height(24).margin({ left: -5 })
       Text('Custom Popup').fontSize(10)
     }.width(100).height(50).padding(5)

@@ -336,6 +336,7 @@ struct MenuExample {
       ForEach(this.listData, (item:number, index) => {
         Column() {
           Row() {
+            // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
             Image($r("app.media.icon")).width(20).height(20).margin({ right: 5 })
             Text(`Menu${index as number + 1}`).fontSize(20)
           }
@@ -462,7 +463,7 @@ struct DirectiveMenuExample {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.icon");
+  private iconStr: ResourceStr = $r("app.media.icon"); // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
 
   @Builder
   MyMenu() {
@@ -506,7 +507,7 @@ struct Index {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.icon");
+  private iconStr: ResourceStr = $r("app.media.icon"); // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
 
   @Builder
   MyMenu() {
@@ -558,7 +559,7 @@ struct Index {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.icon");
+  private iconStr: ResourceStr = $r("app.media.icon"); // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
   @State isShown: boolean = false;
 
   @Builder
@@ -638,7 +639,7 @@ struct MenuExample {
   @Builder
   MyPreview() {
     Column() {
-      Image($r('app.media.startIcon'))
+      Image($r('app.media.startIcon')) // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
         .width(50)
         .height(50)
     }
@@ -730,7 +731,7 @@ struct MenuExample {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.app_icon");
+  private iconStr: ResourceStr = $r("app.media.app_icon"); // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
 
   @Builder
   MyMenu() {
@@ -785,7 +786,7 @@ struct Index {
 struct MenuExample {
   build() {
     Stack() {
-      Image($r('app.media.bg'))
+      Image($r('app.media.bg')) // $r('app.media.bg')需要替换为开发者所需的图像资源文件。
       Column() {
         Text('click for Menu')
           .bindMenu([
@@ -834,7 +835,7 @@ struct MenuExample {
 struct MenuExample {
   build() {
     Stack() {
-      Image($r('app.media.bg'))
+      Image($r('app.media.bg')) // $r('app.media.bg')需要替换为开发者所需的图像资源文件。
       Column() {
         Text('click for Menu')
           .bindMenu([
@@ -882,7 +883,7 @@ struct MenuExample {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.app_icon");
+  private iconStr: ResourceStr = $r("app.media.app_icon"); // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
 
   @Builder
   MyMenu() {
@@ -939,7 +940,7 @@ struct Index {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.startIcon");
+  private iconStr: ResourceStr = $r("app.media.startIcon"); // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
 
   @Builder
   MyMenu() {
@@ -984,7 +985,7 @@ struct Index {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.startIcon")
+  private iconStr: ResourceStr = $r("app.media.startIcon") // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
   @State isShown: boolean = false
   @State textColor: Color = Color.Black
   @State blueColor: Color = Color.Blue
