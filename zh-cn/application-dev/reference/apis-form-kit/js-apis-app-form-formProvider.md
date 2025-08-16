@@ -2,8 +2,8 @@
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @cx983299475-->
-<!--SE: @xueyulong-->
-<!--TSE: @chenmingze-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
 
 formProvider模块提供了获取卡片信息、更新卡片、设置卡片更新时间等能力。
 

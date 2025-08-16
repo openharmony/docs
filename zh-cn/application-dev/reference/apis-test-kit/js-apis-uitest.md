@@ -3,8 +3,8 @@
 <!--Kit: Test Kit-->
 <!--Subsystem: Test-->
 <!--Owner: @inter515-->
-<!--SE: @inter515-->
-<!--TSE: @laonie666-->
+<!--Designer: @inter515-->
+<!--Tester: @laonie666-->
 
 
 UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要支持如点击、双击、长按、滑动等UI操作能力。
@@ -23,7 +23,6 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本模块接口在<!--RP1-->[自动化测试脚本](../../application-test/arkxtest-guidelines.md)<!--RP1End-->中使用。
 > - 本模块接口不支持并发调用。
-> - 本模块接口适用于手机、平板、PC/2in1、智能穿戴设备。
 
 
 ## 导入模块
@@ -1565,7 +1564,7 @@ inputText(text: string): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| text   | string | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
+| text   | string | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。 |
 
 **错误码：**
 
@@ -1804,13 +1803,11 @@ dragTo(target: Component): Promise\<void>
 
 将控件拖拽至目标控件处，使用Promise异步回调。
 
-> **说明**
->
-> 该接口仅在手机、平板、PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -2585,13 +2582,11 @@ drag(startx: number, starty: number, endx: number, endy: number, speed?: number)
 
 从起始坐标点拖拽至目的坐标点，使用Promise异步回调。
 
-> **说明**
->
-> 该接口仅在手机、平板、PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -2676,13 +2671,11 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 将当前场景的显示方向设置为指定的显示方向，使用Promise异步回调。适用于可旋转的应用场景。
 
-> **说明**
->
-> 该接口仅在手机、平板、PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -2755,13 +2748,11 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 启用/禁用设备旋转屏幕的功能，使用Promise异步回调。
 
-> **说明**
->
-> 该接口仅在手机、平板、PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -2903,13 +2894,11 @@ pressHome(): Promise\<void>
 
 设备注入返回桌面操作，使用Promise异步回调。
 
-> **说明**
->
-> 该接口仅在手机、平板、PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **返回值：**
 
@@ -3512,13 +3501,11 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 鼠标按住鼠标左键从起始坐标点拖拽至终点坐标点，使用Promise异步回调。
 
-> **说明**
->
-> 该接口仅在手机、平板、PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -3569,7 +3556,7 @@ inputText(p: Point, text: string): Promise\<void>
 | 参数名 | 类型             | 必填 | 说明               |
 | ------ | ---------------- | ---- | ------------------ |
 | p      | [Point](#point9) | 是   | 输入文本的坐标点。 |
-| text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
+| text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。 <br> |
 
 **返回值：**
 
@@ -3604,13 +3591,11 @@ touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: Touc
 
 模拟触摸板多指滑动手势，使用Promise异步回调。
 
-> **说明**
->
-> 该接口仅在PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在PC/2in1设备中可正常调用，在其他设备中返回17000005错误码。
 
 **参数：**
 
@@ -4222,6 +4207,8 @@ moveTo(x: number, y: number): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
+**设备行为差异**：该接口在PC/2in1、Tablet设备中可正常调用，在其他设备中返回17000005错误码。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                            |
@@ -4313,6 +4300,8 @@ split(): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
+**设备行为差异**：该接口在PC/2in1、Tablet设备中可正常调用，在其他设备中返回17000005错误码。
+
 **返回值：**
 
 | 类型             | 说明              |
@@ -4349,6 +4338,8 @@ maximize(): Promise\<void>
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在PC/2in1、Tablet设备中可正常调用，在其他设备中返回17000005错误码。
 
 **返回值：**
 
@@ -4387,6 +4378,8 @@ minimize(): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
+**设备行为差异**：该接口在PC/2in1、Tablet设备中可正常调用，在其他设备中返回17000005错误码。
+
 **返回值：**
 
 | 类型             | 说明              |
@@ -4424,6 +4417,8 @@ resume(): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
+**设备行为差异**：该接口在PC/2in1、Tablet设备中可正常调用，在其他设备中返回17000005错误码。
+
 **返回值：**
 
 | 类型             | 说明              |
@@ -4460,6 +4455,8 @@ close(): Promise\<void>
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在PC/2in1、Tablet设备中可正常调用，在其他设备中返回17000005错误码。
 
 **返回值：**
 

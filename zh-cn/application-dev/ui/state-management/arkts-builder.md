@@ -618,8 +618,8 @@ struct ChildPage {
 @Entry
 @ComponentV2
 struct ParentPage {
-  info1: Info = new Info("Tom", 25);
-  info2: Info = new Info("Tom", 25);
+  info1: Info = new Info('Tom', 25);
+  info2: Info = new Info('Tom', 25);
 
   @Builder
   privateBuilder() {
@@ -655,11 +655,11 @@ struct ParentPage {
       overBuilder(this.info2)
       ChildPage({ childInfo: this.info1 }) // 调用自定义组件
       ChildPage({ childInfo: this.info2 }) // 调用自定义组件
-      Button("change info1&info2")
+      Button('change info1&info2')
         .onClick(() => {
-          this.info1.name = "Cat"; // 修改Text1显示的info1的name值
+          this.info1.name = 'Cat'; // 修改Text1显示的info1的name值
           this.info1.age = 18; // 修改Text1显示的info1的age值
-          this.info2.name = "Cat"; // 修改Text2显示的info2的name值
+          this.info2.name = 'Cat'; // 修改Text2显示的info2的name值
           this.info2.age = 18; // 修改Text2显示的info2的age值
         })
     }
@@ -676,7 +676,7 @@ struct ParentPage {
 
 ```ts
 class Info {
-  name: string = "Tom";
+  name: string = 'Tom';
   age: number = 25;
 }
 
@@ -709,8 +709,8 @@ struct ChildPage {
 @Entry
 @ComponentV2
 struct ParentPage {
-  info1: Info = { name: "Tom", age: 25 };
-  @Local info2: Info = { name: "Tom", age: 25 };
+  info1: Info = { name: 'Tom', age: 25 };
+  @Local info2: Info = { name: 'Tom', age: 25 };
 
   @Builder
   privateBuilder() {
@@ -746,10 +746,10 @@ struct ParentPage {
       overBuilder({ name: this.info2.name, age: this.info2.age })
       ChildPage({ childInfo: this.info1 }) // 调用自定义组件
       ChildPage({ childInfo: this.info2 }) // 调用自定义组件
-      Button("change info1&info2")
+      Button('change info1&info2')
         .onClick(() => {
-          this.info1 = { name: "Cat", age: 18 }; // Text1不会刷新，原因是没有装饰器修饰监听不到值的改变
-          this.info2 = { name: "Cat", age: 18 }; // Text2会刷新，原因是有装饰器修饰，可以监听到值的改变
+          this.info1 = { name: 'Cat', age: 18 }; // Text1不会刷新，原因是没有装饰器修饰监听不到值的改变
+          this.info2 = { name: 'Cat', age: 18 }; // Text2会刷新，原因是有装饰器修饰，可以监听到值的改变
         })
     }
     .height('100%')

@@ -2,8 +2,8 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @zju-wyx-->
-<!--SE: @xiao-peiyang; @dengxinyu-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @xiao-peiyang; @dengxinyu-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
 
 ## 如何排查功能异常
 
@@ -81,10 +81,12 @@
 
 // 混淆前
 import jsonData from "./testjson";
+
 let jsonProp = jsonData.jsonObj.jsonProperty;
 
 // 混淆后
 import jsonData from "./test.json";
+
 let jsonProp = jsonData.i.j;
 ```
 
@@ -126,6 +128,7 @@ export namespace NS {
 
 // import.ts
 import { NS } from './export';
+
 NS.foo();
 ```
 
@@ -138,6 +141,7 @@ export namespace i {
 
 // import.ts
 import { i } from './export';
+
 i.foo();
 ```
 
@@ -240,12 +244,14 @@ add
 ```ts
 // 混淆前
 import { nativeNapi } from 'library.so';
+
 nativeNapi.getAge();
 ```
 
 ```ts
 // 混淆后
 import { nativeNapi } from 'library.so';
+
 nativeNapi.m();
 ```
 
@@ -282,6 +288,7 @@ export function add() {}
 
 // entry模块
 import { add } from 'hsp';
+
 add();
 ```
 
@@ -292,6 +299,7 @@ export function b() {}
 
 // entry模块
 import { n } from '@normalized:N&myhsp&&myhsp/Index&';
+
 n();
 ```
 
@@ -331,9 +339,10 @@ add
 
 示例代码如下：
 
-```
+```ts
 // 混淆前
 import { Want } from '@kit.AbilityKit';
+
 let petalMapWant: Want = {
   bundleName: 'com.example.myapplication',
   uri: 'maps://',
@@ -343,9 +352,10 @@ let petalMapWant: Want = {
 }
 ```
 
-```
+```ts
 // 混淆后
 import type Want from "@ohos:app.ability.Want";
+
 let petalMapWant: Want = {
     bundleName: 'com.example.myapplication',
     uri: 'maps://',
@@ -396,6 +406,7 @@ export interface MyInfo {
 
 // file2.ts
 import { MyInfo } from './file1';
+
 const person: MyInfo = {
   age: 20,
   address: {
@@ -416,6 +427,7 @@ export interface MyInfo {
 
 // file2.ts
 import { MyInfo } from './file1';
+
 const person: MyInfo = {
   age: 20,
   address: {

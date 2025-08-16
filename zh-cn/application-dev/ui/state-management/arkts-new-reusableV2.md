@@ -6,8 +6,9 @@
 
 >**说明：**
 >
->从API version 18开始，可以使用\@ReusableV2装饰\@ComponentV2装饰的自定义组件。
+> 从API version 18开始，可以使用\@ReusableV2装饰\@ComponentV2装饰的自定义组件。
 >
+> 从API version 18开始，该装饰器支持在原子化服务中使用。
 
 ## 概述
 

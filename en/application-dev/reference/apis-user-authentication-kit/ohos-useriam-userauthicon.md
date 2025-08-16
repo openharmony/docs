@@ -3,8 +3,8 @@
 <!--Kit: User Authentication Kit-->
 <!--Subsystem: UserIAM-->
 <!--Owner: @WALL_EYE-->
-<!--SE: @lichangting518-->
-<!--TSE: @jane_lz-->
+<!--Designer: @lichangting518-->
+<!--Tester: @jane_lz-->
 
 **userAuthIcon** provides user identity authentication icons used on the application UI. With **userAuthIcon**, you can:
 

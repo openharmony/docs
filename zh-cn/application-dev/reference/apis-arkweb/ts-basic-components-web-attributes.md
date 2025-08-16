@@ -139,6 +139,7 @@ javaScriptProxy(javaScriptProxy: JavaScriptProxy)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestObj {
     constructor() {
@@ -2213,7 +2214,17 @@ struct WebComponent {
 
 textAutosizing(textAutosizing: boolean)
 
-设置使能文本自动调整大小。
+设置Web组件是否开启文本字体大小自动调整。
+
+文本字体大小自动调整生效后，对于字号过小的文本将自动加大字号至16px~32px，避免屏幕较小（默认视口宽度 < 980px）的设备因为缺少移动端适配出现字体过小的可读性问题。
+
+> **说明：**
+>
+> - 文本字体大小自动调整生效需要满足的前置条件：
+> - 1. 设备形态为：Phone、Tablet、Wearable、TV。
+> - 2. Web组件视口宽度 < 980px。
+> - 3. 页面文本量大，页面文本的字号*字符数 ≥ 3920。
+> - 4. 前端无metaViewport设置，或metaViewport设置中无"width"和"initial-scale"属性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

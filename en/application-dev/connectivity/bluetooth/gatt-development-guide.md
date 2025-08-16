@@ -3,8 +3,8 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--SE: @chengguohong; @tangjia15-->
-<!--TSE: @wangfeng517-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
 
 ## Introduction
 This document guides you through implementing Bluetooth Low Energy (BLE) connection and data transmission between devices in accordance with the Generic Attribute Profile (GATT). When two devices communicate via GATT, they can be distinguished as client and server based on their respective functions. This guide describes the implementation methods for both the client and server.
@@ -849,7 +849,7 @@ export class GattClientManager {
     try {
       // Subscribe to characteristic value changes.
       this.gattClient.on('BLECharacteristicChange', this.onCharacteristicChange);
-      // Enable the notification function for characteristic value changes. The value true means to enable the the notification function, and the value false means the opposite.
+      // Enable the notification function for characteristic value changes. The value true means to enable the notification function, and the value false means the opposite.
       this.gattClient.setCharacteristicChangeNotification(this.myCharacteristic, enable, (err: BusinessError) => {
         if (err) {
           console.error('setCharacteristicChangeNotification callback failed');
@@ -878,7 +878,7 @@ export class GattClientManager {
     try {
       // Subscribe to characteristic value changes.
       this.gattClient.on('BLECharacteristicChange', this.onCharacteristicChange);
-      // Enable the indication function for characteristic value changes. The value true means to enable the the indication function, and the value false means the opposite.
+      // Enable the indication function for characteristic value changes. The value true means to enable the indication function, and the value false means the opposite.
       this.gattClient.setCharacteristicChangeIndication(this.myCharacteristic, enable, (err: BusinessError) => {
         if (err) {
           console.error('setCharacteristicChangeIndication callback failed');

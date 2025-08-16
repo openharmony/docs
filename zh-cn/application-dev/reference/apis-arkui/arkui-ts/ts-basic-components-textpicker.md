@@ -245,7 +245,7 @@ selectedIndex(value: number | number[])
 
 selectedIndex(index: Optional\<number | number[]>)
 
-设置默认选中项在数组中的索引值，优先级高于[TextPickerOptions](#textpickeroptions对象说明)中的选中值。单列数据选择器使用number类型。多列、多列联动数据选择器使用number[]类型。与[selectedIndex](#selectedindex10)相比，index参数新增了对undefined类型的支持。
+设置默认选中项在数组中的索引值，优先级高于[TextPickerOptions](#textpickeroptions对象说明)中的选中值。单列数据选择器使用number类型，多列、多列联动数据选择器使用number[]类型。与[selectedIndex<sup>10+</sup>](#selectedindex10)相比，index参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -574,9 +574,9 @@ onCancel(callback: () => void)
 | ----- | ---------------------------------------- | ---- | ------------------------- | ------------------------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 是   | 文本颜色。                     |
 | font  | [Font](ts-types.md#font)                 | 否   | 是   | 文本样式。 |
-| minFontSize  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | 是   | 文本最小显示字号，与maxFontSize配合使用。设置minFontSize与maxFontSize时，font中的size不生效。默认最大行数为1，自适应高度方式为MIN_FONT_SIZE_FIRST。                     |
-| maxFontSize  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | 是   | 文本最大显示字号。                     |
-|  overflow   |   [TextOverflow](ts-appendix-enums.md#textoverflow) | 否   | 是   | 文本截断方式，设置为MARQUEE时不生效。                     |
+| minFontSize | number \| string \| [Resource](ts-types.md#resource) | 否 | 是 | 文本最小显示字号，与maxFontSize配合使用。当设置minFontSize和maxFontSize时，font中的size将不生效。默认最大行数为1，自适应高度方式为MIN_FONT_SIZE_FIRST。详细规则请参考Text组件的[minFontSize](ts-basic-components-text.md#minfontsize)属性。 |
+| maxFontSize  | number \| string \| [Resource](ts-types.md#resource) | 否   | 是   | 文本最大显示字号。详细规则请参考Text组件的[maxFontSize](ts-basic-components-text.md#maxfontsize)属性。                     |
+| overflow | [TextOverflow](ts-appendix-enums.md#textoverflow) | 否 | 是 | 文本截断方式。当设置为MARQUEE时，该属性不生效。详细规则请参考Text组件的[textOverflow](ts-basic-components-text.md#textoverflow)属性。 |
 
 ## OnTextPickerChangeCallback<sup>18+</sup>
 

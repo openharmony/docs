@@ -2,8 +2,8 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Request-->
 <!--Owner: @huaxin05-->
-<!--SE: @hu-kai45-->
-<!--TSE: @murphy1984-->
+<!--Designer: @hu-kai45-->
+<!--Tester: @murphy1984-->
 
 应用可以将应用文件上传到网络服务器，也可以从网络服务器下载网络资源文件到本地应用文件目录。
 

@@ -771,7 +771,7 @@ lineBreakStrategy(strategy: LineBreakStrategy)
 
 textSelectable(mode: TextSelectableMode)
 
-设置是否支持文本可选择、可获焦以及Touch后能否获取焦点。
+设置是否支持文本可选择、可获焦。
 
 需配合[copyOption](#copyoption9)使用。
 
@@ -821,7 +821,7 @@ minFontScale(scale: number | Resource)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最小的字体缩放倍数。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时按0处理，大于1时按1处理，异常值默认不生效。 |
+| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最小的字体缩放倍数。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时按0处理，大于1时按1处理，其余异常值默认不生效。 |
 
 ### maxFontScale<sup>12+</sup>
 
@@ -837,7 +837,7 @@ maxFontScale(scale: number | Resource)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最大的字体缩放倍数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理，异常值默认不生效。 |
+| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最大的字体缩放倍数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理，其余异常值默认不生效。 |
 
 ### halfLeading<sup>12+</sup>
 

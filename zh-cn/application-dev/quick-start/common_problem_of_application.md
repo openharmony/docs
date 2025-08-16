@@ -2,8 +2,8 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @xuyicong-->
-<!--SE: @hanfeng6; @lihaitao-->
-<!--TSE: @kongjing2-->
+<!--Designer: @hanfeng6; @lihaitao-->
+<!--Tester: @kongjing2-->
 
 ## 如何获取签名信息中的指纹信息
 

@@ -373,10 +373,6 @@ on(type: 'callStateChange', callback: Callback\<CallStateInfo\>): void
 
 Registers an observer for call status change events. This API uses an asynchronous callback to return the execution result.
 
-> **NOTE**
->
-> Before using this API, you must declare the **ohos.permission.READ_CALL_LOG** permission (a system permission).
-
 **System capability**: SystemCapability.Telephony.StateRegistry
 
 **Parameters**
@@ -384,7 +380,7 @@ Registers an observer for call status change events. This API uses an asynchrono
 | Name  | Type                                          | Mandatory| Description                                                       |
 | -------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | type     | string                                        | Yes  | Call status change event. This field has a fixed value of **callStateChange**.               |
-| callback | Callback\<[CallStateInfo](#callstateinfo11)\> | Yes  | Callback used to return the result. For details, see [CallState](js-apis-call.md#callstate).<br>**number**: phone number.|
+| callback | Callback\<[CallStateInfo](#callstateinfo11)\> | Yes  | Callback used to return the result,<br>which is the **CallStateInfo** object. In this object:<br>- Only **state** is accessible to third-party applications. - **number** is only accessible to system applications.|
 
 **Error codes**
 
@@ -413,10 +409,6 @@ on(type: 'callStateChange', options: ObserverOptions, callback: Callback\<CallSt
 
 Registers an observer for call status change events. This API uses an asynchronous callback to return the execution result.
 
-> **NOTE**
->
-> Before using this API, you must declare the **ohos.permission.READ_CALL_LOG** permission (a system permission).
-
 **System capability**: SystemCapability.Telephony.StateRegistry
 
 **Parameters**
@@ -425,7 +417,7 @@ Registers an observer for call status change events. This API uses an asynchrono
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | Yes  | Call status change event. This field has a fixed value of **callStateChange**.              |
 | options  | [ObserverOptions](#observeroptions11)                        | Yes  | Event subscription parameters.                                 |
-| callback | Callback\<[CallStateInfo](#callstateinfo11)\>                | Yes  | Callback used to return the result. For details, see [CallState](js-apis-call.md#callstate).<br>**number**: phone number.|
+| callback | Callback\<[CallStateInfo](#callstateinfo11)\>                | Yes  | Callback used to return the result,<br>which is the **CallStateInfo** object. In this object:<br>- Only **state** is accessible to third-party applications. - **number** is only accessible to system applications.|
 
 **Error codes**
 

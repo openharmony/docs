@@ -2,8 +2,8 @@
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @cx983299475-->
-<!--SE: @xueyulong-->
-<!--TSE: @chenmingze-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
 以下内容介绍基于ArkTS声明式开发范式语言开发卡片。
 
 ## 亮点/特征
