@@ -423,7 +423,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
   if (soundpool_ != null) {
     soundPool = soundpool_;
-    console.info('Succceeded in creating SoundPool');
+    console.info('Succeeded in creating SoundPool');
   } else {
     console.error('Failed to create SoundPool');
   }
