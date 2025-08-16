@@ -11,7 +11,7 @@
 ## Hiprofiler简介
 
 
-HiProfiler性能调优组件包含系统和应用调优框架，旨在为开发者提供一套性能调优平台，可以用来分析内存、性能等问题。
+HiProfiler调优组件旨在为开发者提供一系列调优能力，可以用来帮助分析内存、性能等问题。
 
 
 整体架构分为PC端和设备端，主体部分为PC端调优数据展示页面和设备端性能调优服务。PC端和设备端服务采用C/S模型，PC端调优数据在[DevEco studio](https://cbg.huawei.com/#/group/ipd/DevEcoToolsList)/[Smartperf](https://gitee.com/openharmony/developtools_smartperf_host)网页中展示。设备端程序包含多个部分，均运行在系统环境中，其中和DevEco通信的hiprofilerd进程作为调优服务。设备端还包含命令行工具（hiprofiler_cmd）、数据采集进程（hiprofiler_plugins）。调优服务操控数据采集进程获取调优数据，数据最终流向DevEco Studio，整个过程可抽象为生产者-消费者（Producer-Consumer）模型。目前已经完成了nativehook、CPU、ftrace、GPU、hiperf、xpower、memory数据采集等多个插件，实现了CPU、GPU、内存、能耗等多维度调优的能力。
@@ -31,7 +31,7 @@ Hiprofiler工具对标业界调优工具，并提供更多能力，比如[跨语
 
 ## 架构简介
 
-1. PC端通过DevEco/Smartperf调用hiprofiler_cmd命令行；
+1. PC端通过DevEco/Smartperf调用hiprofiler_cmd命令行工具；
 
 2. hiprofiler_cmd进程拉起hiprofilerd调优服务，以及hiprofiler_plugins插件进程；
 
@@ -117,14 +117,14 @@ plugin_configs字段介绍：
 <!--RP1-->
 | 插件名字 | 简介 | 规格说明 |
 | -------- | -------- | -------- |
-| native_hook | 获取堆内存分配的调用栈信息。 |  |
+| native_hook | 获取堆内存分配的调用栈信息。 |  采集的进程仅支持使用调试证书签名的应用 |
 | ftrace-plugin | 获取内核打点的trace事件，以及hitrace打点的数据。 |  |
 | cpu-plugin | 获取进程CPU使用率信息，包括进程级和线程级的使用率。 |  |
 | gpu-plugin | 获取进程GPU使用率信息。 |  |
 | xpower-plugin | 获取进程能耗使用数据。 |  |
-| memory-plugin | 获取进程内存占用情况，主要是获取进程smaps节点的数据。 | user模式不展示smaps中的地址，filepath。 |
+| memory-plugin | 获取进程内存占用情况，主要是获取进程smaps节点的数据。 | |
 | diskio plugin | 获取进程磁盘空间占用情况。 |  |
-| network profiler | 通过进程内打点，获取进程http request信息。 |  |
+| network profiler | 通过进程内打点，获取进程http request相关信息。 | 采集的进程仅支持使用调试证书签名的应用 |
 | network plugin | 获取进程网络流量信息。 |  |
 | hisysevent plugin | 通过hisysevent命令，获取hisysevent打点数据。 |  |
 | hiperf plugin | 通过调用hiperf命令获取进程指令数信息以及对应的堆栈。 |  |
@@ -158,7 +158,7 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
 
 **native_hook 插件**
 
-获取堆内存分配的调用栈信息，跨语言堆内存分配信息（如在ArtTS语言中调用napi分配native堆内存）。包括malloc，mmap，calloc，realloc等通过基础库函数分配堆内存调用栈。还能展示内存泄漏未释放堆内存调用栈信息。
+获取堆内存分配的调用栈信息，跨语言堆内存分配信息（如在ArtTS语言中调用napi分配native堆内存），包括malloc，mmap，calloc，realloc等通过基础库函数分配堆内存调用栈，还能展示内存泄漏未释放堆内存调用栈信息。
 
 nativehook参数列表：
 
@@ -186,7 +186,7 @@ nativehook参数列表：
 
 ![zh-cn_image_0000002379820229](figures/zh-cn_image_0000002379820229.png)
 
-开启非统计模式：
+开启非统计模式（可以看到每个调用栈的具体对应时间）：
 
 ![zh-cn_image_0000002346019934](figures/zh-cn_image_0000002346019934.png)
 
@@ -256,7 +256,7 @@ CONFIG
 | report_process_mem_info | bool | 是否获取进程详细内存数据，如rss_shmem，rss_file，vm_swap等。 | 从/proc/${pid}/stat节点读取内存数据。 | 
 | report_smaps_mem_info | bool | 是否获取进程smaps内存信息。 | 从/proc/${pid}/smaps节点获取进程smaps内存数据。 | 
 | report_gpu_mem_info | bool | 是否获取进程GPU使用情况。 | 读取/proc/gpu_memory节点数据。 | 
-| parse_smaps_rollup | bool | 是否刷新数据大小。 | 读取/proc/{pid}/smaps_rollup节点的smaps统计数据，相比使用report_smaps_mem_info参数调优服务性能会更好（如CPU，内存）。 | 
+| parse_smaps_rollup | bool | 是否从smaps_rollup节点读取smaps统计数据 | 读取/proc/{pid}/smaps_rollup节点的smaps统计数据，相比使用report_smaps_mem_info参数调优服务性能会更好（如CPU，内存使用优化）。 | 
 
 2. 结果分析
 
@@ -288,7 +288,7 @@ CONFIG
 | 参数名字 | 类型 | 参数含义 | 详细介绍 | 
 | -------- | -------- | -------- | -------- |
 | pid | int | 需要进行调优的进程名。 | 和/proc/节点下的进程名一致。 | 
-| report_gpu_info | bool | 是否展示指定进程的GPU使用率信息 | true: 展示指定进程的gpu数据，需要设置pid。数据从<br/>/sys/class/devfreq/gpufreq/gpu_scene_aware/utilisation节点读出。<br/>false: 展示指定进程的gpu数据 | 
+| report_gpu_info | bool | 是否展示指定进程的GPU使用率信息 | true: 展示指定进程的gpu数据，需要设置pid。数据从<br/>/sys/class/devfreq/gpufreq/gpu_scene_aware/utilisation节点读出。<br/>false: 不展示指定进程的gpu数据 | 
 
 **cpu_plugin**：
 
