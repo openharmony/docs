@@ -30,7 +30,7 @@
     // 设定视频源（此处省略）。
 
     // 设定字幕。
-    let fileDescriptorSub = await this.context.resourceManager.getRawFd('xxx.srt');
+    let fileDescriptorSub = await this.context?.resourceManager.getRawFd('xxx.srt');
     this.avPlayer.addSubtitleFromFd(fileDescriptorSub.fd, fileDescriptorSub.offset, fileDescriptorSub.length);
    ```
 
