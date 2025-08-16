@@ -513,7 +513,7 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 只读 | 可选    | 说明                                       |
 | -------------- | ---- | ---- | -------------|--------------------------- |
-| title | string | 否 | 否 | document标题内容。                       |
+| title | string | 否 | 否 | document标题内容。    <br>默认值：false                   |
 
 ## OnGeolocationShowEvent<sup>12+</sup>
 
