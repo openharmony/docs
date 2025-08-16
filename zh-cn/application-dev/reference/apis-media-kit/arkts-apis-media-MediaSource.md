@@ -57,6 +57,7 @@ setMediaResourceLoaderDelegate(resourceLoader: MediaSourceLoader): void
 
 ```ts
 import { HashMap } from '@kit.ArkTS';
+import { media } from '@kit.MediaKit';
 
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);

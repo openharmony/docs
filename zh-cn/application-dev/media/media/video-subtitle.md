@@ -62,6 +62,11 @@
 3. (可选)当需要不显示字幕的时候，使用视频播放的AVPlayer实例注销字幕回调函数。
 
    ```ts
+    import { media } from '@kit.MediaKit';
+    // 类成员定义avPlayer和context。
+    private avPlayer: media.AVPlayer | null = null;
+    // 创建avPlayer实例对象。
+    this.avPlayer = await media.createAVPlayer();
     this.avPlayer?.off('subtitleUpdate');
    ```
 

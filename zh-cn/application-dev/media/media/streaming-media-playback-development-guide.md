@@ -72,9 +72,11 @@
 
 ```ts
 import { media } from '@kit.MediaKit';
+// 类成员定义avPlayer
+private avPlayer: media.AVPlayer | null = null;
 
 // 创建avPlayer实例对象。
-this.avPlayer: media.AVPlayer = await media.createAVPlayer();
+this.avPlayer = await media.createAVPlayer();
 // 监听当前bufferingUpdate缓冲状态。
 this.avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value : number) => {
   console.info(`AVPlayer bufferingUpdate, infoType is ${infoType}, value is ${value}.`);
@@ -89,9 +91,11 @@ this.avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value :
 
     ```ts
     import { media } from '@kit.MediaKit';
+    // 类成员定义avPlayer
+    private avPlayer: media.AVPlayer | null = null;
 
     // 创建avPlayer实例对象。
-    this.avPlayer: media.AVPlayer = await media.createAVPlayer();
+    this.avPlayer = await media.createAVPlayer();
     // 监听当前HLS协议流可用的码率。
     this.avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
       console.info('availableBitrates called, and availableBitrates length is: ' + bitrates.length);
@@ -102,9 +106,11 @@ this.avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value :
 
     ```ts
     import { media } from '@kit.MediaKit';
+    // 类成员定义avPlayer
+    private avPlayer: media.AVPlayer | null = null;
 
     // 创建avPlayer实例对象。
-    this.avPlayer: media.AVPlayer = await media.createAVPlayer();
+    this.avPlayer = await media.createAVPlayer();
     // 监听码率设置是否生效。
     this.avPlayer.on('bitrateDone', (bitrate: number) => {
       console.info('bitrateDone called, and bitrate value is: ' + bitrate);
@@ -136,9 +142,11 @@ DASH流媒体资源包含多路不同分辨率、码率、采样率、编码格�
 
     ```ts
     import { media } from '@kit.MediaKit';
+    // 类成员定义avPlayer
+    private avPlayer: media.AVPlayer | null = null;
 
     // 创建avPlayer实例对象。
-    this.avPlayer: media.AVPlayer = await media.createAVPlayer();
+    this.avPlayer = await media.createAVPlayer();
     this.avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
       console.info(`trackChange info, index: ${index}, isSelect: ${isSelect}`);
     })
@@ -149,9 +157,13 @@ DASH流媒体资源包含多路不同分辨率、码率、采样率、编码格�
     ```ts
     // 以获取1080p视频轨道索引为例。
     import { media } from '@kit.MediaKit';
-
+    import { BusinessError } from '@kit.BasicServicesKit';
+    public videoTrackIndex: number = 0;
+    // 类成员定义avPlayer
+    private avPlayer: media.AVPlayer | null = null;
+    
     // 创建avPlayer实例对象。
-    this.avPlayer: media.AVPlayer = await media.createAVPlayer();
+    this.avPlayer = await media.createAVPlayer();
     this.avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
       if (arrList != null) {
         for (let i = 0; i < arrList.length; i++) {
@@ -172,10 +184,17 @@ DASH流媒体资源包含多路不同分辨率、码率、采样率、编码格�
 3. 在音视频播放过程中调用[selectTrack](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#selecttrack12)选择对应的音视频轨道，或者调用[deselectTrack](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#deselecttrack12)取消选择的音视频轨道。
 
     ```ts
+    import { media } from '@kit.MediaKit';
+    public videoTrackIndex: number = 0;
+        // 类成员定义avPlayer
+    private avPlayer: media.AVPlayer | null = null;
+    
+    // 创建avPlayer实例对象。
+    this.avPlayer = await media.createAVPlayer();
     // 切换至目标视频轨道。
-    avPlayer.selectTrack(videoTrackIndex);
+    this.avPlayer.selectTrack(this.videoTrackIndex);
     // 取消选择目标视频轨道。
-    // avPlayer.deselectTrack(videoTrackIndex);
+    // this.avPlayer.deselectTrack(this.videoTrackIndex);
     ```
 
 ## 异常场景说明

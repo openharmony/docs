@@ -111,13 +111,15 @@
  // 类成员定义avPlayer和context。
  private avPlayer: media.AVPlayer | null = null;
  private context: common.UIAbilityContext | undefined = undefined;
+ private m3u8FileName: string = '';
 
  // 在业务函数中（示例工程函数名为avSetupURL）：
  // 创建avPlayer实例对象。
  this.avPlayer = await media.createAVPlayer();
  this.context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+ let 
  // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例。
- let filePath = `${this.context.filesDir}/${m3u8FileName}`;
+ let filePath = `${this.context.filesDir}/${m3u8FileName}`; 
  // 通过fs.openSync获取文件句柄。
  let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
  let fd : string = file.fd.toString();
