@@ -20,7 +20,7 @@ dialog组件用于创建自定义弹窗，通常用来展示用户当前需要�
       <text>this is a dialog</text>
     </div>
   </dialog>
-  <button value="click me" onclick="opendialog"></button>
+  <button value="click me" onclick="openDialog"></button>
 </div>
 ```
 
@@ -61,7 +61,7 @@ button{
 // xxx.js
 export default {
   //Touch to open the dialog box.
-  opendialog(){
+  openDialog(){
     this.$element('dialogId').show()
   },
 }
@@ -78,13 +78,13 @@ export default {
 ```html
 <!-- xxx.hml -->
 <div class="doc-page">
-  <dialog class="dialogClass" id="dialogId" oncancel="canceldialog">
+  <dialog class="dialogClass" id="dialogId" oncancel="cancelDialog">
     <div class="dialogDiv">
       <text>dialog</text>
       <button value="confirm" onclick="confirmClick"></button>
     </div>
   </dialog>
-  <button value="click me" onclick="opendialog"></button>
+  <button value="click me" onclick="openDialog"></button>
 </div>
 ```
 
@@ -127,12 +127,12 @@ button{
 // xxx.js
 import promptAction from '@ohos.promptAction';
 export default {
-  canceldialog(e){
+  cancelDialog(e){
     promptAction.showToast({
       message: 'dialogCancel'
     })
   },
-  opendialog(){
+  openDialog(){
     this.$element('dialogId').show()
      promptAction.showToast({
       message: 'dialogShow'
@@ -171,28 +171,28 @@ export default {
   <text style="margin-top: 60px;margin-left: 30px;">
     <span>{{date}} events</span>
   </text>
-  <div class="btndiv">
-    <button type="circle" class="btn" onclick="addschedule">+</button>
+  <div class="btnDiv">
+    <button type="circle" class="btn" onclick="addSchedule">+</button>
   </div>
 <!--  for Render events data  -->
   <list style="width: 100%;">
-    <list-item type="item" for="schedulelist" style="width:100%;height: 200px;">
-      <div class="schedulediv">
+    <list-item type="item" for="scheduleList" style="width:100%;height: 200px;">
+      <div class="scheduleDiv">
         <text class="text1">{{date}}  event</text>
         <text class="text2">{{$item.schedule}}</text>
       </div>
     </list-item>
   </list>
-  <dialog id="datedialog" oncancel="canceldialog" >
-    <div class="dialogdiv">
-      <div class="innertxt">
+  <dialog id="dateDialog" oncancel="cancelDialog" >
+    <div class="dialogDiv">
+      <div class="innerTxt">
         <text class="text3">{{date}}</text>
         <text class="text4">New event</text>
       </div>
-      <textarea placeholder="Event information" onchange="getschedule" class="area" extend="true"></textarea>
-      <div class="innerbtn">
-        <button type="text" value="Cancel" onclick="cancelschedule" class="btntxt"></button>
-        <button type="text" value="OK" onclick="setschedule" class="btntxt"></button>
+      <textarea placeholder="Event information" onchange="getSchedule" class="area" extend="true"></textarea>
+      <div class="innerBtn">
+        <button type="text" value="Cancel" onclick="cancelSchedule" class="innerBtn"></button>
+        <button type="text" value="OK" onclick="setSchedule" class="innerBtn"></button>
       </div>
     </div>
   </dialog>
@@ -206,7 +206,7 @@ export default {
   flex-direction: column;
   background-color: #F1F3F5;
 }
-.btndiv {
+.btnDiv {
   width: 100%;
   height: 200px;
   flex-direction: column;
@@ -218,7 +218,7 @@ export default {
   font-size: 100px;
   background-color: #1E90FF;
 }
-.schedulediv {
+.scheduleDiv {
   width: 100%;
   height: 200px;
   flex-direction: column;
@@ -234,11 +234,11 @@ export default {
   color: #a9a9a9;
   font-size: 30px;
 }
-.dialogdiv {
+.dialogDiv {
   flex-direction: column;
   align-items: center;
 }
-.innertxt {
+.innerTxt {
   width: 320px;
   height: 160px;
   flex-direction: column;
@@ -258,12 +258,12 @@ export default {
   width: 320px;
   border-bottom: 1px solid #1E90FF;
 }
-.innerbtn {
+.innerBtn {
   width: 320px;
   height: 120px;
   justify-content: space-around;
 }
-.btntxt {
+.innerBtn {
   text-color: #1E90FF;
 }
 ```
@@ -280,7 +280,7 @@ export default {
     curDay:'',
     date:'',
     schedule:'',
-    schedulelist:[]
+    scheduleList:[]
   },
   onInit() {
     // Obtain the current date. 
@@ -289,35 +289,35 @@ export default {
     this.curMonth = date.getMonth() + 1;
     this.curDay = date.getDate();
     this.date = this.curYear + '-' + this.curMonth + '-' + this.curDay;
-    this.schedulelist = []
+    this.scheduleList = []
   },
-  addschedule(e) {
-    this.$element('datedialog').show()
+  addSchedule(e) {
+    this.$element('dateDialog').show()
   },
-  canceldialog(e) {
+  cancelDialog(e) {
     promptAction.showToast({
       message: 'Event setting canceled.'
     })
   },
-  getschedule(e) {
+  getSchedule(e) {
     info = e.value
   },
-  cancelschedule(e) {
-    this.$element('datedialog').close()
+  cancelSchedule(e) {
+    this.$element('dateDialog').close()
     promptAction.showToast({
       message: 'Event setting canceled.'
     })
   },
 //    Touch OK to save the data.
-  setschedule(e) {
+  setSchedule(e) {
     if (e.text === '') {
       this.schedule = info
     } else {
       this.schedule = info
       var addItem =  {schedule: this.schedule,}
-      this.schedulelist.push(addItem)
+      this.scheduleList.push(addItem)
     }
-    this.$element('datedialog').close()
+    this.$element('dateDialog').close()
   }
 }
 ```
