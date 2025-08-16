@@ -101,7 +101,7 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 
 ## NativeXComponentParameters<sup>19+</sup>
 
-定义XComponent的具体配置参数。这种方式创建的XComponent可以对应的[FrameNode](../js-apis-arkui-frameNode.md)可以传递到Native侧使用NDK接口构建UI的方式[监听组件事件](../../../ui/ndk-listen-to-component-events.md)以及进行surface生命周期相关的设置。
+定义XComponent的具体配置参数。通过这种构造参数创建的XComponent，可以将其对应的[FrameNode](../js-apis-arkui-frameNode.md)对象传递至Native侧，使用NDK接口进行Surface生命周期的相关设置和[监听组件事件](../../../ui/ndk-listen-to-component-events.md)。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 

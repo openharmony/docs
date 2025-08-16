@@ -2782,7 +2782,7 @@ onLoadIntercept(callback: Callback\<OnLoadInterceptEvent, boolean\>)
 
 onRequestSelected(callback: () => void)
 
-当Web组件获得焦点时触发该回调。
+当Web组件获取焦点时触发回调。如果组件在未获焦状态下加载网页并成功获取焦点，将触发两次回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2790,7 +2790,7 @@ onRequestSelected(callback: () => void)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | () => void | 是 | 当网页获得焦点时触发的回调。 |
+| callback | () => void | 是 | 当网页获取焦点时触发的回调。 |
 
 **示例：**
 
