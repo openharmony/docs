@@ -101,7 +101,7 @@ try {
 
 setPowerSaveMode(pid: number, powerSaveMode: PowerSaveMode): Promise&lt;void&gt;
 
-设置进程的能效模式，使用Promise异步回调。本接口仅在PC/2in1设备上生效。
+设置进程的能效模式，使用Promise异步回调。该接口在PC/2in1中可正常调用，在其他设备类型中返回801错误码。
 
 当应用满足以下条件时，可以设置自身是否进入能效模式：
 - 应用未获取系统焦点，未执行音频或界面刷新操作。
@@ -155,7 +155,7 @@ try {
 
 isPowerSaveMode(pid: number): Promise&lt;boolean&gt;
 
-查询进程是否处于能效模式，使用Promise异步回调。本接口仅在PC/2in1设备上生效。
+查询进程是否处于能效模式，使用Promise异步回调。该接口在PC/2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **需要权限**： ohos.permission.BACKGROUND_MANAGER_POWER_SAVE_MODE
 
