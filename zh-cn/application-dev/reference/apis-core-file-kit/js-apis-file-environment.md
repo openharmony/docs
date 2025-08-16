@@ -2,8 +2,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
-<!--SE: @gsl_1234; @wangke25-->
-<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Designer: @gsl_1234; @wangke25-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 该模块提供环境目录能力，获取内存存储根目录、公共文件根目录的JS接口。
 
@@ -33,7 +34,7 @@ getUserDownloadDir(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
@@ -47,9 +48,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function getUserDownloadDirExample() {
   try {
     let path = Environment.getUserDownloadDir();
-    console.log(`success to getUserDownloadDir: ${JSON.stringify(path)}`);
-  } catch (error) {
-    console.error(`failed to getUserDownloadDir, Error code: ${error.code}, message: ${error.message}`);
+    console.info(`Succeeded in getUserDownloadDir, path is ${path}`);
+  } catch (err) {
+    console.error(`Failed to getUserDownloadDir. Code: ${err.code}, message: ${err.message}`);
   }
 }
 ```
@@ -70,7 +71,7 @@ getUserDesktopDir(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
@@ -84,9 +85,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function getUserDesktopDirExample() {
   try {
     let path = Environment.getUserDesktopDir();
-    console.log(`success to getUserDesktopDir: ${JSON.stringify(path)}`);
-  } catch (error) {
-    console.error(`failed to getUserDesktopDir, Error code: ${error.code}, message: ${error.message}`);
+    console.info(`Succeeded in getUserDesktopDir, path is ${path}`);
+  } catch (err) {
+    console.error(`Failed to getUserDesktopDir. Code: ${err.code}, message: ${err.message}`);
   }
 }
 ```
@@ -107,7 +108,7 @@ getUserDocumentDir(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
@@ -121,9 +122,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function getUserDocumentDirExample() {
   try {
     let path = Environment.getUserDocumentDir();
-    console.log(`success to getUserDocumentDir: ${JSON.stringify(path)}`);
-  } catch (error) {
-    console.error(`failed to getUserDocumentDir, Error code: ${error.code}, message: ${error.message}`);
+    console.info(`Succeeded in getUserDocumentDir, path is ${path}`);
+  } catch (err) {
+    console.error(`Failed to getUserDocumentDir. Code: ${err.code}, message: ${err.message}`);
   }
 }
 ```

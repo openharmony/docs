@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hddgzw-->
-<!--SE: @pssea-->
-<!--TSE: @jiaoaozihao-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 方便灵活应用文本样式的对象，可通过TextController中的[setStyledString](./ts-basic-components-text.md#setstyledstring12)方法与Text组件绑定，可通过RichEditorStyledStringController中的[setStyledString](ts-basic-components-richeditor.md#setstyledstring12)方法与RichEditor组件绑定。
 
@@ -192,7 +193,7 @@ static fromHtml(html: string): Promise\<StyledString>
 
 | 类型              |       说明       |
 | ------- | --------------------------------- |
-| [StyledString](#styledstring) | 属性字符串。 |
+| Promise\<[StyledString](#styledstring)> | 属性字符串。 |
 
 **错误码**：
 
@@ -1232,7 +1233,7 @@ constructor(url: string)
 
 ### 示例1（属性字符串处理）
 
-该示例通过insertString、removeStyles、replaceStyle、getStyles接口实现属性字符串的插入、删除、替换、查看。
+从API version 12开始，该示例通过[insertString](#insertstring)、[removeStyles](#removestyles)、[replaceStyle](#replacestyle)、[getStyles](#getstyles)接口实现属性字符串的插入、删除、替换、查看。
 
 ```ts
 // xxx.ets
@@ -1408,7 +1409,7 @@ struct styled_string_process_demo {
 
 ### 示例2（设置事件）
 
-该示例通过styledKey、styledValue接口实现属性字符串绑定事件。
+从API version 12开始，该示例通过[StyleOptions](#styleoptions对象说明)中的styledKey、styledValue接口实现属性字符串绑定事件。
 
 ```ts
 // xxx.ets
@@ -1499,7 +1500,7 @@ struct styled_string_bind_events_demo {
 
 ### 示例3（设置文本样式）
 
-该示例通过getStyles、setStyle接口实现属性字符串查询和设置样式。
+从API version 12开始，该示例通过[getStyles](#getstyles)、[setStyle](#setstyle)接口实现属性字符串查询和设置样式。
 
 ```ts
 // xxx.ets
@@ -1688,7 +1689,7 @@ struct styled_string_set_text_style_demo {
 
 ### 示例4（设置图片）
 
-该示例通过ImageAttachment接口实现属性字符串设置图片。
+从API version 12开始，该示例通过[ImageAttachment](#imageattachmentinterface对象说明)接口实现属性字符串设置图片。
 
 ```ts
 // xxx.ets
@@ -1820,7 +1821,7 @@ struct styled_string_set_image_demo {
 
 ### 示例5（设置文本行高和段落样式）
 
-该示例通过LineHeightStyle、ParagraphStyle接口实现属性字符串设置文本行高和段落样式。
+从API version 12开始，该示例通过[LineHeightStyle](#lineheightstyle)、[ParagraphStyle](#paragraphstyle)接口实现属性字符串设置文本行高和段落样式。
 
 ```ts
 import { LengthMetrics } from '@kit.ArkUI';
@@ -1980,7 +1981,7 @@ struct styled_string_set_lineheight_paragraphstyle_demo {
 
 ### 示例6（设置自定义绘制Span）
 
-该示例通过CustomSpan接口实现属性字符串设置自定义绘制Span。
+从API version 12开始，该示例通过[CustomSpan](#customspan)接口实现属性字符串设置自定义绘制Span。
 
 ```ts
 // xxx.ets
@@ -2112,7 +2113,7 @@ struct styled_string_set_customspan_demo {
 
 ### 示例7（支持存储自定义扩展信息）
 
-该示例通过UserDataSpan接口实现属性字符串支持存储自定义扩展信息的功能。
+从API version 12开始，该示例通过[UserDataSpan](#userdataspan)接口实现属性字符串支持存储自定义扩展信息的功能。
 
 ```ts
 // xxx.ets
@@ -2163,7 +2164,7 @@ struct styled_string_set_userdataspan_demo {
 
 ### 示例8（设置超链接）
 
-该示例通过UrlStyle接口，实现了对属性字符串中超链接设置的支持。
+从API version 14开始，该示例通过[UrlStyle](#urlstyle14)接口，实现了对属性字符串中超链接设置的支持。
 
 ```ts
 // xxx.ets
@@ -2198,7 +2199,7 @@ struct styled_string_set_urlstyle_demo {
 
 ### 示例9 (给图片设置colorFilter)
 
-该示例通过给imageAttachment设置colorFilter实现了给图像设置颜色滤镜效果。
+从API version 15开始，该示例通过给[ImageAttachment](#imageattachmentinterface对象说明)设置colorFilter实现了给图像设置颜色滤镜效果。
 
 ``` ts
 // xxx.ets
@@ -2267,7 +2268,7 @@ struct styled_string_set_image_colorfilter_demo {
 
 ### 示例10（属性字符串的插入、删除、替换）
 
-该示例通过subStyledString、removeString、removeStyle、clearStyles、replaceStyledString、insertStyledString接口实现属性字符串的插入、删除、替换。
+从API version 12开始，该示例通过[subStyledString](#substyledstring)、[removeString](#removestring)、[removeStyle](#removestyle)、[clearStyles](#clearstyles)、[replaceStyledString](#replacestyledstring)、[insertStyledString](#insertstyledstring)接口实现属性字符串的插入、删除、替换。
 
 ``` ts
 // xxx.ets
@@ -2344,7 +2345,7 @@ struct styled_string_modify_demo {
 
 ### 示例11（属性字符串的文本描边）
 
-该示例通过设置strokeWidth和strokeColor接口实现属性字符串的文本描边。
+从API version 20开始，该示例通过[TextStyle](#textstyle)设置strokeWidth和strokeColor接口实现属性字符串的文本描边。
 
 ``` ts
 // xxx.ets
@@ -2418,7 +2419,7 @@ struct styled_string_strokewidth_strokecolor_demo {
 
 ### 示例12（fromHtml和toHtml互相转换）
 
-该示例通过fromHtml、toHtml接口，将HTML中b、strong、em、i、u、del、s、a、sub、sup标签及其style属性中的background-color转换为属性字符串并转回HTML。
+该示例通过[fromHtml](#fromhtml)（从API version 12开始）、[toHtml](#tohtml14)（从API version 14开始）接口，将HTML中b、strong、em、i、u、del、s、a、sub、sup标签及其style属性中的background-color转换为属性字符串并转回HTML。
 
 ``` ts
 // xxx.ets
@@ -2485,7 +2486,7 @@ struct styled_string_html_convert_demo {
 
 ### 示例13（多装饰线与加粗装饰线）
 
-该示例通过enableMultiType、thicknessScale接口，实现多装饰线显示与加粗装饰线的效果。
+从API version 20开始，该示例通过[DecorationStyle](#decorationstyle)中设置enableMultiType、thicknessScale接口，实现多装饰线显示与加粗装饰线的效果。
 
 ``` ts
 // xxx.ets

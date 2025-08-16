@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiangyuan6-->
-<!--SE: @pssea-->
-<!--TSE: @jiaoaozihao-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 作为[Text](ts-basic-components-text.md)、[ContainerSpan](ts-basic-components-containerspan.md)组件的子组件，用于显示行内文本的组件。
 
@@ -305,7 +306,7 @@ baselineOffset(value: LengthMetrics): T
 | 名称   | 类型     | 只读 | 可选 | 说明         |
 | ------ | ------- | ---- | ---- | ------------ |
 | color  | [ResourceColor](ts-types.md#resourcecolor)                                  | 否   | 是 | 文本背景色。 |
-| radius | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-universal-attributes-border.md#borderradiuses9对象说明) | 否   | 是 | 文本背景圆角。 |
+| radius | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](./ts-types.md#borderradiuses9) | 否   | 是 | 文本背景圆角。 |
 
 ## 示例
 ### 示例1（设置文本样式）
@@ -450,7 +451,7 @@ struct SpanExample {
 
 ### 示例2（设置文本阴影）
 
-该示例通过textShadow属性展示了文本设置阴影的效果。
+从API version 11开始，该示例通过[textShadow](#textshadow11)属性展示了文本设置阴影的效果。
 
 ``` ts
 // xxx.ets
@@ -503,7 +504,7 @@ struct SpanExample {
 
 ### 示例3（设置背景样式）
 
-该示例通过textBackgroundStyle属性展示了文本设置背景样式的效果。
+从API version 11开始，该示例通过[textBackgroundStyle](#textbackgroundstyle11)属性展示了文本设置背景样式的效果。
 
 ``` ts
 // xxx.ets
@@ -526,7 +527,7 @@ struct SpanExample {
 
 ### 示例4（设置文本基线偏移量）
 
-该示例通过baselineOffset属性展示了文本设置不同基线偏移量的效果。
+从API version 12开始，该示例通过[baselineOffset](#baselineoffset12)属性展示了文本设置不同基线偏移量的效果。
 
 ```ts
 // xxx.ets

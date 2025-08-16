@@ -40,12 +40,14 @@ For an application in the DLP sandbox state, the permissions granted to the appl
 | cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;<br> cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Cancels the sandbox application retention state.|
 | getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandboxInfo&gt;&gt; <br> getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void  <br> getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void| Obtains the sandbox applications in the retention state.|
 | getDLPFileAccessRecords(): Promise&lt;Array&lt;AccessedDLPFileInfo&gt;&gt; <br> getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&gt;&gt;): void | Obtains the DLP files that are accessed recently.|
-|setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;|Sets sandbox application configuration.|
-|getSandboxAppConfig(): Promise&lt;string&gt;|Obtains the sandbox application configuration.|
-|cleanSandboxAppConfig(): Promise&lt;void&gt;|Clears the sandbox application configuration.|
+|setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;|Set sandbox application configuration.|
+|getSandboxAppConfig(): Promise&lt;string&gt;|Obtain the sandbox application configuration.|
+|cleanSandboxAppConfig(): Promise&lt;void&gt;|Clear the sandbox application configuration.|
 | startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&lt;DLPManagerResult&gt; <br>| Starts the DLP manager application on the current UIAbility page in borderless mode (available only for the stage model).|
 
 ## How to Develop
+
+This document provides API sample code. For details about how to create a project, see [Creating a Project](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-project).
 
 1. Import the [dlpPermission](../../reference/apis-data-protection-kit/js-apis-dlppermission.md) module.
 
@@ -58,9 +60,10 @@ For an application in the DLP sandbox state, the permissions granted to the appl
     ```ts
     import { common, Want } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
+    import { UIContext } from '@kit.ArkUI';
 
     function OpenDlpFile(dlpUri: string, fileName: string, fd: number) {
-      let want:Want = {
+      let want: Want = {
         "action": "ohos.want.action.viewData",
         "bundleName": "com.example.example_bundle_name",
         "abilityName": "exampleAbility",
@@ -76,7 +79,7 @@ For an application in the DLP sandbox state, the permissions granted to the appl
         }
       }
 
-      let context = getContext () as common.UIAbilityContext; // Obtain the UIAbility context.
+      let context = new UIContext().getHostContext() as common.UIAbilityContext; // Obtain the current UIAbilityContext.
 
       try {
         console.log('openDLPFile:' + JSON.stringify(want));
@@ -92,51 +95,52 @@ For an application in the DLP sandbox state, the permissions granted to the appl
     Add **ohos.want.action.viewData** to the **module.json5** file.
 
     ```json
-      "skills":[
-        {
-          "entities":[
-            ...
-          ],
-          "actions":[
-            ...
-            "ohos.want.action.viewData"
-          ]
-        }
-      ]
+    "skills":[
+      {
+        "entities":[
+          // ...
+        ],
+        "actions":[
+          // ...
+          "ohos.want.action.viewData"
+        ]
+      }
+    ]
     ```
 
 3. Generate a .dlp file.
 
-    Currently, the DLP feature supports the following file types:
+    [You need to set up the cloud module for this feature](../DataProtectionKit/dlp-overview.md) and configure a domain account environment.
 
-    ".doc", ".docm", ".docx", ".dot", ".dotm", ".dotx", ".odp", ".odt", ".pdf", ".pot", ".potm", ".potx", ".ppa", ".ppam", ".pps", ".ppsm", ".ppsx", ".ppt", ".pptm", ".pptx", ".rtf", ".txt", ".wps", ".xla", ".xlam", ".xls", ".xlsb", ".xlsm", ".xlsx", ".xlt", ".xltm", ".xltx", ".xlw", ".xml", ".xps"
+    Currently, the DLP feature supports the following file types: ".doc", ".docm", ".docx", ".dot", ".dotm", ".dotx", ".odp", ".odt", ".pdf", ".pot", ".potm", ".potx", ".ppa", ".ppam", ".pps", ".ppsm", ".ppsx", ".ppt", ".pptm", ".pptx", ".rtf", ".txt", ".wps", ".xla", ".xlam", ".xls", ".xlsb", ".xlsm", ".xlsx", ".xlt", ".xltm", ".xltx", ".xlw", ".xml", ".xps"
 
-    Before you start, ensure that a file of the supported type that can be accessed by the application is available. For example, a file in the **Files** directory. 
+    A file of the supported type that can be accessed by the application is available. For example, a file in the **Files** directory. 
 
-    Start the DLP manager application in borderless mode. This API can be called only in the UIAbility context and supports only the stage model. Run the following code to open the permission settings page of the DLP manager application, enter the account information, and tap **Save**. On the page started by file Picker, select the directory to save the DLP file. [You need to implement the cloud module yourself](../DataProtectionKit/dlp-overview.md).
+    Start the DLP manager application in borderless mode. This API can be called only in the UIAbility context and supports only the stage model. Run the following code to open the permission settings page of the DLP manager application, enter the account information, and tap **Save**. On the page started by file Picker, select the directory to save the DLP file.
 
     ```ts
-      import { dlpPermission } from '@kit.DataProtectionKit';
-      import { common, Want } from '@kit.AbilityKit';
-      import { BusinessError } from '@kit.BasicServicesKit';
-    
-      try {
-          let fileUri: string = "file://docs/storage/Users/currentUser/test.txt";
-          let fileName: string = "test.txt";
-          let context = getContext () as common.UIAbilityContext; // Obtain the UIAbility context.
-          let want: Want = {
-            'uri': fileUri,
-            'parameters': {
-              'displayName': fileName
-            }
-          }; // Request parameters.
-          dlpPermission.startDLPManagerForResult(context, want).then((res: dlpPermission.DLPManagerResult) => {
-            console.info('startDLPManagerForResult res.resultCode:' + res.resultCode);
-            console.info('startDLPManagerForResult res.want:' + JSON.stringify(res.want));
-          }); // Start the DLP permission manager application to set permissions.
-        } catch (err) {
-          console.error('startDLPManagerForResult error:' + (err as BusinessError).code + (err as BusinessError).message);
+    import { dlpPermission } from '@kit.DataProtectionKit';
+    import { common, Want } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { UIContext } from '@kit.ArkUI';
+
+    try {
+      let fileUri: string = "file://docs/storage/Users/currentUser/test.txt";
+      let fileName: string = "test.txt";
+      let context = new UIContext().getHostContext() as common.UIAbilityContext; // Obtain the current UIAbilityContext.
+      let want: Want = {
+        'uri': fileUri,
+        'parameters': {
+          'displayName': fileName
         }
+      }; // Request parameters.
+      dlpPermission.startDLPManagerForResult(context, want).then((res: dlpPermission.DLPManagerResult) => {
+        console.info('startDLPManagerForResult res.resultCode:' + res.resultCode);
+        console.info('startDLPManagerForResult res.want:' + JSON.stringify(res.want));
+      }); // Start the DLP permission manager application to set permissions.
+    } catch (err) {
+      console.error('startDLPManagerForResult error:' + (err as BusinessError).code + (err as BusinessError).message);
+    }
     ```
 
 4. Check whether the application is running in a sandbox.
@@ -169,6 +173,7 @@ For an application in the DLP sandbox state, the permissions granted to the appl
 
     ```ts
     import { dlpPermission } from '@kit.DataProtectionKit';
+
     dlpPermission.getDLPSupportedFileTypes((err, result) => {
       console.log('getDLPSupportedFileTypes: ' + JSON.stringify(err));
       console.log('getDLPSupportedFileTypes: ' + JSON.stringify(result));
@@ -198,6 +203,7 @@ For an application in the DLP sandbox state, the permissions granted to the appl
     ```ts
     import { dlpPermission } from '@kit.DataProtectionKit';
     import { BusinessError } from '@kit.BasicServicesKit';
+
     class SubscribeExample {
       event(info: dlpPermission.AccessedDLPFileInfo) {
         console.info('openDlpFile event', info.uri, info.lastOpenTime)
@@ -230,6 +236,7 @@ For an application in the DLP sandbox state, the permissions granted to the appl
     ```ts
     import { dlpPermission } from '@kit.DataProtectionKit';
     import { BusinessError } from '@kit.BasicServicesKit';
+
     async function getDLPFileAccessRecords() {
       try {
         let res:Array<dlpPermission.AccessedDLPFileInfo> = await dlpPermission.getDLPFileAccessRecords(); // Obtain the list of recently accessed DLP files.
@@ -245,9 +252,10 @@ For an application in the DLP sandbox state, the permissions granted to the appl
     ```ts
     import { dlpPermission } from '@kit.DataProtectionKit';
     import { BusinessError } from '@kit.BasicServicesKit';
+
     async function getRetentionSandboxList() {
       try {
-        let res:Array<dlpPermission.RetentionSandboxInfo> = await dlpPermission.getRetentionSandboxList(); // Obtain the sandbox applications in the retention state.
+        let res:Array<dlpPermission.RetentionSandboxInfo> = await dlpPermission.getRetentionSandboxList(); // Obtain the sandbox apps in the retention state.
         console.info('res', JSON.stringify(res))
       } catch (err) {
         console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Throw an error if the operation fails.
@@ -260,6 +268,7 @@ For an application in the DLP sandbox state, the permissions granted to the appl
     ```ts
     import { dlpPermission } from '@kit.DataProtectionKit';
     import { BusinessError } from '@kit.BasicServicesKit';
+
     async function setSandboxAppConfig() {
       try {
         await dlpPermission.setSandboxAppConfig('configInfo'); // Set sandbox application configuration.
@@ -274,6 +283,7 @@ For an application in the DLP sandbox state, the permissions granted to the appl
     ```ts
     import { dlpPermission } from '@kit.DataProtectionKit';
     import { BusinessError } from '@kit.BasicServicesKit';
+
     async function cleanSandboxAppConfig() {
       try {
         await dlpPermission.cleanSandboxAppConfig(); // Clear the sandbox application configuration.
@@ -288,6 +298,7 @@ For an application in the DLP sandbox state, the permissions granted to the appl
     ```ts
     import { dlpPermission } from '@kit.DataProtectionKit';
     import { BusinessError } from '@kit.BasicServicesKit';
+
     async function getSandboxAppConfig() {
       try {
         let res:string = await dlpPermission.getSandboxAppConfig(); // Obtain the sandbox application configuration.
@@ -302,11 +313,11 @@ For an application in the DLP sandbox state, the permissions granted to the appl
 
     ```ts
     import { dlpPermission } from '@kit.DataProtectionKit';
-    import { common, UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
-    import { BusinessError } from '@kit.BasicServicesKit';
+    import { common, Want } from '@kit.AbilityKit';
+    import { UIContext } from '@kit.ArkUI';
 
     try {
-      let context = getContext () as common.UIAbilityContext; // Obtain the UIAbility context.
+      let context = new UIContext().getHostContext() as common.UIAbilityContext; // Obtain the current UIAbilityContext.
       let want: Want = {
         "uri": "file://docs/storage/Users/currentUser/Desktop/1.txt",
         "parameters": {

@@ -2,8 +2,9 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @baijidong; @yanhuii; @cuile44-->
-<!--SE: @houpengtao1; @widecode; @htt1997; @dboy190-->
-<!--TSE: @yippo; @logic42-->
+<!--Designer: @houpengtao1; @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 
 应用数据持久化是指应用将内存中的数据通过文件或数据库的形式保存到设备上。内存中的数据形态通常是任意的数据结构或数据对象，存储介质上的数据形态可能是文本、数据库、二进制文件等。

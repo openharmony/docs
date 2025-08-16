@@ -1,4 +1,10 @@
 # Interface (AudioCapturer)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -344,15 +350,12 @@ start(): Promise<void\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.start().then(() => {
-  console.info('AudioFrameworkRecLog: ---------START---------');
-  console.info('AudioFrameworkRecLog: Capturer started: SUCCESS');
-  console.info(`AudioFrameworkRecLog: AudioCapturer: STATE: ${audioCapturer.state}`);
-  console.info('AudioFrameworkRecLog: Capturer started: SUCCESS');
+  console.info('Succeeded in doing start.');
   if ((audioCapturer.state == audio.AudioState.STATE_RUNNING)) {
     console.info('AudioFrameworkRecLog: AudioCapturer is in Running State');
   }
 }).catch((err: BusinessError) => {
-  console.error(`AudioFrameworkRecLog: Capturer start :ERROR : ${err}`);
+  console.error(`Failed to start. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -405,13 +408,12 @@ stop(): Promise<void\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.stop().then(() => {
-  console.info('AudioFrameworkRecLog: ---------STOP RECORD---------');
-  console.info('AudioFrameworkRecLog: Capturer stopped: SUCCESS');
+  console.info('Succeeded in doing stop.');
   if ((audioCapturer.state == audio.AudioState.STATE_STOPPED)){
     console.info('AudioFrameworkRecLog: State is Stopped:');
   }
 }).catch((err: BusinessError) => {
-  console.error(`AudioFrameworkRecLog: Capturer stop: ERROR: ${err}`);
+  console.error(`Failed to stop. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -563,7 +565,7 @@ getAudioTimestampInfo(): Promise\<AudioTimestampInfo>
 
 **返回值：**
 
-| 类型                                                    | 描述                    |
+| 类型                                                    | 说明                    |
 |-------------------------------------------------------| ----------------------- |
 | Promise\<[AudioTimestampInfo](arkts-apis-audio-i.md#audiotimestampinfo19)> | Promise对象，返回音频流时间戳和当前数据帧位置信息。 |
 
@@ -597,7 +599,7 @@ getAudioTimestampInfoSync(): AudioTimestampInfo
 
 **返回值：**
 
-| 类型             | 描述                    |
+| 类型             | 说明                    |
 | ---------------- | ----------------------- |
 | [AudioTimestampInfo](arkts-apis-audio-i.md#audiotimestampinfo19) | 返回音频流时间戳和当前数据帧位置信息。 |
 

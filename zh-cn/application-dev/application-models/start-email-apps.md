@@ -1,5 +1,12 @@
 # 拉起邮件类应用（startAbilityByType）
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: AGC-->
+<!--Owner: @liusu23-->
+<!--Designer: @xukeke-->
+<!--Tester: @yizhixiaosiqin-->
+<!--Adviser: @huipeizi-->
+
 本章节介绍如何拉起邮件类应用扩展面板。
 > **说明：**
 > 
@@ -102,7 +109,7 @@ startAbilityByType接口中type字段为mail，对应的wantParam参数：
               {
               "uris": [
                   {
-                  "scheme": "mailto", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
+                  "scheme": "mailto", // 这里仅示意，应用需确保这里声明的uri能被外部正常拉起
                   "host": "",
                   "path": "",
                   "linkFeature": "ComposeMail" // 声明应用支持撰写邮件功能

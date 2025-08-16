@@ -1,4 +1,9 @@
 # @ohos.inputMethodList (Input Method List)
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--SE: @andeszhang-->
+<!--TSE: @murphy1984-->
 
 The **inputMethodList** module is oriented to system applications and input method applications. It provides APIs for implementing an input method list. This list displays the default input method subtypes and third-party input methods. Users can use this list to switch from the default input method to another input method.
 
@@ -44,7 +49,7 @@ Implements a dialog box showing the input method list.
 | -------- | -------- | -------- | -------- | -------- |
 | defaultSelected | number | No| Yes| Optional. Default selected pattern.|
 | patterns   | Array<[Pattern](#pattern)> | No| No| Mandatory. Resource of the pattern option.|
-| action | function | No| No| Mandatory. Callback invoked when the pattern option changes.|
+| action | (index: number) => void | No| No| Mandatory. Callback invoked when the pattern option changes.|
 
 ## Pattern
 
@@ -67,7 +72,7 @@ import { Pattern, PatternOptions } from '@kit.IMEKit';
 @Entry
 // Configure the component.
 @Component
-struct settingsItem {
+struct SettingsItem {
   @State defaultPattern: number = 1;
   private oneHandAction: PatternOptions = {
     defaultSelected: this.defaultPattern,

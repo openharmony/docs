@@ -1,9 +1,22 @@
 # ArkWeb简介
 <!--Kit: ArkWeb-->
-<!--Subsystem: ArkWeb-->
-<!--Owner: @mmmx; @wangxinbao01; @zhangyao75477; @yuan_ss; @yp99ustc; @aohui; @weixin_41848015; @zourongchun; @zhang-yinglie; @zhouge941; @qq_44167590-->
-<!--SE: @qianlf; @defeng20201; @qiu-gongkai; @LongLie; @yaomingliu; @libing23232323; @zhufenghao; @handyohos; @hjoksky-->
-<!--TSE: @ghiker-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc; @aohui; @zourongchun-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
+
+## 需要权限
+
+使用Web组件访问在线网页时需添加网络权限：ohos.permission.INTERNET，具体申请方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。
+
+  ```
+  "requestPermissions":[
+      {
+        "name" : "ohos.permission.INTERNET"
+      }
+    ]
+  ```
 
 ## 使用场景
 
@@ -38,13 +51,13 @@ Web组件为开发者提供了丰富的控制Web页面能力。包括：
 
 - 可依据ArkWeb内核版本在相关网站查询W3C标准的支持情况。例如：https://developer.mozilla.org/en-US/ 和 https://webassembly.org/features/ 。
 
-- Web内核版本：ArkWeb基于谷歌Chromium内核开发，使用的Chromium版本为：
+- Web内核版本：ArkWeb基于谷歌Chromium内核开发，系统版本与Chromium版本的对应关系如表格所示。从OpenHarmony 6.0开始，系统提供双内核方案。默认情况下，OpenHarmony 6.0版本系统使用M132内核，开发者也可以选择M114内核。
 
   | 系统版本 | Chromium版本 |
   |  ---|---|
   | OpenHarmony 4.0及之前 | M99 |
   | OpenHarmony 4.1-5.1 | M114 |
-  | OpenHarmony 6.0 | M132 |
+  | OpenHarmony 6.0 | M132（默认）<br>M114（可选，[M114适配指导](https://gitcode.com/openharmony-tpc/chromium_src/blob/132_trunk/web/ReleaseNote/CompatibleWithLegacyWebEngine.md)） |
 
 ## 相关实例
 

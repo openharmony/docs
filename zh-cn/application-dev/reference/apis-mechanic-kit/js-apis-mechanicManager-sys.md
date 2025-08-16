@@ -1,4 +1,10 @@
 # @ohos.distributedHardware.mechanicManager (机械体控制模块)(系统接口)
+<!--Kit: Mechanic Kit-->
+<!--Subsystem: Mechanic-->
+<!--Owner: @hobbycao-->
+<!--Designer: @saga2025-->
+<!--Tester: @zhaodengqi-->
+<!--Adviser: @foryourself-->
 
 本模块提供与机械设备交互的能力，包括设备连接管理、控制和监控功能。
 

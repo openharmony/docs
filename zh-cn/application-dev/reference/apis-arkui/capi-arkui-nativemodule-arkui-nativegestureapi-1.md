@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
@@ -113,7 +114,7 @@ ArkUI_GestureRecognizer* (*createPanGesture)(int32_t fingersNum, ArkUI_GestureDi
 | 参数项                                                                  | 描述 |
 |----------------------------------------------------------------------| -- |
 | int32_t fingersNum                                                   | 用于指定触发拖动的最少手指数，最小为1指，最大取值为10指。当设置的值小于1或不设置时，会被转化为默认值 1。 |
-| [ArkUI_GestureDirectionMask](capi-native-gesture-h.md#变量) directions | 用于指定触发拖动的手势方向，此枚举值支持逻辑与(&)和逻辑或（|）运算。 |
+| [ArkUI_GestureDirectionMask](capi-native-gesture-h.md#变量) directions | 用于指定触发拖动的手势方向，此枚举值支持逻辑与(&)和逻辑或（\|）运算。 |
 | double distanceNum                                                   | 用于指定触发拖动手势事件的最小拖动距离，单位为px。当设定的值小于等于0时，按默认值5px处理。 |
 
 **返回：**

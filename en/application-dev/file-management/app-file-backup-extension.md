@@ -1,4 +1,9 @@
 # Accessing Backup and Restore
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @lvzhenjie-->
+<!--SE: @wang_zhangjun; @chenxi0605-->
+<!--TSE: @liuhonggang123-->
 
 You can use **BackupExtensionAbility** to enable an application to access the backup and restore framework.
 
@@ -6,7 +11,15 @@ You can use **BackupExtensionAbility** to enable an application to access the ba
 
 ## Available APIs
 
-For details about how to use the APIs, see [BackupExtensionAbility](../reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md#backupextensionability) and [Backup and Restore Extension Capability](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md).
+The following table lists the key APIs of the backup and restore extension capability. For details about how to use the APIs, see [BackupExtensionAbility](../reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md#backupextensionability) and [BackupExtensionContext](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md).
+
+| Name                                                      | Description            |
+| ------------------------------------------------------------ | ---------------- |
+| onBackup(): void | Called to back up data before backup data migration.|
+| onBackupEx(backupInfo: string): string \| Promise&lt;string&gt; | Called to back up data before backup data migration. It supports passing backup information and returning backup results.    |
+| onRestore(bundleVersion: BundleVersion): void | Called to restore data after backup data migration.|
+| onRestoreEx(bundleVersion: BundleVersion, restoreInfo: string): string \| Promise&lt;string&gt; | Called to restore data after backup data migration. It supports passing restore information and returning restore results.|
+| onRelease(scenario: number): Promise&lt;void&gt; | Called when data backup or restore is complete.<br>**NOTE**<br>This API is supported since API version 20.|
 
 ## Constraints
 
@@ -19,7 +32,7 @@ For details about how to use the APIs, see [BackupExtensionAbility](../reference
 
 1. Add `extensionAbilities` to the application's `module.json5` file.
 
-   In `module.json5`, add the `extensionAbilities` field, set `type` to `backup`, and add a record with `name` set to `ohos.extension. backup` under **["metadata"](../reference/apis-ability-kit/js-apis-bundleManager-metadata.md)**.
+   In `module.json5`, add the `extensionAbilities` field, set `type` to `backup`, and add a record with `name` set to `ohos.extension. backup` under ["metadata"](../reference/apis-ability-kit/js-apis-bundleManager-metadata.md).
 
    Example:
 
@@ -39,7 +52,7 @@ For details about how to use the APIs, see [BackupExtensionAbility](../reference
                    }
                ],
                // In the BackupExtension.ets file, define BackupExtensionAbility in extensionAbilities and override onBackup or onBackupEx
-               // and onRestore or onRestoreEx methods. The onBackupEx and onRestoreEx methods are recommended.
+               // and onRestore or onRestoreEx methods. onBackupEx and onRestoreEx are recommended.
                // Empty implementation can be used if there is no special requirement. In this case, the backup and restore service backs up or restores data based on the unified backup and restore rules.
                "srcEntry": "./ets/BackupExtension/BackupExtension.ets"
            }      
@@ -126,7 +139,7 @@ For details about how to use the APIs, see [BackupExtensionAbility](../reference
     }
     ```
 
-4. To perform special operations after application backup and restore, such as cleaning up temporary files created during these processes, you can customize `BackupExtensionAbility` inherited by the class in the `BackupExtension.ets` file. When the backup or restore is complete, the `onRelease` method is executed to perform the custom operations.
+4. Starting from API version 20, to perform special operations after application data backup and restore, such as cleaning up temporary files created during these processes, you can customize `BackupExtensionAbility` inherited by the class in the `BackupExtension.ets` file and override the `onRelease` method for execution when the backup or restore is complete.
 
    `onRelease` has a timeout mechanism. If the `onRelease` operation is not completed within 5 seconds, the application process exits when the backup and restoration are complete.
 
@@ -169,7 +182,7 @@ For details about how to use the APIs, see [BackupExtensionAbility](../reference
 | allowToBackupRestore | Boolean    | Yes  | Whether to enable backup and restore. The value **true** means backup and restore are enabled; the value **false** (default) means the opposite.                             |
 | includes             | String array| No  | Files and directories to be backed up in the application sandbox directory.<br>The pattern string that does not start with a slash (/) indicates a relative path.<br>When configuring `includes`, ensure that the configured path range is included in the supported paths listed in the following code snippet.<br>If `includes` is not configured, the backup and restore framework uses the **includes** default (as listed in the code snippet below).|
 | excludes             | String array| No  | Items in `includes` that do not need to be backed up. The value is in the same format as `includes`.<br>When configuring `excludes`, ensure that it is within the subset of `includes`.<br>If `excludes` is not configured, the backup and restore framework uses an empty array by default.|
-| fullBackupOnly       | Boolean    | No  | Whether to use the default restore directory of the application. The default value is **false**. If the value is **true**, data will be cached in a temporary directory obtained by [backupDir](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md) in the data restore process. If it is **false** or not specified, the restored data is decompressed in **/**.|
+| fullBackupOnly       | Boolean    | No  | Whether to use the default restore directory of the application. The default value is **false**. If the value is **true**, data will be cached in a temporary directory obtained by [backupDir](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md#properties) in the data restore process. If it is **false** or not specified, the restored data is decompressed in **/**.|
 | restoreDeps          | String    | No  | **(Not recommended)** Dependencies for the application to restore. The default value is "". You need to configure the names of the dependent applications. Currently, only one dependency is supported. The configured dependency takes effect only in the context of one restore task. If no dependent application is detected, the dependency description will be ignored and the restore task continues. The application restore will fail if the dependent application is not restored or fails to be restored.|
 | extraInfo            | JSON string    | No  | Additional information to be passed.                                  |
 

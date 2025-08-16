@@ -3,12 +3,13 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: Security-->
 <!--Owner: @harylee-->
-<!--SE: @linshuqing; @hehehe-li-->
-<!--TSE: @leiyuqian-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
 
 保存控件允许用户通过点击按钮临时获取存储权限，无需权限弹框确认。
 
-集成保存控件后，当用户点击该控件时，应用会获得10秒内访问媒体库特权接口的授权。这适用于任何需要将文件保存到媒体库的应用场景，例如保存图片或视频等。
+集成保存控件后，当用户点击该控件时，应用会获得一分钟内访问媒体库特权接口的授权。这适用于任何需要将文件保存到媒体库的应用场景，例如保存图片或视频等。
 
 与需要触发系统应用并由用户选择具体保存路径的Picker不同，保存控件可以直接保存到指定的媒体库路径，使得操作更为便捷。
 
@@ -20,7 +21,7 @@
 
 - 当用户首次点击应用中的保存控件，系统将弹窗请求用户授权。如果用户点击“取消”，弹窗消失，应用无授权，用户再次点击保存控件时，将会重新弹窗；如果用户点击“允许”，弹窗消失，应用将被授予临时保存权限，此后点击该应用的保存控件将不会弹窗。
 
-- 应用在点击控件触发onClick()回调到调用媒体库特权接口的时间间隔不能大于10秒。
+- 应用在点击控件触发onClick()回调到调用媒体库特权接口的时间间隔不能大于一分钟。
 
 - 用户点击一次控件，仅获取一次授权调用。
 
@@ -60,7 +61,7 @@
    async function savePhotoToGallery(context: common.UIAbilityContext) {
      let helper = photoAccessHelper.getPhotoAccessHelper(context);
      try {
-       // onClick触发后10秒内通过createAsset接口创建图片文件，10秒后createAsset权限收回。
+       // onClick触发后一分钟内通过createAsset接口创建图片文件，一分钟后createAsset权限收回。
        let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'jpg');
        // 使用uri打开文件，可以持续写入内容，写入过程不受时间限制。
        let file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
@@ -106,7 +107,7 @@
          .width('100%')
        }
        .height('100%')
-       .backgroundColor(0xF1F3F5)
+       .backgroundColor(0xf1f3f5)
      }
    }
    ```

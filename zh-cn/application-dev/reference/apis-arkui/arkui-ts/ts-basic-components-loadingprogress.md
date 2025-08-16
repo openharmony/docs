@@ -1,4 +1,10 @@
 # LoadingProgress
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyujie43-->
+<!--Designer: @weixin_52725220-->
+<!--Tester: @xiong0104-->
+<!--Adviser: @HelloCrease-->
 
 用于显示加载动效的组件。
 
@@ -113,9 +119,9 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
 | 名称                     | 值 | 说明                                     |
 | ---------------------- | - | ---------------------------------------- |
-| Default       | 0 | 默认加载样式。API version 8及以后不支持设置。            |
-| Circular      | 1 | 环形加载样式。API version 8及以后不支持设置。            |
-| Orbital       | 2 | 彗星形加载样式。API version 8及以后默认为彗星形样式。         |
+| Default       | - | 默认加载样式。API version 8及以后不支持设置。            |
+| Circular      | - | 环形加载样式。API version 8及以后不支持设置。            |
+| Orbital       | - | 彗星形加载样式。API version 8及以后默认为彗星形样式。         |
 
 ## 示例
 

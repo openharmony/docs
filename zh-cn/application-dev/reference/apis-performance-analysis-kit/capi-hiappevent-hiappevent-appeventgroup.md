@@ -1,5 +1,12 @@
 # HiAppEvent_AppEventGroup
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @liujiaxing2024-->
+<!--Designer: @junjie_shi-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## 概述
 
 一组事件信息，包含事件组的名称，按名称分组的单个事件信息数组，事件数组的长度。

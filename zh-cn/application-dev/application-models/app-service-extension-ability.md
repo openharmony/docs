@@ -1,9 +1,15 @@
 # 使用AppServiceExtensionAbility组件实现后台服务
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yewei0794-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 ## 概述
 
-从API version 20开始，支持开发者使用[AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)组件，为应用提供后台服务能力，其他三方应用可通过启动或连接该AppServiceExtensionAbility组件获取相应的服务。例如，用于保障网络安全的企业EDR软件，或者管理设备的企业MDM软件等。
-
+从API version 20开始，支持开发者使用[AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)组件，为应用提供后台服务能力，其他三方应用可通过启动或连接该AppServiceExtensionAbility组件获取相应的服务。
+例如企业部署的数据防泄漏 (DLP) 软件，要具备无界面长期运行，持续监听文件操作、网络流量及拦截违规行为的能力，就需要使用AppServiceExtensionAbility组件来实现其核心的后台监控服务。
 > **说明**
 >
 >本文将被启动或被连接的AppServiceExtensionAbility组件为服务端，将启动或连接AppServiceExtensionAbility组件的应用组件（当前仅支持UIAbility）称为客户端。
@@ -12,21 +18,21 @@
 
 ### 设备限制
 
-本AppServiceExtensionAbility组件当前仅支持2in1设备。
+AppServiceExtensionAbility组件当前仅支持2in1设备。
 
 ### 规格限制
 
-- 应用集成AppServiceExtensionAbility组件需要申请ACL权限（ohos.permission.SUPPORT_APP_SERVICE_EXTENSION）。该ACL权限当前只对[企业普通应用](../security/AccessToken/permissions-for-enterprise-apps.md)开放申请。
+- 应用集成AppServiceExtensionAbility组件需要申请ACL权限（ohos.permission.SUPPORT_APP_SERVICE_EXTENSION）。该ACL权限当前只对[企业普通应用](ability-terminology.md#enterprisenormalappliactions企业普通应用)开放申请。
 
 - AppServiceExtensionAbility组件内不支持调用[window](../reference/apis-arkui/arkts-apis-window.md)相关API。
 
-## 相关实例
+## 运作机制
 
 - 开发者可以在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)中以[启动](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)或[连接](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20)的方式来拉起AppServiceExtensionAbility组件。
 
 - 如果[AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)实例未启动，接口调用方必须为AppServiceExtensionAbility所属应用或者在AppServiceExtensionAbility支持的应用清单（即[extensionAbilities标签](../quick-start/module-configuration-file.md#extensionabilities标签)的appIdentifierAllowList属性）中的应用。
 
-下表展示了拉起和连接的几种场景
+下表展示了拉起和连接的几种场景：
 
 | 客户端操作 | 服务端状态 | 客户端是否配置在服务端appIdentifierAllowList中 | 拉起结果 | 说明 |
 | --------- | --------- | -------------------------------------------- | ------- | ---- |

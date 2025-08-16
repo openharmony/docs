@@ -1,0 +1,36 @@
+# Ability Kit术语
+
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @ccllee1-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+## A
+
+### AbilityStage
+
+[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)是一个[Module](../quick-start/application-package-overview.md#应用的多module设计机制)级别的组件管理器。
+
+## C
+
+### CandidateMasterProcess（备选主控进程）
+
+当应用存在多个进程时，系统会在应用启动时自动指定主控进程。如果开发者希望当前进程被选为主控进程，可以将其放入备选主控进程列表中，该列表中的进程即为备选主控进程。当现在的主控进程销毁后，系统会将位于链表首节点的备选主控进程设置为主控进程。
+
+## E
+
+### EnterpriseNormalAppliactions（企业普通应用）
+
+企业普通应用指的是由企业开发者（而非操作系统核心开发者或普通合作伙伴）开发，面向企业用户或员工，用于完成特定业务功能（如办公协作、客户关系管理、内部流程审批、行业专用工具等）的第三方应用程序。
+
+仅在企业定制设备运行，不会在普通消费者设备上运行。
+
+## M
+
+### MasterProcess（主控进程）
+
+当应用存在多个进程时，如果开发者需要将不同的Ability实例动态分配给指定进程，系统会在应用启动时自动指定一个进程来负责总体的协调分配工作，该进程即为主控进程。默认情况下，系统指定应用启动的第一个进程为主控进程。
+
+开发者可以设置[onNewProcessRequest](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onnewprocessrequest11)的返回值，让主控进程通过接收该接口的回调信息，决定新的Ability实例运行在哪个进程中。

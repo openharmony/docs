@@ -1,4 +1,10 @@
 # ProcessInformation
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @SKY2001-->
+<!--Designer: @yzkp-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 ProcessInformation模块提供对进程运行信息进行查询的能力。
 

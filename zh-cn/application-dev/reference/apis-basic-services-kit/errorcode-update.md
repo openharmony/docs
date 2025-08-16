@@ -2,8 +2,9 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Update-->
 <!--Owner: @RainyDay_005; @huangsiping3-->
-<!--SE: @zhangzhengxue;@jackd320-->
-<!--TSE: @mamba-ting-->
+<!--Designer: @zhangzhengxue; @jackd320-->
+<!--Tester: @mamba-ting-->
+<!--Adviser: @zhang_yixin13-->
 
 > **说明：**
 >

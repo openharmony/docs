@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @zjsxstar-->
-<!--SE: @sunbees-->
-<!--TSE: @liuli0427-->
+<!--Designer: @sunbees-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 <!--deprecated_code_no_check-->
 
 提供XComponent节点XComponentNode，表示组件树中的[XComponent组件](arkui-ts/ts-basic-components-xcomponent.md)，用于[EGL](../native-lib/egl.md)/[OpenGLES](../native-lib/opengles.md)和媒体数据写入，并支持动态修改节点渲染类型。
@@ -82,7 +83,7 @@ changeRenderType(type: NodeRenderType): boolean
 
 **返回值：**
 
-| 类型 | 描述                   |
+| 类型 | 说明                   |
 | ---- | ---------------------- |
 | boolean | 修改渲染类型是否成功。<br/>true：修改渲染类型成功；false：修改渲染类型失败。 |
 

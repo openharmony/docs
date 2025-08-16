@@ -1,5 +1,14 @@
 # Controlling and Managing ArkGraphics 3D Scene Animations
-Animations, an important resource type in a 3D scene, is used to control the motion of elements in the scene. For example, to simulate a scene where a person walks, it is difficult to calculate and set the rotation angle of every joint of the person in each frame. When making such an animation, the resource producer saves key frame data of the animation and the interpolator type between key frames in a model file. ArkGraphics 3D provides APIs for you to play and control animations to achieve the expected rendering effect in the scene.
+<!--Kit: ArkGraphics 3D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @zzhao0-->
+<!--SE: @zdustc-->
+<!--TSE: @zhangyue283-->
+
+Animations, an important resource type in a 3D scene, is used to control the motion of elements in the scene. For example, to simulate a scene where a person walks, it is difficult to calculate and set the rotation angle of every joint of the person in each frame. When making such an animation, the resource producer saves key frame data of the animation and the interpolator type between key frames in a model file.
+
+ArkGraphics 3D provides APIs for you to play and control animations to achieve the expected rendering effect in the scene.
+
 
 ## Creating Animation Resources
 Animation resources are made and saved to model files by model resource producers when they make the model. ArkGraphics 3D provides the capability of extracting and playing animations from glTF model resources.
@@ -8,7 +17,8 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function createAnimation() : void {
-  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  // Load scene resources, which supports .gltf and .glb formats. The path and file name can be customized based on the specific project resources.
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {
     if (result) {
       // Obtain animation resources.
@@ -17,6 +27,7 @@ function createAnimation() : void {
   });
 }
 ```
+
 
 ## Controlling the Animation Status
 ArkGraphics 3D provides the following APIs to control the animation status:
@@ -32,7 +43,8 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function animationControl() : void {
-  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  // Load scene resources, which supports .gltf and .glb formats. The path and file name can be customized based on the specific project resources.
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {
     if (result) {
       let anim: Animation = result.animations[0];
@@ -47,8 +59,8 @@ function animationControl() : void {
 }
 ```
 
-## Using Animation Callbacks
 
+## Using Animation Callbacks
 An animation callback function is triggered when an animation enters a certain state. You can perform logic control based on the animation state. ArkGraphics 3D provides the following callback functions:
 - **onStarted()**: called when an animation starts to play. The start operation is triggered by calling **start** or **restart**.
 - **onFinished()**: called when an animation playback is complete or the **finish** API is called.
@@ -59,7 +71,8 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function callBacks() : void {
-  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  // Load scene resources, which supports .gltf and .glb formats. The path and file name can be customized based on the specific project resources.
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {
     if (result) {
       let anim: Animation = result.animations[0];

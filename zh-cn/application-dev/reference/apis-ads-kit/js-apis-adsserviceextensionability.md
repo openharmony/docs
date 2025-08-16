@@ -1,5 +1,12 @@
 # @ohos.advertising.AdsServiceExtensionAbility (广告扩展服务)
 
+<!--Kit: Ads Kit-->
+<!--Subsystem: Advertising-->
+<!--Owner: @SukiEvas-->
+<!--Designer: @zhansf1988-->
+<!--Tester: @hongmei_may-->
+<!--Adviser: @RayShih-->
+
 本模块为设备厂商提供广告扩展能力，设备厂商可自主实现请求广告的回调。
 
 > **说明：**<br/>
@@ -33,19 +40,9 @@ import { RespCallback } from '@kit.AdsKit';
 import { advertising, RespCallback } from '@kit.AdsKit';
 
 function setRespCallback(respCallback: RespCallback) {
-    const ads: Array<advertising.Advertisement> = [];
-    const rewardVerifyConfig: Map<string, string> = new Map();
-    ads.push({
-        adType: 7,
-        uniqueId: '111111',
-        rewardVerifyConfig: rewardVerifyConfig,
-        rewarded: false,
-        shown: false,
-        clicked: false
-    })
-    const slot: string = 'test';
-    const respData: Map<string, Array<advertising.Advertisement>> = new Map();
-    respData.set(slot, ads);
-    respCallback(respData);
+  const respData: Map<string, Array<advertising.Advertisement>> = new Map();
+  // 设置广告返回数据
+  // ...
+  respCallback(respData);
 }
 ```

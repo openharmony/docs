@@ -1,4 +1,9 @@
 # Persisting Temporary Permissions (ArkTS)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @lvzhenjie; @hongjin-li_admin-->
+<!--SE: @chenxi0605; @JerryH1011-->
+<!--TSE: @leiyuqian-->
 
 ## When to Use
 
@@ -60,10 +65,11 @@ async function persistPermissionExample() {
 }
 ```
 
-**NOTE**
+> **NOTE**
+>
 > - You are advised to save the URI of the file with persistent permission for the related application locally to facilitate the subsequent activation.
 > - The permission persistence data is also stored in the system database. After the application or device is restarted, the persistent permission can be used only after being activated. For details, see [Activating a Persistent Permission](#activating-a-persistent-permission-for-accessing-a-file-or-folder).
-> - The APIs used for persisting permissions are available only for 2-in-1 devices. You can use **canIUse()** to check whether the device has the required system capability. The caller must also have the required permissions.
+> - Before persisting permissions, use **canIUse()** to check whether the device has the required system capability and permission.
 > - When an application is uninstalled, all the permission authorization data will be deleted. After the application is reinstalled, re-authorization is required.
 
 For details about how to persist a temporary permission using C/C++ APIs, see [OH_FileShare_PersistPermission](native-fileshare-guidelines.md).
@@ -107,10 +113,11 @@ async function revokePermissionExample() {
 }
 ```
 
-**NOTE**
+> **NOTE**
+>
 > - The URI in the example comes from the permission persistence data stored for the application.
 > - You are advised to activate the persistent permissions based on service requirements. Do not activate all persistent permissions.
-> - The APIs used for persisting permissions are available only for 2-in-1 devices. You can use **canIUse()** to check whether the device has the required system capability. The caller must also have the required permissions.
+> - Before persisting permissions, use **canIUse()** to check whether the device has the required system capability and permission.
 
 For details about how to revoke a persistent permission using C/C++ APIs, see [OH_FileShare_RevokePermission](native-fileshare-guidelines.md).
 
@@ -158,10 +165,11 @@ async function activatePermissionExample() {
 }
 ```
 
-**NOTE**
+> **NOTE**
+>
 > - The URI in the example comes from the permission persistence data stored for the application.
 > - You are advised to activate the persistent permissions based on service requirements. Do not activate all persistent permissions.
 > - If the activation fails because the permission has not been persisted, persist the permission first.
-> - The APIs used for persisting permissions are available only for 2-in-1 devices. You can use **canIUse()** to check whether the device has the required system capability. The caller must also have the required permissions.
+> - Before persisting permissions, use **canIUse()** to check whether the device has the required system capability and permission.
 
 For details about how to activate a persistent permission using C/C++ APIs, see [OH_FileShare_ActivatePermission](native-fileshare-guidelines.md).

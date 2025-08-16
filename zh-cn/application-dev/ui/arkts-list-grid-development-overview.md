@@ -3,8 +3,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @yylong; @zcdqs-->
-<!--SE: @yylong; @zcdqs-->
-<!--TSE: @liuzhenshuo-->
+<!--Designer: @yylong; @zcdqs-->
+<!--Tester: @liuzhenshuo-->
+<!--Adviser: @HelloCrease-->
 
 许多应用存在滚动展示同类项目集合的需求，例如显示图片、视频、音乐、新闻、商品等。此类场景可以根据项目排列方式分别选择[List](arkts-layout-development-create-list.md)、[Grid](arkts-layout-development-create-grid.md)、[WaterFlow](arkts-layout-development-create-waterflow.md)实现，在圆形屏幕推荐使用[ArcList](arkts-layout-development-create-arclist.md)。
 
@@ -46,8 +47,8 @@ List适合单列和多列宽度相同的场景，如通讯录、音乐列表、�
 |---------|---------|---------|---------|---------|
 |滚动通用能力|支持|支持|支持|支持|
 |项目分组|[ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md)|[GridLayoutOptions](../reference/apis-arkui/arkui-ts/ts-container-grid.md#gridlayoutoptions10对象说明)|[WaterFlowSections](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md#waterflowoptions对象说明)|不支持|
-|指定项目吸顶|[支持](../reference/apis-arkui/arkui-ts/ts-container-list.md#sticky9)|不支持|不支持|不支持|
-|项目拖拽排序|[支持](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-sorting.md)，包括内置动画和拖动到边缘自动滚动|仅所有项目都占1行1列时[支持内置动画](../reference/apis-arkui/arkui-ts/ts-container-grid.md#supportanimation8)，且不支持拖动到边缘自动滚动|不支持|不支持|
-|项目横滑|[支持](../reference/apis-arkui/arkui-ts/ts-container-listitem.md#swipeaction9)|不支持|不支持|不支持|
+|指定项目吸顶|支持通过[sticky](../reference/apis-arkui/arkui-ts/ts-container-list.md#sticky9)属性实现吸顶|不支持|不支持|不支持|
+|项目拖拽排序|支持[拖拽排序](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-sorting.md)，包括内置动画和拖动到边缘自动滚动|仅所有项目都占1行1列时[支持内置动画](../reference/apis-arkui/arkui-ts/ts-container-grid.md#supportanimation8)，且不支持拖动到边缘自动滚动|不支持|不支持|
+|项目横滑|支持通过[swipeAction](../reference/apis-arkui/arkui-ts/ts-container-listitem.md#swipeaction9)属性实现横滑|不支持|不支持|不支持|
 |项目间距|支持|支持|支持|支持|
 |项目分割线|支持|不支持|不支持|不支持|

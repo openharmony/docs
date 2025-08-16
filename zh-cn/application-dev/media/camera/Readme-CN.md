@@ -1,4 +1,10 @@
 # Camera Kit（相机服务）
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 - [Camera Kit简介](camera-overview.md)
 - [申请相机开发的权限](camera-preparation.md)
@@ -22,7 +28,7 @@
   - [相机基础动效(ArkTS)](camera-animation.md)
   - [在Worker线程中使用相机(ArkTS)](camera-worker.md)
   - [相机启动恢复实践(ArkTS)](camera-background-recovery.md)
-  - [自动切换摄像头实践(ArkTS)](camera_auto_switch.md)
+  - [自动切换摄像头实践(ArkTS)](camera-auto-switch.md)
   <!--Del-->
   - [高性能拍照(仅对系统应用开放)(ArkTS)](camera-deferred-photo.md)
   - [高性能拍照实践(仅对系统应用开放)(ArkTS)](camera-deferred-photo-case.md)

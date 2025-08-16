@@ -2,8 +2,9 @@
 <!--Kit: AVSession Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @ccfriend; @liao_qian-->
-<!--SE: @ccfriend-->
-<!--TSE: @chenmingxi1_huawei-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -198,7 +199,7 @@ import { image } from '@kit.ImageKit';
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
+let value = await resourceManager.getSysResourceManager().getRawFileContent('IMAGE_URI');
     let imageSource = await image.createImageSource(value.buffer);
     let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
     let calldata: avSession.CallMetadata = {
@@ -246,7 +247,7 @@ import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function setCallMetadata() {
-  let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
+  let value = await resourceManager.getSysResourceManager().getRawFileContent('IMAGE_URI');
   let imageSource = await image.createImageSource(value.buffer);
   let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
   let calldata: avSession.CallMetadata = {
@@ -785,7 +786,7 @@ import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function setAVQueueItems() {
-  let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
+  let value = await resourceManager.getSysResourceManager().getRawFileContent('IMAGE_URI');
   let imageSource = await image.createImageSource(value.buffer);
   let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
   let queueItemDescription_1: avSession.AVMediaDescription = {
@@ -854,7 +855,7 @@ import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function setAVQueueItems() {
-  let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
+  let value = await resourceManager.getSysResourceManager().getRawFileContent('IMAGE_URI');
   let imageSource = await image.createImageSource(value.buffer);
   let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
   let queueItemDescription_1: avSession.AVMediaDescription = {

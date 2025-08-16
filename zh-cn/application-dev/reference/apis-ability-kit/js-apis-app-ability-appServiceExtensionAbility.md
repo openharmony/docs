@@ -1,4 +1,10 @@
 # @ohos.app.ability.AppServiceExtensionAbility (应用后台服务扩展组件)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yewei0794-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 AppServiceExtensionAbility模块提供后台服务相关扩展能力，包括后台服务的创建、销毁、连接、断开等生命周期回调。
 
@@ -113,10 +119,7 @@ onDestroy(): void
 
 onRequest(want: Want, startId: number): void
 
-调用方使用[startAppServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)拉起AppServiceExtensionAbility实例时，系统会触发该回调。
-
-- 如果该实例已创建，调用方重复调用，系统会重复回调[onRequest()](#onrequest)接口。
-- 如果该实例此前未被创建，则会先创建实例并触发[onCreate()](#oncreate)回调，再回调该接口。
+调用方每次使用[startAppServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)拉起AppServiceExtensionAbility实例时，系统都会触发该回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -146,10 +149,8 @@ onRequest(want: Want, startId: number): void
 
 onConnect(want: Want): rpc.RemoteObject
 
-当AppServiceExtensionAbility组件实例第一次被连接时触发。
+当AppServiceExtensionAbility组件实例被连接时触发。
 
-- 如果该实例已创建，则会直接回调该接口。
-- 如果该实例此前未被创建，则会先创建实例并触发[onCreate()](#oncreate)回调，再回调该接口。
 
 应用需要在该接口中返回一个RemoteObject对象，用于客户端和服务端进行通信。当AppServiceExtensionAbility实例处于连接状态时，如果调用方发起新的连接，系统会返回缓存的RemoteObject对象，而不会重复回调[onConnect()](#onconnect)接口。
 

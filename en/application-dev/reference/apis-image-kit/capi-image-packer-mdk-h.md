@@ -1,8 +1,13 @@
 # image_packer_mdk.h
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 ## Overview
 
-The **image_packer_mdk.h** file declares the APIs used to pack an image or a PixelMap into a buffer or file.
+The file declares the APIs used to pack an image or a PixelMap into a buffer or file.
 
 The packing process is as follows:
 

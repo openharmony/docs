@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiyujia926-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 为了实现子组件向父组件要求更新\@Param装饰变量的能力，开发者可以使用\@Event装饰器。使用\@Event装饰回调方法是一种规范，表明子组件需要传入更新数据源的回调。
 
@@ -12,8 +13,9 @@
 
 >**说明：**
 >
->从API version 12开始，在\@ComponentV2装饰的自定义组件中支持使用\@Event装饰器。
+> 从API version 12开始，在\@ComponentV2装饰的自定义组件中支持使用\@Event装饰器。
 >
+> 从API version 12开始，该装饰器支持在原子化服务中使用。
 
 ## 概述
 
