@@ -28,9 +28,9 @@ async function create(context: Context) {
     securityLevel: relationalStore.SecurityLevel.S1,
   };
 
-  // 默认数据库文件路径为 context.databaseDir + rdb + StoreConfig.name
+  // 默认数据库文件路径为 context.databaseDir + "/rdb/" + StoreConfig.name
   let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
-  console.info(`Create Store.db successfully!`);
+  console.info('Create Store.db successfully!');
 
   // 创建表
   const CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS test (" +
@@ -40,7 +40,7 @@ async function create(context: Context) {
     "salary REAL, " +
     "blobType BLOB)";
   await store.executeSql(CREATE_TABLE_SQL);
-  console.info(`Create table test successfully!`);
+  console.info('Create table test successfully!');
 }
 
 @Concurrent
@@ -50,9 +50,9 @@ async function insert(context: Context, valueBucketArray: Array<relationalStore.
     securityLevel: relationalStore.SecurityLevel.S1,
   };
 
-  // 默认数据库文件路径为 context.databaseDir + rdb + StoreConfig.name
+  // 默认数据库文件路径为 context.databaseDir + "/rdb/" + StoreConfig.name
   let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
-  console.info(`Create Store.db successfully!`);
+  console.info('Create Store.db successfully!');
 
   // 数据插入
   await store.batchInsert("test", valueBucketArray as Object as Array<relationalStore.ValuesBucket>);
@@ -65,35 +65,35 @@ async function query(context: Context): Promise<Array<relationalStore.ValuesBuck
     securityLevel: relationalStore.SecurityLevel.S1,
   };
 
-  // 默认数据库文件路径为 context.databaseDir + rdb + StoreConfig.name
+  // 默认数据库文件路径为 context.databaseDir + "/rdb/" + StoreConfig.name
   let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
-  console.info(`Create Store.db successfully!`);
+  console.info('Create Store.db successfully!');
 
-  // 获取结果集
+  // 获取用于查询的谓词
   let predicates: relationalStore.RdbPredicates = new relationalStore.RdbPredicates("test");
   // 查询所有数据
   let resultSet = await store.query(predicates);
   console.info(`Query data successfully! row count:${resultSet.rowCount}`);
   let index = 0;
-  let result = new Array<relationalStore.ValuesBucket>(resultSet.rowCount)
-  resultSet.goToFirstRow()
+  let result = new Array<relationalStore.ValuesBucket>(resultSet.rowCount);
+  resultSet.goToFirstRow();
   do {
-    result[index++] = resultSet.getRow()
+    result[index++] = resultSet.getRow();
   } while (resultSet.goToNextRow());
   resultSet.close();
-  return result
+  return result;
 }
 
 @Concurrent
-async function clear(context: Context) {
+async function deleteStore(context: Context) {
   const CONFIG: relationalStore.StoreConfig = {
     name: "Store.db",
     securityLevel: relationalStore.SecurityLevel.S1,
   };
 
-  // 默认数据库文件路径为 context.databaseDir + rdb + StoreConfig.name
+  // 默认数据库文件路径为 context.databaseDir + "/rdb/" + StoreConfig.name
   await relationalStore.deleteRdbStore(context, CONFIG);
-  console.info(`Delete Store.db successfully!`);
+  console.info('Delete Store.db successfully!');
 }
 
 @Entry
@@ -115,29 +115,29 @@ struct Index {
           let context : Context = this.getUIContext().getHostContext() as Context;
 
           // 数据准备
-          const count = 5
+          const count = 5;
           let valueBucketArray = new Array<relationalStore.ValuesBucket>(count);
           for (let i = 0; i < count; i++) {
-            let v : relationalStore.ValuesBucket = {
+            let value : relationalStore.ValuesBucket = {
               id: i,
               name: "zhangsan" + i,
               age: 20,
               salary: 5000 + 50 * i
             };
-            valueBucketArray[i] = v;
+            valueBucketArray[i] = value;
           }
-          await taskpool.execute(create, context)
-          await taskpool.execute(insert, context, valueBucketArray)
-          let index = 0
-          let ret = await taskpool.execute(query, context) as Array<relationalStore.ValuesBucket>
-          for (let v of ret) {
-            console.info(`Row[${index}].id = ${v.id}`)
-            console.info(`Row[${index}].name = ${v.name}`)
-            console.info(`Row[${index}].age = ${v.age}`)
-            console.info(`Row[${index}].salary = ${v.salary}`)
-            index++
+          await taskpool.execute(create, context);
+          await taskpool.execute(insert, context, valueBucketArray);
+          let index = 0;
+          let resultSet = await taskpool.execute(query, context) as Array<relationalStore.ValuesBucket>;
+          for (let value of resultSet) {
+            console.info(`Row[${index}].id = ${value.id}`);
+            console.info(`Row[${index}].name = ${value.name}`);
+            console.info(`Row[${index}].age = ${value.age}`);
+            console.info(`Row[${index}].salary = ${value.salary}`);
+            index++;
           }
-          await taskpool.execute(clear, context)
+          await taskpool.execute(deleteStore, context);
         })
     }
     .height('100%')
@@ -169,11 +169,11 @@ struct Index {
      age: number = 0
      salary: number = 0
    
-     constructor(v: IValueBucket) {
-       this.id = v.id;
-       this.name = v.name;
-       this.age = v.age;
-       this.salary = v.salary
+     constructor(value: IValueBucket) {
+       this.id = value.id;
+       this.name = value.name;
+       this.age = value.age;
+       this.salary = value.salary
      }
    }
    ```
@@ -194,9 +194,9 @@ struct Index {
        securityLevel: relationalStore.SecurityLevel.S1,
      };
    
-     // 默认数据库文件路径为 context.databaseDir + rdb + StoreConfig.name
+     // 默认数据库文件路径为 context.databaseDir + "/rdb/" + StoreConfig.name
      let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
-     console.info(`Create Store.db successfully!`);
+     console.info('Create Store.db successfully!');
    
      // 创建表
      const CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS test (" +
@@ -206,7 +206,7 @@ struct Index {
        "salary REAL, " +
        "blobType BLOB)";
      await store.executeSql(CREATE_TABLE_SQL);
-     console.info(`Create table test successfully!`);
+     console.info('Create table test successfully!');
    }
    
    @Concurrent
@@ -216,9 +216,9 @@ struct Index {
        securityLevel: relationalStore.SecurityLevel.S1,
      };
    
-     // 默认数据库文件路径为 context.databaseDir + rdb + StoreConfig.name
+     // 默认数据库文件路径为 context.databaseDir + "/rdb/" + StoreConfig.name
      let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
-     console.info(`Create Store.db successfully!`);
+     console.info('Create Store.db successfully!');
    
      // 数据插入
      await store.batchInsert("test", valueBucketArray as Object as Array<ValuesBucket>);
@@ -231,41 +231,41 @@ struct Index {
        securityLevel: relationalStore.SecurityLevel.S1,
      };
    
-     // 默认数据库文件路径为 context.databaseDir + rdb + StoreConfig.name
+     // 默认数据库文件路径为 context.databaseDir + "/rdb/" + StoreConfig.name
      let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
-     console.info(`Create Store.db successfully!`);
+     console.info('Create Store.db successfully!');
    
-     // 获取结果集
+     // 获取用于查询的谓词
      let predicates: relationalStore.RdbPredicates = new relationalStore.RdbPredicates("test");
      // 查询所有数据
      let resultSet = await store.query(predicates);
      console.info(`Query data successfully! row count:${resultSet.rowCount}`);
      let index = 0;
-     let result = collections.Array.create<SharedValuesBucket | undefined>(resultSet.rowCount, undefined)
-     resultSet.goToFirstRow()
+     let result = collections.Array.create<SharedValuesBucket | undefined>(resultSet.rowCount, undefined);
+     resultSet.goToFirstRow();
      do {
-       let v: IValueBucket = {
+       let value: IValueBucket = {
          id: resultSet.getLong(resultSet.getColumnIndex("id")),
          name: resultSet.getString(resultSet.getColumnIndex("name")),
          age: resultSet.getLong(resultSet.getColumnIndex("age")),
          salary: resultSet.getLong(resultSet.getColumnIndex("salary"))
        };
-       result[index++] = new SharedValuesBucket(v)
+       result[index++] = new SharedValuesBucket(value);
      } while (resultSet.goToNextRow());
      resultSet.close();
-     return result
+     return result;
    }
    
    @Concurrent
-   async function clear(context: Context) {
+   async function deleteStore(context: Context) {
      const CONFIG: relationalStore.StoreConfig = {
        name: "Store.db",
        securityLevel: relationalStore.SecurityLevel.S1,
      };
    
-     // 默认数据库文件路径为 context.databaseDir + rdb + StoreConfig.name
+     // 默认数据库文件路径为 context.databaseDir + "/rdb/" + StoreConfig.name
      await relationalStore.deleteRdbStore(context, CONFIG);
-     console.info(`Delete Store.db successfully!`);
+     console.info('Delete Store.db successfully!');
    }
    
    @Entry
@@ -287,30 +287,30 @@ struct Index {
              let context : Context = this.getUIContext().getHostContext() as Context;
    
              // 数据准备
-             const count = 5
+             const count = 5;
              let valueBucketArray = collections.Array.create<SharedValuesBucket | undefined>(count, undefined);
              for (let i = 0; i < count; i++) {
-               let v: IValueBucket = {
+               let value : IValueBucket = {
                  id: i,
                  name: "zhangsan" + i,
                  age: 20,
                  salary: 5000 + 50 * i
                };
-               valueBucketArray[i] = new SharedValuesBucket(v);
+               valueBucketArray[i] = new SharedValuesBucket(value);
              }
-             await taskpool.execute(create, context)
-             await taskpool.execute(insert, context, valueBucketArray)
-             let index = 0
-             let ret: collections.Array<SharedValuesBucket> =
-               await taskpool.execute(query, context) as collections.Array<SharedValuesBucket>
-             for (let v of ret.values()) {
-               console.info(`Row[${index}].id = ${v.id}`)
-               console.info(`Row[${index}].name = ${v.name}`)
-               console.info(`Row[${index}].age = ${v.age}`)
-               console.info(`Row[${index}].salary = ${v.salary}`)
-               index++
+             await taskpool.execute(create, context);
+             await taskpool.execute(insert, context, valueBucketArray);
+             let index = 0;
+             let resultSet: collections.Array<SharedValuesBucket> =
+               await taskpool.execute(query, context) as collections.Array<SharedValuesBucket>;
+             for (let value of resultSet.values()) {
+               console.info(`Row[${index}].id = ${value.id}`);
+               console.info(`Row[${index}].name = ${value.name}`);
+               console.info(`Row[${index}].age = ${value.age}`);
+               console.info(`Row[${index}].salary = ${value.salary}`);
+               index++;
              }
-             await taskpool.execute(clear, context)
+             await taskpool.execute(deleteStore, context);
            })
        }
        .height('100%')
@@ -344,11 +344,11 @@ struct Index {
      age: number = 0;
      salary: number = 0;
    
-     constructor(v: IValueBucket) {
-       this.id = v.id;
-       this.name = v.name;
-       this.age = v.age;
-       this.salary = v.salary;
+     constructor(value: IValueBucket) {
+       this.id = value.id;
+       this.name = value.name;
+       this.age = value.age;
+       this.salary = value.salary;
      }
    }
    ```
@@ -398,9 +398,9 @@ struct Index {
        securityLevel: relationalStore.SecurityLevel.S1,
      };
 
-     // 默认数据库文件路径为 context.databaseDir + rdb + StoreConfig.name
+     // 默认数据库文件路径为 context.databaseDir + "/rdb/" + StoreConfig.name
      let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
-     console.info(`Create Store.db successfully!`);
+     console.info('Create Store.db successfully!');
 
      // 创建表
      const CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS test (" +
@@ -410,7 +410,7 @@ struct Index {
        "salary REAL, " +
        "blobType BLOB)";
      await store.executeSql(CREATE_TABLE_SQL);
-     console.info(`Create table test successfully!`);
+     console.info('Create table test successfully!');
    }
 
    @Concurrent
@@ -420,9 +420,9 @@ struct Index {
        securityLevel: relationalStore.SecurityLevel.S1,
      };
 
-     // 默认数据库文件路径为 context.databaseDir + rdb + StoreConfig.name
+     // 默认数据库文件路径为 context.databaseDir + "/rdb/" + StoreConfig.name
      let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
-     console.info(`Create Store.db successfully!`);
+     console.info('Create Store.db successfully!');
 
      // 数据插入
      await store.batchInsert("test", valueBucketArray as Object as Array<ValuesBucket>);
@@ -435,55 +435,55 @@ struct Index {
        securityLevel: relationalStore.SecurityLevel.S1,
      };
 
-     // 默认数据库文件路径为 context.databaseDir + rdb + StoreConfig.name
+     // 默认数据库文件路径为 context.databaseDir + "/rdb/" + StoreConfig.name
      let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
-     console.info(`Create Store.db successfully!`);
+     console.info('Create Store.db successfully!');
 
-     // 获取结果集
+     // 获取用于查询的谓词
      let predicates: relationalStore.RdbPredicates = new relationalStore.RdbPredicates("test");
      // 查询所有数据
      let resultSet = await store.query(predicates);
      console.info(`Query data successfully! row count:${resultSet.rowCount}`);
      let index = 0;
-     let result = collections.Array.create<SharedValuesBucket | undefined>(resultSet.rowCount, undefined)
-     resultSet.goToFirstRow()
+     let result = collections.Array.create<SharedValuesBucket | undefined>(resultSet.rowCount, undefined);
+     resultSet.goToFirstRow();
      do {
-       let v: IValueBucket = {
+       let value: IValueBucket = {
          id: resultSet.getLong(resultSet.getColumnIndex("id")),
          name: resultSet.getString(resultSet.getColumnIndex("name")),
          age: resultSet.getLong(resultSet.getColumnIndex("age")),
          salary: resultSet.getLong(resultSet.getColumnIndex("salary"))
        };
-       result[index++] = new SharedValuesBucket(v)
+       result[index++] = new SharedValuesBucket(value);
      } while (resultSet.goToNextRow());
      resultSet.close();
-     return result
+     return result;
    }
 
    @Concurrent
-   async function clear(context: Context) {
+   async function deleteStore(context: Context) {
      const CONFIG: relationalStore.StoreConfig = {
        name: "Store.db",
        securityLevel: relationalStore.SecurityLevel.S1,
      };
 
-     // 默认数据库文件路径为 context.databaseDir + rdb + StoreConfig.name
+     // 默认数据库文件路径为 context.databaseDir + "/rdb/" + StoreConfig.name
      await relationalStore.deleteRdbStore(context, CONFIG);
-     console.info(`Delete Store.db successfully!`);
+     console.info('Delete Store.db successfully!');
    }
 
    function initMaterial() : Material {
      // 数据准备
-     const count = 5
+     const count = 5;
      let valueBucketArray = collections.Array.create<SharedValuesBucket | undefined>(count, undefined);
      for (let i = 0; i < count; i++) {
-       let v: IValueBucket = {
+       let value: IValueBucket = {
          id: i,
          name: "zhangsan" + i,
          age: 20,
          salary: 5000 + 50 * i
        };
-       valueBucketArray[i] = new SharedValuesBucket(v);
+       valueBucketArray[i] = new SharedValuesBucket(value);
      }
      let material = new Material(1, "test", valueBucketArray);
      return material;
@@ -510,17 +510,17 @@ struct Index {
              await taskpool.execute(create, context);
              await taskpool.execute(insert, context, material.getBuckets());
              let index = 0;
-             let ret: collections.Array<SharedValuesBucket> =
+             let resultSet: collections.Array<SharedValuesBucket> =
                await taskpool.execute(query, context) as collections.Array<SharedValuesBucket>;
-             material.setBuckets(ret);
-             for (let v of ret.values()) {
-               console.info(`Row[${index}].id = ${v.id}`);
-               console.info(`Row[${index}].name = ${v.name}`);
-               console.info(`Row[${index}].age = ${v.age}`);
-               console.info(`Row[${index}].salary = ${v.salary}`);
+             material.setBuckets(resultSet);
+             for (let value of resultSet.values()) {
+               console.info(`Row[${index}].id = ${value.id}`);
+               console.info(`Row[${index}].name = ${value.name}`);
+               console.info(`Row[${index}].age = ${value.age}`);
+               console.info(`Row[${index}].salary = ${value.salary}`);
                index++;
              }
-             await taskpool.execute(clear, context);
+             await taskpool.execute(deleteStore, context);
            })
        }
        .height('100%')
