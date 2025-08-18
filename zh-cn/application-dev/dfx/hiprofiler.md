@@ -33,13 +33,13 @@ Hiprofiler工具对标业界调优工具，并提供更多能力，比如[跨语
 
 1. PC端通过DevEco/Smartperf调用hiprofiler_cmd命令行工具；
 
-2. hiprofiler_cmd进程拉起hiprofilerd调优服务，以及hiprofiler_plugins插件进程；
+2. hiprofiler_cmd进程拉起hiprofilerd调优服务和hiprofiler_plugins插件进程；
 
 3. hiprofiler_plugins开启对应插件，获取到的调优数据汇总至hiprofilerd进程；
 
 4. hiprofilerd进程将调优数据以proto格式储存到文件，或者实时返回给PC端；
 
-5. PC端解析数据，生成泳道，展示获取到的调优数据。
+5. PC端解析数据，生成泳道，展示调优数据。
 
 ![zh-cn_image_0000002381835609](figures/zh-cn_image_0000002381835609.png)
 
@@ -86,7 +86,7 @@ CONFIG
 | -t | 设置调优持续时间，单位：s。 | 
 
 
-输入完hiprofiler_cmd参数后，需要输入插件配置信息，以&lt;&lt;CONFIG开头，CONFIG结尾，中间内容以json格式输入。
+输入完hiprofiler_cmd参数后，需要输入插件配置信息，以&lt;&lt;配置信息以CONFIG开头，CONFIG结尾，中间内容以json格式输入。
 
 
 以下是session config字段介绍：
@@ -109,7 +109,7 @@ plugin_configs字段介绍：
 | config_data | 插件具体参数。每个插件需要的参数不同，参考各插件proto定义。<br/>（代码路径：developtools/profiler/protos）。 | 
 
 
-生成的trace文件通过hdc file recv导到本地，然后上传到smartperf网站或者DevEco Studio进行解析。
+生成的trace文件通过hdc file recv命令导出到本地，然后上传到smartperf网站或者DevEco Studio进行解析。
 
 
 ## 支持插件列表
