@@ -69,7 +69,7 @@ Web组件的文本选中菜单是一种通过自定义元素实现的上下文�
         return true;// 用户自定义菜单选项返回true时点击后不关闭菜单，返回false时关闭菜单
       } else if (menuItem.id.equals(TextMenuItemId.of('customItem2'))){
         // 用户自定义行为
-        console.log("拦截 id：app.string.customItem2")
+        console.log("拦截 id：customItem2")
         return true;
       }
       return false;// 返回默认值false
