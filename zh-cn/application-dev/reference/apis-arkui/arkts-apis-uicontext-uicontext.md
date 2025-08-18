@@ -2893,7 +2893,7 @@ isFollowingSystemFontScale(): boolean
 
 **示例：**
 
-参考[configuration标签](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-configuration-file#configuration标签)，配置fontSizeScale的值。
+参考[configuration标签](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-configuration-file#configuration标签)，配置fontSizeScale的值为“followSystem”。
 ```ts
 @Entry
 @Component
@@ -2901,7 +2901,7 @@ struct Index {
   build() {
     Column() {
       Button('isFollowingSystemFontScale').onClick(() => {
-        console.info('isFollowingSystemFontScale', this.getUIContext().isFollowingSystemFontScale());
+        console.info('isFollowingSystemFontScale', this.getUIContext().isFollowingSystemFontScale()); // 输出为: isFollowingSystemFontScale true
       });
     }
   }
@@ -2926,7 +2926,7 @@ getMaxFontScale(): number
 
 **示例：**
 
-参考[configuration标签](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-configuration-file#configuration标签)，配置fontSizeMaxScale的值。
+参考[configuration标签](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-configuration-file#configuration标签)，配置fontSizeMaxScale的值为“1.75”。
 ```ts
 @Entry
 @Component
@@ -2934,7 +2934,7 @@ struct Index {
   build() {
     Column() {
       Button('getMaxFontScale').onClick(() => {
-        console.info('getMaxFontScale', this.getUIContext().getMaxFontScale().toFixed(2));
+        console.info('getMaxFontScale', this.getUIContext().getMaxFontScale().toFixed(2)); // 输出为: getMaxFontScale 1.75
       });
     }
   }
