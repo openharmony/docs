@@ -7,6 +7,8 @@
 > **说明：**
 >
 > 从API version 11开始使用。
+>
+> 从API version 12开始，wrapBuilder支持在原子化服务中使用。
 
 当@Builder方法赋值给变量或者数组后，在UI方法中无法使用。
 

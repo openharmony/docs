@@ -14,10 +14,10 @@
 
 ### 成员变量
 
-| 名称                                      | 描述 |
-|-----------------------------------------| -- |
-| uint32_t threadId                       | 线程ID。 |
-| double cpuUsage                         | 线程CPU使用率百分比。 |
+| 名称 | 描述 |
+| -- | -- |
+| uint32_t threadId | 线程ID。 |
+| double cpuUsage | 线程CPU使用率百分比。 |
 | struct [HiDebug_ThreadCpuUsage](capi-hidebug-hidebug-threadcpuusage.md) *next | 下一个线程的使用率信息。 |
 
 

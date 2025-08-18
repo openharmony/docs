@@ -23,15 +23,15 @@
 
     ```ts
     function isTorchSupported(cameraManager: camera.CameraManager) : boolean {
-        let torchSupport: boolean = false;
-        try {
-            torchSupport = cameraManager.isTorchSupported();
-        } catch (error) {
-            let err = error as BusinessError;
-            console.error('Failed to torch. errorCode = ' + err.code);
-        }
-        console.info('Returned with the torch support status:' + torchSupport);
-        return torchSupport;
+      let torchSupport: boolean = false;
+      try {
+        torchSupport = cameraManager.isTorchSupported();
+      } catch (error) {
+        let err = error as BusinessError;
+        console.error('Failed to torch. errorCode = ' + err.code);
+      }
+      console.info('Returned with the torch support status:' + torchSupport);
+      return torchSupport;
     }
     ```
 
@@ -39,14 +39,14 @@
 
     ```ts
     function isTorchModeSupported(cameraManager: camera.CameraManager, torchMode: camera.TorchMode) : boolean {
-        let isTorchModeSupport: boolean = false;
-        try {
-            isTorchModeSupport = cameraManager.isTorchModeSupported(torchMode);
-        } catch (error) {
-            let err = error as BusinessError;
-            console.error('Failed to set the torch mode. errorCode = ' + err.code);
-        }
-        return isTorchModeSupport;
+      let isTorchModeSupport: boolean = false;
+      try {
+        isTorchModeSupport = cameraManager.isTorchModeSupported(torchMode);
+      } catch (error) {
+        let err = error as BusinessError;
+        console.error('Failed to set the torch mode. errorCode = ' + err.code);
+      }
+      return isTorchModeSupport;
     }
     ```
 
@@ -57,9 +57,9 @@
 
     ```ts
     function setTorchModeSupported(cameraManager: camera.CameraManager, torchMode: camera.TorchMode) : void {
-        cameraManager.setTorchMode(torchMode);
-        let isTorchMode = cameraManager.getTorchMode();
-        console.info(`Returned with the torch mode supportd mode: ${isTorchMode}`);
+      cameraManager.setTorchMode(torchMode);
+      let isTorchMode = cameraManager.getTorchMode();
+      console.info(`Returned with the torch mode supportd mode: ${isTorchMode}`);
     }
     ```
 
@@ -73,13 +73,13 @@
 
 ```ts
 function onTorchStatusChange(cameraManager: camera.CameraManager): void {
-    cameraManager.on('torchStatusChange', (err: BusinessError, torchStatusInfo: camera.TorchStatusInfo) => {
-        if (err !== undefined && err.code !== 0) {
-            console.error(`Callback Error, errorCode: ${err.code}`);
-            return;
-        }
-        console.info(`onTorchStatusChange, isTorchAvailable: ${torchStatusInfo.isTorchAvailable}, isTorchActive: ${torchStatusInfo.
-            isTorchActive}, level: ${torchStatusInfo.torchLevel}`);
-    });
+  cameraManager.on('torchStatusChange', (err: BusinessError, torchStatusInfo: camera.TorchStatusInfo) => {
+    if (err !== undefined && err.code !== 0) {
+      console.error(`Callback Error, errorCode: ${err.code}`);
+      return;
+    }
+    console.info(`onTorchStatusChange, isTorchAvailable: ${torchStatusInfo.isTorchAvailable}, isTorchActive: ${torchStatusInfo.
+      isTorchActive}, level: ${torchStatusInfo.torchLevel}`);
+  });
 }
 ```

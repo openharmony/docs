@@ -221,10 +221,11 @@ struct ObservedSendableTest {
 需要注意：数据的构建和处理可以在子线程中完成，但有观察能力的数据不能传给子线程，只有在主线程里才可以操作可观察的数据。所以上述例子中只是将`this.send`的属性`name`传给子线程操作。
 
 ### makeObserved和collections.Array/Set/Map配合使用
-collections提供ArkTS容器集，可用于并发场景下的高性能数据传递。详情见[@arkts.collections文档](../../reference/apis-arkts/js-apis-arkts-collections.md)。
+collections提供ArkTS容器集，可用于并发场景下的高性能数据传递。详情见[@arkts.collections文档](../../reference/apis-arkts/arkts-apis-arkts-collections.md)。
 makeObserved可以在ArkUI中导入可观察的colletions容器，但makeObserved不能和状态管理V1的状态变量装饰器如@State和[@Prop](./arkts-prop.md)等配合使用，否则会抛出运行时异常。
 
-#### collections.Array
+**collections.Array**
+
 collections.Array可以触发UI刷新的API有：
 - 改变数组长度：push、pop、shift、unshift、splice、shrinkTo、extendTo
 - 改变数组项本身：sort、fill
@@ -349,7 +350,8 @@ struct Index {
   }
 }
 ```
-#### collections.Map
+
+**collections.Map**
 
 collections.Map可以触发UI刷新的API有：set、clear、delete。
 ```ts
@@ -404,7 +406,8 @@ struct CollectionMap {
 }
 ```
 
-#### collections.Set
+**collections.Set**
+
 collections.Set可以触发UI刷新的API有：add、clear、delete。
 
 ```ts

@@ -66,7 +66,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 ```
 
-// 样例测试JS
+样例测试JS
 
 ```c++
 const char *srcCallNative = R"JS(getVM())JS";
@@ -134,7 +134,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 ```
 
-// 样例测试JS
+样例测试JS
 
 ```c++
 const char *srcCallNative = R"JS(getHeapStatistics())JS";

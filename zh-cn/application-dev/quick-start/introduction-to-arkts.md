@@ -260,8 +260,8 @@ type NullableObject = Object | null;
 
 | 运算符| 说明                                                 |
 | -------- | ------------------------------------------------------------ |
-| `===`    | 如果两个操作数严格相等（对于不同类型的操作数认为是不相等的，如string和number），则返回true。 |
-| `!==`    | 如果两个操作数严格不相等（对于不同类型的操作数认为是不相等的，如string和number），则返回true。 |
+| `===`    | 如果两个操作数严格相等（对于不同类型的操作数认为是不相等的），则返回true。 |
+| `!==`    | 如果两个操作数严格不相等（对于不同类型的操作数认为是不相等的），则返回true。 |
 | `==`     | 如果两个操作数相等，则返回true。 |
 | `!=`     | 如果两个操作数不相等，则返回true。    |
 | `>`      | 如果左操作数大于右操作数，则返回true。 |
@@ -271,12 +271,10 @@ type NullableObject = Object | null;
 
 `===`与`==`的区别：
 ```typescript
-    let a:Object=1;
-    let b:Object='1';
-    // == 只比较值相等
-    console.info(a == b); // true
-    // === 比较值和类型都相等
-    console.info(a === b); // false
+// ==只比较目标的值相等
+console.info(String(null == undefined)); // true
+// ===比较目标的值和类型都相等
+console.info(String(null === undefined)); // false
 ```
 
 
@@ -2075,7 +2073,7 @@ class C1 {
   // ...
 }
 ```
-如果注解中定义了数组类型的字段，则使用数字字面量来设置该字段的值。
+如果注解中定义了数组类型的字段，则使用数组字面量来设置该字段的值。
 ```typescript
 @interface ClassPreamble {
   authorName: string;

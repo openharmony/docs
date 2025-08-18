@@ -3,14 +3,14 @@
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @cx983299475-->
-<!--SE: @xueyulong-->
-<!--TSE: @chenmingze-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
 卡片数据绑定模块提供卡片数据绑定的能力。包括FormBindingData对象的创建、相关信息的描述。
 
 > **说明：**
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 从API version 9 开始不再维护，建议使用[FormBindingData](js-apis-app-form-formBindingData.md)替代。
+> 从API version 9开始不再维护，建议使用[formBindingData](js-apis-app-form-formBindingData.md)替代。
 ## 导入模块
 
 ```ts
@@ -25,7 +25,7 @@ FormBindingData相关描述。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| data | Object | 是 | js卡片要展示的数据。可以是包含若干键值对的Object或者 json 格式的字符串。|
+| data | Object | 是 | JS卡片要展示的数据。可以是包含若干键值对的Object或者 json 格式的字符串。|
 
 
 ## formBindingData.createFormBindingData

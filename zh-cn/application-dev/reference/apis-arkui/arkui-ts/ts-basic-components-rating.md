@@ -546,7 +546,7 @@ struct ratingExample {
   @State rating: number = 0;
   @State ratingIndicator: boolean = true;
   @State ratingStars: number = 0;
-  @State ratingStepsize: number = 0.5;
+  @State ratingStepSize: number = 0.5;
   @State ratingEnabled: boolean = true;
 
   build() {
@@ -556,7 +556,7 @@ struct ratingExample {
           rating: 0,
           indicator: this.ratingIndicator
         })
-          .stepSize(this.ratingStepsize)
+          .stepSize(this.ratingStepSize)
           .stars(this.ratingStars)
           .backgroundColor(Color.Transparent)
           .width('100%')
@@ -590,12 +590,12 @@ struct ratingExample {
             }
           }).margin({ top: 5 })
 
-        Button(this.ratingStepsize == 0.5 ? "ratingStepsize : 0.5" : "ratingStepsize : 1")
+        Button(this.ratingStepSize == 0.5 ? "ratingStepSize : 0.5" : "ratingStepSize : 1")
           .onClick((event) => {
-            if (this.ratingStepsize == 0.5) {
-              this.ratingStepsize = 1;
+            if (this.ratingStepSize == 0.5) {
+              this.ratingStepSize = 1;
             } else {
-              this.ratingStepsize = 0.5;
+              this.ratingStepSize = 0.5;
             }
           }).margin({ top: 5 })
       }
@@ -627,7 +627,7 @@ struct RatingExample {
         .stars(5)
         .stepSize(0.5)
         .starStyle({
-          backgroundUri: $r('app.media.imag1'),
+          backgroundUri: $r('app.media.imag1'), // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
           foregroundUri: $r('app.media.imag2'),
           secondaryUri: $r('app.media.imag3')
         })

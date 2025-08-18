@@ -3,8 +3,8 @@
 <!--Kit: Input Kit-->
 <!--Subsystem: MultimodalInput-->
 <!--Owner: @zhaoxueyuan-->
-<!--SE: @hanruofei-->
-<!--TSE: @Lyuxin-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
 
 通过本模块接口，可以设置快捷键拉起Ability的延迟时间，如设置长按快捷键3s后再截屏等。
 

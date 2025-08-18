@@ -1,4 +1,9 @@
 # Graphics
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
 
 自定义节点相关属性定义的详细信息。
 
@@ -521,15 +526,6 @@ static resource(value: Resource): LengthMetrics
 | 类型          | 说明             |
 | ------------- | ---------------- |
 | [LengthMetrics](#lengthmetrics12) | LengthMetrics 类的实例。 |
-
-**错误码：** 
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[系统资源错误码](errorcode-system-resource.md)。
-
-| 错误码ID | 错误信息                                   |
-| -------- | ------------------------------------------ |
-| 180001   | System resources does not exist.           |
-| 180002   | The type of system resources is incorrect. |
 
 ## ColorMetrics<sup>12+</sup>
 
@@ -1207,6 +1203,12 @@ fillColor: number
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| number | 遮罩的填充颜色，使用ARGB格式。默认值为`0XFF000000`。 |
+
 **示例：**
 
 ```ts
@@ -1259,6 +1261,12 @@ strokeColor: number
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| number | 遮罩的边框颜色，使用ARGB格式。默认值为`0XFF000000`。 |
 
 **示例：**
 
@@ -1313,6 +1321,12 @@ strokeWidth: number
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| number | 遮罩的边框宽度，单位为px。默认值为0。 |
 
 **示例：**
 

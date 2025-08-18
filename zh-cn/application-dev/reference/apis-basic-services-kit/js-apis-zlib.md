@@ -2,8 +2,8 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @jinsenjun-->
-<!--SE: @jinsenjun-->
-<!--TSE: @lixueqing-->
+<!--Designer: @jinsenjun-->
+<!--Tester: @lixueqing-->
 
 本模块提供压缩解压缩文件的能力。
 
@@ -45,11 +45,11 @@ zipFile(inFile: string, outFile: string, options: Options): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp,也可以通过context获取。
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xxx/filename.xxx';
-let outFile = '/xxx/xxx.zip';
+let inFile = '/data/storage/el2/base/temp/filename.xxx';
+let outFile = '/data/storage/el2/base/temp/xxx.zip';
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
@@ -94,11 +94,11 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp,也可以通过context获取。
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xx/xxx.zip';
-let outFile = '/xxx';
+let inFile = '/data/storage/el2/base/temp/xxx.zip';
+let outFile = '/data/storage/el2/base/temp/xxx';
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
@@ -148,11 +148,11 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 **示例：**
 
 ```ts
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp,也可以通过context获取。
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xxx/filename.xxx';
-let outFile = '/xxx/xxx.zip';
+let inFile = '/data/storage/el2/base/temp/filename.xxx';
+let outFile = '/data/storage/el2/base/temp/xxx.zip';
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
@@ -215,11 +215,11 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 **示例：**
 
 ```ts
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp,也可以通过context获取。
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xxx/filename.xxx';
-let outFile = '/xxx/xxx.zip';
+let inFile = '/data/storage/el2/base/temp/filename.xxx';
+let outFile = '/data/storage/el2/base/temp/xxx.zip';
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
@@ -278,11 +278,11 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 **示例：**
 
 ```ts
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp,也可以通过context获取。
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xx/xxx.zip';
-let outFileDir = '/xxx';
+let inFile = '/data/storage/el2/base/temp/xxx.zip';
+let outFileDir = '/data/storage/el2/base/temp';
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   parallel: zlib.ParallelStrategy.PARALLEL_STRATEGY_PARALLEL_DECOMPRESSION
@@ -347,11 +347,11 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 **示例：**
 
 ```ts
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp,也可以通过context获取。
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xx/xxx.zip';
-let outFileDir = '/xxx';
+let inFile = '/data/storage/el2/base/temp/xxx.zip';
+let outFileDir = '/data/storage/el2/base/temp';
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
 };
@@ -407,11 +407,11 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 **示例：**
 
 ```ts
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp,也可以通过context获取。
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xx/xxx.zip';
-let outFileDir = '/xxx';
+let inFile = '/data/storage/el2/base/temp/xxx.zip';
+let outFileDir = '/data/storage/el2/base/temp';
 
 try {
   zlib.decompressFile(inFile, outFileDir, (errData: BusinessError) => {
@@ -521,9 +521,9 @@ compressFiles(inFiles: Array&lt;string&gt;, outFile: string, options: Options): 
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp，也可以通过context获取。
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xxx/filename.xxx';
-let pathDir = '';
-let outFile = '/xxx/xxx.zip';
+let inFile = '/data/storage/el2/base/temp/filename.xxx';
+let pathDir = 'data/storage/el2/base/temp/xxx';
+let outFile = '/data/storage/el2/base/temp/xxx.zip';
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
@@ -531,7 +531,7 @@ let options: zlib.Options = {
 };
 
 try {
-  zlib.compressFiles([inFile, pathDir, pathDir], outFile, options).then((data: void) => {
+  zlib.compressFiles([inFile, pathDir], outFile, options).then((data: void) => {
     console.info('compressFiles success. data: ' + JSON.stringify(data));
   }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
@@ -960,8 +960,6 @@ createZip(): Promise&lt;Zip&gt;
 
 ```ts
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
-
-let zip = zlib.createZipSync();
 
 zlib.createZip().then(data => {
   console.info('createZip success');
@@ -2321,7 +2319,8 @@ async function demo() {
   }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
-  await zip.inflateCopy(zip).then((data) => {
+  let destZip = zlib.createZipSync();
+  await destZip.inflateCopy(zip).then((data) => {
     console.info('inflateCopy success')
   }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);

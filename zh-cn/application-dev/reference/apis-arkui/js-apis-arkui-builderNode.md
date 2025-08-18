@@ -1,10 +1,15 @@
 # BuilderNode
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
 
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiang-shouxing-->
-<!--SE: @xiang-shouxing-->
-<!--TSE: @sally__-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
 
 提供能够挂载系统组件的自定义节点BuilderNode。BuilderNode仅可作为叶子节点使用。使用方式参考[BuilderNode开发指南](../../ui/arkts-user-defined-arktsNode-builderNode.md)。最佳实践请参考[组件动态创建-组件动态添加、更新和删除](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-ui-dynamic-operations#section153921947151012)。
 
@@ -89,6 +94,8 @@ constructor(uiContext: UIContext, options?: RenderOptions)
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
 
 | 参数名    | 类型                                    | 必填 | 说明                                                              |
 | --------- | --------------------------------------- | ---- | ----------------------------------------------------------------- |
@@ -1197,7 +1204,7 @@ offsetA为builderNode相对于父组件的偏移，offsetB为命中位置相对�
 >
 > 如果是开发者构造的事件，必填字段必须赋值，比如触摸事件的touches字段，轴事件的scrollStep字段。要保证事件的完整，比如触摸事件的[TouchType](arkui-ts/ts-appendix-enums.md#touchtype)DOWN和UP都要有，防止出现未定义行为。
 >
-> [Webview](../apis-arkweb/arkts-apis-webview.md)已经处理过坐标系变换，可以将事件直接下发。
+> [webview](../apis-arkweb/arkts-apis-webview.md)已经处理过坐标系变换，可以将事件直接下发。
 >
 > postTouchEvent接口需要提供手势坐标相对于post事件对端内的局部坐标，postInputEvent接口需要提供手势坐标相对于post事件对端内的窗口坐标。
 >
@@ -1384,23 +1391,23 @@ class MyNodeController extends NodeController {
 
     // 只转发原始事件，不转发鼠标模拟的触摸事件
     if (event.source == SourceType.TouchScreen) {
-      let touchevent = event as TouchEvent;
-      let changedTouchLen = touchevent.changedTouches.length;
+      let touchEvent = event as TouchEvent;
+      let changedTouchLen = touchEvent.changedTouches.length;
       for (let i = 0; i < changedTouchLen; i++) {
         if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
-          touchevent.changedTouches[i].windowX = uiContext.vp2px(offsetX + touchevent.changedTouches[i].x);
-          touchevent.changedTouches[i].windowY = uiContext.vp2px(offsetY + touchevent.changedTouches[i].y);
-          touchevent.changedTouches[i].displayX = uiContext.vp2px(offsetX + touchevent.changedTouches[i].x);
-          touchevent.changedTouches[i].displayY = uiContext.vp2px(offsetY + touchevent.changedTouches[i].y);
+          touchEvent.changedTouches[i].windowX = uiContext.vp2px(offsetX + touchEvent.changedTouches[i].x);
+          touchEvent.changedTouches[i].windowY = uiContext.vp2px(offsetY + touchEvent.changedTouches[i].y);
+          touchEvent.changedTouches[i].displayX = uiContext.vp2px(offsetX + touchEvent.changedTouches[i].x);
+          touchEvent.changedTouches[i].displayY = uiContext.vp2px(offsetY + touchEvent.changedTouches[i].y);
         }
       }
-      let touchesLen = touchevent.touches.length;
+      let touchesLen = touchEvent.touches.length;
       for (let i = 0; i < touchesLen; i++) {
         if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
-          touchevent.touches[i].windowX = uiContext.vp2px(offsetX + touchevent.touches[i].x);
-          touchevent.touches[i].windowY = uiContext.vp2px(offsetY + touchevent.touches[i].y);
-          touchevent.touches[i].displayX = uiContext.vp2px(offsetX + touchevent.touches[i].x);
-          touchevent.touches[i].displayY = uiContext.vp2px(offsetY + touchevent.touches[i].y);
+          touchEvent.touches[i].windowX = uiContext.vp2px(offsetX + touchEvent.touches[i].x);
+          touchEvent.touches[i].windowY = uiContext.vp2px(offsetY + touchEvent.touches[i].y);
+          touchEvent.touches[i].displayX = uiContext.vp2px(offsetX + touchEvent.touches[i].x);
+          touchEvent.touches[i].displayY = uiContext.vp2px(offsetY + touchEvent.touches[i].y);
         }
       }
     }
@@ -1486,14 +1493,14 @@ class MyNodeController extends NodeController {
     let offsetX: number | null | undefined = node?.getPositionToParent().x;
     let offsetY: number | null | undefined = node?.getPositionToParent().y;
 
-    let axiseEvent = event as AxisEvent;
+    let axisEvent = event as AxisEvent;
     if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
-      axiseEvent.windowX = uiContext.vp2px(offsetX + axiseEvent.x)
-      axiseEvent.windowY = uiContext.vp2px(offsetY + axiseEvent.y)
-      axiseEvent.displayX = uiContext.vp2px(offsetX + axiseEvent.x)
-      axiseEvent.displayY = uiContext.vp2px(offsetY + axiseEvent.y)
-      axiseEvent.x = uiContext.vp2px(axiseEvent.x)
-      axiseEvent.y = uiContext.vp2px(axiseEvent.y)
+      axisEvent.windowX = uiContext.vp2px(offsetX + axisEvent.x)
+      axisEvent.windowY = uiContext.vp2px(offsetY + axisEvent.y)
+      axisEvent.displayX = uiContext.vp2px(offsetX + axisEvent.x)
+      axisEvent.displayY = uiContext.vp2px(offsetY + axisEvent.y)
+      axisEvent.x = uiContext.vp2px(axisEvent.x)
+      axisEvent.y = uiContext.vp2px(axisEvent.y)
     }
 
     let result = this.rootNode.postInputEvent(event);

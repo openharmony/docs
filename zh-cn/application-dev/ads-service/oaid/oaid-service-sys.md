@@ -33,7 +33,7 @@ OAID会在以下场景中发生变化：
       }
     }
     ```
-    应用启动时触发动态授权弹框，请求用户授权。获取context的方式参见[各类Context的获取方式](../../application-models/application-context-stage.md)。示例代码如下：
+    应用启动时触发动态授权弹框，请求用户授权。获取context的方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#context的获取方式)。示例代码如下：
     ```ts
     import { abilityAccessCtrl, PermissionRequestResult } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';

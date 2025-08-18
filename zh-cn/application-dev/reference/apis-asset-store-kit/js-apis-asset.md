@@ -16,7 +16,7 @@ import { asset } from '@kit.AssetStoreKit';
 
 add(attributes: AssetMap): Promise\<void>
 
-新增一条关键资产，使用Promise方式异步返回结果。
+新增一条关键资产。使用Promise异步回调。
 
 设置[IS_PERSISTENT](#tag)属性时，需要申请ohos.permission.STORE_PERSISTENT_DATA权限。
 
@@ -34,7 +34,7 @@ add(attributes: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -63,7 +63,6 @@ add(attributes: AssetMap): Promise\<void>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -75,16 +74,9 @@ attr.set(asset.Tag.SECRET, stringToArray('demo_pwd'));
 attr.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 attr.set(asset.Tag.ACCESSIBILITY, asset.Accessibility.DEVICE_FIRST_UNLOCKED);
 attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
-try {
-  asset.add(attr).then(() => {
-    console.info(`Asset added successfully.`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to add Asset. Code is ${err.code}, message is ${err.message}`);
-  })
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to add Asset. Code is ${err.code}, message is ${err.message}`);
-}
+asset.add(attr).then(() => {
+  console.info(`Succeeded in adding Asset.`);
+});
 ```
 
 ## asset.addSync<sup>12+</sup>
@@ -132,7 +124,6 @@ addSync(attributes: AssetMap): void
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -144,19 +135,14 @@ attr.set(asset.Tag.SECRET, stringToArray('demo_pwd'));
 attr.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 attr.set(asset.Tag.ACCESSIBILITY, asset.Accessibility.DEVICE_FIRST_UNLOCKED);
 attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
-try {
-  asset.addSync(attr);
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to add Asset. Code is ${err.code}, message is ${err.message}`);
-}
+asset.addSync(attr);
 ```
 
 ## asset.remove
 
 remove(query: AssetMap): Promise\<void>
 
-删除符合条件的一条或多条关键资产，使用Promise方式异步返回结果。
+删除符合条件的一条或多条关键资产。使用Promise异步回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -172,7 +158,7 @@ remove(query: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -197,7 +183,6 @@ remove(query: AssetMap): Promise\<void>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -206,16 +191,9 @@ function stringToArray(str: string): Uint8Array {
 
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
-try {
-  asset.remove(query).then(() => {
-    console.info(`Asset removed successfully.`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to remove Asset. Code is ${err.code}, message is ${err.message}`);
-  });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to remove Asset. Code is ${err.code}, message is ${err.message}`);
-}
+asset.remove(query).then(() => {
+  console.info(`Succeeded in removing Asset.`);
+});
 ```
 
 ## asset.removeSync<sup>12+</sup>
@@ -257,7 +235,6 @@ removeSync(query: AssetMap): void
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -266,19 +243,14 @@ function stringToArray(str: string): Uint8Array {
 
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
-try {
-  asset.removeSync(query);
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to remove Asset. Code is ${err.code}, message is ${err.message}`);
-}
+asset.removeSync(query);
 ```
 
 ## asset.update
 
 update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 
-更新符合条件的一条关键资产，使用Promise方式异步返回结果。
+更新符合条件的一条关键资产。使用Promise异步回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -295,7 +267,7 @@ update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -322,7 +294,6 @@ update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -333,16 +304,9 @@ let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 let attrsToUpdate: asset.AssetMap = new Map();
 attrsToUpdate.set(asset.Tag.SECRET, stringToArray('demo_pwd_new'));
-try {
-  asset.update(query, attrsToUpdate).then(() => {
-    console.info(`Asset updated successfully.`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
-  });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
-}
+asset.update(query, attrsToUpdate).then(() => {
+  console.info(`Succeeded in updating Asset.`);
+});
 ```
 
 ## asset.updateSync<sup>12+</sup>
@@ -387,7 +351,6 @@ updateSync(query: AssetMap, attributesToUpdate: AssetMap): void
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -398,19 +361,14 @@ let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 let attrsToUpdate: asset.AssetMap = new Map();
 attrsToUpdate.set(asset.Tag.SECRET, stringToArray('demo_pwd_new'));
-try {
-  asset.updateSync(query, attrsToUpdate);
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
-}
+asset.updateSync(query, attrsToUpdate);
 ```
 
 ## asset.preQuery
 
 preQuery(query: AssetMap): Promise\<Uint8Array>
 
-查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.query](#assetquery)、[asset.postQuery](#assetpostquery)。使用Promise方式异步返回结果。
+查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.query](#assetquery)和[asset.postQuery](#assetpostquery)接口。使用Promise异步回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -454,7 +412,6 @@ preQuery(query: AssetMap): Promise\<Uint8Array>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -463,16 +420,9 @@ function stringToArray(str: string): Uint8Array {
 
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
-try {
-  asset.preQuery(query).then((challenge: Uint8Array) => {
-    console.info(`Succeeded in pre-querying Asset.`);
-  }).catch ((err: BusinessError) => {
-    console.error(`Failed to pre-query Asset. Code is ${err.code}, message is ${err.message}`);
-  });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to pre-query Asset. Code is ${err.code}, message is ${err.message}`);
-}
+asset.preQuery(query).then((challenge: Uint8Array) => {
+  console.info(`Succeeded in pre-querying Asset.`);
+});
 ```
 
 ## asset.preQuerySync<sup>12+</sup>
@@ -523,7 +473,6 @@ preQuerySync(query: AssetMap): Uint8Array
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -532,19 +481,15 @@ function stringToArray(str: string): Uint8Array {
 
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
-try {
-  let challenge: Uint8Array = asset.preQuerySync(query);
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to pre-query Asset. Code is ${err.code}, message is ${err.message}`);
-}
+let challenge: Uint8Array = asset.preQuerySync(query);
+console.info(`Succeeded in pre-querying with sync, the challenge is: `, challenge);
 ```
 
 ## asset.query
 
 query(query: AssetMap): Promise\<Array\<AssetMap>>
 
-查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQuery](#assetprequery)，在本函数后调用[asset.postQuery](#assetpostquery)，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用Promise回调异步返回结果。
+查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQuery](#assetprequery)接口，在本函数后调用[asset.postQuery](#assetpostquery)接口，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用Promise异步回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -588,7 +533,6 @@ query(query: AssetMap): Promise\<Array\<AssetMap>>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -597,20 +541,14 @@ function stringToArray(str: string): Uint8Array {
 
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
-try {
-  asset.query(query).then((res: Array<asset.AssetMap>) => {
-    for (let i = 0; i < res.length; i++) {
-      // parse the attribute.
-      let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
-    }
-    console.info(`Asset query succeeded.`);
-  }).catch ((err: BusinessError) => {
-    console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
-  });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
-}
+asset.query(query).then((res: Array<asset.AssetMap>) => {
+  for (let i = 0; i < res.length; i++) {
+    // 解析属性。
+    let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
+    console.info(`Succeeded in getting accessibility, which is: ${accessibility}.`);
+  }
+  console.info(`Succeeded in querying Asset.`);
+});
 ```
 
 ## asset.querySync<sup>12+</sup>
@@ -661,7 +599,6 @@ querySync(query: AssetMap): Array\<AssetMap>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -670,26 +607,20 @@ function stringToArray(str: string): Uint8Array {
 
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
-try {
-  let res: Array<asset.AssetMap> = asset.querySync(query);
-  let accessibility: number;
-  for (let i = 0; i < res.length; i++) {
-    // parse the attribute.
-    if (res[i] != null) {
-      accessibility = res[i].get(asset.Tag.ACCESSIBILITY) as number;
-    }
-  }
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
+let res: Array<asset.AssetMap> = asset.querySync(query);
+for (let i = 0; i < res.length; i++) {
+  // 解析属性。
+  let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
+  console.info(`Succeeded in getting accessibility, which is: ${accessibility}.`);
 }
+console.info(`Succeeded in querying Asset.`);
 ```
 
 ## asset.postQuery
 
 postQuery(handle: AssetMap): Promise\<void>
 
-查询的后置处理，用于需要用户认证的关键资产。需与[asset.preQuery](#assetprequery)函数成对出现。使用Promise方式异步返回结果。
+查询的后置处理，用于需要用户认证的关键资产（与[asset.preQuery](#assetprequery)函数成对出现）。使用Promise异步回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -705,7 +636,7 @@ postQuery(handle: AssetMap): Promise\<void>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise对象，无返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -725,21 +656,13 @@ postQuery(handle: AssetMap): Promise\<void>
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 let handle: asset.AssetMap = new Map();
 // 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuery执行成功返回的挑战值。
 handle.set(asset.Tag.AUTH_CHALLENGE, new Uint8Array(32));
-try {
-  asset.postQuery(handle).then(() => {
-    console.info(`Succeeded in post-querying Asset.`);
-  }).catch ((err: BusinessError) => {
-    console.error(`Failed to post-query Asset. Code is ${err.code}, message is ${err.message}`);
-  });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to post-query Asset. Code is ${err.code}, message is ${err.message}`);
-}
+asset.postQuery(handle).then(() => {
+  console.info(`Succeeded in post-querying Asset.`);
+});
 ```
 
 ## asset.postQuerySync<sup>12+</sup>
@@ -776,17 +699,11 @@ postQuerySync(handle: AssetMap): void
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 let handle: asset.AssetMap = new Map();
 // 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuerySync执行成功返回的挑战值。
 handle.set(asset.Tag.AUTH_CHALLENGE, new Uint8Array(32));
-try {
-  asset.postQuerySync(handle)
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to post-query Asset. Code is ${err.code}, message is ${err.message}`);
-}
+asset.postQuerySync(handle)
 ```
 
 ## asset.querySyncResult<sup>20+</sup>
@@ -828,13 +745,10 @@ querySyncResult(query: AssetMap): Promise\<SyncResult>
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 let query: asset.AssetMap = new Map();
 asset.querySyncResult(query).then((res: asset.SyncResult) => {
-  console.info(`sync result: ${JSON.stringify(res)}`);
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to query sync result of Asset. Code is ${err.code}, message is ${err.message}`);
+  console.info(`Succeeded in querying sync result: ${JSON.stringify(res)}`);
 });
 ```
 
@@ -958,10 +872,6 @@ type AssetMap = Map\<Tag, Value>
 
 枚举，关键资产支持的同步类型。
 
-> **说明：**
->
-> 本字段是能力预埋，当前不支持同步。
-
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Asset
@@ -969,9 +879,9 @@ type AssetMap = Map\<Tag, Value>
 | 名称                          | 值     | 说明                                             |
 | ----------------------------- | ------ | ------------------------------------------------ |
 | NEVER                         | 0      | 不允许同步关键资产。                             |
-| THIS_DEVICE                   | 1 << 0 | 只在本设备进行同步，如仅在本设备还原的备份场景。 |
+| THIS_DEVICE                   | 1 << 0 | 只在本设备进行同步，如仅在本设备还原的备份场景。<br>**说明：** 本字段是能力预埋，当前不支持。 |
 | TRUSTED_DEVICE                | 1 << 1 | 只在可信设备间进行同步，如克隆场景。             |
-| TRUSTED_ACCOUNT<sup>12+</sup> | 1 << 2 | 只在登录可信账号的设备间进行同步，如云同步场景。 |
+| TRUSTED_ACCOUNT<sup>12+</sup> | 1 << 2 | 只在登录可信账号的设备间进行同步，如云同步场景。<br>**说明：** 本字段是能力预埋，当前不支持。 |
 
 ## ReturnType
 
