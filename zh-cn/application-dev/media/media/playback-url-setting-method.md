@@ -2,8 +2,9 @@
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @xushubo; @chennotfound-->
-<!--SE: @dongyu_dy-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @dongyu_dy-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 本开发指导将介绍如何使用AVPlayer开发播放功能，在不同的场景下如何设置URL。
 
 当前指导仅介绍播放URL设置方法，其他场景及完整示例代码，请参考[视频播放](video-playback.md)。
@@ -72,7 +73,7 @@
 当应用需要通过解析本地Raw文件中的m3u8文件，播放在线流媒体资源时，可以通过[resourceManager.getRawFd](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)获取文件描述符，将其拼接成fdUrl，并通过[setMimeType](../../reference/apis-media-kit/arkts-apis-media-MediaSource.md#setmimetype12)设置MIME类型为APPLICATION_M3U8。
 ```ts
  import { media } from '@kit.MediaKit';
- import { common } from '@kit.AbilityKit'
+ import { common } from '@kit.AbilityKit';
  // 类成员定义avPlayer和context。
  private avPlayer: media.AVPlayer | null = null;
  private context: common.UIAbilityContext | undefined = undefined;
@@ -106,17 +107,19 @@
 ```ts
  import { media } from '@kit.MediaKit';
  import { fileIo as fs } from '@kit.CoreFileKit';
- import { common } from '@kit.AbilityKit'
+ import { common } from '@kit.AbilityKit';
  // 类成员定义avPlayer和context。
  private avPlayer: media.AVPlayer | null = null;
  private context: common.UIAbilityContext | undefined = undefined;
+ private m3u8FileName: string = '';
 
  // 在业务函数中（示例工程函数名为avSetupURL）：
  // 创建avPlayer实例对象。
  this.avPlayer = await media.createAVPlayer();
  this.context = this.getUIContext().getHostContext() as common.UIAbilityContext;
  // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例。
- let filePath = `${this.context.filesDir}/${m3u8FileName}`;
+ let m3u8FileName = '';
+ let filePath = `${this.context.filesDir}/${m3u8FileName}`; 
  // 通过fs.openSync获取文件句柄。
  let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
  let fd : string = file.fd.toString();
@@ -143,7 +146,7 @@
 ```ts
  import { media } from '@kit.MediaKit';
  import { fileIo as fs } from '@kit.CoreFileKit';
- import { common } from '@kit.AbilityKit'
+ import { common } from '@kit.AbilityKit';
  // 类成员定义avPlayer，context和fileName。
  private avPlayer: media.AVPlayer | null = null;
  private context: common.UIAbilityContext | undefined = undefined;
@@ -170,7 +173,7 @@
 
 ```ts
  import { media } from '@kit.MediaKit';
- import { common } from '@kit.AbilityKit'
+ import { common } from '@kit.AbilityKit';
  // 类成员定义avPlayer，context和fileName。
  private avPlayer: media.AVPlayer | null = null;
  private fileName: string = '';

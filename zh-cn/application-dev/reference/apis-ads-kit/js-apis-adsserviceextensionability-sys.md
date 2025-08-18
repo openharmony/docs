@@ -3,8 +3,9 @@
 <!--Kit: Ads Kit-->
 <!--Subsystem: Advertising-->
 <!--Owner: @SukiEvas-->
-<!--SE: @zhansf1988-->
-<!--TSE: @hongmei_may-->
+<!--Designer: @zhansf1988-->
+<!--Tester: @hongmei_may-->
+<!--Adviser: @RayShih-->
 
 本模块为设备厂商提供广告扩展能力，设备厂商可自主实现单广告位请求和多广告位请求的业务逻辑。
 
@@ -42,29 +43,10 @@ onLoadAd(adParam: advertising.AdRequestParams, adOptions: advertising.AdOptions,
 import { AdsServiceExtensionAbility, advertising, RespCallback } from '@kit.AdsKit';
 
 export default class AdsExtensionAbility extends AdsServiceExtensionAbility {
-  onLoadAd(adRequestParams: advertising.AdRequestParams, adOptions: advertising.AdOptions, respCallback: RespCallback) {
-    const adType: number | undefined = adRequestParams.adType;
-    const ads: Array<advertising.Advertisement> = [];
-    const rewardVerifyConfig: Map<string, string> = new Map();
-    ads.push({
-      adType: adType as number,
-      uniqueId: '111111',
-      rewardVerifyConfig: rewardVerifyConfig,
-      rewarded: false,
-      shown: false,
-      clicked: false
-    });
-    ads.push({
-      adType: adType as number,
-      uniqueId: '222222',
-      rewardVerifyConfig: rewardVerifyConfig,
-      rewarded: false,
-      shown: false,
-      clicked: false
-    });
-    const slot: string = 'test';
+  onLoadAd(adParam: advertising.AdRequestParams, adOptions: advertising.AdOptions, respCallback: RespCallback) {
     const respData: Map<string, Array<advertising.Advertisement>> = new Map();
-    respData.set(slot, ads);
+    // 设置广告返回数据
+    // ...
     respCallback(respData);
   }
 }
@@ -94,50 +76,11 @@ onLoadAdWithMultiSlots(adParams: advertising.AdRequestParams[], adOptions: adver
 import { AdsServiceExtensionAbility, advertising, RespCallback } from '@kit.AdsKit';
 
 export default class AdsExtensionAbility extends AdsServiceExtensionAbility {
-  onLoadAdWithMultiSlots(adRequestParams: advertising.AdRequestParams[], adOptions: advertising.AdOptions,
+  onLoadAdWithMultiSlots(adParams: advertising.AdRequestParams[], adOptions: advertising.AdOptions,
     respCallback: RespCallback) {
-    const adType1: number = adRequestParams[0].adType as number;
-    const ads1: Array<advertising.Advertisement> = [];
-    const rewardVerifyConfig: Map<string, string> = new Map();
-    ads1.push({
-      adType: adType1,
-      uniqueId: '111111',
-      rewardVerifyConfig: rewardVerifyConfig,
-      rewarded: false,
-      shown: false,
-      clicked: false
-    });
-    ads1.push({
-      adType: adType1,
-      uniqueId: '222222',
-      rewardVerifyConfig: rewardVerifyConfig,
-      rewarded: false,
-      shown: false,
-      clicked: false
-    });
-    const slot1: string = 'test1';
-    const adType2: number = adRequestParams[1].adType as number;
-    const ads2: Array<advertising.Advertisement> = [];
-    ads2.push({
-      adType: adType2,
-      uniqueId: '333333',
-      rewardVerifyConfig: rewardVerifyConfig,
-      rewarded: false,
-      shown: false,
-      clicked: false
-    });
-    ads2.push({
-      adType: adType2,
-      uniqueId: '444444',
-      rewardVerifyConfig: rewardVerifyConfig,
-      rewarded: false,
-      shown: false,
-      clicked: false
-    });
-    const slot2: string = 'test2';
     const respData: Map<string, Array<advertising.Advertisement>> = new Map();
-    respData.set(slot1, ads1);
-    respData.set(slot2, ads2);
+    // 设置广告返回数据
+    // ...
     respCallback(respData);
   }
 }

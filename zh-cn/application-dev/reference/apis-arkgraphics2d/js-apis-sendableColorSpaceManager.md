@@ -3,8 +3,9 @@
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphic-->
 <!--Owner: @xubo85-->
-<!--SE: @comicchang-->
-<!--TSE: @civilong-->
+<!--Designer: @comicchang-->
+<!--Tester: @civilong-->
+<!--Adviser: @ge-yafang-->
 
 本模块提供管理抽象化色域对象的一些基础能力，包括可共享的色彩管理的创建与可共享的色域基础属性的获取等。
 

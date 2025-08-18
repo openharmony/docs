@@ -2,8 +2,9 @@
 <!--Kit: Common-->
 <!--Subsystem: Common-->
 <!--Owner: @zhang_yixin13-->
-<!--SE: @lingminghw-->
-<!--TSE: @RayShih-->
+<!--Designer: @lingminghw-->
+<!--Tester: @RayShih-->
+<!--Adviser: @zhang_yixin13-->
 
 - 入门<!--application-getting-started-->
   <!--Del-->
@@ -1841,6 +1842,7 @@
           - [复杂文本绘制与显示（ArkTS）](graphics/complex-text-arkts.md)
           - [简单文本绘制与显示（C/C++）](graphics/simple-text-c.md)
           - [复杂文本绘制与显示（C/C++）](graphics/complex-text-c.md)
+        - [文本开发常见问题](graphics/text-faqs.md)
       - [NativeBuffer开发指导 (C/C++)](graphics/native-buffer-guidelines.md)
       - [NativeImage开发指导 (C/C++)](graphics/native-image-guidelines.md)
       - [NativeVSync开发指导 (C/C++)](graphics/native-vsync-guidelines.md)
@@ -2195,7 +2197,7 @@
           - [@ohos.app.ability.ShareExtensionAbility (分享模板服务扩展能力)](reference/apis-ability-kit/js-apis-app-ability-shareExtensionAbility.md)
           - [@ohos.app.ability.StartOptions (startAbility的可选参数)](reference/apis-ability-kit/js-apis-app-ability-startOptions.md)
           - [@ohos.app.ability.UIAbility (带界面的应用组件)](reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)
-          - [@ohos.app.ability.UIExtensionAbility (带界面扩展能力基类)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)
+          - [@ohos.app.ability.UIExtensionAbility (带界面的ExtensionAbility组件)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)
           - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md)
           - [@ohos.app.ability.sendableContextManager (sendable上下文管理)](reference/apis-ability-kit/js-apis-app-ability-sendableContextManager.md)
           - [@ohos.app.appstartup.StartupConfig (启动框架配置信息)](reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md)
@@ -4763,6 +4765,7 @@
         - 头文件<!--audio-headerfile-->
           - [native_audiocapturer.h](reference/apis-audio-kit/capi-native-audiocapturer-h.md)
           - [native_audio_manager.h](reference/apis-audio-kit/capi-native-audio-manager-h.md)
+          - [native_audio_resource_manager.h](reference/apis-audio-kit/capi-native-audio-resource-manager-h.md)
           - [native_audio_routing_manager.h](reference/apis-audio-kit/capi-native-audio-routing-manager-h.md)
           - [native_audio_session_manager.h](reference/apis-audio-kit/capi-native-audio-session-manager-h.md)
           - [native_audio_stream_manager.h](reference/apis-audio-kit/capi-native-audio-stream-manager-h.md)
@@ -4770,11 +4773,12 @@
           - [native_audiorenderer.h](reference/apis-audio-kit/capi-native-audiorenderer-h.md)
           - [native_audio_common.h](reference/apis-audio-kit/capi-native-audio-common-h.md)
           - [native_audio_device_base.h](reference/apis-audio-kit/capi-native-audio-device-base-h.md)
-          - [native_audio_resource_manager.h](reference/apis-audio-kit/capi-native-audio-resource-manager-h.md)
           - [native_audiostream_base.h](reference/apis-audio-kit/capi-native-audiostream-base-h.md)
           - [native_audiostreambuilder.h](reference/apis-audio-kit/capi-native-audiostreambuilder-h.md)
         - 结构体<!--audio-struct-->
           - [OH_AudioManager](reference/apis-audio-kit/capi-ohaudio-oh-audiomanager.md)
+          - [OH_AudioResourceManager](reference/apis-audio-kit/capi-ohaudio-oh-audioresourcemanager.md)
+          - [OH_AudioWorkgroup](reference/apis-audio-kit/capi-ohaudio-oh-audioworkgroup.md)
           - [OH_AudioRoutingManager](reference/apis-audio-kit/capi-ohaudio-oh-audioroutingmanager.md)
           - [OH_AudioSession_Strategy](reference/apis-audio-kit/capi-ohaudio-oh-audiosession-strategy.md)
           - [OH_AudioSession_DeactivatedEvent](reference/apis-audio-kit/capi-ohaudio-oh-audiosession-deactivatedevent.md)
@@ -4784,8 +4788,6 @@
           - [OH_AudioVolumeManager](reference/apis-audio-kit/capi-ohaudio-oh-audiovolumemanager.md)
           - [OH_AudioDeviceDescriptorArray](reference/apis-audio-kit/capi-ohaudio-oh-audiodevicedescriptorarray.md)
           - [OH_AudioDeviceDescriptor](reference/apis-audio-kit/capi-ohaudio-oh-audiodevicedescriptor.md)
-          - [OH_AudioResourceManager](reference/apis-audio-kit/capi-ohaudio-oh-audioresourcemanager.md)
-          - [OH_AudioWorkgroup](reference/apis-audio-kit/capi-ohaudio-oh-audioworkgroup.md)
           - [OH_AudioStreamInfo](reference/apis-audio-kit/capi-ohaudio-oh-audiostreaminfo.md)
           - [OH_AudioRenderer_Callbacks_Struct](reference/apis-audio-kit/capi-ohaudio-oh-audiorenderer-callbacks-struct.md)
           - [OH_AudioCapturer_Callbacks_Struct](reference/apis-audio-kit/capi-ohaudio-oh-audiocapturer-callbacks-struct.md)
@@ -5185,7 +5187,7 @@
           - [video_processing_types.h](reference/apis-media-kit/capi-video-processing-types-h.md)
         - 结构体<!--media-struct-->
           - [OH_AVImageGenerator](reference/apis-media-kit/capi-avimagegenerator-oh-avimagegenerator.md)
-          - [OH_AVMetadataExtractor](reference/apis-media-kit/capi-avmetadaextractor-oh-avmetadataextractor.md)
+          - [OH_AVMetadataExtractor](reference/apis-media-kit/capi-avmetadataextractor-oh-avmetadataextractor.md)
           - [MediaKeySession](reference/apis-media-kit/capi-avplayer-mediakeysession.md)
           - [DRM_MediaKeySystemInfo](reference/apis-media-kit/capi-avplayer-drm-mediakeysysteminfo.md)
           - [AVPlayerCallback](reference/apis-media-kit/capi-avplayer-avplayercallback.md)

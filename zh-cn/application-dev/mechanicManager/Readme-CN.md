@@ -2,8 +2,9 @@
 <!--Kit: Mechanic Kit-->
 <!--Subsystem: Mechanic-->
 <!--Owner: @hobbycao-->
-<!--SE: @saga2025-->
-<!--TSE: @zhaodengqi-->
+<!--Designer: @saga2025-->
+<!--Tester: @zhaodengqi-->
+<!--Adviser: @foryourself-->
 
 - [Mechanic Kit简介](mechanic-kit-intro.md)
 - [智能拍摄跟踪开发指南](camera-tracking-guide.md)

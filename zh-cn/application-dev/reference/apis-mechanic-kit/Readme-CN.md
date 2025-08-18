@@ -2,8 +2,9 @@
 <!--Kit: Mechanic Kit-->
 <!--Subsystem: Mechanic-->
 <!--Owner: @hobbycao-->
-<!--SE: @saga2025-->
-<!--TSE: @zhaodengqi-->
+<!--Designer: @saga2025-->
+<!--Tester: @zhaodengqi-->
+<!--Adviser: @foryourself-->
 
 - ArkTS API<!--mechanic-arkts-->
   - [@ohos.distributedHardware.mechanicManager (机械体控制模块)](js-apis-mechanicManager.md)

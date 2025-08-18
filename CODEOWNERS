@@ -419,9 +419,13 @@ zh-cn/application-dev/ai/mindspore-lite-offline-model-guidelines.md @ge-yafang @
 
 
 [开发-Multimodal Awareness Kit]
-zh-cn/application-dev/kit-readme/Readme-MultimodalAwareness-Kit.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
-zh-cn/application-dev/device/multimodalawareness-kit-intro.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
-zh-cn/application-dev/device/stationary-guidelines.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
+zh-cn/application-dev/device/stationary/Readme-CN.md @hu-zhiqiong @zou_ye @judan @dilligencer
+zh-cn/application-dev/device/stationary/deviceStatus-guidelines.md @hu-zhiqiong @zou_ye @judan @dilligencer
+zh-cn/application-dev/device/stationary/metadataBinding-guidelines.md @hu-zhiqiong @zou_ye @judan @dilligencer
+zh-cn/application-dev/device/stationary/motion-guidelines.md @hu-zhiqiong @zou_ye @judan @dilligencer
+zh-cn/application-dev/device/stationary/multimodalawareness-kit-intro.md @hu-zhiqiong @zou_ye @judan @dilligencer
+zh-cn/application-dev/device/stationary/stationary-guidelines.md @hu-zhiqiong @zou_ye @judan @dilligencer
+zh-cn/application-dev/device/stationary/userStatus-guidelines.md @hu-zhiqiong @zou_ye @judan @dilligencer
 
 
 [开发-Network Kit]
@@ -453,17 +457,18 @@ zh-cn/application-dev/security/ @zengyawen
 
 
 [开发-Sensor Service Kit]
-zh-cn/application-dev/device/sensor-overview.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain @lixiangpeng221
-zh-cn/application-dev/device/sensor-guidelines.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensorservice-kit-intro.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/vibrator-overview.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/vibrator-guidelines.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/device-dev/subsystems/subsys-sensor-overview.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit-as.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensor/sensor-overview-as.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensor/vibrator-guidelines-as.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensor/sensor-guidelines-as.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/Readme-CN.md @hu-zhiqiong @butterls @murphy84 @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/sensorservice-kit-intro.md @hu-zhiqiong @butterls @murphy84 @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/sensor-overview.md @hu-zhiqiong @butterls @murphy84 @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/sensor-guidelines.md @hu-zhiqiong @butterls @murphy84 @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/sensor-guidelines-capi.md @hu-zhiqiong @butterls @murphy84 @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/sensor-overview-as.md @hu-zhiqiong @murphy84 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/sensor-guidelines-as.md @hu-zhiqiong @murphy84 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/vibrator-overview.md @hu-zhiqiong @butterls @murphy84 @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/vibrator-guidelines.md @hu-zhiqiong @butterls @murphy84 @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/vibrator-guidelines-capi.md @hu-zhiqiong @butterls @murphy84 @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/vibrator-guidelines-as.md @hu-zhiqiong @butterls @murphy84 @star-wind-snow-and-rain
+
 
 
 [开发-Telephony Kit]
@@ -611,6 +616,7 @@ zh-cn/application-dev/reference/apis-arkts/js-apis-taskpool.md @gongjunsong @ge-
 
 [API参考-ArkUI-JS]
 zh-cn/application-dev/reference/apis-arkui/js-service-widget-ui/ @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-Prefetcher.md @liubihao
 
 [API参考-ArkUI-TS组件]
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-events-click.md	@jiangtao92	@piggyguy	@fredyuan0912	@HelloCrease
@@ -841,19 +847,20 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridcontainer.m
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-click.md	@jiangtao92	@piggyguy	@fredyuan0912	@HelloCrease
 
 
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md @jiyujia926 @seaside_wu @s10021109 @zhang_yixin13 @liubihao
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md @jiyujia926 @seaside_wu @s10021109 @zhang_yixin13 @liubihao
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md @jiyujia926 @seaside_wu @s10021109 @zhang_yixin13 @liubihao
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md @s10021109 @zhang_yixin13 @liubihao
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md @s10021109 @zhang_yixin13 @liubihao
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md @s10021109 @zhang_yixin13 @liubihao
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-state-management-sys.md @jiyujia926 @seaside_wu @s10021109 @zhang_yixin13
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md @jiyujia926 @seaside_wu @s10021109 
 zh-cn/application-dev/reference/apis-arkui/js-apis-StateManagement.md @jiyujia926 @seaside_wu @s10021109 @zhang_yixin13
 
-zh-cn/application-dev/ui/state-management/arkts-new-rendering-control-repeat.md @jiyujia926 @seaside_wu @s10021109 @zhang_yixin13 @liubihao
-zh-cn/application-dev/ui/state-management/arkts-rendering-control-foreach.md @jiyujia926 @seaside_wu @s10021109 @zhang_yixin13 @liubihao
-zh-cn/application-dev/ui/state-management/arkts-rendering-control-lazyforeach.md @jiyujia926 @seaside_wu @s10021109 @zhang_yixin13 @liubihao
-zh-cn/application-dev/ui/state-management/arkts-rendering-control-ifelse.md @jiyujia926 @seaside_wu @s10021109 @zhang_yixin13 @liubihao
+zh-cn/application-dev/ui/state-management/arkts-rendering-control-overview.md @s10021109 @zhang_yixin13 @liubihao
+zh-cn/application-dev/ui/state-management/arkts-new-rendering-control-repeat.md @s10021109 @zhang_yixin13 @liubihao
+zh-cn/application-dev/ui/state-management/arkts-rendering-control-foreach.md @s10021109 @zhang_yixin13 @liubihao
+zh-cn/application-dev/ui/state-management/arkts-rendering-control-lazyforeach.md @s10021109 @zhang_yixin13 @liubihao
+zh-cn/application-dev/ui/state-management/arkts-rendering-control-ifelse.md @s10021109 @zhang_yixin13 @liubihao
+zh-cn/application-dev/ui/state-management/arkts-lazyForEach-repeat-migration-guide.md @s10021109 @zhang_yixin13 @liubihao
 
- 
 [API参考-ArkUI-ArkTS]
 zh-cn/application-dev/reference/apis-arkui/js-apis-animator.md     @hehongyang9 @yangfan229 @H-xinwei  	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-componentSnapshot.md    @piggyguy  @fredyuan0912	@HelloCrease
@@ -1173,8 +1180,18 @@ zh-cn/application-dev/apis-mindspore-lite-kit/apis/_mind_spore.md  @ge-yafang @p
 
 
 [API参考-Multimodal Awareness Kit]
-zh-cn/application-dev/reference/apis-multimodalawareness-kit/Readme-CN.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
-zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-stationary.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
+zh-cn/application-dev/reference/apis-multimodalawareness-kit/Readme-CN.md @hu-zhiqiong @zou_ye @judan @dilligencer
+zh-cn/application-dev/reference/apis-multimodalawareness-kit/errorcode-deviceStatus.md @hu-zhiqiong @zou_ye @judan @dilligencer
+zh-cn/application-dev/reference/apis-multimodalawareness-kit/errorcode-metadataBinding.md @hu-zhiqiong @yuxiaoyang @zhaodengqi @codexu62
+zh-cn/application-dev/reference/apis-multimodalawareness-kit/errorcode-motion.md @hu-zhiqiong @zou_ye @judan @dilligencer
+zh-cn/application-dev/reference/apis-multimodalawareness-kit/errorcode-userStatus.md @hu-zhiqiong @zou_ye @judan @dilligencer
+zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-awareness-deviceStatus.md @hu-zhiqiong @zou_ye @judan @dilligencer
+zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding-sys.md @hu-zhiqiong @yuxiaoyang @zhaodengqi @codexu62
+zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding.md @hu-zhiqiong @yuxiaoyang @zhaodengqi @codexu62
+zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-awareness-userStatus.md @hu-zhiqiong @zou_ye @judan @dilligencer
+zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-awareness-motion.md @hu-zhiqiong @zou_ye @judan @dilligencer
+zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-stationary.md @hu-zhiqiong @zou_ye @judan @dilligencer
+
 
 
 [API参考-Network Kit]
@@ -1199,22 +1216,22 @@ zh-cn/application-dev/reference/apis-user-authentication-kit/ @zengyawen
 
 
 [API参考-Sensor Service Kit]
-zh-cn/application-dev/reference/apis-sensor-service-kit/Readme-CN.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor-sys.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-vibrator.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-system-sensor.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-system-vibrate.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/_sensor.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/oh_sensor_8h.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/oh_sensor_type_8h.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/vibrator_8h.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/vibrator_type_8h.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_attribute.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_file_description.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-vibrator.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/Readme-CN.md @hu-zhiqiong @butterls @murphy84 @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor-sys.md @hu-zhiqiong @butterls @murphy84 @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor.md @hu-zhiqiong @murphy84 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-vibrator.md @hu-zhiqiong @murphy84 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-system-sensor.md @hu-zhiqiong @murphy84 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-system-vibrate.md @hu-zhiqiong @murphy84 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/_sensor.md @hu-zhiqiong @murphy84 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator.md @hu-zhiqiong @murphy84 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/oh_sensor_8h.md @hu-zhiqiong @murphy84 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/oh_sensor_type_8h.md @hu-zhiqiong @murphy84 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/vibrator_8h.md @hu-zhiqiong @murphy84 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/vibrator_type_8h.md @hu-zhiqiong @murphy84 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_attribute.md @hu-zhiqiong @murphy84 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_file_description.md @hu-zhiqiong @murphy84 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md @hu-zhiqiong @murphy84 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-vibrator.md @hu-zhiqiong @murphy84 @butterls @star-wind-snow-and-rain
 
 
 [API参考-Telephony Kit]

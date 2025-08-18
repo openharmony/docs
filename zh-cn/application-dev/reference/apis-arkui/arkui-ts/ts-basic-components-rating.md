@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyi0309-->
-<!--SE: @liyi0309-->
-<!--TSE: @lxl007-->
+<!--Designer: @liyi0309-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 提供在给定范围内选择评分的组件。
 
@@ -632,7 +633,7 @@ struct RatingExample {
         .stars(5)
         .stepSize(0.5)
         .starStyle({
-          backgroundUri: $r('app.media.imag1'),
+          backgroundUri: $r('app.media.imag1'), // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
           foregroundUri: $r('app.media.imag2'),
           secondaryUri: $r('app.media.imag3')
         })

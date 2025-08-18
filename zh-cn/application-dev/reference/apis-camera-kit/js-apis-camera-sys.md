@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 本模块为开发者提供一套简单且易于理解的相机服务接口，开发者通过调用接口可以开发相机应用。应用通过访问和操作相机硬件，实现基础操作，如预览、拍照和录像；还可以通过接口组合完成更多操作，如控制闪光灯和曝光时间、对焦或调焦等。
 
@@ -4496,7 +4497,9 @@ function unregisterLcdFlashStatus(portraitPhotoSession: camera.PortraitPhotoSess
 
 NightPhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect, ColorManagement, ManualExposure
 
-夜景拍照模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置夜景拍照模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
+夜景拍照模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置夜景拍照模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)、[PhotoOutput](arkts-apis-camera-PhotoOutput.md)。
+
+夜景拍照需要监听拍照结束事件[onCaptureEnd](arkts-apis-camera-PhotoOutput.md#oncaptureend)作为一次拍照的结束。
 
 ### on('error')<sup>11+</sup>
 

@@ -2,8 +2,9 @@
 <!--Kit: AVCodec Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @zhanghongran-->
-<!--SE: @dpy2650--->
-<!--TSE: @cyakee-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 

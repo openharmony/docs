@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
 <!--Owner: @xiaochaobu-->
-<!--SE: @tenMiles-->
-<!--TSE: @qinliwen0417-->
+<!--Designer: @tenMiles-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 启动页资源配置与其他资源配置相同，支持资源分类配置，可针对不同的场景配置不同资源，常用于在深色模式或不同设备类型上配置不同的启动页内容。
 

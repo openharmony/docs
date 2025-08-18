@@ -1,9 +1,10 @@
 # 简单文本绘制与显示（C/C++）
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
-<!--Owner: @oh_wangxk;@gmiao522;@Lem0nC-->
-<!--SE: @liumingxiang-->
-<!--TSE: @yhl0101-->
+<!--Owner: @oh_wangxk; @gmiao522; @Lem0nC-->
+<!--Designer: @liumingxiang-->
+<!--Tester: @yhl0101-->
+<!--Adviser: @ge-yafang-->
 
 ## 场景介绍
 
@@ -44,6 +45,8 @@ OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoSt
 OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
 // 设置文本内容，并将文本添加到 handler 中
 const char *text = "Hello World Drawing\n";
+// 此处可以使用 OH_Drawing_TypographyHandlerAddEncodedText 添加不同编码的文本。
+// OH_Drawing_TypographyHandlerAddText 只支持UTF-8编码的文本
 OH_Drawing_TypographyHandlerAddText(handler, text);  
 
 OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);

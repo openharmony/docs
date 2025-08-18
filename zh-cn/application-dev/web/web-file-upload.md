@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @zourongchun-->
-<!--SE: @zhufenghao-->
-<!--TSE: @ghiker-->
+<!--Designer: @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Web组件支持前端页面选择文件上传功能，应用开发者可以使用[onShowFileSelector()](../reference/apis-arkweb/arkts-basic-components-web-events.md#onshowfileselector9)接口来处理前端页面文件上传的请求，如果应用开发者不做任何处理，Web会提供默认行为来处理前端页面文件上传的请求。
 
@@ -29,7 +30,7 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
       Column() {
         Web({ src: $rawfile('local.html'), controller: this.controller })
           .onShowFileSelector((event) => {
-            console.log('MyFileUploader onShowFileSelector invoked');
+            console.info('MyFileUploader onShowFileSelector invoked');
             const documentSelectOptions = new picker.DocumentSelectOptions();
             let uri: string | null = null;
             const documentViewPicker = new picker.DocumentViewPicker();
@@ -79,7 +80,6 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
-  import { picker } from '@kit.CoreFileKit';
   import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
   @Entry
@@ -174,10 +174,10 @@ struct Index {
             //开发者可以通过event.fileSelector.getAcceptType()和event.fileSelector.isCapture()判断文件类型，并有选择地做出筛选以拉起不同的文件选择器
             openCamera((result) => {
                 if (event) {
-                console.log('Title is ' + event.fileSelector.getTitle());
-                console.log('Mode is ' + event.fileSelector.getMode());
-                console.log('Accept types are ' + event.fileSelector.getAcceptType());
-                console.log('Capture is ' + event.fileSelector.isCapture());
+                console.info('Title is ' + event.fileSelector.getTitle());
+                console.info('Mode is ' + event.fileSelector.getMode());
+                console.info('Accept types are ' + event.fileSelector.getAcceptType());
+                console.info('Capture is ' + event.fileSelector.isCapture());
                 event.result.handleFileList([result]);
                 }
             }, this.getUIContext())

@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 为组件提供自定义手势判定能力。开发者可根据需要，在手势识别期间，决定是否响应手势。
 
@@ -15,6 +16,8 @@
 ## onGestureJudgeBegin
 
 onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent) => GestureJudgeResult): T
+
+为组件绑定自定义手势判定回调。当手势被接受时，触发用户定义的回调获取结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

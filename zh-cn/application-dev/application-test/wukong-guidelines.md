@@ -2,8 +2,9 @@
 <!--Kit: Test Kit-->
 <!--Subsystem: Test-->
 <!--Owner: @qkfg-->
-<!--SE: @qkfg-->
-<!--TSE: @caixincen-->
+<!--Designer: @qkfg-->
+<!--Tester: @caixincen-->
+<!--Adviser: @Brilliantry_Rui-->
 ## 功能介绍
 
 wukong是系统自带的一种命令行工具，支持Ability的随机事件注入、控件注入、异常捕获、报告生成和对Ability数据遍历截图等特性。通过模拟用户行为，对系统或应用进行稳定性压力测试。wukong分为随机测试、专项测试和专注测试。
