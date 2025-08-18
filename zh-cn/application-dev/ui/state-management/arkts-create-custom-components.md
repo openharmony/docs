@@ -99,7 +99,7 @@ struct ParentComponent {
   }
   ```
 
- #### freezeWhenInactive<sup>11+</sup>
+ **freezeWhenInactive<sup>11+</sup>**
   [组件冻结](arkts-custom-components-freeze.md)选项。
 
   | 名称   | 类型   | 必填 | 说明                                                         |
@@ -143,7 +143,7 @@ build()函数用于定义自定义组件的声明式UI描述，自定义组件�
   }
   ```
 
-#### EntryOptions<sup>10+</sup>
+**EntryOptions<sup>10+</sup>**
 
   命名路由跳转选项。
 
