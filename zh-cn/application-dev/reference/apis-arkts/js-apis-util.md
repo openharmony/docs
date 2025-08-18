@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
-<!--SE: @yuanyao14-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 该模块主要提供常用的工具函数，实现字符串编解码（[TextEncoder](#textencoder)，[TextDecoder](#textdecoder)）、有理数运算（[RationalNumber<sup>8+</sup>](#rationalnumber8)）、缓冲区管理（[LRUCache<sup>9+</sup>](#lrucache9)）、范围判断（[ScopeHelper<sup>9+</sup>](#scopehelper9)）、Base64编解码（[Base64Helper<sup>9+</sup>](#base64helper9)）、内置对象类型检查（[types<sup>8+</sup>](#types8)、对方法进行插桩和替换（[Aspect<sup>11+</sup>](#aspect11)）等功能。
 
@@ -183,7 +184,7 @@ console.info("result = " + result);
 
 ## util.callbackWrapper
 
-callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
+callbackWrapper(original: Function): (err: Object, value: Object)=&gt;void
 
 对异步函数进行回调化处理，回调中第一个参数是拒绝原因（如果Promise已解决，则为null），第二个参数是已解决的值。
 
@@ -205,7 +206,7 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Function | 返回一个回调函数，该函数第一个参数err是拒绝原因（如果&nbsp;Promise&nbsp;已解决，则为&nbsp;null），第二个参数value是已解决的值。 |
+| (err: Object, value: Object)=&gt;void | 返回一个回调函数，该函数第一个参数err是拒绝原因（如果&nbsp;Promise&nbsp;已解决，则为&nbsp;null），第二个参数value是已解决的值。 |
 
 **错误码：**
 
@@ -243,7 +244,7 @@ promisify(original: (err: Object, value: Object) =&gt; void): Function
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| original | Function | 是 | 回调函数中第一个参数err是拒绝原因（如果&nbsp;Promise&nbsp;已解决，则为&nbsp;null），第二个参数value是已解决的值。  |
+| original | (err: Object, value: Object) =&gt; void | 是 | 回调函数中第一个参数err是拒绝原因（如果&nbsp;Promise&nbsp;已解决，则为&nbsp;null），第二个参数value是已解决的值。  |
 
 **返回值：**
 
@@ -319,7 +320,7 @@ console.info("RFC 4122 Version 4 UUID:" + uuid);
 
 generateRandomBinaryUUID(entropyCache?: boolean): Uint8Array
 
-使用加密安全随机数生成器生成随机的RFC 4122版本4的Uint8Array类型UUID。
+使用加密安全随机数生成器生成随机的RFC 4122版本4的UUID。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -357,7 +358,7 @@ console.info(JSON.stringify(uuid));
 
 parseUUID(uuid: string): Uint8Array
 
-将generateRandomUUID生成的string类型UUID转换为generateRandomBinaryUUID生成的Uint8Array类型UUID，符合RFC 4122版本规范。
+将generateRandomUUID生成的string类型UUID转换为generateRandomBinaryUUID生成的UUID，符合RFC 4122版本规范。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -475,20 +476,22 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| original | Function | 是 | 异步函数。 |
+| original | (err: Object, value: Object) =&gt; void | 是 | 异步函数。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Function | 采用遵循常见的错误优先的回调风格的函数（也就是将(err, value) => ...回调作为最后一个参数），并返回一个promise的函数。 |
+| Object | 返回promise函数，采用遵循常见的错误优先的回调风格的函数（也就是将(err, value) => ...回调作为最后一个参数）。 |
 
 
 ## util.getHash<sup>12+</sup>
 
 getHash(object: object): number
 
-获取对象的Hash值。首次获取时，则计算Hash值并保存到对象的Hash域（返回随机的Hash值）；后续获取时，直接从Hash域中返回Hash值（同一对象多次返回值保持不变）。
+获取对象的Hash值。
+
+首次获取时，则计算Hash值并保存到对象的Hash域（返回随机的Hash值）；后续获取时，直接从Hash域中返回Hash值（同一对象多次返回值保持不变）。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -533,7 +536,9 @@ console.info('result2 is ' + result2);
 
 getMainThreadStackTrace(): string
 
-获取主线程的栈追踪信息，最多返回64层调用帧。该接口可能会影响到主线程性能，建议谨慎使用。
+获取主线程的栈追踪信息，最多返回64层调用帧。
+
+该接口可能对主线程性能产生影响，建议仅在必要时使用，如日志记录、错误分析或调试场景。
 
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -568,7 +573,7 @@ console.info(stack);
 
 ## DecodeToStringOptions<sup>12+</sup>
 
-解码是否使用流处理方式。
+用于配置decodeToString方法在解码字节流时的行为参数。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1035,7 +1040,7 @@ TextDecoder的构造函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | encoding | string | 否 | 编码格式，默认值是'utf-8'。 |
-| options | object | 否 | 解码相关选项参数，存在两个属性fatal和ignoreBOM。 |
+| options | { fatal?: boolean; ignoreBOM?: boolean } | 否 | 解码相关选项参数，存在两个属性fatal和ignoreBOM。 |
 
   **表1** options
 
@@ -1067,7 +1072,7 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | input | Uint8Array | 是 | 符合格式需要解码的数组。 |
-| options | object | 否 | 解码相关选项参数。 |
+| options | { stream?: false } | 否 | 解码相关选项参数。 |
 
 **表2** options
 
@@ -1272,7 +1277,7 @@ encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 
 | 类型       | 说明               |
 | ---------- | ------------------ |
-| [EncodeIntoUint8ArrayInfo](#encodeintouint8arrayinfo11) | 返回一个对象，read表示已编码的字符数，write表示编码字符所占用的字节数。 |
+| [EncodeIntoUint8ArrayInfo](#encodeintouint8arrayinfo11) | 返回一个对象，read表示已编码的字符数，written表示编码字符所占用的字节数。 |
 
 **错误码：**
 
@@ -1320,7 +1325,7 @@ encodeInto(input: string, dest: Uint8Array): { read: number; written: number }
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Uint8Array | 返回编码后的Uint8Array对象。 |
+| { read: number; written: number } | 返回一个对象，read表示已编码的字符数，written表示编码字符所占用的字节数。 |
 
 **示例：**
 
@@ -1429,7 +1434,7 @@ let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 
 ### createRationalFromString<sup>8+</sup>
 
-static createRationalFromString(rationalString: string): RationalNumber​
+static createRationalFromString(rationalString: string): RationalNumber
 
 使用给定的字符串创建RationalNumber对象。
 
@@ -2546,7 +2551,7 @@ console.info('result = ' + result);
 
 entries(): IterableIterator&lt;[K, V]&gt;
 
-迭代此对象中的所有键值对。
+返回一个迭代器对象，用于按插入顺序遍历当前对象中的所有键值对（[key, value]）。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2837,7 +2842,9 @@ let range = new util.ScopeHelper(tempLower, tempUpper);
 let tempMiDF = new Temperature(35);
 let tempMidS = new Temperature(39);
 let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
-range.intersect(rangeFir);
+let result = range.intersect(rangeFir);
+console.info("result = " + result);
+// 输出结果：result = [35, 39]
 ```
 
 ### intersect<sup>9+</sup>

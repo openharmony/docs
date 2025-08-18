@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @zzq212050299-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 状态管理V1（简称V1）为开发者提供了一系列状态变量装饰器（后续称V1的装饰器），例如：@State、@Prop、@Link等，可以在@Component装饰的自定义组件中使用（后续称V1的自定义组件）。
 

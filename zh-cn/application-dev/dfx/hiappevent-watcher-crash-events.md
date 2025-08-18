@@ -2,8 +2,9 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @chenshi51-->
-<!--SE: @Maplestory-->
-<!--TSE: @yufeifei-->
+<!--Designer: @Maplestory-->
+<!--Tester: @yufeifei-->
+<!--Adviser: @foryourself-->
 
 ## 简介
 
@@ -37,7 +38,7 @@
 
 ### JsError崩溃类型检测原理
 
-在ArkTS中，JsError崩溃类型检测主要通过全局异常捕获（如AppStorage或UIAbility的错误回调）和try-catch捕获运行时错误，收集完错误对象的类型（如 Error、TypeError、ReferenceError 等和堆栈等信息后，上报给Hiview进程。Hiview进程将事件信息存储到[应用沙箱目录](../file-management/app-sandbox-directory.md)，HiAppEvent注册的崩溃事件观察者监听到应用沙箱目录的文件变化，将事件回调给应用进程，帮助开发者快速定位和修复问题。
+在ArkTS中，JsError崩溃类型检测主要通过全局异常捕获错误，收集完错误对象的类型（如 Error、TypeError、ReferenceError） 上报给Hiview进程。Hiview进程将事件信息存储到[应用沙箱目录](../file-management/app-sandbox-directory.md)，HiAppEvent注册的崩溃事件观察者监听到应用沙箱目录的文件变化，将事件回调给应用进程，帮助开发者快速定位和修复问题。
 
 ## 崩溃日志规格自定义参数设置
 
@@ -165,8 +166,8 @@ Timestamp:2025-05-17 19:17:07.000
 | file | string | 文件名。 |
 | packageName | string | 模块的包名。 |
 | symbol | string | 函数名称。 |
-| line | number | 异常所在代码行号。 |
-| column | number | 异常所在代码列号。 |
+| line | number | 代码行号。 |
+| column | number | 代码列号。 |
 
 ## 崩溃事件自定义参数设置
 

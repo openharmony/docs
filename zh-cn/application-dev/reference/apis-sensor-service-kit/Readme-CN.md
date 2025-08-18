@@ -1,4 +1,10 @@
 # Sensor Service Kit（传感器服务）
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 - ArkTS API
   - [@ohos.sensor(传感器)](js-apis-sensor.md)

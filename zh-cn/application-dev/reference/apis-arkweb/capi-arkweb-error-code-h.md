@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @aohui-->
-<!--SE: @yaomingliu-->
-<!--TSE: @ghiker-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
@@ -46,7 +47,7 @@ enum ArkWeb_ErrorCode
 | ARKWEB_ERROR_UNKNOWN = 17100100            | 未知错误。                                          |
 | ARKWEB_INVALID_PARAM = 17100101            | 参数无效。                                          |
 | ARKWEB_SCHEME_REGISTER_FAILED = 17100102   | 注册scheme的配置失败，应该在创建ArkWeb之前注册。    |
-| ARKWEB_INVALID_URL = 17100103 = 17100104   | 无效的URL。                                         |
+| ARKWEB_INVALID_URL = 17100103              | 无效的URL。                                         |
 | ARKWEB_INVALID_COOKIE_VALUE = 17100104     | 无效的cookie值。                                    |
 | ARKWEB_LIBRARY_OPEN_FAILURE = 17100105     | 打开动态链接库失败。<br>**起始版本：** 15           |
 | ARKWEB_LIBRARY_SYMBOL_NOT_FOUND = 17100106 | 动态链接库中找不到所需的符号。<br>**起始版本：** 15 |

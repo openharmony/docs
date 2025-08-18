@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## 概述
 
@@ -27,6 +28,7 @@
 | 名称 | 描述 |
 | -- | -- |
 | [FFRT_C_API ffrt_timer_t ffrt_timer_start(ffrt_qos_t qos, uint64_t timeout, void* data, ffrt_timer_cb cb, bool repeat)](#ffrt_timer_start) | 启动计时器。 |
+| [FFRT_C_API int ffrt_timer_stop(ffrt_qos_t qos, ffrt_timer_t handle)](#ffrt_timer_stop) | 关闭计时器。 |
 
 ## 函数说明
 
@@ -58,5 +60,31 @@ FFRT_C_API ffrt_timer_t ffrt_timer_start(ffrt_qos_t qos, uint64_t timeout, void*
 | 类型                          | 说明 |
 |-----------------------------| -- |
 | FFRT_C_API [ffrt_timer_t](capi-type-def-h.md#变量) | 返回定时器句柄。 |
+
+### ffrt_timer_stop()
+
+```
+FFRT_C_API int ffrt_timer_stop(ffrt_qos_t qos, ffrt_timer_t handle)
+```
+
+**描述**
+
+关闭计时器。
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| ffrt_qos_t qos | QoS等级。 |
+| ffrt_timer_t handle | 定时器句柄。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| FFRT_C_API int | 关闭成功返回0，<br>          关闭失败返回-1。 |
 
 

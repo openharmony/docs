@@ -3,8 +3,9 @@
 <!--Kit: User Authentication Kit-->
 <!--Subsystem: UserIAM-->
 <!--Owner: @WALL_EYE-->
-<!--SE: @lichangting518-->
-<!--TSE: @jane_lz-->
+<!--Designer: @lichangting518-->
+<!--Tester: @jane_lz-->
+<!--Adviser: @zengyawen-->
 
 若开发者定义了自定义认证方式，则用户进行生物认证失败点击导航按钮时，统一身份认证框架会结束系统认证流程并通知调用者拉起自定义认证界面。
 

@@ -1,5 +1,9 @@
 # Using the Input Method in a Custom Edit Box (C/C++)
-
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--SE: @andeszhang-->
+<!--TSE: @murphy1984-->
 
 ## When to Use
 
@@ -7,7 +11,7 @@ IME Kit allows you to use input method in the custom edit box to interact with i
 
 ## APIs
 
-For details about the APIs, see [InputMethod](../reference/apis-ime-kit/_input_method.md).
+For details about the APIs, see [API Reference](../reference/apis-ime-kit/capi-inputmethod.md).
 
 ## Adding Dynamic Link Libraries
 
@@ -26,7 +30,7 @@ libohinputmethod.so
 
 ## Binding an Input Method
 
-When the input box is focused, you can call the [OH_InputMethodController_Attach](../reference/apis-ime-kit/_input_method.md#oh_inputmethodcontroller_attach) API to bind the input method. After the binding is successful, you can use the input method to enter text.
+When the text box is focused, you can call the [OH_InputMethodController_Attach](../reference/apis-ime-kit/capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach) API to bind the input method. After the binding is successful, you can use the input method to enter text.
 
 1. Create an **InputMethod_TextEditorProxy** instance. The sample code is as follows:
 
@@ -55,7 +59,7 @@ When the input box is focused, you can call the [OH_InputMethodController_Attach
 
 ## Displaying or Hiding the Panel
 
-After the binding is successful, you can use the obtained [InputMethod_InputMethodProxy](../reference/apis-ime-kit/_input_method.md#inputmethod_inputmethodproxy) object to send a message to the input method. The sample code is as follows:
+After the binding is successful, you can use the obtained [InputMethod_InputMethodProxy](../reference/apis-ime-kit/capi-inputmethod-inputmethod-inputmethodproxy.md) object to send a message to the input method. The sample code is as follows:
 
 ```c
 // Display the keyboard.
@@ -93,7 +97,7 @@ if (OH_InputMethodProxy_NotifyConfigurationChange(inputMethodProxy, InputMethod_
    // ......
    ```
 
-2. Set the implemented response function to [InputMethod_TextEditorProxy](../reference/apis-ime-kit/_input_method.md#inputmethod_texteditorproxy), and then set the response function to the input method framework using [OH_InputMethodController_Attach](../reference/apis-ime-kit/_input_method.md#oh_inputmethodcontroller_attach) called when the input method is bound to complete listener registration. The sample code is as follows:
+2. Set the implemented response function to [InputMethod_TextEditorProxy](../reference/apis-ime-kit/capi-inputmethod-inputmethod-texteditorproxy.md), and then set the response function to the input method framework using [OH_InputMethodController_Attach](../reference/apis-ime-kit/capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach) called when the input method is bound to complete listener registration. The sample code is as follows:
 
    ```c
    // Set the implemented response processing function to InputMethod_TextEditorProxy.
@@ -104,7 +108,7 @@ if (OH_InputMethodProxy_NotifyConfigurationChange(inputMethodProxy, InputMethod_
 
 ## Unbinding an Input Method
 
-When the edit box is out of focus, you need to stop using the input method and unbind the input method framework by calling [OH_InputMethodController_Detach](../reference/apis-ime-kit/_input_method.md#oh_inputmethodcontroller_detach).
+When the edit box is out of focus, you need to stop using the input method and unbind the input method framework by calling [OH_InputMethodController_Detach](../reference/apis-ime-kit/capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_detach).
 
 ```c
 // Send an unbinding request.

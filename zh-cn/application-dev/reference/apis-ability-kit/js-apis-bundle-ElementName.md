@@ -1,4 +1,10 @@
 # ElementName
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ElementName信息，通过接口[Context.getElementName](js-apis-inner-app-context.md)获取。
 

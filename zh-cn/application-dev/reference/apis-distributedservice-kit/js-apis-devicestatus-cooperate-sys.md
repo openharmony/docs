@@ -1,4 +1,10 @@
 # @ohos.cooperate (键鼠穿越)（系统接口）
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: Msdp-->
+<!--Owner: @wuliangdong-->
+<!--Designer: @butterls-->
+<!--Tester: @zhaodengqi-->
+<!--Adviser: @hu-zhiqiong-->
 
 键鼠穿越功能模块，提供两台或多台设备组网协同后键鼠共享能力，实现键鼠输入设备的跨设备协同操作。
 
@@ -37,7 +43,7 @@ prepareCooperate(callback: AsyncCallback&lt;void&gt;): void;
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 示例：
@@ -80,7 +86,7 @@ prepareCooperate(): Promise&lt;void&gt;;
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -122,7 +128,7 @@ unprepareCooperate(callback: AsyncCallback&lt;void&gt;): void;
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例：**
@@ -165,7 +171,7 @@ unprepareCooperate(): Promise&lt;void&gt;;
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例：**
 
@@ -209,7 +215,7 @@ activateCooperate(targetNetworkId: string, inputDeviceId: number, callback: Asyn
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 | 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status. |
 
@@ -262,7 +268,7 @@ activateCooperate(targetNetworkId: string, inputDeviceId: number): Promise&lt;vo
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 | 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status. |
 
@@ -309,7 +315,7 @@ deactivateCooperate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -358,7 +364,7 @@ deactivateCooperate(isUnchained: boolean): Promise&lt;void&gt;;
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例**：
 
@@ -401,7 +407,7 @@ getCooperateSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例：**
@@ -451,7 +457,7 @@ getCooperateSwitchState(networkId: string): Promise&lt;boolean&gt;;
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -496,7 +502,7 @@ on(type: 'cooperateMessage', callback: Callback&lt;CooperateMessage&gt;): void;
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -539,7 +545,7 @@ off(type: 'cooperateMessage', callback?: Callback&lt;CooperateMessage&gt;): void
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -603,7 +609,7 @@ on(type: 'cooperateMouse', networkId: string, callback: Callback&lt;MouseLocatio
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -648,7 +654,7 @@ off(type: 'cooperateMouse', networkId: string, callback?: Callback&lt;MouseLocat
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -718,8 +724,8 @@ activateCooperateWithOptions(targetNetworkId: string, inputDeviceId: number,
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
-| 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 20900001 | Operation failed. |
 
 **示例**：
 
@@ -745,7 +751,7 @@ try {
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
-| 名称      | 类型           | 可读 | 可写 | 说明                     |
+| 名称      | 类型           |只读 | 可选 | 说明                     |
 | --------- | -------------- | ---- | ---- | ------------------------ |
 | networkId | string         | 是   | 否   | 键鼠穿越目标设备描述符。 |
 | state     | CooperateState | 是   | 否   | 键鼠穿越的状态。         |
@@ -757,7 +763,7 @@ try {
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
-| 名称           | 类型            | 可读 | 可写 | 说明                           |
+| 名称           | 类型            | 只读 | 	可选 | 说明                           |
 | ---------      | -------------- | ---- | ---- | ------------------------       |
 | displayX       | number         | 是   | 否   | 鼠标指针位于屏幕的X坐标上的位置。 |
 | displayY       | number         | 是   | 否   | 鼠标指针位于屏幕的Y坐标上的位置。 |
@@ -766,37 +772,20 @@ try {
 
 ## CooperateState<sup>11+</sup>
 
-键鼠穿越的状态。
+键鼠穿越状态的枚举。
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
-| 名称                           | 类型    | 可读 | 可写 | 说明                   |
-| ------------------------------ | ------ | ---- | ---- | ---------------------- |
-| COOPERATE_PREPARE              | number | 是   | 否   | 表示准备键鼠穿越。     |
-| COOPERATE_UNPREPARE            | number | 是   | 否   | 表示取消键鼠穿越准备。 |
-| COOPERATE_ACTIVATE             | number | 是   | 否   | 表示启动键鼠穿越。     |
-| COOPERATE_ACTIVATE_SUCCESS     | number | 是   | 否   | 表示键鼠穿越启动成功。 |
-| COOPERATE_ACTIVATE_FAIL        | number | 是   | 否   | 表示键鼠穿越启动失败。 |
-| COOPERATE_DEACTIVATE_SUCCESS   | number | 是   | 否   | 表示键鼠穿越停止成功。 |
-| COOPERATE_DEACTIVATE_FAIL      | number | 是   | 否   | 表示键鼠穿越停止失败。 |
-| COOPERATE_SESSION_DISCONNECTED | number | 是   | 否   | 表示键鼠穿越会话断开。 |
-| COOPERATE_ACTIVATE_FAILURE     | number | 是   | 否   | 表示键鼠穿越无法启动。 |
-| COOPERATE_DEACTIVATE_FAILURE   | number | 是   | 否   | 表示键鼠穿越无法停止。 |
-
-
-## MouseLocation<sup>12+</sup>
-
-鼠标光标位置信息。
-
-**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
-
-| 名称           | 类型           | 可读 | 可写 | 说明                     |
-| ---------     | -------------- | ---- | ---- | ------------------------ |
-| displayX      | number         | 是   | 否   | 鼠标X坐标位置。 |
-| displayY      | number         | 是   | 否   | 鼠标Y坐标位置。 |
-| displayWidth  | number         | 是   | 否   | 鼠标所在屏幕宽度，单位：px。 |
-| displayHeight | number         | 是   | 否   | 鼠标所在屏幕高度，单位：px。 |
-
+| 名称                           |  值 | 说明                   |
+| ------------------------------ | ---- | ---------------------- |
+| COOPERATE_PREPARE              | 0 | 表示准备键鼠穿越。     |
+| COOPERATE_UNPREPARE            | 1  | 表示取消键鼠穿越准备。 |
+| COOPERATE_ACTIVATE             | 2  | 表示启动键鼠穿越。     |
+| COOPERATE_ACTIVATE_SUCCESS     | 3  | 表示键鼠穿越启动成功。 |
+| COOPERATE_ACTIVATE_FAILURE        | 4 | 表示键鼠穿越无法启动。 |
+| COOPERATE_DEACTIVATE_SUCCESS   | 5  | 表示键鼠穿越停止成功。 |
+| COOPERATE_DEACTIVATE_FAILURE      | 6 | 表示键鼠穿越无法停止。 |
+| COOPERATE_SESSION_DISCONNECTED | 7 | 表示键鼠穿越会话断开。 |
 
 ## CooperateOptions<sup>20+</sup>
 
@@ -834,7 +823,7 @@ prepare(callback: AsyncCallback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -878,7 +867,7 @@ prepare(): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -920,7 +909,7 @@ unprepare(callback: AsyncCallback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -964,7 +953,7 @@ unprepare(): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例：**
@@ -1011,7 +1000,7 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status. |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -1067,7 +1056,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status.|
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -1114,7 +1103,7 @@ deactivate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 202 | Not system application. |
+| 202 |Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -1166,7 +1155,7 @@ deactivate(isUnchained: boolean): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例**：
 
@@ -1210,7 +1199,7 @@ getCrossingSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -1255,7 +1244,7 @@ getCrossingSwitchState(networkId: string): Promise&lt;boolean&gt;;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **返回值**：
@@ -1292,7 +1281,7 @@ on(type: 'cooperate', callback: Callback&lt;{ networkId: string, msg: CooperateM
 
 > **说明：**
 >
-> 从API version 10开始不在再维护。建议使用[on('cooperateMessage')](#oncooperatemessage11)替代
+> 从API version 10开始不再维护。建议使用[on('cooperateMessage')](#oncooperatemessage11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1309,7 +1298,7 @@ on(type: 'cooperate', callback: Callback&lt;{ networkId: string, msg: CooperateM
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -1356,7 +1345,7 @@ off(type: 'cooperate', callback?: Callback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 202 | Not system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：

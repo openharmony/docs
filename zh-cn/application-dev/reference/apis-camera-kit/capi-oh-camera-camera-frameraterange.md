@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
@@ -21,7 +22,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| uint32_t min | 最小帧速率。 |
-| uint32_t max | 最大帧速率。 |
+| uint32_t min | 最小帧速率，单位帧每秒。 |
+| uint32_t max | 最大帧速率，单位帧每秒。 |
 
 

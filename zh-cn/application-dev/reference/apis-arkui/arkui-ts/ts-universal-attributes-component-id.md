@@ -1,4 +1,10 @@
 # 组件标识
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @pengzhiwen3-->
+<!--Designer: @lmleon-->
+<!--Tester: @fredyuan0912-->
+<!--Adviser: @HelloCrease-->
 
 id为组件的唯一标识，在整个应用内唯一。本模块提供组件标识相关接口，可以获取指定id组件的属性，也提供向指定id组件发送事件的功能。
 
@@ -8,9 +14,8 @@ id为组件的唯一标识，在整个应用内唯一。本模块提供组件标
 >
 > - 若同一个组件设置了多个id或者key，最后设置的生效。
 
-## 属性
 
-### id
+## id
 
 id(value: string): T
 
@@ -34,7 +39,7 @@ id(value: string): T
 | -------- | -------- |
 | T | 返回当前组件。 |
 
-### key<sup>12+</sup>
+## key<sup>12+</sup>
 
 key(value: string): T
 
@@ -58,7 +63,9 @@ key(value: string): T
 | -------- | -------- |
 | T | 返回当前组件。 |
 
-## 接口
+## 基于组件标识的拓展能力
+
+组件标识的拓展能力仅用于对应用的测试，以下各个接口示例，需要在应用工程的ohosTest/ets/test目录中调试，具体可以参考[自动化测试框架使用指导 ](../../../../application-dev/application-test/arkxtest-guidelines.md)。
 
 ### getInspectorByKey<sup>9+</sup>
 

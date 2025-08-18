@@ -2,8 +2,9 @@
 <!--Kit: Common-->
 <!--Subsystem: Demo&Sample-->
 <!--Owner: @mgy917-->
-<!--SE: @jiangwensai-->
-<!--TSE: @Lyuxin-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
 
 ## 简介
 

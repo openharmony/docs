@@ -2,8 +2,9 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @jcwen-->
-<!--SE: @junathuawei1; @zph000-->
-<!--TSE: @lj_liujing; @yippo; @logic42-->
+<!--Designer: @junathuawei1; @zph000-->
+<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 标准化数据类型（Uniform Type Descriptor，简称UTD）用于解决系统中的类型模糊问题，即针对同一种数据类型，存在不同的类型描述方式：MIME Type、文件扩展名等。例如描述jpg/jpeg类型图片时，可以使用image/jpeg、.jpg、.jpeg或image/picture等方式进行描述，详情可见[UTD基础类型](#基础类型)表格。
 
@@ -484,7 +485,7 @@
 | org.w3.woff                                                 | general.font                                                             | .woff                   | font/woff                                                                 | Web开放字体格式类型。 |
 | org.sqlite.database                                         | general.database                                                         | .sqlite, .sqlite3, .db, .db3, .s3db, .sl3  | application/vnd.sqlite3                                | SQLite 数据库类型。 |
 | com.microsoft.pdb                                           | general.database                                                         | .pdb                    | application/x-ms-pdb                                                      | 程序数据库类型。 |
-| com.monkeysaudio.ape-audio                                  | general.audio                                                            | .pdb                    | audio/x-monkeys-audio                                                     | Monkey's Audio音频类型。 |
+| com.monkeysaudio.ape-audio                                  | general.audio                                                            | .ape                    | audio/x-monkeys-audio                                                     | Monkey's Audio音频类型。 |
 | org.xiph.opus-audio                                         | general.audio                                                            | .opus                   | audio/opus                                                                | Opus有损音频编码格式。 |
 | com.microsoft.tlb                                           | general.object                                                           | .tlb                    |                                                                           | OLE类型库类型。 |
 | com.microsoft.catalog                                       | general.object                                                           | .cat                    |                                                                           | Windows目录文件类型。 |

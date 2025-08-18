@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiyujia926; @liwenzhen3; @zzq212050299-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @HelloCrease-->
 
 状态管理模块提供了应用程序的数据存储能力、持久化数据管理能力、UIAbility数据存储能力和应用程序需要的环境状态、工具。
 
@@ -174,6 +175,8 @@ static globalConnect\<T extends object\>(type: ConnectOptions\<T\>): T | undefin
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
 
 | 名称   |类型   |必填   | 说明                                                      |
 | ------------- | ------------|-------------------|-------------------------- |
@@ -397,7 +400,7 @@ static makeObserved\<T extends object\>(source: T): T
 
 | 参数名 | 类型 | 必填 | 说明     |
 | ------ | ---- | ---- | ------------ |
-| source | T    | 是   | 数据源对象。支持非@Observed和@ObserveV2修饰的class，JSON.parse返回的Object和@Sendable修饰的class。</br>支持Array、Map、Set和Date。</br>支持collection.Array, collection.Set和collection.Map。</br>具体使用规则，详见[makeObserved接口：将非观察数据变为可观察数据](../../ui/state-management/arkts-new-makeObserved.md)。 |
+| source | T    | 是   | 数据源对象。支持非@Observed和@ObservedV2装饰的class，JSON.parse返回的Object和@Sendable修饰的class。</br>支持Array、Map、Set和Date。</br>支持collection.Array, collection.Set和collection.Map。</br>具体使用规则，详见[makeObserved接口：将非观察数据变为可观察数据](../../ui/state-management/arkts-new-makeObserved.md)。 |
 
 **返回值：**
 
@@ -512,7 +515,7 @@ static makeV1Observed\<T extends object\>(source: T): T
 
 | 参数名 | 类型 | 必填 | 说明     |
 | ------ | ---- | ---- | ------------ |
-| source | T    | 是   | 数据源。支持普通class、Array、Map、Set、Date类型。</br>不支持[collections类型](../apis-arkts/js-apis-arkts-collections.md)和[@Sendable](../../arkts-utils/arkts-sendable.md)修饰的class。</br>不支持undefined和null。不支持状态管理V2的数据和[makeObserved](#makeobserved)的返回值。 |
+| source | T    | 是   | 数据源。支持普通class、Array、Map、Set、Date类型。</br>不支持[collections类型](../apis-arkts/arkts-apis-arkts-collections.md)和[@Sendable](../../arkts-utils/arkts-sendable.md)修饰的class。</br>不支持undefined和null。不支持状态管理V2的数据和[makeObserved](#makeobserved)的返回值。 |
 
 **返回值：**
 
@@ -585,7 +588,7 @@ static makeBinding\<T\>(getter: GetterCallback\<T\>): Binding\<T\>
 
 | 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
-| [Binding\<T\>](#binding20)    | 仅包含一个`value`属性，用于获取当前绑定的值。只能读取值，不能直接修改。 |
+| [Binding\<T\>](#bindingt20)    | 仅包含一个`value`属性，用于获取当前绑定的值。只能读取值，不能直接修改。 |
 
 **示例：**
 
@@ -651,7 +654,7 @@ static makeBinding\<T\>(getter: GetterCallback\<T\>, setter: SetterCallback\<T\>
 
 | 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
-| [MutableBinding\<T\>](#mutablebinding20)    | 包含一个`value`属性，支持通过`.value`读取和修改数据，设置值时会检查类型是否匹配泛型`T`。 |
+| [MutableBinding\<T\>](#mutablebindingt20)    | 包含一个`value`属性，支持通过`.value`读取和修改数据，设置值时会检查类型是否匹配泛型`T`。 |
 
 **示例：**
 
@@ -724,7 +727,7 @@ static addMonitor(target: object, path: string | string[], monitorCallback: Moni
 以下错误码的详细介绍请参见[状态管理错误码](./errorcode-stateManagement.md)。
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-|130000|The target is not an instance of @ObservedV2 (with at least one @Trace, @Computed, or @Monitor inside) or @ComponentV2.|
+|130000|The target is not a custom component instance or V2 class instance.|
 |130001|The path is invalid.|
 |130002|monitorCallback is not a function or an anonymous function.|
 
@@ -796,7 +799,7 @@ static clearMonitor(target: object, path: string | string[], monitorCallback?: M
 以下错误码的详细介绍请参见[状态管理错误码](./errorcode-stateManagement.md)。
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-|130000|The target is not an instance of @ObservedV2 (with at least one @Trace, @Computed, or @Monitor inside) or @ComponentV2.|
+|130000|The target is not a custom component instance or V2 class instance.|
 |130001|The path is invalid.|
 |130002|monitorCallback is not a function or an anonymous function.|
 
@@ -1272,7 +1275,7 @@ struct CompV2 {
 }
 ```
 
-## Binding<sup>20+</sup>
+## Binding\<T\><sup>20+</sup>
 
 只读数据绑定的泛型类，可以绑定任意类型的数据。
 
@@ -1289,7 +1292,7 @@ get value(): T
 
 **返回值：**
 
-| 类型             | 描述                                                         |
+| 类型             | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ |
 | T |返回值类型为泛型参数T，与Binding\<T\>定义的类型一致。|
 
@@ -1330,14 +1333,14 @@ struct CompV2 {
 }
 ```
 
-## MutableBinding<sup>20+</sup>
+## MutableBinding\<T\><sup>20+</sup>
 
 可变数据绑定的泛型类，允许对绑定值进行读写操作，提供完整的get和set访问器。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### value<sup>20+</sup>
-set value(newValue: T): void
+set value(newValue: T)
 
 提供set访问器，用于设置当前绑定值的值。构造MutableBinding类实例时必须提供set访问器，否则触发set访问器会造成运行时错误。
 
@@ -1362,7 +1365,7 @@ get value(): T
 
 **返回值：**
 
-| 类型             | 描述                                                         |
+| 类型             | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ |
 | T |返回值类型为泛型参数T，与Binding\<T\>定义的类型一致。|
 

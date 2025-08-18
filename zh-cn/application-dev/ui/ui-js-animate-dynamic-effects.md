@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
-<!--SE: @yangfan229-->
-<!--TSE: @lxl007-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 
 通过设置插值器来实现动画效果。
@@ -180,14 +181,14 @@ export default {
       promptAction.showToast({
         message: 'repeat'
       });
-      var repeatoptions = {
+      var repeatOptions = {
         duration: 2000,
         iterations: 1,
          direction: 'alternate',
          begin: 180,
          end: 240
        };
-        _this.animation.update(repeatoptions);
+        _this.animation.update(repeatOptions);
         _this.animation.play();
       };
   },

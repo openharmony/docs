@@ -1,10 +1,15 @@
 # AVSession Provider (C/C++)
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--SE: @ccfriend-->
+<!--TSE: @chenmingxi1_huawei-->
 
 The OHAVSession module provides C APIs to implement an AVSession provider. An audio and video application needs to access the AVSession service as a provider in order to display media information in the controller (for example, Media Controller) and respond to playback control commands delivered by the controller.
 
 ## Prerequisites
 
-To use the OHAVSession module to implement an AVSession provider, add the corresponding header files.
+To use [OHAVSession](../../reference/apis-avsession-kit/capi-native-avsession-h.md) to implement media sessions, add the corresponding header files.
 
 ### Linking the Dynamic Libraries in the CMake Script
 
@@ -27,7 +32,7 @@ To access a local session with the NDK, perform the following steps:
 
    ```c++
    OH_AVSession* avsession;
-   OH_AVSession_Create(SESSION_TYPE_AUDIO, "testsession", "com.example. application",   "MainAbility", &avsession);
+   OH_AVSession_Create(SESSION_TYPE_AUDIO, "testsession", "com.example.application",   "MainAbility", &avsession);
    ```
 
    **AVSession_Type** can be set to any of the following types:
@@ -40,7 +45,7 @@ To access a local session with the NDK, perform the following steps:
 
 2. Set the metadata of the media asset to be played.
 
-   To set metadata, use **OH_AVMetadataBuilder** to construct specific data, generate an **OH_AVMetadata** instance, and then call the APIs of **OH_AVMetadata** to set the asset.
+   To set metadata, use **OH_AVMetadataBuilder** to construct specific data, generate an OH_AVMetadata instance, and then call the APIs of **OH_AVMetadata** to set the asset.
 
    The code snippet below shows how to call **OH_AVMetadataBuilder** to construct metadata:
 
@@ -68,12 +73,17 @@ To access a local session with the NDK, perform the following steps:
    OH_AVMetadataBuilder_SetDisplayTags(builder,  AVSESSION_DISPLAYTAG_AUDIO_VIVID);
    
    /**
-    * Generate an AVMetadata.
+    * Generate an AVMetadata object.
     */
    OH_AVMetadataBuilder_GenerateAVMetadata(builder, &ohMetadata);
+
+   /**
+    * Set the AVMetadata object.
+    */
+   OH_AVSession_SetAVMetadata(avsession, ohMetadata);
    ```
    
-   When the OH_AVMetadataBuilder is no longer needed, call **OH_AVMetadataBuilder_Destroy** to destroy it and do not use it anymore.
+   When the AVMetadata is no longer needed, call **OH_AVMetadataBuilder_Destroy** to destroy it and do not use it anymore.
    
    ```c++
    OH_AVMetadata_Destroy(ohMetadata);
@@ -103,7 +113,9 @@ To access a local session with the NDK, perform the following steps:
    > **NOTE**
    >
    > After the provider registers a listener for fixed playback control commands, the commands will be reflected in **getValidCommands()** of the controller. In other words, the controller determines that the command is valid and triggers the corresponding event as required. To ensure that the playback control commands delivered by the controller can be executed normally, the provider should not use a null implementation for listening.
-
+   >
+   > To avoid any exception, call the API to unregister the listener when the service ends.
+ 
    Currently, the following playback control commands are supported:
    - Play
    - Pause
@@ -120,8 +132,8 @@ To access a local session with the NDK, perform the following steps:
    // CONTROL_CMD_PLAY = 0; play.
    // CONTROL_CMD_PAUSE = 1; pause.
    // CONTROL_CMD_STOP = 2; stop.
-   // CONTROL_CMD_PLAY_NEXT = 3; play previous.
-   // CONTROL_CMD_PLAY_PREVIOUS = 4; play next.
+   // CONTROL_CMD_PLAY_NEXT = 3; play next.
+   // CONTROL_CMD_PLAY_PREVIOUS = 4; play previous.
    AVSession_ControlCommand command = CONTROL_CMD_PLAY;
    OH_AVSessionCallback_OnCommand commandCallback = [](OH_AVSession* session, AVSession_ControlCommand command,
        void* userData) -> AVSessionCallback_Result
@@ -147,7 +159,7 @@ To access a local session with the NDK, perform the following steps:
    |OH_AVSession_RegisterRewindCallback(OH_AVSession* avsession, OH_AVSessionCallback_OnRewind   callback, void* userData) | Registers a callback for the rewind operation.    |
    |OH_AVSession_RegisterSeekCallback(OH_AVSession* avsession, OH_AVSessionCallback_OnSeek   callback, void* userData) | Registers a callback for the seek operation. |
    |OH_AVSession_RegisterToggleFavoriteCallback(OH_AVSession* avsession,   OH_AVSessionCallback_OnToggleFavorite callback, void* userData) | Registers a callback for the favorite operation. |
-5. When the audio and video application exits and does not need to continue playback, cancel the listener and destroy the **AVSession** object. The sample code is as follows:
+5. When the audio and video application exits and does not need to continue playback, cancel the listener and destroy the AVSession object. The example code is as follows:
  
    ```c++
    OH_AVSession_Destroy(avsession);

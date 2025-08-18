@@ -3,12 +3,13 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: USB-->
 <!--Owner: @hwymlgitcode-->
-<!--SE: @w00373942-->
-<!--TSE: @dong-dongzhen-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
 
 本模块主要提供管理USB设备的相关功能，包括主设备上查询USB设备列表、批量数据传输、控制命令传输、权限控制等；从设备上端口管理、功能切换及查询等。
 
->  **说明：**
+> **说明：**
 > 
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -38,7 +39,13 @@ import { usbManager } from '@kit.BasicServicesKit';
 
 getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
-获取接入主设备的USB设备列表。如果没有设备接入，那么将会返回一个空的列表。开发者模式关闭时，如果没有设备接入，接口可能返回`undefined`，注意需要对接口返回值做判空处理。
+获取接入主设备的USB设备列表。
+
+> **说明：**
+>
+> 当USB服务正常运行但无设备接入时，那么将会返回一个空的列表，这是正常情况，表示调用成功但当前没有连接的USB设备。
+>
+> 在USB主机模式未开启、USB服务未正确初始化、USB服务连接失败（如开发者模式关闭）、权限不足或其他系统错误时，接口会返回`undefined`，注意需要对接口返回值做判空处理。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -298,8 +305,7 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 
 声明对USB设备某个接口的控制权。
 
-
-**说明：**
+> **说明：**
 >
 > 在USB编程中，claim interface是一个常见操作，指的是应用程序请求操作系统将某个USB接口从内核驱动中释放并交由用户空间程序控制。<br>
 > 下面用到的claim通信接口都表示claim interface操作。
@@ -351,8 +357,7 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 释放claim过的通信接口。
 
-
-**说明：**
+> **说明：**
 >
 > 在调用该接口前需要通过[usbManager.claimInterface](#usbmanagerclaiminterface)claim通信接口。
 
@@ -449,7 +454,7 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 设置设备接口。
 
-**说明：**
+> **说明：**
 >
 > 一个USB接口可能存在多重选择模式，支持动态切换。使用的场景：数据传输时，通过该接口可重新设置端点，使端点与传输类型匹配。
 >
@@ -589,8 +594,8 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 
 控制传输。
 
-**说明：**
-
+> **说明：**
+>
 > 从 API version 9开始支持，从API version 12开始废弃。建议使用 [usbControlTransfer](#usbmanagerusbcontroltransfer12) 替代。
 
 **系统能力：**  SystemCapability.USB.USBManager
@@ -791,7 +796,7 @@ usbSubmitTransfer(transfer: UsbDataTransferParams): void
 
 提交异步传输请求。
 
-**说明：**
+> **说明：**
 >
 > 本接口为异步接口，调用后立刻返回，实际读写操作的结果以回调的方式返回。
 >
@@ -874,7 +879,7 @@ usbCancelTransfer(transfer: UsbDataTransferParams): void
 
 取消异步传输请求。
 
-**说明：**
+> **说明：**
 >
 > 该接口的主要作用是主动取消尚未完成的USB数据传输请求（如usbSubmitTransfer提交的传输）。<br>
 > 在调用该接口前需要通过[usbManager.claimInterface](#usbmanagerclaiminterface)claim通信接口。
@@ -1274,7 +1279,7 @@ resetUsbDevice(pipe: USBDevicePipe): boolean
 
 重置USB外设。
 
-**说明：**
+> **说明：**
 >
 > 本接口调用后会重置此前设置的配置和替换接口，请在调用之前确认相关业务已结束。
 
@@ -1327,8 +1332,8 @@ try {
 
 通过USB发送和接收数据的端口。通过[USBInterface](#usbinterface)获取。
 
-**说明：**
-
+>**说明：**
+>
 > 主机控制器按照Endpoint类型调度。
 >
 > 协议层打包时依赖type决定传输特性。
@@ -1343,7 +1348,7 @@ try {
 | maxPacketSize | number                                      | 是 |端点最大数据包大小。    |
 | direction     | [USBRequestDirection](#usbrequestdirection) | 是 |端点的方向。        |
 | number        | number                                      | 是 |端点号。          |
-| type          | number                                      | 是 |端点类型。 取值见[UsbEndpointTransferType](#usbendpointtransfertype18)         |
+| type          | number                                      | 是 |端点类型。取值见[UsbEndpointTransferType](#usbendpointtransfertype18)         |
 | interfaceId   | number                                      | 是 |端点所属的接口的唯一标识。 |
 
 ## USBInterface
@@ -1415,8 +1420,8 @@ USB设备消息传输通道，用于确定设备。
 
 控制传输参数。
 
-**说明：**
-
+>**说明：**
+>
 > 从 API version 9开始支持，从API version 18开始废弃。建议使用 [USBDeviceRequestParams](#usbdevicerequestparams12) 替代。
 
 **系统能力：** SystemCapability.USB.USBManager

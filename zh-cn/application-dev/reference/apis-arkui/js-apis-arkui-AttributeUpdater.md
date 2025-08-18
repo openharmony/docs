@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiang-shouxing-->
-<!--SE: @xiang-shouxing-->
-<!--TSE: @sally__-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 将属性直接设置给组件，无需标记为状态变量即可直接触发UI更新。
 
@@ -150,7 +151,7 @@ get attribute(): T | undefined
 
 **返回值：**
 
-| 类型             | 描述                                                         |
+| 类型             | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ |
 | T \| undefined |如果AttributeUpdater中组件的属性类实例存在，则返回对应组件的属性类实例，否则返回undefined。|
 
@@ -202,6 +203,12 @@ updateConstructorParams: C
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型             | 说明                                                         |
+| -------------------- | ------------------------------------------------------------ |
+| C   |C代表组件的构造函数类型，比如Text组件的TextInterface，Image组件的ImageInterface等。|
 
 **示例：** 
 

@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @yzkp-->
-<!--SE: @yzkp-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @yzkp-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 
 本模块提供应用启动框架配置的能力。

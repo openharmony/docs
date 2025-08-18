@@ -1,9 +1,11 @@
 # @ohos.notificationSubscribe (NotificationSubscribe模块)(系统接口)
+
 <!--Kit: Notification Kit-->
 <!--Subsystem: Notification-->
-<!--Owner: @michael_woo888-->
-<!--SE: @dongqingran; @wulong158-->
-<!--TSE: @wanghong1997-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 本模块提供通知订阅、取消订阅、通知移除等，一般情况下，只有系统应用具有这些操作权限。
 
@@ -1013,7 +1015,7 @@ notificationSubscribe.distributeOperation(hashcode, operationInfo).then(() => {
 
 ## OperationInfo<sup>18+</sup>
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 **系统接口**：此接口为系统接口。
 

@@ -1,4 +1,9 @@
 # Interface (AbsAlbum)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--SE: @liweilu1-->
+<!--TSE: @xchaosioda-->
 
 > **NOTE**
 >
@@ -88,6 +93,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 Obtains image and video assets. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 

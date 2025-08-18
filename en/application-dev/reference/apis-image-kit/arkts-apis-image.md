@@ -1,10 +1,13 @@
 # Module Description
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> - Since API version 12, the APIs of this module are supported in ArkTS widgets.
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 The module provides capabilities for image decoding, encoding, editing, metadata processing, and image receiving.
 

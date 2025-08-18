@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hddgzw-->
-<!--SE: @pssea-->
-<!--TSE: @jiaoaozihao-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 部分框架或应用具备自研的文字排版能力，在移植时，这些能力会被对接到[方舟2D图形服务的文本引擎](../graphics/complex-text-c.md)。为了避免开发者重复开发文本组件，Text组件提供了接口[NODE_TEXT_CONTENT_WITH_STYLED_STRING](../../application-dev/reference/apis-arkui/capi-native-node-h.md#arkui_nodeattributetype)，可以直接渲染方舟文本引擎生成的文本。
 
 以下场景基于[接入ArkTS页面章节](../ui/ndk-access-the-arkts-page.md)，阐述了如何创建字体引擎文本，并利用Text组件进行渲染显示。
@@ -12,12 +13,16 @@
 >
 > 涉及字体引擎的接口，需在CMakeLists.txt中添加`target_link_libraries(entry PUBLIC libnative_drawing.so)`，否则链接阶段会报错。
 
+下图展示了 `NODE_TEXT_CONTENT_WITH_STYLED_STRING` 接口的主要使用流程。
+
+![ndk_text_style_string_activity](figures/native_styledString_activity.png)
+
 ## 创建Text组件
 
-由于文本样式通过字体引擎接口设置，创建文本组件时无需配置文字颜色、字体大小等样式属性。但仍需设置基础的通用属性，例如宽度、高度。
+创建文本组件时，无需配置文字颜色、字体大小等样式属性，因为这些属性通过字体引擎接口设置。但仍需设置基础的通用属性，如宽度和高度。如果不指定，组件自动适应文本的宽度和高度。
 ```c++
 ArkUI_NativeNodeAPI_1 *nodeApi = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
-    OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
+    OH_ArkUI_QueryMod32uleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
 if (nodeApi == nullptr) {
     return;
 }
@@ -47,11 +52,11 @@ nodeApi->setAttribute(text, NODE_HEIGHT, &textHeightItem);
     ```
 - 设置文本样式
 
-    不同内容的文本可以设置不同的文本样式，但必须按照以下三个接口的调用顺序进行设置，否则将无法生效。
+    不同内容的文本可以设置不同的文本样式，但必须按照以下三个接口的逻辑调用顺序进行设置，否则将无法生效。
 
-    1. `OH_ArkUI_StyledString_PushTextStyle`：将文字样式推入栈中。
-    2. `OH_ArkUI_StyledString_AddText`：添加要修改样式的文字内容。
-    3. `OH_ArkUI_StyledString_PopTextStyle`：将文字样式弹出栈。
+    1. [OH_ArkUI_StyledString_PushTextStyle](../reference/apis-arkui/capi-styled-string-h.md#oh_arkui_styledstring_pushtextstyle)：将文字样式推入栈中。
+    2. [OH_ArkUI_StyledString_AddText](../reference/apis-arkui/capi-styled-string-h.md#oh_arkui_styledstring_addtext)：添加要修改样式的文字内容。
+    3. [OH_ArkUI_StyledString_PopTextStyle](../reference/apis-arkui/capi-styled-string-h.md#oh_arkui_styledstring_poptextstyle)：将文字样式弹出栈。
 
     > **说明：**
     > 
@@ -59,7 +64,7 @@ nodeApi->setAttribute(text, NODE_HEIGHT, &textHeightItem);
     >
     > `OH_Drawing_`前缀的接口由方舟字体引擎提供，参考[简单文本绘制与显示（C/C++)](../graphics/simple-text-c.md)、[复杂文本绘制与显示（C/C++）](../graphics/complex-text-c.md)。
 
-    `OH_Drawing_CreateTextStyle`创建文本样式。设置“Hello”字体大小28px，颜色为0xFF707070。设置“World!”字体大小为28px，颜色为0xFF2787D9。
+    [OH_Drawing_CreateTextStyle](../reference/apis-arkgraphics2d/capi-drawing-text-typography-h.md#oh_drawing_createtextstyle)创建文本样式。设置“Hello”字体大小28px，颜色为0xFF707070。设置“World!”字体大小为28px，颜色为0xFF2787D9。
     ```c++
     ArkUI_StyledString *styledString = OH_ArkUI_StyledString_Create(typographyStyle,OH_Drawing_CreateFontCollection());
 
@@ -80,22 +85,36 @@ nodeApi->setAttribute(text, NODE_HEIGHT, &textHeightItem);
     OH_ArkUI_StyledString_PopTextStyle(styledString);
     ```
 ## 添加占位
-占位在文字中间保留指定大小的空白区域，此区域内不绘制文字，但仍然参与文字的布局测量。因此，其大小会影响文字的排版。
-> **说明：**
-> 
-> 占位与文本的相对位置由 `OH_ArkUI_StyledString_AddPlaceholder` 执行顺序决定。
+占位保留指定大小的空白区域，此区域不绘制文字，但参与布局测量，影响文字排版。
+行高是文字高度与占位高度中的较大值。
 
+以下示例展示在`Hello`与`World!`中间插入占位。
 ```c++
+OH_Drawing_TextStyle *helloStyle = OH_Drawing_CreateTextStyle();
+OH_Drawing_SetTextStyleFontSize(helloStyle, 28);
+OH_Drawing_SetTextStyleColor(helloStyle, OH_Drawing_ColorSetArgb(0xFF, 0x70, 0x70, 0x70));
+OH_ArkUI_StyledString_PushTextStyle(styledString, helloStyle);
+OH_ArkUI_StyledString_AddText(styledString, "Hello");
+OH_ArkUI_StyledString_PopTextStyle(styledString);
+
+// 设置占位宽和高
 OH_Drawing_PlaceholderSpan placeHolder{
     .width = 100,
     .height = 100,
 };
 OH_ArkUI_StyledString_AddPlaceholder(styledString, placeHolder);
+
+OH_Drawing_TextStyle *worldTextStyle = OH_Drawing_CreateTextStyle();
+OH_Drawing_SetTextStyleFontSize(worldTextStyle, 28);
+OH_Drawing_SetTextStyleColor(worldTextStyle, OH_Drawing_ColorSetArgb(0xFF, 0x27,0x87, 0xD9));
+OH_ArkUI_StyledString_PushTextStyle(styledString, worldTextStyle);
+OH_ArkUI_StyledString_AddText(styledString, "World!");
+OH_ArkUI_StyledString_PopTextStyle(styledString);
 ```
 ## 文本布局与绘制
 - 文本布局
 
-    文字的样式和内容设置完成后，需调用字体引擎接口`OH_Drawing_TypographyLayout`对文本进行布局，传入指定的宽度，该宽度表示文字的最大值。
+  文字样式和内容设置完成后，调用字体引擎接口[OH_Drawing_TypographyLayout](../reference/apis-arkgraphics2d/capi-drawing-text-typography-h.md#oh_drawing_typographylayout)对文本进行布局，传入最大宽度。超过此宽度的文字会自动换行。
     
     > **说明：** 
     >
@@ -124,12 +143,19 @@ Text组件不对本文涉及的任何对象的生命周期进行管理，需由�
 
 `OH_Drawing_DestroyTypographyStyle(OH_Drawing_TypographyStyle *style)`：销毁段落样式对象。
 
-更多字体引擎销毁API参考[简单文本绘制与显示（C/C++)](../graphics/simple-text-c.md)、[复杂文本绘制与显示（C/C++）](../graphics/complex-text-c.md)。
+当Text组件仍在界面上显示时，此时释放会导致文字无法绘制。在实际业务场景下需确保Text组件不再使用时才释放。
 
-Text组件提供`OH_ArkUI_StyledString_Destroy`：销毁属性字符串对象。
+相关字体引擎销毁的接口请参考[OH_Drawing_DestroyTextStyle](../reference/apis-arkgraphics2d/capi-drawing-text-typography-h.md#oh_drawing_destroytextstyle) 和 [OH_Drawing_DestroyTypographyStyle](../reference/apis-arkgraphics2d/capi-drawing-text-typography-h.md#oh_drawing_destroytypographystyle)。
+
+Text组件提供[OH_ArkUI_StyledString_Destroy](../reference/apis-arkui/capi-styled-string-h.md#oh_arkui_styledstring_destroy)，用于销毁属性字符串对象。
 
 ## 完整示例
 ```c++
+#include <arkui/native_interface.h>
+#include <arkui/styled_string.h>
+#include <native_drawing/drawing_font_collection.h>
+#include <native_drawing/drawing_text_declaration.h>
+
 void CreateNativeNode() {
     ArkUI_NativeNodeAPI_1 *nodeApi = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));

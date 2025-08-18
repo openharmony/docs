@@ -1,9 +1,10 @@
 # jsvm_types.h
 <!--Kit: Common Basic Capability-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @huanghan18; @suyuehhh; @KasonChan; @string_sz; @diking-->
-<!--SE: @knightaoko-->
-<!--TSE: @test_lzz-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## 概述
 
@@ -204,6 +205,7 @@ enum JSVM_Status
 | JSVM_NO_EXTERNAL_BUFFERS_ALLOWED | 不允许外部缓冲区。 |
 | JSVM_CANNOT_RUN_JS | 不能执行JS。 |
 | JSVM_INVALID_TYPE | 传入的参数为非法类型。<br>**起始版本：** 18 |
+| JSVM_JIT_MODE_EXPECTED | 无 JIT 权限。<br>**起始版本：** 18 |
 
 ### JSVM_KeyCollectionMode
 

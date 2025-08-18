@@ -3,8 +3,9 @@
 <!--Kit: MindSpore Lite Kit-->
 <!--Subsystem: AI-->
 <!--Owner: @zhuguodong8-->
-<!--SE: @zhuguodong8; @jjfeing-->
-<!--TSE: @principal87-->
+<!--Designer: @zhuguodong8; @jjfeing-->
+<!--Tester: @principal87-->
+<!--Adviser: @ge-yafang-->
 
 ## 概述
 
@@ -66,6 +67,7 @@
 | [OH_AI_API OH_AI_Status OH_AI_ExportModel(OH_AI_ModelHandle model, OH_AI_ModelType model_type, const char *model_file,OH_AI_QuantizationType quantization_type, bool export_inference_only,char **output_tensor_name, size_t num)](#oh_ai_exportmodel) | - | 导出训练模型，仅用于端侧训练。                                                                                                                                                                                                                                     |
 | [OH_AI_API OH_AI_Status OH_AI_ExportModelBuffer(OH_AI_ModelHandle model, OH_AI_ModelType model_type, void *model_data,size_t *data_size, OH_AI_QuantizationType quantization_type,bool export_inference_only, char **output_tensor_name, size_t num)](#oh_ai_exportmodelbuffer) | - | 导出训练模型内存缓存，仅用于端侧训练。                                                                                                                                                                                                                                 |
 | [OH_AI_API OH_AI_Status OH_AI_ExportWeightsCollaborateWithMicro(OH_AI_ModelHandle model, OH_AI_ModelType model_type,const char *weight_file, bool is_inference,bool enable_fp16, char **changeable_weights_name,size_t num)](#oh_ai_exportweightscollaboratewithmicro) | - | 导出模型权重，只能用于micro推理，仅用于端侧训练。                                                                                                                                                                                                                         |
+| [OH_AI_API OH_AI_Status OH_AI_ModelLoadConfig(OH_AI_ModelHandle model, const char *config_path)](#oh_ai_modelloadconfig) | - | 加载模型配置文件。 |
 
 ## 函数说明
 
@@ -839,4 +841,28 @@ OH_AI_API OH_AI_Status OH_AI_ExportWeightsCollaborateWithMicro(OH_AI_ModelHandle
 | -- | -- |
 | OH_AI_API [OH_AI_Status](capi-status-h.md#oh_ai_status) | 枚举类型的状态码[OH_AI_Status](capi-status-h.md#oh_ai_status)，若成功返回OH_AI_STATUS_SUCCESS，失败则返回具体错误码。 |
 
+### OH_AI_ModelLoadConfig()
+
+```
+OH_AI_API OH_AI_Status OH_AI_ModelLoadConfig(OH_AI_ModelHandle model, const char *config_path);
+```
+
+**描述**
+
+加载模型配置文件。
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项                                                       | 描述           |
+| ------------------------------------------------------------ | -------------- |
+| [OH_AI_ModelHandle](capi-mindspore-oh-ai-modelhandle.md) model | 模型对象指针。 |
+| const char *config_path                                      | 配置文件路径。 |
+
+**返回：**
+
+| 类型                                                    | 说明                                                         |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
+| OH_AI_API [OH_AI_Status](capi-status-h.md#oh_ai_status) | 枚举类型的状态码[OH_AI_Status](capi-status-h.md#oh_ai_status)，若成功返回OH_AI_STATUS_SUCCESS，失败则返回具体错误码。 |
 

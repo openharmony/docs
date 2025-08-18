@@ -2,8 +2,9 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: MiscServices-->
 <!--Owner: @yangxiaodong41-->
-<!--SE: @guo867-->
-<!--TSE: @maxiaorong2-->
+<!--Designer: @guo867-->
+<!--Tester: @maxiaorong2-->
+<!--Adviser: @HelloCrease-->
 
 ## 场景介绍
 
@@ -68,7 +69,7 @@ export default class EntryAbility extends UIAbility {
       // 从剪贴板数据中获取对应条目信息
       for (let i = 0; i < recordCount; i++) {
         let record = outputData.getRecord(i).toPlainText();
-        console.log('Get data success, record:' + record);
+        console.info('Get data success, record:' + record);
       }
     }).catch((error: BusinessError) => {
       // 处理异常场景

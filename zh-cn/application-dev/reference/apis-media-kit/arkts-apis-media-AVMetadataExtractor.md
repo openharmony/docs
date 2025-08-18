@@ -2,8 +2,9 @@
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @wang-haizhou6-->
-<!--SE: @HmQQQ-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -159,7 +160,10 @@ fetchMetadata(callback: AsyncCallback\<AVMetadata>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+// 创建AVMetadataExtractor对象。
+let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
 avMetadataExtractor.fetchMetadata((error: BusinessError, metadata: media.AVMetadata) => {
   if (error) {
     console.error(`Failed to fetch Metadata, err = ${JSON.stringify(error)}`);
@@ -196,7 +200,10 @@ fetchMetadata(): Promise\<AVMetadata>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+// 创建AVMetadataExtractor对象。
+let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
 avMetadataExtractor.fetchMetadata().then((metadata: media.AVMetadata) => {
   console.info(`Succeeded in fetching Metadata, genre: ${metadata.genre}`);
 }).catch((error: BusinessError) => {
@@ -232,7 +239,10 @@ fetchAlbumCover(callback: AsyncCallback\<image.PixelMap>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
+import { media } from '@kit.MediaKit';
 
+// 创建AVMetadataExtractor对象。
+let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
 let pixel_map : image.PixelMap | undefined = undefined;
 
 avMetadataExtractor.fetchAlbumCover((error: BusinessError, pixelMap: image.PixelMap) => {
@@ -272,7 +282,10 @@ fetchAlbumCover(): Promise\<image.PixelMap>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
+import { media } from '@kit.MediaKit';
 
+// 创建AVMetadataExtractor对象。
+let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
 let pixel_map : image.PixelMap | undefined = undefined;
 
 avMetadataExtractor.fetchAlbumCover().then((pixelMap: image.PixelMap) => {
@@ -308,7 +321,10 @@ release(callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+// 创建AVMetadataExtractor对象。
+let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
 avMetadataExtractor.release((error: BusinessError) => {
   if (error) {
     console.error(`Failed to release, err = ${JSON.stringify(error)}`);
@@ -344,7 +360,10 @@ release(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+// 创建AVMetadataExtractor对象。
+let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
 avMetadataExtractor.release().then(() => {
   console.info(`Succeeded in releasing.`);
 }).catch((error: BusinessError) => {

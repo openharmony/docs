@@ -1,4 +1,10 @@
 # 应用冻屏事件介绍
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @rr_cn-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
 ## 简介
 
@@ -77,8 +83,8 @@ Js帧frame字段说明
 | file | string | 文件名 |
 | packageName | string | 模块的包名 |
 | symbol | string | 函数名称 |
-| line | number | 异常所在代码行号 |
-| column | number | 异常所在代码列号 |
+| line | number | 代码行号 |
+| column | number | 代码列号 |
 
 ### memory字段说明
 

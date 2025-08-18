@@ -2,8 +2,9 @@
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @xushubo; @chennotfound-->
-<!--SE: @dongyu_dy-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @dongyu_dy-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 本开发指导将介绍如何使用AVPlayer开发播放功能，在不同的场景下如何设置URL。
 
 当前指导仅介绍播放URL设置方法，其他场景及完整示例代码，请参考[视频播放](video-playback.md)。
@@ -15,7 +16,7 @@
 ## 流媒体播放场景下设置URL
 **情况一：播放HTTP/HTTPS媒体资源**
 ```ts
- import media from '@ohos.multimedia.media';
+ import { media } from '@kit.MediaKit';
  // 类成员定义avPlayer。
  private avPlayer: media.AVPlayer | null = null;
 
@@ -30,7 +31,7 @@
 
 **情况二：HLS媒体资源播放(点播/直播)**
 ```ts
- import media from '@ohos.multimedia.media';
+ import { media } from '@kit.MediaKit';
  // 类成员定义avPlayer。
  private avPlayer: media.AVPlayer | null = null;
 
@@ -47,7 +48,7 @@
 
 当服务器需要校验HTTP请求头信息时，可通过[createMediaSourceWithUrl](../../reference/apis-media-kit/arkts-apis-media-f.md#mediacreatemediasourcewithurl12)设置HTTP请求头信息。
 ```ts
- import media from '@ohos.multimedia.media';
+ import { media } from '@kit.MediaKit';
  // 类成员定义avPlayer。
  private avPlayer: media.AVPlayer | null = null;
 
@@ -71,21 +72,21 @@
 
 当应用需要通过解析本地Raw文件中的m3u8文件，播放在线流媒体资源时，可以通过[resourceManager.getRawFd](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)获取文件描述符，将其拼接成fdUrl，并通过[setMimeType](../../reference/apis-media-kit/arkts-apis-media-MediaSource.md#setmimetype12)设置MIME类型为APPLICATION_M3U8。
 ```ts
- import media from '@ohos.multimedia.media';
+ import { media } from '@kit.MediaKit';
+ import { common } from '@kit.AbilityKit';
  // 类成员定义avPlayer和context。
  private avPlayer: media.AVPlayer | null = null;
  private context: common.UIAbilityContext | undefined = undefined;
-
  // 在业务函数中（示例工程函数名为avSetupURL）：
  // 创建avPlayer实例对象。
  this.avPlayer = await media.createAVPlayer();
-
+ this.context = this.getUIContext().getHostContext() as common.UIAbilityContext;
  // 通过本地m3u8文件名，获取文件描述符。
  let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.m3u8');
  // 用文件描述符构造本地m3u8的URL。
  let fdUrl : string = "fd://" + fileDescriptor.fd +
    "?offset=" + fileDescriptor.offset + "&size=" + fileDescriptor.length;
- // 按需设置HTTP请求头
+ // 按需设置HTTP请求头。
  let headers : Record<string,string> = {"User-Agent" : "User-Agent-Value", "Cookie" : "Cookie-Value"};
  // 通过本地m3u8的URL和HTTP请求头构造mediaSource媒体来源。
  let mediaSource : media.MediaSource = media.createMediaSourceWithUrl(fdUrl, headers);
@@ -104,18 +105,21 @@
 
 当应用需要通过解析应用沙箱中的m3u8文件，播放在线流媒体资源时，可以通过[fs.openSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)获取文件句柄，将其拼接成fdUrl，并通过[setMimeType](../../reference/apis-media-kit/arkts-apis-media-MediaSource.md#setmimetype12)设置MIME类型为APPLICATION_M3U8。
 ```ts
- import media from '@ohos.multimedia.media';
+ import { media } from '@kit.MediaKit';
  import { fileIo as fs } from '@kit.CoreFileKit';
+ import { common } from '@kit.AbilityKit';
  // 类成员定义avPlayer和context。
  private avPlayer: media.AVPlayer | null = null;
  private context: common.UIAbilityContext | undefined = undefined;
+ private m3u8FileName: string = '';
 
  // 在业务函数中（示例工程函数名为avSetupURL）：
  // 创建avPlayer实例对象。
  this.avPlayer = await media.createAVPlayer();
-
- // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
- let filePath = `${this.context.filesDir}/${m3u8FileName}`;
+ this.context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+ // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例。
+ let m3u8FileName = '';
+ let filePath = `${this.context.filesDir}/${m3u8FileName}`; 
  // 通过fs.openSync获取文件句柄。
  let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
  let fd : string = file.fd.toString();
@@ -140,20 +144,23 @@
 ## 本地raw文件播放场景下设置URL
 **情况一：应用沙箱文件播放**
 ```ts
- import media from '@ohos.multimedia.media';
+ import { media } from '@kit.MediaKit';
  import { fileIo as fs } from '@kit.CoreFileKit';
- // 类成员定义avPlayer和context。
+ import { common } from '@kit.AbilityKit';
+ // 类成员定义avPlayer，context和fileName。
  private avPlayer: media.AVPlayer | null = null;
  private context: common.UIAbilityContext | undefined = undefined;
+ private fileName: string = '';
 
  // 在业务函数中（示例工程函数名为avSetupURL）：
  // 创建avPlayer实例对象。
  this.avPlayer = await media.createAVPlayer();
-
+ this.context = this.getUIContext().getHostContext() as common.UIAbilityContext;
  let fdPath = 'fd://';
- // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
+ let fileName = 'test.mp4'; // test.mp4为应用文件目录下的预置资源，需要开发者根据实际情况进行替换。
+ // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例。
  let path = `${this.context.filesDir}/${this.fileName}`;
- // 打开相应的资源文件地址获取fd，并为url赋值触发initialized状态机上报
+ // 打开相应的资源文件地址获取fd，并为url赋值触发initialized状态机上报。
  let file = await fs.open(path);
  fdPath = fdPath + '' + file.fd;
  this.avPlayer.url = fdPath;
@@ -165,17 +172,19 @@
 > 当使用AVPlayer播放本地资源时，AVPlayer会独占此fd。
 
 ```ts
- import media from '@ohos.multimedia.media';
- // 类成员定义avPlayer和context。
+ import { media } from '@kit.MediaKit';
+ import { common } from '@kit.AbilityKit';
+ // 类成员定义avPlayer，context和fileName。
  private avPlayer: media.AVPlayer | null = null;
+ private fileName: string = '';
  private context: common.UIAbilityContext | undefined = undefined;
-
  // 在业务函数中（示例工程函数名为avSetupURL）：
  // 创建avPlayer实例对象。
  this.avPlayer = await media.createAVPlayer();
-
+ this.context = this.getUIContext().getHostContext() as common.UIAbilityContext;
  // 通过UIAbilityContext的resourceManager成员的getRawFd接口获取媒体资源播放地址。
  // 返回类型为{fd,offset,length},fd为HAP包fd地址，offset为媒体资源偏移量，length为播放长度。
+ let fileName = 'test.mp4'; // test.mp4为应用文件目录下的预置资源，需要开发者根据实际情况进行替换。
  let fileDescriptor = await this.context.resourceManager.getRawFd(this.fileName);
  let avFileDescriptor: media.AVFileDescriptor =
   { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };

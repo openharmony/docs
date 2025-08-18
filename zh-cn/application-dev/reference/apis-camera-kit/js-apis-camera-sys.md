@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 本模块为开发者提供一套简单且易于理解的相机服务接口，开发者通过调用接口可以开发相机应用。应用通过访问和操作相机硬件，实现基础操作，如预览、拍照和录像；还可以通过接口组合完成更多操作，如控制闪光灯和曝光时间、对焦或调焦等。
 
@@ -752,7 +753,7 @@ async function releaseDepthData(depthData: camera.DepthData): Promise<void> {
 
 start(): Promise\<void\>
 
-启动深度信息输出流，通过Promise获取结果。
+启动深度信息输出流。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -762,7 +763,7 @@ start(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -791,7 +792,7 @@ function startDepthDataOutput(depthDataOutput: camera.DepthDataOutput): void {
 
 stop(): Promise\<void\>
 
-结束深度信息输出，通过Promise获取结果。
+结束深度信息输出。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -801,7 +802,7 @@ stop(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **示例：**
 
@@ -1519,7 +1520,7 @@ function getThumbnail(proxyObj: camera.DeferredPhotoProxy): void {
 
 release(): Promise\<void\>
 
-释放输出资源，通过Promise获取结果。
+释放输出资源。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1529,7 +1530,7 @@ release(): Promise\<void\>
 
 | 类型            | 说明               |
 | -------------- |------------------|
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1555,7 +1556,7 @@ async function releaseDeferredPhotoProxy(proxyObj: camera.DeferredPhotoProxy): P
 
 burstCapture(setting: PhotoCaptureSetting): Promise\<void\>
 
-开始连续拍照，一般用于拍照模式下，开始后底层持续上图，可以通过[confirmCapture](#confirmcapture11)取消连续拍照。
+开始连续拍照，一般用于拍照模式下，开始后底层持续上图，可以通过[confirmCapture](#confirmcapture11)取消连续拍照。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1571,7 +1572,7 @@ burstCapture(setting: PhotoCaptureSetting): Promise\<void\>
 
 | 类型            | 说明                      |
 | -------------- | ------------------------   |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -4496,7 +4497,9 @@ function unregisterLcdFlashStatus(portraitPhotoSession: camera.PortraitPhotoSess
 
 NightPhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect, ColorManagement, ManualExposure
 
-夜景拍照模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置夜景拍照模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
+夜景拍照模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置夜景拍照模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)、[PhotoOutput](arkts-apis-camera-PhotoOutput.md)。
+
+夜景拍照需要监听拍照结束事件[onCaptureEnd](arkts-apis-camera-PhotoOutput.md#oncaptureend)作为一次拍照的结束。
 
 ### on('error')<sup>11+</sup>
 

@@ -1,6 +1,6 @@
 # @ohos.multimedia.avsession (AVSession Management)
 
-The avSession module provides APIs for media playback control so that applications can access the system's Media Controller.
+The AVSession module provides APIs for media playback control so that applications can access the system's Media Controller.
 
 This module provides the following typical features related to media sessions:
 
@@ -70,12 +70,12 @@ struct Index {
             let context: Context = this.getUIContext().getHostContext() as Context;
             let sessionId: string;  // Used as an input parameter of subsequent functions.
 
-            avSession.createAVSession(context, tag, "audio").then((data: avSession.AVSession) => {
+            avSession.createAVSession(context, tag, "audio").then(async (data: avSession.AVSession) => {
             currentAVSession = data;
             sessionId = currentAVSession.sessionId;
             console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
             }).catch((err: BusinessError) => {
-            console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+            console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
             });
           })
       }
@@ -121,26 +121,26 @@ import { avSession } from '@kit.AVSessionKit';
 struct Index {
   @State message: string = 'hello world';
 
-  build() { 
+  build() {
     Column() {
-        Text(this.message)
-          .onClick(()=>{
-            let currentAVSession: avSession.AVSession;
-            let tag = "createNewSession";
-            let context: Context = this.getUIContext().getHostContext() as Context;
-            let sessionId: string;  // Used as an input parameter of subsequent functions.
+      Text(this.message)
+        .onClick(()=>{
+          let currentAVSession: avSession.AVSession;
+          let tag = "createNewSession";
+          let context: Context = this.getUIContext().getHostContext() as Context;
+          let sessionId: string;  // Used as an input parameter of subsequent functions.
 
-            avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+          avSession.createAVSession(context, tag, "audio", async (err: BusinessError, data: avSession.AVSession) => {
             if (err) {
-                console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+              console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
             } else {
-                currentAVSession = data;
-                sessionId = currentAVSession.sessionId;
-                console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+              currentAVSession = data;
+              sessionId = currentAVSession.sessionId;
+              console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
             }
-            });
-          })
-      }
+          });
+        })
+    }
     .width('100%')
     .height('100%')
   }
@@ -151,21 +151,20 @@ struct Index {
 
 Enumerates the protocol types supported by the remote device.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
 | Name                       | Value  | Description        |
 | --------------------------- | ---- | ----------- |
-| TYPE_LOCAL<sup>11+</sup>      | 0    | Local device, which can be the built-in speaker or audio jack of the device, or an A2DP device.|
-| TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+ stream mode, indicating that the media asset is being displayed on another device.|
-| TYPE_DLNA<sup>12+</sup>      | 4    | DLNA protocol, indicating that the media asset is being displayed on another device.|
+| TYPE_LOCAL<sup>11+</sup>      | 0    | Local device, which can be the built-in speaker or audio jack of the device, or an A2DP device.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+ stream mode, indicating that the media asset is being displayed on another device.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| TYPE_DLNA<sup>12+</sup>      | 4    | DLNA protocol, indicating that the media asset is being displayed on another device.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| TYPE_CAST_PLUS_AUDIO<sup>20+</sup>      | 8    | PCM mode, indicating that the media asset is being displayed on another device.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
 
 ## AVSessionType<sup>10+<sup>
 
 type AVSessionType = 'audio' | 'video' | 'voice_call' | 'video_call'
 
-Enumerates the session types supported by the session.
+Defines the session type supported by the session.
 
 You can use the strings listed in the following table.
 
@@ -182,7 +181,7 @@ You can use the strings listed in the following table.
 
 ## AVSession<sup>10+</sup>
 
-An **AVSession** object is created by calling [avSession.createAVSession](#avsessioncreateavsession10). The object enables you to obtain the session ID and set the metadata and playback state. 
+An AVSession object is created by calling [avSession.createAVSession](#avsessioncreateavsession10). The object enables you to obtain the session ID and set the metadata and playback state. 
 
 ### Properties
 
@@ -190,9 +189,9 @@ An **AVSession** object is created by calling [avSession.createAVSession](#avses
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
-| Name     | Type  | Readable| Writable| Description                         |
+| Name     | Type  | Read-Only| Optional| Description                         |
 | :-------- | :----- | :--- | :--- | :---------------------------- |
-| sessionId | string | Yes  | No  | Unique session ID of the **AVSession** object.|
+| sessionId | string | Yes  | No  | Unique session ID of the AVSession object.|
 | sessionType| [AVSessionType](#avsessiontype10) | Yes  | No  | AVSession type.|
 
 **Example**
@@ -632,7 +631,7 @@ Sets a launcher ability. This API uses a promise to return the result.
 
 | Name | Type                                         | Mandatory| Description                                                       |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
-| ability | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | Yes  | Application attributes, such as the bundle name, ability name, and deviceID.|
+| ability | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | Yes  | Application properties, such as the bundle name, ability name, and deviceID.|
 
 **Return value**
 
@@ -705,7 +704,7 @@ Sets a launcher ability. This API uses an asynchronous callback to return the re
 
 | Name  | Type                                         | Mandatory| Description                                                        |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| ability  | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | Yes  | Application attributes, such as the bundle name, ability name, and deviceID. |
+| ability  | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | Yes  | Application properties, such as the bundle name, ability name, and deviceID. |
 | callback | AsyncCallback\<void>                          | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -1317,14 +1316,31 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { avSession } from '@kit.AVSessionKit';
 
-let avsessionController: avSession.AVSessionController;
-currentAVSession.getController().then((avcontroller: avSession.AVSessionController) => {
-  avsessionController = avcontroller;
-  console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
-}).catch((err: BusinessError) => {
-  console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
-});
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
+  build() {
+    Column() {
+      Text(this.message)
+        .onClick(async ()=>{
+          let context: Context = this.getUIContext().getHostContext() as Context;
+          let currentAVSession: avSession.AVSession = await avSession.createAVSession(context, 'SESSION_NAME', 'audio');
+          let avsessionController: avSession.AVSessionController;
+          currentAVSession.getController().then(async (avcontroller: avSession.AVSessionController) => {
+            avsessionController = avcontroller;
+            console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
+          }).catch((err: BusinessError) => {
+            console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
+          });
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### getController<sup>10+</sup>
@@ -1353,17 +1369,35 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
+import { avSession } from '@kit.AVSessionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avsessionController: avSession.AVSessionController;
-currentAVSession.getController((err: BusinessError, avcontroller: avSession.AVSessionController) => {
-  if (err) {
-    console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    avsessionController = avcontroller;
-    console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
+
+  build() {
+    Column() {
+      Text(this.message)
+        .onClick(async () => {
+          let context: Context = this.getUIContext().getHostContext() as Context;
+          let currentAVSession: avSession.AVSession = await avSession.createAVSession(context, 'SESSION_NAME', 'audio');
+          let avsessionController: avSession.AVSessionController;
+          currentAVSession.getController((err: BusinessError, avcontroller: avSession.AVSessionController) => {
+            if (err) {
+              console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
+            } else {
+              avsessionController = avcontroller;
+              console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
+            }
+          });
+        })
+    }
+    .width('100%')
+    .height('100%')
   }
-});
+}
 ```
 
 ### getAVCastController<sup>10+</sup>
@@ -2003,7 +2037,7 @@ currentAVSession.on('rewind', (time?: number) => {
 
 on(type:'playFromAssetId', callback: (assetId: number) => void): void
 
-Subscribes to playback events of a given media asset ID.
+Subscribes to playback events with a given media asset ID.
 
 > **NOTE**
 >
@@ -2018,7 +2052,7 @@ Subscribes to playback events of a given media asset ID.
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | type     | string               | Yes  | Event type. The event **'playFromAssetId'** is triggered when the media asset ID is played.|
-| callback | callback: (assetId: number) => void | Yes  | Callback The **assetId** parameter in the callback indicates the media asset ID.     |
+| callback | (assetId: number) => void | Yes  | Callback The **assetId** parameter in the callback indicates the media asset ID.     |
 
 **Error codes**
 
@@ -2042,7 +2076,7 @@ currentAVSession.on('playFromAssetId', (assetId: number) => {
 
 off(type: 'playFromAssetId', callback?: (assetId: number) => void): void
 
-Unsubscribes from playback events of a given media asset ID.
+Unsubscribes from playback events with a given media asset ID.
 
 > **NOTE**
 >
@@ -2057,7 +2091,7 @@ Unsubscribes from playback events of a given media asset ID.
 | Name   | Type                 | Mandatory| Description                                                                                                                        |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
 | type     | string               | Yes  | Event type, which is **'playFromAssetId'** in this case.|
-| callback | callback: (assetId: number) => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session. The **assetId** parameter in the callback indicates the media asset ID.                           |
+| callback | (assetId: number) => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session. The **assetId** parameter in the callback indicates the media asset ID.                           |
 
 **Error codes**
 
@@ -2079,7 +2113,7 @@ currentAVSession.off('playFromAssetId');
 
 on(type:'playWithAssetId', callback: Callback\<string>): void
 
-Subscribes to playback events of a given media asset ID.
+Subscribes to playback events with a given media asset ID.
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
@@ -2090,7 +2124,7 @@ Subscribes to playback events of a given media asset ID.
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | type     | string               | Yes  | Event type. The event **'playWithAssetId'** is triggered when the media asset ID is played.|
-| callback | callback: Callback\<string> | Yes  | Callback The **assetId** parameter in the callback indicates the media asset ID.     |
+| callback | Callback\<string> | Yes  | Callback The **assetId** parameter in the callback indicates the media asset ID.     |
 
 **Error codes**
 
@@ -2115,7 +2149,7 @@ currentAVSession.on('playWithAssetId', playWithAssetIdCallback);
 
 off(type: 'playWithAssetId', callback?: Callback\<string>): void
 
-Unsubscribes from playback events of a given media asset ID.
+Unsubscribes from playback events with a given media asset ID.
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
@@ -2126,7 +2160,7 @@ Unsubscribes from playback events of a given media asset ID.
 | Name   | Type                 | Mandatory| Description                                                                                                                        |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
 | type     | string               | Yes  | Event type, which is **'playWithAssetId'** in this case.|
-| callback | callback: Callback\<string> | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session. The **assetId** parameter in the callback indicates the media asset ID.                           |
+| callback | Callback\<string> | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session. The **assetId** parameter in the callback indicates the media asset ID.                           |
 
 **Error codes**
 
@@ -2267,7 +2301,7 @@ Subscribes to setTargetLoopMode command events.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSesion Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2394,7 +2428,7 @@ currentAVSession.on('handleKeyEvent', (event: KeyEvent) => {
 
 on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: OutputDeviceInfo) => void): void
 
-Subscribes to output device change events. After the application integrates the [**AVCastPicker** component](ohos-multimedia-avcastpicker.md), the application receives the device change callback when the user switches the device through the component.
+Subscribes to output device change events. After the application integrates the [AVCastPicker component](ohos-multimedia-avcastpicker.md), the application receives the device change callback when the user switches the device through the component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2440,7 +2474,7 @@ Subscribes to custom control command change events.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The event **'commonCommand'** is triggered when a custom control command changes.|
-| callback | (command: string, args: {[key:string]: Object}) => void         | Yes  | Callback used for subscription. The **command** parameter in the callback indicates the name of the changed custom control command, and **args** indicates the parameters carried in the command. The parameters must be the same as those set in [sendCommonCommand](#sendcommoncommand10).         |
+| callback | (command: string, args: {[key: string]: Object}) => void         | Yes  | Callback used for subscription. The **command** parameter in the callback indicates the name of the changed custom control command, and **args** indicates the parameters carried in the command. The parameters must be the same as those set in [sendCommonCommand](#sendcommoncommand10).         |
 
 **Error codes**
 
@@ -2803,7 +2837,7 @@ currentAVSession.off('setSpeed');
 
 off(type: 'setLoopMode', callback?: (mode: LoopMode) => void): void
 
-Unsubscribes from setSpeed command events.
+Unsubscribes from setLoopMode command events.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2851,7 +2885,7 @@ Unsubscribes from setTargetLoopMode command events.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSesion Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3461,7 +3495,7 @@ currentAVSession.getAllCastDisplays().then((data: Array< avSession.CastDisplayIn
 type AVCastControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward' | 'rewind' |
   'seek' | 'setVolume' | 'setSpeed' | 'setLoopMode' | 'toggleFavorite' | 'toggleMute'
 
-Enumerates the commands that can be sent by a cast controller.
+Defines the commands that can be sent by a cast controller.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3469,23 +3503,23 @@ Enumerates the commands that can be sent by a cast controller.
 
 | Type            | Description        |
 | ---------------- | ------------ |
-| 'play'           | Play the media.        |
-| 'pause'          | Pause the playback.       |
-| 'stop'           | Stop the playback.        |
-| 'playNext'       | Play the next media asset.      |
-| 'playPrevious'   | Play the previous media asset.      |
-| 'fastForward'    | Fast-forward.        |
-| 'rewind'         | Rewind.        |
-| 'seek'           | Seek to a playback position.|
-| 'setVolume'      | Set the volume.    |
-| 'setSpeed'       | Set the playback speed.|
-| 'setLoopMode'    | Set the loop mode.|
-| 'toggleFavorite' | Favorite the media asset.    |
-| 'toggleMute'     | Set the muted status.|
+| 'play'           | Play the media. No parameter is required.|
+| 'pause'          | Pause the playback. No parameter is required.  |
+| 'stop'           | Stop the playback. No parameter is required.        |
+| 'playNext'       | Play the next media asset. No parameter is required.      |
+| 'playPrevious'   | Play the previous media asset. No parameter is required.      |
+| 'fastForward'    | Fast-forward. No parameter is required.      |
+| 'rewind'         | Rewind. No parameter is required.       |
+| 'seek'           | Seek to a playback position. The corresponding parameter is of the number type.|
+| 'setVolume'      | Set the volume. The corresponding parameter is of the number type. You can use [AVPlaybackState.maxVolume](#avplaybackstate10) to obtain the maximum system volume.    |
+| 'setSpeed'       | Set the playback speed. The corresponding parameter is [media.PlaybackSpeed](../apis-media-kit/arkts-apis-media-e.md#playbackspeed8).|
+| 'setLoopMode'    | Set the loop mode. The corresponding parameter is [LoopMode](#loopmode10).|
+| 'toggleFavorite' | Favorite the media asset. The corresponding parameter is [AVMetadata.assetId](#avmetadata10).   |
+| 'toggleMute'     | Set the muted status. No parameter is required.|
 
 ## AVCastControlCommand<sup>10+</sup>
 
-Defines the command that can be sent by a cast controller.
+Describes the command that can be sent by a cast controller.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3493,8 +3527,8 @@ Defines the command that can be sent by a cast controller.
 
 | Name     | Type                                             | Mandatory| Description          |
 | --------- | ------------------------------------------------- | ---- | -------------- |
-| command   | [AVCastControlCommandType](#avcastcontrolcommandtype10)     | Yes  | Command.          |
-| parameter | [media.PlaybackSpeed](../apis-media-kit/js-apis-media.md#playbackspeed8) &#124; number &#124; string &#124; [LoopMode](#loopmode10) | No  | Parameters carried in the command.|
+| command   | [AVCastControlCommandType](#avcastcontrolcommandtype10)     | Yes  | Command. The parameters carried in each command are different. For details, see [AVCastControlCommandType](#avcastcontrolcommandtype10).|
+| parameter | [media.PlaybackSpeed](../apis-media-kit/arkts-apis-media-e.md#playbackspeed8) &#124; number &#124; string &#124; [LoopMode](#loopmode10) | No  | Parameters carried in the command.|
 
 ## AVCastController<sup>10+</sup>
 
@@ -3603,7 +3637,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 aVCastController.getSupportedDecoders().then((decoderTypes: avSession.DecoderType[]) => {
   console.info(`getSupportedDecoders : SUCCESS : decoderTypes.length : ${decoderTypes.length}`);
-  if (descriptors.length > 0 ) {
+  if (decoderTypes.length > 0 ) {
     console.info(`getSupportedDecoders : SUCCESS : decoderTypes[0] : ${decoderTypes[0]}`);
   }
 }).catch((err: BusinessError) => {
@@ -3834,7 +3868,7 @@ Prepares for the playback of a media asset, that is, loads and buffers a media a
 
 | Name   | Type                                 | Mandatory| Description                          |
 | ------- | ------------------------------------- | ---- | ------------------------------ |
-| item | [AVQueueItem](#avqueueitem10) | Yes  | Attributes of an item in the playlist.|
+| item | [AVQueueItem](#avqueueitem10) | Yes  | Properties of an item in the playlist.|
 | callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object.|   
 
 **Error codes**
@@ -3895,7 +3929,7 @@ Prepares for the playback of a media asset, that is, loads and buffers a media a
 
 | Name   | Type                                 | Mandatory| Description                          |
 | ------- | ------------------------------------- | ---- | ------------------------------ |
-| item | [AVQueueItem](#avqueueitem10) | Yes  | Attributes of an item in the playlist.|
+| item | [AVQueueItem](#avqueueitem10) | Yes  | Properties of an item in the playlist.|
 
 **Return value**
 
@@ -3956,7 +3990,7 @@ Prepares for the playback of a media asset. This API uses an asynchronous callba
 
 | Name   | Type                                 | Mandatory| Description                          |
 | ------- | ------------------------------------- | ---- | ------------------------------ |
-| item | [AVQueueItem](#avqueueitem10) | Yes  | Attributes of an item in the playlist.|
+| item | [AVQueueItem](#avqueueitem10) | Yes  | Properties of an item in the playlist.|
 | callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object.|   
 
 **Error codes**
@@ -4017,7 +4051,7 @@ Prepares for the playback of a media asset. This API uses a promise to return th
 
 | Name   | Type                                 | Mandatory| Description                          |
 | ------- | ------------------------------------- | ---- | ------------------------------ |
-| item | [AVQueueItem](#avqueueitem10) | Yes  | Attributes of an item in the playlist.|
+| item | [AVQueueItem](#avqueueitem10) | Yes  | Properties of an item in the playlist.|
 
 **Return value**
 
@@ -4150,7 +4184,7 @@ Obtains the supported commands. This API uses an asynchronous callback to return
 
 | Name| Type| Mandatory| Description|
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
-| callback | Array<[AVCastControlCommandType](#avcastcontrolcommandtype10)> | Yes| Callback return the supported commands.|
+| callback | AsyncCallback<Array<[AVCastControlCommandType](#avcastcontrolcommandtype10)>> | Yes| Callback return the supported commands.|
 
 **Error codes**
 
@@ -4165,7 +4199,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-aVCastController.getValidCommands((err: BusinessError, state: avSession.AVCastControlCommandType) => {
+aVCastController.getValidCommands((err: BusinessError, state: avSession.AVCastControlCommandType[]) => {
   if (err) {
     console.error(`getValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
@@ -4201,7 +4235,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-aVCastController.getValidCommands().then((state: avSession.AVCastControlCommandType) => {
+aVCastController.getValidCommands().then((state: avSession.AVCastControlCommandType[]) => {
   console.info('getValidCommands successfully');
 }).catch((err: BusinessError) => {
   console.error(`getValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -4413,7 +4447,7 @@ Subscribes to media asset change events.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The event **'mediaItemChange'** is triggered when the media content being played changes.|
-| callback | (callback: [AVQueueItem](#avqueueitem10)) => void         | Yes  | Callback used for subscription. **AVQueueItem** is the media asset that is being played.                     |
+| callback | Callback<[AVQueueItem](#avqueueitem10)>         | Yes  | Callback used for subscription. **AVQueueItem** is the media asset that is being played.                     |
 
 **Error codes**
 
@@ -4606,7 +4640,7 @@ Subscribes to playback request events.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The event **'requestPlay'** is triggered when a playback request is received.|
-| callback | (state: [AVQueueItem](#avqueueitem10)) => void               | Yes  | Callback function, where the **AVQueueItem** parameter specifies the media asset that is being played. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object. | 
+| callback | Callback\<[AVQueueItem](#avqueueitem10)>                | Yes  | Callback function, where the **AVQueueItem** parameter specifies the media asset that is being played. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object. | 
 
 **Error codes**
 
@@ -4638,7 +4672,7 @@ Unsubscribes from playback request events.
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------| ---- | ----------------------------------------------------- |
 | type     | string                                                      | Yes  | Event type, which is **'requestPlay'** in this case.   |
-| callback | (state: [AVQueueItem](#avqueueitem10)) => void              | No  | Callback function, where the **AVQueueItem** parameter specifies the media asset that is being played. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
+| callback | Callback\<[AVQueueItem](#avqueueitem10)>             | No  | Callback function, where the **AVQueueItem** parameter specifies the media asset that is being played. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
 
 **Error codes**
 
@@ -5422,7 +5456,7 @@ Defines the custom media packet set by the provider.
 ## KeyRequestCallback<sup>12+</sup>
 type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
 
-Describes the callback invoked for the media key request event.
+Defines the callback invoked for the media key request event.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5465,7 +5499,7 @@ Describes the information about the cast display in the case of extended screens
 
 **System capability**: SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
-| Name           | Type                     | Read Only| Optional| Description                                                                 |
+| Name           | Type                     | Read-Only| Optional| Description                                                                 |
 | --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
 | id            | number                  | No   | No   | ID of the cast display. The value must be an integer. |
 | name     | string                  | No   | No   | Name of the cast display.          |
@@ -5493,7 +5527,7 @@ Describes the media metadata.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
-| Name           | Type                     | Read Only| Optional| Description                                                                 |
+| Name           | Type                     | Read-Only| Optional| Description                                                                 |
 | --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
 | assetId         | string                  | No  | No  | Media asset ID. It is the unique ID of a song and defined by the application.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                    |
 | title           | string                  | No  | Yes  | Title.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                |
@@ -5501,13 +5535,13 @@ Describes the media metadata.
 | author          | string                  | No  | Yes  | Author.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
 | avQueueName<sup>12+</sup>       | string                  | No  | Yes  | Playlist name.                                                              |
 | avQueueId<sup>11+</sup>       | string                  | No  | Yes  | Unique ID of the playlist.                                                              |
-| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No  | Yes  | Cover image of the playlist, which can be pixel data of an image or an image path (local path or Internet path). Applications call **setAVMetadata** to set the image data.<br>- If the data type is set to **PixelMap**, the data obtained by calling **getAVMetadata** is the pixel data of an image.<br>- If the data type is set to **url**, the data obtained is an image path. |
+| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) &#124; string | No  | Yes  | Cover image of the playlist, which can be pixel data of an image or an image path (local path or Internet path). Applications call **setAVMetadata** to set the image data.<br>- If the data type is set to **PixelMap**, the data obtained by calling **getAVMetadata** is the pixel data of an image.<br>- If the data type is set to **url**, the data obtained is an image path. |
 | album           | string                  | No  | Yes  | Album name.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
 | writer          | string                  | No  | Yes  | Writer.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
 | composer        | string                  | No  | Yes  | composer.                                                               |
 | duration        | number                  | No  | Yes  | Media duration, in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                 |
-| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No  | Yes  | Pixel map or image path (local path or network path) of the image. Applications call **setAVMetadata** to set the image data.<br>- If the data type is set to **PixelMap**, the data obtained by calling **getAVMetadata** is the pixel data of an image.<br>- If the data type is set to **url**, the data obtained is an image path.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                            |
-| bundleIcon<sup>18+</sup>      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | Yes  | Pixel data of the image that is used as the application icon. It is read-only and cannot be set on the application side.|
+| mediaImage      | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) &#124; string | No  | Yes  | Pixel map or image path (local path or network path) of the image. Applications call **setAVMetadata** to set the image data.<br>- If the data type is set to **PixelMap**, the data obtained by calling **getAVMetadata** is the pixel data of an image.<br>- If the data type is set to **url**, the data obtained is an image path.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                            |
+| bundleIcon<sup>18+</sup>      | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | Yes  | Yes  | Pixel data of the image that is used as the application icon. It is read-only and cannot be set on the application side.|
 | publishDate     | Date                    | No  | Yes  | Release date.                                                            |
 | subtitle        | string                  | No  | Yes  | Subtitle.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
 | description     | string                  | No  | Yes  | Media description.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
@@ -5522,38 +5556,39 @@ Describes the media metadata.
 
 ## AVMediaDescription<sup>10+</sup>
 
-Describes the attributes related to the media metadata in the playlist.
+Describes the properties related to the media metadata in the playlist.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
-| Name        | Type                   | Mandatory | Description                    |
-| ------------ | ----------------------- | ---- | ----------------------- |
-| assetId      | string                  | Yes  | Media ID in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.         |
-| title        | string                  | No  | Name of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.       |
-| subtitle     | string                  | No  | Subname of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.     |
-| description  | string                  | No  | Description of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
-| mediaImage | image.PixelMap \| string   | No  | Pixel map of the image of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| extras       | {[key: string]: Object}    | No  | Additional fields of the media asset in the playlist.    |
-| mediaUri     | string                  | No  | URI of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
-| mediaType     | string                  | No  | Type of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
-| mediaSize     | number                  | No  | Size of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
-| albumTitle     | string                  | No  | Album name of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
-| albumCoverUri     | string                  | No  | URI of the album title of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.   |
-| lyricContent     | string                  | No  | Lyric content of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
-| lyricUri     | string                  | No  | Lyric URI of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
-| artist     | string                  | No  | Author of the lyric of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
-| fdSrc     | media.AVFileDescriptor        | No  | Handle to the local media file in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
-| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | No  | Descriptor of the data source in the playlist.        |
-| drmScheme<sup>12+</sup>     | string        | No  | DRM scheme supported by the playlist. The value is the UUID of the DRM scheme.      |
-| duration     | number                  | No  | Playback duration of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
-| startPosition     | number                  | No  | Start position for playing the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
-| creditsPosition     | number                  | No  | Position for playing the closing credits of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
-| appName     | string                  | No  | Name of the application provided by the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
-|displayTags<sup>11+</sup>     | number | No  | Display tags of the media asset. For details, see [DisplayTag](#displaytag11).<br>**Atomic service API**: This API can be used in atomic services since API version 12.       |
+| Name        | Type                   | Read-Only | Optional | Description                    |
+| ------------ | ----------------------- | ---- | ---- | ----------------------- |
+| assetId      | string                  | No  | No  | Media ID in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.         |
+| title        | string                  | No  | Yes  | Name of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.       |
+| subtitle     | string                  | No  | Yes  | Subname of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.     |
+| description  | string                  | No  | Yes  | Description of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
+| mediaImage | image.PixelMap \| string   | No  | Yes  | Pixel map of the image of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| extras       | {[key: string]: Object}    | No  | Yes  | Additional fields of the media asset in the playlist.    |
+| mediaUri     | string                  | No  | Yes  | URI of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| mediaType     | string                  | No  | Yes  | Type of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| mediaSize     | number                  | No  | Yes  | Size of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| albumTitle     | string                  | No  | Yes  | Album name of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| albumCoverUri     | string                  | No  | Yes  | URI of the album title of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.   |
+| lyricContent     | string                  | No  | Yes  | Lyric content of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| lyricUri     | string                  | No  | Yes  | Lyric URI of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| artist     | string                  | No  | Yes  | Author of the lyric of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| fdSrc     | media.AVFileDescriptor        | No  | Yes  | Handle to the local media file in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | No  | Yes  | Descriptor of the data source in the playlist.        |
+| pcmSrc<sup>20+</sup>     | boolean        | No  | Yes  | Whether the playlist uses a PCM data source. **true** if the PCM data source used, **false** otherwise.<br>Due to device limitations, this parameter is temporarily unavailable and will be supported in future versions.        |
+| drmScheme<sup>12+</sup>     | string        | No  | Yes  | DRM scheme supported by the playlist. The value is the UUID of the DRM scheme.      |
+| duration     | number                  | No  | Yes  | Playback duration of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| startPosition     | number                  | No  | Yes  | Start position for playing the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| creditsPosition     | number                  | No  | Yes  | Position for playing the closing credits of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| appName     | string                  | No  | Yes  | Name of the application provided by the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+|displayTags<sup>11+</sup>     | number | No  | Yes  | Display tags of the media asset. For details, see [DisplayTag](#displaytag11).<br>**Atomic service API**: This API can be used in atomic services since API version 12.       |
 
 ## AVQueueItem<sup>10+</sup>
 
-Describes the attributes of an item in the playlist.
+Describes the properties of an item in the playlist.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5602,7 +5637,7 @@ Describes the information related to the playback position.
 
 ## CallMetadata<sup>11+</sup>
 
-Defines the attributes related to call metadata.
+Describes the properties related to call metadata.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5612,11 +5647,11 @@ Defines the attributes related to call metadata.
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
 | name            | string                  | No   | Name (alias) of the caller.   |                                                                                                                      
 | phoneNumber     | string                  | No   | Phone number of the caller.           |                                                   
-| avatar          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)          | No   | Profile picture of the caller.           |                                                   
+| avatar          | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)          | No   | Profile picture of the caller.           |                                                   
 
 ## AVCallState<sup>11+</sup>
 
-Defines the attributes related to the call state.
+Describes the properties related to the call state.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5726,6 +5761,7 @@ Describes the information related to the output device.
 | supportedDrmCapabilities<sup>12+</sup> | Array\<string> | No  | DRM capability supported by the output device.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | manufacturer<sup>13+</sup> | string | No  | Manufacturer of the output device.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 | modelName<sup>13+</sup> | string | No  | Model name of the output device.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| audioCapabilities<sup>20+</sup> | [AudioCapabilities](#audiocapabilities20) | No  | Audio capabilities supported by the output device.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast|
 
 ## OutputDeviceInfo<sup>10+</sup>
 
@@ -5782,15 +5818,15 @@ Enumerates the media playback states.
 
 Through the AV session controller, you can query the session ID, send commands and events to a session, and obtain session metadata and playback state information.
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
-| Name     | Type  | Readable| Writable| Description                                   |
+| Name     | Type  | Read-Only| Optional| Description                                   |
 | :-------- | :----- | :--- | :--- | :-------------------------------------- |
-| sessionId | string | Yes  | No  | Unique session ID of the **AVSessionController** object.|
+| sessionId | string | Yes  | No  | Unique session ID of the AVSessionController object.|
 
 
 **Example**
@@ -5798,34 +5834,18 @@ Through the AV session controller, you can query the session ID, send commands a
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { avSession } from '@kit.AVSessionKit';
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
 
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(()=>{
-          let currentAVSession: avSession.AVSession | undefined = undefined;
-          let tag: string = "createNewSession";
-          let context: Context = this.getUIContext().getHostContext() as Context;
-          let sessionId: string = "";
-          let AVSessionController: avSession.AVSessionController;
-          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
-            currentAVSession = data;
-            sessionId = currentAVSession.sessionId;
-            AVSessionController = await currentAVSession.getController();
-            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
-          }).catch((err: BusinessError) => {
-            console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
-          });
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
+let tag: string = "createNewSession";
+let sessionId: string = "";
+let AVSessionController: avSession.AVSessionController;
+avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+  currentAVSession = data;
+  sessionId = currentAVSession.sessionId;
+  AVSessionController = await currentAVSession.getController();
+  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+}).catch((err: BusinessError) => {
+  console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ### getAVPlaybackState<sup>10+</sup>
@@ -6394,7 +6414,7 @@ avsessionController.sendAVKeyEvent(event, (err: BusinessError) => {
 
 getLaunchAbility(): Promise\<WantAgent>
 
-Obtains the **WantAgent** object saved by the application in the session. This API uses a promise to return the result.
+Obtains the WantAgent object saved by the application in the session. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -6404,7 +6424,7 @@ Obtains the **WantAgent** object saved by the application in the session. This A
 
 | Type                                                   | Description                                                        |
 | ------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise<[WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md)\> | Promise used to return the object saved by calling [setLaunchAbility](#setlaunchability10). The object includes the application attribute, such as the bundle name, ability name, and device ID.|
+| Promise<[WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md)\> | Promise used to return the object saved by calling [setLaunchAbility](#setlaunchability10). The object includes the application property, such as the bundle name, ability name, and device ID.|
 
 **Error codes**
 
@@ -6432,7 +6452,7 @@ avsessionController.getLaunchAbility().then((agent: object) => {
 
 getLaunchAbility(callback: AsyncCallback\<WantAgent>): void
 
-Obtains the **WantAgent** object saved by the application in the session. This API uses an asynchronous callback to return the result.
+Obtains the WantAgent object saved by the application in the session. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -6440,7 +6460,7 @@ Obtains the **WantAgent** object saved by the application in the session. This A
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md)\> | Yes  | Callback used to return the object saved by calling [setLaunchAbility](#setlaunchability10). The object includes the application attribute, such as the bundle name, ability name, and device ID.|
+| callback | AsyncCallback<[WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md)\> | Yes  | Callback used to return the object saved by calling [setLaunchAbility](#setlaunchability10). The object includes the application property, such as the bundle name, ability name, and device ID.|
 
 **Error codes**
 
@@ -6870,41 +6890,25 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { avSession } from '@kit.AVSessionKit';
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
 
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(()=>{
-          let currentAVSession: avSession.AVSession | undefined = undefined;
-          let tag: string = "createNewSession";
-          let context: Context = this.getUIContext().getHostContext() as Context;
-          let sessionId: string = "";
-          let controller:avSession.AVSessionController | undefined = undefined;
-          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
-            currentAVSession = data;
-            sessionId = currentAVSession.sessionId;
-            controller = await currentAVSession.getController();
-            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
-          }).catch((err: BusinessError) => {
-            console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
-          });
-          let commandName = "my_command";
-          if (controller !== undefined) {
-            (controller as avSession.AVSessionController).sendCommonCommand(commandName, {command : "This is my command"}).then(() => {
-              console.info('SendCommonCommand successfully');
-            }).catch((err: BusinessError) => {
-              console.error(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
-            })
-          }
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
+let tag: string = "createNewSession";
+let sessionId: string = "";
+let controller:avSession.AVSessionController | undefined = undefined;
+avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+  currentAVSession = data;
+  sessionId = currentAVSession.sessionId;
+  controller = await currentAVSession.getController();
+  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+}).catch((err: BusinessError) => {
+  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+});
+let commandName = "my_command";
+if (controller !== undefined) {
+  (controller as avSession.AVSessionController).sendCommonCommand(commandName, {command : "This is my command"}).then(() => {
+    console.info('SendCommonCommand successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+  })
 }
 ```
 
@@ -6946,41 +6950,25 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { avSession } from '@kit.AVSessionKit';
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
-
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(()=>{
-          let currentAVSession: avSession.AVSession | undefined = undefined;
-          let tag: string = "createNewSession";
-          let context: Context = this.getUIContext().getHostContext() as Context;
-          let sessionId: string = "";
-          let controller:avSession.AVSessionController | undefined = undefined;
-          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
-            currentAVSession = data;
-            sessionId = currentAVSession.sessionId;
-            controller = await currentAVSession.getController();
-            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
-          }).catch((err: BusinessError) => {
-            console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
-          });
-          let commandName = "my_command";
-          if (controller !== undefined) {
-            (controller as avSession.AVSessionController).sendCommonCommand(commandName, {command : "This is my command"}, (err: BusinessError) => {
-              if (err) {
-                console.error(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
-              }
-            })
-          }
-        })
+          
+let tag: string = "createNewSession";
+let sessionId: string = "";
+let controller:avSession.AVSessionController | undefined = undefined;
+avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+  currentAVSession = data;
+  sessionId = currentAVSession.sessionId;
+  controller = await currentAVSession.getController();
+  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+}).catch((err: BusinessError) => {
+  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+});
+let commandName = "my_command";
+if (controller !== undefined) {
+  (controller as avSession.AVSessionController).sendCommonCommand(commandName, {command : "This is my command"}, (err: BusinessError) => {
+    if (err) {
+      console.error(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
     }
-    .width('100%')
-    .height('100%')
-  }
+  })
 }
 ```
 
@@ -7018,41 +7006,26 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { avSession } from '@kit.AVSessionKit';
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
-
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(()=>{
-          let currentAVSession: avSession.AVSession | undefined = undefined;
-          let tag: string = "createNewSession";
-          let context: Context = this.getUIContext().getHostContext() as Context;
-          let sessionId: string = "";
-          let controller:avSession.AVSessionController | undefined = undefined;
-          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
-            currentAVSession = data;
-            sessionId = currentAVSession.sessionId;
-            controller = await currentAVSession.getController();
-            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
-          }).catch((err: BusinessError) => {
-            console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
-          });
-          if (controller !== undefined) {
-            (controller as avSession.AVSessionController).getExtras().then((extras) => {
-              console.info(`getExtras : SUCCESS : ${extras}`);
-            }).catch((err: BusinessError) => {
-              console.error(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
-            });
-          }
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
+         
+let tag: string = "createNewSession";
+let sessionId: string = "";
+let controller:avSession.AVSessionController | undefined = undefined;
+avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+  currentAVSession = data;
+  sessionId = currentAVSession.sessionId;
+  controller = await currentAVSession.getController();
+  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+}).catch((err: BusinessError) => {
+  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+});
+if (controller !== undefined) {
+  (controller as avSession.AVSessionController).getExtras().then((extras) => {
+    console.info(`getExtras : SUCCESS : ${extras}`);
+  }).catch((err: BusinessError) => {
+    console.error(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+  });
 }
+    
 ```
 
 ### getExtras<sup>10+</sup>
@@ -7087,42 +7060,26 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { avSession } from '@kit.AVSessionKit';
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
 
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(()=>{
-          let currentAVSession: avSession.AVSession | undefined = undefined;
-          let tag: string = "createNewSession";
-          let context: Context = this.getUIContext().getHostContext() as Context;
-          let sessionId: string = "";
-          let controller:avSession.AVSessionController | undefined = undefined;
-          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
-            currentAVSession = data;
-            sessionId = currentAVSession.sessionId;
-            controller = await currentAVSession.getController();
-            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
-          }).catch((err: BusinessError) => {
-            console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
-          });
-          if (controller !== undefined) {
-            (controller as avSession.AVSessionController).getExtras((err, extras) => {
-              if (err) {
-                console.error(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
-              } else {
-                console.info(`getExtras : SUCCESS : ${extras}`);
-              }
-            });
-          }
-        })
+let tag: string = "createNewSession";
+let sessionId: string = "";
+let controller:avSession.AVSessionController | undefined = undefined;
+avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+  currentAVSession = data;
+  sessionId = currentAVSession.sessionId;
+  controller = await currentAVSession.getController();
+  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+}).catch((err: BusinessError) => {
+  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+});
+if (controller !== undefined) {
+  (controller as avSession.AVSessionController).getExtras((err, extras) => {
+    if (err) {
+      console.error(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+      console.info(`getExtras : SUCCESS : ${extras}`);
     }
-    .width('100%')
-    .height('100%')
-  }
+  });
 }
 ```
 
@@ -7162,58 +7119,28 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
+let controller: avSession.AVSessionController | ESObject;
+const COMMON_COMMAND_STRING_1 = 'AUDIO_GET_VOLUME';
+const COMMON_COMMAND_STRING_2 = 'AUDIO_GET_AVAILABLE_DEVICES';
+const COMMON_COMMAND_STRING_3 = 'AUDIO_GET_PREFERRED_OUTPUT_DEVICE_FOR_RENDERER_INFO';
+if (controller !== undefined) {
+  controller.getExtrasWithEvent(COMMON_COMMAND_STRING_1).then(() => {
+    console.info(`${[COMMON_COMMAND_STRING_1]}`);
+  }).catch((err: BusinessError) => {
+    console.error(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
+  })
 
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(40)
-          .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            getExtrasWithEventTest();
-          })
-      }
-    }
-  }
-}
+  controller.getExtrasWithEvent(COMMON_COMMAND_STRING_2).then(() => {
+    console.info(`${[COMMON_COMMAND_STRING_2]}`);
+  }).catch((err: BusinessError) => {
+    console.error(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
+  })
 
-async function getExtrasWithEventTest() {
-  let controllerList: Array<avSession.AVSessionController>;
-  let controller: avSession.AVSessionController | ESObject;
-  
-  try {
-    controllerList = await avSession.getDistributedSessionController(avSession.DistributedSessionType.TYPE_SESSION_REMOTE);
-    controller = controllerList[0];
-  } catch (err) {
-    console.info(`getDistributedSessionController fail with err: ${err}`);
-  }
-
-  const COMMON_COMMAND_STRING_1 = 'AUDIO_GET_VOLUME';
-  const COMMON_COMMAND_STRING_2 = 'AUDIO_GET_AVAILABLE_DEVICES';
-  const COMMON_COMMAND_STRING_3 = 'AUDIO_GET_PREFERRED_OUTPUT_DEVICE_FOR_RENDERER_INFO';
-  if (controller !== undefined) {
-    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_1).then((extras: avSession.ExtraInfo) => {
-      console.info(`${extras[COMMON_COMMAND_STRING_1]}`);
-    }).catch((err: BusinessError) => {
-      console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
-    })
-
-    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_2).then((extras: avSession.ExtraInfo) => {
-      console.info(`${extras[COMMON_COMMAND_STRING_2]}`);
-    }).catch((err: BusinessError) => {
-      console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
-    })
-
-    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_3).then((extras: avSession.ExtraInfo) => {
-      console.info(`${extras[COMMON_COMMAND_STRING_3]}`);
-    }).catch((err: BusinessError) => {
-      console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
-    })
-  }
+  controller.getExtrasWithEvent(COMMON_COMMAND_STRING_3).then(() => {
+    console.info(`${[COMMON_COMMAND_STRING_3]}`);
+  }).catch((err: BusinessError) => {
+    console.error(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
+  })
 }
 ```
 
@@ -7380,7 +7307,7 @@ Subscribes to call metadata change events.
 | --------| -----------|-----|------------|
 | type     | string    | Yes  | Event type. The event **'callMetadataChange'** is triggered when the call metadata changes.|
 | filter   | Array\<keyof&nbsp;[CallMetadata](#callmetadata11)\>&nbsp;&#124;&nbsp;'all' | Yes  | The value **'all'** indicates that any call metadata field change will trigger the event, and **Array<keyof&nbsp;[CallMetadata](#callmetadata11)\>** indicates that only changes to the listed metadata field will trigger the event.|
-| callback | Callback<[CallMetadata](#callmetadata11)\>\>   | Yes  | Callback used for subscription. The **callmetadata** parameter in the callback indicates the changed call metadata.|
+| callback | Callback<[CallMetadata](#callmetadata11)\>   | Yes  | Callback used for subscription. The **callmetadata** parameter in the callback indicates the changed call metadata.|
 
 **Error codes**
 
@@ -7785,7 +7712,7 @@ avsessionController.off('outputDeviceChange');
 
 ### on('sessionEvent')<sup>10+</sup>
 
-on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key:string]: Object}) => void): void
+on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key: string]: Object}) => void): void
 
 Subscribes to session event change events. This API is called by the controller.
 
@@ -7798,7 +7725,7 @@ Subscribes to session event change events. This API is called by the controller.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The event **'sessionEvent'** is triggered when the session event changes.|
-| callback | (sessionEvent: string, args: {[key:string]: object}) => void         | Yes  | Callback used for subscription. **sessionEvent** in the callback indicates the name of the session event that changes, and **args** indicates the parameters carried in the event.         |
+| callback | (sessionEvent: string, args: {[key: string]: Object}) => void         | Yes  | Callback used for subscription. **sessionEvent** in the callback indicates the name of the session event that changes, and **args** indicates the parameters carried in the event.         |
 
 **Error codes**
 
@@ -7815,44 +7742,28 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { avSession } from '@kit.AVSessionKit';
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
-
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(()=>{
-          let currentAVSession: avSession.AVSession | undefined = undefined;
-          let tag: string = "createNewSession";
-          let context: Context = this.getUIContext().getHostContext() as Context;
-          let sessionId: string = "";
-          let controller:avSession.AVSessionController | undefined = undefined;
-          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
-            currentAVSession = data;
-            sessionId = currentAVSession.sessionId;
-            controller = await currentAVSession.getController();
-            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
-          }).catch((err: BusinessError) => {
-            console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
-          });
-          if (controller !== undefined) {
-            (controller as avSession.AVSessionController).on('sessionEvent', (sessionEvent, args) => {
-              console.info(`OnSessionEvent, sessionEvent is ${sessionEvent}, args: ${JSON.stringify(args)}`);
-            });
-          }
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
+       
+let tag: string = "createNewSession";
+let sessionId: string = "";
+let controller:avSession.AVSessionController | undefined = undefined;
+avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+  currentAVSession = data;
+  sessionId = currentAVSession.sessionId;
+  controller = await currentAVSession.getController();
+  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+}).catch((err: BusinessError) => {
+  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+});
+if (controller !== undefined) {
+  (controller as avSession.AVSessionController).on('sessionEvent', (sessionEvent, args) => {
+    console.info(`OnSessionEvent, sessionEvent is ${sessionEvent}, args: ${JSON.stringify(args)}`);
+  });
 }
 ```
 
 ### off('sessionEvent')<sup>10+</sup>
 
-off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key:string]: Object}) => void): void
+off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key: string]: Object}) => void): void
 
 Unsubscribes from session event change events. This API is called by the controller.
 
@@ -7865,7 +7776,7 @@ Unsubscribes from session event change events. This API is called by the control
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string                                                       | Yes  | Event type, which is **'sessionEvent'** in this case.   |
-| callback | (sessionEvent: string, args: {[key:string]: Object}) => void         | No  | Callback used for unsubscription. **sessionEvent** in the callback indicates the name of the session event that changes, and **args** indicates the parameters carried in the event.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                     |
+| callback | (sessionEvent: string, args: {[key: string]: Object}) => void         | No  | Callback used for unsubscription. **sessionEvent** in the callback indicates the name of the session event that changes, and **args** indicates the parameters carried in the event.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                     |
 
 **Error codes**
 
@@ -8034,7 +7945,7 @@ Subscribes to custom media packet change events. This API is called by the contr
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The event **'extrasChange'** is triggered when the provider sets a custom media packet.|
-| callback | (extras: {[key:string]: object}) => void         | Yes  | Callback used for subscription. The **extras** parameter in the callback indicates the custom media packet set by the provider. This packet is the same as that set in **dispatchSessionEvent**.         |
+| callback | (extras: {[key:string]: Object}) => void         | Yes  | Callback used for subscription. The **extras** parameter in the callback indicates the custom media packet set by the provider. This packet is the same as that set in **dispatchSessionEvent**.         |
 
 **Error codes**
 
@@ -8051,38 +7962,22 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { avSession } from '@kit.AVSessionKit';
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
 
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(()=>{
-          let currentAVSession: avSession.AVSession | undefined = undefined;
-          let tag: string = "createNewSession";
-          let context: Context = this.getUIContext().getHostContext() as Context;
-          let sessionId: string = "";
-          let controller:avSession.AVSessionController | undefined = undefined;
-          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
-            currentAVSession = data;
-            sessionId = currentAVSession.sessionId;
-            controller = await currentAVSession.getController();
-            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
-          }).catch((err: BusinessError) => {
-            console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
-          });
-          if (controller !== undefined) {
-            (controller as avSession.AVSessionController).on('extrasChange', (extras) => {
-              console.info(`Caught extrasChange event,the new extra is: ${JSON.stringify(extras)}`);
-            });
-          }
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
+let tag: string = "createNewSession";
+let sessionId: string = "";
+let controller:avSession.AVSessionController | undefined = undefined;
+avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+  currentAVSession = data;
+  sessionId = currentAVSession.sessionId;
+  controller = await currentAVSession.getController();
+  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+}).catch((err: BusinessError) => {
+  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+});
+if (controller !== undefined) {
+  (controller as avSession.AVSessionController).on('extrasChange', (extras) => {
+    console.info(`Caught extrasChange event,the new extra is: ${JSON.stringify(extras)}`);
+  });
 }
 ```
 
@@ -8101,7 +7996,7 @@ Unsubscribes from custom media packet change events. This API is called by the c
 | Name   | Type                   | Mandatory| Description                                                                                                   |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------------------------------------------------- |
 | type     | string                  | Yes  | Event type, which is **'extrasChange'** in this case.                                                        |
-| callback | ({[key:string]: Object}) => void | No  | Callback used for unsubscription.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
+| callback | (extras: {[key:string]: Object}) => void | No  | Callback used for unsubscription.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
 
 **Error codes**
 
@@ -8154,7 +8049,7 @@ try {
   let playbackState: avSession.AVPlaybackState = avsessionController.getAVPlaybackStateSync();
 } catch (err) {
   let error = err as BusinessError;
-  console.info(`getAVPlaybackStateSync error, error code: ${error.code}, error message: ${error.message}`);
+  console.error(`getAVPlaybackStateSync error, error code: ${error.code}, error message: ${error.message}`);
 }
 ```
 
@@ -8192,7 +8087,7 @@ try {
   let metaData: avSession.AVMetadata = avsessionController.getAVMetadataSync();
 } catch (err) {
   let error = err as BusinessError;
-  console.info(`getAVMetadataSync error, error code: ${error.code}, error message: ${error.message}`);
+  console.error(`getAVMetadataSync error, error code: ${error.code}, error message: ${error.message}`);
 }
 ```
 
@@ -8541,9 +8436,9 @@ try {
 ## AVControlCommandType<sup>10+</sup>
 
 type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward' | 'rewind' |
-  'seek' | 'setSpeed' | 'setLoopMode' | 'toggleFavorite' | 'playFromAssetId' | 'playWithAssetId' | 'answer' | 'hangUp' | 'toggleCallMute' | 'setTargetLoopMode'
+  'seek' | 'setSpeed' | 'setLoopMode' | 'setTargetLoopMode' | 'toggleFavorite' | 'playFromAssetId' | 'playWithAssetId' | 'answer' | 'hangUp' | 'toggleCallMute'
 
-Enumerates the commands that can be sent to a session.
+Defines the commands that can be sent to a session.
 
 You can use the union of the strings listed in the following table.
 
@@ -8553,23 +8448,23 @@ You can use the union of the strings listed in the following table.
 
 | Type            | Description        |
 | ---------------- | ------------ |
-| 'play'           | Play the media.        |
-| 'pause'          | Pause the playback.        |
-| 'stop'           | Stop the playback.        |
-| 'playNext'       | Play the next media asset.      |
-| 'playPrevious'   | Play the previous media asset.      |
-| 'fastForward'    | Fast-forward.        |
-| 'rewind'         | Rewind.        |
-| 'seek'           | Seek to a playback position.|
-| 'setSpeed'       | Set the playback speed.|
-| 'setLoopMode'    | Set the loop mode.|
-| 'toggleFavorite' | Favorite the media asset.    |
+| 'play'           | Play the media. No parameter is required.|
+| 'pause'          | Pause the playback. No parameter is required.|
+| 'stop'           | Stop the playback. No parameter is required.|
+| 'playNext'       | Play the next media asset. No parameter is required.|
+| 'playPrevious'   | Play the previous media asset. No parameter is required.|
+| 'fastForward'    | Fast-forward. No parameter is required.|
+| 'rewind'         | Rewind. No parameter is required.|
+| 'seek'           | Seek to a playback position. The corresponding parameter is of the number type.|
+| 'setSpeed'       | Set the playback speed. The corresponding parameter is of the number type.|
+| 'setLoopMode'    | Set the loop mode. The corresponding parameter is [LoopMode](#loopmode10).|
+| 'setTargetLoopMode' <sup>18+</sup>   | Set the target loop mode. The recommended parameter is [LoopMode](#loopmode10).|
+| 'toggleFavorite' | Favorite the media asset. The corresponding parameter is [AVMetadata.assetId](#avmetadata10).    |
 | 'playFromAssetId'| Play the media asset with the specified asset ID.|
-| 'playWithAssetId' <sup>20+</sup>    | Play the media asset with the specified asset ID.|
-|'answer'          | Answer a call.       |
-| 'hangUp'         | The call is disconnecting.       |
-|'toggleCallMute'  | Set the mute status for a call.|
-| 'setTargetLoopMode' <sup>18+</sup>   | Set the target loop mode.|
+| 'playWithAssetId' <sup>20+</sup>    | Play the media asset with the specified asset ID. The corresponding parameter is [AVMetadata.assetId](#avmetadata10).<br>The string length must be less than 40960 bytes.<br>|
+|'answer'          | Answer a call. No parameter is required.       |
+| 'hangUp'         | The call is disconnecting. No parameter is required.       |
+|'toggleCallMute'  | Set the mute status for a call. No parameter is required.|
 
 ## AVControlCommand<sup>10+</sup>
 
@@ -8581,7 +8476,7 @@ Describes the command that can be sent to the session.
 
 | Name     | Type                                             | Mandatory| Description          |
 | --------- | ------------------------------------------------- | ---- | -------------- |
-| command   | [AVControlCommandType](#avcontrolcommandtype10)     | Yes  | Command.          |
+| command   | [AVControlCommandType](#avcontrolcommandtype10)     | Yes  | Command. The parameters carried in each command are different. For details, see [AVControlCommandType](#avcontrolcommandtype10).      |
 | parameter | [LoopMode](#loopmode10) &#124; string &#124; number | No  | Parameters carried in the command.|
 
 
@@ -8599,7 +8494,7 @@ Describes the properties related to the semi-modal window that is started for ca
 
 ## AVCastPickerHelper<sup>14+</sup>
 
-Implements a semi-modal object used for casting. It displays a semi-modal window for users to select a target cast device. Before using the APIs of this class, you need to create an **AVCastPickerHelper** instance.
+Implements a semi-modal object used for casting. It displays a semi-modal window for users to select a target cast device. Before using the APIs of this class, you need to create an AVCastPickerHelper instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -8609,7 +8504,7 @@ Implements a semi-modal object used for casting. It displays a semi-modal window
 
 constructor(context: Context)
 
-Creates an **AVCastPickerHelper** instance. For details about how to obtain the context, see [getContext](../apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12).
+Creates an AVCastPickerHelper instance. For details about how to obtain the context, see [getContext](../apis-arkui/arkts-apis-uicontext-uicontext.md#gethostcontext12).
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -8865,3 +8760,15 @@ Enumerates the fast-forward or rewind intervals supported by the media session.
 | SECONDS_10             | 10 | The time is 10 seconds.            |
 | SECONDS_15             | 15 | The time is 15 seconds.            |
 | SECONDS_30             | 30 | The time is 30 seconds.            |
+
+## AudioCapabilities<sup>20+</sup>
+
+Describes the audio capabilities supported by the casting device.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+| Name           | Type                     | Read-Only| Optional| Description                                                                 |
+| --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
+| streamInfos            | Array\<[audio.AudioStreamInfo](../apis-audio-kit/arkts-apis-audio-i.md#audiostreaminfo8)>                  | Yes   | No   | Audio capability parameters. |

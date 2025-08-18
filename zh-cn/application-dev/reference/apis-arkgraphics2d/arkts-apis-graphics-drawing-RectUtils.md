@@ -1,9 +1,11 @@
 # Class (RectUtils)
+
 <!--Kit: ArkGraphics 2D-->
-<!--Subsystem: Graphic-->
+<!--Subsystem: Graphics-->
 <!--Owner: @hangmengxin-->
-<!--SE: @wangyanglan-->
-<!--TSE: @nobuggers-->
+<!--Designer: @wangyanglan-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
 
 > **说明：**
 >
@@ -494,7 +496,7 @@ static offset(rect: common2D.Rect, dx: number, dy: number): void
 | ------ | ------ | ---- | -------------- |
 | rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 发生偏移的矩形区域。 |
 | dx   | number | 是    | 水平方向平移的距离，该参数为浮点数。0表示不平移，负数表示向左平移，正数表示向右平移。 |
-| dy    | number | 是   | 竖直方向平移的距离，该参数为浮点数。0表示不平移，负数表示向上平移，正数表示向右平移。 |
+| dy    | number | 是   | 竖直方向平移的距离，该参数为浮点数。0表示不平移，负数表示向上平移，正数表示向下平移。 |
 
 **示例：**
 

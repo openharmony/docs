@@ -3,8 +3,9 @@
 <!--Kit: Localization Kit-->
 <!--Subsystem: Global-->
 <!--Owner: @yliupy-->
-<!--SE: @sunyaozu-->
-<!--TSE: @lpw_work-->
+<!--Designer: @sunyaozu-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ## 使用场景
 
@@ -27,7 +28,7 @@
    let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage();
    ```
 
-3. 设置应用界面数字。
+3. 设置使用本地数字。
    ```ts
    try {
      i18n.System.setUsingLocalDigit(true); // 使用本地数字
@@ -35,13 +36,10 @@
      let err: BusinessError = error as BusinessError;
      console.error(`call System.setUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
    }
-   let date: Date = new Date(2023, 9, 25); // 时间日期为2023.10.25
-   let appPreferredLanguage: string = 'ar';
-   let dateTimeFmt: Intl.DateTimeFormat = new Intl.DateTimeFormat(appPreferredLanguage);
-   let formattedTime: string = dateTimeFmt.format(date); // formattedTime = '٢٠٢٣/١٠/٢٥'（使用阿拉伯语本地数字表示）
+   let usingLocalDigit: boolean = i18n.System.getUsingLocalDigit(); // usingLocalDigit = true
    ```
 
-4. 设置格式化的24小时制。
+4. 设置时间显示格式为24小时制。
    ```ts
    try {
      i18n.System.set24HourClock(true); // 设置系统时制为24小时制
@@ -49,8 +47,5 @@
      let err: BusinessError = error as BusinessError;
      console.error(`call System.set24HourClock failed, error code: ${err.code}, message: ${err.message}.`);
    }
-   let date: Date = new Date(2023, 9, 25, 16, 48, 0); // 时间日期为2023.10.25 16:48:00
-   let appPreferredLanguage: string = 'zh';
-   let dateTimeFmt: Intl.DateTimeFormat = new Intl.DateTimeFormat(appPreferredLanguage, { timeStyle: 'medium' });
-   let formattedTime: string = dateTimeFmt.format(date); // formattedTime = '16:48:00'
+   let is24HourClock: boolean = i18n.System.is24HourClock(); // is24HourClock = true
    ```
