@@ -178,7 +178,7 @@
 
         try {
           // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
-          // 在元服务工程中，使用wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {替换下面一行代码
+          // 在元服务工程中，使用wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: object) => {替换下面一行代码
           wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
             try {
               let list: Array<string> = ["audioRecording"];
@@ -301,6 +301,7 @@
       };
 
       // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
+      // 在元服务工程中，使用wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: object) => {替换下面一行代码
       wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj : WantAgent) => {
         backgroundTaskManager.startBackgroundRunning(mContext,
           backgroundTaskManager.BackgroundMode.AUDIO_RECORDING, wantAgentObj).then(() => {
