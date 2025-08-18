@@ -313,7 +313,7 @@ getColor(): common2D.Color
 
 | 类型           | 说明            |
 | -------------- | -------------- |
-| common2D.Color | 返回画笔的颜色。 |
+| [common2D.Color](js-apis-graphics-common2D.md#color) | 返回画笔的颜色。 |
 
 **示例：**
 
