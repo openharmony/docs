@@ -22,25 +22,31 @@ import { relationalStore, ValuesBucket } from '@kit.ArkData';
 import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
-async function create(context: Context) {
+async function create(context: Context): Promise<boolean> {
   const CONFIG: relationalStore.StoreConfig = {
     name: "Store.db",
     securityLevel: relationalStore.SecurityLevel.S1,
   };
 
-  // 默认数据库文件路径为 context.databaseDir + "/rdb/" + StoreConfig.name
-  let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
-  console.info('Create Store.db successfully!');
+  try {
+    // 默认数据库文件路径为 context.databaseDir + "/rdb/" + StoreConfig.name
+    let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
+    console.info('Create Store.db successfully!');
 
-  // 创建表
-  const CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS test (" +
-    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-    "name TEXT NOT NULL, " +
-    "age INTEGER, " +
-    "salary REAL, " +
-    "blobType BLOB)";
-  await store.executeSql(CREATE_TABLE_SQL);
-  console.info('Create table test successfully!');
+    // 创建表
+    const CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS test (" +
+      "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+      "name TEXT NOT NULL, " +
+      "age INTEGER, " +
+      "salary REAL, " +
+      "blobType BLOB)";
+    await store.executeSql(CREATE_TABLE_SQL);
+    console.info('Create table test successfully!');
+    return true;
+  } catch (err)  {
+    console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
+    return false;
+  }
 }
 
 @Concurrent
@@ -126,7 +132,11 @@ struct Index {
             };
             valueBucketArray[i] = value;
           }
-          await taskpool.execute(create, context);
+          let ret = await taskpool.execute(create, context);
+          if (!ret) {
+            console.error("Create failed, terminating subsequent operations");
+            return;
+          }
           await taskpool.execute(insert, context, valueBucketArray);
           let index = 0;
           let resultSet = await taskpool.execute(query, context) as Array<relationalStore.ValuesBucket>;
@@ -156,10 +166,10 @@ struct Index {
    ```ts
    // SharedValuesBucket.ets
    export interface IValueBucket {
-     id: number
-     name: string
-     age: number
-     salary: number
+     id: number;
+     name: string;
+     age: number;
+     salary: number;
    }
    
    @Sendable
@@ -188,25 +198,31 @@ struct Index {
    import { IValueBucket, SharedValuesBucket } from './SharedValuesBucket';
    
    @Concurrent
-   async function create(context: Context) {
+   async function create(context: Context): Promise<boolean> {
      const CONFIG: relationalStore.StoreConfig = {
        name: "Store.db",
        securityLevel: relationalStore.SecurityLevel.S1,
      };
-   
-     // 默认数据库文件路径为 context.databaseDir + "/rdb/" + StoreConfig.name
-     let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
-     console.info('Create Store.db successfully!');
-   
-     // 创建表
-     const CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS test (" +
-       "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-       "name TEXT NOT NULL, " +
-       "age INTEGER, " +
-       "salary REAL, " +
-       "blobType BLOB)";
-     await store.executeSql(CREATE_TABLE_SQL);
-     console.info('Create table test successfully!');
+
+     try {
+       // 默认数据库文件路径为 context.databaseDir + "/rdb/" + StoreConfig.name
+       let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
+       console.info('Create Store.db successfully!');
+
+       // 创建表
+       const CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS test (" +
+         "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+         "name TEXT NOT NULL, " +
+         "age INTEGER, " +
+         "salary REAL, " +
+         "blobType BLOB)";
+       await store.executeSql(CREATE_TABLE_SQL);
+       console.info('Create table test successfully!');
+       return true;
+     } catch (err) {
+       console.error(`Insert is failed, code is ${ err.code }, message is ${ err.message }`);
+       return false;
+     }
    }
    
    @Concurrent
@@ -298,7 +314,11 @@ struct Index {
                };
                valueBucketArray[i] = new SharedValuesBucket(value);
              }
-             await taskpool.execute(create, context);
+             let ret = await taskpool.execute(create, context);
+             if (!ret) {
+               console.error("Create failed, terminating subsequent operations");
+               return;
+             }
              await taskpool.execute(insert, context, valueBucketArray);
              let index = 0;
              let resultSet: collections.Array<SharedValuesBucket> =
@@ -392,25 +412,31 @@ struct Index {
    import { Material } from './Material';
 
    @Concurrent
-   async function create(context: Context) {
+   async function create(context: Context): Promise<boolean> {
      const CONFIG: relationalStore.StoreConfig = {
        name: "Store.db",
        securityLevel: relationalStore.SecurityLevel.S1,
      };
 
-     // 默认数据库文件路径为 context.databaseDir + "/rdb/" + StoreConfig.name
-     let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
-     console.info('Create Store.db successfully!');
+     try {
+       // 默认数据库文件路径为 context.databaseDir + "/rdb/" + StoreConfig.name
+       let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
+       console.info('Create Store.db successfully!');
 
-     // 创建表
-     const CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS test (" +
-       "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-       "name TEXT NOT NULL, " +
-       "age INTEGER, " +
-       "salary REAL, " +
-       "blobType BLOB)";
-     await store.executeSql(CREATE_TABLE_SQL);
-     console.info('Create table test successfully!');
+       // 创建表
+       const CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS test (" +
+         "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+         "name TEXT NOT NULL, " +
+         "age INTEGER, " +
+         "salary REAL, " +
+         "blobType BLOB)";
+       await store.executeSql(CREATE_TABLE_SQL);
+       console.info('Create table test successfully!');
+       return true;
+     } catch (err) {
+       console.error(`Insert is failed, code is ${ err.code }, message is ${ err.message }`);
+       return false;
+     }
    }
 
    @Concurrent
@@ -507,7 +533,11 @@ struct Index {
            .onClick(async () => {
              let context : Context = this.getUIContext().getHostContext() as Context;
              let material = initMaterial();
-             await taskpool.execute(create, context);
+             let ret = await taskpool.execute(create, context);
+             if (!ret) {
+               console.error("Create failed, terminating subsequent operations");
+               return;
+             }
              await taskpool.execute(insert, context, material.getBuckets());
              let index = 0;
              let resultSet: collections.Array<SharedValuesBucket> =
