@@ -136,6 +136,7 @@ struct Index {
   private editorMenuOptions: Array<EditorMenuOptions> =
     [
       {
+        // $r('app.media.ic_notepad_textbold')需要替换为开发者所需的图像资源文件。
         icon: $r("app.media.ic_notepad_textbold"), action: () => {
         if (this.controller) {
           let selection = this.controller.getSelection();
@@ -163,6 +164,7 @@ struct Index {
       }
       },
       {
+        // $r('app.media.ic_notepad_texttilt')需要替换为开发者所需的图像资源文件。
         icon: $r("app.media.ic_notepad_texttilt"), action: () => {
         if (this.controller) {
           let selection = this.controller.getSelection();
@@ -190,6 +192,7 @@ struct Index {
       }
       },
       {
+        // $r('app.media.ic_notepad_underline')需要替换为开发者所需的图像资源文件。
         icon: $r("app.media.ic_notepad_underline"),
         action: () => {
           if (this.controller) {
@@ -222,10 +225,12 @@ struct Index {
         }
       },
       {
+        // $r('app.media.ic_notepad_fontsize')需要替换为开发者所需的图像资源文件。
         icon: $r("app.media.ic_notepad_fontsize"), action: () => {
       }, builder: (): void => this.sliderPanel()
       },
       {
+        // $r('app.media.ic_notepad_textcolor')需要替换为开发者所需的图像资源文件。
         icon: $r("app.media.ic_notepad_textcolor"), action: () => {
         if (this.controller) {
           let selection = this.controller.getSelection();
@@ -254,17 +259,19 @@ struct Index {
       }]
   private expandedMenuOptions: Array<ExpandedMenuOptions> =
     [{
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       startIcon: $r("app.media.startIcon"), content: '词典', action: () => {
       }
     }, {
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       startIcon: $r("app.media.startIcon"), content: '翻译', action: () => {
       }
     }, {
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       startIcon: $r("app.media.startIcon"), content: '搜索', action: () => {
       }
     }]
-  private expandedMenuOptions1: Array<ExpandedMenuOptions> = []
-  private editorMenuOptions1: Array<EditorMenuOptions> = []
+  private expandedMenuOptions1: Array<ExpandedMenuOptions> = [];
   private selectionMenuOptions: SelectionMenuOptions = {
     editorMenuOptions: this.editorMenuOptions,
     expandedMenuOptions: this.expandedMenuOptions,
@@ -313,7 +320,7 @@ struct Index {
         })
       }
     }
-  }
+  };
 
   @Builder
   sliderPanel() {
