@@ -157,14 +157,14 @@ setData(key: string, value: object): boolean
 ```js
 // setData的value参数，可以是基本数据类型。
 dragStart(e) {
-	var isSetOk = e.dataTransfer.setData('name', 1);
+	var isSetOK = e.dataTransfer.setData('name', 1);
 },
 // setData的value参数，也可以是对象类型。
 dragStart(e) {
 	var person = new Object();
 	person.name = "tom";
 	person.age = 21;
-	var isSetOk = e.dataTransfer.setData('person', person);
+	var isSetOK = e.dataTransfer.setData('person', person);
 }
 ```
 ### getData<sup>9+</sup>
@@ -226,7 +226,7 @@ dragEnd(e) {
 ```
 ### setDragImage<sup>9+</sup>
 
-setDragImage(pixelmap: PixelMap, offsetX: number,offsetY: number): boolean
+setDragImage(pixelMap: PixelMap, offsetX: number,offsetY: number): boolean
 
 用于设置自定义的拖动图像。
 
@@ -234,7 +234,7 @@ setDragImage(pixelmap: PixelMap, offsetX: number,offsetY: number): boolean
 
 | 参数名      | 参数类型     | 必填   | 描述                                       |
 | -------- | -------- | ---- | ---------------------------------------- |
-| pixelmap | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 前端传入的图片资源。 |
+| pixelMap | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 前端传入的图片资源。 |
 | offsetX  | number   | 是    | 相对于图片的横向偏移量。                             |
 | offsetY  | number   | 是    | 相对于图片的纵向偏移量。                            |
 
@@ -267,7 +267,7 @@ export default {
         }
         const promise = image.createPixelMap(color, opts);
         promise.then((data) => {
-            console.error('-create pixmap has info message:' + JSON.stringify(data));
+            console.error('-create pixelMap has info message:' + JSON.stringify(data));
             this.pixelMap = data;
             this.pixelMapReader = data;
         })
