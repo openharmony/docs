@@ -337,6 +337,53 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>): T
 | --- | -------------- |
 | T | 返回当前滚动组件。 |
 
+### contentStartOffset<sup>22+</sup>
+
+contentStartOffset(offset: number | Resource): T
+
+设置内容区域起始偏移量。滚动组件滚动到起始位置时，内容与组件显示区域边界保留指定距离。
+
+contentStartOffset + contentEndOffset超过滚动组件内容区长度后contentStartOffset和contentEndOffset会置0。
+
+**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                            |
+| ------ | ------ | ---- | ----------------------------------------------- |
+| offset  | number \| [Resource](ts-types.md#resource) | 是   | 内容区域起始偏移量。<br/>默认值：0<br/>单位：vp <br/>设置为负数时，按默认值处理。|
+
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
+
+### contentEndOffset<sup>22+</sup>
+
+contentEndOffset(offset: number | Resource): T
+
+设置内容区末尾偏移量。滚动组件滚动到末尾位置时，内容与组件显示区域边界保留指定距离。
+
+contentStartOffset + contentEndOffset超过滚动组件内容区长度后contentStartOffset和contentEndOffset会置0。
+
+**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                          |
+| ------ | ------ | ---- | --------------------------------------------- |
+| offset  | number \| [Resource](ts-types.md#resource) | 是   | 内容区末尾偏移量。<br/>默认值：0<br/>单位：vp <br/>设置为负数时，按默认值处理。|
+
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
 
 ## 事件
 
