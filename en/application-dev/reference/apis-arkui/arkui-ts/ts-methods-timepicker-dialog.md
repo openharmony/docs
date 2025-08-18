@@ -26,7 +26,7 @@ Shows a time picker dialog box.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Device behavior**: This API has no effect on wearables and works on other devices.
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 **Parameters**
 
