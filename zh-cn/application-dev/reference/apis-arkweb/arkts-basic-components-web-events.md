@@ -2213,12 +2213,12 @@ onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
                 confirm: {
                   value: 'onConfirm',
                   action: () => {
-                    // 注意invoke的第3个参数表示是否记住当前选择，如果传true，则下次不再弹框
+                    // invoke的第三个参数表示是否记住当前弹窗的选择状态，如果传入true，则下次不再弹出对话框
                     event.geolocation.invoke(event.origin, true, false);
                   }
                 },
                 cancel: () => {
-                  // 注意invoke的第3个参数表示是否记住当前选择，如果传true，则下次不再弹框
+                  // invoke的第三个参数表示是否记住当前弹窗的选择状态，如果传入true，则下次不再弹出对话框
                   event.geolocation.invoke(event.origin, false, false);
                 }
               })
