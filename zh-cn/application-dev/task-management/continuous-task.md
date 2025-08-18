@@ -1,5 +1,11 @@
 # 长时任务(ArkTS)
 
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: ResourceSchedule-->
+<!--Owner: @cheng-shichang-->
+<!--SE: @zhouben25-->
+<!--TSE: @fenglili18-->
+
 ## 概述
 
 ### 功能介绍
