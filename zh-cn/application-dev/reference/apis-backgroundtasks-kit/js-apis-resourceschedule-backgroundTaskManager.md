@@ -1,5 +1,11 @@
 # @ohos.resourceschedule.backgroundTaskManager (后台任务管理)
 
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: ResourceSchedule-->
+<!--Owner: @cheng-shichang-->
+<!--SE: @zhouben25-->
+<!--TSE: @fenglili18-->
+
 本模块提供申请后台任务的接口。当应用退至后台时，开发者可以通过本模块接口为应用申请短时、长时任务，避免应用进程被终止或挂起。
 
 >  **说明：**
