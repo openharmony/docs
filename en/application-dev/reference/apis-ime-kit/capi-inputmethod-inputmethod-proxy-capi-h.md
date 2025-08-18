@@ -2,8 +2,9 @@
 <!--Kit: IME Kit-->
 <!--Subsystem: MiscServices-->
 <!--Owner: @illybyy-->
-<!--SE: @andeszhang-->
-<!--TSE: @murphy1984-->
+<!--Designer: @andeszhang-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 ## Overview
 
@@ -217,7 +218,7 @@ Sends a private data command.
 | Name                                                                                               | Description|
 |----------------------------------------------------------------------------------------------------| -- |
 | [InputMethod_InputMethodProxy](capi-inputmethod-inputmethod-inputmethodproxy.md) *inputMethodProxy | Pointer to the [InputMethod_InputMethodProxy](capi-inputmethod-inputmethod-inputmethodproxy.md) instance obtained by calling [OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach).|
-| [nputMethod_PrivateCommand](capi-inputmethod-inputmethod-privatecommand.md) *privateCommand[]                                                    | Private command that is defined in [InputMethod_PrivateCommand](capi-inputmethod-inputmethod-privatecommand.md). The maximum size is 32 KB.|
+| [InputMethod_PrivateCommand](capi-inputmethod-inputmethod-privatecommand.md) *privateCommand[]                                                    | Private command that is defined in [InputMethod_PrivateCommand](capi-inputmethod-inputmethod-privatecommand.md). The maximum size is 32 KB.|
 | size_t size                                                                                        | Size of the private command. Maximum size: 5.|
 
 **Returns**
