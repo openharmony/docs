@@ -7619,7 +7619,7 @@ try {
 
 createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;Window&gt;
 
-该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于创建主窗口、子窗口或悬浮窗下的子窗口，使用Promise异步回调。子窗口创建后默认是沉浸式布局，如果子窗口需要使用组件安全区方案，需要调用[setWindowLayoutFullScreen](arkts-apis-window-Window.md#setWindowLayoutFullScreen9)退出沉浸式布局。
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于创建主窗口、子窗口或悬浮窗下的子窗口，使用Promise异步回调。子窗口创建后默认是沉浸式布局，如果子窗口需要使用组件安全区方案，需要调用[setWindowLayoutFullScreen](arkts-apis-window-Window.md#setwindowlayoutfullscreen9)退出沉浸式布局。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 

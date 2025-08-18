@@ -128,7 +128,7 @@ export default class EntryAbility extends UIAbility {
 
 1. 创建应用子窗口。
 
-   通过`createSubWindow`接口创建应用子窗口。子窗口创建后默认是沉浸式布局，如果子窗口需要使用组件安全区方案，需要调用[setWindowLayoutFullScreen](arkts-apis-window-Window.md#setWindowLayoutFullScreen9)退出沉浸式布局。
+   通过`createSubWindow`接口创建应用子窗口。子窗口创建后默认是沉浸式布局，如果子窗口需要使用组件安全区方案，需要调用[setWindowLayoutFullScreen](arkts-apis-window-Window.md#setwindowlayoutfullscreen9)退出沉浸式布局。
 
 2. 设置子窗口属性。
 

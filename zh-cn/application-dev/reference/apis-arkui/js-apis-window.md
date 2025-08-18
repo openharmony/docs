@@ -667,7 +667,7 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 
-创建子窗口或者系统窗口，使用callback异步回调。子窗口创建后默认是沉浸式布局，如果子窗口需要使用组件安全区方案，需要调用[setWindowLayoutFullScreen](arkts-apis-window-Window.md#setWindowLayoutFullScreen9)退出沉浸式布局。
+创建子窗口或者系统窗口，使用callback异步回调。子窗口创建后默认是沉浸式布局，如果子窗口需要使用组件安全区方案，需要调用[setWindowLayoutFullScreen](arkts-apis-window-Window.md#setwindowlayoutfullscreen9)退出沉浸式布局。
 
 **需要权限：** ohos.permission.SYSTEM_FLOAT_WINDOW（仅当创建窗口类型为window.WindowType.TYPE_FLOAT时需要申请）
 
