@@ -11,7 +11,7 @@
 ## Hiprofiler简介
 
 
-HiProfiler调优组件旨在为开发者提供一系列调优能力，可以用来帮助分析内存、性能等问题。
+HiProfiler性能调优组件包含系统和应用调优框架，旨在为开发者提供一套性能调优平台，可以用来分析内存、性能等问题。
 
 
 整体架构分为PC端和设备端，主体部分为PC端调优数据展示页面和设备端性能调优服务。PC端和设备端服务采用C/S模型，PC端调优数据在[DevEco studio](https://cbg.huawei.com/#/group/ipd/DevEcoToolsList)/[Smartperf](https://gitee.com/openharmony/developtools_smartperf_host)网页中展示。设备端程序包含多个部分，均运行在系统环境中，其中和DevEco通信的hiprofilerd进程作为调优服务。设备端还包含命令行工具（hiprofiler_cmd）、数据采集进程（hiprofiler_plugins）。调优服务操控数据采集进程获取调优数据，数据最终流向DevEco Studio，整个过程可抽象为生产者-消费者（Producer-Consumer）模型。目前已经完成了nativehook、CPU、ftrace、GPU、hiperf、xpower、memory数据采集等多个插件，实现了CPU、GPU、内存、能耗等多维度调优的能力。
@@ -31,22 +31,22 @@ Hiprofiler工具对标业界调优工具，并提供更多能力，比如[跨语
 
 ## 架构简介
 
-1. PC端通过DevEco/Smartperf调用hiprofiler_cmd命令行工具；
+1. PC端通过DevEco/Smartperf调用hiprofiler_cmd命令行；
 
-2. hiprofiler_cmd进程拉起hiprofilerd调优服务和hiprofiler_plugins插件进程；
+2. hiprofiler_cmd进程拉起hiprofilerd调优服务，以及hiprofiler_plugins插件进程；
 
 3. hiprofiler_plugins开启对应插件，获取到的调优数据汇总至hiprofilerd进程；
 
-4. hiprofilerd进程将调优数据以proto格式储存到文件，或者实时返回给PC端；
+4. hiprofilerd进程将调优数据以proto格式存储到文件，或者实时返回给PC端；
 
-5. PC端解析数据，生成泳道，展示调优数据。
+5. PC端解析数据，生成泳道，展示获取到的调优数据。
 
 ![zh-cn_image_0000002381835609](figures/zh-cn_image_0000002381835609.png)
 
 
 ## 命令行说明
 
-使用hiprofiler_cmd命令行工具可以调用profiler不同插件，输入不同参数以满足不同调优需求。示范命令如下：
+使用hiprofiler_cmd命令行工具可以调用不同插件并输入不同参数，以满足不同的调优需求。示范命令如下：
 
 ```shell
 $ hiprofiler_cmd \
@@ -86,7 +86,7 @@ CONFIG
 | -t | 设置调优持续时间，单位：s。 | 
 
 
-输入完hiprofiler_cmd参数后，需要输入插件配置信息，以&lt;&lt;配置信息以CONFIG开头，CONFIG结尾，中间内容以json格式输入。
+输入完hiprofiler_cmd参数后，需要输入插件配置信息，以&lt;&lt;CONFIG开头，CONFIG结尾，中间内容以json格式输入。
 
 
 以下是session config字段介绍：
@@ -109,7 +109,7 @@ plugin_configs字段介绍：
 | config_data | 插件具体参数。每个插件需要的参数不同，参考各插件proto定义。<br/>（代码路径：developtools/profiler/protos）。 | 
 
 
-生成的trace文件通过hdc file recv命令导出到本地，然后上传到smartperf网站或者DevEco Studio进行解析。
+生成的trace文件通过hdc file recv导到本地，然后上传到smartperf网站或者DevEco Studio进行解析。
 
 
 ## 支持插件列表
@@ -117,18 +117,18 @@ plugin_configs字段介绍：
 <!--RP1-->
 | 插件名字 | 简介 | 规格说明 |
 | -------- | -------- | -------- |
-| native_hook | 获取堆内存分配的调用栈信息。 |  采集的进程仅支持使用调试证书签名的应用 |
+| native_hook | 获取堆内存分配的调用栈信息。 |  |
 | ftrace-plugin | 获取内核打点的trace事件，以及hitrace打点的数据。 |  |
 | cpu-plugin | 获取进程CPU使用率信息，包括进程级和线程级的使用率。 |  |
 | gpu-plugin | 获取进程GPU使用率信息。 |  |
-| xpower-plugin | 获取进程能耗使用数据。 |  |
+| xpower-plugin | 获取进程能耗使用情况的数据。 |  |
 | memory-plugin | 获取进程内存占用情况，主要是获取进程smaps节点的数据。 | |
 | diskio plugin | 获取进程磁盘空间占用情况。 |  |
-| network profiler | 通过进程内打点，获取进程http request相关信息。 | 采集的进程仅支持使用调试证书签名的应用 |
-| network plugin | 获取进程网络流量信息。 |  |
-| hisysevent plugin | 通过hisysevent命令，获取hisysevent打点数据。 |  |
-| hiperf plugin | 通过调用hiperf命令获取进程指令数信息以及对应的堆栈。 |  |
-| hidump plugin | 通过SP_daemon命令获取hidump数据。 |  |
+| network profiler | 通过进程内打点，获取进程HTTP请求的详细信息。 |  |
+| network plugin | 获取进程网络流量统计信息。 |  |
+| hisysevent plugin | 通过hisysevent命令，获取hisysevent的事件记录数据。 |  |
+| hiperf plugin | 通过调用hiperf命令获取进程的指令计数信息以及对应的堆栈。 |  |
+| hidump plugin | 通过SP_daemon命令获取相关数据。 |  |
 <!--RP1End-->
 
 
@@ -145,7 +145,7 @@ plugin_configs字段介绍：
 hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
 ```
 
-如包名对应的应用是可调试应用，预期返回信息：
+如果包名对应的应用是可调试应用，预期返回信息如下：
 
 ```shell
 "appProvisionType": "debug",
@@ -158,7 +158,7 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
 
 **native_hook 插件**
 
-获取堆内存分配的调用栈信息，跨语言堆内存分配信息（如在ArtTS语言中调用napi分配native堆内存），包括malloc，mmap，calloc，realloc等通过基础库函数分配堆内存调用栈，还能展示内存泄漏未释放堆内存调用栈信息。
+获取堆内存分配的调用栈信息，跨语言堆内存分配信息（如在ArtTS语言中调用napi分配native堆内存）。包括malloc，mmap，calloc，realloc等通过基础库函数分配堆内存调用栈。还能展示内存泄漏未释放堆内存调用栈信息。
 
 nativehook参数列表：
 
@@ -167,14 +167,14 @@ nativehook参数列表：
 | fp_unwind | bool | true表示使用fp回栈方式进行回栈；<br/>false表示使用dwarf回栈方式进行回栈。 | fp回栈是利用了x29寄存器保存的fp指针，函数的fp指针始终指向父函数（调用方）的fp指针，调优服务根据这一特点进行回栈，根据ip计算相对PC，然后查找maps对应区间来进行符号化。<br/>由于现在编译期越来越优化，出现寄存器重用或者编译禁用fp，会导致fp方式回不出相应的栈；混合栈情况下，fp不会记录多重混合，于是便需要dwarf回栈方式做更精确的回栈。<br/>dwarf回栈是根据pc寄存器在map表中查找对应的map信息，由于dwarf是逐级解析调用栈，所以其性能会比fp有劣化。<br/>注意：fp回栈暂不支持调优非aarch64架构的设备。 | 
 | statistics_interval | int | 统计间隔，表示将一个统计周期内的栈进行汇总，单位：s。 | 为实现长时间轻量化采集，提供统计模式抓栈。如果更关注调优时的性能，只需要知道每个调用栈出现的次数和总大小，不需要知道每一次具体时间，可以使用统计模式。 | 
 | startup_mode | bool | 是否抓取进程启动阶段内存。默认不抓取启动阶段内存。 | 记录进程从被appspawn拉起到调优结束这个期间内堆内存分配的信息。如果抓的是一个sa服务，需要在sa对应的cfg文件中找到拉起sa的进程名（如sa_main），将之加到此参数。 | 
-| js_stack_report | int | 是否开启跨语言回栈。<br/>0：不抓取js栈。<br/>1：开启抓js栈。 | 为方舟环境提供跨语言回栈功能。 | 
+| js_stack_report | int | 是否开启跨语言回栈。<br/>0：不抓取JS栈。<br/>1：开启抓取JS栈。 | 为方舟环境提供跨语言回栈功能。 | 
 | malloc_free_matching_interval | int | 匹配间隔，单位：s，指在相应时间间隔内，将malloc和free进行匹配。匹配到的就不进行落盘。 | 在匹配间隔内，分配并释放了的调用栈不被记录，减少了抓栈服务进程的开销。此参数设置的值大于0时，就不能将statistics_interval参数设置为true。 | 
 | offline_symbolization | bool | 是否开启离线符号化。<br/>true：使用离线符号化，<br/>false：使用在线符号化。 | 使用离线符号化时，根据ip匹配符号的操作转移到了网页端（smartperf）完成，native daemon的性能得到了优化, 调优时会减少进程卡顿的情况。但由于需要将离线符号表写到trace文件，离线符号化情况下trace文件大小比在线符号化的要大。 | 
 | sample_interval | int | 采样大小。 | 设置此参数时开启采样模式。采样模式下对于malloc size小于采样大小进行概率性统计。调用栈分配内存大小越大，出现次数越高，被统计的几率越大。 | 
 
 结果示例：
 
-开启fp回栈+跨语言回栈（其中绿色部分为js）：
+开启fp回栈+跨语言回栈（其中绿色部分为js栈）：
 
 ![zh-cn_image_0000002379700441](figures/zh-cn_image_0000002379700441.png)
 
@@ -182,11 +182,11 @@ nativehook参数列表：
 
 ![zh-cn_image_0000002346179694](figures/zh-cn_image_0000002346179694.png)
 
-开启统计模式（栈数据周期性展示）：
+开启统计模式: 在此模式下，栈数据会周期性展示：
 
 ![zh-cn_image_0000002379820229](figures/zh-cn_image_0000002379820229.png)
 
-开启非统计模式（可以看到每个调用栈的具体对应时间）：
+开启非统计模式：在此模式下，栈数据不会周期性展示。
 
 ![zh-cn_image_0000002346019934](figures/zh-cn_image_0000002346019934.png)
 
@@ -256,7 +256,7 @@ CONFIG
 | report_process_mem_info | bool | 是否获取进程详细内存数据，如rss_shmem，rss_file，vm_swap等。 | 从/proc/${pid}/stat节点读取内存数据。 | 
 | report_smaps_mem_info | bool | 是否获取进程smaps内存信息。 | 从/proc/${pid}/smaps节点获取进程smaps内存数据。 | 
 | report_gpu_mem_info | bool | 是否获取进程GPU使用情况。 | 读取/proc/gpu_memory节点数据。 | 
-| parse_smaps_rollup | bool | 是否从smaps_rollup节点读取smaps统计数据 | 读取/proc/{pid}/smaps_rollup节点的smaps统计数据，相比使用report_smaps_mem_info参数调优服务性能会更好（如CPU，内存使用优化）。 | 
+| parse_smaps_rollup | bool | 是否刷新数据大小。 | 读取/proc/{pid}/smaps_rollup节点的smaps统计数据，相比使用report_smaps_mem_info参数调优服务性能会更好（如CPU，内存）。 | 
 
 2. 结果分析
 
@@ -271,7 +271,7 @@ CONFIG
 | 参数名字 | 类型 | 参数含义 | 详细介绍 | 
 | -------- | -------- | -------- | -------- |
 | bundle_name | string | 需要进行能耗调优的进程名。 | 和/proc/节点下的进程名一致。 | 
-| message_type | XpowerMessageType | 需要获取能耗数据的类型。 | 数据类型包括REAL_BATTERY，APP_STATISTIC，APP_DETAIL，COMPONENT_TOP，ABNORMAL_EVENTS，THERMAL_REPORT | 
+| message_type | XpowerMessageType | 需要获取能耗数据的类型。 | 数据类型包括：REAL_BATTERY、APP_STATISTIC、APP_DETAIL、COMPONENT_TOP、ABNORMAL_EVENTS 和 THERMAL_REPORT。 | 
 
 2. 结果分析
 
@@ -281,25 +281,25 @@ CONFIG
 
 **gpu_plugin**：
 
-获取gpu使用率相关信息
+获取GPU使用率相关信息的数据
 
 1. 参数介绍
 
 | 参数名字 | 类型 | 参数含义 | 详细介绍 | 
 | -------- | -------- | -------- | -------- |
 | pid | int | 需要进行调优的进程名。 | 和/proc/节点下的进程名一致。 | 
-| report_gpu_info | bool | 是否展示指定进程的GPU使用率信息 | true: 展示指定进程的gpu数据，需要设置pid。数据从<br/>/sys/class/devfreq/gpufreq/gpu_scene_aware/utilisation节点读出。<br/>false: 不展示指定进程的gpu数据 | 
+| report_gpu_info | bool | 是否展示指定进程的GPU使用率信息 | true: 展示指定进程的GPU数据，需要设置pid。数据从/sys/class/devfreq/gpufreq/gpu_scene_aware/utilisation节点读取。<br/>false: 不展示指定进程的GPU数据。 | 
 
 **cpu_plugin**：
 
-获取cpu使用率相关信息
+获取CPU使用率的相关信息
 
 1. 参数介绍
 
 | 参数名字 | 类型 | 参数含义 | 详细介绍 | 
 | -------- | -------- | -------- | -------- |
-| pid | int | 需要进行调优的进程名。 | 和/proc/节点下的进程名一致。 | 
-| report_process_info | bool | 是否展示指定进程的CPU使用率信息 | true：展示指定进程的数据，需要设置pid参数；<br/>false：展示系统级CPU使用率数据 | 
+| pid | int | 需要进行调优的进程ID。 | 和/proc/节点下的进程ID一致。 |
+| report_process_info | bool | 是否展示指定进程的CPU使用率信息 | true：展示指定进程的数据，需要设置pid参数；<br/>false：不展示指定进程的数据，仅展示系统级CPU使用率数据 | 
 | skip_thread_cpu_info | bool | 是否跳过线程CPU使用率数据 | true：不展示每个线程CPU使用率的信息，开启此参数时可以降低调优服务的开销；<br/>false：展示每个线程CPU使用率的信息 | 
 
 
@@ -309,7 +309,7 @@ CONFIG
 ### 堆内存分配调用栈数据采样记录
 
 
-对com.example.insight_test_stage进程堆内存分配操作进行抓栈。开启fp回栈，离线符号化，统计模式。
+对com.example.insight_test_stage进程的堆内存分配操作进行抓栈，并开启fp回栈、离线符号化和统计模式。
 
 
 ```shell
