@@ -2423,7 +2423,7 @@ const char* OH_MD_KEY_I_FRAME_INTERVAL
 **描述**
 关键帧间隔的键，值类型为int32_t，单位为毫秒。该键是可选的且只用于视频编码。
 
-负值表示只有第一帧是关键帧，0表示所有帧都是关键帧，正值表示每 (frameRate * 设置值)/1000 帧一个关键帧。默认值为1000。
+负值表示只有第一帧是关键帧，0表示所有帧都是关键帧，正值表示每(frameRate * 设置值)/1000帧一个关键帧。默认值为1000。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
