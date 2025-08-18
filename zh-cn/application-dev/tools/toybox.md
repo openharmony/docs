@@ -1,6 +1,6 @@
 # toybox
-<!--Kit: Test Kit-->
-<!--Subsystem: Test-->
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Startup-->
 <!--Owner: @yan-mingzhen-->
 <!--Designer: @liveery-->
 <!--Tester: @liuhaonan2-->
