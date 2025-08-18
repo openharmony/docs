@@ -16,7 +16,7 @@ Event listening not supported for the key.
 
 **可能原因**
 
-需要监听的按键当前接口不支持。
+需要监听的按键当前接口不支持。// 误报
 
 **处理步骤**
 

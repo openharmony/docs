@@ -55,7 +55,7 @@ It is prohibited for non-input applications.
 
 **可能原因**
 
-该接口不支持三方应用或者非输入法系统应用调用。
+该接口不支持三方应用或者非输入法系统应用调用。// 误报
 
 **处理步骤**
 

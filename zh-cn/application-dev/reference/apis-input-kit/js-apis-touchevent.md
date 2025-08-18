@@ -44,7 +44,7 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 
 ## SourceType 
 
-触屏来源的设备类型，当前仅支持触摸屏、触控板类型上报。
+触屏来源的设备类型，当前仅支持触摸屏、触控板类型上报。// 误报
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -64,7 +64,7 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 | ----------- | ------ | ---- | ---- | ----------------------------------- |
 | id          | number | 否    | 否    | 触屏事件标识。                                |
 | pressedTime | number | 否    | 否    | 按下时间戳，单位：μs。                           |
-| screenX     | number | 否    | 否    | 该触屏事件以指定屏幕左上角为原点的相对坐标系的X坐标。当前仅支持整数。    |
+| screenX     | number | 否    | 否    | 该触屏事件以指定屏幕左上角为原点的相对坐标系的X坐标。当前仅支持整数。    | // 误报
 | screenY     | number | 否    | 否    | 该触屏事件以指定屏幕左上角为原点的相对坐标系的Y坐标。当前仅支持整数。    |
 | windowX     | number | 否    | 否    | 触屏所在窗口左上角为原点的相对坐标系的X坐标。当前仅支持整数。 |
 | windowY     | number | 否    | 否    | 触屏所在窗口左上角为原点的相对坐标系的Y坐标。当前仅支持整数。 |
