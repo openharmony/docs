@@ -38,7 +38,7 @@ async function create(context: Context): Promise<boolean> {
     console.info('Create table test successfully!');
     return true;
   } catch (err)  {
-    console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
+    console.error(`Create db failed, code: ${err.code}, message: ${err.message}`);
     return false;
   }
 }
@@ -118,7 +118,7 @@ struct Index {
           const count = 5;
           let valueBucketArray = new Array<relationalStore.ValuesBucket>(count);
           for (let i = 0; i < count; i++) {
-            let value : relationalStore.ValuesBucket = {
+            let value: relationalStore.ValuesBucket = {
               id: i,
               name: "zhangsan" + i,
               age: 20,
@@ -214,7 +214,7 @@ struct Index {
        console.info('Create table test successfully!');
        return true;
      } catch (err) {
-       console.error(`Insert is failed, code is ${ err.code }, message is ${ err.message }`);
+       console.error(`Create db failed, code: ${err.code}, message: ${err.message}`);
        return false;
      }
    }
@@ -300,7 +300,7 @@ struct Index {
              const count = 5;
              let valueBucketArray = collections.Array.create<SharedValuesBucket | undefined>(count, undefined);
              for (let i = 0; i < count; i++) {
-               let value : IValueBucket = {
+               let value: IValueBucket = {
                  id: i,
                  name: "zhangsan" + i,
                  age: 20,
@@ -428,7 +428,7 @@ struct Index {
        console.info('Create table test successfully!');
        return true;
      } catch (err) {
-       console.error(`Insert is failed, code is ${ err.code }, message is ${ err.message }`);
+       console.error(`Create db failed, code: ${err.code}, message: ${err.message}`);
        return false;
      }
    }
