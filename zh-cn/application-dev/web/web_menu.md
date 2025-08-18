@@ -238,7 +238,7 @@ struct WebComponent {
   <h1>onContextMenuShow</h1>
   <a href="http://www.example.com" style="font-size:27px">超链接www.example.com</a>
   <!--example.png为html同目录下图片-->
-  <div><img src="example.png"></div>
+  <div><img src="img/example.png"></div>
   <p>选中文字鼠标右键弹出菜单</p>
 </body>
 </html>
