@@ -519,7 +519,7 @@ startDataLoading(options: DataSyncOptions): string
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401       | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
-| 190003    | Operation not allowed for current pharse. |
+| 190003    | Operation not allowed for current phase. |
  
 **返回值：** 
 

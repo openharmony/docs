@@ -131,7 +131,7 @@ struct ListExample {
       Button(this.text)
         .width(312)
         .height(40)
-        .id('Mybutton')
+        .id('MyButton')
         .fontSize(16)
         .fontWeight(FontWeight.Medium)
         .margin({ top: 80 })
@@ -145,8 +145,8 @@ struct ListExample {
     .backgroundColor(0xF1F3F5)
     .justifyContent(FlexAlign.End)
     .padding({ left: 12, right: 12, bottom: 24 })
-    .onChildTouchTest((touchinfo) => {
-      for (let info of touchinfo) {
+    .onChildTouchTest((touchInfo) => {
+      for (let info of touchInfo) {
         if (info.id == 'MyList') {
           return { id: info.id, strategy: TouchTestStrategy.FORWARD_COMPETITION }
         }
@@ -206,7 +206,7 @@ struct ListExample {
       Button(this.text)
         .width(312)
         .height(40)
-        .id('Mybutton')
+        .id('MyButton')
         .fontSize(16)
         .fontWeight(FontWeight.Medium)
         .margin({ top: 80 })
@@ -220,8 +220,8 @@ struct ListExample {
     .backgroundColor(0xF1F3F5)
     .justifyContent(FlexAlign.End)
     .padding({ left: 12, right: 12, bottom: 24 })
-    .onChildTouchTest((touchinfo) => {
-      for (let info of touchinfo) {
+    .onChildTouchTest((touchInfo) => {
+      for (let info of touchInfo) {
         if (info.id == 'MyList') {
           return { id: info.id, strategy: TouchTestStrategy.FORWARD }
         }
@@ -281,7 +281,7 @@ struct ListExample {
       Button(this.text)
         .width(312)
         .height(40)
-        .id('Mybutton')
+        .id('MyButton')
         .fontSize(16)
         .fontWeight(FontWeight.Medium)
         .margin({ top: 80 })
@@ -295,7 +295,7 @@ struct ListExample {
     .backgroundColor(0xF1F3F5)
     .justifyContent(FlexAlign.End)
     .padding({ left: 12, right: 12, bottom: 24 })
-    .onChildTouchTest((touchinfo) => {
+    .onChildTouchTest((touchInfo) => {
       return { strategy: TouchTestStrategy.DEFAULT }
     })
   }
