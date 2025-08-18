@@ -1149,7 +1149,7 @@ enableGwpAsanGrayscale(options?: GwpAsanOptions, duration?: number): void
 | 参数名   | 类型   | 必填 | 说明   |
 |---------|---------|--------|-----|
 |options | [GwpAsanOptions](#gwpasanoptions20) | 否 | GWP-Asan配置项。如果未进行设置，则会使用默认参数。|
-|duration | number | 否 | GWP-Asan持续时间，默认7天，需要传入大于0的正整数。|
+|duration | number | 否 | GWP-Asan持续时间，默认7天，需要传入大于0的正整数，单位：天。|
 
 **错误码**：
 
