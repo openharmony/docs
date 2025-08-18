@@ -128,7 +128,7 @@ struct Index {
           }
           let ret = await taskpool.execute(create, context);
           if (!ret) {
-            console.error("Create failed, terminating subsequent operations");
+            console.error("Create db failed.");
             return;
           }
           await taskpool.execute(insert, context, valueBucketArray);
@@ -310,7 +310,7 @@ struct Index {
              }
              let ret = await taskpool.execute(create, context);
              if (!ret) {
-               console.error("Create failed, terminating subsequent operations");
+               console.error("Create db failed.");
                return;
              }
              await taskpool.execute(insert, context, valueBucketArray);
@@ -529,7 +529,7 @@ struct Index {
              let material = initMaterial();
              let ret = await taskpool.execute(create, context);
              if (!ret) {
-               console.error("Create failed, terminating subsequent operations");
+               console.error("Create db failed.");
                return;
              }
              await taskpool.execute(insert, context, material.getBuckets());
