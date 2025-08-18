@@ -183,6 +183,7 @@
             try {
               let list: Array<string> = ["audioRecording"];
               // let list: Array<string> = ["bluetoothInteraction"]; 长时任务类型包含bluetoothInteraction，CAR_KEY子类型合法
+              // 在原子化服务中，let list: Array<string> = ["audioPlayback"];
               backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
                 console.info("Operation startBackgroundRunning succeeded");
                 // 此处执行具体的长时任务逻辑，如录音，录制等。
@@ -304,7 +305,7 @@
       // 在原子化服务中，使用wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: object) => {替换下面一行代码
       wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj : WantAgent) => {
         backgroundTaskManager.startBackgroundRunning(mContext,
-          backgroundTaskManager.BackgroundMode.AUDIO_RECORDING, wantAgentObj).then(() => {
+          backgroundTaskManager.BackgroundMode.AUDIO_PLAYBACK, wantAgentObj).then(() => {
           console.info(`Succeeded in operationing startBackgroundRunning.`);
         }).catch((err: BusinessError) => {
           console.error(`Failed to operation startBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
