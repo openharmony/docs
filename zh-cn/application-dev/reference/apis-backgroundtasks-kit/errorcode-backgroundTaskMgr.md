@@ -1,5 +1,12 @@
 # backgroundTaskManager错误码
 
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: ResourceSchedule-->
+<!--Owner: @cheng-shichang-->
+<!--Designer: @zhouben25-->
+<!--Tester: @fenglili18-->
+<!--Adviser: @Brilliantry_Rui-->
+
 > **说明：**
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
@@ -96,7 +103,7 @@ Continuous task verification failed.
 1. 应用重复申请长时任务。
 2. 应用重复取消长时任务。
 3. bgMode无效，应用配置文件属性backgroundModes没有配置任何长时任务类型。
-4. 只有<!--RP1-->特定设备<!--RP1End-->才能申请长时任务KEEPING_TASK。
+4. 只有<!--RP1-->特定设备<!--RP1End-->才能申请长时任务TASK_KEEPING。
 
 **处理步骤**
 
