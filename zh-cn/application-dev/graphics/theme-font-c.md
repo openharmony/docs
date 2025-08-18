@@ -55,7 +55,7 @@
 
 3. 本步骤及之后均为主题字体在C++侧的使用，从ArkTS到C++的调用通路需应用根据实际情况选取调用方式，本示例不作推荐。跨语言调用可参考[Node-API简介](../napi/napi-introduction.md)。
 
-   在工程的`src/main/cpp/CMakeLists.txt`文件中添加一下lib。
+   在工程的`src/main/cpp/CMakeLists.txt`文件中添加以下lib。
    ```c++
    libnative_drawing.so
    ```
