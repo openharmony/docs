@@ -35,9 +35,9 @@ regCustomEapHandler(netType: number, eapCode: number, eapType: number, callback:
 
 | 参数名                              | 类型|必填|说明|
 | ----------------------------- | ---------- |---------- |---------- |
-| netType| number|是|网络类型。|
+| netType| number|是|网络类型，取值为1或2。<br>netType=1表示WLAN，netType=2表示以太网。|
 | eapCode|number |是|需要进行定制的EAP code，取值为1、2、3、4 。<br>code=1 Request、 code=2 Response、 code=3 Success、 code=4 Failure。|
-| eapType| number |是|需要进行定制处理的EAP method类型。|
+| eapType| number |是|需要进行定制处理的EAP method类型，取值范围[0, 255]。<br>常用取值包括：eapType=1 Identity，eapType=2 Notification，eapType=3 NAK，eapType=4 MD5-Challenge，eapType=5 OTP（One-Time Password），eapType=6 GTC（Generic Token Card），eapType=13 EAP-TLS，eapType=21 EAP-TTLS，eapType=25 EAP-PEAP，eapType=254 Expanded Types，eapType=255 Experimental use。|
 | callback| Callback\<[EapData](#eapdata)\> |是|对指定的code+type的报文进行回调处理。|
 
 **错误码**：
@@ -86,9 +86,9 @@ unregCustomEapHandler(netType:number, eapCode: number, eapType: number, callback
 
 | 参数名                            | 类型|必填|说明|
 | ----------------------------- | ---------- |---------- |---------- |
-| netType| number|是|网络类型。|
+| netType| number|是|网络类型，取值为1或2。<br>netType=1表示WLAN，netType=2表示以太网。|
 | eapCode|number |是|需要进行定制的EAP code，取值为1、2、3、4 。<br>code=1 Request、 code=2 Response、 code=3 Success、 code=4 Failure。|
-| eapType| number |是|需要进行定制处理的EAP method类型。|
+| eapType| number |是|需要进行定制处理的EAP method类型，取值范围[0, 255]。<br>常用取值包括：eapType=1 Identity，eapType=2 Notification，eapType=3 NAK，eapType=4 MD5-Challenge，eapType=5 OTP（One-Time Password），eapType=6 GTC（Generic Token Card），eapType=13 EAP-TLS，eapType=21 EAP-TTLS，eapType=25 EAP-PEAP，eapType=254 Expanded Types，eapType=255 Experimental use。|
 | callback| Callback\<[EapData](#eapdata)\> |是|对指定的code+type的报文进行回调处理。|
 
 **错误码**：
