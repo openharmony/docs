@@ -26,7 +26,7 @@
 
 ### 度量衡转换
 
-度量衡包括长度单位、面积单位、体积单位和容量单位等，通过[I18NUtil](../reference/apis-localization-kit/js-apis-i18n.md#i18nutil9)类的[unitConvert](../reference/apis-localization-kit/js-apis-i18n.md#unitconvert9)接口实现度量衡单位转换和格式化。具体开发步骤如下：
+度量衡包括长度单位、面积单位、体积单位和容量单位等，通过[I18NUtil](../reference/apis-localization-kit/js-apis-i18n.md#i18nutil9)类的[unitConvert](../reference/apis-localization-kit/js-apis-i18n.md#unitconvert9)接口实现度量衡转换和格式化。具体开发步骤如下：
 
 1. 导入模块。
    ```ts
@@ -35,7 +35,7 @@
 
 2. 将度量衡从一个单位（fromUnit）转换到另一个单位（toUnit）。
 
-   将度量衡单位从fromUnit转换到toUnit，数值为value，并根据区域和风格格式化。style取不同值时，显示不同效果，详情见表1。
+   将度量衡从fromUnit转换到toUnit，数值为value，并根据区域和风格格式化。style取不同值时，显示不同效果，详情见表1。
    ```ts
    let convertedUnit: string = i18n.I18NUtil.unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string);
    ```
