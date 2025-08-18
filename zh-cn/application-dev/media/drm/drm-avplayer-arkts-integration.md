@@ -22,7 +22,7 @@
    import { BusinessError } from '@kit.BasicServicesKit'
    ```
 
-3. 创建AVPlayer实例并设置DRM信息监听事件。
+3. 调用[createAVPlayer](../../reference/apis-drm-kit/arkts-apis-media-f.md#mediacreateavplayer9)，创建AVPlayer实例并设置DRM信息监听事件。
 
    ```ts
    let playerHandle: media.AVPlayer = await media.createAVPlayer()
@@ -58,7 +58,7 @@
    }
    ```
 
-5. 根据DRM信息中的pssh信息生成媒体密钥请求并处理媒体密钥响应。
+5. 调用[generateMediaKeyRequest](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySession.md#generatemediakeyrequest)，根据DRM信息中的pssh信息生成媒体密钥请求并处理媒体密钥响应。
 
    ```ts
    let initData: Uint8Array = new Uint8Array(drmInfoArr[i].pssh);
@@ -80,7 +80,7 @@
    });
    ```
 
-6. 在处理媒体密钥响应成功后设置解密session。
+6. 调用[requireSecureDecoderModule](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySession.md#requiresecuredecodermodule)，在处理媒体密钥响应成功后设置解密session。
 
    ```ts
    let svp: boolean = mediaKeySession.requireSecureDecoderModule('video/avc');
