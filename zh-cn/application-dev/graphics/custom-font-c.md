@@ -30,7 +30,7 @@
 
 
 ## 开发步骤
-1. 在工程的`src/main/cpp/CMakeLists.txt`文件中添加一下lib。
+1. 在工程的`src/main/cpp/CMakeLists.txt`文件中添加以下lib。
    ```c++
    libnative_drawing.so
    ```

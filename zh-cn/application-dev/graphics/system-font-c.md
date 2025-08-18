@@ -36,7 +36,7 @@
 
 ## 获取系统字体信息
 
-1. 在工程的`src/main/cpp/CMakeLists.txt`文件中添加一下lib。
+1. 在工程的`src/main/cpp/CMakeLists.txt`文件中添加以下lib。
    ```c++
    libnative_drawing.so
    ```
@@ -114,7 +114,7 @@
 
 如果不指定使用任何字体时，会使用系统默认字体“HarmonyOS Sans”显示文本。
 
-1. 在工程的`src/main/cpp/CMakeLists.txt`文件中添加一下lib。
+1. 在工程的`src/main/cpp/CMakeLists.txt`文件中添加以下lib。
    ```c++
    libnative_drawing.so
    ```
@@ -189,7 +189,7 @@
 
 1. 确保已成功注册自定义字体，用于保证禁用系统字体后文本的正常显示，具体可见[自定义字体的注册和使用](custom-font-c.md)。
 
-2. 在工程的`src/main/cpp/CMakeLists.txt`文件中添加一下lib。
+2. 在工程的`src/main/cpp/CMakeLists.txt`文件中添加以下lib。
    ```c++
    libnative_drawing.so
    ```
