@@ -230,4 +230,4 @@ export default {
 
 > **说明：** 
 >
-> 在调用[reset](../reference/apis-arkui/js-apis-animator.md#reset9)接口的过程中可以使用这个接口更新动画参数，入参与[createAnimator](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#createanimator)一致。
+> 在调用[reset](../reference/apis-arkui/js-apis-animator.md#reset9)接口的过程中可以使用这个接口更新动画参数，入参与[createAnimator](../reference/apis-arkui/js-apis-arkui-UIContext.md#createanimator)一致。
