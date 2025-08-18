@@ -5056,7 +5056,7 @@
           - [video_processing_types.h](reference/apis-media-kit/capi-video-processing-types-h.md)
         - 结构体<!--media-struct-->
           - [OH_AVImageGenerator](reference/apis-media-kit/capi-avimagegenerator-oh-avimagegenerator.md)
-          - [OH_AVMetadataExtractor](reference/apis-media-kit/capi-avmetadaextractor-oh-avmetadataextractor.md)
+          - [OH_AVMetadataExtractor](reference/apis-media-kit/capi-avmetadataextractor-oh-avmetadataextractor.md)
           - [MediaKeySession](reference/apis-media-kit/capi-avplayer-mediakeysession.md)
           - [DRM_MediaKeySystemInfo](reference/apis-media-kit/capi-avplayer-drm-mediakeysysteminfo.md)
           - [AVPlayerCallback](reference/apis-media-kit/capi-avplayer-avplayercallback.md)
