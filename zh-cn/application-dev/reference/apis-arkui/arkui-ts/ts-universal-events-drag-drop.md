@@ -556,7 +556,7 @@ startDataLoading(options: DataSyncOptions): string
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401       | Parameter error. |
-| 190003    | Operation not allowed for current pharse. |
+| 190003    | Operation not allowed for current phase. |
 
 **返回值：** 
 
