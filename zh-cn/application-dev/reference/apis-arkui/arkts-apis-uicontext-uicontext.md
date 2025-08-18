@@ -2901,7 +2901,7 @@ struct Index {
   build() {
     Column() {
       Button('isFollowingSystemFontScale').onClick(() => {
-        console.info('isFollowingSystemFontScale', this.getUIContext().isFollowingSystemFontScale()); // 输出为: isFollowingSystemFontScale true
+        console.info('isFollowingSystemFontScale', this.getUIContext().isFollowingSystemFontScale());
       });
     }
   }
@@ -2934,7 +2934,7 @@ struct Index {
   build() {
     Column() {
       Button('getMaxFontScale').onClick(() => {
-        console.info('getMaxFontScale', this.getUIContext().getMaxFontScale().toFixed(2)); // 输出为: getMaxFontScale 1.75
+        console.info('getMaxFontScale', this.getUIContext().getMaxFontScale().toFixed(2));
       });
     }
   }
