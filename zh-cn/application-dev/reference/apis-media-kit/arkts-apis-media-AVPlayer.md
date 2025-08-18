@@ -69,6 +69,9 @@ on(type: 'stateChange', callback: OnAVPlayerStateChangeHandle): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
   switch (state) {
     case 'idle':
@@ -125,6 +128,9 @@ off(type: 'stateChange', callback?: OnAVPlayerStateChangeHandle): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('stateChange');
 ```
 
@@ -178,7 +184,9 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('error', (error: BusinessError) => {
   console.info('error happened,and error message is :' + error.message);
   console.info('error happened,and error code is :' + error.code);
@@ -205,6 +213,10 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('error');
 ```
 
@@ -244,6 +256,8 @@ setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
 
 <!--code_no_check-->
 ```ts
+import { media } from '@kit.MediaKit';
+
 let player = await media.createAVPlayer();
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
@@ -293,6 +307,7 @@ setPlaybackStrategy(strategy: PlaybackStrategy): Promise\<void>
 
 <!--code_no_check-->
 ```ts
+import { media } from '@kit.MediaKit';
 import { common } from '@kit.AbilityKit';
 
 private context: Context | undefined;
@@ -348,6 +363,7 @@ setPlaybackRange(startTimeMs: number, endTimeMs: number, mode?: SeekMode) : Prom
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.setPlaybackRange(0, 6000, media.SeekMode.SEEK_CLOSEST).then(() => {
   console.info('Succeeded setPlaybackRange');
 }).catch((err: BusinessError) => {
@@ -384,7 +400,9 @@ prepare(callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.prepare((err: BusinessError) => {
   if (err) {
     console.error('Failed to prepare,error message is :' + err.message);
@@ -425,7 +443,9 @@ prepare(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.prepare().then(() => {
   console.info('Succeeded in preparing');
 }, (err: BusinessError) => {
@@ -473,7 +493,9 @@ setMediaMuted(mediaType: MediaType,  muted: boolean ): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.prepare().then(() => {
   console.info('Succeeded in preparing');
   avPlayer.setMediaMuted(media.MediaType.MEDIA_TYPE_AUD, true);
@@ -510,7 +532,9 @@ play(callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.play((err: BusinessError) => {
   if (err) {
     console.error('Failed to play,error message is :' + err.message);
@@ -548,7 +572,9 @@ play(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.play().then(() => {
   console.info('Succeeded in playing');
 }, (err: BusinessError) => {
@@ -584,7 +610,9 @@ pause(callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.pause((err: BusinessError) => {
   if (err) {
     console.error('Failed to pause,error message is :' + err.message);
@@ -622,7 +650,9 @@ pause(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.pause().then(() => {
   console.info('Succeeded in pausing');
 }, (err: BusinessError) => {
@@ -658,7 +688,9 @@ stop(callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.stop((err: BusinessError) => {
   if (err) {
     console.error('Failed to stop,error message is :' + err.message);
@@ -696,7 +728,9 @@ stop(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.stop().then(() => {
   console.info('Succeeded in stopping');
 }, (err: BusinessError) => {
@@ -732,7 +766,9 @@ reset(callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.reset((err: BusinessError) => {
   if (err) {
     console.error('Failed to reset,error message is :' + err.message);
@@ -770,7 +806,9 @@ reset(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.reset().then(() => {
   console.info('Succeeded in resetting');
 }, (err: BusinessError) => {
@@ -806,7 +844,9 @@ release(callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.release((err: BusinessError) => {
   if (err) {
     console.error('Failed to release,error message is :' + err.message);
@@ -844,7 +884,9 @@ release(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.release().then(() => {
   console.info('Succeeded in releasing');
 }, (err: BusinessError) => {
@@ -880,7 +922,9 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if ((arrList) != null) {
     console.info('Succeeded in doing getTrackDescription');
@@ -918,7 +962,9 @@ getTrackDescription(): Promise\<Array\<MediaDescription>>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
   console.info('Succeeded in getting TrackDescription');
 }).catch((error: BusinessError) => {
@@ -954,7 +1000,9 @@ getSelectedTracks(): Promise\<Array\<number>>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.getSelectedTracks().then((arrList: Array<number>) => {
   console.info('Succeeded in getting SelectedTracks');
 }).catch((error: BusinessError) => {
@@ -980,6 +1028,7 @@ getPlaybackInfo(): Promise\<PlaybackInfo>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer | undefined = undefined;
 let playbackInfo: media.PlaybackInfo | undefined = undefined;
@@ -1029,7 +1078,9 @@ getPlaybackPosition(): number
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.prepare().then(() => {
   console.info('Succeeded in preparing');
   let playbackPosition: number = avPlayer.getPlaybackPosition();
@@ -1076,6 +1127,7 @@ selectTrack(index: number, mode?: SwitchMode): Promise\<void>
 <!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer = await media.createAVPlayer();
 let audioTrackIndex: Object = 0;
@@ -1132,6 +1184,7 @@ deselectTrack(index: number): Promise\<void>
 <!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer = await media.createAVPlayer();
 let audioTrackIndex: Object = 0;
@@ -1185,7 +1238,9 @@ setDecryptionConfig(mediaKeySession: drm.MediaKeySession, secureVideoPath: boole
 
 ```ts
 import { drm } from '@kit.DrmKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 // 创建MediaKeySystem系统。
 let keySystem:drm.MediaKeySystem = drm.createMediaKeySystem('com.clearplay.drm');
 // 创建MediaKeySession解密会话。
@@ -1217,7 +1272,9 @@ getMediaKeySystemInfos(): Array\<drm.MediaKeySystemInfo>
 
 ```ts
 import { drm } from '@kit.DrmKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 const infos = avPlayer.getMediaKeySystemInfos();
 console.info('GetMediaKeySystemInfos count: ' + infos.length);
 for (let i = 0; i < infos.length; i++) {
@@ -1247,12 +1304,18 @@ seek(timeMs: number, mode?:SeekMode): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 let seekTime: number = 1000;
 avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC);
 ```
 
 ```ts
 // SEEK_CONTINUOUS 可以结合Slider的onChange回调方法进行对应处理，当slideMode为Moving时，触发拖动过程的SeekContinuous。
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 let slideMovingTime: number = 2000;
 avPlayer.seek(slideMovingTime, media.SeekMode.SEEK_CONTINUOUS);
 
@@ -1279,6 +1342,9 @@ isSeekContinuousSupported() : boolean
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 let isSupported = avPlayer.isSeekContinuousSupported();
 ```
 
@@ -1302,6 +1368,9 @@ on(type: 'seekDone', callback: Callback\<number>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('seekDone', (seekDoneTime:number) => {
   console.info('seekDone called,and seek time is:' + seekDoneTime);
 });
@@ -1327,6 +1396,9 @@ off(type: 'seekDone', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('seekDone');
 ```
 
@@ -1350,6 +1422,9 @@ setSpeed(speed: PlaybackSpeed): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.setSpeed(media.PlaybackSpeed.SPEED_FORWARD_2_00_X);
 ```
 
@@ -1373,6 +1448,9 @@ on(type: 'speedDone', callback: Callback\<number>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('speedDone', (speed:number) => {
   console.info('speedDone called,and speed value is:' + speed);
 });
@@ -1398,6 +1476,9 @@ off(type: 'speedDone', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('speedDone');
 ```
 
@@ -1433,6 +1514,9 @@ setPlaybackRate(rate: number): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.setPlaybackRate(2.0);
 ```
 
@@ -1456,6 +1540,9 @@ on(type: 'playbackRateDone', callback: OnPlaybackRateDone): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('playbackRateDone', (rate:number) => {
   console.info('playbackRateDone called,and rate value is:' + rate);
 });
@@ -1481,6 +1568,9 @@ off(type: 'playbackRateDone', callback?: OnPlaybackRateDone): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('playbackRateDone');
 ```
 
@@ -1503,6 +1593,9 @@ setBitrate(bitrate: number): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 let bitrate: number = 96000;
 avPlayer.setBitrate(bitrate);
 ```
@@ -1527,6 +1620,9 @@ on(type: 'bitrateDone', callback: Callback\<number>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('bitrateDone', (bitrate:number) => {
   console.info('bitrateDone called,and bitrate value is:' + bitrate);
 });
@@ -1552,6 +1648,9 @@ off(type: 'bitrateDone', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('bitrateDone');
 ```
 
@@ -1575,6 +1674,9 @@ on(type: 'availableBitrates', callback: Callback\<Array\<number>>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
   console.info('availableBitrates called,and availableBitrates length is:' + bitrates.length);
 });
@@ -1600,6 +1702,9 @@ off(type: 'availableBitrates', callback?: Callback\<Array\<number>>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('availableBitrates');
 ```
 
@@ -1625,7 +1730,9 @@ on(type: 'mediaKeySystemInfoUpdate', callback: Callback\<Array\<drm.MediaKeySyst
 
 ```ts
 import { drm } from '@kit.DrmKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('mediaKeySystemInfoUpdate', (mediaKeySystemInfo: Array<drm.MediaKeySystemInfo>) => {
     for (let i = 0; i < mediaKeySystemInfo.length; i++) {
       console.info('mediaKeySystemInfoUpdate happened uuid: ' + mediaKeySystemInfo[i]["uuid"]);
@@ -1654,6 +1761,9 @@ off(type: 'mediaKeySystemInfoUpdate', callback?: Callback\<Array\<drm.MediaKeySy
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('mediaKeySystemInfoUpdate');
 ```
 
@@ -1676,6 +1786,9 @@ setVolume(volume: number): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 let volume: number = 1.0;
 avPlayer.setVolume(volume);
 ```
@@ -1700,6 +1813,9 @@ on(type: 'volumeChange', callback: Callback\<number>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('volumeChange', (vol: number) => {
   console.info('volumeChange called,and new volume is :' + vol);
 });
@@ -1725,6 +1841,9 @@ off(type: 'volumeChange', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('volumeChange');
 ```
 
@@ -1748,6 +1867,9 @@ on(type: 'endOfStream', callback: Callback\<void>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('endOfStream', () => {
   console.info('endOfStream called');
 });
@@ -1773,6 +1895,9 @@ off(type: 'endOfStream', callback?: Callback\<void>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('endOfStream');
 ```
 
@@ -1798,6 +1923,9 @@ on(type: 'timeUpdate', callback: Callback\<number>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('timeUpdate', (time:number) => {
   console.info('timeUpdate called,and new time is :' + time);
 });
@@ -1823,6 +1951,9 @@ off(type: 'timeUpdate', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('timeUpdate');
 ```
 
@@ -1848,6 +1979,9 @@ on(type: 'durationUpdate', callback: Callback\<number>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('durationUpdate', (duration: number) => {
   console.info('durationUpdate called,new duration is :' + duration);
 });
@@ -1873,6 +2007,9 @@ off(type: 'durationUpdate', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('durationUpdate');
 ```
 
@@ -1896,6 +2033,9 @@ on(type: 'bufferingUpdate', callback: OnBufferingUpdateHandler): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
   console.info('bufferingUpdate called,and infoType value is:' + infoType + ', value is :' + value);
 });
@@ -1921,6 +2061,9 @@ off(type: 'bufferingUpdate', callback?: OnBufferingUpdateHandler): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('bufferingUpdate');
 ```
 
@@ -1944,6 +2087,9 @@ on(type: 'startRenderFrame', callback: Callback\<void>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('startRenderFrame', () => {
   console.info('startRenderFrame called');
 });
@@ -1969,6 +2115,9 @@ off(type: 'startRenderFrame', callback?: Callback\<void>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('startRenderFrame');
 ```
 
@@ -1992,6 +2141,9 @@ on(type: 'videoSizeChange', callback: OnVideoSizeChangeHandler): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('videoSizeChange', (width: number, height: number) => {
   console.info('videoSizeChange called,and width is:' + width + ', height is :' + height);
 });
@@ -2017,6 +2169,9 @@ off(type: 'videoSizeChange', callback?: OnVideoSizeChangeHandler): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('videoSizeChange');
 ```
 
@@ -2041,7 +2196,9 @@ on(type: 'audioInterrupt', callback: Callback\<audio.InterruptEvent>): void
 
 ```ts
 import { audio } from '@kit.AudioKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
   console.info('audioInterrupt called,and InterruptEvent info is:' + info);
 });
@@ -2067,6 +2224,9 @@ off(type: 'audioInterrupt', callback?: Callback<audio.InterruptEvent>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('audioInterrupt');
 ```
 
@@ -2099,7 +2259,9 @@ on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback\<audio.AudioStrea
 
 ```ts
 import { audio } from '@kit.AudioKit';
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('audioOutputDeviceChangeWithInfo', (data: audio.AudioStreamDeviceChangeInfo) => {
   console.info(`${JSON.stringify(data)}`);
 });
@@ -2131,6 +2293,9 @@ off(type: 'audioOutputDeviceChangeWithInfo', callback?: Callback\<audio.AudioStr
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('audioOutputDeviceChangeWithInfo');
 ```
 
@@ -2170,7 +2335,9 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 <!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit'
+import { media } from '@kit.MediaKit';
 
+let avPlayer = await media.createAVPlayer();
 private context: Context | undefined;
 constructor(context: Context) {
   this.context = context; // this.getUIContext().getHostContext();
@@ -2213,6 +2380,8 @@ addSubtitleFromUrl(url: string): Promise\<void>
 
 <!--code_no_check-->
 ```ts
+import { media } from '@kit.MediaKit';
+
 let fdUrl:string = 'http://xxx.xxx.xxx/xx/index.srt';
 
 let avPlayer: media.AVPlayer = await media.createAVPlayer();
@@ -2239,6 +2408,9 @@ on(type: 'subtitleUpdate', callback: Callback\<SubtitleInfo>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('subtitleUpdate', async (info: media.SubtitleInfo) => {
   if (info) {
     let text = (!info.text) ? '' : info.text
@@ -2271,6 +2443,9 @@ off(type: 'subtitleUpdate', callback?: Callback\<SubtitleInfo>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('subtitleUpdate');
 ```
 
@@ -2294,6 +2469,9 @@ on(type: 'trackChange', callback: OnTrackChangeHandler): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
   console.info('trackChange info: index=' + index + ' isSelect=' + isSelect);
 });
@@ -2319,6 +2497,9 @@ off(type: 'trackChange', callback?: OnTrackChangeHandler): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('trackChange');
 ```
 
@@ -2342,6 +2523,9 @@ on(type: 'trackInfoUpdate', callback: Callback\<Array\<MediaDescription>>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('trackInfoUpdate', (info: Array<media.MediaDescription>) => {
   if (info) {
     for (let i = 0; i < info.length; i++) {
@@ -2375,6 +2559,9 @@ off(type: 'trackInfoUpdate', callback?: Callback\<Array\<MediaDescription>>): vo
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('trackInfoUpdate');
 ```
 
@@ -2396,6 +2583,9 @@ on(type: 'amplitudeUpdate', callback: Callback\<Array\<number>>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('amplitudeUpdate', (value: Array<number>) => {
   console.info('amplitudeUpdate called,and amplitudeUpdate = ${value}');
 });
@@ -2419,6 +2609,9 @@ off(type: 'amplitudeUpdate', callback?: Callback\<Array\<number>>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('amplitudeUpdate');
 ```
 
@@ -2444,6 +2637,9 @@ on(type: 'seiMessageReceived', payloadTypes: Array\<number>, callback: OnSeiMess
 
 ```ts
 import util from '@ohos.util';
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 
 avPlayer.on('seiMessageReceived', [5], (messages: Array<media.SeiMessage>, playbackPosition?: number) =>
 {
@@ -2482,6 +2678,9 @@ off(type: 'seiMessageReceived', payloadTypes?: Array\<number>, callback?: OnSeiM
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('seiMessageReceived');
 ```
 
@@ -2522,6 +2721,9 @@ setSuperResolution(enabled: boolean) : Promise\<void>
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.setSuperResolution(true);
 ```
 
@@ -2564,6 +2766,9 @@ setVideoWindowSize(width: number, height: number) : Promise\<void>
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.setVideoWindowSize(1920, 1080);
 ```
 
@@ -2587,6 +2792,9 @@ on(type:'superResolutionChanged', callback: OnSuperResolutionChanged): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('superResolutionChanged', (enabled: boolean) => {
   console.info('superResolutionChanged called, and enabled is:' + enabled);
 });
@@ -2612,5 +2820,8 @@ off(type:'superResolutionChanged', callback?: OnSuperResolutionChanged): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('superResolutionChanged');
 ```

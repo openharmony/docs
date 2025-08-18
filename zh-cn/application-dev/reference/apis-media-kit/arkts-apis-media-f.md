@@ -49,6 +49,7 @@ createAVPlayer(callback: AsyncCallback\<AVPlayer>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer;
 media.createAVPlayer((error: BusinessError, video: media.AVPlayer) => {
@@ -94,6 +95,7 @@ createAVPlayer(): Promise\<AVPlayer>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer;
 media.createAVPlayer().then((video: media.AVPlayer) => {
@@ -138,6 +140,7 @@ createAVRecorder(callback: AsyncCallback\<AVRecorder>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 let avRecorder: media.AVRecorder;
 
 media.createAVRecorder((error: BusinessError, recorder: media.AVRecorder) => {
@@ -182,6 +185,7 @@ createAVRecorder(): Promise\<AVRecorder>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
 let avRecorder: media.AVRecorder;
 media.createAVRecorder().then((recorder: media.AVRecorder) => {
@@ -456,6 +460,7 @@ createAVScreenCaptureRecorder(): Promise\<AVScreenCaptureRecorder>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
 let avScreenCaptureRecorder: media.AVScreenCaptureRecorder;
 media.createAVScreenCaptureRecorder().then((captureRecorder: media.AVScreenCaptureRecorder) => {
@@ -585,6 +590,8 @@ createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaS
 **示例1：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
 ```
@@ -595,6 +602,7 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 ```ts
 import { common } from '@kit.AbilityKit';
 import { resourceManager } from '@kit.LocalizationKit';
+import { media } from '@kit.MediaKit';
 
 private context: Context | undefined;
 constructor(context: Context) {
@@ -641,6 +649,8 @@ createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
 let streams : Array<media.MediaStream> = [];
 streams.push({url: "http://xxx/480p.flv", width: 854, height: 480, bitrate: 800000});
 streams.push({url: "http://xxx/720p.flv", width: 1280, height: 720, bitrate: 2000000});
@@ -668,6 +678,8 @@ createAudioPlayer(): AudioPlayer
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
+
 let audioPlayer: media.AudioPlayer = media.createAudioPlayer();
 ```
 
@@ -691,6 +703,7 @@ createVideoPlayer(callback: AsyncCallback\<VideoPlayer>): void
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoPlayer: media.VideoPlayer;
@@ -724,6 +737,7 @@ createVideoPlayer(): Promise\<VideoPlayer>
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoPlayer: media.VideoPlayer;
@@ -760,6 +774,7 @@ createAudioRecorder(): AudioRecorder
 **示例：**
 
 ```ts
+import { media } from '@kit.MediaKit';
 let audioRecorder: media.AudioRecorder = media.createAudioRecorder();
 ```
 
