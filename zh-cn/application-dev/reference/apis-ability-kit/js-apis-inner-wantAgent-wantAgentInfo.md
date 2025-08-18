@@ -1,5 +1,12 @@
 # WantAgentInfo
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @linjunjie6-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 定义触发WantAgent所需要的信息。
 
 > **说明：**
