@@ -1151,4 +1151,4 @@ type ChangedType = 'add' | 'remove'
 
 | 名称                  | 值    | 说明        |
 | ------------------- | ---- | --------- |
-| CAPS_LOCK                | 1    | CapsLock键，仅支持对输入键盘扩展的CapsLock键设置使能。 | // 误报
+| CAPS_LOCK                | 1    | CapsLock键，仅支持对输入键盘扩展的CapsLock键设置使能。 |
