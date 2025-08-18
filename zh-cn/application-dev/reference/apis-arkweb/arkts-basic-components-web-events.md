@@ -86,7 +86,11 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
 
 onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
 
-即将完成页面刷新或关闭当前页面时触发此回调。刷新或关闭当前页面应先通过点击等方式获取焦点，才会触发此回调。
+即将完成页面刷新或关闭当前页面时触发此回调。
+
+> **说明：**
+>
+> - 如果当前Web组件没有得到焦点，刷新或关闭当前页面时onBeforeUnload不会触发。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -621,7 +625,7 @@ onPageBegin(callback: Callback\<OnPageBeginEvent\>)
 
 onPageEnd(callback: Callback\<OnPageEndEvent\>)
 
-网页加载完成时触发该回调，且只在主frame触发。
+网页加载完成时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3732,9 +3736,8 @@ onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
 > **说明：**
 >
 > - POST请求不会触发该回调。  
-> - iframe加载HTTP(s)协议或about:blank时不会触发该回调，加载非HTTP(s)协议的跳转可以触发。  
-> - 调用loadUrl(String)主动触发的跳转不会触发该回调。  
-> - 不要使用相同的URL调用loadUrl(String)方法，然后返回true。这样做会不必要地取消当前的加载并重新使用相同的URL开始新的加载。继续加载给定URL的正确方式是直接返回false，而不是调用loadUrl(String)。  
+> - iframe加载HTTP(s)协议或about:blank时不会触发该回调，而加载非HTTP(s)协议的跳转会触发；调用loadUrl(url: string)主动触发的跳转不会触发该回调。   
+> - 不要在回调中使用相同的URL调用loadUrl(url: string)方法，然后返回true。 这样会不必要地中止当前加载，并用相同的URL发起一次新的加载。 要继续加载当前请求URL的正确做法是直接返回false，而不是调用loadUrl(url: string)。    
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3742,7 +3745,7 @@ onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback       | [OnOverrideUrlLoadingCallback](./arkts-basic-components-web-t.md#onoverrideurlloadingcallback12) | 是 | onOverrideUrlLoading的回调。<br>返回值boolean。返回ture表示当前Web中止加载URL，返回false表示Web继续加载URL |
+| callback       | [OnOverrideUrlLoadingCallback](./arkts-basic-components-web-t.md#onoverrideurlloadingcallback12) | 是 | onOverrideUrlLoading的回调。<br>返回值boolean。返回ture表示中止加载URL，返回false表示继续在Web中加载URL |
 
 **示例：**
 
