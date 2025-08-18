@@ -2068,7 +2068,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
     <h1>onContextMenuShow</h1>
     <a href="http://www.example.com" style="font-size:27px">链接www.example.com</a>
     <!-- rawfile下放任意一张图片命名为example.png -->
-    <div><img src="./example.png"></div>
+    <div><img src="example.png"></div>
     <p>选中文字鼠标右键弹出菜单</p>
   </body>
   </html>
