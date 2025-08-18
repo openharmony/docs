@@ -26,7 +26,7 @@ The module provides capabilities related to the ability framework.
 
 | Name                                                        | Description                  |
 | ------------------------------------------------------------ | ---------------------- |
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) {<br>    ABILITY_RUNTIME_ERROR_CODE_NO_ERROR = 0,<br>    ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED = 201,<br>    ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID = 401,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED = 801,<br>    ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY = 16000001,<br>    ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE = 16000002,<br>    ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED = 16000008,<br>    ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE = 16000009,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST = 16000011,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTROLLED = 16000012,<br>    ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED = 16000013,<br>    ABILITY_RUNTIME_ERROR_CODE_CROSS_APP = 16000018,<br>    ABILITY_RUNTIME_ERROR_CODE_INTERNAL = 16000050,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY = 16000053,<br>    ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED = 16000067,<br>    ABILITY_RUNTIME_ERROR_CODE_MULTI_APP_NOT_SUPPORTED = 16000072,<br>    ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY = 16000076,<br>    ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED = 16000077,<br>    ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED = 16000078,<br>    ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED = 16000079,<br> ABILITY_RUNTIME_ERROR_CODE_GET_APPLICATION_INFO_FAILED = 16000081<br>} | Enumerates the error codes used by the ability framework.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) {<br>    ABILITY_RUNTIME_ERROR_CODE_NO_ERROR = 0,<br>    ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED = 201,<br>    ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID = 401,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED = 801,<br>    ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY = 16000001,<br>    ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE = 16000002,<br>    ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED = 16000008,<br>    ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE = 16000009,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST = 16000011,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTROLLED = 16000012,<br>    ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED = 16000013,<br>    ABILITY_RUNTIME_ERROR_CODE_CROSS_APP = 16000018,<br>    ABILITY_RUNTIME_ERROR_CODE_INTERNAL = 16000050,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY = 16000053,<br>    ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED = 16000067,<br>    ABILITY_RUNTIME_ERROR_CODE_MULTI_APP_NOT_SUPPORTED = 16000072,<br>    ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY = 16000076,<br>    ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED = 16000077,<br>    ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED = 16000078,<br>    ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED = 16000079<br>} | Enumerates the error codes used by the ability framework.|
 | [AbilityRuntime_AreaMode](#abilityruntime_areamode) {<br>    ABILITY_RUNTIME_AREA_MODE_EL1 = 0,<br>    ABILITY_RUNTIME_AREA_MODE_EL2 = 1,<br>    ABILITY_RUNTIME_AREA_MODE_EL3 = 2,<br>    ABILITY_RUNTIME_AREA_MODE_EL4 = 3,<br>    ABILITY_RUNTIME_AREA_MODE_EL5 = 4<br>} | Enumerates the data encryption levels.    |
 | [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility) {<br>    ABILITY_RUNTIME_HIDE_UPON_START = 0,<br>    ABILITY_RUNTIME_SHOW_UPON_START = 1<br>} | Enumerates the visibility modes of the window and dock bar icons when the ability is started.    |
 | [AbilityRuntime_WindowMode](#abilityruntime_windowmode) {<br>    ABILITY_RUNTIME_WINDOW_MODE_UNDEFINED = 0,<br>    ABILITY_RUNTIME_WINDOW_MODE_FULL_SCREEN = 1<br>} | Enumerates the window modes in which an ability can be displayed at startup.    |
@@ -81,7 +81,6 @@ The module provides capabilities related to the ability framework.
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsMaxWindowHeight](#oh_abilityruntime_setstartoptionsmaxwindowheight)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, int32_t maxWindowHeig) | Sets the maximum window height for starting the ability, in vp.|
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsMaxWindowHeight](#oh_abilityruntime_getstartoptionsmaxwindowheight)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, int32_t &maxWindowHeight) | Obtains the maximum window height for starting the ability, in vp.|
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions](#oh_abilityruntime_startselfuiabilitywithstartoptions)([AbilityBase_Want](_ability_base.md#abilitybase_want) *want, [AbilityRuntime_StartOptions](#abilityruntime_startoptions) *options) | Starts the UIAbility of the current application.|
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetVersionCode](#oh_abilityruntime_applicationcontextgetversioncode)(int64_t* versionCode) | Obtains the version code of the application.|
 
 ## Structs
 
@@ -133,7 +132,6 @@ Enumerates the error codes used by the ability framework.
 | ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED | The number of instances has reached the upper limit.<br>**Since**: 17|
 | ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED | The application does not support multi-instance mode.<br>**Since**: 17|
 | ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED | Setting **instanceKey** is not supported.<br>**Since**: 17|
-| ABILITY_RUNTIME_ERROR_CODE_GET_APPLICATION_INFO_FAILED  | The application info does not exist.<br>**Since**: 21|
 
 ### AbilityRuntime_AreaMode
 
@@ -2266,31 +2264,3 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
-
-### OH_AbilityRuntime_ApplicationContextGetVersionCode
-
-```
-AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetVersionCode(int64_t* versionCode)
-```
-
-**Description**
-
-Obtains the version code of the application.
-
-**Since**: 21
-
-**Parameters**
-
-| Name    | Description                    |
-| -------- | ------------------------ |
-| versionCode | Pointer to the version code of the application.|
-
-**Returns**
-
-**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The operation is successful.
-
-**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: **versionCode** is null.
-
-**ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST**: The context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
-
-**ABILITY_RUNTIME_ERROR_CODE_GET_APPLICATION_INFO_FAILED**: The application info does not exist.
