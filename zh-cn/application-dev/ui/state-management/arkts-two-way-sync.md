@@ -14,7 +14,7 @@
 
 ## 使用规则
 
-- 当前`$$`支持基础类型变量，以及[\@State](arkts-state.md)、[\@Link](arkts-link.md)和[\@Prop](arkts-prop.md)装饰的变量。
+- 当前`$$`支持基础类型变量，以及[\@State](arkts-state.md)、[\@Link](arkts-link.md)、[\@Prop](arkts-prop.md)和[\@Provide](arkts-provide-and-consume.md)等装饰的变量。
 
 - 当前`$$`支持的组件：
 
