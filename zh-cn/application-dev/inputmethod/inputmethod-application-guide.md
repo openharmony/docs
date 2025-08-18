@@ -215,7 +215,7 @@
 
    主要描绘了具体按键功能。如按下数字键，就会将数字内容在输入框中打印出来，按下删除键，就会将内容删除。
 
-   同时在resources/base/profile/main_pages.json文件的src字段中添加此文件路径。
+   <!--Del-->同时在resources/base/profile/main_pages.json文件的src字段中添加此文件路径。<!--DelEnd-->
 
    ```ets
    import { numberSourceListData, sourceListType } from './KeyboardKeyData';
