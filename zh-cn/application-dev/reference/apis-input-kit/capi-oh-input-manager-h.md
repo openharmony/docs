@@ -1961,7 +1961,7 @@ Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback)
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-**设备行为差异**：该接口仅在PC/2in1设备中可正常调用，在其他设备上返回801错误码。
+**设备行为差异**：该接口仅在PC/2in1设备上生效，在其他设备上返回801错误码。
 
 **起始版本：** 20
 
