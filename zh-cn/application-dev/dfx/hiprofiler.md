@@ -11,10 +11,10 @@
 ## Hiprofiler简介
 
 
-HiProfiler性能调优组件包含系统和应用调优框架，旨在为开发者提供一套性能调优平台，可以用来分析内存、性能等问题。
+HiProfiler调优组件旨在为开发者提供一系列调优能力，可以用来帮助分析内存、性能等问题。
 
 
-整体架构分为PC端和设备端，主体部分为PC端调优数据展示页面和设备端性能调优服务。PC端和设备端服务采用C/S模型，PC端调优数据在[DevEco studio](https://cbg.huawei.com/#/group/ipd/DevEcoToolsList)/[Smartperf](https://gitee.com/openharmony/developtools_smartperf_host)网页中展示。设备端程序包含多个部分，均运行在系统环境中，其中和DevEco通信的hiprofilerd进程作为调优服务。设备端还包含命令行工具（hiprofiler_cmd）、数据采集进程（hiprofiler_plugins）。调优服务操控数据采集进程获取调优数据，数据最终流向DevEco Studio，整个过程可抽象为生产者-消费者（Producer-Consumer）模型。目前已经完成了nativehook、CPU、ftrace、GPU、hiperf、xpower、memory数据采集等多个插件，实现了CPU、GPU、内存、能耗等多维度调优的能力。
+整体架构包括PC端和设备端。主体部分是PC端的数据展示页面和设备端的性能调优服务。PC端和设备端服务采用C/S模型，PC端的调优数据在[DevEco Studio](https://cbg.huawei.com/#/group/ipd/DevEcoToolsList)和[Smartperf](https://gitee.com/openharmony/developtools_smartperf_host)网页中展示。设备端程序运行在系统环境中，包含多个部分，其中hiprofilerd进程负责与DevEco通信，作为调优服务。设备端还包括命令行工具hiprofiler_cmd和数据采集进程hiprofiler_plugins。调优服务控制数据采集进程获取调优数据，数据最终流向DevEco Studio，整个过程可抽象为生产者-消费者模型。目前已完成多个插件，包括nativehook、CPU、ftrace、GPU、hiperf、xpower和memory数据采集，实现了CPU、GPU、内存和能耗等多维度调优。
 
 
 
@@ -31,11 +31,11 @@ Hiprofiler工具对标业界调优工具，并提供更多能力，比如[跨语
 
 ## 架构简介
 
-1. PC端通过DevEco/Smartperf调用hiprofiler_cmd命令行；
+1. PC端通过DevEco或Smartperf调用hiprofiler_cmd命令行工具；
 
-2. hiprofiler_cmd进程拉起hiprofilerd调优服务，以及hiprofiler_plugins插件进程；
+2. hiprofiler_cmd进程启动hiprofilerd调优服务和hiprofiler_plugins插件进程；
 
-3. hiprofiler_plugins开启对应插件，获取到的调优数据汇总至hiprofilerd进程；
+3. hiprofiler_plugins开启对应插件，将获取到的调优数据汇总至hiprofilerd进程；
 
 4. hiprofilerd进程将调优数据以proto格式存储到文件，或者实时返回给PC端；
 
@@ -109,7 +109,7 @@ plugin_configs字段介绍：
 | config_data | 插件具体参数。每个插件需要的参数不同，参考各插件proto定义。<br/>（代码路径：developtools/profiler/protos）。 | 
 
 
-生成的trace文件通过hdc file recv导到本地，然后上传到smartperf网站或者DevEco Studio进行解析。
+生成的trace文件通过hdc file recv命令导到本地，然后上传到smartperf网站或者DevEco Studio进行解析。
 
 
 ## 支持插件列表
@@ -117,14 +117,14 @@ plugin_configs字段介绍：
 <!--RP1-->
 | 插件名字 | 简介 | 规格说明 |
 | -------- | -------- | -------- |
-| native_hook | 获取堆内存分配的调用栈信息。 |  |
+| native_hook | 获取堆内存分配的调用栈信息。 | 采集的进程仅支持使用调试证书签名的应用 |
 | ftrace-plugin | 获取内核打点的trace事件，以及hitrace打点的数据。 |  |
 | cpu-plugin | 获取进程CPU使用率信息，包括进程级和线程级的使用率。 |  |
 | gpu-plugin | 获取进程GPU使用率信息。 |  |
 | xpower-plugin | 获取进程能耗使用情况的数据。 |  |
 | memory-plugin | 获取进程内存占用情况，主要是获取进程smaps节点的数据。 | |
 | diskio plugin | 获取进程磁盘空间占用情况。 |  |
-| network profiler | 通过进程内打点，获取进程HTTP请求的详细信息。 |  |
+| network profiler | 通过进程内打点，获取进程HTTP请求的详细信息。 | 采集的进程仅支持使用调试证书签名的应用 |
 | network plugin | 获取进程网络流量统计信息。 |  |
 | hisysevent plugin | 通过hisysevent命令，获取hisysevent的事件记录数据。 |  |
 | hiperf plugin | 通过调用hiperf命令获取进程的指令计数信息以及对应的堆栈。 |  |
@@ -158,7 +158,7 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
 
 **native_hook 插件**
 
-获取堆内存分配的调用栈信息，跨语言堆内存分配信息（如在ArtTS语言中调用napi分配native堆内存）。包括malloc，mmap，calloc，realloc等通过基础库函数分配堆内存调用栈。还能展示内存泄漏未释放堆内存调用栈信息。
+获取堆内存分配的调用栈信息（通过malloc，mmap，calloc，realloc等基础库函数分配堆内存的调用栈），包括跨语言堆内存分配信息（如在ArtTS语言中调用napi分配native堆内存），还能展示内存泄漏未释放堆内存调用栈信息。
 
 nativehook参数列表：
 
@@ -169,7 +169,7 @@ nativehook参数列表：
 | startup_mode | bool | 是否抓取进程启动阶段内存。默认不抓取启动阶段内存。 | 记录进程从被appspawn拉起到调优结束这个期间内堆内存分配的信息。如果抓的是一个sa服务，需要在sa对应的cfg文件中找到拉起sa的进程名（如sa_main），将之加到此参数。 | 
 | js_stack_report | int | 是否开启跨语言回栈。<br/>0：不抓取JS栈。<br/>1：开启抓取JS栈。 | 为方舟环境提供跨语言回栈功能。 | 
 | malloc_free_matching_interval | int | 匹配间隔，单位：s，指在相应时间间隔内，将malloc和free进行匹配。匹配到的就不进行落盘。 | 在匹配间隔内，分配并释放了的调用栈不被记录，减少了抓栈服务进程的开销。此参数设置的值大于0时，就不能将statistics_interval参数设置为true。 | 
-| offline_symbolization | bool | 是否开启离线符号化。<br/>true：使用离线符号化，<br/>false：使用在线符号化。 | 使用离线符号化时，根据ip匹配符号的操作转移到了网页端（smartperf）完成，native daemon的性能得到了优化, 调优时会减少进程卡顿的情况。但由于需要将离线符号表写到trace文件，离线符号化情况下trace文件大小比在线符号化的要大。 | 
+| offline_symbolization | bool | 是否开启离线符号化。<br/>true：使用离线符号化。<br/>false：使用在线符号化。 | 使用离线符号化时，根据 IP 匹配符号的操作在网页端（smartperf）完成，优化了 native daemon 的性能，减少了调优时的进程卡顿。但离线符号化会将符号表写入 trace 文件，导致文件大小比在线符号化时更大。 |
 | sample_interval | int | 采样大小。 | 设置此参数时开启采样模式。采样模式下对于malloc size小于采样大小进行概率性统计。调用栈分配内存大小越大，出现次数越高，被统计的几率越大。 | 
 
 结果示例：
@@ -242,7 +242,7 @@ CONFIG
 
 此命令读取的内核binder_transaction和binder_transaction_received数据，这两个字段同时使用，才能完整展示binder两端数据。执行命令后，通过hdc file recv将文件导出，然后拖至smartperf解析。结果示例如下图：
 
-点击binder transaction右边的箭头，可以跳转到binder对端的进程/线程。
+点击binder transaction右边的箭头，可以跳转到binder对端的进程或线程。
 
 ![zh-cn_image_0000002316248152](figures/zh-cn_image_0000002316248152.png)
 
@@ -256,7 +256,7 @@ CONFIG
 | report_process_mem_info | bool | 是否获取进程详细内存数据，如rss_shmem，rss_file，vm_swap等。 | 从/proc/${pid}/stat节点读取内存数据。 | 
 | report_smaps_mem_info | bool | 是否获取进程smaps内存信息。 | 从/proc/${pid}/smaps节点获取进程smaps内存数据。 | 
 | report_gpu_mem_info | bool | 是否获取进程GPU使用情况。 | 读取/proc/gpu_memory节点数据。 | 
-| parse_smaps_rollup | bool | 是否刷新数据大小。 | 读取/proc/{pid}/smaps_rollup节点的smaps统计数据，相比使用report_smaps_mem_info参数调优服务性能会更好（如CPU，内存）。 | 
+| parse_smaps_rollup | bool | 是否从smaps_rollup节点读取smaps统计数据 | 读取/proc/{pid}/smaps_rollup节点的smaps统计数据，相比使用report_smaps_mem_info参数调优服务性能会更好（如CPU，内存使用优化）。 | 
 
 2. 结果分析
 
@@ -287,7 +287,7 @@ CONFIG
 
 | 参数名字 | 类型 | 参数含义 | 详细介绍 | 
 | -------- | -------- | -------- | -------- |
-| pid | int | 需要进行调优的进程名。 | 和/proc/节点下的进程名一致。 | 
+| pid | int | 需要进行调优的进程ID，与/proc/节点下的进程ID一致。 |
 | report_gpu_info | bool | 是否展示指定进程的GPU使用率信息 | true: 展示指定进程的GPU数据，需要设置pid。数据从/sys/class/devfreq/gpufreq/gpu_scene_aware/utilisation节点读取。<br/>false: 不展示指定进程的GPU数据。 | 
 
 **cpu_plugin**：
