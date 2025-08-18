@@ -8,7 +8,7 @@
 
 ## 简介
 
-地址越界问题是指访问了不合法的地址，导致程序运行出现异常，通常表现为应用崩溃（Crash），其故障原因为释放后使用（use after free）、重复释放（double-free）、栈溢出（stack-overflow）、堆溢出（heap-overflow）等。由于应用崩溃日志信息有限且非崩溃第一现场，地址越界问题定位较为困难，一般依赖Asan、HWAsan、GWP-Asan等检测工具以获取更多内存操作信息。从API13开始推荐[使用HWAsan检测工具](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-hwasan-detection#section20672194985111)进行地址越界问题的分析。
+地址越界问题是指访问了不合法的地址，导致程序运行出现异常，通常表现为应用崩溃（Crash），其故障原因为释放后使用（use after free）、重复释放（double-free）、栈溢出（stack-overflow）、堆溢出（heap-overflow）等。由于应用崩溃日志信息有限且非崩溃第一现场，地址越界问题定位较为困难，一般依赖ASan、HWASan、GWP-ASan等检测工具以获取更多内存操作信息。从API13开始推荐[使用HWASan检测工具](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-hwasan-detection#section20672194985111)进行地址越界问题的分析。
 
 ## 常见越界类型与影响
 
@@ -36,13 +36,13 @@ HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hia
 
 ## 日志规格
 
-### Asan日志规格
+### ASan日志规格
 
-Asan日志规格如下，标题头会展示设备信息，故障发生时间，故障进程和故障原因等。日志详细描述了越界访问的地址（0x007fffd59768）、访问大小（WRITE of size 4）、发生的线程和进程信息。通过调用栈，展现了导致此次越界的函数调用路径，列出各个调用层的地址及对应的模块和偏移，帮助开发者快速定位代码位置。日志还提供影子内存（Shadow bytes）跟踪内存状态，帮助确认访问是否合法。同时，日志列出了进程的内存空间映射，帮助分析越界地址所处的具体内存区域。
+ASan日志规格如下，标题头会展示设备信息，故障发生时间，故障进程和故障原因等。日志详细描述了越界访问的地址（0x007fffd59768）、访问大小（WRITE of size 4）、发生的线程和进程信息。通过调用栈，展现了导致此次越界的函数调用路径，列出各个调用层的地址及对应的模块和偏移，帮助开发者快速定位代码位置。日志还提供影子内存（Shadow bytes）跟踪内存状态，帮助确认访问是否合法。同时，日志列出了进程的内存空间映射，帮助分析越界地址所处的具体内存区域。
 
 以下为具体示例：
 
-```
+```text
 Device info:XXX <- 设备信息
 Build info:XXX-XXXX x.x.x.xx(xxxxxxx) <- 版本信息
 Fingerprint:77cdc69cef714391a08c7cb1ceec8b8f9b02900fc6588e4231c2f8750b2bf330 <- 特征信息
@@ -114,11 +114,11 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
  0x001f6e89c000-0x001f6e89d000 [anon:high shadow]
 ```
 
-### HWAsan
+### HWASan日志规格
 
-HWAsan日志与ASan格式差不多，也会在标题中展示设备信息、故障发生时间、故障进程及触发原因等关键信息。日志中会详细记录越界访问的地址（如0x0002013c0100）、访问大小（如WRITE of size 4）、发生时的线程和进程信息，并通过完整的调用栈展示触发越界的函数执行路径，列出各层地址、所属模块及偏移，便于开发者快速定位代码位置。不同于ASan，HWAsan还会输出指针与内存块的标签（tags），并通过对比标签来辅助判断是否存在非法访问。
+HWASan日志与ASan格式差不多，也会在标题中展示设备信息、故障发生时间、故障进程及触发原因等关键信息。日志中会详细记录越界访问的地址（如0x0002013c0100）、访问大小（如WRITE of size 4）、发生时的线程和进程信息，并通过完整的调用栈展示触发越界的函数执行路径，列出各层地址、所属模块及偏移，便于开发者快速定位代码位置。不同于ASan，HWASan还会输出指针与内存块的标签（tags），并通过对比标签来辅助判断是否存在非法访问。
 
-```
+```text
 Device info:XXX <- 设备信息
 Build info:XXX-XXXX x.x.x.xx(xxxxxxx) <- 版本信息
 Fingerprint:77cdc69cef714391a08c7cb1ceec8b8f9b02900fc6588e4231c2f8750b2bf330 <- 特征信息
@@ -261,9 +261,9 @@ Process memory map follows: <- 故障时进程的内存空间
 
 ### MemDebug日志规格
 
-MemDebug采用隔离区加投毒填充的机制，并复用HWAsan的Tag校验的检测工具，对于Double Free类问题，其日志规格和HWAsan一致。
+MemDebug采用隔离区加投毒填充的机制，并复用HWASan的Tag校验的检测工具，对于Double Free类问题，其日志规格和HWASan一致。
 
-```
+```text
 Device info:XXX <- 设备信息
 Build info:XXX-XXXX x.x.x.xx(xxxxxxx) <- 版本信息
 Fingerprint:77cdc69cef714391a08c7cb1ceec8b8f9b02900fc6588e4231c2f8750b2bf330 <- 特征信息
@@ -341,13 +341,13 @@ SUMMARY: HWAddressSanitizer: invalid-free (/system/lib64/xxxxxx.xxxxx.so+0xxxxxx
 ptrBeg was re-written after free 0x000100946540[1], 0x000100946548 5555555500000009:5555555555555555
 ```
 
-其中，0x000100946540问题内存块起始地址，[1]为检测出问题的内存基于起始地址的8字节偏移数，0x000100946548为实际被修改的地址，5555555500000009:5555555555555555表示内存中的内容被修改后的实际值和预期值的对比。在该信息之后，日志还会输出对应内存块的释放堆栈和分配堆栈，调用栈的格式与HWAsan日志一致，此处不再赘述。
+其中，0x000100946540问题内存块起始地址，[1]为检测出问题的内存基于起始地址的8字节偏移数，0x000100946548为实际被修改的地址，5555555500000009:5555555555555555表示内存中的内容被修改后的实际值和预期值的对比。在该信息之后，日志还会输出对应内存块的释放堆栈和分配堆栈，调用栈的格式与HWASan日志一致，此处不再赘述。
 
-### GWP-Asan日志规格
+### GWP-ASan日志规格
 
 GWP-ASan的日志格式较为简洁，以下示例为典型的Use-After-Free问题日志，包含内存块的分配、释放及违规访问的调用栈信息。
 
-```
+```text
 Device info:XXX <- 设备信息
 Build info:XXX-XXXX x.x.x.xx(xxxxxxx) <- 版本信息
 Fingerprint:c41391f9c18acc1121ea519ffdba5698bfb5342ae7125e20ebf2865e31249f1a<- 特征信息

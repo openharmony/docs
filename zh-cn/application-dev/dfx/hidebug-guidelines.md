@@ -247,17 +247,17 @@ HiDebug提供设置系统资源泄露检测阈值的接口，开发者可根据�
 | -------- | -------- |
 | hidebug.setAppResourceLimit | 设置应用的fd数量、线程数量、js内存或者native内存等资源触发资源泄露检测事件的阈值。 |
 
-## 管理GWP-Asan
+## 管理GWP-ASan
 
-HiDebug提供了启停[GWP-Asan](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-gwpasan-detection)使能和查询使能天数的能力。
+HiDebug提供了启停[GWP-ASan](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-gwpasan-detection)使能和查询使能天数的能力。
 
 ### 接口说明（ArkTS）
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| hidebug.enableGwpAsanGrayscale | 使能GWP-Asan，用于检测堆内存使用中的非法行为。 |
-| hidebug.disableGwpAsanGrayscale | 停止使能GWP-Asan。 |
-| hidebug.getGwpAsanGrayscaleState | 获取当前GWP-Asan剩余使能天数。 |
+| hidebug.enableGwpAsanGrayscale | 使能GWP-ASan，用于检测堆内存使用中的非法行为。 |
+| hidebug.disableGwpAsanGrayscale | 停止使能GWP-ASan。 |
+| hidebug.getGwpAsanGrayscaleState | 获取当前GWP-ASan剩余使能天数。 |
 
 ## 其他
 
