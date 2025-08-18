@@ -1,12 +1,5 @@
 # 典型场景的视频编码配置
 
-<!--Kit: AVCodec Kit-->
-<!--Subsystem: Multimedia-->
-<!--Owner: @zhanghongran-->
-<!--Designer: @dpy2650--->
-<!--Tester: @cyakee-->
-<!--Adviser: @zengyawen-->
-
 此文档描述了AVCodec视频编码能力在不同应用场景下的推荐配置参数，供开发者根据实际应用场景进行视频编码应用的开发。
 
 视频编码在视频通话、视频会议、直播、视频编辑、视频分享等场景均有广泛使用，按照体验要求，上述场景可归纳划分为低时延、实时流媒体、离线编码三大类别应用场景。
