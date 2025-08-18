@@ -83,7 +83,7 @@ Queries the application usage duration statistics based on the specified start t
 
 | Type                                      | Description                                    |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;[BundleActiveInfoResponse](js-apis-deviceUsageStatistics-sys.md#bundleactiveinforesponse)&gt; | Promise used to return the result. return the application usage duration statistics.|
+| Promise&lt;[BundleActiveInfoResponse](js-apis-deviceUsageStatistics-sys.md#bundleactiveinforesponse)&gt; | Promise used to return the application usage duration statistics.|
 
 **Example**
 
@@ -163,7 +163,7 @@ Queries the application usage duration statistics in the specified time frame at
 
 | Type                                      | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;[BundleStateInfo](js-apis-deviceUsageStatistics-sys.md#bundlestateinfodeprecated)&gt;&gt; | Promise used to return the result. return the application usage duration statistics.|
+| Promise&lt;Array&lt;[BundleStateInfo](js-apis-deviceUsageStatistics-sys.md#bundlestateinfodeprecated)&gt;&gt; | Promise used to return the application usage duration statistics.|
 
 **Example**
 
@@ -244,7 +244,7 @@ Queries events of all applications based on the specified start time and end tim
 
 | Type                                      | Description                                    |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;[BundleActiveState](js-apis-deviceUsageStatistics-sys.md#bundleactivestatedeprecated)&gt;&gt; | Promise used to return the result. return the events obtained.|
+| Promise&lt;Array&lt;[BundleActiveState](js-apis-deviceUsageStatistics-sys.md#bundleactivestatedeprecated)&gt;&gt; | Promise used to return the events obtained.|
 
 **Example**
 
