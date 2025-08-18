@@ -1,4 +1,10 @@
 # @ohos.file.storageStatistics (应用空间统计)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wang_zhangjun; @zhuangzhuang-->
+<!--Designer: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 该模块提供空间查询相关的常用功能：包括对内外卡的空间查询、对应用分类数据统计的查询、对应用数据的查询等。
 
@@ -28,7 +34,7 @@ getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -63,7 +69,7 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -135,7 +141,7 @@ getTotalSize(callback: AsyncCallback&lt;number&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -243,7 +249,7 @@ getFreeSize(callback: AsyncCallback&lt;number&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -309,4 +315,4 @@ try {
 | --------- | ------ | --- | -------------- |
 | appSize   | number | 是 | 应用安装文件大小（单位为Byte）。    |
 | cacheSize | number | 是 | 应用缓存文件大小（单位为Byte）。   |
-| dataSize  | number | 是 | 应用文件存储大小（除应用安装文件和缓存文件）（单位为Byte）。 |
+| dataSize  | number | 是 | 应用文件存储大小（除应用安装文件）（单位为Byte）。 |

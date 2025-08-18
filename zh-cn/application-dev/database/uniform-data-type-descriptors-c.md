@@ -1,4 +1,10 @@
 # 标准化数据类型 (C/C++)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @jcwen-->
+<!--Designer: @junathuawei1; @zph000-->
+<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 
 ## 场景介绍
@@ -103,7 +109,7 @@ if (isHigher) {
 } else {
     OH_LOG_INFO(LOG_APP, "typeIds1[0]  is not Higher typeIds2[0]");
 }
-// 8. 销毁OH_Utd_GetTypesByFilenameExtension与OH_Utd_GetFilenameExtensions函数获取到的指针，同时销毁UTD指针
+// 8. 销毁OH_Utd_GetTypesByFilenameExtension与OH_Utd_GetTypesByMimeType函数获取到的指针，同时销毁UTD指针
 OH_Utd_DestroyStringList(typeIds1, typeIds1Count);
 OH_Utd_DestroyStringList(typeIds2, typeIds2Count);
 OH_Utd_Destroy(utd1);

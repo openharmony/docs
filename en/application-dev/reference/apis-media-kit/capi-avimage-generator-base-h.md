@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **avimage_generator_base.h** file declares the enums used by the AVImageGenerator.
+The file declares the enums used by the AVImageGenerator.
 
 **Library**: libavimage_generator.so
 

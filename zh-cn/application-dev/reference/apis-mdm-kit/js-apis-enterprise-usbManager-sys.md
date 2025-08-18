@@ -1,4 +1,10 @@
 # @ohos.enterprise.usbManager（USB管理）(系统接口)
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--Designer: @liuzuming-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供USB管理能力。
 
@@ -28,6 +34,7 @@ setUsbPolicy(admin: Want, usbPolicy: UsbPolicy, callback: AsyncCallback\<void>):
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -82,6 +89,7 @@ setUsbPolicy(admin: Want, usbPolicy: UsbPolicy): Promise\<void>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -140,6 +148,7 @@ disableUsb(admin: Want, disable: boolean): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -191,6 +200,7 @@ isUsbDisabled(admin: Want): boolean
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**

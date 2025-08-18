@@ -395,6 +395,12 @@ startServiceExtensionAbility(want: Want): Promise\<void>
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | Promise对象，无返回结果。 |
+
 **错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
@@ -553,6 +559,12 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统账号的账号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9)。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | Promise对象，无返回结果。 |
+
 **错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
@@ -691,6 +703,12 @@ stopServiceExtensionAbility(want: Want): Promise\<void>
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 停止ServiceExtensionAbility的want信息。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -839,6 +857,12 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 停止ServiceExtensionAbility的want信息。 |
 | accountId | number | 是 | 系统账号的账号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9)。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1197,6 +1221,12 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | accountId | number | 是 | 系统账号的账号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountcount9)。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | Promise对象，无返回结果。 |
+
 **错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
@@ -1304,17 +1334,25 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onForeground() {
     let imagePixelMap: image.PixelMap;
-    let color = new ArrayBuffer(0);
+    let color = new ArrayBuffer(4 * 6 * 4); // 创建一个ArrayBuffer对象，用于存储图像像素。该对象的大小为（height * width * 4）字节。
+    let bufferArr = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+      bufferArr[i] = 255;
+      bufferArr[i+1] = 0;
+      bufferArr[i+2] = 122;
+      bufferArr[i+3] = 255;
+    }
     image.createPixelMap(color, {
-      size: {
-        height: 100,
-        width: 100
-      }
+      editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 }
     }).then((data) => {
       imagePixelMap = data;
       this.context.setMissionIcon(imagePixelMap, (err: BusinessError) => {
-        console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
-      })
+        if (err.code) {
+          console.error(`setMissionIcon failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        console.info('setMissionIcon succeed');
+      });
     }).catch((err: BusinessError) => {
       console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
     });
@@ -1343,7 +1381,7 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1365,12 +1403,16 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onForeground() {
     let imagePixelMap: image.PixelMap;
-    let color = new ArrayBuffer(0);
+    let color = new ArrayBuffer(4 * 6 * 4); // 创建一个ArrayBuffer对象，用于存储图像像素。该对象的大小为（height * width * 4）字节。
+    let bufferArr = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+      bufferArr[i] = 255;
+      bufferArr[i+1] = 0;
+      bufferArr[i+2] = 122;
+      bufferArr[i+3] = 255;
+    }
     image.createPixelMap(color, {
-      size: {
-        height: 100,
-        width: 100
-      }
+      editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 }
     }).then((data) => {
       imagePixelMap = data;
       this.context.setMissionIcon(imagePixelMap)
@@ -1378,7 +1420,7 @@ export default class EntryAbility extends UIAbility {
           console.info('setMissionIcon succeed');
         })
         .catch((err: BusinessError) => {
-          console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
+          console.error(`setMissionIcon failed, code is ${err.code}, message is ${err.message}`);
         });
     }).catch((err: BusinessError) => {
       console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
@@ -1578,6 +1620,12 @@ startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 需要启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1927,7 +1975,7 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -2017,7 +2065,7 @@ requestModalUIExtension(pickerWant: Want): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 

@@ -1,5 +1,10 @@
 # 使用主题字体（ArkTS）
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk; @gmiao522; @Lem0nC-->
+<!--Designer: @liumingxiang-->
+<!--Tester: @yhl0101-->
+<!--Adviser: @ge-yafang-->
 ## 场景介绍
 
 主题字体，特指系统**主题应用**中能使用的字体，属于一种特殊的自定义字体，可以通过相关接口调用使能主题应用中的主题字体。
@@ -38,7 +43,7 @@
    let fontCollection = text.FontCollection.getGlobalInstance();
    ```
 
-4. 创建段落样式，并使用字体管理器实例构造段落生成器PargraphBuilder实例，用于生成段落。
+4. 创建段落样式，并使用字体管理器实例构造段落生成器ParagraphBuilder实例，用于生成段落。
    > **说明：**
    >
    > 在生成段落对象设置段落样式入参时，不能指定fontFamilies属性，否则会变为优先使用指定字体而非主题字体。

@@ -1,4 +1,10 @@
 # form开发指导
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyi0309-->
+<!--Designer: @liyi0309-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 form是一个表单容器，支持容器内[Input](../reference/apis-arkui/arkui-js/js-components-basic-input.md)组件内容的提交和重置。具体用法请参考[form API](../reference/apis-arkui/arkui-js/js-components-container-form.md)。
 

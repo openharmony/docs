@@ -18,8 +18,6 @@ import { AbilityConstant } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityBase
 
-**模型约束**：此接口仅可在Stage模型下使用。
-
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 值 | 说明 |
@@ -28,21 +26,21 @@ import { AbilityConstant } from '@kit.AbilityKit';
 
 ## LaunchParam
 
-启动参数。Ability启动时由系统自动传入，开发者无需修改。
+启动参数，主要包括Ability启动原因以及上次退出原因。Ability启动时由系统自动传入，开发者无需修改。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| launchReason | [LaunchReason](#launchreason)| 否 | 否 | 枚举类型，表示应用启动原因（如故障恢复拉起、意图调用拉起、原子化服务分享拉起等），详见[LaunchReason](#launchreason)。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| launchReasonMessage<sup>18+</sup> | string | 否 | 是 | 表示应用启动的详细原因。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
-| lastExitReason | [LastExitReason](#lastexitreason) | 否 | 否 | 枚举类型，表示应用上次退出原因。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| lastExitMessage<sup>12+</sup> | string | 否 | 否 | 表示最后退出详细原因。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
-| lastExitDetailInfo<sup>18+</sup> | [LastExitDetailInfo](#lastexitdetailinfo18) | 否 | 是 | 表示应用上次退出的关键运行时状态（含进程ID、退出时间戳、RSS内存值等）。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| launchReason | [LaunchReason](#launchreason)| 否 | 否 | 枚举类型，表示Ability启动原因（如故障恢复拉起、意图调用拉起、原子化服务分享拉起等），详见[LaunchReason](#launchreason)。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| launchReasonMessage<sup>18+</sup> | string | 否 | 是 | 表示Ability启动的详细原因。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| lastExitReason | [LastExitReason](#lastexitreason) | 否 | 否 | 枚举类型，表示Ability上次退出原因。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| lastExitMessage<sup>12+</sup> | string | 否 | 否 | 表示Ability上次退出的详细原因。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| lastExitDetailInfo<sup>18+</sup> | [LastExitDetailInfo](#lastexitdetailinfo18) | 否 | 是 | 表示Ability上次退出时的关键运行信息（含进程ID、退出时间戳、RSS内存值等）。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## LaunchReason
 
-应用启动原因，该类型为枚举，可配合UIAbility的[onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#oncreate)方法根据launchParam.launchReason的不同类型执行相应操作。
+Ability启动原因，该类型为枚举，可配合UIAbility的[onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#oncreate)方法根据launchParam.launchReason的不同类型执行相应操作。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -83,14 +81,14 @@ Ability上次退出原因，该类型为枚举，可配合UIAbility的[onCreate(
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | 未知原因。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | ABILITY_NOT_RESPONDING<sup>(deprecated)</sup> | 1    | Ability未响应。<br>**说明:** 从API version 9开始支持，从API version 10开始废弃，请使用APP_FREEZE替代。|
-| NORMAL | 2    | 用户主动关闭，应用程序正常退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。<br>**说明**：如果调用[process.exit()](../apis-arkts/js-apis-process.md#processexitdeprecated)、kill命令等非Ability Kit提供的能力退出应用进程，也会返回NORMAL。 |
-| CPP_CRASH<sup>10+</sup>  | 3    | 本机异常信号，导致应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| NORMAL | 2    | 用户主动关闭，应用程序正常退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。<br>**说明**：当开发者直接调用[process.exit()](../apis-arkts/js-apis-process.md#processexitdeprecated)、内核kill命令等非Ability Kit提供的能力强制退出应用进程时，也会返回NORMAL。 |
+| CPP_CRASH<sup>10+</sup>  | 3    | [进程崩溃](../../dfx/cppcrash-guidelines.md)导致的应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | JS_ERROR<sup>10+</sup>  | 4    | 当应用存在JS语法错误并未被开发者捕获时，触发JS_ERROR故障，导致应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| APP_FREEZE<sup>10+</sup>  | 5    | 由于watchdog检测出应用Freeze故障，导致应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| PERFORMANCE_CONTROL<sup>10+</sup>  | 6    | 由于系统性能问题（如设备内存不足），导致应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。<br>**说明**：该接口即将废弃，建议使用RESOURCE_CONTROL替代。 |
-| RESOURCE_CONTROL<sup>10+</sup>  | 7    | 系统资源使用不当，导致应用程序退出。具体错误原因可以通过[LaunchParam.lastExitMessage](#launchparam)获取，可能原因如下: <br> - CPU Highload，CPU高负载。<br> - CPU_EXT Highload，快速CPU负载检测。<br> - IO Manage Control，I/O管控。<br> - App Memory Deterioration，应用内存超限劣化。<br> - Temperature Control，温度管控。<br> - Memory Pressure，整机低内存触发按优先级由低到高查杀。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
-| UPGRADE<sup>10+</sup>  | 8    | 应用程序因升级而退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| USER_REQUEST<sup>18+</sup>  | 9    | 应用程序因多任务中心请求而退出，例如用户在多任务管理界面执行上划、一键清理等操作。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| APP_FREEZE<sup>10+</sup>  | 5    | [应用冻屏](../../dfx/appfreeze-guidelines.md)导致的应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| PERFORMANCE_CONTROL<sup>10+</sup>  | 6    | 因系统性能问题（如设备内存不足）导致的应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。<br>**说明**：该接口即将废弃，建议使用RESOURCE_CONTROL替代。 |
+| RESOURCE_CONTROL<sup>10+</sup>  | 7    | 系统资源使用不当导致的应用程序退出。具体错误原因可以通过[LaunchParam.lastExitMessage](#launchparam)获取，可能原因如下: <br> - CPU Highload，CPU高负载。<br> - CPU_EXT Highload，快速CPU负载检测。<br> - IO Manage Control，I/O管控。<br> - App Memory Deterioration，应用内存超限劣化。<br> - Temperature Control，温度管控。<br> - Memory Pressure，整机低内存触发按优先级由低到高查杀。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| UPGRADE<sup>10+</sup>  | 8    | 应用升级导致的应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| USER_REQUEST<sup>18+</sup>  | 9    | 应用程序因多任务中心请求而退出。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 | SIGNAL<sup>18+</sup>  | 10    | 应用程序因收到系统kill指令信号而退出。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
@@ -112,22 +110,20 @@ export default class MyAbility extends UIAbility {
 
 ## LastExitDetailInfo<sup>18+</sup>
 
-记录Ability所在进程上次退出的详细信息。
-
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+记录Ability所在进程上次退出时的关键运行信息。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| pid | number | 否 | 否 | Ability上次退出所在进程的进程号。 |
-| processName | string | 否 | 否 | Ability上次退出所在进程的名称。 |
-| uid | number | 否 | 否 | Ability上次退出所在应用的UID。 |
-| exitSubReason | number | 否 | 否 | Ability上次退出的子原因。 |
-| exitMsg | string | 否 | 否 | Ability上次退出时所在进程被kill的描述信息。 |
-| rss | number | 否 | 否 | Ability上次退出时所在进程的rss值。 |
-| pss | number | 否 | 否 | Ability上次退出时所在进程的pss值。 |
-| timestamp | number | 否 | 否 | Ability上次退出时的时间戳。 |
+| pid | number | 否 | 否 | Ability上次退出所在进程的进程号。 <br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。|
+| processName | string | 否 | 否 | Ability上次退出所在进程的名称。 <br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。|
+| uid | number | 否 | 否 | Ability上次退出所在应用的UID。 <br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。|
+| exitSubReason | number | 否 | 否 | Ability上次退出的子原因。 <br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。|
+| exitMsg | string | 否 | 否 | Ability上次退出时所在进程被kill的描述信息。 <br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。|
+| rss | number | 否 | 否 | Ability上次退出时所在进程实际占用内存大小，单位KB。 <br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。|
+| pss | number | 否 | 否 | Ability上次退出时所在进程实际使用的物理内存大小，单位KB。 <br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。|
+| timestamp | number | 否 | 否 | Ability上次退出时的时间戳。 <br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。|
 | processState<sup>20+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager.md#processstate10) | 否 | 是 | Ability上次退出时的进程状态。<br/>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。 |
 
 **示例**:
@@ -196,9 +192,9 @@ export default class MyAbility extends UIAbility {
 > **说明：**
 > 
 > 不同产品的触发条件可能存在差异。以12G内存的标准设备为例：
-> - 当整机可用内存下降至1700M~1800M时，会触发取值为0的onMemoryLevel回调。
-> - 当整机可用内存下降至1600M~1700M时，会触发取值为1的onMemoryLevel回调。
-> - 当整机可用内存下降至1600M以下时，会触发取值为2的onMemoryLevel回调。
+> - 当整机可用内存下降至1700M~1800M时，会触发取值为0的onMemoryLevel回调，表示当前整机可用内存适中。
+> - 当整机可用内存下降至1600M~1700M时，会触发取值为1的onMemoryLevel回调，表示当前整机可用内存偏低。
+> - 当整机可用内存下降至1600M以下时，会触发取值为2的onMemoryLevel回调，表示当前整机可用内存很低。
 
 **示例：**
 
@@ -216,7 +212,7 @@ export default class MyAbility extends UIAbility {
 
 ## WindowMode<sup>12+</sup>
 
-启动Ability时的窗口模式，类型为枚举。可配合[startAbility](js-apis-inner-application-uiAbilityContext.md#startability)使用，指定启动Ability的窗口模式。
+启动UIAbility时窗口的创建模式，类型为枚举。可配合[startAbility](js-apis-inner-application-uiAbilityContext.md#startability)方法使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -254,7 +250,7 @@ export default class MyAbility extends UIAbility {
 
 ## OnSaveResult
 
-保存应用数据的结果，该类型为枚举，可配合UIAbility的[onSaveState()](js-apis-app-ability-uiAbility.md#onsavestate)方法完成相应的返回。
+保存应用数据的结果，该类型为枚举。配合UIAbility的[onSaveState()](js-apis-app-ability-uiAbility.md#onsavestate)方法使用，可以实现[UIAbility备份恢复](../../application-models/ability-recover-guideline.md)。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -283,7 +279,7 @@ export default class MyAbility extends UIAbility {
 
 ## StateType
 
-保存应用数据场景原因，该类型为枚举，可配合UIAbility的[onSaveState()](js-apis-app-ability-uiAbility.md#onsavestate)方法根据reason的不同类型执行相应操作。
+保存应用数据场景原因，该类型为枚举。配合UIAbility的[onSaveState()](js-apis-app-ability-uiAbility.md#onsavestate)方法使用，可以实现[UIAbility备份恢复](../../application-models/ability-recover-guideline.md)。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -339,7 +335,7 @@ export default class MyAbility extends UIAbility {
 
 ## CollaborateResult<sup>18+</sup>
 
-协同状态枚举值，用于表示多设备场景下，调用方应用拉起协同方应用时，协同方应用是否接受协同。配合UIAbility的[onCollaborate()](js-apis-app-ability-uiAbility.md#oncollaborate18)方法进行设置。
+应用协同状态，该类型为枚举。用于多设备场景下，调用方应用拉起协同方应用时，协同方应用是否接受协同。需要配合UIAbility的[onCollaborate()](js-apis-app-ability-uiAbility.md#oncollaborate18)方法进行设置。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -362,7 +358,7 @@ export default class MyAbility extends UIAbility {
 
 ## PrepareTermination<sup>15+</sup>
 
-应用被用户关闭时的动作枚举值，需要配合[AbilityStage](js-apis-app-ability-abilityStage.md)的[onPrepareTermination](js-apis-app-ability-abilityStage.md#onpreparetermination15)或者[onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#onprepareterminationasync15)方法使用。
+应用准备关闭时返回的动作，该类型为枚举。需要配合[AbilityStage](js-apis-app-ability-abilityStage.md)的[onPrepareTermination](js-apis-app-ability-abilityStage.md#onpreparetermination15)或者[onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#onprepareterminationasync15)方法使用。
 
 **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 

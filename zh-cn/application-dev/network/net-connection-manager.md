@@ -1,4 +1,10 @@
-# 网络连接管理
+# 管理网络连接
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 简介
 
@@ -119,7 +125,7 @@ netConnection.on('netAvailable', (data: connection.NetHandle) => {
 
 <!--RP1End-->
 
-#### 原网络连接使用Socket模块建立连接
+**原网络连接使用Socket模块建立连接**
 ```ts
 import { connection, socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -183,7 +189,7 @@ function socketTest() {
 }
 ```
 
-#### 原网络连接使用Socket Library建立网络连接
+**原网络连接使用Socket Library建立网络连接**
 
 监控到默认网络变化后关闭原有Socket并重新建立Socket连接。
 
@@ -345,14 +351,15 @@ function socketTest() {
       // 判断网络是否可以访问互联网。
       if (cap?.includes(connection.NetCap.NET_CAPABILITY_CHECKING_CONNECTIVITY)) {
         // 正在验证网络连通性，请稍后重试。
-        console.info("default network is checking， please try again later");
-      }
-      if (cap?.includes(connection.NetCap.NET_CAPABILITY_VALIDATED)) {
-        // 网络连通性验证成功，当前默认网络可以访问互联网。
-        console.info("default network is validated");
+        console.info("default network is checking, please try again later");
       } else {
-        // 网络连通性验证失败，当前默认网络不可以访问互联网。
-        console.info("default network is not validated");
+        if (cap?.includes(connection.NetCap.NET_CAPABILITY_VALIDATED)) {
+          // 网络连通性验证成功，当前默认网络可以访问互联网。
+          console.info("default network is validated");
+        } else {
+          // 网络连通性验证失败，当前默认网络不可以访问互联网。
+          console.info("default network is not validated");
+        }
       }
     }
     ```
@@ -374,3 +381,9 @@ function socketTest() {
       console.info("Succeeded to get data: " + JSON.stringify(data));
     });
     ```
+
+## 相关实例
+
+针对网络连接的开发，有以下相关实例可供参考：
+
+- [NetConnection_Manage_case(网络连接管理)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Manage_case)

@@ -1,5 +1,12 @@
 # @ohos.app.ability.autoStartupManager(autoStartupManager)(系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhu-feimo; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 autoStartupManager模块提供注册、注销监听应用开机自启动状态变化的回调函数的能力。
 
 > **说明：**
@@ -126,6 +133,10 @@ setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**设备行为差异**：
+- 从API version 18开始，该接口仅在2in1和wearable设备中可正常调用，在其他设备上返回16000050错误码。
+- 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
+
 **参数**：
 
 | 参数名        | 类型                                       | 必填   | 说明             |
@@ -179,6 +190,10 @@ setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：
+- 从API version 18开始，该接口仅在2in1和wearable设备中可正常调用，在其他设备上返回16000050错误码。
+- 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
 
 **参数**：
 
@@ -237,6 +252,10 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<voi
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**设备行为差异**：
+- 从API version 18开始，该接口仅在2in1和wearable设备中可正常调用，在其他设备上返回16000050错误码。
+- 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
+
 **参数**：
 
 | 参数名        | 类型                                       | 必填   | 说明             |
@@ -290,6 +309,10 @@ cancelApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：
+- 从API version 18开始，该接口仅在2in1和wearable设备中可正常调用，在其他设备上返回16000050错误码。
+- 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
 
 **参数**：
 
@@ -348,6 +371,10 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**设备行为差异**：
+- 从API version 18开始，该接口仅在2in1和wearable设备中可正常调用，在其他设备上返回16000050错误码。
+- 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
+
 **参数**：
 
 | 参数名        | 类型                                       | 必填   | 说明             |
@@ -395,6 +422,10 @@ try {
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：
+- 从API version 18开始，该接口仅在2in1和wearable设备中可正常调用，在其他设备上返回16000050错误码。
+- 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
 
 **返回值：**
 

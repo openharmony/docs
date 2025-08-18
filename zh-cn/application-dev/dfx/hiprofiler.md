@@ -1,5 +1,12 @@
 # hiprofiler
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @zyxzyx-->
+<!--Designer: @Maplestroy-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 
 ## Hiprofiler简介
 
@@ -7,7 +14,7 @@
 HiProfiler性能调优组件包含系统和应用调优框架，旨在为开发者提供一套性能调优平台，可以用来分析内存、性能等问题。
 
 
-整体架构分为PC端和设备端，主体部分为PC端调优数据展示页面和设备端性能调优服务。PC端和设备端服务采用C/S模型，PC端调优数据在[DevEco studio](https://cbg.huawei.com/#/group/ipd/DevEcoToolsList)/[Smartperf](https://gitee.com/openharmony/developtools_smartperf_host)网页中展示。设备端程序包含多个部分，均运行在鸿蒙系统环境中，其中和DevEco通信的hiprofilerd进程作为调优服务。设备端还包含命令行工具（hiprofiler_cmd）、数据采集进程（hiprofiler_plugins）。调优服务操控数据采集进程获取调优数据，数据最终流向IDE，整个过程可抽象为生产者-消费者（Producer-Consumer）模型。目前已经完成了nativehook、CPU、ftrace、GPU、hiperf、xpower、memory数据采集等多个插件，实现了CPU、GPU、内存、能耗等多维度调优的能力。
+整体架构分为PC端和设备端，主体部分为PC端调优数据展示页面和设备端性能调优服务。PC端和设备端服务采用C/S模型，PC端调优数据在[DevEco studio](https://cbg.huawei.com/#/group/ipd/DevEcoToolsList)/[Smartperf](https://gitee.com/openharmony/developtools_smartperf_host)网页中展示。设备端程序包含多个部分，均运行在系统环境中，其中和DevEco通信的hiprofilerd进程作为调优服务。设备端还包含命令行工具（hiprofiler_cmd）、数据采集进程（hiprofiler_plugins）。调优服务操控数据采集进程获取调优数据，数据最终流向DevEco Studio，整个过程可抽象为生产者-消费者（Producer-Consumer）模型。目前已经完成了nativehook、CPU、ftrace、GPU、hiperf、xpower、memory数据采集等多个插件，实现了CPU、GPU、内存、能耗等多维度调优的能力。
 
 
 
@@ -17,7 +24,7 @@ Hiprofiler工具对标业界调优工具，并提供更多能力，比如[跨语
 
 ## 环境要求
 
-- 根据hdc命令行工具指导，完成[hdc](hdc.md#环境准备)。
+- 根据hdc命令行工具指导，完成[环境准备](hdc.md#环境准备)。
 
 - 确保设备已正常连接，并执行hdc shell。
 
@@ -392,7 +399,7 @@ CONFIG
 
 **可能原因&amp;解决方法**
 
-调优服务未能开启，说明正在使用IDE调优或者上次调优异常退出，需要执行hiprofiler_cmd -k之后再重新执行调优命令。
+调优服务未能开启，说明正在使用DevEco Studio调优或者上次调优异常退出，需要执行hiprofiler_cmd -k之后再重新执行调优命令。
 
 抓取到的trace文件为空
 
@@ -402,7 +409,7 @@ CONFIG
 
 **可能原因&amp;解决方法**
 
-需要检查生成文件的路径是否在/data/local/tmp/目录下。如果目标路径是/data/local/tmp下的一个文件夹，则尝试对文件夹执行chmod 777操作。如果是user版本使用nativehook或者network profiler抓取no debug应用，也抓不到数据（参考changelog https://gitee.com/openharmony/docs/pulls/57419）。
+需要检查生成文件的路径是否在/data/local/tmp/目录下。如果目标路径是/data/local/tmp下的一个文件夹，则尝试对文件夹执行chmod 777操作。如果是user版本使用nativehook或者network profiler抓取no debug应用，也抓不到数据（参考changelog https://gitcode.com/openharmony/docs/pulls/57419）。
 
 调优数据疑似不准确
 

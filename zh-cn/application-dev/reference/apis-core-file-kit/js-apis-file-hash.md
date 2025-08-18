@@ -1,4 +1,10 @@
 # @ohos.file.hash (文件哈希处理)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
+<!--Designer: @gsl_1234; @wangke25-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 该模块提供文件哈希处理能力，对文件内容进行哈希处理。
 
@@ -116,7 +122,7 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
   ```
 ## hash.createHash<sup>12+</sup>
 
-createHash(algorithm: string): HashStream;
+createHash(algorithm: string): HashStream
 
 创建并返回 HashStream 对象，该对象可用于使用给定的 algorithm 生成哈希摘要。
 
@@ -181,6 +187,12 @@ update(data: ArrayBuffer): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ----------- | -- | ----------------- |
+| data | ArrayBuffer | 是 | 待计算哈希值的数据。|
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
@@ -209,6 +221,12 @@ digest(): string
 计算传给被哈希的所有数据的摘要。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------ | --------------------------------------------------------- |
+| string | 返回数据的哈希值。该哈希值表示为十六进制数字串，所有字母均大写。|
 
 **错误码：**
 

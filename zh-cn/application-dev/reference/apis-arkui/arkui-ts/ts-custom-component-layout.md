@@ -1,4 +1,10 @@
 # 自定义组件的自定义布局
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @song-song-song-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 自定义组件的自定义布局通过数据计算的方式布局自定义组件内的子组件。
 
@@ -8,7 +14,7 @@
 >
 > 在自定义组件内实现onMeasureSize, onPlaceChildren任一方法即视为实现自定义布局，推荐同时实现两种方法，具体参数说明可见对应接口参数说明。
 >
-> 从API version 20开始，在自定义布局的自定义组件中，子组件若设置了[LayoutPolicy](ts-types.md#layoutpolicy15)对象的fixAtIdealSize属性，表示尺寸将不受父组件约束，完全按照开发者自定义的尺寸范围布局。
+> 从API version 20开始，在自定义布局的自定义组件中，子组件若设置了[LayoutPolicy](./ts-universal-attributes-size.md#layoutpolicy15)对象的fixAtIdealSize属性，表示尺寸将不受父组件约束，完全按照开发者自定义的尺寸范围布局。
 > 
 > 自定义布局内不支持使用懒加载(包含[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)和[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md))。
 
@@ -66,11 +72,11 @@ ArkUI框架会在自定义组件确定位置时，将该自定义组件的子节
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 属性          | 类型      |只读|可选| 说明                  |
-|-------------|-----------|------|------|---------------------|
-| borderWidth | [EdgeWidth](ts-types.md#edgewidths9) |否|否| 父组件边框宽度。<br>单位：vp            |
-| margin      | [Margin](ts-types.md#margin)       | 否|否|父组件margin信息。 <br>单位：vp       |
-| padding     | [Padding](ts-types.md#padding)   |否|否| 父组件padding信息。<br>单位：vp |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| borderWidth | [EdgeWidth](ts-types.md#edgewidths9) |否|否| 父组件边框宽度。<br>单位：vp。            |
+| margin      | [Margin](ts-types.md#margin)       | 否|否|父组件margin信息。 <br>单位：vp。       |
+| padding     | [Padding](ts-types.md#padding)   |否|否| 父组件padding信息。<br>单位：vp。 |
 
 ## Layoutable<sup>10+</sup>
 
@@ -87,7 +93,7 @@ ArkUI框架会在自定义组件确定位置时，将该自定义组件的子节
 
 ### layout
 
-layout(position: Position)
+layout(position: Position) : void
 
 调用此方法对子组件的位置信息进行限制。
 
@@ -115,7 +121,7 @@ getMargin() : DirectionalEdgesT\<number>
 
 | 类型                          | 说明                                        |
 |------------------------------------|---------------------------------------------|
-| [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的margin信息。   |
+| [DirectionalEdgesT&lt;number&gt;](./ts-types.md#directionaledgestt12)  |  子组件的margin信息。   |
 
  ### getPadding<sup>12+</sup>
 
@@ -131,7 +137,7 @@ getPadding() : DirectionalEdgesT\<number>
 
 | 类型                          | 说明                                        |
 |------------------------------------|---------------------------------------------|
-| [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的padding信息。  |
+| [DirectionalEdgesT&lt;number&gt;](./ts-types.md#directionaledgestt12)  |  子组件的padding信息。  |
 
 ### getBorderWidth<sup>12+</sup>
 
@@ -147,7 +153,7 @@ getBorderWidth() : DirectionalEdgesT\<number>
 
 | 类型                          | 说明                                        |
 |------------------------------------|---------------------------------------------|
-| [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的borderWidth信息。  |
+| [DirectionalEdgesT&lt;number&gt;](./ts-types.md#directionaledgestt12)  |  子组件的borderWidth信息。  |
 
 ## Measurable<sup>10+</sup>
 
@@ -204,7 +210,7 @@ getBorderWidth() : DirectionalEdgesT\<number>
 
  | 类型                               | 说明                     |
  |------------------------------------|-------------------------|
- |[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  | 子组件的margin信息。   |
+ |[DirectionalEdgesT&lt;number&gt;](./ts-types.md#directionaledgestt12)  | 子组件的margin信息。   |
 
 ### getPadding<sup>12+</sup>
 
@@ -220,7 +226,7 @@ getPadding() : DirectionalEdgesT\<number\>
 
  | 类型                               | 说明                     |
  |------------------------------------|-------------------------|
- |[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  | 子组件的padding信息。   |
+ |[DirectionalEdgesT&lt;number&gt;](./ts-types.md#directionaledgestt12)  | 子组件的padding信息。   |
 
  ### getBorderWidth<sup>12+</sup>
 
@@ -236,7 +242,7 @@ getBorderWidth() : DirectionalEdgesT\<number\>
 
  | 类型                               | 说明                     |
  |------------------------------------|-------------------------|
- |[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  | 子组件的borderWidth信息。|
+ |[DirectionalEdgesT&lt;number&gt;](./ts-types.md#directionaledgestt12)  | 子组件的borderWidth信息。|
 
 
 ## MeasureResult<sup>10+</sup>
@@ -257,25 +263,8 @@ getBorderWidth() : DirectionalEdgesT\<number\>
 
 | 名称     | 类型   |只读|可选| 说明    |
 |--------|--------|------|------|-------|
-| width  | number | 否|否|测量后的宽。<br>单位：vp |
-| height | number | 否|否|测量后的高。<br>单位：vp |
-
-## DirectionalEdgesT\<T><sup>12+</sup>
-
-全球化的边缘属性。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称   | 类型 |只读|可选| 说明             |
-| ------ | ---- |------|------| ---------------- |
-| start   | T    |否|否| 起始边缘的属性。在LTR的方向下，为左边缘，在RTL的方向下，为右边缘。 |
-| end    | T    | 否|否|终止边缘的属性。在LTR的方向下，为右边缘，在RTL的方向下，为左边缘。 |
-| top  | T    | 否|否|顶部边缘的属性。 |
-| bottom | T    | 否|否|底部边缘的属性。 |
+| width  | number | 否|否|测量后的宽。<br>单位：vp。 |
+| height | number | 否|否|测量后的高。<br>单位：vp。 |
 
 > **说明：**
 >
@@ -340,8 +329,8 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的子节
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions)   | 否|否|子组件约束尺寸。                       |
 | borderInfo | [LayoutBorderInfo](#layoutborderinfodeprecated)              | 否|否|子组件border信息。                     |
 | position   | [Position](ts-types.md#position)                             | 否|否|子组件位置坐标。                       |
-| measure    | (childConstraint: [ConstraintSizeOptions](ts-types.md#constraintsizeoptions))&nbsp;=&gt;&nbsp;void |否|否| 调用此方法对子组件的尺寸范围进行限制。 |
-| layout     | (LayoutInfo: [LayoutInfo](#layoutinfodeprecated))&nbsp;=&gt;&nbsp;void | 否|否|调用此方法对子组件的位置信息进行限制。 |
+| measure    | (childConstraint: [ConstraintSizeOptions](ts-types.md#constraintsizeoptions)) |否|否| 调用此方法对子组件的尺寸范围进行限制。 |
+| layout     | (childLayoutInfo: [LayoutInfo](#layoutinfodeprecated)) | 否|否|调用此方法对子组件的位置信息进行限制。 |
 
 ## LayoutBorderInfo<sup>(deprecated)</sup>
 
@@ -353,8 +342,8 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的子节
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型                                 | 只读|可选|描述                      |
-|-------------|--------------------------------------|------|------|-------------------------|
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
 | borderWidth | [EdgeWidths](ts-types.md#edgewidths9) | 否|否|边框宽度类型，用于描述组件边框不同方向的宽度。 |
 | margin      | [Margin](ts-types.md#margin)         | 否|否|外边距类型，用于描述组件不同方向的外边距。   |
 | padding     | [Padding](ts-types.md#padding)       | 否|否|内边距类型，用于描述组件不同方向的内边距。   |
@@ -393,7 +382,7 @@ struct Index {
 
 @Builder
 function ColumnChildren() {
-  ForEach([1, 2, 3], (index: number) => { //暂不支持lazyForEach的写法
+  ForEach([1, 2, 3], (index: number) => { // 目前不支持使用lazyForEach语法。
     Text('S' + index)
       .fontSize(30)
       .width(100)
@@ -463,7 +452,7 @@ struct Index {
 
 @Builder
 function ColumnChildren() {
-  ForEach([1, 2, 3], (item: number, index: number) => { //暂不支持lazyForEach的写法
+  ForEach([1, 2, 3], (item: number, index: number) => { // 目前不支持使用lazyForEach语法。
     Text('S' + item)
       .fontSize(20)
       .width(60 + 10 * index)
@@ -476,7 +465,7 @@ function ColumnChildren() {
 
 @Component
 struct CustomLayout {
-  // 只布局一行，如果布局空间不够的子组件不显示的demo
+  // 只布局一行，如果布局空间不够的子组件不显示的demo。
   @Builder
   doNothingBuilder() {
   };
@@ -497,7 +486,7 @@ struct CustomLayout {
     for (let index = 0; index < children.length; ++index) {
       let child = children[index];
       if (index >= this.overFlowIndex) {
-        // 如果子组件超出父组件范围，将它布局到较偏的位置，达到不显示的目的
+        // 如果子组件超出父组件范围，将它布局到较偏的位置，达到不显示的目的。
         child.layout({x: infinity, y: 0});
         continue;
       }
@@ -511,7 +500,7 @@ struct CustomLayout {
     let width = 0;
     let height = 0;
     this.overFlowIndex = -1;
-    // 假定该组件的宽度不能超过200vp，也不能超过最大约束
+    // 假定该组件的宽度不能超过200vp，也不能超过最大约束。
     let maxWidth = Math.min(200, constraint.maxWidth as number);
     for (let index = 0; index < children.length; ++index) {
       let child = children[index];
@@ -524,11 +513,11 @@ struct CustomLayout {
       let margin = child.getMargin();
       let newWidth = width + childResult.width + margin.start + margin.end;
       if (newWidth > maxWidth) {
-        // 记录不该布局的组件的下标
+        // 记录不该布局的组件的下标。
         this.overFlowIndex = index;
         break;
       }
-      // 累积父组件的宽度和高度
+      // 累积父组件的宽度和高度。
       width = newWidth;
       height = Math.max(height, childResult.height + margin.top + margin.bottom);
     }
@@ -571,7 +560,7 @@ class MyNodeController extends NodeController {
 struct CustomLayout {
   @Builder
   childrenBuilder() {
-    ForEach([1, 2, 3], (index: number) => { //暂不支持lazyForEach的写法
+    ForEach([1, 2, 3], (index: number) => { // 目前不支持使用lazyForEach语法。
       NodeContainer(new MyNodeController())
     })
   };
@@ -597,11 +586,11 @@ struct CustomLayout {
       console.log("child uniqueId: ", child.uniqueId)
       const uiContext = this.getUIContext()
       if (uiContext) {
-        let node: FrameNode | null = uiContext.getFrameNodeByUniqueId(child.uniqueId) // 获取NodeContainer组件的FrameNode
+        let node: FrameNode | null = uiContext.getFrameNodeByUniqueId(child.uniqueId) // 获取NodeContainer组件的FrameNode。
         if (node) {
           node.getChild(0)!.commonAttribute.width(100)
           node.getChild(0)!.commonAttribute.height(100)
-          node.getChild(0)!.commonAttribute.backgroundColor(Color.Pink) // 修改FrameNode的尺寸与背景颜色
+          node.getChild(0)!.commonAttribute.backgroundColor(Color.Pink) // 修改FrameNode的尺寸与背景颜色。
         }
       }
       child.measure({ minHeight: size, minWidth: size, maxWidth: size, maxHeight: size })
@@ -619,7 +608,7 @@ struct CustomLayout {
 ![custom_layout_demo3.jpg](figures/custom_layout_demo3.jpg)
 
 ### 示例4（子组件超过父组件大小约束）
-在自定义布局的自定义组件中，为子组件设置了[LayoutPolicy](ts-types.md#layoutpolicy15)对象的fixAtIdealSize属性。
+在自定义布局的自定义组件中，为子组件设置了[LayoutPolicy](./ts-universal-attributes-size.md#layoutpolicy15)对象的fixAtIdealSize属性。
 ```ts
 @Entry
 @Component
@@ -629,8 +618,8 @@ struct Index {
     Text("=====Text=====Text=====Text=====Text=====Text=====Text=====Text=====Text" )
       .fontSize(16).fontColor(Color.Black)
       .borderWidth(2).backgroundColor("#fff8dc")
-      .width(LayoutPolicy.fixAtIdealSize) //设置子组件宽度不受到父组件限制
-      .height(LayoutPolicy.fixAtIdealSize)  //设置子组件高度不受到父组件限制
+      .width(LayoutPolicy.fixAtIdealSize) // 设置子组件宽度不受到父组件限制。
+      .height(LayoutPolicy.fixAtIdealSize)  // 设置子组件高度不受到父组件限制。
   }
 
   build() {
@@ -663,7 +652,7 @@ struct CustomLayoutText {
     width: 0,
     height: 0
   };
-  //自定义组件进行自定义布局
+  // 自定义组件进行自定义布局。
   onPlaceChildren(selfLayoutInfo: GeometryInfo, children: Array<Layoutable>, constraint: ConstraintSizeOptions) {
     let posY = 20;
     children.forEach((child) => {
@@ -675,7 +664,7 @@ struct CustomLayoutText {
 
   onMeasureSize(selfLayoutInfo: GeometryInfo, children: Array<Measurable>, constraint: ConstraintSizeOptions) {
     children.forEach((child) => {
-      let result: MeasureResult = child.measure({ maxWidth: 335, maxHeight: 50 }) //设置自定义组件子组件大小的限制
+      let result: MeasureResult = child.measure({ maxWidth: 335, maxHeight: 50 }) // 设置自定义组件子组件大小的限制。
     })
     this.result.width = 200;
     this.result.height = 130;

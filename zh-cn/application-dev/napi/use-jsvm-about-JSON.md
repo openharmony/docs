@@ -1,12 +1,18 @@
 # 使用JSVM-API接口进行JSON操作
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## 简介
 
-使用JSVM-API接口操作JSON数据时，JSVM模块中相关接口可以直接操作和处理JSON格式的数据。
+使用JSVM-API接口操作JSON数据时，JSVM模块中的相关接口可以直接处理JSON格式的数据。
 
 ## 基本概念
 
-- **JSON（ JavaScript Object Notation）**：是一种常见的数据交换格式，可用于实现前后端之间的数据传递、存储和交流，并且可以与多种编程语言进行交互，在JavaScript中被广泛应用于数据处理。
+- **JSON（JavaScript Object Notation）**：是一种常见的数据交换格式，用于前后端数据的传递、存储和交流。可以与多种编程语言进行交互，在JavaScript中被广泛应用于数据处理。
 
 ## 接口说明
 
@@ -19,7 +25,7 @@
 
 JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅展示接口对应的C++相关代码。
 
-### OH_JSVM_JsonParse && OH_JSVM_JsonStringify
+### OH_JSVM_JsonParse & OH_JSVM_JsonStringify
 
 解析JSON对象，并输出有效的解析结果。
 
@@ -29,17 +35,14 @@ cpp部分代码：
 // hello.cpp
 #include <string>
 
-// 待执行的js代码
-static const char *STR_TASK = R"JS(jsonParseNumber();jsonParseObject();)JS";
-
 // 解析JSON数字
 static JSVM_Value JsonParseNumber(JSVM_Env env, JSVM_CallbackInfo info)
 {
     // 设置要解析的JSON数字
     std::string strNumber = "10.555";
-    JSVM_Value jsonString;
+    JSVM_Value jsonString = nullptr;
     JSVM_CALL(OH_JSVM_CreateStringUtf8(env, strNumber.c_str(), strNumber.size(), &jsonString));
-    JSVM_Value jsonObject;
+    JSVM_Value jsonObject = nullptr;
     // 调用OH_JSVM_JsonParse函数解析JSON数字，并将结果存储在JSON对象中
     JSVM_CALL(OH_JSVM_JsonParse(env, jsonString, &jsonObject));
     double number = 0.0f;
@@ -53,12 +56,12 @@ static JSVM_Value JsonParseObject(JSVM_Env env, JSVM_CallbackInfo info)
 {
     // 设置要解析的JSON对象字符串
     std::string strObject = "{\"first\": \"one\", \"second\": \"two\", \"third\": \"three\"}";
-    JSVM_Value strJson;
+    JSVM_Value strJson = nullptr;
     JSVM_CALL(OH_JSVM_CreateStringUtf8(env, strObject.c_str(), strObject.size(), &strJson));
-    JSVM_Value jsonObject;
+    JSVM_Value jsonObject = nullptr;
     // 调用OH_JSVM_JsonParse函数解析JSON对象字符串，并将结果存储在JSON对象中
     JSVM_CALL(OH_JSVM_JsonParse(env, strJson, &jsonObject));
-    JSVM_Value jsonString;
+    JSVM_Value jsonString = nullptr;
     // 调用OH_JSVM_JsonStringify函数将对象转换为字符串格式，并将结果存储在JSVM字符串对象中
     JSVM_CALL(OH_JSVM_JsonStringify(env, jsonObject, &jsonString));
     size_t totalLen = 0;
@@ -66,7 +69,7 @@ static JSVM_Value JsonParseObject(JSVM_Env env, JSVM_CallbackInfo info)
     size_t needLen = totalLen + 1;
     char* buff = new char[needLen];
     JSVM_CALL(OH_JSVM_GetValueStringUtf8(env, jsonString, buff, needLen, &totalLen));
-    OH_LOG_INFO(LOG_APP, "Test JSVM jsonParseNumber: %{public}s", buff);
+    OH_LOG_INFO(LOG_APP, "Test JSVM jsonParseObject: %{public}s", buff);
     delete[] buff;
     return nullptr;
 }
@@ -84,12 +87,14 @@ JSVM_PropertyDescriptor descriptor[] = {
     {"jsonParseObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 
+// 待执行的js代码
+static const char *srcCallNative = R"JS(jsonParseNumber();jsonParseObject();)JS";
 ```
-<!-- @[oh_jsvm_json_parse_and_json_stringify](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/aboutjson/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_json_parse_and_json_stringify](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/aboutjson/src/main/cpp/hello.cpp) -->
 
 ## 预期结果：
 ```cpp
 Test JSVM jsonParseNumber: 10.555000
 
-Test JSVM jsonParseNumber: {"first":"one","second":"two","third":"three"}
+Test JSVM jsonParseObject: {"first":"one","second":"two","third":"three"}
 ```

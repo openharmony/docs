@@ -1,4 +1,10 @@
 # SharedBundleInfo (系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 共享包信息，通过接口[bundleManager.getSharedBundleInfo](js-apis-bundleManager-sys.md#bundlemanagergetsharedbundleinfo10)获取。
 
@@ -25,7 +31,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | 名称             | 类型                           | 只读 | 可选 | 说明                   |
 | ---------------- | ------------------------------ | ---- | ---- | ---------------------- |
 | name             | string                         | 是   | 否   | 应用共享包名称。       |
-| compatiblePolicy | bundleManager.CompatiblePolicy | 是   | 否   | 共享包兼容策略的类型。 |
+| compatiblePolicy | bundleManager.[CompatiblePolicy](js-apis-bundleManager.md#compatiblepolicy10) | 是   | 否   | 共享包兼容策略的类型。 |
 | sharedModuleInfo | Array\<SharedModuleInfo>       | 是   | 否   | 应用共享模块信息。     |
 
 ## SharedModuleInfo

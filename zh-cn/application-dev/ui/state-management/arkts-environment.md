@@ -1,4 +1,10 @@
 # Environment：设备环境查询
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zzq212050299-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 如果开发者需要获取应用程序运行设备的环境参数（如多语言、深浅色模式等）以进行不同的场景判断，可以使用Environment设备环境查询。
 
@@ -23,7 +29,7 @@ Environment提供了读取系统环境变量并将其值写入AppStorage的功�
 
 ### 从UI中访问Environment参数
 
-- 使用Environment.envProp将设备运行的环境变量存入AppStorage中。
+- 使用Environment.[envProp](../../reference/apis-arkui/arkui-ts/ts-state-management.md#envprop10)将设备运行的环境变量存入AppStorage中。
 
   ```ts
   // 将设备的语言code存入AppStorage，默认值为en
@@ -79,7 +85,7 @@ if (lang.get() === 'zh') {
 
 ## 限制条件
 
-Environment和UIContext相关联，需要在[UIContext](../../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)明确的时候才可以调用。可以通过在[runScopedTask](../../reference/apis-arkui/js-apis-arkui-UIContext.md#runscopedtask)里明确上下文。如果没有在UIContext明确的地方调用，将导致无法查询到设备环境数据。
+Environment和UIContext相关联，需要在[UIContext](../../reference/apis-arkui/arkts-apis-uicontext-uicontext.md)明确的时候才可以调用。可以通过在[runScopedTask](../../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#runscopedtask)里明确上下文。如果没有在UIContext明确的地方调用，将导致无法查询到设备环境数据。
 
 ```ts
 // EntryAbility.ets

@@ -1,4 +1,10 @@
 # ImageData对象
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sd-wu-->
+<!--Designer: @sunbees-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 >  **说明：**
 >  从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -31,8 +37,8 @@ export default {
   onShow() {
     const el =this.$refs.canvas;
     const ctx = el.getContext('2d');
-    ctx.fillRect(0,0,200,200)
-    var imageData = ctx.createImageData(1,1)
+    ctx.fillRect(0,0,200,200);
+    var imageData = ctx.createImageData(1,1);
     promptAction.showToast({
       message:imageData,
       duration:5000

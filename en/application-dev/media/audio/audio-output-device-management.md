@@ -1,10 +1,10 @@
 # Global Audio Output Device Management
 
-If a device is connected to multiple audio output devices, you can use **AudioRoutingManager** to specify an audio output device to play audio. For details about the API reference, see [AudioRoutingManager](../../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9).
+You can use APIs to manage audio output devices, including querying audio output device information and listening for device connection status changes. For details about the APIs, see [AudioRoutingManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioRoutingManager.md).
 
 ## Creating an AudioRoutingManager Instance
 
-Before using **AudioRoutingManager** to manage audio devices, import the audio module and create an **AudioManager** instance.
+Before using AudioRoutingManager to manage audio devices, import the audio module and create an AudioManager instance.
 
 ```ts
 import { audio } from '@kit.AudioKit';  // Import the audio module.
@@ -66,7 +66,7 @@ audioRoutingManager.off('deviceChange');
 <!--Del-->
 ## Selecting an Audio Output Device (for System Applications only)
 
-Currently, only one output device can be selected, and the device ID is used as the unique identifier. For details about audio device descriptors, see [AudioDeviceDescriptors](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptors).
+Currently, only one output device can be selected, and the device ID is used as the unique identifier. For details about audio device descriptors, see [AudioDeviceDescriptors](../../reference/apis-audio-kit/arkts-apis-audio-t.md#audiodevicedescriptors).
 
 > **NOTE**
 > 

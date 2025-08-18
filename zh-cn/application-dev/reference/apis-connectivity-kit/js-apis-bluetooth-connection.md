@@ -1,5 +1,12 @@
 # @ohos.bluetooth.connection (蓝牙connection模块)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+<!--Adviser: @zhang_yixin13-->
+
 connection模块提供了蓝牙设备的配对、连接及状态查询等能力。
 
 > **说明：**
@@ -327,6 +334,47 @@ try {
 }
 ```
 
+## connection.getRemoteDeviceTransport<sup>20+</sup>
+
+getRemoteDeviceTransport(deviceId: string): BluetoothTransport
+
+获取对端蓝牙设备的传输类型。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明                                |
+| -------- | ------ | ---- | --------------------------------- |
+| deviceId | string | 是    | 表示对端设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
+
+**返回值：**
+
+| 类型                          | 说明       |
+| --------------------------- | -------- |
+| [BluetoothTransport](#bluetoothtransport) | 对端设备的传输类型。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|801 | Capability not supported.          |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Get transport failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+    let transport: connection.BluetoothTransport = connection.getRemoteDeviceTransport('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
 
 ## connection.getRemoteProfileUuids<sup>12+</sup>
 
@@ -692,7 +740,7 @@ import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // callback
 try {
     connection.setDevicePinCode('11:22:33:44:55:66', '12345', (err: BusinessError) => {
-        console.info('setDevicePinCode,device name err:' + JSON.stringify(err));
+        console.info('setDevicePinCode,device name err: ' + JSON.stringify(err));
     });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -886,9 +934,10 @@ try {
 startBluetoothDiscovery(): void
 
 开启蓝牙扫描，发现对端蓝牙设备。<br>
-- 该接口支持发现传统蓝牙设备和低功耗蓝牙设备。<br>
+- 该接口支持发现传统蓝牙设备和低功耗蓝牙设备，整个蓝牙扫描过程大约持续12s。<br>
 - 扫描结果可通过API version 10开始支持的[connection.on('bluetoothDeviceFind')](#connectiononbluetoothdevicefind)或者API version 18开始支持的[connection.on('discoveryResult')](#connectionondiscoveryresult18)的回调函数获取到。推荐使用[connection.on('discoveryResult')](#connectionondiscoveryresult18)，该方式可以获取到更多设备信息。<br>
-- 调用[stopBluetoothDiscovery](#connectionstopbluetoothdiscovery)可以停止该方法开启的扫描流程。
+- 若在扫描过程中，请勿重复调用该方法（可使用[connection.isBluetoothDiscovering](#connectionisbluetoothdiscovering11)判断蓝牙当前是否处于扫描过程中）。<br>
+- 调用[connection.stopBluetoothDiscovery](#connectionstopbluetoothdiscovery)可以停止该方法开启的扫描流程，扫描停止后，才能开启下一次蓝牙扫描。<br>
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -930,7 +979,8 @@ stopBluetoothDiscovery(): void
 
 关闭蓝牙扫描。<br>
 - 关闭的扫描是由[connection.startBluetoothDiscovery](#connectionstartbluetoothdiscovery)触发的。<br>
-- 当应用不再需要扫描设备时，需主动调用该方法关闭扫描。
+- 当应用不再需要扫描设备时，需主动调用该方法关闭扫描。<br>
+- 若不在扫描过程中，请勿重复调用该方法（可使用[connection.isBluetoothDiscovering](#connectionisbluetoothdiscovering11)判断蓝牙当前是否处于扫描过程中）。<br>
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1042,15 +1092,14 @@ setRemoteDeviceName(deviceId: string, name: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 // promise
 try {
     connection.setRemoteDeviceName('11:22:33:44:55:66', 'RemoteDeviceName').then(() => {
         console.info('setRemoteDeviceName success');
     }, (error: BusinessError) => {
-        console.error('setRemoteDeviceName: errCode:' + error.code + ',errMessage' + error.message);
+        console.error('setRemoteDeviceName: errCode: ' + error.code + ',errMessage' + error.message);
     })
-
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -1756,8 +1805,10 @@ try {
 
 | 名称                               | 值    | 说明              |
 | -------------------------------- | ------ | --------------- |
-| TRANSPORT_BR_EDR   | 0 | 传统蓝牙（Basic Rate/Enhanced Data Rate，BR/EDR）设备传输方式。若设备支持双模，默认使用该传输方式。 |
-| TRANSPORT_LE  | 1 | 低功耗蓝牙（Bluetooth Low Energy, BLE）设备传输方式。  |
+| TRANSPORT_BR_EDR   | 0 | 传统蓝牙（Basic Rate/Enhanced Data Rate，BR/EDR）设备传输方式。  |
+| TRANSPORT_LE  | 1 | 低功耗蓝牙（Bluetooth Low Energy，BLE）设备传输方式。  |
+| TRANSPORT_DUAL<sup>20+</sup>  | 2 | 同时支持传统蓝牙（BR/EDR）和低功耗蓝牙（BLE）的双模设备传输方式。设备可以根据需要选择使用传统蓝牙（BR/EDR）或低功耗蓝牙（BLE）进行通信。  |
+| TRANSPORT_UNKNOWN<sup>20+</sup>  | 3 | 未知的设备传输方式。  | 
 
 
 ## ScanMode

@@ -1,5 +1,12 @@
 # 使用HiCollie监控函数执行时间超长问题（C/C++）
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @rr_cn-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## 简介
 
 任务执行超时指要监控的业务代码逻辑执行时长超过业务逻辑预期时间。本文面向开发者介绍HiCollie模块对外提供函数执行时间超长的检测能力。
@@ -26,22 +33,22 @@
      src:
        main:
          cpp:
-           - types:
-               libentry:
-                 - index.d.ts
+           types:
+             libentry:
+               - index.d.ts
            - CMakeLists.txt
            - napi_init.cpp
          ets:
-           - entryability:
-               - EntryAbility.ts
-           - pages:
-               - Index.ets
+           entryability:
+             - EntryAbility.ts
+           pages:
+             - Index.ets
    ```
 
 2. 编辑“CMakeLists.txt”文件，添加源文件及动态库。
 
    ```cmake
-   # 依赖动态库libhilog_ndk.z.so(日志输出)，libohhicollie.so（HiCollie对外检测接口）
+   # 依赖动态库libhilog_ndk.z.so（日志输出），libohhicollie.so（HiCollie对外检测接口）
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libohhicollie.so)
    ```
 
@@ -60,7 +67,7 @@
    //定义回调函数
    void CallBack(void*)
    {
-     OH_LOG_INFO(LogType::LOG_APP, "HiCollieTimerNdk callBack");  // 回调函数中打印日志
+     OH_LOG_INFO(LogType::LOG_APP, "HiCollieTimerNdk CallBack");  // 回调函数中打印日志
    }
    
    static napi_value TestHiCollieTimerNdk(napi_env env, napi_callback_info info)
@@ -68,12 +75,12 @@
      int id;
      HiCollie_SetTimerParam param = {"testTimer", 1, CallBack, nullptr, HiCollie_Flag::HICOLLIE_FLAG_LOG};  // 设置HiCollieTimer 参数（Timer任务名，超时时间，回调函数，回调函数参数，超时发生后行为）
      HiCollie_ErrorCode errorCode = OH_HiCollie_SetTimer(param, &id);  // 注册HiCollieTimer函数执行时长超时检测一次性任务
-     if (errorCode == HICOLLIE_SUCCESS) {  // HiCollieTiimer任务注册成功
+     if (errorCode == HICOLLIE_SUCCESS) {  // HiCollieTimer任务注册成功
        OH_LOG_INFO(LogType::LOG_APP, "HiCollieTimer taskId: %{public}d", id); // 打印任务id
        sleep(2);  // 模拟执行耗时函数，在这里简单的将线程阻塞2s
        OH_HiCollie_CancelTimer(id);  // 根据id取消已注册任务
      }
-     return 0;
+     return nullptr;
    }
    
    EXTERN_C_START
@@ -134,7 +141,7 @@
    }
    ```
 
-6. 点击IDE界面中的运行按钮，运行应用工程。
+6. 点击DevEco Studio界面中的运行按钮，运行应用工程。
 
 7. 在DevEco Studio的底部，切换到“Log->HiLog”窗口，设置日志的过滤条件为“testTag”。
 

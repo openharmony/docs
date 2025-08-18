@@ -1,4 +1,10 @@
 # 事件
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc; @aohui; @zourongchun-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 通用事件仅支持[onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear)、[onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear)、[onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur)、[onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus)、[onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend10)、[onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter)、[onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)、[onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)、[onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave)、[onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)、[onHover](../apis-arkui/arkui-ts/ts-universal-events-hover.md#onhover)、[onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse)、[onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent)、[onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)、[onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)。
 
@@ -68,7 +74,7 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
   <!DOCTYPE html>
   <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
     <h1>WebView onAlert Demo</h1>
@@ -149,7 +155,7 @@ onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
   <!DOCTYPE html>
   <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body onbeforeunload="return myFunction()">
     <h1>WebView onBeforeUnload Demo</h1>
@@ -229,7 +235,7 @@ onConfirm(callback: Callback\<OnConfirmEvent, boolean\>)
   <!DOCTYPE html>
   <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
   <body>
@@ -352,7 +358,7 @@ onPrompt(callback: Callback\<OnPromptEvent, boolean\>)
   <!DOCTYPE html>
   <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
   <body>
@@ -1112,7 +1118,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
    <!DOCTYPE html>
    <html>
    <head>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
    <body>
      <form id="upload-form" enctype="multipart/form-data">
@@ -1162,7 +1168,7 @@ onResourceLoad(callback: Callback\<OnResourceLoadEvent\>)
 
 onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
 
-当前页面显示比例的变化时触发该回调。
+当页面显示比例发生变化时，触发该回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1170,7 +1176,7 @@ onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnScaleChangeEvent](./arkts-basic-components-web-i.md#onscalechangeevent12)\> | 是 | 当前页面显示比例的变化时触发。 |
+| callback | Callback\<[OnScaleChangeEvent](./arkts-basic-components-web-i.md#onscalechangeevent12)\> | 是 | 当页面显示比例发生变化时，触发该回调。 |
 
 **示例：**
 
@@ -1198,7 +1204,7 @@ onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
 
 onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceResponse>)
 
-当Web组件加载url之前触发该回调，用于拦截url并返回响应数据。onInterceptRequest可以拦截所有跳转，需要根据具体业务去做判断。
+当Web组件加载URL之前触发该回调，用于拦截URL并返回响应数据。`onInterceptRequest`可拦截所有跳转请求并返回响应数据，但无法访问POST请求体（Body）内容，且不支持分片缓冲（buffer）类型数据获取。此类场景需改用[WebSchemeHandler](./arkts-apis-webview-WebSchemeHandler.md)实现，依据具体业务需求进行判断。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1557,193 +1563,226 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
 
   **示例：**
 
-  未对接证书管理的双向认证。
+安装私有凭证以实现双向认证。
 
-  ```ts
-  // xxx.ets API9
-  import { webview } from '@kit.ArkWeb';
+```ts
+// xxx.ets API9
+import { webview } from '@kit.ArkWeb';
+import { common } from '@kit.AbilityKit';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-    uiContext: UIContext = this.getUIContext();
+@Entry
+@Component
+struct Index {
+  controller: WebviewController = new webview.WebviewController();
+  context = getContext(this) as common.UIAbilityContext
+  uri: string = ''
 
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .onClientAuthenticationRequest((event) => {
-            this.uiContext.showAlertDialog({
-              title: 'onClientAuthenticationRequest',
-              message: 'text',
-              primaryButton: {
-                value: 'confirm',
-                action: () => {
-                  event.handler.confirm("/system/etc/user.pk8", "/system/etc/chain-user.pem");
-                }
-              },
-              secondaryButton: {
-                value: 'cancel',
-                action: () => {
-                  event.handler.cancel();
-                }
-              },
-              cancel: () => {
-                event.handler.ignore();
-              }
+  aboutToAppear(): void {
+    webview.WebviewController.setRenderProcessMode(webview.RenderProcessMode.MULTIPLE)
+  }
+
+  build() {
+    Column() {
+      Button("installPrivateCertificate").onClick(() => {
+        let value: Uint8Array = this.context.resourceManager.getRawFileContentSync("badssl.com-client.p12");
+        certificateManager.installPrivateCertificate(value, 'badssl.com', "1",
+          async (err: BusinessError, data: certificateManager.CMResult) => {
+            console.log(`installPrivateCertificate, uri==========${JSON.stringify(data.uri)}`)
+            if (!err && data.uri) {
+              this.uri = data.uri;
+            }
+          });
+      })
+      Button('加载需要客户端SSL证书的网站')
+        .onClick(() => {
+          this.controller.loadUrl("https://client.badssl.com")
+        })
+      Web({
+        src: "https://www.bing.com/",
+        controller: this.controller,
+      }).domStorageAccess(true)
+        .fileAccess(true)
+        .onPageBegin(event => {
+          console.log("extensions onpagebegin url " + event.url);
+        })
+        .onClientAuthenticationRequest((event) => {
+          console.log("onClientAuthenticationRequest ");
+          event.handler.confirm(this.uri);
+          return true;
+        })
+        .onSslErrorEventReceive(e => {
+          console.log(`onSslErrorEventReceive->${e.error.toString()}`);
+        })
+        .onErrorReceive((event) => {
+          if (event) {
+            promptAction.showToast({
+              message: `ErrorCode: ${event.error.getErrorCode()}, ErrorInfo: ${event.error.getErrorInfo()}`,
+              alignment: Alignment.Center
             })
-          })
-      }
+            console.log('getErrorInfo:' + event.error.getErrorInfo());
+            console.log('getErrorCode:' + event.error.getErrorCode());
+            console.log('url:' + event.request.getRequestUrl());
+          }
+        })
+        .onTitleReceive(event  => {
+          console.log("title received " + event.title);
+        })
+
     }
   }
-  ```
+}
+```
 
-  对接证书管理的双向认证。
+对接证书管理，实现双向认证功能。
+  
+1. 构造 `GlobalContext` 单例对象。
+    ```ts
+    // GlobalContext.ets
+    export class GlobalContext {
+      private constructor() {}
+      private static instance: GlobalContext;
+      private _objects = new Map<string, Object>();
 
-  1. 构造单例对象GlobalContext。
+      public static getContext(): GlobalContext {
+        if (!GlobalContext.instance) {
+          GlobalContext.instance = new GlobalContext();
+        }
+        return GlobalContext.instance;
+      }
 
-     ```ts
-     // GlobalContext.ets
-     export class GlobalContext {
-       private constructor() {}
-       private static instance: GlobalContext;
-       private _objects = new Map<string, Object>();
+      getObject(value: string): Object | undefined {
+        return this._objects.get(value);
+      }
 
-       public static getContext(): GlobalContext {
-         if (!GlobalContext.instance) {
-           GlobalContext.instance = new GlobalContext();
-         }
-         return GlobalContext.instance;
-       }
+      setObject(key: string, objectClass: Object): void {
+        this._objects.set(key, objectClass);
+      }
+    }
+    ```
 
-       getObject(value: string): Object | undefined {
-         return this._objects.get(value);
-       }
+2. 构造 `CertManagerService` 对象以对接证书管理。
+<!--code_no_check-->
+    ```ts
+    // CertMgrService.ets
+    import { bundleManager, common, Want } from "@kit.AbilityKit";
+    import { BusinessError } from "@kit.BasicServicesKit";
+    import { GlobalContext } from './GlobalContext';
 
-       setObject(key: string, objectClass: Object): void {
-         this._objects.set(key, objectClass);
-       }
-     }
-     ```
+    export default class CertManagerService {
+      private static sInstance: CertManagerService;
+      private authUri = "";
+      private appUid = "";
 
+      public static getInstance(): CertManagerService {
+        if (CertManagerService.sInstance == null) {
+          CertManagerService.sInstance = new CertManagerService();
+        }
+        return CertManagerService.sInstance;
+      }
 
-  2. 实现双向认证。
+      async grantAppPm(): Promise<string> {
+        let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
+        // 注：com.example.myapplication需要写实际应用名称
+        try {
+          const data = await bundleManager.getBundleInfoForSelf(bundleFlags)
+            .catch((err: BusinessError) => {
+              console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
+              return null;
+            });
+          this.appUid = data?.appInfo?.uid?.toString() ?? '';
+          console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
+        } catch (err) {
+          let message = (err as BusinessError).message;
+          console.error('getBundleInfoForSelf failed: %{public}s', message);
+        }
 
-     ```ts
-     // xxx.ets API10
-     import { webview } from '@kit.ArkWeb';
-     import { common, Want, bundleManager } from '@kit.AbilityKit';
-     import { BusinessError } from '@kit.BasicServicesKit';
-     import { GlobalContext } from '../GlobalContext';
+        // 注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
+        let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext;
+        await abilityContext.startAbilityForResult(
+          {
+            bundleName: "com.ohos.certmanager",
+            abilityName: "MainAbility",
+            uri: "requestAuthorize",
+            parameters: {
+              appUid: this.appUid, // 传入申请应用的appUid
+            }
+          } as Want)
+          .then((data: common.AbilityResult) => {
+            if (!data.resultCode && data.want) {
+              if (data.want.parameters) {
+                this.authUri = data.want.parameters.authUri as string; // 授权成功后获取返回的authUri
+              }
+            }
+          })
+        return this.authUri;
+      }
+    }
+    ```
+3. 实现双向认证功能。
+<!--code_no_check-->
+    ```ts
+    import { webview } from '@kit.ArkWeb';
+    import CertManagerService from './CertMgrService';
+    import { promptAction } from '@kit.ArkUI';
 
-     let uri = "";
+    @Entry
+    @Component
+    struct Index {
+      controller: WebviewController = new webview.WebviewController();
+      certManager = CertManagerService.getInstance();
 
-     export default class CertManagerService {
-       private static sInstance: CertManagerService;
-       private authUri = "";
-       private appUid = "";
+      aboutToAppear(): void {
+        webview.WebviewController.setRenderProcessMode(webview.RenderProcessMode.MULTIPLE)
+      }
 
-       public static getInstance(): CertManagerService {
-         if (CertManagerService.sInstance == null) {
-           CertManagerService.sInstance = new CertManagerService();
-         }
-         return CertManagerService.sInstance;
-       }
+      build() {
+        Column() {
+          Button('加载需要客户端SSL证书的网站')
+            .onClick(() => {
+              this.controller.loadUrl("https://client.badssl.com")
+            })
+          Web({
+            src: "https://www.bing.com/",
+            controller: this.controller,
+          }).domStorageAccess(true)
+            .fileAccess(true)
+            .onPageBegin(event => {
+              console.log("extensions onpagebegin url " + event.url);
+            })
+            .onClientAuthenticationRequest((event) => {
+              console.log("onClientAuthenticationRequest ");
 
-       async grantAppPm(callback: (message: string) => void) {
-         let message = '';
-         let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
-         // 注：com.example.myapplication需要写实际应用名称
-         try {
-           bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
-             console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
-            this.appUid = data.appInfo.uid.toString();
-           }).catch((err: BusinessError) => {
-             console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
-           });
-         } catch (err) {
-           let message = (err as BusinessError).message;
-           console.error('getBundleInfoForSelf failed: %{public}s', message);
-         }
+              this.certManager.grantAppPm().then(result => {
+                console.log(`grantAppPm, URI==========${result}`);
+                event.handler.confirm(result);
+              })
+              return true;
+            })
+            .onSslErrorEventReceive(e => {
+              console.log(`onSslErrorEventReceive->${e.error.toString()}`);
+            })
+            .onErrorReceive((event) => {
+              if (event) {
+                promptAction.showToast({
+                  message: `ErrorCode: ${event.error.getErrorCode()}, ErrorInfo: ${event.error.getErrorInfo()}`,
+                  alignment: Alignment.Center
+                })
+                console.log('getErrorInfo:' + event.error.getErrorInfo());
+                console.log('getErrorCode:' + event.error.getErrorCode());
+                console.log('url:' + event.request.getRequestUrl());
+              }
+            })
+            .onTitleReceive(event  => {
+              console.log("title received " + event.title);
+            })
 
-         // 注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
-         let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
-         await abilityContext.startAbilityForResult(
-           {
-             bundleName: "com.ohos.certmanager",
-             abilityName: "MainAbility",
-             uri: "requestAuthorize",
-             parameters: {
-               appUid: this.appUid, // 传入申请应用的appUid
-             }
-           } as Want)
-           .then((data: common.AbilityResult) => {
-             if (!data.resultCode && data.want) {
-               if (data.want.parameters) {
-                 this.authUri = data.want.parameters.authUri as string; // 授权成功后获取返回的authUri
-               }
-             }
-           })
-         message += "after grantAppPm authUri: " + this.authUri;
-         uri = this.authUri;
-         callback(message)
-       }
-     }
-
-     @Entry
-     @Component
-     struct WebComponent {
-       controller: webview.WebviewController = new webview.WebviewController();
-       @State message: string = 'Hello World' // message主要是调试观察使用
-       certManager = CertManagerService.getInstance();
-       uiContext: UIContext = this.getUIContext();
-
-       build() {
-         Row() {
-           Column() {
-             Row() {
-               // 第一步：需要先进行授权，获取到uri
-               Button('GrantApp')
-                 .onClick(() => {
-                   this.certManager.grantAppPm((data) => {
-                     this.message = data;
-                   });
-                 })
-               // 第二步：授权后，双向认证会通过onClientAuthenticationRequest回调将uri传给web进行认证
-               Button("ClientCertAuth")
-                 .onClick(() => {
-                   this.controller.loadUrl('https://www.example2.com'); // 支持双向认证的服务器网站
-                 })
-             }
-
-             Web({ src: 'https://www.example1.com', controller: this.controller })
-               .fileAccess(true)
-               .javaScriptAccess(true)
-               .domStorageAccess(true)
-               .onlineImageAccess(true)
-
-               .onClientAuthenticationRequest((event) => {
-                 this.uiContext.showAlertDialog({
-                   title: 'ClientAuth',
-                   message: 'Text',
-                   confirm: {
-                     value: 'Confirm',
-                     action: () => {
-                       event.handler.confirm(uri);
-                     }
-                   },
-                   cancel: () => {
-                     event.handler.cancel();
-                   }
-                 })
-               })
-           }
-         }
-         .width('100%')
-         .height('100%')
-       }
-     }
-     ```
+        }
+      }
+    }
+    ```
 
 ## onPermissionRequest<sup>9+</sup>
 
@@ -1827,7 +1866,7 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
     <meta charset="UTF-8">
   </head>
   <body>
-  <video id="video" width="500px" height="500px" autoplay="autoplay"></video>
+  <video id="video" width="500px" height="500px" autoplay></video>
   <canvas id="canvas" width="500px" height="500px"></canvas>
   <br>
   <input type="button" title="HTML5摄像头" value="开启摄像头" onclick="getMedia()"/>
@@ -1846,6 +1885,8 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
       promise.then(function (MediaStream) {
         video.srcObject = MediaStream;
         video.play();
+      }).catch(function(error) {
+        console.error("Error accessing media devices.", error);
       });
     }
   </script>
@@ -2091,7 +2132,7 @@ onScroll(callback: Callback\<OnScrollEvent\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnScrollEvent](./arkts-basic-components-web-i.md#onscrollevent12)\> | 是 | 当滚动条滑动到指定位置时触发。 |
+| callback | Callback\<[OnScrollEvent](./arkts-basic-components-web-i.md#onscrollevent12)\> | 是 | 当页面滑动到指定位置时触发。 |
 
 **示例：**
 
@@ -2969,7 +3010,7 @@ onLoadIntercept(callback: Callback\<OnLoadInterceptEvent, boolean\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnLoadInterceptEvent](./arkts-basic-components-web-i.md#onloadinterceptevent12), boolean\> | 是 | 截获资源加载时触发的回调。<br>返回值为boolean类型。返回true表示阻止此次加载，false表示允许此次加载。<br>默认值：true。 |
+| callback | Callback\<[OnLoadInterceptEvent](./arkts-basic-components-web-i.md#onloadinterceptevent12), boolean\> | 是 | 截获资源加载时触发的回调。<br>返回值为boolean类型。返回true表示阻止此次加载，false表示允许此次加载。<br>默认值：false |
 
 **示例：**
 
@@ -3001,7 +3042,7 @@ onLoadIntercept(callback: Callback\<OnLoadInterceptEvent, boolean\>)
 
 onRequestSelected(callback: () => void)
 
-当Web组件获得焦点时触发该回调。
+当Web组件获取焦点时触发回调。如果组件在未获焦状态下加载网页并成功获取焦点，将触发两次回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3009,7 +3050,7 @@ onRequestSelected(callback: () => void)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | () => void | 是 | 当网页获得焦点时触发的回调。 |
+| callback | () => void | 是 | 当网页获取焦点时触发的回调。 |
 
 **示例：**
 
@@ -3454,8 +3495,8 @@ export default class EntryAbility extends UIAbility {
 
   加载的html文件
   ```html
-  <!-- index.html -->
-  <!Document>
+  <!--index.html-->
+  <!DOCTYPE html>
   <html>
   <head>
       <title>同层渲染测试html</title>
@@ -3464,7 +3505,7 @@ export default class EntryAbility extends UIAbility {
   <body>
   <div>
       <div id="bodyId">
-          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test? params1=1?" style = "background-color:red"/>
+          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test? params1=1" style = "background-color:red"/>
       </div>
   </div>
   </body>
@@ -3614,8 +3655,8 @@ onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
   ```
 加载的html文件
   ```html
-  <!-- index.html -->
-  <!Document>
+  <!--index.html-->
+  <!DOCTYPE html>
   <html>
   <head>
       <title>同层渲染测试html</title>
@@ -3624,7 +3665,7 @@ onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
   <body>
   <div>
       <div id="bodyId">
-         <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1?" style = "background-color:red"/>
+         <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1" style = "background-color:red"/>
       </div>
   </div>
   </body>
@@ -3774,7 +3815,7 @@ onViewportFitChanged(callback: OnViewportFitChangedCallback)
             } else if (viewportFit === ViewportFit.CONTAINS) {
               // index.html网页不支持沉浸式布局，可调用expandSafeArea调整web控件布局视口为安全区域。
             } else {
-              // 默认值，可不作处理
+              // 默认值，可不作处理。
             }
           })
       }
@@ -3978,7 +4019,7 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
 
 onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
 
-当网页中同层标签（例如Embed标签或Object标签）在视口内的可见性发生变化时，将触发该回调。同层标签默认不可见，若在页面首次加载时已可见，则会上报；若不可见，则不会上报。同层标签全部不可见才视为不可见，部分可见或全部可见则视为可见。若要获取因同层标签CSS属性（包括visibility、display以及尺寸变化）导致的可见状态变化，需配置[nativeEmbedOptions](./arkts-basic-components-web-attributes.md#nativeembedoptions16)，并将[EmbedOptions](./arkts-basic-components-web-i.md#embedoptions16)中的supportCssDisplayChange参数设为true。
+当网页中同层标签（例如<embed\>标签或<embed\>标签）在视口内的可见性发生变化时，将触发该回调。同层标签默认不可见，若在页面首次加载时已可见，则会上报；若不可见，则不会上报。同层标签全部不可见才视为不可见，部分可见或全部可见则视为可见。若要获取因同层标签CSS属性（包括visibility、display以及尺寸变化）导致的可见状态变化，需配置[nativeEmbedOptions](./arkts-basic-components-web-attributes.md#nativeembedoptions16)，并将[EmbedOptions](./arkts-basic-components-web-i.md#embedoptions16)中的supportCssDisplayChange参数设为true。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4110,7 +4151,7 @@ onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
   <body>
   <div>
       <div id="bodyId">
-          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1?" style = "background-color:red"/>
+          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1" style = "background-color:red"/>
       </div>
   </div>
   </body>
@@ -4246,8 +4287,8 @@ onNativeEmbedMouseEvent(callback: MouseInfoCallback)
   ```
 加载的html文件
   ```html
-  <!-- index.html -->
-  <!Document>
+  <!--index.html-->
+  <!DOCTYPE html>
   <html>
   <head>
       <title>同层渲染测试</title>
@@ -4320,6 +4361,12 @@ onSslErrorReceive(callback: (event?: { handler: Function, error: object }) => vo
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名    | 类型   | 必填   | 说明                  |
+| ------ | ------ | ---- | --------------------- |
+| callback | (event?: { handler: Function, error: object }) => void | 是 | 当网页检测到SSL错误时触发的回调。 |
+
 ## onFileSelectorShow<sup>(deprecated)</sup>
 
 onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object }) => void)
@@ -4366,6 +4413,80 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
               console.log('onUrlLoadIntercept ' + event.data.toString());
             }
             return true
+          })
+      }
+    }
+  }
+  ```
+
+## onPdfLoadEvent<sup>20+</sup>
+
+onPdfLoadEvent(callback: Callback\<OnPdfLoadEvent\>)
+
+通知用户PDF页面加载状态，包括成功或失败。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明      |
+| ------- | --------------------------------- | ---- | --------- |
+| callback | Callback\<[OnPdfLoadEvent](./arkts-basic-components-web-i.md#onpdfloadevent20)\> | 是    | 当PDF加载成功或失败时，会触发回调，通知用户PDF页面加载状态。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        // 使用时需将'https://www.example.com/xxx.pdf'替换为真实可访问的地址
+        Web({ src: 'https://www.example.com/xxx.pdf', controller: this.controller })
+          .onPdfLoadEvent((eventInfo: OnPdfLoadEvent) => {
+            console.info(`Load event callback called. url: ${eventInfo.url}, result: ${eventInfo.result}.`)
+          })
+      }
+    }
+  }
+  ```
+
+## onPdfScrollAtBottom<sup>20+</sup>
+
+onPdfScrollAtBottom(callback: Callback\<OnPdfScrollEvent\>)
+
+通知用户PDF页面已滚动到底。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明      |
+| ------- | --------------------------------- | ---- | --------- |
+| callback | Callback\<[OnPdfScrollEvent](./arkts-basic-components-web-i.md#onpdfscrollevent20)\> | 是    | 当PDF滚动到垂直方向底部时，会触发回调，通知用户PDF页面已滚动到底。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        // 使用时需将'https://www.example.com/xxx.pdf'替换为真实可访问的地址
+        Web({ src: 'https://www.example.com/xxx.pdf', controller: this.controller })
+          .onPdfScrollAtBottom((eventInfo: OnPdfScrollEvent) => {
+            console.info(`Scroll at bottom callback called. url: ${eventInfo.url}.`)
           })
       }
     }

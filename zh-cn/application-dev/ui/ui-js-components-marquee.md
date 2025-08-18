@@ -1,4 +1,10 @@
 # marquee开发指导
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @hddgzw-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 
 marquee为跑马灯组件，用于展示一段单行滚动的文字。具体用法请参考[marquee](../reference/apis-arkui/arkui-js/js-components-basic-marquee.md)。

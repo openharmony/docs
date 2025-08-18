@@ -1,4 +1,10 @@
 # JSVM-API使用规范
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## 生命周期管理
 
@@ -13,7 +19,7 @@
 3. Scope(包括JSVM_VMScope、JSVM_EnvScope、JSVM_HandleScope)需逆序关闭，最先打开的Scope需最后关闭，否则可能造成应用崩溃；
 
 **Scope关闭错误示例**：
-```
+```c++
 // 未逆序关闭JSVM_VMScope，可能造成应用崩溃
 JSVM_VM vm;
 JSVM_CreateVMOptions options;
@@ -32,7 +38,7 @@ OH_JSVM_DestroyVM(vm);
 
 **C++使用封装**：
 
-```
+```c++
 class HandleScopeWrapper {
  public:
   HandleScopeWrapper(JSVM_Env env) : env(env) {
@@ -82,7 +88,7 @@ for (int i = 0; i < 100000; i++)
 **错误示例**：
 
 ```c++
-// 线程1执行，在env1创建string对象，值为"value1"、
+// 线程1执行，在env1创建string对象，值为"value1"
 OH_JSVM_CreateStringUtf8(env1, "value1", JSVM_AUTO_LENGTH , &string);
 // 线程2执行，在env2创建object对象，并将上述的string对象设置到object对象中
 JSVM_Status status = OH_JSVM_CreateObject(env2, &object);
@@ -102,20 +108,20 @@ if (status != JSVM_OK)
 
 ## 多线程共享引擎实例
 
-【规则】多线程同时使用同一个引擎实例的场景下，需要加锁使用。保证一个引擎实例在同一时刻只能在一个线程执行。多线程同一时刻同时使用引擎实例可能造成应用崩溃。
+**【规则】** 多线程同时使用同一个引擎实例的场景下，需要加锁使用。保证一个引擎实例在同一时刻只能在一个线程执行。多线程同一时刻同时使用引擎实例可能造成应用崩溃。
 
 **注意事项**：
 
 1. `OH_JSVM_IsLocked`的结果为**当前线程**是否持有引擎实例的锁，无需设置循环等待其他线程释放锁；
 2. `OH_JSVM_AcquireLock`在同一线程中嵌套使用不会造成死锁；
 3. 使用`OH_JSVM_ReleaseLock`时需判断是否在最外层，避免同一线程中嵌套使用`OH_JSVM_AcquireLock`的场景下内层释放了整个线程的锁；
-4. `OH_JSVM_AcquireLock`后需调用`OH_JSVM_OpenHandleScope`让引擎实例进入线程；`OH_JSVM_ReleaseLock`后需调用`OH_JSVM_ReleaseLock`让引擎实例退出线程；
+4. `OH_JSVM_AcquireLock`后需调用`OH_JSVM_OpenHandleScope`让引擎实例进入线程；`OH_JSVM_ReleaseLock`前需调用`OH_JSVM_CloseHandleScope`让引擎实例退出线程；
 5. 不同线程禁止嵌套使用引擎实例，如需临时切换线程使用引擎实例，请确保`JSVM_Value`已保存为`JSVM_Ref`，释放锁后对`JSVM_Value`将不可访问；
-6. 需注意资源获取的顺序为：锁 -> VMScope -> EnvScope -> HandleScope，释放资源的顺序正好相反，错误的顺序可能导致程序崩溃。
+6. 需注意资源获取的顺序为：锁 -> VMScope -> EnvScope -> HandleScope，资源释放的顺序正好相反，错误的顺序可能导致程序崩溃。
 
 **C++使用封装**：
 
-```
+```c++
 class LockWrapper {
  public:
   // 构造函数，获取锁、VMScope、EnvScope
@@ -157,13 +163,14 @@ class LockWrapper {
 
 **正确示例**：
 
-```
+```c++
 // 该用例演示了多线程中使用vm
 // t1线程先获取锁，并继续JSVM-API的调用
 // t2线程会在获取锁处阻塞，直到t1线程执行结束释放锁后，t2线程继续执行，调用JSVM-API接口
 static napi_value Add([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_callback_info _info) {
     static JSVM_VM vm;
     static JSVM_Env env;
+    static int aa = 0;
     if (aa == 0) {
         OH_JSVM_Init(nullptr);
         aa++;
@@ -186,7 +193,7 @@ static napi_value Add([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_call
         } else {
             OH_LOG_ERROR(LOG_APP, "JSVM:t1 OH_JSVM_CreateInt32 fail");
         }
-        int32_t num1;
+        int32_t num1 = 0;
         OH_JSVM_GetValueInt32(env, value, &num1);
         OH_LOG_INFO(LOG_APP, "JSVM:t1 num1 = %{public}d", num1);
         OH_JSVM_CloseHandleScope(env, handleScope);
@@ -202,7 +209,7 @@ static napi_value Add([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_call
         } else {
             OH_LOG_ERROR(LOG_APP, "JSVM:t2 OH_JSVM_CreateInt32 fail");
         }
-        int32_t num1;
+        int32_t num1 = 0;
         OH_JSVM_GetValueInt32(env, value, &num1);
         OH_LOG_INFO(LOG_APP, "JSVM:t2 num1 = %{public}d", num1);
         OH_JSVM_CloseHandleScope(env, handleScope);
@@ -256,7 +263,7 @@ static JSVM_Value GetArgvDemo1(napi_env env, JSVM_CallbackInfo info) {
     // 业务代码
     // ... ...
     // argv 为 new 创建的对象，在使用完成后手动释放
-    delete argv;
+    delete[] argv;
     return nullptr;
 }
 
@@ -264,7 +271,7 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
     size_t argc = 2;
     JSVM_Value* argv[2] = {nullptr};
     // OH_JSVM_GetCbInfo 会向 argv 中写入 argc 个 JS 传入参数或 undefined
-    OH_JSVM_GetCbInfo(env, info, &argc, nullptr, nullptr, nullptr);
+    OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
     // 业务代码
     // ... ...
     return nullptr;
@@ -277,8 +284,7 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
 
  根据主从类型，异常处理可以分为两类：
 
-1. JSVM 执行 C++ 回调函数（JS主，Native从）时发生 C++ 异常，需往 JSVM 中抛出异常，下面用例描述了3种情况下 C++ 回调函数的写法
-**注意事项**：回调函数中调用JSVM-API失败，如要向JSVM中抛异常，需保证JSVM中无等待处理的异常，也可以不抛出异常，JS的try-catch块可以捕获回调函数调用API失败产生的JS异常，见`NativeFunctionExceptionDemo3`。
+1. JSVM 执行 C++ 回调函数（JS主，Native从）时发生 C++ 异常，需往 JSVM 中抛出异常，下面用例描述了3种情况下 C++ 回调函数的写法。需要注意的是，回调函数中调用JSVM-API失败，如要向JSVM中抛异常，需保证JSVM中无等待处理的异常，也可以不抛出异常，JS的try-catch块可以捕获回调函数调用API失败产生的JS异常，见`NativeFunctionExceptionDemo3`。
     ```c++
     // JSVM主， Native从
     void DoSomething() {
@@ -314,9 +320,13 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
             throw Error('Error throw from js');
         )JS";
         JSVM_Value sourcecodevalue = nullptr;
-        OH_JSVM_CreateStringUtf8(env, sourcecodestr.c_str(), sourcecodestr.size(), &sourcecodevalue);
+        JSVM_CALL(OH_JSVM_CreateStringUtf8(env, sourcecodestr.c_str(), sourcecodestr.size(), &sourcecodevalue));
         JSVM_Script script;
         auto status = OH_JSVM_CompileScript(env, sourcecodevalue, nullptr, 0, true, nullptr, &script);
+        if (status != JSVM_OK) {
+            OH_JSVM_ThrowError(env, nullptr, "compile script failed");
+            return nullptr;
+        }
         JSVM_Value result;
         // 执行JS脚本，执行过程中抛出JS异常
         status = OH_JSVM_RunScript(env, script, &result);
@@ -345,17 +355,16 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
         }
     )JS";
     JSVM_Value sourcecodevalue = nullptr;
-    OH_JSVM_CreateStringUtf8(env, sourcecodestr.c_str(), sourcecodestr.size(), &sourcecodevalue);
+    JSVM_CALL(OH_JSVM_CreateStringUtf8(env, sourcecodestr.c_str(), sourcecodestr.size(), &sourcecodevalue));
     JSVM_Script script;
-    auto status = OH_JSVM_CompileScript(env, sourcecodevalue, nullptr, 0, true, nullptr, &script);
-    OH_LOG_INFO(LOG_APP, "JSVM API TEST: %{public}d", (uint32_t)status);
+    JSVM_CALL(OH_JSVM_CompileScript(env, sourcecodevalue, nullptr, 0, true, nullptr, &script));
     JSVM_Value result;
     // 执行JS脚本，JS调用Native方法
-    status = OH_JSVM_RunScript(env, script, &result);
+    JSVM_CALL(OH_JSVM_RunScript(env, script, &result));
     ```
 
 2. C++调用JSVM-API（Native主，JS从）失败，需清理JSVM中等待处理的异常，避免影响后续JSVM-API的执行，并设置C++异常处理分支（或抛出C++异常）。
-    ```
+    ```c++
     std::string sourcecodestr = R"JS(
         throw Error('Error throw from js');
     )JS";
@@ -367,7 +376,7 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
     if (status != JSVM_OK) {
         JSVM_Value error = nullptr;
         // 获取并清理异常
-        CALL_JSVM(OH_JSVM_GetAndClearLastException((env), &error));
+        JSVM_CALL(OH_JSVM_GetAndClearLastException((env), &error));
         // 处理异常，如打印信息，省略
         // 抛出 C++ 异常或结束函数执行
         throw "JS Compile Error";
@@ -380,7 +389,7 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
     if (status != JSVM_OK) {
         JSVM_Value error = nullptr;
         // 获取并清理异常
-        CALL_JSVM(OH_JSVM_GetAndClearLastException((env), &error));
+        JSVM_CALL(OH_JSVM_GetAndClearLastException((env), &error));
         // 处理异常，如打印信息，省略
         // 抛出 C++ 异常或结束函数执行
         throw "JS RunScript Error";
@@ -390,11 +399,11 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
 
 ## 上下文绑定对象
 
-**【规则】**：调用JSVM-API生成的JS函数、对象需绑定到上下文中才能从JS侧访问，`OH_JSVM_CreateFunction`接口中的`const char *`参数为创建函数的属性`name`，不代表上下文中指向该函数的函数名。调用JSVM-API生成的类、对象同理。
+**【规则】**：调用JSVM-API生成的JS函数、对象需绑定到上下文中才能从JS侧访问，`OH_JSVM_CreateFunction`接口中的`const char *`参数为创建函数的属性`name`，不代表上下文中指向该函数的名称。调用JSVM-API生成的类、对象同理。
 
 **示例**：
 
-```
+```c++
 JSVM_Value JSFunc = nullptr;
 const char *name = "NativeFunction";
 JSVM_CallbackStruct cb = {NativeFunction, nullptr};

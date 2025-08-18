@@ -1,4 +1,4 @@
-# Cross-Device Sync of RDB Stores
+# Cross-Device Sync of RDB Stores (ArkTS)
 
 
 ## When to Use
@@ -12,7 +12,7 @@ OpenHamony supports sync of the relational data of an application across multipl
 
 - If a table created for an application in the database is set as a distributed table, when data is queried from the RDB store of a remote device, the distributed table name of the remote device can be obtained based on the local table name.
 
-- Data can be synced between devices in either of the following ways: <br>- Pushing data from a local device to a remote device. <br>- Pulling data from a remote device to a local device.
+- Data can be synced between devices in either of the following ways:<br>- Pushing data from a local device to a remote device.<br>- Pulling data from a remote device to a local device.
 
 
 ## Working Principles
@@ -48,7 +48,7 @@ When data is added, deleted, or modified, a notification is sent to the subscrib
 
 ## Available APIs
 
-Most of the APIs for cross-device data sync of RDB stores are executed asynchronously, using a callback or promise to return the result. The following table uses the callback-based APIs as an example. For more information about the APIs, see [RDB Store](../reference/apis-arkdata/js-apis-data-relationalStore.md).
+The following table lists the APIs for cross-device data sync of RDB stores. Most of the APIs are executed asynchronously, using a callback or promise to return the result. The following table uses the callback-based APIs as an example. For more information about the APIs, see [RDB Store](../reference/apis-arkdata/arkts-apis-data-relationalStore.md).
 
 | API| Description|
 | -------- | -------- |
@@ -75,7 +75,7 @@ Most of the APIs for cross-device data sync of RDB stores are executed asynchron
 2. Request permissions.
 
    1. Declare the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
-   2. Display a dialog box to ask for user authorization when the application is started for the first time. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
+   2. Display a dialog box to ask for authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
 
 3. Create an RDB store and set a table for distributed sync.
    
@@ -195,4 +195,3 @@ Most of the APIs for cross-device data sync of RDB stores are executed asynchron
      console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
    }
    ```
-

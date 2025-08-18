@@ -1,4 +1,10 @@
 # 开发适用HID协议的设备驱动
+<!--Kit: Driver Development Kit-->
+<!--Subsystem: Driver-->
+<!--Owner: @lixinsheng2-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
 
 ## 简介
 
@@ -226,7 +232,6 @@ libhid.z.so
             int32_t ret = OH_Hid_Read(dev, data3, sizeof(data3), &bytesRead);
 
             uint8_t data4[9] = {0x00};
-            uint32_t bytesRead = 0;
             // 在指定的超时时间内从HID设备读取报告
             ret = OH_Hid_ReadTimeout(dev, data4, sizeof(data4), 10000, &bytesRead);
             ```

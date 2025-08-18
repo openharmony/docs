@@ -1,4 +1,10 @@
 # @ohos.file.fs (文件管理)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
+<!--Designer: @gsl_1234; @wangke25-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 该模块为基础文件操作API，提供基础文件操作能力，包括文件基本管理、文件目录管理、文件信息统计、文件流式读写等常用功能。
 
@@ -521,11 +527,11 @@ let dstDirUriLocal: string = fileUri.getUriFromPath(dstDirPathLocal);
 let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
   console.info(`progressSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
 };
-let copyoption: fs.CopyOptions = {
+let copyOption: fs.CopyOptions = {
   "progressListener" : progressListener
 }
 try {
-  fs.copy(srcDirUriLocal, dstDirUriLocal, copyoption).then(()=>{
+  fs.copy(srcDirUriLocal, dstDirUriLocal, copyOption).then(()=>{
     console.info("Succeeded in copying.");
   }).catch((err: BusinessError)=>{
     console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
@@ -624,10 +630,10 @@ try {
   let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
     console.info(`progressSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
   };
-  let copyoption: fs.CopyOptions = {
+  let copyOption: fs.CopyOptions = {
     "progressListener" : progressListener
   }
-  fs.copy(srcDirUriLocal, dstDirUriLocal, copyoption, (err: BusinessError) => {
+  fs.copy(srcDirUriLocal, dstDirUriLocal, copyOption, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -1238,7 +1244,7 @@ getxattrSync(path: string, key: string): string
     console.info("Get extended attribute succeed, the value is: " + attrValue);
   } catch (err) {
     console.error("Failed to get extended attribute with error message: " + err.message + ", error code: " + err.code);
-    }
+  }
 
   ```
 
@@ -2411,13 +2417,12 @@ readText(filePath: string, options?: ReadTextOptions, callback: AsyncCallback&lt
   import { BusinessError } from '@kit.BasicServicesKit';
   import { fileIo as fs, ReadTextOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
+  let stat = fs.statSync(filePath);
   let readTextOption: ReadTextOptions = {
       offset: 1,
-      length: 0,
+      length: stat.size,
       encoding: 'utf-8'
   };
-  let stat = fs.statSync(filePath);
-  readTextOption.length = stat.size;
   fs.readText(filePath, readTextOption, (err: BusinessError, str: string) => {
     if (err) {
       console.error("readText failed with error message: " + err.message + ", error code: " + err.code);
@@ -2534,7 +2539,7 @@ lstat(path: string, callback: AsyncCallback&lt;Stat&gt;): void
     if (err) {
       console.error("lstat failed with error message: " + err.message + ", error code: " + err.code);
     } else {
-      console.info("lstat succeed, the size of file is" + stat.size);
+      console.info("lstat succeed, the size of file is " + stat.size);
     }
   });
   ```
@@ -2568,7 +2573,7 @@ lstatSync(path: string): Stat
   ```ts
   let filePath = pathDir + "/linkToFile";
   let fileStat = fs.lstatSync(filePath);
-  console.info("lstat succeed, the size of file is" + fileStat.size);
+  console.info("lstat succeed, the size of file is " + fileStat.size);
   ```
 
 ## fs.rename
@@ -2855,7 +2860,7 @@ fdatasync(fd: number, callback: AsyncCallback&lt;void&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.fdatasync (file.fd, (err: BusinessError) => {
+  fs.fdatasync(file.fd, (err: BusinessError) => {
     if (err) {
       console.error("fdatasync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -3933,9 +3938,9 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
     if (err) {
       console.error("create stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
+      stream.closeSync();
       console.info("createStream succeed");
     }
-    stream.closeSync();
   })
   ```
 
@@ -4054,11 +4059,11 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
   fs.fdopenStream(file.fd, "r+", (err: BusinessError, stream: fs.Stream) => {
     if (err) {
       console.error("fdopen stream failed with error message: " + err.message + ", error code: " + err.code);
-      stream.closeSync();
-    } else {
-      console.info("fdopen stream succeed");
       // 文件流打开失败后，文件描述符需要手动关闭
       fs.closeSync(file);
+    } else {
+      console.info("fdopen stream succeed");
+      stream.closeSync();
     }
   });
   ```
@@ -4247,8 +4252,8 @@ let pathDir = context.filesDir;
 
 try {
   let atomicFile = new fs.AtomicFile(`${pathDir}/write.txt`);
-  let writeSream = atomicFile.startWrite();
-  writeSream.write("hello, world", "utf-8", ()=> {
+  let writeStream = atomicFile.startWrite();
+  writeStream.write("hello, world", "utf-8", ()=> {
     atomicFile.finishWrite();
     let File = atomicFile.getBaseFile();
     console.info('AtomicFile getBaseFile File.fd is: ' + File.fd + ' path: ' + File.path + ' name: ' + File.name);
@@ -4289,8 +4294,8 @@ let pathDir = context.filesDir;
 
 try {
   let file = new fs.AtomicFile(`${pathDir}/read.txt`);
-  let writeSream = file.startWrite();
-  writeSream.write("hello, world", "utf-8", ()=> {
+  let writeStream = file.startWrite();
+  writeStream.write("hello, world", "utf-8", ()=> {
     file.finishWrite();
     setTimeout(()=>{
       let readStream = file.openRead();
@@ -4341,8 +4346,8 @@ let pathDir = context.filesDir;
 
 try {
   let file = new fs.AtomicFile(`${pathDir}/read.txt`);
-  let writeSream = file.startWrite();
-  writeSream.write("hello, world", "utf-8", ()=> {
+  let writeStream = file.startWrite();
+  writeStream.write("hello, world", "utf-8", ()=> {
     file.finishWrite();
     setTimeout(()=>{
       let data = file.readFully();
@@ -4391,8 +4396,8 @@ let pathDir = context.filesDir;
 
 try {
   let file = new fs.AtomicFile(`${pathDir}/write.txt`);
-  let writeSream = file.startWrite();
-  writeSream.write("hello, world", "utf-8", ()=> {
+  let writeStream = file.startWrite();
+  writeStream.write("hello, world", "utf-8", ()=> {
     console.info('AtomicFile write finished!');
   })
 } catch (err) {
@@ -4425,8 +4430,8 @@ let pathDir = context.filesDir;
 
 try {
   let file = new fs.AtomicFile(`${pathDir}/write.txt`);
-  let writeSream = file.startWrite();
-  writeSream.write("hello, world", "utf-8", ()=> {
+  let writeStream = file.startWrite();
+  writeStream.write("hello, world", "utf-8", ()=> {
     file.finishWrite();
   })
 } catch (err) {
@@ -4495,8 +4500,8 @@ let pathDir = context.filesDir;
 
 try {
   let file = new fs.AtomicFile(`${pathDir}/read.txt`);
-  let writeSream = file.startWrite();
-  writeSream.write("hello, world", "utf-8", ()=> {
+  let writeStream = file.startWrite();
+  writeStream.write("hello, world", "utf-8", ()=> {
     file.finishWrite();
     setTimeout(()=>{
       let data = file.readFully();
@@ -4687,9 +4692,7 @@ onCancel(): Promise&lt;string&gt;
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { TaskSignal } from '@ohos.file.fs';
 let copySignal: fs.TaskSignal = new TaskSignal();
-copySignal.onCancel().then(() => {
-    console.info("copyFileWithCancel success.");
-});
+copySignal.onCancel();
 ```
 
 ## CopyOptions<sup>11+</sup>
@@ -5207,9 +5210,9 @@ write(buffer: ArrayBuffer | string, options?: WriteOptions, callback: AsyncCallb
     } else {
       if (bytesWritten) {
         console.info("write succeed and size is:" + bytesWritten);
-        stream.close();
       }
     }
+    stream.close();
   });
   ```
 
@@ -5298,7 +5301,7 @@ read(buffer: ArrayBuffer, options?: ReadOptions): Promise&lt;number&gt;
   stream.read(arrayBuffer, readOption).then((readLen: number) => {
     console.info("read data succeed");
     let buf = buffer.from(arrayBuffer, 0, readLen);
-    console.log(`The content of file: ${buf.toString()}`);
+    console.info(`The content of file: ${buf.toString()}`);
     stream.close();
   }).catch((err: BusinessError) => {
     console.error("read data failed with error message: " + err.message + ", error code: " + err.code);
@@ -5346,7 +5349,7 @@ read(buffer: ArrayBuffer, options?: ReadOptions, callback: AsyncCallback&lt;numb
     } else {
       console.info("read data succeed");
       let buf = buffer.from(arrayBuffer, 0, readLen);
-      console.log(`The content of file: ${buf.toString()}`);
+      console.info(`The content of file: ${buf.toString()}`);
       stream.close();
     }
   });
@@ -5467,7 +5470,7 @@ lock(exclusive?: boolean): Promise\<void>
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.lock(true).then(() => {
-    console.log("lock file succeed");
+    console.info("lock file succeed");
   }).catch((err: BusinessError) => {
     console.error("lock file failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
@@ -5504,7 +5507,7 @@ lock(exclusive?: boolean, callback: AsyncCallback\<void>): void
     if (err) {
       console.error("lock file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
-      console.log("lock file succeed");
+      console.info("lock file succeed");
     }
     fs.closeSync(file);
   });
@@ -5534,7 +5537,7 @@ tryLock(exclusive?: boolean): void
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.tryLock(true);
-  console.log("lock file succeed");
+  console.info("lock file succeed");
   fs.closeSync(file);
   ```
 
@@ -5557,7 +5560,7 @@ unlock(): void
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.tryLock(true);
   file.unlock();
-  console.log("unlock file succeed");
+  console.info("unlock file succeed");
   fs.closeSync(file);
   ```
 

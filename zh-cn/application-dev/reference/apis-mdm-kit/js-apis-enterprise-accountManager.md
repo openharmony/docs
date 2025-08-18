@@ -1,4 +1,10 @@
 # @ohos.enterprise.accountManager（账户管理）
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--Designer: @liuzuming-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供设备账户管理能力，包括禁止创建本地用户等。
 
@@ -26,6 +32,7 @@ disallowOsAccountAddition(admin: Want, disallow: boolean, accountId?: number): v
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -78,6 +85,7 @@ isOsAccountAdditionDisallowed(admin: Want, accountId?: number): boolean
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -135,6 +143,7 @@ addOsAccountAsync(admin: Want, name: string, type: osAccount.OsAccountType): Pro
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -187,11 +196,13 @@ accountManager.addOsAccountAsync(wantTemp, "TestAccountName", osAccount.OsAccoun
 
 setDomainAccountPolicy(admin: Want, domainAccountInfo: osAccount.DomainAccountInfo, policy: DomainAccountPolicy): void
 
-设置域账号策略，该接口仅在2in1设备上生效。
+设置域账号策略，该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -271,11 +282,13 @@ async function setDomainAccountPolicy() {
 
 getDomainAccountPolicy(admin: Want, domainAccountInfo: osAccount.DomainAccountInfo): DomainAccountPolicy
 
-获取域账号策略，该接口仅在2in1设备上生效。
+获取域账号策略，该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -313,7 +326,7 @@ async function getDomainAccountPolicy() {
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility'
   };
-  let domainAccountPolicy: accountManager.DomainAccountPolicy = {}
+  let domainAccountPolicy: accountManager.DomainAccountPolicy = {};
   // 查询全局域账号策略
   let accountInfo: osAccount.DomainAccountInfo = {
     domain: '',

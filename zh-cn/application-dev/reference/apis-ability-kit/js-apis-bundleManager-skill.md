@@ -1,4 +1,10 @@
 # Skill
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 skill标签对象，可以通过[bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取skill([BundleInfo](./js-apis-bundleManager-bundleInfo.md)->[HapModuleInfo](./js-apis-bundleManager-hapModuleInfo.md)->[AbilityInfo](./js-apis-bundleManager-abilityInfo.md)或[ExtensionAbilityInfo](./js-apis-bundleManager-extensionAbilityInfo.md)中)信息，其中参数bundleFlags至少包含GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_ABILITY和GET_BUNDLE_INFO_WITH_SKILL。
 

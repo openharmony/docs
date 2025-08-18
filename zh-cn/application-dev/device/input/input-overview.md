@@ -21,6 +21,6 @@ Input Kit除了提供基础的输入事件服务之外，还提供了获取输�
   | setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void | 设置快捷键屏蔽类型。false为不屏蔽，true为屏蔽，默认为false。 |ohos.permission.INPUT_CONTROL_DISPATCHING|
   | getShieldStatus(shieldMode: ShieldMode): boolean | 获取快捷键屏蔽类型。false为不屏蔽，true为屏蔽，默认为false。 |ohos.permission.INPUT_CONTROL_DISPATCHING|
     
-2. [组合按键](inputconsumer-guidelines.md)、[注入事件](inputeventclient-guidelines.md)、[输入监听](inputmonitor-guidelines.md)、[快捷键](shortkey-guidelines.md)模块接口为系统接口，其中[输入监听](inputmonitor-guidelines.md)模块接口接口需要 ohos.permission.INPUT_MONITORING权限。
+2. [组合按键](inputconsumer-guidelines.md)、[事件注入](inputeventclient-guidelines.md)、[输入监听](inputmonitor-guidelines.md)、[快捷键](shortkey-guidelines.md)模块接口为系统接口，其中[输入监听](inputmonitor-guidelines.md)模块接口接口需要 ohos.permission.INPUT_MONITORING权限。
 
 <!--DelEnd-->

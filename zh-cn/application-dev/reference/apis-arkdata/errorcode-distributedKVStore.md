@@ -1,4 +1,10 @@
 # 分布式键值数据库错误码
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @ding_dong_dong-->
+<!--Designer: @dboy190; @houpengtao1-->
+<!--Tester: @logic42-->
+<!--Adviser: @ge-yafang-->
 
 > **说明：**
 >

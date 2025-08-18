@@ -517,7 +517,7 @@ Subscribes to service status changes.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | event  | string | Yes   | Event type. The value is **distributedDataServiceDie**, which indicates service status changes.|
-| deathCallback  | Callback&lt;void&gt;  | Yes   | Callback used to return the service status change. |
+| deathCallback  | Callback&lt;void&gt;  | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -548,7 +548,7 @@ Unsubscribes from service status changes.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | event  | string | Yes   | Event type. The value is **distributedDataServiceDie**, which indicates service status changes.|
-| deathCallback  | Callback&lt;void&gt;  | No   | Callback to unregister. If this parameter is not specified, all callbacks for **distributedDataServiceDie** will be unregistered.|
+| deathCallback  | Callback&lt;void&gt;  | No   | Callback to unregister. If this parameter is not specified, all callbacks for service status changes will be unregistered.|
 
 
 **Example**
@@ -590,8 +590,8 @@ Enumerates the KV store types.
 
 | Name | Value| Description                   |
 | ---   | ----  | ----------------------- |
-| DEVICE_COLLABORATION  | 0 | Device KV store.<br> The device KV store manages data by device, which eliminates conflicts. Data can be queried by device.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore  |
-| SINGLE_VERSION  | 1 | Single KV store.<br> The single KV store does not differentiate data by device. If the same key is modified by different devices, the data will be overwritten.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
+| DEVICE_COLLABORATION  | 0 | Device KV store.<br>The device KV store manages data by device, which eliminates conflicts. Data can be queried by device.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore  |
+| SINGLE_VERSION  | 1 | Single KV store.<br>The single KV store does not differentiate data by device. If the same key is modified by different devices, the data will be overwritten.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
 | MULTI_VERSION   | 2 | Multi-version KV store. This type is not supported currently.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
 
 
@@ -2247,7 +2247,7 @@ Subscribes to data changes of the specified type.
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes.|
 | type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback used to return the data change.|
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback used to return the result.                                          |
 
 **Example**
 
@@ -2333,7 +2333,7 @@ Unsubscribes from sync completion events.
 | Name      | Type                                         | Mandatory| Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
 | event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync completion event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for the sync completion event will be unregistered.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for data changes will be unregistered.|
 
 **Example**
 
@@ -3277,7 +3277,7 @@ try {
 ```
 
 
-### getResultSet<sup>8+</sup><a name="singlekvstore_getresultset"></a>
+### getResultSet<sup>8+</sup>
 
 getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
@@ -3494,7 +3494,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void
 
-Closes the **KvStoreResultSet** object obtained by [SingleKvStore.getResultSet](#singlekvstore_getresultset). This API uses an asynchronous callback to return the result.
+Closes the **KvStoreResultSet** object obtained by [SingleKVStore.getResultSet](#getresultset8). This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3528,7 +3528,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
-Closes the **KvStoreResultSet** object obtained by [SingleKvStore.getResultSet](#singlekvstore_getresultset). This API uses a promise to return the result.
+Closes the **KvStoreResultSet** object obtained by [SingleKVStore.getResultSet](#getresultset8). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3836,7 +3836,7 @@ Subscribes to data changes of the specified type.
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes.|
 | type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback used to return the data change.                     |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback used to return the result.                                          |
 
 **Example**
 
@@ -3931,7 +3931,7 @@ Unsubscribes from sync completion events.
 | Name      | Type                                         | Mandatory| Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
 | event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync completion event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for the sync completion event will be unregistered. |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for data changes will be unregistered. |
 
 **Example**
 
@@ -4523,7 +4523,7 @@ try {
 ```
 
 
-### getResultSet<sup>8+</sup><a name="devicekvstore_getresultset"></a>
+### getResultSet<sup>8+</sup>
 
 getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
@@ -4856,7 +4856,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void
 
-Closes the **KvStoreResultSet** object obtained by [DeviceKVStore.getResultSet](#devicekvstore_getresultset). This API uses an asynchronous callback to return the result.
+Closes the **KvStoreResultSet** object obtained by [DeviceKVStore.getResultSet](#getresultset8-4). This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4864,7 +4864,7 @@ Closes the **KvStoreResultSet** object obtained by [DeviceKVStore.getResultSet](
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| resultSet  |[KvStoreResultSet](#getresultset8)  | Yes   |**KvStoreResultSet** object to close.  |
+| resultSet  |[KvStoreResultSet](#kvstoreresultset8)  | Yes   |**KvStoreResultSet** object to close.  |
 | callback   |AsyncCallback&lt;void&gt;                 | Yes   |Callback used to return the result.   |
 
 **Example**
@@ -4891,7 +4891,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
-Closes the **KvStoreResultSet** object obtained by [DeviceKVStore.getResultSet](#devicekvstore_getresultset). This API uses a promise to return the result.
+Closes the **KvStoreResultSet** object obtained by [DeviceKVStore.getResultSet](#getresultset8-4). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4899,7 +4899,7 @@ Closes the **KvStoreResultSet** object obtained by [DeviceKVStore.getResultSet](
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| resultSet  |[KvStoreResultSet](#getresultset8)  | Yes   |**KvStoreResultSet** object to close.  |
+| resultSet  |[KvStoreResultSet](#kvstoreresultset8)  | Yes   |**KvStoreResultSet** object to close.  |
 
 **Return value**
 
@@ -5258,7 +5258,7 @@ Synchronizes the KV store manually.
 | -----  | ------   | ----  | ----------------------- |
 | deviceIds    |string[]               | Yes   |**networkId**s of the devices to be synchronized.|
 | mode            |[SyncMode](#syncmode)  | Yes   |Sync mode. |
-| delayMs  |number                 | No   |Delay time allowed, in ms. The default value is **0**. |
+| delayMs  |number                 | No   |Delay time allowed, in milliseconds. The default value is **0**. |
 
 **Example**
 
@@ -5314,7 +5314,7 @@ Subscribes to data changes of the specified type.
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes.|
 | type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback used to return the data change.                   |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback used to return the result.                                          |
 
 **Example**
 
@@ -5409,7 +5409,7 @@ Unsubscribes from sync completion events.
 | Name      | Type                                         | Mandatory| Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
 | event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync completion event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for the sync completion event will be unregistered. |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for data changes will be unregistered. |
 
 **Example**
 

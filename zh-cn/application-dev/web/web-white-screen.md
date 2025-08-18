@@ -1,4 +1,10 @@
 # 定位与解决Web白屏问题
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc-->
+<!--Designer: @LongLie-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Web页面出现白屏的原因众多，本文列举了若干常见白屏问题的排查步骤，供开发者快速定位。
 
@@ -70,7 +76,7 @@ Web页面出现白屏的原因众多，本文列举了若干常见白屏问题�
         .onControllerAttached(() => {
           console.log("onControllerAttached");
           try {
-            let userAgent = this.controller.getUserAgent() + this.  customUserAgent;
+            let userAgent = this.controller.getUserAgent() + this.customUserAgent;
             this.controller.setCustomUserAgent(userAgent);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -83,7 +89,7 @@ Web页面出现白屏的原因众多，本文列举了若干常见白屏问题�
 ## 使用DevTools工具进行页面内容验证
 在确保网络与权限配置无误后，若仍出现白屏，则应利用DevTools工具调试前端页面以及监听Web相关错误上报接口，来定位具体报错类型。
 
-1. 查阅控制台的错误信息，定位具体的资源加载失败问题。资源加载失败会导致页面元素缺失，布局紊乱，图片和动画效果失效等，严重时可能导致渲染进程崩溃，页面呈现空白。如同所示，依次排查：<br>
+1. 查阅控制台的错误信息，定位具体的资源加载失败问题。资源加载失败会导致页面元素缺失，布局紊乱，图片和动画效果失效等，严重时可能导致渲染进程崩溃，页面呈现空白。如图所示，依次排查：<br>
   （1）元素是否完整，html元素、结构是否正确。<br> （2）控制台是否有报错。<br>（3）网络里面是否有资源加载时间特别长等。<br>
    ![web-white-devtools](figures/web-white-devtools.PNG)
 
@@ -341,7 +347,7 @@ Web组件提供了自适应页面布局的能力，详情见[ Web组件大小自
 * 若H5页面调用tel:、mailto:等协议导致白屏，需通过onInterceptRequest拦截并调用系统拨号能力：
    ```c
    .onInterceptRequest((event) => {
-       if (event.request.url.startWith('tel:')) {
+       if (event.request.url.startsWith('tel:')) {
            // 调用系统拨号能力
            call.makeCall({ phoneNumber: '123456' });
            return { responseCode: 404 }; // 阻止默认行为

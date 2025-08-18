@@ -175,7 +175,7 @@ struct Index {
   }
 }
 ```
-<!--@[actor_model](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
+<!--@[actor_model](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
 
 同时，也可等待生产者的生产任务全部执行完成，通过序列化通信将结果发送给UI线程，UI线程接收完毕后再由消费者统一消费结果。
 

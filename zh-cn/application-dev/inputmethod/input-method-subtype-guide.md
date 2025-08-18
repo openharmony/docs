@@ -1,4 +1,10 @@
 # 输入法子类型开发指南
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--Designer: @andeszhang-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 输入法子类型允许输入法展现不同的输入模式或语言，用户可以根据需要在不同模式和语言中切换。如：输入法的中文键盘、英文键盘等都属于输入法的子类型。
 
@@ -29,7 +35,7 @@
    }
    ```
    
-2. 子类型配置文件格式如下，字段释义参照[InputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-输入法子类型)，开发者需要严格按照配置文件格式及字段进行子类型信息配置，locale字段的配置参照[i18n-locale-culture](.././internationalization/i18n-locale-culture.md#实现原理)。
+2. 子类型配置文件格式如下，字段释义参照[InputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md#inputmethodsubtype)，开发者需要严格按照配置文件格式及字段进行子类型信息配置，locale字段的配置参照[i18n-locale-culture](.././internationalization/i18n-locale-culture.md#实现原理)。
    ```
    {
      "subtypes": [

@@ -1,4 +1,10 @@
-# system_grant Non-ACL Permissions for System Applications
+# system_grant Permissions for System Applications That Cannot Be Requested via ACL
+
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
 
 Before requesting permissions for your application, read and understand the [permission request paths](determine-application-mode.md) and this topic to determine the permissions required.
 

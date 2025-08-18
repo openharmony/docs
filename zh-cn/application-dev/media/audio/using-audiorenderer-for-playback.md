@@ -1,4 +1,10 @@
 # 使用AudioRenderer开发音频播放功能
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音频数据，相比[AVPlayer](../media/using-avplayer-for-playback.md)而言，可以在输入前添加数据预处理，更适合有音频开发经验的开发者，以实现更灵活的播放功能。
 
@@ -272,8 +278,8 @@ let writeDataCallback = (buffer: ArrayBuffer) => {
     if (bufferLength < buffer.byteLength) {
         let view = new DataView(buffer);
         for (let i = bufferLength; i < buffer.byteLength; i++) {
-            // 空白区域填充静音数据。填充时选择的数据类型需要和sampleFormat设置的类型保持一致。
-            view.setUint16(i, 0);
+            // 空白区域填充静音数据。当使用音频采样格式为SAMPLE_FORMAT_U8时0x7F为静音数据，使用其他采样格式时0为静音数据。
+            view.setUint8(i, 0);
         }
     }
     // API version 11不支持返回回调结果，从API version 12开始支持返回回调结果。

@@ -1,4 +1,10 @@
 # avmetadata_extractor.h
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
@@ -134,7 +140,7 @@ OH_AVErrCode OH_AVMetadataExtractor_FetchAlbumCover(OH_AVMetadataExtractor* extr
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVMetadataExtractor](capi-avmetadaextractor-oh-avmetadataextractor.md)* extractor | 指向OH_AVMetadataExtractor实例的指针。 |
-| [OH_PixelmapNative](../apis-image-kit/capi-image-nativemodule-oh-pixelmapnative.md** pixelMap | 从音频源获取的专辑封面。 |
+| [OH_PixelmapNative](../apis-image-kit/capi-image-nativemodule-oh-pixelmapnative.md)** pixelMap | 从音频源获取的专辑封面。 |
 
 **返回：**
 

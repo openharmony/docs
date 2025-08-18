@@ -1,4 +1,10 @@
 # 使用JSVM-API进行内存管理
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## 简介
 
@@ -17,7 +23,7 @@ JSVM-API提供了一组用于管理JavaScript虚拟机内存的API，可以更�
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。
+JSVM-API接口开发流程请参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)。本文仅展示接口对应C++及ArkTS相关代码。
 
 ### OH_JSVM_AdjustExternalMemory
 
@@ -58,12 +64,12 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 ```
 
-// 样例测试JS
+样例测试JS
 
 ```c++
 const char *srcCallNative = R"JS(adjustExternalMemory())JS";
 ```
-<!-- @[oh_jsvm_adjust_external_memory](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/adjustexternalmemory/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_adjust_external_memory](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/adjustexternalmemory/src/main/cpp/hello.cpp) -->
 输出结果：
 在LOG中输出以下信息：
 ```cpp
@@ -72,7 +78,7 @@ JSVM Allocate memory size: 1048576
 ```
 ### OH_JSVM_MemoryPressureNotification
 
-通知虚拟机系统内存不足并有选择地触发垃圾回收
+使用OH_JSVM_MemoryPressureNotification通知虚拟机系统内存不足并有选择地触发垃圾回收。
 
 cpp部分代码：
 
@@ -105,12 +111,12 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 ```
 
-// 样例测试JS
+样例测试JS
 
 ```c++
 const char *srcCallNative = R"JS(memoryPressureNotification())JS";
 ```
-<!-- @[oh_jsvm_memory_pressure_notification](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/memorypressurenotification/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_memory_pressure_notification](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/memorypressurenotification/src/main/cpp/hello.cpp) -->
 输出结果：
 在LOG中输出以下信息：
 ```cpp

@@ -16,5 +16,5 @@
 
 | 名称                                                     | 描述 |
 |--------------------------------------------------------| -- |
-| [NetConn_NetHandle](capi-netconnection-netconn-nethandle.md) netHandles[NETCONN_MAX_NET_SIZE] | netHandle列表。 |
+| [NetConn_NetHandle](capi-netconnection-netconn-nethandle.md) netHandles[[NETCONN_MAX_NET_SIZE]](capi-net-connection-type-h.md#宏定义) | netHandle列表。 |
 | int32_t netHandleListSize                              | netHandleList的实际大小。 |

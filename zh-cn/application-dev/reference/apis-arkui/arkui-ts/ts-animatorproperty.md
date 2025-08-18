@@ -1,4 +1,10 @@
 # 属性动画 (animation)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 组件的某些通用属性变化时，可以通过属性动画实现渐变过渡效果，提升用户体验。支持的属性包括[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、[opacity](ts-universal-attributes-opacity.md#opacity)、[scale](ts-universal-attributes-transformation.md#scale)、[rotate](ts-universal-attributes-transformation.md#rotate)、[translate](ts-universal-attributes-transformation.md#translate)等。布局类改变宽高的动画，内容都是直接到终点状态，例如文字、[Canvas](ts-components-canvas-canvas.md)的内容等，如果要内容跟随宽高变化，可以使用[renderFit](ts-universal-attributes-renderfit.md#renderfit)属性配置。
 
@@ -6,7 +12,7 @@
 >
 > 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 接口
+## animation
 
 animation(value:AnimateParam): T
 
@@ -49,7 +55,7 @@ Column({ space: this.space }) // 改变Column构造器中的space动画不生效
       this.space = 20; // 改变this.space动画不生效
     } else {
       this.widthSize = 250;
-      this.heightSize = 100;;
+      this.heightSize = 100;
       this.space = 10; // 改变this.space动画不生效
     }
     this.flag = !this.flag;

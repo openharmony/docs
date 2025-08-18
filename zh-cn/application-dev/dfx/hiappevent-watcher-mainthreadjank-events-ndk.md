@@ -14,31 +14,32 @@
 ## 开发步骤
 
 ### 添加事件观察者
+1. 参考[三方开源库jsoncpp代码仓](https://github.com/open-source-parsers/jsoncpp)README中**Using JsonCpp in your project**介绍的使用方法获取到jsoncpp.cpp、json.h和json-forwards.h三个文件。
 
-1. 新建Native C++工程，并将jsoncpp导入到新建工程内，目录结构如下。
+2. 新建Native C++工程，并将上述文件导入到新建工程内，目录结构如下。
 
    ```yml
    entry:
      src:
        main:
          cpp:
-           - json:
-               - json.h
-               - json-forwards.h
-           - types:
-               libentry:
-                 - index.d.ts
+           json:
+             - json.h
+             - json-forwards.h
+           types:
+             libentry:
+               - index.d.ts
            - CMakeLists.txt
-           - napi_init.cpp
            - jsoncpp.cpp
+           - napi_init.cpp
          ets:
-           - entryability:
-               - EntryAbility.ets
-           - pages:
-               - Index.ets
+           entryability:
+             - EntryAbility.ets
+           pages:
+             - Index.ets
    ```
 
-2. 编辑“CMakeLists.txt”文件，添加源文件及动态库。
+3. 编辑“CMakeLists.txt”文件，添加源文件及动态库。
 
    ```cmake
    # 新增jsoncpp.cpp(解析订阅事件中的json字符串)源文件
@@ -47,7 +48,7 @@
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libhiappevent_ndk.z.so)
    ```
 
-3. 编辑“napi_init.cpp”文件，导入依赖的文件，并定义LOG_TAG。
+4. 编辑“napi_init.cpp”文件，导入依赖的文件，并定义LOG_TAG。
 
    ```c++
    #include "napi/native_api.h"
@@ -59,7 +60,7 @@
    #define LOG_TAG "testTag"
    ```
 
-4. 订阅系统事件。
+5. 订阅系统事件。
 
    - onReceive类型观察者
 
@@ -127,7 +128,7 @@
       }
       ```
 
-5. 将RegisterWatcher注册为ArkTS接口。
+6. 将RegisterWatcher注册为ArkTS接口。
 
    编辑“napi_init.cpp”文件，将RegisterWatcher注册为ArkTS接口：
 
@@ -148,7 +149,7 @@
    export const registerWatcher: () => void;
    ```
 
-6. 编辑工程中的“entry > src > main > ets > entryability> EntryAbility.ets”文件，在onCreate()函数中新增接口调用。
+7. 编辑工程中的“entry > src > main > ets > entryability> EntryAbility.ets”文件，在onCreate()函数中新增接口调用。
 
    ```typescript
    // 导入依赖模块
@@ -159,7 +160,7 @@
    testNapi.registerWatcher();
    ```
 
-7. 编辑工程中的“entry > src > main > ets > pages> Index.ets”文件，添加一个Button控件onClick中实现主线程超时代码，示例代码如下：
+8. 编辑工程中的“entry > src > main > ets > pages> Index.ets”文件，添加一个Button控件onClick中实现主线程超时代码，示例代码如下：
 
    ```typescript
       Button("timeOut350")
@@ -171,7 +172,7 @@
       })
    ```
 
-8. 点击DevEco Studio界面中的运行按钮，运行应用工程，连续点击两次timeOut350按钮，会触发主线程超时事件。
+9. 点击DevEco Studio界面中的运行按钮，运行应用工程，连续点击两次timeOut350按钮，会触发主线程超时事件。
 
 ### 验证观察者是否订阅到主线程超时事件
 

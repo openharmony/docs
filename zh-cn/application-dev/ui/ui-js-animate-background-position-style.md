@@ -1,4 +1,10 @@
 # background-position样式动画
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 通过改变background-position属性（第一个值为X轴的位置，第二个值为Y轴的位置）移动背景图片位置，若背景图位置超出组件则超出部分的背景图不显示。
 
@@ -73,7 +79,7 @@
     background-position:right bottom;
   }
   100%{
-    background-position:left top;;
+    background-position:left top;
   }
 }
 ```

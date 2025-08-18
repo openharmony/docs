@@ -1,4 +1,10 @@
 # Counter
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyujie43-->
+<!--Designer: @weixin_52725220-->
+<!--Tester: @xiong0104-->
+<!--Adviser: @HelloCrease-->
 
 计数器组件，提供相应的增加或者减少的计数操作。
 

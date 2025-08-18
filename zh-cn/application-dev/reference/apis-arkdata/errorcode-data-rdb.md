@@ -1,4 +1,10 @@
 # 关系型数据库错误码
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 > **说明：**
 >
@@ -105,7 +111,7 @@ ResultSet is empty or pointer index is out of bounds.
 
 **错误信息**
 
-Resultset is empty or column index is out of bounds.
+ResultSet is empty or column index is out of bounds.
 
 **错误描述**
 

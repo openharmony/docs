@@ -1,4 +1,10 @@
 # 延迟任务(ArkTS)
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: ResourceSchedule-->
+<!--Owner: @cheng-shichang-->
+<!--Designer: @zhouben25-->
+<!--Tester: @fenglili18-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ## 概述
 
@@ -27,7 +33,7 @@
   | -------- | -------- |
   | 活跃分组 | 最小间隔2小时 |
   | 经常使用分组 | 最小间隔4小时 |
-  | 常用使用 | 最小间隔24小时 |
+  | 常用分组 | 最小间隔24小时 |
   | 极少使用分组 | 最小间隔48小时 |
   | 受限使用分组 | 禁止 |
   | 从未使用分组 | 禁止 |<!--Del-->
@@ -114,7 +120,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 
 2. **延迟任务调度**：调用延迟任务接口，实现延迟任务申请、取消等功能。
 
-### 实现延迟任务回调拓展能力
+### 实现延迟任务回调扩展能力
 
 1. 新建工程目录。
 
@@ -230,4 +236,4 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 
 针对延迟任务调度的开发，有以下相关示例可供参考：
 
-- [延迟任务调度（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/TaskManagement/WorkScheduler)
+- [延迟任务调度（ArkTS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/TaskManagement/WorkScheduler)

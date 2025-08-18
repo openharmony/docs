@@ -1,5 +1,12 @@
 # 随机生成非对称密钥对(C/C++)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 以RSA和SM2为例，随机生成非对称密钥对（OH_CryptoKeyPair），并获得二进制数据。
 
 非对称密钥对可用于后续加解密等操作，二进制数据可用于存储或运输。
@@ -103,6 +110,7 @@ static OH_Crypto_ErrCode randomGenerateSm2KeyPair()
         return ret;
     }
 
+    OH_Crypto_FreeDataBlob(&retBlob);
     OH_CryptoAsymKeyGenerator_Destroy(ctx);
     OH_CryptoKeyPair_Destroy(dupKeyPair);
     return ret;

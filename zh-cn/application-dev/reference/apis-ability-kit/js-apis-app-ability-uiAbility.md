@@ -1,5 +1,12 @@
 # @ohos.app.ability.UIAbility (带界面的应用组件)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @littlejerry1; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 UIAbility是包含UI界面的应用组件，继承自[Ability](js-apis-app-ability-ability.md)，提供UIAbility组件创建、销毁、前后台切换等[生命周期](#uiability生命周期状态)回调，同时也具备[后台通信能力](#后台通信能力)。
 
 > **说明：**
@@ -771,8 +778,6 @@ onPrepareToTerminate(): boolean
 
 > **说明：**
 >
-> - 该接口仅在2in1和tablet设备上生效。
->
 > - 从API version 15开始，当[UIAbility.onPrepareToTerminateAsync](#onpreparetoterminateasync15)实现时，本回调函数将不执行。当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#onprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#onpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
 > - 如果应用本身或者所使用的三方框架注册了[window.WindowStage.on('windowStageClose')](../apis-arkui/arkts-apis-window-WindowStage.md#onwindowstageclose14)监听，本回调函数将不执行。
 
@@ -781,6 +786,8 @@ onPrepareToTerminate(): boolean
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**设备行为差异**：该接口仅在2in1和tablet设备中可正常执行回调，在其他设备上不执行回调。
 
 **返回值：**
 
@@ -832,8 +839,6 @@ onPrepareToTerminateAsync(): Promise\<boolean>
 
 > **说明：**
 >
-> - 从API version 15开始，该接口在2in1设备上生效；从API version 19开始，该接口在tablet设备上生效。
->
 > - 当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#onprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#onpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
 > - 如果应用本身或者所使用的三方框架注册了[window.WindowStage.on('windowStageClose')](../apis-arkui/arkts-apis-window-WindowStage.md#onwindowstageclose14)监听，本回调函数将不执行。
 >
@@ -844,6 +849,10 @@ onPrepareToTerminateAsync(): Promise\<boolean>
 **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**设备行为差异**：
+- 从API version 15开始，该接口仅在2in1设备中可正常执行回调，在其他设备上不执行回调。
+- 从API version 19开始，该接口在2in1和tablet设备中可正常执行回调，在其他设备上不执行回调。
 
 **返回值：**
 
@@ -951,7 +960,7 @@ Caller UIAbility向Callee UIAbility发送双方约定好的序列化的数据。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| method | string | 是 | 由Caller和Calle双方约定好的方法名，Callee方通过该字段区分消息类型。 |
+| method | string | 是 | 由Caller和Callee双方约定好的方法名，Callee方通过该字段区分消息类型。 |
 | data | [rpc.Parcelable](../apis-ipc-kit/js-apis-rpc.md#parcelable9) | 是 | 由Caller向Callee发送的消息内容，消息内容是序列化的数据。 |
 
 **返回值：**
@@ -980,9 +989,9 @@ import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class MyMessageAble implements rpc.Parcelable { // 自定义的Parcelable数据结构
-  name: string
-  str: string
-  num: number = 1
+  name: string;
+  str: string;
+  num: number = 1;
   constructor(name: string, str: string) {
     this.name = name;
     this.str = str;
@@ -999,9 +1008,8 @@ class MyMessageAble implements rpc.Parcelable { // 自定义的Parcelable数据�
     console.info(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
     return true;
   }
-};
+}
 let method = 'call_Function'; // 约定的通知消息字符串
-let caller: Caller;
 
 export default class MainUIAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -1010,7 +1018,7 @@ export default class MainUIAbility extends UIAbility {
       abilityName: 'MainUIAbility',
       deviceId: ''
     }).then((obj) => {
-      caller = obj;
+      let caller: Caller = obj;
       let msg = new MyMessageAble('msg', 'world'); // 参考Parcelable数据定义
       caller.call(method, msg)
         .then(() => {
@@ -1196,8 +1204,6 @@ import { UIAbility, Caller } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let caller: Caller;
-
 export default class MainUIAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     this.context.startAbilityByCall({
@@ -1205,13 +1211,13 @@ export default class MainUIAbility extends UIAbility {
       abilityName: 'MainUIAbility',
       deviceId: ''
     }).then((obj) => {
-      caller = obj;
+      let caller: Caller = obj;
       try {
         caller.onRelease((str) => {
           console.info(`Caller OnRelease CallBack is called ${str}`);
         });
       } catch (error) {
-        console.error(`Caller.onRelease catch error, error.code: $error.code}, error.message: ${error.message}`);
+        console.error(`Caller.onRelease catch error, error.code: ${error.code}, error.message: ${error.message}`);
       }
     }).catch((err: BusinessError) => {
       console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
@@ -1250,17 +1256,15 @@ import { UIAbility, Caller } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let caller: Caller;
-let dstDeviceId: string;
-
 export default class MainAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
+    let dstDeviceId: string = 'xxxxx';
     this.context.startAbilityByCall({
       bundleName: 'com.example.myservice',
       abilityName: 'MainUIAbility',
       deviceId: dstDeviceId
     }).then((obj) => {
-      caller = obj;
+      let caller: Caller = obj;
       try {
         caller.onRemoteStateChange((str) => {
           console.info('Remote state changed ' + str);
@@ -1270,7 +1274,7 @@ export default class MainAbility extends UIAbility {
       }
     }).catch((err: BusinessError) => {
       console.error(`Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}`);
-    })
+    });
   }
 }
 ```
@@ -1306,16 +1310,15 @@ import { UIAbility, Caller } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let caller: Caller;
-
 export default class MainUIAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
+    let dstDeviceId: string = 'xxxx';
     this.context.startAbilityByCall({
       bundleName: 'com.example.myservice',
       abilityName: 'MainUIAbility',
-      deviceId: ''
+      deviceId: dstDeviceId
     }).then((obj) => {
-      caller = obj;
+      let caller: Caller = obj;
       try {
         caller.on('release', (str) => {
           console.info(`Caller OnRelease CallBack is called ${str}`);
@@ -1360,8 +1363,6 @@ import { UIAbility, Caller, OnReleaseCallback } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let caller: Caller;
-
 export default class MainUIAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     this.context.startAbilityByCall({
@@ -1369,7 +1370,7 @@ export default class MainUIAbility extends UIAbility {
       abilityName: 'MainUIAbility',
       deviceId: ''
     }).then((obj) => {
-      caller = obj;
+      let caller: Caller = obj;
       try {
         let onReleaseCallBack: OnReleaseCallback = (str) => {
           console.info(`Caller OnRelease CallBack is called ${str}`);
@@ -1500,7 +1501,6 @@ class MyMessageAble implements rpc.Parcelable {
 let method = 'call_Function';
 
 function funcCallBack(pdata: rpc.MessageSequence) {
-  console.info(`Callee funcCallBack is called ${pdata}`);
   let msg = new MyMessageAble('test', '');
   pdata.readParcelable(msg);
   return new MyMessageAble('test1', 'Callee test');

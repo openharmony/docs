@@ -1,5 +1,12 @@
 # Interface (PhotoAccessHelper)
 
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xuchangda; @yixiaoff-->
+<!--Designer: @guxinggang; @liweilu1-->
+<!--Tester: @wangbeibei; @xchaosioda-->
+<!--Adviser: @zengyawen-->
+
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -210,7 +217,7 @@ createAsset(photoType: PhotoType, extension: string, options: CreateOptions, cal
 
 指定文件类型、后缀和创建选项，创建图片或视频资源。使用callback方式返回结果。
 
-在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
+在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件或授权弹窗的方式创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -224,7 +231,7 @@ createAsset(photoType: PhotoType, extension: string, options: CreateOptions, cal
 | -------- | ------------------------ | ---- | ------------------------- |
 | photoType  | [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype)        | 是   | 创建的文件类型，IMAGE或者VIDEO类型。              |
 | extension  | string        | 是   | 文件名后缀参数，例如：'jpg'。              |
-| options  | [CreateOptions](arkts-apis-photoAccessHelper-i.md#createoptions)        | 是   | 创建选项，当前仅支持'title'，例如{title: 'testPhoto'}。<br>**注意：** 传入其他选项，配置不生效。      |
+| options  | [CreateOptions](arkts-apis-photoAccessHelper-i.md#createoptions)        | 是   | 创建选项，当前仅支持'title'，例如{title: 'testPhoto'}。<br>**注意：** 传入其他选项，配置不生效。<br>文件名中不允许出现非法英文字符，包括： . .. \ / : * ? " ' ` < > \| { } [ ]       |
 | callback |  AsyncCallback&lt;string&gt; | 是   | callback返回创建的图片和视频的uri。 |
 
 **错误码：**
@@ -269,7 +276,7 @@ createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;
 
 指定文件类型和后缀，创建图片或视频资源，使用callback方式返回结果。
 
-在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
+在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件或授权弹窗的方式创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -324,7 +331,7 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 
 指定文件类型、后缀和创建选项，创建图片或视频资源，以Promise方式返回结果。
 
-在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
+在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件或授权弹窗的方式创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -338,7 +345,7 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 | -------- | ------------------------ | ---- | ------------------------- |
 | photoType  | [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype)        | 是   | 创建的文件类型，IMAGE或者VIDEO类型。              |
 | extension  | string        | 是   | 文件名后缀参数，例如：'jpg'。              |
-| options  | [CreateOptions](arkts-apis-photoAccessHelper-i.md#createoptions)        | 否   | 创建选项，当前仅支持'title'，例如{title: 'testPhoto'}。<br>**注意：** 传入其他选项，配置不生效。      |
+| options  | [CreateOptions](arkts-apis-photoAccessHelper-i.md#createoptions)        | 否   | 创建选项，当前仅支持'title'，例如{title: 'testPhoto'}。<br>**注意：** 传入其他选项，配置不生效。<br>文件名中不允许出现非法英文字符，包括： . .. \ / : * ? " ' ` < > \| { } [ ]      |
 
 **返回值：**
 
@@ -708,7 +715,7 @@ applyChanges(mediaChangeRequest: MediaChangeRequest): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
-提交创建资产的变更请求时，使用安全控件调用接口创建媒体资源，无需申请'ohos.permission.WRITE_IMAGEVIDEO'权限，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
+在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件或授权弹窗的方式创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1313,6 +1320,48 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 }
 ```
 
+## getPhotoPickerComponentDefaultAlbumName<sup>20+</sup>
+
+getPhotoPickerComponentDefaultAlbumName(): Promise&lt;string&gt;
+
+应用使用PhotoPickerComponent组件选择照片时，支持调用API获取组件默认显示相册的相册名字符串。跟随当前系统语言，支持返回当前语言的相册名。使用Promise异步回调。
+
+**原子化服务API**： 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;string&gt;| Promise对象，返回默认相册的相册名。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 23800301   | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. The IPC request timed out. 2. system running error.         |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import {photoAccessHelper} from '@kit.MediaLibraryKit';
+
+async function example(context: Context) {
+  console.info('getPhotoPickerComponentDefaultAlbumNameDemo');
+  let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
+  phAccessHelper.getPhotoPickerComponentDefaultAlbumName().then((defaultAlbumName) => {
+    console.info('getPhotoPickerComponentDefaultAlbumName success, defaultAlbumName is ' + defaultAlbumName);
+  }).catch((err: BusinessError) => {
+    console.error(`getPhotoPickerComponentDefaultAlbumName failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
 ## createDeleteRequest<sup>(deprecated)</sup>
 
 createDeleteRequest(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
@@ -1446,5 +1495,50 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   } catch (err) {
     console.error(`createDeleteRequest failed with error: ${err.code}, ${err.message}`);
   }
+}
+```
+
+## getRecentPhotoInfo<sup>20+</sup>
+
+getRecentPhotoInfo(options?: RecentPhotoOptions): Promise\<RecentPhotoInfo>
+
+应用使用RecentPhotoComponent组件查看最近图片时，支持调用API获取最近图片信息。使用Promise异步回调。
+
+**原子化服务API**： 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| options | [RecentPhotoOptions](arkts-apis-photoAccessHelper-class.md#recentphotooptions20) | 否   | 最近图片配置选项参数。若无此参数，则按照时间找到最近图片。<br>该参数在配置的情况下，需与RecentPhotoComponent组件中的options配置相同才可以查到一样的图片，否则可能存在接口能查到最近图片，组件没查到最近图片的情况。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise\<[RecentPhotoInfo](arkts-apis-photoAccessHelper-class.md#recentphotoinfo20)>| Promise对象，返回最近图片信息。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { photoAccessHelper, PhotoSource, RecentPhotoOptions} from '@kit.MediaLibraryKit';
+
+async function example(context: Context) {
+  console.info('getRecentPhotoInfoDemo');
+  let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  let recentPhotoOptions: RecentPhotoOptions = {
+    period: 60 * 60,
+    MIMEType: photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE,
+    photoSource: PhotoSource.ALL
+  }
+
+  phAccessHelper.getRecentPhotoInfo(recentPhotoOptions).then((recentPhotoInfo) => {
+    console.info('getRecentPhotoInfo success, recentPhotoInfo is ' + JSON.stringify(recentPhotoInfo));
+  }).catch((err: BusinessError) => {
+    console.error(`getRecentPhotoInfo failed with error: ${err.code}, ${err.message}`);
+  });
 }
 ```

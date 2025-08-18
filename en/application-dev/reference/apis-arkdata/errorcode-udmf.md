@@ -8,7 +8,7 @@
 
 **Error Message**
 
-Settings already exist.
+Settings already exist. To reconfigure, remove the existing sharing options.
 
 **Description**
 

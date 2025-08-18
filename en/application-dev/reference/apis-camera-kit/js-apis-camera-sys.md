@@ -1,11 +1,16 @@
 # @ohos.multimedia.camera (Camera Management) (System API)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
-The camera module provides a set of camera service APIs for you to easily develop a camera application. The application can access and operate the camera hardware to implement basic operations, such as preview, taking photos, and recording videos. It can also perform more operations, for example, controlling the flash and exposure time, and focusing or adjusting the focus.
+The module provides a set of camera service APIs for you to easily develop a camera application. The application can access and operate the camera hardware to implement basic operations, such as preview, taking photos, and recording videos. It can also perform more operations, for example, controlling the flash and exposure time, and focusing or adjusting the focus.
 
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.multimedia.camera (Camera Management)](js-apis-camera.md).
+> - This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.multimedia.camera (Camera Management)](arkts-apis-camera.md).
 
 ## Modules to Import
 
@@ -60,7 +65,7 @@ Describes the LCD flash information.
 
 | Name     | Type                         | Read-only| Optional | Description        |
 | -------- | ----------------------------- |---- |-----| ------------- |
-| isLcdFlashNeeded   | boolean | Yes | No  | Whether the LCD flash is required. The value **true** means that the LCD flash is required, and **false** means the opposite.     |
+| isLcdFlashNeeded   | boolean | Yes | No  | Whether the LCD flash is required. **true** if required, **false** otherwise.     |
 | lcdCompensation     | number                 | Yes | No  | LCD flash compensation.      |
 
 ## Photo<sup>11+</sup>
@@ -73,7 +78,7 @@ Defines a higher-resolution image object.
 
 | Name  | Type                           | Read-only | Optional      | Description|
 | ------ | ----------------------------- |-----| ---------- | ---------- |
-| raw<sup>12+</sup> | [image.Image](../apis-image-kit/js-apis-image.md#image9)| NA  | Yes  | Raw image.|
+| raw<sup>12+</sup> | [image.Image](../apis-image-kit/arkts-apis-image-Image.md)| NA  | Yes  | Raw image.|
 
 ## ExposureMode
 
@@ -116,13 +121,13 @@ Enumerates the types of light painting shutter modes.
 
 ## CameraManager
 
-Implements camera management. Before calling any API in **CameraManager**, you must use [getCameraManager](js-apis-camera.md#cameragetcameramanager) to obtain a **CameraManager** instance.
+Implements camera management. Before calling any API in CameraManager, you must use [getCameraManager](arkts-apis-camera-f.md#cameragetcameramanager) to obtain a CameraManager instance.
 
 ### createDepthDataOutput<sup>13+</sup>
 
 createDepthDataOutput(profile: DepthProfile): DepthDataOutput
 
-Creates a **DepthDataOutput** instance. This API returns the result synchronously.
+Creates a DepthDataOutput instance. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -132,20 +137,21 @@ Creates a **DepthDataOutput** instance. This API returns the result synchronousl
 
 | Name    | Type                                            | Mandatory| Description                             |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
-| profile  | [DepthProfile](#depthprofile13)           | Yes  | Supported preview profile, which is obtained through [getSupportedOutputCapability](js-apis-camera.md#getsupportedoutputcapability11).|
+| profile  | [DepthProfile](#depthprofile13)           | Yes  | Supported preview profile, which is obtained through [getSupportedOutputCapability](arkts-apis-camera-CameraManager.md#getsupportedoutputcapability11).|
 
 **Return value**
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| [DepthDataOutput](#depthdataoutput13)    | **DepthDataOutput** instance. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| [DepthDataOutput](#depthdataoutput13)    | DepthDataOutput instance. If the operation fails, an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
+| 202                    |  Not System Application.               |
 | 7400101                |  Parameter missing or parameter type incorrect.               |
 | 7400201                |  Camera service fatal error.               |
 
@@ -182,7 +188,15 @@ Checks whether the camera device can be muted.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | Check result. The value **true** means that the camera device can be muted, and **false** means the opposite.|
+| boolean    | Check result for whether the camera device can be muted. **true** if it can be muted, **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202             |  Permission verification failed. A non-system application calls a system API.   |
 
 **Example**
 
@@ -201,7 +215,7 @@ Mutes or unmutes the camera device.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 12. You are advised to use [muteCameraPersistent](#mutecamerapersistent12) instead.
+> This API is supported since API version 10 and deprecated since API version 12. You are advised to use [muteCameraPersistent](#mutecamerapersistent12) instead.
 
 **System API**: This is a system API.
 
@@ -211,7 +225,7 @@ Mutes or unmutes the camera device.
 
 | Name     | Type                             | Mandatory | Description       |
 | -------- | --------------------------------- | ---- | ---------- |
-| mute     | boolean                           |  Yes |  Whether to mute the camera device. The value **true** means to mute the camera device, and **false** means the opposite. |
+| mute     | boolean                           |  Yes |  Whether to mute the camera device. **true** to mute, **false** otherwise. |
 
 **Example**
 
@@ -226,7 +240,7 @@ function muteCamera(cameraManager: camera.CameraManager): void {
 
 muteCameraPersistent(mute: boolean, type: PolicyType): void
 
-Disables the camera in a persistent manner.
+Mutes the camera device permanently.
 
 **System API**: This is a system API.
 
@@ -236,8 +250,18 @@ Disables the camera in a persistent manner.
 
 | Name     | Type                         | Mandatory | Description                                        |
 | -------- |-----------------------------| ---- |--------------------------------------------|
-| mute     | boolean                     |  Yes | Whether to mute the camera device. The value **true** means to mute the camera device, and **false** means the opposite.                  |
+| mute     | boolean                     |  Yes | Whether to mute the camera device. **true** to mute, **false** otherwise.                  |
 | type     | [PolicyType](#policytype12) |  Yes | Policy type. For details about the available options, see [PolicyType](#policytype12).|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 201               |  Permission denied.                        |
+| 202               |  Not System Application.                  |
+| 7400101           |  Parameter missing or parameter type incorrect.  |
 
 **Example**
 
@@ -262,8 +286,8 @@ Subscribes to camera mute status events. This API uses an asynchronous callback 
 
 | Name    | Type            | Mandatory| Description      |
 | -------- | --------------- | ---- | --------- |
-| type     | string          | Yes  | Event type. The value is fixed at **'cameraMute'**, indicating the camera mute status. The event can be listened for when a **CameraManager** instance is obtained. This event is triggered and the status is returned when the camera device is muted or unmuted.|
-| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the camera mute status. The value **true** means that the camera mute status is enabled, and **false** means that it is disabled.              |
+| type     | string          | Yes  | Event type. The value is fixed at **'cameraMute'**, indicating the camera mute status. The event can be listened for when a CameraManager instance is obtained. This event is triggered and the status is returned when the camera device is muted or unmuted.|
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the camera mute status. **true** if muted, **false** otherwise.              |
 
 **Example**
 
@@ -298,8 +322,8 @@ Unsubscribes from camera mute status events.
 
 | Name    | Type            | Mandatory| Description                                                     |
 | -------- | --------------- | ---- |---------------------------------------------------------|
-| type     | string          | Yes  | Event type. The value is fixed at **'cameraMute'**, indicating the camera mute status. The event can be listened for when a **CameraManager** instance is obtained.|
-| callback | AsyncCallback\<boolean> | No  | Callback used to return the camera mute status. The value **true** means that the camera mute status is enabled, and **false** means that it is disabled. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('cameraMute')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)                 |
+| type     | string          | Yes  | Event type. The value is fixed at **'cameraMute'**, indicating the camera mute status. The event can be listened for when a CameraManager instance is obtained.|
+| callback | AsyncCallback\<boolean> | No  | Callback used to return the camera mute status. **true** if muted, **false** otherwise. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('cameraMute')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)                 |
 
 **Example**
 
@@ -329,13 +353,13 @@ Checks whether a camera device supports prelaunch.
 
 | Name    | Type                                              | Mandatory| Description      |
 | -------- |--------------------------------------------------| ---- | --------- |
-| camera | [CameraDevice](./js-apis-camera.md#cameradevice) | Yes| Camera device.|
+| camera | [CameraDevice](arkts-apis-camera-i.md#cameradevice) | Yes| Camera device.|
 
 **Return value**
 
 | Type| Description|
 | -------- | --------------- |
-| boolean | Check result. The value **true** means that the camera device supports prelaunch, and **false** means the opposite.|
+| boolean | Check result for the support of prelaunch. **true** if supported, **false** otherwise.|
 
 **Error codes**
 
@@ -428,6 +452,14 @@ Prelaunches the camera device. This API is called when a user clicks the system 
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202 | Not System Application. |
+
 **Example**
 
 ```ts
@@ -449,7 +481,7 @@ function preLaunch(context: common.BaseContext): void {
 
 createDeferredPreviewOutput(profile?: Profile): PreviewOutput
 
-Creates a deferred **PreviewOutput** instance and adds it, instead of a common **PreviewOutput** instance, to the data stream during stream configuration.
+Creates a deferred PreviewOutput instance and adds it, instead of a common PreviewOutput instance, to the data stream during stream configuration.
 
 **System API**: This is a system API.
 
@@ -459,13 +491,13 @@ Creates a deferred **PreviewOutput** instance and adds it, instead of a common *
 
 | Name    | Type            | Mandatory| Description      |
 | -------- | --------------- | ---- | --------- |
-| profile | [Profile](js-apis-camera.md#profile) | No| Configuration file of the camera preview stream.|
+| profile | [Profile](arkts-apis-camera-i.md#profile) | No| Configuration file of the camera preview stream.|
 
 **Return value**
 
 | Type| Description|
 | -------- | --------------- |
-| [PreviewOutput](#previewoutput) | **PreviewOutput** instance obtained.|
+| [PreviewOutput](#previewoutput) | PreviewOutput instance obtained.|
 
 **Error codes**
 
@@ -540,7 +572,7 @@ Describes the status indicating whether the camera is occluded.
 
 | Name                          | Type                                               | Read-only| Optional| Description               |
 | ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
-| isCameraOccluded                 | boolean              |  Yes | No|Whether the camera is occluded. The value **true** means that the camera is occluded, and **false** means the opposite.       |
+| isCameraOccluded                 | boolean              |  Yes | No|Whether the camera is occluded. **true** if occluded, **false** otherwise.       |
 
 ## CameraOutputCapability<sup>13+</sup>
 
@@ -571,7 +603,7 @@ Enumerates the camera output formats.
 
 Defines the camera input object.
 
-It provides camera device information used in [Session](js-apis-camera.md#session11).
+It provides camera device information used in [Session](arkts-apis-camera-Session.md).
 
 ### on('cameraOcclusionDetection')<sup>12+</sup>
 
@@ -585,7 +617,7 @@ Subscribes to CameraInput occlusion events. This API uses an asynchronous callba
 
 | Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| type     | string                           | Yes  | Event type. The value is fixed at **'cameraOcclusionDetection'**. The event can be listened for when a **CameraInput** instance is created. It is triggered when the occlusion status of the camera module changes, and the occlusion status is returned.|
+| type     | string                           | Yes  | Event type. The value is fixed at **'cameraOcclusionDetection'**. The event can be listened for when a CameraInput instance is created. It is triggered when the occlusion status of the camera module changes, and the occlusion status is returned.|
 | callback | AsyncCallback\<[CameraOcclusionDetectionResult](#cameraocclusiondetectionresult12)\> | Yes  | Callback used to return the occlusion status. |
 
 **Example**
@@ -618,7 +650,7 @@ Unsubscribes from CameraInput occlusion events.
 
 | Name    | Type            | Mandatory| Description                                                     |
 | -------- | --------------- | ---- |---------------------------------------------------------|
-| type     | string          | Yes  | Event type. The value is fixed at **'cameraOcclusionDetection'**. The event can be listened for when a **CameraInput** instance is created.|
+| type     | string          | Yes  | Event type. The value is fixed at **'cameraOcclusionDetection'**. The event can be listened for when a CameraInput instance is created.|
 | callback | AsyncCallback\<[CameraOcclusionDetectionResult](#cameraocclusiondetectionresult12)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('cameraOcclusionDetection')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)                 |
 
 **Example**
@@ -654,7 +686,7 @@ Describes the accuracy of depth data.
 
 ## DepthProfile<sup>13+</sup>
 
-Describes the profile of depth data. It inherits from [Profile](js-apis-camera.md#profile).
+Describes the profile of depth data. It inherits from [Profile](arkts-apis-camera-i.md#profile).
 
 **System API**: This is a system API.
 
@@ -691,7 +723,7 @@ Describes a depth data object.
 | Name     | Type                         | Read-only| Optional| Description           |
 | -------- | ----------------------------- |----- |---| -------------- |
 | format | [CameraFormat](#cameraformat)   | Yes|  No | Camera output format.|
-| depthMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)    | Yes|  No | Depth map.|
+| depthMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)    | Yes|  No | Depth map.|
 | qualityLevel | [DepthDataQualityLevel](#depthdataqualitylevel13)   | Yes|  No | Quality level of the depth map.|
 | accuracy | [DepthDataAccuracy](#depthdataaccuracy13) | Yes|  No | Accuracy of the depth map.|
 
@@ -708,14 +740,14 @@ Releases depth data output resources.
 **Example**
 
 ```ts
-function releaseDepthData(depthData: camera.DepthData): void {
+async function releaseDepthData(depthData: camera.DepthData): Promise<void> {
   await depthData.release();
 }
 ```
 
 ## DepthDataOutput<sup>13+</sup>
 
-Implements depth data output. It inherits from [CameraOutput](js-apis-camera.md#cameraoutput).
+Implements depth data output. It inherits from [CameraOutput](arkts-apis-camera-CameraOutput.md).
 
 ### start<sup>13+</sup>
 
@@ -804,7 +836,7 @@ Subscribes to depth data availability events. This API uses an asynchronous call
 
 | Name    | Type     | Mandatory| Description                                 |
 | -------- | ---------- | --- | ------------------------------------ |
-| type     | string     | Yes  | Event type. The value is fixed at **'depthDataAvailable'**. The event can be listened for when a **depthDataOutput** instance is created.|
+| type     | string     | Yes  | Event type. The value is fixed at **'depthDataAvailable'**. The event can be listened for when a depthDataOutput instance is created.|
 | callback | AsyncCallback\<[DepthData](#depthdata13)\> | Yes  | Callback used to listen for depth data.|
 
 **Example**
@@ -838,7 +870,7 @@ Unsubscribes from depth data availability events.
 
 | Name     | Type                   | Mandatory| Description                                      |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
-| type     | string                 | Yes  | Event type. The value is fixed at **'depthDataAvailable'**. The event can be listened for when a **depthDataOutput** instance is created.|
+| type     | string                 | Yes  | Event type. The value is fixed at **'depthDataAvailable'**. The event can be listened for when a depthDataOutput instance is created.|
 | callback | AsyncCallback\<[DepthData](#depthdata13)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -862,7 +894,7 @@ function unRegisterDepthDataAvailable(depthDataOutput: camera.DepthDataOutput): 
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **DepthDataOutput** error events. This API uses an asynchronous callback to return the result.
+Subscribes to DepthDataOutput error events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -876,8 +908,8 @@ Subscribes to **DepthDataOutput** error events. This API uses an asynchronous ca
 
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
-| type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **depthDataOutput** instance is created.|
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode). |
+| type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a depthDataOutput instance is created.|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode). |
 
 **Example**
 
@@ -897,7 +929,7 @@ function registerDepthDataOutputError(depthDataOutput: camera.DepthDataOutput): 
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **DepthDataOutput** error events.
+Unsubscribes from DepthDataOutput error events.
 
 **System API**: This is a system API.
 
@@ -907,7 +939,7 @@ Unsubscribes from **DepthDataOutput** error events.
 
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
-| type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **depthDataOutput** instance is created.|
+| type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a depthDataOutput instance is created.|
 | callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
@@ -936,7 +968,7 @@ Checks whether depth fusion is supported.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| boolean | Check result. The value **true** means that depth fusion is supported, and **false** means the opposite.|
+| boolean | Check result for the support of depth fusion. **true** if supported, **false** otherwise.|
 
 **Error codes**
 
@@ -1019,7 +1051,7 @@ Checks whether depth fusion is enabled.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| boolean | Check result. The value **true** means that depth fusion is enabled, and **false** means the opposite.|
+| boolean | Check result for whether depth fusion is enabled. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -1059,7 +1091,7 @@ Enables depth fusion.
 
 | Name    | Type     | Mandatory| Description                                 |
 | -------- | ---------- | --- | ------------------------------------ |
-| enabled  | boolean    | Yes  | Whether to enable depth fusion. The value **true** means to enable depth fusion, and **false** means the opposite.|
+| enabled  | boolean    | Yes  | Whether to enable depth fusion. **true** to enable, **false** otherwise.|
 
 **Error codes**
 
@@ -1100,7 +1132,7 @@ Currently, the configuration is used for sensor-level prelaunch. It will be used
 
 |            Name                | Type                                              |     Read-only   |     Mandatory    | Description      |
 | ------------------------------- |--------------------------------------------------| ----------- | ------------ | ---------- |
-| cameraDevice                    | [CameraDevice](./js-apis-camera.md#cameradevice) |      No    |       Yes     | Camera device.        |
+| cameraDevice                    | [CameraDevice](arkts-apis-camera-i.md#cameradevice) |      No    |       Yes     | Camera device.        |
 | restoreParamType<sup>11+</sup>  | [RestoreParamType](#restoreparamtype11)          |      No    |       No     | Type of the parameter used for prelaunch.   |
 | activeTime<sup>11+</sup>        | number                                           |      No    |       No     | Activation time, in minutes.|
 | settingParam<sup>11+</sup>      | [SettingParam](#settingparam11)                  |      No    |       No     | Setting parameter.     |
@@ -1135,13 +1167,13 @@ Defines the effect parameters used to preheat an image.
 
 ## PreviewOutput
 
-Implements preview output. It inherits from [CameraOutput](js-apis-camera.md#cameraoutput).
+Implements preview output. It inherits from [CameraOutput](arkts-apis-camera-CameraOutput.md).
 
 ### addDeferredSurface
 
 addDeferredSurface(surfaceId: string): void
 
-Adds a surface for delayed preview. This API can run after [Session.commitConfig](js-apis-camera.md#commitconfig11-1) or [Session.start](js-apis-camera.md#start11-1) is called.
+Adds a surface for delayed preview. This API can run after [Session.commitConfig](arkts-apis-camera-Session.md#commitconfig11-1) or [Session.start](arkts-apis-camera-Session.md#start11-1) is called.
 
 **System API**: This is a system API.
 
@@ -1155,10 +1187,11 @@ Adds a surface for delayed preview. This API can run after [Session.commitConfig
 
 **Error codes**
 
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
+| 202                    |  Permission verification failed. A non-system application calls a system API.    |
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 
 **Example**
@@ -1196,7 +1229,7 @@ Checks whether Picture-in-Picture (PiP) preview is supported.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| boolean | Check result. The value **true** means that the PiP preview is supported, and **false** means the opposite.|
+| boolean | Check result for the support of the PiP preview. **true** if supported, **false** otherwise.|
 
 **Error codes**
 
@@ -1209,6 +1242,8 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function isSketchSupported(previewOutput: camera.PreviewOutput): boolean {
   try {
     let isSupported: boolean = previewOutput.isSketchSupported();
@@ -1270,7 +1305,7 @@ Enables or disables PiP preview.
 
 | Name    | Type     | Mandatory| Description                      |
 |---------|---------| ---- | ------------------------ |
-| enabled | boolean | Yes| Whether to enable or disable PiP view. The value **true** means to enable PiP view, and **false** means to disable it.|
+| enabled | boolean | Yes| Whether to enable or disable PiP view. **true** to enable, **false** otherwise.|
 
 **Error codes**
 
@@ -1515,7 +1550,7 @@ async function releaseDeferredPhotoProxy(proxyObj: camera.DeferredPhotoProxy): P
 
 ## PhotoOutput
 
-Implements output information used in a photo session. It inherits from [CameraOutput](js-apis-camera.md#cameraoutput).
+Implements output information used in a photo session. It inherits from [CameraOutput](arkts-apis-camera-CameraOutput.md).
 
 ### burstCapture<sup>12+</sup>
 
@@ -1531,7 +1566,7 @@ Starts the burst mode, in which users can capture a series of photos in quick su
 
 | Name | Type                                       | Mandatory| Description    |
 | ------- | ------------------------------------------- | ---- | -------- |
-| setting | [PhotoCaptureSetting](js-apis-camera.md#photocapturesetting) | Yes  | Shooting parameters. The input of **undefined** is processed as if no parameters were passed.|
+| setting | [PhotoCaptureSetting](arkts-apis-camera-i.md#photocapturesetting) | Yes  | Shooting parameters. The input of **undefined** is processed as if no parameters were passed.|
 
 **Return value**
 
@@ -1632,7 +1667,7 @@ Checks whether deferred delivery of a certain type is supported.
 
 | Type           | Description                   |
 | -------------- | ----------------------- |
-| boolean | Check result. The value **true** means that deferred delivery is supported, and **false** means the opposite.|
+| boolean | Check result for the support of deferred delivery. **true** if supported, **false** otherwise.|
 
 **Error codes**
 
@@ -1675,7 +1710,7 @@ Checks whether deferred delivery of a certain type is enabled.
 
 | Type           | Description                   |
 | -------------- | ----------------------- |
-| boolean | **true**: Deferred delivery is enabled. **false**: Deferred delivery is disabled.|
+| boolean | Check result for whether deferred delivery is enabled. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -1747,7 +1782,7 @@ Checks whether automatic high quality is supported for photos.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| boolean | Check result. The value **true** means that automatic high quality is supported, and **false** means the opposite.|
+| boolean | Check result for whether automatic high quality is supported. **true** if supported, **false** otherwise.|
 
 **Error codes**
 
@@ -1785,7 +1820,7 @@ Before using this API, call [isAutoHighQualityPhotoSupported](#isautohighquality
 
 | Name     | Type              | Mandatory| Description                |
 | -------- | -------------------- | ---- | ------------------- |
-|   enabled   |  boolean  |   Yes  |   Whether to enable or disable automatic high quality for photos. The value **true** means to enable automatic high-quality, and **false** means to disable it.   |
+|   enabled   |  boolean  |   Yes  |   Whether to enable or disable automatic high quality for photos. **true** to enable, **false** otherwise.   |
 
 **Error codes**
 
@@ -1822,7 +1857,7 @@ Subscribes to events indicating available thumbnail proxies. This API uses an as
 
 | Name    | Type     | Mandatory| Description                                 |
 | -------- | ---------- | --- | ------------------------------------ |
-| type     | string     | Yes  | Event type. The value is fixed at **'deferredPhotoProxyAvailable'**. The event can be listened for when a **photoOutput** instance is created.|
+| type     | string     | Yes  | Event type. The value is fixed at **'deferredPhotoProxyAvailable'**. The event can be listened for when a photoOutput instance is created.|
 | callback | AsyncCallback\<[DeferredPhotoProxy](#deferredphotoproxy11)\> | Yes  | Callback used to return the thumbnail proxy.|
 
 **Error codes**
@@ -1868,7 +1903,7 @@ Unsubscribes from events indicating available thumbnail proxies.
 
 | Name     | Type                   | Mandatory| Description                                      |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
-| type     | string                 | Yes  | Event type. The value is fixed at **'deferredPhotoProxyAvailable'**. The event can be listened for when a **photoOutput** instance is created.|
+| type     | string                 | Yes  | Event type. The value is fixed at **'deferredPhotoProxyAvailable'**. The event can be listened for when a photoOutput instance is created.|
 | callback | AsyncCallback\<[DeferredPhotoProxy](#deferredphotoproxy11)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('deferredPhotoProxyAvailable')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)           |
 
 **Error codes**
@@ -1902,7 +1937,7 @@ isQuickThumbnailSupported(): boolean
 
 Checks whether the quick thumbnail feature is supported.
 
-This API must be called after [addOutput](js-apis-camera.md#addoutput11) or [addInput](js-apis-camera.md#addinput11) and before [commitConfig](js-apis-camera.md#commitconfig11-1).
+This API takes effect after [addOutput](arkts-apis-camera-Session.md#addoutput11) and [addInput](arkts-apis-camera-Session.md#addinput11) and before [commitConfig](arkts-apis-camera-Session.md#commitconfig11-1).
 
 **System API**: This is a system API.
 
@@ -1912,7 +1947,7 @@ This API must be called after [addOutput](js-apis-camera.md#addoutput11) or [add
 
 | Type| Description|
 | --------- | ------ |
-| boolean | Check result. The value **true** means that the quick thumbnail feature is supported, and **false** means the opposite.|
+| boolean | Check result for the support of the quick thumbnail feature. **true** if supported, **false** otherwise.|
 
 **Error codes**
 
@@ -1953,7 +1988,7 @@ enableQuickThumbnail(enabled: boolean): void
 
 Enables or disables the quick thumbnail feature.
 
-This API must be called after [addOutput](js-apis-camera.md#addoutput11) or [addInput](js-apis-camera.md#addinput11) and before [commitConfig](js-apis-camera.md#commitconfig11-1).
+This API takes effect after [addOutput](arkts-apis-camera-Session.md#addoutput11) and [addInput](arkts-apis-camera-Session.md#addinput11) and before [commitConfig](arkts-apis-camera-Session.md#commitconfig11-1).
 
 **System API**: This is a system API.
 
@@ -1963,7 +1998,7 @@ This API must be called after [addOutput](js-apis-camera.md#addoutput11) or [add
 
 | Name    | Type        | Mandatory| Description                                |
 | -------- | ------------- | ---- | ----------------------------------- |
-| enabled    | boolean       | Yes  | Whether to enable the quick thumbnail feature. The value **true** means to enable the quick thumbnail feature, and **false** means to disable it.|
+| enabled    | boolean       | Yes  | Whether to enable the quick thumbnail feature. **true** to enable, **false** otherwise.|
 
 **Error codes**
 
@@ -2027,7 +2062,7 @@ The listening takes effect after **enableQuickThumbnail(true)** is called.
 | Name    | Type        | Mandatory| Description                                |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type    | string     | Yes  | Event type. The value is fixed at **'quickThumbnail'**.|
-| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | Yes| Callback that returns a **PixelMap** instance.|
+| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)> | Yes| Callback that returns a PixelMap instance.|
 
 **Example**
 
@@ -2090,7 +2125,7 @@ Unsubscribes from quick thumbnail output events.
 | Name    | Type        | Mandatory| Description                                |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type    | string     | Yes  | Event type. The value is fixed at **'quickThumbnail'**.|
-| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | No| Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('quickThumbnail')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
+| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)> | No| Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('quickThumbnail')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
 
 **Example**
 
@@ -2102,7 +2137,7 @@ function unregisterQuickThumbnail(photoOutput: camera.PhotoOutput): void {
 
 ## MetadataOutput
 
-Implements metadata streams. It inherits from [CameraOutput](js-apis-camera.md#cameraoutput).
+Implements metadata streams. It inherits from [CameraOutput](arkts-apis-camera-CameraOutput.md).
 
 ### addMetadataObjectTypes<sup>13+</sup> 
 
@@ -2215,7 +2250,7 @@ Enumerates the types of emotions in the detected human face information.
 
 ## MetadataObject
 
-Implements the basic metadata object used for camera detection. This class is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
+Implements the basic metadata object used for camera detection. This class is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2226,14 +2261,14 @@ Implements the basic metadata object used for camera detection. This class is th
 
 ## MetadataFaceObject<sup>13+</sup>
 
-Implements the human face metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
+Implements the human face metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name                   | Type                             | Read-only| Optional|Description               |
 | ---------------------- | --------------------------------- | ---- | ---- | --------------------- |
-| leftEyeBoundingBox     | [Rect](js-apis-camera.md#rect)                             |  Yes |  No | Left eye area.|
-| rightEyeBoundingBox    | [Rect](js-apis-camera.md#rect)                            |  Yes |  No | Right eye area.|
+| leftEyeBoundingBox     | [Rect](arkts-apis-camera-i.md#rect)                             |  Yes |  No | Left eye area.|
+| rightEyeBoundingBox    | [Rect](arkts-apis-camera-i.md#rect)                            |  Yes |  No | Right eye area.|
 | emotion                | [Emotion](#emotion13)             |  Yes |  No | Detected emotion.|
 | emotionConfidence      | number                            |  Yes |  No | Confidence of the emotion detection, with a value range of [0,1].|
 | pitchAngle             | number                            |  Yes |  No | Pitch angle, with a value range of [-90, 90], where downward is positive.|
@@ -2242,53 +2277,53 @@ Implements the human face metadata object used for camera detection. This class 
 
 ## MetadataHumanBodyObject<sup>13+</sup>
 
-Implements the human body metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
+Implements the human body metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 ## MetadataCatFaceObject<sup>13+</sup>
 
-Implements the cat face metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
+Implements the cat face metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name                   | Type                             | Read-only| Optional|Description               |
 | ---------------------- | --------------------------------- | ---- | ---- | --------------------- |
-| leftEyeBoundingBox     | [Rect](js-apis-camera.md#rect)                              |  Yes |  No | Left eye area.|
-| rightEyeBoundingBox    | [Rect](js-apis-camera.md#rect)                              |  Yes |  No | Right eye area.|
+| leftEyeBoundingBox     | [Rect](arkts-apis-camera-i.md#rect)                              |  Yes |  No | Left eye area.|
+| rightEyeBoundingBox    | [Rect](arkts-apis-camera-i.md#rect)                              |  Yes |  No | Right eye area.|
 
 ## MetadataCatBodyObject<sup>13+</sup>
 
-Implements the cat body metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
+Implements the cat body metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 ## MetadataDogFaceObject<sup>13+</sup>
 
-Implements the dog face metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
+Implements the dog face metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name                   | Type                             | Read-only| Optional|Description               |
 | ---------------------- | --------------------------------- | ---- | ---- | --------------------- |
-| leftEyeBoundingBox     | [Rect](js-apis-camera.md#rect)                              |  Yes |  No | Left eye area.|
-| rightEyeBoundingBox    | [Rect](js-apis-camera.md#rect)                              |  Yes |  No | Right eye area.|
+| leftEyeBoundingBox     | [Rect](arkts-apis-camera-i.md#rect)                              |  Yes |  No | Left eye area.|
+| rightEyeBoundingBox    | [Rect](arkts-apis-camera-i.md#rect)                              |  Yes |  No | Right eye area.|
 
 ## MetadataDogBodyObject<sup>13+</sup>
 
-Implements the dog body metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
+Implements the dog body metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 ## MetadataSalientDetectionObject<sup>13+</sup>
 
-Implements the salient detection metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
+Implements the salient detection metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 ## MetadataBarcodeObject<sup>14+</sup>
 
-Implements the barcode metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
+Implements the barcode metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2360,7 +2395,7 @@ The beauty levels vary according to the device type. The following table is only
 | AUTO           | [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]     |Beauty levels supported when **type** is set to **AUTO**. The value **0** means that beauty mode is disabled, and other positive values mean the corresponding automatic beauty levels.   |
 | SKIN_SMOOTH    | [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]     | Beauty levels supported when **type** is set to **SKIN_SMOOTH**. The value **0** means that the skin smoothing feature is disabled, and other positive values mean the corresponding skin smoothing levels.   |
 | FACE_SLENDER   | [0, 1, 2, 3, 4, 5]      | Beauty levels supported when **type** is set to **FACE_SLENDER**. The value **0** means that the face slimming feature is disabled, and other positive values mean the corresponding face slimming levels.  |
-| SKIN_TONE      | [-1, 16242611]      | Beauty levels supported when **type** is set to **SKIN_TONE**. The value **-1** means that the skin tone perfection feature is disabled. Other non-negative values mean the skin tone perfection levels represented by RGB,<br> for example, 16242611, which is 0xF7D7B3 in hexadecimal format, where F7, D7, and B3 represent the values of the R channel, G channel, and B channel, respectively.   |
+| SKIN_TONE      | [-1, 16242611]      | Beauty levels supported when **type** is set to **SKIN_TONE**. The value **-1** means that the skin tone perfection feature is disabled. Other non-negative values mean the skin tone perfection levels represented by RGB, for example, 16242611, which is 0xF7D7B3 in hexadecimal format, where F7, D7, and B3 represent the values of the R channel, G channel, and B channel, respectively.   |
 
 **System API**: This is a system API.
 
@@ -2532,86 +2567,6 @@ function setExposure(nightPhotoSession: camera.NightPhotoSession): void {
 }
 ```
 
-## MacroQuery<sup>12+</sup>
-
-Provides the API to check the support for macro photography.
-
-### isMacroSupported<sup>11+</sup>
-
-isMacroSupported(): boolean
-
-Checks whether macro photography is supported in the current state. This API must be called after [commitConfig](js-apis-camera.md#commitconfig11-1).
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Return value**
-
-| Type       | Description                         |
-| ---------- | ----------------------------- |
-|   boolean  | Check result. The value **true** means that macro photography is supported, and **false** means the opposite.|
-
-**Error codes**
-
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
-
-| ID  | Error Message                    |
-|---------|--------------------------|
-| 202     | Not System Application.  |
-
-**Example**
-
-```ts
-function isMacroSupported(photoSession: camera.PhotoSessionForSys): boolean {
-  let isSupported: boolean = photoSession.isMacroSupported();
-  return isSupported;
-}
-```
-
-## Macro<sup>11+</sup>
-
-Macro extends [MacroQuery](#macroquery12)
-
-Provides the API to enable macro photography.
-
-### enableMacro<sup>11+</sup>
-
-enableMacro(enabled: boolean): void
-
-Enables or disables macro photography. This API can be called only when macro photography is supported.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                  | Mandatory| Description                 |
-| -------- | -------------------- | ---- | -------------------- |
-| enabled | boolean | Yes  | Whether to enable macro photography. The value **true** means to enable macro photography, and **false** means to disable it.|
-
-**Error codes**
-
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
-
-| ID   | Error Message                    |
-|----------|--------------------------|
-| 202      | Not System Application.  |
-| 7400102  | Operation not allowed.   |
-| 7400103  | Session not config.      |
-
-**Example**
-
-```ts
-function enableMacro(photoSession: camera.PhotoSessionForSys): void {
-  let isSupported: boolean = photoSession.isMacroSupported();
-  if (isSupported) {
-    photoSession.enableMacro(true);
-  }
-}
-```
-
 ## TripodStatus<sup>13+</sup>
 
 Enumerates the tripod statuses.
@@ -2647,7 +2602,7 @@ Describes the scene feature detection result.
 | Name    | Type       |   Read-only  |   Mandatory  | Description      |
 | -------- | ---------- | -------- | -------- | ---------- |
 | featureType |   [SceneFeatureType](#scenefeaturetype12)   |   Yes    |    Yes   | Scene feature type. |
-| detected |   boolean   |   Yes    |    Yes   | Detection result. The value **true** means that the specified scene feature is detected, and **false** means the opposite.|
+| detected |   boolean   |   Yes    |    Yes   | Check result for whether the specified scene feature is detected. **true** if detected, **false** otherwise.|
 
 ## TripodDetectionResult<sup>13+</sup>
 
@@ -2685,7 +2640,7 @@ Checks whether a scene feature is supported.
 
 | Type       | Description          |
 |-----------|--------------|
-| boolean   | Check result. The value **true** means that the scene feature is supported, and **false** means the opposite. |
+| boolean   | Check result for the support of the scene feature. **true** if supported, **false** otherwise. |
 
 **Error codes**
 
@@ -2720,7 +2675,7 @@ Enables or disables a scene feature. This API must be called after [SceneFeature
 | Name    | Type                                       | Mandatory | Description                         |
 |---------|-------------------------------------------|-----|-----------------------------|
 | type    | [SceneFeatureType](#scenefeaturetype12)   | Yes  | Scene feature.              |
-| enabled | boolean                                   | Yes  | Whether to enable the scene feature. The value **true** means to enable the scene feature, and **false** means the opposite.|
+| enabled | boolean                                   | Yes  | Whether to enable the scene feature. **true** to enable, **false** otherwise.|
 
 **Error codes**
 
@@ -2807,17 +2762,19 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
+import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function getZoomPointInfos(photoSessionForSys: camera.PhotoSessionForSys): Array<camera.ZoomPointInfo> {
+  let zoomPointInfos: Array<camera.ZoomPointInfo> = [];
   try {
-    let zoomPointInfos: Array<ZoomPointInfo> = photoSessionForSys.getZoomPointInfos();
-	return zoomPointInfos;
+    zoomPointInfos = photoSessionForSys.getZoomPointInfos();
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
     console.error(`The getZoomPointInfos call failed. error code: ${err.code}`);
   }
+  return zoomPointInfos;
 }
 ```
 
@@ -3469,11 +3426,11 @@ function setPhysicalAperture(session: camera.PortraitPhotoSession, physicalApert
 
 ## CaptureSession<sup>(deprecated)</sup>
 
-Implements a capture session, which saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera and requests the camera to complete shooting or video recording.
+Implements a capture session, which saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera and requests the camera to complete shooting or video recording.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [PhotoSession](#photosession11) and [VideoSession](#videosession11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [PhotoSession](arkts-apis-camera-PhotoSession.md) and [VideoSession](arkts-apis-camera-VideoSession.md) instead.
 
 ### getSupportedBeautyTypes<sup>(deprecated)</sup>
 
@@ -3483,7 +3440,7 @@ Obtains the supported beauty types.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getSupportedBeautyTypes](#getsupportedbeautytypes11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getSupportedBeautyTypes](#getsupportedbeautytypes11) instead.
 
 **System API**: This is a system API.
 
@@ -3523,11 +3480,11 @@ Obtains the levels that can be set a beauty type. The beauty levels vary accordi
 | AUTO           | [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]     |Beauty levels supported when **type** is set to **AUTO**. The value **0** means that beauty mode is disabled, and other positive values mean the corresponding automatic beauty levels.   |
 | SKIN_SMOOTH    | [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]     | Beauty levels supported when **type** is set to **SKIN_SMOOTH**. The value **0** means that the skin smoothing feature is disabled, and other positive values mean the corresponding skin smoothing levels.   |
 | FACE_SLENDER   | [0, 1, 2, 3, 4, 5]      | Beauty levels supported when **type** is set to **FACE_SLENDER**. The value **0** means that the face slimming feature is disabled, and other positive values mean the corresponding face slimming levels.  |
-| SKIN_TONE      | [-1, 16242611]      | Beauty levels supported when **type** is set to **SKIN_TONE**. The value **-1** means that the skin tone perfection feature is disabled. Other non-negative values mean the skin tone perfection levels represented by RGB,<br> for example, 16242611, which is 0xF7D7B3 in hexadecimal format, where F7, D7, and B3 represent the values of the R channel, G channel, and B channel, respectively.   |
+| SKIN_TONE      | [-1, 16242611]      | Beauty levels supported when **type** is set to **SKIN_TONE**. The value **-1** means that the skin tone perfection feature is disabled. Other non-negative values mean the skin tone perfection levels represented by RGB, for example, 16242611, which is 0xF7D7B3 in hexadecimal format, where F7, D7, and B3 represent the values of the R channel, G channel, and B channel, respectively.   |
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11) instead.
 
 **System API**: This is a system API.
 
@@ -3574,7 +3531,7 @@ Sets a beauty type and its level. Beauty mode is turned off only when all the [b
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.setBeauty](#setbeauty11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.setBeauty](#setbeauty11) instead.
 
 **System API**: This is a system API.
 
@@ -3619,7 +3576,7 @@ Obtains the level of the beauty type in use.
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getBeauty](#getbeauty11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getBeauty](#getbeauty11) instead.
 
 **System API**: This is a system API.
 
@@ -3665,9 +3622,9 @@ function getBeauty(captureSession: camera.CaptureSession): number {
 
 ## PhotoSessionForSys<sup>11+</sup>
 
-PhotoSessionForSys extends PhotoSession, Beauty, ColorEffect, ColorManagement, Macro, SceneDetection
+PhotoSessionForSys extends PhotoSession, Beauty, ColorEffect, ColorManagement, SceneDetection
 
-Implements a photo session for system applications, which sets the parameters of the normal photo mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
+Implements a photo session for system applications, which sets the parameters of the normal photo mode and saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera. It inherits from [Session](arkts-apis-camera-Session.md).
 
 **System API**: This is a system API.
 
@@ -3677,7 +3634,7 @@ Implements a photo session for system applications, which sets the parameters of
 
 PhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorManagement
 
-Implements a photo session, which sets the parameters of the normal photo mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
+Implements a photo session, which sets the parameters of the normal photo mode and saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera. It inherits from [Session](arkts-apis-camera-Session.md).
 
 ### on('macroStatusChanged')<sup>11+</sup>
 
@@ -3694,7 +3651,7 @@ Subscribes to macro state change events. This API uses an asynchronous callback 
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string      | Yes  | Event type. The value is fixed at **'macroStatusChanged'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<boolean\>     | Yes  | Callback used to return the macro state. The value **true** means that the macro state is enabled, and **false** means that it is disabled. |
+| callback | AsyncCallback\<boolean\>     | Yes  | Callback used to return the macro state. **true** if enabled, **false** otherwise. |
 
 **Error codes**
 
@@ -3737,7 +3694,7 @@ Unsubscribes from macro state change events.
 | Name    | Type                   | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | ------------------------ |
 | type     | string                   | Yes  | Event type. The value is fixed at **'macroStatusChanged'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<boolean\> | No  | Callback used to return the macro state. The value **true** means that the macro state is enabled, and **false** means that it is disabled. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('macroStatusChanged')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
+| callback | AsyncCallback\<boolean\> | No  | Callback used to return the macro state. **true** if enabled, **false** otherwise. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('macroStatusChanged')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
 
 **Error codes**
 
@@ -3930,7 +3887,7 @@ Describes the focus tracking information, which is obtained by calling VideoSess
 | Name          | Type                                     | Read-only| Optional| Description      |
 | -------------- | ----------------------------------------- | ---- | ---- | ---------- |
 | trackingMode   | [FocusTrackingMode](#focustrackingmode15) | No  | No  | Tracing mode.|
-| trackingRegion | [Rect](js-apis-camera.md#rect)            | No  | No  | Tracking region.|
+| trackingRegion | [Rect](arkts-apis-camera-i.md#rect)            | No  | No  | Tracking region.|
 
 ## LightStatus<sup>18+</sup>
 
@@ -3947,9 +3904,9 @@ Enumerates the camera light statuses, which are obtained by calling VideoSession
 
 ## VideoSessionForSys<sup>11+</sup>
 
-VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro, Aperture, ColorReservation
+VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Aperture, ColorReservation
 
-Implements a video session for system applications, which sets the parameters of the normal video mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
+Implements a video session for system applications, which sets the parameters of the normal video mode and saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera. It inherits from [Session](arkts-apis-camera-Session.md).
 
 **System API**: This is a system API.
 
@@ -3959,7 +3916,7 @@ Implements a video session for system applications, which sets the parameters of
 
 VideoSession extends Session, Flash, AutoExposure, Focus, Zoom, Stabilization, ColorManagement
 
-Implements a video session, which sets the parameters of the normal video mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
+Implements a video session, which sets the parameters of the normal video mode and saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera. It inherits from [Session](arkts-apis-camera-Session.md).
 
 ### on('macroStatusChanged')<sup>11+</sup>
 
@@ -3976,7 +3933,7 @@ Subscribes to macro state change events. This API uses an asynchronous callback 
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string      | Yes  | Event type. The value is fixed at **'macroStatusChanged'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<boolean\>     | Yes  | Callback used to return the macro state. The value **true** means that the macro state is enabled, and **false** means that it is disabled. |
+| callback | AsyncCallback\<boolean\>     | Yes  | Callback used to return the macro state. **true** if enabled, **false** otherwise. |
 
 **Error codes**
 
@@ -4019,7 +3976,7 @@ Unsubscribes from macro state change events.
 | Name   | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | ------------------------ |
 | type     | string                   | Yes  | Event type. The value is fixed at **'macroStatusChanged'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<boolean\> | No  | Callback used to return the macro state. The value **true** means that the macro state is enabled, and **false** means that it is disabled. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('macroStatusChanged')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
+| callback | AsyncCallback\<boolean\> | No  | Callback used to return the macro state. **true** if enabled, **false** otherwise. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('macroStatusChanged')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
 
 **Error codes**
 
@@ -4128,7 +4085,7 @@ Subscribes to focus tracking information events. This API uses an asynchronous c
 
 | Name  | Type                                                      | Mandatory| Description                                                        |
 | -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                     | Yes  | Event type. The value is fixed at **'focusTrackingInfoAvailable'**. The event can be listened for when a **VideoSessionForSys** object is created.|
+| type     | string                                                     | Yes  | Event type. The value is fixed at **'focusTrackingInfoAvailable'**. The event can be listened for when a VideoSessionForSys object is created.|
 | callback | Callback\<[FocusTrackingInfo](#focustrackinginfo15)\>      | Yes  | Callback used to return the focus tracking information.                        |
 
 **Error codes**
@@ -4169,7 +4126,7 @@ Unsubscribes from focus tracking information events.
 
 | Name  | Type                                                      | Mandatory| Description                                                        |
 | -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                     | Yes  | Event type. The value is fixed at **'focusTrackingInfoAvailable'**. The event can be listened for when a **VideoSessionForSys** object is created.|
+| type     | string                                                     | Yes  | Event type. The value is fixed at **'focusTrackingInfoAvailable'**. The event can be listened for when a VideoSessionForSys object is created.|
 | callback | Callback\<[FocusTrackingInfo](#focustrackinginfo15)\>      | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('focusTrackingInfoAvailable')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
 
 **Error codes**
@@ -4202,7 +4159,7 @@ Subscribes to camera light status changes. This API uses an asynchronous callbac
 
 | Name  | Type                                            | Mandatory| Description                                                                             |
 | -------- |------------------------------------------------| ---- |---------------------------------------------------------------------------------|
-| type     | string                                         | Yes  | Event type. The value is fixed at **'lightStatusChange'**.<br>The event can be listened for when a **VideoSessionForSys** object is created.|
+| type     | string                                         | Yes  | Event type. The value is fixed at **'lightStatusChange'**.<br>The event can be listened for when a VideoSessionForSys object is created.|
 | callback | AsyncCallback\<[LightStatus](#lightstatus18)\> | Yes  | Callback used to return the light status information.                                                             |
 
 **Error codes**
@@ -4216,22 +4173,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-    private handleLightStatusCallback: AsyncCallback<camera.LightStatus> =
-    (err, data: camera.LightStatus) => {
-      if (err) {
-        Logger.error(TAG, `handleLightStatusOff err: ${simpleStringify(err)}}`);
-        return;
-      }
-      Logger.info(TAG, `lightStatusCallback: ${data}`);
-    };
-    public handleLightStatusOn(): void {
-        Logger.info(TAG, 'handleLightStatusOn');
-        try {
-          this.mSession?.on('lightStatusChange', this.handleLightStatusCallback);
-        } catch (e) {
-          Logger.error(TAG, `handleLightStatusOn err:${e}`);
-        }
-    }
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function handleLightStatusCallback(err: BusinessError, lightStatus: camera.LightStatus) : void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`lightStatus: ${lightStatus}`);
+}
+
+function handleLightStatusOn(mSession: camera.VideoSessionForSys): void {
+  console.info('handleLightStatusOn');
+  try {
+    mSession.on('lightStatusChange', handleLightStatusCallback);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`handleLightStatusOn err:${err}`);
+  }
+}
 ```
 
 ### off('lightStatusChange')<sup>18+</sup>
@@ -4248,7 +4208,7 @@ Unsubscribes from camera light status changes.
 
 | Name  | Type                                            | Mandatory| Description                                                                              |
 | -------- |------------------------------------------------|----|----------------------------------------------------------------------------------|
-| type     | string                                         | Yes | Event type. The value is fixed at **'lightStatusChange'**.<br>The event can be listened for when a **VideoSessionForSys** object is created.|
+| type     | string                                         | Yes | Event type. The value is fixed at **'lightStatusChange'**.<br>The event can be listened for when a VideoSessionForSys object is created.|
 | callback | AsyncCallback\<[LightStatus](#lightstatus18)\> | No | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('lightStatusChange')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)               |
 
 **Error codes**
@@ -4262,35 +4222,38 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-    private handleLightStatusCallback: AsyncCallback<camera.LightStatus> =
-    (err, data: camera.LightStatus) => {
-      if (err) {
-        Logger.error(TAG, `handleLightStatusOff err: ${simpleStringify(err)}}`);
-        return;
-      }
-      Logger.info(TAG, `lightStatusCallback: ${data}`);
-    };
-    public handleLightStatusOff(): void {
-        Logger.info(TAG, 'handleLightStatusOff');
-        try {
-          this.mSession?.off('lightStatusChange');
-        } catch (e) {
-          Logger.error(TAG, `handleLightStatusOff err:${e}`);
-        }
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function LightStatusCallback(err: BusinessError, lightStatus: camera.LightStatus) : void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
   }
+  console.info(`lightStatus: ${lightStatus}`);
+}
+
+function handleLightStatusOff(mSession: camera.VideoSessionForSys): void {
+  console.info('handleLightStatusOff');
+  try {
+    mSession.on('lightStatusChange', LightStatusCallback);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`handleLightStatusOff err:${err}`);
+  }
+}
 ```
 
 ## PortraitPhotoSession<sup>11+</sup>
 
 PortraitPhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, Beauty, ColorEffect, ColorManagement, Portrait, Aperture
 
-Implements a portrait photo session, which sets the parameters of the portrait photo mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
+Implements a portrait photo session, which sets the parameters of the portrait photo mode and saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera. It inherits from [Session](arkts-apis-camera-Session.md).
 
 ### on('error')<sup>11+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **PortraitSession** error events. This API uses an asynchronous callback to return the result.
+Subscribes to PortraitSession error events. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -4300,8 +4263,8 @@ Subscribes to **PortraitSession** error events. This API uses an asynchronous ca
 
 | Name    | Type       | Mandatory| Description                          |
 | -------- | --------------------------------- | ---- | ------------------------------ |
-| type     | string                               | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](js-apis-camera.md#beginconfig11), [commitConfig](js-apis-camera.md#commitconfig11-1), and [addInput](js-apis-camera.md#addinput11).|
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| Yes  | Callback used to return an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).       |
+| type     | string                               | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](arkts-apis-camera-Session.md#beginconfig11), [commitConfig](arkts-apis-camera-Session.md#commitconfig11-1), and [addInput](arkts-apis-camera-Session.md#addinput11).|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| Yes  | Callback used to return an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode).       |
 
 **Example**
 
@@ -4321,7 +4284,7 @@ function registerSessionError(portraitPhotoSession: camera.PortraitPhotoSession)
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **PortraitSession** error events.
+Unsubscribes from PortraitSession error events.
 
 **System API**: This is a system API.
 
@@ -4357,7 +4320,7 @@ Subscribes to focus state change events. This API uses an asynchronous callback 
 | Name    | Type                   | Mandatory| Description                      |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created. This event is triggered only when the camera focus state changes in auto focus mode.|
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | Yes  | Callback used to return the focus state change. |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | Yes  | Callback used to return the focus state change. |
 
 **Example**
 
@@ -4392,7 +4355,7 @@ Unsubscribes from focus state change events.
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('focusStateChange')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('focusStateChange')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
 
 **Example**
 
@@ -4417,7 +4380,7 @@ Subscribes to smooth zoom state change events. This API uses an asynchronous cal
 | Name    | Type                  | Mandatory| Description                      |
 | -------- | ----------------------- | ---- | ------------------------ |
 | type     | string                  | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | Yes  | Callback used to return the smooth zoom state change. |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | Yes  | Callback used to return the smooth zoom state change. |
 
 **Example**
 
@@ -4452,7 +4415,7 @@ Unsubscribes from smooth zoom state change events.
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('smoothZoomInfoAvailable')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('smoothZoomInfoAvailable')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
 
 **Example**
 
@@ -4543,13 +4506,13 @@ function unregisterLcdFlashStatus(portraitPhotoSession: camera.PortraitPhotoSess
 
 NightPhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect, ColorManagement, ManualExposure
 
-Implements a night photo session, which sets the parameters of the night photo mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
+Implements a night photo session, which sets the parameters of the night photo mode and saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera. It inherits from [Session](arkts-apis-camera-Session.md).
 
 ### on('error')<sup>11+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **NightSession** error events. This API uses an asynchronous callback to return the result.
+Subscribes to NightSession error events. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -4559,8 +4522,8 @@ Subscribes to **NightSession** error events. This API uses an asynchronous callb
 
 | Name    | Type                                                         | Mandatory| Description                          |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](js-apis-camera.md#beginconfig11), [commitConfig](js-apis-camera.md#commitconfig11-1), and [addInput](js-apis-camera.md#addinput11).|
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| Yes  | Callback used to return an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).|
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](arkts-apis-camera-Session.md#beginconfig11), [commitConfig](arkts-apis-camera-Session.md#commitconfig11-1), and [addInput](arkts-apis-camera-Session.md#addinput11).|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| Yes  | Callback used to return an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode).|
 
 **Example**
 
@@ -4580,7 +4543,7 @@ function registerSessionError(nightPhotoSession: camera.NightPhotoSession): void
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **NightSession** error events.
+Unsubscribes from NightSession error events.
 
 **System API**: This is a system API.
 
@@ -4616,7 +4579,7 @@ Subscribes to focus state change events. This API uses an asynchronous callback 
 | Name    | Type                   | Mandatory| Description                      |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created. This event is triggered only when the camera focus state changes in auto focus mode.|
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | Yes  | Callback used to return the focus state change. |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | Yes  | Callback used to return the focus state change. |
 
 **Example**
 
@@ -4651,7 +4614,7 @@ Unsubscribes from focus state change events.
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('focusStateChange')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('focusStateChange')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
 
 **Example**
 
@@ -4676,7 +4639,7 @@ Subscribes to smooth zoom state change events. This API uses an asynchronous cal
 | Name    | Type                  | Mandatory| Description                      |
 | -------- | ----------------------- | ---- | ------------------------ |
 | type     | string                  | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | Yes  | Callback used to return the smooth zoom state change. |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | Yes  | Callback used to return the smooth zoom state change. |
 
 **Example**
 
@@ -4711,7 +4674,7 @@ Unsubscribes from smooth zoom state change events.
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('smoothZoomInfoAvailable')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('smoothZoomInfoAvailable')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
 
 **Example**
 
@@ -4801,13 +4764,13 @@ function unregisterLcdFlashStatus(nightPhotoSession: camera.NightPhotoSession): 
 
 HighResolutionPhotoSession extends Session, AutoExposure, Focus
 
-Implements a high-resolution photo session, which sets the parameters of the high-resolution photo mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
+Implements a high-resolution photo session, which sets the parameters of the high-resolution photo mode and saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera. It inherits from [Session](arkts-apis-camera-Session.md).
 
 ### on('error')<sup>12+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **HighResolutionPhotoSession** error events. This API uses an asynchronous callback to return the result.
+Subscribes to HighResolutionPhotoSession error events. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -4817,8 +4780,8 @@ Subscribes to **HighResolutionPhotoSession** error events. This API uses an asyn
 
 | Name    | Type       | Mandatory| Description                          |
 | -------- | --------------------------------- | ---- | ------------------------------ |
-| type     | string                               | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](js-apis-camera.md#beginconfig11), [commitConfig](js-apis-camera.md#commitconfig11-1), and [addInput](js-apis-camera.md#addinput11).|
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| Yes  | Callback used to return an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).       |
+| type     | string                               | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](arkts-apis-camera-Session.md#beginconfig11), [commitConfig](arkts-apis-camera-Session.md#commitconfig11-1), and [addInput](arkts-apis-camera-Session.md#addinput11).|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| Yes  | Callback used to return an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode).       |
 
 **Error codes**
 
@@ -4845,7 +4808,7 @@ function registerSessionError(highResolutionPhotoSession: camera.HighResolutionP
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **HighResolutionPhotoSession** error events.
+Unsubscribes from HighResolutionPhotoSession error events.
 
 **System API**: This is a system API.
 
@@ -4889,7 +4852,7 @@ Subscribes to focus state change events. This API uses an asynchronous callback 
 | Name    | Type                   | Mandatory| Description                      |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created. This event is triggered only when the camera focus state changes in auto focus mode.|
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | Yes  | Callback used to return the focus state change. |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | Yes  | Callback used to return the focus state change. |
 
 **Error codes**
 
@@ -4940,7 +4903,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('focusStateChange')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('focusStateChange')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
 
 **Example**
 
@@ -4967,7 +4930,7 @@ Defines the PiP status data.
 
 SlowMotionVideoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect
 
-Implements a slow-motion video session, which sets the parameters of the slow-motion video mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
+Implements a slow-motion video session, which sets the parameters of the slow-motion video mode and saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera. It inherits from [Session](arkts-apis-camera-Session.md).
 
 > **NOTE**
 >
@@ -4976,7 +4939,7 @@ Implements a slow-motion video session, which sets the parameters of the slow-mo
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **SlowMotionVideoSession** error events. This API uses an asynchronous callback to return the result.
+Subscribes to SlowMotionVideoSession error events. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -4986,8 +4949,8 @@ Subscribes to **SlowMotionVideoSession** error events. This API uses an asynchro
 
 | Name    | Type       | Mandatory| Description                          |
 | -------- | --------------------------------- | ---- | ------------------------------ |
-| type     | string                               | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](js-apis-camera.md#beginconfig11), [commitConfig](js-apis-camera.md#commitconfig11-1), and [addInput](js-apis-camera.md#addinput11).|
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| Yes  | Callback used to return an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).       |
+| type     | string                               | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](arkts-apis-camera-Session.md#beginconfig11), [commitConfig](arkts-apis-camera-Session.md#commitconfig11-1), and [addInput](arkts-apis-camera-Session.md#addinput11).|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| Yes  | Callback used to return an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode).       |
 
 **Error codes**
 
@@ -5015,7 +4978,7 @@ function registerSessionError(slowMotionVideoSession: camera.SlowMotionVideoSess
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **SlowMotionVideoSession** error events.
+Unsubscribes from SlowMotionVideoSession error events.
 
 **System API**: This is a system API.
 
@@ -5059,7 +5022,7 @@ Subscribes to focus state change events. This API uses an asynchronous callback 
 | Name    | Type                   | Mandatory| Description                      |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created. This event is triggered only when the camera focus state changes in auto focus mode.|
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | Yes  | Callback used to return the focus state change. |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | Yes  | Callback used to return the focus state change. |
 
 **Error codes**
 
@@ -5102,7 +5065,7 @@ Unsubscribes from focus state change events.
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('focusStateChange')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('focusStateChange')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
 
 **Error codes**
 
@@ -5135,7 +5098,7 @@ Subscribes to smooth zoom state change events. This API uses an asynchronous cal
 | Name    | Type                  | Mandatory| Description                      |
 | -------- | ----------------------- | ---- | ------------------------ |
 | type     | string                  | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | Yes  | Callback used to return the smooth zoom state change. |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | Yes  | Callback used to return the smooth zoom state change. |
 
 **Error codes**
 
@@ -5178,7 +5141,7 @@ Unsubscribes from smooth zoom state change events.
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('smoothZoomInfoAvailable')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('smoothZoomInfoAvailable')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
 
 **Error codes**
 
@@ -5254,7 +5217,7 @@ Unsubscribes from slow-motion status change events.
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | Yes  | Event type. The value is fixed at **'slowMotionStatus'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[SlowMotionStatus](#slowmotionstatus12)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('slowMotionStatus')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned. |
+| callback | AsyncCallback\<[SlowMotionStatus](#slowmotionstatus12)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('slowMotionStatus')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) If the operation fails, an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) is returned. |
 
 **Error codes**
 
@@ -5279,7 +5242,7 @@ Checks whether the device supports slow-motion detection.
 
 > **NOTE**
 >
-> This API must be called after [commitConfig](js-apis-camera.md#commitconfig11-1) is called.
+> This API must be called after [commitConfig](arkts-apis-camera-Session.md#commitconfig11-1) is called.
 
 **System API**: This is a system API.
 
@@ -5289,7 +5252,7 @@ Checks whether the device supports slow-motion detection.
 
 | Type       | Description                                                                                    |
 | ---------- |----------------------------------------------------------------------------------------|
-| boolean    | Check result. The value **true** means that the device supports slow-motion detection, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| boolean    | Check result for the support of slow-motion detection. **true** if supported, **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -5298,7 +5261,6 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 | ID  | Error Message       |
 |---------| --------------- |
 | 202     |  Not System Application.                               |
-| 7400103 |  Session not config.                                   |
 
 **Example**
 
@@ -5327,7 +5289,7 @@ Sets an area for slow-motion detection.
 > **NOTE**
 >
 > Before the setting, call [isSlowMotionDetectionSupported](#isslowmotiondetectionsupported12) to check whether the device supports slow-motion detection.
-This API must be called after [commitConfig](js-apis-camera.md#commitconfig11-1) is called.
+This API must be called after [commitConfig](arkts-apis-camera-Session.md#commitconfig11-1) is called.
 
 **System API**: This is a system API.
 
@@ -5337,7 +5299,7 @@ This API must be called after [commitConfig](js-apis-camera.md#commitconfig11-1)
 
 | Name    | Type                                           | Mandatory| Description                         |
 | -------- | ---------------------------------------------- | ---- | --------------------------- |
-| area  | [Rect](js-apis-camera.md#rect)      | Yes  | Area.                  |
+| area  | [Rect](arkts-apis-camera-i.md#rect)      | Yes  | Area.                  |
 
 **Error codes**
 
@@ -5346,8 +5308,6 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 | ID  | Error Message       |
 |---------| --------------- |
 | 202     |  Not System Application.                            |
-| 7400101 |  Parameter missing or parameter type incorrect.     |
-| 7400103 |  Session not config.                                |
 
 **Example**
 
@@ -5369,13 +5329,13 @@ function setSlowMotionDetectionArea(slowMotionVideoSession: camera.SlowMotionVid
 
 PanoramaPhotoSession extends Session, Focus, AutoExposure, WhiteBalance, ColorEffect
 
-Implements a panoramic photo session, which sets the parameters of the panoramic photo mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
+Implements a panoramic photo session, which sets the parameters of the panoramic photo mode and saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera. It inherits from [Session](arkts-apis-camera-Session.md).
 
 ### on('error')<sup>12+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **PanoramaPhotoSession** error events. This API uses an asynchronous callback to return the result.
+Subscribes to PanoramaPhotoSession error events. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -5385,8 +5345,8 @@ Subscribes to **PanoramaPhotoSession** error events. This API uses an asynchrono
 
 | Name    | Type                                                         | Mandatory| Description                          |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](js-apis-camera.md#beginconfig11), [commitConfig](js-apis-camera.md#commitconfig11-1), and [addInput](js-apis-camera.md#addinput11).|
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| Yes  | Callback used to return an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).|
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](arkts-apis-camera-Session.md#beginconfig11), [commitConfig](arkts-apis-camera-Session.md#commitconfig11-1), and [addInput](arkts-apis-camera-Session.md#addinput11).|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| Yes  | Callback used to return an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode).|
 
 **Example**
 
@@ -5406,7 +5366,7 @@ function registerSessionError(panoramaPhotoSession: camera.PanoramaPhotoSession)
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **PanoramaPhotoSession** error events.
+Unsubscribes from PanoramaPhotoSession error events.
 
 **System API**: This is a system API.
 
@@ -5442,7 +5402,7 @@ Subscribes to focus state change events. This API uses an asynchronous callback 
 | Name    | Type                   | Mandatory| Description                      |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created. This event is triggered only when the camera focus state changes in auto focus mode.|
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | Yes  | Callback used to return the focus state change. |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | Yes  | Callback used to return the focus state change. |
 
 **Example**
 
@@ -5477,7 +5437,7 @@ Unsubscribes from focus state change events.
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('focusStateChange')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('focusStateChange')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
 
 **Example**
 
@@ -5589,7 +5549,7 @@ Checks whether an exposure metering mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | Check result. The value **true** means that the exposure metering mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| boolean    | Check result for the support of the exposure metering mode. **true** if supported, **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -5640,7 +5600,7 @@ Obtains the exposure metering mode in use.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| [ExposureMeteringMode](#exposuremeteringmode12)    | Exposure metering mode obtained. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| [ExposureMeteringMode](#exposuremeteringmode12)    | Exposure metering mode obtained. If the operation fails, an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -5753,7 +5713,7 @@ Checks whether the focus assist is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | Check result. The value **true** means that the focus assist is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| boolean    | Check result for the support of the focus assist. **true** if supported, **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -5802,7 +5762,7 @@ Checks whether a focus range type is supported.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Check result. The value **true** means that the focus range type is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| boolean | Check result for the support of the focus range type. **true** if supported, **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -5852,7 +5812,7 @@ Checks whether a focus drive type is supported.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Check result. The value **true** means that the focus drive type is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| boolean | Check result for the support of the focus drive type. **true** if supported, **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -5904,7 +5864,7 @@ Before the setting, call [isFocusAssistSupported](#isfocusassistsupported12) to 
 
 | Name     | Type                    | Mandatory| Description                |
 | -------- | ----------------------- | ---- | ------------------- |
-| enabled | boolean | Yes  | Whether to enable or disable focus assist. The value **true** means to enable focus assist, and **false** means to disable it.|
+| enabled | boolean | Yes  | Whether to enable or disable focus assist. **true** to enable, **false** otherwise.|
 
 **Error codes**
 
@@ -5947,7 +5907,7 @@ Checks whether the focus assist is enabled.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | Check result. The value **true** means that the focus assist is enabled, and **false** means the opposite.|
+| boolean    | Check result for whether the focus assist is enabled. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -6168,7 +6128,7 @@ Sets the manual focus distance.
 
 | Name     | Type                    | Mandatory| Description                |
 | -------- | ----------------------- | ---- | ------------------- |
-| distance | number | Yes  | Manual focus distance. The value is a floating point number in the range [0, 1]. The value **0** indicates a close-up shot, and **1** indicates a long shot.<br> |
+| distance | number | Yes  | Manual focus distance. The value is a floating point number in the range [0, 1]. The value **0** indicates a close-up shot, and **1** indicates a long shot.|
 
 **Error codes**
 
@@ -6258,7 +6218,7 @@ Checks whether manual ISO setting is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | The value **true** means that manual ISO setting is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| boolean    | Check result for the support of manual ISO setting. **true** if supported, **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -6301,7 +6261,7 @@ Obtains the supported ISO range.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| Array\<number\>   | ISO range. The value range is [50, 100, ..., 6400]. The actual value depends on the bottom-layer capability. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| Array\<number\>   | ISO range. The value range is [50, 100, ..., 6400]. The actual value depends on the bottom-layer capability. If the operation fails, an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -6423,309 +6383,17 @@ function getIso(professionalPhotoSession: camera.ProfessionalPhotoSession): numb
 }
 ```
 
-## WhiteBalanceMode<sup>12+</sup>
-
-Enumerates the white balance modes.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-| Name                          | Value  | Description        |
-| ----------------------------- | ---- | ----------- |
-| AUTO          | 0    | Automatic.|
-| CLOUDY        | 1    | Cloudy.|
-| INCANDESCENT  | 2    | Incandescent light.|
-| FLUORESCENT   | 3    | Fluorescence light.|
-| DAYLIGHT     	| 4    | Daylight.|
-| MANUAL        | 5    | Manual.|
-
-## WhiteBalanceQuery<sup>12+</sup>
-
-Provides APIs to check whether a white balance mode is supported and obtain the white balance mode range supported.
-
-### isWhiteBalanceModeSupported<sup>12+</sup>
-
-isWhiteBalanceModeSupported(mode: WhiteBalanceMode): boolean
-
-Checks whether a white balance mode is supported.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-**Parameters**
-
-| Name     | Type                          | Mandatory | Description                          |
-| -------- | -------------------------------| ---- | ----------------------------- |
-| mode   | [WhiteBalanceMode](#whitebalancemode12)  | Yes  | White balance mode.                     |
-
-**Return value**
-
-| Type       | Description                         |
-| ---------- | ----------------------------- |
-| boolean    | The value **true** means that the white balance mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
-
-**Error codes**
-
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
-
-| ID        | Error Message       |
-| --------------- | --------------- |
-| 202     | Not System Application. |
-| 7400101                |  Parameter missing or parameter type incorrect.        |
-| 7400103                |  Session not config.                                   |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function isWhiteBalanceModeSupported(professionalPhotoSession: camera.ProfessionalPhotoSession): boolean {
-  let status: boolean = false;
-  try {
-	let mode: WhiteBalanceMode = camera.WhiteBalanceMode.DAYLIGHT;
-    status = professionalPhotoSession.isWhiteBalanceModeSupported(mode);
-  } catch (error) {
-    // If the operation fails, error.code is returned and processed.
-    let err = error as BusinessError;
-    console.error(`The isWhiteBalanceModeSupported call failed. error code: ${err.code}`);
-  }
-  return status;
-}
-```
-
-### getWhiteBalanceRange<sup>12+</sup>
-
-getWhiteBalanceRange(): Array\<number\>
-
-Obtains the white balance range, in which users can manually adjust the white balance.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Return value**
-
-| Type       | Description                         |
-| ---------- | ----------------------------- |
-| Array\<number\>   | White balance range, for example, [2800, ...,10000], in units of K (Kelvin). The actual value depends on the bottom-layer capability. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
-
-**Error codes**
-
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
-
-| ID        | Error Message       |
-| --------------- | --------------- |
-| 202     | Not System Application. |
-| 7400103                |  Session not config.                                   |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function getWhiteBalanceRange(professionalPhotoSession: camera.ProfessionalPhotoSession): Array<number> {
-  let range: Array<number> = [];
-  try {
-    range = professionalPhotoSession.getWhiteBalanceRange();
-  } catch (error) {
-    // If the operation fails, error.code is returned and processed.
-    let err = error as BusinessError;
-    console.error(`The getWhiteBalanceRange call failed. error code: ${err.code}`);
-  }
-  return range;
-}
-```
-
-## WhiteBalance<sup>12+</sup>
-
-WhiteBalance extends [WhiteBalanceQuery](#whitebalancequery12)
-
-Provides APIs to process white balance, including obtaining and setting the white balance mode and white balance value.
-
-### setWhiteBalanceMode<sup>12+</sup>
-
-setWhiteBalanceMode(mode: WhiteBalanceMode): void
-
-Sets a white balance mode.
-
-Before the setting, call [isWhiteBalanceModeSupported](#iswhitebalancemodesupported12) to check whether the target white balance mode is supported.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name     | Type                           | Mandatory| Description                   |
-| -------- | -------------------------------| ---- | ----------------------- |
-| mode   | [WhiteBalanceMode](#whitebalancemode12)  | Yes  | White balance mode.               |
-
-**Error codes**
-
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
-
-| ID        | Error Message       |
-| --------------- | --------------- |
-| 202     | Not System Application. |
-| 7400101                |  Parameter missing or parameter type incorrect.        |
-| 7400103                |  Session not config.                                   |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function setWhiteBalanceMode(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
-  try {
-    professionalPhotoSession.setWhiteBalanceMode(camera.WhiteBalanceMode.DAYLIGHT);
-  } catch (error) {
-    // If the operation fails, error.code is returned and processed.
-    let err = error as BusinessError;
-    console.error(`The setWhiteBalanceMode call failed. error code: ${err.code}`);
-  }
-}
-```
-
-### getWhiteBalanceMode<sup>12+</sup>
-
-getWhiteBalanceMode(): WhiteBalanceMode
-
-Obtains the white balance mode in use.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Return value**
-
-| Type       | Description                         |
-| ---------- | ----------------------------- |
-| [WhiteBalanceMode](#whitebalancemode12)    | White balance mode in use. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
-
-**Error codes**
-
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
-
-| ID        | Error Message       |
-| --------------- | --------------- |
-| 202     | Not System Application. |
-| 7400103                |  Session not config.                                   |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function getWhiteBalanceMode(professionalPhotoSession: camera.ProfessionalPhotoSession): camera.WhiteBalanceMode | undefined {
-  let whiteBalanceMode: camera.WhiteBalanceMode | undefined = undefined;
-  try {
-    whiteBalanceMode = professionalPhotoSession.getWhiteBalanceMode();
-  } catch (error) {
-    // If the operation fails, error.code is returned and processed.
-    let err = error as BusinessError;
-    console.error(`The getWhiteBalanceMode call failed. error code: ${err.code}`);
-  }
-  return whiteBalanceMode;
-}
-```
-
-### setWhiteBalance<sup>12+</sup>
-setWhiteBalance(whiteBalance: number): void
-
-Sets a white balance value.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name     | Type                    | Mandatory| Description                |
-| -------- | ----------------------- | ---- | ------------------- |
-| whiteBalance | number | Yes  | White balance value.|
-
-**Error codes**
-
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
-
-| ID        | Error Message       |
-| --------------- | --------------- |
-| 202     | Not System Application. |
-| 7400101                |  Parameter missing or parameter type incorrect.        |
-| 7400103                |  Session not config.                                   |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function setWhiteBalance(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
-  try {
-    let whiteBalance: number = 1000;
-    professionalPhotoSession.setWhiteBalance(whiteBalance);
-  } catch (error) {
-    // If the operation fails, error.code is returned and processed.
-    let err = error as BusinessError;
-    console.error(`The setWhiteBalance call failed. error code: ${err.code}`);
-  }
-}
-```
-
-### getWhiteBalance<sup>12+</sup>
-
-getWhiteBalance(): number
-
-Obtains the current white balance value.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Return value**
-
-| Type       | Description                         |
-| ---------- | ----------------------------- |
-| number    | White balance value.|
-
-**Error codes**
-
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
-
-| ID        | Error Message       |
-| --------------- | --------------- |
-| 202     | Not System Application. |
-| 7400103                |  Session not config.                                   |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function getWhiteBalance(professionalPhotoSession: camera.ProfessionalPhotoSession): number {
-  let whiteBalance: number = 0;
-  try {
-    whiteBalance = professionalPhotoSession.getWhiteBalance();
-  } catch (error) {
-    // If the operation fails, error.code is returned and processed.
-    let err = error as BusinessError;
-    console.error(`The getWhiteBalance call failed. error code: ${err.code}`);
-  }
-  return whiteBalance;
-}
-```
-
 ## ProfessionalPhotoSession<sup>12+</sup>
 
 ProfessionalPhotoSession extends Session, AutoExposure, ManualExposure, Focus, ManualFocus, WhiteBalance, ManualIso, Flash, Zoom, ColorEffect, Aperture
 
-Implements a professional photo session, which sets the parameters of the professional photo mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session12).
+Implements a professional photo session, which sets the parameters of the professional photo mode and saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera. It inherits from [Session](arkts-apis-camera-Session.md).
 
 ### on('error')<sup>12+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **ProfessionalPhotoSession** error events. This API uses an asynchronous callback to return the result.
+Subscribes to ProfessionalPhotoSession error events. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -6735,8 +6403,8 @@ Subscribes to **ProfessionalPhotoSession** error events. This API uses an asynch
 
 | Name    | Type                                                         | Mandatory| Description                          |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](js-apis-camera.md#beginconfig11), [commitConfig](js-apis-camera.md#commitconfig11-1), and [addInput](js-apis-camera.md#addinput11).|
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| Yes  | Callback used to return an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).|
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](arkts-apis-camera-Session.md#beginconfig11), [commitConfig](arkts-apis-camera-Session.md#commitconfig11-1), and [addInput](arkts-apis-camera-Session.md#addinput11).|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| Yes  | Callback used to return an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode).|
 
 **Error codes**
 
@@ -6764,7 +6432,7 @@ function registerSessionError(professionalPhotoSession: camera.ProfessionalPhoto
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **ProfessionalPhotoSession** error events.
+Unsubscribes from ProfessionalPhotoSession error events.
 
 **System API**: This is a system API.
 
@@ -6808,7 +6476,7 @@ Subscribes to focus state change events. This API uses an asynchronous callback 
 | Name    | Type                   | Mandatory| Description                      |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created. This event is triggered only when the camera focus state changes in auto focus mode.|
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | Yes  | Callback used to return the focus state change. |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | Yes  | Callback used to return the focus state change. |
 
 **Error codes**
 
@@ -6851,7 +6519,7 @@ Unsubscribes from focus state change events.
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('focusStateChange')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('focusStateChange')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
 
 **Error codes**
 
@@ -6884,7 +6552,7 @@ Subscribes to smooth zoom state change events. This API uses an asynchronous cal
 | Name    | Type                  | Mandatory| Description                      |
 | -------- | ----------------------- | ---- | ------------------------ |
 | type     | string                  | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | Yes  | Callback used to return the smooth zoom state change. |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | Yes  | Callback used to return the smooth zoom state change. |
 
 **Error codes**
 
@@ -6927,7 +6595,7 @@ Unsubscribes from smooth zoom state change events.
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('smoothZoomInfoAvailable')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('smoothZoomInfoAvailable')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
 
 **Error codes**
 
@@ -7237,13 +6905,13 @@ function unregisterLuminationInfoEvent(professionalPhotoSession: camera.Professi
 
 ProfessionalVideoSession extends Session, AutoExposure, ManualExposure, Focus, ManualFocus, WhiteBalance, ManualIso, Flash, Zoom, ColorEffect, Aperture
 
-Implements a professional video session, which sets the parameters of the professional video mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session12).
+Implements a professional video session, which sets the parameters of the professional video mode and saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera. It inherits from [Session](arkts-apis-camera-Session.md).
 
 ### on('error')<sup>12+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **ProfessionalVideo** error events. This API uses an asynchronous callback to return the result.
+Subscribes to ProfessionalVideo error events. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -7253,8 +6921,8 @@ Subscribes to **ProfessionalVideo** error events. This API uses an asynchronous 
 
 | Name    | Type                                                         | Mandatory| Description                          |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](js-apis-camera.md#beginconfig11), [commitConfig](js-apis-camera.md#commitconfig11-1), and [addInput](js-apis-camera.md#addinput11).|
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| Yes  | Callback used to return an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).|
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](arkts-apis-camera-Session.md#beginconfig11), [commitConfig](arkts-apis-camera-Session.md#commitconfig11-1), and [addInput](arkts-apis-camera-Session.md#addinput11).|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| Yes  | Callback used to return an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode).|
 
 **Error codes**
 
@@ -7282,7 +6950,7 @@ function registerSessionError(professionalVideoSession: camera.ProfessionalVideo
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **ProfessionalVideo** error events.
+Unsubscribes from ProfessionalVideo error events.
 
 **System API**: This is a system API.
 
@@ -7326,7 +6994,7 @@ Subscribes to focus state change events. This API uses an asynchronous callback 
 | Name    | Type                   | Mandatory| Description                      |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created. This event is triggered only when the camera focus state changes in auto focus mode.|
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | Yes  | Callback used to return the focus state change. |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | Yes  | Callback used to return the focus state change. |
 
 **Error codes**
 
@@ -7369,7 +7037,7 @@ Unsubscribes from focus state change events.
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('focusStateChange')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('focusStateChange')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
 
 **Error codes**
 
@@ -7402,7 +7070,7 @@ Subscribes to smooth zoom state change events. This API uses an asynchronous cal
 | Name    | Type                  | Mandatory| Description                      |
 | -------- | ----------------------- | ---- | ------------------------ |
 | type     | string                  | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | Yes  | Callback used to return the smooth zoom state change. |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | Yes  | Callback used to return the smooth zoom state change. |
 
 **Error codes**
 
@@ -7445,7 +7113,7 @@ Unsubscribes from smooth zoom state change events.
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('smoothZoomInfoAvailable')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('smoothZoomInfoAvailable')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
 
 **Error codes**
 
@@ -7755,13 +7423,13 @@ function unregisterLuminationInfoEvent(professionalVideoSession: camera.Professi
 
 MacroPhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect, ManualFocus
 
-Implements a macro photo session, which sets the parameters of the macro photo mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
+Implements a macro photo session, which sets the parameters of the macro photo mode and saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera. It inherits from [Session](arkts-apis-camera-Session.md).
 
 ### on('error')<sup>12+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **MacroPhotoSession** error events. This API uses an asynchronous callback to return the result.
+Subscribes to MacroPhotoSession error events. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -7771,8 +7439,8 @@ Subscribes to **MacroPhotoSession** error events. This API uses an asynchronous 
 
 | Name     | Type                                                                       | Mandatory | Description                                                                                                                                                                     |
 |----------|---------------------------------------------------------------------------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| type     | string                                                                    | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](js-apis-camera.md#beginconfig11), [commitConfig](js-apis-camera.md#commitconfig11-1), and [addInput](js-apis-camera.md#addinput11).|
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).                                                                                                          |
+| type     | string                                                                    | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](arkts-apis-camera-Session.md#beginconfig11), [commitConfig](arkts-apis-camera-Session.md#commitconfig11-1), and [addInput](arkts-apis-camera-Session.md#addinput11).|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode).                                                                                                          |
 
 **Error codes**
 
@@ -7800,7 +7468,7 @@ function registerSessionError(macroPhotoSession: camera.MacroPhotoSession): void
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **MacroPhotoSession** error events.
+Unsubscribes from MacroPhotoSession error events.
 
 **System API**: This is a system API.
 
@@ -7844,7 +7512,7 @@ Subscribes to focus state change events. This API uses an asynchronous callback 
 | Name      | Type                                         | Mandatory| Description                                                                     |
 |-----------|---------------------------------------------|----|-------------------------------------------------------------------------|
 | type      | string                                      | Yes | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created. This event is triggered only when the camera focus state changes in auto focus mode.|
-| callback  | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\>  | Yes | Callback used to return the focus state change.                                                       |
+| callback  | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\>  | Yes | Callback used to return the focus state change.                                                       |
 
 **Error codes**
 
@@ -7887,7 +7555,7 @@ Unsubscribes from focus state change events.
 | Name      | Type                                         | Mandatory| Description                                                          |
 |-----------|---------------------------------------------|----|--------------------------------------------------------------|
 | type      | string                                      | Yes | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created.                  |
-| callback  | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\>  | No | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled. |
+| callback  | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\>  | No | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled. |
 
 **Error codes**
 
@@ -7920,7 +7588,7 @@ Subscribes to smooth zoom state change events. This API uses an asynchronous cal
 | Name    | Type                  | Mandatory| Description                      |
 | -------- | ----------------------- | ---- | ------------------------ |
 | type     | string                  | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | Yes  | Callback used to return the smooth zoom state change. |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | Yes  | Callback used to return the smooth zoom state change. |
 
 **Error codes**
 
@@ -7963,7 +7631,7 @@ Unsubscribes from smooth zoom state change events.
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Error codes**
 
@@ -7985,13 +7653,13 @@ function unregisterSmoothZoomInfo(macroPhotoSession: camera.MacroPhotoSession): 
 
 MacroVideoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect, ManualFocus
 
-Implements a macro video session, which sets the parameters of the macro video mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
+Implements a macro video session, which sets the parameters of the macro video mode and saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera. It inherits from [Session](arkts-apis-camera-Session.md).
 
 ### on('error')<sup>12+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **MacroVideoSession** error events. This API uses an asynchronous callback to return the result.
+Subscribes to MacroVideoSession error events. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -8001,8 +7669,8 @@ Subscribes to **MacroVideoSession** error events. This API uses an asynchronous 
 
 | Name     | Type                                                                       | Mandatory | Description                                                                                                                                                                     |
 |----------|---------------------------------------------------------------------------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| type     | string                                                                    | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](js-apis-camera.md#beginconfig11), [commitConfig](js-apis-camera.md#commitconfig11-1), and [addInput](js-apis-camera.md#addinput11).|
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).                                                                                                          |
+| type     | string                                                                    | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](arkts-apis-camera-Session.md#beginconfig11), [commitConfig](arkts-apis-camera-Session.md#commitconfig11-1), and [addInput](arkts-apis-camera-Session.md#addinput11).|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode).                                                                                                          |
 
 **Error codes**
 
@@ -8030,7 +7698,7 @@ function registerSessionError(macroVideoSession: camera.MacroVideoSession): void
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **MacroVideoSession** error events.
+Unsubscribes from MacroVideoSession error events.
 
 **System API**: This is a system API.
 
@@ -8074,7 +7742,7 @@ Subscribes to focus state change events. This API uses an asynchronous callback 
 | Name      | Type                                         | Mandatory| Description                                                                     |
 |-----------|---------------------------------------------|----|-------------------------------------------------------------------------|
 | type      | string                                      | Yes | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created. This event is triggered only when the camera focus state changes in auto focus mode.|
-| callback  | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\>  | Yes | Callback used to return the focus state change.                                                       |
+| callback  | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\>  | Yes | Callback used to return the focus state change.                                                       |
 
 **Error codes**
 
@@ -8117,7 +7785,7 @@ Unsubscribes from focus state change events.
 | Name      | Type                                         | Mandatory| Description                                                          |
 |-----------|---------------------------------------------|----|--------------------------------------------------------------|
 | type      | string                                      | Yes | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created.                  |
-| callback  | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\>  | No | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled. |
+| callback  | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\>  | No | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled. |
 
 **Error codes**
 
@@ -8150,7 +7818,7 @@ Subscribes to smooth zoom state change events. This API uses an asynchronous cal
 | Name    | Type                  | Mandatory| Description                      |
 | -------- | ----------------------- | ---- | ------------------------ |
 | type     | string                  | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | Yes  | Callback used to return the smooth zoom state change. |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | Yes  | Callback used to return the smooth zoom state change. |
 
 **Error codes**
 
@@ -8193,7 +7861,7 @@ Unsubscribes from smooth zoom state change events.
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Error codes**
 
@@ -8229,7 +7897,7 @@ Checks whether the LCD flash is supported.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| boolean | Check result. The value **true** means that the LCD flash is supported, and **false** means the opposite.|
+| boolean | Check result for the support of the LCD flash. **true** if supported, **false** otherwise.|
 
 **Error codes**
 
@@ -8250,7 +7918,7 @@ function isLcdFlashSupported(nightPhotoSession: camera.NightPhotoSession): boole
 
 ## Flash<sup>11+</sup>
 
-Flash extends [FlashQuery](js-apis-camera.md#flashquery12)
+Flash extends [FlashQuery](arkts-apis-camera-FlashQuery.md)
 
 Provides APIs related to the flash.
 
@@ -8268,14 +7936,15 @@ Before the setting, call [isLcdFlashSupported](#islcdflashsupported12) to check 
 
 | Name      | Type                    | Mandatory| Description                                              |
 | --------- | ----------------------- | ---- |--------------------------------------------------|
-| enabled | boolean | Yes  | Whether to enable or disable the LCD flash. The value **true** means to enable the LCD flash, and **false** means to disable it. If null or undefined is passed, it is treated as 0 and the LCD flash is disabled.|
+| enabled | boolean | Yes  | Whether to enable or disable the LCD flash. **true** to enable, **false** otherwise. If null or undefined is passed, it is treated as 0 and the LCD flash is disabled.|
 
 **Error codes**
 
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
+| 202                    | Not System Application. |
 | 7400103                |  Session not config.                                   |
 
 **Example**
@@ -8339,13 +8008,13 @@ Describes the Try AE parameters. Try AE indicates that the hardware reports the 
 
 TimeLapsePhotoSession extends Session, Focus, ManualFocus, AutoExposure, ManualExposure, ManualIso, WhiteBalance, Zoom, ColorEffect
 
-Implements a time-lapse photo session, which sets the parameters of the time-lapse photo mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session12).
+Implements a time-lapse photo session, which sets the parameters of the time-lapse photo mode and saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera. It inherits from [Session](arkts-apis-camera-Session.md).
 
 ### on('error')<sup>12+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **TimeLapsePhotoSession** error events. This API uses an asynchronous callback to return the result.
+Subscribes to TimeLapsePhotoSession error events. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -8355,8 +8024,8 @@ Subscribes to **TimeLapsePhotoSession** error events. This API uses an asynchron
 
 | Name    | Type                                                         | Mandatory| Description                          |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](js-apis-camera.md#beginconfig11), [commitConfig](js-apis-camera.md#commitconfig11-1), and [addInput](js-apis-camera.md#addinput11).|
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| Yes  | Callback used to return an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).|
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](arkts-apis-camera-Session.md#beginconfig11), [commitConfig](arkts-apis-camera-Session.md#commitconfig11-1), and [addInput](arkts-apis-camera-Session.md#addinput11).|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| Yes  | Callback used to return an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode).|
 
 **Error codes**
 
@@ -8384,7 +8053,7 @@ function registerSessionError(timeLapsePhotoSession: camera.TimeLapsePhotoSessio
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **TimeLapsePhotoSession** error events.
+Unsubscribes from TimeLapsePhotoSession error events.
 
 **System API**: This is a system API.
 
@@ -8428,7 +8097,7 @@ Subscribes to focus state change events. This API uses an asynchronous callback 
 | Name    | Type                   | Mandatory| Description                      |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created. This event is triggered only when the camera focus state changes in auto focus mode.|
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | Yes  | Callback used to return the focus state change. |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | Yes  | Callback used to return the focus state change. |
 
 **Error codes**
 
@@ -8471,7 +8140,7 @@ Unsubscribes from focus state change events.
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('focusStateChange')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('focusStateChange')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
 
 **Error codes**
 
@@ -8791,7 +8460,7 @@ Checks whether Try AE is required.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean   | Check result. The value **true** means that Try AE is required, and **false** means the opposite. The error code type is defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).|
+| boolean   | Check result for whether Try AE is required. **true** if required, **false** otherwise. The error code type is defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode).|
 
 **Error codes**
 
@@ -8904,7 +8573,7 @@ Obtains the supported time-lapse shooting interval range.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| Array\<number\>   | Interval range, in ms. The value depends on the underlying capability. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| Array\<number\>   | Interval range, in ms. The value depends on the underlying capability. If the operation fails, an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -9032,7 +8701,7 @@ Obtains the time-lapse shooting state.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| [TimeLapseRecordState](#timelapserecordstate12)    | Shooting state. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| [TimeLapseRecordState](#timelapserecordstate12)    | Shooting state. If the operation fails, an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -9117,7 +8786,7 @@ Obtains the time-lapse preview type.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| [TimeLapsePreviewType](#timelapsepreviewtype12)    | Preview type. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| [TimeLapsePreviewType](#timelapsepreviewtype12)    | Preview type. If the operation fails, an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -9192,13 +8861,13 @@ function setTimeLapsePreviewType(timeLapsePhotoSession: camera.TimeLapsePhotoSes
 
 LightPaintingPhotoSession extends Session, Flash, Focus, Zoom, ColorEffect
 
-Implements a light painting photo session, which sets the parameters of the light painting photo mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
+Implements a light painting photo session, which sets the parameters of the light painting photo mode and saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera. It inherits from [Session](arkts-apis-camera-Session.md).
 
 ### on('error')<sup>12+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **LightPaintingPhotoSession** error events. This API uses an asynchronous callback to return the result.
+Subscribes to LightPaintingPhotoSession error events. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -9208,8 +8877,8 @@ Subscribes to **LightPaintingPhotoSession** error events. This API uses an async
 
 | Name     | Type                                                                       | Mandatory | Description                                                                                                                                                                     |
 |----------|---------------------------------------------------------------------------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| type     | string                                                                    | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](js-apis-camera.md#beginconfig11), [commitConfig](js-apis-camera.md#commitconfig11-1), and [addInput](js-apis-camera.md#addinput11).|
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).                                                                                                          |
+| type     | string                                                                    | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](arkts-apis-camera-Session.md#beginconfig11), [commitConfig](arkts-apis-camera-Session.md#commitconfig11-1), and [addInput](arkts-apis-camera-Session.md#addinput11).|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode).                                                                                                          |
 
 **Error codes**
 
@@ -9237,7 +8906,7 @@ function registerSessionError(lightPaintingPhotoSession: camera.LightPaintingPho
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **LightPaintingPhotoSession** error events.
+Unsubscribes from LightPaintingPhotoSession error events.
 
 **System API**: This is a system API.
 
@@ -9281,7 +8950,7 @@ Subscribes to focus state change events. This API uses an asynchronous callback 
 | Name      | Type                                         | Mandatory| Description                                                                     |
 |-----------|---------------------------------------------|----|-------------------------------------------------------------------------|
 | type      | string                                      | Yes | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created. This event is triggered only when the camera focus state changes in auto focus mode.|
-| callback  | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\>  | Yes | Callback used to return the focus state change.                                                       |
+| callback  | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\>  | Yes | Callback used to return the focus state change.                                                       |
 
 **Error codes**
 
@@ -9324,7 +8993,7 @@ Unsubscribes from focus state change events.
 | Name      | Type                                         | Mandatory| Description                                                          |
 |-----------|---------------------------------------------|----|--------------------------------------------------------------|
 | type      | string                                      | Yes | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created.                  |
-| callback  | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\>  | No | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled. |
+| callback  | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\>  | No | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled. |
 
 **Error codes**
 
@@ -9357,7 +9026,7 @@ Subscribes to smooth zoom state change events. This API uses an asynchronous cal
 | Name    | Type                  | Mandatory| Description                      |
 | -------- | ----------------------- | ---- | ------------------------ |
 | type     | string                  | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | Yes  | Callback used to return the smooth zoom state change. |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | Yes  | Callback used to return the smooth zoom state change. |
 
 **Error codes**
 
@@ -9400,7 +9069,7 @@ Unsubscribes from smooth zoom state change events.
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Error codes**
 

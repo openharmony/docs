@@ -1,4 +1,10 @@
 # 媒体会话提供方
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 音视频应用在实现音视频功能的同时，需要作为媒体会话提供方接入媒体会话，在媒体会话控制方（例如播控中心）中展示媒体相关信息，及响应媒体会话控制方下发的播控命令。
 
@@ -36,7 +42,11 @@
 音视频应用作为媒体会话提供方接入媒体会话的基本步骤如下所示：
 
 1. 通过AVSessionManager的方法创建并激活媒体会话。
-     
+
+   > **说明：**
+   >
+   > 以下示例代码仅展示创建AVSession对象的接口调用，应用在真正使用时，需要确保AVSession对象实例在应用后台播放业务活动期间一直存在，避免被系统回收、释放，导致后台发声时被系统管控。
+
       ```ts
       import { avSession as AVSessionManager } from '@kit.AVSessionKit';  
       @Entry
@@ -300,42 +310,42 @@
               session.on('play', () => {
                 console.info(`on play , do play task`);
                 // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('play')取消监听。
-                // 处理完毕后，请使用SetAVPlayState上报播放状态。
+                // 处理完毕后，请使用SetAVPlaybackState上报播放状态。
               });
               session.on('pause', () => {
                 console.info(`on pause , do pause task`);
                 // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('pause')取消监听。
-                // 处理完毕后，请使用SetAVPlayState上报播放状态。
+                // 处理完毕后，请使用SetAVPlaybackState上报播放状态。
               });
               session.on('stop', () => {
                 console.info(`on stop , do stop task`);
                 // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('stop')取消监听。
-                // 处理完毕后，请使用SetAVPlayState上报播放状态。
+                // 处理完毕后，请使用SetAVPlaybackState上报播放状态。
               });
               session.on('playNext', () => {
                 console.info(`on playNext , do playNext task`);
                 // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('playNext')取消监听。
-                // 处理完毕后，请使用SetAVPlayState上报播放状态，使用SetAVMetadata上报媒体信息。
+                // 处理完毕后，请使用SetAVPlaybackState上报播放状态，使用SetAVMetadata上报媒体信息。
               });
               session.on('playPrevious', () => {
                 console.info(`on playPrevious , do playPrevious task`);
                 // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('playPrevious')取消监听。
-                // 处理完毕后，请使用SetAVPlayState上报播放状态，使用SetAVMetadata上报媒体信息。
+                // 处理完毕后，请使用SetAVPlaybackState上报播放状态，使用SetAVMetadata上报媒体信息。
               });
               session.on('fastForward', () => {
                 console.info(`on fastForward , do fastForward task`);
                 // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('fastForward')取消监听。
-                // 处理完毕后，请使用SetAVPlayState上报播放状态和播放position。
+                // 处理完毕后，请使用SetAVPlaybackState上报播放状态和播放position。
               });
               session.on('rewind', () => {
                 console.info(`on rewind , do rewind task`);
                 // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('rewind')取消监听。
-                // 处理完毕后，请使用SetAVPlayState上报播放状态和播放position。
+                // 处理完毕后，请使用SetAVPlaybackState上报播放状态和播放position。
               });
               session.on('seek', (time) => {
                 console.info(`on seek , the seek time is ${time}`);
                 // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('seek')取消监听。
-                // 处理完毕后，请使用SetAVPlayState上报播放状态和播放position。
+                // 处理完毕后，请使用SetAVPlaybackState上报播放状态和播放position。
               });
               session.on('setSpeed', (speed) => {
                 console.info(`on setSpeed , the speed is ${speed}`);
@@ -344,12 +354,12 @@
               session.on('setLoopMode', (mode) => {
                 console.info(`on setLoopMode , the loop mode is ${mode}`);
                 // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('setLoopMode')取消监听。
-                // 应用自定下一个模式，处理完毕后，请使用SetAVPlayState上报切换后的LoopMode。
+                // 应用自定下一个模式，处理完毕后，请使用SetAVPlaybackState上报切换后的LoopMode。
               });
               session.on('toggleFavorite', (assetId) => {
                 console.info(`on toggleFavorite , the target asset Id is ${assetId}`);
                 // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('toggleFavorite')取消监听。
-                // 处理完毕后，请使用SetAVPlayState上报收藏结果isFavorite。
+                // 处理完毕后，请使用SetAVPlaybackState上报收藏结果isFavorite。
               });
             })
         }

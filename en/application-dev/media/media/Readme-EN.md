@@ -24,6 +24,7 @@
   - Playback<!--media-playback-c-->
     - [Using AVPlayer to Play Audio (C/C++)](using-ndk-avplayer-for-playback.md)
     - [Using AVPlayer to Play Videos (C/C++)](using-ndk-avplayer-for-video-playback.md)
+    - [Using LPP to Play Audio and Video (C/C++)](using-ndk-lpp-for-playback.md)
   - Recording<!--media-recording-c-->
     - [Using AVRecorder to Record Audio (C/C++)](using-ndk-avrecorder-for-audio-recording.md)
     - [Using AVRecorder to Record Videos (C/C++)](using-ndk-avrecorder-for-video-recording.md)
@@ -32,3 +33,5 @@
   - Media Information Query<!--media-info-c-->
     - [Using AVMetadataExtractor to Obtain Metadata (C/C++)](using-ndk-avmetadataextractor-for-media.md)
     - [Using AVImageGenerator to Obtain Video Frames (C/C++)](using-ndk-avimagegenerator-for-video.md)
+  - Video Transcoding<!--media-transcoder-c-->
+    - [Using AVTranscoder to Transcode Videos (C/C++)](using-ndk-avtranscoder-for-transcodering.md)

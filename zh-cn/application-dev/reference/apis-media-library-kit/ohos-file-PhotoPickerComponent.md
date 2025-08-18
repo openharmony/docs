@@ -1,6 +1,13 @@
 # @ohos.file.PhotoPickerComponent (PhotoPicker组件)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xuchangda-->
+<!--Designer: @guxinggang-->
+<!--Tester: @wangbeibei-->
+<!--Adviser: @zengyawen-->
 
-应用可以在布局中嵌入PhotoPicker组件，通过此组件，应用无需申请权限，即可访问公共目录中的图片或视频文件。仅包含读权限。
+应用可以在布局中嵌入PhotoPicker组件，通过此组件，应用无需申请权限，即可实现媒体文件选择功能。在用户选择媒体文件后，应用即可访问用户选中的图片或视频文件。仅包含读权限。
+需要注意的是PhotoPickerComponent不能嵌套使用，且不建议在PhotoPickerComponent上覆盖设置了overlay属性的组件，将导致PhotoPickerComponent无法接受手势事件。
 应用嵌入组件后，用户可直接在PhotoPicker组件中选择图片或视频文件。
 
 > **说明：**
@@ -12,9 +19,8 @@
 ```ts
 import {
   PhotoPickerComponent, PickerController, PickerOptions,
-  DataType, BaseItemInfo, ItemInfo, PhotoBrowserInfo, AnimatorParams,
-  MaxSelected, ItemType, ClickType, PickerOrientation,
-  SelectMode, PickerColorMode, ReminderMode, MaxCountType, PhotoBrowserRange, PhotoBrowserUIElement,
+  DataType, BaseItemInfo, ItemInfo, PhotoBrowserInfo, ItemType, ClickType,
+  MaxCountType, PhotoBrowserRange, PhotoBrowserUIElement,
   ItemsDeletedCallback, ExceedMaxSelectedCallback, CurrentAlbumDeletedCallback
 } from '@ohos.file.PhotoPickerComponent';
 ```
@@ -37,6 +43,7 @@ PhotoPickerComponent({
   onSelectedItemsDeleted?: ItemsDeletedCallback,
   onExceedMaxSelected?: ExceedMaxSelectedCallback,
   onCurrentAlbumDeleted?: CurrentAlbumDeletedCallback,
+  onVideoPlayStateChanged?: videoPlayStateChangedCallback,
   pickerController: PickerController
 })
 
@@ -49,27 +56,25 @@ PhotoPickerComponent({
 
 **装饰器类型**：@Component
 
-**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
 
-| 名称                      | 类型                                                                               | 必填  | 装饰器说明      | 参数描述                                                                                                                                                                                                                                                                                                                                                            |
+| 名称                      | 类型                                                                               | 必填  | 装饰器类型      | 说明                                                                                                                                                                                                                                                                                                                                                            |
 |-------------------------|----------------------------------------------------------------------------------|-----|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| pickerOptions           | [PickerOptions](#pickeroptions)                                                  | 否   | - | picker参数信息。                                                                                                                                                                                                                                                                                                                                                     |
-| onSelect                | (uri: string) => void                                                            | 否   | - | 用户在Picker组件中勾选图片时产生的回调事件，将图片uri报给应用。                                                                                                                                                                                                                                                                                                                            |
-| onDeselect              | (uri: string) => void                                                            | 否   | - | 用户在Picker组件中取消勾选图片时产生的回调事件，同时也会将图片uri报给应用。                                                                                                                                                                                                                                                                                                                      |
-| onItemClicked           | (itemInfo: [ItemInfo](#iteminfo), clickType: [ClickType](#clicktype)) => boolean | 否   | - | 用户在picker组件中点击item产生的回调事件。<br>点击图片（缩略图item）时，返回值为true则勾选此图片，否则不响应勾选，uri不授权；点击相机item，返回值为true则拉起系统相机，否则不拉起相机，由应用自行处理。                                                                                                                                                                                                                                            |
-| onEnterPhotoBrowser     | (photoBrowserInfo: [PhotoBrowserInfo](#photobrowserinfo)) => boolean             | 否   | - | 点击进入大图时产生的回调事件，将大图相关信息报给应用。                                                                                                                                                                                                                                                                                                                                     |
-| onExitPhotoBrowser      | (photoBrowserInfo: [PhotoBrowserInfo](#photobrowserinfo)) => boolean             | 否   | - | 退出大图时产生的回调事件，将大图相关信息报给应用。                                                                                                                                                                                                                                                                                                                                       |
-| onPickerControllerReady | () => void                                                                       | 否   | - | 当pickerController可用时产生的回调事件。<br>调用PickerController相关接口需在该回调后才能生效。                                                                                                                                                                                                                                                                                               |
-| onPhotoBrowserChanged   | (browserItemInfo: [BaseItemInfo](#baseiteminfo)) => boolean                      | 否   | - | 大图左右滑动时产生的回调事件，将大图相关信息报给应用。                                                                                                                                                                                                                                                                                                                                     |
-| onSelectedItemsDeleted<sup>13+</sup>  | [ItemsDeletedCallback](#itemsdeletedcallback13)                                  | 否   | - | 已勾选的图片被删除时产生的回调，并将被删除图片的相关信息回调给应用。                                                                                                                                                                                                                                                                                                                              |
-| onExceedMaxSelected<sup>13+</sup>     | [ExceedMaxSelectedCallback](#exceedmaxselectedcallback13)                          | 否   | - | 选择达到最大选择数量（最大图片选择数量或者是最大视频选择数量亦或是总的最大选择数量）之后再次点击勾选时产生的回调。<br>- 若选择的数量达到了最大图片选择数量且未达到总的最大选择数量则回调的参数exceedMaxCountType为[MaxCountType](#maxcounttype).PHOTO_MAX_COUNT。<br>- 若选择的数量达到了最大视频选择数量且未达到总的最大选择数量则回调的参数exceedMaxCountType为[MaxCountType](#maxcounttype).VIDEO_MAX_COUNT。<br>- 只要选择的数量达到了总的最大选择数量则回调的参数exceedMaxCountType为[MaxCountType](#maxcounttype).TOTAL_MAX_COUNT。 |
-| onCurrentAlbumDeleted<sup>13+</sup>   | [CurrentAlbumDeletedCallback](#currentalbumdeletedcallback13)                    | 否   | - | 当前相册被删除时产生的回调。<br>当前相册是指通过pickerController.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, currentAlbumUri)接口设置给宫格组件的相册，即“currentAlbumUri”。<br>当前相册被删除后若使用方刷新自己的相册标题栏，使用方可以设置自己的标题栏名称为默认的相册名例如“图片和视频”、“图片”或“视频”，然后通过pickerController.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, '')接口传空串去刷新宫格页为默认相册。                                  |
-| onVideoPlayStateChanged<sup>14+</sup>   | [videoPlayStateChangedCallback](#videoplaystatechangedcallback14)                    | 否   | - | 大图页视频播放状态改变时回调。                                  |
-| pickerController        | [PickerController](#pickercontroller)                                            | 否   | @ObjectLink | 应用可通过PickerController向Picker组件发送数据。                                                                                                                                                                                                                                                                                                                             |
+| pickerOptions           | [PickerOptions](#pickeroptions)                                                  | 否   | - | picker配置参数信息。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                     |
+| onSelect                | (uri: string) => void                                                            | 否   | - | 用户在Picker组件中勾选图片时产生的回调事件，将图片uri报给应用。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                            |
+| onDeselect              | (uri: string) => void                                                            | 否   | - | 用户在Picker组件中取消勾选图片时产生的回调事件，同时也会将图片uri报给应用。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                      |
+| onItemClicked           | (itemInfo: [ItemInfo](#iteminfo), clickType: [ClickType](#clicktype)) => boolean | 否   | - | 用户在picker组件中点击item产生的回调事件。<br>点击图片（缩略图item）时，返回值为true则勾选此图片，否则不响应勾选，uri不授权；点击相机item，返回值为true则拉起系统相机，否则不拉起相机，由应用自行处理。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                            |
+| onEnterPhotoBrowser     | (photoBrowserInfo: [PhotoBrowserInfo](#photobrowserinfo)) => boolean             | 否   | - | 点击进入大图时产生的回调事件，将大图相关信息报给应用。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                     |
+| onExitPhotoBrowser      | (photoBrowserInfo: [PhotoBrowserInfo](#photobrowserinfo)) => boolean             | 否   | - | 退出大图时产生的回调事件，将大图相关信息报给应用。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                       |
+| onPickerControllerReady | () => void                                                                       | 否   | - | 当pickerController可用时产生的回调事件。<br>调用PickerController相关接口需在该回调后才能生效。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                               |
+| onPhotoBrowserChanged   | (browserItemInfo: [BaseItemInfo](#baseiteminfo)) => boolean                      | 否   | - | 大图左右滑动时产生的回调事件，将大图相关信息报给应用。仅在多选模式下生效。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                     |
+| onSelectedItemsDeleted<sup>13+</sup>  | [ItemsDeletedCallback](#itemsdeletedcallback13)                                  | 否   | - | 已勾选的图片被删除时产生的回调，并将被删除图片的相关信息回调给应用。<br>**原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                              |
+| onExceedMaxSelected<sup>13+</sup>     | [ExceedMaxSelectedCallback](#exceedmaxselectedcallback13)                          | 否   | - | 选择达到最大选择数量（最大图片选择数量或者是最大视频选择数量亦或是总的最大选择数量）之后再次点击勾选时产生的回调。<br>- 若选择的数量达到了最大图片选择数量且未达到总的最大选择数量则回调的参数exceedMaxCountType为[MaxCountType](#maxcounttype).PHOTO_MAX_COUNT。<br>- 若选择的数量达到了最大视频选择数量且未达到总的最大选择数量则回调的参数exceedMaxCountType为[MaxCountType](#maxcounttype).VIDEO_MAX_COUNT。<br>- 只要选择的数量达到了总的最大选择数量则回调的参数exceedMaxCountType为[MaxCountType](#maxcounttype).TOTAL_MAX_COUNT。<br>**原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。 |
+| onCurrentAlbumDeleted<sup>13+</sup>   | [CurrentAlbumDeletedCallback](#currentalbumdeletedcallback13)                    | 否   | - | 当前相册被删除时产生的回调。<br>当前相册是指通过pickerController.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, currentAlbumUri)接口设置给宫格组件的相册，即“currentAlbumUri”。<br>当前相册被删除后若使用方刷新自己的相册标题栏，使用方可以设置自己的标题栏名称为默认的相册名例如“图片和视频”、“图片”或“视频”，然后通过pickerController.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, '')接口传空串去刷新宫格页为默认相册。<br>**原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。                                  |
+| onVideoPlayStateChanged<sup>14+</sup>   | [videoPlayStateChangedCallback](#videoplaystatechangedcallback14)                    | 否   | - | 大图页视频播放状态改变时回调。<br>**原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。                                  |
+| pickerController        | [PickerController](#pickercontroller)                                            | 否   | @ObjectLink | 应用可通过PickerController向Picker组件发送数据。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                             |
 
 ## PickerOptions
 
@@ -97,6 +102,8 @@ Picker配置选项。
 | photoBrowserMargin<sup>14+</sup>    | [Margin](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)                        | 否   | 设置组件大图页margin。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | singleLineConfig<sup>20+</sup>             | [SingleLineConfig](#singlelineconfig)                                                | 否   | 设置组件宫格页单行显示模式。单行模式下，组件不提供打开大图浏览相关功能。组件不支持大图相关回调，PickerController不支持大图相关的接口，接口调用将无效。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。      |  
 | uiComponentColorMode<sup>20+</sup>             | [PickerColorMode](#pickercolormode)                                                | 否   | Picker的颜色模式。Picker宫格界面除背景色之外其他组件的深浅色风格，包括搜索框、相机入口、安全使用图库提示组件、推荐气泡等组件，一般与backgroundColor配合使用。默认为PickerColorMode.AUTO，跟随系统深浅色切换。<br>该属性一般设置PickerColorMode.LIGHT时不与深颜色的backgroundColor搭配；设置PickerColorMode.DARK时不与浅颜色的backgroundColor搭配，否则会出现组件背景或文字无法看清楚的问题。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。  |
+| gridStartOffset<sup>20+</sup>    | number                              | 否   | 组件宫格缩略图第一行与组件顶部的预留空间。默认值0，单位vp。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| gridEndOffset<sup>20+</sup>    | number                              | 否   | 组件宫格缩略图最后一行与组件底部的预留空间。默认值0，单位vp。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## ItemsDeletedCallback<sup>13+</sup>
 
@@ -252,7 +259,7 @@ replacePhotoPickerPreview(originalUri: string, newUri: string, callback: AsyncCa
 | 参数名         | 类型                     |     必填     | 说明                |
 |-------------|----------------------------| -------------- |-------------------|
 | originalUri     | string  | 是 | 原uri，将会被替换掉的uri。 |
-| newUri  | boolean   | 是 | 新uri，即替换后的uri。基于originalUri修改后期望在photoPicker上替换originalUri显示的，暂存在应用沙箱的图片/视频uri。      |
+| newUri  | string   | 是 | 新uri，即替换后的uri。基于originalUri修改后期望在photoPicker上替换originalUri显示的，暂存在应用沙箱的图片/视频uri。      |
 | callback   | AsyncCallback&lt;void&gt;   | 是 | 调用接口完成替换后的回调。      |
 
 ### saveTrustedPhotoAssets<sup>15+</sup>
@@ -288,7 +295,7 @@ saveTrustedPhotoAssets(trustedUris: Array&lt;string&gt;, callback: AsyncCallback
 | mimeType | string                | 否   | 图片、视频的mimeType（itemType为ThUMBNAIL时支持，否则为空）。       |
 | width    | number                | 否   | 图片、视频的宽（单位：像素）（itemType为ThUMBNAIL时支持，否则为空）。       |
 | height   | number                | 否   | 图片、视频的高（单位：像素）（itemType为ThUMBNAIL时支持，否则为空）。       |
-| size     | number                | 否   | 图片、视频的大小（单位：千字节）（itemType为ThUMBNAIL时支持，否则为空）。     |
+| size     | number                | 否   | 图片、视频的大小（单位：字节）（itemType为ThUMBNAIL时支持，否则为空）。     |
 | duration   | number                | 否   | 视频的时长（单位：毫秒），图片时返回-1（itemType为ThUMBNAIL时支持，否则为空）。 |
 
 ## ItemInfo
@@ -397,7 +404,9 @@ saveTrustedPhotoAssets(trustedUris: Array&lt;string&gt;, callback: AsyncCallback
 
 ## PickerOrientation
 
-Picker宫格页面滑动预览的方向。（该能力暂不支持）
+Picker宫格页面滑动预览的方向。
+
+从API20开始，该能力支持配置；在API12-19，该能力设置不生效，默认为竖直方向。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -516,7 +525,7 @@ Picker的颜色模式。
 | PAUSED | 1   | 视频播放暂停。 |
 | STOPPED | 2   | 视频播放停止。 |
 | SEEK_START | 3   | 开始拖拽进度条。 |
-| SEEK_FINSH | 4   | 结束拖拽进度条。 |
+| SEEK_FINISH | 4   | 结束拖拽进度条。 |
 
 ## ItemDisplayRatio<sup>20+</sup>
 
@@ -543,14 +552,8 @@ import {
   BaseItemInfo,
   ItemInfo,
   PhotoBrowserInfo,
-  AnimatorParams,
-  MaxSelected,
   ItemType,
   ClickType,
-  PickerOrientation,
-  SelectMode,
-  PickerColorMode,
-  ReminderMode,
   MaxCountType,
   PhotoBrowserRange,
   PhotoBrowserUIElement,
@@ -560,14 +563,15 @@ import {
   videoPlayStateChangedCallback,
   VideoPlayerState
 } from '@ohos.file.PhotoPickerComponent';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 @Entry
 @Component
 struct PickerDemo {
   pickerOptions: PickerOptions = new PickerOptions();
   @State pickerController: PickerController = new PickerController();
-  @State selectUris: Array<string> = new Array<string>();
+  @State selectUris: string[] = [];
   @State currentUri: string = '';
   @State isBrowserShow: boolean = false;
   private selectedItemsDeletedCallback: ItemsDeletedCallback =
@@ -577,6 +581,8 @@ struct PickerDemo {
   private currentAlbumDeletedCallback: CurrentAlbumDeletedCallback = () => this.onCurrentAlbumDeleted();
   private videoPlayStateChangedCallback: videoPlayStateChangedCallback =
     (state: VideoPlayerState) => this.videoPlayStateChanged(state);
+  private thumbnail: PixelMap[] = [];
+  private assets: photoAccessHelper.PhotoAsset[] = [];
 
   aboutToAppear() {
     this.pickerOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
@@ -614,7 +620,7 @@ struct PickerDemo {
       return true; // 返回true则拉起系统相机，若应用需要自行处理则返回false。
     } else {
       if (clickType === ClickType.SELECTED) {
-        // 应用做自己的业务处理。
+        // 应用做自己的业务处理（注：非长耗时操作，例如opensync大文件）。
         if (uri) {
           this.selectUris.push(uri);
           this.pickerOptions.preselectedUris = [...this.selectUris];
@@ -707,9 +713,9 @@ struct PickerDemo {
         // 这里模拟应用侧底部的选择栏。
         if (this.isBrowserShow) {
           Row() {
-            ForEach(this.selectUris, (uri: string) => {
-              if (uri === this.currentUri) {
-                Image(uri)
+            ForEach(this.assets, async (asset: photoAccessHelper.PhotoAsset, index) => {
+              if (asset.uri === this.currentUri) {
+                Image(this.thumbnail[index])
                   .height('10%')
                   .width('10%')
                   .onClick(() => {
@@ -717,16 +723,32 @@ struct PickerDemo {
                   .borderWidth(1)
                   .borderColor('red')
               } else {
-                Image(uri).height('10%').width('10%').onClick(() => {
+                Image(this.thumbnail[index]).height('10%').width('10%').onClick(() => {
                   this.pickerController.setData(DataType.SET_SELECTED_URIS, this.selectUris);
-                  this.pickerController.setPhotoBrowserItem(uri, PhotoBrowserRange.ALL);
+                  this.pickerController.setPhotoBrowserItem(asset.uri, PhotoBrowserRange.ALL);
                 })
               }
             }, (uri: string) => JSON.stringify(uri))
           }
         } else {
-          Button('预览').width('33%').height('5%').onClick(() => {
+          Button('预览').width('33%').height('5%').onClick(async () => {
             if (this.selectUris.length > 0) {
+              this.thumbnail = [];
+              this.assets = [];
+              for (let selectUri of this.selectUris) {
+                let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+                predicates.equalTo(photoAccessHelper.PhotoKeys.URI, selectUri);
+                let fetchOptions: photoAccessHelper.FetchOptions = {
+                  fetchColumns: [],
+                  predicates: predicates
+                };
+                let photoHelper = photoAccessHelper.getPhotoAccessHelper(getContext());
+                let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> =
+                  await photoHelper.getAssets(fetchOptions);
+                let asset = await fetchResult.getFirstObject()
+                this.assets.push(asset);
+                this.thumbnail.push(await asset.getThumbnail())
+              }
               this.pickerController.setPhotoBrowserItem(this.selectUris[0], PhotoBrowserRange.SELECTED_ONLY);
             }
           })

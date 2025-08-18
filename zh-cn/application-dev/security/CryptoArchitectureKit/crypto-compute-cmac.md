@@ -1,5 +1,12 @@
 # 消息认证码计算CMAC(ArkTS)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 CMAC通过使用分组密码（如AES）和一个密钥生成认证码，确保消息在传输过程中未被篡改。
 
 ## 开发步骤
@@ -10,7 +17,7 @@ CMAC通过使用分组密码（如AES）和一个密钥生成认证码，确保�
 
 ### CMAC（一次性传入数据）
 
-1. 调用[cryptoFramework.createMac](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemac18)，指定消息认证码算法为CMAC，指定对称算法为AES256，生成消息认证码实例（Mac）。
+1. 调用[cryptoFramework.createMac](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemac18)，指定消息认证码算法为CMAC，指定对称算法为AES128，生成消息认证码实例（Mac）。
 
 2. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)和[SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1)，生成密钥算法为AES256的对称密钥（SymKey）。
    生成对称密钥的详细开发指导，请参考[指定二进制数据生成对称密钥](crypto-convert-binary-data-to-sym-key.md)。

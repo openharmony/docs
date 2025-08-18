@@ -1917,7 +1917,7 @@ Inserts a symbol into the paragraph being built.
 
 | Name   | Type   | Mandatory| Description                                                       |
 | -------- | ------- | ---- | ----------------------------------------------------------- |
-| symbolId | number  | Yes  | Symbol code to insert. The value is a hexadecimal number in the range 0xF0000-0xF0C97. For details about the configurable symbol codes (unicode values in the list view), see [HarmonyOS Symbol](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/).|
+| symbolId | number  | Yes  | Symbol code to insert. The value is a hexadecimal number in the range 0xF0000-0xF0C97. For details about the configurable symbol codes (unicode values in the list view), see [HarmonyOS Symbol](https://developer.huawei.com/consumer/en/design/harmonyos-symbol/).|
 
 **Example**
 

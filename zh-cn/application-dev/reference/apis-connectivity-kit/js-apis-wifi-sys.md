@@ -149,7 +149,9 @@ WLAN配置信息。
 | randomMacType | number | 是 | 否 | 随机MAC类型。 <br /> **系统接口：** 此接口为系统接口。 |
 | randomMacAddr | string | 是 | 否 | 随机MAC地址。 <br /> **系统接口：** 此接口为系统接口。 |
 | ipType | [IpType](#iptype7) | 是 | 否 | IP地址类型。 <br /> **系统接口：** 此接口为系统接口。 |
-| staticIp | [IpConfig](#ipconfig7) | 是 | 否 | 静态IP配置信息。 <br /> **系统接口：** 此接口为系统接口。 |
+| family<sup>20+</sup> | number | 否 | 是 | ip协议版本。 <br /> **系统接口：** 此接口为系统接口。 |
+| staticIp | [IpConfig](#ipconfig7) | 否 | 是 | 静态IPv4配置信息。 <br /> **系统接口：** 此接口为系统接口。 |
+| staticIpv6<sup>20+</sup> | [Ipv6Config](#ipv6config20) | 否 | 是 | 静态IPv6配置信息。 <br /> **系统接口：** 此接口为系统接口。 |
 
 
 ## IpType<sup>7+</sup>
@@ -170,18 +172,37 @@ WLAN配置信息。
 
 ## IpConfig<sup>7+</sup>
 
-IP配置信息。
+IPv4配置信息。
 
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-| **名称** | **类型** | **可读** | **可写** | **说明** |
+| **名称** | **类型** | **只读** | **可选** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| ipAddress | number | 是 | 否 | IP地址。 |
-| gateway | number | 是 | 否 | 网关。 |
-| dnsServers | number[] | 是 | 否 | DNS服务器。 |
-| domains | Array&lt;string&gt; | 是 | 否 | 域信息。 |
+| ipAddress | number | 否 | 否 | IPv4地址。 |
+| gateway | number | 否 | 否 | 网关。 |
+| prefixLength | number | 否 | 否 | 前缀长度。 |
+| dnsServers | number[] | 否 | 否 | DNS服务器。 |
+| domains | Array&lt;string&gt; | 否 | 否 | 域信息。 |
+
+
+## Ipv6Config<sup>20+</sup>
+
+IPv6配置信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| **名称** | **类型** | **只读** | **可选** | **说明** |
+| -------- | -------- | -------- | -------- | -------- |
+| ipAddress | string | 否 | 否 | IPv6地址。 |
+| gateway | string| 否 | 否 | 网关。 |
+| prefixLength | number | 否 | 否 | 前缀长度。 |
+| dnsServers | Array\<string> | 否 | 否 | DNS服务器。 |
+| domains | Array\<string> | 否 | 否 | 域信息。 |
+
 
 
 ## wifi.addDeviceConfig

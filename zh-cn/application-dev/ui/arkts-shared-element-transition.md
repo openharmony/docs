@@ -1,4 +1,10 @@
 # 共享元素转场 (一镜到底)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @ge-yafang-->
 
 共享元素转场是一种界面切换时对相同或者相似的两个元素做的一种位置和大小匹配的过渡动画效果，也称一镜到底动效。
 
@@ -400,7 +406,7 @@ import { curves } from '@kit.ArkUI';
 
 class Data {
   item: string | null = null
-  isExpand: Boolean | false = false
+  isExpand: boolean = false
 }
 
 @Builder

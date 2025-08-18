@@ -1,4 +1,10 @@
 # @ohos.enterprise.deviceControl（设备控制管理）(系统接口)
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--Designer: @liuzuming-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供设备控制能力。
 
@@ -28,6 +34,7 @@ resetFactory(admin: Want, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -79,6 +86,7 @@ resetFactory(admin: Want): Promise\<void>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -133,6 +141,7 @@ shutdown(admin: Want): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -181,6 +190,7 @@ reboot(admin: Want): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -229,6 +239,7 @@ lockScreen(admin: Want): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 

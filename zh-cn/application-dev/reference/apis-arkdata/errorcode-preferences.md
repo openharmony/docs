@@ -1,4 +1,10 @@
 # 用户首选项错误码
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @yanhuii-->
+<!--Designer: @houpengtao1-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 > **说明：**
 >

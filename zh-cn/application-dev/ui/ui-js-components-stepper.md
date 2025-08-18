@@ -1,4 +1,10 @@
 # stepper开发指导
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @mayaolll-->
+<!--Designer: @jiangdayuan-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 当一个任务需要多个步骤时，可以使用stepper组件展示当前进展。具体用法请参考[stepper API](../reference/apis-arkui/arkui-js/js-components-container-stepper.md)。
 
@@ -312,7 +318,7 @@ export default {
     <stepper-item label="{{label2}}">
       <div style="flex-direction: column;align-items: center;">
         <text class="txt" style="margin-top: 10%;">Toggle</text>
-        <div style="justify-content: space-around;flex-wrap: wrap;;margin-top:10%">
+        <div style="justify-content: space-around;flex-wrap: wrap;margin-top:10%">
           <toggle class="tog" for="{{togglelist1}}" value="{{$item}}" style="text-color: {{tcolor}};font-size: {{tsize}}; font-style: {{tstyle}};font-weight: {{tweight}};font-family: {{tfamily}};">
           </toggle>
         </div>

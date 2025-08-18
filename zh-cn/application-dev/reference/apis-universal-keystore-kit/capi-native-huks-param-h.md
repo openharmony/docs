@@ -1,5 +1,12 @@
 # native_huks_param.h
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 提供参数集构造、使用和销毁的API。

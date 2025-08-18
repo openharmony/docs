@@ -1,4 +1,10 @@
 # 会话管理(ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 相机使用预览、拍照、录像、元数据功能前，均需要创建相机会话。
 
@@ -93,6 +99,7 @@
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to commitConfig. error: ${err}`);
+      return;
      }
    
      try {

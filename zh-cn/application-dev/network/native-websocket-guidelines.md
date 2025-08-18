@@ -1,4 +1,10 @@
-# WebSocket连接(C/C++)
+# 使用WebSocket访问网络(C/C++)
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 场景介绍
 
@@ -6,7 +12,7 @@
 
 ## 接口说明
 
-WebSocket常用接口如下表所示，详细的接口说明请参考[net_websocket.h](../reference/apis-network-kit/net__websocket_8h.md)。
+WebSocket常用接口如下表所示，详细的接口说明请参考[net_websocket.h](../reference/apis-network-kit/capi-net-websocket-h.md)。
 
 
 | 接口名 | 描述 |
@@ -351,3 +357,9 @@ struct Index {
 ![demo输入界面](./figures/websocket-demo-2.jpg)
 
 ![demo日志输出](./figures/websocket-demo-log.png)
+
+## 相关实例
+
+针对WebSocket连接的开发，有以下相关实例可供参考：
+
+- [WebSocket连接（C/C++）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/WebSocket_C)

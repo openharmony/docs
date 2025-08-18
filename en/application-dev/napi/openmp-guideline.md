@@ -1,6 +1,6 @@
 # Building and Running Applications Using OpenMP
 
-The OpenHarmony NDK provides dynamic and static library files of OpenMP so that you can use OpenMP in native applications. This topic guides you through on how to call library files in [DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/) to use OpenMP. For details about the APIs and examples, see [clang-OpenMPSupport](https://clang.llvm.org/docs/OpenMPSupport.html).
+The OpenHarmony NDK provides dynamic and static library files of OpenMP so that you can use OpenMP in native applications. This topic guides you through on how to call library files in [DevEco Studio](https://developer.huawei.com/consumer/en/deveco-studio/) to use OpenMP. For details about the APIs and examples, see [clang-OpenMPSupport](https://clang.llvm.org/docs/OpenMPSupport.html).
 
 ## How to Develop
 

@@ -1,4 +1,10 @@
 # @ohos.display (屏幕属性)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 屏幕属性提供管理显示设备的一些基础能力，包括获取默认显示设备的信息，获取所有显示设备的信息以及监听显示设备的插拔行为。
 
@@ -115,7 +121,7 @@ import { display } from '@kit.ArkUI';
 
 | 名称   | 类型 | 只读 | 可选 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| displayId   | number   | 是   | 否   | 显示器ID，用于识别折痕所在的屏幕。 |
+| displayId   | number   | 是   | 否   | 屏幕id，用于识别折痕所在的屏幕。 |
 | creaseRects    | Array\<[Rect](#rect9)>   | 是   | 否   | 折痕区域。 |
 
 ## Rect<sup>9+</sup>
@@ -162,7 +168,7 @@ import { display } from '@kit.ArkUI';
 | waterfallDisplayAreaRects   | [WaterfallDisplayAreaRects](#waterfalldisplayarearects9) | 是 | 否 | 瀑布屏曲面部分显示区域。 |
 
 ## DisplayPhysicalResolution<sup>12+</sup>
-折叠设备的显示模式以及对应的物理屏幕分辨率信息。
+设备的显示模式以及对应的物理屏幕分辨率信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -170,9 +176,9 @@ import { display } from '@kit.ArkUI';
 
 | 名称                        | 类型      | 只读 | 可选 | 说明               |
 | --------------------------- | ------------- | ---- | ---- | ------------------ |
-| foldDisplayMode             | [FoldDisplayMode](#folddisplaymode10) | 是   | 否   | 折叠设备的显示模式。 |
-| physicalWidth   | number | 是 | 否 | 折叠设备的宽度，单位为px，该参数为大于0的整数。|
-| physicalHeight  | number | 是 | 否 | 折叠设备的高度，单位为px，该参数为大于0的整数。|
+| foldDisplayMode             | [FoldDisplayMode](#folddisplaymode10) | 是   | 否   | 设备的显示模式，非折叠设备时值为0。 |
+| physicalWidth   | number | 是 | 否 | 设备的宽度，单位为px，该参数为大于0的整数。|
+| physicalHeight  | number | 是 | 否 | 设备的高度，单位为px，该参数为大于0的整数。|
 
 ## ScreenShape<sup>18+</sup>
 
@@ -197,29 +203,29 @@ import { display } from '@kit.ArkUI';
 | width     | number   | 否   | 否   | 指定虚拟屏幕的宽度，单位为px，该参数应为正整数。 |
 | height    | number   | 否   | 否   | 指定虚拟屏幕的高度，单位为px，该参数应为正整数。 |
 | density   | number   | 否   | 否   | 指定虚拟屏幕的密度，单位为px，该参数为浮点数。 |
-| surfaceId | string   | 否   | 否   | 指定虚拟屏幕的surfaceId，用户可自行定义。        |
+| surfaceId | string   | 否   | 否   | 指定虚拟屏幕的surfaceId，用户可自行定义，该参数最大长度为4096个字节，超出最大长度时则取前4096个字节。        |
 
 ## Position<sup>20+</sup>
 
-坐标位置。全局坐标系时，以主屏左上角为原点。
+坐标位置：在全局坐标系中，以主屏左上角为原点。在相对坐标系中，以指定屏幕左上角为原点。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称      | 类型 | 只读 | 可选 | 说明                       |
 | --------- | -------- | ---- | ---- |--------------------------|
-| x     | number   | 否   | 否   | 相对原点的横坐标，单位为px，该参数应为32位有符号整数。 |
-| y     | number   | 否   | 否   | 相对原点的纵坐标，单位为px，该参数应为32位有符号整数。 |
+| x     | number   | 否   | 否   | 相对原点的横坐标，单位为px，该参数应为32位有符号整数，输入浮点数时向下取整。 |
+| y     | number   | 否   | 否   | 相对原点的纵坐标，单位为px，该参数应为32位有符号整数，输入浮点数时向下取整。 |
 
 ## RelativePosition<sup>20+</sup>
 
-坐标位置。全局坐标系时，以主屏左上角为原点。
+相对坐标系下的坐标位置，以displayId对应的屏幕左上角为原点。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称      | 类型 | 只读 | 可选 | 说明                       |
 | --------- | -------- | ---- | ---- |--------------------------|
-| displayId | number   | 否   | 否   | 相对坐标相对的屏幕ID，64位无符号整数，-1表示无效Id。 |
-| position  | [Position](#position20) | 否   | 否   | 相对于displayId的坐标值。 |
+| displayId | number   | 否   | 否   | 相对坐标所对应的屏幕ID，仅支持整数输入，且需大于等于0。 |
+| position  | [Position](#position20) | 否   | 否   | 以displayId所指定屏幕左上角为原点的坐标值。 |
 
 ## display.getDisplayByIdSync<sup>12+</sup>
 
@@ -272,7 +278,7 @@ try {
 
 getAllDisplayPhysicalResolution(): Promise&lt;Array&lt;DisplayPhysicalResolution&gt;&gt;
 
-获取当前折叠设备的显示模式以及对应的物理屏幕分辨率信息对象。使用Promise异步回调。
+获取当前设备支持的所有显示模式及其对应的物理屏幕分辨率信息对象。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -479,7 +485,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 | 参数名 | 类型 | 必填 | 说明                                                                                                                              |
 | -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------------------------|
 | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
-| callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id，该参数为整数。                                                                                                     |
+| callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的屏幕id，该参数为整数。                                                                                                     |
 
 **错误码：**
 
@@ -516,7 +522,7 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
-| callback | Callback&lt;number&gt; | 否 | 需要取消注册的回调函数。返回监听到的显示设备的id，该参数为整数。若无此参数，则取消注册当前type类型事件监听的所有回调函数。 |
+| callback | Callback&lt;number&gt; | 否 | 需要取消注册的回调函数。返回监听到的屏幕id，该参数为整数。若无此参数，则取消注册当前type类型事件监听的所有回调函数。 |
 
 **错误码：**
 
@@ -553,7 +559,7 @@ isFoldable(): boolean
 
 | 类型 | 说明 |
 | ----------------------------------------------- | ------------------------------------------------------- |
-| boolean | boolean对象，返回当前设备是否可折叠的结果。false表示不可折叠，true表示可折叠。|
+| boolean | boolean对象，返回当前设备是否可折叠的结果。false表示不可折叠，true表示可折叠。对于外屏只有简单辅助显示作用的小折叠设备，应用无法自定义外屏界面，故其返回值为false。其他可折叠设备的返回值均为true。|
 
 **错误码：**
 
@@ -607,11 +613,13 @@ console.info('Succeeded in obtaining fold status. Data: ' + JSON.stringify(data)
 ## display.getFoldDisplayMode<sup>10+</sup>
 getFoldDisplayMode(): FoldDisplayMode
 
-获取可折叠设备的显示模式，不适用于2in1设备。
+获取可折叠设备的显示模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、非折叠设备中返回0，在其他设备中可正常调用。
 
 **返回值：**
 
@@ -945,7 +953,7 @@ ret = display.isCaptured();
 
 on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): void
 
-开启折叠设备屏幕显示模式变化的监听，不适用于2in1设备。
+开启折叠设备屏幕显示模式变化的监听。
 
 本接口监听设备屏幕显示模式的变化，如果要监听设备物理折叠状态的变化，需要使用[display.on('foldStatusChange')](#displayonfoldstatuschange10)接口。
 
@@ -954,6 +962,8 @@ on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): vo
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、非折叠设备中不生效也不报错，在其他设备中可正常调用。
 
 **参数：**
 
@@ -990,11 +1000,13 @@ display.on('foldDisplayModeChange', callback);
 
 off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): void
 
-关闭折叠设备屏幕显示模式变化的监听，不适用于2in1设备。
+关闭折叠设备屏幕显示模式变化的监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、非折叠设备中不生效也不报错，在其他设备中可正常调用。
 
 **参数：**
 
@@ -1282,7 +1294,7 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 | 参数名    | 类型   | 必填 | 说明          |
 | --------- | ------ | ---- | ------------- |
 | screenId  | number | 是   | 屏幕id，与创建的虚拟屏幕id保持一致，即使用createVirtualScreen()接口成功创建对应虚拟屏幕时的返回值，该参数仅支持整数输入。    |
-| surfaceId | string | 是   | 代表虚拟屏幕的surface标识符，surfaceId值可自行定义。 |
+| surfaceId | string | 是   | 代表虚拟屏幕的surfaceId，用户可自行定义，该参数最大长度为4096个字节，超出最大长度时则取前4096个字节。 |
 
 **返回值：**
 
@@ -1367,7 +1379,9 @@ display.makeUnique(screenId).then(() => {
 
 convertRelativeToGlobalCoordinate(relativePosition: RelativePosition): Position
 
-将相对坐标系转换成全局坐标系。
+将指定屏幕左上角为原点的相对坐标转换成主屏左上角为原点的全局坐标，仅支持主屏和扩展屏的坐标转换。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -1385,13 +1399,13 @@ convertRelativeToGlobalCoordinate(relativePosition: RelativePosition): Position
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 801     | Capability not supported. |
 | 1400003 | This display manager service works abnormally. |
-| 1400004 | Parameter error. Possible cause: 1. Invalid parameter range. |
+| 1400004 | Parameter error. Possible cause: 1.Invalid parameter range. |
 
 **示例：**
 
@@ -1418,7 +1432,9 @@ try {
 
 convertGlobalToRelativeCoordinate(position: Position, displayId?: number): RelativePosition
 
-将全局坐标系转换成相对于入参diplayId的坐标系，若不传入displayId，则默认转换成全局坐标所在屏幕的相对坐标系。
+将主屏左上角为原点的全局坐标转换成displayId指定屏幕左上角为原点的相对坐标。若未传入displayId，默认转换为全局坐标所在屏幕的相对坐标系。若全局坐标不在任何屏幕上，默认转换成主屏的相对坐标。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -1427,7 +1443,7 @@ convertGlobalToRelativeCoordinate(position: Position, displayId?: number): Relat
 | 参数名    | 类型   | 必填 | 说明          |
 | --------- | ------ | ---- | ------------- |
 | position  | [Position](#position20) | 是 | 需要转化为相对坐标的全局坐标。 |
-| displayId | number | 否 | 相对坐标系相对的屏幕的ID，传递该参数表示以指定屏幕左上角为原点转换相对坐标，不指定则不传参。 |
+| displayId | number | 否 | 相对坐标系原点所在的屏幕ID，传递该参数表示以指定屏幕左上角为原点转换相对坐标。不指定则不传参，默认转换成全局坐标所在屏幕的相对坐标，若全局坐标不在任何屏幕上，则默认转换成主屏的相对坐标。 |
 
 **返回值：**
 
@@ -1437,13 +1453,13 @@ convertGlobalToRelativeCoordinate(position: Position, displayId?: number): Relat
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 801     | Capability not supported. |
 | 1400003 | This display manager service works abnormally. |
-| 1400004 | Parameter error. Possible cause: 1. Invalid parameter range. |
+| 1400004 | Parameter error. Possible cause: 1.Invalid parameter range. |
 
 **示例：**
 
@@ -1472,11 +1488,11 @@ try {
 
 | 名称 | 类型 | 只读 | 可选 | 说明                                                                                                            |
 | -------- | -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------|
-| id | number | 是 | 否 | 显示设备的id号，该参数为大于等于0的整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
+| id | number | 是 | 否 | 屏幕id，该参数为大于等于0的整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
 | name | string | 是 | 否 | 显示设备的名称。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                      |
 | alive | boolean | 是 | 否 | 显示设备是否启用。true表示设备启用，false表示设备未启用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                     |
 | state | [DisplayState](#displaystate) | 是 | 否 | 显示设备的状态。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                      |
-| refreshRate | number | 是 | 否 | 显示设备当前采用的刷新率，该参数为整数，单位为hz。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
+| refreshRate | number | 是 | 否 | 显示设备当前采用的刷新率，该参数为整数，单位为Hz。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
 | rotation | number | 是 | 否 | 显示设备的屏幕顺时针旋转角度。<br>值为0时，表示显示设备屏幕顺时针旋转为0°；<br>值为1时，表示显示设备屏幕顺时针旋转为90°；<br>值为2时，表示显示设备屏幕顺时针旋转为180°；<br>值为3时，表示显示设备屏幕顺时针旋转为270°。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | width | number | 是 | 否 | 显示设备的屏幕宽度，单位为px，该参数为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
 | height | number | 是 | 否 | 显示设备的屏幕高度，单位为px，该参数为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
@@ -1580,11 +1596,11 @@ getAvailableArea(): Promise&lt;Rect&gt;
 
 获取当前设备屏幕的可用区域，使用Promise异步回调。
 
-仅支持2in1设备。
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用；在其他设备中不可用，请通过[Display属性](#属性)中的width、height属性获取当前设备屏幕的可用区域。
 
 **返回值：**
 
@@ -1626,11 +1642,11 @@ on(type: 'availableAreaChange', callback: Callback&lt;Rect&gt;): void
 
 开启当前设备屏幕的可用区域监听。当前设备屏幕有可用区域变化时，触发回调函数，返回可用区域。
 
-仅支持2in1设备。
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中不生效也不报错。
 
 **参数：**
 
@@ -1673,11 +1689,11 @@ off(type: 'availableAreaChange', callback?: Callback&lt;Rect&gt;): void
 
 关闭当前设备屏幕可用区域变化的监听。
 
-仅支持2in1设备。
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中不生效也不报错。
 
 **参数：**
 
@@ -1711,5 +1727,42 @@ try {
   displayClass.off("availableAreaChange", callback);
 } catch (exception) {
   console.error(`Failed to unregister callback. Code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### getLiveCreaseRegion<sup>20+</sup>
+getLiveCreaseRegion(): FoldCreaseRegion
+
+获取当前显示模式下的实时折痕区域。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| [FoldCreaseRegion](#foldcreaseregion10) | 返回设备在当前显示模式下的折叠折痕区域。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { display } from '@kit.ArkUI';
+
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+  let data: display.FoldCreaseRegion = displayClass.getLiveCreaseRegion();
+  console.info('Succeeded in getting the live crease region. Data: ' + JSON.stringify(data));
+} catch (exception) {
+  console.error(`Failed to get the live crease region. Code: ${exception.code}, message: ${exception.message}`);
 }
 ```

@@ -1,4 +1,10 @@
 # 网页中安全区域计算和避让适配
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @KeeGitee-->
+<!--Designer: @LongLie-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 早期设备屏幕多为矩形，应用界面能够完整展示。随着全面屏、刘海屏等异形屏幕的普及，屏幕边缘可能出现圆角、摄像头或系统导航条，导致界面部分被遮挡。
 
@@ -210,7 +216,7 @@ Web组件启用沉浸式效果时，渲染内容可能与非安全区域重叠�
 .tabs {
     justify-content: space-around;
     bottom: 0;
-    height: calc(env(safe-area-inset-bottom) + 40px); /* 增加tab区域高度以避让下方安全区域 */
+    height: calc(env(safe-area-inset-bottom) + 40px); /* 增加tab区域高度以避让下方非安全区域 */
 }
 ```
 

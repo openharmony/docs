@@ -1,5 +1,12 @@
 # @ohos.hiTraceChain (分布式跟踪)
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @qq_437963121-->
+<!--Designer: @MontSaintMichel-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 本模块提供了端侧业务流程调用链跟踪的打点能力，包括业务流程跟踪的启动、结束、信息埋点等能力。
 
 > **说明：**
@@ -62,12 +69,12 @@ import { hiTraceChain } from '@kit.PerformanceAnalysisKit';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiTrace。
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| chainId      | bigint | 是 | 跟踪链标识。   |
-| spanId      | number | 否 | 分支标识，默认值为0。     |
-| parentSpanId | number | 否 | 父分支标识，默认值为0。   |
-| flags        | number | 否 | 跟踪标志组合，默认值为0。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| chainId      | bigint | 否 | 否 | 跟踪链标识。   |
+| spanId      | number | 否 | 是 | 分支标识，默认值为0。     |
+| parentSpanId | number | 否 | 是 | 父分支标识，默认值为0。   |
+| flags        | number | 否 | 是 | 跟踪标志组合，默认值为0。 |
 
 ## hiTraceChain.begin
 

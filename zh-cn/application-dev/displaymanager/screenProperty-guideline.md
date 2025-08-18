@@ -138,12 +138,12 @@ displayClass = display.getDefaultDisplaySync();
    try {
      displayClass = display.getDefaultDisplaySync();
      // 开启当前屏幕可用区域变化的监听
-     displayClass.on("availableAreaChange", callback3);
+     displayClass.on('availableAreaChange', callback3);
+     // 关闭当前监听
+     displayClass.off('availableAreaChange', callback3);
    } catch (exception) {
-     console.error(`Failed to register callback. Code: ${exception.code}, message: ${exception.message}`);
+     console.error(`Failed to register/unregister callback. Code: ${exception.code}, message: ${exception.message}`);
    }
-   // 关闭当前监听
-   displayClass.off("availableAreaChange", callback3);
    ```
 
 ## 监听折叠设备状态变化

@@ -1,5 +1,12 @@
 # 开发准备
 
+<!--Kit: User Authentication Kit-->
+<!--Subsystem: UserIAM-->
+<!--Owner: @WALL_EYE-->
+<!--Designer: @lichangting518-->
+<!--Tester: @jane_lz-->
+<!--Adviser: @zengyawen-->
+
 应用在开发用户身份认证功能时，需要先了解以下流程，并根据实际需求参考对应指导开发。
 
 - [查询设备支持的用户身份认证能力](obtain-supported-authentication-capabilities.md)。

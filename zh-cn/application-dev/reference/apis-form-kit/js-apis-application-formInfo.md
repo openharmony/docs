@@ -1,5 +1,10 @@
 # @ohos.application.formInfo (formInfo)
-
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 formInfo模块提供了卡片信息和状态等相关类型和枚举。
 
 > **说明：**
@@ -27,7 +32,7 @@ import formInfo from '@ohos.application.formInfo';
 | name        | string               | 是    | 否      | 表示卡片名称。                                 |
 | description | string               | 是    | 否      | 表示卡片描述。   |
 | type        | [FormType](#formtype)             | 是    | 否      | 表示卡片类型，当前支持JS卡片。 |
-| jsComponentName      | string               | 是    | 否      | 表示js卡片的组件名。               |
+| jsComponentName      | string               | 是    | 否      | 表示JS卡片的组件名。               |
 | colorMode  | [ColorMode](#colormode) | 是    | 否      | 表示卡片颜色模式。                                       |
 | isDefault    | boolean      | 是    | 否      | 表示是否是默认卡片。                              |
 | updateEnabled  | boolean               | 是    | 否      | 表示卡片是否使能更新。                    |

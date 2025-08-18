@@ -146,7 +146,7 @@ try {
 
 queryAppKeyState(dataType: DataType): KeyStatus
 
-以同步方法查询锁屏下应用敏感数据访问权限。
+以同步方法查询锁屏下应用指定类型敏感数据访问权限。
 
 **系统接口：** 此接口为系统接口。
 

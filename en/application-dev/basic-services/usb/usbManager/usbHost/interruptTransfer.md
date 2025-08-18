@@ -24,7 +24,7 @@ The interrupt transfer is mainly used by the host to receive a data packet sent 
 
 ### Environment Setup
 
-- Install [DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio) 4.1 or later on the PC.
+- Install [DevEco Studio](https://developer.huawei.com/consumer/en/download/) 4.1 or later on the PC.
 - Update the public SDK to API version 16 or later. For details, see [Switching to Full SDK](https://gitee.com/openharmony/docs/blob/master/en/application-dev/faqs/full-sdk-switch-guide.md).
 - Install hdc on the PC. You can use it to interact with a real device or the Emulator on Windows, Linux, or macOS. For details, see [HDC Configuration](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/hdc).
 - Use a USB cable to connect a device to the PC.
@@ -158,7 +158,7 @@ Connect a host to a device and use the **usbSubmitTransfer** API to transfer dat
     usbManager.releaseInterface(devicePipe, usbInterface);
     usbManager.closePipe(devicePipe);
     ```
-   
+
 ### Verification
 
 1. Connect the host to a terminal device (such as a mouse or a keyboard) that supports interrupt transfer through a USB interface.

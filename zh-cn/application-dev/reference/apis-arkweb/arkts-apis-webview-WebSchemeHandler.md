@@ -1,4 +1,10 @@
 # Class (WebSchemeHandler)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 用于拦截指定scheme的请求的拦截器。
 

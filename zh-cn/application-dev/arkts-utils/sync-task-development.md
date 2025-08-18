@@ -1,12 +1,18 @@
 # 同步任务开发指导 (TaskPool和Worker)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 
-同步任务是指在多个线程之间协调执行的任务，其目的是确保多个任务按照一定的顺序和规则执行，例如使用锁来防止数据竞争。
+同步任务用于在多个线程间协调执行，确保任务按特定顺序和规则进行（如使用锁防止数据竞争）。
 
 
 同步任务的实现需要考虑多个线程之间的协作和同步，以确保数据的正确性和程序的正确执行。
 
-由于TaskPool偏向于单个独立的任务，因此当各个同步任务之间相对独立时推荐使用TaskPool，例如一系列导入的静态方法，或者单例实现的方法。如果同步任务之间有关联性，则需要使用Worker。
+当同步任务之间相对独立时，推荐使用TaskPool，例如一系列导入的静态方法或单例实现的方法。如果同步任务之间有关联性，则需要使用Worker。
 
 
 ## 使用TaskPool处理同步任务
@@ -21,7 +27,7 @@
 
 > **说明：**
 >
-> 由于[Actor模型](multi-thread-concurrency-overview.md#actor模型)不同线程间内存隔离的特性，普通单例无法在不同线程间使用。可以通过共享模块导出单例解决该问题。
+> 由于[Actor模型](multi-thread-concurrency-overview.md#actor模型)不同线程间内存隔离的特性，普通单例无法在不同线程间使用。可通过共享模块导出单例解决此问题。
 
 1. 定义并发函数，实现业务逻辑。
 
@@ -76,14 +82,14 @@ struct Index {
   }
 }
 ```
-<!-- @[taskpool_handle_sync_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/SyncTaskDevelopment.ets) -->
+<!-- @[taskpool_handle_sync_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/SyncTaskDevelopment.ets) -->
 
 
 ## 使用Worker处理关联的同步任务
 
 当一系列同步任务需要使用同一个句柄调度，或者需要依赖某个类对象调度，且无法在不同任务池之间共享时，需要使用Worker。
 
-1. 在UI主线程中创建Worker对象，同时接收Worker线程发送回来的消息。DevEco Studio支持一键生成Worker，在对应的{moduleName}目录下任意位置，点击鼠标右键 > New > Worker，即可自动生成Worker的模板文件及配置信息。
+1. 在UI主线程中创建Worker对象并接收Worker线程发送的消息。DevEco Studio支持一键生成Worker。在{moduleName}目录下任意位置，点击鼠标右键 > New > Worker，即可生成Worker的模板文件及配置信息。
 
     ```ts
     // Index.ets
@@ -121,13 +127,13 @@ struct Index {
       }
     }
     ```
-    <!-- @[worker_handle_associated_sync_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/SyncTaskDevelopment.ets) -->
+    <!-- @[worker_handle_associated_sync_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/SyncTaskDevelopment.ets) -->
 
 
 2. 在Worker线程中绑定Worker对象，同时处理同步任务逻辑。
 
     ```ts
-    // handle.ts代码
+    // handle.ts代码，与Worker.ets在同级目录下
     export default class Handle {
       id: number = 0;
     
@@ -141,7 +147,7 @@ struct Index {
       }
     }
     ```
-    <!-- @[worker_handle_associated_sync_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/handle.ts) -->
+    <!-- @[worker_handle_associated_sync_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/handle.ts) -->
     
     ```ts
     // Worker.ets
@@ -172,4 +178,4 @@ struct Index {
       }
     }
     ```
-    <!-- @[worker_handle_associated_sync_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/MyWorker2.ts) -->
+    <!-- @[worker_handle_associated_sync_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/MyWorker2.ts) -->

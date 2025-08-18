@@ -1,4 +1,11 @@
 # 支持适老化
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyi0309-->
+<!--Designer: @liyi0309-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
+
 <!--RP1-->
 
 ## 基本概念
@@ -35,8 +42,8 @@
 
 | 触发方式             | 组件名称                                                     |
 | -------------------- | ------------------------------------------------------------ |
-| 长按组件触发         | [SideBarContainer](../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)， [底部页签（tabBar）](../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md#tabbar9)，[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)，[NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navdestination10)， [Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md) |
-| 设置系统字体默认放大 | [PickerDialog](../reference/apis-arkui/arkui-ts/ts-methods-calendarpicker-dialog.md)， [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md)， [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md)， [Stepper](../reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md)， [BindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)，[TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)，[TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)，[Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md)，[SelectionMenu](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectionMenu.md)，[Chip](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md#chip)，[Dialog](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)，[Slider](../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md)， [Progress](../reference/apis-arkui/arkui-ts/ts-basic-components-progress.md)， [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md) |
+| 长按组件触发         | [SideBarContainer](../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)， [底部页签（tabBar）](../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md#tabbar9)，[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)，[NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md)， [Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md) |
+| 设置系统字体默认放大 | [PickerDialog](arkts-fixes-style-dialog.md#选择器弹窗-pickerdialog)， [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md)， [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md)， [Stepper](../reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md)， [BindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)，[TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)，[TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)，[Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md)，[SelectionMenu](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectionMenu.md)，[Chip](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md#chip)，[Dialog](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)，[Slider](../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md)， [Progress](../reference/apis-arkui/arkui-ts/ts-basic-components-progress.md)， [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md) |
 
 ## 示例
 
@@ -50,8 +57,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct SideBarContainerExample {
   @State currentFontSizeScale: number = 1
-  normalIcon: Resource = $r("app.media.icon")
-  selectedIcon: Resource = $r("app.media.icon")
+  normalIcon: Resource = $r("app.media.icon") // icon仅作示例，请替换为实际使用的图片。
+  selectedIcon: Resource = $r("app.media.icon") // icon仅作示例，请替换为实际使用的图片。
   @State arr: number[] = [1, 2, 3]
   @State current: number = 1
   @State title: string = 'Index01';

@@ -1,4 +1,10 @@
 # @ohos.multimedia.avVolumePanel (音量面板)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 本模块提供创建音量面板AVVolumePanel的功能，提供展示和调节系统音量的统一面板。
 
@@ -36,8 +42,8 @@ AVVolumePanel({volumeLevel?: number, volumeParameter?: AVVolumePanelParameter})
 
 | 名称 | 类型 | 必填 | 装饰器类型  | 说明                                                                                                                                                                                                    |
 | -------- | -------- | -------- |--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|volumeLevel | number | 否 | \@Prop | 通过音量面板设置的音量值。该值应介于当前设备音量的最小值和最大值之间。如果该值大于当前设备音量的最大值，则视为设置最大音量值；如果该值小于当前设备音量的最小值，则视为设置最小音量值。获取设备的最大值、最小值和当前值，可参考[AudioVolumeGroupManager](../apis-audio-kit/arkts-apis-audio-AudioVolumeGroupManager.md)。 |
-|volumeParameter | [AVVolumePanelParameter](#avvolumepanelparameter)  | 否 | \@Prop | 设置音量面板的自定义参数。 如果不传入该参数，则调用系统音量条。                                                                                                                                                                      |
+|volumeLevel | number | 否 | \@Prop | 通过音量面板设置的音量值。<br>该值应介于当前设备音量的最小值和最大值之间。<br>如果该值大于当前设备音量的最大值，则视为设置最大音量值。<br>如果该值小于当前设备音量的最小值，则视为设置最小音量值。<br>获取设备的最大值、最小值和当前值，可参考[AudioVolumeGroupManager](../apis-audio-kit/arkts-apis-audio-AudioVolumeGroupManager.md)。 |
+|volumeParameter | [AVVolumePanelParameter](#avvolumepanelparameter)  | 否 | \@Prop |设置音量面板的自定义参数。 <br>如果不设置该参数，则为系统音量条。|
 
 ## AVVolumePanelParameter
 
@@ -49,7 +55,7 @@ AVVolumePanel({volumeLevel?: number, volumeParameter?: AVVolumePanelParameter})
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-|position | [Position](../apis-arkui/arkui-ts/ts-types.md#position) | 否 | 设置音量面板的位置。如果不传入该参数，则为系统音量条位置。 |
+|position | [Position](../apis-arkui/arkui-ts/ts-types.md#position) | 否 | 设置音量面板的位置。<br>如果不设置该参数，则为系统音量条位置。<br>如果设置该参数且参数对应屏幕内位置，则显示开发者设置的位置。<br>如果设置该参数且参数对应屏幕外位置，例如（-1， -1），不显示系统音量条，建议开发者显示自定义音量条。 |
 
 ## 事件
 
@@ -57,12 +63,12 @@ AVVolumePanel({volumeLevel?: number, volumeParameter?: AVVolumePanelParameter})
 
 ## 使用建议
 
-1. 应用在实现自定义音量条的过程中，建议使用音频框架的音量变化监听接口，通过接口回调的音量类型volumeEvent.volumeType，音量等级volumeEvent.volume以及是否显示音量条volumeEvent.updateUi等信息，应用可以判断是否需要处理当前数据和显示自定义的音量条，具体可参考[音量变化回调接口](arkts-apis-audio-AudioVolumeManager.md#onvolumechange9)介绍。
+1. 应用在实现自定义音量条的过程中，建议使用音频框架的音量变化监听接口，通过接口回调的音量类型volumeEvent.volumeType，音量等级volumeEvent.volume以及是否显示音量条volumeEvent.updateUi等信息，应用可以判断是否需要处理当前数据和显示自定义的音量条，具体可参考[音量变化回调接口](arkts-apis-audio-AudioVolumeManager.md#onstreamvolumechange20)介绍。
 2. 为确保用户能感知音量变化，不允许应用后台调节音量，系统会做出对应的控制措施。
 
 ## 示例
 
-音量面板功能的示例说明参考如下。
+音量面板功能的示例说明参考如下。需要实际修改volume值或者按压音量按键体验调节音量效果。
 
 ```ts
 import { AVVolumePanel } from '@kit.AudioKit';

@@ -1,4 +1,10 @@
 # capture_session.h
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
@@ -31,6 +37,8 @@
 | [typedef void (\*OH_CaptureSession_OnError)(Camera_CaptureSession* session, Camera_ErrorCode errorCode)](#oh_capturesession_onerror) | OH_CaptureSession_OnError | 在[CaptureSession_Callbacks](capi-oh-camera-capturesession-callbacks.md)中被调用的捕获会话错误回调。 |
 | [typedef void (\*OH_CaptureSession_OnSmoothZoomInfo)(Camera_CaptureSession* session,Camera_SmoothZoomInfo* smoothZoomInfo)](#oh_capturesession_onsmoothzoominfo) | OH_CaptureSession_OnSmoothZoomInfo | 拍照会话平滑变焦信息回调，触发平滑变焦后该回调会返回。 |
 | [typedef void (\*OH_CaptureSession_OnAutoDeviceSwitchStatusChange)(Camera_CaptureSession* session,Camera_AutoDeviceSwitchStatusInfo* autoDeviceSwitchStatusInfo)](#oh_capturesession_onautodeviceswitchstatuschange) | OH_CaptureSession_OnAutoDeviceSwitchStatusChange | 捕获会话设备切换状态回调。 |
+| [typedef void (\*OH_CaptureSession_OnSystemPressureLevelChange)(Camera_CaptureSession* session,Camera_SystemPressureLevel systemPressureLevel)](#oh_capturesession_onsystempressurelevelchange) | OH_CaptureSession_OnSystemPressureLevelChange | 捕获系统压力状态变化回调。 |
+| [typedef void (\*OH_CaptureSession_OnControlCenterEffectStatusChange)(Camera_CaptureSession* session,Camera_ControlCenterStatusInfo* controlCenterStatusInfo)](#oh_capturesession_oncontrolcentereffectstatuschange) | OH_CaptureSession_OnControlCenterEffectStatusChange | 相机控制器效果激活状态变化回调。 |
 | [Camera_ErrorCode OH_CaptureSession_RegisterCallback(Camera_CaptureSession* session,CaptureSession_Callbacks* callback)](#oh_capturesession_registercallback) | - | 注册捕获会话事件回调。 |
 | [Camera_ErrorCode OH_CaptureSession_UnregisterCallback(Camera_CaptureSession* session,CaptureSession_Callbacks* callback)](#oh_capturesession_unregistercallback) | - | 注销捕获会话事件回调。 |
 | [Camera_ErrorCode OH_CaptureSession_RegisterSmoothZoomInfoCallback(Camera_CaptureSession* session,OH_CaptureSession_OnSmoothZoomInfo smoothZoomInfoCallback)](#oh_capturesession_registersmoothzoominfocallback) | - | 注册平滑变焦信息事件回调。 |
@@ -94,6 +102,8 @@
 | [Camera_ErrorCode OH_CaptureSession_UnregisterAutoDeviceSwitchStatusCallback(Camera_CaptureSession* session,OH_CaptureSession_OnAutoDeviceSwitchStatusChange autoDeviceSwitchStatusChange)](#oh_capturesession_unregisterautodeviceswitchstatuscallback) | - | 注销设备切换事件回调。 |
 | [Camera_ErrorCode OH_CaptureSession_IsAutoDeviceSwitchSupported(Camera_CaptureSession* session, bool* isSupported)](#oh_capturesession_isautodeviceswitchsupported) | - | 检查是否支持自动设备切换。 |
 | [Camera_ErrorCode OH_CaptureSession_EnableAutoDeviceSwitch(Camera_CaptureSession* session, bool enabled)](#oh_capturesession_enableautodeviceswitch) | - | 是否启用相机设备的自动切换。 |
+| [Camera_ErrorCode OH_CaptureSession_RegisterSystemPressureLevelChangeCallback(Camera_CaptureSession* session,OH_CaptureSession_OnSystemPressureLevelChange systemPressureLevelChange)](#oh_capturesession_registersystempressurelevelchangecallback) | - | 注册系统压力状态变化回调。 |
+| [Camera_ErrorCode OH_CaptureSession_UnregisterSystemPressureLevelCallback(Camera_CaptureSession* session,OH_CaptureSession_OnSystemPressureLevelChange systemPressureLevelChange)](#oh_capturesession_unregistersystempressurelevelcallback) | - | 注销系统压力状态变化回调。 |
 | [Camera_ErrorCode OH_CaptureSession_SetQualityPrioritization(Camera_CaptureSession* session, Camera_QualityPrioritization qualityPrioritization)](#oh_capturesession_setqualityprioritization) | - | 设置录像质量优先级。<br> 默认为高质量，设置为功耗平衡将降低录像质量以减少功耗。实际功耗收益因平台而异。 |
 | [Camera_ErrorCode OH_CaptureSession_IsMacroSupported(Camera_CaptureSession* session, bool* isSupported)](#oh_capturesession_ismacrosupported) | - | 检查是否支持微距能力。 |
 | [Camera_ErrorCode OH_CaptureSession_EnableMacro(Camera_CaptureSession* session, bool enabled)](#oh_capturesession_enablemacro) | - | 是否启用相机设备的微距能力。 |
@@ -103,6 +113,12 @@
 | [Camera_ErrorCode OH_CaptureSession_IsWhiteBalanceModeSupported(Camera_CaptureSession* session,Camera_WhiteBalanceMode whiteBalanceMode, bool* isSupported)](#oh_capturesession_iswhitebalancemodesupported) | - | 检查是否支持指定的白平衡模式。 |
 | [Camera_ErrorCode OH_CaptureSession_SetWhiteBalanceMode(Camera_CaptureSession* session, Camera_WhiteBalanceMode whiteBalanceMode)](#oh_capturesession_setwhitebalancemode) | - | 设置白平衡模式。 |
 | [Camera_ErrorCode OH_CaptureSession_GetWhiteBalanceRange(Camera_CaptureSession* session, int32_t *minColorTemperature, int32_t *maxColorTemperature)](#oh_capturesession_getwhitebalancerange) | - | 获取支持配置的白平衡色温范围。 |
+| [Camera_ErrorCode OH_CaptureSession_IsControlCenterSupported(Camera_CaptureSession* session, bool* isSupported)](#oh_capturesession_iscontrolcentersupported) | - | 检查是否支持相机控制器。 |
+| [Camera_ErrorCode OH_CaptureSession_GetSupportedEffectType(Camera_CaptureSession* session,Camera_ControlCenterEffectType** types, uint32_t* size)](#oh_capturesession_getsupportedeffecttype) | - | 获取相机控制器支持的效果类型。 |
+| [Camera_ErrorCode OH_CaptureSession_DeleteSupportedEffectType(Camera_CaptureSession* session,Camera_ControlCenterEffectType* types, uint32_t size)](#oh_capturesession_deletesupportedeffecttype) | - | 删除相机控制器效果类型列表。 |
+| [Camera_ErrorCode OH_CaptureSession_EnableControlCenter(Camera_CaptureSession* session, bool enabled)](#oh_capturesession_enablecontrolcenter) | - | 是否启用相机控制器。 |
+| [Camera_ErrorCode OH_CaptureSession_RegisterControlCenterEffectStatusChangeCallback(Camera_CaptureSession* session,OH_CaptureSession_OnControlCenterEffectStatusChange controlCenterEffectStatusChange)](#oh_capturesession_registercontrolcentereffectstatuschangecallback) | - | 注册相机控制器效果激活状态变化回调。 |
+| [Camera_ErrorCode OH_CaptureSession_UnregisterControlCenterEffectStatusChangeCallback(Camera_CaptureSession* session,OH_CaptureSession_OnControlCenterEffectStatusChange controlCenterEffectStatusChange)](#oh_capturesession_unregistercontrolcentereffectstatuschangecallback) | - | 注销相机控制器效果激活状态变化回调。 |
 
 ## 函数说明
 
@@ -150,6 +166,7 @@ typedef void (*OH_CaptureSession_OnError)(Camera_CaptureSession* session, Camera
 
 [CAMERA_SERVICE_FATAL_ERROR](capi-camera-h.md#camera_errorcode)
 
+
 ### OH_CaptureSession_OnSmoothZoomInfo()
 
 ```
@@ -189,6 +206,46 @@ typedef void (*OH_CaptureSession_OnAutoDeviceSwitchStatusChange)(Camera_CaptureS
 | -- | -- |
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
 | [Camera_AutoDeviceSwitchStatusInfo](capi-oh-camera-camera-autodeviceswitchstatusinfo.md)* autoDeviceSwitchStatusInfo | 回调传递的设备切换状态信息。 |
+
+### OH_CaptureSession_OnSystemPressureLevelChange()
+
+```
+typedef void (*OH_CaptureSession_OnSystemPressureLevelChange)(Camera_CaptureSession* session,Camera_SystemPressureLevel systemPressureLevel)
+```
+
+**描述**
+
+捕获系统压力状态变化回调。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
+| [Camera_SystemPressureLevel](capi-camera-h.md#camera_systempressurelevel) systemPressureLevel | 回调传递的系统压力等级。 |
+
+### OH_CaptureSession_OnControlCenterEffectStatusChange()
+
+```
+typedef void (*OH_CaptureSession_OnControlCenterEffectStatusChange)(Camera_CaptureSession* session,Camera_ControlCenterStatusInfo* controlCenterStatusInfo)
+```
+
+**描述**
+
+相机控制器效果激活状态变化回调。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
+| [Camera_ControlCenterStatusInfo](capi-oh-camera-camera-controlcenterstatusinfo.md)* controlCenterStatusInfo | 回调传递的相机控制器效果激活状态。 |
 
 ### OH_CaptureSession_RegisterCallback()
 
@@ -749,7 +806,7 @@ Camera_ErrorCode OH_CaptureSession_HasFlash(Camera_CaptureSession* session, bool
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| bool* hasFlash | 是否支持闪光灯的结果。 |
+| bool* hasFlash | 是否支持闪光灯的结果。返回true表示支持闪光灯，返回false表示不支持。 |
 
 **返回：**
 
@@ -776,7 +833,7 @@ Camera_ErrorCode OH_CaptureSession_IsFlashModeSupported(Camera_CaptureSession* s
 | -- | -- |
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_FlashMode](capi-camera-h.md#camera_flashmode) flashMode | 要检查的闪光灯模式。 |
-| bool* isSupported | 是否支持闪光灯模式的结果。 |
+| bool* isSupported | 是否支持闪光灯模式的结果。返回true表示支持闪光灯模式，返回false表示不支持。 |
 
 **返回：**
 
@@ -855,7 +912,7 @@ Camera_ErrorCode OH_CaptureSession_IsExposureModeSupported(Camera_CaptureSession
 | -- | -- |
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_ExposureMode](capi-camera-h.md#camera_exposuremode) exposureMode | 要检查的曝光模式。 |
-| bool* isSupported | 是否支持曝光模式的结果。 |
+| bool* isSupported | 是否支持曝光模式的结果。返回true表示支持曝光模式，返回false表示不支持。 |
 
 **返回：**
 
@@ -1066,7 +1123,7 @@ Camera_ErrorCode OH_CaptureSession_IsFocusModeSupported(Camera_CaptureSession* s
 | -- | -- |
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_FocusMode](capi-camera-h.md#camera_focusmode) focusMode | 要检查的聚焦模式。 |
-| bool* isSupported | 是否支持聚焦模式的结果。 |
+| bool* isSupported | 是否支持聚焦模式的结果。返回true表示支持聚焦模式，返回false表示不支持。 |
 
 **返回：**
 
@@ -1276,7 +1333,7 @@ Camera_ErrorCode OH_CaptureSession_IsVideoStabilizationModeSupported(Camera_Capt
 | -- | -- |
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_VideoStabilizationMode](capi-camera-h.md#camera_videostabilizationmode) mode | 要检查的录像防抖模式。 |
-| bool* isSupported | 是否支持录像防抖模式的结果。 |
+| bool* isSupported | 是否支持录像防抖模式的结果。返回true表示支持录像防抖模式，返回false表示不支持。 |
 
 **返回：**
 
@@ -1355,7 +1412,7 @@ Camera_ErrorCode OH_CaptureSession_CanAddInput(Camera_CaptureSession* session,Ca
 | -- | -- |
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_Input](capi-oh-camera-camera-input.md)* cameraInput | 要设置的相机输入实例。 |
-| bool* isSuccessful | 是否可以将相机输入添加到会话中的结果。 |
+| bool* isSuccessful | 是否可以将相机输入添加到会话中的结果。返回true表示可以将相机输入添加到会话中，返回false表示不可以。 |
 
 **返回：**
 
@@ -1382,7 +1439,7 @@ Camera_ErrorCode OH_CaptureSession_CanAddPreviewOutput(Camera_CaptureSession* se
 | -- | -- |
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_PreviewOutput](capi-oh-camera-camera-previewoutput.md)* cameraOutput | 要设置的预览输出实例。 |
-| bool* isSuccessful | 是否可以将相机预览输出添加到会话中的结果。 |
+| bool* isSuccessful | 是否可以将相机预览输出添加到会话中的结果。返回true表示可以将相机预览输出添加到会话中，返回false表示不可以。 |
 
 **返回：**
 
@@ -1409,7 +1466,7 @@ Camera_ErrorCode OH_CaptureSession_CanAddPhotoOutput(Camera_CaptureSession* sess
 | -- | -- |
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)* cameraOutput | 要设置的拍照输出实例。 |
-| bool* isSuccessful | 拍照输出是否可以添加到会话中的结果。 |
+| bool* isSuccessful | 拍照输出是否可以添加到会话中的结果。返回true表示拍照输出可以添加到会话中，返回false表示不可以。 |
 
 **返回：**
 
@@ -1436,7 +1493,7 @@ Camera_ErrorCode OH_CaptureSession_CanAddVideoOutput(Camera_CaptureSession* sess
 | -- | -- |
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* cameraOutput | 要添加的录像输出实例。 |
-| bool* isSuccessful | 录像输出是否可以添加到会话中的结果。 |
+| bool* isSuccessful | 录像输出是否可以添加到会话中的结果。返回true表示录像输出可以添加到会话中，返回false表示不可以。 |
 
 **返回：**
 
@@ -1463,7 +1520,7 @@ Camera_ErrorCode OH_CaptureSession_CanPreconfig(Camera_CaptureSession* session,C
 | -- | -- |
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_PreconfigType](capi-camera-h.md#camera_preconfigtype) preconfigType | 要检查的预配置类型。 |
-| bool* canPreconfig | 是否支持预配置的结果。 |
+| bool* canPreconfig | 是否支持预配置的结果。返回true表示支持预配置，返回false表示不支持。 |
 
 **返回：**
 
@@ -1491,7 +1548,7 @@ Camera_ErrorCode OH_CaptureSession_CanPreconfigWithRatio(Camera_CaptureSession* 
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_PreconfigType](capi-camera-h.md#camera_preconfigtype) preconfigType | 要检查的预配置类型。 |
 | [Camera_PreconfigRatio](capi-camera-h.md#camera_preconfigratio) preconfigRatio | 要检查的预配置比例。 |
-| bool* canPreconfig | 是否支持预配置的结果。 |
+| bool* canPreconfig | 是否支持预配置的结果。返回ture表示支持预配置，返回false表示不支持。 |
 
 **返回：**
 
@@ -1806,7 +1863,7 @@ Camera_ErrorCode OH_CaptureSession_IsAutoDeviceSwitchSupported(Camera_CaptureSes
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| bool* isSupported | 是否支持自动设备切换的结果。 |
+| bool* isSupported | 是否支持自动设备切换的结果。返回true表示支持自动设备切换，返回false表示不支持。 |
 
 **返回：**
 
@@ -1832,13 +1889,65 @@ Camera_ErrorCode OH_CaptureSession_EnableAutoDeviceSwitch(Camera_CaptureSession*
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| bool enabled | 是否启用自动切换的标志。 |
+| bool enabled | 是否启用自动切换的标志。返回true表示启用自动切换，返回false表示不启用。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
 | [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。<br>         CAMERA_SESSION_NOT_CONFIG：捕获会话未配置。<br>         CAMERA_SERVICE_FATAL_ERROR：相机服务出现致命错误。 |
+
+### OH_CaptureSession_RegisterSystemPressureLevelChangeCallback()
+
+```
+Camera_ErrorCode OH_CaptureSession_RegisterSystemPressureLevelChangeCallback(Camera_CaptureSession* session,OH_CaptureSession_OnSystemPressureLevelChange systemPressureLevelChange)
+```
+
+**描述**
+
+注册系统压力状态变化回调。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
+| [OH_CaptureSession_OnSystemPressureLevelChange](#oh_capturesession_onsystempressurelevelchange) systemPressureLevelChange | 要注册的系统压力状态变化OH_CaptureSession_OnSystemPressureLevelChange回调。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。 |
+
+### OH_CaptureSession_UnregisterSystemPressureLevelCallback()
+
+```
+Camera_ErrorCode OH_CaptureSession_UnregisterSystemPressureLevelCallback(Camera_CaptureSession* session,OH_CaptureSession_OnSystemPressureLevelChange systemPressureLevelChange)
+```
+
+**描述**
+
+注销系统压力状态变化回调。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
+| [OH_CaptureSession_OnSystemPressureLevelChange](#oh_capturesession_onsystempressurelevelchange) systemPressureLevelChange | 要注销的系统压力状态变化OH_CaptureSession_OnSystemPressureLevelChange回调。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。 |
 
 ### OH_CaptureSession_SetQualityPrioritization()
 
@@ -1884,7 +1993,7 @@ Camera_ErrorCode OH_CaptureSession_IsMacroSupported(Camera_CaptureSession* sessi
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| bool* isSupported | 是否支持微距能力的结果。 |
+| bool* isSupported | 是否支持微距能力的结果。返回ture表示支持微距能力，返回false表示不支持。 |
 
 **返回：**
 
@@ -1910,7 +2019,7 @@ Camera_ErrorCode OH_CaptureSession_EnableMacro(Camera_CaptureSession* session, b
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| bool enabled | 是否启用微距能力的标志。 |
+| bool enabled | 是否启用微距能力的标志。返回ture表示启用微距能力，返回false表示不启用。 |
 
 **返回：**
 
@@ -2073,5 +2182,163 @@ Camera_ErrorCode OH_CaptureSession_GetWhiteBalanceRange(Camera_CaptureSession* s
 | 类型 | 说明 |
 | -- | -- |
 | [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK：函数调用成功。<br> CAMERA_INVALID_ARGUMENT：参数缺失或者参数类型不正确。<br> CAMERA_SESSION_NOT_CONFIG：相机会话未配置。 |
+
+### OH_CaptureSession_IsControlCenterSupported()
+
+```
+Camera_ErrorCode OH_CaptureSession_IsControlCenterSupported(Camera_CaptureSession* session, bool* isSupported)
+```
+
+**描述**
+
+检查是否支持相机控制器。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| bool* isSupported | 是否支持相机控制器的结果。true表示支持，false表示不支持。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK = 0：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。<br>         CAMERA_SESSION_NOT_CONFIG：捕获会话未配置。 |
+
+### OH_CaptureSession_GetSupportedEffectType()
+
+```
+Camera_ErrorCode OH_CaptureSession_GetSupportedEffectType(Camera_CaptureSession* session,Camera_ControlCenterEffectType** types, uint32_t* size)
+```
+
+**描述**
+
+获取相机控制器支持的效果类型。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_ControlCenterEffectType](capi-camera-h.md#camera_controlcentereffecttype)** types | 如果方法调用成功，将记录支持的Camera_ControlCenterEffectType列表。 |
+| uint32_t* size | 如果方法调用成功，将记录支持的Camera_ControlCenterEffectType列表的大小。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。<br>         CAMERA_SESSION_NOT_CONFIG：捕获会话未配置。 |
+
+### OH_CaptureSession_DeleteSupportedEffectType()
+
+```
+Camera_ErrorCode OH_CaptureSession_DeleteSupportedEffectType(Camera_CaptureSession* session,Camera_ControlCenterEffectType* types, uint32_t size)
+```
+
+**描述**
+
+删除相机控制器效果类型列表。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_ControlCenterEffectType](capi-camera-h.md#camera_controlcentereffecttype)* types | 如果方法调用成功，要删除的Camera_ControlCenterEffectType列表。 |
+| uint32_t size | 要删除的Camera_ControlCenterEffectType列表的大小。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。 |
+
+### OH_CaptureSession_EnableControlCenter()
+
+```
+Camera_ErrorCode OH_CaptureSession_EnableControlCenter(Camera_CaptureSession* session, bool enabled)
+```
+
+**描述**
+
+是否启用相机控制器。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| bool enabled | 是否启用相机控制器的标志。true表示启用，false表示禁用。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK = 0：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。<br>         CAMERA_SESSION_NOT_CONFIG：捕获会话未配置。<br>         CAMERA_SERVICE_FATAL_ERROR：相机服务出现致命错误。 |
+
+### OH_CaptureSession_RegisterControlCenterEffectStatusChangeCallback()
+
+```
+Camera_ErrorCode OH_CaptureSession_RegisterControlCenterEffectStatusChangeCallback(Camera_CaptureSession* session,OH_CaptureSession_OnControlCenterEffectStatusChange controlCenterEffectStatusChange)
+```
+
+**描述**
+
+注册相机控制器效果激活状态变化回调。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
+| [OH_CaptureSession_OnControlCenterEffectStatusChange](#oh_capturesession_oncontrolcentereffectstatuschange) controlCenterEffectStatusChange | 要注册的相机控制器效果激活状态变化OH_CaptureSession_OnControlCenterEffectStatusChange回调。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。 |
+
+### OH_CaptureSession_UnregisterControlCenterEffectStatusChangeCallback()
+
+```
+Camera_ErrorCode OH_CaptureSession_UnregisterControlCenterEffectStatusChangeCallback(Camera_CaptureSession* session,OH_CaptureSession_OnControlCenterEffectStatusChange controlCenterEffectStatusChange)
+```
+
+**描述**
+
+注销相机控制器效果激活状态变化回调。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
+| [OH_CaptureSession_OnControlCenterEffectStatusChange](#oh_capturesession_oncontrolcentereffectstatuschange) controlCenterEffectStatusChange | 要注销的相机控制器效果激活状态变化OH_CaptureSession_OnControlCenterEffectStatusChange回调。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。 |
 
 

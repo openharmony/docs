@@ -2,7 +2,7 @@
 
 SelectionExtensionContext是[SelectionExtensionAbility](./js-apis-selectionInput-selectionExtensionAbility-sys.md)的上下文，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。
 
-每个SelectionExtensionAbility组件实例化时，系统都会自动创建对应的SelectionExtensionContext。开发者可以通过SelectionExtensionContext拉起其他Ability。
+每个SelectionExtensionAbility组件实例化时，系统都会自动创建对应的SelectionExtensionContext。开发者可以通过SelectionExtensionContext拉起同应用内其他Ability。
 
 > **说明：**
 >

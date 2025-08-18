@@ -5,8 +5,9 @@
 
 A list is a container that displays a collection of items. If the list items go beyond the screen, the list can scroll to reveal the content off the screen. The list is applicable for presenting similar data types or data type sets, such as images and text. Some common lists seen in applications are the contacts list, playlist, and shopping list.
 
-You can use lists to easily and efficiently display structured, scrollable information. Specifically, you can provide a single view of rows or columns by arranging the [ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md) or [ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md) child components linearly in a vertical or horizontal direction in the [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) component, or use [ForEach](../ui/state-management/arkts-rendering-control-foreach.md) to iterate over a group of rows or columns, or mix any number of single views and **ForEach** structures to build a list. The **List** component supports the generation of child components in various [rendering](../ui/state-management/arkts-rendering-control-overview.md) modes, including conditional rendering, rendering of repeated content, and lazy data loading.
+You can use lists to easily and efficiently display structured, scrollable information. Specifically, you can provide a single view of rows or columns by arranging the [ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md) or [ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md) child components linearly in a vertical or horizontal direction in the [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) component, or use [ForEach](../ui/state-management/arkts-rendering-control-foreach.md) to iterate over a group of rows or columns, or mix any number of single views and **ForEach** structures to build a list. The **List** component supports the generation of child components in various [rendering](../ui/state-management/arkts-rendering-control-overview.md) modes, including conditional rendering, iterative rendering, and lazy data loading.
 
+On devices with circular screens, the [ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md) component is recommended. For details, see [Creating an Arc List (ArcList)](./arkts-layout-development-create-arclist.md).
 
 ## Layout and Constraints
 
@@ -27,7 +28,7 @@ As shown in the following figure, in a vertical list, **ListItemGroup** or **Lis
 
 ### Layout
 
-Apart from the aforementioned features, the list is also able to adapt to the number of elements in the cross axis direction.
+In addition to providing vertical and horizontal layout support with adaptive scrolling for off-screen content, the **List** component also offers the capability of adapting to the number of rows in the cross axis direction.
 
 When used in vertical layout, the list can contain one or more scrollable columns, as shown below.
 
@@ -97,7 +98,7 @@ List() {
 
 The cross axis layout of the **List** component can be set using the **lanes** and **alignListItem** attributes. The **lanes** attribute controls the number of list items along the cross axis, and the **alignListItem** attribute controls the alignment mode of child components along the cross axis.
 
-The lanes attribute of the **List** component is useful in building a list that auto-adapts the numbers of rows or columns on devices of different sizes. Its value type is number or [LengthConstrain](../reference/apis-arkui/arkui-ts/ts-types.md#lengthconstrain). If you are building a two-column vertical list shown on the right in Figure 2, set the **lanes** attribute to **2**. The default value of **lanes** is **1**.
+The **lanes** attribute of the **List** component is usually used to adaptively construct lists with different numbers of rows or columns for devices of different sizes, enabling one-time development for multi-device deployment. Its value type is number or [LengthConstrain](../reference/apis-arkui/arkui-ts/ts-types.md#lengthconstrain). If you are building a two-column vertical list shown on the right in Figure 2, set the **lanes** attribute to **2**. The default value of **lanes** is **1**.
 
 
 ```ts
@@ -114,7 +115,7 @@ If set to a value of the LengthConstrain type, the **lanes** attribute determine
 @Entry
 @Component
 struct EgLanes {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 }
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
   build() {
     List() {
       // ...
@@ -140,12 +141,64 @@ List() {
 .alignListItem(ListItemAlign.Center)
 ```
 
+## ListItem Lifecycle Management
+### Creating ListItem Components with ForEach
+When a **List** component is created, all **ListItem** components are created immediately, but their behavior varies by area:
+
+- Visible area: **ListItem** components are laid out during the first frame.
+- Preload area: **ListItem** components are laid out during idle time.
+- Outside the preload area: Only the **ListItem** container is created; its child components are not created.
+
+During scrolling, the **ListItem** components entering the preload and visible areas create their child components and complete layout, and the **ListItem** components leaving these areas are not destroyed.
+
+**Figure 7** Lifecycle of ListItem components created using ForEach
+![](./figures/list_foreach.png)
+
+### Creating ListItem Components with LazyForEach
+When a **List** component is created:
+
+- Visible area: **ListItem** components are created and laid out immediately.
+- Preload area: **ListItem** components are created and laid out during idle time but not mounted to the component tree.
+- Outside the preload area: No **ListItem** components are created.
+
+During scrolling, the **ListItem** components entering the preload and visible areas are created and laid out. If they contain @Reusable decorated custom components, these components are reused from the cache pool when possible. **ListItem** components leaving the preload and visible areas are destroyed. If they contain @Reusable decorated custom components, these components are recycled into the cache pool.
+
+**Figure 8** Lifecycle of ListItem components created using LazyForEach
+![](./figures/list_lazyforeach.png)
+
+### Creating ListItem Components with Repeat
+**With virtualScroll Enabled**
+
+When a **List** component is created:
+
+- Visible area: **ListItem** components are created and laid out immediately.
+- Preload area: **ListItem** components are created and laid out during idle time, and then mounted to the component tree.
+- Outside the preload area: No **ListItem** components are created.
+
+During scrolling, for **ListItem** components entering the preload and visible areas, the system first attempts to reuse components from cache pool. If no components are unavailable in the cache pool, the system creates **ListItem** components and lays them out. **ListItem** components leaving the preload and visible areas are recycled into the cache pool.
+
+**Figure 9** Lifecycle of ListItem components created using Repeat with virtualScroll enabled
+![](./figures/list_repeatv.png)
+
+**With virtualScroll Disabled**
+
+When a **List** component is created, all **ListItem** components are created immediately, but their behavior varies by area:
+
+- Visible area: **ListItem** components are laid out during the first frame.
+- Preload area: **ListItem** components are laid out during idle time.
+- Outside the preload area: No layout is performed.
+
+During scrolling, the **ListItem** components in the preload and visible areas are laid out; the **ListItem** components leaving these areas are not destroyed.
+
+**Figure 10** Lifecycle of ListItem components created using Repeat with virtualScroll disabled
+![](./figures/list_repeat.png)
+
 
 ## Displaying Data in the List
 
 The list displays a collection of items horizontally or vertically and can scroll to reveal content off the screen. In the simplest case, a **List** component is statically made up of **ListItem** components.
 
-  **Figure 7** Example of a city list 
+  **Figure 11** Example of a city list 
 
 ![en-us_image_0000001563060761](figures/en-us_image_0000001563060761.png)
 
@@ -175,7 +228,7 @@ struct CityList {
 
 Each **ListItem** component can contain only one root child component. Therefore, it does not allow for child components in tile mode. If tile mode is required, encapsulate the child components into a container or create a custom component.
 
-  **Figure 8** Example of a contacts list 
+  **Figure 12** Example of a contacts list 
 
 ![en-us_image_0000001511421328](figures/en-us_image_0000001511421328.png)
 
@@ -186,6 +239,7 @@ As shown above, as a list item, each contact has a profile picture and a name. T
 List() {
   ListItem() {
     Row() {
+      // app.media.iconE is a custom resource.
       Image($r('app.media.iconE'))
         .width(40)
         .height(40)
@@ -198,6 +252,7 @@ List() {
 
   ListItem() {
     Row() {
+      // app.media.iconF is a custom resource.
       Image($r('app.media.iconF'))
         .width(40)
         .height(40)
@@ -213,13 +268,13 @@ List() {
 
 ## Iterating List Content
 
-Compared with a static list, a dynamic list is more common in applications. You can use [ForEach](../ui/state-management/arkts-rendering-control-foreach.md) to obtain data from the data source and create components for each data item.
+Compared with a static list, a dynamic list is more common in applications. For dynamic lists, you can use [ForEach](../ui/state-management/arkts-rendering-control-foreach.md) to obtain data from the data source and create components for each data item, thereby reducing code complexity.
 
- For example, when creating a contacts list, you can store the contact name and profile picture data in a **Contact** class structure to the **contacts** array, and nest **ListItem**s in **ForEach**, thereby reducing repeated code needed for tiling similar list items.
+For example, when creating a contacts list, you can store the contact name and profile picture data in a **Contact** class structure to the **contacts** array, and nest **ListItem** components in **ForEach**, thereby reducing repeated code needed for tiling similar **ListItem** components.
 
 
 ```ts
-import { util } from '@kit.ArkTS'
+import { util } from '@kit.ArkTS';
 
 class Contact {
   key: string = util.generateRandomUUID(true);
@@ -238,7 +293,7 @@ struct SimpleContacts {
   private contacts: Array<object> = [
     new Contact('Tom', $r("app.media.iconA")),
     new Contact('Tracy', $r("app.media.iconB")),
-  ]
+  ];
 
   build() {
     List() {
@@ -269,7 +324,7 @@ In the **List** component, **ForEach** can be used to render **ListItemGroup** i
 
 ### Setting the Spacing
 
-When initializing a list, you can use the **space** parameter to add spacing between list items. In the following example, a 10vp spacing is added between list items along the main axis:
+When initializing a list, you can use the **space** parameter to add spacing between list items. In the following example, a 10 vp spacing is added between list items along the main axis:
 
 
 ```ts
@@ -281,35 +336,37 @@ List({ space: 10 }) {
 
 ### Adding Dividers
 
-A divider separates UI items to make them easier to identify. In the following figure, a divider is added between the setting items. Note that since the icons are easy to identify in their own right, the divers do not extend below the icons.
+A divider separates UI items to make them easier to identify. In the following figure that shows the settings screen, a divider is added between the setting items, appearing below the text.
 
-  **Figure 9** Using dividers between the setting items 
+  **Figure 13** Using dividers between the setting items 
 
 ![en-us_image_0000001511580960](figures/en-us_image_0000001511580960.png)
 
-To add dividers between list items, you can use the **divider** attribute together with the following style attributes:<br> **strokeWidth** and **color**: stroke width and color of the diver, respectively.
+To add dividers between list items, you can use the **divider** attribute together with the following style attributes:
 
-**startMargin** and **endMargin**: distance between the divider and the start edge and end edge of the list, respectively.
+- **strokeWidth** and **color**: stroke width and color of the diver, respectively.
+
+- **startMargin** and **endMargin**: distance between the divider and the start edge and end edge of the list, respectively.
 
 
 ```ts
 class DividerTmp {
-  strokeWidth: Length = 1
-  startMargin: Length = 60
-  endMargin: Length = 10
-  color: ResourceColor = '#ffe9f0f0'
+  strokeWidth: Length = 1;
+  startMargin: Length = 60;
+  endMargin: Length = 10;
+  color: ResourceColor = '#ffe9f0f0';
 
   constructor(strokeWidth: Length, startMargin: Length, endMargin: Length, color: ResourceColor) {
-    this.strokeWidth = strokeWidth
-    this.startMargin = startMargin
-    this.endMargin = endMargin
-    this.color = color
+    this.strokeWidth = strokeWidth;
+    this.startMargin = startMargin;
+    this.endMargin = endMargin;
+    this.color = color;
   }
 }
 @Entry
 @Component
 struct EgDivider {
-  @State egDivider: DividerTmp = new DividerTmp(1, 60, 10, '#ffe9f0f0')
+  @State egDivider: DividerTmp = new DividerTmp(1, 60, 10, '#ffe9f0f0');
   build() {
     List() {
       // ...
@@ -334,7 +391,7 @@ This example draws a divider with a stroke thickness of 1 vp from a position 60 
 
 When the total height (width) of list items exceeds the screen height (width), the list can scroll vertically (horizontally). The scrollbar of a list enables users to quickly navigate the list content, as shown below.
 
-  **Figure 10** Scrollbar of a list
+  **Figure 14** Scrollbar of a list
 
 ![en-us_image_0000001511740544](figures/en-us_image_0000001511740544.gif)
 
@@ -348,12 +405,45 @@ List() {
 .scrollBar(BarState.Auto)
 ```
 
+## Adding an External Scrollbar
+
+To add an external scrollbar to a [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) component, you can use the [ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md) component. By binding both the **List** and **ScrollBar** components to the same [Scroller](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scroller) object, you can ensure they stay synchronized.
+
+1. Create a [Scroller](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scroller) object named **listScroller**.
+
+   ```ts
+   private listScroller: Scroller = new Scroller();
+   ```
+
+2. Bind the **listScroller** object to the **List** component using the [scroller](../reference/apis-arkui/arkui-ts/ts-container-list.md#listoptions18) parameter.
+
+   ```ts
+   // Use listScroller to initialize the scroller parameter to bind it with the List component.
+   List({ scroller: this.listScroller }) {
+   // ...
+   }
+   ```
+
+3. Bind the **listScroller** object to the **ScrollBar** component using the [scroller](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md#scrollbaroptions) parameter.
+
+   ```ts
+   // Use listScroller to initialize the scroller parameter to bind it with the ScrollBar component.
+   ScrollBar({ scroller: this.listScroller })
+   ```
+
+  **Figure 15** External scrollbar of the List component
+
+![ScrollBar](figures/list_scrollbar.gif)
+
+>**NOTE**
+>- The [ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md) component can also be used with other scrollable components such as [ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md), [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md), [Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md), and [WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md).
+>- On devices with circular screens, you can use the [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) component with the [ArcScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-arcscrollbar.md) component to add an arc scrollbar to your list layout. For details, see [Adding an External Scrollbar: ArcScrollBar](./arkts-layout-development-create-arclist.md#adding-an-external-scrollbar-arcscrollbar).
 
 ## Adding Grouping Support
 
 By allowing data to be displayed in groups in the list, you make the list easier to scan and navigate. Grouping is common in real-world applications. For example, the contacts list below use grouping.
 
-  **Figure 11** Contacts list with grouping
+  **Figure 16** Contacts list with grouping
 
 ![en-us_image_0000001511580948](figures/en-us_image_0000001511580948.png)
 
@@ -398,7 +488,7 @@ The sticky header is a common pattern for keeping the header in the same place o
 
 Sticky headers not only signify the representation and usage of data in the respective groups, but also help users navigate through a large amount of information, thereby avoiding unnecessary scrolling between the top of the area where the header is located and the area of interest.
 
-  **Figure 12** Sticky header 
+  **Figure 17** Sticky header 
 
 ![en-us_image_0000001511740552](figures/en-us_image_0000001511740552.gif)
 
@@ -408,7 +498,7 @@ Setting the **sticky** attribute to **StickyStyle.Header** implements a sticky h
 
 
 ```ts
-import { util } from '@kit.ArkTS'
+import { util } from '@kit.ArkTS';
 class Contact {
   key: string = util.generateRandomUUID(true);
   name: string;
@@ -419,11 +509,34 @@ class Contact {
     this.icon = icon;
   }
 }
-class ContactsGroup {
-  title: string = ''
-  contacts: Array<object> | null = null
-  key: string = ""
+export class ContactsGroup {
+  title: string = '';
+  contacts: Array<object> | null = null;
+  key: string = "";
 }
+
+export class ContactsGroupDataSource implements IDataSource {
+  private list: object[] = [];
+
+  constructor(list: object[]) {
+    this.list = list;
+  }
+
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  getData(index: number): object {
+    return this.list[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+  }
+}
+
 export let contactsGroups: object[] = [
   {
     title: 'A',
@@ -444,6 +557,8 @@ export let contactsGroups: object[] = [
   } as ContactsGroup,
   // ...
 ]
+export let contactsGroupsDataSource: ContactsGroupDataSource = new ContactsGroupDataSource(contactsGroups);
+
 @Entry
 @Component
 struct ContactsList {
@@ -458,12 +573,12 @@ struct ContactsList {
   }
   build() {
     List() {
-      // Render the ListItemGroup components cyclically. contactsGroups is the data set of contacts and titles of multiple groups.
-      ForEach(contactsGroups, (itemGroup: ContactsGroup) => {
+      // Lazy-load the ListItemGroup components. contactsGroups is the data set of contacts and titles of multiple groups.
+      LazyForEach(contactsGroupsDataSource, (itemGroup: ContactsGroup) => {
         ListItemGroup({ header: this.itemHead(itemGroup.title) }) {
-          // Render ListItem components cyclically.
+          // Lazy-load ListItem components.
           if (itemGroup.contacts) {
-            ForEach(itemGroup.contacts, (item: Contact) => {
+            LazyForEach(new ContactsGroupDataSource(itemGroup.contacts), (item: Contact) => {
               ListItem() {
                 // ...
               }
@@ -477,11 +592,11 @@ struct ContactsList {
 ```
 
 
-## Controlling the Scrolling Position
+## Controlling the Scroll Position
 
-In some cases you may want to control the scrolling position of a list. For example, when there are a huge number of items in the news page list, you may want to allow users to quickly jump to the top or bottom of the list after they have scrolled to a certain point. Below is an example.
+In some cases you may want to control the scroll position of a list. For example, when there are a huge number of items in the news page list, you may want to allow users to quickly jump to the top or bottom of the list after they have scrolled to a certain point. Below is an example.
 
-  **Figure 13** Returning to the top of the list 
+  **Figure 18** Returning to the top of the list 
 
 ![en-us_image_0000001511900520](figures/en-us_image_0000001511900520.gif)
 
@@ -509,19 +624,19 @@ Stack({ alignContent: Alignment.Bottom }) {
   }
   .onClick(() => {
     // Specify where e to jump when the specific button is clicked, which is the top of the list in this example.
-    this.listScroller.scrollToIndex(0)
+    this.listScroller.scrollToIndex(0);
   })
 }
 ```
 
 
-## Responding to the Scrolling Position
+## Handling Scroll Position Changes
 
-Many applications need to listen for the scrolling position change of the list and respond. For example, with regard to a contacts list, if scrolling spans more than one group, the alphabetical index bar at one side of the list also needs to be updated to highlight the letter corresponding to the current group.
+Many applications need to listen for and respond to changes in list scroll positions. For example, with regard to a contacts list, if scrolling spans more than one group, the alphabetical index bar at one side of the list also needs to be updated to highlight the letter corresponding to the current group.
 
 Another common example is a scrolling list working with a multi-level index bar, as in the case of a product category page in a shopping application.
 
-**Figure 14** Alphabetical index bar's response to contacts list scrolling 
+**Figure 19** Alphabetical index bar's response to contacts list scrolling 
 
 ![en-us_image_0000001563060769](figures/en-us_image_0000001563060769.gif)
 
@@ -549,6 +664,9 @@ struct ContactsList {
       // AlphabetIndexer component
       AlphabetIndexer({ arrayValue: alphabets, selected: 0 })
         .selected(this.selectedIndex)
+        .onSelect((index: number) => {
+          this.listScroller.scrollToIndex(index);
+        })
     }
   }
 }
@@ -563,7 +681,7 @@ struct ContactsList {
 
 Swipe menus are common in many applications. For example, a messaging application generally provides a swipe-to-delete feature for its message list. This feature allows users to delete a message by swiping left on it and touching the delete button, as shown in the following figure. For details about how to add a badge to the profile picture of a list item, see [Adding a Badge to a List Item](#adding-a-badge-to-a-list-item).
 
-**Figure 15** Swipe-to-delete feature 
+**Figure 20** Swipe-to-delete feature 
 
 ![en-us_image_0000001563060773](figures/en-us_image_0000001563060773.gif)
 
@@ -607,7 +725,7 @@ In the example of the message list, the **end** parameter is set to a custom del
 
 A badge is an intuitive, unobtrusive visual indicator to draw attention and convey a specific message. For example, a badge can be displayed in the upper right corner of the contact's profile picture to indicate that there is a new message from that contact, as shown in the following figure.
 
-  **Figure 16** Adding a badge to a list item 
+  **Figure 21** Adding a badge to a list item 
 
 ![en-us_image_0000001511580952](figures/en-us_image_0000001511580952.png)
 
@@ -665,7 +783,7 @@ The following uses to-do list management as an example to describe how to quickl
 
 As shown below, when a user touches **Add**, a page is displayed for the user to set options for the new list item. After the user touches **OK**, the corresponding item is added to the list.
 
-  **Figure 17** Adding a to-do task 
+  **Figure 22** Adding a to-do task 
 
 ![en-us_image_0000001511740556](figures/en-us_image_0000001511740556.gif)
 
@@ -675,7 +793,7 @@ The process of implementing the addition feature is as follows:
 
    ```ts
    //ToDo.ets
-   import { util } from '@kit.ArkTS'
+   import { util } from '@kit.ArkTS';
 
    export class ToDo {
      key: string = util.generateRandomUUID(true);
@@ -694,8 +812,8 @@ The process of implementing the addition feature is as follows:
    import { ToDo } from './ToDo';
    @Component
    export struct ToDoListItem {
-     @Link isEditMode: boolean
-     @Link selectedItems: ToDo[]
+     @Link isEditMode: boolean;
+     @Link selectedItems: ToDo[];
      private toDoItem: ToDo = new ToDo("");
 
      build() {
@@ -729,14 +847,14 @@ The process of implementing the addition feature is as follows:
    @Entry
    @Component
    struct ToDoList {
-     @State toDoData: ToDo[] = []
-     @Watch('onEditModeChange') @State isEditMode: boolean = false
-     @State selectedItems: ToDo[] = []
-    private availableThings: string[] = ['Reading', 'Fitness', 'Travel','Music','Movie', 'Singing']
+     @State toDoData: ToDo[] = [];
+     @Watch('onEditModeChange') @State isEditMode: boolean = false;
+     @State selectedItems: ToDo[] = [];
+    private availableThings: string[] = ['Reading', 'Fitness', 'Travel', 'Music', 'Movie', 'Singing'];
    
      onEditModeChange() {
        if (!this.isEditMode) {
-         this.selectedItems = []
+         this.selectedItems = [];
        }
     }
    
@@ -790,7 +908,7 @@ The process of implementing the addition feature is as follows:
 
 As shown below, when the user long presses a list item to enter the deletion mode, a page is displayed for the user to delete the list item. After the user selects the list item and touches the delete button, the list item is deleted.
 
-  **Figure 18** Deleting a to-do task 
+  **Figure 23** Deleting a to-do task 
 
 ![en-us_image_0000001562820877](figures/en-us_image_0000001562820877.gif)
 
@@ -833,7 +951,7 @@ The process of implementing the deletion feature is as follows:
 
     ```ts
    // Structure reference
-   import { util } from '@kit.ArkTS'
+   import { util } from '@kit.ArkTS';
    export class ToDo {
      key: string = util.generateRandomUUID(true);
      name: string;
@@ -850,11 +968,11 @@ The process of implementing the deletion feature is as follows:
       Checkbox()
         .onChange((isSelected) => {
           if (isSelected) {
-            When this.selectedItems.push(toDoList.toDoItem) // this.selectedItems is selected, the selected list items are recorded. You can construct the list items based on the site requirements.
+            this.selectedItems.push(toDoList.toDoItem); // When an item is selected, it is added to the selectedItems array. Make adjustment based on actual scenarios.
           } else {
-            let index = this.selectedItems.indexOf(toDoList.toDoItem)
+            let index = this.selectedItems.indexOf(toDoList.toDoItem);
             if (index !== -1) {
-              this.selectedItems.splice(index, 1) // When an item is deselected, it is deleted from the selectedItems array.
+              this.selectedItems.splice(index, 1); // When an item is deselected, it is deleted from the selectedItems array.
             }
           }
         })
@@ -865,7 +983,7 @@ The process of implementing the deletion feature is as follows:
 
     ```ts
     // Structure reference
-    import { util } from '@kit.ArkTS'
+    import { util } from '@kit.ArkTS';
     export class ToDo {
       key: string = util.generateRandomUUID(true);
       name: string;
@@ -892,11 +1010,11 @@ The process of implementing the deletion feature is as follows:
 
 ## Handling a Long List
 
-[ForEach](../ui/state-management/arkts-rendering-control-foreach.md) is applicable to short lists. With regard to a long list with a large number of list items, using **ForEach** will greatly slow down page loading, as it loads all list items at once. Therefore, for better list performance, use [LazyForEach](../ui/state-management/arkts-rendering-control-lazyforeach.md) instead to implement on-demand iterative data loading.
+While [ForEach](../ui/state-management/arkts-rendering-control-foreach.md) is suitable for short lists, using it for long lists with a large number of items can significantly slow down page loading, as it loads all items at once. Therefore, for better list performance, use [LazyForEach](../ui/state-management/arkts-rendering-control-lazyforeach.md) instead to implement on-demand iterative data loading.
 
 For details about the implementation, see the example in [LazyForEach: Lazy Data Loading](../ui/state-management/arkts-rendering-control-lazyforeach.md).
 
-When the list is rendered in lazy loading mode, to improve the list scrolling experience and minimize white blocks during list scrolling, you can use the **cachedCount** parameter of the **List** component. This parameter sets the number of list items preloaded outside of the screen and is valid only in **LazyForEach**.
+When the list is rendered in lazy loading mode, to improve the list scrolling experience and minimize white blocks during list scrolling, you can use the **cachedCount** parameter of the **List** component to set the number of cached list items. With lazy loading, only content outside the visible area up to the **cachedCount** limit will be preloaded, whereas non-lazy loading will load all content. For both lazy and non-lazy loading, only the items within the visible area plus the **cachedCount**-specified number of items outside the visible area are laid out.
 
 
 ```ts
@@ -907,9 +1025,9 @@ List() {
 
 The following uses a vertical list as an example:
 
-- If lazy loading is used for list items and the list contains only one column, the number of the list items to cache before and after the currently displayed one equals the value of **cachedCount**. If the list contains multiple columns, the number of the list items to cache is the value of **cachedCount** multiplied by the number of columns.
+- When **cachedCount** is set for the list, the system preloads and lays out the **cachedCount**-specified number of rows of list items both above and below the currently visible area of the list. When calculating the number of rows for list items, the system takes into account the number of rows from the list items within a list item group. If a list item group does not contain any list items, then the entire list item group is counted as one row.
 
-- If lazy loading is used for list item groups, the number of the list item groups to cache before and after the currently displayed one equals the value of **cachedCount**, regardless of the number of columns.
+- When a list is nested with **LazyForEach**, and within **LazyForEach** there is a list item group, **LazyForEach** will create **cachedCount**-specified number of list item groups both above and below the currently visible area of the list.
 
 >**NOTE**
 >
@@ -922,7 +1040,7 @@ The following uses a vertical list as an example:
 
 The collapsing and expanding of list items are widely used, often applied in scenarios such as displaying information lists and filling out forms.
 
-  **Figure 19** Collapsing and expanding of list items
+  **Figure 24** Collapsing and expanding of list items
 
 ![en-us_image_0000001949866104](figures/en-us_image_0000001949866104.gif)
 
@@ -931,6 +1049,7 @@ The process of implementing the collapsing and expanding effect of list items is
 1. Define the list item data structure.
 
     ```ts
+    import { curves } from '@kit.ArkUI';
     interface ItemInfo {
       index: number,
       name: string,
@@ -1084,9 +1203,153 @@ The process of implementing the collapsing and expanding effect of list items is
       .onClick(() => {
         if (itemGroup.children.length) {
           this.getUIContext()?.animateTo({ curve: curves.interpolatingSpring(0, 1, 528, 39) }, () => {
-            this.expandedItems[itemGroup.index] = !this.expandedItems[itemGroup.index]
+            this.expandedItems[itemGroup.index] = !this.expandedItems[itemGroup.index];
           })
         }
       })
     }
     ```
+
+## Switching the Layout Direction
+
+In certain scenarios, you may want a list to automatically scroll upward when new data is inserted at the bottom of the list to reveal the newly added items. Typical use cases include live-stream comments and instant messaging applications. By default, when the **List** component is using its normal layout, appending items to the bottom maintains the current content position without automatic scrolling. This behavior can be modified by switching the layout direction to achieve the desired effect.
+
+  **Figure 25** Real-time message scrolling
+
+![en-us_image_0000001949866105](figures/en-us_image_0000001949866105.gif)
+
+1. Define the list item data structure.
+
+    ```ts
+    interface Message {
+      id: number
+      content: string
+      sender: string
+    }
+    ```
+
+2. Construct a list structure and set **stackFromEnd** to **true**. In this way, the list content automatically scrolls upward to reveal newly inserted data items.
+
+    ```ts
+    @State messages: Message[] = [
+        { id: 1, content: 'Welcome to the live stream!', sender: 'System' },
+        { id: 2, content: 'Hello everyone!', sender: 'Host' }
+    ];
+    build() {
+      Column() {
+        List({ space: 10 }) {
+          ForEach(this.messages, (item: Message) => {
+            ListItem() {
+              this.MessageItem(item)
+            }
+          }, (item: Message) => item.id.toString())
+        }
+        .stackFromEnd(true)
+        .layoutWeight(1)
+        .alignListItem(ListItemAlign.Center)
+        // ...
+      }
+      .width('100%')
+      .height('100%')
+    }
+    ```
+
+## Handling Swipe Release Events
+
+Since API version 20, scrollable components ([Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md), [List](../reference/apis-arkui/arkui-ts/ts-container-list.md), [Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md), and [WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)) support swipe release event callbacks. These callbacks are triggered when the user lifts their finger from the screen, reporting the instantaneous swipe velocity. You can use the callbacks to implement custom scroll positioning effects, such as snap scrolling for short news items and free scrolling for long articles.
+
+
+1. Define the news item data structure.
+
+    ```ts
+    // Structure reference
+    class news {
+      public id: string;
+      public title: string;
+      public content: string;
+      public type: string;
+
+      constructor(id: string, title: string, content: string, type: string) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.type = type;
+      }
+    }
+    ```
+
+2. Construct news data, using **type** to distinguish between news item types.
+
+    ```ts
+    // Implementation reference
+    @State newsData: Array<news> = [
+      new news('1', 'Headline 1', 'Short news content for quick browsing', 'short'),
+      new news('2', 'Headline 2', 'Another brief news item', 'short'),
+      new news('3', 'Headline 3', 'Long-form article with detailed content. '.repeat(20), 'long'),
+      new news('4', 'Headline 4', 'Quick news update', 'short'),
+      new news('5', 'Headline 5', 'In-depth analysis piece. '.repeat(15), 'long')
+    ];
+    ```
+
+3. Implement the swipe release event handling (**onWillStopDragging**) and news processing logic:
+   - The **onWillStopDragging** callback reports the instantaneous swipe velocity when the user lifts their finger, with direction detection (positive value for upward swipes, negative for downward swipes).
+
+     ```ts
+     // Implementation reference
+     onWillStopDragging((velocity: number) => {
+       if (velocity < 0) {
+         // Handle downward swipes.
+       } else {
+         // Handle upward swipes.
+       }
+     })
+     ```
+
+   - The current item's position information is obtained through the **getItemRect** API.
+
+     ```ts
+     // Implementation reference
+     let rect = this.scrollerForList.getItemRect(this.currentIndex);
+     ```
+     
+   - For short news items, the list directly snaps to adjacent items.
+     
+     ```ts
+     // Implementation reference
+     if (velocity > 10) {
+       this.scrollerForList.scrollToIndex(this.currentIndex, true, ScrollAlign.START);
+     } else if (velocity < -10) {
+       this.scrollerForList.scrollToIndex(this.currentIndex + 1, true, ScrollAlign.START);
+     }
+     ```
+
+   - For long news articles, the system calculates the remaining visible area to determine the optimal scroll end point.
+   
+     ```ts
+     let rect = this.scrollerForList.getItemRect(this.currentIndex);
+     if (velocity < -30) {
+       if (rect) {
+         // Calculate the remaining visible portion of the current item.
+         let leftRect = rect.y + rect.height;
+         // Determine the scroll end point.
+         let mainPosition = -velocity * DEFAULT_FRICTION / FRICTION_SCALE;
+         if (leftRect + mainPosition > 0.75 * this.listHeight) {
+           this.scrollerForList.scrollToIndex(this.currentIndex + 1, true, ScrollAlign.START);
+           return;
+         } else if (leftRect + mainPosition < 0.25 * this.listHeight) {
+           this.scrollerForList.scrollToIndex(this.currentIndex, true, ScrollAlign.END,
+             { extraOffset: LengthMetrics.vp(this.listHeight * 0.3) })
+           return;
+         }
+       }
+     } else if (velocity > 30) {
+       let leftRect = rect?.y + rect?.height;
+       let mainPosition = velocity * DEFAULT_FRICTION / FRICTION_SCALE;
+       if (leftRect + mainPosition > 0.75 * this.listHeight) {
+         this.scrollerForList.scrollToIndex(this.currentIndex, true, ScrollAlign.START);
+         return;
+       }
+     }
+     ```
+
+<!--RP2--><!--RP2End-->

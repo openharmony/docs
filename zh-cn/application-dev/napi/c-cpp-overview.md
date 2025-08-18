@@ -4,27 +4,27 @@ OpenHarmony NDK提供业界标准库[libc标准库](../reference/native-lib/musl
 
 ## 1. C++兼容性
 
-在OpenHarmony系统中，系统库与应用Native库都在使用C++标准库（参考[libc++版本](../reference/native-lib/cpp.md#libc版本)），系统库依赖的C++标准库随镜像版本升级，而应用Native库依赖的C++标准库随编译使用的SDK版本升级。由于两部分依赖的C++基础库会跨多个大版本，导致ABI兼容性问题。为解决此问题，OpenHarmony对两部分依赖的C++标准库进行了区分。
+在OpenHarmony系统中，系统库和应用Native库均使用C++标准库（参考[libc++版本](../reference/native-lib/cpp.md#libc版本)）。系统库依赖的C++标准库随镜像版本升级，应用Native库依赖的C++标准库随编译使用的SDK版本升级。由于两部分依赖的C++标准库会跨多个大版本，可能导致ABI兼容性问题。为解决此问题，OpenHarmony对系统库和应用Native库依赖的C++标准库进行了区分。
 
 - 系统库：使用libc++.so，随系统镜像发布。
 - 应用Native库：使用libc++_shared.so，随应用发布。
 
-两个库使用的C++命名空间不同，libc++.so使用__h作为 C++ 符号的命名空间，而 libc++_shared.so使用__n1作为 C++ 符号的命名空间。
+两个库使用不同的C++命名空间。libc++.so使用__h，libc++_shared.so使用__n1。
 
 > **注意：**
 >
-> 系统和应用使用的C++标准库不能进行混用，Native API接口当前只能是C接口，可以通过这个接口隔离两边的C++运行环境。因此在使用共享库HAR包构建应用时，如果HAR包含的libc++_shared.so不同于应用使用的libc++_shared.so版本，那么只有其中一个版本会安装到应用里，可能会导致不兼容问题，可以使用相同的SDK版本更新HAR包解决此问题。
+> 系统和应用的C++标准库不能混用。Native API接口只能是C接口，用于隔离C++运行环境。如果HAR包中的libc++_shared.so版本不同于应用，可能导致不兼容问题。解决方法是使用相同SDK版本更新HAR包。
 
 **已知C++兼容性问题：**
 
-应用启动或者dlopen时hilog报错`symbol not found, s=__emutls_get_address`，原因是API9及之前版本SDK中的libc++_shared.so无此符号，而API11之后版本SDK的libc++_shared.so是有此符号的。解决此问题需要更新应用或者共享库HAR包的SDK版本。
+应用启动或dlopen时，hilog报错`symbol not found, s=__emutls_get_address`。原因是API9及之前版本的libc++_shared.so无此符号，而API11之后版本的libc++_shared.so有此符号。解决方法是更新应用或HAR包的SDK版本。
 
 ## 2. musl libc动态链接器
 
 ### 动态库加载命名空间隔离
 动态库加载命名空间（namespace，下面统称为ns）是动态链接器设计的一个概念（区别于C++语言中的命名空间），其设计的主要目的是为了在进程中做native库资源访问的管控，以达到安全隔离的目的。例如系统native库允许加载系统目录（/system/lib64;/vendor/lib64等）下的native库，但是普通应用native库仅允许加载普通应用native库和ndk库，而不允许直接加载系统native库。
 
-动态链接器无论是在加载编译依赖（DT_NEEDED）中指定的共享库，还是调用`dlopen`加载指定的共享库，都需要关联到具体的ns。
+动态链接器在加载编译依赖（DT_NEEDED）中指定的共享库或调用`dlopen`加载指定的共享库时，都需要关联到具体的 ns。
 
 OpenHarmony中动态库加载namespace配置的情况
 
@@ -34,7 +34,7 @@ OpenHarmony中动态库加载namespace配置的情况
 
 - app ns: 应用启动时创建的ns，它的搜索路径一般是应用的安装路径(可能为沙箱路径)，即可加载应用的so。
 
-当前的命名空间机制主要限制了应用native库和系统native库之间的调用，具体规则如图所示：
+当前的命名空间机制主要限制了应用native库和系统native库之间的调用，规则如图所示：
 
 1. default ns和ndk ns可以互相访问全部so，不能访问app ns的so。
 2. app ns能访问ndk ns的全部so，不能访问default ns的so。

@@ -1,4 +1,10 @@
 # 动态照片拍摄(ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 相机框架提供动态照片拍摄能力，业务应用可以类似拍摄普通照片一样，一键式拍摄得到动态照片。
 
@@ -31,7 +37,7 @@
 
    ```ts
    function getPhotoOutput(cameraManager: camera.CameraManager, 
-                           cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
+     cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
      let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
      if (!photoProfilesArray) {
        console.error("createOutput photoProfilesArray == null || undefined");

@@ -1,4 +1,10 @@
 # 组件内容填充方式
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 用于决定在组件的宽高动画过程中，如何将动画最终的组件内容绘制在组件上。
 
@@ -15,6 +21,8 @@ renderFit(fitMode: RenderFit): T
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **参数：** 
 
@@ -37,6 +45,8 @@ renderFit(fitMode: Optional\<RenderFit>): T
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **参数：** 
 

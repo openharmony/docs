@@ -371,7 +371,7 @@ extern "C" __attribute__((constructor)) void RegisterNativeRenderModule()
 **Example (incorrect)**
 
 ```cpp
-static void MyFinalizeCB(napi_env env, void *finalize_data, void *finalize_hint) { return; };
+static void MyFinalizeCB(napi_env env, void *finalize_data, void *finalize_hint) { return; }
 
 static napi_value CreateMyExternal(napi_env env, napi_callback_info info) {
     napi_value result = nullptr;

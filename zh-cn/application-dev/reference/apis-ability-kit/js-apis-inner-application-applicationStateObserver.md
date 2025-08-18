@@ -1,4 +1,10 @@
 # ApplicationStateObserver
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @SKY2001-->
+<!--Designer: @yzkp-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 定义应用状态监听，可以作为[on](js-apis-app-ability-appManager.md#appmanageronapplicationstate14)的入参监听当前应用的生命周期变化。
 

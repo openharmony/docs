@@ -1,4 +1,10 @@
 # TextArea
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @kangshihui-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 多行文本输入框组件，当输入的文本内容超过组件宽度时会自动换行显示。
 
@@ -36,11 +42,11 @@ TextArea初始化参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型  | 必填   | 说明 |
-| ---- | ----- | ---- | ---- |
-| placeholder      | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置无输入时的提示文本。输入内容后，提示文本不显示。<br/>仅设置placeholder属性时，手柄依然跟随拖动，手柄松开后光标停留在文字开头位置。     |
-| text             | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextArea中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。|
-| controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | 否    | 设置TextArea控制器。 |
+| 名称 | 类型  | 只读 | 可选   | 说明 |
+| ---- | ----- | ---- | ---- | ---- |
+| placeholder      | [ResourceStr](ts-types.md#resourcestr)  | 否    | 是 | 设置无输入时的提示文本。输入内容后，提示文本不显示。<br/>仅设置placeholder属性时，手柄依然跟随拖动，手柄松开后光标停留在文字开头位置。     |
+| text             | [ResourceStr](ts-types.md#resourcestr)  | 否    | 是 | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextArea中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。|
+| controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | 否    | 是 | 设置TextArea控制器。 |
 
 
 ## 属性
@@ -73,7 +79,7 @@ placeholderColor(value: ResourceColor)
 
 placeholderFont(value: Font)
 
-设置placeholder文本样式，包括字体大小、字体粗细、字体族、字体风格。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。
+设置placeholder文本样式，包括字体大小、字体粗细、字体族、字体风格。当前支持'HarmonyOS Sans'字体和注册自定义字体[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -210,13 +216,15 @@ fontFamily(value: ResourceStr)
 
 | 参数名 | 类型                                   | 必填 | 说明                                                         |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>使用多个字体时，请用逗号','分隔，字体的优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>使用多个字体时，请用逗号','分隔，字体的优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和注册自定义字体[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
 
 ### inputFilter<sup>8+</sup>
 
 inputFilter(value: ResourceStr, error?: (value: string) => void)
 
-通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。仅支持单个字符匹配，不支持字符串匹配。
+通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。
+
+单字符输入场景仅支持单字符匹配，多字符输入场景支持字符串匹配，例如粘贴。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -233,7 +241,7 @@ inputFilter(value: ResourceStr, error?: (value: string) => void)
 
 copyOption(value: CopyOptions)
 
-设置输入的文本是否可复制。设置CopyOptions.None时，当前TextArea中的文字无法被复制、剪切、翻译、分享、搜索和帮写，仅支持粘贴。
+设置输入的文本是否可复制。设置CopyOptions.None时，当前TextArea中的文字无法被复制、剪切、翻译、分享、搜索和帮写，支持粘贴和全选。
 
 设置CopyOptions.None时，不支持拖拽操作。
 
@@ -397,7 +405,7 @@ minLines(lines: Optional\<number>)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| lines  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 节点最小行数。 |
+| lines  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number> | 是   | 节点最小行数。 |
 
 ### customKeyboard<sup>10+</sup>
 
@@ -651,11 +659,11 @@ textOverflow(value: TextOverflow)
 
 设置文本超长时的显示方式。
 
-内联模式，主动配置textoverflow才会生效按maxline截断效果，不配置时，默认不截断。
+内联模式，主动配置textOverflow才会生效按[maxLines](#maxlines10)截断效果，不配置时，默认不截断。
 
-文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，wordBreak属性可设置为WordBreak.BREAK_ALL。
+文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，[wordBreak](ts-appendix-enums.md#wordbreak11)属性可设置为WordBreak.BREAK_ALL。
 
-当overflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合maxLines使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
+当textOverflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合[maxLines](#maxlines10)使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
 
 **卡片能力：** 该接口支持在ArkTS卡片中使用。
 
@@ -682,6 +690,8 @@ minFontSize(value: number | string | Resource)
 
 自适应字号生效时，fontSize设置不生效。
 
+minFontSize小于或等于0时，自适应字号不生效，此时按照[fontSize](#fontsize)属性的值生效，未设置时按照其默认值生效。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -701,6 +711,8 @@ maxFontSize(value: number | string | Resource)
 需配合[minFontSize](#minfontsize12)以及[maxLines](#maxlines10)或布局大小限制使用，单独设置不生效。
 
 自适应字号生效时，fontSize设置不生效。
+
+maxFontSize小于等于0或者maxFontSize小于minFontSize时，自适应字号不生效，此时按照[fontSize](#fontsize)属性的值生效，未设置时按照其默认值生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -772,7 +784,7 @@ lineSpacing(value: LengthMetrics, options?: LineSpacingOptions)
 
 lineBreakStrategy(strategy: LineBreakStrategy)
 
-设置折行规则。该属性在wordBreak不等于breakAll的时候生效，不支持连词符。
+设置折行规则。该属性在[wordBreak](#wordbreak12)不等于WordBreak.BREAK_ALL的时候生效，不支持连词符。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -790,6 +802,8 @@ editMenuOptions(editMenu: EditMenuOptions)
 
 设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
 
+调用[disableMenuItems](../arkts-apis-uicontext-textmenucontroller.md#disablemenuitems20)或[disableSystemServiceMenuItems](../arkts-apis-uicontext-textmenucontroller.md#disablesystemservicemenuitems20)接口屏蔽文本选择菜单内的系统服务菜单项时，editMenuOptions接口内回调方法[onCreateMenu](./ts-text-common.md#oncreatemenu12)的入参列表中不包含被屏蔽的菜单选项。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -806,7 +820,7 @@ enablePreviewText(enable: boolean)
 
 设置是否开启输入预上屏。
 
-预上屏内容定义为文字暂存态，目前不支持文字拦截功能，因此不触发onWillInsert、onDidInsert、onWillDelete、onDidDelete回调。
+预上屏内容定义为文字暂存态，目前不支持文字拦截功能，因此不触发[onWillInsert](#onwillinsert12)、[onDidInsert](#ondidinsert12)、[onWillDelete](#onwilldelete12)、[onDidDelete](#ondiddelete12)回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -879,7 +893,7 @@ keyboardAppearance(appearance: Optional\<KeyboardAppearance>)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
-| appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15枚举说明)> | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
+| appearance | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15枚举说明)> | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
 
 ### strokeWidth<sup>20+</sup>
 
@@ -895,7 +909,7 @@ strokeWidth(width: Optional\<LengthMetrics>)
 
 | 参数名 | 类型                                                         | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| width  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)> | 是   | 文本描边的宽度。当LengthMetrics的单位为px时，<br/>若设置值小于0，显示实心字；若大于0，显示空心字。<br/>默认值为0，不做描边处理。 |
+| width  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)> | 是   | 文本描边的宽度。当LengthMetrics的单位为px时，<br/>若设置值小于0，显示实心字；若大于0，显示空心字。<br/>默认值为0，不做描边处理。 |
 
 ### strokeColor<sup>20+</sup>
 
@@ -911,7 +925,7 @@ strokeColor(color: Optional\<ResourceColor>)
 
 | 参数名 | 类型                                       | 必填 | 说明       |
 | ------ | ------------------------------------------ | ---- | ---------- |
-| color  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 描边颜色。默认值为字体颜色，设置异常值时取默认值。|
+| color  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 描边颜色。默认值为字体颜色，设置异常值时取默认值。|
 
 ### stopBackPress<sup>15+</sup>
 
@@ -927,7 +941,7 @@ stopBackPress(isStopped: Optional\<boolean>)
 
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
-| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否阻止返回键。<br/>true表示阻止返回键向其它组件或应用侧传递，false表示不阻止。<br />默认值：true |
+| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 是否阻止返回键。<br/>true表示阻止返回键向其它组件或应用侧传递，false表示不阻止。<br />默认值：true |
 
 ### halfLeading<sup>18+</sup>
 
@@ -943,7 +957,7 @@ halfLeading(halfLeading: Optional\<boolean>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| halfLeading | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
+| halfLeading | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
 
 ### minFontScale<sup>18+</sup>
 
@@ -959,7 +973,7 @@ minFontScale(scale: Optional\<number | Resource>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最小的字体缩放倍数，支持undefined类型。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例17设置最小字体范围与最大字体范围](#示例17设置最小字体范围与最大字体范围)。 |
+| scale  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最小的字体缩放倍数，支持undefined类型。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例17设置最小字体范围与最大字体范围](#示例17设置最小字体范围与最大字体范围)。 |
 
 ### maxFontScale<sup>18+</sup>
 
@@ -975,15 +989,15 @@ maxFontScale(scale: Optional\<number | Resource>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最大的字体缩放倍数，支持undefined类型。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理。异常值默认不生效。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例17设置最小字体范围与最大字体范围](#示例17设置最小字体范围与最大字体范围)。 |
+| scale  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最大的字体缩放倍数，支持undefined类型。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理。异常值默认不生效。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例17设置最小字体范围与最大字体范围](#示例17设置最小字体范围与最大字体范围)。 |
 
 ### ellipsisMode<sup>18+</sup>
 
 ellipsisMode(mode: Optional\<EllipsisMode>)
 
-设置省略位置。ellipsisMode属性需要配合overflow设置为TextOverflow.Ellipsis以及maxLines使用，单独设置ellipsisMode属性不生效。
+设置省略位置。ellipsisMode属性需要配合[textOverflow](#textoverflow12)设置为TextOverflow.Ellipsis以及[maxLines](#maxlines10)使用，单独设置ellipsisMode属性不生效。
 
-EllipsisMode.START和EllipsisMode.CENTER仅在maxLines设置为1生效。
+EllipsisMode.START和EllipsisMode.CENTER仅在[maxLines](#maxlines10)设置为1生效。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -993,7 +1007,7 @@ EllipsisMode.START和EllipsisMode.CENTER仅在maxLines设置为1生效。
 
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
-| mode  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[EllipsisMode](ts-appendix-enums.md#ellipsismode11)> | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
+| mode  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[EllipsisMode](ts-appendix-enums.md#ellipsismode11)> | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
 
 ### enableAutoSpacing<sup>20+</sup>
 
@@ -1009,7 +1023,7 @@ enableAutoSpacing(enabled: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| enabled | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
+| enabled | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
 
 ## 事件
 
@@ -1252,7 +1266,7 @@ onWillChange的回调时序晚于onWillInsert、onWillDelete，早于onDidInsert
 
 ## TextAreaController<sup>8+</sup>
 
-TextArea组件的控制器继承自[TextContentControllerBase](ts-types.md#textcontentcontrollerbase10)。
+TextArea组件的控制器继承自[TextContentControllerBase](ts-types.md#textcontentcontrollerbase10)，涉及的接口有[getTextContentRect](ts-types.md#gettextcontentrect10)、[getTextContentLineCount](ts-types.md#gettextcontentlinecount10)、[getCaretOffset](ts-types.md#getcaretoffset11)、[addText](ts-types.md#addtext15)、[deleteText](ts-types.md#deletetext15)、[getSelection](ts-types.md#getselection15)、[clearPreviewText](ts-types.md#clearpreviewtext17)<!--Del-->以及系统接口[getText](ts-text-common-sys.md#gettext19)<!--DelEnd-->。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1359,7 +1373,7 @@ type TextAreaSubmitCallback = (enterKeyType: EnterKeyType, event?: SubmitEvent) 
 
 ### 示例1（设置与获取光标位置）
 
-该示例通过controller实现了光标位置的设置与获取。
+从API version 8开始，该示例通过[controller](#textareacontroller8)实现了光标位置的设置与获取。
 
 ```ts
 // xxx.ets
@@ -1410,7 +1424,7 @@ struct TextAreaExample {
 
 ### 示例2（设置计数器）
 
-该示例通过maxLength、showCounter属性实现了计数器的功能。
+从API version 10开始，该示例通过[maxLength](#maxlength10)、[showCounter](#showcounter10)属性实现了计数器的功能。
 
 ```ts
 // xxx.ets
@@ -1452,7 +1466,7 @@ struct TextAreaExample {
 
 ### 示例3（设置自定义键盘）
 
-该示例通过customKeyboard属性实现了自定义键盘的功能。
+从API version 10开始，该示例通过[customKeyboard](#customkeyboard10)属性实现了自定义键盘的功能。
 
 ```ts
 // xxx.ets
@@ -1485,8 +1499,7 @@ struct TextAreaExample {
   build() {
     Column() {
       TextArea({ controller: this.controller, text: this.inputValue })
-        // 绑定自定义键盘
-        .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 })
+        .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 })// 绑定自定义键盘
         .height(200)
     }
   }
@@ -1497,7 +1510,7 @@ struct TextAreaExample {
 
 ### 示例4（设置输入法回车键类型）
 
-该示例通过enterKeyType属性实现了动态切换输入法回车键的效果。
+从API version 11开始，该示例通过[enterKeyType](#enterkeytype11)属性实现了动态切换输入法回车键的效果。
 
 ```ts
 // xxx.ets
@@ -1519,7 +1532,7 @@ struct TextAreaExample {
           this.text = value;
         })
         .onSubmit((enterKey: EnterKeyType) => {
-          console.log("trigger area onsubmit" + enterKey);
+          console.log("trigger area onSubmit" + enterKey);
         })
       Button('改变EnterKeyType').onClick(() => {
         this.index = (this.index + 1) % this.enterTypes.length;
@@ -1535,7 +1548,7 @@ struct TextAreaExample {
 
 ### 示例5（设置文本断行规则）
 
-该示例通过wordBreak属性实现了TextArea不同断行规则下的效果。
+从API version 12开始，该示例通过[wordBreak](#wordbreak12)属性实现了TextArea不同断行规则下的效果。
 
 ```ts
 // xxx.ets
@@ -1581,7 +1594,7 @@ struct TextAreaExample {
 
 ### 示例6（设置文本样式）
 
-该示例通过lineHeight、letterSpacing、decoration属性展示了不同样式的文本效果。
+从API version 12开始，该示例通过[lineHeight](#lineheight12)、[letterSpacing](#letterspacing12)、[decoration](#decoration12)属性展示了不同样式的文本效果。
 
 ```ts
 // xxx.ets
@@ -1629,7 +1642,7 @@ struct TextAreaExample {
 
 ### 示例7（设置文字特性效果）
 
-该示例通过fontFeature属性实现了文本在不同文字特性下的展示效果。
+从API version 12开始，该示例通过[fontFeature](#fontfeature12)属性实现了文本在不同文字特性下的展示效果。
 
 ```ts
 // xxx.ets
@@ -1659,7 +1672,7 @@ struct TextAreaExample {
 
 ### 示例8（自定义键盘避让）
 
-该示例通过自定义键盘实现了键盘避让的功能。
+该示例通过[customKeyboard](#customkeyboard10)（从API version 10开始）属性配置[KeyboardOptions](ts-basic-components-richeditor.md#keyboardoptions12)（从API version 12开始）接口实现了自定义键盘避让的效果。
 
 ```ts
 // xxx.ets
@@ -1717,9 +1730,9 @@ struct TextAreaExample {
       .width("100%")
       .padding({ bottom: 50 })
 
-      TextArea({ controller: this.controller, text: this.inputValue })
+      TextArea({ controller: this.controller, text: this.inputValue })// 绑定自定义键盘
         .height(100)
-        .customKeyboard(this.CustomKeyboardBuilder(), { supportAvoidance: this.supportAvoidance })// 绑定自定义键盘
+        .customKeyboard(this.CustomKeyboardBuilder(), { supportAvoidance: this.supportAvoidance })
         .margin(10)
         .border({ width: 1 })
     }
@@ -1730,7 +1743,7 @@ struct TextAreaExample {
 
 ### 示例9（设置文本自适应）
 
-该示例通过minFontSize、maxFontSize、heightAdaptivePolicy属性展示了文本自适应字号的效果。
+从API version 12开始，该示例通过[minFontSize](#minfontsize12)、[maxFontSize](#maxfontsize12)、[heightAdaptivePolicy](#heightadaptivepolicy12)属性展示了文本自适应字号的效果。
 
 ```ts
 // xxx.ets
@@ -1771,7 +1784,7 @@ struct TextAreaExample {
 
 ### 示例10（设置文本行间距）
 
-该示例通过lineSpacing属性展示了文本在不同行间距下的展示效果。
+从API version 12开始，该示例通过[lineSpacing](#linespacing12)属性展示了文本在不同行间距下的展示效果，同时，配置[LineSpacingOptions](ts-text-common.md#linespacingoptions20对象说明)中的onlyBetweenLines（从API version 20开始）属性，可以设置文本的行间距，是否仅在行与行之间生效。
 
 ```ts
 // xxx.ets
@@ -1812,7 +1825,7 @@ struct TextAreaExample {
 
 ### 示例11（设置自动填充）
 
-该示例通过contentType、enableAutoFill属性实现了文本自动填充的功能。
+从API version 12开始，该示例通过[contentType](#contenttype12)、[enableAutoFill](#enableautofill12)属性实现了文本自动填充的功能。
 
 ```ts
 // xxx.ets
@@ -1848,7 +1861,7 @@ struct TextAreaExample {
 
 ### 示例12（设置折行规则）
 
-该示例通过lineBreakStrategy属性实现了TextArea不同折行规则下的效果。
+从API version 12开始，该示例通过[lineBreakStrategy](#linebreakstrategy12)属性实现了TextArea不同折行规则下的效果。
 
 ```ts
 // xxx.ets
@@ -1857,8 +1870,8 @@ struct TextAreaExample {
 struct TextAreaExample {
   @State message1: string =
     "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
-      "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
-      "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
+      "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effect of these components in method chaining mode," +
+      "page components are divided into independent UI units to implement independent creation development and reuse of different units on pages making pages more engineering-oriented.";
   @State lineBreakStrategyIndex: number = 0;
   @State lineBreakStrategy: LineBreakStrategy[] =
     [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED];
@@ -1890,7 +1903,7 @@ struct TextAreaExample {
 
 ### 示例13（支持插入和删除回调）
 
-该示例通过onWillInsert、onDidInsert、onWillDelete、onDidDelete接口实现了插入和删除的功能。
+从API version 12开始，该示例通过[onWillInsert](#onwillinsert12)、[onDidInsert](#ondidinsert12)、[onWillDelete](#onwilldelete12)、[onDidDelete](#ondiddelete12)接口实现了插入和删除的功能。
 
 ```ts
 // xxx.ets
@@ -1946,7 +1959,7 @@ struct TextAreaExample {
 
 ### 示例14（文本扩展自定义菜单）
 
-该示例通过editMenuOptions接口实现了文本设置自定义菜单扩展项的文本内容、图标以及回调的功能。
+从API version 12开始，该示例通过[editMenuOptions](#editmenuoptions12)接口实现了文本设置自定义菜单扩展项的文本内容、图标以及回调的功能，同时，可以在[onPrepareMenu](ts-text-common.md#onpreparemenu20)（从API version 20开始）回调中，进行菜单数据的设置。
 
 ```ts
 // xxx.ets
@@ -2025,7 +2038,7 @@ struct TextAreaExample {
 
 ### 示例15（文本设置省略模式）
 
-该示例通过textOverflow、ellipsisMode、maxlines属性展示了文本超长省略以及调整省略位置的效果。
+该示例通过[textOverflow](#textoverflow12)（从API version 12开始）、[ellipsisMode](#ellipsismode18)（从API version 18开始）、[maxLines](#maxlines10)（从API version 10开始）属性展示了文本超长省略以及调整省略位置的效果。
 
 ```ts
 // xxx.ets
@@ -2094,7 +2107,7 @@ struct EllipsisModeExample {
 
 ### 示例16（自定义复制、剪切、粘贴）
 
-该示例展示如何监听文本选择菜单的复制、剪切、粘贴按钮，以及如何屏蔽系统粘贴功能并实现自定义的粘贴能力。
+该示例通过[onCopy](#oncopy8)、[onCut](#oncut8)、[onPaste](#onpaste)展示如何监听文本选择菜单的复制、剪切、粘贴按钮，以及如何屏蔽系统粘贴功能并实现自定义的粘贴能力，同时，可以通过[maxFontScale](#maxfontscale18)、[minFontScale](#minfontscale18)属性设置文本最大和最小的字体缩放倍数。
 
 ```ts
 // xxx.ets
@@ -2133,7 +2146,7 @@ struct TextAreaExample {
         .maxFontScale(2)
         .enablePreviewText(true)
         .enableHapticFeedback(true)
-        .stopBackPress(false)//返回键交给其他组件处理
+        .stopBackPress(false)// 返回键交给其他组件处理
         .width(336)
         .height(56)
         .margin(20)
@@ -2169,8 +2182,8 @@ struct TextAreaExample {
 
 ### 示例17（设置最小字体范围与最大字体范围）
 
-该示例通过minFontScale、maxFontScale设置字体显示最小与最大范围<!--Del-->（该示例使用系统接口，应用类型需调整为系统应用，可参考HarmonyAppProvision的[系统接口说明](../../../reference/development-intro-api.md#系统接口说明)）<!--DelEnd-->。
-
+从API version 18开始，该示例通过[minFontScale](#minfontscale18)、[maxFontScale](#maxfontscale18)设置字体显示最小与最大范围<!--Del-->（该示例使用系统接口，应用类型需调整为系统应用，可参考HarmonyAppProvision的[系统接口说明](../../../reference/development-intro-api.md#系统接口说明)）<!--DelEnd-->。
+<!--code_no_check-->
 ```json
 // 开启应用缩放跟随系统
 // AppScope/resources/base，新建文件夹profile。
@@ -2183,7 +2196,7 @@ struct TextAreaExample {
   }
 }
 ```
-
+<!--code_no_check-->
 ```json
 // AppScope/app.json5，修改如下代码。
 {
@@ -2199,6 +2212,7 @@ struct TextAreaExample {
 }
 ```
 <!--RP1-->
+<!--code_no_check-->
 ```ts
 // xxx.ets
 import { abilityManager, Configuration } from '@kit.AbilityKit';
@@ -2270,7 +2284,7 @@ struct TextAreaExample {
 <!--RP1End-->
 ### 示例18（设置选中指定区域的文本内容）
 
-该示例通过setTextSelection方法展示如何设置选中指定区域的文本内容以及菜单的显隐策略。
+从API version 10开始，该示例通过[setTextSelection](#settextselection10)方法展示如何设置选中指定区域的文本内容以及菜单的显隐策略。
 
 ```ts
 // xxx.ets
@@ -2311,7 +2325,7 @@ struct TextAreaExample {
 
 ### 示例19（设置文本描边）
 
-该示例通过strokeWidth和strokeColor属性设置文本的描边宽度及颜色。
+从API version 20开始，该示例通过[strokeWidth](#strokewidth20)和[strokeColor](#strokecolor20)属性设置文本的描边宽度及颜色。
 
 ```ts
 // xxx.ets
@@ -2356,7 +2370,7 @@ struct TextAreaExample {
 
 ### 示例20（设置中西文自动间距）
 
-该示例通过enableAutoSpacing属性设置中西文自动间距。
+从API version 20开始，该示例通过[enableAutoSpacing](#enableautospacing20)属性设置中西文自动间距。
 
 ```ts
 // xxx.ets
@@ -2383,7 +2397,7 @@ struct TextAreaExample {
 
 ### 示例21（设置最大行数）
 
-该示例通过maxLines属性设置显示最大行数，超出最大行数后可滚动。
+从API version 20开始，该示例通过[maxLines](#maxlines20)属性设置显示最大行数，超出最大行数后可滚动。
 
 ```ts
 // xxx.ets
@@ -2412,7 +2426,7 @@ struct TextAreaExample {
 
 ### 示例22（设置最小行数）
 
-该示例通过minLines属性设置显示的最小行数。
+从API version 20开始，该示例通过[minLines](#minlines20)属性设置显示的最小行数。
 
 ```ts
 // xxx.ets

@@ -1,5 +1,10 @@
 # 系统字体的信息获取和使用（ArkTS）
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk; @gmiao522; @Lem0nC-->
+<!--Designer: @liumingxiang-->
+<!--Tester: @yhl0101-->
+<!--Adviser: @ge-yafang-->
 ## 场景介绍
 
 系统字体是指操作系统预设的字体，用于在没有指定自定义字体时显示文本，确保文本的可读性和一致性。
@@ -90,8 +95,13 @@
 系统字体可以有多种，可以先获取系统字体配置信息，再根据其中的字体家族名（即TextStyle中的fontFamilies）来进行系统字体的切换和使用。
 
 如果不指定使用任何字体时，会使用系统默认字体“HarmonyOS Sans”显示文本。
+1. 导入依赖的相关模块。
 
-1. 创建textStyle1，指定fontFamilies为“HarmonyOS Sans SC”，默认中文字体为“HarmonyOS Sans SC”。
+   ```ts
+   import { text } from '@kit.ArkGraphics2D';
+   ```
+
+2. 创建textStyle1，指定fontFamilies为“HarmonyOS Sans SC”，默认中文字体为“HarmonyOS Sans SC”。
 
    ```ts
    let textStyle1: text.TextStyle = {
@@ -101,7 +111,7 @@
    };
    ```
 
-2. 创建textStyle2，指定fontFamilies为“HarmonyOS Sans TC”（该两种字体易于观察同一文字字型差异）。
+3. 创建textStyle2，指定fontFamilies为“HarmonyOS Sans TC”（该两种字体易于观察同一文字字型差异）。
 
    ```ts
    let textStyle2: text.TextStyle = {
@@ -111,7 +121,7 @@
    };
    ```
 
-3. 创建段落生成器。
+4. 创建段落生成器。
 
    ```ts
    let myParagraphStyle: text.ParagraphStyle = {
@@ -123,7 +133,7 @@
    let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection)
    ```
 
-4. 将textStyle1添加到段落样式中，再添加文字。
+5. 将textStyle1添加到段落样式中，再添加文字。
 
    ```ts
    let str:string = "模块描述\n"
@@ -131,14 +141,14 @@
    paragraphBuilder.addText(str);
    ```
 
-5. 将textStyle2添加到段落样式中，再添加文字。
+6. 将textStyle2添加到段落样式中，再添加文字。
 
    ```ts
    paragraphBuilder.pushStyle(textStyle2);
    paragraphBuilder.addText(str);
    ```
 
-6. 生成段落，用于后续绘制使用。
+7. 生成段落，用于后续绘制使用。
 
    ```ts
    let paragraph = paragraphBuilder.build()

@@ -1,18 +1,28 @@
 # 应用文件上传下载
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Request-->
+<!--Owner: @huaxin05-->
+<!--Designer: @hu-kai45-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
-应用可以将应用文件上传到网络服务器，也可以从网络服务器下载网络资源文件到本地应用文件目录。
+应用支持将文件上传到网络服务器，也支持从网络服务器下载资源文件到本地目录。
 
 ## 上传应用文件
 
-开发者可以使用上传下载模块（[ohos.request](../../reference/apis-basic-services-kit/js-apis-request.md)）的上传接口将本地文件上传。文件上传过程使用系统服务代理完成，在api12中request.agent.create接口增加了设置代理地址参数，支持用户设置自定义代理地址。
+开发者可以使用上传下载模块（[ohos.request](../../reference/apis-basic-services-kit/js-apis-request.md)）的上传接口将本地文件上传。文件上传过程通过系统服务代理完成。在api12中，`request.agent.create`接口增加了设置代理地址的参数，支持设置自定义代理地址。
 
 > **说明：**
 >
-> 当前上传应用文件功能。request.uploadFile方式仅支持上传应用缓存文件路径（cacheDir）下的文件，request.agent方式支持上传用户公共文件和应用缓存文件路径下的文件。
+> · 当前上传应用文件功能。request.uploadFile方式仅支持上传应用缓存文件路径（cacheDir）下的文件，request.agent方式支持上传用户公共文件和应用缓存文件路径下的文件。
 >
-> 使用上传下载模块，需[声明权限](../../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
+> · 使用上传下载模块，需[声明权限](../../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
+>
+> · 上传下载模块不支持Charles、Fiddler等代理抓包工具。
+>
+> · 上传下载模块接口目前暂不支持子线程调用场景，如[TaskPool](../../arkts-utils/taskpool-introduction.md)等。
 
-以下示例代码演示两种将应用缓存文件路径下的文件上传至网络服务器的方式：
+以下示例代码展示了两种将缓存文件上传至服务器的方法：
 
 ```ts
 // 方式一:request.uploadFile
@@ -34,9 +44,14 @@ struct Index {
           let cacheDir = context.cacheDir;
 
           // 新建一个本地应用文件
-          let file = fs.openSync(cacheDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-          fs.writeSync(file.fd, 'upload file test');
-          fs.closeSync(file);
+          try {
+            let file = fs.openSync(cacheDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+            fs.writeSync(file.fd, 'upload file test');
+            fs.closeSync(file);
+          } catch (error) {
+            let err: BusinessError = error as BusinessError;
+            console.error(`Invoke uploadFile failed, code is ${err.code}, message is ${err.message}`);
+          }
 
           // 上传任务配置项
           let files: Array<request.File> = [
@@ -107,7 +122,7 @@ struct Index {
             value: [
               {
                 filename: "test.txt",
-                path: "./test.txt",
+                path: cacheDir + '/test.txt',
               },
             ]
           }];
@@ -121,8 +136,7 @@ struct Index {
               'key1':'value1',
               'key2':'value2'
             },
-            data: attachments,
-            saveas: "./"
+            data: attachments
           };
           request.agent.create(context, config).then((task: request.agent.Task) => {
             task.start((err: BusinessError) => {
@@ -152,7 +166,7 @@ struct Index {
 
 ## 下载网络资源文件至应用文件目录
 
-开发者可以使用上传下载模块（[ohos.request](../../reference/apis-basic-services-kit/js-apis-request.md)）的下载接口将网络资源文件下载到应用文件目录。对已下载的网络资源文件，开发者可以使用基础文件IO接口（[ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md)）对其进行访问，使用方式与[应用文件访问](../../file-management/app-file-access.md)一致。文件下载过程使用系统服务代理完成，在api12中request.agent.create接口增加了设置代理地址参数，支持用户设置自定义代理地址。
+开发者可以使用上传下载模块（[ohos.request](../../reference/apis-basic-services-kit/js-apis-request.md)）的下载接口将网络资源文件下载到应用文件目录。对已下载的网络资源应用文件，开发者可以使用基础文件IO接口（[ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md)）对其进行访问，使用方式与[应用文件访问](../../file-management/app-file-access.md)一致。文件下载过程使用系统服务代理完成，在api12中request.agent.create接口增加了设置代理地址参数，支持用户设置自定义代理地址。
 
 > **说明：**
 >
@@ -160,7 +174,7 @@ struct Index {
 >
 > 使用上传下载模块，需[声明权限](../../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
 
-以下示例代码演示两种将网络资源文件下载到应用文件目录的方式：
+以下示例代码展示了将网络资源文件下载到应用内部文件目录的两种方法：
 
 ```ts
 // 方式一:request.downloadFile
@@ -272,7 +286,11 @@ struct Index {
 ```
 
 ## 下载网络资源文件至用户文件
-开发者可以使用上传下载模块（[ohos.request](../../reference/apis-basic-services-kit/js-apis-request.md)）的[request.agent](../../reference/apis-basic-services-kit/js-apis-request.md#requestagentcreate10)下载接口将网络资源文件下载到用户文件。
+开发者可以使用[ohos.request](../../reference/apis-basic-services-kit/js-apis-request.md)的[request.agent](../../reference/apis-basic-services-kit/js-apis-request.md#requestagentcreate10)接口下载网络资源文件到指定的用户文件目录。
+
+> **说明：**
+>
+> 从API version 20开始支持下载网络资源文件至用户文件。
 
 ### 下载文档类文件
 
@@ -290,58 +308,63 @@ struct Index {
     Row() {
       Column() {
         Button("下载文档").width("50%").margin({ top: 20 }).height(40).onClick(async () => {
-          // 创建文件管理器选项实例。
-          const documentSaveOptions = new picker.DocumentSaveOptions();
-          // 保存文件名（可选）。 默认为空。
-          documentSaveOptions.newFileNames = ["xxxx.txt"];
-          // 保存文件类型['后缀类型描述|后缀类型']，选择所有文件：'所有文件(*.*)|.*'（可选），如果选择项存在多个后缀（最大限制100个过滤后缀），默认选择第一个。如果不传该参数，默认无过滤后缀。
-          documentSaveOptions.fileSuffixChoices = ['文档|.txt', '.pdf'];
 
-          let uri: string = '';
-          // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-          let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-          const documentViewPicker = new picker.DocumentViewPicker(context);
-          await documentViewPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
-            uri = documentSaveResult[0];
-            console.info('DocumentViewPicker.save to file succeed and uri is:' + uri);
-          }).catch((err: BusinessError) => {
-            console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
-          })
-          if (uri != '') {
-            let config: request.agent.Config = {
-              action: request.agent.Action.DOWNLOAD,
-              url: 'https://xxxx/xxxx.txt',
-              // saveas字段是DocumentViewPicker保存的文件的uri
-              saveas: uri,
-              gauge: true,
-              // overwrite字段必须为true
-              overwrite: true,
-              network: request.agent.Network.WIFI,
-              // mode字段必须为request.agent.Mode.FOREGROUND
-              mode: request.agent.Mode.FOREGROUND,
-            };
-            try {
-              request.agent.create(context, config).then((task: request.agent.Task) => {
-                task.start((err: BusinessError) => {
-                  if (err) {
-                    console.error(`Failed to start the download task, Code: ${err.code}  message: ${err.message}`);
-                    return;
-                  }
+          // 创建文件管理器选项实例。
+          try {
+            const documentSaveOptions = new picker.DocumentSaveOptions();
+            // 保存文件名（可选）。 默认为空。
+            documentSaveOptions.newFileNames = ["xxxx.txt"];
+            // 保存文件类型['后缀类型描述|后缀类型']，选择所有文件：'所有文件(*.*)|.*'（可选），如果选择项存在多个后缀（最大限制100个过滤后缀），默认选择第一个。如果不传该参数，默认无过滤后缀。
+            documentSaveOptions.fileSuffixChoices = ['文档|.txt', '.pdf'];
+            let uri: string = '';
+            // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+            const documentViewPicker = new picker.DocumentViewPicker(context);
+            await documentViewPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
+              uri = documentSaveResult[0];
+              console.info('DocumentViewPicker.save to file succeed and uri is:' + uri);
+            }).catch((err: BusinessError) => {
+              console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
+            })
+            if (uri != '') {
+              let config: request.agent.Config = {
+                action: request.agent.Action.DOWNLOAD,
+                url: 'https://xxxx/xxxx.txt',
+                // saveas字段是DocumentViewPicker保存的文件的uri
+                saveas: uri,
+                gauge: true,
+                // overwrite字段必须为true
+                overwrite: true,
+                network: request.agent.Network.WIFI,
+                // mode字段必须为request.agent.Mode.FOREGROUND
+                mode: request.agent.Mode.FOREGROUND,
+              };
+              try {
+                request.agent.create(context, config).then((task: request.agent.Task) => {
+                  task.start((err: BusinessError) => {
+                    if (err) {
+                      console.error(`Failed to start the download task, Code: ${err.code}  message: ${err.message}`);
+                      return;
+                    }
+                  });
+                  task.on('progress', async (progress) => {
+                    console.warn(`Request download status ${progress.state}, downloaded ${progress.processed}`);
+                  })
+                  task.on('completed', async (progress) => {
+                    console.warn('Request download completed, ' + JSON.stringify(progress));
+                    // 该方法需用户管理任务生命周期，任务结束后调用remove释放task对象
+                    request.agent.remove(task.tid);
+                  })
+                }).catch((err: BusinessError) => {
+                  console.error(`Failed to operate a download task, Code: ${err.code}, message: ${err.message}`);
                 });
-                task.on('progress', async (progress) => {
-                  console.warn(`Request download status ${progress.state}, downloaded ${progress.processed}`);
-                })
-                task.on('completed', async (progress) => {
-                  console.warn('Request download completed, ' + JSON.stringify(progress));
-                  // 该方法需用户管理任务生命周期，任务结束后调用remove释放task对象
-                  request.agent.remove(task.tid);
-                })
-              }).catch((err: BusinessError) => {
-                console.error(`Failed to operate a download task, Code: ${err.code}, message: ${err.message}`);
-              });
-            } catch (err) {
-              console.error(`Failed to create a download task, err: ${err}`);
+              } catch (err) {
+                console.error(`Failed to create a download task, err: ${err}`);
+              }
             }
+          } catch (err) {
+            console.error(`Failed to create a documentSaveOptions, err: ${err}`);
+            return;
           }
         })
       }
@@ -426,7 +449,7 @@ struct Index {
 
 ### 下载图片或视频类文件
 
-开发者可以通过调用[PhotoAccessHelper](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md)的[createAsset()](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#createasset-2)接口创建媒体文件并获得用户文件的uri，将此uri作为[Config](../../reference/apis-basic-services-kit/js-apis-request.md#config10)的saveas字段值进行下载。
+开发者可以通过调用[PhotoAccessHelper](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md)的[createAsset()](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#createasset-2)接口创建媒体文件并获取用户文件的URI，将其作为[Config](../../reference/apis-basic-services-kit/js-apis-request.md#config10)的saveas字段值进行下载。
 
 需要权限：[ohos.permission.WRITE_IMAGEVIDEO](../../security/AccessToken/permissions-for-all-user.md#ohospermissionwrite_media)
 
@@ -474,7 +497,7 @@ struct Index {
               }
             })
             .catch((err: BusinessError) => {
-              console.error(`GheckAccessToken fail, err->${JSON.stringify(err)}`);
+              console.error(`CheckAccessToken fail, err->${JSON.stringify(err)}`);
             });
 
           if (!grant) {
@@ -639,9 +662,9 @@ struct Index {
 
 ### HTTP拦截
 
-开发者可以通过设置配置文件实现HTTP拦截功能，上传下载模块在应用配置禁用HTTP后，无法创建明文HTTP传输的上传下载任务。配置文件在APP中的路径是：`src/main/resources/base/profile/network_config.json`。请参考网络管理模块[配置文件](../../reference/apis-network-kit/js-apis-net-connection.md#connectionsetapphttpproxy11)配置参数
+开发者可以通过设置配置文件实现HTTP拦截功能。上传下载模块在应用配置文件中禁用HTTP后，无法创建明文HTTP传输的上传下载任务。配置文件在APP中的路径是：`src/main/resources/base/profile/network_config.json`。请参考网络管理模块[配置文件](../../reference/apis-network-kit/js-apis-net-connection.md#connectionsetapphttpproxy11)，了解需要配置的具体参数。
 
-参考配置文件如下：
+参考配置文件如下所示：
 
 ```ts
 {

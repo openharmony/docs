@@ -85,20 +85,20 @@ function printArgs(args: number): number {
 let allCount = 100; // 100: test number
 let taskArray: Array<taskpool.Task> = [];
 // 创建300个任务并添加至taskArray
-for (let i: number = 1; i < allCount; i++) {
+for (let i: number = 0; i < allCount; i++) {
   let task1: taskpool.Task = new taskpool.Task(printArgs, i);
   taskArray.push(task1);
-  let task2: taskpool.Task = new taskpool.Task(printArgs, i * 10); // 10: test number
+  let task2: taskpool.Task = new taskpool.Task(printArgs, i + 100); // 100: test number
   taskArray.push(task2);
-  let task3: taskpool.Task = new taskpool.Task(printArgs, i * 100); // 100: test number
+  let task3: taskpool.Task = new taskpool.Task(printArgs, i + 200); // 200: test number
   taskArray.push(task3);
 }
 
 // 从taskArray中获取不同的任务并给定不同优先级执行
-for (let i: number = 0; i < allCount; i+=3) { // 3: 每次执行3个任务，循环取任务时需后移3项，确保执行的是不同的任务
+for (let i: number = 0; i < allCount; i++) { // 每次执行3个任务
   taskpool.execute(taskArray[i], taskpool.Priority.HIGH);
-  taskpool.execute(taskArray[i + 1], taskpool.Priority.LOW);
-  taskpool.execute(taskArray[i + 2], taskpool.Priority.MEDIUM);
+  taskpool.execute(taskArray[i + 100], taskpool.Priority.LOW);
+  taskpool.execute(taskArray[i + 200], taskpool.Priority.MEDIUM);
 }
 ```
 
@@ -113,7 +113,7 @@ for (let i: number = 0; i < allCount; i+=3) { // 3: 每次执行3个任务，循
 可以利用TaskPool接口转换，大概可以分为如下五个场景。
 
 场景一：主线程将独立的耗时任务放到子线程执行  
-代码示例：  
+伪代码示例：  
 共享内存写法
 
 ```ts
@@ -146,7 +146,7 @@ taskpool.execute(task).then((ret: string) => {
 ```
 
 场景二：主线程将创建的类对象实例在子线程使用  
-代码示例：  
+伪代码示例：  
 共享内存写法  
 
 ```ts
@@ -179,13 +179,13 @@ class Material {
 }
 
 let material = new Material()
-taskpool.execute(runner, material).then((ret: string) => {
+taskpool.execute(runner, material).then(() => {
   // Return result
 })
 ```
 
 场景三：主线程将独立的耗时任务放到子线程执行  
-代码示例：
+伪代码示例：
 
 ```ts
 class Task {
@@ -222,13 +222,13 @@ class Task {
 }
 
 let task = new Task();
-taskpool.execute(runner, task).then((ret: string) => {
-  task.result = ret;
+taskpool.execute(runner, task).then((ret) => {
+  task.result = ret as string;
 })
 ```
 
 场景四：子线程主动更新主线程状态  
-代码示例：
+伪代码示例：
 
 ```ts
 class Task {
@@ -275,7 +275,7 @@ taskpool.execute(run).then((ret) => {
 ```
 
 场景五：子线程同步调用主线程的接口  
-代码示例：
+伪代码示例：
 
 ```ts
 class SdkU3d {
@@ -400,7 +400,7 @@ i32a[0] = 0;
 let producer = new worker.ThreadWorker("entry/ets/workers/worker_producer.ts");
 producer.postMessage(sab);
 
-function consumection(e: MessageEvents) {
+function consumer(e: MessageEvents) {
   let sab: SharedArrayBuffer = e.data;
   let i32a = new Int32Array(sab);
   console.info("Customer: received sab");

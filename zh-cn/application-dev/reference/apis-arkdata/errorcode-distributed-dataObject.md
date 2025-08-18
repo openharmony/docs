@@ -1,4 +1,10 @@
 # 分布式数据对象错误码
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @lvcong_oh-->
+<!--Designer: @hollokin; @yuchaozhng-->
+<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 > **说明：**
 >

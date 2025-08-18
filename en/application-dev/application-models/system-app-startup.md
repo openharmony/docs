@@ -61,6 +61,7 @@ Currently, the following screens in Settings can be directly opened:
 [Contacts Kit](../contacts/contacts-intro.md) provides the Contacts Picker, which is used to start the Contacts application and read contact data. For details, see [Contact Selection with Picker](../contacts/contacts-intro.md#contact-selection).
 
 <!--RP2-->
+
 ### Camera
 
 [Camera Kit](../media/camera/camera-overview.md) provides the Camera Picker for photo capture and video recording. For details, see [Using the Camera Picker (ArkTS)](media/camera/camera-picker.md).

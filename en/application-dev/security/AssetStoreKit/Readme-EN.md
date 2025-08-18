@@ -11,6 +11,7 @@
   - [Querying Assets (ArkTS)](asset-js-query.md)
   - [Querying Assets Used for User Authentication (ArkTS)](asset-js-query-auth.md)
   - [Managing Assets in a Group (ArkTS)](asset-js-group-access-control.md)
+  - [Syncing Assets (Backup and Restore)](asset-js-sync.md)
   <!--Del-->
   - [Performing Asset Operations in Specified User Space (for System Applications Only) (ArkTS)](asset-as-user-sys.md)
   <!--DelEnd-->
@@ -20,3 +21,4 @@
   - [Updating an Asset (C/C++)](asset-native-update.md)
   - [Querying Assets (C/C++)](asset-native-query.md)
   - [Managing Assets in a Group (C/C++)](asset-native-group-access-control.md)
+  - [Syncing Assets (Backup and Restore) (C/C++)](asset-native-sync.md)

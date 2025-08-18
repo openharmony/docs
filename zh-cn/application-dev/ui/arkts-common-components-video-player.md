@@ -1,4 +1,10 @@
 # 视频播放 (Video)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sd-wu-->
+<!--Designer: @sunbees-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 
 Video组件用于播放视频文件并控制其播放状态，常用于短视频和应用内部视频的列表页面。当视频完整出现时会自动播放，用户点击视频区域则会暂停播放，同时显示播放进度条，通过拖动播放进度条指定视频播放到具体位置。具体用法请参考[Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md)。
@@ -227,11 +233,8 @@ Video控制器主要用于控制视频的状态，包括播放、暂停、停止
     @State videoSrc: Resource = $rawfile('videoTest.mp4')
     @State previewUri: string = 'common/videoIcon.png'
     @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
-    @State showControls: boolean = true
-    @State sliderStartTime: string = ''
     @State currentTime: number = 0
     @State durationTime: number = 0
-    @State durationStringTime: string = ''
     controller: VideoController = new VideoController()
 
     build() {
@@ -287,7 +290,7 @@ Video组件已经封装好了视频播放的基础能力，开发者无需进行
 
 针对Video组件开发，有以下相关实例可供参考：
 
-- [ 媒体库视频（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/VideoShow)
+- [ 媒体库视频（ArkTS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/VideoShow)
 
 - [简易视频播放器（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/SimpleVideo)
 <!--RP1--><!--RP1End-->

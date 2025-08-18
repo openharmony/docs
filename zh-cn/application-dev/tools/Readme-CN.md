@@ -1,5 +1,12 @@
 # 调试工具
+<!--Kit: Common-->
+<!--Subsystem: Common-->
+<!--Owner: @foryourself-->
+<!--Designer: @lingminghw-->
+<!--Tester: @RayShih-->
+<!--Adviser: @foryourself-->
 
+- [SDK命令行工具简介](command-line-tools-overview.md)
 - [aa工具](aa-tool.md)
 - [bm工具](bm-tool.md)
 - 打包拆包工具<!--packing-unpacking-->
@@ -25,3 +32,4 @@
   - [mediatool工具](mediatool.md)
   - [devicedebug工具](devicedebug-tool.md)
   - [rawheap-translator工具](rawheap-translator.md)
+- [二进制签名工具](binary-sign-tool.md)

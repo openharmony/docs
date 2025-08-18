@@ -1,5 +1,12 @@
 # @ohos.thermal (热管理)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--Designer: @wangyantian0-->
+<!--Tester: @alien0208-->
+<!--Adviser: @w_Machine_cc-->
+
 该模块提供热管理相关的接口，包括热档位查询及注册回调等功能。
 
 > **说明：**

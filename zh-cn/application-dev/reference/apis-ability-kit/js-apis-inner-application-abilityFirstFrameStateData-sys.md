@@ -19,10 +19,10 @@ import { appManager } from '@kit.AbilityKit';
 
 **系统接口**：此接口为系统接口。
 
-| 名称        | 类型    | 只读 | 必填 | 说明             |
+| 名称        | 类型    | 只读 | 可选 | 说明             |
 | ----------- | ------- | ---- | ---- | ---------------- |
-| bundleName  | string  | 是   | 否   | 应用Bundle名称。 |
-| moduleName  | string  | 是   | 否   | 应用Module名称。 |
-| abilityName | string  | 是   | 否   | Ability名称。    |
-| appIndex    | number  | 是   | 否   | DLP沙盒的索引。  |
-| isColdStart | boolean | 是   | 否   | 是否冷启动。true表示冷启动，false表示热启动。     |
+| bundleName  | string  | 否   | 否   | 应用Bundle名称。 |
+| moduleName  | string  | 否   | 否   | 应用Module名称。 |
+| abilityName | string  | 否   | 否   | Ability名称。    |
+| appIndex    | number  | 否   | 否   | DLP沙盒的索引。  |
+| isColdStart | boolean | 否   | 否   | 是否冷启动。true表示冷启动，false表示热启动。     |

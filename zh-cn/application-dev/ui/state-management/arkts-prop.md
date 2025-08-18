@@ -1,4 +1,10 @@
 # \@Prop装饰器：父子单向同步
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 \@Prop装饰的变量可以和父组件建立单向同步关系。\@Prop变量允许在本地修改，但修改后的变化不会同步回父组件。
 
@@ -440,7 +446,7 @@ struct Library {
         .width(312)
         .height(40)
         .margin(12)
-        .fontColor('#FFFFFF 90%')
+        .fontColor('#FFFFFF')
         .onClick(() => {
           this.allBooks.push(new Book("JA", 512));
         })
@@ -448,7 +454,7 @@ struct Library {
         .width(312)
         .height(40)
         .margin(12)
-        .fontColor('#FFFFFF 90%')
+        .fontColor('#FFFFFF')
         .onClick(() => {
           if (this.allBooks.length > 0) {
             this.allBooks.shift();
@@ -460,7 +466,7 @@ struct Library {
         .width(312)
         .height(40)
         .margin(12)
-        .fontColor('#FFFFFF 90%')
+        .fontColor('#FFFFFF')
         .onClick(() => {
           this.allBooks.forEach((book) => book.readIt = true)
         })
@@ -518,7 +524,7 @@ struct MyComponent {
           .width(288)
           .height(40)
           .margin({ left: 30, top: 12 })
-          .fontColor('#FFFFFF，90%')
+          .fontColor('#FFFFFF')
           .onClick(() => {
             this.customCounter2++;
           })
@@ -553,7 +559,7 @@ struct MainProgram {
             .width(288)
             .height(40)
             .margin({ left: 30, top: 12 })
-            .fontColor('#FFFFFF，90%')
+            .fontColor('#FFFFFF')
             .onClick(() => {
               this.mainCounter++;
             })
@@ -608,7 +614,7 @@ struct Person {
           .width(312)
           .height(40)
           .margin(12)
-          .fontColor('#FFFFFF，90%')
+          .fontColor('#FFFFFF')
           .onClick(() => {
             this.person.name = "Hi";
           })
@@ -616,7 +622,7 @@ struct Person {
           .width(312)
           .height(40)
           .margin(12)
-          .fontColor('#FFFFFF，90%')
+          .fontColor('#FFFFFF')
           .onClick(() => {
             this.person.son.title = "ArkUI";
           })

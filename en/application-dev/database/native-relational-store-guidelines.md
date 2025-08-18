@@ -1,4 +1,4 @@
-# RelationalStore Development (C/C++)
+# Persisting RDB Store Data (C/C++)
 
 
 ## When to Use
@@ -28,7 +28,7 @@ The **RelationalStore** module provides a complete mechanism for local database 
 
 ## Available APIs
 
-For details about the interfaces, see [RDB](../reference/apis-arkdata/_r_d_b.md).
+For details about the interfaces, see [RDB](../reference/apis-arkdata/capi-rdb.md).
 
 | API| Description|
 | -------- | -------- |

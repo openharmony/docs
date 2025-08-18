@@ -1,4 +1,10 @@
 # 通用事件
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 >  **说明：**
 >  从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -268,7 +274,7 @@ export default {
     },
 
     onInit() {
-        this.createPixelMap
+        this.createPixelMap()
     },
 
     dragStart(e) {

@@ -1,5 +1,11 @@
 # 自动化测试框架使用指导 
 
+<!--Kit: Test Kit-->
+<!--Subsystem: Test-->
+<!--Owner: @inter515-->
+<!--Designer: @inter515-->
+<!--Tester: @laonie666-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ## 概述
 
@@ -63,7 +69,7 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.huawei.com
 如下示例代码实现的场景是：启动测试页面，检查设备当前显示的页面是否为预期页面。
 
 ```ts
-import { describe, it, expect } from '@ohos/hypium';
+import { describe, it, expect, Level } from '@ohos/hypium';
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 
@@ -73,7 +79,7 @@ function sleep(time: number) {
 }
 export default function abilityTest() {
   describe('ActsAbilityTest', () =>{
-    it('testUiExample',0, async (done: Function) => {
+    it('testUiExample',Level.LEVEL3, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
       await sleep(1000);
       const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -104,7 +110,7 @@ export default function abilityTest() {
     @Component
     struct Index {
       @State message: string = 'Hello World';
-
+    
       build() {
         Row() {
           Column() {
@@ -129,18 +135,18 @@ export default function abilityTest() {
 
 2. 在ohosTest > ets > test文件夹下.test.ets文件中编写具体测试代码。
     ```ts
-    import { describe, it, expect } from '@ohos/hypium';
+    import { describe, it, expect, Level } from '@ohos/hypium';
     // 导入测试依赖kit
     import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
     import { UIAbility, Want } from '@kit.AbilityKit';
-
+    
     const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
     function sleep(time: number) {
       return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
     }
     export default function abilityTest() {
       describe('ActsAbilityTest', () => {
-        it('testUiExample',0, async (done: Function) => {
+        it('testUiExample',Level.LEVEL3, async (done: Function) => {
             console.info("uitest: TestUiExample begin");
             await sleep(1000);
             const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -195,16 +201,16 @@ export default function abilityTest() {
 - 在ohosTest > ets > test文件夹下.test.ets文件中编写具体测试代码。
 
   ```ts
-  import { describe, it, expect } from '@ohos/hypium';
+  import { describe, it, expect, Level } from '@ohos/hypium';
   import { PerfMetric, PerfTest, PerfTestStrategy, PerfMeasureResult } from '@kit.TestKit';
   import { PerfUtils } from '../../../main/ets/utils/PerfUtils';
-
+  
   export default function PerfTestTest() {
     describe('PerfTestTest', () => {
-      it('testExample0', 0, async (done: Function) => {
+      it('testExample0', Level.LEVEL3, async (done: Function) => {
         let metrics: Array<PerfMetric> = [PerfMetric.DURATION, PerfMetric.CPU_USAGE] // 指定被测指标
         let actionCode = async (finish: Callback<boolean>) => { // 测试代码段中使用uitest进行列表滑动
-          await await PerfUtils.CalculateTest()
+          await PerfUtils.CalculateTest()
           finish(true);
         };
         let perfTestStrategy: PerfTestStrategy = {  // 定义测试策略
@@ -270,15 +276,15 @@ export default function abilityTest() {
 - 在ohosTest > ets > test文件夹下.test.ets文件中编写具体测试代码。
 
   ```ts
-  import { describe, it, expect } from '@ohos/hypium';
+  import { describe, it, expect, Level } from '@ohos/hypium';
   import { PerfMetric, PerfTest, PerfTestStrategy, PerfMeasureResult } from '@kit.TestKit';
   import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
   import { Want } from '@kit.AbilityKit';
-
+  
   const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
   export default function PerfTestTest() {
     describe('PerfTestTest', () => {
-      it('testExample',0, async (done: Function) => {
+      it('testExample',Level.LEVEL3, async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
         const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -662,17 +668,17 @@ hdc shell uitest uiInput longClick 100 100
 ```shell  
 # 执行快滑操作，stepLength_缺省。
 hdc shell uitest uiInput fling 10 10 200 200 500 
-``` 
+```
 
 #### uiInput swipe/drag使用示例
 
-| 配置参数  | 必填             | 描述               |      
+| 配置参数  | 必填             | 描述               |
 |------|------------------|-----------------|
-| from_x   | 是                | 滑动起点x坐标。 | 
-| from_y   | 是                | 滑动起点y坐标。 | 
+| from_x   | 是                | 滑动起点x坐标。 |
+| from_y   | 是                | 滑动起点y坐标。 |
 | to_x   | 是                | 滑动终点x坐标。 |
 | to_y   | 是                | 滑动终点y坐标。 |
-| swipeVelocityPps_   | 否      | 滑动速度，单位：px/s，取值范围：200-40000。<br> 默认值: 600。 | 
+| swipeVelocityPps_   | 否      | 滑动速度，单位：px/s，取值范围：200-40000。<br> 默认值：600。 |
 
 ```shell  
 # 执行慢滑操作。
@@ -771,60 +777,60 @@ hdc shell uitest start-daemon
 ### 单元测试脚本实例
 
 #### 单元测试断言功能使用实例
-介绍单元测试框架中支持的断言能力如何使用，具体代码请查看[断言能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/assertExampleTest/assertExample.test.ets)。
+介绍单元测试框架中支持的断言能力如何使用，具体代码请查看[断言能力示例](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/assertExampleTest/assertExample.test.ets)。
 
 #### 单元测试测试套定义使用实例
-介绍单元测试框架测试套嵌套如何定义，包括嵌套定义能力，具体代码请参考[测试套嵌套示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/coverExampleTest/coverExample.test.ets)。
+介绍单元测试框架测试套嵌套如何定义，包括嵌套定义能力，具体代码请参考[测试套嵌套示例](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/coverExampleTest/coverExample.test.ets)。
 
 #### 单元测试测试应用自定义函数使用实例
-介绍针对应用内自定义函数如何使用框架能力进行测试，具体代码请参考[应用自定义函数测试示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/customExampleTest/customExample.test.ets)。
+介绍针对应用内自定义函数如何使用框架能力进行测试，具体代码请参考[应用自定义函数测试示例](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/customExampleTest/customExample.test.ets)。
 
 #### 单元测试数据驱动能力使用实例
-介绍测试框架数据驱动能力、脚本重复执行配置功能，具体代码请参考[数据驱动能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/paramExampleTest/paramExample.test.ets)。
+介绍测试框架数据驱动能力、脚本重复执行配置功能，具体代码请参考[数据驱动能力示例](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/paramExampleTest/paramExample.test.ets)。
 
 ### UI测试脚本实例（控件类）
 
 #### 查找指定控件能力实例
-介绍通过设置控件属性作为查找条件，在应用界面上查找组件对象，具体代码请参考[控件查找示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/findCommentExampleTest/Component/findCommentExample.test.ets)。
+介绍通过设置控件属性作为查找条件，在应用界面上查找组件对象，具体代码请参考[控件查找示例](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/findCommentExampleTest/Component/findCommentExample.test.ets)。
 
 #### 模拟点击操作事件能力实例
-介绍模拟用户在应用界面上进行点击，长按，双击等事件,具体代码请参考[点击事件示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/clickEvent.test.ets)。
+介绍模拟用户在应用界面上进行点击，长按，双击等事件,具体代码请参考[点击事件示例](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/clickEvent.test.ets)。
 
 #### 模拟鼠标操作能力实例
-介绍模拟鼠标左击、右击、滑轮事件，具体代码请参考[鼠标操作事件示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/MouseEvent.test.ets)。
+介绍模拟鼠标左击、右击、滑轮事件，具体代码请参考[鼠标操作事件示例](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/MouseEvent.test.ets)。
 
 #### 模拟文本输入能力实例
-介绍模拟输入中文、英文文本内容，仅支持可输入文本的组件进行操作，例如文本框等，具体代码请参考[文本输入能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/InputEvent.test.ets)。
+介绍模拟输入中文、英文文本内容，仅支持可输入文本的组件进行操作，例如文本框等，具体代码请参考[文本输入能力示例](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/InputEvent.test.ets)。
 
 #### 截图能力实例
-介绍屏幕截图功能，包括指定区域截图能力，具体代码请参考[截图能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/ScreenCapEvent.test.ets)。
+介绍屏幕截图功能，包括指定区域截图能力，具体代码请参考[截图能力示例](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/ScreenCapEvent.test.ets)。
 
 #### 模拟快滑操作能力实例
-介绍模拟快滑操作能力，即在可滑动页面上进行滑动，滑动后手指离开屏幕，具体代码请参考[模拟快滑操作能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/FlingEvent.test.ets)。
+介绍模拟快滑操作能力，即在可滑动页面上进行滑动，滑动后手指离开屏幕，具体代码请参考[模拟快滑操作能力示例](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/FlingEvent.test.ets)。
 
 #### 模拟慢滑操作能力实例
-介绍模拟慢滑操作能力，即在可滑动页面上进行滑动，滑动后手指仍停留在屏幕，具体代码请参考[模拟慢滑操作能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/SwipeEvent.test.ets)。
+介绍模拟慢滑操作能力，即在可滑动页面上进行滑动，滑动后手指仍停留在屏幕，具体代码请参考[模拟慢滑操作能力示例](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/SwipeEvent.test.ets)。
 
 #### 模拟缩放操作能力实例
-介绍模拟缩放能力，即在支持放大缩小的图片上，模拟双指缩放操作的能力，具体代码请参考[模拟缩放操作能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/PinchEvent.test.ets)。
+介绍模拟缩放能力，即在支持放大缩小的图片上，模拟双指缩放操作的能力，具体代码请参考[模拟缩放操作能力示例](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/PinchEvent.test.ets)。
 
 #### 模拟滚动到组件顶端或底端能力实例
-介绍模拟针对滑动类组件，可以模拟操作直接滚动到组件顶端或底端，具体代码请参考[模拟滚动到组件顶端或底端示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/ScrollerEvent.test.ets)。
+介绍模拟针对滑动类组件，可以模拟操作直接滚动到组件顶端或底端，具体代码请参考[模拟滚动到组件顶端或底端示例](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/ScrollerEvent.test.ets)。
 
 ### UI测试脚本实例（窗口类）
 
 #### 查找指定窗口能力实例
-介绍通过应用包名查找应用窗口，具体代码请参考[查找指定窗口能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/findCommentExampleTest/window/findWindowExample.test.ets)。
+介绍通过应用包名查找应用窗口，具体代码请参考[查找指定窗口能力示例](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/findCommentExampleTest/window/findWindowExample.test.ets)。
 
 #### 模拟窗口移动能力实例
-介绍模拟移动窗口到指定位置能力，具体代码请参考[模拟窗口移动示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/window/MoveToEvent.test.ets)。
+介绍模拟移动窗口到指定位置能力，具体代码请参考[模拟窗口移动示例](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/window/MoveToEvent.test.ets)。
 
 #### 模拟调整窗口大小能力实例
-介绍模拟调整窗口大小能力，并可指定调整的具体方向，具体代码请参考[模拟调整窗口大小能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/window/ReSizeWindow.test.ets)。
+介绍模拟调整窗口大小能力，并可指定调整的具体方向，具体代码请参考[模拟调整窗口大小能力示例](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/window/ReSizeWindow.test.ets)。
 
 ### 白盒性能测试脚本实例
 
-介绍调用PerfTest接口，实现白盒性能测试的能力，具体代码请参考[白盒性能测试示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/perftest/entry/src/ohosTest/ets/test/PerfTest.test.ets)。
+介绍调用PerfTest接口，实现白盒性能测试的能力，具体代码请参考[白盒性能测试示例](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Project/Test/perftest/entry/src/ohosTest/ets/test/PerfTest.test.ets)。
 
 <!--DelEnd-->
 

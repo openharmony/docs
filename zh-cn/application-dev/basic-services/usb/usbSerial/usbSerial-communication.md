@@ -1,5 +1,12 @@
 # USB串口通信管理
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 ## 简介
 
 USB串口通信服务中通过Host设备的USB接口连接串口设备的串口进行串行数据传输，通信管理核心目标是实现设备间的高效、稳定数据传输与协同控制。主要使用在工业自动化与远程监控、物联网设备互联、医疗设备管理等场景。
@@ -57,15 +64,18 @@ USB串口通信服务中通过Host设备的USB接口连接串口设备的串口�
 
     ```ts
     // 此处对列表中的第一台USB设备判断是否拥有访问权限
-    let portId: number = portList[0].portId;
-    if (!serial.hasSerialRight(portId)) {
-      await serial.requestSerialRight(portId).then(result => {
-        if(!result) {
-          // 没有访问设备的权限且用户不授权则退出
-          console.error('The user does not have permission to perform this operation');
-          return;
-        }
-      });
+    // 函数名仅作为示例，实际需要与业务结合命名
+    async function serialDefault() {
+      let portId: number = portList[0].portId;
+      if (!serial.hasSerialRight(portId)) {
+        await serial.requestSerialRight(portId).then(result => {
+          if(!result) {
+            // 没有访问设备的权限且用户不授权则退出
+            console.error('The user does not have permission to perform this operation');
+            return;
+          }
+        });
+      }
     }
     ```
 

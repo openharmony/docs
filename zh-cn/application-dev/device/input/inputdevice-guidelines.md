@@ -34,34 +34,45 @@ import { inputDevice } from '@kit.InputKit';
 ```js
 import { inputDevice } from '@kit.InputKit';
 
-let isPhysicalKeyboardExist = true;
-try {
-  // 1.获取设备列表，判断是否有物理键盘连接
-  inputDevice.getDeviceList().then(data => {
-    for (let i = 0; i < data.length; ++i) {
-      inputDevice.getKeyboardType(data[i]).then(type => {
-        if (type === inputDevice.KeyboardType.ALPHABETIC_KEYBOARD) {
-          // 物理键盘已连接
-          isPhysicalKeyboardExist = true;
-        }
-      });
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let isPhysicalKeyboardExist = true;
+          try {
+            // 1.获取设备列表，判断是否有物理键盘连接
+            inputDevice.getDeviceList().then(data => {
+              for (let i = 0; i < data.length; ++i) {
+                inputDevice.getKeyboardType(data[i]).then(type => {
+                  if (type === inputDevice.KeyboardType.ALPHABETIC_KEYBOARD) {
+                    // 物理键盘已连接
+                    isPhysicalKeyboardExist = true;
+                  }
+                });
+              }
+            });
+            // 2.监听设备热插拔
+            inputDevice.on("change", (data) => {
+              console.info(`Device event info: ${JSON.stringify(data)}`);
+              inputDevice.getKeyboardType(data.deviceId).then((type) => {
+                console.info("The keyboard type is: " + type);
+                if (type === inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
+                  // 物理键盘已插入
+                  isPhysicalKeyboardExist = true;
+                } else if (type == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'remove') {
+                  // 物理键盘已拔掉
+                  isPhysicalKeyboardExist = false;
+                }
+              });
+            });
+          } catch (error) {
+            console.error(`Execute failed, error: ${JSON.stringify(error, ["code", "message"])}`);
+          }
+        })
     }
-  });
-  // 2.监听设备热插拔
-  inputDevice.on("change", (data) => {
-    console.info(`Device event info: ${JSON.stringify(data)}`);
-    inputDevice.getKeyboardType(data.deviceId).then((type) => {
-      console.info("The keyboard type is: " + type);
-      if (type === inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
-        // 物理键盘已插入
-        isPhysicalKeyboardExist = true;
-      } else if (type == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'remove') {
-        // 物理键盘已拔掉
-        isPhysicalKeyboardExist = false;
-      }
-    });
-  });
-} catch (error) {
-  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```

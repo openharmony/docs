@@ -37,7 +37,7 @@ abstract makeNode(uiContext : UIContext): FrameNode | null
 
 | 参数名    | 类型                                      | 必填 | 说明                                                                                                          |
 | --------- | ----------------------------------------- | ---- | ------------------------------------------------------------------------------------------------------------- |
-| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 回调该方法的时候，绑定[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)的UI上下文。 |
+| uiContext | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 回调该方法的时候，绑定[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)的UI上下文。 |
 
 **返回值：**
 
@@ -210,7 +210,7 @@ rebuild(): void
 > **说明：**
 > 由于rebuild方法为应用主动调用的方法，且该操作与UI相关。需要开发者自行保证调用该接口时UI上下文有效，即与绑定的NodeContainer保持UI上下文一致。
 >
-> 监听回调等[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)时，可以通过[UIContext](./js-apis-arkui-UIContext.md)的[runScopedTask](./js-apis-arkui-UIContext.md#runscopedtask)方法明确调用时的UI上下文。
+> 监听回调等[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)时，可以通过[UIContext](./arkts-apis-uicontext-uicontext.md)的[runScopedTask](./arkts-apis-uicontext-uicontext.md#runscopedtask)方法明确调用时的UI上下文。
 
 ## 示例
 

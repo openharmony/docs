@@ -1,4 +1,10 @@
 # native_avscreen_capture_base.h
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zzs_911-->
+<!--Designer: @stupig001-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 

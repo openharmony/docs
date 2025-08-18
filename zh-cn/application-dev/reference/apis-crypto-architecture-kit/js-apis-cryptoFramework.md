@@ -1,5 +1,12 @@
 # @ohos.security.cryptoFramework (加解密算法库框架)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 提供统一的密码算法库加解密接口，以屏蔽底层硬件和算法库。
 
 > **说明：**
@@ -182,8 +189,8 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 | DH_L_NUM<sup>11+</sup> | 403 | DH算法中私钥长度，单位为bit。 |
 | DH_SK_BN<sup>11+</sup> | 404 | DH算法中的私钥sk。 |
 | DH_PK_BN<sup>11+</sup> | 405 | DH算法中的公钥pk。 |
-| ED25519_SK_BN<sup>11+</sup> | 501 | ED25519算法中的私钥sk。 |
-| ED25519_PK_BN<sup>11+</sup> | 502 | ED25519算法中的公钥pk。 |
+| ED25519_SK_BN<sup>11+</sup> | 501 | Ed25519算法中的私钥sk。 |
+| ED25519_PK_BN<sup>11+</sup> | 502 | Ed25519算法中的公钥pk。 |
 | X25519_SK_BN<sup>11+</sup> | 601 | X25519算法中的私钥sk。 |
 | X25519_PK_BN<sup>11+</sup> | 602 | X25519算法中的公钥pk。 |
 
@@ -199,10 +206,10 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
-| COMMON_PARAMS_SPEC | 0 | 表示公私钥中包含的公共参数。使用此类型的参数可以调用[generateKeyPair](#generatekeypair-2)随机生成密钥对。 |
-| PRIVATE_KEY_SPEC | 1 | 表示私钥中包含的参数。使用此类型的参数可以调用[generatePriKey](#generateprikey)生成指定的私钥。 |
-| PUBLIC_KEY_SPEC | 2 | 表示公钥中包含的参数。使用此类型的参数可以调用[generatePubKey](#generatepubkey)生成指定的公钥。 |
-| KEY_PAIR_SPEC | 3 | 表示公私钥中包含的全量参数。使用此类型的参数可以调用[generateKeyPair](#generatekeypair-2)生成指定的密钥对。 |
+| COMMON_PARAMS_SPEC | 0 | 表示公私钥中包含的公共参数。使用此类型的参数可以调用[generateKeyPair](#generatekeypair10)随机生成密钥对。 |
+| PRIVATE_KEY_SPEC | 1 | 表示私钥中包含的参数。使用此类型的参数可以调用[generatePriKey](#generateprikey10)生成指定的私钥。 |
+| PUBLIC_KEY_SPEC | 2 | 表示公钥中包含的参数。使用此类型的参数可以调用[generatePubKey](#generatepubkey10)生成指定的公钥。 |
+| KEY_PAIR_SPEC | 3 | 表示公私钥中包含的全量参数。使用此类型的参数可以调用[generateKeyPair](#generatekeypair10)生成指定的密钥对。 |
 
 ## CipherSpecItem<sup>10+</sup>
 
@@ -482,7 +489,7 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 ## ED25519PriKeySpec<sup>11+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ED25519算法中私钥包含的参数。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定Ed25519算法中私钥包含的参数。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
@@ -494,11 +501,11 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 | 名称 | 类型   | 只读 | 可选 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
-| sk   | bigint | 否   | 否   | 指定ED25519算法的私钥sk。 |
+| sk   | bigint | 否   | 否   | 指定Ed25519算法的私钥sk。 |
 
 ## ED25519PubKeySpec<sup>11+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ED25519算法中公钥包含的参数。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定Ed25519算法中公钥包含的参数。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
@@ -510,11 +517,11 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 | 名称 | 类型   | 只读 | 可选 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
-| pk   | bigint | 否   | 否   | 指定ED25519算法的公钥pk。 |
+| pk   | bigint | 否   | 否   | 指定Ed25519算法的公钥pk。 |
 
 ## ED25519KeyPairSpec<sup>11+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ED25519算法中公私钥包含的全量参数。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定Ed25519算法中公私钥包含的全量参数。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
@@ -526,8 +533,8 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 | 名称 | 类型   | 只读 | 可选 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
-| sk   | bigint | 否   | 否   | 指定ED25519算法的私钥sk。 |
-| pk   | bigint | 否   | 否   | 指定ED25519算法的公钥pk。 |
+| sk   | bigint | 否   | 否   | 指定Ed25519算法的私钥sk。 |
+| pk   | bigint | 否   | 否   | 指定Ed25519算法的公钥pk。 |
 
 ## X25519PriKeySpec<sup>11+</sup>
 
@@ -1507,6 +1514,12 @@ generateSymKeySync(): SymKey
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
 
+**返回值：**
+
+| 类型                        | 说明                              |
+| --------------------------- | --------------------------------- |
+| [SymKey](#symkey) | 返回对称密钥SymKey。 |
+
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
 
@@ -2438,7 +2451,7 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 | ------- | ------ | ---- | ---- | -------------------------- |
 | algName | string | 是   | 否   | 非对称密钥生成器的算法名。 |
 
-### generateKeyPair
+### generateKeyPair<sup>10+</sup>
 
 generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
@@ -2450,7 +2463,7 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -2482,7 +2495,7 @@ asyKeyGeneratorBySpec.generateKeyPair((err, keyPair) => {
 })
 ```
 
-### generateKeyPair
+### generateKeyPair<sup>10+</sup>
 
 generateKeyPair(): Promise\<KeyPair>
 
@@ -2494,7 +2507,7 @@ generateKeyPair(): Promise\<KeyPair>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **返回值：**
 
@@ -2575,7 +2588,7 @@ try {
 }
 ```
 
-### generatePriKey
+### generatePriKey<sup>10+</sup>
 
 generatePriKey(callback: AsyncCallback\<PriKey>): void
 
@@ -2587,7 +2600,7 @@ generatePriKey(callback: AsyncCallback\<PriKey>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -2619,7 +2632,7 @@ asyKeyGeneratorBySpec.generatePriKey((err, prikey) => {
 })
 ```
 
-### generatePriKey
+### generatePriKey<sup>10+</sup>
 
 generatePriKey(): Promise\<PriKey>
 
@@ -2631,7 +2644,7 @@ generatePriKey(): Promise\<PriKey>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **返回值：**
 
@@ -2709,7 +2722,7 @@ try {
 }
 ```
 
-### generatePubKey
+### generatePubKey<sup>10+</sup>
 
 generatePubKey(callback: AsyncCallback\<PubKey>): void
 
@@ -2721,7 +2734,7 @@ generatePubKey(callback: AsyncCallback\<PubKey>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -2753,7 +2766,7 @@ asyKeyGeneratorBySpec.generatePubKey((err, pubKey) => {
 })
 ```
 
-### generatePubKey
+### generatePubKey<sup>10+</sup>
 
 generatePubKey(): Promise\<PubKey>
 
@@ -2765,7 +2778,7 @@ generatePubKey(): Promise\<PubKey>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **返回值：**
 
@@ -3322,7 +3335,7 @@ initSync(opMode: CryptoMode, key: Key, params: ParamsSpec | null): void
 | ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | opMode | [CryptoMode](#cryptomode)                       | 是   | 加密或者解密模式。                                           |
 | key    | [Key](#key)                                     | 是   | 指定加密或解密的密钥。                                       |
-| params | [ParamsSpec](#paramsspec)  | 是   | 指定加密或解密的参数，对于ECB等没有参数的算法模式，可以传入null。 |
+| params | [ParamsSpec](#paramsspec)  \| null| 是   | 指定加密或解密的参数，对于ECB等没有参数的算法模式，可以传入null。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -3549,7 +3562,7 @@ function cipherByCallback() {
   let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
   let cipher = cryptoFramework.createCipher('AES128|GCM|PKCS7');
   symKeyGenerator.generateSymKey((err, symKey) => {
-    cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams, (err,) => {
+    cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams, (err) => {
       let message = "This is a test";
       let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
       cipher.update(plainText, (err, encryptUpdate) => {
@@ -3689,7 +3702,7 @@ doFinalSync(data: DataBlob | null): DataBlob
 
 | 参数名 | 类型                                        | 必填 | 说明                                                         |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| data   | [DataBlob](#datablob)  | 是   | 加密或者解密的数据。在对称加解密中允许为null，但不允许传入{data: Uint8Array(空) }。 |
+| data   | [DataBlob](#datablob)  \| null| 是   | 加密或者解密的数据。在对称加解密中允许为null，但不允许传入{data: Uint8Array(空) }。 |
 
 **返回值：**
 
@@ -3853,13 +3866,13 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 指定签名算法：RSA、ECC、DSA、SM2<sup>10+</sup>或ED25519<sup>11+</sup>。使用RSA PKCS1模式时需设置摘要；使用RSA PSS模式时需设置摘要和掩码摘要。签名时，通过设置OnlySign参数可传入数据摘要仅作签名。 |
+| algName | string | 是   | 指定签名算法：RSA、ECC、DSA、SM2<sup>10+</sup>或Ed25519<sup>11+</sup>。使用RSA PKCS1模式时需设置摘要；使用RSA PSS模式时需设置摘要和掩码摘要。签名时，通过设置OnlySign参数可传入数据摘要仅作签名。 |
 
 **返回值**：
 
 | 类型 | 说明                               |
 | ---- | ---------------------------------- |
-| Sign | 返回由输入算法指定生成的Sign对象。 |
+| [Sign](#sign) | 返回由输入算法指定生成的Sign对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
@@ -4423,7 +4436,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 指定签名算法：RSA、ECC、DSA、SM2<sup>10+</sup>或ED25519<sup>11+</sup>。使用RSA PKCS1模式时需设置摘要；使用RSA PSS模式时需设置摘要和掩码摘要。使用RSA算法验签时，设置Recover参数可支持验签恢复。 |
+| algName | string | 是   | 指定签名算法：RSA、ECC、DSA、SM2<sup>10+</sup>或Ed25519<sup>11+</sup>。使用RSA PKCS1模式时需设置摘要；使用RSA PSS模式时需设置摘要和掩码摘要。使用RSA算法验签时，设置Recover参数可支持验签恢复。 |
 
 **返回值**：
 
@@ -4934,6 +4947,7 @@ recover(signatureData: DataBlob): Promise\<DataBlob | null>
 ```ts
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function genKeyPairByData(pubKeyData: Uint8Array, priKeyData: Uint8Array) {
   let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyData };
@@ -5361,19 +5375,19 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 update(input: DataBlob, callback: AsyncCallback\<void>): void
 
-传入消息进行Md更新计算，通过注册回调函数更新。update和digest为两段式接口，需要成组使用。其中digest必选，update可选。
+传入消息进行Md更新摘要状态，通过注册回调函数更新。update和digest为两段式接口，需要成组使用。其中digest必选，update可选。
 
 > **说明：**
 >
-> - Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
-> 
-> - 该接口不支持轻量级智能穿戴。
+> Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest。
+
+**设备行为差异：** 该接口仅在Phone、PC/2in1、Tablet、TV、Wearable设备中可正常调用，在Lite Wearable设备中返回undefined。
 
 **参数：**
 
@@ -5395,19 +5409,21 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 update(input: DataBlob): Promise\<void>
 
-传入消息进行Md更新计算，通过Promise更新。update和digest为两段式接口，需要成组使用。其中digest必选，update可选。
+传入消息进行Md更新摘要状态，通过Promise更新。update和digest为两段式接口，需要成组使用。其中digest必选，update可选。
 
 > **说明：**
 >
-> - Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
-> 
-> - 该接口不支持轻量级智能穿戴。
+> Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest。
+
+**设备行为差异：** 该接口仅在Phone、PC/2in1、Tablet、TV、Wearable设备中可正常调用，在Lite Wearable设备中返回undefined。
+
+**参数：**
 
 | 参数名 | 类型     | 必填 | 说明         |
 | ------ | -------- | ---- | ------------ |
@@ -5432,7 +5448,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 updateSync(input: DataBlob): void
 
-传入消息进行Md更新计算，通过同步方式更新。updateSync和digestSync为两段式接口，需要成组使用。其中digestSync必选，updateSync可选。
+传入消息进行Md更新摘要状态，通过同步方式更新。updateSync和digestSync为两段式接口，需要成组使用。其中digestSync必选，updateSync可选。
 
 > **说明：**
 >
@@ -5442,15 +5458,11 @@ updateSync(input: DataBlob): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
+**参数：**
+
 | 参数名 | 类型     | 必填 | 说明         |
 | ------ | -------- | ---- | ------------ |
 | input  | [DataBlob](#datablob) | 是   | 传入的消息。 |
-
-**返回值：**
-
-| 类型           | 说明          |
-| -------------- | ------------- |
-| void | 无返回结果。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
@@ -5467,15 +5479,15 @@ digest(callback: AsyncCallback\<DataBlob>): void
 
 通过注册回调函数返回Md的计算结果。
 
-> **说明：**
-> 
-> 该接口不支持轻量级智能穿戴。
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest。
+
+**设备行为差异：** 该接口仅在Phone、PC/2in1、Tablet、TV、Wearable设备中可正常调用，在Lite Wearable设备中返回undefined。
+
+**参数：**
 
 | 参数名   | 类型                     | 必填 | 说明       |
 | -------- | ------------------------ | ---- | ---------- |
@@ -5498,7 +5510,7 @@ import { buffer } from '@kit.ArkTS';
 
 function mdByCallback() {
   let md = cryptoFramework.createMd('SHA256');
-  md.update({ data: new Uint8Array(buffer.from("mdTestMessage", 'utf-8').buffer) }, (err,) => {
+  md.update({ data: new Uint8Array(buffer.from("mdTestMessage", 'utf-8').buffer) }, (err) => {
     md.digest((err, digestOutput) => {
       console.info('[Callback]: MD result: ' + digestOutput.data);
       console.info('[Callback]: MD len: ' + md.getMdLength());
@@ -5513,15 +5525,13 @@ digest(): Promise\<DataBlob>
 
 通过Promise返回Md的计算结果。
 
-> **说明：**
-> 
-> 该接口不支持轻量级智能穿戴。
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest。
+
+**设备行为差异：** 该接口仅在Phone、PC/2in1、Tablet、TV、Wearable设备中可正常调用，在Lite Wearable设备中返回undefined。
 
 **返回值：**
 
@@ -5767,7 +5777,7 @@ API version 9-11 系统能力为SystemCapability.Security.CryptoFramework；从A
 
 | 参数名   | 类型                 | 必填 | 说明           |
 | -------- | -------------------- | ---- | -------------- |
-| key      | [SymKey](#symkey)    | 是   | 共享对称密钥。 |
+| key      | [SymKey](#symkey)    | 是   | 对称密钥。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当HMAC初始化成功，err为undefined，否则为错误对象。  |
 
 **错误码：**
@@ -5795,7 +5805,7 @@ API version 9-11 系统能力为SystemCapability.Security.CryptoFramework；从A
 
 | 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
-| key    | [SymKey](#symkey) | 是   | 共享对称密钥。 |
+| key    | [SymKey](#symkey) | 是   | 对称密钥。 |
 
 **返回值：**
 
@@ -5826,13 +5836,7 @@ initSync(key: SymKey): void
 
 | 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
-| key    | [SymKey](#symkey) | 是   | 共享对称密钥。 |
-
-**返回值：**
-
-| 类型           | 说明          |
-| -------------- | ------------- |
-| void | 无返回结果。 |
+| key    | [SymKey](#symkey) | 是   | 对称密钥。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
@@ -5847,7 +5851,7 @@ initSync(key: SymKey): void
 
 update(input: DataBlob, callback: AsyncCallback\<void>): void
 
-传入消息进行Mac更新计算，通过注册回调函数获取结果。
+传入消息进行Mac更新消息认证码状态，通过注册回调函数获取结果。
 
 > **说明：**
 >
@@ -5879,7 +5883,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 update(input: DataBlob): Promise\<void>
 
-传入消息进行Mac更新计算，通过Promise获取结果。
+传入消息进行Mac更新消息认证码状态，通过Promise获取结果。
 
 > **说明：**
 >
@@ -5916,7 +5920,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 updateSync(input: DataBlob): void
 
-传入消息进行Mac更新计算，通过同步方式获取结果。
+传入消息进行Mac更新消息认证码状态，通过同步方式获取结果。
 
 > **说明：**
 >
@@ -5981,8 +5985,8 @@ function hmacByCallback() {
   let keyBlob: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer) };
   let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
   symKeyGenerator.convertKey(keyBlob, (err, symKey) => {
-    mac.init(symKey, (err,) => {
-      mac.update({ data: new Uint8Array(buffer.from("hmacTestMessage", 'utf-8').buffer) }, (err,) => {
+    mac.init(symKey, (err) => {
+      mac.update({ data: new Uint8Array(buffer.from("hmacTestMessage", 'utf-8').buffer) }, (err) => {
         mac.doFinal((err, output) => {
           console.info('[Callback]: HMAC result: ' + output.data);
           console.info('[Callback]: MAC len: ' + mac.getMacLength());
@@ -6162,7 +6166,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 | 类型   | 说明                                            |
 | ------ | ----------------------------------------------- |
-| Random | 返回由输入算法指定生成的[Random](#random)对象。 |
+| [Random](#random) | 返回由输入算法指定生成的[Random](#random)对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -6207,15 +6211,13 @@ generateRandom(len: number, callback: AsyncCallback\<DataBlob>): void
 
 异步生成指定长度的随机数，通过注册回调函数返回。
 
-> **说明：**
-> 
-> 该接口不支持轻量级智能穿戴。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Rand
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand。
+
+**设备行为差异：** 该接口仅在Phone、PC/2in1、Tablet、TV、Wearable设备中可正常调用，在Lite Wearable设备中返回undefined。
 
 **参数：**
 
@@ -6254,15 +6256,13 @@ generateRandom(len: number): Promise\<DataBlob>
 
 异步生成指定长度的随机数，通过Promise返回。
 
-> **说明：**
-> 
-> 该接口不支持轻量级智能穿戴。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Rand
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand。
+
+**设备行为差异：** 该接口仅在Phone、PC/2in1、Tablet、TV、Wearable设备中可正常调用，在Lite Wearable设备中返回undefined。
 
 **参数：**
 
@@ -6365,6 +6365,8 @@ setSeed(seed: DataBlob): void
 
 API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand。
 
+**参数：**
+
 | 参数名 | 类型     | 必填 | 说明         |
 | ------ | -------- | ---- | ------------ |
 | seed   | [DataBlob](#datablob) | 是   | 设置的种子。 |
@@ -6455,7 +6457,7 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | algName | string | 是   | 否   | 密钥派生函数的算法名称。 |
 
-### generateSecret
+### generateSecret<sup>11+</sup>
 
 generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
@@ -6465,7 +6467,7 @@ generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Kdf
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
 
 **参数：**
 
@@ -6527,7 +6529,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
   });
   ```
 
-### generateSecret
+### generateSecret<sup>11+</sup>
 
 generateSecret(params: KdfSpec): Promise\<DataBlob>
 
@@ -6537,7 +6539,7 @@ generateSecret(params: KdfSpec): Promise\<DataBlob>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Kdf
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
 
 **参数：**
 

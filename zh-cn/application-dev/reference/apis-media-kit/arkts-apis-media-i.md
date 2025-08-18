@@ -1,4 +1,10 @@
 # Interfaces (其他)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -286,8 +292,8 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 
 | 名称   | 类型   | 只读 | 可选 | 说明                                                         |
 | ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| width  | number | 否   | 是   | 输出的缩略图宽度。<br/>- 如果该值小于0，宽度是视频的原始宽度。<br/>- 如果值为0或未分配任何值，缩放比例同高度比例。 |
-| height | number | 否   | 是   | 输出的缩略图高度。<br/>- 如果该值小于0，高度是视频的原始高度。<br/>- 如果值为0或未分配任何值，缩放比例同宽度比例。 |
+| width  | number | 否   | 是   | 输出的缩略图宽度。<br/>- 如果该值小于0，宽度是视频的原始宽度。<br/>- 如果值为0或未分配任何值，缩放比例同高度比例。<br/>- 如果宽度和高度均未分配任意值，则输出原始视频帧的宽度和高度。 |
+| height | number | 否   | 是   | 输出的缩略图高度。<br/>- 如果该值小于0，高度是视频的原始高度。<br/>- 如果值为0或未分配任何值，缩放比例同宽度比例。<br/>- 如果宽度和高度均未分配任意值，则输出原始视频帧的宽度和高度。 |
 
 ## MediaStream<sup>19+</sup>
 
@@ -387,7 +393,7 @@ async function setupPlayer() {
 | 名称                  | 类型    | 只读 | 可选 | 说明                 |
 | --------------------- | ------- | --- | --- | -------------------- |
 | keepCaptureDuringCall | boolean | 否 | 是  | 蜂窝通话时是否保持录屏。 |
-| enableBFrame | boolean | 否 | 是 | 录屏是否使能B帧编码。true表示录屏文件使能B帧编码，false表示录屏文件禁用B帧编码，默认是false。<br>如果芯片平台不支持B帧编码，则正常录制不含B帧的视频，不会返回错误。 |
+| enableBFrame | boolean | 否 | 是 | 录屏是否使能B帧编码。true表示录屏文件使能B帧编码，false表示录屏文件禁用B帧编码，默认是false。<br>B帧视频编码相关的约束和限制可以参考文档[B帧视频编码约束和限制](../../media/avcodec/video-encoding-b-frame.md#约束和限制)。如果当前不符合B帧视频编码的约束和限制，则正常录制不含B帧的视频，不会返回错误。 |
 
 ## AVScreenCaptureRecordConfig<sup>12+</sup>
 
@@ -420,12 +426,12 @@ async function setupPlayer() {
 
 | 名称                                | 类型                                         | 必填 | 说明                                                         |
 | ----------------------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioEncoder                        | [AudioEncoder](arkts-apis-media-e.md#audioencoderdeprecated)                | 否   | 音频编码格式，默认设置为AAC_LC。<br/>**说明：** 从API version 8开始废弃，建议使用audioEncoderMime替代。 |
-| audioEncodeBitRate                  | number                                       | 否   | 音频编码比特率，默认值为48000。                              |
-| audioSampleRate                     | number                                       | 否   | 音频采集采样率，默认值为48000。<br>可变比特率模式，码率仅作参考。                              |
-| numberOfChannels                    | number                                       | 否   | 音频采集声道数，默认值为2。                                  |
-| format                              | [AudioOutputFormat](arkts-apis-media-e.md#audiooutputformatdeprecated)      | 否   | 音频输出封装格式，默认设置为MPEG_4。<br/>**说明：** 从API version 8开始废弃，建议使用fileFormat替代。 |
-| location                            | [Location](#location)                        | 否   | 音频采集的地理位置。                                         |
-| uri                                 | string                                       | 是   | 音频输出URI：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
-| audioEncoderMime<sup>8+</sup>       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | 否   | 容器编码格式。                                               |
-| fileFormat<sup>8+</sup>             | [ContainerFormatType](arkts-apis-media-e.md#containerformattype8) | 否   | 音频编码格式。                                               |
+| audioEncoder                        | [AudioEncoder](arkts-apis-media-e.md#audioencoderdeprecated)                | 否   | 音频编码格式，默认设置为AAC_LC。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议使用audioEncoderMime替代。 |
+| audioEncodeBitRate                  | number                                       | 否   | 音频编码比特率，默认值为48000。<br/>**说明：** 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorderProfile](#avrecorderprofile9)中的audioBitrate替代。 |
+| audioSampleRate                     | number                                       | 否   | 音频采集采样率，默认值为48000。<br>可变比特率模式，码率仅作参考。<br/>**说明：** 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorderProfile](#avrecorderprofile9)中的audioSampleRate替代。 |
+| numberOfChannels                    | number                                       | 否   | 音频采集声道数，默认值为2。<br/>**说明：** 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorderProfile](#avrecorderprofile9)中的audioChannels替代。 |
+| format                              | [AudioOutputFormat](arkts-apis-media-e.md#audiooutputformatdeprecated)      | 否   | 音频输出封装格式，默认设置为MPEG_4。<br/>**说明：** 从API version 6开始支持，从API version 8开始废弃，建议使用fileFormat替代。 |
+| location                            | [Location](#location)                        | 否   | 音频采集的地理位置。<br/>**说明：** 从API version 6开始支持，从API version 9开始废弃，建议使用[AVMetadata](#avmetadata11)中的location替代。 |
+| uri                                 | string                                       | 是   | 音频输出URI：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。<br/>**说明：** 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorderConfig](#avrecorderconfig9)中的url替代。 |
+| audioEncoderMime<sup>8+</sup>       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | 否   | 容器编码格式。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用[AVRecorderProfile](#avrecorderprofile9)中的audioCodec替代。 |
+| fileFormat<sup>8+</sup>             | [ContainerFormatType](arkts-apis-media-e.md#containerformattype8) | 否   | 音频编码格式。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用[AVRecorderProfile](#avrecorderprofile9)中的fileFormat替代。 |

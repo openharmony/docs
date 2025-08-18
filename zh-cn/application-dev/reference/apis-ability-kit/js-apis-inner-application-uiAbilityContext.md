@@ -1,5 +1,12 @@
 # UIAbilityContext
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhu-feimo-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 UIAbilityContext是[UIAbility](./js-apis-app-ability-uiAbility.md)组件的上下文，继承自[Context](./js-apis-inner-application-context.md)。各类Context之间的关联与差异详见[应用上下文Context](../../application-models/application-context-stage.md)。
 
 每个UIAbility组件实例化时，系统都会自动创建对应的UIAbilityContext。开发者可以通过UIAbilityContext获取组件信息AbilityInfo、获取应用信息ApplicationInfo、拉起其他UIAbility、连接系统服务、销毁UIAbility等。
@@ -671,9 +678,9 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 2. （可选）如果需要在停止UIAbility时，清理任务中心的相关任务（即不保留最近任务列表中的快照），需要在[module.json5](../../quick-start/module-configuration-file.md)配置文件中将removeMissionAfterTerminate字段取值配置为true。
 
     ```json
-    { 
-      "module": { 
-        // ... 
+    {
+      "module": {
+        // ...
         "abilities": [
           {
             // ...
@@ -1871,11 +1878,13 @@ export default class EntryAbility extends UIAbility {
 
 showAbility(): Promise\<void>
 
-显示当前UIAbility。使用Promise异步回调。仅在2in1和tablet设备上生效。仅支持在主线程调用。
+显示当前UIAbility。使用Promise异步回调。仅支持在主线程调用。
 
 调用此接口前要求确保应用已添加至状态栏。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在2in1和tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 
@@ -1969,11 +1978,13 @@ export default class EntryAbility extends UIAbility {
 
 hideAbility(): Promise\<void>
 
-隐藏当前UIAbility。使用Promise异步回调。仅在2in1和tablet设备上生效。仅支持在主线程调用。
+隐藏当前UIAbility。使用Promise异步回调。仅支持在主线程调用。
 
 调用此接口前要求确保应用已添加至状态栏。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在2in1和tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 
@@ -2064,6 +2075,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ### moveAbilityToBackground<sup>12+<sup>
+
 moveAbilityToBackground(): Promise\<void>
 
 将处于前台的UIAbility移动到后台。使用Promise异步回调。仅支持在主线程调用。<br/><!--RP1--><!--RP1End-->
@@ -2080,7 +2092,7 @@ moveAbilityToBackground(): Promise\<void>
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码]。
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -2512,7 +2524,7 @@ export default class EntryAbility extends UIAbility {
 
 startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 
-启动一个[UIServiceExtensionAbility](../../application-models/uiserviceextension.md)。使用Promise异步回调。
+启动一个UIServiceExtensionAbility。使用Promise异步回调。
 
 > **说明：**
 >
@@ -2597,7 +2609,7 @@ struct Index {
 
 connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnectCallback) : Promise&lt;UIServiceProxy&gt;
 
-连接一个[UIServiceExtensionAbility](../../application-models/uiserviceextension.md)。使用Promise异步回调。
+连接一个UIServiceExtensionAbility。使用Promise异步回调。
 
 > **说明：**
 >
@@ -2710,7 +2722,7 @@ struct UIServiceExtensionAbility {
 
 disconnectUIServiceExtensionAbility(proxy: UIServiceProxy): Promise&lt;void&gt;
 
-断开与[UIServiceExtensionAbility](../../application-models/uiserviceextension.md)的连接。使用Promise异步回调。
+断开与UIServiceExtensionAbility的连接。使用Promise异步回调。
 
 > **说明：**
 >
@@ -2787,7 +2799,7 @@ struct UIServiceExtensionAbility {
       // 断开UIServiceExtension连接
       context.disconnectUIServiceExtensionAbility(this.comProxy)
         .then(() => {
-          console.info(TAG + `disconnectUIServiceExtensionAbility succeed ${this.comProxy}}`);
+          console.info(TAG + `disconnectUIServiceExtensionAbility succeed ${this.comProxy}`);
         }).catch((err: Error) => {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
@@ -2808,14 +2820,11 @@ setAbilityInstanceInfo(label: string, icon: image.PixelMap) : Promise&lt;void&gt
 
 设置当前UIAbility实例的图标和标签信息。图标与标签信息可在任务中心和快捷栏的界面中显示。使用Promise异步回调。
 
-
-> **说明**：
->
-> 仅支持2in1设备。
-
 **需要权限**： ohos.permission.SET_ABILITY_INSTANCE_INFO
 
 **系统能力**： SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **参数**：
 
@@ -2859,20 +2868,25 @@ export default class EntryAbility extends UIAbility {
       }
 
       let newLabel: string = 'instance label';
-      let color = new ArrayBuffer(0);
-      let imagePixelMap: image.PixelMap = await image.createPixelMap(color, {
-        size: {
-          height: 100,
-          width: 100
-        }
-      });
+      let color = new ArrayBuffer(512 * 512 * 4); // 创建一个ArrayBuffer对象，用于存储图像像素。该对象的大小为（height * width * 4）字节。
+      let bufferArr = new Uint8Array(color);
+      for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 0;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 255;
+      }
+      let opts: image.InitializationOptions = {
+        editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 512, width: 512 }
+      };
+      let imagePixelMap: image.PixelMap = await image.createPixelMap(color, opts);
       this.context.setAbilityInstanceInfo(newLabel, imagePixelMap)
         .then(() => {
           console.info('setAbilityInstanceInfo success');
         }).catch((err: BusinessError) => {
-          console.error(`setAbilityInstanceInfo failed, code is ${err.code}, message is ${err.message}`);
-        });
+        console.error(`setAbilityInstanceInfo failed, code is ${err.code}, message is ${err.message}`);
       });
+    });
   }
 }
 ```
@@ -3006,10 +3020,11 @@ startAppServiceExtensionAbility(want: Want): Promise\<void>
 
 > **说明：**
 >
-> - 当前仅支持2in1设备。
-> - 该接口的调用方必须为[AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)所属应用或者在AppServiceExtensionAbility支持的应用清单（即[extensionAbilities标签](../../quick-start/module-configuration-file.md#extensionabilities标签)的appIdentifierAllowList属性）中的应用。
+> 该接口的调用方必须为[AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)所属应用或者在AppServiceExtensionAbility支持的应用清单（即[extensionAbilities标签](../../quick-start/module-configuration-file.md#extensionabilities标签)的appIdentifierAllowList属性）中的应用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -3085,10 +3100,11 @@ stopAppServiceExtensionAbility(want: Want): Promise\<void>
 
 > **说明：**
 >
-> - 当前仅支持2in1设备。
-> - 该接口的调用方必须为[AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)所属应用或者在AppServiceExtensionAbility支持的应用清单（即[extensionAbilities标签](../../quick-start/module-configuration-file.md#extensionabilities标签)的appIdentifierAllowList属性）中的应用。
+> 该接口的调用方必须为[AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)所属应用或者在AppServiceExtensionAbility支持的应用清单（即[extensionAbilities标签](../../quick-start/module-configuration-file.md#extensionabilities标签)的appIdentifierAllowList属性）中的应用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -3160,10 +3176,11 @@ connectAppServiceExtensionAbility(want: Want, callback: ConnectOptions): number
 
 > **说明：**
 >
-> - 当前仅支持2in1设备。
-> - 如果[AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)实例未启动，该接口的调用方必须为AppServiceExtensionAbility所属应用或者在AppServiceExtensionAbility支持的应用清单（即[extensionAbilities标签](../../quick-start/module-configuration-file.md#extensionabilities标签)的appIdentifierAllowList属性）中的应用。
+> 如果[AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)实例未启动，该接口的调用方必须为AppServiceExtensionAbility所属应用或者在AppServiceExtensionAbility支持的应用清单（即[extensionAbilities标签](../../quick-start/module-configuration-file.md#extensionabilities标签)的appIdentifierAllowList属性）中的应用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -3244,11 +3261,9 @@ disconnectAppServiceExtensionAbility(connection: number): Promise\<void>
 
 断开连接之后，为了防止使用可能失效的remote对象进行通信，建议将连接成功时返回的remote对象设置为null。
 
-> **说明：**
->
-> - 当前仅支持2in1设备。
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 

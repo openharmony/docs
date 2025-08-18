@@ -1,4 +1,10 @@
 # ImageBitmap
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sd-wu-->
+<!--Designer: @sunbees-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 ImageBitmap对象可以存储canvas渲染的像素数据。
 

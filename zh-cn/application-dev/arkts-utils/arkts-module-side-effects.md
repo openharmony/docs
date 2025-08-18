@@ -1,8 +1,14 @@
 # 模块加载副作用及优化
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @wangchen965-->
+<!--Designer: @yao_dashuai-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 ## 概述
 
-当使用[ArkTS模块化](module-principle.md)时，模块的加载和执行可能会引发**副作用**。副作用指的是模块导入时除了导出功能或对象之外，额外的行为或状态变化，**这些行为可能影响程序的其他部分，并导致产生非预期的顶层代码执行、全局状态变化、原型链修改、导入内容未定义等问题**。
+当使用[ArkTS模块化](module-principle.md)时，模块的加载和执行可能会引发**副作用**。副作用是指在模块导入时除了导出功能或对象之外，额外的行为或状态变化，**这些行为可能影响程序的其他部分，并导致产生非预期的顶层代码执行、全局状态变化、原型链修改、导入内容未定义等问题**。
 
 ## ArkTS模块化导致副作用的场景及优化方式
 
@@ -10,7 +16,7 @@
 
 **副作用产生场景**
 
-模块在被导入时，整个模块文件中的顶层代码会立即执行，而不仅仅是导出的部分。这意味着，即使只想使用模块中的某些导出内容，但是任何在顶层作用域中执行的代码也会被运行，从而产生副作用。
+模块在被导入时，整个模块文件中的顶层代码会立即执行，而不仅仅是导出的部分。这意味着，即使只想使用模块中的某些导出内容，任何在顶层作用域中执行的代码也会运行，从而产生副作用。
 
 ```typescript
 // module.ets
@@ -18,8 +24,8 @@ console.info("Module loaded!"); // 这段代码在导入时会立即执行，可
 export const data = 1;
 
 // main.ets
-import { data } from  './module' // 导入时，module.ets中的console.info会执行，产生输出。
-console.info(data);
+import { data } from './module' // 导入时，module.ets中的console.info会执行，产生输出。
+console.info("data is ", data);
 ```
 
 输出内容：
@@ -42,8 +48,8 @@ Module loaded!
 export const data = 1;
 
 // main.ets
-import { data } from  './module'
-console.info(data);
+import { data } from './module'
+console.info("data is ", data);
 ```
 
 输出内容：
@@ -62,8 +68,8 @@ export function initialize() {
 export const data = 1;
 
 // main.ets
-import { data } from  './module'
-console.info(data);
+import { data } from './module'
+console.info("data is ", data);
 ```
 
 输出内容：
@@ -90,8 +96,8 @@ globalThis.someGlobalVar = 200; // 也变了全局状态
 // moduleUseGlobalVar.ets
 import { data1 } from './module' // 此时可能预期全局变量someGlobalVar的值为100
 export function useGlobalVar() {
-    console.info(data1);
-    console.info(globalThis.someGlobalVar); // 此时由于main.ets中加载了sideEffectModule模块，someGlobalVar的值已经被改为200
+    console.info("data1 is ", data1);
+    console.info("globalThis.someGlobalVar is ", globalThis.someGlobalVar); // 此时由于main.ets中加载了sideEffectModule模块，someGlobalVar的值已经被改为200
 }
 
 // main.ets（执行入口）
@@ -101,8 +107,8 @@ import { useGlobalVar } from './moduleUseGlobalVar'
 
 useGlobalVar();
 function maybeNotCalledAtAll() {
-    console.info(data1);
-    console.info(data2);
+    console.info("data1 is ", data1);
+    console.info("data2 is ", data2);
 }
 ```
 
@@ -137,9 +143,9 @@ export function changeGlobalVar() {
 // moduleUseGlobalVar.ets
 import { data1, changeGlobalVar } from './module'
 export function useGlobalVar() {
-    console.info(data1);
+    console.info("data1 is ", data1);
     changeGlobalVar(); // 在需要的时候执行代码，而不是模块加载时执行。
-    console.info(globalThis.someGlobalVar);
+    console.info("globalThis.someGlobalVar is ", globalThis.someGlobalVar);
 }
 
 // main.ets（执行入口）
@@ -149,8 +155,8 @@ import { useGlobalVar } from './moduleUseGlobalVar'
 
 useGlobalVar();
 function maybeNotCalledAtAll() {
-    console.info(data1);
-    console.info(data2);
+    console.info("data1 is ", data1);
+    console.info("data2 is ", data2);
 }
 ```
 
@@ -192,7 +198,7 @@ struct Index {
     }
 }
 function maybeNotCalledAtAll() {
-    console.info(data);
+    console.info("data is ", data);
 }
 ```
 
@@ -238,7 +244,7 @@ struct Index {
     }
 }
 function maybeNotCalledAtAll() {
-    console.info(data);
+    console.info("data is ", data);
 }
 ```
 
@@ -252,7 +258,7 @@ test100
 
 **副作用产生场景**
 
-为支持现代JavaScript特性在旧浏览器或运行环境中运行，第三方库或框架可能修改内置的全局对象或原型链，这会影响其他代码的执行。
+为使现代JavaScript特性能够在旧版浏览器或运行环境中运行，第三方库或框架可能会修改内置的全局对象或原型链，从而影响其他代码的执行。
 
 ```typescript
 // modifyPrototype.ts
@@ -266,13 +272,13 @@ import { data } from "./modifyPrototype" // 此时修改了Array的原型链
 let arr = [1, 2, 3, 4];
 console.info("arr.includes(1) = " + arr.includes(1)); // 此时调用的是modifyPrototype.ts中的Array.prototype.includes方法
 function maybeNotCalledAtAll() {
-    console.info(data);
+    console.info("data is ", data);
 }
 ```
 
 **产生的副作用**
 
-修改内置的全局对象或原型链，影响其他代码运行。
+修改内置的全局对象或原型链，可能会影响其他代码运行。
 
 **优化方式**
 
@@ -325,8 +331,8 @@ globalThis.someGlobalVar = 100;
 
 // moduleUseGlobalVar.ets
 import lazy { data } from "./module"
-console.info(globalThis.someGlobalVar); // 此时由于lazy特性，module模块还未执行，someGlobalVar的值为undefined
-console.info(data); // 使用到module模块的变量，此时module模块执行，someGlobalVar的值变为100
+console.info("globalThis.someGlobalVar", globalThis.someGlobalVar); // 此时由于lazy特性，module模块还未执行，someGlobalVar的值为undefined
+console.info("data is ", data); // 使用到module模块的变量，此时module模块执行，someGlobalVar的值变为100
 ```
 
 输出内容：
@@ -354,8 +360,8 @@ export function initialize() {
 // moduleUseGlobalVar.ets
 import lazy { data, initialize } from "./module"
 initialize(); // 执行初始化函数，初始化someGlobalVar
-console.info(globalThis.someGlobalVar); // 此时someGlobalVar一定为预期的值
-console.info(data);
+console.info("globalThis.someGlobalVar is ", globalThis.someGlobalVar); // 此时someGlobalVar一定为预期的值
+console.info("data is ", data);
 ```
 
 输出内容：
@@ -371,12 +377,12 @@ data from module
 
 在import语句中，跳过中间的依赖路径，直接依赖变量对应的模块，即为import路径展开。
 
-下文将通过示例来说明import路径展开优化性能的原理：
+下文将通过示例说明import路径展开优化性能的原理。
 
 ```typescript
 // main.ets
 import * as har from "har"
-console.info(har.One); // 这里的One变量是har/src/main/ets/NumberString.ets导出的
+console.info("har.One is ", har.One); // 这里的One变量是har/src/main/ets/NumberString.ets导出的
 
 // har/Index.ets
 export * from "./src/main/ets/OtherModule1"
@@ -397,7 +403,7 @@ console.info("har NumberString.ets execute.");
 
 1. 如果main.ets只需要依赖har中的NumberString模块，import xxx from "har"的写法会导致har整条链路上的模块被解析、执行，**导致模块解析及执行耗时增加**。上述例子中的har/Index、OtherModule1、OtherModule2、Utils、OtherModule3、OtherModule4、NumberString模块均会被解析、执行。
 
-2. 在模块解析阶段会通过深度优先遍历的方式建立变量的绑定关系，main.ets中使用的har.One变量是由har/src/main/ets/NumberString.ets导出的，而由于使用了export *的写法，建立变量的绑定关系时需要递归去进行变量名的匹配，**导致模块解析耗时增加**。
+2. 在模块解析阶段会通过深度优先遍历的方式建立变量的绑定关系，main.ets中使用的har.One变量是由har/src/main/ets/NumberString.ets导出的，由于使用了export *的写法，建立变量的绑定关系时需要递归去进行变量名的匹配，从而**导致模块解析耗时增加**。
 在上述例子中，会先查找 `har/Index.ets` 文件。该文件中有多个 `export *` 语句，因此会依次检查 `OtherModule1` 和 `OtherModule2` 是否导出 `One` 变量。接着，找到 `Utils` 模块，该模块也有 `export *` 语句，因此会继续检查 `OtherModule3` 和 `OtherModule4`，最终确定 `One` 变量是从 `NumberString` 模块导出的。
 
 优化方式：改为如下的代码写法，跳过中间的依赖路径，直接依赖变量对应的模块。
@@ -405,7 +411,7 @@ console.info("har NumberString.ets execute.");
 ```typescript
 // main.ets
 import { One } from "har/src/main/ets/NumberString"
-console.info(One);
+console.info("One is ", One);
 
 // har/src/main/ets/NumberString.ets
 export const One: string = "1";
@@ -416,7 +422,7 @@ console.info("har NumberString.ets execute.");
 
 **副作用产生场景**
 
-由于import路径展开会跳过中间模块的执行，如果业务依赖模块的执行顺序，修改后可能会导致业务异常。
+由于import路径展开会跳过中间模块的执行，若业务依赖模块的执行顺序，修改后可能会导致业务异常。
 
 ```typescript
 // main.ets
@@ -488,11 +494,11 @@ ServiceManager is not inited.
 
 **产生的副作用**
 
-由于har/Index模块中存在顶层代码进行ServiceManager的初始化，如果在main模块中进行import路径展开，将不会执行har/Index模块，也就不会进行ServiceManager的初始化，可能导致业务异常。
+由于har/Index模块中存在顶层代码进行ServiceManager的初始化，如果在main模块中进行import路径展开，将不会执行har/Index模块，从而导致ServiceManager未初始化，可能引起业务异常。
 
 **优化方式**
 
-需要开发者根据业务需要排查跳过执行顶层代码带来的影响，并进行对应修改。
+开发者需根据业务需要排查跳过执行顶层代码的影响，并进行相应的修改。
 
 对于上文的示例，可以进行如下修改：
 

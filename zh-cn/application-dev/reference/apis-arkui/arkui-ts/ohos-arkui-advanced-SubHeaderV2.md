@@ -1,4 +1,10 @@
 # SubHeaderV2
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fengluochenai-->
+<!--Designer: @YanSanzo-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @HelloCrease-->
 
 
 子标题，用于列表项顶部，将该组列表划分为一个区块，子标题名称用来概括该区块内容。也可以用于内容项顶部，子标题名称用来概括该区块内容。
@@ -237,7 +243,7 @@ type SubHeaderV2OperationItemType = ResourceStr | SymbolGlyphModifier
 | content |  [SubHeaderV2OperationItemType](#subheaderv2operationitemtype)  | 是 | @Trace | 操作区元素内容。                                            |
 | action | [SubHeaderV2OperationItemAction](#subheaderv2operationitemaction)| 否 | @Trace | 操作区事件。默认值：() => void。                                |
 | accessibilityText |[ResourceStr](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍描述。 <br />默认值：undefined                     |
-| accessibilityLevel |[string](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍重要性。<br>默认值: “yes”。                   | 
+| accessibilityLevel | string | 否 |@Trace | 子标题右侧icon图标无障碍重要性。<br/>支持的值为：<br/>"auto"：当前子标题右侧icon图标由无障碍分组服务和ArkUl进行综合判断是否可被无障碍辅助服务所识别。<br/>"yes"：当前子标题右侧icon图标可被无障碍辅助服务所识别。<br/>"no"：当前子标题右侧icon图标不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前子标题右侧icon图标及其所有子组件不可被无障碍辅助服务所识别。<br>默认值: “yes”。                   | 
 | accessibilityDescription|[ResourceStr](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍说明，用于为用户进一步说明当前组件。<br>默认值：“单指双击即可执行”。 |
 | defaultFocus | boolean | 否 | @Trace |子标题右侧按钮是否为默认焦点。<br/>true：子标题右侧按钮是默认焦点。<br/>false：子标题右侧按钮不是默认焦点。<br />默认值：false                                                                                                                                            |
 
@@ -280,7 +286,7 @@ type SubHeaderV2OperationItemAction = () => void
 | content                  | [SubHeaderV2OperationItemType](#subheaderv2operationitemtype) | 是 | 文本内容。                                               |
 | action                   | [SubHeaderV2OperationItemAction](#subheaderv2operationitemaction)         | 否 | 选项操作事件。默认值：() => void。                               |
 | accessibilityText        | [ResourceStr](ts-types.md#resourcestr)      | 否 | 子标题右侧icon图标无障碍描述。<br />默认值：undefined                      |
-| accessibilityLevel       | [string](ts-types.md#resourcestr)           | 否 | 子标题右侧icon图标无障碍重要性。<br>默认值: “yes”。                   | 
+| accessibilityLevel       | string | 否 | 子标题右侧icon图标无障碍重要性。<br/>支持的值为：<br/>"auto"：当前子标题右侧icon图标由无障碍分组服务和ArkUl进行综合判断是否可被无障碍辅助服务所识别。<br/>"yes"：当前子标题右侧icon图标可被无障碍辅助服务所识别。<br/>"no"：当前子标题右侧icon图标不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前子标题右侧icon图标及其所有子组件不可被无障碍辅助服务所识别。<br>默认值: “yes”。                   | 
 | accessibilityDescription | [ResourceStr](ts-types.md#resourcestr)      | 否 | 子标题右侧icon图标无障碍说明，用于为用户进一步说明当前组件。<br>默认值：“单指双击即可执行”。 |
 | defaultFocus | boolean | 否 | 子标题右侧按钮是否为默认焦点。<br/>true：子标题右侧按钮是默认焦点。<br/>false：子标题右侧按钮不是默认焦点。<br />默认值：false                                                                                                                                            |
 
@@ -444,7 +450,7 @@ struct SubHeaderExample {
       selectedContent: this.selectedValue,
       selectedIndex: this.selectedIndex,
       onSelect: (index: number, value?: string) => {
-        Prompt.showToast({ message: 'selectdemo' })
+        Prompt.showToast({ message: 'selectDemo' })
       }
     })
 
@@ -614,7 +620,7 @@ struct SubHeaderExample {
 ![子标题5](figures/zh-cn_image_subheader_example05.png)
 
 ### 示例6（自定义标题内容）
- 该示例主要演示SubHeader设置titleBuilder自定义标题内容的效果。
+ 该示例主要演示SubHeaderV2设置titleBuilder自定义标题内容的效果。
 
 ```ts
 import {
@@ -671,7 +677,7 @@ struct SubHeaderExample {
 ![子标题6](figures/zh-cn_image_subheader_example06.png)
 
 ### 示例7（自定义标题样式）
-该示例主要演示SubHeader设置标题和副标题字体样式。
+该示例主要演示SubHeaderV2设置标题和副标题字体样式。
 
 ```ts
 import {
@@ -722,7 +728,7 @@ struct SubHeaderExample {
 
 
 ### 示例8（右侧按钮自定义播报）
-该示例通过设置subheader的右侧按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
+该示例通过设置SubHeaderV2的右侧按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
 import {
   SubHeaderV2OperationType,
@@ -819,7 +825,7 @@ struct SubHeaderExample {
 ![子标题8](figures/zh-cn_image_subheader_example08.png)
 
 ### 示例9（右侧按钮自定义播报）
-该示例通过设置subheader的右侧按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
+该示例通过设置SubHeaderV2的右侧按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
 import {
   SubHeaderV2OperationType,

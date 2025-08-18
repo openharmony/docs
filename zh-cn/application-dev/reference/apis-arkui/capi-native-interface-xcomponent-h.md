@@ -1,4 +1,10 @@
 # native_interface_xcomponent.h
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @ZhangYu-Coder-->
+<!--Designer: @sunbees-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
@@ -1230,7 +1236,7 @@ int32_t OH_NativeXComponent_AttachNativeRootNode(OH_NativeXComponent* component,
 
 **废弃版本：** 20
 
-**替代接口：** {@link OH_ArkUI_NodeContent_AddNode}
+**替代接口：** [OH_ArkUI_NodeContent_AddNode](capi-native-node-h.md#oh_arkui_nodecontent_addnode)
 
 
 **参数：**
@@ -1244,7 +1250,7 @@ int32_t OH_NativeXComponent_AttachNativeRootNode(OH_NativeXComponent* component,
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回执行的状态代码。<br>返回 [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) - 成功。<br>返回 [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) - 参数异常。 |
+| int32_t | 返回执行的状态代码。<br>返回 [OH_NATIVEXCOMPONENT_RESULT_SUCCESS](capi-native-interface-xcomponent-h.md#anonymous) - 成功。<br>返回 [OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER](capi-native-interface-xcomponent-h.md#anonymous) - 参数异常。|
 
 ### OH_NativeXComponent_DetachNativeRootNode()
 
@@ -1275,7 +1281,7 @@ int32_t OH_NativeXComponent_DetachNativeRootNode(OH_NativeXComponent* component,
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回执行的状态代码。<br>返回 [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) - 成功。<br>返回 [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) - 参数异常。 |
+| int32_t | 返回执行的状态代码。<br>返回 [OH_NATIVEXCOMPONENT_RESULT_SUCCESS](capi-native-interface-xcomponent-h.md#anonymous) - 成功。<br>返回 [OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER](capi-native-interface-xcomponent-h.md#anonymous) - 参数异常。|
 
 ### OH_NativeXComponent_RegisterUIInputEventCallback()
 
@@ -1351,7 +1357,7 @@ int32_t OH_NativeXComponent_SetNeedSoftKeyboard(OH_NativeXComponent* component, 
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)* component | 表示指向[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例的指针。 |
-| bool needSoftKeyboard | 表示此[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例是否需要软键盘。 |
+| bool needSoftKeyboard | 表示此[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例是否需要软键盘。默认值为false。 |
 
 **返回：**
 
@@ -2061,7 +2067,7 @@ int32_t OH_ArkUI_XComponent_SetNeedSoftKeyboard(ArkUI_NodeHandle node, bool need
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 表示XComponent组件实例。 |
-| bool needSoftKeyboard | 表示是否需要软键盘。 |
+| bool needSoftKeyboard | 表示是否需要软键盘。默认值为false。 |
 
 **返回：**
 

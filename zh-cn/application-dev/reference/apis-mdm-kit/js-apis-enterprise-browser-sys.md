@@ -1,4 +1,10 @@
 # @ohos.enterprise.browser（浏览器管理）(系统接口)
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--Designer: @liuzuming-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供浏览器管理能力，包括设置/取消浏览器策略、获取浏览器策略等。
 
@@ -28,6 +34,7 @@ setPolicies(admin: Want, appId: string, policies: string, callback: AsyncCallbac
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -83,6 +90,7 @@ setPolicies(admin: Want, appId: string, policies: string): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -140,6 +148,7 @@ getPolicies(admin: Want, appId: string, callback: AsyncCallback&lt;string&gt;): 
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -189,6 +198,7 @@ getPolicies(admin: Want, appId: string): Promise&lt;string&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 

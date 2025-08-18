@@ -1,4 +1,10 @@
 # Menu
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @Armstrong15-->
+<!--Designer: @zhanghaibo0-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 以垂直列表形式显示的菜单。
 
@@ -67,7 +73,7 @@ fontColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                   |
 | ------ | ------------------------------------------ | ---- | ---------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | Menu中所有文本的颜色。<br/>默认值：'#E5000000' |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | Menu中所有文本的颜色。 |
 
 ### radius<sup>10+</sup>
 
@@ -149,7 +155,7 @@ subMenuExpandSymbol(symbol: SymbolGlyphModifier)
 
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- |--------------|
-| symbol  | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 是   | Menu子菜单展开符号。<br/>1、子菜单的展开样式为SubMenuExpandingMode.SIDE_EXPAND时，不显示展开符号。<br/>2、子菜单的展开样式为SubMenuExpandingMode.EMBEDDED_EXPAND时，展开时展开符号会顺时针旋转180°。<br/>默认值：`$r('sys.symbol.chevron_down').fontSize('24vp')` <br/>3、子菜单的展开样式为SubMenuExpandingMode.STACK_EXPAND时，展开时展开符号会顺时针旋转90°。<br/>默认值：`$r('sys.symbol.chevron_forward').fontSize('20vp').padding('2vp')`  |
+| symbol  | [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md)| 是   | Menu子菜单展开符号。<br/>1、子菜单的展开样式为SubMenuExpandingMode.SIDE_EXPAND时，不显示展开符号。<br/>2、子菜单的展开样式为SubMenuExpandingMode.EMBEDDED_EXPAND时，展开时展开符号会顺时针旋转180°。<br/>默认值：`$r('sys.symbol.chevron_down').fontSize('24vp')` <br/>3、子菜单的展开样式为SubMenuExpandingMode.STACK_EXPAND时，展开时展开符号会顺时针旋转90°。<br/>默认值：`$r('sys.symbol.chevron_forward').fontSize('20vp').padding('2vp')`  |
 
 ### fontSize<sup>(deprecated)</sup>
 
@@ -370,7 +376,6 @@ struct Index {
         content: "排序方式",
         builder: (): void => this.SubMenu(),
       })
-        .borderRadius('300.00vp')
       MenuItem({
         symbolStartIcon: this.startIconModifier,
         content: "查看方式",

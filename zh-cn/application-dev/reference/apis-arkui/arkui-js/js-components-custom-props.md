@@ -1,4 +1,10 @@
 # 数据传递与处理
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @seaside_wu1-->
+<!--Designer: @shiyu_huang-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @HelloCrease-->
 
 
 ## Props

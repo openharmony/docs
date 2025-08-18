@@ -1,4 +1,10 @@
 # 自定义组件的自定义布局
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @song-song-song-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 如果需要通过测算的方式布局自定义组件内子组件的位置，建议使用以下接口：
 
@@ -53,6 +59,7 @@ struct CustomLayout {
       let result: MeasureResult = child.measure({ minHeight: size, minWidth: size, maxWidth: size, maxHeight: size })
       size += result.width / 2;
     })
+    // this.result在该用例中代表自定义组件本身的大小，onMeasureSize方法返回的是组件自身的尺寸。
     this.result.width = 100;
     this.result.height = 400;
     return this.result;

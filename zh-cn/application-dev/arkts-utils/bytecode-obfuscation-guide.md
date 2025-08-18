@@ -1,8 +1,14 @@
 # ArkGuard字节码混淆开启指南
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @oatuwwutao-->
+<!--Designer: @hufeng20-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 > **注意**：
 >
-> 版本发布时，为了避免后续修改代码影响现网问题分析定位，建议开发者在版本发布时，本地备份build/default/cache/default/default@XXXCompileArkTS/esmodule/release/obfuscation 路径下的全部内容； 有条件的可以直接备份release目录。
+> 为了避免后续修改代码影响现网问题分析定位，建议开发者在版本发布时，本地备份build/default/cache/default/default@XXXCompileArkTS/esmodule/release/obfuscation 路径下的全部内容； 有条件的可以直接备份release目录。
 
 ## 字节码混淆开启步骤
 
@@ -106,7 +112,7 @@
 ### 混淆选项配置指导
 
 1. 开启`-enable-toplevel-obfuscation`选项，如果代码中有globalThis访问全局变量，会出现访问失败的情况，需要使用`-keep-global-name`来保留此全局变量名称。
-2. 待上述选项开启成功后，开启`-enable-property-obfuscation
+2. 待上述选项开启成功后，开启`-enable-property-obfuscation`
     1. 若代码中存在静态定义、动态访问的情况或者动态定义、静态访问的情况，需要使用`-keep-property-name`保留属性名称。示例：
 
         ```ts
@@ -130,7 +136,7 @@
         1. 若在代码中引用so库的api，如`import testNapi from 'library.so'`; `testNapi.foo()`;需要使用`-keep-property-name`，foo保留属性名称。
         2. 若在代码中使用json文件中的字段，需要使用`-keep-property-name`保留json文件中的字段名称。
         3. 若在代码中使用数据库相关的字段，需要使用`-keep-property-name`保留数据库中的字段名称。
-    3. 若构建HAR模块并发布给其他模块使用的场景，要在HAR模块中的consumer-rules.txt文件中将不能被二次混淆的属性使用`-keep-property-name`保留。consumer-rules.txt文件在构建HAR时会生成obfuscation.txt文件。此HAR被其它模块依赖时，DevEco Studio会解析obfuscation.txt文件，读取文件中的白名单。
+    3. 若构建HAR模块并发布给其他模块使用的情况，要在HAR模块中的consumer-rules.txt文件中将不能被二次混淆的属性使用`-keep-property-name`保留。consumer-rules.txt文件在构建HAR时会生成obfuscation.txt文件。此HAR被其它模块依赖时，DevEco Studio会解析obfuscation.txt文件，读取文件中的白名单。
     4. 验证应用功能，排查遗漏的场景。若应用出现功能异常，依据混淆后的报错栈从对应的[中间产物](#查看混淆效果)中找到报错行的代码，排查需要配置的白名单并使用`-keep-property-name`进行保留。
 
 3. 待上述选项应用适配成功后，开启`-enable-export-obfuscation`选项。此选项开启后以下场景需要适配：
@@ -155,15 +161,15 @@
 * 混淆名称映射表及系统API白名单目录：`build/default/[...]/release/obfuscation`。
 * 名称映射表文件：`nameCache.json`，该文件记录了字节码名称混淆的映射关系。
 * 系统API白名单文件：`systemApiCache.json`，该文件记录了SDK中的接口与属性名称，工程源码中与其重名的元素不会被混淆。
-* obf目录：混淆后的modules.abc文件和modules.pa文件（开启`-enable-bytecode-obfuscation-debugging`后生成pa文件）
-* origin目录：混淆前的modules.abc文件
-* 配置信息文件：`config.json`，该文件记录了混淆的配置项和白名单列表
+* obf目录：混淆后的modules.abc文件和modules.pa文件（开启`-enable-bytecode-obfuscation-debugging`后生成pa文件）。
+* origin目录：混淆前的modules.abc文件。
+* 配置信息文件：`config.json`，该文件记录了混淆的配置项和白名单列表。
 
 ![bytecode-build-product](figures/bytecode-build-product.png)
 
 ## 报错栈还原
 
 经过混淆的应用程序中代码名称会发生更改，crash时打印的报错栈更难以理解，因为报错栈与源码不完全一致。开发人员可使用DevEco Studio命令工具Command Line Tools中的[hstack插件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-command-line-hstack)来还原源码堆栈，进而分析问题。
-反混淆工具需要使用应用编译过程中生成的sourceMaps.json文件以及混淆名称映射文件nameCache.json文件，因此请本地备份它们；为了更方便定位分析，有条件的可以直接备份release目录
+反混淆工具需要使用应用编译过程中生成的sourceMaps.json文件以及混淆名称映射文件nameCache.json文件，因此请本地备份它们；为方便问题定位，建议备份release目录。
 
 ![bytecode-obfuscation-product](figures/bytecode-obfuscation-product.png)

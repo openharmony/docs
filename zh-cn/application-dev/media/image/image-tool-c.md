@@ -1,4 +1,10 @@
 # 使用Image_NativeModule编辑图片EXIF信息
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 Image Kit提供图片EXIF信息的读取与编辑能力。
 

@@ -1,4 +1,9 @@
 # Photo Capture Practices (ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 
@@ -16,9 +21,9 @@ After obtaining the output stream capabilities supported by the camera, create a
 
 For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
-To view the saved images and videos in Gallery, you must save them to the media library. For details, see [Creating a Media Asset Using SaveButton](../medialibrary/photoAccessHelper-savebutton.md).
+To view the saved images and videos in Gallery, you must save them to the media library. For details, see [Saving Media Assets](../medialibrary/photoAccessHelper-savebutton.md).
 
-Specifically, when [photoOutput.on('photoAvailable')](../../reference/apis-camera-kit/js-apis-camera.md#onphotoavailable11) is called and a buffer is obtained, the buffer must be stored in the security component to the media library.
+Specifically, when [photoOutput.on('photoAvailable')](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#onphotoavailable11) is called and a buffer is obtained, the buffer must be stored in the security component to the media library.
 ```ts
 import { camera } from '@kit.CameraKit';
 import { image } from '@kit.ImageKit';
@@ -28,7 +33,7 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
   // After the callback is set, call capture() of photoOutput to transfer the photo buffer back to the callback.
   photoOutput.on('photoAvailable', (errCode: BusinessError, photo: camera.Photo): void => {
     console.info('getPhoto start');
-    console.info(`err: ${errCode}`);
+    console.error(`err: ${errCode}`);
     if (errCode || photo === undefined) {
       console.error('getPhoto failed');
       return;

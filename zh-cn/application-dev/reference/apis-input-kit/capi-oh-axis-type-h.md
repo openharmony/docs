@@ -1,8 +1,17 @@
 # oh_axis_type.h
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## 概述
 
 输入设备的轴事件结构和枚举。
+
+**引用文件：** <multimodalinput/oh_axis_type.h>
 
 **库：** libohinput.so
 

@@ -17,12 +17,25 @@
 
 可以包含子组件。
 
-
 ## 接口
+
+### EffectComponent
+
+EffectComponent()
+
+创建特效绘制合并组件，用于对子组件背景模糊特效的绘制合并。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### EffectComponent<sup>20+</sup>
 
 EffectComponent(options?: EffectComponentOptions)
 
 创建特效绘制合并组件，无参数或者参数为EffectLayer.None时用于对子组件背景模糊特效的绘制合并。有明确参数时表示当前渲染图层置于特殊图层。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -44,6 +57,8 @@ EffectComponent(options?: EffectComponentOptions)
 
 设置当前EffectComponent构造参数，包含EffectComponent的渲染层级。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称        | 类型                                    | 必填 | 说明                                                     |
@@ -53,6 +68,8 @@ EffectComponent(options?: EffectComponentOptions)
 ## EffectLayer<sup>20+</sup>枚举说明
 
 EffectComponent的渲染层级。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
