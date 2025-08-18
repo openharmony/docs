@@ -1,8 +1,20 @@
 # Functions
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+## Modules to Import
+
+```ts
+import { window } from '@kit.ArkUI';
+```
 
 ## window.createWindow<sup>9+</sup>
 
@@ -406,15 +418,15 @@ export default class EntryAbility extends UIAbility {
 ## window.shiftAppWindowPointerEvent<sup>15+</sup>
 shiftAppWindowPointerEvent(sourceWindowId: number, targetWindowId: number): Promise&lt;void&gt;
 
-Transfers an input event from one window to another within the same application, particularly in split-window scenarios. This API uses a promise to return the result. It takes effect only for the main window and its child windows.
+Transfers an input event from one window to another within the same application, particularly in split-window scenarios. This API uses a promise to return the result. It works only in [freeform window](../../windowmanager/window-terminology.md#freeform-window) mode and takes effect only for the main window and its child windows.
 
 The source window must be in a mouse-down state for this API to work; otherwise, the call does not take effect. After the input event is transferred, a mouse-up event is sent to the source window, and a mouse-down event is sent to the target window.
-
-<!--RP6-->This API can be used only on 2-in-1 devices.<!--RP6End-->
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: This API can be properly called on 2-in-1 devices and tablets. If it is called on other device types, error code 801 is returned.
 
 **Parameters**
 
@@ -482,7 +494,7 @@ shiftAppWindowTouchEvent(sourceWindowId: number, targetWindowId: number, fingerI
 
 Moves touch screen input events from one window to another in scenarios where windows within the same application are being split or merged. This API uses a promise to return the result. It takes effect only for the main window and its child windows.
 
-To transfer touch screen input events, the source window must call this API within the callback of the [onTouch](arkui-ts/ts-universal-events-touch.md#touchevent) event (the event type must be **TouchType.Down**). After a successful call, the system sends a touch-up event to the source window and a touch-down event to the target window.
+To transfer touch screen input events, the source window must call this API within the callback of the [onTouch](arkui-ts/ts-universal-events-touch.md#ontouch) event (the event type must be **TouchType.Down**). After a successful call, the system sends a touch-up event to the source window and a touch-down event to the target window.
 
 <!--RP6-->This API can be used only on 2-in-1 devices.<!--RP6End-->
 
@@ -492,9 +504,9 @@ To transfer touch screen input events, the source window must call this API with
 
 | Name         | Type  | Mandatory | Description                   |
 | -------------- | ------ | ----- | ----------------------- |
-| sourceWindowId | number | Yes   | ID of the source window. You are advised to call [getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9) to obtain the window ID.           |
-| targetWindowId | number | Yes   | ID of the target window. You are advised to call [getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9) to obtain the window ID.            |
-| fingerId | number | Yes   | Finger ID of the touch event. You are advised to use the [touches](arkui-ts/ts-universal-events-touch.md#touchobject) property in the [touchEvent](arkui-ts/ts-universal-events-touch.md#touchevent) event to obtain the ID.            |
+| sourceWindowId | number | Yes   | ID of the source window. You are advised to call [getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9) to obtain the window ID. The value must be an integer greater than 0. If it is less than or equal to 0, error code 1300016 is returned.           |
+| targetWindowId | number | Yes   | ID of the target window. You are advised to call [getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9) to obtain the window ID. The value must be an integer greater than 0. If it is less than or equal to 0, error code 1300016 is returned.            |
+| fingerId | number | Yes   | Finger ID of the touch event. You are advised to use the [touches](arkui-ts/ts-universal-events-touch.md#touchobject) property in the [touchEvent](arkui-ts/ts-universal-events-touch.md#touchevent) event to obtain the ID. This parameter must be an integer greater than or equal to 0. If the value is less than 0, error code 1300016 is returned.            |
 
 **Return value**
 
@@ -735,9 +747,9 @@ Obtains the window mode of the window that is in the foreground lifecycle on the
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                                       |
-| ------ | ---------- |----|---------------------------------------------------------------------------|
-| displayId   | number| No | Optional display ID, which is used to obtain the window mode information on the corresponding screen. This parameter must be an integer greater than or equal to 0. If it is less than 0, error code 1300016 is returned. If this parameter is not passed or is set to null or undefined, all screens are queried. If the specified screen does not exist, the return value is 0.|
+| Name| Type      | Mandatory                | Description                                                                             |
+| ------ | ---------- |--------------------|------------------------------------------------------------------------------------|
+| displayId   | number| No | Optional display ID, which is used to obtain the window mode information on the corresponding screen. This parameter must be an integer greater than or equal to 0. If it is less than 0, error code 1300016 is returned. If this parameter is not passed or is set to null or undefined, all screens are queried. If the specified screen does not exist, the return value is 0. You are advised to call [getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9) to obtain the display ID of the window.                                                   |
 
 **Return value**
 
@@ -770,6 +782,60 @@ try {
   });
 } catch (exception) {
   console.error(`Failed to obtain global window mode. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+## window.setStartWindowBackgroundColor<sup>20+</sup>
+
+setStartWindowBackgroundColor(moduleName: string, abilityName: string, color: ColorMetrics): Promise&lt;void&gt;
+
+Sets the background color of the splash screen of the UIAbility based on the specified module name and ability name in the same application. This API uses a promise to return the result.
+
+This API takes effect for all processes of the same application, for example, in multi-instance or clone scenarios.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+ 
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                         | Mandatory| Description                                                    |
+| -------- | ----------------------------- | ---- | -------------------------------------------------------- |
+| moduleName     | string                        | Yes  | Module name of the UIAbility. The value is a string of 0 to 200 characters. Only the module names within the same application can be set.|
+| abilityName     | string                        | Yes  | Name of the UIAbility. The value is a string of 0 to 200 characters. Only the ability names within the same application can be set.|
+| color | [ColorMetrics](js-apis-arkui-graphics.md#colormetrics12) | Yes  | Background color of the splash screen.                      |
+
+**Return value**
+
+| Type| Description|
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 801     | Capability not supported.function setStartWindowBackgroundColor can not to work correctly due to limited device capabilities. |
+| 1300003 | This window manager service works abnormally. |
+| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ColorMetrics, window } from '@kit.ArkUI';
+
+try {
+  let promise = window.setStartWindowBackgroundColor("entry", "EntryAbility", ColorMetrics.numeric(0xff000000));
+  promise.then(() => {
+    console.log('Succeeded in setting the starting window color.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set the starting window color. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set the starting window color. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -884,7 +950,7 @@ Creates a system window. This API uses an asynchronous callback to return the re
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowClass: window.Window | undefined = undefined;
-window.create('test', window.WindowType.TYPE_SYSTEM_ALERT, (err: BusinessError, data) => {
+window.create(globalThis.getContext(), 'test', window.WindowType.TYPE_SYSTEM_ALERT, (err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
     console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
@@ -929,7 +995,7 @@ Creates a system window. This API uses a promise to return the result.
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowClass: window.Window | undefined = undefined;
-let promise = window.create('test', window.WindowType.TYPE_SYSTEM_ALERT);
+let promise = window.create(globalThis.getContext(), 'test', window.WindowType.TYPE_SYSTEM_ALERT);
 promise.then((data) => {
   windowClass = data;
   console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
