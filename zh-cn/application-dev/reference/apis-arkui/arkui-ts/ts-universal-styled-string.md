@@ -1246,7 +1246,7 @@ struct styled_string_process_demo {
             Span("span and styledString test")
               .fontColor(Color.Yellow)
               .decoration({ type: TextDecorationType.LineThrough })
-            ImageSpan($r('app.media.app_icon'))
+            ImageSpan($r('app.media.startIcon')) // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
           }
           .key('styledString2')
           .fontColor(this.fontColor1)
@@ -1273,7 +1273,7 @@ struct styled_string_process_demo {
             Span(this.string1)
               .fontColor(this.color1)
               .decoration({ type: TextDecorationType.LineThrough })
-            ImageSpan($r('app.media.app_icon'))
+            ImageSpan($r('app.media.startIcon'))// $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
               .width(50).height(50)
           }
           .letterSpacing(10)
@@ -1653,7 +1653,8 @@ struct styled_string_set_image_demo {
 
   async aboutToAppear() {
     console.info("aboutToAppear initial imagePixelMap");
-    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.app_icon'));
+    this.imagePixelMap =
+      await this.getPixmapFromMedia($r('app.media.startIcon')); // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
   }
 
   private async getPixmapFromMedia(resource: Resource) {

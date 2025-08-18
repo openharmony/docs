@@ -1876,7 +1876,7 @@ struct TextInputExample {
           style: CancelButtonStyle.CONSTANT,
           icon: {
             size: 45,
-            src: $r('app.media.app_icon'),
+            src: $r('app.media.startIcon'),// $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
             color: Color.Blue
           }
         })
