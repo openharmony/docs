@@ -803,7 +803,7 @@ export default class EntryAbility extends UIAbility {
 
 getAllContinuousTasks(context: Context, includeSuspended: boolean): Promise&lt;ContinuousTaskInfo[]&gt;
 
-获取所有长时任务信息，如长时任务Id、长时任务类型等，可选择是否返回处于暂停态的长时任务信息，使用Promise异步回调。
+获取所有长时任务信息，如长时任务Id、长时任务类型等，可选择是否返回暂停的长时任务信息，使用Promise异步回调。
 
 **需要权限**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -814,7 +814,7 @@ getAllContinuousTasks(context: Context, includeSuspended: boolean): Promise&lt;C
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | 是    | 应用运行的上下文。 |
-| includeSuspended   | boolean                            | 是    | 是否返回暂停态长时任务。 |
+| includeSuspended   | boolean                            | 是    | 返回的长时任务是否包含暂停的长时任务， true表示包含， false表示不包含。 |
 
 **返回值**：
 
@@ -829,7 +829,7 @@ getAllContinuousTasks(context: Context, includeSuspended: boolean): Promise&lt;C
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 201 | Permission denied. |
-| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; <br> 2. Failed to apply for memory. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
 
@@ -956,7 +956,7 @@ export default class EntryAbility extends UIAbility {
 
 on(type: 'continuousTaskSuspend', callback: Callback&lt;ContinuousTaskSuspendInfo&gt;): void
 
-注册长时任务暂停的监听，使用callback异步回调。
+注册长时任务暂停的监听，使用callback异步回调。注册该回调后，如果系统检测到应用未执行相应的业务，不会直接取消长时任务，而是标记为暂停状态，但是退后台仍会被挂起，回前台自动激活长时任务，如果连续检测失败，仍会取消长时任务。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1306,6 +1306,6 @@ export default class EntryAbility extends UIAbility {
 | notificationId | number   | 否    | 否    | 通知 Id。                |
 | continuousTaskId | number   | 否    | 否    | 长时任务Id。              |
 | abilityId | number   | 否    | 否    | UIAbility Id。         |
-| wantAgentBundleName | string   | 否    | 否    | WantAgent配置的包名。WantAgent为通知参数，用于指定点击长时任务通知后跳转的界面，在申请长时任务时作为参数传入。        |
-| wantAgentAbilityName | string   | 否    | 否    | WantAgent配置的ability名称。WantAgent为通知参数，用于指定点击长时任务通知后跳转的界面，在申请长时任务时作为参数传入。 |
-| suspendState | boolean   | 否    | 否    | 申请的长时任务是否处于暂停状态 |
+| wantAgentBundleName | string   | 否    | 否    |  [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) 配置的包名。WantAgent为通知参数，用于指定点击长时任务通知后跳转的界面，在申请长时任务时作为参数传入。        |
+| wantAgentAbilityName | string   | 否    | 否    |  [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) 配置的ability名称。WantAgent为通知参数，用于指定点击长时任务通知后跳转的界面，在申请长时任务时作为参数传入。 |
+| suspendState | boolean   | 否    | 否    | 申请的长时任务是否处于暂停状态。 |
