@@ -1,5 +1,10 @@
 # HML语法参考
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sunfei2021-->
+<!--Designer: @sunfei2021-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 HML是一套类HTML的标记语言，通过组件，事件构建出页面的内容。页面具备数据绑定、事件绑定、列表渲染、条件渲染等高级能力。
 
@@ -81,7 +86,7 @@ export default {
   },
   clickfunc: function(e) {
     this.obj = 'Hello World';
-    console.log(e);
+    console.info(e);
   },
 }
 ```
