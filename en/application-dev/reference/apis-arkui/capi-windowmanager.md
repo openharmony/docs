@@ -2,7 +2,7 @@
 
 ## Overview
 
-The WindowManager_NativeModule module provides the capabilities of managing application windows.
+The module provides the capabilities of managing application windows.
 
 **Since**: 12
 ## File Summary

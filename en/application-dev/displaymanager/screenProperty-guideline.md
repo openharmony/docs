@@ -138,12 +138,12 @@ displayClass = display.getDefaultDisplaySync();
    try {
      displayClass = display.getDefaultDisplaySync();
      // Listen for changes of the available area on the display.
-     displayClass.on("availableAreaChange", callback3);
+     displayClass.on('availableAreaChange', callback3);
+     // End the listening.
+     displayClass.off('availableAreaChange', callback3);
    } catch (exception) {
-     console.error(`Failed to register callback. Code: ${exception.code}, message: ${exception.message}`);
+     console.error(`Failed to register/unregister callback. Code: ${exception.code}, message: ${exception.message}`);
    }
-   // End the listening.
-   displayClass.off("availableAreaChange", callback3);
    ```
 
 ## Listening for Folding State Changes
