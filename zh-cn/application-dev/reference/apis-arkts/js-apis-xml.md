@@ -1055,8 +1055,8 @@ let strXml =
     '<title>Happy</title>' +
   '</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer, 'UTF-8');
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
 let str = '';
 function func(name: string, value: string) {
   str = name + value;
@@ -1142,8 +1142,8 @@ import { util } from '@kit.ArkTS';
 
 let strXml = '<?xml version="1.0" encoding="utf-8"?><note>Happy</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getColumnNumber() + ' ';
@@ -1186,8 +1186,8 @@ let strXml =
     '<title>Happy</title>' +
   '</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getDepth() + ' ';
@@ -1222,8 +1222,8 @@ import { util } from '@kit.ArkTS';
 
 let strXml = '<?xml version="1.0" encoding="utf-8"?><note>Work</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getLineNumber() + ' ';
@@ -1258,8 +1258,8 @@ import { util } from '@kit.ArkTS';
 
 let strXml = '<?xml version="1.0" encoding="utf-8"?><note>Happy</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getName() + ' ';
@@ -1297,8 +1297,8 @@ let strXml =
     '<h:title>Happy</h:title>' +
   '</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getNamespace() + ' ';
@@ -1336,8 +1336,8 @@ let strXml =
     '<h:title>Happy</h:title>' +
   '</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getPrefix() + ' ';
@@ -1372,8 +1372,8 @@ import { util } from '@kit.ArkTS';
 
 let strXml = '<?xml version="1.0" encoding="utf-8"?><note>Happy</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getText() + ' ';
@@ -1411,8 +1411,8 @@ let strXml =
     '<title/>' +
   '</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.isEmptyElementTag() + ' ';
@@ -1450,8 +1450,8 @@ let strXml =
     '<title> </title>' +
   '</note>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.isWhitespace() + ' ';
@@ -1484,8 +1484,8 @@ import { util } from '@kit.ArkTS';
 
 let strXml = '<?xml version="1.0" encoding="utf-8"?><note importance="high" logged="true"/>';
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer);
+let arrBuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer);
 let str = "";
 function func(key: xml.EventType, value: xml.ParseInfo) {
   str += 'key:' + key + ' value:' + value.getAttributeCount() + ' ';
