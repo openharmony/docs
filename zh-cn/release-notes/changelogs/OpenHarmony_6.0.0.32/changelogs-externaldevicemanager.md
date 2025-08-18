@@ -12,7 +12,7 @@
 
 **变更影响**
 
-此变更不涉及应用适配。
+此变更会抛出接口已定义的错误码USB_DDK_INVALID_PARAMETER，不涉及新增，因此开发者可以根据实际情况判断是否需新增错误码的捕获。
 
 变更前：调用OH_Usb_SendPipeRequest和OH_Usb_SendPipeRequestWithAshmem接口时，如传参错误导致中断传输失败，不会上报错误信息。
 
@@ -34,7 +34,7 @@ drivers/external_device_manager: OH_Usb_SendPipeRequest、OH_Usb_SendPipeRequest
 
 **适配指导**
 
-只要开发者传入正确的参数，接口功能不变，因此无需开发者适配。
+只要开发者传入正确的参数，接口功能不变，抛出接口已定义的错误码，不涉及新增，因此开发者可以根据实际情况判断是否需新增错误码的捕获。
 
 OH_Usb_SendPipeRequest和OH_Usb_SendPipeRequestWithAshmem接口开发适配指导：
 
@@ -127,5 +127,6 @@ OH_Usb_SendPipeRequest和OH_Usb_SendPipeRequestWithAshmem接口开发适配指�
     pipe.endpoint = endpoint;
     pipe.timeout = UINT32_MAX;
     int32_t returnValue = OH_Usb_SendPipeRequestWithAshmem(&pipe, ashmem);
+    // 开发者可以根据情况在此处新增对错误码USB_DDK_INVALID_PARAMETER的判断
     ...
 ```
