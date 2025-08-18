@@ -599,7 +599,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   // The application updates its progress.
-  updateProcess(process: Number) {
+  updateProcess(process: number) {
     // The application defines the download notification template.
     let downLoadTemplate: notificationManager.NotificationTemplate = {
       name: 'downloadTemplate', // Currently, only downloadTemplate is supported. Retain the value.
@@ -636,6 +636,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ## backgroundTaskManager.updateBackgroundRunning<sup>12+</sup>
 
 updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;ContinuousTaskNotification&gt;
@@ -687,19 +688,15 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         try {
-                try {
-                    // You must call startBackgroundRunning before updateBackgroundRunning. Here it is assumed that you have called startBackgroundRunning.
-                    let list: Array<string> = ["audioPlayback"];
-                    backgroundTaskManager.updateBackgroundRunning(this.context, list).then(() => {
-                        console.info("Operation updateBackgroundRunning succeeded");
-                    }).catch((error: BusinessError) => {
-                        console.error(`Operation updateBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-                    });
-                } catch (error) {
-                    console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
-                }
+            // You must call startBackgroundRunning before updateBackgroundRunning. Here it is assumed that you have called startBackgroundRunning.
+            let list: Array<string> = ["audioPlayback"];
+            backgroundTaskManager.updateBackgroundRunning(this.context, list).then(() => {
+                console.info("Operation updateBackgroundRunning succeeded");
+            }).catch((error: BusinessError) => {
+                console.error(`Operation updateBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            });
         } catch (error) {
-            console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+            console.error(`Operation updateBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
         }
     }
 };
