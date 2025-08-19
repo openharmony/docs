@@ -8,7 +8,7 @@ If an application is developed using ArkTS and C++ language, or if its architect
 
   ![arkweb_jsbridge_arch](figures/arkweb_jsbridge_arch.png)
 
-  The preceding figure shows a general architecture of applets with universal applicability. In this architecture, the logical layer depends on a JavaScript runtime built in an application, and the runtime runs in an existing C++ environment. The logic layer can communicate with the view layer (in which ArkWeb as the renderer) in the C++ environment through the native API, instead of using the ArkTS **PostWebMessage** API in the ArkTS environment.
+  The preceding figure shows a general architecture of applets with universal applicability. In this architecture, the logical layer depends on a JavaScript runtime built in an application, and the runtime runs in an existing C++ environment. The logic layer can communicate with the view layer (in which ArkWeb is the renderer) in the C++ environment through the native API, instead of using the ArkTS **PostWebMessage** API in the ArkTS environment.
 
   The figure on the left shows that the application needs to invoke the ArkTS environment and then the C++ environment to build an applet using the ArkTS **PostWebMessage** API. Using the native **PostWebMessage** API is more efficient because the switch between the ArkTS and C++ environments is not required, as shown in the figure on the right.
 
@@ -39,7 +39,7 @@ If an application is developed using ArkTS and C++ language, or if its architect
 
 ### Obtaining API Structs Using the Native API
 
-To invoke the native APIs, obtain the API structs on the ArkWeb native side first. You can pass different types of parameters in the [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/capi-arkweb-interface-h.md#oh_arkweb_getnativeapi) function to obtain the corresponding function pointer structs. This topic involves the obtaining of [ArkWeb_ControllerAPI](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md), [ArkWeb_WebMessageAPI](../reference/apis-arkweb/capi-web-arkweb-webmessageapi.md) and [ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/capi-web-arkweb-webmessageportapi.md).
+To call the native APIs, obtain the API structs on the ArkWeb native side first. You can pass different types of parameters in the [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/capi-arkweb-interface-h.md#oh_arkweb_getnativeapi) function to obtain the corresponding function pointer structs. This topic involves the obtaining of [ArkWeb_ControllerAPI](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md), [ArkWeb_WebMessageAPI](../reference/apis-arkweb/capi-web-arkweb-webmessageapi.md) and [ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/capi-web-arkweb-webmessageportapi.md).
 
   ```c++
   static ArkWeb_ControllerAPI *controller = nullptr;
