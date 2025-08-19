@@ -69,8 +69,8 @@
             - [UIServiceExtensionAbility (for System Applications Only)](application-models/uiserviceextension-sys.md)
             - [UIExtensionAbility (for System Applications Only)](application-models/uiextensionability.md)
             - [AutoFillExtensionAbility (for System Applications Only)](application-models/autofillextensionablility-guide.md)
-            <!--DelEnd-->
             - [Using UIServiceExtensionAbility for System Floating Windows](application-models/uiserviceextension.md)
+            <!--DelEnd-->
             - [EmbeddedUIExtensionAbility](application-models/embeddeduiextensionability.md)
           - [AbilityStage Component Container](application-models/abilitystage.md)
           - [Context](application-models/application-context-stage.md)
@@ -258,7 +258,7 @@
           - [Nonlinear Containers](arkts-utils/nonlinear-container.md)
       - ArkTS Concurrency<!--arkts-concurrency-->
         - [Overview of Concurrency](arkts-utils/concurrency-overview.md)
-        - [Asynchronous Concurrency](arkts-utils/async-concurrency-overview.md)
+        - [Asynchronous Concurrency (Promise and Async/Await)](arkts-utils/async-concurrency-overview.md)
         - Multithreaded Concurrency<!--multithread-concurrency-->
           - [Overview of Multithreaded Concurrency](arkts-utils/multi-thread-concurrency-overview.md)
           - [TaskPool](arkts-utils/taskpool-introduction.md)
@@ -425,7 +425,7 @@
           - [if/else: Conditional Rendering](ui/state-management/arkts-rendering-control-ifelse.md)
           - [ForEach: Rendering Repeated Content](ui/state-management/arkts-rendering-control-foreach.md)
           - [LazyForEach: Lazy Data Loading](ui/state-management/arkts-rendering-control-lazyforeach.md)
-          - [ContentSlot: Enabling Hybrid Development](ui/state-management/arkts-rendering-control-contentslot.md)	
+          - [ContentSlot: Enabling Hybrid Development](ui/state-management/arkts-rendering-control-contentslot.md)
         - Layout Development<!--arkts-layout-development-->
           - [Layout Overview](ui/arkts-layout-development-overview.md)
           - Building Layouts<!--arkts-build-layout-->
@@ -553,7 +553,7 @@
           - [Configuring In-Application Theme Skinning](ui/theme_skinning.md)
         - [Using the UI Context API for UI Operations (UIContext)](ui/arkts-global-interface.md)
         - [Using Component Snapshot (ComponentSnapshot)](ui/arkts-uicontext-component-snapshot.md)
-        - [Inspecting Page Layouts](ui/arkts-inspector-overview.md) 
+        - [Inspecting Page Layouts](ui/arkts-inspector-overview.md)
         - Using Embedded Components<!--arkts-ui-cross-process-->
           - [Atomic Service Full Screen Launch Component (FullScreenLaunchComponent)](ui/arkts-FullScreenComponent.md)
           - [In-Application Embedded Component (EmbeddedComponent)](ui/arkts-embedded-components.md)
@@ -727,7 +727,7 @@
         - [Previewing PDF Files](web/web-pdf-preview.md)
         - [Calculating and Adjusting Safe Area Insets](web/web-safe-area-insets.md)
         - [Using Web Menus](web/web_menu.md)
-        - [Interacting with the System Clipboard](web/web-clipboard.md)
+        - [Processing Web Page Content by Interacting with the System Clipboard](web/web-clipboard.md)
       - [Using Same-Layer Rendering](web/web-same-layer.md)
       - [Using Offline Web Components](web/web-offline-mode.md)
       - Web Debugging<!--web-debugging-->
@@ -790,7 +790,7 @@
       - ArkTS Widget Development (Recommended)<!--arkts-ui-->
         - [ArkTS Widget Overview](form/arkts-form-overview.md)
         - [Creating an ArkTS Widget](form/arkts-ui-widget-creation.md)
-        - [Configuring Widget Configuration Files](form/arkts-ui-widget-configuration.md)
+        - [Configuring ArkTS Widget Configuration Files](form/arkts-ui-widget-configuration.md)
         - [Managing ArkTS Widget Lifecycle](form/arkts-ui-widget-lifecycle.md)
         - [ArkTS Widget Process Model](form/arkts-ui-widget-process.md)
         - ArkTS Widget Provider Development<!--arkts-ui-widget-->
@@ -817,7 +817,7 @@
             - [Widget Editing Development](form/arkts-ui-widget-event-formeditextensionability.md)
           - Widget Addition to Home Screen<!--arkts-ui-widget-add-->
             - [Adding Widgets to the Home Screen](form/arkts-ui-widget-open-formmanager.md)
-        <!--Del--> 
+        <!--Del-->
         - [ArkTS Widget Host Development (for System Applications Only)](form/widget-host-development-guide.md)
         <!--DelEnd-->
       - JS Widget Development<!--form-js-ui-->
@@ -828,7 +828,7 @@
       - [Introduction to IME Kit](inputmethod/ime-kit-intro.md)
       - [Implementing an Input Method Application](inputmethod/inputmethod-application-guide.md)
       - [Using the Input Method in a Custom Edit Box](inputmethod/use-inputmethod-in-custom-edit-box.md)
-      - [Switching Between Input Methods](inputmethod/switch-inputmehod-guide.md)
+      - [Switching Between Input Methods](inputmethod/switch-inputmethod-guide.md)
       - [Setting Input Method Subtypes](inputmethod/input-method-subtype-guide.md)
       - [Custom Edit Box Development Guide (C/C++)](inputmethod/use-inputmethod-in-custom-edit-box-ndk.md)
       - [Immersive Mode of the Input Method Application](inputmethod/inputmethod-immersive-mode-guide.md)
@@ -1172,7 +1172,7 @@
             - [Network Firewall](network/net-netfirewall.md)
             <!--Del-->
             - [Network Sharing (for System Applications Only)](network/net-sharing.md)
-            - [Ethernet Connection Management (for System Applications Only)](network/net-ethernet.md)  
+            - [Ethernet Connection Management (for System Applications Only)](network/net-ethernet.md)
             - [VPN Management (for System Applications Only)](network/net-vpn.md)
             <!--DelEnd-->
       - Telephony Kit<!--telephony-kit-->
@@ -1268,7 +1268,7 @@
         <!--Del-->
         - [Input Monitor Development](device/input/inputmonitor-guidelines.md)
         - [Event Injection Development](device/input/inputeventclient-guidelines.md)
-        - [Input Consumer Development](device/input/inputconsumer-guidelines.md)
+        - [Global Hotkey Development](device/input/inputconsumer-guidelines.md)
         - [Shortcut Key Development](device/input/shortkey-guidelines.md)
         <!--DelEnd-->
         - [Event Listening Development (C/C++)](device/input/monitor-guidelines.md)
@@ -1373,9 +1373,9 @@
           - [hidumper](dfx/hidumper.md)
           - [hitrace](dfx/hitrace.md)
           - [hiperf](dfx/hiperf.md)
+          - [uinput](dfx/uinput.md)
           <!--Del-->
           - [hisysevent](dfx/hisysevent.md)
-          - [uinput](dfx/uinput.md)
           <!--DelEnd-->
       - Test Kit<!--test-kit-->
         - [arkXtest User Guide](application-test/arkxtest-guidelines.md)
@@ -1675,6 +1675,7 @@
       - [Event Management](calendarmanager/calendarmanager-event-developer.md)
     - Contacts Kit<!--contacts-kit-->
       - [Contacts Kit Development](contacts/contacts-intro.md)
+    <!--Del-->
     - Location Kit<!--location-kit-->
       - [Introduction to Location Kit](device/location/location-kit-intro.md)
       - [Applying for Location Permissions (ArkTS)](device/location/location-permission-guidelines.md)
@@ -1684,6 +1685,7 @@
       - [Geofencing (ArkTS)](device/location/geofence-guidelines.md)
       - [FenceExtensionAbility](device/location/fenceExtensionAbility.md)
       - [Samples](device/location/app-samples.md)
+    <!--DelEnd-->
     - Notification Kit<!--notification-kit-->
       - [Introduction to Notification Kit](notification/notification-overview.md)
       - [Requesting Notification Authorization](notification/notification-enable.md)
@@ -1693,7 +1695,7 @@
         - [Publishing a Text Notification](notification/text-notification.md)
         - [Publishing a Progress Notification](notification/progress-bar-notification.md)
         <!--Del-->
-        - [Publishing Live View Notification (for System Applications Only)](notification/live-view-notification.md)
+        - [Publishing a Live View Notification (for System Applications Only)](notification/live-view-notification.md)
         <!--DelEnd-->
         - [Adding a WantAgent Object to a Notification](notification/notification-with-wantagent.md)
         - [Enabling Quick Reply for Cross-device Notifications](notification/notification-quickreply.md)
@@ -1901,6 +1903,14 @@
           - [@ohos.ability.ability (Ability)](reference/apis-ability-kit/js-apis-ability-ability.md)
           - [@ohos.ability.featureAbility (FeatureAbility)](reference/apis-ability-kit/js-apis-ability-featureAbility.md)
           - [@ohos.ability.particleAbility (ParticleAbility)](reference/apis-ability-kit/js-apis-ability-particleAbility.md)
+          - ability<!--fa-model-ability-->
+            - [DataAbilityOperation](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityOperation.md)
+            - [DataAbilityResult](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityResult.md)
+            - [StartAbilityParameter](reference/apis-ability-kit/js-apis-inner-ability-startAbilityParameter.md)
+          - app<!--app-->
+            - [AppVersionInfo](reference/apis-ability-kit/js-apis-inner-app-appVersionInfo.md)
+            - [Context (Context Base Class of the FA Model)](reference/apis-ability-kit/js-apis-inner-app-context.md)
+            - [ProcessInfo](reference/apis-ability-kit/js-apis-inner-app-processInfo.md)
         - Both Models (Recommended)<!--both-models-->
           - [@ohos.abilityAccessCtrl (Ability Access Control)](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)
           - [@ohos.ability.screenLockFileManager (Sensitive Data Access Management Under Lock Screen)](reference/apis-ability-kit/js-apis-screenLockFileManager.md)
@@ -1954,14 +1964,6 @@
             - [AbilityResult](reference/apis-ability-kit/js-apis-inner-ability-abilityResult.md)
             - [ConnectOptions](reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md)
             - [DataAbilityHelper](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md)
-            - [DataAbilityOperation](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityOperation.md)
-            - [DataAbilityResult](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityResult.md)
-            - [StartAbilityParameter](reference/apis-ability-kit/js-apis-inner-ability-startAbilityParameter.md)
-            - [want](reference/apis-ability-kit/js-apis-inner-ability-want.md)
-          - app<!--app-->
-            - [AppVersionInfo](reference/apis-ability-kit/js-apis-inner-app-appVersionInfo.md)
-            - [Context](reference/apis-ability-kit/js-apis-inner-app-context.md)
-            - [ProcessInfo](reference/apis-ability-kit/js-apis-inner-app-processInfo.md)
           - application<!--ability-arkts-application-->
             - [AbilityMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityMonitor.md)
             - [AbilityRunningInfo](reference/apis-ability-kit/js-apis-inner-application-abilityRunningInfo.md)
@@ -2085,6 +2087,8 @@
           - [@ohos.distributedBundle (Distributed Bundle Management) (System API)](reference/apis-ability-kit/js-apis-Bundle-distributedBundle-sys.md)
           <!--DelEnd-->
           - [@system.package (Bundle Management)](reference/apis-ability-kit/js-apis-system-package.md)
+          - ability<!--ability-deprecated-->
+            - [Want](reference/apis-ability-kit/js-apis-inner-ability-want.md)
           - bundle<!--bundle-->
             - [abilityInfo](reference/apis-ability-kit/js-apis-bundle-AbilityInfo.md)
             - [applicationInfo](reference/apis-ability-kit/js-apis-bundle-ApplicationInfo.md)
@@ -2131,7 +2135,7 @@
         - [ohos.screenLockFileManager Error Codes](reference/apis-ability-kit/errorcode-screenLockFileManager.md)
         - [Application Domain Name Verification Error Codes](reference/apis-ability-kit/errorcode-appDomainVerify.md)
     - Accessibility Kit<!--accessibility-api-->
-      - ArkTS API<!--accessibility-arkts--> 
+      - ArkTS APIs<!--accessibility-arkts-->
         - [@ohos.accessibility (Accessibility)](reference/apis-accessibility-kit/js-apis-accessibility.md)
         - [@ohos.accessibility.GesturePath (Gesture Path)](reference/apis-accessibility-kit/js-apis-accessibility-GesturePath.md)
         - [@ohos.accessibility.GesturePoint (Gesture Point)](reference/apis-accessibility-kit/js-apis-accessibility-GesturePoint.md)
@@ -2604,7 +2608,7 @@
           - [Immediate Delivery of Explicit Animation (animateToImmediately)](reference/apis-arkui/arkui-ts/ts-explicit-animatetoimmediately.md)
           <!--Del-->
           - [Implicit Shared Element Transition (geometryTransition) (System API)](reference/apis-arkui/arkui-ts/ts-transition-animation-geometrytransition-sys.md)
-          <!--DelEnd-->  
+          <!--DelEnd-->
         - Dialog Boxes<!--dialog-boxes-->
           - [Alert Dialog Box (AlertDialog)](reference/apis-arkui/arkui-ts/ts-methods-alert-dialog-box.md)
           - [Action Sheet (ActionSheet)](reference/apis-arkui/arkui-ts/ts-methods-action-sheet.md)
@@ -2627,7 +2631,7 @@
           - [SaveButton (System API)](reference/apis-arkui/arkui-ts/ts-security-components-savebutton-sys.md)
           <!--DelEnd-->
         - Themes<!--themes-->
-          - [WithTheme](reference/apis-arkui/arkui-ts/ts-container-with-theme.md) 
+          - [WithTheme](reference/apis-arkui/arkui-ts/ts-container-with-theme.md)
         - Atomic Services<!--atomic-services-->
           - [AtomicServiceNavigation](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceNavigation.md)
           - [AtomicServiceSearch](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceSearch.md)
@@ -2646,6 +2650,8 @@
           - [Custom Component Lifecycle](reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md)
           - [Custom Component Layout](reference/apis-arkui/arkui-ts/ts-custom-component-layout.md)
           - [Custom Component Built-in APIs](reference/apis-arkui/arkui-ts/ts-custom-component-api.md)
+          - Component Extension Decorator <!--arkts-extend-component-decorator-->
+            - [\@AnimatableExtend Decorator: Definition of Animatable Attributes](reference/apis-arkui/arkui-ts/ts-animatable-extend.md)
         - System Preset UI Component Library<!--system-preset-ui-component-library-->
           - [Chip](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md)
           - [ChipGroup](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ChipGroup.md)
@@ -3229,7 +3235,7 @@
         - [@ohos.i18n (Internationalization) (System API)](reference/apis-localization-kit/js-apis-i18n-sys.md)
         <!--DelEnd-->
         - global<!--localization-global-arkts-->
-          - [RawFileDescriptor](reference/apis-localization-kit/js-apis-rawFileDescriptor.md) 
+          - [RawFileDescriptor](reference/apis-localization-kit/js-apis-rawFileDescriptor.md)
           - [Resource](reference/apis-localization-kit/js-apis-resource.md)
           - [SendableResource](reference/apis-localization-kit/js-apis-sendableResource.md)
       - C APIs<!--localization-c-->
@@ -4457,7 +4463,7 @@
           - [OH_Drawing_Point2D](reference/apis-arkgraphics2d/_o_h___drawing___point2_d.md)
           - [OH_Drawing_Point3D](reference/apis-arkgraphics2d/_o_h___drawing___point3_d.md)
           - [OH_Drawing_RectStyle_Info](reference/apis-arkgraphics2d/_o_h___drawing___rect_style___info.md)
-          - [OH_Drawing_RunBuffer](reference/apis-arkgraphics2d/_o_h___drawing___run_buffer.md) 
+          - [OH_Drawing_RunBuffer](reference/apis-arkgraphics2d/_o_h___drawing___run_buffer.md)
           - [OH_Drawing_String](reference/apis-arkgraphics2d/_o_h___drawing___string.md)
           - [OH_Drawing_StrutStyle](reference/apis-arkgraphics2d/_o_h___drawing___strut_style.md)
           - [OH_Filter_ColorMatrix](reference/apis-arkgraphics2d/_o_h___filter___color_matrix.md)

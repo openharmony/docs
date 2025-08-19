@@ -1,4 +1,4 @@
-# ContentSlot: Representing a Placeholder in Hybrid Development
+# ContentSlot: Enabling Hybrid Development
 
 The **ContentSlot** component is a component designed to render and manage components created on the native layer using C APIs.
 
