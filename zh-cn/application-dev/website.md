@@ -1437,7 +1437,7 @@
           - [振动开发概述](device/sensor/vibrator-overview.md)
           - [振动开发指导(ArkTS)](device/sensor/vibrator-guidelines.md)
           - [振动开发指导(C/C++)](device/sensor/vibrator-guidelines-capi.md)
-      - Mechanic Kit（机械设备管理服务）<!--mechanic-kit-->
+      - Mechanic Kit（机械体设备管理服务）<!--mechanic-kit-->
         - [Mechanic Kit简介](mechanicManager/mechanic-kit-intro.md)
         - [智能拍摄跟踪开发指南](mechanicManager/camera-tracking-guide.md)
         <!--Del-->
@@ -3442,7 +3442,7 @@
           - [OH_NativeXComponent_ExtraMouseEventInfo](reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent-extramouseeventinfo.md)
           - [OH_ArkUI_SurfaceHolder](reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent-oh-arkui-surfaceholder.md)
           - [OH_ArkUI_SurfaceCallback](reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent-oh-arkui-surfacecallback.md)
-          - [NativeWindow](reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent-nativewindow.md)
+          - [OHNativeWindow](reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent-nativewindow.md)
           - [ArkUI_AttributeItem](reference/apis-arkui/capi-arkui-nativemodule-arkui-attributeitem.md)
           - [ArkUI_NodeComponentEvent](reference/apis-arkui/capi-arkui-nativemodule-arkui-nodecomponentevent.md)
           - [ArkUI_StringAsyncEvent](reference/apis-arkui/capi-arkui-nativemodule-arkui-stringasyncevent.md)

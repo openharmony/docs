@@ -1680,7 +1680,7 @@ installPlugin(hostBundleName: string, pluginFilePaths: Array\<string\>, pluginPa
 | -------- | ----------------------------------- |
 | 201 | Calling interface without permission 'ohos.permission.INSTALL_PLUGIN_BUNDLE'. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 17700001 | The specified bundleName cannot be found. |
+| 17700001 | The specified hostBundleName cannot be found or the bundle is not installed by the specified user. |
 | 17700004 | The userId is invalid. |
 | 17700010 | Failed to install the plugin because the plugin fails to be parsed. |
 | 17700011 | Failed to install the plugin because the plugin signature fails to be verified. |
@@ -1759,8 +1759,8 @@ uninstallPlugin(hostBundleName: string, pluginBundleName: string, pluginParam?: 
 | -------- | ----------------------------------- |
 | 201 | Calling interface without permission 'ohos.permission.UNINSTALL_PLUGIN_BUNDLE'. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 17700001 | The specified bundleName cannot be found. |
-| 17700004 | The userId is invalid. |
+| 17700001 | The specified bundle name is not found. |
+| 17700004 | The user id is invalid. |
 | 17700092 | Failed to uninstall the plugin because the specified plugin is not found. |
 
 **示例：**
