@@ -12,8 +12,6 @@ customProperty(name: string, value: Optional\<Object>): T
 
 设置组件的自定义属性。[自定义组件](../../../ui/state-management/arkts-create-custom-components.md)不支持设置自定义属性。
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -32,9 +30,9 @@ customProperty(name: string, value: Optional\<Object>): T
 | T | 返回当前组件。 |
 
 
-## Optional<sup>12+</sup>
+## Optional\<T><sup>12+</sup>
 
-Optional\<T>
+type Optional\<T> = T | undefined
 
 定义可选类型，其值可以是undefined。
 

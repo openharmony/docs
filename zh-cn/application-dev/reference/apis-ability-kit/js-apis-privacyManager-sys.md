@@ -1,5 +1,12 @@
 # @ohos.privacyManager (隐私管理)(系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
+
 本模块主要提供权限使用记录等隐私管理接口。
 
 > **说明：**
@@ -806,7 +813,7 @@ try {
 
 ## privacyManager.getPermissionUsedTypeInfos<sup>12+</sup>
 
-getPermissionUsedTypeInfos(tokenId?: number, permissionName?: Permissions): Promise&lt;Array&lt;PermissionUsedTypeInfo&gt;&gt;
+getPermissionUsedTypeInfos(tokenId?: number | null, permissionName?: Permissions): Promise&lt;Array&lt;PermissionUsedTypeInfo&gt;&gt;
 
 查询设备上指定应用访问敏感权限时的信息（包括敏感权限名称、敏感权限访问方式）。
 
@@ -818,7 +825,7 @@ getPermissionUsedTypeInfos(tokenId?: number, permissionName?: Permissions): Prom
 
 | 参数名             | 类型                   | 必填 | 说明                                                          |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
-| tokenId            | number                | 否   | 访问敏感权限的应用身份标识，为0时表示查询所有应用的敏感权限访问类型信息。   |
+| tokenId            | number \| null                | 否   | 访问敏感权限的应用身份标识，为0时表示查询所有应用的敏感权限访问类型信息。从API20，新增支持null类型。   |
 | permissionName     | Permissions           | 否   | 被访问的敏感权限名称，为空时标识查询所有敏感权限的访问类型信息。   |
 
 **返回值：**
@@ -835,7 +842,6 @@ getPermissionUsedTypeInfos(tokenId?: number, permissionName?: Permissions): Prom
 | -------- | -------- |
 | 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_USED_STATS". |
 | 202 | Not system app. Interface caller is not a system app. |
-| 401 | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 12100001 | Invalid parameter. PermissionName exceeds 256 characters. |
 | 12100002 | The input tokenId does not exist. |
 | 12100003 | The input permissionName does not exist. |
@@ -891,16 +897,16 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称       | 类型             | 必填   | 说明                                       |
-| -------- | -------------- | ---- | ---------------------------------------- |
-| tokenId  | number         | 否    | 目标应用的身份标识。<br/> 默认值为0，查询所有应用。         |
-| isRemote | boolean         | 否    | 指定是否查询远端设备。<br/> 默认值false，表示查询本端设备，true表示查询远端设备。 |
-| deviceId  | string         | 否    | 目标应用所在设备的ID。<br/> 默认设备ID为本端设备ID。   |
-| bundleName | string         | 否    | 目标应用的包名。<br/> 默认查询所有应用。 |
-| permissionNames  | Array&lt;Permissions&gt;         | 否    | 需要查询的权限集合。<br/> 默认查询所有权限的使用记录。               |
-| beginTime | number         | 否    | 查询的起始时间，单位：ms。<br/>默认值0，不设定起始时间。 |
-| endTime | number         | 否    | 查询的终止时间，单位：ms。<br/>默认值0，不设定终止时间。 |
-| flag | [PermissionUsageFlag](#permissionusageflag)         | 是    | 指定查询方式。 |
+| 名称       | 类型             | 只读 | 可选 | 说明                                       |
+| -------- | -------------- | ---- | ---- | ---------------------------------------- |
+| tokenId  | number         | 否    | 是    | 目标应用的身份标识。<br/> 默认值为0，查询所有应用。         |
+| isRemote | boolean         | 否    | 是    | 指定是否查询远端设备。<br/> 默认值false，表示查询本端设备，true表示查询远端设备。 |
+| deviceId  | string         | 否    | 是    | 目标应用所在设备的ID。<br/> 默认设备ID为本端设备ID。   |
+| bundleName | string         | 否    | 是    | 目标应用的包名。<br/> 默认查询所有应用。 |
+| permissionNames  | Array&lt;Permissions&gt;         | 否    | 是    | 需要查询的权限集合。<br/> 默认查询所有权限的使用记录。               |
+| beginTime | number         | 否    | 是    | 查询的起始时间，单位：ms。<br/>默认值0，不设定起始时间。 |
+| endTime | number         | 否    | 是    | 查询的终止时间，单位：ms。<br/>默认值0，不设定终止时间。 |
+| flag | [PermissionUsageFlag](#permissionusageflag)         | 否    | 否    | 指定查询方式。 |
 
 ## PermissionUsedResponse
 

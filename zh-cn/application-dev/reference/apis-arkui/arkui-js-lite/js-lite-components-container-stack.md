@@ -1,4 +1,10 @@
 # stack
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @lanshouren-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 堆叠容器，子组件按照顺序依次入栈，后一个子组件覆盖前一个子组件。
 

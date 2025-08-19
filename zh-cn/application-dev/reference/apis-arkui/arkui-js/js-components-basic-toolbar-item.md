@@ -1,4 +1,10 @@
 # toolbar-item
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @mayaolll-->
+<!--Designer: @jiangdayuan-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 >  **说明：**
 >  从API version 5开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -29,7 +35,7 @@
 | ------------------- | ---------------------------------------- | ------------ | ---- | ---------------------------------------- |
 | color               | &lt;color&gt;                            | \#e6000000   | 否    | 文本颜色。                                    |
 | font-size           | &lt;length&gt;                           | 16px         | 否    | 文本大小。                                    |
-| allow-scale         | boolean                                  | true         | 否    | 文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。                |
+| allow-scale         | boolean                                  | true         | 否    | 文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小，可选值为：<br/> -&nbsp;true：&nbsp;文本尺寸跟随系统设置字体缩放尺寸进行放大缩小；<br/>- &nbsp;false：&nbsp;文本尺寸不跟随系统设置字体缩放尺寸进行放大缩小。                 |
 | font-style          | string                                   | normal       | 否    | 文本字体样式，可选值为：<br/> -&nbsp;normal:&nbsp;标准的字体样式；<br/>- &nbsp;italic:&nbsp;斜体的字体样式。 |
 | font-weight         | number\|string                           | normal       | 否    | 文本字体粗细，number类型取值[100,&nbsp;900]的整数（被100整除），默认为400，取值越大，字体越粗。string类型取值为：lighter、normal、bold、bolder。 |
 | text-decoration     | string                                   | none         | 否    | 文本修饰，可选值为：<br/>- underline:&nbsp;文本下划线修饰；<br/>- &nbsp;line-through:&nbsp;穿过文本的修饰线；<br/>- &nbsp;none:&nbsp;标准文本。 |
@@ -59,13 +65,13 @@
 
 ```html
 <!-- xxx.hml -->
-<toolbar style="position : fixed; bottom : 0px;">
-    <toolbar-item icon='common/Icon/location.png' value='Option 1'></toolbar-item>
-    <toolbar-item icon='common/Icon/heart.png' value='Option 2'></toolbar-item>
-    <toolbar-item icon='common/Icon/diamond.png' value='Option 3'></toolbar-item>
-    <toolbar-item icon='common/Icon/heart.png' value='Option 4'></toolbar-item>
-    <toolbar-item icon='common/Icon/heart.png' value='Option 5'></toolbar-item>
-    <toolbar-item icon='common/Icon/heart.png' value='Option 6'></toolbar-item>
+<toolbar style="position: fixed; bottom: 0px;">
+    <toolbar-item icon="common/Icon/location.png" value='Option 1'></toolbar-item>
+    <toolbar-item icon="common/Icon/heart.png" value='Option 2'></toolbar-item>
+    <toolbar-item icon="common/Icon/diamond.png" value='Option 3'></toolbar-item>
+    <toolbar-item icon="common/Icon/heart.png" value='Option 4'></toolbar-item>
+    <toolbar-item icon="common/Icon/heart.png" value='Option 5'></toolbar-item>
+    <toolbar-item icon="common/Icon/heart.png" value='Option 6'></toolbar-item>
 </toolbar>
 ```
 

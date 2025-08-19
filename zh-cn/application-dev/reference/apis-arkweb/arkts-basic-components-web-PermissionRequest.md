@@ -1,10 +1,18 @@
 # Class (PermissionRequest)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @qq_42700029-->
+<!--Designer: @qiu-gongkai-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Web组件返回授权或拒绝权限功能的对象。示例代码参考[onPermissionRequest事件](./arkts-basic-components-web-events.md#onpermissionrequest9)。
 
 > **说明：**
 >
-> - 本模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件首批接口从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 本Class首批接口从API version 9开始支持。
 >
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 

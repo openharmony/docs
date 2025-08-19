@@ -1,4 +1,10 @@
 # Slider
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyi0309-->
+<!--Designer: @liyi0309-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 滑动条组件，通常用于快速调节设置值，如音量调节、亮度调节等应用场景。
 
@@ -38,15 +44,15 @@ Slider(options?: SliderOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| value | number | 否 | 当前进度值。<br/>默认值：与参数min的取值一致。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。<br/>取值范围： [min, max]<br/>小于min时取min，大于max时取max。 |
-| min | number | 否 | 设置最小值。<br/>默认值：0 |
-| max | number | 否 | 设置最大值。<br/>默认值：100<br/>**说明：** <br/>min >= max异常情况，min取默认值0，max取默认值100。<br/>value不在[min, max]范围之内，取min或者max，靠近min取min，靠近max取max。 |
-| step | number | 否 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max - min]<br/>**说明：** <br/>若设置的step值小于0或大于max值，则按默认值显示。 |
-| style | [SliderStyle](#sliderstyle枚举说明) | 否 | 设置Slider的滑块与滑轨显示样式。<br/>默认值：SliderStyle.OutSet |
-| direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | 否 | 设置滑动条滑动方向为水平或竖直方向。<br/>默认值：Axis.Horizontal |
-| reverse<sup>8+</sup> | boolean | 否 | 设置滑动条取值范围是否反向。<br/>默认值：false<br/>值为true时，横向Slider从右往左滑动，竖向Slider从下往上滑动。值为false时，横向Slider从左往右滑动，竖向Slider从上往下滑动。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| value | number | 否 | 是 | 当前进度值。<br/>默认值：与参数min的取值一致。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。<br/>取值范围： [min, max]<br/>小于min时取min，大于max时取max。<br/>$$运算符为系统组件提供TS变量的引用，使得TS变量和slider组件的value值保持同步。详细使用示例请参考[示例7设置滑动条的双向绑定](#示例7设置滑动条的双向绑定)。 |
+| min | number | 否 | 是 | 设置最小值。<br/>默认值：0 |
+| max | number | 否 | 是 | 设置最大值。<br/>默认值：100<br/>**说明：** <br/>min >= max异常情况，min取默认值0，max取默认值100。<br/>value不在[min, max]范围之内，取min或者max，靠近min取min，靠近max取max。 |
+| step | number | 否 | 是 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max - min]<br/>**说明：** <br/>若设置的step值小于0或大于max值，则按默认值显示。 |
+| style | [SliderStyle](#sliderstyle枚举说明) | 否 | 是 | 设置Slider的滑块与滑轨显示样式。<br/>默认值：SliderStyle.OutSet |
+| direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | 否 | 是 | 设置滑动条滑动方向为水平或竖直方向。<br/>默认值：Axis.Horizontal |
+| reverse<sup>8+</sup> | boolean | 否 | 是 | 设置滑动条取值范围是否反向。<br/>默认值：false<br/>值为true时，横向Slider从右往左滑动，竖向Slider从下往上滑动。值为false时，横向Slider从左往右滑动，竖向Slider从上往下滑动。 |
 
 ## SliderStyle枚举说明
 
@@ -63,7 +69,7 @@ Slider(options?: SliderOptions)
 >  **说明：** 
 >
 >  - Slider无默认padding。
->  - 当Slider为水平滑动条时，默认高度为40vp，宽度为父容器的宽度，滑动条居中显示，当滑动条的style为SliderStyle.OutSet时，左右间距分别为10vp，当滑动条的style为SliderStyle.InSet时，左右间距分别为6vp，若设置padding，padding不会覆盖左右间距。
+>  - 当Slider为水平滑动条时，默认高度为40vp，宽度为父容器的宽度，滑动条居中显示，当滑动条的style为SliderStyle.OutSet时，左右间距分别为9vp，即为[blockSize](#blocksize10)宽度的一半，当滑动条的style为SliderStyle.InSet时，左右间距分别为6vp，若设置padding，padding不会覆盖左右间距。
 >  - 当Slider为竖直滑动条时，默认宽度为40vp，高度为父容器的高度，滑动条居中显示，当滑动条的style为SliderStyle.OutSet时，上下间距分别为10vp，当滑动条的style为SliderStyle.InSet时，上下间距分别为6vp，若设置padding，padding不会覆盖上下间距。
 
 ## 属性
@@ -477,7 +483,7 @@ enableHapticFeedback(enabled: boolean)
 ```json
 "requestPermissions": [
   {
-    "name": "ohos.permission.VIBRATE",
+    "name": "ohos.permission.VIBRATE"
   }
  ]
 ```
@@ -485,6 +491,8 @@ enableHapticFeedback(enabled: boolean)
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
@@ -571,12 +579,12 @@ Slider前后缀组件无障碍信息参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                     | 类型        | 必填 | 说明                                                         |
-| ------------------------ | ----------- | ---- | ------------------------------------------------------------ |
-| accessibilityText        | [ResourceStr](ts-types.md#resourcestr) | 否   | 用于提供辅助功能的文本，供屏幕阅读器等工具读取，增强无障碍功能。 <br/>默认值："" |
-| accessibilityDescription | [ResourceStr](ts-types.md#resourcestr) | 否   | 用于提供辅助功能的详细描述，描述滑块前缀或后缀的功能或用途，供屏幕阅读器等工具使用。 <br/>默认值为“单指双击即可执行”。 |
-| accessibilityLevel       | string      | 否   | 用于控制某个组件是否可被无障碍辅助服务所识别。<br>支持的值为:<br>"auto"：当前组件会转换为“yes”。<br>"yes"：当前组件可被无障碍辅助服务所识别。<br>"no"：当前组件不可被无障碍辅助服务所识别。<br>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br>默认值："auto"。 |
-| accessibilityGroup       | boolean     | 否   | 用于标识该元素是否属于一个无障碍的组，帮助屏幕阅读器等工具将相关元素进行分组处理。设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容；设置为false表示不启用无障碍分组。<br/>默认值：false |
+| 名称                     | 类型        | 只读 | 可选 | 说明                                                         |
+| ------------------------ | ----------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| accessibilityText        | [ResourceStr](ts-types.md#resourcestr) | 否   | 是  | 用于提供辅助功能的文本，供屏幕阅读器等工具读取，增强无障碍功能。 <br/>默认值："" |
+| accessibilityDescription | [ResourceStr](ts-types.md#resourcestr) | 否   | 是  | 用于提供辅助功能的详细描述，描述滑块前缀或后缀的功能或用途，供屏幕阅读器等工具使用。 <br/>默认值为“单指双击即可执行”。 |
+| accessibilityLevel       | string      | 否   | 是  | 用于控制某个组件是否可被无障碍辅助服务所识别。<br>支持的值为:<br>"auto"：当前组件会转换为“yes”。<br>"yes"：当前组件可被无障碍辅助服务所识别。<br>"no"：当前组件不可被无障碍辅助服务所识别。<br>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br>默认值："auto"。 |
+| accessibilityGroup       | boolean     | 否   | 是  | 用于标识该元素是否属于一个无障碍的组，帮助屏幕阅读器等工具将相关元素进行分组处理。设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容；设置为false表示不启用无障碍分组。<br/>默认值：false |
 
 ## SliderPrefixOptions<sup>20+</sup>
 
@@ -606,9 +614,9 @@ Slider刻度点的无障碍文本信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                     | 类型        | 必填 | 说明                                                         |
-| ------------------------ | ----------- | ---- | ------------------------------------------------------------ |
-| text | [ResourceStr](ts-types.md#resourcestr) | 否 | 用于提供辅助功能的文本，供屏幕阅读器等工具读取，增强无障碍功能。 <br/>默认值："" |
+| 名称                     | 类型        | 只读 | 可选 | 说明                                                         |
+| ------------------------ | ----------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| text | [ResourceStr](ts-types.md#resourcestr) | 否 | 是 | 用于提供辅助功能的文本，供屏幕阅读器等工具读取，增强无障碍功能。 <br/>默认值："" |
 
 ## SliderShowStepOptions<sup>20+</sup>
 
@@ -618,9 +626,9 @@ Slider刻度点的无障碍文本信息映射集。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                     | 类型        | 必填 | 说明                                                         |
-| ------------------------ | ----------- | ---- | ------------------------------------------------------------ |
-| stepsAccessibility | Map<number, [SliderStepItemAccessibility](#sliderstepitemaccessibility20)> | 否 | 用于设置刻度点提供辅助功能文本，供屏幕阅读器等工具读取，增强无障碍功能。 <br/>Key取值范围：[0, INT32_MAX]，当Key设定为负数和小数时，设定项不生效。 <br/>默认值：{} |
+| 名称                     | 类型        | 只读 | 可选 | 说明                                                         |
+| ------------------------ | ----------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| stepsAccessibility | Map<number, [SliderStepItemAccessibility](#sliderstepitemaccessibility20)> | 否 | 是 | 用于设置刻度点提供辅助功能文本，供屏幕阅读器等工具读取，增强无障碍功能。 <br/>Key取值范围：[0, INT32_MAX]，当Key设定为负数和小数时，设定项不生效。 <br/>默认值：{} |
 
 ## SliderBlockStyle<sup>10+</sup>对象说明
 
@@ -630,11 +638,11 @@ Slider组件滑块形状参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 类型                                                         | 必填 | 说明                                                         |
-| ----- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type  | [SliderBlockType](#sliderblocktype10枚举说明)                | 是   | 设置滑块形状。<br/>默认值：SliderBlockType.DEFAULT，使用圆形滑块。 |
-| image | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 设置滑块图片资源。<br />图片显示区域大小由blockSize属性控制，请勿输入尺寸过大的图片。 |
-| shape | [Circle](ts-drawing-components-circle.md)&nbsp;\|&nbsp;[Ellipse](ts-drawing-components-ellipse.md)&nbsp;\|&nbsp;[Path](ts-drawing-components-path.md)&nbsp;\|&nbsp;[Rect](ts-drawing-components-rect.md)&nbsp; | 否   | 设置滑块使用的自定义形状。                                   |
+| 名称  | 类型                                                         | 只读 | 可选 | 说明                                                         |
+| ----- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| type  | [SliderBlockType](#sliderblocktype10枚举说明)                | 否   | 否   | 设置滑块形状。<br/>默认值：SliderBlockType.DEFAULT，使用圆形滑块。 |
+| image | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 是   | 设置滑块图片资源。<br />图片显示区域大小由blockSize属性控制，请勿输入尺寸过大的图片。 |
+| shape | [Circle](ts-drawing-components-circle.md)&nbsp;\|&nbsp;[Ellipse](ts-drawing-components-ellipse.md)&nbsp;\|&nbsp;[Path](ts-drawing-components-path.md)&nbsp;\|&nbsp;[Rect](ts-drawing-components-rect.md)&nbsp; | 否   | 是   | 设置滑块使用的自定义形状。                                   |
 
 ## SliderBlockType<sup>10+</sup>枚举说明
 
@@ -672,10 +680,10 @@ Slider组件滑块形状枚举。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型     | 必填 | 说明           |
-|----|--------| ---- |--------------|
-| from | number | 否 | 设置有效滑动区间的开始。 |
-| to | number | 否 | 设置有效滑动区间的结束。 |
+| 名称 | 类型     | 只读 | 可选 | 说明           |
+|----|--------| ---- |--------------|--------------|
+| from | number | 否 | 是 | 设置有效滑动区间的开始。 |
+| to | number | 否 | 是 | 设置有效滑动区间的结束。 |
 
 >  **说明：**
 >
@@ -981,7 +989,7 @@ struct SliderExample {
       Slider({ style: SliderStyle.OutSet, value: 40 })
         .blockStyle({ type: SliderBlockType.DEFAULT })
       Slider({ style: SliderStyle.OutSet, value: 40 })
-        .blockStyle({ type: SliderBlockType.IMAGE, image: $r('sys.media.ohos_app_icon') })
+        .blockStyle({ type: SliderBlockType.IMAGE, image: $r('sys.media.ohos_app_icon') }) // $r('app.media.ohos_app_icon')需要替换为开发者所需的图像资源文件。
       Slider({ style: SliderStyle.OutSet, value: 40 })
         .blockSize({ width: '60px', height: '60px' })
         .blockColor(Color.Red)
@@ -1042,7 +1050,7 @@ function buildSlider(config: SliderConfiguration) {
         max: config.max,
         step: config.step,
       })
-        .width(config.max)
+        .width(100)
         .visibility((config.contentModifier as MySliderStyle).showSlider ? Visibility.Visible : Visibility.Hidden)
         .showSteps(true)
         .onChange((value: number, mode: SliderChangeMode) => {
@@ -1490,3 +1498,37 @@ struct SliderExample {
 
 ```
 ![slider_step_options](figures/slider_step_options.png)
+
+### 示例7（设置滑动条的双向绑定）
+
+从API version 11开始，通过将[SliderOptions](#slideroptions对象说明)的value属性设置为[$$](../../../ui/state-management/arkts-two-way-sync.md)绑定的变量，实现数据同步。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SliderExample {
+  @State valueWith$: number = 40
+  @State valueWithout$: number = 40
+  build() {
+    Column({ space: 20 }) {
+      Text("使用$$双向绑定: " + this.valueWith$)
+      Slider({
+        value: $$this.valueWith$,
+        min: 0,
+        max: 100,
+      })
+
+      Text("不使用$$双向绑定: " + this.valueWithout$)
+      Slider({
+        value: this.valueWithout$,
+        min: 0,
+        max: 100,
+      })
+    }
+  }
+}
+
+```
+
+![slider07](figures/slider07.gif)

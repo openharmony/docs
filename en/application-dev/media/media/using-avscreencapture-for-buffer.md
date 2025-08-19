@@ -58,7 +58,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
 
 4. Set screen capture parameters.
 
-    After the **capture** instance is created, you can set the parameters required for screen capture. For details about how to set the audio and video parameters, see [Detailed Description](#detailed-description).
+    After the capture instance is created, you can set the parameters required for screen capture. For details about how to set the audio and video parameters, see [Detailed Description](#detailed-description).
 
     ```c++
     OH_AVScreenCaptureConfig config;
@@ -99,9 +99,33 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, userData);
     OH_AVScreenCapture_SetDisplayCallback(capture, OnDisplaySelected, userData);
     OH_AVScreenCapture_SetCaptureContentChangedCallback(capture, OnCaptureContentChanged, userData);
+    OH_AVScreenCapture_SetSelectionCallback(capture, OnUserSelected, userData);
     ```
 
-7. Call **StartScreenCapture()** to start screen capture.
+7. (Optional) Set screen capture strategies.
+
+   7.1 (Optional) Set the privacy window masking mode for screen capture.
+
+   The value **0** means that the full-screen masking mode is used, and **1** means that the window masking mode is used. The default value is full-screen masking mode.
+   
+   ```c++
+   int value = 0;
+   OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
+   OH_AVScreenCapture_StrategyForPrivacyMaskMode(strategy, value);
+   OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
+   ```
+
+   7.2 (Optional) Set the automatic rotation following configuration for screen capture.
+
+   Set **StrategyForCanvasFollowRotation** to **true** to enable automatic rotation following. This will automatically adjust the virtual screen size after a rotation, ensuring the output follows the rotation promptly. After this setting, there is no need to manually call **OH_AVScreenCapture_ResizeCanvas** after rotation notifications.
+   
+   ```c++
+   OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
+   OH_AVScreenCapture_StrategyForCanvasFollowRotation(strategy, true);
+   OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
+   ```
+
+8. Call **StartScreenCapture()** to start screen capture.
 
     ```c++
     bool IsCaptureStreamRunning = true;
@@ -114,20 +138,30 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_StartScreenCaptureWithSurface(capture, window);
     ```
 
-8. Call **StopScreenCapture()** to stop screen capture. See [Detailed Description](#detailed-description) for more information.
+9. Call **StopScreenCapture()** to stop screen capture. See [Detailed Description](#detailed-description) for more information.
 
     ```c++
     OH_AVScreenCapture_StopScreenCapture(capture);
     ```
 
-9. Call **Release()** to release the instance.
+10. Call **Release()** to release the instance.
 
     ```c++
     OH_AVScreenCapture_Release(capture);
     ```
 
 ## Specifications for Selecting the Window to Capture on PCs or 2-in-1 Devices
-For PCs or 2-in-1 devices, a selection page is offered to users for capturing a specific window. To maintain compatibility with the existing interface design, when third-party applications set the screen capture mode to **OH_CAPTURE_SPECIFIED_SCREEN** or **OH_CAPTURE_SPECIFIED_WINDOW**, a picker dialog appears with the designated window ID pre-selected. The content that gets captured ultimately depends on the user's choice within the picker.
+The screen capture feature for PCs or 2-in-1 devices, utilizing the APIs related to screen capture, provides a window selection dialog box that appears based on the configurations outlined in the table below. When a window ID is provided, the PC or 2-in-1 device displays a picker for users to select the corresponding window. The content that gets captured ultimately depends on the user's choice within the picker.
+
+Starting from API level 20, [OH_AVScreenCapture_SetCaptureArea](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_setcapturearea) is supported to enable the area-based screen capture feature, which pops up a privacy permission dialog box.
+
+| Screen Mode Type                                         | Number of Window IDs Passed    | Dialog Box Type           |
+| ----------------------------------------------------- | ------------------ | ------------------- |
+| OH_CAPTURE_HOME_SCREEN                                | Invalid Window IDs| Privacy permission dialog box|
+| OH_CAPTURE_SPECIFIED_SCREEN                           | Invalid Window IDs| Picker dialog box         |
+| OH_CAPTURE_SPECIFIED_WINDOW                           | Zero or one window ID    | Picker dialog box         |
+| OH_CAPTURE_SPECIFIED_WINDOW                           | Two or more window IDs   | Privacy permission dialog box|
+| Area-based screen capture (enabled by calling OH_AVScreenCapture_SetCaptureArea)| Invalid Window IDs| Privacy permission dialog box|
 
 It is recommended that the selection page be used in **OH_CAPTURE_SPECIFIED_WINDOW** mode. You need to configure the screen capture height and width based on the PC's or 2-in-1 device's resolution and pass the display ID (and a window ID if you want to capture a specific window).
 
@@ -184,13 +218,14 @@ The selection page is also compatible with the following screen capture modes:
 3. OH_CAPTURE_HOME_SCREEN mode.
 
     The PC or 2-in-1 device does not display a picker dialog box. Instead, it displays a privacy dialog box to ask for user approval.
-    In this mode, the configured **videoCapInfo.displayId** does not take effect. The default display ID of the primary screen is used.
 
+    In this mode, the configured **videoCapInfo.displayId** does not take effect. The default display ID of the primary screen is used.
+    
     ```c++
     // Configure the screen capture width and height in config_ based on the PC's or 2-in-1 device's resolution.
     config_.videoInfo.videoCapInfo.videoFrameWidth = 2880;
-    config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
-
+config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
+    
     // Set the screen capture mode to OH_CAPTURE_HOME_SCREEN and pass a display ID.
     config_.captureMode = OH_CAPTURE_HOME_SCREEN;
     ```
@@ -230,13 +265,14 @@ This section describes how to set screen capture parameters, set callback functi
     ```
 
 2. Set callback functions.
-    
+   
     Listeners are provided for error events, state changes, data obtained, and screen capture content changes involved in screen capture.
 
     ```c++
     // OnError(), a callback function invoked when an error occurs.
     void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
         (void)capture;
+        // Handle the event based on the error code.
         (void)errorCode;
         (void)userData;
     }
@@ -298,7 +334,7 @@ This section describes how to set screen capture parameters, set callback functi
 
                     // Obtain the buffer address.
                     uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-                    if (buf != nullptr) {
+                    if (buf == nullptr) {
                         return;
                     }
                     // Use the buffer data.
@@ -317,7 +353,7 @@ This section describes how to set screen capture parameters, set callback functi
 
                 // Obtain the buffer address.
                 uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-                if (buf != nullptr) {
+                if (buf == nullptr) {
                     return;
                 }
                 // Use the buffer data.
@@ -328,7 +364,7 @@ This section describes how to set screen capture parameters, set callback functi
 
                 // Obtain the buffer address.
                 uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-                if (buf != nullptr) {
+                if (buf == nullptr) {
                     return;
                 }
                 // Use the buffer data.
@@ -358,6 +394,17 @@ This section describes how to set screen capture parameters, set callback functi
         }
         (void)area;
         (void)userData;
+    }
+
+    // The callback OnUserSelected() is invoked to handle user selection results on the manual confirmation UI.
+    void OnUserSelected(OH_AVScreenCapture* capture, OH_AVScreenCapture_UserSelectionInfo* selections, void *userData) {
+        (void)capture;
+        (void)userData;
+        int* selectType = new int;
+        uint64_t* displayId = new uint64_t;
+        // Obtain the selection type and display ID through the API. OH_AVScreenCapture_UserSelectionInfo* selections is valid only in the OnUserSelected callback.
+        OH_AVSCREEN_CAPTURE_ErrCode errorSelectType = OH_AVScreenCapture_GetCaptureTypeSelected(selections, selectType);
+        OH_AVSCREEN_CAPTURE_ErrCode errorDisplayId = OH_AVScreenCapture_GetDisplayIdSelected(selections, displayId);
     }
     ```
 
@@ -408,6 +455,7 @@ Currently, the buffer holds original streams, which can be encoded and saved in 
 // OnError(), a callback function invoked when an error occurs.
 void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
     (void)capture;
+    // Handle the event based on the error code.
     (void)errorCode;
     (void)userData;
 }
@@ -470,7 +518,7 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVSc
 
                 // Obtain the buffer address.
                 uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-                if (buf != nullptr) {
+                if (buf == nullptr) {
                     return;
                 }
                 // Use the buffer data.
@@ -489,7 +537,7 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVSc
 
             // Obtain the buffer address.
             uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-            if (buf != nullptr) {
+            if (buf == nullptr) {
                 return;
             }
             // Use the buffer data.
@@ -500,7 +548,7 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVSc
 
             // Obtain the buffer address.
             uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-            if (buf != nullptr) {
+            if (buf == nullptr) {
                 return;
             }
             // Use the buffer data.
@@ -532,6 +580,17 @@ void OnCaptureContentChanged(struct OH_AVScreenCapture *capture, OH_AVScreenCapt
     (void)userData;
 }
 
+// The callback OnUserSelected() is invoked to handle user selection results on the manual confirmation UI.
+void OnUserSelected(OH_AVScreenCapture* capture, OH_AVScreenCapture_UserSelectionInfo* selections, void *userData) {
+    (void)capture;
+    (void)userData;
+    int* selectType = new int;
+    uint64_t* displayId = new uint64_t;
+    // Obtain the selection type and display ID through the API. OH_AVScreenCapture_UserSelectionInfo* selections is valid only in the OnUserSelected callback.
+    OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetCaptureTypeSelected(selections, selectType);
+    OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetDisplayIdSelected(selections, displayId);
+}
+
 struct OH_AVScreenCapture *capture;
 // Call StartScreenCapture to start screen capture.
 static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
@@ -561,10 +620,20 @@ static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
     OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, nullptr);
     // (Optional) Set a callback to obtain the display ID. This operation must be performed before screen capture starts.
     OH_AVScreenCapture_SetDisplayCallback(capture, OnDisplaySelected, nullptr);
+    // (Optional) Set a callback to handle user selection results on the manual confirmation UI. This operation must be performed before screen capture starts.
+    OH_AVScreenCapture_SetSelectionCallback(capture, OnUserSelected, nullptr);
 
     // (Optional) Set a callback for screen capture content changes.
     OH_Rect* area = nullptr;
     OH_AVScreenCapture_SetCaptureContentChangedCallback(capture, OnCaptureContentChanged, area);
+
+    // (Optional) Set the privacy window masking mode.
+    int value = 0;
+    OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
+    OH_AVScreenCapture_StrategyForPrivacyMaskMode(strategy, value);
+	// (Optional) Set the automatic rotation following configuration.
+    OH_AVScreenCapture_StrategyForCanvasFollowRotation(strategy, true);
+    OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
 
     // (Optional) Set the cursor display switch. This operation must be performed before screen capture starts.
     OH_AVScreenCapture_ShowCursor(capture, false);
@@ -593,6 +662,15 @@ static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
                                        .audioInfo = audioinfo,
                                        .videoInfo = videoinfo};
     OH_AVScreenCapture_Init(capture, config);
+
+    // Optional (supported since API version 20) Set the coordinates and size of the area to capture. For example, the following creates a rectangle area starting at (0, 0) with a length of 100 and a width of 100. This API can also be set after screen capture starts.
+    OH_Rect* region = new OH_Rect;
+    region->x = 0;
+    region->y = 0;
+    region->width = 100;
+    region->height = 100;
+    uint64_t regionDisplayId = 0; // ID of the display where the rectangle area is located.
+    OH_AVScreenCapture_SetCaptureArea(capture, regionDisplayId, region);
 
     // Optional. Use the surface mode.
     // To create an encoder by MIME type, call OH_VideoEncoder_CreateByMime. The system creates the most appropriate encoder based on the MIME type.

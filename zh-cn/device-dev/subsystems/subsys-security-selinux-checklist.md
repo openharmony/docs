@@ -14,7 +14,7 @@
 | system_basic | system_basic_hap_attr | system_basic_hap_data_file_attr |
 | system_core | system_core_hap_attr | system_core_hap_data_file_attr |
 
-APL说明参考[权限等级说明](../../application-dev/security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
+APL说明参考[权限等级说明](../../application-dev/security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)中的`权限APL等级`。
 
 另外还有一个attribute表示所有应用进程，为hap_domain。
 
@@ -60,7 +60,7 @@ allowxperm init data_app_el1_file:dir ioctl { 0x6613 };
 
 ## 使用neverallow对业务做安全防护
 
-neverallow可以阻止不合理的策略配置，因此可以作为安全防护手段，避免本业务的SELinux业务被恶意修改。
+neverallow可以阻止不合理的策略配置，因此可以作为安全防护手段，避免本业务的SELinux策略被恶意修改。
 
 例如，主体进程accesstoken_service的数据库文件SELinux类型为accesstoken_data_file。按业务安全需要，该数据库文件理论上只允许本进程读写，那么可以通过neverallow进行限制：
 ```text

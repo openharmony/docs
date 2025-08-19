@@ -1,5 +1,10 @@
 # FullScreenLaunchComponent
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @dutie123-->
+<!--Designer: @lmleon-->
+<!--Tester: @fredyuan0912-->
+<!--Adviser: @HelloCrease-->
 
 全屏启动原子化服务组件，当被拉起方授权使用方可以嵌入式运行原子化服务时，使用方全屏嵌入式运行原子化服务；未授权时，使用方跳出式拉起原子化服务。
 
@@ -147,10 +152,10 @@ import { window } from '@kit.ArkUI';
 
 const DOMAIN = 0x0000;
 
-@Entry({ storage : LocalStorage.getShared() })
+@Entry({ storage : new LocalStorage() })
 @Component
 struct Index {
-  storage = LocalStorage.getShared()
+  storage = new LocalStorage()
 
   build() {
     Row() {

@@ -1,10 +1,8 @@
-# @ohos.app.ability.childProcessManager (childProcessManager)
+# @ohos.app.ability.childProcessManager (Child Process Management)
 
 The childProcessManager module provides the child process management capability. Currently, it provides APIs to start a child process and is valid only for 2-in-1 devices and tablets.
 
-The created child process does not support the UI or the calling of context-related APIs.
-
-A maximum of 512 child processes can be started through this module (non-SELF_FORK mode) and [ChildProcess](c-apis-ability-childprocess.md).
+The created child process does not support the UI or the calling of context-related APIs. A maximum of 512 child processes can be started through this module (non-SELF_FORK mode) and [ChildProcess](c-apis-ability-childprocess.md).
 
 > **NOTE**
 >
@@ -198,7 +196,7 @@ The child process supports parameter transfer and asynchronous ArkTS API calls (
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 801 | Capability not supported. |
 | 16000050 | Internal error. |
-| 16000061  | Operation not supported. The API cannot be called in a child process. |
+| 16000061  | Operation not supported. |
 | 16000062  | The number of child processes exceeds the upper limit. |
 
 **Example**
@@ -309,7 +307,7 @@ After the entry function is executed, the child process is automatically destroy
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 16000050 | Internal error. |
-| 16000061  | Operation not supported. The API cannot be called in a child process. |
+| 16000061  | Operation not supported. |
 | 16000062  | The number of child processes exceeds the upper limit. |
 
 **Example**

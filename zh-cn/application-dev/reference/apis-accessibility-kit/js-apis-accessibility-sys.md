@@ -1,5 +1,12 @@
 # @ohos.accessibility (辅助功能)（系统接口）
 
+<!--Kit: Accessibility Kit-->
+<!--Subsystem: BarrierFree-->
+<!--Owner: @qiiiiiiian-->
+<!--Designer: @z7o-->
+<!--Tester: @A_qqq-->
+<!--Adviser: @w_Machine_cc-->
+
 本模块提供无障碍事件类型和无障碍节点元素可执行的操作。
 
 > **说明：**
@@ -121,6 +128,5 @@ import { accessibility } from '@kit.AccessibilityKit';
 | RECENT_TASK                | 17   | 显示最近任务。                  |
 | NOTIFICATION_CENTER        | 18   | 显示通知中心。                  |
 | CONTROL_CENTER             | 19   | 显示控制中心。                  |
-| COMMON                     | 20   | 不指定操作，用于主动聚焦、主动播报场景。 |
-| SPAN_CLICK                 | 21   | 对局部文本进行点击操作。             |
+| SPAN_CLICK                 | 20   | 对局部文本进行点击操作。             |
 

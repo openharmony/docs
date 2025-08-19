@@ -5,6 +5,8 @@
 >  **NOTE**
 >
 >  This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  
+>  After a pinch gesture is successfully triggered, all fingers must be lifted and pressed again to trigger the pinch gesture again.
 
 
 ## APIs
@@ -13,16 +15,24 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | fingers | number | No| Minimum number of fingers to trigger a pinch. The value ranges from 2 to 5.<br>Default value: **2**<br>While more fingers than the minimum number can be pressed to trigger the gesture, only the first fingers of the minimum number participate in gesture calculation.|
-| distance | number | No| Minimum recognition distance, in vp.<br>Default value: **5**<br>**NOTE**<br>Value range: [0, +∞). If the value is less than or equal to 0, the default value is used.|
-| isFingerCountLimited<sup>15+</sup> | boolean | No| Whether to enforce the exact number of fingers touching the screen. With the value **true**, the gesture recognition fails if the number of fingers touching the screen does not match the configured value of **fingers**. The gesture can only be successfully recognized if the number of fingers equals the configured minimum and the swipe distance meets the threshold. Note that only the first two fingers that touch the screen are considered for the gesture. If one of these fingers is lifted, the gesture recognition fails. For gestures that have already been successfully recognized, changing the number of fingers touching the screen will not trigger the [onActionUpdate](ts-basic-gestures-pinchgesture.md#events) event, but the [onActionEnd](ts-basic-gestures-pinchgesture.md#events) event can still be triggered.<br>Default value: **false**|
+| distance | number | No| Minimum recognition distance, in vp.<br>Default value: **5**<br>**NOTE**<br>Value range: [0, +∞). If the value is less than or equal to 0, it will be converted to the default value.|
+| isFingerCountLimited<sup>15+</sup> | boolean | No| Whether to enforce the exact number of fingers touching the screen. With the value **true**, the gesture recognition fails if the number of fingers touching the screen does not match the configured value of **fingers**. The gesture can only be successfully recognized if the number of fingers equals the configured minimum and the swipe distance meets the threshold. Note that only the first two fingers that touch the screen are considered for the gesture. If one of these fingers is lifted, the gesture recognition fails. For gestures that have already been successfully recognized, changing the number of fingers touching the screen will not trigger the **onActionUpdate** [event](ts-basic-gestures-pinchgesture.md#events), but the **onActionEnd** [event](ts-basic-gestures-pinchgesture.md#events) can still be triggered.<br>**true**: Enforce the exact number of fingers touching the screen.<br>**false**: Do not enforce the exact number of fingers touching the screen.<br>Default Value: **false**.|
 
 
 ## Events
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+>  **NOTE**
+>
+>  In **fingerList** of [GestureEvent](ts-gesture-settings.md#gestureevent), the index of a finger corresponds to its position, that is, the ID of a finger in **fingerList[index]** refers to its index. If a finger is pressed first and does not participate in triggering of the current gesture, its position in **fingerList** is left empty. You are advised to use **fingerInfos** when possible.
 
 | Name| Description|
 | -------- | -------- |
@@ -30,9 +40,11 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 | onActionUpdate(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the user moves the finger in the pinch gesture on the screen.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | onActionEnd(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the fingers used for the pinch gesture are lifted.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | onActionCancel(event: () =&gt; void) | Triggered when a tap cancellation event is received after the pinch gesture is recognized. No gesture event information is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| onActionCancel(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void)<sup>18+</sup> | Triggered when a tap cancellation event is received after the pinch gesture is recognized. Gesture event information is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| onActionCancel(event: Callback<[GestureEvent](ts-gesture-settings.md#gestureevent)>)<sup>18+</sup> | Triggered when a tap cancellation event is received after the pinch gesture is recognized. Gesture event information is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## Attributes
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type   |Description                                       |
 | ----  | ------  | ---------------------------------------- |
@@ -48,10 +60,10 @@ This example demonstrates the recognition of a three-finger pinch gesture using 
 @Entry
 @Component
 struct PinchGestureExample {
-  @State scaleValue: number = 1
-  @State pinchValue: number = 1
-  @State pinchX: number = 0
-  @State pinchY: number = 0
+  @State scaleValue: number = 1;
+  @State pinchValue: number = 1;
+  @State pinchX: number = 0;
+  @State pinchY: number = 0;
 
   build() {
     Column() {

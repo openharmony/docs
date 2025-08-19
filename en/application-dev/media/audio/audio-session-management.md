@@ -8,7 +8,7 @@ This topic describes the usage and precautions of the ArkTS APIs related to the 
 
 ## Obtaining an Audio Session Manager
 
-Create an **AudioSessionManager** instance. Before using any APIs of **AudioSessionManager**, you must call [getSessionManager](../../reference/apis-audio-kit/js-apis-audio.md#getsessionmanager12) to obtain an **AudioSessionManager** instance.
+Create an AudioSessionManager instance. Before using any APIs of AudioSessionManager, you must call [getSessionManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioManager.md#getsessionmanager12) to obtain an AudioSessionManager instance.
 
   ```ts
   import { audio } from '@kit.AudioKit';
@@ -18,9 +18,9 @@ Create an **AudioSessionManager** instance. Before using any APIs of **AudioSess
 
 ## Activating an Audio Session
 
-Call [AudioSessionManager.activateAudioSession](../../reference/apis-audio-kit/js-apis-audio.md#activateaudiosession12) to activate an audio session.
+Call [AudioSessionManager.activateAudioSession](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#activateaudiosession12) to activate an audio session.
 
-During the activation, specify an [audio session strategy](audio-playback-concurrency.md#audio-session-strategy). The strategy contains the **concurrencyMode** parameter, which is of the [AudioConcurrencyMode](../../reference/apis-audio-kit/js-apis-audio.md#audioconcurrencymode12) type and is used to declare the audio concurrency strategy.
+During the activation, specify an [audio session strategy](audio-playback-concurrency.md#audio-session-strategy). The strategy contains the **concurrencyMode** parameter, which is of the [AudioConcurrencyMode](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audioconcurrencymode12) type and is used to declare the audio concurrency strategy.
 
   ```ts
   import { audio } from '@kit.AudioKit';
@@ -39,7 +39,7 @@ During the activation, specify an [audio session strategy](audio-playback-concur
 
 ## Checking Whether an Audio Session Is Activated
 
-Call [isAudioSessionActivated](../../reference/apis-audio-kit/js-apis-audio.md#isaudiosessionactivated12) to check whether an audio session is activated.
+Call [isAudioSessionActivated](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#isaudiosessionactivated12) to check whether an audio session is activated.
 
   ```ts
   let isActivated = audioSessionManager.isAudioSessionActivated();
@@ -47,7 +47,7 @@ Call [isAudioSessionActivated](../../reference/apis-audio-kit/js-apis-audio.md#i
 
 ## Deactivating an Audio Session
 
-Call [deactivateAudioSession](../../reference/apis-audio-kit/js-apis-audio.md#deactivateaudiosession12) to deactivate an audio session.
+Call [deactivateAudioSession](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#deactivateaudiosession12) to deactivate an audio session.
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -61,9 +61,9 @@ Call [deactivateAudioSession](../../reference/apis-audio-kit/js-apis-audio.md#de
 
 ## Listening for Audio Session Deactivation Events
 
-Call [on('audioSessionDeactivated')](../../reference/apis-audio-kit/js-apis-audio.md#onaudiosessiondeactivated12) to listen for the [AudioSessionDeactivatedEvent](../../reference/apis-audio-kit/js-apis-audio.md#audiosessiondeactivatedevent12) event.
+Call [on('audioSessionDeactivated')](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#onaudiosessiondeactivated12) to listen for the [AudioSessionDeactivatedEvent](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiosessiondeactivatedevent12) event.
 
-When an audio session is deactivated (not proactively), the application receives [AudioSessionDeactivatedEvent](../../reference/apis-audio-kit/js-apis-audio.md#audiosessiondeactivatedevent12), which contains [AudioSessionDeactivatedReason](../../reference/apis-audio-kit/js-apis-audio.md#audiosessiondeactivatedreason12).
+When an audio session is deactivated (not proactively), the application receives [AudioSessionDeactivatedEvent](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiosessiondeactivatedevent12), which contains [AudioSessionDeactivatedReason](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audiosessiondeactivatedreason12).
 
 Upon this event, the application can perform operations based on service requirements, for example, releasing resources or reactivating the audio session.
 
@@ -77,7 +77,7 @@ Upon this event, the application can perform operations based on service require
 
 ## Canceling Listening for Audio Session Deactivation Events
 
-Call [off('audioSessionDeactivated')](../../reference/apis-audio-kit/js-apis-audio.md#offaudiosessiondeactivated12) to cancel listening for **AudioSessionDeactivatedEvent**.
+Call [off('audioSessionDeactivated')](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#offaudiosessiondeactivated12) to cancel listening for **AudioSessionDeactivatedEvent**.
 
   ```ts
   audioSessionManager.off('audioSessionDeactivated');

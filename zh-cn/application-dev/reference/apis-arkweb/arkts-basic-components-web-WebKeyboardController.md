@@ -1,10 +1,18 @@
 # Class (WebKeyboardController)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zourongchun-->
+<!--Designer: @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 控制自定义键盘的输入、删除、关闭等操作。示例代码参考[onInterceptKeyboardAttach](./arkts-basic-components-web-events.md#oninterceptkeyboardattach12)。
 
 > **说明：**
 >
-> - 本模块接口从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件首批接口从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 本Class首批接口从API version 12开始支持。
 >
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
@@ -44,7 +52,7 @@ deleteForward(length: number): void
 | ------ | -------- | ---- | ------------------------ |
 | length | number   | 是   | 从后往前删除Web输入框中指定长度的字符。<br>参数无取值范围，当参数值大于字符长度时，默认删除光标前面所有字符；参数值为负数时，不执行删除操作。 |
 
-## deleteBackward12+</sup>
+## deleteBackward<sup>12+</sup>
 
 deleteBackward(length: number): void
 

@@ -1,19 +1,30 @@
 # 订阅资源泄漏事件（C/C++）
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @xuxinao-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## 接口说明
 
-API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md)。
+本文介绍如何使用HiAppEvent提供的C/C++接口订阅资源泄漏事件。API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiAppEvent C API文档](../reference/apis-performance-analysis-kit/capi-hiappevent-h.md)。
 
-**订阅接口功能介绍：**
+**订阅接口功能介绍**：
 
-| 接口名                                                         | 描述                                         |
-|-------------------------------------------------------------| -------------------------------------------- |
-| int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher *watcher)   | 添加应用事件观察者，以添加对应用事件的订阅。 |
-| int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher *watcher) | 移除应用事件观察者，以移除对应用事件的订阅。 |
+| 接口名 | 描述 |
+| -------- | -------- |
+| int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher \*watcher) | 添加应用事件观察者，以添加对应用事件的订阅。 |
+| int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher \*watcher) | 移除应用事件观察者，以移除对应用事件的订阅。 |
 
 ## 开发步骤
 
-1. 新建Native C++工程，并将jsoncpp导入到新建工程内，目录结构如下：
+### 步骤一：新建工程
+
+1. 获取该示例工程依赖的jsoncpp文件，从[三方开源库jsoncpp代码仓](https://github.com/open-source-parsers/jsoncpp)下载源码的压缩包，并按照README的**Amalgamated source**中介绍的操作步骤得到jsoncpp.cpp、json.h和json-forwards.h三个文件。
+
+   在DevEco Studio中新建工程，选择“Native C++”工程。目录结构如下：
 
    ```yml
    entry:
@@ -36,7 +47,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                - Index.ets
    ```
 
-2. 编辑"CMakeLists.txt"文件，添加源文件及动态库：
+2. 编辑“CMakeLists.txt”文件，添加源文件及动态库：
 
    ```cmake
    # 新增jsoncpp.cpp(解析订阅事件中的json字符串)源文件
@@ -45,7 +56,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libhiappevent_ndk.z.so)
    ```
 
-3. 编辑"napi_init.cpp"文件，导入依赖的文件，并定义LOG_TAG：
+3. 编辑“napi_init.cpp”文件，导入依赖文件，并定义LOG_TAG：
 
    ```c++
    #include "napi/native_api.h"
@@ -57,11 +68,13 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    #define LOG_TAG "testTag"
    ```
 
-4. 订阅系统事件：
+### 步骤二：订阅系统事件
 
-    - onReceive类型观察者：
+1. 订阅系统事件：
 
-      编辑"napi_init.cpp"文件，定义onReceive类型观察者相关方法：
+   - onReceive类型观察者：
+
+      编辑“napi_init.cpp”文件，定义onReceive类型观察者相关方法：
 
       ```c++
       //定义一变量，用来缓存创建的观察者的指针。
@@ -96,7 +109,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s", bundleVersion.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.memory=%{public}s", memory.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s", externalLog.c_str());
-                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit.c_str());
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}s", logOverLimit.c_str());
                       }
                   }
               }
@@ -117,11 +130,11 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
           return {};
       }
       ```
-      
-    - onTrigger类型观察者：
-    
-      编辑"napi_init.cpp"文件，定义OnTrigger类型观察者相关方法：
-    
+
+   - onTrigger类型观察者：
+
+      编辑“napi_init.cpp”文件，定义OnTrigger类型观察者相关方法：
+
       ```c++
       //定义一变量，用来缓存创建的观察者的指针。
       static HiAppEvent_Watcher *systemEventWatcher; 
@@ -157,7 +170,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s", bundleVersion.c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.memory=%{public}s", memory.c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s", externalLog.c_str());
-                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit.c_str());
+                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}s", logOverLimit.c_str());
                   }
               }
           }
@@ -185,10 +198,10 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
           return {};
       }
       ```
-    
-5. 将RegisterWatcher注册为ArkTS接口：
 
-   编辑"napi_init.cpp"文件，将RegisterWatcher注册为ArkTS接口：
+2. 将RegisterWatcher注册为ArkTS接口：
+
+   编辑“napi_init.cpp”文件，将RegisterWatcher注册为ArkTS接口：
 
    ```c++
    static napi_value Init(napi_env env, napi_value exports)
@@ -201,13 +214,13 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-   编辑"index.d.ts"文件，定义ArkTS接口：
+   编辑“index.d.ts”文件，定义ArkTS接口：
 
    ```typescript
    export const registerWatcher: () => void;
    ```
 
-6. 编辑"EntryAbility.ets"文件，在onCreate()函数中新增接口调用：
+3. 编辑“EntryAbility.ets”文件，在onCreate()函数中添加接口调用：
 
    ```typescript
    import testNapi from 'libentry.so'
@@ -220,24 +233,20 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-7. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，添加按钮并在其onClick函数构造资源泄漏场景，以触发资源泄漏事件。
-   开发者可通过[hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12)设置本应用的内存限制，以便构造内存泄漏故障，触发系统资源泄漏事件上报。实际应用生产环境中不建议使用该接口。
-如需获取profiler日志，需要在“开发者选项”中打开“系统资源泄漏日志”开关（打开或关闭开关均需重启设备）。
+### 步骤三：测试资源泄漏事件
 
-   <!--RP1-->
-   资源泄漏问题定位可参考[内存泄漏分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-insight-session-snapshot)
-   <!--RP1End-->
+1. 编辑工程中的“entry > src > main > ets > pages > Index.ets”文件，添加按钮并在其 `onClick` 函数中构造资源泄漏场景，以触发资源泄漏事件。
 
-   接口示例代码如下：
+   此处需要使用[hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12)设置内存限制，造成内存泄漏，同步在“开发者选项”中打开“系统资源泄漏日志”(开关状态变更后需重启设备)。接口示例代码如下：
 
    ```ts
-    import hidebug from "@ohos.hidebug";
-
+    import { hidebug } from '@kit.PerformanceAnalysisKit';
+   
     @Entry
     @Component
     struct Index {
       @State leakedArray: string[][] = [];
-
+   
       build() {
         Column() {
           Row() {
@@ -258,10 +267,11 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     }
    ```
 
-8. 点击DevEco Studio界面中的运行按钮，运行应用工程，点击pss leak按钮，等待15~30分钟，会上报应用内存泄漏事件。
-   同一个应用，24小时内至多上报一次内存泄漏，如果短时间内要二次上报，需要重启设备。
+2. 单击DevEco Studio界面中的运行按钮，运行应用工程，单击 `pss leak` 按钮后，等待15到30分钟，系统将上报应用内存泄漏事件。
 
-9. 内存泄漏事件上报后，可以在Log窗口看到对系统事件数据的处理日志：
+   同一个应用，24小时内至多上报一次资源泄漏事件，如果短时间内要二次上报，需要重启设备。
+
+3. 内存泄漏事件上报后，可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
    08-07 03:53:35.314 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.domain=OS
@@ -278,24 +288,25 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.log_over_limit=false
    ```
 
-10. 移除事件观察者：
+### 步骤四：移除观察者
 
-    ```c++
-    static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
-        // 使观察者停止监听事件
-        OH_HiAppEvent_RemoveWatcher(systemEventWatcher);
-        return {};
-    }
-    ```
+1. 移除事件观察者：
 
-11. 销毁事件观察者：
+   ```c++
+   static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
+       // 移除观察者以停止监听事件
+       OH_HiAppEvent_RemoveWatcher(systemEventWatcher);
+       return {};
+   }
+   ```
 
-    ```c++
-    static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
-        // 销毁创建的观察者，并置systemEventWatcher为nullptr。
-        OH_HiAppEvent_DestroyWatcher(systemEventWatcher);
-        systemEventWatcher = nullptr;
-        return {};
-    }
-    ```
+2. 销毁事件观察者：
 
+   ```c++
+   static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
+       // 销毁创建的观察者，并置systemEventWatcher为nullptr。
+       OH_HiAppEvent_DestroyWatcher(systemEventWatcher);
+       systemEventWatcher = nullptr;
+       return {};
+   }
+   ```

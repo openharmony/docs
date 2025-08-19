@@ -4,7 +4,7 @@
 
 ### Introduction
 
-After an application switches to the background or an application process is terminated, it may have scheduled tasks for reminding users, for example, flash sale reminders for shopping applications. To meet this requirement, the system provides agent-powered reminders (implemented by **reminderAgentManager**). When the application switches to the background or the process is terminated, the system sends reminders on behalf of the application. Currently, the following reminder types are supported: timer, calendar, and alarm.<!--RP1--><!--RP1End-->
+After an application switches to the background or an application process is terminated, the system can still send scheduled notifications on behalf of the application through reminderAgentManager. When the application switches to the background or the process is terminated, the system sends reminders on behalf of the application. Currently, the following reminder types are supported: timer, calendar, and alarm.<!--RP1--><!--RP1End-->
 
 - Timer: reminders based on countdown timers
 
@@ -14,7 +14,9 @@ After an application switches to the background or an application process is ter
 
 ### Constraints
 
-- **Quantity limit**: A third-party application supports a maximum of 30 valid reminders.<!--Del--> A system application supports a maximum of 10,000 valid reminders. The entire system supports a maximum of 12,000 valid reminders.<!--DelEnd-->
+<!--RP2-->
+- **Maximum reminders**: 30 for regular applications, 10,000 for system applications, and 12,000 total for the system.
+<!--RP2End-->
 
 > **NOTE**
 >
@@ -24,8 +26,10 @@ After an application switches to the background or an application process is ter
 
 - **Redirection limit**: The application that is redirected to upon a click on the notification must be the application that requested the agent-powered reminder.
 
-<!--RP2--><!--RP2End-->
+<!--RP3--><!--RP3End-->
 
+## Relationship with Other Kits
+- Notifications are published using Notification Kit. For notification styles, see [Notification Style](../notification/notification-overview.md#notification-style).
 
 ## Available APIs
 

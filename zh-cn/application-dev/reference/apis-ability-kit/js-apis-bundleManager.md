@@ -1,4 +1,10 @@
 # @ohos.bundle.bundleManager (bundleManager模块)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供应用信息的查询能力，支持应用包信息[BundleInfo](js-apis-bundleManager-bundleInfo.md)、应用程序信息[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)、UIAbility组件信息[AbilityInfo](js-apis-bundleManager-abilityInfo.md)、ExtensionAbility组件信息[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)等信息的查询。
 
@@ -62,15 +68,13 @@ import { bundleManager } from '@kit.AbilityKit';
 |<!--DelRow--> ADS_SERVICE<sup>11+</sup> | 20 | AdsServiceExtensionAbility：广告服务扩展能力，对外提供后台自定义广告业务服务，仅系统应用支持。 |
 | EMBEDDED_UI<sup>12+</sup> | 21 | [EmbeddedUIExtensionAbility](js-apis-app-ability-embeddedUIExtensionAbility.md)：嵌入式UI扩展能力，提供跨进程界面嵌入的能力。 |
 | INSIGHT_INTENT_UI<sup>12+</sup> | 22 | InsightIntentUIExtensionAbility：为开发者提供能被小艺意图调用，以窗口形态呈现内容的扩展能力。 |
-| FENCE<sup>18+</sup> | 24 | [FenceExtensionAbility](../apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md)：为开发者提供地理围栏相关的能力，继承自ExtensionAbility。 |
+| FENCE<sup>18+</sup> | 24 | [FenceExtensionAbility](../apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md)：为开发者提供地理围栏相关的能力，继承自ExtensionAbility。 |<!--RP2--><!--RP2End-->
 | ASSET_ACCELERATION<sup>18+</sup> | 26 | AssetAccelerationExtensionAbility：资源预下载扩展能力，提供在设备闲时状态，进行后台资源预下载的能力。 |
 | FORM_EDIT<sup>18+</sup> | 27 | [FormEditExtensionAbility](../apis-form-kit/js-apis-app-form-formEditExtensionAbility.md)：为开发者提供卡片编辑的能力，继承自UIExtensionAbility。 |
-| DISTRIBUTED<sup>18+</sup> | 28 | [DistributedExtensionAbility](../apis-distributedservice-kit/js-apis-distributedExtensionAbility.md)：提供分布式相关扩展能力，提供分布式创建、销毁、连接的生命周期回调。 |
+| DISTRIBUTED<sup>20+</sup> | 28 | [DistributedExtensionAbility](../apis-distributedservice-kit/js-apis-distributedExtensionAbility.md)：提供分布式相关扩展能力，提供分布式创建、销毁、连接的生命周期回调。 |
 | APP_SERVICE<sup>20+</sup> | 29 | [AppServiceExtensionAbility](../apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)：为企业普通应用提供后台服务能力。 |
 | LIVE_FORM<sup>20+</sup> | 30 | [LiveFormExtensionAbility](../apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)：互动卡片相关扩展能力，提供互动卡片创建、销毁的生命周期回调。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
-| SELECTION<sup>20+</sup> | 31 | [SelectionExtensionAbility](../apis-basic-services-kit/js-apis-selectionInput-selectionExtensionAbility.md)：划词相关扩展能力，提供连接和断开回调。 |
 | UNSPECIFIED      | 255 | 不指定类型<!--Del-->，配合[queryExtensionAbilityInfo接口](js-apis-bundleManager-sys.md#bundlemanagerqueryextensionabilityinfo)可以查询所有类型的ExtensionAbility<!--DelEnd-->。 |
-<!--RP2--><!--RP2End-->
 
 ## PermissionGrantState
 
@@ -217,7 +221,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | GET_ABILITY_INFO_WITH_METADATA    | 0x00000004 | 获取包含metadata的AbilityInfo。                            |
 | GET_ABILITY_INFO_WITH_DISABLE     | 0x00000008 | 获取被禁用Ability对应的AbilityInfo。                   |
 | GET_ABILITY_INFO_ONLY_SYSTEM_APP  | 0x00000010 | 获取系统应用对应的AbilityInfo。                           |
-| GET_ABILITY_INFO_WITH_APP_LINKING | 0x00000040 | 获取通过[域名校验](../../quick-start/module-configuration-file.md#skills标签)筛选的AbilityInfo。          |
+| GET_ABILITY_INFO_WITH_APP_LINKING | 0x00000040 | 获取通过<!--RP3-->[域名校验](../../application-models/app-linking-startup.md#实现原理)<!--RP3End-->筛选的AbilityInfo。          |
 | GET_ABILITY_INFO_WITH_SKILL       | 0x00000080 | 获取包含skills的AbilityInfo。                    |
 
 ## bundleManager.getBundleInfoForSelf
@@ -339,7 +343,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | moduleName   | string                        | 是   | 表示Module名称。                                     |
 | abilityName  | string                        | 是   | 表示UIAbility组件的名称。                                    |
-| metadataName | string                        | 是   | 表示UIAbility组件的[元信息名称](../../quick-start/module-configuration-file.md#metadata标签)，即module.json5配置文件中abilities标签下的metadata标签的name。                                  |
+| metadataName | string                        | 是   | 表示UIAbility组件的[元信息名称](../../quick-start/module-configuration-file.md#metadata标签)，即module.json5配置文件中[abilities标签](../../quick-start/module-configuration-file.md#abilities标签)下的metadata标签的name。                                  |
 | callback     | AsyncCallback<Array\<string>> | 是   | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，当获取成功时，err为null，data为获取到的Array\<string>；否则为错误对象。 |
 
 **错误码：**
@@ -397,7 +401,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 | ------------ | ------ | ---- | -------------------------- |
 | moduleName   | string | 是   | 表示Module名称。   |
 | abilityName  | string | 是   | 表示UIAbility组件的名称。  |
-| metadataName | string | 否   | 表示UIAbility组件的元信息名称，即module.json5配置文件中abilities标签下的metadata标签的name，默认值为空。 |
+| metadataName | string | 否   | 表示UIAbility组件的元信息名称，即module.json5配置文件中[abilities标签](../../quick-start/module-configuration-file.md#abilities标签)下的metadata标签的name，默认值为空。 |
 
 **返回值：**
 
@@ -480,7 +484,7 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 | ------------ | ------ | ---- | -------------------------- |
 | moduleName   | string | 是   | 表示Module名称。   |
 | abilityName  | string | 是   | 表示UIAbility组件的名称。  |
-| metadataName | string | 否   | 表示UIAbility组件的元信息名称，即module.json5配置文件中abilities标签下的metadata标签的name，默认值为空。 |
+| metadataName | string | 否   | 表示UIAbility组件的元信息名称，即module.json5配置文件中[abilities标签](../../quick-start/module-configuration-file.md#abilities标签)下的metadata标签的name，默认值为空。 |
 
 **返回值：**
 
@@ -557,7 +561,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 | -------------------- | ----------------------------- | ---- | ------------------------------------------------------------ |
 | moduleName           | string                        | 是   | 表示Module名称。                                   |
 | extensionAbilityName | string                        | 是   | 表示ExtensionAbility组件的名称。                         |
-| metadataName         | string                        | 是   | 表示ExtensionAbility组件的元信息名称，即module.json5配置文件中extensionAbilities标签下的metadata标签的name。                                 |
+| metadataName         | string                        | 是   | 表示ExtensionAbility组件的元信息名称，即module.json5配置文件中[extensionAbilities标签](../../quick-start/module-configuration-file.md#extensionabilities标签)下的metadata标签的name。                                 |
 | callback             | AsyncCallback<Array\<string>> | 是   | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，当获取成功时，err为null，data为获取到的Array\<string>；否则为错误对象。 |
 
 **错误码：**
@@ -614,7 +618,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 | -------------------- | ------ | ---- | ---------------------------------- |
 | moduleName           | string | 是   | 表示Module名称。           |
 | extensionAbilityName | string | 是   | 表示ExtensionAbility组件的名称。 |
-| metadataName         | string | 否   | 表示ExtensionAbility组件的元信息名称，即module.json5配置文件中extensionAbilities标签下的metadata标签的name，默认值为空。         |
+| metadataName         | string | 否   | 表示ExtensionAbility组件的元信息名称，即module.json5配置文件中[extensionAbilities标签](../../quick-start/module-configuration-file.md#extensionabilities标签)下的metadata标签的name，默认值为空。         |
 
 **返回值：**
 
@@ -685,7 +689,7 @@ getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: strin
 | -------------------- | ------ | ---- | ---------------------------------- |
 | moduleName           | string | 是   | 表示Module名称。           |
 | extensionAbilityName | string | 是   | 表示ExtensionAbility组件的名称。 |
-| metadataName         | string | 否   | 表示ExtensionAbility组件的元信息名称，即module.json5配置文件中extensionAbilities标签下的metadata标签的name，默认值为空。 |
+| metadataName         | string | 否   | 表示ExtensionAbility组件的元信息名称，即module.json5配置文件中[extensionAbilities标签](../../quick-start/module-configuration-file.md#extensionabilities标签)下的metadata标签的name，默认值为空。 |
 
 **返回值：**
 
@@ -1154,7 +1158,7 @@ try {
 
 getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 
-以同步方法根据给定的bundleName、bundleFlags获取BundleInfo。
+以同步方法根据给定的bundleName、bundleFlags获取调用方所在用户下的BundleInfo。
 
 获取调用方自身的信息时不需要权限。
 
@@ -1467,6 +1471,8 @@ getAbilityInfo(uri: string, abilityFlags: number): Promise\<Array\<AbilityInfo>>
 **需要权限：** ohos.permission.GET_ABILITY_INFO
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**设备行为差异：** 该接口仅在PC/2in1设备中可正常调用，在其他设备中返回201错误码。
 
 **参数：**
 

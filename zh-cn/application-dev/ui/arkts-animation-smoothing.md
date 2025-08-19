@@ -1,4 +1,10 @@
 # 动画衔接
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 
 UI界面除了运行动画之外，还承载着与用户进行实时交互的功能。当用户行为根据意图变化发生改变时，UI界面应做到即时响应。例如用户在应用启动过程中，上滑退出，那么启动动画应该立即过渡到退出动画，而不应该等启动动画完成后再退出，从而减少用户等待时间。对于桌面翻页类从跟手到离手触发动画的场景，离手后动画的初始速度应承继手势速度，避免由于速度不接续导致停顿感的产生。针对以上场景，系统已提供动画与动画、手势与动画之间的衔接能力，保证各类场景下动画平稳光滑地过渡的同时，尽可能降低开发难度。
@@ -10,7 +16,7 @@ UI界面除了运行动画之外，还承载着与用户进行实时交互的功
 ```ts
 import { curves } from '@kit.ArkUI';
 
-class SetSlt {
+class SetAnimationVariables {
   isAnimation: boolean = true
 
   set(): void {
@@ -22,7 +28,7 @@ class SetSlt {
 @Component
 struct AnimationToAnimationDemo {
   // 第一步：声明相关状态变量
-  @State SetAnimation: SetSlt = new SetSlt();
+  @State animationController: SetAnimationVariables = new SetAnimationVariables();
 
   build() {
     Column() {
@@ -37,8 +43,8 @@ struct AnimationToAnimationDemo {
         .height(100)
         .scale({
           // 第二步：将状态变量设置到相关可动画属性接口
-          x: this.SetAnimation.isAnimation ? 2 : 1,
-          y: this.SetAnimation.isAnimation ? 2 : 1
+          x: this.animationController.isAnimation ? 2 : 1,
+          y: this.animationController.isAnimation ? 2 : 1
         })
         .animation({ curve: curves.springMotion(0.4, 0.8) }) // 第四步：通过animation接口开启动画，动画终点值改变时，系统自动添加衔接动画
 
@@ -46,7 +52,7 @@ struct AnimationToAnimationDemo {
         .margin({ top: 200 })
         .onClick(() => {
           // 第三步：通过点击事件改变状态变量值，影响可动画属性值
-          this.SetAnimation.set()
+          this.animationController.set()
         })
     }
     .width('100%')

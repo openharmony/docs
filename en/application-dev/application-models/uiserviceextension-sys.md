@@ -7,8 +7,8 @@
 In this document, the component that starts or connects to a UIServiceExtensionAbility is called the client, and the UIServiceExtensionAbility is called the server.
 
 An application can use a UIServiceExtensionAbility in two modes:
-- Call [startUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartuiserviceextensionability14) in the [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md), [UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md), or [ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md) class to start a UIServiceExtensionAbility.
-- Call [connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectuiserviceextensionability14) in the [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) or [UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md) class to connect to a UIServiceExtensionAbility.
+- Call [startUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startuiserviceextensionability14) in the [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md), [UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md), or [ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md) class to start a UIServiceExtensionAbility.
+- Call [connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectuiserviceextensionability14) in the [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) or [UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md) class to connect to a UIServiceExtensionAbility.
 
 Note the following:
 
@@ -19,9 +19,9 @@ Note the following:
 
 ## Lifecycle
 
-The UIServiceExtensionAbility provides the following lifecycle callbacks: [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityoncreate), [onWindowWillCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityonwindowwillcreate), [onWindowDidCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityonwindowdidcreate), [onRequest()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityonrequest), [onConnect()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityonconnect), [onDisconnect()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityondisconnect), [onData()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityondata), and [onDestroy()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityondestroy). Override them as required. The figure below shows the lifecycle transitions.
+The UIServiceExtensionAbility provides the following lifecycle callbacks: [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#oncreate), [onWindowWillCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#onwindowwillcreate), [onWindowDidCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#onwindowdidcreate), [onRequest()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#onrequest), [onConnect()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#onconnect), [onDisconnect()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#ondisconnect), [onData()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#ondata), and [onDestroy()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#ondestroy). Override them as required. The figure below shows the lifecycle transitions.
 
-  **Figure 1** UIServiceExtensionAbility lifecycle
+**Figure 1** UIServiceExtensionAbility lifecycle
 
 ![UIServiceExtensionAbility-lifecycle](figures/UIServiceExtension-lifecycle.png)
 
@@ -34,10 +34,10 @@ The UIServiceExtensionAbility provides the following lifecycle callbacks: [onCre
   > **NOTE**
   >
   > If the UIServiceExtensionAbility has been created, starting it again does not trigger the **onCreate()** callback.
-  
+
 - **onRequest**
   
-  This callback is invoked when another component calls [startUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartuiserviceextensionability14) to start a UIServiceExtensionAbility. After This callback is invoked, the UIServiceExtensionAbility is started and runs in the foreground. This callback is invoked each time [startUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartuiserviceextensionability14) is called.
+  This callback is invoked when another component calls [startUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startuiserviceextensionability14) to start a UIServiceExtensionAbility. After This callback is invoked, the UIServiceExtensionAbility is started and runs in the foreground. This callback is invoked each time [startUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startuiserviceextensionability14) is called.
 
 - **onWindowWillCreate**
 
@@ -47,11 +47,11 @@ The UIServiceExtensionAbility provides the following lifecycle callbacks: [onCre
 
 - **onWindowDidCreate**
 
-  This callback is invoked when a window is created. You can operate the window through a [Window](../reference/apis-arkui/js-apis-window-sys.md#window) object. You can use [window.on('windowVisibilityChange')](../reference/apis-arkui/js-apis-window.md#onwindowvisibilitychange11) to bind and process window events, such as window showing, hiding, and destruction.
+  This callback is invoked when a window is created. You can operate the window through a [Window](../reference/apis-arkui/arkts-apis-window-Window.md) object. You can use [window.on('windowVisibilityChange')](../reference/apis-arkui/arkts-apis-window-Window.md#onwindowvisibilitychange11) to bind and process window events, such as window showing, hiding, and destruction.
 
 - **onConnect**
 
-  This callback is invoked when another component calls [connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectuiserviceextensionability14) to connect to a UIServiceExtensionAbility. In this callback, a remote proxy object, namely, [UIServiceHostProxy](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md), is returned, through which the server communicates with the client. For the same client, if the values of **DeviceId**, **BundleName**, **ModuleName**, and **AbilityName** in the want object and the callback object are the same, [onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect) is invoked only for the first connection. If any of them is different, [onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect) is invoked again.
+  This callback is invoked when another component calls [connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectuiserviceextensionability14) to connect to a UIServiceExtensionAbility. In this callback, a remote proxy object, namely, [UIServiceHostProxy](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md), is returned, through which the server communicates with the client. For the same client, if the values of **DeviceId**, **BundleName**, **ModuleName**, and **AbilityName** in the want object and the callback object are the same, [onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#onconnect) is invoked only for the first connection. If any of them is different, [onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#onconnect) is invoked again.
 
 - **onData**
 
@@ -59,7 +59,7 @@ The UIServiceExtensionAbility provides the following lifecycle callbacks: [onCre
 
 - **onDisconnect**
 
-  This callback is invoked when the connection is interrupted, which occurs when the client exits or [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectuiserviceextensionability14) is called.
+  This callback is invoked when the connection is interrupted, which occurs when the client exits or [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectuiserviceextensionability14) is called.
 
 - **onDestroy**
   
@@ -95,29 +95,36 @@ To manually create a UIServiceExtensionAbility in a project in DevEco Studio, pe
     import { common, UIServiceExtensionAbility, Want } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { window } from '@kit.ArkUI';
-    
+
     export default class UIServiceExtAbility extends UIServiceExtensionAbility {
       // Create a UIServiceExtensionAbility.
       onCreate(want: Want) {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
       }
+
       // Callback for request processing.
       onRequest(want: Want, startId: number) {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onRequest');
       }
+
       // Callback invoked when a connection is set up.
       onConnect(want: Want, proxy: common.UIServiceHostProxy) {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onConnect');
       }
+
       // Callback invoked when a connection is interrupted.
       onDisconnect(want: Want, proxy: common.UIServiceHostProxy) {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDisconnect');
       }
+
       // Callback invoked when a window is about to create.
       onWindowWillCreate(config: window.ExtensionWindowConfig): void {
-        hilog.info(0x0000, TestTag, '%{public}s', 'Ability onWindowWillCreate');
+        hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowWillCreate');
         let rect: window.Rect = {
-          left: 100, top: 100, width: 500, height: 500
+          left: 100,
+          top: 100,
+          width: 500,
+          height: 500
         };
         config.windowRect = rect;
         // Create a subwindow.
@@ -129,19 +136,22 @@ To manually create a UIServiceExtensionAbility in a project in DevEco Studio, pe
           decorEnabled: true,
           // Whether the window is a modal window.
           isModal: false
-        }
-        hilog.info(0x0000, TestTag, '%{public}s', 'Ability onWindowWillCreate end');
+        };
+        hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowWillCreate end');
       }
+
       // Callback invoked when a window is created.
       onWindowDidCreate(window: window.Window) {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowDidCreate');
-        window.setUIContent('uiservice/page/WindowPage')
-        window.showWindow()
+        window.setUIContent('uiservice/page/WindowPage');
+        window.showWindow();
       }
+
       // Callback invoked to receive data.
       onData(proxy: common.UIServiceHostProxy, data: Record<string, Object>) {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onData');
       }
+
       // Callback invoked to destroy the instance.
       onDestroy() {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
@@ -171,7 +181,7 @@ To manually create a UIServiceExtensionAbility in a project in DevEco Studio, pe
 
 ### Starting a UIServiceExtensionAbility
 
-An application calls [startUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartuiserviceextensionability14) to start a UIServiceExtensionAbility. The [onRequest()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityonrequest) callback is invoked, through which the background service receives the **Want** object passed by the caller. Once the UIServiceExtensionAbility is started, its lifecycle is independent of the client. In other words, even if the client is destroyed, the background service remains alive. However, the service is destroyed if the window fails to be created or is destroyed. Therefore, the background service must be stopped by calling [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiserviceExtensionContext-sys.md#uiserviceextensioncontextterminateself) of [UIServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiserviceExtensionContext-sys.md) when its work is complete.
+An application calls [startUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startuiserviceextensionability14) to start a UIServiceExtensionAbility. The [onRequest()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#onrequest) callback is invoked, through which the background service receives the **Want** object passed by the caller. Once the UIServiceExtensionAbility is started, its lifecycle is independent of the client. In other words, even if the client is destroyed, the background service remains alive. However, the service is destroyed if the window fails to be created or is destroyed. Therefore, the background service must be stopped by calling [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiserviceExtensionContext-sys.md#uiserviceextensioncontextterminateself) of [UIServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiserviceExtensionContext-sys.md) when its work is complete.
 
 Start a new UIServiceExtensionAbility in a system application. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -198,12 +208,14 @@ struct Index {
             try {
               // Start the UIServiceExtensionAbility.
               context.startUIServiceExtensionAbility(startWant).then(() => {
-                console.log('startUIServiceExtensionAbility success');
+                console.info(`startUIServiceExtensionAbility success.`);
               }).catch((error: BusinessError) => {
-                console.log('startUIServiceExtensionAbility error', JSON.stringify(error));
+                console.error(`startUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
               })
             } catch (err) {
-              console.log('startUIServiceExtensionAbility failed', JSON.stringify(err));
+              let code = (err as BusinessError).code;
+              let msg = (err as BusinessError).message;
+              console.error(`startUIServiceExtensionAbility failed, err code: ${code}, err msg: ${msg}.`);
             }
           })
       }
@@ -214,11 +226,11 @@ struct Index {
 
 ### Connecting to a UIServiceExtensionAbility
 
-An application can use [connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectuiserviceextensionability14) to connect to a service (specified in the [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) object). The [onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect) callback is invoked, through which the service receives the [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) object passed by the caller. In this way, a connection is established.
+An application can use [connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectuiserviceextensionability14) to connect to a service (specified in the [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) object). The [onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#onconnect) callback is invoked, through which the service receives the [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) object passed by the caller. In this way, a connection is established.
 
-When the client calls [connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectuiserviceextensionability14) to connect to the server, the client receives a [UIServiceProxy](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md) object returned by the server and saves it. Through this proxy object, the client sends data to the server, and disconnects from the server by calling [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectuiserviceextensionability14).
+When the client calls [connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectuiserviceextensionability14) to connect to the server, the client receives a [UIServiceProxy](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md) object returned by the server and saves it. Through this proxy object, the client sends data to the server, and disconnects from the server by calling [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectuiserviceextensionability14).
 
-- Call [connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectuiserviceextensionability14) to connect to a UIServiceExtensionAbility. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
+- Call [connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectuiserviceextensionability14) to connect to a UIServiceExtensionAbility. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
     ```ts
     import { common, Want } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -243,26 +255,26 @@ When the client calls [connectUIServiceExtensionAbility()](../reference/apis-abi
             // Define a callback.
             const callback: common.UIServiceExtensionConnectCallback = {
               onData: (data: Record<string, Object>): void => {
-                console.log('onData:', JSON.stringify(data));
+                console.info(`onData, data: ${JSON.stringify(data)}.`);
               },
               onDisconnect: (): void => {
-                console.log('onDisconnect');
+                console.info(`onDisconnect.`);
               }
             };
             // Connect to the UIServiceExtensionAbility.
             context.connectUIServiceExtensionAbility(want, callback).then((uiServiceProxy: common.UIServiceProxy) => {
               this.uiServiceProxy = uiServiceProxy;
-              console.log('connectUIServiceExtensionAbility success');
+              console.info(`connectUIServiceExtensionAbility success.`);
             }).catch((error: BusinessError) => {
-              console.log('connectUIServiceExtensionAbility failed', JSON.stringify(error));
-            })
+              console.error(`connectUIServiceExtensionAbility failed, err code:${error.code}, err msg: ${error.message}.`);
+            });
           })
         }
       }
     }
     ```
 
-- Call [disconnectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectuiserviceextensionability14) to disconnect from a UIServiceExtensionAbility.
+- Call [disconnectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectuiserviceextensionability14) to disconnect from a UIServiceExtensionAbility.
     ```ts
     import { common } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -281,10 +293,10 @@ When the client calls [connectUIServiceExtensionAbility()](../reference/apis-abi
             const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             // this.uiServiceProxy is the proxy object saved during connection.
             context.disconnectUIServiceExtensionAbility(this.uiServiceProxy).then(() => {
-              console.log('disconnectUIServiceExtensionAbility success');
+              console.info(`disconnectUIServiceExtensionAbility success.`);
             }).catch((error: BusinessError) => {
-              console.log('disconnectUIServiceExtensionAbility failed', JSON.stringify(error));
-            })
+              console.error(`disconnectUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
+            });
           })
         }
       }
@@ -297,8 +309,8 @@ When the client calls [connectUIServiceExtensionAbility()](../reference/apis-abi
 
 After a UIServiceExtensionAbility is started, the following operations are possible:
 
-1. The client calls [connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md#uiextensioncontextconnectuiserviceextensionability14) to obtain a [UIServiceProxy](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md) object, through which it can send data to the server.
-2. The server obtains a [UIServiceHostProxy](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md) object through the [onConnect()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityonconnect) callback and sends data to the client through this proxy.
+1. The client calls [connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md#connectuiserviceextensionability14) to obtain a [UIServiceProxy](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md) object, through which it can send data to the server.
+2. The server obtains a [UIServiceHostProxy](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md) object through the [onConnect()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#onconnect) callback and sends data to the client through this proxy.
 
 ![UIServiceExtensionAbility-bidirectionalcommunication](figures/UIServiceExtension-bidirectionalcommunication.png)
 
@@ -306,21 +318,21 @@ After a UIServiceExtensionAbility is started, the following operations are possi
 ### Communication Between the Client and Server
 - Data transmission on the client
 
-  The client connects to the server through [connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md#uiextensioncontextconnectuiserviceextensionability14) and obtains a [UIServiceProxy](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md) object. The client calls [sendData()](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md#uiserviceproxysenddata) of the proxy object to send data to the server. The server receives data through the [onData()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityondata) callback.
+  The client connects to the server through [connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md#connectuiserviceextensionability14) and obtains a [UIServiceProxy](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md) object. The client calls [sendData()](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md#uiserviceproxysenddata) of the proxy object to send data to the server. The server receives data through the [onData()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#ondata) callback.
     ```ts
-    import { common, Want} from '@kit.AbilityKit';
+    import { common, Want } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
     @Entry
     @Component
     struct Index {
       comProxy: common.UIServiceProxy | null = null;
-      connectCallback : common.UIServiceExtensionConnectCallback = {
-        onData:(data: Record<string, Object>) => {
-          console.log("received data", JSON.stringify(data));
+      connectCallback: common.UIServiceExtensionConnectCallback = {
+        onData: (data: Record<string, Object>) => {
+          console.info(`onData, data: ${JSON.stringify(data)}.`);
         },
-        onDisconnect:() => {
-          console.log("onDisconnect");
+        onDisconnect: () => {
+          console.info(`onDisconnect.`);
         }
       }
 
@@ -328,31 +340,37 @@ After a UIServiceExtensionAbility is started, the following operations are possi
         Column() {
           Row() {
             // Create a Connect button.
-            Button("connect ability")
+            Button('connect ability')
               .enabled(true)
               .onClick(() => {
                 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-                let startWant:Want = {
+                let startWant: Want = {
                   bundleName: 'com.acts.uiserviceextensionability',
                   abilityName: 'UiServiceExtAbility',
                 };
                 try {
                   // Connect to the UIServiceExtensionAbility.
-                  context.connectUIServiceExtensionAbility(startWant, this.connectCallback).then((proxy: common.UIServiceProxy) => {
-                    this.comProxy = proxy;
-                    let formData: Record<string, string> = {
-                      'test': 'test'
-                    };
-                    try {
-                      this.comProxy.sendData(formData);
-                    } catch (err) {
-                      console.log('sendData failed', JSON.stringify(err));
-                    };
-                  }).catch((err: BusinessError) => {
-                    console.log("connectUIServiceExtensionAbility failed", JSON.stringify(err));
-                  });
-                } catch(err) {
-                  console.log("connectUIServiceExtensionAbility failed", JSON.stringify(err));
+                  context.connectUIServiceExtensionAbility(startWant, this.connectCallback)
+                    .then((proxy: common.UIServiceProxy) => {
+                      this.comProxy = proxy;
+                      let formData: Record<string, string> = {
+                        'test': 'test'
+                      };
+                      try {
+                        this.comProxy.sendData(formData);
+                      } catch (err) {
+                        let code = (err as BusinessError).code;
+                        let msg = (err as BusinessError).message;
+                        console.error(`sendData failed, err code: ${code}, err msg: ${msg}.`);
+                      }
+                    })
+                    .catch((err: BusinessError) => {
+                      console.error(`connectUIServiceExtensionAbility failed, err code: ${err.code}, err msg: ${err.message}.`);
+                    });
+                } catch (err) {
+                  let code = (err as BusinessError).code;
+                  let msg = (err as BusinessError).message;
+                  console.error(`connectUIServiceExtensionAbility failed, err code: ${code}, err msg: ${msg}.`);
                 }
               })
           }
@@ -363,59 +381,62 @@ After a UIServiceExtensionAbility is started, the following operations are possi
 
 - Data transmission on the server
 
-  The server receives data transferred by the client through [onData()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityondata). Through the [UIServiceHostProxy](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md) object, which is saved during the connection, the server calls [sendData()](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md#uiservicehostproxysenddata) to send data to the client.
+  The server receives data transferred by the client through [onData()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#ondata). Through the [UIServiceHostProxy](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md) object, which is saved during the connection, the server calls [sendData()](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md#senddata) to send data to the client.
     ```ts
-    import { common, Want, UIServiceExtensionAbility} from '@kit.AbilityKit';
+    import { common, Want, UIServiceExtensionAbility } from '@kit.AbilityKit';
     import { window } from '@kit.ArkUI';
-    
+    import { BusinessError } from '@kit.BasicServicesKit';
+
     export default class MyServiceExtAbility extends UIServiceExtensionAbility {
-      comProxy : common.UIServiceHostProxy | null = null;
+      comProxy: common.UIServiceHostProxy | null = null;
+
       // Callback invoked when a UIServiceExtensionAbility is created.
-      onCreate(want: Want) {        
-        console.log('UIServiceExtensionAbility onCreate');
+      onCreate(want: Want) {
+        console.info('UIServiceExtensionAbility onCreate');
       }
-      
+
       // Callback for request processing.
       onRequest(want: Want, startId: number) {
-        console.log('UIServiceExtensionAbility onRequest');
+        console.info('UIServiceExtensionAbility onRequest');
       }
-      
+
       // Callback invoked when a connection is set up.
       onConnect(want: Want, proxy: common.UIServiceHostProxy) {
-        console.log('UIServiceExtensionAbility onConnect');
+        console.info('UIServiceExtensionAbility onConnect');
         this.comProxy = proxy;
       }
-      
+
       // Callback invoked when a connection is interrupted.
       onDisconnect(want: Want, proxy: common.UIServiceHostProxy) {
-        console.log('UIServiceExtensionAbility onDisconnect');
+        console.info('UIServiceExtensionAbility onDisconnect');
         this.comProxy = null;
       }
-      
+
       // Callback invoked to receive data.
       onData(proxy: common.UIServiceHostProxy, data: Record<string, Object>) {
-        console.log('UIServiceExtensionAbility onData');
+        console.info('UIServiceExtensionAbility onData');
         try {
           let formData: Record<string, string> = {
-            'Data' : 'reply message'
+            'Data': 'reply message'
           };
           proxy.sendData(formData);
         } catch (err) {
-          console.log('sendData failed',JSON.stringify(err));
-        };
-    
+          let code = (err as BusinessError).code;
+          let msg = (err as BusinessError).message;
+          console.error(`sendData failed, err code: ${code}, err msg: ${msg}.`);
+        }
       }
-    
+
       onWindowWillCreate(extensionWindowConfig: window.ExtensionWindowConfig) {
-        console.log('UIServiceExtensionAbility onWindowWillCreate');
+        console.info('UIServiceExtensionAbility onWindowWillCreate');
       }
-      
+
       onWindowDidCreate(window: window.Window) {
-        console.log('UIServiceExtensionAbility onWindowDidCreate');
+        console.info('UIServiceExtensionAbility onWindowDidCreate');
       }
 
       onDestroy() {
-        console.log('UIServiceExtensionAbility onDestroy');
+        console.info('UIServiceExtensionAbility onDestroy');
       }
     }
     ```

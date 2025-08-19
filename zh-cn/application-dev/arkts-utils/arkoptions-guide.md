@@ -1,4 +1,10 @@
 # 在build-profile.json5中配置arkOptions
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @zju-wyx-->
+<!--Designer: @xiao-peiyang; @liyancheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 ## 概述
 
@@ -75,9 +81,11 @@ arkOptions/tscConfig中maxFlowDepth字段展示。
 
 ```typescript
 // 在工程名/build-profile.json5文件中
-"arkOptions": {
-  "tscConfig": {
-    "maxFlowDepth": 2222
+{
+  "arkOptions": {
+    "tscConfig": {
+      "maxFlowDepth": 2222
+    }
   }
 }
 ```

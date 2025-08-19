@@ -1,6 +1,13 @@
 # !!语法：双向绑定
-在状态管理V1中使用[$$](./arkts-two-way-sync.md)用于系统组件双向绑定。
-在状态管理V2中，提供`!!`语法糖统一处理双向绑定。
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @Cuecuexiaoyu-->
+<!--Designer: @lixingchi1-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
+
+在状态管理V1中，使用[$$](./arkts-two-way-sync.md)实现系统组件的双向绑定。
+在状态管理V2中，使用`!!`语法糖统一处理双向绑定。
 
 >**说明：**
 >
@@ -9,7 +16,7 @@
 
 ## 概述
 
-`!!`双向绑定语法，是一个语法糖方便开发者实现数据双向绑定，用于初始化子组件的\@Param和\@Event。其中\@Event方法名需要声明为“$”+ \@Param属性名，详见[使用场景](#使用场景)。
+`!!`双向绑定语法，是一个语法糖方便开发者实现数据双向绑定，用于初始化子组件的[\@Param](arkts-new-param.md)和[\@Event](arkts-new-event.md)。其中\@Event方法名需要声明为“$”+ \@Param属性名，详见[使用场景](#使用场景)。
 
 - 如果使用了`!!`双向绑定语法，表明父组件的变化会同步给子组件，子组件的变化也会同步给父组件。
 - 父组件未使用`!!`时，变化是单向的。
@@ -17,54 +24,54 @@
 ## 使用场景
 
 ### 自定义组件间双向绑定
-1. Index中构造Star子组件，双向绑定父子组件中的value，初始化子组件的`@Param value`和`@Event $value`。
-- 双向绑定语法糖：
+1. 在Index中构造Star子组件，双向绑定父子组件中的value，并初始化子组件的`@Param value`和`@Event $value`。
 
-    ```
-    Star({ value: this.value, $value: (val: number) => { this.value = val }})
-    ```
-2. 点击Index中的Button以改变value值，父组件Index和子组件Star中的Text将同步更新。
+   双向绑定语法糖。
+
+   ```
+   Star({ value: this.value, $value: (val: number) => { this.value = val; }})
+   ```
+2. 点击Index中的Button改变value值，父组件Index和子组件Star中的Text将同步更新。
 3. 点击子组件Star中的Button，调用`this.$value(10)`方法，父组件Index和子组件Star中的Text将同步更新。
 
-```ts
-@Entry
-@ComponentV2
-struct Index {
-  @Local value: number = 0;
+   ```ts
+   @Entry
+   @ComponentV2
+   struct Index {
+     @Local value: number = 0;
 
-  build() {
-    Column() {
-      Text(`${this.value}`)
-      Button(`change value`).onClick(() => {
-        this.value++;
-      })
-      Star({ value: this.value!! })
-    }
-  }
-}
-
-
-@ComponentV2
-struct Star {
-  @Param value: number = 0;
-  @Event $value: (val: number) => void = (val: number) => {};
-
-  build() {
-    Column() {
-      Text(`${this.value}`)
-      Button(`change value `).onClick(() => {
-        this.$value(10);
-      })
-    }
-  }
-}
-```
+     build() {
+       Column() {
+         Text(`${this.value}`)
+         Button(`change value`).onClick(() => {
+           this.value++;
+         })
+         Star({ value: this.value!! })
+       }
+     }
+   }
 
 
-## 使用限制
+   @ComponentV2
+   struct Star {
+     @Param value: number = 0;
+     @Event $value: (val: number) => void = (val: number) => {};
+
+     build() {
+       Column() {
+         Text(`${this.value}`)
+         Button(`change value`).onClick(() => {
+           this.$value(10);
+         })
+       }
+     }
+   }
+   ```
+
+**使用限制**
 - `!!`双向绑定语法不支持多层父子组件传递。
 - 不支持与@Event混用。从API version 18开始，当使用`!!`双向绑定语法给子组件传递参数时，给对应的@Event方法传参会编译报错。
-- 当使用大于等于3个感叹号（!!!、!!!!、!!!!!等）时，不支持双向绑定功能。
+- 当使用3个或更多感叹号（!!!、!!!!、!!!!!等）时，不支持双向绑定功能。
 
 
 ### 系统组件参数双向绑定
@@ -73,7 +80,50 @@ struct Star {
 
 内部状态的含义由组件决定。例如：[bindMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11)组件的isShow参数。
 
-#### 使用规则
+```ts
+@Entry
+@ComponentV2
+struct BindMenuInterface {
+  @Local isShow: boolean = false;
+
+  build() {
+    Column() {
+      Row() {
+        Text('click show Menu')
+          .bindMenu(this.isShow!!, // 双向绑定。
+            [
+              {
+                value: 'Menu1',
+                action: () => {
+                  console.info('handle Menu1 click');
+                }
+              },
+              {
+                value: 'Menu2',
+                action: () => {
+                  console.info('handle Menu2 click');
+                }
+              },
+            ])
+      }.height('50%')
+      Text('isShow: ' + this.isShow).fontSize(18).fontColor(Color.Red)
+      Row() {
+        Button('Click')
+          .onClick(() => {
+            this.isShow = true;
+          })
+          .width(100)
+          .fontSize(20)
+          .margin(10)
+      }
+    }.width('100%')
+  }
+}
+```
+
+![bindMenu](figures/bindmenu_doublebind.gif)
+
+**使用规则**
 
 - 当前!!支持以下接口参数基础类型变量的双向绑定，即参数同步当前弹出菜单或气泡状态。!!双向绑定支持基础类型变量，当该变量使用状态管理V2[\@Local](arkts-new-local.md)或状态管理V1[\@State](arkts-state.md)装饰时，变量值的变化会触发UI刷新。
 
@@ -99,51 +149,3 @@ struct Star {
   | [Select](../../reference/apis-arkui/arkui-ts/ts-basic-components-select.md#value) | value | 18   |
   | [MenuItem](../../reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md#selected) | selected | 18   |
 - !!绑定的[\@Local](arkts-new-local.md)变量变化时，会触发UI的同步刷新。
-
-
-#### 使用示例
-
-bindMenu接口isShow参数双向绑定功能。
-
-```ts
-@Entry
-@ComponentV2
-struct BindMenuInterface {
-  @Local isShow: boolean = false;
-
-  build() {
-    Column() {
-      Row() {
-        Text('click show Menu')
-          .bindMenu(this.isShow!!, // 双向绑定
-            [
-              {
-                value: 'Menu1',
-                action: () => {
-                  console.info('handle Menu1 click');
-                }
-              },
-              {
-                value: 'Menu2',
-                action: () => {
-                  console.info('handle Menu2 click');
-                }
-              },
-            ])
-      }.height('50%')
-      Text("当前isShow: " + this.isShow).fontSize(18).fontColor(Color.Red)
-      Row() {
-        Button("Click")
-          .onClick(() => {
-            this.isShow = true;
-          })
-          .width(100)
-          .fontSize(20)
-          .margin(10)
-      }
-    }.width('100%')
-  }
-}
-```
-
-![bindMenu](figures/bindmenu_doublebind.gif)

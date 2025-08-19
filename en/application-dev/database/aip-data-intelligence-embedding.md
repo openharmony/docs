@@ -1,4 +1,4 @@
-# Application Data Vectorization
+# Application Data Vectorization (ArkTS)
 
 ## When to Use
 
@@ -26,18 +26,18 @@ Application data vectorization involves converting raw application data into vec
 
 The following table lists the APIs related to application data vectorization. For more APIs and their usage, see [ArkData Intelligence Platform](../reference/apis-arkdata/js-apis-data-intelligence.md).
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
-| getTextEmbeddingModel(config: ModelConfig): Promise&lt;TextEmbedding&gt; | Obtains a text embedding model.| 
-| loadModel(): Promise&lt;void&gt; | Loads this text embedding model.| 
-| splitText(text: string, config: SplitConfig): Promise&lt;Array&lt;string&gt;&gt; | Splits text.| 
-| getEmbedding(text: string): Promise&lt;Array&lt;number&gt;&gt; | Obtains the embedding vector of the given text.| 
+| getTextEmbeddingModel(config: ModelConfig): Promise&lt;TextEmbedding&gt; | Obtains a text embedding model.|
+| loadModel(): Promise&lt;void&gt; | Loads this text embedding model.|
+| splitText(text: string, config: SplitConfig): Promise&lt;Array&lt;string&gt;&gt; | Splits text.|
+| getEmbedding(text: string): Promise&lt;Array&lt;number&gt;&gt; | Obtains the embedding vector of the given text.|
 | getEmbedding(batchTexts: Array&lt;string&gt;): Promise&lt;Array&lt;Array&lt;number&gt;&gt;&gt; | Obtains the embedding vector of a given batch of text.|
-| releaseModel(): Promise&lt;void&gt; | Releases this text embedding model.| 
-| getImageEmbeddingModel(config: ModelConfig): Promise&lt;ImageEmbedding&gt; | Obtains an image embedding model.| 
-| loadModel(): Promise&lt;void&gt; | Loads this image embedding model.| 
-| getEmbedding(image: Image): Promise&lt;Array&lt;number&gt;&gt; | Obtains the embedding vector of the given image.| 
-| releaseModel(): Promise&lt;void&gt; | Releases this image embedding model.| 
+| releaseModel(): Promise&lt;void&gt; | Releases this text embedding model.|
+| getImageEmbeddingModel(config: ModelConfig): Promise&lt;ImageEmbedding&gt; | Obtains an image embedding model.|
+| loadModel(): Promise&lt;void&gt; | Loads this image embedding model.|
+| getEmbedding(image: Image): Promise&lt;Array&lt;number&gt;&gt; | Obtains the embedding vector of the given image.|
+| releaseModel(): Promise&lt;void&gt; | Releases this image embedding model.|
 
 
 ## How to Develop

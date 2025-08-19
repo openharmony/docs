@@ -1,4 +1,10 @@
 # AVSession Kit简介
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 AVSession Kit（Audio &amp; Video Session Kit，音视频播控服务）是系统提供的音视频管控服务，用于统一管理系统中所有音视频行为，帮助开发者快速构建音视频统一展示和控制能力。
 
@@ -20,7 +26,7 @@ AVSession Kit（Audio &amp; Video Session Kit，音视频播控服务）是系�
 
   通过播控中心，应用后台播放可见可控，音视频应用可统一控制。
 
-  系统针对后台播放进行强制管控，未接入AVSession的应用在退到后台时，将会被强制暂停音频播放。解决应用在后台恶意播放，而用户无法找到对应应用无法关闭的问题。
+  系统针对后台播放进行强制管控，未接入AVSession的应用在退到后台时或者退后台时无有效的AVSession实例时，将会被强制暂停音频播放。解决应用在后台恶意播放，用户无法找到对应应用无法关闭的问题。
 
 ## 基础概念
 

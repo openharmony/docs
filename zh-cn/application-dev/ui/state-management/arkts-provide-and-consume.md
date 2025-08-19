@@ -1,4 +1,10 @@
 # \@Provide装饰器和\@Consume装饰器：与后代组件双向同步
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liwenzhen3-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 \@Provide和\@Consume，应用于与后代组件的双向数据同步、状态数据在多个层级之间传递的场景。不同于上文提到的父子组件之间通过命名参数机制传递，\@Provide和\@Consume摆脱参数传递机制的束缚，实现跨层级传递。
 
@@ -12,7 +18,11 @@
 >
 > 从API version 11开始，这两个装饰器支持在原子化服务中使用。
 >
+>API version 19及以前，\@Provide和\@Consume双向同步仅支持声明式节点场景。
+>
 > 从API version 20开始，@Consume装饰的变量支持设置默认值。当查找不到@Provide的匹配结果时，@Consume装饰的变量会使用默认值进行初始化；当查找到@Provide的匹配结果时，@Consume装饰的变量会优先使用@Provide匹配结果的值，默认值不生效。
+>
+> 从API version 20开始，通过配置[BuilderNode](../../reference/apis-arkui/js-apis-arkui-builderNode.md)的[BuildOptions](../../reference/apis-arkui/js-apis-arkui-builderNode.md#buildoptions12)参数`enableProvideConsumeCrossing`为true，使得\@Provide和\@Consume支持跨[BuilderNode](../../reference/apis-arkui/js-apis-arkui-builderNode.md)双向同步。但需要注意，BuilderNode会在上树前构造节点，所以BuilderNode内部定义的\@Consume需要设置默认值，并在BuilderNode上树后，重新获取最近的\@Provide数据，与之建立双向同步关系。具体可见[\@Consume在跨BuilderNode场景下和\@Provide建立双向同步](#consume在跨buildernode场景下和provide建立双向同步)。
 
 ## 概述
 
@@ -44,7 +54,7 @@
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。<br/>如果指定了别名，则通过别名来绑定变量；如果未指定别名，则通过变量名绑定变量。 |
 | 同步类型           | 双向同步。<br/>从\@Provide变量到所有\@Consume变量以及相反的方向的数据同步。双向同步的操作与\@State和\@Link的组合相同。 |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>必须指定类型。<br/>\@Provide变量和\@Consume变量的类型必须相同。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any类型。<br/>API version 11及以上支持Map、Set类型以及上述支持类型的联合类型。例如：string \| number, string \| undefined或者ClassA \| null，示例见[@Provide和Consume支持联合类型实例](#provide和consume支持联合类型实例)。 <br/>**注意：**<br/>当使用undefined和null的时候，建议显示指定类型，遵循TypeScript类型校验。例如：推荐`@Provide a : string \| undefined = undefined`，不推荐`@Provide a: string = undefined`。
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>[支持Date类型](#装饰date类型变量)。<br/>支持ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型。<br/>必须指定类型。<br/>\@Provide变量和\@Consume变量的类型必须相同。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any类型。<br/>API version 11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型以及上述支持类型的联合类型。例如：string \| number, string \| undefined或者ClassA \| null，示例见[@Provide和Consume支持联合类型实例](#provide和consume支持联合类型实例)。 <br/>**注意：**<br/>当使用undefined和null的时候，建议显示指定类型，遵循TypeScript类型校验。例如：推荐`@Provide a : string \| undefined = undefined`，不推荐`@Provide a: string = undefined`。
 | 被装饰变量的初始值      | 必须指定。                                    |
 | 支持allowOverride参数          | 允许重写，只要声明了allowOverride，则别名和属性名都可以被Override。示例见[\@Provide支持allowOverride参数](#provide支持allowoverride参数)。 |
 
@@ -52,7 +62,7 @@
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。<br/>如果提供了别名，则必须有\@Provide的变量和其有相同的别名才可以匹配成功；否则，则需要变量名相同才能匹配成功。 |
 | 同步类型           | 双向同步：从\@Provide变量（具体请参见\@Provide）到所有\@Consume变量，以及相反的方向。双向同步操作与\@State和\@Link的组合相同。 |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>必须指定类型。<br/>\@Provide变量和\@Consume变量的类型必须相同。<br/>API version 20之前，\@Consume装饰的变量，在其父组件或者祖先组件上，必须有对应的属性和别名的\@Provide装饰的变量。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any类型。<br/>API version 11及以上支持Map、Set类型以及上述支持类型的联合类型。例如：string \| number, string \| undefined或者ClassA \| null，示例见[@Provide和Consume支持联合类型实例](#provide和consume支持联合类型实例)。 <br/>**注意：**<br/>当使用undefined和null的时候，建议显示指定类型，遵循TypeScript类型校验。例如：`@Consume a : string \| undefined`。
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>[支持Date类型](#装饰date类型变量)。<br/>支持ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型。<br/>必须指定类型。<br/>\@Provide变量和\@Consume变量的类型必须相同。<br/>API version 20之前，\@Consume装饰的变量，在其父组件或者祖先组件上，必须有对应的属性和别名的\@Provide装饰的变量。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any类型。<br/>API version 11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型以及上述支持类型的联合类型。例如：string \| number, string \| undefined或者ClassA \| null，示例见[@Provide和Consume支持联合类型实例](#provide和consume支持联合类型实例)。 <br/>**注意：**<br/>当使用undefined和null的时候，建议显示指定类型，遵循TypeScript类型校验。例如：`@Consume a : string \| undefined`。
 | 被装饰变量的初始值      | 从API version 20开始，\@Consume支持设置默认值。若存在匹配成功的\@Provide，则会使用\@Provide的变量值作为初始值。示例见[\@Consume装饰的变量支持设置默认值](#consume装饰的变量支持设置默认值)。                            |
 
 ## 变量的传递/访问规则说明
@@ -91,60 +101,7 @@
 
 - 当装饰的对象是array的时候，可以观察到数组的添加、删除、更新数组单元。
 
-- 当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。
-
-```ts
-@Component
-struct Child {
-  @Consume selectedDate: Date;
-
-  build() {
-    Column() {
-      Button(`child increase the day by 1`)
-        .onClick(() => {
-          this.selectedDate.setDate(this.selectedDate.getDate() + 1)
-        })
-      Button('child update the new date')
-        .margin(10)
-        .onClick(() => {
-          this.selectedDate = new Date('2023-09-09')
-        })
-      DatePicker({
-        start: new Date('1970-1-1'),
-        end: new Date('2100-1-1'),
-        selected: this.selectedDate
-      })
-    }
-  }
-}
-
-@Entry
-@Component
-struct Parent {
-  @Provide selectedDate: Date = new Date('2021-08-08')
-
-  build() {
-    Column() {
-      Button('parent increase the day by 1')
-        .margin(10)
-        .onClick(() => {
-          this.selectedDate.setDate(this.selectedDate.getDate() + 1)
-        })
-      Button('parent update the new date')
-        .margin(10)
-        .onClick(() => {
-          this.selectedDate = new Date('2023-07-07')
-        })
-      DatePicker({
-        start: new Date('1970-1-1'),
-        end: new Date('2100-1-1'),
-        selected: this.selectedDate
-      })
-      Child()
-    }
-  }
-}
-```
+- 当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性，详见[装饰Date类型变量](#装饰date类型变量)。
 
 - 当装饰的变量是Map时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
 
@@ -318,6 +275,74 @@ struct Parent {
 
 5. \@Provide与\@Consume不支持装饰Function类型的变量，框架会抛出运行时错误。
 
+6. 从API version 20开始，支持跨BuilderNode配对\@Provide/\@Consume。在BuilderNode上树时，\@Consume通过key匹配找到最近的\@Provide，两者类型需要一致，如果不一致，则会抛出运行时错误。
+需要注意类型不相等判断，包括类实例的判断，比如：
+```ts
+class A {}
+class B {}
+// 两个message都为object类型，但其构造函数不同，属于不同类型
+@Provide message: A = new A();
+@Consume message: B = new B();
+```
+在非BuilderNode场景中，仍建议配对的\@Provide/\@Consume类型一致。虽然在运行时不会有强校验，但在\@Consume装饰的变量初始化时，会隐式转换成\@Provide装饰变量的类型。
+```ts
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
+
+@Builder
+function buildText() {
+  Column() {
+    Child()
+  }
+}
+
+class TextNodeController extends NodeController {
+  private builderNode: BuilderNode<[]> | null = null;
+
+  constructor() {
+    super();
+  }
+
+  makeNode(context: UIContext): FrameNode | null {
+    this.builderNode = new BuilderNode(context);
+    // 配置跨BuilderNode支持@Provide/@Consume
+    this.builderNode.build(wrapBuilder(buildText), undefined,
+      { enableProvideConsumeCrossing: true });
+    // 将BuilderNode的根节点挂载到NodeContainer
+    return this.builderNode.getFrameNode();
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @Provide message: string = 'hello';
+  controller: TextNodeController = new TextNodeController();
+
+  build() {
+    Column() {
+      NodeContainer(this.controller)
+        .width('100%')
+        .height(100)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+
+@Component
+struct Child {
+  // Child通过BuilderNode上树后，@Consume和Index中的@Provide建立连接时发现类型不一致，抛出运行时错误
+  @Consume message: number = 0;
+
+  build() {
+    Column() {
+      Text(`@Consume ${this.message}`)
+    }
+  }
+}
+```
+
 ## 使用场景
 
 以下示例是@Provide变量与后代组件中@Consume变量进行双向同步的场景。当分别点击ToDo和ToDoItem组件内的Button时，count的更改会双向同步在ToDo和ToDoItem中。
@@ -358,7 +383,7 @@ struct ToDoDemo {
 @Entry
 @Component
 struct ToDo {
-  // @Provide装饰的变量index由入口组件ToDo提供其后代组件
+  // @Provide装饰的变量count由入口组件ToDo提供其后代组件
   @Provide count: number = 0;
 
   build() {
@@ -370,7 +395,6 @@ struct ToDo {
   }
 }
 ```
-
 ### 装饰Map类型变量
 
 > **说明：**
@@ -484,6 +508,63 @@ struct SetSample {
       .width('100%')
     }
     .height('100%')
+  }
+}
+```
+
+### 装饰Date类型变量
+
+以下示例中，selectedDate类型为Date，点击Button改变selectedDate的值，视图会随之刷新。
+
+```ts
+@Component
+struct Child {
+  @Consume selectedDate: Date;
+
+  build() {
+    Column() {
+      Button(`child increase the day by 1`)
+        .onClick(() => {
+          this.selectedDate.setDate(this.selectedDate.getDate() + 1)
+        })
+      Button('child update the new date')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate = new Date('2023-09-09')
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.selectedDate
+      })
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @Provide selectedDate: Date = new Date('2021-08-08')
+
+  build() {
+    Column() {
+      Button('parent increase the day by 1')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate.setDate(this.selectedDate.getDate() + 1)
+        })
+      Button('parent update the new date')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate = new Date('2023-07-07')
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.selectedDate
+      })
+      Child()
+    }
   }
 }
 ```
@@ -699,6 +780,147 @@ struct Child {
 - Child声明了@Consume('firstKey') textOne: string | undefined = 'child'，@Consume('secondKey') textTwo: string 与 @Consume('thirdKey') textThree: string = 'defaultValue'。
 - Child是Parent的子组件，Child在初始化@Consume装饰的三个属性时，textOne根据'firstKey'别名绑定Parent中的provideOne属性，provideOne的值会覆盖textOne的默认值，所以textOne初始化的值为undefined；textTwo根据'secondKey'别名绑定Parent中的providedTwo属性，textTwo初始化的值为'the second provider'；textThree在祖先组件中不存在匹配结果，如果@Consume没有设置默认值，则会抛出运行时错误，示例中textThree有默认值'defaultValue'，所以textThree初始化的值为'defaultValue'。
 - @Consume装饰的属性设置的默认值仅在祖先组件没有匹配结果时才生效，有匹配结果时无影响。
+
+### \@Consume在跨BuilderNode场景下和\@Provide建立双向同步
+BuilderNode支持\@Provide/\@Consume，需注意：
+1. 在BuilderNode子树中定义的\@Consume需要设置默认值，或者在子树中已存在配对的\@Provide，否则会发生运行时报错。
+2. BuilderNode上树后，设置默认值的\@Consume会向上查找\@Provide，根据key的匹配规则找到最近的\@Provide后，会和\@Provide建立双向同步关系。如果找不到配对的\@Provide，则\@Consume仍使用默认值。
+3. 建立双向同步的关系后，如果\@Provide装饰变量的值和\@Consume的默认值不同，则会回调\@Consume的\@Watch方法，以及与\@Consume有同步关系的变量的\@Watch方法，例如\@Consume通知与其双向同步的\@Link触发\@Watch方法。
+4. BuilderNode下树后，\@Consume会再次试图查找对应的\@Provide，如果发现下树后无法再找到之前配对的\@Provide，则断开和\@Provide的双向同步关系，\@Consume装饰的变量恢复成默认值。
+5. \@Consume断开和\@Provide的连接，恢复成默认值时，会判断\@Consume装饰变量的值从和\@Provide变为\@Consume的默认值是否有变化，如果有变化，则会回调\@Consume以及与其有同步关系变量的\@Watch方法。
+
+在下面的例子中：
+1. 点击`add Child`:
+    - 构建BuilderNode下的子节点`Child`，`Child`中\@Consume未找到\@Provide，使用本地默认值`default value`初始化。
+    - BuilderNode上树时，`Child`中\@Consume向上找到最近的`Index`中的\@Provide，将\@Consume从默认值更新为\@Provide的值，并回调\@Consume的\@Watch方法。
+2. \@Provide和\@Consume配对后，建立双向同步关系。点击```Text(`@Provide: ${this.message}`)```和```Text(`@Consume ${this.message}`)```，\@Provide和\@Consume绑定的Text组件刷新，并回调\@Provide和\@Consume的\@Watch方法。
+3. 点击`remove Child`, BuilderNode子节点下树，`Child`中的\@Consume和`Index`中的\@Provide断开连接，`Child`中的\@Consume恢复成默认值，并回调\@Consume的\@Watch方法。
+4. 点击`dispose Child`，释放BuilderNode下子节点，BuilderNode子节点`Child`销毁，执行aboutToDisappear。
+
+```ts
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
+
+@Builder
+function buildText() {
+  Column() {
+    Child()
+  }
+}
+
+class TextNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private uiContext: UIContext | null = null;
+  private builderNode: BuilderNode<[]> | null = null;
+
+  constructor() {
+    super();
+  }
+
+  makeNode(context: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(context);
+    this.uiContext = context;
+    // 将rootNode节点挂载在NodeContainer下
+    return this.rootNode;
+  }
+
+  addBuilderNode(): void {
+    if (this.builderNode === null && this.uiContext && this.rootNode) {
+      this.builderNode = new BuilderNode(this.uiContext);
+      // 配置跨BuilderNode支持@Provide/@Consume
+      this.builderNode.build(wrapBuilder(buildText), undefined,
+        { enableProvideConsumeCrossing: true });
+      // 将BuilderNode的根节点挂载到rootNode节点下
+      this.rootNode.appendChild(this.builderNode.getFrameNode());
+    }
+  }
+
+  removeBuilderNode(): void {
+    if (this.rootNode && this.builderNode) {
+      // 从rootNode节点下的BuildNode节点移除
+      this.rootNode.removeChild(this.builderNode.getFrameNode());
+    }
+  }
+
+  disposeNode(): void {
+    if (this.rootNode && this.builderNode) {
+      // 立即释放当前BuilderNode
+      this.builderNode.dispose();
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @Provide @Watch('onChange') message: string = 'hello';
+  controller: TextNodeController = new TextNodeController();
+
+  onChange() {
+    console.info(`Index Provide change ${this.message}`);
+  }
+
+  build() {
+    Column() {
+      Text(`@Provide: ${this.message}`)
+        .fontSize(20)
+        .onClick(() => {
+          this.message += ' Provide';
+        })
+
+      // 执行BuilderNode的build方法，构造Child自定义组件
+      // 并将BuilderNode挂载在NodeContainer下
+      // Child中@Consume可以和当前Index中的@Provide配对
+      // @Consume装饰的变量message从default value变为hello，并回调@Consume的@Watch方法
+      Button('add Child')
+        .onClick(() => {
+          this.controller.addBuilderNode();
+        })
+      // 将BuilderNode下的节点从NodeContainer上移除
+      // @Consume修饰的变量message从和@Provide配对的值变为default value，并回调@Consume的@Watch方法
+      Button('remove Child')
+        .onClick(() => {
+          this.controller.removeBuilderNode();
+        })
+
+      // 立即释放当前BuilderNode，BuilderNode下节点销毁，Child组件执行aboutToDisappear
+      Button('dispose Child')
+        .onClick(() => {
+          this.controller.disposeNode();
+        })
+      NodeContainer(this.controller)
+        .width('100%')
+        .height(100)
+        .backgroundColor(Color.Pink)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+
+@Component
+struct Child {
+  @Consume @Watch('onChange') message: string = 'default value';
+
+  onChange() {
+    console.info(`Child Consume change ${this.message}`);
+  }
+
+  aboutToDisappear(): void {
+    console.info(`Child aboutToDisappear`);
+  }
+
+  build() {
+    Column() {
+      Text(`@Consume ${this.message}`)
+        .fontSize(20)
+        .onClick(() => {
+          this.message += ' Consume';
+        })
+    }
+  }
+}
+```
 
 ## 常见问题
 

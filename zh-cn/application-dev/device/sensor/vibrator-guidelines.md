@@ -1,5 +1,10 @@
 # 振动开发指导(ArkTS)
-
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 ## 场景介绍
 
@@ -118,7 +123,7 @@ Json文件共包含3个属性。
 
      | 名称       | 必填项 | 说明                                                         |
      | ---------- | ------ | ------------------------------------------------------------ |
-     | Parameters | 是     | 为通道参数。其中"Index"表示通道编号，0表示全通道发送，1、2分别对应左右马达。 |
+     | Parameters | 是     | 为通道参数。其中"Index"表示通道编号，0表示全通道发送，1、2分别对应左右马达。0不能与其他通道编号同时作为配置参数。 |
      | Pattern    | 否     | 马达振动序列。                                               |
 
      "Pattern"是Json数组，包含振动事件序列，每个"Event"属性代表1个振动事件，支持添加2种振动类型。
@@ -140,8 +145,8 @@ Json文件共包含3个属性。
 
      | 名称      | 必填项 | 说明                                                         |
      | --------- | ------ | ------------------------------------------------------------ |
-     | Intensity | 是     | 振动事件强度，有效范围为[0, 100]。                           |
-     | Frequency | 是     | 振动事件频率，有效范围为[0, 100]。                           |
+     | Intensity | 是     | 振动事件强度，有效范围为[0, 100]，数字大小代表最大振动量的xx%。 |
+     | Frequency | 是     | 振动事件频率，有效范围为[0, 100]，一般支持频率调节的马达设置为55时为器件的谐振频率，此时振动量最大，越靠近谐振频率的振动，同强度设置的振动量越大。 |
      | Curve     | 否     | 振动曲线，当振动事件类型为"continuous"时有效，为Json数组，支持设置一组调节点，调节点数量最大支持16个，最小为4个，每个调节点需包含如下属性：<br/>"Time"：相对事件起始时间的偏移，最小为0，最大不能超过事件振动时长；<br/>"Intensity"：相对事件振动强度的增益，范围为[0, 1]，此值乘上振动事件强度为对应时间点调节后的强度；<br/>"Frequency"：相对事件振动频率的变化，范围为[-100, 100]，此值加上振动事件频率为对应时间点调节后的频率。 |
 
 其他要求：
@@ -159,7 +164,7 @@ Json文件共包含3个属性。
 2. 振动器查询。
 
   **情形一** 查询所有马达信息：
-  
+
   ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -174,7 +179,7 @@ Json文件共包含3个属性。
   ```
 
   **情形二** 查询指定设备的一个或多个马达信息：
-  
+
   ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -304,9 +309,9 @@ Json文件共包含3个属性。
                    let e: BusinessError = err as BusinessError;
                    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
                  }
+                 // 关闭文件资源描述符
+                 this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
                }
-               // 关闭文件资源描述符
-               this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
              })
          }
          .width('100%')
@@ -388,7 +393,7 @@ Json文件共包含3个属性。
    ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-  
+    
    const vibratorInfoParam: vibrator.VibratorInfoParam = {
      deviceId: 1   // deviceid 需要是查询出来真实存在的设备
    }
@@ -450,6 +455,6 @@ Json文件共包含3个属性。
 
 针对振动开发，有以下相关实例可供参考：
 
-- [振动（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Vibrator/BasicVibration)
+- [振动（ArkTS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Vibrator/BasicVibration)
 
-- [自定义振动（ArkTS）(Full SDK)（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic)
+- [自定义振动（ArkTS）(Full SDK)（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic)

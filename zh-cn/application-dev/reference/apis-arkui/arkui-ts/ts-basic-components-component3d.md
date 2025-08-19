@@ -33,10 +33,10 @@ Component3D组件配置选项。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 名称        | 类型                               | 可选   | 说明                                       |
-| --------- | -------------------------------- | ---- | ---------------------------------------- |
-| scene     | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[Scene](#scene12) | 是    | 3D模型资源文件或场景对象，默认值为undefined。<br/>**说明：** <br/>目前仅支持GLTF格式资源。 |
-| modelType | [ModelType](#modeltype枚举说明) | 是    | 3D场景显示合成方式。<br/>默认值：ModelType.SURFACE<br/>**说明：** <br/>设置为ModelType.TEXTURE时通过GPU合成显示。<br/>设置为ModelType.SURFACE时通过专有硬件合成显示。<br/>一般开发者可以使用默认值而无需关心此项设置。 |
+| 名称        | 类型                               | 只读 | 可选   | 说明                                       |
+| --------- | -------------------------------- | ---- | ---- | ---------------------------------------- |
+| scene     | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[Scene](#scene12) | 否    | 是    | 3D模型资源文件或场景对象，默认值为undefined。<br/>**说明：** <br/>目前仅支持GLTF格式资源。 |
+| modelType | [ModelType](#modeltype枚举说明) | 否    | 是    | 3D场景显示合成方式。<br/>默认值：ModelType.SURFACE<br/>**说明：** <br/>设置为ModelType.TEXTURE时通过GPU合成显示。<br/>设置为ModelType.SURFACE时通过专有硬件合成显示。<br/>一般开发者可以使用默认值而无需关心此项设置。 |
 
 ## ModelType枚举说明
 

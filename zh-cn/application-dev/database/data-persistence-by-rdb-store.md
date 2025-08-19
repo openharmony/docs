@@ -1,4 +1,10 @@
 # 通过关系型数据库实现数据持久化 (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 
 ## 场景介绍
@@ -47,9 +53,11 @@
 
 | 接口名称 | 描述 | 
 | -------- | -------- |
-| getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void | 获得一个RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作。 | 
-| executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void | 执行包含指定参数但不返回值的SQL语句。 | 
-| insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void | 向目标表中插入一行数据。 | 
+| getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void | 获得一个RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作。 |
+| createTransaction(options?: TransactionOptions): Promise&lt;Transaction&gt; | 创建一个事务对象并开始事务。 |
+| execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt; | 执行包含指定参数的SQL语句。 |
+| querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt; | 根据指定SQL语句查询数据库中的数据。 |
+| insert(table: string, values: ValuesBucket, conflict?: ConflictResolution): Promise&lt;number&gt; | 向目标表中插入一行数据。 |
 | update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | 根据predicates的指定实例对象更新数据库中的数据。 | 
 | delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | 根据predicates的指定实例对象从数据库中删除数据。 | 
 | query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void | 根据指定条件查询数据库中的数据。 | 
@@ -72,9 +80,9 @@
    import { window } from '@kit.ArkUI';
 
    // 此处示例在Ability中实现，使用者也可以在其他合理场景中使用
-   class EntryAbility extends UIAbility {
+   export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
-       // 若希望使用分词器，可调用isStorageTypeSupported检查希望使用的分词器是否支持当前平台。
+       // 若希望使用分词器，可调用isTokenizerSupported检查希望使用的分词器是否支持当前平台。
        let tokenType = relationalStore.Tokenizer.ICU_TOKENIZER;
        let tokenTypeSupported = relationalStore.isTokenizerSupported(tokenType);
        if (!tokenTypeSupported) {
@@ -82,64 +90,71 @@
        }
        const STORE_CONFIG: relationalStore.StoreConfig = {
          // 数据库文件名
-         name: 'RdbTest.db', 
+         name: 'RdbTest.db',
          // 数据库安全级别
-         securityLevel: relationalStore.SecurityLevel.S3, 
+         securityLevel: relationalStore.SecurityLevel.S3,
          // 可选参数，指定数据库是否加密，默认不加密
-         encrypt: false, 
+         encrypt: false,
          // 可选参数，数据库自定义路径。默认在本应用沙箱目录下创建RdbStore实例。
-         customDir: 'customDir/subCustomDir', 
+         customDir: 'customDir/subCustomDir',
          // 可选参数，指定数据库是否以只读方式打开。默认为false，表示数据库可读可写。为true时，只允许从数据库读取数据，不允许对数据库进行写操作，否则会返回错误码801。
-         isReadOnly: false, 
+         isReadOnly: false,
          // 可选参数，指定用户在全文搜索场景(FTS)下使用哪种分词器。默认在FTS下仅支持英文分词，不支持其他语言分词。
-         tokenizer: tokenType 
+         tokenizer: tokenType
        };
 
        // 判断数据库版本，如果不匹配则需进行升降级操作
        // 假设当前数据库版本为3，表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, IDENTITY)
-       const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB, IDENTITY UNLIMITED INT)'; // 建表Sql语句, IDENTITY为bigint类型，sql中指定类型为UNLIMITED INT
+       // 建表Sql语句, IDENTITY为bigint类型，sql中指定类型为UNLIMITED INT
+       const SQL_CREATE_TABLE =
+         'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB, IDENTITY UNLIMITED INT)';
 
-       relationalStore.getRdbStore(this.context, STORE_CONFIG, (err, store) => {
+       relationalStore.getRdbStore(this.context, STORE_CONFIG, async (err, store) => {
          if (err) {
            console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
            return;
          }
          console.info('Succeeded in getting RdbStore.');
-
+         let storeVersion = store.version;
          // 当数据库创建时，数据库默认版本为0
-         if (store.version === 0) {
-           store.executeSql(SQL_CREATE_TABLE) // 创建数据表，以便后续调用insert接口插入数据
-             .then(() => {
-               // 设置数据库的版本，入参为大于0的整数
-               store.version = 3;
-             })
-             .catch((err: BusinessError) => {
-               console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
-             });
+         if (storeVersion === 0) {
+           try {
+             await store.execute(SQL_CREATE_TABLE); // 创建数据表，以便后续调用insert接口插入数据
+             storeVersion = 3;
+             // 设置数据库的版本，入参为大于0的整数
+           } catch (e) {
+             const err = e as BusinessError;
+             console.error(`Failed to execute sql. Code:${err.code}, message:${err.message}`);
+           }
          }
 
          // 如果数据库版本不为0且和当前数据库版本不匹配，需要进行升降级操作
          // 当数据库存在并假定版本为1时，例应用从某一版本升级到当前版本，数据库需要从1版本升级到2版本
-         if (store.version === 1) {
+         if (storeVersion === 1) {
            // version = 1：表结构：EMPLOYEE (NAME, SALARY, CODES, ADDRESS) => version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS)
-           store.executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER')
-             .then(() => {
-               store.version = 2;
-             }).catch((err: BusinessError) => {
-               console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
-             });
+           try {
+             await store.execute('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER');
+             console.info("Upgrade store version from 1 to 2 success.")
+             storeVersion = 2;
+           } catch (e) {
+             const err = e as BusinessError;
+             console.error(`Failed to execute sql. Code:${err.code}, message:${err.message}`);
+           }
          }
 
          // 当数据库存在并假定版本为2时，例应用从某一版本升级到当前版本，数据库需要从2版本升级到3版本
-         if (store.version === 2) {
+         if (storeVersion === 2) {
            // version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) => version = 3：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
-           store.executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS')
-             .then(() => {
-               store.version = 3;
-             }).catch((err: BusinessError) => {
-               console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
-             });
+           try {
+             await store.execute('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS');
+             storeVersion = 3;
+             console.info("Upgrade store version from 2 to 3 success.")
+           } catch (e) {
+             const err = e as BusinessError;
+             console.error(`Failed to execute sql. Code:${err.code}, message:${err.message}`);
+           }
          }
+         store.version = storeVersion;
          // 请确保获取到RdbStore实例，完成数据表创建后，再进行数据库的增、删、改、查等操作
        });
      }
@@ -161,52 +176,58 @@
    };
 
    // 假设当前数据库版本为3，表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, IDENTITY)
-   const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB, IDENTITY UNLIMITED INT)'; // 建表Sql语句，IDENTITY为bigint类型，sql中指定类型为UNLIMITED INT
-
-   relationalStore.getRdbStore(context, STORE_CONFIG, (err, store) => {
+   // 建表Sql语句，IDENTITY为bigint类型，sql中指定类型为UNLIMITED INT
+   const SQL_CREATE_TABLE =
+     'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB, IDENTITY UNLIMITED INT)';
+   
+   relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
      if (err) {
        console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
        return;
      }
      console.info('Succeeded in getting RdbStore.');
 
+     let storeVersion = store.version;
      // 当数据库创建时，数据库默认版本为0
-     if (store.version === 0) {
-       store.executeSql(SQL_CREATE_TABLE) // 创建数据表，以便后续调用insert接口插入数据
-         .then(() => {
-           // 设置数据库的版本，入参为大于0的整数
-           store.version = 3;
-         })
-         .catch((err: BusinessError) => {
-           console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
-         });
+     if (storeVersion === 0) {
+       try {
+         await store.execute(SQL_CREATE_TABLE); // 创建数据表，以便后续调用insert接口插入数据
+         // 设置数据库的版本，入参为大于0的整数
+         storeVersion = 3;
+       } catch (e) {
+         const err = e as BusinessError;
+         console.error(`Failed to execute sql. Code:${err.code}, message:${err.message}`);
+       }
      }
 
      // 如果数据库版本不为0且和当前数据库版本不匹配，需要进行升降级操作
      // 当数据库存在并假定版本为1时，例应用从某一版本升级到当前版本，数据库需要从1版本升级到2版本
-     if (store.version === 1) {
-       // version = 1：表结构：EMPLOYEE (NAME, SALARY, CODES, ADDRESS) => version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS)
-       store.executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER')
-         .then(() => {
-           store.version = 2;
-         }).catch((err: BusinessError) => {
-           console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
-         });
+     if (storeVersion === 1) {
+       try {
+         // version = 1：表结构：EMPLOYEE (NAME, SALARY, CODES, ADDRESS) => version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS)
+         await store.execute('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER');
+         storeVersion = 2;
+         console.info("Upgrade store version from 1 to 2 success.")
+       } catch (e) {
+         const err = e as BusinessError;
+         console.error(`Failed to execute sql. Code:${err.code}, message:${err.message}`);
+       }
      }
 
      // 当数据库存在并假定版本为2时，例应用从某一版本升级到当前版本，数据库需要从2版本升级到3版本
-     if (store.version === 2) {
-       // version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) => version = 3：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
-       store.executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS')
-         .then(() => {
-           store.version = 3;
-         }).catch((err: BusinessError) => {
-           console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
-         });
+     if (storeVersion === 2) {
+       try {
+         // version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) => version = 3：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
+         await store.execute('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS');
+         storeVersion = 3;
+         console.info("Upgrade store version from 2 to 3 success.")
+       } catch (e) {
+         const err = e as BusinessError;
+         console.error(`Failed to execute sql. Code:${err.code}, message:${err.message}`);
+       }
      }
      // 请确保获取到RdbStore实例，完成数据表创建后，再进行数据库的增、删、改、查等操作
    });
-
    ```
 
    > **说明：**
@@ -220,44 +241,27 @@
 2. 获取到RdbStore，完成数据表创建后，调用insert()接口插入数据。示例代码如下所示：
      
    ```ts
-   let store: relationalStore.RdbStore | undefined = undefined;
-
    let value1 = 'Lisa';
    let value2 = 18;
    let value3 = 100.5;
    let value4 = new Uint8Array([1, 2, 3, 4, 5]);
    let value5 = BigInt('15822401018187971961171');
-   // 以下三种方式可用
-   const valueBucket1: relationalStore.ValuesBucket = {
-     'NAME': value1,
-     'AGE': value2,
-     'SALARY': value3,
-     'CODES': value4,
-     'IDENTITY': value5,
-   };
-   const valueBucket2: relationalStore.ValuesBucket = {
+   const valueBucket: relationalStore.ValuesBucket = {
      NAME: value1,
      AGE: value2,
      SALARY: value3,
      CODES: value4,
      IDENTITY: value5,
    };
-   const valueBucket3: relationalStore.ValuesBucket = {
-     "NAME": value1,
-     "AGE": value2,
-     "SALARY": value3,
-     "CODES": value4,
-     "IDENTITY": value5,
-   };
 
    if (store !== undefined) {
-     (store as relationalStore.RdbStore).insert('EMPLOYEE', valueBucket1, (err: BusinessError, rowId: number) => {
-       if (err) {
-         console.error(`Failed to insert data. Code:${err.code}, message:${err.message}`);
-         return;
-       }
+     try {
+       const rowId = await store.insert('EMPLOYEE', valueBucket);
        console.info(`Succeeded in inserting data. rowId:${rowId}`);
-     })
+     } catch (error) {
+       const err = error as BusinessError;
+       console.error(`Failed to insert data. Code:${err.code}, message:${err.message}`);
+     }
    }
    ```
 
@@ -275,34 +279,19 @@
    let value8 = 200.5;
    let value9 = new Uint8Array([1, 2, 3, 4, 5]);
    let value10 = BigInt('15822401018187971967863');
-   // 以下三种方式可用
-   const valueBucket4: relationalStore.ValuesBucket = {
-     'NAME': value6,
-     'AGE': value7,
-     'SALARY': value8,
-     'CODES': value9,
-     'IDENTITY': value10,
-   };
-   const valueBucket5: relationalStore.ValuesBucket = {
+   const valueBucket2: relationalStore.ValuesBucket = {
      NAME: value6,
      AGE: value7,
      SALARY: value8,
      CODES: value9,
      IDENTITY: value10,
    };
-   const valueBucket6: relationalStore.ValuesBucket = {
-     "NAME": value6,
-     "AGE": value7,
-     "SALARY": value8,
-     "CODES": value9,
-     "IDENTITY": value10,
-   };
 
    // 修改数据
    let predicates1 = new relationalStore.RdbPredicates('EMPLOYEE'); // 创建表'EMPLOYEE'的predicates
    predicates1.equalTo('NAME', 'Lisa'); // 匹配表'EMPLOYEE'中'NAME'为'Lisa'的字段
    if (store !== undefined) {
-     (store as relationalStore.RdbStore).update(valueBucket4, predicates1, (err: BusinessError, rows: number) => {
+     (store as relationalStore.RdbStore).update(valueBucket2, predicates1, (err: BusinessError, rows: number) => {
        if (err) {
          console.error(`Failed to update data. Code:${err.code}, message:${err.message}`);
         return;
@@ -363,30 +352,29 @@
    以中文关键字检索为例：
 
    ```ts
-   let store: relationalStore.RdbStore | undefined = undefined;
    if (store !== undefined) {
      // 创建全文检索表
-     const  SQL_CREATE_TABLE = "CREATE VIRTUAL TABLE example USING fts4(name, content, tokenize=icu zh_CN)";
-     (store as relationalStore.RdbStore).executeSql(SQL_CREATE_TABLE, (err: BusinessError) => {
-       if (err) {
-         console.error(`Failed to creating fts table.`);
-         return;
-       }
-       console.info(`Succeeded in creating fts table.`);
-     })
+     const SQL_CREATE_TABLE = 'CREATE VIRTUAL TABLE IF NOT EXISTS example USING fts4(name, content, tokenize=icu zh_CN)';
+     try {
+       await store.execute(SQL_CREATE_TABLE);
+       console.info('Succeeded in creating fts table.');
+     } catch (error) {
+       const err = error as BusinessError;
+       console.error(`Failed to creating fts table. code: ${err.code}, message: ${err.message}.`);
+     }
    }
-   if(store != undefined) {
-      (store as relationalStore.RdbStore).querySql("SELECT name FROM example WHERE example MATCH '测试'", (err, resultSet) => {
-        if (err) {
-          console.error(`Query failed.`);
-          return;
-        }
-        while (resultSet.goToNextRow()) {
-          const name = resultSet.getString(resultSet.getColumnIndex("name"));
-          console.info(`name=${name}`);
-        }
-        resultSet.close();
-      })
+   if (store !== undefined) {
+     try {
+       const resultSet = await store.querySql('SELECT name FROM example WHERE example MATCH ?', ['测试']);
+       while (resultSet.goToNextRow()) {
+         const name = resultSet.getValue(resultSet.getColumnIndex('name'));
+         console.info(`name=${name}`);
+       }
+       resultSet.close();
+     } catch (error) {
+       const err = error as BusinessError;
+       console.error(`Query failed. code: ${err.code}, message: ${err.message}.`);
+     }
    }
    ```
 
@@ -398,81 +386,56 @@
    具体信息请参见[关系型数据库](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#createtransaction14)。
 
    ```ts
-   if (store != undefined) {
-     const valueBucket: relationalStore.ValuesBucket = {
-       'NAME': "Lisa",
-       'AGE': 18,
-       'SALARY': 100.5,
-       'CODES': new Uint8Array([1, 2, 3, 4, 5])
-     };
+   if (store !== undefined) {
      // 创建事务对象
-     (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-       // 使用事务对象插入数据
-       transaction.insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE)
-         .then((rowId: number) => {
-           // 插入成功提交事务
-           transaction.commit();
-           console.info(`Insert is successful, rowId = ${rowId}`);
-         })
-         .catch((e: BusinessError) => {
-           // 插入失败回滚事务
-           transaction.rollback();
-           console.error(`Insert is failed, code is ${e.code},message is ${e.message}`);
-         });
-     }).catch((err: BusinessError) => {
-       console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-     });
-   }
-   ```
+     try {
+       const transaction = await store.createTransaction();
+       try {
+         // 使用事务对象插入数据
+         const rowId = await transaction.insert(
+           'EMPLOYEE',
+           {
+             NAME: 'Lisa',
+             AGE: 18,
+             SALARY: 100.5,
+             CODES: new Uint8Array([1, 2, 3, 4, 5])
+           },
+           relationalStore.ConflictResolution.ON_CONFLICT_REPLACE
+         );
+         console.info(`Insert is successful, rowId = ${rowId}`);
 
-   ```ts
-   if (store != undefined) {
-     const valueBucket: relationalStore.ValuesBucket = {
-       'NAME': "Rose",
-       'AGE': 22,
-       'SALARY': 200.5,
-       'CODES': new Uint8Array([1, 2, 3, 4, 5]),
-     };
-     let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-     predicates.equalTo("NAME", "Lisa");
-     // 创建事务对象
-     (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-       // 使用事务对象更新数据
-       transaction.update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE)
-         .then(async (rows: Number) => {
-           // 更新成功提交事务
-           transaction.commit();
-           console.info(`Updated row count: ${rows}`);
-         }).catch((e: BusinessError) => {
-           // 更新失败回滚事务
-           transaction.rollback();
-           console.error(`Updated failed, code is ${e.code},message is ${e.message}`);
-         });
-     }).catch((err: BusinessError) => {
-       console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-     });
-   }
-   ```
+         const predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+         predicates.equalTo('NAME', 'Lisa');
+         // 使用事务对象更新数据
+         const rows = await transaction.update(
+           {
+             NAME: 'Rose',
+             AGE: 22,
+             SALARY: 200.5,
+             CODES: new Uint8Array([1, 2, 3, 4, 5])
+           },
+           predicates,
+           relationalStore.ConflictResolution.ON_CONFLICT_REPLACE
+         );
+         console.info(`Updated row count: ${rows}`);
 
-   ```ts
-   if (store != undefined) {
-     // 创建事务
-     (store as relationalStore.RdbStore).createTransaction()
-       .then((transaction: relationalStore.Transaction) => {
          // 使用事务对象删除数据
-         transaction.execute("DELETE FROM EMPLOYEE WHERE age = ? OR age = ?", [21, 20]).then(() => {
-           // 删除成功提交事务
-           transaction.commit();
-           console.log(`execute delete success`);
-         }).catch((e: BusinessError) => {
-           // 删除失败回滚事务
-           transaction.rollback();
-           console.error(`execute sql failed, code is ${e.code},message is ${e.message}`);
-         });
-       })
-       .catch((err: BusinessError) => {
-         console.error(`createTransaction faided, code is ${err.code},message is ${err.message}`);
-       });
+         await transaction.execute('DELETE FROM EMPLOYEE WHERE age = ? OR age = ?', [21, 20]);
+         console.log(`execute delete success`);
+
+         // 提交事务
+         await transaction.commit();
+         console.info('Transaction commit success.');
+       } catch (error) {
+         const err = error as BusinessError;
+         // 执行失败回滚事务
+         await transaction.rollback();
+         console.error(`Transaction execute failed, code is ${err.code}, message is ${err.message}`);
+       }
+     } catch (error) {
+       const err = error as BusinessError;
+       console.error(`createTransaction failed, code is ${err.code}, message is ${err.message}`);
+     }
    }
    ```
 

@@ -1,5 +1,12 @@
 # @ohos.i18n (国际化-I18n)(系统接口)
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--Designer: @sunyaozu-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
+
  本模块提供系统相关的或者增强的国际化能力，包括区域管理、电话号码处理、日历等，相关接口为ECMA 402标准中未定义的补充接口。[Intl模块](js-apis-intl.md)提供了ECMA 402标准定义的基础国际化接口，与本模块共同使用可提供完整地国际化支持能力。
 
 >  **说明：**
@@ -59,7 +66,7 @@ static setSystemLanguage(language: string): void
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
- 
+
   // 订阅公共事件
   let subscriber: commonEventManager.CommonEventSubscriber; // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
   let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = { // 订阅者信息
@@ -77,7 +84,7 @@ static setSystemLanguage(language: string): void
       })
   }).catch((err: BusinessError) => {
       console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
-  });  
+  });
   ```
 
 ### setSystemRegion<sup>9+</sup>
@@ -124,9 +131,11 @@ static setSystemRegion(region: string): void
 
 
 
-### setSystemLocale<sup>9+</sup>
+### setSystemLocale<sup>(deprecated)</sup>
 
 static setSystemLocale(locale: string): void
+
+> 从API version 9开始支持，从API version 20开始废弃。
 
 设置系统区域。
 
@@ -453,7 +462,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
 
 try {
-  let systemCollations : Map<string, string> = i18n.System.getSystemCollations();
+  let systemCollations: Map<string, string> = i18n.System.getSystemCollations();
 } catch(error) {
   let err: BusinessError = error as BusinessError;
   console.error(`call System.getSystemCollations failed, error code: ${err.code}, message: ${err.message}.`);
@@ -490,7 +499,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
 
 try {
-  let usingCollation : string = i18n.System.getUsingCollation();
+  let usingCollation: string = i18n.System.getUsingCollation();
 } catch(error) {
   let err: BusinessError = error as BusinessError;
   console.error(`call System.getUsingCollation failed, error code: ${err.code}, message: ${err.message}.`);
@@ -523,7 +532,7 @@ static setSystemCollation(identifier: string): void
 | ------ | ---------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 ```ts
@@ -568,7 +577,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
 
 try {
-  let systemNumberingSystems : Map<string, string> = i18n.System.getSystemNumberingSystems();
+  let systemNumberingSystems: Map<string, string> = i18n.System.getSystemNumberingSystems();
 } catch(error) {
   let err: BusinessError = error as BusinessError;
   console.error(`call System.getSystemNumberingSystems failed, error code: ${err.code}, message: ${err.message}.`);
@@ -601,7 +610,7 @@ static setSystemNumberingSystem(identifier: string):void
 | ------ | ---------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 ```ts
@@ -646,7 +655,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
 
 try {
-  let systemNumberPatterns : Map<string, string> = i18n.System.getSystemNumberPatterns();
+  let systemNumberPatterns: Map<string, string> = i18n.System.getSystemNumberPatterns();
 } catch(error) {
   let err: BusinessError = error as BusinessError;
   console.error(`call System.getSystemNumberPatterns failed, error code: ${err.code}, message: ${err.message}.`);
@@ -683,7 +692,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
 
 try {
-  let usingNumberPattern : string = i18n.System.getUsingNumberPattern();
+  let usingNumberPattern: string = i18n.System.getUsingNumberPattern();
 } catch(error) {
   let err: BusinessError = error as BusinessError;
   console.error(`call System.getUsingNumberPattern failed, error code: ${err.code}, message: ${err.message}.`);
@@ -716,7 +725,7 @@ static setSystemNumberPattern(pattern: string): void
 | ------ | ---------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 ```ts
@@ -728,6 +737,236 @@ try {
 } catch(error) {
   let err: BusinessError = error as BusinessError;
   console.error(`call System.setSystemNumberPattern failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### getSystemMeasurements<sup>20+</sup>
+
+static getSystemMeasurements(): Map&lt;string, string&gt;
+
+获取系统支持的度量衡及其名称。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| Map&lt;string, string&gt; | 系统支持的度量衡及其名称。其中Map的key表示度量衡的标识，value表示度量衡的名称。支持的度量衡如下：<br>- metric：公制。<br>- uksystem：英制。<br>- ussystem：美制。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let systemMeasurements: Map<string, string> = i18n.System.getSystemMeasurements();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getSystemMeasurements failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### getUsingMeasurement<sup>20+</sup>
+
+static getUsingMeasurement(): string
+
+获取系统当前使用的度量衡。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| string | 系统当前使用的度量衡，取值及对应含义如下：<br>- metric：公制。<br>- uksystem：英制。<br>- ussystem：美制。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let usingMeasurement: string = i18n.System.getUsingMeasurement();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getUsingMeasurement failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### setSystemMeasurement<sup>20+</sup>
+
+static setSystemMeasurement(identifier: string): void
+
+设置系统的度量衡。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名  | 类型      | 必填   | 说明                              |
+| ---- | ------- | ---- | ------------------------------- |
+| identifier | string | 是 | 系统支持的度量衡。支持的范围可以通过[getSystemMeasurements](#getsystemmeasurements20)获取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  i18n.System.setSystemMeasurement("uksystem"); // 如果设置当前系统不支持的度量衡会抛8900001错误码
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.setSystemMeasurement failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### getSystemNumericalDatePatterns<sup>20+</sup>
+
+static getSystemNumericalDatePatterns(): Map&lt;string, string&gt;
+
+获取系统支持的数字日期格式及其示例。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| Map&lt;string, string&gt; | 获取系统支持的数字日期格式及其示例。其中Map的key表示数字日期格式，形如`dd/MM/y`；value表示数字日期示例，形如`18/07/2025`。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let datePatterns: Map<string, string> = i18n.System.getSystemNumericalDatePatterns();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getSystemNumericalDatePatterns failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### getUsingNumericalDatePattern<sup>20+</sup>
+
+static getUsingNumericalDatePattern(): string
+
+获取系统当前使用的数字日期格式。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| string | 系统当前使用的数字日期格式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let datePattern: string = i18n.System.getUsingNumericalDatePattern();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getUsingNumericalDatePattern failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### setSystemNumericalDatePattern<sup>20+</sup>
+
+static setSystemNumericalDatePattern(identifier: string): void
+
+设置系统的数字日期格式。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名  | 类型      | 必填   | 说明                              |
+| ---- | ------- | ---- | ------------------------------- |
+| identifier | string | 是 | 系统支持的数字日期格式。支持的范围可以通过[getSystemNumericalDatePatterns](#getsystemnumericaldatepatterns20)获取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  i18n.System.setSystemNumericalDatePattern("dd/MM/y"); // 如果设置当前系统不支持的数字日期格式，系统会抛出8900001错误码
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.setSystemNumericalDatePattern failed, error code: ${err.code}, message: ${err.message}.`);
 }
 ```
 

@@ -1,4 +1,10 @@
 # 媒体查询 (@ohos.mediaquery)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zju_ljz-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 
 ## 概述
@@ -145,9 +151,8 @@ listener.on('change', onPortrait);
 
 Stage模型下的示例：
 
-
-```ts
 <!--deprecated_code_no_check-->
+```ts
 import { mediaquery, window } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 
@@ -212,9 +217,8 @@ struct MediaQueryExample {
 
 FA模型下的示例：
 
-
-```ts
 <!--deprecated_code_no_check-->
+```ts
 import { mediaquery } from '@kit.ArkUI';
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -276,4 +280,4 @@ struct MediaQueryExample {
 
 针对媒体查询开发，有以下相关实例可供参考：
 
-- [横竖屏切换（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/MediaQuery)
+- [横竖屏切换（ArkTS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/MediaQuery)

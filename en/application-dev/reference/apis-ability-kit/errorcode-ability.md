@@ -47,7 +47,7 @@ The ability with the specified type does not support the API call.
 **Solution**
 
 1. Pass in correct values of **bundleName**, **moduleName**, and **abilityName** in **want**.
-2. Call APIs based on the ability type. For example, call <!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) to start the ServiceExtensionAbility, or call <!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) to connect to the ServiceExtensionAbility.
+2. Call APIs based on the ability type. For example, call <!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#startserviceextensionability) to start the ServiceExtensionAbility, or call <!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability) to connect to the ServiceExtensionAbility.
 
 ## 16000003 ID Not Exist
 
@@ -71,7 +71,7 @@ Use the correct ID.
 
 **Error Message**
 
-Failed to start the invisible ability.
+Cannot start an invisible component.
 
 **Description**
 
@@ -180,7 +180,7 @@ Exit Wukong mode, and then start or stop the ability.
 
 **Error Message**
 
-The call with the continuation flag is forbidden.
+The call with the continuation and prepare continuation flag is forbidden.
 
 **Description**
 
@@ -220,11 +220,11 @@ The application is controlled.
 
 **Description**
 
-This error code is reported when an application is controlled by the application market.
+This error code is reported when the application is under control.
 
 **Possible Causes**
 
-The application is suspected to have malicious behavior and is not allowed to start due to application market control.
+The application is controlled by the system control module and is not allowed to start.
 
 **Solution**
 
@@ -266,37 +266,23 @@ The service times out.
 
 Try again later.
 
-## 16000017 Waiting for the Previous Abilities to Finish Startup
-
-**Error Message**
-
-Another ability is being started. Wait until it finishes starting.
-
-**Description**
-
-Too many abilities need to be started. Due to the limited processing capability of the system, the requests are cached in the queue and processed in sequence.
-
-**Possible Causes**
-
-The system has a large number of concurrent requests.
-
-**Solution**
-
-No action is required. Wait for the previous abilities to finish startup.
-
 ## 16000018 Restricting Redirection to Third-Party Applications of API Version 11 or Later
 
 **Error Message**
 
-Redirection to a third-party application is not allowed in API version 11 or later.
+Redirection to a third-party application is not allowed in API version greater than 11.
 
 **Description**
 
 When the API version of an application is later than 11, the application cannot be explicitly redirected to a third-party application.
 
+**Possible Causes**
+
+The application is using an API version later than 11 and is trying to explicitly redirect to a third-party application.
+
 **Solution**
 
-Use implicit startup or [openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12) for redirection.
+Use implicit startup or [openLink](js-apis-inner-application-uiAbilityContext.md#openlink12) for redirection.
 
 ## 16000019 No Matching Application Is Found During Implicit Startup
 
@@ -318,6 +304,26 @@ A matching ability is not found during implicit startup.
 1. Correct the parameter settings for implicit startup.
 2. Install the specified HAP.
 
+<!--Del-->
+## 16000020 Context Is Not an Ability-level Context
+
+**Error Message**
+
+The context is not ability context.
+
+**Description**
+
+This error code is reported when the passed Context object is not an ability-level context.
+
+**Possible Causes**
+
+The passed Context object is not a UIAbilityContext or an ExtensionContext, and does not inherit from the UIAbilityContext or ExtensionContext class.
+
+**Solution**
+
+Use a UIAbilityContext object or an ExtensionContext object as the input parameter, or use the object that inherits from the UIAbilityContext or ExtensionContext class as the input parameter.
+<!--DelEnd-->
+
 ## 16000050 Internal Error
 
 **Error Message**
@@ -338,42 +344,6 @@ Common kernel errors such as memory application and multithreading processing er
 2. Limit the number of ability processes started.
 3. Restart the device.
 
-## 16000051 Network Error
-
-**Error Message**
-
-Network error.
-
-**Description**
-
-This error code is reported when the network is abnormal.
-
-**Possible Causes**
-
-The network is unavailable.
-
-**Solution**
-
-Try again later or reconnect to the network.
-
-## 16000052 Installation-Free Is Not Supported
-
-**Error Message**
-
-Installation-free is not supported.
-
-**Description**
-
-This error code is reported when the application does not support installation-free.
-
-**Possible Causes**
-
-The application package does not meet the installation-free requirements. For example, the package is too large.
-
-**Solution**
-
-Check whether the application supports installation-free.
-
 ## 16000053 Ability Is Not on Top
 
 **Error Message**
@@ -391,24 +361,6 @@ During the installation-free startup process, the ability is not displayed on th
 **Solution**
 
 Ensure that the ability is displayed on the top of the UI.
-
-## 16000054 Installation-Free Busy
-
-**Error Message**
-
-The installation-free service is busy. Try again later.
-
-**Description**
-
-This error code is reported when the installation-free service is busy.
-
-**Possible Causes**
-
-A download and installation task is being executed for the atomic service.
-
-**Solution**
-
-Try again later.
 
 ## 16000055 Installation-Free Timeout
 
@@ -428,42 +380,7 @@ Installation-free times out.
 
 Try again later.
 
-## 16000056 Installation-Free Is Not Allowed for Other Applications
-
-**Error Message**
-
-Installation-free is not allowed for other applications.
-
-**Description**
-
-This error code is reported when users try to apply installation-free for other applications.
-
-**Possible Causes**
-
-Installation-free is allowed only for the current application.
-
-**Solution**
-
-Apply installation-free only for the current application.
-
-## 16000057 Cross-Device Installation-Free Is Not Supported
-
-**Error Message**
-
-Cross-device installation-free is not supported.
-
-**Description**
-
-This error code is reported when users try to apply installation-free across devices.
-
-**Possible Causes**
-
-Cross-device installation-free is not supported.
-
-**Solution**
-
-Use installation-free on the same device.
-
+<!--Del-->
 ## 16000058 Specified URI Flag Is Invalid
 
 **Error Message**
@@ -517,6 +434,7 @@ Sandbox applications cannot authorize URIs.
 **Solution**
 
 Use a non-sandbox application.
+<!--DelEnd-->
 
 ## 16000061 Unsupported Operation
 
@@ -752,9 +670,7 @@ This error code is reported when an invalid value of **appCloneIndex** is passed
 **Possible Causes**
 
 1. **startAbility()** is called, with **appCloneIndex** carried in **ohos.extra.param.key.appCloneIndex** set to an invalid value.
-<!--Del-->
 2. **isAppRunning()** is called, with **appCloneIndex** set to an invalid value.
-<!--DelEnd-->
 
 **Solution**
 
@@ -786,7 +702,7 @@ This error code is reported when the **backTocallerAbilityResult** API attempts 
 
 **Error Message**
 
-Not support back to caller.
+BackToCaller is not supported.
 
 **Description**
 
@@ -805,7 +721,7 @@ The link feature is not configured for the application or the configuration is n
 
 **Error Message**
 
-The APP_INSTANCE_KEY is invalid.
+The app instance key is invalid.
 
 **Description**
 
@@ -879,7 +795,7 @@ Specify either [APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params) or
 
 **Error Message**
 
-Creating an instance is not supported.
+Creating a new instance is not supported.
 
 **Description**
 
@@ -893,15 +809,16 @@ The parameter use scenario is incorrect.
 
 Delete the [CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params) parameter.
 
+<!--Del-->
 ## 16000081 Failed to Obtain the Target Application Information
 
 **Error Message**
 
-Get target application info failed.
+Failed to obtain the target application information.
 
 **Description**
 
-When <!--Del-->[<!--DelEnd-->an API related to URI authorization<!--Del-->](js-apis-uripermissionmanager-sys.md)<!--DelEnd--> is called, the information about the target application cannot be obtained based on the bundle name and clone index.
+In the call of an [API related to URI authorization](js-apis-uripermissionmanager-sys.md), the information about the target application cannot be obtained based on the bundle name and clone index.
 
 **Possible Causes**
 
@@ -914,48 +831,13 @@ When <!--Del-->[<!--DelEnd-->an API related to URI authorization<!--Del-->](js-a
 1. Check whether the application has been installed.
 2. Check whether the index is within the allowed range.
 3. Check whether the target application has created a clone of the specified index.
-
-## 16000082 UIAbility Startup Failure in Singleton Mode
-
-**Error Message**
-
-The UIAbility is being started.
-
-**Description**
-
-If the UIAbility's launch type is set to **singleton**, the API used to start the UIAbility cannot be called again before the previous call is complete. Otherwise, this error code is returned.
-
-**Possible Causes**
-
-The UIAbility is in singleton mode and is being started.
-
-**Solution**
-
-Ensure that the UIAbility finishes starting before executing a new startup task.
-
-## 16000083 Specified Ability Cannot Be Started by This Type of ExtensionAbility
-
-**Error Message**
-
-The extension can not start the ability due to extension control.
-
-**Description**
-
-Different types of ExtensionAbilities require different capabilities. The system does not allow this type of ExtensionAbility to start the specified ability.
-
-**Possible Causes**
-
-The current type of ExtensionAbility is under system control and is not allowed to start the specified ability.
-
-**Solution**
-
-Check the usage constraints for this type of ExtensionAbility, and ensure that the API is used as required.
+<!--DelEnd-->
 
 ## 16000084 Only One DelegatorAbility Is Allowed to Call the API
 
 **Error Message**
 
-Only allow DelegatorAbility to call the method once.
+Only DelegatorAbility is allowed to call this API, and only once.
 
 **Description**
 
@@ -975,7 +857,7 @@ The system allows the DelegatorAbility to call this API only once.
 
 **Error Message**
 
-The interaction process between Ability and Window encountered an error.
+An error occurred during the interaction between the ability and window.
 
 **Description**
 
@@ -988,6 +870,123 @@ The window service process is abnormal.
 **Solution**
 
 This is a system error. Try calling the API again.
+
+## 16000086 Context Is Not a UIAbilityContext
+
+**Error Message**
+
+The context is not UIAbilityContext.
+
+**Description**
+
+This error code is reported when the passed Context object is not a UIAbilityContext.
+
+**Possible Causes**
+
+The passed Context object is not a UIAbilityContext or does not inherit from the UIAbilityContext class.
+
+**Solution**
+
+Use a UIAbilityContext object or an object that inherits from the UIAbilityContext class as the input parameter.
+
+## 16000090 Caller Is Not an Atomic Service
+
+**Error Message**
+
+The caller is not an atomic service.
+
+**Description**
+
+This error code is reported when the caller is not an atomic service.
+
+**Possible Causes**
+
+The API caller is not an atomic service.
+
+**Solution**
+
+The application does not support this API.
+
+<!--Del-->
+## 16000091 Failed to Obtain a File URI by Key
+
+**Error Message**
+
+Failed to get the file URI from the key.
+
+**Description**
+
+This error code is reported when attempting to obtain a file URI based on the key fails.
+
+**Possible Causes**
+
+1. The key is empty.
+2. The key does not belong to the current caller.
+3. The key is not a data path of a specific service.
+4. The data corresponding to the key in the UDMF is not entirely composed of file URIs.
+
+**Solution**
+
+1. Ensure that the key is created by the caller.
+2. Ensure that the key is a data path of a specific service. For details, see [UDMF Data Path](../apis-arkdata/js-apis-data-unifiedDataChannel.md#intention).
+3. Ensure that the data written in the UDMF when creating the key is entirely composed of file URIs.
+
+## 16000092 No Permission to Authorize URI
+
+**Error Message**
+
+No permission to authorize the URI.
+
+**Description**
+
+This error code is reported when the caller does not have the permission to authorize the URI.
+
+**Possible Causes**
+
+The URIs written when the key is created include URIs that cannot be authorized.
+
+**Solution**
+
+Ensure that all URIs written when the key is created are authorized.
+
+## 16000093 Invalid Caller Token ID
+
+**Error Message**
+
+The caller token ID is invalid.
+
+**Description**
+
+This error code is reported when the token ID of the caller is invalid.
+
+**Possible Causes**
+
+The system does not find the application corresponding to **callerTokenId**.
+
+**Solution**
+
+Check whether the application corresponding to **callerTokenId** is installed.
+
+## 16000094 Invalid Target Token ID
+
+**Error Message**
+
+The target token ID is invalid.
+
+**Description**
+
+This error code is reported when the token ID of the target application is invalid.
+
+**Possible Causes**
+
+1. The system does not find the application corresponding to **targetTokenId**.
+2. **targetTokenId** and **callerTokenId** are the same application.
+
+**Solution**
+
+1. Ensure that the application corresponding to **targetTokenId** is installed.
+2. Ensure that **callerTokenId** and **targetTokenId** are not the same application.
+<!--DelEnd-->
 
 ## 16000100 Failed to Call AbilityMonitor APIs to Listen for Ability Lifecycle Changes
 
@@ -1027,29 +1026,211 @@ This error code is reported when an AbilityMonitor API for monitoring the lifecy
 
 **Possible Causes**
 
-Creating an **AbilityDelegatorRegistry** instance fails.
+Creating an AbilityDelegatorRegistry instance fails.
 
 **Solution**
 
-Check whether an **AbilityDelegatorRegistry** instance is created.
+Check whether an AbilityDelegatorRegistry instance is created.
 
-## 16000101 shell Command Failure
+## 16000110 Application Is Not in the Kiosk Mode List
 
 **Error Message**
 
-Failed to run the shell command.
+Current application is not in kiosk app list, can not exit kiosk mode.
 
 **Description**
 
-This error code is reported when the command is not a valid shell command.
+The current application is not in the list of applications configured to support kiosk mode in EDM. Attempting to enter or exit kiosk mode will return this error code.
 
 **Possible Causes**
 
-The command is not a valid shell command.
+The application is not in the list of applications configured to support kiosk mode in EDM.
 
 **Solution**
 
-Use a valid shell command.
+Check whether the application is in the list of applications configured to support kiosk mode in EDM.
+
+## 16000111 Application Is Already in Kiosk Mode
+
+**Error Message**
+
+System is already in kiosk mode, can not enter again.
+
+**Description**
+
+The system already has an application in kiosk mode. Attempting to enter kiosk mode again will return this error code.
+
+**Possible Causes**
+
+An application is already in kiosk mode.
+
+**Solution**
+
+Check whether any application in the system is already in kiosk mode.
+
+## 16000112 No Application Is in Kiosk Mode
+
+**Error Message**
+
+Current application is not in kiosk mode, can not exit.
+
+**Description**
+
+No application in the system is in Kiosk mode. Attempting to exit kiosk mode will return this error code.
+
+**Possible Causes**
+
+No application is in kiosk mode.
+
+**Solution**
+
+Check whether any application in the system is in Kiosk mode.
+
+## 16000113 Ability Is Not in the Foreground
+
+**Error Message**
+
+Current ability is not in foreground.
+
+**Description**
+
+When the ability is not in the foreground, attempting to perform operations that require the foreground will return this error code.
+
+**Possible Causes**
+
+The current ability is not in the foreground.
+
+**Solution**
+
+Check whether the ability is in the foreground.
+
+<!--Del-->
+## 16000120 Number of Elements in wantList Exceeds 4 or Is Less Than 1
+
+**Error Message**
+
+A maximum of four UIAbility instances can be started simultaneously.The current parameter exceeds the maximum number or is less than 1.
+
+**Description**
+
+The input parameter is incorrect. The **wantList** parameter must contain 1 to 4 Want objects.
+
+**Possible Causes**
+
+The **wantList** parameter contains more than four or less than one element.
+
+**Solution**
+
+Ensure that the **wantList** parameter contains 1 to 4 Want objects.
+
+## 16000121 Target Component Is Not a UIAbility
+
+**Error Message**
+
+The target component type is not a UIAbility.
+
+**Description**
+
+The target component is not a UIAbility.
+
+**Possible Causes**
+
+**startUIAbilities** can start only UIAbilities. This error code is reported when the target component is not a UIAbility.
+
+**Solution**
+
+Check the component type passed in the Want and ensure that the component is a UIAbility.
+
+## 16000122 Target Component Is Intercepted by the System Control Module
+
+**Error Message**
+
+The target component is blocked by the system module and does not support startup.
+
+**Description**
+
+The target component is intercepted by the system control module and cannot be started.
+
+**Possible Causes**
+
+The system control module has blocked the startup of the target application.
+
+**Solution**
+
+If the target UIAbility cannot be started, try to start another UIAbility.
+
+## 16000123 Implicit Startup Is Not Supported
+
+**Error Message**
+
+Implicit startup is not supported.
+
+**Description**
+
+Implicit startup is not supported.
+
+**Possible Causes**
+
+The **wantList** parameter contains an implicit Want.
+
+**Solution**
+
+Check the **wantList** parameter and ensure that no implicit Want exists. If implicit Want exists, change it to explicit Want.
+
+## 16000124 Starting a Distributed UIAbility Is Not Supported
+
+**Error Message**
+
+Starting a remote UIAbility is not supported.
+
+**Description**
+
+This error code is reported when you attempt to start a remote UIAbility.
+
+**Possible Causes**
+
+The **deviceId** field in the Want is not empty and is not the local device ID.
+
+**Solution**
+
+Set the **deviceId** field in the Want to an empty string or the local device ID.
+
+## 16000125 Starting a Plugin Is Not Supported
+
+**Error Message**
+
+Starting a plugin UIAbility is not supported.
+
+**Description**
+
+This error code is reported when you attempt to start a plugin.
+
+**Possible Causes**
+
+The **parameters** field in the Want is set to start the UIAbility of the plugin.
+
+**Solution**
+
+Check the **parameters** field in the Want and do not set **ohos.params.pluginAbility** to **true**.
+
+## 16000126 DLP Files Cannot Be Started
+
+**Error Message**
+
+Starting DLP files is not supported.
+
+**Description**
+
+This error code is reported when you attempt to start a DLP file.
+
+**Possible Causes**
+
+A DLP file is passed in the Want.
+
+**Solution**
+
+Check whether the Want carries a DLP file.
+<!--DelEnd-->
 
 ## 16000151 Invalid wantAgent Object
 
@@ -1059,91 +1240,75 @@ Invalid wantAgent object.
 
 **Description**
 
-This error code is reported when the **wantAgent** object passed in the API is invalid.
+This error code is reported when the wantAgent object passed in the API is invalid.
 
 **Possible Causes**
 
-1. The **wantAgent** object is invalid.
+1. The wantAgent object is invalid.
 2. A third-party application attempts to set the ability of another application.
 3. An internal communication error occurs.
 
 **Solution**
 
-1. Ensure that the **wantAgent** object passed in the API exists.
+1. Ensure that the wantAgent object passed in the API exists.
 2. Check whether the caller is a third-party application. Third-party applications cannot set the abilities of other applications.
 
-## 16000152 wantAgent Object Does Not Exist
+<!--Del-->
+## 16000153 wantAgent Object Is Canceled
 
 **Error Message**
 
-The wantAgent object does not exist.
+The WantAgent has been canceled.
 
 **Description**
 
-This error code is reported when the **wantAgent** object passed in the API does not exist.
+This error code is reported when the wantAgent object passed in the API has been canceled.
 
 **Possible Causes**
 
-The **wantAgent** object does not exist.
+The wantAgent object passed to the API has been canceled.
 
 **Solution**
 
-Pass a valid **wantAgent** object in the API.
+Use the wantAgent object that is not canceled.
+<!--DelEnd-->
 
-## 16000153 wangAgent Object Canceled
+## 16000200 Caller Is Not Allowed to Start a Background Service of the Application
 
 **Error Message**
 
-The wantAgent object has been canceled.
+The caller is not in the appIdentifierAllowList of the target application.
 
 **Description**
 
-This error code is reported when the **wangAgent** object passed in the API has been canceled.
+This error code is reported when the caller is not in the [appIdentifierAllowList](../../quick-start/module-configuration-file.md#extensionabilities) of the target application.
 
 **Possible Causes**
 
-The **wantAgent** object has been canceled.
+The **app-identifier** of the caller of [startAppServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20) or [stopAppServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#stopappserviceextensionability20) is not in the [appIdentifierAllowList](../../quick-start/module-configuration-file.md#extensionabilities) of the target [AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md).
 
 **Solution**
 
-Pass a valid **wantAgent** object in the API.
+Configure the **app-identifier** of the API caller in the [appIdentifierAllowList](../../quick-start/module-configuration-file.md#extensionabilities) of the target [AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md).
 
-## 16100001 Ability of the Specified URI Does Not Exist
+## 16000201 Target Service Is Not Started
 
 **Error Message**
 
-The ability with the specified URI does not exist.
+The target service has not been started yet.
 
 **Description**
 
-This error code is reported when the ability with the specified URI does not exist.
+This error code is reported when the target service is not started.
 
 **Possible Causes**
 
-The ability to query does not exist.
+When the [connectAppServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20) API is used, the server is not started, and the current application does not have the permission to start the target service.
 
 **Solution**
 
-Check the ability with the specified URI.
-
-## 16100002 Incorrect Ability Type
-
-**Error Message**
-
-Incorrect ability type.
-
-**Description**
-
-This error code is reported when the ability type invoked by the API is incorrect.
-
-**Possible Causes**
-
-The ability with the specified type does not support the API call.
-
-**Solution**
-
-1. Check whether the ability name corresponding to the bundle name is correct.
-2. Call the supported APIs based on the ability type.
+1. Wait until the service is started and then reconnect to it.
+2. When the current application starts the target service, the **app-identifier** of the API caller must be configured in the [appIdentifierAllowList](../../quick-start/module-configuration-file.md#extensionabilities) of the target [AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md).
 
 ## 16200001 Caller Released
 
@@ -1183,24 +1348,6 @@ The callee does not exist.
 
 Use a valid callee.
 
-## 16200003 Release Failure
-
-**Error Message**
-
-Release error. The caller does not call any callee.
-
-**Description**
-
-This error code is reported when the release fails.
-
-**Possible Causes**
-
-The caller is not registered with a callee.
-
-**Solution**
-
-Check whether the caller has registered.
-
 ## 16200004 Method Registered
 
 **Error Message**
@@ -1237,6 +1384,7 @@ The method has not been registered by the callee.
 
 Check whether the method has been registered.
 
+<!--Del-->
 ## 16200006 No Permission to Enable or Disable the Resident Process
 
 **Error Message**
@@ -1290,6 +1438,7 @@ The mission listener does not exist.
 **Solution**
 
 Check the mission listener ID.
+<!--DelEnd-->
 
 ## 16300003 Target Application Is Not the Invoker Application
 
@@ -1309,6 +1458,7 @@ The application to start and the invoker application are not the same applicatio
 
 Ensure that the application to start is the invoker application.
 
+<!--Del-->
 ## 18500001 Invalid Bundle Name
 
 **Error Message**
@@ -1346,102 +1496,6 @@ The patch package does not exist or is inaccessible.
 1. Check whether the path of the patch package is valid.
 2. Check whether the application has the permission to access the patch package.
 
-## 18500003 Patch Deployment Failure
-
-**Error Message**
-
-Failed to deploy the patch.
-
-**Description**
-
-This error code is reported when the patch package fails to be deployed.
-
-**Possible Causes**
-
-1. The **type** field in the **patch.json** file is set to a value other than **patch** or **hotreload**.
-2. The HAP corresponding to the bundle name is not installed.
-3. The values of **bundleName** and **versionCode** are different from those of the installed HAP. If the **type** field is set to **patch**, the values of **versionName**, **bundleName**, and **versionCode** are different from those of the installed HAP.
-4. If a patch package has been deployed, the **versionCode** of the new patch package is not later than that of the previous patch package.
-5. If the **type** field is set to **patch**, the signature information is different from that of the application.
-6. If the **type** field is set to **patch** and a debug version is to be installed, a **hotreload** patch is in use.
-7. If the **type** field is set to **hotreload** and a debug version is to be installed, a **patch** package is in use. If the **type** field is set to **hotreload**, a release version is to be installed.
-
-**Solution**
-
-Check whether the patch package complies with the deployment rules.
-
-## 18500004 Patch Package Enablement Failure
-
-**Error Message**
-
-Failed to enable the patch package.
-
-**Description**
-
-This error code is reported when the patch package fails to be enabled.
-
-**Possible Causes**
-
-The patch package is in an incorrect state.
-
-**Solution**
-
-Check the state of the patch package.
-
-## 18500005 Patch Package Deletion Failure
-
-**Error Message**
-
-Failed to remove the patch package.
-
-**Description**
-
-This error code is reported when the patch package fails to be deleted.
-
-**Possible Causes**
-
-The patch package is in an incorrect state.
-
-**Solution**
-
-Check the state of the patch package.
-
-## 18500006 Patch Installation Failure
-
-**Error Message**
-
-Failed to load the patch.
-
-**Description**
-
-This error code is reported when the patch fails to be installed.
-
-**Possible Causes**
-
-The Ark engine fails to install the patch.
-
-**Solution**
-
-Check whether the patch package is correct.
-
-## 18500007 Patch Uninstall Failure
-
-**Error Message**
-
-Failed to unload the patch.
-
-**Description**
-
-This error code is reported when the Ark engine fails to uninstall the patch.
-
-**Possible Causes**
-
-The Ark engine fails to uninstall the patch.
-
-**Solution**
-
-Check whether the patch package is correct.
-
 ## 18500008 Internal Error
 
 **Error Message**
@@ -1477,12 +1531,13 @@ When you try to cancel a quick fix task for an application, the application has 
 **Solution**
 
 Wait until the quick fix task is complete.
+<!--DelEnd-->
 
 ## 16300004 Observer Does Not Exist
 
 **Error Message**
 
-observer not found.
+The observer does not exist.
 
 **Description**
 
@@ -1496,6 +1551,7 @@ The observer does not exist or has been unregistered.
 
 Check whether the observer exists.
 
+<!--Del-->
 ## 16300005 Bundle Information Does Not Exist
 
 **Error Message**
@@ -1518,7 +1574,7 @@ Pass in correct values for **bundleName**, **userId**, and **appIndex**.
 
 **Error Message**
 
-The target bundle has no main uiability.
+The target bundle has no MainAbility.
 
 **Description**
 
@@ -1554,7 +1610,7 @@ Check whether the application has a status bar.
 
 **Error Message**
 
-The target application is not attached to status bar.
+The target application is not attached to the status bar.
 
 **Description**
 
@@ -1567,6 +1623,7 @@ The application has a status bar, but it is not attached to the status bar durin
 **Solution**
 
 Check whether the application is attached to a status bar.
+<!--DelEnd-->
 
 ## 29600001 Internal Error During Image Editing
 
@@ -1605,7 +1662,7 @@ The URI does not exist or the URI does not point to an image file.
 
 Check whether the file exists and whether the file type is image.
 
-## 29600002 Image Too Large
+## 29600003 Image Too Large
 
 **Error Message**
 
@@ -1624,11 +1681,12 @@ This error code is reported when the size of the image exceeds 50 MB.
 1. Limit the size of the edited image to less than 50 MB.
 2. Verify the image size in advance.
 
+<!--Del-->
 ## 16300007 Download and Installation Task Information of the Atomic Service Does Not Exist
 
 **Error Message**
 
-The target free install task does not exist.
+The target free-installation task does not exist.
 
 **Description**
 
@@ -1641,6 +1699,7 @@ The value of **bundleName**, **moduleName**, **abilityName**, or **startTime** i
 **Solution**
 
 Pass in correct values for **bundleName**, **moduleName**, **abilityName**, and **startTime**.
+<!--DelEnd-->
 
 ## 28800001 Startup Task or Dependency Not Found
 
@@ -1713,3 +1772,133 @@ The startup task contains a large number of time-consuming operations, or the co
 **Solution**
 
 Adjust the timeout interval as required. For details about how to set the timeout interval, see [Setting Startup Parameters](../../application-models/app-startup.md#setting-startup-parameters).
+
+<!--Del-->
+## 16400001 Target Application Type Is Not a System HSP
+
+**Error Message**
+
+The input bundleName is not a system HSP.
+
+**Description**
+
+When the [createSystemHspModuleResourceManager](js-apis-inner-application-context-sys.md#contextcreatesystemhspmoduleresourcemanager12) API is used to create a [ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager), if the passed **bundleName** does not belong to a module of a [system HSP](../../quick-start/application-package-glossary.md#system-level-hsp), this error code is reported.
+
+**Possible Causes**
+
+The **bundleName** parameter passed to **createSystemHspModuleResourceManager** is not the bundle name of the HSP preconfigured in the system by the OEM.
+
+**Solution**
+
+Check whether the value of **bundleName** is correct.
+
+## 16000202 Keep-Alive Can Be Set Only for an ExtensionAbility of the appService Type
+
+**Error Message**
+
+Invalid main element type.
+
+**Description**
+
+This error code is reported when the object to be kept alive is not an ExtensionAbility of the appService type.
+
+**Possible Causes**
+
+The **mainElement** field in the **module.json5** file of the entry HAP is not an ExtensionAbility of the appService type.
+
+**Solution**
+
+Change the **mainElement** field of the entry HAP in the **module.json5** file to an ExtensionAbility of the appService type.
+
+## 16000203 Cannot Change the Keep-alive Status of an AppServiceExtensionAbility
+
+**Error Message**
+
+Cannot change the keep-alive status.
+
+**Description**
+
+This error code is reported when the keep-alive status of an AppServiceExtensionAbility cannot be changed.
+
+**Possible Causes**
+
+The keep-alive policy of the AppServiceExtensionAbility is set by the MDM to be uncancelable by users or is set to keep-alive by other users.
+
+**Solution**
+
+Cancel the keep-alive setting on the MDM server, or set the keep-alive policy to allow users to cancel the keep-alive. Cancel the keep-alive of the AppServiceExtensionAbility for the user who has the keep-alive permission.
+
+## 16000204 Application Is Not Installed for the User with userId of 1
+
+**Error Message**
+
+The target bundle is not in u1.
+
+**Description**
+
+This error code is reported when the specified application is not installed under the user with **userId** of 1.
+
+**Possible Causes**
+
+The specified application is not installed under the user with **userId** of 1.
+
+**Solution**
+
+Install the specified application under the user with **userId** of 1.
+<!--DelEnd-->
+
+## 16000115 Process Is Not Running the Component with isolationProcess Set to true
+
+**Error Message**
+
+The current process is not running a component configured with "isolationProcess" and cannot be set as a candidate master process.
+
+**Description**
+
+This error code is reported when you attempt to set a process, which is not running any component configured with **isolationProcess**, as a candidate master process.
+
+**Possible Causes**
+
+The current process is not running any component configured with **isolationProcess** and therefore cannot be designated as a candidate master process.
+
+**Solution**
+
+No action can be taken. Since the current process is not running any component with **isolationProcess** set to **true**, it cannot be set as a candidate master process.
+
+## 16000116 Process Is Already a Master Process
+
+**Error Message**
+
+The current process is already a master process and does not support cancellation.
+
+**Description**
+
+This error code is reported when you attempt to cancel the current process, which is already the master process, as a candidate master process.
+
+**Possible Causes**
+
+The current process is already the main process.
+
+**Solution**
+
+No action can be taken. Cancellation is not supported since the current process is already the master process.
+
+## 16000117 Process Is Not a Candidate Master Process
+
+**Error Message**
+
+The current process is not a candidate master process and does not support cancellation.
+
+**Description**
+
+This error code is reported when you attempt to cancel the current process, which is not a candidate master process , as a candidate master process.
+
+**Possible Causes**
+
+The current process is not a candidate master process and cannot be canceled.
+
+**Solution**
+
+No action can be taken. Cancellation is not supported since the current process is not a candidate master process.
+
+<!--no_check-->

@@ -1,10 +1,18 @@
 # Class (WebResourceResponse)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Web组件资源响应对象。示例代码参考[onHttpErrorReceive事件](./arkts-basic-components-web-events.md#onhttperrorreceive)。
 
 > **说明：**
 >
-> - 本模块接口从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件首批接口从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 本Class首批接口从API version 8开始支持。
 >
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
@@ -112,11 +120,7 @@ getResponseDataEx(): string | number | ArrayBuffer | Resource | undefined
 
 |类型|说明|
 |---|---|
-|string|返回HTML格式的字符串。|
-|number|返回文件句柄。|
-|ArrayBuffer|返回二进制数据。|
-|[Resource](../apis-arkui/arkui-ts/ts-types.md#resource)|返回`$rawfile`资源。|
-|undefined|如果没有可用数据，返回`undefined`。|
+|string \| number \| ArrayBuffer \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) \| undefined | string返回HTML格式的字符串。 number返回文件句柄。 ArrayBuffer返回二进制数据。 Resource返回`$rawfile`资源。 如果没有可用数据，返回`undefined`。 |
 
 ## getResponseIsReady<sup>13+</sup>
 

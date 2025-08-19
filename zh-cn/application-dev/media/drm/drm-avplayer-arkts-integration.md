@@ -1,5 +1,10 @@
 # 基于AVPlayer播放DRM节目(ArkTS)
-
+<!--Kit: Drm Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qin_wei_jie-->
+<!--Designer: @chris2981-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 开发者可以调用DRM Kit和Media Kit的ArkTS接口实现AVPlayer播放器，完成DRM节目播放。
 
 ## 开发步骤
@@ -86,10 +91,12 @@
 
    ```ts
    playerHandle.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
-     if (state == 'released') {
-       mediaKeySession.destroy();
-       mediaKeySystem.destroy();
-     }
-   }
-   await this.playerHandle.release()
+      if (state == 'released') {
+    mediaKeySession.destroy();
+    mediaKeySystem.destroy();
+  } else if (state == 'releasing') {  
+    await playerHandle.release();    
+  }
+   })
+  
    ```

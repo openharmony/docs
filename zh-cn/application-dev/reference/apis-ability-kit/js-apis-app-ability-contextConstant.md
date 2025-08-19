@@ -1,4 +1,10 @@
 # @ohos.app.ability.contextConstant (Context相关常量)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wangkailong; @yangxuguang-huawei; @Luobniz21-->
+<!--Designer: @ccllee1; @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 ContextConstant提供Context相关的枚举，当前仅包含数据加密等级的枚举。
 
@@ -31,17 +37,17 @@ import { contextConstant } from '@kit.AbilityKit';
 
 ## ProcessMode<sup>12+</sup>
 
-进程模式。该功能仅在2in1和tablet设备上生效。
+UIAbility启动后的进程模式。该功能仅在2in1和tablet设备上生效。
 
-ProcessMode作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属性，仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#startability-1)中生效，用来指定目标Ability的进程模式。
+ProcessMode作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属性，仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#startability-1)中生效，用来指定目标UIAbility的进程模式。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称  | 值 | 说明                                                                                                                   |
 |-----| -------- |----------------------------------------------------------------------------------------------------------------------|
-| NEW_PROCESS_ATTACH_TO_PARENT | 1 | 创建一个新进程，并在该进程上启动Ability。该进程会跟随父进程退出。<br>**约束：**<br>使用此模式时，要求目标Ability跟调用方是在同一个应用。                     |
-| NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM | 2 | 创建一个新进程，在该进程上启动Ability，并绑定该进程到状态栏图标上。<br>**约束：**<br>使用此模式时，要求目标Ability跟调用方是在同一个应用，并且应用要在状态栏中有图标。                  |
-| ATTACH_TO_STATUS_BAR_ITEM | 3 | 启动Ability，并绑定该Ability所在进程到状态栏图标上。<br>**约束：**<br>使用此模式时，要求目标Ability跟调用方是在同一个应用，并且应用要在状态栏中有图标。                  |
+| NEW_PROCESS_ATTACH_TO_PARENT | 1 | 创建一个新进程，并在该进程上启动UIAbility。该进程会跟随父进程退出。<br>**约束：**<br>使用此模式时，要求目标UIAbility跟调用方是在同一个应用。                     |
+| NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM | 2 | 创建一个新进程，在该进程上启动UIAbility，并绑定该进程到状态栏图标上。<br>**约束：**<br>使用此模式时，要求目标UIAbility跟调用方是在同一个应用，并且应用要在状态栏中有图标。                  |
+| ATTACH_TO_STATUS_BAR_ITEM | 3 | 启动UIAbility，并绑定该UIAbility所在进程到状态栏图标上。<br>**约束：**<br>使用此模式时，要求目标UIAbility跟调用方是在同一个应用，并且应用要在状态栏中有图标。                  |
 
 **示例：**
 
@@ -83,17 +89,61 @@ ProcessMode作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属
 
 ## StartupVisibility<sup>12+</sup>
 
-Ability启动后的可见性。该功能仅在2in1和tablet设备上生效。
+UIAbility启动后的可见性。该功能仅在2in1和tablet设备上生效。
 
-StartupVisibility作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属性，仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#startability-1)中生效，用来指定目标Ability启动后的可见性。
+StartupVisibility作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属性，仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#startability-1)中生效，用来指定目标UIAbility启动后的可见性。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称  | 值 | 说明                                                                                                                   |
 |-----| -------- |----------------------------------------------------------------------------------------------------------------------|
-| STARTUP_HIDE | 0 | 目标Ability启动后，进入隐藏状态。不会调用Ability的onForeground生命周期。        |
-| STARTUP_SHOW | 1 | 目标Ability启动后，正常显示。     |
+| STARTUP_HIDE | 0 | 目标UIAbility启动后，进入隐藏状态。不会调用UIAbility的onForeground生命周期。        |
+| STARTUP_SHOW | 1 | 目标UIAbility启动后，正常显示。     |
 
 **示例：**
 
   参见[ContextConstant.ProcessMode](#processmode12)。
+
+## Scenarios<sup>20+</sup>
+
+表示不触发[onNewWant](./js-apis-app-ability-uiAbility.md#onnewwant)生命周期回调场景的枚举，用于[setOnNewWantSkipScenarios](./js-apis-inner-application-uiAbilityContext.md#setonnewwantskipscenarios20)接口。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称  | 值 | 说明                                                                                                                   |
+|-----| -------- |----------------------------------------------------------------------------------------------------------------------|
+| SCENARIO_MOVE_MISSION_TO_FRONT | 0x00000001 | <!--RP1-->系统接口[missionManager.moveMissionToFront](./js-apis-app-ability-missionManager-sys.md#missionmanagermovemissiontofront-2)接口触发的UIAbility到前台场景。<!--RP1End-->        |
+| SCENARIO_SHOW_ABILITY | 0x00000002 | [showAbility](./js-apis-inner-application-uiAbilityContext.md#showability12)接口触发的UIAbility到前台场景。     |
+| SCENARIO_BACK_TO_CALLER_ABILITY_WITH_RESULT | 0x00000004 | [backToCallerAbilityWithResult](./js-apis-inner-application-uiAbilityContext.md#backtocallerabilitywithresult12)接口触发的UIAbility到前台场景。     |
+
+**示例：**
+
+```ts
+import { AbilityConstant, contextConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let scenarios: number = contextConstant.Scenarios.SCENARIO_MOVE_MISSION_TO_FRONT |
+      contextConstant.Scenarios.SCENARIO_SHOW_ABILITY |
+      contextConstant.Scenarios.SCENARIO_BACK_TO_CALLER_ABILITY_WITH_RESULT;
+
+    try {
+      this.context.setOnNewWantSkipScenarios(scenarios).then(() => {
+        // 执行正常业务
+        console.info('setOnNewWantSkipScenarios succeed');
+      }).catch((err: BusinessError) => {
+        // 处理业务逻辑错误
+        console.error(`setOnNewWantSkipScenarios failed, code is ${err.code}, message is ${err.message}`);
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`setOnNewWantSkipScenarios failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```

@@ -1,5 +1,12 @@
 # 使用SM4对称密钥（GCM模式）分段加解密(C/C++)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 对应的算法规格请查看[对称密钥加解密算法规格：SM4](crypto-sym-encrypt-decrypt-spec.md#sm4)。
 
 ## 在CMake脚本中链接相关动态库
@@ -52,7 +59,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 #include <string.h>
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_sym_cipher.h"
-#include <string.h>
 
 #define OH_CRYPTO_GCM_TAG_LEN 16
 #define OH_CRYPTO_MAX_TEST_DATA_LEN 128

@@ -1,4 +1,10 @@
-# 通过hdc命令管理输入法
+# Ime工具
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--Designer: @andeszhang-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 **工具用法**<br/>
 
@@ -14,7 +20,7 @@ hdc shell ime [选项] [参数]
 | -l   | NA         | 列出所有输入法。|
 | -h   | NA         | 显示本帮助信息。|
 
-## 通过hdc命令管理输入法示例代码
+## 通过ime工具管理输入法示例代码
 
 1. 启用输入法，支持启用三方输入法到基础模式或者全量模式。
 

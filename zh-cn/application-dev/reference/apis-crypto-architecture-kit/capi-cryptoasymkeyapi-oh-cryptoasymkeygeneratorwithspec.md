@@ -1,5 +1,12 @@
 # OH_CryptoAsymKeyGeneratorWithSpec
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 定义带规格的非对称密钥生成器。

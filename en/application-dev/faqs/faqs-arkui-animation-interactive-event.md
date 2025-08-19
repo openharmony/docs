@@ -22,7 +22,7 @@ Implement nested scrolling of the containers, by using the **onScrollFrameBegin*
 
 **Reference**
 
-[Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#example-2).
+[Example: Implementing Nested Scrolling](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#example-2-implementing-nested-scrolling-method-1)
 
 
 ## How do I enable a component to rotate continuously? (API version 9)
@@ -228,7 +228,7 @@ struct ComponentChild1 {
         .width('100%')
         .height(200)
         .onClick(() => {
-          animateTo({ duration: 1000 }, () => {
+          this.getUIContext()?.animateTo({ duration: 1000 }, () => {
             this.flag = !this.flag;
           })
         })
@@ -246,7 +246,7 @@ struct ComponentChild2 {
         .width('100%')
         .height(200)
         .onClick(() => {
-          animateTo({ duration: 1000 }, () => {
+          this.getUIContext()?.animateTo({ duration: 1000 }, () => {
             this.flag = !this.flag;
           })
         })
@@ -325,7 +325,7 @@ Long press the Files application icon or a blank area.
     if (Number(item.data) != this.dragIndex) {
       let current = this.dataSource.findIndex((element) => element.data === this.dragItem.data)
       let index = this.dataSource.findIndex((element) => element.data === item.data)
-      animateTo({
+      this.getUIContext()?.animateTo({
         curve: curves.interpolatingSpring(0, 1, 400, 38)
       }, () => {
         this.dataSource.splice(current, 1)
@@ -340,10 +340,30 @@ Long press the Files application icon or a blank area.
     let downLocation = getInspectorByKey(item.data)
     let currentLocation = dragEvent.getPreviewRect()
     this.dragItem.scale = 1.05
-    animateTo({
+    this.getUIContext()?.animateTo({
       curve: curves.interpolatingSpring(14, 1, 170, 17)
     }, () => {
       this.dragItem.scale = 1
     })
   })
 ```
+
+## What should I do if a SuperHub floating window appears during image drag operations? (API version 9)
+
+**Symptom**
+
+A SuperHub floating window appears unexpectedly during image drag operations.
+
+**Cause Analysis**
+
+The **Image** component supports drag functionality by default. When the system's transfer service detects an image drag operation, it automatically displays the SuperHub floating window.
+
+**Solution**
+
+1. Set the **draggable** attribute of the **Image** component to **false**.
+
+2. Go to **Settings** > **System** > **SuperHub** and disable **Show on drag** on the device.
+
+**Reference**
+
+[draggable](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md#draggable9)

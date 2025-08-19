@@ -1,4 +1,10 @@
 # @ohos.bundle.bundleMonitor (bundleMonitor模块)(系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供监听应用安装，卸载，更新的能力。
 
@@ -36,9 +42,9 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 
 | 名称       | 说明             |
 | ---------- | --------------- |
-| add        | 监听应用事件。   |
-| update     | 监听更新事件。   |
-| remove     | 监听删除事件。   |
+| add        | 监听应用安装事件。   |
+| update     | 监听应用更新事件。   |
+| remove     | 监听应用卸载事件。   |
 
 ## bundleMonitor.on
 

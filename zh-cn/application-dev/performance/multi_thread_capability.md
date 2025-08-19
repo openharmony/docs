@@ -1,4 +1,10 @@
 # 多线程能力场景化示例实践
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
 
 ## 简介
 
@@ -792,4 +798,4 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 针对多线程并发，有以下相关实例可供参考：  
 
-* [聊天实例应用（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)
+* [聊天实例应用（ArkTS）（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)

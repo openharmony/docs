@@ -1,4 +1,10 @@
 # 拦截Web组件发起的网络请求
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 [网络拦截接口(arkweb_scheme_handler.h)](../reference/apis-arkweb/capi-arkweb-scheme-handler-h.md)可以对Web组件发出的请求进行拦截，并为被拦截的请求提供自定义的响应头以及响应体。
 
@@ -8,7 +14,7 @@
 
 请求开始时回调ArkWeb_OnRequestStart，请求结束时回调ArkWeb_OnRequestStop。
 
-若想要拦截Web组件发出的第一个请求，可以通过[initializeWebEngine](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#initializewebengine)方法提前进行初始化Web组建，再设置拦截器实现拦截。
+若想要拦截Web组件发出的第一个请求，可以通过[initializeWebEngine](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#initializewebengine)方法提前进行初始化Web组建，再设置拦截器实现拦截。详细代码请参考[完整示例](#完整示例)。
 
   ```c++
     // 创建一个ArkWeb_SchemeHandler对象。
@@ -132,6 +138,12 @@
     // 读取响应体结束，当然如果希望该请求失败的话也可以通过调用OH_ArkWebResourceHandler_DidFailWithError(resourceHandler_, errorCode);
     // 传递给Web组件一个错误码并结束该请求。
     OH_ArkWebResourceHandler_DidFinish(resourceHandler);
+  ```
+  
+从API version 20开始，如果希望返回一个网络错误码来结束本次网络请求，也可以直接调用OH_ArkWebResourceHandler_DidFailWithErrorV2接口返回一个默认的网络错误码ARKWEB_ERR_CONNECTION_FAILED并结束该网络请求，错误码详情参考[网络错误码(arkweb_net_error_list.h)](../reference/apis-arkweb/capi-arkweb-net-error-list-h.md)。
+  ```c++
+    // 直接返回网络错误码ARKWEB_ERR_CONNECTION_FAILED结束该请求。
+    OH_ArkWebResourceHandler_DidFailWithErrorV2(resourceHandler_, ARKWEB_ERR_FAILED, true);
   ```
 
 ## 完整示例
@@ -270,6 +282,7 @@ void OnURLRequestStop(const ArkWeb_SchemeHandler *schemeHandler,
     RawfileRequest *rawfileRequest = (RawfileRequest *)OH_ArkWebResourceRequest_GetUserData(request);
     if (rawfileRequest) {
         rawfileRequest->Stop();
+        delete rawfileRequest;
     }
 }
 
@@ -295,6 +308,7 @@ void OnURLRequestStopForSW(const ArkWeb_SchemeHandler *schemeHandler,
     RawfileRequest *rawfileRequest = (RawfileRequest *)OH_ArkWebResourceRequest_GetUserData(request);
     if (rawfileRequest) {
         rawfileRequest->Stop();
+        delete rawfileRequest;
     }
 }
 
@@ -421,6 +435,7 @@ public:
     void DidReceiveData(const uint8_t *buffer, int64_t bufLen);
     void DidFinish();
     void DidFailWithError(ArkWeb_NetError errorCode);
+    void DidFailWithErrorV2(ArkWeb_NetError errorCode, bool completeIfNoResponse);
 
 private:
     const ArkWeb_ResourceRequest *resourceRequest_{nullptr};
@@ -520,7 +535,11 @@ RawfileRequest::RawfileRequest(const ArkWeb_ResourceRequest *resourceRequest,
           resourceHandler_(resourceHandler),
           resourceManager_(resourceManager) {}
 
-RawfileRequest::~RawfileRequest() {}
+RawfileRequest::~RawfileRequest() {
+    if (stream_) {
+        OH_ArkWebResourceRequest_DestroyHttpBodyStream(stream_);
+    }
+}
 
 void RawfileRequest::Start()
 {
@@ -664,6 +683,14 @@ void RawfileRequest::DidFailWithError(ArkWeb_NetError errorCode)
     OH_LOG_INFO(LOG_APP, "did finish with error %{public}d.", errorCode);
     if (!stopped_) {
         OH_ArkWebResourceHandler_DidFailWithError(resourceHandler_, errorCode);
+    }
+}
+
+void RawfileRequest::DidFailWithErrorV2(ArkWeb_NetError errorCode, bool completeIfNoResponse)
+{
+    OH_LOG_INFO(LOG_APP, "did finish with error %{public}d.", errorCode);
+    if (!stopped_) {
+        OH_ArkWebResourceHandler_DidFailWithErrorV2(resourceHandler_, errorCode, completeIfNoResponse);
     }
 }
 ```
@@ -828,7 +855,7 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('activate', event => {
-    console.log("v1 now redy to handle fetches.");
+    console.log("v1 now ready to handle fetches.");
 });
 ```
 

@@ -97,7 +97,7 @@
     ```text
     apl=normal name=com.ohos.permissionmanager domain=permissionmanager_hap type=permissionmanager_hap_data_file
     ```
-    APL说明参考[权限等级说明](../../application-dev/security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
+    APL说明参考[权限等级说明](../../application-dev/security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)中的`权限APL等级`。
 2. 在type.te中定义`permissionmanager_hap`和`permissionmanager_hap_data_file`，使`u:r:permissionmanager_hap:s0`和`u:object_r:permissionmanager_hap_data_file:s0`是合法的。
     ```text
     type permissionmanager_hap, normal_hap_attr, hap_domain, domain;

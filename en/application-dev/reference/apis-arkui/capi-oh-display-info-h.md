@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **oh_display_info.h** file declares the common enums and definitions of the display.
+The file declares the common enums and definitions of the display.
 
 **File to include**: <window_manager/oh_display_info.h>
 

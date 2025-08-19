@@ -1,5 +1,12 @@
 # Neural Network Runtime对接AI推理框架开发指导
 
+<!--Kit: Neural Network Runtime Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @GbuzhidaoR-->
+<!--Designer: @GbuzhidaoR-->
+<!--Tester: @GbuzhidaoR-->
+<!--Adviser: @ge-yafang-->
+
 ## 场景介绍
 
 Neural Network Runtime作为AI推理引擎和加速芯片的桥梁，为AI推理引擎提供精简的Native接口，满足推理引擎通过加速芯片执行端到端推理的需求。
@@ -28,7 +35,7 @@ Neural Network Runtime部件的环境要求如下：
 
 ## 接口说明
 
-以下为Neural Network Runtime开发流程中的常用接口，具体可见[NeuralNetworkRuntime](../../reference/apis-neural-network-runtime-kit/_neural_network_runtime.md)。
+以下为Neural Network Runtime开发流程中的常用接口，具体可见[NeuralNetworkRuntime](../../reference/apis-neural-network-runtime-kit/capi-neuralnetworkruntime.md)。
 
 ### 结构体
 

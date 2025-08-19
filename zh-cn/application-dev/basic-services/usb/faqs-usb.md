@@ -1,5 +1,12 @@
 # 常见问题
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 ## 手机USB连接个人电脑时使用usbManager.getDevices获取的设备列表为空
 
 ### 问题现象
@@ -15,7 +22,7 @@ usbManager.getDevices接口的作用，是在当前设备作为主设备时去�
 基于上述情况：
 
 - 设备（如手机）USB连接个人电脑时，个人电脑默认是主设备，手机是从设备。此时在手机侧调用usbManager.getDevices接口查询到设备列表为空，属于正常现象。
-- 设备（如手机）USB连接鼠标键盘时，手机默认是主设备，鼠标键盘时从设备。此时在手机侧调用usbManager.getDevices接口可以查询到设备列表。
+- 设备（如手机）USB连接鼠标键盘时，手机默认是主设备，鼠标键盘是从设备。此时在手机侧调用usbManager.getDevices接口可以查询到设备列表。
 
 ### 解决措施
 

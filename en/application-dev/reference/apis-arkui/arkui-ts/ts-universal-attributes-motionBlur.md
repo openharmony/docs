@@ -8,9 +8,9 @@ You can apply a motion blur effect to a component being scaled or moved. This ef
 
 ## motionBlur
 
-motionBlur(value: MotionBlurOptions)
+motionBlur(value: MotionBlurOptions): T
 
-Apply a motion blur effect to the component being scaled or moved.
+Applies a motion blur effect to the component being scaled or moved.
 
 1. Do not use this API in intra-component transitions, shared element transitions, implicit element transitions, or particle animations. Doing so may cause unexpected results.
 
@@ -26,17 +26,25 @@ Apply a motion blur effect to the component being scaled or moved.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name| Type                                           | Mandatory| Description              |
 | ------ | ----------------------------------------------- | ---- | ------------------ |
 | value  | [MotionBlurOptions](#motionbluroptions) | Yes  | Motion blur options.|
 
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
+
 ## motionBlur<sup>18+</sup>
 
-motionBlur(motionBlur: Optional\<MotionBlurOptions>)
+motionBlur(motionBlur: Optional\<MotionBlurOptions>): T
 
-Apply a motion blur effect to the component being scaled or moved. Compared to [motionBlur](#motionblur), this API supports the **undefined** type for the **motionBlur** parameter.
+Applies a motion blur effect to the component being scaled or moved. Compared with [motionBlur](#motionblur), this API supports the **undefined** type for the **motionBlur** parameter.
 
 1. Do not use this API in intra-component transitions, shared element transitions, implicit element transitions, or particle animations. Doing so may cause unexpected results.
 
@@ -52,15 +60,25 @@ Apply a motion blur effect to the component being scaled or moved. Compared to [
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 |   Name   |    Type                                                     |  Mandatory |     Description                                                      |
 | ---------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | motionBlur | Optional\<[MotionBlurOptions](#motionbluroptions)> | Yes  | Motion blur options.<br>If **motionBlur** is set to **undefined**, the previous value is retained.|
 
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
+
 ## MotionBlurOptions
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name         | Type                                                       | Mandatory | Description                                                        |
 | ------------- | ----------------------------------------------------------- | ----- | ------------------------------------------------------------ |
@@ -70,6 +88,8 @@ Apply a motion blur effect to the component being scaled or moved. Compared to [
 ## MotionBlurAnchor
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name         | Type                                                       | Mandatory | Description                                                        |
 | ------------- | ----------------------------------------------------------- | ----- | ------------------------------------------------------------ |
@@ -86,12 +106,12 @@ import { curves } from '@kit.ArkUI';
 @Entry
 @Component
 struct motionBlurTest {
-  @State widthSize: number = 400
-  @State heightSize: number = 320
-  @State flag: boolean = true
-  @State radius: number = 0
-  @State x: number = 0
-  @State y: number = 0
+  @State widthSize: number = 400;
+  @State heightSize: number = 320;
+  @State flag: boolean = true;
+  @State radius: number = 0;
+  @State x: number = 0;
+  @State y: number = 0;
 
   build() {
     Column() {

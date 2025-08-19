@@ -1,4 +1,10 @@
 # UIExtension错误码
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @dutie123-->
+<!--Designer: @lmleon-->
+<!--Tester: @fredyuan0912-->
+<!--Adviser: @ge-yafang-->
 
 > **说明：**
 >

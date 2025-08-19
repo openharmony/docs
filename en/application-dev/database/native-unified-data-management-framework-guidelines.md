@@ -16,7 +16,7 @@ The Unified Data Management Framework (UDMF) defines the language and data stand
 
 - Unified data<br>A unified data object encapsulates multiple unified records.
 
-- Unified data provider<br>The unified data provider is configured in a unified record to provide UDS data. It is usually used in deferred data transmission, in which the UDS data is transferred only when the data consumer obtains data from the unified data record.
+- Unified data provider<br>The unified data provider is configured in a unified record to provide UDS data. It is usually used in delayed data transmission, in which the UDS data is transferred only when the data consumer obtains data from the unified data record.
 
 
 ## Constraints
@@ -25,11 +25,9 @@ The Unified Data Management Framework (UDMF) defines the language and data stand
 - The size of customized data to be added to a unified record cannot exceed 100 MB.
 - When data is written to the UDMF database, the memory size of the unique identifier (key) must be greater than or equal to 512 bytes.
 
-
-
 ## Available APIs
 
-For details about the APIs, see [UDMF](../reference/apis-arkdata/_u_d_m_f.md).
+For details about the APIs, see [UDMF](../reference/apis-arkdata/capi-udmf.md).
 
 | API                                                    | Description                                                       |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |

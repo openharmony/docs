@@ -1,4 +1,10 @@
 # ServiceExtensionContext (系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yewei0794-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 ServiceExtensionContext模块是ServiceExtensionAbility的上下文环境，继承自ExtensionContext。
 
@@ -2316,7 +2322,7 @@ requestModalUIExtension(pickerWant: Want): Promise\<void>
 
 请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过Want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。仅支持在主线程调用。使用promise形式异步回调。
 
-在前台应用上拉起UIExtensionAility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
+在前台应用上拉起UIExtensionAbility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
 
 > **说明：**
 >
@@ -2393,7 +2399,7 @@ requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
 请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过Want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。仅支持在主线程调用。使用callback形式异步回调。
 
-在前台应用上拉起UIExtensionAility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
+在前台应用上拉起UIExtensionAbility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
 
 > **说明：**
 >
@@ -2559,7 +2565,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.preStartMission<sup>12+<sup>
 
-preStartMission(bundleName:string, moduleName: string, abilitName: string, startTime: string): Promise&lt;void&gt;
+preStartMission(bundleName:string, moduleName: string, abilityName: string, startTime: string): Promise&lt;void&gt;
 
 打开原子化服务跳过loading框并预打开窗口，使用Promise异步回调。
 
@@ -2701,7 +2707,7 @@ export default class MyServiceExtensionAbility extends ServiceExtensionAbility {
     this.context.startUIServiceExtensionAbility(startWant).then(() => {
       console.info('succeeded');
     }).catch((error: BusinessError) => {
-      console.error(`error code: ${error.code}, error essage : ${error.message}`);
+      console.error(`error code: ${error.code}, error message : ${error.message}`);
     })
   }
 }
@@ -2828,7 +2834,7 @@ startUIAbilities(wantList: Array\<Want>): Promise\<void>
 | 16000073 | The app clone index is invalid. |
 | 16000076 | The app instance key is invalid. |
 | 16000080 | Creating a new instance is not supported. |
-| 16000120 | A maximum of four UIAbility instances can be started simultaneously. The current parameter exceeds the maximum number.|
+| 16000120 | A maximum of four UIAbility instances can be started simultaneously. The current parameter exceeds the maximum number or is less than 1.|
 | 16000121 | The target component type is not a UIAbility. |
 | 16000122 | The target component is blocked by the system module and does not support startup. |
 | 16000123 | Implicit startup is not supported. |

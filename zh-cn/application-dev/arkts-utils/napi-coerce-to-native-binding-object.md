@@ -1,4 +1,10 @@
 # 自定义Native Transferable对象的多线程操作场景
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 在ArkTS应用开发中，有很多场景需要将ArkTS对象与Native对象进行绑定。ArkTS对象将数据写入Native对象，Native对象再将数据写入目的地。例如，将ArkTS对象中的数据写入C++数据库场景。
 
@@ -385,6 +391,7 @@ Native Transferable对象有两种模式：共享模式和转移模式。本示�
 
    在共享模式下，跨线程传递后，原来的ArkTS对象还可以继续访问Native对象。示例如下：
    ```ts
+   // Index.ets
    import testNapi from 'libentry.so';
    import { taskpool } from '@kit.ArkTS';
    

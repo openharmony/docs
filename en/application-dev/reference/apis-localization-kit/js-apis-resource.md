@@ -18,10 +18,10 @@ import { resourceManager } from '@kit.LocalizationKit'
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-| Name        | Type    | Readable  | Writable |Description         |
+| Name        | Type    | Read-Only  | Optional |Description         |
 | ---------- | ------ | ----- | ----  | ---------------|
-| bundleName | string | Yes   | No| Bundle name of the application.|
-| moduleName | string | Yes   | No| Module name of the application.|
-| id         | number | Yes   | No| Resource ID.     |
-| params     | any[] | Yes   | No| Other resource parameters, which are optional.     |
-| type       | number | Yes   | No| Resource type, which is optional.     |
+| bundleName | string | No   | No| Bundle name of the application.|
+| moduleName | string | No   | No| Module name of the application.|
+| id         | number | No   | No| Resource ID.     |
+| params     | any[] | No  | Yes| Other resource parameters, including the resource name, substitution value for the formatting API, and quantifier for the singular-plural formatting API.     |
+| type       | number | No   | Yes| Resource type.     |

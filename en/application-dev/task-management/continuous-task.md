@@ -14,11 +14,11 @@ The table below lists the types of continuous tasks, which are used in various s
 | Name| Description| Item| Example Scenario|
 | -------- | -------- | -------- | -------- |
 | DATA_TRANSFER | Data transfer| dataTransfer | Non-hosting uploading and downloading operations, like those occurring in the background of a web browser for data transfer.|
-| AUDIO_PLAYBACK | Audio and video playback| audioPlayback | Audio and video playback in the background; audio and video casting.<br> **NOTE**<br>It can be used in atomic services.|
+| AUDIO_PLAYBACK | Audio and video playback| audioPlayback | Audio and video playback in the background; audio and video casting.<br> **Note**: It can be used in atomic services.|
 | AUDIO_RECORDING | Audio recording| audioRecording | Recording and screen capture in the background.|
 | LOCATION | Positioning and navigation| location | Positioning and navigation.|
 | BLUETOOTH_INTERACTION | Bluetooth-related services| bluetoothInteraction | An application transitions into the background during the process of file transfer using Bluetooth.|
-| MULTI_DEVICE_CONNECTION | Multi-device connection| multiDeviceConnection | Distributed service connection and casting.<br> **NOTE**<br>It can be used in atomic services.|
+| MULTI_DEVICE_CONNECTION | Multi-device connection| multiDeviceConnection | Distributed service connection and casting.<br> **Note**: It can be used in atomic services.|
 | <!--DelRow-->WIFI_INTERACTION | WLAN-related services (for system applications only)| wifiInteraction  | An application transitions into the background during the process of file transfer using WLAN.|
 | VOIP<sup>13+</sup> | Audio and video calls| voip  | Chat applications (with audio and video services) transition into the background during audio and video calls.|
 | TASK_KEEPING | Computing task (for 2-in-1 devices only).| taskKeeping  | Antivirus software is running.|
@@ -31,9 +31,13 @@ Description of **DATA_TRANSFER**:
 
 Description of **AUDIO_PLAYBACK**:
 
-- To implement background playback through **AUDIO_PLAYBACK**, you must use the [AVSession](../media/avsession/avsession-overview.md) for audio and video development.
-
 - Casting audio and video involves transmitting content from one device to another for playback purposes. If the application transitions to the background while casting, the continuous task checks the audio and video playback and casting services. The task will persist as long as either the audio and video playback or casting service is running properly.
+
+- If the application needs to play media (STREAM_USAGE_MUSIC, STREAM_USAGE_MOVIE, or STREAM_USAGE_AUDIOBOOK) or games (STREAM_USAGE_GAME) in the background, it must access the [AVSession](../media/avsession/avsession-overview.md) service and request a continuous task of the AUDIO_PLAYBACK type.
+
+- If the application is required to run other background playback tasks that can be perceived by users for a long time, it must request a continuous task of the AUDIO_PLAYBACK type, without accessing the AVSession service.
+
+- If the application does not comply with the preceding access specifications, it will be muted and suspended by the system when switched to the background. It can resume playback only when it returns to the foreground.
 
 ### Constraints
 
@@ -43,13 +47,13 @@ Description of **AUDIO_PLAYBACK**:
 
 **Running restrictions**:
 
-- If an application requests a continuous task but does not carry out the relevant service, the system imposes restrictions on the application. For example, if the system detects that an application has requested a continuous task of the AUDIO_PLAYBACK type but does not play audio, the system cancels the continuous task.
+- If an application requests a continuous task but does not carry out the relevant service, the system imposes restrictions on the application. For example, if the system detects that an application has requested a continuous task of the AUDIO_PLAYBACK type but does not play audio, the application will be suspended when it returns to the background.
 
-- If an application requests a continuous task but carries out a service that does not match the requested type, the system imposes restrictions on the application. For example, if the system detects that an application requests a continuous task of the AUDIO_PLAYBACK type, but the application is playing audio (corresponding to the AUDIO_PLAYBACK type) and recording (corresponding to the AUDIO_RECORDING type), the system enforces management measures.
+- If an application requests a continuous task but carries out a service that does not match the requested type, the system imposes restrictions on the application. The application will be suspended when it returns to the background. For example, if the system detects that an application requests a continuous task of the AUDIO_PLAYBACK type, but the application is playing audio (corresponding to the AUDIO_PLAYBACK type) and recording (corresponding to the AUDIO_RECORDING type), the system enforces management measures.
 
-- When an application's operations are completed after a continuous task request, the system imposes restrictions on the application.
+- When an application's operations are completed after a continuous task request, the system imposes restrictions on the application. The application will be suspended when it returns to the background.
 
-- If the background load of the process that runs a continuous task is higher than the corresponding typical load for a long period of time, the system performs certain control.
+- If the background load of the process that runs a continuous task is higher than the corresponding typical load for a long period of time, the system performs certain control. The application will be suspended or terminated when it is switched to the background.
 
 > **NOTE**
 >
@@ -128,8 +132,8 @@ The following walks you through how to request a continuous task for recording t
     @Component
     struct Index {
       @State message: string = 'ContinuousTask';
-     // Use getContext to obtain the context of the UIAbility for the page.
-      private context: Context = getContext(this);
+     // Obtain the UIAbility context of the page by calling getUIContext().getHostContext().
+      private context: Context | undefined = this.getUIContext().getHostContext();
 
       OnContinuousTaskCancel() {
         try {
@@ -415,7 +419,7 @@ The following walks you through how to request a continuous task for recording t
        "abilities": [
            {
                "backgroundModes": [
-               "audioRecording",
+               "audioRecording"
                ], // Background mode
                "type": "service"  // The ability type is Service.
            }

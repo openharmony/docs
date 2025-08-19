@@ -1,4 +1,10 @@
 # ToolBar
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fengluochenai-->
+<!--Designer: @YanSanzo-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @HelloCrease-->
 
 
 工具栏用于展示针对当前界面内容的操作选项，在界面底部显示。底部最多显示5个入口，超过则收纳入“更多”子项中，在最右侧显示。
@@ -268,7 +274,7 @@ struct Index {
 ![zh-cn_image_toolbar_example01](figures/zh-cn_image_toolbar_example01.png)
 
 ### 示例2（设置工具栏自定义样式）
-该示例通过设置属性ToolBarModifier自定义工具栏高度、背景色、按压效果等样式。
+从API version 13开始，该示例通过设置属性ToolBarModifier自定义工具栏高度、背景色、按压效果等样式。
 ```ts
 import {
   SymbolGlyphModifier,
@@ -367,7 +373,7 @@ struct Index {
 
 
 ### 示例3（设置工具栏自定义播报）
-该示例通过设置工具栏子项属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
+从API version 18开始，该示例通过设置工具栏子项属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
 import { ToolBar, ToolBarOptions, ItemState } from '@kit.ArkUI';
 

@@ -1,4 +1,10 @@
 # @ohos.app.ability.appManager (应用管理)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @SKY2001-->
+<!--Designer: @yzkp-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 appManager模块提供App管理的能力，包括查询当前是否处于稳定性测试场景、查询是否为ram受限设备、获取应用程序的内存大小、获取有关运行进程的信息等。
 
@@ -782,7 +788,7 @@ try {
 
 ## AbilityStateData<sup>14+</sup>
 
-type AbilityStateData = _AbilityStateData
+type AbilityStateData = _AbilityStateData.default
 
 Ability状态信息。
 
@@ -790,11 +796,11 @@ Ability状态信息。
 
 | 类型 | 说明 |
 | --- | --- |
-| [_AbilityStateData](js-apis-inner-application-abilityStateData.md) | Ability状态信息。 |
+| [_AbilityStateData.default](js-apis-inner-application-abilityStateData.md) | Ability状态信息。 |
 
 ## AppStateData<sup>14+</sup>
 
-type AppStateData = _AppStateData
+type AppStateData = _AppStateData.default
 
 应用状态信息。
 
@@ -802,7 +808,7 @@ type AppStateData = _AppStateData
 
 | 类型 | 说明 |
 | --- | --- |
-| [_AppStateData](js-apis-inner-application-appStateData.md) | 应用状态信息。 |
+| [_AppStateData.default](js-apis-inner-application-appStateData.md) | 应用状态信息。 |
 
 ## ApplicationStateObserver<sup>14+</sup>
 
@@ -832,7 +838,7 @@ ProcessInformation模块。
 
 ## ProcessData<sup>14+</sup>
 
-type ProcessData = _ProcessData
+type ProcessData = _ProcessData.default
 
 进程数据。
 
@@ -840,4 +846,4 @@ type ProcessData = _ProcessData
 
 | 类型 | 说明 |
 | --- | --- |
-| [_ProcessData](js-apis-inner-application-processData.md) | 进程数据。 |
+| [_ProcessData.default](js-apis-inner-application-processData.md) | 进程数据。 |

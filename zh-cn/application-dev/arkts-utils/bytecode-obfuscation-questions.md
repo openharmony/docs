@@ -1,4 +1,10 @@
 # ArkGuard字节码混淆常见问题
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @oatuwwutao-->
+<!--Designer: @hufeng20-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 ## 字节码混淆与源码混淆差异
 
@@ -112,7 +118,7 @@ export struct MainPage {
 this.__messageStr = new ObservedPropertySimplePU('Hello World', this, "messageStr");
 ```
 
-在中间文件转换过程中，message以字面量形式进行了绑定；此时，存在meaasgeStr这个属性被混淆了，但是这个方法的字符串参数没有混淆，导致UI失效。
+在中间文件转换过程中，message以字面量形式进行了绑定；此时，存在messageStr这个属性被混淆了，但是这个方法的字符串参数没有混淆，导致UI失效。
 
 **解决办法**：收集struct里所有成员，加入白名单，不参与混淆。目前由于字节码混淆不提供UI混淆能力，系统会自动识别添加到白名单，不需要开发者配置。
 
@@ -178,13 +184,13 @@ callargs2 0x2e, v2, v3
 ### 混淆如何查看混淆效果
 
 在混淆结束后会将中间产物落盘，因此可以在编译产物build目录中找到混淆后的中间产物以查看混淆效果，同时可以找到混淆生成的名称映射表及系统API白名单文件。
-· 混淆后的文件目录：build/default/[...]/release/obfuscation/obf。
-· 混淆名称映射表及系统API白名单目录：build/default/[...]/release/obfuscation。
+-  混淆后的文件目录：build/default/[...]/release/obfuscation/obf。
+-  混淆名称映射表及系统API白名单目录：build/default/[...]/release/obfuscation。
 
 ![bytecode-build-product](figures/bytecode-build-product.png)
 
-· 名称映射表文件：nameCache.json，该文件记录了源码名称混淆的映射关系。
-· 系统API白名单文件：systemApiCache.json，该文件记录了SDK中的接口与属性名称，与其重名的源码不会被混淆。
+- 名称映射表文件：nameCache.json，该文件记录了源码名称混淆的映射关系。
+- 系统API白名单文件：systemApiCache.json，该文件记录了SDK中的接口与属性名称，与其重名的源码不会被混淆。
 
 
 ## 编译报错处理
@@ -230,22 +236,32 @@ dialogController:CustomDialogController|null = null;
 #### 案例一：报错内容为 Cannot read property 'xxx' of undefined
 
 ```ts
+// 示例JSON文件结构（test.json）：
+/*
+{
+  "jsonObj": {
+    "jsonProperty": "value"
+  }
+}
+*/
+
 // 混淆前
-const jsonData = ('./1.json')
-let jsonStr = JSON.parse(jsonData)
-let jsonObj = jsonStr.jsonProperty
+import jsonData from "./testjson";
+
+let jsonProp = jsonData.jsonObj.jsonProperty;
+
 // 混淆后
-const jsonData = ('./1.json')
-let jsonStr = JSON.parse(jsonData)
-let jsonObj = jsonStr.i
+import jsonData from "./test.json";
+
+let jsonProp = jsonData.i.j;
 ```
 
-开启属性混淆后，"jsonProperty"被混淆成随机字符"i"，但json文件中为原始名称，从而导致值为undefined。
+开启属性混淆后，"jsonProperty"被混淆成随机字符"j"，但json文件中为原始名称，从而导致值为undefined。
 **解决方案**：使用-keep-property-name选项将json文件里的字段配置到白名单。
 
 #### 案例二：使用了数据库相关的字段，开启属性混淆后，出现报错
 
-报错内容为table Account has no column named a23 in 'INSET INTO Account(a23)'。
+报错内容为table Account has no column named a23 in 'INSERT INTO Account(a23)'。
 代码里使用了数据库字段，混淆时该SQL语句中字段名称被混淆，但数据库中字段为原始名称，从而导致报错。
 **解决方案**：使用-keep-property-name选项将使用到的数据库字段配置到白名单。
 
@@ -256,7 +272,8 @@ parameters的类型为Record<string, Object>，在开启属性混淆后，parame
 
 ```ts
 // 混淆前
-import { Want } from '@kit.AbilityKit';
+import { Want } from '@ohos:app.ability.Want';
+
 let petalMapWant: Want = {
   bundleName: 'com.example.myapplication',
   uri: 'maps://',
@@ -266,6 +283,7 @@ let petalMapWant: Want = {
 }
 // 混淆后
 import type Want from "@ohos:app.ability.Want";
+
 let petalMapWant: Want = {
     bundleName: 'com.example.myapplication',
     uri: 'maps://',
@@ -352,15 +370,18 @@ export interface MyInfo {
 }
 // file2.ts
 import { MyInfo } from './file1';
+
 const person: MyInfo = {
   age: 20,
   address: {
     city1: "shanghai"
   }
 }
+
 // 混淆后，file1.ts的代码被保留
 // file2.ts
 import { MyInfo } from './file1';
+
 const person: MyInfo = {
   age: 20,
   address: {
@@ -432,13 +453,17 @@ let mytest = (await import('./file')).Test1
 export namespace ns1 {
   export class person1 {}
 }
+
 import {ns1} from './file1'
+
 let person1 = new ns1.person1()
 // 混淆后
 export namespace a3 {
   export class b2 {}
 }
+
 import {a3} from './file1'
+
 let person1 = new a3.person1()
 ```
 
@@ -449,12 +474,12 @@ namespace里的"person1"属于export元素，当通过"ns1.person1"调用时，�
 1. 开启-enable-property-obfuscation选项。
 2. 将namespace里导出的方法使用-keep-global-name选项添加到白名单。
 
-#### 案例三：使用了declare global，混淆后报语法错误
+#### 案例三：使用了declare global，混淆后报语法错误	
 
 ```ts
 // 混淆前
 declare global {
-  var age : string
+  var myAge : string
 }
 // 混淆后
 declare a2 {
@@ -467,6 +492,8 @@ declare a2 {
 **解决方案**：
 
 使用-keep-global-name选项将global配置到白名单中。
+
+从API version 18 开始，global 已加入系统的白名单，不需要开发者再使用 -keep-global-name 配置
 
 #### 案例四：使用Reflect.defineMetadata()，混淆后，提示找不到函数，导致程序异常
 

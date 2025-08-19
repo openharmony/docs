@@ -22,6 +22,12 @@ Sets a visual effect that is not a filter effect.
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | effect | [VisualEffect](../../apis-arkgraphics2d/js-apis-uiEffect.md#visualeffect) | Yes  | Visual effect.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
+
 ## backgroundFilter
 
 backgroundFilter(filter: Filter): T
@@ -37,6 +43,12 @@ Sets the visual effect of the background filter.
 | Name| Type                                                        | Mandatory| Description                                                |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | filter | [Filter](../../apis-arkgraphics2d/js-apis-uiEffect.md#filter) | Yes  | Visual effect of the background filter.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 ## foregroundFilter
 
@@ -54,6 +66,12 @@ Sets the visual effect of the foreground (content) filter.
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | filter | [Filter](../../apis-arkgraphics2d/js-apis-uiEffect.md#filter) | Yes  | Visual effect of the foreground (content) filter.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
+
 ## compositingFilter
 
 compositingFilter(filter: Filter): T
@@ -70,6 +88,11 @@ Sets the visual effect of the compositing filter.
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | filter | [Filter](../../apis-arkgraphics2d/js-apis-uiEffect.md#filter) | Yes  | Visual effect of the compositing filter.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 ## Example
 
@@ -82,9 +105,9 @@ import { uiEffect } from '@kit.ArkGraphics2D';
 @Entry
 @Component
 struct FilterEffectExample {
-  @State filterTest1: uiEffect.Filter = uiEffect.createFilter().blur(10)
-  @State filterTest2: uiEffect.Filter = uiEffect.createFilter().blur(10)
-  @State filterTest3: uiEffect.Filter = uiEffect.createFilter().blur(10)
+  @State filterTest1: uiEffect.Filter = uiEffect.createFilter().blur(10);
+  @State filterTest2: uiEffect.Filter = uiEffect.createFilter().blur(10);
+  @State filterTest3: uiEffect.Filter = uiEffect.createFilter().blur(10);
 
   build() {
     Column({ space: 15 }) {

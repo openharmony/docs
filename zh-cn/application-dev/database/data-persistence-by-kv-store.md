@@ -1,4 +1,10 @@
 # 通过键值型数据库实现数据持久化 (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @ding_dong_dong-->
+<!--Designer: @dboy190; @houpengtao1-->
+<!--Tester: @logic42-->
+<!--Adviser: @ge-yafang-->
 
 
 ## 场景介绍
@@ -49,13 +55,14 @@
    import { BusinessError } from '@kit.BasicServicesKit';
 
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
-
+   let appId: string = 'com.example.datamanagertest';
+   let storeId: string = 'storeId';
    export default class EntryAbility extends UIAbility {
      onCreate() {
        let context = this.context;
        const kvManagerConfig: distributedKVStore.KVManagerConfig = {
          context: context,
-         bundleName: 'com.example.datamanagertest'
+         bundleName: appId
        };
        try {
          // 创建KVManager实例
@@ -63,7 +70,6 @@
          console.info('Succeeded in creating KVManager.');
          // 继续创建获取数据库
          if (kvManager !== undefined) {
-           kvManager = kvManager as distributedKVStore.KVManager;
           //进行后续操作
           //...
          }
@@ -87,10 +93,12 @@
    import { BusinessError } from '@kit.BasicServicesKit';
 
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
+   let appId: string = 'com.example.datamanagertest';
+   let storeId: string = 'storeId';
    let context = featureAbility.getContext(); // 获取context
    const kvManagerConfig: distributedKVStore.KVManagerConfig = {
      context: context,
-     bundleName: 'com.example.datamanagertest'
+     bundleName: appId
    };
    try {
      kvManager = distributedKVStore.createKVManager(kvManagerConfig);
@@ -101,7 +109,6 @@
       console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
    }
    if (kvManager !== undefined) {
-     kvManager = kvManager as distributedKVStore.KVManager;
      //进行后续操作
      //...
    }
@@ -143,7 +150,7 @@
        // schema未定义可以不填，定义方法请参考上方schema示例。
        securityLevel: distributedKVStore.SecurityLevel.S3
      };
-     kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
+     kvManager.getKVStore<distributedKVStore.SingleKVStore>(storeId, options, (err, store: distributedKVStore.SingleKVStore) => {
        if (err) {
          console.error(`Failed to get KVStore: Code:${err.code},message:${err.message}`);
          return;
@@ -152,7 +159,6 @@
        kvStore = store;
        // 请确保获取到键值数据库实例后，再进行相关数据操作
        if (kvStore !== undefined) {
-         kvStore = kvStore as distributedKVStore.SingleKVStore;
            //进行后续操作
            //...
        }
@@ -179,7 +185,6 @@
 4. 调用put()方法向键值数据库中插入数据。示例代码如下所示：
 
    ```js
-   kvStore = kvStore as distributedKVStore.SingleKVStore;
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    // 如果未定义Schema则Value可以传其他符合要求的值。
    const VALUE_TEST_STRING_ELEMENT = '{"id":0, "name":"lisi"}';
@@ -205,7 +210,6 @@
 
    ```js
    try {
-     kvStore = kvStore as distributedKVStore.SingleKVStore;
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
          console.error(`Failed to put data. Code:${err.code},message:${err.message}`);
@@ -231,7 +235,6 @@
 
    ```js
    try {
-     kvStore = kvStore as distributedKVStore.SingleKVStore;
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
          console.error(`Failed to put data. Code:${err.code},message:${err.message}`);
@@ -260,7 +263,7 @@
       // appId为应用的bundleName
       kvManager = kvManager as distributedKVStore.KVManager;
       kvStore = undefined;
-      kvManager.closeKVStore('appId', 'storeId', (err: BusinessError)=> {
+      kvManager.closeKVStore(appId, storeId, (err: BusinessError)=> {
         if (err) {
           console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
           return;
@@ -280,7 +283,7 @@
       // appId为应用的bundleName
       kvManager = kvManager as distributedKVStore.KVManager;
       kvStore = undefined;
-      kvManager.deleteKVStore('appId', 'storeId', (err: BusinessError)=> {
+      kvManager.deleteKVStore(appId, storeId, (err: BusinessError)=> {
         if (err) {
           console.error(`Failed to delete KVStore.code is ${err.code},message is ${err.message}`);
           return;

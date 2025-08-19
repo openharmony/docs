@@ -1,4 +1,10 @@
 # \@Provider装饰器和\@Consumer装饰器：跨组件层级双向同步
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liwenzhen3-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 \@Provider和\@Consumer用于跨组件层级数据双向同步，可以使得开发者不用拘泥于组件层级。
 \@Provider和\@Consumer属于状态管理V2装饰器，所以只能在\@ComponentV2中才能使用，在\@Component中使用会编译报错。
@@ -7,13 +13,17 @@
 
 >**说明：**
 >
->\@Provider和\@Consumer装饰器从API version 12开始支持。
+> \@Provider和\@Consumer装饰器从API version 12开始支持。
 >
+> 从API version 12开始，\@Provider和\@Consumer装饰器支持在原子化服务中使用。
 
 ## 概述
 
 \@Provider，即数据提供方，其所有的子组件都可以通过\@Consumer绑定相同的key来获取\@Provider提供的数据。
-\@Consumer，即数据消费方，可以通过绑定同样的key获取其最近父节点的\@Provider的数据，当查找不到\@Provider的数据时，使用本地默认值。
+\@Consumer，即数据消费方，可以通过绑定同样的key获取其最近父节点的\@Provider的数据，当查找不到\@Provider的数据时，使用本地默认值。图示如下。
+
+![ProviderConsumer_1](./figures/Provider_Consumer_1.png)
+
 \@Provider和\@Consumer装饰的数据类型需要一致。
 
 开发者在使用\@Provider和\@Consumer时要注意：
@@ -26,7 +36,7 @@
 
 | 能力 | V2装饰器\@Provider和\@Consumer                                             |V1装饰器\@Provide和\@Consume|
 | ------------------ | ----------------------------------------------------- |----------------------------------------------------- |
-| \@Consume(r)         |允许本地初始化，当找不到\@Provider的时候使用本地默认值。| 禁止本地初始化，当找不到对应的\@Provide时候，会抛出异常。 |
+| \@Consume(r)         |必须本地初始化，当找不到\@Provider的时候使用本地默认值。| API version 20以前，@Consume禁止本地初始化，当找不到对应\@Provide的时候，会抛出异常；从API version 20开始，@Consume支持设置默认值，如果没有设置默认值，且找不到对应\@Provide的时候，会抛出异常。 |
 | 支持类型           | 支持function。 | 不支持function。 |
 | 观察能力           | 仅能观察自身赋值变化，如果要观察嵌套场景，配合[\@Trace](arkts-new-observedV2-and-trace.md)一起使用。 | 观察第一层变化，如果要观察嵌套场景，配合[\@Observed和\@ObjectLink](arkts-observed-and-objectlink.md)一起使用。 |
 | alias和属性名         | alias是唯一匹配的key，缺省时默认属性名为alias。 | alias和属性名都为key，优先匹配alias，匹配不到可以匹配属性名。|
@@ -42,9 +52,9 @@
 | \@Provider属性装饰器 | 说明                                                  |
 | ------------------ | ----------------------------------------------------- |
 | 装饰器参数         | `aliasName?: string`，别名，缺省时默认为属性名。|
-| 支持类型           | 自定义组件中成员变量。属性的类型可以为number、string、boolean、class、Array、Date、Map、Set等类型。支持装饰[箭头函数](#provider和consumer装饰回调事件用于组件之间完成行为抽象)。 |
+| 支持类型           | 自定义组件中成员变量。属性的类型可以为number、string、boolean、class、[Array](#装饰array类型变量)、[Date](#装饰date类型变量)、[Map](#装饰map类型变量)、[Set](#装饰set类型变量)等类型。支持装饰[箭头函数](#provider和consumer装饰回调事件用于组件之间完成行为抽象)。 |
 | 从父组件初始化      | 禁止。 |
-| 本地初始化         | 需要本地初始化。 |
+| 本地初始化         | 必须本地初始化。 |
 | 观察能力         | 能力等同于\@Trace。变化会同步给对应的\@Consumer。 |
 
 \@Consumer语法：
@@ -127,7 +137,9 @@ struct Child {
 ## 使用场景
 
 ### \@Provider和\@Consumer双向同步
-#### 建立双向绑定
+
+**建立双向绑定**
+
 1. 自定义组件Parent和Child初始化：
     - Child中`@Consumer() str: string = 'world'`向上查找，查找到Parent中声明的`@Provider() str: string = 'hello'`。
     - `@Consumer() str: string = 'world'`初始化为其查找到的`@Provider`的值，即‘hello’。
@@ -167,7 +179,8 @@ struct Child {
   }
 }
 ```
-#### 未建立双向绑定
+
+**未建立双向绑定**
 
 下面的例子中，\@Provider和\@Consumer由于aliasName值不同，无法建立双向同步关系。
 1. 自定义组件Parent和Child初始化：
@@ -210,7 +223,257 @@ struct Child {
 }
 ```
 
-### \@Provider和\@Consumer装饰回调事件，用于组件之间完成行为抽象
+### 装饰Array类型变量
+
+当装饰的对象是Array时，可以观察到Array整体的赋值，同时可以通过调用Array的接口`push`, `pop`, `shift`, `unshift`, `splice`, `copyWithin`, `fill`, `reverse`, `sort`更新Array中的数据。
+
+```ts
+@Entry
+@ComponentV2
+struct Parent {
+  @Provider() count: number[] = [1,2,3];
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(this.count, (item: number) => {
+          Text(`parent: ${item}`).fontSize(30)
+          Divider()
+        })
+        Button('push').onClick(() => {
+          this.count.push(111);
+        })
+        Button('reverse').onClick(() => {
+          this.count.reverse();
+        })
+        Button('fill').onClick(() => {
+          this.count.fill(6);
+        })
+        Child()
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+@ComponentV2
+struct Child {
+  @Consumer() count: number[] = [9,8,7];
+
+  build() {
+    Column() {
+      ForEach(this.count, (item: number) => {
+        Text(`child: ${item}`).fontSize(30)
+        Divider()
+      })
+      Button('push').onClick(() => {
+        this.count.push(222);
+      })
+      Button('reverse').onClick(() => {
+        this.count.reverse();
+      })
+      Button('fill').onClick(() => {
+        this.count.fill(8);
+      })
+    }
+    .width('100%')
+  }
+}
+```
+
+### 装饰Date类型变量
+
+当装饰Date类型变量时，可以观察到数据源对Date整体的赋值，以及调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`带来的变化。
+
+```ts
+@Entry
+@ComponentV2
+struct Parent {
+  @Provider() SelectedDate: Date = new Date('2021-08-08');
+
+  build() {
+    Column() {
+      Text(`parent: ${this.SelectedDate}`)
+      Button('update the new date')
+        .onClick(() => {
+          this.SelectedDate = new Date('2023-07-07');
+        })
+      Button('increase the year by 1')
+        .onClick(() => {
+          this.SelectedDate.setFullYear(this.SelectedDate.getFullYear() + 1);
+        })
+      Button('increase the month by 1')
+        .onClick(() => {
+          this.SelectedDate.setMonth(this.SelectedDate.getMonth() + 1);
+        })
+      Button('increase the day by 1')
+        .onClick(() => {
+          this.SelectedDate.setDate(this.SelectedDate.getDate() + 1);
+        })
+      Child()
+    }
+  }
+}
+@ComponentV2
+struct Child {
+  @Consumer() SelectedDate: Date = new Date('2022-07-07');
+
+  build() {
+    Column() {
+      Text(`child: ${this.SelectedDate}`)
+      Button('update the new date')
+        .onClick(() => {
+          this.SelectedDate = new Date('2025-01-01');
+        })
+      Button('increase the year by 1')
+        .onClick(() => {
+          this.SelectedDate.setFullYear(this.SelectedDate.getFullYear() + 1);
+        })
+      Button('increase the month by 1')
+        .onClick(() => {
+          this.SelectedDate.setMonth(this.SelectedDate.getMonth() + 1);
+        })
+      Button('increase the day by 1')
+        .onClick(() => {
+          this.SelectedDate.setDate(this.SelectedDate.getDate() + 1);
+        })
+    }
+  }
+}
+```
+
+### 装饰Map类型变量
+
+当装饰Map类型变量时，可以观察到数据源对Map整体的赋值，以及调用Map的接口`set`, `clear`, `delete`带来的变化。
+
+```ts
+@Entry
+@ComponentV2
+struct Parent {
+  @Provider() message: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
+
+  build() {
+    Column() {
+      Text('Parent').fontSize(30)
+      ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+        Text(`${item[0]}`).fontSize(30)
+        Text(`${item[1]}`).fontSize(30)
+        Divider()
+      })
+      Button('init map').onClick(() => {
+        this.message = new Map([[0, 'aa'], [1, 'bb'], [3, 'cc']]);
+      })
+      Button('set new one').onClick(() => {
+        this.message.set(4, 'd');
+      })
+      Button('clear').onClick(() => {
+        this.message.clear();
+      })
+      Button('replace the first one').onClick(() => {
+        this.message.set(0, 'a~');
+      })
+      Button('delete the first one').onClick(() => {
+        this.message.delete(0);
+      })
+      Child()
+    }
+  }
+}
+@ComponentV2
+struct Child {
+  @Consumer() message: Map<number, string> = new Map([[0, 'd'], [1, 'e'], [3, 'f']]);
+
+  build() {
+    Column() {
+      Text('Child').fontSize(30)
+      ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+        Text(`${item[0]}`).fontSize(30)
+        Text(`${item[1]}`).fontSize(30)
+        Divider()
+      })
+      Button('init map').onClick(() => {
+        this.message = new Map([[0, 'dd'], [1, 'ee'], [3, 'ff']]);
+      })
+      Button('set new one').onClick(() => {
+        this.message.set(4, 'g');
+      })
+      Button('clear').onClick(() => {
+        this.message.clear();
+      })
+      Button('replace the first one').onClick(() => {
+        this.message.set(0, 'a*');
+      })
+      Button('delete the first one').onClick(() => {
+        this.message.delete(0);
+      })
+    }
+  }
+}
+```
+
+### 装饰Set类型变量
+
+当装饰Set类型变量时，可以观察到数据源对Set整体的赋值，以及调用Set的接口 `add`, `clear`, `delete`带来的变化。
+
+```ts
+@Entry
+@ComponentV2
+struct Parent {
+  @Provider() message: Set<number> = new Set([1, 2, 3, 4]);
+
+  build() {
+    Column() {
+      Text('Parent').fontSize(30)
+      ForEach(Array.from(this.message.entries()), (item: [number, number]) => {
+        Text(`${item[0]}`).fontSize(30)
+        Divider()
+      })
+      Button('init set').onClick(() => {
+        this.message = new Set([1, 2, 3, 4]);
+      })
+      Button('set new one').onClick(() => {
+        this.message.add(5);
+      })
+      Button('clear').onClick(() => {
+        this.message.clear();
+      })
+      Button('delete the first one').onClick(() => {
+        this.message.delete(1);
+      })
+      Child()
+    }
+  }
+}
+@ComponentV2
+struct Child {
+  @Consumer() message: Set<number> = new Set([1, 2, 3, 4, 5, 6]);
+
+  build() {
+    Column() {
+      Text('Child').fontSize(30)
+      ForEach(Array.from(this.message.entries()), (item: [number, number]) => {
+        Text(`${item[0]}`).fontSize(30)
+        Divider()
+      })
+      Button('init set').onClick(() => {
+        this.message = new Set([1, 2, 3, 4, 5, 6]);
+      })
+      Button('set new one').onClick(() => {
+        this.message.add(7);
+      })
+      Button('clear').onClick(() => {
+        this.message.clear();
+      })
+      Button('delete the first one').onClick(() => {
+        this.message.delete(1);
+      })
+    }
+  }
+}
+```
+
+### \@Provider和\@Consumer装饰回调事件用于组件之间完成行为抽象
 
 当需要在父组件中向子组件注册回调函数时，可以使用\@Provider和\@Consumer装饰回调方法来实现。
 在拖拽场景中，若需将子组件的拖拽起始位置信息同步给父组件，可参考以下示例。
@@ -358,8 +621,8 @@ struct Child {
 
 ### \@Provider和\@Consumer初始化\@Param
 
-- 点击Text(\`Parent @Consumer val: ${this.val}\`)，触发`@Consumer() val`的变化，变化同步给Index中`@Provider() val`，从而触发子组件`Text(Parent @Param val2: ${this.val2})`的刷新。
-- `Parent @Consumer() val`的变化同步给Child，从而触发`Text(Child @Param val ${this.val})`的刷新。
+- 点击```Text(`Parent @Consumer val: ${this.val}`)```，触发`@Consumer() val`的变化，变化同步给Index中`@Provider() val`，从而触发子组件```Text(`Parent @Param val2: ${this.val2}`)```的刷新。
+- `Parent @Consumer() val`的变化同步给Child，从而触发```Text(`Child @Param val ${this.val}`)```的刷新。
 
 ```ts
 @Entry
@@ -377,7 +640,7 @@ struct Index {
 @ComponentV2
 struct Parent {
   @Consumer() val: number = 0;
-  @Param val2: number = 0;
+  @Require @Param val2: number;
 
   build() {
     Column() {
@@ -392,7 +655,7 @@ struct Parent {
 
 @ComponentV2
 struct Child {
-  @Param val: number = 0;
+  @Require @Param val: number;
 
   build() {
     Column() {

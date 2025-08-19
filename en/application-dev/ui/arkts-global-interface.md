@@ -11,11 +11,11 @@ With the support of the stage model in OpenHarmony, there is a scenario where mu
 
 Ambiguous UI context refers to the issue where the calling point cannot clearly identify the target UI instance when invoking ArkUI global APIs. ArkUI global APIs were designed for the FA model, which inherently supports only a single ArkUI instance and does not account for multiple instances. When the framework switches to the stage model, these global APIs, originally exposed in the FA model, cannot determine the specific instance being used. The APIs can only identify a valid UI instance based on the call chain. If the UI instance cannot be traced, this results in ambiguous UI context. Since the implementation of these APIs relies on information from the ArkUI instance, ambiguous UI context can lead to unexpected runtime behavior.
 
-To address this issue, ArkUI has introduced alternative APIs for the stage model to meet needs in multi-ArkUI instance scenarios. You can obtain a [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext) to call the corresponding multi-instance alternative APIs, thereby resolving the UI context ambiguity in multi-instance scenarios. The UIContext is the context of an ArkUI instance, an object created by a window to manage all UIs, which is held and managed by the creating window.
+To address this issue, ArkUI has introduced alternative APIs for the stage model to meet needs in multi-ArkUI instance scenarios. You can obtain a [UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md) object to call the corresponding multi-instance alternative APIs, thereby resolving the UI context ambiguity in multi-instance scenarios. The UIContext is the context of an ArkUI instance, an object created by a window to manage all UIs, which is held and managed by the creating window.
 
 ## Substitute APIs
 
-The table below lists some of the alternative APIs to replace in multi-instance scenarios. The full range of APIs supported is described in [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md).
+The table below lists some of the alternative APIs to replace in multi-instance scenarios. The full range of APIs supported is described in [UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md).
 
 |               Global API               |               Substitute API               |            Description           |
 | :-----------------------------------: | :-----------------------------------: | :------------------------: |
@@ -74,6 +74,8 @@ In the following example, **callNative** is a Node-API method. If it is asynchro
 <!--deprecated_code_no_check-->
 ```ts
 import { promptAction } from '@kit.ArkUI'
+// xxx.so is not system provided. You must provide it.
+import bridge from xxx.so
 
 @Entry
 @Component
@@ -94,8 +96,11 @@ struct Index {
 }
 ```
 
-To address the above issue, you can use the component built-in API [getUIContext](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getuicontext) to directly obtain the **UIContext** instance where the current component is located, and then use the **getPromptAction** API in [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext) to obtain objects bound to the instance. This way, the toast is bound to a specific instance.
+To address the above issue, you can use the component built-in API [getUIContext](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getuicontext) to directly obtain the **UIContext** instance where the current component is located, and then use the **getPromptAction** API in [UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md) to obtain objects bound to the instance. This way, the toast is bound to a specific instance.
 ```ts
+// xxx.so is not system provided. You must provide it.
+import bridge from xxx.so
+
 @Entry
 @Component
 struct Index {
@@ -117,7 +122,7 @@ struct Index {
 }
 ```
 
-If you are using APIs in [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext) that do not have substitutes (such as **CalendarPickerDialog** and **animateToImmediately**), or if you are implementing custom service logic that's tied to specific instances, you can use the **runScopedTask** API in **UIContext** to encapsulate these APIs or code snippets.
+If you are using APIs in [UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md) that do not have substitutes (such as **CalendarPickerDialog** and **animateToImmediately**), or if you are implementing custom service logic that's tied to specific instances, you can use the **runScopedTask** API in **UIContext** to encapsulate these APIs or code snippets.
 
 | API in UIContext| Description                |
 | ------------- | -------------------- |

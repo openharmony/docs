@@ -2,7 +2,7 @@
 
 The dialogRequest module provides APIs related to modal dialog box processing, including obtaining the request information (used to bind a modal dialog box) and request callback (used to set the request result).
 
-A modal dialog box is a system pop-up box that intercepts events (such as mouse, keyboard, and touchscreen events) triggered for the page displayed under it. The page can be operated only after the modal dialog box is destroyed.
+A modal dialog box is a system-level dialog box that blocks interactions such as mouse clicks, keyboard input, and touch events on the underlying page. The page can only be interacted with after the modal dialog box is closed.
 
 > **NOTE**
 >
@@ -37,7 +37,7 @@ Obtains the request information from Want.
 
 | Type  | Description                    |
 | ------ | ------------------------ |
-| [RequestInfo](#requestinfo) | **RequestInfo** object obtained, which is used to bind a modal dialog box.|
+| [RequestInfo](#requestinfo) | RequestInfo object obtained, which is used to bind a modal dialog box.|
 
 **Error codes**
 
@@ -85,7 +85,7 @@ Obtains the request callback from Want.
 
 | Type  | Description                    |
 | ------ | ------------------------ |
-| [RequestCallback](#requestcallback) | **RequestCallback** object obtained, which is used to set the return result.|
+| [RequestCallback](#requestcallback) | RequestCallback object obtained, which is used to set the return result.|
 
 **Error codes**
 

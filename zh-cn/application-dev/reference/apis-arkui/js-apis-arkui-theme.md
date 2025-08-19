@@ -1,4 +1,10 @@
 # @ohos.arkui.theme(主题换肤)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @lushi871202-->
+<!--Designer: @lushi871202-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 支持自定义主题风格，实现App组件风格跟随Theme切换。
 
@@ -9,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@kit.ArkUI';
+import { Theme, ThemeControl, CustomColors, Colors, CustomTheme, CustomDarkColors } from '@kit.ArkUI';
 ```
 
 ## Theme
@@ -31,6 +37,8 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@kit.Ark
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+<!--RP1--><!--RP1End-->
 
 | 名称                           | 类型                                                 | 只读 | 可选 | 说明               |
 |-------------------------------|-----------------------------------------------------|-----|-----|------------------|
@@ -90,13 +98,12 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@kit.Ark
 
 自定义主题风格对象。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                           | 类型                                                 | 只读  | 可选  | 说明         |
 |-------------------------------|-----------------------------------------------------|-----|-----|------------|
-| colors | [CustomColors](#customcolors) | 否   | 是   | 自定义主题颜色资源。 |
+| colors | [CustomColors](#customcolors) | 否   | 是   | 自定义主题颜色资源。</br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| darkColors<sup>20+</sup> | [CustomDarkColors](#customdarkcolors20) | 否   | 是   | 自定义深色主题颜色资源。</br>**说明：** 如果未设置darkColors，颜色值将与浅色模式下的colors配置相同，并且不会随着颜色模式的变化而变化，除非该颜色是通过dark目录下的资源进行设置的。</br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## CustomColors
 
@@ -111,6 +118,20 @@ type CustomColors = Partial\<Colors>
 | 类型  | 说明           |
 |-----|--------------|
 | Partial<[Colors](#colors)>   | 自定义主题颜色资源类型。 |
+
+## CustomDarkColors<sup>20+</sup>
+
+type CustomDarkColors = Partial\<Colors>
+
+自定义深色主题颜色资源类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型  | 说明           |
+|-----|--------------|
+| Partial<[Colors](#colors)>   | 自定义深色主题颜色资源类型。 |
 
 ## ThemeControl
 
@@ -130,6 +151,8 @@ setDefaultTheme(theme: [CustomTheme](#customtheme)): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名       | 类型                           | 必填 | 说明             |
 |--------------|------------------------------|------|----------------|
 | theme | [CustomTheme](#customtheme)  | 是    | 表示设置的自定义主题风格。 |
@@ -140,9 +163,9 @@ setDefaultTheme(theme: [CustomTheme](#customtheme)): void
 import { CustomTheme, CustomColors, ThemeControl } from '@kit.ArkUI';
 // 自定义主题颜色
 class BlueColors implements CustomColors {
-  fontPrimary = Color.White;
+  fontPrimary = Color.Red;
   backgroundPrimary = Color.Blue;
-  brand = Color.Blue; //品牌色
+  brand = "#FFEEAAFF"; // 品牌色
 }
 
 class PageCustomTheme implements CustomTheme {
@@ -156,4 +179,32 @@ class PageCustomTheme implements CustomTheme {
 const BlueColorsTheme = new PageCustomTheme(new BlueColors());
 // 在页面build之前执行ThemeControl.setDefaultTheme，设置App默认样式风格为BlueColorsTheme。
 ThemeControl.setDefaultTheme(BlueColorsTheme);
+
+@Entry
+@Component
+struct Index {
+
+  build() {
+    Row() {
+      Column() {
+        // 文本颜色应用fontPrimary
+        Text('这是一段文本')
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .margin('5%')
+        // 二维码背景色应用backgroundPrimary
+        QRCode('Hello')
+          .width(100)
+          .height(100)
+        // 输入框光标颜色应用brand
+        TextInput({placeholder: 'input your word...'})
+          .width('80%')
+          .height(40)
+          .margin(20)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
 ```

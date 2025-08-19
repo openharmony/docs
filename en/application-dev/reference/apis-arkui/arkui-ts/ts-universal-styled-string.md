@@ -828,7 +828,7 @@ A constructor used to create an image object.
 
 constructor(attachment: Optional\<AttachmentType\>)
 
-A constructor used to create an image object. Compared to the constructor with a **value** type parameter, this constructor with an **attachment** type parameter supports images of **undefined** and [ResourceStr](ts-types.md#resourcestr) types.
+A constructor used to create an image object. Compared with the constructor with a **value** type parameter, this constructor with an **attachment** type parameter supports images of **undefined** and [ResourceStr](ts-types.md#resourcestr) types.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
@@ -2015,7 +2015,7 @@ struct styled_string_demo6 {
 }
 ```
 
-![](figures/styledstring_6.gif)
+
 
 ### Example 7: Storing Custom Extension Information
 
@@ -2142,7 +2142,7 @@ struct styled_string_demo8 {
 }
 ```
 
-![](figures/styledString_8.gif)
+
 
 
 ### Example 9: Setting a Hyperlink

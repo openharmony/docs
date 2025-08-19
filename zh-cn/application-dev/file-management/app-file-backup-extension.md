@@ -1,4 +1,10 @@
 # 应用接入数据备份恢复
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @lvzhenjie-->
+<!--Designer: @wang_zhangjun; @chenxi0605-->
+<!--Tester: @liuhonggang123-->
+<!--Adviser: @foryourself-->
 
 应用接入数据备份恢复需要通过BackupExtensionAbility实现。
 
@@ -6,7 +12,15 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 
 ## 接口说明
 
-备份恢复扩展能力API的接口使用指导请参见[BackupExtensionAbility API参考](../reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md#backupextensionability)和[BackupExtensionContext API参考](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md)。
+备份恢复扩展能力关键接口如下表所示。API的接口使用指导请参见[BackupExtensionAbility API参考](../reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md#backupextensionability)和[BackupExtensionContext API参考](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md)。
+
+| 接口名                                                       | 描述             |
+| ------------------------------------------------------------ | ---------------- |
+| onBackup(): void | 数据备份准备阶段，迁移备份数据前回调。 |
+| onBackupEx(backupInfo: string): string \| Promise&lt;string&gt; | 数据备份准备阶段，迁移备份数据前回调，支持传递备份信息和返回备份结果。     |
+| onRestore(bundleVersion: BundleVersion): void | 数据恢复阶段，备份数据迁移完成后回调。 |
+| onRestoreEx(bundleVersion: BundleVersion, restoreInfo: string): string \| Promise&lt;string&gt; | 数据恢复阶段，备份数据迁移完成后回调，支持传递恢复信息和返回恢复结果。 |
+| onRelease(scenario: number): Promise&lt;void&gt; | 备份或恢复完成时的特殊处理，备份或恢复完成时回调。<br>**说明**：从API version 20开始支持该接口。 |
 
 ## 约束与限制
 
@@ -126,7 +140,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
     }
     ```
 
-4. 开发者如需在应用备份恢复完成后执行一些特殊操作，例如清理备份或恢复时应用创建的临时文件，可以在`BackupExtension.ets`文件中自定义类继承的`BackupExtensionAbility`，通过重写其`onRelease`方法，当备份或恢复完成时，会执行`onRelease`方法以执行开发者自定义的行为。
+4. 从API 20开始，开发者如需在应用备份恢复完成后执行一些特殊操作，例如清理备份或恢复时应用创建的临时文件，可以在`BackupExtension.ets`文件中自定义类继承的`BackupExtensionAbility`，通过重写其`onRelease`方法，当备份或恢复完成时，会执行`onRelease`方法以执行开发者自定义的行为。
 
    `onRelease`具有超时机制，应用若在5秒内未完成`onRelease`操作，将触发备份恢复结束时的应用进程退出流程。
 
@@ -169,7 +183,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 | allowToBackupRestore | 布尔值     | 是   | 是否允许备份恢复，默认为false。true为允许备份恢复，false为不允许备份恢复。                              |
 | includes             | 字符串数组 | 否   | 应用沙箱中需要备份的文件和目录。<br>当模式串以非/开始时，表示一个相对于根路径的相对路径。<br>`includes`支持的路径清单列表如下述代码段内容所示，当配置`includes`时请确保配置路径范围包含在其中。<br>当`includes`已配置时，备份恢复框架会采用开发者配置的模式串，否则将会采用下述代码段内容作为默认值。 |
 | excludes             | 字符串数组 | 否   | `includes`中无需备份的例外项。格式同`includes`。<br>在配置`excludes`时，请确保其范围在`includes`的子集中。<br>当`excludes`已配置时，备份恢复框架会采用开发者配置的模式串，否则将会采用**空数组**作为默认值。 |
-| fullBackupOnly       | 布尔值     | 否   | 是否使用应用默认恢复目录，默认值为false。当值为true时，恢复数据时会通过临时路径进行缓存，临时路径可通过[backupDir](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md)获取。当值为false或者不配置该字段时，恢复数据会以'/'为根目录解压数据。 |
+| fullBackupOnly       | 布尔值     | 否   | 是否使用应用默认恢复目录，默认值为false。当值为true时，恢复数据时会通过临时路径进行缓存，临时路径可通过[backupDir](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md#属性)获取。当值为false或者不配置该字段时，恢复数据会以'/'为根目录解压数据。 |
 | restoreDeps          | 字符串     | 否   | **不推荐使用**，应用恢复时依赖其他应用数据，默认值为""，需要配置依赖应用名称。当前仅支持最多一个依赖项。配置的依赖仅在一次恢复任务上下文生效，如果一次恢复任务中没有检测到依赖应用，则忽略该依赖描述继续执行恢复任务。**依赖应用未恢复或者恢复失败都会导致本应用恢复失败**。 |
 | extraInfo            | json串     | 否   | 额外信息可通过该字段传递。                                   |
 
@@ -214,4 +228,4 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 
 针对应用接入数据的备份与恢复，有以下相关实例可供参考：
 
-- [应用接入数据备份恢复（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileBackupExtension)
+- [应用接入数据备份恢复（ArkTS）（Full SDK）（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileBackupExtension)

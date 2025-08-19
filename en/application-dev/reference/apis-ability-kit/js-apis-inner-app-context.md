@@ -1,12 +1,12 @@
-# Context
+# Context (Context Base Class of the FA Model)
 <!--deprecated_code_no_check-->
 
-The **Context** module provides context for abilities or applications. It allows access to application-specific resources, as well as permission requests and verification.
+The Context module provides context for abilities or applications. It allows access to application-specific resources, as well as permission requests and verification.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> 
+>
 > The APIs of this module can be used only in the FA model.
 
 ## Modules to Import
@@ -17,7 +17,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 ## Usage
 
-The **Context** object is created in a **featureAbility** and returned through its [getContext](js-apis-ability-featureAbility.md#featureabilitygetcontext) API. Therefore, you must import the **@ohos.ability.featureAbility** package before using the **Context** module. An example is as follows:
+The Context object is created in a featureAbility and returned through its [getContext](js-apis-ability-featureAbility.md#featureabilitygetcontext) API. Therefore, you must import the @ohos.ability.featureAbility package before using the Context module. An example is as follows:
 
 <!--code_no_check_fa-->
 ```ts
@@ -795,7 +795,7 @@ This API is available only to Page abilities.
 
 | Name      | Type                         | Mandatory  | Description                                    |
 | -------- | --------------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)> | Yes   | Callback used to return the element name, which is an **ohos.bundleManager.ElementName** object.|
+| callback | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)> | Yes   | Callback used to return the element name, which is an ohos.bundleManager.ElementName object.|
 
 **Example**
 
@@ -829,7 +829,7 @@ This API is available only to Page abilities.
 
 | Type                   | Description                                  |
 | --------------------- | ------------------------------------ |
-| Promise\<[ElementName](js-apis-bundleManager-elementName.md)> | Promise used to return the element name, which is an **ohos.bundleManager.ElementName** object.|
+| Promise\<[ElementName](js-apis-bundleManager-elementName.md)> | Promise used to return the element name, which is an ohos.bundleManager.ElementName object.|
 
 **Example**
 
@@ -1201,7 +1201,7 @@ Obtains the module information of the application. This API uses an asynchronous
 
 | Name      | Type                                      | Mandatory  | Description                                     |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| callback | AsyncCallback\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Yes   | Callback used to return the module information, which is a **HapModuleInfo** object.|
+| callback | AsyncCallback\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Yes   | Callback used to return the module information, which is a HapModuleInfo object.|
 
 **Example**
 
@@ -1231,7 +1231,7 @@ Obtains the module information of the application. This API uses a promise to re
 
 | Type                                      | Description                |
 | ---------------------------------------- | ------------------ |
-| Promise\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Promise used to return the module information, which is a **HapModuleInfo** object.|
+| Promise\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Promise used to return the module information, which is a HapModuleInfo object.|
 
 **Example**
 

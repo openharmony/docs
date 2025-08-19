@@ -1,5 +1,10 @@
 # 文本开发概述
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk; @gmiao522; @Lem0nC-->
+<!--Designer: @liumingxiang-->
+<!--Tester: @yhl0101-->
+<!--Adviser: @ge-yafang-->
 应用在开发和布局时，经常需要针对文本元素和内容进行排版、测量、绘制和显示等。字体引擎开发框架提供了一系列接口能力用于支持应用布局文本和管理字体。
 
 ## 能力范围
@@ -8,7 +13,7 @@
 
 ![text](figures/text.png)
 
-当前字体引擎开发框架支持在应用中对文字、emoji表情、placeholder、等文本元素进行塑形、排版、测量和绘制显示。
+当前字体引擎开发框架支持在应用中对文字、emoji表情、placeholder等文本元素进行塑形、排版、测量和绘制显示。
 
 开发者可以选择使用不同的ArkTS语言或者C/C++语言，来使用字体引擎的相关能力以实现对应场景。
 

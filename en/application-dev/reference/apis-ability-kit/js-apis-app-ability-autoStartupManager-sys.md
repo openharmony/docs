@@ -1,6 +1,6 @@
 # @ohos.app.ability.autoStartupManager (autoStartupManager) (System API)
 
-The autoStartupManager module provides APIs for listening for auto-startup status changes of application components and setting application components to automatically start upon system boot.
+The module provides APIs for listening for auto-startup status changes of application components and setting application components to automatically start upon system boot.
 
 > **NOTE**
 >
@@ -33,22 +33,36 @@ Subscribes to auto-startup status change events of an application component.
 | type | string | Yes   | Event type. The value is fixed at **systemAutoStartup**, which can be called only by system applications.|
 | callback  | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md)   | Yes   | Callback used for subscription.     |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| -------- | -------------------------------- |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202      | Permission denied, non-system app called system api. |
+| 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+| 16000050 | Internal error. |
+
 **Example**
 
 ```ts
 import { autoStartupManager, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   autoStartupManager.on('systemAutoStartup', {
     onAutoStartupOn(data: common.AutoStartupInfo) {
-      console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+      console.info(`autostartupmanager onAutoStartupOn, data: ${JSON.stringify(data)}.`);
     },
     onAutoStartupOff(data: common.AutoStartupInfo) {
-      console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+      console.info(`autostartupmanager onAutoStartupOff, data: ${JSON.stringify(data)}.`);
     }
   });
 } catch (err) {
-  console.info('===> autostartupmanager on throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`autostartupmanager on success, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -69,22 +83,36 @@ Unsubscribes from auto-startup status change events of an application component.
 | type | string              | Yes   | Event type. The value is fixed at **systemAutoStartup**, which can be called only by system applications.|
 | callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md)   | No| Callback used for unsubscription.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| -------- | -------------------------------- |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202      | Permission denied, non-system app called system api. |
+| 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+| 16000050 | Internal error. |
+
 **Example**
 
 ```ts
 import { autoStartupManager, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   autoStartupManager.off('systemAutoStartup', {
     onAutoStartupOn(data: common.AutoStartupInfo) {
-      console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+      console.info(`autostartupmanager onAutoStartupOn, data: ${JSON.stringify(data)}.`);
     },
     onAutoStartupOff(data: common.AutoStartupInfo) {
-      console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+      console.info(`autostartupmanager onAutoStartupOff, data: ${JSON.stringify(data)}.`);
     }
   });
 } catch (err) {
-  console.info('===> autostartupmanager off throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`autostartupmanager on success, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -107,28 +135,38 @@ Sets an application component to automatically start upon system boot. This API 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
-| 16000004 | Failed to start the invisible ability.           |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202      | Permission denied, non-system app called system api. |
+| 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+| 16000004 | Cannot start an invisible component.         |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
 ```ts
 import { autoStartupManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   autoStartupManager.setApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
-  }, (err, data) => {
-    console.info('====> setApplicationAutoStartup: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+  }, (err: BusinessError) => {
+    if (err) {
+      console.error(`setApplicationAutoStartup failed, err code: ${err.code}, err msg: ${err.message}.`);
+      return;
+    }
+    console.info(`setApplicationAutoStartup success.`);
   });
 } catch (err) {
-  console.info('====> setApplicationAutoStartup throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`setApplicationAutoStartup failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -156,13 +194,16 @@ Sets an application component to automatically start upon system boot. This API 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
-| 16000004 | Failed to start the invisible ability.           |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202      | Permission denied, non-system app called system api. |
+| 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+| 16000004 | Cannot start an invisible component.         |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -175,12 +216,14 @@ try {
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
   }).then((data: void) => {
-    console.info('====> setApplicationAutoStartup data: ' + JSON.stringify(data));
+    console.info(`setApplicationAutoStartup success.`);
   }).catch((err: BusinessError) => {
-    console.info('====> setApplicationAutoStartup err: ' + JSON.stringify(err));
+    console.error(`setApplicationAutoStartup failed, err code: ${err.code}, err msg: ${err.message}.`);
   });
 } catch (err) {
-  console.info('====> setApplicationAutoStartup throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`setApplicationAutoStartup failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -203,28 +246,38 @@ Cancels the auto-startup setting for an application component. This API uses an 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
-| 16000004 | Failed to start the invisible ability.           |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202      | Permission denied, non-system app called system api. |
+| 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+| 16000004 | Cannot start an invisible component.         |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
 ```ts
 import { autoStartupManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   autoStartupManager.cancelApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
-  }, (err, data) => {
-    console.info('====> cancelApplicationAutoStartup err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+  }, (err: BusinessError) => {
+    if (err) {
+      console.error(`cancelApplicationAutoStartup failed, err code: ${err.code}, msg: ${err.message}.`);
+      return;
+    }
+    console.info(`cancelApplicationAutoStartup success.`);
   });
 } catch (err) {
-  console.info('====> cancelApplicationAutoStartup throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`cancelApplicationAutoStartup failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -252,13 +305,16 @@ Cancels the auto-startup setting for an application component. This API uses a p
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
-| 16000004 | Failed to start the invisible ability.           |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202      | Permission denied, non-system app called system api. |
+| 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+| 16000004 | Cannot start an invisible component.         |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -270,13 +326,15 @@ try {
   autoStartupManager.cancelApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
-  }).then((data: void) => {
-    console.info('====> cancelApplicationAutoStartup data: ' + JSON.stringify(data));
+  }).then(() => {
+    console.info(`cancelApplicationAutoStartup success.`);
   }).catch((err: BusinessError) => {
-    console.info('====> cancelApplicationAutoStartup err: ' + JSON.stringify(err));
+    console.error(`cancelApplicationAutoStartup failed, err code: ${err.code}, msg: ${err.message}.`);
   });
 } catch (err) {
-  console.info('====> cancelApplicationAutoStartup throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`cancelApplicationAutoStartup failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -298,23 +356,33 @@ Obtains information about all auto-startup application components. This API uses
 
 **Error codes**
 
-| ID| Error Message|
-| ------- | -------- |
-| 16000050 | Internal error. |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202      | Permission denied, non-system app called system api. |
+| 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+| 16000050 | Internal error. |
 
 **Example**
 
 ```ts
-import { autoStartupManager } from '@kit.AbilityKit';
+import { autoStartupManager, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  autoStartupManager.queryAllAutoStartupApplications((err, data) => {
-    console.info('====> queryAllAutoStartupApplications err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+  autoStartupManager.queryAllAutoStartupApplications((err, data: common.AutoStartupInfo[]) => {
+    if (err) {
+      console.error(`queryAllAutoStartupApplications failed, err code: ${err.code}, err msg: ${err.message}.`);
+      return;
+    }
+    console.info(`queryAllAutoStartupApplications success, data: ${JSON.stringify(data)}.`);
   });
 } catch (err) {
-  console.info('====> queryAllAutoStartupApplications throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`queryAllAutoStartupApplications failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -336,11 +404,14 @@ Obtains information about all auto-startup application components. This API uses
 
 **Error codes**
 
-| ID| Error Message|
-| ------- | -------- |
-| 16000050 | Internal error. |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202      | Permission denied, non-system app called system api. |
+| 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+| 16000050 | Internal error. |
 
 **Example**
 
@@ -349,12 +420,14 @@ import { autoStartupManager, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  autoStartupManager.queryAllAutoStartupApplications().then((autoStartupInfo: common.AutoStartupInfo[]) => {
-    console.info('====> queryAllAutoStartupApplications data: ' + JSON.stringify(autoStartupInfo));
+  autoStartupManager.queryAllAutoStartupApplications().then((data: common.AutoStartupInfo[]) => {
+    console.info(`queryAllAutoStartupApplications success, data: ${JSON.stringify(data)}.`);
   }).catch((err: BusinessError) => {
-    console.info('====> queryAllAutoStartupApplications err: ' + JSON.stringify(err));
+    console.error(`queryAllAutoStartupApplications failed, err code: ${err.code}, err msg: ${err.message}.`);
   });
 } catch (err) {
-  console.info('====> queryAllAutoStartupApplications throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`queryAllAutoStartupApplications failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```

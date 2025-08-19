@@ -1,4 +1,10 @@
 # UIExtensionComponent (系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @dutie123-->
+<!--Designer: @lmleon-->
+<!--Tester: @fredyuan0912-->
+<!--Adviser: @HelloCrease-->
 
 UIExtensionComponent用于支持在本页面内嵌入其他应用提供的UI。展示的内容在另外一个进程中运行，本应用并不参与其中的布局和渲染。
 
@@ -66,7 +72,7 @@ UIExtensionAbility连接完成时的回调，之后可使用proxy向被拉起的
 
 | 参数名                       | 类型   | 必填 | 说明                                                         |
 | ---------------------------- | ------ | ------ | ------------------------------------------------------- |
-| proxy                        | UIExtensionProxy | 否 | 用于向对端Ability发送数据。                          |
+| callback                        | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<UIExtensionProxy>) | 是 | 用于向对端Ability发送数据。                          |
 
 ### onReceive
 
@@ -82,7 +88,7 @@ onReceive(callback: ReceiveCallback)
 
 | 参数名                       | 类型   | 必填 | 说明                                                         |
 | ---------------------------- | ------ | ------ | ------------------------------------------------------- |
-| data                        | [ReceiveCallback](#receivecallback18) | 否 | 收到来自对端Ability的数据。                 |
+| callback                        | [ReceiveCallback](#receivecallback18) | 是 | 收到来自对端Ability的数据。                 |
 
 ### onResult<sup>(deprecated)</sup>
 
@@ -95,12 +101,16 @@ onResult(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#call
 > **说明：**
 > 从 API version 10 开始支持，从 API version 12 开始废弃，建议使用[onTerminated](#onterminated12)替代。
 
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名                       | 类型   | 说明                                                         |
-| ---------------------------- | ------ | ------------------------------------------------------------ |
-| code                        | number | 收到来自对端Ability的处理结果code。                          |
-| want                        | Want | 收到来自对端Ability的处理结果[Want](../../apis-ability-kit/js-apis-app-ability-want.md)。 |
+| 参数名                       | 类型   | 必填 |说明                                                         |
+| ---------------------------- | ------ | ------ | ------------------------------------------------------------ |
+| code                        | number | 是 | 收到来自对端Ability的处理结果code。                          |
+| want                        | Want | 否 |收到来自对端Ability的处理结果[Want](../../apis-ability-kit/js-apis-app-ability-want.md)。 |
 
 ### onRelease<sup>(deprecated)</sup>
 
@@ -115,11 +125,15 @@ onRelease(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#cal
 > **说明：**
 > 从 API version 10 开始支持，从 API version 12 开始废弃，建议使用[onTerminated](#onterminated12)或者[onError](#onerror)替代。
 
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名                       | 类型   | 说明                                                         |
-| ---------------------------- | ------ | ------------------------------------------------------------ |
-| releaseCode                        | number | 对端Ability销毁时的code，0为正常销毁，1为异常销毁。                          |
+| 参数名                       | 类型  | 必填 | 说明                                                         |
+| ---------------------------- | ------ | ------ | ------------------------------------------------------------ |
+| callback                        | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number> | 是 |对端Ability销毁时的code，0为正常销毁，1为异常销毁。                          |
 
 ### onError
 
@@ -135,9 +149,9 @@ onError(callback:[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#e
 
 | 参数名                       | 类型   | 必填 | 说明                                                         |
 | ---------------------------- | ------ | ------ | ------------------------------------------------------------ |
-| err                        | [BusinessError](../../apis-basic-services-kit/js-apis-base.md#businesserror) | 否 | 报错信息。    |
+| callback                        | [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是 | 报错信息。    |
 
-### onTerminated<sup>12+<sup>
+### onTerminated<sup>12+</sup>
 
 onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 
@@ -151,14 +165,14 @@ onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 
 | 参数名   | 类型   | 必填 | 说明                                                                                     |
 | -------  | ------ | ------ | ------------------------------------------------------------------------------------- |
-| callback | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](#terminationinfo12)> | 否 | 回调函数，入参用于接收UIExtensionAbility的返回结果，类型为[TerminationInfo](#terminationinfo12)。 |
+| callback | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](#terminationinfo12)> | 是 | 回调函数，入参用于接收UIExtensionAbility的返回结果，类型为[TerminationInfo](#terminationinfo12)。 |
 
 > **说明：**
 >
 > - 若UIExtensionAbility通过调用`terminateSelfWithResult`退出，其携带的信息会传给回调函数的入参。
 > - 若UIExtensionAbility通过调用`terminateSelf`退出，上述回调函数的入参中，"code"取默认值"0"，"want"为"undefined"。
 
-### onDrawReady<sup>18+<sup>
+### onDrawReady<sup>18+</sup>
 
 onDrawReady(callback: Callback\<void>)
 
@@ -172,9 +186,9 @@ onDrawReady(callback: Callback\<void>)
 
 | 参数名                       | 类型   | 必填 | 说明                                                         |
 | ---------------------------- | ------ | ------ | ------------------------------------------------------------ |
-| callback                        | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback) \<void> | 否 | 回调函数，UIExtensionAbility绘制第一帧时触发本回调，类型为void。    |
+| callback                        | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<void> | 是 | 回调函数，UIExtensionAbility绘制第一帧时触发本回调，类型为void。    |
 
-### TerminationInfo<sup>12+<sup>
+### TerminationInfo<sup>12+</sup>
 
 用于表示被拉起的UIExtensionAbility通过调用`terminateSelfWithResult`或者`terminateSelf`正常退出时的返回结果。
 
@@ -182,13 +196,13 @@ onDrawReady(callback: Callback\<void>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-|  名称 | 类型   | 必填 | 说明                                                 |
-| ------- | ------ | ------ |---------------------------------------------------  |
-| code    | number | 否 | 被拉起UIExtensionAbility退出时返回的结果码。 |
-| want    | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)   | 否 | 被拉起UIExtensionAbility退出时返回的数据。   |
+|  名称 | 类型   | 只读 |可选 | 说明                                                 |
+| ------- | ------ | ------ | ------ |---------------------------------------------------  |
+| code    | number | 否 | 是 | 被拉起UIExtensionAbility退出时返回的结果码。 |
+| want    | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)   | 否 | 是 | 被拉起UIExtensionAbility退出时返回的数据。   |
 
-## ReceiveCallback<sup>18+<sup>
-type ReceiveCallback = Callback\<Record\<string, Object\>\>
+## ReceiveCallback<sup>18+</sup>
+type ReceiveCallback = [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<Record\<string, Object\>\>
 
 用于封装被拉起的Ability发送的数据。
 
@@ -196,10 +210,9 @@ type ReceiveCallback = Callback\<Record\<string, Object\>\>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-| 参数名                       | 类型   | 必填 | 说明                                                         |
-| ---------------------------- | ------ | ------ | --------------------------------------------------------- |
-| data                        | Record\<string, Object\> | 否 | 收到来自对端Ability的数据。                 |
+| 类型   | 说明                                                         |
+| ------ | --------------------------------------------------------- |
+| [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<Record\<string, Object\>\> | 收到来自对端Ability的数据。                 |
 
 ## UIExtensionOptions<sup>11+</sup>
 
@@ -210,13 +223,13 @@ type ReceiveCallback = Callback\<Record\<string, Object\>\>
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 
-| 名称               | 类型                                 | 必填 | 说明                                                                                                      |
-| ----                 | ---------------------------------------- | ---- | ---------------                                                                                               |
-| isTransferringCaller | boolean                                  | 否   | 在使用UIExtensionComponent嵌套时，设置当前UIExtensionComponent是否转发上一级的Caller信息。</br> 默认值：false |
-| placeholder<sup>12+<sup> | [ComponentContent](../js-apis-arkui-ComponentContent.md)       | 否   | 设置占位符，在UIExtensionComponent与UIExtensionAbility建立连接前显示。 |
-| dpiFollowStrategy<sup>12+<sup> | [DpiFollowStrategy](ts-container-ui-extension-component-sys.md#dpifollowstrategy12)                  | 否   | 提供接口支持设置DPI跟随宿主或跟随UIExtensionAbility。</br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_DPI |
-| areaChangePlaceholder<sup>14+<sup> | Record<string, [ComponentContent](../js-apis-arkui-ComponentContent.md)>       | 否   | 设置尺寸变化占位符，在UIExtensionComponent尺寸发生变化并且UIExtension内部渲染未完成时显示, key值支持"FOLD_TO_EXPAND"(折叠展开尺寸变化)、"UNDEFINED"(默认尺寸变化)。 |
-| windowModeFollowStrategy<sup>18+<sup> | [WindowModeFollowStrategy](ts-container-ui-extension-component-sys.md#windowmodefollowstrategy18)    | 否   | 提供接口以支持设置窗口Mode，使其能够跟随宿主或UIExtensionAbility。</br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_WINDOW_MODE |
+| 名称               | 类型                             | 只读 | 可选 | 说明                                                                                                      |
+| ----                 | ---------------------------------------- | ---- | ---- | ---------------                                                                                               |
+| isTransferringCaller | boolean                                  | 否 | 是  | 在使用UIExtensionComponent嵌套时，设置当前UIExtensionComponent是否转发上一级的Caller信息。</br> 默认值：false |
+| placeholder<sup>12+</sup> | [ComponentContent](../js-apis-arkui-ComponentContent.md)       | 否 | 是   | 设置占位符，在UIExtensionComponent与UIExtensionAbility建立连接前显示。 |
+| dpiFollowStrategy<sup>12+</sup> | [DpiFollowStrategy](ts-container-ui-extension-component-sys.md#dpifollowstrategy12)                 | 否 | 是   | 提供接口支持设置DPI跟随宿主或跟随UIExtensionAbility。</br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_DPI |
+| areaChangePlaceholder<sup>14+</sup> | Record<string, [ComponentContent](../js-apis-arkui-ComponentContent.md)>      | 否 | 是   | 设置尺寸变化占位符，在UIExtensionComponent尺寸发生变化并且UIExtension内部渲染未完成时显示, key值支持"FOLD_TO_EXPAND"(折叠展开尺寸变化)、"UNDEFINED"(默认尺寸变化)。 |
+| windowModeFollowStrategy<sup>18+</sup> | [WindowModeFollowStrategy](ts-container-ui-extension-component-sys.md#windowmodefollowstrategy18)   | 否 | 是   | 提供接口以支持设置窗口Mode，使其能够跟随宿主或UIExtensionAbility。</br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_WINDOW_MODE |
 
 ## DpiFollowStrategy<sup>12+</sup>
 
@@ -289,8 +302,8 @@ sendSync(data: Record\<string, Object\>): Record\<string, Object\>
 以下错误码的详细介绍请参见[UIExtension错误码](../errorcode-uiextension.md)。
 | 错误码ID | 错误信息 |
 | ------- | --------|
-| 100011 | 扩展Ability未注册同步回调 |
-| 100012 | 数据发送失败 |
+| 100011 | No callback has been registered to respond to this request. |
+| 100012 | Transferring data failed. |
 
 ### on('asyncReceiverRegister')<sup>11+</sup>
 

@@ -1,6 +1,6 @@
 # XComponent
 
-**XComponent** provides a surface for graphics rendering and media data input into your view. You can customize the position and size of the surface as needed. For details, see [Native XComponent](../../../ui/napi-xcomponent-guidelines.md).
+**XComponent** provides a [surface](../../../ui/napi-xcomponent-guidelines.md#how-custom-drawing-works) for graphics rendering and media data input into your view. You can customize the position and size of the surface as needed. For details, see [Native XComponent](../../../ui/napi-xcomponent-guidelines.md).
 
 > **NOTE**
 >
@@ -12,9 +12,27 @@ Not supported
 
 ## APIs
 
+### XComponent<sup>19+</sup>
+
+XComponent(params: NativeXComponentParameters)
+
+Obtains an **XComponent** node instance on the native side, and registers the lifecycle callbacks for the surface held by the **XComponent** and the callbacks for component events, such as touch, mouse, and key events.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                               | Mandatory| Description                          |
+| ------- | --------------------------------------- | ---- | ------------------------------ |
+| params | [NativeXComponentParameters](#nativexcomponentparameters19) | Yes  | Options of the **XComponent**.|
+
 ### XComponent<sup>12+</sup>
 
 XComponent(options: XComponentOptions)
+
+Creates an **XComponent** component, allowing you to obtain the **SurfaceId** value on the ArkTS side, register the lifecycle callbacks for the surface held by the **XComponent** and the callbacks for component events such as touch, mouse, and key events, and configure the AI analyzer feature.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -29,6 +47,8 @@ XComponent(options: XComponentOptions)
 ### XComponent<sup>10+</sup>
 
 XComponent(value: {id: string, type: XComponentType, libraryname?: string, controller?: XComponentController})
+
+Creates an **XComponent** component, whose lifecycle callbacks can be triggered from the native side.
 
 This API is deprecated since API version 12. You are advised to use [XComponent(options: XComponentOptions)](#xcomponent12) instead.
 
@@ -72,12 +92,24 @@ Defines the options of the **XComponent**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | [XComponentType](ts-appendix-enums.md#xcomponenttype10)         | Yes  | Type of the component.|
-| controller | [XComponentController](#xcomponentcontroller) | Yes| Controller bound to the component, which can be used to invoke methods of the component. This parameter is valid only when **type** is **SURFACE** or **TEXTURE**.|
-| imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions) | No| AI image analysis options. You can configure the analysis type or bind an analyzer controller through this parameter.|
+| Name| Type| Read-Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| type | [XComponentType](ts-appendix-enums.md#xcomponenttype10)         | No| No  | Type of the component.|
+| controller | [XComponentController](#xcomponentcontroller) | No| No| Controller bound to the component, which can be used to invoke methods of the component. This parameter is effective only when **type** is **SURFACE** or **TEXTURE**.|
+| imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions) | No| Yes| AI image analysis options. You can configure the analysis type or bind an analyzer controller through this parameter.|
 
+## NativeXComponentParameters<sup>19+</sup>
+
+Defines the options of the **XComponent**. This API allows the corresponding [FrameNode](../js-apis-arkui-frameNode.md) to be passed to the native side to use NDK APIs for building UIs, [listening for component events](../../../ui/ndk-listen-to-component-events.md), and managing surface lifecycle settings.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Read-Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| type | [XComponentType](ts-appendix-enums.md#xcomponenttype10)         | No| No  | Type of the component.|
+| imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions) | No| Yes| AI image analysis options. You can configure the analysis type or bind an analyzer controller through this parameter.|
 
 ## Attributes
 In addition to universal attributes, the following attributes are supported.
@@ -88,8 +120,8 @@ In addition to universal attributes, the following attributes are supported.
   >
   > For the **XComponent** component of the TEXTURE or SURFACE type, if the [renderFit](./ts-universal-attributes-renderfit.md) attribute is not set, it defaults to **RenderFit.RESIZE_FILL**.
   > 
-  > For the **XComponent** component of the SURFACE type with an opaque black background, the [renderFit](./ts-universal-attributes-renderfit.md) attribute can only be set to **RenderFit.RESIZE_FILL**. Other **RenderFit** enum values are not recommended.
-  >
+  > For the XComponent component of the SURFACE type with an opaque black background color: In versions earlier than API version 18, the [renderFit](./ts-universal-attributes-renderfit.md) attribute only supports RenderFit.RESIZE_FILL; since API version 18, the **renderFit** attribute supports all its available enum values.
+  > 
   > For the **XComponent** component created using the [ArkUI NDK API](../../../ui/ndk-access-the-arkts-page.md), the [getAttribute](../_ark_u_i___native_node_a_p_i__1.md#getattribute) function is not supported for obtaining the **renderFit** attribute value.
 
 ### enableAnalyzer<sup>12+</sup>
@@ -108,7 +140,7 @@ This feature cannot be used together with the [overlay](ts-universal-attributes-
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| enable | boolean | Yes| Whether to enable the AI image analyzer.|
+| enable | boolean | Yes| Whether to enable the AI image analyzer.<br>true: Enable the image analysis function. false: Disable the image analysis function.<br>Default value: **false**.|
 
   > **NOTE**
   >
@@ -128,7 +160,29 @@ Sets whether to enable the secure surface to protect the content rendered within
 
 | Name  | Type   | Mandatory| Description                  |
 | -------- | ------- | ---- | ---------------------- |
-| isSecure | boolean | Yes  | Whether to enable the secure surface.|
+| isSecure | boolean | Yes  | Whether to enable the secure surface.<br>The value **true** means to enable the secure surface, and **false** means the opposite.<br>Default value: **false**.|
+
+  > **NOTE**
+  >
+  > This attribute is effective only when **type** is set to **SURFACE**.
+  >
+  > The **XComponent** created using the[ArkUI NDK APIs](../../../ui/ndk-build-ui-overview.md) is not supported.
+
+### hdrBrightness<sup>20+</sup>
+
+hdrBrightness(brightness: number)
+
+Sets the brightness of HDR video playback for the component.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type   | Mandatory| Description                  |
+| -------- | ------- | ---- | ---------------------- |
+| brightness | number | Yes  | Brightness of HDR video playback.<br>Value range: 0.0 to 1.0.<br>Values less than 0 are equivalent to 0, and values greater than 1 are equivalent to 1.<br>**0** indicates the brightness of the SDR video, and **1** indicates the brightness of the HDR video.|
 
   > **NOTE**
   >
@@ -142,9 +196,7 @@ Since API version 12, the [universal events](ts-universal-events-click.md) are s
 
 > **NOTE**
 >
-> When the **libraryname** parameter is set, [click events](ts-universal-events-click.md), [touch events](ts-universal-events-touch.md), [show/hide events](ts-universal-events-show-hide.md), [key events](ts-universal-events-key.md), [focus events](ts-universal-focus-event.md), and [mouse events](ts-universal-mouse-key.md) only respond to event APIs on the C-API side.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
+> When the **libraryname** parameter is set, [click events](ts-universal-events-click.md), [touch events](ts-universal-events-touch.md), [show/hide events](ts-universal-events-show-hide.md), [key events](ts-universal-events-key.md), [focus events](ts-universal-focus-event.md), and [mouse events](ts-universal-mouse-key.md) only respond to event APIs on the C API side.
 
 The following events are effective only when **type** is set to **SURFACE** or **TEXTURE**.
 
@@ -152,9 +204,9 @@ The following events are effective only when **type** is set to **SURFACE** or *
 
 onLoad(callback: OnNativeLoadCallback )
 
-Triggered when the plug-in is loaded.
+Triggered when the plugin is loaded.
 
-**Atomic service API**: This API can be used in atomic services since API version 14.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -162,15 +214,19 @@ Triggered when the plug-in is loaded.
 
 | Name  | Type  | Mandatory  | Description                                      |
 | ----- | ------ | ---- | ---------------------------------------- |
-| callback | [OnNativeLoadCallback](#onnativeloadcallback14) | Yes   | Callback after the surface held by the **XComponent** is created.|
+| callback | [OnNativeLoadCallback](#onnativeloadcallback18) | Yes   | Callback after the surface held by the **XComponent** is created.|
+
+> **NOTE**
+> 
+> When you create an **XComponent** using a custom component node, the **onLoad** callback is triggered before the [onSurfaceCreated](#onsurfacecreated12) callback. This means that calling [getXComponentSurfaceId](#getxcomponentsurfaceid9) in the **onLoad** callback will not return a valid **surfaceId**. You are advised to obtain the **surfaceId** in the [onSurfaceCreated](#onsurfacecreated12) callback instead.
 
 ### onDestroy
 
 onDestroy(event: VoidCallback )
 
-Triggered when the plug-in is destroyed.
+Triggered when the plugin is destroyed.
 
-**Atomic service API**: This API can be used in atomic services since API version 14.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -180,13 +236,13 @@ Triggered when the plug-in is destroyed.
 | ----- | ------ | ---- | ---------------------------------------- |
 | event | [VoidCallback](ts-types.md#voidcallback12) | Yes   | Callback after the **XComponent** is destroyed.|
 
-## OnNativeLoadCallback<sup>14+</sup>
+## OnNativeLoadCallback<sup>18+</sup>
 
 type OnNativeLoadCallback = (event?: object) =\> void
 
 Triggered after the surface held by the **XComponent** is created.
 
-**Atomic service API**: This API can be used in atomic services since API version 14.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -204,19 +260,15 @@ Defines the controller of the **XComponent**. You can bind the controller to the
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Creating an Object
-
-```
-xcomponentController: XComponentController = new XComponentController()
-```
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 ### constructor
 
 constructor()
 
 A constructor used to create a **XComponentController** instance.
+
+```ts
+xcomponentController: XComponentController = new XComponentController();
+```
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -226,7 +278,7 @@ A constructor used to create a **XComponentController** instance.
 
 getXComponentSurfaceId(): string
 
-Obtains the ID of the surface held by the **XComponent**, which can then be used for @ohos APIs. For details, see [Camera Management](../../apis-camera-kit/js-apis-camera.md). This API works only when **type** of the **XComponent** is set to **SURFACE("surface")** or **TEXTURE**.
+Obtains the ID of the surface held by the **XComponent**, which can then be used for @ohos APIs. For details, see [Camera Management](../../apis-camera-kit/arkts-apis-camera.md). This API works only when **type** of the **XComponent** is set to **SURFACE("surface")** or **TEXTURE**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -277,7 +329,7 @@ Obtains the context of an **XComponent** object. This API works only when **type
 
 setXComponentSurfaceRect(rect: SurfaceRect): void
 
-Sets the rectangle for the surface held by the **XComponent**. This API works only when type of the **XComponent** is set to **SURFACE("surface")** or **TEXTURE**.
+Sets the display area for the surface held by the **XComponent**, including the width, height, and position coordinates relative to the upper left corner of the component. This API is only effective when the **XComponent** type is **SURFACE("surface")** or **TEXTURE**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -301,7 +353,7 @@ Sets the rectangle for the surface held by the **XComponent**. This API works on
 
 getXComponentSurfaceRect(): SurfaceRect
 
-Obtains the rectangle of the surface held by the **XComponent**. This API works only when type of the **XComponent** is set to **SURFACE("surface")** or **TEXTURE**.
+Obtains the display area for the surface held by the **XComponent**, including the width, height, and position coordinates relative to the upper left corner of the component. This API is only effective when the **XComponent** type is **SURFACE("surface")** or **TEXTURE**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -381,9 +433,8 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 Starts AI image analysis in the given settings. Before calling this API, make sure the AI image analyzer is [enabled](#enableanalyzer12).<br>Because the image frame used for analysis is the one captured when this API is called, pay attention to the invoking time of this API.<br>If this API is repeatedly called before the execution is complete, an error callback is triggered.
 
 > **NOTE**
->
+> 
 > The image analysis type cannot be dynamically modified.
->
 > This API depends on device capabilities. If it is called on an incompatible device, an error code is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -404,7 +455,7 @@ Starts AI image analysis in the given settings. Before calling this API, make su
 
 **Error codes**
 
-For details about the error codes, see [AI Image Analyzer Error Codes](../errorcode-image-analyzer.md).
+For details about the error codes, see [AI Image Analyzer Error Codes](errorcode-image-analyzer.md).
 
 | ID| Error Message                                     |
 | -------- | -------------------------------------------- |
@@ -468,7 +519,61 @@ Obtains whether the orientation of the surface held by this **XComponent** is lo
 
 | Type                                | Description                                 |
 | ------------------------------------ | ------------------------------------- |
-| [SurfaceRotationOptions](#surfacerotationoptions12) | Whether the orientation of the surface held by the current **XComponent** is locked when the screen rotates.|
+| Required<[SurfaceRotationOptions](#surfacerotationoptions12)> | Whether the orientation of the surface held by the current **XComponent** is locked when the screen rotates.|
+
+### lockCanvas<sup>20+</sup>
+
+lockCanvas(): DrawingCanvas | null
+
+Obtains a canvas object for drawing content on the **XComponent** component. For details about the drawing methods, see [Canvas](../../apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+| Type                                | Description                                 |
+| ------------------------------------ | ------------------------------------- |
+| [DrawingCanvas](ts-drawingrenderingcontext.md#drawingcanvas12) \| null | Canvas object for drawing on the **XComponent** area, or **null** if it is unavailable.|
+
+> **NOTE**
+>
+> This API returns **null** if the canvas object cannot be obtained due to the current state of the **XComponent** component. The possible causes are as follows:
+>
+> 1. The surface held by the **XComponent** has not been created yet (you can determine this by setting the [onLoad](#onload) or [onSurfaceCrearted](#onsurfacecreated12) callback, which is triggered after the surface is created).
+>
+> 2. A previous canvas object obtained using **lockCanvas()** has not been released with [unlockCanvasAndPost](#unlockcanvasandpost20).
+>
+> This API is only effective when the **XComponent** type is **TEXTURE** or **SURFACE**.
+>
+> After using this API, do not simultaneously obtain the **NativeWindow** instance on the NDK side and call related APIs for drawing. Doing so may cause buffer contention and context to occur, leading to rendering exceptions such as visual artifacts.
+>
+> This API must be used in conjunction with [unlockCanvasAndPost](#unlockcanvasandpost20). For the implementation example, see [Example 3: Drawing Content on the XComponent Using a Canvas Object](#example-3-drawing-content-on-the-xcomponent-using-a-canvas-object).
+
+### unlockCanvasAndPost<sup>20+</sup>
+
+unlockCanvasAndPost(canvas: DrawingCanvas): void
+
+Submits the drawn content from a canvas object to the display area of the **XComponent** component and releases the canvas object.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| canvas | [DrawingCanvas](ts-drawingrenderingcontext.md#drawingcanvas12) | Yes| Canvas object previously obtained using **lockCanvas()**.|
+
+> **NOTE**
+>
+> 1. Once released using **unlockCanvasAndPost()**, a canvas object becomes immediately unusable.
+>
+> 2. This API is only effective when the **XComponent** type is **TEXTURE** or **SURFACE**.
+>
+> 3. After using this API, do not simultaneously obtain the **NativeWindow** instance on the NDK side and call related APIs for drawing. Doing so may cause buffer contention and context to occur, leading to rendering exceptions such as visual artifacts.
+>
+> 4. This API must be used in conjunction with [lockCanvas](#lockcanvas20). For the implementation example, see [Example 3: Drawing Content on the XComponent Using a Canvas Object](#example-3-drawing-content-on-the-xcomponent-using-a-canvas-object).
 
 ## SurfaceRotationOptions<sup>12+</sup>
 
@@ -478,9 +583,9 @@ Defines whether the orientation of the surface held by the current **XComponent*
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name         | Type  | Mandatory| Description                                                        |
-| ------------- | ------ | ---- | ------------------------------------------------------------ |
-| lock       | boolean | No  | Whether the orientation of the surface is locked when the screen rotates. If this parameter is not set, the default value **false** is used, indicating that the orientation is not locked.|
+| Name         | Type  | Read-Only| Optional| Description                                                        |
+| ------------- | ------ | ------ | ---- | ------------------------------------------------------------ |
+| lock       | boolean | No| Yes  | Whether the orientation of the surface is locked when the screen rotates. If this parameter is not set, the default value **false** is used, indicating that the orientation is not locked.<br>**true**: The orientation of the surface is locked when the screen rotates.<br>**false**: The orientation of the surface is not locked when the screen rotates.|
 
 ## SurfaceRect<sup>12+</sup>
 
@@ -490,18 +595,20 @@ Describes the rectangle of the surface held by the **XComponent**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name         | Type  | Mandatory| Description                                                        |
-| ------------- | ------ | ---- | ------------------------------------------------------------ |
-| offsetX       | number | No  | X coordinate of the surface rectangle relative to the upper left corner of the **XComponent**.<br>Unit: px|
-| offsetY       | number | No  | Y coordinate of the surface rectangle relative to the upper left corner of the **XComponent**.<br>Unit: px|
-| surfaceWidth  | number | Yes  | Width of the surface rectangle.<br>Unit: px                           |
-| surfaceHeight | number | Yes  | Height of the surface rectangle.<br>Unit: px                           |
+| Name         | Type  | Read-Only| Optional| Description                                                        |
+| ------------- | ------ | ------ | ---- | ------------------------------------------------------------ |
+| offsetX       | number | No  | Yes  | X coordinate of the surface rectangle relative to the upper left corner of the **XComponent**.<br>Unit: px|
+| offsetY       | number | No  | Yes  | Y coordinate of the surface rectangle relative to the upper left corner of the **XComponent**.<br>Unit: px|
+| surfaceWidth  | number | No  | No  | Width of the surface rectangle.<br>Unit: px.                           |
+| surfaceHeight | number | No  | No  | Height of the surface rectangle.<br>Unit: px.                           |
 
 > **NOTE**
 >
 > The **surfaceWidth** and **surfaceHeight** attributes default to the size of the **XComponent** if the [setXComponentSurfaceRect](ts-basic-components-xcomponent.md#setxcomponentsurfacerect12) API is not called and neither [border](ts-universal-attributes-border.md#border) nor [padding](ts-universal-attributes-size.md#padding) is set.
 > 
 > Make sure the values of **surfaceWidth** and **surfaceHeight** do not exceed 8192 px. Exceeding this limit may lead to rendering issues.
+>
+> In immersive scenarios, the default layout of **SurfaceRect** does not include the safe area. To achieve an immersive effect, you must set the surface display area using the [setXComponentSurfaceRect](ts-basic-components-xcomponent.md#setxcomponentsurfacerect12) API.
 
 ## Example
 
@@ -515,9 +622,135 @@ This example shows how to use the **enableAnalyzer** attribute to enable AI imag
 ```ts
 // xxx.ets
 import { BusinessError } from '@kit.BasicServicesKit';
-import nativeRender from 'libnativerender.so';
+import nativeRender from 'libnativerender.so';// Your own .so file implementation (see above for details).
 
 class CustomXComponentController extends XComponentController {
+  onSurfaceCreated(surfaceId: string): void {
+    console.info(`onSurfaceCreated surfaceId: ${surfaceId}`);
+    nativeRender.SetSurfaceId(BigInt(surfaceId));
+  }
+
+  onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
+    console.info(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`);
+    nativeRender.ChangeSurface(BigInt(surfaceId), rect.surfaceWidth, rect.surfaceHeight);
+  }
+
+  onSurfaceDestroyed(surfaceId: string): void {
+    console.info(`onSurfaceDestroyed surfaceId: ${surfaceId}`);
+    nativeRender.DestroySurface(BigInt(surfaceId));
+  }
+}
+
+@Entry
+@Component
+struct XComponentExample {
+  xComponentController: XComponentController = new CustomXComponentController();
+  private config: ImageAnalyzerConfig = {
+    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
+  };
+  private aiController: ImageAnalyzerController = new ImageAnalyzerController();
+  private options: ImageAIOptions = {
+    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT],
+    aiController: this.aiController
+  };
+  @State xcWidth: string = "720px";
+  @State xcHeight: string = "720px";
+  @State currentStatus: string = "index";
+
+  build() {
+    Column({ space: 5 }) {
+      Row() {
+        Text('Native XComponent Sample')
+          .fontSize('24fp')
+          .fontWeight(500)
+          .margin({
+            left: 24,
+            top: 12
+          })
+      }
+      .margin({ top: 24 })
+      .width('100%')
+      .height(56)
+
+      XComponent({
+        type: XComponentType.SURFACE,
+        controller: this.xComponentController,
+        imageAIOptions: this.options
+      })
+        .width(this.xcWidth)
+        .height(this.xcHeight)
+        .enableAnalyzer(true)
+        .onClick(() => {
+          let surfaceId = this.xComponentController.getXComponentSurfaceId();
+          nativeRender.ChangeColor(BigInt(surfaceId));
+          let hasChangeColor: boolean = false;
+          if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
+            hasChangeColor = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasChangeColor;
+          }
+          if (hasChangeColor) {
+            this.currentStatus = "change color";
+          }
+        })
+      Text(this.currentStatus)
+        .fontSize('24fp')
+        .fontWeight(500)
+      Column() {
+        Button('start AI analyze')
+          .onClick(() => {
+            this.xComponentController.startImageAnalyzer(this.config)
+              .then(() => {
+                console.info("analysis complete");
+              })
+              .catch((error: BusinessError) => {
+                console.error("error code: " + error.code);
+              })
+          })
+          .margin(2)
+        Button('stop AI analyze')
+          .onClick(() => {
+            this.xComponentController.stopImageAnalyzer();
+          })
+          .margin(2)
+        Button('get analyzer types')
+          .onClick(() => {
+            this.aiController.getImageAnalyzerSupportTypes();
+          })
+          .margin(2)
+        Button('Draw Star')
+          .fontSize('16fp')
+          .fontWeight(500)
+          .margin({ bottom: 24 })
+          .onClick(() => {
+            let surfaceId = this.xComponentController.getXComponentSurfaceId();
+            this.xComponentController.getXComponentSurfaceRect();
+            nativeRender.DrawPattern(BigInt(surfaceId));
+            let hasDraw: boolean = false;
+            if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
+              hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
+            }
+            if (hasDraw) {
+              this.currentStatus = "draw star";
+            }
+          })
+          .margin(2)
+      }.justifyContent(FlexAlign.Center)
+    }
+    .width("100%")
+  }
+}
+```
+![AIXComponent](./figures/AIXComponent.gif)
+
+
+### Example 2: Locking the Surface Orientation During Screen Rotation
+
+This example shows how to use **setXComponentSurfaceRotation** to lock the surface orientation during screen rotation so that the surface does not rotate with the screen.
+
+```ts
+// xxx.ets
+import nativeRender from 'libnativerender.so';
+
+class MyXComponentController extends XComponentController {
   onSurfaceCreated(surfaceId: string): void {
     console.log(`onSurfaceCreated surfaceId: ${surfaceId}`);
     nativeRender.SetSurfaceId(BigInt(surfaceId));
@@ -536,112 +769,83 @@ class CustomXComponentController extends XComponentController {
 
 @Entry
 @Component
-struct XComponentExample {
-  xComponentController: XComponentController = new CustomXComponentController();
-  private config: ImageAnalyzerConfig = {
-    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
-  };
-  private aiController: ImageAnalyzerController = new ImageAnalyzerController();
-  private options: ImageAIOptions = {
-    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT],
-    aiController: this.aiController
-  };
-  @State xcWidth: string = "320px";
-  @State xcHeight: string = "480px";
-  @State currentStatus: string = "index";
-
-  build() {
-    Column({ space: 5 }) {
-      Button("change size")
-        .onClick(() => {
-          this.xcWidth = "640px";
-          this.xcHeight = "720px";
-        })
-      Button('start AI analyze')
-        .onClick(() => {
-          this.xComponentController.startImageAnalyzer(this.config)
-            .then(() => {
-              console.log("analysis complete");
-            })
-            .catch((error: BusinessError) => {
-              console.log("error code: " + error.code);
-            })
-        })
-      Button('stop AI analyze')
-        .onClick(() => {
-          this.xComponentController.stopImageAnalyzer();
-        })
-      Button('get analyzer types')
-        .onClick(() => {
-          this.aiController.getImageAnalyzerSupportTypes();
-        })
-      Button('Draw Star')
-        .fontSize('16fp')
-        .fontWeight(500)
-        .margin({ bottom: 24 })
-        .onClick(() => {
-          let surfaceId = this.xComponentController.getXComponentSurfaceId();
-          this.xComponentController.getXComponentSurfaceRect();
-          nativeRender.DrawPattern(BigInt(surfaceId));
-          let hasDraw: boolean = false;
-          if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
-            hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
-          }
-          if (hasDraw) {
-            this.currentStatus = "draw star";
-          }
-        })
-      XComponent({
-        type: XComponentType.SURFACE,
-        controller: this.xComponentController,
-        imageAIOptions: this.options
-      })
-        .width(this.xcWidth)
-        .height(this.xcHeight)
-        .enableAnalyzer(true)
-      Text(this.currentStatus)
-        .fontSize('24fp')
-        .fontWeight(500)
-    }
-    .width("100%")
-  }
-}
-```
-<!--RP1--><!--RP1End-->
-
-### Example 2: Locking the Surface Orientation During Screen Rotation
-
-This example shows how to use **setXComponentSurfaceRotation** to lock the surface orientation during screen rotation so that the surface does not rotate with the screen.
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct Index{
+struct Index {
   @State isLock: boolean = true;
   @State xc_width: number = 500;
   @State xc_height: number = 700;
-  myXComponentController: XComponentController = new XComponentController();
+  myXComponentController: XComponentController = new MyXComponentController();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
       XComponent({
-        id: 'xComponentId',
+        id: "XComponent",
         type: XComponentType.SURFACE,
-        libraryname: 'nativerender',
         controller: this.myXComponentController
       })
-      .width(this.xc_width)
-      .height(this.xc_height)
-      .onLoad(() => {
-        let surfaceRotation: SurfaceRotationOptions = { lock: this.isLock };
-        this.myXComponentController.setXComponentSurfaceRotation(surfaceRotation);
-        console.log("Surface getXComponentSurfaceRotation lock = " +
+        .onLoad(() => {
+          let surfaceRotation: SurfaceRotationOptions = { lock: this.isLock };
+          this.myXComponentController.setXComponentSurfaceRotation(surfaceRotation);
+          console.log("Surface getXComponentSurfaceRotation lock = " +
           this.myXComponentController.getXComponentSurfaceRotation().lock);
-      })
+        })
+        .width(this.xc_width)
+        .height(this.xc_height)
+      Button("Draw")
+        .onClick(() => {
+          let surfaceId = this.myXComponentController.getXComponentSurfaceId();
+          nativeRender.DrawPattern(BigInt(surfaceId));
+        })
     }
-    .width('100%')
-    .height('100%')
   }
 }
 ```
+
+### Example 3: Drawing Content on the XComponent Using a Canvas Object
+
+This example shows how to call **lockCanvas** to obtain a canvas object, use the canvas object to call corresponding drawing API, and finally call **unlockCanvasAndPost** to render the content on the **XComponent** component.
+
+```ts
+// xxx.ets
+import { drawing } from '@kit.ArkGraphics2D';
+
+@Entry
+@Component
+struct Index {
+  private xcController: XComponentController = new XComponentController();
+  private mCanvas: DrawingCanvas | null = null;
+
+  build() {
+    Column() {
+      XComponent({ type: XComponentType.SURFACE, controller: this.xcController })
+        .width("80%")
+        .height("80%")
+        .onLoad(() => {
+          this.mCanvas = this.xcController.lockCanvas();
+          if (this.mCanvas) {
+            this.mCanvas.drawColor(255, 240, 250, 255); // Before each drawing, the entire XComponent area must be fully redrawn; this method can be used to achieve this.
+            const brush = new drawing.Brush(); // Create a brush object.
+            brush.setColor({ // Set the color of the brush.
+              alpha: 255,
+              red: 39,
+              green: 135,
+              blue: 217
+            });
+            this.mCanvas.attachBrush(brush); // Attach the brush to the canvas.
+            this.mCanvas.drawRect({ // Draw a rectangle.
+              left: 300,
+              right: 800,
+              top: 100,
+              bottom: 800
+            });
+            this.mCanvas.detachBrush(); // Detach the brush from the canvas.
+            this.xcController.unlockCanvasAndPost(this.mCanvas);
+          }
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+![DrawingCanvas Example](./figures/DrawingCanvas.PNG)
+<!--no_check-->

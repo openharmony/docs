@@ -50,8 +50,8 @@ select(value: boolean)
 
 Sets whether the check box is selected.
 
-Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
-Since API version 18, this attribute supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
+Since API version 10, this attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).
+Since API version 18, this attribute supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -69,9 +69,9 @@ Since API version 18, this attribute supports two-way binding through [!!](../..
 
 select(isSelected: Optional\<boolean>)
 
-Sets whether the check box is selected. Compared to [select](#select), this API supports the **undefined** type for the **isSelected** parameter.
+Sets whether the check box is selected. Compared with [select](#select), this API supports the **undefined** type for the **isSelected** parameter.
 
-This attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md). This attribute supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md).
+This attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md). This attribute supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -107,7 +107,7 @@ Sets the color of the check box when it is selected.
 
 selectedColor(resColor: Optional\<ResourceColor>)
 
-Sets the color of the check box when it is selected. Compared to [selectedColor](#selectedcolor), this API supports the **undefined** type for the **resColor** parameter.
+Sets the color of the check box when it is selected. Compared with [selectedColor](#selectedcolor), this API supports the **undefined** type for the **resColor** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -141,7 +141,7 @@ Sets the border color of the check box when it is not selected.
 
 unselectedColor(resColor: Optional\<ResourceColor>)
 
-Sets the border color of the check box when it is not selected. Compared to [unselectedColor](#unselectedcolor10)<sup>10+</sup>, this API supports the **undefined** type for the **resColor** parameter.
+Sets the border color of the check box when it is not selected. Compared with [unselectedColor](#unselectedcolor10)<sup>10+</sup>, this API supports the **undefined** type for the **resColor** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -173,7 +173,7 @@ Sets the check mark style of the check box.
 
 mark(style: Optional\<MarkStyle>)
 
-Sets the check mark style of the check box. Compared to [mark](#mark10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
+Sets the check mark style of the check box. Compared with [mark](#mark10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -207,7 +207,7 @@ Sets the shape of the check box.
 
 shape(shape: Optional\<CheckBoxShape>)
 
-Sets the shape of the check box. Compared to [shape](#shape11)<sup>11+</sup>, this API supports the **undefined** type for the **shape** parameter.
+Sets the shape of the check box. Compared with [shape](#shape11)<sup>11+</sup>, this API supports the **undefined** type for the **shape** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -241,7 +241,7 @@ Creates a content modifier.
 
 contentModifier(modifier: Optional<ContentModifier\<CheckBoxConfiguration>>)
 
-Creates a content modifier. Compared to [contentModifier](#contentmodifier12)<sup>12+</sup>, this API supports the **undefined** type for the **modifier** parameter.
+Creates a content modifier. Compared with [contentModifier](#contentmodifier12)<sup>12+</sup>, this API supports the **undefined** type for the **modifier** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -279,7 +279,7 @@ Invoked when the selected state of the check box changes.
 
 onChange(callback: Optional\<OnCheckboxChangeCallback>)
 
-Invoked when the selected state of the check box changes. Compared to [onChange](#onchange), this API supports the **undefined** type for the **callback** parameter.
+Invoked when the selected state of the check box changes. Compared with [onChange](#onchange), this API supports the **undefined** type for the **callback** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 

@@ -20,7 +20,7 @@ The enterprise device management APIs can be called only by a device administrat
 
 **Solution**
 
-Check whether the caller is a device administrator application that is enabled.
+Check whether the caller is a device administrator application enabled.
 
 ## 9200002 Permission Denied
 
@@ -30,11 +30,11 @@ The administrator application does not have permission to manage the device.
 
 **Description**
 
-This error code is reported when the device administrator application does not have the permission to call the API.
+This error code is reported when the device administrator application does not have the permission to invoke the API.
 
 **Possible Causes**
 
-A device administrator application calls an API that is accessible only by a super administrator application.
+A device administrator application calls an API that is accessible only by a super device administrator application.
 
 **Solution**
 
@@ -59,7 +59,7 @@ The specified administrator ability component is invalid due to any of the follo
 **Solution**
 
 1. Check that the name of the administrator ability component is included in the application bundle when the application is enabled as a device administrator application.
-2. Check that the administrator ability component inherits from the **EnterpriseAdminExtensionAbility** component defined by the enterprise device management framework.
+2. Check that the administrator ability component inherits the **EnterpriseAdminExtensionAbility** component defined by the enterprise device management framework.
 
 ## 9200004 Failed to Enable the Device Administrator Application
 
@@ -81,7 +81,7 @@ The possible causes are as follows:
 **Solution**
 
 1. Check that only one super device administrator application exists.
-2. Check whether the current application has been enabled as a device administrator with a different device administrator type. If yes, deactivate the device administrator application and try again.
+2. Check whether the current application has been enabled as a device administrator with a different device administrator type. If yes, disable the device administrator application and try again.
 3. Check whether a device administrator ability component has been enabled for the application. Only one device administrator ability component can be enabled for an application.
 
 ## 9200005 Failed to Disable the Device Administrator Application
@@ -92,13 +92,13 @@ Failed to deactivate the administrator application of the device.
 
 **Description**
 
-This error code is reported when the operation for disabling a device administrator application fails.
+This error code is reported when the operation for disabling a device administrator application fails or another administrator application is disabled.
 
 **Possible Causes**
 
 The possible causes are as follows:
 1. The application to be disabled has not been enabled.
-2. The caller cannot deactivate other device administrator applications.
+2. Another administrator application is disabled.
 
 **Solution**
 
@@ -120,12 +120,12 @@ This error code is reported when the specified user ID does not exist or the spe
 
 The possible causes are as follows:
 1. The user ID specified for setting a user policy does not exist.
-2. The specified user ID is different from the caller user ID when the application is not a super device administrator application.
+2. The specified user ID is different from the caller user ID.
 
 **Solution**
 
 1. Check that the specified user ID is valid.
-2. Check that caller's user ID is the same as the specified user ID. If the application is not a super device administrator application, policies cannot be set across users.
+2. Check that caller's user ID is the same as the specified user ID. If the application is a device administrator application, policies cannot be set across users.
 
 ## 9200007 System Ability Error
 
@@ -250,13 +250,13 @@ Failed to install the application.
 
 **Description**
 
-This error code is reported when a device administrator application fails to install an enterprise application.
+This error code is reported when a device administrator application fails to install an enterprise app.
 
 **Possible Causes**
 
 The possible causes are as follows:
 1. The application installation path is empty or invalid, or does not exist.
-2. The operation attempts to install multiple applications with different bundle names.
+2. The operation attempts to install multiple apps with different bundle names.
 3. The application to be installed already exists when the installation parameter flag is 0.
 4. The user ID is invalid.
 

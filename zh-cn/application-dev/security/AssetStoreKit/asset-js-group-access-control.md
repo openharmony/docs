@@ -1,5 +1,12 @@
 # 管理群组关键资产(ArkTS)
 
+<!--Kit: Asset Store Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @JeremyXu-->
+<!--Designer: @skye_you-->
+<!--Tester: @nacyli-->
+<!--Adviser: @zengyawen-->
+
 以下为管理群组关键资产使用示例，请先查看开发指导：
 
 - [新增关键资产(ArkTS)](asset-js-add.md)
@@ -14,7 +21,7 @@
 ```json
 {
   "app": {
-    //其他配置项此处省略
+    // 其他配置项此处省略。
     "assetAccessGroups": [
       "demo_group_id"
     ]
@@ -44,7 +51,7 @@ attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
 attr.set(asset.Tag.GROUP_ID, stringToArray('demo_group_id'));
 try {
   asset.add(attr).then(() => {
-    console.info(`Asset added to the group successfully.`);
+    console.info(`Succeeded in adding Asset to the group.`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to add Asset to the group. Code is ${err.code}, message is ${err.message}`);
   })
@@ -73,7 +80,7 @@ query.set(asset.Tag.ALIAS, stringToArray('demo_alias')); // 此处指定别名�
 query.set(asset.Tag.GROUP_ID, stringToArray('demo_group_id'));
 try {
   asset.remove(query).then(() => {
-    console.info(`Asset removed from the group successfully.`);
+    console.info(`Succeeded removing in Asset from the group.`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to remove Asset from the group. Code is ${err.code}, message is ${err.message}`);
   });
@@ -105,7 +112,7 @@ attrsToUpdate.set(asset.Tag.SECRET, stringToArray('demo_pwd_new'));
 attrsToUpdate.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label_new'));
 try {
   asset.update(query, attrsToUpdate).then(() => {
-    console.info(`Asset in the group updated successfully.`);
+    console.info(`Succeeded in updating Asset in the group.`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to update Asset in the group. Code is ${err.code}, message is ${err.message}`);
   });
@@ -136,18 +143,18 @@ function arrayToString(arr: Uint8Array): string {
 }
 
 let query: asset.AssetMap = new Map();
-query.set(asset.Tag.ALIAS, stringToArray('demo_alias')); // 指定了群组关键资产别名，最多查询到一条满足条件的群组关键资产
-query.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ALL);  // 此处表示需要返回群组关键资产的所有信息，即属性+明文
+query.set(asset.Tag.ALIAS, stringToArray('demo_alias')); // 指定了群组关键资产别名，最多查询到一条满足条件的群组关键资产。
+query.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ALL); // 此处表示需要返回群组关键资产的所有信息，即属性+明文。
 query.set(asset.Tag.GROUP_ID, stringToArray('demo_group_id'));
 try {
   asset.query(query).then((res: Array<asset.AssetMap>) => {
     for (let i = 0; i < res.length; i++) {
-      // parse the secret.
+      // 解析secret。
       let secret: Uint8Array = res[i].get(asset.Tag.SECRET) as Uint8Array;
-      // parse uint8array to string
+      // 将Uint8Array转换为string类型。
       let secretStr: string = arrayToString(secret);
     }
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
   });
 } catch (error) {
@@ -171,16 +178,17 @@ function stringToArray(str: string): Uint8Array {
 }
 
 let query: asset.AssetMap = new Map();
-query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));       // 指定了群组关键资产别名，最多查询到一条满足条件的群组关键资产
-query.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ATTRIBUTES); // 此处表示仅返回群组关键资产属性，不包含群组关键资产明文
+query.set(asset.Tag.ALIAS, stringToArray('demo_alias')); // 指定了群组关键资产别名，最多查询到一条满足条件的群组关键资产。
+query.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ATTRIBUTES); // 此处表示仅返回群组关键资产属性，不包含群组关键资产明文。
 query.set(asset.Tag.GROUP_ID, stringToArray('demo_group_id'));
 try {
   asset.query(query).then((res: Array<asset.AssetMap>) => {
     for (let i = 0; i < res.length; i++) {
-      // parse the attribute.
+      // 解析属性。
       let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
+      console.info(`Succeeded in getting accessibility, which is: ${accessibility}.`);
     }
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query Asset from the group. Code is ${err.code}, message is ${err.message}`);
   });
 } catch (error) {

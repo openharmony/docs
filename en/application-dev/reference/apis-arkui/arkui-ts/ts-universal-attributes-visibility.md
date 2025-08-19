@@ -4,13 +4,13 @@ The visibility attribute controls whether a component is visible.
 
 >  **NOTE**
 >
-> This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## visibility
 
-visibility(value: Visibility)
+visibility(value: Visibility): T
 
-Sets the visibility of this component.
+Sets the visibility of the component.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 
@@ -23,6 +23,12 @@ Sets the visibility of this component.
 | Name| Type                                         | Mandatory| Description                                                        |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Visibility](ts-appendix-enums.md#visibility) | Yes  | Whether the component is visible. When appropriate, consider using [conditional rendering](../../../ui/state-management/arkts-rendering-control-ifelse.md) as a substitute.<br>Default value: **Visibility.Visible**|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 
 ## Example

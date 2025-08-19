@@ -1,4 +1,10 @@
 # 文本显示 (Text/Span)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiangyuan6-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 
 Text是文本组件，用于展示用户视图，如显示文章的文字内容。该组件支持绑定自定义文本选择菜单，用户可根据需要选择不同功能。此外，还可以扩展自定义菜单，丰富可用选项，进一步提升用户体验。Span则用于展示行内文本。  
@@ -103,19 +109,47 @@ Text可通过以下两种方式来创建：
 
 - 添加事件。
 
-  由于Span组件无尺寸信息，仅支持添加点击事件[onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick)。
+  由于Span组件无尺寸信息，仅支持添加点击事件[onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick)、悬浮事件[onHover](../reference/apis-arkui/arkui-ts/ts-universal-events-hover.md#onhover)。
 
 
   ```ts
-  Text() {
-    Span('I am Upper-span').fontSize(12)
-      .textCase(TextCase.UpperCase)
-      .onClick(() => {
-        console.info('我是Span——onClick');
-      })
+  // xxx.ets
+  @Entry
+  @Component
+  struct Index {
+    @State textStr1: string = '';
+    @State textStr2: string = '';
+
+    build() {
+      Row() {
+        Column() {
+          Text() {
+            Span('I am Upper-span')
+              .fontSize(12)
+              .textCase(TextCase.UpperCase)
+              .fontSize(30)
+              .onClick(() => {
+                console.info('Span onClick is triggering');
+                this.textStr1 = 'Span onClick is triggering';
+              })
+              .onHover(() => {
+                console.info('Span onHover is triggering');
+                this.textStr2 = 'Span onHover is triggering';
+              })
+          }
+
+          Text('onClick：' + this.textStr1)
+            .fontSize(20)
+          Text('onHover：' + this.textStr2)
+            .fontSize(20)
+        }.width('100%')
+      }
+      .height('100%')
+    }
   }
   ```
 
+  ![span_event](figures/span_event.gif)
 
 ## 创建自定义文本样式
 
@@ -397,7 +431,7 @@ Text可通过以下两种方式来创建：
 
   ```ts
   @State number: number = 98;
-  @State numberTransition: NumericTextTransition = { flipDirection: FlipDirection.DOWN, enableBlur: false };
+  @State numberTransition: NumericTextTransition = new NumericTextTransition({ flipDirection: FlipDirection.DOWN, enableBlur: false });
 
   Column() {
     Text(this.number + "")
@@ -526,11 +560,38 @@ Text可通过以下两种方式来创建：
 Text组件可以添加通用事件，可以绑定[onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick)、[onTouch](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)等事件来响应操作。
 
 ```ts
-Text('点我')
-  .onClick(() => {
-      console.info('我是Text的点击响应事件');
-   })
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State textStr1: string = '';
+  @State textStr2: string = '';
+
+  build() {
+    Row() {
+      Column() {
+        Text('This is a text component.')
+          .fontSize(30)
+          .onClick(() => {
+            console.info('Text onClick is triggering');
+            this.textStr1 = 'Text onClick is triggering';
+          })
+          .onTouch(() => {
+            console.info('Text onTouch is triggering');
+            this.textStr2 = 'Text onTouch is triggering';
+          })
+        Text('onClick：' + this.textStr1)
+          .fontSize(20)
+        Text('onTouch：' + this.textStr2)
+          .fontSize(20)
+      }.width('100%')
+    }
+    .height('100%')
+  }
+}
 ```
+
+![text_event](figures/text_event.gif)
 
 ## 设置垂直居中
 
@@ -697,7 +758,7 @@ Text('点我')
  
 ### 屏蔽系统服务类菜单
 
-- 从API version 20开始，支持通过[disableSystemServiceMenuItems](../reference/apis-arkui/js-apis-arkui-UIContext.md#disablesystemservicemenuitems20)屏蔽文本选择菜单内所有系统服务菜单项。
+- 从API version 20开始，支持通过[disableSystemServiceMenuItems](../reference/apis-arkui/arkts-apis-uicontext-textmenucontroller.md#disablesystemservicemenuitems20)屏蔽文本选择菜单内所有系统服务菜单项。
 
   ```ts
   import { TextMenuController } from '@kit.ArkUI';
@@ -742,7 +803,7 @@ Text('点我')
 
   ![text_disable_system_service_menuItems](figures/text_disable_system_service_menuItems.jpg)
 
-- 从API version 20开始，支持通过[disableMenuItems](../reference/apis-arkui/js-apis-arkui-UIContext.md#disablemenuitems20)屏蔽文本选择菜单内指定的系统服务菜单项。
+- 从API version 20开始，支持通过[disableMenuItems](../reference/apis-arkui/arkts-apis-uicontext-textmenucontroller.md#disablemenuitems20)屏蔽文本选择菜单内指定的系统服务菜单项。
 
   ```ts
   import { TextMenuController } from '@kit.ArkUI';

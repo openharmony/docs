@@ -1,4 +1,10 @@
 # 组件内容填充方式
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 用于决定在组件的宽高动画过程中，如何将动画最终的组件内容绘制在组件上。
 
@@ -15,6 +21,8 @@ renderFit(fitMode: RenderFit): T
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **参数：** 
 
@@ -38,6 +46,8 @@ renderFit(fitMode: Optional\<RenderFit>): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+
 **参数：** 
 
 | 参数名  | 类型                                       | 必填 | 说明                                                         |
@@ -56,7 +66,7 @@ renderFit(fitMode: Optional\<RenderFit>): T
 >
 > 对于SURFACE类型的[XComponent](./ts-basic-components-xcomponent.md)组件，背景色设置为不透明的纯黑色，在API version 18之前，其renderFit通用属性仅支持设置为RenderFit.RESIZE_FILL；在API version 18及之后，支持所有的RenderFit枚举值。
 >
->  对于使用[ArkUI NDK接口](../../../ui/ndk-access-the-arkts-page.md)创建的XComponent组件，不支持使用属性获取函数[getAttribute](../_ark_u_i___native_node_a_p_i__1.md#getattribute)获取其renderFit属性值。
+>  对于使用[ArkUI NDK接口](../../../ui/ndk-access-the-arkts-page.md)创建的XComponent组件，不支持使用属性获取函数[getAttribute](../capi-arkui-nativemodule-arkui-nativenodeapi-1.md#getattribute)获取其renderFit属性值。
 
 ## RenderFit枚举说明
 

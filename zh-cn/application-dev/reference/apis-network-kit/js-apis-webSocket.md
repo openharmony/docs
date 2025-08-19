@@ -1,5 +1,12 @@
 # @ohos.net.webSocket (WebSocket连接)
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 > **说明：**
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -334,7 +341,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
     if (!err) {
       console.info("connect success")
     } else {
-      console.error(`connect fail. Code: ${err.code}, message: ${err.message}`)
+      console.error("connect fail. Code: ${err.code}, message: ${err.message}")
     }
 });
 
@@ -344,7 +351,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
   promise.then((value: boolean) => {
     console.info("send success")
   }).catch((err:string) => {
-    console.error(`send fail, error:" + JSON.stringify(err))
+    console.error("send fail, error:" + JSON.stringify(err))
   });
 });
 ```
@@ -494,7 +501,7 @@ let promise = ws.close();
 promise.then((value: boolean) => {
     console.info("close success")
 }).catch((err:string) => {
-    console.error(`close fail, error:" + JSON.stringify(err))
+    console.error("close fail, error:" + JSON.stringify(err))
 });
 ```
 
@@ -1396,9 +1403,9 @@ on(type: 'error', callback: ErrorCallback): void
 import { webSocket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let localServer = webSocket.createWebSocketServer();
-localServer.on('error', (err: BusinessError) => {
-  console.error(`error. Code: ${error.code}, message: ${error.message}`);
+let wsServer: webSocket.WebSocketServer = webSocket.createWebSocketServer();
+wsServer.on('error', (err: BusinessError) => {
+  console.error(`error. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1508,7 +1515,7 @@ type ResponseHeaders = {
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| {[k:string]:string \| string[] \| undefined} | header数据类型为键值对、字符串或者undefined。 |
+| [k:string]:string \| string[] \| undefined | header数据类型为键值对、字符串或者undefined。 |
 
 ## close错误码说明
 
@@ -1585,6 +1592,8 @@ type HttpProxy = connection.HttpProxy
 | clientPort | number | 否   | 否   | 客户端的端口号port。 |
 
 ## ClientConnectionCloseCallback<sup>19+</sup>
+
+type ClientConnectionCloseCallback = (clientConnection: WebSocketConnection, closeReason: CloseResult) => void
 
 关闭WebSocketServer连接时，订阅close事件得到的指定客户端的关闭结果。
 

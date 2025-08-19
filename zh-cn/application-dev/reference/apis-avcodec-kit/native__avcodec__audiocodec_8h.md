@@ -13,6 +13,7 @@
 
 **相关模块：**[AudioCodec](_audio_codec.md)
 
+**相关示例：**[AVCodec](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
 
 ## 汇总
 

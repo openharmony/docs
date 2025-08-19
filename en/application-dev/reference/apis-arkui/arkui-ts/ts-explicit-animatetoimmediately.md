@@ -10,7 +10,7 @@ In general cases, using **animateToImmediately** is not advised. Opt for [animat
 
 > **NOTE**
 >
-> This feature is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
 >
 
 ## APIs
@@ -41,10 +41,10 @@ This example demonstrates how to use the **animateToImmediately** API to deliver
 @Entry
 @Component
 struct AnimateToImmediatelyExample {
-  @State widthSize: number = 250
-  @State heightSize: number = 100
-  @State opacitySize: number = 0
-  private flag: boolean = true
+  @State widthSize: number = 250;
+  @State heightSize: number = 100;
+  @State opacitySize: number = 0;
+  private flag: boolean = true;
 
   build() {
     Column() {
@@ -61,31 +61,31 @@ struct AnimateToImmediatelyExample {
               delay: 0,
               duration: 1000
             }, () => {
-              this.opacitySize = 1
+              this.opacitySize = 1;
             })
-            animateTo({
+            this.getUIContext()?.animateTo({
               delay: 1000,
               duration: 1000
             }, () => {
-              this.widthSize = 150
-              this.heightSize = 60
+              this.widthSize = 150;
+              this.heightSize = 60;
             })
           } else {
             animateToImmediately({
               delay: 0,
               duration: 1000
             }, () => {
-              this.widthSize = 250
-              this.heightSize = 100
+              this.widthSize = 250;
+              this.heightSize = 100;
             })
-            animateTo({
+            this.getUIContext()?.animateTo({
               delay: 1000,
               duration: 1000
             }, () => {
-              this.opacitySize = 0
+              this.opacitySize = 0;
             })
           }
-          this.flag = !this.flag
+          this.flag = !this.flag;
         })
     }.width('100%').margin({ top: 5 })
   }

@@ -1,4 +1,10 @@
 # SplitLayout
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fengluochenai-->
+<!--Designer: @YanSanzo-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @HelloCrease-->
 
 
 上下结构布局介绍了常用的页面布局样式。主要分为上下文本和上下图文两种类型。
@@ -77,13 +83,13 @@ struct Index {
 ```
 
 
-小于600vp布局：
+小于等于600vp布局：
 
 
 ![zh-cn_image_0000001665553957](figures/zh-cn_image_0000001665553957.png)
 
 
-大于600vp小于840vp布局：
+大于600vp且小于等于840vp的布局：
 
 
 ![zh-cn_image_0000001616957408](figures/zh-cn_image_0000001616957408.png)

@@ -1,5 +1,9 @@
 # \@Extend装饰器：定义扩展组件样式
-
+<!--Kit: ArkUI--> 
+<!--Subsystem: ArkUI--> 
+<!--Owner: @BlYynNe--> 
+<!--SE: @lixingchi1--> 
+<!--TSE: @TerryTsao-->
 
 在前文的示例中，可以使用[\@Styles](arkts-style.md)用于样式的重用，在\@Styles的基础上，我们提供了\@Extend，用于扩展组件样式。
 

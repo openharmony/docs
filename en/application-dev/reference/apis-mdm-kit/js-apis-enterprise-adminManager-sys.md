@@ -56,6 +56,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -115,6 +116,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -180,6 +182,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -199,7 +202,7 @@ adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_
 
 disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 
-Disables a common administrator application for the current user. This API uses an asynchronous callback to return the result.
+Disables a common device administrator application for the current user. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -231,6 +234,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -249,7 +253,7 @@ adminManager.disableAdmin(wantTemp, (err) => {
 
 disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 
-Disables a common administrator application for the specified user. This API uses an asynchronous callback to return the result.
+Disables a common device administrator application for the user specified by **userId**. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -282,6 +286,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -300,7 +305,7 @@ adminManager.disableAdmin(wantTemp, 100, (err) => {
 
 disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 
-Disables a super administrator application for the administrator based on **bundleName**. This API uses an asynchronous callback to return the result.
+Disables a super device administrator application based on **bundleName**. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -314,7 +319,7 @@ Disables a super administrator application for the administrator based on **bund
 
 | Name       | Type                     | Mandatory  | Description                 |
 | ---------- | ----------------------- | ---- | ------------------- |
-| bundleName | String                  | Yes   | Bundle name of the super administrator application to disable.       |
+| bundleName | String                  | Yes   | Bundle name of the super device administrator application to disable.       |
 | callback   | AsyncCallback\<void>    | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -332,6 +337,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.disableSuperAdmin(bundleName, (err) => {
@@ -347,7 +353,7 @@ adminManager.disableSuperAdmin(bundleName, (err) => {
 
 disableSuperAdmin(bundleName: String): Promise\<void>
 
-Disables a super administrator application for the administrator based on **bundleName**. This API uses a promise to return the result.
+Disables a super device administrator application based on **bundleName**. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -361,7 +367,7 @@ Disables a super administrator application for the administrator based on **bund
 
 | Name       | Type    | Mandatory  | Description          |
 | ---------- | ------ | ---- | ------------ |
-| bundleName | String | Yes   | Bundle name of the super administrator application to disable.|
+| bundleName | String | Yes   | Bundle name of the super device administrator application to disable.|
 
 **Return value**
 
@@ -385,6 +391,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.disableSuperAdmin(bundleName).catch((err: BusinessError) => {
@@ -424,6 +431,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -471,6 +479,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -524,6 +533,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -540,7 +550,7 @@ adminManager.isAdminEnabled(wantTemp, 100).then((result) => {
 
 isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 
-Checks whether a super administrator application of the administrator is enabled based on **bundleName**. This API uses an asynchronous callback to return the result.
+Checks whether a super device administrator application is enabled based on **bundleName**. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -552,7 +562,7 @@ Checks whether a super administrator application of the administrator is enabled
 
 | Name       | Type                     | Mandatory  | Description                  |
 | ---------- | ----------------------- | ---- | -------------------- |
-| bundleName | String                  | Yes   | Super administrator application to check.             |
+| bundleName | String                  | Yes   | Super device administrator application to check.             |
 | callback   | AsyncCallback\<boolean> | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** means that the device administrator application is enabled; and **false** means the opposite). If the operation fails, **err** is an error object.|
 
 **Error codes**
@@ -568,6 +578,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.isSuperAdmin(bundleName, (err, result) => {
@@ -583,7 +594,7 @@ adminManager.isSuperAdmin(bundleName, (err, result) => {
 
 isSuperAdmin(bundleName: String): Promise\<boolean>
 
-Checks whether a super administrator application of the administrator is enabled based on **bundleName**. This API uses a promise to return the result.
+Checks whether a super device administrator application is enabled based on **bundleName**. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -595,13 +606,13 @@ Checks whether a super administrator application of the administrator is enabled
 
 | Name       | Type    | Mandatory  | Description       |
 | ---------- | ------ | ---- | --------- |
-| bundleName | String | Yes   | Super administrator application to check.|
+| bundleName | String | Yes   | Super device administrator application to check.|
 
 **Return value**
 
 | ID          | Error Message              |
 | ----------------- | ------------------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means the super administrator application is enabled; the value **false** means the opposite. |
+| Promise\<boolean> | Promise used to return the result. The value **true** means the super device administrator application is enabled; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -617,6 +628,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.isSuperAdmin(bundleName).then((result) => {
@@ -701,6 +713,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -723,7 +736,7 @@ adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, (err) => {
 
 setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>
 
-Set the enterprise information of the device administrator application. This API uses a promise to return the result.
+Sets the enterprise information of the device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.SET_ENTERPRISE_INFO
 
@@ -738,7 +751,7 @@ Set the enterprise information of the device administrator application. This API
 | Name           | Type                                 | Mandatory  | Description          |
 | -------------- | ----------------------------------- | ---- | ------------ |
 | admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
-| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.|
+| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information to set.|
 
 **Return value**
 
@@ -762,6 +775,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -809,6 +823,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -862,6 +877,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -912,6 +928,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -971,6 +988,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1021,6 +1039,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1080,6 +1099,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1131,6 +1151,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1191,6 +1212,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1249,6 +1271,8 @@ replaceSuperAdmin(oldAdmin: Want, newAdmin: Want, isKeepPolicy: boolean): void
 
 Replaces a specified application with a super device administrator application.
 
+**Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
 
@@ -1274,7 +1298,6 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 | 9200011 | Failed to replace the administrator application of the device. |
 | 201  | Permission verification failed. The application does not have the permission required to call the API. |
 | 202  | Permission verification failed. A non-system application calls a system API. |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1298,6 +1321,59 @@ try {
 }
 ```
 
+## adminManager.setAdminRunningMode<sup>19+</sup>
+
+setAdminRunningMode(admin: Want, mode: RunningMode): void
+
+Sets the running mode of the device management application.
+
+This API takes effect only on 2-in-1 devices.
+
+**Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name           | Type                                 | Mandatory  | Description                          |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.      |
+| mode | [RunningMode](#runningmode19) | Yes   | Running mode. <br>The value **DEFAULT** means the application runs under the default user (user after the first device power-on). The value **MULTI_USER** means the application runs under multiple users at the same time.|
+
+
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                              |
+| ------- | ----------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device. |
+| 201  | Permission verification failed. The application does not have the permission required to call the API. |
+| 202  | Permission verification failed. A non-system application calls a system API. |
+
+**Example**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let admin: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+try {
+  adminManager.setAdminRunningMode(admin, adminManager.RunningMode.MULTI_USER);
+  console.info(`Succeeded in set admin running mode.`);
+} catch(err) {
+  console.error(`Failed to set admin running mode. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
 ## EnterpriseInfo
 
 Represents the enterprise information of a device administrator application.
@@ -1306,10 +1382,10 @@ Represents the enterprise information of a device administrator application.
 
 
 
-| Name        | Type    | Mandatory| Description                           |
-| ----------- | --------| ---- | ------------------------------- |
-| name        | string   | Yes  | Name of the enterprise.|
-| description | string   | Yes  | Description of the enterprise.|
+| Name        | Type    | Read-Only| Optional| Description                           |
+| ----------- | --------| ---- | -----| -------------------------- |
+| name        | string   | No  | No| Name of the enterprise.|
+| description | string   | No  | No|Description of the enterprise.|
 
 ## AdminType
 
@@ -1321,5 +1397,18 @@ Enumerates the types of device administrator applications.
 
 | Name               | Value | Description   |
 | ----------------- | ---- | ----- |
-| ADMIN_TYPE_NORMAL | 0x00 | Common administrator application.|
-| ADMIN_TYPE_SUPER  | 0x01 | Super administrator application.|
+| ADMIN_TYPE_NORMAL | 0x00 | Common device administrator application.|
+| ADMIN_TYPE_SUPER  | 0x01 | Super device administrator application.|
+
+## RunningMode<sup>19+</sup>
+
+Represents the running mode of a device administrator application.
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+| Name               | Value | Description   |
+| ----------------- | ---- | ----- |
+| DEFAULT  | 0 | Default user running mode, indicating that the application runs under the default user (user after the first device powered-on).|
+| MULTI_USER   | 1 | Multi-user running mode, indicating that the application runs under multiple users at the same time.|

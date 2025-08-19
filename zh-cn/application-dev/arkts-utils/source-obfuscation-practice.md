@@ -1,8 +1,14 @@
 # 不同包类型的源码混淆建议
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @zju-wyx-->
+<!--Designer: @xiao-peiyang; @dengxinyu-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
-由于不同包类型的用途及构建流程的差异，开发者对不同包类型使用混淆有不同的注意事项。本文对[HAP](../quick-start/hap-package.md)、[HAR](../quick-start/har-package.md)和[HSP](../quick-start/in-app-hsp.md)三种包类型分别提供建议，帮助开发者高效使用混淆。
+不同包类型的用途和构建流程存在差异，对不同包类型使用混淆时，开发者需要注意不同事项。本文针对[HAP](../quick-start/hap-package.md)、[HAR](../quick-start/har-package.md)和[HSP](../quick-start/in-app-hsp.md)三种包类型，分别提供混淆建议，帮助开发者高效使用混淆。
 
-为了对混淆在不同包类型下的行为有更清晰的理解，建议开发者在对不同包类型进行配置前，充分了解混淆原理及混淆开启流程，并优先阅读[Stage模型应用程序包结构](../quick-start/application-package-structure-stage.md)（了解不同包类型之间的差异点）。
+为了对混淆在不同包类型下的行为有更清晰的理解，建议开发者在对不同包类型进行配置前，充分了解[混淆原理](./source-obfuscation.md)及[混淆开启流程](./source-obfuscation-guide.md#开启混淆步骤)，并优先阅读[Stage模型应用程序包结构](../quick-start/application-package-structure-stage.md)（了解不同包类型之间的差异点）。
 
 ## 推荐混淆功能
 
@@ -13,12 +19,12 @@
 3. 导入导出名称混淆（`-enable-export-obfuscation`）
 4. 文件名混淆（`-enable-filename-obfuscation`）
 
-开启混淆功能后，需要配置白名单进行适配，来保证应用运行功能正常。
+开启混淆功能后，需配置白名单以保证应用运行功能正常。
 
 - 对于新开发的应用，建议直接打开以上选项，在开发迭代过程中增加白名单配置。
 - 对于已开发一定功能的应用，建议按照以上顺序逐步打开各个选项，对比不同选项的混淆产物，熟悉新增选项的具体效果，参考[混淆选项配置指导](source-obfuscation-guide.md#混淆选项配置指导)排查适配。
 
-当应用功能调试正常后，还可继续开启代码压缩（`-compact`）与日志删除（`-remove-log`）等功能以发布release应用包。
+当应用功能调试正常后，可继续开启代码压缩（`-compact`）与日志删除（`-remove-log`）等功能，以增强代码混淆效果，然后发布release应用包。
 
 ## HAP包混淆建议
 
@@ -30,7 +36,7 @@
     - 当依赖发布态源码HAR包时，安装在工程级`oh_modules`目录下的代码会跟随本模块一起混淆，混淆前后的名称也会体现在本模块的编译中间产物`obfuscation/nameCache.json`文件中。
     - 当依赖发布态字节码HAR包或HSP包时，参与编译的是其中的二进制字节码和声明文件，由于ArkGuard工具只支持源码混淆，不支持字节码混淆，且为了保证声明文件中的接口与二进制中的实现的一致性，不会对这部分代码进行混淆。但是，若三方库未正确提供接口的声明或者未在`consumer-rules`中配置白名单，在HAP中使用这些三方库接口的地方可能会被混淆，此时HAP包开发者可以自行配置，来保证运行时的正确性。
 
-4. 为保证与发布态三方库交互使用的正确性，ArkGuard会自动收集本模块依赖的安装到`oh_modules`中的模块的export导出名称及其相关属性等名称到不混淆名单中，由于开发者可以引用依赖模块中的任意路径下的文件，这种导出名称的收集并不局限于入口文件如`Index.ets`，而是`oh_modules`三方库中的所有文件中的export导出名称。
+4. 为保证与发布态三方库交互使用的正确性，ArkGuard会自动将工程级`oh_modules`目录下的远程HAR包的导出名称及其相关属性添加到不混淆名单中。由于开发者可以引用依赖模块中的任意路径下的文件，因此这种导出名称的收集范围并不局限于入口文件如`Index.ets`，而是工程级`oh_modules`中的所有文件中的导出名称。
 
 5. 对于本地源码HAR包和本地HSP包，ArkGuard不会自动收集所有文件中的export导出名称到不混淆名单中。
 
@@ -44,8 +50,8 @@
     | [本地源码HSP包](#本地源码hsp包) | NA | 否 | 是 | 否 |
     | [集成态HSP包](#集成态hsp包) | 二进制字节码和声明文件 | 否 | 是 | 是 |
 
-6. 了解需要[配置白名单的场景](source-obfuscation.md#保留选项)，将白名单配置到obfuscation-rules.txt文件中。
-7. 构建应用，验证HAP包功能。若功能异常，则继续排查是否遗漏白名单。
+6. 需要了解[配置白名单的场景](source-obfuscation.md#保留选项)，将白名单配置到obfuscation-rules.txt文件中。
+7. 构建应用，验证HAP包功能。若功能异常，需排查白名单是否遗漏。
 8. 应用功能正常，即可发布应用包。
 
 ## HAR包混淆建议
@@ -61,6 +67,12 @@
 ### 本地源码HAR包
 
 作为一个未发布的静态包，本地源码HAR包不会独立进行编译混淆，而是会跟随依赖它的主模块（如HAP）一同进行编译混淆，开发者需参阅[HAP包混淆建议](#hap包混淆建议)了解相关行为。
+
+由于本地源码HAR包会随着主模块一同进行混淆，多个HAP或HSP依赖相同本地源码HAR时，本地源码HAR在不同模块中的混淆结果可能不同。当开启`useNormalizedOHMUrl`（即在工程级`build-profile.json5`文件中，将`strictMode`属性的`useNormalizedOHMUrl`字段设置为true）时，运行时只会加载一份HAR，导致HAP和HSP无法找到对应的HAR，从而在调用HAR的方法时出现找不到的问题。
+
+解决方案：
+1. 使用[混淆助手配置保留选项](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-build-obfuscation#section19439175917123)，选择HAR对外暴露的接口场景，并将生成的白名单添加到HAR的`consumer-rules.txt`文件中。
+2. 将本地源码`HAR`改造为[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-har#section16598338112415)，单独编译生成对应的`HAR`包，然后依赖此`HAR`包。
 
 ### 发布态源码HAR包
 
@@ -87,21 +99,22 @@
 ### HSP包通用建议
 
 1. HSP包的开发者需充分了解[三种混淆配置文件](source-obfuscation-guide.md#三种混淆配置文件)以及[混淆规则的合并策略](source-obfuscation.md#混淆规则合并策略)，以及在被HAP包使用时的[HAP包混淆建议](#hap包混淆建议)中的注意事项，确保被应用依赖时本模块所有功能正常。
-2. 由于HSP包是独立构建，并且只会构建一次，因此要重点关注模块内部的混淆效果，同时让其他模块正常调用接口即可。
-3. 由于consumer配置的传递性，**HSP包开发者不应在其中配置开启混淆的能力，而应仅配置保留白名单的规则。为了减少对依赖方的影响，建议仅使用`-keep-global-name`和`-keep-property-name`两种白名单配置。**
+2. 由于HSP包是独立构建，并且只会构建一次，因此要重点关注模块内部的混淆效果，确保其他模块正常调用接口即可。
+3. 由于consumer配置的传递性，**HSP包开发者不应在其中配置开启混淆的能力，而应仅配置保留白名单的规则。为了减少对依赖方的影响，建议仅使用`-keep-global-name`和`-keep-property-name`两种白名单配置**。
 
 ### 本地源码HSP包
 
-1. 本地源码HSP包要明确对外提供哪些接口及其相关属性，并将这些名称配置到obfuscation-rules.txt及consumer-rules.txt中。
+1. 本地源码HSP包需明确对外提供的接口及其属性，并将这些名称配置到obfuscation-rules.txt和consumer-rules.txt中。
 2. 对于模块内部混淆效果，开发者可以参阅[HAP包混淆建议](#hap包混淆建议)中的所有建议。
-3. 功能验证时，应同时构建主模块和HSP包，然后验证HSP包提供的全部接口功能。
+3. 功能验证时，应同时构建主模块和HSP包，验证HSP包的接口功能。
 
 ### 集成态HSP包
 
-1. 集成态HSP包要明确对外提供哪些接口及其相关属性，并将这些名称配置到obfuscation-rules.txt中。consumer-rules.txt文件中无需配置，因为打包后的tgz压缩包中包含har与hsp两个子压缩包，har包中的声明文件内定义的对外导出接口及其属性会被自动收集到白名单中。
+1. 集成态HSP包要明确对外提供哪些接口及其相关属性，并将这些名称配置到obfuscation-rules.txt中。consumer-rules.txt文件中无需配置，因为编译产物中的tgz压缩包中包含har与hsp两个子压缩包，har包中的声明文件内定义的对外导出接口及其属性会被自动收集到白名单中。
 2. 对于集成态HSP包的内部混淆效果，开发者可以参阅[HAP包混淆建议](#hap包混淆建议)中的所有建议。
 3. 集成态HSP包在发布后会被各方依赖，需要充分验证使用方开启混淆时HSP包接口可以被正常调用。
 
 > **说明**
 >
-> HSP生成`obfuscation.txt`的规则仅来源于当前模块的`consumer-rules.txt`文件，不包括依赖模块的`consumer-rules.txt`文件或`obfuscation.txt`文件。
+> HSP生成`obfuscation.txt`的规则仅来源于当前模块的`consumer-rules.txt`文件。不包括依赖模块的`consumer-rules.txt`文件或`obfuscation.txt`文件。
+开发者可以参阅HAP包混淆建议中的所有建议，确保集成态HSP包的内部混淆效果。集成态HSP包发布后需验证使用方开启混淆时接口可以被正常调用。

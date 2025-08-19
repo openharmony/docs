@@ -2,7 +2,7 @@
 
 ## Overview
 
-The WindowManager_Rect struct describes the window rectangle, including the window position, width, and height.
+The struct describes the window rectangle, including the window position, width, and height.
 
 **Since**: 15
 

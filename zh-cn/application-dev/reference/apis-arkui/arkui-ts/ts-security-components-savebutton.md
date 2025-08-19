@@ -1,5 +1,12 @@
 # SaveButton
 
+<!--Kit: ArkUI-->
+<!--Subsystem: Security-->
+<!--Owner: @harylee-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
+
 安全控件的保存控件。用户点击保存控件，应用可以临时获取存储权限，而不需要权限弹框授权确认。
 
 > **说明：**
@@ -62,13 +69,15 @@ SaveButton(options: SaveButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| icon | [SaveIconStyle](#saveiconstyle枚举说明) | 否 | 设置保存控件的图标风格。<br/>不传入该参数表示没有图标。 |
-| text | [SaveDescription](#savedescription枚举说明) | 否 | 设置保存控件的文本描述。<br/>不传入该参数表示没有文字描述。 |
-| buttonType | [ButtonType](ts-securitycomponent-attributes.md#buttontype枚举说明) | 否 | 设置保存控件的背景样式。<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| icon | [SaveIconStyle](#saveiconstyle枚举说明) | 否 | 是 | 设置保存控件的图标风格。<br/>不传入该参数表示没有图标。 |
+| text | [SaveDescription](#savedescription枚举说明) | 否 | 是 | 设置保存控件的文本描述。<br/>不传入该参数表示没有文字描述。 |
+| buttonType | [ButtonType](ts-securitycomponent-attributes.md#buttontype枚举说明) | 否 | 是 | 设置保存控件的背景样式。<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
 
 ## SaveIconStyle枚举说明
+
+保存控件的图标风格。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -80,6 +89,8 @@ SaveButton(options: SaveButtonOptions)
 | LINES | 1 | 保存控件展示线条样式图标。 |
 
 ## SaveDescription枚举说明
+
+保存控件的文本描述。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -101,6 +112,8 @@ SaveButton(options: SaveButtonOptions)
 
 ## SaveButtonOnClickResult枚举说明
 
+保存控件点击后的授权结果。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -109,17 +122,6 @@ SaveButton(options: SaveButtonOptions)
 | -------- | -------- | -------- |
 | SUCCESS | 0 | 保存控件点击后权限授权成功。 |
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | 保存控件点击后权限授权失败。 |
-
-## SaveButtonTipPosition<sup>20+</sup>枚举说明
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| ABOVE_BOTTOM | 0 | 保存控件系统提示弹框距离屏幕底部80vp，有导航栏时距离导航栏80vp。 |
-| BELOW_TOP | 1 | 保存控件系统提示弹框距离屏幕顶部112vp。 |
 
 ## SaveButtonCallback<sup>18+</sup>
 
@@ -134,11 +136,11 @@ type SaveButtonCallback = (event: ClickEvent, result: SaveButtonOnClickResult, e
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
 | event | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明。|
-| result | [SaveButtonOnClickResult](#savebuttononclickresult枚举说明)| 是 | 存储权限的授权结果，授权时长为10秒，即触发点击后，可以在10秒之内不限制次数的调用特定媒体库接口，超出10秒的调用会鉴权失败。|
+| result | [SaveButtonOnClickResult](#savebuttononclickresult枚举说明)| 是 | 存储权限的授权结果，授权时长为一分钟，即触发点击后，可以在一分钟之内不限制次数的调用特定媒体库接口，超出一分钟的调用会鉴权失败。|
 | error | [BusinessError&lt;void&gt;](../../apis-basic-services-kit/js-apis-base.md#businesserror) | 否 | 点击按钮时的错误码和错误信息。<br>错误码0表示点击保存控件授权成功。<br>错误码1表示系统内部错误。<br>错误码2表示属性设置错误，包括但不限于：<br>1. 字体或图标设置过小。<br>2. 字体或图标与背托颜色相近。<br>3. 字体或图标颜色过于透明。<br>4. padding为负值。<br>5. 按钮被其他组件或窗口遮挡。<br>6. 文本超出背托范围。<br>7. 按钮超出窗口或屏幕。<br>8. 按钮整体尺寸过大。<br>9. 按钮文本被截断，显示不全。<br>10. 相关属性设置影响安全控件显示。|
 
 ## SaveButtonAttribute
-SaveButtonAttribute提供设置自定义图标（setIcon）、自定义文本（setText）、图标尺寸设置（iconSize）、图标圆角设置（iconBorderRadius），是否显示按压态（stateEffect）以及系统提示弹框位置设置的方法属性。
+SaveButtonAttribute提供自定义图标（setIcon）、自定义文本（setText）、图标尺寸（iconSize）、图标圆角（iconBorderRadius），以及按压态效果（stateEffect）等属性设置的方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -160,12 +162,6 @@ setIcon(icon: Resource)
 |------------|------|-------|---------|
 | icon | [Resource](ts-types.md#resource) |是 |自定义图标资源信息，仅支持Resource类型的数据源。<br/>可支持的图片格式：png、jpg、jpeg、bmp、svg、webp、gif和heif等，支持的图片格式范围见[Image](ts-basic-components-image.md)。当资源为非图片资源或不支持的格式时，图标显示为空白。<br/>如果应用无ohos.permission.CUSTOMIZE_SAVE_BUTTON权限，则自定义图标设置不生效，保存控件保持默认样式。详见[SaveButtonOptions](#savebuttonoptions)说明。|
 
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [SaveButtonAttribute](#savebuttonattribute) | 返回保存控件的属性。 |
-
 ### setText<sup>20+</sup>
 
 setText(text: string | Resource)
@@ -184,12 +180,6 @@ setText(text: string | Resource)
 |------------|------|-------|---------|
 | text | string \| [Resource](ts-types.md#resource) |是 |自定义文本信息。<br/>如果应用无ohos.permission.CUSTOMIZE_SAVE_BUTTON权限，则自定义文本设置不生效，保存控件保持默认样式。详见[SaveButtonOptions](#savebuttonoptions)说明。|
 
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [SaveButtonAttribute](#savebuttonattribute)| 返回保存控件的属性。 |
-
 ### iconSize<sup>20+</sup>
 
 iconSize(size: Dimension | SizeOptions)
@@ -204,13 +194,7 @@ iconSize(size: Dimension | SizeOptions)
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| size | [Dimension](ts-types.md#dimension10) \| [SizeOptions](ts-types.md#sizeoptions) |是 |图标尺寸，不支持设置百分比字符串。<br/>- 保存控件提供的系统图标，宽高默认值均为16vp。宽高设置值不一致时，取其中最小值作为宽高值；宽高仅设置其中一个值时，取该值作为宽高值。<br/>- 对于自定义图标，宽默认值为16vp，高根据自定义图标实际尺寸做自适应处理。宽高仅设置其中一个值时，未设置的另一个值做自适应处理；宽高均设置时按照指定宽高生效，当设置的宽高比例与自定义图标的宽高比例不一致时，图片被截断。|
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [SaveButtonAttribute](#savebuttonattribute)| 返回保存控件的属性。 |
+| size | [Dimension](ts-types.md#dimension10) \| [SizeOptions](ts-types.md#sizeoptions) |是 |图标尺寸，不支持设置百分比字符串。宽高默认值均为16vp。<br/>对于保存控件提供的系统图标：<br/>- 使用Dimension类型入参时，宽、高相等，均为设定值。<br/>- 使用SizeOptions类型入参时，若宽、高设定值不一致，则宽、高相等取两者较小值；若仅设定其中一个值，则取该值作为宽、高值。<br/>对于自定义图标：<br/>- 使用Dimension类型入参时，宽、高相等，均为设定值。<br/>- 使用SizeOptions类型入参时，建议同时设定宽和高，此时按照指定宽、高生效；若仅设定其中一个值，则宽高均显示为该设定值。<br/>- 当设定的宽高与自定义图标的宽高比例不一致时，图片按[ImageFit.Cover](ts-appendix-enums.md#imagefit)的方式填充显示区域。|
 
 ### iconBorderRadius<sup>20+</sup>
 
@@ -228,13 +212,7 @@ iconBorderRadius(radius: Dimension | BorderRadiuses)
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| radius | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9) |是 |保存控件边框圆角半径，支持设置四个圆角。<br/>如果应用无ohos.permission.CUSTOMIZE_SAVE_BUTTON权限，则圆角半径设置不生效。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [SaveButtonAttribute](#savebuttonattribute)| 返回保存控件的属性。 |
+| radius | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9) |是 |保存控件图标的圆角半径，支持设置四个圆角。<br/>如果应用无ohos.permission.CUSTOMIZE_SAVE_BUTTON权限，则图标的圆角半径设置不生效。 |
 
 ### stateEffect<sup>20+</sup>
 
@@ -253,34 +231,6 @@ stateEffect(enabled: boolean)
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
 | enabled | boolean |是 | 表示是否开启按压效果，true表示保存控件按压时显示按压效果，false表示保存控件按压时不显示按压效果。<br/>默认值：true。<br/>如果应用无ohos.permission.CUSTOMIZE_SAVE_BUTTON权限，按压效果设置不生效。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [SaveButtonAttribute](#savebuttonattribute)| 返回保存控件的属性。 |
-
-### tipPosition<sup>20+</sup>
-
-tipPosition(position: SaveButtonTipPosition)
-
-设置保存控件系统提示弹框的位置信息。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                   | 必填 | 说明                   |
-|------------|------|-------|---------|
-| position | [SaveButtonTipPosition](#savebuttontipposition20枚举说明) |是 | 保存控件系统提示弹框的显示位置信息。<br/>默认值：SaveButtonTipPosition.ABOVE_BOTTOM。<br/>适用场景：使用保存控件自定义图标和文本。|
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [SaveButtonAttribute](#savebuttonattribute)| 返回保存控件的属性。 |
 
 ## 属性
 
@@ -318,12 +268,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct Index {
   handleSaveButtonClick: SaveButtonCallback =
-    async (event: ClickEvent, result: SaveButtonOnClickResult, error?: BusinessError<void>) => {
+    async (event: ClickEvent, result: SaveButtonOnClickResult, error?: BusinessError) => {
       if (result == SaveButtonOnClickResult.SUCCESS) {
         try {
           const context = this.getUIContext().getHostContext();
           let helper = photoAccessHelper.getPhotoAccessHelper(context);
-          // onClick触发后10秒内通过createAsset接口创建图片文件，10秒后createAsset权限收回。
+          // onClick触发后一分钟内通过createAsset接口创建图片文件，一分钟后createAsset权限收回。
           let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'png');
           // 使用uri打开文件，可以持续写入内容，写入过程不受时间限制。
           let file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
@@ -347,10 +297,10 @@ struct Index {
         SaveButton().onClick((this.handleSaveButtonClick))
         // 传入参数即表示元素存在，不传入的参数表示元素不存在，如果不传入buttonType，会默认添加ButtonType.Capsule配置，显示图标+背景。
         SaveButton({ icon: SaveIconStyle.FULL_FILLED })
-        // 只显示图标+背景，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF。
+        // 只显示图标+背景，如果设置背景色高八位的α值低于0x1a，则会被系统强制调整为0xff。
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, buttonType: ButtonType.Capsule })
           .backgroundColor(0x10007dff)
-        // 图标、文字、背景都存在，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF。
+        // 图标、文字、背景都存在，如果设置背景色高八位的α值低于0x1a，则会被系统强制调整为0xff。
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Capsule })
         // 图标、文字、背景都存在，如果设置宽度小于当前属性组合下允许的最小宽度时，宽度仍为设置值，此时按钮文本信息会自动换行，以保证安全控件显示的完整性。
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Capsule })
@@ -408,7 +358,7 @@ struct SetIcon {
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD })
           .setIcon($r('app.media.startIcon'))
           .iconSize({ width: 30, height: 40 })
-        // 设置保存控件的自定义图标大小，入参为SizeOptions类型且只设置一个值，宽高中的另一个会按原图比例自适应显示。
+        // 设置保存控件的自定义图标大小，入参为SizeOptions类型且只设置一个值。图片宽高均显示为设置值。
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD })
           .setIcon($r('app.media.startIcon'))
           .iconSize({ width: 40 })
@@ -444,10 +394,6 @@ struct SetIcon {
         // 设置保存控件的按压特效为无按压特效。
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD })
           .stateEffect(false)
-        // 设置保存控件的安全保存提示弹窗位置。
-        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD })
-          .tipPosition(SaveButtonTipPosition.BELOW_TOP)
-          .setText('保存控件系统提示弹在上方')
       }.width('100%')
     }.height('100%')
   }

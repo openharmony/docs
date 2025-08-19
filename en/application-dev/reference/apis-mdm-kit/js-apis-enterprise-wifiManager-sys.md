@@ -4,13 +4,13 @@ The **wifiManager** module provides APIs for Wi-Fi management of enterprise devi
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the stage model.
+> - The APIs of this module can be used only in the stage model.
 >
-> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin).
+> - The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
 >
-> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.wifiManager](js-apis-enterprise-wifiManager.md).
+> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.wifiManager](js-apis-enterprise-wifiManager.md).
 
 ## Modules to Import
 
@@ -22,7 +22,7 @@ import { wifiManager } from '@kit.MDMKit';
 
 isWifiActive(admin: Want, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether Wi-Fi is active through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Queries the Wi-Fi status of the current device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -34,8 +34,8 @@ Checks whether Wi-Fi is active through the specified device administrator applic
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;boolean&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** indicates that Wi-Fi is active; and **false** indicates that Wi-Fi is inactive). If the operation fails, **err** is an error object.      |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.                 |
+| callback | AsyncCallback&lt;boolean&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** indicates that Wi-Fi is active; and **false** indicates that Wi-Fi is inactive). If the operation fails, **err** is an error object.      |
 
 **Error codes**
 
@@ -53,6 +53,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -71,7 +72,7 @@ wifiManager.isWifiActive(wantTemp, (err, result) => {
 
 isWifiActive(admin: Want): Promise&lt;boolean&gt;
 
-Checks whether Wi-Fi is active through the specified device administrator application. This API uses a promise to return the result.
+Queries the Wi-Fi status of the current device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -83,13 +84,13 @@ Checks whether Wi-Fi is active through the specified device administrator applic
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that Wi-Fi is active, and the value **false** indicates that Wi-Fi is inactive. |
+| Promise&lt;boolean&gt; | Promise used to return the Wi-Fi status.<br>The value **true** means that Wi-Fi is enabled; the value **false** means the opposite. |
 
 **Error codes**
 
@@ -108,6 +109,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -124,7 +126,7 @@ wifiManager.isWifiActive(wantTemp).then((result) => {
 
 setWifiProfile(admin: Want, profile: WifiProfile, callback: AsyncCallback&lt;void&gt;): void
 
-Sets Wi-Fi profile through the specified device administrator application to enable the device to connect to the specified network. This API uses an asynchronous callback to return the result.
+Configures Wi-Fi for the current device to connect to a specified network. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -136,9 +138,9 @@ Sets Wi-Fi profile through the specified device administrator application to ena
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| profile    | [WifiProfile](js-apis-enterprise-wifiManager.md#wifiprofile) | Yes   | Wi-Fi profile information.                 |
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.     |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.                 |
+| profile    | [WifiProfile](js-apis-enterprise-wifiManager.md#wifiprofile) | Yes   | Wi-Fi configuration information.                 |
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.     |
 
 **Error codes**
 
@@ -156,6 +158,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -179,7 +182,7 @@ wifiManager.setWifiProfile(wantTemp, profile, (err) => {
 
 setWifiProfile(admin: Want, profile: WifiProfile): Promise&lt;void&gt;
 
-Sets Wi-Fi profile through the specified device administrator application to enable the device to connect to the specified network. This API uses a promise to return the result.
+Configures Wi-Fi for the current device to connect to a specified network. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -191,14 +194,14 @@ Sets Wi-Fi profile through the specified device administrator application to ena
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| profile    | [WifiProfile](js-apis-enterprise-wifiManager.md#wifiprofile) | Yes   | Wi-Fi profile information.                 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
+| profile    | [WifiProfile](js-apis-enterprise-wifiManager.md#wifiprofile) | Yes   | Wi-Fi configuration information.                 |
 
 **Return value**
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown.|
+| Promise&lt;void&gt; | Promise that returns no value. An error object is thrown if the Wi-Fi fails to be configured.|
 
 **Error codes**
 
@@ -217,6 +220,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -238,7 +242,7 @@ wifiManager.setWifiProfile(wantTemp, profile).then(() => {
 
 isWifiDisabled(admin: Want): boolean
 
-Checks whether Wi-Fi is disabled through the specified device administrator application.
+Queries whether Wi-Fi is disabled on the current device.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -250,7 +254,7 @@ Checks whether Wi-Fi is disabled through the specified device administrator appl
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
@@ -274,6 +278,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -290,7 +295,7 @@ try {
 
 setWifiDisabled(admin: Want, disabled: boolean): void
 
-Sets the Wi-Fi policy through the specified device administrator application.
+Sets the Wi-Fi disabling policy.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -302,8 +307,8 @@ Sets the Wi-Fi policy through the specified device administrator application.
 
 | Name    | Type                               | Mandatory| Description                                     |
 | ---------- | ----------------------------------- | ---- | ----------------------------------------- |
-| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                           |
-| disabled   | boolean                             | Yes  | Whether to disable Wi-Fi. The value **true** means to disable Wi-Fi; the value **false** means the opposite.|
+| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                           |
+| disabled   | boolean                             | Yes  | Wi-Fi policy to set. The value **true** means to disable Wi-Fi; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -321,6 +326,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

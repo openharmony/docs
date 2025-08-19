@@ -7,11 +7,11 @@ This module provides the following RDB-related functions:
 - [RdbPredicates](#rdbpredicates): provides APIs for creating predicates. The predicates represent the properties, characteristics, or relationships between data entities in an RDB store and are used to define data operation conditions.
 - [RdbStore](#rdbstore): provides APIs for managing data in an RDB store.
 
-> **NOTE**
+> **NOTE**<br/>
 >
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > 
-> - The APIs of this module are no longer maintained since API version 9. You are advised to use [@ohos.data.relationalStore](js-apis-data-relationalStore.md).
+> - The APIs of this module are no longer maintained since API version 9. You are advised to use [@ohos.data.relationalStore](arkts-apis-data-relationalStore.md).
 
 
 ## Modules to Import
@@ -749,7 +749,7 @@ Creates an **RdbPredicates** object to search for the records in the specified c
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | string | Yes| Value to match.<br><br>Wildcards are supported. * indicates zero, one, or multiple digits or characters. **?** indicates a single digit or character.|
+| value | string | Yes| Value to match.<br><br>Wildcards are supported. ***** indicates zero, one, or multiple digits or characters. **?** indicates a single digit or character.|
 
 **Return value**
 
@@ -1424,7 +1424,7 @@ Updates data in the RDB store based on the specified **RdbPredicates** object. T
 | -------- | -------- | -------- | -------- |
 | values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
 | predicates | [RdbPredicates](#rdbpredicates) | Yes| Update conditions specified by the **RdbPredicates** object.|
-| callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the number of rows updated. |
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of rows updated.|
 
 **Example**
 
@@ -1520,8 +1520,8 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| predicates | [RdbPredicates](#rdbpredicates) | Yes| Conditions specified by the **RdbPredicates** object for deleting data.|
-| callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the number of rows updated. |
+| predicates | [RdbPredicates](#rdbpredicates) | Yes| Deletion conditions specified by the **RdbPredicates** object.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of rows updated.|
 
 **Example**
 
@@ -1549,7 +1549,7 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| predicates | [RdbPredicates](#rdbpredicates) | Yes| Conditions specified by the **RdbPredicates** object for deleting data.|
+| predicates | [RdbPredicates](#rdbpredicates) | Yes| Deletion conditions specified by the **RdbPredicates** object.|
 
 **Return value**
 
@@ -1942,7 +1942,7 @@ promise.then(() => {
 
 obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the distributed table name of a remote device based on the local table name of the device. The distributed table name is required when the RDB store of a remote device is queried.
+Obtains the distributed table name of a remote device based on the local table name of the device. The distributed table name is required when the RDB store of a remote device is queried. This API uses an asynchronous callback to return the result.
 
 > **NOTE**<br/>
 >
@@ -1990,7 +1990,7 @@ rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", (err: BusinessError, t
 
  obtainDistributedTableName(device: string, table: string): Promise&lt;string&gt;
 
-Obtains the distributed table name of a remote device based on the local table name of the device. The distributed table name is required when the RDB store of a remote device is queried.
+Obtains the distributed table name of a remote device based on the local table name of the device. The distributed table name is required when the RDB store of a remote device is queried. This API uses a promise to return the result.
 
 > **NOTE**<br/>
 >
@@ -2054,7 +2054,7 @@ Synchronizes data across devices. This API uses an asynchronous callback to retu
 | -------- | -------- | -------- | -------- |
 | mode | [SyncMode](#syncmode8) | Yes| Data sync mode. The value can be **push** or **pull**.|
 | predicates | [RdbPredicates](#rdbpredicates) | Yes| **RdbPredicates** object that specifies the data and devices to synchronize.|
-| callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes| Callback used to send the sync result to the caller. <br>**string** indicates the device ID. <br>**number** indicates the sync status of that device. The value **0** indicates a successful sync. Other values indicate a sync failure. |
+| callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes| Callback invoked to send the sync result to the caller. <br>**string** indicates the device ID. <br>**number** indicates the sync status of that device. The value **0** indicates a successful sync. Other values indicate a sync failure. |
 
 **Example**
 
@@ -2156,9 +2156,9 @@ Registers an observer for this RDB store. When the data in the RDB store changes
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event | string | Yes| Event type. The value is 'dataChange', which indicates data changes. |
+| event | string | Yes| The value is'dataChange', which indicates a data change event.|
 | type | [SubscribeType](#subscribetype8) | Yes| Subscription type to register.|
-| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes | Observer that listens for the data changes in the RDB store. **Array\<string>** indicates the ID of the peer device whose data in the database is changed. |
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Observer that listens for the data changes in the RDB store. **Array&lt;string>** indicates the ID of the peer device whose data in the database is changed.|
 
 **Example**
 
@@ -2188,9 +2188,9 @@ Unregisters the observer of the specified type from the RDB store. This API uses
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event | string | Yes| Event type. The value is 'dataChange', which indicates data changes. |
-| type | [SubscribeType](#subscribetype8)    | Yes| Subscription type to unregister.|
-| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Data change observer to unregister. **Array\<string>** indicates the ID of the peer device whose data in the database is changed.|
+| event | string | Yes| The value is'dataChange', which indicates a data change event.|
+| type | [SubscribeType](#subscribetype8)    | Yes| Subscription type to register.|
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Data change observer registered. **Array&lt;string>** indicates the ID of the peer device whose data in the database is changed.|
 
 **Example**
 

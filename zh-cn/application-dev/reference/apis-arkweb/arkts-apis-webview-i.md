@@ -1,8 +1,14 @@
 # Interfaces（其他）
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc; @aohui; @zourongchun-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 >
-> - 本模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块首批接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
@@ -75,10 +81,10 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 |  必填 | 说明 |
-|------|------|------|------|
-| id | string | 否 | snapshot的id。|
-| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)  | 否 | web绘制的尺寸，最多支持16000px * 16000px，长度单位支持px、vp、%，需保持不同参数传入长度单位一致，默认单位vp，超过规格时返回最大规格。（示例：width:'100px'，height:'200px'。或者 width:'20%'，height:'30%'。只写数字时单位为vp。）|
+| 名称 | 类型 |  只读 |  可选 | 说明 |
+|------|------|------|------|------|
+| id | string | 否 | 是 | snapshot的id。|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)  | 否 | 是 | web绘制的尺寸，最多支持16000px * 16000px，长度单位支持px、vp、%，需保持不同参数传入长度单位一致，默认单位vp，超过规格时返回最大规格。（示例：width:'100px'，height:'200px'。或者 width:'20%'，height:'30%'。只写数字时单位为vp。）|
 
 ## SnapshotResult<sup>12+</sup>
 
@@ -86,12 +92,12 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 必填 |  说明 |
-|------|------|--|---------|
-| id | string | 否 | snapshot的id。|
-| status | boolean | 否 |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，map为空。|
-| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | 否 | web绘制的真实尺寸，number类型，单位vp。|
-| imagePixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 全量绘制结果image.pixelMap格式。|
+| 名称 | 类型 | 只读 | 可选 |  说明 |
+|------|------|-- |--|---------|
+| id | string | 否 | 是 | snapshot的id。|
+| status | boolean | 否 | 是 |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，map为空。|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | 否 | 是 | web绘制的真实尺寸，number类型，单位vp。|
+| imagePixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 是 | 全量绘制结果image.pixelMap格式。|
 
 ## OfflineResourceMap<sup>12+</sup>
 
@@ -116,16 +122,16 @@ createPdf函数输入参数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称                  | 类型    | 必填 | 说明                                                         |
-| --------------------- | ------- | ---- | ------------------------------------------------------------ |
-| width                 | number  | 是   | 页面宽度。<br>单位：英寸。<br />推荐值：A4纸页面宽度8.27英寸。   |
-| height                | number  | 是   | 页面高度。<br>单位：英寸。<br />推荐值：A4纸页面高度11.69英寸。  |
-| scale                 | number  | 否   | 放大倍数。<br>取值范围：[0.0, 2.0]。如果不在取值范围内，小于0.0设置为0.0，大于2.0设置为2.0。<br>默认值：1.0。 |
-| marginTop             | number  | 是   | 上边距。<br>取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
-| marginBottom          | number  | 是   | 下边距。<br>取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
-| marginRight           | number  | 是   | 右边距。<br>取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
-| marginLeft            | number  | 是   | 左边距。<br>取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
-| shouldPrintBackground | boolean | 否   | true表示打印背景颜色，false表示不打印背景颜色。<br>默认值：false。                            |
+| 名称        | 类型   | 只读 | 可选 |说明                 |
+| ----------- | ------ | -----|------|------------------- |
+| width                 | number  | 否 | 否   | 页面宽度。<br>单位：英寸。<br />推荐值：A4纸页面宽度8.27英寸。   |
+| height                | number  | 否 | 否   | 页面高度。<br>单位：英寸。<br />推荐值：A4纸页面高度11.69英寸。  |
+| scale                 | number  | 否 | 是   | 放大倍数。<br>取值范围：[0.0, 2.0]。如果不在取值范围内，小于0.0设置为0.0，大于2.0设置为2.0。<br>默认值：1.0。 |
+| marginTop             | number  | 否 | 否   | 上边距。<br>取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
+| marginBottom          | number  | 否 | 否   | 下边距。<br>取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
+| marginRight           | number  | 否 | 否   | 右边距。<br>取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
+| marginLeft            | number  | 否 | 否   | 左边距。<br>取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
+| shouldPrintBackground | boolean | 否 | 是   | true表示打印背景颜色，false表示不打印背景颜色。<br>默认值：false。                            |
 
 ## ScrollOffset<sup>13+</sup>
 
@@ -162,30 +168,15 @@ WebViewController与Web组件的绑定状态。
 
 ## BlanklessInfo<sup>20+</sup>
 
-无白屏加载的预测信息，主要包括预测错误码，预测的快照相似度，预测加载的时长，应用需根据此信息来决策是否启用无白屏加载插帧。
+页面首屏加载预测信息，主要包括首屏相似度预测值，首屏加载耗时预测值，预测错误码，应用需根据此信息来决策是否启用无白屏加载插帧方案。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称        | 类型   | 只读 | 可选 |说明                 |
 | ----------- | ------ | -----|------|------------------- |
-| errCode | WebBlanklessErrorCode | 否   | 否   | 见[WebBlanklessErrorCode](#webblanklesserrorcode20)定义。 |
-| similarity | number | 否   | 否   | 无白屏加载的快照相似度，根据历史加载首屏快照计算相似度，范围为0~1.0，1.0表示完全一致，数值越接近1，相似度越高。该值存在滞后性，本地加载的相似性将在下次加载时才可反映。建议当相似度为0时，应用不启用插帧功能。 |
-| loadingTime | int | 否   | 否   | 根据历史加载首屏的耗时估计本次加载的耗时，单位ms，取值范围需大于0。 |
-
-## WebBlanklessErrorCode<sup>20+</sup>
-
-无白屏加载的异常错误码。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-| 名称 | 值 | 说明 |
-| ------------------------------- | - | ---------- |
-| SUCCESS | 0 | 成功。 |
-| ERR_UNKNOWN   | -1 | 未知错误，内部状态错误等。 |
-| ERR_INVALID_PARAM   | -2 | 参数不合法。 |
-| ERR_CONTROLLER_NOT_INITED   | -3 | web controller未绑定组件。 |
-| ERR_KEY_NOT_MATCH   | -4 | 未匹配到key值，对于[setBlanklessLoadingWithKey](./arkts-apis-webview-WebviewController.md#setblanklessloadingwithkey20)需与[getBlanklessInfoWithKey](./arkts-apis-webview-WebviewController.md#getblanklessinfowithkey20)配套使用并且key值一致，否则返回该错误码。 |
-| ERR_SIGNIFICANT_CHANGE   | -5 | 当相似度较低（<0.33）时，系统会判定为跳变太大，[setBlanklessLoadingWithKey](./arkts-apis-webview-WebviewController.md#setblanklessloadingwithkey20)接口不会成功启用插帧。 |
+| errCode | WebBlanklessErrorCode | 否   | 否   | 无白屏加载的异常错误码，见[WebBlanklessErrorCode](./arkts-apis-webview-e.md#webblanklesserrorcode20)定义。 |
+| similarity | number | 否   | 否   | 首屏相似度，根据历史加载首屏内容计算相似度，范围为0~1.0，1.0表示完全一致，数值越接近1，相似度越高。该值存在滞后性，本地加载的相似性将在下次加载时才可反映。建议当相似度较低时，应用不启用无白屏加载插帧方案。 |
+| loadingTime | number | 否   | 否   | 根据历史加载首屏耗时预测本次加载耗时，单位ms，取值范围需大于0。 |
 
 ## HistoryItem
 
@@ -195,7 +186,7 @@ WebViewController与Web组件的绑定状态。
 
 | 名称          | 类型                                   | 只读 | 可选 | 说明                         |
 | ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
-| icon          | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是   | 否   | 历史页面图标的PixelMap对象。 |
+| icon          | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否   | 否   | 历史页面图标的PixelMap对象。 |
 | historyUrl    | string                                 | 否   | 否   | 历史记录项的url地址。        |
 | historyRawUrl | string                                 | 否   | 否   | 历史记录项的原始url地址。    |
 | title         | string                                 | 否   | 否   | 历史记录项的标题。           |
@@ -207,19 +198,19 @@ WebViewController与Web组件的绑定状态。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-| embedID | string | 是 | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
-| mediaType | [MediaType](./arkts-apis-webview-e.md#mediatype12) | 是 | 媒体的类型。 |
-| mediaSrcList | [MediaSourceInfo](./arkts-apis-webview-MediaSourceInfo.md)[] | 是 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
-| surfaceInfo | [NativeMediaPlayerSurfaceInfo](./arkts-apis-webview-NativeMediaPlayerSurfaceInfo.md) | 是 | 用于同层渲染的 surface 信息。 |
-| controlsShown | boolean | 是 | `<video>` 或 `<audio>` 中是否有 `controls`属性。<br>true表示有，false表示没有。 |
-| controlList | string[] | 是 | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
-| muted | boolean | 是 | 是否要求静音播放。<br>true表示静音播放，false表示未静音播放。 |
-| posterUrl | string | 是 | 海报的地址。 |
-| preload | [Preload](./arkts-apis-webview-e.md#preload12) | 是 | 是否需要预加载。 |
-| headers | Record\<string, string\> | 是 | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
-| attributes | Record\<string, string\> | 是 | `<video>` 或 `<audio>` 标签中的属性。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+|------|------|------|------|------|
+| embedID | string | 否 | 否  | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
+| mediaType | [MediaType](./arkts-apis-webview-e.md#mediatype12) | 否 | 否 | 媒体的类型。 |
+| mediaSrcList | [MediaSourceInfo](./arkts-apis-webview-MediaSourceInfo.md)[] | 否 | 否 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
+| surfaceInfo | [NativeMediaPlayerSurfaceInfo](./arkts-apis-webview-NativeMediaPlayerSurfaceInfo.md) | 否 | 否 | 用于同层渲染的 surface 信息。 |
+| controlsShown | boolean | 否 | 否 | `<video>` 或 `<audio>` 中是否有 `controls`属性。<br>true表示有，false表示没有。 |
+| controlList | string[] | 否 | 否 | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
+| muted | boolean | 否 | 否 | 是否要求静音播放。<br>true表示静音播放，false表示未静音播放。 |
+| posterUrl | string | 否 | 否 | 海报的地址。 |
+| preload | [Preload](./arkts-apis-webview-e.md#preload12) | 否 | 否 | 是否需要预加载。 |
+| headers | Record\<string, string\> | 否 | 否 | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
+| attributes | Record\<string, string\> | 否 | 否 | `<video>` 或 `<audio>` 标签中的属性。 |
 
 ## RectEvent<sup>12+<sup>
 

@@ -1,6 +1,6 @@
 # AbilityStageMonitor
 
-The **AbilityStageMonitor** module provides conditions for matching **AbilityStage** instances. The most recently matched **AbilityStage** instance is saved in an **AbilityStageMonitor** instance.
+The module provides conditions for matching AbilityStage instances. The most recently matched AbilityStage instance is saved in an AbilityStageMonitor instance.
 
 > **NOTE**
 > 
@@ -12,10 +12,10 @@ The **AbilityStageMonitor** module provides conditions for matching **AbilitySta
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name                                                        | Type    | Readable| Writable| Description                                                        |
-| ------------------------------------------------------------ | -------- | ---- | ---- | ------------------------------------------------------------ |
-| moduleName                                                 | string   | Yes  | Yes  | Module name of the **AbilityStage** instance.|
-| srcEntrance | string | Yes  | Yes  | Source path of the **AbilityStage** instance.|
+| Name| Type| Read-Only| Optional| Description |
+| ---- | ---- | ---- | ---- | ---- |
+| moduleName | string | No  | No  | Module name of the AbilityStage instance.|
+| srcEntrance | string | No  | No  | Source path of the AbilityStage instance.|
 
 **Example**
 ```ts

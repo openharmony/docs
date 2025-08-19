@@ -1,10 +1,16 @@
 # 创建自定义组件
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926; @huyisuo-->
+<!--Designer: @zhangboren-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 在ArkUI中，UI显示的内容均为组件，由框架直接提供的称为系统组件，由开发者定义的称为自定义组件。进行UI界面开发时，不仅要组合使用系统组件，还需考虑代码的可复用性、业务逻辑与UI的分离，以及后续版本的演进等因素。因此，将UI和部分业务逻辑封装成自定义组件是不可或缺的能力。
 
 自定义组件具有以下特点：
 
-- 可组合：允许开发者组合使用系统组件、及其属性和方法。
+- 可组合：允许开发者组合使用系统组件及其属性和方法。
 
 - 可重用：自定义组件可以被其他组件重用，并作为不同的实例在不同的父组件或容器中使用。
 
@@ -84,6 +90,8 @@ struct ParentComponent {
   > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
   > 
   > 从API version 11开始，\@Component可以接受一个可选的boolean类型参数。
+  >
+  > 从API version 11开始，该装饰器支持在原子化服务中使用。
 
   ```ts
   @Component
@@ -91,7 +99,7 @@ struct ParentComponent {
   }
   ```
 
- #### freezeWhenInactive<sup>11+</sup>
+ **freezeWhenInactive<sup>11+</sup>**
   [组件冻结](arkts-custom-components-freeze.md)选项。
 
   | 名称   | 类型   | 必填 | 说明                                                         |
@@ -135,15 +143,15 @@ build()函数用于定义自定义组件的声明式UI描述，自定义组件�
   }
   ```
 
-#### EntryOptions<sup>10+</sup>
+**EntryOptions<sup>10+</sup>**
 
   命名路由跳转选项。
 
   | 名称   | 类型   | 必填 | 说明                                                         |
   | ------ | ------ | ---- | ------------------------------------------------------------ |
   | routeName | string | 否 | 表示作为命名路由页面的名字。 |
-  | storage | [LocalStorage](arkts-localstorage.md) | 否 | 页面级的UI状态存储。 |
-  | useSharedStorage<sup>12+</sup> | boolean | 否 | 是否使用LocalStorage.getShared()接口返回的共享的[LocalStorage](arkts-localstorage.md)实例对象。默认值false。true：使用共享的[LocalStorage](arkts-localstorage.md)实例对象。false：不使用共享的[LocalStorage](arkts-localstorage.md)实例对象。 |
+  | storage | [LocalStorage](arkts-localstorage.md) | 否 | 页面级的UI状态存储。当未传入时，框架会创建一个新的LocalStorage实例作为默认值。 |
+  | useSharedStorage<sup>12+</sup> | boolean | 否 | 是否使用[LocalContent](../../reference/apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)传入的LocalStorage实例对象。默认值false。true：使用共享的[LocalStorage](arkts-localstorage.md)实例对象。false：不使用共享的[LocalStorage](arkts-localstorage.md)实例对象。 |
 
   > **说明：**
   >

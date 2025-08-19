@@ -1,5 +1,12 @@
 # 使用SM2密钥对签名验签 (C/C++)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 对应的算法规格请查看[签名验签算法规格：SM2](crypto-sign-sig-verify-overview.md#sm2)。
 
 ## 在CMake脚本中链接相关动态库
@@ -46,8 +53,8 @@ static OH_Crypto_ErrCode doSm2Test() {
       return ret;
    }
 
-   OH_CryptoPrivKey *privKey = OH_CryptoKeyPair_GetPriKey(keyPair);
-   ret = OH_CryptoSign_Create((const char *)"SM2|SM3", &sign);
+   OH_CryptoPrivKey *privKey = OH_CryptoKeyPair_GetPrivKey(keyPair);
+   ret = OH_CryptoSign_Create((const char *)"SM2_256|SM3", &sign);
    if (ret != CRYPTO_SUCCESS) {
       OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
       OH_CryptoKeyPair_Destroy(keyPair);
@@ -80,6 +87,7 @@ static OH_Crypto_ErrCode doSm2Test() {
    OH_CryptoSign_Destroy(sign);
    OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
    OH_CryptoKeyPair_Destroy(keyPair);
+   OH_Crypto_FreeDataBlob(&signBlob);
    return CRYPTO_SUCCESS;
 }
 ```

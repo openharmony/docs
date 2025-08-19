@@ -1,12 +1,18 @@
 # 同步任务开发指导 (TaskPool和Worker)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 
-同步任务是指在多个线程之间协调执行的任务，其目的是确保多个任务按照一定的顺序和规则执行，例如使用锁来防止数据竞争。
+同步任务用于在多个线程间协调执行，确保任务按特定顺序和规则进行（如使用锁防止数据竞争）。
 
 
 同步任务的实现需要考虑多个线程之间的协作和同步，以确保数据的正确性和程序的正确执行。
 
-由于TaskPool偏向于单个独立的任务，因此当各个同步任务之间相对独立时推荐使用TaskPool，例如一系列导入的静态方法，或者单例实现的方法。如果同步任务之间有关联性，则需要使用Worker。
+当同步任务之间相对独立时，推荐使用TaskPool，例如一系列导入的静态方法或单例实现的方法。如果同步任务之间有关联性，则需要使用Worker。
 
 
 ## 使用TaskPool处理同步任务
@@ -21,7 +27,7 @@
 
 > **说明：**
 >
-> 由于[Actor模型](multi-thread-concurrency-overview.md#actor模型)不同线程间内存隔离的特性，普通单例无法在不同线程间使用。可以通过共享模块导出单例解决该问题。
+> 由于[Actor模型](multi-thread-concurrency-overview.md#actor模型)不同线程间内存隔离的特性，普通单例无法在不同线程间使用。可通过共享模块导出单例解决此问题。
 
 1. 定义并发函数，实现业务逻辑。
 
@@ -33,7 +39,7 @@
 
 
 ```ts
-// Index.ets代码
+// Index.ets
 import { taskpool} from '@kit.ArkTS';
 
 // 步骤1: 定义并发函数，实现业务逻辑
@@ -76,18 +82,18 @@ struct Index {
   }
 }
 ```
-<!-- @[taskpool_handle_sync_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/SyncTaskDevelopment.ets) -->
+<!-- @[taskpool_handle_sync_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/SyncTaskDevelopment.ets) -->
 
 
 ## 使用Worker处理关联的同步任务
 
 当一系列同步任务需要使用同一个句柄调度，或者需要依赖某个类对象调度，且无法在不同任务池之间共享时，需要使用Worker。
 
-1. 在UI主线程中创建Worker对象，同时接收Worker线程发送回来的消息。DevEco Studio支持一键生成Worker，在对应的{moduleName}目录下任意位置，点击鼠标右键 > New > Worker，即可自动生成Worker的模板文件及配置信息。
+1. 在UI主线程中创建Worker对象并接收Worker线程发送的消息。DevEco Studio支持一键生成Worker。在{moduleName}目录下任意位置，点击鼠标右键 > New > Worker，即可生成Worker的模板文件及配置信息。
 
     ```ts
     // Index.ets
-    import { worker } from '@kit.ArkTS';
+    import { MessageEvents, worker } from '@kit.ArkTS';
     
     @Entry
     @Component
@@ -102,19 +108,17 @@ struct Index {
               .fontWeight(FontWeight.Bold)
               .onClick(() => {
                 let w: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/Worker.ets');
-                w.onmessage = (): void => {
-                  // 接收Worker子线程的结果
-                }
-                w.onAllErrors = (): void => {
-                  // 接收Worker子线程的错误信息
-                }
                 // 向Worker子线程发送Set消息
-                w.postMessage({'type': 0, 'data': 'data'})
+                w.postMessage({'type': 0, 'data': 10});
                 // 向Worker子线程发送Get消息
-                w.postMessage({'type': 1})
-                // ...
-                // 根据实际业务，选择时机以销毁线程
-                w.terminate()
+                w.postMessage({'type': 1});
+                // 接收Worker子线程的结果
+                w.onmessage = (e: MessageEvents): void => {
+                  // 接收Worker子线程的结果
+                  console.info('main thread onmessage, ' + e.data);
+                  // 销毁Worker
+                  w.terminate();
+                }
               })
           }
           .width('100%')
@@ -123,24 +127,27 @@ struct Index {
       }
     }
     ```
-    <!-- @[worker_handle_associated_sync_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/SyncTaskDevelopment.ets) -->
+    <!-- @[worker_handle_associated_sync_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/SyncTaskDevelopment.ets) -->
 
 
 2. 在Worker线程中绑定Worker对象，同时处理同步任务逻辑。
 
     ```ts
-    // handle.ts代码
+    // handle.ts代码，与Worker.ets在同级目录下
     export default class Handle {
-      syncGet() {
-        return;
+      id: number = 0;
+    
+      syncGet(): number {
+        return this.id;
       }
     
-      syncSet(num: number) {
-        return;
+      syncSet(num: number): boolean {
+        this.id = num;
+        return true;
       }
     }
     ```
-    <!-- @[worker_handle_associated_sync_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/handle.ts) -->
+    <!-- @[worker_handle_associated_sync_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/handle.ts) -->
     
     ```ts
     // Worker.ets
@@ -151,20 +158,24 @@ struct Index {
     let workerPort : ThreadWorkerGlobalScope = worker.workerPort;
     
     // 无法传输的句柄，所有操作依赖此句柄
-    let handler: Handle = new Handle()
+    let handler: Handle = new Handle();
     
     // Worker线程的onmessage逻辑
     workerPort.onmessage = (e : MessageEvents): void => {
-     switch (e.data.type as number) {
-      case 0:
-       handler.syncSet(e.data.data);
-       workerPort.postMessage('success set');
-       break;
-      case 1:
-       handler.syncGet();
-       workerPort.postMessage('success get');
-       break;
-     }
+      switch (e.data.type as number) {
+        case 0:
+          let result: boolean = false;
+          result = handler.syncSet(e.data.data);
+          console.info("worker: result is " + result);
+          workerPort.postMessage('the result of syncSet() is ' + result);
+          break;
+        case 1:
+          let num: number = 0;
+          num = handler.syncGet();
+          console.info("worker: num is " + num);
+          workerPort.postMessage('the result of syncGet() is ' + num);
+          break;
+      }
     }
     ```
-    <!-- @[worker_handle_associated_sync_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/MyWorker2.ts) -->
+    <!-- @[worker_handle_associated_sync_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/MyWorker2.ts) -->

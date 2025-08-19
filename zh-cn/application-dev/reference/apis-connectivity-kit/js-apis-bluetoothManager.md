@@ -1,5 +1,12 @@
 # @ohos.bluetoothManager (蓝牙)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+<!--Adviser: @zhang_yixin13-->
+
 蓝牙模块提供了基础的传统蓝牙能力以及BLE的扫描、广播等功能。
 
 > **说明：**
@@ -1244,11 +1251,11 @@ sppConnect(device: string, option: SppOption, callback: AsyncCallback&lt;number&
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0 || code == null) {
+  if (code == null || code.code != 0) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1343,10 +1350,10 @@ sppCloseClientSocket(socket: number): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0 || code == null) {
+  if (code == null || code.code != 0) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1393,10 +1400,10 @@ sppWrite(clientSocket: number, data: ArrayBuffer): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0 || code == null) {
+  if (code == null || code.code != 0) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1447,10 +1454,10 @@ on(type: 'sppRead', clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;)
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0 || code == null) {
+  if (code == null || code.code != 0) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1500,10 +1507,10 @@ off(type: 'sppRead', clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0 || code == null) {
+  if (code == null || code.code != 0) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1535,7 +1542,7 @@ getProfileInstance(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGate
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [A2dpSourceProfile](#a2dpsourceprofile)或 [HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofiledeprecated)或[HidHostProfile](#hidhostprofiledeprecated)或[PanProfile](#panprofile) | 对应的profile的对象实例，当前支持A2dpSourceProfile/HandsFreeAudioGatewayProfile/HidHostProfile/PanProfile。 |
+| [A2dpSourceProfile](#a2dpsourceprofile) \| [HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofiledeprecated) \| [HidHostProfile](#hidhostprofiledeprecated) \| [PanProfile](#panprofile) | 对应的profile的对象实例，当前支持A2dpSourceProfile/HandsFreeAudioGatewayProfile/HidHostProfile/PanProfile。 |
 
 **错误码**：
 
@@ -2083,10 +2090,6 @@ on(type: 'connectionStateChange', callback: Callback&lt;[StateChangeParam](#stat
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
 | callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | 是    | 表示回调函数的入参。                               |
 
-**返回值：**
-
-无
-
 **错误码**：
 
 以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
@@ -2131,10 +2134,6 @@ off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#st
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
 | callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | 否    | 表示回调函数的入参。                               |
-
-**返回值：**
-
-无
 
 **错误码**：
 
@@ -2982,7 +2981,7 @@ import { BusinessError } from '@ohos.base';
 /* send response */
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
-cccValue[0] = 1123;
+cccValue[0] = 1;
 let serverResponse: bluetoothManager.ServerResponse = {
     deviceId: 'XX:XX:XX:XX:XX:XX',
     transId: 0,
@@ -3036,7 +3035,7 @@ server端订阅特征值读请求事件。
 import { BusinessError } from '@ohos.base';
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
-cccValue[0] = 1123;
+cccValue[0] = 1;
 function ReadCharacteristicReq(characteristicReadRequest: bluetoothManager.CharacteristicReadRequest) {
     let deviceId: string = characteristicReadRequest.deviceId;
     let transId: number = characteristicReadRequest.transId;
@@ -3236,10 +3235,10 @@ server端订阅描述符读请求事件。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
-descValue[0] = 1101;
+descValue[0] = 1;
 function ReadDescriptorReq(descriptorReadRequest: bluetoothManager.DescriptorReadRequest) {
     let deviceId: string = descriptorReadRequest.deviceId;
     let transId: number = descriptorReadRequest.transId;
@@ -3762,14 +3761,14 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 function readCcc(code: BusinessError, BLECharacteristic: bluetoothManager.BLECharacteristic) {
     if (code.code != 0) {
         return;
     }
     console.log('bluetooth characteristic uuid: ' + BLECharacteristic.characteristicUuid);
     let value = new Uint8Array(BLECharacteristic.characteristicValue);
-    console.log('bluetooth characteristic value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
+    console.log('value length: ' + value.length);
 }
 
 let descriptors: Array<bluetoothManager.BLEDescriptor> = [];

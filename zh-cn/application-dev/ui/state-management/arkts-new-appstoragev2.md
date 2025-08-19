@@ -1,4 +1,10 @@
 # AppStorageV2: 应用全局UI状态存储
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zzq212050299-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 为了增强状态管理框架对应用全局UI状态变量存储的能力，开发者可以使用AppStorageV2存储应用全局UI状态变量数据。
 
@@ -21,7 +27,7 @@ AppStorageV2支持应用的[主线程](../../application-models/thread-model-sta
 
 ## 使用说明
 
-### connect：创建或获取储存的数据
+### connect：创建或获取存储的数据
 
 ```JavaScript
 static connect<T extends object>(
@@ -48,7 +54,7 @@ static connect<T extends object>(
 >
 >5、关联[\@Observed](arkts-observed-and-objectlink.md)对象时，由于该类型的name属性未定义，需要指定key或者自定义name属性。
 
-### remove：删除指定key的储存数据
+### remove：删除指定key的存储数据
 
 ```JavaScript
 static remove<T>(keyOrType: string | TypeConstructorWithArgs<T>): void;
@@ -86,6 +92,98 @@ static keys(): Array<string>;
 4、不支持存储基本类型，如string、number、boolean等。
 
 ## 使用场景
+
+### 使用AppStorageV2
+
+AppStorageV2使用connect接口即可实现对AppStorageV2中数据的修改和同步，如果修改的数据被@Trace装饰，该数据的修改会同步更新UI。需要注意的是，使用remove接口只会将数据从AppStorageV2中删除，不影响组件中已创建的数据，详见以下示例代码：
+
+```ts
+import { AppStorageV2 } from '@kit.ArkUI';
+
+@ObservedV2
+class Message {
+  @Trace userID: number;
+  userName: string;
+
+  constructor(userID?: number, userName?: string) {
+    this.userID = userID ?? 1;
+    this.userName = userName ?? 'Jack';
+  }
+}
+
+@Entry
+@ComponentV2
+struct Index {
+  // 使用connect在AppStorageV2中创建一个key为Message的对象
+  // 修改connect的返回值即可同步回AppStorageV2
+  @Local message: Message = AppStorageV2.connect<Message>(Message, () => new Message())!;
+
+  build() {
+    Column() {
+      // 修改@Trace装饰的类属性，UI能同步刷新
+      Button(`Index userID: ${this.message.userID}`)
+        .onClick(() => {
+          this.message.userID += 1;
+        })
+      // 修改非@Trace装饰的类属性，UI不会同步刷新，但修改的类属性已同步回AppStorageV2
+      Button(`Index userName: ${this.message.userName}`)
+        .onClick(() => {
+          this.message.userName += 'suf';
+        })
+      // remove key Message, 会从AppStorageV2中删除key为Message的对象
+      // remove之后，修改父组件的userId，子组件能同步变化，因为remove只是从AppStorageV2删除，不会影响组件中已存在的数据
+      Button('remove key: Message')
+        .onClick(() => {
+          AppStorageV2.remove<Message>(Message);
+        })
+      // connect key Message, 会从AppStorageV2中添加key为Message的对象
+      // remove之后，重新添加，修改父子组件的userID，可以发现数据已经不同步，子组件重新connect之后，数据一致
+      Button('connect key: Message')
+        .onClick(() => {
+          this.message = AppStorageV2.connect<Message>(Message, () => new Message(5, 'Rose'))!;
+        })
+      Divider()
+      Child()
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+@ComponentV2
+struct Child {
+  // 使用connect在AppStorageV2中取出一个key为Message的对象，已在父组件中创建
+  @Local message: Message = AppStorageV2.connect<Message>(Message, () => new Message())!;
+  @Local name: string = this.message.userName;
+
+  build() {
+    Column() {
+      // 修改@Trace装饰的类属性，UI同步刷新，父组件能感知该变化
+      Button(`Child userID: ${this.message.userID}`)
+        .onClick(() => {
+          this.message.userID += 5;
+        })
+      // 修改父组件中的userName属性，点击name可以同步父组件的类属性修改
+      Button(`Child name: ${this.name}`)
+        .onClick(() => {
+          this.name = this.message.userName;
+        })
+      // remove key Message, 会从AppStorageV2中删除key为Message的对象
+      Button('remove key: Message')
+        .onClick(() => {
+          AppStorageV2.remove<Message>(Message);
+        })
+      // connect key Message, 会从AppStorageV2中添加key为Message的对象
+      Button('connect key: Message')
+        .onClick(() => {
+          this.message = AppStorageV2.connect<Message>(Message, () => new Message(10, 'Lucy'))!;
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
 
 ### 在两个页面之间存储数据
 

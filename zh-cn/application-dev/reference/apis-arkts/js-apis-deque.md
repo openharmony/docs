@@ -1,10 +1,16 @@
 # @ohos.util.Deque (线性容器Deque)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 Deque（double ended queue）基于循环队列的数据结构实现，支持两端元素的插入和删除，同时具备先进先出以及先进后出的特点。Deque会根据实际需要动态调整容量，每次扩容两倍。
 
 Deque和[Queue](js-apis-queue.md)相比，Deque允许在两端执行插入和删除操作，Queue只能在头部删除元素，尾部插入元素。
 
-与[Vector](js-apis-vector.md)相比，它们都支持在两端插入和删除元素，但Deque不支持中间插入。Deque在头部插入删除元素的效率高于Vector，而Vector在访问元素的效率高于Deque。
+与[ArrayList](js-apis-arraylist.md)相比，它们都支持在两端插入和删除元素，但Deque不支持中间插入。Deque在头部插入删除元素的效率高于ArrayList，而ArrayList随机访问元素的效率高于Deque。
 
 **推荐使用场景：** 需要在集合两端频繁增删元素时，推荐使用Deque。
 
@@ -55,7 +61,7 @@ Deque的构造函数。
 **示例：**
 
 ```ts
-let deque: Deque<string | number | boolean | Object> = new Deque();
+let deque = new Deque<string | number | boolean | Object>();
 ```
 
 ### insertFront
@@ -89,7 +95,8 @@ class C1 {
   name: string = ""
   age: string = ""
 }
-let deque: Deque<string | number | boolean | Array<number> | C1> = new Deque();
+
+let deque = new Deque<string | number | boolean | Array<number> | C1>();
 deque.insertFront("a");
 deque.insertFront(1);
 let b = [1, 2, 3];
@@ -97,6 +104,7 @@ deque.insertFront(b);
 let c: C1 = {name : "Dylan", age : "13"};
 deque.insertFront(c);
 deque.insertFront(false);
+console.info("result:", deque[0]);  // result: false
 ```
 
 ### insertEnd
@@ -131,7 +139,7 @@ class C1 {
   age: string = ""
 }
 
-let deque: Deque<string | number | boolean | Array<number> | C1> = new Deque();
+let deque = new Deque<string | number | boolean | Array<number> | C1>();
 deque.insertEnd("a");
 deque.insertEnd(1);
 let b = [1, 2, 3];
@@ -139,6 +147,7 @@ deque.insertEnd(b);
 let c: C1 = {name : "Dylan", age : "13"};
 deque.insertEnd(c);
 deque.insertEnd(false);
+console.info("result:", deque[0]);  // result: a
 ```
 
 ### has
@@ -174,9 +183,10 @@ has(element: T): boolean
 **示例：**
 
 ```ts
-let deque: Deque<string> = new Deque();
+let deque = new Deque<string>();
 deque.insertFront("squirrel");
 let result = deque.has("squirrel");
+console.info("result:", result);  // result: true
 ```
 
 ### popFirst
@@ -206,14 +216,14 @@ popFirst(): T
 **示例：**
 
 ```ts
-let deque: Deque<number> = new Deque();
+let deque = new Deque<number>();
 deque.insertFront(2);
 deque.insertFront(4);
 deque.insertEnd(5);
 deque.insertFront(2);
 deque.insertFront(4);
 let result = deque.popFirst();
-console.info("result = ", result) // result =  4
+console.info("result:", result);  // result: 4
 ```
 
 ### popLast
@@ -243,13 +253,14 @@ popLast(): T
 **示例：**
 
 ```ts
-let deque: Deque<number> = new Deque();
+let deque = new Deque<number>();
 deque.insertFront(2);
-deque.insertEnd(4);
+deque.insertEnd(6);
 deque.insertFront(5);
 deque.insertFront(2);
 deque.insertFront(4);
 let result = deque.popLast();
+console.info("result:", result);  // result: 6
 ```
 
 ### forEach
@@ -290,14 +301,20 @@ callbackFn的参数说明：
 **示例：**
 
 ```ts
-let deque: Deque<number> = new Deque();
+let deque = new Deque<number>();
 deque.insertFront(2);
+deque.insertEnd(3);
+deque.insertFront(1);
 deque.insertEnd(4);
-deque.insertFront(5);
-deque.insertEnd(4);
-deque.forEach((value: number, index?: number | undefined, deque?: Deque<number> | undefined):void => {
+deque.forEach((value: number, index: number): void => {
   console.info("value:" + value, "index:" + index);
 });
+/*
+输出结果：value:1 index:0
+        value:2 index:1
+        value:3 index:2
+        value:4 index:3
+*/
 ```
 
 ### getFirst
@@ -327,12 +344,13 @@ getFirst(): T
 **示例：**
 
 ```ts
-let deque: Deque<number> = new Deque();
+let deque = new Deque<number>();
 deque.insertEnd(2);
 deque.insertEnd(4);
 deque.insertFront(5);
 deque.insertFront(4);
 let result = deque.getFirst();
+console.info("result:", result);  // result: 4
 ```
 
 ### getLast
@@ -362,12 +380,13 @@ getLast(): T
 **示例：**
 
 ```ts
-let deque: Deque<number> = new Deque();
+let deque = new Deque<number>();
 deque.insertFront(2);
 deque.insertFront(4);
 deque.insertFront(5);
 deque.insertFront(4);
 let result = deque.getLast();
+console.info("result:", result);  // result: 2
 ```
 
 ### [Symbol.iterator]
@@ -396,17 +415,22 @@ let result = deque.getLast();
 
 **示例：**
 ```ts
-let deque: Deque<number> = new Deque();
+let deque = new Deque<number>();
 deque.insertFront(2);
 deque.insertFront(4);
 deque.insertFront(5);
 deque.insertFront(4);
 
 // 使用方法一：
-let nums: Array<number> = Array.from(deque);
-for (let item of nums) {
+for (let item of deque) {
   console.info("value:" + item);
 }
+/*
+输出结果：4
+        5
+        4
+        2
+*/
 
 // 使用方法二：
 let iter = deque[Symbol.iterator]();
@@ -415,4 +439,10 @@ while(!temp.done) {
   console.info("value:" + temp.value);
   temp = iter.next();
 }
+/*
+输出结果：4
+        5
+        4
+        2
+*/
 ```

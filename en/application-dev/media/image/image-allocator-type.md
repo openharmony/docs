@@ -1,4 +1,9 @@
 # Allocating Memory for Image Decoding (ArkTS)
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 When an application performs image decoding, it needs to allocate the corresponding memory. This guide describes different types of memory and how to allocate them.
 
@@ -98,15 +103,17 @@ async function CreatePixelMapUsingAllocator(context : Context) {
   let imageSource: image.ImageSource | null = await image.createImageSource(rawFile.buffer as ArrayBuffer);
   let options: image.DecodingOptions = {};
   let pixelmap = await imageSource.createPixelMapUsingAllocator(options, image.AllocatorType.AUTO);
-  let info = await pixelmap.getImageInfo();
-  // The stride of the PixelMap allocated by using DMA_ALLOC is different from that of the PixelMap allocated by using SHARE_MEMORY.
-  console.info("stride = " + info.stride);
-  let region: image.Region = { x: 0, y: 0, size: {height: 100, width:35} };
   if (pixelmap != undefined) {
-    await pixelmap.crop(region);
-    let imageInfo = await pixelmap.getImageInfo();
-    if (imageInfo != undefined) {
-      console.info("stride =", imageInfo.stride);
+    let info = await pixelmap.getImageInfo();
+    // The stride of the PixelMap allocated by using DMA_ALLOC is different from that of the PixelMap allocated by using SHARE_MEMORY.
+    console.info("stride = " + info.stride);
+    let region: image.Region = { x: 0, y: 0, size: {height: 100, width:35} }; // Define a region starting at (0, 0) with a size of 100 * 35 pixels. Note that the stride alignment might vary between DMA_ALLOC and SHARE_MEMORY.
+    if (pixelmap != undefined) {
+      await pixelmap.crop(region);
+      let imageInfo = await pixelmap.getImageInfo();
+      if (imageInfo != undefined) {
+        console.info("stride =", imageInfo.stride);
+      }
     }
   }
 }

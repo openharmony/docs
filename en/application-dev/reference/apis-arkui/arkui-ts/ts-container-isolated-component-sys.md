@@ -1,6 +1,6 @@
 # IsolatedComponent (System API)
 
-**IsolatedComponent** is designed to support the embedding and display of UIs provided by independent .abc files within the current page, with the displayed content running in a restricted worker thread.
+**IsolatedComponent** is designed to support the embedding and display of UIs provided by independent .abc files within the current page, with the displayed content running in a restricted Worker thread.
 
 The **FolderStack** component is usually used in modular development scenarios where .abc file hot update is required.
 
@@ -16,25 +16,25 @@ The **FolderStack** component is usually used in modular development scenarios w
 
 1. This component does not support preview.
 
-2. .abc files must pass the [VerifyAbc](../../apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagerverifyabc11) verification to be used in this component.
+2. The .abc file must pass the [VerifyAbc](../../apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagerverifyabc11) verification before use.
 
-3. Construction parameter updates are not supported; only the initial input is effective.
+3. Constructor parameter updates are not supported; only the initial input is effective.
 
 4. Nesting of **IsolatedComponent** components is not supported.
 
 **Experience Constraints**
 
-1. When an **IsolatedComponent** component is created, there is a certain amount of time required for the restricted worker thread to load and render the .abc file layout. During this period, the background color of the **IsolatedComponent** is displayed.
+1. When an **IsolatedComponent** component is created, there is a certain amount of time required for the restricted Worker thread to load and render the .abc file layout. During this period, the background color of the **IsolatedComponent** is displayed.
 
-2. The main thread and the restricted worker thread handle layout rendering asynchronously, which can lead to desynchronization in page changes caused by layout alterations or rotations.
+2. The main thread and the restricted Worker thread handle layout rendering asynchronously, which can lead to desynchronization in page changes caused by layout alterations or rotations.
 
-3. Event transmission between the main thread and the restricted worker thread is managed asynchronously, and there is no support for event bubbling between threads. As a result, UI interactions between threads may encounter event conflicts.
+3. Event passing between the main thread and the restricted Worker thread is managed asynchronously, and there is no support for event bubbling between threads. As a result, UI interactions between threads may encounter event conflicts.
 
 **Security Constraints**
 
 1. Displaying an independent .abc file through the **IsolatedComponent** component in the host process means that the .abc file content is fully accessible to the host, granting the host the control over the file content. For security-sensitive situations where such open access could be a risk, the use of this feature is disabled.
 
-2. Running independent .abc files in a restricted worker thread offers a level of security, as the .abc file content is isolated and does not interfere with the main thread.
+2. Running independent .abc files in a restricted Worker thread offers a level of security, as the .abc file content is isolated and does not interfere with the main thread.
 
 ## Child Components
 
@@ -44,7 +44,11 @@ Not supported
 
 IsolatedComponent(options: IsolatedOptions)
 
-Creates an **IsolatedComponent** component to display the .abc file executed in a restricted worker thread.
+Creates an **IsolatedComponent** component to display the .abc file executed in a restricted Worker thread.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -53,14 +57,17 @@ Creates an **IsolatedComponent** component to display the .abc file executed in 
 | options | [IsolatedOptions](#isolatedoptions)                | Yes  | Construction parameters.|
 
 ## IsolatedOptions
+
 Describes the optional construction parameters during **IsolatedComponent** construction.
 
-**Parameters**
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name              | Type                                | Mandatory| Description                                                                                                     |
 | ----                 | ---------------------------------------- | ---- | ---------------                                                                                               |
 | want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)                                  | Yes  | .abc file information to load.|
-| worker | [RestrictedWorker](../../apis-arkts/js-apis-worker-sys.md#restrictedworker11)       | Yes  | Restricted worker thread where the .abc file is running.|
+| worker | [RestrictedWorker](../../apis-arkts/js-apis-worker-sys.md#restrictedworker11)       | Yes  | Restricted Worker thread where the .abc file is running.|
 
 ## Attributes
 Only the [width](ts-universal-attributes-size.md#width), [height](ts-universal-attributes-size.md#height), and [backgroundColor](ts-universal-attributes-background.md#backgroundcolor) universal attributes are supported.
@@ -69,7 +76,7 @@ Only the [width](ts-universal-attributes-size.md#width), [height](ts-universal-a
 
 The [universal events](ts-component-general-events.md) are not supported.
 
-Events are asynchronously passed to the restricted worker thread after coordinate conversion.
+Events are asynchronously passed to the restricted Worker thread after coordinate conversion.
 
 The following events are supported:
 
@@ -79,11 +86,15 @@ onError(callback:ErrorCallback)
 
 Invoked when an error occurs during the running of the **IsolatedComponent**. You can obtain the error information based on the **code**, **name**, and **message** parameters in the callback and rectify the exception accordingly.
 
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name                      | Type  | Description                                                        |
-| ---------------------------- | ------ | ------------------------------------------------------------ |
-| callback                        | [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback) | Error information.   |
+| Name               | Type                                                  | Mandatory| Description          |
+| --------------------- | ---------------------------------------------------------- | ---- | ------------------ |
+| callback | [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)                | Yes  | Error information.|
 
 ## Example: Loading an IsolatedComponent
 
@@ -107,7 +118,7 @@ This example demonstrates the basic usage of the **IsolatedComponent** component
 - Home page (**ets/pages/Index.ets**) loaded by the entry ability (**EntryAbility**):
   ```ts
   import { worker } from '@kit.ArkTS';
-  import { bundleManager } from '@kit.AbilityKit';
+  import { bundleManager, common } from '@kit.AbilityKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   // Verify the .abc file and copy it to the specified sandbox path.
@@ -133,6 +144,7 @@ This example demonstrates the basic usage of the **IsolatedComponent** component
     @State resourcePath: string = "";
     @State abcPath: string = "";
     @State entryPoint: string = "";
+    @State context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // .abc file name
     private fileName: string = "modules";
     // Bundle name of the application to which the .abc file belongs
@@ -145,8 +157,8 @@ This example demonstrates the basic usage of the **IsolatedComponent** component
         Column() {
           // 1. Verify the .abc file.
           Button("verifyAbc").onClick(() => {
-            let abcFilePath = `${getContext(this).filesDir}/${this.fileName}.abc`;
-            console.log("abcFilePath: " + abcFilePath);
+            let abcFilePath = `${this.context.filesDir}/${this.fileName}.abc`;
+            console.info("abcFilePath: " + abcFilePath);
             VerifyAbc([abcFilePath], false);
           }).height(100).width(100)
 
@@ -154,9 +166,9 @@ This example demonstrates the basic usage of the **IsolatedComponent** component
           Button("showIsolatedComponent").onClick(() => {
             if (!this.isShow) {
               // Resource path
-              this.resourcePath = `${getContext(this).filesDir}/${this.fileName}.hap`;
+              this.resourcePath = `${this.context.filesDir}/${this.fileName}.hap`;
               // Sandbox path after the .abc file is verified
-              this.abcPath = `/abcs${getContext(this).filesDir}/${this.fileName}`;
+              this.abcPath = `/abcs${this.context.filesDir}/${this.fileName}`;
               // Entry to the page to be displayed
               this.entryPoint = `${this.bundleName}/entry/ets/pages/extension`;
               this.isShow = true;
@@ -177,7 +189,7 @@ This example demonstrates the basic usage of the **IsolatedComponent** component
               .width(300)
               .height(300)
               .onError((err) => {
-                console.info("onError : " + JSON.stringify(err));
+                console.error("onError : " + JSON.stringify(err));
               })
           }
         }

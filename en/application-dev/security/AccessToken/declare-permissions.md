@@ -1,6 +1,12 @@
 # Declaring Permissions
 
-To request permissions for your application, declare all the permissions one by one in the project configuration file.
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
+To request permissions for your application, declare all the permissions one by one in the project configuration file.<!--RP2--><!--RP2End-->
 
 ## Declaring Permissions in the Configuration File
 
@@ -8,17 +14,17 @@ Declare the permissions required by your application under **requestPermissions*
 
 | Field| Description| Data Type| Value Range|
 | -------- | -------- | -------- | -------- |
-| name | Name of the permission to request.| String| This field is mandatory. The value must be a permission defined in the system. For details, see [Application Permissions](app-permissions.md).|
-| reason | Reason for requesting the permission.| String| This field is optional. It is used for application release verification. It must be specified for a user_grant permission and support multilingual adaptation.<br>It can be referenced as a string resource in $string: \*\*\* format.<br>For details, see [Specifications for reason](#specifications-for-reason).|
-| usedScene | Use case of the permission. This field is used for application release verification. It has two parameters:<br>- **abilities**: names of the abilities (UIAbility or ExtensionAbility) that use the permission.<br>- **when**: when the permission is used.| Object| **usedScene** is mandatory, where:<br>- **abilities** is optional. The value is a string array of multiple UIAbility or ExtensionAbility names<br>- **when** is optional. Set it to **inuse** or **always** for a user_grant permission. It cannot be empty when set.<br>  |
+| name | Name of the permission to request.| String| This field is mandatory. The value must be a permission defined in the system. For details, see [Application Permissions](app-permissions.md).
+| reason | Reason for requesting the permission.| String| This field is optional. It is used for application release verification. It must be specified for a user_grant permission and support multilingual adaptation.<br><br>It can be referenced as a string resource in $string: \*\*\* format.<br> To configure the string resource reference, add the **"name": "reason"** tag to the **string.json** file. For details, see [Resource File Examples](../../quick-start/resource-categories-and-access.md).<br>For details about how to set **reason**, see [Specifications for reason](#specifications-for-reason).|
+| usedScene | Use case of the permission. This field is used for application release verification. It has two parameters:<br>- **abilities**: names of the abilities (UIAbility or ExtensionAbility) that use the permission.<br>- **when**: when the permission is used.| Object| **usedScene** is mandatory when your application requests a user_grant permission and is optional in other cases.<br> <br>- **abilities** is optional. The value is a string array of multiple UIAbility or ExtensionAbility names<br>- **when** is optional. Set it to **inuse** or **always** for a user_grant permission. It cannot be empty when set.<br>  |
 
 > **NOTE**<br>
+>
 > The permissions requested for a module are valid in the entire application. You do not need to request the same permissions for the project.
 
 ## Example
 
-> **NOTE**
->
+> **NOTE**<br>
 > The values **ohos.permission.PERMISSION1** and **ohos.permission.PERMISSION2** are only examples and do not exist. Set permissions to match your case.
 
 ```json
@@ -82,3 +88,5 @@ The reason for requesting a permission can be presented in two modes: authorizat
 2. For the permissions in other permission groups, only the reason for the first requested permission is presented to the user. The permissions are sorted as they appear in the permission groups under **Permission manager**.
 
    **Example**: If a permission group consists of permissions A, B, and C in sequence, and permissions C and B are requested, the reason for using permission B is presented to the user.
+
+3. When multiple packages of an application request identical permissions with differing reasons, only one reason is displayed in the [ReqPermissionDetail](../../reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md#reqpermissiondetail) returned by the system. The priorities are as follows in descending order: HAP of the entry type, HAP of the feature type, and HSP in an application.

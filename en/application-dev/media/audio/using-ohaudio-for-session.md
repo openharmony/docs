@@ -18,7 +18,7 @@ target_link_libraries(sample PUBLIC libohaudio.so)
 
 ### Adding a Header File
 
-Include the [native_audio_session_manager.h](../../reference/apis-audio-kit/native__audio__session__manager_8h.md) header file.
+Include the [native_audio_session_manager.h](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md) header file so that the application can use the functions related to audio playback.
 
 ```cpp
 #include <ohaudio/native_audio_session_manager.h>
@@ -26,7 +26,7 @@ Include the [native_audio_session_manager.h](../../reference/apis-audio-kit/nati
 
 ## Obtaining an Audio Session Manager
 
-Create an [OH_AudioSessionManager](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosessionmanager) instance. Before using any APIs of **OH_AudioSessionManager**, you must use [OH_AudioManager_GetAudioSessionManager](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiomanager_getaudiosessionmanager) to obtain an **OH_AudioSessionManager** instance.
+Create an [OH_AudioSessionManager](../../reference/apis-audio-kit/capi-ohaudio-oh-audiosessionmanager.md) instance. Before using any APIs of OH_AudioSessionManager, you must use [OH_AudioManager_GetAudioSessionManager](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md#oh_audiomanager_getaudiosessionmanager) to obtain an OH_AudioSessionManager instance.
 
   ```cpp
   OH_AudioSessionManager *audioSessionManager;
@@ -35,9 +35,9 @@ Create an [OH_AudioSessionManager](../../reference/apis-audio-kit/_o_h_audio.md#
 
 ## Activating an Audio Session
 
-Call [OH_AudioSessionManager_ActivateAudioSession](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosessionmanager_activateaudiosession) to activate an audio session.
+Call [OH_AudioSessionManager_ActivateAudioSession](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md#oh_audiosessionmanager_activateaudiosession) to activate an audio session.
 
-During the activation, specify an [audio session strategy](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_strategy). The strategy contains the [OH_AudioSession_ConcurrencyMode](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_concurrencymode) parameter, which is used to declare the audio concurrency strategy.
+During the activation, specify an [audio session strategy](../../reference/apis-audio-kit/capi-ohaudio-oh-audiosession-strategy.md). The strategy contains the [OH_AudioSession_ConcurrencyMode](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md#oh_audiosession_concurrencymode) parameter, which is used to declare the audio concurrency strategy.
 
   ```cpp
   OH_AudioSession_Strategy strategy = {CONCURRENCY_MIX_WITH_OTHERS};
@@ -47,7 +47,7 @@ During the activation, specify an [audio session strategy](../../reference/apis-
 
 ## Checking Whether an Audio Session Is Activated
 
-Call [OH_AudioSessionManager_IsAudioSessionActivated](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosessionmanager_isaudiosessionactivated) to check whether an audio session is activated.
+Call [OH_AudioSessionManager_IsAudioSessionActivated](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md#oh_audiosessionmanager_isaudiosessionactivated) to check whether an audio session is activated.
 
   ```cpp
   bool isActivated = OH_AudioSessionManager_IsAudioSessionActivated(audioSessionManager);
@@ -55,7 +55,7 @@ Call [OH_AudioSessionManager_IsAudioSessionActivated](../../reference/apis-audio
 
 ## Deactivating an Audio Session
 
-Call [OH_AudioSessionManager_DeactivateAudioSession](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosessionmanager_deactivateaudiosession) to deactivate an audio session.
+Call [OH_AudioSessionManager_DeactivateAudioSession](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md#oh_audiosessionmanager_deactivateaudiosession) to activate an audio session.
 
   ```cpp
   OH_AudioSessionManager_DeactivateAudioSession(audioSessionManager);
@@ -63,9 +63,9 @@ Call [OH_AudioSessionManager_DeactivateAudioSession](../../reference/apis-audio-
 
 ## Listening for Audio Session Deactivation Events
 
-When using the audio session, you are advised to listen for the [OH_AudioSession_DeactivatedEvent](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_deactivatedevent) event.
+When using the audio session, you are advised to listen for the [OH_AudioSession_DeactivatedEvent](../../reference/apis-audio-kit/capi-ohaudio-oh-audiosession-deactivatedevent.md) event.
 
-When an audio session is deactivated (not proactively), the application receives [OH_AudioSession_DeactivatedEvent](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_deactivatedevent), which contains [OH_AudioSession_DeactivatedReason](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_deactivatedreason).
+When an audio session is deactivated (not proactively), the application receives [OH_AudioSession_DeactivatedEvent](../../reference/apis-audio-kit/capi-ohaudio-oh-audiosession-deactivatedevent.md), which contains [OH_AudioSession_DeactivatedReason](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md#oh_audiosession_deactivatedreason).
 
 Upon this event, the application can perform operations based on service requirements, for example, releasing resources or reactivating the audio session.
 
@@ -87,7 +87,7 @@ Upon this event, the application can perform operations based on service require
 
 ### Registering a Callback to Listen for Audio Session Deactivation Events
 
-Call [OH_AudioSessionManager_RegisterSessionDeactivatedCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosessionmanager_registersessiondeactivatedcallback) to register a callback to listen for audio session deactivation events.
+Call [OH_AudioSessionManager_RegisterSessionDeactivatedCallback](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md#oh_audiosessionmanager_registersessiondeactivatedcallback) to register a callback to listen for audio session deactivation events.
 
 ```cpp
 OH_AudioSessionManager_RegisterSessionDeactivatedCallback(audioSessionManager, MyAudioSessionDeactivatedCallback);
@@ -95,7 +95,7 @@ OH_AudioSessionManager_RegisterSessionDeactivatedCallback(audioSessionManager, M
 
 ### Unregistering the Callback Used to Listen for Audio Session Deactivation Events
 
-Call [OH_AudioSessionManager_UnregisterSessionDeactivatedCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosessionmanager_unregistersessiondeactivatedcallback) to cancel listening for audio session deactivation events.
+Call [OH_AudioSessionManager_UnregisterSessionDeactivatedCallback](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md#oh_audiosessionmanager_unregistersessiondeactivatedcallback) to cancel listening for audio session deactivation events.
 
 ```cpp
 OH_AudioSessionManager_UnregisterSessionDeactivatedCallback(audioSessionManager, MyAudioSessionDeactivatedCallback);

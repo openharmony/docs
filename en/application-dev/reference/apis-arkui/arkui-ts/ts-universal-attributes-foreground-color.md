@@ -26,7 +26,7 @@ Sets the foreground color of the component. If the component does not have a for
 
 foregroundColor(color: Optional\<ResourceColor | ColoringStrategy>)
 
-Sets the foreground color of the component. If the component does not have a foreground color set, it inherits the color from its parent component by default. Compared to [foregroundColor](#foregroundcolor), this API supports the **undefined** type for the **color** parameter.
+Sets the foreground color of the component. If the component does not have a foreground color set, it inherits the color from its parent component by default. Compared with [foregroundColor](#foregroundcolor), this API supports the **undefined** type for the **color** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 

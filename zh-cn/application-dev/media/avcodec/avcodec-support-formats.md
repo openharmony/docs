@@ -1,5 +1,12 @@
 # AVCodec支持的格式
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zhanghongran; @mr-chencxy-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
+<!--Adviser: @zengyawen-->
+
 ## 媒体编解码
 
 ### 视频解码
@@ -10,9 +17,16 @@
 | --------------------- | ---------------- |
 | AVC(H.264)、HEVC(H.265)<!--RP14--><!--RP14End--> | MPEG2、MPEG4、H.263、AVC(H.264)<!--RP12--><!--RP12End--> |
 
-视频解码软/硬件解码存在差异，基于MimeType创建解码器时，<!--RP13-->软解当前仅支持 MPEG2(OH_AVCODEC_MIMETYPE_VIDEO_MPEG2)、MPEG4(OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2)、H.263(OH_AVCODEC_MIMETYPE_VIDEO_H263)、H.264(OH_AVCODEC_MIMETYPE_VIDEO_AVC)，<!--RP13End-->如果硬件平台支持，<!--RP15-->则可以使用H.264(OH_AVCODEC_MIMETYPE_VIDEO_AVC)、H.265(OH_AVCODEC_MIMETYPE_VIDEO_HEVC)<!--RP15End-->硬件解码能力。
+通过MimeType创建解码器时，系统会优先创建硬件解码器实例。如果系统平台不支持或者硬件解码器资源不足时，系统会创建软件解码器实例。
+当前系统支持的软件解码器格式包括：
+- MPEG2(OH_AVCODEC_MIMETYPE_VIDEO_MPEG2)
+- MPEG4(OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2)
+- H.263(OH_AVCODEC_MIMETYPE_VIDEO_H263)
+- H.264(OH_AVCODEC_MIMETYPE_VIDEO_AVC)
+<!--RP13--><!--RP13End-->
 
-每一种解码的能力范围，可以通过[获取支持的编解码能力](obtain-supported-codecs.md)获取。
+系统提供的硬件解码能力和平台硬件能力强相关，开发者可以通过[获取支持的编解码能力](obtain-supported-codecs.md)获取系统硬件解码的能力和能力规格。
+例如可以通过<!--RP15-->OH_AVCODEC_MIMETYPE_VIDEO_AVC、OH_AVCODEC_MIMETYPE_VIDEO_HEVC<!--RP15End-->来查询系统支持的<!--RP16-->H.264、H.265的硬件解码能力。<!--RP16End-->
 
 具体开发指导请参考[视频解码](video-decoding.md)。
 
@@ -92,6 +106,7 @@ DRM解密能力支持的解封装格式：<!--RP10-->mp4(H.264，AAC)、mpeg-ts(
 | amr      | -                     | AMR(amrnb、amrwb) | -             |
 | wav      | -                     | G711mu(pcm-mulaw) 、raw(pcm)| -             |
 | aac      | -                     | AAC               | -             |
+| flac     | -                     | Flac              | jpeg、png、bmp |
 
 > **说明：**
 >
@@ -194,5 +209,15 @@ aac封装格式：
    | OH_MD_KEY_BITRATE                  | 码率                  |  可选  |
    | OH_MD_KEY_PROFILE                  | 编码档次              |  必须  |
    | OH_MD_KEY_AAC_IS_ADTS              | 是否为ADTS格式        |  必须  |
+
+flac封装格式：
+   |                key                 |         描述         |  flac   |
+   | ---------------------------------- | :------------------: | :----: |
+   | OH_MD_KEY_AUD_SAMPLE_RATE          | 采样率                |  必须  |
+   | OH_MD_KEY_AUD_CHANNEL_COUNT        | 声道数                |  必须  |
+   | OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | 输出音频流格式         |  必须  |
+   | OH_MD_KEY_CHANNEL_LAYOUT           | 通道布局              |  可选  |
+   | OH_MD_KEY_BITRATE                  | 码率                  |  可选  |
+   | OH_MD_KEY_CODEC_CONFIG             | 编解码器特定数据       |  可选  |
    
 具体开发指导请参考[媒体数据封装](audio-video-muxer.md)。

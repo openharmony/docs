@@ -1,4 +1,10 @@
 # Enums
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -29,7 +35,7 @@
 
 | 名称                     | 值   | 说明            |
 | ----------------------- | ---- | -------------- |
-| CAMERA_TYPE_DEFAULT     | 0    | 相机类型未指定。  |
+| CAMERA_TYPE_DEFAULT     | 0    | 默认相机类型。  |
 | CAMERA_TYPE_WIDE_ANGLE  | 1    | 广角相机。       |
 | CAMERA_TYPE_ULTRA_WIDE  | 2    | 超广角相机。     |
 | CAMERA_TYPE_TELEPHOTO   | 3    | 长焦相机。       |
@@ -155,7 +161,7 @@
 | 名称                     | 值        | 说明         |
 | ----------------------- | --------- | ------------ |
 | CAMERA_FORMAT_RGBA_8888 | 3         | RGBA_8888格式的图片。        |
-| CAMERA_FORMAT_YUV_420_SP| 1003      | YUV_420_SP格式的图片。      |
+| CAMERA_FORMAT_YUV_420_SP| 1003      | YUV_420_SP格式的图片，对应为NV21格式的图片。      |
 | CAMERA_FORMAT_JPEG      | 2000      | JPEG格式的图片。            |
 | CAMERA_FORMAT_YCBCR_P010<sup>11+</sup> |   2001    | YCBCR_P010格式的图片。      |
 | CAMERA_FORMAT_YCRCB_P010<sup>11+</sup> |   2002    | YCRCB_P010格式的图片。      |
@@ -373,3 +379,32 @@
 | DAYLIGHT       | 4 | 日光 |
 | MANUAL         | 5 | 手动 |
 | LOCKED         | 6 | 锁定  |
+
+## SystemPressureLevel<sup>20+</sup>
+
+枚举，系统压力等级。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                     | 值 | 说明       | 
+|--------------------------|---|------------|
+| SYSTEM_PRESSURE_NORMAL   | 0 | 系统压力正常。 |
+| SYSTEM_PRESSURE_MILD     | 1 | 系统压力升高，但是系统不会主动管控。 |
+| SYSTEM_PRESSURE_SEVERE   | 2 | 系统压力可能对图像总质量、性能产生影响。 |
+| SYSTEM_PRESSURE_CRITICAL | 3 | 系统压力对图像质量、性能产生显著影响。 |
+| SYSTEM_PRESSURE_SHUTDOWN | 4 | 系统压力过高，停止工作。 |
+
+## ControlCenterEffectType<sup>20+</sup>
+
+枚举，相机控制器支持的效果类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称      | 值 | 说明    |
+|-----------|---|---------|
+| BEAUTY    | 0 | 美颜。   |
+| PORTRAIT  | 1 | 人像虚化。|

@@ -30,7 +30,7 @@ API 11
 
 @ohos.fileshare.d.ts中如下接口：[ohos.fileshare.activatePermission](../../../application-dev/reference/apis-core-file-kit/js-apis-fileShare.md)
 
-oh_file_share.h中的NDK接口OH_FileShare_ActivatePermission： [OH_FileShare_ActivatePermission持久化授权激活接口](../../../application-dev/reference/apis-core-file-kit/oh__file__share_8h.md)
+oh_file_share.h中的NDK接口OH_FileShare_ActivatePermission： [OH_FileShare_ActivatePermission持久化授权激活接口](../../../application-dev/reference/apis-core-file-kit/capi-oh-file-share-h.md)
 
 **适配指导**
 

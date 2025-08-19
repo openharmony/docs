@@ -1,8 +1,8 @@
 # @ohos.data.storage (Lightweight Data Storage)
 
-The **DataStorage** module provides applications with data processing capability and allows applications to perform lightweight data storage and query. Data is stored in key-value (KV) pairs. Keys are of the string type, and values can be of the number, string, or Boolean type.
+Lightweight storage provides applications with data processing capability and allows applications to perform lightweight data storage and query. Data is stored in key-value (KV) pairs. Keys are of the string type, and values can be of the number, string, or Boolean type.
 
-> **NOTE**
+> **NOTE**<br/>
 >
 > -  The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
@@ -866,7 +866,7 @@ Subscribes to data changes. The **StorageObserver** needs to be implemented. Whe
 | Name  | Type                                               |  Mandatory| Description                                    |
 | -------- | --------------------------------------------------- | ------ |---------------------------------------- |
 | type     | string                                              |Yes| Event type. The value **change** indicates data change events. |
-| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Yes|Callback used to return the data change.                          |
+| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Yes|Callback used to return the result.                          |
 
 **Example**
 

@@ -1,4 +1,10 @@
 # @ohos.sensor (传感器)
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 sensor模块提供了获取传感器数据的能力，包括获取传感器属性列表，订阅传感器数据，以及一些通用的传感器算法。
 
@@ -752,7 +758,7 @@ try {
 
 on(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, options?: Options): void
 
-订阅计步器传感器数据。
+订阅计步器传感器数据。计步传感器数据上报有一定延迟，延迟时间由具体的实现产品决定。
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION 
 
@@ -1043,7 +1049,7 @@ on(type: 'sensorStatusChange', callback: Callback&lt;SensorStatusEvent&gt;): voi
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| sensorStatusChange     |  固定传入'sensorStatusChange'         | 是   | 状态监听固定参数。             |
+| type     |  'sensorStatusChange'         | 是   | 固定传入'sensorStatusChange',状态监听固定参数。             |
 | callback | Callback&lt;[SensorStatusEvent](#sensorstatusevent19)&gt; | 是   | 回调函数，异步上报的传感器事件数据SensorStatusEvent。 |
 
 **错误码**：
@@ -1741,7 +1747,7 @@ try {
 
 once(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): void
 
-获取一次计步器传感器数据。
+获取一次计步器传感器数据。计步传感器数据上报有一定延迟，延迟时间由具体的实现产品决定。
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION 
 
@@ -1996,7 +2002,7 @@ try {
 
 ### ACCELEROMETER<sup>9+</sup> 
 
-off(type: SensorId.ACCELEROMETER, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;AccelerometerResponse&gt;): void
+off(type: SensorId.ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&gt;): void
 
 取消订阅加速度传感器数据。
 
@@ -2008,11 +2014,10 @@ off(type: SensorId.ACCELEROMETER, sensorInfoParam?: SensorInfoParam, callback?: 
 
 **参数**：
 
-| 参数名                           | 类型                                                         | 必填 | 说明                                                         |
-|-------------------------------| ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type                          | [SensorId](#sensorid9).ACCELEROMETER                         | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER。               |
-| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
-| callback                      | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).ACCELEROMETER                         | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER。               |
+| callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
 
@@ -2094,7 +2099,7 @@ const sensorCallback = (response: sensor.AccelerometerResponse) => {
 }
 // 传感器监听类别
 const sensorType = sensor.SensorId.ACCELEROMETER;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -2235,7 +2240,7 @@ const sensorCallback = (response: sensor.AccelerometerUncalibratedResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.ACCELEROMETER_UNCALIBRATED;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -2370,7 +2375,7 @@ const sensorCallback = (response: sensor.LightResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.AMBIENT_LIGHT;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -2489,7 +2494,7 @@ off(type: SensorId.AMBIENT_TEMPERATURE, sensorInfoParam?: SensorInfoParam, callb
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
@@ -2505,7 +2510,7 @@ const sensorCallback = (response: sensor.AmbientTemperatureResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.AMBIENT_TEMPERATURE;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -2625,7 +2630,7 @@ off(type: SensorId.BAROMETER, sensorInfoParam?: SensorInfoParam, callback?: Call
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
@@ -2641,7 +2646,7 @@ const sensorCallback = (response: sensor.BarometerResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.BAROMETER;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -2761,7 +2766,7 @@ off(type: SensorId.GRAVITY, sensorInfoParam?: SensorInfoParam, callback?: Callba
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
@@ -2777,7 +2782,7 @@ const sensorCallback = (response: sensor.GravityResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.GRAVITY;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -2906,7 +2911,7 @@ off(type: SensorId.GYROSCOPE, sensorInfoParam?: SensorInfoParam, callback?: Call
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
@@ -2922,7 +2927,7 @@ const sensorCallback = (response: sensor.GyroscopeResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.GYROSCOPE;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -3047,7 +3052,7 @@ off(type: SensorId.GYROSCOPE_UNCALIBRATED, sensorInfoParam?: SensorInfoParam, ca
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
@@ -3063,7 +3068,7 @@ const sensorCallback = (response: sensor.GyroscopeUncalibratedResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.GYROSCOPE_UNCALIBRATED;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -3182,7 +3187,7 @@ off(type: SensorId.HALL, sensorInfoParam?: SensorInfoParam, callback?: Callback&
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
@@ -3198,7 +3203,7 @@ const sensorCallback = (response: sensor.HallResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.HALL;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -3323,7 +3328,7 @@ off(type: SensorId.HEART_RATE, sensorInfoParam?: SensorInfoParam, callback?: Cal
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
@@ -3339,7 +3344,7 @@ const sensorCallback = (response: sensor.HeartRateResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.HEART_RATE;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -3458,7 +3463,7 @@ off(type: SensorId.HUMIDITY, sensorInfoParam?: SensorInfoParam, callback?: Callb
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
@@ -3474,7 +3479,7 @@ const sensorCallback = (response: sensor.HumidityResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.HUMIDITY;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -3599,7 +3604,7 @@ off(type: SensorId.LINEAR_ACCELEROMETER, sensorInfoParam?: SensorInfoParam, call
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
@@ -3615,7 +3620,7 @@ const sensorCallback = (response: sensor.LinearAccelerometerResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.LINEAR_ACCELEROMETER;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -3734,7 +3739,7 @@ off(type: SensorId.MAGNETIC_FIELD, sensorInfoParam?: SensorInfoParam, callback?:
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
@@ -3750,7 +3755,7 @@ const sensorCallback = (response: sensor.MagneticFieldResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.MAGNETIC_FIELD;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -3869,7 +3874,7 @@ off(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, sensorInfoParam?: SensorInfoPara
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
@@ -3885,7 +3890,7 @@ const sensorCallback = (response: sensor.MagneticFieldUncalibratedResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4008,7 +4013,7 @@ off(type: SensorId.ORIENTATION, sensorInfoParam?: SensorInfoParam, callback?: Ca
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
@@ -4024,7 +4029,7 @@ const sensorCallback = (response: sensor.OrientationResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.ORIENTATION;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4116,7 +4121,7 @@ try {
   sensor.on(sensor.SensorId.PEDOMETER, callback2);
   // 仅取消callback1的注册
   sensor.off(sensor.SensorId.PEDOMETER, callback1);
-  // 取消注册SensorId.ORIENTATION的所有回调
+  // 取消注册SensorId.PEDOMETER的所有回调
   sensor.off(sensor.SensorId.PEDOMETER);
 } catch (error) {
   let e: BusinessError = error as BusinessError;
@@ -4149,7 +4154,7 @@ off(type: SensorId.PEDOMETER, sensorInfoParam?: SensorInfoParam, callback?: Call
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
@@ -4165,7 +4170,7 @@ const sensorCallback = (response: sensor.PedometerResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.PEDOMETER;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4290,7 +4295,7 @@ off(type: SensorId.PEDOMETER_DETECTION, sensorInfoParam?: SensorInfoParam, callb
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
@@ -4306,7 +4311,7 @@ const sensorCallback = (response: sensor.PedometerDetectionResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.PEDOMETER_DETECTION;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4425,7 +4430,7 @@ off(type: SensorId.PROXIMITY, sensorInfoParam?: SensorInfoParam, callback?: Call
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
@@ -4441,7 +4446,7 @@ const sensorCallback = (response: sensor.ProximityResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.PROXIMITY;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4560,7 +4565,7 @@ off(type: SensorId.ROTATION_VECTOR, sensorInfoParam?: SensorInfoParam, callback?
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
@@ -4576,7 +4581,7 @@ const sensorCallback = (response: sensor.RotationVectorResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.ROTATION_VECTOR;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4695,7 +4700,7 @@ off(type: SensorId.SIGNIFICANT_MOTION, sensorInfoParam?: SensorInfoParam, callba
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
@@ -4711,7 +4716,7 @@ const sensorCallback = (response: sensor.SignificantMotionResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.SIGNIFICANT_MOTION;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4830,7 +4835,7 @@ off(type: SensorId.WEAR_DETECTION, sensorInfoParam?: SensorInfoParam, callback?:
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
@@ -4846,7 +4851,7 @@ const sensorCallback = (response: sensor.WearDetectionResponse) => {
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.WEAR_DETECTION;
-const sensorInfoParam: sensor.SensorInfoParam = {};
+const sensorInfoParam: sensor.SensorInfoParam = { deviceId: -1, sensorIndex: 0 };
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
@@ -4904,7 +4909,7 @@ off(type: 'sensorStatusChange', callback?: Callback&lt;SensorStatusEvent&gt;): v
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| sensorStatusChange     |  固定传入'sensorStatusChange'         | 是   | 状态监听固定参数。             |
+| type     |  'sensorStatusChange'         | 是   | 固定传入'sensorStatusChange',状态监听固定参数。             |
 | callback | Callback&lt;[SensorStatusEvent](#sensorstatusevent19)&gt; | 否   | sensor.on传入的回调函数，不传则取消所有监听。 |
 
 **错误码**：
@@ -4960,7 +4965,7 @@ getSensorListByDeviceSync(deviceId?: number): Array&lt;Sensor&gt;
 
 | 参数名          | 类型                                                         | 必填 | 说明     |
 | --------------- | ------------------------------------------------------------ | ---- |--------|
-| deviceId | number                 | 否   | 设备ID，默认为查询本地设备。 |
+| deviceId | number                 | 否   | 设备ID，默认为查询本地设备，默认值为-1，表示本地设备，其它设备Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。 |
 
 
 **返回值**：
@@ -5002,7 +5007,7 @@ getSingleSensorByDeviceSync(type: SensorId, deviceId?: number): Array&lt;Sensor&
 | 参数名          | 类型                                                         | 必填 | 说明       |
 | --------------- | ------------------------------------------------------------ | ---- |----------|
 | type     | [SensorId](#sensorid9) | 是   | 指定传感器类型。 |
-| deviceId | number                 | 否   | 设备ID，默认为查询本地设备。   |
+| deviceId | number                 | 否   | 设备ID，默认为查询本地设备，默认值为-1，表示本地设备，其它设备Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。 |
 
 
 **返回值**：
@@ -5010,7 +5015,6 @@ getSingleSensorByDeviceSync(type: SensorId, deviceId?: number): Array&lt;Sensor&
 | 类型                                                       | 说明           |
 | ---------------------------------------------------------- | -------------- |
 | Array&lt;[Sensor](#sensor9)&gt;           | 传感器属性列表。                  |
-
 
 **示例**：
 
@@ -5398,10 +5402,11 @@ try {
     }
     if (data.length < 3) {
       console.error("Failed to get angle variation, length" + data.length);
+      return;
     }
     console.info("Z: " + data[0]);
     console.info("X: " + data[1]);
-    console.info("Y  : " + data[2]);
+    console.info("Y: " + data[2]);
   })
 } catch (error) {
   let e: BusinessError = error as BusinessError;
@@ -5462,10 +5467,11 @@ try {
   promise.then((data: Array<number>) => {
     if (data.length < 3) {
       console.error("Failed to get angle variation, length" + data.length);
+      return;
     }
     console.info("Z: " + data[0]);
     console.info("X: " + data[1]);
-    console.info("Y  : " + data[2]);
+    console.info("Y: " + data[2]);
   }, (err: BusinessError) => {
     console.error(`Failed to get angle variation. Code: ${err.code}, message: ${err.message}`);
   });
@@ -5889,11 +5895,11 @@ try {
       console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
     }
   }, (err: BusinessError) => {
-    console.error(`Failed to getOrientatin. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to getOrientation. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
   let e: BusinessError = error as BusinessError;
-  console.error(`Failed to getOrientatin Code: ${e.code}, message: ${e.message}`);
+  console.error(`Failed to getOrientation Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -6053,9 +6059,9 @@ try {
 
 **返回值**：
 
-| 参数名  | 类型                                     | 必填 | 说明             |
-| ------- | ---------------------------------------- | ---- | ---------------- |
-| promise | Promise&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | 是   | Promise对象，使用异步方式返回传感器属性列表。 |
+| 类型                                     | 说明             |
+| ---------------------------------------- | ---------------- |
+| Promise&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | Promise对象，使用异步方式返回传感器属性列表。 |
 
 **错误码**：
 
@@ -6097,9 +6103,9 @@ getSensorListSync(): Array&lt;Sensor&gt;
 
 **返回值**：
 
-| 类型                                    | 必填 | 说明                             |
-| --------------------------------------- | ---- | -------------------------------- |
-| &lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | 是   | 使用同步方式返回传感器属性列表。 |
+| 类型                                    | 说明                             |
+| --------------------------------------- | -------------------------------- |
+| Array&lt;[Sensor](#sensor9)&gt; | 使用同步方式返回传感器属性列表。 |
 
 **错误码**：
 
@@ -6189,9 +6195,9 @@ try {
 
 **返回值**：
 
-| 参数名  | 类型                              | 必填 | 说明                         |
-| ------- | --------------------------------- | ---- | ---------------------------- |
-| promise | Promise&lt;[Sensor](#sensor9)&gt; | 是   | 使用异步方式返回传感器信息。 |
+| 类型                              | 说明                         |
+| --------------------------------- | ---------------------------- |
+| Promise&lt;[Sensor](#sensor9)&gt; | 使用异步方式返回传感器信息。 |
 
 **错误码**：
 
@@ -6238,9 +6244,9 @@ getSingleSensorSync(type: SensorId): Sensor
 
 **返回值**：
 
-| 类型   | 必填 | 说明                         |
-| ------ | ---- | ---------------------------- |
-| Sensor | 是   | 使用同步方式返回传感器信息。 |
+| 类型   | 说明                         |
+| ------ | ---------------------------- |
+| Sensor | 使用同步方式返回传感器信息。 |
 
 **错误码**：
 
@@ -6305,11 +6311,13 @@ try {
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
+**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。
 
-| 参数名 | 类型                   | 必填 | 说明                      |
-| ------ | ---------------------- | ---- |-------------------------|
-| deviceId   | number | 否   | 设备ID：默认值为-1，表示本地设备，其它设备Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。     |
-| sensorIndex   | number | 否   | 传感器索引：默认值为0，为设备上的默认传感器，其它传感器Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。 |
+
+| 名称          | 类型     | 必填 | 说明                                                                                                                                                     |
+|-------------|--------|----|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| deviceId    | number | 否  | 设备ID：默认值为-1，表示本地设备，其它设备Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。<br/>**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。      |
+| sensorIndex | number | 否  | 传感器索引：默认值为0，为设备上的默认传感器，其它传感器Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。<br/>**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。 |
 
 
 ## SensorStatusEvent<sup>19+</sup>
@@ -6318,15 +6326,14 @@ try {
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
-
-| 参数名 | 类型                    | 说明         |
-| ------ | ---------------------- | ------------ |
-| timestamp   | number  | 事件发生的时间戳。 |
-| sensorId   | number   | 传感器ID。 |
-| sensorIndex   | number   | 传感器索引。 |
-| isSensorOnline   | boolean   | 传感器上线或者下线，true为上线，false为下线。 |
-| deviceId   | number   | 设备ID。 |
-| deviceName   | string   | 设备名称。 |
+| 名称             | 类型      | 只读 | 可选 | 说明                          |
+|----------------|---------|----|----|-----------------------------|
+| timestamp      | number  | 是  | 否  | 事件发生的时间戳。                   |
+| sensorId       | number  | 是  | 否  | 传感器ID。                      |
+| sensorIndex    | number  | 是  | 否  | 传感器索引。                      |
+| isSensorOnline | boolean | 是  | 否  | 传感器上线或者下线，true为上线，false为下线。 |
+| deviceId       | number  | 是  | 否  | 设备ID。                       |
+| deviceName     | string  | 是  | 否  | 设备名称。                       |
 
 ## SensorType<sup>(deprecated)</sup>
 
@@ -6384,7 +6391,7 @@ try {
 
 | 名称      | 类型   | 只读 | 可选 | 说明                     |
 | --------- | ------ | ---- | ---- | ------------------------ |
-| timestamp | number | 是   | 是   | 传感器数据上报的时间戳。 |
+| timestamp | number | 是   | 是   | 传感器数据上报的时间戳。从设备开机开始计时到上报数据的时间，单位 : ns。 |
 | accuracy<sup>11+</sup> | [SensorAccuracy](#sensoraccuracy11)<sup>11+</sup> | 是   | 否   | 传感器数据上报的精度挡位值。 |
 
 ## Sensor<sup>9+</sup>
@@ -6708,10 +6715,10 @@ try {
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
-| 名称     | 类型                                                        | 只读 | 可选 | 说明                                                         |
-| -------- | ----------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| 名称     | 类型                                                        | 只读 | 可选 | 说明                                                                                         |
+| -------- | ----------------------------------------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------|
 | interval | number\|[SensorFrequency](#sensorfrequency11)<sup>11+</sup> | 是   | 是   | 表示传感器的上报频率，默认值为200000000ns。该属性有最小值和最大值的限制，由硬件支持的上报频率决定，当设置频率大于最大值时以最大值上报数据，小于最小值时以最小值上报数据。 |
-| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) | 是 | 是 | 传感器传入设置参数，可指定deviceId、sensorIndex |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) | 是 | 是 | 传感器传入设置参数，可指定deviceId、sensorIndex。<br/>**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。                                                         |
 
 ## SensorFrequency<sup>11+</sup>
 
@@ -8025,9 +8032,9 @@ once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientat
 import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, (data: sensor.OrientationResponse) => {
-  console.info('Succeeded in invoking the device rotateing at an angle around the X axis: ' + data.beta);
-  console.info('Succeeded in invoking the device rotateing at an angle around the Y axis: ' + data.gamma);
-  console.info('Succeeded in invoking the device rotateing at an angle around the Z axis: ' + data.alpha);
+  console.info('Succeeded in invoking the device rotating at an angle around the X axis: ' + data.beta);
+  console.info('Succeeded in invoking the device rotating at an angle around the Y axis: ' + data.gamma);
+  console.info('Succeeded in invoking the device rotating at an angle around the Z axis: ' + data.alpha);
 });
 ```
 
@@ -8454,7 +8461,7 @@ off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRate
 import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.HeartRateResponse) {
-  console.info('Succeeded in invoking off. Humidity: ' + data.heartRate);
+  console.info('Succeeded in invoking off. Heart rate: ' + data.heartRate);
 }
 
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, callback);

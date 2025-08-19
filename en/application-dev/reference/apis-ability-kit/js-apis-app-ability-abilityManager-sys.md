@@ -77,7 +77,7 @@ try {
     if (err) {
       console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
     } else {
-      console.log('updateConfiguration success.');
+      console.info('updateConfiguration success.');
     }
   });
 } catch (paramError) {
@@ -139,7 +139,7 @@ const config: Configuration = {
 
 try {
   abilityManager.updateConfiguration(config).then(() => {
-    console.log('updateConfiguration success.');
+    console.info('updateConfiguration success.');
   }).catch((err: BusinessError) => {
     console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
   });
@@ -189,7 +189,7 @@ try {
     if (err) {
       console.error(`getAbilityRunningInfos fail, error: ${JSON.stringify(err)}`);
     } else {
-      console.log(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
+      console.info(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
     }
   });
 } catch (paramError) {
@@ -241,7 +241,7 @@ try {
     if (err) {
       console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
     } else {
-      console.log(`getExtensionRunningInfos success, data: ${JSON.stringify(data)}`);
+      console.info(`getExtensionRunningInfos success, data: ${JSON.stringify(data)}`);
     }
   });
 } catch (paramError) {
@@ -295,7 +295,7 @@ let upperLimit = 10;
 
 try {
   abilityManager.getExtensionRunningInfos(upperLimit).then((data: Array<abilityManager.ExtensionRunningInfo>) => {
-    console.log(`getExtensionRunningInfos success, data: ${JSON.stringify(data)}`);
+    console.info(`getExtensionRunningInfos success, data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
     console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
   });
@@ -342,7 +342,7 @@ abilityManager.getTopAbility((err: BusinessError, data) => {
   if (err) {
     console.error(`getTopAbility fail, err: ${JSON.stringify(err)}`);
   } else {
-    console.log(`getTopAbility success, data: ${JSON.stringify(data)}`);
+    console.info(`getTopAbility success, data: ${JSON.stringify(data)}`);
   }
 });
 ```
@@ -379,7 +379,7 @@ import { abilityManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 abilityManager.getTopAbility().then((data) => {
-  console.log(`getTopAbility success, data: ${JSON.stringify(data)}`);
+  console.info(`getTopAbility success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`getTopAbility fail, err: ${JSON.stringify(err)}`);
 });
@@ -423,7 +423,7 @@ try {
     if (err) {
       console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
     } else {
-      console.log(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
+      console.info(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
     }
   });
 } catch (paramError) {
@@ -473,7 +473,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   abilityManager.acquireShareData(1).then((wantParam: Record<string, Object>) => {
-    console.log(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
+    console.info(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
   }).catch((err: BusinessError) => {
     console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
   });
@@ -537,7 +537,7 @@ try {
     if (err && err.code != 0) {
       console.error(`notifySaveAsResult fail, err: ${JSON.stringify(err)}`);
     } else {
-      console.log(`notifySaveAsResult success`);
+      console.info(`notifySaveAsResult success`);
     }
   });
 } catch (paramError) {
@@ -602,7 +602,7 @@ let abilityResult: common.AbilityResult = {
 let requestCode = 1;
 try {
   abilityManager.notifySaveAsResult(abilityResult, requestCode).then(() => {
-    console.log(`notifySaveAsResult success`);
+    console.info(`notifySaveAsResult success`);
   }).catch((err: BusinessError) => {
     console.error(`notifySaveAsResult fail, err: ${JSON.stringify(err)}`);
   });
@@ -651,7 +651,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: abilityManager.AbilityForegroundStateObserver = {
   onAbilityStateChanged(abilityStateData) {
-    console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+    console.info(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
   },
 };
 try {
@@ -703,7 +703,7 @@ let observer_: abilityManager.AbilityForegroundStateObserver | undefined;
 // 1. Register an observer to listen for ability start or exit events.
 let observer: abilityManager.AbilityForegroundStateObserver = {
   onAbilityStateChanged(abilityStateData: abilityManager.AbilityStateData) {
-    console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+    console.info(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
   },
 };
 try {
@@ -764,7 +764,7 @@ abilityManager.getForegroundUIAbilities((err: BusinessError, data: Array<ability
   if (err) {
     console.error(`Get foreground ui abilities failed, error: ${JSON.stringify(err)}`);
   } else {
-    console.log(`Get foreground ui abilities data is: ${JSON.stringify(data)}`);
+    console.info(`Get foreground ui abilities data is: ${JSON.stringify(data)}`);
   }
 });
 ```
@@ -804,7 +804,7 @@ import { abilityManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 abilityManager.getForegroundUIAbilities().then((data: Array<abilityManager.AbilityStateData>) => {
-  console.log(`Get foreground ui abilities data is: ${JSON.stringify(data)}`);
+  console.info(`Get foreground ui abilities data is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
   console.error(`Get foreground ui abilities failed, error: ${JSON.stringify(error)}`);
 });
@@ -860,7 +860,7 @@ export default class UiExtAbility extends UIExtensionAbility {
     }
     let status = abilityManager.UserStatus.ASSERT_TERMINATE;
     abilityManager.notifyDebugAssertResult(sessionId, status).then(() => {
-      console.log('notifyDebugAssertResult success.');
+      console.info('notifyDebugAssertResult success.');
     }).catch((err: BusinessError) => {
       console.error(`notifyDebugAssertResult failed, error: ${JSON.stringify(err)}`);
     });
@@ -955,7 +955,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202 | Not a system application. |
 | 401 | Parameter error. Possible cause: 1.Non empty package name needs to be provided, 2.The second parameter needs to provide a Boolean type setting value |
 | 16000050 | Internal error. |
-| 16200006 | The caller application can only set the resident status of the configured process |
+| 16200006 | The caller application can only set the resident status of the configured process. |
 
 **Example**
 
@@ -968,7 +968,7 @@ try {
   let enable: boolean = false;
   abilityManager.setResidentProcessEnabled(residentProcessBundleName, enable)
     .then(() => {
-      console.log('setResidentProcessEnabled success.');
+      console.info('setResidentProcessEnabled success.');
     })
     .catch((err: BusinessError) => {
       console.error(`setResidentProcessEnabled fail, err: ${JSON.stringify(err)}`);
@@ -990,8 +990,8 @@ Describes the rule for launching an embedded atomic service.
 
 | Name| Type| Read-Only| Optional| Description|
 | -------- | ---------| ---- | ---- | --------- |
-| isOpenAllowed | boolean   | Yes  | No  | Whether launching the atomic service is allowed. The value **true** means that launching the atomic service is allowed, and **false** means the opposite.|
-| isEmbeddedAllowed | boolean   | Yes  | No | Whether launching the embedded atomic service is allowed. The value **true** means that launching the embedded atomic service is allowed, and **false** means the opposite.|
+| isOpenAllowed | boolean   | No  | No  | Whether launching the atomic service is allowed. The value **true** means that launching the atomic service is allowed, and **false** means the opposite.|
+| isEmbeddedAllowed | boolean   | No  | No | Whether launching the embedded atomic service is allowed. The value **true** means that launching the embedded atomic service is allowed, and **false** means the opposite.|
 
 ## abilityManager.queryAtomicServiceStartupRule<sup>18+</sup>
 
@@ -1048,3 +1048,31 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+
+## ExtensionRunningInfo
+
+type ExtensionRunningInfo = _ExtensionRunningInfo
+
+Defines the level-2 module ExtensionRunningInfo.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo-sys.md) | ExtensionRunningInfo, a level-2 module that provides running information of an ExtensionAbility.|
+
+## AbilityForegroundStateObserver<sup>11+</sup>
+
+type AbilityForegroundStateObserver = _AbilityForegroundStateObserver.default
+
+Defines the level-2 module AbilityForegroundStateObserver.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_AbilityForegroundStateObserver.default](js-apis-inner-application-abilityForegroundStateObserver-sys.md) | AbilityForegroundStateObserver, a level-2 module that defines a listener to observe application foreground and background state changes.|

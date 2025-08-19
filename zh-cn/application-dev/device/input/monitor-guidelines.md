@@ -45,7 +45,7 @@ target_link_libraries(entry PUBLIC libohinput.so)
 
 ### 创建事件监听
 
-#### 按键事件
+- **按键事件**
 
 ```c++
 #include "multimodalinput/oh_input_manager.h"
@@ -66,7 +66,7 @@ void OnKeyEventCallback(const Input_KeyEvent* keyEvent)
     event.actionTime = OH_Input_GetKeyEventActionTime(keyEvent);
 }
 
-void TestMonitor()
+void TestKeyEventMonitor()
 {
     //添加按键事件监听
     Input_Result ret = OH_Input_AddKeyEventMonitor(OnKeyEventCallback);
@@ -75,7 +75,7 @@ void TestMonitor()
 }
 ```
 
-#### 鼠标事件
+- **鼠标事件**
 
 ```c++
 #include "multimodalinput/oh_input_manager.h"
@@ -104,7 +104,7 @@ void OnMouseEventCallback(const Input_MouseEvent* mouseEvent)
     event.actionTime = OH_Input_GetMouseEventActionTime(mouseEvent);
 }
 
-void TestMonitor()
+void TestMouseEventMonitor()
 {
     //添加鼠标事件监听
     Input_Result ret = OH_Input_AddMouseEventMonitor(OnMouseEventCallback);
@@ -113,7 +113,7 @@ void TestMonitor()
 }
 ```
 
-#### 触摸事件
+- **触摸事件**
 
 ```c++
 #include "multimodalinput/oh_input_manager.h"
@@ -138,7 +138,7 @@ void OnTouchEventCallback(const Input_TouchEvent* touchEvent)
     event.actionTime = OH_Input_GetTouchEventActionTime(touchEvent);
 }
 
-void TestMonitor()
+void TestTouchEventMonitor()
 {
     //添加触摸事件监听
     Input_Result ret = OH_Input_AddTouchEventMonitor(OnTouchEventCallback);
@@ -147,7 +147,7 @@ void TestMonitor()
 }
 ```
 
-#### 轴事件
+- **轴事件**
 
 ```c++
 #include "multimodalinput/oh_input_manager.h"
@@ -246,7 +246,7 @@ void OnScrollAxisEventCallback(const Input_AxisEvent* axisEvent)
     event.axisValues.insert(std::make_pair(AXIS_TYPE_SCROLL_HORIZONTAL, value));
 }
 
-void TestMonitor()
+void TestAxisEventMonitor()
 {
     //添加所有类型轴事件监听
     Input_Result ret = OH_Input_AddAxisEventMonitorForAll(OnAllAxisEventCallback);

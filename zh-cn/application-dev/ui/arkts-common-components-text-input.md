@@ -1,4 +1,10 @@
 # 文本输入 (TextInput/TextArea)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @kangshihui-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 
 TextInput、TextArea是输入框组件，用于响应用户输入，比如评论区的输入、聊天框的输入、表格的输入等，也可以结合其它组件构建功能页面，例如登录注册页面。具体用法请参考[TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)、[TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)。
@@ -160,49 +166,89 @@ TextInput有以下类型可选择：Normal基本输入模式、Password密码输
 > [onWillChange](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#onwillchange15)的回调时序晚于onWillInsert、onWillDelete，早于onDidInsert、onDidDelete。
 
 ```ts
-TextInput({ text: this.text, placeholder: 'input your word...', controller: this.controller })
-  .type(InputType.Password)
-  .showPassword(this.passwordState)
-  .onChange((value: string) => {
-    // 文本内容发生变化时触发该回调
-    console.info('onChange is triggering: ', value);
-  })
-  .onSubmit((enterKey: EnterKeyType, event: SubmitEvent) => {
-    // 按下输入法回车键时触发该回调
-    console.info('onSubmit is triggering: ', enterKey, event.text);
-  })
-  .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
-    // 文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调
-    console.info('onTextSelectionChange is triggering: ', selectionStart, selectionEnd);
-  })
-  .onSecurityStateChange((isShowPassword: boolean) => {
-    // 密码显隐状态切换时，触发该回调
-    console.info('onSecurityStateChange is triggering: ', isShowPassword);
-    this.passwordState = isShowPassword;
-  })
-  .onWillInsert((info: InsertValue) => {
-    // 在将要输入时，触发该回调
-    console.info('onWillInsert is triggering: ', info.insertValue, info.insertOffset);
-    return true;
-  })
-  .onDidInsert((info: InsertValue) => {
-    // 在输入完成时，触发该回调
-    console.info('onDidInsert is triggering: ', info.insertValue, info.insertOffset);
-  })
-  .onWillDelete((info: DeleteValue) => {
-    // 在将要删除时，触发该回调
-    console.info('onWillDelete is triggering: ', info.deleteValue, info.deleteOffset);
-    return true;
-  })
-  .onDidDelete((info: DeleteValue) => {
-    // 在删除完成时，触发该回调
-    console.info('onDidDelete is triggering: ', info.deleteValue, info.deleteOffset);
-  })
-  .onFocus(() => {
-    //绑定通用事件，输入框获焦时触发该回调
-    console.info('onFocus is triggering')
-  })
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State text: string = '';
+  @State textStr1: string = '';
+  @State textStr2: string = '';
+  @State textStr3: string = '';
+  @State textStr4: string = '';
+  @State textStr5: string = '';
+  @State textStr6: string = '';
+  @State textStr7: string = '';
+  @State textStr8: string = '';
+  @State textStr9: string = '';
+  @State passwordState: boolean = false;
+  controller: TextInputController = new TextInputController();
+
+  build() {
+    Row() {
+      Column() {
+        Text(`${this.textStr1}\n${this.textStr2}\n${this.textStr3}
+        \n${this.textStr4}\n${this.textStr5}\n${this.textStr6}
+        \n${this.textStr7}\n${this.textStr8}\n${this.textStr9}`)
+          .fontSize(20)
+        TextInput({ text: this.text, placeholder: 'input your word...', controller: this.controller })
+          .type(InputType.Password)
+          .showPassword(this.passwordState)
+          .onChange((value: string) => {
+            // 文本内容发生变化时触发该回调
+            console.info('onChange is triggering: ', value);
+            this.textStr1 = `onChange is triggering: ${value}`;
+          })
+          .onSubmit((enterKey: EnterKeyType, event: SubmitEvent) => {
+            // 按下输入法回车键时触发该回调
+            console.info('onSubmit is triggering: ', enterKey, event.text);
+            this.textStr2 = `onSubmit is triggering: ${enterKey} ${event.text}`;
+          })
+          .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
+            // 文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调
+            console.info('onTextSelectionChange is triggering: ', selectionStart, selectionEnd);
+            this.textStr3 = `onTextSelectionChange is triggering: ${selectionStart} ${selectionEnd}`;
+          })
+          .onSecurityStateChange((isShowPassword: boolean) => {
+            // 密码显隐状态切换时，触发该回调
+            console.info('onSecurityStateChange is triggering: ', isShowPassword);
+            this.passwordState = isShowPassword;
+            this.textStr4 = `onSecurityStateChange is triggering: ${isShowPassword}`;
+          })
+          .onWillInsert((info: InsertValue) => {
+            // 在将要输入时，触发该回调
+            console.info('onWillInsert is triggering: ', info.insertValue, info.insertOffset);
+            this.textStr5 = `onWillInsert is triggering: ${info.insertValue} ${info.insertOffset}`;
+            return true;
+          })
+          .onDidInsert((info: InsertValue) => {
+            // 在输入完成时，触发该回调
+            console.info('onDidInsert is triggering: ', info.insertValue, info.insertOffset);
+            this.textStr6 = `onDidInsert is triggering: ${info.insertValue} ${info.insertOffset}`;
+          })
+          .onWillDelete((info: DeleteValue) => {
+            // 在将要删除时，触发该回调
+            console.info('onWillDelete is triggering: ', info.deleteValue, info.deleteOffset);
+            this.textStr7 = `onWillDelete is triggering: ${info.deleteValue} ${info.deleteOffset}`;
+            return true;
+          })
+          .onDidDelete((info: DeleteValue) => {
+            // 在删除完成时，触发该回调
+            console.info('onDidDelete is triggering: ', info.deleteValue, info.deleteOffset);
+            this.textStr8 = `onDidDelete is triggering: ${info.deleteValue} ${info.deleteOffset}`;
+          })
+          .onFocus(() => {
+            // 绑定通用事件，输入框获焦时触发该回调
+            console.info('onFocus is triggering')
+            this.textStr9 = `onFocus is triggering`;
+          })
+      }.width('100%')
+    }
+    .height('100%')
+  }
+}
 ```
+
+![text_input_event](figures/text_input_event.gif)
 
 ## 选中菜单
 
@@ -222,7 +268,7 @@ TextArea({text : '这是一段文本，用来展示选中菜单'})
 
 ## 禁用系统服务类菜单
 
-从API version 20开始，支持使用[disableSystemServiceMenuItems](../reference/apis-arkui/js-apis-arkui-UIContext.md#disablesystemservicemenuitems20)方法屏蔽文本选择菜单中的所有系统服务菜单项。
+从API version 20开始，支持使用[disableSystemServiceMenuItems](../reference/apis-arkui/arkts-apis-uicontext-textmenucontroller.md#disablesystemservicemenuitems20)方法屏蔽文本选择菜单中的所有系统服务菜单项。
 
   ```ts
   import { TextMenuController } from '@kit.ArkUI';
@@ -268,7 +314,7 @@ TextArea({text : '这是一段文本，用来展示选中菜单'})
 
   ![TextInput_disable_system_service_menu_items](figures/TextInput_disable_system_service_menu_items.gif)
 
-从API version 20开始，支持使用[disableMenuItems](../reference/apis-arkui/js-apis-arkui-UIContext.md#disablemenuitems20)方法屏蔽文本选择菜单中指定的系统服务菜单项。
+从API version 20开始，支持使用[disableMenuItems](../reference/apis-arkui/arkts-apis-uicontext-textmenucontroller.md#disablemenuitems20)方法屏蔽文本选择菜单中指定的系统服务菜单项。
 
   ```ts
   import { TextMenuController } from '@kit.ArkUI';
@@ -404,7 +450,7 @@ struct Index {
 
 ## 光标避让
 
-[keyBoardAvoidMode](../reference/apis-arkui/js-apis-arkui-UIContext.md#keyboardavoidmode11)枚举中的OFFSET和RESIZE在键盘抬起后，不支持二次避让。如果想要支持光标位置在点击或者通过接口设置变化后发生二次避让，可以考虑使用OFFSET_WITH_CARET和RESIZE_CARET替换原有的OFFSET和RESIZE模式。<br>
+[keyBoardAvoidMode](../reference/apis-arkui/arkts-apis-uicontext-e.md#keyboardavoidmode11)枚举中的OFFSET和RESIZE在键盘抬起后，不支持二次避让。如果想要支持光标位置在点击或者通过接口设置变化后发生二次避让，可以考虑使用OFFSET_WITH_CARET和RESIZE_CARET替换原有的OFFSET和RESIZE模式。<br>
 对于滚动容器更推荐使用RESIZE_WITH_CARET，非滚动容器应该使用OFFSET_WITH_CARET。
 
 ```ts
@@ -470,4 +516,4 @@ struct Index {
 
 针对文本输入开发，有以下相关实例可供参考：
 
-- [聊天实例应用（ArkTS）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat#%E8%81%8A%E5%A4%A9%E5%AE%9E%E4%BE%8B%E5%BA%94%E7%94%A8)
+- [聊天实例应用（ArkTS）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat#%E8%81%8A%E5%A4%A9%E5%AE%9E%E4%BE%8B%E5%BA%94%E7%94%A8)

@@ -1,4 +1,10 @@
 # SceneResource
+<!--Kit: ArkGraphics 3D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @zzhao0-->
+<!--SE: @zdustc-->
+<!--TSE: @zhangyue283-->
+
 The SceneResource module provides basic resource types in 3D graphics.
 
 > **NOTE**
@@ -71,7 +77,7 @@ function destroy() : void {
 ```
 
 ## Shader
-Shader resource, which inherits from [SceneResource](#sceneresource).
+Shader resource, which inherits from [SceneResource](#sceneresource-1).
 
 ### Properties
 
@@ -111,7 +117,7 @@ Controls the transparency of materials.
 
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
-| enabled | boolean | No| No| Whether the transparency of the material is enabled. The value **true** means that the transparency is enabled, and **false** means the opposite.|
+| enabled | boolean | No| No| Whether the transparency of the material is enabled. **true** if enabled, **false** otherwise.|
 
 ## RenderSort<sup>20+</sup>
 Describes the order in which materials are rendered, controlling the sequence of drawing in the rendering pipeline.
@@ -126,7 +132,7 @@ Describes the order in which materials are rendered, controlling the sequence of
 | renderSortLayerOrder | number | No| Yes| Rendering order of different objects within the same rendering layer. A smaller value indicates an earlier rendering order. The value range is [0, 255]. The default value is **0**.|
 
 ## Material
-Material resource, which inherits from [SceneResource](#sceneresource).
+Material resource, which inherits from [SceneResource](#sceneresource-1).
 
 ### Properties
 
@@ -135,7 +141,7 @@ Material resource, which inherits from [SceneResource](#sceneresource).
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
 | materialType | [MaterialType](#materialtype) | Yes| No| Type of the material.|
-| shadowReceiver<sup>20+</sup> | boolean | No| Yes| Whether the material receives shadows. The value **true** means that the material receives shadows, and **false** means the opposite. The default is **false**.|
+| shadowReceiver<sup>20+</sup> | boolean | No| Yes| Whether the material receives shadows. **true** if the material receives shadows, **false** otherwise. The default is **false**.|
 | cullMode<sup>20+</sup> | [CullMode](#cullmode20) | No| Yes| Culling mode of the material, which can be used to determine whether to cull front or back faces. The default value is **BACK**.|
 | blend<sup>20+</sup> | [Blend](#blend20) | No| Yes| Whether the material is transparent. The default value is **false**.|
 | alphaCutoff<sup>20+</sup> | number | No| Yes| Threshold of the alpha channel. If the alpha of a pixel is greater than or equal to this threshold, the pixel is rendered; otherwise, the pixel is not rendered. Setting a value less than **1** enables this mode. The value range is [0, 1]. The default value is **1**.|
@@ -219,7 +225,6 @@ Describes the sampling modes used during texture sampling.
 | mipMapMode | [SamplerFilter](#samplerfilter20) | No| Yes| Sampling modes between different texture resolutions. The default value is **LINEAR**.|
 | addressModeU | [SamplerAddressMode](#sampleraddressmode20) | No| Yes| Sampling mode of the texture in the U (horizontal) direction. The default value is **REPEAT**.|
 | addressModeV | [SamplerAddressMode](#sampleraddressmode20) | No| Yes| Sampling mode of the texture in the V (vertical) direction. The default value is **REPEAT**.|
-| addressModeW | [SamplerAddressMode](#sampleraddressmode20) | No| Yes| Sampling mode of the texture in the W (depth) direction. The default value is **REPEAT**.|
 
 ## SubMesh
 Sub-mesh resource.
@@ -245,7 +250,7 @@ Defines the deformation of 3D models by adjusting the weights of different defor
 | targets | Record<string, number> | Yes| No| Used to store the names and weights of deformation targets. The weight value is usually within the range of [0.0, 1.0].|
 
 ## Mesh
-Mesh resource, which inherits from [SceneResource](#sceneresource).
+Mesh resource, which inherits from [SceneResource](#sceneresource-1).
 ### Properties
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
@@ -257,22 +262,22 @@ Mesh resource, which inherits from [SceneResource](#sceneresource).
 | materialOverride | [Material](#material) | No| Yes| Material. The default value is undefined.|
 
 ## MeshResource<sup>18+</sup>
-Mesh resource, which inherits from [SceneResource](#sceneresource).
+Mesh resource, which inherits from [SceneResource](#sceneresource-1).
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
 
 ## Animation
-Animation resource, which inherits from [SceneResource](#sceneresource).
+Animation resource, which inherits from [SceneResource](#sceneresource-1).
 ### Properties
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
 
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
-| enabled | boolean | No| No| Whether the animation is enabled. The value **true** means that the animation can be played, and **false** means the opposite.|
+| enabled | boolean | No| No| Whether the animation is enabled. **true** if enabled, **false** otherwise.|
 | speed<sup>20+</sup> | number | No| Yes| Playback speed factor of the animation. The default value is **1.0**, indicating that the animation is played at normal speed. If the value is negative, the animation plays in reverse.|
-| duration | number | Yes| No| Duration of the animation. The value is greater than or equal to 0.|
-| running | boolean | Yes| No| Running status of the animation. The value **true** means that the animation is being played, and **false** means the opposite.|
+| duration | number | Yes| No| Animation duration, in seconds. The value must be greater than or equal to 0.|
+| running | boolean | Yes| No| Whether the animation is running. **true** if running, **false** otherwise.|
 | progress | number | Yes| No| Playing progress of the animation. The value range is [0, 1].|
 
 ### onFinished
@@ -500,7 +505,7 @@ Enumerates the environment background types, which are used to define how the ba
 | BACKGROUND_EQUIRECTANGULAR | 3 | Equirectangular background.|
 
 ## Environment
-Environment resource, which inherits from [SceneResource](#sceneresource).
+Environment resource, which inherits from [SceneResource](#sceneresource-1).
 ### Properties
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
@@ -516,12 +521,12 @@ Environment resource, which inherits from [SceneResource](#sceneresource).
 | irradianceCoefficients | [Vec3](js-apis-inner-scene-types.md#vec3)[] | No| Yes| Irradiance coefficients. The default value is undefined.|
 
 ## Image
-Image resource, which inherits from [SceneResource](#sceneresource).
+Image resource, which inherits from [SceneResource](#sceneresource-1).
 ### Properties
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
 
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
-| width | number | Yes| No| Image width. The value is greater than 0.|
-| height | number | Yes| No| Image height. The value is greater than 0.|
+| width | number | Yes| No| Image width, in px. The value must be greater than 0.|
+| height | number | Yes| No| Image height, in px. The value must be greater than 0.|

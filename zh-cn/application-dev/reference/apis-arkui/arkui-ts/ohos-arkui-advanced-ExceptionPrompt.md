@@ -1,4 +1,10 @@
 # ExceptionPrompt
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fengluochenai-->
+<!--Designer: @YanSanzo-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @HelloCrease-->
 
 
 异常提示，适用于有异常需要提示异常内容的情况。
@@ -245,7 +251,7 @@ struct Index1 {
 
 ### 示例3（设置Symbol类型图标）
 
-该示例通过设置PromptOptions的属性symbolStyle，展示了自定义Symbol类型图标。
+从API version 18开始，该示例通过设置PromptOptions的属性symbolStyle，展示了自定义Symbol类型图标。
 
 ```ts
 import { ExceptionPrompt, MarginType, SymbolGlyphModifier } from '@kit.ArkUI';

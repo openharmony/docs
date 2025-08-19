@@ -1,4 +1,10 @@
 # Checkbox
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @houguobiao-->
+<!--Designer: @houguobiao-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 提供多选框组件，通常用于某选项的打开或关闭。
 
@@ -36,11 +42,11 @@ Checkbox(options?: CheckboxOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 类型 | 必填  | 说明 |
-| --------| --------| ------ | -------- |
-| name    | string | 否 | 指定多选框名称。 <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| group   | string | 否 | 用于指定多选框所属群组的名称（即所属CheckboxGroup的名称）。<br/>**说明：** <br/>未配合使用[CheckboxGroup](ts-basic-components-checkboxgroup.md)组件时，此值无用。 <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 否 | 配置多选框的选中样式为自定义组件。自定义组件与Checkbox组件为中心点对齐显示。indicatorBuilder设置为undefined/null时，默认为indicatorBuilder未设置状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| 名称  | 类型 | 只读 | 可选 | 说明 |
+| --------| --------| ------ | -------- | -------- |
+| name    | string | 否 | 是 | 指定多选框名称。 <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| group   | string | 否 | 是 | 用于指定多选框所属群组的名称（即所属CheckboxGroup的名称）。<br/>**说明：** <br/>未配合使用[CheckboxGroup](ts-basic-components-checkboxgroup.md)组件时，此值无用。 <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 否 | 是 | 配置多选框的选中样式为自定义组件。自定义组件与Checkbox组件为中心点对齐显示。indicatorBuilder设置为undefined/null时，默认为indicatorBuilder未设置状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## 属性
 
@@ -86,7 +92,7 @@ select(isSelected: Optional\<boolean>)
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| isSelected | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 多选框是否选中。<br/>当isSelected的值为undefined时取默认值false。<br/>值为true时，多选框被选中。值为false时，多选框未选中。 |
+| isSelected | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 多选框是否选中。<br/>当isSelected的值为undefined时取默认值false。<br/>值为true时，多选框被选中。值为false时，多选框未选中。 |
 
 ### selectedColor
 
@@ -122,7 +128,7 @@ selectedColor(resColor: Optional\<ResourceColor>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 多选框选中状态颜色。<br/>当resColor的值为undefined时取默认值$r('sys.color.ohos_id_color_text_primary_activated')。<br/>异常值按照默认值处理。 |
+| resColor | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 多选框选中状态颜色。<br/>当resColor的值为undefined时取默认值$r('sys.color.ohos_id_color_text_primary_activated')。<br/>异常值按照默认值处理。 |
 
 ### unselectedColor<sup>10+</sup>
 
@@ -154,7 +160,7 @@ unselectedColor(resColor: Optional\<ResourceColor>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 多选框非选中状态边框颜色。<br/>当resColor的值为undefined时取默认值$r('sys.color.ohos_id_color_switch_outline_off')|
+| resColor | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 多选框非选中状态边框颜色。<br/>当resColor的值为undefined时取默认值$r('sys.color.ohos_id_color_switch_outline_off')|
 
 ### mark<sup>10+</sup>
 
@@ -186,7 +192,7 @@ mark(style: Optional\<MarkStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[MarkStyle](ts-types.md#markstyle10对象说明)> | 是   | 多选框内部图标样式。 设置了indicatorBuilder时，按照indicatorBuilder中的内容显示。<br/>当style的值为undefined时，默认值：{<br/>strokeColor : `$r('sys.color.ohos_id_color_foreground_contrary')`,<br/>strokeWidth: `$r('sys.float.ohos_id_checkbox_stroke_width')`,<br/>size: '20vp'<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[MarkStyle](ts-types.md#markstyle10对象说明)> | 是   | 多选框内部图标样式。 设置了indicatorBuilder时，按照indicatorBuilder中的内容显示。<br/>当style的值为undefined时，默认值：{<br/>strokeColor : `$r('sys.color.ohos_id_color_foreground_contrary')`,<br/>strokeWidth: `$r('sys.float.ohos_id_checkbox_stroke_width')`,<br/>size: '20vp'<br/>} |
 
 ### shape<sup>11+</sup>
 
@@ -222,7 +228,7 @@ shape(shape: Optional\<CheckBoxShape>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| shape  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CheckBoxShape](ts-appendix-enums.md#checkboxshape11)> | 是   | CheckBox组件形状，包括圆形和圆角方形。<br/>当shape的值为undefined时，默认值为CheckBoxShape.CIRCLE。 |
+| shape  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[CheckBoxShape](ts-appendix-enums.md#checkboxshape11)> | 是   | CheckBox组件形状，包括圆形和圆角方形。<br/>当shape的值为undefined时，默认值为CheckBoxShape.CIRCLE。 |
 
 ### contentModifier<sup>12+</sup>
 
@@ -254,7 +260,7 @@ contentModifier(modifier: Optional<ContentModifier\<CheckBoxConfiguration>>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| modifier | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ContentModifier\<CheckBoxConfiguration>](#checkboxconfiguration12对象说明)> | 是   | 在CheckBox组件上，定制内容区的方法。<br/>modifier：内容修改器，开发者需要自定义class实现ContentModifier接口。<br/>当modifier的值为undefined时，不使用内容修改器。 |
+| modifier | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ContentModifier\<CheckBoxConfiguration>](#checkboxconfiguration12对象说明)> | 是   | 在CheckBox组件上，定制内容区的方法。<br/>modifier：内容修改器，开发者需要自定义class实现ContentModifier接口。<br/>当modifier的值为undefined时，不使用内容修改器。 |
 
 ## 事件
 
@@ -294,7 +300,7 @@ onChange(callback: Optional\<OnCheckboxChangeCallback>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnCheckboxChangeCallback](#oncheckboxchangecallback18)> | 是   | 返回选中的状态。<br/>当callback的值为undefined时，不使用回调函数。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[OnCheckboxChangeCallback](#oncheckboxchangecallback18)> | 是   | 返回选中的状态。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ## OnCheckboxChangeCallback<sup>18+</sup>
 
@@ -563,7 +569,7 @@ struct CheckboxExample {
 
 ### 示例5（获取多选框选中信息）
 
-该示例通过选中checkbox以及checkboxGroup多选框来获取选中的信息。
+该示例通过选中Checkbox以及CheckboxGroup多选框来获取选中的信息。
 
 ```ts
 // xxx.ets
@@ -720,3 +726,215 @@ struct CheckboxExample {
 ```
 
 ![checkbox5](figures/checkbox5.gif)
+
+### 示例6（设置滑动多选）
+
+该示例通过设置手势事件实现Checkbox滑动多选。
+
+```ts
+// xxx.ets
+import { componentUtils, ComponentUtils, UIContext } from '@kit.ArkUI';
+import { LinkedList } from '@kit.ArkTS';
+
+@Entry
+@Component
+struct Index {
+  @State isChoosing: boolean = false;
+  @State selectedStart: number = -1;
+  @State @Watch('onSelectedEndChange') selectedEnd: number = -1;
+  selectedPhotos: LinkedList<number> = new LinkedList();
+  @State selectedList: number[] = [];
+  @State image: Resource[] =
+    [$r("app.media.imageOne"), $r('app.media.imageTwo'), $r('app.media.imageThree'), $r('app.media.imageFour')]; // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
+  private selectedState: SelectedState = SelectedState.None;
+  private componentUtils: ComponentUtils = this.getUIContext().getComponentUtils();
+  private listScroller: ListScroller = new ListScroller();
+  private currentOffsetY: number = 0;
+
+  onChange() {
+    console.info('change successful');
+  }
+
+  getSpeed(fingerY: number, edge: number) {
+    return 150 * 150 * (fingerY - edge) / 2000 / Math.abs(fingerY - edge);
+  }
+
+  getIndex(fingerX: number, fingerY: number) {
+    let rect: componentUtils.ComponentInfo | null = null;
+    for (let i = 0; i < 100; i++) {
+      let uiContext: UIContext = this.getUIContext();
+      rect = this.componentUtils.getRectangleById(`stack${i}`);
+      const x1 = uiContext.px2vp(rect.windowOffset.x);
+      const x2 = uiContext.px2vp(rect.windowOffset.x + rect.size.width);
+      const y1 = uiContext.px2vp(rect.windowOffset.y);
+      const y2 = uiContext.px2vp(rect.windowOffset.y + rect.size.height);
+      if (x1 <= fingerX && fingerX < x2 && y1 <= fingerY && fingerY < y2) {
+        return i;
+      }
+    }
+    return this.selectedEnd;
+  }
+
+  onSelectedEndChange() {
+    let start: number = -1;
+    let end: number = -1;
+    if (this.selectedEnd > this.selectedStart) {
+      start = this.selectedStart;
+      end = this.selectedEnd;
+    } else {
+      end = this.selectedStart;
+      start = this.selectedEnd;
+    }
+    if (this.selectedState == SelectedState.Selected) {
+      for (let i = start; i <= end; i++) {
+        if (!this.selectedPhotos.has(i)) {
+          this.selectedPhotos.add(i);
+        }
+      }
+    } else if (this.selectedState == SelectedState.Remove) {
+      for (let i = start; i <= end; i++) {
+        if (this.selectedPhotos.has(i)) {
+          this.selectedPhotos.remove(i);
+        }
+      }
+    }
+    this.selectedList = this.selectedPhotos.convertToArray();
+  }
+
+  scroll(fingerY: number) {
+    if (fingerY > 700 && !this.listScroller.isAtEnd()) {
+      this.listScroller.scrollBy(0, this.getSpeed(fingerY, 700));
+      return;
+    }
+    if (fingerY < 200 && this.currentOffsetY > 0) {
+      this.listScroller.scrollBy(0, this.getSpeed(fingerY, 200));
+      return;
+    }
+  }
+
+  onPanGestureUpdate(event: GestureEvent) {
+    const fingerInfo = event.fingerList[event.fingerList.length - 1];
+    const fingerX = fingerInfo.globalX;
+    const fingerY = fingerInfo.globalY;
+    this.selectedEnd = this.getIndex(fingerX, fingerY);
+    this.scroll(fingerY);
+  }
+
+  build() {
+    Column() {
+      if (this.isChoosing) {
+        Row() {
+          Text('取消')
+            .onClick(() => {
+              this.isChoosing = false;
+              this.selectedStart = -1;
+              this.selectedEnd = -1;
+              this.selectedPhotos.clear();
+              this.selectedList = [];
+            })
+        }
+        .width('100%')
+        .justifyContent(FlexAlign.SpaceEvenly)
+      }
+      List({ space: 10, scroller: this.listScroller }) {
+        ForEach(Array.from({ length: 100 }), (item: string, index: number) => {
+          ListItem() {
+            Stack({ alignContent: Alignment.TopEnd }) {
+              Image(this.image[(index % 4)])
+                .width('100%')
+                .draggable(false)
+              Checkbox({ name: index.toString() })
+                .shape(CheckBoxShape.CIRCLE)
+                .visibility(this.isChoosing ? Visibility.Visible : Visibility.None)
+                .select(this.selectedList.includes(index))
+            }
+            .id(`stack${index}`)
+            .width('100%')
+          }
+          .draggable(false)
+        }, (item: string, index: number) => 'listItem' + index)
+      }
+      .id('list')
+      .height('100%')
+      .width('100%')
+      .lanes(4)
+      .alignListItem(ListItemAlign.Center)
+      .onDidScroll(() => {
+        this.currentOffsetY = this.listScroller.currentOffset().yOffset;
+      })
+      .gesture(
+        GestureGroup(GestureMode.Exclusive,
+          GestureGroup(GestureMode.Sequence,
+            LongPressGesture()
+              .onAction(() => {
+                this.isChoosing = true;
+              }),
+            PanGesture()
+              .onActionStart(event => {
+                if (!this.isChoosing) {
+                  return;
+                }
+                const fingerInfo = event.fingerList[event.fingerList.length - 1];
+                const fingerX = fingerInfo.globalX;
+                const fingerY = fingerInfo.globalY;
+                this.selectedStart = this.getIndex(fingerX, fingerY);
+                if (this.selectedPhotos.has(this.selectedStart)) {
+                  this.selectedState = SelectedState.Remove;
+                } else {
+                  this.selectedState = SelectedState.Selected;
+                }
+              })
+              .onActionUpdate(event => {
+                if (!this.isChoosing) {
+                  return;
+                }
+                this.onPanGestureUpdate(event);
+              })
+              .onActionEnd(() => {
+                if (!this.isChoosing) {
+                  return;
+                }
+                this.selectedState = SelectedState.None;
+              })
+          ),
+          PanGesture()
+            .onActionStart(event => {
+              if (!this.isChoosing) {
+                return;
+              }
+              const fingerInfo = event.fingerList[event.fingerList.length - 1];
+              const fingerX = fingerInfo.globalX;
+              const fingerY = fingerInfo.globalY;
+              this.selectedStart = this.getIndex(fingerX, fingerY);
+              if (this.selectedPhotos.has(this.selectedStart)) {
+                this.selectedState = SelectedState.Remove;
+              } else {
+                this.selectedState = SelectedState.Selected;
+              }
+            })
+            .onActionUpdate(event => {
+              if (!this.isChoosing) {
+                return;
+              }
+              this.onPanGestureUpdate(event);
+            })
+            .onActionEnd(() => {
+              if (!this.isChoosing) {
+                return;
+              }
+              this.selectedState = SelectedState.None;
+            })
+        )
+      )
+    }
+  }
+}
+
+enum SelectedState {
+  None,
+  Selected,
+  Remove
+}
+```
+
+![checkbox6](figures/checkbox6.gif)

@@ -1,5 +1,13 @@
 # Ability Kit（程序框架服务）<!--ability-kit-->
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @jayleehw-->
+<!--Designer: @jayleehw-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+
 - [Ability Kit简介](abilitykit-overview.md)
 - [应用模型](application-models.md)
 - Stage模型开发指导<!--stage-model-development-->
@@ -20,11 +28,11 @@
       - [UIServiceExtension（仅对系统应用开放）](uiserviceextension-sys.md)
       - [UIExtensionAbility（仅对系统应用开放）](uiextensionability.md)
       - [AutoFillExtensionAbility（仅对系统应用开放）](autofillextensionablility-guide.md)
+      - [使用通过UIServiceExtensionAbility实现的系统悬浮窗](uiserviceextension.md)
       <!--DelEnd-->
-      - [UIServiceExtension](uiserviceextension.md)
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
       - [使用AppServiceExtensionAbility实现后台服务](app-service-extension-ability.md)
-    - [AbilityStage组件容器](abilitystage.md)
+    - [AbilityStage组件管理器](abilitystage.md)
     - [应用上下文Context](application-context-stage.md)
     - 信息传递载体Want<!--want-->
       - [Want概述](want-overview.md)
@@ -33,6 +41,7 @@
       - [常见action与entities（不推荐使用）](actions-entities.md)
     - [组件启动规则（Stage模型）](component-startup-rules.md)
     - [应用启动框架AppStartup](app-startup.md)
+    - [应用预加载](preload-application.md)
     - [获取应用异常退出原因](ability-exit-info-record.md)
     <!--Del-->
     - 应用组件跨设备交互（流转）<!--hop-->
@@ -79,6 +88,7 @@
       - [意图开发概述](insight-intent-definition.md)
       - [使用配置文件开发意图](insight-intent-config-development.md)
       - [使用装饰器开发意图](insight-intent-decorator-development.md)
+      - [附录：标准意图接入规范](insight-intent-access-specifications.md)
     - [调试意图](insight-intent-debug.md)
 - FA模型开发指导<!--fa-model-development-->
   - [FA模型开发概述](fa-model-development-overview.md)
@@ -160,3 +170,4 @@
 - Native子进程开发指导<!--native-childprocess-development-->
     - [创建Native子进程](capi_nativechildprocess_development_guideline.md)
     - [获取Native子进程退出信息](capi-nativechildprocess-exit-info.md)
+- [Ability Kit术语](ability-terminology.md)

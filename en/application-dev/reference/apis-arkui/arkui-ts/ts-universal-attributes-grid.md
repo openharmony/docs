@@ -10,6 +10,8 @@
 
 ## Attributes
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name       | Type                                                    | Description                                                        |
 | ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | useSizeType<sup>(deprecated) </sup> | {<br>xs?: number \| { span: number, offset: number },<br>sm?: number \| { span: number, offset: number },<br>md?: number \| { span: number, offset: number },<br>lg?: number \| { span: number, offset: number }<br>} | Number of occupied columns and offset columns for a specific device width type. **span** indicates the number of occupied columns, and **offset** indicates the number of offset columns.<br>If the value is of the number type, only the number of columns can be set. If the value is in the format of {"span": 1, "offset": 0}, both the number of occupied columns and the number of offset columns need to be set.<br>- **xs** indicates that the device width type is **SizeType.XS**.<br>- **sm** indicates that the device width type is **SizeType.SM**.<br>- **md** indicates that the device width type is **SizeType.MD**.<br>- **lg** indicates that the device width type is **SizeType.LG**.<br>This attribute is deprecated since API version 9. You are advised to use [GridCol](ts-container-gridcol.md) and [GridRow](ts-container-gridrow.md) instead.|

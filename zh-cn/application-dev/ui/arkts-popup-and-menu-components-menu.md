@@ -1,4 +1,11 @@
 # 菜单控制（Menu）
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @Armstrong15-->
+<!--Designer: @zhanghaibo0-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
+
 Menu是菜单接口，一般用于鼠标右键弹窗、点击弹窗等。具体用法请参考[菜单控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)。
 
 使用[bindContextMenu](../reference//apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu12)并设置预览图，菜单弹出时有蒙层，此时为模态。
@@ -42,7 +49,7 @@ Button('click for Menu')
 
 ```ts
 class Tmp {
-  iconStr2: ResourceStr = $r("app.media.view_list_filled");
+  iconStr2: ResourceStr = $r("app.media.view_list_filled"); // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
 
   set(val: Resource) {
     this.iconStr2 = val;
@@ -134,7 +141,7 @@ Button('click for Menu')
 菜单从API version 18开始支持振动效果。菜单弹出时，默认不振动。若希望菜单弹出时有振动效果，可以通过[ContextMenuOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#contextmenuoptions10)的hapticFeedbackMode属性，设置菜单弹出时的振动模式。
 
 - 只有一级菜单可配置弹出时振动效果。
-- 仅当应用具备ohos.permission.VIBRATE权限，且用户启用了触感反馈时才会生效。开启触控反馈时，需要在工程的module.json5中配置[声明权限](../security/AccessToken/declare-permissions.md#声明权限)的requestPermissions字段开启振动权限，配置如下：
+- 仅当应用具备ohos.permission.VIBRATE权限，且用户启用了触感反馈时才会生效。开启触控反馈时，需要在工程的module.json5中配置[声明权限](../security/AccessToken/declare-permissions.md)的requestPermissions字段开启振动权限，配置如下：
 
   ```json
   "requestPermissions": [
@@ -162,7 +169,7 @@ Button('click for Menu')
 @Component
 struct Index {
   @State message: string = 'Hello World';
-  private iconStr: Resource = $r('app.media.startIcon');
+  private iconStr: Resource = $r('app.media.startIcon'); // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
   @State index: number = 0;
   @State arrayStr: Array<string> = ['上半屏', '中轴', '下半屏'];
   @State enableHoverMode: boolean | undefined = true;
@@ -311,7 +318,7 @@ struct DirectiveMenuExample {
     Column() {
       Menu() {
         MenuItemGroup() {
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 1", labelInfo: "" })
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 1", labelInfo: "" }) // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 2", labelInfo: "" })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 3", labelInfo: "" })
         }

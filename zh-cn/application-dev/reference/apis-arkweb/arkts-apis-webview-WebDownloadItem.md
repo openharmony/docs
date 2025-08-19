@@ -1,10 +1,18 @@
 # Class (WebDownloadItem)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
  表示下载任务，您可以使用此对象来操作相应的下载任务。
 
 > **说明：**
 >
-> - 本模块接口从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块首批接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 本Class首批接口从API version 11开始支持。
 >
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 >
@@ -158,7 +166,7 @@ getPercentComplete(): number
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| number | 下载完成的进度，100代表下载完成。 |
+| number | 下载完成的进度，100代表下载完成，-1代表进度未知。 |
 
 **示例：**
 
@@ -223,7 +231,7 @@ getTotalBytes(): number
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| number | 待下载文件的总长度。 |
+| number | 待下载文件的总长度，-1代表总大小未知。 |
 
 **示例：**
 

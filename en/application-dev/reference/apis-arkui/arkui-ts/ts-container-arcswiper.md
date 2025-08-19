@@ -24,7 +24,7 @@ This component can contain child components.
 
 >  **NOTE**
 >
->  - Built-in components and custom components are allowed, with support for ([if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)) rendering control.
+>  - Allowed child component types: built-in and custom components, including rendering control types ([if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md), [ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md), and [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)).
 >- Do not add or delete child components during a page turning animation. Doing so may result in child components not yet animated entering the viewport in advance and causing display exceptions.
 
 ## APIs
@@ -142,7 +142,7 @@ Sets the sensitivity to the digital crown rotation.
 
 | Name| Type                                                       | Mandatory| Description                                               |
 | ------ | ----------------------------------------------------------- | ---- | --------------------------------------------------- |
-| sensitivity  | Optional\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | Yes  | Sensitivity to the digital crown rotation.<br>Default value: **CrownSensitivity.LOW**|
+| sensitivity  | Optional\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | Yes  | Sensitivity to the digital crown rotation.<br>Default value: **CrownSensitivity.MEDIUM**.|
 
 ### effectMode
 
@@ -402,7 +402,7 @@ Defines the callback to notify the application when the index of the currently d
 
 type AnimationStartHandler = (index: number, targetIndex: number, event: SwiperAnimationEvent) => void
 
-Defines the callback triggered when the switching animation starts.
+Defines the callback triggered when the page transition animation starts.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -420,7 +420,7 @@ Defines the callback triggered when the switching animation starts.
 
 type AnimationEndHandler = (index: number, event: SwiperAnimationEvent) => void
 
-Defines the callback triggered when the switching animation ends.
+Defines the callback triggered when the page transition animation ends.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -476,7 +476,7 @@ When the **ArcSwiper** component is used together with **LazyForEach**, the subp
 
 onAnimationStart(handler: Optional\<AnimationStartHandler>)
 
-Triggered when the switching animation starts.
+Triggered when the page transition animation starts.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -486,15 +486,15 @@ Triggered when the switching animation starts.
 
 | Name | Type                                                      | Mandatory| Description                  |
 | ------- | ---------------------------------------------------------- | ---- | ---------------------- |
-| handler | [Optional\<AnimationStartHandler>](#animationstarthandler) | Yes  | Triggered when the switching animation starts.|
+| handler | [Optional\<AnimationStartHandler>](#animationstarthandler) | Yes  | Triggered when the page transition animation starts.|
 
 ### onAnimationEnd
 
 onAnimationEnd(handler: Optional\<AnimationEndHandler>)
 
-Triggered when the switching animation ends.
+Triggered when the page transition animation ends.
 
-This event is triggered when the switching animation of the **ArcSwiper** component ends, whether it is caused by gesture interruption or by calling **finishAnimation** through SwiperController. The **index** parameter indicates the index after the animation ends. When the **ArcSwiper** component contains multiple columns, the index is of the leftmost element.
+This event is triggered when the page transition animation of the **ArcSwiper** component ends, whether it is caused by gesture interruption or by calling **finishAnimation** through **SwiperController**. The **index** parameter indicates the index after the animation ends. When the **ArcSwiper** component contains multiple columns, the index is of the leftmost element.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -504,7 +504,7 @@ This event is triggered when the switching animation of the **ArcSwiper** compon
 
 | Name | Type                                                  | Mandatory| Description                      |
 | ------- | ------------------------------------------------------ | ---- | -------------------------- |
-| handler | [Optional\<AnimationEndHandler>](#animationendhandler) | Yes  | Triggered when the switching animation ends.|
+| handler | [Optional\<AnimationEndHandler>](#animationendhandler) | Yes  | Triggered when the page transition animation ends.|
 
 ### onGestureSwipe
 
@@ -526,9 +526,9 @@ Triggered on a frame-by-frame basis when the page is turned by a swipe.
 
 customContentTransition(transition: Optional\<SwiperContentAnimatedTransition>)
 
-Defines a custom switching animation. You can define custom animation attributes, such as **opacity**, **scale**, and **translate**, in the callback invoked on a frame-by-frame basis during the swiping-initiated page switching animation.
+Defines a custom page transition animation. During finger-following swipes and post-release transition animations, this triggers a frame-by-frame callback for all pages in the viewport, allowing you to customize animations by modifying properties like opacity, scale, and translation.
 
-During the swiping-initiated page switching animation, the [SwiperContentTransitionProxy](#swipercontenttransitionproxy) callback is invoked for all pages in the viewport on a frame-by-frame basis. For example, when there are two pages whose subscripts are 0 and 1 in the viewport, two callbacks whose indexes are 0 and 1 are invoked in each frame.
+During finger-following swipes and post-release transition animations, the [SwiperContentTransitionProxy](#swipercontenttransitionproxy) callback is invoked for all pages in the viewport on a frame-by-frame basis. For example, when there are two pages whose subscripts are 0 and 1 in the viewport, two callbacks whose indexes are 0 and 1 are invoked in each frame.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -538,11 +538,11 @@ During the swiping-initiated page switching animation, the [SwiperContentTransit
 
 | Name    | Type                                                        | Mandatory| Description                             |
 | ---------- | ------------------------------------------------------------ | ---- | --------------------------------- |
-| transition | Optional\<[SwiperContentAnimatedTransition](#swipercontentanimatedtransition)> | Yes  | Information about the custom switching animation.|
+| transition | Optional\<[SwiperContentAnimatedTransition](#swipercontentanimatedtransition)> | Yes  | Information about the custom page transition animation.|
 
 ## SwiperContentAnimatedTransition
 
-Provides the information about the custom switching animation.
+Provides the information about the custom page transition animation.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -550,12 +550,12 @@ Provides the information about the custom switching animation.
 
 | Name| Type| Read Only| Optional| Description|
 | ------ | ---- | ---- | ---- | ---- |
-| timeout | number | No| Yes| Timeout for the custom switching animation. The timeout timer starts when the default animation (page scrolling) reaches the point where the first frame is moved out of the viewport. If you do not call the **finishTransition** API of [SwiperContentTransitionProxy](#swipercontenttransitionproxy) before the timer expires, the component considers that the custom animation of the page ends and immediately removes the page node from the render tree. The unit is ms. The default value is **0**.|
-| transition | Callback\<[SwiperContentTransitionProxy](#swipercontenttransitionproxy)> | No| No| Content of the custom switching animation.|
+| timeout | number | No| Yes| Timeout for the custom page transition animation. The timeout timer starts when the default animation (page scrolling) reaches the point where the first frame is moved out of the viewport. If you do not call the **finishTransition** API of [SwiperContentTransitionProxy](#swipercontenttransitionproxy) before the timer expires, the component considers that the custom animation of the page ends and immediately removes the page node from the render tree. The unit is ms. The default value is **0**.|
+| transition | Callback\<[SwiperContentTransitionProxy](#swipercontenttransitionproxy)> | No| No| Content of the custom page transition animation.|
 
 ## SwiperContentTransitionProxy
 
-Implements the proxy object returned during the execution of the custom switching animation of the **ArcSwiper** component. You can use this object to obtain the page information in the custom animation viewport. You can also call the **finishTransition** API of this object to notify the **ArcSwiper** component that the custom animation has finished playing.
+Implements the proxy object returned during the execution of the custom page transition animation of the **ArcSwiper** component. You can use this object to obtain the page information in the custom animation viewport. You can also call the **finishTransition** API of this object to notify the **ArcSwiper** component that the custom animation has finished playing.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -598,26 +598,27 @@ This example demonstrates the basic functionality of the **ArcSwiper** component
 ```ts
 // xxx.ets
 import {
+  CircleShape,
   ArcSwiper,
   ArcSwiperAttribute,
   ArcDotIndicator,
   ArcDirection,
   ArcSwiperController
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 class MyDataSource implements IDataSource {
-  private list: Color[] = []
+  private list: Color[] = [];
 
   constructor(list: Color[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): Color {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -630,19 +631,21 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct TestNewInterface {
-  @State itemSimpleColor: Color | number | string = ''
-  @State selectedItemSimpleColor: Color | number | string = ''
-  private wearableSwiperController: ArcSwiperController = new ArcSwiperController()
-  private arcDotIndicator: ArcDotIndicator = new ArcDotIndicator()
-  private data: MyDataSource = new MyDataSource([])
-  @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.White, Color.Gray, Color.Orange, Color.Transparent]
+  @State itemSimpleColor: Color | number | string = '';
+  @State selectedItemSimpleColor: Color | number | string = '';
+  private wearableSwiperController: ArcSwiperController = new ArcSwiperController();
+  private arcDotIndicator: ArcDotIndicator = new ArcDotIndicator();
+  private data: MyDataSource = new MyDataSource([]);
+  @State backgroundColors: Color[] =
+    [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.White, Color.Gray, Color.Orange, Color.Transparent];
+  innerSelectedIndex: number = 0;
 
   aboutToAppear(): void {
-    let list: Color[] = []
+    let list: Color[] = [];
     for (let i = 1; i <= 6; i++) {
       list.push(i);
     }
-    this.data = new MyDataSource(this.backgroundColors)
+    this.data = new MyDataSource(this.backgroundColors);
   }
 
   build() {
@@ -658,7 +661,7 @@ struct TestNewInterface {
               .fontSize(30)
           })
         }
-        .clip(new Circle({ width: 233, height: 233 }))
+        .clipShape(new CircleShape({ width: 233, height: 233 }))
         .effectMode(EdgeEffect.None)
         .backgroundColor(Color.Transparent)
         .index(0)
@@ -672,18 +675,37 @@ struct TestNewInterface {
         .disableSwipe(false)
         .digitalCrownSensitivity(CrownSensitivity.MEDIUM)
         .onChange((index: number) => {
-          console.info("onChange:" + index.toString())
+          console.info("onChange:" + index.toString());
         })
         .onAnimationStart((index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => {
-          console.info("index: " + index)
-          console.info("targetIndex: " + targetIndex)
-          console.info("current offset: " + extraInfo.currentOffset)
-          console.info("target offset: " + extraInfo.targetOffset)
-          console.info("velocity: " + extraInfo.velocity)
+          this.innerSelectedIndex = targetIndex;
+          console.info("index: " + index);
+          console.info("targetIndex: " + targetIndex);
+          console.info("current offset: " + extraInfo.currentOffset);
+          console.info("target offset: " + extraInfo.targetOffset);
+          console.info("velocity: " + extraInfo.velocity);
+        })
+        .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
+          others: Array<GestureRecognizer>): GestureJudgeResult => { // When the implementation is about to succeed, set the recognizer enabling state based on the current component state.
+          if (current) {
+            let target = current.getEventTargetInfo();
+            if (target && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
+              // Check whether the ArcSwiper has scrolled to the beginning: swiperTarget.isBegin() or innerSelectedIndex === 0.
+              let swiperTarget = target as ScrollableTargetInfo
+              if (swiperTarget instanceof ScrollableTargetInfo &&
+                (swiperTarget.isBegin() || this.innerSelectedIndex === 0)) {
+                let panEvent = event as PanGestureEvent;
+                if (panEvent && panEvent.offsetX > 0 && (swiperTarget.isBegin() || this.innerSelectedIndex === 0)) {
+                  return GestureJudgeResult.REJECT;
+                }
+              }
+            }
+          }
+          return GestureJudgeResult.CONTINUE;
         })
         .onAnimationEnd((index: number, extraInfo: SwiperAnimationEvent) => {
-          console.info("index: " + index)
-          console.info("current offset: " + extraInfo.currentOffset)
+          console.info("index: " + index);
+          console.info("current offset: " + extraInfo.currentOffset);
         })
         .disableTransitionAnimation(false)
       }.height('100%')

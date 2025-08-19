@@ -1,10 +1,10 @@
 # Accessibility
 
-You can set accessibility attributes and events for components.
+You can set accessibility attributes and events for components to fully leverage accessibility features.
 
 >  **NOTE**
 >
->  The APIs of this module are supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
+>  The initial APIs of this module are supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## accessibilityGroup
 
@@ -12,7 +12,7 @@ accessibilityGroup(value: boolean)
 
 Sets whether to enable accessibility grouping. When accessibility grouping is enabled, the component and all its children are treated as a single selectable unit, and the accessibility service will no longer focus on the individual child components.
 
-If accessibility grouping is enabled and the component does not contain a universal text attribute or an [accessibility text](#accessibilitytext) attribute, the system will concatenate the universal text attributes of its child components to form a merged text for the component. If a child component lacks a universal text attribute, it will be ignored in the concatenation process. The merged text will not use the accessibility text of the child components.
+If accessibility grouping is enabled for a component that does not contain a universal text attribute or an [accessibility text](#accessibilitytext) attribute, the system will concatenate the universal text attributes of its child components to generate merged text for the component. Child components without universal text attributes will be ignored during concatenation, and their accessibility text (if any) won't be used in the merged text.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -24,17 +24,17 @@ If accessibility grouping is enabled and the component does not contain a univer
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to enable accessibility grouping. When accessibility grouping is enabled, the component and all its children are treated as a single selectable unit, and the accessibility service will no longer focus on the individual child components.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to enable accessibility grouping. The value **true** means to enable accessibility grouping, and **false** means the opposite. When accessibility grouping is enabled, the component and all its children are treated as a single selectable unit, and the accessibility service will no longer focus on the individual child components.<br>Default value: **false**|
 
 ## accessibilityGroup<sup>14+</sup>
 
 accessibilityGroup(isGroup: boolean, accessibilityOptions: AccessibilityOptions)
 
-Sets whether to enable accessibility grouping, with support for prioritizing the concatenation of accessibility text for accessibility announcement. When accessibility grouping is enabled, the component and all its children are treated as a single selectable entity, and the accessibility service will no longer focus on the individual child components.
+Sets whether to enable accessibility grouping. When accessibility grouping is enabled, the component and all its children are treated as a single selectable unit, and the accessibility service will no longer focus on the individual child components.
 
-If accessibility grouping is enabled and the component does not contain a universal text attribute or an [accessibility text](#accessibilitytext) attribute, the system will concatenate the universal text attributes of its child components to form a merged text for the component. If a child component lacks a universal text attribute, it will be ignored in the concatenation process.
+If accessibility grouping is enabled for a component that does not contain a universal text attribute or an [accessibility text](#accessibilitytext) attribute, the system will concatenate the universal text attributes of its child components to generate merged text for the component. Child components without universal text attributes will be ignored during concatenation.
 
-When **accessibilityPreferred** is set to **true**, the system will prioritize concatenating the accessibility text attributes of the child components to form the merged text. If a child component lacks an accessibility text attribute, the system will continue to concatenate its universal text attribute. If a child component lacks both, it will be ignored.
+When **accessibilityPreferred** is set to **true**, the system will prioritize concatenating the accessibility text attributes of the child components. If a child component has no accessibility text set, its universal text attribute will be used instead. Components without either attribute will be excluded from concatenation.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 14.
 
@@ -46,8 +46,8 @@ When **accessibilityPreferred** is set to **true**, the system will prioritize c
 
 | Name              | Type                                                   | Mandatory| Description                                                        |
 | -------------------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isGroup              | boolean                                                 | Yes  | Whether to enable accessibility grouping. When accessibility grouping is enabled, the component and all its children are treated as a single selectable unit, and the accessibility service will no longer focus on the individual child components.<br>Default value: **false**|
-| accessibilityOptions | [AccessibilityOptions](#accessibilityoptions14) | Yes  | Options for accessibility grouping. When **accessibilityPreferred** is set to **true**, the system will prioritize concatenating the accessibility text attributes of the child components to form the merged text.<br>Default value: **false**           |
+| isGroup              | boolean                                                 | Yes  | Whether to enable accessibility grouping. The value **true** means to enable accessibility grouping, and **false** means the opposite. When accessibility grouping is enabled, the component and all its children are treated as a single selectable unit, and the accessibility service will no longer focus on the individual child components.<br>Default value: **false**|
+| accessibilityOptions | [AccessibilityOptions](#accessibilityoptions14) | Yes  | Options for accessibility grouping. When **accessibilityPreferred** is set to **true**, the system will prioritize concatenating accessibility text for screen readers. When **accessibilityPreferred** is set to **false**, accessibility text will not be prioritized.<br>Default value: **false**           |
 
 ## AccessibilityOptions<sup>14+</sup>
 
@@ -55,7 +55,7 @@ When **accessibilityPreferred** is set to **true**, the system will prioritize c
 
 | Name                  | Type   | Mandatory| Description                                                        |
 | ---------------------- | ------- | ---- | ------------------------------------------------------------ |
-| accessibilityPreferred | boolean | No  | Whether to prioritize the accessibility text of child components during a deep traversal. The value **true** means to prioritize the accessibility text of child components.<br>If a child component's accessibility text is empty, the accessibility service uses the component's own text content. The concatenated text is then assigned to the parent node if both its accessibility text and text content are empty.<br>Default value: **false**|
+| accessibilityPreferred | boolean | No  | Whether to prioritize the accessibility text of child components during a deep traversal. The value **true** means to prioritize the accessibility text of child components.<br>If a child component's accessibility text is empty, the accessibility service uses the component's own text content. The concatenated text is then assigned to the parent node if both its accessibility text and text content are empty.<br>The value **false** means not to prioritize the accessibility text of child components.<br>Default value: **false**|
 
 ## accessibilityText
 
@@ -218,41 +218,7 @@ Sets the role type of the accessibility component, which affects how the compone
 
 | Name  | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| role | [AccessibilityRoleType](ts-universal-attributes-accessibility.md#AccessibilityRoleType18) | Yes  | Role of the component as announced by screen readers (for example, button or chart). You can define custom roles.|
-
-## onAccessibilityFocus<sup>18+</sup>
-
-onAccessibilityFocus(callback: AccessibilityFocusCallback)
-
-Triggered when the accessibility component gains or loses focus. Callback triggered when the component gains or loses focus.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 18.
-
-**Atomic service API**: This API can be used in atomic services since API version 18.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name  | Type   | Mandatory| Description                                                        |
-| -------- | ------- | ---- | ------------------------------------------------------------ |
-| callback | [AccessibilityFocusCallback](ts-universal-attributes-accessibility.md#AccessibilityFocusCallback18) | Yes  | Callback that notifies the registered component of focus and blur events.|
-
-## AccessibilityFocusCallback<sup>18+</sup>
-
-type AccessibilityFocusCallback = (isFocus: boolean) => void
-
-Defines the callback type used in **onAccessibilityFocus**.
-
-**Atomic service API**: This API can be used in atomic services since API version 18.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name | Type   | Mandatory| Description             |
-| ------ | ------ | ---- | ---------------- |
-| isFocus | boolean | Yes| Whether the component has gained or lost focus.|
+| role | [AccessibilityRoleType](ts-universal-attributes-accessibility.md#accessibilityroletype18) | Yes  | Role of the component as announced by screen readers (for example, button or chart). You can define custom roles.|
 
 ## AccessibilityRoleType<sup>18+</sup>
 
@@ -430,7 +396,7 @@ Sets whether the component is the default initial focus for screen readers on th
 
 accessibilityUseSamePage(pageMode: AccessibilitySamePageMode)
 
-Solves focus jumping issues in sub-tree scenarios like UIExtensionComponent. Sets the same-page mode for this UIExtensionComponent and the host application. This property is intended to solve focus jumping issues in sub-tree scenarios. Due to the timing of page events sent by the UIExtensionComponent and the host application, focus may jump from one component to another, causing "focus jumping."
+Solves focus jumping issues in sub-tree scenarios for cross-process embedded components, such as **UIExtensionComponent**. Focus jumping occurs when the timing of page events from the embedded component's process conflicts with those of the host application, causing focus to unexpectedly shift between components.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -442,11 +408,11 @@ Solves focus jumping issues in sub-tree scenarios like UIExtensionComponent. Set
 
 | Name  | Type                                                        | Mandatory| Description                                            |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
-| pageMode | [AccessibilitySamePageMode](#accessibilitysamepagemode18) | Yes  | Same-page mode for the current UIExtensionComponent and the host application.|
+| pageMode | [AccessibilitySamePageMode](#accessibilitysamepagemode18) | Yes  | Same-page mode for the cross-process embedded component and the host application.|
 
 ## AccessibilitySamePageMode<sup>18+</sup>
 
-Enumerates the same-page modes for the current UIExtensionComponent and the host application.
+Enumerates the same-page modes for cross-process embedded components and their host applications.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -454,8 +420,8 @@ Enumerates the same-page modes for the current UIExtensionComponent and the host
 
 | Name       | Value  | Description                                                        |
 | ----------- | ---- | ------------------------------------------------------------ |
-| SEMI_SILENT | 0    | Ignores page events if it is the first page load or if the root node of the page sends the page event.|
-| FULL_SILENT | 1    | Ignores all page events in the UIExtensionComponent.                                     |
+| SEMI_SILENT | 0    | Ignores initial page loading events and root node page events from the cross-process embedded component.|
+| FULL_SILENT | 1    | Ignores all page events from the cross-process embedded component.                                     |
 
 ## accessibilityScrollTriggerable<sup>18+</sup>
 
@@ -493,21 +459,22 @@ Sets the text hint for the component, which can be queried by accessibility serv
 | -------------- | ------- | ---- | ------------------------------------------------------------ |
 | value  | string | Yes  | Text hint for the component, which can be queried by accessibility services.|
 
-## accessibilityFocusDrawLevel<sup>18+</sup>
+## accessibilityFocusDrawLevel<sup>19+</sup>
 
 accessibilityFocusDrawLevel(drawLevel: FocusDrawLevel)
 
-Sets the drawing level for the accessibility focus highlight (green box) to ensure it is visible and not obscured by other components.
+Sets the drawing level for the accessibility focus highlight frame.
+
 > **NOTE**
 >
-> 1. By default, the accessibility focus highlight (green box) is drawn at the same level as the focused component. This can sometimes result in the highlight being obscured or clipped by parent components or siblings with higher z-order.
+> 1. By default, the accessibility focus highlight frame is drawn at the same level as the focused component. This can sometimes result in the frame being obscured or clipped by parent components or siblings with higher z-order.
 >
-> 2. Setting the drawing level to the topmost layer ensures that the accessibility focus highlight is not obscured by other components. This is useful when you want the highlight to be clearly visible at all times. However, this setting may not be suitable if you need to interact with components that should overlay the currently focused component and you do not want the accessibility highlight to be visible.
+> 2. Setting the drawing level to the topmost layer ensures that the accessibility focus highlight frame is not obscured by other components. This is useful when you want the highlight frame to be clearly visible at all times. However, this setting may not be suitable if you need to interact with components that should overlay the currently focused component and you do not want the accessibility highlight to be visible.
 
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 18.
+**Widget capability**: This API can be used in ArkTS widgets since API version 19.
 
-**Atomic service API**: This API can be used in atomic services since API version 18.
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -515,13 +482,15 @@ Sets the drawing level for the accessibility focus highlight (green box) to ensu
 
 | Name  | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| drawLevel | [FocusDrawLevel](ts-appendix-enums.md#focusdrawlevel18) | Yes  | Drawing level for the accessibility focus highlight.|
+| drawLevel | [FocusDrawLevel](ts-appendix-enums.md#focusdrawlevel19) | Yes  | Drawing level for the accessibility focus highlight frame.|
 
-## Example 1: Setting Accessibility Text and Description
+## Example
+
+### Example 1: Setting Accessibility Text and Description
 
 This example demonstrates how to use **accessibilityText** and **accessibilityDescription** to customize the content announced by screen readers.
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -549,7 +518,7 @@ struct Index {
       .accessibilityGroup(true)
       .accessibilityLevel("yes")
       .accessibilityText("Group") // If a component has both text content and accessibility text, only the accessibility text is announced.
-      .accessibilityDescription("The Column component is selectable , and the text to be read out is "Group".)
+      .accessibilityDescription("The Column component can be selected, and the announced content is 'Group'")
       .accessibilityVirtualNode(this.customAccessibilityNode)
       .accessibilityChecked(true)
       .accessibilitySelected(undefined)
@@ -559,11 +528,11 @@ struct Index {
 }
 ```
 
-## Example 2: Setting the Accessibility Group
+### Example 2: Setting the Accessibility Group
 
 This example shows how to use **accessibilityGroup** to prioritize reading the accessibility text of child components.
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -578,11 +547,10 @@ struct Focus {
       Button().accessibilityLevel("yes").accessibilityText("Accessibility text is announced if no text is present")
       Button("Text content is announced if no accessibility text is present").accessibilityLevel("yes")
       Button()
-      Button('btnl23').accessibilityText("Button with both accessibility text and text").accessibilityLevel("yes")
+      Button('btn123').accessibilityText("Button with both accessibility text and text").accessibilityLevel("yes")
       Button('btn123').accessibilityLevel("yes")
     }
     .accessibilityGroup(true, { accessibilityPreferred: true })
-    //.accessibilityGroup(true)
     .borderWidth(5)
     .width('100%')
     .height('100%')
@@ -590,3 +558,182 @@ struct Focus {
 }
 ```
 
+### Example 3: Setting the Initial Focus and the Next Focus of a Component
+
+This example demonstrates the use of **accessibilityDefaultFocus** to set the default initial focus for the screen reader on the current page and **accessibilityNextFocusId** to set the next focus for components during focus traversal.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  build() {
+    Column({ space: 20 }) {
+      Text('Text Demo 1')
+        .fontSize(50)
+        .accessibilityLevel('yes')
+        .accessibilityNextFocusId('text3')
+      Text('Text Demo 2')
+        .id('text2')
+        .fontSize(50)
+        .accessibilityLevel('yes')
+        .accessibilityDefaultFocus(true)  // Set the component as initial focus for the screen reader.
+        .accessibilityNextFocusId('text4')
+      Text('Text Demo 3')
+        .id('text3')
+        .fontSize(50)
+        .accessibilityLevel('yes')
+        .accessibilityNextFocusId('text2')
+      Text('Text Demo 4')
+        .id('text4')
+        .fontSize(50)
+        .accessibilityLevel('yes')
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+### Example 4: Setting the Accessibility Component Type and Text Hint
+
+This example demonstrates the use of **accessibilityRole** to set the accessibility component type and **accessibilityTextHint** to provide text hints for components that can be queried by assistive technologies.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State isDownloading: boolean = false;
+  @State hintStr: string = 'Click to start download';
+
+  build() {
+    Column({ space: 20 }) {
+      Button(this.isDownloading ? 'Downloading' : 'Click to download')
+        .accessibilityLevel('yes')
+        .accessibilityTextHint(this.hintStr)
+        .onClick(() => {
+          this.isDownloading = !this.isDownloading;
+          this.hintStr = this.isDownloading ? 'Status changed to downloading' : 'Status changed to paused';
+        })
+      TextInput({ placeholder: 'Enter phone number' })
+        .accessibilityLevel('yes')
+        .accessibilityTextHint('Enter an 11-digit phone number')
+        .width('80%')
+      Text('Announced as button type')
+        .accessibilityLevel('yes')
+        .accessibilityRole(AccessibilityRoleType.BUTTON)
+        .accessibilityTextHint('The screen reader will announce this component as a button')
+        .fontSize(30)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+### Example 5: Configuring Screen Reader Scrolling, Focus Highlight Frame, and Cross-Process Focus
+
+This example demonstrates the use of **accessibilityScrollTriggerable** to set whether an accessibility node supports screen reading scroll, **accessibilityFocusDrawLevel** to set the drawing level of the accessibility focus highlight frame, and **accessibilityUseSamePage** for cross-process embedded components like **EmbeddedComponent**.
+
+```ts
+// xxx.ets
+import { Want } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Message: ';
+  private want: Want = {
+    bundleName: 'com.example.embeddeddemo',
+    abilityName: 'ExampleEmbeddedAbility',
+  }
+
+  build() {
+    Row() {
+      List() {
+        ListItem() {
+          Column() {
+            Text(this.message)
+              .fontSize(18)
+              .fontColor('#2D2D2D')
+              .fontWeight(FontWeight.Medium)
+            Column() {
+              EmbeddedComponent(this.want, EmbeddedType.EMBEDDED_UI_EXTENSION)
+                .width('100%')
+                .height('90%')
+                .onTerminated((info) => {
+                  this.message = 'Termination: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
+                })
+                .onError((error) => {
+                  this.message = 'Error: code = ' + error.code;
+                })
+                .accessibilityUseSamePage(AccessibilitySamePageMode.FULL_SILENT)
+                .width('90%')
+                .height('50%')
+                .backgroundColor('#F0F0F0')
+                .borderRadius(8)
+                .borderWidth(1)
+                .borderColor('#D9D9D9')
+
+              Stack() {
+                Column() {
+                  Text('Text 1')
+                    .fontSize(18)
+                    .fontColor('#2D2D2D')
+                    .fontWeight(FontWeight.Medium)
+                  Text('Text 1')
+                    .fontSize(18)
+                    .fontColor('#2D2D2D')
+                    .fontWeight(FontWeight.Medium)
+                    .accessibilityFocusDrawLevel(FocusDrawLevel.TOP)
+                }
+                .padding({ top: 8, bottom: 8 })
+
+                Column() {
+                  Text('Text 2')
+                    .fontSize(18)
+                    .fontColor('#FFFFFF')
+                    .fontWeight(FontWeight.Medium)
+                  Text('Text 2')
+                    .fontSize(18)
+                    .fontColor('#FFFFFF')
+                    .fontWeight(FontWeight.Medium)
+                }
+                .backgroundColor('#4A90E2')
+                .padding({
+                  left: 12,
+                  right: 12,
+                  top: 10,
+                  bottom: 10
+                })
+                .borderRadius(6)
+              }
+              .width('100%')
+              .margin({ top: 10, bottom: 10 })
+            }
+            .width('100%')
+            .height('100%')
+            .margin({ top: 15 })
+            .accessibilityText($r('app.string.app_name'))
+            .accessibilityDescription($r('app.string.module_desc'))
+            Column() {
+              Text('Text 4')
+                .fontSize(18)
+                .fontWeight(FontWeight.Medium)
+            }
+            .margin({ top: 15 })
+          }
+          .width('100%')
+        }
+      }
+      .accessibilityScrollTriggerable(false)
+      .width('100%')
+    }
+    .height('100%')
+    .backgroundColor('#F7F9FC')
+  }
+}
+```
+
+![accessibilityFocusDrawLevel](figures/accessibilityFocusDrawLevel.png)

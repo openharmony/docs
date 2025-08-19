@@ -1,16 +1,15 @@
 # ShortcutInfo
 
-The shortcutInfo module defines shortcut information configured in the configuration file. For the FA model, the shortcut information is configured in the [config.json](../../quick-start/application-configuration-file-overview-fa.md) file. For the stage model, the information is configured in the configuration file under **resources/base/profile** in the development view.
+The module defines shortcut information configured in the configuration file. For the FA model, the shortcut information is configured in the [config.json](../../quick-start/application-configuration-file-overview-fa.md) file. For the stage model, the information is configured in the configuration file under **resources/base/profile** in the development view.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module are deprecated since API version 9. The substitute APIs are open only to system applications. <!--Del-->You are advised to use [bundleManager-ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) instead.<!--DelEnd-->
+> This module is deprecated since API version 9. You are advised to use [bundleManager-ShortcutInfo](js-apis-bundleManager-shortcutInfo.md) instead.
 
 ## ShortcutInfo<sup>(deprecated)<sup>
-
-The APIs of this module are deprecated since API version 9. The substitute APIs are open only to system applications. <!--Del-->You are advised to use [bundleManager-ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md#shortcutinfo) instead.<!--DelEnd-->
+This API is deprecated since API version 9. You are advised to use [bundleManager-ShortcutInfo](js-apis-bundleManager-shortcutInfo.md#shortcutinfo) instead.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 

@@ -1,4 +1,10 @@
 # Interfaces (其他)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -45,8 +51,8 @@
 
 | 名称   | 类型                           |    只读   |     可选     | 说明       |
 | ------ | ----------------------------- | --------- |------------ | ---------- |
-| supportedCameras | [Array<CameraDevice\>](arkts-apis-camera-i.md#cameradevice) |     否    |       否     | 当前折叠状态所支持的相机信息列表。 |
-| foldStatus | [FoldStatus](arkts-apis-camera-e.md#foldstatus12) |     否    |       否     | 折叠屏折叠状态。 |
+| supportedCameras | [Array<CameraDevice\>](arkts-apis-camera-i.md#cameradevice) |     是    |       否     | 当前折叠状态所支持的相机信息列表。 |
+| foldStatus | [FoldStatus](arkts-apis-camera-e.md#foldstatus12) |     是    |       否     | 折叠屏折叠状态。 |
 
 ## Profile
 
@@ -117,7 +123,7 @@
 
 ## Size
 
-输出能力查询。
+尺寸参数。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -150,11 +156,11 @@
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称   | 类型    | 只读 | 可选  | 说明         |
-| ------ | ------ | ---- |-----| ------------ |
-| device              | [CameraDevice](arkts-apis-camera-i.md#cameradevice)   | 否   | 否   | 相机并发设备。 |
-| type                | [CameraConcurrentType](arkts-apis-camera-e.md#cameraconcurrenttype18)  | 否   | 否   | 镜头并发类型。 |
-| modes               | Array\<[SceneMode](arkts-apis-camera-e.md#scenemode11) \>              | 否   | 否   | 相机支持的模式。 |
-| outputCapabilities  | Array\<[CameraOutputCapability](#cameraoutputcapability) \> | 否   | 否   | 相机对应模式的输出能力集。 |
+| ------ | ------ |----|-----| ------------ |
+| device              | [CameraDevice](arkts-apis-camera-i.md#cameradevice)   | 是  | 否   | 相机并发设备。 |
+| type                | [CameraConcurrentType](arkts-apis-camera-e.md#cameraconcurrenttype18)  | 是  | 否   | 镜头并发类型。 |
+| modes               | Array\<[SceneMode](arkts-apis-camera-e.md#scenemode11) \>              | 是  | 否   | 相机支持的模式。 |
+| outputCapabilities  | Array\<[CameraOutputCapability](#cameraoutputcapability) \> | 是  | 否   | 相机对应模式的输出能力集。 |
 
 ## Location
 
@@ -180,10 +186,10 @@
 
 | 名称      | 类型                            | 只读 | 可选 | 说明                                                                   |
 | -------- | ------------------------------- | ---- | ---- |----------------------------------------------------------------------|
-| quality  | [QualityLevel](arkts-apis-camera-e.md#qualitylevel)   | 否   | 是   | 图片质量(默认低)。                                                           |
-| rotation | [ImageRotation](arkts-apis-camera-e.md#imagerotation) | 否   | 是   | 图片旋转角度(默认0度，顺时针旋转)。                                                  |
-| location | [Location](#location)           | 否   | 是   | 图片地理位置信息(默认以设备硬件信息为准)。                                               |
-| mirror   | boolean                         | 否   | 是   | 镜像使能开关(默认关)。使用之前需要使用[isMirrorSupported](arkts-apis-camera-PhotoOutput.md#ismirrorsupported)进行判断是否支持。 |
+| quality  | [QualityLevel](arkts-apis-camera-e.md#qualitylevel)   | 否   | 是   | 图片质量（默认低）。                                                           |
+| rotation | [ImageRotation](arkts-apis-camera-e.md#imagerotation) | 否   | 是   | 图片旋转角度（默认0度，顺时针旋转）。                                                  |
+| location | [Location](#location)           | 否   | 是   | 图片地理位置信息（默认以设备硬件信息为准）。                                               |
+| mirror   | boolean                         | 否   | 是   | 镜像使能开关（默认关）。使用之前需要使用[isMirrorSupported](arkts-apis-camera-PhotoOutput.md#ismirrorsupported)进行判断是否支持。ture表示使能，false表示不使能。 |
 
 ## FrameShutterInfo
 
@@ -196,7 +202,7 @@
 | 名称       | 类型   | 只读 | 可选 | 说明        |
 | --------- | ------ | ---- | ---- | ---------- |
 | captureId | number | 否   | 否   | 拍照的ID。|
-| timestamp | number | 否   | 否   | 快门时间戳。|
+| timestamp | number | 否   | 否   | 快门时间戳，单位毫秒。|
 
 ## FrameShutterEndInfo<sup>12+</sup>
 
@@ -246,8 +252,8 @@
 
 | 名称       | 类型      | 只读 | 可选 | 说明                      |
 | ---------- |---------| ---- | ---- |-------------------------|
-| isDeviceSwitched  | boolean | 否   | 否   | 自动切换镜头是否成功。true表示成功，false表示失败。       |
-| isDeviceCapabilityChanged | boolean  | 否   | 否   | 自动切换镜头成功后，其镜头能力值是否发生改变。true表示发生变化，false表示未发生变化。 |
+| isDeviceSwitched  | boolean | 是   | 否   | 自动切换镜头是否成功。true表示成功，false表示失败。       |
+| isDeviceCapabilityChanged | boolean  | 是   | 否   | 自动切换镜头成功后，其镜头能力值是否发生改变。true表示发生变化，false表示未发生变化。 |
 
 ## Rect
 
@@ -275,7 +281,7 @@
 | 名称         | 类型                                        | 只读 | 可选 |说明                |
 | ----------- | ------------------------------------------- | ---- | ---- | ----------------- |
 | type        | [MetadataObjectType](arkts-apis-camera-e.md#metadataobjecttype)   |  是  |  否  | metadata 类型。    |
-| timestamp   | number                                      |  是  |  否  | 当前时间戳（毫秒）。|
+| timestamp   | number                                      |  是  |  否  | 当前时间戳，单位毫秒。|
 | boundingBox | [Rect](#rect)                               |  是  |  否  | metadata 区域框。  |
 
 ## SmoothZoomInfo<sup>11+</sup>
@@ -289,3 +295,16 @@
 | 名称     | 类型        |   只读   |   可选   | 说明       |
 | -------- | ---------- | -------- | -------- | ---------- |
 | duration |   number   |   否     |    否    | 平滑变焦总时长，单位ms。 |
+
+## ControlCenterStatusInfo<sup>20+</sup>
+
+相机控制器效果激活状态信息。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称     | 类型        |   只读   |   可选   | 说明       |
+| -------- | ---------- | -------- | -------- | ---------- |
+| effectType | [ControlCenterEffectType](arkts-apis-camera-e.md#controlcentereffecttype20) |   是    |    否    | 相机控制器效果类型。 |
+| isActive | boolean | 是| 否| 相机控制器效果激活状态。true表示已激活，false表示未激活。 |

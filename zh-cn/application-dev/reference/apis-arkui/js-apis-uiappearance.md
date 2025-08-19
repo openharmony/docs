@@ -1,4 +1,10 @@
 # @ohos.uiAppearance (用户界面外观)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @lushi871202-->
+<!--Designer: @lushi871202-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 用户界面外观提供获取系统外观的一些基础能力，包括获取深浅色模式、字体大小缩放比例、字体粗细缩放比例。
 
@@ -38,6 +44,8 @@ getDarkMode(): DarkMode
 > 在API version 19及之前版本中，该接口为系统接口。开发者使用该接口时需要申请ohos.permission.UPDATE_CONFIGURATION权限。
 <!--DelEnd-->
 
+**系统能力**：SystemCapability.ArkUI.UiAppearance
+
 **返回值：** 
 
 | 类型 | 说明 |
@@ -46,11 +54,10 @@ getDarkMode(): DarkMode
 
 **错误码：**
 
-错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[errcode-uiappearance](errorcode-uiappearance.md)。
+错误码详细介绍请参考[errcode-uiappearance](errorcode-uiappearance.md)。
 
 | 错误码ID | 错误信息 |
 | -- | -- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 500001 | Internal error. |
 
 **示例：** 
@@ -80,6 +87,8 @@ getFontScale(): number
 > 在API version 19及之前版本中，该接口为系统接口。开发者使用该接口时需要申请ohos.permission.UPDATE_CONFIGURATION权限。
 <!--DelEnd-->
 
+**系统能力**：SystemCapability.ArkUI.UiAppearance
+
 **返回值：** 
 
 | 类型 | 说明 |
@@ -88,11 +97,10 @@ getFontScale(): number
 
 **错误码：**
 
-错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[errcode-uiappearance](errorcode-uiappearance.md)。
+错误码详细介绍请参考[errcode-uiappearance](errorcode-uiappearance.md)。
 
 | 错误码ID | 错误信息 |
 | -- | -- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 500001 | Internal error. |
 
 **示例：** 
@@ -122,6 +130,8 @@ getFontWeightScale(): number
 > 在API version 19及之前版本中，该接口为系统接口。开发者使用该接口时需要申请ohos.permission.UPDATE_CONFIGURATION权限。
 <!--DelEnd-->
 
+**系统能力**：SystemCapability.ArkUI.UiAppearance
+
 **返回值：** 
 
 | 类型 | 说明 |
@@ -130,11 +140,10 @@ getFontWeightScale(): number
 
 **错误码：**
 
-错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[errcode-uiappearance](errorcode-uiappearance.md)。
+错误码详细介绍请参考[errcode-uiappearance](errorcode-uiappearance.md)。
 
 | 错误码ID | 错误信息 |
 | -- | -- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 500001 | Internal error. |
 
 **示例：** 

@@ -1,5 +1,12 @@
 # Function Flow Runtime串行队列(C)
 
+<!--Kit: Function Flow Runtime Kit-->
+<!--Subsystem: Resourceschedule-->
+<!--Owner: @chuchihtung; @yanleo-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
+
 ## 概述
 
 FFRT串行队列基于协程调度模型实现，提供高效的消息队列功能，支持异步通信、流量削峰、无锁化状态和资源管理以及架构解耦等多种业务场景。FFRT串行队列支持以下功能：
@@ -24,7 +31,7 @@ FFRT串行队列基于协程调度模型实现，提供高效的消息队列功�
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include "ffrt/ffrt.h"
+#include "ffrt/ffrt.h" // 来自 OpenHarmony 第三方库 "@ppd/ffrt"
 
 typedef struct {
     FILE *logFile;          // 日志文件指针
@@ -141,9 +148,9 @@ int main()
 
 | 名称                                                               | 描述                 |
 | ------------------------------------------------------------------ | -------------------- |
-| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_create)     | 创建队列。           |
-| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_destroy)   | 销毁队列。           |
-| [ffrt_queue_submit_f](ffrt-api-guideline-c.md#ffrt_queue_submit_f) | 向队列提交一个任务。 |
+| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_t)     | 创建队列。           |
+| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_t)   | 销毁队列。           |
+| [ffrt_queue_submit_f](ffrt-api-guideline-c.md#ffrt_queue_t) | 向队列提交一个任务。 |
 
 > **说明：**
 >

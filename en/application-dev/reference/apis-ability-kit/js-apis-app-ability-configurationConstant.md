@@ -1,6 +1,6 @@
-# @ohos.app.ability.ConfigurationConstant (ConfigurationConstant)
+# @ohos.app.ability.ConfigurationConstant (System Environment Information Constants)
 
-The **ConfigurationConstant** module provides the enumerated values of the environment configuration information.
+The ConfigurationConstant module provides preset enumerated values related to [Configuration](js-apis-app-ability-configuration.md) operations.
 
 > **NOTE**
 > 
@@ -14,7 +14,7 @@ import { ConfigurationConstant } from '@kit.AbilityKit';
 
 ## ColorMode
 
-Enumerates the color modes.
+Enumerates the dark/light color modes, which are used in the [Configuration.colorMode](../apis-ability-kit/js-apis-app-ability-configuration.md#configuration) field. You can use these predefined enumerated values to set or obtain the dark/light color mode of the system or application.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -29,7 +29,7 @@ Enumerates the color modes.
 
 ## Direction
 
-Enumerates the display orientations.
+Enumerates the screen directions, which are used in the [Configuration.direction](../apis-ability-kit/js-apis-app-ability-configuration.md#configuration) field. You can use these predefined enumerated values to set or obtain the screen direction of the system or application.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -44,7 +44,7 @@ Enumerates the display orientations.
 
 ## ScreenDensity
 
-Enumerates the screen density modes.
+Enumerates the pixel densities of the screen, which are used in the [Configuration.screenDensity](../apis-ability-kit/js-apis-app-ability-configuration.md#configuration) field. You can use these predefined enumerated values to set or obtain the pixel density of the screen.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

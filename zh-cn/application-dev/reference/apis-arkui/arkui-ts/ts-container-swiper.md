@@ -1,4 +1,10 @@
 # Swiper
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @Hu_ZeQi-->
+<!--Designer: @jiangdayuan-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
  滑块视图容器，提供子组件滑动轮播显示的能力。 
 
@@ -156,6 +162,10 @@ indicator(indicator: IndicatorComponentController | DotIndicator | DigitIndicato
 
 设置外部绑定的导航点组件控制器。
 
+>  **说明：** 
+>
+> 设置外部绑定的导航点组件控制器后，可以和外部导航点结合使用。外部导航点支持自定义设置显示位置和大小。详细介绍可参看[Indicator](ts-swiper-components-indicator.md)。
+
 **卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
@@ -272,6 +282,8 @@ cachedCount(value: number)
 >  **说明：** 
 >
 >  - 在连续滑动场景中，一屏显示一个Swiper子组件时，通常将cachedCount值设置为1或2即可。最佳实践请参考[优化Swiper组件加载慢丢帧问题-缓存数据项](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-swiper_high_performance_development_guide#section143504547145)。
+>
+>  - 只在[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和开启了virtualScroll开关的[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)中生效，生效后超出显示及缓存范围的子节点会被释放。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -290,6 +302,10 @@ cachedCount(value: number)
 cachedCount(count: number, isShown: boolean)
 
 设置预加载子组件个数。
+
+>  **说明：** 
+>
+>  - isShown属性为true，且设置的count过大时，如果前后预加载范围内可加载的节点不足，循环场景下同一个可加载节点只会布局在一侧。
 
 **卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
@@ -1222,6 +1238,8 @@ DotIndicator的构造函数。
 >**说明：** 
 >
 >按压导航点时，导航点会放大至1.33倍显示，因此非按压态时导航点的可见范围边界至实际范围边界存在一定距离，该距离会随着itemWidth、itemHeight、selectedItemWidth、selectedItemHeight等参数变大而变大。
+>
+>若页面数量较多、圆点导航点超出页面时，建议使用maxDisplayCount设置导航点显示个数。
 
 ## DigitIndicator<sup>10+</sup>
 
@@ -1235,8 +1253,11 @@ DotIndicator的构造函数。
 
 >**说明：**
 >
->按组翻页时，数字导航点显示的子节点数量，不包括占位节点。<br/>
+>按组翻页时，数字导航点显示的子节点数量不包括占位节点。
+>
 >数字导航点文本最大的字体缩放倍数[maxFontScale](ts-basic-components-text.md#maxfontscale12)为2。
+>
+>页码的镜像显示依据为系统的RTL状态。
 
 ### fontColor
 
@@ -1330,7 +1351,7 @@ selectedDigitFont(value: Font): DigitIndicator
 
 >**说明：**
 >
-> 按组翻页时，数字导航点显示的子节点数量，不包括占位节点。
+> 按组翻页时，数字导航点显示的子节点数量不包括占位节点。
 
 **返回值：** 
 
@@ -1405,6 +1426,10 @@ onChange(event: Callback\<number>)
 当前显示的子组件索引变化时触发该事件，返回值为当前显示的子组件的索引值。
 
 Swiper组件结合LazyForEach使用时，不能在onChange事件里触发子页面UI的刷新。
+
+>  **说明：** 
+>
+>  - 回调会在页面动画结束、动画打断、索引设置等时机，引起页面索引变化时触发，在动画过程中不触发。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -2119,10 +2144,8 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 // CommonUtil.ets
-import { i18n, intl } from '@kit.LocalizationKit';
-
 export class CommonUtil {
-  private static isRTL: boolean = i18n.isRTL((new intl.Locale()).language);
+  private static isRTL: boolean = false;
 
   public static setIsRTL(isRTL: boolean): void {
     CommonUtil.isRTL = isRTL;

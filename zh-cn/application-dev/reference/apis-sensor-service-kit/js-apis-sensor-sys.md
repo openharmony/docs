@@ -1,4 +1,10 @@
 # @ohos.sensor (传感器)(系统接口)
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 sensor模块提供了获取传感器数据的能力，包括获取传感器属性列表，订阅传感器数据，以及一些通用的传感器算法。
 
@@ -435,8 +441,9 @@ function sensorUnsubscribe(): Ret {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
+**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。
 
-| 参数名 | 类型                   | 必填 | 说明                      |
+| 名称 | 类型                   | 必填 | 说明                      |
 | ------ | ---------------------- | ---- |-------------------------|
-| deviceId   | number | 否   | 设备ID：默认值为-1，表示本地设备。     |
-| sensorIndex   | number | 否   | 传感器索引：默认值为0，为设备上的默认传感器。 |
+| deviceId   | number | 否   | 设备ID：默认值为-1，表示本地设备。<br/>**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。     |
+| sensorIndex   | number | 否   | 传感器索引：默认值为0，为设备上的默认传感器。<br/>**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。 |

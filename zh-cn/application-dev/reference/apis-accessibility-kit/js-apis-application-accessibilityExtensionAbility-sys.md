@@ -1,5 +1,12 @@
 # @ohos.application.AccessibilityExtensionAbility (辅助功能扩展能力)(系统接口)
 
+<!--Kit: Accessibility Kit-->
+<!--Subsystem: BarrierFree-->
+<!--Owner: @qiiiiiiian-->
+<!--Designer: @z7o-->
+<!--Tester: @A_qqq-->
+<!--Adviser: @w_Machine_cc-->
+
 AccessibilityExtensionAbility基于ExtensionAbility框架，提供辅助功能业务的能力，能力包括成功连接无障碍服务、断开无障碍服务、处理无障碍服务事件和无障碍按键事件等。
 
 > **说明：**
@@ -25,8 +32,6 @@ import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 | eventType                     | [AccessibilityEventType](./js-apis-accessibility-sys.md#accessibilityeventtype) | 否    | 否    | 无障碍事件类型。                                 |
 | target                        | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext-sys.md#accessibilityelement12) | 否    | 是    | 发生事件的目标组件。                               |
 | timeStamp                     | number                                   | 否    | 是    | 事件时间戳，单位是毫秒。默认值为0。                       |
-| elementId                     | number                                   | 否    | 是    | 主动聚焦的组件ID。默认值为0。                         |
-| textAnnouncedForAccessibility | string                                   | 否    | 是    | 主动播报的内容。                                 |
 | extraInfo                     | string                                   | 否    | 是    | 针对TextArea、TextInput、SearchField、RichEdit组件， 组件文本内容有新增或删除时，新增或删除的文本内容。 |
 
 

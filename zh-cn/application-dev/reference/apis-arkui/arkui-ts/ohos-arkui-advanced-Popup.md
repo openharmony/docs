@@ -1,11 +1,16 @@
 # Popup
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyi0309-->
+<!--Designer: @liyi0309-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 Popup是用于显示特定样式气泡。
 
 >  **说明：**
 >
 >  - 该组件从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
->- 该组件不支持在Wearable设备上使用。
 >  - 建议结合[Popup控制](ts-universal-attributes-popup.md)中的自定义气泡功能。
 
 ## 导入模块
@@ -28,6 +33,8 @@ Popup(options: PopupOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数**：
 
 | 参数名  | 类型                          | 必填 | 说明                  |
@@ -38,7 +45,9 @@ Popup(options: PopupOptions): void
 
 PopupOptions定义Popup的具体式样参数。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称        | 类型       | 必填        | 说明                            |
 | ----------- | ---------- | ------| --------------------------------- |
@@ -59,6 +68,8 @@ PopupOptions定义Popup的具体式样参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称       | 类型                                                         | 必填 | 说明         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------ |
 | text       | [ResourceStr](ts-types.md#resourcestr)                       | 是   | 设置文本内容。     |
@@ -74,11 +85,13 @@ PopupButtonOptions定义按钮的相关属性和事件。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称      | 类型                                                 | 必填 | 说明                 |
 | --------- | ---------------------------------------------------- | ---- | ---------------------- |
 | text      | [ResourceStr](ts-types.md#resourcestr)               | 是   | 设置按钮内容。         |
 | action    | () => void                                           | 否   | 设置按钮click回调。 |
-| fontSize  | number \| string \| [Resource](ts-types.md#resource) | 否   | 设置按钮文本字体大小。 <br />默认值：`$r('sys.float.ohos_id_text_size_button2')` |
+| fontSize  | number \| string \| [Resource](ts-types.md#resource) | 否   | 设置按钮文本字体大小。 <br />默认值：`$r('sys.float.ohos_id_text_size_button2')`<br/>string类型可选值：可以转化为数字的字符串（如'10'）或带长度单位的字符串（如'10px'），不支持设置百分比字符串。<br/>异常值时取默认值。 |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor)           | 否   | 设置按钮文本字体颜色。<br />默认值：`$r('sys.color.ohos_id_color_text_primary_activated')` |
 
 ##  PopupIconOptions
@@ -88,6 +101,8 @@ PopupIconOptions定义icon（左上角图标）的属性。
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称         | 类型                                                         | 必填 | 说明                             |
 | ------------ | ------------------------------------------------------------ | ---- | ---------------------------------- |
@@ -116,7 +131,7 @@ struct PopupExample {
       Popup({
         // PopupIconOptions类型设置图标内容
         icon: {
-          image: $r('app.media.icon'),
+          image: $r('app.media.icon'),  // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
           width: 32,
           height: 32,
           fillColor: Color.White,
@@ -187,7 +202,7 @@ struct PopupPage {
         //PopupIconOptions 类型设置图标内容
         direction: this.currentDirection,
         icon: {
-          image: $r('app.media.icon'),
+          image: $r('app.media.icon'), // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
           width: 32,
           height: 32,
           fillColor: Color.White,
@@ -261,7 +276,7 @@ struct PopupPage {
         maxWidth: '50%',
         //PopupIconOptions 类型设置图标内容
         icon: {
-          image: $r('app.media.startIcon'),
+          image: $r('app.media.startIcon'), // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
           width: 32,
           height: 32,
           fillColor: Color.White,

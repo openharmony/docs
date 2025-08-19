@@ -1,5 +1,12 @@
 # CommonEventPublishData
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
+
 包含公共事件内容和属性。
 
 > **说明：**
@@ -10,7 +17,7 @@
 
 ## 属性
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 | 名称                  | 类型                 | 只读 | 可选 | 说明                         |
 | --------------------- | -------------------- | ---- | ---- | ---------------------------- |

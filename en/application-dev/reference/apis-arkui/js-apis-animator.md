@@ -89,7 +89,7 @@ animator.create(options); // You are advised to use UIContext.createAnimator().
 
 create(options: AnimatorOptions \| [SimpleAnimatorOptions](#simpleanimatoroptions18)): AnimatorResult
 
-Creates an **AnimatorResult** object for animations. Compared to [create](#createdeprecated), this API accepts parameters of the [SimpleAnimatorOptions](#simpleanimatoroptions18) type.
+Creates an **AnimatorResult** object for animations. Compared with [create](#createdeprecated), this API accepts parameters of the [SimpleAnimatorOptions](#simpleanimatoroptions18) type.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -239,7 +239,7 @@ try {
 
 reset(options: AnimatorOptions \| [SimpleAnimatorOptions](#simpleanimatoroptions18)): void
 
-Updates this animation. Compared to [reset](#reset9), this API accepts parameters of the [SimpleAnimatorOptions](#simpleanimatoroptions18) type.
+Updates this animation. Compared with [reset](#reset9), this API accepts parameters of the [SimpleAnimatorOptions](#simpleanimatoroptions18) type.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 

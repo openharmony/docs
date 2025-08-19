@@ -192,7 +192,7 @@ struct ScreenTest {
     this.setOrientation()
 
     let callback = async () => {
-      let d = await display.getDefaultDisplaySync()
+      let d = display.getDefaultDisplaySync()
       this.rotation = d.rotation
       this.message = ORIENTATION[this.rotation]
       console.info(TAG, JSON.stringify(d))

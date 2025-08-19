@@ -1,4 +1,10 @@
 # 音频时延管理
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 音频时延指从用户触发点击到声音从设备播放所经过的时间。
 
@@ -20,7 +26,7 @@ OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode);
 应用可以通过[GetLatencyMode](../../reference/apis-audio-kit/capi-native-audiorenderer-h.md#oh_audiorenderer_getlatencymode)查询当前时延模式，开发示例：
 
 ```cpp
-OH_AudioStream_Result OH_AudioRenderer_GetLatencyMode(OH_AudioRenderer *renderer, OH_AudioStream_LatencyMode *latencyMode)
+OH_AudioStream_Result OH_AudioRenderer_GetLatencyMode(OH_AudioRenderer *renderer, OH_AudioStream_LatencyMode *latencyMode);
 ```
 
 在低时延模式下，应用需要每5ms提供一次数据，如果送数据不及时可能导致杂音等问题。

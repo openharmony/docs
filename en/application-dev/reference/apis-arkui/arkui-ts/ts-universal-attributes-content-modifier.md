@@ -2,13 +2,13 @@
 
 You can apply a content modifier to a component to customize its content area using a style builder.
 
->  **NOTE**
+> **NOTE**
 >
->  This feature is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## contentModifier
 
-contentModifier(modifier:ContentModifier\<T>)
+contentModifier(modifier: ContentModifier\<T>): T
 
 Creates a content modifier.
 
@@ -16,9 +16,15 @@ Creates a content modifier.
 
 **Parameters**
 
-| Name  | Type              | Mandatory | Description                                                        |
+| Name  | Type              | Mandatory| Description                                                        |
 | -------- | ------------------ | ---- | ------------------------------------------------------------ |
-| modifier | ContentModifier\<T> | Yes  | Content modifier to apply to the current component.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API. |
+| modifier | ContentModifier\<T> | Yes  | Content modifier to apply to the current component.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API.|
+
+**Return value**
+
+| Type| Description|
+| --- | --- |
+| T | Current component.|
 
 ## ContentModifier\<T>
 
@@ -26,7 +32,7 @@ You need a custom class to implement the **ContentModifier** API.
 
 ### applyContent
 
-applyContent() : WrappedBuilder<[T]>
+applyContent(): WrappedBuilder<[T]>
 
 Builder of the custom content area.
 
@@ -36,9 +42,9 @@ Builder of the custom content area.
 
 **Parameters**
 
-| Name | Description                                                        |
+| Name| Description                                                        |
 | ---- | ------------------------------------------------------------ |
-| T    | Component attribute class, which is used to distinguish different information required by different components after content areas are customized, for example, **ButtonConfiguration** for the **Button** component and **CheckBoxConfiguration** of the **Checkbox** component. |
+| T    | Component attribute class, which is used to distinguish different information required by different components after content areas are customized, for example, **ButtonConfiguration** for the **Button** component and **CheckBoxConfiguration** of the **Checkbox** component.|
 
 **Value range of the T parameter:**
 
@@ -68,21 +74,21 @@ This example demonstrates how to create a custom check box using **ContentModifi
 ```ts
 // xxx.ets
 class MyCheckboxStyle implements ContentModifier<CheckBoxConfiguration> {
-  selectedColor: Color = Color.White
+  selectedColor: Color = Color.White;
 
   constructor(selectedColor: Color) {
     this.selectedColor = selectedColor;
   }
 
   applyContent(): WrappedBuilder<[CheckBoxConfiguration]> {
-    return wrapBuilder(buildCheckbox)
+    return wrapBuilder(buildCheckbox);
   }
 }
 
 @Builder
 function buildCheckbox(config: CheckBoxConfiguration) {
   Column({ space: 10 }) {
-    Text(config.name + (config.selected ? "(Selected)" : "(Not selected)"))
+    Text(config.name + (config.selected ? "(Selected)" : ""(Not selected)"))
     Shape() {
       // Pentagon check box style
       Path()
@@ -114,9 +120,9 @@ function buildCheckbox(config: CheckBoxConfiguration) {
     .onClick(() => {
       // Trigger the check box state change upon click.
       if (config.selected) {
-        config.triggerChange(false)
+        config.triggerChange(false);
       } else {
-        config.triggerChange(true)
+        config.triggerChange(true);
       }
     })
     .margin({ left: 150 })
@@ -133,7 +139,7 @@ struct Index {
           .select(true)
           .contentModifier(new MyCheckboxStyle(Color.Red))
           .onChange((value: boolean) => {
-            console.info('Checkbox change is' + value)
+            console.info('Checkbox change is' + value);
           })
       }
       .width('100%')

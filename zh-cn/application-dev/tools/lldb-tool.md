@@ -2,7 +2,7 @@
 ## 概述
 LLDB（Low Level Debugger）是新一代高性能调试器。具备断点设置、变量查看与修改、内存操作、线程控制、表达式计算、堆栈回溯等功能，并支持跨平台和插件扩展。
 
-当前OpenHarmony中的LLDB工具是在[llvm15.0.4](https://github.com/llvm/llvm-project/releases/tag/llvmorg-15.0.4)基础上适配演进出来的，是HUAWEI DevEco Studio工具链中默认的调试器，支持调试C和C++应用程序。
+当前 OpenHarmony 中的 LLDB 工具基于 [llvm15.0.4](https://github.com/llvm/llvm-project/releases/tag/llvmorg-15.0.4) 适配演进，是 HUAWEI DevEco Studio 工具链的默认调试器，支持调试 C 和 C++ 应用程序。
 
 详细说明参考[LLDB官方文档](https://lldb.llvm.org/)。
 
@@ -14,7 +14,7 @@ LLDB调试器具备以下功能特点：
 - **插件扩展性**：支持插件扩展，方便开发者根据需求进行定制。
 
 ## 工具获取路径
-通过OpenHarmony的SDK获取，获取路径：http://ci.openharmony.cn/workbench/cicd/dailybuild。
+通过OpenHarmony的SDK获取，获取路径：http://ci.openharmony.cn/workbench/cicd/dailybuild
 
 lldb工具在SDK中的路径为`\ohos-sdk\[system]\native\llvm`，其中system可选windows/linux/darwin。
 
@@ -66,8 +66,8 @@ lldb工具在SDK中的路径为`\ohos-sdk\[system]\native\llvm`，其中system�
 
 ```bash
 # 创建变量
-（lldb）print int $value1 = 7
-（lldb）expression int $value2 = 7
+(lldb)print int $value1 = 7
+(lldb)expression int $value2 = 7
 # 打印变量值
 (lldb) print $value1
 (lldb) expression $value2
@@ -140,28 +140,28 @@ lldb工具在SDK中的路径为`\ohos-sdk\[system]\native\llvm`，其中system�
 
 ## 环境准备
 - 本地调试
-   ■ 无需DevEco IDE，直接设备端调试
-   ■ 选择静态化lldb路径并使用hdc传输到设备：
+	- 无需使用DevEco IDE，可以直接在设备端进行调试。
+    - 选择静态化的lldb路径并使用hdc传输到设备：
     ```bash
-    
     hdc file send \ohos-sdk\[system]\native\llvm\lib\clang\[version]\bin\aarch64-linux-ohos\lldb /data/local/tmp/debugserver
-    ```
-   ■ 选择lldb server路径（根据设备CPU架构选择）并使用hdc传输到设备：
+	 ```
+   -  选择lldb server路径（根据设备CPU架构选择）并使用hdc传输到设备：
+    
     ```bash
     hdc file send \ohos-sdk\[system]\native\llvm\lib\clang\[version]\bin\aarch64-linux-ohos\lldb-server /data/local/tmp/debugserver
     ```
 - 远程调试（主要调试方式）
-      * 一键调试：
-          ■ 下载HUAWEI IDE，根据IDE的调试方法即可进行一键调试：通过DevEco Studio调试。
-          ■ 支持Windows/Mac连接OpenHarmony设备，支持调试Native C++应用。
-          ■ 直接使用DevEco Studio的Debug功能即可，无需手动推送lldb或lldb-server。
-    * 手动调试：
-      ■ 如需要手动进行远程调试（不通过DevEco Studio），如调试二进制等，则需要保证设备上有lldb-server，PC上有lldb
-      ■ 准备lldb-server，建议使用DevEco IDE推送。如手动推送，选择lldb-server路径并使用hdc传输到设备：
-      ```bash
-      hdc file send \ohos-sdk\[system]\native\llvm\lib\clang\[version]\bin\aarch64-linux-ohos\lldb-server /data/local/tmp/debugserver
-      ```
-      ■ PC上准备lldb，如windows系统则使用lldb.exe, 稍后将使用lldb与OH设备上的lldb-server远程连接进行调试。
+	- 一键调试：
+    	- 下载HUAWEI IDE，根据IDE的调试方法即可进行一键调试：通过DevEco Studio调试。
+        - 支持Windows/Mac连接OpenHarmony设备，支持调试Native C++应用。
+        - 直接使用DevEco Studio的Debug功能即可，无需手动推送lldb或lldb-server。
+    - 手动调试：
+       - 如需要手动进行远程调试（不通过DevEco Studio），如调试二进制等，则需要保证设备上有lldb-server，PC上有lldb
+       - 准备lldb-server，建议使用DevEco IDE推送。如手动推送，选择lldb-server路径并使用hdc传输到设备：
+        ```bash
+        hdc file send \ohos-sdk\[system]\native\llvm\lib\clang\[version]\bin\aarch64-linux-ohos\lldb-server /data/local/tmp/debugserver
+        ```
+        - PC上准备lldb，如windows系统则使用lldb.exe, 稍后将使用lldb与OH设备上的lldb-server远程连接进行调试。
 
 ## 使用指导-本地调试
 
@@ -173,7 +173,7 @@ lldb工具在SDK中的路径为`\ohos-sdk\[system]\native\llvm`，其中system�
 #include <iostream>
 using namespace std;
 int main() {
-    cout << "hello world!" <<endl;
+    cout << "hello world!" << endl;
     return 0;
 }
 ```
@@ -227,9 +227,9 @@ int main() {
           (lldb) quit
           ```
 
-#### 使用LLDB工具调试已经启动的应用。
+**使用LLDB工具调试已经启动的应用。**
 
-此处以在手机环境调试一个使用clang编译器生成的带有调试信息和用户输入的可执行文件a.out为例。
+此处以手机环境调试使用clang编译器生成的带有调试信息的可执行文件a.out为例。
 源文件：hello.cpp
 
 ```cpp
@@ -237,11 +237,11 @@ int main() {
 using namespace std;
 int main() {
     int i = 0, j = 5, sum = 0;
-    cout << "Please input a number of type int" <<endl;
+    cout << "Please input a number of type int" << endl;
     cin >> i;
     cout << i;
     sum = i + j;
-    cout << sum <<endl;
+    cout << sum << endl;
     return 0;
 }
 ```
@@ -272,7 +272,7 @@ int main() {
 5. 在`hello.cpp`的第10行设置断点。
 
    ```shell
-   (lldb) breakpoint set --file hello.cpp --line 12
+   (lldb) breakpoint set --file hello.cpp --line 10
    ```
 
 6. 在命令行窗口1，输入一个int类型的数。
@@ -331,7 +331,7 @@ int main() {
 #include <iostream>
 using namespace std;
 int main() {
-    cout << "hello world!" <<endl;
+    cout << "hello world!" << endl;
     return 0;
 }
 ```
@@ -341,10 +341,11 @@ int main() {
 <clang distribution>/bin/clang++ --target=aarch64-linux-ohos --sysroot=<sysroot distribution> -g hello.cpp -o a.out
 ```
 
-1.打开命令行窗口1，关闭SELinux。
-  ```shell
-    hdc shell setenforce 0
-  ```
+1. 打开命令行窗口1，关闭SELinux。
+   ```shell
+   hdc shell setenforce 0
+   ```
+
 2. 打开命令行窗口1，将lldb-server和可执行文件a.out推送到设备。（a.out是使用clang编译器编译hello.cpp生成的。）
 
    ```shell
@@ -404,15 +405,14 @@ int main() {
     ```
 
 ## FAQ
-- 当在LLDB调试环境中执行run命令时，若控制台返回"error: 'A' packet returned an error: 8"或类似错误代码，此问题通常表明调试器无法创建调试进程。
-该异常现象主要由权限不足引发，建议通过以下步骤排查：
+- 当在LLDB调试环境中执行run命令时，若控制台返回`error: 'A' packet returned an error: 8`或类似错误代码，此问题通常表明调试器无法创建调试进程。该异常现象通常表明调试器无法创建调试进程，主要原因是权限不足，建议通过以下步骤排查：
 
-    1）验证目标设备是否已开启调试授权；
+   1）验证目标设备是否已开启调试授权。
 
-    验证方式为设备上设置中的”开发者选项”，如果没有开启，开启后再尝试调试。
+   验证方式为设备上设置中的`开发者选项`，如果没有开启，开启后再尝试调试。
 
-     2）确认当前用户是否具有目标进程的调试权限。
+   2）确认当前用户是否具有目标进程的调试权限。
 
-    user用户只能调试应用，不能调试可执行文件。
+   user用户只能调试应用，不能调试可执行文件。
 
-- 运行lldb-server，报错“Permission denied”。一般是lldb-server无可执行文件导致的，添加权限即可。
+- 运行lldb-server，报错`Permission denied`。这一般是由于lldb-server无可执行文件导致的，添加权限即可。

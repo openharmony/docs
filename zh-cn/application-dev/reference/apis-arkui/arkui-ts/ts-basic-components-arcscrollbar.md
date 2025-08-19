@@ -1,5 +1,12 @@
 # ArcScrollBar
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @shengu_lancer; @yylong-->
+<!--Designer: @yylong-->
+<!--Tester: @liuzhenshuo-->
+<!--Adviser: @HelloCrease-->
+
 弧形滚动条组件ArcScrollBar，用于配合可滚动组件使用，如[ArcList](ts-container-arclist.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)、[WaterFlow](ts-container-waterflow.md)。
 
 >  **说明：**
@@ -36,10 +43,10 @@ ArcScrollBar的构造函数参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| scroller | [Scroller](ts-container-scroll.md#scroller) | 是 | 可滚动组件的控制器，用于与可滚动组件进行绑定。 |
-| state | [BarState](ts-appendix-enums.md#barstate) | 否 | 滚动条状态。<br/>默认值：BarState.Auto |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -- | -------- | -------- |
+| scroller | [Scroller](ts-container-scroll.md#scroller) | 否 | 否 | 可滚动组件的控制器，用于与可滚动组件进行绑定。 |
+| state | [BarState](ts-appendix-enums.md#barstate) | 否 | 是 | 滚动条状态。<br/>默认值：BarState.Auto |
 
 >  **说明：**
 > 

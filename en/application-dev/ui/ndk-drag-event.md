@@ -1,6 +1,6 @@
 # Drag Event
 
-The ArkUI framework provides a set of drag event APIs to help you implement drag-and-drop functionality.These events include [NODE_ON_PRE_DRAG](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype), [NODE_ON_DRAG_START](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype), [NODE_ON_DROP](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype), [NODE_ON_DRAG_ENTER](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype), [NODE_ON_DRAG_MOVE](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype), [NODE_ON_DRAG_LEAVE](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype), and [NODE_ON_DRAG_END](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype). These events are triggered at different stages of the drag operation, allowing you to perform specific actions and manage the drag interaction as needed.
+The ArkUI framework provides a set of drag event APIs to help you implement drag-and-drop functionality. These events include [NODE_ON_PRE_DRAG](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype), [NODE_ON_DRAG_START](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype), [NODE_ON_DROP](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype), [NODE_ON_DRAG_ENTER](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype), [NODE_ON_DRAG_MOVE](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype), [NODE_ON_DRAG_LEAVE](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype), and [NODE_ON_DRAG_END](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype). These events are triggered at different stages of the drag operation, allowing you to perform specific actions and manage the drag interaction as needed.
 
 ## Basic Drag Implementation
 
@@ -381,3 +381,4 @@ In addition to the basic drag-and-drop functionality, ArkUI allows you to initia
       break;
     }
     ```
+<!--no_check-->

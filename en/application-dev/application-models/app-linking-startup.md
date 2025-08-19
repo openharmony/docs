@@ -56,7 +56,7 @@ For example, the configuration below declares that the application is associated
               "entity.system.home"
             ],
             "actions": [
-              "action.system.home"
+              "ohos.want.action.home"
             ]
           },
           {
@@ -88,6 +88,7 @@ For example, the configuration below declares that the application is associated
 }
 ```
 
+
 ### Associating the Application on the Developer Website
 
 Perform the following operations on the developer website to associate the application:
@@ -115,7 +116,7 @@ Perform the following operations on the developer website to associate the appli
    The fixed directory is as follows:
 
    > https://*your.domain.name*/.well-known/applinking.json
-   
+
    For example, if the domain name is www.example.com, place the **applinking.json** file in the following directory:
    `https://www.example.com/.well-known/applinking.json`
 
@@ -155,7 +156,7 @@ The **openLink** API provides two methods for starting the target application.
   - Method 1: Open the application only in App Linking mode.
     
     In this mode, **appLinkingOnly** is set to **true**. If a matching application is found, that application is directly opened. If no application matches, an exception is thrown.
-    
+
   - Method 2: Open the application preferentially in App Linking mode.
 
     In this mode, **appLinkingOnly** is set to **false** or uses the default value. App Linking is preferentially used to start the target application. If a matching application is found, that application is directly opened. If no application matches, the system attempts to open the application in Deep Linking mode.
@@ -217,4 +218,4 @@ If the target application is started, the App Linking configuration of the targe
    You can configure the **applinking.json** file to associate a domain name with multiple applications. If the **uris** field in the **module.json5** file of each application is set to the same value, the system displays a dialog box for users to select the application to start.
    
    You can also use the **path** field to distinguish the applications to start. For example, use **https://www.example.com/path1** to start target application 1 and use **https://www.example.com/path2** to start target application 2.
-
+  

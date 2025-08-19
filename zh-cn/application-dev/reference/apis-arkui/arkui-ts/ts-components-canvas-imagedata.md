@@ -1,4 +1,10 @@
 # ImageData
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sd-wu-->
+<!--Designer: @sunbees-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 ImageData对象可以存储canvas渲染的像素数据。
 

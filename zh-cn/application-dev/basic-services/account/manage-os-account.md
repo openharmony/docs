@@ -1,5 +1,12 @@
 # 管理系统账号（仅对系统应用开放）
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
+
 系统提供了用于管理系统账号的接口。系统应用开发者在申请对应的权限后，可以创建、激活、修改和删除系统账号，实现对系统账号的生命周期管理；三方应用开发者可以查询系统账号的基本信息，以完成与系统账号相关的业务逻辑开发。
 
 ## 基本概念
@@ -54,7 +61,7 @@ accountManager.createOsAccount(name, type, (err: BusinessError, osAccountInfo: o
 
 ## 查询所有已创建的系统账号
 
-账号管理界面通常需要获取所有账号信息时，以方便用户操作不同账号。
+账号管理界面通常需要获取所有账号信息，以方便用户操作不同账号。
 
 具体开发实例如下：
 
@@ -138,7 +145,7 @@ accountManager.activateOsAccount(localId, (err: BusinessError)=>{
 
 ## 删除系统账号
 
-不再使用某个系统账号时，可以将该系统账号删除。
+不再使用某个系统账号时，可以删除该账号。
 
 具体开发实例如下：
 

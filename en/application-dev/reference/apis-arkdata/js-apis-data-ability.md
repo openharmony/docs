@@ -419,8 +419,8 @@ Creates a **DataAbilityPredicates** object to search for the records in the spec
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the table.|
-| low | [ValueType](#valuetype) | Yes| Minimum value of the range to set.|
-| high | [ValueType](#valuetype) | Yes| Maximum value of the range to set.|
+| low | [ValueType](#valuetype) | Yes| Minimum value to match.|
+| high | [ValueType](#valuetype) | Yes| Maximum value to match.|
 
 **Return value**
 
@@ -447,8 +447,8 @@ Creates a **DataAbilityPredicates** object to search for the records in the spec
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the table.|
-| low | [ValueType](#valuetype) | Yes| Minimum value of the range to set.|
-| high | [ValueType](#valuetype) | Yes| Maximum value of the range to set.|
+| low | [ValueType](#valuetype) | Yes| Minimum value to match.|
+| high | [ValueType](#valuetype) | Yes| Maximum value to match.|
 
 **Return value**
 
@@ -746,27 +746,35 @@ Creates a **DataAbilityPredicates** object to specify the index column. Before c
 
 **Example**
 
-  ```js
-  import { dataAbility, relationalStore } from '@kit.ArkData';
+```js
+import { UIAbility } from '@kit.AbilityKit';
+import { dataAbility, relationalStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let context = getContext(this);
+export default class EntryAbility extends UIAbility {
+  async onCreate(): Promise<void> {
+    let store: relationalStore.RdbStore | undefined = undefined;
+    let context = this.context;
 
-  const STORE_CONFIG : relationalStore.StoreConfig = {
-      name: 'RdbTest.db', // Database file name.
-      securityLevel: relationalStore.SecurityLevel.S3,
-  };
-  // Table structure: EMPLOYEE (NAME, AGE, SALARY, CODES)
-  const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)'; // SQL statement for creating a data table.
-  relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
-    if (err) {
+    try {
+      const STORE_CONFIG: relationalStore.StoreConfig = {
+        name: 'RdbTest.db', // Database file name.
+        securityLevel: relationalStore.SecurityLevel.S3,
+      };
+      // Table structure: EMPLOYEE (NAME, AGE, SALARY, CODES)
+      const SQL_CREATE_TABLE =
+        'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)'; // SQL statement for creating a data table.
+      store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+      console.info('Succeeded in getting RdbStore.');
+      await store.executeSql(SQL_CREATE_TABLE); // Create a data table.
+    } catch (e) {
+      const err = e as BusinessError;
       console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+    }
+
+    if (!store) {
       return;
     }
-    console.info('Succeeded in getting RdbStore.');
-
-
-    await store.executeSql(SQL_CREATE_TABLE); // Create a data table.
-
 
     // Create an index.
     const SQL_CREATE_INDEX = 'CREATE INDEX SALARY_INDEX ON EMPLOYEE(SALARY)'
@@ -777,8 +785,9 @@ Creates a **DataAbilityPredicates** object to specify the index column. Before c
     dataAbilityPredicates.indexedBy("SALARY_INDEX")
 
     //  ...
-  })
-  ```
+  }
+}
+```
 
 ### in
 

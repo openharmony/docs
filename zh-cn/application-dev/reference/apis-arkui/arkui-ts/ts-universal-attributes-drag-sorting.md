@@ -1,5 +1,12 @@
 # 拖拽排序
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @yylong-->
+<!--Designer: @yylong-->
+<!--Tester: @liuzhenshuo-->
+<!--Adviser: @HelloCrease-->
+
 在List组件下使用ForEach/LazyForEach/Repeat，并设置onMove事件，每次迭代生成一个ListItem时，可以使能拖拽排序。拖拽排序离手后，如果数据位置发生变化，将触发onMove事件，上报数据移动原始索引号和目标索引号。在onMove事件中，需要根据上报的起始索引号和目标索引号修改数据源。确保数据仅顺序发生变化，才能正常执行落位动画。
 
 > **说明：**
@@ -10,7 +17,7 @@
 
 onMove(handler: Optional\<OnMoveHandler\>)
 
-拖拽排序数据移动回调。当父容器组件为[List](./ts-container-list.md#list)，并且ForEach/LazyForEach/Repeat每次迭代都生成一个ListItem组件时才生效。设置拖拽排序时可以定义不同的拖拽操作，并在响应事件发生时响应。
+拖拽排序数据移动回调。当父容器组件为[List](./ts-container-list.md)，并且ForEach/LazyForEach/Repeat每次迭代都生成一个ListItem组件时才生效。设置拖拽排序时可以定义不同的拖拽操作，并在响应事件发生时响应。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -26,7 +33,7 @@ onMove(handler: Optional\<OnMoveHandler\>)
 
 onMove(handler: Optional\<OnMoveHandler\>, eventHandler: ItemDragEventHandler)
 
-拖拽排序数据移动回调。当父容器组件为[List](./ts-container-list.md#list)，并且ForEach/LazyForEach/Repeat每次迭代都生成一个ListItem组件时才生效。设置拖拽排序时可以定义不同的拖拽操作，并在响应事件发生时响应。
+拖拽排序数据移动回调。当父容器组件为[List](./ts-container-list.md)，并且ForEach/LazyForEach/Repeat每次迭代都生成一个ListItem组件时才生效。设置拖拽排序时可以定义不同的拖拽操作，并在响应事件发生时响应。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -66,12 +73,12 @@ type OnMoveHandler = (from: number, to: number) => void
 
 **参数：** 
 
-| 参数名 | 类型   | 必填 | 说明                 |
-| ------ | ------ | ---- | -------------------- |
-| onLongPress  |  [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\> | 否  | 长按时触发的回调。<br>- 参数index为长按时当前目标的索引号。 |
-| onDragStart  | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\> | 否   | 在页面跟手滑动开始时触发的回调。<br>- 参数index为拖拽开始时当前目标的索引号。 |
-| onMoveThrough  | [OnMoveHandler](#onmovehandler) | 否   | 在页面跟手滑动过程中经过其他组件时触发的回调。 |
-| onDrop  | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\> | 否   | 在页面跟手滑动结束时触发的回调。<br>- 参数index为拖拽结束时当前目标的索引号。 |
+| 名称 | 类型   | 只读 | 可选 | 说明                 |
+| ------ | ------ | ---- | ---- | -------------------- |
+| onLongPress  |  [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\> | 否  | 是 | 长按时触发的回调。<br>- 参数index为长按时当前目标的索引号。 |
+| onDragStart  | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\> | 否   | 是 | 在页面跟手滑动开始时触发的回调。<br>- 参数index为拖拽开始时当前目标的索引号。 |
+| onMoveThrough  | [OnMoveHandler](#onmovehandler) | 否   | 是 | 在页面跟手滑动过程中经过其他组件时触发的回调。 |
+| onDrop  | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\> | 否   | 是 | 在页面跟手滑动结束时触发的回调。<br>- 参数index为拖拽结束时当前目标的索引号。 |
 
 ## 示例
 

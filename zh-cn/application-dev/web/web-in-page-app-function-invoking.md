@@ -1,4 +1,10 @@
 # 前端页面调用应用侧函数
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 开发者使用Web组件将应用侧代码注册到前端页面中，注册完成之后，前端页面中使用注册的对象名称就可以调用应用侧的方法，实现在前端页面中调用应用侧方法。
 
@@ -224,11 +230,11 @@
     constructor() {
     }
 
-    test(): Array<Number> {
+    test(): Array<number> {
       return [1, 2, 3, 4]
     }
 
-    toString(param: String): void {
+    toString(param: string): void {
       console.log('Web Component toString' + param);
     }
   }
@@ -653,7 +659,7 @@
       return p;
     }
 
-    toString(param: String): void {
+    toString(param: string): void {
       console.log(" " + param);
     }
   }
@@ -725,7 +731,7 @@
       setTimeout( () => { param("suc") }, 10000)
     }
 
-    toString(param:String): void {
+    toString(param:string): void {
       console.log(" " + param);
     }
   }

@@ -88,7 +88,7 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
   //getWant回调
   let getWantCallback = (err: BusinessError, data: Want) => {
     if(err) {
-      console.error(`getWant failed, code: ${err.code}, messgae: ${err.message}.`);
+      console.error(`getWant failed, code: ${err.code}, message: ${err.message}.`);
     } else {
       console.info(`getWant success, data: ${JSON.stringify(data)}.`);
     }
@@ -195,12 +195,12 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     wantAgent.getWant(wantAgentData).then((data)=>{
       console.info(`getWant success, data: ${JSON.stringify(data)}`);
     }).catch((err: BusinessError)=>{
-      console.error(`getWant failed, code: ${err.code}, messgae: ${err.message}.`);
+      console.error(`getWant failed, code: ${err.code}, message: ${err.message}.`);
     });
   } catch(err){
     let code = (err as BusinessError).code;
     let msg = (err as BusinessError).message;
-    console.error(`getWant failed, code: ${code}, messgae: ${msg}.`);
+    console.error(`getWant failed, code: ${code}, message: ${msg}.`);
   }
 }
 
@@ -209,7 +209,7 @@ try {
 } catch(err) {
   let code = (err as BusinessError).code;
   let msg = (err as BusinessError).message;
-  console.error(`getWantAgent failed, code: ${code}, messgae: ${msg}.`);
+  console.error(`getWantAgent failed, code: ${code}, message: ${msg}.`);
 }
 ```
 

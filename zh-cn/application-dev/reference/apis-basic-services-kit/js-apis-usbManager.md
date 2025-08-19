@@ -1,8 +1,15 @@
 # @ohos.usbManager (USB管理)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 本模块主要提供管理USB设备的相关功能，包括主设备上查询USB设备列表、批量数据传输、控制命令传输、权限控制等；从设备上端口管理、功能切换及查询等。
 
->  **说明：**
+> **说明：**
 > 
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -12,11 +19,33 @@
 import { usbManager } from '@kit.BasicServicesKit';
 ```
 
+## 使用说明
+
+凡是参数类型为[USBDevicePipe](#usbdevicepipe)的接口,都需要执行如下操作：
+ 
+**在使用接口前：**
+
+1. 调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表。
+
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取请求权限。
+
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到USBDevicePipe作为参数。
+
+**在使用接口后：**
+
+调用[usbManager.closePipe](#usbmanagerclosepipe)关闭设备消息控制通道。
+
 ## usbManager.getDevices
 
 getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
-获取接入主设备的USB设备列表。如果没有设备接入，那么将会返回一个空的列表。开发者模式关闭时，如果没有设备接入，接口可能返回`undefined`，注意需要对接口返回值做判空处理。
+获取接入主设备的USB设备列表。
+
+> **说明：**
+>
+> 当USB服务正常运行但无设备接入时，那么将会返回一个空的列表，这是正常情况，表示调用成功但当前没有连接的USB设备。
+>
+> 在USB主机模式未开启、USB服务未正确初始化、USB服务连接失败（如开发者模式关闭）、权限不足或其他系统错误时，接口会返回`undefined`，注意需要对接口返回值做判空处理。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -274,11 +303,12 @@ if (usbManager.removeRight(device.name)) {
 
 claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): number
 
-注册通信接口。
+声明对USB设备某个接口的控制权。
 
-1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及interfaces；
-2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
+> **说明：**
+>
+> 在USB编程中，claim interface是一个常见操作，指的是应用程序请求操作系统将某个USB接口从内核驱动中释放并交由用户空间程序控制。<br>
+> 下面用到的claim通信接口都表示claim interface操作。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -294,7 +324,7 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 注册通信接口成功返回0；注册通信接口失败返回其他错误码如下：<br>- 63：数据量超过预期的最大值。<br>- 88080385：接口未初始化。<br>- 88080482：服务过程中遇到无效值或参数。<br>- 88080484：没有权限。<br>- 88080492：写入服务数据包过程发生错误。<br>- 88080493：读取服务数据包过程发生错误。<br>- 88080497：服务内部逻辑执行发生错误。<br>- -1：调用底层接口失败。|
+| number | claim通信接口成功返回0；claim通信接口失败返回其他错误码如下：<br>- 63：数据量超过预期的最大值。<br>- 88080385：接口未初始化。<br>- 88080482：服务过程中遇到无效值或参数。<br>- 88080484：没有权限。<br>- 88080492：写入服务数据包过程发生错误。<br>- 88080493：读取服务数据包过程发生错误。<br>- 88080497：服务内部逻辑执行发生错误。<br>- -1：调用底层接口失败。|
 
 **错误码：**
 
@@ -325,9 +355,11 @@ console.log(`claimInterface = ${ret}`);
 
 releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
-释放注册过的通信接口。
+释放claim过的通信接口。
 
-需要调用[usbManager.claimInterface](#usbmanagerclaiminterface)先获取接口，才能使用此方法释放接口。
+> **说明：**
+>
+> 在调用该接口前需要通过[usbManager.claimInterface](#usbmanagerclaiminterface)claim通信接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -376,10 +408,6 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 
 设置设备配置。
 
-1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及config；
-2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数。
-
 **系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
@@ -426,10 +454,11 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 设置设备接口。
 
-1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表以及interfaces；
-2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数；
-4. 调用[usbManager.claimInterface](#usbmanagerclaiminterface)注册通信接口。
+> **说明：**
+>
+> 一个USB接口可能存在多重选择模式，支持动态切换。使用的场景：数据传输时，通过该接口可重新设置端点，使端点与传输类型匹配。
+>
+> 在调用该接口前需要通过[usbManager.claimInterface](#usbmanagerclaiminterface)claim通信接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -478,10 +507,6 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 
 获取原始的USB描述符。如果USB服务异常，可能返回`undefined`，注意需要对接口返回值做判空处理。
 
-1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；
-2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
-
 **系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
@@ -524,10 +549,6 @@ getFileDescriptor(pipe: USBDevicePipe): number
 
 获取文件描述符。
 
-1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；
-2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
-
 **系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
@@ -562,6 +583,9 @@ if (devicesList.length == 0) {
 usbManager.requestRight(devicesList[0].name);
 let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
 let ret: number = usbManager.getFileDescriptor(devicepipe);
+console.log(`getFileDescriptor = ${ret}`);
+let closeRet: number = usbManager.closePipe(devicepipe);
+console.log(`closePipe = ${closeRet}`);
 ```
 
 ## usbManager.controlTransfer<sup>(deprecated)</sup>
@@ -570,12 +594,8 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 
 控制传输。
 
-1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；
-2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
-
-**说明：**
-
+> **说明：**
+>
 > 从 API version 9开始支持，从API version 12开始废弃。建议使用 [usbControlTransfer](#usbmanagerusbcontroltransfer12) 替代。
 
 **系统能力：**  SystemCapability.USB.USBManager
@@ -640,10 +660,6 @@ console.log(`controlTransfer = ${ret}`);
 usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, timeout ?: number): Promise&lt;number&gt;
 
 控制传输。
-
-1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；
-2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -710,15 +726,11 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 批量传输。
 
-1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
-2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe；
-4. 获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
-5. 调用usbManager.bulkTransfer接口。
-
 > **说明：** 
 >
 > 单次批量传输的传输数据总量（包括pipe、endpoint、buffer、timeout）请控制在200KB以下。
+>
+> 在调用接口前需要通过[usbManager.claimInterface](#usbmanagerclaiminterface)claim通信接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -784,13 +796,11 @@ usbSubmitTransfer(transfer: UsbDataTransferParams): void
 
 提交异步传输请求。
 
-本接口为异步接口，调用后立刻返回，实际读写操作的结果以回调的方式返回。
-
-1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
-2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe；
-4. 获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
-5. 调用usbManager.usbSubmitTransfer接口。
+> **说明：**
+>
+> 本接口为异步接口，调用后立刻返回，实际读写操作的结果以回调的方式返回。
+>
+> 在调用该接口前需要通过[usbManager.claimInterface](#usbmanagerclaiminterface)claim通信接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -869,11 +879,10 @@ usbCancelTransfer(transfer: UsbDataTransferParams): void
 
 取消异步传输请求。
 
-1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
-2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe；
-4. 获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
-5. 调用usbManager.usbCancelTransfer接口。
+> **说明：**
+>
+> 该接口的主要作用是主动取消尚未完成的USB数据传输请求（如usbSubmitTransfer提交的传输）。<br>
+> 在调用该接口前需要通过[usbManager.claimInterface](#usbmanagerclaiminterface)claim通信接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -1270,11 +1279,9 @@ resetUsbDevice(pipe: USBDevicePipe): boolean
 
 重置USB外设。
 
-本接口调用后会重置此前设置的配置和替换接口，请在调用之前确认相关业务已结束。在调用本接口之前，需要进行如下操作：
-
-1. 调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；
-2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)获取devicepipe作为本接口的入参。
+> **说明：**
+>
+> 本接口调用后会重置此前设置的配置和替换接口，请在调用之前确认相关业务已结束。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -1325,6 +1332,12 @@ try {
 
 通过USB发送和接收数据的端口。通过[USBInterface](#usbinterface)获取。
 
+>**说明：**
+>
+> 主机控制器按照Endpoint类型调度。
+>
+> 协议层打包时依赖type决定传输特性。
+
 **系统能力：** SystemCapability.USB.USBManager
 
 | 名称            | 类型                                        | 必填            |说明            |
@@ -1335,7 +1348,7 @@ try {
 | maxPacketSize | number                                      | 是 |端点最大数据包大小。    |
 | direction     | [USBRequestDirection](#usbrequestdirection) | 是 |端点的方向。        |
 | number        | number                                      | 是 |端点号。          |
-| type          | number                                      | 是 |端点类型。         |
+| type          | number                                      | 是 |端点类型。取值见[UsbEndpointTransferType](#usbendpointtransfertype18)         |
 | interfaceId   | number                                      | 是 |端点所属的接口的唯一标识。 |
 
 ## USBInterface
@@ -1350,7 +1363,7 @@ try {
 | protocol         | number                                   | 是 |接口的协议。                |
 | clazz            | number                                   | 是 |设备类型。                 |
 | subClass         | number                                   | 是 |设备子类。                 |
-| alternateSetting | number                                   | 是 |在同一个接口中的多个描述符中进行切换设置。 |
+| alternateSetting | number                                   | 是 |在同一个接口中的多个描述符中进行切换设置。值的大小表示支持可选模式个数，其中0表示不支持可选模式。 |
 | name             | string                                   | 是 |接口名称。                 |
 | endpoints        | Array&lt;[USBEndpoint](#usbendpoint)&gt; | 是 |当前接口所包含的端点。           |
 
@@ -1407,8 +1420,8 @@ USB设备消息传输通道，用于确定设备。
 
 控制传输参数。
 
-**说明：**
-
+>**说明：**
+>
 > 从 API version 9开始支持，从API version 18开始废弃。建议使用 [USBDeviceRequestParams](#usbdevicerequestparams12) 替代。
 
 **系统能力：** SystemCapability.USB.USBManager

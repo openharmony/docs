@@ -5,11 +5,11 @@ When a component with event monopolization is the first to respond to an interac
 
 >  **NOTE**
 >
->  This feature is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>  The initial APIs of this module are supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## monopolizeEvents
 
-monopolizeEvents(monopolize: boolean)
+monopolizeEvents(monopolize: boolean): T
 
 Sets whether the component exclusively handles events.
 
@@ -19,10 +19,15 @@ Sets whether the component exclusively handles events.
 
 **Parameters**
 
-
 | Name  | Type| Mandatory| Description                 |
 | ----------- | -------- | ------------------------ | ------------------------ |
 | monopolize | boolean  | Yes| Whether the component exclusively handles events. <br>**true**: The component exclusively handles events.<br>**false**: The component does not exclusively handle events.<br>Default value: **false**.<br>**NOTE**<br>1. If a component is exclusively handling events after a finger is pressed on it, and another finger is pressed before the first finger is lifted, the component continues to exclusively handle events while interacting with the second finger. The same case applies to a third and more fingers.<br>2. If a component is bound through [parallelGesture](ts-gesture-settings.md) to a gesture, for example, [pan gesture](ts-basic-gestures-pangesture.md), that can also be triggered by its child component, and the child component has event monopolization and is the first to respond, then the parent will not respond to the gesture.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 ## Example
 
@@ -33,10 +38,10 @@ This example demonstrates how to set **monopolizeEvents** to determine whether a
 @Entry
 @Component
 struct Index {
-  @State message: string = 'set monopolizeEvents false'
-  @State messageOut: string = ' '
-  @State messageInner: string = ' '
-  @State monopolize: boolean = false
+  @State message: string = 'set monopolizeEvents false';
+  @State messageOut: string = ' ';
+  @State messageInner: string = ' ';
+  @State monopolize: boolean = false;
 
   build() {
     Column() {

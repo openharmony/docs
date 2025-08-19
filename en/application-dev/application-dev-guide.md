@@ -25,7 +25,7 @@ You can refer to development guidances of key features in the application framew
 ## Tools
 
 DevEco Studio is a high-performance integrated development environment (IDE) recommended for developing OpenHarmony applications.
-[Here](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-deveco-studio-overview-0000001263280421) you can learn everything about DevEco Studio, including how to use this tool to create a project and sign, debug, and run an application.
+[Here](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-tools-overview) you can learn everything about DevEco Studio, including how to use this tool to create a project and sign, debug, and run an application.
 
 ## Hands-On Tutorials
 

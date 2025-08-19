@@ -1,4 +1,10 @@
 # @ohos.arkui.StateManagement (状态管理)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926; @liwenzhen3; @zzq212050299-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @HelloCrease-->
 
 状态管理模块提供了应用程序的数据存储能力、持久化数据管理能力、UIAbility数据存储能力和应用程序需要的环境状态、工具。
 
@@ -169,6 +175,8 @@ static globalConnect\<T extends object\>(type: ConnectOptions\<T\>): T | undefin
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
 
 | 名称   |类型   |必填   | 说明                                                      |
 | ------------- | ------------|-------------------|-------------------------- |
@@ -392,7 +400,7 @@ static makeObserved\<T extends object\>(source: T): T
 
 | 参数名 | 类型 | 必填 | 说明     |
 | ------ | ---- | ---- | ------------ |
-| source | T    | 是   | 数据源对象。支持非@Observed和@ObserveV2修饰的class，JSON.parse返回的Object和@Sendable修饰的class。</br>支持Array、Map、Set和Date。</br>支持collection.Array, collection.Set和collection.Map。</br>具体使用规则，详见[makeObserved接口：将非观察数据变为可观察数据](../../ui/state-management/arkts-new-makeObserved.md)。 |
+| source | T    | 是   | 数据源对象。支持非@Observed和@ObservedV2装饰的class，JSON.parse返回的Object和@Sendable修饰的class。</br>支持Array、Map、Set和Date。</br>支持collection.Array, collection.Set和collection.Map。</br>具体使用规则，详见[makeObserved接口：将非观察数据变为可观察数据](../../ui/state-management/arkts-new-makeObserved.md)。 |
 
 **返回值：**
 
@@ -507,7 +515,7 @@ static makeV1Observed\<T extends object\>(source: T): T
 
 | 参数名 | 类型 | 必填 | 说明     |
 | ------ | ---- | ---- | ------------ |
-| source | T    | 是   | 数据源。支持普通class、Array、Map、Set、Date类型。</br>不支持[collections类型](../apis-arkts/js-apis-arkts-collections.md)和[@Sendable](../../arkts-utils/arkts-sendable.md)修饰的class。</br>不支持undefined和null。不支持状态管理V2的数据和[makeObserved](#makeobserved)的返回值。 |
+| source | T    | 是   | 数据源。支持普通class、Array、Map、Set、Date类型。</br>不支持[collections类型](../apis-arkts/arkts-apis-arkts-collections.md)和[@Sendable](../../arkts-utils/arkts-sendable.md)修饰的class。</br>不支持undefined和null。不支持状态管理V2的数据和[makeObserved](#makeobserved)的返回值。 |
 
 **返回值：**
 
@@ -580,12 +588,12 @@ static makeBinding\<T\>(getter: GetterCallback\<T\>): Binding\<T\>
 
 | 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
-| [Binding\<T\>](#binding20)    | 仅包含一个`value`属性，用于获取当前绑定的值。只能读取值，不能直接修改。 |
+| [Binding\<T\>](#bindingt20)    | 仅包含一个`value`属性，用于获取当前绑定的值。只能读取值，不能直接修改。 |
 
 **示例：**
 
 ```ts
-import { Binding, MutableBinding, UIUtils } from `@kit.ArkUI`;
+import { Binding, MutableBinding, UIUtils } from '@kit.ArkUI';
 
 @Builder
 function CustomButton(num1: Binding<number>) {
@@ -646,12 +654,12 @@ static makeBinding\<T\>(getter: GetterCallback\<T\>, setter: SetterCallback\<T\>
 
 | 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
-| [MutableBinding\<T\>](#mutablebinding20)    | 包含一个`value`属性，支持通过`.value`读取和修改数据，设置值时会检查类型是否匹配泛型`T`。 |
+| [MutableBinding\<T\>](#mutablebindingt20)    | 包含一个`value`属性，支持通过`.value`读取和修改数据，设置值时会检查类型是否匹配泛型`T`。 |
 
 **示例：**
 
 ```ts
-import { Binding, MutableBinding, UIUtils } from `@kit.ArkUI`;
+import { Binding, MutableBinding, UIUtils } from '@kit.ArkUI';
 
 @Builder
 function CustomButton(num2: MutableBinding<number>) {
@@ -695,6 +703,180 @@ struct CompV2 {
   }
 }
 ```
+
+### addMonitor<sup>20+</sup>
+static addMonitor(target: object, path: string | string[], monitorCallback: MonitorCallback, options?: MonitorOptions): void
+
+给状态管理V2的状态变量动态添加监听方法，详见[addMonitor/clearMonitor](../../ui/state-management/arkts-new-addMonitor-clearMonitor.md)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明     |
+| ------ | ---- | ---- | ------------ |
+| target | object | 是   | 目标对象，仅支持[\@ComponentV2](../../ui/state-management/arkts-new-componentV2.md)和[\@ObservedV2](../../ui/state-management/arkts-new-observedV2-and-trace.md)实例。</br>对于不支持的类型，会抛出运行时错误，错误码见表格。 |
+| path | string \| string[]    | 是   | 添加监听的变量名路径。可指定一个路径或者传入string数组用于一次性指定多个监听的变量路径。</br>仅支持string和string数组，对于不支持的类型，会抛出运行时错误，错误码见表格。 |
+| monitorCallback | [MonitorCallback](#monitorcallback20)   | 是   | 给对应的状态变量注册的监听函数，即path路径对应的状态变量改变时，会回调对应的函数。</br>对于不支持的类型，会抛出运行时错误，错误码见表格。 |
+| options | [MonitorOptions](#monitoroptions20)   | 否   | 监听函数的配置项，具体可见[MonitorOptions](#monitoroptions20)。 |
+
+
+**错误码：**
+以下错误码的详细介绍请参见[状态管理错误码](./errorcode-stateManagement.md)。
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+|130000|The target is not a custom component instance or V2 class instance.|
+|130001|The path is invalid.|
+|130002|monitorCallback is not a function or an anonymous function.|
+
+**示例：**
+下面的示例：
+1. 在`ObservedClass`的构造方法里，添加对`name`属性的同步监听回调`onChange`。
+2. 点击Text组件，将`name`改为`Jack`和`Jane`，触发两次`onChange`回调，打印日志如下。
+<!--code_no_check-->
+```
+ObservedClass property name change from Tom to Jack
+ObservedClass property name change from Jack to Jane
+```
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+
+@ObservedV2
+class ObservedClass {
+  @Trace name: string = 'Tom';
+
+  onChange(mon: IMonitor) {
+    mon.dirty.forEach((path: string) => {
+      console.info(`ObservedClass property ${path} change from ${mon.value(path)?.before} to ${mon.value(path)?.now}`);
+    });
+  }
+
+  constructor() {
+    // 给当前ObservedClass的实例this添加对属性name的监听回调this.onChange，且当前监听回调是同步监听
+    UIUtils.addMonitor(this, 'name', this.onChange, { isSynchronous: true });
+  }
+}
+
+@Entry
+@ComponentV2
+struct Index {
+  @Local observedClass: ObservedClass = new ObservedClass();
+
+  build() {
+    Column() {
+      Text(`name: ${this.observedClass.name}`)
+        .fontSize(20)
+        .onClick(() => {
+          this.observedClass.name = 'Jack';
+          this.observedClass.name = 'Jane';
+        })
+    }
+  }
+}
+```
+
+### clearMonitor<sup>20+</sup>
+static clearMonitor(target: object, path: string | string[], monitorCallback?: MonitorCallback): void
+
+删除通过[addMonitor](#addmonitor20)给状态管理V2的状态变量添加的监听方法，详见[addMonitor/clearMonitor](../../ui/state-management/arkts-new-addMonitor-clearMonitor.md)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明     |
+| ------ | ---- | ---- | ------------ |
+| target | object | 是   | 目标对象，仅支持[\@ComponentV2](../../ui/state-management/arkts-new-componentV2.md)和[\@ObservedV2](../../ui/state-management/arkts-new-observedV2-and-trace.md)实例。</br>对于不支持的类型，会抛出运行时错误，错误码见表格。 |
+| path | string \| string[]   | 是   | 删除监听的变量名路径。可指定一个路径或者传入string数组用于一次性指定删除多个状态变量的监听函数。</br>仅支持string和数组，对于不支持的类型，会抛出运行时错误，错误码见表格。 |
+| monitorCallback | [MonitorCallback](#monitorcallback20)   | 否   | 指定被删除的监听函数。</br>当开发者不传此参数时，将删除path对应变量注册的所有监听函数。</br>对于不支持的类型，会抛出运行时错误，错误码见表格。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[状态管理错误码](./errorcode-stateManagement.md)。
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+|130000|The target is not a custom component instance or V2 class instance.|
+|130001|The path is invalid.|
+|130002|monitorCallback is not a function or an anonymous function.|
+
+**示例：**
+在下面的示例中：
+1. 在`ObservedClass`的构造方法中，添加对`age`属性的同步监听回调`onChange`。
+2. 点击Text组件，触发`age`自增，`onChange`的监听回调函数被触发。打印日志如下。
+<!--code_no_check-->
+```
+ObservedClass property age change from 10 to 11
+```
+3. 点击`clear monitor`，删除`age`的监听函数`onChange`。
+4. 再次点击Text组件，触发`age`自增，`onChange`不会被触发。
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+
+@ObservedV2
+class ObservedClass {
+  @Trace age: number = 10;
+
+  onChange(mon: IMonitor) {
+    mon.dirty.forEach((path: string) => {
+      console.info(`ObservedClass property ${path} change from ${mon.value(path)?.before} to ${mon.value(path)?.now}`);
+    });
+  }
+
+  constructor() {
+    // 给当前ObservedClass的实例this添加对属性name的监听回调this.onChange，且当前监听回调是同步监听
+    UIUtils.addMonitor(this, 'age', this.onChange);
+  }
+}
+
+@Entry
+@ComponentV2
+struct Index {
+  @Local observedClass: ObservedClass = new ObservedClass();
+
+  build() {
+    Column() {
+      Text(`age: ${this.observedClass.age}`)
+        .fontSize(20)
+        .onClick(() => {
+          // 点击触发age++，触发onChange回调
+          this.observedClass.age++;
+        })
+      Button('clear monitor')
+        .onClick(() => {
+          // 点击clearMonitor，删除this.observedClass中age的监听函数onChange
+          // 再次点击触发age++，没有触发监听函数onChange
+          UIUtils.clearMonitor(this.observedClass, 'age', this.observedClass.onChange);
+        })
+    }
+  }
+}
+```
+
+## MonitorOptions<sup>20+</sup>
+
+[addMonitor](#addmonitor20)的可选参数，用于配置回调类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明     |
+| ------ | ---- | ---- | ------------ |
+|isSynchronous|boolean|否|配置当前回调函数否是为同步回调。true为同步回调。默认值为false，即异步回调。|
+
+## MonitorCallback<sup>20+</sup>
+type MonitorCallback = (monitorValue: IMonitor) => void
+
+参数为[IMonitor](./arkui-ts/ts-state-management-watch-monitor.md#imonitor12)类型的监听回调函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## StorageDefaultCreator\<T\>
 
@@ -1005,7 +1187,7 @@ type GetterCallback\<T\> = () => T
 **示例：**
 
 ```ts
-import { Binding, MutableBinding, UIUtils } from `@kit.ArkUI`;
+import { Binding, MutableBinding, UIUtils } from '@kit.ArkUI';
 
 @Builder
 function CustomButton(num1: Binding<number>) {
@@ -1057,7 +1239,7 @@ type SetterCallback\<T\> = (newValue: T) => void
 **示例：**
 
 ```ts
-import { Binding, MutableBinding, UIUtils } from `@kit.ArkUI`;
+import { Binding, MutableBinding, UIUtils } from '@kit.ArkUI';
 
 @Builder
 function CustomButton(num2: MutableBinding<number>) {
@@ -1086,14 +1268,14 @@ struct CompV2 {
           () => this.number2, // GetterCallback
           (val: number) => {
             this.number2 = val;
-          }) // SetterCallback
+          }) // SetterCallback 必须提供，否则触发时会造成运行时错误
       )
     }
   }
 }
 ```
 
-## Binding<sup>20+</sup>
+## Binding\<T\><sup>20+</sup>
 
 只读数据绑定的泛型类，可以绑定任意类型的数据。
 
@@ -1110,14 +1292,14 @@ get value(): T
 
 **返回值：**
 
-| 类型             | 描述                                                         |
+| 类型             | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ |
 | T |返回值类型为泛型参数T，与Binding\<T\>定义的类型一致。|
 
 **示例：**
 
 ```ts
-import { Binding, MutableBinding, UIUtils } from `@kit.ArkUI`;
+import { Binding, MutableBinding, UIUtils } from '@kit.ArkUI';
 
 @Builder
 function CustomButton(num1: Binding<number>) {
@@ -1151,16 +1333,16 @@ struct CompV2 {
 }
 ```
 
-## MutableBinding<sup>20+</sup>
+## MutableBinding\<T\><sup>20+</sup>
 
 可变数据绑定的泛型类，允许对绑定值进行读写操作，提供完整的get和set访问器。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### value<sup>20+</sup>
-set value(newValue: T): void
+set value(newValue: T)
 
-提供set访问器，用于设置当前绑定值的值。
+提供set访问器，用于设置当前绑定值的值。构造MutableBinding类实例时必须提供set访问器，否则触发set访问器会造成运行时错误。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1183,14 +1365,14 @@ get value(): T
 
 **返回值：**
 
-| 类型             | 描述                                                         |
+| 类型             | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ |
 | T |返回值类型为泛型参数T，与Binding\<T\>定义的类型一致。|
 
 **示例：**
 
 ```ts
-import { Binding, MutableBinding, UIUtils } from `@kit.ArkUI`;
+import { Binding, MutableBinding, UIUtils } from '@kit.ArkUI';
 
 @Builder
 function CustomButton(num2: MutableBinding<number>) {
@@ -1219,7 +1401,7 @@ struct CompV2 {
           () => this.number2, // GetterCallback
           (val: number) => {
             this.number2 = val;
-          }) // SetterCallback
+          }) // SetterCallback 必须提供，否则触发时会造成运行时错误
       )
     }
   }

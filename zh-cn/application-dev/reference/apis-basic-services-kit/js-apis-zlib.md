@@ -1,4 +1,10 @@
 # @ohos.zlib (Zip模块)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供压缩解压缩文件的能力。
 
@@ -40,11 +46,11 @@ zipFile(inFile: string, outFile: string, options: Options): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp,也可以通过context获取。
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xxx/filename.xxx';
-let outFile = '/xxx/xxx.zip';
+let inFile = '/data/storage/el2/base/temp/filename.xxx';
+let outFile = '/data/storage/el2/base/temp/xxx.zip';
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
@@ -89,11 +95,11 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp,也可以通过context获取。
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xx/xxx.zip';
-let outFile = '/xxx';
+let inFile = '/data/storage/el2/base/temp/xxx.zip';
+let outFile = '/data/storage/el2/base/temp/xxx';
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
@@ -143,11 +149,11 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 **示例：**
 
 ```ts
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp,也可以通过context获取。
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xxx/filename.xxx';
-let outFile = '/xxx/xxx.zip';
+let inFile = '/data/storage/el2/base/temp/filename.xxx';
+let outFile = '/data/storage/el2/base/temp/xxx.zip';
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
@@ -157,13 +163,15 @@ let options: zlib.Options = {
 try {
   zlib.compressFile(inFile, outFile, options, (errData: BusinessError) => {
     if (errData !== null) {
-      console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+      console.error(`compressFile errData is errCode:${errData.code}  message:${errData.message}`);
+    } else {
+      console.info(`compressFile success.`);
     }
   })
 } catch (errData) {
   let code = (errData as BusinessError).code;
   let message = (errData as BusinessError).message;
-  console.error(`errData is errCode:${code}  message:${message}`);
+  console.error(`compressFile errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -208,11 +216,11 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 **示例：**
 
 ```ts
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp,也可以通过context获取。
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xxx/filename.xxx';
-let outFile = '/xxx/xxx.zip';
+let inFile = '/data/storage/el2/base/temp/filename.xxx';
+let outFile = '/data/storage/el2/base/temp/xxx.zip';
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
@@ -271,11 +279,11 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 **示例：**
 
 ```ts
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp,也可以通过context获取。
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xx/xxx.zip';
-let outFileDir = '/xxx';
+let inFile = '/data/storage/el2/base/temp/xxx.zip';
+let outFileDir = '/data/storage/el2/base/temp';
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   parallel: zlib.ParallelStrategy.PARALLEL_STRATEGY_PARALLEL_DECOMPRESSION
@@ -284,13 +292,15 @@ let options: zlib.Options = {
 try {
   zlib.decompressFile(inFile, outFileDir, options, (errData: BusinessError) => {
     if (errData !== null) {
-      console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+      console.error(`decompressFile errData is errCode:${errData.code}  message:${errData.message}`);
+    } else {
+      console.info(`decompressFile success.`);
     }
   })
 } catch (errData) {
   let code = (errData as BusinessError).code;
   let message = (errData as BusinessError).message;
-  console.error(`errData is errCode:${code}  message:${message}`);
+  console.error(`decompressFile errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -338,11 +348,11 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 **示例：**
 
 ```ts
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp,也可以通过context获取。
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xx/xxx.zip';
-let outFileDir = '/xxx';
+let inFile = '/data/storage/el2/base/temp/xxx.zip';
+let outFileDir = '/data/storage/el2/base/temp';
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
 };
@@ -398,16 +408,18 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 **示例：**
 
 ```ts
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp,也可以通过context获取。
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xx/xxx.zip';
-let outFileDir = '/xxx';
+let inFile = '/data/storage/el2/base/temp/xxx.zip';
+let outFileDir = '/data/storage/el2/base/temp';
 
 try {
   zlib.decompressFile(inFile, outFileDir, (errData: BusinessError) => {
     if (errData !== null) {
       console.error(`decompressFile failed. code is ${errData.code}, message is ${errData.message}`);
+    } else {
+      console.info(`decompressFile success.`);
     }
   })
 } catch (errData) {
@@ -510,9 +522,9 @@ compressFiles(inFiles: Array&lt;string&gt;, outFile: string, options: Options): 
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp，也可以通过context获取。
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xxx/filename.xxx';
-let pathDir = '';
-let outFile = '/xxx/xxx.zip';
+let inFile = '/data/storage/el2/base/temp/filename.xxx';
+let pathDir = 'data/storage/el2/base/temp/xxx';
+let outFile = '/data/storage/el2/base/temp/xxx.zip';
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
@@ -520,7 +532,7 @@ let options: zlib.Options = {
 };
 
 try {
-  zlib.compressFiles([inFile, pathDir, pathDir], outFile, options).then((data: void) => {
+  zlib.compressFiles([inFile, pathDir], outFile, options).then((data: void) => {
     console.info('compressFiles success. data: ' + JSON.stringify(data));
   }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
@@ -949,8 +961,6 @@ createZip(): Promise&lt;Zip&gt;
 
 ```ts
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
-
-let zip = zlib.createZipSync();
 
 zlib.createZip().then(data => {
   console.info('createZip success');
@@ -2310,7 +2320,8 @@ async function demo() {
   }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
-  await zip.inflateCopy(zip).then((data) => {
+  let destZip = zlib.createZipSync();
+  await destZip.inflateCopy(zip).then((data) => {
     console.info('inflateCopy success')
   }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
@@ -2558,7 +2569,7 @@ async function demo() {
           break;
         }
         console.info('have =  last = ', have, last)
-        if (last != 31 || (NEXT2() != 139 && last >= 157 && last <= 157)) {
+        if (last != 31 || NEXT2() != 139 ) {
           ret = first ? -3 : -1;
           console.info('inflateBackTest Call result last != 31 || (NEXT2() != 139 && last != 157)')
           break;
@@ -3738,12 +3749,12 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称     | 类型             | 可读 | 可写 | 说明                                                       |
+| 名称     | 类型             | 只读 | 可选 | 说明                                                       |
 | -------- | ---------------- | ---- | ---------------------------------------------------------- | ---- |
-| level    | [CompressLevel](#compresslevel)     | 是   | 否  | 参考[CompressLevel枚举定义](#compresslevel)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
-| memLevel | [MemLevel](#memlevel)         | 是   | 否  | 参考[MemLevel枚举定义](#memlevel)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
-| strategy | [CompressStrategy](#compressstrategy) | 是   | 否  | 参考[CompressStrategy枚举定义](#compressstrategy)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
-| parallel<sup>18+</sup> | [ParallelStrategy](#parallelstrategy18) | 是   | 否  | 参考[ParallelStrategy枚举定义](#parallelstrategy18)。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
+| level    | [CompressLevel](#compresslevel)     | 否   | 是  | 参考[CompressLevel枚举定义](#compresslevel)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| memLevel | [MemLevel](#memlevel)         | 否   | 是  | 参考[MemLevel枚举定义](#memlevel)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
+| strategy | [CompressStrategy](#compressstrategy) | 否   | 是  | 参考[CompressStrategy枚举定义](#compressstrategy)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
+| parallel<sup>18+</sup> | [ParallelStrategy](#parallelstrategy18) | 否   | 是  | 参考[ParallelStrategy枚举定义](#parallelstrategy18)。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
 
 ## CompressLevel
 
@@ -3854,16 +3865,16 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称         | 类型        | 可读 | 可写 | 说明                                                         |
+| 名称         | 类型        | 只读 | 可选 | 说明                                                         |
 | ------------ | ----------- | ---- | ---- | ------------------------------------------------------------ |
-| nextIn       | ArrayBuffer | 是   | 否   | 需要压缩的输入字节。                                           |
-| availableIn  | number      | 是   | 否   | nextIn可用的字节数。                                           |
-| totalIn      | number      | 是   | 否   | 到目前为止读取的输入字节总数。                                 |
-| nextOut      | ArrayBuffer | 是   | 否   | 压缩后的输出字节。                                             |
-| availableOut | number      | 是   | 否   | nextOut的剩余可用字节数。                                      |
-| totalOut     | number      | 是   | 否   | 到目前为止输出字节总数。                                       |
-| dataType     | number      | 是   | 否   | 关于数据类型的最佳猜测：deflate的二进制或文本，或inflate的解码状态。 |
-| adler        | number      | 是   | 否   | 未压缩数据的Adler-32或CRC-32值。                               |
+| nextIn       | ArrayBuffer | 否   | 是   | 需要压缩的输入字节。                                           |
+| availableIn  | number      | 否   | 是   | nextIn可用的字节数。                                           |
+| totalIn      | number      | 否   | 是   | 到目前为止读取的输入字节总数。                                 |
+| nextOut      | ArrayBuffer | 否   | 是   | 压缩后的输出字节。                                             |
+| availableOut | number      | 否   | 是   | nextOut的剩余可用字节数。                                      |
+| totalOut     | number      | 否   | 是   | 到目前为止输出字节总数。                                       |
+| dataType     | number      | 否   | 是   | 关于数据类型的最佳猜测：deflate的二进制或文本，或inflate的解码状态。 |
+| adler        | number      | 否   | 是   | 未压缩数据的Adler-32或CRC-32值。                               |
 
 ## ZipOutputInfo<sup>12+</sup>
 
@@ -3871,10 +3882,10 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称    | 类型         | 可读 | 可写 | 说明                                          |
+| 名称    | 类型         | 只读 | 可选 | 说明                                          |
 | ------- | ------------ | ---- | ---- | --------------------------------------------- |
-| status  | ReturnStatus | 是   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
-| destLen | number       | 是   | 否   | 目标缓冲区的总长度。                          |
+| status  | ReturnStatus | 否   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
+| destLen | number       | 否   | 否   | 目标缓冲区的总长度。                          |
 
 ## DictionaryOutputInfo<sup>12+</sup>
 
@@ -3882,10 +3893,10 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称             | 类型         | 可读 | 可写 | 说明                                          |
+| 名称             | 类型         | 只读 | 可选 | 说明                                          |
 | ---------------- | ------------ | ---- | ---- | --------------------------------------------- |
-| status           | ReturnStatus | 是   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
-| dictionaryLength | number       | 是   | 否   | 字典的长度。                                  |
+| status           | ReturnStatus | 否   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
+| dictionaryLength | number       | 否   | 否   | 字典的长度。                                  |
 
 ## DecompressionOutputInfo<sup>12+</sup>
 
@@ -3893,11 +3904,11 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称         | 类型         | 可读 | 可写 | 说明                                          |
+| 名称         | 类型         | 只读 | 可选 | 说明                                          |
 | ------------ | ------------ | ---- | ---- | --------------------------------------------- |
-| status       | ReturnStatus | 是   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
-| destLength   | number       | 是   | 否   | 目标缓冲区的长度。                            |
-| sourceLength | number       | 是   | 否   | 源缓冲区的长度。                              |
+| status       | ReturnStatus | 否   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
+| destLength   | number       | 否   | 否   | 目标缓冲区的长度。                            |
+| sourceLength | number       | 否   | 否   | 源缓冲区的长度。                              |
 
 ## DeflatePendingOutputInfo<sup>12+</sup>
 
@@ -3905,11 +3916,11 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称    | 类型         | 可读 | 可写 | 说明                                          |
+| 名称    | 类型         | 只读 | 可选 | 说明                                          |
 | ------- | ------------ | ---- | ---- | --------------------------------------------- |
-| status  | ReturnStatus | 是   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
-| pending | number       | 是   | 否   | 已生成的输出字节数。                          |
-| bits    | number       | 是   | 否   | 已生成的输出位数。                            |
+| status  | ReturnStatus | 否   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
+| pending | number       | 否   | 否   | 已生成的输出字节数。                          |
+| bits    | number       | 否   | 否   | 已生成的输出位数。                            |
 
 ## GzHeader<sup>12+</sup>
 
@@ -3917,18 +3928,18 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称     | 类型        | 可读 | 可写 | 说明                                 |
+| 名称     | 类型        | 只读 | 可选 | 说明                                 |
 | -------- | ----------- | ---- | ---- | ------------------------------------ |
-| isText   | boolean     | 是   | 否   | 如果压缩数据被认为是文本，则为True。 |
-| os       | number      | 是   | 否   | 操作系统。                           |
-| time     | number      | 是   | 否   | 修改时间。                           |
-| xflags   | number      | 是   | 否   | 额外标志。                           |
-| extra    | ArrayBuffer | 是   | 否   | 额外字段。                           |
-| extraLen | number      | 是   | 否   | 额外字段的长度。                     |
-| name     | ArrayBuffer | 是   | 否   | 文件名。                             |
-| comment  | ArrayBuffer | 是   | 否   | 注释。                               |
-| hcrc     | boolean     | 是   | 否   | 如果存在crc标头，则为True。          |
-| done     | boolean     | 是   | 否   | 读取gzip标头后为True。               |
+| isText   | boolean     | 否   | 是   | 如果压缩数据被认为是文本，则为True。 |
+| os       | number      | 否   | 是   | 操作系统。                           |
+| time     | number      | 否   | 是   | 修改时间。                           |
+| xflags   | number      | 否   | 是   | 额外标志。                           |
+| extra    | ArrayBuffer | 否   | 是   | 额外字段。                           |
+| extraLen | number      | 否   | 是   | 额外字段的长度。                     |
+| name     | ArrayBuffer | 否   | 是   | 文件名。                             |
+| comment  | ArrayBuffer | 否   | 是   | 注释。                               |
+| hcrc     | boolean     | 否   | 是   | 如果存在crc标头，则为True。          |
+| done     | boolean     | 否   | 是   | 读取gzip标头后为True。               |
 
 ## zlib.createGZip<sup>12+</sup>
 
@@ -5793,10 +5804,10 @@ struct Index {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称      | 类型         | 可读 | 可写 | 说明                                         |
+| 名称      | 类型         | 只读 | 可选 | 说明                                         |
 | --------- | ------------ | ---- | ---- | -------------------------------------------- |
-| status    | ReturnStatus | 是   | 否   | 返回zlib文件状态码，参考ReturnStatus的定义。 |
-| statusMsg | string       | 是   | 否   | zlib文件上发生的最后一个状态的状态消息。     |
+| status    | ReturnStatus | 否   | 否   | 返回zlib文件状态码，参考ReturnStatus的定义。 |
+| statusMsg | string       | 否   | 否   | zlib文件上发生的最后一个状态的状态消息。     |
 
 ## OffsetReferencePoint<sup>12+</sup>
 

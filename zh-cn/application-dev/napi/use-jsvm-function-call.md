@@ -1,12 +1,18 @@
 # 使用JSVM-API接口进行函数创建和调用
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## 简介
 
-函数调用允许开发者从JSVM模块中调用JavaScript函数，并传参进行调用，或者直接在JSVM模块中创建一个JavaScript方法。
+函数调用允许开发者从JSVM模块中调用JavaScript函数，并传参，或者直接在JSVM模块中创建一个JavaScript函数。
 
 ## 基本概念
 
-函数是一种非常重要的编程概念，可以执行特定的任务或操作、提高代码的可读性、把复杂任务简化、提高代码复用性以及支持代码的组织与管理。每个函数负责不同的功能，实现代码的模块化和结构化，便于理解、维护和重用。
+函数是一种重要的编程概念，用于执行特定任务，提升代码可读性与复用性，简化复杂操作，并实现代码的模块化和结构化，便于理解、维护和扩展。
 
 ## 接口说明
 
@@ -46,7 +52,7 @@ cpp测试全量代码，入口为TEST_FUNC
   }
 
 JSVM_Value NativeCreateFunctionTest(JSVM_Env env, JSVM_CallbackInfo info) {
-    void *data;
+    void *data = nullptr;
     size_t argc = 1;
     JSVM_Value argv[1] = {nullptr};
     JSVM_Value thisArg;
@@ -125,7 +131,7 @@ static int32_t TEST_FUNC() {
     return 0;
 }
 ```
-<!-- @[jsvm_function_call](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/functioncall/src/main/cpp/hello.cpp) -->
+<!-- @[jsvm_function_call](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/functioncall/src/main/cpp/hello.cpp) -->
 
 预期的输出
 ```

@@ -2,17 +2,17 @@
 
 With the attribute modifier, you can dynamically set component attributes, complete with the **if/else** syntax and polymorphic style.
 
->  **NOTE**
+> **NOTE**
 >
->  This feature is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+> This feature is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
 >
 > Ensure that the attributes set in **attributeModifier** are different from those set in other methods. Otherwise, **attributeModifier** does not take effect when the page is refreshed.
 >
-> **attributeModifier** does not support custom components.
+> **attributeModifier** supports custom components since API version 20.
 
 ## attributeModifier
 
-attributeModifier(modifier: AttributeModifier\<T>)
+attributeModifier(modifier: AttributeModifier\<T>): T
 
 Creates an attribute modifier.
 
@@ -24,7 +24,13 @@ Creates an attribute modifier.
 
 | Name  | Type                                        | Mandatory| Description                                                                                                                            |
 | -------- | -------------------------------------------- | ---- | -------------------------------------------------------------------------------------------------------------------------------- |
-| modifier | [AttributeModifier\<T>](#attributemodifiert) | Yes  | Modifier for dynamically setting attributes on the current component. The **if/else** syntax is supported.<br>**modifier**: attribute modifier. You need a custom class to implement the **AttributeModifier** API.|
+| modifier | [AttributeModifier\<T>](#attributemodifiert) | Yes  | Modifier for dynamically setting attributes on the current component. The **if/else** syntax is supported.<br>**modifier**: attribute modifier. You need to customize classes to implement the **AttributeModifier** API.|
+
+**Return value**
+
+| Type| Description|
+| --- | --- |
+| T | Current component.|
 
 ## AttributeModifier\<T>
 
@@ -121,7 +127,7 @@ CommonModifier, ColumnModifier, ColumnSplitModifier, RowModifier, RowSplitModifi
 2. Updating the attribute value of a custom modifier changes the corresponding attribute of the component to which the modifier is applied. The custom modifier is a base class, and the constructed object is a child class object. When using the object, use **as** to assert the type as a child class. 
 3. With a custom modifier applied to two components, updating the attribute value of the custom modifier changes the corresponding attributes of both components. 
 4. If attributes A and B are set through a custom modifier, and then attributes C and D are set through other means, all the four attributes take effect on the component. 
-5. The custom modifier does not support change observation for @State decorated variables. For details, see Example 2. 
+5. Custom modifiers do not support change detection of state data decorated with @State. For details, see [Example 3: Understanding Custom Modifiers Do Not Support State Data Changes)](#example-3-understanding-custom-modifiers-do-not-support-state-data-changes). 
 6. If you use **attributeModifier** to set attributes multiple times, all the set attributes take effect, and those attributes that are set multiple times take effect based on the configuration sequence.  
 
 ## Example
@@ -132,13 +138,13 @@ This example demonstrates how to switch the background color of a **Button** com
 ```ts
 // xxx.ets
 class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
-  isDark: boolean = false
+  public isDark: boolean = false;
 
   applyNormalAttribute(instance: ButtonAttribute): void {
     if (this.isDark) {
-      instance.backgroundColor(Color.Black)
+      instance.backgroundColor(Color.Black);
     } else {
-      instance.backgroundColor(Color.Red)
+      instance.backgroundColor(Color.Red);
     }
   }
 }
@@ -146,7 +152,7 @@ class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
 @Entry
 @Component
 struct attributeDemo {
-  @State modifier: MyButtonModifier = new MyButtonModifier()
+  @State modifier: MyButtonModifier = new MyButtonModifier();
 
   build() {
     Row() {
@@ -154,7 +160,7 @@ struct attributeDemo {
         Button("Button")
           .attributeModifier(this.modifier)
           .onClick(() => {
-            this.modifier.isDark = !this.modifier.isDark
+            this.modifier.isDark = !this.modifier.isDark;
           })
       }
       .width('100%')
@@ -173,18 +179,18 @@ This example demonstrates how to implement a pressed state effect for a **Button
 // xxx.ets
 class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
   applyNormalAttribute(instance: ButtonAttribute): void {
-    instance.backgroundColor(Color.Black)
+    instance.backgroundColor(Color.Black);
   }
 
   applyPressedAttribute(instance: ButtonAttribute): void {
-    instance.backgroundColor(Color.Red)
+    instance.backgroundColor(Color.Red);
   }
 }
 
 @Entry
 @Component
 struct attributePressedDemo {
-  @State modifier: MyButtonModifier = new MyButtonModifier()
+  @State modifier: MyButtonModifier = new MyButtonModifier();
 
   build() {
     Row() {
@@ -205,7 +211,7 @@ struct attributePressedDemo {
 This example shows how to set the width of a custom modifier using state data. Custom modifiers do not support observing changes in data decorated with the @State decorator. Therefore, the width does not change when the button is clicked.
 
 ```ts
-import { CommonModifier } from "@kit.ArkUI"
+import { CommonModifier } from "@kit.ArkUI";
 
 const TEST_TAG : string = "AttributeModifier";
 class MyModifier extends CommonModifier {
@@ -216,7 +222,7 @@ class MyModifier extends CommonModifier {
 
 @Component
 struct MyImage1 {
-  @Link modifier: CommonModifier
+  @Link modifier: CommonModifier;
 
   build() {
     Image($r("app.media.startIcon")).attributeModifier(this.modifier as MyModifier)
@@ -229,21 +235,21 @@ struct Index {
   index: number = 0;
   @State width1: number = 100;
   @State height1: number = 100;
-  @State myModifier: CommonModifier = new MyModifier().width(this.width1).height(this.height1).margin(10)
+  @State myModifier: CommonModifier = new MyModifier().width(this.width1).height(this.height1).margin(10);
 
   build() {
     Column() {
       Button($r("app.string.EntryAbility_label"))
         .margin(10)
         .onClick(() => {
-          console.log(TEST_TAG, "onClick")
+          console.log(TEST_TAG, "onClick");
           this.index++;
           if (this.index % 2 === 1) {
             this.width1 = 10;
-            console.log(TEST_TAG, "setGroup1")
+            console.log(TEST_TAG, "setGroup1");
           } else {
             this.width1 = 10;
-            console.log(TEST_TAG, "setGroup2")
+            console.log(TEST_TAG, "setGroup2");
           }
         })
       MyImage1({ modifier: this.myModifier })
@@ -259,7 +265,7 @@ struct Index {
 In this example, the custom modifier sets the **width** and **height** attributes, and the **borderStyle** and **borderWidth** attributes are set through a button click. In this case, all the four attributes take effect when the button is clicked.
 
 ```ts
-import { CommonModifier } from "@kit.ArkUI"
+import { CommonModifier } from "@kit.ArkUI";
 
 const TEST_TAG: string = "AttributeModifier";
 
@@ -269,19 +275,19 @@ class MyModifier extends CommonModifier {
   }
 
   public setGroup1(): void {
-    this.borderStyle(BorderStyle.Dotted)
-    this.borderWidth(8)
+    this.borderStyle(BorderStyle.Dotted);
+    this.borderWidth(8);
   }
 
   public setGroup2(): void {
-    this.borderStyle(BorderStyle.Dashed)
-    this.borderWidth(8)
+    this.borderStyle(BorderStyle.Dashed);
+    this.borderWidth(8);
   }
 }
 
 @Component
 struct MyImage1 {
-  @Link modifier: CommonModifier
+  @Link modifier: CommonModifier;
 
   build() {
     Image($r("app.media.startIcon")).attributeModifier(this.modifier as MyModifier)
@@ -291,7 +297,7 @@ struct MyImage1 {
 @Entry
 @Component
 struct Index {
-  @State myModifier: CommonModifier = new MyModifier().width(100).height(100).margin(10)
+  @State myModifier: CommonModifier = new MyModifier().width(100).height(100).margin(10);
   index: number = 0;
 
   build() {
@@ -299,14 +305,14 @@ struct Index {
       Button($r("app.string.EntryAbility_label"))
         .margin(10)
         .onClick(() => {
-          console.log(TEST_TAG, "onClick")
+          console.log(TEST_TAG, "onClick");
           this.index++;
           if (this.index % 2 === 1) {
-            (this.myModifier as MyModifier).setGroup1()
-            console.log(TEST_TAG, "setGroup1")
+            (this.myModifier as MyModifier).setGroup1();
+            console.log(TEST_TAG, "setGroup1");
           } else {
-            (this.myModifier as MyModifier).setGroup2()
-            console.log(TEST_TAG, "setGroup2")
+            (this.myModifier as MyModifier).setGroup2();
+            console.log(TEST_TAG, "setGroup2");
           }
         })
       MyImage1({ modifier: this.myModifier })
@@ -316,6 +322,174 @@ struct Index {
 }
 ```
 ![attributeModifier](figures/attributeModifier.gif)
+
+### Example 5: Setting the Focused State Style with a Modifier
+
+This example demonstrates how to implement a focused state style for a **Button** component by binding it to a modifier. After **Button2** is clicked, the **Button** component displays the focused style when it has focus.
+
+```ts
+class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
+
+  applyNormalAttribute(instance: ButtonAttribute): void {
+    instance.backgroundColor(Color.Blue);
+  }
+  applyFocusedAttribute(instance: ButtonAttribute): void {
+    instance.backgroundColor(Color.Green);
+  }
+}
+
+@Entry
+@Component
+struct attributeDemo {
+  @State modifier: MyButtonModifier = new MyButtonModifier();
+  @State isDisable: boolean = true;
+
+  build() {
+    Row() {
+      Column() {
+        Button("Button")
+          .attributeModifier(this.modifier)
+          .enabled(this.isDisable)
+          .id("app")
+        Divider().vertical(false).strokeWidth(15).color(Color.Transparent)
+        Button("Button2")
+          .onClick(() => {
+            this.getUIContext().getFocusController().activate(true);
+            this.getUIContext().getFocusController().requestFocus("app");
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+![applyFocusedAttribute](figures/applyFocusedAttribute.gif)
+
+### Example 6: Setting the Disabled State Style with a Modifier
+
+This example demonstrates how to implement a disabled state style for a **Button** component by binding it to a modifier. After **Button2** is clicked, the **Button** component displays the disabled style when it is disabled.
+
+```ts
+class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
+  applyDisabledAttribute(instance: ButtonAttribute): void {
+    instance.width(200);
+  }
+}
+
+@Entry
+@Component
+struct attributeDemo {
+  @State modifier: MyButtonModifier = new MyButtonModifier();
+  @State isDisable: boolean = true;
+
+  build() {
+    Row() {
+      Column() {
+        Button("Button")
+          .attributeModifier(this.modifier)
+          .enabled(this.isDisable)
+        Divider().vertical(false).strokeWidth(15).color(Color.Transparent)
+        Button("Button2")
+          .onClick(() => {
+            this.isDisable = !this.isDisable;
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+![applyDisabledAttribute](figures/applyDisabledAttribute.gif)
+
+### Example 7: Setting the Selected State Style with a Modifier
+
+This example demonstrates how to implement a selected state style for a **Radio** component by binding it to a modifier.
+
+```ts
+class MyRadioModifier implements AttributeModifier<RadioAttribute> {
+  applyNormalAttribute(instance: RadioAttribute): void {
+    instance.backgroundColor(Color.Blue);
+  }
+  applySelectedAttribute(instance: RadioAttribute): void {
+    instance.backgroundColor(Color.Red);
+    instance.borderWidth(2);
+  }
+}
+
+@Entry
+@Component
+struct attributeDemo {
+  @State modifier: MyRadioModifier = new MyRadioModifier();
+  @State value: boolean = false;
+  @State value2: boolean = false;
+
+  build() {
+    Row() {
+      Column() {
+        Radio({ value: 'Radio1', group: 'radioGroup1' })
+          .checked(this.value)
+          .height(50)
+          .width(50)
+          .borderWidth(0)
+          .borderRadius(30)
+          .onClick(() => {
+            this.value = !this.value;
+          })
+          .attributeModifier(this.modifier)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+![applySelectedAttribute](figures/applySelectedAttribute.gif)
+
+### Example 8: Implementing the Pressed State Effect for a Custom Component with a Modifier
+
+This example demonstrates how to implement a pressed state effect for a custom component (**Common**) by binding it to a modifier. 
+
+```ts
+// xxx.ets
+class CustomModifier implements AttributeModifier<CommonAttribute> {
+  applyNormalAttribute(instance: CommonAttribute): void {
+    instance.backgroundColor(Color.Blue)
+  }
+
+  applyPressedAttribute(instance: CommonAttribute): void {
+    instance.backgroundColor(Color.Red)
+  }
+}
+
+@Entry
+@Component
+struct attributePressedDemo {
+  @State  modifier: CustomModifier = new CustomModifier()
+
+  build() {
+    Row() {
+      Column() {
+        ChildCompoent()
+          .attributeModifier(this.modifier)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+@Component
+struct ChildCompoent {
+  build() {
+    Text("common").fontColor(Color.Green).fontSize(28).textAlign(TextAlign.Center)
+      .width('35%')
+      .height('10%')
+  }
+}
+```
+![attributeModifier_common](figures/attributeModifier_common.gif)
 
 ## Supported Scope of Attributes
 
@@ -345,11 +519,7 @@ Attributes not listed in the table below are supported by default.
 | gesture                  | Not supported  | Method not implemented.   | Gesture-related attributes are not supported.                |
 | gestureModifier          | Not supported  | is not callable           | Modifier-related attributes are not supported.               |
 | onAccessibilityHover     | Not supported  | is not callable           | -                                         |
-| onChildTouchTest         | Not supported  | is not callable           | -                                         |
 | onDragStart              | Not supported  | Method not implemented.   | Attributes that return a CustomBuilder are not supported.            |
-| onPreDrag                | Not supported  | Method not implemented.   | -                                         |
-| onTouchIntercept         | Not supported  | is not callable           | -                                         |
-| onVisibleAreaChange      | Not supported  | Method not implemented.   | -                                         |
 | parallelGesture          | Not supported  | Method not implemented.   | Gesture-related attributes are not supported.                |
 | priorityGesture          | Not supported  | Method not implemented.   | Gesture-related attributes are not supported.                |
 | reuseId                  | Not supported  | Method not implemented.   | -                                         |

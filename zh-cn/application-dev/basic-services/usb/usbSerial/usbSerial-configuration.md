@@ -1,5 +1,12 @@
 # USB串口配置管理
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 ## 简介
 
 USB串口配置管理中，波特率、数据位、校验位和停止位是串口通信协议的核心参数，它们共同定义了数据传输的格式和规则。通过合理配置这些参数，可以显著提升串口通信的可靠性和效率。
@@ -72,15 +79,18 @@ USB串口配置管理中，波特率、数据位、校验位和停止位是串�
 
     ```ts
     // 此处对列表中的第一台USB设备判断是否拥有访问权限
-    let portId: number = portList[0].portId;
-    if (!serial.hasSerialRight(portId)) {
-      await serial.requestSerialRight(portId).then(result => {
-        if(!result) {
-          // 没有访问设备的权限且用户不授权则退出
-          console.error('The user does not have permission to perform this operation');
-          return;
-        }
-      });
+    // 函数名仅作为示例，实际需要与业务结合命名
+    async function serialDefault() {
+      let portId: number = portList[0].portId;
+      if (!serial.hasSerialRight(portId)) {
+        await serial.requestSerialRight(portId).then(result => {
+          if(!result) {
+            // 没有访问设备的权限且用户不授权则退出
+            console.error('The user does not have permission to perform this operation');
+            return;
+          }
+        });
+      }
     }
     ```
 

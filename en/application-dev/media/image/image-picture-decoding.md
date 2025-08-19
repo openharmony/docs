@@ -1,4 +1,9 @@
 # Using ImageSource to Decode Pictures
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 Image decoding refers to the process of decoding an image in a supported format (JPEG and HEIF currently) into a [picture](image-overview.md).  
 
@@ -28,10 +33,13 @@ Read the [API reference](../../reference/apis-image-kit/arkts-apis-image-ImageSo
       import { fileIo as fs } from '@kit.CoreFileKit';
 
       function getFileFd(context: Context): number | undefined {
-        const filePath: string = context.cacheDir + '/test.jpg';
+        const filePath: string = context.filesDir + '/test.jpg';
         const file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
-        const fd: number = file?.fd;
-        return fd;
+        if (file != undefined) {
+          const fd: number = file.fd;
+          return fd;
+        }
+        return undefined;
       }
       ```
 
@@ -121,11 +129,11 @@ Read the [API reference](../../reference/apis-image-kit/arkts-apis-image-ImageSo
          let auxPicture: image.AuxiliaryPicture | null = picture.getAuxiliaryPicture(type);
          // Obtain the information of the auxiliary picture.
          if(auxPicture != null) {
-            let auxinfo: image.AuxiliaryPictureInfo = auxPicture.getAuxiliaryPictureInfo();
-            console.info('GetAuxiliaryPictureInfo Type: ' + auxinfo.auxiliaryPictureType +
-               ' height: ' + auxinfo.size.height + ' width: ' + auxinfo.size.width +
-               ' rowStride: ' +  auxinfo.rowStride +  ' pixelFormat: ' + auxinfo.pixelFormat +
-               ' colorSpace: ' +  auxinfo.colorSpace);
+            let auxInfo: image.AuxiliaryPictureInfo = auxPicture.getAuxiliaryPictureInfo();
+            console.info('GetAuxiliaryPictureInfo Type: ' + auxInfo.auxiliaryPictureType +
+               ' height: ' + auxInfo.size.height + ' width: ' + auxInfo.size.width +
+               ' rowStride: ' +  auxInfo.rowStride +  ' pixelFormat: ' + auxInfo.pixelFormat +
+               ' colorSpace: ' +  auxInfo.colorSpace);
             // Read data of the auxiliary picture and write the data to an ArrayBuffer.
             auxPicture.readPixelsToBuffer().then((pixelsBuffer: ArrayBuffer) => {
                console.info('Read pixels to buffer success.');

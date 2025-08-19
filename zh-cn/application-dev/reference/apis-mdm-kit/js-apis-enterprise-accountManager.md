@@ -1,4 +1,10 @@
 # @ohos.enterprise.accountManager（账户管理）
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--Designer: @liuzuming-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供设备账户管理能力，包括禁止创建本地用户等。
 
@@ -26,6 +32,7 @@ disallowOsAccountAddition(admin: Want, disallow: boolean, accountId?: number): v
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -50,14 +57,17 @@ disallowOsAccountAddition(admin: Want, disallow: boolean, accountId?: number): v
 **示例：**
 
 ```ts
+import { accountManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   accountManager.disallowOsAccountAddition(wantTemp, true, 100);
   console.info('Succeeded in disallowing os account addition.');
 } catch (err) {
@@ -75,6 +85,7 @@ isOsAccountAdditionDisallowed(admin: Want, accountId?: number): boolean
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -104,14 +115,17 @@ isOsAccountAdditionDisallowed(admin: Want, accountId?: number): boolean
 **示例：**
 
 ```ts
+import { accountManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   let isDisallowed: boolean = accountManager.isOsAccountAdditionDisallowed(wantTemp, 100);
   console.info(`Succeeded in querying the os account addition or not: ${isDisallowed}`);
 } catch (err) {
@@ -129,6 +143,7 @@ addOsAccountAsync(admin: Want, name: string, type: osAccount.OsAccountType): Pro
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -160,14 +175,17 @@ addOsAccountAsync(admin: Want, name: string, type: osAccount.OsAccountType): Pro
 **示例**：
 
 ```ts
+import { accountManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError, osAccount } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
+// 参数需根据实际情况进行替换
 accountManager.addOsAccountAsync(wantTemp, "TestAccountName", osAccount.OsAccountType.NORMAL).then((info) => {
   console.info(`Succeeded in creating os account: ${JSON.stringify(info)}`);
 }).catch((err: BusinessError) => {
@@ -178,11 +196,13 @@ accountManager.addOsAccountAsync(wantTemp, "TestAccountName", osAccount.OsAccoun
 
 setDomainAccountPolicy(admin: Want, domainAccountInfo: osAccount.DomainAccountInfo, policy: DomainAccountPolicy): void
 
-设置域账号策略，该接口仅在2in1设备上生效。
+设置域账号策略，该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -205,25 +225,28 @@ setDomainAccountPolicy(admin: Want, domainAccountInfo: osAccount.DomainAccountIn
 **示例：**
 
 ```ts
+import { accountManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError, osAccount } from '@kit.BasicServicesKit';
 
 async function setDomainAccountPolicy() {
   let wantTemp: Want = {
+    // 需根据实际情况进行替换
     bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility',
+    abilityName: 'EntryAbility'
   };
   let policy: accountManager.DomainAccountPolicy = {
+    // 需根据实际情况进行替换
     authenticationValidityPeriod: 300,
     passwordValidityPeriod: 420,
-    passwordExpirationNotification: 60,
-  }
+    passwordExpirationNotification: 60
+  };
   // 设置全局域账号策略
   let accountInfo: osAccount.DomainAccountInfo = {
     domain: '',
     accountName: '',
-    serverConfigId: '',
-  }
+    serverConfigId: ''
+  };
   try {
     accountManager.setDomainAccountPolicy(wantTemp, accountInfo, policy);
     console.info('Succeeded in setting global domainAccount policy.');
@@ -234,8 +257,9 @@ async function setDomainAccountPolicy() {
   let accountInfo2: osAccount.DomainAccountInfo = {
     domain: '',
     accountName: '',
-    serverConfigId: '',
-  }
+    serverConfigId: ''
+  };
+  // 需根据实际情况替换
   let userId: number = 100;
   await osAccount.getAccountManager().getOsAccountDomainInfo(userId)
     .then((domainAccountInfo: osAccount.DomainAccountInfo) => {
@@ -258,11 +282,13 @@ async function setDomainAccountPolicy() {
 
 getDomainAccountPolicy(admin: Want, domainAccountInfo: osAccount.DomainAccountInfo): DomainAccountPolicy
 
-获取域账号策略，该接口仅在2in1设备上生效。
+获取域账号策略，该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -290,21 +316,23 @@ getDomainAccountPolicy(admin: Want, domainAccountInfo: osAccount.DomainAccountIn
 **示例：**
 
 ```ts
+import { accountManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError, osAccount } from '@kit.BasicServicesKit';
 
 async function getDomainAccountPolicy() {
   let wantTemp: Want = {
+    // 需根据实际情况进行替换
     bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility',
+    abilityName: 'EntryAbility'
   };
-  let domainAccountPolicy: accountManager.DomainAccountPolicy = {}
+  let domainAccountPolicy: accountManager.DomainAccountPolicy = {};
   // 查询全局域账号策略
   let accountInfo: osAccount.DomainAccountInfo = {
     domain: '',
     accountName: '',
-    serverConfigId: '',
-  }
+    serverConfigId: ''
+  };
   try {
     domainAccountPolicy = accountManager.getDomainAccountPolicy(wantTemp, accountInfo);
     console.info('Succeeded in getting global domain account policy.');
@@ -315,8 +343,9 @@ async function getDomainAccountPolicy() {
   let accountInfo2: osAccount.DomainAccountInfo = {
     domain: '',
     accountName: '',
-    serverConfigId: '',
-  }
+    serverConfigId: ''
+  };
+  // 需根据实际情况进行替换
   let userId: number = 100;
   await osAccount.getAccountManager()
     .getOsAccountDomainInfo(userId)

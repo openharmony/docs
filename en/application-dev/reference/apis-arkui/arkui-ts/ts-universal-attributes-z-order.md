@@ -4,11 +4,11 @@ The **zIndex** attribute sets the z-order of a component in the stacking context
 
 >  **NOTE**
 >
->  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  The initial APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## zIndex
 
-zIndex(value: number)
+zIndex(value: number): T
 
 Sets the stack level of the component.
 
@@ -24,6 +24,11 @@ Sets the stack level of the component.
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | number | Yes  | Stacking order of the component relative to its sibling components in a container. The components with a larger z-index value cover those with a smaller one. When dynamically changing zIndex does not involve adding or removing sibling nodes, the components are sorted stably based on their previous stack level.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 ## Example
 
@@ -39,7 +44,7 @@ struct ZIndexExample {
   build() {
     Column() {
       Stack() {
-        // Components are stacked. By default, the component defined later is on the top. A component with a larger zIndex value is displayed before one with a smaller zIndex value.
+        // Components in the stack layout overlap. By default, later-defined elements are on top. Elements with higher zIndex values appear in front of those with lower zIndex values.
         Text('1, zIndex(2)')
           .size({ width: '40%', height: '30%' }).backgroundColor(0xbbb2cb)
           .zIndex(2)
@@ -99,6 +104,6 @@ Effect after clicking the **Button** component to dynamically change **zIndex** 
 
 ![zIndex_1.png](figures/zIndex_1.png)
 
-Effect after clicking the **Button** component to dynamically change **zIndex** so that **Text1** has a higher **zIndex** value than **Text2**
+Effect after the **Button** component is clicked to dynamically change **zIndex** so that **Text1** has a higher **zIndex** value than **Text2**
 
 ![zIndex_2.png](figures/zIndex_2.png)

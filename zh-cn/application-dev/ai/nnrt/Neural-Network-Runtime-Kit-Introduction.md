@@ -1,4 +1,10 @@
 # Neural Network Runtime Kit简介
+<!--Kit: Neural Network Runtime Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @GbuzhidaoR-->
+<!--Designer: @GbuzhidaoR-->
+<!--Tester: @GbuzhidaoR-->
+<!--Adviser: @ge-yafang-->
 
 ## 使用场景
 Neural Network Runtime（NNRt, 神经网络运行时）是面向AI领域的跨芯片推理计算运行时，作为中间桥梁连通上层AI推理框架和底层加速芯片，实现AI模型的跨芯片推理计算。
@@ -42,10 +48,13 @@ AI推理框架和应用开发者也可以无需调用NNRt构图接口，直接�
 
 ## 与相关Kit的关系
 
-<!--PR1-->
+<!--RP1-->
 Neural Network Runtime Kit可支持系统内置的MindSpore Lite推理框架（MindSpore Lite Kit），MindSpore Lite已开放了配置NNRt的Native接口。
 
 MindSpore Lite对接NNRt可无需构图，两者共享同一份模型图格式（MindIR），因此使用MindSpore Lite在NNRt上加载模型将快于其他AI推理框架。
 
 此外，MindSpore Lite也支持通用硬件CPU/GPU与NNRt AI加速硬件之间的模型异构推理功能。
-<!--PR1End-->
+<!--RP1End-->
+
+## 模拟器支持情况
+本kit不支持模拟器。

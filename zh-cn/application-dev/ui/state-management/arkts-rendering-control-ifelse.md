@@ -1,4 +1,10 @@
 # if/else：条件渲染
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @maorh-->
+<!--Designer: @lixingchi1-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 ArkTS提供了渲染控制能力。条件渲染可根据应用状态，使用if、else和else if渲染相应的UI内容。
 
@@ -76,7 +82,7 @@ if语句的每个分支都包含一个构建函数。此类构建函数必须创
 
 ### if ... else ...语句和子组件状态
 
-以下示例包含if ... else ...语句与拥有\@State装饰变量的子组件。
+以下示例包含if ... else ...语句与拥有[\@State](./arkts-state.md)装饰变量的子组件。
 
 ```ts
 @Component
@@ -174,7 +180,7 @@ struct MainView {
 }
 ```
 
-此处，\@State counter变量归父组件所有。因此，当CounterView组件实例被删除时，该变量不会被销毁。CounterView组件通过\@Link装饰器引用状态。状态必须从子级移动到其父级（或父级的父级），以避免在条件内容或重复内容被销毁时丢失状态。
+此处，\@State counter变量归父组件所有。因此，当CounterView组件实例被删除时，该变量不会被销毁。CounterView组件通过[\@Link](./arkts-link.md)装饰器引用状态。状态必须从子级移动到其父级（或父级的父级），以避免在条件内容或重复内容被销毁时丢失状态。
 
 ### 嵌套if语句
 
@@ -229,171 +235,3 @@ struct MyComponent {
   }
 }
 ```
-
-## 常见问题
-
-### 动效场景下if分支切换保护失效
-
-在动画当中改变IfElse分支，由于该分支负责数据保护，继续使用该分支会导致访问数据异常，最终导致程序崩溃。
-
-反例：
-
-```ts
-class MyData {
-  str: string;
-  constructor(str: string) {
-    this.str = str;
-  }
-}
-@Entry
-@Component
-struct Index {
-  @State data1: MyData|undefined = new MyData("branch 0");
-  @State data2: MyData|undefined = new MyData("branch 1");
-
-  build() {
-    Column() {
-      if (this.data1) {
-        // 如果在动画中增加/删除，会给Text增加默认转场
-        // 对于删除时，增加默认透明度转场后，会延长组件的生命周期，Text组件没有真正删除，而是等转场动画做完后才删除
-        Text(this.data1.str)
-          .id("1")
-      } else if (this.data2) {
-        // 如果在动画中增加/删除，会给Text增加默认转场
-        Text(this.data2.str)
-          .id("2")
-      }
-
-      Button("play with animation")
-        .onClick(() => {
-          this.getUIContext().animateTo({}, ()=>{
-            // 在animateTo中修改if条件，在动画当中，会给if下的第一层组件默认转场
-            if (this.data1) {
-              this.data1 = undefined;
-              this.data2 = new MyData("branch 1");
-            } else {
-              this.data1 = new MyData("branch 0");
-              this.data2 = undefined;
-            }
-          })
-        })
-
-      Button("play directlp")
-        .onClick(() => {
-          // 直接改if条件，不在动画当中，可以正常切换，也不会加默认转场
-          if (this.data1) {
-            this.data1 = undefined;
-            this.data2 = new MyData("branch 1");
-          } else {
-            this.data1 = new MyData("branch 0");
-            this.data2 = undefined;
-          }
-        })
-    }.width("100%")
-    .padding(10)
-  }
-}
-```
-
-正例：
-
-方式1：给数据继续加判空的保护，即在使用data时再加一层判空，即"Text(this.data1?.str)"。
-
-
-```ts
-class MyData {
-  str: string;
-  constructor(str: string) {
-    this.str = str;
-  }
-}
-@Entry
-@Component
-struct Index {
-  @State data1: MyData|undefined = new MyData("branch 0");
-  @State data2: MyData|undefined = new MyData("branch 1");
-
-  build() {
-    Column() {
-      if (this.data1) {
-        // 如果在动画中增加/删除，会给Text增加默认转场
-        // 对于删除时，增加默认透明度转场后，会延长组件的生命周期，Text组件没有真正删除，而是等转场动画做完后才删除
-        // 在使用数据时再加一层判空保护，如果data1存在才去使用data1当中的str
-        Text(this.data1?.str)
-          .id("1")
-      } else if (this.data2) {
-        // 如果在动画中增加/删除，会给Text增加默认转场
-        // 在使用数据时再加一层判空保护
-        Text(this.data2?.str)
-          .id("2")
-      }
-
-      Button("play with animation")
-        .onClick(() => {
-          this.getUIContext().animateTo({}, ()=>{
-            // 在animateTo中修改if条件，在动画当中，会给if下的第一层组件默认转场
-            if (this.data1) {
-              this.data1 = undefined;
-              this.data2 = new MyData("branch 1");
-            } else {
-              this.data1 = new MyData("branch 0");
-              this.data2 = undefined;
-            }
-          })
-        })
-    }.width("100%")
-    .padding(10)
-  }
-}
-```
-
-方式2：给IfElse下要被删除的组件显式地添加transition(TransitionEffect.IDENTITY)属性，避免系统添加默认转场。
-
-```ts
-class MyData {
-  str: string;
-  constructor(str: string) {
-    this.str = str;
-  }
-}
-@Entry
-@Component
-struct Index {
-  @State data1: MyData|undefined = new MyData("branch 0");
-  @State data2: MyData|undefined = new MyData("branch 1");
-
-  build() {
-    Column() {
-      if (this.data1) {
-        // 在IfElse的根组件显示指定空的转场效果，避免默认转场动画
-        Text(this.data1.str)
-          .transition(TransitionEffect.IDENTITY)
-          .id("1")
-      } else if (this.data2) {
-        // 在IfElse的根组件显示指定空的转场效果，避免默认转场动画
-        Text(this.data2.str)
-          .transition(TransitionEffect.IDENTITY)
-          .id("2")
-      }
-
-      Button("play with animation")
-        .onClick(() => {
-          this.getUIContext().animateTo({}, ()=>{
-            // 在animateTo中修改if条件，在动画当中，会给if下的第一层组件默认转场
-            // 但由于已经显示指定转场了就不会再添加默认转场
-            if (this.data1) {
-              this.data1 = undefined;
-              this.data2 = new MyData("branch 1");
-            } else {
-              this.data1 = new MyData("branch 0");
-              this.data2 = undefined;
-            }
-          })
-        })
-    }.width("100%")
-    .padding(10)
-  }
-}
-```
-
-

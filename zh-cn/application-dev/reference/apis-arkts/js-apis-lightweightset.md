@@ -1,4 +1,10 @@
 # @ohos.util.LightWeightSet (非线性容器LightWeightSet)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 LightWeightSet可用于存储一系列值的集合，存储元素中value值唯一。
 
@@ -58,9 +64,8 @@ LightWeightSet的构造函数。
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<number | string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<number | string>();
 ```
-
 
 ### isEmpty
 
@@ -89,8 +94,9 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-const lightWeightSet: LightWeightSet<number> = new LightWeightSet();
+const lightWeightSet = new LightWeightSet<number>();
 let result = lightWeightSet.isEmpty();
+console.info("result:", result);  // result: true
 ```
 
 ### add
@@ -126,8 +132,9 @@ add(obj: T): boolean
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 let result = lightWeightSet.add("squirrel");
+console.info("result:", result);  // result: true
 ```
 
 
@@ -165,13 +172,14 @@ addAll(set: LightWeightSet&lt;T&gt;): boolean
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
-let set: LightWeightSet<string> = new LightWeightSet();
+let set = new LightWeightSet<string>();
 set.add("gull");
-let result = lightWeightSet.addAll(set);
-console.info("result = ", result); // result =  true
+lightWeightSet.addAll(set);
+let result = lightWeightSet.has("gull");
+console.info("result:", result);  // result: true
 ```
 
 
@@ -209,12 +217,13 @@ hasAll(set: LightWeightSet&lt;T&gt;): boolean
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
-let set: LightWeightSet<string> = new LightWeightSet();
+let set = new LightWeightSet<string>();
 set.add("sparrow");
 let result = lightWeightSet.hasAll(set);
+console.info("result:", result);  // result: true
 ```
 
 
@@ -251,9 +260,10 @@ has(key: T): boolean
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<number> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<number>();
 lightWeightSet.add(123);
 let result = lightWeightSet.has(123);
+console.info("result:", result);  // result: true
 ```
 
 
@@ -286,7 +296,7 @@ increaseCapacityTo(minimumCapacity: number): void
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.increaseCapacityTo(10);
 ```
 
@@ -324,10 +334,11 @@ getIndexOf(key: T): number
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.getIndexOf("sparrow");
+console.info("result:", result);  // result: 0
 ```
 
 
@@ -364,10 +375,11 @@ remove(key: T): T
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.remove("sparrow");
+console.info("result:", result);  // result: sparrow
 ```
 
 
@@ -405,10 +417,11 @@ removeAt(index: number): boolean
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.removeAt(1);
+console.info("result:", result);  // result: true
 ```
 
 
@@ -446,10 +459,11 @@ getValueAt(index: number): T
 **参数：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.getValueAt(1);
+console.info("result:", result);  // result: squirrel
 ```
 
 
@@ -474,10 +488,12 @@ clear(): void
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 lightWeightSet.clear();
+let result = lightWeightSet.isEmpty();
+console.info("result:", result);  // result: true
 ```
 
 
@@ -500,10 +516,11 @@ toString(): String
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.toString();
+console.info("result:", result);  // result: sparrow,squirrel
 ```
 
 
@@ -534,7 +551,7 @@ toArray(): Array&lt;T&gt;
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.toArray();
@@ -568,15 +585,15 @@ values(): IterableIterator&lt;T&gt;
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
-let iter = lightWeightSet.values();
-let index = 0;
-while(index < lightWeightSet.length) {
-  console.info(JSON.stringify(iter.next().value));
-  index++;
+let values = lightWeightSet.values();
+for (let value of values) {
+  console.info("value:", value);
 }
+// value: sparrow
+// value: squirrel
 ```
 
 
@@ -616,16 +633,19 @@ callbackFn的参数说明：
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("sparrow");
 lightWeightSet.add("gull");
-lightWeightSet.forEach((value ?: string, key ?: string) => {
+lightWeightSet.forEach((value: string, key: string) => {
   console.info("value:" + value, "key:" + key);
 });
+// value:gull key:gull
+// value:sparrow key:sparrow
 ```
+
 ```ts
 // 不建议在forEach函数中使用add、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 for(let i = 0; i < 10; i++) {
   lightWeightSet.add(i + "123");
 }
@@ -661,19 +681,20 @@ entries(): IterableIterator<[T, T]>
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let iter = lightWeightSet.entries();
-let index = 0;
-while(index < lightWeightSet.length) {
-  console.info(JSON.stringify(iter.next().value));
-  index++;
+for (let item of iter) {
+  console.info("value:", item[1])
 }
+// value: sparrow
+// value: squirrel
 ```
+
 ```ts
 // 不建议在entries中使用add、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 for(let i = 0; i < 10; i++) {
   lightWeightSet.add(i + "123");
 }
@@ -709,27 +730,31 @@ for(let i = 0; i < 10; i++) {
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 
 // 使用方法一：
-let nums: Array<string> = lightWeightSet.toArray()
-for (let item of nums) {
-  console.info("value:" + item);
+for (let value of lightWeightSet) {
+  console.info("value:", value);
 }
+// value: sparrow
+// value: squirrel
 
 // 使用方法二：
 let iter = lightWeightSet[Symbol.iterator]();
 let temp: IteratorResult<string> = iter.next();
 while(!temp.done) {
-  console.info("value:" + temp.value);
+  console.info("value:", temp.value);
   temp = iter.next();
 }
+// value: sparrow
+// value: squirrel
 ```
+
 ```ts
 // 不建议在Symbol.iterator中使用add、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 for(let i = 0; i < 10; i++) {
   lightWeightSet.add(i + "123");
 }
@@ -774,9 +799,10 @@ equal(obj: Object): boolean
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let obj = ["sparrow", "squirrel"];
 let result = lightWeightSet.equal(obj);
+console.info("result:", result);  // result: true
 ```

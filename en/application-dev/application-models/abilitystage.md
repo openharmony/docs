@@ -3,11 +3,11 @@
 
 ## Overview
 
-[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md) is a component container at the [module](../quick-start/application-package-overview.md#multi-module design mechanism) level. When the [HAP](../quick-start/hap-package.md) of an application is loaded for the first time, an AbilityStage instance is created. You can perform operations such as initialization on the instance. An AbilityStage instance corresponds to a module.
+[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md) is a component container at the [module](../quick-start/application-package-overview.md#multi-module-design-mechanism) level. When the [HAP](../quick-start/hap-package.md) of an application is loaded for the first time, an AbilityStage instance is created. You can perform operations such as initialization on the instance. An AbilityStage instance corresponds to a module.
 
-AbilityStage has the lifecycle callbacks [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageoncreate) and [onDestroy()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageondestroy12) and the event callbacks [onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant), [onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate), and [onMemoryLevel()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonmemorylevel).
+AbilityStage has the lifecycle callbacks [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#oncreate) and [onDestroy()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#ondestroy12) and the event callbacks [onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onacceptwant), [onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onconfigurationupdate), [onMemoryLevel()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onmemorylevel), [onNewProcessRequest()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onnewprocessrequest11), and [onPrepareTermination()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onpreparetermination15).
 
-- **onCreate()** lifecycle callback: Before the first [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance of a module is loaded, an AbilityStage instance is created. This callback is invoked when the AbilityStage instance is created. The AbilityStage module notifies you of when you can perform module initialization such as resource pre-loading and thread creation during module loading.
+- onCreate() lifecycle callback: Before the first application component (such as the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) or the [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)) instance of the corresponding module is loaded, an AbilityStage instance is created. This callback is invoked when the AbilityStage instance is created. The AbilityStage module notifies you of when you can perform module initialization such as resource pre-loading and thread creation during module loading.
 
 - **onAcceptWant()** event callback: triggered when the UIAbility is started in [specified mode](uiability-launch-type.md#specified). For details, see [UIAbility Component Launch Type](uiability-launch-type.md).
 
@@ -15,7 +15,11 @@ AbilityStage has the lifecycle callbacks [onCreate()](../reference/apis-ability-
 
 - **onMemoryLevel()** event callback: triggered when the system adjusts the memory. When an application is switched to the background, it is cached in the background. This adversely affects the overall system performance. When system resources are insufficient, the system reclaims memory from applications in multiple ways. For example, the system may stop applications to release memory for executing key tasks. To further maintain the balance of the system memory and prevent the system from stopping application processes, you can subscribe to the system memory changes in the **onMemoryLevel()** lifecycle callback of AbilityStage to release unnecessary resources.
 
-- **onDestroy()**: called when an application is destroyed. This callback is triggered only when the application is destroyed normally. It is not triggered if the application exits abnormally or is terminated.
+- **onNewProcessRequest()** event callback: triggered when the UIAbility is started. You can use this callback to specify whether each UIAbility should be created in a separate process. The callback returns a custom string identifier. If the returned string matches an existing identifier, the corresponding process is reused; otherwise, a new process is created. Note that this callback must be used in conjunction with the [isolationProcess](../quick-start/module-configuration-file.md#abilities) field set to **true** in the **module.json5** file. Currently, it takes effect only on 2-in-1 devices.
+
+- **onPrepareTermination()** event callback: triggered when the application is closed by the user, allowing the user to choose between immediate termination or cancellation. You can notify the system whether to continue with the shutdown action by returning an enumerated value defined in [AbilityConstant.PrepareTermination](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#preparetermination15) within the callback. Currently, it takes effect only on 2-in-1 devices.
+
+- **onDestroy()** lifecycle callback: triggered when the last Ability instance of the corresponding module exits. This callback is triggered only when the application is destroyed normally. It is not triggered if the application exits abnormally or is terminated.
 
 
 ## How to Develop
@@ -29,7 +33,7 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
 
 2. In the **myabilitystage** directory, right-click and choose **New > ArkTS File** to create a file named **MyAbilityStage.ets**.
 
-3. Open the **MyAbilityStage.ets** file, and import the dependency package of AbilityStage. Customize a class that inherits from AbilityStage, and add the required lifecycle callbacks. The following code snippet adds the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageoncreate) lifecycle callback.
+3. Open the **MyAbilityStage.ets** file, and import the dependency package of AbilityStage. Customize a class that inherits from AbilityStage, and add the required lifecycle callbacks. The following code snippet adds the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#oncreate) lifecycle callback.
 
     ```ts
     import { AbilityStage, Want } from '@kit.AbilityKit';
