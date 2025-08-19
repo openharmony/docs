@@ -68,13 +68,13 @@
     - [@ohos.ability.featureAbility (FeatureAbility模块)](js-apis-ability-featureAbility.md)
     - [@ohos.ability.particleAbility (ParticleAbility模块)](js-apis-ability-particleAbility.md)
     - ability<!--fa-model-ability-->
-      - [dataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)
-      - [dataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)
-      - [startAbilityParameter](js-apis-inner-ability-startAbilityParameter.md)
+      - [DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)
+      - [DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)
+      - [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md)
     - app<!--app-->
-      - [appVersionInfo](js-apis-inner-app-appVersionInfo.md)
-      - [context](js-apis-inner-app-context.md)
-      - [processInfo](js-apis-inner-app-processInfo.md)
+      - [AppVersionInfo](js-apis-inner-app-appVersionInfo.md)
+      - [Context](js-apis-inner-app-context.md)
+      - [ProcessInfo](js-apis-inner-app-processInfo.md)
   - 通用能力的接口(推荐)<!--both-models-->
     - [@ohos.abilityAccessCtrl (程序访问控制管理)](js-apis-abilityAccessCtrl.md)
     - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)](js-apis-screenLockFileManager.md)
