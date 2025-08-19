@@ -47,7 +47,8 @@ hashSet.add(2);
 hashSet.add(3);
 hashSet.add(4);
 hashSet.add(5);
-let res = hashSet.length;  // result =  5
+let res = hashSet.length;
+console.info("length:", res);  // length: 5
 ```
 
 ### constructor
