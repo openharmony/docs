@@ -442,7 +442,7 @@ Filename too Long
 
 **Possible Causes**
 
-The file name length exceeds 256 bytes.
+The file name length exceeds 255 bytes.
 
 **Solution**
 
@@ -634,7 +634,7 @@ System resources are insufficient.
 
 Wait until a lock is released and try again.
 
-### 2300007 Network Access Failure
+### 13900044 Network Access Failure
 
 **Error Message**
 

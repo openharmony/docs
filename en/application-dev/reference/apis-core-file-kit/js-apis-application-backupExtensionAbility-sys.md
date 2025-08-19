@@ -20,14 +20,22 @@ getBackupInfo(): string
 
 Obtains backup information. This API is called when the caller queries application data. You need to implement the operation for querying application data.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Returns**
+
+| Type                  | Description   |
+| --------------------- | :---- |
+| string | Backup information customized by the application.|
 
 **Example**
 
   ```ts
   class BackupExt extends BackupExtensionAbility {
     getBackupInfo(): string {
-      console.log(`getBackupInfo ok`);
+      console.info('getBackupInfo ok');
       let info = "app diy info";
       return info;
     }

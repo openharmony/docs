@@ -6,7 +6,7 @@ If an application accesses a file by using Picker, the permission for accessing 
 
 ## Available APIs
 
-For details about the APIs, see [FileShare](../reference/apis-core-file-kit/file_share.md).
+For details about the APIs, see [API Reference](../reference/apis-core-file-kit/file_share.md).
 
 | API| Description|
 | -------- | -------- |
