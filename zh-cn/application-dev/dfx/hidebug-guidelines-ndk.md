@@ -104,7 +104,7 @@ OH_HiDebug_GetAppThreadCpuUsage接口返回的数据为链表结构。使用完�
         if (cpuUsage != nullptr) {
             do {
                 OH_LOG_INFO(LogType::LOG_APP, 
-                            "GetAppThreadCpuUsage: threadId %{public}d, vssLimit: %{public}f", cpuUsage->threadId, cpuUsage->cpuUsage);
+                            "GetAppThreadCpuUsage: threadId %{public}d, cpuUsage: %{public}f", cpuUsage->threadId, cpuUsage->cpuUsage);
                 cpuUsage = cpuUsage->next; // 获取下一个线程的cpu使用率对象指针。
             } while(cpuUsage != nullptr);
             OH_HiDebug_FreeThreadCpuUsage(&cpuUsage); // 释放内存，防止内存泄露。
@@ -115,23 +115,23 @@ OH_HiDebug_GetAppThreadCpuUsage接口返回的数据为链表结构。使用完�
 
 2. 触发接口调用并查看控制台输出，日志输出示例如下：
    ```Text
-    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15025, vssLimit: 0.000762
-    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15143, vssLimit: 0.000000
-    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15144, vssLimit: 0.000055
-    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15152, vssLimit: 0.000000
-    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15154, vssLimit: 0.000000
-    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15155, vssLimit: 0.000000
-    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15156, vssLimit: 0.000000
-    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15157, vssLimit: 0.000000
-    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15158, vssLimit: 0.000000
-    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15159, vssLimit: 0.000000
-    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15160, vssLimit: 0.000033
-    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15161, vssLimit: 0.000077
-    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15162, vssLimit: 0.000000
-    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15163, vssLimit: 0.000033
-    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15171, vssLimit: 0.000000
-    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15175, vssLimit: 0.000011
-    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15176, vssLimit: 0.000033
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15025, cpuUsage: 0.000762
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15143, cpuUsage: 0.000000
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15144, cpuUsage: 0.000055
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15152, cpuUsage: 0.000000
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15154, cpuUsage: 0.000000
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15155, cpuUsage: 0.000000
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15156, cpuUsage: 0.000000
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15157, cpuUsage: 0.000000
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15158, cpuUsage: 0.000000
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15159, cpuUsage: 0.000000
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15160, cpuUsage: 0.000033
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15161, cpuUsage: 0.000077
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15162, cpuUsage: 0.000000
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15163, cpuUsage: 0.000033
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15171, cpuUsage: 0.000000
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15175, cpuUsage: 0.000011
+    06-04 15:18:27.585   15025-15025   A00000/com.exa...ation/testTag  com.examp...lication  I     GetAppThreadCpuUsage: threadId 15176, cpuUsage: 0.000033
    ```
 
 ### 获取堆栈信息
