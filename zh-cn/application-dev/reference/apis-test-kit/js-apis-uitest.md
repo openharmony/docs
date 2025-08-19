@@ -28,7 +28,7 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 ## 导入模块
 
 ```ts
-import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver } from '@kit.TestKit';
+import { Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver } from '@kit.TestKit';
 ```
 
 ## MatchPattern
@@ -410,7 +410,7 @@ type(tp: string, pattern: MatchPattern): On
 
 ```ts
 import { On, ON } from '@kit.TestKit';
-let on:On = ON.type('Button'); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
+let on:On = ON.type('Button', MatchPattern.EQUALS); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
 ```
 
 ### clickable<sup>9+</sup>
@@ -1642,7 +1642,7 @@ async function demo() {
 
 inputText(text: string): Promise\<void>
 
-向控件中输入文本（适用于文本框控件），清空组件内原有文本后输入，使用Promise异步回调。
+清空组件内原有文本并输入指定文本内容，仅针对可编辑的文本组件生效，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1685,7 +1685,7 @@ async function demo() {
 
 inputText(text: string, mode: InputTextMode): Promise\<void>
 
-向控件中输入文本（适用于文本框控件），支持指定文本输入方式，使用Promise异步回调。
+向控件中输入文本，仅针对可编辑的文本组件生效，并支持指定文本输入方式，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1731,7 +1731,7 @@ async function mode_demo() {
 
 clearText(): Promise\<void>
 
-清除控件的文本信息（适用于文本框控件），使用Promise异步回调。
+清除控件的文本信息，仅针对可编辑的文本组件生效，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2613,9 +2613,11 @@ triggerKey(keyCode: number): Promise\<void>
 
 ```ts
 import { Driver } from '@kit.TestKit';
+import { KeyCode } from '@kit.InputKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.triggerKey(123);
+  await driver.triggerKey(KeyCode.KEYCODE_BACK); // 返回键
 }
 ```
 
@@ -2655,10 +2657,11 @@ triggerKey(keyCode: number, displayId: number): Promise\<void>
 
 ```ts
 import { Driver } from '@kit.TestKit';
+import { KeyCode } from '@kit.InputKit';
 
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.triggerKey(123, 0);
+  await driver.triggerKey(KeyCode.KEYCODE_BACK, 0);
 }
 ```
 
@@ -6361,7 +6364,7 @@ async function demo() {
 
 inputText(text: string): Promise\<void>
 
-向控件中输入文本（适用于文本框控件）。
+向控件中输入文本，仅针对可编辑的文本组件生效。
 
 从API version 9开始不再维护，建议使用[inputText<sup>9+</sup>](#inputtext9)。
 
@@ -6645,9 +6648,11 @@ UiDriver对象采取如下操作：通过key值找到对应键并点击。
 
 ```ts
 import { Driver, UiDriver } from '@kit.TestKit';
+import { KeyCode } from '@kit.InputKit';
+
 async function demo() {
   let driver: UiDriver = UiDriver.create();
-  await driver.triggerKey(123);
+  await driver.triggerKey(KeyCode.KEYCODE_BACK);
 }
 ```
 
