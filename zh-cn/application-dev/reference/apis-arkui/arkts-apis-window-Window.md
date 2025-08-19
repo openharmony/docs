@@ -7627,8 +7627,6 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 
 子窗口创建后默认是沉浸式布局，如果子窗口需要使用组件安全区方案，则需要调用[setWindowLayoutFullScreen](arkts-apis-window-Window.md#setwindowlayoutfullscreen9)退出沉浸式布局。
 
-仅当子窗口的位置和大小与主窗口一致时，子窗口调用该接口才能计算避让区并返回，否则直接返回空的避让区。
-
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -10073,6 +10071,8 @@ getAvoidArea(type: [AvoidAreaType](arkts-apis-window-e.md#avoidareatype7), callb
 
 获取当前窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
+仅当子窗口的位置和大小与主窗口一致时，子窗口调用该接口才能计算避让区并返回，否则直接返回空的避让区。
+
 > **说明：**
 >
 > 从API version 7开始支持，从API version 9开始废弃，推荐使用[getWindowAvoidArea()](#getwindowavoidarea9)。
@@ -10107,6 +10107,8 @@ windowClass.getAvoidArea(type, (err: BusinessError, data) => {
 getAvoidArea(type: [AvoidAreaType](arkts-apis-window-e.md#avoidareatype7)): Promise&lt;[AvoidArea](arkts-apis-window-i.md#avoidarea7)&gt;
 
 获取当前窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+
+仅当子窗口的位置和大小与主窗口一致时，子窗口调用该接口才能计算避让区并返回，否则直接返回空的避让区。
 
 > **说明：**
 >
