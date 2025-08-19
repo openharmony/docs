@@ -753,6 +753,7 @@ struct Gauge2 {
   build() {
     Column() {
       Gauge({ value: 50, min: 1, max: 100 })
+        // $r('app.media.indicator')需要替换为开发者所需的图像资源文件。
         .indicator({ space: 10, icon: $r('app.media.indicator') })
         .startAngle(210)
         .endAngle(150)
