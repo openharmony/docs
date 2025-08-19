@@ -8762,7 +8762,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowShadowRadius(radius: number): void
 
-该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于设置子窗或悬浮窗窗口边缘阴影的模糊半径。
+设置子窗或悬浮窗窗口边缘阴影的模糊半径。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
