@@ -705,7 +705,7 @@ worker：[启动一个Worker](../reference/apis-arkts/js-apis-worker.md)
 
 **参考链接**
 
-[资源使用](../key-features/multi-device-app-dev/resource-usage.md)
+资源使用
 
 
 ## 调用方法的时候，如何解决方法内部的this变成undefined(API 9)
