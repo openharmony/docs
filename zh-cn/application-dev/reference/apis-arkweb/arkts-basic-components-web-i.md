@@ -82,7 +82,7 @@ Web媒体策略的配置。
 | 名称           | 类型                                             | 只读    | 可选    | 说明             |
 | ---------- | -----------------------------------------------------| ------ | ------ | ---------------- |
 | content   | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 否     | 显示内容。     |
-| startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 是     | 显示图标。     |
+| startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 是     | 显示图标。默认值为空，不显示图标。     |
 | action    | (selectedText: {plainText: string}) => void                    | 否     | 否     | 选中的文本信息。|
 
 ## AdsBlockedDetails<sup>12+</sup>
