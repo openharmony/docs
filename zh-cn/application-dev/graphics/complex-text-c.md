@@ -403,12 +403,12 @@ OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_CENTER);
 const char *text = "Hello World Drawing\n";
 
 OH_Drawing_TextStyle *txtStyleWithVar = OH_Drawing_CreateTextStyle();
-// 设置可变字体的字重，在字体文件支持的情况下，还可以设置"slnt", "wdth"。
+// 设置可变字体的字重，在字体文件支持的情况下，还可以设置"slnt", "wdth"
 OH_Drawing_TextStyleAddFontVariation(txtStyleWithVar, "wght", 800);
 // 设置文字颜色、大小、字重，不设置 TextStyle 会使用 TypographyStyle 中的默认 TextStyle
 OH_Drawing_SetTextStyleColor(txtStyleWithVar, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
 OH_Drawing_SetTextStyleFontSize(txtStyleWithVar, 100);
-// 此处设置字重不生效，被可变字体的字重覆盖了。
+// 此处设置字重不生效，将被可变字体的字重覆盖
 OH_Drawing_SetTextStyleFontWeight(txtStyleWithVar, FONT_WEIGHT_400);
 
 // 创建一个不带可变字体的 TextStyle 用于对比
