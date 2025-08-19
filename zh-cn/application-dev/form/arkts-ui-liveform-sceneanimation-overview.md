@@ -67,7 +67,7 @@
 
 ### 功耗约束
 1. 设备进入省电模式时，互动卡片不响应动效请求。
-2. 当设备热档位进入WARM时，不再响应非点击触发的动效请求；当热档位进入OVERHEATED时，不再响应所有动效请求。具体可参考[热档位信息](../reference/apis-basic-services-kit/js-apis-thermal.md#thermallevel)。
+2. 当设备热档位进入HOT时，不再响应非点击触发的动效请求；当热档位进入OVERHEATED时，不再响应所有动效请求。具体可参考[热档位信息](../reference/apis-basic-services-kit/js-apis-thermal.md#thermallevel)。
 
 ### 动效请求约束
 1. 同一时刻，全局只有一个卡片执行场景动效。
