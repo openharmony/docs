@@ -74,8 +74,8 @@ OH_AVErrCode OH_AudioCodec_Configure (OH_AVCodec *codec, const OH_AVFormat *form
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针。 | 
-| format | 指向OH_AVFormat的指针，给出要编解码的音频轨道的描述。 | 
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 | 
+| const OH_AVFormat *format | 指向OH_AVFormat的指针，给出要编解码的音频轨道的描述。 | 
 
 **返回：**
 
@@ -85,7 +85,7 @@ OH_AVErrCode OH_AudioCodec_Configure (OH_AVCodec *codec, const OH_AVFormat *form
 ### OH_AudioCodec_CreateByMime()
 
 ```
-OH_AVCodec* OH_AudioCodec_CreateByMime (const char *mime, bool isEncoder)
+OH_AVCodec* OH_AudioCodec_CreateByMime (const char *mime, bool *isEncoder)
 ```
 **描述**
 根据MIME类型创建音频编解码器实例，大多数场景下建议使用此方式。
@@ -98,8 +98,8 @@ OH_AVCodec* OH_AudioCodec_CreateByMime (const char *mime, bool isEncoder)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mime | MIME类型描述字符串，请参阅[AVCODEC_MIMETYPE](_codec_base.md#变量)。 | 
-| isEncoder | true表示需要创建编码器，false表示需要创建解码器。 | 
+| const char *mime | MIME类型描述字符串，请参阅[AVCODEC_MIMETYPE](_codec_base.md#变量)。 | 
+| bool *isEncoder | true表示需要创建编码器，false表示需要创建解码器。 | 
 
 **返回：**
 
@@ -122,7 +122,7 @@ OH_AVCodec* OH_AudioCodec_CreateByName (const char *name)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| name | 音频编解码器名称。 | 
+| const char *name | 音频编解码器名称。 | 
 
 **返回：**
 
@@ -145,7 +145,7 @@ OH_AVErrCode OH_AudioCodec_Destroy (OH_AVCodec *codec)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针。  | 
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。  | 
 
 **返回：**
 
@@ -168,7 +168,7 @@ OH_AVErrCode OH_AudioCodec_Flush (OH_AVCodec *codec)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针。 | 
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec  | 指向OH_AVCodec实例的指针。 | 
 
 **返回：**
 
@@ -191,8 +191,8 @@ OH_AVErrCode OH_AudioCodec_FreeOutputBuffer (OH_AVCodec *codec, uint32_t index)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针。 | 
-| index | 输出[OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer)给出的索引值。 | 
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 | 
+| uint32_t index | 输出[OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer)给出的索引值。 | 
 
 **返回：**
 
@@ -217,8 +217,8 @@ OH_AVBuffer *OH_AudioCodec_GetInputBuffer(OH_AVCodec *codec, uint32_t index)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针。 | 
-| index | 输入缓冲区的索引值。该索引值通过接口[OH_AudioCodec_QueryInputBuffer](#oh_audiocodec_queryinputbuffer)获取|
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 | 
+| uint32_t index | 输入缓冲区的索引值。该索引值通过接口[OH_AudioCodec_QueryInputBuffer](#oh_audiocodec_queryinputbuffer)获取|
 
 **返回：**
 
@@ -242,8 +242,8 @@ OH_AVBuffer *OH_AudioCodec_GetOutputBuffer(OH_AVCodec *codec, uint32_t index)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针。 | 
-| index | 输出缓冲区的索引值。该索引值通过接口[OH_AudioCodec_QueryOutputBuffer](#oh_audiocodec_queryoutputbuffer)获取。|
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 | 
+| uint32_t index | 输出缓冲区的索引值。该索引值通过接口[OH_AudioCodec_QueryOutputBuffer](#oh_audiocodec_queryoutputbuffer)获取。|
 
 **返回：**
 
@@ -269,7 +269,7 @@ OH_AVFormat* OH_AudioCodec_GetOutputDescription (OH_AVCodec *codec)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针。 | 
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 | 
 
 **返回：**
 
@@ -292,8 +292,8 @@ OH_AVErrCode OH_AudioCodec_IsValid (OH_AVCodec *codec, bool *isValid)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针。 | 
-| isValid | 输出参数。指向布尔类型的指针，true：编解码器实例有效，false：编解码器实例无效。 | 
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 | 
+| bool *isValid | 输出参数。指向布尔类型的指针，true：编解码器实例有效，false：编解码器实例无效。 | 
 
 **返回：**
 
@@ -316,7 +316,7 @@ OH_AVErrCode OH_AudioCodec_Prepare (OH_AVCodec *codec)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针。 | 
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 | 
 
 **返回：**
 
@@ -347,8 +347,8 @@ OH_AVErrCode OH_AudioCodec_PushInputBuffer (OH_AVCodec *codec, uint32_t index)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针。 | 
-| index | 输入回调[OH_AVCodecOnNeedInputBuffer](_codec_base.md#oh_avcodeconneedinputbuffer)给出的索引值。 | 
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 | 
+| uint32_t index | 输入回调[OH_AVCodecOnNeedInputBuffer](_codec_base.md#oh_avcodeconneedinputbuffer)给出的索引值。 | 
 
 **返回：**
 
@@ -379,9 +379,9 @@ OH_AVErrCode OH_AudioCodec_QueryInputBuffer(OH_AVCodec *codec, uint32_t *index, 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针。 | 
-| index | 输出参数，获取到的输入缓冲区的索引值。|
-| timeoutUs | 超时时间，单位：微秒。设置为负值时表示无限等待。|
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 | 
+| uint32_t *index | 输出参数，获取到的输入缓冲区的索引值。|
+| int64_t timeoutUs | 超时时间，单位：微秒。设置为负值时表示无限等待。|
 
 **返回：**
 
@@ -413,9 +413,9 @@ OH_AVErrCode OH_AudioCodec_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_t 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针。 | 
-| index | 输出参数，获取到的输出缓冲区的索引值。|
-| timeoutUs | 超时时间，单位：微秒。设置为负值时表示无限等待。|
+| struct [OH_AVCodec](_codec_base.md#oh_avcodec) *codec| 指向OH_AVCodec实例的指针。 | 
+| uint32_t *index | 输出参数，获取到的输出缓冲区的索引值。|
+| int64_t timeoutUs | 超时时间，单位：微秒。设置为负值时表示无限等待。|
 
 **返回：**
 
@@ -435,7 +435,7 @@ AV_ERR_TRY_AGAIN_LATER：执行失败，超时时间内获取不到可用的缓�
 ### OH_AudioCodec_RegisterCallback()
 
 ```
-OH_AVErrCode OH_AudioCodec_RegisterCallback (OH_AVCodec *codec, OH_AVCodecCallback callback, void *userData)
+OH_AVErrCode OH_AudioCodec_RegisterCallback (OH_AVCodec *codec, OH_AVCodecCallback *callback, void *userData)
 ```
 **描述**
 设置异步回调函数，使应用可以响应音频编解码器生成的事件。在调用Prepare之前，必须调用此接口。
@@ -448,9 +448,9 @@ OH_AVErrCode OH_AudioCodec_RegisterCallback (OH_AVCodec *codec, OH_AVCodecCallba
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针。 | 
-| callback | 所有回调函数的集合，请参阅 [OH_AVCodecCallback](_o_h___a_v_codec_callback.md)。 | 
-| userData | 用户特定数据。 | 
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 | 
+| [OH_AVCodecCallback](_o_h___a_v_codec_callback.md) *callback| 所有回调函数的集合，请参阅 [OH_AVCodecCallback](_o_h___a_v_codec_callback.md)。 | 
+| void *userData | 用户特定数据。 | 
 
 **返回：**
 
@@ -473,7 +473,7 @@ OH_AVErrCode OH_AudioCodec_Reset (OH_AVCodec *codec)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针。  | 
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec| 指向OH_AVCodec实例的指针。  | 
 
 **返回：**
 
@@ -496,9 +496,9 @@ OH_AVErrCode OH_AudioCodec_SetDecryptionConfig (OH_AVCodec *codec, MediaKeySessi
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针。  | 
-| mediaKeySession | 带有解密功能的媒体秘钥会话实例。  | 
-| secureAudio | 是否使用安全解码器。使用安全解码器为true，否则为false。<br>注意：当前音频解密尚不支持使用安全解码器。  | 
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。  | 
+| MediaKeySession *mediaKeySession | 带有解密功能的媒体秘钥会话实例。  | 
+| bool secureAudio | 是否使用安全解码器。使用安全解码器为true，否则为false。<br>注意：当前音频解密尚不支持使用安全解码器。  | 
 
 **返回：**
 
@@ -527,8 +527,8 @@ OH_AVErrCode OH_AudioCodec_SetParameter (OH_AVCodec *codec, const OH_AVFormat *f
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针。 | 
-| format | OH_AVFormat句柄指针。 | 
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 | 
+| const OH_AVFormat *format | OH_AVFormat句柄指针。 | 
 
 **返回：**
 
@@ -551,7 +551,7 @@ OH_AVErrCode OH_AudioCodec_Start (OH_AVCodec *codec)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针。 | 
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 | 
 
 **返回：**
 
@@ -574,7 +574,7 @@ OH_AVErrCode OH_AudioCodec_Stop (OH_AVCodec *codec)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针。 | 
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 | 
 
 **返回：**
 
