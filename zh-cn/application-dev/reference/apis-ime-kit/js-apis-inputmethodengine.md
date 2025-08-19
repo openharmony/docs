@@ -888,7 +888,12 @@ try {
 
 createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>): void
 
-创建输入法面板，仅支持输入法应用调用。使用callback异步回调。<br>单个输入法应用仅允许创建一个[软键盘类型](#paneltype10)和[状态栏类型](#paneltype10)的面板。
+创建输入法面板，仅支持输入法应用调用。使用callback异步回调。
+
+> **说明：**
+>
+> 单个输入法应用仅允许创建一个[软键盘类型](#paneltype10)和一个[状态栏类型](#paneltype10)的面板。<br>
+> 输入法面板不支持创建子窗口。例如：不支持使用[window.createWindow](../../windowmanager/application-window-fa.md#设置应用子窗口)、[bindContextMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)、[CustomDialog](../../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)等接口创建子窗口弹窗。建议开发者采用非子窗的替代方案，如[弹出框](../../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)、[bindMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu)或设置showInSubwindow为false。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -934,7 +939,12 @@ try {
 
 createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
-创建输入法面板，仅支持输入法应用调用。使用promise异步回调。<br>单个输入法应用仅允许创建一个[软键盘类型](#paneltype10)和[状态栏类型](#paneltype10)的面板。
+创建输入法面板，仅支持输入法应用调用。使用promise异步回调。
+
+> **说明：**
+>
+> 单个输入法应用仅允许创建一个[软键盘类型](#paneltype10)和一个[状态栏类型](#paneltype10)的面板。<br>
+> 输入法面板不支持创建子窗口。例如：不支持使用[window.createWindow](../../windowmanager/application-window-fa.md#设置应用子窗口)、[bindContextMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)、[CustomDialog](../../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)等接口创建子窗口弹窗。建议开发者采用非子窗的替代方案，如[弹出框](../../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)、[bindMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu)或设置showInSubwindow为false。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
