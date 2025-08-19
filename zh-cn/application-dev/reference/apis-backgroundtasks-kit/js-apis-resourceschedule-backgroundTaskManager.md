@@ -786,7 +786,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         try {
-            // 如果当前没有申请长时任务，则获取到一个空数组
+            // 如果当前没有申请长时任务，backgroundTaskManager 将返回一个空数组。
             backgroundTaskManager.getAllContinuousTasks(this.context).then((res: backgroundTaskManager.ContinuousTaskInfo[]) => {
                 console.info(`Operation getAllContinuousTasks succeeded. data: ` + JSON.stringify(res));
             }).catch((error: BusinessError) => {
