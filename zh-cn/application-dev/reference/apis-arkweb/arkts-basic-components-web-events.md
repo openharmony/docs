@@ -2036,8 +2036,8 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
           .onContextMenuShow((event) => {
             if (event) {
               this.result = event.result
-              console.info("x coord = " + event.param.x());
-              console.info("link url = " + event.param.getLinkUrl());
+              console.info(TAG + "x coord = " + event.param.x());
+              console.info(TAG + "link url = " + event.param.getLinkUrl());
               this.linkUrl = event.param.getLinkUrl();
             }
             console.info(TAG, `x: ${this.offsetX}, y: ${this.offsetY}`);
