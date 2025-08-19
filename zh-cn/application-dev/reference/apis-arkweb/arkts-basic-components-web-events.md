@@ -2161,7 +2161,7 @@ onScroll(callback: Callback\<OnScrollEvent\>)
 
 onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
 
-通知用户收到地理位置信息获取请求。
+通知用户收到地理位置信息获取请求，需配置"ohos.permission.LOCATION"、"ohos.permission.APPROXIMATELY_LOCATION"权限。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2176,12 +2176,33 @@ onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { abilityAccessCtrl, common } from '@kit.AbilityKit';
+
+  let atManager = abilityAccessCtrl.createAtManager();
 
   @Entry
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
     uiContext: UIContext = this.getUIContext();
+
+    // 组件的声明周期函数，创建组件实例后触发
+    aboutToAppear(): void {
+      let context : Context | undefined = this.uiContext.getHostContext() as common.UIAbilityContext;
+      if (!context) {
+        console.error("context is undefined");
+        return;
+      }
+      // 向用户请求位置权限
+      atManager.requestPermissionsFromUser(context, ["ohos.permission.LOCATION", "ohos.permission.APPROXIMATELY_LOCATION"]).then((data) => {
+        console.info('data:' + JSON.stringify(data));
+        console.info('data permissions:' + data.permissions);
+        console.info('data authResults:' + data.authResults);
+      }).catch((error: BusinessError) => {
+        console.error(`Failed to request permissions from user. Code is ${error.code}, message is ${error.message}`);
+      })  
+    }
 
     build() {
       Column() {
@@ -2195,11 +2216,13 @@ onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
                 confirm: {
                   value: 'onConfirm',
                   action: () => {
-                    event.geolocation.invoke(event.origin, true, true);
+                    // invoke的第三个参数表示是否记住当前弹窗的选择状态，如果传入true，则下次不再弹出对话框
+                    event.geolocation.invoke(event.origin, true, false);
                   }
                 },
                 cancel: () => {
-                  event.geolocation.invoke(event.origin, false, true);
+                  // invoke的第三个参数表示是否记住当前弹窗的选择状态，如果传入true，则下次不再弹出对话框
+                  event.geolocation.invoke(event.origin, false, false);
                 }
               })
             }
