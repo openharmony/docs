@@ -144,7 +144,7 @@
    OH_Drawing_TextStyle* textStyle = OH_Drawing_CreateTextStyle();
    ```
 
-5. [获取系统字体信息](#获取系统字体信息)，取用系统字体的字体家族名，并在文本样式中切换设置为该系统字体。
+5. [获取系统字体信息](#获取系统字体信息)，获取系统字体的字体家族名，并在文本样式中设置为该系统字体。
 
    ```c++
    // 情况一：设置系统字体为"HarmonyOS Sans Condensed"
