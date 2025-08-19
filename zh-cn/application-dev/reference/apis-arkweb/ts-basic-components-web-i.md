@@ -100,15 +100,15 @@ Web同层渲染的配置。
 
 ## OnAlertEvent<sup>12+</sup>
 
-定义网页触发alert()告警弹窗时触发回调。
+定义网页触发 `alert()` 告警时的回调函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称                   | 类型     | 只读| 可选  | 说明                              |
-| --------------------- | -------- | -- | ----|--------------------------------- |
-| url                   | string   | 否 | 否  | 当前显示弹窗所在网页的URL。                 |
-| message               | string   | 否 | 否  | 弹窗中显示的信息。                              |
-| result                | [JsResult](./ts-basic-components-web.md#jsresult) | 否 | 否 | 通知Web组件用户操作行为。                       |
+| 名称    | 类型                                              | 只读 | 可选 | 说明                        |
+| ------- | ------------------------------------------------- | ---- | ---- | --------------------------- |
+| url     | string                                            | 否   | 否   | 当前显示弹窗的网页的URL。   |
+| message | string                                            | 否   | 否   | 显示在弹窗中的信息。        |
+| result  | [JsResult](./ts-basic-components-web.md#jsresult) | 否   | 否   | 通知Web组件用户的操作结果。 |
 
 ## OnBeforeUnloadEvent<sup>12+</sup>
 
@@ -124,28 +124,29 @@ Web同层渲染的配置。
 
 ## OnConfirmEvent<sup>12+</sup>
 
-定义网页调用confirm()告警时触发此回调。
+
+定义网页触发 `confirm()` 弹窗时的回调函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | 是 | 当前显示弹窗所在网页的URL。                       |
-| message | string | 是 | 弹窗中显示的信息。                       |
-| result | [JsResult](./ts-basic-components-web.md#jsresult) | 是 | 通知Web组件用户操作行为。                       |
+| 名称    | 类型                                              | 只读 | 可选 | 说明                        |
+| ------- | ------------------------------------------------- | ---- | ---- | --------------------------- |
+| url     | string                                            | 否   | 否   | 当前显示弹窗的网页的URL。   |
+| message | string                                            | 否   | 否   | 显示在弹窗中的信息。        |
+| result  | [JsResult](./ts-basic-components-web.md#jsresult) | 否   | 否   | 通知Web组件用户的操作结果。 |
 
 ## OnPromptEvent<sup>12+</sup>
 
-定义网页调用prompt()告警时触发此回调。
+定义网页触发 `prompt()` 弹窗时的回调函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | 是 | 当前显示弹窗所在网页的URL。                       |
-| message | string | 是 | 弹窗中显示的信息。                       |
-| value | string | 是 | 提示对话框的信息。                       |
-| result | [JsResult](./ts-basic-components-web.md#jsresult) | 是 | 通知Web组件用户操作行为。                       |
+| 名称    | 类型                                              | 只读 | 可选 | 说明                        |
+| ------- | ------------------------------------------------- | ---- | ---- | --------------------------- |
+| url     | string                                            | 否   | 否   | 当前显示弹窗的网页的URL。   |
+| message | string                                            | 否   | 否   | 显示在弹窗中的信息。        |
+| value   | string                                            | 否   | 否   | 对话框默认返回的信息。      |
+| result  | [JsResult](./ts-basic-components-web.md#jsresult) | 否   | 否   | 通知Web组件用户的操作结果。 |
 
 ## OnConsoleEvent<sup>12+</sup>
 
@@ -220,10 +221,10 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| result       | [FileSelectorResult](./ts-basic-components-web.md#fileselectorresult9) | 是 | 用于通知Web组件文件选择的结果。 |
-| fileSelector | [FileSelectorParam](./ts-basic-components-web.md#fileselectorparam9) | 是 | 文件选择器的相关信息。       |
+| 名称         | 类型                                                                     | 只读 | 可选 | 说明                            |
+| ------------ | ------------------------------------------------------------------------ | ---- | ---- | ------------------------------- |
+| result       | [FileSelectorResult](./ts-basic-components-web.md#fileselectorresult9) | 否   | 否   | 用于通知Web组件文件选择的结果。 |
+| fileSelector | [FileSelectorParam](./ts-basic-components-web.md#fileselectorparam9)   | 否   | 否   | 文件选择器的相关信息。          |
 
 ## OnResourceLoadEvent<sup>12+</sup>
 
@@ -241,10 +242,10 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| oldScale | number | 是 | 变化前的显示比例百分比。 |
-| newScale | number | 是 | 变化后的显示比例百分比。 |
+| 名称     | 类型   | 只读 | 可选 | 说明                     |
+| -------- | ------ | ---- | ---- | ------------------------ |
+| oldScale | number | 否   | 否   | 变化前的显示比例百分比。 |
+| newScale | number | 否   | 否   | 变化后的显示比例百分比。 |
 
 ## OnHttpAuthRequestEvent<sup>12+</sup>
 
