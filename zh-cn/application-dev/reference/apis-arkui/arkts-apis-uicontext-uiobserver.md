@@ -1991,9 +1991,15 @@ struct Index {
       .margin(10)
       .border({ width: 2, color: '#7BED9F' })
       .justifyContent(FlexAlign.Center)
-      .gesture(PanGesture().onActionStart((event: GestureEvent) => {
-        //具体实现内容
-      }))
+      .gesture(
+        PanGesture()
+          .onActionStart((event: GestureEvent) => {
+            //具体实现内容
+          })
+          .onActionEnd((event: GestureEvent) => {
+            //具体实现内容
+          })
+      )
 
       Row() {
         Text('LongPress区域').fontSize(18)
@@ -2004,9 +2010,15 @@ struct Index {
       .margin(10)
       .border({ width: 2, color: '#70A1FF' })
       .justifyContent(FlexAlign.Center)
-      .gesture(LongPressGesture().onAction((event: GestureEvent)=>{
-        //具体实现内容
-      }))
+      .gesture(
+        LongPressGesture()
+          .onAction((event: GestureEvent)=>{
+            //具体实现内容
+          })
+          .onActionEnd((event: GestureEvent) => {
+            //具体实现内容
+          })
+      )
     }
     .width('100%')
     .height('100%')
