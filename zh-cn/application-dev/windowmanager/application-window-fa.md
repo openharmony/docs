@@ -1,4 +1,10 @@
 # 管理应用窗口（FA模型）
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## 基本概念
 
@@ -55,6 +61,7 @@
 1. 创建/获取子窗口对象。
 
    - 可以通过`window.createWindow`接口创建子窗口。
+   子窗口创建后默认是沉浸式布局，如果子窗口需要使用组件安全区方案，则需要调用[setWindowLayoutFullScreen](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowlayoutfullscreen9)退出沉浸式布局。
    - 也可以通过`window.findWindow`接口来查找已经创建的窗口从而得到子窗口。
 
    ```ts
