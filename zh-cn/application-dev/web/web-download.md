@@ -236,8 +236,6 @@ function getDownloadPathFromPicker(): Promise<string> {
 >值得注意的是，WebDownloadItem.start并非启动下载，下载过程实际上在用户点击页面链接时即已开始。WebDownloadItem.start的作用是将已经下载到临时文件的部分移动到指定目标路径，后续未完成的下载的内容将直接保存到指定目标路径，临时目录位于`/data/storage/el2/base/cache/web/Temp/`。如果决定取消当前下载，应调用[WebDownloadItem.cancel](../reference/apis-arkweb/arkts-apis-webview-WebDownloadItem.md#cancel11)，此时临时文件将被删除。
 >
 >如果不希望在WebDownloadItem.start之前将文件下载到临时目录，可以通过WebDownloadItem.cancel中断下载，后续可通过[WebDownloadManager.resumeDownload](../reference/apis-arkweb/arkts-apis-webview-WebDownloadManager.md#resumedownload11)恢复中断的下载。
->
->当前WebDownloadItem支持最长下载文件名字符长度为255字节，超出部分将会被截断。
 
 ## 使用Web组件恢复进程退出时未下载完成的任务
 在Web组件启动时，可通过[resumeDownload()](../reference/apis-arkweb/arkts-apis-webview-WebDownloadManager.md#resumedownload11)接口恢复未完成的下载任务。
