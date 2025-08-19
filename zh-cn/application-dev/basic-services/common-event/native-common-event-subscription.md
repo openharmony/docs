@@ -94,9 +94,6 @@
        
        // 获取回调公共事件包名称
        const char *bundle = OH_CommonEvent_GetBundleNameFromRcvData(data);
-       
-       // 获取回调公共事件附件信息
-       const CommonEvent_Parameters *parameters = OH_CommonEvent_GetParametersFromRcvData(data);
        OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "event: %{public}s, code: %{public}d, data: %{public}s, bundle: %{public}s", event, code, retData, bundle);
    }
    ```
