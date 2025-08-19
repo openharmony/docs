@@ -1,5 +1,11 @@
 # model.h
-<!--Kit_MindSpore Lite Kit--><!--System_AI-->
+
+<!--Kit: MindSpore Lite Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @zhuguodong8-->
+<!--Designer: @zhuguodong8; @jjfeing-->
+<!--Tester: @principal87-->
+<!--Adviser: @ge-yafang-->
 
 ## Overview
 
@@ -61,6 +67,7 @@ Provides model-related APIs for model creation and inference. These APIs are non
 | [OH_AI_API OH_AI_Status OH_AI_ExportModel(OH_AI_ModelHandle model, OH_AI_ModelType model_type, const char *model_file,OH_AI_QuantizationType quantization_type, bool export_inference_only,char **output_tensor_name, size_t num)](#oh_ai_exportmodel) | - | Exports a training model. This API is used only for on-device training.                                                                                                                                                                                                                                    |
 | [OH_AI_API OH_AI_Status OH_AI_ExportModelBuffer(OH_AI_ModelHandle model, OH_AI_ModelType model_type, void *model_data,size_t *data_size, OH_AI_QuantizationType quantization_type,bool export_inference_only, char **output_tensor_name, size_t num)](#oh_ai_exportmodelbuffer) | - | Exports the memory cache of the training model. This API is used only for on-device training.                                                                                                                                                                                                                                |
 | [OH_AI_API OH_AI_Status OH_AI_ExportWeightsCollaborateWithMicro(OH_AI_ModelHandle model, OH_AI_ModelType model_type,const char *weight_file, bool is_inference,bool enable_fp16, char **changeable_weights_name,size_t num)](#oh_ai_exportweightscollaboratewithmicro) | - | Exports the weight file of the training model for micro inference. This API is used only for on-device training.                                                                                                                                                                                                                        |
+| [OH_AI_API OH_AI_Status OH_AI_ModelLoadConfig(OH_AI_ModelHandle model, const char *config_path)](#oh_ai_modelloadconfig) | - | Loads the model configuration file.|
 
 ## Function Description
 
@@ -832,4 +839,29 @@ Exports the weight file of the training model for micro inference. This API is u
 
 | Type| Description|
 | -- | -- |
+| OH_AI_API [OH_AI_Status](capi-status-h.md#oh_ai_status) | Status code enumerated by [OH_AI_Status](capi-status-h.md#oh_ai_status). The value **OH_AI_STATUS_SUCCESS** indicates that the operation is successful. If the operation fails, an error code is returned.|
+
+### OH_AI_ModelLoadConfig()
+
+```
+OH_AI_API OH_AI_Status OH_AI_ModelLoadConfig(OH_AI_ModelHandle model, const char *config_path);
+```
+
+**Description**
+
+Loads the model configuration file.
+
+**Since**: 20
+
+**Parameters**
+
+| Name                                                      | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [OH_AI_ModelHandle](capi-mindspore-oh-ai-modelhandle.md) model | Pointer to the model object.|
+| const char *config_path                                      | Configuration file path.|
+
+**Returns**
+
+| Type                                                   | Description                                                        |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
 | OH_AI_API [OH_AI_Status](capi-status-h.md#oh_ai_status) | Status code enumerated by [OH_AI_Status](capi-status-h.md#oh_ai_status). The value **OH_AI_STATUS_SUCCESS** indicates that the operation is successful. If the operation fails, an error code is returned.|
