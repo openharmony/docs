@@ -820,7 +820,7 @@ async function example18(context: common.UIAbilityContext) { // 需确保 contex
 
 > **注意：**
 >
-> DOWNLOAD模式创建的目录仅用于便捷保存文件，目录之间无访问隔离，不建议用于保存应用敏感数据或用于安全隔离。
+> DOWNLOAD模式创建的目录仅用于保存文件，目录之间无访问隔离，不建议保存应用敏感数据。
 
 ## MergeTypeMode<sup>15+</sup>
 
