@@ -107,8 +107,10 @@ nameCache.json文件：
 ```ts
 @Component
 export struct MainPage {
-   @State messageStr: string = 'Hello World';
-   ...
+  @State messageStr: string = 'Hello World';
+
+  build() {
+  }
 }
 ```
 
@@ -127,8 +129,9 @@ this.__messageStr = new ObservedPropertySimplePU('Hello World', this, "messageSt
 源码：
 
 ```ts
+@ObservedV2
 class Info {
-    @Trace sample: Sample = new Sample();
+  @Trace sample: Sample = new Sample();
 }
 ```
 
@@ -206,7 +209,10 @@ Error message: [Class]get different name for method:&entry/src/main/ets/pages/XX
 @CustomDialog
 export default struct TmsDialog {
   controller?: CustomDialogController
-  dialogController:CustomDialogController;
+  dialogController:CustomDialogController
+  
+  build() {
+  }
 }
 
 //代码2
@@ -214,6 +220,9 @@ export default struct TmsDialog {
 struct Index{
    controller?: CustomDialogController
    dialogController?:CustomDialogController
+   
+   build() {
+  }
 }
 ```
 
