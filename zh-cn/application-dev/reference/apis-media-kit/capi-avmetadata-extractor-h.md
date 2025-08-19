@@ -56,7 +56,7 @@ OH_AVMetadataExtractor* OH_AVMetadataExtractor_Create(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVMetadataExtractor](capi-avmetadaextractor-oh-avmetadataextractor.md)* | 创建成功时返回指向OH_AVMetadataExtractor实例的指针，否则返回空指针。<br>         可能的失败原因：HstEngineFactory::CreateAVMetadataHelperEngine执行失败。 |
+| [OH_AVMetadataExtractor](capi-avmetadataextractor-oh-avmetadataextractor.md)* | 创建成功时返回指向OH_AVMetadataExtractor实例的指针，否则返回空指针。<br>         可能的失败原因：HstEngineFactory::CreateAVMetadataHelperEngine执行失败。 |
 
 ### OH_AVMetadataExtractor_SetFDSource()
 
@@ -77,7 +77,7 @@ OH_AVErrCode OH_AVMetadataExtractor_SetFDSource(OH_AVMetadataExtractor* extracto
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVMetadataExtractor](capi-avmetadaextractor-oh-avmetadataextractor.md)* extractor | 指向OH_AVMetadataExtractor实例的指针。 |
+| [OH_AVMetadataExtractor](capi-avmetadataextractor-oh-avmetadataextractor.md)* extractor | 指向OH_AVMetadataExtractor实例的指针。 |
 | int32_t fd | 媒体源的文件描述符。 |
 | int64_t offset | 媒体源在文件描述符中的偏移量。 |
 | int64_t size | 媒体源的大小。 |
@@ -109,7 +109,7 @@ OH_AVErrCode OH_AVMetadataExtractor_FetchMetadata(OH_AVMetadataExtractor* extrac
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVMetadataExtractor](capi-avmetadaextractor-oh-avmetadataextractor.md)* extractor | 指向OH_AVMetadataExtractor实例的指针。 |
+| [OH_AVMetadataExtractor](capi-avmetadataextractor-oh-avmetadataextractor.md)* extractor | 指向OH_AVMetadataExtractor实例的指针。 |
 | [OH_AVFormat](../apis-avcodec-kit/_core.md#oh_avformat)* avMetadata | 指向OH_AVFormat实例的指针，其内容包含获取的元数据信息。 |
 
 **返回：**
@@ -139,7 +139,7 @@ OH_AVErrCode OH_AVMetadataExtractor_FetchAlbumCover(OH_AVMetadataExtractor* extr
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVMetadataExtractor](capi-avmetadaextractor-oh-avmetadataextractor.md)* extractor | 指向OH_AVMetadataExtractor实例的指针。 |
+| [OH_AVMetadataExtractor](capi-avmetadataextractor-oh-avmetadataextractor.md)* extractor | 指向OH_AVMetadataExtractor实例的指针。 |
 | [OH_PixelmapNative](../apis-image-kit/capi-image-nativemodule-oh-pixelmapnative.md)** pixelMap | 从音频源获取的专辑封面。 |
 
 **返回：**
@@ -167,7 +167,7 @@ OH_AVErrCode OH_AVMetadataExtractor_Release(OH_AVMetadataExtractor* extractor)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVMetadataExtractor](capi-avmetadaextractor-oh-avmetadataextractor.md)* extractor | 指向OH_AVMetadataExtractor实例指针。 |
+| [OH_AVMetadataExtractor](capi-avmetadataextractor-oh-avmetadataextractor.md)* extractor | 指向OH_AVMetadataExtractor实例指针。 |
 
 **返回：**
 
