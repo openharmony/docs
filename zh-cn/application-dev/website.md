@@ -3442,7 +3442,7 @@
           - [OH_NativeXComponent_ExtraMouseEventInfo](reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent-extramouseeventinfo.md)
           - [OH_ArkUI_SurfaceHolder](reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent-oh-arkui-surfaceholder.md)
           - [OH_ArkUI_SurfaceCallback](reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent-oh-arkui-surfacecallback.md)
-          - [NativeWindow](reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent-nativewindow.md)
+          - [OHNativeWindow](reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent-nativewindow.md)
           - [ArkUI_AttributeItem](reference/apis-arkui/capi-arkui-nativemodule-arkui-attributeitem.md)
           - [ArkUI_NodeComponentEvent](reference/apis-arkui/capi-arkui-nativemodule-arkui-nodecomponentevent.md)
           - [ArkUI_StringAsyncEvent](reference/apis-arkui/capi-arkui-nativemodule-arkui-stringasyncevent.md)
