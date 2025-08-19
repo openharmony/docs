@@ -13,6 +13,9 @@
 
 ArkUI提供了[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)容器组件和子组件[GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md)，用于构建网格布局。Grid用于设置网格布局相关参数，GridItem定义子组件相关特征。Grid组件支持使用[条件渲染](../ui/state-management/arkts-rendering-control-ifelse.md)、[循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)、[懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)等方式生成子组件。
 
+> **说明：** 
+>
+> 本文仅展示关键代码片段，可运行的完整代码请参考<!--RP2-->[创建网格代码](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/ScrollableComponent)<!--RP2End-->。
 
 ## 布局与约束
 
