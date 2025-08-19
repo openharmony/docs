@@ -747,7 +747,7 @@ export default class EntryAbility extends UIAbility {
 
 getAllContinuousTasks(context: Context): Promise&lt;ContinuousTaskInfo[]&gt;
 
-获取所有长时任务信息，如长时任务Id、长时任务类型等，使用Promise异步回调。
+获取所有长时任务信息，如任务Id、任务类型等，使用Promise异步回调。
 
 **需要权限**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -803,7 +803,7 @@ export default class EntryAbility extends UIAbility {
 
 getAllContinuousTasks(context: Context, includeSuspended: boolean): Promise&lt;ContinuousTaskInfo[]&gt;
 
-获取所有长时任务信息，如长时任务Id、长时任务类型等，可选择是否返回暂停的长时任务信息，使用Promise异步回调。
+获取所有长时任务信息，如任务Id、任务类型等。可选择是否返回暂停的长时任务信息，使用Promise异步回调。
 
 **需要权限**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
