@@ -10,7 +10,7 @@
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/camera-c.md)。
+详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/capi-oh-camera.md)。
 
 1. 导入NDK接口。选择系统提供的NDK接口能力，导入NDK接口的方法如下。
 

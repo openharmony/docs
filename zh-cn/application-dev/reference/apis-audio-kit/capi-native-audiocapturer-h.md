@@ -614,7 +614,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetFastStatus(OH_AudioCapturer* capturer,
 ### OH_AudioCapturer_OnFastStatusChange()
 
 ```
-typedef void (*OH_AudioCapturer_OnFastStatusChange)(OH_AudioCapturer* capturer,void* userData,OH_AudioStream_FastStatus* status)
+typedef void (*OH_AudioCapturer_OnFastStatusChange)(OH_AudioCapturer* capturer,void* userData,OH_AudioStream_FastStatus status)
 ```
 
 **描述**
@@ -630,6 +630,6 @@ typedef void (*OH_AudioCapturer_OnFastStatusChange)(OH_AudioCapturer* capturer,v
 | -- | -- |
 | [OH_AudioCapturer](capi-ohaudio-oh-audiocapturerstruct.md)* capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 |
 | void* userData | 指向应用自定义的数据存储区域。 |
-| [OH_AudioStream_FastStatus](capi-native-audiostream-base-h.md#oh_audiostream_faststatus)* status | 返回当前低时延状态。 |
+| [OH_AudioStream_FastStatus](capi-native-audiostream-base-h.md#oh_audiostream_faststatus) status | 返回当前低时延状态。 |
 
 
