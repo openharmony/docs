@@ -1825,7 +1825,7 @@ const TAG = 'AceImage';
 @Entry
 @Component
 struct Index {
-  // $r('img_1')需要替换为开发者所需的图像资源文件。
+  // 'img_1'需要替换为开发者所需的图像资源文件。
   @State imgUrl: string = 'img_1';
   @State bright: number = 0; // 默认亮度为0
   aboutToAppear(): void {
@@ -1849,7 +1849,7 @@ struct Index {
 
   build() {
     Column() {
-      // $r('img_1')需要替换为开发者所需的图像资源文件。
+      // $r('app.media.img_1')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.img_1')).width('50%')
         .height('auto')
         .margin({ top: 160 })
