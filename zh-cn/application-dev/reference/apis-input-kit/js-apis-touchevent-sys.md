@@ -46,8 +46,6 @@ import { FixedMode, Touch, TouchEvent } from '@kit.InputKit';
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-**设备行为差异**：该接口仅在手机设备上生效，在其他设备上返回801错误码（存疑）。
-
 **系统API**: 此接口为系统接口。
 
 | 名称         | 类型       | 只读   | 可选   | 说明        |
