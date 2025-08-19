@@ -325,7 +325,7 @@ int32_t (*addGestureToNode)(ArkUI_NodeHandle node, ArkUI_GestureRecognizer* reco
 
 | 参数项                                                                                       | 描述 |
 |-------------------------------------------------------------------------------------------| -- |
-| [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node                          | 需要被绑定手势的ARKUI组件。 |
+| [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node                          | 需要被绑定手势的ArkUI组件。 |
 | [ArkUI_GestureRecognizer](capi-arkui-nativemodule-arkui-gesturerecognizer.md)* recognizer | 绑定此节点的手势。 |
 | [ArkUI_GesturePriority](capi-native-gesture-h.md#arkui_gesturepriority) mode              | 标识此手势的模式（NORMAL_GESTURE， PARALLEL_GESTURE， PRIORITY_GESTURE）。 |
 | [ArkUI_GestureMask](capi-native-gesture-h.md#arkui_gesturemask) mask                      | 手势屏蔽模式。 |
@@ -375,7 +375,7 @@ int32_t (*setGestureInterrupterToNode)(ArkUI_NodeHandle node, ArkUI_GestureInter
 
 | 参数项                                                              | 描述 |
 |------------------------------------------------------------------| -- |
-| [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 需要被设置手势打断回调的ARKUI节点。 |
+| [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 需要被设置手势打断回调的ArkUI节点。 |
 | interrupter                                                      | 打断回调, info 返回手势打断数据。interrupter 返回 GESTURE_INTERRUPT_RESULT_CONTINUE, 手势正常进行；                                     返回 GESTURE_INTERRUPT_RESULT_REJECT 手势打断。 |
 
 **返回：**
@@ -422,7 +422,7 @@ int32_t (*setInnerGestureParallelTo)(ArkUI_NodeHandle node, void* userData, ArkU
 
 | 参数项                                                              | 描述 |
 |------------------------------------------------------------------| -- |
-| [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 需要被设置并行内部手势事件回调的ARKUI节点。 |
+| [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 需要被设置并行内部手势事件回调的ArkUI节点。 |
 | void* userData                                                         | 用户自定义数据。 |
 | parallelInnerGesture                                             | 并行内部手势事件，event 返回并行内部手势事件数据。parallelInnerGesture 返回 需要并行的手势识别器指针。 |
 

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **oh_window_event_filter.h** file declares the APIs for a window to filter multimodal key events. When a multimodal input event passes through the window, the window can interrupt the event to prevent it from being further distributed.
+The file declares the APIs for a window to filter multimodal key events. When a multimodal input event passes through the window, the window can interrupt the event to prevent it from being further distributed.
 
 **File to include**: <window_manager/oh_window_event_filter.h>
 
@@ -21,14 +21,14 @@ The **oh_window_event_filter.h** file declares the APIs for a window to filter m
 | Name| typedef Keyword| Description|
 | -- | -- | -- |
 | [typedef bool (\*OH_NativeWindowManager_KeyEventFilter)(Input_KeyEvent* keyEvent)](#oh_nativewindowmanager_keyeventfilter) | OH_NativeWindowManager_KeyEventFilter | Defines a function for filtering multimodal key events.|
-| [WindowManager_ErrorCode OH_NativeWindowManager_RegisterKeyEventFilter(int32_t windowId,OH_NativeWindowManager_KeyEventFilter keyEventFilter)](#oh_nativewindowmanager_registerkeyeventfilter) | - | Registers the function for filtering multimodal key events.|
-| [WindowManager_ErrorCode OH_NativeWindowManager_UnregisterKeyEventFilter(int32_t windowId)](#oh_nativewindowmanager_unregisterkeyeventfilter) | - | Unregisters the function for filtering multimodal key events.|
+| [WindowManager_ErrorCode OH_NativeWindowManager_RegisterKeyEventFilter(int32_t windowId,OH_NativeWindowManager_KeyEventFilter keyEventFilter)](#oh_nativewindowmanager_registerkeyeventfilter) | - | Registers a function for filtering multimodal key events.|
+| [WindowManager_ErrorCode OH_NativeWindowManager_UnregisterKeyEventFilter(int32_t windowId)](#oh_nativewindowmanager_unregisterkeyeventfilter) | - | Unregisters a function for filtering multimodal key events.|
 | [typedef bool (\*OH_NativeWindowManager_MouseEventFilter)(Input_MouseEvent* mouseEvent)](#oh_nativewindowmanager_mouseeventfilter) | OH_NativeWindowManager_MouseEventFilter | Defines a function for filtering multimodal mouse events.|
-| [WindowManager_ErrorCode OH_NativeWindowManager_RegisterMouseEventFilter(int32_t windowId,OH_NativeWindowManager_MouseEventFilter mouseEventFilter)](#oh_nativewindowmanager_registermouseeventfilter) | - | Registers the function for filtering multimodal mouse events.|
-| [WindowManager_ErrorCode OH_NativeWindowManager_UnregisterMouseEventFilter(int32_t windowId)](#oh_nativewindowmanager_unregistermouseeventfilter) | - | Unregisters the function for filtering multimodal mouse events.|
+| [WindowManager_ErrorCode OH_NativeWindowManager_RegisterMouseEventFilter(int32_t windowId,OH_NativeWindowManager_MouseEventFilter mouseEventFilter)](#oh_nativewindowmanager_registermouseeventfilter) | - | Registers a function for filtering multimodal mouse events.|
+| [WindowManager_ErrorCode OH_NativeWindowManager_UnregisterMouseEventFilter(int32_t windowId)](#oh_nativewindowmanager_unregistermouseeventfilter) | - | Unregisters a function for filtering multimodal mouse events.|
 | [typedef bool (\*OH_NativeWindowManager_TouchEventFilter)(Input_TouchEvent* touchEvent)](#oh_nativewindowmanager_toucheventfilter) | OH_NativeWindowManager_TouchEventFilter | Defines a function for filtering multimodal touch events.|
-| [WindowManager_ErrorCode OH_NativeWindowManager_RegisterTouchEventFilter(int32_t windowId,OH_NativeWindowManager_TouchEventFilter touchEventFilter)](#oh_nativewindowmanager_registertoucheventfilter) | - | Registers the function for filtering multimodal touch events.|
-| [WindowManager_ErrorCode OH_NativeWindowManager_UnregisterTouchEventFilter(int32_t windowId)](#oh_nativewindowmanager_unregistertoucheventfilter) | - | Unregisters the function for filtering multimodal touch events.|
+| [WindowManager_ErrorCode OH_NativeWindowManager_RegisterTouchEventFilter(int32_t windowId,OH_NativeWindowManager_TouchEventFilter touchEventFilter)](#oh_nativewindowmanager_registertoucheventfilter) | - | Registers a function for filtering multimodal touch events.|
+| [WindowManager_ErrorCode OH_NativeWindowManager_UnregisterTouchEventFilter(int32_t windowId)](#oh_nativewindowmanager_unregistertoucheventfilter) | - | Unregisters a function for filtering multimodal touch events.|
 
 ## Function Description
 
@@ -49,13 +49,13 @@ Defines a function for filtering multimodal key events.
 
 | Parameter| Description|
 | -- | -- |
-| [Input_KeyEvent](../apis-input-kit/capi-oh-input-manager-h.md#input_keyevent)* keyEvent | Pointer to the multimodal key event. For details, see [Input_KeyEvent](../apis-input-kit/capi-oh-input-manager-h.md#input_keyevent). The event is defined in **oh_input_manager**.|
+| [Input_KeyEvent](../apis-input-kit/capi-input-input-keyevent.md)* keyEvent | Pointer to the multimodal key event. For details, see [Input_KeyEvent](../apis-input-kit/capi-input-input-keyevent.md). The event is defined in **oh_input_manager**.|
 
 **Return value**
 
 | Type| Description|
 | -- | -- |
-| bool | Whether the event will be intercepted. The value **true** means that the event will be intercepted, and **false** means the opposite.|
+| bool | Whether the event will be intercepted. **true** if intercepted, **false** otherwise.|
 
 ### OH_NativeWindowManager_RegisterKeyEventFilter()
 
@@ -65,7 +65,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterKeyEventFilter(int32_t wi
 
 **Description**
 
-Registers the function for filtering multimodal key events.
+Registers a function for filtering multimodal key events.
 
 **Since**: 12
 
@@ -91,7 +91,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_UnregisterKeyEventFilter(int32_t 
 
 **Description**
 
-Unregisters the function for filtering multimodal key events.
+Unregisters a function for filtering multimodal key events.
 
 **Since**: 12
 
@@ -125,7 +125,7 @@ Defines a function for filtering multimodal mouse events.
 
 | Parameter| Description|
 | -- | -- |
-| [Input_MouseEvent](../apis-input-kit/capi-oh-input-manager-h.md#input_mouseevent)* mouseEvent | Pointer to the multimodal mouse event. For details, see [Input_MouseEvent](../apis-input-kit/capi-oh-input-manager-h.md#input_mouseevent). The event is defined in **oh_input_manager**.|
+| [Input_MouseEvent](../apis-input-kit/capi-input-input-mouseevent.md)* mouseEvent | Pointer to the multimodal mouse event. For details, see [Input_MouseEvent](../apis-input-kit/capi-input-input-mouseevent.md). The event is defined in **oh_input_manager**.|
 
 **Return value**
 
@@ -141,7 +141,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterMouseEventFilter(int32_t 
 
 **Description**
 
-Registers the function for filtering multimodal mouse events.
+Registers a function for filtering multimodal mouse events.
 
 **Since**: 15
 
@@ -167,7 +167,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_UnregisterMouseEventFilter(int32_
 
 **Description**
 
-Unregisters the function for filtering multimodal mouse events.
+Unregisters a function for filtering multimodal mouse events.
 
 **Since**: 15
 
@@ -201,7 +201,7 @@ Defines a function for filtering multimodal touch events.
 
 | Parameter| Description|
 | -- | -- |
-| [Input_TouchEvent](../apis-input-kit/capi-oh-input-manager-h.md#input_touchevent)* touchEvent | Pointer to the multimodal touch event. For details, see [Input_TouchEvent](../apis-input-kit/capi-oh-input-manager-h.md#input_touchevent). The event is defined in **oh_input_manager**.|
+| [Input_TouchEvent](../apis-input-kit/capi-input-input-touchevent.md)* touchEvent | Pointer to the multimodal touch event. For details, see [Input_TouchEvent](../apis-input-kit/capi-input-input-touchevent.md). The event is defined in **oh_input_manager**.|
 
 **Return value**
 
@@ -217,7 +217,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterTouchEventFilter(int32_t 
 
 **Description**
 
-Registers the function for filtering multimodal touch events.
+Registers a function for filtering multimodal touch events.
 
 **Since**: 15
 
@@ -243,7 +243,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_UnregisterTouchEventFilter(int32_
 
 **Description**
 
-Unregisters the function for filtering multimodal touch events.
+Unregisters a function for filtering multimodal touch events.
 
 **Since**: 15
 

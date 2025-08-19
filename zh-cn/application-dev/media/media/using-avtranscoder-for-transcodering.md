@@ -102,9 +102,9 @@
    @Component
    struct Index {
      // 获取当前组件所在Ability的Context，以通过Context获取应用文件路径。
-     private context:Context | undefined = this.getUIContext().getHostContext();
+     private context:Context | undefined = this.getUIContext()?.getHostContext();
      // 获取转码功能管理类。
-     @State avTranscoder: AVTranscoderDemo = new AVTranscoderDemo(this.context);
+     @State avTranscoder: AVTranscoderDemo | undefined = this.context ? new AVTranscoderDemo(this.context) : undefined;
 
      build() {
        RelativeContainer() {
@@ -202,6 +202,8 @@
          this.avTranscoder = undefined;
        }
       // 开始转码前需要创建转码实例、设置回调、设置fd并完成prepare。
+      // 具体创建步骤参考开发步骤1-5。
+
       // 开始转码。
       await this.avTranscoder.start();
     }

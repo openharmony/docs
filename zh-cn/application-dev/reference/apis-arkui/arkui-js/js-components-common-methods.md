@@ -1,4 +1,10 @@
 # 通用方法
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 >  **说明：**
 >  从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -12,7 +18,7 @@ animate( keyframes: Keyframes, options: Options)：void
 
 **参数：** 
 
-| 参数名       | 参数类型      | 必填   | 描述                                   |
+| 参数名       | 类型      | 必填   | 说明                                   |
 | --------- | --------- | ---- | ------------------------------------ |
 | keyframes | keyframes | 是    | 设置动画样式。                               |
 | options   | Options   | 是    | 用于设置动画属性的对象列表。options请见表3 Options说明。 |

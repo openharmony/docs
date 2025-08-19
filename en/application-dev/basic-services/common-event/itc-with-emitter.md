@@ -8,7 +8,7 @@ Emitter is an event processing mechanism used in a process. It provides the capa
 Emitter is used to process events of the same thread or different threads in the same process in an asynchronous manner. To use this mechanism, you need to subscribe to an event and publish it, after which the Emitter distributes the published event to the subscriber, and the subscriber executes the callback method set during event subscription. Unsubscribe from the event in time to release the Emitter resources when the event does not need to be subscribed to.
 
 ## Working Principles
-Emitter distributes tasks by maintaining an internal event queue. An application needs to subscribe to an event and set the callback method of the event. After the application publish the event, an event is inserted into the queue. The task queue executes the tasks in serial mode, during which the callback method of the task subscriber is called to process the event.
+Emitter distributes tasks by maintaining an internal event queue. An application needs to subscribe to an event and set the callback method of the event. After the application publishes the event, an event is inserted into the queue. The task queue executes the tasks serially, during which the callback method of the task subscriber is called to process the event.
 
 ![emitter](figures/emitter.png)
 
