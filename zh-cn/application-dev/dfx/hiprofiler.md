@@ -114,22 +114,20 @@ plugin_configs字段介绍：
 
 ## 支持插件列表
 
-<!--RP1-->
 | 插件名字 | 简介 | 规格说明 |
 | -------- | -------- | -------- |
-| native_hook | 获取堆内存分配的调用栈信息。 | 采集的进程仅支持使用调试证书签名的应用 |
-| ftrace-plugin | 获取内核打点的trace事件，以及hitrace打点的数据。 |  |
-| cpu-plugin | 获取进程CPU使用率信息，包括进程级和线程级的使用率。 |  |
-| gpu-plugin | 获取进程GPU使用率信息。 |  |
-| xpower-plugin | 获取进程能耗使用情况的数据。 |  |
-| memory-plugin | 获取进程内存占用情况，主要是获取进程smaps节点的数据。 | |
-| diskio plugin | 获取进程磁盘空间占用情况。 |  |
-| network profiler | 通过进程内打点，获取进程HTTP请求的详细信息。 | 采集的进程仅支持使用调试证书签名的应用 |
-| network plugin | 获取进程网络流量统计信息。 |  |
-| hisysevent plugin | 通过hisysevent命令，获取hisysevent的事件记录数据。 |  |
-| hiperf plugin | 通过调用hiperf命令获取进程的指令计数信息以及对应的堆栈。 |  |
-| hidump plugin | 通过SP_daemon命令获取相关数据。 |  |
-<!--RP1End-->
+| native_hook | 获取堆内存分配的调用栈信息。 | 采集的进程仅支持[使用调试证书签名的应用](#使用调试证书签名的应用) |
+| ftrace-plugin | 获取内核打点的trace事件，以及hitrace打点的数据。 | - |
+| cpu-plugin | 获取进程CPU使用率信息，包括进程级和线程级的使用率。 | - |
+| gpu-plugin | 获取进程GPU使用率信息。 | - |
+| xpower-plugin | 获取进程能耗使用情况的数据。 | - |
+| memory-plugin | 获取进程内存占用情况，主要是获取进程smaps节点的数据。 | - |
+| diskio plugin | 获取进程磁盘空间占用情况。 | - |
+| network profiler | 通过进程内打点，获取进程HTTP请求的详细信息。 | 采集的进程仅支持[使用调试证书签名的应用](#使用调试证书签名的应用) |
+| network plugin | 获取进程网络流量统计信息。 | - |
+| hisysevent plugin | 通过hisysevent命令，获取hisysevent的事件记录数据。 | - |
+| hiperf plugin | 通过调用hiperf命令获取进程的指令计数信息以及对应的堆栈。 | - |
+| hidump plugin | 通过SP_daemon命令获取相关数据。 | - |
 
 
 ## 使用调试证书签名的应用
@@ -198,6 +196,7 @@ nativehook参数列表：
 | -------- | -------- | -------- | -------- |
 | ftrace_events | string | 抓取的trace event。 | 记录内核打点的trace event。 | 
 | hitrace_categories | string | 抓取的hitrace打点信息。 | 调用hitrace能力，获取数据以proto格式写入文件。 | 
+| hitrace_apps | string | 抓取的hitrace信息的进程。 | 设置此参数时，只有对应进程的trace信息会被记录。添加此参数时， hitrace_categories不支持添加binder，否则会导致trace数据解析异常。| 
 | buffer_size_kb | int | buffer缓存大小，单位：kB。 | hiprofiler_plugins进程读取内核事件所需要的缓存大小。推荐使用默认数值：204800。 | 
 | flush_interval_ms | int | 采集数据频率，单位：ms。 | 推荐使用默认数值：1000。 | 
 | flush_threshold_kb | int | 刷新数据大小。 | 超过threshold刷新一次数据至文件。用smartperf默认数值即可。 | 
@@ -354,7 +353,7 @@ CONFIG
 
 
 
-抓取指定进程CPU使用率
+抓取指定进程CPU使用率。
 
 
 对进程号为1234的进程采集CPU数据，采集时长为30s，采样周期为1000ms，调优数据传输的共享内存大小是16384个内存页，采集的数据会被保存至/data/local/tmp/hiprofiler_data.htrace文件中。
