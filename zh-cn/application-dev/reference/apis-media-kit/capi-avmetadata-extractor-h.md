@@ -18,7 +18,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_AVMetadataExtractor](capi-avmetadaextractor-oh-avmetadataextractor.md) | OH_AVMetadataExtractor | 定义OH_AVMetadataExtractor类型。 |
+| [OH_AVMetadataExtractor](capi-avmetadataextractor-oh-avmetadataextractor.md) | OH_AVMetadataExtractor | 定义OH_AVMetadataExtractor类型。 |
 
 ### 函数
 
