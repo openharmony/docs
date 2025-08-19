@@ -788,7 +788,7 @@ onScrollStart(event: () => void)
 
 onScrollStop(event: () => void)
 
-网格滑动停止时触发。手指拖动网格或网格的滚动条触发的滑动，手指离开屏幕并且滑动停止时会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。
+网格滑动停止时触发。手指拖动网格或网格的滚动条触发的滑动，手指离开屏幕后滑动停止时会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -996,6 +996,8 @@ struct GridExample {
 
 可滚动Grid，包括所有滚动属性和事件。
 
+GridDataSource实现了LazyForEach数据源接口[IDataSource](ts-rendering-control-lazyforeach.md#idatasource)，用于通过LazyForEach给Grid提供子组件。
+
 <!--code_no_check-->
 ```ts
 // GridDataSource.ets
@@ -1138,6 +1140,8 @@ struct GridExample {
 
 GridLayoutOptions的使用：irregularIndexes与onGetIrregularSizeByIndex。
 
+GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
+
 <!--code_no_check-->
 ```ts
 // xxx.ets
@@ -1228,6 +1232,8 @@ struct GridExample {
 ### 示例4（Grid嵌套滚动）
 
 nestedScroll和onScrollFrameBegin的使用。
+
+GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
 
 <!--code_no_check-->
 ```ts
@@ -1417,6 +1423,8 @@ struct GridExample {
 >
 > 预览器窗口不支持显示拖拽跟手。
 
+GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
+
 <!--code_no_check-->
 ```ts
 import { GridDataSource } from './GridDataSource';
@@ -1512,6 +1520,8 @@ struct GridExample {
 
 layoutDirection、maxCount、minCount、cellLength的使用。
 
+GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
+
 <!--code_no_check-->
 ```ts
 import { GridDataSource } from './GridDataSource';
@@ -1563,6 +1573,8 @@ struct GridExample {
 ### 示例7（双指缩放修改Grid列数）
 
 双指缩放修改Grid列数。
+
+GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
 
 <!--code_no_check-->
 ```ts
@@ -1719,6 +1731,8 @@ struct GridColumnsTemplate {
 
 在默认情况下，左右两个GridItem的高度可能是不同的；在设置了Grid的[alignItems](#alignitems12)属性为GridItemAlignment.STRETCH后，一行左右两个GridItem中原本高度较小的GridItem会以另一个高度较大的GridItem的高度作为自己的高度。
 
+GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
+
 <!--code_no_check-->
 ```ts
 import { GridDataSource } from './GridDataSource';
@@ -1784,6 +1798,8 @@ struct Index {
 ### 示例10（设置边缘渐隐）
 通过[fadingEdge](ts-container-scrollable-common.md#fadingedge14)属性来设置边缘渐隐效果。
 
+GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
+
 <!--code_no_check-->
 
 ```ts
@@ -1839,6 +1855,8 @@ struct GridExample {
 ### 示例11（单边边缘效果）
 
 该示例通过edgeEffect接口，实现了Grid组件设置单边边缘效果。
+
+GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
 
 <!--code_no_check-->
 ```ts
@@ -2069,6 +2087,8 @@ struct Index {
 
 该示例通过scrollToIndex接口，实现了Grid组件滚动到指定位置。
 
+GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
+
 <!--code_no_check-->
 ```ts
 import { GridDataSource } from './GridDataSource';
@@ -2129,6 +2149,8 @@ struct GridScrollToIndexSample {
 ### 示例15（实现Grid滑动选择）
 
 该示例通过PanGesture接口，实现了Grid组件一边滑动一边选择的效果。
+
+GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
 
 <!--code_no_check-->
 ```ts
@@ -2339,6 +2361,7 @@ struct GridExample {
                 .height(80)
                 .textAlign(TextAlign.Center)
               if (this.canSlideSelect) {
+              // $r('app.media.gouxuan')和$r('app.media.weigouxuan')需要替换为开发者所需的图像资源文件。
                 Image(this.selectedIndexes.includes(day) ? $r('app.media.gouxuan') :$r('app.media.weigouxuan'))
                   .width(30)
                   .height(30)
