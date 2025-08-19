@@ -68,7 +68,7 @@
 <!-- xxx.hml -->
 <div class="container">
   <text onclick="onTextClick" class="title-text">Show popup menu.</text>
-  <menu id="apiMenu" onselected="onMenuSelected">
+  <menu id="apiMenu">
     <option value="Item 1">Item 1</option>
     <option value="Item 2">Item 2</option>
     <option value="Item 3">Item 3</option>
@@ -90,16 +90,10 @@
 
 ```js
 // xxx.js
-import promptAction from '@ohos.promptAction';
 export default {
-  onMenuSelected(e) {
-    promptAction.showToast({
-      message: e.value
-    })
-  },
-  onTextClick() {
-    this.$element("apiMenu").show({x:280,y:120});
-  }
+    onTextClick() {
+        this.$element("apiMenu").show({ x: 175, y: 50 });
+    }
 }
 ```
 
