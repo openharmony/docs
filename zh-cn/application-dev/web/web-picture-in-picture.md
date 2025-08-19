@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @gzweioh-->
-<!--SE: @qiu-gongkai-->
-<!--TSE: @ghiker-->
+<!--Designer: @qiu-gongkai-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 Web组件提供画中画功能支持，应用可利用W3C标准的Picture-in-Picture API在网页中创建浮动窗口以播放视频，使用户在浏览其他网页或与其他应用交互时，可通过该画中画窗口继续观看视频。  
 
 若使用线上视频资源，则需在配置文件中设置网络权限。权限的添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)。
@@ -23,7 +24,7 @@ Web组件提供画中画功能支持，应用可利用W3C标准的Picture-in-Pic
 
 ## 进入画中画
 
-以仅包含媒体源的video元素和一个用户交互的button元素为例，介绍如何创建一个浮动窗口播放视频，使用户在浏览其他网页或与其它应用交互时，能够通过该画中画窗口持续观看视频。
+以仅包含媒体源的video元素和一个用户交互的button元素为例，介绍如何创建一个浮动窗口播放视频，使用户在浏览其他网页或与其他应用交互时，能够通过该画中画窗口持续观看视频。
 
 ```html
 <!-- 使用时需要自行替换视频链接 -->

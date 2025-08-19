@@ -2,8 +2,9 @@
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @cx983299475-->
-<!--SE: @xueyulong-->
-<!--TSE: @chenmingze-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 ArkTS卡片有两种创建卡片包的方式。开发者在开发过程中任选其一即可。<br>
 方式一：卡片和应用共包方式，创建步骤请参考[共包方式创建卡片](./arkts-ui-widget-creation.md#方式一共包方式创建卡片)，此时卡片UI和应用代码在一个module内，最终编译产物也在同一个HAP包内。<br>
 方式二：独立卡片包方式，创建步骤请参考[独立包方式创建卡片](./arkts-ui-widget-creation.md#方式二独立包方式创建卡片)，此时卡片UI和应用代码在不同module内，最终编译产物分为卡片包和应用包。<br>
@@ -26,7 +27,7 @@ ArkTS卡片有两种创建卡片包的方式。开发者在开发过程中任选
    ![WidgetProjectCreate1](figures/创建共hap包卡片_1.png)
 >**说明：** 
 >
-> 在API 10及以上 Stage模型的工程中，开发者可通过Service Widget菜单可直接选择新建动态卡片（Dynamic Widget）或静态卡片（Static Widget）。创建卡片后，也可在卡片的[form_config.json](arkts-ui-widget-configuration.md#配置文件字段说明)配置文件中，通过isDynamic参数修改卡片类型：isDynamic置空或赋值为“true”，则该卡片为[动态卡片](./arkts-ui-widget-configuration.md#isdynamic标签)；isDynamic赋值为"false"，则该卡片为[静态卡片](./arkts-ui-widget-configuration.md#isdynamic标签)。
+> 在API 10及以上 Stage模型的工程中，开发者可通过Service Widget菜单可直接选择创建动态卡片（Dynamic Widget）或静态卡片（Static Widget）。创建卡片后，也可在卡片的[form_config.json配置文件](arkts-ui-widget-configuration.md)中，通过isDynamic参数修改卡片类型：isDynamic置空或赋值为“true”，则该卡片为[为动态卡片](./arkts-form-overview.md#动态卡片)；isDynamic赋值为"false"，则该卡片为[静态卡片](./arkts-form-overview.md#静态卡片)。
 
 - 选择模板后，点击【Next】。<br>
    ![WidgetProjectCreate2](figures/创建共hap包卡片_2.png)
@@ -34,7 +35,7 @@ ArkTS卡片有两种创建卡片包的方式。开发者在开发过程中任选
 - 在选择卡片的开发语言类型（Language）时，选择ArkTS选项。选择卡片支持的外观规格（Support dimension）时，选择期望的卡片尺寸，然后选择默认的外观规格（Default dimension），最后点击“Finish”，即可完成ArkTS卡片创建。详细的卡片外观规格可参考[form_config.json](arkts-ui-widget-configuration.md#配置文件字段说明)配置文件，后续也可以在form_config.json配置文件中修改卡片规格。<br>
    ![WidgetProjectCreate3](figures/创建共hap包卡片_3.png)
 
-   建议根据实际使用场景命名卡片名称，ArkTS卡片创建完成后，工程中会新增如下卡片相关文件：卡片生命周期管理文件（EntryFormAbility.ets）、卡片页面文件（WidgetCard.ets）和卡片配置文件（form_config.json）。填写卡片配置之后点击【Finish】。<br><br>
+   建议根据实际使用场景命名卡片名称，ArkTS卡片创建完成后，工程中会新增如下卡片相关文件：卡片生命周期管理文件（EntryFormAbility.ets）、卡片页面文件（WidgetCard.ets）和卡片配置文件（form_config.json）。填写卡片配置之后点击【Finish】。<br>
    ![WidgetProjectView](figures/共hap包卡片目录结构.png)
 ### 工程结构介绍
 **图1** ArkTS卡片工程目录、相关模块<br>
@@ -73,7 +74,7 @@ ArkTS卡片有两种创建卡片包的方式。开发者在开发过程中任选
 ![WidgetProjectCreate2](figures/独立包卡片创建_1.png)
 >**说明：** 
 >
-> 在Service Widget菜单可直接选择创建独立包的动态卡片（Dynamic Widget(standalone)）或静态卡片（Static Widget(standalone)）。创建服务卡片后，也可以在卡片的[form_config.json配置文件](arkts-ui-widget-configuration.md)中，通过isDynamic参数修改卡片类型：isDynamic置空或赋值为“true”，则该卡片为[动态卡片](./arkts-ui-widget-configuration.md#isdynamic标签)；isDynamic赋值为"false"，则该卡片为[静态卡片](./arkts-ui-widget-configuration.md#isdynamic标签)。
+> 在Service Widget菜单可直接选择创建独立包的动态卡片（Dynamic Widget(standalone)）或静态卡片（Static Widget(standalone)）。创建服务卡片后，也可以在卡片的[form_config.json配置文件](arkts-ui-widget-configuration.md)中，通过isDynamic参数修改卡片类型：isDynamic置空或赋值为“true”，则该卡片为[动态卡片](./arkts-form-overview.md#动态卡片)；isDynamic赋值为"false"，则该卡片为[静态卡片](./arkts-form-overview.md#静态卡片)。
 - 选择模板后，点击【Next】。<br>
 ![WidgetProjectCreate2](figures/创建共hap包卡片_2.png)
 - 填写卡片配置之后点击【Finish】。<br>

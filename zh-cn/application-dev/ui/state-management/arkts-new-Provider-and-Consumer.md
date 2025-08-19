@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liwenzhen3-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 \@Provider和\@Consumer用于跨组件层级数据双向同步，可以使得开发者不用拘泥于组件层级。
 \@Provider和\@Consumer属于状态管理V2装饰器，所以只能在\@ComponentV2中才能使用，在\@Component中使用会编译报错。
@@ -12,8 +13,9 @@
 
 >**说明：**
 >
->\@Provider和\@Consumer装饰器从API version 12开始支持。
+> \@Provider和\@Consumer装饰器从API version 12开始支持。
 >
+> 从API version 12开始，\@Provider和\@Consumer装饰器支持在原子化服务中使用。
 
 ## 概述
 

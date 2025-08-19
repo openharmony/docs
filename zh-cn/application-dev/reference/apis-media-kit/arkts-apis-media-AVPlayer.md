@@ -2,8 +2,9 @@
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @xushubo; @chennotfound-->
-<!--SE: @dongyu_dy-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @dongyu_dy-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -300,7 +301,7 @@ constructor(context: Context) {
 }
 
 let player = await media.createAVPlayer();
-let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.mp4');
+let fileDescriptor = await this.context?.resourceManager.getRawFd('xxx.mp4');
 player.fdSrc = fileDescriptor
 let playStrategy : media.PlaybackStrategy = {
   preferredWidth: 1,
@@ -2174,7 +2175,7 @@ private context: Context | undefined;
 constructor(context: Context) {
   this.context = context; // this.getUIContext().getHostContext();
 }
-let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.srt');
+let fileDescriptor = await this.context?.resourceManager.getRawFd('xxx.srt');
 
 avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length);
 ```
@@ -2396,7 +2397,7 @@ on(type: 'amplitudeUpdate', callback: Callback\<Array\<number>>): void
 
 ```ts
 avPlayer.on('amplitudeUpdate', (value: Array<number>) => {
-  console.info('amplitudeUpdate called,and amplitudeUpdate = ${value}');
+  console.info(`amplitudeUpdate called,and amplitudeUpdate = ${value}`);
 });
 ```
 

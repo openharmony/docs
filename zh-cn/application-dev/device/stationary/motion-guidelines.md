@@ -2,8 +2,9 @@
 <!--Kit: Multimodal Awareness Kit-->
 <!--Subsystem: MultimodalAwareness-->
 <!--Owner: @dilligencer-->
-<!--SE: @zou_ye-->
-<!--TSE: @judan-->
+<!--Designer: @zou_ye-->
+<!--Tester: @judan-->
+<!--Adviser: @hu-zhiqiong-->
 
 ## 场景介绍
 
@@ -38,12 +39,13 @@
    ```ts
    import { motion } from '@kit.MultimodalAwarenessKit';
    import { BusinessError } from '@kit.BasicServicesKit';
+   import { Callback } from '@ohos.base';
    ```
 
 2. 定义回调函数接收操作手结果
 
    ```
-   callback(data:motion.OperatingHandStatus) {
+   let callback:Callback<motion.OperatingHandStatus> = (data:motion.OperatingHandStatus) => {
      console.info('callback success' + data);
    };
    ```
@@ -52,7 +54,7 @@
 
    ```
    try {
-      motion.on('operatingHandChanged', this.callback);
+      motion.on('operatingHandChanged', callback);
       console.info("on succeeded");
    } catch (err) {
       let error = err as BusinessError;
@@ -115,12 +117,13 @@
    ```ts
    import { motion } from '@kit.MultimodalAwarenessKit';
    import { BusinessError } from '@kit.BasicServicesKit';
+   import { Callback } from '@ohos.base';
    ```
 
 2. 定义回调函数接收握持手结果
 
    ```
-   callback(data:motion.HoldingHandStatus) {
+   let callback:Callback<motion.HoldingHandStatus> = (data:motion.HoldingHandStatus) => {
      console.info('callback success' + data);
    };
    ```
@@ -129,7 +132,7 @@
 
    ```
    try {
-      motion.on('holdingHandChanged', this.callback);
+      motion.on('holdingHandChanged', callback);
       console.info("on succeeded");
    } catch (err) {
       let error = err as BusinessError;

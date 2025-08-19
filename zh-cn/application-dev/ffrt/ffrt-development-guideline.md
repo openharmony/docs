@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## 介绍
 
@@ -35,12 +36,12 @@ FFRT提供开发者队列级和任务级超时维测机制，用来监控用户�
 
 ### 长耗时任务监测
 
-#### 机制
+**机制**
 
 - 长耗时任务打印机制 当任务执行时间超过一秒时，会触发一次堆栈打印，后续该任务堆栈打印频率调整为一分钟。连续打印十次后，打印频率调整为十分钟。再触发十次打印后，打印频率固定为三十分钟。
 - 该机制的堆栈打印调用的是DFX的`GetBacktraceStringByTid`接口，该接口会向阻塞线程发送抓栈信号，触发中断并抓取调用栈返回。
 
-#### 样例
+**样例**
 
 在对应进程日志中搜索RecordSymbolAndBacktrace关键字，对应的日志示例如下：
 
@@ -61,13 +62,13 @@ W C01719/ffrt: #09 pc 00000000000467b0 /system/lib64/chipset-sdk/libffrt.so
 
 该维测会打印出Worker上执行时间超过阈值的任务堆栈、Worker线程号、执行时间，请自行根据堆栈找对应组件确认阻塞原因。
 
-#### 注意事项
+**注意事项**
 
 不涉及。
 
 ### 运行信息转储
 
-#### 机制
+**机制**
 
 FFRT提供一个对外的接口`ffrt_dump`以便转储FFRT子系统运行时的内部信息，主要包含：
 
@@ -78,7 +79,7 @@ FFRT提供一个对外的接口`ffrt_dump`以便转储FFRT子系统运行时的�
 
 在当前进程发生freeze时，OH的DFX模块会主动调用`ffrt_dump`接口转储FFRT的信息，落盘到freeze文件中，存储到`/data/log/faultlog/faultlogger/`目录下，用户可以直接利用该文件中的任务调用栈信息定位对应任务的卡顿问题。
 
-#### 样例
+**样例**
 
 ```txt
 ready task ptr: qos 0 readptr 79 writeptr 79
@@ -113,17 +114,17 @@ proc status: taskCnt 23 vercnt 0sigCnt0
 #05 pc 0000000000066d18 /system/lib64/ndk/libffrt.so(22be57f01a789a03813d26a19c3a4042)
 ```
 
-#### 注意事项
+**注意事项**
 
-由于OH DFX模块在freeze时有处理时间的要求，低概率会导致`ffrt_dump`中收集的信息不全，freeze处理时间耗尽，此时落盘的信息会有缺失。
+由于OH DFX模块在freeze时有处理时间的要求，存在较小概率会导致`ffrt_dump`中收集的信息不全，freeze处理时间耗尽，此时落盘的信息会有缺失。
 
 ### 黑匣子日志
 
-#### 机制
+**机制**
 
 进程Crash发生时，FFRT模块收到信号（`SIGABRT`、`SIGBUS`、`SIGFPE`、`SIGILL`、`SIGSTKFLT`、`SIGSTOP`、`SIGSYS`和`SIGTRAP`），将FFRT当前重要的运行时信息保存至faultlog中，包括：正在运行的task；当前Worker的运行信息和调用栈信息；当前普通任务信息；当前队列任务信息等。用户可利用这些信息中的内容辅助定位Crash问题。
 
-#### 样例
+**样例**
 
 ```txt
 C01719/CameraDaemon/ffrt: 9986:operator():254 <<<=== ffrt black box(BBOX) start ===>>>
@@ -143,17 +144,17 @@ C01719/CameraDaemon/ffrt: 9999:SaveWorkerStatus:100 qos 2: worker tid 1145 is ru
 C01719/CameraDaemon/ffrt: 10000:SaveWorkerStatus:100 qos 2: worker tid 5966 is running nothing
 ```
 
-#### 注意事项
+**注意事项**
 
 不涉及。
 
 ### Trace打点
 
-#### 机制
+**机制**
 
 FFRT任务的调度和执行过程中，利用了OH系统的Trace打点能力，对任务在FFRT框架中的状态流转做了实时跟踪，用户可以借助Trace图形化工具来分析任务的行为是否符合预期。
 
-#### 样例
+**样例**
 
 1. 启动Trace抓取
 
@@ -168,13 +169,13 @@ FFRT任务的调度和执行过程中，利用了OH系统的Trace打点能力，
 
     将Trace落盘的文件从设备中取出来，借助图形化工具进行分析，例如：[Perfetto](https://perfetto.dev/)。
 
-#### 注意事项
+**注意事项**
 
 用户也可以在自己业务代码中加入Trace打点，以界定问题的范围。需注意在高频调用流程中，加入Trace打点会有系统开销，会对业务性能造成影响。
 
 ### Debug日志
 
-#### 机制
+**机制**
 
 - FFRT默认不开启Debug级别的日志，用户可以通过命令的方式打开，以获取更丰富的维测信息支撑开发阶段的问题定位。
 - 打开FFRT Debug日志开关：
@@ -189,14 +190,14 @@ FFRT任务的调度和执行过程中，利用了OH系统的Trace打点能力，
     hdc shell hilog -b INFO -D 0xD001719
     ```
 
-#### 样例
+**样例**
 
 ```txt
 4190  5631 D C01719/neboard:EngineServiceAbility:1/ffrt: 275337:Detach:147 qos 3 thread not joinable
 3257  6075 D C01719/com.ohos.sceneboard/ffrt: 513070:SetDefaultThreadAttr:148 qos apply tid[6075] level[3]
 ```
 
-#### 注意事项
+**注意事项**
 
 由于FFRT是系统底座，支撑大量上层业务及框架的运行，全局打开Debug日志会导致日志超限，影响其他模块日志的正常输出。
 
@@ -456,7 +457,7 @@ FFRT任务的调度和执行过程中，利用了OH系统的Trace打点能力，
 FFRT Task中使用线程局部变量存在风险，说明如下：
 
 - 线程局部变量包括C/C++语言提供的`thread_local`定义的变量和使用`pthread_key_create`创建的变量。
-- FFRT支持任务调度，任务被调度到哪个线程是随机的，进而使用线程局部变量是有风险的，这一点和所有其他支持任务并发调度的框架一致。
+- FFRT支持任务调度，任务被调度到任意可用线程执行，进而使用线程局部变量是有风险的，这一点和所有其他支持任务并发调度的框架一致。
 - FFRT的任务默认以协程的方式运行，任务执行过程中可能发生协程退出，恢复执行时，执行该任务的线程可能发生变更。
 
 ### 线程绑定使用约束

@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @aohui-->
-<!--SE: @yaomingliu-->
-<!--TSE: @ghiker-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 
 Web组件支持使用DevTools工具调试前端页面。DevTools是Web前端开发调试工具，支持在电脑上调试移动设备前端页面。开发者通过[setWebDebuggingAccess()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess)接口开启Web组件前端页面调试能力，使用DevTools在电脑上调试移动前端网页，设备需为4.1.0及以上版本。
@@ -46,7 +47,7 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是Web前端开�
    > **说明：**
    >
    >  代码中使用的8888端口仅作为示例展示，开发者使用过程中，应保证端口号可以被应用使用。如果因为端口被占用或者应用无权限使用等因素导致端口无法被应用使用，会导致接口抛出异常或者ArkWeb无法开启调试模式。
-   2. 开启调试功能需要在DevEco Studio应用工程hap模块的module.json5文件中增加如下权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+   2. 开启调试功能需要在DevEco Studio应用工程hap模块的module.json5文件中增加如下权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)。
 
    ```
    "requestPermissions":[
@@ -347,6 +348,11 @@ Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将
   ![debug-effect](figures/debug-effect.png)
 
 ## 常见问题与解决方法
+
+### 可以调试系统浏览器打开的网页吗？
+
+能否调试系统浏览器打开的网页，取决于系统浏览器是否开启Web调试开关。
+* 当前系统浏览器已启用Web调试开关，可继续执行[USB连接调试](#usb连接调试)中的后续步骤。
 
 ### hdc无法发现设备
 **问题现象**

@@ -2,8 +2,9 @@
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @yuanxiaogou; @string_sz-->
-<!--SE: @knightaoko-->
-<!--TSE: @test_lzz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## 简介
 
@@ -14,7 +15,7 @@ JSVM_Value的生命周期与JavaScript值的生命周期相关。JavaScript值�
 
 JSVM_Ref是一个JSVM-API类型，用于管理JSVM_Value的生命周期。JSVM_Ref允许您在JSVM_Value的生命周期内保持对其的引用，即使它已经超出了其原始上下文的范围。这使得您可以在不同的上下文中共享JSVM_Value，并确保在不再需要时正确释放其内存。
 
-合理使用OH_JSVM_OpenHandleScope和OH_JSVM_CloseHandleScope管理JSVM_Value的生命周期，做到生命周期最小化，避免发生内存泄漏问题。
+合理使用OH_JSVM_OpenHandleScope和OH_JSVM_CloseHandleScope管理JSVM_Value的生命周期，避免发生内存泄漏问题。
 
 每个JSVM_Value属于特定的HandleScope，HandleScope通过OH_JSVM_OpenHandleScope和OH_JSVM_CloseHandleScope来建立和关闭，HandleScope关闭后，所属的JSVM_Value就会自动释放。
 
@@ -27,7 +28,7 @@ JSVM-API提供了一组功能，使开发人员能够在JSVM-API模块中创建�
 - **可逃逸的作用域**：允许在创建的作用域中声明的对象返回到父作用域，通过OH_JSVM_OpenEscapableHandleScope和OH_JSVM_CloseEscapableHandleScope进行管理。
 - **垃圾回收回调**：允许注册回调函数，以便在JavaScript对象被垃圾回收时执行特定的清理操作。
 
-这些基本概念使开发人员能够在JSVM-API模块中安全且有效地操作JavaScript对象，并确保正确管理对象的生命周期。
+这些基本概念使开发人员安全且有效地操作JavaScript对象，并确保正确管理对象的生命周期。
 
 ## 接口说明
 
@@ -53,7 +54,7 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 
 通过接口OH_JSVM_OpenHandleScope创建上下文环境，并使用OH_JSVM_CloseHandleScope关闭。这用于管理JavaScript对象的生命周期，确保在JSVM-API模块中正确处理JavaScript对象句柄，避免垃圾回收问题。
 
-cpp部分代码：
+cpp 部分代码：
 
 ```cpp
 // OH_JSVM_OpenHandleScope、OH_JSVM_CloseHandleScope的三种样例方法
@@ -107,7 +108,7 @@ JSVM HandleScopeFor: success
 通过接口 OH_JSVM_OpenEscapableHandleScope 创建出一个可逃逸的 handle scope，可将 1 个范围内声明的值返回到父作用域。创建的 scope 需使用 OH_JSVM_CloseEscapableHandleScope 进行关闭。OH_JSVM_EscapeHandle 将传入的 JavaScript 对象的生命周期提升到其父作用域。
 通过上述接口可以更灵活的使用管理传入的 JavaScript 对象，特别是在处理跨作用域的值传递时非常有用。
 
-cpp 部分代码
+cpp 部分代码：
 
 ```cpp
 // OH_JSVM_OpenEscapableHandleScope、OH_JSVM_CloseEscapableHandleScope、OH_JSVM_EscapeHandle的样例方法
@@ -178,7 +179,7 @@ JSVM EscapableHandleScopeTest: success
 
 增加/减少传入的引用的引用计数，并获取新的计数。当引用计数被置为 0 后，对于可以被设置为弱引用的 JavaScript 类型（对象、函数、外部变量），引用将被置为弱引用，在垃圾回收机制认为必要的时候该变量会被回收，当变量被回收后，调用 OH_JSVM_GetReferenceValue 会获得 C NULL；对于不可被置为弱引用的 JavaScript 类型，该引用会被清除，调用 OH_JSVM_GetReferenceValue 会获得 C NULL。
 
-cpp部分代码：
+cpp 部分代码：
 
 ```cpp
 static JSVM_Value UseReference(JSVM_Env env, JSVM_CallbackInfo info)
@@ -260,7 +261,7 @@ JSVM UseReference success
 为 JavaScript 对象添加 JSVM_Finalize 回调，当 JavaScript 对象被垃圾回收时执行函数回调，该接口通常被用于释放与 JavaScript 对象相关的原生对象。如果传入的参数类型不是 JavaScript 对象，该接口调用失败并返回错误码。
 Finalizer 方法被注册后无法取消，如果在调用 OH_JSVM_DestroyEnv 前均未被执行，则在 OH_JSVM_DestroyEnv 时执行。
 
-cpp 部分代码
+cpp 部分代码：
 
 ```cpp
 static int AddFinalizer(JSVM_VM vm, JSVM_Env env) {

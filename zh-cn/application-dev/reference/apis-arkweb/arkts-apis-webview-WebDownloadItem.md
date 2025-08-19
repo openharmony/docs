@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @aohui-->
-<!--SE: @yaomingliu-->
-<!--TSE: @ghiker-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
  表示下载任务，您可以使用此对象来操作相应的下载任务。
 
@@ -165,7 +166,7 @@ getPercentComplete(): number
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| number | 下载完成的进度，100代表下载完成。 |
+| number | 下载完成的进度，100代表下载完成，-1代表进度未知。 |
 
 **示例：**
 
@@ -230,7 +231,7 @@ getTotalBytes(): number
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| number | 待下载文件的总长度。 |
+| number | 待下载文件的总长度，-1代表总大小未知。 |
 
 **示例：**
 

@@ -1,4 +1,10 @@
 # SwipeRefresher
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fengluochenai-->
+<!--Designer: @YanSanzo-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @HelloCrease-->
 
 
 内容加载指获取内容并加载出来，常用于衔接展示下拉加载的内容。

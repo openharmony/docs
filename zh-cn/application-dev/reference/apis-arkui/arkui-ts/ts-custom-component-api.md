@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiang-shouxing-->
-<!--SE: @xiang-shouxing-->
-<!--TSE: @sally__-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 自定义组件内置方法是由ArkUI开发框架提供给应用开发者的，定义在自定义组件基类上的API。应用开发者可以在自定义组件的实例上调用对应的API以获取当前自定义组件实例相关的信息。例如，查询当前自定义组件上下文的UIContext信息。
 
@@ -26,7 +27,7 @@ getUIContext(): UIContext
 
 | 类型                                                      | 说明                    |
 | --------------------------------------------------------- | ----------------------- |
-| [UIContext](#uicontext) | 返回UIContext实例对象。 |
+| [UIContext](#uicontext) | 返回UIContext实例对象。在异步调用的回调方法中使用该接口，或者该接口的起始调用不在当前页面时，可能导致接口调用发生在自定义组件销毁之后，返回 undefined。 |
 
 ## UIContext
 
@@ -151,7 +152,7 @@ queryNavDestinationInfo(isInner: Optional\<boolean>): NavDestinationInfo | undef
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| isInner  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | true：向内查询最近的，且在栈内的NavDestinationinfo的详细信息。<br/>false：向外查询最近的，且在栈内的NavDestinationinfo的详细信息。|
+| isInner  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | true：向内查询最近的，且在栈内的NavDestinationInfo的详细信息。<br/>false：向外查询最近的，且在栈内的NavDestinationInfo的详细信息。|
 
 **返回值：**
 

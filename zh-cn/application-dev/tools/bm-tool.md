@@ -1,9 +1,10 @@
 # bm工具
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
-<!--Owner: @lihaitao-->
-<!--SE: @hanfeng6; @lihaitao-->
-<!--TSE: @kongjing2-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、更新、查询等功能的工具，bm为开发者提供基本的应用安装包的调试能力。
 
@@ -45,7 +46,7 @@ bm help
 ## 安装命令（install）
 
 ```bash
-bm install [-h] [-p filePath] [-r] [-w waitingTime] [-s hspDirPath]
+bm install [-h] [-p filePath] [-r] [-w waitingTime] [-s hspDirPath] [-u userId]
 ```
 
   **安装命令参数列表**
@@ -57,29 +58,32 @@ bm install [-h] [-p filePath] [-r] [-w waitingTime] [-s hspDirPath]
 | -p | 必选参数，指定HAP路径，多HAP应用可指定多HAP所在文件夹路径。 |
 | -r | 可选参数，覆盖安装一个HAP。默认值为覆盖安装。 |
 | -s | 根据场景判断，安装应用间HSP时为必选参数，其他场景为可选参数。安装应用间共享库， 每个路径目录下只能存在一个同包名的HSP。 |
-| -w | 可选参数，安装HAP时指定bm工具等待时间，最小的等待时长为5s，最大的等待时长为600s,&nbsp;默认缺省为5s。 |
+| -w | 可选参数，安装HAP时指定bm工具等待时间，最小的等待时长为5s，最大的等待时长为600s,&nbsp;默认缺省为180s。 |
+| -u | 可选参数，指定用户，默认在当前活跃用户下安装应用。仅支持在当前活跃用户或0用户下安装。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm install -p /data/local/tmp/ohos.app.hap -u 102`安装时，只会在当前活跃用户100下安装应用。 |
 
 
 示例：
 ```bash
 # 安装一个hap
-bm install -p /data/app/ohos.app.hap
+bm install -p /data/local/tmp/ohos.app.hap
+# 在100用户下安装一个hap
+bm install -p /data/local/tmp/ohos.app.hap -u 100
 # 覆盖安装一个hap
-bm install -p /data/app/ohos.app.hap -r
+bm install -p /data/local/tmp/ohos.app.hap -r
 # 安装一个应用间共享库
 bm install -s xxx.hsp
 # 同时安装使用方应用和其依赖的应用间共享库
 bm install -p aaa.hap -s xxx.hsp yyy.hsp
 # 同时安装HAP和应用内共享库
-bm install -p /data/app/
-# 安装一个hap,等待时间为10s
-bm install -p /data/app/ohos.app.hap -w 10
+bm install -p /data/local/tmp/hapPath/
+# 安装一个hap,等待时间为180s
+bm install -p /data/local/tmp/ohos.app.hap -w 180
 ```
 
 ## 卸载命令（uninstall）
 
 ```bash
-bm uninstall [-h] [-n bundleName] [-m moduleName] [-k] [-s] [-v versionCode]
+bm uninstall [-h] [-n bundleName] [-m moduleName] [-k] [-s] [-v versionCode] [-u userId]
 ```
 
   **卸载命令参数列表**
@@ -92,6 +96,7 @@ bm uninstall [-h] [-n bundleName] [-m moduleName] [-k] [-s] [-v versionCode]
 | -k | 可选参数，卸载应用时保存应用数据。默认卸载应用时不保存应用数据。 |
 | -s | 根据场景判断，安装应用间HSP时必选参数，其他场景为可选参数。卸载指定的共享库。|
 | -v | 可选参数，指定共享包的版本号。默认卸载同包名的所有共享包。 |
+| -u | 可选参数，指定用户，默认在当前活跃用户下卸载应用。仅支持在当前活跃用户或0用户下卸载应用。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm uninstall -n com.ohos.app -u 102`卸载时，只会在当前活跃用户100下卸载应用。 |
 
 
 示例：
@@ -99,6 +104,8 @@ bm uninstall [-h] [-n bundleName] [-m moduleName] [-k] [-s] [-v versionCode]
 ```bash
 # 卸载一个应用
 bm uninstall -n com.ohos.app
+# 在用户100下卸载一个应用
+bm uninstall -n com.ohos.app -u 100
 # 卸载应用的一个模块
 bm uninstall -n com.ohos.app -m com.ohos.app.EntryAbility
 # 卸载一个shared bundle
@@ -113,7 +120,7 @@ bm uninstall -n com.ohos.app -k
 ## 查询应用信息命令（dump）
 
 ```bash
-bm dump [-h] [-a] [-g] [-n bundleName] [-s shortcutInfo] [-d deviceId] [-l label]
+bm dump [-h] [-a] [-g] [-n bundleName] [-s shortcutInfo] [-d deviceId] [-l label] [-u userId]
 ```
 
   **查询命令参数列表**
@@ -127,6 +134,7 @@ bm dump [-h] [-a] [-g] [-n bundleName] [-s shortcutInfo] [-d deviceId] [-l label
 | -s | 可选参数，查询指定Bundle名称下的快捷方式信息。 |
 | -d | 可选参数，查询指定设备中的包信息。默认查询当前设备。 |
 | -l | 可选参数，用于查询指定Bundle名称的label值（应用的名称），需要与`-n`或`-a`参数组合使用。<br/>**说明**：<br/>从API version 20开始支持该命令。如果在Windows环境下输出结果包含特殊字符或中文乱码，需在cmd控制台中手动执行命令`chcp 65001`，将cmd控制台编码修改为UTF-8。 |
+| -u | 可选参数，查询指定用户下的应用信息，默认在当前活跃用户下查询应用信息。仅支持在当前活跃用户或0用户下查询。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm dump -n com.ohos.app -u 102`卸载时，只会在当前活跃用户100下查询应用。 |
 
 
 示例：
@@ -138,6 +146,8 @@ bm dump -a
 bm dump -g
 # 查询该应用的详细信息
 bm dump -n com.ohos.app
+# 在用户100下查询该应用的详细信息
+bm dump -n com.ohos.app -u 100
 # 查询该应用的快捷方式信息
 bm dump -s -n com.ohos.app
 # 查询跨设备应用信息
@@ -151,7 +161,7 @@ bm dump -a -l
 ## 清理命令（clean）
 
 ```bash
-bm clean [-h] [-c] [-n bundleName] [-d] [-i appIndex]
+bm clean [-h] [-c] [-n bundleName] [-d] [-i appIndex] [-u userId]
 ```
 **清理命令参数列表**
 
@@ -161,6 +171,7 @@ bm clean [-h] [-c] [-n bundleName] [-d] [-i appIndex]
 | -c&nbsp;-n | -n为必选参数，-c为可选参数。清除指定Bundle名称的缓存数据。 |
 | -d&nbsp;-n | -n为必选参数，-d为可选参数。清除指定Bundle名称的数据目录。 |
 | -i | 可选参数，清除分身应用的数据目录。默认为0。|
+| -u | 可选参数，清理指定用户下的数据，默认在当前活跃用户下清理数据。仅支持在当前活跃用户或0用户下清理数据。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm clean -c -n com.ohos.app -u 102`清理数据时，只会在当前活跃用户100下清理。 |
 
 
 示例：
@@ -168,6 +179,8 @@ bm clean [-h] [-c] [-n bundleName] [-d] [-i appIndex]
 ```bash
 # 清理该应用下的缓存数据
 bm clean -c -n com.ohos.app
+# 在用户100下清理该应用下的缓存数据
+bm clean -c -n com.ohos.app -u 100
 # 清理该应用下的用户数据
 bm clean -d -n com.ohos.app
 # 执行结果
@@ -178,7 +191,7 @@ clean bundle data files successfully.
 ## 使能命令（enable）
 
 ```bash
-bm enable [-h] [-n bundleName] [-a abilityName]
+bm enable [-h] [-n bundleName] [-a abilityName] [-u userId]
 ```
 
 
@@ -189,6 +202,7 @@ bm enable [-h] [-n bundleName] [-a abilityName]
 | -h | 帮助信息。 |
 | -n | 必选参数，使能指定Bundle名称的应用。 |
 | -a | 可选参数，使能指定Bundle名称下的元能力模块。 |
+| -u | 可选参数，使能指定用户下的应用，默认在当前活跃用户下使能应用。仅支持在当前活跃用户或0用户下使能应用。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm enable -n com.ohos.app -u 102`使能应用时，只会在当前活跃用户100下使能应用。 |
 
 
 示例：
@@ -196,6 +210,8 @@ bm enable [-h] [-n bundleName] [-a abilityName]
 ```bash
 # 使能该应用
 bm enable -n com.ohos.app -a com.ohos.app.EntryAbility
+# 在用户100下使能该应用
+bm enable -n com.ohos.app -u 100
 # 执行结果
 enable bundle successfully.
 ```
@@ -204,7 +220,7 @@ enable bundle successfully.
 ## 禁用命令（disable）
 
 ```bash
-bm disable [-h] [-n bundleName] [-a abilityName]
+bm disable [-h] [-n bundleName] [-a abilityName] [-u userId]
 ```
 
 
@@ -215,6 +231,7 @@ bm disable [-h] [-n bundleName] [-a abilityName]
 | -h | 帮助信息。 |
 | -n | 必选参数，禁用指定Bundle名称的应用。 |
 | -a | 可选参数，禁用指定Bundle名称下的元能力模块。 |
+| -u | 可选参数，禁用指定用户下的应用，默认在当前活跃用户下禁用应用。仅支持在当前活跃用户或0用户下禁用应用。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm disable -n com.ohos.app -u 102`禁用应用时，只会在当前活跃用户100下禁用应用。 |
 
 
 示例：
@@ -222,6 +239,8 @@ bm disable [-h] [-n bundleName] [-a abilityName]
 ```bash
 # 禁用该应用
 bm disable -n com.ohos.app -a com.ohos.app.EntryAbility
+# 在用户100下禁用该应用
+bm disable -n com.ohos.app -u 100
 # 执行结果
 disable bundle successfully.
 ```
@@ -395,7 +414,7 @@ bm copy-ap -n com.example.myapplication
 ## 查询overlay应用信息命令（dump-overlay）
 
 ```bash
-bm dump-overlay [-h] [-b bundleName] [-m moduleName]
+bm dump-overlay [-h] [-b bundleName] [-m moduleName] [-u userId]
 ```
 
 **dump-overlay命令参数列表**
@@ -404,12 +423,16 @@ bm dump-overlay [-h] [-b bundleName] [-m moduleName]
 | -h | 帮助信息。 |
 | -b | 必选参数，获取指定Overlay应用的所有OverlayModuleInfo信息。|
 | -m | 可选参数，默认当前Overlay应用主模块名。根据指定Overlay应用的包名和module名查询OverlayModuleInfo信息。|
+| -u | 可选参数，在指定用户下查询OverlayModuleInfo信息，默认在当前活跃用户下查询。仅支持在当前活跃用户或0用户下查询。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm dump-overlay -b com.ohos.app -u 102`查询OverlayModuleInfo信息，只会返回当前活跃用户100下的OverlayModuleInfo信息。 |
 
 示例：
 
 ```bash
 # 根据包名来获取overlay应用com.ohos.app中的所有OverlayModuleInfo信息
 bm dump-overlay -b com.ohos.app
+
+# 在用户100下，根据包名来获取overlay应用com.ohos.app中的所有OverlayModuleInfo信息
+bm dump-overlay -b com.ohos.app -u 100
 
 # 根据包名和module来获取overlay应用com.ohos.app中overlay module为entry的所有OverlayModuleInfo信息
 bm dump-overlay -b com.ohos.app -m entry
@@ -423,7 +446,7 @@ bm dump-overlay -b com.ohos.app -m feature
 查询目标应用的所有关联overlay应用的overlayModuleInfo信息。
 
 ```bash
-bm dump-target-overlay [-h] [-b bundleName] [-m moduleName]
+bm dump-target-overlay [-h] [-b bundleName] [-m moduleName] [-u userId]
 ```
 
 **dump-target-overlay命令参数列表**
@@ -432,12 +455,16 @@ bm dump-target-overlay [-h] [-b bundleName] [-m moduleName]
 | -h | 帮助信息。 |
 | -b | 必选参数，获取指定应用的所有OverlayBundleInfo信息。|
 | -m | 可选参数，默认当前应用主模块名。根据指定的包名和module名查询OverlayModuleInfo信息。|
+| -u | 可选参数，在指定用户下查询OverlayModuleInfo信息，默认在当前活跃用户下查询。仅支持在当前活跃用户或0用户下查询。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm dump-target-overlay -b com.ohos.app -u 102`查询目标应用com.ohos.app中的所有关联的OverlayBundleInfo信息，只会返回当前活跃用户100下的OverlayModuleInfo信息。 |
 
 示例：
 
 ```bash
 # 根据包名来获取目标应用com.ohos.app中的所有关联的OverlayBundleInfo信息
-bm dump-target-overlay-b com.ohos.app
+bm dump-target-overlay -b com.ohos.app
+
+# 在用户100下，根据包名来获取目标应用com.ohos.app中的所有关联的OverlayBundleInfo信息
+bm dump-target-overlay -b com.ohos.app -u 100
 
 # 根据包名和module来获取目标应用com.ohos.app中目标module为entry的所有关联的OverlayModuleInfo信息
 bm dump-target-overlay -b com.ohos.app -m entry
@@ -846,7 +873,7 @@ error: install parse profile missing prop.
 
     落盘位置：/data/log/hilog。
 
-    打开日志查看“profile prop %{public}s is mission”。如“profile prop icon is mission”表示“icon”字段缺失。
+    打开日志查看“profile prop %{public}s is missing”。如“profile prop icon is missing”表示“icon”字段缺失。
 
 
 ### 9568258 安装应用的releaseType与已安装应用的releaseType不相同
@@ -2486,7 +2513,14 @@ error: Check pluginDistributionID between plugin and host application failed.
 
 **处理步骤**
 
-重新配置应用或者插件[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的 pluginDistributionIDs。
+重新配置应用或者插件<!--RP5-->[签名证书profile文件](../security/app-provision-structure.md)<!--RP5End-->中的 pluginDistributionIDs。配置格式如下：
+```
+"app-services-capabilities":{
+    "ohos.permission.kernel.SUPPORT_PLUGIN":{
+        "pluginDistributionIDs":"value-1,value-2,···"
+    }
+}
+``` 
 
 ### 9568433 应用缺少ohos.permission.SUPPORT_PLUGIN权限
 **错误信息**
@@ -2805,11 +2839,11 @@ error: Failed to install the plugin because the plugin id failed to be parsed.
 
 **处理步骤**
 
-参考如下格式，重新配置插件profile签名文件中的"app-services-capabilities"字段。
+参考如下格式，重新配置插件<!--RP5-->[签名证书profile文件](../security/app-provision-structure.md)<!--RP5End-->中的"app-services-capabilities"字段。
 ```
 "app-services-capabilities":{
     "ohos.permission.kernel.SUPPORT_PLUGIN":{
-        "pluginDistributionIDs":"value-1|value-2|···"
+        "pluginDistributionIDs":"value-1,value-2,···"
     }
 }
 ```

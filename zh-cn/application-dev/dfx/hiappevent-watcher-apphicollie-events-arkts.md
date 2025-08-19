@@ -3,25 +3,26 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @rr_cn-->
-<!--SE: @peterhuangyu-->
-<!--TSE: @gcw_KuLfPSbe-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
 ## 简介
 
-本文介绍如何使用HiAppEvent提供的ArkTS接口订阅任务执行超时事件。接口的详细使用说明（参数限制、取值范围等）请参考[@ohos.hiviewdfx.hiAppEvent (应用事件打点)ArkTS API文档](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)。
+从API version 21开始，支持arkTS接口订阅任务执行超时事件。 本文介绍如何使用HiAppEvent提供的ArkTS接口订阅任务执行超时事件。接口的详细使用说明（参数限制、取值范围等）请参考[@ohos.hiviewdfx.hiAppEvent (应用事件打点)ArkTS API文档](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)。
 
 ## 接口说明
 
 | 接口名 | 描述 |
 | -------- | -------- |
 | addWatcher(watcher: Watcher): AppEventPackageHolder | 添加应用事件观察者，以添加对应用事件的订阅。 |
-| removeWatcher(watcher: Watcher): void | 移除应用事件观察者，以移除对应用事件的订阅。 |
+| removeWatcher(watcher: Watcher): void | 移除应用事件观察者，以取消对应用事件的订阅。 |
 
 ## 开发步骤
 
 ### 添加事件观察者
 
-为确保开发阶段顺利接收事件回调，建议采用以下方案：创建新的Native C++工程，在ArkTs代码中实现订阅，搭配C++代码的故障注入代码构造故障以触发任务执行超时事件。
+为确保开发阶段顺利接收事件回调，建议采取以下方案：创建新的Native C++工程，在ArkTs代码中实现订阅，并通过C++代码构造故障注入以触发任务执行超时事件。
 
 1. 新建Native C++工程，目录结构如下：
 
@@ -55,7 +56,7 @@
    import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
    ```
 
-4. 订阅系统事件, 编辑“EntryAbility.ets”文件，在onCreate函数中添加系统事件的订阅，示例代码如下：
+4. 订阅系统事件，编辑“EntryAbility.ets”文件，在onCreate函数中添加订阅代码，示例代码如下：
 
    ```ts
    hiAppEvent.addWatcher({
@@ -182,11 +183,11 @@
    }
    ```
 
-8. 点击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“testHiCollieTimerNdk”，触发任务执行超时事件。
+8. 单击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中单击按钮“testHiCollieTimerNdk”，触发任务执行超时事件。
 
 ### 验证观察者是否订阅到任务执行超时事件
 
-1. 应用工程崩溃退出后再次运行可以在Log窗口看到对系统事件数据的处理日志。
+应用工程崩溃退出后，再次运行可在Log窗口查看系统事件数据处理日志。
 
    ```text
    HiAppEvent eventInfo.domain=OS

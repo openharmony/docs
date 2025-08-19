@@ -2,8 +2,9 @@
 <!--Kit: ArkGraphics 3D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @zzhao0-->
-<!--SE: @zdustc-->
-<!--TSE: @zhangyue283-->
+<!--Designer: @zdustc-->
+<!--Tester: @zhangyue283-->
+<!--Adviser: @ge-yafang-->
 
 一个3D场景通常由光源、相机、模型三个关键部分组成。
 - 光源：为整个3D场景提供光照，使得3D场景中的模型变得可见。与真实物理场景一致，没有光源场景将变得一片漆黑，得到的渲染结果也就是全黑色。
@@ -116,7 +117,13 @@ function createCameraPromise() : Promise<Camera> {
         // 可以参照此方式设置相机很多其他的参数
         // ...
         resolve(cameraEntity);
+      }).catch((error:Error) => {
+        console.error('Camera create failed:', error);
+        reject(error);
       });
+    }).catch((error: Error) => {
+      console.error('Scene load failed:', error);
+      reject(error);
     });
   });
 }
@@ -152,7 +159,13 @@ function createLightPromise() : Promise<Light> {
         // 可以参照此方式设置光源很多其他的参数
         // ...
         resolve(lightEntity);
+      }).catch((error: Error) => {
+        console.error('Light create failed:', error);
+        reject(error);
       });
+    }).catch((error: Error) => {
+      console.error('Scene load failed:', error);
+      reject(error);
     });
   });
 }

@@ -1,4 +1,10 @@
 # oh_window.h
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## 概述
 
@@ -24,8 +30,8 @@
 | [int32_t OH_WindowManager_SetWindowStatusBarColor(int32_t windowId, int32_t color)](#oh_windowmanager_setwindowstatusbarcolor) | 设置指定窗口的状态栏内容颜色。 |
 | [int32_t OH_WindowManager_SetWindowNavigationBarEnabled(int32_t windowId, bool enabled, bool enableAnimation)](#oh_windowmanager_setwindownavigationbarenabled) | 设置指定窗口是否显示导航栏。 |
 | [int32_t OH_WindowManager_GetWindowAvoidArea(int32_t windowId, WindowManager_AvoidAreaType type, WindowManager_AvoidArea* avoidArea)](#oh_windowmanager_getwindowavoidarea) | 获取指定窗口的避让区域。 |
-| [WindowManager_ErrorCode OH_WindowManager_IsWindowShown(int32_t windowId, bool* isShow)](#oh_windowmanager_iswindowshown) | 判断指定窗口是否显示。 |
-| [WindowManager_ErrorCode OH_WindowManager_ShowWindow(int32_t windowId)](#oh_windowmanager_showwindow) | 显示指定窗口。 |
+| [int32_t OH_WindowManager_IsWindowShown(int32_t windowId, bool* isShow)](#oh_windowmanager_iswindowshown) | 判断指定窗口是否显示。 |
+| [int32_t OH_WindowManager_ShowWindow(int32_t windowId)](#oh_windowmanager_showwindow) | 显示指定窗口。 |
 | [int32_t OH_WindowManager_SetWindowTouchable(int32_t windowId, bool isTouchable)](#oh_windowmanager_setwindowtouchable) | 设置指定窗口是否可触。 |
 | [int32_t OH_WindowManager_SetWindowFocusable(int32_t windowId, bool isFocusable)](#oh_windowmanager_setwindowfocusable) | 设置指定窗口是否可获焦。 |
 | [int32_t OH_WindowManager_SetWindowBackgroundColor(int32_t windowId, const char* color)](#oh_windowmanager_setwindowbackgroundcolor) | 设置指定窗口背景颜色。 |
@@ -150,7 +156,7 @@ int32_t OH_WindowManager_GetWindowAvoidArea(int32_t windowId, WindowManager_Avoi
 ### OH_WindowManager_IsWindowShown()
 
 ```
-WindowManager_ErrorCode OH_WindowManager_IsWindowShown(int32_t windowId, bool* isShow)
+int32_t OH_WindowManager_IsWindowShown(int32_t windowId, bool* isShow)
 ```
 
 **描述**
@@ -171,12 +177,12 @@ WindowManager_ErrorCode OH_WindowManager_IsWindowShown(int32_t windowId, bool* i
 
 | 类型 | 说明 |
 | -- | -- |
-| [WindowManager_ErrorCode](capi-oh-window-comm-h.md#windowmanager_errorcode) | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL，表示窗口状态异常。 |
+| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL，表示窗口状态异常。<br> 返回WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL，表示窗口管理器服务异常。 |
 
 ### OH_WindowManager_ShowWindow()
 
 ```
-WindowManager_ErrorCode OH_WindowManager_ShowWindow(int32_t windowId)
+int32_t OH_WindowManager_ShowWindow(int32_t windowId)
 ```
 
 **描述**
@@ -196,7 +202,7 @@ WindowManager_ErrorCode OH_WindowManager_ShowWindow(int32_t windowId)
 
 | 类型 | 说明 |
 | -- | -- |
-| [WindowManager_ErrorCode](capi-oh-window-comm-h.md#windowmanager_errorcode) | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL，表示窗口状态异常。<br> 返回WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL，表示窗口管理器服务异常。 |
+| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL，表示窗口状态异常。<br> 返回WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL，表示窗口管理器服务异常。 |
 
 ### OH_WindowManager_SetWindowTouchable()
 

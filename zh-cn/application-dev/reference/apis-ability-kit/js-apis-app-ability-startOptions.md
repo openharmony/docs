@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @dsz2025; @yangxuguang-huawei; @Luobniz21-->
-<!--SE: @ccllee1-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 StartOptions可以作为启动UIAbility接口（例如[startAbility()](js-apis-inner-application-uiAbilityContext.md#startability-1)）的入参，用于指定目标UIAbility启动时的选项，包括但不局限于窗口模式、目标UIAbility启动时所在的屏幕等。
 
@@ -43,7 +44,7 @@ StartOptions用于指定启动目标UIAbility时的选项。
 | minWindowHeight<sup>17+</sup> | number | 否 | 是 | 窗口最小的高度，单位为px，可以通过[getWindowLimits](../apis-arkui/arkts-apis-window-Window.md#getwindowlimits11)获得当前窗口的尺寸限制。<br>**约束：**<br/>仅在2in1和tablet设备上生效。 |
 | maxWindowWidth<sup>17+</sup> | number | 否 | 是 | 窗口最大的宽度，单位为px，可以通过[getWindowLimits](../apis-arkui/arkts-apis-window-Window.md#getwindowlimits11)获得当前窗口的尺寸限制。<br>**约束：**<br/>仅在2in1和tablet设备上生效。 |
 | maxWindowHeight<sup>17+</sup> | number | 否 | 是 | 窗口最大的高度，单位为px，可以通过[getWindowLimits](../apis-arkui/arkts-apis-window-Window.md#getwindowlimits11)获得当前窗口的尺寸限制。<br>**约束：**<br/>仅在2in1和tablet设备上生效。 |
-| completionHandler<sup>20+</sup> | [CompletionHandler](js-apis-app-ability-completionHandler.md) | 否 | 是 | 拉端结果操作类，用于处理拉端结果。<br/>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。 |
+| completionHandler<sup>20+</sup> | [CompletionHandler](js-apis-app-ability-completionHandler.md) | 否 | 是 | 拉起应用结果的操作类，用于处理拉起应用的结果。<br/>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。 |
 | hideStartWindow<sup>20+</sup> | boolean | 否 | 是 | 启动当前应用的UIAbility时，控制是否隐藏窗口的启动页。启动页介绍和规格详见[StartWindow](../../quick-start/module-configuration-file.md#startwindow标签)。<br>**约束：**<br/>1.该功能仅在2in1设备和自由多窗模式下的tablet设备上生效。<br>2.该功能仅在启动当前应用的UIAbility时生效。 |
 | windowCreateParams<sup>20+</sup> | [window.WindowCreateParams](../apis-arkui/arkts-apis-window-i.md#windowcreateparams20) | 否 | 是 | 启动UIAbility时的窗口参数。 |
 
@@ -72,20 +73,24 @@ StartOptions用于指定启动目标UIAbility时的选项。
         }
       };
 
-      let color = new ArrayBuffer(0);
+      let color = new ArrayBuffer(512 * 512 * 4); // 创建一个ArrayBuffer对象，用于存储图像像素。该对象的大小为（height * width * 4）字节。
       let imagePixelMap: image.PixelMap;
       let windowParam: window.WindowCreateParams = {};
+      let bufferArr = new Uint8Array(color);
+      for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 0;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 255;
+      }
       image.createPixelMap(color, {
-        size: {
-          height: 100,
-          width: 100
-        }
+        editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 512, width: 512 }
       }).then((data) => {
         imagePixelMap = data;
         let options: StartOptions = {
           displayId: 0,
           startWindowIcon: imagePixelMap,
-          startWindowBackgroundColor: '#00000000',
+          startWindowBackgroundColor: '#E510FFFF',
           supportWindowModes: [
             bundleManager.SupportWindowMode.FULL_SCREEN,
             bundleManager.SupportWindowMode.SPLIT,

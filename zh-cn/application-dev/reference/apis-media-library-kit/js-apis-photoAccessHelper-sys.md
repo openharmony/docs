@@ -2,8 +2,9 @@
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
-<!--SE: @liweilu1-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 该模块提供相册管理模块能力，包括创建相册以及访问、修改相册中的媒体数据信息等。
 
@@ -6007,7 +6008,7 @@ setSupportedWatermarkType(watermarkType: WatermarkType): void
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| watermarkType | [WatermarkType](#watermarktype14) | 是   | 水印可编辑标识。 |
+| watermarkType | [WatermarkType](#watermarktype14) | 是   | 水印可编辑标识。<br>**注意：** 不支持传入WatermarkType.DEFAULT。 |
 
 **错误码：**
 
@@ -6063,7 +6064,7 @@ static deleteLocalAssetsPermanently(context: Context, assets: Array\<PhotoAsset>
 | 参数名  | 类型             | 必填   | 说明    |
 | ---- | -------------- | ---- | ----- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是    | 传入Ability实例的Context。 |
-| assets | Array\<[PhotoAsset](#photoasset)>| 是    | 待彻底删除的图片或者视频数组。 |
+| assets | Array\<[PhotoAsset](#photoasset)>| 是    | 待彻底删除的图片或者视频数组，数组中元素个数不超过500个。 |
 
 **返回值：**
 
@@ -6125,7 +6126,7 @@ static deleteLocalAssetsPermanentlyWithUri(context: Context, assetUris: Array&lt
 | 参数名  | 类型             | 必填   | 说明    |
 | ---- | -------------- | ---- | ----- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是    | 传入Ability实例的Context。 |
-| assetUris | Array&lt;String&gt; | 是    | 待彻底删除的图片或者视频Uri数组。 |
+| assetUris | Array&lt;String&gt; | 是    | 待彻底删除的图片或者视频Uri数组，数组中元素个数不超过500个。 |
 
 **返回值：**
 
@@ -6454,7 +6455,7 @@ static createAlbumRequest(context: Context, name: string): MediaAlbumChangeReque
 
 相册名的参数规格为：
 - 相册名字符串长度为1~255。
-- 不允许出现非法字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- 不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - 英文字符大小写不敏感。
 - 相册名不允许重名。
 
@@ -9481,6 +9482,7 @@ async function example(context: Context) {
 | OWNER_ALBUM_ID<sup>18+</sup>  | 'owner_album_id' | 照片所属的相册id。**系统接口**：此接口为系统接口。 |
 | IS_RECENT_SHOW<sup>18+</sup>  | 'is_recent_show' | 是否设置为最近显示。**系统接口**：此接口为系统接口。 |
 | SUM_SIZE<sup>19+</sup>  | 'sum(size)' | 文件大小总和。在fetchColumns中填入SUM_SIZE属性时，仅获取到第一个资产，并且属性中带有所有资产的总大小。**系统接口**：此接口为系统接口。 |
+| EXIF_ROTATE<sup>20+</sup>  | 'exif_rotate' | 文件的旋转角度信息。**系统接口**：此接口为系统接口。 |
 
 ## AlbumKeys
 
@@ -9989,6 +9991,9 @@ async function example(context: Context) {
 | dateTrashedMs |number  |否 | 否 | 文件删除时的Unix时间戳（单位：毫秒）。<br>**系统接口**：此接口为系统接口。  |
 | dateAddedMs | number  | 否 | 否 | 文件创建时的Unix时间戳（单位：毫秒）。<br>**系统接口**：此接口为系统接口。  |
 | dateTakenMs | number  | 否 | 否 | 文件拍摄时的Unix时间戳（单位：毫秒）。<br>**系统接口**：此接口为系统接口。  |
+| position | [PositionType](arkts-apis-photoAccessHelper-e.md#positiontype16)  | 否 | 是 | 媒体资产（图片/视频）的所在位置。<br>**系统接口**：此接口为系统接口。  |
+| displayName | string  | 否 | 是 | 媒体资产（图片/视频）的显示名称。<br>**系统接口**：此接口为系统接口。  |
+| size | number  | 否 | 是 | 媒体资产（图片/视频）的文件大小（单位：字节）。动态照片的size包括图片和视频的总大小。<br>**系统接口**：此接口为系统接口。  |
 
 ## PhotoAssetChangeData<sup>20+</sup>
 
@@ -10015,6 +10020,8 @@ async function example(context: Context) {
 | isHiddenCoverChanged | boolean  | 否 | 否 | 相册隐藏封面文件内容是否变化。true表示隐藏封面文件内容发生变化，false表示隐藏封面文件内容未发生变化。<br>**系统接口**：此接口为系统接口。 |
 | coverInfo | [PhotoAssetChangeInfo](#photoassetchangeinfo20)  | 否 | 是 | 相册封面资产的信息。<br>**系统接口**：此接口为系统接口。 |
 | hiddenCoverInfo | [PhotoAssetChangeInfo](#photoassetchangeinfo20)  | 否 | 是 | 相册隐藏封面资产的信息。<br>**系统接口**：此接口为系统接口。 |
+| orderSection | number  | 否 | 是 | 相册的排序区域，用于确认相册在图库中的展示区域。<br>**系统接口**：此接口为系统接口。 |
+| albumOrder | number  | 否 | 是 | 相册的排序值。<br>**系统接口**：此接口为系统接口。 |
 
 ## AlbumChangeData<sup>20+</sup>
 

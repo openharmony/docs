@@ -2,8 +2,9 @@
 <!--Kit: Driver Development Kit-->
 <!--Subsystem: Driver-->
 <!--Owner: @lixinsheng2-->
-<!--SE: @w00373942-->
-<!--TSE: @dong-dongzhen-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
 
 本模块主要提供管理外部设备的相关功能，包括查询设备列表、绑定设备和解除绑定设备。
 
@@ -40,6 +41,8 @@ queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;
 | Array&lt;Readonly&lt;[Device](#device)&gt;&gt; | 设备信息列表。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[驱动错误码](errorcode-deviceManager.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -87,6 +90,8 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 | callback     | AsyncCallback&lt;{deviceId: number; remote: [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject);}&gt; | 是   | 绑定设备的回调，返回绑定设备的通信对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[驱动错误码](errorcode-deviceManager.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -146,6 +151,8 @@ bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 | callback     | AsyncCallback&lt;RemoteDeviceDriver&gt;| 是 | 指示绑定结果，包括设备 ID 和远程对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[驱动错误码](errorcode-deviceManager.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -207,6 +214,8 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[驱动错误码](errorcode-deviceManager.md)。
+
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 201      | The permission check failed.             |
@@ -263,6 +272,8 @@ bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): P
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[驱动错误码](errorcode-deviceManager.md)。
+
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 201      | The permission check failed.             |
@@ -312,6 +323,8 @@ unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[驱动错误码](errorcode-deviceManager.md)。
+
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 201      | The permission check failed.             |
@@ -357,6 +370,8 @@ unbindDevice(deviceId: number): Promise&lt;number&gt;
 | deviceId | number | 是   | 设备ID，通过queryDevices获得。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[驱动错误码](errorcode-deviceManager.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -414,6 +429,8 @@ bindDriverWithDeviceId(deviceId: number, onDisconnect: AsyncCallback&lt;number&g
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[驱动错误码](errorcode-deviceManager.md)。
+
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 201      | The permission check failed.             |
@@ -464,6 +481,8 @@ unbindDriverWithDeviceId(deviceId: number): Promise&lt;number&gt;
 | Promise&lt;number&gt; | Promise对象，返回设备ID。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[驱动错误码](errorcode-deviceManager.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |

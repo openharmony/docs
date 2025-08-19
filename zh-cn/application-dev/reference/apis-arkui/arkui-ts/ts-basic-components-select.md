@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @zhanghaibo0-->
-<!--SE: @zhanghaibo0-->
-<!--TSE: @lxl007-->
+<!--Designer: @zhanghaibo0-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 提供下拉选择菜单，让用户在多个选项间选择。
 
@@ -39,7 +40,7 @@ Select(options: Array\<SelectOption>)
 | ------ | ----------------------------------- | ---- | -------------- | -------------- |
 | value  | [ResourceStr](ts-types.md#resourcestr) | 否  | 否 | 下拉选项内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | icon   | [ResourceStr](ts-types.md#resourcestr) | 否   | 是  | 下拉选项图片。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| symbolIcon<sup>12+</sup>  | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 是  | 下拉选项Symbol图片。<br/>symbolIcon优先级高于icon。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| symbolIcon<sup>12+</sup>  |[SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md) | 否   | 是  | 下拉选项Symbol图片。<br/>symbolIcon优先级高于icon。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## 属性
 
@@ -797,7 +798,7 @@ textModifier(modifier: Optional\<[TextModifier](ts-universal-attributes-attribut
 
 ### arrowModifier<sup>20+</sup>
 
-arrowModifier(modifier: Optional\<[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)>)
+arrowModifier(modifier: Optional\<SymbolGlyphModifier>)
 
 定制Select按钮下拉箭头图标样式的方法，在应用arrowModifier之后，Select按钮下拉箭头的图标样式将完全由开发者自定义。
 
@@ -809,7 +810,7 @@ arrowModifier(modifier: Optional\<[SymbolGlyphModifier](ts-universal-attributes-
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| modifier  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 在Select组件上，定制Select按钮下拉箭头图标样式的方法。 |
+| modifier  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md)> | 是   | 在Select组件上，定制Select按钮下拉箭头图标样式的方法。 |
 
 ### optionTextModifier<sup>20+</sup>
 
@@ -915,7 +916,7 @@ showInSubWindow(showInSubWindow:Optional\<boolean>)
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | value  | [ResourceStr](ts-types.md#resourcestr) | 否  | 否  | 下拉菜单项的文本内容。<br/>**说明：** 当文本字符的长度超过菜单项文本区域的宽度时，文本将会被截断。 |
 | icon  | [ResourceStr](ts-types.md#resourcestr) | 否   | 是  | 下拉菜单项的图片内容。<br/>**说明：** string格式可用于加载网络图片和本地图片。 |
-| symbolIcon<sup>12+</sup>  | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 是  | 下拉选项Symbol图片内容。|
+| symbolIcon<sup>12+</sup>  | [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md) | 否   | 是  | 下拉选项Symbol图片内容。|
 | selected  | boolean | 否  | 否  | 下拉菜单项是否被选中。值为true表示选中，值为false表示未选中。<br/>默认值：false |
 | index  | number | 否  | 否  | 下拉菜单项的索引，索引值从0开始。 |
 | triggerSelect  | (index: number, value: string) :void | 否  | 否  | 下拉菜单选中某一项的回调函数。<br/>index：选中菜单项的索引。<br/>value：选中菜单项的文本。<br/>说明：index会赋值给事件[onSelect](#onselect)回调中的索引参数； value会返回给Select组件显示，同时会赋值给事件[onSelect](#onselect)回调中的文本参数。 |
@@ -1001,7 +1002,7 @@ struct SelectExample {
 
   build() {
     Column() {
-      Select([{ value: 'aaa', icon: $r("app.media.selection") },
+      Select([{ value: 'aaa', icon: $r("app.media.selection") }, // $r('app.media.selection')需要替换为开发者所需的图像资源文件。
         { value: 'bbb', icon: $r("app.media.selection") },
         { value: 'ccc', icon: $r("app.media.selection") },
         { value: 'ddd', icon: $r("app.media.selection") }])
@@ -1142,7 +1143,7 @@ struct SelectExample {
   build() {
     Column() {
       Row() {
-        Select([{ value: 'item1', icon: $r('app.media.icon'), symbolIcon: this.symbolModifier1 },
+        Select([{ value: 'item1', icon: $r('app.media.icon'), symbolIcon: this.symbolModifier1 }, // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
           { value: 'item1', icon: $r('app.media.icon'), symbolIcon: this.symbolModifier2 }])
           .value(this.text)
           .onSelect((index: number, text?: string) => {
@@ -1172,7 +1173,7 @@ struct SelectExample {
 
   build() {
     Column() {
-      Select([{ value: 'aaa', icon: $r("app.media.icon") },
+      Select([{ value: 'aaa', icon: $r("app.media.icon") }, // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
         { value: 'bbb', icon: $r("app.media.icon") },
         { value: 'ccc', icon: $r("app.media.icon") },
         { value: 'ddd', icon: $r("app.media.icon") }])
@@ -1220,7 +1221,7 @@ struct SelectExample {
 
   build() {
     Column() {
-      Select([{ value: 'aaa', icon: $r("app.media.icon") },
+      Select([{ value: 'aaa', icon: $r("app.media.icon") }, // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
         { value: 'bbb', icon: $r("app.media.icon") },
         { value: 'ccc', icon: $r("app.media.icon") },
         { value: 'ddd', icon: $r("app.media.icon") }])
@@ -1280,7 +1281,7 @@ struct SelectExample {
   build() {
     Column() {
       Select([
-        { value: 'A very long option text that should be truncated nicely'.repeat(3), icon: $r("app.media.startIcon") },
+        { value: 'A very long option text that should be truncated nicely'.repeat(3), icon: $r("app.media.startIcon") }, // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
         { value: 'Option B', icon: $r("app.media.startIcon") },
         { value: 'Option C', icon: $r("app.media.startIcon") },
         { value: 'Option D', icon: $r("app.media.startIcon") }
@@ -1326,10 +1327,10 @@ import { TextModifier } from "@kit.ArkUI";
 struct SelectExample {
   @State text: string = "TTTTTTTTTT".repeat(3);
   @State index: number = 2;
-  optiontextModifier: TextModifier = new TextModifier();
-  selectedOptiontextModifier: TextModifier = new TextModifier();
+  optionTextModifier: TextModifier = new TextModifier();
+  selectedOptionTextModifier: TextModifier = new TextModifier();
   aboutToAppear(): void {
-    this.optiontextModifier
+    this.optionTextModifier
       .maxLines(1)
       .fontSize(16)
       .textAlign(TextAlign.Start)
@@ -1337,7 +1338,7 @@ struct SelectExample {
       .fontWeight(FontWeight.Normal)
       .width(200)
 
-    this.selectedOptiontextModifier
+    this.selectedOptionTextModifier
       .maxLines(1)
       .fontSize(18)
       .textAlign(TextAlign.Start)
@@ -1349,7 +1350,7 @@ struct SelectExample {
   build() {
     Column() {
       Select([
-        { value: 'A very long option text that should be truncated nicely'.repeat(3), icon: $r("app.media.startIcon") },
+        { value: 'A very long option text that should be truncated nicely'.repeat(3), icon: $r("app.media.startIcon") }, // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
         { value: 'Option B', icon: $r("app.media.startIcon") },
         { value: 'Option C', icon: $r("app.media.startIcon") },
         { value: 'Option D', icon: $r("app.media.startIcon") }
@@ -1363,8 +1364,8 @@ struct SelectExample {
             this.text = text;
           }
         })
-        .optionTextModifier(this.optiontextModifier)
-        .selectedOptionTextModifier(this.selectedOptiontextModifier)
+        .optionTextModifier(this.optionTextModifier)
+        .selectedOptionTextModifier(this.selectedOptionTextModifier)
         .margin({ top: 20,left:30 })
         .borderRadius(12)
         .width(200)

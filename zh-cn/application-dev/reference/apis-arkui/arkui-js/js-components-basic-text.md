@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiangyuan6-->
-<!--SE: @pssea-->
-<!--TSE: @jiaoaozihao-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 >  **说明：**
 >
@@ -36,7 +37,7 @@
 | ---------------------------------- | ------------------------------------------------------------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | color                              | &lt;color&gt;                                                | #e5000000                                 | 否   | 设置文本的颜色。                                             |
 | font-size                          | &lt;length&gt;                                               | 30px                                      | 否   | 设置文本的尺寸。                                             |
-| allow-scale                        | boolean                                                      | true                                      | 否   | 文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。<br/>如果需要支持动态生效，请参看config描述文件中config-changes标签。 |
+| allow-scale                        | boolean                                                      | true                                      | 否   | 文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。<br/>如果需要支持动态生效，请参看config[配置文件的内部结构](../../../quick-start/application-configuration-file-overview-fa.md#配置文件的内部结构)中config-changes标签。 |
 | letter-spacing                     | &lt;length&gt;                                               | 0px                                       | 否   | 设置文本的字符间距。                                         |
 | word-spacing<sup>7+</sup>          | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;&nbsp;\|&nbsp;string | normal                                    | 否   | 设置文本之间的间距，string可选值为：<br/>normal：默认的字间距。 |
 | font-style                         | string                                                       | normal                                    | 否   | 设置文本的字体样式，可选值为：<br/>-&nbsp;normal：标准的字体样式。<br/>-&nbsp;italic：斜体的字体样式。 |

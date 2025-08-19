@@ -2,8 +2,9 @@
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @wang-haizhou6-->
-<!--SE: @HmQQQ-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
@@ -25,6 +26,8 @@
 | -- | -- | -- |
 | [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-videoprocessing-colorspaceinfo.md) | VideoProcessing_ColorSpaceInfo | 视频颜色空间信息数据结构。 |
 | [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md) | OH_VideoProcessing | 定义视频处理对象。<br>定义一个OH_VideoProcessing空指针，调用[OH_VideoProcessing_Create](capi-video-processing-h.md#oh_videoprocessing_create)创建视频处理实例，该指针在创建实例之前必须为空。用户可以对不同的处理类型创建不同的视频处理实例。 |
+| [NativeWindow](capi-videoprocessing-nativewindow.md) | OHNativeWindow | 定义NativeWindow对象。 |
+| [OH_AVFormat](capi-videoprocessing-oh-avformat.md) | OH_AVFormat | 定义OH_AVFormat对象。 |
 | [VideoProcessing_Callback](capi-videoprocessing-videoprocessing-callback.md) | VideoProcessing_Callback | 视频处理回调对象类型。<br>定义一个VideoProcessing_Callback空指针，调用[OH_VideoProcessingCallback_Create](capi-video-processing-h.md#oh_videoprocessingcallback_create)来创建一个回调对象。创建之前该指针必须为空。通过调用[OH_VideoProcessing_RegisterCallback](capi-video-processing-h.md#oh_videoprocessing_registercallback)来向视频处理实例注册回调对象。 |
 
 ### 枚举

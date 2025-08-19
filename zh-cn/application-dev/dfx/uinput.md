@@ -3,8 +3,9 @@
 <!--Kit: Input Kit-->
 <!--Subsystem: MultimodalInput-->
 <!--Owner: @zhaoxueyuan-->
-<!--SE: @hanruofei-->
-<!--TSE: @Lyuxin-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
 
 uinput 可模拟用户操作，例如鼠标、键盘、触控板等设备，适用于稳定性等压力测试。
 
@@ -244,7 +245,7 @@ uinput --keyboard --up <key>
 
 **使用示例**
 ```bash
-# 按下"a"键并抬起。
+# 按下"A"键并抬起。
 uinput -K -d 2017 -u 2017
 ```
 
@@ -261,7 +262,7 @@ uinput --keyboard --long_press <key> [long press time]
 
 **使用示例**
 ```bash
-# 按下"a"键并保持6000ms后抬起。
+# 按下"A"键并保持6000ms后抬起。
 uinput -K -l 2017 6000
 ```
 
@@ -278,7 +279,7 @@ uinput --keyboard --repeat <key> [repeat output time]
 
 **使用示例**
 ```bash
-# 按下"a"键并在4000ms内重复输入。
+# 按下"A"键并在4000ms内重复输入。
 uinput -K -r 2017 4000
 ```
 
@@ -295,12 +296,12 @@ uinput --keyboard --interval <time>
 
 **使用示例**
 ```bash
-# 按下键盘‘a’键间隔500ms后释放。
+# 按下键盘"A"键间隔500ms后释放。
 uinput -K -d 2017 -i 500 -u 2017
 ```
 
 ### 键盘文本输入事件
-模拟键盘输入文本。不支持与其他commands组合使用。只支持ASCLL字符，最大支持输入字符2000个。
+模拟键盘输入文本。不支持与其他命令组合使用。只支持ASCII字符，最大支持输入字符2000个。
 
 **命令**
 ```bash
@@ -408,7 +409,7 @@ uinput --stylus --interval <time>
 
 **使用示例**
 ```bash
-# 手指在(100, 100)位置按下后，间隔500ms后在(100, 100)位置抬起。
+# 触控笔在(100, 100)位置按下后，间隔500ms后在(100, 100)位置抬起。
 uinput -S -d 100 100  -i 500 -u 100 100
 ```
 
@@ -455,10 +456,10 @@ uinput --touch --move <dx1> <dy1> <dx2> <dy2> [-k keep time] [smooth time]
 **使用示例**
 ```bash
 # 手指触摸从(100, 1000)按下，花费1000ms移动到(100, 2000)后，保持按下1000ms后抬起。
-uinput -T -m 100 1000 100 2000 1000 -k 1000
+uinput -T -m 100 1000 100 2000 -k 1000 1000
 
 # 三指滑动，第一根手指触摸按下从（300，900）移动到（300,2000），第二根手指触摸按下从（600,900）移动到（600,2000），第三根手指触摸按下从（900,900）移动到（900,2000），移动总时长为200ms，移动结束后手指在屏幕停顿1000m后再抬起。
-uinput -T -m 300 900 300 2000 600 900 600 2000 900 900 900 2000 200 -k 1000
+uinput -T -m 300 900 300 2000 600 900 600 2000 900 900 900 2000 -k 1000 200
 ```
 
 ### 触摸单击事件
@@ -543,7 +544,7 @@ uinput --touch --knuckle --double <dx1> <dy1> <dx2> <dy2> [interval time]
 
 **使用示例**
 ```bash
-# 双指关节在(100, 100)、(100, 130)位置间隔200ms敲击。
+# 双指关节分别在(100, 100)、(100, 130)位置间隔200ms敲击2次。
 uinput -T -k -d 100 100 100 130
 ```
 

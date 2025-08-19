@@ -3,8 +3,9 @@
 <!--Kit: Accessibility Kit-->
 <!--Subsystem: BarrierFree-->
 <!--Owner: @qiiiiiiian-->
-<!--SE: @z7o-->
-<!--TSE: @A_qqq-->
+<!--Designer: @z7o-->
+<!--Tester: @A_qqq-->
+<!--Adviser: @w_Machine_cc-->
 
 GesturePath表示手势路径信息。
 

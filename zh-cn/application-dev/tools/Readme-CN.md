@@ -2,8 +2,9 @@
 <!--Kit: Common-->
 <!--Subsystem: Common-->
 <!--Owner: @foryourself-->
-<!--SE: @lingminghw-->
-<!--TSE: @RayShih-->
+<!--Designer: @lingminghw-->
+<!--Tester: @RayShih-->
+<!--Adviser: @foryourself-->
 
 - [SDK命令行工具简介](command-line-tools-overview.md)
 - [aa工具](aa-tool.md)

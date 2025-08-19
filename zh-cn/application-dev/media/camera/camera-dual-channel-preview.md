@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
 
@@ -108,7 +109,7 @@
               let imageFormat = nextImage.format; // 获取图片的format。
               let pixelMapFormat = formatToPixelMapFormatMap.get(imageFormat) ?? image.PixelMapFormat.NV21;
               let mSize = pixelMapFormatToSizeMap.get(pixelMapFormat) ?? 1.5;
-              console.debug(`getComponent with width:${width} height:${height} stride:${stride}`);
+              console.info(`getComponent with width:${width} height:${height} stride:${stride}`);
               // pixelMap创建时使用的size、srcPixelFormat需要与相机预览输出流previewProfile中的size、format保持一致。
               // stride与width一致。
               if (stride == width) {
@@ -354,7 +355,7 @@ struct Index {
             let imageFormat = nextImage.format; // 获取图片的format。
             let pixelMapFormat = this.formatToPixelMapFormatMap.get(imageFormat) ?? image.PixelMapFormat.NV21;
             let mSize =  this.pixelMapFormatToSizeMap.get(pixelMapFormat) ?? 1.5;
-            console.debug(`getComponent with width:${width} height:${height} stride:${stride}`);
+            console.info(`getComponent with width:${width} height:${height} stride:${stride}`);
             // pixelMap创建时使用的size、srcPixelFormat需要与相机预览输出流previewProfile中的size、format保持一致。此处format以NV21格式为例。
             // stride与width一致。
             if (stride == width) {

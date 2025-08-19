@@ -2,8 +2,9 @@
 <!--Kit: Sensor Service Kit-->
 <!--Subsystem: Sensors-->
 <!--Owner: @dilligencer-->
-<!--SE: @butterls-->
-<!--TSE: @murphy84-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 ## 场景介绍
 
@@ -87,14 +88,17 @@
    
        int32_t ret = OH_Vibrator_PlayVibration(0, vibrateAttribute); // 控制马达在指定时间内持续振动。
        OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "Vibration successful");
-       if (ret != PARAMETER_ERROR) {
+       if (ret != 0) {
            return nullptr;
        }
        std::this_thread::sleep_for(std::chrono::milliseconds(TIME_WAIT_FOR_OP));
        ret = OH_Vibrator_Cancel(); // 停止马达振动。
-       if (ret == 0) {
+       if (ret != 0) {
            return nullptr;
        }
+       napi_value result = nullptr;
+       napi_create_int32(env, ret, &result);
+       return result;
    }
    ```
 
@@ -103,6 +107,7 @@
    ```c
    static napi_value VibrationCustom_Test(napi_env env, napi_callback_info info)
    {
+       int32_t ret = 0;
        int32_t fd = open("/data/test/vibrator/coin_drop.json", O_RDONLY);
        OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "Test fd:%{public}d", fd);
        struct stat64 statbuf = { 0 };
@@ -119,9 +124,9 @@
            Vibrator_Attribute vibrateAttribute = {
                .usage = VIBRATOR_USAGE_RING
            };
-           int32_t ret = OH_Vibrator_PlayVibrationCustom(fileDescription, vibrateAttribute); // 播放自定义振动序列。
+           ret = OH_Vibrator_PlayVibrationCustom(fileDescription, vibrateAttribute); // 播放自定义振动序列。
            OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "Vibratecustom successful");
-           bool isSuccess = ((ret == 0) || (ret == UNSUPPORTED));
+           bool isSuccess = ((ret != 0) || (ret == UNSUPPORTED));
            if (isSuccess == true) {
                close(fd);
                return nullptr;
@@ -130,6 +135,9 @@
        std::this_thread::sleep_for(std::chrono::milliseconds(TIME_WAIT_FOR_OP));
        close(fd);
        OH_Vibrator_Cancel(); // 停止马达振动。
+       napi_value result = nullptr;
+       napi_create_int32(env, ret, &result);
+       return result;
    }
    ```
    

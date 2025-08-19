@@ -2,8 +2,9 @@
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @yuanxiaogou; @string_sz-->
-<!--SE: @knightaoko-->
-<!--TSE: @test_lzz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## 场景介绍
 
@@ -37,7 +38,7 @@ OpenHarmony JSVM-API是C语言接口，遵循C99标准。
 
 - Debugger：调试器，用于调试JS代码。
 
-CPU Profiler：该工具可以记录JS代码的执行时间，帮助开发者分析性能瓶颈，为代码优化提供数据支撑。
+- CPU Profiler：该工具可以记录JS代码的执行时间，帮助开发者分析性能瓶颈，为代码优化提供数据支撑。
 
 - Heap Snapshot：JS堆内存分析/调优工具，可以进行内存优化和发现内存泄漏问题。
 

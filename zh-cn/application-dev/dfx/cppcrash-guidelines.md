@@ -2,8 +2,9 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @chenshi51-->
-<!--SE: @Maplestory-->
-<!--TSE: @yufeifei-->
+<!--Designer: @Maplestory-->
+<!--Tester: @yufeifei-->
+<!--Adviser: @foryourself-->
 
 ## 简介
 
@@ -188,10 +189,10 @@ HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hia
 | Device Memory(kB) | 整机内存状态 | 20 | 否 | 依赖维测服务进程，若发生故障时维测服务进程停止或设备重启则无此字段，详见[实现原理](#实现原理)。 |
 | Reason | 故障原因 | 8 | 是 | - |
 | LastFatalMessage | 应用记录的最后一条Fatal级日志 | 8 | 否 | 进程主动abort，hilog中打印包含最后一条Fatal日志时。 |
-| Fault thread info | 故障线程堆栈 | 8 | 是 | - |
+| Fault thread info | 故障线程信息 | 8 | 是 | - |
 | SubmitterStacktrace | 提交者线程栈 | 12 | 否 | 异步线程栈跟踪维测功能仅在ARM 64位系统环境下对debug版本应用开启。 |
 | Register | 故障现场寄存器 | 8 | 是 | - |
-| Other thread info | 其他线程堆栈 | 8 | 是 | - |
+| Other thread info | 其他线程信息 | 8 | 是 | - |
 | Memory near registers | 故障现场寄存器附近内存值 | 8 | 是 | - |
 | FaultStack | 故障线程栈内存信息 | 8 | 是 | - |
 | Maps | 故障时进程的内存空间 | 8 | 是 | - |
@@ -237,7 +238,7 @@ Process life time:1s  <- 进程存活时间
 Process Memory(kB): 11902(Rss)     <- 进程占用内存
 Device Memory(kB): Total 1935820, Free 516244, Available 1205608 <- 整机内存状态（非必选）
 Reason:Signal:SIGSEGV(SI_TKILL)@0x000027e0 from:10208:0 <- 故障原因，详见信号值说明
-Fault thread info:
+Fault thread info:           <- 故障线程信息
 Tid:10208, Name:crasher_cpp  <- 故障线程号，线程名
 #00 pc 000e8400 /system/lib/ld-musl-arm.so.1(raise+176)(a40044d0acb68107cfc4adb5049c0725) <- 调用栈，调用顺序#06->#05->...->#00，最终在#00的函数中发生崩溃
 #01 pc 00006e95 /data/crasher_cpp(DfxCrasher::RaiseSegmentFaultException()+92)(d6cead5be17c9bb7eee2a9b4df4b7626)
@@ -252,6 +253,12 @@ r4:00000000 r5:fffff000 r6:0000000a r7:000000af
 r8:ffc09919 r9:ffc09930 r10:00000000
 fp:ffc098e8 ip:005b76e4 sp:ffc09850 lr:005ade99 pc:f7bb0400
 cpsr:20870010           <-  状态寄存器值（arm32架构为cpsr，aarch64架构为pstate和esr）
+Other thread info:      <- 其他线程信息
+Tid:10209, Name:crasher_cpp <- 线程号，线程名
+#00 pc 00116974 /system/lib/ld-musl-arm.so.1(sleep+132)(a40044d0acb68107cfc4adb5049c0725) <- 调用栈
+#01 pc 0000a137 /data/crasher_cpp(void* std::__h::__thread_proxy[abi:v15004]<std::__h::tuple<std::__h::unique_ptr<std::__h::__thread_struct, std::__h::default_delete<std::__h::__thread_struct>>, DfxCrasher::MultiThreadCrash()::$_1>>(void*)+122)(d6cead5be17c9bb7eee2a9b4df4b7626)
+#02 pc 00109104 /system/lib/ld-musl-arm.so.1(start+248)(a40044d0acb68107cfc4adb5049c0725)
+#03 pc 00074134 /system/lib/ld-musl-arm.so.1(a40044d0acb68107cfc4adb5049c0725)
 Memory near registers:  <-  故障现场寄存器的地址（地址必须在有效内存中）附近内存值，括号表示寄存器里的地址是在哪一段内存中
 r1([stack]):          <- 故障现场r1寄存器的地址附近内存值
     ffc0984c f7bd8348

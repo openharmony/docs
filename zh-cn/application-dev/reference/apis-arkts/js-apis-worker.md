@@ -2,14 +2,15 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
-<!--SE: @weng-changcheng-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 Worker是与主线程并行的独立线程。创建Worker的线程称为宿主线程，Worker自身的线程称为Worker线程。创建Worker时传入的URL文件在Worker线程中执行，可以处理耗时操作，但不能直接操作UI。
 
 Worker的主要作用是为应用程序提供多线程运行环境，使应用程序在执行过程中与宿主线程分离，在后台线程中运行脚本处理耗时操作，避免计算密集型或高延迟任务阻塞宿主线程。由于Worker一旦创建不会主动销毁，若不处于任务状态会一直运行，造成资源浪费，应及时销毁空闲的Worker。
 
-Worker的上下文对象和UI线程的上下文对象是不同的，Worker线程不支持UI操作。
+Worker的上下文环境和UI线程的上下文环境是独立的，Worker线程不支持UI操作。
 
 请查看[Worker注意事项](../../arkts-utils/worker-introduction.md#worker注意事项)，了解Worker使用过程中的相关注意点。
 
@@ -136,7 +137,7 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void
 
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| message  | Object        | 是   | 发送至Worker的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
+| message  | Object        | 是   | 发送至Worker的数据，该数据对象必须是可序列化对象，序列化支持类型见[其他说明](#序列化支持类型)。 |
 | transfer | ArrayBuffer[] | 是   | 表示可转移的ArrayBuffer实例对象数组，该数组中对象的所有权会被转移到Worker线程，在宿主线程中将会变为不可用，仅在Worker线程中可用，数组不可传入null。 |
 
 **错误码：**
@@ -210,7 +211,7 @@ struct Index {
             workerInstance.onexit = (code) => {
               console.info("main thread terminate");
             }
-
+            // 监听Worker错误
             workerInstance.onAllErrors = (err: ErrorEvent) => {
               console.error("main error message " + err.message);
             }
@@ -237,7 +238,7 @@ postMessage(message: Object, options?: PostMessageOptions): void
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | 是   | 发送至Worker的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
+| message | Object                                    | 是   | 发送至Worker的数据，该数据对象必须是可序列化对象，序列化支持类型见[其他说明](#序列化支持类型)。 |
 | options | [PostMessageOptions](#postmessageoptions) | 否   | 当填入该参数时，传输的数据将通过所有权转移的方式发送到Worker线程。这些数据在宿主线程中将变为不可用，仅在Worker线程中可用。<br>若不填入该参数，默认设置为 undefined，数据将通过拷贝的方式传输到Worker线程。 |
 
 **错误码：**
@@ -283,7 +284,7 @@ postMessageWithSharedSendable(message: Object, transfer?: ArrayBuffer[]): void
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message   | Object	     | 是   | 发送至Worker的数据，该数据对象必须是可序列化，序列化支持类型见[序列化类型说明](#序列化支持类型)。如果需要共享数据，支持类型见[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)。 |
+| message   | Object	     | 是   | 发送至Worker的数据，该数据对象必须是可序列化对象，序列化支持类型见[序列化类型说明](#序列化支持类型)。如果需要共享数据，支持类型见[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)。 |
 | transfer  | ArrayBuffer[] | 否   | 可转移的ArrayBuffer实例对象数组。该数组中对象的所有权将转移到Worker线程，在宿主线程中变为不可用，仅在Worker线程中可用，数组不可传入null。默认值为空数组。 |
 
 **错误码：**
@@ -1013,7 +1014,7 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| messageObject  | Object        | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
+| messageObject  | Object        | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化对象，序列化支持类型见[其他说明](#序列化支持类型)。 |
 | transfer | ArrayBuffer[] | 是   | 表示可转移的ArrayBuffer实例对象数组，该数组中对象的所有权会被转移到宿主线程，在Worker线程中将会变为不可用，仅在宿主线程中可用，数组不可传入null。 |
 
 **错误码：**
@@ -1064,7 +1065,7 @@ Worker线程通过转移对象所有权或拷贝数据的方式向宿主线程�
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| messageObject | Object                                    | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
+| messageObject | Object                                    | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化对象，序列化支持类型见[其他说明](#序列化支持类型)。 |
 | options | [PostMessageOptions](#postmessageoptions) | 否   | 当填入该参数时，其作用与传入ArrayBuffer[]相同，该数组中对象的所有权会被转移到宿主线程，在Worker线程中将变为不可用，仅在宿主线程中可用。<br/>若不填入该参数，默认设置为 undefined，通过拷贝数据的方式传输信息到宿主线程。 |
 
 **错误码：**
@@ -1467,7 +1468,8 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void
 
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| message  | Object        | 是   | 发送至Worker的数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
+| message  | Object        | 是   | 发送至Worker的数据对象必须是可序列化对象，序列化支持类型见[其他说明](#序列化支持类型)。 |
+
 | transfer | ArrayBuffer[] | 是   | 表示可转移的ArrayBuffer实例对象数组，所有权会转移到Worker线程，仅在该线程中可用。数组不可传入null。 |
 
 **示例：**
@@ -1497,7 +1499,7 @@ postMessage(message: Object, options?: PostMessageOptions): void
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | 是   | 发送至Worker的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
+| message | Object                                    | 是   | 发送至Worker的数据，该数据对象必须是可序列化对象，序列化支持类型见[其他说明](#序列化支持类型)。 |
 | options | [PostMessageOptions](#postmessageoptions) | 否   | 当填入该参数时，与传入ArrayBuffer[]的作用一致，该数组中对象的所有权会被转移到Worker线程，在宿主线程中将变为不可用，仅在Worker线程中可用。<br/>若不填入该参数，默认设置为undefined，通过拷贝数据的方式传输信息到Worker线程。 |
 
 **示例：**
@@ -1823,7 +1825,7 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| messageObject | Object                                    | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
+| messageObject | Object                                    | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化对象，序列化支持类型见[其他说明](#序列化支持类型)。 |
 | transfer| Transferable[]                            | 是   | 暂不支持该参数类型。                                         |
 
 ### postMessage<sup>(deprecated)</sup>
@@ -1841,7 +1843,7 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| messageObject  | Object        | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
+| messageObject  | Object        | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化对象，序列化支持类型见[其他说明](#序列化支持类型)。 |
 | transfer | ArrayBuffer[] | 是   | 表示可转移的ArrayBuffer实例对象数组，该数组中对象的所有权会被转移到宿主线程，在Worker线程中将会变为不可用，仅在宿主线程中可用，数组不可传入null。 |
 
 **示例：**
@@ -1885,7 +1887,7 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| messageObject | Object                                    | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
+| messageObject | Object                                    | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化对象，序列化支持类型见[其他说明](#序列化支持类型)。 |
 | options | [PostMessageOptions](#postmessageoptions) | 否   | 当填入该参数时，与传入ArrayBuffer[]的作用一致，该数组中对象的所有权会被转移到宿主线程，在Worker线程中将会变为不可用，仅在宿主线程中可用。<br/>若不填入该参数，默认设置为 undefined，通过拷贝数据的方式传输信息到宿主线程。 |
 
 **示例：**
@@ -2098,7 +2100,7 @@ workerPort.onmessage = (d: MessageEvents): void => {
   }
   // workerPort.postMessage(func1); 传递func1发生序列化错误
   let obj2 = new MyModel();
-  workerPort.postMessage(obj2);     // 传递obj2不会发生序列化错误
+  workerPort.postMessage(obj2);     // 传递obj2不会发生序列化错误，obj2中的函数会丢失
 }
 workerPort.onmessageerror = () => {
     console.error("worker.ets onmessageerror");
@@ -2109,7 +2111,7 @@ workerPort.onerror = (err: ErrorEvent) => {
 ```
 
 ### 内存模型
-Worker基于Actor并发模型实现。在Worker的交互流程中，宿主线程可以创建多个Worker子线程，各个Worker线程间相互隔离，并通过序列化、引用传递或转移所有权的方式传递对象，等到Worker线程完成计算任务，再把结果返回给宿主线程。
+Worker基于Actor并发模型实现。在Worker的交互流程中，宿主线程可以创建多个Worker子线程，各个Worker线程间运行环境相互隔离，并通过序列化、引用传递或转移所有权的方式传递对象，等到Worker线程完成计算任务，再把结果返回给宿主线程。
 
 Actor并发模型的交互原理：各个Actor并发地处理宿主线程任务，每个Actor内部都有一个消息队列和单线程执行模块。消息队列负责接收宿主线程及其他Actor的请求，而单线程执行模块则负责串行地处理这些请求、向其他Actor发送请求以及创建新的Actor。由于Actor采用的是异步方式，各个Actor之间相互隔离且没有数据竞争，因此Actor可以高并发运行。
 

@@ -1,9 +1,10 @@
 # ArkUI_NativeModule
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @piggyguy;@xiang-shouxing;@yangfan229-->
-<!--SE: @piggyguy;@xiang-shouxing;@yangfan229-->
-<!--TSE: @fredyuan912-->
+<!--Owner: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Designer: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
@@ -33,5 +34,6 @@
 | [native_key_event.h](capi-native-key-event-h.md) | 提供NativeKeyEvent相关接口定义。 |
 | [native_node.h](capi-native-node-h.md) | 提供NativeNode接口的类型定义。 |
 | [native_node_napi.h](capi-native-node-napi-h.md) | 提供ArkTS侧的FrameNode转换NodeHandle的方式。 |
+| [native_render.h](capi-native-render-h.md) | 提供Native侧的RenderNode的类型定义和操作RenderNode节点的能力。 |
 | [native_type.h](capi-native-type-h.md) | 提供NativeModule公共的类型定义。 |
 | [styled_string.h](capi-styled-string-h.md) | 提供ArkUI在Native侧的属性字符串能力。 |

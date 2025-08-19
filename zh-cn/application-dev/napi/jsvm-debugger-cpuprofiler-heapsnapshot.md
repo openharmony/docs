@@ -2,10 +2,11 @@
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @yuanxiaogou; @string_sz-->
-<!--SE: @knightaoko-->
-<!--TSE: @test_lzz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
-JSVM，即标准JS引擎，是严格遵守ECMAscript规范的JavaScript代码执行引擎。详情参考：[JSVM](../reference/common/capi-jsvm.md)。
+JSVM，即标准JS引擎，是严格遵守ECMAScript规范的JavaScript代码执行引擎。详情参考：[JSVM](../reference/common/capi-jsvm.md)。
 基于JSVM的JS代码调试调优能力包括：Debugger、CPU Profiler、Heap Snapshot、Heap Statistics。涉及以下接口：
 | 接口名  |  接口功能 |
 |---|---|
@@ -316,7 +317,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"runScriptWithStatistics", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
-// 样例测试JS
+样例测试JS
 ```cpp
 const char *srcCallNative = R"JS(runScriptWithStatistics();)JS";
 ```

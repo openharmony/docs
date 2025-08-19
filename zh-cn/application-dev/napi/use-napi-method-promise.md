@@ -2,8 +2,9 @@
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
-<!--SE: @shilei123-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @shilei123-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 ## 场景介绍
 当ArkTS的返回值为Promise时，可以按以下方式在创建的ArkTS运行环境中调用异步接口。
@@ -71,8 +72,8 @@
         napi_create_function(env, "onResolve", NAPI_AUTO_LENGTH, ResolvedCallback, nullptr, &onResolve);
         napi_create_function(env, "onReject", NAPI_AUTO_LENGTH, RejectedCallback, nullptr, &onReject);
         // 创建参数数组
-        napi_value argv1[2] = {onResolve, onReject};
-        napi_call_function(env, promise, thenFunc, 2, argv1, nullptr);
+        napi_value thenArgv[2] = {onResolve, onReject};
+        napi_call_function(env, promise, thenFunc, 2, thenArgv, nullptr);
     
         return nullptr;
     }

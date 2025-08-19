@@ -1,6 +1,15 @@
 # Selecting Media Assets Using Picker
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--SE: @liweilu1-->
+<!--TSE: @xchaosioda-->
 
 When a user needs to share files such as images and videos, use **Picker** to start Gallery for the user to select the files to share. No permission is required when Picker is used. Currently, a UIAbility is used to start Gallery with the window component. The procedure is as follows:
+
+> **NOTE**
+>
+> Media Library Kit handles image and video management. If you need to read and save audio files, use [AudioViewPicker](../../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker).
 
 1. Import modules.
 
@@ -48,65 +57,78 @@ When a user needs to share files such as images and videos, use **Picker** to st
 1. After the UI returns from Gallery, use a button to call other functions. Specifically, use[fileIo.openSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open the file and obtain its FD through the [media file URI](../../file-management/user-file-uri-intro.md#media-file-uri). Note that the **mode** parameter of **fileIo.openSync()** must be **fileIo.OpenMode.READ_ONLY**.
 
    ```ts
-   let uri: string = '';
-   let file = fileIo.openSync(uri, fileIo.OpenMode.READ_ONLY);
-   console.info('file fd: ' + file.fd);
+   try {
+     let uri: string = '';
+     let file = fileIo.openSync(uri, fileIo.OpenMode.READ_ONLY);
+     console.info('file fd: ' + file.fd);
+   } catch (error) {
+     console.error('openSync failed with err: ' + error);
+   }
    ```
 
 2. Call [fileIo.readSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#readsync) to read the file based on the FD, and close the FD after the data is read.
 
    ```ts
-   // buffer indicates the buffer length, which is user-defined.
-   let buffer = new ArrayBuffer(4096);
-   let readLen = fileIo.readSync(file.fd, buffer);
-   console.info('readSync data to file succeed and buffer size is:' + readLen);
-   fileIo.closeSync(file);
+   try {
+     // buffer indicates the buffer length, which is user-defined.
+     let buffer = new ArrayBuffer(4096);
+     let readLen = fileIo.readSync(file.fd, buffer);
+     console.info('readSync data to file succeed and buffer size is:' + readLen);
+     fileIo.closeSync(file);
+   } catch (error) {
+     console.error('readSync or closeSync failed with err: ' + error);
+   }
    ```
 
 ## Obtaining an Image or Video by URI
 
 The media library allows **Picker** to select a [media file URI](../../file-management/user-file-uri-intro.md#media-file-uri) and obtain the corresponding image or video. The following describes how to query a URI named **'file://media/Photo/1/IMG_datetime_0001/displayName.jpg'**.
 
-```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
+1. Define a media asset handler called [MediaAssetDataHandler](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetDataHandler.md). The system calls back to the application with **onDataPrepared** when the asset is ready.
 
-class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
-  onDataPrepared(data: ArrayBuffer) {
-    if (data === undefined) {
-      console.error('Error occurred when preparing data');
-      return;
-    }
-    console.info('on image data prepared');
-    // Customize the logic for processing data.
-  }
-}
+   ```ts
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
+   import { dataSharePredicates } from '@kit.ArkData';
+   
+   class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
+     onDataPrepared(data: ArrayBuffer) {
+       if (data === undefined) {
+         console.error('Error occurred when preparing data');
+         return;
+       }
+       console.info('on image data prepared');
+       // Customize the logic for processing data.
+     }
+   }
+   ```
 
-async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
-  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  let uri = 'file://media/Photo/1/IMG_datetime_0001/displayName.jpg' // The URI must exist.
-  predicates.equalTo(photoAccessHelper.PhotoKeys.URI, uri.toString());
-  let fetchOptions: photoAccessHelper.FetchOptions = {
-    fetchColumns: [photoAccessHelper.PhotoKeys.TITLE],
-    predicates: predicates
-  };
+2. Call [getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets-1) to obtain the assets, and call [requestImageData](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetManager.md#requestimagedata11) to obtain the specific asset.
 
-  try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    console.info('getAssets photoAsset.uri : ' + photoAsset.uri);
-    // Obtain the file attribute information, such as the title. If the attribute to obtain is not a default one, add the column name to fetchColumns.
-    console.info('title : ' + photoAsset.get(photoAccessHelper.PhotoKeys.TITLE));
-    // Request image data.
-    let requestOptions: photoAccessHelper.RequestOptions = {
-      deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
-    }
-    await photoAccessHelper.MediaAssetManager.requestImageData(context, photoAsset, requestOptions, new MediaDataHandler());
-    console.info('requestImageData successfully');
-    fetchResult.close();
-  } catch (err) {
-    console.error('getAssets failed with err: ' + err);
-  }
-}
-```
+   ```ts
+   async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
+     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+     let uri = 'file://media/Photo/1/IMG_datetime_0001/displayName.jpg' // The URI must exist.
+     predicates.equalTo(photoAccessHelper.PhotoKeys.URI, uri.toString());
+     let fetchOptions: photoAccessHelper.FetchOptions = {
+       fetchColumns: [photoAccessHelper.PhotoKeys.TITLE],
+       predicates: predicates
+     };
+   
+     try {
+       let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+       let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+       console.info('getAssets photoAsset.uri : ' + photoAsset.uri);
+       // Obtain the file attribute information, such as the title. If the attribute to obtain is not a default one, add the column name to fetchColumns.
+       console.info('title : ' + photoAsset.get(photoAccessHelper.PhotoKeys.TITLE));
+       // Request image data.
+       let requestOptions: photoAccessHelper.RequestOptions = {
+         deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
+       }
+       await photoAccessHelper.MediaAssetManager.requestImageData(context, photoAsset, requestOptions, new MediaDataHandler());
+       console.info('requestImageData successfully');
+       fetchResult.close();
+     } catch (err) {
+       console.error('getAssets failed with err: ' + err);
+     }
+   }
+   ```

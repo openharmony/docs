@@ -10,7 +10,7 @@
 > - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The initial APIs of this interface are supported since API version 11.
 
-Flash extends [FlashQuery](arkts-apis-camera-FlashQuery.md).
+Flash inherits from [FlashQuery](arkts-apis-camera-FlashQuery.md).
 
 It provides APIs related to the flash.
 

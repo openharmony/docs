@@ -2,8 +2,9 @@
 <!--Kit: ArkGraphics 3D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @zzhao0-->
-<!--SE: @zdustc-->
-<!--TSE: @zhangyue283-->
+<!--Designer: @zdustc-->
+<!--Tester: @zhangyue283-->
+<!--Adviser: @ge-yafang-->
 
 材质（Material）：材质是用于定义物体表面视觉效果的重要资源。材质决定了物体如何与光线交互，从而影响其最终的渲染效果，如颜色、金属感、粗糙度等外观属性。
 
@@ -221,7 +222,10 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
          ```ts
          let pbrNode = scene.root.getNodeByPath("path/to/node");
          if (pbrNode) {
-           (pbrNode as Geometry).mesh.subMeshes[0].material = pbrMat;  // 绑定材质
+           let geometry = pbrNode as Geometry;
+           if (geometry.mesh?.subMeshes?.[0]) {
+             geometry.mesh.subMeshes[0].material = pbrMat;  // 绑定材质
+           }
          }
          ```
 
@@ -265,7 +269,9 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
        let shaderNode = scene.root.getNodeByPath("rootNode_/Unnamed Node 1/AnimatedCube");
        if (shaderNode) {
          let geometry = shaderNode as Geometry;
-         geometry.mesh.subMeshes[0].material = shaderMat;
+         if (geometry.mesh?.subMeshes?.[0]) {
+           geometry.mesh.subMeshes[0].material = shaderMat;
+         }
        }
        // 后续执行渲染观察效果
      });

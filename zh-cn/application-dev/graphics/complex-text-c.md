@@ -1,9 +1,10 @@
 # 复杂文本绘制与显示（C/C++）
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
-<!--Owner: @oh_wangxk;@gmiao522;@Lem0nC-->
-<!--SE: @liumingxiang-->
-<!--TSE: @yhl0101-->
+<!--Owner: @oh_wangxk; @gmiao522; @Lem0nC-->
+<!--Designer: @liumingxiang-->
+<!--Tester: @yhl0101-->
+<!--Adviser: @ge-yafang-->
 在进行文本绘制时，可以通过选择合适的字体、大小和颜色完成简单文本的绘制与显示；此外，还支持通过设置其他丰富的样式、语言、段落等进行复杂文本的绘制。
 
 复杂文本绘制主要包含以下几个场景：
@@ -101,7 +102,7 @@ OH_Drawing_DestroyTypography(typography);
 
 ```c++
 // 设置排版宽度
-double layoutWidth = 640;
+double layoutWidth = 800;
 // 创建 FontCollection，FontCollection 用于管理字体匹配逻辑
 OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
 
@@ -110,6 +111,8 @@ OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
 OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
 OH_Drawing_SetTextStyleFontSize(txtStyle, 50);
 OH_Drawing_SetTextStyleFontWeight(txtStyle, FONT_WEIGHT_400);
+// 当断词策略为WORD_BREAK_TYPE_BREAK_HYPHEN时，需要为段落设置语言偏好，段落会在不同语言偏好下呈现不同的文本断词效果
+// OH_Drawing_SetTextStyleLocale(txtStyle, "en-gb");
 
 // 设置文本内容
 const char *text =
@@ -123,66 +126,71 @@ const char *text =
 
 
 // 创建一个断词策略为 BREAK_ALL 的 TypographyStyle
-OH_Drawing_TypographyStyle *typoStyleBreakAll = OH_Drawing_CreateTypographyStyle();
+OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
 // 设置文本对齐方式为居中
-OH_Drawing_SetTypographyTextAlign(typoStyleBreakAll, TEXT_ALIGN_CENTER);
+OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_CENTER);
 // 设置断词策略为 WORD_BREAK_TYPE_BREAK_ALL
-OH_Drawing_SetTypographyTextWordBreakType(typoStyleBreakAll, OH_Drawing_WordBreakType::WORD_BREAK_TYPE_BREAK_ALL);
+OH_Drawing_SetTypographyTextWordBreakType(typoStyle, WORD_BREAK_TYPE_BREAK_ALL);
 // 设置最大行数为 10，行数大于 10 的部分不显示
-OH_Drawing_SetTypographyTextMaxLines(typoStyleBreakAll, 10);
+OH_Drawing_SetTypographyTextMaxLines(typoStyle, 10);
 
 // 使用之前创建的 FontCollection 和 TypographyStyle 创建 TypographyCreate。TypographyCreate 用于创建 Typography
-OH_Drawing_TypographyCreate *handlerBreakAll = OH_Drawing_CreateTypographyHandler(typoStyleBreakAll, fc);
+OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
 // 将之前创建的 TextStyle 加入 handler
-OH_Drawing_TypographyHandlerPushTextStyle(handlerBreakAll, txtStyle);
+OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
 // 将文本添加到 handler 中
-OH_Drawing_TypographyHandlerAddText(handlerBreakAll, text);
+OH_Drawing_TypographyHandlerAddText(handler, text);
 
-OH_Drawing_Typography *typographyBreakAll = OH_Drawing_CreateTypography(handlerBreakAll);
-OH_Drawing_TypographyLayout(typographyBreakAll, layoutWidth);
+OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+OH_Drawing_TypographyLayout(typography, layoutWidth);
 // 设置文本在画布上绘制的起始位置
 double positionBreakAll[2] = {0, 0};
 // 将文本绘制到画布上
-OH_Drawing_TypographyPaint(typographyBreakAll, canvas, positionBreakAll[0], positionBreakAll[1]);
-
+OH_Drawing_TypographyPaint(typography, canvas, positionBreakAll[0], positionBreakAll[1]);
 
 // 创建一个断词策略为 BREAK_WORD 的 TypographyStyle
-OH_Drawing_TypographyStyle *typoStyleBreakWord = OH_Drawing_CreateTypographyStyle();
-// 设置文本对齐方式为居中
-OH_Drawing_SetTypographyTextAlign(typoStyleBreakWord, TEXT_ALIGN_CENTER);
-// 设置断词策略为 WORD_BREAK_TYPE_BREAK_WORD
-OH_Drawing_SetTypographyTextWordBreakType(typoStyleBreakWord, OH_Drawing_WordBreakType::WORD_BREAK_TYPE_BREAK_WORD);
+// OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+// OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_CENTER);
+// OH_Drawing_SetTypographyTextWordBreakType(typoStyle, WORD_BREAK_TYPE_BREAK_WORD);
+// OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+// OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+// OH_Drawing_TypographyHandlerAddText(handler, text);
+// OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+// OH_Drawing_TypographyLayout(typography, layoutWidth);
+// double positionBreakWord[2] = {0, 100};
+// OH_Drawing_TypographyPaint(typography, canvas, positionBreakWord[0], positionBreakWord[1]);
 
-// 使用之前创建的 FontCollection 和 TypographyStyle 创建 TypographyCreate。TypographyCreate 用于创建 Typography
-OH_Drawing_TypographyCreate *handlerBreakWord = OH_Drawing_CreateTypographyHandler(typoStyleBreakWord, fc);
-// 将之前创建的 TextStyle 加入 handler
-OH_Drawing_TypographyHandlerPushTextStyle(handlerBreakWord, txtStyle);
-// 将文本添加到 handler 中
-OH_Drawing_TypographyHandlerAddText(handlerBreakWord, text);
-
-OH_Drawing_Typography *typographyBreakWord = OH_Drawing_CreateTypography(handlerBreakWord);
-OH_Drawing_TypographyLayout(typographyBreakWord, layoutWidth);
-// 设置文本在画布上绘制的起始位置
-double positionBreakWord[2] = {0, 100};
-// 将文本绘制到画布上
-OH_Drawing_TypographyPaint(typographyBreakWord, canvas, positionBreakWord[0], positionBreakWord[1]);
+// 创建一个断词策略为 BREAK_HYPHEN 的 TypographyStyle
+// OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+// OH_Drawing_SetTypographyTextStyle(typoStyle, txtStyle);
+// OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_LEFT);
+// OH_Drawing_SetTypographyTextWordBreakType(typoStyle, WORD_BREAK_TYPE_BREAK_HYPHEN);
+// OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+// OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+// OH_Drawing_TypographyHandlerAddText(handler, text);
+// OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+// OH_Drawing_TypographyLayout(typography, layoutWidth);
+// double positionBreakWord[2] = {0, 100};
+// OH_Drawing_TypographyPaint(typography, canvas, positionBreakWord[0], positionBreakWord[1]);
 
 // 释放内存
 OH_Drawing_DestroyFontCollection(fc);
 OH_Drawing_DestroyTextStyle(txtStyle);
-OH_Drawing_DestroyTypographyStyle(typoStyleBreakAll);
-OH_Drawing_DestroyTypographyStyle(typoStyleBreakWord);
-OH_Drawing_DestroyTypographyHandler(handlerBreakAll);
-OH_Drawing_DestroyTypographyHandler(handlerBreakWord);
-OH_Drawing_DestroyTypography(typographyBreakAll);
-OH_Drawing_DestroyTypography(typographyBreakWord);
+OH_Drawing_DestroyTypographyStyle(typoStyle);
+OH_Drawing_DestroyTypographyHandler(handler);
+OH_Drawing_DestroyTypography(typography);
 ```
 
 
 ### 效果展示
 
-![zh-cn_image_0000002211603596](figures/MultilineText.PNG)
+| BREAK_ALL | BREAK_WORD | 
+| -------- | -------- |
+| ![ndk_word_break_all.jpg](figures/ndk_word_break_all.jpg) | ![ndk_word_break_word.jpg](figures/ndk_word_break_word.jpg) | 
 
+| BREAK_HYPHEN（locale：未设置） | BREAK_HYPHEN（locale：en-gb） | BREAK_HYPHEN（locale：en-us） | 
+| -------- | -------- |-------- |
+| ![ndk_word_break_hyphen_locale_undefined.jpg](figures/ndk_word_break_hyphen_locale_undefined.jpg) | ![ndk_word_break_hyphen_local_en-gb.jpg](figures/ndk_word_break_hyphen_local_en-gb.jpg) | ![ndk_word_break_hyphen_local_en-us.jpg](figures/ndk_word_break_hyphen_local_en-us.jpg) |
 
 ## 多样式文本绘制与显示
 
@@ -202,6 +210,13 @@ OH_Drawing_DestroyTypography(typographyBreakWord);
 
 - **自动间距绘制：** 可以在一些字符混排切换的地方自动添加额外间距，提升阅读体验。
 
+- **渐变色绘制：** 可以为文字提供颜色渐变效果，增强文字表现力。
+
+- **垂直对齐：** 调整文本在垂直方向排版位置，提升排版质量。
+
+- **上下标：** 可以将任意字符处理成上标或下标，更精准表达文本含义。
+
+- **高对比度文字绘制：** 主要通过将深色文字变黑、浅色文字变白，增强文本的对比效果。
 
 ### 装饰线
 
@@ -235,9 +250,9 @@ OH_Drawing_SetTextStyleColor(txtStyleWithDeco, OH_Drawing_ColorSetArgb(0xFF, 0x0
 OH_Drawing_SetTextStyleFontSize(txtStyleWithDeco, 100);
 OH_Drawing_SetTextStyleFontWeight(txtStyleWithDeco, FONT_WEIGHT_400);
 // 设置装饰线为 LINE_THROUGH
-OH_Drawing_SetTextStyleDecoration(txtStyleWithDeco, OH_Drawing_TextDecoration::TEXT_DECORATION_LINE_THROUGH);
+OH_Drawing_SetTextStyleDecoration(txtStyleWithDeco, TEXT_DECORATION_LINE_THROUGH);
 // 设置装饰线样式为 WAVY
-OH_Drawing_SetTextStyleDecorationStyle(txtStyleWithDeco, OH_Drawing_TextDecorationStyle::TEXT_DECORATION_STYLE_WAVY);
+OH_Drawing_SetTextStyleDecorationStyle(txtStyleWithDeco, TEXT_DECORATION_STYLE_WAVY);
 // 设置装饰线颜色
 OH_Drawing_SetTextStyleDecorationColor(txtStyleWithDeco, OH_Drawing_ColorSetArgb(0xFF, 0x6F, 0xFF, 0xFF));
 
@@ -332,14 +347,14 @@ OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoSt
 OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyleWithFeature);
 // 将文本添加到 handler 中
 OH_Drawing_TypographyHandlerAddText(handler, text);
-// 销毁之前创建的 TextStyle
+// 弹出之前创建的 TextStyle
 OH_Drawing_TypographyHandlerPopTextStyle(handler);
 
 // 后续加入的不带字体特征的文本样式
 OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyleNoFeature);
 // 将文本添加到 handler 中
 OH_Drawing_TypographyHandlerAddText(handler, text);
-// 销毁之前创建的 TextStyle
+// 弹出之前创建的 TextStyle
 OH_Drawing_TypographyHandlerPopTextStyle(handler);
 
 OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
@@ -412,14 +427,14 @@ OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoSt
 OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyleWithVar);
 // 将文本添加到 handler 中
 OH_Drawing_TypographyHandlerAddText(handler, text);
-// 销毁之前创建的 TextStyle
+// 弹出之前创建的 TextStyle
 OH_Drawing_TypographyHandlerPopTextStyle(handler);
 
 // 后续加入的不带可变字体的文本样式
 OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyleNoVar);
 // 将文本添加到 handler 中
 OH_Drawing_TypographyHandlerAddText(handler, text);
-// 销毁之前创建的 TextStyle
+// 弹出之前创建的 TextStyle
 OH_Drawing_TypographyHandlerPopTextStyle(handler);
 
 OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
@@ -520,6 +535,7 @@ OH_Drawing_TypographyPaint(typography, canvas, position[0], position[1]);
 // 释放内存
 OH_Drawing_DestroyTypographyStyle(typoStyle);
 OH_Drawing_DestroyTextStyle(txtStyleWithShadow);
+OH_Drawing_DestroyPoint(offset);
 OH_Drawing_DestroyTextShadow(shadow);
 OH_Drawing_DestroyTextStyle(txtStyleNoShadow);
 OH_Drawing_DestroyFontCollection(fc);
@@ -572,8 +588,8 @@ OH_Drawing_TypographyCreate *handlerWithPlaceholder = OH_Drawing_CreateTypograph
 OH_Drawing_PlaceholderSpan placeholder;
 placeholder.width = 200.0;
 placeholder.height = 200.0;
-placeholder.alignment = OH_Drawing_PlaceholderVerticalAlignment::ALIGNMENT_ABOVE_BASELINE; // 基线对齐策略
-placeholder.baseline = OH_Drawing_TextBaseline::TEXT_BASELINE_ALPHABETIC;                  // 使用的文本基线类型
+placeholder.alignment = ALIGNMENT_ABOVE_BASELINE; // 基线对齐策略
+placeholder.baseline = TEXT_BASELINE_ALPHABETIC;                  // 使用的文本基线类型
 placeholder.baselineOffset = 0.0; // 相比基线的偏移量。只有对齐策略是 OFFSET_AT_BASELINE 时生效
 
 // 将 placeholder 放在开头
@@ -678,6 +694,191 @@ OH_Drawing_DestroyTypography(typography);
 | 不使能自动间距 | ![zh-cn_image_autoSpace_1](figures/zh-cn_image_autoSpace_1.png) | 
 | 使能自动间距 | ![zh-cn_image_autoSpace_2](figures/zh-cn_image_autoSpace_2.png) | 
 
+### 渐变色
+
+**渐变色**是一种在文字设计中广泛应用的视觉效果，通过在文字的不同部分应用不同的颜色，从而创造出从一种颜色平滑过渡到另一种颜色的效果。可以通过着色器实现文字渐变的效果，着色器的更多介绍请参考[着色器效果](complex-drawing-effect-c.md#着色器效果)。
+
+
+| 接口定义 | 描述 | 
+| -------- | -------- |
+| void OH_Drawing_SetTextStyleForegroundBrush(OH_Drawing_TextStyle\* style, OH_Drawing_Brush* foregroundBrush) | 添加前景画刷，渐变着色器属性依附于前景画刷中。 | 
+
+
+示例及效果如下所示：
+```c++
+OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
+// 设置文字大小
+OH_Drawing_SetTextStyleFontSize(txtStyle, 100);
+// 创建着色器对象，并设置颜色、变化起始点与结束点
+OH_Drawing_Point *startPt = OH_Drawing_PointCreate(0, 0);
+OH_Drawing_Point *endPt = OH_Drawing_PointCreate(900, 900);
+uint32_t colors[] = {0xFFFFFF00, 0xFFFF0000, 0xFF0000FF};
+float pos[] = {0.0f, 0.5f, 1.0f};
+OH_Drawing_ShaderEffect *colorShaderEffect =
+    OH_Drawing_ShaderEffectCreateLinearGradient(startPt, endPt, colors, pos, 3, OH_Drawing_TileMode::CLAMP);
+// 创建画刷对象,并将着色器添加到画刷
+OH_Drawing_Brush* brush = OH_Drawing_BrushCreate();
+OH_Drawing_BrushSetShaderEffect(brush, colorShaderEffect);
+// 将画刷添加到文本样式中
+OH_Drawing_SetTextStyleForegroundBrush(txtStyle, brush);
+// 创建排版对象，并绘制
+OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
+OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+const char *text = "Hello World";
+OH_Drawing_TypographyHandlerAddText(handler, text);
+OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+OH_Drawing_TypographyLayout(typography, 1000);
+OH_Drawing_TypographyPaint(typography, canvas, 0, 0);
+
+// 释放对象
+OH_Drawing_DestroyFontCollection(fc);
+OH_Drawing_ShaderEffectDestroy(colorShaderEffect);
+OH_Drawing_BrushDestroy(brush);
+OH_Drawing_DestroyTextStyle(txtStyle);
+OH_Drawing_DestroyTypographyStyle(typoStyle);
+OH_Drawing_DestroyTypographyHandler(handler);
+OH_Drawing_DestroyTypography(typography);
+```
+
+![zh-cn_image_gradient_c](figures/zh-cn_image_gradient_c.png)
+
+### 垂直对齐
+
+**垂直对齐**用于调整文本在一行中垂直方向的排版位置。开启行高缩放或行内存在不同字号文本混排时使能垂直对齐，可以让文本实现顶部对齐、居中对齐、底部对齐或基线对齐（默认）。
+
+| 接口定义 | 描述 | 
+| -------- | -------- |
+| void OH_Drawing_SetTypographyVerticalAlignment(OH_Drawing_TypographyStyle* style, OH_Drawing_TextVerticalAlignment align) | 设置文本垂直方向排版方式。| 
+
+示例及效果如下所示：
+```c++
+OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
+// 设置垂直对齐方式
+OH_Drawing_SetTypographyVerticalAlignment(typoStyle, OH_Drawing_TextVerticalAlignment::TEXT_VERTICAL_ALIGNMENT_CENTER);
+// 设置文字大小
+OH_Drawing_SetTextStyleFontSize(txtStyle, 30);
+// 设置文字颜色
+OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
+// 创建排版对象，并绘制
+OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
+OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+const char *text = "VerticalAlignment-center";
+OH_Drawing_TypographyHandlerAddText(handler, text);
+OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+OH_Drawing_TypographyLayout(typography, 1000);
+OH_Drawing_TypographyPaint(typography, canvas, 0, 0);
+
+// 释放对象
+OH_Drawing_DestroyFontCollection(fc);
+OH_Drawing_DestroyTextStyle(txtStyle);
+OH_Drawing_DestroyTypographyStyle(typoStyle);
+OH_Drawing_DestroyTypographyHandler(handler);
+OH_Drawing_DestroyTypography(typography);
+```
+
+![zh-cn_image_complexArkTsDemo2_2](figures/en_image_verticalAlignment_center.jpg)
+
+### 上下标
+
+**上下标**能将文本作为上标或下标参与排版。一般用于数学公式、化学式等场景。
+
+| 接口定义 | 描述 | 
+| -------- | -------- |
+| void OH_Drawing_SetTextStyleBadgeType(OH_Drawing_TextStyle* style, OH_Drawing_TextBadgeType textBadgeType) | 使能上下标样式。| 
+
+示例及效果如下所示：
+```c++
+OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
+OH_Drawing_TextStyle *badgeTxtStyle = OH_Drawing_CreateTextStyle();
+// 设置文字大小
+OH_Drawing_SetTextStyleFontSize(txtStyle, 30);
+OH_Drawing_SetTextStyleFontSize(badgeTxtStyle, 30);
+// 设置文字颜色
+OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
+OH_Drawing_SetTextStyleColor(badgeTxtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
+// 使能文本上标
+OH_Drawing_SetTextStyleBadgeType(badgeTxtStyle, OH_Drawing_TextBadgeType::TEXT_SUPERSCRIPT);
+// 创建排版对象，并绘制
+OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
+OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+const char *text = "Mass-energy equivalence: E=mc";
+OH_Drawing_TypographyHandlerAddText(handler, text);
+OH_Drawing_TypographyHandlerPushTextStyle(handler, badgeTxtStyle);
+const char *badgeText = "2";
+OH_Drawing_TypographyHandlerAddText(handler, badgeText);
+OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+OH_Drawing_TypographyLayout(typography, 1000);
+OH_Drawing_TypographyPaint(typography, canvas, 0, 0);
+
+// 释放对象
+OH_Drawing_DestroyFontCollection(fc);
+OH_Drawing_DestroyTextStyle(txtStyle);
+OH_Drawing_DestroyTextStyle(badgeTxtStyle);
+OH_Drawing_DestroyTypographyStyle(typoStyle);
+OH_Drawing_DestroyTypographyHandler(handler);
+OH_Drawing_DestroyTypography(typography);
+```
+
+![zh-cn_image_complexArkTsDemo2_2](figures/en_image_superscript.jpg)
+
+### 高对比度
+
+高对比度可将深色文字变黑、浅色文字变白。开发者可选择开启或关闭应用的高对比度文字渲染，或遵循系统设置中的高对比度文字配置。
+
+
+| 接口定义 | 描述 | 
+| -------- | -------- |
+| void OH_Drawing_SetTextHighContrast(OH_Drawing_TextHighContrast action) | 设置文字渲染高对比度模式。模式具体可参考[OH_Drawing_TextHighContrast](../reference/apis-arkgraphics2d/capi-drawing-text-global-h.md#oh_drawing_texthighcontrast)。 | 
+
+
+示例及示意效果如下所示：
+
+
+```c++
+// 开启APP的文字渲染高对比模式，该模式的优先级要高于系统设置中的高对比度文字配置
+OH_Drawing_SetTextHighContrast(TEXT_APP_ENABLE_HIGH_CONTRAST);
+// 创建一个 TypographyStyle，创建 Typography 时需要使用
+OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+
+// 设置文字颜色、大小，不设置 TextStyle 会使用 TypographyStyle 中的默认 TextStyle
+OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
+OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x6F, 0xFF, 0xFF));
+OH_Drawing_SetTextStyleFontSize(txtStyle, 100);
+
+// 创建 FontCollection，FontCollection 用于管理字体匹配逻辑
+OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
+// 使用 FontCollection 和 之前创建的 TypographyStyle 创建 TypographyCreate
+OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+
+// 将之前创建的 TextStyle 加入 handler 中
+OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+// 设置文本内容，并将文本添加到 handler 中
+const char *text = "Hello World Drawing\n";
+OH_Drawing_TypographyHandlerAddText(handler, text);  
+
+OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+OH_Drawing_TypographyLayout(typography, 1250);
+// 将文本绘制到画布上
+OH_Drawing_TypographyPaint(typography, canvas, 10, 800);
+
+// 释放内存
+OH_Drawing_DestroyTypographyStyle(typoStyle);
+OH_Drawing_DestroyTextStyle(txtStyle);
+OH_Drawing_DestroyFontCollection(fc);
+OH_Drawing_DestroyTypographyHandler(handler);
+OH_Drawing_DestroyTypography(typography);
+```
+
+| 高对比度设置 | 示意效果 | 
+| -------- | -------- |
+| 不开启高对比度 | ![zh-cn_image_highContrast_1](figures/zh-cn_image_highContrast_1.png) | 
+| 开启高对比度 | ![zh-cn_image_highContrast_2](figures/zh-cn_image_highContrast_2.png) | 
 
 ## 样式的拷贝、绘制与显示
 支持拷贝文本样式、段落样式、阴影样式，以便快速复制相关样式作用到不同文字上。

@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
-<!--SE: @weng-changcheng-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 多个任务同时执行时，由于任务复杂度不同，执行时间和返回数据的时间也会不同。如果宿主线程需要所有任务执行完毕的数据，可以通过[TaskGroup](../reference/apis-arkts/js-apis-taskpool.md#taskgroup10)的方式实现。
 
@@ -55,24 +56,45 @@
 2. 将需要执行的Task放到一个TaskGroup里面，当TaskGroup中的所有Task执行完毕后，会将所有Task的结果都放在一个数组中并返回给宿主线程，而不是每执行完一个Task就返回一次，这样宿主线程就可以在返回的数据里拿到所有Task的执行结果，便于后续使用。
 
    ```ts
-   // MultiTask.ets
+   // Index.ets
    import { taskpool } from '@kit.ArkTS';
    import { IconItemSource } from './IconItemSource';
    import { loadPicture } from './IndependentTask';
-    
-   let iconItemSourceList: IconItemSource[][] = [];
-    
-   let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup();
-   taskGroup.addTask(new taskpool.Task(loadPicture, 30));
-   taskGroup.addTask(new taskpool.Task(loadPicture, 20));
-   taskGroup.addTask(new taskpool.Task(loadPicture, 10));
-   taskpool.execute(taskGroup).then((ret: object) => {
-     let tmpLength = (ret as IconItemSource[][]).length
-     for (let i = 0; i < tmpLength; i++) {
-       for (let j = 0; j < ret[i].length; j++) {
-         iconItemSourceList.push(ret[i][j]);
+   
+   @Entry
+   @Component
+   struct Index {
+     @State message: string = 'Hello World';
+   
+     build() {
+       Row() {
+         Column() {
+           Text(this.message)
+             .fontSize(50)
+             .fontWeight(FontWeight.Bold)
+             .onClick(() => {
+               let iconItemSourceList: IconItemSource[][] = [];
+   
+               let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup();
+               taskGroup.addTask(new taskpool.Task(loadPicture, 30));
+               taskGroup.addTask(new taskpool.Task(loadPicture, 20));
+               taskGroup.addTask(new taskpool.Task(loadPicture, 10));
+               taskpool.execute(taskGroup).then((ret: object) => {
+                 let tmpLength = (ret as IconItemSource[][]).length;
+                 for (let i = 0; i < tmpLength; i++) {
+                   for (let j = 0; j < ret[i].length; j++) {
+                     iconItemSourceList.push(ret[i][j]);
+                   }
+                 }
+                 // The length of iconItemSourceList is 360
+                 console.info("The length of iconItemSourceList is " + iconItemSourceList.length);
+               })
+             })
+         }
+         .width('100%')
        }
+       .height('100%')
      }
-   })
+   }
    ```
    <!-- @[execute_task_group](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/MultiTask.ets) -->

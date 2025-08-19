@@ -3,8 +3,9 @@
 <!--Kit: AVCodec Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @mr-chencxy-->
-<!--SE: @dpy2650--->
-<!--TSE: @baotianhao-->
+<!--Designer: @dpy2650--->
+<!--Tester: @baotianhao-->
+<!--Adviser: @zengyawen-->
 
 开发者可以调用本模块的Native API接口，完成音频编码，即将音频PCM编码压缩成不同的格式。
 
@@ -158,6 +159,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         unique_lock<mutex> lock(signal->outMutex_);
         signal->outQueue_.push(index);
         signal->outBufferQueue_.push(data);
+        signal->outCond_.notify_all();
     }
     ```
     配置回调：
@@ -371,6 +373,9 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```c++
     uint32_t index = signal_->outQueue_.front();
     OH_AVBuffer *avBuffer = signal_->outBufferQueue_.front();
+    if (avBuffer == nullptr) {
+        // 异常处理
+    }
     // 获取buffer attributes。
     OH_AVCodecBufferAttr attr = {0};
     int32_t ret = OH_AVBuffer_GetBufferAttr(avBuffer, &attr);

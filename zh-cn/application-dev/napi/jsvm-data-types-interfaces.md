@@ -2,8 +2,9 @@
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @yuanxiaogou; @string_sz-->
-<!--SE: @knightaoko-->
-<!--TSE: @test_lzz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## JSVM-API 的数据类型
 
@@ -59,13 +60,13 @@ typedef struct {
 
 ### JSVM_Value
 
-在C++代码中，表示JavaScript值。
+在C++代码中，用于表示JavaScript值。
 
 ### JSVM_Env
 
 - 表示JSVM-API执行时的上下文，作为Native函数的参数传递给JSVM-API接口。
 
-- 退出Native侧插件时，JSVM_Env将失效，该事件通过回调传递给OH_JSVM_SetInstanceData。
+- 退出Native侧插件时，JSVM_Env将失效，该事件通过回调传递给OH_JSVM_SetInstanceData接口。
 
 - 禁止缓存JSVM_Env，并禁止在不同Worker中传递JSVM_Env。
 
@@ -450,8 +451,9 @@ static void LowGCFrequencyInit(bool &vmInit) {
 ```
 
 执行结果：
-使用以上三个接口可以分别初始化具备不同特性的 VM 平台。初始化之后，可以创建 VM 实例，并执行 JavaScript 脚本。其中，
-调用 LowGCFrequencyInit 接口进行 VM 平台初始化执行 JavaScript 脚本，相比调用 NormalInit 接口所触发的 GC 频次更低。调用 LowMemoryInit 接口进行 VM 平台初始化执行 JavaScript 脚本，相比调用 NormalInit 接口所占用内存更少。
+使用以上三个接口可以分别初始化具备不同特性的 VM 平台。初始化之后，可以创建 VM 实例，并执行 JavaScript 脚本。
+相比 NormalInit 接口，LowGCFrequencyInit 接口初始化的VM平台 GC 触发频次更低。
+相比 NormalInit 接口，LowMemoryInit 接口初始化的VM平台内存占用更少。
 
 **创建 VM 实例**
 
@@ -2397,7 +2399,7 @@ static napi_value Add([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_call
 
 **场景介绍**
 
-使用OH_JSVM_SetInstanceData()函数，设置与当前运行的JSVM环境相关联的数据。
+调用OH_JSVM_SetInstanceData接口，设置与当前运行的JSVM环境相关联的数据。
 
 **接口说明**
 | 接口 | 功能说明 |

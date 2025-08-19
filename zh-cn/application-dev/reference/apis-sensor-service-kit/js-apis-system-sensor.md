@@ -2,8 +2,9 @@
 <!--Kit: Sensor Service Kit-->
 <!--Subsystem: Sensors-->
 <!--Owner: @dilligencer-->
-<!--SE: @butterls-->
-<!--TSE: @murphy84-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 sensor模块提供订阅传感器数据基本能力，主要包含查询传感器的列表、订阅/取消传感器的数据、执行控制命令等。
 
@@ -343,7 +344,7 @@ import { Sensor, HeartRateResponse, SubscribeHeartRateOptions } from '@kit.Senso
 
 let subscribeHeartRateOptions: SubscribeHeartRateOptions = {
   success: (ret: HeartRateResponse) => {
-    console.info('Succeeded in subscribing. Get heartrate value:' + ret.heartRate);
+    console.info('Succeeded in subscribing. Get heartRate value:' + ret.heartRate);
   },
   fail: (data: string, code: number) => {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);

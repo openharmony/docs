@@ -1,5 +1,12 @@
 # 枚举说明
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @piggyguy; @jiyujia926; @yangfan229-->
+<!--Designer: @piggyguy; @s10021109; @yangfan229-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
+
 >**说明：**
 >
 >本模块首批接口从API version 7开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -769,7 +776,7 @@
 
 | 名称                      | 说明                       |
 | ----------------------- | ------------------------ |
-| MAX_LINES_FIRST         | 设置文本高度自适应方式为以MaxLines优先。 |
+| MAX_LINES_FIRST         | 设置文本高度自适应方式为以[maxLines](ts-basic-components-textarea.md#maxlines10)优先。 |
 | MIN_FONT_SIZE_FIRST     | 设置文本高度自适应方式为以缩小字体优先。     |
 | LAYOUT_CONSTRAINT_FIRST | 设置文本高度自适应方式为以布局约束（高度）优先。 |
 

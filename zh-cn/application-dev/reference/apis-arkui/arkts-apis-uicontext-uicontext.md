@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiang-shouxing-->
-<!--SE: @xiang-shouxing-->
-<!--TSE: @sally__-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 UIContext实例对象。
 
@@ -274,11 +275,6 @@ getMediaQuery(): MediaQuery
 **示例：** 
 
 完整示例请参考[mediaquery示例](js-apis-mediaquery.md#示例)。
-
-<!--code_no_check-->
-```ts
-uiContext.getMediaQuery();
-```
 
 ## getRouter
 
@@ -956,6 +952,8 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：** 
 
 | 参数名  | 类型                                                         | 必填 | 说明                           |
@@ -1023,6 +1021,8 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：** 
 
 | 参数名  | 类型                                                         | 必填 | 说明                           |
@@ -1083,6 +1083,8 @@ showTextPickerDialog(options: TextPickerDialogOptions): void
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：** 
 
@@ -1152,6 +1154,8 @@ showTextPickerDialog(style: TextPickerDialogOptions\|TextPickerDialogOptionsExt)
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：** 
 
@@ -1788,13 +1792,6 @@ getContextMenuController(): ContextMenuController
 |----|----|
 |[ContextMenuController](arkts-apis-uicontext-contextmenucontroller.md)| 获取ContextMenuController对象。|
 
-**示例：**
-
-<!--code_no_check-->
-```ts
-uiContext.getContextMenuController();
-```
-
 ## getMeasureUtils<sup>12+</sup>
 
 getMeasureUtils(): MeasureUtils
@@ -1814,11 +1811,6 @@ getMeasureUtils(): MeasureUtils
 **示例：**
 
 完整示例请参考[MeasureUtils](arkts-apis-uicontext-measureutils.md)中的示例。
-
-<!--code_no_check-->
-```ts
-uiContext.getMeasureUtils();
-```
 
 ## getComponentSnapshot<sup>12+</sup>
 

@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @oatuwwutao; @u012789010-->
-<!--SE: @hufeng20-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @hufeng20-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 ## 术语清单
 
@@ -79,7 +80,7 @@ test(a2);
 
 **2.安全保证的有限性**
 
-与其他代码混淆工具一样，混淆只能在一定程度上增加逆向过程的难度，并不能真正阻止逆向工程。
+与其他代码混淆工具一样，混淆只能在一定程度上增加逆向工程的难度，并不能真正阻止逆向工程。
 
 并且，由于ArkGuard混淆工具仅支持基础混淆能力，开发者不应只依赖ArkGuard来保证应用的安全性，对于源码安全有高要求的开发者，应考虑使用[应用加密](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/code-protect)、第三方安全加固等安全措施来保护代码。
 
@@ -514,15 +515,17 @@ testNapi.foo() // foo需要保留，示例如：-keep-property-name foo
   "otherProperty": "value2"
 }
 */
-const jsonData = fs.readFileSync('./test.json', 'utf8');
-let jsonObj = JSON.parse(jsonData);
-let jsonProp = jsonObj.jsonProperty; // jsonProperty应该被保留
+
+import jsonData from './test.json';
+
+let jsonProp = jsonData.jsonProperty; // jsonProperty应该被保留
+
 class jsonTest {
   prop1: string = '';
   prop2: number = 0
 }
 let obj = new jsonTest();
-const jsonStr = JSON.stringify(obj); // prop1、prop2会被混淆，应该被保留
+const jsonStr = JSON.stringify(obj); // prop1 和 prop2 会被混淆，应该被保留
 ```
 
 5.使用到的数据库相关的字段，需要手动保留。例如，数据库键值对类型（ValuesBucket）中的属性：
@@ -542,10 +545,10 @@ const valueBucket: ValuesBucket = {
 ```ts
 class A {
   // 1.成员变量装饰器
-  @CustomDecoarter
+  @CustomDecorator
   propertyName: string = ""   // propertyName 需要被保留
   // 2.成员方法装饰器
-  @MethodDecoarter
+  @MethodDecorator
   methodName1(){} // methodName1 需要被保留
   // 3.方法参数装饰器
   methodName2(@ParamDecorator param: string): void { // methodName2 需要被保留
@@ -555,7 +558,7 @@ class A {
 
 ### -keep-global-name
 
-指定要保留的顶层作用域或导入和导出元素的名称，支持使用[名称类通配符](#名称类通配符)。可按如下方式进行配置：
+指定要保留的顶层作用域及导入和导出元素的名称，支持使用[名称类通配符](#名称类通配符)。可按如下方式进行配置：
 
 ```txt
 -keep-global-name
@@ -567,7 +570,7 @@ printPersonName
 
 ```ts
 export namespace Ns {
-  export const age = 18; // -keep-global-name age 保留变量age
+  export const myAge = 18; // -keep-global-name myAge 保留变量myAge
   export function myFunc () {}; // -keep-global-name myFunc 保留函数myFunc
 }
 ```
@@ -671,7 +674,7 @@ const module2 = import(moduleName)
 | 通配符 | 含义                   | 示例                                       |
 | ------ | ---------------------- | ------------------------------------------ |
 |?|匹配任意单个字符|"AB?"能匹配"ABC"等，但不能匹配"AB"|
-|*|匹配任意数量的任意字符|"*AB*"能匹配"AB"、"aABb"、"cAB"、"ABc"等|
+|*|匹配任意数量的任意字符|"\*AB\*"能匹配"AB"、"aABb"、"cAB"、"ABc"等|
 
 **使用示例：**
 保留所有以a开头的属性名称：

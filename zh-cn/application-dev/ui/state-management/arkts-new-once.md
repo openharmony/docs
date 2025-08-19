@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiyujia926-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 想要实现仅从外部初始化一次且不接受后续同步变化的能力，可以使用\@Once装饰器搭配\@Param装饰器。
 
@@ -13,6 +14,7 @@
 >
 > 从API version 12开始，在\@ComponentV2装饰的自定义组件中支持使用\@Once装饰器。
 >
+> 从API version 12开始，该装饰器支持在原子化服务中使用。
 
 ## 概述
 

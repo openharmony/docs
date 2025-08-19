@@ -1,9 +1,10 @@
 # drawing_text_declaration.h
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
-<!--Owner: @oh_wangxk;@gmiao522;@Lem0nC-->
-<!--SE: @liumingxiang-->
-<!--TSE: @yhl0101-->
+<!--Owner: @oh_wangxk; @gmiao522; @Lem0nC-->
+<!--Designer: @liumingxiang-->
+<!--Tester: @yhl0101-->
+<!--Adviser: @ge-yafang-->
 ## 概述
 
 提供2d 绘制文本相关的数据结构声明

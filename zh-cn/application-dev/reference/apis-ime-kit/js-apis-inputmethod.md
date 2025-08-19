@@ -2,8 +2,9 @@
 <!--Kit: IME Kit-->
 <!--Subsystem: MiscServices-->
 <!--Owner: @illybyy-->
-<!--SE: @andeszhang-->
-<!--TSE: @murphy1984-->
+<!--Designer: @andeszhang-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 本模块主要面向普通前台应用（备忘录、信息、设置等系统应用与三方应用），提供对输入法（输入法应用）的控制、管理能力，包括显示/隐藏输入法软键盘、切换输入法、获取所有输入法列表等等。
 
@@ -38,7 +39,7 @@ import { inputMethod } from '@kit.IMEKit';
 | -------- | -------- | -------- | -------- | -------- |
 | name<sup>9+</sup>  | string | 是 | 否 | 必填。输入法包名。|
 | id<sup>9+</sup>    | string | 是 | 否 | 必填。输入法扩展在应用内唯一标识，与name一起组成输入法扩展的全局唯一标识。|
-| label<sup>9+</sup>    | string | 是 | 是 | 非必填。<br>- 当InputMethodProperty用于切换、查询等接口的入参时，开发者可不填写此字段，通过name和id即可唯一指定一个输入法扩展。<br>- 当InputMethodProperty作为查询接口的返回值时（如[getCurrentInputMethod](#inputmethodgetcurrentinputmethod9)），此字段表示输入法扩展对外显示的名称，优先使用InputmethodExtensionAbility中配置的label，若未配置，自动使用应用入口ability的label；当应用入口ability未配置label时，自动使用应用AppScope中配置的label。|
+| label<sup>9+</sup>    | string | 是 | 是 | 非必填。<br>- 当InputMethodProperty用于切换、查询等接口的入参时，开发者可不填写此字段，通过name和id即可唯一指定一个输入法扩展。<br>- 当InputMethodProperty作为查询接口的返回值时（如[getCurrentInputMethod](#inputmethodgetcurrentinputmethod9)），此字段表示输入法扩展对外显示的名称，优先使用InputMethodExtensionAbility中配置的label，若未配置，自动使用应用入口ability的label；当应用入口ability未配置label时，自动使用应用AppScope中配置的label。|
 | labelId<sup>10+</sup>    | number | 是 | 是 | 非必填。<br>- 当InputMethodProperty用于切换、查询等接口的入参时，开发者可不填写此字段，通过name和id即可唯一指定一个输入法扩展。<br>- 当InputMethodProperty作为查询接口的返回值时（如[getCurrentInputMethod](#inputmethodgetcurrentinputmethod9)），此字段表示label字段的资源号。|
 | icon<sup>9+</sup>    | string | 是 | 是 | 非必填。<br>- 当InputMethodProperty用于切换、查询等接口的入参时，开发者可不填写此字段，通过name和id即可唯一指定一个输入法扩展。<br>- 当InputMethodProperty作为查询接口的返回值时（如[getCurrentInputMethod](#inputmethodgetcurrentinputmethod9)），此字段表示输入法图标数据，可以通过iconId查询获取。|
 | iconId<sup>9+</sup>    | number | 是 | 是 | 非必填。<br>- 当InputMethodProperty用于切换、查询等接口的入参时，开发者可不填写此字段，通过name和id即可唯一指定一个输入法扩展。<br>- 当InputMethodProperty作为查询接口的返回值时（如[getCurrentInputMethod](#inputmethodgetcurrentinputmethod9)），此字段表示icon字段的资源号。|
@@ -80,7 +81,7 @@ getController(): InputMethodController
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
+| 12800006 | input method controller error. Possible cause: create InputMethodController object failed. |
 
 **示例：**
 
@@ -172,7 +173,7 @@ getSetting(): InputMethodSetting
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800007 |  input method setter error. Possible cause: create InputmethodSetting object failed. |
+| 12800007 |  input method setter error. Possible cause: create InputMethodSetting object failed. |
 
 **示例：**
 
@@ -222,9 +223,9 @@ try{
       return;
     }
     if (result) {
-      console.info('Succeeded in switching inputmethod.');
+      console.info('Succeeded in switching input method.');
     } else {
-      console.error('Failed to switchInputMethod.');
+      console.error('Failed to switch input method.');
     }
   });
 } catch(err) {
@@ -278,9 +279,9 @@ let currentIme = inputMethod.getCurrentInputMethod();
 try {
   inputMethod.switchInputMethod(currentIme).then((result: boolean) => {
     if (result) {
-      console.info('Succeeded in switching inputmethod.');
+      console.info('Succeeded in switching input method.');
     } else {
-      console.error('Failed to switchInputMethod.');
+      console.error('Failed to switch input method.');
     }
   }).catch((err: BusinessError) => {
     console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
@@ -874,7 +875,7 @@ onMessage(msgId: string, msgParam?: ArrayBuffer): void
 
 > **说明：**
 >
-> 当已注册的MeesageHandler接收到来自输入法应用发送的自定义通信数据时，会触发该回调函数。
+> 当已注册的MessageHandler接收到来自输入法应用发送的自定义通信数据时，会触发该回调函数。
 >
 > msgId为必选参数，msgParam为可选参数。存在收到仅有msgId自定义数据的可能，需与数据发送方确认自定义数据。
 
@@ -2169,7 +2170,7 @@ inputMethodController.sendMessage(msgId, msgParam).then(() => {
 
 recvMessage(msgHandler?: MessageHandler): void
 
-注册或取消注册Messagehandler。
+注册或取消注册MessageHandler。
 
 > **说明：**
 >

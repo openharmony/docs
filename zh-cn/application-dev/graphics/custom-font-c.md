@@ -1,9 +1,10 @@
 # 自定义字体的注册和使用（C/C++）
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
-<!--Owner: @oh_wangxk;@gmiao522;@Lem0nC-->
-<!--SE: @liumingxiang-->
-<!--TSE: @yhl0101-->
+<!--Owner: @oh_wangxk; @gmiao522; @Lem0nC-->
+<!--Designer: @liumingxiang-->
+<!--Tester: @yhl0101-->
+<!--Adviser: @ge-yafang-->
 
 ## 场景介绍
 
@@ -27,7 +28,7 @@
 | OH_Drawing_RegisterFont (OH_Drawing_FontCollection\* , const char\* fontFamily, const char\* familySrc ) | 用于在字体管理器中注册自定义字体，支持的字体文件格式包含：ttf、otf。 | 
 | OH_Drawing_CreateTextStyle(void) | 创建指向OH_Drawing_TextStyle对象的指针，用于设置文本样式。 | 
 | OH_Drawing_SetTextStyleFontFamilies (OH_Drawing_TextStyle \*, int, const char \*fontFamilies[]) | 设置字体类型。 | 
-
+| OH_Drawing_UnregisterFont (OH_Drawing_FontCollection\* , const char\* fontFamily) | 通过字体家族名称取消注册自定义字体。 | 
 
 ## 开发步骤
 
@@ -104,4 +105,13 @@
    OH_Drawing_TypographyHandlerAddText(handler, text);
    // 通过段落生成器生成段落
    OH_Drawing_Typography* typography = OH_Drawing_CreateTypography(handler);
+   ```
+
+7. 如果需要释放自定义字体，可以使用OH_Drawing_UnregisterFont接口。
+
+   ```c++
+   // 释放自定义字体
+   OH_Drawing_UnregisterFont(fontCollection, fontFamily);
+   // 重新排版
+   // ...
    ```
