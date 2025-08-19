@@ -31,7 +31,22 @@ Canvas是图形绘制的核心，本章中提到的所有绘制操作（包括�
 
 通过XComponent获取可直接显示的Canvas画布。
 
-1. 从XComponent对应的NativeWindow中获取BufferHandle对象。NativeWindow相关的API请参考[_native_window](../reference/apis-arkgraphics2d/capi-nativewindow.md)。
+1. 添加链接库。
+
+   在Native工程的src/main/cpp/CMakeLists.txt，添加如下链接库：
+
+   ```c++
+   target_link_libraries(entry PUBLIC libnative_drawing.so)
+   ```
+
+2. 导入依赖的相关头文件。
+
+   ```c++
+   #include <native_drawing/drawing_canvas.h>
+   #include <native_drawing/drawing_surface.h>
+   ```
+
+3. 从XComponent对应的NativeWindow中获取BufferHandle对象。NativeWindow相关的API请参考[_native_window](../reference/apis-arkgraphics2d/capi-nativewindow.md)。
 
    ```c++
    uint64_t width, height;
@@ -52,13 +67,13 @@ Canvas是图形绘制的核心，本章中提到的所有绘制操作（包括�
    BufferHandle* bufferHandle = OH_NativeWindow_GetBufferHandleFromNative(buffer);
    ```
 
-2. 从BufferHandle中获取对应的内存地址。
+4. 从BufferHandle中获取对应的内存地址。
 
    ```c++
    uint32_t* mappedAddr = static_cast<uint32_t *>(mmap(bufferHandle->virAddr, bufferHandle->size, PROT_READ | PROT_WRITE, MAP_SHARED, bufferHandle->fd, 0));
    ```
 
-3. 创建窗口画布。
+5. 创建窗口画布。
 
    ```c++
    OH_Drawing_Image_Info screenImageInfo = {static_cast<int32_t>(width), static_cast<int32_t>(height), COLOR_FORMAT_RGBA_8888, ALPHA_FORMAT_OPAQUE};
@@ -67,9 +82,9 @@ Canvas是图形绘制的核心，本章中提到的所有绘制操作（包括�
    OH_Drawing_CanvasBind(screenCanvas, screenBitmap);
    ```
 
-4. 利用上一步中得到的Canvas进行自定义的绘制操作，即本章下文中的内容。
+6. 利用上一步中得到的Canvas进行自定义的绘制操作，即本章下文中的内容。
 
-5. 利用XComponent完成显示。
+7. 利用XComponent完成显示。
 
    ```c++
    Region region {nullptr, 0};
