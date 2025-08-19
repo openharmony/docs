@@ -2695,6 +2695,7 @@ struct WebComponent {
   </head>
   <body>
     <h1>bindSelectionMenu Demo</h1>
+    <!--img.png为html同目录下图片-->
     <img src="./img.png" >
   </body>
 </html>
