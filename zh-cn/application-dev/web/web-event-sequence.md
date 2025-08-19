@@ -80,7 +80,7 @@ Web页面保活可以参考[使用离线Web组件](../web/web-offline-mode.md)�
 
     build() {
       Column() {
-        Web({ src: $rawfile('index.html'), controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onControllerAttached(() => {
             // 推荐在此loadUrl、设置自定义用户代理、注入JS对象等
             console.log('onControllerAttached execute')
@@ -169,20 +169,6 @@ Web页面保活可以参考[使用离线Web组件](../web/web-offline-mode.md)�
   }
   ```
 
-前端index.html。
-
-  ```html
-  <!-- index.html -->
-  <!DOCTYPE html>
-  <html>
-  <head>
-    <meta charset="UTF-8">
-  </head>
-  <body>
-  <h1>Hello, ArkWeb</h1>
-  </body>
-  </html>
-  ```
 
 ## Web组件网页加载的性能指标
 
