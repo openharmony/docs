@@ -4,7 +4,7 @@
 <!--Owner: @sunfei2021-->
 <!--Designer: @sunfei2021-->
 <!--Tester: @sally__-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @zhang_yixin13-->
 
 ArkTS以声明方式组合和扩展组件来描述应用程序的UI，同时还提供了基本的属性、事件和子组件配置方法，帮助开发者实现应用交互逻辑。
 
