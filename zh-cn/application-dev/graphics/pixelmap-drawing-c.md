@@ -15,10 +15,17 @@
    在Native工程的src/main/cpp/CMakeLists.txt，添加如下链接库：
 
    ```c++
+   target_link_libraries(entry PUBLIC libnative_drawing.so)
    target_link_libraries(entry PUBLIC libhilog_ndk.z.so libpixelmap.so)
    ```
 
-2. 创建OH_PixelmapNative像素图对象。
+2. 导入依赖的相关头文件。
+
+   ```c++
+   #include<multimedia/image_framework/image/pixelmap_native.h>
+   ```
+
+3. 创建OH_PixelmapNative像素图对象。
 
    PixelMap需要从图像框架定义的像素图对象（OH_PixelmapNative）中获取，所以需要先通过OH_PixelmapNative_CreatePixelmap()创建OH_PixelmapNative。该函数接受4个参数，第一个参数为图像像素数据的缓冲区，用于初始化PixelMap的像素。第二个参数是缓冲区长度。第三个参数是位图格式（包括长、宽、颜色类型、透明度类型等）。第四个参数即OH_PixelmapNative对象，作为出参使用。
    
@@ -56,7 +63,7 @@
    OH_PixelmapNative_CreatePixelmap(pixels, bufferSize, createOps, &pixelMapNative);
    ```
 
-3. 创建PixelMap。
+4. 创建PixelMap。
 
    通过OH_Drawing_PixelMapGetFromOhPixelMapNative()函数从OH_PixelmapNative中获取PixelMap。
 
@@ -64,7 +71,7 @@
    OH_Drawing_PixelMap *pixelMap = OH_Drawing_PixelMapGetFromOhPixelMapNative(pixelMapNative);
    ```
 
-4. 绘制PixelMap。
+5. 绘制PixelMap。
 
    需要通过OH_Drawing_CanvasDrawPixelMapRect()绘制位图PixelMap。函数接受5个参数，分别为画布Canvas、PixelMap对象、PixelMap中像素的截取区域、画布中显示的区域以及采样选项对象。
 
@@ -82,7 +89,7 @@
    OH_Drawing_CanvasDrawPixelMapRect(canvas, pixelMap, src, dst, samplingOptions);
    ```
 
-5. 绘制完成后释放相关对象。
+6. 绘制完成后释放相关对象。
 
    ```c++
    OH_PixelmapNative_Release(pixelMapNative);
