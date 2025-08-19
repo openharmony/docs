@@ -196,7 +196,8 @@ struct Index {
   // popup构造器定义弹框内容
   @Builder popupBuilder() {
     Row({ space: 2 }) {
-      Image($r("app.media.icon")).width(24).height(24).margin({ left: 5 }) // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
+      // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
+      Image($r("app.media.icon")).width(24).height(24).margin({ left: 5 })
       Text('This is Custom Popup').fontSize(15)
     }.width(200).height(50).padding(5)
   }
@@ -379,7 +380,8 @@ struct PopupItemChild {
 
   build() {
     Row({ space: 8 }) {
-      Image($r('app.media.startIcon')) // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+      Image($r('app.media.startIcon'))
         .width(24)
         .height(24)
       Text(this.childName)
