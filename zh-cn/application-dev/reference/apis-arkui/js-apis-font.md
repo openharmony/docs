@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hddgzw-->
-<!--SE: @pssea-->
-<!--TSE: @jiaoaozihao-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 本模块提供注册自定义字体。
 
@@ -135,6 +136,10 @@ getSystemFontList(): Array\<string>
 
 获取风格字体列表。
 
+该接口仅在PC/2in1设备上生效，在其他设备上返回空数组。
+
+推荐使用[getSystemFontFullNamesByType](../apis-arkgraphics2d/js-apis-graphics-text.md#textgetsystemfontfullnamesbytype14)接口获取系统最新支持的字体列表数据。
+
 > **说明：**
 >
 > 从API version 10开始支持，从API version 18开始废弃，建议使用[UIContext](arkts-apis-uicontext-uicontext.md)中的[getFont](arkts-apis-uicontext-uicontext.md#getfont)获取[Font](arkts-apis-uicontext-font.md)实例，再通过此实例调用替代方法[getSystemFontList](arkts-apis-uicontext-font.md#getsystemfontlist)。
@@ -150,10 +155,6 @@ getSystemFontList(): Array\<string>
 | 类型                 | 说明               |
 | -------------------- | ----------------- |
 | Array\<string>       | 系统的字体名列表。  |
-
->  **说明：**
->
->  该接口仅在2in1和移动设备上生效。<br/>为获取系统最新支持字体列表数据，推荐使用[getSystemFontFullNamesByType](../apis-arkgraphics2d/js-apis-graphics-text.md#textgetsystemfontfullnamesbytype14)接口。
 
 **示例：**
 

@@ -3,8 +3,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @yylong-->
-<!--SE: @yylong-->
-<!--TSE: @liuzhenshuo-->
+<!--Designer: @yylong-->
+<!--Tester: @liuzhenshuo-->
+<!--Adviser: @HelloCrease-->
 
 该组件用于实现支持懒加载的网格布局，其父组件仅限于[WaterFlow](ts-container-waterflow.md)或[FlowItem](ts-container-flowitem.md)，并支持使用自定义组件、[NodeContainer](ts-basic-components-nodecontainer.md)组件封装后，在WaterFlow或FlowItem组件下应用。
 

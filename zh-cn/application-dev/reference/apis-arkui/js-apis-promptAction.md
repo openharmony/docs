@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @houguobiao-->
-<!--SE: @houguobiao-->
-<!--TSE: @lxl007-->
+<!--Designer: @houguobiao-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 创建并显示文本提示框、对话框和操作菜单。
 
@@ -76,7 +77,7 @@ struct toastExample {
         .type(ButtonType.Capsule)
         .onClick(() => {
           this.promptAction.openToast({
-            message: 'Toast Massage',
+            message: 'Toast Message',
             duration: 10000,
           }).then((toastId: number) => {
             this.toastId = toastId;

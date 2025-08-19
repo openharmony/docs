@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @wangkailong; @yangxuguang-huawei; @Luobniz21-->
-<!--SE: @ccllee1; @li-weifeng2-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @ccllee1; @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 ContextConstant提供Context相关的枚举，当前仅包含数据加密等级的枚举。
 

@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @kangshihui-->
-<!--SE: @pssea-->
-<!--TSE: @jiaoaozihao-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 搜索框组件，适用于浏览器的搜索内容输入框等应用场景。
 
@@ -1051,6 +1052,8 @@ onWillChange的回调时序晚于onWillInsert、onWillDelete，早于onDidInsert
 onWillAttachIME(callback: Callback\<IMEClient>)
 
 在搜索框将要绑定输入法前触发该回调。
+
+<!--Del-->在搜索框将要绑定输入法前，可以通过`UIContext`的系统接口[setKeyboardAppearanceConfig](../js-apis-arkui-UIContext-sys.md#setkeyboardappearanceconfig20)设置键盘的样式。<!--DelEnd-->
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 

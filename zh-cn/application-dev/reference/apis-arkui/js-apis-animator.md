@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
-<!--SE: @yangfan229-->
-<!--TSE: @lxl007-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 本模块提供组件动画效果，包括定义动画、启动动画和以相反的顺序播放动画等。
 
@@ -71,6 +72,8 @@ create(options: AnimatorOptions): AnimatorResult
 
 **示例：** 
 
+完整示例请参考[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
+
 > **说明：**
 >
 > 推荐通过使用[UIContext](arkts-apis-uicontext-uicontext.md)中的[createAnimator](arkts-apis-uicontext-uicontext.md#createanimator)接口明确UI上下文。
@@ -124,6 +127,8 @@ create(options: AnimatorOptions \| SimpleAnimatorOptions): AnimatorResult
 
 **示例：**
 
+完整示例请参考[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
+
 > **说明：**
 >
 > 推荐通过使用[UIContext](arkts-apis-uicontext-uicontext.md)中的[createAnimator](arkts-apis-uicontext-uicontext.md#createanimator)接口明确UI上下文。
@@ -158,6 +163,8 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 | [AnimatorResult](#animatorresult) | Animator结果接口。 |
 
 **示例：** 
+
+完整示例请参考[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
 
 ```ts
 import { Animator as animator } from '@kit.ArkUI';
@@ -277,6 +284,8 @@ reset(options: AnimatorOptions \| SimpleAnimatorOptions): void
 
 **示例：**
 
+完整示例请参考[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
+
 <!--deprecated_code_no_check-->
 ```ts
 import { Animator as animator, AnimatorResult, AnimatorOptions, SimpleAnimatorOptions } from '@kit.ArkUI';
@@ -310,6 +319,8 @@ play(): void
 
 **示例：**
 
+完整示例请参考[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
+
 ```ts
 animator.play();
 ```
@@ -325,6 +336,8 @@ finish(): void
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
+
+完整示例请参考[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
 
 ```ts
 animator.finish();
@@ -342,6 +355,8 @@ pause(): void
 
 **示例：**
 
+完整示例请参考[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
+
 ```ts
 animator.pause();
 ```
@@ -358,6 +373,8 @@ cancel(): void
 
 **示例：**
 
+完整示例请参考[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
+
 ```ts
 animator.cancel();
 ```
@@ -373,6 +390,8 @@ reverse(): void
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
+
+完整示例请参考[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
 
 ```ts
 animator.reverse();
@@ -574,6 +593,8 @@ onframe: (progress: number) => void
 
 **示例：**
 
+完整示例请参考[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
+
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 
@@ -598,6 +619,8 @@ onfinish: () => void
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
+
+完整示例请参考[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
 
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
@@ -625,6 +648,8 @@ oncancel: () => void
 
 **示例：**
 
+完整示例请参考[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
+
 <!--deprecated_code_no_check-->
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
@@ -650,6 +675,8 @@ onrepeat: () => void
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
+
+完整示例请参考[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
 
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
@@ -730,6 +757,8 @@ update(options: AnimatorOptions): void
 
 **示例：**
 
+完整示例请参考[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
+
 ```ts
 animator.update(options);
 ```
@@ -776,6 +805,8 @@ SimpleAnimatorOptions的构造函数。
 
 **示例：**
 
+完整示例请参考[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
+
 ```ts
 import { Animator as animator, AnimatorResult, SimpleAnimatorOptions } from '@kit.ArkUI';
 
@@ -806,6 +837,8 @@ duration(duration: number): SimpleAnimatorOptions
 | [SimpleAnimatorOptions](#simpleanimatoroptions18) | Animator简易动画参数对象。 |
 
 **示例：**
+
+完整示例请参考[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
 
 ```ts
 import { Animator as animator, AnimatorResult, SimpleAnimatorOptions } from '@kit.ArkUI';
@@ -838,6 +871,8 @@ easing(curve: string): SimpleAnimatorOptions
 
 **示例：**
 
+完整示例请参考[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
+
 ```ts
 import { Animator as animator, AnimatorResult, SimpleAnimatorOptions } from '@kit.ArkUI';
 
@@ -868,6 +903,8 @@ delay(delay: number): SimpleAnimatorOptions
 | [SimpleAnimatorOptions](#simpleanimatoroptions18) | Animator简易动画参数对象。 |
 
 **示例：**
+
+完整示例请参考[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
 
 ```ts
 import { Animator as animator, AnimatorResult, SimpleAnimatorOptions } from '@kit.ArkUI';
@@ -900,6 +937,8 @@ fill(fillMode: [FillMode](./arkui-ts/ts-appendix-enums.md#fillmode)): SimpleAnim
 
 **示例：**
 
+完整示例请参考[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
+
 ```ts
 import { Animator as animator, AnimatorResult, SimpleAnimatorOptions } from '@kit.ArkUI';
 
@@ -931,6 +970,8 @@ direction(direction: [PlayMode](./arkui-ts/ts-appendix-enums.md#playmode)): Simp
 
 **示例：**
 
+完整示例请参考[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
+
 ```ts
 import { Animator as animator, AnimatorResult, SimpleAnimatorOptions } from '@kit.ArkUI';
 
@@ -961,6 +1002,8 @@ iterations(iterations: number): SimpleAnimatorOptions
 | [SimpleAnimatorOptions](#simpleanimatoroptions18) | Animator简易动画参数对象。 |
 
 **示例：**
+
+完整示例请参考[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
 
 ```ts
 import { Animator as animator, AnimatorResult, SimpleAnimatorOptions } from '@kit.ArkUI';

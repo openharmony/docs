@@ -3,8 +3,9 @@
 <!--Kit: Ads Kit-->
 <!--Subsystem: Advertising-->
 <!--Owner: @SukiEvas-->
-<!--SE: @zhansf1988-->
-<!--TSE: @hongmei_may-->
+<!--Designer: @zhansf1988-->
+<!--Tester: @hongmei_may-->
+<!--Adviser: @RayShih-->
 
 - ArkTS API<!--ads-arkts-->
   - [@ohos.advertising (广告服务框架)](js-apis-advertising.md)

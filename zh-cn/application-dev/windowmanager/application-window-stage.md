@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
 <!--Owner: @waterwin-->
-<!--SE: @nyankomiya-->
-<!--TSE: @qinliwen0417-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## 基本概念
 
@@ -39,14 +40,14 @@
 | WindowStage    | getMainWindow(callback: AsyncCallback&lt;Window&gt;): void   | 获取`WindowStage`实例下的主窗口。<br/>此接口仅可在`Stage`模型下使用。 |
 | WindowStage    | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前`WindowStage`的主窗口加载具体页面。<br>其中path为要加载到窗口中的页面内容的路径，该路径需添加到工程的main_pages.json文件中。<br/>此接口仅可在`Stage`模型下使用。 |
 | WindowStage    | createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void | 创建子窗口。<br/>此接口仅可在`Stage`模型下使用。             |
-| WindowStage    | on(type: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void | 开启WindowStage生命周期变化的监听。<br/>此接口仅可在`Stage`模型下使用。 |
+| WindowStage    | on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void | 开启WindowStage生命周期变化的监听。<br/>此接口仅可在`Stage`模型下使用。 |
 | window静态方法 | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | 创建子窗口或者系统窗口。<br/>-`config`：创建窗口时的参数。             |
 | Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 根据当前工程中某个页面的路径为窗口加载具体的页面内容。<br>其中path为要加载到窗口中的页面内容的路径，在Stage模型下该路径需添加到工程的main_pages.json文件中。                                     |
 | Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | 设置屏幕亮度值。                                             |
 | Window         | setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void | 设置窗口是否为可触状态。                                     |
 | Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口位置。                                           |
 | Window         | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | 改变当前窗口大小。                                           |
-| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt; | 设置窗口布局是否为全屏布局。                                 |
+| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt; | 设置窗口布局是否为沉浸式布局。                                 |
 | Window         | setWindowSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | 设置导航栏、状态栏是否显示。                                 |
 | Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt; | 设置窗口内导航栏、状态栏属性。<br/>`systemBarProperties`：导航栏、状态栏的属性集合。 |
 | Window         | showWindow(callback: AsyncCallback\<void>): void             | 显示当前窗口。                                               |

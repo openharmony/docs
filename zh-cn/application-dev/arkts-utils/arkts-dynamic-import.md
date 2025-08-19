@@ -3,8 +3,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @huyunhui1; @oh-rgx1; @zmw1-->
-<!--SE: @ctw-ian-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @ctw-ian-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 动态import支持条件延迟加载，支持部分反射功能，可以提升页面的加载速度；动态import支持加载HSP模块/HAR模块/OHPM包/Native库等，并且HAR模块间只有变量动态import时还可以进行模块解耦。
 

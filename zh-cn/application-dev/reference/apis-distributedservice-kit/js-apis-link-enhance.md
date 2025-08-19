@@ -2,8 +2,9 @@
 <!--Kit: Distributed Service Kit-->
 <!--Subsystem: DistributedSched-->
 <!--Owner: @wangJE-->
-<!--SE: @lee_jet520-->
-<!--TSE: @Ytt-test-->
+<!--Designer: @lee_jet520-->
+<!--Tester: @Ytt-test-->
+<!--Adviser: @w_Machine_cc-->
 linkEnhance模块提供高效的蓝牙连接和数据传输功能，增强设备间连接的稳定性。使用多通道合并算法，增加设备间连接数，提升跨设备数据传输能力，改善用户使用体验。
 
 > **说明：**

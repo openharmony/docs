@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -57,7 +58,7 @@ Session not config.
 
 **可能原因**
 
-会话配置前，调用start操作等。
+会话配置前，调用[start](arkts-apis-camera-Session.md#start11-1)操作等。
 
 **处理步骤**
 
@@ -75,7 +76,7 @@ Session not running.
 
 **可能原因**
 
-会话运行前，调用capture操作等。
+会话运行前，调用[capture](arkts-apis-camera-PhotoOutput.md#capture)操作等。
 
 **处理步骤**
 

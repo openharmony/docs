@@ -2,8 +2,9 @@
 <!--Kit: IME Kit-->
 <!--Subsystem: MiscServices-->
 <!--Owner: @illybyy-->
-<!--SE: @andeszhang-->
-<!--TSE: @murphy1984-->
+<!--Designer: @andeszhang-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 [InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md)提供了onCreate()和onDestroy()生命周期回调，根据需要重写对应的回调方法。InputMethodExtensionAbility的生命周期如下：
 
@@ -214,7 +215,7 @@
 
    主要描绘了具体按键功能。如按下数字键，就会将数字内容在输入框中打印出来，按下删除键，就会将内容删除。
 
-   同时在resources/base/profile/main_pages.json文件的src字段中添加此文件路径。
+   <!--Del-->同时在resources/base/profile/main_pages.json文件的src字段中添加此文件路径。<!--DelEnd-->
 
    ```ets
    import { numberSourceListData, sourceListType } from './KeyboardKeyData';

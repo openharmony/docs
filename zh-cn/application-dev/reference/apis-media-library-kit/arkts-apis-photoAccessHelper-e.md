@@ -2,14 +2,15 @@
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
-<!--SE: @liweilu1-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @xuchangda;@yixiaoff-->
-<!--SE: @guxinggang;@liweilu1-->
-<!--TSE: @wangbeibei;@xchaosioda-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
 
 > **说明：**
 >

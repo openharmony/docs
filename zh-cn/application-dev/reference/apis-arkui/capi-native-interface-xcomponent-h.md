@@ -1,4 +1,10 @@
 # native_interface_xcomponent.h
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @ZhangYu-Coder-->
+<!--Designer: @sunbees-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
@@ -30,7 +36,7 @@
 | [OH_NativeXComponent_ExtraMouseEventInfo](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent-extramouseeventinfo.md) | OH_NativeXComponent_ExtraMouseEventInfo | 提供封装的扩展的鼠标事件信息实例。 |
 | [OH_ArkUI_SurfaceHolder](capi-oh-nativexcomponent-native-xcomponent-oh-arkui-surfaceholder.md) | OH_ArkUI_SurfaceHolder | 提供封装的OH_ArkUI_SurfaceHolder实例。 |
 | [OH_ArkUI_SurfaceCallback](capi-oh-nativexcomponent-native-xcomponent-oh-arkui-surfacecallback.md) | OH_ArkUI_SurfaceCallback | 定义Surface生命周期回调函数。 |
-| [NativeWindow](capi-oh-nativexcomponent-native-xcomponent-nativewindow.md) | OHNativeWindow | 提供封装的NativeWindow实例。 |
+| [OHNativeWindow](capi-oh-nativexcomponent-native-xcomponent-nativewindow.md) | OHNativeWindow | 提供封装的NativeWindow实例。 |
 
 ### 枚举
 
@@ -1244,7 +1250,7 @@ int32_t OH_NativeXComponent_AttachNativeRootNode(OH_NativeXComponent* component,
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回执行的状态代码。<br>返回 [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) - 成功。<br>返回 [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) - 参数异常。 |
+| int32_t | 返回执行的状态代码。<br>返回 [OH_NATIVEXCOMPONENT_RESULT_SUCCESS](capi-native-interface-xcomponent-h.md#anonymous) - 成功。<br>返回 [OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER](capi-native-interface-xcomponent-h.md#anonymous) - 参数异常。|
 
 ### OH_NativeXComponent_DetachNativeRootNode()
 
@@ -1275,7 +1281,7 @@ int32_t OH_NativeXComponent_DetachNativeRootNode(OH_NativeXComponent* component,
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回执行的状态代码。<br>返回 [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) - 成功。<br>返回 [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) - 参数异常。 |
+| int32_t | 返回执行的状态代码。<br>返回 [OH_NATIVEXCOMPONENT_RESULT_SUCCESS](capi-native-interface-xcomponent-h.md#anonymous) - 成功。<br>返回 [OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER](capi-native-interface-xcomponent-h.md#anonymous) - 参数异常。|
 
 ### OH_NativeXComponent_RegisterUIInputEventCallback()
 

@@ -2,8 +2,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @lvzhenjie-->
-<!--SE: @wang_zhangjun; @chenxi0605-->
-<!--TSE: @liuhonggang123-->
+<!--Designer: @wang_zhangjun; @chenxi0605-->
+<!--Tester: @liuhonggang123-->
+<!--Adviser: @foryourself-->
 
 应用接入数据备份恢复需要通过BackupExtensionAbility实现。
 

@@ -2,8 +2,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @lvzhenjie; @hongjin-li_admin-->
-<!--SE: @chenxi0605; @JerryH1011-->
-<!--TSE: @leiyuqian-->
+<!--Designer: @chenxi0605; @JerryH1011-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @foryourself-->
 
 该模块提供文件分享能力，提供系统应用将公共目录文件统一资源标志符（Uniform Resource Identifier，URI）以读写权限授权给其他应用的接口，授权后应用可通过[@ohos.file.fs](js-apis-file-fs.md)的相关接口进行相关open、read、write等操作，实现文件分享。
 
@@ -21,7 +22,7 @@ import fileShare from '@ohos.fileshare';
 
 枚举，授予或使能权限的URI访问模式。
 
-**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 | 名称  | 值   | 说明  |
 | ----- |-----|-----|
@@ -35,7 +36,7 @@ import fileShare from '@ohos.fileshare';
 
 枚举，授予或使能权限策略失败的URI对应的错误码。
 
-**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 | 名称  | 值   | 说明        |
 | ----- |-----|-----------|
@@ -48,7 +49,7 @@ import fileShare from '@ohos.fileshare';
 
 授予或使能权限失败的URI策略结果。支持persistPermission、revokePermission、activatePermission、deactivatePermission接口抛出错误时使用。
 
-**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 | 名称| 类型| 必填 | 说明|
 |--------|--------|--------|---------|
@@ -60,7 +61,7 @@ import fileShare from '@ohos.fileshare';
 
 需要授予或使能权限URI的策略信息。
 
-**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 | 名称  | 类型  | 必填  | 说明                                                   |
 |------|-------|------|------------------------------------------------------|
@@ -71,7 +72,7 @@ import fileShare from '@ohos.fileshare';
 
 需要查询的文件或目录的信息。
 
-**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 | 名称 | 类型  | 必填  | 说明  |
 |------|-------|-----|--------|
@@ -82,7 +83,7 @@ import fileShare from '@ohos.fileshare';
 
 枚举，所查询策略信息对应的授权模式。
 
-**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 | 名称  | 值   | 说明        |
 | ----- |-----|-----------|
@@ -95,9 +96,9 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 异步方法对所选择的多个文件或目录URI持久化授权，以promise形式返回结果。该接口仅对具有该系统能力的设备开放（此接口不支持媒体类URI及远端URI的持久化）。
 
-**需要权限**：ohos.permission.FILE_ACCESS_PERSIST
+**需要权限：** ohos.permission.FILE_ACCESS_PERSIST
 
-**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **参数：**
 
@@ -127,8 +128,8 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import picker from '@ohos.file.picker';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { picker } from '@kit.CoreFileKit';
   
   async function persistPermissionExample() {
     try {
@@ -165,9 +166,9 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
 异步方法对所选择的多个文件或目录uri取消持久化授权，以promise形式返回结果。该接口仅对具有该系统能力的设备开放（此接口不支持媒体类URI及远端URI的持久化）。
 
-**需要权限**：ohos.permission.FILE_ACCESS_PERSIST
+**需要权限：** ohos.permission.FILE_ACCESS_PERSIST
 
-**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **参数：**
 
@@ -197,8 +198,8 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import picker from '@ohos.file.picker';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { picker } from '@kit.CoreFileKit';
   
   async function revokePermissionExample() {
     try {
@@ -235,9 +236,9 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 异步方法使能多个已经永久授权过的文件或目录，以promise形式返回结果。该接口仅对具有该系统能力的设备开放（此接口不支持媒体类URI及远端URI的持久化）。
 
-**需要权限**：ohos.permission.FILE_ACCESS_PERSIST
+**需要权限：** ohos.permission.FILE_ACCESS_PERSIST
 
-**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **参数：**
 
@@ -267,8 +268,8 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import picker from '@ohos.file.picker';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { picker } from '@kit.CoreFileKit';
   
   async function activatePermissionExample() {
     try {
@@ -306,9 +307,9 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 异步方法取消使能授权过的多个文件或目录，以promise形式返回结果。该接口仅对具有该系统能力的设备开放（此接口不支持媒体类URI及远端URI的持久化）。
 
-**需要权限**：ohos.permission.FILE_ACCESS_PERSIST
+**需要权限：** ohos.permission.FILE_ACCESS_PERSIST
 
-**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **参数：**
 
@@ -338,8 +339,8 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import picker from '@ohos.file.picker';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { picker } from '@kit.CoreFileKit';
   
   async function deactivatePermissionExample() {
     try {
@@ -374,7 +375,7 @@ checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;b
 
 异步方法校验所选择的多个文件或目录URI持久化授权，以promise形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **参数：**
 
@@ -401,8 +402,8 @@ checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;b
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import picker from '@ohos.file.picker';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { picker } from '@kit.CoreFileKit';
   
   async function checkPersistentPermissionExample() {
     try {

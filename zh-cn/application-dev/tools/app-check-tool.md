@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @jsjzju-->
-<!--SE: @jsjzju-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ## 简介
 
@@ -47,7 +48,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplica
     "startTime":"2023-11-17 14:48:01:265",
     "stopTime":"2023-11-17 14:48:01:434",
 	"result":[{
-        "md5":"975c41f5727b416b1ffefa5bb0f073b",
+        "md5":"975c41f5727b416b1ffefa5bb0f073b2",
         "size":1108880,
         "files":[
             "/application-entry-default.hap/libs/armeabi-v7a/example.so",
@@ -200,7 +201,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 | --------- | ------ | ------------------------------------------ |
 | suffix    | String | 同类型文件后缀名。                         |
 | totalSize | int    | 扫描的同类型文件的总大小，单位为Byte。 |
-| files     | Stuct  | [参考下表。](#section4)                      |
+| files     | Struct  | [参考下表。](#section4)                      |
 
 **同类型文件的对应路径和大小字段信息**<a name="section4"></a>
 | 字段     | 类型   | 描述                                                                |

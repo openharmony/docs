@@ -2,8 +2,9 @@
 <!--Kit: Common-->
 <!--Subsystem: Common-->
 <!--Owner: @zhang_yixin13-->
-<!--SE: @lingminghw-->
-<!--TSE: @RayShih-->
+<!--Designer: @lingminghw-->
+<!--Tester: @RayShih-->
+<!--Adviser: @zhang_yixin13-->
 
 - 入门<!--application-getting-started-->
   <!--Del-->
@@ -78,7 +79,7 @@
             - [ServiceExtensionAbility（仅对系统应用开放）](application-models/serviceextensionability.md)
             - [UIServiceExtension（仅对系统应用开放）](application-models/uiserviceextension-sys.md)
             - [UIExtensionAbility（仅对系统应用开放）](application-models/uiextensionability.md)
-            - [AutoFillExtensionAbility（仅对系统应用开放）](application-models/autofillextensionablility-guide.md)
+            - [使用AutoFillExtensionAbility实现自动填充功能（仅对系统应用开放）](application-models/autofillextensionablility-guide.md)
             - [使用通过UIServiceExtensionAbility实现的系统悬浮窗](application-models/uiserviceextension.md)
             <!--DelEnd-->
             - [EmbeddedUIExtensionAbility](application-models/embeddeduiextensionability.md)
@@ -267,7 +268,7 @@
           - [通过标准化数据通路实现数据共享 (ArkTS)](database/unified-data-channels.md)
           - [通过标准化数据通路实现数据共享 (C/C++)](database/unified-data-channels-c.md)
       - [应用数据向量化 (ArkTS)](database/aip-data-intelligence-embedding.md)
-      - [SQLite调试工具](database/sqlite-database-debug-tool.md)
+      - [SQLite调试工具指导](database/sqlite-database-debug-tool.md)
       - [ArkData术语](database/data-terminology.md)
     - ArkTS（方舟编程语言）<!--arkts-->
       - [ArkTS简介](arkts-utils/arkts-overview.md)
@@ -292,9 +293,9 @@
           - [TaskPool简介](arkts-utils/taskpool-introduction.md)
           - [Worker简介](arkts-utils/worker-introduction.md)
           - [TaskPool与Worker对比 (TaskPool和Worker)](arkts-utils/taskpool-vs-worker.md)
-        - 并发线程间通信<!--interthead-communication-->
+        - 并发线程间通信<!--interthread-communication-->
           - [ArkTS线程间通信概述](arkts-utils/interthread-communication-overview.md)
-          - 线程间通信对象<!--interthead-communication-object-->
+          - 线程间通信对象<!--interthread-communication-object-->
             - [线程间通信对象概述](arkts-utils/serializable-overview.md)
             - [普通对象](arkts-utils/normal-object.md)
             - [ArrayBuffer对象](arkts-utils/arraybuffer-object.md)
@@ -310,7 +311,7 @@
               - [共享模块](arkts-utils/arkts-sendable-module.md)
               - [Sendable对象冻结](arkts-utils/sendable-freeze.md)
               - [Sendable使用场景](arkts-utils/sendable-guide.md)
-          - 线程间通信场景<!--interthead-communication-guide-->
+          - 线程间通信场景<!--interthread-communication-guide-->
             - [使用TaskPool执行独立的耗时任务](arkts-utils/independent-time-consuming-task.md)
             - [使用TaskPool执行多个耗时任务](arkts-utils/multi-time-consuming-tasks.md)
             - [TaskPool任务与宿主线程通信](arkts-utils/taskpool-communicates-with-mainthread.md)
@@ -1436,7 +1437,7 @@
           - [振动开发概述](device/sensor/vibrator-overview.md)
           - [振动开发指导(ArkTS)](device/sensor/vibrator-guidelines.md)
           - [振动开发指导(C/C++)](device/sensor/vibrator-guidelines-capi.md)
-      - Mechanic Kit（机械设备管理服务）<!--mechanic-kit-->
+      - Mechanic Kit（机械体设备管理服务）<!--mechanic-kit-->
         - [Mechanic Kit简介](mechanicManager/mechanic-kit-intro.md)
         - [智能拍摄跟踪开发指南](mechanicManager/camera-tracking-guide.md)
         <!--Del-->
@@ -1623,6 +1624,7 @@
         - [视频编码](media/avcodec/video-encoding.md)
         - [视频编码同步模式](media/avcodec/synchronous-video-encoding.md)
         - [时域可分层视频编码](media/avcodec/video-encoding-temporal-scalability.md)
+        - [B帧视频编码](media/avcodec/video-encoding-b-frame.md)
         - [典型场景的视频编码配置](media/avcodec/video-encoding-configuration-typical-scenarios.md)
         - [ROI视频编码](media/avcodec/video-encoding-ROI.md)
         - [视频解码](media/avcodec/video-decoding.md)
@@ -1840,6 +1842,7 @@
           - [复杂文本绘制与显示（ArkTS）](graphics/complex-text-arkts.md)
           - [简单文本绘制与显示（C/C++）](graphics/simple-text-c.md)
           - [复杂文本绘制与显示（C/C++）](graphics/complex-text-c.md)
+        - [文本开发常见问题](graphics/text-faqs.md)
       - [NativeBuffer开发指导 (C/C++)](graphics/native-buffer-guidelines.md)
       - [NativeImage开发指导 (C/C++)](graphics/native-image-guidelines.md)
       - [NativeVSync开发指导 (C/C++)](graphics/native-vsync-guidelines.md)
@@ -1855,11 +1858,11 @@
         - [创建并使用环境资源](graphics3d/arkgraphics3D-resource-environment.md)
       - [ArkGraphics 3D场景动画控制以及管理](graphics3d/arkgraphics3D-animation.md)
   - 应用服务<!--gapp-service-->
+    <!--Del-->
     - Ads Kit（广告服务）<!--ads-kit-->
       - [广告标识服务](ads-service/oaid/oaid-service.md)
-      <!--Del-->
       - [重置OAID信息（仅对系统应用开放）](ads-service/oaid/oaid-service-sys.md)
-      <!--DelEnd-->
+    <!--DelEnd-->
 
     - Calendar Kit（日历服务）<!--calendar-kit-->
       - [Calendar Kit简介](calendarmanager/calendarmanager-overview.md)
@@ -2179,6 +2182,7 @@
           - [@ohos.app.ability.ChildProcessOptions (子进程启动选项)](reference/apis-ability-kit/js-apis-app-ability-childProcessOptions.md)
           - [@ohos.app.ability.common (Ability公共模块)](reference/apis-ability-kit/js-apis-app-ability-common.md)
           - [@ohos.app.ability.CompletionHandler (拉起应用结果的操作类)](reference/apis-ability-kit/js-apis-app-ability-completionHandler.md)
+          - [@ohos.app.ability.CompletionHandlerForAtomicService (打开原子化服务结果的操作类)](reference/apis-ability-kit/js-apis-app-ability-CompletionHandlerForAtomicService.md)
           - [@ohos.app.ability.contextConstant (Context相关常量)](reference/apis-ability-kit/js-apis-app-ability-contextConstant.md)
           - [@ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility)](reference/apis-ability-kit/js-apis-app-ability-embeddableUIAbility.md)
           - [@ohos.app.ability.EmbeddedUIExtensionAbility (跨进程界面嵌入扩展能力)](reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)
@@ -2194,7 +2198,7 @@
           - [@ohos.app.ability.ShareExtensionAbility (分享模板服务扩展能力)](reference/apis-ability-kit/js-apis-app-ability-shareExtensionAbility.md)
           - [@ohos.app.ability.StartOptions (startAbility的可选参数)](reference/apis-ability-kit/js-apis-app-ability-startOptions.md)
           - [@ohos.app.ability.UIAbility (带界面的应用组件)](reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)
-          - [@ohos.app.ability.UIExtensionAbility (带界面扩展能力基类)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)
+          - [@ohos.app.ability.UIExtensionAbility (带界面的ExtensionAbility组件)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)
           - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md)
           - [@ohos.app.ability.sendableContextManager (sendable上下文管理)](reference/apis-ability-kit/js-apis-app-ability-sendableContextManager.md)
           - [@ohos.app.appstartup.StartupConfig (启动框架配置信息)](reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md)
@@ -3439,7 +3443,7 @@
           - [OH_NativeXComponent_ExtraMouseEventInfo](reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent-extramouseeventinfo.md)
           - [OH_ArkUI_SurfaceHolder](reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent-oh-arkui-surfaceholder.md)
           - [OH_ArkUI_SurfaceCallback](reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent-oh-arkui-surfacecallback.md)
-          - [NativeWindow](reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent-nativewindow.md)
+          - [OHNativeWindow](reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent-nativewindow.md)
           - [ArkUI_AttributeItem](reference/apis-arkui/capi-arkui-nativemodule-arkui-attributeitem.md)
           - [ArkUI_NodeComponentEvent](reference/apis-arkui/capi-arkui-nativemodule-arkui-nodecomponentevent.md)
           - [ArkUI_StringAsyncEvent](reference/apis-arkui/capi-arkui-nativemodule-arkui-stringasyncevent.md)
@@ -4596,7 +4600,7 @@
             - [Usb_DeviceArray](reference/apis-driverdevelopment-kit/capi-usbddk-usb-devicearray.md)
             - [UsbSerial_Params](reference/apis-driverdevelopment-kit/capi-serialddk-usbserial-params.md)
             - [UsbSerial_DeviceHandle](reference/apis-driverdevelopment-kit/capi-serialddk-usbserial-devicehandle.md)
-        - 错误码
+        - 错误码<!--driver-development-errcode-->
           - [驱动错误码](reference/apis-driverdevelopment-kit/errorcode-deviceManager.md)
       - Multimodal Awareness Kit（多模态融合感知服务）<!--multimodal-awareness-api-->
         - ArkTS API<!--multimodal-awareness-arkts-->
@@ -4762,6 +4766,7 @@
         - 头文件<!--audio-headerfile-->
           - [native_audiocapturer.h](reference/apis-audio-kit/capi-native-audiocapturer-h.md)
           - [native_audio_manager.h](reference/apis-audio-kit/capi-native-audio-manager-h.md)
+          - [native_audio_resource_manager.h](reference/apis-audio-kit/capi-native-audio-resource-manager-h.md)
           - [native_audio_routing_manager.h](reference/apis-audio-kit/capi-native-audio-routing-manager-h.md)
           - [native_audio_session_manager.h](reference/apis-audio-kit/capi-native-audio-session-manager-h.md)
           - [native_audio_stream_manager.h](reference/apis-audio-kit/capi-native-audio-stream-manager-h.md)
@@ -4769,11 +4774,12 @@
           - [native_audiorenderer.h](reference/apis-audio-kit/capi-native-audiorenderer-h.md)
           - [native_audio_common.h](reference/apis-audio-kit/capi-native-audio-common-h.md)
           - [native_audio_device_base.h](reference/apis-audio-kit/capi-native-audio-device-base-h.md)
-          - [native_audio_resource_manager.h](reference/apis-audio-kit/capi-native-audio-resource-manager-h.md)
           - [native_audiostream_base.h](reference/apis-audio-kit/capi-native-audiostream-base-h.md)
           - [native_audiostreambuilder.h](reference/apis-audio-kit/capi-native-audiostreambuilder-h.md)
         - 结构体<!--audio-struct-->
           - [OH_AudioManager](reference/apis-audio-kit/capi-ohaudio-oh-audiomanager.md)
+          - [OH_AudioResourceManager](reference/apis-audio-kit/capi-ohaudio-oh-audioresourcemanager.md)
+          - [OH_AudioWorkgroup](reference/apis-audio-kit/capi-ohaudio-oh-audioworkgroup.md)
           - [OH_AudioRoutingManager](reference/apis-audio-kit/capi-ohaudio-oh-audioroutingmanager.md)
           - [OH_AudioSession_Strategy](reference/apis-audio-kit/capi-ohaudio-oh-audiosession-strategy.md)
           - [OH_AudioSession_DeactivatedEvent](reference/apis-audio-kit/capi-ohaudio-oh-audiosession-deactivatedevent.md)
@@ -4783,8 +4789,6 @@
           - [OH_AudioVolumeManager](reference/apis-audio-kit/capi-ohaudio-oh-audiovolumemanager.md)
           - [OH_AudioDeviceDescriptorArray](reference/apis-audio-kit/capi-ohaudio-oh-audiodevicedescriptorarray.md)
           - [OH_AudioDeviceDescriptor](reference/apis-audio-kit/capi-ohaudio-oh-audiodevicedescriptor.md)
-          - [OH_AudioResourceManager](reference/apis-audio-kit/capi-ohaudio-oh-audioresourcemanager.md)
-          - [OH_AudioWorkgroup](reference/apis-audio-kit/capi-ohaudio-oh-audioworkgroup.md)
           - [OH_AudioStreamInfo](reference/apis-audio-kit/capi-ohaudio-oh-audiostreaminfo.md)
           - [OH_AudioRenderer_Callbacks_Struct](reference/apis-audio-kit/capi-ohaudio-oh-audiorenderer-callbacks-struct.md)
           - [OH_AudioCapturer_Callbacks_Struct](reference/apis-audio-kit/capi-ohaudio-oh-audiocapturer-callbacks-struct.md)
@@ -5184,7 +5188,7 @@
           - [video_processing_types.h](reference/apis-media-kit/capi-video-processing-types-h.md)
         - 结构体<!--media-struct-->
           - [OH_AVImageGenerator](reference/apis-media-kit/capi-avimagegenerator-oh-avimagegenerator.md)
-          - [OH_AVMetadataExtractor](reference/apis-media-kit/capi-avmetadaextractor-oh-avmetadataextractor.md)
+          - [OH_AVMetadataExtractor](reference/apis-media-kit/capi-avmetadataextractor-oh-avmetadataextractor.md)
           - [MediaKeySession](reference/apis-media-kit/capi-avplayer-mediakeysession.md)
           - [DRM_MediaKeySystemInfo](reference/apis-media-kit/capi-avplayer-drm-mediakeysysteminfo.md)
           - [AVPlayerCallback](reference/apis-media-kit/capi-avplayer-avplayercallback.md)

@@ -2,8 +2,9 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @MyLinChi-->
-<!--SE: @csuxsh-->
-<!--TSE: @zhujieliang-->
+<!--Designer: @csuxsh-->
+<!--Tester: @zhujieliang-->
+<!--Adviser: @ge-yafang-->
 
 SQLite是一款轻量级、嵌入式、无服务器的关系型数据库管理系统，其核心优势在于将整个数据库存储于单一文件中，无需独立服务器进程，支持跨平台运行，被广泛应用于移动应用、嵌入式设备和桌面软件等场景。
 
@@ -45,8 +46,7 @@ sqlite>
 c:/users/zzz>hdc shell
 # 尝试打开或创建新的数据库
 $ sqlite3 a.db
-SQLiteversion 3.40.1
-2022-12-28 14:03:47
+SQLite version 3.44.4 2025-02-19 00:18:53
 Enter ".help" for usage hints.
 # 创建表
 sqlite>create table t1(a int);
@@ -210,7 +210,7 @@ sqlite>.tables
   ```
 
 
-- 输入以下SQL语句`INSERT INTOCOMPANY(字段)values()`语句插入多条数据：
+- 输入以下SQL语句`INSERT INTO COMPANY(字段)values()`语句插入多条数据：
 
   ```sql
   sqlite> INSERT INTO COMPANY(ID, NAME, AGE, ADDRESS, SALARY)

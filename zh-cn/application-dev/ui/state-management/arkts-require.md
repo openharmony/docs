@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @VictorS67-->
-<!--SE: @lixingchi1-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @lixingchi1-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 \@Require是校验\@Prop、\@State、\@Provide、\@BuilderParam、\@Param和普通变量(无状态装饰器修饰的变量)是否需要构造传参的一个装饰器。
 

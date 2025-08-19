@@ -2,8 +2,9 @@
 <!--Kit: Neural Network Runtime Kit-->
 <!--Subsystem: AI-->
 <!--Owner: @GbuzhidaoR-->
-<!--SE: @GbuzhidaoR-->
-<!--TSE @GbuzhidaoR-->
+<!--Designer: @GbuzhidaoR-->
+<!--Tester: @GbuzhidaoR-->
+<!--Adviser: @ge-yafang-->
 
 - C API<!--neural-network-runtime-c-->
   - 模块<!--neural-network-runtime-module-->

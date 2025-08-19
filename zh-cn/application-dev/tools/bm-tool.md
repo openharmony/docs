@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
-<!--SE: @hanfeng6-->
-<!--TSE: @kongjing2-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、更新、查询等功能的工具，bm为开发者提供基本的应用安装包的调试能力。
 
@@ -984,13 +985,15 @@ error: signature verification failed due to not trusted app source.
 
 **可能原因**
 
-* 场景一：签名中未包含该调试设备的UDID。
+<!--RP8-->
+<!--RP8End-->签名中未包含该调试设备的UDID。
 
-<!--RP8--><!--RP8End-->
+
 
 **处理步骤**
 
-* 场景一：
+<!--RP9-->
+<!--RP9End-->
 1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
 2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
 
@@ -1014,8 +1017,6 @@ error: signature verification failed due to not trusted app source.
 
 3. 使用文本编辑器打开已签名的HAP，检查签名中是否包含调试设备的UDID，搜索device-ids。
 
-<!--RP9--><!--RP9End-->
-
 ### 9568286 安装应用的签名证书profile文件中的类型与已安装应用的不相同
 **错误信息**
 
@@ -1023,7 +1024,7 @@ error: install provision type not same.
 
 **错误描述**
 
-在启动调试或运行应用/服务时，由于安装应用的<!--RP5-->[签名Profile文件](../security/)<!--RP5End-->中的类型与已安装应用的不相同，导致安装HAP出现错误。
+在启动调试或运行应用/服务时，由于安装应用的<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->中的类型与已安装应用的不相同，导致安装HAP出现错误。
 
 **可能原因**
 
@@ -1201,8 +1202,8 @@ error: install sign info inconsistent.
 
 **可能原因**
 
-1. 设备上已安装的应用与新安装的应用中签名不一致或者多个包（HAP和HSP）之间的签名存在差异。若两个应用的签名[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)或<!--RP7-->APP ID<!--RP7End-->中至少有一项相同，则认为它们的签名一致。如果在DevEco Studio的“Edit Configurations”中勾选了“Keep Application Data”（即不卸载应用，直接覆盖安装），并且重新进行了签名，将导致该报错。
-2. 如果某个应用被卸载但是保留了数据，那么后面安装相同包名的应用时，需要校验其签名信息的一致性。如果两者签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和<!--RP7-->APP ID<!--RP7End-->都不一致，则会导致该报错。
+1. 设备上已安装的应用与新安装的应用中签名不一致或者多个包（HAP和HSP）之间的签名存在差异。若两个应用的签名[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)或<!--RP7-->应用[Profile签名文件](../security/app-provision-structure.md)中的app-identifier<!--RP7End-->中至少有一项相同，则认为它们的签名一致。如果在DevEco Studio的“Edit Configurations”中勾选了“Keep Application Data”（即不卸载应用，直接覆盖安装），并且重新进行了签名，将导致该报错。
+2. 如果某个应用被卸载但是保留了数据，那么后面安装相同包名的应用时，需要校验其签名信息的一致性。如果两者签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和<!--RP7-->应用[Profile签名文件](../security/app-provision-structure.md)中的app-identifier<!--RP7End-->都不一致，则会导致该报错。
 
 
 **处理步骤**
@@ -2198,7 +2199,7 @@ error: Failed to install the HAP because an enterprise normal/MDM bundle cannot 
 
 **错误描述**
 
-非企业设备禁止安装<!--RP5-->[签名Profile文件](../security/)<!--RP5End-->中的类型为enterprise_mdm或enterprise_normal的应用。
+非企业设备禁止安装<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->中的类型为enterprise_mdm或enterprise_normal的应用。
 
 **可能原因**
 
@@ -2215,15 +2216,15 @@ error: Release bundle can not be installed.
 
 **错误描述**
 
-禁止通过bm命令安装<!--RP5-->[签名Profile文件](../security/)<!--RP5End-->中的类型为app_gallery并且签名证书类型为release的应用。
+禁止通过bm命令安装<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->中的类型为app_gallery并且签名证书类型为release的应用。
 
 **可能原因**
 
-安装应用<!--RP5-->[签名Profile文件](../security/)<!--RP5End-->中的类型为app_gallery并且签名证书类型为release。
+安装应用<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->中的类型为app_gallery并且签名证书类型为release。
 
 **处理步骤**
 
-1. 使用<!--RP5-->[签名Profile文件](../security/)<!--RP5End-->中的类型非app_gallery的文件对应用重新签名。
+1. 使用<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->中的类型非app_gallery的文件对应用重新签名。
 2. 使用debug类型证书对应用重新签名。
 
 ### 9568403 安装加密校验失败
@@ -2377,11 +2378,11 @@ error: bundle cannot be installed because the appId is not same with preinstalle
 
 **可能原因**
 
-安装应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和<!--RP7-->APP ID<!--RP7End-->与已卸载的预置应用都不一致。
+安装应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和<!--RP7-->应用[Profile签名文件](../security/app-provision-structure.md)中的app-identifier<!--RP7End-->与已卸载的预置应用都不一致。
 
 **处理步骤**
 
-1. 重新签名，保证应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和<!--RP7-->APP ID<!--RP7End-->任意一个与预置应用的一致。
+1. 重新签名，保证应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和<!--RP7-->应用[Profile签名文件](../security/app-provision-structure.md)中的app-identifier<!--RP7End-->任意一个与预置应用的一致。
 2. 修改安装应用的[bundleName](../quick-start/app-configuration-file.md#配置文件标签)，确保与预置应用的不一致。
 
 ### 9568418 应用设置了卸载处置规则，不允许直接卸载
@@ -2442,7 +2443,7 @@ error: Failed to install the HAP or HSP because the app distribution type is not
 
 **可能原因**
 
-该<!--RP5-->[签名Profile文件](../security/)<!--RP5End-->中的类型被限制，禁止安装到当前设备中。
+该<!--RP5-->[签名Profile文件](../security/app-provision-structure.md)<!--RP5End-->中的类型被限制，禁止安装到当前设备中。
 
 **处理步骤**
 
@@ -2459,13 +2460,13 @@ error: Failed to install the HAP because the device is unauthorized, make sure t
 
 **可能原因**
 
-该应用的<!--RP5-->[签名Profile文件](../security/)<!--RP5End-->为调试类型，且未配置当前设备的UDID。
+该应用的<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->为调试类型，且未配置当前设备的UDID。
 
 **处理步骤**
 
-方式一：重新[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。
+<!--RP6-->
+<!--RP6End-->重新[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。
 
-<!--RP6--><!--RP6End-->
 
 ### 9568380 卸载系统应用失败
 **错误信息**
@@ -2515,7 +2516,14 @@ error: Check pluginDistributionID between plugin and host application failed.
 
 **处理步骤**
 
-重新配置应用或者插件<!--RP5-->[签名Profile文件](../security/)<!--RP5End-->中的 pluginDistributionIDs。
+重新配置应用或者插件<!--RP5-->[签名证书profile文件](../security/app-provision-structure.md)<!--RP5End-->中的 pluginDistributionIDs。配置格式如下：
+```
+"app-services-capabilities":{
+    "ohos.permission.kernel.SUPPORT_PLUGIN":{
+        "pluginDistributionIDs":"value-1,value-2,···"
+    }
+}
+``` 
 
 ### 9568433 应用缺少ohos.permission.SUPPORT_PLUGIN权限
 **错误信息**
@@ -2834,11 +2842,11 @@ error: Failed to install the plugin because the plugin id failed to be parsed.
 
 **处理步骤**
 
-参考如下格式，重新配置插件profile签名文件中的"app-services-capabilities"字段。
+参考如下格式，重新配置插件<!--RP5-->[签名证书profile文件](../security/app-provision-structure.md)<!--RP5End-->中的"app-services-capabilities"字段。
 ```
 "app-services-capabilities":{
     "ohos.permission.kernel.SUPPORT_PLUGIN":{
-        "pluginDistributionIDs":"value-1|value-2|···"
+        "pluginDistributionIDs":"value-1,value-2,···"
     }
 }
 ```
@@ -2888,7 +2896,7 @@ error: install failed due to U1Enabled can not change.
 
 **可能原因**
 
-应用<!--RP5-->[签名Profile文件](../security/)<!--RP5End-->中allowed-acls字段的U1Enabled配置发生变更，例如：
+应用<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->中allowed-acls字段的U1Enabled配置发生变更，例如：
 1. 已安装应用在allowed-acls中配置了U1Enabled，待安装应用在allowed-acls中没有配置U1Enabled。
 2. 已安装应用在allowed-acls中没有配置U1Enabled，待安装应用在allowed-acls中配置了U1Enabled。
 
@@ -2908,7 +2916,7 @@ error: Install failed due to the U1Enabled is not same in all haps.
 
 **可能原因**
 
-多HAP包签名时使用的<!--RP5-->[签名Profile文件](../security/)<!--RP5End-->不一致导致签名信息中allowed-acls的U1Enabled配置不一致。
+多HAP包签名时使用的<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->不一致导致签名信息中allowed-acls的U1Enabled配置不一致。
 
 **处理步骤**
 

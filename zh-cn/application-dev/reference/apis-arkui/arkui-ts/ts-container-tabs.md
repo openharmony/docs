@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
-<!--SE: @yangfan229-->
-<!--TSE: @lxl007-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 通过页签进行内容视图切换的容器组件，每个页签对应一个内容视图。
 
@@ -16,7 +17,7 @@
 
 ## 子组件
 
-不支持自定义组件作为子组件，仅可包含子组件[TabContent](ts-container-tabcontent.md)，以及渲染控制类型[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)和[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)，并且if/else和ForEach下也仅支持TabContent，不支持自定义组件。
+仅支持子组件[TabContent](ts-container-tabcontent.md)，以及渲染控制类型[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)和[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)，不建议自定义组件作为子组件。并且if/else和ForEach下也仅支持TabContent作为子组件，不建议自定义组件作为子组件。
 
 >  **说明：**
 >

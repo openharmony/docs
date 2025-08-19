@@ -2,8 +2,9 @@
 <!--Kit: IME Kit-->
 <!--Subsystem: MiscServices-->
 <!--Owner: @illybyy-->
-<!--SE: @andeszhang-->
-<!--TSE: @murphy1984-->
+<!--Designer: @andeszhang-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 本模块为系统输入法应用提供管理能力，包括创建软键盘窗口、插入/删除字符、选中文本、监听物理键盘按键事件等。
 

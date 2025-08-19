@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiang-shouxing-->
-<!--SE: @xiang-shouxing-->
-<!--TSE: @sally__-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 
 ArkUI开发框架提供了一系列NDK接口，能够在应用中使用C和C++代码构建UI界面，这些接口包括UI组件创建、UI树操作、属性设置和事件监听等。面向通用UI界面开发场景，建议使用ArkTS代码和ArkUI声明式开发框架。然而，如果需要实现以下一个或多个目标，那么ArkUI NDK接口就能派上用场：
@@ -64,7 +65,7 @@ ArkUI NDK接口能力主要包括：
 | -------- | -------- |
 | [NDK开发导读](../napi/ndk-development-overview.md) | 介绍NDK的适用场景与必备基础知识。 |
 | [接入ArkTS页面](ndk-access-the-arkts-page.md) | 介绍了如何将NDK接口开发的UI界面挂载到ArkTS主页面上进行渲染显示。 |
-| [监听组件事件](ndk-listen-to-component-events.md) | 介绍了如何注册组件的事件监听和添加手势交互。 |
+| [添加交互事件](ndk-listen-to-component-events.md) | 介绍了如何添加组件的交互事件。 |
 | [使用动画](ndk-use-animation.md) | 介绍了如何在Native侧添加动画。 |
 | [构建布局](ndk-loading-long-list.md) | 介绍了如何在Native侧使用容器组件构建布局。 |
 | [构建弹窗](ndk-build-pop-up-window.md) | 介绍了如何使用弹窗接口构建UI界面进行弹窗显示。 |

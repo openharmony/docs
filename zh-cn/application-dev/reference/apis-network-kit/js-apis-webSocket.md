@@ -1,10 +1,11 @@
 # @ohos.net.webSocket (WebSocket连接)
 
-<!--Kit:Network Kit-->
-<!--Subsystem:Communication-->
-<!--Owner:@wmyao_mm-->
-<!--SE:@guo-min_net-->
-<!--TSE:@tongxilin-->
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
 
 > **说明：**
 >
@@ -868,7 +869,7 @@ createWebSocketServer(): WebSocketServer
 
 > **说明：**
 >
-> 目前服务端仅支持智慧屏使用，非智慧屏形态的产品调用该接口创建对象时，会返回空指针。
+> 目前该接口在TV中可正常调用，在其他设备中无效果，返回nullptr。
 
 **系统能力**: SystemCapability.Communication.NetStack
 

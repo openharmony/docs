@@ -1,5 +1,12 @@
 # @ohos.application.uriPermissionManager(URI权限管理)(系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @duan-sizhao-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 URI权限管理模块。用于应用A授权/撤销授权URI给应用B。
 
 > **说明：**
@@ -451,11 +458,11 @@ grantUriPermissionByKey(key: string, flag: wantConstant.Flags, targetTokenId: nu
 
 通过UDMF数据唯一标识key，将当前应用的文件URI访问权限授权给目标应用，权限将在目标应用退出后回收。使用Promise异步回调。
 
-当前仅支持phone、tablet、2in1设备。
-
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在phone、tablet和2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -525,13 +532,13 @@ grantUriPermissionByKeyAsCaller(key: string, flag: wantConstant.Flags, callerTok
 
 通过UDMF数据唯一标识key，将指定应用的文件URI访问权限授权给目标应用，权限将在目标应用退出后回收。使用Promise异步回调。
 
-当前仅支持phone、tablet、2in1设备。
-
 **系统接口**：此接口为系统接口。
 
 **需要权限：** ohos.permission.GRANT_URI_PERMISSION_AS_CALLER，仅系统应用可用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在phone、tablet和2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 

@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @chenmudan; @hufeng20; @ctw-ian-->
-<!--SE: @hufeng20;@ctw-ian-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @hufeng20; @ctw-ian-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 ArkTS SDK提供了一套完整的编译工具链，以支持ArkTS的应用编译，通过将其部署在[Hvigor](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor)编译任务的编排工具上，实现将应用的ArkTS/TS/JS源码编译生成方舟字节码文件（\*.abc）。
 

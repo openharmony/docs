@@ -2,8 +2,9 @@
 <!--Kit: IME Kit-->
 <!--Subsystem: MiscServices-->
 <!--Owner: @illybyy-->
-<!--SE: @andeszhang-->
-<!--TSE: @murphy1984-->
+<!--Designer: @andeszhang-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 IME Kit is responsible for establishing a communication channel between the application in which the text input box is located and the input method application, to ensure that the two work together to provide text input, and also enables system applications to manage the input method application.
 
@@ -37,17 +38,17 @@ IME Kit provides two types of APIs: input method framework APIs and input method
 - APIs are also provided for system applications to manage input methods. For example, they can be used to display or hide the soft keyboard, switch between input methods, and obtain the list of input methods.
 
 
-## Related Kits
+## Relationship with Other Kits
 
-ArkUI: With respect to soft keyboards and custom text input boxes, IME Kit can use some components, events, animations, and state management capabilities provided by ArkUI, for example, the **Text** and **Button** components and the **onClick** event.
+ArkUI: With respect to soft keyboards and custom text input boxes, IME Kit can use some components, events, animations, and state management capabilities provided by ArkUI, for example, the **\<Text>** and **\<Button>** components and the **onClick** event.
 
 
 ## Constraints
 
-For the system API for switching between input method s, the system permission is required. Some APIs can be called only by the current input method application.
+For the system API for switching between input method applications, the system permission is required. Some APIs can be called only by the current input method application.
 
 
-## IME Kit API References
+## API Reference
 
 - [inputMethodEngine](../reference/apis-ime-kit/js-apis-inputmethodengine.md)
 

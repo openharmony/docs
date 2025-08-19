@@ -3,8 +3,9 @@
 <!--Kit: AVCodec Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @zhanghongran; @mr-chencxy-->
-<!--SE: @dpy2650--->
-<!--TSE: @cyakee; @baotianhao-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee; @baotianhao-->
+<!--Adviser: @zengyawen-->
 
 - [AVCodec Kit简介](avcodec-kit-intro.md)
 - [AVCodec支持的格式](avcodec-support-formats.md)

@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @zhu-feimo-->
-<!--SE: @ccllee1-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 KioskManager模块提供Kiosk模式管理能力，包括系统进入/退出Kiosk模式操作。
 

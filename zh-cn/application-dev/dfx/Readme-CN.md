@@ -3,8 +3,9 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @mzyan-->
-<!--SE: @liyueric-->
-<!--TSE: @gcw_KuLfPSbe-->
+<!--Designer: @liyueric-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
 - [Performance Analysis Kit简介](performance-analysis-kit-overview.md)
 - 故障检测<!--fault-analysis-->

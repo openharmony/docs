@@ -2,8 +2,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @lvzhenjie; @hongjin-li_admin-->
-<!--SE: @chenxi0605; @JerryH1011-->
-<!--TSE: @leiyuqian-->
+<!--Designer: @chenxi0605; @JerryH1011-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @foryourself-->
 
 该模块提供文件分享能力，提供系统应用将公共目录文件统一资源标志符（Uniform Resource Identifier，URI）以读写权限授权给其他应用的接口，授权后应用可通过[@ohos.file.fs](js-apis-file-fs.md)的相关接口进行相关open、read、write等操作，实现文件分享。
 
@@ -24,11 +25,11 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags, ca
 
 对公共目录文件URI进行授权操作，使用callback异步回调。  
 
-**需要权限**：ohos.permission.WRITE_MEDIA  
+**需要权限：** ohos.permission.WRITE_MEDIA  
 
-**系统接口**：此接口为系统接口。  
+**系统接口：** 此接口为系统接口。  
 
-**系统能力**：SystemCapability.FileManagement.AppFileService
+**系统能力：** SystemCapability.FileManagement.AppFileService
 
 **参数：**
 
@@ -78,11 +79,11 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags): P
 
 将公共目录文件URI进行授权操作，使用Promise异步回调。  
 
-**需要权限**：ohos.permission.WRITE_MEDIA  
+**需要权限：** ohos.permission.WRITE_MEDIA  
 
-**系统接口**：此接口为系统接口。  
+**系统接口：** 此接口为系统接口。  
 
-**系统能力**：SystemCapability.FileManagement.AppFileService  
+**系统能力：** SystemCapability.FileManagement.AppFileService  
 
 **参数：**
 
@@ -135,9 +136,9 @@ checkPathPermission(tokenID: number, policies: Array&lt;PathPolicyInfo&gt;, poli
 
 异步方法校验所选择的多个文件或目录是否有临时或持久化授权，以promise形式返回结果。
 
-**需要权限**：ohos.permission.CHECK_SANDBOX_POLICY
+**需要权限：** ohos.permission.CHECK_SANDBOX_POLICY
 
-**系统接口**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
@@ -169,25 +170,25 @@ checkPathPermission(tokenID: number, policies: Array&lt;PathPolicyInfo&gt;, poli
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fileshare from '@ohos.fileshare';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileShare } from '@kit.CoreFileKit';
   
   async function checkPersistentPermissionExample() {
     try {
-      let pathPolicyInfo1: fileshare.PathPolicyInfo = {
+      let pathPolicyInfo1: fileShare.PathPolicyInfo = {
         path: "/storage/Users/currentUser/Documents/1.txt",
-        operationMode: fileshare.OperationMode.READ_MODE,
+        operationMode: fileShare.OperationMode.READ_MODE,
       }
-      let pathPolicyInfo2: fileshare.PathPolicyInfo = {
+      let pathPolicyInfo2: fileShare.PathPolicyInfo = {
         path: "/storage/Users/currentUser/Desktop/2.txt",
-        operationMode: fileshare.OperationMode.READ_MODE,
+        operationMode: fileShare.OperationMode.READ_MODE,
       }
 
-      let policies: Array<fileshare.PathPolicyInfo> = [pathPolicyInfo1, pathPolicyInfo2];
-      let policyType: fileshare.PolicyType = fileshare.PolicyType.PERSISTENT_TYPE;
+      let policies: Array<fileShare.PathPolicyInfo> = [pathPolicyInfo1, pathPolicyInfo2];
+      let policyType: fileShare.PolicyType = fileShare.PolicyType.PERSISTENT_TYPE;
       let tokenid = 537688848; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-      
-      fileshare.checkPathPermission(tokenid, policies, policyType).then((result:Array<boolean>) => {
+
+      fileShare.checkPathPermission(tokenid, policies, policyType).then((result:Array<boolean>) => {
         for (let x of result) {
           console.info('check permission result is', x);
         }
@@ -206,11 +207,11 @@ grantUriPermission(policies: Array&lt;PolicyInfo&gt;, targetBundleName: string, 
 
 给应用授予目标文件临时权限，使用Promise异步回调。
 
-**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+**需要权限：** ohos.permission.FILE_ACCESS_MANAGER
 
-**系统接口**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **参数：**
 

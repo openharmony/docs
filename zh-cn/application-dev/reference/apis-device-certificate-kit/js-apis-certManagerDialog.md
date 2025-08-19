@@ -3,8 +3,9 @@
 <!--Kit: Device Certificate Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @chaceli-->
-<!--SE: @chande-->
-<!--TSE: @zhangzhi1995-->
+<!--Designer: @chande-->
+<!--Tester: @zhangzhi1995-->
+<!--Adviser: @zengyawen-->
 
 证书管理对话框主要提供拉起证书管理界面的能力，用户在拉起的证书管理对话框可对证书进行管理（安装，存储，使用，销毁）。
 

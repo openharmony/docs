@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @yp99ustc; @aohui; @zourongchun-->
-<!--SE: @LongLie; @yaomingliu; @zhufenghao-->
-<!--TSE: @ghiker-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 通用事件仅支持[onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear)、[onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear)、[onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur)、[onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus)、[onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend10)、[onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter)、[onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)、[onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)、[onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave)、[onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)、[onHover](../apis-arkui/arkui-ts/ts-universal-events-hover.md#onhover)、[onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse)、[onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent)、[onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)、[onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)。
 
@@ -1167,7 +1168,7 @@ onResourceLoad(callback: Callback\<OnResourceLoadEvent\>)
 
 onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
 
-当前页面显示比例的变化时触发该回调。
+当页面显示比例发生变化时，触发该回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1175,7 +1176,7 @@ onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnScaleChangeEvent](./arkts-basic-components-web-i.md#onscalechangeevent12)\> | 是 | 当前页面显示比例的变化时触发。 |
+| callback | Callback\<[OnScaleChangeEvent](./arkts-basic-components-web-i.md#onscalechangeevent12)\> | 是 | 当页面显示比例发生变化时，触发该回调。 |
 
 **示例：**
 
@@ -1663,8 +1664,9 @@ struct Index {
     ```
 
 2. 构造 `CertManagerService` 对象以对接证书管理。
+<!--code_no_check-->
     ```ts
-    // CertManagerService.ets
+    // CertMgrService.ets
     import { bundleManager, common, Want } from "@kit.AbilityKit";
     import { BusinessError } from "@kit.BasicServicesKit";
     import { GlobalContext } from './GlobalContext';
@@ -1720,6 +1722,7 @@ struct Index {
     }
     ```
 3. 实现双向认证功能。
+<!--code_no_check-->
     ```ts
     import { webview } from '@kit.ArkWeb';
     import CertManagerService from './CertMgrService';
@@ -2129,7 +2132,7 @@ onScroll(callback: Callback\<OnScrollEvent\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnScrollEvent](./arkts-basic-components-web-i.md#onscrollevent12)\> | 是 | 当滚动条滑动到指定位置时触发。 |
+| callback | Callback\<[OnScrollEvent](./arkts-basic-components-web-i.md#onscrollevent12)\> | 是 | 当页面滑动到指定位置时触发。 |
 
 **示例：**
 
@@ -2158,7 +2161,7 @@ onScroll(callback: Callback\<OnScrollEvent\>)
 
 onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
 
-通知用户收到地理位置信息获取请求。
+通知用户收到地理位置信息获取请求，需配置"ohos.permission.LOCATION"、"ohos.permission.APPROXIMATELY_LOCATION"权限。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2173,12 +2176,33 @@ onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { abilityAccessCtrl, common } from '@kit.AbilityKit';
+
+  let atManager = abilityAccessCtrl.createAtManager();
 
   @Entry
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
     uiContext: UIContext = this.getUIContext();
+
+    // 组件的声明周期函数，创建组件实例后触发
+    aboutToAppear(): void {
+      let context : Context | undefined = this.uiContext.getHostContext() as common.UIAbilityContext;
+      if (!context) {
+        console.error("context is undefined");
+        return;
+      }
+      // 向用户请求位置权限
+      atManager.requestPermissionsFromUser(context, ["ohos.permission.LOCATION", "ohos.permission.APPROXIMATELY_LOCATION"]).then((data) => {
+        console.info('data:' + JSON.stringify(data));
+        console.info('data permissions:' + data.permissions);
+        console.info('data authResults:' + data.authResults);
+      }).catch((error: BusinessError) => {
+        console.error(`Failed to request permissions from user. Code is ${error.code}, message is ${error.message}`);
+      })  
+    }
 
     build() {
       Column() {
@@ -2192,11 +2216,13 @@ onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
                 confirm: {
                   value: 'onConfirm',
                   action: () => {
-                    event.geolocation.invoke(event.origin, true, true);
+                    // invoke的第三个参数表示是否记住当前弹窗的选择状态，如果传入true，则下次不再弹出对话框
+                    event.geolocation.invoke(event.origin, true, false);
                   }
                 },
                 cancel: () => {
-                  event.geolocation.invoke(event.origin, false, true);
+                  // invoke的第三个参数表示是否记住当前弹窗的选择状态，如果传入true，则下次不再弹出对话框
+                  event.geolocation.invoke(event.origin, false, false);
                 }
               })
             }
@@ -3007,7 +3033,7 @@ onLoadIntercept(callback: Callback\<OnLoadInterceptEvent, boolean\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnLoadInterceptEvent](./arkts-basic-components-web-i.md#onloadinterceptevent12), boolean\> | 是 | 截获资源加载时触发的回调。<br>返回值为boolean类型。返回true表示阻止此次加载，false表示允许此次加载。<br>默认值：true。<br>传入undefined与null时为false。 |
+| callback | Callback\<[OnLoadInterceptEvent](./arkts-basic-components-web-i.md#onloadinterceptevent12), boolean\> | 是 | 截获资源加载时触发的回调。<br>返回值为boolean类型。返回true表示阻止此次加载，false表示允许此次加载。<br>默认值：false |
 
 **示例：**
 

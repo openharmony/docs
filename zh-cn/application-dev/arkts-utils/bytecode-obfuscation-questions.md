@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @oatuwwutao-->
-<!--SE: @hufeng20-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @hufeng20-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 ## 字节码混淆与源码混淆差异
 
@@ -183,13 +184,13 @@ callargs2 0x2e, v2, v3
 ### 混淆如何查看混淆效果
 
 在混淆结束后会将中间产物落盘，因此可以在编译产物build目录中找到混淆后的中间产物以查看混淆效果，同时可以找到混淆生成的名称映射表及系统API白名单文件。
-· 混淆后的文件目录：build/default/[...]/release/obfuscation/obf。
-· 混淆名称映射表及系统API白名单目录：build/default/[...]/release/obfuscation。
+-  混淆后的文件目录：build/default/[...]/release/obfuscation/obf。
+-  混淆名称映射表及系统API白名单目录：build/default/[...]/release/obfuscation。
 
 ![bytecode-build-product](figures/bytecode-build-product.png)
 
-· 名称映射表文件：nameCache.json，该文件记录了源码名称混淆的映射关系。
-· 系统API白名单文件：systemApiCache.json，该文件记录了SDK中的接口与属性名称，与其重名的源码不会被混淆。
+- 名称映射表文件：nameCache.json，该文件记录了源码名称混淆的映射关系。
+- 系统API白名单文件：systemApiCache.json，该文件记录了SDK中的接口与属性名称，与其重名的源码不会被混淆。
 
 
 ## 编译报错处理
@@ -246,10 +247,12 @@ dialogController:CustomDialogController|null = null;
 
 // 混淆前
 import jsonData from "./testjson";
+
 let jsonProp = jsonData.jsonObj.jsonProperty;
 
 // 混淆后
 import jsonData from "./test.json";
+
 let jsonProp = jsonData.i.j;
 ```
 
@@ -270,6 +273,7 @@ parameters的类型为Record<string, Object>，在开启属性混淆后，parame
 ```ts
 // 混淆前
 import { Want } from '@ohos:app.ability.Want';
+
 let petalMapWant: Want = {
   bundleName: 'com.example.myapplication',
   uri: 'maps://',
@@ -279,6 +283,7 @@ let petalMapWant: Want = {
 }
 // 混淆后
 import type Want from "@ohos:app.ability.Want";
+
 let petalMapWant: Want = {
     bundleName: 'com.example.myapplication',
     uri: 'maps://',
@@ -365,15 +370,18 @@ export interface MyInfo {
 }
 // file2.ts
 import { MyInfo } from './file1';
+
 const person: MyInfo = {
   age: 20,
   address: {
     city1: "shanghai"
   }
 }
+
 // 混淆后，file1.ts的代码被保留
 // file2.ts
 import { MyInfo } from './file1';
+
 const person: MyInfo = {
   age: 20,
   address: {
@@ -445,13 +453,17 @@ let mytest = (await import('./file')).Test1
 export namespace ns1 {
   export class person1 {}
 }
+
 import {ns1} from './file1'
+
 let person1 = new ns1.person1()
 // 混淆后
 export namespace a3 {
   export class b2 {}
 }
+
 import {a3} from './file1'
+
 let person1 = new a3.person1()
 ```
 
@@ -462,12 +474,12 @@ namespace里的"person1"属于export元素，当通过"ns1.person1"调用时，�
 1. 开启-enable-property-obfuscation选项。
 2. 将namespace里导出的方法使用-keep-global-name选项添加到白名单。
 
-#### 案例三：使用了declare global，混淆后报语法错误
+#### 案例三：使用了declare global，混淆后报语法错误	
 
 ```ts
 // 混淆前
 declare global {
-  var age : string
+  var myAge : string
 }
 // 混淆后
 declare a2 {
@@ -480,6 +492,8 @@ declare a2 {
 **解决方案**：
 
 使用-keep-global-name选项将global配置到白名单中。
+
+从API version 18 开始，global 已加入系统的白名单，不需要开发者再使用 -keep-global-name 配置
 
 #### 案例四：使用Reflect.defineMetadata()，混淆后，提示找不到函数，导致程序异常
 

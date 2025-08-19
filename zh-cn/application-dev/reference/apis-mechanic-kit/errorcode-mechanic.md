@@ -2,8 +2,9 @@
 <!--Kit: Mechanic Kit-->
 <!--Subsystem: Mechanic-->
 <!--Owner: @hobbycao-->
-<!--SE: @saga2025-->
-<!--TSE: @zhaodengqi-->
+<!--Designer: @saga2025-->
+<!--Tester: @zhaodengqi-->
+<!--Adviser: @foryourself-->
 
 > **说明：**
 >

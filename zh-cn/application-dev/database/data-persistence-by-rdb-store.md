@@ -2,8 +2,9 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @baijidong-->
-<!--SE: @widecode; @htt1997-->
-<!--TSE: @yippo; @logic42-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 
 ## 场景介绍
@@ -81,7 +82,7 @@
    // 此处示例在Ability中实现，使用者也可以在其他合理场景中使用
    export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
-       // 若希望使用分词器，可调用isStorageTypeSupported检查希望使用的分词器是否支持当前平台。
+       // 若希望使用分词器，可调用isTokenizerSupported检查希望使用的分词器是否支持当前平台。
        let tokenType = relationalStore.Tokenizer.ICU_TOKENIZER;
        let tokenTypeSupported = relationalStore.isTokenizerSupported(tokenType);
        if (!tokenTypeSupported) {

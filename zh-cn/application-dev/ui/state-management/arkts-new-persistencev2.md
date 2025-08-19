@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @zzq212050299-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 为了增强状态管理框架对持久化存储UI的能力，开发者可以使用PersistenceV2存储持久化的数据。
 
@@ -142,7 +143,7 @@ static keys(): Array<string>;
 
 > **说明：**
 >
-> keys会从返回module级别存储路径和应用级别存储路径中的所有key。
+> keys会返回module级别存储路径和应用级别存储路径中的所有key。
 
 ### save：手动持久化数据
 

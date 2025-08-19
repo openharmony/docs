@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
 <!--Owner: @waterwin-->
-<!--SE: @nyankomiya-->
-<!--TSE: @qinliwen0417-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 > **说明：**
 >
@@ -417,7 +418,7 @@ export default class EntryAbility extends UIAbility {
 ## window.shiftAppWindowPointerEvent<sup>15+</sup>
 shiftAppWindowPointerEvent(sourceWindowId: number, targetWindowId: number): Promise&lt;void&gt;
 
-该接口仅在自由窗口模式下生效，用于在同应用内窗口分合场景下，将输入事件从源窗口转移到目标窗口，使用Promise异步回调，针对主窗和子窗生效。
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于在同应用内窗口分合场景下，将输入事件从源窗口转移到目标窗口，使用Promise异步回调，针对主窗和子窗生效。
 
 源窗口需要处于鼠标按下状态，否则调用此接口将不生效。输入事件转移后，会向源窗口补发鼠标抬起事件，并且向目标窗口补发鼠标按下事件。
 

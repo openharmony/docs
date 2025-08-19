@@ -73,7 +73,7 @@ i18n.System.getDisplayCountry
 
 **变更的接口/组件**
 
-i18n.System.getRegionInfoArray
+i18n.SystemLocaleManager.getRegionInfoArray
 
 **适配指导**
 

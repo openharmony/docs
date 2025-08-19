@@ -2,8 +2,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @lvzhenjie-->
-<!--SE: @wang_zhangjun; @chenxi0605-->
-<!--TSE: @liuhonggang123-->
+<!--Designer: @wang_zhangjun; @chenxi0605-->
+<!--Tester: @liuhonggang123-->
+<!--Adviser: @foryourself-->
 
 BackupExtensionAbility模块提供备份恢复服务相关扩展能力，为应用提供扩展的备份恢复能力。
 

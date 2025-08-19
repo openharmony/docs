@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
-<!--SE: @weng-changcheng-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 此处提供使用TaskPool进行长时任务的开发指导，以定期采集传感器数据为例。
 
@@ -41,7 +42,7 @@
    // module.json5
    "requestPermissions": [
      {
-       "name": "ohos.permission.ACCELEROMETER",
+       "name": "ohos.permission.ACCELEROMETER"
      }
    ]
    ```

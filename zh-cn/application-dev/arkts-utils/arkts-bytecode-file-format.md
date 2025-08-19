@@ -3,8 +3,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @huyunhui1; @oh-rgx1; @zmw1-->
-<!--SE: @ctw-ian; @hufeng20-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @ctw-ian; @hufeng20-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 本文详细介绍了方舟字节码文件的格式，旨在帮助开发者深入理解字节码的组成结构，以指导字节码的分析和修改。
 

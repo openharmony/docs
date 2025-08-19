@@ -3,8 +3,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: Security-->
 <!--Owner: @harylee-->
-<!--SE: @linshuqing; @hehehe-li-->
-<!--TSE: @leiyuqian-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
 
 保存控件允许用户通过点击按钮临时获取存储权限，无需权限弹框确认。
 
@@ -106,7 +107,7 @@
          .width('100%')
        }
        .height('100%')
-       .backgroundColor(0xF1F3F5)
+       .backgroundColor(0xf1f3f5)
      }
    }
    ```

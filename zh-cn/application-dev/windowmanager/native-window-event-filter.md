@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
 <!--Owner: @waterwin-->
-<!--SE: @stupidb-->
-<!--TSE: @qinliwen0417-->
+<!--Designer: @stupidb-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## 场景介绍
 

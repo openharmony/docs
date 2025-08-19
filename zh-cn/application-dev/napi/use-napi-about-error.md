@@ -2,8 +2,9 @@
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
-<!--SE: @shilei123-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @shilei123-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 ## 简介
 
@@ -304,7 +305,7 @@ try {
 
 ### napi_throw_type_error
 
-创建并抛出一个带文本信息的ArkTS TypeError。
+抛出一个带文本信息的ArkTS TypeError。
 
 cpp部分代码
 
@@ -366,7 +367,7 @@ try {
 
 ### napi_throw_range_error
 
-创建并获取一个带文本信息的ArkTS RangeError。
+抛出一个带文本信息的ArkTS RangeError。
 
 cpp部分代码
 

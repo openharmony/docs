@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 高性能拍照是相机的重要功能之一，优化了拍照响应时延，提升用户体验。高性能拍照又名分段式拍照，应用下发拍照请求后，**第一阶段**系统会很快返回给应用一张**缩略图**，应用需将该图片及相关信息存入媒体库；**第二阶段**子服务会根据系统压力及定制化场景进行调度，将后处理好的**原图**回传给媒体库。
 

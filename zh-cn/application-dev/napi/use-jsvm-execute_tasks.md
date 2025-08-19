@@ -2,8 +2,9 @@
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @yuanxiaogou; @string_sz-->
-<!--SE: @knightaoko-->
-<!--TSE: @test_lzz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## 简介
 
@@ -27,7 +28,7 @@
 JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅展示接口对应的C++相关代码。
 权限要求：Wasm字节码需要应用拥有JIT权限才能执行，可参考[JSVM 申请JIT权限指导](jsvm-apply-jit-profile.md)申请对应权限。
 运行限制：当前 JSVM 版本在坚盾守护模式下将禁用 WebAssembly 全部功能模块。开发者需针对此限制进行应用兼容性评估，具体技术规范详见[JSVM 坚盾守护模式](jsvm-secure-shield-mode.md)。
-### OH_JSVM_PumpMessageLoop && OH_JSVM_PerformMicrotaskCheckpoint
+### OH_JSVM_PumpMessageLoop & OH_JSVM_PerformMicrotaskCheckpoint
 
 启动任务队列，执行任务。
 

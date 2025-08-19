@@ -2,8 +2,9 @@
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @wang-haizhou6-->
-<!--SE: @HmQQQ-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 音频池加载播放实例，音频池提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能。
 

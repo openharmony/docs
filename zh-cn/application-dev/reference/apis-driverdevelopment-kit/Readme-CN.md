@@ -2,8 +2,9 @@
 <!--Kit: Driver Development Kit-->
 <!--Subsystem: Driver-->
 <!--Owner: @lixinsheng2-->
-<!--SE: @w00373942-->
-<!--TSE: @dong-dongzhen-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
 
 - ArkTS API<!--driver-development-arkts-->
   - [@ohos.app.ability.DriverExtensionAbility (驱动程序扩展能力)](js-apis-app-ability-driverExtensionAbility.md)

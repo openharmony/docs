@@ -3,8 +3,9 @@
 <!--Kit: Test Kit-->
 <!--Subsystem: Test-->
 <!--Owner: @inter515-->
-<!--SE: @inter515-->
-<!--TSE: @laonie666-->
+<!--Designer: @inter515-->
+<!--Tester: @laonie666-->
+<!--Adviser: @Brilliantry_Rui-->
 
 - ArkTS API<!--test-arkts-->
   - [@ohos.app.ability.abilityDelegatorRegistry (AbilityDelegatorRegistry)](js-apis-app-ability-abilityDelegatorRegistry.md)

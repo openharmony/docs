@@ -3,8 +3,9 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @amunra03-->
-<!--SE: @wenxiaolin-->
-<!--TSE: @zs_111-->
+<!--Designer: @wenxiaolin-->
+<!--Tester: @zs_111-->
+<!--Adviser: @zhang_yixin13-->
 
 本模块主要用于采用不同Nfc技术的Tag的读写操作。
 

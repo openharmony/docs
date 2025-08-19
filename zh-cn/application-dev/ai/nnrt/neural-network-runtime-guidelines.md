@@ -3,8 +3,9 @@
 <!--Kit: Neural Network Runtime Kit-->
 <!--Subsystem: AI-->
 <!--Owner: @GbuzhidaoR-->
-<!--SE: @GbuzhidaoR-->
-<!--TSE @GbuzhidaoR-->
+<!--Designer: @GbuzhidaoR-->
+<!--Tester: @GbuzhidaoR-->
+<!--Adviser: @ge-yafang-->
 
 ## 场景介绍
 

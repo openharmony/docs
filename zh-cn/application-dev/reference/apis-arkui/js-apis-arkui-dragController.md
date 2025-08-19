@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 本模块提供发起主动拖拽的能力，当应用接收到触摸或长按等事件时可以主动发起拖拽的动作，并在其中携带拖拽信息。
 
@@ -382,7 +383,7 @@ struct DragControllerPage {
       Button('多对象dragAction customBuilder拖拽').onTouch((event?:TouchEvent) => {
         if(event){
           if (event.type == TouchType.Down) {
-            console.info("muti drag Down by listener");
+            console.info("multi drag Down by listener");
             this.customBuilders.splice(0, this.customBuilders.length);
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
@@ -1107,7 +1108,7 @@ struct DragControllerPage {
             this.getUIContext().getDragController().executeDrag(() => { // 建议使用 this.getUIContext().getDragController().executeDrag()接口
               this.DraggingBuilder()
             }, dragInfo, (err , eve) => {
-              hilog.info(0x0000, `ljx ${JSON.stringify(err)}`, '')
+              hilog.info(0x0000, `${JSON.stringify(err)}`, '')
               if (eve && eve.event) {
                 if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
                   hilog.info(0x0000, 'success', '');

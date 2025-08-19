@@ -2,8 +2,9 @@
 <!--Kit: Test Kit-->
 <!--Subsystem: Test-->
 <!--Owner: @niu-guoliang-->
-<!--SE: @niu-guoliang-->
-<!--TSE: @laonie666-->
+<!--Designer: @niu-guoliang-->
+<!--Tester: @laonie666-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ## 工具简介
 

@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @pengzhiwen3-->
-<!--SE: @lmleon-->
-<!--TSE: @fredyuan0912-->
+<!--Designer: @lmleon-->
+<!--Tester: @fredyuan0912-->
+<!--Adviser: @HelloCrease-->
 
 提供注册组件布局和组件绘制送显完成回调通知的能力。
 

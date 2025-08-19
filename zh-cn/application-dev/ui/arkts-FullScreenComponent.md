@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @dutie123-->
-<!--SE: @lmleon-->
-<!--TSE: @fredyuan0912-->
+<!--Designer: @lmleon-->
+<!--Tester: @fredyuan0912-->
+<!--Adviser: @HelloCrease-->
 
 FullScreenLaunchComponent允许开发者以全屏方式拉起原子化服务，使得应用能够提供更友好的用户体验。
 

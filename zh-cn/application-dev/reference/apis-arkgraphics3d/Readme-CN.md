@@ -2,8 +2,9 @@
 <!--Kit: ArkGraphics 3D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @zzhao0-->
-<!--SE: @zdustc-->
-<!--TSE: @zhangyue283-->
+<!--Designer: @zdustc-->
+<!--Tester: @zhangyue283-->
+<!--Adviser: @ge-yafang-->
 
 - ArkTS API<!--arkgraphics-3d-arkts-->
   - [@ohos.graphics.scene (ArkGraphics 3D模块)](js-apis-scene.md)

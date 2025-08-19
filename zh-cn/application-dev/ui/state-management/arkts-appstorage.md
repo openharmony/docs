@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @zzq212050299-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 在阅读本文档前，建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)，从而对状态管理框架中AppStorage的定位有一个宏观了解。
 
@@ -45,7 +46,7 @@ AppStorage中的属性可以被双向同步，并具有不同的功能，比如�
 | \@StorageProp变量装饰器 | 说明                                                         |
 | ----------------------- | ------------------------------------------------------------ |
 | 装饰器参数              | key：常量字符串，必填（字符串需要有引号）。                  |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API12及以上支持Map、Set、Date、undefined和null类型。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>API12及以上还支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[AppStorage支持联合类型](#appstorage支持联合类型)。 <br/>**注意**<br/>变量类型必须被指定，建议和AppStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@StorageProp("AA") a: number \| null = null`是支持的，不支持`@StorageProp("AA") a: number = null`。<br/>不支持any。 |
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API12及以上支持Map、Set、Date、undefined和null类型。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>API12及以上还支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[AppStorage支持联合类型](#appstorage支持联合类型)。 <br/>**注意**<br/>变量类型必须被指定，建议和AppStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@StorageProp('AA') a: number \| null = null`是支持的，不支持`@StorageProp('AA') a: number = null`。<br/>不支持any。 |
 | 同步类型                | 单向同步：从AppStorage的对应属性到组件的状态变量。<br/>组件本地的修改是允许的，但是AppStorage中给定的属性一旦发生变化，将覆盖本地的修改。 |
 | 被装饰变量的初始值      | 必须指定，如果AppStorage实例中不存在属性，则用该初始值初始化该属性，并存入AppStorage中。 |
 
@@ -67,7 +68,7 @@ AppStorage中的属性可以被双向同步，并具有不同的功能，比如�
 
 - 当装饰的类型为boolean、string、number时，可以观察到数值的变化。
 
-- 当装饰的数据类型为class或者Object时，可以观察到对象整体赋值和属性变化（详见[从ui内部使用appstorage和localstorage](#从ui内部使用appstorage和localstorage)）。
+- 当装饰的数据类型为class或者Object时，可以观察到对象整体赋值和属性变化（详见[从ui内部使用appstorage](#从ui内部使用appstorage)）。
 
 - 当装饰的对象是数组时，可以观察到数组添加、删除、更新数组单元的变化。
 
@@ -100,7 +101,7 @@ AppStorage中的属性可以被双向同步，并具有不同的功能，比如�
 | \@StorageLink变量装饰器 | 说明                                                         |
 | ----------------------- | ------------------------------------------------------------ |
 | 装饰器参数              | key：常量字符串，必填（字符串需要有引号）。                  |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API12及以上支持Map、Set、Date、undefined和null类型。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现-1)。<br/>API12及以上还支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[AppStorage支持联合类型](#appstorage支持联合类型)。 <br/>**注意**<br/>变量类型必须被指定，建议和AppStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@StorageLink("AA") a: number \| null = null`是支持的，不支持`@StorageLink("AA") a: number = null`。<br/>不支持any。 |
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API12及以上支持Map、Set、Date、undefined和null类型。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现-1)。<br/>API12及以上还支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[AppStorage支持联合类型](#appstorage支持联合类型)。 <br/>**注意**<br/>变量类型必须被指定，建议和AppStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@StorageLink('AA') a: number \| null = null`是支持的，不支持`@StorageLink('AA') a: number = null`。<br/>不支持any。 |
 | 同步类型                | 双向同步：从AppStorage的对应属性到自定义组件，从自定义组件到AppStorage对应属性。 |
 | 被装饰变量的初始值      | 必须指定，如果AppStorage实例中不存在属性，则用该初始值初始化该属性，并存入AppStorage中。 |
 
@@ -123,7 +124,7 @@ AppStorage中的属性可以被双向同步，并具有不同的功能，比如�
 
 - 装饰的数据类型为boolean、string、number时，可以观察到数值变化。
 
-- 装饰的数据类型为class或Object时，可以观察到对象整体赋值和属性变化。（详见[从ui内部使用appstorage和localstorage](#从ui内部使用appstorage和localstorage)）。
+- 装饰的数据类型为class或Object时，可以观察到对象整体赋值和属性变化。（详见[从ui内部使用appstorage](#从ui内部使用appstorage)）。
 
 - 当装饰的对象是数组时，可以观察到数组添加、删除、更新数组单元的变化。
 
@@ -147,15 +148,15 @@ AppStorage中的属性可以被双向同步，并具有不同的功能，比如�
 1. \@StorageProp/\@StorageLink的参数必须为string类型，否则编译期会报错。
 
     ```ts
-    AppStorage.setOrCreate('PropA', 47);
+    AppStorage.setOrCreate('propA', 47);
 
     // 错误写法，编译报错
     @StorageProp() storageProp: number = 1;
     @StorageLink() storageLink: number = 2;
 
     // 正确写法
-    @StorageProp('PropA') storageProp: number = 1;
-    @StorageLink('PropA') storageLink: number = 2;
+    @StorageProp('propA') storageProp: number = 1;
+    @StorageLink('propA') storageLink: number = 2;
     ```
 
 2. \@StorageProp与\@StorageLink不支持装饰Function类型的变量，框架会抛出运行时错误。
@@ -177,33 +178,34 @@ AppStorage中的属性可以被双向同步，并具有不同的功能，比如�
 AppStorage是单例，其所有API均为静态方法，使用方法类似于LocalStorage中对应的非静态方法。
 
 ```ts
-AppStorage.setOrCreate('PropA', 47);
+AppStorage.setOrCreate('propA', 47);
 
 let storage: LocalStorage = new LocalStorage();
-storage.setOrCreate('PropA',17);
-let propA: number | undefined = AppStorage.get('PropA'); // propA in AppStorage == 47, propA in LocalStorage == 17
-let link1: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // link1.get() == 47
-let link2: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // link2.get() == 47
-let prop: SubscribedAbstractProperty<number> = AppStorage.prop('PropA'); // prop.get() == 47
+storage.setOrCreate('propA',17);
+let propA: number | undefined = AppStorage.get('propA'); // propA in AppStorage == 47, propA in LocalStorage == 17
+let link1: SubscribedAbstractProperty<number> = AppStorage.link('propA'); // link1.get() == 47
+let link2: SubscribedAbstractProperty<number> = AppStorage.link('propA'); // link2.get() == 47
+let prop: SubscribedAbstractProperty<number> = AppStorage.prop('propA'); // prop.get() == 47
 
 link1.set(48); // 双向同步: link1.get() == link2.get() == prop.get() == 48
 prop.set(1); // 单向同步: prop.get() == 1; 但 link1.get() == link2.get() == 48
 link1.set(49); // 双向同步: link1.get() == link2.get() == prop.get() == 49
 
-storage.get<number>('PropA') // == 17
-storage.set('PropA', 101);
-storage.get<number>('PropA') // == 101
+storage.get<number>('propA') // == 17
+storage.set('propA', 101);
+storage.get<number>('propA') // == 101
 
-AppStorage.get<number>('PropA') // == 49
+AppStorage.get<number>('propA') // == 49
 link1.get() // == 49
 link2.get() // == 49
 prop.get() // == 49
 ```
 
 
-### 从UI内部使用AppStorage和LocalStorage
+### 从UI内部使用AppStorage
 
 @StorageLink与AppStorage配合使用，通过AppStorage中的属性创建双向数据同步。
+@StorageProp与AppStorage配合使用，通过AppStorage中的属性创建单向数据同步。
 
 ```ts
 class Data {
@@ -214,45 +216,254 @@ class Data {
   }
 }
 
-AppStorage.setOrCreate('PropA', 47);
-AppStorage.setOrCreate('PropB', new Data(50));
+AppStorage.setOrCreate('propA', 47);
+AppStorage.setOrCreate('propB', new Data(50));
 let storage = new LocalStorage();
-storage.setOrCreate('LinkA', 48);
-storage.setOrCreate('LinkB', new Data(100));
+storage.setOrCreate('linkA', 48);
+storage.setOrCreate('linkB', new Data(100));
 
 @Entry(storage)
 @Component
 struct Index {
-  @StorageLink('PropA') storageLink: number = 1;
-  @LocalStorageLink('LinkA') localStorageLink: number = 1;
-  @StorageLink('PropB') storageLinkObject: Data = new Data(1);
-  @LocalStorageLink('LinkB') localStorageLinkObject: Data = new Data(1);
+  @StorageLink('propA') storageLink: number = 1;
+  @StorageProp('propA') storageProp: number = 1;
+  @StorageLink('propB') storageLinkObject: Data = new Data(1);
+  @StorageProp('propB') storagePropObject: Data = new Data(1);
 
   build() {
     Column({ space: 20 }) {
-      Text(`From AppStorage ${this.storageLink}`)
+      // @StorageLink与AppStorage建立双向联系，更改数据会同步回AppStorage中key为'propA'的值
+      Text(`storageLink ${this.storageLink}`)
         .onClick(() => {
           this.storageLink += 1;
         })
 
-      Text(`From LocalStorage ${this.localStorageLink}`)
+      // @StorageProp与AppStorage建立单向联系，更改数据不会同步AppStoragekey为'propA'的值
+      // 但能被AppStorage的set/setorCreate更新值
+      Text(`storageProp ${this.storageProp}`)
         .onClick(() => {
-          this.localStorageLink += 1;
+          this.storageProp += 1;
         })
 
-      Text(`From AppStorage ${this.storageLinkObject.code}`)
+      // AppStorage的API虽然能获取值，但是不具有刷新UI的能力，日志能看到数值更改
+      // 依赖@StorageLink/@StorageProp才能建立起与自定义组件的联系，刷新UI
+      Text(`change by AppStorage: ${AppStorage.get<number>('propA')}`)
+        .onClick(() => {
+          console.info(`Appstorage.get: ${AppStorage.get<number>('propA')}`);
+          AppStorage.set<number>('propA', 100);
+        })
+
+      Text(`storageLinkObject ${this.storageLinkObject.code}`)
         .onClick(() => {
           this.storageLinkObject.code += 1;
         })
 
-      Text(`From LocalStorage ${this.localStorageLinkObject.code}`)
+      Text(`storagePropObject ${this.storagePropObject.code}`)
         .onClick(() => {
-          this.localStorageLinkObject.code += 1;
+          this.storagePropObject.code += 1;
         })
     }
   }
 }
 ```
+
+### AppStorage支持联合类型
+
+在下面的示例中，变量linkA的类型为number | null，变量linkB的类型为number | undefined。Text组件初始化分别显示为null和undefined，点击切换为数字，再次点击切换回null和undefined。
+
+```ts
+@Component
+struct StorageLinkComponent {
+  @StorageLink('linkA') linkA: number | null = null;
+  @StorageLink('linkB') linkB: number | undefined = undefined;
+
+  build() {
+    Column() {
+      Text('@StorageLink接口初始化，@StorageLink取值')
+      Text(this.linkA + '').fontSize(20).onClick(() => {
+        this.linkA ? this.linkA = null : this.linkA = 1;
+      })
+      Text(this.linkB + '').fontSize(20).onClick(() => {
+        this.linkB ? this.linkB = undefined : this.linkB = 1;
+      })
+    }
+    .borderWidth(3).borderColor(Color.Red)
+  }
+}
+
+@Component
+struct StoragePropComponent {
+  @StorageProp('propA') propA: number | null = null;
+  @StorageProp('propB') propB: number | undefined = undefined;
+
+  build() {
+    Column() {
+      Text('@StorageProp接口初始化，@StorageProp取值')
+      Text(this.propA + '').fontSize(20).onClick(() => {
+        this.propA ? this.propA = null : this.propA = 1;
+      })
+      Text(this.propB + '').fontSize(20).onClick(() => {
+        this.propB ? this.propB = undefined : this.propB = 1;
+      })
+    }
+    .borderWidth(3).borderColor(Color.Blue)
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        StorageLinkComponent()
+        StoragePropComponent()
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### 装饰Date类型变量
+
+> **说明：**
+>
+> 从API version 12开始，AppStorage支持Date类型。
+
+以下示例中，@StorageLink装饰的selectedDate类型为Date。点击Button改变selectedDate的值，视图会随之刷新。
+
+```ts
+@Entry
+@Component
+struct DateSample {
+  @StorageLink('date') selectedDate: Date = new Date('2021-08-08');
+
+  build() {
+    Column() {
+      Button('set selectedDate to 2023-07-08')
+        .margin(10)
+        .onClick(() => {
+          AppStorage.setOrCreate('date', new Date('2023-07-08'));
+        })
+      Button('increase the year by 1')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
+        })
+      Button('increase the month by 1')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate.setMonth(this.selectedDate.getMonth() + 1);
+        })
+      Button('increase the day by 1')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate.setDate(this.selectedDate.getDate() + 1);
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: $$this.selectedDate
+      })
+    }.width('100%')
+  }
+}
+```
+
+### 装饰Map类型变量
+
+> **说明：**
+>
+> 从API version 12开始，AppStorage支持Map类型。
+
+在下面的示例中，@StorageLink装饰的message类型为Map\<number, string\>，点击Button改变message的值，视图会随之刷新。
+
+```ts
+@Entry
+@Component
+struct MapSample {
+  @StorageLink('map') message: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(Array.from(this.message.entries()), (item: [number, number]) => {
+          Text(`${item[0]}`).fontSize(30)
+          Text(`${item[1]}`).fontSize(30)
+          Divider()
+        })
+        Button('init map').onClick(() => {
+          this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
+        })
+        Button('set new one').onClick(() => {
+          this.message.set(4, 'd');
+        })
+        Button('clear').onClick(() => {
+          this.message.clear();
+        })
+        Button('replace the existing one').onClick(() => {
+          this.message.set(0, 'aa');
+        })
+        Button('delete the existing one').onClick(() => {
+          AppStorage.get<Map<number, string>>('map')?.delete(0);
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### 装饰Set类型变量
+
+> **说明：**
+>
+> 从API version 12开始，AppStorage支持Set类型。
+
+在下面的示例中，@StorageLink装饰的memberSet类型为Set\<number\>，点击Button改变memberSet的值，视图会随之刷新。
+
+```ts
+@Entry
+@Component
+struct SetSample {
+  @StorageLink('set') memberSet: Set<number> = new Set([0, 1, 2, 3, 4]);
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(Array.from(this.memberSet.entries()), (item: [number, string]) => {
+          Text(`${item[0]}`)
+            .fontSize(30)
+          Divider()
+        })
+        Button('init set')
+          .onClick(() => {
+            this.memberSet = new Set([0, 1, 2, 3, 4]);
+          })
+        Button('set new one')
+          .onClick(() => {
+            AppStorage.get<Set<number>>('set')?.add(5);
+          })
+        Button('clear')
+          .onClick(() => {
+            this.memberSet.clear();
+          })
+        Button('delete the first one')
+          .onClick(() => {
+            this.memberSet.delete(0);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+## AppStorage使用建议
 
 ### 不建议借助@StorageLink的双向同步机制实现事件通知
 
@@ -271,7 +482,7 @@ class ViewData {
 
   constructor(title: string, uri: Resource) {
     this.title = title;
-    this.uri = uri
+    this.uri = uri;
   }
 }
 
@@ -279,8 +490,8 @@ class ViewData {
 @Component
 struct Gallery {
   // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
-  scroller: Scroller = new Scroller()
+  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))];
+  scroller: Scroller = new Scroller();
 
   build() {
     Column() {
@@ -310,8 +521,8 @@ export struct TapImage {
   private uri: Resource = {
     id: 0,
     type: 0,
-    moduleName: "",
-    bundleName: ""
+    moduleName: '',
+    bundleName: ''
   };
 
   // 判断是否被选中
@@ -369,7 +580,7 @@ class ViewData {
 @Component
 struct Gallery {
   // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
+  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))];
   scroller: Scroller = new Scroller();
   private preIndex: number = -1;
 
@@ -391,7 +602,7 @@ struct Gallery {
             // 选中态：黑变红
             let eventData: emitter.EventData = {
               data: {
-                "colorTag": 1
+                'colorTag': 1
               }
             };
             emitter.emit(innerEvent, eventData);
@@ -402,7 +613,7 @@ struct Gallery {
               // 取消选中态：红变黑
               let eventData: emitter.EventData = {
                 data: {
-                  "colorTag": 0
+                  'colorTag': 0
                 }
               };
               emitter.emit(innerEvent, eventData);
@@ -423,8 +634,8 @@ export struct TapImage {
   private uri: Resource = {
     id: 0,
     type: 0,
-    moduleName: "",
-    bundleName: ""
+    moduleName: '',
+    bundleName: ''
   };
 
   onTapIndexChange(colorTag: emitter.EventData) {
@@ -500,8 +711,8 @@ export struct TapImage {
   private uri: Resource = {
     id: 0,
     type: 0,
-    moduleName: "",
-    bundleName: ""
+    moduleName: '',
+    bundleName: ''
   };
 
   build() {
@@ -522,216 +733,18 @@ export struct TapImage {
 ```
 
 
-### AppStorage支持联合类型
+### \@StorageProp和AppStorage接口配合使用时，需要注意更新规则
 
-在下面的示例中，变量A的类型为number | null，变量B的类型为number | undefined。Text组件初始化分别显示为null和undefined，点击切换为数字，再次点击切换回null和undefined。
+使用setOrCreate/set接口更新key的值时，如果值相同，setOrCreate不会通知\@StorageLink/\@StorageProp更新，但因为\@StorageProp本身有数据副本，更改值不会同步给AppStorage，这会导致开发者误认己通过AppStorage改了值，但实际上未通知\@StorageProp更新值的情况。
+示例如下。
 
 ```ts
-@Component
-struct StorageLinkComponent {
-  @StorageLink("LinkA") LinkA: number | null = null;
-  @StorageLink("LinkB") LinkB: number | undefined = undefined;
-
-  build() {
-    Column() {
-      Text("@StorageLink接口初始化，@StorageLink取值")
-      Text(this.LinkA + "").fontSize(20).onClick(() => {
-        this.LinkA ? this.LinkA = null : this.LinkA = 1;
-      })
-      Text(this.LinkB + "").fontSize(20).onClick(() => {
-        this.LinkB ? this.LinkB = undefined : this.LinkB = 1;
-      })
-    }
-    .borderWidth(3).borderColor(Color.Red)
-
-  }
-}
-
-@Component
-struct StoragePropComponent {
-  @StorageProp("PropA") PropA: number | null = null;
-  @StorageProp("PropB") PropB: number | undefined = undefined;
-
-  build() {
-    Column() {
-      Text("@StorageProp接口初始化，@StorageProp取值")
-      Text(this.PropA + "").fontSize(20).onClick(() => {
-        this.PropA ? this.PropA = null : this.PropA = 1;
-      })
-      Text(this.PropB + "").fontSize(20).onClick(() => {
-        this.PropB ? this.PropB = undefined : this.PropB = 1;
-      })
-    }
-    .borderWidth(3).borderColor(Color.Blue)
-  }
-}
+AppStorage.setOrCreate('propA', false);
 
 @Entry
 @Component
 struct Index {
-  build() {
-    Row() {
-      Column() {
-        StorageLinkComponent()
-        StoragePropComponent()
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-### 装饰Date类型变量
-
-> **说明：**
->
-> 从API version 12开始，AppStorage支持Date类型。
-
-以下示例中，@StorageLink装饰的selectedDate类型为Date。点击Button改变selectedDate的值，视图会随之刷新。
-
-```ts
-@Entry
-@Component
-struct DateSample {
-  @StorageLink("date") selectedDate: Date = new Date('2021-08-08');
-
-  build() {
-    Column() {
-      Button('set selectedDate to 2023-07-08')
-        .margin(10)
-        .onClick(() => {
-          AppStorage.setOrCreate("date", new Date('2023-07-08'));
-        })
-      Button('increase the year by 1')
-        .margin(10)
-        .onClick(() => {
-          this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
-        })
-      Button('increase the month by 1')
-        .margin(10)
-        .onClick(() => {
-          this.selectedDate.setMonth(this.selectedDate.getMonth() + 1);
-        })
-      Button('increase the day by 1')
-        .margin(10)
-        .onClick(() => {
-          this.selectedDate.setDate(this.selectedDate.getDate() + 1);
-        })
-      DatePicker({
-        start: new Date('1970-1-1'),
-        end: new Date('2100-1-1'),
-        selected: $$this.selectedDate
-      })
-    }.width('100%')
-  }
-}
-```
-
-
-### 装饰Map类型变量
-
-> **说明：**
->
-> 从API version 12开始，AppStorage支持Map类型。
-
-在下面的示例中，@StorageLink装饰的message类型为Map\<number, string\>，点击Button改变message的值，视图会随之刷新。
-
-```ts
-@Entry
-@Component
-struct MapSample {
-  @StorageLink("map") message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
-
-  build() {
-    Row() {
-      Column() {
-        ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
-          Text(`${item[0]}`).fontSize(30)
-          Text(`${item[1]}`).fontSize(30)
-          Divider()
-        })
-        Button('init map').onClick(() => {
-          this.message = new Map([[0, "a"], [1, "b"], [3, "c"]]);
-        })
-        Button('set new one').onClick(() => {
-          this.message.set(4, "d");
-        })
-        Button('clear').onClick(() => {
-          this.message.clear();
-        })
-        Button('replace the existing one').onClick(() => {
-          this.message.set(0, "aa");
-        })
-        Button('delete the existing one').onClick(() => {
-          AppStorage.get<Map<number, string>>("map")?.delete(0);
-        })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-
-### 装饰Set类型变量
-
-> **说明：**
->
-> 从API version 12开始，AppStorage支持Set类型。
-
-在下面的示例中，@StorageLink装饰的memberSet类型为Set\<number\>，点击Button改变memberSet的值，视图会随之刷新。
-
-```ts
-@Entry
-@Component
-struct SetSample {
-  @StorageLink("set") memberSet: Set<number> = new Set([0, 1, 2, 3, 4]);
-
-  build() {
-    Row() {
-      Column() {
-        ForEach(Array.from(this.memberSet.entries()), (item: [number, string]) => {
-          Text(`${item[0]}`)
-            .fontSize(30)
-          Divider()
-        })
-        Button('init set')
-          .onClick(() => {
-            this.memberSet = new Set([0, 1, 2, 3, 4]);
-          })
-        Button('set new one')
-          .onClick(() => {
-            AppStorage.get<Set<number>>("set")?.add(5);
-          })
-        Button('clear')
-          .onClick(() => {
-            this.memberSet.clear();
-          })
-        Button('delete the first one')
-          .onClick(() => {
-            this.memberSet.delete(0);
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-## 常见问题
-
-### \@StorageProp本地更改值后，无法通过AppStorage接口更新
-
-```ts
-AppStorage.setOrCreate('PropA', false);
-
-@Entry
-@Component
-struct Index {
-  @StorageProp('PropA') @Watch('onChange') propA: boolean = false;
+  @StorageProp('propA') @Watch('onChange') propA: boolean = false;
 
   onChange() {
     console.info(`propA change`);
@@ -746,8 +759,8 @@ struct Index {
       Text(`${this.propA}`)
       Button('change')
         .onClick(() => {
-          AppStorage.setOrCreate('PropA', false);
-          console.info(`PropA: ${this.propA}`);
+          AppStorage.setOrCreate('propA', false);
+          console.info(`propA: ${this.propA}`);
         })
     }
   }
@@ -758,4 +771,4 @@ struct Index {
 
 实现二者同步有以下两种方式：
 1. 将\@StorageProp更改为\@StorageLink。
-2. 本地更改值的方式变为使用AppStorage.setOrCreate('PropA', true)的方式。
+2. 本地更改值的方式变为使用AppStorage.setOrCreate('propA', true)的方式。

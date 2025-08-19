@@ -3,8 +3,9 @@
 <!--Kit: AVCodec Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yang-xiaoyu5-->
-<!--SE: @dpy2650-->
-<!--TSE: @cyakee-->
+<!--Designer: @dpy2650-->
+<!--Tester: @cyakee-->
+<!--Adviser: @zengyawen-->
 
 因来源、编解码协议及设备能力的不同，导致不同设备上可用的编解码器及其能力存在差异。
 

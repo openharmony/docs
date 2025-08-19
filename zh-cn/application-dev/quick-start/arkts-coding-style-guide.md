@@ -3,8 +3,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @yyytiancai-->
-<!--SE: @qyhuo32-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @qyhuo32-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 目标和适用范围
 

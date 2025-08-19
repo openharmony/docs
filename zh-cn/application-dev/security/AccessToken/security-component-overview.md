@@ -3,8 +3,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: Security-->
 <!--Owner: @harylee-->
-<!--SE: @linshuqing; @hehehe-li-->
-<!--TSE: @leiyuqian-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
 
 安全控件是系统提供的一组ArkUI基础组件，包括保存控件和粘贴控件。它们可以作为一种“特殊的按钮”融入应用页面，实现用户“点击即许可”的设计思路。
 

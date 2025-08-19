@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
-<!--SE: @hanfeng6-->
-<!--TSE: @kongjing2-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ## 配置文件示例
 
@@ -116,7 +117,7 @@ module.json5配置文件包含以下标签。
 | mainElement | 标识当前Module的入口UIAbility名称，取值为长度不超过255字节的字符串。<br/>**说明：**<br/>如果在[abilities](#abilities标签)中配置了多个入口[UIAbility](../application-models/uiability-overview.md)，则桌面图标、名称和启动入口以该字段配置为准。如果该字段缺省或未匹配到，则按照ASCII字典序对UIAbility的name字段正序排序，返回第一个作为桌面图标、名称和启动入口。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | [deviceTypes](#devicetypes标签) | 标识当前Module可以运行在哪类设备上。<br/>**说明：**<br/>当存在多个模块时，各模块的配置可以不同，但都必须包含将要安装的设备类型，以确保正常运行。 | 字符串数组 | 该标签不可缺省。 |
 | deliveryWithInstall | 标识当前Module是否在用户主动安装的时候安装，即该Module对应的HAP/HSP是否跟随应用一起安装。<br/>-&nbsp;true：跟随应用一起安装。<br/>-&nbsp;false：不跟随应用一起安装。 | 布尔值 | 该标签不可缺省。 |
-| installationFree | 标识当前Module是否支持免安装特性。<br/>-&nbsp;true：表示支持免安装特性，且符合免安装约束。<br/>-&nbsp;false：表示不支持免安装特性。<br/>**说明：**<br/>当[bundleType](./app-configuration-file.md#配置文件标签)为原子化服务时，该字段需要配置为true。反之，该字段需要配置为false。 | 布尔值 | 该标签不可缺省。 |
+| installationFree | 标识当前Module是否支持免安装特性。<br/>-&nbsp;true：表示支持免安装特性，且符合免安装约束。<br/>-&nbsp;false：表示不支持免安装特性。 | 布尔值 | 该标签可缺省。该字段在编译构建时自动生成，手动配置不生效。<br/>**说明：**<br/>当[bundleType](./app-configuration-file.md#配置文件标签)为原子化服务时，该字段自动配置为true。反之，该字段自动配置为false。 |
 | virtualMachine | 标识当前Module运行的目标虚拟机类型，供云端分发使用，如应用市场和分发中心。如果目标虚拟机类型为ArkTS引擎，则其值为“ark+版本号”。 | 字符串 | 该标签可缺省，手动配置不生效，由编译构建时自动生成。 |
 | [pages](#pages标签) | 标识当前Module的profile资源，用于列举每个页面信息，取值为长度不超过255字节的字符串。 | 字符串 | 在有UIAbility的场景下，该标签不可缺省。 |
 | [metadata](#metadata标签) | 标识当前Module的自定义元信息，可通过资源引用的方式配置[distributionFilter](#distributionfilter标签)、[shortcuts](#shortcuts标签)等信息。只对当前Module、UIAbility、ExtensionAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |

@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @jinsenjun-->
-<!--SE: @jinsenjun-->
-<!--TSE: @lixueqing-->
+<!--Designer: @jinsenjun-->
+<!--Tester: @lixueqing-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本文针对常见的几种压缩、解压场景，介绍相关函数的使用方法。
 

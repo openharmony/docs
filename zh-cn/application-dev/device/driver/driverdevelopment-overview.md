@@ -2,8 +2,9 @@
 <!--Kit: Driver Development Kit-->
 <!--Subsystem: Driver-->
 <!--Owner: @lixinsheng2-->
-<!--SE: @w00373942-->
-<!--TSE: @dong-dongzhen-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
 
 Driver Development Kit（驱动开发套件）为外设驱动开发者提供高效、安全、丰富的扩展外设驱动开发解决方案ArkTs-API和C-API，支持外设驱动开发者为消费者带来外设即插即用的极致体验。
 

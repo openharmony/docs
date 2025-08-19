@@ -3,8 +3,9 @@
 <!--Kit: Asset Store Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @JeremyXu-->
-<!--SE: @skye_you-->
-<!--TSE: @nacyli-->
+<!--Designer: @skye_you-->
+<!--Tester: @nacyli-->
+<!--Adviser: @zengyawen-->
 
 对于提供了系统级管理功能的单实例应用，一般场景下，所有用户共用一个实例，该实例负责实现不同用户的数据隔离。
 

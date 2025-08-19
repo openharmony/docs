@@ -3,8 +3,9 @@
 <!--Kit: Input Kit-->
 <!--Subsystem: MultimodalInput-->
 <!--Owner: @zhaoxueyuan-->
-<!--SE: @hanruofei-->
-<!--TSE: @Lyuxin-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供鼠标指针管理能力，包括查询、设置鼠标指针属性。
 
@@ -796,9 +797,9 @@ struct Index {
           this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent(
             $r("app.media.app_icon").id, (error: BusinessError, svgFileData: Uint8Array) => {
               const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
-              let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+              let svgImageSource: image.ImageSource = image.createImageSource(svgBuffer);
               let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-              svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+              svgImageSource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
                 window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
                   let windowId = win.getWindowProperties().id;
                   try {
@@ -888,9 +889,9 @@ struct Index {
           this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent(
             $r("app.media.app_icon").id, (error: BusinessError, svgFileData: Uint8Array) => {
               const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
-              let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+              let svgImageSource: image.ImageSource = image.createImageSource(svgBuffer);
               let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-              svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+              svgImageSource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
                 window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
                   let windowId = win.getWindowProperties().id;
                   try {
@@ -953,9 +954,9 @@ struct Index {
           this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent(
             $r("app.media.app_icon").id, (error: BusinessError, svgFileData: Uint8Array) => {
               const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
-              let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+              let svgImageSource: image.ImageSource = image.createImageSource(svgBuffer);
               let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-              svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+              svgImageSource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
                 window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
                   let windowId = win.getWindowProperties().id;
                   try {

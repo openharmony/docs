@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
-<!--SE: @hanfeng6-->
-<!--TSE: @kongjing2-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ## 如何获取签名信息中的指纹信息
 
@@ -45,7 +46,7 @@ bm dump -n com.example.myapplication | grep fingerprint
 
 ## 什么是appIdentifier
 
-appIdentifier是<!--RP1-->签名Profile文件<!--RP1End-->中的一个字段，为应用的唯一标识，在应用签名时生成，其中：
+appIdentifier是<!--RP1-->[Profile签名文件](../security/app-provision-structure.md)<!--RP1End-->中的一个字段，为应用的唯一标识，在应用签名时生成，其中：
 
 1.通过DevEco Studio工具[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)生成，此时的appIdentifier字段是随机生成的，在不同的设备上签名、或者重新签名均会导致appIdentifier字段不一致。
 

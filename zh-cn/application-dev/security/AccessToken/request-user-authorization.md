@@ -3,8 +3,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @xia-bubai-->
-<!--SE: @linshuqing; @hehehe-li-->
-<!--TSE: @leiyuqian-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
 
 当应用需要访问用户的隐私信息或使用系统能力时，如获取位置信息、访问日历、使用相机拍摄照片或录制视频等，应向用户申请授权。这些权限属于user_grant权限。
 

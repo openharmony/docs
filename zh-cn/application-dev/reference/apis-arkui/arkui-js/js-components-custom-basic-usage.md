@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @seaside_wu1-->
-<!--SE: @shiyu_huang-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @shiyu_huang-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @HelloCrease-->
 
 自定义组件是用户根据业务需求，将已有的组件组合，封装成的新组件，可以在工程中多次调用，从而提高代码的可读性。自定义组件通过element引入到宿主页面，使用方法如下：
 

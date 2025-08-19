@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiyujia926; @huyisuo-->
-<!--SE: @zhangboren-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @zhangboren-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 在ArkUI中，UI显示的内容均为组件，由框架直接提供的称为系统组件，由开发者定义的称为自定义组件。进行UI界面开发时，不仅要组合使用系统组件，还需考虑代码的可复用性、业务逻辑与UI的分离，以及后续版本的演进等因素。因此，将UI和部分业务逻辑封装成自定义组件是不可或缺的能力。
 
@@ -98,7 +99,7 @@ struct ParentComponent {
   }
   ```
 
- #### freezeWhenInactive<sup>11+</sup>
+ **freezeWhenInactive<sup>11+</sup>**
   [组件冻结](arkts-custom-components-freeze.md)选项。
 
   | 名称   | 类型   | 必填 | 说明                                                         |
@@ -142,7 +143,7 @@ build()函数用于定义自定义组件的声明式UI描述，自定义组件�
   }
   ```
 
-#### EntryOptions<sup>10+</sup>
+**EntryOptions<sup>10+</sup>**
 
   命名路由跳转选项。
 

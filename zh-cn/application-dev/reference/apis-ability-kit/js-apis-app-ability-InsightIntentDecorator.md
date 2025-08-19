@@ -3,8 +3,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @linjunjie6-->
-<!--SE: @li-weifeng2-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 InsightIntentDecorator模块提供了几类意图装饰器。通过装饰类或方法可以将应用的功能定义为意图，并集成到智能问答、智能搜索、智能推荐等AI入口。
 

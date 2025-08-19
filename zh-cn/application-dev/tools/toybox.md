@@ -1,4 +1,10 @@
 # toybox
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Startup-->
+<!--Owner: @yan-mingzhen-->
+<!--Designer: @liveery-->
+<!--Tester: @liuhaonan2-->
+<!--Adviser: @foryourself-->
 
 toybox 是一个轻量级的Linux命令行工具集合，它将常用的Linux命令行工具合并到一个单独的可执行文件中。
 
@@ -51,7 +57,7 @@ toybox的执行方式有两种：
 
 | 命令 | 说明 |
 | :- | :- |
-| ascii     | 显示acsii编码表。<br />usage: ascii |
+| ascii     | 显示ascii编码表。<br />usage: ascii |
 | factor     | 分解质因数。<br />usage: factor NUMBER... |
 | mcookie    | 生成128位强随机数。<br />usage: mcookie [-vV] |
 | mkpasswd | 对密码进行加密。<br />usage: mkpasswd [-P FD] [-m TYPE] [-S SALT] [PASSWORD] [SALT] |

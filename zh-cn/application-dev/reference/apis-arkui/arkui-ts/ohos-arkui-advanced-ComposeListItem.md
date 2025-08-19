@@ -1,4 +1,10 @@
 # ComposeListItem
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fengluochenai-->
+<!--Designer: @YanSanzo-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @HelloCrease-->
 
 
 该组件用于呈现一系列宽度相同的列表项，适用于展示连续、多行的同类数据组合（如图片与文本）。

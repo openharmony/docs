@@ -3,8 +3,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @altay; @Luobniz21-->
-<!--SE: @altay-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @altay-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 ## 场景介绍
 
@@ -12,7 +13,7 @@
 
 > **说明：**
 >
-> 应用正常关闭时，不会触发[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)备份流程。应用正常启动（例如通过startAbility接口启动或点击图标启动），不触发[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)恢复流程。
+> 应用正常关闭时，不会触发[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)备份流程。应用正常启动（例如通过startAbility接口启动或点击图标启动）时，不触发[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)恢复流程。
 
 ## 运行机制
 - [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)数据备份：在应用的[onBackground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onbackground)生命周期后，系统自动调用[onSaveState](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onsavestate)进行备份。
@@ -34,14 +35,14 @@
 
 | 接口名称                                                       | 说明                                                 |
 | ------------------------------------------------------------ | ---------------------------------------------------- |
-| setRestoreEnabled(enabled: boolean): void | 设置当[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)从后台切换回时是否启用恢复。|
+| setRestoreEnabled(enabled: boolean): void | 设置当[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)从后台切换回前台时是否启用恢复功能。|
 
 [setRestoreEnabled](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#setrestoreenabled14)接口需要在应用初始化阶段调用（[onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onforeground)前），比如[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的[onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate)调用。
 
 
 ## 开发步骤
 
-开发者需要在应用模块初始化时启用[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)备份恢复功能。
+开发者需要在应用模块初始化时启用[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的备份恢复功能。
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';

@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
-<!--SE: @hanfeng6-->
-<!--TSE: @kongjing2-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 应用包信息，可以通过[bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取自身的应用包信息，其中参数[bundleFlags](js-apis-bundleManager.md#bundleflag)指定所返回的[BundleInfo](js-apis-bundleManager-bundleInfo.md)中所包含的信息。
 
@@ -84,7 +85,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | appId     | string         | 是   | 否   | 应用的appId，由包名、下划线和证书公钥的Base64编码组成。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                 |
 |fingerprint| string         | 是   | 否   | 应用包的指纹信息，由签名证书通过SHA-256算法计算哈希值生成。使用的签名证书发生变化时，该字段也会发生变化。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。            |
-|appIdentifier<sup>11+</sup>| string         | 是   | 否   | 应用的唯一标识。<!--RP1-->应用[签名证书](../security/app-provision-structure.md)中的app-identifier。<!--RP1End--> <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。          |
+|appIdentifier<sup>11+</sup>| string         | 是   | 否   | 应用的唯一标识。<!--RP1-->应用[Profile签名文件](../../security/app-provision-structure.md)中的app-identifier。<!--RP1End--> <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。          |
 |certificate<sup>14+</sup>| string         | 是   | 是   | 应用的证书公钥。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。            |
 
 ## AppCloneIdentity<sup>14+<sup>

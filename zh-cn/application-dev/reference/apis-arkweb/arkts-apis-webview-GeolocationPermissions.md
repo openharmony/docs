@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @zhang-yinglie-->
-<!--SE: @handyohos-->
-<!--TSE: @ghiker-->
+<!--Designer: @handyohos-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Web组件地理位置权限管理对象。
 

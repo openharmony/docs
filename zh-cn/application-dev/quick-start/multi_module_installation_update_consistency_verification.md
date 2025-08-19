@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
-<!--SE: @hanfeng6-->
-<!--TSE: @kongjing2-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 随着应用发展越来越复杂，应用也被拆成多个模块进行开发维护，不同的团队负责单个或者多个模块，应用在安装更新过程中会针对不同的字段进行一致性校验和验证，保证应用的安全合法性。本文介绍多模块安装或更新时，签名证书、配置文件的一致性校验规则。
 
@@ -19,9 +20,9 @@
 |字段名称|说明|安装一致性校验规则|更新一致性校验规则|
 |--|--|--|--|
 |appId|应用的appId，组成方式为bundleName_公钥的base64编码。|是|appId和appIdentifier任一相同即可。|
-|appIdentifier|应用的唯一标识。<!--RP2-->应用[签名证书](../security/app-provision-structure.md)中的app-identifier。<!--RP2End-->|
-|appDistributionType|<!--RP1-->应用[签名证书](../security/app-provision-structure.md)中的app-distribution-type，标识应用的分发类型。<!--RP1End-->|是|更新不同版本时无校验，同版本有校验。|
-|appProvisionType|应用签名<!--RP3-->应用[签名证书](../security/app-provision-structure.md)中的type。<!--RP3End-->，分为debug和release。debug为本地调试使用，release为上架应用市场使用。|是|更新不同版本时无校验，同版本有校验。|
+|appIdentifier|应用的唯一标识。<!--RP2-->来源于应用[Profile签名文件](../security/app-provision-structure.md)中的app-identifier。<!--RP2End-->|是|appId和appIdentifier任一相同即可。|
+|appDistributionType|<!--RP1-->应用[Profile签名文件](../security/app-provision-structure.md)中的app-distribution-type，标识应用的分发类型。<!--RP1End-->|是|更新不同版本时无校验，同版本有校验。|
+|appProvisionType|应用签名证书类型。<!--RP3-->来源于应用[Profile签名文件](../security/app-provision-structure.md)中的type。分为debug和release。debug用于本地调试使用，release用于应用发布场景。<!--RP3End-->|是|更新不同版本时无校验，同版本有校验。|
 |apl|表示应用程序的[APL等级](../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)，系统定义的apl包括：normal、system_basic和system_core。|是|更新不同版本时无校验，同版本有校验。|
 
 

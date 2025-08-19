@@ -3,8 +3,9 @@
 <!--Kit: Ads Kit-->
 <!--Subsystem: Advertising-->
 <!--Owner: @SukiEvas-->
-<!--SE: @zhansf1988-->
-<!--TSE: @hongmei_may-->
+<!--Designer: @zhansf1988-->
+<!--Tester: @hongmei_may-->
+<!--Adviser: @RayShih-->
 
 本模块提供返回广告的能力。
 

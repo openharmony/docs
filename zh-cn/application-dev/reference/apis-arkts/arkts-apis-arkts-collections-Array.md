@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
-<!--SE: @weng-changcheng-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 > **说明：**
 >
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -156,7 +157,6 @@ static create\<T>(arrayLength: number, initialValue: T): Array\<T>
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 401      | Parameter error.                   |
-| 10200011 | The create method cannot be bound. |
 
 **示例：**
 
@@ -193,7 +193,6 @@ static from\<T>(arrayLike: ArrayLike\<T>): Array\<T>
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 401      | Parameter error.                 |
-| 10200011 | The from method cannot be bound. |
 
 **示例：**
 
@@ -239,7 +238,6 @@ static from\<T>(iterable: Iterable\<T>): Array\<T>
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 401 | Parameter error: Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200011 | The from method cannot be bound. |
 
 **示例：**
 
@@ -283,7 +281,6 @@ static from\<T>(arrayLike: ArrayLike\<T> | Iterable\<T>, mapFn: ArrayFromMapFn\<
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 401 | Parameter error: Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200011 | The from method cannot be bound. |
 
 **示例：**
 
@@ -297,7 +294,7 @@ console.info(newArray.toString()); // 预期输出： 1, 3, 5
 
 static from\<U, T>(arrayLike: ArrayLike\<U> | Iterable\<U>, mapFn: ArrayFromMapFn\<U, T>): Array\<T>
 
-从一个实现了ArrayLike接口的对象创建一个新的ArkTS Array，并且使用自定义函数处理每个数组元素，ArrayLike接口对象的元素类型可以数组元素的类型不一样。
+从一个实现了ArrayLike接口的对象创建一个新的ArkTS Array，并且使用自定义函数处理每个数组元素，ArrayLike接口对象的元素类型可以和数组元素的类型不一样。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -323,7 +320,6 @@ static from\<U, T>(arrayLike: ArrayLike\<U> | Iterable\<U>, mapFn: ArrayFromMapF
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 401 | Parameter error: Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200011 | The from method cannot be bound. |
 
 **示例：**
 
@@ -572,7 +568,7 @@ console.info(reducedValue + ''); // 预期输出： 15
 
 reduceRight\<U = T>(callbackFn: ArrayReduceCallback\<U, T, Array\<T>>, initialValue: U): U
 
-与 reduceRight方法类似，但它接受一个初始值作为第二个参数，用于在Array从右到左顺序遍历开始前初始化累加器。
+与 [reduceRight](#reduceright18)方法类似，但它接受一个初始值作为第二个参数，用于在Array从右到左顺序遍历开始前初始化累加器。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1051,7 +1047,7 @@ let array = new collections.Array<string>('a', 'b', 'c');
 let mappedArray = array.map((value, index, array) => {
   return value.toUpperCase(); // 将每个字符串元素转换为大写
 });
-console.info("" + mappedArray); // 输出: ['A', 'B', 'C']
+console.info("" + mappedArray); // 输出: A, B, C
 ```
 
 ## filter
@@ -1250,7 +1246,7 @@ console.info(iterator.next().value); // 输出：[0, 1]，第一个元素的键�
 
 keys(): IterableIterator\<number>
 
-返回一个新的可迭代对象，该对象包含Array中每个元素的键。
+返回一个新的可迭代对象，该对象包含Array中每个元素的索引。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -1260,7 +1256,7 @@ keys(): IterableIterator\<number>
 
 | 类型                      | 说明                                   |
 | ------------------------- | -------------------------------------- |
-| IterableIterator\<number> | 包含Array中每个元素的键的可迭代迭代器。 |
+| IterableIterator\<number> | 包含Array中每个元素的索引的可迭代迭代器。 |
 
 **错误码：**
 

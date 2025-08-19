@@ -3,8 +3,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @yylong-->
-<!--SE: @yylong-->
-<!--TSE: @liuzhenshuo-->
+<!--Designer: @yylong-->
+<!--Tester: @liuzhenshuo-->
+<!--Adviser: @HelloCrease-->
 
 弧形列表包含一系列列表项。适合连续、多行呈现同类数据，例如图片和文本。
 

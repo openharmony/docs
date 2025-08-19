@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
-<!--SE: @weng-changcheng-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 > **说明：**
 >
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -127,9 +128,9 @@ const myMap = new collections.Map<number, string>([
 ]);
 
 const iterator = myMap.entries();
-// Expected output: [0, "foo"]
+// Expected output: 0, foo
 console.info(iterator.next().value);
-// Expected output: [1, "bar"]
+// Expected output: 1, bar
 console.info(iterator.next().value);
 ```
 

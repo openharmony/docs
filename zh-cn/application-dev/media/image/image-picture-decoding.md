@@ -2,8 +2,9 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 将所支持格式的图片文件解码成[Picture](image-overview.md)。当前支持的图片文件格式包括JPEG、HEIF。
 

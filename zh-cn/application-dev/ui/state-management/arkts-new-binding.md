@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @Cuecuexiaoyu-->
-<!--SE: @lixingchi1-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @lixingchi1-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 在状态管理V1中，使用[$$](./arkts-two-way-sync.md)实现系统组件的双向绑定。
 在状态管理V2中，使用`!!`语法糖统一处理双向绑定。

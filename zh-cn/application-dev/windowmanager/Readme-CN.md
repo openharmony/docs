@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
 <!--Owner: @waterwin-->
-<!--SE: @nyankomiya-->
-<!--TSE: @qinliwen0417-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 - [窗口开发概述](window-overview.md)
 - [管理应用窗口（Stage模型）](application-window-stage.md)
 - [管理应用窗口（FA模型）](application-window-fa.md)

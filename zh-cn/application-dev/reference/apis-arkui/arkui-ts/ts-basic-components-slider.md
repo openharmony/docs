@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyi0309-->
-<!--SE: @liyi0309-->
-<!--TSE: @lxl007-->
+<!--Designer: @liyi0309-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 滑动条组件，通常用于快速调节设置值，如音量调节、亮度调节等应用场景。
 
@@ -988,7 +989,7 @@ struct SliderExample {
       Slider({ style: SliderStyle.OutSet, value: 40 })
         .blockStyle({ type: SliderBlockType.DEFAULT })
       Slider({ style: SliderStyle.OutSet, value: 40 })
-        .blockStyle({ type: SliderBlockType.IMAGE, image: $r('sys.media.ohos_app_icon') })
+        .blockStyle({ type: SliderBlockType.IMAGE, image: $r('sys.media.ohos_app_icon') }) // $r('app.media.ohos_app_icon')需要替换为开发者所需的图像资源文件。
       Slider({ style: SliderStyle.OutSet, value: 40 })
         .blockSize({ width: '60px', height: '60px' })
         .blockColor(Color.Red)

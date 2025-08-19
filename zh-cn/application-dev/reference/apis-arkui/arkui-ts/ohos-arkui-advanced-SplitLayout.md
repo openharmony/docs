@@ -1,4 +1,10 @@
 # SplitLayout
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fengluochenai-->
+<!--Designer: @YanSanzo-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @HelloCrease-->
 
 
 上下结构布局介绍了常用的页面布局样式。主要分为上下文本和上下图文两种类型。

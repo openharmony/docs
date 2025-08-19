@@ -3,8 +3,9 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Account-->
 <!--Owner: @steven-q-->
-<!--SE: @JiDong-CS1-->
-<!--TSE: @zhaimengchao-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
 
 OEM厂商可以通过[分布式账号SDK](../../reference/apis-basic-services-kit/js-apis-distributed-account.md)将自有账号与本地系统账号建立关联关系。
 

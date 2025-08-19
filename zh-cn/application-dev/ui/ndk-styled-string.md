@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hddgzw-->
-<!--SE: @pssea-->
-<!--TSE: @jiaoaozihao-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 部分框架或应用具备自研的文字排版能力，在移植时，这些能力会被对接到[方舟2D图形服务的文本引擎](../graphics/complex-text-c.md)。为了避免开发者重复开发文本组件，Text组件提供了接口[NODE_TEXT_CONTENT_WITH_STYLED_STRING](../../application-dev/reference/apis-arkui/capi-native-node-h.md#arkui_nodeattributetype)，可以直接渲染方舟文本引擎生成的文本。
 
 以下场景基于[接入ArkTS页面章节](../ui/ndk-access-the-arkts-page.md)，阐述了如何创建字体引擎文本，并利用Text组件进行渲染显示。
@@ -150,6 +151,11 @@ Text组件提供[OH_ArkUI_StyledString_Destroy](../reference/apis-arkui/capi-sty
 
 ## 完整示例
 ```c++
+#include <arkui/native_interface.h>
+#include <arkui/styled_string.h>
+#include <native_drawing/drawing_font_collection.h>
+#include <native_drawing/drawing_text_declaration.h>
+
 void CreateNativeNode() {
     ArkUI_NativeNodeAPI_1 *nodeApi = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));

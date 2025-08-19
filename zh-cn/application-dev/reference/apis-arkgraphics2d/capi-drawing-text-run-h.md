@@ -1,9 +1,10 @@
 # drawing_text_run.h
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
-<!--Owner: @oh_wangxk;@gmiao522;@Lem0nC-->
-<!--SE: @liumingxiang-->
-<!--TSE: @yhl0101-->
+<!--Owner: @oh_wangxk; @gmiao522; @Lem0nC-->
+<!--Designer: @liumingxiang-->
+<!--Tester: @yhl0101-->
+<!--Adviser: @ge-yafang-->
 ## 概述
 
 提供字体渲染单元的相关接口，比如绘制功能、获取排版边界功能等。

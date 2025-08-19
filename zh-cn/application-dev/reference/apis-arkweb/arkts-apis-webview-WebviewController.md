@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @yp99ustc; @aohui; @zourongchun-->
-<!--SE: @LongLie; @yaomingliu; @zhufenghao-->
-<!--TSE: @ghiker-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 通过WebviewController可以控制Web组件各种行为（包括页面导航、声明周期状态、JavaScript交互等行为）。一个WebviewController对象只能控制一个Web组件，且必须在Web组件和WebviewController绑定后，才能调用WebviewController上的方法（静态方法除外）。
 
@@ -3249,8 +3250,8 @@ scrollByWithResult(deltaX: number, deltaY: number): boolean
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ---------------------- |
-| deltaX | number   | 是   | 水平偏移量，其中水平向右为正方向。 |
-| deltaY | number   | 是   | 垂直偏移量，其中垂直向下为正方向。 |
+| deltaX | number   | 是   | 水平偏移量，其中水平向右为正方向。 <br>单位：vp。 |
+| deltaY | number   | 是   | 垂直偏移量，其中垂直向下为正方向。 <br>单位：vp。 |
 
 **返回值：**
 
@@ -3706,7 +3707,7 @@ removeCache(clearRom: boolean): void
 
 | 参数名   | 类型    | 必填 | 说明                                                     |
 | -------- | ------- | ---- | -------------------------------------------------------- |
-| clearRom | boolean | 是   | 设置为true时同时清除rom和ram中的缓存，设置为false时只清除ram中的缓存。 |
+| clearRom | boolean | 是   | 设置为true时同时清除ROM和RAM中的缓存，设置为false时只清除RAM中的缓存。 |
 
 **错误码：**
 
@@ -6487,19 +6488,10 @@ pauseAllTimers(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
-
 **示例：**
 
 ```ts
 import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -6511,11 +6503,7 @@ struct WebComponent {
       Row() {
         Button('PauseAllTimers')
           .onClick(() => {
-            try {
-              webview.WebviewController.pauseAllTimers();
-            } catch (error) {
-              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-            }
+            webview.WebviewController.pauseAllTimers();
           })
       }
       Web({ src: $rawfile("index.html"), controller: this.controller })
@@ -6560,19 +6548,10 @@ resumeAllTimers(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
-
 **示例：**
 
 ```ts
 import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -6584,19 +6563,11 @@ struct WebComponent {
       Row() {
         Button('ResumeAllTimers')
           .onClick(() => {
-            try {
-              webview.WebviewController.resumeAllTimers();
-            } catch (error) {
-              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-            }
+            webview.WebviewController.resumeAllTimers();
           })
         Button('PauseAllTimers')
           .onClick(() => {
-            try {
-              webview.WebviewController.pauseAllTimers();
-            } catch (error) {
-              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-            }
+            webview.WebviewController.pauseAllTimers();
           })
       }
       Web({ src: $rawfile("index.html"), controller: this.controller })
@@ -8730,6 +8701,7 @@ getScrollOffset(): ScrollOffset
 **示例：**
 
 ```ts
+// xxx.ets
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -8798,6 +8770,7 @@ getPageOffset(): ScrollOffset
 **示例：**
 
 ```ts
+// xxx.ets
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -9120,7 +9093,7 @@ static setWebDebuggingAccess(webDebuggingAccess: boolean, port: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -9550,13 +9523,14 @@ getBlanklessInfoWithKey(key: string): BlanklessInfo
 
 > **说明：**
 >
-> - 当前仅支持手机设备。
 > - 持久缓存容量：默认大小为30MB（约30页），可以通过接口[setBlanklessLoadingCacheCapacity](#setblanklessloadingcachecapacity20)设置缓存容量，具体见该接口说明。超过容量时根据LRU（Least Recently Used，淘汰不常用缓存的策略）机制更新缓存。自动清理超过7天的持久缓存数据，缓存清除后第三次加载页面开始有优化效果。
 > - 如果发现快照相似度（即[BlanklessInfo](./arkts-apis-webview-i.md#blanklessinfo20)中的similarity）极低，请确认key值是否传递正确。
 > - 调用本接口后，将启用页面加载快照检测及生成过渡帧计算，会产生一定的资源开销。
 > - 启用无白屏加载的页面会带来一定的资源开销，开销的大小与Web组件的分辨率相关。假设分辨率的宽度和高度分别为：w, h。页面在打开阶段会增加峰值内存，增加约12*w*h B，页面打开后内存回收，不影响稳态内存。增加固态应用缓存的大小，每个页面增加的缓存约w*h/10 B，缓存位于应用缓存的位置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**设备行为差异：** 该接口在Phone中可正常调用，在其他设备类型中返回801错误码。
 
 **参数：**
 

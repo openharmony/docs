@@ -3,8 +3,9 @@
 <!--Kit: Calendar Kit-->
 <!--Subsystem: Applications-->
 <!--Owner: @qq_42718467-->
-<!--SE: @huangxinwei-->
-<!--TSE: @z30055209-->
+<!--Designer: @huangxinwei-->
+<!--Tester: @z30055209-->
+<!--Adviser: @ge-yafang-->
 
 日程指特定的事件或者活动安排，日程管理即对这些事件、活动进行规划和控制，能更有效地利用相关资源、提高生产力和效率，使人们更好地管理时间和任务。
 

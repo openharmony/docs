@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hddgzw-->
-<!--SE: @pssea-->
-<!--TSE: @jiaoaozihao-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 方便灵活应用文本样式的对象，可通过TextController中的[setStyledString](./ts-basic-components-text.md#setstyledstring12)方法与Text组件绑定，可通过RichEditorStyledStringController中的[setStyledString](ts-basic-components-richeditor.md#setstyledstring12)方法与RichEditor组件绑定。
 
@@ -1303,7 +1304,7 @@ struct styled_string_process_demo {
             Span("span and styledString test")
               .fontColor(Color.Yellow)
               .decoration({ type: TextDecorationType.LineThrough })
-            ImageSpan($r('app.media.app_icon'))
+            ImageSpan($r('app.media.startIcon')) // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
           }
           .key('styledString2')
           .fontColor(this.fontColor1)
@@ -1330,7 +1331,7 @@ struct styled_string_process_demo {
             Span(this.string1)
               .fontColor(this.color1)
               .decoration({ type: TextDecorationType.LineThrough })
-            ImageSpan($r('app.media.app_icon'))
+            ImageSpan($r('app.media.startIcon'))// $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
               .width(50).height(50)
           }
           .letterSpacing(10)
@@ -1717,7 +1718,8 @@ struct styled_string_set_image_demo {
 
   async aboutToAppear() {
     console.info("aboutToAppear initial imagePixelMap");
-    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.app_icon'));
+    this.imagePixelMap =
+      await this.getPixmapFromMedia($r('app.media.startIcon')); // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
   }
 
   private async getPixmapFromMedia(resource: Resource) {

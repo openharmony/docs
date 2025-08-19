@@ -2,8 +2,9 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: MiscServices-->
 <!--Owner: @yangxiaodong41-->
-<!--SE: @guo867-->
-<!--TSE: @maxiaorong2-->
+<!--Designer: @guo867-->
+<!--Tester: @maxiaorong2-->
+<!--Adviser: @HelloCrease-->
 
 本模块提供管理系统剪贴板的能力，支持系统复制、粘贴功能。系统剪贴板支持对文本、HTML、URI、Want、PixelMap等内容的操作。
 

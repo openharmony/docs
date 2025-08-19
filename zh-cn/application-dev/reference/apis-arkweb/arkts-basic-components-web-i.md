@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @yp99ustc; @aohui; @zourongchun-->
-<!--SE: @LongLie; @yaomingliu; @zhufenghao-->
-<!--TSE: @ghiker-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 >
@@ -34,7 +35,7 @@ Web媒体策略的配置。
 | 名称             | 类型      | 只读 | 可选  | 说明                                       |
 | -------------- | ------- | ---- | ---- | ---------------------------------------- |
 | resumeInterval | number  | 否 | 是 | 被其他应用暂停的Web音视频能够自动续播的有效期，单位：秒。取值范围：[-2147483648, 2147483647]。resumeInterval值为0时，不自动续播；大于0时，将在该时间内尝试续播；小于0时，将在无限时间内尝试续播。由于近似值原因，该有效期可能存在一秒内的误差。 <br>**说明：** <br>HLS视频被打断后，回到前台将自动续播，不受该时间控制。|
-| audioExclusive | boolean | 否 | 是 | 应用内多个Web实例的音频是否独占。<br>true表示应用内多个Web实例的音频独占，false表示应用内多个Web实例的音频不独占。                       |
+| audioExclusive | boolean | 否 | 是 | 应用内多个Web实例的音频是否独占。<br>true表示应用内多个Web实例的音频独占，false表示应用内多个Web实例的音频不独占。<br>默认值:true。                       |
 | audioSessionType<sup>20+</sup> | [AudioSessionType](./arkts-basic-components-web-e.md#audiosessiontype20) | 否 | 是 | 应用中Web音频类型。默认值对应[系统音频流类型](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)STREAM_USAGE_MUSIC。设置该参数会改变组件音频类型与系统音频类型映射关系，进而影响ArkWeb音频焦点策略。|
 
 ## ScriptItem<sup>11+</sup>
@@ -56,10 +57,10 @@ Web媒体策略的配置。
 
 | 名称             | 类型               | 只读 | 可选 | 说明                   |
 | -------------- | ---------------- | ---- | ---- | -------------------- |
-| scrollUp  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往上滚动时的嵌套滚动选项。 |
-| scrollDown | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往下滚动时的嵌套滚动选项。 |
-| scrollLeft  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往左滚动时的嵌套滚动选项。 |
-| scrollRight | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往右滚动时的嵌套滚动选项。 |
+| scrollUp  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往上滚动时的嵌套滚动选项。<br/>默认值：NestedScrollMode.SELF_FIRST。|
+| scrollDown | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往下滚动时的嵌套滚动选项。<br/>默认值：NestedScrollMode.SELF_FIRST。|
+| scrollLeft  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往左滚动时的嵌套滚动选项。<br/>默认值：NestedScrollMode.SELF_FIRST。|
+| scrollRight | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往右滚动时的嵌套滚动选项。<br/>默认值：NestedScrollMode.SELF_FIRST。|
 
 ## NativeMediaPlayerConfig<sup>12+</sup>
 
@@ -548,7 +549,7 @@ Web同层渲染的配置。
 | 名称             | 类型      | 只读 | 可选    | 说明                                       |
 | -------------- | ---- | ---- | -------------|--------------------------- |
 | title | string | 否 | 否 | document标题内容。                       |
-| isRealTitle<sup>20+</sup> | boolean | 否 | 是 | document标题来源，true表示来自网页的title标签，false表示该title是根据url自动生成。                       |
+| isRealTitle<sup>20+</sup> | boolean | 否 | 是 | document标题来源，true表示来自网页的title标签，false表示该title是根据url自动生成。 <br>默认值：false |
 
 ## OnGeolocationShowEvent<sup>12+</sup>
 

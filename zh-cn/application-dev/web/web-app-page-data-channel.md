@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @aohui-->
-<!--SE: @yaomingliu-->
-<!--TSE: @ghiker-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 
 前端页面和应用侧之间可以用[createWebMessagePorts()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#createwebmessageports)接口创建消息端口来实现两端的通信。
@@ -121,11 +122,11 @@
                 var msg = 'Got message from ets:';
                 var result = event.data;
                 if (typeof(result) === 'string') {
-                  console.info(`received string message from html5, string is: ${result}`);
+                  console.info(`received string message from ets, string is: ${result}`);
                   msg = msg + result;
                 } else if (typeof(result) === 'object') {
                   if (result instanceof ArrayBuffer) {
-                    console.info(`received arraybuffer from html5, length is: ${result.byteLength}`);
+                    console.info(`received arraybuffer from ets, length is: ${result.byteLength}`);
                     msg = msg + 'length is ' + result.byteLength;
                   } else {
                     console.info('not support');

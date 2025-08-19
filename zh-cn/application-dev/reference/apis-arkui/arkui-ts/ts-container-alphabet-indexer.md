@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
-<!--SE: @yangfan229-->
-<!--TSE: @lxl007-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 可以与容器组件联动用于按逻辑结构快速定位容器显示区域的组件。
 
@@ -943,6 +944,7 @@ struct AlphabetIndexerSample {
       }
       .width('100%')
       .height('100%')
+      // $r('app.media.image')需要替换为开发者所需的图像资源文件。
       .backgroundImage($r("app.media.image"))
     }
   }

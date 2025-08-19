@@ -1,5 +1,10 @@
 # animateMotion
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyujie43-->
+<!--Designer: @weixin_52725220-->
+<!--Tester: @xiong0104-->
+<!--Adviser: @HelloCrease-->
 
 >  **说明：**
 > 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -41,11 +46,11 @@
       </animateMotion>
     </path>
     <path fill="red" d="M-5,-5 L10,0 L-5,5 L0,0 Z">
-      <animateMotion dur="2000" repeatCount="indefinite" rotate="auto-reverse"path="m40,130 c0,-100 160,100 160,0 c0,-100,-160,100 -160,0 z">
+      <animateMotion dur="2000" repeatCount="indefinite" rotate="auto-reverse" path="m40,130 c0,-100 160,100 160,0 c0,-100,-160,100 -160,0 z">
       </animateMotion>
     </path>
     <path fill="red" d="M-5,-5 L10,0 L-5,5 L0,0 Z">
-      <animateMotion dur="2000" repeatCount="indefinite" rotate="45"path="m40,200 c0,-100 160,100 160,0 c0,-100 -160,100 -160,0 z"></animateMotion>
+      <animateMotion dur="2000" repeatCount="indefinite" rotate="45" path="m40,200 c0,-100 160,100 160,0 c0,-100 -160,100 -160,0 z"></animateMotion>
     </path>
   </svg>
 </div>

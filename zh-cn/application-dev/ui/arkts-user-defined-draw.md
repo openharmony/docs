@@ -1,4 +1,10 @@
 # 自定义绘制
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 ## 自定义绘制内容
 
@@ -100,7 +106,7 @@ ArkUI_NodeHandle test(ArkUI_NativeNodeAPI_1 *nodeAPI) {
         auto targetId = OH_ArkUI_NodeCustomEvent_GetEventTargetId(event);
         auto userData =reinterpret_cast<A *>( OH_ArkUI_NodeCustomEvent_GetUserData(event));
         if (type == ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW && targetId == 1 && userData->flag) {
-            //获取自定事件绘制的上下文。
+            //获取自定义事件绘制的上下文。
             auto *drawContext = OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw(event);
             //获取绘制canvas指针。
             auto *canvas1 = OH_ArkUI_DrawContext_GetCanvas(drawContext);

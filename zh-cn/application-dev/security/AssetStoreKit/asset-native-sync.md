@@ -3,8 +3,9 @@
 <!--Kit: Asset Store Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @JeremyXu-->
-<!--SE: @skye_you-->
-<!--TSE: @nacyli-->
+<!--Designer: @skye_you-->
+<!--Tester: @nacyli-->
+<!--Adviser: @zengyawen-->
 
 ## 添加依赖
 

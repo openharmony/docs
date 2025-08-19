@@ -1,4 +1,10 @@
 # TabTitleBar
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fengluochenai-->
+<!--Designer: @YanSanzo-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @HelloCrease-->
 
 
 页签型标题栏，用于页面之间的切换。仅一级页面适用。

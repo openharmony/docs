@@ -1,5 +1,12 @@
 # @ohos.app.ability.InsightIntentExecutor (意图调用执行基类)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @linjunjie6-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 本模块提供意图调用执行基类，开发者通过意图调用执行基类对接端侧意图框架，实现响应意图调用的业务逻辑。开发者接入意图框架时，在意图配置文件中声明对接的意图名称、意图接入方式等，系统根据用户交互和开发者的意图配置文件进行意图调用，触发相应的意图调用执行回调。
 
 > **说明：**
@@ -59,8 +66,8 @@ onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, 
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) | 意图调用执行结果。|
-| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Promise对象，返回意图调用执行结果。 |
+| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) \| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | 返回意图调用执行结果或返回带有意图调用执行结果的Promise对象。|
+|  |  |
 
 **示例：**
 
@@ -171,8 +178,7 @@ onExecuteInUIAbilityBackgroundMode(name: string, param: Record<string, Object>):
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) | 意图调用执行结果。|
-| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Promise对象，返回意图调用执行结果。 |
+| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) \| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | 返回意图调用执行结果或返回带有意图调用执行结果的Promise对象。|
 
 **示例：**
 
@@ -242,8 +248,7 @@ onExecuteInUIExtensionAbility(name: string, param: Record<string, Object>, pageL
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) | 意图调用执行结果。|
-| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Promise对象，返回意图调用执行结果。 |
+| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) \| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | 返回意图调用执行结果或返回带有意图调用执行结果的Promise对象。|
 
 **示例：**
 
@@ -343,8 +348,7 @@ onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>):
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) | 意图调用执行结果。|
-| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Promise对象，返回意图调用执行结果。 |
+| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) \| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | 返回意图调用执行结果或返回带有意图调用执行结果的Promise对象。|
 
 **示例：**
 

@@ -2,8 +2,9 @@
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @yuanxiaogou; @string_sz-->
-<!--SE: @knightaoko-->
-<!--TSE: @test_lzz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 JSVM的内存占用包括Native内存占用(C/C++侧的内存占用)和底层的JS引擎的堆内存占用，JS引擎会维护一个堆来管理其生成的JS对象，其生命周期由JS引擎维护，除此之外的内存我们归为Native内存。用户在使用JSVM时，可能碰到这两种内存异常增长的情况。
 

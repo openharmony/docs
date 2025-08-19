@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @zhang-yinglie-->
-<!--SE: @handyohos-->
-<!--TSE: @ghiker-->
+<!--Designer: @handyohos-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Web组件打印html页面时可通过W3C标准协议接口和应用接口两种方式实现。
 

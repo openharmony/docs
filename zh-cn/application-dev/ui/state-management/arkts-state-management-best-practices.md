@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiyujia926-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 本章节旨在帮助开发者提高ArkUI应用质量，重点提高状态管理效率。章节中列举了常见的低效开发场景及解决方案，并通过对比推荐与非推荐用法，帮助开发者正确使用状态变量，实现高性能开发。
 

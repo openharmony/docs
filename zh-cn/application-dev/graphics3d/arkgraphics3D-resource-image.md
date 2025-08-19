@@ -2,8 +2,9 @@
 <!--Kit: ArkGraphics 3D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @zzhao0-->
-<!--SE: @zdustc-->
-<!--TSE: @zhangyue283-->
+<!--Designer: @zdustc-->
+<!--Tester: @zhangyue283-->
+<!--Adviser: @ge-yafang-->
 
 图片（Image）：图片本质上是一个储存信息的二维内存块(buffer)，用于储存3D渲染计算过程需要的相关信息，比如基础色、法线等等。
 

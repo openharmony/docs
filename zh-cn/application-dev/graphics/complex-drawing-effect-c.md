@@ -3,8 +3,9 @@
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @hangmengxin-->
-<!--SE: @wangyanglan-->
-<!--TSE: @nobuggers-->
+<!--Designer: @wangyanglan-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
 
 除了基础填充颜色、描边颜色和一些样式设置的绘制效果外，还支持通过画刷和画笔实现更多复杂的绘制效果。比如：
 
@@ -402,7 +403,7 @@ OH_Drawing_FilterDestroy(filter);
 
 可使用OH_Drawing_MaskFilterCreateBlur()接口创建想要设置具有模糊效果的蒙版滤波器。接口接受3个参数，分别为：
 
-- blurType：用于指定要应用的模糊类型，详细分类请参考[BlurType](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-e.md#blurtype12)。
+- blurType：用于指定要应用的模糊类型，详细分类请参考[OH_Drawing_BlurType](../reference/apis-arkgraphics2d/capi-drawing-mask-filter-h.md#oh_drawing_blurtype)。
 
 - sigma：用于指定要应用的高斯模糊的标准差，标准差必须大于0。
 

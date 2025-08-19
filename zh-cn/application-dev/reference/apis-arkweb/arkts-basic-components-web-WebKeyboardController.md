@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @zourongchun-->
-<!--SE: @zhufenghao-->
-<!--TSE: @ghiker-->
+<!--Designer: @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 控制自定义键盘的输入、删除、关闭等操作。示例代码参考[onInterceptKeyboardAttach](./arkts-basic-components-web-events.md#oninterceptkeyboardattach12)。
 

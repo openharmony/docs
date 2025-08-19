@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiangyuan6-->
-<!--SE: @pssea-->
-<!--TSE: @jiaoaozihao-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 显示一段文本的组件。
 
@@ -1005,7 +1006,7 @@ optimizeTrailingSpace(optimize: Optional\<boolean>)
 
 * 行首空格不在优化范围内，行尾文本强制换行，每行行尾空格根据组件宽度优化行尾空格。
 
-当纯空格文本设置优化行尾空格[optimizeTrailingSpace](#optimizetrailingspace20)为true时，不允许同时设置文本背景色[backgroundcolor](ts-universal-attributes-background.md#backgroundcolor)、空格装饰线[decoration](#decoration)和对齐[textAlign](#textalign)三个属性。
+当纯空格文本设置优化行尾空格[optimizeTrailingSpace](#optimizetrailingspace20)为true时，不允许同时设置文本背景色[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、空格装饰线[decoration](#decoration)和对齐[textAlign](#textalign)三个属性。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1872,9 +1873,9 @@ struct TextExample8 {
       Column() {
         Text(undefined, this.options) {
           Span('Hello World')
-          ImageSpan($r('app.media.icon'))
-            .width('100px')
-            .height('100px')
+          ImageSpan($r('app.media.startIcon'))// $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            .width(50)
+            .height(50)
             .objectFit(ImageFit.Fill)
             .verticalAlign(ImageSpanAlignment.CENTER)
         }
@@ -1910,12 +1911,15 @@ struct TextExample8 {
     Column() {
       Menu() {
         MenuItemGroup() {
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 1", labelInfo: "" })
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          MenuItem({ startIcon: $r('app.media.startIcon'), content: "Right Click Menu 1", labelInfo: "" })
             .onClick((event) => {
               this.controller.closeSelectionMenu();
             })
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 2", labelInfo: "" })
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 3", labelInfo: "" })
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          MenuItem({ startIcon: $r('app.media.startIcon'), content: "Right Click Menu 2", labelInfo: "" })
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          MenuItem({ startIcon: $r('app.media.startIcon'), content: "Right Click Menu 3", labelInfo: "" })
         }
       }
       .MenuStyles()
@@ -1927,12 +1931,15 @@ struct TextExample8 {
     Column() {
       Menu() {
         MenuItemGroup() {
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 1", labelInfo: "" })
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          MenuItem({ startIcon: $r('app.media.startIcon'), content: "Long Press Image Menu 1", labelInfo: "" })
             .onClick((event) => {
               this.controller.closeSelectionMenu();
             })
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 2", labelInfo: "" })
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 3", labelInfo: "" })
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          MenuItem({ startIcon: $r('app.media.startIcon'), content: "Long Press Image Menu 2", labelInfo: "" })
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          MenuItem({ startIcon: $r('app.media.startIcon'), content: "Long Press Image Menu 3", labelInfo: "" })
         }
       }
       .MenuStyles()
@@ -1944,12 +1951,15 @@ struct TextExample8 {
     Column() {
       Menu() {
         MenuItemGroup() {
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 1", labelInfo: "" })
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          MenuItem({ startIcon: $r('app.media.startIcon'), content: "Select Mixed Menu 1", labelInfo: "" })
             .onClick((event) => {
               this.controller.closeSelectionMenu();
             })
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 2", labelInfo: "" })
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 3", labelInfo: "" })
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          MenuItem({ startIcon: $r('app.media.startIcon'), content: "Select Mixed Menu 2", labelInfo: "" })
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          MenuItem({ startIcon: $r('app.media.startIcon'), content: "Select Mixed Menu 3", labelInfo: "" })
         }
       }
       .MenuStyles()
@@ -2383,7 +2393,7 @@ struct TextExample14 {
       Text() {
         Span("Hello")
           .fontSize(50)
-        ImageSpan($r('app.media.app_icon'))
+        ImageSpan($r('app.media.startIcon'))// $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
           .width(30).height(30)
           .verticalAlign(ImageSpanAlignment.FOLLOW_PARAGRAPH)// 从API version 20开始，支持ImageSpanAlignment.FOLLOW_PARAGRAPH
         Span("World")

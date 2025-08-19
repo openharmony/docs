@@ -2,8 +2,9 @@
 <!--Kit: Sensor Service Kit-->
 <!--Subsystem: Sensors-->
 <!--Owner: @dilligencer-->
-<!--SE: @butterls-->
-<!--TSE: @murphy84-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 - [Sensor Service Kit开发简介](sensorservice-kit-intro.md)
 - 传感器<!--sensor-->

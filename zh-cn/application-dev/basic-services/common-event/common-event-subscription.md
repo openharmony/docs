@@ -1,5 +1,11 @@
 # 动态订阅公共事件
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 ## 场景介绍
 
@@ -17,13 +23,13 @@
 
 ## 接口说明
 
-详细接口见[接口文档](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagersubscribe)。
+详细接口见[接口文档](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md)。
 
 | 接口名 | 接口描述 |
 | -------- | -------- |
-| createSubscriber(subscribeInfo:&nbsp;[CommonEventSubscribeInfo](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscribeInfo.md),&nbsp;callback:&nbsp;AsyncCallback&lt;[CommonEventSubscriber](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscriber.md)&gt;):&nbsp;void | 创建订阅者对象（callback）。 |
-| createSubscriber(subscribeInfo:&nbsp;CommonEventSubscribeInfo):&nbsp;Promise&lt;CommonEventSubscriber&gt; | 创建订阅者对象（promise）。 |
-| subscribe(subscriber:&nbsp;CommonEventSubscriber,&nbsp;callback:&nbsp;AsyncCallback<CommonEventData\>):&nbsp;void | 订阅公共事件。 |
+| [createSubscriber](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagercreatesubscriber)(subscribeInfo:&nbsp;CommonEventSubscribeInfo,&nbsp;callback:&nbsp;AsyncCallback&lt;CommonEventSubscriber&gt;):&nbsp;void | 创建订阅者对象（callback）。 |
+| [createSubscriber](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagercreatesubscriber-1)(subscribeInfo:&nbsp;CommonEventSubscribeInfo):&nbsp;Promise&lt;CommonEventSubscriber&gt; | 创建订阅者对象（promise）。 |
+| [subscribe](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagersubscribe)(subscriber:&nbsp;CommonEventSubscriber,&nbsp;callback:&nbsp;AsyncCallback&lt;CommonEventData&gt;):&nbsp;void | 订阅公共事件。 |
 
 
 ## 开发步骤

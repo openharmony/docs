@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @lushi871202-->
-<!--SE: @lushi871202-->
-<!--TSE: @sally__-->
+<!--Designer: @lushi871202-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 支持自定义主题风格，实现App组件风格跟随Theme切换。
 
@@ -36,6 +37,8 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme, CustomDarkColor
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+<!--RP1--><!--RP1End-->
 
 | 名称                           | 类型                                                 | 只读 | 可选 | 说明               |
 |-------------------------------|-----------------------------------------------------|-----|-----|------------------|
@@ -160,9 +163,9 @@ setDefaultTheme(theme: [CustomTheme](#customtheme)): void
 import { CustomTheme, CustomColors, ThemeControl } from '@kit.ArkUI';
 // 自定义主题颜色
 class BlueColors implements CustomColors {
-  fontPrimary = Color.White;
+  fontPrimary = Color.Red;
   backgroundPrimary = Color.Blue;
-  brand = Color.Blue; //品牌色
+  brand = "#FFEEAAFF"; // 品牌色
 }
 
 class PageCustomTheme implements CustomTheme {
@@ -176,4 +179,32 @@ class PageCustomTheme implements CustomTheme {
 const BlueColorsTheme = new PageCustomTheme(new BlueColors());
 // 在页面build之前执行ThemeControl.setDefaultTheme，设置App默认样式风格为BlueColorsTheme。
 ThemeControl.setDefaultTheme(BlueColorsTheme);
+
+@Entry
+@Component
+struct Index {
+
+  build() {
+    Row() {
+      Column() {
+        // 文本颜色应用fontPrimary
+        Text('这是一段文本')
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .margin('5%')
+        // 二维码背景色应用backgroundPrimary
+        QRCode('Hello')
+          .width(100)
+          .height(100)
+        // 输入框光标颜色应用brand
+        TextInput({placeholder: 'input your word...'})
+          .width('80%')
+          .height(40)
+          .margin(20)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
 ```

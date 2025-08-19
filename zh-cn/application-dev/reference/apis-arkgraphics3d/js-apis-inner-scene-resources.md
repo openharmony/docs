@@ -2,8 +2,9 @@
 <!--Kit: ArkGraphics 3D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @zzhao0-->
-<!--SE: @zdustc-->
-<!--TSE: @zhangyue283-->
+<!--Designer: @zdustc-->
+<!--Tester: @zhangyue283-->
+<!--Adviser: @ge-yafang-->
 
 本模块提供3D图形中常用的基本资源类型。
 
@@ -84,7 +85,7 @@ function destroy() : void {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| inputs | Record<string, number \| Vec2 \| Vec3 \| Vec4 \| Image> | 是 | 否 | 着色器输入。 |
+| inputs | Record<string, number \| [Vec2](js-apis-inner-scene-types.md#vec2) \| [Vec3](js-apis-inner-scene-types.md#vec3) \| [Vec4](js-apis-inner-scene-types.md#vec4) \| Image> | 是 | 否 | 着色器输入。 |
 
 ## MaterialType
 场景中物体材质类型枚举，定义材质的渲染方式。

@@ -1,5 +1,12 @@
 # AppFreeze（应用冻屏）检测
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @rr_cn-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## 简介
 
 用户在使用应用时，如果出现点击无反应或应用无响应等情况，并且持续时间超过一定限制，就会被定义为应用冻屏（AppFreeze），即应用无响应或卡死。系统会检测应用无响应，并生成AppFreeze日志，供应用开发者分析。
@@ -117,8 +124,11 @@ PID:13680
 UID:20020177
 PACKAGE_NAME:com.samples.freezedebug
 PROCESS_NAME:com.samples.freezedebug
+NOTE: Current fault may be caused by system issue, you may ignore it and analysis other faults.
 ***
 ```
+
+从API版本21开始，当整机资源告警（如可用内存不足500M，机壳温度超过46℃）时，会输出NOTE行。出现此行时，开发者可以忽略应用冻屏故障。在之前的API版本中，无论整机资源状态如何，均无此行输出。
 
 三种AppFreeze事件都包含以下几部分信息，具体解释如下：
 

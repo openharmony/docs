@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyujie43-->
-<!--SE: @weixin_52725220-->
-<!--TSE: @xiong0104-->
+<!--Designer: @weixin_52725220-->
+<!--Tester: @xiong0104-->
+<!--Adviser: @HelloCrease-->
 
 数据面板组件，用于将多个数据占比情况使用占比图进行展示。
 

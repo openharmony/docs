@@ -2,8 +2,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @zsyztt; @Hermits; @reminder2352-->
-<!--SE: @yunlanying-->
-<!--TSE: @liuhonggang123-->
+<!--Designer: @yunlanying-->
+<!--Tester: @liuhonggang123-->
+<!--Adviser: @foryourself-->
 
 该模块向云空间应用提供端云同步管理能力：包括使能/去使能端云协同能力、修改应用同步开关，云端数据变化通知以及账号退出清理/保留云相关文件等。
 

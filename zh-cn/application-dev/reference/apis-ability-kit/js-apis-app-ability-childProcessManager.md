@@ -2,12 +2,15 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @SKY2001-->
-<!--SE: @jsjzju-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 childProcessManager模块提供子进程管理能力，支持子进程启动操作。当前仅支持2in1、tablet设备。
 
 创建的子进程不支持UI界面，也不支持Context相关的接口调用。通过此模块（非SELF_FORK模式）和[ChildProcess](capi-childprocess.md)启动的子进程总数最大为512个。
+
+创建的子进程会随着父进程的退出而退出，无法脱离父进程独立运行。
 
 > **说明：**
 >

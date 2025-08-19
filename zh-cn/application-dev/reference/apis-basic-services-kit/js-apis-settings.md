@@ -3,8 +3,9 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Applications-->
 <!--Owner: @YingCong-->
-<!--SE: @Kun_Wu-->
-<!--TSE: @dyx118186878-->
+<!--Designer: @Kun_Wu-->
+<!--Tester: @dyx118186878-->
+<!--Adviser: @zhang_yixin13-->
 
 本模块提供访问设置数据项的能力。
 

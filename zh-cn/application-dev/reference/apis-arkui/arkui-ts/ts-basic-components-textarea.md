@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @kangshihui-->
-<!--SE: @pssea-->
-<!--TSE: @jiaoaozihao-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 多行文本输入框组件，当输入的文本内容超过组件宽度时会自动换行显示。
 
@@ -658,11 +659,11 @@ textOverflow(value: TextOverflow)
 
 设置文本超长时的显示方式。
 
-内联模式，主动配置textoverflow才会生效按[maxLines](#maxlines10)截断效果，不配置时，默认不截断。
+内联模式，主动配置textOverflow才会生效按[maxLines](#maxlines10)截断效果，不配置时，默认不截断。
 
 文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，[wordBreak](ts-appendix-enums.md#wordbreak11)属性可设置为WordBreak.BREAK_ALL。
 
-当textoverflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合[maxLines](#maxlines10)使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
+当textOverflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合[maxLines](#maxlines10)使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
 
 **卡片能力：** 该接口支持在ArkTS卡片中使用。
 
@@ -1531,7 +1532,7 @@ struct TextAreaExample {
           this.text = value;
         })
         .onSubmit((enterKey: EnterKeyType) => {
-          console.log("trigger area onsubmit" + enterKey);
+          console.log("trigger area onSubmit" + enterKey);
         })
       Button('改变EnterKeyType').onClick(() => {
         this.index = (this.index + 1) % this.enterTypes.length;
@@ -1869,8 +1870,8 @@ struct TextAreaExample {
 struct TextAreaExample {
   @State message1: string =
     "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
-      "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
-      "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
+      "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effect of these components in method chaining mode," +
+      "page components are divided into independent UI units to implement independent creation development and reuse of different units on pages making pages more engineering-oriented.";
   @State lineBreakStrategyIndex: number = 0;
   @State lineBreakStrategy: LineBreakStrategy[] =
     [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED];
@@ -2037,7 +2038,7 @@ struct TextAreaExample {
 
 ### 示例15（文本设置省略模式）
 
-该示例通过[textOverflow](#textoverflow12)（从API version 12开始）、[ellipsisMode](#ellipsismode18)（从API version 18开始）、[maxlines](#maxlines10)（从API version 10开始）属性展示了文本超长省略以及调整省略位置的效果。
+该示例通过[textOverflow](#textoverflow12)（从API version 12开始）、[ellipsisMode](#ellipsismode18)（从API version 18开始）、[maxLines](#maxlines10)（从API version 10开始）属性展示了文本超长省略以及调整省略位置的效果。
 
 ```ts
 // xxx.ets

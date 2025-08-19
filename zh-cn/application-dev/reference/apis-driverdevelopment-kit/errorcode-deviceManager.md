@@ -2,8 +2,9 @@
 <!--Kit: Driver Development Kit-->
 <!--Subsystem: Driver-->
 <!--Owner: @lixinsheng2-->
-<!--SE: @w00373942-->
-<!--TSE: @dong-dongzhen-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
 
 > **说明：**
 >
@@ -29,7 +30,7 @@ ExternalDeviceManager service exception or busType parameter error.
 
 1. 请更换目标产品形态。
 2. 请尝试重启设备，<!--RP1-->或通过[在线提交issue](https://gitee.com/openharmony/drivers_external_device_manager/issues/new)来反映问题。<!--RP1End-->
-3. 通过[deviceManager.BusType](js-apis-driver-deviceManager.md#BusType)查询支持的枚举值。
+3. 通过[deviceManager.BusType](js-apis-driver-deviceManager.md#bustype)查询支持的枚举值。
 
 ## 26300001 扩展外设驱动服务异常
 

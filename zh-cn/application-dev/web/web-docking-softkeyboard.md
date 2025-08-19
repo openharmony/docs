@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @weixin_41848015-->
-<!--SE: @libing23232323-->
-<!--TSE: @ghiker-->
+<!--Designer: @libing23232323-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 开发者能够通过Web组件对接软键盘，来处理系统软键盘的显示与交互问题，同时实现软键盘的自定义功能。主要有以下场景：
 

@@ -3,8 +3,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @zexin_c-->
-<!--SE: @li-weifeng2-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 AbilityStage是一个[Module](../../../application-dev/quick-start/application-package-overview.md#应用的多module设计机制)级别的组件管理器，用于进行Module级别的资源预加载、线程创建等初始化操作，以及维护Module下的应用状态。AbilityStage与Module一一对应，即一个Module拥有一个AbilityStage。
 
@@ -117,14 +118,14 @@ onNewProcessRequest(want: Want): string
 仅支持sys/commonUI类型的UIExtensionAbility组件在[module.json5配置文件](../../quick-start/module-configuration-file.md)配置文件中配置isolationProcess字段为true。
 <!--DelEnd-->
 
-该接口仅在2in1和tablet设备上生效。
-
 > **说明：**
 >
 > - 在API version 19及之前版本，仅支持在指定进程中启动UIAbility。从API version 20开始，新增支持在指定进程中启动UIExtensionAbility。
 > - 从API version 20开始，当[AbilityStage.onNewProcessRequestAsync](#onnewprocessrequestasync20)实现时，本回调函数将不执行。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在2in1和Tablet设备中可正常执行回调，在其他设备上不执行回调。
 
 **参数：**
 
@@ -240,8 +241,6 @@ onPrepareTermination(): AbilityConstant.PrepareTermination
 
 > **说明：**
 >
-> - 从API version 15开始，该接口在2in1设备上生效；从API version 19开始，该接口在tablet设备上生效。
->
 > - 仅当应用正常退出（例如，通过doc栏/托盘关闭应用，或者应用随设备关机而退出）时会调用该接口。如果应用被强制关闭，则不会调用该接口。
 >
 > - 当[AbilityStage.onPrepareTerminationAsync](#onprepareterminationasync15)实现时，本回调函数将不执行。
@@ -251,6 +250,10 @@ onPrepareTermination(): AbilityConstant.PrepareTermination
 **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：
+- 从API version 15开始，该接口仅在2in1设备中可正常执行回调，在其他设备上不执行回调。
+- 从API version 19开始，该接口仅在2in1和Tablet设备中可正常执行回调，在其他设备上不执行回调。
 
 **返回值：**
 
@@ -279,8 +282,6 @@ onPrepareTerminationAsync(): Promise\<AbilityConstant.PrepareTermination>
 
 > **说明：**
 >
-> - 从API version 15开始，该接口在2in1设备上生效；从API version 19开始，该接口在tablet设备上生效。
->
 > - 仅当应用正常退出（例如，通过doc栏/托盘关闭应用，或者应用随设备关机而退出）时会调用该接口。如果应用被强制关闭，则不会调用该接口。
 >
 > - 若异步回调内发生crash，按超时处理，执行等待超过10秒未响应，应用将被强制关闭。
@@ -290,6 +291,10 @@ onPrepareTerminationAsync(): Promise\<AbilityConstant.PrepareTermination>
 **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：
+- 从API version 15开始，该接口仅在2in1设备中可正常执行回调，在其他设备上不执行回调。
+- 从API version 19开始，该接口仅在2in1和Tablet设备中可正常执行回调，在其他设备上不执行回调。
 
 **返回值：**
 
@@ -363,11 +368,11 @@ onNewProcessRequestAsync(want: Want): Promise\<string\>
 仅支持sys/commonUI类型的UIExtensionAbility组件在[module.json5配置文件](../../quick-start/module-configuration-file.md)中配置isolationProcess字段为true。
 <!--DelEnd-->
 
-该接口仅在2in1和tablet设备上生效。
-
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在2in1和Tablet设备中可正常执行回调，在其他设备上不执行回调。
 
 **参数：**
 

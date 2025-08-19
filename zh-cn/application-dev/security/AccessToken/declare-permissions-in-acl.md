@@ -3,8 +3,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @xia-bubai-->
-<!--SE: @linshuqing; @hehehe-li-->
-<!--TSE: @leiyuqian-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
 
 受限权限通常不允许第三方应用申请。当应用需要访问必要资源时，如果发现某些权限的等级高于应用权限等级（APL），开发者可以通过ACL方式来解决等级不匹配的问题，从而使用受限权限。
 

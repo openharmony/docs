@@ -2,8 +2,9 @@
 <!--Kit: Multimodal Awareness Kit-->
 <!--Subsystem: Msdp-->
 <!--Owner: @codexu62-->
-<!--SE: @yuxiaoyang-->
-<!--TSE: @zhaodengqi-->
+<!--Designer: @yuxiaoyang-->
+<!--Tester: @zhaodengqi-->
+<!--Adviser: @hu-zhiqiong-->
 
 本模块提供记忆链接能力调用，用于在图片加入和解析相关信息，完成信息传递。
 

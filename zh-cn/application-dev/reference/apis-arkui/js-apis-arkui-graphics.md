@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiang-shouxing-->
-<!--SE: @xiang-shouxing-->
-<!--TSE: @sally__-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 自定义节点相关属性定义的详细信息。
 
@@ -526,15 +527,6 @@ static resource(value: Resource): LengthMetrics
 | 类型          | 说明             |
 | ------------- | ---------------- |
 | [LengthMetrics](#lengthmetrics12) | LengthMetrics 类的实例。 |
-
-**错误码：** 
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[系统资源错误码](errorcode-system-resource.md)。
-
-| 错误码ID | 错误信息                                   |
-| -------- | ------------------------------------------ |
-| 180001   | System resources does not exist.           |
-| 180002   | The type of system resources is incorrect. |
 
 ## ColorMetrics<sup>12+</sup>
 
