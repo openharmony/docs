@@ -403,6 +403,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized状态后才能调用。
 avPlayer.prepare((err: BusinessError) => {
   if (err) {
     console.error('Failed to prepare,error message is :' + err.message);
@@ -446,6 +447,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized状态后才能调用。
 avPlayer.prepare().then(() => {
   console.info('Succeeded in preparing');
 }, (err: BusinessError) => {
@@ -496,6 +498,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized状态后才能调用。
 avPlayer.prepare().then(() => {
   console.info('Succeeded in preparing');
   avPlayer.setMediaMuted(media.MediaType.MEDIA_TYPE_AUD, true);
@@ -535,6 +538,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/paused/completed状态后才能调用。
 avPlayer.play((err: BusinessError) => {
   if (err) {
     console.error('Failed to play,error message is :' + err.message);
@@ -575,6 +579,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/paused/completed状态后才能调用。
 avPlayer.play().then(() => {
   console.info('Succeeded in playing');
 }, (err: BusinessError) => {
@@ -613,6 +618,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至playing状态后才能调用。
 avPlayer.pause((err: BusinessError) => {
   if (err) {
     console.error('Failed to pause,error message is :' + err.message);
@@ -653,6 +659,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至playing状态后才能调用。
 avPlayer.pause().then(() => {
   console.info('Succeeded in pausing');
 }, (err: BusinessError) => {
@@ -691,6 +698,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
 avPlayer.stop((err: BusinessError) => {
   if (err) {
     console.error('Failed to stop,error message is :' + err.message);
@@ -731,6 +739,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
 avPlayer.stop().then(() => {
   console.info('Succeeded in stopping');
 }, (err: BusinessError) => {
@@ -769,6 +778,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized/prepared/playing/paused/completed/stopped/error状态后才能调用。
 avPlayer.reset((err: BusinessError) => {
   if (err) {
     console.error('Failed to reset,error message is :' + err.message);
@@ -809,6 +819,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized/prepared/playing/paused/completed/stopped/error状态后才能调用。
 avPlayer.reset().then(() => {
   console.info('Succeeded in resetting');
 }, (err: BusinessError) => {
@@ -847,6 +858,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发除released以外的状态才能调用。
 avPlayer.release((err: BusinessError) => {
   if (err) {
     console.error('Failed to release,error message is :' + err.message);
@@ -887,6 +899,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发除released以外的状态才能调用。
 avPlayer.release().then(() => {
   console.info('Succeeded in releasing');
 }, (err: BusinessError) => {
@@ -925,6 +938,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused状态后才能调用。
 avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if ((arrList) != null) {
     console.info('Succeeded in doing getTrackDescription');
@@ -965,6 +979,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused状态后才能调用。
 avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
   console.info('Succeeded in getting TrackDescription');
 }).catch((error: BusinessError) => {
@@ -1003,6 +1018,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused状态后才能调用。
 avPlayer.getSelectedTracks().then((arrList: Array<number>) => {
   console.info('Succeeded in getting SelectedTracks');
 }).catch((error: BusinessError) => {
@@ -1081,6 +1097,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized状态后才能调用。
 avPlayer.prepare().then(() => {
   console.info('Succeeded in preparing');
   let playbackPosition: number = avPlayer.getPlaybackPosition();
@@ -1275,6 +1292,7 @@ import { drm } from '@kit.DrmKit';
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在mediaKeySystemInfoUpdate事件触发成功后才能调用。
 const infos = avPlayer.getMediaKeySystemInfos();
 console.info('GetMediaKeySystemInfos count: ' + infos.length);
 for (let i = 0; i < infos.length; i++) {
@@ -1308,6 +1326,7 @@ import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
 let seekTime: number = 1000;
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
 avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC);
 ```
 
@@ -1317,6 +1336,7 @@ import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
 let slideMovingTime: number = 2000;
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
 avPlayer.seek(slideMovingTime, media.SeekMode.SEEK_CONTINUOUS);
 
 // 当slideMode为End时，调用seek(-1, media.SeekMode.SEEK_CONTINUOUS)结束seek。
@@ -1345,6 +1365,7 @@ isSeekContinuousSupported() : boolean
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
 let isSupported = avPlayer.isSeekContinuousSupported();
 ```
 
@@ -1425,6 +1446,7 @@ setSpeed(speed: PlaybackSpeed): void
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
 avPlayer.setSpeed(media.PlaybackSpeed.SPEED_FORWARD_2_00_X);
 ```
 
@@ -1517,6 +1539,7 @@ setPlaybackRate(rate: number): void
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
 avPlayer.setPlaybackRate(2.0);
 ```
 
@@ -1597,6 +1620,7 @@ import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
 let bitrate: number = 96000;
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
 avPlayer.setBitrate(bitrate);
 ```
 
@@ -2724,6 +2748,7 @@ setSuperResolution(enabled: boolean) : Promise\<void>
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized/prepared/playing/paused/completed/stopped状态后才能调用。
 avPlayer.setSuperResolution(true);
 ```
 
@@ -2769,6 +2794,7 @@ setVideoWindowSize(width: number, height: number) : Promise\<void>
 import { media } from '@kit.MediaKit';
 
 let avPlayer = await media.createAVPlayer();
+// 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized/prepared/playing/paused/completed/stopped状态后才能调用。
 avPlayer.setVideoWindowSize(1920, 1080);
 ```
 
