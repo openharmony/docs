@@ -31,7 +31,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/capi-arkui-nativemodule-arkui-
 
 ### 实现懒加载适配器
 
-使用ArkUListItemAdapter类来管理懒加载适配器，在类的构造中创建NodeAdapter对象，并给NodeAdapter对象设置事件监听器，在类的析构函数中，销毁NodeAdapter对象。
+使用ArkUIListItemAdapter类来管理懒加载适配器，在类的构造中创建NodeAdapter对象，并给NodeAdapter对象设置事件监听器，在类的析构函数中，销毁NodeAdapter对象。
 
    ```c++
    // ArkUIListItemAdapter
