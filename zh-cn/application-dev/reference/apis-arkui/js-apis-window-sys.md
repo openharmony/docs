@@ -2847,9 +2847,9 @@ export default class EntryAbility extends UIAbility {
 
 raiseMainWindowAboveTarget(windowId: number): Promise&lt;void&gt;
 
-将主窗口的层级调整至同应用下的另一个主窗口之上，子窗口的层级会跟随所属主窗口变动。使用Promise异步回调。
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于将主窗口的层级调整至同应用下的另一个主窗口之上，子窗口的层级会跟随所属主窗口变动。使用Promise异步回调。
 
-仅支持2in1设备的系统应用主窗口调用。
+仅支持系统应用主窗口调用。
 
 传入目标主窗口的id，调用窗口和目标窗口需满足：同应用进程、显示在同一物理屏、层级低于锁屏、非置顶主窗、非模态主窗且无模应用子窗。
 
@@ -2860,6 +2860,8 @@ raiseMainWindowAboveTarget(windowId: number): Promise&lt;void&gt;
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
