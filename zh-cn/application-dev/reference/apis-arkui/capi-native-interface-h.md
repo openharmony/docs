@@ -61,7 +61,6 @@ enum ArkUI_NativeAPIVariantKind
 | ARKUI_NATIVE_DIALOG | 弹窗相关接口类型，详见<arkui/native_dialog.h>中的结构体类型定义。 |
 | ARKUI_NATIVE_GESTURE | 手势相关接口类型，详见<arkui/native_gesture.h>中的结构体类型定义。 |
 | ARKUI_NATIVE_ANIMATE | 动画相关接口类型。详见<arkui/native_animate.h>中的结构体类型定义。 |
-| ARKUI_MULTI_THREAD_NATIVE_NODE | 多线程UI组件相关接口类型，详见<arkui/native_node.h>中的结构体类型定义。 |
 
 
 ## 函数说明
