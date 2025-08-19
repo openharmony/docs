@@ -745,7 +745,8 @@ struct Index {
   selectedPhotos: LinkedList<number> = new LinkedList();
   @State selectedList: number[] = [];
   @State image: Resource[] =
-    [$r("app.media.imageOne"), $r('app.media.imageTwo'), $r('app.media.imageThree'), $r('app.media.imageFour')]; // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
+   // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
+    [$r("app.media.imageOne"), $r('app.media.imageTwo'), $r('app.media.imageThree'), $r('app.media.imageFour')];
   private selectedState: SelectedState = SelectedState.None;
   private componentUtils: ComponentUtils = this.getUIContext().getComponentUtils();
   private listScroller: ListScroller = new ListScroller();
