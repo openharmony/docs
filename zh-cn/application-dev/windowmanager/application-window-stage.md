@@ -8,6 +8,7 @@
 
 ## 基本概念
 
+
 - 窗口沉浸式能力：指对状态栏、导航栏等系统窗口进行控制，减少状态栏导航栏等系统界面的突兀感，从而使用户获得最佳体验的能力。
   沉浸式能力只在应用主窗口作为全屏窗口时生效。通常情况下，应用子窗口（弹窗、悬浮窗口等辅助窗口）和处于自由窗口下的应用主窗口无法使用沉浸式能力。
 
@@ -128,7 +129,8 @@ export default class EntryAbility extends UIAbility {
 
 1. 创建应用子窗口。
 
-   通过`createSubWindow`接口创建应用子窗口。子窗口创建后默认是沉浸式布局，如果子窗口需要使用组件安全区方案，则需要调用[setWindowLayoutFullScreen](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowlayoutfullscreen9)退出沉浸式布局。
+   通过`createSubWindow`接口创建应用子窗口。
+   子窗口创建后默认是沉浸式布局，如果子窗口需要使用组件安全区方案，则需要调用[setWindowLayoutFullScreen](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowlayoutfullscreen9)退出沉浸式布局。
 
 2. 设置子窗口属性。
 
