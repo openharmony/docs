@@ -1,4 +1,10 @@
 # 窗口错误码
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 > **说明：**
 >
@@ -300,7 +306,7 @@ Wrong parameters for operating the floating ball.
 
 1.参数值应处于允许的范围内。
 
-2.参数的长度超出允许的范围。
+2.参数的长度应处于允许的长度范围内。
 
 3.参数应使用正确的格式。
 
