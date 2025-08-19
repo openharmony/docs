@@ -131,7 +131,8 @@ struct PopupExample {
       Popup({
         // PopupIconOptions类型设置图标内容
         icon: {
-          image: $r('app.media.icon'),  // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
+          // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
+          image: $r('app.media.icon'),
           width: 32,
           height: 32,
           fillColor: Color.White,
@@ -202,7 +203,8 @@ struct PopupPage {
         //PopupIconOptions 类型设置图标内容
         direction: this.currentDirection,
         icon: {
-          image: $r('app.media.icon'), // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
+          // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
+          image: $r('app.media.icon'),
           width: 32,
           height: 32,
           fillColor: Color.White,
@@ -276,7 +278,8 @@ struct PopupPage {
         maxWidth: '50%',
         //PopupIconOptions 类型设置图标内容
         icon: {
-          image: $r('app.media.startIcon'), // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          image: $r('app.media.startIcon'),
           width: 32,
           height: 32,
           fillColor: Color.White,
