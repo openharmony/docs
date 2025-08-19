@@ -168,7 +168,7 @@ OH_AVErrCode OH_AudioCodec_Flush (OH_AVCodec *codec)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec  | 指向OH_AVCodec实例的指针。 | 
+| codec | 指向OH_AVCodec实例的指针。 | 
 
 **返回：**
 
@@ -413,7 +413,7 @@ OH_AVErrCode OH_AudioCodec_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_t 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec| 指向OH_AVCodec实例的指针。 | 
+| codec | 指向OH_AVCodec实例的指针。 | 
 | index | 输出参数，获取到的输出缓冲区的索引值。|
 | timeoutUs | 超时时间，单位：微秒。设置为负值时表示无限等待。|
 
@@ -449,7 +449,7 @@ OH_AVErrCode OH_AudioCodec_RegisterCallback (OH_AVCodec *codec, OH_AVCodecCallba
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向OH_AVCodec实例的指针。 | 
-| callback| 所有回调函数的集合，请参阅 [OH_AVCodecCallback](_o_h___a_v_codec_callback.md)。 | 
+| callback | 所有回调函数的集合，请参阅 [OH_AVCodecCallback](_o_h___a_v_codec_callback.md)。 | 
 | userData | 用户特定数据。 | 
 
 **返回：**
@@ -473,7 +473,7 @@ OH_AVErrCode OH_AudioCodec_Reset (OH_AVCodec *codec)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec| 指向OH_AVCodec实例的指针。  | 
+| codec | 指向OH_AVCodec实例的指针。  | 
 
 **返回：**
 
