@@ -201,13 +201,14 @@ callargs2 0x2e, v2, v3
 Error message: ArkTSCompilerError: ArkTS:ERROR Failed to execute ByteCode Obfuscate.
 Error message: [Class]get different name for method:&entry/src/main/ets/pages/XXXX&.#~@0>#setController^1.
 
-```ts
+```ets
 //代码1
 @CustomDialog
 export default struct TmsDialog {
   controller?: CustomDialogController
   dialogController:CustomDialogController;
 }
+
 //代码2
 @CustomDialog
 struct Index{
@@ -227,7 +228,10 @@ dialogController:CustomDialogController|null = null;
 ```
 
 示例代码1中，在运行时，是无法正常弹出dialogController的，只需要在定义时改为解决方案中的代码，就可以正常弹出dialogController，同时字节码混淆功能正常；
+
 示例代码2中，由于我们只是使用CustomDialogController，因此不需要@CustomDialog，直接删除@CustomDialog即可，删除后功能正常，字节码混淆功能正常。
+
+从API version 18开始，上述示例代码将不能正常编译。新的版本中，一个 @CustomDialog 组件只能有一个未初始化的 CustomDialogController.
 
 ## 运行异常处理
 
@@ -246,7 +250,7 @@ dialogController:CustomDialogController|null = null;
 */
 
 // 混淆前
-import jsonData from "./testjson";
+import jsonData from "./test.json";
 
 let jsonProp = jsonData.jsonObj.jsonProperty;
 
@@ -272,7 +276,7 @@ parameters的类型为Record<string, Object>，在开启属性混淆后，parame
 
 ```ts
 // 混淆前
-import { Want } from '@ohos:app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let petalMapWant: Want = {
   bundleName: 'com.example.myapplication',
@@ -281,6 +285,8 @@ let petalMapWant: Want = {
     linkSource: 'com.other.app'
   }
 }
+```
+```ts
 // 混淆后
 import type Want from "@ohos:app.ability.Want";
 
@@ -312,12 +318,14 @@ linkSource
 
 使用@Type和@Trace组合修饰的装饰器属性，可以正常混淆，但混淆后，功能异常。
 
-```ts
+```ets
+//Sample.ets
 @ObservedV2
 class SampleChild {
   @Trace p123: number = 0;
   p2: number = 10;
 }
+
 @ObservedV2
 export class Sample {
   // 对于复杂对象需要@Type修饰，确保序列化成功
@@ -326,8 +334,21 @@ export class Sample {
 }
 
 //调用
-this.prop = PersistenceV2.connect(Sample, () => new Sample())!;
-Text.create(`Page1 add 1 to prop.p1: ${this.prop.f123.p123}`);
+// a.ets
+import { PersistenceV2 } from '@kit.ArkUI';
+import { Sample } from './Sample';
+
+@Entry
+@ComponentV2
+struct Page {
+  prop: Sample = PersistenceV2.connect(Sample, () => new Sample())!;
+
+  build() {
+    Column() {
+      Text(`Page1 add 1 to prop.p1: ${this.prop.f123.p123}`)
+    }
+  }
+}
 ```
 
 混淆后，p123，f123都被正常替换了，但处理Trace，Type装饰器属性时，p123，f123都被识别为字符串，不参与混淆，导致调用失败。
@@ -435,6 +456,7 @@ HSP需要将给其他模块用的方法配置到白名单中。因为主模块�
 // 混淆前
 export class Test1 {}
 let mytest = (await import('./file')).Test1
+
 // 混淆后
 export class w1 {}
 let mytest = (await import('./file')).Test1
@@ -450,24 +472,30 @@ let mytest = (await import('./file')).Test1
 
 ```ts
 // 混淆前
-export namespace ns1 {
-  export class person1 {}
+// export.ts
+export namespace NS {
+  export function foo() {}
 }
 
-import {ns1} from './file1'
+// import.ts
+import { NS } from './export';
 
-let person1 = new ns1.person1()
+NS.foo();
+```
+```ts
 // 混淆后
-export namespace a3 {
-  export class b2 {}
+// export.ts
+export namespace i {
+  export function j() {}
 }
 
-import {a3} from './file1'
+// import.ts
+import { i } from './export';
 
-let person1 = new a3.person1()
+i.foo();
 ```
 
-namespace里的"person1"属于export元素，当通过"ns1.person1"调用时，它被视为一个属性。由于未开-enable-property-obfuscation选项，导致在使用时未对其进行混淆。
+namespace中的foo属于export元素，当通过NS.foo调用时被视为属性。由于未开启-enable-property-obfuscation选项，导致foo在使用时未被混淆。
 
 **解决方案**：
 
@@ -481,6 +509,7 @@ namespace里的"person1"属于export元素，当通过"ns1.person1"调用时，�
 declare global {
   var myAge : string
 }
+
 // 混淆后
 declare a2 {
   var b2 : string
