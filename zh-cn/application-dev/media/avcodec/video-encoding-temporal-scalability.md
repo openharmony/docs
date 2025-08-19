@@ -79,19 +79,19 @@
 
 ### 接口介绍
 
-全局时域可分层特性，适用于编码稳定和简单的时域分层结构，初始配置全局生效，不支持动态修改。开发配置参数如下：
+全局时域可分层特性，适用于编码稳定和简单的时域分层结构，初始配置全局生效，不支持动态修改。开发配置参数如下。
 
 | 配置参数 | 语义                         |
 | -------- | ---------------------------- |
-| OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY  | 全局时域可分层编码使能参数 |
-| OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE  | 全局时域可分层编码TGOP大小参数 |
-| OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE  | 全局时域可分层编码TGOP参考模式  |
+| OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY  | 全局时域可分层编码使能参数。 |
+| OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE  | 全局时域可分层编码TGOP大小参数。 |
+| OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE  | 全局时域可分层编码TGOP参考模式。 |
 
 - **全局时域可分层编码使能参数：** 在配置阶段配置，仅特性支持才会真正使能成功。
 
 - **全局时域可分层编码TGOP大小参数：** 可选配置，影响时域关键帧之间的间隔，用户需要基于自身业务场景下抽帧需求自定义关键帧密度，可在[2, GopSize)范围内配置，若不配置则使用默认值。
 
-- **全局时域可分层编码TGOP参考模式参数：** 可选配置，影响非关键帧参考模式。包括相邻参考`ADJACENT_REFERENCE`、跨帧参考`JUMP_REFERENCE` 和均匀分层`UNIFORMLY_SCALED_REFERENCE`。相邻参考相对跨帧参考拥有更好的压缩性能，跨帧参考相对相邻参考拥有更好的丢帧自由度，均匀分层模式丢帧后的码流分布更均匀，如不配置则使用默认值。
+- **全局时域可分层编码TGOP参考模式参数：** 可选配置，影响非关键帧参考模式。包括相邻参考`ADJACENT_REFERENCE`、跨帧参考`JUMP_REFERENCE`和均匀分层`UNIFORMLY_SCALED_REFERENCE`。相邻参考相对跨帧参考拥有更好的压缩性能，跨帧参考相对相邻参考拥有更好的丢帧自由度，均匀分层模式丢帧后的码流分布更均匀，如不配置则使用默认值。
 
     > **说明：**
     > 均匀分层模式当前只支持TGOP为2或4。
@@ -196,15 +196,15 @@
 
 | 配置参数 | 语义                 |
 | -------- | ---------------------------- |
-| OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT  |  长期参考帧个数参数 |
-| OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR  | 当前帧标记为LTR帧 |
-| OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR   | 当前帧参考的LTR帧的POC号  |
+| OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT  |  长期参考帧个数参数。 |
+| OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR  | 当前帧标记为LTR帧。 |
+| OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR   | 当前帧参考的LTR帧的POC号。  |
 
 - **长期参考帧个数参数：** 在配置阶段进行设置，应不大于查询到的最大支持数目。具体查询方法请参见下文开发指导的“步骤-3”。
 - **当前帧标记为LTR帧：** BL层和被跳跃参考的EL层均标记为LTR。
 - **当前帧参考的LTR帧的POC号：** 如当前帧需要跳跃参考前面已被标记为LTR帧的POC号。
 
-使用举例，实现[时域可分层视频编码介绍](#时域可分层视频编码介绍)中的4层时域分层结构的配置如下：
+使用举例，实现[时域可分层视频编码介绍](#时域可分层视频编码介绍)中的4层时域分层结构的配置如下。
 
 1. 在配置阶段，将`OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT` 配置为5。
 
@@ -303,7 +303,7 @@
         OH_VideoEncoder_PushInputParameter(codec, index);
     }
 
-    // 2.2 编码输出回调OH_AVCodecOnNewOutputBuffer实现
+    // 2.2 编码输出回调OH_AVCodecOnNewOutputBuffer实现。
     static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
         // 完成帧buffer对应的index，送入outIndexQueue队列。
