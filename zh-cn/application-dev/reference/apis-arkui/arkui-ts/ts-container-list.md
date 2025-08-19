@@ -1380,7 +1380,7 @@ struct ListExample {
 ### 示例2（设置子元素对齐）
 该示例展示了不同ListItemAlign枚举值下，List组件交叉轴方向子元素对齐效果。
 
-ListDataSource说明及完整代码参考[示例1](#示例1添加滚动事件)。
+ListDataSource说明及完整代码参考[示例1添加滚动事件](#示例1添加滚动事件)。
 
 <!--code_no_check-->
 ```ts
@@ -1437,7 +1437,7 @@ struct ListLanesExample {
 ### 示例3（设置编辑模式）
 该示例展示了如何设置当前List组件是否处于可编辑模式。
 
-ListDataSource说明及完整代码参考[示例1](#示例1添加滚动事件)。
+ListDataSource说明及完整代码参考[示例1添加滚动事件](#示例1添加滚动事件)。
 
 <!--code_no_check-->
 ```ts
@@ -1500,7 +1500,7 @@ struct ListExample {
 ### 示例4（设置限位对齐）
 该示例展示了List组件设置居中限位的实现效果。
 
-ListDataSource说明及完整代码参考[示例1](#示例1添加滚动事件)。
+ListDataSource说明及完整代码参考[示例1添加滚动事件](#示例1添加滚动事件)。
 
 <!--code_no_check-->
 ```ts
@@ -1561,7 +1561,7 @@ struct ListExample {
 
 如果配合状态管理V2使用，详情见：[List与makeObserved](../../../ui/state-management/arkts-v1-v2-migration-application-and-others.md#滑动组件)。
 
-ListDataSource说明及完整代码参考[示例1](#示例1添加滚动事件)。
+ListDataSource说明及完整代码参考[示例1添加滚动事件](#示例1添加滚动事件)。
 
 <!--code_no_check-->
 ```ts
@@ -1785,7 +1785,7 @@ interface TimeTable {
 ### 示例7（设置边缘渐隐）
 该示例实现了List组件开启边缘渐隐效果并设置边缘渐隐长度。
 
-ListDataSource说明及完整代码参考[示例1](#示例1添加滚动事件)。
+ListDataSource说明及完整代码参考[示例1添加滚动事件](#示例1添加滚动事件)。
 
 <!--code_no_check-->
 ```ts
@@ -1824,7 +1824,7 @@ struct ListExample {
 
 该示例通过edgeEffect接口，实现了List组件设置单边边缘效果。
 
-ListDataSource说明及完整代码参考[示例1](#示例1添加滚动事件)。
+ListDataSource说明及完整代码参考[示例1添加滚动事件](#示例1添加滚动事件)。
 
 <!--code_no_check-->
 ```ts
@@ -1911,7 +1911,7 @@ struct ListExample {
 
 该示例通过maintainVisibleContentPosition接口，实现了上滑无限加载历史消息场景。
 
-ListDataSource说明及完整代码参考[示例1](#示例1添加滚动事件)。
+ListDataSource说明及完整代码参考[示例1添加滚动事件](#示例1添加滚动事件)。
 
 <!--code_no_check-->
 ```ts
