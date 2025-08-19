@@ -786,7 +786,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         try {
-            // 如果当前没有申请长时任务，backgroundTaskManager 将返回一个空数组。
+            // 如果当前没有申请长时任务，backgroundTaskManager 将返回一个空数组
             backgroundTaskManager.getAllContinuousTasks(this.context).then((res: backgroundTaskManager.ContinuousTaskInfo[]) => {
                 console.info(`Operation getAllContinuousTasks succeeded. data: ` + JSON.stringify(res));
             }).catch((error: BusinessError) => {
@@ -829,7 +829,7 @@ getAllContinuousTasks(context: Context, includeSuspended: boolean): Promise&lt;C
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 201 | Permission denied. |
-| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; <br> 2. Failed to apply for memory. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
 
@@ -956,7 +956,7 @@ export default class EntryAbility extends UIAbility {
 
 on(type: 'continuousTaskSuspend', callback: Callback&lt;ContinuousTaskSuspendInfo&gt;): void
 
-注册长时任务暂停的监听，使用callback异步回调。注册该回调后，如果系统检测到应用未执行相应的业务，不会直接取消长时任务，而是标记为暂停状态，但是退后台仍会被挂起，回前台自动激活长时任务，如果连续检测失败，仍会取消长时任务。
+注册长时任务暂停的监听，使用callback异步回调。注册该回调后，如果系统检测到应用未执行相应的业务，不会直接取消长时任务，而是将长时任务标记为暂停状态，但是应用退后台仍会被挂起，回前台自动激活长时任务，如果连续检测失败，仍会取消长时任务。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
