@@ -31,7 +31,7 @@
 | -- | -- |
 | [struct OH_Huks_Result OH_Huks_InitParamSet(struct OH_Huks_ParamSet **paramSet)](#oh_huks_initparamset) | 初始化参数集。 |
 | [struct OH_Huks_Result OH_Huks_AddParams(struct OH_Huks_ParamSet *paramSet,const struct OH_Huks_Param *params, uint32_t paramCnt)](#oh_huks_addparams) | 添加参数到参数集里面。 |
-| [struct OH_Huks_Result OH_Huks_BuildParamSet(struct OH_Huks_ParamSet **paramSet)](#oh_huks_buildparamset) | 构造正式的参数集。 |
+| [struct OH_Huks_Result OH_Huks_BuildParamSet(struct OH_Huks_ParamSet **paramSet)](#oh_huks_buildparamset) | 构造参数集。 |
 | [void OH_Huks_FreeParamSet(struct OH_Huks_ParamSet **paramSet)](#oh_huks_freeparamset) | 销毁参数集。 |
 | [struct OH_Huks_Result OH_Huks_CopyParamSet(const struct OH_Huks_ParamSet *fromParamSet,uint32_t fromParamSetSize, struct OH_Huks_ParamSet **paramSet)](#oh_huks_copyparamset) | 复制参数集（深拷贝）。 |
 | [struct OH_Huks_Result OH_Huks_GetParam(const struct OH_Huks_ParamSet *paramSet, uint32_t tag,struct OH_Huks_Param **param)](#oh_huks_getparam) | 从参数集中获取参数。 |
@@ -66,7 +66,7 @@ struct OH_Huks_Result OH_Huks_InitParamSet(struct OH_Huks_ParamSet **paramSet)
 
 | 类型 | 说明 |
 | -- | -- |
-| [struct OH_Huks_Result](capi-hukstypeapi-oh-huks-result.md) | 可能的返回码（errorCode）：<br>         OH_HUKS_SUCCESS = 0 ：初始化操作成功。<br>         OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY = 12000014 ：内存不足。<br>         OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401 ：参数paramSet为null。 |
+| [struct OH_Huks_Result](capi-hukstypeapi-oh-huks-result.md) | 可能的返回码（errorCode）：<br>         OH_HUKS_SUCCESS = 0 ：初始化操作成功。<br>         OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY = 12000014 ：内存不足。<br>         OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401 ：参数paramSet无效。 |
 
 ### OH_Huks_AddParams()
 
@@ -103,7 +103,7 @@ struct OH_Huks_Result OH_Huks_BuildParamSet(struct OH_Huks_ParamSet **paramSet)
 
 **描述**
 
-构造正式的参数集。
+构造参数集。
 
 **起始版本：** 9
 
@@ -211,7 +211,7 @@ struct OH_Huks_Result OH_Huks_FreshParamSet(struct OH_Huks_ParamSet *paramSet, b
 | 参数项 | 描述 |
 | -- | -- |
 | [struct OH_Huks_ParamSet](capi-hukstypeapi-oh-huks-paramset.md) *paramSet | 指向参数集的指针。 |
-| bool isCopy | 如果为true，刷新[OH_Huks_Blob](capi-hukstypeapi-oh-huks-blob.md)类型数据的地址并复制到参数集。否则，只会刷新[OH_Huks_Blob](capi-hukstypeapi-oh-huks-blob.md)类型数据的地址。 |
+| bool isCopy | 如果为true，刷新[OH_Huks_Blob](capi-hukstypeapi-oh-huks-blob.md)类型数据的地址并复制到参数集。如果为false，只会刷新[OH_Huks_Blob](capi-hukstypeapi-oh-huks-blob.md)类型数据的地址。 |
 
 **返回：**
 
