@@ -8762,9 +8762,11 @@ export default class EntryAbility extends UIAbility {
 
 setWindowShadowRadius(radius: number): void
 
-设置子窗或悬浮窗窗口边缘阴影的模糊半径，此接口仅支持在2in1设备或平板设备上使用。
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于设置子窗或悬浮窗窗口边缘阴影的模糊半径。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
