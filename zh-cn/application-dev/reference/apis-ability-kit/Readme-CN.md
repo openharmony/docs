@@ -30,7 +30,7 @@
     - [@ohos.app.ability.StartOptions (startAbility的可选参数)](js-apis-app-ability-startOptions.md)
     - [@ohos.app.ability.UIAbility (带界面的应用组件)](js-apis-app-ability-uiAbility.md)
     - [@ohos.app.ability.UIExtensionAbility (带界面的ExtensionAbility组件)](js-apis-app-ability-uiExtensionAbility.md)
-    - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)](js-apis-app-ability-uiExtensionContentSession.md)
+    - [@ohos.app.ability.UIExtensionContentSession (UIExtensionAbility界面操作类)](js-apis-app-ability-uiExtensionContentSession.md)
     - [@ohos.app.ability.sendableContextManager (sendable上下文管理)](js-apis-app-ability-sendableContextManager.md)
     - [@ohos.app.appstartup.StartupConfig (启动框架配置信息)](js-apis-app-appstartup-startupConfig.md)
     - [@ohos.app.appstartup.StartupConfigEntry (启动框架配置)](js-apis-app-appstartup-startupConfigEntry.md)
@@ -50,7 +50,7 @@
     - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)(系统接口)](js-apis-app-ability-serviceExtensionAbility-sys.md)
     - [@ohos.app.ability.StartOptions (StartOptions)(系统接口)](js-apis-app-ability-startOptions-sys.md)
     - [@ohos.app.ability.UIServiceExtensionAbility (UIServiceExtensionAbility)(系统接口)](js-apis-app-ability-uiServiceExtensionAbility-sys.md)
-    - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)(系统接口)](js-apis-app-ability-uiExtensionContentSession-sys.md)
+    - [@ohos.app.ability.UIExtensionContentSession (UIExtensionAbility界面操作类)(系统接口)](js-apis-app-ability-uiExtensionContentSession-sys.md)
     <!--DelEnd-->
   - FA模型能力的接口<!--fa-model-->
     - [@ohos.ability.ability (Ability模块)](js-apis-ability-ability.md)
