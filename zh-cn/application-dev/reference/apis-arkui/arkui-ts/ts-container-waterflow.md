@@ -918,7 +918,7 @@ struct WaterFlowDemo {
 ### 示例2（自动计算列数）
 该示例通过auto-fill实现了自动计算列数的效果。
 
-WaterFlowDataSource说明及完整代码参考[示例1](#示例1使用基本瀑布流)。
+WaterFlowDataSource说明及完整代码参考[示例1使用基本瀑布流](#示例1使用基本瀑布流)。
 
 <!--code_no_check-->
 ```ts
@@ -987,7 +987,7 @@ struct WaterFlowDemo {
 该示例展示了分组的初始化以及splice、push、update、values、length等接口的不同效果。
 如果配合状态管理V2使用，详情见：[WaterFlow与makeObserved](../../../ui/state-management/arkts-v1-v2-migration-application-and-others.md#滑动组件)。
 
-WaterFlowDataSource说明及完整代码参考[示例1](#示例1使用基本瀑布流)。
+WaterFlowDataSource说明及完整代码参考[示例1使用基本瀑布流](#示例1使用基本瀑布流)。
 
 <!--code_no_check-->
 ```ts
@@ -1198,7 +1198,7 @@ struct WaterFlowDemo {
 ### 示例4（双指缩放改变列数）
 该示例通过[priorityGesture](ts-gesture-settings.md)和[PinchGesture](ts-basic-gestures-pinchgesture.md)实现了双指缩放改变列数效果。
 
-WaterFlowDataSource说明及完整代码参考[示例1](#示例1使用基本瀑布流)。
+WaterFlowDataSource说明及完整代码参考[示例1使用基本瀑布流](#示例1使用基本瀑布流)。
 
 <!--code_no_check-->
 ```ts
@@ -1386,7 +1386,7 @@ struct WaterFlowDemo {
 ### 示例5（设置边缘渐隐效果）
 该示例通过[fadingEdge](ts-container-scrollable-common.md#fadingedge14)实现了WaterFlow组件开启边缘渐隐效果，并通过fadingEdgeLength参数设置边缘渐隐长度。
 
-WaterFlowDataSource说明及完整代码参考[示例1](#示例1使用基本瀑布流)。
+WaterFlowDataSource说明及完整代码参考[示例1使用基本瀑布流](#示例1使用基本瀑布流)。
 
 <!--code_no_check-->
 ```ts
@@ -1454,7 +1454,7 @@ struct WaterFlowDemo {
 
 该示例通过edgeEffect接口，实现了WaterFlow组件设置单边边缘效果。
 
-WaterFlowDataSource说明及完整代码参考[示例1](#示例1使用基本瀑布流)。
+WaterFlowDataSource说明及完整代码参考[示例1使用基本瀑布流](#示例1使用基本瀑布流)。
 
 <!--code_no_check-->
 ```ts
@@ -1521,7 +1521,7 @@ struct WaterFlowDemo {
 
 该示例通过footerContent接口，实现了WaterFlow组件设置尾部组件。通过ComponentContent的update函数更新尾部组件。
 
-WaterFlowDataSource说明及完整代码参考[示例1](#示例1使用基本瀑布流)。
+WaterFlowDataSource说明及完整代码参考[示例1使用基本瀑布流](#示例1使用基本瀑布流)。
 
 <!--code_no_check-->
 ```ts
@@ -1617,7 +1617,7 @@ struct Index {
 
 该示例通过Refresh组件和WaterFlow组件，实现了下拉刷新瀑布流组件数据源。
 
-WaterFlowDataSource说明及完整代码参考[示例1](#示例1使用基本瀑布流)。
+WaterFlowDataSource说明及完整代码参考[示例1使用基本瀑布流](#示例1使用基本瀑布流)。
 
 <!--code_no_check-->
 ```ts
