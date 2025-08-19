@@ -2882,7 +2882,7 @@ isFollowingSystemFontScale(): boolean
 
 **示例：**
 
-参考[configuration标签](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-configuration-file#configuration标签)，配置fontSizeScale的值为“followSystem”。
+参考[configuration标签](../../quick-start/app-configuration-file.md#configuration标签)，配置fontSizeScale的值为“followSystem”。
 ```ts
 @Entry
 @Component
@@ -2915,7 +2915,7 @@ getMaxFontScale(): number
 
 **示例：**
 
-参考[configuration标签](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-configuration-file#configuration标签)，配置fontSizeMaxScale的值为“1.75”。
+参考[configuration标签](../../quick-start/app-configuration-file.md#configuration标签)，配置fontSizeMaxScale的值为“1.75”。
 ```ts
 @Entry
 @Component
