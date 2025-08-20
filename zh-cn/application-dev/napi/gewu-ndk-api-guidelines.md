@@ -74,7 +74,7 @@ OH_QoS_GewuCreateSessionResult OH_QoS_GewuCreateSession(const char* attributes);
 如果创建会话成功，返回值`OH_QoS_GewuCreateSessionResult`里的`error`为`OH_QOS_GEWU_OK`，而`session`为创建出来的会话句柄。
 如果创建会话失败，返回值`OH_QoS_GewuCreateSessionResult`里的`error`为错误原因，其中`OH_QOS_GEWU_NOMEM`表示没有足够的内存创建会话。
 
-**`OH_QoS_GewuDestroySession` **
+**`OH_QoS_GewuDestroySession`**
 
 描述
 
