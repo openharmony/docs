@@ -41,7 +41,7 @@
  
 沉浸式布局设计可参考[沉浸体验](https://developer.huawei.com/consumer/cn/doc/design-guides/practices-overview-0000001746498066#section1610419884617)，多设备场景下不同窗口形态的沉浸式开发的实现可以参考[窗口沉浸式最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-multi-device-window-immersive)。
 
-沉浸式布局在Tablet设备上的自由多窗和2in1设备与phone设备的定义不是一致的：
+沉浸式布局在Tablet设备上的自由多窗和2in1设备与phone设备的定义是不一致的，都可以通过[isImmersiveLayout](../reference/apis-arkui/arkts-apis-window-Window.md#isimmersivelayout20)查询当前窗口是否处于沉浸式布局状态。
 
 对于Tablet设备上的自由多窗和2in1设备，当窗口的[drawableRect](../reference/apis-arkui/arkts-apis-window-i.md#windowproperties)等于窗口的[windowRect](../reference/apis-arkui/arkts-apis-window-i.md#windowproperties)时，该窗口为沉浸式布局。子窗口有标题栏时为非沉浸式布局。
 
