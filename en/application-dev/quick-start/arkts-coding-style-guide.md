@@ -1,10 +1,17 @@
 # ArkTS Coding Style Guide
 
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @yyytiancai-->
+<!--Designer: @qyhuo32-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @zhang_yixin13-->
+
 ## Purpose
 
-Based on the language characteristics of ArkTS, as well as industry standards and practices, this guide provides coding guidelines to improve code standardization, security, and performance.
+Based on the language characteristics of ArkTS, as well as industry standards and practices, this guide provides coding guide for improving code standardization, security, and performance.
 
-This guide is applicable when you use ArkTS for coding during system or application development.
+This guide is applicable when you use ArkTS for coding during application development.
 
 ## Source
 
@@ -20,7 +27,7 @@ Style for the naming and format.
 
 Practices for declaration, initialization, data types, operations and expressions, and exceptions.
 
-Guidelines in **TypeScript and JavaScript Coding Style Guide** that are involved in the ArkTS language are extracted, and new guidelines are added for ArkTS-specific syntax.
+Guidelines in *TypeScript and JavaScript Coding Style Guide* that are involved in the ArkTS language are extracted, and new guidelines are added for ArkTS-specific syntax.
 
 ## Terms
 
@@ -45,10 +52,10 @@ Guidelines are categorized as follows:
 
 **[Description]**
 
-A well-named identifier meets the following basic requirements:
- - Clearly express the intent. Do not use single letters or non-conventional abbreviations.
+A well-named identifier meets the following requirements:
+ - Clearly express the intent. Do not use single letters or non-standard abbreviations.
  - Use correct English words in line with the English grammar. Do not use Pinyin.
- - Clearly express the meaning, and avoid misleading.
+ - Ensure that the statement is clear and unambiguous.
 
 ### Use UpperCamelCase for Class Names, Enum Names, and Namespace Names
 
@@ -98,13 +105,13 @@ namespace Base64Utils {
 
 **[Description]**
 
-A method is usually named as a verb or verb phrase in lower camel case. Examples are as follows:
-1.   load + attributeName()
-2.   put + attributeName()
-3.   is + BooleanAttributeName()
-4.   has + noun/adjective()
-5.   verb()
-6.   verb + object()
+A function is usually named as a verb or verb phrase in lower camel case. Examples are as follows:
+1. load + attributeName()
+2. put + attributeName()
+3. is + BooleanAttributeName()
+4. has + noun/adjective()
+5. verb()
+6. verb + object()
 A variable name is usually a noun or noun phrase in lower camel case.
 
 **[Correct Example]**
@@ -229,7 +236,7 @@ function test(dataSource: DataSource[]) {
 
 The code line width should not be too long. Otherwise, it is difficult to read.
 
-The line width requirement encourages you to shorten method and variable names, reduce nesting, and write concise comments to improve code readability.
+The line width requirement encourages you to shorten function and variable names, reduce nesting, and write concise comments to improve code readability.
 It is recommended that each line contain no more than 120 characters unless a longer line can significantly improve the code readability and no information is hidden.
 Exception: If a one-line comment contains a command or URL of more than 120 characters, you can keep the line for ease in using copy, paste, and search with the **grep** command. Put the error information of preprocessor directives in one line to facilitate reading and understanding even if the line contains more than 120 characters.
 
@@ -239,7 +246,7 @@ Exception: If a one-line comment contains a command or URL of more than 120 char
 
 **[Description]**
 
-It is a best practice to add braces ({}) to the execution body of statements such as **if**, **for**, **do**, and **while**, because omitting the braces can cause errors and reduce code clarity.
+It is a best practice to add braces ({}) to the execution body of statements such as **if**, **for**, **do**, and **while**, because omitting the braces may cause errors and reduce code clarity.
 
 **[Incorrect Example]**
 
@@ -340,17 +347,17 @@ let pointY = 0;
 **[Description]**
 
 Use spaces to highlight keywords and important information. The general recommendations are as follows:
-1.   Add a space between keywords such as **if**, **for**, **while**, and **switch** and the open parentheses.
-2.   Do not add a space between the method name and the open parentheses of the parameter list when defining or calling the method.
-3.   Add a space between the keyword **else** or **catch** and the close brace (}).
-4.   Add a space before the open brace ({), except when:
+1. Add a space between keywords such as **if**, **for**, **while**, and **switch** and the open parentheses.
+2. Do not add a space between the method name and the open parentheses of the parameter list when defining or calling the method.
+3. Add a space between the keyword **else** or **catch** and the close brace (}).
+4. Add a space before the open brace ({), except when:
 a. The open brace is used as the first parameter of a method or the first element in an array, for example, **foo({ name: 'abc' })**.
 b. The open brace is used in a template name, for example, **abc${name}**.
-5.   Spaces are added before and after the binary operator (+, -, *, =, <, >, <=, >=, ===, !==, &&, ||). Spaces are added on both sides of the ternary operator (?, :).
-6.   Add a space after the comma in array initialization and the comma between multiple parameters in a method.
-7.   Do not add a space before a comma (,) or semicolon (;).
-8.   Do not add spaces inside the square brackets ([]) of an array.
-9.   Do not contain multiple consecutive spaces. It is a bad practice if consecutive spaces in a line are not used for indentation.
+5. Spaces are added before and after the binary operator (+, -, *, =, <, >, <=, >=, ===, !==, &&, ||). Spaces are added on both sides of the ternary operator (? :).
+6. Add a space after the comma in array initialization and the comma between multiple parameters in a method.
+7. Do not add a space before a comma (,) or semicolon (;).
+8. Do not add spaces inside the square brackets ([]) of an array.
+9. Do not contain multiple consecutive spaces. It is a bad practice if consecutive spaces in a line are not used for indentation.
 
 **[Incorrect Example]**
 
@@ -384,9 +391,9 @@ function fight(): void {
 
 ```
 if (flag) {
-  //...
+  // ...
 }else {  // There is no space between the close brace and else.
-  //...
+  // ...
 }
 ```
 
@@ -394,9 +401,9 @@ if (flag) {
 
 ```
 if (flag) {
-  //...
+  // ...
 } else {  // There is a space between the close brace and else.
-  //...
+  // ...
 }
 ```
 
@@ -404,7 +411,7 @@ if (flag) {
 
 ```
 function foo() {  // There is a space before the open brace in the method declaration.
-  //...
+  // ...
 }
 
 bar('attr', {  // There is a space before the open brace.
@@ -426,7 +433,7 @@ myFunc(bar, foo, baz);  // There is a space after the comma between multiple par
 
 **[Description]**
 
-Use single quotation marks for strings.
+To maintain code consistency and readability, use single quotes.
 
 **[Incorrect Example]**
 
@@ -552,7 +559,7 @@ Follow a consistent style of using braces in the project. You are advised to put
 ```
 function foo()
 {
-  //...
+  // ...
 }
 ```
 
@@ -560,19 +567,19 @@ function foo()
 
 ```
 function foo() {
-  //...
+  // ...
 }
 ```
-
+ 
 ## Programming Practices
 
-### Add Accessible Modifiers for Class Attributes
+### Add Accessible Modifiers for Class Properties
 
 **[Category]** Recommendation
 
 **[Description]**
 
-In ArkTS, the accessible modifiers **private**, **protected**, and **public** are provided. The default accessible modifier of an attribute is **public**. Selecting appropriate accessible modifiers can improve code security and readability. Note: If a class contains the **private** attribute, the class cannot be initialized through object literals.
+ArkTS provides the **private**, **protected**, and **public** access modifiers. The default accessible modifier of a property is **public**. Appropriate accessible modifiers can improve code security and readability. Note: If a class contains the **private** attribute, the class cannot be initialized through object literals.
 
 **[Incorrect Example]**
 
@@ -629,7 +636,7 @@ const num = -0.7;
 **[Description]**
 
 In ArkTS, **Number.NaN** is a particular value of a numeric data type. It represents a non-numeric value in the double-precision 64-bit format, as defined in the IEEE floating-point standard.
-**Number.NaN** is unique in ArkTS because it is not equal to any value, including itself. Therefore, the result of comparison with **Number.NaN** is confusing, as the values of **Number.NaN !== Number.NaN** and **Number.NaN != Number.NaN** are both **true**.
+**Number.NaN** is unique in ArkTS because it is not equal to any value, including itself. For example, the result of comparison with **Number.NaN** is confusing, as the values of **Number.NaN !== Number.NaN** and **Number.NaN != Number.NaN** are both **true**.
 Therefore, you must use **Number.isNaN()** to check whether a value is **Number.NaN**.
 
 **[Incorrect Example]**
@@ -697,16 +704,16 @@ Assigning values in this type of expression often leads to unexpected behavior a
 ```
 // It is difficult to understand the value assignment in the control conditional expression.
 if (isFoo = false) {
-  ...
+  // ...
 }
 ```
 
 **[Correct Example]**
 
 ```
-const isFoo = someBoolean; // Assign a value above and directly use it in the if statement.
+const isFoo = false; // Assign a value above and directly use it in the if statement.
 if (isFoo) {
-  ...
+  // ...
 }
 ```
 
@@ -716,17 +723,17 @@ if (isFoo) {
 
 **[Description]**
 
-If the **return**, **break**, **continue**, or **throw** statement is used in a **finally** code block or an exception that arise during method calling are not handled, the **finally** code block cannot properly stop. An abnormally stopped **finally** code block affects the throwing of exceptions in a **try** or **catch** block, and may affect the return value of a method. Therefore, ensure that the **finally** code block can stop properly.
+If the **return**, **break**, **continue**, or **throw** statement is used in a **finally** code block or an exception that arises during method calling is not handled, the **finally** code block cannot properly stop. An abnormally stopped **finally** code block affects the throwing of exceptions in a **try** or **catch** block, and may affect the return value of a method. Therefore, ensure that the **finally** code block can stop properly.
 
 **[Incorrect Example]**
 
 ```
 function foo() {
   try {
-    ...
+    // ...
     return 1;
   } catch (err) {
-    ...
+    // ...
     return 2;
   } finally {
     return 3;
@@ -739,10 +746,10 @@ function foo() {
 ```
 function foo() {
   try {
-    ...
+    // ...
     return 1;
   } catch (err) {
-    ...
+    // ...
     return 2;
   } finally {
     console.log('XXX!');
@@ -800,7 +807,7 @@ let obj: I = getObject(123);
 
 **[Description]**
 
-ArkTS provides two array types: **T[]** and **Array\<T>**. To ensure code readability, you are advised to use **T[]** to represent all array types.
+ArkTS provides two array types: **T[]** and **Array\<T>**. To improve code readability, you are advised to use **T[]** to represent all array types.
 
 **[Incorrect Example]**
 

@@ -1,24 +1,31 @@
 # HSP
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 A Harmony Shared Package (HSP) is a dynamic shared package that can contain code, C++ libraries, resource files, and configuration files (also called profiles) and allows for code and resource sharing. An HSP is released with the Application Package (App Pack) of the host application, shares a process with the host application, and has the same bundle name and lifecycle as the host application.
 > **NOTE**
 > 
-> In-app HSP: a type of HSP that is closely coupled with an application bundle name (**bundleName**) during compilation and can be used only by the specified application.
+> In-app HSP: a type of HSP that is closely coupled with an application bundle name (**bundleName**) during compilation and can be used only by the specified application. This topic mainly describes in-app HSP.
 > 
-> [Integrated HSP](integrated-hsp.md): a type of HSP that is not coupled with specific application bundle names during building and publishing. The toolchain can automatically replace the bundle name of the integrated HSP with that of the host application and generate a new HSP as the installation package of the host application. The new HSP package also belongs to the in-app HSP.
+> [Integrated HSP](integrated-hsp.md): a type of HSP that is not coupled with specific application bundle names during building and publishing. The toolchain can automatically replace the bundle name of the integrated HSP with that of the host application and generate a new HSP as the installation package of the host application. The new HSP also belongs to the in-app HSP of the host application.
 
 ## Use Scenarios
 - By storing code and resource files shared by multiple HAPs/HSPs in one place, the HSP significantly improves the reusability and maintainability of the code and resource files. Better yet, because only one copy of the HSP code and resource files is retained during building and packaging, the size of the application package is effectively controlled.
 
-- The HSP is loaded on demand during application running, which helps improve application performance.
+- The HSP is [loaded on demand](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-modular-design#section28312051291) during application running, which helps improve application performance.
 
 - The integrated HSP allows for code and resource sharing across applications in the same organization.
 
 ## Constraints
 
-- An HSP must be installed and run with the HAP that depends on it. It cannot be installed or run independently on a device. The HAP version must be later than or equal to the HSP version.
-- HSP supports the declaration of the [ExtensionAbility](../application-models/extensionability-overview.md) and [UIAbility](../application-models/uiability-overview.md) components in the configuration file, however, ExtensionAbility or UIAbility with entry capabilities (that is, entity.system.home and ohos.want.action.home are configured for the **skill** tag) is not supported.
-- An HSP can depend on other HARs or HSPs, but does not support cyclic dependency or dependency transfer.
+- An HSP must be installed and run with the HAP that depends on it. It cannot be installed or run independently on a device. Since API version 18, the HAP version must be later than or equal to the HSP version. For API version 17 and earlier versions, the HSP version must be the same as the HAP version.
+- Since API version 14, HSP supports the declaration of the [UIAbility](../application-models/uiability-overview.md#declaration-configuration) component in the configuration file. However, UIAbility with entry capabilities (that is, **entity.system.home** and **ohos.want.action.home** are configured for the **skill** tag) is not supported. For details about how to configure a UIAbility, see [Adding a UIAbility to a Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-add-new-ability#section18658758104318). The method of starting a UIAbility in an HSP is the same as that described in [Starting UIAbility in the Same Application](../application-models/uiability-intra-device-interaction.md). For API version 13 and earlier versions, the [UIAbility](../application-models/uiability-overview.md#declaration-configuration) component cannot be declared in the configuration file.
+- Since API version 18, HSP supports the declaration of the [ExtensionAbility](../application-models/extensionability-overview.md) component in the configuration file. However, ExtensionAbility with entry capabilities (that is, **entity.system.home** and **ohos.want.action.home** are configured for the **skill** tag) is not supported. For details about how to configure an ExtensionAbility in an HSP, see [Adding an ExtensionAbility to a Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-add-new-ability#section18891639459). For API version 17 and earlier versions, the [ExtensionAbility](../application-models/extensionability-overview.md) component cannot be declared in the configuration file.
+- An HSP can depend on other HARs or HSPs, and can be depended on or integrated by HAPs or HSPs. However, cyclic dependency and dependency transfer are not supported.
 
 > **NOTE**
 > 
@@ -28,12 +35,15 @@ A Harmony Shared Package (HSP) is a dynamic shared package that can contain code
 
 
 ## Creating an HSP
-Create an HSP module in DevEco Studio. For details, see [Creating an HSP Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-hsp-V13#section7717162312546). The following describes how to create an HSP module named **library**. The basic project directory structure is as follows:
+Create an HSP module for calling C++ code on DevEco Studio and turn on **Enable native** on the **Configure New Module** page. For details, see [Creating an HSP Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hsp#section7717162312546). The following uses the **library** module as an example. The basic project directory structure is as follows:
 ```
 MyApplication
 ├── library
 │   ├── src
 │   │   └── main
+|   |       ├── cpp
+|   |       |   ├── CMakeLists.txt    // Configuration file for compiling native C++ code
+|   |       |   └── napi_init.cpp     // C++ file for initializing the NAPI module
 │   │       ├── ets
 │   │       │   └── pages
 │   │       │       └── index.ets     // Page file of the library module
@@ -69,15 +79,15 @@ export struct MyTitleBar {
   }
 }
 ```
-In the entry point file **index.ets**, declare the APIs to be exposed.
+Declare the APIs exposed to external systems in the entry file **index.ets**.
 ```ts
 // library/index.ets
 export { MyTitleBar } from './src/main/ets/components/MyTitleBar';
 ```
 
 
-### Exporting TS Classes and Methods
-Use **export** to export TS classes and methods. The sample code is as follows:
+### Exporting Classes and Methods
+Use **export** to export classes and methods. The sample code is as follows:
 ```ts
 // library/src/main/ets/utils/test.ets
 export class Log {
@@ -94,7 +104,7 @@ export function minus(a: number, b: number): number {
   return a - b;
 }
 ```
-In the entry point file **index.ets**, declare the APIs to be exposed.
+Declare the APIs exposed to external systems in the entry file **index.ets**.
 ```ts
 // library/index.ets
 export { Log, add, minus } from './src/main/ets/utils/test';
@@ -111,7 +121,7 @@ export function nativeMulti(a: number, b: number): number {
 }
 ```
 
-In the entry point file **index.ets**, declare the APIs to be exposed.
+Declare the APIs exposed to external systems in the entry file **index.ets**.
 ```ts
 // library/index.ets
 export { nativeMulti } from './src/main/ets/utils/nativeTest';
@@ -157,18 +167,20 @@ export class ResManager{
 }
 ```
 
-In the entry point file **index.ets**, declare the APIs to be exposed.
+Declare the APIs exposed to external systems in the entry file **index.ets**.
 ```ts
 // library/index.ets
 export { ResManager } from './src/main/ets/ResManager';
 ```
+
+
 
 ## Using an HSP
 
 You can reference APIs in an HSP and implement page redirection in the HSP through page routing.
 
 ### Referencing APIs
-To use HSP APIs, you need to configure the dependency on them in the **oh-package.json5** file. For details, see [Referencing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-har-import).
+To use APIs in the HSP, first configure the dependency on the HSP in the **oh-package.json5** file of the module that needs to call the APIs (called the invoking module). For details, see [Referencing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-har-import).
 You can then call the external APIs of the HSP in the same way as calling the APIs in the HAR. In this example, the external APIs are the following ones exported from **library**:
 
 ```ts
@@ -182,8 +194,8 @@ The APIs can be used as follows in the code of the invoking module:
 ```ts
 // entry/src/main/ets/pages/index.ets
 import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
-import { BusinessError } from '@ohos.base';
-import router from '@ohos.router';
+import { BusinessError } from "@kit.BasicServicesKit";
+import { application} from '@kit.AbilityKit';
 
 const TAG = 'Index';
 
@@ -242,7 +254,7 @@ struct Index {
         })
 
         ListItem() {
-          Text($r('app.string.get_string_value'))
+          Text(ResManager.getDesc())
             .fontSize(18)
             .textAlign(TextAlign.Start)
             .width('100%')
@@ -257,18 +269,19 @@ struct Index {
         .margin({ top: 10, bottom: 10 })
         .padding({ left: 12, right: 12, top: 4, bottom: 4 })
         .onClick(() => {
-          // Obtain the context of the HSP module based on the current context, obtain the resourceManager object of the HSP module, and then call the API of resourceManager to obtain resources.
-          getContext()
-            .createModuleContext('library')
-            .resourceManager
-            .getStringValue(ResManager.getDesc())
-            .then(value => {
-              console.log('getStringValue is ' + value);
-              this.message = 'getStringValue is ' + value;
-            })
-            .catch((err: BusinessError) => {
-              console.error('getStringValue promise error is ' + err);
-            });
+          // Obtain the context of the HSP module through application.createModuleContext and the resourceManager object of the HSP module, and call the API of resourceManager to obtain resources.
+          application.createModuleContext(this.getUIContext()?.getHostContext(), "library").then((context:Context)=>{
+              context.resourceManager.getStringValue(ResManager.getDesc().id)
+              .then(value => {
+                console.log('getStringValue is ' + value);
+                this.message = 'getStringValue is ' + value;
+              })
+              .catch((err: BusinessError) => {
+                console.error('getStringValue promise error is ' + err);
+              });
+          }).catch((err: BusinessError) => {
+            console.error('createModuleContext promise error is ' + err);
+          });
         })
 
         ListItem() {
@@ -300,148 +313,129 @@ struct Index {
 }
 ```
 
-### Redirecting to a Page
+### Page Redirection and Return
 
-If you want to add a button in the **entry** module to jump to the menu page (**library/src/main/ets/pages/menu.ets**) in the **library** module, you can write the following code in the **entry/src/main/ets/pages/Index.ets** file of the **entry** module:
+To add a button in the **entry** module to jump to the menu page (**library/src/main/ets/pages/library_menu.ets**) in the **library** module, write the following code in the **entry/src/main/ets/pages/Index.ets** file of the **entry** module:
 ```ts
-import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
-import { BusinessError } from '@ohos.base';
-import router from '@ohos.router';
-
-const TAG = 'Index';
+// entry/src/main/ets/pages/Index.ets
 
 @Entry
 @Component
 struct Index {
   @State message: string = '';
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
-    Column() {
-      List() {
-        ListItem() {
-          Text($r('app.string.click_to_menu'))
-            .fontSize(18)
-            .textAlign(TextAlign.Start)
-            .width('100%')
-            .fontWeight(500)
-            .height('100%')
-        }
-        .id('clickToMenu')
-        .borderRadius(24)
-        .width('685px')
-        .height('84px')
-        .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
-        .margin({ top: 10, bottom: 10 })
-        .padding({ left: 12, right: 12, top: 4, bottom: 4 })
-        .onClick(() => {
-          router.pushUrl({
-            url: '@bundle:com.samples.hspsample/library/ets/pages/Menu'
-          }).then(() => {
-            console.log('push page success');
-          }).catch((err: BusinessError) => {
-            console.error('pushUrl failed, code is' + err.code + ', message is' + err.message);
+    Navigation(this.pathStack) {
+      Column() {
+        List() {
+          ListItem() {
+            Text($r('app.string.click_to_menu'))
+              .fontSize(18)
+              .textAlign(TextAlign.Start)
+              .width('100%')
+              .fontWeight(500)
+              .height('100%')
+          }
+          .id('clickToMenu')
+          .borderRadius(24)
+          .width('685px')
+          .height('84px')
+          .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
+          .margin({ top: 10, bottom: 10 })
+          .padding({
+            left: 12,
+            right: 12,
+            top: 4,
+            bottom: 4
           })
-        })
+          .onClick(() => {
+            this.pathStack.pushPathByName('library_menu', null)
+          })
+        }
+        .alignListItem(ListItemAlign.Center)
       }
-      .alignListItem(ListItemAlign.Center)
-    }
-    .width('100%')
-    .backgroundColor($r('app.color.page_background'))
-    .height('100%')
+      .width('100%')
+      .backgroundColor($r('app.color.page_background'))
+      .height('100%')
+    }.title("Navigation_index")
+    .mode(NavigationMode.Stack)
   }
 }
 ```
-The input parameter **url** of the **router.pushUrl** API is as follows:
-```ets
-'@bundle:com.samples.hspsample/library/ets/pages/Menu'
+
+Add a page file (**library/src/main/ets/pages/library_menu.ets**) to the **library** module. The **back_to_index** button on the page can be used to return to the previous page.
 ```
-The **url** content template is as follows:
-```ets
-'@bundle:bundleName/moduleName/path/page file name (without the extension .ets)'
-```
-### Going Back to the Previous Page Using router.back()
-You can use the **router.back** method to go back, from a page in the HSP, to the previous page, under the prerequisite that the target page is in the redirection path of the source page.
-```ts
-import router from '@ohos.router';
+// library/src/main/ets/pages/library_menu.ets
+@Builder
+export function PageOneBuilder() {
+  Library_Menu()
+}
 
 @Entry
 @Component
-struct Index3 { // The path is library/src/main/ets/pages/Back.ets.
-  @State message: string = 'HSP back page';
+export struct Library_Menu {
+  @State message: string = 'Hello World';
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontFamily('HarmonyHeiTi')
-          .fontWeight(FontWeight.Bold)
-          .fontSize(32)
-          .fontColor($r('app.color.text_color'))
-          .margin({ top: '32px' })
-          .width('624px')
-
-        Button($r('app.string.back_to_HAP'))
-          .id('backToHAP')
-          .fontFamily('HarmonyHeiTi')
-          .height(48)
-          .width('624px')
-          .margin({ top: 550 })
-          .type(ButtonType.Capsule)
-          .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
-          .backgroundColor($r('app.color.button_background'))
-          .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
-          .fontSize($r('sys.float.ohos_id_text_size_button1'))
-            // Bind click events.
-          .onClick(() => {
-            router.back({ // Go back to the HAP page.
-              url: 'pages/Index' // The path is entry/src/main/ets/pages/Index.ets.
+    NavDestination() {
+      Row() {
+        Column() {
+          Text(this.message)
+            .fontSize($r('app.float.page_text_font_size'))
+            .fontWeight(FontWeight.Bold)
+            .onClick(() => {
+              this.message = 'Welcome';
             })
+          Button("back_to_index").fontSize(50).onClick(() => {
+            this.pathStack.pop();
           })
-
-        Button($r('app.string.back_to_HSP'))
-          .id('backToHSP')
-          .fontFamily('HarmonyHeiTi')
-          .height(48)
-          .width('624px')
-          .margin({ top: '4%' , bottom: '6%' })
-          .type(ButtonType.Capsule)
-          .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
-          .backgroundColor($r('app.color.button_background'))
-          .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
-          .fontSize($r('sys.float.ohos_id_text_size_button1'))
-            // Bind click events.
-          .onClick(() => {
-            router.back({ // Go back to the HSP page.
-              url: '@bundle:com.samples.hspsample/library/ets/pages/Menu' // The path is library/src/main/ets/pages/Menu.ets.
-            })
-          })
+        }
+        .width('100%')
       }
-      .width('100%')
-    }
-    .backgroundColor($r('app.color.page_background'))
-    .height('100%')
+      .height('100%')
+    }.title('Library_Menu')
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack
+    })
   }
 }
 ```
 
-The **url** parameter in the **router.back** method is described as follows:
+Add the **route_map.json** file (**library/src/main/resources/base/profile/route_map.json**) to the **library** module.
+```
+{
+  "routerMap": [
+    {
+      "name": "library_menu",
+      "pageSourceFile": "src/main/ets/pages/library_menu.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is library_menu"
+      }
+    }
+  ]
+}
+```
 
-* In this example, the URL for going back from the HSP page to the HAP page is as follows:
+Configure the **route_map.json** file in the **library/src/main/module.json5** file of the **library** module.
+```
+{
+  "module": {
+    "name": "library",
+    "type": "shared",
+    "description": "$string:shared_desc",
+    "deviceTypes": [
+      "phone",
+      "tablet",
+      "2in1"
+    ],
+    "deliveryWithInstall": true,
+    "pages": "$profile:main_pages",
+    "routerMap": "$profile:route_map" // Added file.
+  }
+}
+```
 
-    ```ets
-    'pages/Index'
-    ```
-    The **url** content template is as follows:
-    ```ets
-    'Page file name (without the extension .ets)
-    ```
-
-* To return to the HSP1 page after switching to the HSP2 page, the URL should be as follows:
-
-    ```ets
-    '@bundle:com.samples.hspsample/library/ets/pages/Menu'
-    ```
-    The **url** content template is as follows:
-    ```ets
-    '@bundle:bundleName/moduleName/path/page file name (without the extension .ets)'
-    ```
+The navigation feature is used for page redirection and return. For details, see [Page Navigation](../ui/arkts-navigation-navigation.md#routing-operations).
