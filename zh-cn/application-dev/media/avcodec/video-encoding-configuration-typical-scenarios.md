@@ -88,21 +88,21 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     > 接入帧间隔-1表示只有第一帧为接入帧，开发者可以根据传输情况和画质情况，在运行过程中动态配置编码器参数，实现插入新的接入帧（IDR）功能。
     > 
 
-3. （可选）在运行过程中动态配置编码器参数。
+2. （可选）在运行过程中动态配置编码器参数。
 
     详情可参考[视频编码Surface模式](video-encoding.md#surface模式)“步骤-9：OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数”。
 
     ```c++
-    // 3.1 创建AVFormat参数实例。
+    // 2.1 创建AVFormat参数实例。
     OH_AVFormat *format = OH_AVFormat_Create();
-    // 3.2 填充编码参数键值对（动态请求IDR帧）。
+    // 2.2 填充编码参数键值对（动态请求IDR帧）。
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_REQUEST_I_FRAME, true);
-    // 3.3 设置编码器参数生效。
+    // 2.3 设置编码器参数生效。
     ret = OH_VideoEncoder_SetParameter(videoEnc, format);
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
-    // 3.4 配置完成后销毁AVFormat实例。
+    // 2.4 配置完成后销毁AVFormat实例。
     OH_AVFormat_Destroy(format);
     ```
     如果需要适配网络波动，推荐结合采用[时域可分层视频编码](video-encoding-temporal-scalability.md)配置。
