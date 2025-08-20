@@ -1,5 +1,12 @@
 # 任务执行超时事件介绍
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @rr_cn-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## 简介
 
 任务执行超时指要监控的业务代码逻辑执行时长超过业务逻辑预期时间。为了更好地定位和分析问题，开发者可以利用[任务执行超时检测](apptask-timeout-guidelines.md#任务执行超时检测)机制，根据生成的[日志规格](apptask-timeout-guidelines.md#日志规格)，主动分析任务执行超时的执行情况。
@@ -12,6 +19,7 @@
 
 开发者可以通过HiAppEvent提供接口订阅任务执行超时事件“EVENT_APP_HICOLLIE”，系统检测到任务执行超时后，会抓取维测信息通过HiAppEvent将任务执行超时回调给应用进程。
 
+- [订阅任务执行超时事件（ArkTS）](hiappevent-watcher-apphicollie-events-arkts.md)
 - [订阅任务执行超时事件（C/C++）](hiappevent-watcher-apphicollie-events-ndk.md)
 
 ## 事件字段说明

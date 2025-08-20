@@ -53,11 +53,11 @@ XML模块提供XmlPullParser类用于解析XML文本，输入为包含XML数据�
     let textEncoder: util.TextEncoder = new util.TextEncoder();
     let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // 对数据进行编码，防止中文字符乱码
     // 方式1：基于ArrayBuffer构造XmlPullParser对象
-    let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
+    let xmlParser: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
    
     // 方式2：基于DataView构造XmlPullParser对象
     // let dataView: DataView = new DataView(arrBuffer.buffer as object as ArrayBuffer);
-    // let that: xml.XmlPullParser = new xml.XmlPullParser(dataView, 'UTF-8');
+    // let xmlParser: xml.XmlPullParser = new xml.XmlPullParser(dataView, 'UTF-8');
     ```
 
 3. 自定义回调函数，本例直接打印出标签及标签值。
@@ -77,11 +77,11 @@ XML模块提供XmlPullParser类用于解析XML文本，输入为包含XML数据�
     }
     ```
 
-4. 设置解析选项，调用parse函数。
+4. 设置解析选项，调用parseXml函数。
 
     ```ts
     let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tagValueCallbackFunction:func};
-    that.parseXml(options);
+    xmlParser.parseXml(options);
     ```
 
 	输出结果如下所示：
@@ -120,7 +120,7 @@ XML模块提供XmlPullParser类用于解析XML文本，输入为包含XML数据�
         '</note>';
     let textEncoder: util.TextEncoder = new util.TextEncoder();
     let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // 对数据进行编码，防止中文字符乱码
-    let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
+    let xmlParser: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
     ```
 
 3. 自定义回调函数，示例直接打印出属性及属性值。
@@ -133,11 +133,11 @@ XML模块提供XmlPullParser类用于解析XML文本，输入为包含XML数据�
     }
     ```
 
-4. 设置解析选项，调用parse函数。
+4. 设置解析选项，调用parseXml函数。
 
     ```ts
     let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, attributeValueCallbackFunction:func};
-    that.parseXml(options);
+    xmlParser.parseXml(options);
     console.info(str); // 打印所有属性及其值
     ```
 
@@ -165,7 +165,7 @@ XML模块提供XmlPullParser类用于解析XML文本，输入为包含XML数据�
       '</note>';
     let textEncoder: util.TextEncoder = new util.TextEncoder();
     let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // 对数据进行编码，防止中文字符乱码
-    let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
+    let xmlParser: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
     ```
 
 3. 自定义回调函数，示例直接打印元素事件类型及元素深度。
@@ -179,11 +179,11 @@ XML模块提供XmlPullParser类用于解析XML文本，输入为包含XML数据�
     }
     ```
 
-4. 设置解析选项，调用parse函数。
+4. 设置解析选项，调用parseXml函数。
 
      ```ts
      let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func};
-     that.parseXml(options);
+     xmlParser.parseXml(options);
      ```
 
    输出结果如下所示：
@@ -217,7 +217,7 @@ let strXml: string =
     '</book>';
 let textEncoder: util.TextEncoder = new util.TextEncoder();
 let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml);
-let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
+let xmlParser: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
 let str: string = '';
 
 function tagFunc(name: string, value: string): boolean {
@@ -245,7 +245,7 @@ let options: xml.ParseOptions = {
   attributeValueCallbackFunction: attFunc,
   tokenValueCallbackFunction: tokenFunc
 };
-that.parseXml(options);
+xmlParser.parseXml(options);
 ```
 
 输出结果如下所示：

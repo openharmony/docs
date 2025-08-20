@@ -36,11 +36,13 @@ This error code is reported if the local device has not established a Bluetooth 
 
 1. The local device has not established a Bluetooth pairing with the target device.
 2. The Bluetooth service on the peer device has not enabled listening for pairing requests.
+3. An invalid MAC address or UUID is used.
 
 **Solution**
 
 1. Use the Health & Fitness app to add the device and pair it via Bluetooth.
 2. Check whether the Bluetooth service on the peer device has enabled listening for pairing requests.
+3. Check whether the input MAC address and UUID are valid.
 
 ## 32390004 Invalid or Unavailable Channel ID
 

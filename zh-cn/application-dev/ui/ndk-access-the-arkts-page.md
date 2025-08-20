@@ -10,7 +10,7 @@
 
 使用NDK接口构建UI界面时，需要在ArkTS页面创建用于挂载NDK接口创建组件的占位组件。占位组件类型为[ContentSlot](../reference/apis-arkui/arkui-ts/ts-components-contentSlot.md)，ContentSlot能够绑定一个[NodeContent](../reference/apis-arkui/js-apis-arkui-NodeContent.md)对象，该对象可通过Node-API传递到Native侧挂载显示Native组件。
 
-- NDK配置文件oh-package.json5如下。
+- NDK配置文件entry/src/main/cpp/types/libentry/oh-package.json5如下。
   ```ts
   {
     "name": "libentry.so",
@@ -109,8 +109,8 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
   ArkUI_NumberValue value[] = {{.f32 = 100}};
   ArkUI_AttributeItem item = {value, 1};
   arkUINativeNodeApi->setAttribute(stack, NODE_WIDTH, &item);
-  ArkUI_NumberValue value[] = {{.u32 = 0xff112233}};
-  ArkUI_AttributeItem item = {value, 1};
+  ArkUI_NumberValue value_color[] = {{.u32 = 0xff112233}};
+  ArkUI_AttributeItem item_color = {value_color, 1};
   arkUINativeNodeApi->setAttribute(stack, NODE_BACKGROUND_COLOR, &item);
   ```
 
@@ -223,7 +223,6 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
    #include <ArkUIBaseNode.h>
    #include <arkui/native_type.h>
    #include <js_native_api_types.h>
-   #include <memory.h>
    
    namespace NativeModule {
    
@@ -322,8 +321,8 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
    #ifndef MYAPPLICATION_NATIVEMODULE_H
    #define MYAPPLICATION_NATIVEMODULE_H
    
+   #include "napi/native_api.h"
    #include <arkui/native_node.h>
-   #include <functional>
    #include <cassert>
    
    #include <arkui/native_interface.h>

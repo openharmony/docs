@@ -499,7 +499,8 @@ struct DirectiveMenuExample {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.icon"); // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
+  // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
+  private iconStr: ResourceStr = $r("app.media.icon");
 
   @Builder
   MyMenu() {
@@ -543,7 +544,8 @@ struct Index {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.icon"); // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
+  // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
+  private iconStr: ResourceStr = $r("app.media.icon");
 
   @Builder
   MyMenu() {
@@ -595,7 +597,8 @@ struct Index {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.icon"); // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
+  // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
+  private iconStr: ResourceStr = $r("app.media.icon");
   @State isShown: boolean = false;
 
   @Builder
@@ -675,7 +678,8 @@ struct MenuExample {
   @Builder
   MyPreview() {
     Column() {
-      Image($r('app.media.startIcon')) // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+      Image($r('app.media.startIcon'))
         .width(50)
         .height(50)
     }
@@ -767,7 +771,8 @@ struct MenuExample {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.app_icon"); // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
+  // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
+  private iconStr: ResourceStr = $r("app.media.app_icon");
 
   @Builder
   MyMenu() {
@@ -822,7 +827,8 @@ struct Index {
 struct MenuExample {
   build() {
     Stack() {
-      Image($r('app.media.bg')) // $r('app.media.bg')需要替换为开发者所需的图像资源文件。
+      // $r('app.media.bg')需要替换为开发者所需的图像资源文件
+      Image($r('app.media.bg'))。
       Column() {
         Text('click for Menu')
           .bindMenu([
@@ -871,7 +877,8 @@ struct MenuExample {
 struct MenuExample {
   build() {
     Stack() {
-      Image($r('app.media.bg')) // $r('app.media.bg')需要替换为开发者所需的图像资源文件。
+      // $r('app.media.bg')需要替换为开发者所需的图像资源文件。
+      Image($r('app.media.bg'))
       Column() {
         Text('click for Menu')
           .bindMenu([
@@ -919,7 +926,8 @@ struct MenuExample {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.app_icon"); // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
+  // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
+  private iconStr: ResourceStr = $r("app.media.app_icon");
 
   @Builder
   MyMenu() {
@@ -976,7 +984,8 @@ struct Index {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.startIcon"); // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+  // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+  private iconStr: ResourceStr = $r("app.media.startIcon");
 
   @Builder
   MyMenu() {
@@ -1021,7 +1030,8 @@ struct Index {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.startIcon") // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+  // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+  private iconStr: ResourceStr = $r("app.media.startIcon")
   @State isShown: boolean = false
   @State textColor: Color = Color.Black
   @State blueColor: Color = Color.Blue

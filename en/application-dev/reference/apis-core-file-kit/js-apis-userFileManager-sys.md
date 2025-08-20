@@ -1,4 +1,10 @@
 # @ohos.filemanagement.userFileManager (User Data Management) (System API)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @foryourself-->
 
 The **userFileManager** module provides user data management capabilities, including accessing and modifying user media data.
 
@@ -693,10 +699,11 @@ async function example(mgr: userFileManager.UserFileManager) {
   let album: userFileManager.Album = await fetchResult.getFirstObject();
   mgr.deleteAlbums([album]).then(() => {
     console.info('deletePhotoAlbumsPromise successfully');
+      fetchResult.close();
     }).catch((err: BusinessError) => {
       console.error('deletePhotoAlbumsPromise failed with err: ' + err);
+      fetchResult.close();
   });
-  fetchResult.close();
 }
 ```
 
@@ -1794,12 +1801,14 @@ async function example(mgr: userFileManager.UserFileManager) {
   let onCallback2 = (changeData: userFileManager.ChangeData) => {
     console.info('onCallback2 on');
   }
-  // Register onCallback1.
-  mgr.on(fileAsset.uri, false, onCallback1);
-  // Register onCallback2.
-  mgr.on(fileAsset.uri, false, onCallback2);
-  // Disable the listening of onCallback1.
-  mgr.off(fileAsset.uri, onCallback1);
+  if (fileAsset.uri !== undefined) {
+    // Register onCallback1.
+    mgr.on(fileAsset.uri, false, onCallback1);
+    // Register onCallback2.
+    mgr.on(fileAsset.uri, false, onCallback2);
+    // Disable the listening of onCallback1.
+    mgr.off(fileAsset.uri, onCallback1);  
+  }
   fileAsset.favorite(true, (err) => {
     if (err == undefined) {
       console.info('favorite successfully');
@@ -3368,8 +3377,12 @@ async function example(mgr: userFileManager.UserFileManager) {
     predicates: predicates
   };
   let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
-  let fileAsset: userFileManager.FileAsset = await fetchResult.getPositionObject(0);
-  console.info('fileAsset displayName: ', fileAsset.displayName);
+  if (fetchResult.getCount() > 0) {
+    let fileAsset: userFileManager.FileAsset = await fetchResult.getPositionObject(0);
+    console.info('fileAsset displayName: ', fileAsset.displayName);
+  } else {
+    console.info('No file assets found');
+  } 
 }
 ```
 

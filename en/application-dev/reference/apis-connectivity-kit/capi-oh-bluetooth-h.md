@@ -1,5 +1,12 @@
 # oh_bluetooth.h
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+<!--Adviser: @zhang_yixin13-->
+
 ## Overview
 
 Defines the API for obtaining the Bluetooth switch state.

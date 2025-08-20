@@ -16,7 +16,7 @@ Defines the route configuration.
 
 | Name| Description|
 | -- | -- |
-| char iface[NETCONN_MAX_STR_LEN] | Network interface.|
+| char iface[[NETCONN_MAX_STR_LEN]](capi-net-connection-type-h.md#macros)| Network interface.|
 | [NetConn_NetAddr](capi-netconnection-netconn-netaddr.md) destination | Destination address.|
 | [NetConn_NetAddr](capi-netconnection-netconn-netaddr.md) gateway | Gateway IP address.|
 | int32_t hasGateway | Whether a gateway exists.|
