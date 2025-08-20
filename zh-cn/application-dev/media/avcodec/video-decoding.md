@@ -2,9 +2,10 @@
 
 <!--Kit: AVCodec Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @dpy2650-->
-<!--SE: @dpy2650--->
-<!--TSE: @cyakee-->
+<!--Owner: @zhanghongran-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
+<!--Adviser: @zengyawen-->
 
 开发者可以调用本模块的Native API接口，完成视频解码，即将媒体数据解码成YUV文件或送显。
 

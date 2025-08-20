@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 为组件提供自定义手势判定能力。开发者可根据需要，在手势识别期间，决定是否响应手势。
 
@@ -13,14 +14,17 @@
 
 
 ## onGestureJudgeBegin
+
 onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent) => GestureJudgeResult): T
+
+为组件绑定自定义手势判定回调。当手势被接受时，触发用户定义的回调获取结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 参数名        | 参数类型                    | 必填  | 参数描述                          |
+| 参数名        | 类型                    | 必填  | 说明                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
 | callback      | (gestureInfo: [GestureInfo](#gestureinfo对象说明), event: [BaseGestureEvent](#basegestureevent对象说明)) => [GestureJudgeResult](#gesturejudgeresult11) | 是     | 给组件绑定自定义手势判定回调。当手势被接受时，触发用户定义的回调获取结果。 |
 
@@ -38,7 +42,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称  | 值 | 说明                               |
-| ----- | -------------------------------------- |
+| ----- | -------- | ----------------------- |
 | CONTINUE  | 0 | 不影响系统手势判定流程。|
 | REJECT  | 1 | 对于用户自定义的手势判定结果为失败。|
 

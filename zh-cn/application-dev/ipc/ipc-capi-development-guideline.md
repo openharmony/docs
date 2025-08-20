@@ -2,8 +2,9 @@
 <!--Kit: IPC Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @xdx19211@luodonghui0157-->
-<!--SE: @zhaopeng_gitee-->
-<!--TSE: @maxiaorong2-->
+<!--Designer: @zhaopeng_gitee-->
+<!--Tester: @maxiaorong2-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 场景介绍
 
@@ -49,7 +50,7 @@ libchild_process.so
 ```c++
 // ipc capi
 #include <IPCKit/ipc_kit.h>
-// 元能力，ability capi
+// 元能力，ability capi。
 #include <AbilityKit/native_child_process.h>
 ```
 
@@ -81,7 +82,7 @@ static const std::string INTERFACE_DESCRIPTOR = "INTERFACE_DESCRIPTOR";
 static const std::string NATIVE_REMOTE_STUB_TEST_TOKEN = "native.remote.stub";
 static const std::string NATIVE_REMOTE_STUB_ASYNC_CALL_TEST_TOKEN = "native.remote.stub.async.call";
 
-// 定义内存分配函数
+// 定义内存分配函数。
 static void* LocalMemoryAllocator(int32_t len) {
     if (len < 0 || len > MAX_MEMORY_SIZE ) {
         return nullptr;
@@ -115,14 +116,14 @@ private:
 };
 
 IpcCApiStubTest::IpcCApiStubTest() {
-    // 创建stub对象
+    // 创建stub对象。
     stub_ = OH_IPCRemoteStub_Create(INTERFACE_DESCRIPTOR.c_str(), &IpcCApiStubTest::OnRemoteRequest,
         nullptr, this);
 }
 
 IpcCApiStubTest::~IpcCApiStubTest() {
     if (stub_ != nullptr) {
-        // 当stub对象不再使用时，销毁该对象
+        // 当stub对象不再使用时，销毁该对象。
         OH_IPCRemoteStub_Destroy(stub_);
     }
 }
@@ -136,11 +137,11 @@ OHIPCRemoteStub* IpcCApiStubTest::GetRemoteStub() {
     return stub_;
 }
 
-// 服务端的请求处理函数，客户端发送的请求在该函数中处理
+// 服务端的请求处理函数，客户端发送的请求在该函数中处理。
 int IpcCApiStubTest::OnRemoteRequest(uint32_t code, const OHIPCParcel *data, OHIPCParcel *reply, void *userData) {
     int readLen = 0;
     char *token = nullptr;
-    // 根据客户端传过来的interfaceToken校验当前通信是否合法
+    // 根据客户端传过来的interfaceToken校验当前通信是否合法。
     if (OH_IPCParcel_ReadInterfaceToken(data, &token, &readLen, LocalMemoryAllocator) != OH_IPC_SUCCESS
         || NATIVE_REMOTE_STUB_TEST_TOKEN != token) {
         if (token != nullptr) {
@@ -176,17 +177,17 @@ int IpcCApiStubTest::AsyncAdd(const OHIPCParcel *data) {
         || (OH_IPCParcel_ReadInt32(data, &b) != OH_IPC_SUCCESS)) {
         return OH_IPC_PARCEL_READ_ERROR;
     }
-    // 此处获取proxy对象，用于后续的IPC通信调用
+    // 此处获取proxy对象，用于后续的IPC通信调用。
     auto proxyCallBack = OH_IPCParcel_ReadRemoteProxy(data);
     if (proxyCallBack == nullptr) {
         return OH_IPC_PARCEL_READ_ERROR;
     }
     OH_LOG_INFO(LOG_APP, "start create sendCallBack thread!");
-    // 此处开启线程异步完成功能实现并利用proxyCallBack完成结果响应，如果同步调用，则直接通过replyData写入响应结果即可
+    // 此处开启线程异步完成功能实现并利用proxyCallBack完成结果响应，如果同步调用，则直接通过replyData写入响应结果即可。
     std::thread th([proxyCallBack, a, b] {
         auto data = OH_IPCParcel_Create();
         if (data == nullptr) {
-            // 当创建parcel失败，则销毁获取到的proxyCallBack对象
+            // 当创建parcel失败，则销毁获取到的proxyCallBack对象。
             OH_IPCRemoteProxy_Destroy(proxyCallBack);
             return;
         }
@@ -202,10 +203,10 @@ int IpcCApiStubTest::AsyncAdd(const OHIPCParcel *data) {
             OH_IPCRemoteProxy_Destroy(proxyCallBack);
             return;
         }
-        // 异步线程处理结果通过IPC同步调用方式返回给业务请求方
+        // 异步线程处理结果通过IPC同步调用方式返回给业务请求方。
         OH_IPC_MessageOption option = { OH_IPC_REQUEST_MODE_SYNC, 0 };
         OH_LOG_INFO(LOG_APP, "thread start sendCallBack!");
-        // 发送IPC通信请求
+        // 发送IPC通信请求。
         int ret = OH_IPCRemoteProxy_SendRequest(proxyCallBack, ASYNC_ADD_CODE, data, reply, &option);
         OH_LOG_INFO(LOG_APP, "thread sendCallBack ret = %d", ret);
         if (ret != OH_IPC_SUCCESS) {
@@ -232,7 +233,7 @@ int IpcCApiStubTest::RequestExitChildProcess() {
 **客户端代理对象: IpcCApiProxyTest**
 
 ```cpp
-// 用戶自定义错误码
+// 用户自定义错误码。
 static constexpr int OH_IPC_CREATE_OBJECT_ERROR = OH_IPC_USER_ERROR_CODE_MIN + 1;
 
 class IpcCApiProxyTest {
@@ -246,8 +247,8 @@ public:
 private:
     void SendAsyncReply(int &replyValue);
     int WaitForAsyncReply(int timeOut);
-    // 注意：OnRemoteRequest方法是Stub对象需要实现的处理IPC请求消息的回调函数，Proxy侧不需要实现该函数
-    // 此处的OnRemoteRequest是用来给异步回调对象（下文中的replyStub_）配套使用的处理IPC请求消息的回调函数
+    // 注意：OnRemoteRequest方法是Stub对象需要实现的处理IPC请求消息的回调函数，Proxy侧不需要实现该函数。
+    // 此处的OnRemoteRequest是用来给异步回调对象（下文中的replyStub_）配套使用的处理IPC请求消息的回调函数。
     static int OnRemoteRequest(uint32_t code, const OHIPCParcel *data,
         OHIPCParcel *reply, void *userData);
     static void OnDeathRecipientCB(void *userData);
@@ -269,16 +270,16 @@ IpcCApiProxyTest::IpcCApiProxyTest(OHIPCRemoteProxy *proxy) {
     replyStub_ = OH_IPCRemoteStub_Create(NATIVE_REMOTE_STUB_ASYNC_CALL_TEST_TOKEN.c_str(), OnRemoteRequest,
         nullptr, this);
     if (replyStub_ == nullptr) {
-        OH_LOG_ERROR(LOG_APP, "crete reply stub failed!");
+        OH_LOG_ERROR(LOG_APP, "create reply stub failed!");
         return;
     }
-    // 创建死亡回调对象
+    // 创建死亡回调对象。
     deathRecipient_ = OH_IPCDeathRecipient_Create(OnDeathRecipientCB, nullptr, this);
     if (deathRecipient_ == nullptr) {
         OH_LOG_ERROR(LOG_APP, "OH_IPCDeathRecipient_Create failed!");
         return;
     }
-    // 向Proxy注册死亡回调对象，用于感知服务端Stub对象的死亡状态
+    // 向Proxy注册死亡回调对象，用于感知服务端Stub对象的死亡状态。
     OH_IPCRemoteProxy_AddDeathRecipient(proxy_, deathRecipient_);
 }
 
@@ -300,7 +301,7 @@ int IpcCApiProxyTest::AsyncAdd(int a, int b, int &result) {
     if (data == nullptr) {
         return OH_IPC_CREATE_OBJECT_ERROR;
     }
-    // 写入接口校验token
+    // 写入接口校验token。
     if (OH_IPCParcel_WriteInterfaceToken(data, NATIVE_REMOTE_STUB_TEST_TOKEN.c_str()) != OH_IPC_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "OH_IPCParcel_WriteInterfaceToken failed!");
         OH_IPCParcel_Destroy(data);
@@ -312,7 +313,7 @@ int IpcCApiProxyTest::AsyncAdd(int a, int b, int &result) {
         OH_IPCParcel_Destroy(data);
         return OH_IPC_PARCEL_WRITE_ERROR;
     }
-    // 异步发送使用replyStub_进行响应结果接收，异步处理需要写入用于接收结果的OHIPCRemoteStub对象
+    // 异步发送使用replyStub_进行响应结果接收，异步处理需要写入用于接收结果的OHIPCRemoteStub对象。
     OH_IPC_MessageOption option = { OH_IPC_REQUEST_MODE_ASYNC, 0 };
     int ret = OH_IPCRemoteProxy_SendRequest(proxy_, RequestCode::ASYNC_ADD_CODE, data, nullptr, &option);
     if (ret != OH_IPC_SUCCESS) {
@@ -410,7 +411,7 @@ IpcCApiStubTest g_ipcStubObj;
 #ifdef __cplusplus
 extern "C" {
 
-// 服务需要实现如下函数，具体可参考元能力接口说明
+// 服务需要实现如下函数，具体可参考元能力接口说明。
 OHIPCRemoteStub* NativeChildProcess_OnConnect() {
     OH_LOG_INFO(LOG_APP, "NativeChildProcess_OnConnect");
     return g_ipcStubObj.GetRemoteStub();
@@ -431,7 +432,7 @@ void NativeChildProcess_MainProc() {
 ```c++
 IpcCApiProxyTest *g_ipcProxy = nullptr;
 
-// 元能力打通IPC通道回调接口
+// 元能力打通IPC通道回调接口。
 void OnNativeChildProcessStarted(int errCode, OHIPCRemoteProxy *remoteProxy) {
     OH_LOG_INFO(LOG_APP, "OnNativeChildProcessStarted proxy=%{public}p err=%{public}d", remoteProxy, errCode);
     if (remoteProxy == nullptr) {
@@ -446,7 +447,7 @@ void OnNativeChildProcessStarted(int errCode, OHIPCRemoteProxy *remoteProxy) {
 }
 
 int main(int argc, char *argv[]) {
-    // 调用元能力接口，创建子进程，并加载参数中指定的libipcCapiDemo.so文件，进程启动结果通过回调参数OnNativeChildProcessStarted异步通知，在该回调函数中获取Proxy对象
+    // 调用元能力接口，创建子进程，并加载参数中指定的libipcCapiDemo.so文件，进程启动结果通过回调参数OnNativeChildProcessStarted异步通知，在该回调函数中获取Proxy对象。
     int32_t ret = OH_Ability_CreateNativeChildProcess("libipcCapiDemo.so", OnNativeChildProcessStarted);
     if (ret != 0) {
         return -1;        
@@ -460,9 +461,9 @@ int main(int argc, char *argv[]) {
     ret = g_ipcProxy->AsyncAdd(a, b, result);
     OH_LOG_INFO(LOG_APP, "AsyncAdd: %d + %d = %d, ret=%d", a, b, result, ret);
 
-    // 触发Stub侧进程退出
+    // 触发Stub侧进程退出。
     ret = g_ipcProxy->RequestExitChildProcess();
-    // 此时，死亡通知回调函数（IpcCApiProxyTest::OnDeathRecipientCB）会被自动执行
+    // 此时，死亡通知回调函数（IpcCApiProxyTest::OnDeathRecipientCB）会被自动执行。
     if (g_ipcProxy != nullptr) {
         delete g_ipcProxy;
         g_ipcProxy = nullptr;

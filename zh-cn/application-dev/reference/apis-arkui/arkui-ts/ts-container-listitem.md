@@ -3,8 +3,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @yylong-->
-<!--SE: @yylong-->
-<!--TSE: @liuzhenshuo-->
+<!--Designer: @yylong-->
+<!--Tester: @liuzhenshuo-->
+<!--Adviser: @HelloCrease-->
 
 用来展示列表具体item，必须配合List来使用。
 
@@ -154,9 +155,9 @@ ListItem吸顶效果枚举。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| None |  0  | 无吸顶效果。 |
-| Normal |  1  | 当前item吸顶。 |
-| Opacity |  2  | 当前item吸顶显示透明度变化效果。 |
+| None |  -  | 无吸顶效果。 |
+| Normal |  -  | 当前item吸顶。 |
+| Opacity |  -  | 当前item吸顶显示透明度变化效果。 |
 
 ## EditMode<sup>(deprecated)</sup>枚举说明
 
@@ -168,9 +169,9 @@ ListItem元素编辑模式枚举。
 
 | 名称     | 值 | 说明      |
 | ------ | ------ | --------- |
-| None   |  0  | 编辑操作不限制。    |
-| Deletable |  1  | 可删除。 |
-| Movable |  2  | 可移动。 |
+| None   |  -  | 编辑操作不限制。    |
+| Deletable |  -  | 可删除。 |
+| Movable |  -  | 可移动。 |
 
 ## SwipeEdgeEffect<sup>9+</sup>枚举说明
 
@@ -182,8 +183,8 @@ ListItem元素编辑模式枚举。
 
 | 名称     | 值 | 说明      |
 | ------ | ------ | --------- |
-|   Spring   |    0    | ListItem划动距离超过划出组件大小后可以继续划动。<br>如果设置了删除区域，ListItem划动距离超过删除阈值后可以继续划动，<br/>松手后按照弹簧阻尼曲线回弹。 |
-|   None   |    1    | ListItem划动距离不能超过划出组件大小。<br>如果设置了删除区域，ListItem划动距离不能超过删除阈值，<br/>并且在设置删除回调的情况下，达到删除阈值后松手触发删除回调。 |
+|   Spring   |    -    | ListItem划动距离超过划出组件大小后可以继续划动。<br>如果设置了删除区域，ListItem划动距离超过删除阈值后可以继续划动，<br/>松手后按照弹簧阻尼曲线回弹。 |
+|   None   |    -    | ListItem划动距离不能超过划出组件大小。<br>如果设置了删除区域，ListItem划动距离不能超过删除阈值，<br/>并且在设置删除回调的情况下，达到删除阈值后松手触发删除回调。 |
 
 ## SwipeActionOptions<sup>9+</sup>对象说明
 

@@ -2,8 +2,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
-<!--SE: @gsl_1234; @wangke25-->
-<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Designer: @gsl_1234; @wangke25-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 该模块提供环境目录能力，获取内存存储根目录、公共文件根目录的JS接口。
 
@@ -21,9 +22,11 @@ import { Environment } from '@kit.CoreFileKit';
 
 getUserDownloadDir(): string
 
-获取当前用户预授权下载目录的沙箱路径。当前仅支持2in1设备使用。
+获取当前用户预授权下载目录的沙箱路径。
 
 **系统能力**：SystemCapability.FileManagement.File.Environment.FolderObtain
+
+**设备行为差异**：该接口在2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **返回值：**
 
@@ -58,9 +61,11 @@ function getUserDownloadDirExample() {
 
 getUserDesktopDir(): string
 
-获取当前用户预授权桌面目录的沙箱路径。当前仅支持2in1设备使用。
+获取当前用户预授权桌面目录的沙箱路径。
 
 **系统能力**：SystemCapability.FileManagement.File.Environment.FolderObtain
+
+**设备行为差异**：该接口在2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **返回值：**
 
@@ -95,9 +100,11 @@ function getUserDesktopDirExample() {
 
 getUserDocumentDir(): string
 
-获取当前用户预授权文档目录的沙箱路径。当前仅支持2in1设备使用。
+获取当前用户预授权文档目录的沙箱路径。
 
 **系统能力**：SystemCapability.FileManagement.File.Environment.FolderObtain
+
+**设备行为差异**：该接口在2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **返回值：**
 

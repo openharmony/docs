@@ -2,8 +2,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @wang_zhangjun; @zhuangzhuang-->
-<!--SE: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
-<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Designer: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 > **NOTE**
 >
@@ -414,6 +415,12 @@ The index (number) returned by this method indicates the location of the file su
 
 **System capability**: SystemCapability.FileManagement.UserFileService.FolderSelection
 
+**Return value**
+
+| Type                           | Description   |
+| ----------------------------- | :---- |
+| number| Subscript (number) of the selected suffix type in [DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions). The default value is **-1**.|
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -796,9 +803,9 @@ Defines the options for selecting documents.
 | fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | No  |  Yes| Suffix of the document to select. <br>The value is a string array. Each element specifies an option, which includes at most two parts with a vertical bar (\|) in between. The first part is the description, and the second part is the document suffix. If there is no "\|", the option does not have the description. Each filter suffix can contain multiple suffixes, separated by a comma (,). The length of the input array cannot exceed 100 characters, for example, ['Images (.png, .jpg)\|.png,.jpg', 'Documents\|.txt', 'Videos\|.mp4', '.pdf'].<br>By default, no filtering is performed, that is, all documents are selected. The wildcard ['All files (\*.\*)\|.*'] can be used on 2-in-1 devices to display all files. (Mobile phones can support this configuration since API version 17.)<br>This parameter is available only to the devices that have the required system capability.<br>**System capability**: SystemCapability.FileManagement.UserFileService  |
 | selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | No  |  Yes| Only 2-in-1 devices are supported. The default value is **FILE**.<br>**System capability**: SystemCapability.FileManagement.UserFileService.FolderSelection |
 | authMode<sup>12+</sup>    | boolean                              | No  |  Yes| Whether to start Picker.<br>Default value: **false**. If **authMode** is **true**, **defaultFilePathUri** is mandatory, which specifies the URI of the file allowed to access. Only 2-in-1 devices are supported.<br>**System capability**: SystemCapability.FileManagement.UserFileService.FolderSelection |
-|multiAuthMode<sup>15+</sup>  | boolean                             |No   |  Yes| Whether to enable the batch authorization mode.<br>The value **false** (default) means to disable the batch authorization mode; the value **true** means to enable the batch authorization mode. The **multiUriArray** parameter only takes effect when **multAuthMode** is set to **true**. Only mobile phones are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
-|multiUriArray<sup>15+</sup>  | Array&lt;string&gt;                             |No   |  Yes| Whether to pass the URIs for batch authorization (only files are supported). <br>This parameter is used with **multAuthMode**, and does not take effect when **multAuthMode** is set to **false**. By default, this parameter is left empty. (The files displayed on the batch authorization page are empty.) Only mobile phones are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
-|mergeMode<sup>15+</sup>  | [MergeTypeMode](#mergetypemode15)                             |No   |  Yes| Whether to enable the aggregation view mode for a file management application. The default value is **DEFAULT**, indicating that this parameter does not take effect and the aggregation view is disabled. If this parameter is set to a value other than **DEFAULT**, other parameters do not take effect. Only mobile phones are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+|multiAuthMode<sup>15+</sup>  | boolean                             |No   |  Yes| Whether to enable the batch authorization mode.<br>The value **false** (default) means to disable the batch authorization mode; the value **true** means to enable the batch authorization mode. The **multiUriArray** parameter only takes effect when **multAuthMode** is set to **true**.<br> **Device behavior differences**: This API can be called on mobile phones but has no effect on other devices.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+|multiUriArray<sup>15+</sup>  | Array&lt;string&gt;                             |No   |  Yes| Whether to pass the URIs for batch authorization (only files are supported). <br>This parameter is used with **multAuthMode**, and does not take effect when **multAuthMode** is set to **false**. By default, this parameter is left empty. (The files displayed on the batch authorization page are empty.)<br> **Device behavior differences**: This API can be called on mobile phones but has no effect on other devices.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+|mergeMode<sup>15+</sup>  | [MergeTypeMode](#mergetypemode15)                             |No   |  Yes| Whether to enable the aggregation view mode for a file management application. The default value is **DEFAULT**, indicating that this parameter does not take effect and the aggregation view is disabled. If this parameter is set to a value other than **DEFAULT**, other parameters do not take effect.<br> **Device behavior differences**: This API can be called on mobile phones but has no effect on other devices.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 |isEncryptionSupported<sup>19+</sup>    | boolean |No   |  Yes| Whether to support encryption (only files are supported). The default value is **false**. If this parameter is set to **true**, files can be encrypted on the Picker page.<br>**Atomic service API**: This API can be used in atomic services since API version 19.<br> **System capability**: SystemCapability.FileManagement.UserFileService|
 
 ## DocumentPickerMode<sup>12+</sup>
@@ -816,11 +823,13 @@ Enumerates the modes for saving documents.
 
 ## MergeTypeMode<sup>15+</sup>
 
-Enumerates file aggregation types. Only mobile phones are supported.
+Enumerates file aggregation types.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
+
+**Device behavior differences**: This API can be called on mobile phones but has no effect on other devices.
 
 | Name |  Value|  Description|
 | ----- | ---- | ---- |
@@ -884,6 +893,12 @@ Provides APIs for selecting and saving images or videos. You are advised to use 
 constructor(context: Context)
 
 **System capability**: SystemCapability.FileManagement.UserFileService
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                                                        |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context| Yes  | Application context (only **UIAbilityContext** is supported). For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 
 A constructor used to create a **PhotoViewPicker** instance. This constructor is recommended. For details about how to obtain the context, see [getHostContext](../apis-arkui/arkts-apis-uicontext-uicontext.md#gethostcontext12).
 

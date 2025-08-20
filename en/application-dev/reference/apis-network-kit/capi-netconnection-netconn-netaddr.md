@@ -19,4 +19,4 @@ Defines network addresses.
 | uint8_t family | Network address family.|
 | uint8_t prefixlen | Prefix length.|
 | uint8_t port | Port number.|
-| char address[NETCONN_MAX_STR_LEN] | Network address.|
+| char address[[NETCONN_MAX_STR_LEN]](capi-net-connection-type-h.md#macros)| Network address.|

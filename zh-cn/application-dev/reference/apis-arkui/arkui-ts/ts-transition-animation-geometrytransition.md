@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hehongyang3-->
-<!--SE: @chensiyi_CE-->
-<!--TSE: @lxl007-->
+<!--Designer: @chensiyi_CE-->
+<!--Tester: @lxl007-->
+<!--Adviser: @ge-yafang-->
 
 在视图切换过程中提供丝滑的上下文传承过渡。通用transition机制提供了opacity、scale等转场效果，geometryTransition通过安排绑定的in/out组件（in指新视图、out指旧视图）的frame、position使得原本独立的transition动画在空间位置上发生联系，将视觉焦点由旧视图位置引导到新视图位置。
 
@@ -64,10 +65,8 @@ geometryTransition(id: string, options?: GeometryTransitionOptions): T
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**参数：**
-
 | 名称 | 类型 | 只读 | 可选 | 说明                                                   |
-| ------ | -------- | ---- | ------------------------------------------------------------ |
+| ------ | -------- | -------- | ---- | ------------------------------------------------------------ |
 | follow | boolean  | 否 | 是   | 仅用于if范式下标记始终在组件树上的组件是否跟随做共享动画。true代表跟随做共享动画，false代表不跟随做共享动画。<br/>默认值：false |
 
 ## 示例

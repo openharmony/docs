@@ -2,10 +2,11 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
-<!--SE: @yuanyao14-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
-本模块提供URI字符串解析功能。URI遵循RFC3986规范标准，该标准定义了如何编码和解析用于定位网络资源的标识符，对于非标准场景解析不支持。
+本模块提供URI字符串解析功能。URI遵循RFC3986规范标准，该规范定义了编码和解析网络资源标识符的方法，不支持非标准场景解析。
 
 > **说明：**
 >
@@ -20,7 +21,7 @@ import { uri } from '@kit.ArkTS';
 
 ## URI
 
-构造URI对象，提供判断对象相等、规范路径等方法。
+构造一个URI对象，并提供判断两个URI是否相等、对URI路径部分进行编码规范化等方法。
 
 ### 属性
 
@@ -236,7 +237,7 @@ let result = uriInstance.equalsTo(uriInstance1); // true
 
 checkIsAbsolute(): boolean
 
-判断此URI是否为绝对URI（是否定义了scheme组件）。
+判断URI是否为绝对URI，即是否包含scheme组件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -354,7 +355,7 @@ console.info(`${uriInstance1.checkOpaque()}`); // true
 
 checkHierarchical(): boolean
 
-判断此URI是否为分层URI，方案特定部分以“/”开头的URI为分层的URI。相对URI也是分层的。
+判断此URI是否为分层的URI，方案特定部分以“/”开头的URI为分层的URI。相对URI也是分层的。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -421,7 +422,7 @@ console.info(uriInstance1.getQueryValue('abc')) // null
 
 addQueryValue(key:string, value:string): URI
 
-在当前URI对象上添加查询参数后返回新对象，保持原有URI对象不变。
+在当前URI对象上添加查询参数后返回新的URI对象，保持原有URI对象不变。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -460,7 +461,7 @@ console.info(newRoute.toString()); // https://www.test.com?param1=hello%20world
 
 addSegment(pathSegment:string): URI
 
-对指定字段进行编码，并将其追加到当前URI的path中，创建并返回新的URI，保持原有URI对象不变。
+对指定字段进行编码，并将其追加到当前URI对象的path中，创建并返回新的URI对象，保持原有URI对象不变。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -498,7 +499,7 @@ console.info(newRoute.toString()); // http://www.test.com/my%20image.jpg
 
 addEncodedSegment(pathSegment:string): URI
 
-将已编码的字段追加到当前URI的path字段中，创建新URI并返回，保持原有URI对象不变。
+将已编码的字段追加到当前URI的path字段中，创建新URI对象并返回，保持原有URI对象不变。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -646,7 +647,7 @@ console.info(`${uriInstance4.getBooleanQueryValue("active", true)}`); // true
 
 clearQuery(): URI
 
-清除URI路径查询部分，并创建一个新的URI返回，同时保持原有URI对象不变。
+清除URI路径查询部分，并创建一个新的URI对象返回，同时保持原有URI对象不变。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -715,7 +716,7 @@ console.info(uriInstance.getSegment().toString()); // path,to,image.jpg
 
 createFromParts(scheme: string, ssp: string, fragment: string): URI
 
-根据提供的协议、方案以及片段创建一个新的URI。
+根据提供的协议、方案以及片段创建一个新的URI对象。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 

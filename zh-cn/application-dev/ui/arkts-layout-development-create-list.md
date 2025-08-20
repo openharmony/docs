@@ -3,8 +3,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @yylong-->
-<!--SE: @yylong-->
-<!--TSE: @liuzhenshuo-->
+<!--Designer: @yylong-->
+<!--Tester: @liuzhenshuo-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
@@ -1181,7 +1182,7 @@ List() {
           .fillColor($r('sys.color.ohos_id_color_fourth'))
           .height(30)
           .width(30)
-          .rotate({ angle: !!itemGroup.children.length ? (this.expandedItems[itemGroup.index] ? 180 : 0) : 180 })
+          .rotate({ angle: !!itemGroup.children.length ? (this.expandedItems[itemGroup.index] ? 0 : 180) : 180 })
           .animation({ curve: curves.interpolatingSpring(0, 1, 228, 22) })
       }
       .width("100%")

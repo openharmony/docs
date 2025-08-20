@@ -2,8 +2,9 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @qq_43802146-->
-<!--SE: @qq_43802146-->
-<!--TSE: @furryfurry123-->
+<!--Designer: @qq_43802146-->
+<!--Tester: @furryfurry123-->
+<!--Adviser: @zhang_yixin13-->
 
 该模块主要提供WLAN基础功能（无线接入、无线加密、无线漫游等）、P2P（peer-to-peer）服务的基础功能和WLAN消息通知的相应服务，让应用可以通过WLAN和其他设备互联互通。
 
@@ -87,6 +88,39 @@ enableWifi(): void
   }catch(error){
     console.error("failed:" + JSON.stringify(error));
   }
+```
+
+## wifiManager.disableWifi<sup>20+</sup>
+
+disableWifi(): void
+
+关闭WLAN。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO和ohos.permission.MANAGE_WIFI_CONNECTION（仅系统应用可用）/ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION（仅企业应用可用）
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+| 2501004  | Operation failed because the service is being opened. |
+
+**示例：**
+
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+
+	try {
+		wifiManager.disableWifi();
+	}catch(error){
+		console.error(`disableWifi failed. ${error.message}`);
+	}
 ```
 
 ## wifiManager.scan<sup>9+</sup><sup>(deprecated)</sup>

@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @zexin_c-->
-<!--SE: @li-weifeng2-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 ApplicationContext模块继承自[Context](js-apis-inner-application-context.md)，为开发者提供应用级别的上下文的能力，包括提供注册及取消注册应用内组件生命周期的监听接口
 

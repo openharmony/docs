@@ -3,8 +3,9 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Account-->
 <!--Owner: @steven-q-->
-<!--SE: @JiDong-CS1-->
-<!--TSE: @zhaimengchao-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
 
 本模块提供应用账号信息的添加、删除、修改和查询基础能力，并支持应用间鉴权和分布式数据同步功能。
 
@@ -60,6 +61,8 @@ createAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -103,6 +106,8 @@ createAccount(name: string, options: CreateAccountOptions, callback: AsyncCallba
 | callback  | AsyncCallback&lt;void&gt; | 是    | 回调函数。当创建成功时，err为null，否则为错误对象。             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
@@ -158,6 +163,8 @@ createAccount(name: string, options?: CreateAccountOptions): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -203,6 +210,8 @@ createAccountImplicitly(owner: string, callback: AuthCallback): void
 | callback | [AuthCallback](#authcallback9) | 是    | 认证器回调对象，返回创建结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -275,6 +284,8 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
 | callback | [AuthCallback](#authcallback9) | 是    | 认证器回调对象，返回创建结果。         |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
@@ -351,6 +362,8 @@ removeAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -398,6 +411,8 @@ removeAccount(name: string): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -439,6 +454,8 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean, callback: 
 | callback     | AsyncCallback&lt;void&gt; | 是    | 回调函数，如果设置成功，err为null，否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -490,6 +507,8 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean): Promise&l
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -531,6 +550,8 @@ checkAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;bool
 | callback   | AsyncCallback&lt;boolean&gt; | 是    | 回调函数。返回true表示指定应用可访问特定账号的数据；返回false表示不可访问。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
@@ -581,6 +602,8 @@ checkAppAccess(name: string, bundleName: string): Promise&lt;boolean&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -623,6 +646,8 @@ setDataSyncEnabled(name: string, isEnabled: boolean, callback: AsyncCallback&lt;
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当开启或禁止成功时，err为null，否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -671,6 +696,8 @@ setDataSyncEnabled(name: string, isEnabled: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 201 | Permission denied.|
@@ -713,6 +740,8 @@ checkDataSyncEnabled(name: string, callback: AsyncCallback&lt;boolean&gt;): void
 | callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数。返回true表示指定应用账号已开启数据同步功能；返回false表示未开启。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
@@ -764,6 +793,8 @@ checkDataSyncEnabled(name: string): Promise&lt;boolean&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 201 | Permission denied.|
@@ -806,6 +837,8 @@ setCredential(name: string, credentialType: string, credential: string,callback:
 | callback       | AsyncCallback&lt;void&gt; | 是    | 回调函数。当凭据设置成功时，err为null，否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -856,6 +889,8 @@ setCredential(name: string, credentialType: string, credential: string): Promise
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -896,6 +931,8 @@ getCredential(name: string, credentialType: string, callback: AsyncCallback&lt;s
 | callback       | AsyncCallback&lt;string&gt; | 是    | 回调函数。当获取凭据成功时，err为null，data为指定应用账号的凭据；否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
@@ -946,6 +983,8 @@ getCredential(name: string, credentialType: string): Promise&lt;string&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -988,6 +1027,8 @@ setCustomData(name: string, key: string, value: string, callback: AsyncCallback&
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当设置自定义数据成功时，err为null，否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1039,6 +1080,8 @@ setCustomData(name: string, key: string, value: string): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -1080,6 +1123,8 @@ getCustomData(name: string, key: string, callback: AsyncCallback&lt;string&gt;):
 | callback | AsyncCallback&lt;string&gt; | 是    | 回调函数。当获取成功时，err为null，data为自定义数据的取值；否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1130,6 +1175,8 @@ getCustomData(name: string, key: string): Promise&lt;string&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -1177,6 +1224,8 @@ getCustomDataSync(name: string, key: string): string;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -1211,6 +1260,8 @@ getAllAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 | callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 回调函数。当查询成功时，err为null，data为获取到的应用账号信息列表；否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1251,6 +1302,8 @@ getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
@@ -1287,6 +1340,8 @@ getAccountsByOwner(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccount
 | callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 回调函数。如果获取成功，err为null，data为获取到的应用账号列表；否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1335,6 +1390,8 @@ getAccountsByOwner(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -1376,6 +1433,8 @@ on(type: 'accountChange', owners: Array&lt;string&gt;, callback: Callback&lt;Arr
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -1411,6 +1470,8 @@ off(type: 'accountChange', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt
 | callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 否    | 需要注销的回调函数，默认为空，表示取消该类型事件所有的回调。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1455,6 +1516,8 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
 | callback | [AuthCallback](#authcallback9) | 是    | 回调对象，返回鉴权结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1529,6 +1592,8 @@ auth(name: string, owner: string, authType: string, options: Record<string, Obje
 | callback | [AuthCallback](#authcallback9) | 是    | 回调对象，返回鉴权结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1606,6 +1671,8 @@ getAuthToken(name: string, owner: string, authType: string, callback: AsyncCallb
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1657,6 +1724,8 @@ getAuthToken(name: string, owner: string, authType: string): Promise&lt;string&g
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1699,6 +1768,8 @@ setAuthToken(name: string, authType: string, token: string, callback: AsyncCallb
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当设置成功时，err为null；否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1750,6 +1821,8 @@ setAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1793,6 +1866,8 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string, ca
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当删除成功时，err为null；否则为错误对象。     |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
@@ -1846,6 +1921,8 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string): P
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1889,6 +1966,8 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 | callback   | AsyncCallback&lt;void&gt; | 是    | 回调函数。当设置成功时，err为null；否则为错误对象。|
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1943,6 +2022,8 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1986,6 +2067,8 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string, cal
 | callback   | AsyncCallback&lt;boolean&gt; | 是    | 回调函数。当检查成功时，err为null，data为true表示可见，data为false表示不可见；否则为错误对象。    |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -2038,6 +2121,8 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string): Pr
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2080,6 +2165,8 @@ getAllAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&l
 | callback | AsyncCallback&lt;Array&lt;[AuthTokenInfo](#authtokeninfo9)&gt;&gt; | 是    | 回调函数。当获取成功时，err为null，data为授权令牌数组；否则为错误对象。    |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -2130,6 +2217,8 @@ getAllAuthTokens(name: string, owner: string): Promise&lt;Array&lt;AuthTokenInfo
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2171,6 +2260,8 @@ getAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt;
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 回调函数。当获取成功时，err为null，data为被授权的包名数组；否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -2221,6 +2312,8 @@ getAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2261,6 +2354,8 @@ getAuthCallback(sessionId: string, callback: AsyncCallback&lt;AuthCallback&gt;):
 | callback  | AsyncCallback&lt;[AuthCallback](#authcallback9)&gt; | 是    | 回调函数。当获取成功时，err为null，data为鉴权会话的认证器回调对象；否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
@@ -2325,6 +2420,8 @@ getAuthCallback(sessionId: string): Promise&lt;AuthCallback&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2381,6 +2478,8 @@ queryAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorIn
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2429,6 +2528,8 @@ queryAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2471,6 +2572,8 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
 | callback       | AsyncCallback&lt;boolean&gt; | 是    | 回调函数。当检查成功时，err为null，data为true表示满足特定的标签集合，data为false表示不满足；否则为错误对象。  |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
@@ -2526,6 +2629,8 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Pr
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2571,6 +2676,8 @@ deleteCredential(name: string, credentialType: string, callback: AsyncCallback&l
 | callback       | AsyncCallback&lt;void&gt; | 是    | 回调函数。当删除成功时，err为null；否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
@@ -2621,6 +2728,8 @@ deleteCredential(name: string, credentialType: string): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2661,6 +2770,8 @@ selectAccountsByOptions(options: SelectAccountsOptions, callback: AsyncCallback&
 | callback       | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 回调函数。当根据选项选择请求方可访问的账号列表时，err为null，data为可访问的账号信息对象；否则为错误对象。  |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
@@ -2715,6 +2826,8 @@ selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;Array&lt;App
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2759,6 +2872,8 @@ verifyCredential(name: string, owner: string, callback: AuthCallback): void
 | callback | [AuthCallback](#authcallback9) | 是    | 回调函数，返回验证结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -2808,6 +2923,8 @@ verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, 
 | callback | [AuthCallback](#authcallback9)   | 是    | 回调函数，返回验证结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -2860,6 +2977,8 @@ setAuthenticatorProperties(owner: string, callback: AuthCallback): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2906,6 +3025,8 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
 | callback | [AuthCallback](#authcallback9) | 是    | 认证器回调，返回设置属性的结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |

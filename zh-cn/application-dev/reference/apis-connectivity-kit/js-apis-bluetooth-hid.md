@@ -3,8 +3,9 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--SE: @chengguohong; @tangjia15-->
-<!--TSE: @wangfeng517-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+<!--Adviser: @zhang_yixin13-->
 
 提供了基于人机接口协议（Human Interface Device Profile，HID）技术的蓝牙能力，支持获取连接状态等功能。传统蓝牙HID和低功耗蓝牙HOGP（HID over GATT Profile）设备均可使用此模块API，相关功能都集成在此HID模块中。
 > **说明：**

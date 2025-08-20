@@ -1,5 +1,12 @@
 # @ohos.resourceschedule.backgroundTaskManager (Background Task Management) (System API)
 
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: ResourceSchedule-->
+<!--Owner: @cheng-shichang-->
+<!--Designer: @zhouben25-->
+<!--Tester: @fenglili18-->
+<!--Adviser: @Brilliantry_Rui-->
+
 The **backgroundTaskManager** module provides APIs to request background tasks. You can use the APIs to request transient tasks, continuous tasks, or efficiency resources to prevent the application process from being terminated or suspended when your application is switched to the background.
 
 >  **NOTE**
@@ -41,7 +48,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202 | Not System App. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 18700001 | Caller information verification failed for an energy resource request. |
@@ -87,7 +94,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202 | Not System App. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 18700001 | Caller information verification failed for an energy resource request. |

@@ -2,12 +2,13 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @baijidong-->
-<!--SE: @widecode; @htt1997-->
-<!--TSE: @yippo; @logic42-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## 概述
 
-定义[OH_Data_Value](capi-rdb-oh-data-value.md)结构类型。
+OH_Data_Value结构类型，用于储存单条数据值。
 
 **起始版本：** 18
 

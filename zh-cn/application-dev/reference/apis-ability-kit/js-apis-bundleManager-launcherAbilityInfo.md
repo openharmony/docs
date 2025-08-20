@@ -1,4 +1,10 @@
 # LauncherAbilityInfo
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 桌面应用的Ability信息，可以通过[getLauncherAbilityInfoSync](js-apis-launcherBundleManager.md#launcherbundlemanagergetlauncherabilityinfosync)<!--Del-->或者[getLauncherAbilityInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetlauncherabilityinfo9)<!--DelEnd-->获取。
 
@@ -21,7 +27,7 @@ import { launcherBundleManager } from '@kit.AbilityKit';
 | --------------- | ----------------------------------------------------------- | ---- | ---- | ------------------------------------ |
 | applicationInfo | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 是   | 否   | launcher ability的应用程序的配置信息。 |
 | elementName     | [ElementName](js-apis-bundleManager-elementName.md)         | 是   | 否   | launcher ability的ElementName信息。    |
-| labelId         | number                                                      | 是   | 否   | launcher ability的标签ID。             |
-| iconId          | number                                                      | 是   | 否   | launcher ability的图标ID。             |
+| labelId         | number                                                      | 是   | 否   | launcher ability的标签的资源ID值。      |
+| iconId          | number                                                      | 是   | 否   | launcher ability的图标的资源ID值。      |
 | userId          | number                                                      | 是   | 否   | launcher ability的用户ID。             |
 | installTime     | number                                                      | 是   | 否   | launcher ability的安装时间戳，单位毫秒。 |

@@ -1,4 +1,10 @@
 # JS卡片开发指导（Stage模型）
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 Stage模型是从API 9开始支持，目前主推且会长期演进的模型。该模型采用面向对象的方式，将应用组件以类接口的形式开放给开发者，可以进行派生，利于扩展能力。
 
 ## 接口说明
@@ -14,9 +20,8 @@ FormExtensionAbility类拥有如下API接口，具体的API介绍详见[接口�
 | onFormEvent(formId:&nbsp;string,&nbsp;message:&nbsp;string):&nbsp;void                           | 卡片提供方接收处理卡片事件的通知接口。 |
 | onRemoveForm(formId:&nbsp;string):&nbsp;void                                                     | 卡片提供方接收销毁卡片的通知接口。 |
 | onConfigurationUpdate(newConfig:&nbsp;Configuration):&nbsp;void                                  | 当系统配置更新时调用。 |
-| onShareForm?(formId:&nbsp;string):&nbsp;Record&lt;string,&nbsp;Object&gt;                        | 卡片提供方接收卡片分享的通知接口。 |
 
-formProvider类有如下API接口，具体的API介绍详见[接口文档](../reference/apis-form-kit/js-apis-app-form-formProvider.md)。
+formProvider类部分API接口如下，具体的API介绍详见[接口文档](../reference/apis-form-kit/js-apis-app-form-formProvider.md)。
 
 | 接口名 | 描述 |
 | -------- | -------- |

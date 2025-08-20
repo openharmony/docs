@@ -2,8 +2,9 @@
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @xushubo; @chennotfound-->
-<!--SE: @dongyu_dy-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @dongyu_dy-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
@@ -25,7 +26,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [AVPlayerCallback](capi-avplayer-avplayercallback.md) | AVPlayerCallback | 包含了OH_AVPlayerOnInfo和OH_AVPlayerOnInfo回调函数指针的集合。应用需注册此结构体到OH_AVPlayer实例中，并处理回调上报的信息，保证AVPlayer的正常运行。 |
+| [AVPlayerCallback](capi-avplayer-avplayercallback.md) | AVPlayerCallback | 包含了[OH_AVPlayerOnInfo](#oh_avplayeroninfo)和OH_AVPlayerOnInfo回调函数指针的集合。应用需注册此结构体到OH_AVPlayer实例中，并处理回调上报的信息，保证AVPlayer的正常运行。 |
 | [OH_AVPlayer](capi-avplayer-oh-avplayer.md) | OH_AVPlayer | 初始化AVPlayer。 |
 
 ### 枚举
@@ -35,7 +36,7 @@
 | [AVPlayerState](#avplayerstate) | AVPlayerState | 播放状态。 |
 | [AVPlayerSeekMode](#avplayerseekmode) | AVPlayerSeekMode | 跳转模式。 |
 | [AVPlaybackSpeed](#avplaybackspeed) | AVPlaybackSpeed | 播放速度。 |
-| [AVPlayerOnInfoType](#avplayeroninfotype) | AVPlayerOnInfoType | OnInfo类型。<br>可用于OH_AVPlayerOnInfoCallback和OH_AVPlayerOnInfo(已废弃)，用于表示收到的播放器信息类型。 |
+| [AVPlayerOnInfoType](#avplayeroninfotype) | AVPlayerOnInfoType | OnInfo类型。<br>可用于[OH_AVPlayerOnInfoCallback](#oh_avplayeroninfocallback)和[OH_AVPlayerOnInfo](#oh_avplayeroninfo)(已废弃)，用于表示收到的播放器信息类型。 |
 | [AVPlayerBufferingType](#avplayerbufferingtype) | AVPlayerBufferingType | 播放缓冲消息类型定义。 |
 
 ### 函数
@@ -43,9 +44,9 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [typedef void (\*OH_AVPlayerOnInfo)(OH_AVPlayer *player, AVPlayerOnInfoType type, int32_t extra)](#oh_avplayeroninfo) | OH_AVPlayerOnInfo | 收到播放器消息时调用。 |
-| [typedef void (\*OH_AVPlayerOnInfoCallback)(OH_AVPlayer \*player, AVPlayerOnInfoType type, OH_AVFormat* infoBody,void *userData)](#oh_avplayeroninfocallback) | OH_AVPlayerOnInfoCallback | 收到播放器消息时被调用。如果应用成功设置该回调，则不会回调OH_AVPlayerOnInfo函数。 |
+| [typedef void (\*OH_AVPlayerOnInfoCallback)(OH_AVPlayer \*player, AVPlayerOnInfoType type, OH_AVFormat* infoBody,void *userData)](#oh_avplayeroninfocallback) | OH_AVPlayerOnInfoCallback | 收到播放器消息时被调用。如果应用成功设置该回调，则不会回调[OH_AVPlayerOnInfo](#oh_avplayeroninfo)函数。 |
 | [typedef void (\*OH_AVPlayerOnError)(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg)](#oh_avplayeronerror) | OH_AVPlayerOnError | 在API 9以上的版本发生错误时调用。 |
-| [typedef void (\*OH_AVPlayerOnErrorCallback)(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg,void *userData)](#oh_avplayeronerrorcallback) | OH_AVPlayerOnErrorCallback | 发生错误时被调用。如果应用成功设置该回调，则不会回调OH_AVPlayerOnError函数。 |
+| [typedef void (\*OH_AVPlayerOnErrorCallback)(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg,void *userData)](#oh_avplayeronerrorcallback) | OH_AVPlayerOnErrorCallback | 发生错误时被调用。如果应用成功设置该回调，则不会回调[OH_AVPlayerOnError](#oh_avplayeronerror)函数。 |
 
 ### 变量
 
@@ -54,7 +55,7 @@
 | const char * OH_PLAYER_STATE | 获取播放状态的关键字，对应值类型是int32_t。<br>**起始版本：** 12 |
 | const char * OH_PLAYER_STATE_CHANGE_REASON | 获取播放状态变更原因的关键字，对应值类型是int32_t。<br>1：用户操作触发；2：系统变更触发。<br>**起始版本：** 12 |
 | const char * OH_PLAYER_VOLUME | 获取音量的关键字，对应值类型是float。<br>**起始版本：** 12 |
-| const char * OH_PLAYER_BITRATE_ARRAY | 获取比特率列表的关键字，对应值类型是uint8_t字节数组。通过该关键字获取信息时：<br>需要先使用uint8_t类型指针变量保存比特率列表，使用size_t类型变量保存字节数组长度。<br>然后分配若干个uint32_t类型的存储空间，接收将uint8_t字节数组转换为uint32_t类型比特率整数值。<br>可以参考[开发指南](../../media/media/using-ndk-avplayer-for-playback.md)中OHAVPlayerOnInfoCallback函数。<br>**起始版本：** 12 |
+| const char * OH_PLAYER_BITRATE_ARRAY | 获取比特率列表的关键字，对应值类型是uint8_t字节数组。通过该关键字获取信息时：<br>需要先使用uint8_t类型指针变量保存比特率列表，使用size_t类型变量保存字节数组长度。<br>然后分配若干个uint32_t类型的存储空间，接收将uint8_t字节数组转换为uint32_t类型比特率整数值。<br>可以参考[开发指南](../../media/media/using-ndk-avplayer-for-playback.md)中[OH_AVPlayerOnInfoCallback](#oh_avplayeroninfocallback)函数。<br>**起始版本：** 12 |
 | const char * OH_PLAYER_AUDIO_INTERRUPT_TYPE | 获取音频打断类型的关键字，对应值类型是int32_t。<br>**起始版本：** 12 |
 | const char * OH_PLAYER_AUDIO_INTERRUPT_FORCE | 获取音频打断FORCE类型的关键字，对应值类型是int32_t。<br>**起始版本：** 12 |
 | const char * OH_PLAYER_AUDIO_INTERRUPT_HINT | 获取音频打断HINT类型的关键字，对应值类型是int32_t。<br>**起始版本：** 12 |

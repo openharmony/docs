@@ -2,8 +2,9 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Request-->
 <!--Owner: @huaxin05-->
-<!--SE: @hu-kai45-->
-<!--TSE: @murphy1984-->
+<!--Designer: @hu-kai45-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 应用支持将文件上传到网络服务器，也支持从网络服务器下载资源文件到本地目录。
 

@@ -3,8 +3,9 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @hello_harmony; @yu_haoqiaida-->
-<!--SE: @kutcherzhou1-->
-<!--TSE: @gcw_KuLfPSbe-->
+<!--Designer: @kutcherzhou1-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
 为应用提供多种以供调试、调优的方法。包括但不限于内存、CPU、GPU、GC等相关数据的获取，进程trace、profiler采集，VM堆快照转储等。由于该模块的接口大多比较耗费性能，接口调用较为耗时，且基于HiDebug模块定义，该模块内的接口仅建议在应用调试、调优阶段使用。若需要在其他场景使用时，请认真评估所需调用的接口对应用性能的影响。
 
@@ -1230,7 +1231,7 @@ enableGwpAsanGrayscale(options?: GwpAsanOptions, duration?: number): void
 | 参数名   | 类型   | 必填 | 说明   |
 |---------|---------|--------|-----|
 |options | [GwpAsanOptions](#gwpasanoptions20) | 否 | GWP-Asan配置项。如果未进行设置，则会使用默认参数。|
-|duration | number | 否 | GWP-Asan持续时间，默认7天，需要传入大于0的正整数。|
+|duration | number | 否 | GWP-Asan持续时间，默认7天，需要传入大于0的正整数，单位：天。|
 
 **错误码**：
 

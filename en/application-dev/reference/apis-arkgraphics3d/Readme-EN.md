@@ -1,4 +1,9 @@
 # ArkGraphics 3D
+<!--Kit: ArkGraphics 3D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @zzhao0-->
+<!--SE: @zdustc-->
+<!--TSE: @zhangyue283-->
 
 - ArkTS APIs<!--arkgraphics-3d-arkts-->
   - [@ohos.graphics.scene (ArkGraphics 3D)](js-apis-scene.md)

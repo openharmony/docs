@@ -1,4 +1,10 @@
 # deviceConfig内部结构
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 
 deviceConfig包含设备上的应用配置信息，可以包含default、tv、car、wearable等属性。default标签内的配置适用于所有通用设备，其他设备类型如果有特定需求，需要在相应的设备类型标签下进行配置。

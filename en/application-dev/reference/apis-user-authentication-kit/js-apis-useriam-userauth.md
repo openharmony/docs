@@ -1,5 +1,11 @@
 # @ohos.userIAM.userAuth (User Authentication)
 
+<!--Kit: User Authentication Kit-->
+<!--Subsystem: UserIAM-->
+<!--Owner: @WALL_EYE-->
+<!--SE: @lichangting518-->
+<!--TSE: @jane_lz-->
+
 The **userAuth** module provides APIs for user authentication, which applies to scenarios such as device unlocking, payment, and application login.
 
 > **NOTE**<br>
@@ -16,7 +22,24 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 
 | Name       | Value  | Description      |
 | ----------- | ---- | ---------- |
-| MAX_ALLOWABLE_REUSE_DURATION<sup>12+</sup>    | 300000   | Maximum reuse duration of the authentication result, in milliseconds. The value is **300000**.<br>**System capability**: SystemCapability.UserIAM.UserAuth.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| MAX_ALLOWABLE_REUSE_DURATION<sup>12+</sup>    | 300000   | Maximum reuse duration of the unlock authentication result, in milliseconds. The value is **300000**.<br> **System capability**: SystemCapability.UserIAM.UserAuth.Core<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
+
+## UserAuthTipCode<sup>20+</sup>
+
+Enumerates the intermediate authentication status.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Name               | Value  | Description      |
+| -----------        | ---- | ---------- |
+| COMPARE_FAILURE    | 1    | The authentication failed.|
+| TIMEOUT            | 2    | The authentication has timed out.|
+| TEMPORARILY_LOCKED | 3    | The authentication is temporarily locked.|
+| PERMANENTLY_LOCKED | 4    | The authentication is permanently locked.|
+| WIDGET_LOADED      | 5    | The user authentication widget has been loaded.|
+| WIDGET_RELEASED    | 6    | The user authentication widget has been released.|
 
 ## EnrolledState<sup>12+</sup>
 
@@ -26,10 +49,10 @@ Represents the state of a credential enrolled.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
-| Name        | Type   | Readable| Writable| Description                |
+| Name        | Type   | Read-Only| Optional| Description                |
 | ------------ | ---------- | ---- | ---- | -------------------- |
-| credentialDigest       | number | Yes  |  No| Credential digest, which is randomly generated when a credential is added.|
-| credentialCount        | number | Yes  |  No| Number of enrolled credentials.      |
+| credentialDigest       | number | No  |  No| Credential digest, which is randomly generated when a credential is added.|
+| credentialCount        | number | No  |  No| Number of enrolled credentials.      |
 
 ## ReuseMode<sup>12+</sup>
 
@@ -39,7 +62,7 @@ Enumerates the modes for reusing authentication results.
 
 | Name       | Value  | Description      |
 | ----------- | ---- | ---------- |
-| AUTH_TYPE_RELEVANT    | 1   | The device unlock authentication result can be reused within the validity period if the authentication type matches any of the authentication types specified for this authentication.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| AUTH_TYPE_RELEVANT    | 1   | The device unlock authentication result can be reused within the validity period if the authentication type matches any of the authentication types specified for this authentication.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
 | AUTH_TYPE_IRRELEVANT  | 2   | The device unlock authentication result can be reused within the validity period regardless of the authentication type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | CALLER_IRRELEVANT_AUTH_TYPE_RELEVANT<sup>14+</sup>    | 3   | Any identity authentication result (including device unlock authentication result) can be reused within the validity period if the authentication type matches any of the authentication types specified for this authentication.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | CALLER_IRRELEVANT_AUTH_TYPE_IRRELEVANT<sup>14+</sup>  | 4   | Any identity authentication result (including device unlock authentication result) can be reused within the validity period regardless of the authentication type.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
@@ -49,9 +72,7 @@ Enumerates the modes for reusing authentication results.
 Represents information about the authentication result reuse.
 > **NOTE**
 >
-> If the credential changes within the reuse duration after a successful identity authentication (including device unlock authentication), the authentication result can still be reused and the actual **EnrolledState** is returned in the authentication result. 
->
-> If the credential used for the previous authentication has been deleted when the authentication result is used:<br>- If the deleted credential is face or fingerprint, the authentication result can still be reused, but **credentialCount** and **credentialDigest** in the **EnrolledState** returned are both **0**.<br>- If the deleted credential is a lock screen password, the reuse will fail.
+> If the credential changes within the reuse duration after a successful identity authentication (including device unlock authentication), the authentication result can still be reused and the actual **EnrolledState** is returned in the authentication result. If the credential used for the previous authentication has been deleted when the authentication result is used:<br>- If the deleted credential is face or fingerprint, the authentication result can still be reused, but **credentialCount** and **credentialDigest** in the **EnrolledState** returned are both **0**.<br>- If the deleted credential is a lock screen password, the reuse will fail.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -92,8 +113,8 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 
 | ID| Error Message|
 | -------- | ------- |
-| 201 | Permission verification failed. |
-| 401 | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. |
 | 12500002 | General operation error. |
 | 12500005 | The authentication type is not supported. |
 | 12500010 | The type of credential has not been enrolled. |
@@ -102,12 +123,14 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 
 ```ts
 import { userAuth } from '@kit.UserAuthenticationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let enrolledState = userAuth.getEnrolledState(userAuth.UserAuthType.FACE);
   console.info(`get current enrolled state success, enrolledState = ${JSON.stringify(enrolledState)}`);
 } catch (error) {
-  console.error(`get current enrolled state failed, error = ${JSON.stringify(error)}`);
+  const err: BusinessError = error as BusinessError;
+  console.error(`get current enrolled state failed, Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 
@@ -115,16 +138,15 @@ try {
 
 Defines the user authentication parameters.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
 | Name          | Type                              | Mandatory| Description                                                        |
 | -------------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| challenge      | Uint8Array                         | Yes  | Random challenge value, which can be used to prevent replay attacks. It cannot exceed 32 bytes and can be passed in **Uint8Array([])** format.|
-| authType       | [UserAuthType](#userauthtype8)[]   | Yes  | Authentication type list, which specifies the types of authentication provided on the user authentication page.          |
-| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | Yes  | Authentication trust level. For details, see [Principles for Classifying Biometric Authentication Trust Levels](../../security/UserAuthenticationKit/user-authentication-overview.md).|
-| reuseUnlockResult<sup>12+</sup> | [ReuseUnlockResult](#reuseunlockresult12) | No  |Information about the authentication result reuse.|
+| challenge      | Uint8Array                         | Yes  | Random challenge value, which can be used to prevent replay attacks. It cannot exceed 32 bytes and can be passed in **Uint8Array([])** format.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| authType       | [UserAuthType](#userauthtype8)[]   | Yes  | Authentication type list, which specifies the types of authentication provided on the user authentication page.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | Yes  | Authentication trust level. For details, see [Principles for Classifying Biometric Authentication Trust Levels](../../security/UserAuthenticationKit/user-authentication-overview.md#principles-for-classifying-biometric-authentication-trust-levels).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| reuseUnlockResult<sup>12+</sup> | [ReuseUnlockResult](#reuseunlockresult12) | No  |Information about the authentication result reuse.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| skipLockedBiometricAuth<sup>20+</sup> | boolean | No  | Whether to skip the locked authentication mode and automatically switch to another authentication mode.<br>The value **true** means yes; the value **false** means the opposite. If no alternative mode is available, the user authentication widget is disabled and the error code indicating that the authentication is locked is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
 
 ## WidgetParam<sup>10+</sup>
 
@@ -134,9 +156,9 @@ Represents the information presented on the user authentication page.
 
 | Name                | Type                               | Mandatory| Description                                                        |
 | -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| title                | string                              | Yes  | Title of the user authentication page. It cannot exceed 500 characters.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| navigationButtonText | string                              | No  | Text on the navigation button. It cannot exceed 60 characters. It is supported in single fingerprint or facial authentication before API version 18. Since API version 18, it is also supported in combined facial and fingerprint authentication.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| uiContext<sup>18+</sup>            | Context               | No  | Whether to display the authentication dialog box in modal application mode. This mode is applicable only to 2-in-1 devices. If this mode is not used or other types of devices are used, the authentication dialog box is displayed in modal system mode.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| title                | string                              | Yes  | Title of the user authentication page. It cannot exceed 500 characters.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
+| navigationButtonText | string                              | No  | Text on the navigation button. It cannot exceed 60 characters. It is supported in single fingerprint or facial authentication before API version 18. Since API version 18, it is also supported in combined facial and fingerprint authentication.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
+| uiContext<sup>18+</sup>            | Context               | No  | Whether to display the authentication dialog box in modal application mode. This mode is applicable only to 2-in-1 devices. If this mode is not used or other types of devices are used, the authentication dialog box is displayed in modal system mode.<br> **Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## UserAuthResult<sup>10+</sup>
 
@@ -185,7 +207,18 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -204,6 +237,8 @@ try {
     }
   });
   console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -226,7 +261,18 @@ let reuseUnlockResult: userAuth.ReuseUnlockResult = {
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -245,6 +291,8 @@ try {
     }
   });
   console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -267,7 +315,18 @@ let reuseUnlockResult: userAuth.ReuseUnlockResult = {
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -286,6 +345,83 @@ try {
     }
   });
   console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+}
+```
+
+## AuthTipInfo<sup>20+</sup>
+
+Represents the intermediate authentication status.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Name    | Type                                 | Read-Only| Optional| Description                             |
+| -------- | ------------------------------------ | ---- | ---- | ------------------------------------ |
+| tipType | [UserAuthType](#userauthtype8)        |  No |  No | Authentication type of the intermediate status.|
+| tipCode | [UserAuthTipCode](#userauthtipcode20) |  No |  No | Intermediate status.|
+
+## AuthTipCallback<sup>20+</sup>
+
+type AuthTipCallback = (authTipInfo: AuthTipInfo) => void
+
+Defines the callback to return the intermediate authentication status.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+**Parameters**
+
+| Name| Type                               | Mandatory| Description      |
+| ------ | -----------------------------------| ---- | ---------- |
+| authTipInfo | [AuthTipInfo](#authtipinfo20)   | Yes  | Intermediate authentication status.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  const widgetParam: userAuth.WidgetParam = {
+    title:'Enter password',
+  };
+
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
+  // The intermediate authentication status is returned by onAuthTip only after the authentication is started by start() of UserAuthInstance.
+  userAuthInstance.on('authTip', (authTipInfo: userAuth.AuthTipInfo) => {
+    console.info(`userAuthInstance callback authTipInfo = ${JSON.stringify(authTipInfo)}`);
+  });
+  console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -320,7 +456,7 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 
 | ID| Error Message                |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **Example 1**
@@ -335,7 +471,18 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -353,6 +500,8 @@ try {
     }
   });
   console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -375,7 +524,18 @@ struct Index {
     try {
       const rand = cryptoFramework.createRandom();
       const len: number = 16;
-      const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+      let randData: Uint8Array | null = null;
+      let retryCount = 0;
+      while(retryCount < 3){
+        randData = rand?.generateRandomSync(len)?.data;
+        if(randData){
+          break;
+        }
+        retryCount++;
+      }
+      if(!randData){
+        return;
+      }
       const authParam: userAuth.AuthParam = {
         challenge: randData,
         authType: [userAuth.UserAuthType.PIN],
@@ -396,6 +556,8 @@ struct Index {
         }
       });
       console.info('auth on success');
+      userAuthInstance.start();
+      console.info('auth start success');
     } catch (error) {
       const err: BusinessError = error as BusinessError;
       console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -432,7 +594,7 @@ Unsubscribes from the user authentication result.
 | Name  | Type                             | Mandatory| Description                                      |
 | -------- | --------------------------------- | ---- | ------------------------------------------ |
 | type     | 'result'                          | Yes  | Event type. The value is **result**, which indicates the authentication result.|
-| callback | [IAuthCallback](#iauthcallback10) | No  | Callback to unregister.    |
+| callback | [IAuthCallback](#iauthcallback10) | No  | Callback used to return the user authentication result.    |
 
 **Error codes**
 
@@ -440,7 +602,7 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 
 | ID| Error Message                |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **Example**
@@ -453,7 +615,18 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -499,8 +672,8 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 
 | ID| Error Message                                        |
 | -------- | ------------------------------------------------ |
-| 201      | Permission verification failed.                  |
-| 401      | Incorrect parameters. Possible causes: 1.Incorrect parameter types. |
+| 201      | Permission denied. Possible causes:1.No permission to access biometric. 2.No permission to start authentication from background.|
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 12500001 | Authentication failed.                           |
 | 12500002 | General operation error.                         |
 | 12500003 | Authentication canceled.                         |
@@ -523,7 +696,18 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -562,8 +746,8 @@ Cancels this authentication.
 
 | ID| Error Message                       |
 | -------- | ------------------------------- |
-| 201      | Permission verification failed. |
-| 401      | Incorrect parameters. Possible causes: 1.Incorrect parameter types. |
+| 201      | Permission denied. |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 12500002 | General operation error.        |
 
 **Example**
@@ -576,7 +760,18 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam : userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -588,8 +783,151 @@ try {
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.info('get userAuth instance success');
   // The cancel() API can be called only after the authentication is started by start() of UserAuthInstance.
+  userAuthInstance.start();
+  console.info('auth start success');
   userAuthInstance.cancel();
   console.info('auth cancel success');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+}
+```
+
+### on<sup>20+</sup>
+
+on(type: 'authTip', callback: AuthTipCallback): void
+
+Subscribes to the event for intermediate authentication status.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+**Parameters**
+
+| Name  | Type          | Mandatory| Description                                      |
+| -------- | ------------- | ---- | ------------------------------------------ |
+| type     | string        | Yes  | Event type. The supported event is **'authTip'**. This event is triggered when [start()](#start10) is called and authentication is initiated.|
+| callback | [AuthTipCallback](#authtipcallback20) | Yes  | Callback used to return the intermediate authentication status.    |
+
+**Error codes**
+
+For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
+
+| ID| Error Message                |
+| -------- | ------------------------ |
+| 12500002 | General operation error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  const widgetParam: userAuth.WidgetParam = {
+    title:'Enter password',
+  };
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
+  // The intermediate authentication status is returned by onAuthTip only after the authentication is started by start() of UserAuthInstance.
+  userAuthInstance.on('authTip', (authTipInfo: userAuth.AuthTipInfo) => {
+    console.info(`userAuthInstance callback authTipInfo = ${JSON.stringify(authTipInfo)}`);
+  });
+  console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+}
+```
+
+### off<sup>20+</sup>
+
+off(type: 'authTip', callback?: AuthTipCallback): void
+
+Unsubscribes from the event for intermediate authentication status.
+
+> **NOTE**
+> 
+> The [UserAuthInstance](#userauthinstance10) instance used to invoke this API must be the one used to subscribe to the event.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+**Parameters**
+
+| Name  | Type          | Mandatory| Description                                      |
+| -------- | ------------- | ---- | ------------------------------------------ |
+| type     | string        | Yes  | Event type. The supported event is **'authTip'**. This API unsubscribes from the event triggered by [on()](#on20) after the [start()](#start10) call and the initiation of authentication.|
+| callback | [AuthTipCallback](#authtipcallback20) | No  | Callback used to return the intermediate authentication status. If this parameter is not passed, the value passed when the [on()](#on20) API is called is used by default.|
+
+**Error codes**
+
+For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
+
+| ID| Error Message                |
+| -------- | ------------------------ |
+| 12500002 | General operation error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  const widgetParam: userAuth.WidgetParam = {
+    title:'Enter password',
+  };
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
+  userAuthInstance.off('authTip', (authTipInfo: userAuth.AuthTipInfo) => {
+    console.info(`userAuthInstance callback authTipInfo = ${JSON.stringify(authTipInfo)}`);
+  });
+  console.info('auth off success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -628,7 +966,7 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 
 | ID| Error Message                                        |
 | -------- | ------------------------------------------------ |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.   |
 | 12500002 | General operation error.                         |
 | 12500005 | The authentication type is not supported.        |
 | 12500006 | The authentication trust level is not supported. |
@@ -643,7 +981,18 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -696,7 +1045,7 @@ type EventInfo = AuthResultInfo | TipInfo
 
 Enumerates the authentication event information types.
 
-The event information type consists of the fields in **Type** in the following table.
+It consists of the fields in **Type** in the following table.
 
 > **NOTE**<br>
 > This parameter is supported since API version 9 and deprecated since API version 11. Use [UserAuthResult](#userauthresult10) instead.
@@ -773,7 +1122,7 @@ try {
   console.info('authV9 start success');
 } catch (error) {
   console.error(`authV9 error = ${error}`);
-  // Handle error.
+  // do error.
 }
 // Obtain the authentication tip information via a callback.
 try {
@@ -783,10 +1132,12 @@ try {
       switch (result.tip) {
         case userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
           // Do something.
+          break;
         case userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
           // Do something.
+          break;
         default:
-          // Do others.
+          // do others.
       }
     }
   } as userAuth.AuthEvent);
@@ -794,7 +1145,7 @@ try {
   console.info('authV9 start success');
 } catch (error) {
   console.error(`authV9 error = ${error}`);
-  // Handle error.
+  // do error.
 }
 ```
 
@@ -830,7 +1181,7 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 
 | ID| Error Message|
 | -------- | ------- |
-| 401 | Incorrect parameters. |
+| 401 | Parameter error. |
 | 12500002 | General operation error. |
 
 **Example**
@@ -858,10 +1209,12 @@ try {
       switch (result.tip) {
         case userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
           // Do something.
+          break;
         case userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
           // Do something.
+          break;
         default:
-          // Do others.
+          // do others.
       }
     }
   } as userAuth.AuthEvent);
@@ -869,7 +1222,7 @@ try {
   console.info('authV9 start success');
 } catch (error) {
   console.error(`authV9 error = ${error}`);
-  // Handle error.
+  // do error.
 }
 ```
 
@@ -895,7 +1248,7 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 
 | ID| Error Message|
 | -------- | ------- |
-| 401 | Incorrect parameters. |
+| 401 | Parameter error. |
 | 12500002 | General operation error. |
 
 **Example**
@@ -946,8 +1299,8 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 
 | ID| Error Message|
 | -------- | ------- |
-| 201 | Permission verification failed. |
-| 401 | Incorrect parameters. |
+| 201 | Permission denied. |
+| 401 | Parameter error. |
 | 12500001 | Authentication failed. |
 | 12500002 | General operation error. |
 | 12500003 | The operation is canceled. |
@@ -997,8 +1350,8 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 
 | ID| Error Message|
 | -------- | ------- |
-| 201 | Permission verification failed. |
-| 401 | Incorrect parameters. |
+| 201 | Permission denied. |
+| 401 | Parameter error. |
 | 12500002 | General operation error. |
 
 **Example**
@@ -1053,7 +1406,7 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 
 | ID| Error Message|
 | -------- | ------- |
-| 401 | Incorrect parameters. |
+| 401 | Parameter error. |
 | 12500002 | General operation error. |
 | 12500005 | The authentication type is not supported. |
 | 12500006 | The authentication trust level is not supported. |
@@ -1102,7 +1455,6 @@ Checks whether the specified authentication capability is supported.
 > - Error code 12500013 is returned if the authentication executor has been registered, the authentication functionality is not disabled, but the password has expired.
 
 > **NOTE**
->
 > - If **getAvailableStatus** is called to check whether lock screen password authentication at ATL4 is supported for a user who has enrolled a 4-digit PIN as the lock screen password (the authentication trust level is ATL3), error code 12500010 will be returned.
 
 **Error codes**
@@ -1111,8 +1463,8 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 
 | ID| Error Message|
 | -------- | ------- |
-| 201 | Permission verification failed. |
-| 401 | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. |
 | 12500002 | General operation error. |
 | 12500005 | The authentication type is not supported. |
 | 12500006 | The authentication trust level is not supported. |
@@ -1125,7 +1477,7 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 import { userAuth } from '@kit.UserAuthenticationKit';
 
 try {
-  userAuth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1);
+  userAuth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL3);
   console.info('current auth trust level is supported');
 } catch (error) {
   console.error(`current auth trust level is not supported, error = ${error}`);
@@ -1136,28 +1488,27 @@ try {
 
 Enumerates the authentication result codes.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
 | Name                   |   Value  | Description                |
 | ----------------------- | ------ | -------------------- |
-| SUCCESS                 | 12500000      | The authentication is successful.          |
-| FAIL                    | 12500001      | The authentication failed.          |
-| GENERAL_ERROR           | 12500002      | A general operation error occurred.      |
-| CANCELED                | 12500003      | The authentication is canceled.          |
-| TIMEOUT                 | 12500004      | The authentication has timed out.          |
-| TYPE_NOT_SUPPORT        | 12500005      | The authentication type is not supported.     |
-| TRUST_LEVEL_NOT_SUPPORT | 12500006      | The authentication trust level is not supported.     |
-| BUSY                    | 12500007      | The system does not respond.          |
-| LOCKED                  | 12500009      | The authentication executor is locked.      |
-| NOT_ENROLLED            | 12500010      | The user has not enrolled the specified system identity authentication credential.|
+| SUCCESS<sup>9+</sup>    | 12500000      | The operation is successful.          |
+| FAIL<sup>9+</sup>                    | 12500001      | The authentication failed.          |
+| GENERAL_ERROR<sup>9+</sup>           | 12500002      | A general operation error occurred.      |
+| CANCELED<sup>9+</sup>                | 12500003      | The authentication is canceled.          |
+| TIMEOUT<sup>9+</sup>                 | 12500004      | The authentication has timed out.          |
+| TYPE_NOT_SUPPORT<sup>9+</sup>        | 12500005      | The authentication type is not supported.     |
+| TRUST_LEVEL_NOT_SUPPORT<sup>9+</sup> | 12500006      | The authentication trust level is not supported.     |
+| BUSY<sup>9+</sup>                    | 12500007      | The system does not respond.          |
+| INVALID_PARAMETERS<sup>20+</sup>      | 12500008      | Parameter verification failed.          |
+| LOCKED<sup>9+</sup>                  | 12500009      | The authentication executor is locked.      |
+| NOT_ENROLLED<sup>9+</sup>            | 12500010      | The user has not enrolled the specified system identity authentication credential.|
 | CANCELED_FROM_WIDGET<sup>10+</sup> | 12500011 | The user cancels the system authentication and selects a custom authentication of the application. The caller needs to launch the custom authentication page.|
 | PIN_EXPIRED<sup>12+</sup> | 12500013 | The authentication failed because the lock screen password has expired.|
 
 ## UserAuth<sup>(deprecated)</sup>
 
-Provides APIs for managing the user authentication executor.
+Provides APIs for managing the **UserAuth** object.
 
 ### constructor<sup>(deprecated)</sup>
 
@@ -1532,7 +1883,7 @@ Enumerates the identity authentication types.
 
 | Name       | Value  | Description      |
 | ----------- | ---- | ---------- |
-| PIN<sup>10+</sup>         | 1    | Password authentication. |
+| PIN<sup>10+</sup>         | 1    | PIN authentication.|
 | FACE        | 2    | Facial authentication.|
 | FINGERPRINT | 4    | Fingerprint authentication.|
 
@@ -1540,7 +1891,7 @@ Enumerates the identity authentication types.
 
 Enumerates the trust levels of the authentication result.
 
-For details about typical scenarios and examples, see [Principles for Classifying Biometric Authentication Trust Levels](../../security/UserAuthenticationKit/user-authentication-overview.md).
+For typical use cases, see [Principles for Classifying Biometric Authentication Trust Levels](../../security/UserAuthenticationKit/user-authentication-overview.md#principles-for-classifying-biometric-authentication-trust-levels).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1559,13 +1910,13 @@ type SecureLevel = string
 
 Enumerates the authentication security levels.
 
-> **NOTE**<br>This API is supported since API version 6 and deprecated since API version 8.
+**NOTE**<br>This API is supported since API version 6 and deprecated since API version 8.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
 | Type| Description                                                        |
 | ---- | ------------------------------------------------------------ |
-| string | Authentication security level, which can be any of the following:<br>\- **S1**: authentication trust level 1. The authentication of this level can identify individual users and provides limited liveness detection capabilities. It is usually used in service risk control and query of general personal data.<br>\- **S2**: authentication trust level 2. The authentication of this level can accurately identify individual users and provides regular liveness detection capabilities. It is usually used in scenarios such as application logins and keeping the unlocking state of a device.<br>\- **S3**: authentication trust level 3. The authentication of this level can accurately identify individual users and provides strong liveness detection capabilities. It is usually used in scenarios such as unlocking a device.<br>\- **S4**: authentication trust level 4. The authentication of this level can accurately identify individual users and provides powerful liveness detection capabilities. It is usually used in scenarios such as small-amount payment.|
+| string | Authentication security level, which can be any of the following:|  | | <br>\- **S1**: authentication trust level 1. The authentication of this level can identify individual users and provides limited liveness detection capabilities. It is usually used in service risk control and query of general personal data.<br>\- **S2**: authentication trust level 2. The authentication of this level can accurately identify individual users and provides regular liveness detection capabilities. It is usually used in scenarios such as application logins and keeping the unlocking state of a device.<br>\- **S3**: authentication trust level 3. The authentication of this level can accurately identify individual users and provides strong liveness detection capabilities. It is usually used in scenarios such as unlocking a device.<br>\- **S4**: authentication trust level 4. The authentication of this level can accurately identify individual users and provides powerful liveness detection capabilities. It is usually used in scenarios such as small-amount payment.|
 
 ## AuthType<sup>(deprecated)</sup>
 
@@ -1573,13 +1924,13 @@ type AuthType = string
 
 Enumerates the authentication types.
 
-> **NOTE**<br>This API is supported since API version 6 and deprecated since API version 8.
+**NOTE**<br>This API is supported since API version 6 and deprecated since API version 8.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
 | Type| Description                                                        |
 | ---- | ------------------------------------------------------------ |
-| string  | Authentication type, which can be any of the following:<br>\- **ALL**: reserved and not supported by the current version.<br>\- **FACE_ONLY**: facial authentication.|
+| string  | Authentication type, which can be any of the following:| <br>\- **ALL**: reserved and not supported by the current version.<br>\- **FACE_ONLY**: facial authentication.|
 
 ## userAuth.getAuthenticator<sup>(deprecated)</sup>
 

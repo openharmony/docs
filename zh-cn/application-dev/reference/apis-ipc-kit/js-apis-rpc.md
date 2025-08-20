@@ -2,8 +2,9 @@
 <!--Kit: IPC Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @xdx19211@luodonghui0157-->
-<!--SE: @zhaopeng_gitee-->
-<!--TSE: @maxiaorong2-->
+<!--Designer: @zhaopeng_gitee-->
+<!--Tester: @maxiaorong2-->
+<!--Adviser: @zhang_yixin13-->
 
 本模块提供进程间通信能力，包括设备内的进程间通信（IPC）和设备间的进程间通信（RPC），前者基于Binder驱动，后者基于软总线驱动。
 
@@ -6521,7 +6522,7 @@ writeRawData(rawData: number[], size: number): boolean
 
   | 参数名  | 类型     | 必填 | 说明                               |
   | ------- | -------- | ---- | ---------------------------------- |
-  | rawData | number[] | 是   | 要写入的原始数据。                 |
+  | rawData | number[] | 是   | 要写入的原始数据，大小不能超过128MB。|
   | size    | number   | 是   | 发送的原始数据大小，以字节为单位。 |
 
 **返回值：**
@@ -8480,7 +8481,7 @@ MessageOption构造函数。
 
   | 参数名    | 类型   | 必填 | 说明                                          |
   | --------- | ------ | ---- | --------------------------------------------- |
-  | syncFlags | number | 否   | 同步调用或异步调用标志。默认同步调用。        |
+  | syncFlags | number | 否   | 同步调用或异步调用标志，同步调用标志：0；异步调用标志：1。默认同步调用。        |
   | waitTime  | number | 否   | 调用rpc最长等待时间。默认TF_WAIT_TIME。 |
 
 **示例：**
@@ -8562,7 +8563,7 @@ getFlags(): number
 
   | 类型   | 说明                                 |
   | ------ | ------------------------------------ |
-  | number | 调用成功返回同步调用或异步调用标志。 |
+  | number | 调用成功返回同步调用或异步调用标志。同步调用标志：0，异步调用标志：1。 |
 
 **示例：**
 
@@ -8596,7 +8597,7 @@ setFlags(flags: number): void
 
   | 参数名 | 类型   | 必填 | 说明                     |
   | ------ | ------ | ---- | ------------------------ |
-  | flags  | number | 是   | 同步调用或异步调用标志。 |
+  | flags  | number | 是   | 同步调用或异步调用标志。同步调用标志：0；异步调用标志：1 |
 
 **示例：**
 
@@ -8627,7 +8628,7 @@ getWaitTime(): number
 
   | 类型   | 说明              |
   | ------ | ----------------- |
-  | number | rpc最长等待时间。 |
+  | number | rpc最长等待时间。默认TF_WAIT_TIME。 |
 
 **示例：**
 

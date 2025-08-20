@@ -1,5 +1,12 @@
 # raw_file_manager.h
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @liule_123-->
+<!--Designer: @buda_wy-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## Overview
 
 Provides file management functions for the **rawfile** directory. You can use the **ResourceManager** to open a rawfile and perform operations such as data search and reading.
@@ -26,12 +33,12 @@ Provides file management functions for the **rawfile** directory. You can use th
 
 | Name| Description|
 | -- | -- |
-| [NativeResourceManager *OH_ResourceManager_InitNativeResourceManager(napi_env env, napi_value jsResMgr)](#oh_resourcemanager_initnativeresourcemanager) | Obtains the native **ResourceManager** based on the JS **ResourceManager** to implement rawfile-specific functions.|
+| [NativeResourceManager *OH_ResourceManager_InitNativeResourceManager(napi_env env, napi_value jsResMgr)](#oh_resourcemanager_initnativeresourcemanager) | Obtains the native **ResourceManager** based on the JavaScript **ResourceManager** to implement rawfile-specific functions.|
 | [void OH_ResourceManager_ReleaseNativeResourceManager(NativeResourceManager *resMgr)](#oh_resourcemanager_releasenativeresourcemanager) | Releases the native **ResourceManager**.|
 | [RawDir *OH_ResourceManager_OpenRawDir(const NativeResourceManager *mgr, const char *dirName)](#oh_resourcemanager_openrawdir) | Traverses all files in the **rawfile** directory.|
 | [RawFile *OH_ResourceManager_OpenRawFile(const NativeResourceManager *mgr, const char *fileName)](#oh_resourcemanager_openrawfile) | Opens a rawfile and reads the data in it.|
 | [RawFile64 *OH_ResourceManager_OpenRawFile64(const NativeResourceManager *mgr, const char *fileName)](#oh_resourcemanager_openrawfile64) | Opens a large rawfile and reads the data in it.|
-| [bool OH_ResourceManager_IsRawDir(const NativeResourceManager *mgr, const char *path)](#oh_resourcemanager_israwdir) | Checks whether a path is a subdirectory in the **rawfile** directory.|
+| [bool OH_ResourceManager_IsRawDir(const NativeResourceManager *mgr, const char *path)](#oh_resourcemanager_israwdir) | Checks whether the path of a rawfile is a subdirectory in the **rawfile** directory.|
 
 ## Function Description
 
@@ -43,7 +50,7 @@ NativeResourceManager *OH_ResourceManager_InitNativeResourceManager(napi_env env
 
 **Description**
 
-Obtains the native **ResourceManager** based on the JS **ResourceManager** to implement rawfile-specific functions.
+Obtains the native **ResourceManager** based on the JavaScript **ResourceManager** to implement rawfile-specific functions.
 
 **Since**: 8
 
@@ -53,7 +60,7 @@ Obtains the native **ResourceManager** based on the JS **ResourceManager** to im
 | Name| Description|
 | -- | -- |
 | napi_env env | Pointer to the JavaScript Native API (napi) environment.|
-| napi_value jsResMgr | JS **ResourceManager**.|
+| napi_value jsResMgr | JavaScript **ResourceManager** object.|
 
 **Returns**
 
@@ -183,7 +190,7 @@ bool OH_ResourceManager_IsRawDir(const NativeResourceManager *mgr, const char *p
 
 **Description**
 
-Checks whether a path is a subdirectory in the **rawfile** directory.
+Checks whether the path of a raw file is a subdirectory in the **rawfile** directory.
 
 **Since**: 12
 

@@ -2,11 +2,12 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @zourongchun-->
-<!--SE: @zhufenghao-->
-<!--TSE: @ghiker-->
+<!--Designer: @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 在移动端或支持触控的Web应用中，用户通过触摸屏与页面交互，Web组件支持了常见的手势识别，例如长按、滑动、点击等，以支持丰富的用户交互体验。
 ## ArkWeb手势识别
-ArkWeb接收ArkUI的[触摸事件](../ui/arkts-interaction-development-guide-touch-screen.md#触摸事件)，并识别出手势（触摸事件的分发策略详见[交互基础机制说明](../ui/arkts-interaction-basic-principles.md)）。ArkWeb手势符合W3c标准：Touch Events、UI Events、Pointer Events。
+ArkWeb接收ArkUI的[触摸事件](../ui/arkts-interaction-development-guide-touch-screen.md#触摸事件)，并识别出手势（触摸事件的分发策略详见[交互基础机制说明](../ui/arkts-interaction-basic-principles.md)）。ArkWeb手势符合W3C标准：Touch Events、UI Events、Pointer Events。
 
 常见事件识别说明：
 | 手势事件 | 触发条件 |

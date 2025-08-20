@@ -2,8 +2,9 @@
 <!--Kit: IPC Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @xdx19211@luodonghui0157-->
-<!--SE: @zhaopeng_gitee-->
-<!--TSE: @maxiaorong2-->
+<!--Designer: @zhaopeng_gitee-->
+<!--Tester: @maxiaorong2-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 场景介绍
 
@@ -13,7 +14,7 @@ IPC/RPC的主要工作是跨进程建立对象通信的连接（客户端进程�
 
 > **说明：**
 >
-> - 当前不支持三方应用实现ServiceExtensionAbility，三方应用的UIAbility组件可以通过[Context](../application-models/uiability-usage.md#获取uiability的上下文信息)连接系统提供的ServiceExtensionAbility实现。
+> - 当前不支持三方应用实现ServiceExtensionAbility，三方应用的UIAbility组件可以通过[Context](../application-models/uiability-usage.md#获取uiability的上下文信息)连接系统提供的ServiceExtensionAbility。
 >
 > - 使用场景约束：客户端是第三方/系统应用，服务端是系统应用/服务。
 

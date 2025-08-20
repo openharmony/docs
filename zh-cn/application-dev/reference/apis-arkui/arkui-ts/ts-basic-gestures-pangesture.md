@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 滑动手势事件，当滑动的最小距离达到设定的最小值时触发滑动手势事件。
 
@@ -16,6 +17,7 @@
 | 鼠标滚轮滚动。          | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9).MOUSE    | [SourceType](ts-gesture-settings.md#sourcetype枚举说明8).Mouse        | axisVertical或axisHorizontal不为0。 |
 | 触摸板按下左键后滑动。  | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9).MOUSE  | [SourceType](ts-gesture-settings.md#sourcetype枚举说明8).Mouse     | axisVertical和axisHorizontal均为0。 |
 | 触摸板双指滑动。       | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9).TOUCHPAD  | [SourceType](ts-gesture-settings.md#sourcetype枚举说明8).Mouse      | axisVertical或axisHorizontal不为0。 |
+| 手写笔滑动。       | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9).Pen  | [SourceType](ts-gesture-settings.md#sourcetype枚举说明8).TouchScreen      | axisVertical和axisHorizontal均为0。 |
 
 >  **说明：**
 >
@@ -28,7 +30,9 @@
 
 PanGesture(value?: { fingers?: number; direction?: PanDirection; distance?: number } | PanGestureOptions)
 
-设置拖动手势事件。
+设置滑动手势事件。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -62,25 +66,25 @@ PanGesture(options?: PanGestureHandlerOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
-| -------- | -------- |
-| All | 所有方向。 |
-| Horizontal | 水平方向。 |
-| Vertical | 竖直方向。 |
-| Left | 向左滑动。 |
-| Right | 向右滑动。 |
-| Up | 向上滑动。 |
-| Down | 向下滑动。 |
-| None | 任何方向都不可触发滑动手势事件。 |
+| 名称 | 值 | 说明 |
+| ---- | -- | ----- |
+| All | - | 所有方向。 |
+| Horizontal | - | 水平方向。 |
+| Vertical | - | 竖直方向。 |
+| Left | - | 向左滑动。 |
+| Right | - | 向右滑动。 |
+| Up | - | 向上滑动。 |
+| Down | - | 向下滑动。 |
+| None | - | 任何方向都不可触发滑动手势事件。 |
 
 
 ## PanGestureOptions
 
 ### constructor
 
-通过PanGestureOptions对象接口可以动态修改平移手势识别器的属性，从而避免通过状态变量修改属性（状态变量修改会导致UI刷新）。
-
 PanGestureOptions(value?: { fingers?: number, direction?: PanDirection, distance?: number })
+
+通过PanGestureOptions对象接口可以动态修改平移手势识别器的属性，从而避免通过状态变量修改属性（状态变量修改会导致UI刷新）。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -96,9 +100,9 @@ PanGestureOptions(value?: { fingers?: number, direction?: PanDirection, distance
 
 ### constructor<sup>20+</sup>
 
-通过PanGestureOptions对象接口可以动态修改平移手势识别器的属性，从而避免通过状态变量修改属性（状态变量修改会导致UI刷新）。
-
 constructor(value?: PanGestureHandlerOptions)
+
+通过PanGestureOptions对象接口可以动态修改平移手势识别器的属性，从而避免通过状态变量修改属性（状态变量修改会导致UI刷新）。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -332,10 +336,10 @@ Pan手势识别成功，接收到触摸取消事件触发回调。返回手势�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型    |描述                                        |
-| ----  | ------  | ---------------------------------------- |
-| tag<sup>11+</sup>   | string  | 设置Pan手势标志，用于自定义手势判定时区分绑定的手势。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)>  | 设置Pan手势支持的事件输入源。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| 名称 | 类型    | 只读 | 可选 | 说明                     |
+| ----  | ------ | ---- | ---- | ----------------------- |
+| tag<sup>11+</sup>   | string  | 否 | 否 | 设置Pan手势标志，用于自定义手势判定时区分绑定的手势。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)>  | 否 | 否 | 设置Pan手势支持的事件输入源。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## 示例
 

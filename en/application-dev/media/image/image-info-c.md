@@ -1,4 +1,9 @@
 # Using Image_NativeModule to Process Image Information
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 You can use the **ImageInfo** class to set and read the rectangle size, component information, and pixel information of an image.
 
