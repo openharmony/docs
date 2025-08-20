@@ -59,6 +59,7 @@ onWorkStart(work: workScheduler.WorkInfo): void
 
   ```ts
   import { workScheduler } from '@kit.BackgroundTasksKit';
+  import { WorkSchedulerExtensionAbility } from '@kit.BackgroundTasksKit';
 
   export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
     onWorkStart(workInfo: workScheduler.WorkInfo) {
@@ -86,6 +87,7 @@ onWorkStop(work: workScheduler.WorkInfo): void
 
   ```ts
   import { workScheduler } from '@kit.BackgroundTasksKit';
+  import { WorkSchedulerExtensionAbility } from '@kit.BackgroundTasksKit';
 
   export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
     onWorkStop(workInfo: workScheduler.WorkInfo) {
