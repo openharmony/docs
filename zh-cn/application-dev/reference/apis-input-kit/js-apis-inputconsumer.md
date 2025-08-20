@@ -34,7 +34,7 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
-**设备行为差异**：该接口仅在手机和平板设备上生效，在其他设备上返回801错误码。
+**设备行为差异**：该接口仅在Phone和Tablet设备上生效，在其他设备上返回801错误码。
 
 | 名称        | 类型   | 只读   | 可选   | 说明      |
 | --------- | ------ | ------- | ------- | ------- |
@@ -242,7 +242,7 @@ on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
-**设备行为差异**：该接口仅在手机和平板设备中可正常调用，在其他设备上返回801错误码。
+**设备行为差异**：该接口仅在Phone和Tablet设备中可正常调用，在其他设备上返回801错误码。
 
 **参数：**
 
@@ -299,7 +299,7 @@ off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
-**设备行为差异**：该接口仅在手机和平板设备中可正常调用，在其他设备上返回801错误码。
+**设备行为差异**：该接口仅在Phone和Tablet设备中可正常调用，在其他设备上返回801错误码。
 
 **参数：**
 
