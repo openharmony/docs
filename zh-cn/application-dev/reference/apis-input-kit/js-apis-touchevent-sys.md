@@ -16,7 +16,7 @@ import { FixedMode, Touch, TouchEvent } from '@kit.InputKit';
 
 ## FixedMode
 
-修正坐标的模式。该接口仅在手机设备上生效。
+修正坐标的模式。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
@@ -37,8 +37,8 @@ import { FixedMode, Touch, TouchEvent } from '@kit.InputKit';
 
 | 名称          | 类型   | 只读   | 可选   | 说明                                  |
 | ----------- | ------ | ---- | ---- | ----------------------------------- |
-| fixedDisplayX | number| 否    | 是    | 适配单手模式下screenX坐标的修正值。<br> **说明**： 该接口仅在手机设备上生效。 |
-| fixedDisplayY | number| 否    | 是    | 适配单手模式下screenY坐标的修正值。<br> **说明**： 该接口仅在手机设备上生效。    |
+| fixedDisplayX | number| 否    | 是    | 适配单手模式下screenX坐标的修正值。 |
+| fixedDisplayY | number| 否    | 是    | 适配单手模式下screenY坐标的修正值。    |
 
 ## TouchEvent
 
@@ -50,4 +50,4 @@ import { FixedMode, Touch, TouchEvent } from '@kit.InputKit';
 
 | 名称         | 类型       | 只读   | 可选   | 说明        |
 | ---------- | ---------- | ---- | ---- | --------- |
-| fixedMode  | [FixedMode](#fixedmode)   | 否    | 是    | 修正坐标的模式。<br> **说明**：该接口仅在手机设备上生效。|
+| fixedMode  | [FixedMode](#fixedmode)   | 否    | 是    | 修正坐标的模式。|
