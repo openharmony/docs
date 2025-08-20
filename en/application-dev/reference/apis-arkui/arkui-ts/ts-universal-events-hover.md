@@ -110,11 +110,11 @@ struct HoverEventExample {
 
 Diagrams:
 
-The figure below shows how the button looks when not hovered:
+The figure below shows how the button looks when not hovered.
 
  ![nohover](figures/no-hover.png) 
 
-The figure below shows how the button looks like when a stylus hovers on it.
+The figure below shows how the button looks when a stylus hovers on it.
 
  ![penhover](figures/pen-hover.png) 
 

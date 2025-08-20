@@ -88,7 +88,7 @@ The following examples describe how to use the viewport:
     }
     Column() {
       // Create a shape component whose width and height are both 150, the background color is yellow, and a viewport whose width and height are both 300. Fill the viewport with a green rectangle and draw a circle with a diameter of 75 in the viewport.
-      // After the drawing is complete, the viewport is zoomed out by twice based on the width and height of the component.
+      // After the drawing is complete, the viewport is zoomed out to half its original size based on the width and height of the component.
       Text('Shrunk Circle')
       Shape() {
         Rect().width('100%').height('100%').fill('#BDDB69')
