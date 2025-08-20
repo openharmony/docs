@@ -131,7 +131,7 @@ if (script_run_completed) {
 
 ```cpp
 bool Test::IsFunction(JSVM_Env env, JSVM_Value jsvmValue) const {
-    // type judement
+    // type judgment
     JSVM_ValueType valueType;
     OH_JSVM_TypeOf(*env, jsvmValue, &valueType);
     return valueType == JSVM_FUNCTION;
@@ -143,7 +143,7 @@ bool Test::IsFunction(JSVM_Env env, JSVM_Value jsvmValue) const {
 
 ```cpp
 bool Test::IsFunction(JSVM_Env env, JSVM_Value jsvmValue) const {
-    // type judement
+    // type judgment
     bool result = false;
     OH_JSVM_IsFunction(*env, jsvmValue, &result); // 可直接判断是否为Function类型
     return result;
