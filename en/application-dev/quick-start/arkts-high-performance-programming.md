@@ -1,11 +1,17 @@
 # ArkTS Performant Programming Practices
 
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @zhanyi819-->
+<!--Designer: @qyhuo32-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @zhang_yixin13-->
+
 ## Overview
 
+This topic provides a set of performant programming practices that you can apply in performance-critical scenarios. They are techniques and recommendations drawn from real-world development. Following these practices in your service implementation can help develop performant applications. For details about ArkTS programming specifications, see [ArkTS Coding Style Guide](./arkts-coding-style-guide.md).
 
-This topic provides a set of performant programming practices that you can apply in performance-critical scenarios. They are techniques and recommendations drawn from real-world development. Following these practices in your service implementation can help develop performant applications. For details about ArkTS coding standards, see [ArkTS Coding Style Guide](./arkts-coding-style-guide.md).
-
-## Declaration and Expression
+## Declarations and Expressions
 
 ### Using const to Declare Unchanged Variables
 
@@ -33,14 +39,14 @@ doubleNum = 1; // This variable is declared as a floating-point data type. Avoid
 
 When arithmetic operations run into overflow, the engine enters a slower logic branch for processing overflow, affecting subsequent performance. Below are some suggestions to mitigate the overflow risk.
 
-- For operations such as addition, subtraction, multiplication, and exponentiation, the value should not be greater than **INT32_MAX** or less than **INT32_MIN**.
+- For operations such as addition, subtraction, multiplication, and exponentiation, the value should not be greater than **INT32_MAX** (2147483647) or less than **INT32_MIN** (-2147483648).
 
 - For operations such as & (and) and >>> (unsigned right shift), the value should not be greater than **INT32_MAX**.
 
 
 ### Extracting Constants in Loops to Reduce Attribute Access Times
 
-In a loop where there is frequent access to a constant that does not change, extract the constant outside of the loop to reduce the number of times the property is accessed.
+If the constants do not change in the loop, they can be extracted outside the loop to reduce the number of access times.
 
 ``` TypeScript
 class Time {
@@ -58,7 +64,7 @@ function getNum(num: number): number {
 }
 ```
 
-This optimization extracts constants in **Time.info[num - Time.start]**, which greatly reduces the number of property access times and brings better performance. The optimized code is as follows:
+You can extract **Time.info[num - Time.start]** as a constant to reduce the number of attribute access times and improves performance. The optimized code is as follows.
 
 ``` TypeScript
 class Time {
@@ -83,7 +89,7 @@ function getNum(num: number): number {
 
 ### Using Parameters to Pass External Variables
 
-Using closures may incur additional overhead for closure creation and access. In performance-sensitive scenarios, you are advised to use parameters to pass external variables instead of using closures.
+Using closures may cause extra overhead.  
 
 ``` TypeScript
 let arr = [0, 1, 2];
@@ -95,7 +101,7 @@ function foo(): number {
 foo();
 ```
 
-You are advised to use parameter to pass external variables instead of using closures.
+In performance-sensitive scenarios, you are advised to pass external variables using parameters.
 ``` TypeScript
 let arr = [0, 1, 2];
 
@@ -132,22 +138,22 @@ function add(left: number = 0, right: number = 0): number {
 
 ### Prioritizing TypedArray for Value Arrays
 
-Where only arithmetic operations are involved, prefer **TypedArrays** over Arrays.
+Where only arithmetic operations are involved, use **TypedArray**.
 
-Before optimization
+Sample code before optimization:
 ``` TypeScript
-const arr1 = new Array<number>([1, 2, 3]);
-const arr2 = new Array<number>([4, 5, 6]);
+const arr1 = new Array<number>(1, 2, 3);
+const arr2 = new Array<number>(4, 5, 6);
 let res = new Array<number>(3);
 for (let i = 0; i < 3; i++) {
   res[i] = arr1[i] + arr2[i];
 }
 ```
 
-After optimization
+Sample code after optimization:
 ``` TypeScript
-const typedArray1 = new Int8Array([1, 2, 3]);
-const typedArray2 = new Int8Array([4, 5, 6]);
+const typedArray1 = Int8Array.from([1, 2, 3]);
+const typedArray2 = Int8Array.from([4, 5, 6]);
 let res = new Int8Array(3);
 for (let i = 0; i < 3; i++) {
   res[i] = typedArray1[i] + typedArray2[i];
@@ -157,7 +163,7 @@ for (let i = 0; i < 3; i++) {
 
 ### Avoiding Sparse Arrays
 
-When allocating an array whose size exceeds 1024 or a sparse array, a hash table is used to store elements. This mode, compared with using an offset to access array elements, results in slower access speeds. Therefore, during development, avoid changing arrays into sparse arrays.
+When allocating an array whose size exceeds 1024 bytes or a sparse array during runtime, a hash table is used to store elements. This mode results in slower access speeds. Therefore, you should avoid converting arrays to sparse arrays during code development.
 
 ``` TypeScript
 // Allocate an array of 100,000 bytes, for which a hash table is used to store elements.
@@ -180,7 +186,7 @@ let arrNum: number[] = [1, 1.1, 2];  // Both integer data and floating-point dat
 let arrUnion: (number | string)[] = [1, 'hello'];  // Union array.
 ```
 
-Place the data of the same type in the same array based on service requirements.
+Place the data of the same type in the same array based on service requirements. 
 ``` TypeScript
 let arrInt: number[] = [1, 2, 3];
 let arrDouble: number[] = [0.1, 0.2, 0.3];
@@ -194,7 +200,7 @@ let arrString: string[] = ['hello', 'world'];
 
 Creating exceptions involves constructing the stack frame for the exception, which may performance overhead. In light of this, avoid frequently throwing exceptions in performance-sensitive scenarios, for example, in **for** loop statements.
 
-Before optimization
+Sample code before optimization:
 
 ``` TypeScript
 function div(a: number, b: number): number {
@@ -217,7 +223,7 @@ function sum(num: number): number {
 }
 ```
 
-After optimization
+Sample code after optimization:
 
 ``` TypeScript
 function div(a: number, b: number): number {
