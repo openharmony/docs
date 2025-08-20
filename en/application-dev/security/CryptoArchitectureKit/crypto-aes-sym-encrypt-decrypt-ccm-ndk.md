@@ -1,6 +1,13 @@
 # Encryption and Decryption with an AES Symmetric Key (CCM Mode) (C/C++)
 
-For details about the algorithm specifications, see [AES](crypto-sym-encrypt-decrypt-spec.md#aes).
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
+For details, see [AES](crypto-sym-encrypt-decrypt-spec.md#aes).
 
 ## Adding the Dynamic Library in the CMake Script
 ```txt
@@ -11,57 +18,57 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 **Creating an Object**
 
-Call [OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create) and [OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate) to generate a 128-bit AES symmetric key (**OH_CryptoSymKey**).
-
-In addition to the example in this topic, [AES](crypto-sym-key-generation-conversion-spec.md#aes) and [Randomly Generating a Symmetric Key](crypto-generate-sym-key-randomly-ndk.md) may help you better understand how to generate an AES symmetric key. Note that the input parameters in the reference documents may be different from those in the example below.
+Call [OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md#oh_cryptosymkeygenerator_create) and [OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md#oh_cryptosymkeygenerator_generate) to generate a symmetric key (**OH_CryptoSymKey**) with the key algorithm being AES and the key length being 128 bits.
+   
+   In addition to the example in this topic, [AES](crypto-sym-key-generation-conversion-spec.md#aes) and [Randomly Generating a Symmetric Key](crypto-generate-sym-key-randomly-ndk.md) may help you better understand how to generate an AES symmetric key. Note that the input parameters in the reference documents may be different from those in the example below.
 
 **Encrypting a Message**
 
-1. Call [OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_create) with the string parameter **'AES128|CCM'** to create a **Cipher** instance for encryption. The key type is AES128, and the block cipher mode is CCM.
+1. Call [OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-cipher-h.md#oh_cryptosymcipher_create) with the string parameter **'AES128|CCM'** to create a **Cipher** instance for encryption. The key type is AES128, and the block cipher mode is CCM.
 
-2. Call [OH_CryptoSymCipherParams_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_create) to create a symmetric cipher parameter instance, and call [OH_CryptoSymCipherParams_SetParam](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_setparam) to set cipher parameters.
+2. Call [OH_CryptoSymCipherParams_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-cipher-h.md#oh_cryptosymcipherparams_create) to create a parameter object and call [OH_CryptoSymCipherParams_SetParam](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-cipher-h.md#oh_cryptosymcipherparams_setparam) to set encryption parameters.
 
-3. Call [OH_CryptoSymCipher_Init](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_init) to initialize the **Cipher** instance. Specifically, set **mode** to **CRYPTO_ENCRYPT_MODE**, and specify the key for encryption (**OH_CryptoSymKey**) and the encryption parameter instance (**OH_CryptoSymCipherParams**) corresponding to the CCM mode.
+3. Call [OH_CryptoSymCipher_Init](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-cipher-h.md#oh_cryptosymcipher_init) to initialize the **Cipher** instance. Specifically, set **mode** to **CRYPTO_ENCRYPT_MODE**, and specify the key for encryption (**OH_CryptoSymKey**) and the encryption parameter instance (**OH_CryptoSymCipherParams**) corresponding to the CCM mode.
 
-4. Call [OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update) to update the data (plaintext) to be encrypted.
+4. Call [OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-cipher-h.md#oh_cryptosymcipher_update) to update data (in plaintext).
    
    Currently, the amount of data to be passed in by a single **update()** call is not limited. You can determine how to pass in data based on the data size.
    > **NOTE**<br>
    > The CCM mode does not support segment-based encryption and decryption.
 
-5. Call [OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final) to generate the ciphertext.
-   - If data has been passed in by **OH_CryptoSymCipher_Update**, pass in **null** in the **data** parameter of **OH_CryptoSymCipher_Final**.
-   - The output of **OH_CryptoSymCipher_Final** may be **null**. To avoid exceptions, always check whether the result is **null** before accessing specific data.
+5. Call [OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-cipher-h.md#oh_cryptosymcipher_final) to obtain the encrypted data.
+   - If data has been passed in by **update()**, pass in **null** in the **data** parameter.
+   - Since **final()** might return **null**, always check its output before accessing any data.
    > **NOTE**<br>
    > If CCM mode is used, **authTag** is set in **final()** as the authentication information initialized during decryption and needs to be saved.
 
-6. Call [OH_CryptoSymCipherParams_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_create) to create a **Params** instance, and call [OH_CryptoSymCipherParams_SetParam](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_setparam) to set **authTag** as the authentication information for decryption.
+6. Call [OH_CryptoSymCipherParams_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-cipher-h.md#oh_cryptosymcipherparams_create) to create a **Params** instance, and call [OH_CryptoSymCipherParams_SetParam](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-cipher-h.md#oh_cryptosymcipherparams_setparam) to set **authTag** as the authentication information for decryption.
    
-   In CCM mode, **authTag** must be of 12 bytes. It is used as the authentication information during decryption. In the example, **authTag** is of 12 bytes.
+   In CCM mode, the algorithm library supports only 12-byte **authTag**, which is used for initialization authentication during decryption. In the following example, **authTag** is of 12 bytes.
 
 **Decrypting a Message**
 
-1. Call [OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_create) with the string parameter **'AES128|CCM'** to create a **Cipher** instance for decryption. The key type is AES128, and the block cipher mode is CCM.
+1. Call [OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-cipher-h.md#oh_cryptosymcipher_create) with the parameter **'AES128|CCM'** to create a **Cipher** instance for decryption. The key type is AES128, and the block cipher mode is CCM.
 
-2. Call [OH_CryptoSymCipherParams_SetParam](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_setparam) to set **authTag**, which must be the same as that set in encryption.
+2. Before decryption, call [OH_CryptoSymCipherParams_SetParam](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-cipher-h.md#oh_cryptosymcipherparams_setparam) to set **authTag** as the authentication information for initialization.
 
-3. Call [OH_CryptoSymCipher_Init](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_init) to initialize the **Cipher** instance. Specifically, set **mode** to **CRYPTO_DECRYPT_MODE**, and specify the key for decryption (**OH_CryptoSymKey**) and the decryption parameter instance (**OH_CryptoSymCipherParams**) corresponding to the CCM mode.
+3. Call [OH_CryptoSymCipher_Init](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-cipher-h.md#oh_cryptosymcipher_init) to initialize the **Cipher** instance. Specifically, set **mode** to decryption mode, and specify the decryption key and the decryption parameter of the CCM mode.
 
-4. Call [OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update) to update the data (ciphertext) to be decrypted.
+4. Call [OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-cipher-h.md#oh_cryptosymcipher_update) to update data (in ciphertext).
    
-   Currently, the amount of data to be passed in by a single **update()** call is not limited. You can determine how to pass in data based on the data size.
+   Currently, the amount of data to be passed in by a single **update()** call is not limited. You can determine how to pass in data based on the ciphertext size.
    > **NOTE**<br>
    > The CCM mode does not support segment-based encryption and decryption.
 
-4. Call [OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final) to generate the plaintext.
-   - If data has been passed in by **OH_CryptoSymCipher_Update**, pass in **null** in the **data** parameter of **OH_CryptoSymCipher_Final**.
-   - The output of **OH_CryptoSymCipher_Final** may be **null**. To avoid exceptions, always check whether the result is **null** before accessing specific data.
+5. Call [OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-cipher-h.md#oh_cryptosymcipher_final) to obtain the decrypted data.
+   - If data has been passed in by **update()**, pass in **null** in the **data** parameter.
+   - Before accessing the **final()** output data, check whether the result is **null** to avoid exceptions.
 
 **Destroying Objects**
 
-Call [OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy), [OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy), [OH_CryptoSymKey_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_destroy) and [OH_Crypto_FreeDataBlob](../../reference/apis-crypto-architecture-kit/_crypto_common_api.md#oh_crypto_freedatablob) to release the allocated memory and destroy the symmetric key, **Cipher** instance, and **Params**.
+Call [OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md#oh_cryptosymkeygenerator_destroy), [OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-cipher-h.md#oh_cryptosymcipher_destroy), [OH_CryptoSymKey_Destroy](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md#oh_cryptosymkey_destroy), and [OH_Crypto_FreeDataBlob](../../reference/apis-crypto-architecture-kit/capi-crypto-common-h.md#oh_crypto_freedatablob) to release the allocated memory and destroy the symmetric key, cipher instance, and parameters.
 
-**Example**
+- **Example**
 
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
@@ -79,9 +86,9 @@ static OH_Crypto_ErrCode doTestAesCcm()
     Crypto_DataBlob encData = {.data = nullptr, .len = 0};
     Crypto_DataBlob decData = {.data = nullptr, .len = 0};
 
-    uint8_t aad[8] = {1, 2, 3, 4, 5, 6, 7, 8}; // The aad value here is for reference only.
+    uint8_t aad[8] = {1, 2, 3, 4, 5, 6, 7, 8}; // The aad value in the sample code is for reference only.
     uint8_t tag[12] = {0};
-    uint8_t iv[7] = {1, 2, 4, 12, 3, 4, 2}; // The iv value here is for reference only.
+    uint8_t iv[7] = {1, 2, 4, 12, 3, 4, 2}; // The iv value in the sample code is for reference only.
     Crypto_DataBlob ivData = {.data = iv, .len = sizeof(iv)};
     Crypto_DataBlob aadData = {.data = aad, .len = sizeof(aad)};
     Crypto_DataBlob tagData = {.data = tag, .len = sizeof(tag)};
