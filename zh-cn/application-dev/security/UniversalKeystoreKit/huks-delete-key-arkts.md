@@ -6,7 +6,7 @@
 
 以删除HKDF256密钥为例。
 
-1. 确定密钥别名keyAlias，密钥别名最大长度为128字节。
+1. 指定密钥别名，密钥别名命名规范参考[密钥生成介绍及算法规格](huks-key-generation-overview.md)。
 
 2. 初始化密钥属性集。用于删除时指定[密钥的属性TAG](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_tag)，当删除单个时，TAG字段可传空。
 
@@ -66,8 +66,8 @@ async function publicDeleteKeyFunc(keyAlias: string, huksOptions: huks.HuksOptio
     console.error(`promise: deleteKeyItem input arg invalid, ${JSON.stringify(error)}`);
   }
 }
-
-async function testDerive() {
-  await publicDeleteKeyFunc(keyAlias, huksOptions);
+async function testDelete(): Promise<string> {
+  let ret = await publicDeleteKeyFunc(keyAlias, deleteHuksOptions);
+  return ret;
 }
 ```

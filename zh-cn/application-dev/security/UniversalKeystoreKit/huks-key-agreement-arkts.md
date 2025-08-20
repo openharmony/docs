@@ -1,6 +1,12 @@
 # 密钥协商(ArkTS)
 
-以协商密钥类型为X25519，并密钥仅在HUKS内使用为例，完成密钥协商。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-key-generation-overview.md#支持的算法)。
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
+
+以X25519和DH两个协商密钥类型为例，在密钥由HUKS管理的情况下，完成密钥协商。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-key-generation-overview.md#支持的算法)。
 
 ## 开发步骤
 
@@ -8,7 +14,7 @@
 
 设备A、设备B各自生成一个非对称密钥，具体请参考[密钥生成](huks-key-generation-overview.md)或[密钥导入](huks-key-import-overview.md)。
 
-密钥生成时，可指定参数HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG（可选），用于标识基于该密钥协商出的密钥是否由HUKS管理。
+密钥生成时，可指定参数[HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keystoragetype)（可选），用于标识基于该密钥协商出的密钥是否由HUKS管理。
 
 - 当TAG设置为HUKS_STORAGE_ONLY_USED_IN_HUKS时，表示基于该密钥协商出的密钥，由HUKS管理，可保证协商密钥全生命周期不出安全环境。
 
@@ -42,7 +48,7 @@
 
 
 下面分别以X25519 与 DH密钥为例，进行协商。  
-- X25519非对称密钥协商用例
+### X25519非对称密钥协商用例
   ```ts
   /*
   *以下以X25519密钥的Promise操作使用为例
@@ -141,12 +147,12 @@
     inData: StringToUint8Array(agreeX25519InData)
   }
 
-  class throwObject {
+  class ThrowObject {
     isThrow: boolean = false
   }
 
   /* 生成密钥 */
-  function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+  function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
     return new Promise<void>((resolve, reject) => {
       try {
         huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
@@ -166,7 +172,7 @@
   /* 调用generateKeyItem生成密钥 */
   async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
     console.info(`enter promise generateKeyItem`);
-    let throwObject: throwObject = { isThrow: false };
+    let throwObject: ThrowObject = { isThrow: false };
     try {
       await generateKeyItem(keyAlias, huksOptions, throwObject)
         .then((data) => {
@@ -185,7 +191,7 @@
   }
 
   /*初始化密钥会话接口，并获取一个句柄（必选）和挑战值（可选）*/
-  function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+  function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
     return new Promise<huks.HuksSessionHandle>((resolve, reject) => {
       try {
         huks.initSession(keyAlias, huksOptions, (error, data) => {
@@ -205,7 +211,7 @@
   /*调用initSession获取handle*/
   async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
     console.info(`enter promise doInit`);
-    let throwObject: throwObject = { isThrow: false };
+    let throwObject: ThrowObject = { isThrow: false };
     try {
       await initSession(keyAlias, huksOptions, throwObject)
         .then((data) => {
@@ -225,7 +231,7 @@
   }
 
   /* 分段添加密钥操作的数据并进行相应的密钥操作，输出处理数据 */
-  function updateSession(handle: number, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+  function updateSession(handle: number, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
     return new Promise<huks.HuksReturnResult>((resolve, reject) => {
       try {
         huks.updateSession(handle, huksOptions, (error, data) => {
@@ -245,7 +251,7 @@
   /* 调用updateSession进行协商操作 */
   async function publicUpdateFunc(handle: number, huksOptions: huks.HuksOptions) {
     console.info(`enter promise doUpdate`);
-    let throwObject: throwObject = { isThrow: false };
+    let throwObject: ThrowObject = { isThrow: false };
     try {
       await updateSession(handle, huksOptions, throwObject)
         .then((data) => {
@@ -264,7 +270,7 @@
   }
 
   /* 结束密钥会话并进行相应的密钥操作，输出处理数据 */
-  function finishSession(handle: number, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+  function finishSession(handle: number, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
     return new Promise<huks.HuksReturnResult>((resolve, reject) => {
       try {
         huks.finishSession(handle, huksOptions, (error, data) => {
@@ -284,7 +290,7 @@
   /* 调用finishSession结束操作 */
   async function publicFinishFunc(handle: number, huksOptions: huks.HuksOptions) {
     console.info(`enter promise doFinish`);
-    let throwObject: throwObject = { isThrow: false };
+    let throwObject: ThrowObject = { isThrow: false };
     try {
       await finishSession(handle, huksOptions, throwObject)
         .then((data) => {
@@ -304,7 +310,7 @@
   }
 
   /* 导出密钥 */
-  function exportKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+  function exportKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
     return new Promise<huks.HuksReturnResult>((resolve, reject) => {
       try {
         huks.exportKeyItem(keyAlias, huksOptions, (error, data) => {
@@ -324,7 +330,7 @@
   /* 调用exportKeyItem导出公钥操作 */
   async function publicExportKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
     console.info(`enter promise export`);
-    let throwObject: throwObject = { isThrow: false };
+    let throwObject: ThrowObject = { isThrow: false };
     try {
       await exportKeyItem(keyAlias, huksOptions, throwObject)
         .then((data) => {
@@ -344,7 +350,7 @@
   }
 
   /* 删除密钥操作 */
-  function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+  function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
     return new Promise<void>((resolve, reject) => {
       try {
         huks.deleteKeyItem(keyAlias, huksOptions, (error, data) => {
@@ -364,7 +370,7 @@
   /* 调用deleteKeyItem删除密钥操作 */
   async function publicDeleteKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
     console.info(`enter promise deleteKeyItem`);
-    let throwObject: throwObject = { isThrow: false };
+    let throwObject: ThrowObject = { isThrow: false };
     try {
       await deleteKeyItem(keyAlias, huksOptions, throwObject)
         .then((data) => {
@@ -409,7 +415,7 @@
   }
   ```
 
-- DH密钥协商用例
+### DH密钥协商用例
 
   ```ts
   /*
