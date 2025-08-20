@@ -46,3 +46,4 @@
 对于Tablet设备上的自由多窗和2in1设备，当窗口的[drawableRect](../reference/apis-arkui/arkts-apis-window-i.md#windowproperties)等于窗口的[windowRect](../reference/apis-arkui/arkts-apis-window-i.md#windowproperties)时，该窗口为沉浸式布局。子窗口有标题栏时为非沉浸式布局。
 
 对于phone设备，当窗口的[isLayoutFullScreen](../reference/apis-arkui/arkts-apis-window-i.md#windowproperties)为true时，该窗口为沉浸式布局。
+
