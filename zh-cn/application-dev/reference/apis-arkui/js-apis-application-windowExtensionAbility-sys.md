@@ -15,7 +15,7 @@ WindowExtensionAbility基于ExtensionAbility。WindowExtensionAbility中展示�
 >
 > - 本模块接口仅可在Stage模型下使用。
 > 
-> - 从API version 20开始废弃，推荐使用[UIExtensionAbility](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)。
+> - 从API version 21开始废弃，推荐使用[UIExtensionAbility](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)。
 
 ## 导入模块
 
@@ -29,7 +29,7 @@ import { WindowExtensionAbility } from '@kit.ArkUI';
 
 | 名称      | 类型 | 只读 | 可选 | 说明                      |
 | --------- | -------- | ---- | ---- | ------------------------- |
-| context<sup>(deprecated)</sup>  | [WindowExtensionContext](js-apis-inner-application-windowExtensionContext-sys.md)   | 否   | 否   | 上下文。<br>- **说明：** 从API version 20开始，该接口废弃，推荐使用[UIExtensionAbility.context](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)。<br/>      |
+| context<sup>(deprecated)</sup>  | [WindowExtensionContext](js-apis-inner-application-windowExtensionContext-sys.md)   | 否   | 否   | 上下文。<br>- **说明：** 从API version 21开始，该接口废弃，推荐使用[UIExtensionAbility.context](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)。<br/>      |
 
 ## WindowExtensionAbility.onConnect<sup>(deprecated)</sup>
 
@@ -39,7 +39,7 @@ onConnect(want: Want): void
 
 > **说明：**
 >
->  - 从API version 9开始支持，从API version 20开始废弃，推荐使用[UIExtensionAbility.onCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#oncreate)。
+>  - 从API version 9开始支持，从API version 21开始废弃，推荐使用[UIExtensionAbility.onCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#oncreate)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -70,7 +70,7 @@ onDisconnect(want: Want): void
 
 > **说明：**
 >
->  - 从API version 9开始支持，从API version 20开始废弃，推荐使用[UIExtensionAbility.onDestroy](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#ondestroy)。
+>  - 从API version 9开始支持，从API version 21开始废弃，推荐使用[UIExtensionAbility.onDestroy](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#ondestroy)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -102,7 +102,7 @@ onWindowReady(window: window.Window): void
 
 > **说明：**
 >
->  - 从API version 9开始支持，从API version 20开始废弃，推荐使用[UIExtensionAbility.onSessionCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)。
+>  - 从API version 9开始支持，从API version 21开始废弃，推荐使用[UIExtensionAbility.onSessionCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
