@@ -32,7 +32,7 @@
   提供基于串口通信协议（Serial Port Profile，SPP）实现蓝牙设备间通信连接和传输数据的能力。具体内容可参考API [@ohos.bluetooth.socket](../reference/apis-connectivity-kit/js-apis-bluetooth-socket.md)。
 
 - **A2DP模块**<br/>
-  提供基于高级音频分发协议（Advanced Audio Distribution Profile，A2DP）实现蓝牙设备间通信连接和传输高品质音频的能力。例如：手机与耳机、音响等设备间传输音频流，实现听音乐的场景。具体内容可参考API [@ohos.bluetooth.a2dp](../reference/apis-connectivity-kit/js-apis-bluetooth-a2dp.md)。
+  提供基于增强音频分发协议（Advanced Audio Distribution Profile，A2DP）实现蓝牙设备间通信连接和传输高品质音频的能力。例如：手机与耳机、音响等设备间传输音频流，实现听音乐的场景。具体内容可参考API [@ohos.bluetooth.a2dp](../reference/apis-connectivity-kit/js-apis-bluetooth-a2dp.md)。
 
 - **HFP模块**<br/>
   提供基于免提协议（Hands-Free Profile，HFP）实现蓝牙设备间通信连接和免提通话的能力，可支持双向语音通话和控制等功能。具体内容可参考API [@ohos.bluetooth.hfp](../reference/apis-connectivity-kit/js-apis-bluetooth-hfp.md)。
