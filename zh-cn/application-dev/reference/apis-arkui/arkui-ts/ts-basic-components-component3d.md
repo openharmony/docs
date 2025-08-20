@@ -121,7 +121,7 @@ shader(uri: ResourceStr)
 
 | 参数名 | 类型                                   | 必填 | 说明                         |
 | ------ | -------------------------------------- | ---- | ---------------------------- |
-| uri    | [ResourceStr](ts-types.md#resourcestr) | 是   | 自定义渲染的shader文件资源。详细`.shader`文件格式请参考[.shader资源文件格式要求](../../../graphics3d/arkgraphics3D-shader-resource.md#.shader资源文件格式要求)。 |
+| uri    | [ResourceStr](ts-types.md#resourcestr) | 是   | 自定义渲染的shader文件资源。详细`.shader`文件格式请参考[.shader资源文件格式要求](../../../graphics3d/arkgraphics3D-shader-resource.md)。 |
 
 ### shaderImageTexture
 
