@@ -144,13 +144,13 @@ async function GenerateEccKey(keyAlias: string) {
   let genProperties = GetEccGenerateProperties();
   let options: huks.HuksOptions = {
     properties: genProperties
-  }
+  };
   await huks.generateKeyItem(keyAlias, options)
     .then((data) => {
       console.info(`promise: generate ECC Key success, data = ${JSON.stringify(data)}`);
     }).catch((err: Error) => {
       console.error(`promise: generate ECC Key failed, error: ` + JSON.stringify(err));
-    })
+    });
 }
 
 async function Sign(keyAlias: string, plaintext: string) {
@@ -307,13 +307,13 @@ async function GenerateSm2Key(keyAlias: string) {
   let genProperties = GetSm2GenerateProperties();
   let options: huks.HuksOptions = {
     properties: genProperties
-  }
+  };
   await huks.generateKeyItem(keyAlias, options)
     .then((data) => {
       console.info(`promise: generate Sm2 Key success, data = ${JSON.stringify(data)}`);
     }).catch((err: Error) => {
       console.error(`promise: generate Sm2 Key failed, error: ` + JSON.stringify(err));
-    })
+    });
 }
 
 async function Sign(keyAlias: string, plaintext: string) {
@@ -647,13 +647,13 @@ async function GenerateRsaKey(keyAlias: string) {
   let genProperties = GetRsaGenerateProperties();
   let options: huks.HuksOptions = {
     properties: genProperties
-  }
+  };
   await huks.generateKeyItem(keyAlias, options)
     .then((data) => {
       console.info(`promise: generate RSA Key success, data = ${JSON.stringify(data)}`);
     }).catch((err: Error) => {
       console.error(`promise: generate RSA Key failed, error: ` + JSON.stringify(err));
-    })
+    });
 }
 
 async function Sign(keyAlias: string, plaintext: string) {

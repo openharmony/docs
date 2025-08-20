@@ -11,7 +11,7 @@
 
 ## 开发步骤
 
-1. 指定待导入的密钥别名，密钥别名命名规范参考[密钥生成介绍及算法规格](huks-key-generation-overview.md)。
+1. 指定密钥别名，密钥别名命名规范参考[密钥生成介绍及算法规格](huks-key-generation-overview.md)。
 
 2. 封装密钥属性集和密钥材料。
    - 密钥属性集同样与密钥生成中指定的密钥属性一致，须包含[HuksKeyAlg](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeyalg)、[HuksKeySize](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeysize)、[HuksKeyPurpose](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeypurpose)属性。
@@ -53,17 +53,20 @@ let options: huks.HuksOptions = {
   properties: properties,
   inData: plainTextSize32
 };
+
 /* 3.明文导入密钥 */
-try {
-  huks.importKeyItem(keyAlias, options, (error, data) => {
-    if (error) {
-      console.error(`callback: importKeyItem failed` + JSON.stringify(error));
-    } else {
-      console.info(`callback: importKeyItem success`);
-    }
-  });
-} catch (error) {
-  console.error(`callback: importKeyItem input arg invalid` + JSON.stringify(error));
+async function testImport() {
+  try {
+    huks.importKeyItem(keyAlias, options, (error, data) => {
+      if (error) {
+        console.error(`callback: importKeyItem failed` + JSON.stringify(error));
+      } else {
+        console.info(`callback: importKeyItem success`);
+      }
+    });
+  } catch (error) {
+    console.error(`callback: importKeyItem input arg invalid` + JSON.stringify(error));
+  }
 }
 ```
 ### 导入RSA2048密钥对
@@ -143,23 +146,27 @@ let options: huks.HuksOptions = {
   properties: properties,
   inData: rsa2048KeyPairMaterial
 };
+
 /* 3.明文导入密钥 */
-try {
-  huks.importKeyItem(keyAlias, options, (error, data) => {
-    if (error) {
-      console.error(`callback: importKeyItem failed` + error);
-    } else {
-      console.info(`callback: importKeyItem success`);
-    }
-  });
-} catch (error) {
-  console.error(`callback: importKeyItem input arg invalid` + error);
+async function testImport() {
+  try {
+    huks.importKeyItem(keyAlias, options, (error, data) => {
+      if (error) {
+        console.error(`callback: importKeyItem failed` + error);
+      } else {
+        console.info(`callback: importKeyItem success`);
+      }
+    });
+  } catch (error) {
+    console.error(`callback: importKeyItem input arg invalid` + error);
+  }
 }
 ```
 ### 导入X25519密钥公钥
 ```ts
 /* 以下以导入X25519密钥的Callback操作使用为例 */
 import { huks } from '@kit.UniversalKeystoreKit'
+
 // X25519的公钥数据。X25519 密钥对中的私钥和公钥都是 32 字节（256 位），关于算法原理请自行参考相关密钥学资料。
 let x25519KeyPubMaterial = new Uint8Array([
   0x30, 0x2A, 0x30, 0x05, 0x06, 0x03, 0x2B, 0x65, 0x6E, 0x03, 0x21, 0x00, 0xD2, 0x36, 0x9E, 0xCF,
@@ -194,17 +201,20 @@ let options: huks.HuksOptions = {
   properties: properties,
   inData: x25519KeyPubMaterial
 };
+
 /* 3.明文导入密钥 */
-try {
-  huks.importKeyItem(keyAlias, options, (error, data) => {
-    if (error) {
-      console.error(`callback: importKeyItem failed` + error);
-    } else {
-      console.info(`callback: importKeyItem success`);
-    }
-  });
-} catch (error) {
-  console.error(`callback: importKeyItem input arg invalid` + error);
+async function testImport() {
+  try {
+    huks.importKeyItem(keyAlias, options, (error, data) => {
+      if (error) {
+        console.error(`callback: importKeyItem failed` + error);
+      } else {
+        console.info(`callback: importKeyItem success`);
+      }
+    });
+  } catch (error) {
+    console.error(`callback: importKeyItem input arg invalid` + error);
+  }
 }
 ```
 ## 调测验证
@@ -227,18 +237,21 @@ let huksOptions: huks.HuksOptions = {
   properties: keyProperties, // 非空填充。
   inData: new Uint8Array(new Array()) // 非空填充。
 }
-try {
-  huks.isKeyItemExist(keyAlias, huksOptions, (error, data) => {
-    if (error) {
-      console.error(`callback: isKeyItemExist failed, ` + JSON.stringify(error));
-    } else {
-      if (data !== null && data.valueOf() !== null) {
-        isKeyExist = data.valueOf();
-        console.info(`callback: isKeyItemExist success, isKeyExist = ${isKeyExist}`);
+
+async function testKeyExist() {
+  try {
+    huks.isKeyItemExist(keyAlias, huksOptions, (error, data) => {
+      if (error) {
+        console.error(`callback: isKeyItemExist failed, ` + JSON.stringify(error));
+      } else {
+        if (data !== null && data.valueOf() !== null) {
+          isKeyExist = data.valueOf();
+          console.info(`callback: isKeyItemExist success, isKeyExist = ${isKeyExist}`);
+        }
       }
-    }
-  });
-} catch (error) {
-  console.error(`callback: isKeyItemExist input arg invalid, ` + JSON.stringify(error));
+    });
+  } catch (error) {
+    console.error(`callback: isKeyItemExist input arg invalid, ` + JSON.stringify(error));
+  }
 }
 ```
