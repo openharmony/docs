@@ -6,7 +6,7 @@
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
 
-  当在一个struct内使用多个全局@Builder函数实现UI的不同效果时，代码维护将变得非常困难，且页面不够整洁。此时，可以使用wrapBuilder封装全局@Builder。
+  当在一个struct内使用多个全局@Builder函数实现UI的不同效果时，代码维护将变得非常困难，且页面不够整洁。此时，可以使用wrapBuilder封装全局\@Builder。
 
   在阅读本文档前，建议提前阅读：[\@Builder](./arkts-builder.md)。
 
@@ -16,7 +16,7 @@
 >
 > 从API version 12开始，wrapBuilder支持在原子化服务中使用。
 
-当@Builder方法赋值给变量或者数组后，在UI方法中无法使用。
+当\@Builder方法赋值给变量或者数组后，在UI方法中无法使用。
 
 ```ts
 @Builder
@@ -31,13 +31,13 @@ function testBuilder() {
 }
 ```
 
-在上述代码中，`builderArr`是一个由`@Builder`方法组成的数组。在`ForEach`循环中取每个`@Builder`方法时，会出现`@Builder`方法在UI方法中无法使用的问题。
+在上述代码中，`builderArr`是一个由\@Builder方法组成的数组。在ForEach循环中取每个\@Builder方法时，会出现\@Builder方法在UI方法中无法使用的问题。
 
-为了解决这一问题，引入`wrapBuilder`作为全局`@Builder`封装函数。`wrapBuilder`返回`WrappedBuilder`对象，实现[全局\@Builder](arkts-builder.md#全局自定义构建函数)可以进行赋值和传递。 
+为了解决这一问题，引入wrapBuilder作为全局\@Builder封装函数。wrapBuilder返回WrappedBuilder对象，用于[全局\@Builder](arkts-builder.md#全局自定义构建函数)的赋值和传递。 
 
 ## 接口说明
 
-wrapBuilder是一个模板函数，返回一个`WrappedBuilder`对象。
+wrapBuilder是一个模板函数，返回一个WrappedBuilder对象。
 
 ```ts
 declare function wrapBuilder<Args extends Object[]>(builder: (...args: Args) => void): WrappedBuilder<Args>;
@@ -52,8 +52,9 @@ declare class WrappedBuilder<Args extends Object[]> {
 }
 ```
 
-
->说明：模板参数`Args extends Object[]`是需要包装的builder函数的参数列表
+> **说明：**
+>
+> 模板参数`Args extends Object[]`需要匹配\@Builder函数参数的类型。
 
 使用方法：
 
@@ -68,11 +69,11 @@ let builderArr: WrappedBuilder<[string, number]>[] = [wrapBuilder(MyBuilder)]; /
 
 1. wrapBuilder方法只能传入[全局\@Builder](arkts-builder.md#全局自定义构建函数)方法。
 
-2. wrapBuilder方法返回的WrappedBuilder对象的builder属性方法只能在struct内部使用。
+2. WrappedBuilder对象的builder属性方法仅限在struct内部使用。
 
 ## @Builder方法赋值给变量
 
-使用`@Builder`装饰器装饰的方法`MyBuilder`作为`wrapBuilder`的参数，再将`wrapBuilder`函数的返回值赋值给变量`globalBuilder`，以解决`@Builder`方法赋值给变量后无法使用的问题。
+使用\@Builder装饰器装饰的方法`MyBuilder`作为wrapBuilder的参数，然后将wrapBuilder的返回值赋值给变量`globalBuilder`，以解决\@Builder方法赋值给变量后无法使用的问题。
 
 ```ts
 @Builder
@@ -102,7 +103,7 @@ struct Index {
 
 ##  @Builder方法赋值给变量在UI语法中使用
 
-自定义组件Index使用`ForEach`进行不同`@Builder`函数的渲染，可以使用`builderArr`声明的`wrapBuilder`数组来实现不同的`@Builder`函数效果。整体代码会更加整洁。
+自定义组件`Index`使用ForEach进行不同\@Builder函数的渲染，可以使用`builderArr`声明的wrapBuilder数组来实现不同的\@Builder函数的效果。整体代码会更加整洁。
 
 ```
 @Builder
@@ -147,7 +148,7 @@ struct Index {
 
 ## 引用传递
 
-按引用传递参数时，传递的状态变量的改变会引起@Builder方法内的UI刷新。
+按引用传递参数时，状态变量的改变会引起\@Builder方法内的UI刷新。
 
 ```ts
 class Tmp {
@@ -183,7 +184,7 @@ struct Parent {
 
 ### 重复定义wrapBuilder失效
 
-在同一个自定义组件内，同一个`wrapBuilder`只能初始化一次。示例中，`builderObj`通过`wrapBuilder(MyBuilderFirst)`初始化定义后，再次对`builderObj`赋值`wrapBuilder(MyBuilderSecond)`不会生效。
+在同一个自定义组件内，同一个wrapBuilder只能初始化一次。例如，`builderObj`通过`wrapBuilder(MyBuilderFirst)`初始化定义后，再次对`builderObj`赋值`wrapBuilder(MyBuilderSecond)`将不会生效。
 
 ```ts
 @Builder
