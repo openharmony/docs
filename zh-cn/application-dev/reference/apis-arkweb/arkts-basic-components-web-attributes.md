@@ -367,7 +367,7 @@ overviewModeAccess(overviewModeAccess: boolean)
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**设备行为差异：** 该接口在Wearable设备中无效果，在其他设备中可正常调用。
+**设备行为差异：** 该接口在PC/2in1设备中无效果，在其他设备中可正常调用。
 
 **参数：**
 
