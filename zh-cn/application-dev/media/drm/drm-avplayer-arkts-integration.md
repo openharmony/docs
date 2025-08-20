@@ -58,7 +58,7 @@
    }
    ```
 
-5. 调用[generateMediaKeyRequest](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySession.md#generatemediakeyrequest)，根据DRM信息中的pssh信息生成媒体密钥请求并处理媒体密钥响应。
+5. 调用[generateMediaKeyRequest](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySession.md#generatemediakeyrequest)生成媒体密钥请求，并调用[processMediaKeyResponse](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySession.md#processmediakeyresponse)处理媒体密钥响应。
 
    ```ts
    let initData: Uint8Array = new Uint8Array(drmInfoArr[i].pssh);
@@ -80,7 +80,7 @@
    });
    ```
 
-6. 调用[requireSecureDecoderModule](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySession.md#requiresecuredecodermodule)，在处理媒体密钥响应成功后设置解密session。
+6. 调用[requireSecureDecoderModule](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySession.md#requiresecuredecodermodule)和[setDecryptionConfig](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#setdecryptionconfig11)，在处理媒体密钥响应成功后设置解密session。
 
    ```ts
    let svp: boolean = mediaKeySession.requireSecureDecoderModule('video/avc');
