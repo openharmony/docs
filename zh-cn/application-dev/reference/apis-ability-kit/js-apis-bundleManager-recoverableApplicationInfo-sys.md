@@ -1,9 +1,4 @@
 # RecoverableApplicationInfo (系统接口)
-<!--Kit: Ability Kit-->
-<!--Subsystem: BundleManager-->
-<!--Owner: @SoftSquirrel-->
-<!--SE: @hanfeng6; @lihaitao-->
-<!--TSE: @kongjing2-->
 
 预置应用被卸载后可以恢复的预置应用信息，通过接口[bundleManager.getRecoverableApplicationInfo](./js-apis-bundleManager-sys.md#bundlemanagergetrecoverableapplicationinfo11)获取。
 
