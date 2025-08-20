@@ -5,6 +5,7 @@
 <!--Owner: @inter515-->
 <!--Designer: @inter515-->
 <!--Tester: @laonie666-->
+<!--Adviser: @Brilliantry_Rui-->
 
 
 UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要支持如点击、双击、长按、滑动等UI操作能力。
@@ -399,7 +400,7 @@ type(tp: string, pattern: MatchPattern): On
 
 ```ts
 import { On, ON } from '@kit.TestKit';
-let on:On = ON.type('Button'); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
+let on:On = ON.type('Button', MatchPattern.EQUALS);; // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
 ```
 
 ### clickable<sup>9+</sup>
@@ -1548,7 +1549,7 @@ async function demo() {
 
 inputText(text: string): Promise\<void>
 
-向控件中输入文本（适用于文本框控件），清空组件内原有文本后输入，使用Promise异步回调。
+清空组件内原有文本并输入指定文本内容，仅针对可编辑的文本组件生效，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1591,7 +1592,7 @@ async function demo() {
 
 clearText(): Promise\<void>
 
-清除控件的文本信息（适用于文本框控件），使用Promise异步回调。
+清除控件的文本信息，仅针对可编辑的文本组件生效，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1807,7 +1808,7 @@ dragTo(target: Component): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -2586,7 +2587,7 @@ drag(startx: number, starty: number, endx: number, endy: number, speed?: number)
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -2675,7 +2676,7 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -2752,7 +2753,7 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -2898,7 +2899,7 @@ pressHome(): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1设备上生效，在其他设备中调用无效果。
 
 **返回值：**
 
@@ -3505,7 +3506,7 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -5307,7 +5308,7 @@ async function demo() {
 
 inputText(text: string): Promise\<void>
 
-向控件中输入文本（适用于文本框控件）。
+向控件中输入文本，仅针对可编辑的文本组件生效。
 
 从API version 9开始不再维护，建议使用[inputText<sup>9+</sup>](#inputtext9)。
 
