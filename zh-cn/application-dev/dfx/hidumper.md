@@ -41,7 +41,7 @@ HiDumper命令行工具使用常见问题汇总在[常见问题](#常见问题)�
 | [--cpuusage [pid]](#查询进程cpu使用率) | 获取CPU使用率，取值范围(0, CPU核数]，按进程和类别分类；如果指定pid，则获取指定pid的CPU使用率。 |
 | [--cpufreq](#查询cpu频率) | 获取CPU每个核的真实频率，单位：kHz。 |
 | [--mem [--prune]](#查询整机内存) | 获取总内存使用情况。如果指定--prune，只导出精简的内存使用情况。<br />**说明**：从API version 20开始。支持--prune参数。 |
-| [--mem pid [--show-ashmem] [--show-dmabuf]](#查询进程内存) | 获取指定pid的进程内存使用情况。指定 --show-ashmem，则补充打印该进程的ashmem使用详细信息。如果是应用进程，指定--show-dmabuf，则补充打印DMA内存详情信息。 |
+| [--mem pid [--show-ashmem] [--show-dmabuf]](#查询进程内存) | 获取指定pid的进程内存使用情况。<br />指定 --show-ashmem，则补充打印该进程的ashmem使用详细信息。<br />如果是应用进程，指定--show-dmabuf，则补充打印DMA内存详情信息。 |
 | [--zip](#导出信息压缩存储) | 保存命令输出到 /data/log/hidumper 下的压缩文件，压缩格式为 ZIP。 |
 | [--ipc [pid]/-a --start-stat/stat/--stop-stat](#获取进程间通信信息) | 统计一段时间进程IPC信息。如果使用-a，则统计所有进程IPC数据。使用--start-stat开始统计，使用--stat获取统计数据，使用--stop-stat结束统计。 |
 | [--mem-smaps pid [-v]](#查询进程内存) | 获取pid内存统计信息，数据来源于/proc/pid/smaps，使用-v指定更多详细信息。（仅支持导出[debug版本应用](performance-analysis-kit-terminology.md#debug版本应用)） |
@@ -240,7 +240,11 @@ Process_name    Process_ID      Fd      Cnode_idx       Applicant_Pid   Ashmem_n
 wei.hmos.xxx  27336   72      328415  27336   dev/ashmem/Paf.Permission.appImg        147456  147456  14105
 ```
 
-使用hidumper --mem pid --show-dmabuf命令可获取指定 PID 的内存使用情况，并打印 DMA 内存详细信息。**说明**：此功能仅在设备存在 `mm_dmabuf_info` 节点时可用。
+使用hidumper --mem pid --show-dmabuf命令可获取指定PID的内存使用情况，并打印DMA内存详细信息。
+
+>**说明**：
+>
+>此功能仅在设备存在 `mm_dmabuf_info` 节点时可用。
 
 使用样例：
 
@@ -365,7 +369,7 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
 
 ### 查询虚拟机堆内存
 
-使用hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]命令可以查看ArkTS应用虚拟机堆内存，使用hidumper --mem-cjheap pid [--gc]命令可以查看仓颉应用虚拟机堆内存。生成的堆内存文件存放于/data/log/faultlog/temp目录。
+使用hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]命令可以查看ArkTS应用虚拟机堆内存，使用hidumper --mem-cjheap pid [--gc]命令可以查看仓颉应用虚拟机堆内存。生成的堆内存文件存放于<!--RP2-->/data/log/faultlog/temp<!--RP2End-->目录。
 
 > **注意：**
 >
@@ -373,7 +377,7 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
 >
 > 确认命令指定的应用是否为可调试应用：参考上述hidumper --mem-smaps [pid] [-v]命令中的注意事项。
 
-<!--RP2-->
+<!--RP3-->
 - 可使用hidumper --mem-jsheap pid命令获取指定进程所有JS线程的虚拟机堆内存，文件命名为：jsheap-进程号-JS线程号-时间戳，如果有多个JS线程会生成多个文件。
 
   使用样例：
@@ -408,7 +412,7 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
   $ ls | grep jsheap
   jsheap-64949-64949-1751075546055.rawheap
   ```
-<!--RP2End-->
+<!--RP3End-->
 
 - 可使用hidumper --mem-jsheap pid --gc命令触发指定应用进程GC。该命令不会生成任何文件，执行成功不会有命令回显。
 
@@ -418,16 +422,16 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
   $ hidumper --mem-jsheap 64949 --gc  -> 64949 为目标应用进程号
   ```
 
-<!--RP3-->
+<!--RP4-->
 - 可使用hidumper --mem-jsheap pid --leakobj获取指定进程的虚拟机堆内存和泄漏对象信息，文件命名为：leaklist-进程号-时间戳。
 
-  获取指定进程的虚拟机堆内存和泄露对象信息的前提是应用已通过[@ohos.hiviewdfx.jsLeakWatcher (js泄露检测)](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md)接口开启了泄漏检测功能。
+    获取指定进程的虚拟机堆内存和泄露对象信息的前提是应用已通过[@ohos.hiviewdfx.jsLeakWatcher (js泄露检测)](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md)接口开启了泄漏检测功能。
 
-  具体使用步骤为：
+    具体使用步骤为：
 
-  1. 应用调用[jsLeakWatcher.enable](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md#jsleakwatcherenable)接口。
-  2. 应用调用[jsLeakWatcher.watch](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md#jsleakwatcherwatch)接口。
-  3. 执行hidumper --mem-jsheap [pid] --leakobj命令，导出虚拟机堆内存和泄漏对象信息。
+    1. 应用调用[jsLeakWatcher.enable](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md#jsleakwatcherenable)接口。
+    2. 应用调用[jsLeakWatcher.watch](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md#jsleakwatcherwatch)接口。
+    3. 执行hidumper --mem-jsheap [pid] --leakobj命令，导出虚拟机堆内存和泄漏对象信息。
 
   使用样例：
 
@@ -436,7 +440,7 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
   $ ls | grep leaklist
   leaklist-64949-1730873210483
   ```
-<!--RP3End-->
+<!--RP4End-->
 <!--Del-->
 - 可使用hidumper --mem-cjheap pid命令获取指定仓颉进程的虚拟机堆内存，文件命名为：cjheap-进程号-时间戳。
 
