@@ -16,7 +16,7 @@ Web组件提供的利用W3C CSS进行安全区域计算和避让适配的能力�
 
 ## 开启Web组件沉浸式效果
 
-Web组件默认布局在安全区域内。开启沉浸式效果后，Web网页将扩展至状态栏和导航栏，从而最大化利用屏幕可视区域，增强视觉连贯性，改善用户的UI体验。开发者可通过以下方式启用Web组件的沉浸式效果。
+Web组件默认布局在安全区域内。开启<!--RP1-->沉浸式效果<!--RP1End-->后，Web网页将扩展至状态栏和导航栏，从而最大化利用屏幕可视区域，增强视觉连贯性，改善用户的UI体验。开发者可通过以下方式启用Web组件的沉浸式效果。
 
 - 通过[setWindowLayoutFullScreen](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowlayoutfullscreen9)设置应用窗口全屏。窗口全屏时，Web组件可布局至非安全区域。
 

@@ -1,4 +1,4 @@
-# AutoFillExtensionAbility
+# 使用AutoFillExtensionAbility实现自动填充功能（仅对系统应用开放）
 
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
@@ -11,7 +11,7 @@
 
 [AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)是AUTO_FILL_PASSWORD/AUTO_FILL_SMART类型的[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)组件，提供自动填充能力。
 
-自动填充能力根据自动填充控件内容的不同分为账号密码自动填充、情景化自动填充。
+自动填充能力根据自动填充控件内容的不同，分为账号密码自动填充和情景化自动填充。
 
 - 账号密码自动填充：帮助用户自动填充已保存的账号密码，提高用户输入信息的效率。
 - 情景化自动填充：根据组件的使用场景实现手机号、地址等信息的自动填充。
@@ -40,7 +40,7 @@
 - **onBackground**：当AutoFillExtensionAbility从前台转到后台时触发。
 - **onDestroy**：当AutoFillExtensionAbility销毁时回调，可以执行资源清理等操作。
 - **onSaveRequest**：表单中有数据存在并且切换页面时，会触发自动保存的生命周期回调。
-- **onFillRequest**：当fill request发送请求的时候，实现账号密码自动填充。
+- **onFillRequest**：当发起自动填充请求或者生成密码时，会触发该生命周期回调。
 
 ### 实现账号密码自动填充功能
 
@@ -338,7 +338,7 @@
 
 ## 开发AutoFillExtensionAbility使用方
 
-开发者可以在主页面中通过点击自动填充组件启动[AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)。 如在主页面中添加如下内容：
+开发者可以在主页面中通过点击自动填充组件启动[AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)。如在主页面中添加如下内容：
 
 ### 添加支持账号密码自动填充能力的组件
 

@@ -1,5 +1,10 @@
 # @ohos.application.formInfo (formInfo)
-
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 The **formInfo** module provides types and enums related to the widget information and state.
 
 > **NOTE**
@@ -15,7 +20,7 @@ import formInfo from '@ohos.application.formInfo';
 
 ## FormInfo
 
-Describes widget information.
+Widget information.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -27,7 +32,7 @@ Describes widget information.
 | name        | string               | Yes   | No     | Widget name.                                |
 | description | string               | Yes   | No     | Description of the widget.  |
 | type        | [FormType](#formtype)             | Yes   | No     | Type of the widget. Currently, only JS widgets are supported.|
-| jsComponentName      | string               | Yes   | No     | Name of the component used in the JS widget.              |
+| jsComponentName      | string               | Yes   | No     | Component name of the JS widget.              |
 | colorMode  | [ColorMode](#colormode) | Yes   | No     | Color mode of the widget.                                      |
 | isDefault    | boolean      | Yes   | No     | Whether the widget is the default one.                             |
 | updateEnabled  | boolean               | Yes   | No     | Whether the widget is updatable.                   |

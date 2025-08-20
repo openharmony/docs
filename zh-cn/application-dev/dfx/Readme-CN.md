@@ -50,6 +50,7 @@
         - [订阅主线程超时事件（C/C++）](hiappevent-watcher-mainthreadjank-events-ndk.md)
       - 任务执行超时事件<!--app-hicollie-events-->
         - [任务执行超时事件介绍](hiappevent-watcher-apphicollie-events.md)
+        - [订阅任务执行超时事件（ArkTS）](hiappevent-watcher-apphicollie-events-arkts.md)
         - [订阅任务执行超时事件（C/C++）](hiappevent-watcher-apphicollie-events-ndk.md)
       - 应用查杀事件<!--app-killed-events-->
         - [应用查杀事件介绍](hiappevent-watcher-app-killed-events.md)

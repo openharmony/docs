@@ -2,8 +2,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @zsyztt; @Hermits; @reminder2352-->
-<!--SE: @yunlanying-->
-<!--TSE: @liuhonggang123-->
+<!--Designer: @yunlanying-->
+<!--Tester: @liuhonggang123-->
+<!--Adviser: @foryourself-->
 
 The **cloudSyncManager** module provides APIs for managing device-cloud synergy for applications. You can use the APIs to enable or disable device-cloud synergy, change the device-cloud sync switch for an application, notify cloud data changes, and clear or retain cloud files when a cloud account exits.
 
@@ -823,7 +824,7 @@ Represents the downgrade download progress.
 | failedCount     | number                                      | No  | No  | Number of files that fail to be downloaded. The value range is [0, INT32_MAX]. If the progress is abnormal, **-1** is returned.     |
 | totalCount      | number                                      | No  | No  | Total number of files to be downloaded. The value range is [0, INT32_MAX]. If the progress is abnormal, **-1** is returned.       |
 | downloadedSize  | number                                      | No  | No  | Size of the downloaded data, in bytes. The value range is [0, INT64_MAX). If the progress is abnormal, **INT64_MAX** is returned.|
-| totalSize       | number                                      | No  | No  | Total size of files, in bytes. The value range is [0, INT64_MAX). If the progress is abnormal, **INT64_MAX** is returned.|
+| totalSize       | number                                      | No  | No  | Total size of the files to be downloaded, in bytes. The value range is [0, INT64_MAX). If the progress is abnormal, **INT64_MAX** is returned.|
 | stopReason      | [DownloadStopReason](#downloadstopreason20) | No  | No  | Reason why the download stops.                                                             |
 
 ## CloudFileInfo<sup>20+</sup>

@@ -101,7 +101,7 @@ OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO
 if (capability == nullptr) {
    // 异常处理。
 }
-bool isHardward = OH_AVCapability_IsHardware(capability);
+bool isHardware = OH_AVCapability_IsHardware(capability);
 // 2. 基于软硬件类别差异化配置。
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
 if (videoEnc == nullptr) {
@@ -111,7 +111,7 @@ OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AV
 if (format == nullptr) {
    // 异常处理。
 }
-double frameRate = isHardward ? 60.0 : 30.0;
+double frameRate = isHardware ? 60.0 : 30.0;
 if (!OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate)) {
    // 异常处理。
 }

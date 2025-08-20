@@ -30,7 +30,7 @@
 java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplicate true
 ```
 
-<b>扫描重复文件指令参数说明</b>
+**表1 扫描重复文件指令参数说明**
 
 | 指令             | 是否必选项 | 描述                                                               |
 | ---------------- | ---------- | ------------------------------------------------------------------ |
@@ -48,7 +48,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplica
     "startTime":"2023-11-17 14:48:01:265",
     "stopTime":"2023-11-17 14:48:01:434",
 	"result":[{
-        "md5":"975c41f5727b416b1ffefa5bb0f073b",
+        "md5":"975c41f5727b416b1ffefa5bb0f073b2",
         "size":1108880,
         "files":[
             "/application-entry-default.hap/libs/armeabi-v7a/example.so",
@@ -58,7 +58,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplica
 }]
 ```
 
-**扫描重复文件字段信息**
+**表2 扫描重复文件字段信息**
 
 | 字段      | 类型   | 描述                        |
 | --------- | ------ | --------------------------- |
@@ -67,9 +67,9 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplica
 | param     | String | 扫描程序传入参数。          |
 | startTime | String | 任务开始时间。              |
 | stopTime  | String | 任务结束时间。              |
-| result    | Struct | [参考下表。](#section1)       |
+| result    | Struct | 重复文件统计结果字段信息，具体内容参考表3。       |
 
-**重复文件统计结果字段信息** <a name="section1"></a>
+**表3 重复文件统计结果字段信息**
 
 | 字段  | 类型            | 描述                       |
 | ----- | --------------- | -------------------------- |
@@ -85,7 +85,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplica
 java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-file-size 4
 ```
 
-<b>扫描超出指定大小的文件的指令参数说明</b>
+**表4 扫描超出指定大小的文件的指令参数说明**
 
 | 指令             | 是否必选项 | 描述                                                        |
 | ---------------- | ---------- | ----------------------------------------------------------- |
@@ -110,7 +110,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-file-si
 ```
 
 
-**扫描超出指定大小的文件字段信息**
+**表5 扫描超出指定大小的文件字段信息**
 
 | 字段      | 类型   | 描述                                |
 | --------- | ------ | ----------------------------------- |
@@ -119,9 +119,9 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-file-si
 | param     | String | 扫描程序传入参数。                  |
 | startTime | String | 任务开始时间。                      |
 | stopTime  | String | 任务结束时间。                      |
-| result    | Struct | [参考下表。](#section2)               |
+| result    | Struct | 超出指定大小的文件统计结果字段信息，具体内容参考表6。              |
 
-**超出指定大小的文件统计结果字段信息**<a name="section2"></a>
+**表6 超出指定大小的文件统计结果字段信息**
 
 | 字段 | 类型   | 描述                                 |
 | ---- | ------ | ------------------------------------ |
@@ -136,7 +136,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-file-si
 java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix true
 ```
 
-<b>统计各类型文件大小占比指令参数说明</b>
+**表7 统计各类型文件大小占比指令参数说明**
 
 | 指令          | 是否必选项 | 描述                                                                      |
 | ------------- | ---------- | ------------------------------------------------------------------------- |
@@ -183,7 +183,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 
 
 
-**统计各类型文件大小占比字段信息**
+**表8 统计各类型文件大小占比字段信息**
 
 | 字段      | 类型            | 描述                                                                                   |
 | --------- | --------------- | -------------------------------------------------------------------------------------- |
@@ -193,17 +193,17 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 | startTime | String          | 任务开始时间。                                                                         |
 | stopTime  | String          | 任务结束时间。                                                                         |
 | pathList  | Vector\<String> | 多个HAP、HSP包的路径。                                                                  |
-| result    | Struct          | [参考下表。](#section3)                                                                  |
+| result    | Struct          | 各类型文件大小占比统计结果字段信息，具体内容参考表9。                                    |
 
-**各类型文件大小占比统计结果字段信息**<a name="section3"></a>
+**表9 各类型文件大小占比统计结果字段信息**
 
 | 字段      | 类型   | 描述                                       |
 | --------- | ------ | ------------------------------------------ |
 | suffix    | String | 同类型文件后缀名。                         |
 | totalSize | int    | 扫描的同类型文件的总大小，单位为Byte。 |
-| files     | Struct  | [参考下表。](#section4)                      |
+| files     | Struct  | 同类型文件的对应路径和大小字段信息，具体内容参考表10。                     |
 
-**同类型文件的对应路径和大小字段信息**<a name="section4"></a>
+**表10 同类型文件的对应路径和大小字段信息**
 | 字段     | 类型   | 描述                                                                |
 | -------- | ------ | ------------------------------------------------------------------- |
 | file     | String | 文件路径。                                                          |

@@ -8,7 +8,7 @@ You can sync the application data in a local RDB store on a device to other devi
 
 ## Basic Concepts
 
-OpenHamony supports sync of the relational data of an application across multiple devices.
+OpenHarmony supports sync of the relational data of an application across multiple devices.
 
 - If a table created for an application in the database is set as a distributed table, when data is queried from the RDB store of a remote device, the distributed table name of the remote device can be obtained based on the local table name.
 

@@ -8,19 +8,19 @@
 
 ## 概述
 
-在API version 20之前，UI组件的创建与属性设置操作必须在应用的UI线程中执行。这导致开发者在对接NDK接口时，需将组件创建与属性设置等任务提交至UI线程执行，不仅增加了应用代码的复杂性，也限制了组件创建过程的灵活性及应用的整体性能。
+在API version 20之前，UI组件的创建与属性设置等操作必须在应用的UI线程中执行。这导致开发者在对接NDK接口时，需将组件创建与属性设置等任务提交至UI线程执行，不仅增加了应用代码的复杂性，也限制了组件创建过程的灵活性及应用的性能。
 
 随着应用程序功能的日益复杂，应用页面内需动态创建大量组件，这些组件的创建任务堆积在单一的UI线程中执行，会导致应用启动缓慢、动画丢帧及页面卡顿，直接影响用户体验。
 
-针对这些问题，在API version 20，ArkUI引入了完整的多线程支持能力，为开发者带来了以下提升：
+针对这些问题，在API version 20，NDK接口引入了多线程支持能力，为开发者带来了以下提升：
 
-- **简化调用流程：** 开发者无需手动切换线程或通过任务队列将组件创建任务提交至UI线程执行，可在自定义的任意线程中直接调用组件创建接口，减少线程上下文切换次数，简化UI框架与应用间的交互逻辑。
+- **简化调用流程：** 开发者无需主动切换线程或通过任务队列将组件创建任务提交至UI线程执行，可在任意线程中直接调用组件创建接口，减少线程上下文切换次数，简化UI框架与应用间的交互逻辑。
 
-- **性能与体验显著优化：** 组件创建和属性设置接口支持多线程并发调用，能够充分利用设备的多核CPU，降低页面创建阶段的总体耗时。UI线程专注于动画渲染与用户输入，确保界面流畅及交互及时。
+- **性能与体验显著优化：** 组件创建和属性设置等接口支持多线程并发调用，能够充分利用设备的多核CPU，降低页面创建阶段的总体耗时。UI线程专注于动画渲染与用户输入，确保界面流畅及交互及时。
 
--  **为后续功能扩展提供更好的灵活性：** 组件创建和属性设置接口支持多线程调用，不仅能够解决应用当前的性能瓶颈问题，还为未来开发更复杂、高负载的UI页面提供扩展空间，帮助开发者在设计时拥有更大的灵活性与掌控力，为持续提升用户体验创造条件。
+-  **为后续功能扩展提供更好的灵活性：** 组件创建和属性设置等接口支持多线程调用，不仅能够解决应用当前的性能瓶颈问题，还为未来开发更复杂、高负载的UI页面提供扩展空间，帮助开发者在设计时拥有更多的灵活性，为持续提升用户体验创造条件。
 
-通过此次优化，开发者能够专注于自身业务逻辑的实现，无需关注线程切换等底层细节。在复杂业务场景中，开发者将获得更加可预测且高性能的UI页面创建体验。
+通过此次优化，开发者能够专注于自身业务逻辑的实现，无需关注线程切换等底层细节。在复杂业务场景中，开发者将获得高性能的UI页面创建体验。
   
 ## 多线程NDK接口使用方式
 
@@ -44,28 +44,37 @@
 
 - 当开发者需要在自己创建的非UI线程中创建UI组件时，使用[OH_ArkUI_PostUITask](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_postuitask)接口将组件挂载到主树的任务提交到UI线程执行。
   
-- 当开发者在多线程创建组件的过程中需要调用只支持UI线程的函数时，使用[OH_ArkUI_PostUITaskAndWait](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_postuitaskandwait)接口回到UI线程调用函数，调用完成后继续回到非UI线程创建组件。当UI线程负载很高时，调用此接口的非UI线程可能长时间阻塞，会影响多线程创建UI组件的性能收益，不建议频繁使用。
+- 当开发者在多线程创建组件的过程中需要调用只支持UI线程的函数时，使用[OH_ArkUI_PostUITaskAndWait](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_postuitaskandwait)接口将函数提交到UI线程执行，调用此接口的非UI线程等待函数执行完成后继续创建组件。当UI线程负载很高时，调用此接口的非UI线程可能长时间阻塞，会影响多线程创建UI组件的性能收益，不建议频繁使用。
 
 ## 多线程NDK接口调用规范与线程安全
 
-- 多线程接口调用规范请参考[多线程NDK接口集合规格](#多线程ndk接口集合规格)。调用接口时必须检查接口返回值，在非UI线程中调用集合中不支持多线程的接口，接口将返回错误码[ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD](../reference/apis-arkui/capi-native-type-h.md#arkui_errorcode)。
+- 多线程NDK接口调用规范请参考[多线程NDK接口集合规格](#多线程ndk接口集合规格)。调用多线程NDK接口时必须检查接口返回值。
 
-- 使用多线程接口创建的组件有以下两种状态：
+- 在非UI线程中调用集合中不支持多线程的接口，接口将返回错误码[ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD](../reference/apis-arkui/capi-native-type-h.md#arkui_errorcode)。
 
-  - **Free（游离状态）：** 组件未挂载到UI主树，不被UI流水线管理，可以在非UI线程安全操作组件。
-  - **Attached（已挂载状态）：** 组件已挂载到UI主树，交由UI流水线管理，必须在UI线程操作组件，否则将返回错误码[ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD](../reference/apis-arkui/capi-native-type-h.md#arkui_errorcode)。
+- 使用多线程NDK接口在多个线程同时操作不同组件是线程安全的；多个线程中同时操作同一个组件或同一个组件树是非线程安全的，可能产生不可预测的结果。
 
-- 虽然ArkUI提供了线程安全的组件创建与属性设置等接口，但是单个组件内部仍是非线程安全的。请避免在多个线程中同时操作同一组件或同一组件树，否则可能产生不可预测的结果。
+- 使用多线程NDK接口创建的安全组件有以下两种状态：
+
+  - **Free（游离状态）：** 组件未挂载到UI主树，开发者可以在任意线程使用多线程NDK接口操作此组件。
+  - **Attached（已挂载状态）：** 组件已挂载到UI主树，交由UI流水线管理，开发者必须在UI线程使用多线程NDK接口操作此组件，否则将返回错误码[ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD](../reference/apis-arkui/capi-native-type-h.md#arkui_errorcode)。
+
+- 使用非多线程NDK接口创建的不安全组件（如ArkTS组件）由UI流水线管理，开发者必须在UI线程使用多线程NDK接口操作此组件，否则将返回错误码[ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD](../reference/apis-arkui/capi-native-type-h.md#arkui_errorcode)。非必要场景下不建议使用多线程NDK接口操作此类组件。
+
+- 开发者可以在UI线程使用多线程[组件树操作](#组件树操作)接口给组件挂载不安全的ArkTS组件，但之后不可以继续在非UI线程操作这个挂载有ArkTS组件的组件，以避免在非UI线程中操作组件时访问到不安全的ArkTS组件导致应用崩溃。
+
+- 开发者需要在UI线程移除组件挂载的所有ArkTS组件后才可以继续在非UI线程操作这个组件，ArkUI框架会在组件从UI主树卸载前检查其是否挂载有ArkTS组件，并打印如下日志提示：
+
+    ```
+    CheckIsThreadSafeNodeTree failed. thread safe node tree contains unsafe node: ${nodeid}
+    ```
 
 ## 多线程NDK接口的错误与异常
 
 - 在非UI线程调用集合中不支持多线程的接口将返回错误码[ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD](../reference/apis-arkui/capi-native-type-h.md#arkui_errorcode)。
 - 组件挂载到UI主树后，在非UI线程调用接口操作组件将返回错误码[ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD](../reference/apis-arkui/capi-native-type-h.md#arkui_errorcode)。
-- 在Native节点下树前，必须先卸载嵌套的ArkTs节点，以避免在非UI线程中遍历节点树时访问到不安全的ArkTS节点导致崩溃。ArkUI框架针对此错误，将打印如下日志提示：
+- 在非UI线程调用接口操作非多线程NDK接口创建的组件将返回错误码[ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD](../reference/apis-arkui/capi-native-type-h.md#arkui_errorcode)。
 
-```
-CheckIsThreadSafeNodeTree failed. thread safe node tree contains unsafe node: ${nodeid}
-```
 
 ## 多线程NDK接口适配说明
 
@@ -76,7 +85,7 @@ CheckIsThreadSafeNodeTree failed. thread safe node tree contains unsafe node: ${
    OH_ArkUI_GetModuleInterface(ARKUI_MULTI_THREAD_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nodeAPI);
    ```
 
-2. 建议将原先在UI线程中执行的组件创建任务拆分成更细粒度任务，分派给不同工作线程执行，以降低主线程负载，提高页面启动与更新流畅度。
+2. 建议将原先在UI线程中执行的组件创建任务拆分成更细粒度任务，分派给多个线程并发执行，以降低UI线程负载，提高页面启动与更新流畅度。
 
 3. 预先在后台线程中创建常用组件树，为性能敏感场景提供更好的用户体验。
 
@@ -346,32 +355,40 @@ void CreateNodeTree(void *asyncUITaskData) {
     auto rowNode = std::make_shared<ArkUIRowNode>();
     asyncData->child = rowNode;
     
+    // 创建button组件。
     auto buttonNode1 = std::make_shared<ArkUIButtonNode>();
     ArkUI_AttributeItem label_item = { .string = asyncData->label.c_str() };
+    // 设置button组件的label属性。
     int32_t result = buttonNode1->SetLabel(label_item);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_ERROR(LOG_APP, "Button SetLabel Failed %{public}d", result);
     }
     ArkUI_NumberValue value[] = {{.f32 = 5}, {.f32 = 5}, {.f32 = 5}, {.f32 = 5}};
     ArkUI_AttributeItem item = {value, 4};
+    // 设置button组件的margin属性。
     result = buttonNode1->SetMargin(item);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_ERROR(LOG_APP, "Button SetMargin Failed %{public}d", result);
     }
+    // 设置button组件的width属性。
     buttonNode1->SetWidth(150);
    
+   // 创建button组件。
     auto buttonNode2 = std::make_shared<ArkUIButtonNode>();
     ArkUI_AttributeItem label_item2 = { .string = asyncData->label.c_str() };
+    // 设置button组件的label属性。
     result = buttonNode2->SetLabel(label_item2);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_ERROR(LOG_APP, "Button SetLabel Failed %{public}d", result);
     }
     ArkUI_NumberValue value2[] = {{.f32 = 5}, {.f32 = 5}, {.f32 = 5}, {.f32 = 5}};
     ArkUI_AttributeItem item2 = {value2, 4};
+    // 设置button组件的margin属性。
     result = buttonNode1->SetMargin(item2);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_ERROR(LOG_APP, "Button SetMargin Failed %{public}d", result);
     }
+    // 设置button组件的width属性。
     buttonNode2->SetWidth(150);
 
     // 把组件挂载到组件树上。
