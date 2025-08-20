@@ -119,8 +119,8 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import picker from '@ohos.file.picker';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { picker } from '@kit.CoreFileKit';
   
   async function persistPermissionExample() {
     try {
@@ -189,8 +189,8 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import picker from '@ohos.file.picker';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { picker } from '@kit.CoreFileKit';
   
   async function revokePermissionExample() {
     try {
@@ -259,8 +259,8 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import picker from '@ohos.file.picker';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { picker } from '@kit.CoreFileKit';
   
   async function activatePermissionExample() {
     try {
@@ -330,8 +330,8 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import picker from '@ohos.file.picker';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { picker } from '@kit.CoreFileKit';
   
   async function deactivatePermissionExample() {
     try {
@@ -393,8 +393,8 @@ checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;b
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import picker from '@ohos.file.picker';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { picker } from '@kit.CoreFileKit';
   
   async function checkPersistentPermissionExample() {
     try {

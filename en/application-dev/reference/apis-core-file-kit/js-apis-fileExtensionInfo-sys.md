@@ -41,10 +41,10 @@ Defines the values of **deviceFlags** used in **RootInfo**. **deviceFlags** is u
 
 ### Properties
 
-  | Name| Type  | Read-Only| Optional| Description    |
-  | ------ | ------ | ---- | ---- | -------- |
-  | SUPPORTS_READ   | number | No  | No  | The device supports read.|
-  | SUPPORTS_WRITE   | number | No  | No  | The device supports write.|
+  | Name|   Type  | Value| Description    |
+  | ------ | ---- | ---- | -------- |
+  | SUPPORTS_READ   | number | 0b1   | The device supports read.|
+  | SUPPORTS_WRITE   | number | 0b10   |  The device supports write.|
 
 ## fileExtensionInfo.DocumentFlag
 
@@ -56,10 +56,10 @@ Defines the values of **mode** used in **FileInfo**.
 
 ### Properties
 
-  | Name| Type  | Read-Only| Optional| Description    |
-  | ------ | ------ | ---- | ---- | -------- |
-  | REPRESENTS_FILE   | number | No  | No  | File.|
-  | REPRESENTS_DIR   | number | No  | No  | Directory.|
-  | SUPPORTS_READ   | number | No  | No  | This file is readable.|
-  | SUPPORTS_WRITE   | number | No  | No  | This file is writable.|
+  | Name|   Type  | Value| Description    |
+  | ------ | ---- | ---- | -------- |
+  | REPRESENTS_FILE   | number | 0b1   | File.|
+  | REPRESENTS_DIR   | number | 0b10  | Directory.|
+  | SUPPORTS_READ   | number | 0b100   | This file is readable.|
+  | SUPPORTS_WRITE   | number | 0b1000  | This file is writable.|
   

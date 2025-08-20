@@ -101,20 +101,22 @@ struct WebComponent {
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-    <meta charset="utf-8">
+    <head>
+      <meta charset="utf-8">
+    </head>
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
       <p id="webDemo"></p>
+      <script type="text/javascript">
+        function htmlTest() {
+          // This function call expects to return "Web test"
+          let webStr = objTestName.webTest();
+          document.getElementById("webDemo").innerHTML=webStr;
+          console.log('objTestName.webTest result:'+ webStr)
+        }
+      </script>
     </body>
-    <script type="text/javascript">
-    function htmlTest() {
-      // This function call expects to return "Web test"
-      let webStr = objTestName.webTest();
-      document.getElementById("webDemo").innerHTML=webStr;
-      console.log('objTestName.webTest result:'+ webStr)
-    }
-</script>
 </html>
 ```
 
@@ -551,7 +553,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-  updataContent: string = '<body><div><image src=resource://rawfile/xxx.png alt="image -- end" width="500" height="250"></image></div></body>'
+  updataContent: string = '<body><div><image src="resource://rawfile/xxx.png" alt="image -- end" width="500" height="250"></image></div></body>'
 
   build() {
     Column() {
@@ -677,7 +679,7 @@ accessBackward(): boolean
 
 > **说明：**
 >
-> 在Web组件首次加载过程中调用[setCustomUserAgent](#setcustomuseragent10)，可能会导致在当前存在多个历史节点的情况下，获取的accessBackForward实际为false，即没有后退节点。建议先调用setCustomUserAgent方法设置UserAgent，再通过loadUrl加载具体页面。
+> 在Web组件首次加载过程中调用[setCustomUserAgent](#setcustomuseragent10)，可能会导致在当前存在多个历史节点的情况下，获取的accessBackward实际为false，即没有后退节点。建议先调用setCustomUserAgent方法设置UserAgent，再通过loadUrl加载具体页面。
 >
 > 该现象是由于在Web组件首次加载时，调用[setCustomUserAgent](#setcustomuseragent10)会导致组件重新加载并保持初始历史节点的状态。随后新增的节点将替换初始历史节点，不会生成新的历史节点，导致accessBackward为false。
 
@@ -1156,31 +1158,33 @@ struct Index {
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-    <meta charset="utf-8">
+    <head>
+      <meta charset="utf-8">
+    </head>
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
       <p id="webDemo"></p>
       <p id="asyncDemo"></p>
+      <script type="text/javascript">
+        function htmlTest() {
+          // This function call expects to return "ArkUI Web Component"
+          let str=objName.test("webtest data");
+          objName.testNumber(1);
+          objName.asyncTestBool(true);
+          document.getElementById("demo").innerHTML=str;
+          console.log('objName.test result:'+ str)
+
+          // This function call expects to return "Web test"
+          let webStr = objTestName.webTest();
+          document.getElementById("webDemo").innerHTML=webStr;
+          console.log('objTestName.webTest result:'+ webStr)
+
+          objAsyncName.asyncTest();
+          objAsyncName.asyncString("async test data");
+        }
+      </script>
     </body>
-    <script type="text/javascript">
-    function htmlTest() {
-      // This function call expects to return "ArkUI Web Component"
-      let str=objName.test("webtest data");
-      objName.testNumber(1);
-      objName.asyncTestBool(true);
-      document.getElementById("demo").innerHTML=str;
-      console.log('objName.test result:'+ str)
-
-      // This function call expects to return "Web test"
-      let webStr = objTestName.webTest();
-      document.getElementById("webDemo").innerHTML=webStr;
-      console.log('objTestName.webTest result:'+ webStr)
-
-      objAsyncName.asyncTest();
-      objAsyncName.asyncString("async test data");
-    }
-</script>
 </html>
 ```
 更多示例，请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。
@@ -1265,16 +1269,18 @@ struct WebComponent {
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-  <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
+  </head>
   <body>
-      Hello world!
+    Hello world!
+    <script type="text/javascript">
+      function test() {
+        console.log('Ark WebComponent')
+        return "This value is from index.html"
+      }
+    </script>
   </body>
-  <script type="text/javascript">
-  function test() {
-      console.log('Ark WebComponent')
-      return "This value is from index.html"
-  }
-  </script>
 </html>
 ```
 
@@ -1357,16 +1363,18 @@ struct WebComponent {
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-  <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
+  </head>
   <body>
-      Hello world!
+    Hello world!
+    <script type="text/javascript">
+      function test() {
+        console.log('Ark WebComponent')
+        return "This value is from index.html"
+      }
+    </script>
   </body>
-  <script type="text/javascript">
-  function test() {
-      console.log('Ark WebComponent')
-      return "This value is from index.html"
-  }
-  </script>
 </html>
 ```
 
@@ -1469,7 +1477,7 @@ struct WebComponent {
             if (e) {
               console.info('url: ', e.url);
             }
-          } catch (error) {
+          } catch (resError) {
             console.error(`ErrorCode: ${(resError as BusinessError).code},  Message: ${(resError as BusinessError).message}`);
           }
         })
@@ -1558,7 +1566,7 @@ struct WebComponent {
                   }
                 }
               });
-          } catch (error) {
+          } catch (resError) {
             console.error(`ErrorCode: ${(resError as BusinessError).code},  Message: ${(resError as BusinessError).message}`);
           }
         })
@@ -1880,18 +1888,20 @@ struct WebComponent {
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-    <meta charset="utf-8">
+    <head>
+      <meta charset="utf-8">
+    </head>
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
+      <script type="text/javascript">
+        function htmlTest() {
+          let str=objName.test();
+          document.getElementById("demo").innerHTML=str;
+          console.log('objName.test result:'+ str)
+        }
+      </script>
     </body>
-    <script type="text/javascript">
-    function htmlTest() {
-      let str=objName.test();
-      document.getElementById("demo").innerHTML=str;
-      console.log('objName.test result:'+ str)
-    }
-</script>
 </html>
 ```
 
@@ -3234,8 +3244,8 @@ scrollByWithResult(deltaX: number, deltaY: number): boolean
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ---------------------- |
-| deltaX | number   | 是   | 水平偏移量，其中水平向右为正方向。 |
-| deltaY | number   | 是   | 垂直偏移量，其中垂直向下为正方向。 |
+| deltaX | number   | 是   | 水平偏移量，其中水平向右为正方向。 <br>单位：vp。 |
+| deltaY | number   | 是   | 垂直偏移量，其中垂直向下为正方向。 <br>单位：vp。 |
 
 **返回值：**
 
@@ -3551,12 +3561,12 @@ struct WebComponent {
 <button onclick="func()">click</button>
 <script>
     // 检测浏览器是否在线。
-    let online = navigator.onLine;
-    document.getElementById("demo").innerHTML = "浏览器在线：" + online;
+    var online1 = navigator.onLine;
+    document.getElementById("demo").innerHTML = "浏览器在线：" + online1;
 
     function func(){
-      var online = navigator.onLine;
-      document.getElementById("demo").innerHTML = "浏览器在线：" + online;
+      var online2 = navigator.onLine;
+      document.getElementById("demo").innerHTML = "浏览器在线：" + online2;
     }
 </script>
 </body>
@@ -3691,7 +3701,7 @@ removeCache(clearRom: boolean): void
 
 | 参数名   | 类型    | 必填 | 说明                                                     |
 | -------- | ------- | ---- | -------------------------------------------------------- |
-| clearRom | boolean | 是   | 设置为true时同时清除rom和ram中的缓存，设置为false时只清除ram中的缓存。 |
+| clearRom | boolean | 是   | 设置为true时同时清除ROM和RAM中的缓存，设置为false时只清除RAM中的缓存。 |
 
 **错误码：**
 
@@ -6326,27 +6336,29 @@ struct Index {
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-    <meta charset="utf-8">
+    <head>
+      <meta charset="utf-8">
+    </head>
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
       <p id="webDemo"></p>
-    </body>
-    <script type="text/javascript">
-    function htmlTest() {
-      // This function call expects to return "ArkUI Web Component"
-      let str=objName.test("webtest data");
-      objName.testNumber(1);
-      objName.testBool(true);
-      document.getElementById("demo").innerHTML=str;
-      console.log('objName.test result:'+ str)
+      <script type="text/javascript">
+        function htmlTest() {
+          // This function call expects to return "ArkUI Web Component"
+          let str=objName.test("webtest data");
+          objName.testNumber(1);
+          objName.testBool(true);
+          document.getElementById("demo").innerHTML=str;
+          console.log('objName.test result:'+ str)
 
-      // This function call expects to return "Web test"
-      let webStr = objTestName.webTest();
-      document.getElementById("webDemo").innerHTML=webStr;
-      console.log('objTestName.webTest result:'+ webStr)
-    }
-</script>
+          // This function call expects to return "Web test"
+          let webStr = objTestName.webTest();
+          document.getElementById("webDemo").innerHTML=webStr;
+          console.log('objTestName.webTest result:'+ webStr)
+        }
+      </script>
+    </body>
 </html>
 ```
 
@@ -8588,7 +8600,7 @@ struct Index {
 
 getScrollOffset(): ScrollOffset
 
-获取网页当前的滚动偏移量。
+获取网页当前的滚动偏移量（包含过滚动偏移量）。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8596,11 +8608,12 @@ getScrollOffset(): ScrollOffset
 
 | 类型                            | 说明                   |
 | :------------------------------ | ---------------------- |
-| [ScrollOffset](./js-apis-webview-i.md#scrolloffset13) | 网页当前的滚动偏移量。 |
+| [ScrollOffset](./js-apis-webview-i.md#scrolloffset13) | 网页当前的滚动偏移量（包含过滚动偏移量）。 |
 
 **示例：**
 
 ```ts
+// xxx.ets
 import { webview } from '@kit.ArkWeb';
 
 @Entry

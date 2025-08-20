@@ -2,8 +2,8 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
-<!--SE: @yangfan229-->
-<!--TSE: @lxl007-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
 
 可以通过设置组件的 sharedTransition 属性将该元素标记为共享元素并设置对应的共享元素转场动效。sharedTransition仅发生在页面路由（router）跳转时。
 
@@ -68,6 +68,7 @@ struct SharedTransitionExample {
 
   build() {
     Column() {
+      // $r('app.media.ic_health_heart')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.ic_health_heart')).width(50).height(50).margin({ left: 20, top: 20 })
         .sharedTransition('sharedImage', { duration: 800, curve: Curve.Linear, delay: 100 }) 
     }.width('100%').height('100%').alignItems(HorizontalAlign.Start)
@@ -85,6 +86,7 @@ struct SharedTransitionExample {
 struct pageBExample {
   build() {
     Stack() {
+      // $r('app.media.ic_health_heart')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.ic_health_heart')).width(150).height(150)
         .sharedTransition('sharedImage', { duration: 800, curve: Curve.Linear, delay: 100 })
     }.width('100%').height('100%')

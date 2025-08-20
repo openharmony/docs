@@ -3,8 +3,8 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--SE: @chengguohong; @tangjia15-->
-<!--TSE: @wangfeng517-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
 
 map模块提供了访问信息相关功能的方法。
 

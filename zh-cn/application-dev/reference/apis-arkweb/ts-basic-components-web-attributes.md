@@ -139,6 +139,7 @@ javaScriptProxy(javaScriptProxy: JavaScriptProxy)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestObj {
     constructor() {
@@ -646,7 +647,7 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
   
     build() {
       Column() {
-        // 通过@State变量改变横向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
+        // 通过@State变量改变纵向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
         Button(this.btnMsg)
           .onClick(() => {
             if(this.isShow){
@@ -745,6 +746,7 @@ copyOptions(value: CopyOptions)
 **示例：**
 
   ```ts
+  // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
   @Entry
@@ -1451,7 +1453,7 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 > **说明：**
 >
-> - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未加载、渲染完毕。
+> - 网页文档根元素（HTML Element）创建后、但尚未加载任何其他内容之前注入脚本。
 >
 > - 该脚本按照字典序执行，非数组本身顺序，若需数组本身顺序，建议使用[runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15)接口。
 >
@@ -1598,7 +1600,7 @@ runJavaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 > **说明：**
 >
-> - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未加载、渲染完毕。
+> - 网页文档根元素（HTML Element）创建后、但尚未加载任何其他内容之前注入脚本。
 >
 > - 该脚本按照数组本身顺序执行。
 >
@@ -2212,7 +2214,17 @@ struct WebComponent {
 
 textAutosizing(textAutosizing: boolean)
 
-设置使能文本自动调整大小。
+设置Web组件是否开启文本字体大小自动调整。
+
+文本字体大小自动调整生效后，对于字号过小的文本将自动加大字号至16px~32px，避免屏幕较小（默认视口宽度 < 980px）的设备因为缺少移动端适配出现字体过小的可读性问题。
+
+> **说明：**
+>
+> - 文本字体大小自动调整生效需要满足的前置条件：
+> - 1. 设备形态为：Phone、Tablet、Wearable、TV。
+> - 2. Web组件视口宽度 < 980px。
+> - 3. 页面文本量大，页面文本的字号*字符数 ≥ 3920。
+> - 4. 前端无metaViewport设置，或metaViewport设置中无"width"和"initial-scale"属性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2883,6 +2895,12 @@ password(password: boolean)
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名          | 类型   | 必填  | 说明                             |
+| ------------ | ------ | ---- | -------------------------------- |
+| password | boolean | 是   | 设置为true时，表示允许Web保存密码。<br>设置为false时，表示不允许Web保存密码。<br>默认值：false。 |
+
 ## textZoomAtio<sup>(deprecated)</sup>
 
 textZoomAtio(textZoomAtio: number)
@@ -2967,6 +2985,12 @@ tableData(tableData: boolean)
 > 从API version 10开始废弃，并且不再提供新的接口作为替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型   | 必填  | 说明                             |
+| ------------ | ------ | ---- | -------------------------------- |
+| tableData | boolean | 是   | 设置为true时，表示允许Web保存表单数据。<br>设置为false时，表示不允许Web保存表单数据。<br>默认值：false。 |
 
 ## wideViewModeAccess<sup>(deprecated)</sup>
 

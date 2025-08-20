@@ -1,4 +1,4 @@
-# stateStyles: Polymorphic Style
+# stateStyles: Applying Polymorphic Styles
 
 
 Unlike \@Styles, which are used to reuse styles only on static pages, stateStyles enables you to set state-specific styles.  

@@ -1,4 +1,9 @@
 # 创建ArkTS卡片
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
 ## 创建ArkTS卡片
 创建卡片当前有两种入口：
 
@@ -16,7 +21,7 @@
    ![WidgetProjectCreate1](figures/WidgetProjectCreate1.png)
 >**说明：** 
 >
-> 在API 10及以上 Stage模型的工程中，在Service Widget菜单可直接选择新建动态或静态服务卡片。创建服务卡片后，也可以在卡片的[form_config.json](arkts-ui-widget-configuration.md#配置文件字段说明)配置文件中，通过isDynamic参数修改卡片类型：isDynamic置空或赋值为“true”，则该卡片为[动态卡片](./arkts-ui-widget-configuration.md#isdynamic标签)；isDynamic赋值为"false"，则该卡片为[静态卡片](./arkts-ui-widget-configuration.md#isdynamic标签)。
+> 在API 10及以上 Stage模型的工程中，开发者可通过Service Widget菜单可直接选择创建动态卡片（Dynamic Widget）或静态卡片（Static Widget）。创建卡片后，也可在卡片的[form_config.json配置文件](arkts-ui-widget-configuration.md)中，通过isDynamic参数修改卡片类型：isDynamic置空或赋值为“true”，则该卡片为[为动态卡片](./arkts-form-overview.md#动态卡片)；isDynamic赋值为"false"，则该卡片为[静态卡片](./arkts-form-overview.md#静态卡片)。
    
 2. 根据实际业务场景，选择一个卡片模板。  
    ![WidgetProjectCreate2](figures/WidgetProjectCreate2.png)

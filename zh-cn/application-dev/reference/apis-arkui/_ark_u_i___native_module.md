@@ -74,8 +74,8 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [OH_ArkUI_GetModuleInterface](#oh_arkui_getmoduleinterface)(nativeAPIVariantKind, structType, structPtr) | 基于结构体类型获取对应结构体指针的宏函数。  | 
-| **MAX_NODE_SCOPE_NUM** | 1000 | 
-| **MAX_COMPONENT_EVENT_ARG_NUM** | 12 | 
+| **MAX_NODE_SCOPE_NUM 1000** | 定义组件最大方法数量。 | 
+| **MAX_COMPONENT_EVENT_ARG_NUM 12** | 定义组件事件最大参数数量。 | 
 | **UDMF_KEY_BUFFER_LEN** | 512 | 
 
 
@@ -590,7 +590,7 @@
 | void [OH_ArkUI_NodeUtils_RemoveCustomProperty](#oh_arkui_nodeutils_removecustomproperty) ([ArkUI_NodeHandle](#arkui_nodehandle) node, const char \*name) | 移除组件已设置的自定义属性。  | 
 | int32_t [OH_ArkUI_NodeUtils_GetCustomProperty](#oh_arkui_nodeutils_getcustomproperty) ([ArkUI_NodeHandle](#arkui_nodehandle) node, const char \*name, [ArkUI_CustomProperty](#arkui_customproperty) \*\*handle) | 获取组件的自定义属性的值。  | 
 | [ArkUI_NodeHandle](#arkui_nodehandle) [OH_ArkUI_NodeUtils_GetParentInPageTree](#oh_arkui_nodeutils_getparentinpagetree) ([ArkUI_NodeHandle](#arkui_nodehandle) node) | 获取父节点，可获取由ArkTs创建的组件节点。  | 
-| int32_t [OH_ArkUI_NodeUtils_GetActiveChildrenInfo](#oh_arkui_nodeutils_getactivechildreninfo) ([ArkUI_NodeHandle](#arkui_nodehandle) head, ArkUI_ActiveChildrenInfo \*\*handle) | 获取某个节点所有活跃的子节点。Span将不会被计入子结点的统计中。  | 
+| int32_t [OH_ArkUI_NodeUtils_GetActiveChildrenInfo](#oh_arkui_nodeutils_getactivechildreninfo) ([ArkUI_NodeHandle](#arkui_nodehandle) head, ArkUI_ActiveChildrenInfo \*\*handle) | 获取某个节点所有活跃的子节点。Span将不会被计入子节点的统计中。  | 
 | [ArkUI_NodeHandle](#arkui_nodehandle) [OH_ArkUI_NodeUtils_GetCurrentPageRootNode](#oh_arkui_nodeutils_getcurrentpagerootnode) ([ArkUI_NodeHandle](#arkui_nodehandle) node) | 获取当前页面的根节点。  | 
 | bool [OH_ArkUI_NodeUtils_IsCreatedByNDK](#oh_arkui_nodeutils_iscreatedbyndk) ([ArkUI_NodeHandle](#arkui_nodehandle) node) | 获取组件是否由C-API创建的标签。  | 
 | int32_t [OH_ArkUI_NodeUtils_GetNodeType](#oh_arkui_nodeutils_getnodetype) ([ArkUI_NodeHandle](#arkui_nodehandle) node) | 获取节点的类型。  | 
@@ -653,7 +653,7 @@
 | [ArkUI_Margin](_ark_u_i___margin.md) [OH_ArkUI_WaterFlowSectionOption_GetMargin](#oh_arkui_waterflowsectionoption_getmargin) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index) | 通过FlowItem分组配置信息获取对应索引下的分组的外边距。  | 
 | void [OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndex](#oh_arkui_waterflowsectionoption_registergetitemmainsizecallbackbyindex) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index, float(\*callback)(int32_t itemIndex)) | 通过FlowItem分组配置信息根据flowItemIndex获取指定Item的主轴大小。  | 
 | void [OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndexWithUserData](#oh_arkui_waterflowsectionoption_registergetitemmainsizecallbackbyindexwithuserdata) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index, void \*userData, float(\*callback)(int32_t itemIndex, void \*userData)) | 通过FlowItem分组配置信息根据flowItemIndex获取指定Item的主轴大小。  | 
-| [ArkUI_GuidelineOption](#arkui_guidelineoption) \* [OH_ArkUI_GuidelineOption_Create](#oh_arkui_guidelineoption_create) (int32_t size) | 创建RelativeContaine容器内的辅助线信息。  | 
+| [ArkUI_GuidelineOption](#arkui_guidelineoption) \* [OH_ArkUI_GuidelineOption_Create](#oh_arkui_guidelineoption_create) (int32_t size) | 创建RelativeContainer容器内的辅助线信息。  | 
 | void [OH_ArkUI_GuidelineOption_Dispose](#oh_arkui_guidelineoption_dispose) ([ArkUI_GuidelineOption](#arkui_guidelineoption) \*guideline) | 销毁辅助线信息。  | 
 | void [OH_ArkUI_GuidelineOption_SetId](#oh_arkui_guidelineoption_setid) ([ArkUI_GuidelineOption](#arkui_guidelineoption) \*guideline, const char \*value, int32_t index) | 设置辅助线的Id。  | 
 | void [OH_ArkUI_GuidelineOption_SetDirection](#oh_arkui_guidelineoption_setdirection) ([ArkUI_GuidelineOption](#arkui_guidelineoption) \*guideline, [ArkUI_Axis](#arkui_axis) value, int32_t index) | 设置辅助线的方向。  | 
@@ -663,7 +663,7 @@
 | [ArkUI_Axis](#arkui_axis) [OH_ArkUI_GuidelineOption_GetDirection](#oh_arkui_guidelineoption_getdirection) ([ArkUI_GuidelineOption](#arkui_guidelineoption) \*guideline, int32_t index) | 获取辅助线的方向。  | 
 | float [OH_ArkUI_GuidelineOption_GetPositionStart](#oh_arkui_guidelineoption_getpositionstart) ([ArkUI_GuidelineOption](#arkui_guidelineoption) \*guideline, int32_t index) | 获取距离容器左侧或者顶部的距离。  | 
 | float [OH_ArkUI_GuidelineOption_GetPositionEnd](#oh_arkui_guidelineoption_getpositionend) ([ArkUI_GuidelineOption](#arkui_guidelineoption) \*guideline, int32_t index) | 获取距离容器右侧或者底部的距离。  | 
-| [ArkUI_BarrierOption](#arkui_barrieroption) \* [OH_ArkUI_BarrierOption_Create](#oh_arkui_barrieroption_create) (int32_t size) | 创建RelativeContaine容器内的屏障信息。  | 
+| [ArkUI_BarrierOption](#arkui_barrieroption) \* [OH_ArkUI_BarrierOption_Create](#oh_arkui_barrieroption_create) (int32_t size) | 创建RelativeContainer容器内的屏障信息。  | 
 | void [OH_ArkUI_BarrierOption_Dispose](#oh_arkui_barrieroption_dispose) ([ArkUI_BarrierOption](#arkui_barrieroption) \*barrierStyle) | 销毁屏障信息。  | 
 | void [OH_ArkUI_BarrierOption_SetId](#oh_arkui_barrieroption_setid) ([ArkUI_BarrierOption](#arkui_barrieroption) \*barrierStyle, const char \*value, int32_t index) | 设置屏障的Id。  | 
 | void [OH_ArkUI_BarrierOption_SetDirection](#oh_arkui_barrieroption_setdirection) ([ArkUI_BarrierOption](#arkui_barrieroption) \*barrierStyle, [ArkUI_BarrierDirection](#arkui_barrierdirection) value, int32_t index) | 设置屏障的方向。  | 
@@ -1519,7 +1519,7 @@ typedef void(* ArkUI_NodeContentCallback) (ArkUI_NodeContentEvent *event)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [ArkUI_NodeContentEvent](#ArkUI_NodeContentEvent)* event | NodeContent事件指针。 |
+| [ArkUI_NodeContentEvent](#arkui_nodecontentevent)* event | NodeContent事件指针。 |
 
 
 ### ArkUI_NodeContentEvent
@@ -3766,8 +3766,8 @@ enum ArkUI_NodeAttributeType
 | NODE_CHECKBOX_NAME  | CheckBox名称设置，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string：多选框名称。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：多选框名称。<br/>**起始版本：** 15 | 
 | NODE_CHECKBOX_GROUP  | CheckBox多选框所属群组的名称设置，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string：多选框所属群组的名称。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：多选框所属群组的名称。<br/>**起始版本：** 15 | 
 | NODE_XCOMPONENT_ID  | XComponent组件ID属性，支持属性设置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: ID的内容。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: ID的内容。 | 
-| NODE_XCOMPONENT_TYPE  | XComponent的类型，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：字体样式[ArkUI_XComponentType](#arkui_xcomponenttype)，默认值为ARKUI_XCOMPONENT_TYPE_SURFACE；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：字体样式[ArkUI_XComponentType](#arkui_xcomponenttype)。 | 
-| NODE_XCOMPONENT_SURFACE_SIZE  | 设置XComponent的宽高，支持属性设置和获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：宽数值，单位为px；<br/>.value[1].u32：高数值，单位为px；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：宽数值，单位为px；<br/>.value[1].u32：高数值，单位为px； | 
+| NODE_XCOMPONENT_TYPE  | XComponent组件的类型，仅支持属性获取接口。<br/>XComponent组件的类型需要在组件创建时通过[ArkUI_NodeType](#arkui_nodetype)中的ARKUI_NODE_XCOMPONENT或者ARKUI_NODE_XCOMPONENT_TEXTURE明确，不允许后续修改。<br/>使用[setAttribute](_ark_u_i___native_node_a_p_i__1.md#setattribute)接口尝试修改XComponent组件的类型时会发生绘制内容异常。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：字体样式[ArkUI_XComponentType](#arkui_xcomponenttype)。 |
+| NODE_XCOMPONENT_SURFACE_SIZE  | XComponent组件的宽高，仅支持属性获取接口。<br/>使用[setAttribute](_ark_u_i___native_node_a_p_i__1.md#setattribute)接口尝试修改XComponent组件的宽高时设置不会生效。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：宽数值，单位为px；<br/>.value[1].u32：高数值，单位为px。 |
 | NODE_XCOMPONENT_SURFACE_RECT | 设置XComponent组件持有Surface的显示区域，支持属性设置和获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：Surface显示区域相对于XComponent组件左上角的x轴坐标, 单位为px。<br/>.value[1].i32：Surface显示区域相对于XComponent组件左上角的y轴坐标, 单位为px。<br/>.value[2].i32：Surface显示区域的宽度, 单位为px。<br/>.value[3].i32：Surface显示区域的高度, 单位为px。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：Surface显示区域相对于XComponent组件左上角的x轴坐标, 单位为px。<br/>.value[1].i32：Surface显示区域相对于XComponent组件左上角的y轴坐标, 单位为px。<br/>.value[2].i32：Surface显示区域的宽度, 单位为px。<br/>.value[3].i32：Surface显示区域的高度, 单位为px。<br/>**起始版本：** 18 |
 | NODE_XCOMPONENT_ENABLE_ANALYZER | 设置XComponent组件是否支持图像分析，支持属性设置和获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否支持图像分析，1表示支持图像分析，0表示不支持图像分析。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否支持图像分析，1表示支持图像分析，0表示不支持图像分析。<br/>**起始版本：** 18 |
 | NODE_DATE_PICKER_LUNAR  | 设置日期选择器组件的日期是否显示农历，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 是否显示农历，默认值false。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32： 是否显示农历。 | 
@@ -3918,8 +3918,8 @@ enum ArkUI_NodeAttributeType
 | NODE_WATER_FLOW_SCROLL_TO_INDEX  | 滑动到指定index。<br/>开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：要滑动到的目标元素在当前容器中的索引值。<br/>.value[1]?.i32：设置滑动到列表项在列表中的索引值时是否有动效，1表示有动效，0表示没有动效。默认值：0。<br/>.value[2]?.i32：指定滑动到的元素与当前容器的对齐方式，参数类型[ArkUI_ScrollAlignment](#arkui_scrollalignment)。默认值为：ARKUI_SCROLL_ALIGNMENT_START。 | 
 | NODE_WATER_FLOW_ITEM_CONSTRAINT_SIZE  | 设置当前瀑布流子组件的约束尺寸属性，组件布局时，进行尺寸范围限制，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：最小宽度，使用-1表示不设置；<br/>.value[1].f32：最大宽度，使用-1表示不设置；<br/>.value[2].f32：最小高度，使用-1表示不设置；<br/>.value[3].f32：最大高度，使用-1表示不设置；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：最小宽度，使用-1表示不设置；<br/>.value[1].f32：最大宽度，使用-1表示不设置；<br/>.value[2].f32：最小高度，使用-1表示不设置；<br/>.value[3].f32：最大高度，使用-1表示不设置； | 
 | NODE_WATER_FLOW_LAYOUT_MODE  | 定义瀑布流组件布局模式，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32: 布局模式，参数类型[ArkUI_WaterFlowLayoutMode](_ark_u_i___native_module.md#arkui_waterflowlayoutmode)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 布局模式，参数类型[ArkUI_WaterFlowLayoutMode](_ark_u_i___native_module.md#arkui_waterflowlayoutmode)。<br/>**起始版本：** 18 |
-| NODE_RELATIVE_CONTAINER_GUIDE_LINE  | 设置RelativeContaine容器内的辅助线，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContaine容器内的辅助线：<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContaine容器内的辅助线： | 
-| NODE_RELATIVE_CONTAINER_BARRIER  | 设置RelativeContaine容器内的屏障，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContaine容器内的辅助线：<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContaine容器内的屏障： | 
+| NODE_RELATIVE_CONTAINER_GUIDE_LINE  | 设置RelativeContainer容器内的辅助线，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContainer容器内的辅助线：<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContainer容器内的辅助线： | 
+| NODE_RELATIVE_CONTAINER_BARRIER  | 设置RelativeContainer容器内的屏障，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContainer容器内的辅助线：<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContainer容器内的屏障： | 
 | NODE_GRID_COLUMN_TEMPLATE  | 设置当前Grid组件布局列的数量，不设置时默认1列，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第1列占1份，第2列占1份，第3列占2份。 可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数， 其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局列的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局列的数量. | 
 | NODE_GRID_ROW_TEMPLATE  | 设置当前网格布局行的数量或最小行高值，不设置时默认1行，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr'是将父组件分3行，将父组件允许的高分为4等份，第1行占1份，第2行占1份，第3行占2份。 可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数， 其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局行的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局行的数量. | 
 | NODE_GRID_COLUMN_GAP  | 设置列与列的间距，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32: 列与列的间距, 单位vp.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 列与列的间距, 单位vp. | 
@@ -7415,7 +7415,7 @@ ArkUI_BarrierOption* OH_ArkUI_BarrierOption_Create (int32_t size)
 ```
 **描述：**
 
-创建RelativeContaine容器内的屏障信息。
+创建RelativeContainer容器内的屏障信息。
 
 **起始版本：** 12
 
@@ -11506,7 +11506,7 @@ ArkUI_GuidelineOption* OH_ArkUI_GuidelineOption_Create (int32_t size)
 ```
 **描述：**
 
-创建RelativeContaine容器内的辅助线信息。
+创建RelativeContainer容器内的辅助线信息。
 
 **起始版本：** 12
 
@@ -14654,7 +14654,7 @@ int32_t OH_ArkUI_NodeUtils_GetActiveChildrenInfo (ArkUI_NodeHandle head, ArkUI_A
 ```
 **描述：**
 
-获取某个节点所有活跃的子节点。Span将不会被计入子结点的统计中。
+获取某个节点所有活跃的子节点。Span将不会被计入子节点的统计中。在LazyForEach场景中，推荐使用[OH_ArkUI_NodeUtils_GetChildWithExpandMode](#oh_arkui_nodeutils_getchildwithexpandmode)接口进行遍历。
 
 **起始版本：** 14
 
@@ -15248,7 +15248,7 @@ int32_t OH_ArkUI_RegisterSystemColorModeChangeEvent (ArkUI_NodeHandle node, void
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。 ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED 组件不支持该事件。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_RegisterSystemFontStyleChangeEvent()
@@ -15272,7 +15272,7 @@ int32_t OH_ArkUI_RegisterSystemFontStyleChangeEvent (ArkUI_NodeHandle node, void
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。 ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED 组件不支持该事件。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_RotationGesture_GetAngle()

@@ -13,7 +13,7 @@ The drag event represents a drag and drop interaction for transfer of data using
 
 ## Drag Process
 
-The drag process can be gesture-based or ​mouse-based. The following describes these two types work.
+The drag process can be gesture-based or ​mouse-based. The following describes how these two types work.
 
 ### ​​Gesture-based Drag Process
 

@@ -137,21 +137,23 @@
       {
         "module": {
           "abilities": [
-            "name": "EntryAbility",
-            // ...
-            "icon": "$media:layered_image", // icon配置为分层图标资源文件的索引
-            "label": "$string:EntryAbility_label", // 需要在entry/src/main/resources/base/element/string.json配置name为EntryAbility_label的资源，已存在可以忽略
-            "skills": [
-              {
-                "entities": [
-                  "entity.system.home"
-                ],
-                "actions": [
-                  "ohos.want.action.home"
-                ]
-              }
-            ],
-            // ...
+            {
+              "name": "EntryAbility",
+              // ...
+              "icon": "$media:layered_image", // icon配置为分层图标资源文件的索引
+              "label": "$string:EntryAbility_label", // 需要在entry/src/main/resources/base/element/string.json配置name为EntryAbility_label的资源，已存在可以忽略
+              "skills": [
+                {
+                  "entities": [
+                    "entity.system.home"
+                  ],
+                  "actions": [
+                    "ohos.want.action.home"
+                  ]
+                }
+              ],
+              // ...
+            }
           ]
           // ...
         }

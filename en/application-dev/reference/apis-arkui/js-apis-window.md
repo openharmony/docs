@@ -26,7 +26,7 @@ Enumerates the window types.
 | Name                                 | Value| Description                                                                                    |
 |-------------------------------------| ------ |----------------------------------------------------------------------------------------|
 | TYPE_APP                            | 0      | Child window of an application.<br>**Model restriction**: This API can be used only in the FA model.                                                  |
-| TYPE_SYSTEM_ALERT                   | 1      | System alert window.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 11.                               |
+| TYPE_SYSTEM_ALERT<sup>(deprecated)</sup>            | 1    | System alert window.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 11.                               |
 | TYPE_FLOAT<sup>9+</sup>             | 8      | Floating window.<br>**Model restriction**: This API can be used only in the stage model.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | TYPE_DIALOG<sup>10+</sup>           | 16      | Modal window.<br>**Model restriction**: This API can be used only in the stage model.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | TYPE_MAIN<sup>18+</sup>             | 32      | Main window of an application.<br>This window type cannot be used when creating a window. It is only for reading purposes in the return value of the **getWindowProperties** API.                              |
@@ -138,12 +138,12 @@ Describes the rectangular area of the window.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name  | Type| Readable| Writable| Description              |
+| Name  | Type| Read-Only| Optional| Description              |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in px. The value must be an integer.|
-| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in px. The value must be an integer.|
-| width  | number   | Yes  | Yes  | Width of the rectangle, in px. The value must be an integer.|
-| height | number   | Yes  | Yes  | Height of the rectangle, in px. The value must be an integer.|
+| left   | number   | No  | No  | Left boundary of the rectangle, in px. The value must be an integer.|
+| top    | number   | No  | No  | Top boundary of the rectangle, in px. The value must be an integer.|
+| width  | number   | No  | No  | Width of the rectangle, in px. The value must be an integer.|
+| height | number   | No  | No  | Height of the rectangle, in px. The value must be an integer.|
 
 ## AvoidArea<sup>7+</sup>
 
@@ -319,8 +319,8 @@ Enumerates the window modes.
 | Name      | Value  | Description                         |
 | ---------- | ---- | ----------------------------- |
 | UNDEFINED  | 0    | The window mode is not defined by the application.      |
-| FULL_SCREEN | 1    | The application is displayed in full screen.            |
-| MAXIMIZE    | 2    | The application window is maximized.  |
+| FULL_SCREEN | 1    | The application window is in full-screen mode. On 2-in-1 devices, the window covers the entire screen without a dock bar or status bar.            |
+| MAXIMIZE    | 2    | The application window is maximized. On 2-in-1 devices, the window covers the entire screen with a dock bar and status bar.  |
 | MINIMIZE    | 3    | The application window is minimized.  |
 | FLOATING    | 4    | The application is displayed in a floating window.  |
 | SPLIT_SCREEN  | 5    | The application is displayed in split-screen mode.  |
@@ -348,10 +348,10 @@ Enumerates the layout when the window is maximized.
 
 | Name      | Value  | Description                         |
 | ---------- | ---- | ----------------------------- |
-| FOLLOW_APP_IMMERSIVE_SETTING  | 0    | The window, when maximized, follows the immersive layout of the application.<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
-| EXIT_IMMERSIVE | 1    | The window, when maximized, exits the immersive layout.<br>**Atomic service API**: This API can be used in atomic services since API version 12.            |
-| ENTER_IMMERSIVE    | 2    | The window, when maximized, transitions into the immersive layout, and the window title bar and dock bar are displayed when the cursor hovers over the hot zone.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
-| ENTER_IMMERSIVE_DISABLE_TITLE_AND_DOCK_HOVER<sup>14+</sup>    | 3    | The window, when maximized, transitions into the immersive layout, and the window title bar and dock bar are not displayed when the cursor hovers over the hot zone.<br>**Atomic service API**: This API can be used in atomic services since API version 14.  |
+| FOLLOW_APP_IMMERSIVE_SETTING  | 0    | The window, when maximized, follows the application's full-screen mode.<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
+| EXIT_IMMERSIVE | 1    | The window, when maximized, exits full-screen mode if it is set to full-screen.<br>**Atomic service API**: This API can be used in atomic services since API version 12.            |
+| ENTER_IMMERSIVE    | 2    | The window, when maximized, transitions into the full-screen mode, and the window title bar and dock bar are displayed when the cursor hovers over the hot zone.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
+| ENTER_IMMERSIVE_DISABLE_TITLE_AND_DOCK_HOVER<sup>14+</sup>    | 3    | The window, when maximized, transitions into the full-screen mode, and the window title bar and dock bar are not displayed when the cursor hovers over the hot zone.<br>**Atomic service API**: This API can be used in atomic services since API version 14.  |
 
 ## MoveConfiguration<sup>15+</sup>
 
@@ -423,7 +423,7 @@ Describes the window information.
 
 ### (data: T)<sup>15+</sup>
 
-(data: T): V;
+(data: T): V
 
 Describes a generic callback function.
 
@@ -1691,7 +1691,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
 
 **Example**
 
@@ -1731,7 +1730,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
 
 **Example**
 
@@ -2459,6 +2457,12 @@ This API is particularly useful in the following scenario: After creating the af
 | ---- |----------------------------------| -- | ------------------------------------------------------------ |
 | enabled | boolean | Yes| Whether the window is enabled to access the avoid area.<br>The value **true** means to enable the window to access the avoid area, and **false** means the opposite. The default value is **false**.|
 
+**Return value**
+
+| Type| Description|
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value. |
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
@@ -2583,6 +2587,12 @@ Sets whether to show the window title bar and dock bar when the cursor hovers ov
 | isTitleHoverShown    | boolean | No  | Whether to show the window title bar.<br>The value **true** means to show the window title bar, and **false** means the opposite. The default value is **true**.<br>|
 | isDockHoverShown    | boolean | No  | Whether to show the dock bar.<br>The value **true** means to show the dock bar, and **false** means the opposite. The default value is **true**.<br>|
 
+**Return value**
+
+| Type| Description|
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value. |
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
@@ -2632,7 +2642,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-Sets whether the main window layout or the child window layout is immersive. This API uses a promise to return the result. <!--RP8-->From API version 14, this API does not take effect on 2-in-1 devices.<!--RP8End-->
+Sets whether the main window layout or the child window layout is immersive. This API uses a promise to return the result. It does not work when called by a system window. <!--RP8-->From API version 14, this API does not take effect on 2-in-1 devices.<!--RP8End-->
 - An immersive layout means that the layout does not avoid the status bar or <!--RP15-->three-button navigation bar<!--RP15End-->, and components may overlap with them.
 - A non-immersive layout means that the layout avoids the status bar and <!--RP15-->three-button navigation bar<!--RP15End-->, and components do not overlap with them.
 
@@ -2701,7 +2711,7 @@ export default class EntryAbility extends UIAbility {
 
 setImmersiveModeEnabledState(enabled: boolean): void
 
-Sets whether to enable the immersive layout for the main window. This API does not change the window mode or size. <!--RP8-->From API version 14, this API does not take effect on 2-in-1 devices.<!--RP8End-->
+Sets whether to enable the immersive layout for the main window. This API does not change the window mode or size. It can be called only by the main window and child windows. <!--RP8-->From API version 14, this API does not take effect on 2-in-1 devices.<!--RP8End-->
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2740,6 +2750,8 @@ try {
 getImmersiveModeEnabledState(): boolean
 
 Checks whether the immersive layout is enabled for this window.
+
+The return value is consistent with the settings applied via [setImmersiveModeEnabledState()](#setimmersivemodeenabledstate12) and [setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9). If neither of these APIs has been called, the default return value is **false**.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3482,7 +3494,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
 
 **Example**
 
@@ -3533,7 +3544,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
 
 **Example**
 
@@ -3580,7 +3590,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
 
 **Example**
 
@@ -3632,7 +3641,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
 
 **Example**
 
@@ -6994,7 +7002,7 @@ Maximizes the window. The main window can use this API to maximize. For child wi
 
 | Name         | Type                                            | Mandatory | Description                                                  |
 | ------------ | ----------------------------------------------- | --------- | ------------------------------------------------------------ |
-| presentation | [MaximizePresentation](#maximizepresentation12) | No        | Layout of the main window or child window when maximized. The default value is **window.MaximizePresentation.ENTER_IMMERSIVE**, indicating that the window enters the immersive layout when maximized. |
+| presentation | [MaximizePresentation](#maximizepresentation12) | No        | Layout of the main window or child window when maximized. The default value is **window.MaximizePresentation.ENTER_IMMERSIVE**, indicating that the window enters the full-screen mode when maximized. |
 
 **Return value**
 
@@ -7643,25 +7651,17 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let windowClass: window.Window | undefined = undefined;
 try {
-  let promise = window.getLastWindow(this.context);
-  promise.then((data) => {
-    windowClass = data;
-    let title = "title";
-    windowClass.setWindowTitle(title).then(() => {
-      console.info('Succeeded in setting the window title.');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to set the window title. Cause code: ${err.code}, message: ${err.message}`);
-    });
+  let title = "title";
+  windowClass.setWindowTitle(title).then(() => {
+    console.info('Succeeded in setting the window title.');
   }).catch((err: BusinessError) => {
-    console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to set the window title. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to set the window title. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -8423,6 +8423,11 @@ Applications use custom shortcut keys to pin or unpin the main window.
 | --------------- | ------- | --------- | ------------------------------------------------------------ |
 | isWindowTopmost | boolean | Yes       | Whether to pin the main window on top. The value **true** means to pin the main window on top, and **false** means the opposite. |
 
+**Return value**
+
+| Type                | Description                    |
+| ------------------- | ------------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
@@ -8852,7 +8857,9 @@ startMoving(): Promise&lt;void&gt;
 
 Starts moving this window. This API uses a promise to return the result.
 
-The window moves along with the cursor or touch point only when this API is called in the callback function of [onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent), where the event type is **TouchType.Down**.
+The window moves along with the cursor or touch point only when this API is called in the callback function of [onTouch](./arkui-ts/ts-universal-events-touch.md#ontouch), where the event type is **TouchType.Down**.
+
+In click-and-drag scenarios, if you do not want the drag to start as soon as you press down, you can call this API when the event type is [TouchType.Move](./arkui-ts/ts-appendix-enums.md#touchtype) (as long as **TouchType.Down** has already been triggered) to start the moving effect.
 
 <!--RP6-->This API can be used only on 2-in-1 devices.<!--RP6End-->
 
@@ -8889,6 +8896,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
+  private isTouchDown: boolean = false;
   build() {
     Row() {
       Column() {
@@ -8908,6 +8916,29 @@ struct Index {
               }
             }
           })
+        Blank('160')
+          .color(Color.Red)
+          .onTouch((event: TouchEvent) => {
+            if(event.type == TouchType.Down){
+              this.isTouchDown = true;
+            } else if (event.type === TouchType.Move && this.isTouchDown) {
+              try {
+                let context = this.getUIContext().getHostContext();
+                window.getLastWindow(context).then((data)=>{
+                  let windowClass: window.Window = data;
+                  windowClass.startMoving().then(() => {
+                    console.info('Succeeded in starting moving window.')
+                  }).catch((err: BusinessError) => {
+                    console.error(`Failed to start moving. Cause code: ${err.code}, message: ${err.message}`);
+                  });
+                });
+              } catch (exception) {
+                console.error(`Failed to start moving window. Cause code: ${exception.code}, message: ${exception.message}`);
+              }
+            } else {
+              this.isTouchDown = false;
+            }
+          })
       }.width('100%')
     }.height('100%').width('100%')
   }
@@ -8922,7 +8953,9 @@ Specifies the cursor position within the window and moves the window. This API u
 
 When windows within the same application are split or merged, and the mouse is pressed down to move the new window directly, the cursor may move outside the window if it moves too quickly. This API allows you to set the cursor position within the window during movement. It first adjusts the window to the cursor position before starting to move the window.
 
-The window moves along with the cursor only when this API is called in the callback function of [onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent), where the event type is **TouchType.Down**.
+The window moves along with the cursor only when this API is called in the callback function of [onTouch](./arkui-ts/ts-universal-events-touch.md#ontouch), where the event type is **TouchType.Down**.
+
+In click-and-drag scenarios, if you do not want the drag to start as soon as you press down, you can call this API when the event type is [TouchType.Move](./arkui-ts/ts-appendix-enums.md#touchtype) (as long as **TouchType.Down** has already been triggered) to start the moving effect.
 
 <!--RP6-->This API can be used only on 2-in-1 devices.<!--RP6End-->
 
@@ -8965,6 +8998,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
+  private isTouchDown: boolean = false;
   build() {
     Row() {
       Column() {
@@ -8982,6 +9016,29 @@ struct Index {
               } catch (exception) {
                 console.error(`Failed to start moving window. Cause code: ${exception.code}, message: ${exception.message}`);
               }
+            }
+          })
+        Blank('160')
+          .color(Color.Red)
+          .onTouch((event: TouchEvent) => {
+            if(event.type == TouchType.Down){
+              this.isTouchDown = true;
+            } else if (event.type === TouchType.Move && this.isTouchDown) {
+              try {
+                let context = this.getUIContext().getHostContext();
+                window.getLastWindow(context).then((data)=>{
+                  let windowClass: window.Window = data;
+                  windowClass.startMoving(100, 50).then(() => {
+                    console.info('Succeeded in starting moving window.')
+                  }).catch((err: BusinessError) => {
+                    console.error(`Failed to start moving. Cause code: ${err.code}, message: ${err.message}`);
+                  });
+                });
+              } catch (exception) {
+                console.error(`Failed to start moving window. Cause code: ${exception.code}, message: ${exception.message}`);
+              }
+            } else {
+              this.isTouchDown = false;
             }
           })
       }.width('100%')
@@ -9523,14 +9580,14 @@ import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    windowStage.loadContent('pages/Index', (loadError) => {
+    windowStage.loadContent('pages/Index', (loadError: BusinessError) => {
       if (loadError.code) {
         console.error(`Failed to load the content. Cause code: ${loadError.code}, message: ${loadError.message}`);
         return;
       }
       console.info("Succeeded in loading the content.");
       windowStage.createSubWindow("subWindow").then((subWindow: window.Window) => {
-        if (subWindow == null) {
+        if (subWindow === null) {
           console.error("Failed to create the subWindow. Cause: The data is empty");
           return;
         }
@@ -12020,7 +12077,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ----------------------------------------------------------- |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
 
 **Example**
 
@@ -12090,7 +12146,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ----------------------------------------------------------- |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
 
 **Example**
 
@@ -12212,7 +12267,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal. |
 
 **Example**
 <!--code_no_check-->
@@ -12264,7 +12319,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal. |
 
 **Example**
 <!--code_no_check-->
@@ -12318,7 +12373,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
 
 **Example**
 
@@ -12384,7 +12438,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
 
 **Example**
 
@@ -12443,7 +12496,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
 
 **Example**
 
@@ -12501,7 +12553,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
 
 **Example**
 
@@ -12956,7 +13007,9 @@ setDefaultDensityEnabled(enabled: boolean): void
 
 Sets whether the application uses the system's default density. Before calling this API, call [WindowStage.loadContent()](#loadcontent9-2) to initialize the layout to ensure the correct call sequence.
 
-By default, the system's default density is not used, and the window layout changes with the system display size.
+By default, the system's default density is not used.
+
+When the default density is not used, if [setCustomDensity()](#setcustomdensity15) has been called, the window will be re-laid out according to the custom display size changes. Otherwise, it will be re-laid out according to the system display size changes.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -13404,7 +13457,7 @@ Sets the supported window modes of the main window. This API uses a promise to r
 
 | Name                 | Type                                                         | Mandatory | Description                                                  |
 | -------------------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| supportedWindowModes | Array&lt;[bundleManager.SupportWindowMode](../apis-ability-kit/js-apis-bundleManager.md#supportwindowmode)&gt; | Yes       | Supported window modes.<br>- **FULL_SCREEN**: full-screen mode.<br>- **FLOATING**: floating window mode.<br>- **SPLIT**: split-screen mode. **FULL_SCREEN** or **FLOATING** must be used together. Configuring only **SPLIT** is not supported.<br>Note: The values of the **SupportWindowMode** field in the array should not conflict with the values of the **supportWindowMode** field under [abilities](../../quick-start/module-configuration-file.md#abilities) of the [module.json5 file](../../quick-start/module-configuration-file.md) corresponding to this UIAbility, or with the values of the **supportWindowModes** field in [StartOptions](../apis-ability-kit/js-apis-app-ability-startOptions.md). In case of a conflict, the window support mode set by this parameter will take precedence. |
+| supportedWindowModes | Array&lt;[bundleManager.SupportWindowMode](../apis-ability-kit/js-apis-bundleManager.md#supportwindowmode)&gt; | Yes       | Supported window modes.<br>- **FULL_SCREEN**: full-screen mode.<br>- **FLOATING**: floating window mode.<br>- **SPLIT**: split-screen mode. **FULL_SCREEN** or **FLOATING** must be used together. Configuring only **SPLIT** is not supported.<br>Note: The values of the **SupportWindowMode** field in the array should not conflict with the values of the **supportWindowMode** field under [abilities](../../quick-start/module-configuration-file.md#abilities) of the [module.json5 file](../../quick-start/module-configuration-file.md) corresponding to this UIAbility, or with the values of the **supportWindowModes** field in [StartOptions](../apis-ability-kit/js-apis-app-ability-startOptions.md#startoptions). In case of a conflict, the window support mode set by this parameter will take precedence. |
 
 **Return value**
 

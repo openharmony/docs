@@ -1,7 +1,7 @@
 # 初识ArkTS语言
 
 
-ArkTS是OpenHarmony优选的主力应用开发语言，在[TypeScript](https://www.typescriptlang.org/)（简称TS）生态基础上做了扩展，保持TS的基本风格。通过规范定义，从而强化了开发期的静态检查和分析，提升了程序执行的稳定性和性能。
+ArkTS是OpenHarmony应用的默认开发语言，在[TypeScript](https://www.typescriptlang.org/)（简称TS）生态基础上做了扩展，保持TS的基本风格。通过规范定义，从而强化了开发期的静态检查和分析，提升了程序执行的稳定性和性能。
 
 ![ArkTS](figures/arkts.png)
 

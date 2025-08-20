@@ -71,7 +71,7 @@ struct toastExample {
         .type(ButtonType.Capsule)
         .onClick(() => {
           this.promptAction.openToast({
-            message: 'Toast Massage',
+            message: 'Toast Message',
             duration: 10000,
           }).then((toastId: number) => {
             this.toastId = toastId;
@@ -131,7 +131,7 @@ closeToast(toastId: number): void
 > 
 > 直接使用closeToast可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用[openToast](js-apis-arkui-UIContext.md#closetoast18)实现。
 
-示例请看[promptAction.openToaset18](#promptactionopentoast18)的示例。
+示例请看[promptAction.openToast18](#promptactionopentoast18)的示例。
 
 ## ShowToastOptions
 

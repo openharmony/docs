@@ -3,8 +3,8 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @wkljy; @xuzhihao666-->
-<!--SE: @li-weifeng2-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
 
 环境变量涵盖了所有可能影响应用运行时的环境配置信息，包括应用可指定的内部环境变量（字体大小、外观、语言等）和应用可感知的外部环境变量（屏幕方向等）。
 
@@ -159,7 +159,7 @@ export default class MyAbility extends UIAbility {
 基于当前的应用模型，可以通过以下几种方式来实现订阅环境变量的变化。
 
 - [使用ApplicationContext订阅回调](#使用applicationcontext订阅回调)
-- [在AbilityStage组件容器中订阅回调](#在abilitystage组件容器中订阅回调)
+- [在AbilityStage组件管理器中订阅回调](#在abilitystage组件管理器中订阅回调)
 - [在UIAbility组件中订阅回调](#在uiability组件中订阅回调)
 - [在ExtensionAbility组件中订阅回调](#在extensionability组件中订阅回调)
 
@@ -252,13 +252,13 @@ export default class MyAbility extends UIAbility {
     }
     ```
 
-### 在AbilityStage组件容器中订阅回调
+### 在AbilityStage组件管理器中订阅回调
 
 使用[AbilityStage.onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onconfigurationupdate)回调方法订阅环境变量的变化。当环境变量发生变化时，会调用该回调方法。在该方法中，通过[Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)对象获取最新的环境变量信息。可以进行相应的界面适配等操作，从而提高系统的灵活性和可维护性。
 
 > **说明：**
 >
-> - DevEco Studio默认工程中未自动生成[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)，AbilityStage文件的创建请参见[AbilityStage组件容器](abilitystage.md)。
+> - DevEco Studio默认工程中未自动生成[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)，AbilityStage文件的创建请参见[AbilityStage开发步骤](abilitystage.md#开发步骤)。
 > - 当使用回调方法订阅系统环境变量的变化时，该回调方法会随着AbilityStage的生命周期而存在，在Module销毁时一并销毁。
 
 例如，在[AbilityStage.onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onconfigurationupdate)回调方法中实现监测系统语言的变化。
