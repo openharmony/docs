@@ -65,7 +65,7 @@ onHoverMove(event: Callback&lt;HoverEvent&gt;): T
 | windowY<sup>15+</sup> |number|否|是|鼠标光标或手写笔位置相对于应用窗口左上角的y轴坐标。<br>单位：vp<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
 | displayX<sup>15+</sup> |number|否|是|鼠标光标或手写笔位置相对于应用屏幕左上角的x轴坐标。<br>单位：vp<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
 | displayY<sup>15+</sup> |number|否|是|鼠标光标或手写笔位置相对于应用屏幕左上角的y轴坐标。<br>单位：vp<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
-| stopPropagation | () => void |否|否| 阻塞事件冒泡。 <br> **原子化服务API：**  从API version 10开始，该接口支持在原子化服务中使用。|
+| stopPropagation | () => void |否|否| 阻塞事件冒泡。 <br> **原子化服务API：**  从API version 11开始，该接口支持在原子化服务中使用。|
 
 ## 示例
 

@@ -2,8 +2,8 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @jsjzju-->
-<!--SE: @jsjzju-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
 
 ## 简介
 
@@ -47,7 +47,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplica
     "startTime":"2023-11-17 14:48:01:265",
     "stopTime":"2023-11-17 14:48:01:434",
 	"result":[{
-        "md5":"975c41f5727b416b1ffefa5bb0f073b",
+        "md5":"975c41f5727b416b1ffefa5bb0f073b2",
         "size":1108880,
         "files":[
             "/application-entry-default.hap/libs/armeabi-v7a/example.so",

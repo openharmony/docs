@@ -37,11 +37,6 @@ resetOAID(): void
 
 ```ts
 import { identifier } from '@kit.AdsKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
-try {
-  identifier.resetOAID();
-} catch (err) {
-  hilog.error(0x0000, 'testTag', `Fail to reset OAID. Code is ${err.code}, message is ${err.message}`);
-}
+identifier.resetOAID();
 ```

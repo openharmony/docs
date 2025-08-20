@@ -121,7 +121,7 @@ bm dump [-h] [-a] [-g] [-n bundleName] [-s shortcutInfo] [-d deviceId] [-l label
 | -n | 可选参数，查询指定Bundle名称的详细信息。 |
 | -s | 可选参数，查询指定Bundle名称下的快捷方式信息。 |
 | -d | 可选参数，查询指定设备中的包信息。默认查询当前设备。 |
-| -l | 可选参数，查询指定Bundle名称的label值（应用的名称），需要与-n或者-a参数组合使用。 |
+| -l | 可选参数，用于查询指定Bundle名称的label值（应用的名称），需要与`-n`或`-a`参数组合使用。<br/>**说明**：<br/>从API version 20开始支持该命令。如果在Windows环境下输出结果包含特殊字符或中文乱码，需在cmd控制台中手动执行命令`chcp 65001`，将cmd控制台编码修改为UTF-8。 |
 
 
 示例：
@@ -2481,7 +2481,14 @@ error: Check pluginDistributionID between plugin and host application failed.
 
 **处理步骤**
 
-重新配置应用或者插件[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的 pluginDistributionIDs。
+重新配置应用或者插件<!--RP5-->[签名证书profile文件](../security/app-provision-structure.md)<!--RP5End-->中的 pluginDistributionIDs。配置格式如下：
+```
+"app-services-capabilities":{
+    "ohos.permission.kernel.SUPPORT_PLUGIN":{
+        "pluginDistributionIDs":"value-1,value-2,···"
+    }
+}
+``` 
 
 ### 9568433 应用缺少ohos.permission.SUPPORT_PLUGIN权限
 **错误信息**
@@ -2800,11 +2807,11 @@ error: Failed to install the plugin because the plugin id failed to be parsed.
 
 **处理步骤**
 
-参考如下格式，重新配置插件profile签名文件中的"app-services-capabilities"字段。
+参考如下格式，重新配置插件<!--RP5-->[签名证书profile文件](../security/app-provision-structure.md)<!--RP5End-->中的"app-services-capabilities"字段。
 ```
 "app-services-capabilities":{
     "ohos.permission.kernel.SUPPORT_PLUGIN":{
-        "pluginDistributionIDs":"value-1|value-2|···"
+        "pluginDistributionIDs":"value-1,value-2,···"
     }
 }
 ```

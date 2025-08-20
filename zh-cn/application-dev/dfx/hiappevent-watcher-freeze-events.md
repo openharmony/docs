@@ -2,8 +2,8 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @rr_cn-->
-<!--SE: @peterhuangyu-->
-<!--TSE: @gcw_KuLfPSbe-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
 
 ## 简介
 

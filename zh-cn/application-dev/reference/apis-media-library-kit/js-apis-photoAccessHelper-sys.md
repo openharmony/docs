@@ -2,8 +2,8 @@
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
-<!--SE: @liweilu1-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
 
 该模块提供相册管理模块能力，包括创建相册以及访问、修改相册中的媒体数据信息等。
 
@@ -5370,7 +5370,7 @@ static deleteLocalAssetsPermanently(context: Context, assets: Array\<PhotoAsset>
 | 参数名  | 类型             | 必填   | 说明    |
 | ---- | -------------- | ---- | ----- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是    | 传入Ability实例的Context。 |
-| assets | Array\<[PhotoAsset](#photoasset)>| 是    | 待彻底删除的图片或者视频数组。 |
+| assets | Array\<[PhotoAsset](#photoasset)>| 是    | 待彻底删除的图片或者视频数组，数组中元素个数不超过500个。 |
 
 **返回值：**
 
@@ -5432,7 +5432,7 @@ static deleteLocalAssetsPermanentlyWithUri(context: Context, assetUris: Array&lt
 | 参数名  | 类型             | 必填   | 说明    |
 | ---- | -------------- | ---- | ----- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是    | 传入Ability实例的Context。 |
-| assetUris | Array&lt;String&gt; | 是    | 待彻底删除的图片或者视频Uri数组。 |
+| assetUris | Array&lt;String&gt; | 是    | 待彻底删除的图片或者视频Uri数组，数组中元素个数不超过500个。 |
 
 **返回值：**
 

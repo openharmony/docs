@@ -1539,6 +1539,8 @@ onWillAttachIME(callback: Callback\<IMEClient>)
 
 在输入框将要绑定输入法前触发该回调。
 
+<!--Del-->在输入框将要绑定输入法前，可以通过`UIContext`的系统接口[setKeyboardAppearanceConfig](../js-apis-arkui-UIContext-sys.md#setkeyboardappearanceconfig20)设置键盘的样式。<!--DelEnd-->
+
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1974,7 +1976,7 @@ struct TextInputExample {
           style: CancelButtonStyle.CONSTANT,
           icon: {
             size: 45,
-            src: $r('app.media.app_icon'),
+            src: $r('app.media.startIcon'),// $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
             color: Color.Blue
           }
         })

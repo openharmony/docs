@@ -3,8 +3,8 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: AGC-->
 <!--Owner: @liusu23-->
-<!--SE: @xukeke-->
-<!--TSE: @yizhixiaosiqin-->
+<!--Designer: @xukeke-->
+<!--Tester: @yizhixiaosiqin-->
 
 本章节介绍如何拉起邮件类应用扩展面板。
 > **说明：**

@@ -29,7 +29,7 @@ Web媒体策略的配置。
 | 名称             | 类型      | 只读 | 可选  | 说明                                       |
 | -------------- | ------- | ---- | ---- | ---------------------------------------- |
 | resumeInterval | number  | 否 | 是 | 被其他应用暂停的Web音视频能够自动续播的有效期，单位：秒。取值范围：[-2147483648, 2147483647]。resumeInterval值为0时，不自动续播；大于0时，将在该时间内尝试续播；小于0时，将在无限时间内尝试续播。由于近似值原因，该有效期可能存在一秒内的误差。 <br>**说明：** <br>HLS视频被打断后，回到前台将自动续播，不受该时间控制。|
-| audioExclusive | boolean | 否 | 是 | 应用内多个Web实例的音频是否独占。<br>true表示应用内多个Web实例的音频独占，false表示应用内多个Web实例的音频不独占。                       |
+| audioExclusive | boolean | 否 | 是 | 应用内多个Web实例的音频是否独占。<br>true表示应用内多个Web实例的音频独占，false表示应用内多个Web实例的音频不独占。<br>默认值:true。                       |
 | audioSessionType<sup>20+</sup> | [AudioSessionType](./arkts-basic-components-web-e.md#audiosessiontype20) | 否 | 是 | 应用中Web音频类型。默认值对应[系统音频流类型](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)STREAM_USAGE_MUSIC。设置该参数会改变组件音频类型与系统音频类型映射关系，进而影响ArkWeb音频焦点策略。|
 
 ## ScriptItem<sup>11+</sup>
@@ -51,10 +51,10 @@ Web媒体策略的配置。
 
 | 名称             | 类型               | 只读 | 可选 | 说明                   |
 | -------------- | ---------------- | ---- | ---- | -------------------- |
-| scrollUp  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往上滚动时的嵌套滚动选项。 |
-| scrollDown | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往下滚动时的嵌套滚动选项。 |
-| scrollLeft  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往左滚动时的嵌套滚动选项。 |
-| scrollRight | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往右滚动时的嵌套滚动选项。 |
+| scrollUp  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往上滚动时的嵌套滚动选项。<br/>默认值：NestedScrollMode.SELF_FIRST。|
+| scrollDown | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往下滚动时的嵌套滚动选项。<br/>默认值：NestedScrollMode.SELF_FIRST。|
+| scrollLeft  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往左滚动时的嵌套滚动选项。<br/>默认值：NestedScrollMode.SELF_FIRST。|
+| scrollRight | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往右滚动时的嵌套滚动选项。<br/>默认值：NestedScrollMode.SELF_FIRST。|
 
 ## NativeMediaPlayerConfig<sup>12+</sup>
 
@@ -76,7 +76,7 @@ Web媒体策略的配置。
 | 名称           | 类型                                             | 只读    | 可选    | 说明             |
 | ---------- | -----------------------------------------------------| ------ | ------ | ---------------- |
 | content   | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 否     | 显示内容。     |
-| startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 是     | 显示图标。     |
+| startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 是     | 显示图标。默认值为空，不显示图标。     |
 | action    | (selectedText: {plainText: string}) => void                    | 否     | 否     | 选中的文本信息。|
 
 ## AdsBlockedDetails<sup>12+</sup>
@@ -127,15 +127,15 @@ Web同层渲染的配置。
 
 ## OnAlertEvent<sup>12+</sup>
 
-定义网页触发alert()告警弹窗时触发回调。
+定义网页触发 `alert()` 告警时的回调函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | 是 | 当前显示弹窗所在网页的URL。                       |
-| message | string | 是 | 弹窗中显示的信息。                       |
-| result | [JsResult](./arkts-basic-components-web-JsResult.md) | 是 | 通知Web组件用户操作行为。                       |
+| 名称    | 类型                                                 | 只读 | 可选 | 说明                        |
+| ------- | ---------------------------------------------------- | ---- | ---- | --------------------------- |
+| url     | string                                               | 否   | 否   | 当前显示弹窗的网页的URL。   |
+| message | string                                               | 否   | 否   | 显示在弹窗中的信息。        |
+| result  | [JsResult](./arkts-basic-components-web-JsResult.md) | 否   | 否   | 通知Web组件用户的操作结果。 |
 
 ## OnBeforeUnloadEvent<sup>12+</sup>
 
@@ -152,28 +152,28 @@ Web同层渲染的配置。
 
 ## OnConfirmEvent<sup>12+</sup>
 
-定义网页调用confirm()告警时触发此回调。
+定义网页触发 `confirm()` 弹窗时的回调函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | 是 | 当前显示弹窗所在网页的URL。                       |
-| message | string | 是 | 弹窗中显示的信息。                       |
-| result | [JsResult](./arkts-basic-components-web-JsResult.md) | 是 | 通知Web组件用户操作行为。                       |
+| 名称    | 类型                                                 | 只读 | 可选 | 说明                        |
+| ------- | ---------------------------------------------------- | ---- | ---- | --------------------------- |
+| url     | string                                               | 否   | 否   | 当前显示弹窗的网页的URL。   |
+| message | string                                               | 否   | 否   | 显示在弹窗中的信息。        |
+| result  | [JsResult](./arkts-basic-components-web-JsResult.md) | 否   | 否   | 通知Web组件用户的操作结果。 |
 
 ## OnPromptEvent<sup>12+</sup>
 
-定义网页调用prompt()告警时触发此回调。
+定义网页触发 `prompt()` 弹窗时的回调函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | 是 | 当前显示弹窗所在网页的URL。                       |
-| message | string | 是 | 弹窗中显示的信息。                       |
-| value | string | 是 | 提示对话框的信息。                       |
-| result | [JsResult](./arkts-basic-components-web-JsResult.md) | 是 | 通知Web组件用户操作行为。                       |
+| 名称    | 类型                                                 | 只读 | 可选 | 说明                        |
+| ------- | ---------------------------------------------------- | ---- | ---- | --------------------------- |
+| url     | string                                               | 否   | 否   | 当前显示弹窗的网页的URL。   |
+| message | string                                               | 否   | 否   | 显示在弹窗中的信息。        |
+| value   | string                                               | 否   | 否   | 对话框默认返回的信息。      |
+| result  | [JsResult](./arkts-basic-components-web-JsResult.md) | 否   | 否   | 通知Web组件用户的操作结果。 |
 
 ## OnConsoleEvent<sup>12+</sup>
 
@@ -248,10 +248,10 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| result       | [FileSelectorResult](./arkts-basic-components-web-FileSelectorResult.md) | 是 | 用于通知Web组件文件选择的结果。 |
-| fileSelector | [FileSelectorParam](./arkts-basic-components-web-FileSelectorParam.md) | 是 | 文件选择器的相关信息。       |
+| 名称         | 类型                                                                     | 只读 | 可选 | 说明                            |
+| ------------ | ------------------------------------------------------------------------ | ---- | ---- | ------------------------------- |
+| result       | [FileSelectorResult](./arkts-basic-components-web-FileSelectorResult.md) | 否   | 否   | 用于通知Web组件文件选择的结果。 |
+| fileSelector | [FileSelectorParam](./arkts-basic-components-web-FileSelectorParam.md)   | 否   | 否   | 文件选择器的相关信息。          |
 
 ## OnResourceLoadEvent<sup>12+</sup>
 
@@ -269,10 +269,10 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| oldScale | number | 是 | 变化前的显示比例百分比。 |
-| newScale | number | 是 | 变化后的显示比例百分比。 |
+| 名称     | 类型   | 只读 | 可选 | 说明                     |
+| -------- | ------ | ---- | ---- | ------------------------ |
+| oldScale | number | 否   | 否   | 变化前的显示比例百分比。 |
+| newScale | number | 否   | 否   | 变化后的显示比例百分比。 |
 
 ## OnHttpAuthRequestEvent<sup>12+</sup>
 
@@ -543,7 +543,7 @@ Web同层渲染的配置。
 | 名称             | 类型      | 只读 | 可选    | 说明                                       |
 | -------------- | ---- | ---- | -------------|--------------------------- |
 | title | string | 否 | 否 | document标题内容。                       |
-| isRealTitle<sup>20+</sup> | boolean | 否 | 是 | document标题来源，true表示来自网页的title标签，false表示该title是根据url自动生成。                       |
+| isRealTitle<sup>20+</sup> | boolean | 否 | 是 | document标题来源，true表示来自网页的title标签，false表示该title是根据url自动生成。 <br>默认值：false |
 
 ## OnGeolocationShowEvent<sup>12+</sup>
 
@@ -654,7 +654,7 @@ Web组件进入全屏回调事件的详情。
 | 名称             | 类型   | 只读   | 可选   | 说明                                       |
 | -------------- | ---- | ---- | ---- | ---------------------------------------- |
 | useSystemKeyboard | boolean  | 否 | 否 | 是否使用系统默认软键盘。<br>true表示使用系统默认软键盘，false表示不使用系统默认软键盘。<br>默认值：true。 |
-| enterKeyType | number | 否 | 是 | 指定系统软键盘enter键的类型，取值范围见输入框架的定义[EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)，该参数为可选参数，当useSystemKeyboard为true，并且设置了有效的enterKeyType时候，才有效。|
+| enterKeyType | number | 否 | 是 | 指定系统软键盘enter键的类型，取值范围见输入框架的定义[EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)，该参数为可选参数，默认值为UNSPECIFIED。当useSystemKeyboard为true，并且设置了有效的enterKeyType时候，才有效。|
 | customKeyboard | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | 否 | 是 | 指定自定义键盘组件builder，可选参数，当useSystemKeyboard为false时，需要设置该参数，然后Web组件会拉起该自定义键盘。
 
 

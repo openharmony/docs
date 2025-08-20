@@ -3,8 +3,8 @@
 <!--Kit: AVCodec Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @mr-chencxy-->
-<!--SE: @dpy2650--->
-<!--TSE: @baotianhao-->
+<!--Designer: @dpy2650--->
+<!--Tester: @baotianhao-->
 
 开发者可以调用本模块的Native API接口，完成音频解码，即将媒体数据解码为PCM码流。
 

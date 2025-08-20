@@ -2,8 +2,8 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiang-shouxing-->
-<!--SE: @xiang-shouxing-->
-<!--TSE: @sally__-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
 
 在Stage模型中，WindowStage/Window可以通过[loadContent](arkts-apis-window-Window.md#loadcontent9)接口加载页面并创建UI的实例，并将页面内容渲染到关联的窗口中，所以UI实例和窗口是一一关联的。一些全局的UI接口是和具体UI实例的执行上下文相关的，在当前接口调用时，通过追溯调用链跟踪到UI的上下文，来确定具体的UI实例。若在非UI页面中或者一些异步回调中调用这类接口，可能无法跟踪到当前UI的上下文，导致接口执行失败。
 
@@ -963,7 +963,7 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**设备行为差异：** 该接口在Wearable设备中无效果，在其他设备中可正常调用。
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：** 
 
@@ -1032,7 +1032,7 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**设备行为差异：** 该接口在Wearable设备中无效果，在其他设备中可正常调用。
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：** 
 
@@ -1095,7 +1095,7 @@ showTextPickerDialog(options: TextPickerDialogOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**设备行为差异：** 该接口在Wearable设备中无效果，在其他设备中可正常调用。
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：** 
 
@@ -2882,9 +2882,19 @@ isFollowingSystemFontScale(): boolean
 
 **示例：**
 
-<!--code_no_check-->
+参考[configuration标签](../../quick-start/app-configuration-file.md#configuration标签)，配置fontSizeScale的值为“followSystem”。
 ```ts
-uiContext.isFollowingSystemFontScale();
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Button('isFollowingSystemFontScale').onClick(() => {
+        console.info('isFollowingSystemFontScale', this.getUIContext().isFollowingSystemFontScale());
+      });
+    }
+  }
+}
 ```
 
 ### getMaxFontScale<sup>13+</sup>
@@ -2905,9 +2915,19 @@ getMaxFontScale(): number
 
 **示例：**
 
-<!--code_no_check-->
+参考[configuration标签](../../quick-start/app-configuration-file.md#configuration标签)，配置fontSizeMaxScale的值为“1.75”。
 ```ts
-uiContext.getMaxFontScale();
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Button('getMaxFontScale').onClick(() => {
+        console.info('getMaxFontScale', this.getUIContext().getMaxFontScale().toFixed(2));
+      });
+    }
+  }
+}
 ```
 
 ### bindTabsToScrollable<sup>13+</sup>
@@ -3435,9 +3455,9 @@ getSystemFontList(): Array\<string>
 
 获取系统支持的字体名称列表。
 
->  **说明：**
->
->  该接口仅在2in1设备上生效。
+该接口仅在PC/2in1设备上生效，在其他设备上返回空数组。
+
+推荐使用[getSystemFontFullNamesByType](../apis-arkgraphics2d/js-apis-graphics-text.md#textgetsystemfontfullnamesbytype14)接口获取系统最新支持的字体列表数据。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -7203,6 +7223,10 @@ getParams(): Object
 
 获取发起跳转的页面往当前页传入的参数。
 
+> **说明：**
+>
+> getParams只获取当前页面的参数，并不会清除页面关联的参数。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -10859,7 +10883,7 @@ struct Index {
 >
 > 调用文本计算接口时，不推荐同时用[ApplicationContext.setFontSizeScale](../apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextsetfontsizescale13)设置应用字体大小缩放比例。为了确保时序正确性，建议开发者自行监听字体缩放变化，以保证测算结果的准确性。
 >
-> 如果计算裁剪后的文本，在裁剪字符串时，建议按照unicode单位迭代，而非按照字符串length长度迭代。否则容易出现字符被截断，导致计算结果不准确的情况，常见emoji字符被截断。
+> 在测算裁剪后的文本时，由于某些Unicode字符（如emoji）的码位长度大于1，直接按字符串长度裁剪会导致不准确的结果。建议基于Unicode码点进行迭代处理，避免错误截断字符，确保测算结果准确。
 
 ### measureText<sup>12+</sup>
 

@@ -83,7 +83,7 @@ try {
     }
   });
 } catch (error) {
-  console.info("register screenshot event error");
+  console.error("register screenshot event error");
 }
 ```
 
