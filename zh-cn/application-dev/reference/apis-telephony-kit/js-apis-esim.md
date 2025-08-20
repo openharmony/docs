@@ -2,8 +2,8 @@
 <!--Kit: Telephony Kit-->
 <!--Subsystem: Telephony-->
 <!--Owner: @yangyannanyangyannan-->
-<!--Designer: @ghxbob-->
-<!--Tester: @weitiantian-->
+<!--SE: @ghxbob-->
+<!--TSE: @weitiantian-->
 
 eSIM卡管理模块提供了eSIM卡管理的基础能力，包括获取指定卡槽是否支持eSIM功能，如果支持则允许用户添加单个配置文件。
 
