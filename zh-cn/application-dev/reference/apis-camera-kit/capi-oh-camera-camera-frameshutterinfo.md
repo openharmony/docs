@@ -22,6 +22,5 @@
 | 名称 | 描述 |
 | -- | -- |
 | int32_t captureId | 捕获id。 |
-| uint64_t timestamp | 帧的时间戳，单位毫秒。 |gi
-
+| uint64_t timestamp | 帧的时间戳，单位毫秒。 |
 
