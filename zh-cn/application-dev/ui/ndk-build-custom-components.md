@@ -151,6 +151,7 @@ ArkUI开发框架在NDK接口提供了自定义UI组件的能力，这些能力�
    
    #include "ArkUICustomContainerNode.h"
    #include "ArkUITextNode.h"
+   #include "UITimer.h"
    
    #include <arkui/native_node_napi.h>
    #include <arkui/native_type.h>
@@ -306,6 +307,7 @@ ArkUI开发框架在NDK接口提供了自定义UI组件的能力，这些能力�
    
    #include "ArkUICustomContainerNode.h"
    #include "ArkUICustomNode.h"
+   #include "UITimer.h"
    
    #include <arkui/native_node_napi.h>
    #include <arkui/native_type.h>

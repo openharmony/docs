@@ -2,7 +2,7 @@
 
 ## Overview
 
-The NativeDisplayManager_Rect struct describes a rectangle.
+The struct describes a rectangle.
 
 **Since**: 12
 

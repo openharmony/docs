@@ -633,7 +633,8 @@ struct RatingExample {
         .stars(5)
         .stepSize(0.5)
         .starStyle({
-          backgroundUri: $r('app.media.imag1'), // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
+          // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
+          backgroundUri: $r('app.media.imag1'),
           foregroundUri: $r('app.media.imag2'),
           secondaryUri: $r('app.media.imag3')
         })

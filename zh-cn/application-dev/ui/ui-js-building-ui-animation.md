@@ -19,7 +19,7 @@
 
 - **rotate**：将指定组件沿横轴或纵轴或中心点旋转指定的角度。
 
-具体的使用示例如下，更多信息请参考[组件方法](../reference/apis-arkui/arkui-js/js-components-common-methods.md)。
+具体的使用示例如下，更多信息请参考[动画样式](../reference/apis-arkui/arkui-js/js-components-common-animation.md)。
 
 ```html
 <!-- xxx.hml -->

@@ -372,6 +372,7 @@ struct MenuExample {
       ForEach(this.listData, (item:number, index) => {
         Column() {
           Row() {
+            // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
             Image($r("app.media.icon")).width(20).height(20).margin({ right: 5 })
             Text(`Menu${index as number + 1}`).fontSize(20)
           }
@@ -498,6 +499,7 @@ struct DirectiveMenuExample {
 @Entry
 @Component
 struct Index {
+  // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
   private iconStr: ResourceStr = $r("app.media.icon");
 
   @Builder
@@ -542,6 +544,7 @@ struct Index {
 @Entry
 @Component
 struct Index {
+  // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
   private iconStr: ResourceStr = $r("app.media.icon");
 
   @Builder
@@ -594,6 +597,7 @@ struct Index {
 @Entry
 @Component
 struct Index {
+  // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
   private iconStr: ResourceStr = $r("app.media.icon");
   @State isShown: boolean = false;
 
@@ -674,6 +678,7 @@ struct MenuExample {
   @Builder
   MyPreview() {
     Column() {
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.startIcon'))
         .width(50)
         .height(50)
@@ -766,6 +771,7 @@ struct MenuExample {
 @Entry
 @Component
 struct Index {
+  // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
   private iconStr: ResourceStr = $r("app.media.app_icon");
 
   @Builder
@@ -821,7 +827,8 @@ struct Index {
 struct MenuExample {
   build() {
     Stack() {
-      Image($r('app.media.bg'))
+      // $r('app.media.bg')需要替换为开发者所需的图像资源文件
+      Image($r('app.media.bg'))。
       Column() {
         Text('click for Menu')
           .bindMenu([
@@ -870,6 +877,7 @@ struct MenuExample {
 struct MenuExample {
   build() {
     Stack() {
+      // $r('app.media.bg')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.bg'))
       Column() {
         Text('click for Menu')
@@ -918,6 +926,7 @@ struct MenuExample {
 @Entry
 @Component
 struct Index {
+  // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
   private iconStr: ResourceStr = $r("app.media.app_icon");
 
   @Builder
@@ -975,6 +984,7 @@ struct Index {
 @Entry
 @Component
 struct Index {
+  // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
   private iconStr: ResourceStr = $r("app.media.startIcon");
 
   @Builder
@@ -1020,6 +1030,7 @@ struct Index {
 @Entry
 @Component
 struct Index {
+  // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
   private iconStr: ResourceStr = $r("app.media.startIcon")
   @State isShown: boolean = false
   @State textColor: Color = Color.Black

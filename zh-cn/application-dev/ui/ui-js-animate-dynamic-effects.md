@@ -49,7 +49,6 @@ button{
 
 ```js
 // xxx.js
-import animator from '@ohos.animator';
 export default {
   data: {
     translateVal: 0,
@@ -67,7 +66,7 @@ export default {
       begin: 0,
       end: 180
     };//设置参数
-    this.animation = animator.createAnimator(options);//创建动画
+    this.animation = this.getUIContext().createAnimator(options);//创建动画
   },
   playAnimation() {
     var _this = this;
@@ -91,7 +90,7 @@ export default {
 
 ## 添加动画事件和调用接口
 
-animator支持事件和接口，可以通过添加frame、cancel、repeat、finish事件和调用update、play、pause、cancel、reverse、finish接口自定义动画效果。animator支持的事件和接口具体见动画中的[create](../reference/apis-arkui/js-apis-animator.md#createdeprecated)。
+animator支持事件和接口，可以通过添加frame、cancel、repeat、finish事件和调用update、play、pause、cancel、reverse、finish接口自定义动画效果。animator支持的事件和接口具体见动画中的[createAnimator](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#createanimator)。
 
 ```html
 <!-- xxx.hml -->
@@ -155,8 +154,6 @@ button{
 
 ```js
 // xxx.js
-import animator from '@ohos.animator';
-import promptAction from '@ohos.promptAction';
 export default {
   data: {
     scaleVal:1,
@@ -165,20 +162,19 @@ export default {
     translateVal:0,
     animation: null
   },
-  onInit() {
+  onInit() {},
+  onShow() {
     var options = {
       duration: 3000,
       fill: 'forwards',
       begin: 200,
       end: 270
     };
-    this.animation = animator.createAnimator(options);
-  },
-  onShow() {
+    this.animation = this.getUIContext().createAnimator(options);
     var _this= this;
     //添加动画重放事件
     this.animation.onrepeat = function() {
-      promptAction.showToast({
+      this.getUIContext().getPromptAction().showToast({
         message: 'repeat'
       });
       var repeatOptions = {
@@ -188,15 +184,15 @@ export default {
          begin: 180,
          end: 240
        };
-        _this.animation.update(repeatOptions);
-        _this.animation.play();
+        _this.animation?.update(repeatOptions);
+        _this.animation?.play();
       };
   },
   playAnimation() {
     var _this= this;
     //添加动画逐帧插值回调事件
     this.animation.onframe = function(value) {
-      _this. scaleVal= value/150,
+      _this.scaleVal= value/150,
       _this.DivWidth = value,
       _this.DivHeight = value,
       _this.translateVal = value-180
@@ -220,7 +216,7 @@ export default {
     var _this= this;
    //添加动画完成事件
     this.animation.onfinish = function() {
-      promptAction.showToast({
+      this.getUIContext().getPromptAction().showToast({
         message: 'finish'
       });
     };
@@ -239,4 +235,4 @@ export default {
 
 > **说明：** 
 >
-> 在调用[update](../reference/apis-arkui/js-apis-animator.md#updatedeprecated)接口的过程中可以使用这个接口更新动画参数，入参与[createAnimator](../reference/apis-arkui/js-apis-animator.md#createanimatordeprecated)一致。
+> 在调用[reset](../reference/apis-arkui/js-apis-animator.md#reset9)接口的过程中可以使用这个接口更新动画参数，入参与[createAnimator](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#createanimator)一致。

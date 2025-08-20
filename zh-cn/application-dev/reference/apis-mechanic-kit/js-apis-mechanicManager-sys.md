@@ -6,7 +6,7 @@
 <!--Tester: @zhaodengqi-->
 <!--Adviser: @foryourself-->
 
-本模块提供与机械设备交互的能力，包括设备连接管理、控制和监控功能。
+本模块提供与机械体设备交互的能力，包括设备连接管理、控制和监控功能。
 
 > **说明：**
 >
@@ -236,7 +236,7 @@ console.info(`'Query maximum rotation time successful, maximum time:' ${maxTime}
 
 getMaxRotationSpeed(mechId: number): RotationSpeed
 
-获取机械设备的最大旋转速度。
+获取机械体设备的最大旋转速度。
 
 **系统能力**：SystemCapability.Mechanic.Core
 
@@ -367,7 +367,7 @@ getCurrentAngles(mechId: number): EulerAngles
 
 > **说明：**
 >
-> 初始位置：机械设备初始化的位置，坐标为（0， 0， 0）。
+> 初始位置：机械体设备初始化的位置，坐标为（0， 0， 0）。
 
 **系统能力**：SystemCapability.Mechanic.Core
 

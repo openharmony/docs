@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **oh_window_pip.h** file declares the APIs related to the Picture in Picture (PiP) feature, including creating and deleting a PiP controller, and starting and stopping PiP. PiP is mainly used in video playback, live streaming, video calls, or video meetings.
+The file declares the APIs related to the Picture in Picture (PiP) feature, including creating and deleting a PiP controller, and starting and stopping PiP. PiP is mainly used in video playback, live streaming, video calls, or video meetings.
 
 **File to include**: <window_manager/oh_window_pip.h>
 
@@ -48,18 +48,20 @@ The **oh_window_pip.h** file declares the APIs related to the Picture in Picture
 | [int32_t OH_PictureInPicture_UpdatePipContentSize(uint32_t controllerId, uint32_t width, uint32_t height)](#oh_pictureinpicture_updatepipcontentsize) | - | Updates the media content size when the media content changes.|
 | [int32_t OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, PictureInPicture_PipControlType controlType,PictureInPicture_PipControlStatus status)](#oh_pictureinpicture_updatepipcontrolstatus) | - | Updates the PiP component status.|
 | [int32_t OH_PictureInPicture_SetPipControlEnabled(uint32_t controllerId, PictureInPicture_PipControlType controlType,bool enabled)](#oh_pictureinpicture_setpipcontrolenabled) | - | Sets the PiP component enabled status.|
-| [int32_t OH_PictureInPicture_RegisterStartPipCallback(uint32_t controllerId, WebPipStartPipCallback callback)](#oh_pictureinpicture_registerstartpipcallback) | - | Registers a callback function for PiP window creation.|
-| [int32_t OH_PictureInPicture_UnregisterStartPipCallback(uint32_t controllerId, WebPipStartPipCallback callback)](#oh_pictureinpicture_unregisterstartpipcallback) | - | Unregisters a single callback function for PiP window creation.|
-| [int32_t OH_PictureInPicture_UnregisterAllStartPipCallbacks(uint32_t controllerId)](#oh_pictureinpicture_unregisterallstartpipcallbacks) | - | Unregisters all callback functions for PiP window creation.|
-| [int32_t OH_PictureInPicture_RegisterLifecycleListener(uint32_t controllerId, WebPipLifecycleCallback callback)](#oh_pictureinpicture_registerlifecyclelistener) | - | Registers a callback function for PiP window lifecycle changes.|
-| [int32_t OH_PictureInPicture_UnregisterLifecycleListener(uint32_t controllerId, WebPipLifecycleCallback callback)](#oh_pictureinpicture_unregisterlifecyclelistener) | - | Unregisters a single callback function for PiP window lifecycle changes.|
-| [int32_t OH_PictureInPicture_UnregisterAllLifecycleListeners(uint32_t controllerId)](#oh_pictureinpicture_unregisteralllifecyclelisteners) | - | Unregisters all callback functions for PiP window lifecycle changes.|
-| [int32_t OH_PictureInPicture_RegisterControlEventListener(uint32_t controllerId, WebPipControlEventCallback callback)](#oh_pictureinpicture_registercontroleventlistener) | - | Registers a callback function for the component click event of the PiP window.|
-| [int32_t OH_PictureInPicture_UnregisterControlEventListener(uint32_t controllerId, WebPipControlEventCallback callback)](#oh_pictureinpicture_unregistercontroleventlistener) | - | Unregisters a single callback function for the component click event of the PiP window.|
-| [int32_t OH_PictureInPicture_UnregisterAllControlEventListeners(uint32_t controllerId)](#oh_pictureinpicture_unregisterallcontroleventlisteners) | - | Unregisters all callback functions for the component click event of the PiP window.|
-| [int32_t OH_PictureInPicture_RegisterResizeListener(uint32_t controllerId, WebPipResizeCallback callback)](#oh_pictureinpicture_registerresizelistener) | - | Registers a callback function for PiP window size changes.|
-| [int32_t OH_PictureInPicture_UnregisterResizeListener(uint32_t controllerId, WebPipResizeCallback callback)](#oh_pictureinpicture_unregisterresizelistener) | - | Unregisters a single callback function for PiP window size changes.|
-| [int32_t OH_PictureInPicture_UnregisterAllResizeListeners(uint32_t controllerId)](#oh_pictureinpicture_unregisterallresizelisteners) | - | Unregisters all callback functions for PiP window size changes.|
+| [int32_t OH_PictureInPicture_RegisterStartPipCallback(uint32_t controllerId, WebPipStartPipCallback callback)](#oh_pictureinpicture_registerstartpipcallback) | - | Registers a callback to listen for the completion of PiP surface creation.|
+| [int32_t OH_PictureInPicture_UnregisterStartPipCallback(uint32_t controllerId, WebPipStartPipCallback callback)](#oh_pictureinpicture_unregisterstartpipcallback) | - | Unregisters the callback used to listen for the completion of PiP surface creation.|
+| [int32_t OH_PictureInPicture_UnregisterAllStartPipCallbacks(uint32_t controllerId)](#oh_pictureinpicture_unregisterallstartpipcallbacks) | - | Unregisters all the callbacks used to listen for the completion of PiP surface creation.|
+| [int32_t OH_PictureInPicture_RegisterLifecycleListener(uint32_t controllerId, WebPipLifecycleCallback callback)](#oh_pictureinpicture_registerlifecyclelistener) | - | Registers a callback to listen for PiP lifecycle state changes.|
+| [int32_t OH_PictureInPicture_UnregisterLifecycleListener(uint32_t controllerId, WebPipLifecycleCallback callback)](#oh_pictureinpicture_unregisterlifecyclelistener) | - | Unregisters the callback used to listen for PiP lifecycle state changes.|
+| [int32_t OH_PictureInPicture_UnregisterAllLifecycleListeners(uint32_t controllerId)](#oh_pictureinpicture_unregisteralllifecyclelisteners) | - | Unregisters all the callbacks used to listen for PiP lifecycle state changes.|
+| [int32_t OH_PictureInPicture_RegisterControlEventListener(uint32_t controllerId, WebPipControlEventCallback callback)](#oh_pictureinpicture_registercontroleventlistener) | - | Registers a callback to listen for control panel action events in PiP mode.|
+| [int32_t OH_PictureInPicture_UnregisterControlEventListener(uint32_t controllerId, WebPipControlEventCallback callback)](#oh_pictureinpicture_unregistercontroleventlistener) | - | Unregisters the callback used to listen for control panel action events in PiP mode.|
+| [int32_t OH_PictureInPicture_UnregisterAllControlEventListeners(uint32_t controllerId)](#oh_pictureinpicture_unregisterallcontroleventlisteners) | - | Unregisters all the callbacks used to listen for control panel action events in PiP mode.|
+| [int32_t OH_PictureInPicture_RegisterResizeListener(uint32_t controllerId, WebPipResizeCallback callback)](#oh_pictureinpicture_registerresizelistener) | - | Registers a callback to listen for PiP window size changes.|
+| [int32_t OH_PictureInPicture_UnregisterResizeListener(uint32_t controllerId, WebPipResizeCallback callback)](#oh_pictureinpicture_unregisterresizelistener) | - | Unregisters the callback used to listen for PiP window size changes.|
+| [int32_t OH_PictureInPicture_UnregisterAllResizeListeners(uint32_t controllerId)](#oh_pictureinpicture_unregisterallresizelisteners) | - | Unregisters all the callbacks used to listen for PiP window size changes.|
+| [int32_t OH_PictureInPicture_SetPipInitialSurfaceRect(uint32_t controllerId, int32_t positionX, int32_t positionY,uint32_t width, uint32_t height)](#oh_pictureinpicture_setpipinitialsurfacerect) | - | Sets the initial position and size of the PiP surface when the PiP launch animation starts. It can be used to achieve a seamless transition effect.|
+| [int32_t OH_PictureInPicture_UnsetPipInitialSurfaceRect(uint32_t controllerId)](#oh_pictureinpicture_unsetpipinitialsurfacerect) | - | Cancels the previously set initial position and size for the PiP surface.|
 
 ## Enum Description
 
@@ -259,7 +261,7 @@ Defines a callback function for PiP window size changes.
 | uint32_t controllerId | ID of the PiP controller. The value is a non-negative integer.|
 |  uint32_t width | PiP window width, in px. The value is a positive integer and cannot be greater than the screen width.|
 |  uint32_t height | PiP window height, in px. The value is a positive integer and cannot be greater than the screen height.|
-|  double scale | Scale factor of the PiP window, representing the display size relative to the width and height. The value is a floating point number in the range (0.0, 1.0]. The value **1** means that the PiP window matches the specified width and height.|
+|  double scale | Scale factor of the PiP window, representing the display size relative to the width and height. The value is a floating-point number in the range (0.0, 1.0]. The value **1** means that the PiP window matches the specified width and height.|
 
 ### OH_PictureInPicture_CreatePipConfig()
 
@@ -617,7 +619,7 @@ Sets the PiP component enabled status.
 | -- | -- |
 | uint32_t controllerId | ID of the PiP controller. The value is a non-negative integer.|
 | [PictureInPicture_PipControlType](#pictureinpicture_pipcontroltype) controlType | Type of the component displayed on the PiP controller.|
-| bool enabled | Enabled status of the component displayed on the PiP controller. The value **true** means that the component is enabled, and **false** means the opposite.|
+| bool enabled | Enabled status of the component displayed on the PiP controller. **true** if enabled, **false** otherwise.|
 
 **Return value**
 
@@ -633,7 +635,7 @@ int32_t OH_PictureInPicture_RegisterStartPipCallback(uint32_t controllerId, WebP
 
 **Description**
 
-Registers a callback function for PiP window creation.
+Registers a callback to listen for the completion of PiP surface creation.
 
 **Since**: 20
 
@@ -659,7 +661,7 @@ int32_t OH_PictureInPicture_UnregisterStartPipCallback(uint32_t controllerId, We
 
 **Description**
 
-Unregisters a single callback function for PiP window creation.
+Unregisters the callback used to listen for the completion of PiP surface creation.
 
 **Since**: 20
 
@@ -685,7 +687,7 @@ int32_t OH_PictureInPicture_UnregisterAllStartPipCallbacks(uint32_t controllerId
 
 **Description**
 
-Unregisters all callback functions for PiP window creation.
+Unregisters all the callbacks used to listen for the completion of PiP surface creation.
 
 **Since**: 20
 
@@ -710,7 +712,7 @@ int32_t OH_PictureInPicture_RegisterLifecycleListener(uint32_t controllerId, Web
 
 **Description**
 
-Registers a callback function for PiP window lifecycle changes.
+Registers a callback to listen for PiP lifecycle state changes.
 
 **Since**: 20
 
@@ -736,7 +738,7 @@ int32_t OH_PictureInPicture_UnregisterLifecycleListener(uint32_t controllerId, W
 
 **Description**
 
-Unregisters a single callback function for PiP window lifecycle changes.
+Unregisters the callback used to listen for PiP lifecycle state changes.
 
 **Since**: 20
 
@@ -762,7 +764,7 @@ int32_t OH_PictureInPicture_UnregisterAllLifecycleListeners(uint32_t controllerI
 
 **Description**
 
-Unregisters all callback functions for PiP window lifecycle changes.
+Unregisters all the callbacks used to listen for PiP lifecycle state changes.
 
 **Since**: 20
 
@@ -787,7 +789,7 @@ int32_t OH_PictureInPicture_RegisterControlEventListener(uint32_t controllerId, 
 
 **Description**
 
-Registers a callback function for the component click event of the PiP window.
+Registers a callback to listen for control panel action events in PiP mode.
 
 **Since**: 20
 
@@ -813,7 +815,7 @@ int32_t OH_PictureInPicture_UnregisterControlEventListener(uint32_t controllerId
 
 **Description**
 
-Unregisters a single callback function for the component click event of the PiP window.
+Unregisters the callback used to listen for control panel action events in PiP mode.
 
 **Since**: 20
 
@@ -839,7 +841,7 @@ int32_t OH_PictureInPicture_UnregisterAllControlEventListeners(uint32_t controll
 
 **Description**
 
-Unregisters all callback functions for the component click event of the PiP window.
+Unregisters all the callbacks used to listen for control panel action events in PiP mode.
 
 **Since**: 20
 
@@ -864,7 +866,7 @@ int32_t OH_PictureInPicture_RegisterResizeListener(uint32_t controllerId, WebPip
 
 **Description**
 
-Registers a callback function for PiP window size changes.
+Registers a callback to listen for PiP window size changes.
 
 **Since**: 20
 
@@ -890,7 +892,7 @@ int32_t OH_PictureInPicture_UnregisterResizeListener(uint32_t controllerId, WebP
 
 **Description**
 
-Unregisters a single callback function for PiP window size changes.
+Unregisters the callback used to listen for PiP window size changes.
 
 **Since**: 20
 
@@ -916,7 +918,7 @@ int32_t OH_PictureInPicture_UnregisterAllResizeListeners(uint32_t controllerId)
 
 **Description**
 
-Unregisters all callback functions for PiP window size changes.
+Unregisters all the callbacks used to listen for PiP window size changes.
 
 **Since**: 20
 
@@ -931,3 +933,55 @@ Unregisters all callback functions for PiP window size changes.
 | Type| Description|
 | -- | -- |
 | int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
+
+### OH_PictureInPicture_SetPipInitialSurfaceRect()
+
+```
+int32_t OH_PictureInPicture_SetPipInitialSurfaceRect(uint32_t controllerId, int32_t positionX, int32_t positionY,uint32_t width, uint32_t height)
+```
+
+**Description**
+
+Sets the initial position and size of the PiP surface when the PiP launch animation starts. It can be used to achieve a seamless transition effect.
+
+**Since**: 20
+
+**Parameters**
+
+| Parameter| Description|
+| -- | -- |
+| uint32_t controllerId | ID of the PiP controller. The value is a non-negative integer.|
+| int32_t positionX | X coordinate of the PiP window relative to the upper-left corner of the screen when the PiP window is started, in px.|
+| int32_t positionY | Y coordinate of the PiP window relative to the upper-left corner of the screen when the PiP window is started, in px.|
+| uint32_t width | Width of the PiP window when the PiP window is started. The value is greater than 0, measured in px.|
+| uint32_t height | Height of the PiP window when the PiP window is started. The value is greater than 0, measured in px.|
+
+**Return value**
+
+| Type| Description|
+| -- | -- |
+| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
+
+### OH_PictureInPicture_UnsetPipInitialSurfaceRect()
+
+```
+int32_t OH_PictureInPicture_UnsetPipInitialSurfaceRect(uint32_t controllerId)
+```
+
+**Description**
+
+Cancels the previously set initial position and size for the PiP surface.
+
+**Since**: 20
+
+**Parameters**
+
+| Parameter| Description|
+| -- | -- |
+| uint32_t controllerId | ID of the PiP controller. The value is a non-negative integer.|
+
+**Return value**
+
+| Type| Description|
+| -- | -- |
+| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|

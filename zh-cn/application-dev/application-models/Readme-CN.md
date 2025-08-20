@@ -27,7 +27,7 @@
       - [ServiceExtensionAbility（仅对系统应用开放）](serviceextensionability.md)
       - [UIServiceExtension（仅对系统应用开放）](uiserviceextension-sys.md)
       - [UIExtensionAbility（仅对系统应用开放）](uiextensionability.md)
-      - [AutoFillExtensionAbility（仅对系统应用开放）](autofillextensionablility-guide.md)
+      - [使用AutoFillExtensionAbility实现自动填充功能（仅对系统应用开放）](autofillextensionablility-guide.md)
       - [使用通过UIServiceExtensionAbility实现的系统悬浮窗](uiserviceextension.md)
       <!--DelEnd-->
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
