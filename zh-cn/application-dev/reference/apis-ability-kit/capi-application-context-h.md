@@ -468,7 +468,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetVersionCode(int6
 
 | 参数项 | 描述 |
 | -- | -- |
-| int64_t* [versionCode](js-apis-bundleManager-bundleinfo.md#versionCode) | 指向接收版本号的指针。 |
+| int64_t* [versionCode](js-apis-bundleManager-bundleinfo.md) | 指向接收版本号的指针。 |
 
 **返回：**
 
