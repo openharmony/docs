@@ -22,7 +22,7 @@
 
 \@State装饰的变量与声明式范式中的其他被装饰变量一样，是私有的，只能从组件内部访问，在声明时必须指定其类型并完成本地初始化；若需从父组件初始化，也可选择使用命名参数机制完成赋值。
 
-\@State装饰的变量拥有以下特点：
+\@State装饰的变量拥有以下特性：
 
 - \@State装饰的变量生命周期与其所属自定义组件的生命周期相同。
 
@@ -32,7 +32,8 @@
 | ------------------ | ------------------------------------------------------------ |
 | 装饰器参数         | 无                                                           |
 | 同步类型           | 不与父组件中任何类型的变量同步。                             |
-| 允许装饰的变量类型 | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>[支持Date类型](#装饰date类型变量)、undefined和null类型。以及ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型。 <br/>类型必须指定。<br/>支持类型的场景见[观察变化](#观察变化)。<br/>不支持any。<br/>API version 11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型以及上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@State支持联合类型实例](#state支持联合类型实例)。 <br/>**注意：**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验。比如：支持`@State a : string \| undefined = undefined`；不支持`@State a: string = undefined`。|
+| 允许装饰的变量类型 | object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API version 10开始支持[Date类型](#装饰date类型变量)。<br/>API version 11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型、undefined和null类型、ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型以及这些类型的联合类型，示例见[@State支持联合类型实例](#state支持联合类型实例)。<br/>支持类型的场景见[观察变化](#观察变化)。|
+| 不允许装饰的变量类型 | 不支持装饰Function类型。      |
 | 被装饰变量的初始值 | 必须本地初始化。      |
 
 ## 变量的传递/访问规则说明
