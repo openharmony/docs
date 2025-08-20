@@ -497,7 +497,7 @@ shiftAppWindowTouchEvent(sourceWindowId: number, targetWindowId: number, fingerI
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在2in1、tablet中可正常调用，在其它设备类型中返回801错误码。 
+**设备行为差异：** 该接口在2in1、Tablet中可正常调用，在其它设备类型中返回801错误码。 
 
 **参数：**
 
