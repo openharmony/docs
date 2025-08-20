@@ -2,8 +2,8 @@
 <!--Kit: Telephony Kit-->
 <!--Subsystem: Telephony-->
 <!--Owner: @yangyannanyangyannan-->
-<!--Designer: @ghxbob-->
-<!--Tester: @weitiantian-->
+<!--SE: @ghxbob-->
+<!--TSE: @weitiantian-->
 
 穿戴设备支持eSIM，电话服务提供API给eSIM卡管理和eSIM卡服务使用。
 
@@ -959,7 +959,7 @@ eSIM.cancelSession(0, transactionId, eSIM.CancelReason.CANCEL_REASON_END_USER_RE
 | state               | [ProfileState](#profilestate18)                       |  是  | 配置文件的状态。 |
 | profileClass        | [ProfileClass](#profileclass18)                       |  是  | 配置文件类。     |
 | operatorId          | [OperatorId](#operatorid18)                           |  是  | 配置文件的操作ID。|
-| policyRules         | [PolicyRules](#policerules18)                         |  是  | 配置文件策略。   |
+| policyRules         | [PolicyRules](#policyrules18)                         |  是  | 配置文件策略。   |
 | accessRules         | Array\<[AccessRule](./js-apis-esim.md#accessrule18)\> |  是  | 配置文件规则。   |
 
 ## EuiccInfo<sup>18+</sup>
