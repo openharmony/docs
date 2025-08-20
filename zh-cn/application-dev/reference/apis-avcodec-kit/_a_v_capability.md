@@ -146,7 +146,7 @@ enum OH_AVCapabilityFeature
 | -------- | -------- |
 | VIDEO_ENCODER_TEMPORAL_SCALABILITY  | 编解码器支持时域可分层特性，只用于视频编码场景。   | 
 | VIDEO_ENCODER_LONG_TERM_REFERENCE  | 编解码器支持长期参考帧特性，只用于视频编码场景。   | 
-| VIDEO_LOW_LATENCY  | 编解码器支持低时延特性，用于视频编码和视频解码场景。   | 
+| VIDEO_LOW_LATENCY  | 编解码器支持低时延特性，只用于视频解码场景。   | 
 | VIDEO_ENCODER_B_FRAME  | 编解码器支持B帧编码，用于视频编码场景。<br>**起始版本：** 20   | 
 
 
