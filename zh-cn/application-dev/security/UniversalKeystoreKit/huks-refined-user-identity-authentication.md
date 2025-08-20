@@ -24,7 +24,7 @@
     import { huks } from "@kit.UniversalKeystoreKit";
     
     /*
-     * 确定密钥别名和封装密钥属性参数集
+     * 确定密钥别名和封装密钥属性参数集。
      */
     let keyAlias = 'test_sm4_key_alias';
     
@@ -125,22 +125,22 @@
    
     ```ts
     import { huks } from "@kit.UniversalKeystoreKit";
-    
+
     class HuksProperties {
       tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
       value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding | huks.HuksCipherMode
         | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_ECC;
     }
-    
+
     /*
-     * 确定密钥别名和封装密钥属性参数集
-     */
+    * 确定密钥别名和封装密钥属性参数集。
+    */
     let keyAlias = 'test_sm4_key_alias';
     let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string'; // 明文数据。
     let IV = '1234567890123456'; // 此处为样例代码，实际使用需采用随机值。
     let handle = 0;
     let cipherText: Uint8Array; // 加密后的密文数据。
-    
+
     function StringToUint8Array(str: string) {
       let arr: number[] = [];
       for (let i = 0, j = str.length; i < j; ++i) {
@@ -148,8 +148,8 @@
       }
       return new Uint8Array(arr);
     }
-    
-    /* 集成生成密钥参数集 & 加密参数集 */
+
+    /* 集成生成密钥参数集 & 加密参数集。 */
     let propertiesEncrypt: HuksProperties[] = [
       {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -173,18 +173,18 @@
       },
       {
         tag: huks.HuksTag.HUKS_TAG_IV,
-        value: StringToUint8Array(IV),
+        value: StringToUint8Array(IV),,
       }
     ];
     let encryptOptions: huks.HuksOptions = {
       properties: propertiesEncrypt,
       inData: new Uint8Array(new Array())
     }
-    
+
     class ThrowObject {
       isThrow: boolean = false;
     }
-    
+
     function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
       return new Promise<huks.HuksSessionHandle>((resolve, reject) => {
         try {
@@ -201,7 +201,7 @@
         }
       });
     }
-    
+
     async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
       console.info(`enter promise doInit`);
       let throwObject: ThrowObject = { isThrow: false };
@@ -222,7 +222,7 @@
         console.error(`promise: doInit input arg invalid` + JSON.stringify(error));
       }
     }
-    
+
     function finishSession(handle: number, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
       return new Promise<huks.HuksReturnResult>((resolve, reject) => {
         try {
@@ -239,7 +239,7 @@
         }
       });
     }
-    
+
     async function publicFinishFunc(handle: number, huksOptions: huks.HuksOptions) {
       console.info(`enter promise doFinish`);
       let throwObject: ThrowObject = { isThrow: false };
@@ -260,11 +260,11 @@
         console.error(`promise: doFinish input arg invalid` + JSON.stringify(error));
       }
     }
-    
+
     async function testSm4Cipher() {
-      /* 初始化密钥会话获取挑战值 */
+      /* 初始化密钥会话获取挑战值。 */
       await publicInitFunc(keyAlias, encryptOptions);
-      /* 加密 */
+      /* 加密。 */
       encryptOptions.inData = StringToUint8Array(cipherInData);
       await publicFinishFunc(handle, encryptOptions);
     }
@@ -276,24 +276,25 @@
     import { huks } from "@kit.UniversalKeystoreKit";
     import { userAuth } from '@kit.UserAuthenticationKit';
     import { BusinessError } from "@kit.BasicServicesKit";
-    
+    import { cryptoFramework } from '@kit.CryptoArchitectureKit'
+
     let keyAlias = 'test_sm4_key_alias';
     let IV = '1234567890123456'; // 此处为样例代码，实际使用需采用随机值。
     let handle = 0;
     let cipherText: Uint8Array; // 密文数据。
     /*
-    * 确定封装密钥属性参数集
+    * 确定封装密钥属性参数集。
     */
     let finishOutData: Uint8Array; // 解密后的明文数据。
     let fingerAuthToken: Uint8Array;
     let challenge: Uint8Array;
     let authType = userAuth.UserAuthType.FINGERPRINT;
     let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
-    
+
     class ThrowObject {
       isThrow: boolean = false;
     }
-    
+
     function StringToUint8Array(str: string) {
       let arr: number[] = [];
       for (let i = 0, j = str.length; i < j; ++i) {
@@ -301,14 +302,14 @@
       }
       return new Uint8Array(arr);
     }
-    
-    /* 集成生成密钥参数集 & 加密参数集 */
+
+    /* 集成生成密钥参数集 & 加密参数集。 */
     class propertyDecryptType {
       tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
       value: huks.HuksKeyAlg | huks.HuksKeyPurpose | huks.HuksKeySize | huks.HuksKeyPadding | huks.HuksCipherMode
         | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_SM4
     }
-    
+
     let propertiesDecrypt: propertyDecryptType[] = [
       {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -332,14 +333,14 @@
       },
       {
         tag: huks.HuksTag.HUKS_TAG_IV,
-        value: StringToUint8Array(IV),
+        value: StringToUint8Array(IV),,
       }
     ]
     let decryptOptions: huks.HuksOptions = {
       properties: propertiesDecrypt,
       inData: new Uint8Array(new Array())
     }
-    
+
     function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
       return new Promise<huks.HuksSessionHandle>((resolve, reject) => {
         try {
@@ -356,7 +357,7 @@
         }
       });
     }
-    
+
     async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
       console.info(`enter promise doInit`);
       let throwObject: ThrowObject = { isThrow: false };
@@ -378,7 +379,7 @@
         console.error(`promise: doInit input arg invalid` + JSON.stringify(error));
       }
     }
-    
+
     function userIAMAuthFinger(huksChallenge: Uint8Array) {
       // 获取认证对象。
       let authTypeList: userAuth.UserAuthType[] = [authType];
@@ -418,7 +419,7 @@
         console.error("authV9 start auth failed, error = " + JSON.stringify(error));
       }
     }
-    
+
     function finishSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: ThrowObject) {
       return new Promise<huks.HuksReturnResult>((resolve, reject) => {
         try {
@@ -435,7 +436,7 @@
         }
       });
     }
-    
+
     async function publicFinishFunc(handle: number, token: Uint8Array, huksOptions: huks.HuksOptions) {
       console.info(`enter promise doFinish`);
       let throwObject: ThrowObject = { isThrow: false };
@@ -456,16 +457,16 @@
         console.error(`promise: doFinish input arg invalid` + JSON.stringify(error));
       }
     }
-    
+
     async function testSm4CipherInit() {
-      /* 初始化密钥会话获取挑战值 */
+      /* 初始化密钥会话获取挑战值。 */
       await publicInitFunc(keyAlias, decryptOptions);
-      /* 调用userIAM进行身份认证 */
+      /* 调用userIAM进行身份认证。 */
       userIAMAuthFinger(challenge);
     }
-    
+
     async function testSm4CipherFinish() {
-      /* 认证成功后进行解密, 需要传入Auth获取到的authToken值 */
+      /* 认证成功后进行解密，需要传入Auth获取到的authToken值。 */
       decryptOptions.inData = cipherText;
       await publicFinishFunc(handle, fingerAuthToken, decryptOptions);
     }

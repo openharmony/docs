@@ -134,4 +134,9 @@ async function HMACData() {
       console.error(`promise: HMAC data failed, ${JSON.stringify(error)}`);
     })
 }
+
+async function testHMAC() {
+  await GenerateHMACKey();
+  await HMACData();
+}
 ```

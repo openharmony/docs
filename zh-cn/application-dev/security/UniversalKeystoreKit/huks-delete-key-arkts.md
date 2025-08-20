@@ -24,6 +24,7 @@
  * 以下以HKDF256密钥的Promise操作使用为例
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+
 /* 1.确定密钥别名 */
 let keyAlias = 'test_Key';
 /* 2.初始化密钥属性集 */
@@ -45,6 +46,7 @@ let generateHuksOptions: huks.HuksOptions = {
   properties: generateProperties,
   inData: new Uint8Array([])
 }
+
 /* 3.生成密钥 */
 function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
   return new Promise<void>((resolve, reject) => {
@@ -61,6 +63,7 @@ function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
     }
   });
 }
+
 async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions): Promise<string> {
   console.info(`enter promise generateKeyItem`);
   try {
@@ -77,16 +80,20 @@ async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions)
     return 'Failed';
   }
 }
+
 async function testGenKey(): Promise<string> {
   let ret = await publicGenKeyFunc(keyAlias, generateHuksOptions);
   return ret;
 }
+
 let deleteHuksOptions: huks.HuksOptions = {
   properties: []
 }
+
 class ThrowObject {
   public isThrow = false;
 }
+
 /* 4.删除密钥 */
 function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
   return new Promise<void>((resolve, reject) => {
@@ -104,6 +111,7 @@ function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObj
     }
   });
 }
+
 async function publicDeleteKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions): Promise<string> {
   console.info(`enter promise deleteKeyItem`);
   let throwObject: ThrowObject = { isThrow: false };
@@ -126,6 +134,7 @@ async function publicDeleteKeyFunc(keyAlias: string, huksOptions: huks.HuksOptio
     return 'Failed';
   }
 }
+
 async function testDelete(): Promise<string> {
   let ret = await publicDeleteKeyFunc(keyAlias, deleteHuksOptions);
   return ret;

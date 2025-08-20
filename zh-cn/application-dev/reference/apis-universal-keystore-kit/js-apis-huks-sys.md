@@ -1232,7 +1232,8 @@ async function EncryptImportedPlainKeyAndKek(
   return result
 }
 
-async function BuildWrappedDataAndImportWrappedKey(plainKey: string, huksPubKey: Uint8Array, callerSelfPublicKey: Uint8Array, encData: KeyEncAndKekEnc) {
+async function BuildWrappedDataAndImportWrappedKey(plainKey: string, huksPubKey: Uint8Array,
+  callerSelfPublicKey: Uint8Array, encData: KeyEncAndKekEnc) {
   const plainKeySizeBuff = new Uint8Array(4);
   AssignLength(plainKey.length, plainKeySizeBuff, 0);
 
@@ -1285,7 +1286,8 @@ export async function HuksSecurityImportTest(userId: number) {
     userId,
     callerKekAliasAes256, importParamsCallerKek, callerKeyAlias, huksPubKey, callerAgreeParams);
   const encData: KeyEncAndKekEnc = await EncryptImportedPlainKeyAndKek(userId, importedAes192PlainKey);
-  const wrappedData = await BuildWrappedDataAndImportWrappedKey(importedAes192PlainKey, huksPubKey, callerSelfPublicKey, encData);
+  const wrappedData =
+    await BuildWrappedDataAndImportWrappedKey(importedAes192PlainKey, huksPubKey, callerSelfPublicKey, encData);
   importWrappedAes192Params.inData = wrappedData;
   await PublicImportWrappedKeyFunc(userId,
     importedKeyAliasAes192, srcKeyAliasWrap, importWrappedAes192Params);

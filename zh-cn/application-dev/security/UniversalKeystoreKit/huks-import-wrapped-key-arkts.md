@@ -35,10 +35,11 @@
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit'
 
-let IV = '0000000000000000'; // 此处为样例代码，实际使用需采用随机值。
+let IV = cryptoFramework.createRandom().generateRandomSync(16).data
 let AAD = "abababababababab";
-let NONCE = "hahahahahaha"; // 此处为样例代码，实际使用需采用随机值。
+let NONCE = cryptoFramework.createRandom().generateRandomSync(12).data
 let TAG_SIZE = 16;
 let FILED_LENGTH = 4;
 let importedAes192PlainKey = "The aes192 key to import";
@@ -152,7 +153,7 @@ let importParamsCallerKek: huks.HuksOptions = {
     },
     {
       tag: huks.HuksTag.HUKS_TAG_IV,
-      value: stringToUint8Array(IV)
+      value: IV
     }
   ),
   inData: stringToUint8Array(callerAes256Kek)
@@ -185,7 +186,7 @@ let importParamsAgreeKey: huks.HuksOptions = {
     },
     {
       tag: huks.HuksTag.HUKS_TAG_IV,
-      value: stringToUint8Array(IV)
+      value: IV
     }
   ),
 }
@@ -229,7 +230,7 @@ let encryptKeyCommonParams: huks.HuksOptions = {
     },
     {
       tag: huks.HuksTag.HUKS_TAG_NONCE,
-      value: stringToUint8Array(NONCE)
+      value: NONCE
     },
     {
       tag: huks.HuksTag.HUKS_TAG_ASSOCIATED_DATA,
@@ -267,10 +268,9 @@ let importWrappedAes192Params: huks.HuksOptions = {
     {
       tag: huks.HuksTag.HUKS_TAG_UNWRAP_ALGORITHM_SUITE,
       value: huks.HuksUnwrapSuite.HUKS_UNWRAP_SUITE_ECDH_AES_256_GCM_NOPADDING
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_IV,
-      value: stringToUint8Array(IV)
+      value: IV
     }
   )
 }
@@ -526,7 +526,7 @@ async function BuildWrappedDataAndImportWrappedKey(plainKey: string) {
   );
   let index = 0;
   let AADUint8Array = stringToUint8Array(AAD);
-  let NonceArray = stringToUint8Array(NONCE);
+  let NonceArray = NONCE;
   index += assignLength(callerSelfPublicKey.length, wrappedData, index); // 4
   index += assignData(callerSelfPublicKey, wrappedData, index); // 91
   index += assignLength(AADUint8Array.length, wrappedData, index); // 4
@@ -589,7 +589,6 @@ async function ImportWrappedKey() {
   await publicDeleteKeyItemFunc(callerKeyAlias, genCallerEcdhParams);
   await publicDeleteKeyItemFunc(callerKekAliasAes256, callerAgreeParams);
 }
-
 ```
 
 
@@ -613,18 +612,21 @@ let huksOptions: huks.HuksOptions = {
   properties: keyProperties, // 非空填充。
   inData: new Uint8Array(new Array()) // 非空填充。
 }
-try {
-  huks.isKeyItemExist(keyAlias, huksOptions, (error, data) => {
-    if (error) {
-      console.error(`callback: isKeyItemExist failed, ${JSON.stringify(error)}`);
-    } else {
-      if (data !== null && data.valueOf() !== null) {
-        isKeyExist = data.valueOf();
-        console.info(`callback: isKeyItemExist success, isKeyExist = ${isKeyExist}`);
+
+async function ImportWrappedKeyTest() {
+  try {
+    huks.isKeyItemExist(keyAlias, huksOptions, (error, data) => {
+      if (error) {
+        console.error(`callback: isKeyItemExist failed, ${JSON.stringify(error)}`);
+      } else {
+        if (data !== null && data.valueOf() !== null) {
+          isKeyExist = data.valueOf();
+          console.info(`callback: isKeyItemExist success, isKeyExist = ${isKeyExist}`);
+        }
       }
-    }
-  });
-} catch (error) {
-  console.error(`callback: isKeyItemExist input arg invalid, ${JSON.stringify(error)}`);
+    });
+  } catch (error) {
+    console.error(`callback: isKeyItemExist input arg invalid, ${JSON.stringify(error)}`);
+  }
 }
 ```

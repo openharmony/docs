@@ -15,11 +15,11 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 ```
 ## 开发步骤
 
-1. 构造对应参数。
-   - 指定密钥别名，密钥别名命名规范参考[密钥生成介绍及算法规格](huks-key-generation-overview.md)。
-   - 查询密钥需要的[属性TAG](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_tag)（默认传空）。
+1. 指定密钥别名，密钥别名命名规范参考[密钥生成介绍及算法规格](huks-key-generation-overview.md)。
 
-2. 调用接口[OH_Huks_IsKeyItemExist](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_iskeyitemexist)，查询密钥是否存在。
+2. 初始化密钥属性集。用于查询时指定[密钥的属性TAG](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_tag)（默认传空）。
+
+3. 调用接口[OH_Huks_IsKeyItemExist](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_iskeyitemexist)，查询密钥是否存在。
 
 ```c++
 #include "huks/native_huks_api.h"

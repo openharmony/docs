@@ -72,11 +72,12 @@
  * 以下以AES/CBC/PKCS7的Promise操作使用为例
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit'
 
 let aesKeyAlias = 'test_aesKeyAlias';
 let handle: number;
 let plainText = '123456';
-let IV = '001122334455'; // 此处为样例代码，实际使用需采用随机值。
+let IV = cryptoFramework.createRandom().generateRandomSync(12).data;
 let cipherData: Uint8Array;
 
 function StringToUint8Array(str: string) {
@@ -128,7 +129,7 @@ function GetAesEncryptProperties() {
     value: huks.HuksCipherMode.HUKS_MODE_CBC
   }, {
     tag: huks.HuksTag.HUKS_TAG_IV,
-    value: StringToUint8Array(IV)
+    value: IV
   }];
   return properties;
 }
@@ -151,7 +152,7 @@ function GetAesDecryptProperties() {
     value: huks.HuksCipherMode.HUKS_MODE_CBC
   }, {
     tag: huks.HuksTag.HUKS_TAG_IV,
-    value: StringToUint8Array(IV)
+    value: IV
   }];
   return properties;
 }
@@ -271,8 +272,7 @@ async function DeleteKey() {
     })
 }
 
-export async function TestEncryptDecrypt()
-{
+async function TestEncryptDecrypt() {
   await GenerateAesKey();
   await EncryptData();
   await DecryptData();
@@ -287,13 +287,14 @@ export async function TestEncryptDecrypt()
  * 以下以AES/GCM/NoPadding的Promise操作使用为例
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit'
 
 let aesKeyAlias = 'test_aesKeyAlias';
 let handle: number;
 let plainText = '123456';
 let cipherData: Uint8Array;
 let AAD = '1234567890123456';
-let NONCE = '001122334455'; // 此处为样例代码，实际使用需采用随机值。
+let NONCE = cryptoFramework.createRandom().generateRandomSync(12).data;
 
 function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
@@ -344,7 +345,7 @@ function GetAesGcmEncryptProperties() {
     value: huks.HuksCipherMode.HUKS_MODE_GCM
   }, {
     tag: huks.HuksTag.HUKS_TAG_NONCE,
-    value: StringToUint8Array(NONCE)
+    value: NONCE
   }, {
     tag: huks.HuksTag.HUKS_TAG_ASSOCIATED_DATA,
     value: StringToUint8Array(AAD)
@@ -352,7 +353,7 @@ function GetAesGcmEncryptProperties() {
   return properties;
 }
 
-function GetAesGcmDecryptProperties(cipherData:Uint8Array) {
+function GetAesGcmDecryptProperties(cipherData: Uint8Array) {
   let properties: Array<huks.HuksParam> = [
     {
       tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -371,13 +372,13 @@ function GetAesGcmDecryptProperties(cipherData:Uint8Array) {
     value: huks.HuksCipherMode.HUKS_MODE_GCM
   }, {
     tag: huks.HuksTag.HUKS_TAG_NONCE,
-    value: StringToUint8Array(NONCE)
+    value: NONCE
   }, {
     tag: huks.HuksTag.HUKS_TAG_ASSOCIATED_DATA,
     value: StringToUint8Array(AAD)
   }, {
     tag: huks.HuksTag.HUKS_TAG_AE_TAG,
-    value: cipherData.slice(cipherData.length-16)
+    value: cipherData.slice(cipherData.length - 16)
   }];
   return properties;
 }
@@ -456,7 +457,7 @@ async function DecryptData() {
   let decryptOptions = GetAesGcmDecryptProperties(cipherData)
   let options: huks.HuksOptions = {
     properties: decryptOptions,
-    inData: cipherData.slice(0, cipherData.length-16)
+    inData: cipherData.slice(0, cipherData.length - 16)
   }
   /*
   * 4. 调用initSession获取handle
@@ -497,8 +498,7 @@ async function DeleteKey() {
     })
 }
 
-export async function TestEncryptDecrypt()
-{
+async function TestEncryptDecrypt() {
   await GenerateAesKey();
   await EncryptData();
   await DecryptData();
@@ -711,7 +711,7 @@ async function DeleteKey() {
     })
 }
 
-export async function TestEncryptDecrypt()
+async function TestEncryptDecrypt()
 {
   await GenerateRsaKey();
   await EncryptData();
@@ -925,8 +925,7 @@ async function DeleteKey() {
     })
 }
 
-export async function TestEncryptDecrypt()
-{
+async function TestEncryptDecrypt() {
   await GenerateRsaKey();
   await EncryptData();
   await DecryptData();
@@ -1127,8 +1126,7 @@ async function DeleteKey() {
     })
 }
 
-export async function TestEncryptDecrypt()
-{
+async function TestEncryptDecrypt() {
   await GenerateSm2Key();
   await EncryptDataSm2();
   await DecryptDataSm2();
@@ -1144,11 +1142,12 @@ export async function TestEncryptDecrypt()
  * 以下以DES/CBC/NoPadding的Promise操作使用为例
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit'
 
 let desKeyAlias = 'test_desKeyAlias';
 let handle: number;
 let plainText = '12345678';
-let IV = '12345678'; // 此处为样例代码，实际使用需采用随机值。
+let IV = cryptoFramework.createRandom().generateRandomSync(8).data
 let cipherData: Uint8Array;
 
 function StringToUint8Array(str: string) {
@@ -1200,7 +1199,7 @@ function GetDesEncryptProperties() {
     value: huks.HuksCipherMode.HUKS_MODE_CBC
   }, {
     tag: huks.HuksTag.HUKS_TAG_IV,
-    value: StringToUint8Array(IV)
+    value: IV
   }];
   return properties;
 }
@@ -1223,7 +1222,7 @@ function GetDesDecryptProperties() {
     value: huks.HuksCipherMode.HUKS_MODE_CBC
   }, {
     tag: huks.HuksTag.HUKS_TAG_IV,
-    value: StringToUint8Array(IV)
+    value: IV
   }];
   return properties;
 }
@@ -1343,8 +1342,7 @@ async function DeleteKey() {
     })
 }
 
-export async function TestEncryptDecrypt()
-{
+async function TestEncryptDecrypt() {
   await GenerateDesKey();
   await EncryptData();
   await DecryptData();

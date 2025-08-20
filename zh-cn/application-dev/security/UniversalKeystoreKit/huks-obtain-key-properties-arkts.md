@@ -21,6 +21,7 @@ HUKS提供了接口供业务获取指定密钥的相关属性。在获取指定�
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
+
 /* 1. 设置密钥别名 */
 let keyAlias = 'keyAlias';
 /* 2. 设置密钥属性 */
@@ -45,6 +46,7 @@ let huksOptions: huks.HuksOptions = {
   properties: properties1,
   inData: new Uint8Array([])
 }
+
 /* 3.生成密钥 */
 function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
   return new Promise<void>((resolve, reject) => {
@@ -61,6 +63,7 @@ function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
     }
   });
 }
+
 async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions): Promise<string> {
   console.info(`enter promise generateKeyItem`);
   try {
@@ -77,10 +80,12 @@ async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions)
     return 'Failed';
   }
 }
+
 async function testGenKey(): Promise<string> {
   let ret = await publicGenKeyFunc(keyAlias, huksOptions);
   return ret;
 }
+
 /* 获取密钥属性 */
 function getKeyItemProperties(keyAlias: string, emptyOptions: huks.HuksOptions) {
   return new Promise<huks.HuksReturnResult>((resolve, reject) => {
@@ -97,7 +102,8 @@ function getKeyItemProperties(keyAlias: string, emptyOptions: huks.HuksOptions) 
     }
   });
 }
-async function check(): Promise<string> {
+
+async function testGetKeyProperties(): Promise<string> {
   try {
     /* 1. 生成密钥 */
     let genResult = await testGenKey();

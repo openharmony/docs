@@ -21,6 +21,7 @@
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
+
 /* 1. 设置密钥别名 */
 let keyAlias = 'keyAlias';
 /* option对象传空 */
@@ -46,6 +47,7 @@ let huksOptions: huks.HuksOptions = {
   properties: properties1,
   inData: new Uint8Array([])
 }
+
 /* 3.生成密钥 */
 function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
   return new Promise<void>((resolve, reject) => {
@@ -62,6 +64,7 @@ function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
     }
   });
 }
+
 async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions): Promise<string> {
   try {
     await generateKeyItem(keyAlias, huksOptions)
@@ -77,10 +80,7 @@ async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions)
     return 'Failed';
   }
 }
-async function testGenKey(): Promise<string> {
-  let ret = await publicGenKeyFunc(keyAlias, huksOptions);
-  return ret;
-}
+
 /* 导出密钥 */
 function exportKeyItem(keyAlias: string, emptyOptions: huks.HuksOptions) {
   return new Promise<huks.HuksReturnResult>((resolve, reject) => {
@@ -97,10 +97,11 @@ function exportKeyItem(keyAlias: string, emptyOptions: huks.HuksOptions) {
     }
   });
 }
-async function check(): Promise<string> {
+
+async function testExportKeyItem(): Promise<string> {
   try {
     /* 1. 生成密钥 */
-    let genResult = await testGenKey();
+    let genResult = await publicGenKeyFunc(keyAlias, huksOptions);
     /* 2. 导出密钥 */
     if (genResult === 'Success') {
       let data = await exportKeyItem(keyAlias, emptyOptions);
