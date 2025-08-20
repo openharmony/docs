@@ -522,6 +522,8 @@ uinput -T -d 100 100  -i 500 -u 100 100
 uinput -T -k -s <dx1> <dy1> <dx2> <dy2> [interval time]
 uinput --touch --knuckle --single <dx1> <dy1> <dx2> <dy2> [interval time]
 
+# <dx1> <dy1>单指关节第一次敲击以屏幕左上角为原点的相对坐标系的位置坐标。
+# <dx2> <dy2>单指关节第二次敲击以屏幕左上角为原点的相对坐标系的位置坐标
 # [interval time]间隔时间，可选参数，默认值200ms，取值范围：[1,250]ms，仅支持整数。
 ```
 
@@ -539,7 +541,8 @@ uinput -T -k -s 100 100 100 130
 uinput -T -k -d <dx1> <dy1> <dx2> <dy2> [interval time]
 uinput --touch --knuckle --double <dx1> <dy1> <dx2> <dy2> [interval time]
 
-# <dx1> <dy1>第一个指关节坐标，<dx2> <dy2>第二个指关节坐标。
+# <dx1> <dy1>第一个指关节以屏幕左上角为原点的相对坐标系的位置坐标。
+# <dx2> <dy2>第二个指关节以屏幕左上角为原点的相对坐标系的位置坐标。
 # [interval time]间隔时间，可选参数，默认值200ms，取值范围：[1,250]ms，仅支持整数。
 ```
 
@@ -561,7 +564,8 @@ uinput -T -k -d 100 100 100 130
 uinput -P -p <dx> <dy> scalePercent
 uinput --touchpad --pinch <dx> <dy> scalePercent
 
-# scalePercent：收缩百分比，取值范围：大于0小于等于500。小于100是缩小，大于100是放大。设置时要求dx大于0，dy大于等于200。此场景只支持图片缩放，调用该命令时，确保桌面上有一张图片。
+# <dx> <dy>以屏幕左上角为原点的相对坐标系的位置坐标。
+# scalePercent：收缩百分比，取值范围：[1,500]。小于100是缩小，大于100是放大。设置时要求dx大于0，dy大于等于200。此场景只支持图片缩放，调用该命令时，确保桌面上有一张图片。
 ```
 
 **使用示例**
@@ -577,6 +581,9 @@ uinput -P -p 100 300 89
 ```bash
 uinput -P -s <startX> <startY> <endX> <endY>
 uinput --touchpad --swipe <startX> <startY> <endX> <endY>
+
+# <startX> <startY>滑动起始以屏幕左上角为原点的相对坐标系的位置坐标。
+# <endX> <endY>滑动结束以屏幕左上角为原点的相对坐标系的位置坐标。
 ```
 
 **使用示例**
