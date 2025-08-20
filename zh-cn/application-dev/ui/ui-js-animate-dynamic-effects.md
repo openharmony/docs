@@ -162,7 +162,8 @@ export default {
     translateVal:0,
     animation: null
   },
-  onInit() {
+  onInit() {},
+  onShow() {
     var options = {
       duration: 3000,
       fill: 'forwards',
@@ -170,8 +171,6 @@ export default {
       end: 270
     };
     this.animation = this.getUIContext().createAnimator(options);
-  },
-  onShow() {
     var _this= this;
     //添加动画重放事件
     this.animation.onrepeat = function() {
