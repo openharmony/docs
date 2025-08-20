@@ -3641,6 +3641,7 @@
           - [native_interface_arkweb.h](reference/apis-arkweb/capi-native-interface-arkweb-h.md)
         - 结构体<!--arkweb-struct-->
           - [ArkWeb_AnyNativeAPI](reference/apis-arkweb/capi-web-arkweb-anynativeapi.md)
+          - [ArkWeb_BlanklessInfo](reference/apis-arkweb/capi-web-arkweb-blanklessinfo.md)
           - [ArkWeb_SchemeHandler_](reference/apis-arkweb/capi-web-arkweb-schemehandler.md)
           - [ArkWeb_ResourceHandler_](reference/apis-arkweb/capi-web-arkweb-resourcehandler.md)
           - [ArkWeb_Response_](reference/apis-arkweb/capi-web-arkweb-response.md)
