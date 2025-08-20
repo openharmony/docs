@@ -34,16 +34,3 @@
 
 -  **2in1设备**：2in1设备上的窗口，默认为自由窗口。
 -  **Tablet设备**：部分Tablet设备，支持开启[自由多窗模式](#自由多窗模式)（通过下拉控制中心，点击“自由多窗”按钮开启），开启此模式后，应用窗口默认为自由窗口。
-
-## 沉浸式布局
-
-沉浸式布局也称为沉浸式模式，通常指让应用的界面更加专注于内容，不希望用户被无关元素干扰。其开发需针对不同设备的屏幕特征、交互方式和系统规范进行适配优化。
- 
-沉浸式布局设计可参考[沉浸体验](https://developer.huawei.com/consumer/cn/doc/design-guides/practices-overview-0000001746498066#section1610419884617)，多设备场景下不同窗口形态的沉浸式开发的实现可以参考[窗口沉浸式最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-multi-device-window-immersive)。
-
-沉浸式布局在Tablet设备上的自由多窗和2in1设备与phone设备的定义不是一致的：
-
-对于Tablet设备上的自由多窗和2in1设备，当窗口的[drawableRect](../reference/apis-arkui/arkts-apis-window-i.md#windowproperties)等于窗口的[windowRect](../reference/apis-arkui/arkts-apis-window-i.md#windowproperties)时，该窗口为沉浸式布局。子窗口有标题栏时为非沉浸式布局。
-
-对于phone设备，当窗口的[isLayoutFullScreen](../reference/apis-arkui/arkts-apis-window-i.md#windowproperties)为true时，该窗口为沉浸式布局。
-
