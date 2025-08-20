@@ -16,5 +16,5 @@ Defines the network list.
 
 | Name                                                    | Description|
 |--------------------------------------------------------| -- |
-| [NetConn_NetHandle](capi-netconnection-netconn-nethandle.md) netHandles[NETCONN_MAX_NET_SIZE] | Network handle list.|
+| [NetConn_NetHandle](capi-netconnection-netconn-nethandle.md) netHandles[[NETCONN_MAX_NET_SIZE]](capi-net-connection-type-h.md#macros) | Network handle list.|
 | int32_t netHandleListSize                              | Actual size of the network handle list.|

@@ -1,10 +1,15 @@
 # Enhanced Connection Development
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedSched-->
+<!--Owner: @wangJE-->
+<!--Designer: @lee_jet520-->
+<!--Tester: @Ytt-test-->
+<!--Adviser: @w_Machine_cc-->
+## Overview
 
-## Introduction
+With the advancement of technology, a myriad of new applications emerge, and the interconnection of devices has become the norm. Consequently, reliance on network connectivity has become inevitable. However, in certain scenarios such as aviation and ocean navigation, network access is constrained, making Bluetooth one of the few viable connection methods. Nevertheless, classic Bluetooth connections suffer from drawbacks like limited connection capacity, low connection success rates, and unstable connectivity, all of which undermine user experience.
 
-With the advancement of technology, a myriad of new applications emerge, and the interconnection of devices has become the norm. Consequently, reliance on network connectivity has become inevitable. However, in certain scenarios such as aviation and ocean navigation, network access is constrained, making Bluetooth one of the few viable connection methods. Nevertheless, traditional Bluetooth connections suffer from drawbacks like limited connection capacity, low connection success rates, and unstable connectivity, all of which undermine user experience.
-
-OpenHarmony offers the enhanced connection functionality to enable cross-device connectivity, allowing devices to set up connections with each other and exchange application service data. Compared with traditional Bluetooth connections, this functionality employs a multi-channel merging algorithm to increase the number of connectable devices and boost connection stability, significantly improving user experience.
+The **linkEnhance** module offers the enhanced connection functionality to enable cross-device connectivity, allowing devices to set up connections with each other and exchange application service data. Compared with classic Bluetooth connections, this functionality employs a multi-channel merging algorithm to increase the number of connectable devices and boost connection stability, significantly improving user experience.
 
 ### Implementation Principles
 
@@ -14,7 +19,7 @@ The implementation process is as follows: 1. Enable the enhanced connection func
 
 ![linkEnhance-process](figures/linkEnhance-process.png)
 
-### Constraints
+### For details, see Notes and Constraints.
 
 - Bluetooth must be enabled for device interconnection.
 
@@ -24,9 +29,11 @@ The implementation process is as follows: 1. Enable the enhanced connection func
 
 - The caller must have the **ohos.permission.DISTRIBUTED_DATASYNC** permission.
 
-## Environment Setup
+- The **linkEnhance** module provides only connection capabilities, with the link security policy following the Bluetooth pairing policy initially set by the caller, such as Numeric Comparison, Passkey Entry, Just Works, and Out of Band.
 
-### Environment Requirements
+## Environment preparation
+
+### Environment requirement
 
 Bluetooth is enabled on the client and server devices.
 
@@ -41,7 +48,7 @@ Bluetooth is enabled on the client and server devices.
 
 The following table describes the commonly used APIs. For details, see [@ohos.distributedsched.linkEnhance](../reference/apis-distributedservice-kit/js-apis-link-enhance.md).
 
-| API                                     | Description                                                                                              |
+| Name                                     | Feature Description                                                                                              |
 | ------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | connect()                                  | Initiates a connection to the peer device on the client.                                                                              |
 | disconnect()                               | Disconnects from the peer device.                                                                         |
@@ -59,7 +66,7 @@ The following table describes the commonly used APIs. For details, see [@ohos.di
 | on(type: 'serverStopped')                  | Subscribes to **serverStopped** events.                                                                          |
 | createServer(name: string)                 | Creates a **Server** object.                                                                                     |
 
-## How to Develop
+## Enhanced Connection Development
 
 - After Bluetooth is enabled on the server, create a **Server** object and call **start()** to start the server so that it is in the connectable state. Then, listen for status change events through the registered event listener.
 - After Bluetooth is enabled on the client, create a **Connection** object and call **connect()** to initiate a connection. Then, listen for status change events through the registered event listener.
@@ -108,7 +115,7 @@ The following table describes the commonly used APIs. For details, see [@ohos.di
         server.on('serverStopped', (reason: number): void => {
           console.info(TAG, 'serverStopped, reason= ' + reason);
         });
-        # Start the server.
+        // Start the server.
         server.start();
       } catch (err) {
         console.error(TAG + 'start server errCode: ' + (err as BusinessError).code + ', errMessage: ' +
@@ -123,8 +130,8 @@ The following table describes the commonly used APIs. For details, see [@ohos.di
       try {
 
         // Subscribe to disconnection events.
-        connection.on('disconnected', (number: number)=> {
-          console.info(TAG + 'disconnected, reason = ' + number);
+        connection.on('disconnected', (reason: number)=> {
+          console.info(TAG + 'disconnected, reason = ' + reason);
         });
         // Subscribe to data receiving events.
         connection.on('dataReceived', (data: ArrayBuffer)=> {
@@ -169,7 +176,7 @@ The following table describes the commonly used APIs. For details, see [@ohos.di
     }
     // Stop the server and cancel all subscribed event callbacks.
     linkEnhanceClose(server: linkEnhance.Server) {
-      console.info(TAG + 'close serever' );
+      console.info(TAG + 'close server' );
       try {
         server.close();
       } catch (err) {
@@ -214,7 +221,7 @@ The following table describes the commonly used APIs. For details, see [@ohos.di
       try {
         // Construct a Connection object by using peerDeviceId. The object is used for subsequent interactions.
         let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
-        // Subscribe to connection events.
+        // Subscribe to connectResult events.
         connection.on('connectResult', (data: linkEnhance.ConnectResult): void => {
           console.info(TAG + 'clientConnectResultCallback result = ' + data.success);
           if (data.success) {
@@ -224,8 +231,8 @@ The following table describes the commonly used APIs. For details, see [@ohos.di
             connection.sendData(arraybuffer);
           }
         });
-        connection.on('disconnected', (number: number)=> {
-          console.info(TAG + 'disconnected reason = ' + number);
+        connection.on('disconnected', (reason: number)=> {
+          console.info(TAG + 'disconnected reason = ' + reason);
         });
         connection.on('dataReceived', (data: ArrayBuffer)=> {
         console.info(TAG + 'dataReceived, dataLen=' + data.byteLength);

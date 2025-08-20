@@ -69,7 +69,7 @@ struct TestDemo14 {
       inputConsumer.on('keyPressed', options1, this.volumeUpCallBackFunc);
       inputConsumer.on('keyPressed', options2, this.volumeDownCallBackFunc);
     } catch (error) {
-      console.error(`Subscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Subscribe execute failed, error: ${JSON.stringify(error, ["code", "message"])}`);
     }
   }
 
@@ -83,7 +83,7 @@ struct TestDemo14 {
               inputConsumer.off('keyPressed', this.volumeUpCallBackFunc);
               this.getUIContext().getPromptAction().showToast({ message: ''Listening for Volume Up button events is canceled successfully.' });
             } catch (error) {
-              console.error(`Unsubscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+              console.error(`Unsubscribe execute failed, error: ${JSON.stringify(error, ["code", "message"])}`);
             }
           })
       }.width('100%')
@@ -98,7 +98,7 @@ struct TestDemo14 {
               inputConsumer.off('keyPressed', this.volumeDownCallBackFunc);
               this.getUIContext().getPromptAction().showToast({ message: 'Listening for Volume Down button events is canceled successfully.' });
             } catch (error) {
-              console.error(`Unsubscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+              console.error(`Unsubscribe execute failed, error: ${JSON.stringify(error, ["code", "message"])}`);
             }
           })
       }.width('100%')

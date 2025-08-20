@@ -1,4 +1,10 @@
-# User Awareness Error Code
+# User Status Awareness Error Codes
+<!--Kit: Multimodal Awareness Kit-->
+<!--Subsystem: MultimodalAwareness-->
+<!--Owner: @dilligencer-->
+<!--Designer: @zou_ye-->
+<!--Tester: @judan-->
+<!--Adviser: @hu-zhiqiong-->
 
 > **NOTE**
 >

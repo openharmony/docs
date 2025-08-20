@@ -1,5 +1,12 @@
 # Connecting NNRt to an AI Inference Framework
 
+<!--Kit: Neural Network Runtime Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @GbuzhidaoR-->
+<!--Designer: @GbuzhidaoR-->
+<!--Tester: @GbuzhidaoR-->
+<!--Adviser: @ge-yafang-->
+
 ## When to Use
 
 As a bridge between the AI inference engine and acceleration chip, Neural Network Runtime (NNRt) provides simplified native APIs for the AI inference engine to perform end-to-end inference through the acceleration chip.
@@ -153,7 +160,7 @@ The development process of NNRt consists of three phases: model construction, mo
     #include "neural_network_runtime/neural_network_runtime.h"
     ```
 
-3. Defines auxiliary functions, such as log printing, input data setting, and data printing.
+3. Define auxiliary functions, such as log printing, input data setting, and data printing.
 
     ```cpp
     // Macro for checking the return value
@@ -528,7 +535,7 @@ The development process of NNRt consists of three phases: model construction, mo
 
 9. Build an end-to-end process from model construction to model compilation and execution.
 
-    Steps 4 to 8 implement the model construction, compilation, and execution processes and encapsulates them into multiple functions to facilitate modular development. The following sample code shows how to apply these functions into a complete NNRt development process.
+    Steps 4 to 8 implement the model construction, compilation, and execution processes and encapsulates them into multiple functions to facilitate modular development. The following sample code demonstrates how to chain these functions into a complete NNRt workflow.
     ```cpp
     int main(int argc, char** argv)
     {
