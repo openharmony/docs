@@ -548,7 +548,7 @@ html示例
   ```ts
 import { webview } from '@kit.ArkWeb';
 import { common } from '@kit.AbilityKit';
-import { fileIo as fs, ReadOptions, WriteOptions } from '@kit.CoreFileKit';
+import { fileIo as fs} from '@kit.CoreFileKit';
 import { systemDateTime } from '@kit.BasicServicesKit';
 import { http } from '@kit.NetworkKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -562,7 +562,6 @@ struct WebComponent {
     buttonType: ButtonType.Capsule
   }
   controller: webview.WebviewController = new webview.WebviewController();
-  private result: WebContextMenuResult | undefined = undefined;
   @State showMenu: boolean = false;
   @State imgUrl: string = '';
   context = this.getUIContext().getHostContext() as common.UIAbilityContext;
