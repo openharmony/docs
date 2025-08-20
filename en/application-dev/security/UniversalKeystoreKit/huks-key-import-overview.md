@@ -93,7 +93,7 @@ The key management service specifications include mandatory specifications and o
 | DES | 64 | 16+ | Yes|
 | 3DES | 128, 192| 16+ | Yes|
 
-**Specifications for Mimi-System Devices**
+**Specifications for Mini-System Devices**
 
 <!--Del-->
 Before implementing the specifications for mini-system devices, determine whether your device supports the related specifications.
