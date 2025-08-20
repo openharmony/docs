@@ -226,7 +226,7 @@ getServiceDump(serviceid: number, fd: number, args: Array\<string>): void
 | -------- | ------ | ---- |----------------------------|
 | serviceid | number | 是   | 基于用户输入的service id获取系统服务信息。 |
 | fd | number | 是   | 文件描述符，接口会向该fd写入数据。         |
-| args | Array&lt;string&gt; | 是   | 系统服务的dump接口参数列表(其中string的长度最大值254)。|
+| args | Array&lt;string&gt; | 是   | 系统服务的dump接口参数列表。string长度的最大值为254。 |
 
 **错误码：**
 
@@ -275,7 +275,7 @@ startJsCpuProfiling(filename: string): void
 
 | 参数名   | 类型   | 必填 | 说明                                               |
 | -------- | ------ | ---- |--------------------------------------------------|
-| filename | string | 是   | 用户自定义的采样结果输出的文件名(最长128个字符)，将在应用的`files`目录下生成以该参数命名的json文件。 |
+| filename | string | 是   | 用户自定义的采样结果输出的文件名，将在应用的`files`目录下生成以该参数命名的json文件。string长度的最大值为128。 |
 
 **错误码：**
 
@@ -339,7 +339,7 @@ dumpJsHeapData(filename: string): void
 
 | 参数名   | 类型   | 必填 | 说明                                            |
 | -------- | ------ | ---- | ----------------------------------------------- |
-| filename | string | 是   | 用户自定义的采样结果输出的文件名(最长128个字符)，将在应用的`files`目录下生成以该参数命名的heapsnapshot文件。 |
+| filename | string | 是   | 用户自定义的采样结果输出的文件名，将在应用的`files`目录下生成以该参数命名的heapsnapshot文件。string长度的最大值为128。 |
 
 **错误码：**
 
@@ -378,7 +378,7 @@ startProfiling(filename: string): void
 
 | 参数名   | 类型   | 必填 | 说明                                             |
 | -------- | ------ | ---- | ------------------------------------------------ |
-| filename | string | 是   | 用户自定义的采样结果输出的文件名(最长128个字符)，将在应用的`files`目录下生成以该参数命名的json文件。 |
+| filename | string | 是   | 用户自定义的采样结果输出的文件名，将在应用的`files`目录下生成以该参数命名的json文件。string长度的最大值为128。|
 
 **示例：**
 
@@ -432,7 +432,7 @@ dumpHeapData(filename: string): void
 
 | 参数名   | 类型   | 必填 | 说明                                                      |
 | -------- | ------ | ---- |---------------------------------------------------------|
-| filename | string | 是   | 用户自定义的虚拟机堆转储文件名(长度最大值128)，将在应用的`files`目录下生成以该参数命名的heapsnapshot文件。 |
+| filename | string | 是   | 用户自定义的虚拟机堆转储文件名，将在应用的`files`目录下生成以该参数命名的heapsnapshot文件。string长度的最大值为128。 |
 
 **示例：**
 
