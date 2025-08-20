@@ -1,5 +1,11 @@
 # @ohos.app.form.formHost (formHost) (System API)
 
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 The **formHost** module provides APIs related to the widget host, which is an application that displays the widget content and controls the position where the widget is displayed. You can use the APIs to delete, release, and update widgets installed by the same user, and obtain widget information and status.
 
 > **NOTE**
@@ -186,7 +192,7 @@ Releases a widget. After this API is called, the application can no longer use t
 | Name        | Type    | Mandatory| Description       |
 | -------------- | ------  | ---- | ----------- |
 | formId         | string  | Yes  | Widget ID.    |
-| isReleaseCache | boolean | Yes  | Whether to release the cache.|
+| isReleaseCache | boolean | Yes  | Whether to release the cache.<br>**true**: Release the cache.<br>**false**: Not release the cache.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the widget is released, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
@@ -237,7 +243,7 @@ Releases a widget. After this API is called, the application can no longer use t
 | Name        | Type    | Mandatory| Description       |
 | -------------- | ------  | ---- | ----------- |
 | formId         | string  | Yes  | Widget ID.    |
-| isReleaseCache | boolean | No  | Whether to release the cache. The default value is **false**. |
+| isReleaseCache | boolean | No  | Whether to release the cache. The default value is **false**.<br>**true**: Release the cache.<br>**false**: Not release the cache. |
 
 **Return value**
 
@@ -1661,7 +1667,7 @@ Instructs the widgets to make themselves visible. This API uses an asynchronous 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
-| isVisible | boolean | Yes  | Whether to make the widgets visible.|
+| isVisible | boolean | Yes  | Whether the widget is visible.<br>**true**: The widget is visible.<br>**false**: The widget is invisible.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the notification is sent, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
@@ -1711,7 +1717,7 @@ Instructs the widgets to make themselves visible. This API uses a promise to ret
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
-| isVisible | boolean | Yes  | Whether to make the widgets visible.|
+| isVisible | boolean | Yes  | Whether the widget is visible.<br>**true**: The widget is visible.<br>**false**: The widget is invisible.|
 
 **Return value**
 
@@ -1766,7 +1772,7 @@ Instructs the widgets to enable or disable updates. This API uses an asynchronou
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
-| isEnableUpdate | boolean | Yes  | Whether to make the widgets updatable.|
+| isEnableUpdate | boolean | Yes  | Whether the widget can be updated.<br>**true**: The widget can be updated. **false**: The widget cannot be updated.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the notification is sent, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
@@ -1816,7 +1822,7 @@ Instructs the widgets to enable or disable updates. This API uses a promise to r
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
-| isEnableUpdate | boolean | Yes  | Whether to make the widgets updatable.|
+| isEnableUpdate | boolean | Yes  | Whether the widget can be updated.<br>**true**: The widget can be updated.<br>**false**: The widget cannot be updated.|
 
 **Return value**
 
@@ -1977,7 +1983,7 @@ Notifies that the privacy protection status of the specified widgets changes. Th
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formIds | Array\<string\> | Yes  | ID of the widgets.|
-| isProtected | boolean | Yes  | Whether privacy protection is enabled.|
+| isProtected | boolean | Yes  | Whether a widget requires privacy protection.<br>**true**: The widget requires privacy protection.<br>**false**: The widget does not require privacy protection.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If privacy protection is set successfully, **error** is undefined; otherwise, **error** is an error object.|
 
 **Error codes**
@@ -2026,7 +2032,7 @@ Notifies that the privacy protection status of the specified widgets changes. Th
 | Name     | Type           | Mandatory| Description                            |
 | ----------- | --------------- | ---- | -------------------------------- |
 | formIds     | Array\<string\> | Yes  | ID of the widgets.|
-| isProtected | boolean         | Yes  | Whether privacy protection is enabled.              |
+| isProtected | boolean         | Yes  | Whether a widget requires privacy protection.<br>**true**: The widget requires privacy protection.<br>**false**: The widget does not require privacy protection.|
 
 **Return value**
 
@@ -2165,8 +2171,8 @@ try {
   }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+} catch (e) {
+  console.error(`catch error, code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2680,7 +2686,7 @@ try {
 
 recycleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
-Recycles widgets, that is, reclaims their memory. This API uses a promise to return the result.
+Recycles widgets, that is, reclaiming widget memory. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -2911,7 +2917,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | Error Code ID| Error Message                                                                                                 |
 |-------|-----------------------------------------------------------------------------------------------------------|
 | 202   | The application is not a system application.                                                              |
-| 801   | Capability not supported.function formOverflow can not work correctly due to limited device capabilities. |
 
 **Example**
 
@@ -2952,7 +2957,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | Error Code ID| Error Message                                                                                               |
 | --- |-----------------------------------------------------------------------------------------------------------|
 | 202 | The application is not a system application.                                                              |
-| 801 | Capability not supported.function formOverflow can not work correctly due to limited device capabilities. |
 
 **Example**
 
@@ -2993,7 +2997,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | Error Code ID| Error Message                                                                                                 |
 |-------|-----------------------------------------------------------------------------------------------------------|
 | 202   | The application is not a system application.                                                              |
-| 801   | Capability not supported.function formOverflow can not work correctly due to limited device capabilities. |
 
 **Example**
 
@@ -3034,7 +3037,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 801 | Capability not supported.function formOverflow can not work correctly due to limited device capabilities. |
 
 **Example**
 
@@ -3046,6 +3048,137 @@ try {
   formHost.off('changeSceneAnimationState', (request: formInfo.ChangeSceneAnimationStateRequest): void => {
     console.log(`formHost off changeSceneAnimationState, formId is ${request.formId}`);
   });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+```
+
+## formHost.on('getFormRect')<sup>20+</sup>
+
+on(type: 'getFormRect', callback: formInfo.GetFormRectInfoCallback): void
+
+Subscribes to the event of requesting widget position and dimension.
+
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                  |
+| ------ | ------ | ---- |------------------------------------------------------|
+| type | string | Yes  | Event callback type. The supported event is **'getFormRect'**, indicating requesting widget position and dimension.|
+| callback |[formInfo.GetFormRectInfoCallback](js-apis-app-form-formInfo-sys.md#getformrectinfocallback20) | Yes| Callback function used by the widget host to process the request and return the position and dimension of the widget relative to the upper left corner of the screen. The unit is vp.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message                                                                                                 |
+|-------|-----------------------------------------------------------------------------------------------------------|
+| 202   | The application is not a system application.                                                              |
+
+**Example**
+
+```ts
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  formHost.on('getFormRect', (formId: string): Promise<formInfo.Rect> => {
+    // The widget host needs to process the request, and calculate and return the widget dimension and position information.
+    return new Promise<formInfo.Rect>((resolve: Function) => {
+      console.log(`formHost on getFormRect, formId is ${formId}`);
+      let formRect: formInfo.Rect = {left: 0, top: 0, width: 0, height: 0};
+      resolve(formRect);
+    })
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+```
+
+## formHost.off('getFormRect')<sup>20+</sup>
+
+off(type: 'getFormRect', callback?: formInfo.GetFormRectInfoCallback): void
+
+Unsubscribes from the event of requesting widget position and dimension.
+
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ |----| ------- |
+| type | string | Yes | Event callback type. The supported event is **'getFormRect'**, indicating requesting widget position and dimension.|
+| callback |[formInfo.GetFormRectInfoCallback](js-apis-app-form-formInfo-sys.md#getformrectinfocallback20) | No | Callback function, corresponding to the subscribed widget position and dimension request. By default, all registered widget position and dimension request event callbacks are deregistered.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 202 | The application is not a system application. |
+
+**Example**
+
+```ts
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  formHost.off('getFormRect');
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+```
+
+## formHost.updateFormSize<sup>20+</sup>
+
+updateFormSize(formId: string, newDimension: formInfo.FormDimension, newRect: formInfo.Rect): void
+
+Updates the size of the widget.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formId | string | Yes  | Widget ID.|
+| newDimension | [formInfo.FormDimension](js-apis-app-form-formInfo.md#formdimension) | Yes| Widget dimension. For example, **Dimension_1_2** indicates a 1 x 2 widget.|
+| newRect | [formInfo.Rect](js-apis-app-form-formInfo.md#rect20) | Yes| Widget position information, including the X and Y coordinates of the widget's top-left corner, as well as its width and height.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | Permissions denied.Called by non-system application. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501012 | The dimension parameter is incorrect. |
+
+**Example**
+
+```ts
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let formId: string = '12400633174999288';
+  let newDimension = formInfo.FormDimension.Dimension_1_2;
+  let newRect: formInfo.Rect = {left: 1, top: 2, width: 100, height: 100};
+  formHost.updateFormSize(formId, newDimension, newRect);
 } catch (error) {
   console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
