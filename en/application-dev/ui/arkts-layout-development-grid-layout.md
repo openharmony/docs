@@ -21,7 +21,7 @@ The [GridRow](../reference/apis-arkui/arkui-ts/ts-container-gridrow.md) componen
 
 ### Grid Breakpoints
 
-The grid system defines breakpoints, which are screen width types in effect, based on the horizontal width ([screen density pixels](../reference/apis-arkui/arkui-ts/ts-pixel-units.md), in vp) of the screens. You can use the breakpoints to meet specific layout requirements. You can use the breakpoints to meet specific layout requirements.
+The grid system defines breakpoints, which are screen width types in effect, based on the horizontal width ([screen density pixels](../reference/apis-arkui/arkui-ts/ts-pixel-units.md), in vp) of the screens. You can use the breakpoints to meet specific layout requirements.
 
 By default, the grid system provides four breakpoints: xs, sm, md, and lg.
 
@@ -32,7 +32,7 @@ By default, the grid system provides four breakpoints: xs, sm, md, and lg.
 | md   | [520, 840) | Medium-width device.|
 | lg   | [840, +∞)  | Large-width device. |
 
-In the **GridRow** component, you can use **breakpoints** to customize the value range of breakpoints. A maximum of six breakpoints are supported. In addition to the four default breakpoints, you can also enable the xl and xxl breakpoints for your application window layout.
+In the **GridRow** component, you can customize the values of breakpoints. A maximum of six breakpoints are supported. In addition to the four default breakpoints, you can also enable the xl and xxl breakpoints for your application window layout.
 
 | Breakpoint| Device Description     |
 | ---- | --------- |
