@@ -37,7 +37,9 @@ background(content: CustomBuilder | ResourceColor, options?: BackgroundOptions):
 
 >  **说明：**
 >
-> - 自定义背景渲染会有一定延迟，不能响应事件，不能进行动态更新。该属性不支持嵌套使用，不支持预览器预览。
+> - 自定义背景渲染存在一定延迟，不能响应事件。该属性不支持嵌套使用。
+> - CustomBuilder类型的背景不支持在预览器中预览。
+> - 从API version 20开始，支持动态更新背景。
 > - 同时设置background，backgroundColor，backgroundImage时，三者将按以下规则叠加显示：
 >   - 若background为ResourceColor类型，或设置ignoresLayoutSafeAreaEdges属性，则background位于最底层。
 >   - 其他情况下，background位于最上层。
