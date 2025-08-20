@@ -61,7 +61,7 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
    let certificateStatus: drm.CertificateStatus = mediaKeySystem.getCertificateStatus();
    ```
 
-8. （可选）调用[generateKeySystemRequest](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySystem.md#generatekeysystemrequest)，生成设备DRM证书请求与处理设备DRM证书响应。
+8. （可选）调用[generateKeySystemRequest](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySystem.md#generatekeysystemrequest)和[processKeySystemResponse](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySystem.md#processkeysystemresponse)，生成设备DRM证书请求与处理设备DRM证书响应。
 
    如果设备DRM证书状态不是drm.CertificateStatus.CERT_STATUS_PROVISIONED，可以生成设备DRM证书请求，处理设备DRM证书响应。
 
@@ -142,7 +142,7 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
     }
     ```
 
-12. 调用[generateMediaKeyRequest](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySession.md#generatemediakeyrequest)，生成媒体密钥请求与处理媒体密钥响应。
+12. 调用[generateMediaKeyRequest](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySession.md#generatemediakeyrequest)和[processMediaKeyResponse](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySession.md#processmediakeyresponse)，生成媒体密钥请求与处理媒体密钥响应。
 
     获取到DRM节目中的DRM信息时，可以生成媒体密钥请求，处理媒体密钥响应，以请求许可证完成DRM节目授权。
 
@@ -206,7 +206,7 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
     }
     ```
 
-15. （可选）调用[getOfflineMediaKeyIds](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySystem.md#getofflinemediakeyids)，获取离线媒体密钥标识列表、获取离线媒体密钥状态与删除离线媒体密钥。
+15. （可选）调用[getOfflineMediaKeyIds](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySystem.md#getofflinemediakeyids)获取离线媒体密钥标识列表，调用[getOfflineMediaKeyStatus](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySystem.md#getofflinemediakeystatus)获取离线媒体密钥状态，调用[clearOfflineMediaKeys](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySystem.md#clearofflinemediakeys)删除离线媒体密钥。
 
     媒体密钥标识用于对离线媒体密钥的管理媒体密钥标识用于对离线媒体密钥的管理。
 
