@@ -74,7 +74,7 @@ OH_Drawing_Point2D point4 = {800.0f, 800.0f};
 OH_Drawing_CanvasDrawPoint(canvas, &point4);
 OH_Drawing_Point2D point5 = {1000.0f, 1000.0f};
 OH_Drawing_CanvasDrawPoint(canvas, &point5);
-// 去除掉画布中的画笔
+// 移除画布中的画笔
 OH_Drawing_CanvasDetachPen(canvas);
 // 销毁各类对象
 OH_Drawing_PenDestroy(pen);
@@ -114,7 +114,7 @@ OH_Drawing_CanvasAttachPen(canvas, pen);
 OH_Drawing_Rect* rect = OH_Drawing_RectCreate(100, 200, 500, 300);
 // 基于矩形对象绘制圆弧
 OH_Drawing_CanvasDrawArc(canvas, rect, 10, 200);
-// 去除掉画布中的画笔
+// 移除画布中的画笔
 OH_Drawing_CanvasDetachPen(canvas);
 // 销毁各类对象
 OH_Drawing_PenDestroy(pen);
@@ -151,7 +151,7 @@ OH_Drawing_CanvasAttachPen(canvas, pen);
 OH_Drawing_Point *point = OH_Drawing_PointCreate(700, 700);
 // 基于圆心点和半径在画布上绘制圆
 OH_Drawing_CanvasDrawCircle(canvas, point, 600);
-// 去除掉画布中的画笔
+// 移除画布中的画笔
 OH_Drawing_CanvasDetachPen(canvas);
 // 销毁各类对象
 OH_Drawing_PenDestroy(pen);
@@ -217,7 +217,7 @@ OH_Drawing_PathLineTo(path, eX, eY);
 OH_Drawing_PathClose(path); 
 // 绘制闭合路径
 OH_Drawing_CanvasDrawPath(canvas, path);
-// 去除掉画布中的画笔和画刷
+// 移除画布中的画笔和画刷
 OH_Drawing_CanvasDetachPen(canvas);
 OH_Drawing_CanvasDetachBrush(canvas);
 // 销毁各类对象
@@ -257,7 +257,7 @@ OH_Drawing_RegionSetRect(region2, rect2);
 // 两个矩形区域组合
 OH_Drawing_RegionOp(region1, region2, OH_Drawing_RegionOpMode::REGION_OP_MODE_XOR); 
 OH_Drawing_CanvasDrawRegion(canvas, region1);
-// 去除掉画布中的画刷
+// 从画布移除画刷
 OH_Drawing_CanvasDetachBrush(canvas);
 // 销毁各类对象
 OH_Drawing_BrushDestroy(brush);
@@ -325,7 +325,7 @@ OH_Drawing_Rect* rect = OH_Drawing_RectCreate(100, 100, 900, 600);
 OH_Drawing_RoundRect* roundRect = OH_Drawing_RoundRectCreate(rect, 30, 30);
 // 绘制圆角矩形
 OH_Drawing_CanvasDrawRoundRect(canvas, roundRect);
-// 去除掉画布中的画刷
+// 从画布移除画刷
 OH_Drawing_CanvasDetachBrush(canvas);
 // 销毁各类对象
 OH_Drawing_BrushDestroy(brush);
