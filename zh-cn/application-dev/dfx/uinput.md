@@ -29,7 +29,7 @@ uinput <option> <command> <arg> ...
 | -K       | --keyboard | 注入键盘事件。  |
 | -S       | --stylus   | 注入触控笔事件。 | 
 | -T       | --touch    | 注入触摸事件。  |
-| -P       | --touchpad | 注入触控板事件。暂不支持。|
+| -P       | --touchpad | 注入触控板事件。|
 | -?       | --help     | 帮助命令。      | 
 
 > **说明：**
@@ -547,4 +547,57 @@ uinput --touch --knuckle --double <dx1> <dy1> <dx2> <dy2> [interval time]
 ```bash
 # 双指关节分别在(100, 100)、(100, 130)位置间隔200ms敲击2次。
 uinput -T -k -d 100 100 100 130
+```
+
+## 触控板事件
+
+- 触控板事件因业务迭代变更，触控板捏合、滑动、旋转事件暂无效果。
+
+### 触控板捏合事件
+模拟触控板手指捏合。
+
+**命令**
+```bash
+uinput -P -p <dx> <dy> scalePercent
+uinput --touchpad --pinch <dx> <dy> scalePercent
+
+# scalePercent：收缩百分比，取值范围：大于0小于等于500。小于100是缩小，大于100是放大。设置时要求dx大于0，dy大于等于200。此场景只支持图片缩放，调用该命令时，确保桌面上有一张图片。
+```
+
+**使用示例**
+```bash
+# 手指捏合图片。
+uinput -P -p 100 300 89
+```
+
+### 触控板滑动事件
+模拟触控板滑动。
+
+**命令**
+```bash
+uinput -P -s <startX> <startY> <endX> <endY>
+uinput --touchpad --swipe <startX> <startY> <endX> <endY>
+```
+
+**使用示例**
+```bash
+# 在触控板滑动手指，可以看到后台多任务视图。
+uinput -P -s 100 1100 100 300
+```
+
+### 触控板旋转事件
+模拟触控板旋转。
+
+**命令**
+```bash
+uinput -P -r <rotateValue>
+uinput --touchpad --rotate <rotateValue>
+
+# rotateValue旋转值，取值范围-360到360，单位度（°）。旋转角度为正值时，顺时针旋转，旋转角度为负值时，逆时针旋转。
+```
+
+**使用示例**
+```bash
+# 在触控板顺时针旋转180°。
+uinput -P -r 180
 ```
