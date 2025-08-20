@@ -1,32 +1,31 @@
 # Freezing a Custom Component
 
-When a custom component decorated by @ComponentV2 is inactive, it can be frozen so that its state variable does not respond to updates. That is, the @Monitor decorated method is not called, and the node associated with the state variable is not re-rendered. You can use the **freezeWhenInactive** attribute to specify whether to freeze a custom component. If no parameter is passed in, the feature is disabled. This feature works in following scenarios: page routing, **TabContent**, and **Navigation**.
+When a custom component decorated by @ComponentV2 is inactive, it can be frozen so that its state variables do not respond to updates. This means that the @Monitor decorated callback will not be triggered, and any nodes associated with these state variables will not be re-rendered. This freezing mechanism offers significant performance benefits in complex UI scenarios. It prevents inactive components from performing unnecessary updates when their state variables update, thereby reducing resource consumption. You can use the **freezeWhenInactive** attribute to specify whether to enable the freezing feature. If no parameter is passed in, this feature is disabled. The freezing feature is supported in the following scenarios and components: [page navigation and routing](../../reference/apis-arkui/js-apis-router.md), [TabContent](../../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md), [Navigation](../../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md), [Repeat](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md).
 
-Before reading this topic, you are advised to read [\@ComponentV2](./arkts-new-componentV2.md).
+To implement this feature, a solid understanding of the basic syntax for @ComponentV2 is required. Therefore, you are advised to read the [\@ComponentV2 documentation](./arkts-new-componentV2.md) before proceeding.
 
 > **NOTE**
 >
-> Freezing of @ComponentV2 decorated custom component is supported since API version 12.
+> Freezing of @ComponentV2 decorated custom components is supported since API version 12.
 >
-> Mixed use of custom component freezing is supported since API version 18.
+> Custom component freezing across mixed scenarios is supported since API version 18.
 >
-> Different from freezing the @Component decorated components, custom components decorated by @ComponentV2 do not support freezing the cached list items in the **LazyForEach** scenario.
-
+> Unlike @Component decorated components, @ComponentV2 decorated components do not support freezing cached items in the **LazyForEach** scenario.
 
 ## Use Scenarios
 
-### Page Routing
+### Page Navigation and Routing
 
 > **NOTE**
 >
-> This example uses router for page redirection but you are advised to use the **Navigation** component instead, because **Navigation** provides more functions and more flexible customization capabilities. For details, see the use cases of [Navigation](#navigation).
+> While this example demonstrates page navigation and routing using **router** APIs, you are advised to use the **Navigation** component instead, which offers enhanced functionality and greater customization flexibility. For details, see the use cases of [Navigation](#navigation).
 
-- When page 1 calls the **router.pushUrl** API to jump to page 2, page 1 is hidden and invisible. In this case, if the state variable on page 1 is updated, page 1 is not re-rendered.
-For details, see the following.
+- When page 1 navigates to page 2 using **router.pushUrl**, it enters the hidden state, where updating its state variables will not trigger UI re-rendering.
+The figure below shows these pages.
 
 ![freezeInPage](./figures/freezeInPage.png)
 
-Page 1
+Page 1 implementation:
 
 ```ts
 @ObservedV2
@@ -67,7 +66,7 @@ export struct Page1 {
 }
 ```
 
-Page 2
+Page 2 implementation:
 
 ```ts
 @Entry
@@ -87,28 +86,26 @@ struct Page2 {
 
 In the preceding example:
 
-1. Click the **changeBookName** button on page 1. The **name** attribute of the **bookTest** variable is changed, and the **onMessageChange** method registered in @Monitor is called.
+1. After the **changeBookName** button on page 1 is clicked, the **name** property of the **bookTest** variable is changed, triggering the **onMessageChange** method registered in @Monitor.
 
-2. Click the **go to next page** button on page 1 to redirect to page 2, and then update the state variable **bookTest** 1s later. When **bookTest** is updated, page 2 is displayed and Page 1 is in the inactive state. The state variable @Local bookTest does not respond to the update. Therefore, the @Monitor is not called, and the node associated with the state variable is not updated.
-The trace diagram is as follows.
+2. After the **go to next page** button on page 1 is displayed, the application navigates to page 2, and the **bookTest** state variable is updated after a 1s delay. When **bookTest** is updated, page 1 is already in the inactive state, where the **@Local bookTest** state variable does not respond to updates. Therefore, the @Monitor is not called, and no UI re-rendering occurs for nodes bound to this state variable.
+
+The trace information is shown below.
 
 ![Example Image](./figures/freeze1.png)
 
-
-3. Click **Back**. Page 2 is destroyed, and the state of page 1 changes from inactive to active. The update of the state variable **bookTest** is observed, the **onMessageChange** method registered in @Monitor is called, and the corresponding text content is changed.
+3. After the **Back** button is clicked, page 2 is destroyed, and the state of page 1 changes from inactive to active. The update of the **bookTest** state variable is now observed. As a result, the **onMessageChange** method registered in @Monitor is called, and the bound **Text** component updates its display content.
 
 ![freezeV2Page](./figures/freezeV2page.gif)
-
 
 ### TabContent
 
 - You can freeze invisible **TabContent** components in the **Tabs** container so that they do not trigger UI re-rendering.
 
-- During initial rendering, only the **TabContent** component that is being displayed is created. All **TabContent** components are created only after all of them have been switched to.
+- During initial rendering, only the **TabContent** component that is being displayed is created. The remaining **TabContent** components are created only when the corresponding tab is switched to.
 
-For details, see the following.
+The figure below shows this mechanism.
 ![freezeWithTab](./figures/freezewithTabs.png)
-
 
 ```ts
 @Entry
@@ -157,18 +154,18 @@ struct FreezeChild {
 
 In the preceding example:
 
-1. When **change message** is clicked, the value of **message** changes, and the @Monitor decorated **onMessageUpdated** method of the **TabContent** component being displayed is called.
+1. When **change message** is clicked, the value of **message** changes, triggering the @Monitor decorated **onMessageUpdated** callback of the **TabContent** component being displayed.
 
-2. When **tab1** in **TabBar** is clicked to switch to another **TabContent** component, the component switches from inactive to active, and the corresponding @Monitor decorated **onMessageUpdated** method is called.
+2. When **tab1** in **TabBar** is clicked to navigate to another **TabContent** component, the component switches from inactive to active, triggering the corresponding @Monitor decorated **onMessageUpdated** callback.
 
-3. When **change message** is clicked again, the value of **message** changes, and only the @Monitor decorated **onMessageUpdated** method of the **TabContent** component being displayed is called. Other inactive **TabContent** components do not trigger @Monitor.
+3. When **change message** is clicked again, the value of **message** changes, triggering only the @Monitor decorated **onMessageUpdated** callback of the **TabContent** component being displayed. Other inactive **TabContent** components do not trigger @Monitor decorated callbacks.
 
 ![TabContent.gif](figures/TabContent.gif)
 
 
 ### Navigation
 
-- When the navigation destination page is invisible, its child custom components are set to the inactive state and will not be re-rendered. When return to this page, its child custom components are restored to the active state and the @Monitor callback is triggered to re-render the page.
+- When a **NavDestination** component becomes invisible, its child custom components are set to the inactive state, where re-rendering is suspended. When this **NavDestination** component is visible again, its child custom components are restored to the active state and the @Monitor decorated callback is triggered for UI re-rendering.
 
 ```ts
 @Entry
@@ -322,25 +319,25 @@ struct NavigationContentMsgStack {
 
 In the preceding example:
 
-1. When **change message** is clicked, the value of **message** changes, and the @Monitor decorated **info** method of the **MyNavigationTestStack** component being displayed is called.
+1. When **change message** is clicked, the value of **message** changes, triggering the @Monitor decorated **info** method of the **MyNavigationTestStack** component being displayed.
 
 2. When **Next Page** is clicked, the page is switched to **PageOne** and the **pageOneStack** node is created.
 
-3. When **change message** is clicked again, the value of **message** changes, and only the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component in **pageOneStack** is called.
+3. When **change message** is clicked again, the value of **message** changes, triggering only the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component in **pageOneStack**.
 
 4. When **Next Page** is clicked, the page is switched to **PageTwo** and the **pageTwoStack** node is created. The state of the **pageOneStack** node changes from active to inactive.
 
-5. When **change message** is clicked again, the value of **message** changes, and only the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component in **pageTwoStack** is called. The child custom component in **NavDestination** that is not at the top of the navigation routing stack is in the inactive state. The @Monitor method is not triggered.
+5. When **change message** is clicked again, the value of **message** changes, triggering only the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component in **pageTwoStack**. The child custom components in **NavDestination** that are not at the top of the navigation stack are in the inactive state, and their @Monitor decorated methods are not triggered.
 
 6. When **Next Page** is clicked, the page is switched to **PageThree** and the **pageThreeStack** node is created. The state of the **pageTwoStack** node changes from active to inactive.
 
-7. When **change message** is clicked again, the value of **message** changes, and only the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component in **pageThreeStack** is called. The child custom component in **NavDestination** that is not at the top of the navigation routing stack is in the inactive state. The @Monitor method is not triggered.
+7. When **change message** is clicked again, the value of **message** changes, triggering only the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component in **pageThreeStack**. The child custom components in **NavDestination** that are not at the top of the navigation stack are in the inactive state, and their @Monitor decorated methods are not triggered.
 
-8. Click **Back Page** to return to **PageTwo**. The state of the **pageTwoStack** node changes from inactive to active, and the **info** method registered in @Monitor of the **NavigationContentMsgStack** child component is triggered.
+8. After **Back Page** is clicked to return to **PageTwo**, the state of the **pageTwoStack** node changes from inactive to active, triggering the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component.
 
-9. Click **Back Page** again to return to **PageOne**. The state of the **pageOneStack** node changes from inactive to active, and the **info** method registered in @Monitor of the **NavigationContentMsgStack** child component is triggered.
+9. After **Back Page** is clicked again to return to **PageOne**, the state of the **pageOneStack** node changes from inactive to active, triggering the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component.
 
-10. When **Back Page** is clicked, the page is switched to the initial page.
+10. When **Back Page** is clicked once more, the UI is switched to the initial page.
 
 ![navigation-freeze.gif](figures/navigation-freeze.gif)
 
@@ -348,9 +345,9 @@ In the preceding example:
 
 > **NOTE**
 >
-> Repeat virtualScroll supports custom component freezing since API version 18.
+> Repeat supports custom component freezing since API version 18.
 
-Freeze the custom components in the Repeat cache pool to avoid unnecessary component re-renders. You are advised to read [Node Update and Reuse Mechanism](./arkts-new-rendering-control-repeat.md#node-update-and-reuse-mechanism) in advance.
+Freezing custom components in the cache pool of **Repeat** prevents unnecessary component re-renders. Before proceeding, reviewing the [Node Update and Reuse Mechanism](./arkts-new-rendering-control-repeat.md#node-update-and-reuse-mechanism) is recommended.
 
 ```ts
 @Entry
@@ -406,7 +403,7 @@ struct ChildComponent {
   @Param @Require bgColor: Color = Color.Pink;
   @Monitor(`bgColor`)
   onBgColorChange(monitor: IMonitor) {
-    // When the bgColor changes, the components in the cache pool are not re-rendered and no log is printed.
+    // When the value of bgColor changes, the components in the cache pool are not re-rendered, so no log is printed.
     console.log(`repeat---bgColor change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
@@ -420,9 +417,9 @@ struct ChildComponent {
 
 In the preceding example:
 
-After you click **Reduce length to 5**, the two removed components enter the **Repeat** cache pool. Then, click **Change bgColor** to change the value of **bgColor** to trigger node re-rendering.
+After **Reduce length to 5** is clicked, the two removed components enter the cache pool of **Repeat**. Then, clicking **Change bgColor** changes the value of **bgColor**, triggering component re-rendering.
 
-If **freezeWhenInactive** is set to **true**, only the **onBgColorChange** method decorated by @Monitor in the remaining nodes is triggered. In the example, the five nodes are re-rendered and five logs are printed. The nodes in the cache pool are not re-rendered.
+With component freezing enabled (**freezeWhenInactive: true**), only the @Monitor decorated **onBgColorChange** callback in the remaining active nodes is triggered. In the example, the five active nodes are re-rendered, causing five logs to be printed.
 
 ![freeze_repeat_L2.gif](figures/freeze_repeat_L2.gif)
 
@@ -434,7 +431,7 @@ struct ChildComponent {
   @Param @Require bgColor: Color = Color.Pink;
   @Monitor(`bgColor`)
   onBgColorChange(monitor: IMonitor) {
-    // When the bgColor changes, components in the cache pool are re-rendered and logs are printed.
+    // When the value of bgColor changes, components in the cache pool are also re-rendered, printing logs.
     console.log(`repeat---bgColor change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
@@ -446,15 +443,128 @@ struct ChildComponent {
 }
 ```
 
-**freezeWhenInactive** is set to **false** to disable component freezing. If **freezeWhenInactive** is not specified, component freezing is disabled by default. The **onBgColorChange** method decorated by @Monitor in the remaining nodes and cache pool nodes is triggered, that is, seven nodes are re-rendered and seven logs are printed.
+When component freezing is disabled (**freezeWhenInactive: false** - the default setting when **freezeWhenInactive** is not specified), the @Monitor decorated **onBgColorChange** callback is triggered for both the remaining active components and components in the cache pool. This means all seven components are re-rendered, printing seven logs.
 
 ![freeze_repeat_L2_unfreeze.gif](figures/freeze_repeat_L2_unfreeze.gif)
 
-### Mixed Use of Component Freezing
+### Component Freezing for Child Components Only
 
-In the scenario where mixed use of component freezing is supported, the freezing behavior varies according to the API version. Set the component freezing flag for the parent component. In API version 17 or earlier, when the parent component is unfrozen, all nodes of its child components are unfrozen. Since API version 18, when the parent component is unfrozen, only the on-screen nodes of the child component are unfrozen. For details, see [Mixing the Use of Components](./arkts-custom-components-freeze.md#mixing-the-use-of-components).
+You can selectively freeze specific child components by setting **freezeWhenInactive: true** only on those child components.
 
-#### Mixing Use of Navigation and TabContent
+```ts
+// Page1.ets
+@ObservedV2
+class Book {
+  @Trace name: string = 'TS';
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+@Entry
+@ComponentV2
+struct Page1 {
+  pageInfo: NavPathStack = new NavPathStack();
+
+  build() {
+    Column() {
+      Navigation(this.pageInfo) {
+        Child()
+
+        Button('Go to next page').fontSize(30)
+          .onClick(() => {
+            this.pageInfo.pushPathByName('Page2', null);
+          })
+      }
+    }
+  }
+}
+
+@ComponentV2({ freezeWhenInactive: true })
+export struct Child {
+  @Local bookTest: Book = new Book(`A Midsummer Night's Dream`);
+
+  @Monitor('bookTest.name')
+  onMessageChange(monitor: IMonitor) {
+    console.log(`The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+  }
+
+  textUpdate(): number {
+    console.log('The text is update');
+    return 25;
+  }
+
+  build() {
+    Column() {
+      Text(`The book name is ${this.bookTest.name}`).fontSize(this.textUpdate())
+
+      Button('change BookName')
+        .onClick(() => {
+          setTimeout(() => {
+            this.bookTest = new Book("Jane Austen's Pride and Prejudice");
+          }, 3000);
+        })
+    }
+  }
+}
+```
+
+```ts
+// Page2.ets
+@Builder
+function Page2Builder() {
+  Page2()
+}
+
+@ComponentV2
+struct Page2 {
+  pathStack: NavPathStack = new NavPathStack();
+
+  build() {
+    NavDestination() {
+      Column() {
+        Text('This is the Page2')
+
+        Button('Back').fontSize(30)
+          .onClick(() => {
+            this.pathStack.pop();
+          })
+      }
+    }.onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+    })
+  }
+}
+```
+
+When using **Navigation**, create a **route_map.json** file as shown below in the **src/main/resources/base/profile** directory, replacing the value of **pageSourceFile** with the actual path to **Page2**. Then, add **"routerMap": "$profile: route_map"** to the **module.json5** file.
+
+```json
+{
+  "routerMap": [
+    {
+      "name": "Page2",
+      "pageSourceFile": "src/main/ets/pages/Page2.ets",
+      "buildFunction": "Page2Builder",
+      "data": {
+        "description" : "This is the Page2"
+      }
+    }
+  ]
+}
+```
+
+In the preceding example:
+- The child component **Child** in **Page1** has **freezeWhenInactive: true** configured.
+- During the test, click the **change BookName** button; within 3 seconds, click the **Go to next page** button. When **bookTest** is updated, **Page1** is already in the inactive state after navigation to **Page2**. Due to component freezing enabled for **Child**, the **@Local bookTest** state variable does not respond to updates. This means that the @Monitor decorated callback will not be triggered, and any components associated with the state variable will not be re-rendered.
+- After the **Back** button is clicked to return to the previous page, the @Monitor decorated callback is triggered, and components associated with the state variable will be re-rendered.
+
+### Component Freezing Across Mixed Scenarios
+
+When component freezing is applied across different scenarios, freezing behavior varies by API version. Key differences exist when parent components have freezing enabled:<br> API version 17 or earlier:<br>Thawing a parent component automatically thaws all its child components.<br>API version 18 or later:<br>Thawing a parent component only thaws on-screen child components. For details, see [Mixing the Use of Components](./arkts-custom-components-freeze.md#mixing-the-use-of-components).
+
+#### Mixed Use of Navigation and TabContent
 
 ```ts
 @ComponentV2
@@ -624,15 +734,15 @@ struct pageTwoStack {
 
 For API version 17 or earlier:
 
-Click **Next page** to enter the next page and then return to the previous page. All labels of **Tabcontent** are unfrozen.
+Navigating to the next page using the **Next page** button and then returning to the previous page will thaw all **TabContent** components.
 
 For API version 18 or later:
 
-Click **Next page** to enter the next page and then return to the previous page. Only the nodes with the corresponding labels are unfrozen.
+Navigating to the next page using the **Next page** button and then returning to the previous page will thaw only the **TabContent** component being displayed.
 
 ## Constraints
 
-As shown in the following example, the custom node [BuilderNode](../../reference/apis-arkui/js-apis-arkui-builderNode.md) is used in **FreezeBuildNode**. **BuilderNode** can dynamically mount components using commands and component freezing strongly depends on the parent-child relationship to determine whether it is enabled. In this case, if the parent component is frozen and **BuilderNode** is enabled at the middle level of the component tree, the child component of the **BuilderNode** cannot be frozen.
+The **FreezeBuildNode** example below demonstrates the constraint for using a [BuilderNode](../../reference/apis-arkui/js-apis-arkui-builderNode.md) with component freezing. When a BuilderNode is used within a frozen component hierarchy, its imperative mounting mechanism conflicts with the functionality of component freezing, which relies on parent-child relationships. As a result, the child components of the BuilderNode remain active, regardless of their parent's frozen state.
 
 ```
 import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
@@ -640,7 +750,7 @@ import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
 // Define a Params class to pass parameters.
 @ObservedV2
 class Params {
-  // Singleton mode. Ensure that there is only one Params instance.
+  // Singleton pattern to ensure that there is only one Params instance.
   static singleton_: Params;
 
   // Method for obtaining the Params instance.
@@ -651,7 +761,7 @@ class Params {
     return Params.singleton_;
   }
 
-  // Use the @Trace decorator to decorate the message attribute so that its changes are observable.
+  // Decorate the message attribute with the @Trace decorator so that its changes are observable.
   @Trace message: string = "Hello";
   index: number = 0;
 
@@ -704,7 +814,7 @@ class TextNodeController extends NodeController {
   }
 }
 
-// Define an index component that contains a message attribute and a data array.
+// Define an Index component that contains a message attribute and a data array.
 @Entry
 @ComponentV2
 struct Index {
@@ -760,7 +870,9 @@ struct FreezeBuildNode {
 }
 ```
 
-Click **Button("change")** to change the value of **message**. The **onMessageUpdated** method registered in @Watch of the **TabContent** component that is being displayed is triggered, and that under the **BuilderNode** node of **TabContent** that is not displayed is also triggered.
+After the **change** button is clicked, the value of **message** changes, resulting in both expected and unexpected behaviors:
+
+- Expected: The @Watch decorated **onMessageUpdated** callback of the **TabContent** component that is being displayed is triggered.
+- Unexpected: For **TabContent** components that are not being displayed, the @Watch decorated **onMessageUpdated** callbacks of child components under the BuilderNode are also triggered, indicating that these components are not frozen.
 
 ![builderNode.gif](figures/builderNode.gif)
-
