@@ -1,5 +1,4 @@
 # 窗口开发概述
-
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
 <!--Owner: @Pakoo007-->
