@@ -60,7 +60,7 @@ struct Index {
   
   build() {
     Column() {
-      Button("change Info")
+      Button('change Info')
         .onClick(() => {
           this.info = new Info(100, 100);
       })
@@ -121,18 +121,18 @@ struct Child {
   @ComponentV2
   struct Index {
     @Local count: number = 0;
-    @Local message: string = "Hello";
+    @Local message: string = 'Hello';
     @Local flag: boolean = false;
     build() {
       Column() {
         Text(`Local ${this.count}`)
         Text(`Local ${this.message}`)
         Text(`Local ${this.flag}`)
-        Button("change Local")
+        Button('change Local')
           .onClick(()=>{
             // 对数据源的更改会同步给子组件
             this.count++;
-            this.message += " World";
+            this.message += ' World';
             this.flag = !this.flag;
         })
         Child({
@@ -177,24 +177,24 @@ struct Child {
   @Entry
   @ComponentV2
   struct Index {
-    @Local rawObject: RawObject = new RawObject("rawObject");
-    @Local observedObject: ObservedObject = new ObservedObject("observedObject");
+    @Local rawObject: RawObject = new RawObject('rawObject');
+    @Local observedObject: ObservedObject = new ObservedObject('observedObject');
     build() {
       Column() {
         Text(`${this.rawObject.name}`)
         Text(`${this.observedObject.name}`)
-        Button("change object")
+        Button('change object')
           .onClick(() => {
             // 对类对象整体的修改均能观察到
-            this.rawObject = new RawObject("new rawObject");
-            this.observedObject = new ObservedObject("new observedObject");
+            this.rawObject = new RawObject('new rawObject');
+            this.observedObject = new ObservedObject('new observedObject');
         })
-        Button("change name")
+        Button('change name')
           .onClick(() => {
             // @Local与@Param均不具备观察类对象属性的能力，因此对rawObject.name的修改无法观察到
-            this.rawObject.name = "new rawObject name";
+            this.rawObject.name = 'new rawObject name';
             // 由于ObservedObject的name属性被@Trace装饰，因此对observedObject.name的修改能被观察到
-            this.observedObject.name = "new observedObject name";
+            this.observedObject.name = 'new observedObject name';
         })
         Child({
           rawObject: this.rawObject,
@@ -233,14 +233,14 @@ struct Child {
         Text(`${this.numArr[2]}`)
         Text(`${this.dimensionTwo[0][0]}`)
         Text(`${this.dimensionTwo[1][1]}`)
-        Button("change array item")
+        Button('change array item')
           .onClick(() => {
             this.numArr[0]++;
             this.numArr[1] += 2;
             this.dimensionTwo[0][0] = 0;
             this.dimensionTwo[1][1] = 0;
           })
-        Button("change whole array")
+        Button('change whole array')
           .onClick(() => {
             this.numArr = [5,4,3,2,1];
             this.dimensionTwo = [[7,8,9],[0,1,2]];
@@ -293,8 +293,8 @@ struct Child {
   @Entry
   @ComponentV2
   struct Index {
-    @Local infoArr: Info[] = [new Info("Ocean", 28, 120), new Info("Mountain", 26, 20)];
-    @Local originInfo: Info = new Info("Origin", 0, 0);
+    @Local infoArr: Info[] = [new Info('Ocean', 28, 120), new Info('Mountain', 26, 20)];
+    @Local originInfo: Info = new Info('Origin', 0, 0);
     build() {
       Column() {
         ForEach(this.infoArr, (info: Info) => {
@@ -307,17 +307,17 @@ struct Child {
           Text(`Origin name: ${this.originInfo.name}`)
           Text(`Origin region: ${this.originInfo.region.x}-${this.originInfo.region.y}`)
         }
-        Button("change infoArr item")
+        Button('change infoArr item')
           .onClick(() => {
             // 由于属性name被@Trace装饰，所以能够观察到
-            this.infoArr[0].name = "Win";
+            this.infoArr[0].name = 'Win';
           })
-        Button("change originInfo")
+        Button('change originInfo')
           .onClick(() => {
             // 由于变量originInfo被@Local装饰，所以能够观察到
-            this.originInfo = new Info("Origin", 100, 100);
+            this.originInfo = new Info('Origin', 100, 100);
           })
-        Button("change originInfo region")
+        Button('change originInfo region')
           .onClick(() => {
             // 由于属性x、y被@Trace装饰，所以能够观察到
             this.originInfo.region.x = 25;
@@ -333,7 +333,7 @@ struct Child {
   @ComponentV2
   struct Child {
     @Param infoArr: Info[] = [];
-    @Param originInfo: Info = new Info("O", 0, 0);
+    @Param originInfo: Info = new Info('O', 0, 0);
   
     build() {
       Column() {
@@ -370,13 +370,13 @@ struct Child {
   ```ts
   @ComponentV2
   struct MyComponent {
-    @Param message: string = "Hello World"; // 正确用法
+    @Param message: string = 'Hello World'; // 正确用法
     build() {
     }
   }
   @Component
   struct TestComponent {
-    @Param message: string = "Hello World"; // 错误用法，编译时报错
+    @Param message: string = 'Hello World'; // 错误用法，编译时报错
     build() {
     }
   }
@@ -387,8 +387,8 @@ struct Child {
   ```ts
   @ComponentV2
   struct ChildComponent {
-    @Param param1: string = "Initialize local";
-    @Param param2: string = "Initialize local and put in";
+    @Param param1: string = 'Initialize local';
+    @Param param2: string = 'Initialize local and put in';
     @Require @Param param3: string;
     @Param param4: string; // 错误用法，外部未传入初始化且本地也无初始值，编译报错
     build() {
@@ -402,7 +402,7 @@ struct Child {
   @Entry
   @ComponentV2
   struct MyComponent {
-    @Local message: string = "Put in";
+    @Local message: string = 'Put in';
     build() {
       Column() {
         ChildComponent({
@@ -427,14 +427,14 @@ struct Child {
   @Entry
   @ComponentV2
   struct Index {
-    @Local info: Info = new Info("Tom");
+    @Local info: Info = new Info('Tom');
     build() {
       Column() {
         Text(`Parent info.name ${this.info.name}`)
-        Button("Parent change info")
+        Button('Parent change info')
           .onClick(() => {
             // 父组件更改@Local变量，会同步子组件对应@Param变量
-            this.info = new Info("Lucy");
+            this.info = new Info('Lucy');
         })
         Child({ info: this.info })
       }
@@ -446,15 +446,15 @@ struct Child {
     build() {
       Column() {
         Text(`info.name: ${this.info.name}`)
-        Button("change info")
+        Button('change info')
           .onClick(() => {
             // 错误用法，不允许在子组件中更改@Param变量，编译时会报错
-            this.info = new Info("Jack");
+            this.info = new Info('Jack');
           })
-        Button("Child change info.name")
+        Button('Child change info.name')
           .onClick(() => {
             // 允许在子组件中更改对象中属性，该修改会同步到父组件数据源上，当属性被@Trace装饰时，可观测到对应UI刷新
-            this.info.name = "Jack";
+            this.info.name = 'Jack';
           })
       }
     }
@@ -491,16 +491,16 @@ class Info {
 @Entry
 @ComponentV2
 struct Index {
-  @Local infoList: Info[] = [new Info("Alice", 8, 0, 0), new Info("Barry", 10, 1, 20), new Info("Cindy", 18, 24, 40)];
+  @Local infoList: Info[] = [new Info('Alice', 8, 0, 0), new Info('Barry', 10, 1, 20), new Info('Cindy', 18, 24, 40)];
   build() {
     Column() {
       ForEach(this.infoList, (info: Info) => {
         MiddleComponent({ info: info })
       })
-      Button("change")
+      Button('change')
         .onClick(() => {
-          this.infoList[0] = new Info("Atom", 40, 27, 90);
-          this.infoList[1].name = "Bob";
+          this.infoList[0] = new Info('Atom', 40, 27, 90);
+          this.infoList[1].name = 'Bob';
           this.infoList[2].region = new Region(7, 9);
         })
     }
