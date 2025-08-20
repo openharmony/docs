@@ -191,6 +191,7 @@ struct Utils {
 
   build() {
     Column() {
+      // $r("app.media.img")需要替换为开发者所需的图像资源文件
       Image($r("app.media.img"))
         .transform(this.matrix1)
         .translate({ x: 20, y: 20, z: 20 })

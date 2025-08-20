@@ -1324,7 +1324,7 @@ struct AnimatorTest {
         Column() {
           Button('create')
             .fontSize(30)
-            .fontColor(Color.Black)
+            .fontColor(Color.White)
             .onClick(() => {
               this.create()
             })
@@ -1334,7 +1334,7 @@ struct AnimatorTest {
         Column() {
           Button('play')
             .fontSize(30)
-            .fontColor(Color.Black)
+            .fontColor(Color.White)
             .onClick(() => {
               this.flag = false
               if(this.backAnimator){
@@ -1347,7 +1347,7 @@ struct AnimatorTest {
         Column() {
           Button('reset')
             .fontSize(30)
-            .fontColor(Color.Black)
+            .fontColor(Color.White)
             .onClick(() => {
               if (this.flag) {
                 this.flag = false
