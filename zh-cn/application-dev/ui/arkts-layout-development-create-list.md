@@ -481,6 +481,7 @@ List组件的sticky属性配合ListItemGroup组件使用，用于设置ListItemG
 
 ```ts
 import { util } from '@kit.ArkTS';
+
 class Contact {
   key: string = util.generateRandomUUID(true);
   name: string;
@@ -792,6 +793,7 @@ ListItem() {
    ```ts
    //ToDoListItem.ets
    import { ToDo } from './ToDo';
+
    @Component
    export struct ToDoListItem {
      @Link isEditMode: boolean;
@@ -934,6 +936,7 @@ ListItem() {
     ```ts
    // 结构参考
    import { util } from '@kit.ArkTS';
+
    export class ToDo {
      key: string = util.generateRandomUUID(true);
      name: string;
@@ -966,6 +969,7 @@ ListItem() {
     ```ts
     // 结构参考
     import { util } from '@kit.ArkTS';
+
     export class ToDo {
       key: string = util.generateRandomUUID(true);
       name: string;
@@ -1032,6 +1036,7 @@ List() {
 
     ```ts
     import { curves } from '@kit.ArkUI';
+
     interface ItemInfo {
       index: number,
       name: string,
