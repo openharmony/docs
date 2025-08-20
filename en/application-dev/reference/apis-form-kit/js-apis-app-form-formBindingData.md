@@ -1,5 +1,10 @@
 # @ohos.app.form.formBindingData (formBindingData)
 
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
 The **FormBindingData** module provides APIs for widget data binding. You can use the APIs to create a **FormBindingData** object and obtain related information.
 
 > **NOTE**
@@ -56,7 +61,7 @@ Creates a **FormBindingData** object.
 
 | Name| Type          | Mandatory| Description                                                        |
 | ------ | -------------- | ---- | ------------------------------------------------------------ |
-| obj    | Object\|string | No  | Data to be displayed on the widget. The value can be an object containing multiple key-value pairs or a string in JSON format. The image data is identified by **'formImages'**, and the content is multiple key-value pairs, each of which consists of an image identifier and image file descriptor. The final format is {'formImages': {'key1': fd1, 'key2': fd2}}.<br>**NOTE**<br>During [widget update](../../form/arkts-ui-widget-interaction-overview.md), when the widget UI receives widget data through @LocalStorageProp, the **FormBindingData** object is serialized, that is, the widget data is converted into the string type. |
+| obj    | Object\|string | No  | Data to be displayed on the widget. The value can be an object containing multiple key-value pairs or a string in JSON format. The image data is identified by **'formImages'**, and the content is multiple key-value pairs, each of which consists of an image identifier and image file descriptor. The final format is {'formImages': {'key1': fd1, 'key2': fd2}}.<br>**NOTE**<br>During [widget update](../../form/arkts-ui-widget-interaction-overview.md), when the widget UI receives widget data through @LocalStorageProp, the **FormBindingData** object is serialized, that is, the widget data is converted into the string type.|
 
 
 **Return value**
@@ -78,24 +83,35 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { formBindingData } from '@kit.FormKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo } from '@kit.CoreFileKit';
-
-try {
-  let file = fileIo.openSync('/path/to/form.png');
-  let formImagesParam: Record<string, number> = {
-    'image': file.fd
-  };
-  let createFormBindingDataParam: Record<string, string | Object> = {
-    'name': '21°',
-    'imgSrc': 'image',
-    'formImages': formImagesParam
-  };
-
-  formBindingData.createFormBindingData(createFormBindingDataParam);
-} catch (error) {
-  let code = (error as BusinessError).code;
-  let message = (error as BusinessError).message;
-  console.error(`catch error, code: ${code}, message: ${message}`);
+import { common } from '@kit.AbilityKit';
+@Entry
+@Component
+struct Index {
+  content = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  pathDir: string = this.content.filesDir;
+  createFormBindingData() {
+    try {
+      let filePath = this.pathDir + "/form.png";
+      let file = fileIo.openSync(filePath);
+      let formImagesParam: Record<string, number> = {
+        'image': file.fd
+      };
+      let createFormBindingDataParam: Record<string, string | Record<string, number>> = {
+        'name': '21°',
+        'imgSrc': 'image',
+        'formImages': formImagesParam
+      };
+      formBindingData.createFormBindingData(createFormBindingDataParam);
+    } catch (error) {
+      console.error(`catch error, error: ${JSON.stringify(error)}`);
+    }
+  }
+  build() {
+    Button('createFormBindingData')
+      .onClick((event: ClickEvent)=>{
+        this.createFormBindingData();
+      })
+  }
 }
 ```

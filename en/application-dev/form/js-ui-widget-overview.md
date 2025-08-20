@@ -1,10 +1,15 @@
 # JS Widget Overview
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
 
 JS widgets, developed using a web-like paradigm (HML + CSS + JSON), now support two [application models](../application-models/application-models.md): the FA model and the stage model. For details, see [Developing a JS Widget (Stage Model)](js-ui-widget-development.md) and [Developing a JS Widget (FA Model)](widget-development-fa.md).
 
 ## How to Implement
 
-Below shows the working principles of the widget framework.
+Below shows the working principles of a JS widget.
 
 **Figure 1** Working principles
 
