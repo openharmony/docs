@@ -10,7 +10,7 @@
 
 > **说明：** 
 > - 本模块首批接口从API version 12开始支持，后续版本的新增接口，采用上角标标记接口的起始版本。
-> - 关于`.shader`资源文件，具体请见[.shader资源文件格式要求](../../graphics3d/arkgraphics3D-shader-resource.md#.shader资源文件格式要求)。
+> - 关于`.shader`资源文件，具体请见[.shader资源文件格式要求](../../graphics3d/arkgraphics3D-shader-resource.md)。
 
 ## 导入模块
 ```ts
@@ -117,7 +117,7 @@ createShader(params: SceneResourceParameters): Promise\<Shader>
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [SceneResourceParameters](#sceneresourceparameters) | 是 | 创建着色器的参数。详细`.shader`文件格式请参考[.shader资源文件格式要求](../../graphics3d/arkgraphics3D-shader-resource.md#.shader资源文件格式要求)。 |
+| params | [SceneResourceParameters](#sceneresourceparameters) | 是 | 创建着色器的参数。详细`.shader`文件格式请参考[.shader资源文件格式要求](../../graphics3d/arkgraphics3D-shader-resource.md)。 |
 
 **返回值：**
 | 类型 | 说明 |
