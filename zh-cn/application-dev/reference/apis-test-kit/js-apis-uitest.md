@@ -409,7 +409,7 @@ type(tp: string, pattern: MatchPattern): On
 **示例：**
 
 ```ts
-import { On, ON } from '@kit.TestKit';
+import { On, ON, MatchPattern } from '@kit.TestKit';
 let on:On = ON.type('Button', MatchPattern.EQUALS); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
 ```
 
@@ -2661,7 +2661,7 @@ import { KeyCode } from '@kit.InputKit';
 
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.triggerKey(KeyCode.KEYCODE_BACK, 0);
+  await driver.triggerKey(KeyCode.KEYCODE_BACK, 0); // 返回键
 }
 ```
 
@@ -6652,7 +6652,7 @@ import { KeyCode } from '@kit.InputKit';
 
 async function demo() {
   let driver: UiDriver = UiDriver.create();
-  await driver.triggerKey(KeyCode.KEYCODE_BACK);
+  await driver.triggerKey(KeyCode.KEYCODE_BACK); // 返回键
 }
 ```
 
