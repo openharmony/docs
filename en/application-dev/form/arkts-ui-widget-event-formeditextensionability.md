@@ -1,9 +1,13 @@
 # Widget Editing Development
-
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
 The home screen provides a unified widget editing page. The widget provider uses [FormEditExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formEditExtensionAbility.md) provided by the widget framework to develop the widget editing function.
 
 ## How to Develop
-1. In the entry module of the project, create a code file named EntryFormEditAbility. In the EntryFormEditAbility file, implement the [startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#formeditextensioncontextstartsecondpage) method. In the [onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate) callback method, load the level-1 widget editing page and transfer the implementation of **startSecondPage** to the level-1 widget editing page.
+1. In the entry module of the project, create a code file named EntryFormEditAbility. In the **EntryFormEditAbility** file, implement the [startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#startsecondpage) method. In the [onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate) callback method, load the level-1 widget editing page and transfer the implementation of **startSecondPage** to the level-1 widget editing page.
 
 ```ts
 // src/main/ets/entryformeditability/EntryFormEditAbility.ets
@@ -34,7 +38,6 @@ export default class EntryFormEditAbility extends FormEditExtensionAbility {
     storage.setOrCreate('extensionEvent', extensionEvent);
     try {
       session.loadContent('pages/Extension', storage);
-      session.setWindowBackgroundColor('#00000000');
     } catch (e) {
       console.error(`${TAG} EntryFormEditAbility loadContent err, want: ${JSON.stringify(e)}`);
     }
@@ -77,7 +80,9 @@ struct Extension {
   private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
   private extensionEvent: ExtensionEvent | undefined = storage.get<ExtensionEvent>('extensionEvent');
   onPageShow() {
-    console.info(`${TAG} onPageShow. extensionEvent: ${JSON.stringify(this.extensionEvent)}, session: ${JSON.stringify(this.session)}.`);
+    if (!this.session || !this.extensionEvent) {
+      console.info(`${TAG} onPageShow. extensionEvent: ${JSON.stringify(this.extensionEvent)}, session: ${JSON.stringify(this.session)}.`);
+    }
   }
   build() {
     Row() {
@@ -104,7 +109,7 @@ struct Extension {
 }
 ```
 
-3. Add the ExtensionEvent file and use the **startFormEditSecondPage** method to invoke the [startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#formeditextensioncontextstartsecondpage) method.
+3. Add the **ExtensionEvent** file and use the **startFormEditSecondPage** method to invoke the [startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#startsecondpage) method.
 
 ```ts
 // src/main/ets/widget/pages/model/ExtensionEvent.ets
@@ -138,7 +143,7 @@ export class ExtensionEvent {
 ]
 ```
 
-5. Add the formConfigAbility configuration to the [form_config.json](./arkts-ui-widget-configuration.md) configuration file of the widget.
+5. Add the formConfigAbility configuration to the [form_config.json](./arkts-ui-widget-configuration.md#fields-in-configuration-file) configuration file of the widget.
 
 ```json
 {
