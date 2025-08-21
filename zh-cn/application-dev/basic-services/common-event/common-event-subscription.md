@@ -79,7 +79,7 @@
          hilog.error(DOMAIN_NUMBER, TAG, `Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
          return;
        }
-       // ...
+       console.info(`Succeeded in subscribing, data is ${JSON.stringify(data)}`);
      })
    } else {
      hilog.error(DOMAIN_NUMBER, TAG, `Need create subscriber`);
