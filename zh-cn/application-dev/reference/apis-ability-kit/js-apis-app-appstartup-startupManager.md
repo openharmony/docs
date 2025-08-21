@@ -1,6 +1,6 @@
 # @ohos.app.appstartup.startupManager (启动框架管理能力)
 
-本模块提供应用启动框架管理启动任务的能力，只能在主线程调用。
+本模块提供[应用启动框架](../../application-models/app-startup.md)管理启动任务的能力，只能在主线程调用。
 
 > **说明：**
 >
@@ -25,10 +25,10 @@ run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | startupTasks | Array\<string\> | 是 | 表明准备执行的启动任务所实现的[StartupTask](js-apis-app-appstartup-startupTask.md)接口类名称和预加载so名称的数组。 |
-  | config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | 否 | 启动框架超时时间与启动任务监听器配置。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| startupTasks | Array\<string\> | 是 | 表示准备执行的启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的名称或预加载so名称的数组。 |
+| config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | 否 | 表示启动任务配置信息，包含启动框架超时时间与启动任务监听器配置。 |
 
 **返回值：**
 
@@ -129,15 +129,15 @@ getStartupTaskResult(startupTask: string): Object
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | startupTask | string | 是 | 启动任务实现[StartupTask](./js-apis-app-appstartup-startupTask.md)接口的文件名或so文件名，所有启动任务都需要实现[StartupTask](./js-apis-app-appstartup-startupTask.md)接口的方法。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| startupTask | string | 是 | 启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的名称或预加载so名称。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Object | 输入为启动任务名时，返回指定的启动任务结果。<br/> 输入为so文件名时，返回undefined。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| Object | 输入为启动任务名时，返回指定的启动任务[init](js-apis-app-appstartup-startupTask.md#init)返回的执行结果。<br/>输入为so文件名时，返回undefined。 |
 
 **错误码：**
 
@@ -188,9 +188,9 @@ isStartupTaskInitialized(startupTask: string): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | startupTask | string | 是 | 启动任务实现[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称或so文件名称。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| startupTask | string | 是 | 启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的名称或预加载so名称。 |
 
 **返回值：**
 
@@ -261,10 +261,10 @@ removeStartupTaskResult(startupTask: string): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | startupTask | string | 是 | 启动任务所实现[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称或so文件名。 |
-  
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| startupTask | string | 是 | 启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的名称或预加载so名称。 |
+
 **错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
