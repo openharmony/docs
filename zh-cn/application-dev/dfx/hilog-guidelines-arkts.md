@@ -40,7 +40,7 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 
   | 隐私标识符（private flag） | 说明 | 
   | -------- | -------- |
-  | private | 表示日志打印结果不可见，输出结果为&lt;private&gt;。| 
+  | private | 表示日志打印结果不可见，输出结果为&lt;private&gt;。 |
   | public | 表示日志打印结果可见，明文显示参数。 | 
   | 无 | 缺省值默认为private，日志打印结果不可见。 | 
 
