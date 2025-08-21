@@ -3,7 +3,7 @@
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphic-->
 <!--Owner: @andrew1993-->
-<!--Designer: @exFAT-->
+<!--Designer: @ext4FAT1->
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
 
