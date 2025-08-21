@@ -44,7 +44,7 @@ HiDumper命令行工具使用常见问题汇总在[常见问题](#常见问题)�
 | [--mem pid [--show-ashmem] [--show-dmabuf]](#查询进程内存) | 获取指定pid的进程内存使用情况。<br />指定 --show-ashmem，则补充打印该进程的ashmem使用详细信息。<br />如果是应用进程，指定--show-dmabuf，则补充打印DMA内存详情信息。<br />**说明**：从API version 20开始，支持--show-ashmem参数。从API version 21开始，支持--show-dmabuf参数。 |
 | [--zip](#导出信息压缩存储) | 保存命令输出到 /data/log/hidumper 下的压缩文件，压缩格式为 ZIP。 |
 | [--ipc [pid]/-a --start-stat/stat/--stop-stat](#获取进程间通信信息) | 统计一段时间进程IPC信息。如果使用-a，则统计所有进程IPC数据。使用--start-stat开始统计，使用--stat获取统计数据，使用--stop-stat结束统计。 |
-| [--mem-smaps pid [-v]](#查询进程内存) | 获取pid内存统计信息，数据来源于/proc/pid/smaps，使用-v指定更多详细信息。（仅支持导出[debug版本应用](performance-analysis-kit-terminology.md#debug版本应用)） |
+| [--mem-smaps pid [-v]](#查询进程内存) | 获取pid内存统计信息，数据来源于/proc/pid/smaps，使用-v指定更多详细信息。（仅支持导出[debug版本应用](performance-analysis-kit-terminology.md#debug版本应用)）<br />**说明**：从API version 20开始，支持该参数。 |
 | [--mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]](#查询虚拟机堆内存) | 必选参数pid。触发ArkTS应用JS线程的gc和堆内存快照导出。指定线程tid时，仅触发该线程的gc和堆内存快照导出；指定--gc时，仅触发gc，不导出快照；指定--leakobj时，应用开启泄露检测可获取泄露对象列表。<br>文件命名格式为：<!--RP1-->jsheap-进程号-JS线程号-时间戳<!--RP1End-->，文件内容为JSON结构的JS堆快照。<br>指定--raw时，堆快照以rawheap格式导出。 |
 | <!--DelRow-->[--mem-cjheap pid [--gc]](#查询虚拟机堆内存) | pid为必选参数。触发仓颉应用gc和堆内存快照导出。如果指定--gc，只触发gc不做快照导出。<br />**说明**：从API version 20开始。支持该参数。 |
 
