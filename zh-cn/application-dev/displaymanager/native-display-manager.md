@@ -1,4 +1,10 @@
 # 使用OH_DisplayManager实现屏幕基础信息查询和状态监听 (C/C++)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## 场景介绍
 
@@ -209,7 +215,6 @@ EXTERN_C_END
 
    ```c++
    #include "napi/native_api.h"
-   #include <window_manager/oh_display_info.h>
    #include <window_manager/oh_display_manager.h>
    #include <hilog/log.h>
    
