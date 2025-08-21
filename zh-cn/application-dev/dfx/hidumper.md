@@ -384,32 +384,32 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
 
   使用样例：
 
-<!--RP3-->
+  <!--RP3-->
   ```shell
   $ hidumper --mem-jsheap 64949  -> 64949 为目标应用进程号
   $ ls | grep jsheap   -> 进入堆内存文件存放目录后执行
   jsheap-64949-64949-1751075546050
   jsheap-64949-64989-1751075546050
   ```
-<!--RP3End-->
+  <!--RP3End-->
 
 - 可使用hidumper --mem-jsheap pid -T tid命令获取指定进程指定JS线程的虚拟机堆内存，文件命名为：<!--RP1-->jsheap-进程号-JS线程号-时间戳<!--RP1End-->。
 
   使用样例：
 
-<!--RP4-->
+  <!--RP4-->
   ```shell
   $ hidumper --mem-jsheap 64949 -T 64949  -> 64949 为目标应用进程号
   $ ls | grep jsheap  -> 进入堆内存文件存放目录后执行
   jsheap-64949-64949-1751075567710
   ```
-<!--RP4End-->
+  <!--RP4End-->
 
 - 可使用hidumper --mem-jsheap pid [-T tid] --raw获取指定进程或指定JS线程的虚拟机堆内存，生成的堆内存文件为rawheap格式，文件命名为<!--RP1-->jsheap-进程号-JS线程号-时间戳<!--RP1End-->.rawheap。rawheap的解析转换可参考使用：[rawheap-translator工具](../tools/rawheap-translator.md)。
 
   使用样例：
 
-<!--RP5-->
+  <!--RP5-->
   ```shell
   $ hidumper --mem-jsheap 64949 --raw  -> 64949 为目标应用进程号
   $ ls | grep jsheap  -> 进入堆内存文件存放目录后执行
@@ -419,7 +419,7 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
   $ ls | grep jsheap
   jsheap-64949-64949-1751075546055.rawheap
   ```
-<!--RP5End-->
+  <!--RP5End-->
 
 - 可使用hidumper --mem-jsheap pid --gc命令触发指定应用进程GC。该命令不会生成任何文件，执行成功不会有命令回显。
 
@@ -441,13 +441,13 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
 
   使用样例：
 
-<!--RP7-->
+  <!--RP7-->
   ```shell
   $ hidumper --mem-jsheap 64949 --leakobj
   $ ls | grep leaklist
   leaklist-64949-1730873210483
   ```
-<!--RP7End-->
+  <!--RP7End-->
 
 <!--Del-->
 - 可使用hidumper --mem-cjheap pid命令获取指定仓颉进程的虚拟机堆内存，文件命名为：cjheap-进程号-时间戳。
