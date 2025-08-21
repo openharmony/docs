@@ -22,10 +22,10 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| int32_t pixelFormat | 图像源像素格式，由[OH_ImageSource_Create](capi-image-source-mdk-h.md#oh_imagesource_create)设置。 |
+| int32_t pixelFormat | 图像源像素格式，由[OH_ImageSource_Create](capi-image-source-mdk-h.md#oh_imagesource_createfromuri)设置。 |
 | int32_t colorSpace | 图像源色彩空间。 |
 | int32_t alphaType | 图像源透明度类型。 |
-| int32_t density | 图像源密度，由[OH_ImageSource_Create](capi-image-source-mdk-h.md#oh_imagesource_create)设置。 |
+| int32_t density | 图像源密度，由[OH_ImageSource_Create](capi-image-source-mdk-h.md#oh_imagesource_createfromuri)设置。 |
 | struct [OhosImageSize](capi-image-ohosimagesize.md) size | 图像源像素宽高的大小。 |
 
 
