@@ -1946,7 +1946,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-  @State factor: number = 1;
+  @State factor: number = 2;
 
   build() {
     Column() {
