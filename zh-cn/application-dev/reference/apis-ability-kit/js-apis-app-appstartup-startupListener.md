@@ -7,7 +7,7 @@
 <!--Adviser: @huipeizi-->
 
 
-本模块提供监听启动任务的能力。
+本模块提供[应用启动框架](../../application-models/app-startup.md)任务监听器的定义。
 
 > **说明：**
 >
