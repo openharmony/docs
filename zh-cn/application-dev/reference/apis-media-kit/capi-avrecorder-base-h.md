@@ -10,7 +10,7 @@
 
 定义了媒体AVRecorder的结构体和枚举。
 
-**引用文件：** avrecorder_base.h
+**引用文件：** <multimedia/player_framework/avrecorder_base.h>
 
 **库：** libavrecorder.so
 

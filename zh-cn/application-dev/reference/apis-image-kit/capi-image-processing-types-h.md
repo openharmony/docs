@@ -4,6 +4,8 @@
 
 图片处理的类型定义。
 
+**引用文件：** <multimedia/video_processing_engine/image_processing_types.h>
+
 **库：** libimage_processing.so
 
 **系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
