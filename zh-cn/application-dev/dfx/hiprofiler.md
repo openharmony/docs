@@ -156,7 +156,7 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
 
 **native_hook 插件**
 
-获取堆内存分配的调用栈信息（通过malloc，mmap，calloc，realloc等基础库函数分配堆内存的调用栈），包括跨语言堆内存分配信息（如在ArtTS语言中调用napi分配native堆内存），还能展示内存泄漏未释放堆内存调用栈信息。
+获取堆内存分配的调用栈信息（通过malloc、mmap、calloc或realloc等基础库函数分配堆内存的调用栈），包括跨语言堆内存分配信息（如在ArtTS语言中调用napi分配native堆内存），还能展示内存泄漏未释放堆内存调用栈信息。
 
 nativehook参数列表：
 
@@ -165,9 +165,9 @@ nativehook参数列表：
 | fp_unwind | bool | true表示使用fp回栈方式进行回栈；<br/>false表示使用dwarf回栈方式进行回栈。 | fp回栈是利用了x29寄存器保存的fp指针，函数的fp指针始终指向父函数（调用方）的fp指针，调优服务根据这一特点进行回栈，根据ip计算相对PC，然后查找maps对应区间来进行符号化。<br/>由于现在编译期越来越优化，出现寄存器重用或者编译禁用fp，会导致fp方式回不出相应的栈；混合栈情况下，fp不会记录多重混合，于是便需要dwarf回栈方式做更精确的回栈。<br/>dwarf回栈是根据pc寄存器在map表中查找对应的map信息，由于dwarf是逐级解析调用栈，所以其性能会比fp有劣化。<br/>注意：fp回栈暂不支持调优非aarch64架构的设备。 | 
 | statistics_interval | int | 统计间隔，表示将一个统计周期内的栈进行汇总，单位：s。 | 为实现长时间轻量化采集，提供统计模式抓栈。如果更关注调优时的性能，只需要知道每个调用栈出现的次数和总大小，不需要知道每一次具体时间，可以使用统计模式。 | 
 | startup_mode | bool | 是否抓取进程启动阶段内存。默认不抓取启动阶段内存。 | 记录进程从被appspawn拉起到调优结束这个期间内堆内存分配的信息。如果抓的是一个sa服务，需要在sa对应的cfg文件中找到拉起sa的进程名（如sa_main），将之加到此参数。 | 
-| js_stack_report | int | 是否开启跨语言回栈。<br/>0：不抓取JS栈。<br/>1：开启抓取JS栈。 | 为方舟环境提供跨语言回栈功能。 | 
+| js_stack_report | int | 是否开启跨语言回栈。<br/>0：不抓取js栈。<br/>1：开启抓取js栈。 | 为方舟环境提供跨语言回栈功能。 | 
 | malloc_free_matching_interval | int | 匹配间隔，单位：s，指在相应时间间隔内，将malloc和free进行匹配。匹配到的就不进行落盘。 | 在匹配间隔内，分配并释放了的调用栈不被记录，减少了抓栈服务进程的开销。此参数设置的值大于0时，就不能将statistics_interval参数设置为true。 | 
-| offline_symbolization | bool | 是否开启离线符号化。<br/>true：使用离线符号化。<br/>false：使用在线符号化。 | 使用离线符号化时，根据 IP 匹配符号的操作在网页端（smartperf）完成，优化了 native daemon 的性能，减少了调优时的进程卡顿。但离线符号化会将符号表写入 trace 文件，导致文件大小比在线符号化时更大。 |
+| offline_symbolization | bool | 是否开启离线符号化。<br/>true：使用离线符号化。<br/>false：使用在线符号化。 | 使用离线符号化时，根据IP匹配符号的操作在网页端（smartperf）完成，优化了native daemon的性能，减少了调优时的进程卡顿。但离线符号化会将符号表写入trace文件，导致文件大小比在线符号化时更大。 |
 | sample_interval | int | 采样大小。 | 设置此参数时开启采样模式。采样模式下对于malloc size小于采样大小进行概率性统计。调用栈分配内存大小越大，出现次数越高，被统计的几率越大。 | 
 
 结果示例：
@@ -180,11 +180,11 @@ nativehook参数列表：
 
 ![zh-cn_image_0000002346179694](figures/zh-cn_image_0000002346179694.png)
 
-开启统计模式: 在此模式下，栈数据会周期性展示：
+开启统计模式，在此模式下，栈数据会周期性展示：
 
 ![zh-cn_image_0000002379820229](figures/zh-cn_image_0000002379820229.png)
 
-开启非统计模式：在此模式下，栈数据不会周期性展示。
+开启非统计模式，在此模式下，栈数据不会周期性展示。
 
 ![zh-cn_image_0000002346019934](figures/zh-cn_image_0000002346019934.png)
 
@@ -270,7 +270,7 @@ CONFIG
 | 参数名字 | 类型 | 参数含义 | 详细介绍 | 
 | -------- | -------- | -------- | -------- |
 | bundle_name | string | 需要进行能耗调优的进程名。 | 和/proc/节点下的进程名一致。 | 
-| message_type | XpowerMessageType | 需要获取能耗数据的类型。 | 数据类型包括：REAL_BATTERY、APP_STATISTIC、APP_DETAIL、COMPONENT_TOP、ABNORMAL_EVENTS 和 THERMAL_REPORT。 | 
+| message_type | XpowerMessageType | 需要获取能耗数据的类型。 | 数据类型包括：REAL_BATTERY、APP_STATISTIC、APP_DETAIL、COMPONENT_TOP、ABNORMAL_EVENTS和THERMAL_REPORT。 | 
 
 2. 结果分析
 
@@ -298,8 +298,8 @@ CONFIG
 | 参数名字 | 类型 | 参数含义 | 详细介绍 | 
 | -------- | -------- | -------- | -------- |
 | pid | int | 需要进行调优的进程ID。 | 和/proc/节点下的进程ID一致。 |
-| report_process_info | bool | 是否展示指定进程的CPU使用率信息 | true：展示指定进程的数据，需要设置pid参数；<br/>false：不展示指定进程的数据，仅展示系统级CPU使用率数据 | 
-| skip_thread_cpu_info | bool | 是否跳过线程CPU使用率数据 | true：不展示每个线程CPU使用率的信息，开启此参数时可以降低调优服务的开销；<br/>false：展示每个线程CPU使用率的信息 | 
+| report_process_info | bool | 是否展示指定进程的CPU使用率信息 | true：展示指定进程的数据，需要设置pid参数；<br/>false：不展示指定进程的数据，仅展示系统级CPU使用率数据。 | 
+| skip_thread_cpu_info | bool | 是否跳过线程CPU使用率数据 | true：不展示每个线程CPU使用率的信息，开启此参数时可以降低调优服务的开销；<br/>false：展示每个线程CPU使用率的信息。 | 
 
 
 ## 常用命令
