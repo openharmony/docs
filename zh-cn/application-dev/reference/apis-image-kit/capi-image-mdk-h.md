@@ -10,7 +10,7 @@
 
 声明访问图像矩形、大小、格式和组件数据的函数。
 
-**引用文件：** <multimedia/image_framework/image/image_mdk.h>
+**引用文件：** <multimedia/image_framework/image_mdk.h>
 
 **库：** libimage_ndk.z.so
 
