@@ -26,7 +26,7 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [CommonEvent_SubscribeInfo](capi-oh-commonevent-commonevent-subscribeinfo.md) | CommonEvent_SubscribeInfo | 提供CommonEvent_SubscribeInfo订阅者信息结构体声明。 |
-| [CommonEvent_PublishInfo](capi-oh-commonevent-commonevent-publishinfo.md) | CommonEvent_PublishInfo | 发布自定义公共事件时使用的公共事件属性对象。 |
+| [CommonEvent_PublishInfo](capi-oh-commonevent-commonevent-publishinfo.md) | CommonEvent_PublishInfo | 发布公共事件时使用的公共事件属性对象。 |
 | [CommonEvent_RcvData](capi-oh-commonevent-commonevent-rcvdata.md) | CommonEvent_RcvData | 提供CommonEvent_RcvData公共事件回调数据结构体声明。 |
 
 ### 变量
@@ -90,8 +90,8 @@
 | [CommonEvent_ErrCode OH_CommonEvent_SetDoubleToParameters(CommonEvent_Parameters* param, const char* key,double value)](#oh_commonevent_setdoubletoparameters) | - | 设置公共事件附加信息的double类型内容。 |
 | [int32_t OH_CommonEvent_GetDoubleArrayFromParameters(const CommonEvent_Parameters* para, const char* key,double** array)](#oh_commonevent_getdoublearrayfromparameters) | - | 获取公共事件附加信息中键为key的double数组数据。 |
 | [CommonEvent_ErrCode OH_CommonEvent_SetDoubleArrayToParameters(CommonEvent_Parameters* param, const char* key,const double* value, size_t num)](#oh_commonevent_setdoublearraytoparameters) | - | 设置公共事件附加信息的double数组内容。 |
-| [CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event)](#oh_commonevent_publish) | - | 发布自定义公共事件。 |
-| [CommonEvent_ErrCode OH_CommonEvent_PublishWithInfo(const char* event, const CommonEvent_PublishInfo* info)](#oh_commonevent_publishwithinfo) | - | 发布带有指定属性的自定义公共事件。 |
+| [CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event)](#oh_commonevent_publish) | - | 发布公共事件。 |
+| [CommonEvent_ErrCode OH_CommonEvent_PublishWithInfo(const char* event, const CommonEvent_PublishInfo* info)](#oh_commonevent_publishwithinfo) | - | 发布带有指定属性的公共事件。 |
 | [bool OH_CommonEvent_IsOrderedCommonEvent(const CommonEvent_Subscriber* subscriber)](#oh_commonevent_isorderedcommonevent) | - | 查询当前公共事件是否为有序公共事件。 |
 | [bool OH_CommonEvent_FinishCommonEvent(CommonEvent_Subscriber* subscriber)](#oh_commonevent_finishcommonevent) | - | 用于订阅者结束对当前有序公共事件的处理。 |
 | [bool OH_CommonEvent_GetAbortCommonEvent(const CommonEvent_Subscriber* subscriber)](#oh_commonevent_getabortcommonevent) | - | 获取当前有序公共事件是否处于中止状态。 |
@@ -1260,7 +1260,7 @@ CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event)
 
 **描述**
 
-发布自定义公共事件。
+发布公共事件。
 
 **起始版本：** 18
 
@@ -1285,7 +1285,7 @@ CommonEvent_ErrCode OH_CommonEvent_PublishWithInfo(const char* event, const Comm
 
 **描述**
 
-发布带有指定属性的自定义公共事件。
+发布带有指定属性的公共事件。
 
 **起始版本：** 18
 

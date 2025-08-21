@@ -30,7 +30,7 @@ import { StartOptions } from '@kit.AbilityKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| windowFocused<sup>12+</sup> | boolean | 否 | 是 | 窗口是否获焦。默认是true，表示窗口获焦。<br>**约束：**<br>1.该功能仅在2in1和tablet设备上生效。<br>2.仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#startability-1)中生效。 |
+| windowFocused<sup>12+</sup> | boolean | 否 | 是 | 窗口是否获焦。默认是true，表示窗口获焦。<br>**约束：**<br>1.该功能仅在2in1和Tablet设备上生效。<br>2.仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#startability-1)中生效。 |
 
 **示例：**
 
