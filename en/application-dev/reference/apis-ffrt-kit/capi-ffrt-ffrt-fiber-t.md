@@ -1,4 +1,4 @@
-# ffrt_condattr_t
+# ffrt_fiber_t
 
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
@@ -9,9 +9,9 @@
 
 ## Overview
 
-The **ffrt_condattr_t** struct describes a condition variable attribute.
+Fiber structure.
 
-**Since**: 10
+**Since**: 20
 
 **Related module**: [FFRT](capi-ffrt.md)
 
@@ -23,4 +23,4 @@ The **ffrt_condattr_t** struct describes a condition variable attribute.
 
 | Name| Description|
 | -- | -- |
-| long storage | Storage size of a condition variable attribute.|
+| uintptr_t storage[ffrt_fiber_storage_size] | Space occupied by the fiber context.|

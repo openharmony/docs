@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## Overview
 
@@ -22,6 +23,6 @@ The **ffrt_function_header_t** struct describes a task execution function.
 
 | Name| Description|
 | -- | -- |
-| ffrt_function_t exec | Function used to execute a task.|
-| ffrt_function_t destroy | Function used to destroy a task.|
+| [ffrt_function_t](capi-type-def-h.md#ffrt_function_t) exec | Function used to execute a task.|
+| [ffrt_function_t](capi-type-def-h.md#ffrt_function_t) destroy | Function used to destroy a task.|
 | uint64_t reserve[2] | Reserved bit, which must be set to **0**.|
