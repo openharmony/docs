@@ -608,7 +608,6 @@ startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent
 ```js
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { notificationManager } from '@kit.NotificationKit';
 import { wantAgent, WantAgent } from '@kit.AbilityKit';
