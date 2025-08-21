@@ -4848,7 +4848,7 @@ Allows an application to use the distributed keystore capabilities.
 
 **Enable via ACL**: true
 
-**Supported devices**: phone | Tablet | 2in1 | wearable | TV
+**Supported devices**: Phone | Tablet | PC/2in1 | Wearable | TV
 
 **Valid since**: 20
 
