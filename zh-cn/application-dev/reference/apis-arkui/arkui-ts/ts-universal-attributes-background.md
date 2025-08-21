@@ -656,7 +656,8 @@ struct BackgroundExample {
 
       Text('background image repeat along X').fontSize(9).width('90%').fontColor(0xCCCCCC)
       Row()
-        .backgroundImage('/comment/bg.jpg', ImageRepeat.X)
+        //$r('app.media.image')需要替换为开发者所需的图像资源文件。
+        .backgroundImage($r('app.media.image'), ImageRepeat.X)
         .backgroundImageSize({ width: '250px', height: '140px' })
         .width('90%')
         .height(70)
@@ -664,7 +665,8 @@ struct BackgroundExample {
 
       Text('background image repeat along Y').fontSize(9).width('90%').fontColor(0xCCCCCC)
       Row()
-        .backgroundImage('/comment/bg.jpg', ImageRepeat.Y)
+        //$r('app.media.image')需要替换为开发者所需的图像资源文件。
+        .backgroundImage($r('app.media.image'), ImageRepeat.Y)
         .backgroundImageSize({ width: '500px', height: '120px' })
         .width('90%')
         .height(100)
@@ -673,7 +675,8 @@ struct BackgroundExample {
       Text('background image size').fontSize(9).width('90%').fontColor(0xCCCCCC)
       Row()
         .width('90%').height(150)
-        .backgroundImage('/comment/bg.jpg', ImageRepeat.NoRepeat)
+        //$r('app.media.image')需要替换为开发者所需的图像资源文件。
+        .backgroundImage($r('app.media.image'), ImageRepeat.NoRepeat)
         .backgroundImageSize({ width: 1000, height: 500 })
         .border({ width: 1 })
 
@@ -682,7 +685,8 @@ struct BackgroundExample {
       Row()
         .width(200)
         .height(50)
-        .backgroundImage('/comment/bg.jpg', ImageRepeat.NoRepeat)
+        //$r('app.media.image')需要替换为开发者所需的图像资源文件。
+        .backgroundImage($r('app.media.image'), ImageRepeat.NoRepeat)
         .backgroundImageSize(ImageSize.Cover)
         .border({ width: 1 })
 
@@ -691,7 +695,8 @@ struct BackgroundExample {
       Row()
         .width(200)
         .height(50)
-        .backgroundImage('/comment/bg.jpg', ImageRepeat.NoRepeat)
+        //$r('app.media.image')需要替换为开发者所需的图像资源文件。
+        .backgroundImage($r('app.media.image'), ImageRepeat.NoRepeat)
         .backgroundImageSize(ImageSize.Contain)
         .border({ width: 1 })
 
@@ -699,7 +704,8 @@ struct BackgroundExample {
       Row()
         .width(100)
         .height(50)
-        .backgroundImage('/comment/bg.jpg', ImageRepeat.NoRepeat)
+        //$r('app.media.image')需要替换为开发者所需的图像资源文件。
+        .backgroundImage($r('app.media.image'), ImageRepeat.NoRepeat)
         .backgroundImageSize({ width: 1000, height: 560 })
         .backgroundImagePosition({ x: -500, y: -300 })
         .border({ width: 1 })
