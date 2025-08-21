@@ -581,6 +581,6 @@ int32_t OH_ImageSource_Release(ImageSourceNative* native)
 
 **参考：**
 
-[OH_ImageSource_CreateFromUri](capi-image-source-mdk-h.md#oh_imagesource_createfromuri)，[OH_ImageSource_CreateFromFd](capi-image-source-mdk-h.md#oh_imagesource_createfromfd)，[OH_ImageSource_CreateFromData](capi-image-source-mdk-h.md#oh_imagesource_createfromdata), [OH_ImageSource_CreateIncremental](#oh_imagesource_createincremental)
+[OH_ImageSource_Create](#oh_imagesource_create), [OH_ImageSource_CreateIncremental](#oh_imagesource_createincremental)
 
 
