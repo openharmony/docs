@@ -107,10 +107,10 @@ nameCache.json文件：
 ```ts
 @Component
 export struct MainPage {
-   @State messageStr: string = 'Hello World';
+	@State messageStr: string = 'Hello World';
    
-   build() {
-   }
+    build() {
+    }
 }
 ```
 
@@ -131,7 +131,7 @@ this.__messageStr = new ObservedPropertySimplePU('Hello World', this, "messageSt
 ```ts
 @ObservedV2
 class Info {
-    @Trace sample: Sample = new Sample();
+	@Trace sample: Sample = new Sample();
 }
 ```
 
@@ -208,21 +208,21 @@ Error message: [Class]get different name for method:&entry/src/main/ets/pages/XX
 //代码1
 @CustomDialog
 export default struct TmsDialog {
-  controller?: CustomDialogController
-  dialogController:CustomDialogController
+    controller?: CustomDialogController
+    dialogController:CustomDialogController
   
-  build() {
-  }
+    build() {
+    }
 }
 
 //代码2
 @CustomDialog
 struct Index{
-   controller?: CustomDialogController
-   dialogController?:CustomDialogController
+	controller?: CustomDialogController
+    dialogController?:CustomDialogController
      
-   build() {
-   }
+    build() {
+    }
 }
 ```
 
@@ -288,11 +288,11 @@ parameters的类型为Record<string, Object>，在开启属性混淆后，parame
 import { Want } from '@kit.AbilityKit';
 
 let petalMapWant: Want = {
-  bundleName: 'com.example.myapplication',
-  uri: 'maps://',
-  parameters: {
-    linkSource: 'com.other.app'
-  }
+	bundleName: 'com.example.myapplication',
+    uri: 'maps://',
+    parameters: {
+   		linkSource: 'com.other.app'
+    }
 }
 ```
 ```ts
@@ -331,15 +331,15 @@ linkSource
 //Sample.ets
 @ObservedV2
 class SampleChild {
-  @Trace p123: number = 0;
-  p2: number = 10;
+	@Trace p123: number = 0;
+    p2: number = 10;
 }
 
 @ObservedV2
 export class Sample {
-  // 对于复杂对象需要@Type修饰，确保序列化成功
-  @Type(SampleChild)
-  @Trace f123: SampleChild = new SampleChild();
+    // 对于复杂对象需要@Type修饰，确保序列化成功
+    @Type(SampleChild)
+    @Trace f123: SampleChild = new SampleChild();
 }
 
 //调用
@@ -350,13 +350,13 @@ import { Sample } from './Sample';
 @Entry
 @ComponentV2
 struct Page {
-  prop: Sample = PersistenceV2.connect(Sample, () => new Sample())!;
+    prop: Sample = PersistenceV2.connect(Sample, () => new Sample())!;
 
-  build() {
-    Column() {
-      Text(`Page1 add 1 to prop.p1: ${this.prop.f123.p123}`)
+    build() {
+    	Column() {
+      		Text(`Page1 add 1 to prop.p1: ${this.prop.f123.p123}`)
+        }
     }
-  }
 }
 ```
 
@@ -393,20 +393,20 @@ p123
 // 混淆前
 // file1.ts
 export interface MyInfo {
-  age: number;
-  address: {
-    city1: string;
-  }
+	age: number;
+    address: {
+    	city1: string;
+    }
 }
 
 // file2.ts
 import { MyInfo } from './file1';
 
 const person: MyInfo = {
-  age: 20,
-  address: {
-    city1: "shanghai"
-  }
+    age: 20,
+    address: {
+    	city1: "shanghai"
+    }
 }
 
 // 混淆后，file1.ts的代码被保留
@@ -414,10 +414,10 @@ const person: MyInfo = {
 import { MyInfo } from './file1';
 
 const person: MyInfo = {
-  age: 20,
-  address: {
-    i: "shanghai"
-  }
+    age: 20,
+    address: {
+    	i: "shanghai"
+    }
 }
 ```
 
@@ -432,12 +432,12 @@ const person: MyInfo = {
 ```ts
 // file1.ts
 export interface AddressType {
-  city1: string
+    city1: string
 }
 
 export interface MyInfo {
-  age: number;
-  address: AddressType;
+    age: number;
+    address: AddressType;
 }
 ```
 
@@ -467,17 +467,17 @@ HSP需要将给其他模块用的方法配置到白名单中。因为主模块�
 // 混淆前
 // utils.ts
 export function add(a: number, b: number): number {
-  return a + b;
+    return a + b;
 }
 
 // main.ts
 async function loadAndUseAdd() {
-  try {
-    const mathUtils = await import('./utils');
-    const result = mathUtils.add(2, 3);
-  } catch (error) {
-    console.error('Failure reason:', error);
-  }
+    try {
+    	const mathUtils = await import('./utils');
+    	const result = mathUtils.add(2, 3);
+    } catch (error) {
+    	console.error('Failure reason:', error);
+    }
 }
 
 loadAndUseAdd();
@@ -487,7 +487,7 @@ loadAndUseAdd();
 // 混淆后
 // utils.ts
 export function c1(d1: number, e1: number): number {
-    return d1 + e1;
+	return d1 + e1;
 }
 
 // main.ts
@@ -516,7 +516,7 @@ i();
 ```ts
 // export.ts
 export namespace NS {
-  export function foo() {}
+    export function foo() {}
 }
 
 // import.ts
@@ -528,7 +528,7 @@ NS.foo();
 // 混淆后
 // export.ts
 export namespace i {
-  export function j() {}
+    export function j() {}
 }
 
 // import.ts
@@ -549,12 +549,12 @@ namespace中的foo属于export元素，当通过NS.foo调用时被视为属性�
 ```ts
 // 混淆前
 declare global {
-  var myAge : string
+    var myAge : string
 }
 
 // 混淆后
 declare a2 {
-  var b2 : string
+    var b2 : string
 }
 ```
 
