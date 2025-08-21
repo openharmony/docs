@@ -400,7 +400,7 @@ type(tp: string, pattern: MatchPattern): On
 
 ```ts
 import { On, ON } from '@kit.TestKit';
-let on:On = ON.type('Button', MatchPattern.EQUALS);; // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
+let on:On = ON.type('Button', MatchPattern.EQUALS); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
 ```
 
 ### clickable<sup>9+</sup>
