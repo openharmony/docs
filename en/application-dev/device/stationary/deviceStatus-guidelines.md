@@ -1,4 +1,10 @@
 # Device Status Awareness Development
+<!--Kit: Multimodal Awareness Kit-->
+<!--Subsystem: MultimodalAwareness-->
+<!--Owner: @dilligencer-->
+<!--Designer: @zou_ye-->
+<!--Tester: @judan-->
+<!--Adviser: @hu-zhiqiong-->
 
 The DeviceStatus module provides device status awareness capabilities such as obtaining the steady standing state (that is, stand mode).
 
@@ -8,7 +14,7 @@ For details about the APIs, see the [API Reference](../../reference/apis-multimo
 
 Understanding the following concepts would be helpful for you in device status awareness development:
 
-- Stand moe
+- Stand mode
 
     A device enters stand mode when it is stationary, and its screen is at an angle between 45 and 135 degrees relative to the horizontal plane. For foldable smartphones, the device must be in a folded state or fully unfolded state.
 
@@ -20,7 +26,7 @@ During development, subscribe to steady standing state change events and obtain 
 
 ### Constraints
 
-<!--RP1-->The device must support the accelerometer and specific chips.<!--RP1End-->
+The device must support accelerometers.
 
 ### APIs
 
