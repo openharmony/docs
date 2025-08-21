@@ -253,7 +253,7 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
            nativeModule_->setAttribute(handle_, NODE_BACKGROUND_COLOR, &item);
        }
        // 处理通用事件。
-       void RegisterOnClick(const std::function<void()> &onClick) {
+       void RegisterOnClick(const std::function<void(ArkUI_NodeEvent *event)> &onClick) {
            assert(handle_);
            onClick_ = onClick;
            // 注册点击事件。
@@ -297,7 +297,7 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
            switch (eventType) {
            case NODE_ON_CLICK: {
                if (onClick_) {
-                   onClick_();
+                   onClick_(event);
                }
                break;
            }
@@ -344,7 +344,7 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
        }
    
    private:
-       std::function<void()> onClick_;
+       std::function<void(ArkUI_NodeEvent *event)> onClick_;
        std::function<void()> onDisappear_;
        std::function<void()> onAppear_;
        std::function<void(int32_t type, float x, float y)> onTouch_;
