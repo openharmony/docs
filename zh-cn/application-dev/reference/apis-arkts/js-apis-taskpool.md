@@ -2400,6 +2400,9 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 **示例：**
 
 ```ts
+import { taskpool } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Concurrent
 function additionDelay(delay: number): void {
   let start: number = new Date().getTime();
