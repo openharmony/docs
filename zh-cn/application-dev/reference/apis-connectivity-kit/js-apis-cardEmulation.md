@@ -47,7 +47,7 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
     "requestPermissions": [
       {
         "name": "ohos.permission.NFC_CARD_EMULATION",
-        // 必须要添加reason: card_mulation_reason
+        // 必须要添加reason: card_emulation_reason
         "reason": "$string:card_emulation_reason",
       }
     ]
@@ -89,7 +89,7 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
     "reqPermissions": [
       {
         "name": "ohos.permission.NFC_CARD_EMULATION",
-        // 必须要添加reason: card_mulation_reason
+        // 必须要添加reason: card_emulation_reason
         "reason": "$string:card_emulation_reason",
         "usedScene":{
           "ability":[
@@ -100,7 +100,7 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
       },
       {
         "name": "ohos.permission.NFC_TAG",
-        // 必须要添加reason: card_mulation_reason
+        // 必须要添加reason: card_emulation_reason
         "reason": "$string:card_emulation_reason",
         "usedScene":{
           "ability":[
@@ -520,7 +520,7 @@ export default {
     hcesrv.start(appName, this.paymentAid);
     hcesrv.on("hceCmd", (data) => {
       console.log('data:' + data);
-      // 应用程序实际想要发送的数据， 此处仅做为示例
+      // 应用程序实际想要发送的数据， 此处仅作为示例
       let responseData = [0x1, 0x2];
       hcesrv.transmit(responseData, () => {
         console.log('sendResponse start');
@@ -663,7 +663,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 
-// 应用程序实际想要发送的数据， 此处仅做为示例
+// 应用程序实际想要发送的数据， 此处仅作为示例
 const responseData = [0x1, 0x2];
 hceService.transmit(responseData).then(() => {
   // 处理 promise 的回调
@@ -680,7 +680,7 @@ import cardEmulation from '@ohos.nfc.cardEmulation';
 
 let hceService = new cardEmulation.HceService();
 
-// 应用程序实际想要发送的数据， 此处仅做为示例
+// 应用程序实际想要发送的数据， 此处仅作为示例
 let responseData = [0x1, 0x2];
 hceService.transmit(responseData).then(() => {
   // 处理 promise 的回调
@@ -727,7 +727,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 
-// 应用程序实际想要发送的数据， 此处仅做为示例
+// 应用程序实际想要发送的数据， 此处仅作为示例
 try {
   const responseData = [0x1, 0x2];
 
@@ -751,7 +751,7 @@ import cardEmulation from '@ohos.nfc.cardEmulation';
 
 let hceService = new cardEmulation.HceService();
 
-// 应用程序实际想要发送的数据， 此处仅做为示例
+// 应用程序实际想要发送的数据， 此处仅作为示例
 let responseData = [0x1, 0x2];
 hceService.transmit(responseData, () => {
   console.log("transmit Promise success.");
