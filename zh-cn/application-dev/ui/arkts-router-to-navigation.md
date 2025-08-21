@@ -26,7 +26,7 @@ Router路由的页面是一个`@Entry`修饰的Component，每一个页面都需
 以下为Router页面的示例。
 
 ```ts
-// index.ets
+// Index.ets
 import { router } from '@kit.ArkUI';
 
 @Entry
@@ -96,7 +96,7 @@ struct pageOne {
 以下为Navigation导航页的示例。
 
 ```ts
-// index.ets
+// Index.ets
 @Entry
 @Component
 struct Index {
