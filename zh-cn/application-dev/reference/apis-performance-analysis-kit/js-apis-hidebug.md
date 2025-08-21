@@ -1324,6 +1324,8 @@ setJsRawHeapTrimLevel(level: JsRawHeapTrimLevel): void
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
+**参数：**
+
 | 参数名 | 类型                                        | 必填 | 说明                   |
 | ------ | ------------------------------------------- | ---- | ---------------------- |
 | level  | [JsRawHeapTrimLevel](#jsrawheaptrimlevel20) | 是   | 转储堆快照的裁剪级别，默认为TRIM_LEVEL_1。 |
@@ -1334,5 +1336,5 @@ setJsRawHeapTrimLevel(level: JsRawHeapTrimLevel): void
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-hidebug.setJsRawHeapTrimLevel(TRIM_LEVEL_2);
+hidebug.setJsRawHeapTrimLevel(hidebug.JsRawHeapTrimLevel.TRIM_LEVEL_2);
 ```
