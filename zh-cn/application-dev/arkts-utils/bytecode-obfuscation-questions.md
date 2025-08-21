@@ -240,7 +240,7 @@ dialogController:CustomDialogController|null = null;
 
 示例代码2中，由于我们只是使用CustomDialogController，因此不需要@CustomDialog，直接删除@CustomDialog即可，删除后功能正常，字节码混淆功能正常。
 
-从API version 18开始，上述示例代码将不能正常编译。新的版本中，一个 @CustomDialog 组件只能有一个未初始化的 CustomDialogController.
+从API version 18开始，上述示例代码将不能正常编译。新的版本中，一个@CustomDialog组件只能有一个未初始化的CustomDialogController。
 
 ## 运行异常处理
 
