@@ -22,7 +22,7 @@
 | ----------| ----------------------------------- |
 | [bindContentCover](arkts-contentcover-page.md) | 用于自定义全屏的模态展示界面，结合转场动画和共享元素动画可实现复杂转场动画效果，如缩略图片点击后查看大图。 |
 | [bindSheet](arkts-sheet-page.md)  | 用于半模态展示界面，如分享框。 |
-| [openBindSheet/ updateBindSheet/closeBindSheet](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#openbindsheet12) | 用于不依赖UI组件的场景，如全局拉起、更新、关闭。|
+| [openBindSheet](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#openbindsheet12)/ [updateBindSheet](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#updatebindsheet12)/ [closeBindSheet](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#closebindsheet12) | 用于不依赖UI组件的场景，如全局拉起、更新、关闭。|
 
 ## 规格约束
 
