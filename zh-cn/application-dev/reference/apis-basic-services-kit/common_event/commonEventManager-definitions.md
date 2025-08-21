@@ -775,6 +775,83 @@
 
 ## Connectivity Kit
 
+### COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CONNECT_STATE_CHANGE<sup>20+</sup>
+
+表示蓝牙HFP AG连接状态变化的公共事件的操作。
+
+当蓝牙HFP AG连接状态变化时，将会触发事件通知服务发布该系统公共事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** ohos.permission.ACCESS_BLUETOOTH
+
+**取值：** "usual.event.bluetooth.handsfree.ag.CONNECT_STATE_CHANGE"
+
+
+### COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CONNECT_STATE_CHANGE<sup>20+</sup>
+
+表示蓝牙A2DP Source连接状态变化的公共事件的操作。
+
+当蓝牙A2DP Source连接状态变化时，将会触发事件通知服务发布该系统公共事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** ohos.permission.ACCESS_BLUETOOTH
+
+**取值：** "usual.event.bluetooth.a2dpsource.CONNECT_STATE_CHANGE"
+
+
+### COMMON_EVENT_BLUETOOTH_A2DPSOURCE_AVRCP_CONNECT_STATE_CHANGE<sup>20+</sup>
+
+表示蓝牙AVRCP连接状态变化的公共事件的操作。
+
+当蓝牙AVRCP连接状态变化时，将会触发事件通知服务发布该系统公共事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** ohos.permission.ACCESS_BLUETOOTH
+
+**取值：** "usual.event.bluetooth.a2dpsource.AVRCP_CONNECT_STATE_CHANGE"
+
+
+### COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CODEC_VALUE_CHANGE<sup>20+</sup>
+
+表示蓝牙媒体编解码器变化的公共事件的操作。
+
+当蓝牙媒体编解码器变化时，将会触发事件通知服务发布该系统公共事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** ohos.permission.ACCESS_BLUETOOTH
+
+**取值：** "usual.event.bluetooth.a2dpsource.CODEC_VALUE_CHANGE"
+
+
+### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_STATE_CHANGE<sup>20+</sup>
+
+表示蓝牙远程设备ACL连接状态变化的公共事件的操作。
+
+当蓝牙远程设备ACL连接状态变化时，将会触发事件通知服务发布该系统公共事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** ohos.permission.ACCESS_BLUETOOTH
+
+**取值：** "usual.event.bluetooth.remotedevice.ACL_STATE_CHANGE"
+
+
+### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIR_STATE_CHANGE<sup>20+</sup>
+
+表示蓝牙配对状态变化的公共事件的操作。
+
+当蓝牙配对状态变化时，将会触发事件通知服务发布该系统公共事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** ohos.permission.ACCESS_BLUETOOTH
+
+**取值：** "usual.event.bluetooth.remotedevice.PAIR_STATE_CHANGE"
+
 
 ### COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED
 
@@ -1488,8 +1565,12 @@ Store Kit面向应用发布如下系统公共事件。
 
 **取值：** "usual.event.data.DISK_MOUNTED"
 
-### COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CONNECT_STATE_UPDATE
+### COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CONNECT_STATE_UPDATE<sup>(deprecated)</sup>
 （预留事件，暂未支持）蓝牙免提通信连接状态公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃，建议使用[COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CONNECT_STATE_CHANGE](#common_event_bluetooth_handsfree_ag_connect_state_change20)替代。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1499,8 +1580,12 @@ Store Kit面向应用发布如下系统公共事件。
 
 
 
-### COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CURRENT_DEVICE_UPDATE
+### COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CURRENT_DEVICE_UPDATE<sup>(deprecated)</sup>
 （预留事件，暂未支持）表示连接到蓝牙免提的设备处于活动状态的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1509,8 +1594,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.handsfree.ag.CURRENT_DEVICE_UPDATE"
 
 
-### COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_AUDIO_STATE_UPDATE
+### COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_AUDIO_STATE_UPDATE<sup>(deprecated)</sup>
 （预留事件，暂未支持）表示蓝牙A2DP连接状态已更改的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1521,8 +1610,12 @@ Store Kit面向应用发布如下系统公共事件。
 
 
 
-### COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CONNECT_STATE_UPDATE
+### COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CONNECT_STATE_UPDATE<sup>(deprecated)</sup>
 （预留事件，暂未支持）蓝牙A2DP连接状态公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃，建议使用[COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CONNECT_STATE_CHANGE](#common_event_bluetooth_a2dpsource_connect_state_change20)替代。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1533,8 +1626,12 @@ Store Kit面向应用发布如下系统公共事件。
 
 
 
-### COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CURRENT_DEVICE_UPDATE
+### COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CURRENT_DEVICE_UPDATE<sup>(deprecated)</sup>
 （预留事件，暂未支持）表示使用蓝牙A2DP连接的设备处于活动状态的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1544,8 +1641,12 @@ Store Kit面向应用发布如下系统公共事件。
 
 
 
-### COMMON_EVENT_BLUETOOTH_A2DPSOURCE_AVRCP_CONNECT_STATE_UPDATE
+### COMMON_EVENT_BLUETOOTH_A2DPSOURCE_AVRCP_CONNECT_STATE_UPDATE<sup>(deprecated)</sup>
 （预留事件，暂未支持）表示蓝牙A2DP的AVRCP连接状态已更改的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃，建议使用[COMMON_EVENT_BLUETOOTH_A2DPSOURCE_AVRCP_CONNECT_STATE_CHANGE](#common_event_bluetooth_a2dpsource_avrcp_connect_state_change20)替代。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1555,8 +1656,12 @@ Store Kit面向应用发布如下系统公共事件。
 
 
 
-### COMMON_EVENT_BLUETOOTH_A2DPSOURCE_PLAYING_STATE_UPDATE
+### COMMON_EVENT_BLUETOOTH_A2DPSOURCE_PLAYING_STATE_UPDATE<sup>(deprecated)</sup>
 （预留事件，暂未支持）蓝牙A2DP播放状态改变的普通事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1566,8 +1671,12 @@ Store Kit面向应用发布如下系统公共事件。
 
 
 
-### COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CODEC_VALUE_UPDATE
+### COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CODEC_VALUE_UPDATE<sup>(deprecated)</sup>
 （预留事件，暂未支持）表示蓝牙A2DP音频编解码状态更改的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃，建议使用[COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CODEC_VALUE_CHANGE](#common_event_bluetooth_a2dpsource_codec_value_change20)替代。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1591,8 +1700,12 @@ Store Kit面向应用发布如下系统公共事件。
 
 
 
-### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_DISCOVERED
+### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_DISCOVERED<sup>(deprecated)</sup>
 （预留事件，暂未支持）表示发现远程蓝牙设备的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1603,8 +1716,12 @@ Store Kit面向应用发布如下系统公共事件。
 
 
 
-### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CLASS_VALUE_UPDATE
+### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CLASS_VALUE_UPDATE<sup>(deprecated)</sup>
 （预留事件，暂未支持）表示远程蓝牙设备的蓝牙类别已更改的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1613,9 +1730,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.remotedevice.CLASS_VALUE_UPDATE"
 
 
-### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_CONNECTED
+### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_CONNECTED<sup>(deprecated)</sup>
 （预留事件，暂未支持）表示已与远程蓝牙设备建立低级别（ACL）连接的公共事件的动作。
 
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃，建议使用[COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_STATE_CHANGE](#common_event_bluetooth_remotedevice_acl_state_change20)替代。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1624,8 +1744,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.remotedevice.ACL_CONNECTED"
 
 
-### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_DISCONNECTED
+### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_DISCONNECTED<sup>(deprecated)</sup>
 （预留事件，暂未支持）表示低电平（ACL）连接已从远程蓝牙设备断开的普通事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃，建议使用[COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_STATE_CHANGE](#common_event_bluetooth_remotedevice_acl_state_change20)替代。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1634,9 +1758,13 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.remotedevice.ACL_DISCONNECTED"
 
 
-### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_NAME_UPDATE
+### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_NAME_UPDATE<sup>(deprecated)</sup>
 
 （预留事件，暂未支持）表示远程蓝牙设备的友好名称首次被检索或自上次检索以来被更改的公共事件的操作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1645,8 +1773,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.remotedevice.NAME_UPDATE"
 
 
-### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIR_STATE
+### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIR_STATE<sup>(deprecated)</sup>
 （预留事件，暂未支持）远程蓝牙设备连接状态更改的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃，建议使用[COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIR_STATE_CHANGE](#common_event_bluetooth_remotedevice_pair_state_change20)替代。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1656,8 +1788,12 @@ Store Kit面向应用发布如下系统公共事件。
 
 
 
-### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_BATTERY_VALUE_UPDATE
+### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_BATTERY_VALUE_UPDATE<sup>(deprecated)</sup>
 （预留事件，暂未支持）表示远程蓝牙设备的电池电量首次被检索或自上次检索以来被更改的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1666,8 +1802,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.remotedevice.BATTERY_VALUE_UPDATE"
 
 
-### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_SDP_RESULT
+### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_SDP_RESULT<sup>(deprecated)</sup>
 （预留事件，暂未支持）远程蓝牙设备SDP状态公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1676,8 +1816,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.remotedevice.SDP_RESULT"
 
 
-### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_UUID_VALUE
+### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_UUID_VALUE<sup>(deprecated)</sup>
 远程蓝牙设备UUID连接状态公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1686,8 +1830,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.remotedevice.UUID_VALUE"
 
 
-### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_REQ
+### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_REQ<sup>(deprecated)</sup>
 （预留事件，暂未支持）表示远程蓝牙设备配对请求的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1696,8 +1844,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.remotedevice.PAIRING_REQ"
 
 
-### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_CANCEL
+### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_CANCEL<sup>(deprecated)</sup>
 （预留事件，暂未支持）取消蓝牙配对的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1706,8 +1858,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.remotedevice.PAIRING_CANCEL"
 
 
-### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REQ
+### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REQ<sup>(deprecated)</sup>
 （预留事件，暂未支持）表示远程蓝牙设备连接请求的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1716,8 +1872,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.remotedevice.CONNECT_REQ"
 
 
-### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REPLY
+### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REPLY<sup>(deprecated)</sup>
 （预留事件，暂未支持）表示远程蓝牙设备连接请求响应的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1726,8 +1886,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.remotedevice.CONNECT_REPLY"
 
 
-### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_CANCEL
+### COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_CANCEL<sup>(deprecated)</sup>
 （预留事件，暂未支持）表示取消与远程蓝牙设备的连接的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1736,8 +1900,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.remotedevice.CONNECT_CANCEL"
 
 
-### COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_CONNECT_STATE_UPDATE
+### COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_CONNECT_STATE_UPDATE<sup>(deprecated)</sup>
 （预留事件，暂未支持）表示蓝牙免提连接状态已更改的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1746,8 +1914,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.handsfreeunit.CONNECT_STATE_UPDATE"
 
 
-### COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AUDIO_STATE_UPDATE
+### COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AUDIO_STATE_UPDATE<sup>(deprecated)</sup>
 （预留事件，暂未支持）表示蓝牙免提音频状态已更改的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1756,8 +1928,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.handsfreeunit.AUDIO_STATE_UPDATE"
 
 
-### COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_COMMON_EVENT
+### COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_COMMON_EVENT<sup>(deprecated)</sup>
 （预留事件，暂未支持）表示蓝牙免提音频网关状态已更改的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1766,8 +1942,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.handsfreeunit.AG_COMMON_EVENT"
 
 
-### COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_CALL_STATE_UPDATE
+### COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_CALL_STATE_UPDATE<sup>(deprecated)</sup>
 （预留事件，暂未支持）表示蓝牙免提呼叫状态已更改的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1776,8 +1956,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.handsfreeunit.AG_CALL_STATE_UPDATE"
 
 
-### COMMON_EVENT_BLUETOOTH_HOST_STATE_UPDATE
+### COMMON_EVENT_BLUETOOTH_HOST_STATE_UPDATE<sup>(deprecated)</sup>
 表示蓝牙适配器状态已更改的公共事件的操作，例如蓝牙已打开或关闭。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1786,7 +1970,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.host.STATE_UPDATE"
 
 
-### COMMON_EVENT_BLUETOOTH_HOST_REQ_DISCOVERABLE
+### COMMON_EVENT_BLUETOOTH_HOST_REQ_DISCOVERABLE<sup>(deprecated)</sup>
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
+
 （预留事件，暂未支持）表示用户允许扫描蓝牙请求的公共事件的动作。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
@@ -1796,8 +1985,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.host.REQ_DISCOVERABLE"
 
 
-### COMMON_EVENT_BLUETOOTH_HOST_REQ_ENABLE
+### COMMON_EVENT_BLUETOOTH_HOST_REQ_ENABLE<sup>(deprecated)</sup>
 （预留事件，暂未支持）表示用户打开蓝牙请求的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1807,8 +2000,12 @@ Store Kit面向应用发布如下系统公共事件。
 
 
 
-### COMMON_EVENT_BLUETOOTH_HOST_REQ_DISABLE
+### COMMON_EVENT_BLUETOOTH_HOST_REQ_DISABLE<sup>(deprecated)</sup>
 （预留事件，暂未支持）表示用户关闭蓝牙请求的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1817,8 +2014,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.host.REQ_DISABLE"
 
 
-### COMMON_EVENT_BLUETOOTH_HOST_SCAN_MODE_UPDATE
+### COMMON_EVENT_BLUETOOTH_HOST_SCAN_MODE_UPDATE<sup>(deprecated)</sup>
 （预留事件，暂未支持）设备蓝牙扫描模式更改的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1829,8 +2030,12 @@ Store Kit面向应用发布如下系统公共事件。
 
 
 
-### COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_STARTED
+### COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_STARTED<sup>(deprecated)</sup>
 设备上已启动蓝牙扫描的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1839,8 +2044,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.host.DISCOVERY_STARTED"
 
 
-### COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_FINISHED
+### COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_FINISHED<sup>(deprecated)</sup>
 设备上蓝牙扫描完成的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1849,8 +2058,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.host.DISCOVERY_FINISHED"
 
 
-### COMMON_EVENT_BLUETOOTH_HOST_NAME_UPDATE
+### COMMON_EVENT_BLUETOOTH_HOST_NAME_UPDATE<sup>(deprecated)</sup>
 指示设备蓝牙适配器名称已更改的公共事件的操作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1859,8 +2072,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.host.NAME_UPDATE"
 
 
-### COMMON_EVENT_BLUETOOTH_A2DPSINK_CONNECT_STATE_UPDATE
-（预留事件，暂未支持）表示蓝牙A2DP宿连接状态已更改的公共事件的动作。
+### COMMON_EVENT_BLUETOOTH_A2DPSINK_CONNECT_STATE_UPDATE<sup>(deprecated)</sup>
+（预留事件，暂未支持）表示蓝牙A2DP连接状态已更改的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1870,8 +2087,12 @@ Store Kit面向应用发布如下系统公共事件。
 
 
 
-### COMMON_EVENT_BLUETOOTH_A2DPSINK_PLAYING_STATE_UPDATE
-（预留事件，暂未支持）蓝牙A2DP宿播放状态改变的普通事件的动作。
+### COMMON_EVENT_BLUETOOTH_A2DPSINK_PLAYING_STATE_UPDATE<sup>(deprecated)</sup>
+（预留事件，暂未支持）蓝牙A2DP播放状态改变的普通事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1880,8 +2101,12 @@ Store Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.bluetooth.a2dpsink.PLAYING_STATE_UPDATE"
 
 
-### COMMON_EVENT_BLUETOOTH_A2DPSINK_AUDIO_STATE_UPDATE
+### COMMON_EVENT_BLUETOOTH_A2DPSINK_AUDIO_STATE_UPDATE<sup>(deprecated)</sup>
 （预留事件，暂未支持）表示蓝牙A2DP宿的音频状态已更改的公共事件的动作。
+
+  > **说明：**
+  >
+  > 从API version 9 开始支持，从API version 20 开始废弃。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
