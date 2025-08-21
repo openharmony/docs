@@ -116,6 +116,11 @@
 
    ```ts
     import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+    <!--RP1-->
+    import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+    import { window } from '@kit.ArkUI';
+    import { rpc } from '@kit.IPCKit'
+    <!--RP2End-->
     import { BusinessError } from '@kit.BasicServicesKit';
     import { wantAgent, WantAgent } from '@kit.AbilityKit';
     // 在原子化服务中，请删除WantAgent导入
@@ -444,6 +449,7 @@
    
    ```js
     import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+    import { rpc } from '@kit.IPCKit'
     import { BusinessError } from '@kit.BasicServicesKit';
     import { wantAgent, WantAgent } from '@kit.AbilityKit';
    ```
