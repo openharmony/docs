@@ -107,7 +107,7 @@ function createNodePromise() : Promise<Node> {
 ## RenderResourceFactory<sup>20+</sup>
 用于创建可在共享RenderContext的多个场景（Scene）中共享的渲染资源。
 
-### createShader
+### createShader<sup>20+</sup>
 createShader(params: SceneResourceParameters): Promise\<Shader>
 
 根据指定场景资源参数创建一个着色器，使用Promise异步回调。
@@ -143,7 +143,7 @@ function createShaderResource(): Promise<Shader> {
 }
 ```
 
-### createImage
+### createImage<sup>20+</sup>
 createImage(params: SceneResourceParameters): Promise\<Image>
 
 根据指定场景资源参数创建一个图像资源，使用Promise异步回调。
@@ -179,7 +179,7 @@ function createImageResource(): Promise<Image> {
 }
 ```
 
-### createMesh
+### createMesh<sup>20+</sup>
 createMesh(params: SceneResourceParameters, geometry: GeometryDefinition): Promise\<MeshResource>
 
 根据指定场景资源参数和几何体定义（GeometryDefinition）创建一个网格资源（MeshResource），使用Promise异步回调。
@@ -268,7 +268,7 @@ function createMeshResource(): Promise<MeshResource> {
 }
 ```
 
-### createSampler
+### createSampler<sup>20+</sup>
 createSampler(params:SceneResourceParameters): Promise\<Sampler>
 
 根据指定场景资源参数创建一个采样器资源，使用Promise异步回调。
@@ -305,7 +305,7 @@ function createSamplerResource(): Promise<Sampler> {
 }
 ```
 
-### createScene
+### createScene<sup>20+</sup>
 createScene(uri?: ResourceStr): Promise\<Scene>
 
 从指定的资源URI创建一个新的场景。如果不指定URI，则创建一个空场景，使用Promise异步回调。
@@ -604,12 +604,12 @@ function createGeometryPromise() : Promise<Geometry> {
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | name | string | 否 | 否 | 要创建场景组件的名称，可由开发者自定填写，用于标识场景组件。|
-| property | Record<string, string \| number \| [Vec2](js-apis-inner-scene-types.md#vec2) \| [Vec3](js-apis-inner-scene-types.md#vec3) \| [Vec4](js-apis-inner-scene-types.md#vec4) \| Image \| boolean \| number[] \| string[] \| Image[]> | 是 | 否 | 组件的属性集合，以键值对形式存储。支持多种基础类型和复杂类型，用于描述场景组件的各种属性。|
+| property | Record<string, string \| number \| [Vec2](js-apis-inner-scene-types.md#vec2) \| [Vec3](js-apis-inner-scene-types.md#vec3) \| [Vec4](js-apis-inner-scene-types.md#vec4) \| SceneResource \| boolean \| number[] \| string[] \| SceneResource[]> \| Vec2[] \| Vec3[] \| Vec4[] \| null \| undefined | 是 | 否 | 组件的属性集合，以键值对形式存储。支持多种基础类型和复杂类型，用于描述场景组件的各种属性。|
 
 ## RenderContext<sup>20+</sup>
 定义了所有渲染资源的上下文。在同一渲染上下文中创建的多个场景之间，可以共享渲染资源。
 
-### getRenderResourceFactory
+### getRenderResourceFactory<sup>20+</sup>
 getRenderResourceFactory() : RenderResourceFactory
 
 获取渲染资源工厂，提供创建不同渲染资源的功能。
@@ -638,7 +638,7 @@ function getRenderResourceFactory(): void {
 }
 ```
 
-### loadPlugin
+### loadPlugin<sup>20+</sup>
 loadPlugin(name: string): Promise\<boolean>
 
 用于加载指定名称的插件，通过插件名称查找并加载对应的插件资源，使用Promise异步回调。
@@ -1051,6 +1051,8 @@ function getComponentTest() {
 static getDefaultRenderContext(): RenderContext | null
 
 获取当前图形对象所关联的渲染环境信息。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **返回值：**
 | 类型 | 说明 |
