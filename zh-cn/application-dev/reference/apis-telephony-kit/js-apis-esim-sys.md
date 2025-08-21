@@ -2,8 +2,9 @@
 <!--Kit: Telephony Kit-->
 <!--Subsystem: Telephony-->
 <!--Owner: @yangyannanyangyannan-->
-<!--SE: @ghxbob-->
-<!--TSE: @weitiantian-->
+<!--Designer: @ghxbob-->
+<!--Tester: @weitiantian-->
+<!--Adviser: @zhang_yixin13-->
 
 穿戴设备支持eSIM，电话服务提供API给eSIM卡管理和eSIM卡服务使用。
 
