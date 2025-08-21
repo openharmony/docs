@@ -2,9 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
-<!--SE: @lihaitao-->
-<!--TSE: @kongjing2-->
-
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 本文通过配置项的变更将HAP工程变成HAR工程。
 ## HAP转HAR的操作步骤
 
