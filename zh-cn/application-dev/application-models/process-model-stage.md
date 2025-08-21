@@ -33,7 +33,7 @@
 
 ### 其他进程类型
 
-在2in1和tablet设备上，针对UIAbility，还支持如下特殊进程类型：
+在2in1和Tablet设备上，针对UIAbility，还支持如下特殊进程类型：
 - **模块独立进程**：对于多HAP的应用，每个HAP的业务相对独立，如果开发者希望不同HAP的UIAbility运行在不同的进程，可以在[module.json5配置文件](../quick-start/module-configuration-file.md#配置文件标签)中将isolationMode字段配置为isolationOnly（只在独立进程中运行）或者isolationFirst（优先在独立进程中运行），那么该HAP下的所有UIAbility将运行在统一的独立的进程中。如图2中UIAbilityC运行在“Main Process2”， 而不是“Main Process1”。
 - **动态指定进程**：当同一HAP中的UIAbility实例需要根据运行时状态（如每个进程最多支持5个实例）动态分配到不同进程时，开发者可以在module.json5配置文件中将该UIAbility的isolationProcess字段配置为true，如图2中的UIAbilityD。系统在启动UIAbilityD实例时，回调[主控进程](ability-terminology.md#masterprocess主控进程)的[onNewProcessRequest](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onnewprocessrequest11)，开发者在该回调中返回自定义的一个字符串，如果返回的字符串是开发者曾创建的，则复用该标识所在的进程，否则创建新的进程。如图2中的 “Main Processes3”和“Main Process4”则是UIAbilityD运行的多个进程。
 - **子进程**： 如果开发者希望开启多进程做一些后台业务，可以调用[childProcessManager](../reference/apis-ability-kit/js-apis-app-ability-childProcessManager.md)中的接口创建子进程。子进程的生命周期跟随父进程，父进程消亡，子进程跟随消亡。如图2中的“ArkTS Child Process”和“Native Child Process”是主进程创建的子进程。子进程不支持再创建子进程。
