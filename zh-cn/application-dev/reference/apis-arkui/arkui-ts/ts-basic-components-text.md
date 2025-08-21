@@ -1873,7 +1873,8 @@ struct TextExample8 {
       Column() {
         Text(undefined, this.options) {
           Span('Hello World')
-          ImageSpan($r('app.media.startIcon'))// $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          ImageSpan($r('app.media.startIcon'))
             .width(50)
             .height(50)
             .objectFit(ImageFit.Fill)
@@ -1916,9 +1917,7 @@ struct TextExample8 {
             .onClick((event) => {
               this.controller.closeSelectionMenu();
             })
-          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
           MenuItem({ startIcon: $r('app.media.startIcon'), content: "Right Click Menu 2", labelInfo: "" })
-          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
           MenuItem({ startIcon: $r('app.media.startIcon'), content: "Right Click Menu 3", labelInfo: "" })
         }
       }
@@ -1936,9 +1935,7 @@ struct TextExample8 {
             .onClick((event) => {
               this.controller.closeSelectionMenu();
             })
-          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
           MenuItem({ startIcon: $r('app.media.startIcon'), content: "Long Press Image Menu 2", labelInfo: "" })
-          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
           MenuItem({ startIcon: $r('app.media.startIcon'), content: "Long Press Image Menu 3", labelInfo: "" })
         }
       }
@@ -1956,9 +1953,7 @@ struct TextExample8 {
             .onClick((event) => {
               this.controller.closeSelectionMenu();
             })
-          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
           MenuItem({ startIcon: $r('app.media.startIcon'), content: "Select Mixed Menu 2", labelInfo: "" })
-          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
           MenuItem({ startIcon: $r('app.media.startIcon'), content: "Select Mixed Menu 3", labelInfo: "" })
         }
       }
@@ -2164,6 +2159,7 @@ struct TextExample12 {
   @State text: string = 'Text editMenuOptions'
   @State endIndex: number = 0;
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
+    // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
     let item1: TextMenuItem = {
       content: 'create1',
       icon: $r('app.media.startIcon'),
@@ -2197,6 +2193,7 @@ struct TextExample12 {
     }
     return false;
   }
+  // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
   onPrepareMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'prepare1_' + this.endIndex,
@@ -2393,7 +2390,8 @@ struct TextExample14 {
       Text() {
         Span("Hello")
           .fontSize(50)
-        ImageSpan($r('app.media.startIcon'))// $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+        // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+        ImageSpan($r('app.media.startIcon'))
           .width(30).height(30)
           .verticalAlign(ImageSpanAlignment.FOLLOW_PARAGRAPH)// 从API version 20开始，支持ImageSpanAlignment.FOLLOW_PARAGRAPH
         Span("World")
