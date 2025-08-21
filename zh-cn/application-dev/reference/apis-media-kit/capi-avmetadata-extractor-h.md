@@ -10,6 +10,8 @@
 
 定义AVMetadataExtractor接口。使用其C API从媒体资源中获取元数据。
 
+**引用文件：** <multimedia/player_framework/avmetadata_extractor.h>
+
 **库：** libavmetadata_extractor.so
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
