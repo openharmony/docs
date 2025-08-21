@@ -1,5 +1,5 @@
 # @ohos.resourceschedule.deviceStandby (设备待机模块)(系统接口)
-<!--Kit: Backgroundtasks Kit-->
+<!--Kit: Background tasks Kit-->
 <!--Subsystem: ResourceSchedule-->
 <!--Owner: @geng_wd-->
 <!--Designer: @geng_wd-->
