@@ -10,6 +10,8 @@
 
 提供获取picture数据和信息的API。
 
+**引用文件：** <multimedia/image_framework/image/picture_native.h>
+
 **库：** libpicture.so
 
 **起始版本：** 13
