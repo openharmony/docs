@@ -463,19 +463,52 @@ HSP需要将给其他模块用的方法配置到白名单中。因为主模块�
 
 ```ts
 // 混淆前
-export class Test1 {}
-let mytest = (await import('./file')).Test1
+// utils.ts
+export function add(a: number, b: number): number {
+  return a + b;
+}
+
+// main.ts
+async function loadAndUseAdd() {
+  try {
+    const mathUtils = await import('./utils');
+    const result = mathUtils.add(2, 3);
+  } catch (error) {
+    console.error('Failure reason:', error);
+  }
+}
+
+loadAndUseAdd();
+```
+```ts
 
 // 混淆后
-export class w1 {}
-let mytest = (await import('./file')).Test1
+// utils.ts
+export function c1(d1: number, e1: number): number {
+    return d1 + e1;
+}
+
+// main.ts
+async function i() {
+    try {
+        const a1 = await import("@normalized:N&&&entry/src/main/ets/pages/utils&");
+        const b1 = a1.add(2, 3);
+    }
+    catch (z) {
+        console.error('Failure reason:', z);
+    }
+}
+i();
 ```
 
-导出的类"Test1"是一个顶层作用域名，当"Test1"被动态使用时，它是一个属性。因为没有开启-enable-property-obfuscation选项，所以名称混淆了，但属性没有混淆。
+函数add在定义时位于顶层作用域，但通过.add访问时被视为属性。由于未开启-enable-property-obfuscation选项，导致add被使用时未进行混淆
 
 **解决方案**：
 
-使用-keep-global-name选项将"Test1"配置到白名单。
+方案一：开启-enable-property-obfuscation选项。
+
+方案二：使用-keep-global-name选项将"add"配置到白名单。
+
 
 #### 案例二：在使用namespace中的方法时，该方法定义的地方被混淆了，但使用的地方却没有被混淆，导致报错
 
