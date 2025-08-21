@@ -242,10 +242,6 @@ wei.hmos.xxx  27336   72      328415  27336   dev/ashmem/Paf.Permission.appImg  
 
 使用hidumper --mem pid --show-dmabuf命令可获取指定PID的内存使用情况，并打印DMA内存详细信息。
 
-> **说明**：
->
-> 此功能仅在设备存在`mm_dmabuf_info`节点时可用。
-
 使用样例：
 
 ```shell
