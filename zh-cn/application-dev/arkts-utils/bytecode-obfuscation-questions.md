@@ -204,7 +204,7 @@ callargs2 0x2e, v2, v3
 Error message: ArkTSCompilerError: ArkTS:ERROR Failed to execute ByteCode Obfuscate.
 Error message: [Class]get different name for method:&entry/src/main/ets/pages/XXXX&.#~@0>#setController^1.
 
-```ets
+```ts
 //代码1
 @CustomDialog
 export default struct TmsDialog {
@@ -327,7 +327,7 @@ linkSource
 
 使用@Type和@Trace组合修饰的装饰器属性，可以正常混淆，但混淆后，功能异常。
 
-```ets
+```ts
 //Sample.ets
 @ObservedV2
 class SampleChild {
