@@ -83,7 +83,7 @@ bm uninstall [-h] [-n bundleName] [-m moduleName] [-k] [-s] [-v versionCode]
 | -------- | -------- |
 | -h | 帮助信息。 |
 | -n | 必选参数，指定Bundle名称卸载应用。|
-| -m | 可选参数，指定卸载应用的一个模块。默认卸载所有模块。 |
+| -m | 可选参数，应用模块名称，指定卸载应用的一个模块。默认卸载所有模块。 |
 | -k | 可选参数，卸载应用时保存应用数据。默认卸载应用时不保存应用数据。 |
 | -s | 根据场景判断，安装应用间HSP时必选参数，其他场景为可选参数。卸载指定的共享库。|
 | -v | 可选参数，指定共享包的版本号。默认卸载同包名的所有共享包。 |
@@ -95,7 +95,7 @@ bm uninstall [-h] [-n bundleName] [-m moduleName] [-k] [-s] [-v versionCode]
 # 卸载一个应用
 bm uninstall -n com.ohos.app
 # 卸载应用的一个模块
-bm uninstall -n com.ohos.app -m com.ohos.app.EntryAbility
+bm uninstall -n com.ohos.app -m entry
 # 卸载一个shared bundle
 bm uninstall -n com.ohos.example -s
 # 卸载一个shared bundle的指定版本
