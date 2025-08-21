@@ -5059,7 +5059,7 @@
 
 **ACL使能**：true
 
-**支持设备**：Phone | Tablet | 2in1 | wearable | TV
+**支持设备**：Phone | Tablet | PC/2in1 | Wearable | TV
 
 **起始版本**：20
 
