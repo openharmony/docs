@@ -1621,7 +1621,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 将当前Ability连接到一个指定account的ServiceExtensionAbility。仅支持在主线程调用。
 
-当前仅在phone、tablet设备上生效。
+当前仅在Phone、Tablet设备上生效。
 
 > **说明：**
 >
