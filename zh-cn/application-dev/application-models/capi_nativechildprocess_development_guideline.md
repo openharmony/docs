@@ -28,7 +28,7 @@
 
 > **说明：**
 >
-> 从API version 14开始，支持2in1和tablet设备。API version 13及之前版本，仅支持2in1设备。
+> 从API version 14开始，支持2in1和Tablet设备。API version 13及之前版本，仅支持2in1设备。
 > 从API version 15开始，单个进程最多支持启动50个Native子进程。API version 14及之前版本，单个进程只能启动1个Native子进程。
 
 ### 开发步骤
