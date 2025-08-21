@@ -2216,10 +2216,10 @@ export struct PageTwo {
 }
 ```
 
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"
 
 ```json
-// src/main/resources/base/profile/route_map.json
+// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {
@@ -2700,9 +2700,9 @@ export class CustomTransition {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"
 ```json
-// src/main/resources/base/profile/route_map.json
+// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {
@@ -2987,9 +2987,9 @@ export struct PageTwo {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"
 ```json
-// src/main/resources/base/profile/route_map.json
+// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {
@@ -3315,9 +3315,9 @@ export function PageOneBuilder(name: string) {
   .title(name)
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"
 ```json
-// src/main/resources/base/profile/route_map.json
+// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {
@@ -3426,9 +3426,9 @@ struct NavigationExample2 {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"
 ```json
-// src/main/resources/base/profile/route_map.json
+// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {
@@ -3545,9 +3545,9 @@ struct NavigationExample3 {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"
 ```json
-// src/main/resources/base/profile/route_map.json
+// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {
@@ -4325,9 +4325,9 @@ export class CustomTransition {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"
 ```json
-// src/main/resources/base/profile/route_map.json
+// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {
