@@ -4849,6 +4849,7 @@ Allows an application to use the distributed keystore capabilities.
 **Enable via ACL**: true
 
 **Supported devices**: Phone | Tablet | PC/2in1 | Wearable | TV
+
 **Valid since**: 20
 
 ## ohos.permission.UPLOAD_SAMPLE_FILE
