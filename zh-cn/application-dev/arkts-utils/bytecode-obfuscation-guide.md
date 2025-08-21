@@ -21,12 +21,12 @@
 
     ```txt
     "arkOptions": {
-        "obfuscation": {
-            "ruleOptions": {
-                "enable": true,
-                "files": ["./obfuscation-rules.txt"],
-            }
+      "obfuscation": {
+        "ruleOptions": {
+          "enable": true,
+          "files": ["./obfuscation-rules.txt"],
         }
+      }
     }
     ```
 
@@ -84,13 +84,13 @@
 
     ```txt
     "arkOptions": {
-        "obfuscation": {
-            "ruleOptions": {
-                "enable": true,
-                "files": ["./obfuscation-rules.txt"],
+      "obfuscation": {
+        "ruleOptions": {
+          "enable": true,
+          "files": ["./obfuscation-rules.txt"],
         }
         "consumerFiles": ["./consumer-rules.txt"]
-        }
+      }
     }
     ```
 
