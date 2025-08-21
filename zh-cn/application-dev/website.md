@@ -1127,8 +1127,11 @@
           - [消息认证码计算HMAC(C/C++)](security/CryptoArchitectureKit/crypto-compute-hmac-ndk.md)
           - [消息认证码计算CMAC(ArkTS)](security/CryptoArchitectureKit/crypto-compute-cmac.md)
           - [消息认证码计算CMAC(C/C++)](security/CryptoArchitectureKit/crypto-compute-cmac-ndk.md)
-        - [安全随机数生成(ArkTS)](security/CryptoArchitectureKit/crypto-generate-random-number.md)
-        - [安全随机数生成(C/C++)](security/CryptoArchitectureKit/crypto-generate-random-number-ndk.md)
+        - 随机数<!--crypto-compute-rand-->
+          - [安全随机数生成(ArkTS)](security/CryptoArchitectureKit/crypto-generate-random-number.md)
+          - [安全随机数生成(C/C++)](security/CryptoArchitectureKit/crypto-generate-random-number-ndk.md)
+          - [安全随机数使用硬件熵源生成(ArkTS)](security/CryptoArchitectureKit/crypto-generate-random-number-hardware.md)
+          - [安全随机数使用硬件熵源生成(C/C++)](security/CryptoArchitectureKit/crypto-generate-random-number-hardware-ndk.md)
         - 密钥派生<!--crypto-key-derivation-->
           - [密钥派生介绍及算法规格](security/CryptoArchitectureKit/crypto-key-derivation-overview.md)
           - [使用PBKDF2进行密钥派生(ArkTS)](security/CryptoArchitectureKit/crypto-key-derivation-using-pbkdf2.md)
