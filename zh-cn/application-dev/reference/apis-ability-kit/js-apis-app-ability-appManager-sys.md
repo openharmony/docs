@@ -1716,7 +1716,7 @@ setKeepAliveForBundle(bundleName: string, userId: number, enable: boolean): Prom
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**设备行为差异**：从API version 18开始，该接口仅在2in1和wearable设备上生效。对于API version 18之前版本，该接口仅在2in1设备上生效。其他情况下调用该接口将返回错误码801。
+**设备行为差异**：从API version 18开始，该接口仅在2in1和Wearable设备上生效。对于API version 18之前版本，该接口仅在2in1设备上生效。其他情况下调用该接口将返回错误码801。
 
 **系统接口**：此接口为系统接口。
 
