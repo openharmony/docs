@@ -104,7 +104,7 @@ getImageAnalyzerSupportTypes(): ImageAnalyzerType[]
 
 ## PixelMap
 
-type PixelMap = PixelMap
+declare type PixelMap = import('../api/@ohos.multimedia.image').default.PixelMap;
 
 图像像素类，用于读取或写入图像数据以及获取图像信息。
 
