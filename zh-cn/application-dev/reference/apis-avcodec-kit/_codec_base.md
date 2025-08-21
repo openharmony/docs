@@ -51,7 +51,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 
 用于描述媒体数据的键值对查找表如下。键的类型是常量字符串，值的类型可以是int32_t/int64_t/float/double/char */uint8_t *。
 
-使用以下key的主要接口是[OH_AVFormat](_core.md#函数)，通过以下key可以进行参数配置或查询。
+使用以下key的主要接口是[OH_AVFormat](_core.md#oh_avformat)，通过以下key可以进行参数配置或查询。
 
 能力查询专有的键值对：
 

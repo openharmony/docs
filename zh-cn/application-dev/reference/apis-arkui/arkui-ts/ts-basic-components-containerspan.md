@@ -78,6 +78,7 @@ struct Index {
     Column() {
       Text() {
         ContainerSpan() {
+          // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
           ImageSpan($r('app.media.app_icon'))
             .width('40vp')
             .height('40vp')
@@ -115,6 +116,7 @@ struct ContainerSpanModifierExample {
     Column() {
       Text() {
         ContainerSpan() {
+          // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
           ImageSpan($r('app.media.app_icon'))
             .width('40vp')
             .height('40vp')

@@ -370,6 +370,12 @@ caretStyle(value: CaretStyle)
 | ------ | ----------------------------------- | ---- | ------------ |
 | value  | [CaretStyle](ts-text-common.md#caretstyle10) | 是   | 光标的风格。 |
 
+>  **说明：**
+>
+>   当同时设置caretColor属性和caretStyle属性中的color参数时，遵循后设置生效原则。
+>     
+>   从API version 12开始，此接口支持设置文本手柄颜色，光标和文本手柄颜色保持一致。
+
 ### caretPosition<sup>10+</sup>
 
 caretPosition(value: number)
@@ -1545,7 +1551,8 @@ onWillAttachIME(callback: Callback\<IMEClient>)
 
 在输入框将要绑定输入法前触发该回调。
 
-<!--Del-->在输入框将要绑定输入法前，可以通过`UIContext`的系统接口[setKeyboardAppearanceConfig](../js-apis-arkui-UIContext-sys.md#setkeyboardappearanceconfig20)设置键盘的样式。<!--DelEnd-->
+<!--Del-->
+在输入框将要绑定输入法前，可以通过`UIContext`的系统接口[setKeyboardAppearanceConfig](../js-apis-arkui-UIContext-sys.md#setkeyboardappearanceconfig20)设置键盘的样式。<!--DelEnd-->
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1826,8 +1833,10 @@ struct TextInputExample {
 @Entry
 @Component
 struct TextInputExample {
-  @State passWordSrc1: Resource = $r('app.media.ImageOne'); // 'app.media.ImageOne'仅作示例，请替换为实际使用图片
-  @State passWordSrc2: Resource = $r('app.media.ImageTwo'); // 'app.media.ImageTwo'仅作示例，请替换为实际使用图片
+  // $r('app.media.ImageOne')需要替换为开发者所需的图像资源文件。
+  @State passWordSrc1: Resource = $r('app.media.ImageOne'); 
+  // $r('app.media.ImageTwo')需要替换为开发者所需的图像资源文件。
+  @State passWordSrc2: Resource = $r('app.media.ImageTwo'); 
   @State textError: string = '';
   @State text: string = '';
   @State nameText: string = 'test';
@@ -1982,7 +1991,8 @@ struct TextInputExample {
           style: CancelButtonStyle.CONSTANT,
           icon: {
             size: 45,
-            src: $r('app.media.startIcon'),// $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            src: $r('app.media.startIcon'),
             color: Color.Blue
           }
         })
@@ -2548,6 +2558,7 @@ struct TextInputExample {
   @State text: string = 'TextInput editMenuOptions';
   @State endIndex: number = 0;
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
+    // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
     let item1: TextMenuItem = {
       content: 'create1',
       icon: $r('app.media.startIcon'),
@@ -2581,6 +2592,7 @@ struct TextInputExample {
     }
     return false;
   }
+  // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
   onPrepareMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'prepare1_' + this.endIndex,
