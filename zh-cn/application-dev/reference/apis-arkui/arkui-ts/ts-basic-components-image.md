@@ -54,7 +54,7 @@ Image加载成功且组件不设置宽高时，其显示大小自适应父组件
 
 | 参数名  | 类型                                     | 必填   | 说明                                     |
 | ---- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src  | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)\|&nbsp;[DrawableDescriptor](#drawabledescriptor10) | 是    | 图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](../../../ui/arkts-graphics-display.md#加载图片资源)。<br>1. PixelMap格式为像素图，常用于图片编辑的场景。<br>2. ResourceStr包含Resource和string格式。<br>string格式可用于加载网络图片和本地图片，常用于加载网络图片。当使用相对路径引用本地图片时，例如Image("common/test.jpg")，不支持跨包/跨模块调用该Image组件，建议使用Resource格式来管理需全局使用的图片资源。<br>- 支持`Base64`字符串。<br>- 传入的字符串为https网络图片地址时，建议参考[示例2下载与显示静态网络图片](#示例2下载与显示静态网络图片)。<br>- 支持file://路径前缀的字符串，[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。沙箱路径需要使用[fileUri.getUriFromPath(path)](../../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)方法将路径转换为[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)，然后传入显示。同时需要保证目录包路径下的文件有可读权限。<br>Resource格式可以跨包/跨模块访问资源文件，是访问本地图片的推荐方式。<br/>3. 当传入资源id或name为普通图片时，生成DrawableDescriptor对象。传入[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)类型可播放PixelMap数组动画。<br>**说明：**<br/>- ArkTS卡片上支持gif图片格式动效，但仅在显示时播放一次。<br/>- ArkTS卡片上不支持http:/\/等网络相关路径前缀和file:/\/路径前缀的字符串。 |
+| src  | [PixelMap](ts-image-common.md#pixelmap)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)\|&nbsp;[DrawableDescriptor](#drawabledescriptor10) | 是    | 图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](../../../ui/arkts-graphics-display.md#加载图片资源)。<br>1. PixelMap格式为像素图，常用于图片编辑的场景。<br>2. ResourceStr包含Resource和string格式。<br>string格式可用于加载网络图片和本地图片，常用于加载网络图片。当使用相对路径引用本地图片时，例如Image("common/test.jpg")，不支持跨包/跨模块调用该Image组件，建议使用Resource格式来管理需全局使用的图片资源。<br>- 支持`Base64`字符串。<br>- 传入的字符串为https网络图片地址时，建议参考[示例2下载与显示静态网络图片](#示例2下载与显示静态网络图片)。<br>- 支持file://路径前缀的字符串，[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。沙箱路径需要使用[fileUri.getUriFromPath(path)](../../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)方法将路径转换为[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)，然后传入显示。同时需要保证目录包路径下的文件有可读权限。<br>Resource格式可以跨包/跨模块访问资源文件，是访问本地图片的推荐方式。<br/>3. 当传入资源id或name为普通图片时，生成DrawableDescriptor对象。传入[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)类型可播放PixelMap数组动画。<br>**说明：**<br/>- ArkTS卡片上支持gif图片格式动效，但仅在显示时播放一次。<br/>- ArkTS卡片上不支持http:/\/等网络相关路径前缀和file:/\/路径前缀的字符串。 |
 
 >**说明：**
 >
@@ -80,7 +80,7 @@ src新增[ImageContent](#imagecontent12)类型，可指定对应的图形内容�
 
 | 参数名  | 类型                                     | 必填   | 说明                                     |
 | ---- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src  | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)\|&nbsp;[DrawableDescriptor](#drawabledescriptor10)\|&nbsp;[ImageContent](#imagecontent12) | 是    | 图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](../../../ui/arkts-graphics-display.md#加载图片资源)。<br>PixelMap、ResourceStr和DrawableDescriptor的使用请参考[Image](#image-1)的scr参数说明。<br> 传入[ImageContent](#imagecontent12)类型，指定图像内容。<br>**说明：**<br/>- ArkTS卡片上支持gif图片格式动效，但仅在显示时播放一次。<br/>- ArkTS卡片上不支持http:/\/等网络相关路径前缀和file:/\/路径前缀的字符串。 |
+| src  | [PixelMap](ts-image-common.md#pixelmap)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)\|&nbsp;[DrawableDescriptor](#drawabledescriptor10)\|&nbsp;[ImageContent](#imagecontent12) | 是    | 图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](../../../ui/arkts-graphics-display.md#加载图片资源)。<br>PixelMap、ResourceStr和DrawableDescriptor的使用请参考[Image](#image-1)的scr参数说明。<br> 传入[ImageContent](#imagecontent12)类型，指定图像内容。<br>**说明：**<br/>- ArkTS卡片上支持gif图片格式动效，但仅在显示时播放一次。<br/>- ArkTS卡片上不支持http:/\/等网络相关路径前缀和file:/\/路径前缀的字符串。 |
 
 ### Image<sup>12+</sup>
 
@@ -96,7 +96,7 @@ Image新增[imageAIOptions](ts-image-common.md#imageaioptions)参数，为组件
 
 | 参数名  | 类型                                     | 必填   | 说明                                     |
 | ---- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src  | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)\|&nbsp;[DrawableDescriptor](#drawabledescriptor10) | 是    | 图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](../../../ui/arkts-graphics-display.md#加载图片资源)。<br>PixelMap、ResourceStr和DrawableDescriptor的使用请参考[Image](#image-1)的scr参数说明。<br>**说明：**<br/>- ArkTS卡片上支持gif图片格式动效，但仅在显示时播放一次。<br/>- ArkTS卡片上不支持http:/\/等网络相关路径前缀和file:/\/路径前缀的字符串。 |
+| src  | [PixelMap](ts-image-common.md#pixelmap)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)\|&nbsp;[DrawableDescriptor](#drawabledescriptor10) | 是    | 图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](../../../ui/arkts-graphics-display.md#加载图片资源)。<br>PixelMap、ResourceStr和DrawableDescriptor的使用请参考[Image](#image-1)的scr参数说明。<br>**说明：**<br/>- ArkTS卡片上支持gif图片格式动效，但仅在显示时播放一次。<br/>- ArkTS卡片上不支持http:/\/等网络相关路径前缀和file:/\/路径前缀的字符串。 |
 | imageAIOptions  | [ImageAIOptions](ts-image-common.md#imageaioptions) | 是   | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
 
 ## 属性
@@ -630,27 +630,8 @@ SVG类型图源不支持该属性。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | --------- |-----------|-----------|-----------|-----------|
-| slice | [EdgeWidths](#edgewidths) |  否  |  是  | 边框宽度类型，用于描述组件边框不同方向的宽度。<br>**说明：**<br>只有当bottom和right同时大于0时，该属性生效。<br> 传入数字时默认单位为vp。|
+| slice | [EdgeWidths](ts-types.md#edgewidths9) |  否  |  是  | 边框宽度类型，用于描述组件边框不同方向的宽度。<br>**说明：**<br>只有当bottom和right同时大于0时，该属性生效。<br> 传入数字时默认单位为vp。|
 | lattice<sup>12+</sup> | [DrawingLattice](#drawinglattice12) |  否  |  是  | 矩形网格对象。<br>**说明：**<br> 通过@ohos.graphics.drawing的createImageLattice接口创建Lattice类型作为入参。将图像划分为矩形网格，同时处于偶数列和偶数行上的网格图像是固定的，不会被拉伸。<br>该参数对[backgroundImageResizable](ts-universal-attributes-background.md#backgroundimageresizable12)接口不生效。<br> 传入数字时默认单位为px。 |
-
-## EdgeWidths
-
-type EdgeWidths = { top?: Length, right?: Length, bottom?: Length, left?: Length; }
-
-边框宽度类型，用于描述组件边框不同方向的宽度。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称 | 类型 | 必填 | 说明 |
-| --------- |-----------|-----------|-----------|
-|  top    |  [Length](ts-types.md#length)  |  否  | 图片顶部拉伸时，图片的像素值保持不变。<br>默认值：0<br>单位：vp |
-|  right  |  [Length](ts-types.md#length)  |  否  | 图片右部拉伸时，图片的像素值保持不变。<br>默认值：0<br>单位：vp |
-|  bottom |  [Length](ts-types.md#length)  |  否  | 图片底部拉伸时，图片的像素值保持不变。<br>默认值：0<br>单位：vp |
-|  left   |  [Length](ts-types.md#length)  |  否  | 图片左部拉伸时，图片的像素值保持不变。<br>默认值：0<br>单位：vp |
-
-![edgewidths](figures/edgewidths.png)
 
 ## DynamicRangeMode<sup>12+</sup>枚举说明
 
@@ -852,6 +833,8 @@ type ImageErrorCallback = (error: ImageError) => void
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
 
 | 参数名 | 类型                       | 必填 | 说明                               |
 | ------ | -------------------------- | ---- | ---------------------------------- |
