@@ -1,3 +1,4 @@
+# @ohos.resourceschedule.deviceStandby (设备待机模块)(系统接口)
 <!--Kit: Backgroundtasks Kit-->
 <!--Subsystem: ResourceSchedule-->
 <!--Owner: @geng_wd-->
@@ -5,7 +6,6 @@
 <!--Tester: @wzzqishi-->
 <!--Adviser: @Brilliantry_Rui-->
 
-# @ohos.resourceschedule.deviceStandby (设备待机模块)(系统接口)
 当设备长时间未被使用或通过按键，可以使设备进入待机模式。待机模式不影响应用使用，还可以延长电池续航时间。通过本模块接口，可查询设备或应用是否为待机模式，以及为应用申请或取消待机资源管控。
 
 >  **说明**:
