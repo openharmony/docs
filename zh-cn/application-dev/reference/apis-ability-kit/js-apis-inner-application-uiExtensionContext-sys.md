@@ -1,5 +1,12 @@
 # UIExtensionContext (系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhangyafei-echo-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 UIExtensionContext是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)，提供UIExtensionAbility的相关配置信息以及操作UIAbility的方法，如启动UIAbility等。
 
 > **说明：**
@@ -316,7 +323,7 @@ startUIAbilities(wantList: Array\<Want>): Promise\<void>
 
 > **说明：**
 >
-> 该接口仅在phone和tablet设备上生效。
+> 该接口仅在Phone和Tablet设备上生效。
 > 
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
