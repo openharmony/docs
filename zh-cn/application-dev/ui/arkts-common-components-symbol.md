@@ -259,7 +259,7 @@ SymbolGlyph通过$r引用Resource资源来创建，目前仅支持系统预置�
   ```
   ![BounceSymbolEffect](figures/symbolGlyph_bounceSymbolEffect_trigger.gif)
 
-- 从API version 20开始，支持通过设置SymbolEffect属性为[DisableSymbolEffect](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#disablesymboleffect20)，可以指定SymbolGlyph的禁用动画效果及其播放触发条件。
+- 从API version 20开始，支持通过设置SymbolEffect属性为[ReplaceSymbolEffect](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#replacesymboleffect12)，设置[ReplaceEffectType](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#replaceeffecttype20枚举说明)为ReplaceEffectType.SLASH_OVERLAY，可以指定SymbolGlyph的禁用动画效果及其播放触发条件。
 
   ```ts
   @State triggerValueReplace: number = 0;
@@ -271,7 +271,7 @@ SymbolGlyph通过$r引用Resource资源来创建，目前仅支持系统预置�
     SymbolGlyph(this.replaceFlag ? $r('sys.symbol.eye_slash') : $r('sys.symbol.eye'))
       .fontSize(96)
       .renderingStrategy(this.renderMode)
-      .symbolEffect(new DisableSymbolEffect(EffectScope.LAYER), this.triggerValueReplace)
+      .symbolEffect(new ReplaceSymbolEffect(EffectScope.LAYER, ReplaceEffectType.SLASH_OVERLAY), this.triggerValueReplace)
     Button('trigger').onClick(() => {
       this.replaceFlag = !this.replaceFlag;
       this.triggerValueReplace = this.triggerValueReplace + 1;
@@ -280,7 +280,7 @@ SymbolGlyph通过$r引用Resource资源来创建，目前仅支持系统预置�
   ```
   ![symbolGlyph_symbolEffect_disable](figures/symbolGlyph_symbolEffect_disable.gif)
 
-- 从API version 20开始，支持通过设置SymbolEffect属性为[QuickReplaceSymbolEffect](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#quickreplacesymboleffect20)，可以指定SymbolGlyph的快速替换动画效果及其播放触发条件。
+- 从API version 20开始，支持通过设置SymbolEffect属性为[ReplaceSymbolEffect](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#replacesymboleffect12)，设置[ReplaceEffectType](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#replaceeffecttype20枚举说明)为ReplaceEffectType.CROSS_FADE，可以指定SymbolGlyph的快速替换动画效果及其播放触发条件。
 
   ```ts
   @State triggerValueReplace: number = 0;
@@ -290,7 +290,7 @@ SymbolGlyph通过$r引用Resource资源来创建，目前仅支持系统预置�
     Text("快速替换动效")
     SymbolGlyph(this.replaceFlag ? $r('sys.symbol.checkmark_circle') : $r('sys.symbol.repeat_1'))
       .fontSize(96)
-      .symbolEffect(new QuickReplaceSymbolEffect(EffectScope.WHOLE), this.triggerValueReplace)
+      .symbolEffect(new ReplaceSymbolEffect(EffectScope.WHOLE, ReplaceEffectType.CROSS_FADE), this.triggerValueReplace)
     Button('trigger').onClick(() => {
       this.replaceFlag = !this.replaceFlag;
       this.triggerValueReplace = this.triggerValueReplace + 1;
