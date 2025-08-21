@@ -88,3 +88,30 @@ getImageAnalyzerSupportTypes(): ImageAnalyzerType[]
 | ------ | ----------------------- |
 | [ImageAnalyzerType[]](#imageanalyzertype) | 对应组件支持的分析类型。 |
 
+## MultiShadowOptions
+
+投影样式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型 | 只读 | 可选 | 说明 |
+| ------------- | ------- | -- | -- | -------- |
+| radius | number \| [Resource](ts-types.md#resource) | 否 | 是 | 投影模糊半径。 <br/>API version 10及以前，默认值：5<br/>API version 11及以后，默认值：20<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
+| offsetX | number \| [Resource](ts-types.md#resource) | 否 | 是 | X轴偏移量。 <br/>默认值：5<br/>单位：vp |
+| offsetY | number \| [Resource](ts-types.md#resource) | 否 | 是 | Y轴偏移量。 <br/>默认值：5<br/>单位：vp |
+
+## PixelMap
+
+type PixelMap = PixelMap
+
+图像像素类，用于读取或写入图像数据以及获取图像信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 类型                                                         | 说明                                       |
+| ------------------------------------------------------------ | ------------------------------------------ |
+| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 图像像素类，用于读取或写入图像数据以及获取图像信息。 |
