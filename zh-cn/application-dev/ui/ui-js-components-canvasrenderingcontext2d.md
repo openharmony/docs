@@ -641,6 +641,7 @@ export default {
     // 创建图片对象
     let img = new Image();
     // 设置图片路径
+    // "common/images/2.png"需要替换为开发者所需的图像资源文件
     img.src = 'common/images/2.png';
     // 设置图片宽度
     img.width= 150;
@@ -667,6 +668,7 @@ export default {
       ctx.drawImage(img, 150, 20, 200, 200);
     };
     let img1 = new Image();
+    // "common/images/3.png"需要替换为开发者所需的图像资源文件
     img1.src = 'common/images/3.png';
     img1.onload = function() {
       // 画上图片

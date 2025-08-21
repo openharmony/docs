@@ -61,6 +61,7 @@ constructor(width: number, height: number, data?: Uint8ClampedArray, unit?: Leng
   struct Translate {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    // "common/images/1234.png"需要替换为开发者所需的图像资源文件
     private img: ImageBitmap = new ImageBitmap("common/images/1234.png");
 
     build() {
