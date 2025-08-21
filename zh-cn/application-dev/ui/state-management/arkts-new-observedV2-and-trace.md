@@ -57,7 +57,7 @@ class Son {
 @Entry
 @Component
 struct Index {
-  @State father: Father = new Father("John", 8);
+  @State father: Father = new Father('John', 8);
 
   build() {
     Row() {
@@ -119,7 +119,7 @@ struct Child {
 @Entry
 @Component
 struct Index {
-  @State father: Father = new Father("John", 8);
+  @State father: Father = new Father('John', 8);
 
   build() {
     Column() {
@@ -180,7 +180,7 @@ struct Index {
 ```ts
 @ObservedV2
 class Father {
-  @Trace name: string = "Tom";
+  @Trace name: string = 'Tom';
 }
 class Son extends Father {
 }
@@ -194,7 +194,7 @@ struct Index {
       // 当点击改变name时，Text组件会刷新
       Text(`${this.son.name}`)
         .onClick(() => {
-          this.son.name = "Jack";
+          this.son.name = 'Jack';
         })
     }
   }
@@ -281,7 +281,7 @@ struct Index {
 ```ts
 class User {
   id: number = 0;
-  @Trace name: string = "Tom"; // 错误用法，编译时报错
+  @Trace name: string = 'Tom'; // 错误用法，编译时报错
 }
 ```
 
@@ -290,7 +290,7 @@ class User {
 ```ts
 @ComponentV2
 struct Comp {
-  @Trace message: string = "Hello World"; // 错误用法，编译时报错
+  @Trace message: string = 'Hello World'; // 错误用法，编译时报错
 
   build() {
   }
@@ -302,12 +302,12 @@ struct Comp {
 ```ts
 @Observed
 class User {
-  @Trace name: string = "Tom"; // 错误用法，编译时报错
+  @Trace name: string = 'Tom'; // 错误用法，编译时报错
 }
 
 @ObservedV2
 class Person {
-  @Track name: string = "Jack"; // 错误用法，编译时报错
+  @Track name: string = 'Jack'; // 错误用法，编译时报错
 }
 ```
 
@@ -317,11 +317,11 @@ class Person {
 // 以@State装饰器为例
 @ObservedV2
 class Job {
-  @Trace jobName: string = "Teacher";
+  @Trace jobName: string = 'Teacher';
 }
 @ObservedV2
 class Info {
-  @Trace name: string = "Tom";
+  @Trace name: string = 'Tom';
   @Trace age: number = 25;
   job: Job = new Job();
 }
@@ -335,13 +335,13 @@ struct Index {
       Text(`name: ${this.info.name}`)
       Text(`age: ${this.info.age}`)
       Text(`jobName: ${this.info.job.jobName}`)
-      Button("change age")
+      Button('change age')
         .onClick(() => {
           this.info.age++;
         })
-      Button("Change job")
+      Button('Change job')
         .onClick(() => {
-          this.info.job.jobName = "Doctor";
+          this.info.job.jobName = 'Doctor';
         })
     }
   }
@@ -354,11 +354,11 @@ struct Index {
 // 以@State装饰器为例
 @ObservedV2
 class Job {
-  @Trace jobName: string = "Teacher";
+  @Trace jobName: string = 'Teacher';
 }
 @ObservedV2
 class Info {
-  @Trace name: string = "Tom";
+  @Trace name: string = 'Tom';
   @Trace age: number = 25;
   job: Job = new Job();
 }
@@ -377,13 +377,13 @@ struct Index {
       Text(`name: ${this.message.name}`)
       Text(`age: ${this.message.age}`)
       Text(`jobName: ${this.message.job.jobName}`)
-      Button("change age")
+      Button('change age')
         .onClick(() => {
           this.message.age++;
         })
-      Button("Change job")
+      Button('Change job')
         .onClick(() => {
-          this.message.job.jobName = "Doctor";
+          this.message.job.jobName = 'Doctor';
         })
     }
   }
@@ -401,9 +401,9 @@ struct Index {
 
 \@Trace装饰器与现有状态管理框架的[\@Track](arkts-track.md)与[\@State](arkts-state.md)装饰器的能力不同，@Track使class具有属性级更新的能力，但并不具备深度观测的能力；而\@State只能观测到对象本身以及第一层的变化，对于多层嵌套场景只能通过封装自定义组件，搭配[\@Observed](arkts-observed-and-objectlink.md)和[\@ObjectLink](arkts-observed-and-objectlink.md)来实现观测。
 
-* 点击Button("change length")，length是被\@Trace装饰的属性，它的变化可以触发关联的UI组件，即UINode (1)的刷新，并输出"id: 1 renderTimes: x"的日志，其中x根据点击次数依次增长。
-* 自定义组件Page中的son是常规变量，因此点击Button("assign Son")并不会观测到变化。
-* 当点击Button("assign Son")后，再点击Button("change length")并不会引起UI刷新。因为此时son的地址改变，其关联的UI组件并没有关联到最新的son。
+* 点击Button('change length')，length是被\@Trace装饰的属性，它的变化可以触发关联的UI组件，即UINode (1)的刷新，并输出"id: 1 renderTimes: x"的日志，其中x根据点击次数依次增长。
+* 自定义组件Page中的son是常规变量，因此点击Button('assign Son')并不会观测到变化。
+* 当点击Button('assign Son')后，再点击Button('change length')并不会引起UI刷新。因为此时son的地址改变，其关联的UI组件并没有关联到最新的son。
 
 ```ts
 @ObservedV2
@@ -417,7 +417,7 @@ class Bag {
 }
 class Son {
   age: number = 5;
-  school: string = "some";
+  school: string = 'some';
   bag: Bag = new Bag();
 }
 
@@ -436,12 +436,12 @@ struct Page {
     Column() {
       Text('pencil length'+ this.son.bag.pencil.length)
         .fontSize(this.isRender(1))   // UINode (1)
-      Button("change length")
+      Button('change length')
         .onClick(() => {
           // 点击更改length值，UINode（1）会刷新
           this.son.bag.pencil.length += 100;
         })
-      Button("assign Son")
+      Button('assign Son')
         .onClick(() => {
           // 由于变量son非状态变量，因此无法刷新UINode（1）
           this.son = new Son();
@@ -711,7 +711,7 @@ struct Index {
 ```ts
 @ObservedV2
 class Info {
-  @Trace memberMap: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+  @Trace memberMap: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
 }
 
 @Entry
@@ -731,11 +731,11 @@ struct MapSample {
         })
         Button('init map')
           .onClick(() => {
-            this.info.memberMap = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+            this.info.memberMap = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
           })
         Button('set new one')
           .onClick(() => {
-            this.info.memberMap.set(4, "d");
+            this.info.memberMap.set(4, 'd');
           })
         Button('clear')
           .onClick(() => {
@@ -743,7 +743,7 @@ struct MapSample {
           })
         Button('set the key: 0')
           .onClick(() => {
-            this.info.memberMap.set(0, "aa");
+            this.info.memberMap.set(0, 'aa');
           })
         Button('delete the first one')
           .onClick(() => {
