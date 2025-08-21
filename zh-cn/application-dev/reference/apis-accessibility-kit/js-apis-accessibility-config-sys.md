@@ -3,8 +3,9 @@
 <!--Kit: Accessibility Kit-->
 <!--Subsystem: BarrierFree-->
 <!--Owner: @qiiiiiiian-->
-<!--SE: @z7o-->
-<!--TSE: @A_qqq-->
+<!--Designer: @z7o-->
+<!--Tester: @A_qqq-->
+<!--Adviser: @w_Machine_cc-->
 
 本模块提供系统辅助功能的配置，包括辅助扩展的启用与关闭、高对比度文字显示、鼠标键、无障碍字幕配置等。
 

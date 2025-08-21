@@ -1,5 +1,12 @@
 # AppFreeze（应用冻屏）检测
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @rr_cn-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## 简介
 
 用户在使用应用时，如果出现点击无反应或应用无响应等情况，并且持续时间超过一定限制，就会被定义为应用冻屏（AppFreeze），即应用无响应或卡死。系统会检测应用无响应，并生成AppFreeze日志，供应用开发者分析。
@@ -109,6 +116,13 @@ Uid:20020177
 Reason:THREAD_BLOCK_6S
 appfreeze: com.samples.freezedebug THREAD_BLOCK_6S at 20250628140837
 DisplayPowerInfo:powerState:UNKNOWN
+Page switch history:
+  14:08:30:327 /ets/pages/Index:Appfreeze
+  14:08:28:986 /ets/pages/Index
+  14:08:26:502 :enters foreground
+  14:08:07:606 :leaves foreground
+  14:08:06:246 /ets/pages/Index:Appfreeze
+  14:08:01:955 :enters foreground
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 DOMAIN:AAFWK
 STRINGID:THREAD_BLOCK_6S
@@ -117,8 +131,11 @@ PID:13680
 UID:20020177
 PACKAGE_NAME:com.samples.freezedebug
 PROCESS_NAME:com.samples.freezedebug
+NOTE: Current fault may be caused by system issue, you may ignore it and analysis other faults.
 ***
 ```
+
+从API版本21开始，当整机资源告警（如可用内存不足500M，机壳温度超过46℃）时，会输出NOTE行。出现此行时，开发者可以忽略应用冻屏故障。在之前的API版本中，无论整机资源状态如何，均无此行输出。
 
 三种AppFreeze事件都包含以下几部分信息，具体解释如下：
 
@@ -127,6 +144,7 @@ PROCESS_NAME:com.samples.freezedebug
 | Reason | 应用无响应原因，与应用无响应检测能力点对应。 |
 | PID | 发生故障时的pid。 |
 | PACKAGE_NAME | 应用进程包名。 |
+|[Page switch history](./cppcrash-guidelines.md#有页面切换轨迹的故障场景日志规格)| 从API 21开始，维测进程会记录应用切换历史。应用发生故障后，生成的故障文件将包含页面切换历史轨迹。如果维测服务进程出现故障或未缓存切换轨迹，则不包含此字段。|
 
 ### 日志主干通用信息
 

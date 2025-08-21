@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 ![touchpad](figures/touchpad-ops.png)
 
@@ -11,7 +12,7 @@
 
 > **说明：**
 >
-> 需要注意的是，与触屏不同，触控板上的的多指操作并不会体现在上报的事件中，系统上层无法获取手指信息。
+> 需要注意的是，与触屏不同，触控板上的多指操作并不会体现在上报的事件中，系统上层无法获取手指信息。
 
 ## 单指操作
 

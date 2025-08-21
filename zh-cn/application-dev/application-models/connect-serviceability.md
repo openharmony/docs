@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @xialiangwei-->
-<!--SE: @jsjzju-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 <!--deprecated_code_no_check-->
 
 如果ServiceAbility需要与PageAbility或其他应用的ServiceAbility进行交互，则须创建用于连接的Connection。ServiceAbility支持其他Ability通过[connectAbility()](../reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilityconnectability7)方法与其进行连接。PageAbility的connectAbility()方法定义在[featureAbility](../reference/apis-ability-kit/js-apis-ability-featureAbility.md)中，ServiceAbility的connectAbility()方法定义在[particleAbility](../reference/apis-ability-kit/js-apis-ability-particleAbility.md)中。连接ServiceAbility的规则详见[组件启动规则](component-startup-rules-fa.md)章节。在使用connectAbility()处理回调时，需要传入目标Service的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)与[IAbilityConnection](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md)的实例。[IAbilityConnection](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md)提供了以下方法供开发者实现。

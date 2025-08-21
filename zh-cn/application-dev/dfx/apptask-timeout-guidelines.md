@@ -3,8 +3,9 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @rr_cn-->
-<!--SE: @peterhuangyu-->
-<!--TSE: @gcw_KuLfPSbe-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
 ## 简介
 
@@ -31,7 +32,7 @@
 
    > **注意：**
    >
-   > 启动主线程超时检测抓取trace的功能的前提**：开发者使用nolog版本，开发者模式处于关闭状态**；
+   > 启动主线程超时检测抓取trace的功能的前提：**开发者使用nolog版本，开发者模式处于关闭状态**；
    >
    > log和nolog版本：在手机中，点击设置——搜索关键字“关于本机”——软件版本进行查看。log版本会以log结尾；
    >
@@ -151,7 +152,7 @@ HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hia
 
 ### 日志获取
 
-主线程超时日志保存在应用沙箱目录下，可通过以下方式获取
+主线程超时日志保存在应用沙箱目录下，可通过以下方式获取：
 
 **方式一：通过HiAppEvent接口订阅**
 
@@ -159,4 +160,4 @@ HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hia
 
 ### 日志规格
 
-详见[应用冻屏日志规格](appfreeze-guidelines.md#日志规格)
+详见[应用冻屏日志规格](appfreeze-guidelines.md#日志规格)。

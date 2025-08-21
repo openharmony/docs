@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 提供获取组件绘制区域坐标和大小的能力。
 
@@ -196,6 +197,7 @@ struct Utils {
 
   build() {
     Column() {
+      // $r("app.media.img")需要替换为开发者所需的图像资源文件
       Image($r("app.media.img"))
         .transform(this.matrix1)
         .translate({ x: 20, y: 20, z: 20 })

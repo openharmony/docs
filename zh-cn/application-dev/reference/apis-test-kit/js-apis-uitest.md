@@ -3,8 +3,9 @@
 <!--Kit: Test Kit-->
 <!--Subsystem: Test-->
 <!--Owner: @inter515-->
-<!--SE: @inter515-->
-<!--TSE: @laonie666-->
+<!--Designer: @inter515-->
+<!--Tester: @laonie666-->
+<!--Adviser: @Brilliantry_Rui-->
 
 
 UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要支持如点击、双击、长按、滑动等UI操作能力。
@@ -23,13 +24,11 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本模块接口在<!--RP1-->[自动化测试脚本](../../application-test/arkxtest-guidelines.md)<!--RP1End-->中使用。
 > - 本模块接口不支持并发调用。
-> - 本模块接口适用于手机、平板、PC/2in1、智能穿戴设备、智慧屏、车机。
-
 
 ## 导入模块
 
 ```ts
-import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver } from '@kit.TestKit';
+import { Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver, UiComponent, UiDriver, BY } from '@kit.TestKit';
 ```
 
 ## MatchPattern
@@ -204,7 +203,7 @@ UI事件的相关信息。
 
 | 名称       | 类型   | 只读 | 可选 | 说明                                                       |
 | ---------- | ------ |----|----|----------------------------------------------------------|
-| paste | boolean | 否  | 是  | 输入文本时是否指定以复制粘贴方式输入。true：指定以复制粘贴方式输入。false：指定以逐字键入方式输入。默认为false。<br /> **说明：** <br>1.当输入文本中包含中文、特殊字符或文本长度超过200字符时，无论该参数取值为何，均以复制粘贴方式输入。<br>2.在智能穿戴设备中，该接口不支持以复制粘贴方式输入。|
+| paste | boolean | 否  | 是  | 输入文本时是否指定以复制粘贴方式输入。true：指定以复制粘贴方式输入。false：指定以逐字键入方式输入。默认为false。<br /> **说明：** 当输入文本中包含中文、特殊字符或文本长度超过200字符时，无论该参数取值为何，均以复制粘贴方式输入。|
 | addition       | boolean | 否  | 是  | 输入文本时是否以追加的方式进行输入。true：以追加方式输入。false：不以追加方式输入。默认为false。|
 
 
@@ -409,8 +408,8 @@ type(tp: string, pattern: MatchPattern): On
 **示例：**
 
 ```ts
-import { On, ON } from '@kit.TestKit';
-let on:On = ON.type('Button'); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
+import { On, ON, MatchPattern } from '@kit.TestKit';
+let on:On = ON.type('Button', MatchPattern.EQUALS); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
 ```
 
 ### clickable<sup>9+</sup>
@@ -1642,7 +1641,7 @@ async function demo() {
 
 inputText(text: string): Promise\<void>
 
-向控件中输入文本（适用于文本框控件），清空组件内原有文本后输入，使用Promise异步回调。
+清空组件内原有文本并输入指定文本内容，仅针对可编辑的文本组件生效，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1658,7 +1657,7 @@ inputText(text: string): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| text   | string | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
+| text   | string | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。 |
 
 **错误码：**
 
@@ -1685,7 +1684,7 @@ async function demo() {
 
 inputText(text: string, mode: InputTextMode): Promise\<void>
 
-向控件中输入文本（适用于文本框控件），支持指定文本输入方式，使用Promise异步回调。
+向控件中输入文本，并支持指定文本输入方式，仅针对可编辑的文本组件生效，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1695,7 +1694,7 @@ inputText(text: string, mode: InputTextMode): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| text   | string | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
+| text   | string | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。 |
 | mode | [InputTextMode](#inputtextmode20)  | 是   | 输入文本的方式，取值请参考[InputTextMode](#inputtextmode20)。<br> **说明：** InputTextMode.addition取值为ture时，在控件已有文本末尾后追加指定文本。取值为false时，指定文本将覆盖控件已有文本。|
 
 **返回值：**
@@ -1731,7 +1730,7 @@ async function mode_demo() {
 
 clearText(): Promise\<void>
 
-清除控件的文本信息（适用于文本框控件），使用Promise异步回调。
+清除控件的文本信息，仅针对可编辑的文本组件生效，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1943,13 +1942,11 @@ dragTo(target: Component): Promise\<void>
 
 将控件拖拽至目标控件处，使用Promise异步回调。
 
-> **说明**
->
-> 该接口仅在手机、平板、PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -2615,9 +2612,11 @@ triggerKey(keyCode: number): Promise\<void>
 
 ```ts
 import { Driver } from '@kit.TestKit';
+import { KeyCode } from '@kit.InputKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.triggerKey(123);
+  await driver.triggerKey(KeyCode.KEYCODE_BACK); // 返回键
 }
 ```
 
@@ -2657,10 +2656,11 @@ triggerKey(keyCode: number, displayId: number): Promise\<void>
 
 ```ts
 import { Driver } from '@kit.TestKit';
+import { KeyCode } from '@kit.InputKit';
 
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.triggerKey(123, 0);
+  await driver.triggerKey(KeyCode.KEYCODE_BACK, 0); // 返回键
 }
 ```
 
@@ -3100,13 +3100,11 @@ drag(startx: number, starty: number, endx: number, endy: number, speed?: number)
 
 从起始坐标点拖拽至目的坐标点，使用Promise异步回调。
 
-> **说明**
->
-> 该接口仅在手机、平板、PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -3150,13 +3148,11 @@ dragBetween(from: Point, to: Point, speed?: number, duration?: number): Promise\
 
 从起始坐标点拖拽至目标坐标点，支持指定拖拽速度和拖拽前长按时间，使用Promise异步回调。
 
-> **说明**
->
-> 该接口仅在手机、平板、PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -3283,13 +3279,11 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 将当前场景的显示方向设置为指定的显示方向，使用Promise异步回调。适用于可旋转的应用场景。
 
-> **说明**
->
-> 该接口仅在手机、平板、PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -3404,13 +3398,11 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 启用/禁用设备旋转屏幕的功能，使用Promise异步回调。
 
-> **说明**
->
-> 该接口仅在手机、平板、PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -3636,13 +3628,11 @@ pressHome(): Promise\<void>
 
 设备注入返回桌面操作，使用Promise异步回调。
 
-> **说明**
->
-> 该接口仅在手机、平板、PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **返回值：**
 
@@ -3674,13 +3664,11 @@ pressHome(displayId: number): Promise\<void>
 
 设备指定屏幕上注入返回桌面操作，使用Promise异步回调。
 
-> **说明**
->
-> 该接口仅在手机、平板、PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -4381,13 +4369,11 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 鼠标按住鼠标左键从起始坐标点拖拽至终点坐标点，使用Promise异步回调。
 
-> **说明**
->
-> 该接口仅在手机、平板、PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -4429,13 +4415,11 @@ mouseDrag(from: Point, to: Point, speed?: number, duration?: number): Promise\<v
 
 鼠标按住鼠标左键从起始坐标点拖拽至终点坐标点，支持指定拖拽速度和拖拽前长按时间，使用Promise异步回调。
 
-> **说明**
->
-> 该接口仅在手机、平板、PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -4487,7 +4471,7 @@ inputText(p: Point, text: string): Promise\<void>
 | 参数名 | 类型             | 必填 | 说明               |
 | ------ | ---------------- | ---- | ------------------ |
 | p      | [Point](#point9) | 是   | 输入文本的坐标点。 |
-| text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
+| text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。|
 
 **返回值：**
 
@@ -4531,8 +4515,8 @@ inputText(p: Point, text: string, mode: InputTextMode): Promise\<void>
 | 参数名 | 类型             | 必填 | 说明               |
 | ------ | ---------------- | ---- | ------------------ |
 | p      | [Point](#point9) | 是   | 输入文本的坐标点。 |
-| text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
-| mode | [InputTextMode](#inputtextmode20) | 是   | 输入文本的方式，取值请参考[InputTextMode](#inputtextmode20)。 <br> **说明：** InputTextMode.addition取值为ture时，将光标移动至文本末尾后输入指定文本。取值为false时，将在坐标点位置输入指定文本。 |
+| text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。 |
+| mode | [InputTextMode](#inputtextmode20) | 是   | 输入文本的方式，取值请参考[InputTextMode](#inputtextmode20)。 <br> **说明：** <br> InputTextMode.addition取值为ture时，将光标移动至文本末尾后输入指定文本。取值为false时，将在坐标点位置输入指定文本。 |
 
 **返回值：**
 
@@ -4577,13 +4561,11 @@ touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: Touc
 
 模拟触摸板多指滑动手势，使用Promise异步回调。
 
-> **说明**
->
-> 该接口仅在PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在PC/2in1设备中可正常调用，在其他设备中返回17000005错误码。
 
 **参数：**
 
@@ -4842,11 +4824,11 @@ crownRotate(d: number, speed?: number): Promise\<void>
 
 注入手表表冠旋转事件，可指定旋转速度，使用Promise异步回调。
 
-该接口仅在智能穿戴设备上生效。
-
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在Wearable设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -5244,6 +5226,8 @@ moveTo(x: number, y: number): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
+**设备行为差异**：该接口在PC/2in1、Tablet设备中可正常调用，在其他设备中返回17000005错误码。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                            |
@@ -5331,13 +5315,11 @@ split(): Promise\<void>
 
 将窗口模式切换成分屏模式，使用Promise异步回调。适用于支持切换分屏模式的窗口。
 
-> **说明**
->
-> 该接口仅在平板、PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在PC/2in1、Tablet设备中可正常调用，在其他设备中返回17000005错误码。
 
 **返回值：**
 
@@ -5372,13 +5354,11 @@ maximize(): Promise\<void>
 
 将窗口最大化，使用Promise异步回调。适用于支持窗口最大化操作的窗口。
 
-> **说明**
->
-> 该接口仅在平板、PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在PC/2in1、Tablet设备中可正常调用，在其他设备中返回17000005错误码。
 
 **返回值：**
 
@@ -5413,13 +5393,11 @@ minimize(): Promise\<void>
 
 将窗口最小化，使用Promise异步回调。适用于支持窗口最小化操作的窗口。
 
-> **说明**
->
-> 该接口仅在平板、PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在PC/2in1、Tablet设备中可正常调用，在其他设备中返回17000005错误码。
 
 **返回值：**
 
@@ -5454,13 +5432,11 @@ resume(): Promise\<void>
 
 将窗口恢复到之前的窗口模式，使用Promise异步回调。
 
-> **说明**
->
-> 该接口仅在平板、PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在PC/2in1、Tablet设备中可正常调用，在其他设备中返回17000005错误码。
 
 **返回值：**
 
@@ -5495,13 +5471,11 @@ close(): Promise\<void>
 
 将窗口关闭，使用Promise异步回调。
 
-> **说明**
->
-> 该接口仅在平板、PC/2in1设备上生效。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**设备行为差异**：该接口在PC/2in1、Tablet设备中可正常调用，在其他设备中返回17000005错误码。
 
 **返回值：**
 
@@ -6389,7 +6363,7 @@ async function demo() {
 
 inputText(text: string): Promise\<void>
 
-向控件中输入文本（适用于文本框控件）。
+向控件中输入文本，仅针对可编辑的文本组件生效。
 
 从API version 9开始不再维护，建议使用[inputText<sup>9+</sup>](#inputtext9)。
 
@@ -6673,9 +6647,11 @@ UiDriver对象采取如下操作：通过key值找到对应键并点击。
 
 ```ts
 import { Driver, UiDriver } from '@kit.TestKit';
+import { KeyCode } from '@kit.InputKit';
+
 async function demo() {
   let driver: UiDriver = UiDriver.create();
-  await driver.triggerKey(123);
+  await driver.triggerKey(KeyCode.KEYCODE_BACK); // 返回键
 }
 ```
 

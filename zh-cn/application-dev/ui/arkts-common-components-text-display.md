@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiangyuan6-->
-<!--SE: @pssea-->
-<!--TSE: @jiaoaozihao-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 
 Text是文本组件，用于展示用户视图，如显示文章的文字内容。该组件支持绑定自定义文本选择菜单，用户可根据需要选择不同功能。此外，还可以扩展自定义菜单，丰富可用选项，进一步提升用户体验。Span则用于展示行内文本。  
@@ -602,6 +603,7 @@ struct Index {
     Text() {
       Span("Hello")
         .fontSize(50)
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       ImageSpan($r('app.media.startIcon'))
         .width(30).height(30)
         .verticalAlign(ImageSpanAlignment.FOLLOW_PARAGRAPH)
@@ -650,6 +652,7 @@ struct Index {
       Column() {
         Menu() {
           MenuItemGroup() {
+            // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
             MenuItem({ startIcon: $r('app.media.app_icon'), content: "CustomMenu One", labelInfo: "" })
               .onClick(() => {
                 // 使用closeSelectionMenu接口关闭菜单
@@ -678,6 +681,7 @@ struct Index {
     ```ts
     // 定义onCreateMenu，onMenuItemClick
     onCreateMenu = (menuItems: Array<TextMenuItem>) => {
+      // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
       let item1: TextMenuItem = {
         content: 'customMenu1',
         icon: $r('app.media.app_icon'),
@@ -859,6 +863,7 @@ struct TextExample12 {
   @State text: string = 'Text editMenuOptions';
   @State endIndex: number = 0;
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
+    // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
     let item1: TextMenuItem = {
       content: 'create1',
       icon: $r('app.media.startIcon'),
@@ -892,6 +897,7 @@ struct TextExample12 {
     }
     return false;
   }
+  // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
   onPrepareMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'prepare1_' + this.endIndex,

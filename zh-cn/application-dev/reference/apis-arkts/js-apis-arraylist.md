@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
-<!--SE: @yuanyao14-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 ArrayList是一种线性数据结构，底层基于数组实现。ArrayList会根据实际需要动态调整容量，每次扩容增加50%。
 
@@ -101,13 +102,15 @@ class C1 {
   age: string = ""
 }
 let arrayList = new ArrayList<string | number | boolean | Array<number> | C1>();
-let result1 = arrayList.add("a");
-let result2 = arrayList.add(1);
+arrayList.add("a");
+arrayList.add(1);
 let b = [1, 2, 3];
-let result3 = arrayList.add(b);
+arrayList.add(b);
 let c : C1 = {name: "Dylan", age: "13"}
-let result4 = arrayList.add(c);
-let result5 = arrayList.add(false);
+let result1 = arrayList.add(c);
+let result2 = arrayList.add(false);
+console.info("result1:", result1);  // result1: true
+console.info("result2:", result2);  // result2: true
 console.info("length:", arrayList.length);  // length: 5
 ```
 

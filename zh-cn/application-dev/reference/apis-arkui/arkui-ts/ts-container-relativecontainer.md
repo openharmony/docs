@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @fenglinbailu-->
-<!--SE: @lanshouren-->
-<!--TSE: @liuli0427-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 相对布局组件，用于复杂场景中元素对齐的布局。
 
@@ -405,7 +406,7 @@ struct Index {
 
 ### 示例4（设置偏移）
 
-本示例通过[bias](ts-types.md#bias对象说明)实现了子组件的位置在竖直方向的两个锚点间偏移的效果。
+本示例通过[bias](ts-types.md#bias对象说明)实现了子组件的位置在垂直方向的两个锚点间偏移的效果。
 
 ```ts
 @Entry

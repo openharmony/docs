@@ -1,4 +1,10 @@
 # 文件管理错误码
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
+<!--Designer: @gsl_1234; @wangke25-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 > **说明：**
 >
@@ -656,13 +662,13 @@ Connection failed
 
 **可能原因**
 
-设备、Wifi或蓝牙状态异常，导致建立链接失败。
+设备、Wi-Fi或蓝牙状态异常，导致建立链接失败。
 
 **处理步骤**
 
 1.检查设备，确认设备状态正常。
 
-2.检查WiFi和蓝牙，确认状态正常。
+2.检查Wi-Fi和蓝牙，确认状态正常。
 
 ### 13900046 软件造成连接中断
 
@@ -672,13 +678,13 @@ Software caused connection abort
 
 **可能原因**
 
-设备下线或WiFi、蓝牙断连。
+设备下线或Wi-Fi、蓝牙断连。
 
 **处理步骤**
 
 1.检查设备，确认设备状态正常。
 
-2.检查WiFi和蓝牙，确认状态正常。
+2.检查Wi-Fi和蓝牙，确认状态正常。
 
 ## 用户数据管理错误码
 

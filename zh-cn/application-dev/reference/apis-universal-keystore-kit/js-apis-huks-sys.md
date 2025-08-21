@@ -3,8 +3,9 @@
 <!--Kit: Universal Keystore Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @wutiantian-gitee-->
-<!--SE: @HighLowWorld-->
-<!--TSE: @wxy1234564846-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
 
 向应用提供密钥库能力，应用可调用接口，指定用户身份操作密钥。
 
@@ -755,7 +756,7 @@ const genWrappingKeyParams: huks.HuksOptions = {
     },
     {
       tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-      value: huks.HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256
+      value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
     },
     {
       tag: huks.HuksTag.HUKS_TAG_PADDING,

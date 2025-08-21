@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
@@ -22,6 +23,5 @@
 | 名称 | 描述 |
 | -- | -- |
 | int32_t captureId | 捕获id。 |
-| uint64_t timestamp | 帧的时间戳。 |
-
+| uint64_t timestamp | 帧的时间戳，单位毫秒。 |
 

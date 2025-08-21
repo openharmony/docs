@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @Hu_ZeQi-->
-<!--SE: @jiangdayuan-->
-<!--TSE: @lxl007-->
+<!--Designer: @jiangdayuan-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
  滑块视图容器，提供子组件滑动轮播显示的能力。 
 
@@ -301,6 +302,10 @@ cachedCount(value: number)
 cachedCount(count: number, isShown: boolean)
 
 设置预加载子组件个数。
+
+>  **说明：** 
+>
+>  - isShown属性为true，且设置的count过大时，如果前后预加载范围内可加载的节点不足，循环场景下同一个可加载节点只会布局在一侧。
 
 **卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
@@ -1421,6 +1426,10 @@ onChange(event: Callback\<number>)
 当前显示的子组件索引变化时触发该事件，返回值为当前显示的子组件的索引值。
 
 Swiper组件结合LazyForEach使用时，不能在onChange事件里触发子页面UI的刷新。
+
+>  **说明：** 
+>
+>  - 回调会在页面动画结束、动画打断、索引设置等时机，引起页面索引变化时触发，在动画过程中不触发。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 

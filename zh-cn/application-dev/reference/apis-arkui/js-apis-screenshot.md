@@ -1,9 +1,10 @@
 # @ohos.screenshot (屏幕截图)
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
-<!--Owner: @oh_wangxk;@logn-->
-<!--SE: @hejunfei1991-->
-<!--TSE: @qinliwen0417-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 本模块提供屏幕截图的能力。
 
@@ -92,11 +93,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let promise = screenshot.pick();
   promise.then((pickInfo: screenshot.PickInfo) => {
-    console.log('pick Pixel bytes number: ' + pickInfo.pixelMap.getPixelBytesNumber());
-    console.log('pick Rect: ' + pickInfo.pickRect);
+    console.info('pick Pixel bytes number: ' + pickInfo.pixelMap.getPixelBytesNumber());
+    console.info('pick Rect: ' + pickInfo.pickRect);
     pickInfo.pixelMap.release(); // PixelMap使用完后及时释放内存
   }).catch((err: BusinessError) => {
-    console.log(`Failed to pick. Code: ' + Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to pick. Code: ' + Code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
   console.error(`Failed to pick Code: ' + Code: ${exception.code}, message: ${exception.message}`);
@@ -153,7 +154,7 @@ let captureOption: screenshot.CaptureOption = {
 try {
   let promise = screenshot.capture(captureOption);
   promise.then((pixelMap: image.PixelMap) => {
-    console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    console.info('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
     pixelMap.release(); // PixelMap使用完后及时释放内存
   }).catch((err: BusinessError) => {
     console.error(`Failed to save screenshot. Code: ${err.code}, message: ${err.message}`);

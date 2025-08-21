@@ -1,5 +1,12 @@
 # Device Pairing
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+<!--Adviser: @zhang_yixin13-->
+
 ## Introduction
 This document provides guidance on how to develop profile capabilities for actively pairing and connecting devices.
 

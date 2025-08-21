@@ -3,8 +3,9 @@
 <!--Kit: MindSpore Lite Kit-->
 <!--Subsystem: AI-->
 <!--Owner: @zhuguodong8-->
-<!--SE: @zhuguodong8; @jjfeing-->
-<!--TSE: @principal87-->
+<!--Designer: @zhuguodong8; @jjfeing-->
+<!--Tester: @principal87-->
+<!--Adviser: @ge-yafang-->
 
 MindSpore Lite是一个轻量化、高性能的端侧AI引擎，提供了标准的模型推理和训练接口，内置通用硬件高性能算子库，支持Neural Network Runtime Kit使能AI专用芯片加速推理，助力打造全场景智能应用。
 
@@ -583,7 +584,7 @@ NNRt设备信息描述，包含设备ID，设备名称等信息。
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
-### deviceID
+### deviceID<sup>12+</sup>
 
 deviceID() : bigint
 
@@ -613,7 +614,7 @@ if (allDevices == null) {
 }
 ```
 
-### deviceType
+### deviceType<sup>12+</sup>
 
 deviceType() : NNRTDeviceType
 
@@ -643,7 +644,7 @@ if (allDevices == null) {
 }
 ```
 
-### deviceName
+### deviceName<sup>12+</sup>
 
 deviceName() : string
 

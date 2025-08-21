@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
-<!--SE: @yangfan229-->
-<!--TSE: @lxl007-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 通过页签进行内容视图切换的容器组件，每个页签对应一个内容视图。
 
@@ -1792,6 +1793,8 @@ struct TabsExample {
 
   @Builder tabBuilder(title: string,targetIndex: number) {
     Column(){
+      // $r('app.media.star_fill')需要替换为开发者所需的图像资源文件
+      // $r('app.media.star')需要替换为开发者所需的图像资源文件
       Image(this.selectedIndex === targetIndex ? $r('app.media.star_fill') : $r('app.media.star'))
         .width(24)
         .height(24)

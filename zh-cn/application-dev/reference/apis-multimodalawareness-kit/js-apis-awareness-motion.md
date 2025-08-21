@@ -2,8 +2,9 @@
 <!--Kit: Multimodal Awareness Kit-->
 <!--Subsystem: MultimodalAwareness-->
 <!--Owner: @dilligencer-->
-<!--SE: @zou_ye-->
-<!--TSE: @judan-->
+<!--Designer: @zou_ye-->
+<!--Tester: @judan-->
+<!--Adviser: @hu-zhiqiong-->
 
 本模块，提供对用户行为、动作的感知能力，包括用户的手势、动作等。
 
@@ -82,7 +83,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { Callback } from '@ohos.base';
 
 let callback:Callback<motion.OperatingHandStatus> = (data:motion.OperatingHandStatus) => {
-    console.info('callback success' + data);
+    console.info('callback succeeded' + data);
 };
 
 try {
@@ -170,7 +171,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let data:motion.OperatingHandStatus = motion.getRecentOperatingHandStatus();
-    console.info('get success' + data);
+    console.info('get succeeded' + data);
 } catch (err) {
     let error = err as BusinessError;
     console.error("Failed get and err code is " + error.code);
@@ -212,7 +213,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { Callback } from '@ohos.base';
 
 let callback:Callback<motion.HoldingHandStatus> = (data:motion.HoldingHandStatus) => {
-  console.info('callback success: ' + data);
+  console.info('callback succeeded: ' + data);
 };
 
 try {

@@ -2,8 +2,9 @@
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @wang-haizhou6-->
-<!--SE: @HmQQQ-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -25,7 +26,7 @@ import { media } from '@kit.MediaKit';
 | 名称   | 类型    | 只读   | 可选   | 说明                |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | url       | string                        | 否   | 否   | 资源url，需要应用程序打开的资源路径。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| header     | Record<string, string>        | 否   | 是   | 网络请求标头，如果存在需要应用在下载数据是将头信息设置到http请求中。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| header     | Record<string, string>        | 否   | 是   | 网络请求标头，如果存在，需要应用在下载数据是将头信息设置到http请求中。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## respondData<sup>18+</sup>
 
@@ -54,14 +55,14 @@ respondData(uuid: number, offset: number, buffer: ArrayBuffer): number
 **示例：**
 
 ```ts
-import HashMap from '@ohos.util.HashMap';
+import { HashMap } from '@kit.ArkTS';
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
 let request = requests.get(uuid);
 let offset = 0; // 当前媒体数据相对于资源起始位置的偏移量
 let buf = new ArrayBuffer(0); // 由应用定义，推送给播放器的数据
-let num = request.respondData(uuid, offset, buf);
+let num = request?.respondData(uuid, offset, buf);
 ```
 
 ## respondHeader<sup>18+</sup>
@@ -85,7 +86,7 @@ respondHeader(uuid: number, header?: Record<string, string>, redirectUrl?: strin
 **示例：**
 
 ```ts
-import HashMap from '@ohos.util.HashMap';
+import { HashMap } from '@kit.ArkTS';
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
@@ -100,7 +101,7 @@ let header:Record<string, string> = {
   'content-length' : 'xxx'
 };
 let request = requests.get(uuid);
-request.respondHeader(uuid, header);
+request?.respondHeader(uuid, header);
 ```
 
 ## finishLoading<sup>18+</sup>
@@ -123,11 +124,12 @@ finishLoading(uuid: number, state: LoadingRequestError): void
 **示例：**
 
 ```ts
-import HashMap from '@ohos.util.HashMap';
+import { HashMap } from '@kit.ArkTS';
+
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
 let request = requests.get(uuid);
 let loadingError = media.LoadingRequestError.LOADING_ERROR_SUCCESS;
-request.finishLoading(uuid, loadingError);
+request?.finishLoading(uuid, loadingError);
 ```

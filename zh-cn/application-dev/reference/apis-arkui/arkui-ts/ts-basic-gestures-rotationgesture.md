@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 用于触发旋转手势事件，触发旋转手势的最少手指为2指，最大为5指，最小改变度数为1度。该手势不支持通过触控板双指旋转操作触发。
 

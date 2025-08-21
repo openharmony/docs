@@ -18,7 +18,7 @@ Defines network capability sets.
 |------------------------------------------------------------------------------------------------------------------------| -- |
 | uint32_t linkUpBandwidthKbps                                                                                           | Uplink bandwidth.|
 | uint32_t linkDownBandwidthKbps                                                                                         | Downlink bandwidth.|
-| [NetConn_NetCap](capi-net-connection-type-h.md#netconn_netcap) netCaps[NETCONN_MAX_CAP_SIZE]                           | Network capability list.|
+| [NetConn_NetCap](capi-net-connection-type-h.md#netconn_netcap) netCaps[[NETCONN_MAX_CAP_SIZE]](capi-net-connection-type-h.md#macros)                           | Network capability list.|
 | int32_t netCapsSize                                                                                                    | Actual size of the network capability list.|
-| [NetConn_NetBearerType](capi-net-connection-type-h.md#netconn_netbearertype) bearerTypes[NETCONN_MAX_BEARER_TYPE_SIZE] | Bearer type list.|
+| [NetConn_NetBearerType](capi-net-connection-type-h.md#netconn_netbearertype) bearerTypes[[NETCONN_MAX_BEARER_TYPE_SIZE]](capi-net-connection-type-h.md#macros) | Bearer type list.|
 | int32_t bearerTypesSize                                                                                                | Actual size of the bearer type list.|

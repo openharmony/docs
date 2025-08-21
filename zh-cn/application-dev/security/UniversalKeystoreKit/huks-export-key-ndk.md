@@ -3,13 +3,14 @@
 <!--Kit: Universal Keystore Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @wutiantian-gitee-->
-<!--SE: @HighLowWorld-->
-<!--TSE: @wxy1234564846-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
 
 业务需要获取持久化存储的非对称密钥的公钥时使用，当前支持ECC/RSA/ED25519/X25519/SM2的公钥导出。
 
 >**说明：**
-> 轻量级设备仅支持RSA公钥导出。
+> <!--RP1-->轻量级设备<!--RP1End-->仅支持RSA公钥导出。
 
 ## 在CMake脚本中链接相关动态库
 ```txt

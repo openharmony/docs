@@ -1,4 +1,10 @@
 # ChipGroup
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xieziang-->
+<!--Designer: @youzhi92-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @HelloCrease-->
 
 **ChipGroup** is an advanced component that provides a group of chips for scenarios such as categorizing files or resource content.
 
@@ -6,7 +12,6 @@
 >
 > This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
 >
-> This component is not supported on wearables.
 
 ## Modules to Import
 
@@ -39,6 +44,8 @@ ChipGroup({
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name           | Type                                           | Mandatory| Decorator| Description                                                                                    |
 | --------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------                             | ------------------------------------------------------------                             |
 | items           | [ChipGroupItemOptions[]](#chipgroupitemoptions) | Yes  | @Require  @Prop | Specific attributes of individual chips. For details, see [ChipGroupItemOptions[]](#chipgroupitemoptions).<br>If this parameter is set to **undefined**, the chip group is empty by default.              |
@@ -63,6 +70,8 @@ ChipGroup({
 Defines the specific attributes of individual chips.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name        | Type                          | Mandatory| Description                             |
 | ----------   | ----------------------------- | ---- | ----------------------------------- |
@@ -91,6 +100,8 @@ Defines the common attributes shared by all chips in the chip group.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name                   | Type                                                        | Mandatory| Description                                                        |
 | ----------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | size                    | [ChipSize](ohos-arkui-advanced-Chip.md#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | No  | Chip size. To use this API, you must import the **ChipSize** type from the **Chip** component.<br>Default value: **ChipSize**: **ChipSize.NORMAL**<br> If this parameter is set to **undefined**, the default value is used.|
@@ -115,7 +126,7 @@ Defines the left and right padding of the chip group, and the spacing between ch
 
 | Name      | Type           | Mandatory| Description                                            |
 | ---------- | -------------- | ---- | ------------------------------------------------ |
-| itemSpace | string \| number  | No  | Spacing between chips. Percentage values are not supported.<br>Default value: **8**<br>Unit: vp<br>If this parameter is set to **undefined**, the default value is used.     |
+| itemSpace | string \| number  | No  | Spacing between chips. Percentage values are not supported.<br>Value range:<br>Number type: a value greater than or equal to 0 (for example, **0**, **8**, **16**, or **24.5**)<br>String type: a string with units fp \|vp \|px \| lpx and a numeric part greater than or equal to 0, for example, **"8vp"**, **"16fp"**, **"12px"**, or **"10lpx"**.<br>Not supported: negative values, percentage units, and invalid string formats.<br>Default value: **8**<br>Unit: vp<br>If this parameter is set to **undefined**, the default value is used.    |
 | startSpace | [Length](ts-types.md#length)         | No  | Left padding. Percentage values are not supported.<br>Default value: **16**<br>Unit: vp<br>If this parameter is set to **undefined**, the default value is used.               |
 | endSpace   | [Length](ts-types.md#length)         | No  | Right padding. Percentage values are not supported.<br>Default value: **16**<br>Unit: vp<br>If this parameter is set to **undefined**, the default value is used.|
 
@@ -126,6 +137,8 @@ Defines the top and bottom padding of the chip group, used to control the overal
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name  | Type           | Mandatory| Description                                                     |
 | ------ | -------------- | ---- | ------------------------------------------------            |
@@ -142,6 +155,8 @@ Inherits [IconOptions](#iconoptions).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name| Type| Mandatory| Description|
 | ---- | ---- | --- | ---- |
 | action | [VoidCallback](ts-types.md#voidcallback12) | No| Action of the suffix icon.|
@@ -156,6 +171,8 @@ Defines the options for the trailing symbol item in a chip group.
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name| Type| Mandatory| Description|
 | ---- | ---- | --- | ---- |
@@ -173,6 +190,8 @@ Defines the options for the trailing symbol item in a chip group.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name    | Type                   | Mandatory| Decorator| Description                                                             |
 | -------- | ---------------------- | ---- | ----------------------------------------------| ----------------------------------------------|
 | items    | Array<[IconItemOptions](#iconitemoptions) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) \| [ SymbolItemOptions](#symbolitemoptions14)> | Yes  | @Require  @Prop | Custom builder items.|
@@ -187,6 +206,8 @@ Defines the options for the trailing symbol item in a chip group.
 Defines the tail builder, which imposes limitations on the settings for the background size and color.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name    | Type                           | Mandatory| Description                                   |
 | -------- | --------------                 | ---- | ------------------------------           |
@@ -204,6 +225,8 @@ Defines the common attributes of icons.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name| Type                                  | Mandatory| Description                                                        |
 | ---- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | src  | [ResourceStr](ts-types.md#resourcestr) | Yes  | Icon source, which can be a specific image path or an image reference.                                    |
@@ -216,6 +239,8 @@ Defines the common attributes of labels.
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name| Type  | Mandatory | Description    |
 | ---- | ------ | ---- | -------- |

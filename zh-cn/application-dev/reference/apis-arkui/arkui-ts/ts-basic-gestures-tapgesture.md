@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 支持单击、双击和多次点击事件的识别。
 
@@ -18,7 +19,9 @@
 
 TapGesture(value?: TapGestureParameters)
 
-触发点击手势事件的设备类型为键盘或手柄时，事件的SourceTool值为Unknown。
+设置点击手势的相关参数。
+
+触发点击手势事件的设备类型为键盘或手柄时，事件的[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)值为Unknown。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

@@ -3,8 +3,9 @@
 <!--Kit: Background Tasks Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @hongjianfeng-->
-<!--SE: @zhouben25-->
-<!--TSE: @fenglili18-->
+<!--Designer: @zhouben25-->
+<!--Tester: @fenglili18-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供了后台子进程管控接口。开发者可以通过本模块接口对子进程进行压制、解压制，避免子进程过多占用系统资源，导致系统使用卡顿。本模块接口仅对通过[OH_Ability_StartNativeChildProcess](../apis-ability-kit/capi-native-child-process-h.md#oh_ability_startnativechildprocess)接口创建的子进程生效。
 
@@ -100,12 +101,14 @@ try {
 
 setPowerSaveMode(pid: number, powerSaveMode: PowerSaveMode): Promise&lt;void&gt;
 
-设置进程的能效模式，使用Promise异步回调。本接口仅在PC/2in1设备上生效。
+设置进程的能效模式，使用Promise异步回调。
 
 当应用满足以下条件时，可以设置自身是否进入能效模式：
 - 应用未获取系统焦点，未执行音频或界面刷新操作。
 - 无法通过框架层获取电源锁。
 - 应用需要执行压缩、解压缩、编译等耗时较长的计算任务，不希望这些任务受到显著的CPU资源限制（即被迫进入能效模式）。
+
+**设备行为差异**：该接口在PC/2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **需要权限**： ohos.permission.BACKGROUND_MANAGER_POWER_SAVE_MODE
 
@@ -154,7 +157,9 @@ try {
 
 isPowerSaveMode(pid: number): Promise&lt;boolean&gt;
 
-查询进程是否处于能效模式，使用Promise异步回调。本接口仅在PC/2in1设备上生效。
+查询进程是否处于能效模式，使用Promise异步回调。
+
+**设备行为差异**：该接口在PC/2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **需要权限**： ohos.permission.BACKGROUND_MANAGER_POWER_SAVE_MODE
 

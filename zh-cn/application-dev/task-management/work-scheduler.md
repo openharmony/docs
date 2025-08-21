@@ -1,9 +1,11 @@
 # 延迟任务(ArkTS)
+
 <!--Kit: Background Tasks Kit-->
 <!--Subsystem: ResourceSchedule-->
 <!--Owner: @cheng-shichang-->
-<!--SE: @zhouben25-->
-<!--TSE: @fenglili18-->
+<!--Designer: @zhouben25-->
+<!--Tester: @fenglili18-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ## 概述
 

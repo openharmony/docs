@@ -2,8 +2,9 @@
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @yuanxiaogou; @string_sz-->
-<!--SE: @knightaoko-->
-<!--TSE: @test_lzz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 使用JSVM-API实现跨语言交互，首先需按其机制注册和加载模块。
 
@@ -60,7 +61,7 @@
   target_link_libraries(entry PUBLIC libace_napi.z.so libjsvm.so libhilog_ndk.z.so)
   ```
 
-- 实现Native侧的runTest接口。具体代码如下：
+- 新建entry/src/main/cpp/hello.cpp，实现Native侧的runTest接口。具体代码如下：
 
   ```cpp
   // entry/src/main/cpp/hello.cpp

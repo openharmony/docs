@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @wang_zhaoyong-->
-<!--SE: @weng-changcheng-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 
 Promise和async/await是标准的JS异步语法，提供异步并发能力。异步代码执行时会被挂起，稍后继续执行，确保同一时间只有一段代码在运行。以下是典型的异步并发使用场景：
@@ -129,7 +130,7 @@ struct Index {
 
 在上述示例代码中，使用await等待Promise解析，并存储在result变量中。
 
-需要注意的是，等待异步操作时，需将操作包在async函数中，并搭配await使用。同时也可使用try/catch块来捕获异常。
+需要注意的是，等待异步操作时，需将操作包在async函数中，并搭配await使用，且await关键字只在async函数内有效。同时也可使用try/catch块来捕获异常。
 
 ```ts
 async function myAsyncFunction(): Promise<void> {

@@ -1,4 +1,10 @@
 # @ohos.app.form.formInfo (formInfo) (System API)
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The **formInfo** module provides types and enums related to the widget information and state.
 
@@ -24,6 +30,8 @@ Defines the widget information.
 | previewImages<sup>18+</sup> | Array&lt;number&gt; | Yes| No| Resource IDs of the preview images of the widget.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 | enableBlurBackground<sup>18+</sup>  | boolean               | Yes   | No    | Whether the widget uses a blur background.|
 | renderingMode<sup>18+</sup>|[RenderingMode](./js-apis-app-form-formInfo-sys.md#renderingmode18)|Yes|No|Widget rendering mode.|
+| resizable<sup>20+</sup> | boolean  | Yes   | No    | Whether the widget can be resized by dragging. The value must be in the **supportDimensions** configuration list of the widget or the widget with the same **groupId**.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+| groupId<sup>20+</sup> | string     | Yes   | No    | Common ID of a group of widgets. If the values of **groupId** of multiple widgets are the same and the value of **resizable** is **true**, the **supportDimensions** configuration of multiple widgets is shared. For example, if the **groupId** values of widgets A and B are the same and the **resizable** values are **true**, widget A can be adjusted to any size specified by **supportDimensions**.<br>It is recommended that this field be set when multiple widgets with the same functionality need to be resized.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
 
 
 ##  FormParam
@@ -59,17 +67,10 @@ Defines the information about an added widget, which can be either in use or not
 
 | Name       | Type                | Readable   | Writable   | Description                                                        |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
-| formId  | string               | Yes   | No    | Widget ID.                  |
-| bundleName<sup>10+</sup>  | string               | Yes   | No    | Name of the bundle to which the widget provider belongs.                  |
 | hostBundleName  | string               | Yes   | No    | Name of the bundle to which the widget host belongs.                  |
 | visibilityType  | [VisibilityType](js-apis-app-form-formInfo.md#visibilitytype)               | Yes   | No    | Visibility types of the widget.                  |
-| moduleName<sup>10+</sup>  | string               | Yes   | No    | Name of the module to which the widget belongs.                     |
-| abilityName<sup>10+</sup> | string               | Yes   | No    | Name of the ability to which the widget belongs.                      |
-| formName<sup>10+</sup>        | string               | Yes   | No    | Widget name.                                |
-| dimension | number               | Yes   | No    | Widget specifications.  |
 | formUsageState<sup>11+</sup> | [FormUsageState](#formusagestate)         | Yes   | No    | Usage status of the widget.  |
 | formDescription<sup>11+</sup> | string         | Yes   | No    | Description in the widget configuration file of the provider.  |
-| formLocation<sup>12+</sup> | [FormLocation](#formlocation12)| Yes   | No    | Location of the widget.  |
 
 ## formProviderFilter<sup>10+</sup>
 
@@ -199,7 +200,7 @@ Defines the parameters for a fun-based widget.
 |-----|-----|----|-----|--------------------------------------------------------------------------------------------------------------------------------------|
 | abilityName | string | Yes | Yes  | ExtensionAbility name of the interaction scenario. This parameter is left empty by default.|
 | targetBundleName  | string | Yes | No  | Bundle name.       |
-| subBundleName  | string | Yes | No  | Sub bundle name.|
+| subBundleName  | string | Yes | No  | Sub-bundle name.|
 | keepStateDuration  | number | Yes | Yes  | Duration of the activated state when there is no interaction. The default value is **10000**, in ms. The value should be an integer within the range [0, 10000]. If the value exceeds this range, it defaults to 10000 milliseconds.|
 
 ## SceneAnimationParams<sup>20+</sup>
@@ -214,3 +215,51 @@ Defines the parameters for a scene-based widget.
 |-----|-----|------|----|-------------------------------------------------------------------------------------------------------------------------------------------------|
 | abilityName | string | Yes| No | ExtensionAbility name, for example, LiveFormExtensionAbility name of the widget provider.                                    |
 | disabledDesktopBehaviors | string | Yes| Yes | The options are **SWIPE_DESKTOP**, **PULL_DOWN_SEARCH**, **LONG_CLICK**, and **DRAG**. You can select one or more options. Use a vertical bar (\|) in between| to concatenate two different operations, for example, SWIPE_DESKTOP\|PULL_DOWN_SEARCH| By default, no operation is disabled.|
+
+## GetFormRectInfoCallback<sup>20+</sup>
+
+### (formId: string)
+
+(formId: string): Promise&lt;formInfo.Rect&gt;
+
+Callback for querying the widget position and dimension. It uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+|-----|-----|------|------------------|
+| formId | string | Yes| Widget ID.|
+
+**Returns**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[formInfo.Rect](js-apis-app-form-formInfo.md#rect20)&gt; | Promise used to return the position and dimension of the widget relative to the upper left corner of the screen, in vp.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                                                                 |
+|-------|-----------------------------------------------------------------------------------------------------------|
+| 202   | The application is not a system application.                                                              |
+
+**Example**
+
+```ts
+import { formInfo } from '@kit.FormKit';
+
+// The widget host needs to process the request, and calculate and return the widget dimension and position information.
+let getFormRectInfoCallback: formInfo.GetFormRectInfoCallback =
+  (formId: string): Promise<formInfo.Rect> => {
+    return new Promise<formInfo.Rect>((resolve: Function) => {
+      console.log(`formId is ${formId}`);
+      let formRect: formInfo.Rect = {left: 0, top: 0, width: 0, height: 0};
+      resolve(formRect);
+    })
+  };
+```

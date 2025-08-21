@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @hddgzw-->
-<!--SE: @pssea-->
-<!--TSE: @jiaoaozihao-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 本模块提供注册自定义字体。
 
@@ -135,6 +136,10 @@ getSystemFontList(): Array\<string>
 
 获取风格字体列表。
 
+该接口仅在PC/2in1设备上生效，在其他设备上返回空数组。
+
+推荐使用[getSystemFontFullNamesByType](../apis-arkgraphics2d/js-apis-graphics-text.md#textgetsystemfontfullnamesbytype14)接口获取系统最新支持的字体列表数据。
+
 > **说明：**
 >
 > 从API version 10开始支持，从API version 18开始废弃，建议使用[UIContext](arkts-apis-uicontext-uicontext.md)中的[getFont](arkts-apis-uicontext-uicontext.md#getfont)获取[Font](arkts-apis-uicontext-font.md)实例，再通过此实例调用替代方法[getSystemFontList](arkts-apis-uicontext-font.md#getsystemfontlist)。
@@ -150,10 +155,6 @@ getSystemFontList(): Array\<string>
 | 类型                 | 说明               |
 | -------------------- | ----------------- |
 | Array\<string>       | 系统的字体名列表。  |
-
->  **说明：**
->
->  该接口仅在2in1和移动设备上生效。<br/>为获取系统最新支持字体列表数据，推荐使用[getSystemFontFullNamesByType](../apis-arkgraphics2d/js-apis-graphics-text.md#textgetsystemfontfullnamesbytype14)接口。
 
 **示例：**
 
@@ -228,7 +229,7 @@ getFontByName(fontName: string): FontInfo
 | fullName       | string  | 否 | 否 | 系统字体的名称。           |
 | family         | string  | 否 | 否 | 系统字体的字体家族。       |
 | subfamily      | string  | 否 | 否 | 系统字体的子字体家族。      |
-| weight         | number  | 否 | 否 | 系统字体的字重。<br/>取值范围：[0,8]，取值间隔为1，分别对应[FontWeight](../apis-arkgraphics2d/js-apis-graphics-text.md#fontweight)枚举中的值。<br/>默认值：0        |
+| weight         | number  | 否 | 否 | 系统字体的字重。<br/>取值范围：[100,900]，取值间隔为100，分别对应[FontWeight](../apis-arkgraphics2d/js-apis-graphics-text.md#fontweight)枚举中的值。<br/>默认值：100        |
 | width          | number  | 否 | 否 | 系统字体的宽度。<br/>取值范围：[1,9]，取值间隔为1，分别对应[FontWidth](../apis-arkgraphics2d/js-apis-graphics-text.md#fontwidth)枚举中的值。    |
 | italic         | boolean | 否 | 否 | 系统字体是否倾斜。<br/>默认值：false<br/>值为true，表示斜体字体，值为false，表示非斜体字体。          |
 | monoSpace      | boolean | 否 | 否 | 系统字体是否紧凑。<br/>默认值：false<br/>值为true，表示等宽字体，值为false，表示非等宽字体。         |

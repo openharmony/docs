@@ -2,8 +2,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @wang_zhangjun; @zhuangzhuang-->
-<!--SE: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
-<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Designer: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 > **说明：**
 >
@@ -819,6 +820,10 @@ async function example18(context: common.UIAbilityContext) { // 需确保 contex
 | ----- |  ---- | ---- |
 | DEFAULT  | 0  | 标准模式。 |
 | DOWNLOAD | 1  | 下载模式。 |
+
+> **注意：**
+>
+> DOWNLOAD模式创建的目录仅用于保存文件，目录之间无访问隔离，不建议保存应用敏感数据。
 
 ## MergeTypeMode<sup>15+</sup>
 

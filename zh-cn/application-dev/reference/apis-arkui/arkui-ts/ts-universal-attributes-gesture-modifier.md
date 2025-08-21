@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 动态设置组件绑定的手势，支持开发者在属性设置时使用if/else语法进行动态设置。
 
@@ -44,7 +45,7 @@ gestureModifier(modifier:&nbsp;GestureModifier): T
 ### applyGesture
 applyGesture(event: UIGestureEvent): void
 
-组件需要绑定的手势。
+手势更新函数。
 
 开发者可根据需要自定义实现这个方法，对组件设置需要绑定的手势，支持使用if/else语法进行动态设置。若在当次手势操作过程中触发了组件上的手势动态切换，该切换效果在所有手指抬起当次手势结束后下一次手势操作中生效。
 

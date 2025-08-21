@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @wanghuan2025-->
-<!--SE: @wanghuan2025-->
-<!--TSE: @kir175;@zsw_zhushiwei-->
+<!--Designer: @wanghuan2025-->
+<!--Tester: @kir175; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 ## 使用场景
 

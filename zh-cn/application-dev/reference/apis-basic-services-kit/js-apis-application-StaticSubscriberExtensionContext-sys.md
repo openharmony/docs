@@ -1,4 +1,10 @@
 # @ohos.application.StaticSubscriberExtensionContext (StaticSubscriberExtensionContext)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 StaticSubscriberExtensionContext模块是StaticSubscriberExtensionAbility的上下文环境，继承自ExtensionContext。
 
@@ -28,7 +34,7 @@ import { StaticSubscriberExtensionAbility, StaticSubscriberExtensionContext } fr
 
 ## StaticSubscriberExtensionContext.startAbility
 
-startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
+startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 拉起一个静态订阅所属的同应用的Ability。使用callback异步回调。
 
@@ -109,7 +115,7 @@ class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbilit
 
 ## StaticSubscriberExtensionContext.startAbility
 
-startAbility(want: Want): Promise&lt;void&gt;;
+startAbility(want: Want): Promise&lt;void&gt;
 
 拉起一个静态订阅所属的同应用的Ability。使用Promise异步回调。
 

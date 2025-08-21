@@ -3,8 +3,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: AGC-->
 <!--Owner: @liusu23-->
-<!--SE: @xukeke-->
-<!--TSE: @yizhixiaosiqin-->
+<!--Designer: @xukeke-->
+<!--Tester: @yizhixiaosiqin-->
+<!--Adviser: @huipeizi-->
 
 本章节介绍如何拉起导航类应用扩展面板。
 

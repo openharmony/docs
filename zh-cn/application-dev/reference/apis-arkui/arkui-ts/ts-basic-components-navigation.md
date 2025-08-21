@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @mayaolll-->
-<!--SE: @jiangdayuan-->
-<!--TSE: @lxl007-->
+<!--Designer: @jiangdayuan-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 Navigation组件是路由导航的根视图容器，一般作为Page页面的根容器使用，其内部默认包含了标题栏、内容区和工具栏，其中内容区默认首页显示导航内容（Navigation的子组件）或非首页显示（[NavDestination](ts-basic-components-navdestination.md)的子组件），首页和非首页通过路由进行切换。
 
@@ -16,6 +17,8 @@ Navigation组件是路由导航的根视图容器，一般作为Page页面的根
 > - [NavBar](#navbar12)嵌套使用Navigation时，内层Navigation的生命周期不和外层Navigation以及[全模态](ts-universal-attributes-modal-transition.md)的生命周期进行联动。
 >
 > - Navigation未设置主副标题并且没有返回键时，不显示标题栏。
+>
+> - Navigation的子页面切换时，新页面会主动请求焦点。
 
 ## 子组件
 
@@ -1751,7 +1754,7 @@ Navigation自定义标题。
 
 ## NavigationMode<sup>9+</sup>枚举说明
 
-导航栏显示模式。
+导航栏显示模式。Navigation处于分栏显示状态时，导航栏和内容区之间会显示分割线。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1849,7 +1852,7 @@ Navigation自定义标题。
 | STANDARD | 0 | 系统默认的栈操作模式。<br/>push操作会将指定的NavDestination入栈；replace操作会将当前栈顶NavDestination替换。 |
 | MOVE_TO_TOP_SINGLETON | 1 | 从栈底向栈顶查找，如果指定的名称已经存在，则将对应的NavDestination页面移到栈顶（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。 |
 | POP_TO_SINGLETON | 2 | 从栈底向栈顶查找，如果指定的名称已经存在，则将其上方的NavDestination页面全部移除（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。 |
-| NEW_INSTANCE | 3 | 创建新的NavDestination实例。与STANDARD模式相比，该方法不会复用栈中同名实例。 |
+| NEW_INSTANCE | 3 | 创建新的NavDestination实例。与STANDARD模式相比，该方法不会复用栈中同名实例。并且指定该模式时，新创建的页面默认会执行push动效。 |
 
 ## NavigationOptions<sup>12+</sup>
 
@@ -2257,10 +2260,10 @@ export struct PageTwo {
 }
 ```
 
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"
 
 ```json
-// src/main/resources/base/profile/route_map.json
+// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {
@@ -2741,9 +2744,9 @@ export class CustomTransition {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"
 ```json
-// src/main/resources/base/profile/route_map.json
+// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {
@@ -3028,9 +3031,9 @@ export struct PageTwo {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"
 ```json
-// src/main/resources/base/profile/route_map.json
+// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {
@@ -3356,9 +3359,9 @@ export function PageOneBuilder(name: string) {
   .title(name)
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"
 ```json
-// src/main/resources/base/profile/route_map.json
+// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {
@@ -3467,9 +3470,9 @@ struct NavigationExample2 {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"
 ```json
-// src/main/resources/base/profile/route_map.json
+// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {
@@ -3586,9 +3589,9 @@ struct NavigationExample3 {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"
 ```json
-// src/main/resources/base/profile/route_map.json
+// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {
@@ -4366,9 +4369,9 @@ export class CustomTransition {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"
+在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"
 ```json
-// src/main/resources/base/profile/route_map.json
+// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {
@@ -4630,9 +4633,9 @@ struct Index {
   }
 }
 ```
-在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"。
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"。
 ```json
-// src/main/resources/base/profile/route_map.json
+// src/main/resources/base/profile/router_map.json
 {
   "routerMap": [
     {

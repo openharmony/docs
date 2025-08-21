@@ -1,9 +1,10 @@
 # native_node.h
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @piggyguy;@xiang-shouxing;@yangfan229-->
-<!--SE: @piggyguy;@xiang-shouxing;@yangfan229-->
-<!--TSE: @fredyuan912-->
+<!--Owner: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Designer: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
@@ -48,7 +49,6 @@
 | [ArkUI_NodeAdapterEventType](#arkui_nodeadaptereventtype) | ArkUI_NodeAdapterEventType | 定义节点适配器事件枚举值。 |
 | [ArkUI_NodeContentEventType](#arkui_nodecontenteventtype) | ArkUI_NodeContentEventType | 定义NodeContent事件类型。 |
 | [ArkUI_InspectorErrorCode](#arkui_inspectorerrorcode) | ArkUI_InspectorErrorCode | inspector错误码的枚举。 |
-| [ArkUI_SwiperDisplayModeType](#arkui_swiperdisplaymodetype) | ArkUI_SwiperDisplayModeType | 定义Swiper组件的主轴方向上元素排列的模式。 |
 
 ### 函数
 
@@ -153,8 +153,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| MAX_NODE_SCOPE_NUM | 1000 | 
-| MAX_COMPONENT_EVENT_ARG_NUM | 12 | 
+| MAX_NODE_SCOPE_NUM 1000| 定义组件最大方法数量。 | 
+| MAX_COMPONENT_EVENT_ARG_NUM 12| 定义组件事件最大参数数量。 | 
 
 ## 枚举类型说明
 
@@ -254,7 +254,7 @@ enum ArkUI_NodeAttributeType
 | NODE_CLIP | 组件进行裁剪、遮罩处理属性，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式： <br> .value[0].i32：控制是否按照父容器边缘轮廓进行裁剪，0表示不裁切，1表示裁切。 <br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式： <br> .value[0].i32：控制是否按照父容器边缘轮廓进行裁剪，0表示不裁切，1表示裁切。|
 | NODE_CLIP_SHAPE | 组件上指定形状的裁剪，支持属性设置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式，共有4种类型： <br> 1.rect类型： <br> .value[0].i32：裁剪类型，参数类型[ArkUI_ClipType](capi-native-type-h.md#arkui_cliptype)，ARKUI_CLIP_TYPE_RECTANGLE； <br> .value[1].f32：矩形宽度； <br> .value[2].f32：矩形高度； <br> .value[3].f32：矩形圆角宽度； <br> .value[4].f32：矩形圆角高度； <br> .value[5]?.f32：矩形形状的左上圆角半径； <br> .value[6]?.f32：矩形形状的左下圆角半径； <br> .value[7]?.f32：矩形形状的右上圆角半径； <br> .value[8]?.f32：矩形形状的右下圆角半径； <br> 2.circle类型： <br> .value[0].i32：裁剪类型，参数类型[ArkUI_ClipType](capi-native-type-h.md#arkui_cliptype)，ARKUI_CLIP_TYPE_CIRCLE； <br> .value[1].f32：圆形宽度； <br> .value[2].f32：圆形高度； <br> 3.ellipse类型： <br> .value[0].i32：裁剪类型，参数类型[ArkUI_ClipType](capi-native-type-h.md#arkui_cliptype)，ARKUI_CLIP_TYPE_ELLIPSE； <br> .value[1].f32：椭圆形宽度； <br> .value[2].f32：椭圆形高度； <br> 4.path类型： <br> .value[0].i32：裁剪类型，参数类型[ArkUI_ClipType](capi-native-type-h.md#arkui_cliptype)，ARKUI_CLIP_TYPE_PATH； <br> .value[1].f32：路径宽度； <br> .value[2].f32：路径高度； <br> .string：路径绘制的命令字符串； <br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式，共有4种类型： <br> 1.rect类型： <br> .value[0].i32：裁剪类型，参数类型[ArkUI_ClipType](capi-native-type-h.md#arkui_cliptype)，ARKUI_CLIP_TYPE_RECTANGLE； <br> .value[1].f32：矩形宽度； <br> .value[2].f32：矩形高度； <br> .value[3].f32：矩形圆角宽度； <br> .value[4].f32：矩形圆角高度； <br> .value[5]?.f32：矩形形状的左上圆角半径； <br> .value[6]?.f32：矩形形状的左下圆角半径； <br> .value[7]?.f32：矩形形状的右上圆角半径； <br> .value[8]?.f32：矩形形状的右下圆角半径； <br> 2.circle类型： <br> .value[0].i32：裁剪类型，参数类型[ArkUI_ClipType](capi-native-type-h.md#arkui_cliptype)，ARKUI_CLIP_TYPE_CIRCLE； <br> .value[1].f32：圆形宽度； <br> .value[2].f32：圆形高度； <br> 3.ellipse类型： <br> .value[0].i32：裁剪类型，参数类型[ArkUI_ClipType](capi-native-type-h.md#arkui_cliptype)，ARKUI_CLIP_TYPE_ELLIPSE； <br> .value[1].f32：椭圆形宽度； <br> .value[2].f32：椭圆形高度； <br> 4.path类型： <br> .value[0].i32：裁剪类型，参数类型[ArkUI_ClipType](capi-native-type-h.md#arkui_cliptype)，ARKUI_CLIP_TYPE_PATH； <br> .value[1].f32：路径宽度； <br> .value[2].f32：路径高度； <br> .string：路径绘制的命令字符串； |
 | NODE_TRANSFORM | 矩阵变换功能，可对图形进行平移、旋转和缩放等，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式： <br> .value[0...15].f32: 16个浮点数字。 <br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式： <br> .value[0...15].f32: 16个浮点数字。|
-| NODE_HIT_TEST_BEHAVIOR | 触摸测试类型，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式： <br> .value[0].i32：控制当前组件的触摸测试类型，参数类型[ArkUI_HitTestMode](capi-native-type-h.md#arkui_hittestmode)，默认值为ARKUI_HIT_TEST_MODE_DEFAULT。 <br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式： <br> .value[0].i32：控制当前组件的触摸测试类型，参数类型ArkKUI_HitTestMode，默认值为ARKUI_HIT_TEST_MODE_DEFAULT。 |
+| NODE_HIT_TEST_BEHAVIOR | 触摸测试类型，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式： <br> .value[0].i32：控制当前组件的触摸测试类型，参数类型[ArkUI_HitTestMode](capi-native-type-h.md#arkui_hittestmode)，默认值为ARKUI_HIT_TEST_MODE_DEFAULT。 <br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式： <br> .value[0].i32：控制当前组件的触摸测试类型，参数类型ArkUI_HitTestMode，默认值为ARKUI_HIT_TEST_MODE_DEFAULT。 |
 | NODE_POSITION | 元素左上角相对于父容器左上角偏移位置，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式： <br> .value[0].f32：x轴坐标。 <br> .value[1].f32: y轴坐标。 <br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式： <br> .value[0].f32：x轴坐标。 <br> .value[1].f32: y轴坐标。 |
 | NODE_SHADOW | 阴影效果属性，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式： <br> .value[0].i32：设置当前组件阴影效果，参数类型[ArkUI_ShadowStyle](capi-native-type-h.md#arkui_shadowstyle)。 <br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式： <br> .value[0].i32：设置当前组件阴影效果，参数类型[ArkUI_ShadowStyle](capi-native-type-h.md#arkui_shadowstyle)。 |
 | NODE_CUSTOM_SHADOW | 自定义阴影效果，支持属性设置，属性重置和属性获取接口。<br>属性设置方法参数[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0]?.f32：阴影模糊半径，单位为vp；<br> .value[1]?.i32：是否开启智能取色，0代表不开启，1代表开启，默认不开启；<br> .value[2]?.f32：阴影X轴偏移量，单位为px；<br> .value[3]?.f32：阴影Y轴偏移量，单位为px；<br> .value[4]?.i32：阴影类型[ArkUI_ShadowType](capi-native-type-h.md#arkui_shadowtype)，默认值为ARKUI_SHADOW_TYPE_COLOR；<br> .value[5]?.u32：阴影颜色，0xargb格式，形如 0xFFFF0000 表示红色；<br> .value[6]?.u32：阴影是否内部填充，0表示不填充，1表示填充。<br>     <br> 属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式：<br> .value[0].f32：阴影模糊半径，单位为vp；<br> .value[1].i32：是否开启智能取色；<br> .value[2].f32：阴影X轴偏移量，单位为px；<br> .value[3].f32：阴影Y轴偏移量，单位为px；<br> .value[4].i32：阴影类型[ArkUI_ShadowType](capi-native-type-h.md#arkui_shadowtype)，默认值为ARKUI_SHADOW_TYPE_COLOR；<br> .value[5].u32：阴影颜色，0xargb格式，形如 0xFFFF0000 表示红色；<br> .value[6].u32：阴影是否内部填充，0表示不填充，1表示填充；|
@@ -768,7 +768,7 @@ enum ArkUI_NodeEventType
 | NODE_SWIPER_EVENT_ON_ANIMATION_START | 定义ARKUI_NODE_SWIPER切换动画开始时触发回调。事件回调发生时，事件参数[ArkUI_NodeEvent](capi-arkui-nativemodule-arkui-nodeevent.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](capi-arkui-nativemodule-arkui-nodecomponentevent.md)。<br> [ArkUI_NodeComponentEvent](capi-arkui-nativemodule-arkui-nodecomponentevent.md)中包含5个参数：<br> <b>ArkUI_NodeComponentEvent.data[0].i32</b>：表示当前显示元素的索引。<br> <b>ArkUI_NodeComponentEvent.data[1].i32</b>：表示切换动画目标元素的索引。<br> <b>ArkUI_NodeComponentEvent.data[2].f32</b>：表示主轴方向上当前显示元素相对Swiper起始位置的位移。<br> <b>ArkUI_NodeComponentEvent.data[3].f32</b>：表示主轴方向上目标元素相对Swiper起始位置的位移。<br> <b>ArkUI_NodeComponentEvent.data[4].f32</b>：表示离手速度。  |
 | NODE_SWIPER_EVENT_ON_ANIMATION_END | 定义ARKUI_NODE_SWIPER切换动画结束是触发回调。事件回调发生时，事件参数[ArkUI_NodeEvent](capi-arkui-nativemodule-arkui-nodeevent.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](capi-arkui-nativemodule-arkui-nodecomponentevent.md)。<br> [ArkUI_NodeComponentEvent](capi-arkui-nativemodule-arkui-nodecomponentevent.md)中包含2个参数：<br> <b>ArkUI_NodeComponentEvent.data[0].i32</b>：表示当前显示元素的索引。<br> <b>ArkUI_NodeComponentEvent.data[1].f32</b>：表示主轴方向上当前显示元素相对Swiper起始位置的位移。  |
 | NODE_SWIPER_EVENT_ON_GESTURE_SWIPE | 定义ARKUI_NODE_SWIPER在页面跟手滑动过程中，逐帧触发该回调。事件回调发生时，事件参数[ArkUI_NodeEvent](capi-arkui-nativemodule-arkui-nodeevent.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](capi-arkui-nativemodule-arkui-nodecomponentevent.md)。<br> [ArkUI_NodeComponentEvent](capi-arkui-nativemodule-arkui-nodecomponentevent.md)中包含2个参数：<br> <b>ArkUI_NodeComponentEvent.data[0].i32</b>：表示当前显示元素的索引。<br> <b>ArkUI_NodeComponentEvent.data[1].f32</b>：表示主轴方向上当前显示元素相对Swiper起始位置的位移。 |
-| NODE_SWIPER_EVENT_ON_CONTENT_DID_SCROLL | 定义ARKUI_NODE_SWIPER监听Swiper页面滑动事件。使用说明 ：<br> 1、设置[ArkUI_SwiperDisplayModeType](#arkui_swiperdisplaymodetype)属性为ARKUI_SWIPER_DISPLAY_MODE_AUTO_LINEAR时，该接口不生效。<br> 2、循环场景下，设置prevMargin和nextMargin属性，使得Swiper前后端显示同一页面时，该接口不生效。<br> 3、在页面滑动过程中，会对视窗内所有页面逐帧触发ContentDidScrollCallback回调。<br> 例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。<br> 4、设置displayCount属性的swipeByGroup参数为true时，若同组中至少有一个页面在视窗内时，<br> 则会对同组中所有页面触发回调。<br> 事件回调发生时，事件参数[ArkUI_NodeEvent](capi-arkui-nativemodule-arkui-nodeevent.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](capi-arkui-nativemodule-arkui-nodecomponentevent.md)。<br> [ArkUI_NodeComponentEvent](capi-arkui-nativemodule-arkui-nodecomponentevent.md)中包含4个参数：<br> <b>ArkUI_NodeComponentEvent.data[0].i32</b>：Swiper组件的索引，和onChange事件中的index值变化保持一致。<br> <b>ArkUI_NodeComponentEvent.data[1].i32</b>：视窗内某个页面的索引。<br> <b>ArkUI_NodeComponentEvent.data[2].f32</b>：页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。<br> <b>ArkUI_NodeComponentEvent.data[3].f32</b>：主轴方向上页面的长度。   |
+| NODE_SWIPER_EVENT_ON_CONTENT_DID_SCROLL | 定义ARKUI_NODE_SWIPER监听Swiper页面滑动事件。使用说明 ：<br> 1. 设置NODE_SWIPER_DISPLAY_COUNT属性为'auto'时，该接口不生效。<br> 2. 循环场景下，设置prevMargin和nextMargin属性，使得Swiper前后端显示同一页面时，该接口不生效。<br> 3. 在页面滑动过程中，会对视窗内所有页面逐帧触发ContentDidScrollCallback回调。<br> 例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。<br> 4. 设置displayCount属性的swipeByGroup参数为true时，若同组中至少有一个页面在视窗内时，<br> 则会对同组中所有页面触发回调。<br> 事件回调发生时，事件参数[ArkUI_NodeEvent](capi-arkui-nativemodule-arkui-nodeevent.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](capi-arkui-nativemodule-arkui-nodecomponentevent.md)。<br> [ArkUI_NodeComponentEvent](capi-arkui-nativemodule-arkui-nodecomponentevent.md)中包含4个参数：<br> <b>ArkUI_NodeComponentEvent.data[0].i32</b>：Swiper组件的索引，和onChange事件中的index值变化保持一致。<br> <b>ArkUI_NodeComponentEvent.data[1].i32</b>：视窗内某个页面的索引。<br> <b>ArkUI_NodeComponentEvent.data[2].f32</b>：页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。<br> <b>ArkUI_NodeComponentEvent.data[3].f32</b>：主轴方向上页面的长度。   |
 | NODE_SWIPER_EVENT_ON_SELECTED = 1001005 | 定义当ARKUI_NODE_SWIPER选中元素改变时触发回调。触发该事件的条件：<br> 1、滑动离手时满足翻页阈值，开始切换动画时。<br> 2、通过NODE_SWIPER_INDEX或NODE_SWIPER_SWIPE_TO_INDEX切换页面时。<br> 事件回调发生时, 事件参数[ArkUI_NodeEvent](capi-arkui-nativemodule-arkui-nodeevent.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](capi-arkui-nativemodule-arkui-nodecomponentevent.md)。<br> [ArkUI_NodeComponentEvent](capi-arkui-nativemodule-arkui-nodecomponentevent.md) 中包含1个参数:<br> <b>ArkUI_NodeComponentEvent.data[0].i32</b>: 表示当前选中元素的索引。<br>**起始版本：** 18    |
 | NODE_SWIPER_EVENT_ON_UNSELECTED = 1001006 | 定义当ARKUI_NODE_SWIPER页面切换事件回调。满足以下任一条件，即可触发该事件：<br> 1. 滑动离手时满足翻页阈值，并且开始切换动画。<br> 2. 通过NODE_SWIPER_INDEX或NODE_SWIPER_SWIPE_TO_INDEX切换页面。<br> 事件回调发生时，事件参数[ArkUI_NodeEvent](capi-arkui-nativemodule-arkui-nodeevent.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](capi-arkui-nativemodule-arkui-nodecomponentevent.md)。<br> [ArkUI_NodeComponentEvent](capi-arkui-nativemodule-arkui-nodecomponentevent.md) 中包含1个参数:<br> <b>ArkUI_NodeComponentEvent.data[0].i32</b>: 表示将要隐藏元素的索引。<br>**起始版本：** 18    |
 | NODE_SWIPER_EVENT_ON_CONTENT_WILL_SCROLL = 1001007 | 定义ARKUI_NODE_SWIPER滑动行为拦截事件。使用说明: 在页面滑动前, </b>ContentWillScrollCallback</b> 回调会触发。<br> 事件回调发生时， 事件参数[ArkUI_NodeEvent](capi-arkui-nativemodule-arkui-nodeevent.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](capi-arkui-nativemodule-arkui-nodecomponentevent.md)。<br> [ArkUI_NodeComponentEvent](capi-arkui-nativemodule-arkui-nodecomponentevent.md)中包含3个参数:<br> <b>ArkUI_NodeComponentEvent.data[0].i32</b>: 当前显示元素的索引。<br> <b>ArkUI_NodeComponentEvent.data[1].i32</b>: 切换动画目标元素的索引。<br> <b>ArkUI_NodeComponentEvent.data[2].f32</b>: 每帧的滑动偏移量。正数表示向后滑动（例如从index=1到index=0），负数表示向前滑动（例如从index=0到index=1）。<br>**起始版本：** 15   |
@@ -895,24 +895,6 @@ inspector错误码的枚举。
 | -- | -- |
 | ARKUI_INSPECTOR_NATIVE_RESULT_SUCCESSFUL = 0 | 成功。 |
 | ARKUI_INSPECTOR_NATIVE_RESULT_BAD_PARAMETER = -1 | 参数错误。 |
-
-### ArkUI_SwiperDisplayModeType
-
-```
-enum ArkUI_SwiperDisplayModeType
-```
-
-**描述：**
-
-
-定义Swiper组件的主轴方向上元素排列的模式。
-
-**起始版本：** 12
-
-| 枚举项 | 描述 |
-| -- | -- |
-| ARKUI_SWIPER_DISPLAY_MODE_STRETCH | Swiper滑动一页的宽度为Swiper组件自身的宽度。 |
-| ARKUI_SWIPER_DISPLAY_MODE_AUTO_LINEAR| Swiper滑动一页的宽度为视窗内最左侧子组件的宽度。 |
 
 
 ## 函数说明
@@ -2727,7 +2709,7 @@ int32_t OH_ArkUI_RegisterSystemColorModeChangeEvent(ArkUI_NodeHandle node,void* 
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t  | 错误码。<br>        [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>        [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。<br>        [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](capi-native-type-h.md#arkui_errorcode) 组件不支持该事件。 |
+| int32_t  | 错误码。<br>        [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>        [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。   |
 
 ### OH_ArkUI_UnregisterSystemColorModeChangeEvent()
 
@@ -2775,7 +2757,7 @@ int32_t OH_ArkUI_RegisterSystemFontStyleChangeEvent(ArkUI_NodeHandle node,void* 
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t  | 错误码。<br>        [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>        [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。<br>        [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](capi-native-type-h.md#arkui_errorcode) 组件不支持该事件。 |
+| int32_t  | 错误码。<br>        [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>        [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。 |
 
 ### OH_ArkUI_UnregisterSystemFontStyleChangeEvent()
 

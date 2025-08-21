@@ -1,9 +1,10 @@
 # oh_display_capture.h
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
-<!--Owner: @oh_wangxk;@logn-->
-<!--SE: @hejunfei1991-->
-<!--TSE: @qinliwen0417-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## 概述
 
@@ -25,7 +26,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| [NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CaptureScreenPixelmap(uint32_t displayId,OH_PixelmapNative **pixelMap)](#oh_nativedisplaymanager_capturescreenpixelmap) | 获取屏幕全屏截图，此接口仅支持在平板和2in1设备上使用，可以通过设置不同的屏幕id号截取不同屏幕的截图。 |
+| [NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CaptureScreenPixelmap(uint32_t displayId,OH_PixelmapNative **pixelMap)](#oh_nativedisplaymanager_capturescreenpixelmap) | 获取屏幕全屏截图，可以通过设置不同的屏幕id号截取不同屏幕的截图。 |
 
 ## 函数说明
 
@@ -37,13 +38,15 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CaptureScreenPixelmap(uin
 
 **描述**
 
-获取屏幕全屏截图，此接口仅支持在平板和2in1设备上使用，可以通过设置不同的屏幕id号截取不同屏幕的截图。
+获取屏幕全屏截图，可以通过设置不同的屏幕id号截取不同屏幕的截图。
 
 **系统能力：** SystemCapability.Window.SessionManager.Core
 
 **需要权限：** ohos.permission.CUSTOM_SCREEN_CAPTURE
 
 **起始版本：** 14
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
