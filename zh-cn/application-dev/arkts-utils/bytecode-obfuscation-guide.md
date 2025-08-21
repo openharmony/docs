@@ -88,7 +88,7 @@
         "ruleOptions": {
           "enable": true,
           "files": ["./obfuscation-rules.txt"]
-        }
+        },
         "consumerFiles": ["./consumer-rules.txt"]
       }
     }
