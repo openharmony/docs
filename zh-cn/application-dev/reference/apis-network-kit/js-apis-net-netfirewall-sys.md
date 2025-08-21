@@ -1,10 +1,11 @@
 # @ohos.net.netFirewall (网络防火墙)(系统接口)
 
-<!--Kit:Network Kit-->
-<!--Subsystem:Communication-->
-<!--Owner:@wmyao_mm-->
-<!--SE:@guo-min_net-->
-<!--TSE:@tongxilin-->
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
 
 网络防火墙模块为应用程序提供查询防火墙能力。 通过配置防火墙策略，应用程序可以对机器进行防火墙策略管控，并提供防火墙拦截记录的查询。
 
