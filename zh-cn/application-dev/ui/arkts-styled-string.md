@@ -691,6 +691,7 @@
 
     async aboutToAppear() {
       console.info("aboutToAppear initial imagePixelMap");
+      // $r('app.media.sea')需要替换为开发者所需的图像资源文件。
       this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.sea'));
     }
 
@@ -980,6 +981,7 @@ struct styled_string_demo8 {
 
   async aboutToAppear() {
     console.info("aboutToAppear initial imagePixelMap");
+    // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
     this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.startIcon'));
   }
 
