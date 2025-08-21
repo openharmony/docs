@@ -5091,3 +5091,31 @@ With this permission, the HAP can load independent binary .so files with a devel
 **Supported devices**: PCs/2-in-1 devices
 
 **Valid since**: 20
+
+## ohos.permission.GET_DEVICE_INDEPENDENT_BINARY_CERT
+
+Allows a system application to query the certificate information of independent binary programs.
+
+**Permission level**: ：system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: PC/2in1
+
+**Valid since**: 20
+
+## ohos.permission.SET_DEVICE_INDEPENDENT_BINARY_CERT_STATUS
+
+Allows a system application to set the certificate status of independent binary programs.
+
+**Permission level**: ：system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: PC/2in1
+
+**Valid since**: 20
