@@ -5088,7 +5088,7 @@
 
 ## ohos.permission.SET_DEVICE_INDEPENDENT_BINARY_CERT_STATUS
 
-允许系统应用设置独立二进制程序的证书状态
+允许系统应用设置独立二进制程序的证书状态。
 
 **权限级别**：system_core
 

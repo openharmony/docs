@@ -5093,7 +5093,7 @@ With this permission, the HAP can load independent binary .so files with a devel
 
 **Valid since**: 20
 
-## ohos.permission.kernel.GET_DEVICE_INDEPENDENT_BINARY_CERT
+## ohos.permission.GET_DEVICE_INDEPENDENT_BINARY_CERT
 
 Allows a system application to query the certificate information of independent binary programs.
 
@@ -5107,7 +5107,7 @@ Allows a system application to query the certificate information of independent 
 
 **Valid since**: 20
 
-## ohos.permission.kernel.SET_DEVICE_INDEPENDENT_BINARY_CERT_STATUS
+## ohos.permission.SET_DEVICE_INDEPENDENT_BINARY_CERT_STATUS
 
 Allows a system application to set the certificate status of independent binary programs.
 
