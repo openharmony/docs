@@ -5,6 +5,7 @@
 <!--Owner: @zhaoxueyuan-->
 <!--Designer: @hanruofei-->
 <!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
 
 设备上报的触屏事件，继承自[InputEvent](./js-apis-inputevent.md)。
 
