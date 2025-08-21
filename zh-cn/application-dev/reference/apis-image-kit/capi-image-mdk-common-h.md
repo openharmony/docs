@@ -10,6 +10,8 @@
 
 声明图像常用的枚举值和结构体。
 
+**引用文件：** <multimedia/image_framework/image_mdk_common.h>
+
 **库：** libimage_ndk.z.so
 
 **系统能力：** SystemCapability.Multimedia.Image

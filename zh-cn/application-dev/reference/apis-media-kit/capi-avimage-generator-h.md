@@ -10,6 +10,8 @@
 
 定义AVImageGenerator接口。使用其C API从视频资源中获取指定时间点视频帧。
 
+**引用文件：** <multimedia/player_framework/avimage_generator.h>
+
 **库：** libavimage_generator.so
 
 **系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
