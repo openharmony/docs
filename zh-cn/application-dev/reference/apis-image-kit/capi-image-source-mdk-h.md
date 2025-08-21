@@ -26,10 +26,10 @@
 | -- | -- | -- |
 | [OhosImageRegion](capi-image-ohosimageregion.md) | - | 定义图像源解码的范围选项。是[OhosImageDecodingOps](capi-image-ohosimagedecodingops.md)的成员变量。 |
 | [ImageSourceNative_](capi-image-imagesourcenative-.md) | ImageSourceNative | 为图像源方法定义native层图像源对象。 |
-| [OhosImageSourceOps](capi-image-ohosimagesourceops.md) | - | 定义图像源选项信息。此选项给[OH_ImageSource_Create](#oh_imagesource_create)和[OH_ImageSource_CreateIncremental](#oh_imagesource_createincremental)接口使用。 |
+| [OhosImageSourceOps](capi-image-ohosimagesourceops.md) | - | 定义图像源选项信息。此选项给[OH_ImageSource_CreateFromUri](capi-image-source-mdk-h.md#oh_imagesource_createfromuri)、[OH_ImageSource_CreateFromFd](capi-image-source-mdk-h.md#oh_imagesource_createfromfd)、[OH_ImageSource_CreateFromData](capi-image-source-mdk-h.md#oh_imagesource_createfromdata)和[OH_ImageSource_CreateIncremental](#oh_imagesource_createincremental)接口使用。 |
 | [OhosImageDecodingOps](capi-image-ohosimagedecodingops.md) | - | 定义图像源解码选项。此选项给[OH_ImageSource_CreatePixelMap](#oh_imagesource_createpixelmap)和[OH_ImageSource_CreatePixelMapList](#oh_imagesource_createpixelmaplist)接口使用。 |
 | [OhosImageSourceInfo](capi-image-ohosimagesourceinfo.md) | - | 定义图像源信息，由[OH_ImageSource_GetImageInfo](#oh_imagesource_getimageinfo)获取。 |
-| [OhosImageSource](capi-image-ohosimagesource.md) | - | 定义图像源输入资源，每次仅接收一种类型。由[OH_ImageSource_Create](#oh_imagesource_create)获取。 |
+| [OhosImageSource](capi-image-ohosimagesource.md) | - | 定义图像源输入资源，每次仅接收一种类型。由[OH_ImageSource_CreateFromUri](capi-image-source-mdk-h.md#oh_imagesource_createfromuri)、[OH_ImageSource_CreateFromFd](capi-image-source-mdk-h.md#oh_imagesource_createfromfd)和[OH_ImageSource_CreateFromData](capi-image-source-mdk-h.md#oh_imagesource_createfromdata)获取。 |
 | [OhosImageSourceDelayTimeList](capi-image-ohosimagesourcedelaytimelist.md) | - | 定义图像源延迟时间列表。由[OH_ImageSource_GetDelayTime](#oh_imagesource_getdelaytime)获取。 |
 | [OhosImageSourceSupportedFormat](capi-image-ohosimagesourcesupportedformat.md) | - | 定义图像源支持的格式字符串。此选项给[OhosImageSourceSupportedFormatList](capi-image-ohosimagesourcesupportedformatlist.md)和[OH_ImageSource_GetSupportedFormats](#oh_imagesource_getsupportedformats)接口使用。 |
 | [OhosImageSourceSupportedFormatList](capi-image-ohosimagesourcesupportedformatlist.md) | - | 定义图像源支持的格式字符串列表。由[OH_ImageSource_GetSupportedFormats](#oh_imagesource_getsupportedformats)获取。 |
