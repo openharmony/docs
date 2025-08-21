@@ -56,6 +56,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 
 let myReason = 'test requestSuspendDelay';
 try {
@@ -108,6 +109,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 
 let id = 1;
 backgroundTaskManager.getRemainingDelayTime(id, (error: BusinessError, res: number) => {
@@ -158,6 +160,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 
 let id = 1;
 backgroundTaskManager.getRemainingDelayTime(id).then((res: number) => {
@@ -200,6 +203,7 @@ cancelSuspendDelay(requestId: number): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 
   let id = 1;
   try {
