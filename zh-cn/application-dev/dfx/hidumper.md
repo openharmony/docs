@@ -45,7 +45,7 @@ HiDumper命令行工具使用常见问题汇总在[常见问题](#常见问题)�
 | [--mem pid [--show-ashmem]](#查询进程内存) | 获取指定pid的进程内存使用情况。<br />指定 --show-ashmem，则补充打印该进程的ashmem使用详细信息。<br />**说明**：从API version 20开始，支持--show-ashmem参数。 |
 | [--zip](#导出信息压缩存储) | 保存命令输出到 /data/log/hidumper 下的压缩文件，压缩格式为 ZIP。 |
 | [--ipc [pid]/-a --start-stat/stat/--stop-stat](#获取进程间通信信息) | 统计一段时间进程IPC信息。如果使用-a，则统计所有进程IPC数据。使用--start-stat开始统计，使用--stat获取统计数据，使用--stop-stat结束统计。 |
-| [--mem-smaps pid [-v]](#查询进程内存) | 获取pid内存统计信息，数据来源于/proc/pid/smaps，使用-v指定更多详细信息。（仅支持导出[debug版本应用](performance-analysis-kit-terminology.md#debug版本应用)） |
+| [--mem-smaps pid [-v]](#查询进程内存) | 获取pid内存统计信息，数据来源于/proc/pid/smaps，使用-v指定更多详细信息。（仅支持导出[debug版本应用](performance-analysis-kit-terminology.md#debug版本应用)）<br />**说明**：从API version 20开始，支持该参数。 |
 | [--mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]](#查询虚拟机堆内存) | 必选参数pid。触发ArkTS应用JS线程的gc和堆内存快照导出。指定线程tid时，仅触发该线程的gc和堆内存快照导出；指定--gc时，仅触发gc，不导出快照；指定--leakobj时，应用开启泄露检测可获取泄露对象列表。<br>文件命名格式为：<!--RP1-->jsheap-进程号-JS线程号-时间戳<!--RP1End-->，文件内容为JSON结构的JS堆快照。<br>指定--raw时，堆快照以rawheap格式导出。 |
 | <!--DelRow-->[--mem-cjheap pid [--gc]](#查询虚拟机堆内存) | pid为必选参数。触发仓颉应用gc和堆内存快照导出。如果指定--gc，只触发gc不做快照导出。<br />**说明**：从API version 20开始。支持该参数。 |
 
@@ -319,32 +319,32 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
 
   使用样例：
 
-<!--RP3-->
+  <!--RP3-->
   ```shell
   $ hidumper --mem-jsheap 64949  -> 64949 为目标应用进程号
   $ ls | grep jsheap   -> 进入堆内存文件存放目录后执行
   jsheap-64949-64949-1751075546050
   jsheap-64949-64989-1751075546050
   ```
-<!--RP3End-->
+  <!--RP3End-->
 
 - 可使用hidumper --mem-jsheap pid -T tid命令获取指定进程指定JS线程的虚拟机堆内存，文件命名为：<!--RP1-->jsheap-进程号-JS线程号-时间戳<!--RP1End-->。
 
   使用样例：
 
-<!--RP4-->
+  <!--RP4-->
   ```shell
   $ hidumper --mem-jsheap 64949 -T 64949  -> 64949 为目标应用进程号
   $ ls | grep jsheap  -> 进入堆内存文件存放目录后执行
   jsheap-64949-64949-1751075567710
   ```
-<!--RP4End-->
+  <!--RP4End-->
 
 - 可使用hidumper --mem-jsheap pid [-T tid] --raw获取指定进程或指定JS线程的虚拟机堆内存，生成的堆内存文件为rawheap格式，文件命名为<!--RP1-->jsheap-进程号-JS线程号-时间戳<!--RP1End-->.rawheap。rawheap的解析转换可参考使用：[rawheap-translator工具](../tools/rawheap-translator.md)。
 
   使用样例：
 
-<!--RP5-->
+  <!--RP5-->
   ```shell
   $ hidumper --mem-jsheap 64949 --raw  -> 64949 为目标应用进程号
   $ ls | grep jsheap  -> 进入堆内存文件存放目录后执行
@@ -354,7 +354,7 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
   $ ls | grep jsheap
   jsheap-64949-64949-1751075546055.rawheap
   ```
-<!--RP5End-->
+  <!--RP5End-->
 
 - 可使用hidumper --mem-jsheap pid --gc命令触发指定应用进程GC。该命令不会生成任何文件，执行成功不会有命令回显。
 
@@ -376,13 +376,13 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
 
   使用样例：
 
-<!--RP7-->
+  <!--RP7-->
   ```shell
   $ hidumper --mem-jsheap 64949 --leakobj
   $ ls | grep leaklist
   leaklist-64949-1730873210483
   ```
-<!--RP7End-->
+  <!--RP7End-->
 
 <!--Del-->
 - 可使用hidumper --mem-cjheap pid命令获取指定仓颉进程的虚拟机堆内存，文件命名为：cjheap-进程号-时间戳。
