@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## Overview
 
@@ -68,7 +69,6 @@ The **type_def.h** file declares the common types.
 | [typedef void (\*ffrt_poller_cb)(void* data, uint32_t event)](#ffrt_poller_cb) | ffrt_poller_cb | Defines the poller callback function.|
 | [typedef void (\*ffrt_timer_cb)(void* data)](#ffrt_timer_cb) | ffrt_timer_cb | Defines the timer callback function.|
 
-
 ## Enum Description
 
 ### ffrt_queue_priority_t
@@ -130,6 +130,7 @@ Enumerates the storage sizes available for different types of structs.
 | ffrt_cond_storage_size = 64 | Storage size for the condition variable struct.               |
 | ffrt_queue_attr_storage_size = 128 | Storage size for the queue attribute struct.               |
 | ffrt_rwlock_storage_size = 64 | Read-write lock.<br>**Since**: 18|
+| ffrt_fiber_storage_size| Fiber size across different platforms (in bytes). AArch64 architecture: 22 bytes; Arm architecture: 64 bytes; x86_64 architecture: 8 bytes; other platforms: not supported.<br>**Since**: 20 |
 
 ### ffrt_function_kind_t
 
