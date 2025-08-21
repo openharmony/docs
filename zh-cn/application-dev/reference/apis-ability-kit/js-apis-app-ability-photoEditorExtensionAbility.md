@@ -1,4 +1,12 @@
 # @ohos.app.ability.PhotoEditorExtensionAbility (图片编辑能力)
+
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @liusu23-->
+<!--Designer: @xukeke-->
+<!--Tester: @lusq-->
+<!--Adviser: @huipeizi-->
+
 PhotoEditorExtensionAbility继承自[ExtensionAbility](js-apis-app-ability-extensionAbility.md)，开发者可通过PhotoEditorExtensionAbility实现图片编辑扩展页面。应用通过[startAbilityByType](js-apis-inner-application-uiAbilityContext.md#startability)拉起图片编辑类应用扩展面板后，由用户在面板上选择实现了PhotoEditorExtensionAbility的图片编辑扩展页面并拉起该页面。
 
 > **说明：**
@@ -144,7 +152,7 @@ PhotoEditorExtensionAbility生命周期回调，在销毁时回调，执行资�
 **返回值：**
 |  类型 |说明   |
 | ------------ | ------------ |
-|  Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
+| void \| Promise\<void> | 无返回结果或无返回结果的Promise对象。 |
 
 **示例：**
 
