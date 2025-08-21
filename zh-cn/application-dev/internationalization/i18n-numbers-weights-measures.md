@@ -1,5 +1,12 @@
 # 数字与度量衡国际化
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--Designer: @sunyaozu-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## 使用场景
 
 在不同的国家和文化中，数字、货币和度量衡的表示方法各异，包括小数分隔符、小数位数、货币和度量衡单位等。例如，应用界面需要显示数字“1,000”（一千）表示商品价格。若采用固定格式“1,000”，在欧洲某些国家（如德国）用户会将其理解为“1”，因为这些国家使用逗号作为小数分隔符。为了确保界面符合当地习惯，需要对数字、货币和度量衡进行格式化，使其根据用户的语言和地区设置显示。
@@ -20,7 +27,7 @@
 
 ### 度量衡转换
 
-通过[I18NUtil](../reference/apis-localization-kit/js-apis-i18n.md#i18nutil9)类的[unitConvert](../reference/apis-localization-kit/js-apis-i18n.md#unitconvert9)接口实现单位转换和格式化。具体开发步骤如下：
+度量衡包括长度单位、面积单位、体积单位和容量单位等，通过[I18NUtil](../reference/apis-localization-kit/js-apis-i18n.md#i18nutil9)类的[unitConvert](../reference/apis-localization-kit/js-apis-i18n.md#unitconvert9)接口实现度量衡转换和格式化。具体开发步骤如下：
 
 1. 导入模块。
    ```ts
