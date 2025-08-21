@@ -118,8 +118,8 @@
         ```ts
         // 静态定义，动态访问：属性名在对象定义时是静态的，但访问时通过动态构建属性名（通常使用字符串拼接）来访问
        const obj = {
-  		staticName: 5  // 静态定义属性
-		};
+  	 		staticName: 5  // 静态定义属性
+	   };
 		const fieldName = 'static' + 'Name';  // 动态构建属性名
 		console.info(obj[fieldName]);  // 使用方括号语法动态访问属性
         ```
@@ -127,7 +127,7 @@
         ```ts
         // 动态定义，静态访问：属性名通过动态表达式在对象定义时确定，但访问时直接使用点语法（假设你知道属性名的结果）
         const obj1 = {
- 			 ['static' + 'Name1']: 5  // 动态定义属性
+ 			['static' + 'Name1']: 5  // 动态定义属性
 		};
 		console.info(obj1.staticName1 + '');// 使用点语法静态访问属性
         ```
