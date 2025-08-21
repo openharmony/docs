@@ -2508,7 +2508,7 @@ export default class EntryAbility extends UIAbility {
 
 startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 
-Starts a [UIServiceExtensionAbility](../../application-models/uiserviceextension.md). This API uses a promise to return the result.
+Starts a UIServiceExtensionAbility. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -2593,7 +2593,7 @@ struct Index {
 
 connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnectCallback) : Promise&lt;UIServiceProxy&gt;
 
-Connects to a [UIServiceExtensionAbility](../../application-models/uiserviceextension.md). This API uses a promise to return the result.
+Connects to a UIServiceExtensionAbility. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -2706,7 +2706,7 @@ struct UIServiceExtensionAbility {
 
 disconnectUIServiceExtensionAbility(proxy: UIServiceProxy): Promise&lt;void&gt;
 
-Disconnects from a [UIServiceExtensionAbility](../../application-models/uiserviceextension.md). This API uses a promise to return the result.
+Disconnects from a UIServiceExtensionAbility. This API uses a promise to return the result.
 
 > **NOTE**
 >
