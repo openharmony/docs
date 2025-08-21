@@ -14,6 +14,21 @@
 | off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;): void; | 取消订阅操作手感知。                   |
 | getRecentOperatingHandStatus(): OperatingHandStatus;         | 获取最新的操作手状态。                 |
 
+### 需要权限
+
+使用motion模块获取用户操作手时，需要权限：ohos.permission.ACTIVITY_MOTION 或 ohos.permission.DETECT_GESTURE，具体申请方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。
+
+  ```
+  "requestPermissions":[
+      {
+        "name" : "ohos.permission.ACTIVITY_MOTION"
+      },
+      {
+        "name" : "ohos.permission.DETECT_GESTURE"
+      }
+    ]
+  ```
+  
 ## 约束与限制
 
  - 设备需支持触控屏并兼容特定芯片。
@@ -40,7 +55,7 @@
 
    ```
    let callback:Callback<motion.OperatingHandStatus> = (data:motion.OperatingHandStatus) => {
-     console.info('callback success' + data);
+     console.info('callback succeeded' + data);
    }
    ```
 
@@ -73,7 +88,7 @@
    ```
    try {
       let data:motion.OperatingHandStatus = motion.getRecentOperatingHandStatus();
-      console.info('get success' + data);
+      console.info('get succeeded' + data);
    } catch (err) {
       let error = err as BusinessError;
       console.error("Failed get and err code is " + error.code);
