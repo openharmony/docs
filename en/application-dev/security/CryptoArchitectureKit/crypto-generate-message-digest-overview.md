@@ -1,5 +1,12 @@
 # MD Overview and Algorithm Specifications
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 The message digest (MD) algorithm allows a fixed-length digest to be generated from data of arbitrary size by using the hash algorithm. The MD algorithm is also referred to as a hash algorithm or a one-way hash algorithm.
 
 When the same digest algorithm is used, the generated digest (hash value) has the following features:
@@ -10,7 +17,7 @@ When the same digest algorithm is used, the generated digest (hash value) has th
 
 ## Supported Algorithms and Specifications
 
-The **Supported Type** column in the following table lists the algorithm to be used when an **Md** instance is created.
+The **Supported Type** column in the following table lists the algorithm to be used when an **MD** instance is created.
 
 | MD Algorithm| Supported Type| Length (Bytes)|  API Version|
 | -------- | -------- | -------- | -------- |

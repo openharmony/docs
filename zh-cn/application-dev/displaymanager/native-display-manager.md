@@ -215,7 +215,6 @@ EXTERN_C_END
 
    ```c++
    #include "napi/native_api.h"
-   #include <window_manager/oh_display_info.h>
    #include <window_manager/oh_display_manager.h>
    #include <hilog/log.h>
    

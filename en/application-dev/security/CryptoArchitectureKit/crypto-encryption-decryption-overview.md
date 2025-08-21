@@ -1,5 +1,12 @@
 # Encryption and Decryption Overview
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 Important data needs to be encrypted in data storage or transmission for security purposes.
 
 Typical encryption and decryption operations involve the following:

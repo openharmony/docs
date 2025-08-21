@@ -1793,6 +1793,8 @@ struct TabsExample {
 
   @Builder tabBuilder(title: string,targetIndex: number) {
     Column(){
+      // $r('app.media.star_fill')需要替换为开发者所需的图像资源文件
+      // $r('app.media.star')需要替换为开发者所需的图像资源文件
       Image(this.selectedIndex === targetIndex ? $r('app.media.star_fill') : $r('app.media.star'))
         .width(24)
         .height(24)

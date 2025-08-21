@@ -546,7 +546,8 @@ struct SpanExample {
           Span('SpanTwo')
             .fontSize(10)
             .baselineOffset(new LengthMetrics(0, LengthUnit.VP))
-          ImageSpan($r("app.media.sky"))//建议使用自定义的本地图片
+          // $r('app.media.sky')需要替换为开发者所需的图像资源文件。
+          ImageSpan($r("app.media.sky"))
             .width('80px')
             .baselineOffset(new LengthMetrics(-20, LengthUnit.VP))
         }

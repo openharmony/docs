@@ -1548,7 +1548,7 @@ Camera_ErrorCode OH_CaptureSession_CanPreconfigWithRatio(Camera_CaptureSession* 
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_PreconfigType](capi-camera-h.md#camera_preconfigtype) preconfigType | 要检查的预配置类型。 |
 | [Camera_PreconfigRatio](capi-camera-h.md#camera_preconfigratio) preconfigRatio | 要检查的预配置比例。 |
-| bool* canPreconfig | 是否支持预配置的结果。返回ture表示支持预配置，返回false表示不支持。 |
+| bool* canPreconfig | 是否支持预配置的结果。返回true表示支持预配置，返回false表示不支持。 |
 
 **返回：**
 
@@ -1993,7 +1993,7 @@ Camera_ErrorCode OH_CaptureSession_IsMacroSupported(Camera_CaptureSession* sessi
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| bool* isSupported | 是否支持微距能力的结果。返回ture表示支持微距能力，返回false表示不支持。 |
+| bool* isSupported | 是否支持微距能力的结果。返回true表示支持微距能力，返回false表示不支持。 |
 
 **返回：**
 
@@ -2019,7 +2019,7 @@ Camera_ErrorCode OH_CaptureSession_EnableMacro(Camera_CaptureSession* session, b
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| bool enabled | 是否启用微距能力的标志。返回ture表示启用微距能力，返回false表示不启用。 |
+| bool enabled | 是否启用微距能力的标志。返回true表示启用微距能力，返回false表示不启用。 |
 
 **返回：**
 

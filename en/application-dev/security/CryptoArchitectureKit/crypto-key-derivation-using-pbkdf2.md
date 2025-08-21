@@ -1,11 +1,18 @@
-# Key Derivation Using PBKDF2
+# Key Derivation Using PBKDF2 (ArkTS)
+
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
 
 For details about the corresponding algorithm specifications, see [PBKDF2](crypto-key-derivation-overview.md#pbkdf2).
 
 ## How to Develop
 
 1. Create a [PBKDF2Spec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pbkdf2spec11) object and use it as a parameter for key derivation.
-   
+
    **PBKDF2Spec** is a child class of [KdfSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#kdfspec11). You need to specify the following:
 
    - **algName**: algorithm to use, which is **'PBKDF2'**.
@@ -17,21 +24,21 @@ For details about the corresponding algorithm specifications, see [PBKDF2](crypt
 
 2. Call [cryptoFramework.createKdf](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatekdf11) with the string parameter **'PBKDF2|SHA256'** to create a **Kdf** object. The key derivation algorithm is **PBKDF2**, and HMAC algorithm is **SHA256**.
 
-3. Call [Kdf.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret-2) with the **PBKDF2Spec** object to generate a derived key.
-   
+3. Call [Kdf.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret11) with the **PBKDF2Spec** object to generate a derived key.
+
    The following table lists how **Kdf.generateSecret** delivers the return value.
-   
-   | API| Return Mode| 
+
+   | API| Return Mode|
    | -------- | -------- |
-   | generateSecret(params: KdfSpec, callback: AsyncCallback&lt;DataBlob&gt;): void | This API uses an asynchronous callback to return the result.| 
-   | generateSecret(params: KdfSpec): Promise&lt;DataBlob&gt; | This API uses a promise to return the result.| 
-   | generateSecretSync(params: KdfSpec): DataBlob | This API returns the result synchronously.| 
+   | generateSecret(params: KdfSpec, callback: AsyncCallback&lt;DataBlob&gt;): void | This API uses an asynchronous callback to return the result.|
+   | generateSecret(params: KdfSpec): Promise&lt;DataBlob&gt; | This API uses a promise to return the result.|
+   | generateSecretSync(params: KdfSpec): DataBlob | This API returns the result synchronously.|
 
 - Return the result using **await**:
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
-  
+
   async function kdfAwait() {
     let spec: cryptoFramework.PBKDF2Spec = {
       algName: 'PBKDF2',
@@ -51,7 +58,7 @@ For details about the corresponding algorithm specifications, see [PBKDF2](crypt
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { BusinessError } from '@kit.BasicServicesKit';
-  
+
   function kdfPromise() {
     let spec: cryptoFramework.PBKDF2Spec = {
       algName: 'PBKDF2',

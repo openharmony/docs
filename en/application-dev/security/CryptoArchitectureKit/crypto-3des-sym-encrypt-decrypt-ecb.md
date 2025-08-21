@@ -1,4 +1,11 @@
-# Encryption and Decryption with a 3DES Symmetric Key (ECB Mode) (ArkTS)
+# Encryption and Decryption with a 3DES Asymmetric Key Pair (ArkTS)
+
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
 
 For details about the algorithm specifications, see [3DES](crypto-sym-encrypt-decrypt-spec.md#3des).
 
@@ -14,24 +21,24 @@ For details about the algorithm specifications, see [3DES](crypto-sym-encrypt-de
 
 3. Call [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In **Cipher.init**, set **opMode** to **CryptoMode.ENCRYPT_MODE** (encryption) and **key** to **SymKey** (the key used for encryption).
    
-   When ECB mode is used, pass in **null** in **params**.
+   If ECB mode is used, pass **null**.
 
 4. Call [Cipher.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-1) to pass in the data to be encrypted (plaintext).
    
    - If a small amount of data is to be encrypted, you can use **Cipher.doFinal** immediately after **Cipher.init**.
    - If a large amount of data is to be encrypted, you can call **Cipher.update** multiple times to pass in the data by segment.
-   - You can determine the method to use based on the data size. For example, if the message is greater than 20 bytes, use **Cipher.update**.
+   - You can determine the data size. For example, call **Cipher.update** when the data size is greater than 20 bytes.
 
 5. Call [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to obtain the encrypted data.
    
-   - If data has been passed in by **Cipher.update**, pass in **null** in the **data** parameter of **Cipher.doFinal**.
+   - If **Cipher.update** has been called, set **data** is set to **null**.
    - The output of **Cipher.doFinal** may be **null**. To avoid exceptions, always check whether the result is **null** before accessing specific data.
 
 **Decryption**
 
 1. Call [cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) with the string parameter **'3DES192|ECB|PKCS7'** to create a **Cipher** instance for decryption. The key type is **3DES192**, block cipher mode is **ECB**, and the padding mode is **PKCS7**.
 
-2. Call [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In **Cipher.init**, set **opMode** to **CryptoMode.DECRYPT_MODE** (decryption) and **key** to **SymKey** (the key used for decryption). When ECB mode is used, pass in **null** in **params**.
+2. Call [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In **Cipher.init**, set **opMode** to **CryptoMode.DECRYPT_MODE** (decryption) and **key** to **SymKey** (the key used for decryption). If ECB mode is used, pass **null**.
 
 3. Call [Cipher.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-1) to pass in the data to be decrypted (ciphertext).
 
@@ -39,9 +46,9 @@ For details about the algorithm specifications, see [3DES](crypto-sym-encrypt-de
 
 ## Example
 
-If the cipher mode is ECB, you do not need to set encryption and decryption parameters.
+If the cipher mode is ECB, you do not need to set IV parameter for encryption and decryption.
 
-If the cipher mode is CBC, CTR, OFB, or CFB, you must set the IV and modify the parameters when the **Cipher** instance is generated and initialized during encryption and decryption. For details about how to set the IV, see [Setting the IV](#setting-the-iv).
+If the CBC, CTR, OFB, or CFB block mode is used, you need to set the IV. For details, see [Setting the IV](#setting-the-iv). Ensure that the related parameters are correctly set when the **Cipher** instance is generated and initialized.
 
 - Example (using asynchronous APIs):
 
@@ -51,7 +58,7 @@ If the cipher mode is CBC, CTR, OFB, or CFB, you must set the IV and modify the 
 
   // Encrypt the message.
   async function encryptMessagePromise(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
-    // If CBC, CTR, OFB, or CFB is used, modify the cipher mode and set the IV.
+    // If the CBC, CTR, OFB, or CFB mode is used, change the mode to the corresponding mode and add the IV as the encryption and decryption parameter.
     let cipher = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
     await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null);
     let encryptData = await cipher.doFinal(plainText);
@@ -59,7 +66,7 @@ If the cipher mode is CBC, CTR, OFB, or CFB, you must set the IV and modify the 
   }
   // Decrypt the message.
   async function decryptMessagePromise(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
-    // If CBC, CTR, OFB, or CFB is used, modify the cipher mode and set the IV.
+    // If the CBC, CTR, OFB, or CFB mode is used, change the mode to the corresponding mode and add the IV as the encryption and decryption parameter.
     let decoder = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
     await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, null);
     let decryptData = await decoder.doFinal(cipherText);
@@ -96,7 +103,7 @@ If the cipher mode is CBC, CTR, OFB, or CFB, you must set the IV and modify the 
 
   // Encrypt the message.
   function encryptMessage(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
-    // If CBC, CTR, OFB, or CFB is used, modify the cipher mode and set the IV.
+    // If the CBC, CTR, OFB, or CFB mode is used, change the mode to the corresponding mode and add the IV as the encryption and decryption parameter.
     let cipher = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
     cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null);
     let encryptData = cipher.doFinalSync(plainText);
@@ -104,7 +111,7 @@ If the cipher mode is CBC, CTR, OFB, or CFB, you must set the IV and modify the 
   }
   // Decrypt the message.
   function decryptMessage(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
-    // If CBC, CTR, OFB, or CFB is used, modify the cipher mode and set the IV.
+    // If the CBC, CTR, OFB, or CFB mode is used, change the mode to the corresponding mode and add the IV as the encryption and decryption parameter.
     let decoder = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
     decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, null);
     let decryptData = decoder.doFinalSync(cipherText);
@@ -137,7 +144,7 @@ If the cipher mode is CBC, CTR, OFB, or CFB, you must set the IV and modify the 
 
 The following example demonstrates how to set the IV when the CBC mode is used.
 
-If CBC, CTR, OFB, or CFB mode is used, set the IV in the same way. If ECB mode is used, you do not need to set the decryption parameters.
+If CBC, CTR, OFB, or CFB mode is used, set the IV in the same way. If ECB mode is used, you do not need to set this parameter.
 
   ```ts
   function genIvParamsSpec() {

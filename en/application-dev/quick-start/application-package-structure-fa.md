@@ -1,13 +1,24 @@
 # Application Package Structure in FA Model
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 
 The following figure shows the package structure of an application developed based on the [FA Model](application-configuration-file-overview-fa.md). You should have a basic understanding of the related concepts.
+
+>
+> **NOTE**
+> It is the only application development model supported by API version 8 and earlier. Now, the stage model is recommended for application development.
+>
 
 
 The difference between the application package structures in the FA model and stage model lies in the location where the internal files of a HAP file are stored. In the FA model, all the resource files, library files, and code files are stored in the **assets** folder, where the files are further organized.
 
 
-- **config.json** is an application configuration file, where the template code is automatically created by DevEco Studio. You can modify the configuration as required. For details about the fields in this file, see [Internal Structure of the app Tag](app-structure.md).
+- **config.json** is an application configuration file, where the template code is automatically created by DevEco Studio. You can modify the configuration as required. For details about the fields, see [Overview of Application Configuration Files in FA Model](application-configuration-file-overview-fa.md#configuration-file-internal-structure).
 
 - The **assets** folder is a collection of all the resource files, library files, and code files in a HAP file. It can be further organized into the **entry** folder and the **js** folder. The **entry** folder stores the **resources** folder and the **resources.index** file.
 
@@ -17,7 +28,7 @@ The difference between the application package structures in the FA model and st
 
 - The **js** folder stores code files created after compilation.
 
-- The **pack.info** file describes the HAP attributes in the bundle, for example, **bundleName** and **versionCode** in **app** and **name**, **type**, and **abilities** in **module**. The file is automatically generated when DevEco Studio builds the bundle.
+- The **pack.info** file describes the HAP attributes in the bundle, for example, **bundleName** and **versionCode** of an application and **name**, **type**, and **abilities** of a module. The file is automatically generated when DevEco Studio builds the bundle.
 
 **Figure 1** Application package structure in FA model 
 ![app-pack-fa](figures/app-pack-fa.png)

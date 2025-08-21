@@ -211,7 +211,7 @@ struct Index {
 
   @Computed
   get fullName() {
-    console.info("---------Computed----------");
+    console.info('---------Computed----------');
     return this.firstName + ' ' + this.lastName + this.age;
   }
 
@@ -294,9 +294,9 @@ struct MyView {
     return (this.fahrenheit - 32) * 5 / 9 + 273.15; // F -> K
   }
 
-  @Monitor("kelvin")
+  @Monitor('kelvin')
   onKelvinMonitor(mon: IMonitor) {
-    console.log("kelvin changed from " + mon.value()?.before + " to " + mon.value()?.now);
+    console.log('kelvin changed from ' + mon.value()?.before + ' to ' + mon.value()?.now);
   }
 
   build() {

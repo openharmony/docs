@@ -1,11 +1,18 @@
-# Encryption and Decryption by Segment with an RSA Asymmetric Key Pair
+# Encryption and Decryption by Segment with an RSA Asymmetric Key Pair (ArkTS)
+
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
 
 For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-decrypt-spec.md#rsa).
 
 **Encryption**
 
 1. Call [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) and [AsyKeyGenerator.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-1) to generate a 1024-bit RSA asymmetric key pair (**KeyPair**) with two primes. The number of primes is not specified by default. The **KeyPair** object includes a public key (**PubKey**) and a private key (**PriKey**).
-   
+
    In addition to the example in this topic, [RSA](crypto-asym-key-generation-conversion-spec.md#rsa) and [Randomly Generating an Asymmetric Key Pair](crypto-generate-asym-key-pair-randomly.md) may help you better understand how to generate an RSA asymmetric key pair. Note that the input parameters in the reference documents may be different from those in the example below.
 
 2. Call [cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) with the string parameter **'RSA1024|PKCS1'** to create a **Cipher** instance for encryption. The key type is **RSA1024**, and the padding mode is **PKCS1**.
@@ -13,10 +20,12 @@ For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-de
 3. Call [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In **Cipher.init**, set **opMode** to **CryptoMode.ENCRYPT_MODE** (encryption) and **key** to **KeyPair.PubKey** (the key used for encryption).
 
 4. Call [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) multiple times to pass in the plaintext and encrypt it by segment.
-   
+
    The output of **doFinal** may be **null**. To avoid exceptions, always check whether the result is **null** before accessing specific data.
 
    In this example, the plaintext is split by 64 bytes and encrypted multiple times by a 1024-bit key. A 128-byte ciphertext is generated each time.
+   > **NOTE**
+   > Segment-based encryption and decryption of asymmetric keys means that when the plaintext is longer than the data length supported by a single encryption or decryption operation, the data to be encrypted or decrypted needs to be divided into segments of proper length. For details, see [Asymmetric Encryption and Decryption](crypto-encrypt-decrypt-by-segment.md#asymmetric-encryption-and-decryption).
 
 **Decryption**
 
