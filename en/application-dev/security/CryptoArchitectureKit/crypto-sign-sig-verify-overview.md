@@ -1,5 +1,12 @@
 # Signing and Signature Verification Overview and Algorithm Specifications
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 The digital signature can be used to verify whether the data came from the stated sender and has been changed.
 
 This topic describes the supported algorithms and specifications for signing and signature verification.
@@ -14,11 +21,11 @@ The Crypto framework supports the following padding modes for RSA signing and si
 
 - [PKCS1](#pkcs1): RSAES-PKCS1-V1_5 mode in RFC3447, corresponding to RSA_PKCS1_PADDING in OpenSSL.
   
-  If this padding mode is used, you must set the message digest (**md**). The length of the MD output must be less than the RSA key length. For example, the length of the RSA2048 key is 256 bytes.
+  If this mode is used, you need to set the message digest (**md**). The length of the MD output must be less than the length of the RSA key. For example, the length of the RSA2048 key is 256 bytes.
 
 - [PSS](#pss): RSASSA-PSS mode in RFC 3447, corresponding to RSA_PKCS1_PSS_PADDING in OpenSSL.
   
-  If this padding mode is used, two message digests (**md** and **mgf1_md**) must be set, and the total length of **md** and **mgf1_md** must be less than the RSA key length. For example, the length of the RSA2048 key is 256 bytes.
+  If this padding mode is used, two message digests (**md** and **mgf1_md**) must be set, and the total length of **md** and **mgf1_md** must be less than the length of the RSA key. For example, the length of the RSA2048 key is 256 bytes.
 
   You can also set the salt length **saltLen** to obtain PSS-related parameters.  
 
@@ -32,8 +39,9 @@ The Crypto framework supports the following padding modes for RSA signing and si
 
 > **NOTE**
 >
-> It takes time to generate an RSA2048, RSA3072, RSA4096, or RSA8192 asymmetric key pair or when the plaintext length exceeds 2048 bits. Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
+> It takes time to generate an RSA2048, RSA3072, RSA4096, or RSA8192 asymmetric key pair or when the plaintext length exceeds 2048 bits.
 >
+> Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
 
 ### PKCS1
 
@@ -43,11 +51,11 @@ In the following table, the options included in the square brackets ([]) are mut
 
 > **NOTE**
 >
-> In RSA signing and signature verification, the MD length must be less than the RSA key length. For example, if the RSA key is 512 bits, SHA512 cannot be used.
+> In RSA signing and signature verification, the MD length must be less than the length of the RSA key. For example, if the RSA key is 512 bits, SHA512 cannot be used.
 
 | Asymmetric Key Type| Padding Mode| MD Algorithm| API Version| 
 | -------- | -------- | -------- | -------- |
-| RSA512 | PKCS1 | [MD5\|SHA1\|SHA224\|SHA256] | 9+ | 
+| RSA512 | PKCS1 | [MD5\|SHA1\|SHA224\|SHA256\|SHA384] | 9+ | 
 | RSA768 | PKCS1 | [MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 9+ | 
 | RSA1024 | PKCS1 | [MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 9+ | 
 | RSA2048 | PKCS1 | [MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 9+ | 
@@ -66,7 +74,7 @@ In the following table, the options included in the square brackets ([]) are mut
 
 > **NOTE**
 >
-> If PSS padding mode is used in RSA signing or signature verification, the total length of **md** and **mgf1_md** must be less than the RSA key length. For example, if the RSA key is 512 bits, **md** and **mgf1_md** cannot be **SHA256** at the same time.
+> If PSS padding mode is used in RSA signing or signature verification, the total length of **md** and **mgf1_md** must be less than the length of the RSA key. For example, if the RSA key is 512 bits, **md** and **mgf1_md** cannot be **SHA256** at the same time.
 
 | Asymmetric Key Type| Padding Mode| MD| Mask Digest| API Version| 
 | -------- | -------- | -------- | -------- | -------- |

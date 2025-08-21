@@ -1,6 +1,13 @@
 # Asymmetric Key Generation and Conversion Specifications
 
-This topic describes the supported algorithms and specifications for asymmetric key generation and conversion. The specifications for key generation can be specified via either of the following:
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
+This topic describes the supported algorithms and specifications. There are two ways to generate a key with specified specifications:
 
 - String parameter: presents the specifications of the key to generate in the form of a string.
 
@@ -40,11 +47,11 @@ When creating an asymmetric key generator instance, you need to specify the key 
 
 > **NOTE**
 >
-> - It takes time to generate an RSA2048, RSA3072, RSA4096, or RSA8192 asymmetric key.
+> It takes a long time to generate RSA2048, RSA3072, RSA4096, and RSA8192 asymmetric keys using synchronous APIs.
 >
-> - Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
+> The system has a time limit on the main thread. Time-consuming threads may cause failures. You are advised to use the asynchronous API or [multi-thread concurrency capability](../../arkts-utils/multi-thread-concurrency-overview.md) when generating a large-bit key.
 >
-> - If the created RSA asymmetric key generator is used to randomly generate keys, the specifications of the RSA keys generated are the same as the key specifications set when the key generator is created. If it is used to convert keys, the specifications of the RSA keys generated are the same as the key specifications set in key conversion parameters.
+> When you create an RSA asymmetric key generator, if it is used to randomly generate keys, the specifications of the generated RSA keys match those specified at creation; if used for key conversion, the specifications of the generated RSA keys align with those specified during conversion.
 
 ### Key Parameter
 
@@ -58,7 +65,7 @@ The RSA key includes the following integers:
 
 - **pk**: public exponent, which is often written as **e** in the formula.
 
-The following table illustrates the composition of the RSA key parameters.
+When you create an asymmetric key generator, the RSA key can be generated based on the specified public and private key parameters. For details, see the following table.
 
 - √ indicates the property used to construct a key parameter.
 
@@ -112,7 +119,7 @@ When creating an asymmetric key generator instance, you need to specify the key 
 
 > **NOTE**
 >
-> If the created ECC asymmetric key generator is used to randomly generate keys, the specifications of the ECC keys generated are the same as the key specifications set when the key generator is created. If it is used to convert keys, the specifications of the ECC keys generated are the same as the key specifications set in key conversion parameters.
+> When you create an ECC asymmetric key generator, if it is used to randomly generate keys, the specifications of the generated ECC keys match those specified at creation; if used for key conversion, the specifications of the generated ECC keys align with those specified during conversion.
 
 ### Key Parameter
 
@@ -134,7 +141,7 @@ The ECC key in the **Fp** field includes the following properties:
 
 - **pk**: public key, which is a point on the elliptic curve. **pk** = **sk** x **g**.
 
-The following table illustrates the composition of the ECC key parameters.
+When you create an asymmetric key generator, the ECC key can be generated based on the specified public and private key parameters. For details, see the following table.
 
 - √ indicates the property used to construct a key parameter.
 
@@ -174,11 +181,11 @@ A DSA key can be generated based on a string parameter or key parameters.
 
 It takes time to generate a DSA2048 or DSA3072 asymmetric key pair or when the plaintext length exceeds 2048 bits.
 
-Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
+The system has a time limit on the main thread. Time-consuming threads may cause failures. You are advised to use the asynchronous API or [multi-thread concurrency capability](../../arkts-utils/multi-thread-concurrency-overview.md) when generating a large-bit key.
 
 ### String Parameter
 
-When creating an asymmetric key generator instance, you need to specify the key specifications in a string parameter. The string parameter consists of the asymmetric key algorithm and key length.
+When creating an asymmetric key generator instance, you need to specify the key specifications in a string parameter, which consists of the asymmetric key algorithm and key length.
 
 | Asymmetric Key Algorithm| Key Length (Bit)| String Parameter| API Version| 
 | -------- | -------- | -------- | -------- |
@@ -188,11 +195,11 @@ When creating an asymmetric key generator instance, you need to specify the key 
 
 > **NOTE**
 >
-> - It takes time to generate a DSA2048 or DSA3072 asymmetric key pair or when the plaintext length exceeds 2048 bits.
+> It takes time to generate a DSA2048 or DSA3072 asymmetric key pair or when the plaintext length exceeds 2048 bits.
 >
-> - Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
+> The system has a time limit on the main thread. Time-consuming threads may cause failures. You are advised to use the asynchronous API or [multi-thread concurrency capability](../../arkts-utils/multi-thread-concurrency-overview.md) when generating a large-bit key.
 >
-> - If the created DSA asymmetric key generator is used to randomly generate keys, the specifications of the DSA keys generated are the same as the key specifications set when the key generator is created. If it is used to convert keys, the specifications of the DSA keys generated are the same as the key specifications set in key conversion parameters.
+> When you create a DSA asymmetric key generator, if it is used to randomly generate keys, the specifications of the generated DSA keys match those specified at creation; if used for key conversion, the specifications of the generated DSA keys align with those specified during conversion.
 
 ### Key Parameter
 
@@ -210,7 +217,7 @@ The DSA key includes the following properties:
 
 - **pk**: public key. pk = (g ^ sk) mod p
 
-The following table illustrates the composition of the DSA key parameters.
+When you create an asymmetric key generator, the DSA key can be generated based on the specified public and private key parameters. For details, see the following table.
 
 - √ indicates the property used to construct a key parameter.
 
@@ -231,7 +238,7 @@ The following table illustrates the composition of the DSA key parameters.
 
 ## SM2
 
-ShangMi 2 (SM2) is a public key cryptographic algorithm based on ECC. The SM2 algorithm uses the elliptic curves over the **Fp** field.
+SM2 is a public key cryptographic algorithm based on the elliptic curves in the **Fp** field.
 
 An SM2 key can be generated based on a string parameter or key parameters, and the common parameter can be generated based on the curve name.
 
@@ -263,7 +270,7 @@ The SM2 key in the **Fp** field includes the following properties:
 
 - **pk**: public key, which is a point on the elliptic curve. **pk** = **sk** x **g**.
 
-The following table illustrates the composition of the SM2 key parameters.
+When you create an asymmetric key generator, the SM2 key can be generated based on the specified public and private key parameters. For details, see the following table.
 
 - √ indicates the property used to construct a key parameter.
 
@@ -286,7 +293,7 @@ The following table illustrates the composition of the SM2 key parameters.
 
 ### Curve Name
 
-Since API version 11, the SM2 common parameter can be generated based on a curve name.
+Since API version 11, the SM2 public key parameter can be generated based on a curve name.
 
 > **NOTE**
 > - The curve name is a string parameter. The supported curve name is **NID_sm2**.
@@ -295,7 +302,7 @@ Since API version 11, the SM2 common parameter can be generated based on a curve
 
 ## Ed25519
 
-Ed25519 is a digital signature algorithm based on EdDSA. The key is of 256 bits and is implemented using Edwards curves. Ed25519 is used for signing and signature verification, and cannot be used for encryption or decryption.
+The Ed25519 algorithm is a digital signature algorithm based on the EdDSA algorithm. It generates 256-bit keys using the Edwards curve. It is used for digital signature and verification, but cannot be used for encryption and decryption.
 
 An Ed25519 key can be generated based on a string parameter or key parameters.
 
@@ -311,13 +318,13 @@ When creating an asymmetric key generator instance, you need to specify the key 
 
 Since API version 11, key parameters can be used to generate an Ed25519 key.
 
-The Ed25519 key includes the following properties:
+The Ed25519 key parameters include the following:
 
 - **sk**: private key, which is a 32-byte random value.
 
 - **pk**: public key, a 32-byte value derived from the private key.
 
-The following table illustrates the composition of the Ed25519 key parameters.
+When you create an asymmetric key generator, the Ed25519 key can be generated based on the specified public and private key parameters. For details, see the following table.
 
 - √ indicates the property used to construct a key parameter.
 
@@ -338,7 +345,7 @@ An X25519 key can be generated based on a string parameter or key parameters.
 
 ### String Parameter
 
-When creating an asymmetric key generator instance, you need to specify the key specifications in a string parameter.
+You can use a string parameter to generate X25519 keys and specify the key specifications.
 
 | Asymmetric Key Algorithm| String Parameter| API Version| 
 | -------- | -------- | -------- |
@@ -348,7 +355,7 @@ When creating an asymmetric key generator instance, you need to specify the key 
 
 Since API version 11, key parameters can be used to generate an X25519 key.
 
-The X22519 key includes the following properties:
+The X25519 key parameters include the following:
 
 - **sk**: private key, which is a 32-byte random value.
 
@@ -393,7 +400,7 @@ When creating an asymmetric key generator instance, you need to specify the key 
 
 > **NOTE**
 >
-> If the created DH asymmetric key generator is used to randomly generate keys, the specifications of the DH keys generated are the same as the key specifications set when the key generator is created. If it is used to convert keys, the specifications of the DH keys generated are the same as the key specifications set in key conversion parameters.
+> When you create a DH asymmetric key generator, if it is used to randomly generate keys, the specifications of the generated DH keys match those specified at creation; if used for key conversion, the specifications of the generated DH keys align with those specified during conversion.
 
 ### Key Parameter
 
@@ -427,7 +434,7 @@ The following table illustrates the composition of the DH key parameters.
 
 Since API version 11, the DH common parameter can be generated based on the prime length and private key length.
 
-If the prime length is the same as that of the DH group, the DH group is used. The following table lists the mappings between the prime lengths and DH groups.
+If the prime length is the same as that in the security prime number array, select the corresponding named DH group. The following shows the mapping.
 
 | Prime Length (Bit)| Named DH Group| 
 | -------- | -------- |
@@ -439,8 +446,8 @@ If the prime length is the same as that of the DH group, the DH group is used. T
 
 - The number of bits for **p** must be greater than or equal to 512 and less than or equal to 10000.
 
-- The parameter **l** (private key length) is optional. The default value is **0**. The value of **l** must meet the following requirements:<br>**l** > 2\*(96 + (Length of p – 1)/1024 x 16)
+- The parameter **l** (private key length) is optional. The default value is **0**. The value of **l** must meet the following requirements:<br>**l** > 2**(96 + (Length of p – 1)/1024* x 16)
 
-- The generated common parameter can be used to randomly generate public and private keys, or used to construct the public key parameter, private key parameter, or key pair parameter.
+- The generated common parameter can be used to randomly generate public and private keys, or used to construct the public key, private key, or key pair.
 
 - Named DH groups are recommended because generating a key parameter with an unnamed DH group is time-consuming.
