@@ -29,7 +29,7 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 ## 导入模块
 
 ```ts
-import { Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver，UiComponent, UiDriver, BY } from '@kit.TestKit';
+import { Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver,UiComponent, UiDriver, BY } from '@kit.TestKit';`
 ```
 
 ## MatchPattern
@@ -1808,7 +1808,7 @@ dragTo(target: Component): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -2587,7 +2587,7 @@ drag(startx: number, starty: number, endx: number, endy: number, speed?: number)
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -2676,7 +2676,7 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -2753,7 +2753,7 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
@@ -2899,7 +2899,7 @@ pressHome(): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **返回值：**
 
@@ -3506,7 +3506,7 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 **系统能力**：SystemCapability.Test.UiTest
 
-**设备行为差异**：该接口在Phone、Tablet、PC/2in1设备上生效，在其他设备中调用无效果。
+**设备行为差异**：该接口在Phone、Tablet、PC/2in1、TV设备上生效，在其他设备中调用无效果。
 
 **参数：**
 
