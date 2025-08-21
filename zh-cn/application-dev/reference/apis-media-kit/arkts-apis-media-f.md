@@ -49,7 +49,6 @@ createAVPlayer(callback: AsyncCallback\<AVPlayer>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer;
 media.createAVPlayer((error: BusinessError, video: media.AVPlayer) => {
@@ -95,7 +94,6 @@ createAVPlayer(): Promise\<AVPlayer>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer;
 media.createAVPlayer().then((video: media.AVPlayer) => {
@@ -227,7 +225,6 @@ createAVTranscoder(): Promise\<AVTranscoder>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avTranscoder: media.AVTranscoder | undefined = undefined;
 media.createAVTranscoder().then((transcoder: media.AVTranscoder) => {
@@ -268,7 +265,6 @@ createAVMetadataExtractor(callback: AsyncCallback\<AVMetadataExtractor>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avMetadataExtractor: media.AVMetadataExtractor;
 media.createAVMetadataExtractor((error: BusinessError, extractor: media.AVMetadataExtractor) => {
@@ -307,7 +303,6 @@ createAVMetadataExtractor(): Promise\<AVMetadataExtractor>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avMetadataExtractor: media.AVMetadataExtractor;
 media.createAVMetadataExtractor().then((extractor: media.AVMetadataExtractor) => {
@@ -355,7 +350,6 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo, ca
 
 ```js
 import { audio } from '@kit.AudioKit';
-import { media } from '@kit.MediaKit';
 
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -413,7 +407,6 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): P
 ```js
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -497,7 +490,6 @@ createAVImageGenerator(callback: AsyncCallback\<AVImageGenerator>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator;
 media.createAVImageGenerator((error: BusinessError, generator: media.AVImageGenerator) => {
@@ -536,7 +528,6 @@ createAVImageGenerator(): Promise\<AVImageGenerator>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator;
 media.createAVImageGenerator().then((generator: media.AVImageGenerator) => {
@@ -586,8 +577,6 @@ createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaS
 **示例1：**
 
 ```ts
-import { media } from '@kit.MediaKit';
-
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
 ```
@@ -598,7 +587,6 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 ```ts
 import { common } from '@kit.AbilityKit';
 import { resourceManager } from '@kit.LocalizationKit';
-import { media } from '@kit.MediaKit';
 
 private context: Context | undefined;
 constructor(context: Context) {
@@ -645,8 +633,6 @@ createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 **示例：**
 
 ```ts
-import { media } from '@kit.MediaKit';
-
 let streams : Array<media.MediaStream> = [];
 streams.push({url: "http://xxx/480p.flv", width: 854, height: 480, bitrate: 800000});
 streams.push({url: "http://xxx/720p.flv", width: 1280, height: 720, bitrate: 2000000});
@@ -674,8 +660,6 @@ createAudioPlayer(): AudioPlayer
 **示例：**
 
 ```ts
-import { media } from '@kit.MediaKit';
-
 let audioPlayer: media.AudioPlayer = media.createAudioPlayer();
 ```
 
@@ -699,7 +683,6 @@ createVideoPlayer(callback: AsyncCallback\<VideoPlayer>): void
 **示例：**
 
 ```ts
-import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoPlayer: media.VideoPlayer;
@@ -733,7 +716,6 @@ createVideoPlayer(): Promise\<VideoPlayer>
 **示例：**
 
 ```ts
-import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoPlayer: media.VideoPlayer;
@@ -770,7 +752,6 @@ createAudioRecorder(): AudioRecorder
 **示例：**
 
 ```ts
-import { media } from '@kit.MediaKit';
 let audioRecorder: media.AudioRecorder = media.createAudioRecorder();
 ```
 
