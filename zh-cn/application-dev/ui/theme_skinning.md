@@ -1,4 +1,10 @@
 # 设置应用内主题换肤
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @lushi871202-->
+<!--Designer: @lushi871202-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
@@ -11,8 +17,10 @@
     import { CustomColors, CustomTheme } from '@kit.ArkUI';
 
     export class AppColors implements CustomColors {
-      //自定义主题色
+      // 自定义主题色
       brand: ResourceColor = '#FF75D9';
+      // 使用$r设置深浅色
+      warning: ResourceColor = $r('app.color.start_window_background');
     }
 
     export class AppTheme implements CustomTheme {
