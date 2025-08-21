@@ -20,7 +20,7 @@ The specified **resId** does not exist.
 
 **Solution**
 
-1. Check for any of the following cases: [HAR with obfuscation enabled](../../quick-start/har-package.md#building-an-har), intermediate-code HAR, bytecode HAR, and cross-HAP/HSP. In these cases, you are advised to use APIs such as [getStringByName()](js-apis-resource-manager.md#getstringbyname9) to obtain resources by name.
+1. Check for any of the following cases: [HAR with obfuscation enabled](../../quick-start/har-package.md#building-a-har), intermediate-code HAR, bytecode HAR, and cross-HAP/HSP. In these cases, you are advised to use APIs such as [getStringByName()](js-apis-resource-manager.md#getstringbyname9) to obtain resources by name.
 
 2. Check whether the specified **resId** exists. 
 
