@@ -24,7 +24,7 @@
       "obfuscation": {
         "ruleOptions": {
           "enable": true,
-          "files": ["./obfuscation-rules.txt"],
+          "files": ["./obfuscation-rules.txt"]
         }
       }
     }
@@ -87,8 +87,8 @@
       "obfuscation": {
         "ruleOptions": {
           "enable": true,
-          "files": ["./obfuscation-rules.txt"],
-        }
+          "files": ["./obfuscation-rules.txt"]
+        },
         "consumerFiles": ["./consumer-rules.txt"]
       }
     }
