@@ -58,6 +58,7 @@ IME Kit<br>
 TEE Kit<br>
 Neural Network Runtime Kit<br>
 Standard Libraries<br>
+Kernel Enhance Kit<br>
 
 ## Subsystem
 Location<br>
@@ -117,3 +118,4 @@ Print<br>
 Notification<br>
 Tee<br>
 AGC<br>
+Kernel<br>
