@@ -38,14 +38,12 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
      let fileName = `${new Date().getTime()}`;
      let filePath = pathDir + `/${fileName}.tmp`;
      try {
-      // 异步创建filePath
        fileIo.createRandomAccessFileSync(filePath, fileIo.OpenMode.CREATE);
      } catch (error) {
        let err = error as BusinessError;
        console.error(`create picker profile failed. error code: ${err.code}`);
      }
      
-     // 通过filePath获取uri
      let uri = fileUri.getUriFromPath(filePath);
      let pickerProfile: picker.PickerProfile = {
        cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK,
@@ -54,12 +52,13 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
      return pickerProfile;
    }
    ```
+   fileIo接口调用方法请参考：[createRandomAccessFileSync](../../reference/js-apis-file-fs#fscreaterandomaccessfilesync10)，[getUriFromPath](../../reference/js-ais-file-fileuri#fileurifrompath)。
 
 3. 调用picker拍摄接口获取拍摄的结果。
    ```ts
    async function getPickerResult(context: Context, pickerProfile: picker.PickerProfile): Promise<picker.PickerResult> {
      let result: picker.PickerResult =
-      // 调用picker相机获取拍摄的结果
+       // 调用picker方法拉起系统相机，获取拍摄的图片或视频。
        await picker.pick(context, [picker.PickerMediaType.PHOTO, picker.PickerMediaType.VIDEO],
          pickerProfile);
      console.info(`picker resultCode: ${result.resultCode},resultUri: ${result.resultUri},mediaType: ${result.mediaType}`);
