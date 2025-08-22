@@ -413,7 +413,7 @@ stopBackPress(isStopped: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)&lt;boolean&gt; | 否   | 是否阻止返回键。<br/>默认值：true，true表示阻止返回键，false表示不阻止返回键。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值。|
+| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)&lt;boolean&gt; | 是   | 是否阻止返回键。<br/>默认值：true，true表示阻止返回键，false表示不阻止返回键。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值。|
 
 ### undoStyle<sup>20+</sup>
 
@@ -431,7 +431,7 @@ undoStyle(style: Optional&lt;UndoStyle&gt;)
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)&lt;[UndoStyle](#undostyle20-1)&gt; | 否   | 撤销还原是否保留原样式选项。默认值：UndoStyle.CLEAR_STYLE |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)&lt;[UndoStyle](#undostyle20-1)&gt; | 是   | 撤销还原是否保留原样式选项。默认值：UndoStyle.CLEAR_STYLE |
 
 ### enableAutoSpacing<sup>20+</sup>
 
