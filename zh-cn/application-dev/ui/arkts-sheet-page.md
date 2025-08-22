@@ -128,41 +128,69 @@ struct SheetDemo {
 > 声明onWillDismiss接口后，半模态页面的所有关闭操作，包括侧滑、点击关闭按钮、点击蒙层和下拉关闭，都需通过调用dismiss方法来实现。若未实现此逻辑，半模态页面将无法响应上述关闭操作。
 
 ```ts
-// 第一步：声明onWillDismiss回调
-onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
-// 第二步：确认二次回调交互能力，此处用AlertDialog提示 "是否需要关闭半模态"
-  this.getUIContext().showAlertDialog(
-    {
-      message: '是否选择关闭半模态',
-      autoCancel: true,
-      alignment: DialogAlignment.Bottom,
-      gridCount: 4,
-      offset: { dx: 0, dy: -20 },
-      primaryButton: {
-        value: 'cancel',
-        action: () => {
-          console.info('Callback when the cancel button is clicked');
-        }
-      },
-      secondaryButton: {
-        enabled: true,
-        defaultFocus: true,
-        style: DialogButtonStyle.HIGHLIGHT,
-        value: 'ok',
-        // 第三步：确认关闭半模态逻辑所在，此处为AlertDialog的Button回调
-        action: () => {
-          // 第四步：上述第三步逻辑触发的时候，调用dismiss()关闭半模态
-          DismissSheetAction.dismiss();
-          console.info('Callback when the ok button is clicked');
-        }
-      },
-      cancel: () => {
-        console.info('AlertDialog Closed callbacks');
-      }
+@Entry
+@Component
+struct onWillDismiss_Dismiss {
+  @State isShow: Boolean = false;
+
+  @Builder
+  myBuilder() {
+    Column() {
+      Button('Button')
     }
-  )
-})
+  }
+
+  build() {
+    Button("OpenBindSheet")
+      .onClick(() => {
+        this.isShow = true
+      })
+      .margin(120)
+      .bindSheet($$this.isShow, this.myBuilder(), {
+        height: SheetSize.MEDIUM,
+        blurStyle: BlurStyle.Thick,
+        dragBar: true,
+        detents: [SheetSize.MEDIUM, SheetSize.LARGE],
+        title: { title: "title", subtitle: "subtitle" },
+        enableOutsideInteractive: false,
+        onWillDismiss: ((DismissSheetAction: DismissSheetAction) => { 
+          // 第二步：确认二次回调交互能力，此处用AlertDialog提示 "是否需要关闭半模态"
+          this.getUIContext().showAlertDialog(
+            {
+              message: '是否选择关闭半模态',
+              autoCancel: true,
+              alignment: DialogAlignment.Bottom,
+              gridCount: 4,
+              offset: { dx: 0, dy: -20 },
+              primaryButton: {
+                value: 'cancel',
+                action: () => {
+                  console.info('Callback when the cancel button is clicked');
+                }
+              },
+              secondaryButton: {
+                enabled: true,
+                defaultFocus: true,
+                style: DialogButtonStyle.HIGHLIGHT,
+                value: 'ok',
+                // 第三步：确认关闭半模态逻辑所在，此处为AlertDialog的Button回调
+                action: () => {
+                  // 第四步：上述第三步逻辑触发的时候，调用dismiss()关闭半模态
+                  DismissSheetAction.dismiss();
+                  console.info('Callback when the ok button is clicked');
+                }
+              },
+              cancel: () => {
+                console.info('AlertDialog Closed callbacks');
+              }
+            }
+          )
+        })
+      })
+  }
+}
 ```
+![onWillDismiss](figures/onWillDismiss.png)
 
 ## 屏蔽部分关闭行为
 
