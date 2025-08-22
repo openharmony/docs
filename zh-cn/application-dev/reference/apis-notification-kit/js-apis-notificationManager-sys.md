@@ -4618,6 +4618,7 @@ disableNotificationFeature(disabled: boolean, bundleList: Array\<string\>): Prom
 | 201      | Permission denied. |
 | 202      | Not system application to call the interface. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not supported. |
 | 1600001      | Internal error.                     |
 | 1600002      | Marshalling or unmarshalling error. |
 
