@@ -127,10 +127,18 @@ type OnContentWillChangeCallback = (currentIndex: number, comingIndex: number) =
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | --------------- | ------ |------ |------ |
 | currentIndex | number | 是 | 当前页签索引。 |
 | comingIndex | number | 是 | 即将切换的页签索引。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+|--|--|
+| boolean | 回调函数正常执行则返回true，反之返回false。 |
 
 ## 示例
 
