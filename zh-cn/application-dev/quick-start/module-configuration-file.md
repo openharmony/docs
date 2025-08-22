@@ -1119,8 +1119,10 @@ resources/base/profile路径下的menu.json资源文件示例如下：
 | startWindowBackgroundColor | 标识当前UIAbility组件启动页面背景颜色资源文件的索引，取值为长度不超过255字节的字符串。<br/><!--RP11-->从API version 20开始支持该字段。<!--RP11End--> | 字符串 | 不可缺省。 |
 | startWindowBackgroundImage | 标识当前UIAbility组件启动页面背景图片资源文件的索引，取值为长度不超过255字节的字符串。<br/><!--RP11-->从API version 20开始支持该字段。<!--RP11End--> | 字符串 | 可缺省，缺省值为空。 |
 | startWindowBackgroundImageFit | 标识当前UIAbility组件启动页面背景图像适应方式，支持的取值如下：<br/>-&nbsp;Contain：按照宽高比进行缩小或放大，图片完全显示在显示边界内。<br/>-&nbsp;Cover：按照宽高比进行缩小或放大，图片两边都大于或等于显示边界。<br/>-&nbsp;Auto：自适应显示。<br/>-&nbsp;Fill：不按照宽高比进行放大或缩小，图片充满显示边界。<br/>-&nbsp;ScaleDown：按照宽高比显示，图片缩小或保持不变。<br/>-&nbsp;None：保持原有尺寸显示。<br/><!--RP11-->从API version 20开始支持该字段。<!--RP11End--> | 字符串 | 可缺省，缺省值为Cover。 |
+<!--RP12--><!--RP12End-->
 
 resources/base/profile路径下的start_window.json资源文件示例如下：
+<!--RP13-->
 ```json
 {
   "startWindowType": "REQUIRED_SHOW",
@@ -1132,6 +1134,7 @@ resources/base/profile路径下的start_window.json资源文件示例如下：
   "startWindowBackgroundImageFit": "Cover"
 }
 ```
+<!--RP13End-->
 
 ## systemTheme标签
 
