@@ -2,8 +2,9 @@
 <!--Kit: Location Kit-->
 <!--Subsystem: Location-->
 <!--Owner: @liu-binjun-->
-<!--SE: @liu-binjun-->
-<!--TSE: @mhy123456789-->
+<!--Designer: @liu-binjun-->
+<!--Tester: @mhy123456789-->
+<!--Adviser: @RayShih-->
 
 本模块仅提供GNSS定位、网络定位等基本功能。
 
