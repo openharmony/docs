@@ -14,9 +14,12 @@
 - HCE应用前台刷卡<br>
 前台刷卡是指在触碰NFC读卡器之前，用户先在电子设备上打开特定的应用程序，用户明确想使用所打开的应用程序和NFC读卡器进行刷卡操作。用户打开应用程序在前台，并且进入应用的刷卡页面之后，电子设备触碰NFC读卡器，只会把刷卡交易数据分发给前台应用。
 - HCE应用后台刷卡<br>
-后台刷卡是指不打开特定的HCE应用程序，电子设备触碰NFC读卡器后，根据NFC读卡器选择的应用ID（AID）匹配到HCE应用程序，并自动和匹配的HCE应用程序通信完成刷卡交易。如果匹配到多个HCE应用程序时，说明存在冲突，需要用户打开指定的应用才能完成刷卡。
-- HCE应用刷卡的约束条件<br>
-1.不管是HCE应用前台还是后台刷卡，能够完成HCE应用程序NFC刷卡的条件是电子设备需要亮屏解锁。<br>2.module.json5文件中需要声明nfc卡模拟权限，具体见示例。<br>3.前台应用时需要调用start和stop注册和去注册AID，具体见示例。<br>
+后台刷卡是指不打开特定的HCE应用程序，当电子设备触碰NFC读卡器时，根据NFC读卡器选择的应用ID（Applet ID，AID，参考ISO/IEC 7816-4规范）匹配到HCE应用程序，并自动和匹配的HCE应用程序通信完成刷卡交易。如果NFC读卡器选择的应用ID，匹配到多个HCE应用程序时，说明存在冲突，需要用户打开指定的HCE应用，重新靠近NFC读卡器触发刷卡。
+
+## HCE应用刷卡的约束条件
+1. 基于刷卡安全性考虑，不论HCE应用是前台方式还是后台方式刷卡，均不支持电子设备在灭屏或熄屏状态下的HCE刷卡操作。<br>
+2. 电子设备必须具备NFC控制器芯片，才支持HCE刷卡能力。对于是否具有NFC安全单元芯片，没有约束要求。<br>
+3. HCE应用程序需要声明NFC卡模拟权限，具体见示例。<br>
 
 ## 接口说明
 
@@ -89,7 +92,7 @@ let hceService: cardEmulation.HceService;
 
 const hceCommandCb : AsyncCallback<number[]> = (error : BusinessError, hceCommand : number[]) => {
   if (!error) {
-    if (hceCommand == null || hceCommand == undefined) {
+    if (hceCommand == null) {
       hilog.error(0x0000, 'testTag', 'hceCommandCb has invalid hceCommand.');
       return;
     }
@@ -120,6 +123,7 @@ export default class EntryAbility extends UIAbility {
       return;
     }
 
+    // hceElementName中元素不能为空，通过want获取应用的elementname或按应用实际信息填写
     hceElementName = {
       bundleName: want.bundleName ?? '',
       abilityName: want.abilityName ?? '',
