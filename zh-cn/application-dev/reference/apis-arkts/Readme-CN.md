@@ -66,3 +66,4 @@
   - [语言基础类库错误码](errorcode-utils.md)
   - [Typescript Compiler错误码](errorcode-tsc.md)
   - [编译工具链错误码](errorcode-ets-loader.md)
+  - [Es2abc编译器错误码](errorcode-es2abc.md)
