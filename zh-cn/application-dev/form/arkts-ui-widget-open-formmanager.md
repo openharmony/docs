@@ -1,4 +1,10 @@
 # 应用内拉起卡片管理加桌
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 
 从API version 18开始，卡片开发服务支持将应用的ArkTS卡片添加到桌面。
 
