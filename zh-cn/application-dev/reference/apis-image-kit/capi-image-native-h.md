@@ -185,7 +185,6 @@ Image_ErrorCode OH_ImageNative_GetRowStride(OH_ImageNative *image,uint32_t compo
 
 ```
 Image_ErrorCode OH_ImageNative_GetPixelStride(OH_ImageNative *image,uint32_t componentType, int32_t *pixelStride)
-	
 ```
 
 **描述**
