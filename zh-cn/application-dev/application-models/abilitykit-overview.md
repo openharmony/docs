@@ -22,7 +22,6 @@ Ability Kit（程序框架服务）提供了应用程序开发和运行的应用
 - 提供应用组件运行入口、应用组件生命周期调度、组件间交互等能力。
 - 提供应用上下文环境、系统环境变化监听、组件生命周期监听等能力。
 - 提供启动框架能力，详见[启动框架](./app-startup.md)。
-- 提供意图框架能力，详见[意图框架概述](./insight-intent-overview.md)。
 - 提供应用流转能力。
 - 提供多包机制、共享包、应用信息配置等能力，详见[应用程序包概述](../quick-start/application-package-overview.md)。
 - 提供应用快捷方式能力，详见[快捷方式](../quick-start/typical-scenario-configuration.md)。
