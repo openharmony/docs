@@ -6,12 +6,14 @@
 <!--Tester: @xiong0104-->
 <!--Adviser: @HelloCrease-->
 
+为组件提供信息展示的公共接口。
+
 >**说明：**
 >
 >本模块首批接口从API version 10开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
-## MultiShadowOptions<sup>10+</sup>
+## MultiShadowOptions
 
 投影样式。
 
