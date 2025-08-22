@@ -353,7 +353,10 @@ zh-cn/application-dev/device-usage-statistics/device-usage-statistics-use-guide.
 zh-cn/application-dev/account/ @zengyawen
 
 [开发-Basic Services Kit-公共事件]
-zh-cn/application-dev/basic-services/common-event/  @huipeizi  @dong-qingran   @shine_hk
+zh-cn/application-dev/basic-services/common-event/ @huipeizi @dongqingran @wanghong1997
+zh-cn/application-dev/basic-services/common-event/common-event-*.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/basic-services/common-event/itc-with-emitter.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/basic-services/common-event/native-common-event-*.md @huipeizi @dongqingran @wulong158 @wanghong1997
 
 [开发-Basic Services Kit-设备管理]
 zh-cn/application-dev/device/usb-overview.md @w_Machine_cc @Kevin-Lau @liuhonggang123
@@ -619,8 +622,10 @@ zh-cn/application-dev/napi/usb-ddk-guidelines.md @w_Machine_cc @Kevin-Lau @liuho
 
 
 [开发-Notification Kit]
-zh-cn/application-dev/notification/ @huipeizi  @dong-qingran   @shine_hk
-
+zh-cn/application-dev/notification/ @huipeizi @dongqingran @wanghong1997
+zh-cn/application-dev/notification/notification-distributed*.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/notification/notification-quickreply.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/notification/progress-bar-notification.md @huipeizi @dongqingran @wulong158 @wanghong1997
 
 
 [开发-Performance]
@@ -1183,14 +1188,13 @@ zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-osAccount-sys.md
 zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-account.md @zengyawen
 
 [API参考-Basic Services Kit-公共事件]
-zh-cn/application-dev/reference/apis-basic-sevices-kit/js-apis-commonEvent*.md  @huipeizi  @dong-qingran   @shine_hk
-zh-cn/application-dev/reference/apis-basic-sevices-kit/js-apis-inner-commonEvent*.md  @huipeizi  @dong-qingran   @shine_hk
-zh-cn/application-dev/reference/apis-basic-sevices-kit/js-apis-emitter.md  @huipeizi  @dong-qingran   @shine_hk
-zh-cn/application-dev/reference/apis-basic-sevices-kit/capi-common-event.md  @huipeizi  @dong-qingran   @shine_hk
-zh-cn/application-dev/reference/apis-basic-sevices-kit/oh_commonevent*.md  @huipeizi  @dong-qingran   @shine_hk
-zh-cn/application-dev/reference/apis-basic-sevices-kit/common_event/ @huipeizi  @dong-qingran   @shine_hk
-zh-cn/application-dev/reference/apis-basic-sevices-kit/errorcode-CommonEventService.md @huipeizi  @dong-qingran   @shine_hk
-
+zh-cn/application-dev/reference/apis-basic-sevices-kit/common_event/ @huipeizi @dongqingran @wanghong1997
+zh-cn/application-dev/reference/apis-basic-sevices-kit/js-apis-commonEvent*.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-sevices-kit/js-apis-inner-commonEvent*.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-sevices-kit/js-apis-emitter.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-sevices-kit/capi-oh-commonevent-commonevent-*.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-sevices-kit/errorcode-CommonEventService.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtension*.md @huipeizi @dongqingran @wulong158 @wanghong1997
 
 [API参考-Basic Services Kit-设备管理]
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-battery.md  @w_Machine_cc  @alien0208
@@ -1571,8 +1575,10 @@ zh-cn/application-dev/reference/apis-neural-network-runtime-kit/_neural_network_
 
 
 [API参考-Notification Kit]
-zh-cn/application-dev/reference/apis-notification-kit/ @huipeizi  @dong-qingran   @shine_hk
-
+zh-cn/application-dev/reference/apis-notification-kit/ @huipeizi @dongqingran @wanghong1997
+zh-cn/application-dev/reference/apis-notification-kit/errorcode-notification.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-notification-kit/js-apis-inner-notification-notification*.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-notification-kit/js-apis-notification*.md @huipeizi @dongqingran @wulong158 @wanghong1997
 
 
 [API参考-Security]
