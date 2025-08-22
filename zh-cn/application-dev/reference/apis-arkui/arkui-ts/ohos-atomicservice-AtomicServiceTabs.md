@@ -1,5 +1,12 @@
 # AtomicServiceTabs
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @qq_36417014-->
+<!--Designer: @zhangbeilei-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @zengyawen-->
+
 AtomicServiceTabs高级组件，对Tabs组件一些不需提供给用户自定义设计的属性进行简化，限制最多显示5个页签，固定页签样式，位置和大小。
 
 > **说明：**

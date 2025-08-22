@@ -1,5 +1,12 @@
 # AtomicServiceSearch
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @qq_36417014-->
+<!--Designer: @zhangbeilei-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @zengyawen-->
+
 AtomicServiceSearch为开发者提供满足定制化需求的功能，内容包括默认显示的搜索区、可自定义的选择区和功能区（最多两个）。
 
 > **说明：**

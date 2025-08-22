@@ -1,8 +1,8 @@
 # AtomicServiceNavigation
 
 <!--Kit: ArkUI-->
-<!--Subsystem: AtomicService-->
-<!--Owner: @humeng-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @qq_36417014-->
 <!--Designer: @zhangbeilei-->
 <!--Tester: @tinygreyy-->
 <!--Adviser: @zengyawen-->
