@@ -58,6 +58,7 @@
 | [OH_AVScreenCaptureBufferType](#oh_avscreencapturebuffertype) | OH_AVScreenCaptureBufferType | 枚举，表示buffer类型。 |
 | [OH_AVScreenCaptureFilterableAudioContent](#oh_avscreencapturefilterableaudiocontent) | OH_AVScreenCaptureFilterableAudioContent | 枚举，表示可过滤的音频类型。 |
 | [OH_AVScreenCaptureContentChangedEvent](#oh_avscreencapturecontentchangedevent) | OH_AVScreenCaptureContentChangedEvent | 枚举，表示录屏内容变更事件。 |
+| [OH_AVScreenCapture_FillMode](#oh_avscreencapture_fillmode) | OH_AVScreenCapture_FillMode | 图像填充模式。 |
 
 ### 函数
 
@@ -310,6 +311,23 @@ enum OH_AVScreenCaptureContentChangedEvent
 | OH_SCREEN_CAPTURE_CONTENT_VISIBLE = 1 | 录屏内容变为可见。 |
 | OH_SCREEN_CAPTURE_CONTENT_UNAVAILABLE = 2 | 录屏内容状态变化为不可用，如录屏窗口关闭。 |
 
+### OH_AVScreenCapture_FillMode
+
+```
+enum OH_AVScreenCapture_FillMode
+```
+
+**描述**
+
+图像填充模式。
+
+**起始版本：** 20
+
+| 枚举项 | 描述 |
+| -- | -- |
+| OH_SCREENCAPTURE_FILLMODE_ASPECT_SCALE_FIT = 0 | 保持图像原始宽高比匹配目标图像大小，若比例不一致可能存在黑边。 |
+| OH_SCREENCAPTURE_FILLMODE_SCALE_TO_FILL = 1 | 图像拉伸匹配目标图像大小，若比例不一致图像变形。 |
+
 
 ## 函数说明
 
@@ -495,7 +513,7 @@ typedef void (*OH_AVScreenCapture_OnCaptureContentChanged)(OH_AVScreenCapture* c
 | -- | -- |
 | [OH_AVScreenCapture](capi-avscreencapture-oh-avscreencapture.md)* capture | 指向OH_AVScreenCapture实例的指针。 |
 | [OH_AVScreenCaptureContentChangedEvent](#oh_avscreencapturecontentchangedevent) event | 录屏内容变更事件。 |
-|  [OH_Rect](capi-avscreencapture-oh-rect.md)* area | 录屏内容可见时，对应位置信息。 |
+| [OH_Rect](capi-avscreencapture-oh-rect.md)* area | 录屏内容可见时，对应位置信息。 |
 |  void *userData | 指向应用设置该回调处理方法时提供的自定义数据的指针。 |
 
 ### OH_AVScreenCapture_OnUserSelected()

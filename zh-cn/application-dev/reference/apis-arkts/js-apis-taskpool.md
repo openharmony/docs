@@ -340,7 +340,7 @@ executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Obj
 
 | 参数名       | 类型          | 必填 | 说明                 |
 | ----------- | ------------- | ---- | -------------------- |
-| delayTime   | number        | 是   | 延时时间。单位为ms。  |
+| delayTime   | number        | 是   | 延时时间。单位为ms。delayTime值必须要大于等于0。  |
 | task        | [Task](#task) | 是   | 需要延时执行的任务。 |
 | priority    | [Priority](#priority)       | 否   | 延时执行的任务的优先级，该参数默认值为taskpool.Priority.MEDIUM。 |
 
@@ -401,7 +401,7 @@ executeDelayed任务的校验是结合new GenericsTask一起用的，参数、�
 
 | 参数名       | 类型          | 必填 | 说明                 |
 | ----------- | ------------- | ---- | -------------------- |
-| delayTime   | number        | 是   | 延时时间。单位为ms。  |
+| delayTime   | number        | 是   | 延时时间。单位为ms。delayTime值必须要大于等于0。  |
 | task        | [GenericsTask\<A, R>](#genericstask13) | 是   | 需要延时执行的泛型任务。 |
 | priority    | [Priority](#priority)       | 否   | 延时执行的任务的优先级，默认值为taskpool.Priority.MEDIUM。 |
 
@@ -458,7 +458,7 @@ executePeriodically(period: number, task: Task, priority?: Priority): void
 
 | 参数名       | 类型          | 必填  | 说明                 |
 | -----------  | ------------- | ----- | -------------------- |
-| period       | number        | 是    | 周期时长。单位为ms。  |
+| period       | number        | 是    | 周期时长。单位为ms。period值必须要大于等于0。  |
 | task         | [Task](#task) | 是    | 需要周期执行的任务。 |
 | priority     | [Priority](#priority) | 否   | 周期执行的任务的优先级，该参数默认值为taskpool.Priority.MEDIUM。 |
 
@@ -535,7 +535,7 @@ executePeriodically任务的校验是结合new GenericsTask一起用的，参数
 
 | 参数名       | 类型          | 必填  | 说明                 |
 | -----------  | ------------- | ----- | -------------------- |
-| period       | number        | 是    | 周期时长。单位为ms。  |
+| period       | number        | 是    | 周期时长。单位为ms。period值必须要大于等于0。  |
 | task         | [GenericsTask\<A, R>](#genericstask13) | 是    | 需要周期执行的泛型任务。 |
 | priority     | [Priority](#priority) | 否   | 周期执行的任务的优先级，该参数默认值为taskpool.Priority.MEDIUM。 |
 
@@ -2400,6 +2400,9 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 **示例：**
 
 ```ts
+import { taskpool } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Concurrent
 function additionDelay(delay: number): void {
   let start: number = new Date().getTime();

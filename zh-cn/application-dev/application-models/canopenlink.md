@@ -14,7 +14,7 @@
 > canOpenLink接口不支持判断以App Linking方式跳转的目标应用是否安装。
 
 ## 约束限制
-在entry模块的module.json5文件中的[querySchemes](../quick-start/module-configuration-file.md)字段中，最多允许配置50个URL scheme。
+在entry模块的module.json5文件中的[querySchemes](../quick-start/module-configuration-file.md)字段中，从API version 21开始，最多允许配置200个URL scheme。API version 20及之前的版本，最多允许配置50个URL scheme。
 ## 接口说明
 canOpenLink是[bundleManager](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagercanopenlink12)提供的支持判断目标应用是否可访问的接口。
 匹配规则请参考[显式Want与隐式Want匹配规则](explicit-implicit-want-mappings.md)。
@@ -81,8 +81,8 @@ canOpenLink是[bundleManager](../reference/apis-ability-kit/js-apis-bundleManage
 ```
 
 ## FAQ
-1. 为什么querySchemes中最多允许配置50个URL scheme？
+1. 为什么限制querySchemes中配置的URL scheme个数？
 
    canOpenLink()接口提供了判断应用是否可以访问的能力。通过该能力，应用可以间接获取到指定应用是否安装等信息。
 
-   为了保护系统安全和用户隐私，避免恶意应用扫描应用安装列表等行为，要求开发者在使用canOpenLink()接口时必须配置querySchemes属性，且最多允许配置50个URL scheme。
+   为了保护系统安全和用户隐私，避免恶意应用扫描应用安装列表等行为，要求开发者在使用canOpenLink()接口时必须配置querySchemes属性，从API version 21开始，最多允许配置200个URL scheme。API version 20及之前的版本，最多允许配置50个URL scheme。
