@@ -1462,7 +1462,6 @@ off(type: 'videoSizeChange'): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'videoSizeChange'`：当检测到会话的合法命令发生改变时，触发该事件。 |
-| callback | (width: number, height: number) => void   | 是   | 回调函数。                    |
 
 **错误码：**
 
@@ -1471,6 +1470,7 @@ off(type: 'videoSizeChange'): void
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
 
 **示例：**
 
