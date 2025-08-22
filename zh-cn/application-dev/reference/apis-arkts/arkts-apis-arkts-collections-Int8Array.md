@@ -89,6 +89,7 @@ constructor(length: number)
 // 以长度参数构造对象
 let int8Array: collections.Int8Array = new collections.Int8Array(12);
 ```
+
 ## constructor
 constructor(array: ArrayLike\<number> | ArrayBuffer)
 
