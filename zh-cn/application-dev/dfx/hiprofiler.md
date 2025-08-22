@@ -156,7 +156,7 @@ hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
 
 **native_hook 插件**
 
-获取堆内存分配的调用栈信息（通过malloc、mmap、calloc或realloc等基础库函数分配堆内存的调用栈），包括跨语言堆内存分配信息（如在ArtTS语言中调用napi分配native堆内存），还能展示内存泄漏未释放堆内存调用栈信息。
+获取堆内存分配的调用栈信息（通过malloc、mmap、calloc或realloc等基础库函数分配堆内存的调用栈），包括跨语言堆内存分配信息（如在ArkTS语言中调用napi分配native堆内存），还能展示内存泄漏未释放堆内存调用栈信息。
 
 nativehook参数列表：
 
@@ -184,7 +184,7 @@ nativehook参数列表：
 
 ![zh-cn_image_0000002379820229](figures/zh-cn_image_0000002379820229.png)
 
-开启非统计模式，在此模式下，栈数据不会周期性展示。
+开启非统计模式，在此模式下，栈数据不会周期性展示：
 
 ![zh-cn_image_0000002346019934](figures/zh-cn_image_0000002346019934.png)
 
@@ -192,97 +192,97 @@ nativehook参数列表：
 
 1. 参数介绍
 
-| 参数名字 | 类型 | 参数含义 | 详细介绍 | 
-| -------- | -------- | -------- | -------- |
-| ftrace_events | string | 抓取的trace event。 | 记录内核打点的trace event。 | 
-| hitrace_categories | string | 抓取的hitrace打点信息。 | 调用hitrace能力，获取数据以proto格式写入文件。 | 
-| hitrace_apps | string | 抓取的hitrace信息的进程。 | 设置此参数时，只有对应进程的trace信息会被记录。添加此参数时， hitrace_categories不支持添加binder，否则会导致trace数据解析异常。| 
-| buffer_size_kb | int | buffer缓存大小，单位：kB。 | hiprofiler_plugins进程读取内核事件所需要的缓存大小。推荐使用默认数值：204800。 | 
-| flush_interval_ms | int | 采集数据频率，单位：ms。 | 推荐使用默认数值：1000。 | 
-| flush_threshold_kb | int | 刷新数据大小。 | 超过threshold刷新一次数据至文件。用smartperf默认数值即可。 | 
-| parse_ksyms | bool | 是否获取内核数据。 | true：获取内核数据；false：不获取内核数据。 | 
-| trace_period_ms | int | 读取内核数据的频率。 | 用smartperf默认数值即可。 | 
+    | 参数名字 | 类型 | 参数含义 | 详细介绍 | 
+    | -------- | -------- | -------- | -------- |
+    | ftrace_events | string | 抓取的trace event。 | 记录内核打点的trace event。 | 
+    | hitrace_categories | string | 抓取的hitrace打点信息。 | 调用hitrace能力，获取数据以proto格式写入文件。 | 
+    | hitrace_apps | string | 抓取的hitrace信息的进程。 | 设置此参数时，只有对应进程的trace信息会被记录。添加此参数时， hitrace_categories不支持添加binder，否则会导致trace数据解析异常。| 
+    | buffer_size_kb | int | buffer缓存大小，单位：kB。 | hiprofiler_plugins进程读取内核事件所需要的缓存大小。推荐使用默认数值：204800。 | 
+    | flush_interval_ms | int | 采集数据频率，单位：ms。 | 推荐使用默认数值：1000。 | 
+    | flush_threshold_kb | int | 刷新数据大小。 | 超过threshold刷新一次数据至文件。用smartperf默认数值即可。 | 
+    | parse_ksyms | bool | 是否获取内核数据。 | true：获取内核数据；false：不获取内核数据。 | 
+    | trace_period_ms | int | 读取内核数据的频率。 | 用smartperf默认数值即可。 | 
 
 2. 结果分析
 
-示例命令：
+    示例命令：
 
-```shell
-$ hiprofiler_cmd \
-  -c - \
-  -o /data/local/tmp/hiprofiler_data.htrace \
-  -t 10 \
-  -s \
-  -k \
-<<CONFIG
- request_id: 1
- session_config {
-  buffers {
-   pages: 16384
-  }
- }
- plugin_configs {
-  plugin_name: "ftrace-plugin"
-  sample_interval: 1000
-  config_data {
-   ftrace_events: "binder/binder_transaction"
-   ftrace_events: "binder/binder_transaction_received"
-   buffer_size_kb: 204800
-   flush_interval_ms: 1000
-   flush_threshold_kb: 4096
-   parse_ksyms: true
-   clock: "boot"
-   trace_period_ms: 200
-   debug_on: false
-  }
- }
-CONFIG
-```
+    ```shell
+    $ hiprofiler_cmd \
+      -c - \
+      -o /data/local/tmp/hiprofiler_data.htrace \
+      -t 10 \
+      -s \
+      -k \
+    <<CONFIG
+    request_id: 1
+    session_config {
+      buffers {
+      pages: 16384
+      }
+    }
+    plugin_configs {
+      plugin_name: "ftrace-plugin"
+      sample_interval: 1000
+      config_data {
+      ftrace_events: "binder/binder_transaction"
+      ftrace_events: "binder/binder_transaction_received"
+      buffer_size_kb: 204800
+      flush_interval_ms: 1000
+      flush_threshold_kb: 4096
+      parse_ksyms: true
+      clock: "boot"
+      trace_period_ms: 200
+      debug_on: false
+      }
+    }
+    CONFIG
+    ```
 
-此命令读取的内核binder_transaction和binder_transaction_received数据，这两个字段同时使用，才能完整展示binder两端数据。执行命令后，通过hdc file recv将文件导出，然后拖至smartperf解析。结果示例如下图：
+    此命令读取的内核binder_transaction和binder_transaction_received数据，这两个字段同时使用，才能完整展示binder两端数据。执行命令后，通过hdc file recv将文件导出，然后拖至smartperf解析。结果示例如下图：
 
-点击binder transaction右边的箭头，可以跳转到binder对端的进程或线程。
+    点击binder transaction右边的箭头，可以跳转到binder对端的进程或线程。
 
-![zh-cn_image_0000002316248152](figures/zh-cn_image_0000002316248152.png)
+    ![zh-cn_image_0000002316248152](figures/zh-cn_image_0000002316248152.png)
 
 **memory_plugin**：
 
 1. 参数介绍
 
-| 参数名字 | 类型 | 参数含义 | 详细介绍 | 
-| -------- | -------- | -------- | -------- |
-| report_sysmem_vmem_info | bool | 是否读取虚拟内存数据。 | 从/proc/vmstat节点读取内存数据。 | 
-| report_process_mem_info | bool | 是否获取进程详细内存数据，如rss_shmem，rss_file，vm_swap等。 | 从/proc/${pid}/stat节点读取内存数据。 | 
-| report_smaps_mem_info | bool | 是否获取进程smaps内存信息。 | 从/proc/${pid}/smaps节点获取进程smaps内存数据。 | 
-| report_gpu_mem_info | bool | 是否获取进程GPU使用情况。 | 读取/proc/gpu_memory节点数据。 | 
-| parse_smaps_rollup | bool | 是否从smaps_rollup节点读取smaps统计数据 | 读取/proc/{pid}/smaps_rollup节点的smaps统计数据，相比使用report_smaps_mem_info参数调优服务性能会更好（如CPU，内存使用优化）。 | 
+    | 参数名字 | 类型 | 参数含义 | 详细介绍 | 
+    | -------- | -------- | -------- | -------- |
+    | report_sysmem_vmem_info | bool | 是否读取虚拟内存数据。 | 从/proc/vmstat节点读取内存数据。 | 
+    | report_process_mem_info | bool | 是否获取进程详细内存数据，如rss_shmem，rss_file，vm_swap等。 | 从/proc/${pid}/stat节点读取内存数据。 | 
+    | report_smaps_mem_info | bool | 是否获取进程smaps内存信息。 | 从/proc/${pid}/smaps节点获取进程smaps内存数据。 | 
+    | report_gpu_mem_info | bool | 是否获取进程GPU使用情况。 | 读取/proc/gpu_memory节点数据。 | 
+    | parse_smaps_rollup | bool | 是否从smaps_rollup节点读取smaps统计数据 | 读取/proc/{pid}/smaps_rollup节点的smaps统计数据，相比使用report_smaps_mem_info参数调优服务性能会更好（如CPU，内存使用优化）。 | 
 
 2. 结果分析
 
-![zh-cn_image_0000002357083514](figures/zh-cn_image_0000002357083514.png)
+    ![zh-cn_image_0000002357083514](figures/zh-cn_image_0000002357083514.png)
 
-通过DevEco-&gt;profiler-&gt;Allocation工具，选择Memory泳道，可以使用profiler的memory plugin功能。上图展示了框选时间段的进程smaps内存信息。
+    通过DevEco-&gt;profiler-&gt;Allocation工具，选择Memory泳道，可以使用profiler的memory plugin功能。上图展示了框选时间段的进程smaps内存信息。
 
 **xpower_plugin**：
 
 1. 参数介绍
 
-| 参数名字 | 类型 | 参数含义 | 详细介绍 | 
-| -------- | -------- | -------- | -------- |
-| bundle_name | string | 需要进行能耗调优的进程名。 | 和/proc/节点下的进程名一致。 | 
-| message_type | XpowerMessageType | 需要获取能耗数据的类型。 | 数据类型包括：REAL_BATTERY、APP_STATISTIC、APP_DETAIL、COMPONENT_TOP、ABNORMAL_EVENTS和THERMAL_REPORT。 | 
+    | 参数名字 | 类型 | 参数含义 | 详细介绍 | 
+    | -------- | -------- | -------- | -------- |
+    | bundle_name | string | 需要进行能耗调优的进程名。 | 和/proc/节点下的进程名一致。 | 
+    | message_type | XpowerMessageType | 需要获取能耗数据的类型。 | 数据类型包括：REAL_BATTERY、APP_STATISTIC、APP_DETAIL、COMPONENT_TOP、ABNORMAL_EVENTS和THERMAL_REPORT。 | 
 
 2. 结果分析
 
-![zh-cn_image_0000002346028442](figures/zh-cn_image_0000002346028442.png)
+    ![zh-cn_image_0000002346028442](figures/zh-cn_image_0000002346028442.png)
 
-通过DevEco-&gt;profiler-&gt;real time monitor工具，可以获取相关进程能耗数据。
+    通过DevEco-&gt;profiler-&gt;real time monitor工具，可以获取相关进程能耗数据。
 
 **gpu_plugin**：
 
-获取GPU使用率相关信息的数据
+获取GPU使用率相关信息的数据。
 
-1. 参数介绍
+参数介绍
 
 | 参数名字 | 类型 | 参数含义 | 详细介绍 | 
 | -------- | -------- | -------- | -------- |
@@ -291,9 +291,9 @@ CONFIG
 
 **cpu_plugin**：
 
-获取CPU使用率的相关信息
+获取CPU使用率的相关信息。
 
-1. 参数介绍
+参数介绍
 
 | 参数名字 | 类型 | 参数含义 | 详细介绍 | 
 | -------- | -------- | -------- | -------- |
@@ -386,13 +386,13 @@ CONFIG
 
 
 
-## 常见问题：
+## 常见问题
 
-调优出现异常
+调优出现异常。
 
 **现象描述**
 
-使用hiprofiler_cmd命令时，显示Service not started
+使用hiprofiler_cmd命令时，显示Service not started。
 
 ![zh-cn_image_0000002357083914](figures/zh-cn_image_0000002357083914.png)
 
@@ -400,21 +400,21 @@ CONFIG
 
 调优服务未能开启，说明正在使用DevEco Studio调优或者上次调优异常退出，需要执行hiprofiler_cmd -k之后再重新执行调优命令。
 
-抓取到的trace文件为空
+抓取到的trace文件为空。
 
 **现象描述**
 
-抓取到的trace文件是空的
+抓取到的trace文件是空的。
 
 **可能原因&amp;解决方法**
 
 需要检查生成文件的路径是否在/data/local/tmp/目录下。如果目标路径是/data/local/tmp下的一个文件夹，则尝试对文件夹执行chmod 777操作。如果是user版本使用nativehook或者network profiler抓取no debug应用，也抓不到数据（参考changelog https://gitcode.com/openharmony/docs/pulls/57419）。
 
-调优数据疑似不准确
+调优数据疑似不准确。
 
 **现象描述**
 
-hiprofiler抓取到的native heap和hidumper查看的native heap有差异
+hiprofiler抓取到的native heap和hidumper查看的native heap有差异。
 
 **可能原因&amp;解决方法**
 
