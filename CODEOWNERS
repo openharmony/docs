@@ -54,11 +54,43 @@ zh-cn/application-dev/quick-start/arkts-more-cases.md @zhang_yixin13 @qyhuo32
 zh-cn/application-dev/quick-start/arkts-high-performance-programming.md @zhang_yixin13 @qyhuo32
 
 [开发-Ability Kit-元能力]
-zh-cn/application-dev/kit-readme/Readme-Ability-Kit.md @huipeizi  @ccllee  @lxfycode  @lixueqing513
-zh-cn/application-dev/application-models/ @huipeizi  @ccllee  @lxfycode  @lixueqing513
-zh-cn/application-dev/application-models/uiability*.md @huipeizi  @li-weifeng2  @lxfycode  @lixueqing513
-zh-cn/application-dev/application-models/thread*.md @huipeizi  @li-weifeng2  @lxfycode  @lixueqing513
-zh-cn/application-dev/application-models/itc*.md @huipeizi  @li-weifeng2  @lxfycode  @lixueqing513
+zh-cn/application-dev/application-models/ @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/application-models/Readme-CN.md @huipeizi @jayleehw @lixueqing513
+zh-cn/application-dev/application-models/ability-recover-guideline.md @huipeizi @wendel @lixueqing513
+zh-cn/application-dev/application-models/ability-terminology.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/application-models/abilitystage.md @huipeizi @li-weifeng2024 @lixueqing513
+zh-cn/application-dev/application-models/access-dataability.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/application-models/app-service-extension-ability.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/application-models/app-startup-overview.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/application-models/app-startup.md @huipeizi @yzkp @lixueqing513
+zh-cn/application-dev/application-models/application-context-stage.md @huipeizi @li-weifeng2024 @lixueqing513
+zh-cn/application-dev/application-models/application-models.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/application-models/autofillextensionablility-guide.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/application-models/capi-nativechildprocess-exit-info.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/application-models/capi_nativechildprocess_development_guideline.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/application-models/component-startup-rules.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/application-models/connect-serviceability.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/application-models/create-dataability.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/application-models/create-serviceability.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/application-models/dataability*.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/application-models/deep-linking-startup.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/application-models/embeddeduiextensionability.md @huipeizi @zhangyafei-echo @lixueqing513
+zh-cn/application-dev/application-models/extensionability-overview.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/application-models/insight-intent-config-development.md @huipeizi @zhangyafei-echo @lixueqing513
+zh-cn/application-dev/application-models/lifecycle*.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/application-models/particleability-switch.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/application-models/process-model-stage.md @huipeizi @yzkp @lixueqing513
+zh-cn/application-dev/application-models/serviceability*.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/application-models/serviceextensionability.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/application-models/stage-model-development-overview.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/application-models/start*.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/application-models/subscribe-system-environment-variable-changes.md @huipeizi @li-weifeng2024 @lixueqing513
+zh-cn/application-dev/application-models/system-app-startup.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/application-models/uiability-intra-device-interaction.md @huipeizi @wendel @lixueqing513
+zh-cn/application-dev/application-models/uiability-launch-type.md @huipeizi @wendel @lixueqing513
+zh-cn/application-dev/application-models/uiability-lifecycle.md @huipeizi @wendel @lixueqing513
+zh-cn/application-dev/application-models/uiability-startup-adjust.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/application-models/uiserviceextension.md @huipeizi @li-weifeng2024 @lixueqing513
 
 [开发-Ability Kit-包管理]
 zh-cn/application-dev/application-models/canopenlink.md @Brilliantry_Rui  @hanfeng6  @kongjing2 
@@ -463,7 +495,10 @@ zh-cn/application-dev/device-usage-statistics/device-usage-statistics-use-guide.
 zh-cn/application-dev/account/ @zengyawen
 
 [开发-Basic Services Kit-公共事件]
-zh-cn/application-dev/basic-services/common-event/  @huipeizi  @dong-qingran   @shine_hk
+zh-cn/application-dev/basic-services/common-event/ @huipeizi @dongqingran @wanghong1997
+zh-cn/application-dev/basic-services/common-event/common-event-*.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/basic-services/common-event/itc-with-emitter.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/basic-services/common-event/native-common-event-*.md @huipeizi @dongqingran @wulong158 @wanghong1997
 
 [开发-Basic Services Kit-设备管理]
 zh-cn/application-dev/device/usb-overview.md @w_Machine_cc @Kevin-Lau @liuhonggang123
@@ -627,7 +662,8 @@ zh-cn/application-dev/dfx/Readme-CN.md @mzyan @liyueric @gcw_KuLfPSbe @foryourse
 zh-cn/application-dev/dfx/uinput.md @zhaoxueyuan @hanruofei @Lyuxin @Brilliantry_Rui
 
 [开发-IDL]
-zh-cn/application-dev/IDL/ @huipeizi  @ccllee  @lxfycode  @lixueqing513
+zh-cn/application-dev/IDL/ @huipeizi @liveery @alien0208
+zh-cn/application-dev/IDL/idl-guidelines.md @huipeizi @liveery @alien0208
 
 [开发-IME kit]
 zh-cn/application-dev/inputmethod/ @illybyy @murphy1984   @zhang_yixin13  
@@ -736,14 +772,21 @@ zh-cn/application-dev/napi/usb-ddk-guidelines.md @w_Machine_cc @Kevin-Lau @liuho
 
 
 [开发-Notification Kit]
-zh-cn/application-dev/notification/ @huipeizi  @dong-qingran   @shine_hk
-
+zh-cn/application-dev/notification/ @huipeizi @dongqingran @wanghong1997
+zh-cn/application-dev/notification/notification-distributed*.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/notification/notification-quickreply.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/notification/progress-bar-notification.md @huipeizi @dongqingran @wulong158 @wanghong1997
 
 
 [开发-Performance]
-zh-cn/application-dev/performance/ @huipeizi
-zh-cn/application-dev/performance/reduce-package-size.md  @huipeizi  @changzheng6  @hou-xiangyu1029  @kongjing2
-
+zh-cn/application-dev/performance/ @huipeizi @jiangwensai @Lyuxin
+zh-cn/application-dev/performance/improve-application-cold-start-speed.md @huipeizi @jiangwensai @Lyuxin
+zh-cn/application-dev/performance/improve-file-upload-and-download-performance.md @huipeizi @jiangwensai @Lyuxin
+zh-cn/application-dev/performance/multi_thread_capability.md @huipeizi @jiangwensai @Lyuxin
+zh-cn/application-dev/performance/performance-web-import.md @huipeizi @jiangwensai @Lyuxin
+zh-cn/application-dev/performance/reasonable_using_system_interfaces.md @huipeizi @jiangwensai @Lyuxin
+zh-cn/application-dev/performance/state_variable_dfx_pratice.md @huipeizi @jiangwensai @Lyuxin
+zh-cn/application-dev/performance/thread_memory_shared.md @huipeizi @jiangwensai @Lyuxin
 
 [开发-Security]
 zh-cn/application-dev/security/ @zengyawen
@@ -790,19 +833,77 @@ zh-cn/application-dev/reference/common/js-apis-logs.md @gongjunsong @ge-yafang @
 
 
 [API参考-Ability Kit-元能力]
-zh-cn/application-dev/reference/apis-ability-kit/   @huipeizi  @ccllee  @lxfycode  @lixueqing513
-zh-cn/application-dev/reference/apis-ability-kit/js-apis-ability*.md @huipeizi  @ccllee  @lxfycode  @lixueqing513
-zh-cn/application-dev/reference/apis-ability-kit/js-apis-application*.md @huipeizi  @ccllee  @lxfycode  @lixueqing513
-zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-*.md @huipeizi  @ccllee  @lxfycode  @lixueqing513
-zh-cn/application-dev/reference/apis-ability-kit/js-apis-businessAbilityRouter.md @huipeizi  @ccllee  @lxfycode  @lixueqing513
-zh-cn/application-dev/reference/apis-ability-kit/js-apis-continuation*.md @huipeizi  @ccllee  @lxfycode  @lixueqing513
-zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-ability*.md @huipeizi  @ccllee  @lxfycode  @lixueqing513
-zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-app*.md @huipeizi  @ccllee  @lxfycode  @lixueqing513
-zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-wantAgent*.md @huipeizi  @li-weifeng2  @lxfycode  @lixueqing513
-zh-cn/application-dev/reference/apis-ability-kit/js-apis-uripermissionmanager.md @huipeizi  @ccllee  @lxfycode  @lixueqing513
-zh-cn/application-dev/reference/apis-ability-kit/js-apis-wantAgent.md @huipeizi  @li-weifeng2  @lxfycode  @lixueqing513
-zh-cn/application-dev/reference/apis-ability-kit/errorcode-ability.md @huipeizi  @ccllee  @lxfycode  @lixueqing513
-zh-cn/application-dev/reference/apis-ability-kit/errorcode-DistributedSchedule.md @huipeizi  @ccllee  @lxfycode  @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/ @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/errorcode-ability.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/Readme-CN.md @huipeizi @hanfeng6 @lihaitao @kongjing2
+zh-cn/application-dev/reference/apis-ability-kit/capi-native-child-process-h.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-ability-errorCode.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-ability.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-abilityConstant-sys.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-abilityLifecycleCallback.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-abilityManager-sys.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-abilityStage.md @huipeizi @li-weifeng2024 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-application.md @huipeizi @li-weifeng2024 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-applicationStateChangeCallback.md @huipeizi @yzkp @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-appManager-sys.md @huipeizi @yzkp @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-appManager.md @huipeizi @yzkp @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-autoFillManager.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-autoStartupManager-sys.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-childProcess*.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-common-sys.md @huipeizi @li-weifeng2024 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-common.md @huipeizi @li-weifeng2024 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-completionHandler.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-CompletionHandlerForAtomicService.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-contextConstant.md @huipeizi @ccllee1 @li-weifeng2024 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-dialogSession-sys.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md @huipeizi @zhangyafei-echo @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-InsightIntent*.md @huipeizi @li-weifeng2024 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-kioskManager-sys.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-kioskManager.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md @huipeizi @xukeke @lusq
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-sendableContextManager.md @huipeizi @zhangyafei-echo @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-startOptions-sys.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-startOptions.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-uiAbility.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md @huipeizi @zhangyafei-echo @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-wantConstant.md @huipeizi @li-weifeng2024 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-appstartup-startup*.md @huipeizi @yzkp @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-application-appManager-sys.md @huipeizi @yzkp @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-application-appManager.md @huipeizi @yzkp @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-ability-dataAbility*.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-abilityMonitor.md @huipeizi @li-weifeng2024 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md @huipeizi @li-weifeng2024 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-appForegroundStateObserver-sys.md @huipeizi @yzkp @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-applicationContext.md @huipeizi @li-weifeng2024 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-applicationStateObserver.md @huipeizi @yzkp @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-appStateData.md @huipeizi @yzkp @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-autoFillExtensionContext-sys.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-autoFillRequest-sys.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-autoStartupInfo-sys.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-customData-sys.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-eventHub.md @huipeizi @li-weifeng2024 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-extensionContext.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-extensionRunningInfo-sys.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-missionCallbacks-sys.md @huipeizi @gsxiaowen @hanjiawei
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-processData.md @huipeizi @yzkp @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-processInformation.md @huipeizi @yzkp @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-processRunningInfo.md @huipeizi @yzkp @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md @huipeizi @jsjzju @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext-sys.md @huipeizi @li-weifeng2024 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md @huipeizi @zhangyafei-echo @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-viewData-sys.md @huipeizi @ccllee1 @lixueqing513
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-uripermissionmanager-sys.md @huipeizi @ccllee1 @lixueqing513
 
 
 
@@ -1558,14 +1659,13 @@ zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-osAccount-sys.md
 zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-account.md @zengyawen
 
 [API参考-Basic Services Kit-公共事件]
-zh-cn/application-dev/reference/apis-basic-sevices-kit/js-apis-commonEvent*.md  @huipeizi  @dong-qingran   @shine_hk
-zh-cn/application-dev/reference/apis-basic-sevices-kit/js-apis-inner-commonEvent*.md  @huipeizi  @dong-qingran   @shine_hk
-zh-cn/application-dev/reference/apis-basic-sevices-kit/js-apis-emitter.md  @huipeizi  @dong-qingran   @shine_hk
-zh-cn/application-dev/reference/apis-basic-sevices-kit/capi-common-event.md  @huipeizi  @dong-qingran   @shine_hk
-zh-cn/application-dev/reference/apis-basic-sevices-kit/oh_commonevent*.md  @huipeizi  @dong-qingran   @shine_hk
-zh-cn/application-dev/reference/apis-basic-sevices-kit/common_event/ @huipeizi  @dong-qingran   @shine_hk
-zh-cn/application-dev/reference/apis-basic-sevices-kit/errorcode-CommonEventService.md @huipeizi  @dong-qingran   @shine_hk
-
+zh-cn/application-dev/reference/apis-basic-services-kit/common_event/ @huipeizi @dongqingran @wanghong1997
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-commonEvent*.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-inner-commonEvent*.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-emitter.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-commonevent*.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-CommonEventService.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtension*.md @huipeizi @dongqingran @wulong158 @wanghong1997
 
 [API参考-Basic Services Kit-设备管理]
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-battery.md  @w_Machine_cc  @alien0208
@@ -1946,8 +2046,10 @@ zh-cn/application-dev/reference/apis-neural-network-runtime-kit/_neural_network_
 
 
 [API参考-Notification Kit]
-zh-cn/application-dev/reference/apis-notification-kit/ @huipeizi  @dong-qingran   @shine_hk
-
+zh-cn/application-dev/reference/apis-notification-kit/ @huipeizi @dongqingran @wanghong1997
+zh-cn/application-dev/reference/apis-notification-kit/errorcode-notification.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-notification-kit/js-apis-inner-notification-notification*.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/reference/apis-notification-kit/js-apis-notification*.md @huipeizi @dongqingran @wulong158 @wanghong1997
 
 
 [API参考-Security]
@@ -2003,13 +2105,13 @@ zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-pasteboard.md	@g
 
 
 [工具-元能力、包管理、通知等]
-zh-cn/application-dev/tools/aa-tool.md @huipeizi  @ccllee  @lxfycode  @lixueqing513
+zh-cn/application-dev/tools/aa-tool.md @huipeizi @ccllee1 @lixueqing513
 zh-cn/application-dev/tools/bm-tool.md @Brilliantry_Rui  @hanfeng6  @kongjing2  
-zh-cn/application-dev/tools/packing-tool.md @Brilliantry_Rui  @hanfeng6  @kongjing2  
-zh-cn/application-dev/tools/unpacking-tool.md @Brilliantry_Rui  @hanfeng6  @kongjing2  
+zh-cn/application-dev/tools/packing-tool.md @Brilliantry_Rui @jsjzju @lixueqing513
+zh-cn/application-dev/tools/unpacking-tool.md @Brilliantry_Rui @jsjzju @lixueqing513 
 zh-cn/application-dev/tools/app-check-tool.md @Brilliantry_Rui  @hanfeng6  @kongjing2  
-zh-cn/application-dev/tools/cem-tool.md @huipeizi   @dong-qingran   @shine_hk
-zh-cn/application-dev/tools/anm-tool.md @huipeizi   @dong-qingran   @shine_hk
+zh-cn/application-dev/tools/cem-tool.md @huipeizi @dongqingran @wulong158 @wanghong1997
+zh-cn/application-dev/tools/anm-tool.md @huipeizi @dongqingran @wulong158 @wanghong1997
 zh-cn/application-dev/tools/restool.md  @Brilliantry_Rui @lliule21 @lpw_work @budda-wang
 zh-cn/application-dev/tools/rawheap-translator.md @wanghuan2025 @wanghuan2025 @kir175; @zsw_zhushiwei @foryourself
 zh-cn/application-dev/tools/toybox.md @yan-mingzhen @liveery @liuhaonan2 @foryourself
@@ -2018,6 +2120,6 @@ zh-cn/application-dev/tools/Readme-CN.md @foryourself @lingminghw @RayShih @fory
 
 
 [FAQ]
-zh-cn/application-dev/faqs/faqs-ability.md @huipeizi  @ccllee  @lxfycode  @lixueqing513
+zh-cn/application-dev/faqs/faqs-ability.md @huipeizi @ccllee1 @lixueqing513
 zh-cn/application-dev/faqs/faqs-bundle-management.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
-zh-cn/application-dev/faqs/faqs-event-notification.md @huipeizi  @dong-qingran   @shine_hk
+zh-cn/application-dev/faqs/faqs-event-notification.md @huipeizi @dongqingran @wulong158 @wanghong1997
