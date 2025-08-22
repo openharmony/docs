@@ -490,7 +490,7 @@
           - [文本概述](ui/arkts-text-introduction.md)
           - [文本显示 (Text/Span)](ui/arkts-common-components-text-display.md)
           - [文本输入 (TextInput/TextArea)](ui/arkts-common-components-text-input.md)
-          - [富文本 (RichEditor)](ui/arkts-common-components-richeditor.md)
+          - [富文本编辑 (RichEditor)](ui/arkts-common-components-richeditor.md)
           - [图标小符号 (SymbolGlyph/SymbolSpan)](ui/arkts-common-components-symbol.md)
           - [属性字符串 (StyledString/MutableStyledString)](ui/arkts-styled-string.md)
           - [图文混排](ui/arkts-text-image-layout.md)
@@ -1488,6 +1488,7 @@
                 - [订阅主线程超时事件（C/C++）](dfx/hiappevent-watcher-mainthreadjank-events-ndk.md)
               - 任务执行超时事件<!--app-hicollie-events-->
                 - [任务执行超时事件介绍](dfx/hiappevent-watcher-apphicollie-events.md)
+                - [订阅任务执行超时事件（ArkTS）](dfx/hiappevent-watcher-apphicollie-events-arkts.md)
                 - [订阅任务执行超时事件（C/C++）](dfx/hiappevent-watcher-apphicollie-events-ndk.md)
               - 应用查杀事件<!--app-killed-events-->
                 - [应用查杀事件介绍](dfx/hiappevent-watcher-app-killed-events.md)
@@ -1856,6 +1857,7 @@
         - [创建并使用材质资源](graphics3d/arkgraphics3D-resource-material.md)
         - [创建并使用图片资源](graphics3d/arkgraphics3D-resource-image.md)
         - [创建并使用环境资源](graphics3d/arkgraphics3D-resource-environment.md)
+        - [.shader资源文件格式要求](graphics3d/arkgraphics3D-shader-resource.md)
       - [ArkGraphics 3D场景动画控制以及管理](graphics3d/arkgraphics3D-animation.md)
   - 应用服务<!--gapp-service-->
     <!--Del-->
@@ -1919,31 +1921,7 @@
     - Neural Network Runtime Kit（Neural Network运行时服务）<!--neural-network-runtime-kit-->
       - [Neural Network Runtime Kit简介](ai/nnrt/Neural-Network-Runtime-Kit-Introduction.md)
       - [Neural Network Runtime对接AI推理框架开发指导](ai/nnrt/neural-network-runtime-guidelines.md)
-  <!--Del-->
-  - 一次开发，多端部署<!--free-circulation-->
-    - [前言](key-features/multi-device-app-dev/foreword.md)
-    - [简介](key-features/multi-device-app-dev/introduction.md)
-    - [从一个例子开始](key-features/multi-device-app-dev/start-with-a-example.md)
-    - [应用UX设计](key-features/multi-device-app-dev/design-principles.md)
-    - [工程管理](key-features/multi-device-app-dev/ide-using.md)
-    - 页面开发的一多能力介绍<!--page-development-->
-      - [简介](key-features/multi-device-app-dev/page-development-intro.md)
-      - 布局能力<!--layout-->
-        - [布局简介](key-features/multi-device-app-dev/layout-intro.md)
-        - [自适应布局](key-features/multi-device-app-dev/adaptive-layout.md)
-        - [响应式布局](key-features/multi-device-app-dev/responsive-layout.md)
-        - [典型布局场景](key-features/multi-device-app-dev/typical-layout-scenario.md)
-        - 典型页面场景<!--typical-scenarios-->
-          - [应用市场首页](key-features/multi-device-app-dev/appgallery-home-page.md)
-          - [音乐专辑页](key-features/multi-device-app-dev/music-album-page.md)
-          - [设置应用页面](key-features/multi-device-app-dev/settings-application-page.md)
-      - [交互归一](key-features/multi-device-app-dev/interaction-event-normalization.md)
-      - [多态组件](key-features/multi-device-app-dev/polymorphic-controls.md)
-      - [资源使用](key-features/multi-device-app-dev/resource-usage.md)
-    - [功能开发的一多能力介绍](key-features/multi-device-app-dev/development-intro.md)
-    - [一多开发实例（短信）](key-features/multi-device-app-dev/case.md)
-    - [常见问题](key-features/multi-device-app-dev/multi-faq.md)
-  <!--DelEnd-->
+
   - NDK开发<!--ndk-development-->
     - [NDK开发导读](napi/ndk-development-overview.md)
     - [创建NDK工程](napi/create-with-ndk.md)
@@ -2678,6 +2656,7 @@
         - [语言基础类库错误码](reference/apis-arkts/errorcode-utils.md)
         - [Typescript Compiler错误码](reference/apis-arkts/errorcode-tsc.md)
         - [编译工具链错误码](reference/apis-arkts/errorcode-ets-loader.md)
+        - [Es2abc编译器错误码](reference/apis-arkts/errorcode-es2abc.md)
     - ArkUI（方舟UI框架）<!--arkui-api-->
       - ArkTS API<!--arkui-arkts-->
         - UI界面<!--ui-->
@@ -3640,6 +3619,7 @@
           - [native_interface_arkweb.h](reference/apis-arkweb/capi-native-interface-arkweb-h.md)
         - 结构体<!--arkweb-struct-->
           - [ArkWeb_AnyNativeAPI](reference/apis-arkweb/capi-web-arkweb-anynativeapi.md)
+          - [ArkWeb_BlanklessInfo](reference/apis-arkweb/capi-web-arkweb-blanklessinfo.md)
           - [ArkWeb_SchemeHandler_](reference/apis-arkweb/capi-web-arkweb-schemehandler.md)
           - [ArkWeb_ResourceHandler_](reference/apis-arkweb/capi-web-arkweb-resourcehandler.md)
           - [ArkWeb_Response_](reference/apis-arkweb/capi-web-arkweb-response.md)

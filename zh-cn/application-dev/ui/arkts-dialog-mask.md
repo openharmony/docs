@@ -1,4 +1,10 @@
 # 弹出框蒙层控制
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @houguobiao-->
+<!--Designer: @houguobiao-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 开发者对弹出框的定制不仅限于弹出框里的内容，对弹出框蒙层的定制需求也逐渐增加。本文介绍ArkUI弹出框的蒙层控制，包括点击蒙层时是否消失、蒙层区域、蒙层颜色和蒙层动画等特性。
 
@@ -6,41 +12,59 @@
 
 ArkUI提供多种弹出框，不同类型的弹出框具备不同的蒙层定制能力。详情请参阅下表：
 
-|         接口&组件          |autoCancel|maskRect|isModal|immersiveMode|maskColor|transition|maskTransition|
-| ----------------- | ------ |------ |------ |------ |------ |------ | ------ |
-|[openCustomDialog](arkts-uicontext-custom-dialog.md)|支持|支持|支持|支持|支持|支持|支持|
-|[openCustomDialogWithController](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#opencustomdialogwithcontroller18)|支持|支持|支持|支持|支持|支持|支持|
-|[presentCustomDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#presentcustomdialog18)|支持|支持|支持|支持|支持|支持|支持|
-|[updateCustomDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#updatecustomdialog12)|支持|不支持|不支持|不支持|支持|不支持|不支持|
-|[CustomDialog](arkts-common-components-custom-dialog.md)|支持|支持|支持|支持|支持|不支持（可由openAnimation和closeAnimation替代）|不支持|
-|[showDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#showdialog)|不支持|支持|支持|支持|不支持|不支持|不支持|
-|[showAlertDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showalertdialog)|支持|支持|支持|支持|不支持|支持|不支持|
-|[showActionSheet](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showactionsheet)|支持|支持|支持|支持|不支持|支持|不支持|
-|[showActionMenu](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#showactionmenu11)|不支持|不支持|支持|支持|不支持|不支持|不支持|
-|[showDatePickerDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showdatepickerdialog)|不支持|支持|不支持|不支持|不支持|不支持|不支持|
-|[CalendarPickerDialog](../reference/apis-arkui/arkui-ts/ts-methods-calendarpicker-dialog.md)|不支持|不支持|不支持|不支持|不支持|不支持|不支持|
-|[showTimePickerDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showtimepickerdialog)|不支持|支持|不支持|不支持|不支持|不支持|不支持|
-|[showTextPickerDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showtextpickerdialog)|不支持|支持|不支持|不支持|不支持|不支持|不支持|
+|         接口&组件          |autoCancel|maskRect|isModal|immersiveMode|
+| ----------------- | ------ |------ |------ |------ |
+|[openCustomDialog](arkts-uicontext-custom-dialog.md)|支持|支持|支持|支持|
+|[openCustomDialogWithController](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#opencustomdialogwithcontroller18)|支持|支持|支持|支持|
+|[presentCustomDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#presentcustomdialog18)|支持|支持|支持|支持|
+|[updateCustomDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#updatecustomdialog12)|支持|不支持|不支持|不支持|
+|[CustomDialog](arkts-common-components-custom-dialog.md)|支持|支持|支持|支持|
+|[showDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#showdialog)|不支持|支持|支持|支持|
+|[showAlertDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showalertdialog)|支持|支持|支持|支持|
+|[showActionSheet](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showactionsheet)|支持|支持|支持|支持|
+|[showActionMenu](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#showactionmenu11)|不支持|不支持|支持|支持|
+|[showDatePickerDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showdatepickerdialog)|不支持|支持|不支持|不支持|
+|[CalendarPickerDialog](../reference/apis-arkui/arkui-ts/ts-methods-calendarpicker-dialog.md)|不支持|不支持|不支持|不支持|
+|[showTimePickerDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showtimepickerdialog)|不支持|支持|不支持|不支持|
+|[showTextPickerDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showtextpickerdialog)|不支持|支持|不支持|不支持|
 
 > **说明：**
 > 
-> 设置autoCancel参数，可控制弹出框蒙层被点击时是否消失。
+> - 设置autoCancel参数，可控制弹出框蒙层被点击时是否消失。
 >
-> 设置maskRect参数，可定制弹出框的蒙层的大小和位置进行定制。此外，蒙层范围内的事件无法透传，而蒙层范围外的事件可以透传。
+> - 设置maskRect参数，可定制弹出框的蒙层的大小和位置进行定制。此外，蒙层范围内的事件无法透传，而蒙层范围外的事件可以透传。
 >
-> 设置isModal参数，可定制弹出框的模态状态：非模态弹出框无蒙层，支持与周围组件交互；模态弹出框有蒙层，禁止与周围组件交互。
+> - 设置isModal参数，可定制弹出框的模态状态：非模态弹出框无蒙层，支持与周围组件交互；模态弹出框有蒙层，禁止与周围组件交互。
 >
-> 当levelMode属性设置为LevelMode.EMBEDDED时，设置immersiveMode参数，可定制弹出框蒙层是否延伸至状态栏及导航栏。
+> - 当levelMode属性设置为LevelMode.EMBEDDED时，设置immersiveMode参数，可定制弹出框蒙层是否延伸至状态栏及导航栏。
+
+| 接口&组件                                                    | maskColor | transition                                      | maskTransition |
+| ------------------------------------------------------------ | --------- | ----------------------------------------------- | -------------- |
+| [openCustomDialog](arkts-uicontext-custom-dialog.md)         | 支持      | 支持                                            | 支持           |
+| [openCustomDialogWithController](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#opencustomdialogwithcontroller18) | 支持      | 支持                                            | 支持           |
+| [presentCustomDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#presentcustomdialog18) | 支持      | 支持                                            | 支持           |
+| [updateCustomDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#updatecustomdialog12) | 支持      | 不支持                                          | 不支持         |
+| [CustomDialog](arkts-common-components-custom-dialog.md)     | 支持      | 不支持（可由openAnimation和closeAnimation替代） | 不支持         |
+| [showDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#showdialog) | 不支持    | 不支持                                          | 不支持         |
+| [showAlertDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showalertdialog) | 不支持    | 支持                                            | 不支持         |
+| [showActionSheet](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showactionsheet) | 不支持    | 支持                                            | 不支持         |
+| [showActionMenu](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#showactionmenu11) | 不支持    | 不支持                                          | 不支持         |
+| [showDatePickerDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showdatepickerdialog) | 不支持    | 不支持                                          | 不支持         |
+| [CalendarPickerDialog](../reference/apis-arkui/arkui-ts/ts-methods-calendarpicker-dialog.md) | 不支持    | 不支持                                          | 不支持         |
+| [showTimePickerDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showtimepickerdialog) | 不支持    | 不支持                                          | 不支持         |
+| [showTextPickerDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showtextpickerdialog) | 不支持    | 不支持                                          | 不支持         |
+
+> **说明：**
 >
-> 设置maskColor参数，可定制弹出框蒙层的颜色。
+> - 设置maskColor参数，可定制弹出框蒙层的颜色。
 >
-> 设置openAnimation参数，可定制弹出框的进入动画，同时影响蒙层动画。该接口仅支持简单的动画设置，不支持复杂动画定制。
+> - 设置openAnimation参数，可定制弹出框的进入动画，同时影响蒙层动画。该接口仅支持简单的动画设置，不支持复杂动画定制。
 >
-> 设置closeAnimation参数，可定制弹出框的退出动画，同时影响蒙层动画。该接口仅支持简单的动画设置，不支持复杂动画定制。
+> - 设置closeAnimation参数，可定制弹出框的退出动画，同时影响蒙层动画。该接口仅支持简单的动画设置，不支持复杂动画定制。
 >
-> 设置transition参数，可定制弹出框的进入和退出动画，同时影响蒙层动画。
+> - 设置transition参数，可定制弹出框的进入和退出动画，同时影响蒙层动画。
 >
-> 设置maskTransition参数，可定制弹出框的蒙层动画。
+> - 设置maskTransition参数，可定制弹出框的蒙层动画。
 
 
 ## 弹出框蒙层显隐控制

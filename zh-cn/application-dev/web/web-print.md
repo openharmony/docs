@@ -91,25 +91,20 @@ Web组件打印html页面时可通过W3C标准协议接口和应用接口两种�
   </head>
   <body>
       <button id="printIframe">打印iframe嵌套页面</button>
+      <iframe id="contentIframe" hidden></iframe>
 
       <script>
-          function setPrint() {
-              const closePrint = () => {
-                  document.body.removeChild(this);
-              };
-              this.contentWindow.onbeforeunload = closePrint;
-              this.contentWindow.onafterprint = closePrint;
-              this.contentWindow.print();
-          }
-
           document.getElementById("printIframe").addEventListener("click", () => {
-              const hideFrame = document.createElement("iframe");
-              hideFrame.onload = setPrint;
-              hideFrame.style.display = "none"; // 隐藏 iframe
-              hideFrame.src = "example.pdf";
-              document.body.appendChild(hideFrame);
+              var ctIframe = document.getElementById("contentIframe");
+              if(!ctIframe.contentWindow || !ctIframe.contentWindow.document) {
+                console.error("iframe页面初始化失败");
+                return;
+              }
+              var ctIframeDoc = ctIframe.contentWindow.document;
+              ctIframeDoc.write("嵌套页面");
+              ctIframeDoc.close();
+              ctIframe.contentWindow.print();
           });
-
       </script>
   </body>
   </html>

@@ -47,7 +47,7 @@ class ComponentInfo {
 }
 @Component
 struct Child {
-  @State componentInfo: ComponentInfo = new ComponentInfo("Child", 1, "Hello World"); // 父组件传递的componentInfo会覆盖初始值
+  @State componentInfo: ComponentInfo = new ComponentInfo('Child', 1, 'Hello World'); // 父组件传递的componentInfo会覆盖初始值
 
   build() {
     Column() {
@@ -60,7 +60,7 @@ struct Child {
 struct Index {
   build() {
     Column() {
-      Child({componentInfo: new ComponentInfo("Unknown", 0, "Error")})
+      Child({componentInfo: new ComponentInfo('Unknown', 0, 'Error')})
     }
   }
 }
@@ -94,18 +94,18 @@ struct Index {
   @ComponentV2
   struct Index {
     @Local count: number = 0;
-    @Local message: string = "Hello";
+    @Local message: string = 'Hello';
     @Local flag: boolean = false;
     build() {
       Column() {
         Text(`${this.count}`)
         Text(`${this.message}`)
         Text(`${this.flag}`)
-        Button("change Local")
+        Button('change Local')
           .onClick(()=>{
             // 当@Local装饰简单类型时，能够观测到对变量的赋值
             this.count++;
-            this.message += " World";
+            this.message += ' World';
             this.flag = !this.flag;
         })
       }
@@ -132,24 +132,24 @@ struct Index {
     @Entry
     @ComponentV2
     struct Index {
-      @Local rawObject: RawObject = new RawObject("rawObject");
-      @Local observedObject: ObservedObject = new ObservedObject("observedObject");
+      @Local rawObject: RawObject = new RawObject('rawObject');
+      @Local observedObject: ObservedObject = new ObservedObject('observedObject');
       build() {
         Column() {
           Text(`${this.rawObject.name}`)
           Text(`${this.observedObject.name}`)
-          Button("change object")
+          Button('change object')
             .onClick(() => {
               // 对类对象整体的修改均能观察到
-              this.rawObject = new RawObject("new rawObject");
-              this.observedObject = new ObservedObject("new observedObject");
+              this.rawObject = new RawObject('new rawObject');
+              this.observedObject = new ObservedObject('new observedObject');
           })
-          Button("change name")
+          Button('change name')
             .onClick(() => {
               // @Local不具备观察类对象属性的能力，因此对rawObject.name的修改无法观察到
-              this.rawObject.name = "new rawObject name";
+              this.rawObject.name = 'new rawObject name';
               // 由于ObservedObject的name属性被@Trace装饰，因此对observedObject.name的修改能被观察到
-              this.observedObject.name = "new observedObject name";
+              this.observedObject.name = 'new observedObject name';
           })
         }
       }
@@ -172,14 +172,14 @@ struct Index {
           Text(`${this.numArr[2]}`)
           Text(`${this.dimensionTwo[0][0]}`)
           Text(`${this.dimensionTwo[1][1]}`)
-          Button("change array item") // 按钮1：修改数组中的特定元素
+          Button('change array item') // 按钮1：修改数组中的特定元素
             .onClick(() => {
               this.numArr[0]++;
               this.numArr[1] += 2;
               this.dimensionTwo[0][0] = 0;
               this.dimensionTwo[1][1] = 0;
             })
-          Button("change whole array") // 按钮2：替换整个数组
+          Button('change whole array') // 按钮2：替换整个数组
             .onClick(() => {
               this.numArr = [5,4,3,2,1];
               this.dimensionTwo = [[7,8,9],[0,1,2]];
@@ -213,8 +213,8 @@ struct Index {
   @Entry
   @ComponentV2
   struct Index {
-    @Local infoArr: Info[] = [new Info("Ocean", 28, 120), new Info("Mountain", 26, 20)];
-    @Local originInfo: Info = new Info("Origin", 0, 0);
+    @Local infoArr: Info[] = [new Info('Ocean', 28, 120), new Info('Mountain', 26, 20)];
+    @Local originInfo: Info = new Info('Origin', 0, 0);
     build() {
       Column() {
         ForEach(this.infoArr, (info: Info) => {
@@ -227,17 +227,17 @@ struct Index {
             Text(`Origin name: ${this.originInfo.name}`)
             Text(`Origin region: ${this.originInfo.region.x}-${this.originInfo.region.y}`)
         }
-        Button("change infoArr item")
+        Button('change infoArr item')
           .onClick(() => {
             // 由于属性name被@Trace装饰，所以能够观察到
-            this.infoArr[0].name = "Win";
+            this.infoArr[0].name = 'Win';
           })
-        Button("change originInfo")
+        Button('change originInfo')
           .onClick(() => {
             // 由于变量originInfo被@Local装饰，所以能够观察到
-            this.originInfo = new Info("Origin", 100, 100);
+            this.originInfo = new Info('Origin', 100, 100);
           })
-        Button("change originInfo region")
+        Button('change originInfo region')
           .onClick(() => {
             // 由于属性x、y被@Trace装饰，所以能够观察到
             this.originInfo.region.x = 25;
@@ -266,13 +266,13 @@ struct Index {
   ```ts
   @ComponentV2
   struct MyComponent {
-    @Local message: string = "Hello World"; // 正确用法
+    @Local message: string = 'Hello World'; // 正确用法
     build() {
     }
   }
   @Component
   struct TestComponent {
-    @Local message: string = "Hello World"; // 错误用法，编译时报错
+    @Local message: string = 'Hello World'; // 错误用法，编译时报错
     build() {
     }
   }
@@ -283,14 +283,14 @@ struct Index {
   ```ts
   @ComponentV2
   struct ChildComponent {
-    @Local message: string = "Hello World";
+    @Local message: string = 'Hello World';
     build() {
     }
   }
   @ComponentV2
   struct MyComponent {
     build() {
-      ChildComponent({ message: "Hello" }) // 错误用法，编译时报错
+      ChildComponent({ message: 'Hello' }) // 错误用法，编译时报错
     }
   }
   ```
@@ -325,16 +325,16 @@ class Info {
 @Entry
 @ComponentV2
 struct Index {
-  info: Info = new Info("Tom", 25);
-  @Local localInfo: Info = new Info("Tom", 25);
+  info: Info = new Info('Tom', 25);
+  @Local localInfo: Info = new Info('Tom', 25);
   build() {
     Column() {
       Text(`info: ${this.info.name}-${this.info.age}`) // Text1
       Text(`localInfo: ${this.localInfo.name}-${this.localInfo.age}`) // Text2
-      Button("change info&localInfo")
+      Button('change info&localInfo')
         .onClick(() => {
-          this.info = new Info("Lucy", 18); // Text1不会刷新
-          this.localInfo = new Info("Lucy", 18); // Text2会刷新
+          this.info = new Info('Lucy', 18); // Text1不会刷新
+          this.localInfo = new Info('Lucy', 18); // Text2会刷新
       })
     }
   }
@@ -442,7 +442,7 @@ struct MapSample {
         Button('init map').onClick(() => { // 按钮1：重置Map为初始状态
           this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
         })
-        Button('set new one').onClick(() => { // 按钮2：添加新键值对(4, "d")
+        Button('set new one').onClick(() => { // 按钮2：添加新键值对(4, 'd')
           this.message.set(4, 'd');
         })
         Button('clear').onClick(() => { // 按钮3：清空Map
@@ -512,11 +512,11 @@ struct Index {
   build() {
     Column() {
       Text(`count(${this.count})`)
-      Button("change to undefined") // 按钮1：将count设置为undefined
+      Button('change to undefined') // 按钮1：将count设置为undefined
         .onClick(() => {
           this.count = undefined;
         })
-      Button("change to number") // 按钮2：将count更新为数字10
+      Button('change to number') // 按钮2：将count更新为数字10
         .onClick(() => {
           this.count = 10;
       })

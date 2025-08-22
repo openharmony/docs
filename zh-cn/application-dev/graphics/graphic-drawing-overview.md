@@ -46,7 +46,7 @@ ArkGraphics 2D基于2D图像渲染引擎为开发者提供了一系列灵活多�
 
 以上内容主要呈现了ArkGraphics 2D基于2D图像渲染引擎的主要绘制能力和实现流程，基于画布完成绘制后，还需要将绘制结果上屏显示才能完整实现屏幕上可见的图形UI内容。
 
-当前Drawing依赖的显示方式主要有以下两种：
+Drawing的显示方式主要包括以下两种：
 
 1. 通过[RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md)上屏显示（ArkTS）：通过RenderNode获取Canvas，进行绘制，由RenderNode将绘制结果上屏显示，具体可参考[画布的获取与绘制结果的显示（ArkTS）](canvas-get-result-draw-arkts.md#获取可直接显示的canvas画布)。
 
@@ -59,11 +59,11 @@ ArkGraphics 2D基于2D图像渲染引擎为开发者提供了一系列灵活多�
 
 其中CanvasRenderingContext2D按照W3C标准封装了ArkGraphics 2D中Native Drawing的相关接口，可以方便快速复用Web应用的绘制逻辑，因此非常适用于Web应用和游戏、快速原型设计、数据可视化、在线绘图板、教学工具或创意应用等场景。
 
-[Canvas组件](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md)的底层也使用了[Native Drawing](../reference/apis-arkgraphics2d/capi-drawing.md)接口来实现绘制功能，在绘制能力上两者没有本质的区别。但因为多层封装的实现过程，使得Canvas组件不如[Native Drawing Canvas](../reference/apis-arkgraphics2d/capi-drawing-canvas-h.md)接近硬件，因此对于性能要求比较高、绘制比较复杂、硬件依赖性比较强的场景，如专业图形处理软件、桌面或移动应用等，使用Canvas组件绘制可能会存在一定的卡顿、掉帧等性能问题，此时可以使用Native Drawing接口的自绘制能力，确保应用的绘制性能。
+[Canvas组件](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md)的底层也使用了[Native Drawing](../reference/apis-arkgraphics2d/capi-drawing.md)接口来实现绘制功能，在绘制能力上两者没有本质的区别。但因为多层封装的实现过程，使得Canvas组件在硬件接近性方面不如[Native Drawing Canvas](../reference/apis-arkgraphics2d/capi-drawing-canvas-h.md)，因此对于性能要求比较高、绘制比较复杂、硬件依赖性比较强的场景，如专业图形处理软件、桌面或移动应用等，使用Canvas组件绘制可能会存在一定的卡顿、掉帧等性能问题，此时可以使用Native Drawing接口的自绘制能力，确保应用的绘制性能。
 
 
 ## 约束限制
 
-针对图形绘制过程中，使用的单位为像素单位px。
+针对图形绘制过程中，使用的单位为像素（px）。
 
 <!--RP1--><!--RP1End-->

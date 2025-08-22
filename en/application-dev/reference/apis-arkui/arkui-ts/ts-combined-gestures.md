@@ -109,7 +109,7 @@ struct GestureGroupExample {
 
 Diagram:
 
-In sequence recognition mode the long press gesture event is triggered first.
+In sequence recognition mode, the long press gesture event is triggered first.
 
 ![en-us_image_0000001174104384](figures/en-us_image_0000001174104384.png)
 

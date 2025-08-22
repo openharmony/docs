@@ -20,6 +20,10 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+>  **说明：**
+>
+>  gesture、priorityGesture和parallelGesture当前不支持使用三目运算符（条件? 表达式1 : 表达式2）切换手势绑定。
+
 ### gesture
 
 gesture(gesture: GestureType, mask?: GestureMask): T
@@ -89,9 +93,6 @@ parallelGesture(gesture: GestureType, mask?: GestureMask): T
 | ------ | --------- |
 | T | 返回当前组件。 |
 
->  **说明：**
->
->  gesture、priorityGesture和parallelGesture当前不支持使用三目运算符（条件? 表达式1 : 表达式2）切换手势绑定。
 
 ## GestureType
 

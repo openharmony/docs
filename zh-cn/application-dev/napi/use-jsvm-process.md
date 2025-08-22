@@ -61,7 +61,7 @@
   target_link_libraries(entry PUBLIC libace_napi.z.so libjsvm.so libhilog_ndk.z.so)
   ```
 
-- 实现Native侧的runTest接口。具体代码如下：
+- 新建entry/src/main/cpp/hello.cpp，实现Native侧的runTest接口。具体代码如下：
 
   ```cpp
   // entry/src/main/cpp/hello.cpp

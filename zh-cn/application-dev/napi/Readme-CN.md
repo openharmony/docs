@@ -1,5 +1,10 @@
 # napi
-
+<!--Kit: Common-->
+<!--Subsystem: Common-->
+<!--Owner: @fang-jinxu-->
+<!--Designer: @lingminghw-->
+<!--Tester: @RayShih-->
+<!--Adviser: @fang-jinxu-->
 - [NDK开发导读](ndk-development-overview.md)
 - [创建NDK工程](create-with-ndk.md)
 - 构建NDK工程<!--build-with-ndk-->
@@ -99,6 +104,7 @@
       - [JSVM-API调试&定位](jsvm-debugger-cpuprofiler-heapsnapshot.md)
       - [使用JSVM-API接口进行Trace相关开发](use-jsvm-about-trace.md)
       - [JSVM 申请JIT权限指导](jsvm-apply-jit-profile.md)
+      - [JSVM-API 坚盾守护模式](jsvm-secure-shield-mode.md)
       - [JSVM 定位内存泄漏问题指导](jsvm-locate-memory-leak.md)
       - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
         - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](use-jsvm-runtime-task.md)

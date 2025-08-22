@@ -1,12 +1,19 @@
-# Key Derivation Using Scrypt
+# Key Derivation Using Scrypt (ArkTS)
+
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
 
 For details about the corresponding algorithm specifications, see [Scrypt](crypto-key-derivation-overview.md#scrypt).
 
 ## How to Develop
 
 1. Create an [ScryptSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#scryptspec18) object and use it as a parameter for key derivation.
-   
-   **SCRYPTSpec** is a child class of [KdfSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#kdfspec11). You need to specify the following:
+
+   **ScryptSpec** is a child class of [KdfSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#kdfspec11). You need to specify the following:
 
    - **algName**: algorithm to use, which is **SCRYPT**.
    - **passphrase**: original password used to generate the derived key.
@@ -20,22 +27,22 @@ For details about the corresponding algorithm specifications, see [Scrypt](crypt
 
 2. Call [cryptoFramework.createKdf](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatekdf11) with the string parameter set to **SCRYPT** to create a key derivation function object (**Kdf**) with the scrypt algorithm.
 
-3. Call [Kdf.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret-2) with the **SCRYPT** object to generate a derived key.
-   
+3. Call [Kdf.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret11) with the **SCRYPT** object to generate a derived key.
+
    The following table lists how **Kdf.generateSecret** delivers the return value.
-   
-   | API| Return Mode| 
+
+   | API| Return Mode|
    | -------- | -------- |
-   | generateSecret(params: KdfSpec, callback: AsyncCallback&lt;DataBlob&gt;): void | This API uses an asynchronous callback to return the result.| 
-   | generateSecret(params: KdfSpec): Promise&lt;DataBlob&gt; | This API uses a promise to return the result.| 
-   | generateSecretSync(params: KdfSpec): DataBlob | This API returns the result synchronously.| 
+   | generateSecret(params: KdfSpec, callback: AsyncCallback&lt;DataBlob&gt;): void | This API uses an asynchronous callback to return the result.|
+   | generateSecret(params: KdfSpec): Promise&lt;DataBlob&gt; | This API uses a promise to return the result.|
+   | generateSecretSync(params: KdfSpec): DataBlob | This API returns the result synchronously.|
 
 - Return the result using **await**:
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { BusinessError } from '@kit.BasicServicesKit';
-  
+
   async function ScryptAwait() {
     try {
       let spec: cryptoFramework.ScryptSpec = {
@@ -63,7 +70,7 @@ For details about the corresponding algorithm specifications, see [Scrypt](crypt
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { BusinessError } from '@kit.BasicServicesKit';
-  
+
   function ScryptPromise() {
     let spec: cryptoFramework.ScryptSpec = {
       algName: 'SCRYPT',

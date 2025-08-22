@@ -338,7 +338,7 @@ Camera_ErrorCode OH_VideoOutput_DeleteProfile(Camera_VideoProfile* profile)
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* videoOutput | 传递当前视频输出的录像输出实例。 |
-| bool mirrorMode | TRUE表示打开镜像功能，FALSE表示关闭镜像功能。 |
+| bool mirrorMode | 设备是否开启镜像功能。true表示打开镜像功能，false表示关闭镜像功能。 |
 
 **返回：**
 

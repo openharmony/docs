@@ -1,6 +1,6 @@
 # Overview of Interactive Widgets
 
-Interactive widgets dynamically display static information or images and facilitate human-machine interaction, thereby enhancing information notifications, shallow interactions, and the overall playability experience.
+Supported since API version 20, interactive widgets provide animation capabilities such as overflow animations, rich information notifications, and shallow interactions, greatly enhancing user experience.
 
 ## Scenarios
 

@@ -1,5 +1,11 @@
 # @ohos.app.form.formBindingData (formBindingData)
 
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 The **FormBindingData** module provides APIs for widget data binding. You can use the APIs to create a **FormBindingData** object and obtain related information.
 
 > **NOTE**
@@ -78,24 +84,35 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { formBindingData } from '@kit.FormKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo } from '@kit.CoreFileKit';
-
-try {
-  let file = fileIo.openSync('/path/to/form.png');
-  let formImagesParam: Record<string, number> = {
-    'image': file.fd
-  };
-  let createFormBindingDataParam: Record<string, string | Object> = {
-    'name': '21°',
-    'imgSrc': 'image',
-    'formImages': formImagesParam
-  };
-
-  formBindingData.createFormBindingData(createFormBindingDataParam);
-} catch (error) {
-  let code = (error as BusinessError).code;
-  let message = (error as BusinessError).message;
-  console.error(`catch error, code: ${code}, message: ${message}`);
+import { common } from '@kit.AbilityKit';
+@Entry
+@Component
+struct Index {
+  content = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  pathDir: string = this.content.filesDir;
+  createFormBindingData() {
+    try {
+      let filePath = this.pathDir + "/form.png";
+      let file = fileIo.openSync(filePath);
+      let formImagesParam: Record<string, number> = {
+        'image': file.fd
+      };
+      let createFormBindingDataParam: Record<string, string | Record<string, number>> = {
+        'name': '21°',
+        'imgSrc': 'image',
+        'formImages': formImagesParam
+      };
+      formBindingData.createFormBindingData(createFormBindingDataParam);
+    } catch (error) {
+      console.error(`catch error, error: ${JSON.stringify(error)}`);
+    }
+  }
+  build() {
+    Button('createFormBindingData')
+      .onClick((event: ClickEvent)=>{
+        this.createFormBindingData();
+      })
+  }
 }
 ```
