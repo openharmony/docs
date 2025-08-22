@@ -759,7 +759,7 @@ static load(uri?: ResourceStr): Promise\<Scene>
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function loadModel() : void {
+function loadModel(): void {
   // 加载模型
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {});
@@ -789,7 +789,7 @@ getNodeByPath(path: string, type?: NodeType): Node | null
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function getNode() : void {
+function getNode(): void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {
     if (result) {
@@ -817,7 +817,7 @@ getResourceFactory(): SceneResourceFactory
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function getFactory() : void {
+function getFactory(): void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {
     if (result) {
@@ -840,7 +840,7 @@ destroy(): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function destroy() : void {
+function destroy(): void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {
     if (result) {
