@@ -141,7 +141,7 @@ The following table lists the APIs related to user preference persistence. For m
 
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
-       let options: preferences.Options = { name: 'myStore' , storageType: preferences.StorageType.GSKV};
+       let options: preferences.Options = { name: 'myStore', storageType: preferences.StorageType.GSKV };
        dataPreferences = preferences.getPreferencesSync(this.context, options);
      }
    }
@@ -155,7 +155,7 @@ The following table lists the APIs related to user preference persistence. For m
    import { BusinessError } from '@kit.BasicServicesKit';
 
    let context = featureAbility.getContext();
-   let options: preferences.Options =  { name: 'myStore' , storageType: preferences.StorageType.GSKV};
+   let options: preferences.Options =  { name: 'myStore', storageType: preferences.StorageType.GSKV };
    let dataPreferences: preferences.Preferences = preferences.getPreferencesSync(context, options);
    ```
    <!--DelEnd-->
