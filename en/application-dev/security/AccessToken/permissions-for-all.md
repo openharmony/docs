@@ -568,9 +568,9 @@ With this permission, the application can set the background color the shadow vi
 
 ## ohos.permission.START_WINDOW_BELOW_LOCK_SCREEN
 
-Allows an application to be launched while the screen is locked.
+Allows an application to start in the locked screen state.
 
-With this permission, the application can be launched when the screen is locked.
+With this permission, the application can be started when the screen is locked. After the device is unlocked, the application launch screen is displayed.
 
 **Permission level**: normal
 
@@ -578,7 +578,7 @@ With this permission, the application can be launched when the screen is locked.
 
 **Supported devices**: PCs/2-in-1 devices
 
-**Valid since**: 20
+**Valid since**: 21
 
 ## ohos.permission.kernel.IGNORE_LIBRARY_VALIDATION
 
