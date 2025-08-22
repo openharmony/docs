@@ -114,6 +114,7 @@ onError(callback:ErrorCallback)
   ```ts
   // OhCardWorker.ets
   import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
+  
   const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
   workerPort.onmessage = (e: MessageEvents) => {}
