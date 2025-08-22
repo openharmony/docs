@@ -615,7 +615,7 @@ onPrepareToTerminateAsync(): Promise\<boolean>
 
 **设备行为差异**：
 - 从API version 15开始，该接口仅在2in1设备中可正常执行回调，在其他设备上不执行回调。
-- 从API version 19开始，该接口在2in1和tablet设备中可正常执行回调，在其他设备上不执行回调。
+- 从API version 19开始，该接口在2in1和Tablet设备中可正常执行回调，在其他设备上不执行回调。
 
 **返回值：**
 
@@ -651,7 +651,7 @@ UIAbility生命周期回调，当UIAbility侧滑返回时触发，根据返回�
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-**设备行为差异**：该接口仅在2in1和tablet设备中可正常执行回调，在其他设备上不执行回调。
+**设备行为差异**：该接口仅在2in1和Tablet设备中可正常执行回调，在其他设备上不执行回调。
 
 **返回值：**
 
