@@ -89,6 +89,38 @@ constructor(length: number)
 // 以长度参数构造对象
 let uint16Array: collections.Uint16Array = new collections.Uint16Array(12);
 ```
+## constructor
+constructor(elements: Iterable\<number>)
+
+构造函数，以Iterable创建一个ArkTS Uint16Array对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                                                         |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| elements |  Iterable\<number> | 是 | 用于构造ArkTS Uint16Array的对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | Parameter error.                                         |
+| 10200012 | The Uint16Array's constructor cannot be directly invoked. |
+
+**示例：**
+
+```ts
+// 从一个Iterable构造对象
+let set: Set<number> = new Set<number>([1, 2, 3]);
+let array: collections.Uint16Array = new collections.Uint16Array(set);
+// Uint16Array [1, 2, 3]
+```
 
 ## constructor
 constructor(array: ArrayLike\<number> | ArrayBuffer)
@@ -231,7 +263,7 @@ static from\<T>(arrayLike: ArrayLike\<T>, mapFn: TypedArrayFromMapFn\<T, number>
 
 **错误码：**
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                  |
 | -------- | -------------------------------------------------------  |
@@ -283,7 +315,7 @@ static from(arrayLike: Iterable\<number>, mapFn?: TypedArrayFromMapFn\<number, n
 
 **错误码：**
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                  |
 | -------- | -------------------------------------------------------  |
