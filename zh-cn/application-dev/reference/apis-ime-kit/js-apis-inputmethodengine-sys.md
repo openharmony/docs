@@ -28,6 +28,8 @@ type SizeUpdateCallback = (size: window.Size, keyboardArea: KeyboardArea) => voi
 
 **系统接口：** 此接口为系统接口。
 
+**参数：**
+
 | 参数名       | 类型                                                 | 必填 | 说明                             |
 | ------------ | ---------------------------------------------------- | ---- | -------------------------------- |
 | size         | [window.Size](../apis-arkui/arkts-apis-window-i.md#size7) | 是   | 当前面板大小。                   |
