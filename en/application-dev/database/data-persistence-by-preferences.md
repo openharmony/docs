@@ -33,7 +33,7 @@ GSKV is available since API version 18. It supports concurrent read and write in
 
 - If the value is of the string type, use the UTF-8 encoding format. It can be empty. If not empty, it cannot exceed 16 MB.
 
-- If the data to be stored contains a string that is not in UTF-8 format, store it in an Uint8Array. Otherwise, the persistent file may be damaged due to format errors.
+- If the data to be stored contains a string that is not in UTF-8 format, store it in a Uint8Array. Otherwise, the persistent file may be damaged due to format errors.
 
 - After **removePreferencesFromCache** or **deletePreferences** is called, the subscription to data changes will be automatically canceled. After **getPreferences** is called again, you need to subscribe to data changes again.
 
