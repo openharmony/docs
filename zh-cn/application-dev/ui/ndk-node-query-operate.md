@@ -664,8 +664,8 @@ NDK支持通过不同的展开方式获取目标节点下的有效节点信息�
       // 用不展开的方式获取节点
       getChildWithNotExpand() {
         const childNode = this.rootNode!.getChild(3, ExpandMode.NOT_EXPAND);
-        console.info(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND): " + childNode!.getId());
-        if (childNode!.getId() === "N9") {
+        console.info(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND): " + childNode?.getId());
+        if (childNode?.getId() === "N9") {
           console.info(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND)  result: success.");
         } else {
           console.info(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND)  result: fail.");
@@ -675,8 +675,8 @@ NDK支持通过不同的展开方式获取目标节点下的有效节点信息�
       // 以展开的方式获取节点
       getChildWithExpand() {
         const childNode = this.rootNode!.getChild(3, ExpandMode.EXPAND);
-        console.info(TEST_TAG + " getChild(3, ExpandMode.EXPAND): " + childNode!.getId());
-        if (childNode!.getId() === "N3") {
+        console.info(TEST_TAG + " getChild(3, ExpandMode.EXPAND): " + childNode?.getId());
+        if (childNode?.getId() === "N3") {
           console.info(TEST_TAG + " getChild(3, ExpandMode.EXPAND)  result: success.");
         } else {
           console.info(TEST_TAG + " getChild(3, ExpandMode.EXPAND)  result: fail.");
@@ -685,8 +685,8 @@ NDK支持通过不同的展开方式获取目标节点下的有效节点信息�
       
       getChildWithLazyExpand() {
         const childNode = this.rootNode!.getChild(3, ExpandMode.LAZY_EXPAND);
-        console.info(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND): " + childNode!.getId());
-        if (childNode!.getId() === "N3") {
+        console.info(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND): " + childNode?.getId());
+        if (childNode?.getId() === "N3") {
           console.info(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND)  result: success.");
         } else {
           console.info(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND)  result: fail.");
