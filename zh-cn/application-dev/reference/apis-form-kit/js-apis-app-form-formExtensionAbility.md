@@ -88,7 +88,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onCastToNormalForm(formId: string): void
 
-卡片提供方接收临时卡片转常态卡片的通知接口，临时卡和常态卡参考[卡片信息的持久化](../../form/widget-development-fa.md#卡片信息的持久化)。
+卡片提供方接收临时卡片转常态卡片的通知接口，当前系统不存在触发场景。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -110,10 +110,9 @@ import { FormExtensionAbility } from '@kit.FormKit';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onCastToNormalForm(formId: string) {
     // 卡片使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理。
-    // 1、临时卡、常态卡是卡片使用方的概念。
-    // 2、临时卡是短期存在的，在特定事件或用户行为后显示，完成后自动消失。
-    // 3、常态卡是持久存在的，在用户未进行清除或更改的情况下，会一直存在，平时开发的功能卡片属于常态卡。
-    // 4、目前手机上没有地方会使用临时卡。
+    // 1、常态卡片：卡片使用方会持久化的卡片。如添加到桌面的卡片。。
+    // 2、临时卡片：卡片使用方不会持久化的卡片。如上划卡片应用时显示的卡片。
+    // 3、目前系统上没有地方会使用临时卡。
     console.log(`FormExtensionAbility onCastToNormalForm, formId: ${formId}`);
   }
 };
