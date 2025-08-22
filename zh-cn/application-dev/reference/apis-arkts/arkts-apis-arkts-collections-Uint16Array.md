@@ -89,6 +89,7 @@ constructor(length: number)
 // 以长度参数构造对象
 let uint16Array: collections.Uint16Array = new collections.Uint16Array(12);
 ```
+
 ## constructor
 constructor(elements: Iterable\<number>)
 
