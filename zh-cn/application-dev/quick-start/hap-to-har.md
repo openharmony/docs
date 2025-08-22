@@ -16,7 +16,7 @@
             "name": "har",
             "type": "har",
             "deviceTypes": [
-                "default",
+                "phone",
                 "tablet",
                 "2in1"
             ]
