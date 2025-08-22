@@ -665,7 +665,7 @@ int32_t OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance(const char* i
 
 **描述：**
 
-多实例场景第三方平台注册回调函数。
+无障碍多实例场景第三方平台注册回调函数。
 
 **起始版本：** 15
 
