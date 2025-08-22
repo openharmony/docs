@@ -34,7 +34,7 @@ AtomicServiceSearch({
 
 **参数：**
 
-| 名称      | 类型         | 必填 | 装饰器类型 | 说明                                                         |
+| 参数名      | 类型         | 必填 | 装饰器类型 | 说明                                                         |
 | ----------- | :--------------- | ---- | ---------- | ------------------------------------------------------------ |
 | value       | [ResourceStr](ts-types.md#resourcestr) | 否 | @Prop | 设置当前显示的搜索文本内容。默认值为空字符串。 |
 | placeholder | [ResourceStr](ts-types.md#resourcestr) | 否 | @Prop | 搜索框内默认显示的提示文本。默认值为`Search`。 |
@@ -52,7 +52,7 @@ AtomicServiceSearch中“选择区”的可选属性。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                    | 类型                   | 必填                         | 说明                                                         |
+| 参数名                    | 类型                   | 必填                         | 说明                                                         |
 | ----------------------- | -------------------------------------------- | ------------------------------------------------------------ | ---- |
 | options                 | Array&lt;[SelectOption](ts-basic-components-select.md#selectoption对象说明)&gt; | 否 | 下拉选项内容。默认值为`undefined`。 |
 | selected                | number| 否 | 设置下拉菜单初始选项的索引。第一项的索引为0。当不设置selected属性时，默认选择值为-1，菜单项不选中。 |
@@ -85,7 +85,7 @@ AtomicServiceSearch中“搜索区”的可选属性。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                     | 类型            | 必填                                   | 说明                                                         |
+| 参数名                     | 类型            | 必填                                   | 说明                                                         |
 | ------------------------ | ---------------------------------------------- | ------------------------------------------------------------ | ---- |
 | searchKey | [ResourceStr](ts-types.md#resourcestr) | 否 | 用作找到一个唯一的search组件。默认值：`undefined`。   |
 | componentBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置组件的背景色。默认值：`$r('sys.color.ohos_id_color_text_field_sub_bg')`。   |
@@ -137,7 +137,7 @@ AtomicServiceSearch中“功能区”的初始化参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型        | 必填  | 说明                          |
+| 参数名          | 类型        | 必填  | 说明                          |
 | ------------- | --------------- | ---------------------------- | ---- |
 | auxiliaryItem | [OperationOption ](ohos-arkui-advanced-SubHeader.md#operationoption)| 否 | 附属于搜索区（右侧）的功能位。默认值为`undefined`。 |
 | independentItem | [OperationOption ](ohos-arkui-advanced-SubHeader.md#operationoption)| 否 | 独立于搜索区（右侧）的功能位。默认值为`undefined`。 |
@@ -151,7 +151,7 @@ AtomicServiceSearch中“功能区”的初始化参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称             | 类型         | 必填 | 说明                               |
+| 参数名             | 类型         | 必填 | 说明                               |
 | ---------------- | ---------------- | ---- | ---------------------------------- |
 | inputFilterValue | [ResourceStr](ts-types.md#resourcestr) | 是 | 正则表达式。 |
 | error | Callback&lt;string&gt; | 否 | 正则匹配失败时，返回被过滤的内容。默认值为`undefined`。 |
@@ -164,7 +164,7 @@ AtomicServiceSearch中“功能区”的初始化参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称              | 类型            | 必填 | 说明                                                         |
+| 参数名              | 类型            | 必填 | 说明                                                         |
 | ----------------- | ------------------- | ---- | ------------------------------------------------------------ |
 | searchButtonValue | [ResourceStr](ts-types.md#resourcestr) | 是   | 搜索框末尾搜索按钮文本内容。 |
 | options | [SearchButtonOptions](ts-basic-components-search.md#searchbuttonoptions10对象说明) | 否   | 配置搜索框文本样式。默认值：`{fontSize: '16fp',fontColor: '#ff3f97e9'}`。 |
@@ -178,7 +178,7 @@ AtomicServiceSearch中“功能区”的初始化参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型      | 必填 | 说明                                                         |
+| 参数名      | 类型      | 必填 | 说明                                                         |
 | --------- | ------------- | ---- | ------------------------------------------------------------ |
 | alignType | [MenuAlignType](ts-basic-components-select.md#menualigntype10枚举说明) | 是 | 对齐方式类型。默认值：`MenuAlignType.START`。 |
 | offset | [Offset](ts-types.md#offset) | 否 | 按照对齐类型对齐后，下拉菜单相对下拉按钮的偏移量。默认值：`{dx: 0, dy: 0}`。 |

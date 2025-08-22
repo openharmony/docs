@@ -55,7 +55,7 @@ AtomicServiceTabs ({
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
+| 参数名 | 类型 | 必填 | 装饰器类型 | 说明 |
 | --------------- | ------ | ---- | ----|----------|
 | tabContents | [[TabContentBuilder?](#tabcontentbuilder),[TabContentBuilder?](#tabcontentbuilder), [TabContentBuilder?](#tabcontentbuilder),[TabContentBuilder?](#tabcontentbuilder), [TabContentBuilder?](#tabcontentbuilder)] | 否 | @BuilderParam| 内容视图容器数组，默认为空。|
 | tabBarOptionsArray | [[TabBarOptions](#tabbaroptions),[TabBarOptions](#tabbaroptions), [TabBarOptions?](#tabbaroptions),[TabBarOptions?](#tabbaroptions), [TabBarOptions?](#tabbaroptions)]  | 是 | @Prop | 页签容器数组。 |
@@ -107,7 +107,7 @@ TabBarOptions的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 值 | 说明 |
+| 参数名 | 值 | 说明 |
 | --------------- | ------ |-----|
 | LEFT  | 0 | 设置TabBar位于屏幕左侧  |
 | BOTTOM  | 1 | 设置TabBar位于屏幕底部 |

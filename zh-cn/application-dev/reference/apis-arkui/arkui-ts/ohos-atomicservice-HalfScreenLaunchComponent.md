@@ -37,7 +37,7 @@ HalfScreenLaunchComponent({
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
+| 参数名 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | content | Callback\<void> | 是 | \@BuilderParam | 组件显示内容。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | appId | string | 是 | - | 原子化服务appId。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
