@@ -1,5 +1,12 @@
 # image_processing_types.h
 
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xjtu_liushang-->
+<!--Designer: @yangwang01-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @xjtu_liushang-->
+
 ## 概述
 
 图片处理的类型定义。
