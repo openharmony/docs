@@ -4345,14 +4345,13 @@ GATT描述符结构定义，是特征值[BLECharacteristic](#blecharacteristic)�
 
 描述GATT profile协议连接状态。
 
-**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称     | 类型                                          | 只读 | 可选 | 说明                                          |
 | -------- | ------------------------------------------------- | ---- | ---- | --------------------------------------------- |
-| deviceId | string                                            | 否 | 否   | 对端蓝牙设备地址。例如："XX:XX:XX:XX:XX:XX"。 |
-| state    | [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | 否 | 否   | GATT profile连接状态。                       |
+| deviceId | string                                            | 否 | 否   | 对端蓝牙设备地址。例如："XX:XX:XX:XX:XX:XX"。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| state    | [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | 否 | 否   | GATT profile连接状态。 <br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| reason<sup>20+</sup>    | [GattDisconnectReason](#gattdisconnectreason20) | 否 | 是   | GATT链路断连原因，仅在连接状态为 [STATE_DISCONNECTED](js-apis-bluetooth-constant.md#profileconnectionstate) 时提供，其他连接状态下断连原因默认为undefined。<br> **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。|
 
 
 ## ScanResult
@@ -4643,6 +4642,21 @@ BLE扫描的配置参数。
 | ON_FOUND  | 1    | 扫描到符合过滤条件的BLE广播报文时，触发上报，可搭配常规和围栏上报模式使用。 <br> **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。      |
 | ON_LOST | 2    | 当不再扫描到符合过滤条件的BLE广播报文时，触发上报，只搭配围栏上报模式使用。 <br> **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用    |
 | ON_BATCH<sup>19+</sup> | 3    | 扫描到符合过滤条件的BLE广播报文时，以[ScanOptions](#scanoptions)中的interval字段为周期触发上报。 <br> **原子化服务API**：从API version 19开始，该接口支持在原子化服务中使用    |
+
+## GattDisconnectReason<sup>20+</sup>
+
+枚举，指定GATT链路断开的原因。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 名称      | 值    | 说明                           |
+| --------  | ---- | ------------------------------ |
+| CONN_TIMEOUT   | 1    | 连接超时。       |
+| CONN_TERMINATE_PEER_USER   | 2    | 对端设备主动断开连接。    |
+| CONN_TERMINATE_LOCAL_HOST   | 3    | 本端设备主动断开连接。    |
+| CONN_UNKNOWN   | 4    | 未知断连原因。    |
 
 ## ScanReportMode<sup>15+</sup>
 
