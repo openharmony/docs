@@ -15,7 +15,7 @@
 - HCE应用前台刷卡<br>
 前台刷卡是指在触碰NFC读卡器之前，用户明确想使用在电子设备上打开特定的应用程序和NFC读卡器进行刷卡操作。当用户打开应用程序在前台，并且进入应用的刷卡页面时，电子设备触碰NFC读卡器后，会把刷卡交易数据分发给前台应用。若应用切换至后台或退出运行时，前台优先分发规则也随即被暂停。
 - HCE应用后台刷卡<br>
-后台刷卡是指不打开特定的HCE应用程序，当电子设备触碰NFC读卡器时，根据NFC读卡器选择的应用ID（Applet ID，AID）匹配到HCE应用程序，并自动和匹配的HCE应用程序通信完成刷卡交易。如果NFC读卡器选择的应用ID，匹配到多个HCE应用程序时，说明存在冲突，需要用户打开指定的HCE应用，重新靠近NFC读卡器触发刷卡。
+后台刷卡是指不打开特定的HCE应用程序，当电子设备触碰NFC读卡器时，根据NFC读卡器选择的应用ID（Applet ID，AID，参考ISO/IEC 7816-4规范）匹配到HCE应用程序，并自动和匹配的HCE应用程序通信完成刷卡交易。如果NFC读卡器选择的应用ID，匹配到多个HCE应用程序时，说明存在冲突，需要用户打开指定的HCE应用，重新靠近NFC读卡器触发刷卡。
 
 ## HCE应用刷卡的约束条件
 1. 基于刷卡安全性考虑，不论HCE应用是前台方式还是后台方式刷卡，均不支持电子设备在灭屏或熄屏状态下的HCE刷卡操作。<br>
@@ -41,7 +41,7 @@ NFC卡模拟完整的API说明以及实例代码请参考：[NFC卡模拟接口]
 ### HCE应用支持前台或后台刷卡的选择
 HCE应用开发者根据业务需要，可以选择实现前台刷卡或者后台刷卡。两种不同的刷卡方式，代码实现上会存在一些差异。
 - HCE应用前台刷卡<br>
-1. 在配置文件module.json5中，不需要静态声明NFC读卡器选择的应用ID（AID），而是通过[start](../../reference/apis-connectivity-kit/js-apis-cardEmulation.md#start9)来动态注册。
+1. 在配置文件module.json5中，不需要静态声明NFC读卡器选择的应用ID（AID，参考ISO/IEC 7816-4规范），而是通过[start](../../reference/apis-connectivity-kit/js-apis-cardEmulation.md#start9)来动态注册。
 2. HCE应用的刷卡页面退出时，需要显性调用[stop](../../reference/apis-connectivity-kit/js-apis-cardEmulation.md#stop9)来释放动态注册的AID刷卡配置项。
 - HCE应用后台刷卡<br>
 1. 在配置文件module.json5中，需要静态声明NFC读卡器选择的应用ID（AID）。根据业务选择， 选择声明的AID是属于Payment类型，还是Other类型。
@@ -112,7 +112,7 @@ let hceService: cardEmulation.HceService;
 
 const hceCommandCb : AsyncCallback<number[]> = (error : BusinessError, hceCommand : number[]) => {
   if (!error) {
-    if (hceCommand == null || hceCommand == undefined) {
+    if (hceCommand == null) {
       hilog.error(0x0000, 'testTag', 'hceCommandCb has invalid hceCommand.');
       return;
     }
@@ -143,7 +143,7 @@ export default class EntryAbility extends UIAbility {
       return;
     }
 
-    // 根据应用程序信息，初始化正确的值
+    // hceElementName中元素不能为空，通过want获取应用的elementname或按应用实际信息填写
     hceElementName = {
       bundleName: want.bundleName ?? '',
       abilityName: want.abilityName ?? '',
@@ -251,7 +251,7 @@ let hceService: cardEmulation.HceService;
 
 const hceCommandCb : AsyncCallback<number[]> = (error : BusinessError, hceCommand : number[]) => {
   if (!error) {
-    if (hceCommand == null || hceCommand == undefined) {
+    if (hceCommand == null) {
       hilog.error(0x0000, 'testTag', 'hceCommandCb has invalid hceCommand.');
       return;
     }
