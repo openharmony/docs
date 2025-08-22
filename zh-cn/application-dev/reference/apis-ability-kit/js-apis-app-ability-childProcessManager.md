@@ -7,7 +7,7 @@
 <!--Tester: @lixueqing513-->	
 <!--Adviser: @huipeizi-->
 
-childProcessManager模块提供子进程管理能力，支持子进程启动操作。
+childProcessManager模块提供子进程管理能力，支持子进程创建和启动操作。
 
 创建的子进程会随着父进程的退出而退出，无法脱离父进程独立运行。
 
