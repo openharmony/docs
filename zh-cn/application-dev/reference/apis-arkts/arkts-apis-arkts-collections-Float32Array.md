@@ -91,6 +91,39 @@ let float32Array: collections.Float32Array = new collections.Float32Array(12);
 ```
 
 ## constructor
+constructor(elements: Iterable\<number>)
+
+构造函数，以Iterable创建一个ArkTS Float32Array对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                                                         |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| elements |  Iterable\<number> | 是 | 用于构造ArkTS Float32Array的对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | Parameter error.                                         |
+| 10200012 | The Float32Array's constructor cannot be directly invoked. |
+
+**示例：**
+
+```ts
+// 例1 从一个Iterable构造对象
+let set: Set<number> = new Set<number>([1, 2, 3]);
+let array: collections.Float32Array = new collections.Float32Array(set);
+// Float32Array [1, 2, 3]
+```
+
+## constructor
 constructor(array: ArrayLike\<number> | ArrayBuffer)
 
 构造函数，以ArrayLike或ArkTS ArrayBuffer创建一个ArkTS Float32Array对象。
@@ -194,6 +227,14 @@ static from(arrayLike: ArrayLike\<number>): Float32Array
 | ------------ | --------- |
 | Float32Array | 新创建的ArkTS Float32Array对象。|
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                  |
+| -------- | -------------------------------------------------------  |
+| 401      | Parameter error.                                         |
+
 **示例：**
 ```ts
 let arrayLike = [1, 3, 5];
@@ -220,6 +261,14 @@ static from\<T>(arrayLike: ArrayLike\<T>, mapFn: TypedArrayFromMapFn\<T, number>
 | 类型         | 说明      |
 | ------------ | --------- |
 | Float32Array | 新创建的ArkTS Float32Array对象。|
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                  |
+| -------- | -------------------------------------------------------  |
+| 401      | Parameter error.                                         |
 
 **示例：**
 
@@ -264,6 +313,14 @@ static from(arrayLike: Iterable\<number>, mapFn?: TypedArrayFromMapFn\<number, n
 | 类型         | 说明      |
 | ------------ | --------- |
 | Float32Array | 新创建的ArkTS Float32Array对象。|
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                  |
+| -------- | -------------------------------------------------------  |
+| 401      | Parameter error.                                         |
 
 **示例：**
 
