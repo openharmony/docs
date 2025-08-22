@@ -113,7 +113,7 @@ atm dump [-h] [-t [-i <token-id>] [-b <bundle-name>] [-n <process-name>]] [-r [-
 ```
 <!--RP1End-->
 
-下表所列命令中，-t、<!--Del-->-r、<!--DelEnd-->-v为必选参数，-i、-b、-n、-p为可选参数。对<!--Del-->atm dump -r和<!--DelEnd-->atm dump -v命令，-i和-p参数可以组合使用；对atm dump -t命令，-i、-b、-n参数只能单独使用。
+下表所列命令中，-t<!--Del-->、-r、-v<!--DelEnd-->为必选参数，-i、-b、-n、-p为可选参数。<!--Del-->对atm dump -r和atm dump -v命令，-i和-p参数可以组合使用；<!--DelEnd-->对atm dump -t命令，-i、-b、-n参数只能单独使用。
 
 | 参数                                          | 参数说明                                                 | 
 | ----------------------------------------------- | ---------------------------------------------------- | 
@@ -127,9 +127,9 @@ atm dump [-h] [-t [-i <token-id>] [-b <bundle-name>] [-n <process-name>]] [-r [-
 | <!--DelRow-->-r                        |  必选参数，查询系统内的所有[权限使用记录](../reference/apis-ability-kit/js-apis-privacyManager-sys.md#permissionusedresponse)。                           | 
 | <!--DelRow-->-r&nbsp;-i \<token-id\>        | 可选参数，通过应用进程的tokenid，查询该应用的[权限使用记录](../reference/apis-ability-kit/js-apis-privacyManager-sys.md#permissionusedresponse)。        | 
 | <!--DelRow-->-r&nbsp;-p \<permission-name\> | 可选参数，通过权限名，查询该权限的[使用记录](../reference/apis-ability-kit/js-apis-privacyManager-sys.md#permissionusedresponse)。                        |
-| -v                                     | 必选参数，查询系统中所有应用进程的权限使用类型。                    | 
-| -v&nbsp;-i \<token-id\>                     | 可选参数，通过应用进程的tokenid，查询该应用的权限使用类型。         | 
-| -v&nbsp;-p \<permission-name\>              | 可选参数，通过权限名，查询该权限的使用类型。                        | 
+| <!--DelRow-->-v                                     | 必选参数，查询系统中所有应用进程的权限使用类型。                    | 
+| <!--DelRow-->-v&nbsp;-i \<token-id\>                     | 可选参数，通过应用进程的tokenid，查询该应用的权限使用类型。         | 
+| <!--DelRow-->-v&nbsp;-p \<permission-name\>              | 可选参数，通过权限名，查询该权限的使用类型。                        | 
 
 示例：
 
@@ -142,10 +142,9 @@ atm dump -d -p *********
 # 执行结果
 # {
 #     "permissionName": "ohos.permission.KERNEL_ATM_SELF_USE",
-#     "grantMode": SYSTEM_GRANT,
-#     "availableLevel": SYSTEM_CORE,
-#     "availableType": SYSTEM,
-#     "provisionEnable": true,
+#     "grantMode": "SYSTEM_GRANT",
+#     "availableLevel": "SYSTEM_CORE",
+#     "availableType": "SYSTEM",
 #     "distributedSceneEnable": true,
 #     "isKernelEffect": true,
 #     "hasValue": true,
@@ -184,8 +183,8 @@ atm dump -t -b ohos.telephony.resources
 #   "bundleName": "ohos.telephony.resources",
 #   "instIndex": 0,
 #   "dlpType": 0,
-#   "isRemote": 0,
-#   "isPermDialogForbidden": 0,
+#   "isRemote": false,
+#   "isPermDialogForbidden": false,
 #   "permStateList": [
 #     {
 #       "permissionName": "ohos.permission.DISTRIBUTED_DATASYNC",
@@ -198,12 +197,14 @@ atm dump -t -b ohos.telephony.resources
 #按进程名查询权限信息
 atm dump -t -n *********
 
+<!--Del-->
+
 #查询所有应用的权限使用类型
 atm dump -v
 #执行结果
 # {
 #   "tokenId": 537088946,
-#   "permissionName": ohos.permission.GET_INSTALLED_BUNDLE_LIST,
+#   "permissionName": "ohos.permission.GET_INSTALLED_BUNDLE_LIST",
 #   "usedType": 0,
 # }
 
@@ -217,7 +218,6 @@ atm dump -v -p ohos.permission.CAMERA
 atm dump -v -i ********* -p ohos.permission.CAMERA
 ```
 
-<!--Del-->
 ```bash
 #查询系统内的所有权限使用记录
 atm dump -r
@@ -228,22 +228,22 @@ atm dump -r
 #   "bundleRecords": [
 #     {
 #       "tokenId": 537088946,
-#       "isRemote": 0,
+#       "isRemote": false,
 #       "bundleName": "com.ohos.permissionmanager",
 #       "permissionRecords": [
 #         {
 #           "permissionName": "ohos.permission.GET_INSTALLED_BUNDLE_LIST",
-#           "accessCount": "1",
-#           "secAccessCount": "0",
+#           "accessCount": 1,
+#           "secAccessCount": 0,
 #           "rejectCount": 0,
 #           "lastAccessTime": 1501837281916,
 #           "lastRejectTime": 0,
 #           "lastAccessDuration": 0,
 #           "accessRecords": [
 #             {
-#               "status": "1",
-#               "lockScreenStatus": "1",
-#               "timestamp": "1501837281916",
+#               "status": 1,
+#               "lockScreenStatus": 1,
+#               "timestamp": 1501837281916,
 #               "duration": 0,
 #               "count": 1,
 #               "usedType": 0
