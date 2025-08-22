@@ -194,6 +194,14 @@ static from(arrayLike: ArrayLike\<number>): Uint16Array
 | ------------ | --------- |
 | Uint16Array | 新创建的ArkTS Uint16Array对象。|
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                  |
+| -------- | -------------------------------------------------------  |
+| 401      | Parameter error.                                         |
+
 **示例：**
 ```ts
 let arrayLike = [1, 3, 5];
@@ -220,6 +228,14 @@ static from\<T>(arrayLike: ArrayLike\<T>, mapFn: TypedArrayFromMapFn\<T, number>
 | 类型         | 说明      |
 | ------------ | --------- |
 | Uint16Array | 新创建的ArkTS Uint16Array对象。|
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                  |
+| -------- | -------------------------------------------------------  |
+| 401      | Parameter error.                                         |
 
 **示例：**
 
@@ -264,6 +280,14 @@ static from(arrayLike: Iterable\<number>, mapFn?: TypedArrayFromMapFn\<number, n
 | 类型         | 说明      |
 | ------------ | --------- |
 | Uint16Array | 新创建的ArkTS Uint16Array对象。|
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                  |
+| -------- | -------------------------------------------------------  |
+| 401      | Parameter error.                                         |
 
 **示例：**
 
