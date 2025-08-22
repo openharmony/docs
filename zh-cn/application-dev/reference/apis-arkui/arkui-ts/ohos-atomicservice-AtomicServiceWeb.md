@@ -62,7 +62,7 @@ AtomicServiceWeb({
 
 **参数**：
 
-| 参数名                   | 类型                                                                                                               | 必填 | 装饰器类型       | 说明                                                                                                                  |
+| 名称                   | 类型                                                                                                               | 必填 | 装饰器类型       | 说明                                                                                                                  |
 |----------------------|------------------------------------------------------------------------------------------------------------------|----|-------------|----------------------------------------------------------------------------------------------------------------------|
 | src                  | [ResourceStr](ts-types.md#resourcestr)                                                                           | 是  | -           | 网页资源地址，访问网络资源需要在AGC配置业务域名，访问本地资源仅支持包内文件（$rawfile）。不支持通过状态变量（例如@State）动态更新地址。加载的网页中支持通过JS SDK提供的接口调用系统能力，具体以JS SDK为准。 |
 | controller           | [AtomicServiceWebController](#atomicservicewebcontroller)                                                        | 是  | @ObjectLink | 通过AtomicServiceWebController可以控制AtomicServiceWeb组件各种行为。                                                              |
@@ -338,7 +338,7 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名          | 类型     | 只读 | 可选 | 说明            |
+| 名称          | 类型     | 只读 | 可选 | 说明            |
 |-------------|--------|----|----|---------------|
 | headerKey   | string | 否  | 否  | 请求/响应头的key。   |
 | headerValue | string | 否  | 否  | 请求/响应头的value。 |
@@ -351,7 +351,7 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名   | 类型       | 必填 | 说明    |
+| 名称   | 类型       | 必填 | 说明    |
 |------|----------|----|-------|
 | data | object[] | 是  | 消息列表。 |
 
@@ -363,7 +363,7 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名      | 类型                                                                                    | 必填 | 说明              |
+| 名称      | 类型                                                                                    | 必填 | 说明              |
 |---------|---------------------------------------------------------------------------------------|----|-----------------|
 | request | [WebResourceRequest](../../apis-arkweb/arkts-basic-components-web-WebResourceRequest.md) | 是  | 网页请求的封装信息。      |
 | error   | [WebResourceError](../../apis-arkweb/arkts-basic-components-web-WebResourceError.md)     | 是  | 网页加载资源错误的封装信息 。 |
@@ -376,7 +376,7 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名       | 类型                                                                                      | 必填 | 说明         |
+| 名称       | 类型                                                                                      | 必填 | 说明         |
 |----------|-----------------------------------------------------------------------------------------|----|------------|
 | request  | [WebResourceRequest](../../apis-arkweb/arkts-basic-components-web-WebResourceRequest.md)   | 是  | 网页请求的封装信息。 |
 | response | [WebResourceResponse](../../apis-arkweb/arkts-basic-components-web-WebResourceResponse.md) | 是  | 资源响应的封装信息。 |
@@ -389,7 +389,7 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名  | 类型     | 必填 | 说明        |
+| 名称  | 类型     | 必填 | 说明        |
 |-----|--------|----|-----------|
 | url | string | 是  | 页面的URL地址。 |
 
@@ -401,7 +401,7 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名  | 类型     | 必填 | 说明        |
+| 名称  | 类型     | 必填 | 说明        |
 |-----|--------|----|-----------|
 | url | string | 是  | 页面的URL地址。 |
 
@@ -413,7 +413,7 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名             | 类型      | 必填   | 说明                                       |
+| 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | data | [WebResourceRequest](../../apis-arkweb/arkts-basic-components-web-WebResourceRequest.md) | 是 | 网页请求的封装信息。 |
 
@@ -425,7 +425,7 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名             | 类型      | 必填   | 说明                                       |
+| 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | newProgress | number | 是 | 新的加载进度，取值范围为0到100的整数。                       |
 

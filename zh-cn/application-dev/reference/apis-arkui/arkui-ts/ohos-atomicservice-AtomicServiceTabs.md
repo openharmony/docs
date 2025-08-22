@@ -62,7 +62,7 @@ AtomicServiceTabs ({
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 装饰器类型 | 说明 |
+| 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | --------------- | ------ | ---- | ----|----------|
 | tabContents | [[TabContentBuilder?](#tabcontentbuilder),[TabContentBuilder?](#tabcontentbuilder), [TabContentBuilder?](#tabcontentbuilder),[TabContentBuilder?](#tabcontentbuilder), [TabContentBuilder?](#tabcontentbuilder)] | 否 | @BuilderParam| 内容视图容器数组，默认为空。|
 | tabBarOptionsArray | [[TabBarOptions](#tabbaroptions),[TabBarOptions](#tabbaroptions), [TabBarOptions?](#tabbaroptions),[TabBarOptions?](#tabbaroptions), [TabBarOptions?](#tabbaroptions)]  | 是 | @Prop | 页签容器数组。 |
