@@ -338,7 +338,7 @@ hilog -v time/color/epoch/monotonic/usec/nsec/year/zone/wrap
 
 **使用样例**：
 
-显示本地时间，以纳秒为单位显示时间。
+显示本地时间，以毫秒为单位显示时间。
 
 <!--RP10-->
    ```shell
