@@ -1,4 +1,10 @@
 # @ohos.telephony.esim (eSIM卡管理) (系统接口)
+<!--Kit: Telephony Kit-->
+<!--Subsystem: Telephony-->
+<!--Owner: @yangyannanyangyannan-->
+<!--Designer: @ghxbob-->
+<!--Tester: @weitiantian-->
+<!--Adviser: @zhang_yixin13-->
 
 穿戴设备支持eSIM，电话服务提供API给eSIM卡管理和eSIM卡服务使用。
 
@@ -861,20 +867,6 @@ eSIM.cancelSession(0, transactionId, eSIM.CancelReason.CANCEL_REASON_END_USER_RE
   });
 ```
 
-## AccessRule<sup>18+</sup>
-
-访问规则。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.CoreService.Esim
-
-| 名称 | 类型 | 必填 | 说明 |
-| ----- | ----- | ----- | -----|
-| certificateHashHexStr | string  |  是  | 证书哈希的十六进制字符串。 |
-| packageName           | string  |  是  | 规则适用的程序包名称。 |
-| accessType            | number  |  是  | 规则的类型。 |
-
 ## GetDownloadableProfileMetadataResult<sup>18+</sup>
 
 获取可下载配置文件的元数据。
@@ -883,17 +875,17 @@ eSIM.cancelSession(0, transactionId, eSIM.CancelReason.CANCEL_REASON_END_USER_RE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
-| 名称 | 类型 | 必填 | 说明 |
-| ----- | ----- | ----- | -----|
-| downloadableProfile | DownloadableProfile  |  是  | 可下载的配置文件信息。   |
-| pprType             | number               |  是  | 配置文件策略规则类型。 |
-| pprFlag             | boolean              |  是  | 配置文件是否有策略规则。true表示有策略规则，false表示无策略规则。|
-| iccid               | string               |  是  | 配置文件的iccId。     |
-| serviceProviderName | string               |  是  | 配置文件的服务提供商名称。 |
-| profileName         | string               |  是  | 配置文件名称。 |
-| profileClass        | ProfileClass         |  是  | 配置文件类。   |
-| solvableErrors      | SolvableErrors       |  是  | 可解决的错误。 |
-| responseResult      | ResultCode           |  是  | 操作结果码。   |
+| 名称 | 类型                                                             | 必填 | 说明 |
+| ----- |----------------------------------------------------------------| ----- | -----|
+| downloadableProfile | [DownloadableProfile](./js-apis-esim.md#downloadableprofile18) |  是  | 可下载的配置文件信息。   |
+| pprType             | number                                                         |  是  | 配置文件策略规则类型。 |
+| pprFlag             | boolean                                                        |  是  | 配置文件是否有策略规则。true表示有策略规则，false表示无策略规则。|
+| iccid               | string                                                         |  是  | 配置文件的iccId。     |
+| serviceProviderName | string                                                         |  是  | 配置文件的服务提供商名称。 |
+| profileName         | string                                                         |  是  | 配置文件名称。 |
+| profileClass        | [ProfileClass](#profileclass18)                                |  是  | 配置文件类。   |
+| solvableErrors      | [SolvableErrors](#solvableerrors18)                            |  是  | 可解决的错误。 |
+| responseResult      | [ResultCode](#resultcode18)                                    |  是  | 操作结果码。   |
 
 ## GetDownloadableProfilesResult<sup>18+</sup>
 
@@ -903,10 +895,10 @@ eSIM.cancelSession(0, transactionId, eSIM.CancelReason.CANCEL_REASON_END_USER_RE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
-| 名称 | 类型 | 必填 | 说明 |
-| ----- | ----- | ----- | -----|
-| responseResult       | ResultCode                   |  是  | 返回操作结果码。     |
-| downloadableProfiles | Array\<DownloadableProfile>  |  是  | 可下载配置文件数组。 |
+| 名称 | 类型                                                                      | 必填 | 说明 |
+| ----- |-------------------------------------------------------------------------| ----- | -----|
+| responseResult       | [ResultCode](#resultcode18)                                             |  是  | 返回操作结果码。     |
+| downloadableProfiles | Array\<[DownloadableProfile](./js-apis-esim.md#downloadableprofile18)\> |  是  | 可下载配置文件数组。 |
 
 ## DownloadProfileResult<sup>18+</sup>
 
@@ -916,11 +908,11 @@ eSIM.cancelSession(0, transactionId, eSIM.CancelReason.CANCEL_REASON_END_USER_RE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
-| 名称 | 类型 | 必填 | 说明 |
-| ----- | ----- | ----- | -----|
-| responseResult | ResultCode     |  是  | 操作结果码。 |
-| solvableErrors | SolvableErrors |  是  | 可解决错误。 |
-| cardId         | number         |  是  | 获取卡Id。   |
+| 名称 | 类型                                  | 必填 | 说明 |
+| ----- |-------------------------------------| ----- | -----|
+| responseResult | [ResultCode](#resultcode18)         |  是  | 操作结果码。 |
+| solvableErrors | [SolvableErrors](#solvableerrors18) |  是  | 可解决错误。 |
+| cardId         | number                              |  是  | 获取卡Id。   |
 
 ## GetEuiccProfileInfoListResult<sup>18+</sup>
 
@@ -930,11 +922,11 @@ eSIM.cancelSession(0, transactionId, eSIM.CancelReason.CANCEL_REASON_END_USER_RE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
-| 名称 | 类型 | 必填 | 说明 |
-| ----- | ----- | ----- | -----|
-| responseResult  |ResultCode            |  是  | 返回操作结果码。    |
-| profiles        | Array\<EuiccProfile> |  是  | 配置文件数组。      |
-| isRemovable     | boolean              |  是  | eUICC是否可移除。true表示可移除，false表示不可移除。|
+| 名称 | 类型                                       | 必填 | 说明 |
+| ----- |------------------------------------------| ----- | -----|
+| responseResult  | [ResultCode](#resultcode18)              |  是  | 返回操作结果码。    |
+| profiles        | Array\<[EuiccProfile](#euiccprofile18)\> |  是  | 配置文件数组。      |
+| isRemovable     | boolean                                  |  是  | eUICC是否可移除。true表示可移除，false表示不可移除。|
 
 ## OperatorId<sup>18+</sup>
 
@@ -959,17 +951,17 @@ eSIM.cancelSession(0, transactionId, eSIM.CancelReason.CANCEL_REASON_END_USER_RE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
-| 名称 | 类型 | 必填 | 说明 |
-| ----- | ----- | ----- | -----|
-| iccid               | string             |  是  | 配置文件的iccId。 |
-| nickName            | string             |  是  | 昵称。 |
-| serviceProviderName | string             |  是  | 配置文件的服务提供商名称。 |
-| profileName         | string             |  是  | 配置文件名称。   |
-| state               | ProfileState       |  是  | 配置文件的状态。 |
-| profileClass        | ProfileClass       |  是  | 配置文件类。     |
-| operatorId          | OperatorId         |  是  | 配置文件的操作ID。|
-| policyRules         | PolicyRules        |  是  | 配置文件策略。   |
-| accessRules         | Array\<AccessRule> |  是  | 配置文件规则。   |
+| 名称 | 类型                                                    | 必填 | 说明 |
+| ----- |-------------------------------------------------------| ----- | -----|
+| iccid               | string                                                |  是  | 配置文件的iccId。 |
+| nickName            | string                                                |  是  | 昵称。 |
+| serviceProviderName | string                                                |  是  | 配置文件的服务提供商名称。 |
+| profileName         | string                                                |  是  | 配置文件名称。   |
+| state               | [ProfileState](#profilestate18)                       |  是  | 配置文件的状态。 |
+| profileClass        | [ProfileClass](#profileclass18)                       |  是  | 配置文件类。     |
+| operatorId          | [OperatorId](#operatorid18)                           |  是  | 配置文件的操作ID。|
+| policyRules         | [PolicyRules](#policyrules18)                         |  是  | 配置文件策略。   |
+| accessRules         | Array\<[AccessRule](./js-apis-esim.md#accessrule18)\> |  是  | 配置文件规则。   |
 
 ## EuiccInfo<sup>18+</sup>
 
