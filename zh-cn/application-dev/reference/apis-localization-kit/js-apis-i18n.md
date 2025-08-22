@@ -240,7 +240,7 @@ static isSuggested(language: string, region?: string): boolean
 
 static getSystemLanguage(): string
 
-获取系统当前设置的语言。
+获取系统当前设置的语言。若要监听系统语言变化，可以监听[公共事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED，具体可参考[系统语言与区域](../../internationalization/i18n-system-language-region.md#开发步骤)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -263,7 +263,7 @@ static getSystemLanguage(): string
 
 static getSystemRegion(): string
 
-获取系统当前设置的国家地区。
+获取系统当前设置的国家地区。若要监听系统地区变化，可以监听[公共事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED，具体可参考[系统语言与区域](../../internationalization/i18n-system-language-region.md#开发步骤)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -284,7 +284,7 @@ static getSystemRegion(): string
 
 static getSystemLocale(): string
 
-获取系统当前设置的区域。
+获取系统当前设置的区域。若要监听系统区域变化，可以监听[公共事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED，具体可参考[系统语言与区域](../../internationalization/i18n-system-language-region.md#开发步骤)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -305,7 +305,7 @@ static getSystemLocale(): string
 
 static is24HourClock(): boolean
 
-判断系统时制是否为24小时制。
+判断系统时制是否为24小时制。若要监听系统时制变化，可以监听[公共事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_time_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_TIME_CHANGED，具体可参考[用户偏好](../../internationalization/i18n-user-preferences.md#开发步骤)。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
