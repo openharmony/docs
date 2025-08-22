@@ -224,10 +224,6 @@ type AdvancedDialogV2ButtonAction = () => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型         | 说明          | 
-|------------|-------------|
-| () => void | 表示值类型为匿名函数。 | 
-
 ## AdvancedDialogV2Button
 
 弹出框操作区按钮。
