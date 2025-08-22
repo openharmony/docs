@@ -1,8 +1,14 @@
 # @ohos.telephony.esim (eSIM卡管理)
+<!--Kit: Telephony Kit-->
+<!--Subsystem: Telephony-->
+<!--Owner: @yangyannanyangyannan-->
+<!--Designer: @ghxbob-->
+<!--Tester: @weitiantian-->
+<!--Adviser: @zhang_yixin13-->
 
 eSIM卡管理模块提供了eSIM卡管理的基础能力，包括获取指定卡槽是否支持eSIM功能，如果支持则允许用户添加单个配置文件。
 
-> **说明：** 
+> **说明：**
 >
 > 本模块首批接口从API version 18开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
@@ -64,9 +70,9 @@ addProfile\(profile: DownloadableProfile\): Promise\<boolean\>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                   |
-| ------ | ------ | ---- | -------------------------------------- |
-| profile | DownloadableProfile | 是   | 可下载的配置文件信息。 |
+| 参数名 | 类型                                            | 必填 | 说明                                   |
+| ------ |-----------------------------------------------| ---- | -------------------------------------- |
+| profile | [DownloadableProfile](#downloadableprofile18) | 是   | 可下载的配置文件信息。 |
 
 **返回值：**
 
@@ -116,9 +122,21 @@ eSIM.addProfile(profile).then(() => {
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
+| 名称 | 类型                                   | 必填 | 说明 |
+| ----- |--------------------------------------| ----- | -----|
+| activationCode   | string                               |  是  | 激活码。对于不基于激活码的配置文件，可能为空。 |
+| confirmationCode | string                               |  否  | 确认码。      |
+| carrierName      | string                               |  否  | 订阅名称。    |
+| accessRules      | Array\<[AccessRule](#accessrule18)\> |  否  | 访问规则数组。 |
+
+## AccessRule<sup>18+</sup>
+
+访问规则。
+
+**系统能力**：SystemCapability.Telephony.CoreService.Esim
+
 | 名称 | 类型 | 必填 | 说明 |
 | ----- | ----- | ----- | -----|
-| activationCode   | string             |  是  | 激活码。对于不基于激活码的配置文件，可能为空。 |
-| confirmationCode | string             |  否  | 确认码。      |
-| carrierName      | string             |  否  | 订阅名称。    |
-| accessRules      | Array\<AccessRule> |  否  | 访问规则数组。 |
+| certificateHashHexStr | string  |  是  | 证书哈希的十六进制字符串。 |
+| packageName           | string  |  是  | 规则适用的程序包名称。 |
+| accessType            | number  |  是  | 规则的类型。 |
