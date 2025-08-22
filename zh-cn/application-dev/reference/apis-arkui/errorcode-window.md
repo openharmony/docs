@@ -89,6 +89,7 @@ This window context is abnormal.
 **处理步骤**<br>
 在对窗口上下文进行操作前，检查该窗口上下文是否存在，确保其未被销毁，再进行相关操作。
 
+<!--Del-->
 ## 1300007 WindowExtension拉起应用失败
 
 **错误信息**<br>
@@ -102,6 +103,7 @@ WindowExtension拉起应用的参数异常。
 
 **处理步骤**<br>
 检查WindowExtension参数是否被异常修改，确保其参数合法，再进行相关操作。
+<!--DelEnd-->
 
 ## 1300008 显示设备异常
 
