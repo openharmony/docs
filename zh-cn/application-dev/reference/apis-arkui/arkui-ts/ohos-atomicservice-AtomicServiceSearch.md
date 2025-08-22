@@ -185,7 +185,7 @@ AtomicServiceSearch中“功能区”的初始化参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名      | 类型      | 必填 | 说明                                                         |
+| 名称      | 类型      | 必填 | 说明                                                         |
 | --------- | ------------- | ---- | ------------------------------------------------------------ |
 | alignType | [MenuAlignType](ts-basic-components-select.md#menualigntype10枚举说明) | 是 | 对齐方式类型。默认值：`MenuAlignType.START`。 |
 | offset | [Offset](ts-types.md#offset) | 否 | 按照对齐类型对齐后，下拉菜单相对下拉按钮的偏移量。默认值：`{dx: 0, dy: 0}`。 |
