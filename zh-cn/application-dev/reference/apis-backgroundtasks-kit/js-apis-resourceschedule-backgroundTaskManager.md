@@ -747,7 +747,7 @@ export default class EntryAbility extends UIAbility {
 
 getAllContinuousTasks(context: Context): Promise&lt;ContinuousTaskInfo[]&gt;
 
-获取所有长时任务信息，如任务Id、任务类型等，使用Promise异步回调。
+获取所有长时任务信息，如长时任务Id、长时任务类型等，使用Promise异步回调。
 
 **需要权限**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -786,7 +786,8 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         try {
-            // 如果当前没有申请长时任务，backgroundTaskManager 将返回一个空数组
+            // 如果当前没有申请长时任务，则获取到一个空数组
+            
             backgroundTaskManager.getAllContinuousTasks(this.context).then((res: backgroundTaskManager.ContinuousTaskInfo[]) => {
                 console.info(`Operation getAllContinuousTasks succeeded. data: ` + JSON.stringify(res));
             }).catch((error: BusinessError) => {
@@ -803,7 +804,7 @@ export default class EntryAbility extends UIAbility {
 
 getAllContinuousTasks(context: Context, includeSuspended: boolean): Promise&lt;ContinuousTaskInfo[]&gt;
 
-获取所有长时任务信息，如任务Id、任务类型等。可选择是否返回暂停的长时任务信息，使用Promise异步回调。
+获取所有长时任务信息，如长时任务Id、长时任务类型等。可选择是否获取暂停的长时任务信息，使用Promise异步回调。
 
 **需要权限**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -814,7 +815,7 @@ getAllContinuousTasks(context: Context, includeSuspended: boolean): Promise&lt;C
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | 是    | 应用运行的上下文。 |
-| includeSuspended   | boolean                            | 是    | 返回的长时任务是否包含暂停的长时任务， true表示包含， false表示不包含。 |
+| includeSuspended   | boolean                            | 是    | 是否获取暂停的长时任务信息， true表示获取， false表示不获取。 |
 
 **返回值**：
 
@@ -956,7 +957,8 @@ export default class EntryAbility extends UIAbility {
 
 on(type: 'continuousTaskSuspend', callback: Callback&lt;ContinuousTaskSuspendInfo&gt;): void
 
-注册长时任务暂停的监听，使用callback异步回调。注册该回调后，如果系统检测到应用未执行相应的业务，不会直接取消长时任务，而是将长时任务标记为暂停状态，但是应用退后台仍会被挂起，回前台自动激活长时任务，如果连续检测失败，仍会取消长时任务。
+注册长时任务暂停的监听，使用callback异步回调。注册该回调后，如果系统首次检测到应用未执行相应的业务，不会直接取消长时任务，而是将长时任务标记为暂停状态，如果连续检测失败，仍会取消长时任务。
+长时任务处于暂停状态时，应用退后台会被挂起，回前台自动激活。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
