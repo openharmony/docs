@@ -2461,7 +2461,7 @@ struct GridExample {
 该示例通过gesture接口，实现了GridItem组件自定义拖拽效果。
 
 ```ts
-import curves from '@ohos.curves'
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component
