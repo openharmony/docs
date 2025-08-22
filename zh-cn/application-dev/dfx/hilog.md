@@ -37,7 +37,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ### hilog日志格式说明
 
-```shell
+```text
 04-19 17:02:14.735  5394  5394 I A03200/testTag: this is a info level hilog
 ```
 
