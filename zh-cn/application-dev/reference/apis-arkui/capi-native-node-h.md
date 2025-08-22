@@ -44,7 +44,7 @@
 | [ArkUI_NodeType](#arkui_nodetype) | ArkUI_NodeType | 提供ArkUI在Native侧可创建组件类型。 |
 | [ArkUI_NodeAttributeType](#arkui_nodeattributetype) | ArkUI_NodeAttributeType | 定义ArkUI在Native侧可以设置的属性样式集合。 |
 | [ArkUI_NodeEventType](#arkui_nodeeventtype) | ArkUI_NodeEventType | 提供NativeNode组件支持的事件类型定义。 |
-| [ArkUI_NodeDirtyFlag](#arkui_nodedirtyflag) | ArkUI_NodeDirtyFlag | 自定义组件调用<b>::markDirty</b>是传递的脏区标识类型。 |
+| [ArkUI_NodeDirtyFlag](#arkui_nodedirtyflag) | ArkUI_NodeDirtyFlag | 自定义组件调用<b>::markDirty</b>时，传递的脏区标识类型。 |
 | [ArkUI_NodeCustomEventType](#arkui_nodecustomeventtype) | ArkUI_NodeCustomEventType | 定义自定义组件事件类型。 |
 | [ArkUI_NodeAdapterEventType](#arkui_nodeadaptereventtype) | ArkUI_NodeAdapterEventType | 定义节点适配器事件枚举值。 |
 | [ArkUI_NodeContentEventType](#arkui_nodecontenteventtype) | ArkUI_NodeContentEventType | 定义NodeContent事件类型。 |
@@ -804,7 +804,7 @@ enum ArkUI_NodeDirtyFlag
 **描述：**
 
 
-自定义组件调用<b>::markDirty</b>是传递的脏区标识类型。
+自定义组件调用<b>::markDirty</b>时，传递的脏区标识类型。
 
 **起始版本：** 12
 
