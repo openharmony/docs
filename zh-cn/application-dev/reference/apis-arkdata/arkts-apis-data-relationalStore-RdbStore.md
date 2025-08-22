@@ -4397,7 +4397,6 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 **示例：**
 
 ```ts
-import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let storeObserver = (devices: Array<string>) => {
@@ -4449,7 +4448,6 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 **示例1：type为SUBSCRIBE_TYPE_REMOTE**
 
 ```ts
-import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let storeObserver = (devices: Array<string>) => {
@@ -4478,7 +4476,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let changeInfos = (changeInfos: Array<relationalStore.ChangeInfo>) => {
   for (let i = 0; i < changeInfos.length; i++) {
-    console.info(`changeInfos = ${changeInfos[i]}`);
+    console.info(`changeInfos = ${JSON.stringify(changeInfos[i])}`);
   }
 };
 
@@ -4898,7 +4896,6 @@ off(event:'dataChange', type: SubscribeType, observer?: Callback&lt;Array&lt;str
 **示例：**
 
 ```ts
-import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let storeObserver = (devices: Array<string>) => {
