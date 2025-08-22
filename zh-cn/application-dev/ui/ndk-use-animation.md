@@ -120,7 +120,7 @@ ArkUI开发框架在NDK接口主要提供属性动画，实现组件出现/消�
    ```
    constexpr int32_t BUTTON_CLICK_ID = 1;
    bool flag = false;
-   ArkUI_NodeHandle parrentNode;
+   ArkUI_NodeHandle parentNode;
    ArkUI_NodeHandle childNode;
    ArkUI_NodeHandle buttonNode;
    
@@ -156,7 +156,7 @@ ArkUI开发框架在NDK接口主要提供属性动画，实现组件出现/消�
        nodeAPI->setAttribute(buttonShow, NODE_MARGIN, &buttonShowMarginItem);
        nodeAPI->registerNodeEvent(buttonShow, NODE_ON_CLICK, BUTTON_CLICK_ID, nullptr);
        nodeAPI->addNodeEventReceiver(buttonShow, OnButtonShowClicked);
-       parrentNode = column;
+       parentNode = column;
        buttonNode = buttonShow;
        nodeAPI->addChild(column, buttonShow);
        OH_ArkUI_NodeContent_AddNode(handle, column);
@@ -217,12 +217,12 @@ ArkUI开发框架在NDK接口主要提供属性动画，实现组件出现/消�
            flag = false;
            ArkUI_AttributeItem labelItem = {.string = "show"};
            nodeAPI->setAttribute(buttonNode, NODE_BUTTON_LABEL, &labelItem);
-           nodeAPI->removeChild(parrentNode, childNode);
+           nodeAPI->removeChild(parentNode, childNode);
        } else {
            flag = true;
            ArkUI_AttributeItem labelItem = {.string = "hide"};
            nodeAPI->setAttribute(buttonNode, NODE_BUTTON_LABEL, &labelItem);
-           nodeAPI->addChild(parrentNode, childNode);
+           nodeAPI->addChild(parentNode, childNode);
        }
    }
    ```
