@@ -1,7 +1,7 @@
 # 应用文件分享
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
-<!--Owner: @cuiruibin-->
+<!--Owner: @gzhuangzhuang-->
 <!--Designer: @wang_zhangjun; @chenxi0605-->
 <!--Tester: @liuhonggang123-->
 <!--Adviser: @foryourself-->
