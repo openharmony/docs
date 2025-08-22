@@ -1304,7 +1304,8 @@ struct styled_string_process_demo {
             Span("span and styledString test")
               .fontColor(Color.Yellow)
               .decoration({ type: TextDecorationType.LineThrough })
-            ImageSpan($r('app.media.startIcon')) // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            ImageSpan($r('app.media.startIcon'))
           }
           .key('styledString2')
           .fontColor(this.fontColor1)
@@ -1331,7 +1332,8 @@ struct styled_string_process_demo {
             Span(this.string1)
               .fontColor(this.color1)
               .decoration({ type: TextDecorationType.LineThrough })
-            ImageSpan($r('app.media.startIcon'))// $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            ImageSpan($r('app.media.startIcon'))
               .width(50).height(50)
           }
           .letterSpacing(10)
@@ -1718,8 +1720,9 @@ struct styled_string_set_image_demo {
 
   async aboutToAppear() {
     console.info("aboutToAppear initial imagePixelMap");
+    // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
     this.imagePixelMap =
-      await this.getPixmapFromMedia($r('app.media.startIcon')); // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+      await this.getPixmapFromMedia($r('app.media.startIcon')); 
   }
 
   private async getPixmapFromMedia(resource: Resource) {
@@ -1756,7 +1759,8 @@ struct styled_string_set_image_demo {
           .onClick(() => {
             if (this.imagePixelMap !== undefined) {
               this.mutableStr = new MutableStyledString(new ImageAttachment({
-                resourceValue: $r('app.media.sky'), //建议使用自定义的本地图片
+                // $r('app.media.sky')需要替换为开发者所需的图像资源文件。
+                resourceValue: $r('app.media.sky'), 
                 size: { width: 50, height: 50 },
                 layoutStyle: { borderRadius: LengthMetrics.vp(10) },
                 verticalAlign: ImageSpanAlignment.BASELINE,
@@ -2231,6 +2235,7 @@ struct styled_string_set_image_colorfilter_demo {
           .fontSize(30)
           .onAppear(() => {
             this.mutableStr = new MutableStyledString(new ImageAttachment({
+              // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
               resourceValue: $r('app.media.startIcon'),
               size: { width: 50, height: 50 },
               layoutStyle: { borderRadius: LengthMetrics.vp(10) },
@@ -2247,6 +2252,7 @@ struct styled_string_set_image_colorfilter_demo {
         Button('set image color filter')
           .onClick(() => {
             this.mutableStr2 = new MutableStyledString(new ImageAttachment({
+              // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
               resourceValue: $r('app.media.startIcon'),
               size: { width: 50, height: 50 },
               layoutStyle: { borderRadius: LengthMetrics.vp(10) },

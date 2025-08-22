@@ -229,7 +229,7 @@ getFontByName(fontName: string): FontInfo
 | fullName       | string  | 否 | 否 | 系统字体的名称。           |
 | family         | string  | 否 | 否 | 系统字体的字体家族。       |
 | subfamily      | string  | 否 | 否 | 系统字体的子字体家族。      |
-| weight         | number  | 否 | 否 | 系统字体的字重。<br/>取值范围：[0,8]，取值间隔为1，分别对应[FontWeight](../apis-arkgraphics2d/js-apis-graphics-text.md#fontweight)枚举中的值。<br/>默认值：0        |
+| weight         | number  | 否 | 否 | 系统字体的字重。<br/>取值范围：[100,900]，取值间隔为100，分别对应[FontWeight](../apis-arkgraphics2d/js-apis-graphics-text.md#fontweight)枚举中的值。<br/>默认值：100        |
 | width          | number  | 否 | 否 | 系统字体的宽度。<br/>取值范围：[1,9]，取值间隔为1，分别对应[FontWidth](../apis-arkgraphics2d/js-apis-graphics-text.md#fontwidth)枚举中的值。    |
 | italic         | boolean | 否 | 否 | 系统字体是否倾斜。<br/>默认值：false<br/>值为true，表示斜体字体，值为false，表示非斜体字体。          |
 | monoSpace      | boolean | 否 | 否 | 系统字体是否紧凑。<br/>默认值：false<br/>值为true，表示等宽字体，值为false，表示非等宽字体。         |

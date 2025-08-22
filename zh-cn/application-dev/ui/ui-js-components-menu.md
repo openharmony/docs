@@ -44,7 +44,7 @@
 }
 ```
 
-![zh-cn_image_0000001226815299](figures/zh-cn_image_0000001226815299.gif)
+![zh-cn_image_0000001226815299](figures/zh-cn_image_0000001226815299.png)
 
 > **说明：**
 > - menu仅支持[option](../reference/apis-arkui/arkui-js/js-components-basic-option.md)子组件。

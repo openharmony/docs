@@ -566,6 +566,7 @@ struct Index {
         }
       },
       {
+        // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
         icon: $r("app.media.app_icon"), action: () => {
       }, builder: (): void => this.sliderPanel()
       },
@@ -598,12 +599,15 @@ struct Index {
       }]
   private expandedMenuOptions: Array<ExpandedMenuOptions> =
     [{
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       startIcon: $r("app.media.startIcon"), content: '词典', action: () => {
       }
     }, {
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       startIcon: $r("app.media.startIcon"), content: '翻译', action: () => {
       }
     }, {
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       startIcon: $r("app.media.startIcon"), content: '搜索', action: () => {
       }
     }]

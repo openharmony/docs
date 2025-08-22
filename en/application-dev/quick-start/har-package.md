@@ -1,30 +1,46 @@
 # HAR
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
+
 A Harmony Archive (HAR) is a static shared package that can contain code, C++ libraries, resource files, and configuration files (also called profiles). It enables modules and projects to share code of ArkUI components, resources, and more.
 
 ## When to Use
 - Supports intra-application sharing or, after being released, intra-application sharing.
-- As a second-party library for internal applications, by being released to the [OHPM private repository](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-ohpm-repo-V13).
+- As a second-party library for internal applications, by being released to the [OHPM private repository](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-ohpm-repo).
 - As a third-party library for external applications, by being released to the [OHPM central repository](https://ohpm.openharmony.cn/#/en/home).
-- When multiple HAPs or HSPs reference the same HAR, the application package may contain multiple copies of code and resource files for the HAPs or HSPs, resulting in an unwelcome large package size.
 
 ## Constraints
 
-- An HAR can only be referenced as a dependency of an application module. It cannot be installed or run independently on a device.
-- An HAR does not support the declaration of the [ExtensionAbility](../application-models/extensionability-overview.md) component in the configuration file, but supports the [UIAbility](../application-models/uiability-overview.md) component.
+- A HAR can only be referenced as a dependency of an application module. It cannot be installed or run independently on a device.
+- A HAR does not support the declaration of the [ExtensionAbility](../application-models/extensionability-overview.md) component in the configuration file. Since API version 14, the declaration of the [UIAbility](../application-models/uiability-overview.md) component in the configuration file is supported. For details about how to configure UIAbility, see [Adding a UIAbility to a Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-add-new-ability#section18658758104318). Starting UIAbility in HAR is the same as [in an application](../application-models/uiability-intra-device-interaction.md).
 > **NOTE**
 >
-> If the [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) API is used to start the UIAbility in the HAR, the value of **moduleName** in the API parameter must be the module name of the [HAP](hap-package.md) or [HSP](in-app-hsp.md) that depends on the HAR.
-- An HAR does not support the declaration of the [pages](./module-configuration-file.md#pages) tag in the configuration file. Still, it can include pages, which can be redirected through a [named route](../ui/arkts-routing.md#named-route).
-- An HAR does not support referencing resources in the **AppScope** folder. This is because the content in the **AppScope** folder is not packaged into the HAR during building.
-- An HAR can depend on other HARs, but does not support cyclic dependency or dependency transfer.
+> If the [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability) API is used to start the UIAbility in the HAR, the value of **moduleName** in the API parameter must be the module name of the [HAP](hap-package.md) or [HSP](in-app-hsp.md) that depends on the HAR.
+- A HAR does not support the declaration of the [pages](./module-configuration-file.md#pages) tag in the configuration file. Still, it can include pages, which can be redirected through [routing operations](../ui/arkts-navigation-navigation.md#routing-operations).
+- A HAR does not support referencing resources in the **AppScope** folder. This is because the content in the **AppScope** folder is not packaged into the HAR during building.
+- As the HSP supports only intra-application sharing, a HAR that depends on any HSP can be shared only within the same application. Do not release such a HAR to a second-party or third-party repository for other applications to use; otherwise, build failures will occur.
+- When multiple HAPs or HSPs reference the same HAR, the application package may contain multiple copies of code and resource files for the HAPs or HSPs, resulting in an unwelcome large package size.
+- A HAR can depend on other HARs or HSPs, but does not support cyclic dependency or dependency transfer.
+- When a HAP references a HAR, the system automatically combines their permission configurations during compilation and build. Therefore, you do not need to repeatedly request the same permission in the HAP and HAR.
 
-## Creating an HAR
-Create an HAR module in DevEco Studio. For details, see [Creating a HAR Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-har-V13#section643521083015).
+> **NOTE**
+> 
+> Cyclic dependency: For example, there are three HARs. HAR-A depends on HAR-B, HAR-B depends on HAR-C, and HAR-C depends on HAR-A.
+>
+> Dependency transfer: For example, there are three HARs. HAR-A depends on HAR-B, and HAR-B depends on HAR-C. If dependency transfer is not supported, HAR-A can use the methods and components of HAR-B, but cannot directly use that of HAR-C.
 
 
-## Developing an HAR
+## Creating a HAR
+You can create a HAR module for calling C++ code in DevEco Studio. During the creation, turn on **Enable native** on the **Configure New Module** page. For details, see [Creating a HAR Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-har#section643521083015).
 
-You can export the ArkUI components, APIs, and other resources of an HAR for other applications or intra-application modules to reference.
+
+## Developing a HAR
+
+You can export the ArkUI components, APIs, and other resources of a HAR for other applications or intra-application modules to reference.
 
 The **Index.ets** file acts as the entry of the HAR export declaration file and is where the HAR exports APIs. This file is automatically generated by DevEco Studio by default. You can specify another file as the entry declaration file in the **main** field in the **oh-package.json5** file of the module. The code snippet is as follows:
 ```json
@@ -32,8 +48,12 @@ The **Index.ets** file acts as the entry of the HAR export declaration file and 
   "main": "Index.ets"
 }
 ```
+> **NOTE**
+>
+> When compiling together with the host application, the HAR code is directly compiled into the host application. A HAR package serves as an intermediate build product rather than a final runtime entity. At runtime, the HAR operates under the identity of its host application, and the system differentiates behaviors based on the version of the host application. If it is necessary to implement version-specific behaviors for the host application within the HAR, you can call the [getBundleInfoForSelf](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself) API to obtain the host application's **targetVersion**, and then execute different logic based on the obtained **targetVersion**.
+
 ### Exporting ArkUI Components
-Use **export** to export the ArkUI components. The code snippet is as follows:
+Export ArkUI components using **export**. The code snippet is as follows:
 ```ts
 // library/src/main/ets/components/mainpage/MainPage.ets
 @Component
@@ -72,10 +92,10 @@ In the **Index.ets** file, declare the APIs that the HAR exposes to external sys
 // library/Index.ets
 export { MainPage } from './src/main/ets/components/mainpage/MainPage';
 ```
-### Exporting TS Classes and Methods
-Use **export** to export TS classes and methods. Multiple TS classes and methods can be exported at the same time. The code snippet is as follows:
+### Exporting Classes and Methods
+Use **export** to export classes and methods. Multiple classes and methods can be exported. The code snippet is as follows:
 ```ts
-// library/src/main/ts/test.ets
+// library/src/main/ets/test.ets
 export class Log {
     static info(msg: string) {
         console.info(msg);
@@ -93,9 +113,9 @@ export function func2() {
 In the **Index.ets** file, declare the APIs that the HAR exposes to external systems. The code snippet is as follows:
 ```ts
 // library/Index.ets
-export { Log } from './src/main/ts/test';
-export { func } from './src/main/ts/test';
-export { func2 } from './src/main/ts/test';
+export { Log } from './src/main/ets/test';
+export { func } from './src/main/ets/test';
+export { func2 } from './src/main/ets/test';
 ```
 
 ### Exporting Native Methods
@@ -122,7 +142,7 @@ Specifically, DevEco Studio collects resource files from the HAP module and its 
 - Dependent HAR modules<br>If resource conflicts occur between dependent HAR modules, they are overwritten based on the dependency sequence indicated under **dependencies** in the **oh-package.json5** file. The module that is higher in the dependency sequence list has a higher priority. For example, in the following example, if **dayjs** and **lottie** folders contain files with the same name, resources in **dayjs** are used preferentially.
 > **NOTE**
 > 
-> With regard to resources in the internationalization folder of **AppScope**, HAP, and HAR directories, the preceding priority rules also apply to resources with the same internationalization qualifier. In addition, resources with internationalization qualifiers are prioritized over those in the **base** folder. For example, if resources with the same name are configured in both the **base** folder under **AppScope** and the **en_US** folder of an HAR, the one in the **en_US** folder is prioritized for internationalization purposes.
+> With regard to resources in the internationalization folder of **AppScope**, HAP, and HAR directories, the preceding priority rules also apply to resources with the same internationalization qualifier. In addition, resources with internationalization qualifiers are prioritized over those in the **base** folder. For example, if resources with the same name are configured in both the **base** folder under **AppScope** and the **en_US** folder of a HAR, the one in the **en_US** folder is prioritized for internationalization purposes.
 ```
 // oh-package.json5
 {
@@ -133,11 +153,11 @@ Specifically, DevEco Studio collects resource files from the HAP module and its 
 }
 ```
 
-## Using an HAR
+## Using a HAR
 
-You can reference the ArkUI components, APIs, and resources in an HAR.
+You can reference the ArkUI components, APIs, and resources in a HAR.
 
-Before referencing the HAR, you need to configure the dependency on it. For details, see [Referencing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-har-import-V13).
+Before referencing the HAR, you need to configure the dependency on it. For details, see [Referencing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-har-import).
 
 ### Referencing ArkUI Components
 
@@ -158,12 +178,11 @@ struct IndexSec {
   }
 }
 ```
-### Referencing TS Classes and Methods
-To reference the TS classes and methods exported from the HAR, use **import** as follows:
+### Referencing ETS Classes and Methods
+Use **import** to reference the classes and methods exported from the HAR. The code snippet is as follows:
 ```ts
 // entry/src/main/ets/pages/Index.ets
-import { Log } from 'library';
-import { func } from 'library';
+import { Log, func } from 'library';
 
 @Entry
 @Component
@@ -176,26 +195,16 @@ struct Index {
         .fontFamily('HarmonyHeiTi')
         .fontWeight(FontWeight.Bold)
         .fontSize(32)
-        .fontWeight(700)
-        .fontColor($r('app.color.text_color'))
-        .textAlign(TextAlign.Start)
-        .margin({ top: '32px' })
-        .width('624px')
 
-      // Reference TS classes and methods.
+      // Reference ETS classes and methods.
       Button($r('app.string.button'))
         .id('button')
         .height(48)
         .width('624px')
         .margin({ top: '4%' })
         .type(ButtonType.Capsule)
-        .fontFamily('HarmonyHeiTi')
-        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
-        .backgroundColor($r('app.color.button_background'))
-        .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
-        .fontSize($r('sys.float.ohos_id_text_size_button1'))
         .onClick(() => {
-          // Reference TS classes and methods in the HAR.
+          // Reference ETS classes and methods in the HAR.
           Log.info('har msg');
           this.message = 'func return: ' + func();
         })
@@ -208,7 +217,7 @@ struct Index {
 ```
 
 ### Referencing Native Methods
-To reference the native methods exported from the HAR, use **import** as follows:
+Use **import** to reference the native methods exported from the HAR. The code snippet is as follows:
 ```ts
 // entry/src/main/ets/pages/Index.ets
 import { nativeAdd } from 'library';
@@ -224,11 +233,6 @@ struct Index {
         .fontFamily('HarmonyHeiTi')
         .fontWeight(FontWeight.Bold)
         .fontSize(32)
-        .fontWeight(700)
-        .fontColor($r('app.color.text_color'))
-        .textAlign(TextAlign.Start)
-        .margin({ top: '32px' })
-        .width('624px')
 
       // Reference the native method in the HAR.
       Button($r('app.string.native_add'))
@@ -237,11 +241,6 @@ struct Index {
         .width('624px')
         .margin({ top: '4%', bottom: '6%' })
         .type(ButtonType.Capsule)
-        .fontFamily('HarmonyHeiTi')
-        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
-        .backgroundColor($r('app.color.button_background'))
-        .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
-        .fontSize($r('sys.float.ohos_id_text_size_button1'))
         .onClick(() => {
           this.message = 'result: ' + nativeAdd(1, 2);
         })
@@ -291,13 +290,13 @@ struct Index {
   }
 }
 ```
-## Building an HAR
+## Building a HAR
 
-HAR can be used as a second-party or third-party library for other applications. To protect code assets, you are advised to [enable code obfuscation](../arkts-utils/source-obfuscation-guide.md).
+HAR can be used as a second-party or third-party library for other applications. To protect code assets, you are advised to [enable code obfuscation](../arkts-utils/source-obfuscation-guide.md#enabling-source-code-obfuscation).
 
 After [code obfuscation](../arkts-utils/source-obfuscation.md) is enabled, DevEco Studio compiles, obfuscates, and compresses code when building HARs to protect code assets.
 
-The obfuscation capability is enabled by default for the HAR module. When the compilation module is release, simple code obfuscation is automatically performed for the HAR module of API version 10 or later. **Since DevEco Studio 5.0.3.600, the code obfuscation is disabled by default when a project is created.** You can enable this feature by setting **enable** in the **ruleOptions** field in the **build-profile.json5** file of the HAR module. For details, see [Code Obfuscation](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-build-obfuscation-V13). The configuration is as follows:
+The obfuscation capability is enabled by default for the HAR module. When the compilation module is release, simple code obfuscation is automatically performed for the HAR module of API version 10 or later. **Since DevEco Studio 5.0.3.600, the code obfuscation is disabled by default when a project is created.** You can enable this feature by setting **enable** in the **ruleOptions** field in the **build-profile.json5** file of the HAR module. For details, see [Using Obfuscation for Code Hardening](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-build-obfuscation). The configuration is as follows:
 
   ```json
   {
@@ -334,13 +333,19 @@ The obfuscation capability is enabled by default for the HAR module. When the co
 
 > **Scenario Description**
 >
->Enable this configuration when using **Sendable** in an HAR.
+>Enable this configuration when [Sendable](../arkts-utils/arkts-sendable.md) is used in a HAR.
 
 > **Constraints**
 >
->When depend on TS HAR, the ArkUI component in TS HAR cannot be referenced.
+> When depend on TS HAR, the ArkUI component in TS HAR cannot be referenced.
+
 
 After the ArkTS file in the HAR module is built, the product is a JS file by default. To change the product to a TS file, set **name** under the **metadata** field in the **module.json5** file of the HAR module to **UseTsHar**. The configuration is as follows:
+>
+> **NOTE**
+>
+> Since DevEco Studio 5.0.3.800, the bytecode HAR is built by default. For details, see [Building a HAR](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-build-har).
+>
 
   ```json
   {
@@ -362,6 +367,6 @@ After the ArkTS file in the HAR module is built, the product is a JS file by def
   }
   ```
 
-## Publishing an HAR
+## Publishing a HAR
 
-For details, see [Publishing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-har-publish-V13).
+For details, see [Publishing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-har-publish).

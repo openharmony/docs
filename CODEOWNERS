@@ -176,6 +176,38 @@ zh-cn/application-dev/arkts-utils/xml-overview.md @ge-yafang @gongjunsong @black
 zh-cn/application-dev/arkts-utils/xml-generation.md @ge-yafang @gongjunsong @blackstone-oh
 zh-cn/application-dev/arkts-utils/xml-parsing.md @ge-yafang @gongjunsong @blackstone-oh
 zh-cn/application-dev/arkts-utils/xml-conversion.md @ge-yafang @gongjunsong @blackstone-oh
+zh-cn/application-dev/arkts-utils/arkoptions-guide.md @zju-wyx @xiao-peiyang; @liyancheng @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/arkts-bytecode-file-format.md @huyunhui1; @oh-rgx1; @zmw1 @ctw-ian; @hufeng20 @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/arkts-bytecode-function-name.md @huyunhui1; @oh-rgx1; @zmw1 @ctw-ian; @hufeng20 @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/arkts-bytecode-fundamentals.md @huyunhui1; @oh-rgx1; @zmw1 @ctw-ian; @hufeng20 @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/arkts-bytecode-overview.md @huyunhui1; @oh-rgx1; @zmw1 @ctw-ian; @hufeng20 @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/arkts-cross-language-interaction.md @xliu-huanwei; @shilei123; @huanghello @shilei123 @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/arkts-dynamic-import.md @huyunhui1; @oh-rgx1; @zmw1 @ctw-ian @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/arkts-import-native-module.md @yao_dashuai @yao_dashuai @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/arkts-lazy-import.md @DaiHuina1997 @yao_dashuai @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/arkts-module-side-effects.md @wangchen965 @yao_dashuai @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/arkts-runtime-faq.md @DaiHuina1997 @yao_dashuai @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/arkts-runtime-overview.md @guobingbing3 @xwcai98 @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/bytecode-obfuscation-guide.md @oatuwwutao @hufeng20 @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/bytecode-obfuscation-overview.md @oatuwwutao; @Valkisop_ @hufeng20 @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/bytecode-obfuscation-practice.md @oatuwwutao @hufeng20 @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/bytecode-obfuscation-questions.md @oatuwwutao @hufeng20 @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/bytecode-obfuscation.md @oatuwwutao; @u012789010 @hufeng20 @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/compilation-tool-chain-overview.md @chenmudan; @hufeng20; @ctw-ian @hufeng20; @ctw-ian @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/customize-bytecode-during-compilation.md @oatuwwutao @hufeng20 @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/gc-introduction.md @dwhuawei @yingguofeng @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/js-apis-load-native-module.md @shilei123 @yao_dashuai @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/load-module-base-nodeapi.md @yao_dashuai @yao_dashuai @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/module-principle.md @yao_dashuai @yao_dashuai @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/Readme-CN.md @flyingwolf @flyingwolf @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/source-obfuscation-guide.md @zju-wyx @xiao-peiyang; @dengxinyu @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/source-obfuscation-overview.md @zju-wyx @xiao-peiyang; @dengxinyu @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/source-obfuscation-practice.md @zju-wyx @xiao-peiyang; @dengxinyu @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/source-obfuscation-questions.md @zju-wyx @xiao-peiyang; @dengxinyu @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/source-obfuscation.md @zju-wyx @xiao-peiyang; @dengxinyu @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/arkts-utils/tool-disassembler.md @oatuwwutao; @luobohua @hufeng20 @kirl75; @zsw_zhushiwei @foryourself
+
+
 
 
 [开发-ArkUI-UI开发]
@@ -270,7 +302,61 @@ zh-cn/application-dev/application-models/windowextensionability.md @zhangqiang18
 
 
 [开发-Arkweb]
-zh-cn/application-dev/web/ @yp99ustc @HelloCrease @patrickrubystar @GHiker
+zh-cn/application-dev/web/arkweb-ndk-jsbridge.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/web/arkweb-ndk-page-data-channel.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/web/web-adsblock.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/web/web-app-page-data-channel.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/web/web-cookie-and-data-storage-mgmt.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/web/web-cross-origin.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/web/web-debugging-with-devtools.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/web/web-default-userAgent.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/web/web-download.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/web/web-in-app-frontend-page-function-invoking.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/web/web-in-page-app-function-invoking.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/web/web-incognito-mode.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/web/web-intelligent-tracking-prevention.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/web/web-page-loading-with-web-components.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/web/web-predictor.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/web/web-redirection-and-browsing-history-mgmt.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/web/web-resource-interception-request-mgmt.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/web/web-scheme-handler.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/web/web-set-back-forward-cache.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/web/app-takeovers-web-media.md @qiu-gongkai @ghiker @HelloCrease @d0ub1eh
+zh-cn/application-dev/web/web-clipboard.md @zhufenghao @ghiker @HelloCrease @jerrywangxmu
+zh-cn/application-dev/web/web-component-migrate.md @libing23232323 @ghiker @HelloCrease @zhu-sheng-le
+zh-cn/application-dev/web/web-component-overview.md @ctqctq99 @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/web/web-content-scrolling.md @zhufenghao @ghiker @HelloCrease @jerrywangxmu
+zh-cn/application-dev/web/web-crashpad.md @hjoksky @ghiker @HelloCrease @StringChen
+zh-cn/application-dev/web/web-createpdf.md @handyohos @ghiker @HelloCrease @zhang-yinglie
+zh-cn/application-dev/web/web-data-detector.md @zhufenghao @ghiker @HelloCrease @jerrywangxmu
+zh-cn/application-dev/web/web-dialog.md @zhufenghao @ghiker @HelloCrease @jerrywangxmu
+zh-cn/application-dev/web/web-docking-softkeyboard.md @libing23232323 @ghiker @HelloCrease @zhu-sheng-le
+zh-cn/application-dev/web/web-event-sequence.md @libing23232323 @ghiker @HelloCrease @zhu-sheng-le
+zh-cn/application-dev/web/web-file-upload.md @zhufenghao @ghiker @HelloCrease @jerrywangxmu
+zh-cn/application-dev/web/web-fit-content.md @LongLie @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/web/web-focus.md @zhufenghao @ghiker @HelloCrease @jerrywangxmu
+zh-cn/application-dev/web/web-geolocation-permission.md @handyohos @ghiker @HelloCrease @zhang-yinglie
+zh-cn/application-dev/web/web-gesture.md @zhufenghao @ghiker @HelloCrease @jerrywangxmu
+zh-cn/application-dev/web/web-nested-scrolling.md @zhufenghao @ghiker @HelloCrease @jerrywangxmu
+zh-cn/application-dev/web/web-offline-mode.md @qianlf @ghiker @HelloCrease @xzc_astile
+zh-cn/application-dev/web/web-open-in-new-window.md @libing23232323 @ghiker @HelloCrease @zhu-sheng-le
+zh-cn/application-dev/web/web-pdf-preview.md @qiu-gongkai @ghiker @HelloCrease @d0ub1eh
+zh-cn/application-dev/web/web-picture-in-picture.md @qiu-gongkai @ghiker @HelloCrease @d0ub1eh
+zh-cn/application-dev/web/web-print.md @handyohos @ghiker @HelloCrease @zhang-yinglie
+zh-cn/application-dev/web/web-render-mode.md @LongLie @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/web/web-router-flash-optimization.md @defeng20201 @ghiker @HelloCrease @LXinJie1
+zh-cn/application-dev/web/web-rtc.md @qiu-gongkai @ghiker @HelloCrease @d0ub1eh
+zh-cn/application-dev/web/web-safe-area-insets.md @LongLie @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/web/web-same-layer.md @LongLie @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/web/web-scale-zoom.md @zhufenghao @ghiker @HelloCrease @jerrywangxmu
+zh-cn/application-dev/web/web-secure-shield-mode.md @libing23232323 @ghiker @HelloCrease @zhu-sheng-le
+zh-cn/application-dev/web/web-sensor.md @handyohos @ghiker @HelloCrease @zhang-yinglie
+zh-cn/application-dev/web/web-set-dark-mode.md @LongLie @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/web/web-white-screen.md @LongLie @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/web/web_component_process.md @libing23232323 @ghiker @HelloCrease @zhu-sheng-le
+zh-cn/application-dev/web/web_drag.md @zhufenghao @ghiker @HelloCrease @jerrywangxmu
+zh-cn/application-dev/web/web_full_screen.md @qiu-gongkai @ghiker @HelloCrease @d0ub1eh
+zh-cn/application-dev/web/web_menu.md @zhufenghao @ghiker @HelloCrease @jerrywangxmu
 
 [开发-Background Tasks Kit]
 zh-cn/application-dev/task-management/ @Brilliantry_Rui @zhouben25  @fenglili18
@@ -321,7 +407,33 @@ zh-cn/application-dev/telephony/contacts-intro.md @zhang_yixin13 @yanghaoqian @s
 
 
 [开发-Core File Kit]
-zh-cn/application-dev/file-management/ @foryourself
+zh-cn/application-dev/file-management/app-file-access.md @wangke25; @gsl_1234; @wuchengjun5 @gsl_1234; @wangke25 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/file-management/app-file-backup-extension.md @lvzhenjie @wang_zhangjun; @chenxi0605 @liuhonggang123 @foryourself
+zh-cn/application-dev/file-management/app-file-backup-overview.md @lvzhenjie @wang_zhangjun; @chenxi0605 @liuhonggang123 @foryourself
+zh-cn/application-dev/file-management/app-file-backup.md @lvzhenjie @wang_zhangjun; @chenxi0605 @liuhonggang123 @foryourself
+zh-cn/application-dev/file-management/app-file-overview.md  @foryourself
+zh-cn/application-dev/file-management/app-fs-space-statistics.md @wang_zhangjun; @zhuangzhuang @wang_zhangjun; @zhuangzhuang; @renguang1116 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/file-management/app-sandbox-directory.md @foryourself
+zh-cn/application-dev/file-management/core-file-kit-intro.md @wangke25; @gsl_1234; @wuchengjun5 @gsl_1234; @wangke25 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/file-management/dev-user-file-manager.md @wang_zhangjun; @zhuangzhuang @wang_zhangjun; @zhuangzhuang; @renguang1116 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/file-management/distributed-fs-overview.md @wang_zhangjun; @zhuangzhuang @wang_zhangjun; @zhuangzhuang; @renguang1116 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/file-management/file-access-across-devices.md @wang_zhangjun; @zhuangzhuang @wang_zhangjun; @zhuangzhuang; @renguang1116 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/file-management/file-copy-across-devices.md @wang_zhangjun; @zhuangzhuang @wang_zhangjun; @zhuangzhuang; @renguang1116 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/file-management/file-persistPermission.md @lvzhenjie; @hongjin-li_admin @chenxi0605; @JerryH1011 @leiyuqian @foryourself
+zh-cn/application-dev/file-management/manage-external-storage.md @wang_zhangjun; @zhuangzhuang @wang_zhangjun; @zhuangzhuang; @renguang1116 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/file-management/native-environment-guidelines.md @wangke25; @gsl_1234; @wuchengjun5 @gsl_1234; @wangke25 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/file-management/native-fileio-guidelines.md @wangke25; @gsl_1234; @wuchengjun5 @gsl_1234; @wangke25 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/file-management/native-fileshare-guidelines.md @lvzhenjie; @hongjin-li_admin @chenxi0605; @JerryH1011 @leiyuqian @foryourself
+zh-cn/application-dev/file-management/native-fileuri-guidelines.md @lvzhenjie @wang_zhangjun; @chenxi0605 @liuhonggang123 @foryourself
+zh-cn/application-dev/file-management/Readme-CN.md @wangke25 @bubble_mao; @zhuangzhuang; @gsl_1234 @liuhonggang123 @foryourself
+zh-cn/application-dev/file-management/request-dir-permission.md @wangke25; @gsl_1234; @wuchengjun5 @gsl_1234; @wangke25 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/file-management/save-user-file.md @wang_zhangjun; @zhuangzhuang @wang_zhangjun; @zhuangzhuang; @renguang1116 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/file-management/select-user-file.md @wang_zhangjun; @zhuangzhuang @wang_zhangjun; @zhuangzhuang; @renguang1116 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/file-management/send-file-to-app-sandbox.md @foryourself
+zh-cn/application-dev/file-management/set-security-label.md @wangke25; @gsl_1234; @wuchengjun5 @gsl_1234; @wangke25 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/file-management/share-app-file.md @foryourself
+zh-cn/application-dev/file-management/user-file-overview.md @wang_zhangjun; @zhuangzhuang @wang_zhangjun; @zhuangzhuang; @renguang1116 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/file-management/user-file-uri-intro.md @wang_zhangjun; @zhuangzhuang @wang_zhangjun; @zhuangzhuang; @renguang1116 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
 
 
 [开发-Driverdevelopment kit]
@@ -333,8 +445,91 @@ zh-cn/application-dev/device/externaldevice-guidelines.md @w_Machine_cc @w003739
 zh-cn/application-dev/form/  @Brilliantry_Rui @ylsnow  @cmz001   @zhaoshaohua_eiln @tang_xian9109  @yangyuecheng
 
 
+[开发-mechanicManager]
+zh-cn/application-dev/mechanicManager/camera-tracking-guide.md @hobbycao @saga2025 @zhaodengqi @foryourself
+zh-cn/application-dev/mechanicManager/mechanic-kit-intro.md @hobbycao @saga2025 @zhaodengqi @foryourself
+zh-cn/application-dev/mechanicManager/Readme-CN.md @hobbycao @saga2025 @zhaodengqi @foryourself
+zh-cn/application-dev/mechanicManager/rotation-control-guide.md @hobbycao @saga2025 @zhaodengqi @foryourself
+
+
+[开发-FFRT]
+zh-cn/application-dev/ffrt/ffrt-api-guideline-c.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/ffrt/ffrt-concurrency-concurrent-queue-c.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/ffrt/ffrt-concurrency-concurrent-queue-cpp.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/ffrt/ffrt-concurrency-graph-c.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/ffrt/ffrt-concurrency-graph-cpp.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/ffrt/ffrt-concurrency-paradigm.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/ffrt/ffrt-concurrency-serial-queue-c.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/ffrt/ffrt-concurrency-serial-queue-cpp.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/ffrt/ffrt-development-guideline.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/ffrt/ffrt-overview.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/ffrt/Readme-CN.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+
+
 [开发-DFX]
-zh-cn/application-dev/dfx/ @foryourself
+zh-cn/application-dev/dfx/address-sanitizer-guidelines.md @mlkgeek @StevenLai1994 @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/appfreeze-guidelines.md @rr_cn @peterhuangyu @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/appkilled-guidelines.md @foryourself
+zh-cn/application-dev/dfx/apprecovery-guidelines.md  @foryourself
+zh-cn/application-dev/dfx/apptask-timeout-guidelines.md @rr_cn @peterhuangyu @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/cppcrash-guidelines.md @chenshi51 @Maplestory @yufeifei @foryourself
+zh-cn/application-dev/dfx/crash-detection-overview.md @chenshi51 @Maplestory @yufeifei @foryourself
+zh-cn/application-dev/dfx/errormanager-guidelines.md @rr_cn @peterhuangyu @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/event-subscription-overview.md @liujiaxing2024 @junjie_shi @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/fault-detection-overview.md  @foryourself
+zh-cn/application-dev/dfx/hdc.md @kunsilva @weimingjin @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hiappevent-event-reporting.md @liujiaxing2024 @junjie_shi @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hiappevent-faq.md @liujiaxing2024 @junjie_shi @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hiappevent-intro.md @liujiaxing2024 @junjie_shi @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-address-sanitizer-events-arkts.md @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-address-sanitizer-events-ndk.md @mlkgeek @StevenLai1994 @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-address-sanitizer-events.md @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-app-events-arkts.md @liujiaxing2024 @junjie_shi @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-app-events-ndk.md @liujiaxing2024 @junjie_shi @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-app-killed-events-arkts.md @shead-master @peterhuangyu @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-app-killed-events-ndk.md @shead-master @peterhuangyu @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-app-killed-events.md @shead-master @peterhuangyu @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-apphicollie-events-arkts.md @rr_cn @peterhuangyu @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-apphicollie-events-ndk.md @rr_cn @peterhuangyu @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-apphicollie-events.md @rr_cn @peterhuangyu @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-crash-events-arkts.md @chenshi51 @Maplestory @yufeifei @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-crash-events-ndk.md @chenshi51 @Maplestory @yufeifei @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-crash-events.md @chenshi51 @Maplestory @yufeifei @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-freeze-events-arkts.md @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-freeze-events-ndk.md @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-freeze-events.md @rr_cn @peterhuangyu @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-mainthreadjank-events-arkts.md @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-mainthreadjank-events-ndk.md @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-mainthreadjank-events.md @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-resourceleak-events-arkts.md @xuxinao @peterhuangyu @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-resourceleak-events-ndk.md @xuxinao @peterhuangyu @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hiappevent-watcher-resourceleak-events.md @xuxinao @peterhuangyu @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hichecker-guidelines-arkts.md @lu-tao @martin-duan @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hicollie-guidelines-ndk.md @rr_cn @peterhuangyu @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hicollie-settimer-guidelines-ndk.md @rr_cn @peterhuangyu @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hidebug-guidelines-arkts.md @hello_harmony; @yu_haoqiaida @kutcherzhou1 @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hidebug-guidelines-ndk.md @hello_harmony; @yu_haoqiaida @kutcherzhou1 @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hidebug-guidelines.md @hello_harmony; @yu_haoqiaida @kutcherzhou1 @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hidumper.md @m0_55013956 @milkbread123 @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hilog-guidelines-arkts.md @liuyifeifei;@buzhenwang @shenchenkai @liyang2235 @foryourself
+zh-cn/application-dev/dfx/hilog-guidelines-ndk.md @liuyifeifei;@buzhenwang @shenchenkai @liyang2235 @foryourself
+zh-cn/application-dev/dfx/hilog.md @liuyifeifei;@buzhenwang @shenchenkai @liyang2235 @foryourself
+zh-cn/application-dev/dfx/hiperf.md @leiguangyu @Maplestroy @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hiprofiler.md @zyxzyx @Maplestroy @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hisysevent.md @foryourself
+zh-cn/application-dev/dfx/hitrace.md @qq_437963121 @MontSaintMichel @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hitracechain-guidelines-arkts.md @qq_437963121 @MontSaintMichel @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hitracechain-guidelines-ndk.md @qq_437963121 @MontSaintMichel @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hitracechain-intro.md @qq_437963121 @MontSaintMichel @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hitracemeter-guidelines-arkts.md @qq_437963121 @MontSaintMichel @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hitracemeter-guidelines-ndk.md @qq_437963121 @MontSaintMichel @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hitracemeter-intro.md @qq_437963121 @MontSaintMichel @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/hitracemeter-view.md @qq_437963121 @MontSaintMichel @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/jscrash-guidelines.md @wanghuan2025 @Maplestory @yufeifei @foryourself
+zh-cn/application-dev/dfx/performance-analysis-kit-overview.md @mzyan @liyueric @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/performance-analysis-kit-terminology.md @mzyan @liyueric @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/Readme-CN.md @mzyan @liyueric @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/dfx/uinput.md @zhaoxueyuan @hanruofei @Lyuxin @Brilliantry_Rui
 
 [开发-IDL]
 zh-cn/application-dev/IDL/ @huipeizi  @ccllee  @lxfycode  @lixueqing513
@@ -615,6 +810,9 @@ zh-cn/application-dev/reference/apis-arkts/js-apis-vector.md @gongjunsong @ge-ya
 zh-cn/application-dev/reference/apis-arkts/js-apis-xml.md @gongjunsong @ge-yafang @flyingwolf@blackstone-oh @yingguofeng
 zh-cn/application-dev/reference/apis-arkts/js-apis-worker.md @gongjunsong @ge-yafang @flyingwolf @weng-changcheng @blackstone-oh
 zh-cn/application-dev/reference/apis-arkts/js-apis-taskpool.md @gongjunsong @ge-yafang @flyingwolf @weng-changcheng @blackstone-oh
+zh-cn/application-dev/reference/apis-arkts/errorcode-ets-loader.md @aftott @hufeng20 @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/reference/apis-arkts/errorcode-tsc.md @zju-wyx @xiao-peiyang; @liyancheng @kirl75; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/reference/apis-arkts/Readme-CN.md @lijiamin2025; @xliu-huanwei @weng-changcheng; @yuanyao14 @kirl75; @zsw_zhushiwei @foryourself
 
 
 [API参考-ArkUI-JS]
@@ -717,7 +915,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-qrcode.m
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-radio.md		@houguobiao @li-xinlei007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-rating.md		@liyi0309	@li-xinlei007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md		@holtens	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richtext.md	@yp99ustc @HelloCrease @patrickrubystar @GHiker
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richtext.md	@libing23232323 @ghiker @HelloCrease @zhu-sheng-le
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md	@rongshao-Z	@yeyinglong_admin	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-search.md		@jyj-0306 @pssea	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-select.md		@zhanghaibo0	@li-xinlei007	@HelloCrease
@@ -918,7 +1116,98 @@ zh-cn/application-dev/reference/apis-arkui/errorcode-display.md @ge-yafang @acha
 
 
 [API参考-ArkWeb]
-zh-cn/application-dev/reference/apis-arkweb/  @yp99ustc @HelloCrease @patrickrubystar @GHiker
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-e.md @ctqctq99 @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-f.md @zhufenghao @ghiker @HelloCrease @jerrywangxmu
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-GeolocationPermissions.md @handyohos @ghiker @HelloCrease @zhang-yinglie
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-i.md @ctqctq99 @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-MediaSourceInfo.md @qiu-gongkai @ghiker @HelloCrease @d0ub1eh
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerBridge.md @qiu-gongkai @ghiker @HelloCrease @d0ub1eh
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerHandler.md @qiu-gongkai @ghiker @HelloCrease @d0ub1eh
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerSurfaceInfo.md @qiu-gongkai @ghiker @HelloCrease @d0ub1eh
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-PdfData.md @qiu-gongkai @ghiker @HelloCrease @d0ub1eh
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-t.md @ctqctq99 @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebDataBase.md @handyohos @ghiker @HelloCrease @yjone
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebStorage.md @handyohos @ghiker @HelloCrease @yjone
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebviewController.md @ctqctq99 @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview.md @ctqctq99 @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-attributes.md @ctqctq99 @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-ControllerHandler.md @libing23232323 @ghiker @HelloCrease @zhu-sheng-le
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-e.md @ctqctq99 @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-EventResult.md @zhufenghao @ghiker @HelloCrease @jerrywangxmu
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-events.md @ctqctq99 @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-FileSelectorParam.md @zhufenghao @ghiker @HelloCrease @jerrywangxmu
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-FileSelectorResult.md @zhufenghao @ghiker @HelloCrease @jerrywangxmu
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-FullScreenExitHandler.md @zhufenghao @ghiker @HelloCrease @jerrywangxmu
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-i.md @ctqctq99 @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-JsGeolocation.md @handyohos @ghiker @HelloCrease @zhang-yinglie
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-JsResult.md @zhufenghao @ghiker @HelloCrease @jerrywangxmu
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-PermissionRequest.md @qiu-gongkai @ghiker @HelloCrease @d0ub1eh
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-ScreenCaptureHandler.md @qiu-gongkai @ghiker @HelloCrease @d0ub1eh
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-t.md @ctqctq99 @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebContextMenuParam.md @zhufenghao @ghiker @HelloCrease @jerrywangxmu
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebContextMenuResult.md @zhufenghao @ghiker @HelloCrease @jerrywangxmu
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebController.md @ctqctq99 @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebKeyboardController.md @zhufenghao @ghiker @HelloCrease @jerrywangxmu
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web.md @ctqctq99 @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/capi-arkweb-interface-h.md @ctqctq99 @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/capi-arkweb-type-h.md @ctqctq99 @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/capi-native-interface-arkweb-h.md @ctqctq99 @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-anynativeapi.md @libing23232323 @ghiker @HelloCrease @zhu-sheng-le
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-componentapi.md @ctqctq99 @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-controllerapi.md @ctqctq99 @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/capi-web.md @ctqctq99 @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/errorcode-webview.md @ctqctq99 @ghiker @HelloCrease @yp99ustc
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-netErrorList.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-AdsBlockManager.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-BackForwardCacheOptions.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-BackForwardCacheSupportedFeatures.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-BackForwardList.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-JsMessageExt.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-ProxyConfig.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-ProxyController.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-ProxyRule.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebDownloadDelegate.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebDownloadItem.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebDownloadManager.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebHttpBodyStream.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebMessageExt.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebMessagePort.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebResourceHandler.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebSchemeHandler.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebSchemeHandlerRequest.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebSchemeHandlerResponse.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-ClientAuthenticationHandler.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-ConsoleMessage.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-DataResubmissionHandler.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-HttpAuthHandler.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-SslErrorHandler.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebCookie.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebResourceError.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebResourceRequest.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-WebResourceResponse.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-arkweb-error-code-h.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-arkweb-net-error-list-h.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-arkweb-scheme-handler-h.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-cookiemanagerapi.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-httpbodystream.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-javascriptbridgedata.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-javascriptobject.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-javascriptvalue8h.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-javascriptvalueapi.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-proxymethod.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-proxymethodwithresult.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-proxyobject.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-proxyobjectwithresult.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-requestheaderlist.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-resourcehandler.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-resourcerequest.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-response.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-schemehandler.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-webmessage8h.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-webmessageapi.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-webmessageport8h.md @aohui @ghiker @HelloCrease
+zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-webmessageportapi.md @aohui @ghiker @HelloCrease
 
 
 [API参考-Background Tasks Kit]
@@ -985,6 +1274,7 @@ zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-update.md @hug
 
 [API参考-Basic Services Kit-时间时区、公共回调、系统设置]
 zh-cn/application-dev/reference/common/js-apis-timer.md   @ge-yafang
+zh-cn/application-dev/reference/common/js-apis-timer.md @yao_dashuai @yao_dashuai @kirl75; @zsw_zhushiwei @foryourself
 zh-cn/application-dev/reference/apis-basic-services-kit/commonEvent-screenlock.md @zhang_yixin13
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-timer-sys.md @zhang_yixin13  @murphy1984 @hu-kai45
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-time.md @zhang_yixin13  @murphy1984 @hu-kai45
@@ -1069,12 +1359,142 @@ zh-cn/application-dev/reference/apis-contacts-kit/  @zhang_yixin13 @shangzhijie 
 
 
 [API参考-Core File Kit]
-zh-cn/application-dev/reference/apis-core-file-kit/ @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/capi-environment.md @wangke25; @gsl_1234; @wuchengjun5 @gsl_1234; @wangke25 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/capi-error-code-h.md    @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/capi-fileio.md @wangke25; @gsl_1234; @wuchengjun5 @gsl_1234; @wangke25 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/capi-fileshare-fileshare-policyerrorresult.md @lvzhenjie; @hongjin-li_admin @chenxi0605; @JerryH1011 @leiyuqian @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/capi-fileshare-fileshare-policyinfo.md @lvzhenjie; @hongjin-li_admin @chenxi0605; @JerryH1011 @leiyuqian @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/capi-fileshare.md @lvzhenjie; @hongjin-li_admin @chenxi0605; @JerryH1011 @leiyuqian @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/capi-fileuri.md @lvzhenjie @wang_zhangjun; @chenxi0605 @liuhonggang123 @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/capi-oh-environment-h.md    @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/capi-oh-file-share-h.md @lvzhenjie; @hongjin-li_admin @chenxi0605; @JerryH1011 @leiyuqian @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/capi-oh-file-uri-h.md @lvzhenjie @wang_zhangjun; @chenxi0605 @liuhonggang123 @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/capi-oh-fileio-h.md    @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/errorcode-filemanagement.md @wangke25; @gsl_1234; @wuchengjun5 @gsl_1234; @wangke25 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-application-backupExtensionAbility-sys.md @lvzhenjie @wang_zhangjun; @chenxi0605 @liuhonggang123 @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md @lvzhenjie @wang_zhangjun; @chenxi0605 @liuhonggang123 @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-document.md    @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-backup-sys.md @lvzhenjie @wang_zhangjun; @chenxi0605 @liuhonggang123 @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md @lvzhenjie @wang_zhangjun; @chenxi0605 @liuhonggang123 @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-cloudsync-sys.md @zsyztt; @Hermits; @reminder2352 @yunlanying @liuhonggang123 @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-cloudsync.md @zsyztt; @Hermits; @reminder2352 @yunlanying @liuhonggang123 @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-cloudsyncmanager-sys.md @zsyztt; @Hermits; @reminder2352 @yunlanying @liuhonggang123 @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-environment-sys.md @wangke25; @gsl_1234; @wuchengjun5 @gsl_1234; @wangke25 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-environment.md @wangke25; @gsl_1234; @wuchengjun5 @gsl_1234; @wangke25 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fileuri.md @lvzhenjie @wang_zhangjun; @chenxi0605 @liuhonggang123 @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md @wangke25; @gsl_1234; @wuchengjun5 @gsl_1234; @wangke25 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-hash.md @wangke25; @gsl_1234; @wuchengjun5 @gsl_1234; @wangke25 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-keymanager-sys.md @wang_zhangjun; @zhuangzhuang @wang_zhangjun; @zhuangzhuang; @renguang1116 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-picker-sys.md @wang_zhangjun; @zhuangzhuang @wang_zhangjun; @zhuangzhuang; @renguang1116 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-picker.md @wang_zhangjun; @zhuangzhuang @wang_zhangjun; @zhuangzhuang; @renguang1116 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-recent-sys.md @wang_zhangjun; @zhuangzhuang @wang_zhangjun; @zhuangzhuang; @renguang1116 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-securityLabel.md @wangke25; @gsl_1234; @wuchengjun5 @gsl_1234; @wangke25 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-statvfs.md @wangke25; @gsl_1234; @wuchengjun5 @gsl_1234; @wangke25 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-storage-statistics-sys.md @wang_zhangjun; @zhuangzhuang @wang_zhangjun; @zhuangzhuang; @renguang1116 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-storage-statistics.md @wang_zhangjun; @zhuangzhuang @wang_zhangjun; @zhuangzhuang; @renguang1116 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-trash-sys.md @wang_zhangjun; @zhuangzhuang @wang_zhangjun; @zhuangzhuang; @renguang1116 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-volumemanager-sys.md @wang_zhangjun; @zhuangzhuang @wang_zhangjun; @zhuangzhuang; @renguang1116 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-fileAccess-sys.md @wang_zhangjun; @zhuangzhuang @wang_zhangjun; @zhuangzhuang; @renguang1116 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-fileExtensionInfo-sys.md @wang_zhangjun; @zhuangzhuang @wang_zhangjun; @zhuangzhuang; @renguang1116 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-fileio.md @wangke25; @gsl_1234; @wuchengjun5 @gsl_1234; @wangke25 @liuhonggang123; @yue-ye2; @juxiaopang @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-fileShare-sys.md @lvzhenjie; @hongjin-li_admin @chenxi0605; @JerryH1011 @leiyuqian @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-fileShare.md @lvzhenjie; @hongjin-li_admin @chenxi0605; @JerryH1011 @leiyuqian @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-statfs.md    @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-system-file.md    @foryourself
+zh-cn/application-dev/reference/apis-core-file-kit/js-apis-userFileManager-sys.md @yixiaoff @liweilu1 @xchaosioda @zengyawen
+zh-cn/application-dev/reference/apis-core-file-kit/Readme-CN.md @wangke25 @bubble_mao; @zhuangzhuang; @gsl_1234 @liuhonggang123 @foryourself
 
+
+[API参考-mechanicManager]
+zh-cn/application-dev/reference/apis-mechanic-kit/errorcode-mechanic.md @hobbycao @saga2025 @zhaodengqi @foryourself
+zh-cn/application-dev/reference/apis-mechanic-kit/js-apis-mechanicManager-sys.md @hobbycao @saga2025 @zhaodengqi @foryourself
+zh-cn/application-dev/reference/apis-mechanic-kit/js-apis-mechanicManager.md @hobbycao @saga2025 @zhaodengqi @foryourself
+zh-cn/application-dev/reference/apis-mechanic-kit/Readme-CN.md @hobbycao @saga2025 @zhaodengqi @foryourself
+
+
+[API参考-FFRT]
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-condition-variable-h.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-ffrt-ffrt-cond-t.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-ffrt-ffrt-condattr-t.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-ffrt-ffrt-dependence-t.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-ffrt-ffrt-deps-t.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-ffrt-ffrt-fiber-t.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-ffrt-ffrt-function-header-t.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-ffrt-ffrt-loop-t.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-ffrt-ffrt-mutex-t.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-ffrt-ffrt-mutexattr-t.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-ffrt-ffrt-queue-attr-t.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-ffrt-ffrt-queue-t.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-ffrt-ffrt-rwlock-t.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-ffrt-ffrt-rwlockattr-t.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-ffrt-ffrt-task-attr-t.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-ffrt-ffrt-task-handle-t.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-ffrt.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-fiber-h.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-loop-h.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-mutex-h.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-queue-h.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-shared-mutex-h.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-sleep-h.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-task-h.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-timer-h.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/capi-type-def-h.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
+zh-cn/application-dev/reference/apis-ffrt-kit/Readme-CN.md @chuchihtung; @yanleo @geoffrey_guo; @huangyouzhong @lotsof; @sunxuhao @foryourself
 
 [API参考-DFX]
-zh-cn/application-dev/reference/apis-performance-analysis-kit/ @foryourself
-
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hiappevent-cfg-h.md @liujiaxing2024 @junjie_shi @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hiappevent-event-h.md @liujiaxing2024 @junjie_shi @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hiappevent-h.md @liujiaxing2024 @junjie_shi @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hiappevent-hiappevent-appeventgroup.md @liujiaxing2024 @junjie_shi @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hiappevent-hiappevent-appeventinfo.md @liujiaxing2024 @junjie_shi @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hiappevent-hiappevent-config.md @liujiaxing2024 @junjie_shi @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hiappevent-hiappevent-processor.md @liujiaxing2024 @junjie_shi @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hiappevent-hiappevent-watcher.md @liujiaxing2024 @junjie_shi @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hiappevent-param-h.md @liujiaxing2024 @junjie_shi @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hiappevent-paramlistnode8h.md @liujiaxing2024 @junjie_shi @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hiappevent.md @liujiaxing2024 @junjie_shi @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hicollie-h.md    @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hicollie-hicollie-detectionparam.md    @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hicollie-hicollie-settimerparam.md @rr_cn @peterhuangyu @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hicollie.md    @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hidebug-h.md @hello_harmony; @yu_haoqiaida @kutcherzhou1 @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hidebug-hidebug-backtrace-object--8h.md @hello_harmony; @yu_haoqiaida @kutcherzhou1 @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hidebug-hidebug-jsstackframe.md @hello_harmony; @yu_haoqiaida @kutcherzhou1 @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hidebug-hidebug-mallocdispatch.md @hello_harmony; @yu_haoqiaida @kutcherzhou1 @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hidebug-hidebug-memorylimit.md @hello_harmony; @yu_haoqiaida @kutcherzhou1 @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hidebug-hidebug-nativememinfo.md @hello_harmony; @yu_haoqiaida @kutcherzhou1 @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hidebug-hidebug-nativestackframe.md @hello_harmony; @yu_haoqiaida @kutcherzhou1 @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hidebug-hidebug-stackframe.md @hello_harmony; @yu_haoqiaida @kutcherzhou1 @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hidebug-hidebug-systemmeminfo.md @hello_harmony; @yu_haoqiaida @kutcherzhou1 @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hidebug-hidebug-threadcpuusage.md @hello_harmony; @yu_haoqiaida @kutcherzhou1 @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hidebug-type-h.md @hello_harmony; @yu_haoqiaida @kutcherzhou1 @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hidebug.md @hello_harmony; @yu_haoqiaida @kutcherzhou1 @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hilog.md @liuyifeifei;@buzhenwang @shenchenkai @liyang2235 @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hitrace-hitraceid.md @qq_437963121 @MontSaintMichel @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hitrace.md @qq_437963121 @MontSaintMichel @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-log-h.md @liuyifeifei; @buzhenwang @shenchenkai @liyang2235 @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-trace-h.md @qq_437963121 @MontSaintMichel @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/errorcode-faultlogger.md @chenshi51 @Maplestory @yufeifei @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/errorcode-hiappevent.md @liujiaxing2024 @junjie_shi @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/errorcode-hisysevent-sys.md    @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hicollie.md    @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug-cpuusage.md @hello_harmony; @yu_haoqiaida @kutcherzhou1 @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug.md @hello_harmony; @yu_haoqiaida @kutcherzhou1 @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/errorcode-jsleakwatcher.md @lu-tao @martin-duan @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/errorcode-loglibrary-sys.md    @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-bytrace.md @qq_437963121 @MontSaintMichel @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-faultLogger.md @chenshi51 @Maplestory @yufeifei @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-hiappevent.md @liujiaxing2024 @junjie_shi @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-hichecker.md @lu-tao @martin-duan @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-hidebug.md @hello_harmony; @yu_haoqiaida @kutcherzhou1 @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-hilog.md @liuyifeifei;@buzhenwang @shenchenkai @liyang2235 @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-hisysevent-sys.md @lyj_love_code @tangyyan @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-hitracechain.md @qq_437963121 @MontSaintMichel @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-hitracemeter.md @qq_437963121 @MontSaintMichel @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md @liujiaxing2024 @junjie_shi @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md @lu-tao @martin-duan @gcw_KuLfPSbe @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-loglibrary-sys.md    @foryourself
+zh-cn/application-dev/reference/apis-performance-analysis-kit/Readme-CN.md @mzyan @liyueric @gcw_KuLfPSbe @foryourself
 
 
 [API参考-Distributedservice Kit]
@@ -1258,6 +1678,10 @@ zh-cn/application-dev/tools/app-check-tool.md @Brilliantry_Rui  @hanfeng6  @kong
 zh-cn/application-dev/tools/cem-tool.md @huipeizi   @dong-qingran   @shine_hk
 zh-cn/application-dev/tools/anm-tool.md @huipeizi   @dong-qingran   @shine_hk
 zh-cn/application-dev/tools/restool.md  @Brilliantry_Rui @lliule21 @lpw_work @budda-wang
+zh-cn/application-dev/tools/rawheap-translator.md @wanghuan2025 @wanghuan2025 @kir175; @zsw_zhushiwei @foryourself
+zh-cn/application-dev/tools/toybox.md @yan-mingzhen @liveery @liuhaonan2 @foryourself
+zh-cn/application-dev/tools/command-line-tools-overview.md @foryourself @lingminghw @RayShih @foryourself
+zh-cn/application-dev/tools/Readme-CN.md @foryourself @lingminghw @RayShih @foryourself
 
 
 [FAQ]

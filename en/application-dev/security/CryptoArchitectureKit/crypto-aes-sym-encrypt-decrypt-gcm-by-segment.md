@@ -1,5 +1,12 @@
 # Encryption and Decryption by Segment with an AES Symmetric Key (GCM Mode) (ArkTS)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 For details about the algorithm specifications, see [AES](crypto-sym-encrypt-decrypt-spec.md#aes).
 
 **Encryption**
@@ -17,18 +24,18 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
    - Currently, the amount of data to be passed in by a single **update()** is not limited. You can determine how to pass in data based on the data volume.
    - You are advised to check the result of each **update()**. If the result is not **null**, obtain the data and combine the data segments into complete ciphertext. The **update()** result may vary with the key specifications.
       
-      If a block cipher mode (ECB or CBC) is used, data is encrypted and output based on the block size. That is, if the data of an **update()** operation matches the block size, the ciphertext is output. Otherwise, **null** is output, and the plaintext will be combined with the input data of the next **update()** to form a block. When **doFinal()** is called, the unencrypted data is padded to the block size based on the specified padding mode, and then encrypted. The **update()** API works in the same way in decryption.
+      If a block cipher mode (ECB or CBC) is used, data is encrypted and output based on the block size. When the update operation fills a block, the ciphertext is output. If the block is not filled, the update operation outputs **null**, and the unencrypted data is concatenated with the data input next time, and then the data is output by block. When **Cipher.doFinal** is called, the unencrypted data is padded to the block size based on the specified padding mode, and then encrypted. The **Cipher.update** API works in the same way in decryption.
 
-      If a stream cipher mode (CTR or OFB) is used, the ciphertext length is usually the same as the plaintext length.
+      If a stream encryption mode (CTR and OFB) is used, the ciphertext length is equal to the plaintext length.
 
 5. Call [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to obtain the encrypted data.
    
-   - If data has been passed in by **update()**, pass in **null** in the **data** parameter of **Cipher.doFinal**.
-   - The output of **doFinal** may be **null**. To avoid exceptions, always check whether the result is **null** before accessing specific data.
+   - If data has been passed in by **Cipher.update**, pass in **null** in this step.
+   - Before accessing the **Cipher.doFinal** output, check whether the result is **null** to avoid exceptions.
 
 6. Obtain [GcmParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#gcmparamsspec).authTag as the authentication information for decryption.
    
-   In GCM mode, **authTag** must be of 16 bytes. It is used as the authentication information during decryption. In the example, **authTag** is of 16 bytes.
+   In GCM mode, the algorithm library supports only 16-byte **authTag**, which is used for authentication initialization during decryption. In the following example, **authTag** is of 16 bytes.
 
 **Decryption**
 
@@ -82,7 +89,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
       let updateMessageBlob: cryptoFramework.DataBlob = { data: updateMessage };
       // Call update() multiple times to pass in data by segment.
       let updateOutput = await cipher.update(updateMessageBlob);
-      // Combine the result of each update() to obtain the ciphertext. In certain cases, the doFinal() result also needs to be combined, which depends on the cipher block mode
+      // Combine the result of each Cipher.update to obtain the ciphertext. In certain cases, the Cipher.doFinal result also needs to be combined, which depends on the cipher block mode.
       // and padding mode you use. In this example, the GCM mode is used, and the doFinal() result contains authTag but not ciphertext. Therefore, there is no need to combine the doFinal() result.
       let mergeText = new Uint8Array(cipherText.length + updateOutput.data.length);
       mergeText.set(cipherText);

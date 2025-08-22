@@ -13,7 +13,15 @@
 
 ## 检测原理
 
-代码执行过程中未捕获的异常或错误导致应用意外退出时，应用会在抛出未处理的异常时崩溃，生成对应的JS Crash崩溃日志文件，并上报崩溃事件，开发者可通过HiAppEvent订阅[崩溃事件](hiappevent-watcher-crash-events.md)。如果想进一步了解如何分析JS Crash问题，请参见[JS Crash类问题分析方法](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-app-crash-js-way)。
+方舟运行时捕获进程异常。生成故障日志的流程如下：
+
+1. 当代码执行时，未捕获的异常或错误导致应用崩溃，方舟运行时将捕获这些异常。
+
+2. 方舟运行时收集故障信息，并将其上报给维测进程Hiview。
+
+3. 维测进程Hiview补充仅其有权限获取的信息(如整机内存状态、应用页面切换轨迹)，生成对应的崩溃日志文件, 存储在“/data/log/faultlog/faultlogger”目录下。
+
+4. 上报崩溃事件，开发者可通过HiAppEvent订阅[崩溃事件](hiappevent-watcher-crash-events.md)。如需了解JS Crash问题分析方法，请参见[JS Crash类问题分析方法](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-app-crash-js-way)。
 
 
 ## 约束与限制
@@ -45,7 +53,27 @@ hdc file recv /data/log/faultlog/faultlogger 本地路径
 ## 日志规格
 
 
-以下是JS Crash崩溃日志信息中对应字段解释。
+|字段|描述|起始API版本|是否必选项|非必选说明|
+|---|---|---|---|---|
+| Device info | 设备信息 | 8 | 是 | - |
+| Build info | 版本信息 | 8 | 是 | - |
+| Fingerprint | 故障特征，聚类同类问题的哈希值 | 8 | 是 | - |
+| Timestamp | 时间戳 | 8 | 是 | - |
+| Module name | 包名/进程名 | 8 | 是 | - |
+| Version | hap版本 | 8 | 是 | - |
+| Version Code | 版本编码 | 8 | 是 | - |
+| Pid | 故障进程号 | 8 | 是 | - |
+| Uid | 用户ID | 8 | 是 | - |
+| Process Memory(kB) | 进程占用内存 | 20 | 是 | - |
+| Device Memory(kB) | 整机内存信息 | 20 | 否 | 依赖维测服务进程，若发生故障时维测服务进程停止或设备重启则无此字段，详见[检测原理](#检测原理)。 |
+| Page switch history | 页面切换轨迹 | 21 | 否 | 如果维测服务进程出现故障或未缓存切换轨迹，则不包含此字段。 |
+| Reason | 故障原因 | 8 | 是 | - |
+| Error name | 故障类型 | 8 | 是 | - |
+| Error message | 异常信息 | 8 | 是 | - |
+| Stacktrace | 故障堆栈 | 8 | 是 | - |
+| HiLog | 故障之前打印的流水日志，最多1000行 | 20 | 是 | - |
+
+以下是JS Crash崩溃日志规格。
 ```text
 Device info:XXX <- 设备信息
 Build info:XXX-XXXX X.X.X.XX(XXXXXXXX) <- 版本信息
@@ -58,6 +86,12 @@ Pid:579 <- 故障进程号
 Uid:0 <- 用户ID
 Process Memory(kB): 1897(Rss) <- 进程占用内存
 Device Memory(kB): Total 1935820, Free 482136, Available 1204216  <- 整机内存信息
+Page switch history: <- 页面切换轨迹
+  14:08:30:327 /ets/pages/Index:JsError
+  14:08:28:986 /ets/pages/Index
+  14:08:07:606 :leaves foreground
+  14:08:06:246 /ets/pages/Index:AppFreeze
+  14:08:01:955 :enters foreground
 Reason:TypeError <- 故障原因
 Error name:TypeError <- 故障类型
 Error message:Cannot read property c of undefined <- 异常信息
@@ -68,11 +102,32 @@ Stacktrace:
          函数名   模块的包名                   文件行列号位置
 
 HiLog:
- ^  
+ ^
  在生成的崩溃日志文件中追加异常相关1000行hilog日志
 
 ```
 
+
+### Page switch history
+
+从API 21起，使用Page switch history段记录页面切换的历史，故障日日志最多记录最新的10条历史轨迹。单条记录的格式如下：
+```text
+  14:08:30:327 /ets/pages/Index:JsError
+       ^             ^            ^
+    切换时间      页面URL       页面名
+```
+
+> **注意：**
+>
+> 仅在通过Navigation跳转到子页面时才会有页面名，页面名在[系统路由表](../ui/arkts-navigation-navigation.md#系统路由表)中定义。
+>
+> 当应用发生前后台切换时，对应的页面URL为空，但是会将enters foreground、leaves foreground作为特殊的页面名进行填充。
+>
+> enters foreground：应用进入前台运行。
+>
+> leaves foreground：应用在后台运行。
+
+### Reason
 
 JS Crash异常根据不同的异常场景，在Reason字段进行了分类，分为Error、TypeError、SyntaxError、RangeError等错误类型。
 

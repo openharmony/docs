@@ -49,7 +49,7 @@ struct Index {
       GestureGroup(GestureMode.Sequence,
         // The first gesture recognized in the combined gestures is the long press gesture, which can be responded to for multiple times.
         LongPressGesture({ repeat: true })
-          // When the long press gesture is successfully recognized, the value of count displayed on the Text component is increased.
+          // When the long press gesture is successfully recognized, the value of count displayed on the Text component increments.
           .onAction((event: GestureEvent|undefined) => {
             if(event){
               if (event.repeat) {
