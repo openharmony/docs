@@ -58,7 +58,7 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
    ```ts
    async function getPickerResult(context: Context, pickerProfile: picker.PickerProfile): Promise<picker.PickerResult> {
      let result: picker.PickerResult =
-       // 调用picker方法，拉起系统相机，获取拍摄的图片或视频
+       // 调用picker方法拉起系统相机，获取拍摄的图片或视频。
        await picker.pick(context, [picker.PickerMediaType.PHOTO, picker.PickerMediaType.VIDEO],
          pickerProfile);
      console.info(`picker resultCode: ${result.resultCode},resultUri: ${result.resultUri},mediaType: ${result.mediaType}`);
