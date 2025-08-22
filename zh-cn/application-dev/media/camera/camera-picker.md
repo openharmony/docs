@@ -38,14 +38,14 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
      let fileName = `${new Date().getTime()}`;
      let filePath = pathDir + `/${fileName}.tmp`;
      try {
-      // 异步创建filePath
+      // 基于文件路径或文件对象创建RandomAccessFile对象。
        fileIo.createRandomAccessFileSync(filePath, fileIo.OpenMode.CREATE);
      } catch (error) {
        let err = error as BusinessError;
        console.error(`create picker profile failed. error code: ${err.code}`);
      }
      
-     // 通过filePath获取uri
+     // 通过传入的路径path生成应用自己的URI
      let uri = fileUri.getUriFromPath(filePath);
      let pickerProfile: picker.PickerProfile = {
        cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK,
@@ -59,7 +59,7 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
    ```ts
    async function getPickerResult(context: Context, pickerProfile: picker.PickerProfile): Promise<picker.PickerResult> {
      let result: picker.PickerResult =
-      // 调用picker相机获取拍摄的结果
+       // 调用picker相机获取拍摄的结果
        await picker.pick(context, [picker.PickerMediaType.PHOTO, picker.PickerMediaType.VIDEO],
          pickerProfile);
      console.info(`picker resultCode: ${result.resultCode},resultUri: ${result.resultUri},mediaType: ${result.mediaType}`);
