@@ -178,7 +178,7 @@ static globalConnect\<T extends object\>(type: ConnectOptions\<T\>): T | undefin
 
 **参数：**
 
-| 名称   |类型   |必填   | 说明                                                      |
+| 参数名   |类型   |必填   | 说明                                                      |
 | ------------- | ------------|-------------------|-------------------------- |
 | type    |[ConnectOptions\<T\>](#connectoptions18)    |是  |传入的connect参数，详细说明见ConnectOptions参数说明。 |
 
@@ -370,7 +370,7 @@ static getTarget\<T extends object\>(source: T): T
 ```ts
 import { UIUtils } from '@kit.ArkUI';
 class NonObservedClass {
-  name: string = "Tom";
+  name: string = 'Tom';
 }
 let nonObservedClass: NonObservedClass = new NonObservedClass();
 @Entry
@@ -892,7 +892,7 @@ type StorageDefaultCreator\<T\> = () => T
 
 | 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
-| () => T    | 返回默认构造器的函数。 |
+|   T  | 默认构造器执行得到的返回值。 |
 
 **示例：**
 
