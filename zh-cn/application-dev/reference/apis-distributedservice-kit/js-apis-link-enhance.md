@@ -41,7 +41,7 @@ createServer(name:&nbsp;string):&nbsp;Server
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode-linknhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
