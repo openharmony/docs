@@ -809,7 +809,7 @@ on(type: 'disconnected', callback: Callback&lt;number&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -857,7 +857,7 @@ off(type: 'disconnected', callback?: Callback&lt;number&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -908,7 +908,7 @@ on(type: 'dataReceived', callback: Callback&lt;ArrayBuffer&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -955,7 +955,7 @@ off(type: 'dataReceived', callback?: Callback&lt;ArrayBuffer&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
