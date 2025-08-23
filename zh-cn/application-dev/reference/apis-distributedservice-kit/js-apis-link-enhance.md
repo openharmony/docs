@@ -93,7 +93,7 @@ createConnection(deviceId:&nbsp;string,&nbsp;name:&nbsp;string):&nbsp;Connection
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-nhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
