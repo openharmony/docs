@@ -511,9 +511,9 @@ off(type: 'routerPageUpdate', callback?: Callback\<observer.RouterPageInfo\>): v
 import { UIContext, UIObserver } from '@kit.ArkUI';
 
 let observer:UIObserver = this.getUIContext().getUIObserver();
-function callBackFunc(info:observer.RouterPageInfo) {};
-// callBackFunc is defined and used before
-observer.off('routerPageUpdate', callBackFunc);
+function callbackFunc(info:observer.RouterPageInfo) {};
+// callbackFunc is defined and used before
+observer.off('routerPageUpdate', callbackFunc);
 ```
 
 ## on('densityUpdate')<sup>12+</sup>
@@ -808,7 +808,7 @@ struct PageOne {
   }
 }
 
-function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
+function callbackFunc(info: uiObserver.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`);
 }
 
@@ -824,12 +824,12 @@ struct Index {
 
   aboutToAppear() {
     let obs = this.getUIContext().getUIObserver();
-    obs.on('navDestinationSwitch', callBackFunc);
+    obs.on('navDestinationSwitch', callbackFunc);
   }
 
   aboutToDisappear() {
     let obs = this.getUIContext().getUIObserver();
-    obs.off('navDestinationSwitch', callBackFunc);
+    obs.off('navDestinationSwitch', callbackFunc);
   }
 
   build() {
@@ -902,7 +902,7 @@ struct PageOne {
   }
 }
 
-function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
+function callbackFunc(info: uiObserver.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`);
 }
 
@@ -918,12 +918,12 @@ struct Index {
 
   aboutToAppear() {
     let obs = this.getUIContext().getUIObserver();
-    obs.on('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc);
+    obs.on('navDestinationSwitch', { navigationId: "myNavId" }, callbackFunc);
   }
 
   aboutToDisappear() {
     let obs = this.getUIContext().getUIObserver();
-    obs.off('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc);
+    obs.off('navDestinationSwitch', { navigationId: "myNavId" }, callbackFunc);
   }
 
   build() {
