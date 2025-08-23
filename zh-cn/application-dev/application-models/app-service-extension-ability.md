@@ -9,7 +9,7 @@
 ## 概述
 
 从API version 20开始，支持开发者使用[AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)组件，为应用提供后台服务能力，其他三方应用可通过启动或连接该AppServiceExtensionAbility组件获取相应的服务。
-例如企业部署的数据防泄漏 (DLP) 软件，要具备无界面长期运行，持续监听文件操作、网络流量及拦截违规行为的能力，就需要使用AppServiceExtensionAbility组件来实现其核心的后台监控服务。
+例如，企业部署的数据防泄漏 (DLP) 软件需要能够长期无界面长期运行，持续监听文件操作、网络流量，并拦截违规行为，可以使用AppServiceExtensionAbility组件来实现其核心的后台监控服务。
 > **说明**
 >
 > 本文将被启动或被连接的AppServiceExtensionAbility组件为服务端，将启动或连接AppServiceExtensionAbility组件的应用组件（当前仅支持UIAbility）称为客户端。
@@ -22,7 +22,7 @@ AppServiceExtensionAbility组件当前仅支持2in1设备。
 
 ### 规格限制
 
-- 应用集成AppServiceExtensionAbility组件需要申请ACL权限（ohos.permission.SUPPORT_APP_SERVICE_EXTENSION）。该ACL权限当前只对[企业普通应用](ability-terminology.md#enterprisenormalappliactions企业普通应用)开放申请。
+- 应用集成AppServiceExtensionAbility组件需要申请ACL权限（ohos.permission.SUPPORT_APP_SERVICE_EXTENSION）。该ACL权限当前只对企业普通应用开放申请。
 
 - AppServiceExtensionAbility组件内不支持调用[window](../reference/apis-arkui/arkts-apis-window.md)相关API。
 
@@ -30,32 +30,38 @@ AppServiceExtensionAbility组件当前仅支持2in1设备。
 
 - 开发者可以在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)中以[启动](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)或[连接](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20)的方式来拉起AppServiceExtensionAbility组件。
 
-- 如果[AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)实例未启动，接口调用方必须为AppServiceExtensionAbility所属应用或者在AppServiceExtensionAbility支持的应用清单（即[extensionAbilities标签](../quick-start/module-configuration-file.md#extensionabilities标签)的appIdentifierAllowList属性）中的应用。
+- [startAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)接口调用方必须为AppServiceExtensionAbility所属应用或者在AppServiceExtensionAbility支持的应用清单（即[extensionAbilities标签](../quick-start/module-configuration-file.md#extensionabilities标签)的appIdentifierAllowList属性）中的应用。
+- 如果[AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)实例未启动，[connectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20)接口调用方必须为AppServiceExtensionAbility所属应用或者在AppServiceExtensionAbility支持的应用清单（即[extensionAbilities标签](../quick-start/module-configuration-file.md#extensionabilities标签)的appIdentifierAllowList属性）中的应用。如果实例已启动，则没有上述限制。
 
 下表展示了拉起和连接的几种场景：
 
-| 客户端操作 | 服务端状态 | 客户端是否配置在服务端appIdentifierAllowList中 | 拉起结果 | 说明 |
-| --------- | --------- | -------------------------------------------- | ------- | ---- |
-| startAppServiceExtensionAbility | 未启动     | 是                                       | 成功     | 服务端通过start方式启动，服务端状态变为已启动。 |
-| startAppServiceExtensionAbility | 未启动     | 否                                       | 失败     | 客户端不在允许列表中，无法调用启动服务。 |
-| startAppServiceExtensionAbility | 已启动     | 是                                       | 成功     | 服务端已经启动，start操作直接返回成功。 |
-| startAppServiceExtensionAbility | 已启动     | 否                                       | 失败     | 客户端不在允许列表中，无法调用启动服务。 |
-| connectAppServiceExtensionAbility | 未启动     | 是                                       | 成功     | 服务端通过connect方式启动，并建立连接。 |
-| connectAppServiceExtensionAbility | 未启动     | 否                                       | 失败     | 客户端不在允许列表中，无法启动服务端。 |
-| connectAppServiceExtensionAbility | 已启动     | 是                                       | 成功     | 服务端已启动，直接建立连接 |
-| connectAppServiceExtensionAbility | 已启动     | 否                                       | 失败     | 服务端已启动，直接建立连接。 |
+
+> **说明**
+>
+> “客户端是否可信”为是时，表示客户端属于服务端所属应用或已配置在appIdentifierAllowList中。为否时，表示客户端不属于服务端所属应用且未配置在appIdentifierAllowList中。
+
+| 客户端操作 | 服务端状态 | 客户端是否可信 | 结果说明 |
+| --------- | --------- | -------------------------------------------- | ---- |
+| startAppServiceExtensionAbility | 未启动     | 是                                       | 成功，服务端通过start方式启动，服务端状态变为已启动。 |
+| startAppServiceExtensionAbility | 未启动     | 否                                       | 失败，客户端不在允许列表中，无法调用启动服务。 |
+| startAppServiceExtensionAbility | 已启动     | 是                                       | 成功，服务端已经启动，start操作直接返回成功。 |
+| startAppServiceExtensionAbility | 已启动     | 否                                       | 失败，客户端不在允许列表中，无法调用启动服务。 |
+| connectAppServiceExtensionAbility | 未启动     | 是                                       | 成功，服务端通过connect方式启动，并建立连接。 |
+| connectAppServiceExtensionAbility | 未启动     | 否                                       | 失败，客户端不在允许列表中，无法启动服务端。 |
+| connectAppServiceExtensionAbility | 已启动     | 是                                       | 成功，服务端已启动，直接建立连接。 |
+| connectAppServiceExtensionAbility | 已启动     | 否                                       | 成功，服务端已启动，直接建立连接。 |
 
 
 ## 实现一个后台服务
 
-在DevEco Studio（需要支持API20以上的DevEco Studio）工程中手动新建一个AppServiceExtensionAbility组件，具体步骤如下：
+在DevEco Studio工程中手动新建一个AppServiceExtensionAbility组件，具体步骤如下：
 
 1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为MyAppServiceExtAbility。
 
 2. 在MyAppServiceExtAbility目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为MyAppServiceExtAbility.ets。
 ![](figures/app-service-extension-ability-create-new-file.png)
 
-其目录结构如下所示：
+    其目录结构如下所示：
 
     ```
     ├── ets
@@ -138,7 +144,7 @@ AppServiceExtensionAbility组件当前仅支持2in1设备。
 
 ## 启动一个后台服务
 
-应用通过[startAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)方法启动一个后台服务，服务的[onRequest()](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md#onrequest)回调就会被调用，并在该回调方法中接收到调用者传递过来的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象。后台服务启动后，其生命周期独立于客户端，即使客户端已经销毁，该后台服务仍可继续运行。（因此，后台服务需要在其工作完成时通过调用[AppServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md)的[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md#terminateself)来自行停止，或者由另一个组件调用[stopAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#stopappserviceextensionability20)来将其停止。）
+应用通过[startAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)方法启动一个后台服务，服务的[onRequest()](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md#onrequest)回调就会被调用，并在该回调方法中接收到调用者传递过来的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象。后台服务启动后，其生命周期独立于客户端，即使客户端已经销毁，该后台服务仍可继续运行。因此，后台服务需要在其工作完成时通过调用[AppServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md)的[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md#terminateself)来自行停止，或者由另一个组件调用[stopAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#stopappserviceextensionability20)来将其停止。
 
 > **说明：**
 >
@@ -270,6 +276,8 @@ AppServiceExtensionAbility组件当前仅支持2in1设备。
 
 ## 连接一个后台服务
 
+### 客户端连接服务端
+
 客户端可以通过[connectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20)连接服务端（在Want对象中指定启动的目标服务），服务端的[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md#onconnect)就会被调用，并在该回调方法中接收到客户端传递过来的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象。
 
 服务端的AppServiceExtensionAbility组件会在onConnect()中返回[IRemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#iremoteobject)对象给作客户端[ConnectOptions](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md)的[onConnect()](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md#onconnect)方法的入参。开发者通过该IRemoteObject定义通信接口，实现客户端与服务端进行RPC交互。多个客户端可以同时连接到同一个后台服务，客户端完成与服务端的交互后，客户端需要通过调用[disconnectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectappserviceextensionability20)来断开连接。如果所有连接到某个后台服务的客户端均已断开连接，则系统会销毁该服务。
@@ -395,9 +403,7 @@ AppServiceExtensionAbility组件当前仅支持2in1设备。
 
 客户端在[onConnect()](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md#onconnect)中获取到[rpc.IRemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#iremoteobject)对象后便可与服务端进行通信。
 
-**客户端**
-
-使用[sendMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#sendmessagerequest9)接口向服务端发送消息。
+**客户端**：使用[sendMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#sendmessagerequest9)接口向服务端发送消息。
 
 ```ts
 import { common } from '@kit.AbilityKit';
@@ -476,9 +482,7 @@ struct Page_CollaborateAbility {
 }
 ```
 
-**服务端**
-
-使用[onRemoteMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#onremotemessagerequest10)接口接收客户端发送的消息。
+**服务端**：使用[onRemoteMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#onremotemessagerequest10)接口接收客户端发送的消息。
 
 ```ts
 import { AppServiceExtensionAbility } from '@kit.AbilityKit';
