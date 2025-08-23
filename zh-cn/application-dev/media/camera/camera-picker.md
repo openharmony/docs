@@ -52,7 +52,7 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
      return pickerProfile;
    }
    ```
-   fileIo接口调用方法请参考：[createRandomAccessFileSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fs.createrandomaccessfilesync10)，[getUriFromPath](../../reference/apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)。
+   fileIo接口调用方法请参考：[createRandomAccessFileSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fscreaterandomaccessfilesync10)，[getUriFromPath](../../reference/apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)。
    
 
 3. 调用picker拍摄接口获取拍摄的结果。
