@@ -1,4 +1,11 @@
-# Enabling Quick Reply for Cross-device Notifications
+# Enabling Quick Reply for Cross-Device Notifications
+
+<!--Kit: Notification Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 Since API version 18, quick reply is enabled for cross-device notifications.
 
@@ -6,12 +13,12 @@ When an application on the phone subscribes to a notification reply event by spe
 
 ## Prerequisites
 
- - The user has connected the watch to the phone through Huawei Health.
- - The user has enabled the global notification and the notification for the current application in **Huawei Health** > **Devices** > **Notifications**.
+ - The user has connected the watch to the phone through the Huawei Health app.
+ - The user has turned on the switch for syncing notifications from phone to watch for specified applications in **Huawei Health** > **Devices** > **Notifications** on their phones.
 
 ## Implementation Principles
 
-The figure below shows the procedure. You only need to implement step 1 and step 2. Step 6 is a user operation. Other operations are implemented by the system.
+The figure below shows the procedure for quick reply. You only need to implement step 1 and step 2. Step 6 is a user operation. Other operations are implemented by the system.
 
 ![notification_introduction](figures/notification_quickreply.png)
 
@@ -20,7 +27,7 @@ The figure below shows the procedure. You only need to implement step 1 and step
 | **API** | **Description**|
 | -------- | -------- |
 | [publish](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerpublish-1)(request: NotificationRequest): Promise\<void\>       | Publishes a notification. |
-| [on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeon)(method: string, callback: CalleeCallback): void       | Registers a caller notification callback, which is invoked when the target ability registers a function. |
+| [on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#on)(method: string, callback: CalleeCallback): void       | Registers a caller notification callback, which is invoked when the target ability registers a function. |
 
 ## How to Develop
 
@@ -28,23 +35,18 @@ The figure below shows the procedure. You only need to implement step 1 and step
 
     ```typescript
     import { notificationManager } from '@kit.NotificationKit';
-    import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+    import { AbilityConstant, UIAbility, Want, wantAgent, WantAgent } from '@kit.AbilityKit';
     import { window } from '@kit.ArkUI';
     import { rpc } from '@kit.IPCKit';
     import { BusinessError } from '@kit.BasicServicesKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { common } from '@kit.AbilityKit';
-
-    const TAG: string = '[PublishOperation]';
-    const DOMAIN_NUMBER: number = 0xFF00;
     ```
 
 2. Enable the application to subscribe to the notification reply event.
 
     ```typescript
     class MySequenceable implements rpc.Parcelable {
-      inputKey: string = ""
-      userInput: string = ""
+      inputKey: string = ''
+      userInput: string = ''
 
       constructor(inputKey: string, userInput: string) {
         this.inputKey = inputKey
@@ -71,23 +73,23 @@ The figure below shows the procedure. You only need to implement step 1 and step
       receivedData.inputKey = data.readString();
       // The value of receivedData.userInput is the quick reply content specified by the user.
       receivedData.userInput = data.readString();
-      hilog.info(0x0000, '01203', "inputKey : " + JSON.stringify(receivedData.inputKey));
-      hilog.info(0x0000, '01203', "userInput : " + JSON.stringify(receivedData.userInput));
+      console.info(`inputKey : ${JSON.stringify(receivedData.inputKey)}`);
+      console.info(`userInput : ${JSON.stringify(receivedData.userInput)}`);
 
       return new MySequenceable('', '')
     }
 
     export default class EntryAbility extends UIAbility {
       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-        hilog.info(0x0000, '01203', '%{public}s', 'Ability onCreate');
-        hilog.info(0x0000, '01203', 'onCreate %{public}s', JSON.stringify(want));
+        console.info('Ability onCreate');
+        console.info(`onCreate ${JSON.stringify(want)}`);
         try {
           // Register sendMsgCallback on the server and subscribe to com.ohos.notification_service.sendReply.
           this.callee.on('com.ohos.notification_service.sendReply', sendMsgCallback)
         } catch (error) {
-          hilog.error(DOMAIN_NUMBER, TAG, `Failed to register. Code is ${error.code}, message is ${error.message}`);
+          console.error(`Failed to register. Code is ${error.code}, message is ${error.message}`);
         }
-        hilog.info(0x0000, '01203', 'register successfully');
+        console.info('register successfully');
       }
     }
     ```
@@ -102,7 +104,7 @@ The figure below shows the procedure. You only need to implement step 1 and step
       wants: [
         {
           deviceId: '',
-          bundleName: 'com.samples.notification',
+          bundleName: 'com.samples.notification', // Use the actual bundle name that sends notifications.
           abilityName: 'EntryAbility',
           action: '',
           entities: [],
@@ -112,15 +114,15 @@ The figure below shows the procedure. You only need to implement step 1 and step
       ],
       actionType: wantAgent.OperationType.START_ABILITY,
       requestCode: 0,
-      wantAgentFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
+      actionFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
     };
     // Create a WantAgent object.
     wantAgent.getWantAgent(wantAgentInfo, (err: BusinessError, data:WantAgent) => {
       if (err) {
-         hilog.error(DOMAIN_NUMBER, TAG, `Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
+         console.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
          return;
       }
-      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in getting want agent.');
+      console.info('Succeeded in getting want agent.');
       wantAgentObj = data;
       let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
@@ -135,19 +137,19 @@ The figure below shows the procedure. You only need to implement step 1 and step
           },
         },
         actionButtons: [{
-          title: "button1",
+          title: 'button1',
           wantAgent: wantAgentObj,
           // userInput must be carried.
-          userInput: {"inputKey": "value1"},
+          userInput: {'inputKey': 'value1'},
         }],
       }
       // Publish the notification.
       notificationManager.publish(notificationRequest, (err: BusinessError) => {
         if (err) {
-          hilog.error(DOMAIN_NUMBER, TAG, `Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
+        console.info('Succeeded in publishing notification.');
       });
     });
    ```
@@ -156,4 +158,4 @@ The figure below shows the procedure. You only need to implement step 1 and step
 
 1. Make a quick reply on the watch.
 
-2. Check whether the quick reply can be received in the application. If yes, this feature is normal.
+2. On the phone, filter logs by **inputKey** or **userInput** to check whether the message notification callback **sendMsgCallback** exists. If the callback is found, the function is implemented properly.
