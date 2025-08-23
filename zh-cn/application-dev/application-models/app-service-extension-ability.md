@@ -12,7 +12,7 @@
 例如企业部署的数据防泄漏 (DLP) 软件，要具备无界面长期运行，持续监听文件操作、网络流量及拦截违规行为的能力，就需要使用AppServiceExtensionAbility组件来实现其核心的后台监控服务。
 > **说明**
 >
->本文将被启动或被连接的AppServiceExtensionAbility组件为服务端，将启动或连接AppServiceExtensionAbility组件的应用组件（当前仅支持UIAbility）称为客户端。
+> 本文将被启动或被连接的AppServiceExtensionAbility组件为服务端，将启动或连接AppServiceExtensionAbility组件的应用组件（当前仅支持UIAbility）称为客户端。
 
 ## 约束与限制
 
@@ -140,9 +140,9 @@ AppServiceExtensionAbility组件当前仅支持2in1设备。
 
 应用通过[startAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)方法启动一个后台服务，服务的[onRequest()](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md#onrequest)回调就会被调用，并在该回调方法中接收到调用者传递过来的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象。后台服务启动后，其生命周期独立于客户端，即使客户端已经销毁，该后台服务仍可继续运行。（因此，后台服务需要在其工作完成时通过调用[AppServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md)的[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md#terminateself)来自行停止，或者由另一个组件调用[stopAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#stopappserviceextensionability20)来将其停止。）
 
->**说明：**
+> **说明：**
 >
->AppServiceExtensionAbility组件以start方式启动，并且没有连接的时候，AppServiceExtensionAbility组件进程可能被挂起（请参考[Background Tasks Kit简介](../task-management/background-task-overview.md)）。
+> AppServiceExtensionAbility组件以start方式启动，并且没有连接的时候，AppServiceExtensionAbility组件进程可能被挂起（请参考[Background Tasks Kit简介](../task-management/background-task-overview.md)）。
 
 - 在应用中启动一个新的[AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)组件。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
 
