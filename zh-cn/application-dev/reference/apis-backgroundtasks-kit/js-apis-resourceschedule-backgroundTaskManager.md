@@ -854,7 +854,6 @@ getAllContinuousTasks(context: Context, includeSuspended: boolean): Promise&lt;C
 
 ```ts
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
-
 import { BusinessError } from '@kit.BasicServicesKit';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
