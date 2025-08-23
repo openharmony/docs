@@ -5269,7 +5269,7 @@ int32_t OH_ArkUI_SwiperIndicator_SetMaxDisplayCount(ArkUI_SwiperIndicator* indic
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_SwiperIndicator](capi-arkui-nativemodule-arkui-swiperindicator.md)* indicator | 导航指示器对象指针。 |
-| int32_t maxDisplayCount | 导航点显示个数最大值，有效取值范围6-9。 |
+| int32_t maxDisplayCount | 导航点显示个数最大值，有效取值范围[6, 9]。 |
 
 **返回：**
 
@@ -5301,7 +5301,7 @@ int32_t OH_ArkUI_SwiperIndicator_GetMaxDisplayCount(ArkUI_SwiperIndicator* indic
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 导航点显示个数最大值，有效取值范围6-9。 |
+| int32_t | 导航点显示个数最大值，有效取值范围[6, 9]。 |
 
 ### OH_ArkUI_SwiperDigitIndicator_Create()
 
