@@ -17,7 +17,7 @@ AppServiceExtensionAbility模块提供后台服务相关扩展能力，包括后
 ## 约束限制
 
 - 当前仅支持2in1设备。
-- 应用集成AppServiceExtensionAbility的组件需要申请ACL权限（ohos.permission.SUPPORT_APP_SERVICE_EXTENSION）。该ACL权限当前只对[企业普通应用](../../security/AccessToken/permissions-for-enterprise-apps.md)开放申请。
+- 应用集成AppServiceExtensionAbility的组件需要申请ACL权限（ohos.permission.SUPPORT_APP_SERVICE_EXTENSION）。该ACL权限当前只对[企业普通应用](../../application-models/ability-terminology.md#enterprisenormalappliactions企业普通应用)开放申请。
 
 ## 生命周期
 
