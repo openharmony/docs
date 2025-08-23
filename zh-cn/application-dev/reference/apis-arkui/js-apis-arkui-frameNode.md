@@ -3724,10 +3724,42 @@ createNode(context: UIContext, nodeType: 'Button'): Button
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Button');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyButtonController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let button = typeNode.createNode(uiContext, 'Button')
+    button.initialize("This is Button")
+      .onClick(() => {
+        uiContext.getPromptAction().showToast({ message: "Button clicked" })
+      })
+    col.appendChild(button)
+
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myButtonController: MyButtonController = new MyButtonController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('ButtonSample')
+      NodeContainer(this.myButtonController);
+
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('Button')<sup>20+</sup>
@@ -4798,10 +4830,42 @@ createNode(context: UIContext, nodeType: 'Checkbox'): Checkbox
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Checkbox');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyCheckboxController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let checkbox = typeNode.createNode(uiContext, 'Checkbox')
+    checkbox.initialize({ name: 'checkbox1', group: 'checkboxGroup1' })
+
+    let checkbox1 = typeNode.createNode(uiContext, 'Checkbox')
+    checkbox1.initialize({ name: 'checkbox2', group: 'checkboxGroup1' })
+
+    col.appendChild(checkbox)
+    col.appendChild(checkbox1)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myCheckboxController: MyCheckboxController = new MyCheckboxController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('CheckboxSample')
+      NodeContainer(this.myCheckboxController);
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('Checkbox')<sup>20+</sup>
@@ -4871,10 +4935,46 @@ createNode(context: UIContext, nodeType: 'CheckboxGroup'): CheckboxGroup
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'CheckboxGroup');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyCheckboxGroupController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let checkbox = typeNode.createNode(uiContext, 'Checkbox')
+    checkbox.initialize({ name: 'checkbox1', group: 'checkboxGroup1' })
+
+    let checkbox1 = typeNode.createNode(uiContext, 'Checkbox')
+    checkbox1.initialize({ name: 'checkbox2', group: 'checkboxGroup1' })
+
+    let checkboxGroup = typeNode.createNode(uiContext, 'CheckboxGroup')
+    checkboxGroup.initialize({ group: 'checkboxGroup1' })
+
+    col.appendChild(checkbox)
+    col.appendChild(checkbox1)
+    col.appendChild(checkboxGroup)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myCheckboxGroupController: MyCheckboxGroupController = new MyCheckboxGroupController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('CheckboxGroupSample')
+      NodeContainer(this.myCheckboxGroupController);
+    }.width('100%')
+  }
+}
 ```
 
 ### Rating<sup>18+</sup>
@@ -4914,10 +5014,39 @@ createNode(context: UIContext, nodeType: 'Rating'): Rating
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Rating');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyRatingController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let rating = typeNode.createNode(uiContext, 'Rating')
+    rating.initialize({ rating: 0 })
+    col.appendChild(rating)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myRatingController: MyRatingController = new MyRatingController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('RatingSample')
+
+      NodeContainer(this.myRatingController);
+
+    }.width('100%')
+  }
+}
 ```
 
 ### Radio<sup>18+</sup>
@@ -4957,10 +5086,42 @@ createNode(context: UIContext, nodeType: 'Radio'): Radio
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Radio');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyRadioController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let radio1 = typeNode.createNode(uiContext, 'Radio')
+    radio1.initialize({ value: 'radio1', group: 'radioGroup' })
+
+    let radio2 = typeNode.createNode(uiContext, 'Radio')
+    radio2.initialize({ value: 'radio2', group: 'radioGroup' })
+
+    col.appendChild(radio1)
+    col.appendChild(radio2)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myRadioController: MyRadioController = new MyRadioController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('RadioSample')
+      NodeContainer(this.myRadioController);
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('Radio')<sup>20+</sup>
@@ -5030,10 +5191,38 @@ createNode(context: UIContext, nodeType: 'Slider'): Slider
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Slider');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MySliderController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let slider = typeNode.createNode(uiContext, 'Slider')
+    slider.initialize({value:50})
+    col.appendChild(slider)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private mySliderController: MySliderController = new MySliderController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('SliderSample')
+      NodeContainer(this.mySliderController);
+
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('Slider')<sup>20+</sup>
@@ -5103,10 +5292,37 @@ createNode(context: UIContext, nodeType: 'Select'): Select
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Select');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MySelectController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let select = typeNode.createNode(uiContext, 'Select')
+    select.initialize([{ value: "option one" }, { value: "option two" }, { value: "option three" }])
+    col.appendChild(select)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private mySelectController: MySelectController = new MySelectController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('SelectSample')
+      NodeContainer(this.mySelectController);
+    }.width('100%')
+  }
+}
 ```
 
 ### Toggle<sup>18+</sup>
@@ -5147,11 +5363,39 @@ createNode(context: UIContext, nodeType: 'Toggle', options?: ToggleOptions): Tog
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-let toggleOptions: ToggleOptions = {type: ToggleType.Button, isOn: false};
-typeNode.createNode(uiContext, 'Toggle', toggleOptions);
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyToggleController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let toggleSwitch = typeNode.createNode(uiContext, 'Toggle')
+    toggleSwitch.initialize({ type: ToggleType.Switch })
+    col.appendChild(toggleSwitch)
+
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myToggleController: MyToggleController = new MyToggleController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('ToggleSample')
+      NodeContainer(this.myToggleController);
+
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('Toggle')<sup>20+</sup>
