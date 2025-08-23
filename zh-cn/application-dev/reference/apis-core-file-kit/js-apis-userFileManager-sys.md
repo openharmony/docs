@@ -4,7 +4,7 @@
 <!--Owner: @yixiaoff-->
 <!--Designer: @liweilu1-->
 <!--Tester: @xchaosioda-->
-<!--Adviser: @foryourself-->
+<!--Adviser: @zengyawen-->
 
 该模块提供用户数据管理能力：包括访问、修改用户公共媒体数据信息等常用功能。
 
@@ -2736,7 +2736,7 @@ async function example(mgr: userFileManager.UserFileManager) {
 
 getExif(callback: AsyncCallback&lt;string&gt;): void
 
-返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
+返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用callback方式返回结果。
 
 **注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与[ImageVideoKey.USER_COMMENT](#imagevideokey)组成，fetchColumns需要传入这两个字段。
 

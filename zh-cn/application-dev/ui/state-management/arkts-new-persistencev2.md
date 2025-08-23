@@ -143,7 +143,7 @@ static keys(): Array<string>;
 
 > **说明：**
 >
-> keys会从返回module级别存储路径和应用级别存储路径中的所有key。
+> keys会返回module级别存储路径和应用级别存储路径中的所有key。
 
 ### save：手动持久化数据
 

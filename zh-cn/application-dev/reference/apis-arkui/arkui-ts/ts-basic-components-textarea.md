@@ -637,6 +637,12 @@ caretStyle(value: CaretStyle)
 | ------ | ----------------------------------- | ---- | ------------ |
 | value  | [CaretStyle](ts-text-common.md#caretstyle10) | 是   | 光标的风格。 |
 
+>  **说明：**
+>
+>   当同时设置caretColor属性和caretStyle属性中的color参数时，遵循后设置生效原则。
+>     
+>   从API version 12开始，此接口支持设置文本手柄颜色，光标和文本手柄颜色保持一致。
+
 ### textIndent<sup>12+</sup>
 
 textIndent(value: Dimension)
@@ -1969,6 +1975,7 @@ struct TextAreaExample {
   @State text: string = 'TextArea editMenuOptions';
   @State endIndex: number = 0;
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
+    // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
     let item1: TextMenuItem = {
       content: 'create1',
       icon: $r('app.media.startIcon'),
@@ -2003,6 +2010,7 @@ struct TextAreaExample {
     return false;
   }
   onPrepareMenu = (menuItems: Array<TextMenuItem>) => {
+    // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
     let item1: TextMenuItem = {
       content: 'prepare1_' + this.endIndex,
       icon: $r('app.media.startIcon'),

@@ -10,6 +10,8 @@
 
 声明从native层获取图片数据的方法。
 
+**引用文件：** <multimedia/image_framework/image/image_receiver_native.h>
+
 **库：** libimage_receiver.so
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver

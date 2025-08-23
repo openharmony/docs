@@ -24,7 +24,7 @@ Web组件提供画中画功能支持，应用可利用W3C标准的Picture-in-Pic
 
 ## 进入画中画
 
-以仅包含媒体源的video元素和一个用户交互的button元素为例，介绍如何创建一个浮动窗口播放视频，使用户在浏览其他网页或与其它应用交互时，能够通过该画中画窗口持续观看视频。
+以仅包含媒体源的video元素和一个用户交互的button元素为例，介绍如何创建一个浮动窗口播放视频，使用户在浏览其他网页或与其他应用交互时，能够通过该画中画窗口持续观看视频。
 
 ```html
 <!-- 使用时需要自行替换视频链接 -->
@@ -120,7 +120,7 @@ videoElement.addEventListener('leavepictureinpicture', function (event) {
 * 前端页面html代码。
 
   ```html
-  <!-- picture-in-picture.html -->
+  <!-- PictureInPicture.html -->
   <!DOCTYPE html>
   <html lang="en">
   <head>

@@ -1,15 +1,20 @@
 # Localization Kit（本地化开发服务）<!--localization-kit-->
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--Designer: @sunyaozu-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
+
 - [Localization Kit简介](i18n-l10n.md)
 - 应用国际化<!--i18n-->
     - [国际化界面设计](i18n-ui-design.md)
     - [区域ID与文化习惯划分](i18n-locale-culture.md)
-    - 设置语言与用户偏好<!--i18n-language-user-preferences-->
-        - [设置系统语言与区域](i18n-system-language-region.md)
-        - [设置应用偏好语言](i18n-preferred-language.md)
-        <!--Del-->
-        - [设置用户偏好（仅对系统应用开放）](i18n-user-preferences.md)
-        <!--DelEnd-->
+    - 语言与用户偏好<!--i18n-language-user-preferences-->
+        - [系统语言与区域](i18n-system-language-region.md)
+        - [应用偏好语言](i18n-preferred-language.md)
+        - [用户偏好](i18n-user-preferences.md)
     - [时间日期国际化](i18n-time-date.md)
     - [数字与度量衡国际化](i18n-numbers-weights-measures.md)
     - [电话号码格式化](i18n-phone-numbers.md)

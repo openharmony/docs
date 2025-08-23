@@ -192,6 +192,7 @@ struct SpanExample {
       }.width('100%').textAlign(TextAlign.Center)
 
       Text() {
+        // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
         ImageSpan($r('app.media.app_icon'))
           .width('200px')
           .height('200px')
@@ -239,7 +240,8 @@ struct Index {
     Row() {
       Column() {
         Text() {
-          ImageSpan($r('app.media.sky'))//建议使用自定义的本地图片
+          // $r('app.media.sky')需要替换为开发者所需的图像资源文件。
+          ImageSpan($r('app.media.sky'))
             .width('60vp')
             .height('60vp')
             .verticalAlign(ImageSpanAlignment.CENTER)
@@ -262,6 +264,7 @@ struct Index {
 @Entry
 @Component
 struct Index {
+  // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
   @State src: ResourceStr = $r('app.media.app_icon');
 
   build() {
@@ -299,7 +302,8 @@ struct SpanExample {
       Column({ space: 10 }) {
         //创建ColorFilter对象的方式为图片设置颜色滤镜
         Text() {
-          ImageSpan($r('app.media.sky'))//建议使用自定义的本地图片
+          // $r('app.media.sky')需要替换为开发者所需的图像资源文件。
+          ImageSpan($r('app.media.sky'))
             .width('60vp')
             .height('60vp')
             .colorFilter(this.DrawingColorFilterFirst)
@@ -307,7 +311,8 @@ struct SpanExample {
 
         //通过drawing.ColorFilter的方式为图片设置颜色滤镜
         Text() {
-          ImageSpan($r('app.media.sky'))//建议使用自定义的本地图片
+          // $r('app.media.sky')需要替换为开发者所需的图像资源文件。
+          ImageSpan($r('app.media.sky'))
             .width('60vp')
             .height('60vp')
             .colorFilter(drawing.ColorFilter.createBlendModeColorFilter({

@@ -1,8 +1,15 @@
 # Converting HAR to HSP
-Currently, the HAR has a problem with duplicate packaging, leading an oversize application package. To fix this problem, you can convert the HAR to the HSP through by the configuration items.
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
+
+Currently, the HAR has a problem with duplicate packaging, leading an oversize application package. To fix this problem, you can convert the HAR to the HSP by changing the configuration items.
 ## How to Convert
 
-1. Change the value of **type** to **shared** and add the **deliveryWithInstall** and **pages** field in the **module.json5** file of the HAR module.
+1. Set **type** to **shared** and add the **deliveryWithInstall** and **pages** fields in the **module.json5** file of the HAR module.
     ```json
     // MyApplication\library\src\main\module.json5
     {
@@ -15,20 +22,7 @@ Currently, the HAR has a problem with duplicate packaging, leading an oversize a
     }
     ```
 
-2. Add a string field **shared_desc** in **element** of the **base**, **en\_US**, and **zh\_CN** qualifiers directories under the **resources** directory.
-    ```json
-    // MyApplication\library\src\main\resources\base\element\string.json
-    {
-      "string": [
-        {
-          "name": "shared_desc",
-          "value": "description"
-        }
-      ]
-    }
-    ```
-
-3. Add a **profile** folder in **resources** > **base**. Then add a **main_pages.json** file to the added folder and configure it as follows:
+2. Create a **profile** folder in the **resources\base** directory. Then add the **main_pages.json** file to the created folder and configure it as follows:
     ```json
     // MyApplication\library\src\main\resources\base\profile\main_pages.json
     {
@@ -38,7 +32,7 @@ Currently, the HAR has a problem with duplicate packaging, leading an oversize a
     }
     ```
 
-4. Add a **pages** directory in the **ets** directory. Then add a **PageIndex.ets** file in the added directory and configure it as follows:
+3. Create a **pages** folder in the **ets** directory. Then add the **PageIndex.ets** file to the created folder and configure it as follows:
     ```ts
     // MyApplication\library\src\main\ets\pages\PageIndex.ets
     @Entry
@@ -60,9 +54,9 @@ Currently, the HAR has a problem with duplicate packaging, leading an oversize a
     }
     ```
 
-5. Delete the **consumerFiles** field from the **build-profile.json5** file of the HAR module.
+4. Delete the **consumerFiles** field from the **build-profile.json5** file of the HAR module.
 
-6. Replace the content in the **hvigorfile.ts** file of the HAR module with the following content:
+5. Replace the content in the **hvigorfile.ts** file of the HAR module with the following content:
     ```ts
     // MyApplication\library\hvigorfile.ts
     import { hspTasks } from '@ohos/hvigor-ohos-plugin';
@@ -73,7 +67,7 @@ Currently, the HAR has a problem with duplicate packaging, leading an oversize a
     }
     ```
 
-7. Add the **packageType** field in the **oh-package.json5** file.
+6. Add the **packageType** field in the **oh-package.json5** file.
     ```json
     // MyApplication\library\oh-package.json5
     {
@@ -81,7 +75,7 @@ Currently, the HAR has a problem with duplicate packaging, leading an oversize a
     }
     ```
 
-8. Add the **targets** tag to **build-profile.json5** > **modules** > **library** in the root directory of the project.
+7. Add the **targets** tag to **build-profile.json5** > **modules** > **library** in the root directory of the project.
 
     ```json
     // MyApplication\build-profile.json5

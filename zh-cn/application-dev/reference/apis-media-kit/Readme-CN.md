@@ -67,7 +67,7 @@
     - [video_processing_types.h](capi-video-processing-types-h.md)
   - 结构体<!--media-struct-->
     - [OH_AVImageGenerator](capi-avimagegenerator-oh-avimagegenerator.md)
-    - [OH_AVMetadataExtractor](capi-avmetadaextractor-oh-avmetadataextractor.md)
+    - [OH_AVMetadataExtractor](capi-avmetadataextractor-oh-avmetadataextractor.md)
     - [MediaKeySession](capi-avplayer-mediakeysession.md)
     - [DRM_MediaKeySystemInfo](capi-avplayer-drm-mediakeysysteminfo.md)
     - [AVPlayerCallback](capi-avplayer-avplayercallback.md)

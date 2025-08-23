@@ -26,6 +26,9 @@
 
  // 设置对应的播放url。
  let url = 'https://xxx.xxx.xxx.mp4';
+ if (this.avPlayer == null) {
+    return;
+ }
  this.avPlayer.url = url;
 ```
 
@@ -41,6 +44,9 @@
 
  // 设置对应的播放url。
  let url = 'https://xxx.xxx.xxx.xxx:xx/xx/index.m3u8';
+ if (this.avPlayer == null) {
+    return;
+ }
  this.avPlayer.url = url;
 ```
 
@@ -73,7 +79,7 @@
 当应用需要通过解析本地Raw文件中的m3u8文件，播放在线流媒体资源时，可以通过[resourceManager.getRawFd](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)获取文件描述符，将其拼接成fdUrl，并通过[setMimeType](../../reference/apis-media-kit/arkts-apis-media-MediaSource.md#setmimetype12)设置MIME类型为APPLICATION_M3U8。
 ```ts
  import { media } from '@kit.MediaKit';
- import { common } from '@kit.AbilityKit'
+ import { common } from '@kit.AbilityKit';
  // 类成员定义avPlayer和context。
  private avPlayer: media.AVPlayer | null = null;
  private context: common.UIAbilityContext | undefined = undefined;
@@ -93,7 +99,7 @@
 
  // 设置媒体MIME类型为APPLICATION_M3U8。
  let mimeType : media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
- mediaSource.setMimeType(mimeType);
+ mediaSource?.setMimeType(mimeType);
 
  // 设置播放策略，设置缓冲区数据量为20s。
  let playbackStrategy : media.PlaybackStrategy = {preferredBufferDuration: 20};
@@ -107,17 +113,19 @@
 ```ts
  import { media } from '@kit.MediaKit';
  import { fileIo as fs } from '@kit.CoreFileKit';
- import { common } from '@kit.AbilityKit'
+ import { common } from '@kit.AbilityKit';
  // 类成员定义avPlayer和context。
  private avPlayer: media.AVPlayer | null = null;
  private context: common.UIAbilityContext | undefined = undefined;
+ private m3u8FileName: string = '';
 
  // 在业务函数中（示例工程函数名为avSetupURL）：
  // 创建avPlayer实例对象。
  this.avPlayer = await media.createAVPlayer();
  this.context = this.getUIContext().getHostContext() as common.UIAbilityContext;
  // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例。
- let filePath = `${this.context.filesDir}/${m3u8FileName}`;
+ let m3u8FileName = '';
+ let filePath = `${this.context.filesDir}/${m3u8FileName}`; 
  // 通过fs.openSync获取文件句柄。
  let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
  let fd : string = file.fd.toString();
@@ -131,7 +139,7 @@
 
  // 设置媒体MIME类型为APPLICATION_M3U8。
  let mimeType : media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
- mediaSource.setMimeType(mimeType);
+ mediaSource?.setMimeType(mimeType);
 
  // 设置播放策略，设置缓冲区数据量为20s。
  let playbackStrategy : media.PlaybackStrategy = {preferredBufferDuration: 20};
@@ -144,7 +152,7 @@
 ```ts
  import { media } from '@kit.MediaKit';
  import { fileIo as fs } from '@kit.CoreFileKit';
- import { common } from '@kit.AbilityKit'
+ import { common } from '@kit.AbilityKit';
  // 类成员定义avPlayer，context和fileName。
  private avPlayer: media.AVPlayer | null = null;
  private context: common.UIAbilityContext | undefined = undefined;
@@ -157,7 +165,7 @@
  let fdPath = 'fd://';
  let fileName = 'test.mp4'; // test.mp4为应用文件目录下的预置资源，需要开发者根据实际情况进行替换。
  // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例。
- let path = `${this.context.filesDir}/${this.fileName}`;
+ let path = `${this.context?.filesDir}/${this.fileName}`;
  // 打开相应的资源文件地址获取fd，并为url赋值触发initialized状态机上报。
  let file = await fs.open(path);
  fdPath = fdPath + '' + file.fd;
@@ -171,7 +179,7 @@
 
 ```ts
  import { media } from '@kit.MediaKit';
- import { common } from '@kit.AbilityKit'
+ import { common } from '@kit.AbilityKit';
  // 类成员定义avPlayer，context和fileName。
  private avPlayer: media.AVPlayer | null = null;
  private fileName: string = '';
@@ -183,7 +191,7 @@
  // 通过UIAbilityContext的resourceManager成员的getRawFd接口获取媒体资源播放地址。
  // 返回类型为{fd,offset,length},fd为HAP包fd地址，offset为媒体资源偏移量，length为播放长度。
  let fileName = 'test.mp4'; // test.mp4为应用文件目录下的预置资源，需要开发者根据实际情况进行替换。
- let fileDescriptor = await this.context.resourceManager.getRawFd(this.fileName);
+ let fileDescriptor = await this.context?.resourceManager.getRawFd(this.fileName);
  let avFileDescriptor: media.AVFileDescriptor =
   { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
  // 为fdSrc赋值触发initialized状态机上报。

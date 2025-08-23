@@ -178,6 +178,22 @@ topOptions定义了上弧形按钮，按钮文本为ButtonTop，字体大小为1
 
 bottomOptions定义了底部弧形按钮，按钮文本为ButtonBottom，字体大小为15fp，按钮样式为亮色强调，启用阴影，设置了按钮的点击事件。
 
+运行该示例需要Wearable设备的支持。在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中[deviceTypes标签](../../../quick-start/module-configuration-file.md#devicetypes标签)内配置wearable。
+
+```json
+// module.json5
+{
+  "module": {
+    // ...
+    "deviceTypes": [
+      "wearable",
+      "phone"
+    ]
+    // ...
+  }
+}
+```
+
 ```ts
 // xxx.ets
 import {

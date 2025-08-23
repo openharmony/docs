@@ -141,17 +141,6 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 
 音视频录制的配置文件。
 
-> **说明：**
-> 此处提供音频参数配置的对照表，每项的具体释义，可查看下述字段解释。
->
-> |编码格式|封装格式|采样率|比特率|声道数|
-> |----|----|----|----|----|
-> |AUDIO_AAC|MP4,M4A|[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]|[32000-500000]|[1-8]|
-> |AUDIO_MP3|MP3|[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]|<br>- 采样率使用16000以下时，对应比特率范围为[8000, 16000, 32000, 40000, 48000, 56000, 64000]。<br>- 采样率使用16000~32000时对应的比特率范围为[8000, 16000, 32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000]。<br>- 采样率使用32000以上时对应的比特率范围为[32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000]。|[1-2]|
-> |AUDIO_G711MU|WAV|[8000]|[64000]|[1]|
-> |AUDIO_AMR_NB<sup>18+</sup> |AMR|[8000]|[4750, 5150, 5900, 6700, 7400, 7950, 10200, 12200]|[1]|
-> |AUDIO_AMR_WB<sup>18+</sup> |AMR|[16000]|[6600, 8850, 12650, 14250, 15850, 18250, 19850, 23050, 23850]|[1]|
-
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
 | 名称             | 类型                                         | 必填 | 说明                                                         |
@@ -169,6 +158,19 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 | isHdr<sup>11+</sup>            | boolean                        | 否   | HDR编码，选择视频录制时选填，isHdr默认为false，对应编码格式没有要求，isHdr为true时，对应的编码格式必须为video/hevc。|
 | enableTemporalScale<sup>12+</sup>            | boolean                        | 否   | 视频录制是否支持时域分层编码功能，选择视频录制时选填，enableTemporalScale默认为false。设置为true时，编码输出的码流中部分帧可以支持跳过不编码。|
 | enableBFrame<sup>20+</sup>            | boolean                        | 否   | 视频录制是否启用B帧编码。true表示启用B帧编码（仅在视频编码格式为H.265且设备硬件支持的情况下生效），false表示不启用B帧编码。<br>该参数为视频录制场景下的可选项，默认值为false。|
+
+### 音频参数配置对照表
+
+此处提供音频参数配置的对照表，每项的具体释义，可查看下述字段解释。
+
+|编码格式|封装格式|采样率|比特率|声道数|
+|----|----|----|----|----|
+|AUDIO_AAC|MP4,M4A|[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]|[32000-500000]|[1-8]|
+|AUDIO_MP3|MP3|[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]|<br>- 采样率使用16000以下时，对应比特率范围为[8000, 16000, 32000, 40000, 48000, 56000, 64000]。<br>- 采样率使用16000~32000时对应的比特率范围为[8000, 16000, 32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000]。<br>- 采样率使用32000以上时对应的比特率范围为[32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000]。|[1-2]|
+|AUDIO_G711MU|WAV|[8000]|[64000]|[1]|
+|AUDIO_AMR_NB<sup>18+</sup> |AMR|[8000]|[4750, 5150, 5900, 6700, 7400, 7950, 10200, 12200]|[1]|
+|AUDIO_AMR_WB<sup>18+</sup> |AMR|[16000]|[6600, 8850, 12650, 14250, 15850, 18250, 19850, 23050, 23850]|[1]|
+
 
 ## Location
 
@@ -224,7 +226,7 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 | videoCodec        | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8) | 否 | 是   | 输出视频的编码格式，当前仅支持AVC和HEVC。若源视频编码格式为HEVC，则默认设置为HEVC，否则默认设置为AVC。|
 | videoFrameWidth        | number | 否 |  是   | 输出视频帧的宽，单位为像素（px），支持范围[240-3840]。默认设置为源视频帧的宽。|
 | videoFrameHeight        | number | 否 |  是   | 输出视频帧的高，单位为像素（px），支持范围[240-2160]。默认设置为源视频帧的高。|
-| enableBFrame<sup>20+</sup> | boolean | 否 |  是   | 转码使能B帧编码。true表示开启B帧编码，默认为不开启B帧编码。<br>实际支持情况取决于视频编码格式和设备芯片能力。对于不支持B帧编码的视频编码格式或设备，将忽略B帧，按不使能B帧进行编码。|
+| enableBFrame<sup>20+</sup> | boolean | 否 |  是   | 转码使能B帧编码。true表示开启B帧编码，默认为不开启B帧编码。<br>B帧视频编码相关的约束和限制可以参考文档[B帧视频编码约束和限制](../../media/avcodec/video-encoding-b-frame.md#约束和限制)。如果当前不符合B帧视频编码的约束和限制，将忽略B帧，按不使能B帧进行编码。|
 
 
 ## AVMetadata<sup>11+</sup>
@@ -258,20 +260,21 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 | customInfo<sup>12+</sup> | Record<string, string> | 否 | 从moov.meta.list 获取的自定义参数键值映射。|
 | tracks<sup>20+</sup> | Array\<[MediaDescription](#mediadescription8)> | 否 | 媒体资源的轨道信息。当前版本为只读参数。|
 
-> **说明：**
-> AVMetadata.tracks支持的[MediaDescriptionKey](arkts-apis-media-e.md#mediadescriptionkey8)的范围如下：
-> 
-> | 名称   | 值   | 适用的轨道类型  |
-> | -------- | --------------------|------------------------ |
-> | MD_KEY_TRACK_INDEX | 'track_index' | 全部 |
-> | MD_KEY_TRACK_TYPE | 'track_type' | 全部 |
-> | MD_KEY_CODEC_MIME | 'codec_mime' | 音频、视频 |
-> | MD_KEY_WIDTH | 'width' | 视频 |
-> | MD_KEY_HEIGHT | 'height' | 视频 |
-> | MD_KEY_FRAME_RATE | 'frame_rate' | 视频 |
-> | MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | 音频 |
-> | MD_KEY_AUD_SAMPLE_RATE | 'sample_rate' | 音频 |
-> | MD_KEY_HDR_TYPE | 'hdr_type' | 视频 |
+### AVMetadata.tracks支持的MediaDescriptionKey说明
+
+AVMetadata.tracks支持的[MediaDescriptionKey](arkts-apis-media-e.md#mediadescriptionkey8)的范围如下：
+
+| 名称   | 值   | 适用的轨道类型  |
+| -------- | --------------------|------------------------ |
+| MD_KEY_TRACK_INDEX | 'track_index' | 全部 |
+| MD_KEY_TRACK_TYPE | 'track_type' | 全部 |
+| MD_KEY_CODEC_MIME | 'codec_mime' | 音频、视频 |
+| MD_KEY_WIDTH | 'width' | 视频 |
+| MD_KEY_HEIGHT | 'height' | 视频 |
+| MD_KEY_FRAME_RATE | 'frame_rate' | 视频 |
+| MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | 音频 |
+| MD_KEY_AUD_SAMPLE_RATE | 'sample_rate' | 音频 |
+| MD_KEY_HDR_TYPE | 'hdr_type' | 视频 |
 
 ## PixelMapParams<sup>12+</sup>
 

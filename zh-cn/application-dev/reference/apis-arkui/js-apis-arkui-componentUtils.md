@@ -10,7 +10,7 @@
 
 > **说明：**
 >
-> 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的地方使用，参见[UIContext](./arkts-apis-uicontext-uicontext.md)说明。 
 
@@ -70,16 +70,16 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称           | 类型             | 必填           | 说明                         |
-| ---------------|------------     | -----------------------------| -----------------------------|
-| size           | [Size](#size) | 是 | 组件大小。                    |
-| localOffset    | [Offset](#offset) | 是 | 组件相对于父组件信息。         |
-| windowOffset   | [Offset](#offset) | 是 | 组件相对于窗口信息。           |
-| screenOffset   | [Offset](#offset) | 是 | 组件相对于屏幕信息。           |
-| translate      | [TranslateResult](#translateresult) | 是 | 组件平移信息。                |
-| scale          | [ScaleResult](#scaleresult) | 是 | 组件缩放信息。                |
-| rotate         | [RotateResult](#rotateresult) | 是 | 组件旋转信息。                |
-| transform      | [Matrix4Result](#matrix4result) | 是 | 仿射矩阵信息，根据入参创建的四阶矩阵对象。  |
+| 名称           | 类型             | 只读    | 可选           | 说明                         |
+| ---------------|------------| --------------- | -----------------------------| -----------------------------|
+| size           | [Size](#size) | 否       | 否     | 组件大小。                    |
+| localOffset    | [Offset](#offset) | 否       | 否    | 组件相对于父组件信息。         |
+| windowOffset   | [Offset](#offset) | 否       | 否    | 组件相对于窗口信息。           |
+| screenOffset   | [Offset](#offset) | 否       | 否    | 组件相对于屏幕信息。           |
+| translate      | [TranslateResult](#translateresult)| 否       | 否     | 组件平移信息。                |
+| scale          | [ScaleResult](#scaleresult) | 否       | 否     | 组件缩放信息。                |
+| rotate         | [RotateResult](#rotateresult) | 否       | 否     | 组件旋转信息。                |
+| transform      | [Matrix4Result](#matrix4result) | 否       | 否     | 仿射矩阵信息，根据入参创建的四阶矩阵对象。  |
 
 ### Size 
 
@@ -87,10 +87,10 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型 | 必填 | 说明                               |
-| -------- | ---- | ----------------------------------| ----------------------------------|
-| width    | number | 是 | 组件宽度。<br />单位: px                      |
-| height   | number | 是 | 组件高度。<br />单位: px                      |
+| 名称     | 类型  | 只读    | 可选    | 说明                               |
+| -------- | ---- | -------------------------| ------------------------| ----------------------------------|
+| width    | number | 否       | 否     | 组件宽度。<br />单位: px                      |
+| height   | number | 否       | 否     | 组件高度。<br />单位: px                      |
 
 ### Offset
 
@@ -98,10 +98,10 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型 | 必填 | 说明                               |
-| --------| ---- | -----------------------------------| -----------------------------------|
-| x       | number | 是 | x点坐标。<br />单位: px                           |
-| y       | number | 是 | y点坐标。<br />单位: px                           |
+| 名称     | 类型  | 只读    | 可选     | 说明                               |
+| --------| ---- | --------------| ------------------------------------| -----------------------------------|
+| x       | number| 否       | 否     | x点坐标。<br />单位: px                           |
+| y       | number| 否       | 否     | y点坐标。<br />单位: px                           |
 
 ### TranslateResult
 
@@ -109,11 +109,11 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型 | 必填 | 说明                               |
-| --------| ---- | -----------------------------------| -----------------------------------|
-| x       | number | 是 | x轴平移距离。<br />单位: px                       |
-| y       | number | 是 | y轴平移距离。<br />单位: px                       |
-| z       | number | 是 | z轴平移距离。<br />单位: px                       |
+| 名称     | 类型 | 只读    | 可选     | 说明                               |
+| --------| ---- | -------------------| -------------------------------| -----------------------------------|
+| x       | number | 否       | 否    | x轴平移距离。<br />单位: px                       |
+| y       | number | 否       | 否    | y轴平移距离。<br />单位: px                       |
+| z       | number | 否       | 否     | z轴平移距离。<br />单位: px                       |
 
 ### ScaleResult
 
@@ -121,13 +121,13 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型 | 必填 | 说明                               |
-| --------| ---- | -----------------------------------| -----------------------------------|
-| x       | number | 是 | x轴缩放倍数。<br />单位: px                       |
-| y       | number | 是 | y轴缩放倍数。<br />单位: px                       |
-| z       | number | 是 | z轴缩放倍数。<br />单位: px                       |
-| centerX | number | 是 | 变换中心点x轴坐标。<br />单位: px                  |
-| centerY | number | 是 | 变换中心点y轴坐标。<br />单位: px                |
+| 名称     | 类型 | 只读    | 可选   | 说明                               |
+| --------| ---- | ---- |-----------------------------------| -----------------------------------|
+| x       | number | 否       | 否 | x轴缩放倍数。<br />单位: px                       |
+| y       | number | 否       | 否  | y轴缩放倍数。<br />单位: px                       |
+| z       | number | 否       | 否 | z轴缩放倍数。<br />单位: px                       |
+| centerX | number | 否       | 否 | 变换中心点x轴坐标。<br />单位: px                  |
+| centerY | number | 否       | 否  | 变换中心点y轴坐标。<br />单位: px                |
 
 ### RotateResult
 
@@ -135,14 +135,14 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型 | 必填 | 说明                               |
-| --------| ---- | -----------------------------------| -----------------------------------|
-| x       | number | 是 | 旋转轴向量x坐标。<br />单位: px                   |
-| y       | number | 是 | 旋转轴向量y坐标。<br />单位: px                   |
-| z       | number | 是 | 旋转轴向量z坐标。<br />单位: px                   |
-| angle   | number | 是 | 旋转角度。<br />单位: px                          |
-| centerX | number | 是 | 变换中心点x轴坐标。<br />单位: px                 |
-| centerY | number | 是 | 变换中心点y轴坐标。<br />单位: px                 |
+| 名称     | 类型  | 只读    | 可选     | 说明                               |
+| --------| ---- | -----------------| ---------------------------------| -----------------------------------|
+| x       | number | 否       | 否  | 旋转轴向量x坐标。<br />单位: px                   |
+| y       | number | 否       | 否  | 旋转轴向量y坐标。<br />单位: px                   |
+| z       | number | 否       | 否  | 旋转轴向量z坐标。<br />单位: px                   |
+| angle   | number | 否       | 否  | 旋转角度。<br />单位: px                          |
+| centerX | number | 否       | 否  | 变换中心点x轴坐标。<br />单位: px                 |
+| centerY | number | 否       | 否  | 变换中心点y轴坐标。<br />单位: px                 |
 
 ### Matrix4Result
 
@@ -197,6 +197,7 @@ struct Utils {
 
   build() {
     Column() {
+      // $r("app.media.img")需要替换为开发者所需的图像资源文件
       Image($r("app.media.img"))
         .transform(this.matrix1)
         .translate({ x: 20, y: 20, z: 20 })

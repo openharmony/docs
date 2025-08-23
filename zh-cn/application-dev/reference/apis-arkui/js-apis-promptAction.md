@@ -77,7 +77,7 @@ struct toastExample {
         .type(ButtonType.Capsule)
         .onClick(() => {
           this.promptAction.openToast({
-            message: 'Toast Massage',
+            message: 'Toast Message',
             duration: 10000,
           }).then((toastId: number) => {
             this.toastId = toastId;

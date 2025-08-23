@@ -504,6 +504,12 @@ onScrollEnd(event: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型                              | 必填 | 说明               |
+| ------ | --------------------------------- | ---- | ------------------ |
+| event   | () => void | 是   | 滚动停止事件回调。 |
+
 ### onScrollStart<sup>9+</sup>
 
 onScrollStart(event: VoidCallback)
@@ -528,7 +534,7 @@ onScrollStart(event: VoidCallback)
 
 onScrollStop(event: VoidCallback)
 
-滚动停止时触发。手拖动Scroll或拖动Scroll的滚动条触发的滚动，手离开屏幕并且滚动停止时会触发该事件。使用[Scroller](#scroller)滚动控制器触发的带动画的滚动，动画停止时会触发该事件。
+滚动停止时触发。手拖动Scroll或拖动Scroll的滚动条触发的滚动，手离开屏幕后滚动停止时会触发该事件。使用[Scroller](#scroller)滚动控制器触发的带动画的滚动，动画停止时会触发该事件。
 
 触发该事件的条件：
 

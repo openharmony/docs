@@ -11,7 +11,6 @@ Popup是用于显示特定样式气泡。
 >  **说明：**
 >
 >  - 该组件从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
->- 该组件不支持在Wearable设备上使用。
 >  - 建议结合[Popup控制](ts-universal-attributes-popup.md)中的自定义气泡功能。
 
 ## 导入模块
@@ -34,6 +33,8 @@ Popup(options: PopupOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数**：
 
 | 参数名  | 类型                          | 必填 | 说明                  |
@@ -45,6 +46,8 @@ Popup(options: PopupOptions): void
 PopupOptions定义Popup的具体式样参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称        | 类型       | 必填        | 说明                            |
 | ----------- | ---------- | ------| --------------------------------- |
@@ -65,6 +68,8 @@ PopupOptions定义Popup的具体式样参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称       | 类型                                                         | 必填 | 说明         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------ |
 | text       | [ResourceStr](ts-types.md#resourcestr)                       | 是   | 设置文本内容。     |
@@ -80,6 +85,8 @@ PopupButtonOptions定义按钮的相关属性和事件。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称      | 类型                                                 | 必填 | 说明                 |
 | --------- | ---------------------------------------------------- | ---- | ---------------------- |
 | text      | [ResourceStr](ts-types.md#resourcestr)               | 是   | 设置按钮内容。         |
@@ -94,6 +101,8 @@ PopupIconOptions定义icon（左上角图标）的属性。
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称         | 类型                                                         | 必填 | 说明                             |
 | ------------ | ------------------------------------------------------------ | ---- | ---------------------------------- |
@@ -122,6 +131,7 @@ struct PopupExample {
       Popup({
         // PopupIconOptions类型设置图标内容
         icon: {
+          // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
           image: $r('app.media.icon'),
           width: 32,
           height: 32,
@@ -193,6 +203,7 @@ struct PopupPage {
         //PopupIconOptions 类型设置图标内容
         direction: this.currentDirection,
         icon: {
+          // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
           image: $r('app.media.icon'),
           width: 32,
           height: 32,
@@ -267,6 +278,7 @@ struct PopupPage {
         maxWidth: '50%',
         //PopupIconOptions 类型设置图标内容
         icon: {
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
           image: $r('app.media.startIcon'),
           width: 32,
           height: 32,

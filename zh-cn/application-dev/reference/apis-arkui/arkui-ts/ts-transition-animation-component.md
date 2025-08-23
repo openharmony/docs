@@ -90,23 +90,16 @@ TransitionEffect以函数的形式指定转场效果。提供了以下接口：
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+### 属性
+
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | ---------- | -------- | -------- | -------- |
-| opacity | number | 否 | 否 | 设置组件转场时的透明度效果，为插入时起点和删除时终点的值。<br/>取值范围： [0, 1]<br/>**说明：** <br/>设置小于0的非法值按0处理，大于1的非法值按1处理。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
-| translate | [TranslateOptions](ts-universal-attributes-transformation.md#translateoptions对象说明) | 否 | 否 | 设置组件转场时的平移效果，为插入时起点和删除时终点的值。<br/>-x：横向的平移距离。<br/>-y：纵向的平移距离。<br/>-z：竖向的平移距离。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
-| scale |   [ScaleOptions](ts-universal-attributes-transformation.md#scaleoptions对象说明)| 否 | 否 | 设置组件转场时的缩放效果，为插入时起点和删除时终点的值。<br/>-x：横向放大倍数（或缩小比例）。<br/>-y：纵向放大倍数（或缩小比例）。<br/>-z：当前为二维显示，该参数无效 。<br/>-&nbsp;centerX、centerY指缩放中心点，centerX和centerY默认值是"50%"，即默认以组件的中心点为缩放中心点。<br/>-&nbsp;中心点为(0, 0)代表组件的左上角。<br>**说明：** <br>设置centerX、centerY为非法字符串时（例如，"illegalString"），默认值为"0"。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
-| rotate | [RotateOptions](ts-universal-attributes-transformation.md#rotateoptions对象说明)  | 否 | 否 | 设置组件转场时的旋转效果，为插入时起点和删除时终点的值。<br/>-x：横向的旋转向量分量。<br/>-y：纵向的旋转向量分量。<br/>-z：竖向的旋转向量分量。<br/>-&nbsp;centerX、centerY指旋转中心点，centerX和centerY默认值是"50%"，即默认以组件的中心点为旋转中心点。<br/>-&nbsp;中心点为(0, 0)代表组件的左上角。<br/>-centerZ指z轴锚点，即3D旋转中心点的z轴分量，centerZ默认值是0。<br/>-perspective指视距，不支持perspective属性做转场动画。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
-| move | [TransitionEdge](#transitionedge10) | 否 | 否 | 指定组件转场时从屏幕边缘滑入和滑出的效果，本质为平移效果，为插入时起点和删除时终点的值。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
-| asymmetric | {appear: [TransitionEffect](#transitioneffect10对象说明),<br/>disappear: [TransitionEffect](#transitioneffect10对象说明)}<br/> | 否 | 否 | 指定非对称的转场效果。<br/>第一个参数指定出现的转场效果，第二个参数指定消失的转场效果。<br/>如不通过asymmetric函数构造TransitionEffect，则表明该效果在组件出现和消失时均生效。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
-
-上表提供的静态函数用于构造TransitionEffect对象，而非静态函数作用于构造好的TransitionEffect对象，以指定多种转场效果的组合效果和动画参数。
-此外TransitionEffect提供了一些转场效果的静态成员变量：
-| 静态成员名称 | 参数描述 |
-| -------- | -------- |
-| IDENTITY | 禁用转场效果。 |
-| OPACITY | 为组件添加透明度转场效果，出现时透明度从0到1、消失时透明度从1到0，相当于TransitionEffect.opacity(0)。 |
-| SLIDE | 相当于TransitionEffect.asymmetric(TransitionEffect.move(TransitionEdge.START), TransitionEffect.move(TransitionEdge.END))。从START边滑入，END边滑出。即在LTR模式下，从左侧滑入，右侧滑出；在RTL模式下，从右侧滑入，左侧滑出。 |
-| SLIDE_SWITCH | 指定出现时从右先缩小再放大侧滑入、消失时从左侧先缩小再放大滑出的转场效果。自带动画参数，也可覆盖动画参数，自带的动画参数时长600ms，指定动画曲线cubicBezierCurve(0.24, 0.0, 0.50, 1.0)，最小缩放比例为0.8。|
+| IDENTITY | [TransitionEffect](#transitioneffect10对象说明)\<"identity"> | 是 | 否| 禁用转场效果。 |
+| OPACITY | [TransitionEffect](#transitioneffect10对象说明)\<"opacity"> | 是 | 否| 为组件添加透明度转场效果，出现时透明度从0到1、消失时透明度从1到0，相当于TransitionEffect.opacity(0)。 |
+| SLIDE | [TransitionEffect](#transitioneffect10对象说明)\<"asymmetric", { appear: [TransitionEffect](#transitioneffect10对象说明)\<"move", [TransitionEdge](#transitionedge10)>; disappear: [TransitionEffect](#transitioneffect10对象说明)\<"move", [TransitionEdge](#transitionedge10)>; }> | 是 | 否 | 相当于TransitionEffect.asymmetric(TransitionEffect.move(TransitionEdge.START), TransitionEffect.move(TransitionEdge.END))。从START边滑入，END边滑出。即在LTR模式下，从左侧滑入，右侧滑出；在RTL模式下，从右侧滑入，左侧滑出。 |
+| SLIDE_SWITCH | [TransitionEffect](#transitioneffect10对象说明)\<"slideSwitch"> | 是 | 否 | 指定出现时从右先缩小再放大侧滑入、消失时从左侧先缩小再放大滑出的转场效果。自带动画参数，也可覆盖动画参数，自带的动画参数时长600ms，指定动画曲线cubicBezierCurve(0.24, 0.0, 0.50, 1.0)，最小缩放比例为0.8。|
 
 >  **说明：**
 >
@@ -117,6 +110,151 @@ TransitionEffect以函数的形式指定转场效果。提供了以下接口：
 >  5. 更详细的关于scale、rotate效果的介绍可参考[图形变换](ts-universal-attributes-transformation.md)。
 >  6. 如果在动画范围([animateTo](../arkts-apis-uicontext-uicontext.md#animateto)、[animation](ts-animatorproperty.md))内触发组件的上下树或可见性([Visibility](ts-universal-attributes-visibility.md))改变，而根组件没有配置transition，会给该组件加上默认透明度转场，即TransitionEffect.OPACITY，动画参数跟随所处动画环境的参数。如不需要可通过主动配置TransitionEffect.IDENTITY来禁用，使该组件直接出现或消失。
 >  7. 当通过删除整棵子树的方式触发消失转场，如需看到完整的消失转场过程，需要保证被删除子树的根组件的有充足的消失转场时间，见示例3。
+
+### translate<sup>10+</sup>
+
+translate(options: TranslateOptions): TransitionEffect\<"translate">
+
+设置组件转场时的平移效果。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                   | 必填 | 说明           |
+| ------ | ------------------------------------------ | ---- | ------------------ |
+| options  | [TranslateOptions](ts-universal-attributes-transformation.md#translateoptions对象说明)      | 是   | 组件转场时的平移效果，为插入时起点和删除时终点的值。<br/>-x：横向的平移距离。<br/>-y：纵向的平移距离。<br/>-z：竖向的平移距离。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| [TransitionEffect](#transitioneffect10对象说明)\<"translate"> | 当前动画平移效果。 |
+
+### rotate<sup>10+</sup>
+
+rotate(options: RotateOptions): TransitionEffect\<"rotate">
+
+设置组件转场时的旋转效果。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                   | 必填 | 说明           |
+| ------ | ------------------------------------------ | ---- | ------------------ |
+| options  | [RotateOptions](ts-universal-attributes-transformation.md#rotateoptions对象说明)      | 是   | 组件转场时的旋转效果，为插入时起点和删除时终点的值。<br/>-x：横向的旋转向量分量。<br/>-y：纵向的旋转向量分量。<br/>-z：竖向的旋转向量分量。<br/>-&nbsp;centerX、centerY指旋转中心点，centerX和centerY默认值是"50%"，即默认以组件的中心点为旋转中心点。<br/>-&nbsp;中心点为(0, 0)代表组件的左上角。<br/>-centerZ指z轴锚点，即3D旋转中心点的z轴分量，centerZ默认值是0。<br/>-perspective指视距，不支持perspective属性做转场动画。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| [TransitionEffect](#transitioneffect10对象说明)\<"rotate"> | 当前动画旋转效果。 |
+
+### scale<sup>10+</sup>
+
+scale(options: ScaleOptions): TransitionEffect\<"scale">
+
+设置组件转场时的缩放效果。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                   | 必填 | 说明           |
+| ------ | ------------------------------------------ | ---- | ------------------ |
+| options  | [ScaleOptions](ts-universal-attributes-transformation.md#scaleoptions对象说明)      | 是   | 组件转场时的缩放效果，为插入时起点和删除时终点的值。<br/>-x：横向放大倍数（或缩小比例）。<br/>-y：纵向放大倍数（或缩小比例）。<br/>-z：当前为二维显示，该参数无效。<br/>-&nbsp;centerX、centerY指缩放中心点，centerX和centerY默认值是"50%"，即默认以组件的中心点为缩放中心点。<br/>-&nbsp;中心点为(0, 0)代表组件的左上角。<br>**说明：** <br>设置centerX、centerY为非法字符串时（例如，"illegalString"），默认值为"0"。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| [TransitionEffect](#transitioneffect10对象说明)\<"scale"> | 当前动画缩放效果。 |
+
+### opacity<sup>10+</sup>
+
+opacity(alpha: number): TransitionEffect\<"opacity">
+
+设置组件转场时的透明度效果。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                   | 必填 | 说明           |
+| ------ | ------------------------------------------ | ---- | ------------------ |
+| alpha  | number      | 是   | 组件转场时的透明度效果，为插入时起点和删除时终点的值。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置小于0的非法值按0处理，大于1的非法值按1处理。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| [TransitionEffect](#transitioneffect10对象说明)\<"opacity"> | 当前动画透明度效果。 |
+
+### move<sup>10+</sup>
+
+move(edge: TransitionEdge): TransitionEffect\<"move">
+
+设置组件转场时从屏幕边缘滑入和滑出的效果。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                   | 必填 | 说明           |
+| ------ | ------------------------------------------ | ---- | ------------------ |
+| edge  | [TransitionEdge](#transitionedge10)     | 是   | 组件转场时从屏幕边缘滑入和滑出的效果，本质为平移效果，为插入时起点和删除时终点的值。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| [TransitionEffect](#transitioneffect10对象说明)\<"move"> | 当前动画从屏幕边缘滑入和滑出的效果。 |
+
+### asymmetric<sup>10+</sup>
+
+asymmetric(appear: TransitionEffect, disappear: TransitionEffect): TransitionEffect\<"asymmetric">
+
+设置非对称的转场效果。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                   | 必填 | 说明           |
+| ------ | ------------------------------------------ | ---- | ------------------ |
+| appear  | [TransitionEffect](#transitioneffect10对象说明)      | 是   | 指定出现的转场效果。<br/>如不通过asymmetric函数构造TransitionEffect，则表明该效果在组件出现和消失时均生效。 |
+| disappear  | [TransitionEffect](#transitioneffect10对象说明)      | 是   | 指定消失的转场效果。<br/>如不通过asymmetric函数构造TransitionEffect，则表明该效果在组件出现和消失时均生效。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| [TransitionEffect](#transitioneffect10对象说明)\<"asymmetric"> | 当前动画非对称的转场效果。 |
 
 ### constructor<sup>10+</sup>
 
@@ -258,6 +396,7 @@ struct TransitionEffectExample1 {
         // Image的显示和消失配置为相同的过渡效果（出现和消失互为逆过程）
         // 出现时从指定的透明度为0、绕z轴旋转180°的状态，变为默认的透明度为1、旋转角为0的状态，透明度与旋转动画时长都为2000ms
         // 消失时从默认的透明度为1、旋转角为0的状态，变为指定的透明度为0、绕z轴旋转180°的状态，透明度与旋转动画时长都为2000ms
+        // $r('app.media.testImg')需要替换为开发者所需的图像资源文件。
         Image($r('app.media.testImg')).width(200).height(200)
           .transition(TransitionEffect.OPACITY.animation({ duration: 2000, curve: Curve.Ease }).combine(
             TransitionEffect.rotate({ z: 1, angle: 180 })
@@ -301,6 +440,7 @@ struct TransitionEffectExample2 {
         // Image的显示和消失配置为不同的过渡效果
         // 出现时做从指定的透明度为0变为默认的透明度1的动画，该动画时长为1000ms，以及做从指定的绕z轴旋转180°变为默认的旋转角为0的动画，该动画1000ms后播放，时长为1000ms
         // 消失时做从默认的透明度为1变为指定的透明度0的动画，该动画1000ms后播放，时长为1000ms，以及做从默认的旋转角0变为指定的绕z轴旋转180°的动画，该动画时长为1000ms
+        // $r('app.media.testImg')需要替换为开发者所需的图像资源文件。
         Image($r('app.media.testImg')).width(200).height(200)
           .transition(
             TransitionEffect.asymmetric(
@@ -313,6 +453,7 @@ struct TransitionEffectExample2 {
           )
         // 出现时做从x方向和y方向scale都为0变为默认的x方向和y方向scale都为1的动画，该动画时长为animateTo中指定的2000ms
         // 消失时无转场效果
+        // $r('app.media.testImg')需要替换为开发者所需的图像资源文件。
         Image($r('app.media.testImg')).width(200).height(200).margin({ top: 100 })
           .transition(
             TransitionEffect.asymmetric(
@@ -356,10 +497,12 @@ struct TransitionEffectExample3 {
         // id为"column1"的组件是这棵新出现/消失的子树的根节点。
         Column() {
           Row() {
+            // $r('app.media.testImg')需要替换为开发者所需的图像资源文件。
             Image($r('app.media.testImg')).width(150).height(150).id("image1")
               .transition(TransitionEffect.OPACITY.animation({ duration: 1000 }))
           }
 
+          // $r('app.media.testImg')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.testImg'))
             .width(150)
             .height(150)

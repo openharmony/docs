@@ -8,7 +8,7 @@
 
 ## 概述
 
-定义了ArkWeb的CookieManager接口。在调用接口之前，建议使用ARKWEB_MEMBER_MISSING检查函数结构体是否有对应的函数指针，避免SDK与设备ROM不匹配导致崩溃。
+定义了ArkWeb的CookieManager接口。在调用接口之前，建议使用[ARKWEB_MEMBER_MISSING](capi-arkweb-type-h.md#宏定义)检查函数结构体是否有对应的函数指针，避免SDK与设备ROM不匹配导致崩溃。
 
 **起始版本：** 12
 
@@ -49,7 +49,7 @@ ArkWeb_ErrorCode (*fetchCookieSync)(const char* url, bool incognito, bool includ
 
 **参数：**
 
-| 参数项 | 描述： |
+| 参数项 | 描述 |
 | -- | -- |
 | const char* url | 要获取的cookie所属的URL，建议使用完整的URL。 |
 |  bool incognito | true表示获取隐私模式下webview的内存cookie, false表示获取非隐私模式下的cookie。 |
@@ -74,7 +74,7 @@ ArkWeb_ErrorCode (*configCookieSync)(const char* url,const char* cookieValue, bo
 
 **参数：**
 
-| 参数项 | 描述： |
+| 参数项 | 描述 |
 | -- | -- |
 | const char* url | 指定cookie所属的URL，建议填写完整的URL。 |
 | const char* cookieValue | 要设置的cookie的值。 |
@@ -97,6 +97,12 @@ bool (*existCookies)(bool incognito)
 
 检查Cookie是否存在。
 
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+|  bool incognito | true表示隐私模式下是否存在cookie，false表示非隐私模式下是否存在cookie。 |
+
 **返回：**
 
 | 类型 | 说明 |
@@ -113,9 +119,9 @@ void (*clearAllCookiesSync)(bool incognito)
 
 清除所有cookies。
 
-**返回：**
+**参数：**
 
-| 类型 | 说明 |
+| 参数项 | 描述 |
 |----|----|
 | bool incognito   | true表示清除隐私模式下的所有cookies，false表示清除非隐私模式下的所有cookies。   |
 

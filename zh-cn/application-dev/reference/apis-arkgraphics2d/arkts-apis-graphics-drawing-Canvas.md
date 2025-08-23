@@ -805,7 +805,7 @@ class DrawingRenderNode extends RenderNode {
 
 drawPixelMapMesh(pixelmap: image.PixelMap, meshWidth: number, meshHeight: number, vertices: Array\<number>, vertOffset: number, colors: Array\<number>, colorOffset: number): void
 
-在网格上绘制像素图，网格均匀分布在像素图上。
+在网格上绘制像素图，网格均匀分布在像素图上。（只支持brush，使用pen没有绘制效果。）
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -1709,8 +1709,8 @@ saveLayer(rect?: common2D.Rect | null, brush?: Brush | null): number
 
 | 参数名  | 类型     | 必填   | 说明         |
 | ---- | ------ | ---- | ----------------- |
-| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect)\|null | 否   | 矩形对象，用于限制图层大小，默认为当前画布大小。 |
-| brush  | [Brush](arkts-apis-graphics-drawing-Brush.md)\|null | 否   | 画刷对象，绘制位图时会应用画刷对象的透明度，颜色滤波器效果和混合模式，默认不设置额外效果。 |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) \| null | 否   | 矩形对象，用于限制图层大小，默认为当前画布大小。 |
+| brush  | [Brush](arkts-apis-graphics-drawing-Brush.md) \| null | 否   | 画刷对象，绘制位图时会应用画刷对象的透明度，颜色滤波器效果和混合模式，默认不设置额外效果。 |
 
 **返回值：**
 

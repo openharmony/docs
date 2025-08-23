@@ -13,7 +13,7 @@
 >
 > [app.json5配置文件](./app-configuration-file.md)中versionCode字段一致，表示安装或更新包同版本，否则为不同版本。
 >
-> 如果使用打包工具进行打包，打包过程中存在合法性校验，具体请参考[打包工具](../../application-dev/tools/packing-tool.md)。
+> 使用打包工具进行打包时，会进行合法性校验。详情请参考[打包工具](../../application-dev/tools/packing-tool.md)。
 
 ## 签名证书一致性校验
 
@@ -30,16 +30,16 @@
 
 |字段名称|说明|安装一致性校验规则|更新一致性校验规则|
 |--|--|--|--|
-|bundleName|标识应用的Bundle名称，用于标识应用的唯一性。该字段来源[app.json5配置文件](./app-configuration-file.md)中bundleName字段。|是|是|
-|versionCode|标识应用的版本号，取值为小于2^31次方的正整数。此数字仅用于确定某个版本是否比另一个版本更新，数值越大表示版本越高。开发者可以将该值设置为任何正整数，但是必须确保应用的新版本都使用比旧版本更大的值。该字段来源[app.json5配置文件](./app-configuration-file.md)中versionCode字段。|是|是|
-|apiReleaseType|标识编译HAP的SDK发布类型。设备中未安装该应用，该应用包含多个模块包，模块一个一个安装时，不检验一致性。该字段来源[app.json5配置文件](./app-configuration-file.md)中apiReleaseType字段。|否|是|
+|bundleName|标识应用名称。该字段来源于[app.json5配置文件](./app-configuration-file.md)中的bundleName字段。|是|是|
+|versionCode|标识应用版本号。该字段来源于[app.json5配置文件](./app-configuration-file.md)中的versionCode字段。|是|是|
+|apiReleaseType|标识应用运行需要的API目标版本的类型。设备中未安装该应用，该应用包含多个模块包，模块一个一个安装时，不检验一致性。该字段来源于[app.json5配置文件](./app-configuration-file.md)中的apiReleaseType字段。|否|是|
 |<!--DelRow--> singleton|标识应用是否安装在0用户下。|否|是|
-|<!--DelRow--> appType|标识应用的类型，分为SYSTEM_APP（系统应用）、THIRD_SYSTEM_APP（三方系统应用）、THIRD_PARTY_APP（三方应用）。|是|是|
-|<!--DelRow--> isStage|标识应用是否为Stage模型。|是，FA和stage同版本不允许变更|是|
+|<!--DelRow--> appType|标识应用是三方应用或系统应用。|是|是|
+|<!--DelRow--> isStage|标识应用是否为Stage模型。|是，FA模型和Stage模型在同版本中不允许变更。|否|
 |targetBundleName|标识当前包所指定的目标应用，配置该字段的应用为具有overlay特征的应用。该字段来源[app.json5配置文件](./app-configuration-file.md)中targetBundleName字段。|是|是|
-|targetPriority|标识当前应用的优先级。该字段来源[app.json5配置文件](./app-configuration-file.md)中targetPriority字段。|是|是|
-|bundleType|标识应用的类型。该字段来源[app.json5配置文件](./app-configuration-file.md)中bundleType字段。|是|是|
-|installationFree|标识是否支持免安装。该字段来源[module.json5配置文件](./module-configuration-file.md)中installationFree字段。|是|是|
-|debug|标识是否可调式（IDE断点调测）。该字段来源[app.json5配置文件](./app-configuration-file.md)中debug字段。|是|否|
-|moduleType|标识应用包的类型，应用中单个模块只允许配置一个。该字段来源[module.json5配置文件](./module-configuration-file.md)中type字段。|是，同版本entry类型的moduleName不能修改|是|
+|targetPriority|标识当前应用的优先级。该字段来源于[app.json5配置文件](./app-configuration-file.md)中的targetPriority字段。|是|是|
+|bundleType|标识应用的类型。该字段来源于[app.json5配置文件](./app-configuration-file.md)中的bundleType字段。|是|是|
+|installationFree|标识是否支持免安装。该字段来源于[module.json5配置文件](./module-configuration-file.md)中的installationFree字段。|是|是|
+|debug|标识应用是否可调试。该字段来源于[app.json5配置文件](./app-configuration-file.md)中的debug字段。|是|否|
+|moduleType|标识模块的类型。该字段来源于[module.json5配置文件](./module-configuration-file.md)中的type字段。|是，同版本entry类型的moduleName不能修改|是|
 

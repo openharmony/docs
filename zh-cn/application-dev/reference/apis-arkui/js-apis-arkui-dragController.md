@@ -383,7 +383,7 @@ struct DragControllerPage {
       Button('多对象dragAction customBuilder拖拽').onTouch((event?:TouchEvent) => {
         if(event){
           if (event.type == TouchType.Down) {
-            console.info("muti drag Down by listener");
+            console.info("multi drag Down by listener");
             this.customBuilders.splice(0, this.customBuilders.length);
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
@@ -1108,7 +1108,7 @@ struct DragControllerPage {
             this.getUIContext().getDragController().executeDrag(() => { // 建议使用 this.getUIContext().getDragController().executeDrag()接口
               this.DraggingBuilder()
             }, dragInfo, (err , eve) => {
-              hilog.info(0x0000, `ljx ${JSON.stringify(err)}`, '')
+              hilog.info(0x0000, `${JSON.stringify(err)}`, '')
               if (eve && eve.event) {
                 if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
                   hilog.info(0x0000, 'success', '');

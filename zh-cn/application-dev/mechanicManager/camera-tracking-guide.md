@@ -6,13 +6,13 @@
 <!--Tester: @zhaodengqi-->
 <!--Adviser: @foryourself-->
 
-从API version 20开始，支持使用机械设备管理。在视频录制和直播等应用场景中，开发者希望为拥有机械体配件设备的用户提供更丰富的拍摄体验，如人脸智能跟踪和自动构图等专业拍摄功能。
+从API version 20开始，支持使用机械体设备控制器，提供更丰富的拍摄体验，如人脸智能跟踪和自动构图等专业功能，支持第三方应用。
 
-智能拍摄跟踪，可以通过机械体配件设备实现人脸跟踪和物体追踪等自动化拍摄功能，提升拍摄质量和用户体验，帮助开发者构建出更智能、更高效的拍摄解决方案。
+智能拍摄跟踪功能通过机械体设备实现人脸和物体的自动化跟踪，提升拍摄质量和用户体验，助力开发者构建更智能、高效的拍摄解决方案。
 
 ## 接口介绍
 
-机械设备管理API的接口使用指导请参见[MechanicManager  API参考](../reference/apis-mechanic-kit/js-apis-mechanicManager.md)。
+机械体设备控制器API的接口使用指导请参见[MechanicManager API参考](../reference/apis-mechanic-kit/js-apis-mechanicManager.md)。
 
 | 接口名                                                               | 描述                       |
 | -------------------------------------------------------------------- | -------------------------- |
@@ -32,21 +32,22 @@
 
 ### 开发准备
 
-1. 一台支持MechanicKit协议的机械体配件设备。
-
-2. 机械体配件设备与开发设备完成蓝牙连接。
+1. 支持Mechanic Kit协议的机械体设备。
+2. 若要验证智能跟踪功能，主设备的相机驱动必须支持人脸检测。
+3. 请将SDK更新到API 20或以上版本，具体操作参见[更新指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-software-install)。
+4. 请确保机械体设备已通过蓝牙与主设备连接。
 
 ### 管理设备连接状态
 
-动态管理设备连接状态，确保设备连接或断开时应用能及时响应。
+确保机械体设备连接或断开时，应用能及时响应，支持设备连接状态的动态管理。
 
-1. 导入机械设备管理模块文件。
+1. 导入机械体设备管理模块。
 
     ```ts
     import mechanicManager from '@kit.MechanicKit';
     ```
 
-2. 获取已连接的机械设备列表。
+2. 获取已连接的机械体列表。
 
     ```ts
     let savedMechanicIds: number[] = [];
@@ -75,17 +76,17 @@
     }
     ```
 
-3. 监听设备连接状态变化。
+3. 监听设备的连接状态变化，以便及时响应。
 
     ```ts
     const attachStateChangeCallback = (info: mechanicManager.AttachStateChangeInfo) => {
     if (info.state === mechanicManager.AttachState.ATTACHED) {
         console.info('Device attached:', info.mechInfo);
-        // 处理设备连接逻辑
+        // 执行设备连接的相关操作
         handleDeviceAttached(info.mechInfo);
     } else if (info.state === mechanicManager.AttachState.DETACHED) {
         console.info('Device detached:', info.mechInfo);
-        // 处理设备断开逻辑
+        // 执行设备断开的相关操作开逻辑
         handleDeviceDetached(info.mechInfo);
     }
     };
@@ -94,7 +95,7 @@
     mechanicManager.on('attachStateChange', attachStateChangeCallback);
     ```
 
-4. 处理设备连接和断开事件。
+4. 处理设备的连接与断开的事件。
 
     ```ts
     function handleDeviceAttached(mechInfo: mechanicManager.MechInfo) {
@@ -110,18 +111,18 @@
     }
     ```
 
-5. 取消监听。
+5. 取消连接状态的监听。
 
     ```ts
-    // 取消特定回调的监听
+    // 取消连接状态的监听
     mechanicManager.off('attachStateChange', attachStateChangeCallback);
     ```
 
 ### 控制设备智能跟踪拍摄
 
-开启智能拍摄功能，机械体设备将自动识别人脸进行跟踪拍摄。
+启用智能拍摄功能后，设备将自动识别人脸并进行跟踪拍摄。
 
-1. 启用摄像头智能跟踪功能。
+1. 启用摄像头的智能拍摄功能。
 
     ```ts
     try {
@@ -141,7 +142,7 @@
     }
     ```
 
-2. 监听跟踪变化。
+2. 监听相机跟踪状态的变化。
 
     ```ts
     const trackingStateCallback = (eventInfo : mechanicManager.TrackingEventInfo) => {
@@ -165,17 +166,17 @@
     mechanicManager.on('trackingStateChange', trackingStateCallback);
     ```
 
-3. 处理跟踪事件。
+3. 处理跟踪状态变化事件。
 
     ```ts
     function handleTrackingEnabled() {
-    console.info('Handling trace enable events');
+    console.info('Handling camera tracking enable events');
     // 可以在此处更新UI状态
     updateTrackingUI(true);
     }
 
     function handleTrackingDisabled() {
-    console.info('Handling trace disabled events');
+    console.info('Handling camera tracking disabled events');
     // 可以在此处更新UI状态
     updateTrackingUI(false);
     }
@@ -204,7 +205,7 @@
     }
     ```
 
-4. 取消监听。
+4. 取消跟踪状态变化的监听。
 
     ```ts
     // 取消跟踪状态监听
@@ -216,19 +217,18 @@
 
 ### 调试验证
 
-为了确保机械设备管理功能正常工作，请按照以下步骤进行调试验证：
+请按照以下步骤调试验证，确保机械体设备管理功能正常：
 
 **建立连接**
-
-1. 确保机械体配件设备与开发设备通过蓝牙成功配对并建立连接。
-2. 将开发设备正确放置在机械体配件设备上。
+1. 确保机械体与开发设备已通过蓝牙配对并连接。
+2. 将开发设备放置在机械体设备上。
 
 **功能验证步骤**
 
-1. **设备列表查询**：调用 `getAttachedMechDevices` 接口查询当前已连接的机械体配件设备列表，验证设备是否正确识别。
-2. **智能拍摄跟踪**：调用 `setCameraTrackingEnabled` 启用摄像头智能跟踪功能，通过 `getCameraTrackingEnabled` 验证状态，测试机械体配件设备是否能跟随目标自动旋转。
+1. **设备列表查询**：调用 `getAttachedMechDevices` 接口查询当前已连接的机械体设备列表，验证设备是否正确识别。
+2. **智能拍摄跟踪**：调用 `setCameraTrackingEnabled` 启用摄像头智能跟踪功能，使用 `getCameraTrackingEnabled` 验证状态，测试设备是否能跟随目标自动旋转。
 
 **验证结果说明**
 
-- 如果 `getAttachedMechDevices` 返回包含机械体配件设备信息的设备列表，表示设备识别正常。
-- 如果 `getCameraTrackingEnabled` 返回结果为真，表示智能拍摄跟踪启用成功。
+- 如果 `getAttachedMechDevices` 返回设备列表，表示设备识别成功。
+- 如果 `getCameraTrackingEnabled` 返回真，智能拍摄跟踪启用成功。应用打开相机后，画面中出现人脸时，设备会跟随人脸转动。

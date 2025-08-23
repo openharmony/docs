@@ -6689,7 +6689,7 @@ export class TrackShadow {
 
   // 通过全局dump输出埋点树的信息
   dump(depth: number = 0): void {
-    console.log("Track Dp:" + depth + " id:" + this.id + " areaPer:" + this.track?.areaPercent + " visibleRatio:" + this.visibleRatio)
+    console.log("Track DP:" + depth + " id:" + this.id + " areaPer:" + this.track?.areaPercent + " visibleRatio:" + this.visibleRatio)
     this.childIds.forEach((value: number) => {
       TrackManager.get().getTrackById(value)?.dump(depth + 1)
     })

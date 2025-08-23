@@ -69,6 +69,7 @@ struct SharedTransitionExample {
 
   build() {
     Column() {
+      // $r('app.media.ic_health_heart')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.ic_health_heart')).width(50).height(50).margin({ left: 20, top: 20 })
         .sharedTransition('sharedImage', { duration: 800, curve: Curve.Linear, delay: 100 }) 
     }.width('100%').height('100%').alignItems(HorizontalAlign.Start)
@@ -86,6 +87,7 @@ struct SharedTransitionExample {
 struct pageBExample {
   build() {
     Stack() {
+      // $r('app.media.ic_health_heart')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.ic_health_heart')).width(150).height(150)
         .sharedTransition('sharedImage', { duration: 800, curve: Curve.Linear, delay: 100 })
     }.width('100%').height('100%')

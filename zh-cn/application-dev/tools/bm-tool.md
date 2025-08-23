@@ -92,7 +92,7 @@ bm uninstall [-h] [-n bundleName] [-m moduleName] [-k] [-s] [-v versionCode] [-u
 | -------- | -------- |
 | -h | 帮助信息。 |
 | -n | 必选参数，指定Bundle名称卸载应用。|
-| -m | 可选参数，指定卸载应用的一个模块。默认卸载所有模块。 |
+| -m | 可选参数，应用模块名称，指定卸载应用的一个模块。默认卸载所有模块。 |
 | -k | 可选参数，卸载应用时保存应用数据。默认卸载应用时不保存应用数据。 |
 | -s | 根据场景判断，安装应用间HSP时必选参数，其他场景为可选参数。卸载指定的共享库。|
 | -v | 可选参数，指定共享包的版本号。默认卸载同包名的所有共享包。 |
@@ -107,7 +107,7 @@ bm uninstall -n com.ohos.app
 # 在用户100下卸载一个应用
 bm uninstall -n com.ohos.app -u 100
 # 卸载应用的一个模块
-bm uninstall -n com.ohos.app -m com.ohos.app.EntryAbility
+bm uninstall -n com.ohos.app -m entry
 # 卸载一个shared bundle
 bm uninstall -n com.ohos.example -s
 # 卸载一个shared bundle的指定版本
@@ -2513,7 +2513,14 @@ error: Check pluginDistributionID between plugin and host application failed.
 
 **处理步骤**
 
-重新配置应用或者插件[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的 pluginDistributionIDs。
+重新配置应用或者插件<!--RP5-->[签名证书profile文件](../security/app-provision-structure.md)<!--RP5End-->中的 pluginDistributionIDs。配置格式如下：
+```
+"app-services-capabilities":{
+    "ohos.permission.kernel.SUPPORT_PLUGIN":{
+        "pluginDistributionIDs":"value-1,value-2,···"
+    }
+}
+``` 
 
 ### 9568433 应用缺少ohos.permission.SUPPORT_PLUGIN权限
 **错误信息**
@@ -2832,11 +2839,11 @@ error: Failed to install the plugin because the plugin id failed to be parsed.
 
 **处理步骤**
 
-参考如下格式，重新配置插件profile签名文件中的"app-services-capabilities"字段。
+参考如下格式，重新配置插件<!--RP5-->[签名证书profile文件](../security/app-provision-structure.md)<!--RP5End-->中的"app-services-capabilities"字段。
 ```
 "app-services-capabilities":{
     "ohos.permission.kernel.SUPPORT_PLUGIN":{
-        "pluginDistributionIDs":"value-1|value-2|···"
+        "pluginDistributionIDs":"value-1,value-2,···"
     }
 }
 ```

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The PictureInPicture_PipConfig struct describes the PiP configuration.
+The struct describes the PiP configuration.
 
 **Since**: 20
 

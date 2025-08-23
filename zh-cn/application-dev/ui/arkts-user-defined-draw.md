@@ -1,4 +1,12 @@
 # 自定义绘制
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
+
+NDK提供了自定义绘制节点的能力，通过以下接口，开发者可以实现基于NDK侧Custom节点的自绘制能力。
 
 ## 自定义绘制内容
 
@@ -7,6 +15,8 @@
 > - 在事件注册过程中，需将事件注册为绘制事件（如ARKUI_NODE_CUSTOM_EVENT_ON_DRAW），通过查阅[ArkUI_NodeCustomEventType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodecustomeventtype)枚举值，获取事件类型及含义。
 > 
 > - 若需实现自定义绘制逻辑，应自定义UserData，并在事件注册时进行传递。
+
+以下场景基于[接入ArkTS页面](ndk-access-the-arkts-page.md)章节，创建前置工程。
 
 - 自定义节点的创建，通过ArkUI_NativeNodeAPI_1的create接口，传入ARKUI_NODE_CUSTOM创建自定义节点。
     ```c++
@@ -61,10 +71,17 @@
     OH_Drawing_CanvasAttachPen(canvas, pen);
     OH_Drawing_CanvasDrawPath(canvas, path);
     ```
-**完整示例：** 
+**内容绘制的完整示例：** 
    
 ```c++
-ArkUI_NodeHandle test(ArkUI_NativeNodeAPI_1 *nodeAPI) {
+#include <arkui/native_interface.h>
+#include <arkui/native_node.h>
+#include <native_drawing/drawing_canvas.h>
+#include <native_drawing/drawing_color.h>
+#include <native_drawing/drawing_path.h>
+#include <native_drawing/drawing_pen.h>
+
+ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI) {
     //创建节点
     auto column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
     auto customNode = nodeAPI->createNode(ARKUI_NODE_CUSTOM);
@@ -100,7 +117,7 @@ ArkUI_NodeHandle test(ArkUI_NativeNodeAPI_1 *nodeAPI) {
         auto targetId = OH_ArkUI_NodeCustomEvent_GetEventTargetId(event);
         auto userData =reinterpret_cast<A *>( OH_ArkUI_NodeCustomEvent_GetUserData(event));
         if (type == ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW && targetId == 1 && userData->flag) {
-            //获取自定事件绘制的上下文。
+            //获取自定义事件绘制的上下文。
             auto *drawContext = OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw(event);
             //获取绘制canvas指针。
             auto *canvas1 = OH_ArkUI_DrawContext_GetCanvas(drawContext);
@@ -272,6 +289,7 @@ private:
 
 3. 使用自定义绘制组件和自定义容器创建示例界面
 ```c
+// ArkUICustomNode.cpp
 // 自定义NDK接口入口组件。
 
 #include <arkui/native_node_napi.h>

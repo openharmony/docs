@@ -413,7 +413,7 @@ stopBackPress(isStopped: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)&lt;boolean&gt; | 否   | 是否阻止返回键。<br/>默认值：true，true表示阻止返回键，false表示不阻止返回键。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值。|
+| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)&lt;boolean&gt; | 是   | 是否阻止返回键。<br/>默认值：true，true表示阻止返回键，false表示不阻止返回键。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值。|
 
 ### undoStyle<sup>20+</sup>
 
@@ -431,7 +431,7 @@ undoStyle(style: Optional&lt;UndoStyle&gt;)
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)&lt;[UndoStyle](#undostyle20-1)&gt; | 否   | 撤销还原是否保留原样式选项。默认值：UndoStyle.CLEAR_STYLE |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)&lt;[UndoStyle](#undostyle20-1)&gt; | 是   | 撤销还原是否保留原样式选项。默认值：UndoStyle.CLEAR_STYLE |
 
 ### enableAutoSpacing<sup>20+</sup>
 
@@ -2132,7 +2132,8 @@ struct Index {
                   fontSize: 30
                 }
               })
-            this.controller.addImageSpan($r("app.media.icon"),
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'),
               {
                 imageStyle:
                 {
@@ -2327,9 +2328,10 @@ struct SelectionMenu {
   @State colorTransparent: Color = Color.Transparent;
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
+  // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
   private iconArr: Array<Resource> =
-    [$r('app.media.icon'), $r("app.media.icon"), $r('app.media.icon'),
-    $r("app.media.icon"), $r('app.media.icon')];
+    [$r('app.media.startIcon'), $r('app.media.startIcon'), $r('app.media.startIcon'),
+    $r('app.media.startIcon'), $r('app.media.startIcon')];
   @State iconBgColor: ResourceColor[] = new Array(this.iconArr.length).fill(this.colorTransparent);
   @State pasteEnable: boolean = false;
   @State visibilityValue: Visibility = Visibility.Visible;
@@ -2351,10 +2353,14 @@ struct SelectionMenu {
       }
     }
     let sysBoard = pasteboard.getSystemPasteboard()
-    if (sysBoard && sysBoard.hasDataSync()) {
-      this.pasteEnable = true;
-    } else {
-      this.pasteEnable = false;
+    try {
+      if (sysBoard && sysBoard.hasDataSync()) {
+        this.pasteEnable = true
+      } else {
+        this.pasteEnable = false
+      }
+    } catch (err) {
+      console.error('Failed to check the PasteData. Cause:' + err.message)
     }
   }
 
@@ -2886,7 +2892,8 @@ struct Index {
         Button('addImageSpan1')
           .fontSize(12)
           .onClick(() => {
-            this.controller.addImageSpan($r('app.media.app_icon'), {
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'), {
               imageStyle: {
                 size: ["80px", "80px"],
                 layoutStyle: {
@@ -2900,7 +2907,8 @@ struct Index {
         Button('addImageSpan2')
           .fontSize(12)
           .onClick(() => {
-            this.controller.addImageSpan($r('app.media.app_icon'), {
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'), {
               imageStyle: {
                 size: ["100px", "100px"],
                 verticalAlign: ImageSpanAlignment.BOTTOM,
@@ -2915,7 +2923,8 @@ struct Index {
         Button('addImageSpan3')
           .fontSize(12)
           .onClick(() => {
-            this.controller.addImageSpan($r('app.media.app_icon'), {
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'), {
               imageStyle: {
                 size: ["60px", "60px"],
                 verticalAlign: ImageSpanAlignment.BOTTOM,
@@ -2944,7 +2953,8 @@ struct Index {
                 }
               })
 
-            this.controller.addImageSpan($r("app.media.app_icon"),
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'),
               {
                 imageStyle:
                 {
@@ -3078,7 +3088,8 @@ struct Index {
               }
             })
 
-            this.controller.addImageSpan($r("app.media.icon"),
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'),
               {
                 imageStyle:
                 {
@@ -3565,7 +3576,8 @@ struct Index {
 @Builder
 function placeholderBuilder2() {
   Row({ space: 2 }) {
-    Image($r("app.media.icon")).width(24).height(24).margin({ left: -5 })
+    // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+    Image($r('app.media.startIcon')).width(24).height(24).margin({ left: -5 })
     Text('okokokok').fontSize(10)
   }.width('20%').height(50).padding(10).backgroundColor(Color.Red)
 }
@@ -3587,7 +3599,8 @@ struct Index {
   @Builder
   placeholderBuilder() {
     Row({ space: 2 }) {
-      Image($r("app.media.icon")).width(24).height(24).margin({ left: -5 })
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+      Image($r('app.media.startIcon')).width(24).height(24).margin({ left: -5 })
       Text('Custom Popup').fontSize(10)
     }.width(100).height(50).padding(5)
   }
@@ -3655,8 +3668,9 @@ struct Index {
   @Builder
   MyMenu() {
     Menu() {
-      MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项1" })
-      MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项2" })
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+      MenuItem({ startIcon: $r('app.media.startIcon'), content: "菜单选项1" })
+      MenuItem({ startIcon: $r('app.media.startIcon'), content: "菜单选项2" })
         .enabled(false)
     }
   }
@@ -3748,7 +3762,8 @@ struct Index {
                   fontSize: 30
                 }
               })
-            this.controller.addImageSpan($r("app.media.icon"),
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'),
               {
                 imageStyle:
                 {
@@ -3810,7 +3825,8 @@ struct Index {
           })
         Button("add image")
           .onClick(() => {
-            let num = this.controller.addImageSpan($r("app.media.icon"), {
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            let num = this.controller.addImageSpan($r('app.media.startIcon'), {
               imageStyle: {
                 size: ["50px", "50px"],
                 verticalAlign: ImageSpanAlignment.BOTTOM,
@@ -3992,7 +4008,8 @@ struct Index {
       Button("addImageTextBuilder")
         .onClick(() => {
           let insertOffset = this.controller.getCaretOffset();
-          let builder = new BuilderObject('Custom PopUP ' + this.builderId, 'imageTextBuilder', 'app.media.icon');
+          // 'app.media.startIcon'需要替换为开发者所需的图像资源文件。
+          let builder = new BuilderObject('Custom PopUP ' + this.builderId, 'imageTextBuilder', 'app.media.startIcon');
           this.customBuilder = () => {
             this.imageTextBuilder(builder);
           }
@@ -4923,8 +4940,9 @@ struct Index {
           Button("插入图片")
             .stateEffect(true)
             .onClick(() => {
+              // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
               let imageStyledString = new MutableStyledString(new ImageAttachment({
-                resourceValue: $r('app.media.app_icon'),
+                resourceValue: $r('app.media.startIcon'),
                 size: { width: 50, height: 50 },
                 layoutStyle: { borderRadius: LengthMetrics.vp(10) },
                 verticalAlign: ImageSpanAlignment.BASELINE,
@@ -5102,6 +5120,7 @@ struct RichEditorExample {
       TextMenuItemId.AI_WRITER
     ]
     const items = menuItems.filter(item => !idsToFilter.some(id => id.equals(item.id)))
+    // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
     let item1: TextMenuItem = {
       content: 'create1',
       icon: $r('app.media.startIcon'),
@@ -5135,6 +5154,7 @@ struct RichEditorExample {
     }
     return false;
   }
+  // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
   onPrepareMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'prepare1_' + this.endIndex,
@@ -5361,7 +5381,8 @@ struct RichEditorExample {
       Row() {
         Button("插入占1字符数的图片")
           .onClick(() => {
-            this.controller1.addImageSpan($r("app.media.app_icon"),
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller1.addImageSpan($r('app.media.startIcon'),
               {
                 imageStyle:
                 {
@@ -5492,7 +5513,8 @@ struct StyledUndo {
               })
           })
           Button("插入图片").onClick(() => {
-            this.controller.addImageSpan($r("app.media.icon"),
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'),
               {
                 imageStyle:
                 {
@@ -5560,7 +5582,8 @@ struct StyledUndo {
       Column() {
         RichEditor(this.options)
           .onReady(()=>{
-            this.controller.addImageSpan($r("app.media.icon"),
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'),
             {
               imageStyle:
               {
@@ -5847,7 +5870,8 @@ struct AutoSpacing {
               })
           })
           Button("插入图片").onClick(() => {
-            this.controller.addImageSpan($r("app.media.icon"),
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'),
               {
                 imageStyle:
                 {
@@ -5889,7 +5913,8 @@ struct AutoSpacing {
       Column() {
         RichEditor(this.options)
           .onReady(() => {
-            this.controller.addImageSpan($r("app.media.icon"),
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'),
               {
                 imageStyle:
                 {

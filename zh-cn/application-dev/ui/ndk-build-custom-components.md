@@ -51,7 +51,7 @@ ArkUI开发框架在NDK接口提供了自定义UI组件的能力，这些能力�
            : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_CUSTOM)) {
            // 注册自定义事件监听器。
            nativeModule_->addNodeCustomEventReceiver(handle_, OnStaticCustomEvent);
-           // 声明自定义事件并转递自身作为自定义数据。
+           // 声明自定义事件并传递自身作为自定义数据。
            nativeModule_->registerNodeCustomEvent(handle_, ARKUI_NODE_CUSTOM_EVENT_ON_MEASURE, 0, this);
            nativeModule_->registerNodeCustomEvent(handle_, ARKUI_NODE_CUSTOM_EVENT_ON_LAYOUT, 0, this);
        }
@@ -151,6 +151,7 @@ ArkUI开发框架在NDK接口提供了自定义UI组件的能力，这些能力�
    
    #include "ArkUICustomContainerNode.h"
    #include "ArkUITextNode.h"
+   #include "UITimer.h"
    
    #include <arkui/native_node_napi.h>
    #include <arkui/native_type.h>
@@ -235,7 +236,7 @@ ArkUI开发框架在NDK接口提供了自定义UI组件的能力，这些能力�
            : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_CUSTOM)) {
            // 注册自定义事件监听器。
            nativeModule_->addNodeCustomEventReceiver(handle_, OnStaticCustomEvent);
-           // 声明自定义事件并转递自身作为自定义数据。
+           // 声明自定义事件并传递自身作为自定义数据。
            nativeModule_->registerNodeCustomEvent(handle_, ARKUI_NODE_CUSTOM_EVENT_ON_DRAW, 0, this);
        }
    
@@ -306,6 +307,7 @@ ArkUI开发框架在NDK接口提供了自定义UI组件的能力，这些能力�
    
    #include "ArkUICustomContainerNode.h"
    #include "ArkUICustomNode.h"
+   #include "UITimer.h"
    
    #include <arkui/native_node_napi.h>
    #include <arkui/native_type.h>

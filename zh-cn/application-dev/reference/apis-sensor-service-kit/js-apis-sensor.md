@@ -10,7 +10,7 @@ sensor模块提供了获取传感器数据的能力，包括获取传感器属�
 
 > **说明：**
 >
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。订阅前可使用[getSingleSensor](#sensorgetsinglesensor9)接口获取该传感器的信息，订阅传感器数据时确保on订阅和off取消订阅成对出现。
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。订阅前可使用[getSingleSensor](#sensorgetsinglesensor9)接口获取该传感器的信息，获取该传感器信息成功时可正常订阅传感器，异常情况详见[getSingleSensor](#sensorgetsinglesensor9)错误码说明；订阅传感器数据时确保on订阅和off取消订阅成对出现。
 
 
 ## 导入模块
@@ -6172,6 +6172,14 @@ try {
       return;
     }
     console.info('Succeeded in getting sensor: ' + JSON.stringify(data));
+    sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
+      console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
+      console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
+      console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
+    }, { interval: 100000000 });
+    setTimeout(() => {
+      sensor.off(sensor.SensorId.ACCELEROMETER);
+    }, 500);
   });
 } catch (error) {
   let e: BusinessError = error as BusinessError;

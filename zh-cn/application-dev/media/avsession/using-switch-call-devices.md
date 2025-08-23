@@ -127,7 +127,7 @@
 
 ### 自定义样式实现
 
-自定义样式通过设置[CustomBuilder](../../reference/apis-avsession-kit/ohos-multimedia-avcastpicker.md)类型的参数customPicker实现。
+自定义样式通过设置[CustomBuilder](../../reference/apis-arkui/arkui-ts/ts-types.md#custombuilder8)类型的参数[customPicker](../../reference/apis-avsession-kit/ohos-multimedia-avcastpicker.md#avcastpicker)实现。
 
 实现自定义样式的步骤与实现默认样式基本相同，开发者可参考[默认样式实现](#默认样式实现)，完成创建AVSession、实现音频播放等步骤。
 

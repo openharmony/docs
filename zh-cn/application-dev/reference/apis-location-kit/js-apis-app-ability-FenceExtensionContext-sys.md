@@ -1,4 +1,10 @@
 # @ohos.app.ability.FenceExtensionContext (FenceExtensionContext)(系统接口)
+<!--Kit: Location Kit-->
+<!--Subsystem: Location-->
+<!--Owner: @liu-binjun-->
+<!--Designer: @liu-binjun-->
+<!--Tester: @mhy123456789-->
+<!--Adviser: @RayShih-->
 
 FenceExtensionContext是FenceExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)，提供FenceExtensionAbility的相关配置信息以及启动Ability接口。
 

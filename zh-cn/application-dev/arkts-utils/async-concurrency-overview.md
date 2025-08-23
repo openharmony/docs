@@ -130,7 +130,7 @@ struct Index {
 
 在上述示例代码中，使用await等待Promise解析，并存储在result变量中。
 
-需要注意的是，等待异步操作时，需将操作包在async函数中，并搭配await使用。同时也可使用try/catch块来捕获异常。
+需要注意的是，等待异步操作时，需将操作包在async函数中，并搭配await使用，且await关键字只在async函数内有效。同时也可使用try/catch块来捕获异常。
 
 ```ts
 async function myAsyncFunction(): Promise<void> {

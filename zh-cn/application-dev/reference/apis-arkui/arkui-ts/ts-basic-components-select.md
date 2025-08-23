@@ -1002,6 +1002,7 @@ struct SelectExample {
 
   build() {
     Column() {
+      // $r('app.media.selection')需要替换为开发者所需的图像资源文件。
       Select([{ value: 'aaa', icon: $r("app.media.selection") },
         { value: 'bbb', icon: $r("app.media.selection") },
         { value: 'ccc', icon: $r("app.media.selection") },
@@ -1143,6 +1144,7 @@ struct SelectExample {
   build() {
     Column() {
       Row() {
+        // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
         Select([{ value: 'item1', icon: $r('app.media.icon'), symbolIcon: this.symbolModifier1 },
           { value: 'item1', icon: $r('app.media.icon'), symbolIcon: this.symbolModifier2 }])
           .value(this.text)
@@ -1173,6 +1175,7 @@ struct SelectExample {
 
   build() {
     Column() {
+      // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
       Select([{ value: 'aaa', icon: $r("app.media.icon") },
         { value: 'bbb', icon: $r("app.media.icon") },
         { value: 'ccc', icon: $r("app.media.icon") },
@@ -1221,6 +1224,7 @@ struct SelectExample {
 
   build() {
     Column() {
+      // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
       Select([{ value: 'aaa', icon: $r("app.media.icon") },
         { value: 'bbb', icon: $r("app.media.icon") },
         { value: 'ccc', icon: $r("app.media.icon") },
@@ -1281,6 +1285,7 @@ struct SelectExample {
   build() {
     Column() {
       Select([
+        // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
         { value: 'A very long option text that should be truncated nicely'.repeat(3), icon: $r("app.media.startIcon") },
         { value: 'Option B', icon: $r("app.media.startIcon") },
         { value: 'Option C', icon: $r("app.media.startIcon") },
@@ -1350,6 +1355,7 @@ struct SelectExample {
   build() {
     Column() {
       Select([
+        // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
         { value: 'A very long option text that should be truncated nicely'.repeat(3), icon: $r("app.media.startIcon") },
         { value: 'Option B', icon: $r("app.media.startIcon") },
         { value: 'Option C', icon: $r("app.media.startIcon") },

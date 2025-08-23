@@ -848,9 +848,11 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateAvailableArea(uint6
 
 **描述**
 
-获取屏幕的可用区域。该接口仅可在2in1设备使用。
+获取屏幕的可用区域。
 
 **起始版本：** 20
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用；在其他设备中不可用，请通过[OH_NativeDisplayManager_GetDefaultDisplayWidth()](#oh_nativedisplaymanager_getdefaultdisplaywidth)、[OH_NativeDisplayManager_GetDefaultDisplayHeight()](#oh_nativedisplaymanager_getdefaultdisplayheight)获取当前设备屏幕的可用区域。
 
 
 **参数：**
@@ -874,7 +876,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_DestroyAvailableArea(Nati
 
 **描述**
 
-销毁屏幕的可用区域。该接口仅可在2in1设备使用。
+销毁屏幕的可用区域。
 
 **起始版本：** 20
 

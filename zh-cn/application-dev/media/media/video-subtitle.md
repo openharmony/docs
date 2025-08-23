@@ -14,7 +14,7 @@
 
 详细的API说明请参考[AVPlayer](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md)
 
-1. 使用视频播放的AVPlayer实例设置外挂字幕资源。
+1. 调用[addSubtitleFromFd](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#addsubtitlefromfd12)，使用视频播放的AVPlayer实例设置外挂字幕资源。
 
    ```ts
     import { media } from '@kit.MediaKit';
@@ -30,18 +30,18 @@
     // 设定视频源（此处省略）。
 
     // 设定字幕。
-    let fileDescriptorSub = await this.context.resourceManager.getRawFd('xxx.srt');
+    let fileDescriptorSub = await this.context?.resourceManager.getRawFd('xxx.srt');
     this.avPlayer.addSubtitleFromFd(fileDescriptorSub.fd, fileDescriptorSub.offset, fileDescriptorSub.length);
    ```
 
-2. 使用视频播放的AVPlayer实例注册字幕回调函数。
+2. 调用[on('subtitleUpdate')](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#onsubtitleupdate12)接口，注册字幕回调函数。
 
    ```ts
     import { media } from '@kit.MediaKit';
     // 类成员定义用来显示的字幕字符串。
     @State subtitle: string = 'subtitleUpdate info';
     private avPlayer: media.AVPlayer | null = null;
-    private tag: string = ''
+    private tag: string = '';
 
     // 创建avPlayer实例对象。
     this.avPlayer = await media.createAVPlayer();
@@ -62,6 +62,11 @@
 3. (可选)当需要不显示字幕的时候，使用视频播放的AVPlayer实例注销字幕回调函数。
 
    ```ts
+    import { media } from '@kit.MediaKit';
+    // 类成员定义avPlayer和context。
+    private avPlayer: media.AVPlayer | null = null;
+    // 创建avPlayer实例对象。
+    this.avPlayer = await media.createAVPlayer();
     this.avPlayer?.off('subtitleUpdate');
    ```
 

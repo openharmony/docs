@@ -39,8 +39,9 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 | TIMEOUT            | 2    | 认证超时。 |
 | TEMPORARILY_LOCKED | 3    | 临时冻结。 |
 | PERMANENTLY_LOCKED | 4    | 永久冻结。 |
-| WIDGET_LOADED      | 5    | 身份认证控件已拉起。 |
-| WIDGET_RELEASED    | 6    | 身份认证控件已退出。 |
+| WIDGET_LOADED      | 5    | 身份认证界面加载完毕。 |
+| WIDGET_RELEASED    | 6    | 当前的身份认证界面退出，切换其他认证界面或身份认证控件关闭。 |
+| COMPARE_FAILURE_WITH_FROZEN    | 7    | 认证失败并触发了认证冻结。 |
 
 ## EnrolledState<sup>12+</sup>
 
@@ -675,16 +676,13 @@ start(): void
 | -------- | ------------------------------------------------ |
 | 201      | Permission denied. Possible causes:1.No permission to access biometric. 2.No permission to start authentication from background.|
 | 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 12500001 | Authentication failed.                           |
 | 12500002 | General operation error.                         |
 | 12500003 | Authentication canceled.                         |
-| 12500004 | Authentication timeout.                          |
 | 12500005 | The authentication type is not supported.        |
 | 12500006 | The authentication trust level is not supported. |
-| 12500007 | Authentication service is busy.                  |
 | 12500009 | Authentication is locked out.                    |
 | 12500010 | The type of credential has not been enrolled.    |
-| 12500011 | Switched to the custom authentication process.   |
+| 12500011 | Switched to the customized authentication process.   |
 | 12500013 | Operation failed because of PIN expired. |
 
 **示例：**

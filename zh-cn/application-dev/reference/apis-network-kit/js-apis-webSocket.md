@@ -869,7 +869,7 @@ createWebSocketServer(): WebSocketServer
 
 > **说明：**
 >
-> 目前服务端仅支持智慧屏使用，非智慧屏形态的产品调用该接口创建对象时，会返回空指针。
+> 目前该接口在TV中可正常调用，在其他设备中无效果，返回nullptr。
 
 **系统能力**: SystemCapability.Communication.NetStack
 
@@ -1452,6 +1452,8 @@ localServer.off('error');
 | proxy<sup>12+</sup> | ProxyConfiguration |  否  | 是 | 通信过程中的代理信息，默认使用系统网络代理。 |
 | protocol<sup>12+</sup> | string |  否  | 是 | 自定义Sec-WebSocket-Protocol字段，默认为""。              |
 | skipServerCertVerification<sup>20+</sup> | boolean | 否 | 是 | 是否跳过服务器证书验证。true表示跳过服务器证书验证，false表示不跳过服务器证书验证。默认为false。 |
+| pingInterval<sup>21+</sup> | int | 否 | 是 | 自定义[心跳检测](../../network/websocket-connection.md##场景介绍)时间，默认为30s。每pingInterval周期会发起心跳检测，设置为0则表示关闭心跳检测。最大值：30000s，最小值：0s。<br>**ArkTS版本：** 该接口仅适用于ArkTS1.2。 |
+| pongTimeout<sup>21+</sup> | int | 否 | 是 | 自定义发起心跳检测后，超时断开时间，默认为30s。发起心跳检测后若pongTimeout时间未响应则断开连接。最大值：30000s，最小值：0s。pongTimeout须小于等于pingInterval。<br>**ArkTS版本：** 该接口仅适用于ArkTS1.2。|
 
 ## ClientCert<sup>11+</sup>
 

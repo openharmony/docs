@@ -107,8 +107,10 @@ nameCache.json文件：
 ```ts
 @Component
 export struct MainPage {
-   @State messageStr: string = 'Hello World';
-   ...
+	@State messageStr: string = 'Hello World';
+    
+    build() {
+    }
 }
 ```
 
@@ -127,8 +129,9 @@ this.__messageStr = new ObservedPropertySimplePU('Hello World', this, "messageSt
 源码：
 
 ```ts
+@ObservedV2
 class Info {
-    @Trace sample: Sample = new Sample();
+	@Trace sample: Sample = new Sample();
 }
 ```
 
@@ -205,14 +208,21 @@ Error message: [Class]get different name for method:&entry/src/main/ets/pages/XX
 //代码1
 @CustomDialog
 export default struct TmsDialog {
-  controller?: CustomDialogController
-  dialogController:CustomDialogController;
+	controller?: CustomDialogController
+    dialogController:CustomDialogController
+    
+    build() {
+    }
 }
+
 //代码2
 @CustomDialog
 struct Index{
-   controller?: CustomDialogController
-   dialogController?:CustomDialogController
+	controller?: CustomDialogController
+    dialogController?:CustomDialogController
+    
+    build() {
+    }
 }
 ```
 
@@ -227,7 +237,10 @@ dialogController:CustomDialogController|null = null;
 ```
 
 示例代码1中，在运行时，是无法正常弹出dialogController的，只需要在定义时改为解决方案中的代码，就可以正常弹出dialogController，同时字节码混淆功能正常；
+
 示例代码2中，由于我们只是使用CustomDialogController，因此不需要@CustomDialog，直接删除@CustomDialog即可，删除后功能正常，字节码混淆功能正常。
+
+从API version 18开始，上述示例代码将不能正常编译。新的版本中，一个@CustomDialog组件只能有一个未初始化的CustomDialogController。
 
 ## 运行异常处理
 
@@ -246,7 +259,7 @@ dialogController:CustomDialogController|null = null;
 */
 
 // 混淆前
-import jsonData from "./testjson";
+import jsonData from "./test.json";
 
 let jsonProp = jsonData.jsonObj.jsonProperty;
 
@@ -272,20 +285,22 @@ parameters的类型为Record<string, Object>，在开启属性混淆后，parame
 
 ```ts
 // 混淆前
-import { Want } from '@ohos:app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let petalMapWant: Want = {
-  bundleName: 'com.example.myapplication',
-  uri: 'maps://',
-  parameters: {
-    linkSource: 'com.other.app'
-  }
+	bundleName: 'com.example.myapplication',
+    uri: 'maps://',
+    parameters: {
+    	linkSource: 'com.other.app'
+    }
 }
+```
+```ts
 // 混淆后
 import type Want from "@ohos:app.ability.Want";
 
 let petalMapWant: Want = {
-    bundleName: 'com.example.myapplication',
+	bundleName: 'com.example.myapplication',
     uri: 'maps://',
     parameters: {
         i: 'com.other.app'
@@ -313,21 +328,36 @@ linkSource
 使用@Type和@Trace组合修饰的装饰器属性，可以正常混淆，但混淆后，功能异常。
 
 ```ts
+//Sample.ets
 @ObservedV2
 class SampleChild {
-  @Trace p123: number = 0;
-  p2: number = 10;
+	@Trace p123: number = 0;
+    p2: number = 10;
 }
+
 @ObservedV2
 export class Sample {
-  // 对于复杂对象需要@Type修饰，确保序列化成功
-  @Type(SampleChild)
-  @Trace f123: SampleChild = new SampleChild();
+	// 对于复杂对象需要@Type修饰，确保序列化成功
+    @Type(SampleChild)
+    @Trace f123: SampleChild = new SampleChild();
 }
 
 //调用
-this.prop = PersistenceV2.connect(Sample, () => new Sample())!;
-Text.create(`Page1 add 1 to prop.p1: ${this.prop.f123.p123}`);
+// a.ets
+import { PersistenceV2 } from '@kit.ArkUI';
+import { Sample } from './Sample';
+
+@Entry
+@ComponentV2
+struct Page {
+	prop: Sample = PersistenceV2.connect(Sample, () => new Sample())!;
+    
+    build() {
+    	Column() {
+        	Text(`Page1 add 1 to prop.p1: ${this.prop.f123.p123}`)
+        }
+    }
+}
 ```
 
 混淆后，p123，f123都被正常替换了，但处理Trace，Type装饰器属性时，p123，f123都被识别为字符串，不参与混淆，导致调用失败。
@@ -363,19 +393,19 @@ p123
 // 混淆前
 // file1.ts
 export interface MyInfo {
-  age: number;
-  address: {
-    city1: string;
-  }
+	age: number;
+    address: {
+    	city1: string;
+    }
 }
 // file2.ts
 import { MyInfo } from './file1';
 
 const person: MyInfo = {
-  age: 20,
-  address: {
-    city1: "shanghai"
-  }
+	age: 20,
+    address: {
+    	city1: "shanghai"
+    }
 }
 
 // 混淆后，file1.ts的代码被保留
@@ -383,10 +413,10 @@ const person: MyInfo = {
 import { MyInfo } from './file1';
 
 const person: MyInfo = {
-  age: 20,
-  address: {
-    i: "shanghai"
-  }
+	age: 20,
+    address: {
+    	i: "shanghai"
+    }
 }
 ```
 
@@ -401,11 +431,11 @@ const person: MyInfo = {
 ```ts
 // file1.ts
 export interface AddressType {
-  city1: string
+	city1: string
 }
 export interface MyInfo {
-  age: number;
-  address: AddressType;
+	age: number;
+    address: AddressType;
 }
 ```
 
@@ -433,41 +463,81 @@ HSP需要将给其他模块用的方法配置到白名单中。因为主模块�
 
 ```ts
 // 混淆前
-export class Test1 {}
-let mytest = (await import('./file')).Test1
+// utils.ts
+export function add(a: number, b: number): number {
+	return a + b;
+}
+
+// main.ts
+async function loadAndUseAdd() {
+	try {
+    	const mathUtils = await import('./utils');
+    	const result = mathUtils.add(2, 3);
+    } catch (error) {
+    	console.error('Failure reason:', error);
+    }
+}
+
+loadAndUseAdd();
+```
+```ts
+
 // 混淆后
-export class w1 {}
-let mytest = (await import('./file')).Test1
+// utils.ts
+export function c1(d1: number, e1: number): number {
+    return d1 + e1;
+}
+
+// main.ts
+async function i() {
+    try {
+        const a1 = await import("@normalized:N&&&entry/src/main/ets/pages/utils&");
+        const b1 = a1.add(2, 3);
+    }
+    catch (z) {
+        console.error('Failure reason:', z);
+    }
+}
+i();
 ```
 
-导出的类"Test1"是一个顶层作用域名，当"Test1"被动态使用时，它是一个属性。因为没有开启-enable-property-obfuscation选项，所以名称混淆了，但属性没有混淆。
+函数add在定义时位于顶层作用域，但通过.add访问时被视为属性。由于未开启-enable-property-obfuscation选项，导致add被使用时未进行混淆。
 
 **解决方案**：
 
-使用-keep-global-name选项将"Test1"配置到白名单。
+方案一：开启-enable-property-obfuscation选项。
+
+方案二：使用-keep-global-name选项将"add"配置到白名单。
+
 
 #### 案例二：在使用namespace中的方法时，该方法定义的地方被混淆了，但使用的地方却没有被混淆，导致报错
 
 ```ts
 // 混淆前
-export namespace ns1 {
-  export class person1 {}
+// export.ts
+export namespace NS {
+	export function foo() {}
 }
 
-import {ns1} from './file1'
+// import.ts
+import { NS } from './export';
 
-let person1 = new ns1.person1()
+NS.foo();
+```
+```ts
 // 混淆后
-export namespace a3 {
-  export class b2 {}
+// export.ts
+export namespace i {
+	export function j() {}
 }
 
-import {a3} from './file1'
+// import.ts
+import { i } from './export';
 
-let person1 = new a3.person1()
+i.foo();
 ```
 
-namespace里的"person1"属于export元素，当通过"ns1.person1"调用时，它被视为一个属性。由于未开-enable-property-obfuscation选项，导致在使用时未对其进行混淆。
+namespace中的foo属于export元素，当通过NS.foo调用时被视为属性。由于未开启-enable-property-obfuscation选项，导致foo在使用时未被混淆。
 
 **解决方案**：
 
@@ -479,11 +549,12 @@ namespace里的"person1"属于export元素，当通过"ns1.person1"调用时，�
 ```ts
 // 混淆前
 declare global {
-  var myAge : string
+	var myAge : string
 }
+
 // 混淆后
 declare a2 {
-  var b2 : string
+	var b2 : string
 }
 ```
 

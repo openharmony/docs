@@ -933,20 +933,24 @@ struct ImageExample1 {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
         Row() {
           // 加载png格式图片
+          // $r('app.media.ic_camera_master_ai_leaf')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.ic_camera_master_ai_leaf'))
             .width(110).height(110).margin(15)
             .overlay('png', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           // 加载gif格式图片
+          // $r('app.media.loading')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.loading'))
             .width(110).height(110).margin(15)
             .overlay('gif', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         }
         Row() {
           // 加载svg格式图片
+          // $r('app.media.ic_camera_master_ai_clouded')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.ic_camera_master_ai_clouded'))
             .width(110).height(110).margin(15)
             .overlay('svg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           // 加载jpg格式图片
+          // $r('app.media.ic_public_favor_filled')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.ic_public_favor_filled'))
             .width(110).height(110).margin(15)
             .overlay('jpg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
@@ -1012,6 +1016,7 @@ struct ImageExample2 {
   build() {
     Column() {
       Image(this.pixelMapImg)
+        // $r('app.media.img')需要替换为开发者所需的图像资源文件。
         .alt($r('app.media.img'))
         .objectFit(ImageFit.None)
         .width('100%')
@@ -1072,8 +1077,11 @@ struct Index {
 @Entry
 @Component
 struct ImageExample3 {
+  // $r('app.media.earth')需要替换为开发者所需的图像资源文件。
   private imageOne: Resource = $r('app.media.earth');
+  // $r('app.media.star')需要替换为开发者所需的图像资源文件。
   private imageTwo: Resource = $r('app.media.star');
+  // $r('app.media.moveStar')需要替换为开发者所需的图像资源文件。
   private imageThree: Resource = $r('app.media.moveStar');
   @State src: Resource = this.imageOne;
   @State src2: Resource = this.imageThree;
@@ -1121,6 +1129,7 @@ struct ImageExample4 {
   };
 
   async aboutToAppear() {
+    // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
     this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.app_icon'));
   }
 
@@ -1169,12 +1178,14 @@ struct Index {
   build() {
     Column({ space: 5 }) {
       // 原图效果
+      // $r('app.media.landscape')需要替换为开发者所需的图像资源文件。
       Image($r("app.media.landscape"))
         .width(200).height(200)
         .border({ width: 2, color: Color.Pink })
         .objectFit(ImageFit.Contain)
 
       // 图像拉伸效果，设置resizable属性，对图片不同方向进行拉伸
+      // $r('app.media.landscape')需要替换为开发者所需的图像资源文件。
       Image($r("app.media.landscape"))
         .resizable({
           slice: {
@@ -1242,12 +1253,14 @@ struct drawingLatticeTest {
       Column({ space: 10 }) {
         Text('Original Image').fontSize(20).fontWeight(700)
         Column({ space: 10 }) {
+          // $r('app.media.mountain')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.mountain'))
             .width(260).height(260)
         }.width('100%')
 
         Text('Resize by lattice').fontSize(20).fontWeight(700)
         Column({ space: 10 }) {
+          // $r('app.media.mountain')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.mountain'))
             .objectRepeat(ImageRepeat.X)
             .width(260)
@@ -1328,9 +1341,13 @@ struct ImageExample {
   }
 
   private async getPixelMaps() {
+    // $r('app.media.mountain')需要替换为开发者所需的图像资源文件。
     let myPixelMaps: PixelMap[] = await this.getPixmapListFromMedia($r('app.media.mountain')); //添加图片
+    // $r('app.media.sky')需要替换为开发者所需的图像资源文件。
     myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.sky')));
+    // $r('app.media.clouds')需要替换为开发者所需的图像资源文件。
     myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.clouds')));
+    // $r('app.media.landscape')需要替换为开发者所需的图像资源文件。
     myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.landscape')));
     return myPixelMaps;
   }
@@ -1349,7 +1366,9 @@ import { drawing, common2D } from '@kit.ArkGraphics2D';
 @Entry
 @Component
 struct ImageExample3 {
+  // $r('app.media.1')需要替换为开发者所需的图像资源文件。
   private imageOne: Resource = $r('app.media.1');
+  // $r('app.media.2')需要替换为开发者所需的图像资源文件。
   private imageTwo: Resource = $r('app.media.2');
   @State src: Resource = this.imageOne;
   @State src2: Resource = this.imageTwo;
@@ -1384,6 +1403,7 @@ struct ImageExample3 {
         })
 
       //当加载图片为svg格式时
+      // $r('app.media.test_self')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.test_self'))
         .width(110)
         .height(110)
@@ -1412,12 +1432,14 @@ struct ImageExample{
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
         Row() {
           // 加载png格式图片
+          // $r('app.media.sky')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.sky'))
             .width(110).height(110).margin(15)
             .overlay('png', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
             .border({ width: 2, color: Color.Pink })
             .objectFit(ImageFit.TOP_START)
           // 加载gif格式图片
+          // $r('app.media.loading')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.loading'))
             .width(110).height(110).margin(15)
             .overlay('gif', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
@@ -1426,12 +1448,14 @@ struct ImageExample{
         }
         Row() {
           // 加载svg格式图片
+          // $r('app.media.svg')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.svg'))
             .width(110).height(110).margin(15)
             .overlay('svg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
             .border({ width: 2, color: Color.Pink })
             .objectFit(ImageFit.TOP_END)
           // 加载jpg格式图片
+          // $r('app.media.jpg')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.jpg'))
             .width(110).height(110).margin(15)
             .overlay('jpg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
@@ -1455,6 +1479,7 @@ struct ImageExample{
 @Component
 struct ImageContentExample {
   @State imageSrcIndex: number = 0;
+  // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
   @State imageSrcList: (ResourceStr | ImageContent)[] = [$r('app.media.app_icon'), ImageContent.EMPTY];
 
   build() {
@@ -1485,6 +1510,7 @@ struct ImageContentExample {
 struct ImageExample {
   build() {
     Column({ space: 10 }) {
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.startIcon'))
         .width(50)
         .height(50)
@@ -1526,6 +1552,7 @@ struct ImageExample11 {
     this.moveImg.pop();
     this.moveImg.push('imageScanEffect');
     setTimeout(() => {
+      // $r('app.media.img')需要替换为开发者所需的图像资源文件。
       this.imgResource = $r('app.media.img');
     }, 3000);
     this.getUIContext()?.animateTo({
@@ -1613,6 +1640,7 @@ struct Test {
     Row() {
       Column({ space: 50 }) {
         Column({ space: 5 }) {
+          // $r('app.media.example')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.example'))
             .border({ width:2, color: Color.Black })
             .objectFit(ImageFit.Contain)
@@ -1622,6 +1650,7 @@ struct Test {
             .fontSize('25px')
         }
         Column({ space: 5 }) {
+          // $r('app.media.example')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.example'))
             .border({ width:2, color: Color.Black })
             .objectFit(ImageFit.None)
@@ -1633,6 +1662,7 @@ struct Test {
             .fontSize('25px')
         }
         Column({ space: 5 }) {
+          // $r('app.media.example')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.example'))
             .objectFit(ImageFit.MATRIX)
             .imageMatrix(this.matrix1)
@@ -1662,12 +1692,14 @@ struct Index {
   @State borderRadiusValue: number = 10;
   build() {
     Column() {
+      // $r('app.media.sky')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.sky'))
         .sourceSize({width:1393, height:1080})
         .height(300)
         .width(300)
         .objectFit(ImageFit.Contain)
         .borderWidth(1)
+      // $r('app.media.sky')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.sky'))
         .sourceSize({width:13, height:10})
         .height(300)
@@ -1694,6 +1726,7 @@ struct Index {
   @State borderRadiusValue: number = 10;
   build() {
     Column() {
+      // $r('app.media.sky')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.sky'))
         .renderMode(ImageRenderMode.Template)
         .height(300)
@@ -1720,6 +1753,7 @@ struct Index {
   @State borderRadiusValue: number = 10;
   build() {
     Column() {
+      // $r('app.media.sky')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.sky'))
         .objectRepeat(ImageRepeat.Y)
         .height('90%')
@@ -1746,12 +1780,14 @@ struct Index {
   build() {
     Column() {
       Text('不设置fillColor')
+      // $r('app.media.svgExample')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.svgExample'))
         .height(100)
         .width(100)
         .objectFit(ImageFit.Contain)
         .borderWidth(1)
       Text('fillColor传入ColorContent.ORIGIN')
+      // $r('app.media.svgExample')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.svgExample'))
         .height(100)
         .width(100)
@@ -1759,6 +1795,7 @@ struct Index {
         .borderWidth(1)
         .fillColor(ColorContent.ORIGIN)
       Text('fillColor传入Color.Blue')
+      // $r('app.media.svgExample')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.svgExample'))
         .height(100)
         .width(100)
@@ -1766,6 +1803,7 @@ struct Index {
         .borderWidth(1)
         .fillColor(Color.Blue)
       Text('fillColor传入undefined')
+      // $r('app.media.svgExample')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.svgExample'))
         .height(100)
         .width(100)
@@ -1793,6 +1831,7 @@ const TAG = 'AceImage';
 @Entry
 @Component
 struct Index {
+  // 'img_1'需要替换为开发者所需的图像资源文件。
   @State imgUrl: string = 'img_1';
   @State bright: number = 0; // 默认亮度为0
   aboutToAppear(): void {
@@ -1816,6 +1855,7 @@ struct Index {
 
   build() {
     Column() {
+      // $r('app.media.img_1')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.img_1')).width('50%')
         .height('auto')
         .margin({ top: 160 })
@@ -1847,12 +1887,14 @@ struct Index {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
         Row() {
           // 图片不跟随系统语言方向
+          // $r('app.media.ocean')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.ocean'))
             .width(110).height(110).margin(15)
             .matchTextDirection(false)
         }
         Row() {
           // 图片跟随系统语言方向
+          // $r('app.media.ocean')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.ocean'))
             .width(110).height(110).margin(15)
             .matchTextDirection(true)
@@ -1878,6 +1920,7 @@ struct OrientationExample {
       Row({ space: 25 }) {
         Column() {
           Text('AUTO')
+          // $r('app.media.hello')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.hello'))
             .width(125).height(125)
             .orientation(ImageRotateOrientation.AUTO)
@@ -1885,6 +1928,7 @@ struct OrientationExample {
 
         Column() {
           Text('UP')
+          // $r('app.media.hello')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.hello'))
             .width(125).height(125)
             .orientation(ImageRotateOrientation.UP)
@@ -1892,6 +1936,7 @@ struct OrientationExample {
 
         Column() {
           Text('RIGHT')
+          // $r('app.media.hello')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.hello'))
             .width(125).height(125)
             .orientation(ImageRotateOrientation.RIGHT)
@@ -1901,6 +1946,7 @@ struct OrientationExample {
       Row({ space: 25 }) {
         Column() {
           Text('DOWN')
+          // $r('app.media.hello')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.hello'))
             .width(125).height(125)
             .orientation(ImageRotateOrientation.DOWN)
@@ -1908,6 +1954,7 @@ struct OrientationExample {
 
         Column() {
           Text('LEFT')
+          // $r('app.media.hello')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.hello'))
             .width(125).height(125)
             .orientation(ImageRotateOrientation.LEFT)
@@ -1915,6 +1962,7 @@ struct OrientationExample {
 
         Column() {
           Text('UP_MIRRORED')
+          // $r('app.media.hello')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.hello'))
             .width(125).height(125)
             .orientation(ImageRotateOrientation.UP_MIRRORED)
@@ -1924,6 +1972,7 @@ struct OrientationExample {
       Row({ space: 15 }) {
         Column() {
           Text('RIGHT_MIRRORED')
+          // $r('app.media.hello')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.hello'))
             .width(125).height(125)
             .orientation(ImageRotateOrientation.RIGHT_MIRRORED)
@@ -1931,6 +1980,7 @@ struct OrientationExample {
 
         Column() {
           Text('DOWN_MIRRORED')
+          // $r('app.media.hello')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.hello'))
             .width(125).height(125)
             .orientation(ImageRotateOrientation.DOWN_MIRRORED)
@@ -1938,6 +1988,7 @@ struct OrientationExample {
 
         Column() {
           Text('LEFT_MIRRORED')
+          // $r('app.media.hello')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.hello'))
             .width(125).height(125)
             .orientation(ImageRotateOrientation.LEFT_MIRRORED)
@@ -2002,6 +2053,7 @@ struct Example {
     try {
       const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
       // 传入带有EXIF信息的资源文件，获取资源文件内容，返回Uint8Array。
+      // 'hello.jpg'需要替换为开发者所需的图像资源文件。
       const fileData: Uint8Array = await resourceMgr.getRawFileContent('hello.jpg');
       console.info('Successfully get RawFileContent');
       // 转为ArrayBuffer并返回。
@@ -2045,6 +2097,7 @@ struct Example {
     Column({ space: 40 }) {
       Column({ space: 10 }) {
         Text('before').fontSize(20).fontWeight(700)
+        // 'hello.jpg'需要替换为开发者所需的图像资源文件。
         Image($rawfile('hello.jpg'))
           .width(100)
           .height(100)
@@ -2095,6 +2148,7 @@ struct fillColorMetricsDemo {
   build() {
     Column() {
       Text("FillColor is " + this.colorArrayStr[this.arrayIdx])
+      // $r('app.media.svgExample')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.svgExample'))
         .width(110).height(110).margin(15)
         .fillColor(this.colorArray[this.arrayIdx])
@@ -2104,16 +2158,19 @@ struct fillColorMetricsDemo {
         })
       Blank().height(30).width('100%')
       Text("FillColor is SRGB Red")
+      // $r('app.media.svgExample')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.svgExample'))
         .width(110).height(110).margin(15)
         .fillColor(this.sRGBRed)
       Blank().height(30).width('100%')
       Text("FillColor is SRGB Green")
+      // $r('app.media.svgExample')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.svgExample'))
         .width(110).height(110).margin(15)
         .fillColor(this.sRGBGreen)
       Blank().height(30).width('100%')
       Text("FillColor is SRGB Blue")
+      // $r('app.media.svgExample')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.svgExample'))
         .width(110).height(110).margin(15)
         .fillColor(this.sRGBBlue)
@@ -2142,6 +2199,7 @@ struct Index {
     }
     // /data/storage/el2/base/haps/entry/files/cloud.png
     // 从应用沙箱中的文件路径获取URI
+    // '/cloud.png'需要替换为开发者所需的图像资源文件。
     return fileUri.getUriFromPath(context.filesDir + '/cloud.png');
   }
 

@@ -122,11 +122,11 @@
                 var msg = 'Got message from ets:';
                 var result = event.data;
                 if (typeof(result) === 'string') {
-                  console.info(`received string message from html5, string is: ${result}`);
+                  console.info(`received string message from ets, string is: ${result}`);
                   msg = msg + result;
                 } else if (typeof(result) === 'object') {
                   if (result instanceof ArrayBuffer) {
-                    console.info(`received arraybuffer from html5, length is: ${result.byteLength}`);
+                    console.info(`received arraybuffer from ets, length is: ${result.byteLength}`);
                     msg = msg + 'length is ' + result.byteLength;
                   } else {
                     console.info('not support');

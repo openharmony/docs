@@ -4838,6 +4838,20 @@ Allows an application to start virus scanning tasks.
 
 **Valid since**: 20
 
+## ohos.permission.ACCESS_DISTRIBUTED_KEY_STORE
+
+Allows an application to use the distributed keystore capabilities.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Supported devices**: Phone | Tablet | PC/2in1 | Wearable | TV
+
+**Valid since**: 20
+
 ## ohos.permission.UPLOAD_SAMPLE_FILE
 
 Allows an application to upload sample files to the cloud.
@@ -5075,5 +5089,33 @@ With this permission, the HAP can load independent binary .so files with a devel
 **Enable via ACL**: true
 
 **Supported devices**: PCs/2-in-1 devices
+
+**Valid since**: 20
+
+## ohos.permission.GET_DEVICE_INDEPENDENT_BINARY_CERT
+
+Allows a system application to query the certificate information of independent binary programs.
+
+**Permission level**: ：system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: PC/2in1
+
+**Valid since**: 20
+
+## ohos.permission.SET_DEVICE_INDEPENDENT_BINARY_CERT_STATUS
+
+Allows a system application to set the certificate status of independent binary programs.
+
+**Permission level**: ：system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: PC/2in1
 
 **Valid since**: 20
