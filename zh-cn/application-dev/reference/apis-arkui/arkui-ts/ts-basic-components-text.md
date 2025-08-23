@@ -713,7 +713,7 @@ bindSelectionMenu的长按响应时长为600ms，bindContextMenu的长按响应�
 | spanType     | [TextSpanType](#textspantype11枚举说明)          | 是   | 选择菜单的类型。<br/>默认值：TextSpanType.TEXT               |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)                  | 是   | 选择菜单的内容。                                             |
 | responseType | [TextResponseType](#textresponsetype11枚举说明)  | 是   | 选择菜单的响应类型。<br/>默认值：TextResponseType.LONG_PRESS |
-| options      | [SelectionMenuOptions](ts-basic-components-richeditor.md#selectionmenuoptions10) | 否   | 选择菜单的选项。                                             |
+| options      | [SelectionMenuOptions](ts-basic-components-richeditor.md#selectionmenuoptions) | 否   | 选择菜单的选项。                                             |
 
 >  **说明：**
 >
