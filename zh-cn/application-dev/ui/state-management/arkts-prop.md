@@ -293,7 +293,7 @@ struct Index {
 7
 7
 7
-----
+——————
 7
 7
 7
@@ -305,7 +305,7 @@ struct Index {
 3
 4
 5
-----
+——————
 7
 4
 5
@@ -423,7 +423,6 @@ struct Library {
         .padding({ left: 20, top: 10 })
         .borderRadius(20)
         .colorBlend('#e6000000')
-      Divider()
       Text('Books on loan to a reader')
         .width(312)
         .height(40)
