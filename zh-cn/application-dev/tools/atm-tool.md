@@ -113,7 +113,7 @@ atm dump [-h] [-t [-i <token-id>] [-b <bundle-name>] [-n <process-name>]] [-r [-
 ```
 <!--RP1End-->
 
-下表所列命令中，-t<!--Del-->、-r、-v<!--DelEnd-->为必选参数，-i、-b、-n、-p为可选参数。<!--Del-->对atm dump -r和atm dump -v命令，-i和-p参数可以组合使用；<!--DelEnd-->对atm dump -t命令，-i、-b、-n参数只能单独使用。
+下表所列命令中，-t<!--Del-->、-r、-v<!--DelEnd-->为必选参数，-i、-b、-n<!--Del-->、-p<!--DelEnd-->为可选参数。<!--Del-->对atm dump -r和atm dump -v命令，-i和-p参数可以组合使用；<!--DelEnd-->对atm dump -t命令，-i、-b、-n参数只能单独使用。
 
 | 参数                                          | 参数说明                                                 | 
 | ----------------------------------------------- | ---------------------------------------------------- | 
