@@ -535,7 +535,7 @@ Navigation作为路由组件，默认支持跨包跳转。
    }
    ```
 
-2. 在HSP（HAR）的index.ets中导出组件。
+2. 在HSP（HAR）的Index.ets中导出组件。
 
    ```ts
    export { PageInHSP } from "./src/main/ets/pages/PageInHSP"
