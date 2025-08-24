@@ -1,4 +1,10 @@
 # 请求自绘制内容绘制帧率
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hudi33-->
+<!--Designer: @hudi33-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @ge-yafang-->
 
 对于基于[XComponent](../ui/napi-xcomponent-guidelines.md)进行Native开发的业务，可以请求独立的绘制帧率进行内容开发，如游戏、自绘制UI框架对接等场景。
 
@@ -10,11 +16,44 @@
 | OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent *component, OH_NativeXComponent_OnFrameCallback *callback) | 设置每帧回调函数，同时启动每帧回调。 |
 | OH_NativeXComponent_UnRegisterOnFrameCallback (OH_NativeXComponent *component) | 取消注册的每帧回调函数，同时停止调用回调函数。 |
 
-## 开发步骤
+详细的接口说明请参考[NativeXComponent](../reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent-nativewindow.md)。
 
-   > **说明：**
-   >
-   > 本范例是通过Drawing在Native侧实现图形的绘制，并将其呈现在NativeWindow上，具体可参考[使用Drawing实现图形绘制与显示](graphic-drawing-overview.md)。
+## 开发示例
+   本范例是通过Drawing在Native侧实现图形的绘制，并将其呈现在NativeWindow上，具体可参考[使用Drawing实现图形绘制与显示](graphic-drawing-overview.md)。
+
+### 添加开发依赖
+
+**添加动态链接库**
+
+CMakeLists.txt中添加以下lib。
+
+```txt
+libace_napi.z.so
+libace_ndk.z.so
+libnative_window.so
+libnative_drawing.so
+```
+
+**头文件**
+
+```c++
+#include <ace/xcomponent/native_interface_xcomponent.h>
+#include "napi/native_api.h"
+#include <native_drawing/drawing_bitmap.h>
+#include <native_drawing/drawing_color.h>
+#include <native_drawing/drawing_canvas.h>
+#include <native_drawing/drawing_pen.h>
+#include <native_drawing/drawing_brush.h>
+#include <native_drawing/drawing_path.h>
+#include <native_drawing/drawing_text_typography.h>
+#include <native_window/external_window.h>
+#include <cmath>
+#include <algorithm>
+#include <stdint.h>
+#include <sys/mman.h>
+```
+
+## 开发步骤
 
 1. 定义ArkTS接口文件XComponentContext.ts，用来对接Native层。
    ```ts
