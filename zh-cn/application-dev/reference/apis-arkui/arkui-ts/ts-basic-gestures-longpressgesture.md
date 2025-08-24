@@ -19,9 +19,9 @@
 
 ### LongPressGesture
 
-LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number })
+LongPressGesture(value?: { fingers?: number; repeat?: boolean; duration?: number })
 
-设置长按手势事件。
+继承自[GestureInterface\<T>](ts-gesture-settings.md#gestureinterfacet11)，设置长按手势事件。
 
 当组件默认支持可拖拽时，如Text、TextInput、TextArea、HyperLink、Image和RichEditor等组件。长按手势与拖拽会出现冲突，事件优先级如下： 
 
@@ -37,7 +37,7 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | { fingers?: number, repeat?: boolean, duration?: number } | 否 | 设置长按手势事件参数。<br> - fingers：触发长按的最少手指数，最小值为1，&nbsp;最大值为10。<br/>默认值：1 <br> - repeat：是否连续触发事件回调。true表示连续触发事件回调，false表示不连续触发事件回调。<br/>默认值：false <br> - duration：触发长按的最短时间，单位为毫秒（ms）。<br/>默认值：500 |
+| value | { fingers?: number; repeat?: boolean; duration?: number } | 否 | 设置长按手势事件参数。<br> - fingers：触发长按的最少手指数，最小值为1，&nbsp;最大值为10。<br/>默认值：1 <br> - repeat：是否连续触发事件回调。true表示连续触发事件回调，false表示不连续触发事件回调。<br/>默认值：false <br> - duration：触发长按的最短时间，单位为毫秒（ms）。<br/>默认值：500 |
 
 ### LongPressGesture<sup>15+</sup>
 
@@ -133,16 +133,6 @@ LongPress手势识别成功，接收到触摸取消事件触发回调。返回�
 | 参数名 | 类型                                       | 必填 | 说明                         |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
 | event  |  Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是   | 手势事件回调函数。 |
-
-## 属性
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称 | 类型    | 只读 | 可选 | 说明                                        |
-| ----  | ------  | ----------- | ------------ | ----------------- |
-| tag<sup>11+</sup>   | string  | 否 | 否 | 设置LongPress手势标志，用于自定义手势判定时区分绑定的手势。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)> | 否 | 否 | 设置LongPress手势支持的事件输入源。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-
 
 ## 示例
 
