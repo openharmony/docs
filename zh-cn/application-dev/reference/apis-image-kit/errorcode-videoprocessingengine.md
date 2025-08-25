@@ -28,7 +28,7 @@ Some unknown error occurred, such as GPU calculation failure or memcpy failure.
 
 **错误信息**
 
-The global environment initialization for video processing failed, such as failure to initialize the GPU environment.
+The global environment initialization for image processing failed, such as failure to initialize the GPU environment.
 
 **错误描述**
 
