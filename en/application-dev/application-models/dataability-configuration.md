@@ -1,4 +1,10 @@
-# DataAbility Configuration
+# DataAbility Component Configuration
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @xialiangwei-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 
 ## URI Introduction

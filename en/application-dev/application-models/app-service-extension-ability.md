@@ -1,8 +1,14 @@
 # Using AppServiceExtensionAbility for Background Services
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yewei0794-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 ## Overview
 
-Since API version 20, you can use the [AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md) component to provide backend services. This component is designed primarily for common enterprise applications on 2-in-1 devices, for example, EDR software for network security or MDM software for fleet management.
+Starting from API version 20, you can use the [AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md) component to provide backend services. This component is designed primarily for common enterprise applications on 2-in-1 devices, for example, EDR software for network security or MDM software for fleet management.
 
 ## Available APIs
 
@@ -246,7 +252,7 @@ The client can connect to a background service (specified in the Want object) th
 
 The AppServiceExtensionAbility returns an [IRemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#iremoteobject) object in [onConnect()](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md#onconnect). This object is then delivered as an input parameter to the client's [onConnect()](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md#onconnect). Through this IRemoteObject, you can define communication interfaces for RPC interaction between the client and server. Multiple clients can simultaneously connect to the same background service. After a client finishes the interaction, it must call [disconnectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectappserviceextensionability20) to disconnect from the service. If all clients connected to a background service are disconnected, the system destroys the service.
 
-- Call [connectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectappserviceextensionability20) to establish a connection to a background service. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
+- Call [connectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20) to establish a connection to a background service. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
   
   ```ts
   import { common, Want } from '@kit.AbilityKit';
@@ -314,7 +320,7 @@ The AppServiceExtensionAbility returns an [IRemoteObject](../reference/apis-ipc-
   }
   ```
 
-- Use [disconnectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20) to disconnect from the background service.
+- Use [disconnectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectappserviceextensionability20) to disconnect from the background service.
   
   ```ts
   import { common } from '@kit.AbilityKit';
@@ -339,7 +345,7 @@ The AppServiceExtensionAbility returns an [IRemoteObject](../reference/apis-ipc-
             }
             .onClick(() => {
               let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
-              // connectionId is returned when disconnectAppServiceExtensionAbility is called and needs to be manually maintained.
+              // connectionId is returned when connectServiceExtensionAbility is called and needs to be manually maintained.
               context.disconnectAppServiceExtensionAbility(connectionId).then(() => {
                 hilog.info(DOMAIN_NUMBER, TAG, 'disconnectAppServiceExtensionAbility success');
                 // The background service is disconnected.

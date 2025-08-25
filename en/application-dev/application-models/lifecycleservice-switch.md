@@ -1,4 +1,10 @@
 # LifecycleService Switching
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @xialiangwei-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 
   | API in the FA Model| Corresponding .d.ts File in the Stage Model| Corresponding API in the Stage Model| 
