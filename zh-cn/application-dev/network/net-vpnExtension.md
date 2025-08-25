@@ -25,6 +25,7 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。当前提供
 ## 接口说明
 
 完整的JS API说明以及示例代码请参考：[VPN扩展应用API](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
+<br/>使用该功能需要INTERNET权限。
 
 ## 创建VPN Extension Ability
 
