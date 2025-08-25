@@ -1,6 +1,12 @@
 # LauncherAbilityInfo
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
-The module describes the ability information of the launcher application. The information can be obtained by calling [getLauncherAbilityInfoSync](js-apis-launcherBundleManager.md#launcherbundlemanagergetlauncherabilityinfosync18)<!--Del--> or [getLauncherAbilityInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetlauncherabilityinfo9)<!--DelEnd-->.
+The module describes the ability information of the launcher application. The information can be obtained by calling [getLauncherAbilityInfoSync](js-apis-launcherBundleManager.md#launcherbundlemanagergetlauncherabilityinfosync)<!--Del--> or [getLauncherAbilityInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetlauncherabilityinfo9)<!--DelEnd-->.
 
 > **NOTE**
 >
@@ -20,7 +26,7 @@ import { launcherBundleManager } from '@kit.AbilityKit';
 | --------------- | ----------------------------------------------------------- | ---- | ---- | ------------------------------------ |
 | applicationInfo | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | Yes  | No  | Application information of the launcher ability.|
 | elementName     | [ElementName](js-apis-bundleManager-elementName.md)         | Yes  | No  | Element name of the launcher ability.   |
-| labelId         | number                                                      | Yes  | No  | Label ID of the launcher ability.            |
-| iconId          | number                                                      | Yes  | No  | Icon ID of the launcher ability.            |
+| labelId         | number                                                      | Yes  | No  | ID of the launcher ability label.     |
+| iconId          | number                                                      | Yes  | No  | ID of the launcher ability icon.     |
 | userId          | number                                                      | Yes  | No  | User ID of the launcher ability.            |
 | installTime     | number                                                      | Yes  | No  | Timestamp when the launcher ability was installed, in milliseconds.|
