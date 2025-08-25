@@ -405,7 +405,7 @@ int32_t OH_WindowManager_Snapshot(int32_t windowId, OH_PixelmapNative* pixelMap)
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t windowId | 创建窗口时的窗口id。默认值为0。该参数为整数。<br>窗口id非法或者窗口已经销毁，不能获取指定窗口截图，需要传入有效的窗口id才能成功获取指定窗口截图。<br>请通过窗口对象调用[getWindowProperties()](./arkts-apis-window-Window.md#getwindowproperties9)接口（ArkTS接口）获取有效的窗口id。 |
+| int32_t windowId | 创建窗口时的窗口id。默认值为0。该参数为整数。<br>窗口id非法或者窗口已经销毁，不能获取指定窗口截图，需要传入有效的窗口id才能成功获取指定窗口截图。<br>请通过窗口对象调用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)接口（ArkTS接口）获取有效的窗口id。 |
 | [OH_PixelmapNative](capi-struct.md)* pixelMap | 返回指向指定窗口的截图的指针，作为出参使用。 |
 
 **返回：**
@@ -431,7 +431,7 @@ int32_t OH_WindowManager_GetAllWindowLayoutInfoList(int64_t displayId,WindowMana
 
 | 参数项 | 描述 |
 | -- | -- |
-| int64_t displayId | 指定屏幕的id。请通过窗口对象调用[getWindowProperties()](./arkts-apis-window-Window.md#getwindowproperties9)接口（ArkTS接口）获取有效的屏幕id。 |
+| int64_t displayId | 指定屏幕的id。请通过窗口对象调用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)接口（ArkTS接口）获取有效的屏幕id。 |
 | [WindowManager_Rect](capi-windowmanager-rect.md)** windowLayoutInfoList | 指定屏幕上可见的窗口布局信息数组的数组指针，作为出参使用。 |
 | size_t* windowLayoutInfoSize | 指定屏幕上可见的窗口布局信息数组长度的指针，作为出参使用。 |
 
