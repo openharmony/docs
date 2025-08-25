@@ -103,7 +103,7 @@ constructor(elements: Iterable\<number>)
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| elements |  Iterable\<number> | 是 | 用于构造ArkTS Uint32Array的对象。 |
+| elements |  Iterable\<number> | 是 | 可迭代数字集合，用于构造ArkTS Uint32Array对象。 |
 
 **错误码：**
 
