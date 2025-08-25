@@ -34,8 +34,8 @@ onClick(event: Callback\<ClickEvent>, distanceThreshold: number): T
 >  **说明：**
 >
 >  从API version 12开始，在使用卡片能力时，存在以下限制：
->  1. 如果手指按下的持续时间超过800ms，不能触发点击事件。
->  2. 如果手指按下后移动位移超过20px，不能触发点击事件。
+>  1. 如果手指按下超过800ms，不能触发点击事件。
+>  2. 如果手指按下之后移动位移超过20px，不能触发点击事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -50,7 +50,7 @@ onClick(event: Callback\<ClickEvent>, distanceThreshold: number): T
 
 >  **说明：**
 >
->  如果执行滑动操作，但滑动距离未超过点击事件移动阈值，并且抬手时手指在组件热区范围内，也会触发点击事件。
+>  如果是滑动操作，但是滑动距离未超过点击事件移动阈值并且抬手时手指在组件热区范围内，也会触发点击事件。
 
 **返回值：**
 
@@ -70,9 +70,9 @@ onClick(event: (event: ClickEvent) => void): T
 
 >  **说明：**
 >
->  从API version 9开始，使用卡片能力时存在以下限制：
->  1. 如果手指按下的持续时间超过800ms，不能触发点击事件。
->  2. 如果手指按下后移动位移超过20px，不能触发点击事件。
+>  从API version 9开始，在使用卡片能力时，存在以下限制：
+>  1. 如果手指按下超过800ms，不能触发点击事件。
+>  2. 如果手指按下之后移动位移超过20px，不能触发点击事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -121,9 +121,7 @@ onClick(event: (event: ClickEvent) => void): T
 
 ## EventTarget<sup>8+</sup>对象说明
 
-[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)中参数target的类型。
-
-触发事件的元素对象的显示区域。
+触发事件的元素对象显示区域。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
