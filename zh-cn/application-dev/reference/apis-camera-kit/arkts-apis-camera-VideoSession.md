@@ -59,6 +59,8 @@ canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boo
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testCanPreconfig(videoSession: camera.VideoSession, preconfigType: camera.PreconfigType,
   preconfigRatio: camera.PreconfigRatio): void {
   try {
@@ -99,6 +101,8 @@ preconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testPreconfig(videoSession: camera.VideoSession, preconfigType: camera.PreconfigType,
   preconfigRatio: camera.PreconfigRatio): void {
   try {
