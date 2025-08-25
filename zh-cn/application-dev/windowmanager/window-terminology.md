@@ -41,17 +41,15 @@
 
 非[自由窗口](#自由窗口)可以通过调用[setWindowLayoutFullScreen](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowlayoutfullscreen9)进入沉浸式布局。
 
-| 原始布局                                      | 沉浸式布局                              |
+| 非沉浸式布局                                  | 沉浸式布局                              |
 |----------------------------------------------|----------------------------------------|
 | ![no_immersive](figures/no_immersive.png)    | ![immersive](figures/immersive.png)    |
 
 自由窗口可以通过隐藏装饰栏进入沉浸式布局。
 
-| 原始布局                                      | 沉浸式布局                              |
+| 非沉浸式布局                                  | 沉浸式布局                              |
 |----------------------------------------------|----------------------------------------|
-| ![no_immersive](figures/freewindow-no-immersive.png)    | ![immersive](figures/freewindow-immersive.png)    |
-
-非自由窗口可以通过调用[setWindowLayoutFullScreen](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowlayoutfullscreen9)进入沉浸式布局；自由窗口可以通过[maximize](reference/apis-arkui/arkts-apis-window-Window.md#maximize12)进入沉浸式布局。
+| ![freewindow-no-immersive](figures/freewindow-no-immersive.png)    | ![freewindow-immersive](figures/freewindow-immersive.png)    |
 
 应用窗口进入沉浸式布局之后，页面的所有组件布局范围从安全区域扩展为整个窗口。可以通过[isImmersiveLayout](../reference/apis-arkui/arkts-apis-window-Window.md#isimmersivelayout20)判断是否处于沉浸式布局。
 
