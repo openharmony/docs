@@ -1580,7 +1580,7 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
 安装私有凭证以实现双向认证。
 
 ```ts
-// xxx.ets API9
+// xxx.ets
 import { webview } from '@kit.ArkWeb';
 import { common } from '@kit.AbilityKit';
 import { certificateManager } from '@kit.DeviceCertificateKit';
@@ -1591,7 +1591,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct Index {
   controller: WebviewController = new webview.WebviewController();
-  context = getContext(this) as common.UIAbilityContext
+  uiContext : UIContext = this.getUIContext();
+  context : Context | undefined = this.uiContext.getHostContext() as common.UIAbilityContext;
   uri: string = ''
 
   aboutToAppear(): void {
@@ -1601,6 +1602,11 @@ struct Index {
   build() {
     Column() {
       Button("installPrivateCertificate").onClick(() => {
+        if (!this.context) {
+          return;
+        }
+
+        //注：badssl.com-client.p12需要替换为实际使用的证书文件
         let value: Uint8Array = this.context.resourceManager.getRawFileContentSync("badssl.com-client.p12");
         certificateManager.installPrivateCertificate(value, 'badssl.com', "1",
           async (err: BusinessError, data: certificateManager.CMResult) => {
@@ -1632,7 +1638,7 @@ struct Index {
         })
         .onErrorReceive((event) => {
           if (event) {
-            promptAction.showToast({
+            this.getUIContext().getPromptAction().showToast({
               message: `ErrorCode: ${event.error.getErrorCode()}, ErrorInfo: ${event.error.getErrorInfo()}`,
               alignment: Alignment.Center
             })
@@ -1780,7 +1786,7 @@ struct Index {
             })
             .onErrorReceive((event) => {
               if (event) {
-                promptAction.showToast({
+                this.getUIContext().getPromptAction().showToast({
                   message: `ErrorCode: ${event.error.getErrorCode()}, ErrorInfo: ${event.error.getErrorInfo()}`,
                   alignment: Alignment.Center
                 })
