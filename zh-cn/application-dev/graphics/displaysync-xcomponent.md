@@ -18,44 +18,40 @@
 
 详细的接口说明请参考[OH_NativeXComponent Native XComponent](../reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent.md)。
 
-## 开发示例
+## 开发步骤
    本范例是通过Drawing在Native侧实现图形的绘制，并将其呈现在NativeWindow上，具体可参考[使用Drawing实现图形绘制与显示](graphic-drawing-overview.md)。
 
-### 添加开发依赖
+1. 添加开发依赖。
 
-**添加动态链接库**
+  CMakeLists.txt中添加以下lib。
 
-CMakeLists.txt中添加以下lib。
+  ```txt
+  libace_napi.z.so
+  libace_ndk.z.so
+  libnative_window.so
+  libnative_drawing.so
+  ```
 
-```txt
-libace_napi.z.so
-libace_ndk.z.so
-libnative_window.so
-libnative_drawing.so
-```
+  导入依赖的相关头文件。
 
-**头文件**
+  ```c++
+  #include <ace/xcomponent/native_interface_xcomponent.h>
+  #include "napi/native_api.h"
+  #include <native_drawing/drawing_bitmap.h>
+  #include <native_drawing/drawing_color.h>
+  #include <native_drawing/drawing_canvas.h>
+  #include <native_drawing/drawing_pen.h>
+  #include <native_drawing/drawing_brush.h>
+  #include <native_drawing/drawing_path.h>
+  #include <native_drawing/drawing_text_typography.h>
+  #include <native_window/external_window.h>
+  #include <cmath>
+  #include <algorithm>
+  #include <stdint.h>
+  #include <sys/mman.h>
+  ```
 
-```c++
-#include <ace/xcomponent/native_interface_xcomponent.h>
-#include "napi/native_api.h"
-#include <native_drawing/drawing_bitmap.h>
-#include <native_drawing/drawing_color.h>
-#include <native_drawing/drawing_canvas.h>
-#include <native_drawing/drawing_pen.h>
-#include <native_drawing/drawing_brush.h>
-#include <native_drawing/drawing_path.h>
-#include <native_drawing/drawing_text_typography.h>
-#include <native_window/external_window.h>
-#include <cmath>
-#include <algorithm>
-#include <stdint.h>
-#include <sys/mman.h>
-```
-
-## 开发步骤
-
-1. 定义ArkTS接口文件XComponentContext.ts，用来对接Native层。
+2. 定义ArkTS接口文件XComponentContext.ts，用来对接Native层。
    ```ts
    export default interface XComponentContext {
    register(): void;
@@ -63,7 +59,7 @@ libnative_drawing.so
    };
    ```
 
-2. 定义演示页面，包含两个XComponent组件。
+3. 定义演示页面，包含两个XComponent组件。
 
    ```ts
    import XComponentContext from "../interface/XComponentContext";
@@ -94,7 +90,7 @@ libnative_drawing.so
    }
    ```
 
-3. Native层配置帧率和注册回调函数。
+4. Native层配置帧率和注册回调函数。
 
    ```ts
    static void TestCallback(OH_NativeXComponent *component, uint64_t timestamp, uint64_t targetTimestamp) // 定义每帧的回调函数
@@ -146,7 +142,7 @@ libnative_drawing.so
    }
    ```
 
-4. TS层注册和取消注册每帧回调。
+5. TS层注册和取消注册每帧回调。
 
    ```ts
    Row() {
