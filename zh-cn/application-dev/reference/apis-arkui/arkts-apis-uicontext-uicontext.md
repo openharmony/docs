@@ -1353,6 +1353,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 完整示例请参考[示例4（设置键盘避让模式为压缩）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例4设置键盘避让模式为压缩)、[示例5（设置键盘避让模式为上抬）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例5设置键盘避让模式为上抬)以及[示例6（切换避让模式）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例6切换避让模式)。
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
@@ -1396,6 +1397,7 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 
 完整示例请参考[示例4（设置键盘避让模式为压缩）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例4设置键盘避让模式为压缩)、[示例5（设置键盘避让模式为上抬）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例5设置键盘避让模式为上抬)以及[示例6（切换避让模式）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例6切换避让模式)。
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
@@ -3348,6 +3350,7 @@ setPixelRoundMode(mode: PixelRoundMode): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIContext } from '@kit.ArkUI';
@@ -3389,6 +3392,7 @@ getPixelRoundMode(): PixelRoundMode
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIContext } from '@kit.ArkUI';
