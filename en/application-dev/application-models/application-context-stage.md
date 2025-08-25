@@ -253,7 +253,7 @@ Different types of Context classes, which inherit from [Context](../reference/ap
 
 You can obtain basic information about the current application, module, UIAbility, or ExtensionAbility through the context property (such as the resource manager object and application information). Below is an example of acquiring information for the UIAbility.
 
-If you need to obtain resource objects across packages, see [Resource Access](../quick-start/resource-categories-and-access.md#resource-access).
+If you need to obtain resource objects across packages, see [Accessing Resources](../quick-start/resource-categories-and-access.md#accessing-resources).
 
   ```ts
   import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';

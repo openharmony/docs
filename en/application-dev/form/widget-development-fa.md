@@ -1,4 +1,9 @@
 # Developing a JS Widget (FA Model)
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
 The FA model is supported since API version 7, and no longer recommended. Application components are specified by exporting anonymous objects and fixed entry files. You cannot perform derivation for capability expansion. Now, the stage model is recommended for application development.
 
 ## Available APIs
@@ -203,14 +208,13 @@ To create a widget in the FA model, implement the widget lifecycle callbacks. Fo
     ```
 
 > **NOTE**
->
 > FormAbility cannot reside in the background. Therefore, continuous tasks cannot be processed in the widget lifecycle callbacks.
 
 ### Configuring the Widget Configuration File
 
 The widget configuration file is named **config.json**. Find the **config.json** file for the widget and edit the file depending on your need.
 
-- The **js** module in the **config.json** file provides JavaScript resources of the widget. The internal structure is described as follows: 
+- The **JS** module in the **config.json** file provides JavaScript resources of the widget. The internal structure is described as follows.
     | Name| Description| Data Type| Initial Value Allowed|
   | -------- | -------- | -------- | -------- |
   | name | Name of a JavaScript component. The default value is **default**.| String| No|
@@ -239,14 +243,14 @@ The widget configuration file is named **config.json**. Find the **config.json**
     ]
   ```
   
-- The **abilities** module in the **config.json** file corresponds to **FormAbility** of the widget. The internal structure is described as follows:
+- The **abilities** module in the **config.json** file corresponds to **FormAbility** of the widget. The internal structure is described as follows.
     | Name| Description| Data Type| Initial Value Allowed|
   | -------- | -------- | -------- | -------- |
   | name | Class name of a widget. The value is a string with a maximum of 127 bytes.| String| No|
   | description | Description of the widget. The value can be a string or a resource index to descriptions in multiple languages. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
   | isDefault | Whether the widget is a default one. Each ability has only one default widget.<br>**true**: The widget is the default one.<br>**false**: The widget is not the default one.| Boolean| No|
   | type | Type of the widget. The value can be:<br>**JS**: indicates a JavaScript-programmed widget.| String| No|
-  | colorMode | Color mode of the widget.<br>**auto**: The widget adopts the auto-adaptive color mode.<br>**dark**: The widget adopts the dark color mode.<br>**light**: The widget adopts the light color mode. | String | Yes (initial value: **auto**)|
+  | colorMode | Color mode of the widget.<br>**auto**: The widget adopts the auto-adaptive color mode.<br>**dark**: The widget adopts the dark color mode.<br>**light**: The widget adopts the light color mode. | String| Yes (initial value: **auto**)|
   | supportDimensions | Grid styles supported by the widget.<br>**1 * 2**: indicates a grid with one row and two columns.<br>**2 * 2**: indicates a grid with two rows and two columns.<br>**2 * 4**: indicates a grid with two rows and four columns.<br>**4 * 4**: indicates a grid with four rows and four columns.| String array| No|
   | defaultDimension | Default grid style of the widget. The value must be available in the **supportDimensions** array of the widget.| String| No|
   | updateEnabled | Whether the widget can be updated periodically.<br>**true**: The widget can be updated at a specified interval (**updateDuration**) or at the scheduled time (**scheduledUpdateTime**). **updateDuration** takes precedence over **scheduledUpdateTime**.<br>**false**: The widget cannot be updated periodically.| Boolean| No|

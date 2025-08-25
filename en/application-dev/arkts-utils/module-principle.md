@@ -26,7 +26,7 @@ A regular module is loaded once in the same thread and multiple times in differe
 
 ECMAScript modules (ES modules) are a module feature implemented in JavaScript starting from ECMAScript 6.0, standardized in the ECMAScript® 2025 Language Specification (tc39.es). The module functionality is composed of two commands: **export** and **import**.
 
-For details about how to use **export** and **import** in ArkTS, see [ArkTS Introduction](../quick-start/introduction-to-arkts.md#modules).
+For details about how to use **export** and **import** in ArkTS, see [ArkTS Introduction](../quick-start/introduction-to-arkts.md#module).
 
 ### CommonJS Module
 

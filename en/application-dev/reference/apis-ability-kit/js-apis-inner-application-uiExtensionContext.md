@@ -1295,7 +1295,7 @@ export default class ShareExtAbility extends ShareExtensionAbility {
 
 startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 
-Starts a [UIServiceExtensionAbility](../../application-models/uiserviceextension.md).
+Starts a UIServiceExtensionAbility.
 
 > **NOTE**
 >
@@ -1381,7 +1381,7 @@ struct Index {
 
 connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnectCallback) : Promise&lt;UIServiceProxy&gt;
 
-Connects to a [UIServiceExtensionAbility](../../application-models/uiserviceextension.md).
+Connects to a UIServiceExtensionAbility.
 
 > **NOTE**
 >
@@ -1471,7 +1471,7 @@ struct Page_UIServiceExtensionAbility {
 
 disconnectUIServiceExtensionAbility(proxy: UIServiceProxy): Promise&lt;void&gt;
 
-Disconnects from a [UIServiceExtensionAbility](../../application-models/uiserviceextension.md).
+Disconnects from a UIServiceExtensionAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

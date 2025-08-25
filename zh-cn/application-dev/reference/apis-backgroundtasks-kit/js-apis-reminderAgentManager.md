@@ -51,6 +51,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 **示例**：
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 
 let timer: reminderAgentManager.ReminderRequestTimer = {
   reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
@@ -109,6 +110,7 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 **示例**：
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 
 let timer: reminderAgentManager.ReminderRequestTimer = {
   reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
@@ -152,6 +154,7 @@ cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 
 let reminderId: number = 1;
 reminderAgentManager.cancelReminder(reminderId, (err: BusinessError) => {
@@ -197,6 +200,7 @@ cancelReminder(reminderId: number): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 
 let reminderId: number = 1;
 reminderAgentManager.cancelReminder(reminderId).then(() => {
@@ -233,6 +237,7 @@ getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 
 reminderAgentManager.getValidReminders((err: BusinessError, reminders: Array<reminderAgentManager.ReminderRequest>) => {
   if (err.code) {
@@ -290,6 +295,7 @@ getValidReminders(): Promise\<Array\<ReminderRequest>>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 
 reminderAgentManager.getValidReminders().then((reminders: Array<reminderAgentManager.ReminderRequest>) => {
   console.log("promise, getValidReminders length = " + reminders.length);
@@ -345,6 +351,7 @@ cancelAllReminders(callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 
 reminderAgentManager.cancelAllReminders((err: BusinessError) =>{
   if (err.code) {
@@ -382,6 +389,7 @@ cancelAllReminders(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 
 reminderAgentManager.cancelAllReminders().then(() => {
   console.log("cancelAllReminders promise")
@@ -419,6 +427,7 @@ addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): voi
 ```ts
 import { notificationManager } from '@kit.NotificationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 
 let mySlot: notificationManager.NotificationSlot = {
   notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
@@ -467,6 +476,7 @@ addNotificationSlot(slot: NotificationSlot): Promise\<void>
 ```ts
 import { notificationManager } from '@kit.NotificationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 
 let mySlot: notificationManager.NotificationSlot = {
   notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
@@ -507,6 +517,7 @@ removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\
 ```ts
 import { notificationManager } from '@kit.NotificationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 
 reminderAgentManager.removeNotificationSlot(notificationManager.SlotType.CONTENT_INFORMATION,
   (err: BusinessError) => {
@@ -552,6 +563,7 @@ removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 ```ts
 import { notificationManager } from '@kit.NotificationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 
 reminderAgentManager.removeNotificationSlot(notificationManager.SlotType.CONTENT_INFORMATION).then(() => {
   console.log("removeNotificationSlot promise");
@@ -586,6 +598,7 @@ getAllValidReminders(): Promise\<Array\<ReminderInfo>>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 
 reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgentManager.ReminderInfo>) => {
   console.log("promise, getAllValidReminders length = " + reminders.length);
@@ -649,6 +662,7 @@ addExcludeDate(reminderId: number, date: Date): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 
 let reminderId: number = 1;
 let date = new Date();
@@ -692,6 +706,7 @@ deleteExcludeDates(reminderId: number): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 
 let reminderId: number = 1;
 reminderAgentManager.deleteExcludeDates(reminderId).then(() => {
@@ -734,6 +749,7 @@ getExcludeDates(reminderId: number): Promise\<Array\<Date>>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 
 let reminderId: number = 1;
 reminderAgentManager.getExcludeDates(reminderId).then((dates) => {
