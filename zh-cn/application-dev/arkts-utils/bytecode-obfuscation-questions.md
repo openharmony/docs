@@ -129,6 +129,22 @@ this.__messageStr = new ObservedPropertySimplePU('Hello World', this, "messageSt
 源码：
 
 ```ts
+import { Type } from '@kit.ArkUI';
+
+// 数据中心
+@ObservedV2
+class SampleChild {
+	@Trace p123: number = 0;
+    p2: number = 10;
+}
+
+@ObservedV2
+export class Sample {
+    // 对于复杂对象需要@Type修饰，确保序列化成功
+    @Type(SampleChild)
+    @Trace f123: SampleChild = new SampleChild();
+}
+
 @ObservedV2
 class Info {
 	@Trace sample: Sample = new Sample();
@@ -233,7 +249,14 @@ struct Index{
 **解决方案**：
 
 ```ts
-dialogController:CustomDialogController|null = null;
+@CustomDialog
+export default struct TmsDialog {
+    controller?: CustomDialogController
+    dialogController:CustomDialogController|null = null;  //修改此处的定义声明方式。
+
+    build() {
+    }
+}
 ```
 
 示例代码1中，在运行时，是无法正常弹出dialogController的，只需要在定义时改为解决方案中的代码，就可以正常弹出dialogController，同时字节码混淆功能正常；
@@ -329,6 +352,8 @@ linkSource
 
 ```ts
 //Sample.ets
+import { Type } from '@kit.ArkUI';
+
 @ObservedV2
 class SampleChild {
 	@Trace p123: number = 0;
@@ -547,6 +572,7 @@ namespace中的foo属于export元素，当通过NS.foo调用时被视为属性�
 #### 案例三：使用了declare global，混淆后报语法错误	
 
 ```ts
+//file.ts
 // 混淆前
 declare global {
 	var myAge : string
@@ -578,22 +604,20 @@ Stacktrace：Cannot get SourceMap info, dump raw stack: at anonymous (ads_servic
 ```
 
 ```js
-Reflect中实现     
-function defineMetadata(metadataKey, metadataValue, target, propertyKey) {
-      if (!IsObject(target))
-            throw new TypeError();
-      if (!IsUndefined(propertyKey))
-           propertyKey = ToPropertyKey(propertyKey);
-      return OrdinaryDefineOwnMetadata(metadataKey, metadataValue, target, propertyKey);
-}
-exporter("defineMetadata", defineMetadata);
+//oh-package.json5
+"dependencies": {
+    "reflect-metadata": "0.2.1"
+  }
+  
+ //test.ts
+ import 'reflect-metadata';
 
-调用代码
-Reflect.defineMetadata(FIELD_TYPE_KEY, types, target, key);
-
-混淆后
-Reflect中
-function w9(metadataKey, metadataValue, target, propertyKey) {
+//调用代码
+export const FIELD_TYPE_KEY = Symbol('fieldType');
+export function FieldType(...types: Function[]): PropertyDecorator {
+    return (target, key) => {
+    	Reflect.defineMetadata(FIELD_TYPE_KEY, types, target, key);
+    };
 }
 ```
 
@@ -613,9 +637,20 @@ function w9(metadataKey, metadataValue, target, propertyKey) {
 ### 未开启-enable-string-property-obfuscation混淆选项，字符串字面量属性名却被混淆，导致字符串字面量属性名的值为undefined
 
 ```ts
-person["personAge"] = 22; // 混淆前
-
-person["b"] = 22; // 混淆后
+//file.ts
+// 混淆前
+const person = {
+    myAge: 18
+}
+person["myAge"] = 20;
+```
+```ts
+//file.ts
+// 混淆后
+const person = {
+    myAge: 18
+}
+person["m"] = 20;
 ```
 
 **解决方案**：
