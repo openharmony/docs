@@ -821,7 +821,7 @@ onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
 
 onRefreshAccessedHistory(callback: Callback\<OnRefreshAccessedHistoryEvent\>)
 
-加载网页页面完成时触发该回调，用于应用更新其访问的历史链接。
+导航完成时触发该回调，用于应用更新其访问的历史链接。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -829,7 +829,7 @@ onRefreshAccessedHistory(callback: Callback\<OnRefreshAccessedHistoryEvent\>)
 
 | 参数名         | 类型    | 必填   | 说明                                     |
 | ----------- | ------- | ---- | ---------------------------------------- |
-| callback         | Callback\<[OnRefreshAccessedHistoryEvent](./arkts-basic-components-web-i.md#onrefreshaccessedhistoryevent12)\>  | 是    | 在网页刷新访问历史记录时触发。                |
+| callback         | Callback\<[OnRefreshAccessedHistoryEvent](./arkts-basic-components-web-i.md#onrefreshaccessedhistoryevent12)\>  | 是    | 在导航完成时触发。                |
 
 **示例：**
 
