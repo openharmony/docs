@@ -1,6 +1,6 @@
 #  使用WebGL绘制图形
-<!--Kit: ArkUI-->
-<!--Subsystem: 图形图像-->
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
 <!--Owner: @samhu1989-->
 <!--Designer: @shi-yang-2012-->
 <!--Tester: @zhaoxiaoguang2-->
