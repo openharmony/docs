@@ -1002,6 +1002,8 @@ stopBatch(downloadId: number, needClean?: boolean): Promise&lt;void&gt;
 
 ### 属性
 
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
 | 名称            | 类型                                      | 只读 | 可选 | 说明                                                                                               |
 | --------------- | ----------------------------------------- | ---- | ---- | -------------------------------------------------------------------------------------------------- |
 | state           | [State](#state11)                         | 否   | 否   | 批量缓存任务的执行状态。                                                                             |
@@ -1012,8 +1014,6 @@ stopBatch(downloadId: number, needClean?: boolean): Promise&lt;void&gt;
 | downloadedSize  | number                                    | 否   | 否   | 已缓存的文件大小，取值范围为 [0, INT64_MAX)，单位：Byte。如果进度异常，返回值为 INT64_MAX。            |
 | totalSize       | number                                    | 否   | 否   | 待缓存的文件总大小，取值范围为 [0, INT64_MAX)，单位为 Byte。如果进度异常，返回值为 INT64_MAX。 |
 | errType         | [DownloadErrorType](#downloaderrortype11) | 否   | 否   | 返回批量缓存任务执行失败时的错误类型。 |
-
-**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 ### getFailedFiles<sup>20+</sup>
 
