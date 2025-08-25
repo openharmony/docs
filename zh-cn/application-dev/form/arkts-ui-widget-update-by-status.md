@@ -151,7 +151,6 @@
       let formId: string = '';
       if (want.parameters) {
         formId = want.parameters[formInfo.FormParam.IDENTITY_KEY].toString();
-        hilog.info(DOMAIN_NUMBER, TAG, 'Not temp card, init db for:' + formId);
         let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, 'myStore');
         promise.then(async (storeDB: preferences.Preferences) => {
           hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded to get preferences.');
