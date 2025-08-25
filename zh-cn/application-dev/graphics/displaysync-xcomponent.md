@@ -23,33 +23,33 @@
 
 1. 添加开发依赖。
 
-  CMakeLists.txt中添加以下lib。
+   CMakeLists.txt中添加以下lib。
 
-  ```txt
-  libace_napi.z.so
-  libace_ndk.z.so
-  libnative_window.so
-  libnative_drawing.so
-  ```
+   ```txt
+   libace_napi.z.so
+   libace_ndk.z.so
+   libnative_window.so
+   libnative_drawing.so
+   ```
 
-  导入依赖的相关头文件。
+   导入依赖的相关头文件。
 
-  ```c++
-  #include <ace/xcomponent/native_interface_xcomponent.h>
-  #include "napi/native_api.h"
-  #include <native_drawing/drawing_bitmap.h>
-  #include <native_drawing/drawing_color.h>
-  #include <native_drawing/drawing_canvas.h>
-  #include <native_drawing/drawing_pen.h>
-  #include <native_drawing/drawing_brush.h>
-  #include <native_drawing/drawing_path.h>
-  #include <native_drawing/drawing_text_typography.h>
-  #include <native_window/external_window.h>
-  #include <cmath>
-  #include <algorithm>
-  #include <stdint.h>
-  #include <sys/mman.h>
-  ```
+   ```c++
+   #include <ace/xcomponent/native_interface_xcomponent.h>
+   #include "napi/native_api.h"
+   #include <native_drawing/drawing_bitmap.h>
+   #include <native_drawing/drawing_color.h>
+   #include <native_drawing/drawing_canvas.h>
+   #include <native_drawing/drawing_pen.h>
+   #include <native_drawing/drawing_brush.h>
+   #include <native_drawing/drawing_path.h>
+   #include <native_drawing/drawing_text_typography.h>
+   #include <native_window/external_window.h>
+   #include <cmath>
+   #include <algorithm>
+   #include <stdint.h>
+   #include <sys/mman.h>
+   ```
 
 2. 定义ArkTS接口文件XComponentContext.ts，用来对接Native层。
    ```ts
