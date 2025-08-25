@@ -217,11 +217,7 @@ atm dump -v -p ohos.permission.CAMERA
 
 #按应用tokenid和权限名查询权限使用类型
 atm dump -v -i ********* -p ohos.permission.CAMERA
-```
-<!--DelEnd-->
 
-<!--Del-->
-```bash
 #查询系统内的所有权限使用记录
 atm dump -r
 # 执行结果
