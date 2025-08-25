@@ -606,6 +606,8 @@ selection(selectionStart: number, selectionEnd: number)
 
 当selectionStart或selectionEnd位于截断的不可见区域时，文本不选中。截断为false时，超出父组件的文本选中区域生效。
 
+可通过[onTextSelectionChange](#ontextselectionchange11)接口获取选区位置变化结果。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
