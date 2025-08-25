@@ -179,7 +179,8 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 
 创建该WindowStage实例下的子窗口，使用callback异步回调。
 
-子窗口创建后默认是[沉浸式布局](../../windowmanager/window-terminology.md#沉浸式布局)，如果子窗口需要使用[组件安全区方案](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-develop-apply-immersive-effects#section202081847174413)，则需要调用[setWindowLayoutFullScreen](arkts-apis-window-Window.md#setwindowlayoutfullscreen9)退出沉浸式布局。
+非[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下，子窗口创建后默认是[沉浸式布局](../../windowmanager/window-terminology.md#沉浸式布局)。如果子窗口需要使用[组件安全区方案](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-develop-apply-immersive-effects#section202081847174413)，则需要调用[setWindowLayoutFullScreen](arkts-apis-window-Window.md#setwindowlayoutfullscreen9)退出沉浸式布局。
+
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -245,7 +246,7 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 
 创建该WindowStage实例下的子窗口，使用Promise异步回调。
 
-子窗口创建后默认是[沉浸式布局](../../windowmanager/window-terminology.md#沉浸式布局)，如果子窗口需要使用[组件安全区方案](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-develop-apply-immersive-effects#section202081847174413)，则需要调用[setWindowLayoutFullScreen](arkts-apis-window-Window.md#setwindowlayoutfullscreen9)退出沉浸式布局。
+非[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下，子窗口创建后默认是[沉浸式布局](../../windowmanager/window-terminology.md#沉浸式布局)，如果子窗口需要使用[组件安全区方案](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-develop-apply-immersive-effects#section202081847174413)，则需要调用[setWindowLayoutFullScreen](arkts-apis-window-Window.md#setwindowlayoutfullscreen9)退出沉浸式布局。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -308,7 +309,9 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 
 创建该WindowStage实例下的子窗口，使用Promise异步回调。
 
-子窗口创建后默认是[沉浸式布局](../../windowmanager/window-terminology.md#沉浸式布局)，如果子窗口需要使用[组件安全区方案](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-develop-apply-immersive-effects#section202081847174413)，则需要调用[setWindowLayoutFullScreen](arkts-apis-window-Window.md#setwindowlayoutfullscreen9)退出沉浸式布局。
+非[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下，子窗口创建后默认是[沉浸式布局](../../windowmanager/window-terminology.md#沉浸式布局)。
+
+自由窗口状态下，子窗口参数[decorEnabled](arkts-apis-window-i.md#subwindowoptions11)为false时，子窗口创建后是沉浸式布局；子窗口参数[decorEnabled](arkts-apis-window-i.md#subwindowoptions11)为true，子窗口创建后是非沉浸式布局。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 

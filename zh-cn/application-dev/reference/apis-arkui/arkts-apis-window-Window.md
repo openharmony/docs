@@ -7625,8 +7625,6 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 
 该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于创建主窗口、子窗口或悬浮窗下的子窗口，使用Promise异步回调。
 
-子窗口创建后默认是[沉浸式布局](../../windowmanager/window-terminology.md#沉浸式布局)，如果子窗口需要使用[组件安全区方案](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-develop-apply-immersive-effects#section202081847174413)，则需要调用[setWindowLayoutFullScreen](arkts-apis-window-Window.md#setwindowlayoutfullscreen9)退出沉浸式布局。
-
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -7640,7 +7638,7 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
 | name   | string | 是   | 子窗口的名字。 |
-| options  | [SubWindowOptions](arkts-apis-window-i.md#subwindowoptions11) | 是   | 子窗口参数。  |
+| options  | [SubWindowOptions](arkts-apis-window-i.md#subwindowoptions11) | 是   | 子窗口参数。decorEnabled为true时，子窗口是非沉浸式布局；decorEnabled为true时，子窗口是沉浸式布局。|
 
 **返回值：**
 
