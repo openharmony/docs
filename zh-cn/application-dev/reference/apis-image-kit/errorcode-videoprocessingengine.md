@@ -1,5 +1,12 @@
 # 视频处理引擎错误码
 
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xjtu_liushang-->
+<!--Designer: @changjiuy-->
+<!--Tester: @yangwang01-->
+<!--Adviser: @zengyawen-->
+
 > **说明：**
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
@@ -28,7 +35,7 @@ Some unknown error occurred, such as GPU calculation failure or memcpy failure.
 
 **错误信息**
 
-The global environment initialization for video processing failed, such as failure to initialize the GPU environment.
+The global environment initialization for image processing failed, such as failure to initialize the GPU environment.
 
 **错误描述**
 
