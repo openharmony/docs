@@ -373,6 +373,8 @@ onFormLocationChanged(formId: string, newFormLocation: formInfo.FormLocation): v
 当卡片位置发生变化时，触发该回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
   
 **系统能力：** SystemCapability.Ability.Form
 
