@@ -18,23 +18,13 @@
 ## 调用ArkTS侧接口控制Web页面滚动
 + [scrollTo](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#scrollto)：在指定时间内，将页面滚动到指定的绝对位置。
 
-  (1) 若需在滚动过程中打断，可执行一次时长为0的动画以强制打断。
-  ```ts
-  this.controller.scrollBy(0, 0, 1); //如果想停止当前scroll产生的动画，可再次生成一个1ms的动画去打断该动画。
-  ```
-
-  (2) 返回页面顶部。
+  返回页面顶部。
   ```ts
   this.controller.scrollTo(0, 0);
   ```
 + [scrollBy](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#scrollby)：在指定时间内将页面滚动指定的偏移量。
 
-  (1) 若需在滚动过程中打断，可执行一次时长为0的动画以强制打断。
-  ```ts
-  this.controller.scrollBy(0, 0, 1); //如果想停止当前scroll产生的动画，可再次生成一个1ms的动画去打断该动画。
-  ```
-
-  (2) 可以作为Web组件嵌套滚动中，控制Web组件滚动的接口，详见[滚动偏移量由滚动父组件统一派发](web-nested-scrolling.md#滚动偏移量由滚动父组件统一派发)。
+  可以作为Web组件嵌套滚动中，控制Web组件滚动的接口，详见[滚动偏移量由滚动父组件统一派发](web-nested-scrolling.md#滚动偏移量由滚动父组件统一派发)。
 
 + [pageUp](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#pageup)：将Webview的内容向上滚动半个视框大小或者跳转到页面最顶部，通过top入参控制。
 + [pageDown](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#pagedown)：将Webview的内容向下滚动半个视框大小或者跳转到页面最底部，通过bottom入参控制。
