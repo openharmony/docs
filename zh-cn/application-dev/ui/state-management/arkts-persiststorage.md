@@ -291,7 +291,7 @@ struct PersistedMap {
 
           Button() {
             Text('Persist Map String')
-              .fontSize(25)
+              .fontSize(20)
               .fontWeight(FontWeight.Bold)
               .fontColor(Color.White)
           }
