@@ -247,7 +247,7 @@ contentModifier(modifier: ContentModifier\<GaugeConfiguration>)
 
 ## GaugeShadowOptions<sup>11+</sup>对象说明
 
-GaugeShadowOptions继承自[MultiShadowOptions](ts-types.md#multishadowoptions10)，具有MultiShadowOptions的全部属性。
+GaugeShadowOptions继承自[MultiShadowOptions](ts-information-display-common.md#multishadowoptions)，具有MultiShadowOptions的全部属性。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
