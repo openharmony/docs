@@ -182,7 +182,7 @@
       });
     }
   
-    // 如果在添加时为临时卡片，则建议转为常态卡片时进行信息持久化
+    // 如果在添加时为临时卡片，则建议转为常态卡片时进行信息持久化。当前设备不存在临时卡场景
     onCastToNormalForm(formId: string): void {
       hilog.info(DOMAIN_NUMBER, TAG, 'onCastToNormalForm, formId:' + formId);
       let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, 'myStore');

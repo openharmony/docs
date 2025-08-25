@@ -159,7 +159,7 @@ FA卡片开发，即基于[FA模型](../application-models/fa-model-development-
         return formData;
       },
       onCastToNormal(formId: string) {
-        // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
+        // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理，当前设备不存在临时卡的场景
         hilog.info(domain, TAG, 'FormAbility onCastToNormal');
       },
       onUpdate(formId: string) {

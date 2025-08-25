@@ -84,7 +84,7 @@ Stage卡片开发，即基于[Stage模型](../application-models/stage-model-dev
         return formData;
       }
       onCastToNormalForm(formId: string): void {
-        // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
+        // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理，当前设备不存在临时卡场景
         hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onCastToNormalForm');
       }
       onUpdateForm(formId: string): void {
@@ -511,7 +511,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
   }
 
   .detail_text {
-      ffont-family: HarmonyHeiTi;
+      font-family: HarmonyHeiTi;
       font-size: 12px;
       color: rgba(255, 255, 255, 0.60);
       letter-spacing: 0.51px;
