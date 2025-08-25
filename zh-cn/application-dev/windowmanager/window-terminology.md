@@ -37,12 +37,18 @@
 
 ## 沉浸式布局
 
-沉浸式布局也称为沉浸式模式，通常指让应用的界面更加专注于内容，不希望用户被无关元素干扰。其开发需针对不同设备的屏幕特征、交互方式和系统规范进行适配优化。
- 
-沉浸式布局设计可参考[沉浸体验](https://developer.huawei.com/consumer/cn/doc/design-guides/practices-overview-0000001746498066#section1610419884617)，多设备场景下不同窗口形态的沉浸式开发的实现可以参考[窗口沉浸式最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-multi-device-window-immersive)。
+沉浸式布局是一种让应用界面聚焦内容，减少无关元素干扰的窗口状态。
 
-沉浸式布局在Tablet设备上的自由多窗和2in1设备与phone设备的定义是不一致的，都可以通过[isImmersiveLayout](../reference/apis-arkui/arkts-apis-window-Window.md#isimmersivelayout20)查询当前窗口是否处于沉浸式布局状态。
+非自由窗口设置沉浸式布局之后，页面的所有组件布局范围从安全区域扩展为整个窗口（包括状态栏和导航栏）。
 
-对于Tablet设备上的自由多窗和2in1设备，当窗口的[drawableRect](../reference/apis-arkui/arkts-apis-window-i.md#windowproperties)等于窗口的[windowRect](../reference/apis-arkui/arkts-apis-window-i.md#windowproperties)时，该窗口为沉浸式布局。子窗口有标题栏时为非沉浸式布局。
+| 原始布局                                      | 沉浸式布局                              |
+|----------------------------------------------|----------------------------------------|
+| ![no_immersive](figures/no_immersive.png)    | ![immersive](figures/immersive.png)    |
 
-对于phone设备，当窗口的[isLayoutFullScreen](../reference/apis-arkui/arkts-apis-window-i.md#windowproperties)为true时，该窗口为沉浸式布局。
+自由窗口设置沉浸式布局之后，窗口最大化，Dock栏和标题栏隐藏，页面的所有组件布局范围扩展为整个窗口。
+
+非自由窗口可以通过调用[setWindowLayoutFullScreen](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowlayoutfullscreen9)进入沉浸式布局；自由窗口可以通过[maximize](reference/apis-arkui/arkts-apis-window-Window.md#maximize12)进入沉浸式布局。
+
+应用窗口可以通过[isImmersiveLayout](../reference/apis-arkui/arkts-apis-window-Window.md#isimmersivelayout20)查询当前窗口是否处于沉浸式布局状态。
+
+多设备场景下不同窗口形态的沉浸式开发的实现可以参考[窗口沉浸式最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-multi-device-window-immersive)。
