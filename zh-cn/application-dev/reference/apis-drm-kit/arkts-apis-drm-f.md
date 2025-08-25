@@ -1,5 +1,10 @@
 # Functions
-
+<!--Kit: Drm Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qin_wei_jie-->
+<!--Designer: @chris2981-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 > **说明：**
 >
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -118,7 +123,7 @@ isMediaKeySystemSupported(name: string, mimeType: string): boolean
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
 | name  | string     | 是   | DRM解决方案名称。                   |
-| mimeType  | string     | 是   | 媒体类型，由DRM解决方案决定具体的支持类型。                   |
+| mimeType  | string     | 是   | 媒体类型，支持的媒体类型取决于DRM解决方案，如：video/avc、video/hev。                   |
 
 **返回值：**
 
