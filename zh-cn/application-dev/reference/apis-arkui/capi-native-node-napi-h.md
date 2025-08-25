@@ -413,7 +413,7 @@ napi_value OH_ArkUI_GetNavDestinationParam(ArkUI_NodeHandle node)
 
 | 类型 | 说明 |
 | -- | -- |
-| napi_value | 参数对象。 |
+| napi_value | 参数对象。如返回为空，则说明参数不存在或指定的节点为空。|
 
 ### OH_ArkUI_GetRouterPageIndex()
 
@@ -440,7 +440,8 @@ ArkUI_ErrorCode OH_ArkUI_GetRouterPageIndex(ArkUI_NodeHandle node, int32_t* inde
 
 | 类型 | 说明 |
 | -- | -- |
-| [ArkUI_ErrorCode](capi-native-type-h.md#arkui_errorcode) | 错误码。<br>        [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>        [ARKUI_ERROR_CODE_GET_INFO_FAILED](capi-native-type-h.md#arkui_errorcode) 查询信息失败，可能因为当前节点不在Navigation中。 |
+| [ArkUI_ErrorCode](capi-native-type-h.md#arkui_errorcode) | 错误码。<br>[ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br> 
+[ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 指定的节点或传递的索引异常。<br>[ARKUI_ERROR_CODE_GET_INFO_FAILED](capi-native-type-h.md#arkui_errorcode) 查询信息失败，可能因为当前节点不在Navigation中。 |
 
 ### OH_ArkUI_GetRouterPageName()
 
