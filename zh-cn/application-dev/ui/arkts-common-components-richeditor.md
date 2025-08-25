@@ -836,9 +836,10 @@ struct RichEditorExample {
 
 ### 屏蔽系统服务类菜单项
 
-  通过[disableSystemServiceMenuItems](../reference/apis-arkui/arkts-apis-uicontext-textmenucontroller.md#disablesystemservicemenuitems20)屏蔽富文本选择菜单内所有系统服务菜单项。
+通过[disableSystemServiceMenuItems](../reference/apis-arkui/arkts-apis-uicontext-textmenucontroller.md#disablesystemservicemenuitems20)屏蔽富文本选择菜单内所有系统服务菜单项。
 
-  此接口可以保护内容的安全性，在部分需要限制文本操作的场景（如展示保密内容、禁止复制的版权文本）中，屏蔽系统服务菜单项可以防止用户通过系统菜单对文本进行复制、分享等操作，降低内容泄露风险。
+此接口保护内容安全，适用于限制文本操作的场景，例如展示保密内容或禁止复制的版权文本。屏蔽系统服务菜单项，防止用户通过系统服务菜单复制、分享文本，降低内容泄露风险。
+
 
   ```ts
   import { TextMenuController } from '@kit.ArkUI';
@@ -893,7 +894,7 @@ struct RichEditorExample {
 
 通过[disableMenuItems](../reference/apis-arkui/arkts-apis-uicontext-textmenucontroller.md#disablemenuitems20)可以屏蔽富文本选择菜单内指定的系统服务菜单项。
 
-此接口相比disableSystemServiceMenuItems可以更精准的屏蔽指定的系统服务菜单项，既保留应用需要的系统菜单功能，又移除不需要的项，让菜单更贴合应用实际交互设计。
+此接口可精确屏蔽指定的系统服务菜单项，保留应用所需的系统菜单功能，使菜单更贴合实际交互设计。
 
   ```ts
   import { TextMenuController } from '@kit.ArkUI';
@@ -1019,7 +1020,7 @@ SystemMenu() {
 
 通过[maxLines](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#maxlines18)可以设置富文本组件内可显示文本的最大行数。
 
-此接口可以控制组件内文本的显示范围，避免组件内文本内容过长时占用过多空间从而挤压其他元素展示，保证页面布局的稳定性和完整性。同时也可以适配不同设备和场景，确保文本在不同设备界面上显示效果一致，提升界面兼容性和美观度。
+此接口控制组件内文本的显示范围，防止文本过长影响页面布局，确保不同设备和场景下的文本显示效果一致，提升界面兼容性和美观度。
 
 ```ts
 controller: RichEditorController = new RichEditorController();
@@ -1089,7 +1090,7 @@ Button('setTypingStyle', {
 
 通过[decoration](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md#decoration)设置富文本组件中文本装饰线的样式、颜色和粗细。
 
-对文本设置装饰线可以起到突出关键信息、区分文本状态、增强视觉层次等的作用，例如重要的标题、关键词添加装饰线，可以让用户快速获取信息。
+设置文本装饰线可突出关键信息、区分文本状态、增强视觉层次。例如，为重要标题或关键词添加装饰线，帮助用户快速获取信息。
 
   ```ts
   private controller: RichEditorController = new RichEditorController();
@@ -1113,7 +1114,7 @@ Button('setTypingStyle', {
 
 通过[enableMultiType](ts-universal-styled-string.md#decorationoptions20)设置多装饰线，比如同时设置下划线和中划线。
 
-此接口可以适配复杂业务场景，满足对文本装饰的复合需求，例如在文档协作中，多人编辑时，可以用不同装饰线组合区分不同文本状态，提升协作效率。
+此接口适用于复杂业务场景，满足文本装饰的多样化需求。在文档协作过程中，多人编辑时，可以通过使用不同的装饰线组合来区分文本状态，从而提高协作效率。
 
   ```ts
   RichEditor({ controller: this.styledStringController })
@@ -1166,7 +1167,7 @@ Button('setTypingStyle', {
 
 通过[textVerticalAlign](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#textverticalalign20)设置文本段落在垂直方向的对齐方式。
 
-此接口可优化多元素排版的协调性，当组件内容与其他元素（如图片、图标）在垂直方向处于同一区域时，该功能可调整文本与其他元素的垂直对齐关系，使整体布局更协调。
+此接口优化多元素排版，使组件内容与图片、图标等在垂直方向对齐时，整体布局更协调。
 
   ```ts
   controller: RichEditorController = new RichEditorController();
@@ -1200,7 +1201,8 @@ Button('setTypingStyle', {
 ### 设置中西文自动间距
 
 通过[enableAutoSpacing](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#enableautospacing20)设置是否开启中文与西文的自动间距。
-此接口可提升组件内文本的可读性，优化文本排版。中文和西文直接连写时易混淆，开启自动间距后，两种文字间会产生适当空隙，让用户清晰的区分不同语种文本，减少阅读时的视觉干扰。
+
+此接口优化文本排版，提升组件内文本的可读性。设置自动间距后，中文与西文间产生适当空隙，便于区分不同语种，减少视觉干扰。
 
 ```ts
 Column() {
