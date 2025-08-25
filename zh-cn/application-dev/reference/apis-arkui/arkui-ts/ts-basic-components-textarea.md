@@ -671,8 +671,6 @@ textOverflow(value: TextOverflow)
 
 当textOverflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合[maxLines](#maxlines10)使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
 
-**卡片能力：** 该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1538,7 +1536,7 @@ struct TextAreaExample {
           this.text = value;
         })
         .onSubmit((enterKey: EnterKeyType) => {
-          console.log("trigger area onSubmit" + enterKey);
+          console.info("trigger area onSubmit" + enterKey);
         })
       Button('改变EnterKeyType').onClick(() => {
         this.index = (this.index + 1) % this.enterTypes.length;
@@ -1992,19 +1990,19 @@ struct TextAreaExample {
   }
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
     if (menuItem.id.equals(TextMenuItemId.of("create2"))) {
-      console.log("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
+      console.info("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.of("prepare1"))) {
-      console.log("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
+      console.info("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
+      console.info("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+      console.info("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
       return false;
     }
     return false;
@@ -2160,27 +2158,27 @@ struct TextAreaExample {
         .margin(20)
         .fontSize(16)
         .onEditChange((isEditing: boolean) => {
-          console.log(`isEditing ${isEditing}`);
+          console.info(`isEditing ${isEditing}`);
         })
         .onCopy((value) => {
-          console.log(`copy ${value}`);
+          console.info(`copy ${value}`);
         })
         .onCut((value) => {
-          console.log(`cut ${value}`);
+          console.info(`cut ${value}`);
         })
         .onPaste((value, event) => {
           // 阻止系统粘贴功能，开发者可自行实现
           if (event.preventDefault) {
             event.preventDefault();
           }
-          console.log(`paste:${value}`);
+          console.info(`paste:${value}`);
           this.text = value;
         })
         .onTextSelectionChange((start: number, end: number) => {
-          console.log(`onTextSelectionChange start ${start}, end ${end}`);
+          console.info(`onTextSelectionChange start ${start}, end ${end}`);
         })
         .onContentScroll((totalOffsetX: number, totalOffsetY: number) => {
-          console.log(`onContentScroll offsetX ${totalOffsetX}, offsetY ${totalOffsetY}`);
+          console.info(`onContentScroll offsetX ${totalOffsetX}, offsetY ${totalOffsetY}`);
         })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
@@ -2246,7 +2244,7 @@ struct TextAreaExample {
         console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
       } else {
         this.currentFontSizeScale = scale;
-        console.log('updateConfiguration success.');
+        console.info('updateConfiguration success.');
       }
     });
   }
