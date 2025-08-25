@@ -265,7 +265,7 @@ struct Index {
       ChipGroup({
         items: [
           {
-            // 此处 'app.media.icon' 仅作示例，请替换为实际使用图片。
+            // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
             prefixIcon: { src: $r('app.media.icon') },
             label: { text: "操作块1" },
             suffixIcon: { src: $r('sys.media.ohos_ic_public_cut') },
@@ -357,6 +357,7 @@ struct Index {
       ChipGroup({
         items: [
           {
+            // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
             prefixIcon: { src: $r('app.media.icon') },
             label: { text: "操作块1" },
             suffixIcon: { src: $r('sys.media.ohos_ic_public_cut') },
