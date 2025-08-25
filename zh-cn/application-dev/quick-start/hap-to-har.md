@@ -43,7 +43,7 @@ HAP不支持导出接口或ArkUI组件给其他模块或应用使用。若需导
 
 4. 修改项目级的配置文件[build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile-app)，在 `modules` 字段下找到 HAP 的配置信息，并删除 HAP 配置下的 `targets`。
 
-5. HAP转换为HAR后，如果需要导出ArkUI组件或接口，需要在模块的根目录下创建名为Index.ets的文件，并在模块的oh-package.json5文件中的main字段配置该文件，如下方的示例。详细导出方法参见[HAR-开发](./har-package.md#开发)。
+5. HAP转换为HAR后，如果需要导出ArkUI组件或接口，需要在模块的根目录下创建名为Index.ets的文件，并在模块的oh-package.json5文件中的main字段配置该文件。详细导出方法参见[HAR-开发](./har-package.md#开发)。
     ```json
     // your_hap_module\oh-package.json5
     {
