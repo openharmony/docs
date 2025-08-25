@@ -444,7 +444,7 @@ struct Page01 {
 
   build() {
     NavDestination() {
-...
+      // ...
     }.title('Page01')
     .onReady((context: NavDestinationContext) => {
       this.pathStack = context.pathStack;

@@ -186,6 +186,12 @@ typedef bool (*ArkUI_OnWillDismissEvent)(int32_t reason)
 | -------- | -------- |
 | reason | 触发弹窗关闭的原因。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -- | -- |
+| bool | 返回任意值都表示不关闭弹窗。 |
+
 ### OH_ArkUI_DialogDismissEvent_SetShouldBlockDismiss()
 
 ```
@@ -374,7 +380,7 @@ void OH_ArkUI_CustomDialog_DisposeOptions(ArkUI_CustomDialogOptions* options)
 **描述：**
 
 
-销毁自定义弹窗options.
+销毁自定义弹窗options。
 
 **起始版本：** 19
 
@@ -383,7 +389,7 @@ void OH_ArkUI_CustomDialog_DisposeOptions(ArkUI_CustomDialogOptions* options)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [ArkUI_CustomDialogOptions](capi-arkui-nativemodule-arkui-customdialogoptions.md)* options | 自定义弹窗options的指针. |
+| [ArkUI_CustomDialogOptions](capi-arkui-nativemodule-arkui-customdialogoptions.md)* options | 自定义弹窗options的指针。 |
 
 ### OH_ArkUI_CustomDialog_SetLevelMode()
 

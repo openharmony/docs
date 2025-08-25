@@ -504,6 +504,12 @@ onScrollEnd(event: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型                              | 必填 | 说明               |
+| ------ | --------------------------------- | ---- | ------------------ |
+| event   | () => void | 是   | 滚动停止事件回调。 |
+
 ### onScrollStart<sup>9+</sup>
 
 onScrollStart(event: VoidCallback)

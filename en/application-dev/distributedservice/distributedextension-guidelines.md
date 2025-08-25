@@ -1,4 +1,10 @@
-# Distributed Extension Development
+# Distributed Extension Ability Development
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedSched-->
+<!--Owner: @hobbycao-->
+<!--Designer: @gsxiaowen-->
+<!--Tester: @hanjiawei-->
+<!--Adviser: @w_Machine_cc-->
 
 ## Introduction
 
@@ -12,7 +18,7 @@ Data interaction: implements cross-device transmission of data, including text m
 
 ### Typical Use Cases
 
-During cross-device collaboration, when device A is running in the background and device B is running in the foreground, Distributed Management Service (DMS) allows the system to activate **DistributedExtension** to implement synchronous data transmission across devices. For example, when an application runs in the background on the mobile phone and in the foreground on the watch, DMS starts **DistributedExtension** to synchronize uplink messages on the watch to the application on the mobile phone.
+During cross-device collaboration, when device A is running in the background and device B is running in the foreground, Distributed Management Service (DMS) allows the system to activate **DistributedExtension** to implement synchronous data transmission across devices. For example, when an application runs in the background on the mobile phone and in the foreground on the watch, DMS starts **DistributedExtensionAbility** to synchronize uplink messages on the watch to the application on the mobile phone.
 
 ### Basic concepts
 
@@ -24,19 +30,19 @@ Before you get started, familiarize yourself with the following concepts:
 * **UIAbility**
   
   A component that implements tasks specific to application UIs, such as lifecycle management, user interaction, and UI rendering.
-* **Extension**
+* **ExtensionAbility**
   
   A component that extends application functions or implements cross-device collaboration. It allows applications to run some tasks in the background or migrates some functions to other devices for execution, implementing distributed capabilities.
 * **Byte stream**
   
-  Data of the [ArrayBuffer](https://gitee.com/openharmony/docs/blob/master/en/application-dev/arkts-utils/arraybuffer-object.md) type, which can be used to store binary data, for example, image or audio data.
+  Data of the [ArrayBuffer](../arkts-utils/arraybuffer-object.md) type, which can be used to store binary data, for example, image or audio data.
 * **Transport stream**
   
   Media streams that can be used to transmit images, audios, text information, and bytes.
 
 ## Implementation Principles
 
-The application on device A integrates **DistributedExtension**. When DSoftBus on device A receives a message from the application, **DistributedExtension** starts the application background service on device A to send the application message from device B to the application service.
+The application on device A integrates **DistributedExtensionAbility**. When DSoftBus on device A receives a message from the application, **DistributedExtensionAbility** starts the application background service on device A to send the application message from device B to the application service.
 
 ![DistributedExtension](figures/distributedextension.png)
 
@@ -54,7 +60,7 @@ You have logged in to devices A and B with the same HUAWEI ID and the two device
 ### Environment Setup
 
 1. Install [DevEco Studio](https://gitee.com/link?target=https%3A%2F%2Fdeveloper.huawei.com%2Fconsumer%2Fcn%2Fdownload%2Fdeveco-studio) 4.1 or later on the PC.
-2. Update the public-SDK to API version 20 or later. For details, see [OpenHarmony SDK Upgrade Assistant](../../tools/openharmony_sdk_upgrade_assistant.md).
+2. Update the public-SDK to API version 20 or later.
 3. Enable Bluetooth on devices A and B to implement networking.
 
 ### Environment Verification
@@ -173,5 +179,3 @@ During service collaboration, DMS keeps listening for the collaboration lifecycl
 **Solution**
 
 Resend the message to restart the collaboration.
-
-<!--no_check-->

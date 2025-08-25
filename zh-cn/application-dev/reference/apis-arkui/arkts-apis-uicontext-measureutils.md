@@ -246,7 +246,7 @@ struct Index {
     // 使用二分查找
     while (low <= high) {
       let mid = (low + high) >> 1;
-      console.log("demo: get " + low + " " + high + " " + mid);
+      console.info("demo: get " + low + " " + high + " " + mid);
       let moreStyledString = new MutableStyledString("... 全文", [{
         start: 4,
         length: 2,

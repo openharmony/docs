@@ -90,16 +90,16 @@ NavDestination组件信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型                                               | 必填 | 说明                                         |
-| ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | 包含NavDestination组件的Navigation组件的id。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| name         | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | NavDestination组件的名称。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| state        | [NavDestinationState](#navdestinationstate)        | 是   | NavDestination组件的状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| index<sup>12+</sup>        | number        | 是   | NavDestination在页面栈中的索引。    <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/> 取值范围：[0, +∞)      |
-| param<sup>12+</sup>        | Object        | 否   | NavDestination组件的参数。    <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。               |
-| navDestinationId<sup>12+</sup>        | string        | 是   | NavDestination组件的唯一标识ID。       <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。            |
-| mode<sup>15+</sup>        | [NavDestinationMode](arkui-ts/ts-basic-components-navdestination.md#navdestinationmode枚举说明11)        | 否   | NavDestination类型。    <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。               |
-| uniqueId<sup>15+</sup>        | number        | 否   | NavDestination组件的uniqueId。      <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。             |
+| 名称         | 类型                                               | 只读 | 可选 | 说明                                         |
+| ------------ | -------------------------------------------------  | --- | -----|--------------------------------------------- |
+| navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 否 | 否 | 包含NavDestination组件的Navigation组件的id。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| name         | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 否 | 否 | NavDestination组件的名称。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| state        | [NavDestinationState](#navdestinationstate)     | 否 | 否 | NavDestination组件的状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| index<sup>12+</sup>        | number   | 否  | 否   | NavDestination在页面栈中的索引。    <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/> 取值范围：[0, +∞)      |
+| param<sup>12+</sup>        | Object   | 否 | 是   | NavDestination组件的参数。    <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。               |
+| navDestinationId<sup>12+</sup>        | string    | 否  | 否  | NavDestination组件的唯一标识ID。       <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。            |
+| mode<sup>15+</sup>        | [NavDestinationMode](arkui-ts/ts-basic-components-navdestination.md#navdestinationmode枚举说明11)   | 否  | 是   | NavDestination类型。    <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。               |
+| uniqueId<sup>15+</sup>        | number     | 否 | 是 | NavDestination组件的uniqueId。      <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。             |
 
 ## NavigationInfo<sup>12+</sup>
 
@@ -107,11 +107,11 @@ Navigation组件信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型                                               | 必填 | 说明                                         |
-| ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| navigationId | string | 是   | Navigation组件的id。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| pathStack         | [NavPathStack](arkui-ts/ts-basic-components-navigation.md#navpathstack10) | 是   | Navigation组件的导航控制器。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
-| uniqueId<sup>20+</sup>         | number | 否   | Navigation组件的uniqueId，可以通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。<br/> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                  |
+| 名称         | 类型                                         | 只读   | 可选 | 说明                                         |
+| ------------ | ---------------------------------------------| ----- | ---- | -------------------------------------------- |
+| navigationId | string | 否 | 否   | Navigation组件的id。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| pathStack         | [NavPathStack](arkui-ts/ts-basic-components-navigation.md#navpathstack10) | 否 | 否   | Navigation组件的导航控制器。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
+| uniqueId<sup>20+</sup>         | number | 否 | 是   | Navigation组件的uniqueId，可以通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。<br/> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                  |
 
 ## ScrollEventInfo<sup>12+</sup>
 
@@ -120,13 +120,13 @@ ScrollEvent滚动信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型                                               | 必填 | 说明                                         |
-| ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| id           | string                                             | 是   | 滚动组件的id。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| uniqueId           | number                                             | 是   | 滚动组件的uniqueId。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| scrollEvent    | [ScrollEventType](#scrolleventtype12)                | 是   | 滚动事件的类型。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| offset       | number                                             | 是   | 滚动组件的当前偏移量。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| axis<sup>20+</sup>         | [Axis](arkui-ts/ts-appendix-enums.md#axis)         | 否   | 滚动组件的滚动方向。<br/> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| 名称         | 类型                                               | 只读 | 可选 | 说明                                         |
+| ------------ | -------------------------------------------------- | ---- | ---- | -------------------------------------------- |
+| id           | string                                             | 否 | 否 | 滚动组件的id。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| uniqueId           | number                                             | 否 | 否 | 滚动组件的uniqueId。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| scrollEvent    | [ScrollEventType](#scrolleventtype12)                | 否 | 否 | 滚动事件的类型。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| offset       | number                                             | 否 | 否 | 滚动组件的当前偏移量。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| axis<sup>20+</sup>         | [Axis](arkui-ts/ts-appendix-enums.md#axis)         | 否 | 是 | 滚动组件的滚动方向。<br/> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## ObserverOptions<sup>12+</sup>
 
@@ -148,14 +148,14 @@ RouterPageInfo包含的信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                 | 类型                                                         | 必填 | 说明                                           |
-| -------------------- | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
-| context              | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 触发生命周期的routerPage页面对应的上下文信息。 |
-| index                | number                                                       | 是   | 触发生命周期的routerPage在栈中的位置。<br/> 取值范围：[0, +∞)         |
-| name                 | string                                                       | 是   | 触发生命周期的routerPage页面的名称。           |
-| path                 | string                                                       | 是   | 触发生命周期的routerPage页面的路径。           |
-| state                | [RouterPageState](#routerpagestate)                          | 是   | 触发生命周期的routerPage页面的状态。           |
-| pageId<sup>12+</sup> | string                                                       | 是   | 触发生命周期的routerPage页面的唯一标识。       |
+| 名称                 | 类型                                                   | 只读   | 可选 | 说明                                           |
+| -------------------- | -------------------------------------------------------| ----- | ---- | ---------------------------------------------- |
+| context              | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./arkts-apis-uicontext-uicontext.md) | 否 | 否   | 触发生命周期的routerPage页面对应的上下文信息。 |
+| index                | number                                                  | 否   | 否   | 触发生命周期的routerPage在栈中的位置。<br/> 取值范围：[0, +∞)         |
+| name                 | string                                                  | 否   | 否   | 触发生命周期的routerPage页面的名称。           |
+| path                 | string                                                  | 否   | 否   | 触发生命周期的routerPage页面的路径。           |
+| state                | [RouterPageState](#routerpagestate)                     | 否   | 否   | 触发生命周期的routerPage页面的状态。           |
+| pageId<sup>12+</sup> | string                                                  | 否   | 否   | 触发生命周期的routerPage页面的唯一标识。       |
 
 ## DensityInfo<sup>12+</sup>
 
@@ -178,12 +178,12 @@ Navigation组件页面切换的信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型                                               | 必填 | 说明                                          |
-| ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| context      | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 触发页面切换的Navigation对应的上下文信息。 |
-| from         | [NavDestinationInfo](#navdestinationinfo) \| [NavBar](./arkui-ts/ts-basic-components-navigation.md#navbar12) | 是   | 页面切换的源页面。         |
-| to           | [NavDestinationInfo](#navdestinationinfo) \| [NavBar](./arkui-ts/ts-basic-components-navigation.md#navbar12) | 是   | 页面切换的目的页面。         |
-| operation    | [NavigationOperation](./arkui-ts/ts-basic-components-navigation.md#navigationoperation11枚举说明) | 是   | 页面切换操作类型。         |
+| 名称         | 类型                                         | 只读   | 可选 | 说明                                          |
+| ------------ | -------------------------------------------- | ------ | ---- | -------------------------------------------- |
+| context      | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./arkts-apis-uicontext-uicontext.md) | 否 | 否   | 触发页面切换的Navigation对应的上下文信息。 |
+| from         | [NavDestinationInfo](#navdestinationinfo) \| [NavBar](./arkui-ts/ts-basic-components-navigation.md#navbar12) | 否 | 否   | 页面切换的源页面。         |
+| to           | [NavDestinationInfo](#navdestinationinfo) \| [NavBar](./arkui-ts/ts-basic-components-navigation.md#navbar12) | 否 | 否   | 页面切换的目的页面。         |
+| operation    | [NavigationOperation](./arkui-ts/ts-basic-components-navigation.md#navigationoperation11枚举说明) | 否 | 否   | 页面切换操作类型。         |
 
 ## NavDestinationSwitchObserverOptions<sup>12+</sup>
 
@@ -193,9 +193,9 @@ Navigation组件页面切换事件的监听选项。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型                                               | 必填 | 说明                                          |
-| ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | 指定需要监听的Navigation的ID |
+| 名称         | 类型                                          | 只读  | 可选 | 说明                                          |
+| ------------ | --------------------------------------------- | ----- | ---- | -------------------------------------------- |
+| navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 否 | 是   | 指定需要监听的Navigation的ID |
 
 ## TabContentInfo<sup>12+</sup>
 
@@ -205,14 +205,14 @@ TabContent页面的切换信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型                                               | 必填 | 说明                                          |
-| ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| tabContentId | string                                             | 是   | TabContent组件的id。                          |
-| tabContentUniqueId | number                                       | 是   | TabContent组件的uniqueId。                    |
-| state        | [TabContentState](#tabcontentstate12)              | 是   | TabContent组件的状态。                        |
-| index        | number                                             | 是   | TabContent组件的下标索引。索引从0开始。        |
-| id           | string                                             | 是   | Tabs组件的id。                                |
-| uniqueId     | number                                             | 是   | Tabs组件的uniqueId。                          |
+| 名称         | 类型                                         | 只读  | 可选 | 说明                                          |
+| ------------ | -------------------------------------------- | ---- | ---- | -------------------------------------------- |
+| tabContentId | string                                       | 否   | 否   | TabContent组件的id。                          |
+| tabContentUniqueId | number                                 | 否   | 否   | TabContent组件的uniqueId。                    |
+| state        | [TabContentState](#tabcontentstate12)        | 否   | 否   | TabContent组件的状态。                        |
+| index        | number                                       | 否   | 否   | TabContent组件的下标索引。索引从0开始。        |
+| id           | string                                       | 否   | 否   | Tabs组件的id。                                |
+| uniqueId     | number                                       | 否   | 否   | Tabs组件的uniqueId。                          |
 
 ## uiObserver.on('navDestinationUpdate')
 

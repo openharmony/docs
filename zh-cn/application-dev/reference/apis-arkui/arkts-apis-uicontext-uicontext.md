@@ -366,7 +366,7 @@ setOverlayManagerOptions(options: OverlayManagerOptions): boolean
 
 getOverlayManagerOptions(): OverlayManagerOptions
 
-用于获取当前[OverlayManager](arkts-apis-uicontext-overlaymanager.md)参数。
+用于获取当前[OverlayManagerOptions](arkts-apis-uicontext-i.md#overlaymanageroptions15)参数。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 

@@ -360,10 +360,10 @@ minContentWidth优先于侧边栏的maxSideBarWidth与sideBarWidth属性，minCo
 
 | 名称        | 类型      | 必填 | 说明                                     |
 | ----------- | ------------- | ---- | ---------------------------------------- |
-| strokeWidth | [Length](ts-types.md#length)        | 是   | 分割线的线宽。<br/>默认值：1vp。<br/>**说明**：<br>分割线的宽度不支持百分比设置。优先级低于[通用属性height](ts-universal-attributes-size.md#height)，超过通用属性设置大小时，按照通用属性进行裁切。部分设备硬件中存在1像素取整后分割线不显示问题，建议使用2像素。 |
+| strokeWidth | [Length](ts-types.md#length)        | 是   | 分割线的线宽。<br/>默认值：1vp。<br/>取值范围：[0, +∞)。<br/>**说明**：<br>分割线的宽度不支持百分比设置。优先级低于[通用属性height](ts-universal-attributes-size.md#height)，超过通用属性设置大小时，按照通用属性进行裁切。部分设备硬件中存在1像素取整后分割线不显示问题，建议使用2像素。 |
 | color       | [ResourceColor](ts-types.md#resourcecolor) | 否   | 分割线的颜色。<br/>默认值：#000000，3%   |
-| startMargin | [Length](ts-types.md#length)        | 否   | 分割线与侧边栏顶端的距离。<br/>默认值：0 |
-| endMargin   | [Length](ts-types.md#length)        | 否   | 分割线与侧边栏底端的距离。<br/>默认值：0 |
+| startMargin | [Length](ts-types.md#length)        | 否   | 分割线与侧边栏顶端的距离。<br/>默认值：0。<br/>取值范围：[0, +∞)。 |
+| endMargin   | [Length](ts-types.md#length)        | 否   | 分割线与侧边栏底端的距离。<br/>默认值：0。<br/>取值范围：[0, +∞)。 |
 >  **说明：** 
 >
 >  针对侧边栏子组件设置[通用属性宽高](ts-universal-attributes-size.md)时，宽高都不生效。

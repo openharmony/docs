@@ -143,7 +143,7 @@ Pinch手势识别成功，接收到触摸取消事件触发回调。返回手势
 | 名称 | 类型    | 只读 | 可选 | 说明                                        |
 | ----  | ------| -----| -----|----------------------------------- |
 | tag<sup>12+</sup>   | string  | 否 | 否 | 设置Pinch手势标志，用于自定义手势判定时区分绑定的手势。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| allowedTypes<sup>14+</sup> | 否 | 否 | Array\<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)> | 设置Pinch手势支持的事件输入源。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)> | 否 | 否 | 设置Pinch手势支持的事件输入源。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## 示例
 

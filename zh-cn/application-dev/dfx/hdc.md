@@ -558,7 +558,7 @@ hdc shell [-b bundlename] [command]
 
 | 参数 | 说明 |
 | -------- | -------- |
-| -b bundlename | 3.1.0e版本新增参数。指定可调试应用包名，在可调试应用数据目录内，以非交互式模式执行命令。<br/>[命令行方式访问应用沙箱](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-device-file-explorer#section9381241102211)。<br/>此参数当前仅支持以非交互式模式执行命令，不支持缺省command参数执行命令进入交互式shell会话。<br/>未配置此参数时，默认执行路径为系统根目录。 |
+| -b bundlename | 3.1.0e版本新增参数。指定可调试应用包名，在可调试应用数据目录内，以非交互式模式执行命令。<br/>[命令行方式访问应用沙箱](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-device-file-explorer#section48216711204)。<br/>此参数当前仅支持以非交互式模式执行命令，不支持缺省command参数执行命令进入交互式shell会话。<br/>未配置此参数时，默认执行路径为系统根目录。 |
 | command | 需要在设备上执行的单次命令，不同类型或版本的系统支持的command命令有所差异，可以通过hdc shell ls /system/bin查阅支持的命令列表。当前大多数命令都是由[toybox](../tools/toybox.md)提供，可通过 hdc shell toybox --help 获取命令帮助。<br/>缺省该参数，hdc将会启动一个交互式的shell会话，开发者可以在命令提示符下输入命令，比如 ls、cd、pwd 等。 |
 
 > **说明：**
@@ -714,7 +714,7 @@ hdc file send [-a|-sync|-z|-m|-b bundlename] SOURCE DEST
 | -sync | 只传输文件mtime有更新的文件。<br/>mtime（modified timestamp）：修改后的时间戳。 |
 | -z | 通过LZ4格式压缩传输，此功能未开放，请勿使用。 |
 | -m | 文件传输时同步文件DAC权限，uid，gid，MAC权限。<br/>DAC（Discretionary Access Control）：自主访问控制，<br/>uid（User identifier）：用户标识符（或用户ID），<br/>gid（Group identifier）：组标识符（或组ID），<br/>MAC（Mandatory Access Control）：强制访问控制（或非自主访问控制）。 |
-| -b | 3.1.0e版本新增参数（低版本使用会提示[Fail]Unknown file option: -b），用于指定可调试应用包名。<br/>使用方法可参考[通过命令往应用沙箱目录中发送文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-device-file-explorer#section9381241102211)。 |
+| -b | 3.1.0e版本新增参数（低版本使用会提示[Fail]Unknown file option: -b），用于指定可调试应用包名。<br/>使用方法可参考[通过命令往应用沙箱目录中发送文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-device-file-explorer#section48216711204)。 |
 | bundlename | 指定可调试应用包名。 |
 
 **返回信息**：

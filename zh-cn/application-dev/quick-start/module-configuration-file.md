@@ -109,7 +109,7 @@ module.json5配置文件包含以下标签。
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| name | 标识当前Module的名称，确保该名称在整个应用中唯一。命名规则如下&nbsp;：<br/>-&nbsp;由字母、数字和下划线组成，且必须以字母开头。<br/>-&nbsp;最大长度31字节。<br/>应用升级时允许修改该名称，但需要应用适配Module相关数据目录的迁移，详见[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md)。 | 字符串 | 该标签不可缺省。 |
+| name | 标识当前Module的名称，确保该名称在整个应用中唯一。命名规则如下&nbsp;：<br/>-&nbsp;由字母、数字和下划线组成，且必须以字母开头。<br/>-&nbsp;最大长度128字节。<br/>应用升级时允许修改该名称，但需要应用适配Module相关数据目录的迁移，详见[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md)。 | 字符串 | 该标签不可缺省。 |
 | type | 标识当前Module的类型。支持的取值如下：<br/>-&nbsp;entry：应用的主模块。<br/>-&nbsp;feature：应用的动态特性模块。<br/>-&nbsp;har：静态共享包模块。<br/>-&nbsp;shared：动态共享包模块。 | 字符串 | 该标签不可缺省。 |
 | srcEntry | 标识AbilityStage组件的代码路径，详情参考[AbilityStage组件容器](../application-models/abilitystage.md)，取值为长度不超过127字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | description | 标识当前Module的描述信息，开发者可以通过该字段描述当前模块的功能与作用，取值为长度不超过255字节的字符串，可以采用字符串资源索引格式。 | 字符串 | 该标签可缺省，缺省值为空。 |
@@ -125,7 +125,7 @@ module.json5配置文件包含以下标签。
 | [extensionAbilities](#extensionabilities标签) | 标识当前Module中ExtensionAbility的配置信息，只对当前ExtensionAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | <!--DelRow-->[definePermissions](#definepermissions标签) | 标识系统资源hap定义的权限，不支持应用自定义权限。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [requestPermissions](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)| 标识当前应用运行时需向系统申请的权限集合。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-| [testRunner](#testrunner标签) | 标识用于测试当前Module的测试框架的配置。 | 对象 | 该标签可缺省，缺省值为空。 |
+| [testRunner](#testrunner标签) | 标识用于测试当前Module的测试框架的配置。详情请参考[启动测试框架命令](../tools/aa-tool.md#启动测试框架命令test)。 | 对象 | 该标签可缺省，缺省值为空。 |
 | [atomicService](#atomicservice标签)| 标识当前应用是原子化服务时，有关原子化服务的相关配置。| 对象 | 该标签可缺省，缺省值为空。  |
 | [dependencies](#dependencies标签)| 标识当前模块运行时依赖的共享库列表。| 对象数组 | 该标签可缺省，缺省值为空。手动配置不生效，由编译构建时自动生成。  |
 | targetModuleName | 标识当前包所指定的目标Module。取值为长度不超过128字节的字符串，不支持中文。配置该字段的Module具有overlay特性。仅在动态共享包（HSP）中适用。 |字符串|该标签可缺省，缺省值为空。|
@@ -137,7 +137,7 @@ module.json5配置文件包含以下标签。
 | extractNativeLibs | 标识应用安装时，libs库是否解压到应用安装目录。当compressNativeLibs和extractNativeLibs都配置为false时，应用以不解压libs库的方式进行安装；其他场景，应用以解压libs库的方式进行安装。<br/>**说明：**<br/>从API version 20开始，支持该字段。 | 布尔值 | 该标签可缺省，缺省值为true。 |
 | libIsolation | 在libs目录下是否生成模块名称目录存储so，用于区分同一应用中不同HAP的.so文件，以防止.so文件冲突。<br/>-&nbsp;true：当前HAP的.so文件会储存在libs目录中以Module名命名的路径下。<br/>-&nbsp;false：当前HAP的.so文件会直接储存在libs目录中。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | [fileContextMenu](#filecontextmenu标签) | 标识当前HAP的右键菜单配置项，是一个profile文件资源。取值为长度不超过255字节的字符串。<br/>**说明：**<br/>仅在PC/2in1设备上生效。<br/>仅允许在entry类型模块中配置。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| querySchemes | 标识允许当前应用进行跳转查询的URL schemes，只允许entry类型模块配置，最多50个，每个字符串取值不超过128字节。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
+| querySchemes | 标识允许当前应用进行跳转查询的URL schemes，只允许entry类型模块配置，每个字符串取值不超过128字节。<br/>**说明：**<br/>从API version 21开始，最多允许配置200个URL scheme。API version 20及之前的版本，最多允许配置50个URL scheme。  | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | [routerMap](#routermap标签) | 标识当前模块配置的路由表路径。取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | [appEnvironments](#appenvironments标签) | 标识当前模块配置的应用环境变量，只允许entry和feature模块配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | appStartup | 标识当前Module[启动框架](../application-models/app-startup.md)配置路径，只允许entry类型模块配置。<br>从API version 18开始，新增支持在HSP、HAR中配置。<br>从API version 20开始，新增支持在feature类型的Module中配置。 | 字符串 | 该标签可缺省，缺省值为空。 |
@@ -146,6 +146,8 @@ module.json5配置文件包含以下标签。
 | abilitySrcEntryDelegator | 标识当前Module需要重定向到的UIAbility的名称，与abilityStageSrcEntryDelegator字段组合使用，共同指定重定向的目标对象。<br/>**说明：**<br/>1.从API version 17开始，支持该字段。<br/>2.当UIAbility是通过[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口启动时，该字段不生效。<br/>3.不支持在HAR的配置文件中配置该字段，也不支持重定向到HAR的UIAbility。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | abilityStageSrcEntryDelegator | 标识当前Module需要重定向到的UIAbility对应的Module名称（不可为当前Module名称），与abilitySrcEntryDelegator字段组合使用，共同指定重定向的目标对象。<br/>**说明：**<br/>1.从API version 17开始，支持该字段。<br/>2.当UIAbility是通过[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口启动时，该字段不生效。<br/>3.不支持在HAR的配置文件中配置该字段，也不支持重定向到HAR的UIAbility。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | crossAppSharedConfig | 标识应用间共享配置的配置文件名。取值为不超过255字节的字符串。用于发布配置给其他应用读取，在应用安装时生效，应用卸载时失效。详细使用方式见[共享配置使用](../database/share-config.md#配置发布方)。<br/>**说明：**<br/>从API version 20开始，支持该字段。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| formWidgetModule | 在[独立卡片包](../form/arkts-ui-widget-creation.md#方式二独立包方式创建卡片)中，应用包需要配置该标签，用来关联卡片包。取值为卡片包的模块名称，对应卡片包module.json5中的name标签。具体使用方式请参考[FormExtensionAbility配置](../form/arkts-ui-widget-configuration.md#formextensionability配置)。<br/>**说明：**<br/> 1. 从API version 20开始，支持该标签。 2. 仅在独立卡片包的应用包中，该标签配置生效，且要求对应的卡片包模块必须配置formExtensionModule标签。 | 字符串 | 该标签可缺省，缺省值为空。  |
+| formExtensionModule | 在[独立卡片包](../form/arkts-ui-widget-creation.md#方式二独立包方式创建卡片)中，卡片包需要配置该标签，用来关联应用包。取值为应用包的模块名称，对应应用包module.json5中的name标签。具体使用方式请参考[独立卡片包配置](../form/arkts-ui-widget-configuration.md#独立卡片包配置)。<br/>**说明：**<br/>1. 从API version 20开始，支持该标签。2. 仅在独立卡片包的卡片包中，该标签配置生效，且要求对应的应用包模块必须配置formWidgetModule标签。 | 字符串 | 该标签可缺省，缺省值为空。  |
 <!--RP6--><!--RP6End-->
 
 ## deviceTypes标签

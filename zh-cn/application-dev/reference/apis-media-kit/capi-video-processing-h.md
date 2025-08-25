@@ -12,6 +12,8 @@
 
 提供视频处理能力，包括颜色空间转换、元数据生成和视频缩放。
 
+**引用文件：** <multimedia/video_processing_engine/video_processing.h>
+
 **库：** libvideo_processing.so
 
 **系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
