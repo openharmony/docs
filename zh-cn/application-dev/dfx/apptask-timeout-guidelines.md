@@ -156,7 +156,7 @@ HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hia
 
 **方式一：通过HiAppEvent接口订阅**
 
-HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hiappevent-intro.md)。参考[订阅任务执行超时事件（ArkTS）](hiappevent-watcher-apphicollie-events-arkts.md)或[订阅任务执行超时事件（C/C++）](hiappevent-watcher-apphicollie-events-ndk.md)完成任务执行超时事件订阅，并通过事件的[external_log](hiappevent-watcher-apphicollie-events.md#事件字段说明)字段读取故障日志文件名。
+HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hiappevent-intro.md)。参考[订阅任务执行超时事件（C/C++）](hiappevent-watcher-apphicollie-events-ndk.md)完成任务执行超时事件订阅，并通过事件的[external_log](hiappevent-watcher-apphicollie-events.md#事件字段说明)字段读取故障日志文件名。
 
 ### 日志规格
 
