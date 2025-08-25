@@ -78,7 +78,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     userStatus.on('userAgeGroupDetected', (data: userStatus.UserClassification) => {
-        console.info('callback success, ageGroup:' + data.ageGroup + ", confidence:" + data.confidence);
+        console.info('callback succeeded, ageGroup:' + data.ageGroup + ", confidence:" + data.confidence);
     });
     console.info("on succeeded");
 } catch (err) {
