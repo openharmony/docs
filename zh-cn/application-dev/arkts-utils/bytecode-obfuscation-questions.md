@@ -609,8 +609,8 @@ Stacktrace：Cannot get SourceMap info, dump raw stack: at anonymous (ads_servic
 ```js
 //oh-package.json5
 "dependencies": {
-    "reflect-metadata": "0.2.1"
-  }
+  "reflect-metadata": "0.2.1"
+}
   
 //test.ts
 import 'reflect-metadata';
