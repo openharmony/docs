@@ -152,8 +152,8 @@ struct ClickExample {
               this.text = 'Click Point:' + '\n  windowX:' + event.windowX + '\n  windowY:' + event.windowY
                 + '\n  x:' + event.x + '\n  y:' + event.y + '\ntarget:' + '\n  component globalPos:('
                 + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\n  width:'
-                + event.target.area.width + '\n  height:' + event.target.area.height + '\ntimestamp' + event.timestamp
-                + '\n id:'+ event.target.id + '\ntargetDisplayId:' + event.targetDisplayId;
+                + event.target.area.width + '\n  height:' + event.target.area.height + '\n  id:'+ event.target.id
+                + '\ntargetDisplayId:' + event.targetDisplayId + '\ntimestamp' + event.timestamp;
             }
           }, 20)
         Button('Click').width(200).height(50).id('click2')
@@ -162,8 +162,8 @@ struct ClickExample {
               this.text = 'Click Point:' + '\n  windowX:' + event.windowX + '\n  windowY:' + event.windowY
                 + '\n  x:' + event.x + '\n  y:' + event.y + '\ntarget:' + '\n  component globalPos:('
                 + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\n  width:'
-                + event.target.area.width + '\n  height:' + event.target.area.height + '\ntimestamp' + event.timestamp
-                + '\n id:'+ event.target.id + '\ntargetDisplayId:' + event.targetDisplayId;
+                + event.target.area.width + '\n  height:' + event.target.area.height + '\n  id:'+ event.target.id
+                + '\ntargetDisplayId:' + event.targetDisplayId + '\ntimestamp' + event.timestamp;
             }
           }, 20)
       }.margin(20)
