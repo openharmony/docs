@@ -87,7 +87,7 @@ let wrongTypeMapped: collections.Uint8Array = uint8.map((value: number) => parse
 ```
 
 - 详细说明参见：接口使用的示例代码:
-[ArkTS容器集 - TypedArray](../../../application-dev/reference/apis-arkts/js-apis-arkts-collections.md#collectionstypedarray)
+ArkTS容器集 - TypedArray（[Int8Array](../../../application-dev/reference/apis-arkts/arkts-apis-arkts-collections-Int8Array.md)、[Uint8Array](../../../application-dev/reference/apis-arkts/arkts-apis-arkts-collections-Uint8Array.md)、[Int16Array](../../../application-dev/reference/apis-arkts/arkts-apis-arkts-collections-Int16Array.md)、[Uint16Array](../../../application-dev/reference/apis-arkts/arkts-apis-arkts-collections-Uint16Array.md)、[Int32Array](../../../application-dev/reference/apis-arkts/arkts-apis-arkts-collections-Int32Array.md)、[Uint32Array](../../../application-dev/reference/apis-arkts/arkts-apis-arkts-collections-Uint32Array.md)、[Uint8ClampedArray](../../../application-dev/reference/apis-arkts/arkts-apis-arkts-collections-Uint8ClampedArray.md)、[Float32Array](../../../application-dev/reference/apis-arkts/arkts-apis-arkts-collections-Float32Array.md)）
 
 ## cl.arkcompiler.2 ArkTS Sendable语法规则编译检查完善
 
@@ -97,7 +97,7 @@ let wrongTypeMapped: collections.Uint8Array = uint8.map((value: number) => parse
 
 **变更原因**
 
-Sendable对象需要遵循一定[使用规则](../../..//application-dev/arkts-utils/arkts-sendable.md#sendable使用规则)，在Sendable泛型类的部分语法中，编译器没有对应的检查，导致这些语法下的Sendable对象用在并发场景中运行异常但是没有无编译时错误。在本次版本更新中，我们修复了这些场景下Sendable约束的编译时检查，将运行时异常提前到编译时。旨在通过编译时错误，帮助开发者更早发现Sendable使用约束，减少运行时定位成本。
+Sendable对象需要遵循[Sendable使用规则与约束](../../../application-dev/arkts-utils/sendable-constraints.md)，在Sendable泛型类的部分语法中，编译器没有对应的检查，导致这些语法下的Sendable对象用在并发场景中运行异常但是没有无编译时错误。在本次版本更新中，我们修复了这些场景下Sendable约束的编译时检查，将运行时异常提前到编译时。旨在通过编译时错误，帮助开发者更早发现Sendable使用约束，减少运行时定位成本。
 
 **变更影响**
 
@@ -209,7 +209,7 @@ Sendable泛型类的类型必须使用Sendable类型。
 
 **变更原因**
 
-Sendable赋值时需要遵循一定[使用规则](../../..//application-dev/arkts-utils/arkts-sendable.md#sendable使用规则)，但是在Non-sendable对象赋值给Sendable类型的部分场景中，编译没有对应的检查，导致这些场景下的Non-sendable对象被当成Sendable对象使用，运行异常但是没有编译时报错。在本次版本更新中，我们修复了这些场景下Sendable赋值约束的编译时检查，将运行时异常提前到编译时。旨在通过编译时错误，帮助开发者更早发现Sendable使用约束，减少运行时定位成本。
+Sendable赋值时需要遵循[Sendable使用规则与约束](../../../application-dev/arkts-utils/sendable-constraints.md)，但是在Non-sendable对象赋值给Sendable类型的部分场景中，编译没有对应的检查，导致这些场景下的Non-sendable对象被当成Sendable对象使用，运行异常但是没有编译时报错。在本次版本更新中，我们修复了这些场景下Sendable赋值约束的编译时检查，将运行时异常提前到编译时。旨在通过编译时错误，帮助开发者更早发现Sendable使用约束，减少运行时定位成本。
 
 错误对象：使用Sendable类型/接口进行声明，但是被赋值为Non-sendable对象的变量/参数/返回值。
 

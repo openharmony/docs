@@ -1,9 +1,10 @@
 # drawing_font_mgr.h
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
-<!--Owner: @oh_wangxk;@gmiao522;@Lem0nC-->
-<!--SE: @liumingxiang-->
-<!--TSE: @yhl0101-->
+<!--Owner: @oh_wangxk; @gmiao522; @Lem0nC-->
+<!--Designer: @liumingxiang-->
+<!--Tester: @yhl0101-->
+<!--Adviser: @ge-yafang-->
 ## 概述
 
 文件中定义了与字体管理相关的功能函数，用于加载和匹配系统中可用的字体。

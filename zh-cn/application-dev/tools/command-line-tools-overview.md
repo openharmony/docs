@@ -3,8 +3,9 @@
 <!--Kit: Common-->
 <!--Subsystem: Common-->
 <!--Owner: @foryourself-->
-<!--SE: @lingminghw-->
-<!--TSE: @RayShih-->
+<!--Designer: @lingminghw-->
+<!--Tester: @RayShih-->
+<!--Adviser: @foryourself-->
 
 当前SDK中包含了开发者在开发应用过程中需要使用的多种工具，可以实现日志查看、应用安装、启动测试等功能。
 

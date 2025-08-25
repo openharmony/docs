@@ -2,9 +2,10 @@
 
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @piggyguy;@xiang-shouxing;@yangfan229-->
-<!--SE: @piggyguy;@xiang-shouxing;@yangfan229-->
-<!--TSE: @fredyuan912-->
+<!--Owner: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Designer: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
 
 提供UI组件行为变化的无感监听能力。
 
@@ -233,9 +234,9 @@ struct PageOne {
   private text = '';
   private uniqueid = -1;
   aboutToAppear() {
-    let navigationuniqueid = this.queryNavigationInfo()?.uniqueId;
-    if (navigationuniqueid) {
-      this.uniqueid = navigationuniqueid.valueOf();
+    let navigationUniqueId = this.queryNavigationInfo()?.uniqueId;
+    if (navigationUniqueId) {
+      this.uniqueid = navigationUniqueId.valueOf();
     }
     this.text = JSON.stringify(this.uniqueid);
     this.getUIContext().getUIObserver().on('navDestinationUpdateByUniqueId', this.uniqueid, (info) => {
@@ -248,7 +249,7 @@ struct PageOne {
   build() {
     NavDestination() {
       Text("pageOne")
-      Text('navigationuniqueid是:' + this.text)
+      Text('navigationUniqueId是:' + this.text)
         .width('80%')
         .height(50)
         .margin(50)
@@ -1990,9 +1991,15 @@ struct Index {
       .margin(10)
       .border({ width: 2, color: '#7BED9F' })
       .justifyContent(FlexAlign.Center)
-      .gesture(PanGesture().onActionStart((event: GestureEvent) => {
-        //具体实现内容
-      }))
+      .gesture(
+        PanGesture()
+          .onActionStart((event: GestureEvent) => {
+            //具体实现内容
+          })
+          .onActionEnd((event: GestureEvent) => {
+            //具体实现内容
+          })
+      )
 
       Row() {
         Text('LongPress区域').fontSize(18)
@@ -2003,9 +2010,15 @@ struct Index {
       .margin(10)
       .border({ width: 2, color: '#70A1FF' })
       .justifyContent(FlexAlign.Center)
-      .gesture(LongPressGesture().onAction((event: GestureEvent)=>{
-        //具体实现内容
-      }))
+      .gesture(
+        LongPressGesture()
+          .onAction((event: GestureEvent)=>{
+            //具体实现内容
+          })
+          .onActionEnd((event: GestureEvent) => {
+            //具体实现内容
+          })
+      )
     }
     .width('100%')
     .height('100%')

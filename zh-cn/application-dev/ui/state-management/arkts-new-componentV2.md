@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiyujia926-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 为了在自定义组件中使用V2版本状态变量装饰器的能力，开发者可以使用\@ComponentV2装饰器装饰自定义组件。
 
@@ -11,8 +12,9 @@
 
 >**说明：**
 >
->\@ComponentV2装饰器从API version 12开始支持。
+> \@ComponentV2装饰器从API version 12开始支持。
 >
+> 从API version 12开始，该装饰器支持在原子化服务中使用。
 
 
 ## 概述

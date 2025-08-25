@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @luoying_ace_admin-->
-<!--SE: @weixin_52725220-->
-<!--TSE: @xiong0104-->
+<!--Designer: @weixin_52725220-->
+<!--Tester: @xiong0104-->
+<!--Adviser: @HelloCrease-->
 
 选择器组件公共接口。
 

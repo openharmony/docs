@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
-<!--SE: @yuanyao14-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 本模块提供了将JSON文本转换为JSON对象或值，以及将对象转换为JSON文本等功能。
 
@@ -282,7 +283,7 @@ console.info(JSON.stringify(inputObj, replacer, '  '));
 
 has(obj: object, property: string): boolean
 
-检查ArkTS对象是否包含某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后的相关操作。has接口仅支持最外层为字典形式（即大括号而非中括号包围）的合法json串。
+检查ArkTS对象是否包含某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后。has接口仅支持最外层为字典形式（即大括号而非中括号包围）的合法json串。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -326,7 +327,7 @@ console.info("result = " + result);
 
 remove(obj: object, property: string): void
 
-从ArkTS对象中删除某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后的相关操作。remove接口仅支持最外层为字典形式（即大括号而非中括号包围）的合法json串。
+从ArkTS对象中删除某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后。JSON.remove接口仅支持最外层为字典形式（即大括号而非中括号包围）的合法json串。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

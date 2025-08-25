@@ -2,8 +2,9 @@
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @yuanxiaogou; @string_sz-->
-<!--SE: @knightaoko-->
-<!--TSE: @test_lzz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## 生命周期管理
 
@@ -18,7 +19,7 @@
 3. Scope(包括JSVM_VMScope、JSVM_EnvScope、JSVM_HandleScope)需逆序关闭，最先打开的Scope需最后关闭，否则可能造成应用崩溃；
 
 **Scope关闭错误示例**：
-```
+```c++
 // 未逆序关闭JSVM_VMScope，可能造成应用崩溃
 JSVM_VM vm;
 JSVM_CreateVMOptions options;
@@ -37,7 +38,7 @@ OH_JSVM_DestroyVM(vm);
 
 **C++使用封装**：
 
-```
+```c++
 class HandleScopeWrapper {
  public:
   HandleScopeWrapper(JSVM_Env env) : env(env) {
@@ -107,7 +108,7 @@ if (status != JSVM_OK)
 
 ## 多线程共享引擎实例
 
-【规则】多线程同时使用同一个引擎实例的场景下，需要加锁使用。保证一个引擎实例在同一时刻只能在一个线程执行。多线程同一时刻同时使用引擎实例可能造成应用崩溃。
+**【规则】** 多线程同时使用同一个引擎实例的场景下，需要加锁使用。保证一个引擎实例在同一时刻只能在一个线程执行。多线程同一时刻同时使用引擎实例可能造成应用崩溃。
 
 **注意事项**：
 
@@ -120,7 +121,7 @@ if (status != JSVM_OK)
 
 **C++使用封装**：
 
-```
+```c++
 class LockWrapper {
  public:
   // 构造函数，获取锁、VMScope、EnvScope
@@ -162,7 +163,7 @@ class LockWrapper {
 
 **正确示例**：
 
-```
+```c++
 // 该用例演示了多线程中使用vm
 // t1线程先获取锁，并继续JSVM-API的调用
 // t2线程会在获取锁处阻塞，直到t1线程执行结束释放锁后，t2线程继续执行，调用JSVM-API接口
@@ -192,7 +193,7 @@ static napi_value Add([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_call
         } else {
             OH_LOG_ERROR(LOG_APP, "JSVM:t1 OH_JSVM_CreateInt32 fail");
         }
-        int32_t num1;
+        int32_t num1 = 0;
         OH_JSVM_GetValueInt32(env, value, &num1);
         OH_LOG_INFO(LOG_APP, "JSVM:t1 num1 = %{public}d", num1);
         OH_JSVM_CloseHandleScope(env, handleScope);
@@ -208,7 +209,7 @@ static napi_value Add([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_call
         } else {
             OH_LOG_ERROR(LOG_APP, "JSVM:t2 OH_JSVM_CreateInt32 fail");
         }
-        int32_t num1;
+        int32_t num1 = 0;
         OH_JSVM_GetValueInt32(env, value, &num1);
         OH_LOG_INFO(LOG_APP, "JSVM:t2 num1 = %{public}d", num1);
         OH_JSVM_CloseHandleScope(env, handleScope);
@@ -283,8 +284,7 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
 
  根据主从类型，异常处理可以分为两类：
 
-1. JSVM 执行 C++ 回调函数（JS主，Native从）时发生 C++ 异常，需往 JSVM 中抛出异常，下面用例描述了3种情况下 C++ 回调函数的写法
-**注意事项**：回调函数中调用JSVM-API失败，如要向JSVM中抛异常，需保证JSVM中无等待处理的异常，也可以不抛出异常，JS的try-catch块可以捕获回调函数调用API失败产生的JS异常，见`NativeFunctionExceptionDemo3`。
+1. JSVM 执行 C++ 回调函数（JS主，Native从）时发生 C++ 异常，需往 JSVM 中抛出异常，下面用例描述了3种情况下 C++ 回调函数的写法。需要注意的是，回调函数中调用JSVM-API失败，如要向JSVM中抛异常，需保证JSVM中无等待处理的异常，也可以不抛出异常，JS的try-catch块可以捕获回调函数调用API失败产生的JS异常，见`NativeFunctionExceptionDemo3`。
     ```c++
     // JSVM主， Native从
     void DoSomething() {
@@ -364,7 +364,7 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
     ```
 
 2. C++调用JSVM-API（Native主，JS从）失败，需清理JSVM中等待处理的异常，避免影响后续JSVM-API的执行，并设置C++异常处理分支（或抛出C++异常）。
-    ```
+    ```c++
     std::string sourcecodestr = R"JS(
         throw Error('Error throw from js');
     )JS";
@@ -403,7 +403,7 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
 
 **示例**：
 
-```
+```c++
 JSVM_Value JSFunc = nullptr;
 const char *name = "NativeFunction";
 JSVM_CallbackStruct cb = {NativeFunction, nullptr};

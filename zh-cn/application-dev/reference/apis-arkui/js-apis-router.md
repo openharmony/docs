@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @mayaolll-->
-<!--SE: @jiangdayuan-->
-<!--TSE: @lxl007-->
+<!--Designer: @jiangdayuan-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 本模块提供通过不同的url访问不同的页面，包括跳转到应用内的指定页面、同应用内的某个页面替换当前页面、返回上一页面或指定的页面等。
 
@@ -1446,6 +1447,8 @@ getParams(): Object
 > 从API version 18开始废弃，建议使用[UIContext](arkts-apis-uicontext-uicontext.md)中的[getRouter](arkts-apis-uicontext-uicontext.md#getrouter)获取[Router](arkts-apis-uicontext-router.md)实例，再通过此实例调用替代方法[getParams](arkts-apis-uicontext-router.md#getparams)。
 >
 > 从API version 10开始，可以通过使用[UIContext](arkts-apis-uicontext-uicontext.md)中的[getRouter](arkts-apis-uicontext-uicontext.md#getrouter)方法获取当前UI上下文关联的[Router](arkts-apis-uicontext-router.md)对象。
+>
+> getParams只获取当前页面的参数，并不会清除页面关联的参数。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1472,7 +1475,7 @@ this.getUIContext().getRouter().getParams();
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | url    | string | 是   | 表示目标页面的url，可以用以下两种格式：<br/>-&nbsp;页面绝对路径，由配置文件中pages列表提供，例如：<br/>&nbsp;&nbsp;-&nbsp;pages/index/index<br/>&nbsp;&nbsp;-&nbsp;pages/detail/detail<br/>-&nbsp;特殊值，如果url的值是"/"，则跳转到首页，首页默认为页面跳转配置项src数组的第一个数据项。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| params | Object | 否   | 表示路由跳转时要同时传递到目标页面的数据，切换到其他页面时，当前接收的数据失效。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。<br/>**说明：** <br/>params参数不能传递方法和系统接口返回的对象（例如，媒体接口定义和返回的PixelMap对象）。建议开发者提取系统接口返回的对象中需要被传递的基础类型属性，自行构造object类型对象进行传递。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| params | Object | 否   | 表示路由跳转时要同时传递到目标页面的数据，切换到其他页面时，当前接收的数据失效。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。<br/>**说明：** <br/>params参数只能传递可序列化的参数，不能传递方法和系统接口返回的对象（例如，媒体接口定义和返回的PixelMap对象）。建议开发者提取系统接口返回的对象中需要被传递的基础类型属性，自行构造object类型对象进行传递。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | recoverable<sup>14+</sup> | boolean | 否   | 表示对应的页面是否可恢复，默认为true。当为true时，表示可恢复，当为false时，表示不可恢复。<br/>**说明：** <br/> 当应用退到后台，并且在未来的某个时间点，由于系统资源限制等原因被系统杀死，如果某个页面被设置成可恢复，那么该应用再次被拉到前台后系统可以恢复出页面，详细说明请参考[UIAbility备份恢复](../../application-models/ability-recover-guideline.md)。 |
 
   > **说明：**

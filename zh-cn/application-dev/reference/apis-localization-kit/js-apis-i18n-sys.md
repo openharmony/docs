@@ -3,8 +3,9 @@
 <!--Kit: Localization Kit-->
 <!--Subsystem: Global-->
 <!--Owner: @yliupy-->
-<!--SE: @sunyaozu-->
-<!--TSE: @lpw_work-->
+<!--Designer: @sunyaozu-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
  本模块提供系统相关的或者增强的国际化能力，包括区域管理、电话号码处理、日历等，相关接口为ECMA 402标准中未定义的补充接口。[Intl模块](js-apis-intl.md)提供了ECMA 402标准定义的基础国际化接口，与本模块共同使用可提供完整地国际化支持能力。
 
@@ -30,8 +31,6 @@ static setSystemLanguage(language: string): void
 
 设置系统语言。
 
-若要监听系统语言变化，可以监听[事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED。
-
 **系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
@@ -56,7 +55,7 @@ static setSystemLanguage(language: string): void
 
 **示例：**
   ```ts
-  import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // 设置系统语言
   try {
@@ -65,25 +64,6 @@ static setSystemLanguage(language: string): void
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
-
-  // 订阅公共事件
-  let subscriber: commonEventManager.CommonEventSubscriber; // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = { // 订阅者信息
-    events: [commonEventManager.Support.COMMON_EVENT_LOCALE_CHANGED]
-  };
-  commonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:commonEventManager.CommonEventSubscriber) => { // 创建订阅者
-      console.info("createSubscriber");
-      subscriber = commonEventSubscriber;
-      commonEventManager.subscribe(subscriber, (err, data) => {
-        if (err) {
-          console.error(`Failed to subscribe common event. error code: ${err.code}, message: ${err.message}.`);
-          return;
-        }
-        console.info("the subscribed event has occurred."); // 订阅的事件发生时执行
-      })
-  }).catch((err: BusinessError) => {
-      console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
-  });
   ```
 
 ### setSystemRegion<sup>9+</sup>

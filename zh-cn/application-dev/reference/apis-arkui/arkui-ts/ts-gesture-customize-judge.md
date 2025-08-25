@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 为组件提供自定义手势判定能力。开发者可根据需要，在手势识别期间，决定是否响应手势。
 
@@ -15,6 +16,8 @@
 ## onGestureJudgeBegin
 
 onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent) => GestureJudgeResult): T
+
+为组件绑定自定义手势判定回调。当手势被接受时，触发用户定义的回调获取结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -107,7 +110,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 
 | 名称      | 类型                                  | 只读   |    可选   | 说明        |
 | ---------  | -------------------------------------|-------| -----------|  -----------|
-| fingerList<sup>11+</sup> | [FingerInfo[]](ts-gesture-settings.md#fingerinfo对象说明8) | 否 | 否 | 触发事件的所有手指信息。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| fingerList | [FingerInfo[]](ts-gesture-settings.md#fingerinfo对象说明8) | 否 | 否 | 触发事件的所有手指信息。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | fingerInfos<sup>20+</sup> | [FingerInfo[]](ts-gesture-settings.md#fingerinfo对象说明8)  | 否 | 是 | 参与触发事件的所有有效触点信息。默认值为空数组[]，返回空数组时，表示当前无有效触点信息。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## TapGestureEvent对象说明

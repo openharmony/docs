@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @oatuwwutao; @luobohua-->
-<!--SE: @hufeng20-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @hufeng20-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 ## 简介
 

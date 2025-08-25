@@ -2,8 +2,9 @@
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @hao-liangfei-->
-<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
-<!--TSE: @Filger-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 ## 概述
 
 音频会话状态变更事件。
@@ -21,3 +22,5 @@
 | 名称 | 描述 |
 | -- | -- |
 | [OH_AudioSession_StateChangeHint](capi-native-audio-session-manager-h.md#oh_audiosession_statechangehint) stateChangeHint | 音频会话停用的具体原因。 |
+
+

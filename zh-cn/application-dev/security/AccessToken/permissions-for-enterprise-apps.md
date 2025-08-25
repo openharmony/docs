@@ -3,8 +3,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: Security-->
 <!--Owner: @harylee-->
-<!--SE: @linshuqing; @hehehe-li-->
-<!--TSE: @leiyuqian-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
 
 以下权限面向<!--Del-->系统应用和<!--DelEnd-->企业类应用开放。
 
@@ -197,7 +198,7 @@
 
 **起始版本**：12
 
-**变更信息**：API 12-13该权限仅面向MDM应用开放；从API 14开始，开放范围从MDM应用变为更为企业普通应用。
+**变更信息**：API 12-13该权限仅面向MDM应用开放；从API 14开始，开放范围从MDM应用变更为企业普通应用。
 
 ## ohos.permission.KILL_APP_PROCESSES
 

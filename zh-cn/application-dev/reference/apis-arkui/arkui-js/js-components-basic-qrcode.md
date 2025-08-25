@@ -1,4 +1,10 @@
 # qrcode
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xuqinfeng1-->
+<!--Designer: @liyujie43-->
+<!--Tester: @xiong0104-->
+<!--Adviser: @xuqinfeng1-->
 
 >  **说明：**
 >  从API version 5开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -40,7 +46,7 @@
 >
 >  - width和height只设置一个时，取设置的值作为二维码的边长。都不设置时，使用200px作为默认边长。
 >
-
+<!--RP1--><!--RP1End-->
 
 ## 事件
 
@@ -59,13 +65,13 @@
   <qrcode value="{{qr_value}}" type="{{qr_type}}"
   style="color: {{qr_col}};background-color: {{qr_bcol}};width: {{qr_size}};height: {{qr_size}};margin-bottom: 70px;"></qrcode>
   <text class="txt">Type</text>
-  <switch showtext="true" checked="true" texton="rect" textoff="circle" onchange="settype"></switch>
+  <switch showtext="true" checked="true" texton="rect" textoff="circle" onchange="setType"></switch>
   <text class="txt">Color</text>
-  <select onchange="setcol">
+  <select onchange="setCol">
     <option for="{{col_list}}" value="{{$item}}">{{$item}}</option>
   </select>
   <text class="txt">Background Color</text>
-  <select onchange="setbcol">
+  <select onchange="setBCol">
     <option for="{{bcol_list}}" value="{{$item}}">{{$item}}</option>
   </select>
 </div>
@@ -101,17 +107,17 @@ export default {
     qr_bcol: '#f0ffff',
     bcol_list: ['#f0ffff','#ffffe0','#d8bfd8']
   },
-  settype(e) {
+  setType(e) {
     if (e.checked) {
       this.qr_type = 'rect'
     } else {
       this.qr_type = 'circle'
     }
   },
-  setcol(e) {
+  setCol(e) {
     this.qr_col = e.newValue
   },
-  setbcol(e) {
+  setBCol(e) {
     this.qr_bcol = e.newValue
   }
 }

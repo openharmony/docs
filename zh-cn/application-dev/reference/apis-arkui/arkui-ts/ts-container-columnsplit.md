@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @zju_ljz-->
-<!--SE: @lanshouren-->
-<!--TSE: @liuli0427-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 将子组件纵向布局，并在每个子组件之间插入横向分割线。
 

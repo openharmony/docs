@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
-<!--SE: @hanfeng6-->
-<!--TSE: @kongjing2-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本章节介绍应用程序包的安装卸载流程和两种更新方式。
 
@@ -15,7 +16,7 @@
 ![hap-intall-uninstall](figures/hap-install-uninstall-developer.png)
 
 
-应用上架应用市场后，终端设备用户可在设备上通过应用市场安装和卸载应用。
+应用上架应用市场后，终端设备用户可在设备上通过应用市场安装应用。
 
 **图2** 应用程序包安装和卸载流程（终端设备用户）
 

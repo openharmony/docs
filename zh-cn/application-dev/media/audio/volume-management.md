@@ -2,8 +2,9 @@
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @songshenke-->
-<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
-<!--TSE: @Filger-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 本模块提供播放音量管理能力，包括对**系统音量**、**应用音量**和**音频流音量**的管理。
 

@@ -2,8 +2,9 @@
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @yuanxiaogou; @string_sz-->
-<!--SE: @knightaoko-->
-<!--TSE: @test_lzz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## 简介
 
@@ -26,7 +27,7 @@ string是编程中常用的数据类型。用于存储和操作文本数据，�
 | OH_JSVM_CreateStringUtf8          | 根据Utf8编码的字符串创建一个JavaScript string对象。|
 | OH_JSVM_GetValueStringUtf16      | 获取给定JavaScript string对象的Utf16编码字符串。|
 | OH_JSVM_CreateStringUtf16         | 根据Utf16编码的字符串数据创建JavaScript string对象。|
-| OH_JSVM_GetValueStringLatin1     | 获取给定JavaScript string对象的Latin1编码字符串。|
+| OH_JSVM_GetValueStringLatin1     | 获取给定JavaScript string对象的Latin-1编码字符串。|
 | OH_JSVM_CreateStringLatin1        | 根据Latin-1编码的字符串创建一个JavaScript string对象。|
 
 ## 使用示例

@@ -3,8 +3,9 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @lu-tao-->
-<!--SE: @martin-duan-->
-<!--TSE: @gcw_KuLfPSbe-->
+<!--Designer: @martin-duan-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
 本模块提供了监控js对象是否发生泄露的能力。
 
@@ -101,7 +102,7 @@ dump(filePath: string): Array&lt;string&gt;
 
 | 类型    | 说明                                                       |
 | ------- | ---------------------------------------------------------- |
-| Array&lt;string&gt; | 导出结果的数组。索引0为泄露列表文件名，后缀为.jsleaklist；索引1为虚拟机内存快照文件名，后缀为.heapsnapshort。 |
+| Array&lt;string&gt; | 导出结果的数组。索引0为泄露列表文件名，后缀为.jsleaklist；索引1为虚拟机内存快照文件名，后缀为.heapsnapshot。 |
 
 **错误码：**
 
@@ -137,8 +138,8 @@ enableLeakWatcher(isEnabled: boolean, configs: Array&lt;string&gt;, callback: Ca
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | isEnabled | boolean | 是| 是否使能js对象内存泄漏检测功能。true：开启该功能；false：关闭该功能。|
-| configs | array&lt;string&gt; | 是| 配置项，数组中每个元素为监测具体对象的类型。<br>可配置项包括：XComponent，NodeContainer，Window，Custom Component，和Ability。 |
-| callback | Callback&lt;Array&lt;string&gt;&gt; | 是| 回调函数，用于接收jsLeakWatcher.enableLeakWatcher接口的返回的内存泄漏的对象。<br>回调函数中传入一个数组对象，索引0为泄露列表文件名，后缀为.jsleaklist；索引1为虚拟机内存快照文件名，后缀为.heapsnapshort。|
+| configs | Array&lt;string&gt; | 是| 配置项，数组中每个元素为监测具体对象的类型。<br>可配置项包括：XComponent，NodeContainer，Window，Custom Component和Ability。 |
+| callback | Callback&lt;Array&lt;string&gt;&gt; | 是| 回调函数，用于接收jsLeakWatcher.enableLeakWatcher接口的返回的内存泄漏的对象。<br>回调函数中传入一个数组对象，索引0为泄露列表文件名，后缀为.jsleaklist；索引1为虚拟机内存快照文件名，后缀为.rawheap。|
 
 
 **错误码：**

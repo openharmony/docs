@@ -2,8 +2,9 @@
 <!--Kit: Multimodal Awareness Kit-->
 <!--Subsystem: Msdp-->
 <!--Owner: @codexu62-->
-<!--SE: @yuxiaoyang-->
-<!--TSE: @zhaodengqi-->
+<!--Designer: @yuxiaoyang-->
+<!--Tester: @zhaodengqi-->
+<!--Adviser: @hu-zhiqiong-->
 
 本模块提供记忆链接能力调用，包括编码内容传递、订阅事件和取消订阅事件。
 

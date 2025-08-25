@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_DisplayManager module provides the display management capability.
+The module provides the display management capability.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 

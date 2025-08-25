@@ -2,8 +2,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @wang_zhangjun; @zhuangzhuang-->
-<!--SE: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
-<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Designer: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 分布式文件系统为应用提供了跨设备文件访问的能力，开发者在两个设备上安装同一应用时，通过[基础文件接口](app-file-access.md)，可跨设备读写另一个设备上该应用[分布式目录](app-sandbox-directory.md#应用沙箱路径和真实物理路径的对应关系)（/data/storage/el2/distributedfiles/）下的文件。例如：多设备数据流转的场景，设备组网互联之后，设备A上的应用可访问设备B上的同应用分布式目录下的文件，当期望应用文件被其他设备访问时，只需将文件移动到分布式目录即可。
 

@@ -3,8 +3,9 @@
 <!--Kit: Localization Kit-->
 <!--Subsystem: Global-->
 <!--Owner: @yliupy-->
-<!--SE: @sunyaozu-->
-<!--TSE: @lpw_work-->
+<!--Designer: @sunyaozu-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @fang-jinxu-->
 
 |符号类型|符号名|
 | --- | --- |

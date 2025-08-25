@@ -2,8 +2,9 @@
 <!--Kit: Form Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @cx983299475-->
-<!--SE: @xueyulong-->
-<!--TSE: @chenmingze-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 FA模型从API version 7开始支持，已经不再主推。该应用模型通过导出匿名对象、固定入口文件的方式指定应用组件，开发者无法进行派生，不利于扩展能力。建议使用新的Stage模型进行开发。
 
 ## 接口说明
@@ -214,7 +215,7 @@ FA卡片开发，即基于[FA模型](../application-models/fa-model-development-
 
 卡片需要在应用配置文件config.json中进行配置。
 
-- js模块，用于对应卡片的js相关资源，内部字段结构说明：
+- JS模块，用于对应卡片的JS相关资源，内部字段结构说明：
     | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
   | -------- | -------- | -------- | -------- |
   | name | 表示JS&nbsp;Component的名字。该标签不可缺省，默认值为default。 | 字符串 | 否 |

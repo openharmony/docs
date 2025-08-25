@@ -1,11 +1,17 @@
 # 拉起系统应用
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @huipeizi-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 本章节介绍拉起系统应用的方式，以及支持跳转系统应用的能力清单。
 
 ## 拉起系统应用的方式
 
-拉起系统应用除了采用使用前面章节介绍的方式（比如使用openlink拉起指定应用、使用startAbilitybyType指定类型的应用），还可以采用如下方式。
+拉起系统应用除了采用使用前面章节介绍的方式（比如使用openLink拉起指定应用、使用startAbilityByType指定类型的应用），还可以采用如下方式。
 
 - **使用系统Picker组件**
 

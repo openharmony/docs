@@ -1,6 +1,13 @@
 # AbilityMonitor
 
-AbilityMonitor模块提供匹配满足指定条件的受监视能力对象的方法的能力，最近匹配的ability对象将保存在AbilityMonitor对象中。
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+本模块提供监听指定[UIAbility](js-apis-app-ability-uiAbility.md)生命周期状态变化的能力。开发者可以将AbilityMonitor作为[abilityDelegator.addAbilityMonitor](../apis-test-kit/js-apis-inner-application-abilityDelegator.md#addabilitymonitor9)的入参来注册监听。
 
 > **说明：**
 > 
@@ -24,15 +31,15 @@ import { abilityDelegatorRegistry } from '@kit.TestKit';
 
 | 名称                                                         | 类型     | 只读 | 可选 | 说明                                                         |
 | ------------------------------------------------------------ | -------- | ---- | ---- | ------------------------------------------------------------ |
-| abilityName                                                  | string   | 否   | 否   | 当前AbilityMonitor绑定的ability名称。 |
-| moduleName                                                  | string   | 否   | 是   | 当前AbilityMonitor绑定的模块名称。 |
-| onAbilityCreate | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | ability被启动初始化时的回调函数。<br/>不设置该属性则不能收到该生命周期回调。 |
-| onAbilityForeground | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | ability状态变成前台时的回调函数。<br/>不设置该属性则不能收到该生命周期回调。 |
-| onAbilityBackground | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | ability状态变成后台时的回调函数。<br/>不设置该属性则不能收到该生命周期回调。 |
-| onAbilityDestroy | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | ability被销毁前的回调函数。<br/>不设置该属性则不能收到该生命周期回调。 |
-| onWindowStageCreate | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | window stage被创建时的回调函数。<br/>不设置该属性则不能收到该生命周期回调。 |
-| onWindowStageRestore | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | window stage被重载时的回调函数。<br/>不设置该属性则不能收到该生命周期回调。 |
-| onWindowStageDestroy | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | window stage被销毁前的回调函数。<br/>不设置该属性则不能收到该生命周期回调。 |
+| abilityName                                                  | string   | 否   | 否   |  被监听的UIAbility对象名称。 |
+| moduleName                                                  | string   | 否   | 是   | 被监听的UIAbility对象所属模块名称。 |
+| onAbilityCreate | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | UIAbility对象被创建时，触发该回调函数。 |
+| onAbilityForeground | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | UIAbility对象状态变成前台时，触发该回调函数。 |
+| onAbilityBackground | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | UIAbility对象状态变成后台时，触发该回调函数。 |
+| onAbilityDestroy | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | UIAbility对象被销毁前，触发该回调函数。 |
+| onWindowStageCreate | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | 当WindowStage实例被创建时，触发该回调函数。 |
+| onWindowStageRestore | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | 当UIAbility跨端迁移时，目标端UIAbility恢复页面栈时，触发该回调函数。 |
+| onWindowStageDestroy | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | 否   | 是   | 当WindowStage被销毁前，触发该回调函数。 |
 
 **示例：**
 

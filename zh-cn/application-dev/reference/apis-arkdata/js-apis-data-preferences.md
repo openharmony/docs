@@ -2,8 +2,9 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @yanhuii-->
-<!--SE: @houpengtao1-->
-<!--TSE: @yippo; @logic42-->
+<!--Designer: @houpengtao1-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 用户首选项为应用提供Key-Value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。
 
@@ -1156,8 +1157,8 @@ Preferences的存储模式枚举。
 
 | 名称 | 值   | 说明 |
 | ---- | ---- | ---- |
-| XML |  0    | 表示XML存储模式，这是Preferences的默认存储模式。<br>**特点：** 数据XML格式进行存储。对数据的操作发生在内存中，需要调用flush接口进行落盘。     |
-| GSKV |  1    |表示GSKV存储模式。<br>**特点：** 数据以GSKV数据库模式进行存储。对数据的操作实时落盘，无需调用flush接口对数据进行落盘。      |
+| XML |  0    | 表示[XML存储模式](../../database/data-persistence-by-preferences.md#xml存储)，这是Preferences的默认存储模式。<br>**特点：** 数据XML格式进行存储。对数据的操作发生在内存中，需要调用flush接口进行落盘。     |
+| GSKV |  1    |表示[GSKV存储模式](../../database/data-persistence-by-preferences.md#gskv存储)。<br>**特点：** 数据以GSKV数据库模式进行存储。对数据的操作实时落盘，无需调用flush接口对数据进行落盘。      |
 
 
 > **说明：**

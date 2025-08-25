@@ -3,13 +3,14 @@
 <!--Kit: Universal Keystore Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @wutiantian-gitee-->
-<!--SE: @HighLowWorld-->
-<!--TSE: @wxy1234564846-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
 
 HUKS提供了接口供应用查询密钥别名集。
 
 >**说明：**
-> 轻量级设备不支持查询密钥别名集功能。
+> <!--RP1-->轻量级设备<!--RP1End-->不支持查询密钥别名集功能。
 
 ## 在CMake脚本中链接相关动态库
 ```txt

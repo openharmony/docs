@@ -3,8 +3,9 @@
 <!--Kit: AVCodec Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @zhanghongran; @mr-chencxy-->
-<!--SE: @dpy2650--->
-<!--TSE: @cyakee-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
+<!--Adviser: @zengyawen-->
 
 ## 媒体编解码
 

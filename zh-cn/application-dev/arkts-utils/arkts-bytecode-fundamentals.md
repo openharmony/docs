@@ -3,8 +3,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @huyunhui1; @oh-rgx1; @zmw1-->
-<!--SE: @ctw-ian; @hufeng20-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @ctw-ian; @hufeng20-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 ## 总体设计
 ### 概述
@@ -78,6 +79,8 @@ function foo(): number {
 
 示例代码：
 ```ts
+let a = 1;
+let b = 1;
 function foo(): void {
     a += 2;
     b = 5;

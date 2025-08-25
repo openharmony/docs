@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
-<!--SE: @hanfeng6-->
-<!--TSE: @kongjing2-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 [module.json5配置文件](../../quick-start/module-configuration-file.md)中定义的权限详细信息，通过接口[bundleManager.getPermissionDef](js-apis-bundleManager-sys.md#bundlemanagergetpermissiondef)获取。
 

@@ -3,8 +3,9 @@
 <!--Kit: Device Certificate Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @zxz--3-->
-<!--SE: @lanming-->
-<!--TSE: @PAFT-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
 
 从API 20开始，支持使用系统预置CA证书校验证书链。
 

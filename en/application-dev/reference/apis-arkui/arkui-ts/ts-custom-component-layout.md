@@ -1,4 +1,10 @@
 # Custom Component Layout
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @song-song-song-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 The custom layout of a custom component is used to lay out its child components through data calculation.
 

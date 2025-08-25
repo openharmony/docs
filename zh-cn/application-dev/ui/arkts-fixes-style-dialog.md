@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @houguobiao-->
-<!--SE: @houguobiao-->
-<!--TSE: @lxl007-->
+<!--Designer: @houguobiao-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 固定样式弹出框采用固定的布局格式，这使得开发者无需关心具体的显示布局细节，只需输入所需显示的文本内容，从而简化了使用流程，提升了便捷性。
 
@@ -42,30 +43,37 @@
 
 ```ts
 import { PromptAction } from '@kit.ArkUI';
+@Entry
+@Component
+struct Index {
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
 
-let uiContext = this.getUIContext();
-let promptAction: PromptAction = uiContext.getPromptAction();
-try {
-  promptAction.showActionMenu({
-    title: 'showActionMenu Title Info',
-    buttons: [
-      {
-        text: 'item1',
-        color: '#666666'
-      },
-      {
-        text: 'item2',
-        color: '#000000'
-      },
-    ]
-  })
-    .then(data => {
-      console.info('showActionMenu success, click button: ' + data.index);
-    })
-    .catch((err: Error) => {
-      console.error('showActionMenu error: ' + err);
-    })
-} catch (error) {
+  build() {
+    Column() {
+      Button('showActionMenu')
+        .onClick(() => {
+          this.promptAction.showActionMenu({
+            title: 'showActionMenu Title Info',
+            buttons: [
+              {
+                text: 'item1',
+                color: '#666666'
+              },
+              {
+                text: 'item2',
+                color: '#000000'
+              },
+            ]
+          })
+            .then(data => {
+              console.info('showActionMenu success, click button: ' + data.index);
+            })
+            .catch((err: Error) => {
+              console.error('showActionMenu error: ' + err);
+            })
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
 }
 ```
 
@@ -82,31 +90,46 @@ try {
 ```ts
 // xxx.ets
 import { PromptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let uiContext = this.getUIContext();
-let promptAction: PromptAction = uiContext.getPromptAction();
-try {
-  promptAction.showDialog({
-    title: 'showDialog Title Info',
-    message: 'Message Info',
-    buttons: [
-      {
-        text: 'button1',
-        color: '#000000'
-      },
-      {
-        text: 'button2',
-        color: '#000000'
-      }
-    ]
-  }, (err, data) => {
-    if (err) {
-      console.error('showDialog err: ' + err);
-      return;
-    }
-    console.info('showDialog success callback, click button: ' + data.index);
-  });
-} catch (error) {
+@Entry
+@Component
+struct Index {
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
+
+  build() {
+    Column() {
+      Button('showDialog')
+        .onClick(() => {
+          try {
+            this.promptAction.showDialog({
+              title: 'showDialog Title Info',
+              message: 'Message Info',
+              buttons: [
+                {
+                  text: 'button1',
+                  color: '#000000'
+                },
+                {
+                  text: 'button2',
+                  color: '#000000'
+                }
+              ]
+            }, (err, data) => {
+              if (err) {
+                console.error('showDialog err: ' + err);
+                return;
+              }
+              console.info('showDialog success callback, click button: ' + data.index);
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`showDialog args error code is ${code}, message is ${message}`);
+          };
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
 }
 ```
 

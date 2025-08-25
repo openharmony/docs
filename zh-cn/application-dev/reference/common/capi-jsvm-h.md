@@ -2,8 +2,9 @@
 <!--Kit: Common Basic Capability-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @yuanxiaogou; @string_sz-->
-<!--SE: @knightaoko-->
-<!--TSE: @test_lzz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## 概述
 
@@ -4856,7 +4857,7 @@ JSVM_Status JSVM_CDECL OH_JSVM_CreateRegExp(JSVM_Env env,JSVM_Value value,JSVM_R
 
 | 类型 | 说明 |
 | -- | -- |
-| [JSVM_Status](capi-jsvm-types-h.md#jsvm_status) JSVM_CDECL | 返回执行状态码 JSVM_Status。<br>         [JSVM_OK](capi-jsvm-types-h.md#jsvm_status) 表示执行成功。<br>         [JSVM_INVALID_ARG](capi-jsvm-types-h.md#jsvm_status) 表示输入参数不合法。<br>         JSVM_PENDING_EXCPTION 表示API在运行时抛出异常。 |
+| [JSVM_Status](capi-jsvm-types-h.md#jsvm_status) JSVM_CDECL | 返回执行状态码 JSVM_Status。<br>         [JSVM_OK](capi-jsvm-types-h.md#jsvm_status) 表示执行成功。<br>         [JSVM_INVALID_ARG](capi-jsvm-types-h.md#jsvm_status) 表示输入参数不合法。<br>         [JSVM_PENDING_EXCEPTION](capi-jsvm-types-h.md#jsvm_status) 表示API在运行时抛出异常。 |
 
 ### OH_JSVM_ObjectGetPrototypeOf()
 
@@ -4883,7 +4884,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_ObjectGetPrototypeOf(JSVM_Env env,JSVM_Value obj
 
 | 类型 | 说明 |
 | -- | -- |
-| JSVM_EXTERN [JSVM_Status](capi-jsvm-types-h.md#jsvm_status) |  返回执行状态码 JSVM_Status。<br>         [JSVM_OK](capi-jsvm-types-h.md#jsvm_status) 表示执行成功。<br>         [JSVM_INVALID_ARG](capi-jsvm-types-h.md#jsvm_status) 表示输入参数不合法。<br>         JSVM_PENDING_EXCPTION 表示API在运行时抛出异常。 |
+| JSVM_EXTERN [JSVM_Status](capi-jsvm-types-h.md#jsvm_status) |  返回执行状态码 JSVM_Status。<br>         [JSVM_OK](capi-jsvm-types-h.md#jsvm_status) 表示执行成功。<br>         [JSVM_INVALID_ARG](capi-jsvm-types-h.md#jsvm_status) 表示输入参数不合法。<br>         [JSVM_PENDING_EXCEPTION](capi-jsvm-types-h.md#jsvm_status) 表示API在运行时抛出异常。 |
 
 ### OH_JSVM_ObjectSetPrototypeOf()
 
@@ -4910,7 +4911,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_ObjectSetPrototypeOf(JSVM_Env env,JSVM_Value obj
 
 | 类型 | 说明 |
 | -- | -- |
-| JSVM_EXTERN [JSVM_Status](capi-jsvm-types-h.md#jsvm_status) |  返回执行状态码 JSVM_Status。<br>         [JSVM_OK](capi-jsvm-types-h.md#jsvm_status) 表示执行成功。<br>         [JSVM_INVALID_ARG](capi-jsvm-types-h.md#jsvm_status) 表示输入参数不合法。<br>         [JSVM_GENERIC_FAILURE](capi-jsvm-types-h.md#jsvm_status) 表示设置原型失败。如循环设置原型时，会触发该失败。<br>         JSVM_PENDING_EXCPTION 表示API在运行时抛出异常。 |
+| JSVM_EXTERN [JSVM_Status](capi-jsvm-types-h.md#jsvm_status) |  返回执行状态码 JSVM_Status。<br>         [JSVM_OK](capi-jsvm-types-h.md#jsvm_status) 表示执行成功。<br>         [JSVM_INVALID_ARG](capi-jsvm-types-h.md#jsvm_status) 表示输入参数不合法。<br>         [JSVM_GENERIC_FAILURE](capi-jsvm-types-h.md#jsvm_status) 表示设置原型失败。如循环设置原型时，会触发该失败。<br>         [JSVM_PENDING_EXCEPTION](capi-jsvm-types-h.md#jsvm_status) 表示API在运行时抛出异常。 |
 
 ### OH_JSVM_CreateSet()
 
@@ -6107,7 +6108,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_SetPrivate(JSVM_Env env,JSVM_Value object,JSVM_D
 
 | 类型 | 说明 |
 | -- | -- |
-| JSVM_EXTERN [JSVM_Status](capi-jsvm-types-h.md#jsvm_status) |  返回执行状态码 JSVM_Status。<br>         [JSVM_OK](capi-jsvm-types-h.md#jsvm_status) 表示执行成功。<br>         [JSVM_INVALID_ARG](capi-jsvm-types-h.md#jsvm_status) 表示任一传入参数为空或者 key 不是一个 private key 对象。<br>         [JSVM_OBJECT_EXPECTED](capi-jsvm-types-h.md#jsvm_status) 表示传入的 object 不是一个真正的 JavaScript object。<br>         [JSVM_GENERIC_FAILURE](capi-jsvm-types-h.md#jsvm_status) 表示设置 private 属性失败，同时没有异常产生。<br>         JSVM_PENDING_EXCPTION 表示发生了异常。 |
+| JSVM_EXTERN [JSVM_Status](capi-jsvm-types-h.md#jsvm_status) |  返回执行状态码 JSVM_Status。<br>         [JSVM_OK](capi-jsvm-types-h.md#jsvm_status) 表示执行成功。<br>         [JSVM_INVALID_ARG](capi-jsvm-types-h.md#jsvm_status) 表示任一传入参数为空或者 key 不是一个 private key 对象。<br>         [JSVM_OBJECT_EXPECTED](capi-jsvm-types-h.md#jsvm_status) 表示传入的 object 不是一个真正的 JavaScript object。<br>         [JSVM_GENERIC_FAILURE](capi-jsvm-types-h.md#jsvm_status) 表示设置 private 属性失败，同时没有异常产生。<br>         [JSVM_PENDING_EXCEPTION](capi-jsvm-types-h.md#jsvm_status) 表示发生了异常。 |
 
 ### OH_JSVM_GetPrivate()
 
@@ -6135,7 +6136,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetPrivate(JSVM_Env env,JSVM_Value object,JSVM_D
 
 | 类型 | 说明 |
 | -- | -- |
-| JSVM_EXTERN [JSVM_Status](capi-jsvm-types-h.md#jsvm_status) |  返回执行状态码 JSVM_Status。<br>         [JSVM_OK](capi-jsvm-types-h.md#jsvm_status) 表示执行成功。<br>         [JSVM_INVALID_ARG](capi-jsvm-types-h.md#jsvm_status) 表示任一传入参数为空或者 key 不是一个 private key 对象。<br>         [JSVM_OBJECT_EXPECTED](capi-jsvm-types-h.md#jsvm_status) 表示传入的 object 不是一个真正的 JavaScript object。<br>         [JSVM_GENERIC_FAILURE](capi-jsvm-types-h.md#jsvm_status) 表示获取 private 属性失败，同时没有异常产生。<br>         JSVM_PENDING_EXCPTION 表示发生了异常。 |
+| JSVM_EXTERN [JSVM_Status](capi-jsvm-types-h.md#jsvm_status) |  返回执行状态码 JSVM_Status。<br>         [JSVM_OK](capi-jsvm-types-h.md#jsvm_status) 表示执行成功。<br>         [JSVM_INVALID_ARG](capi-jsvm-types-h.md#jsvm_status) 表示任一传入参数为空或者 key 不是一个 private key 对象。<br>         [JSVM_OBJECT_EXPECTED](capi-jsvm-types-h.md#jsvm_status) 表示传入的 object 不是一个真正的 JavaScript object。<br>         [JSVM_GENERIC_FAILURE](capi-jsvm-types-h.md#jsvm_status) 表示获取 private 属性失败，同时没有异常产生。<br>         [JSVM_PENDING_EXCEPTION](capi-jsvm-types-h.md#jsvm_status) 表示发生了异常。 |
 
 ### OH_JSVM_DeletePrivate()
 
@@ -6162,7 +6163,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_DeletePrivate(JSVM_Env env,JSVM_Value object,JSV
 
 | 类型 | 说明 |
 | -- | -- |
-| JSVM_EXTERN [JSVM_Status](capi-jsvm-types-h.md#jsvm_status) |  返回执行状态码 JSVM_Status。<br>         [JSVM_OK](capi-jsvm-types-h.md#jsvm_status) 表示执行成功。<br>         [JSVM_INVALID_ARG](capi-jsvm-types-h.md#jsvm_status) 表示任一传入参数为空或者 key 不是一个 private key 对象。<br>         [JSVM_OBJECT_EXPECTED](capi-jsvm-types-h.md#jsvm_status) 表示传入的 object 不是一个真正的 JavaScript object。<br>         [JSVM_GENERIC_FAILURE](capi-jsvm-types-h.md#jsvm_status) 表示删除 private 属性失败，同时没有异常产生。<br>         JSVM_PENDING_EXCPTION 表示发生了异常。 |
+| JSVM_EXTERN [JSVM_Status](capi-jsvm-types-h.md#jsvm_status) |  返回执行状态码 JSVM_Status。<br>         [JSVM_OK](capi-jsvm-types-h.md#jsvm_status) 表示执行成功。<br>         [JSVM_INVALID_ARG](capi-jsvm-types-h.md#jsvm_status) 表示任一传入参数为空或者 key 不是一个 private key 对象。<br>         [JSVM_OBJECT_EXPECTED](capi-jsvm-types-h.md#jsvm_status) 表示传入的 object 不是一个真正的 JavaScript object。<br>         [JSVM_GENERIC_FAILURE](capi-jsvm-types-h.md#jsvm_status) 表示删除 private 属性失败，同时没有异常产生。<br>         [JSVM_PENDING_EXCEPTION](capi-jsvm-types-h.md#jsvm_status) 表示发生了异常。 |
 
 ### OH_JSVM_CreateDataReference()
 

@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @Hu_ZeQi-->
-<!--SE: @jiangdayuan-->
-<!--TSE: @lxl007-->
+<!--Designer: @jiangdayuan-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 >  **说明：**
 >  从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -81,13 +82,13 @@
 <div class="container">
   <swiper class="swiper" id="swiper" index="0" indicator="true" loop="true" digital="false" cachedsize="-1"
     scrolleffect="spring">
-    <div class = "swiperContent1" >
+    <div class = "swiperContentOne" >
       <text class = "text">First screen</text>
     </div>
-    <div class = "swiperContent2">
+    <div class = "swiperContentTwo">
       <text class = "text">Second screen</text>
     </div>
-    <div class = "swiperContent3">
+    <div class = "swiperContentThree">
       <text class = "text">Third screen</text>
     </div>
   </swiper>
@@ -120,19 +121,19 @@
   next-margin:20px;
   previous-margin:20px;
 }
-.swiperContent1{
+.swiperContentOne{
   height: 100%;
   width: 100%;
   justify-content: center;
   background-color: #007dff;
 }
-.swiperContent2{
+.swiperContentTwo{
   height: 100%;
   width: 100%;
   justify-content: center;
   background-color: #ff7500;
 }
-.swiperContent3{
+.swiperContentThree{
   height: 100%;
   width: 100%;
   justify-content: center;

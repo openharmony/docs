@@ -2,10 +2,11 @@
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @wang-haizhou6-->
-<!--SE: @HmQQQ-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
-使用[AVTranscoder](media-kit-intro.md#avtranscoder)可以实现视频转码功能<!--RP1--><!--RP1End-->。可以通过调用[canIUse](../../reference/common/js-apis-syscap.md)接口来判断当前设备是否支持AVTranscoder，canIUse("SystemCapability.Multimedia.Media.AVTranscoder")返回值为true，表示可以使用转码能力。
+使用[AVTranscoder](media-kit-intro.md#avtranscoder)可以实现视频转码功能<!--RP1--><!--RP1End-->。可以通过调用[canIUse](../../reference/common/js-apis-syscap.md#caniuse)接口来判断当前设备是否支持AVTranscoder，当canIUse("SystemCapability.Multimedia.Media.AVTranscoder")的返回值为true时，表示可以使用转码能力。
 
 本开发指导将以“开始转码-暂停转码-恢复转码-转码完成”的一次流程为示例，向开发者讲解AVTranscoder视频转码相关功能。
 
@@ -101,9 +102,9 @@
    @Component
    struct Index {
      // 获取当前组件所在Ability的Context，以通过Context获取应用文件路径。
-     private context:Context | undefined = this.getUIContext().getHostContext();
+     private context:Context | undefined = this.getUIContext()?.getHostContext();
      // 获取转码功能管理类。
-     @State avTranscoder: AVTranscoderDemo = new AVTranscoderDemo(this.context);
+     @State avTranscoder: AVTranscoderDemo | undefined = this.context ? new AVTranscoderDemo(this.context) : undefined;
 
      build() {
        RelativeContainer() {
@@ -201,6 +202,8 @@
          this.avTranscoder = undefined;
        }
       // 开始转码前需要创建转码实例、设置回调、设置fd并完成prepare。
+      // 具体创建步骤参考开发步骤1-5。
+
       // 开始转码。
       await this.avTranscoder.start();
     }

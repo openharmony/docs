@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
-<!--SE: @yuanyao14-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 Deque（double ended queue）基于循环队列的数据结构实现，支持两端元素的插入和删除，同时具备先进先出以及先进后出的特点。Deque会根据实际需要动态调整容量，每次扩容两倍。
 

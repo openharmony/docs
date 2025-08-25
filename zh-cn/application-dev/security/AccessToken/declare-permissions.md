@@ -3,8 +3,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @xia-bubai-->
-<!--SE: @linshuqing; @hehehe-li-->
-<!--TSE: @leiyuqian-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
 
 应用在申请权限时，需在项目的配置文件中逐个声明所需权限，否则无法获取授权<!--RP2--><!--RP2End-->。
 

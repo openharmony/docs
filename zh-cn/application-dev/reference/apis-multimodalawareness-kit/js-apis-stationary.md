@@ -2,8 +2,9 @@
 <!--Kit: Multimodal Awareness Kit-->
 <!--Subsystem: MultimodalAwareness-->
 <!--Owner: @dilligencer-->
-<!--SE: @zou_ye-->
-<!--TSE: @judan-->
+<!--Designer: @zou_ye-->
+<!--Tester: @judan-->
+<!--Adviser: @hu-zhiqiong-->
 
 设备状态感知框架提供设备状态感知能力，包括绝对静止和相对静止。
 
@@ -87,7 +88,7 @@ on(activity: ActivityType, event: ActivityEvent, reportLatencyNs: number, callba
 ```ts
 let reportLatencyNs = 1000000000;
 stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
-    console.log('data='+ JSON.stringify(data));
+    console.info('data='+ JSON.stringify(data));
 })
 ```
 
@@ -110,7 +111,7 @@ once(activity: ActivityType, callback: Callback&lt;ActivityResponse&gt;): void
 
 ```ts
 stationary.once('still', (data) => {
-    console.log("data="+ JSON.stringify(data));
+    console.info("data="+ JSON.stringify(data));
 })
 ```
 

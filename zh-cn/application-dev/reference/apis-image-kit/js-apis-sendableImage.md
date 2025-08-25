@@ -2,8 +2,9 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 本模块基于Sendable对象，提供图片处理效果，包括通过属性创建PixelMap、读取图像像素数据、读取区域内的图片数据等。
 
@@ -219,7 +220,7 @@ createPixelMapSync(colors: ArrayBuffer, options: image.InitializationOptions): P
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -260,7 +261,7 @@ convertFromPixelMap(pixelMap: image.PixelMap): PixelMap
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -303,7 +304,7 @@ convertToPixelMap(pixelMap: PixelMap): image.PixelMap
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -400,7 +401,7 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -485,7 +486,7 @@ readPixelsSync(area: image.PositionArea): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -578,7 +579,7 @@ writePixelsSync(area: image.PositionArea): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -669,7 +670,7 @@ writeBufferToPixelsSync(src: ArrayBuffer): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -889,7 +890,7 @@ opacitySync(rate: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -959,7 +960,7 @@ createAlphaPixelmapSync(): PixelMap
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1039,7 +1040,7 @@ scaleSync(x: number, y: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1120,7 +1121,7 @@ translateSync(x: number, y: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1198,7 +1199,7 @@ rotateSync(angle: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1279,7 +1280,7 @@ flipSync(horizontal: boolean, vertical: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1359,7 +1360,7 @@ cropSync(region: image.Region): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1472,7 +1473,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------------------|
@@ -1861,7 +1862,7 @@ createImageReceiver(size: image.Size, format: image.ImageFormat, capacity: numbe
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|

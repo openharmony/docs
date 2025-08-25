@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @yao_dashuai-->
-<!--SE: @yao_dashuai-->
-<!--TSE: @kirl75;@zsw_zhushiwei-->
+<!--Designer: @yao_dashuai-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 本模块提供基础的定时器能力，支持按照指定的时间执行对应函数。
 

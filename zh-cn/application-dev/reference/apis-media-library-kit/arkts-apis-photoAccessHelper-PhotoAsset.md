@@ -2,8 +2,9 @@
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
-<!--SE: @liweilu1-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -97,7 +98,7 @@ set(member: string, value: string): void
 | 参数名      | 类型                        | 必填   | 说明    |
 | -------- | ------------------------- | ---- | ----- |
 | member | string | 是    | 成员参数名称例如：[PhotoKeys](arkts-apis-photoAccessHelper-e.md#photokeys).TITLE。字符串长度为1~255。 |
-| value | string | 是    | 设置成员参数名称，只能修改[PhotoKeys](arkts-apis-photoAccessHelper-e.md#photokeys).TITLE的值。title的参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现非法字符，包括：. \ / : * ? " ' ` < > \| { } [ ]  |
+| value | string | 是    | 设置成员参数名称，只能修改[PhotoKeys](arkts-apis-photoAccessHelper-e.md#photokeys).TITLE的值。title的参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现的非法英文字符，包括：. \ / : * ? " ' ` < > \| { } [ ]  |
 
 **错误码：**
 
@@ -577,7 +578,7 @@ clone(title: string): Promise&lt;PhotoAsset&gt;
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| title| string | 是    | 克隆后资产的标题。参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现非法字符，包括：. \ / : * ? " ' ` < > \| { } [ ] |
+| title| string | 是    | 克隆后资产的标题。参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现的非法英文字符，包括：. \ / : * ? " ' ` < > \| { } [ ] |
 
 **返回值：**
 

@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liwenzhen3-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 为了动态添加或删除状态管理V2的状态变量的监听函数，开发者可以使用[addMonitor](../../reference/apis-arkui/js-apis-StateManagement.md#addmonitor20)或[clearMonitor](../../reference/apis-arkui/js-apis-StateManagement.md#clearmonitor20)。
 

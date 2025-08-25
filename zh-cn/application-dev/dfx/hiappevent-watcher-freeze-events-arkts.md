@@ -1,8 +1,15 @@
 # 订阅应用冻屏事件（ArkTS）
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @rr_cn-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## 简介
 
-本文介绍如何使用HiAppEvent提供的ArkTS接口订阅应用无响应事件。接口的详细使用说明（参数限制、取值范围等）请参考[@ohos.hiviewdfx.hiAppEvent (应用事件打点)ArkTS API文档](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)。
+本文介绍如何使用HiAppEvent提供的ArkTS接口订阅应用冻屏事件。接口的详细使用说明（参数限制、取值范围等）请参考[@ohos.hiviewdfx.hiAppEvent (应用事件打点)ArkTS API文档](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)。
 
 ## 接口说明
 
@@ -15,7 +22,7 @@
 
 ### 添加事件观察者
 
-以实现对用户点击按钮触发应用无响应场景生成的应用无响应事件订阅为例，说明开发步骤。
+以实现对用户点击按钮触发应用无响应场景生成的应用冻屏事件订阅为例，说明开发步骤。
 
 1. 新建一个ArkTS应用工程，编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，导入依赖模块，示例代码如下：
 
@@ -31,7 +38,7 @@
     let params: Record<string, hiAppEvent.ParamType> = {
       "test_data": 100,
     };
-    // 开发者可以设置应用无响应事件的自定义参数
+    // 开发者可以设置应用冻屏事件的自定义参数
     hiAppEvent.setEventParam(params, hiAppEvent.domain.OS, hiAppEvent.event.APP_FREEZE).then(() => {
       hilog.info(0x0000, 'testTag', `HiAppEvent success to set event param`);
     }).catch((err: BusinessError) => {
@@ -45,7 +52,7 @@
      hiAppEvent.addWatcher({
       // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
       name: "watcher",
-      // 开发者可以订阅感兴趣的系统事件，此处是订阅了应用无响应事件
+      // 开发者可以订阅感兴趣的系统事件，此处是订阅了应用冻屏事件
       appEventFilters: [
         {
           domain: hiAppEvent.domain.OS,
@@ -63,38 +70,38 @@
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.domain=${eventInfo.domain}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.name=${eventInfo.name}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.eventType=${eventInfo.eventType}`);
-            // 开发者可以获取到应用无响应事件发生的时间戳
+            // 开发者可以获取到应用冻屏事件发生的时间戳
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.time=${eventInfo.params['time']}`);
-            // 开发者可以获取到应用无响应应用的前后台状态
+            // 开发者可以获取到应用冻屏事件发生时应用的前后台状态
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params['foreground']}`);
-            // 开发者可以获取到应用无响应应用的版本信息
+            // 开发者可以获取到应用冻屏事件发生时应用的版本信息
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_version=${eventInfo.params['bundle_version']}`);
-            // 开发者可以获取到应用无响应应用的包名
+            // 开发者可以获取到应用冻屏事件发生时应用的包名
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_name=${eventInfo.params['bundle_name']}`);
-            // 开发者可以获取到应用无响应应用的进程名称
+            // 开发者可以获取到应用冻屏事件发生时应用的进程名称
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.process_name=${eventInfo.params['process_name']}`);
-            // 开发者可以获取到应用无响应应用的进程id
+            // 开发者可以获取到应用冻屏事件发生时应用的进程id
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.pid=${eventInfo.params['pid']}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uid=${eventInfo.params['uid']}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uuid=${eventInfo.params['uuid']}`);
-            // 开发者可以获取到应用无响应事件发生的异常类型、异常原因
+            // 开发者可以获取到应用冻屏事件发生的异常类型、异常原因
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.exception=${JSON.stringify(eventInfo.params['exception'])}`);
-            // 开发者可以获取到应用无响应事件发生时日志信息
+            // 开发者可以获取到应用冻屏事件发生时日志信息
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.hilog.size=${eventInfo.params['hilog'].length}`);
-            // 开发者可以获取到应用无响应事件发生时主线程未处理消息
+            // 开发者可以获取到应用冻屏事件发生时主线程未处理消息
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.event_handler.size=${eventInfo.params['event_handler'].length}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.event_handler_size_3s=${eventInfo.params['event_handler_size_3s']}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.event_handler_size_6s=${eventInfo.params['event_handler_size_6s']}`);
-            // 开发者可以获取到应用无响应事件发生时同步binder调用信息
+            // 开发者可以获取到应用冻屏事件发生时同步binder调用信息
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.peer_binder.size=${eventInfo.params['peer_binder'].length}`);
-            // 开发者可以获取到应用无响应事件发生时全量线程调用栈
+            // 开发者可以获取到应用冻屏事件发生时全量线程调用栈
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.threads.size=${eventInfo.params['threads'].length}`);
-            // 开发者可以获取到应用无响应事件发生时内存信息
+            // 开发者可以获取到应用冻屏事件发生时内存信息
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.memory=${JSON.stringify(eventInfo.params['memory'])}`);
-            // 开发者可以获取到应用无响应事件发生时的故障日志文件
+            // 开发者可以获取到应用冻屏事件发生时的故障日志文件
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.log_over_limit=${eventInfo.params['log_over_limit']}`);
-            // 开发者可以获取到应用无响应事件的自定义数据test_data
+            // 开发者可以获取到应用冻屏事件的自定义数据test_data
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.test_data=${eventInfo.params['test_data']}`);
           }
         }
@@ -102,11 +109,11 @@
     });
    ```
 
-4. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，添加按钮并在其onClick函数构造应用无响应场景，以触发应用无响应事件，示例代码如下：
+4. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，添加按钮并在其onClick函数构造应用无响应场景，以触发应用冻屏事件，示例代码如下：
 
    ```ts
     Button("appFreeze").onClick(()=>{
-      // 在按钮点击函数中构造一个freeze场景，触发应用应用无响应事件
+      // 在按钮点击函数中构造一个freeze场景，触发应用应用冻屏事件
       setTimeout(() => {
         let t = Date.now();
         while (Date.now() - t <= 15000) {}
@@ -114,9 +121,9 @@
     })
    ```
 
-5. 点击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“appFreeze”，触发一次应用无响应事件。
+5. 点击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“appFreeze”，触发一次应用冻屏事件。
 
-### 验证观察者是否订阅到应用无响应事件
+### 验证观察者是否订阅到应用冻屏事件
 
 1. 应用无响应退出后，重新进入应用可以在Log窗口看到对系统事件数据的处理日志：
 

@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @wang-yanhan-->
-<!--SE: @qianlf-->
-<!--TSE: @ghiker-->
+<!--Designer: @qianlf-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Web组件能够实现在不同窗口的组件树上进行挂载或移除操作，这一能力使得开发者可以预先创建Web组件，从而实现性能优化。例如，Tab页为Web组件时，页面预先渲染，便于即时显示。
 

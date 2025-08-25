@@ -2,8 +2,9 @@
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
 <!--Owner: @huanleima-->
-<!--SE: @liuzuming-->
-<!--TSE: @lpw_work-->
+<!--Designer: @liuzuming-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供企业设备管理能力，使设备具备企业场景下所需的定制能力。
 

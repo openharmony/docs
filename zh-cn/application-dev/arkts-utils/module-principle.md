@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @yao_dashuai-->
-<!--SE: @yao_dashuai-->
-<!--TSE: @kirl75;@zsw_zhushiwei-->
+<!--Designer: @yao_dashuai-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 为了解决大型或复杂应用开发过程中，部分代码编译时被多次拷贝导致包体积增大、文件依赖、代码与资源共享困难以及单例和全局变量污染等问题，ArkTS支持应用模块化编译、打包和运行，简化代码的编写与维护。
 

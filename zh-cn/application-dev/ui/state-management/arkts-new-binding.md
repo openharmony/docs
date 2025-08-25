@@ -1,9 +1,10 @@
 # !!语法：双向绑定
-<!--Kit: ArkUI--> 
-<!--Subsystem: ArkUI--> 
-<!--Owner: @Cuecuexiaoyu--> 
-<!--SE: @lixingchi1--> 
-<!--TSE: @TerryTsao-->
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @Cuecuexiaoyu-->
+<!--Designer: @lixingchi1-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 在状态管理V1中，使用[$$](./arkts-two-way-sync.md)实现系统组件的双向绑定。
 在状态管理V2中，使用`!!`语法糖统一处理双向绑定。
@@ -24,47 +25,48 @@
 
 ### 自定义组件间双向绑定
 1. 在Index中构造Star子组件，双向绑定父子组件中的value，并初始化子组件的`@Param value`和`@Event $value`。
-- 双向绑定语法糖：
 
-    ```
-    Star({ value: this.value, $value: (val: number) => { this.value = val; }})
-    ```
+   双向绑定语法糖。
+
+   ```
+   Star({ value: this.value, $value: (val: number) => { this.value = val; }})
+   ```
 2. 点击Index中的Button改变value值，父组件Index和子组件Star中的Text将同步更新。
 3. 点击子组件Star中的Button，调用`this.$value(10)`方法，父组件Index和子组件Star中的Text将同步更新。
 
-```ts
-@Entry
-@ComponentV2
-struct Index {
-  @Local value: number = 0;
+   ```ts
+   @Entry
+   @ComponentV2
+   struct Index {
+     @Local value: number = 0;
 
-  build() {
-    Column() {
-      Text(`${this.value}`)
-      Button(`change value`).onClick(() => {
-        this.value++;
-      })
-      Star({ value: this.value!! })
-    }
-  }
-}
+     build() {
+       Column() {
+         Text(`${this.value}`)
+         Button(`change value`).onClick(() => {
+           this.value++;
+         })
+         Star({ value: this.value!! })
+       }
+     }
+   }
 
 
-@ComponentV2
-struct Star {
-  @Param value: number = 0;
-  @Event $value: (val: number) => void = (val: number) => {};
+   @ComponentV2
+   struct Star {
+     @Param value: number = 0;
+     @Event $value: (val: number) => void = (val: number) => {};
 
-  build() {
-    Column() {
-      Text(`${this.value}`)
-      Button(`change value`).onClick(() => {
-        this.$value(10);
-      })
-    }
-  }
-}
-```
+     build() {
+       Column() {
+         Text(`${this.value}`)
+         Button(`change value`).onClick(() => {
+           this.$value(10);
+         })
+       }
+     }
+   }
+   ```
 
 **使用限制**
 - `!!`双向绑定语法不支持多层父子组件传递。
@@ -88,7 +90,7 @@ struct BindMenuInterface {
     Column() {
       Row() {
         Text('click show Menu')
-          .bindMenu(this.isShow!!, // 双向绑定
+          .bindMenu(this.isShow!!, // 双向绑定。
             [
               {
                 value: 'Menu1',
@@ -123,13 +125,13 @@ struct BindMenuInterface {
 
 **使用规则**
 
-- 当前!!支持以下接口参数基础类型变量的双向绑定，即参数同步当前弹出菜单或气泡状态。!!双向绑定支持基础类型变量，当该变量使用状态管理V2[\@Local](arkts-new-local.md)或状态管理V1[\@State](arkts-state.md)装饰时，变量值的变化会触发UI刷新。
+- 当前!!双向绑定支持基础类型变量，当该变量使用[\@State](arkts-state.md)等状态管理V1装饰器装饰，或者[\@Local](arkts-new-local.md)等状态管理V2装饰器装饰时，变量值的变化会触发UI刷新。
 
   | 属性                                                         | 支持的参数 | 起始API版本 |
   | ------------------------------------------------------------ | --------------- | ----------- |
-  | [bindMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11) | isShow | 13          |
-  | [bindContextMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu12) | isShown | 13          |
-  | [bindPopup](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup) | show | 13   |
+  | [bindMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11) | isShow | 18        |
+  | [bindContextMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu12) | isShown | 18          |
+  | [bindPopup](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup) | show | 18   |
   | [TextInput](../../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#textinputoptions对象说明) | text | 18   |
   | [TextArea](../../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md#textareaoptions对象说明) | text | 18   |
   | [Search](../../reference/apis-arkui/arkui-ts/ts-basic-components-search.md#searchoptions18对象说明) | value | 18   |
@@ -146,4 +148,3 @@ struct BindMenuInterface {
   | [Select](../../reference/apis-arkui/arkui-ts/ts-basic-components-select.md#selected) | selected | 18   |  
   | [Select](../../reference/apis-arkui/arkui-ts/ts-basic-components-select.md#value) | value | 18   |
   | [MenuItem](../../reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md#selected) | selected | 18   |
-- !!绑定的[\@Local](arkts-new-local.md)变量变化时，会触发UI的同步刷新。

@@ -2,8 +2,9 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
@@ -18,6 +19,8 @@
 接下来用OH_ImagePacker_PackToData或者OH_ImagePacker_PackToFile将源以特定的编码选项编码进目标区域。
 
 最后通过OH_ImagePacker_Release释放编码器实例对象。
+
+**引用文件：** <multimedia/image_framework/image_packer_mdk.h>
 
 **库：** libimage_packer_ndk.z.so
 

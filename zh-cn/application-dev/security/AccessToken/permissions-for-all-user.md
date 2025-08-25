@@ -3,8 +3,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: Security-->
 <!--Owner: @harylee-->
-<!--SE: @linshuqing; @hehehe-li-->
-<!--TSE: @leiyuqian-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
 
 此列表内所有权限均为用户授权（user_grant）的开放权限，面向所有应用开放。
 
@@ -17,7 +18,7 @@
 
 ## 申请方式
 
-以下权限的授权方式均为[user_grant（用户授权）](app-permission-mgmt-overview.md#user_grant用户授权)，申请方式请参考[声明权限](declare-permissions.md) &gt; [向用户申请授权](request-user-authorization.md) 。
+以下权限的授权方式均为[user_grant（用户授权）](app-permission-mgmt-overview.md#user_grant用户授权)，申请方式请参考[声明权限](declare-permissions.md) &gt; [向用户申请授权](request-user-authorization.md)。
 
 ## ohos.permission.ACCESS_BLUETOOTH
 

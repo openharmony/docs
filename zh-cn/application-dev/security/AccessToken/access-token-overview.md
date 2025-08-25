@@ -3,8 +3,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @xia-bubai-->
-<!--SE: @linshuqing; @hehehe-li-->
-<!--TSE: @leiyuqian-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
 
 访问控制是一种限制应用访问系统资源的机制。默认情况下，应用只能访问有限的系统资源。若需扩展功能，应用必须通过系统提供的接口访问额外的系统数据和功能。
 

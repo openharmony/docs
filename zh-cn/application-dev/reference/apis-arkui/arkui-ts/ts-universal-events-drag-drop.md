@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 拖拽事件是指在用户界面中，当用户拖动某个对象（如文件、控件或元素）时触发的一系列事件。这些事件允许开发者自定义拖拽行为，实现诸如拖放、调整位置等功能。
 
@@ -19,7 +20,8 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 
 - 默认支持拖入能力的组件（目标组件可响应拖入数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)，开发者可通过设置这些组件的[allowDrop](ts-universal-attributes-drag-drop.md#allowdrop)属性为null来禁用对默认拖入能力的支持。
 
-<!--RP1--><!--RP1End-->其他组件需要开发者将draggable属性设置为true，并在onDragStart等接口中实现数据传输相关内容，才能正确处理拖拽。
+其他组件需要开发者将draggable属性设置为true，并在[onDragStart](ts-universal-events-drag-drop.md#ondragstart)等接口中实现数据传输相关内容，才能正确处理拖拽。
+<!--RP1--><!--RP1End-->
 
 > **说明：**
 >
@@ -284,7 +286,7 @@ onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configura
 | 名称     | 类型  | 只读 | 可选 | 说明             |
 | ------ | ------ | ----- | ---- | ------- |
 | useCustomDropAnimation<sup>10+</sup> | boolean | 否 | 否 |当拖拽结束时，是否禁用系统默认落位动效。<br/>应用可将该值设定为true来禁用系统默认落位动效，并实现自己的自定义落位动效。<br/>当不配置或设置为false时，系统默认落位动效生效，当松手位置的控件可接收拖拽的数据时，落位为缩小消失动效，若不可接收数据，则为放大消失动效。<br/>当未禁用系统默认落位动效情况下，应用不应再实现自定义动效，以避免动效上的冲突。|
-|dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | 否 | 否 |切换复制和剪贴模式的角标显示状态。 |
+|dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | 否 | 否 |切换复制和剪贴模式的角标显示状态。<br/>默认值：DragBehavior.COPY。 |
 
 ### setData<sup>10+</sup>
 
@@ -554,7 +556,7 @@ startDataLoading(options: DataSyncOptions): string
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401       | Parameter error. |
-| 190003    | Operation not allowed for current pharse. |
+| 190003    | Operation not allowed for current phase. |
 
 **返回值：** 
 
@@ -782,7 +784,7 @@ executeDropAnimation(customDragAnimation: Callback\<void\>): void
 
 | 参数名    | 类型  | 必填 | 说明      |
 | ------ | ------ | --- | --------- |
-| customDropAnimation | Callback\<void\>  | 否 |在独立的接口中实现自定义落位动效。<br/> **说明：** <br/>1. 该接口仅在 onDrop 回调中使用有效。<br/> 2. 使用前需设置 useCustomDropAnimation 为 true，否则该接口不生效。<br/> 3. 不要在动画callback中实现与动效无关的逻辑，避免影响执行效率。|
+| customDropAnimation | Callback\<void\>  | 是 |在独立的接口中实现自定义落位动效。<br/> **说明：** <br/>1. 该接口仅在 onDrop 回调中使用有效。<br/> 2. 使用前需设置 useCustomDropAnimation 为 true，否则该接口不生效。<br/> 3. 不要在动画callback中实现与动效无关的逻辑，避免影响执行效率。|
 
 ## DataSyncOptions<sup>15+</sup>
 
@@ -823,7 +825,7 @@ type OnDragEventCallback = (event: DragEvent, extraParams?: string) => void
 
 | 名称     | 类型  | 只读 | 可选 | 说明           |
 | ------ | ------ | ---------------- | ------ | ------ |
-| disableDataPrefetch | bool  | 否  | 否  | 设置拖拽是否提前获取数据。true表示不提前获取数据，false表示提前获取数据，默认值为false。<br/>**说明：**<br/> 当使用startDataLoading获取数据时需设置该参数为true，防止拖拽提前获取数据。 |
+| disableDataPrefetch | boolean  | 否  | 否  | 设置拖拽是否提前获取数据。true表示不提前获取数据，false表示提前获取数据，默认值为false。<br/>**说明：**<br/> 当使用startDataLoading获取数据时需设置该参数为true，防止拖拽提前获取数据。 |
 
 ## SpringLoadingContext<sup>20+</sup>
 
@@ -848,7 +850,6 @@ type SpringLoadingContext = SpringLoadingContext
 ```ts
 // xxx.ets
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
-import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
@@ -1249,7 +1250,6 @@ struct ImageExample {
 
 ```ts
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
-import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry

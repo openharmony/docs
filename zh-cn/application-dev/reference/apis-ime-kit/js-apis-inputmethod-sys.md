@@ -2,8 +2,9 @@
 <!--Kit: IME Kit-->
 <!--Subsystem: MiscServices-->
 <!--Owner: @illybyy-->
-<!--SE: @andeszhang-->
-<!--TSE: @murphy1984-->
+<!--Designer: @andeszhang-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 本模块主要面向普通前台应用（备忘录、信息、设置等系统应用），提供对输入法（输入法应用）的控制、管理能力，包括显示/隐藏输入法软键盘、切换输入法、获取所有输入法列表等等。
 

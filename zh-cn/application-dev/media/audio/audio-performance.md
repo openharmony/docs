@@ -2,8 +2,9 @@
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @songshenke-->
-<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
-<!--TSE: @Filger-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 在各种终端设备的使用过程中，对于音频相关功能的体验，用户在不同场景下，有多方面的核心性能诉求，包含流畅度、响应速度、省电等，典型的场景如下：
 

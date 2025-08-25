@@ -2,8 +2,9 @@
 <!--Kit: Distributed Service Kit-->
 <!--Subsystem: DistributedHardware-->
 <!--Owner: @hobbycao-->
-<!--SE: @saga_2025-->
-<!--TSE: @wei-guoqing1-->
+<!--Designer: @saga_2025-->
+<!--Tester: @wei-guoqing1-->
+<!--Adviser: @w_Machine_cc-->
 
 ## 简介
 

@@ -1,5 +1,12 @@
 # @ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)
 
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: ResourceSchedule-->
+<!--Owner: @cheng-shichang-->
+<!--Designer: @zhouben25-->
+<!--Tester: @fenglili18-->
+<!--Adviser: @Brilliantry_Rui-->
+
 本模块提供延迟任务回调能力。开发者可重写模块接口，在延迟任务触发时，系统可通过本模块接口回调应用，在回调里处理任务逻辑。
 
 >  **说明：**
@@ -52,6 +59,7 @@ onWorkStart(work: workScheduler.WorkInfo): void
 
   ```ts
   import { workScheduler } from '@kit.BackgroundTasksKit';
+  import { WorkSchedulerExtensionAbility } from '@kit.BackgroundTasksKit';
 
   export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
     onWorkStart(workInfo: workScheduler.WorkInfo) {
@@ -79,6 +87,7 @@ onWorkStop(work: workScheduler.WorkInfo): void
 
   ```ts
   import { workScheduler } from '@kit.BackgroundTasksKit';
+  import { WorkSchedulerExtensionAbility } from '@kit.BackgroundTasksKit';
 
   export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
     onWorkStop(workInfo: workScheduler.WorkInfo) {

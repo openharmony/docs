@@ -3,8 +3,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: Security-->
 <!--Owner: @harylee-->
-<!--SE: @linshuqing; @hehehe-li-->
-<!--TSE: @leiyuqian-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
 
 安全控件的基础属性，用于设置安全控件通用的属性。
 

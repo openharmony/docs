@@ -40,8 +40,8 @@ If no configuration is performed, the system does not intercept any valid gestur
 
 ## Long-term Widget Activation
 
-For system applications, the widget provider can use APIs to switch widget states. The active duration is not strictly limited, which means a widget can remain active for a long time. You can call [formProvider.activateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#activatesceneanimation20) and [formProvider.deactivateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#deactivatesceneanimation20) to activate and deactivate a widget.
-After the widget is activated by calling **formProvider.activateSceneAnimation**, the rendering area of the widget animation is the same as that of the widget itself, and the [formProvider.requestOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20) API cannot be called to request animation.
+System applications can control widget state switching via APIs, enabling widgets to remain active for a long time. Widget state transitions are managed through [formProvider.activateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#activatesceneanimation20) and [formProvider.deactivateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#deactivatesceneanimation20).
+After the widget is activated by calling **formProvider.activateSceneAnimation**, the rendering area of the widget animation is the same as that of the widget itself. In this case, the overflow animation requested by calling the [formProvider.requestOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20) API does not take effect.
 
 ### How to Develop
 1. Import modules.
@@ -85,7 +85,7 @@ try {
 
 4. Adapt LiveFormExtensionAbility.
 
-To allow the widget provider to accurately control widget state switching and prevent delays caused by complex UI loading, the widget provider should notify the widget host via **session** when transitioning to the active state. After receiving the notification, the widget host starts to load the activated widget UI.
+Loading complex UIs (for example, complex physical simulation animations) in the active state is time-consuming and often results in choppy page transitions. To address this, the [UIExtensionContentSession](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md) message notification mechanism is provided. Once the active page finishes loading, the widget provider must send a notification to the widget host via **UIExtensionContentSession**. Upon receiving the notification, the widget host then switches to the active state.
 
 ```ts
 // entry/src/main/ets/mysystemliveformextensionability/MySystemLiveFormExtensionAbility.ets 
@@ -110,7 +110,7 @@ export default class MySystemLiveFormExtensionAbility extends LiveFormExtensionA
     // Load the provider page.
     session.loadContent('mysystemliveformextensionability/pages/MySystemLiveFormPage', storage);
 
-    // The widget provider needs to notify the widget host via session when the activated page is ready.
+    // Once the active page finishes loading, the widget provider must send a notification to the widget host via UIExtensionContentSession.
     session.sendData({['isFormReady']: true});
   }
 

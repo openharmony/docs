@@ -3,8 +3,9 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @qq_437963121-->
-<!--SE: @MontSaintMichel-->
-<!--TSE: @gcw_KuLfPSbe-->
+<!--Designer: @MontSaintMichel-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
 本文介绍HitraceMeter接口的使用方法。开发者可以在代码中调用HitraceMeter接口进行trace打点，然后使用[hitrace命令行工具](hitrace.md)获取程序运行时产生的打点信息，了解程序运行的进程、线程、时间戳、CPU等信息，以帮助开发者进行问题分析和性能调优。
 

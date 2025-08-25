@@ -1,9 +1,10 @@
 # @ohos.screenshot (屏幕截图)(系统接口)
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
-<!--Owner: @oh_wangxk;@logn-->
-<!--SE: @hejunfei1991-->
-<!--TSE: @qinliwen0417-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 本模块提供屏幕截图的能力，截取屏幕时支持设置截取的区域、大小等图像信息。
 
@@ -238,7 +239,10 @@ try {
 
 saveHdrPicture(options?: HdrScreenshotOptions): Promise&lt;Array&lt;image.PixelMap&gt;&gt;
 
-当屏幕存在HDR（包括HDR被遮挡）时，可获得一个SDR和HDR的PixelMap数组。当屏幕不存在HDR内容时，与[Save](#screenshotsave)接口返回一个SDR的PixelMap不同，该接口返回包含一个SDR的PixelMap数组。且该接口不具备[Save](#screenshotsave)接口的裁剪、拉伸、旋转功能。SDR为标准动态范围图，HDR为高动态范围图。
+获取屏幕截图。SDR为标准动态范围图，HDR为高动态范围图。
+- 当物理屏存在HDR资源（包括HDR资源被遮挡）时，无论HDR是否开启，该接口返回一个包含SDR和HDR的PixelMap数组。
+- 当物理屏不存在HDR资源时，与[save](#screenshotsave)接口返回一个SDR的PixelMap不同，该接口返回包含一个SDR的PixelMap数组。同时该接口不具备[save](#screenshotsave)接口的裁剪、拉伸、旋转功能。
+<br><br>
 
 **系统接口：** 此接口为系统接口。
 

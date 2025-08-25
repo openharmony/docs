@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @pengzhiwen3-->
-<!--SE: @lmleon-->
-<!--TSE: @fredyuan0912-->
+<!--Designer: @lmleon-->
+<!--Tester: @fredyuan0912-->
+<!--Adviser: @HelloCrease-->
 
 id为组件的唯一标识，在整个应用内唯一。本模块提供组件标识相关接口，可以获取指定id组件的属性，也提供向指定id组件发送事件的功能。
 
@@ -63,6 +64,8 @@ key(value: string): T
 | T | 返回当前组件。 |
 
 ## 基于组件标识的拓展能力
+
+组件标识的拓展能力仅用于对应用的测试，以下各个接口示例，需要在应用工程的ohosTest/ets/test目录中调试，具体可以参考[自动化测试框架使用指导 ](../../../../application-dev/application-test/arkxtest-guidelines.md)。
 
 ### getInspectorByKey<sup>9+</sup>
 
@@ -211,7 +214,7 @@ sendTouchEvent(event: TouchObject): boolean
 
 | 参数名      | 类型            | 必填  | 说明                                                         |
 | ----- | ----------- | ---- | ------------------------------------------------------------ |
-| event | [TouchObject](ts-universal-events-touch.md#touchobject对象说明) | 是    | 触发触摸事件的位置，event参数见[TouchEvent](ts-universal-events-touch.md#touchevent对象说明)中TouchObject的介绍。 |
+| event | [TouchObject](ts-universal-events-touch.md#touchobject对象说明) | 是    | 触发触摸事件的位置，event参数见[TouchObject](ts-universal-events-touch.md#touchobject对象说明)的介绍。 |
 
 **返回值:**
 

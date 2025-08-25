@@ -3,8 +3,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @zhangyafei-echo-->
-<!--SE: @zhangyafei-echo-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @zhangyafei-echo-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 ## 简介
 从API version 11及以上版本，支持通过配置文件开发意图。主要包含两个环节：

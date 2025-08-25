@@ -3,8 +3,9 @@
 <!--Kit: Device Certificate Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @chaceli-->
-<!--SE: @chande-->
-<!--TSE: @zhangzhi1995-->
+<!--Designer: @chande-->
+<!--Tester: @zhangzhi1995-->
+<!--Adviser: @zengyawen-->
 
 > **说明**
 >

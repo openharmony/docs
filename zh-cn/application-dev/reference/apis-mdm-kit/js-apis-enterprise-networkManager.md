@@ -2,8 +2,9 @@
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
 <!--Owner: @huanleima-->
-<!--SE: @liuzuming-->
-<!--TSE: @lpw_work-->
+<!--Designer: @liuzuming-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供设备网络管理能力，包括查询设备IP地址、MAC地址信息等。
 

@@ -3,8 +3,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @zcdqs; @fangyuhao-->
-<!--SE: @zcdqs-->
-<!--TSE: @liuzhenshuo-->
+<!--Designer: @zcdqs-->
+<!--Tester: @liuzhenshuo-->
+<!--Adviser: @HelloCrease-->
 
 网格容器，由“行”和“列”分割的单元格所组成，通过指定“项目”所在的单元格做出各种各样的布局。
 
@@ -78,6 +79,10 @@ Grid布局选项。其中，irregularIndexes和onGetIrregularSizeByIndex可对�
 > **说明：** 
 >
 > Grid组件使用通用属性[clip<sup>12+</sup>](ts-universal-attributes-sharp-clipping.md#clip12)和通用属性[clip<sup>18+</sup>](ts-universal-attributes-sharp-clipping.md#clip18)时默认值都为true。
+>
+> 设置Grid的padding后，如果子组件部分位于Grid内容区且部分位于padding区域内，则会显示；如果子组件完全位于padding区域内，则不会显示。如下图所示，GridItem1显示，而GridItem2不显示。
+>
+> ![GridPadding示意图](figures/gridPadding.png)
 
 ### columnsTemplate
 
@@ -268,7 +273,8 @@ cachedCount(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 预加载的GridItem的数量。<br/>默认值：垂直滚动时为一个屏幕内可显示的行数，水平滚动时为一个屏幕内可显示的列数，最大值为16。<br/>取值范围：[0, +∞)，设置为小于0的值时，按1处理。 |
+| value  | number | 是   | 预加载的GridItem的数量。<br/>默认值：垂直滚动时为一个屏幕内可显示的行数，水平滚动时为一个屏幕内可显示的列数，最大值为16。<br/>取值范围：[0, +∞)，设置为小于0的值时，按1处理。<br/>通过状态变量单独更新value值时，Grid组件不会触发布局更新，缓存节点数量仅会在下次布局时更新。 |
+
 
 ### cachedCount<sup>14+</sup>
 
@@ -286,8 +292,9 @@ cachedCount(count: number, show: boolean)
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| count  | number | 是   | 预加载的GridItem的数量。<br/>默认值：垂直滚动时为一个屏幕内可显示的行数，水平滚动时为一个屏幕内可显示的列数，最大值为16。<br/>取值范围：[0, +∞)，设置为小于0的值时，按1处理。 |
+| count  | number | 是   | 预加载的GridItem的数量。<br/>默认值：垂直滚动时为一个屏幕内可显示的行数，水平滚动时为一个屏幕内可显示的列数，最大值为16。<br/>取值范围：[0, +∞)，设置为小于0的值时，按1处理。<br/>通过状态变量单独更新count值时，Grid组件不会触发布局更新，缓存节点数量仅会在下次布局时更新。 |
 | show  | boolean | 是   | 被预加载的GridItem是否需要显示。设置为true时显示预加载的GridItem，设置为false时不显示预加载的GridItem。 <br/> 默认值：false |
+
 
 ### editMode<sup>8+</sup>
 
@@ -383,7 +390,7 @@ cellLength(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                    |
 | ------ | ------ | ---- | ------------------------------------------------------- |
-| value  | number | 是   | 一行的高度或者一列的宽度。<br/>默认值：第一个元素的大小 <br/>单位：vp <br/>取值范围：[0, +∞)，设置为小于0的值时，按默认值显示。 |
+| value  | number | 是   | 一行的高度或者一列的宽度。<br/>默认值：第一个元素的大小 <br/>单位：vp <br/>取值范围：(0, +∞)，设置为小于等于0的值时，按默认值显示。 |
 
 ### multiSelectable<sup>8+</sup>
 
@@ -797,7 +804,7 @@ onScrollStart(event: () => void)
 
 onScrollStop(event: () => void)
 
-网格滑动停止时触发。手指拖动网格或网格的滚动条触发的滑动，手指离开屏幕并且滑动停止时会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。
+网格滑动停止时触发。手指拖动网格或网格的滚动条触发的滑动，手指离开屏幕后滑动停止时会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1005,6 +1012,8 @@ struct GridExample {
 
 可滚动Grid，包括所有滚动属性和事件。
 
+GridDataSource实现了LazyForEach数据源接口[IDataSource](ts-rendering-control-lazyforeach.md#idatasource)，用于通过LazyForEach给Grid提供子组件。
+
 <!--code_no_check-->
 ```ts
 // GridDataSource.ets
@@ -1147,6 +1156,8 @@ struct GridExample {
 
 GridLayoutOptions的使用：irregularIndexes与onGetIrregularSizeByIndex。
 
+GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
+
 <!--code_no_check-->
 ```ts
 // xxx.ets
@@ -1237,6 +1248,8 @@ struct GridExample {
 ### 示例4（Grid嵌套滚动）
 
 nestedScroll和onScrollFrameBegin的使用。
+
+GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
 
 <!--code_no_check-->
 ```ts
@@ -1426,6 +1439,8 @@ struct GridExample {
 >
 > 预览器窗口不支持显示拖拽跟手。
 
+GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
+
 <!--code_no_check-->
 ```ts
 import { GridDataSource } from './GridDataSource';
@@ -1521,6 +1536,8 @@ struct GridExample {
 
 layoutDirection、maxCount、minCount、cellLength的使用。
 
+GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
+
 <!--code_no_check-->
 ```ts
 import { GridDataSource } from './GridDataSource';
@@ -1572,6 +1589,8 @@ struct GridExample {
 ### 示例7（双指缩放修改Grid列数）
 
 双指缩放修改Grid列数。
+
+GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
 
 <!--code_no_check-->
 ```ts
@@ -1728,6 +1747,8 @@ struct GridColumnsTemplate {
 
 在默认情况下，左右两个GridItem的高度可能是不同的；在设置了Grid的[alignItems](#alignitems12)属性为GridItemAlignment.STRETCH后，一行左右两个GridItem中原本高度较小的GridItem会以另一个高度较大的GridItem的高度作为自己的高度。
 
+GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
+
 <!--code_no_check-->
 ```ts
 import { GridDataSource } from './GridDataSource';
@@ -1793,6 +1814,8 @@ struct Index {
 ### 示例10（设置边缘渐隐）
 通过[fadingEdge](ts-container-scrollable-common.md#fadingedge14)属性来设置边缘渐隐效果。
 
+GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
+
 <!--code_no_check-->
 
 ```ts
@@ -1848,6 +1871,8 @@ struct GridExample {
 ### 示例11（单边边缘效果）
 
 该示例通过edgeEffect接口，实现了Grid组件设置单边边缘效果。
+
+GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
 
 <!--code_no_check-->
 ```ts
@@ -2078,6 +2103,8 @@ struct Index {
 
 该示例通过scrollToIndex接口，实现了Grid组件滚动到指定位置。
 
+GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
+
 <!--code_no_check-->
 ```ts
 import { GridDataSource } from './GridDataSource';
@@ -2139,6 +2166,8 @@ struct GridScrollToIndexSample {
 
 该示例通过PanGesture接口，实现了Grid组件一边滑动一边选择的效果。
 
+GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
+
 <!--code_no_check-->
 ```ts
 // xxx.ets
@@ -2153,7 +2182,7 @@ enum SlideActionType {
 // 热区
 const HOT_AREA_LENGTH =
   Math.round(display.getDefaultDisplaySync().densityDPI * 10 / 25.4 / display.getDefaultDisplaySync().densityPixels);
-// 滚动速度: 贝塞尔曲线
+// 滚动曲线: 贝塞尔曲线
 const SLIDE_SELECT_SPEED_CURVE = curves.cubicBezierCurve(0.33, 0, 0.67, 1);
 // 滚动速度: 最大速度
 const AUTO_SPEED_MAX: number = Math.round(2400 / display.getDefaultDisplaySync().densityPixels);
@@ -2348,6 +2377,7 @@ struct GridExample {
                 .height(80)
                 .textAlign(TextAlign.Center)
               if (this.canSlideSelect) {
+                // $r('app.media.gouxuan')和$r('app.media.weigouxuan')需要替换为开发者所需的图像资源文件。
                 Image(this.selectedIndexes.includes(day) ? $r('app.media.gouxuan') :$r('app.media.weigouxuan'))
                   .width(30)
                   .height(30)
@@ -2431,7 +2461,7 @@ struct GridExample {
 该示例通过gesture接口，实现了GridItem组件自定义拖拽效果。
 
 ```ts
-import curves from '@ohos.curves'
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component

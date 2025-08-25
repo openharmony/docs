@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 光标滑动或手写笔在屏幕上悬浮移动扫过组件时触发。
 
@@ -90,7 +91,7 @@ struct HoverEventExample {
 
   build() {
     Column({ space: 20 }) {
-      Button(this.hoverText)
+      Button(this.hoverText, { type: ButtonType.Capsule })
         .width(180).height(80)
         .backgroundColor(this.color)
         .onHover((isHover: boolean, event: HoverEvent) => {
@@ -137,7 +138,7 @@ struct OnHoverMoveEventExample {
 
   build() {
     Column({ space: 20 }) {
-      Button('onHoverMove')
+      Button('onHoverMove', { type: ButtonType.Capsule })
         .width(180).height(80)
         .onHoverMove((event: HoverEvent) => {
           this.hoverMoveText = 'onHoverMove:\nXY = (' + event.x + ', ' + event.y + ')' + 

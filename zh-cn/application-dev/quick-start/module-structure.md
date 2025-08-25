@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
-<!--SE: @hanfeng6-->
-<!--TSE: @kongjing2-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 module对象包含HAP的配置信息。
 
@@ -563,7 +564,7 @@ forms示例：
 ```json
 "forms": [
   {
-    "name": "Form_Js",
+    "name": "Form_Js1",
     "description": "It's Js Form",
     "type": "JS",
     "jsComponentName": "card",
@@ -580,9 +581,9 @@ forms示例：
     ]
   },
   {
-    "name": "Form_Js",
+    "name": "Form_Js2",
     "description": "It's JS Form",
-    "type": "Js",
+    "type": "JS",
     "colorMode": "auto",
     "isDefault": false,
     "updateEnabled": true,

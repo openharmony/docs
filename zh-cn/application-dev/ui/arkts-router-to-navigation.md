@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @mayaolll-->
-<!--SE: @jiangdayuan-->
-<!--TSE: @lxl007-->
+<!--Designer: @jiangdayuan-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 鉴于组件导航(Navigation)支持更丰富的动效、一次开发多端部署能力和更灵活的栈操作。本文主要从页面跳转、动效和生命周期等方面介绍如何从Router切换到Navigation。
 
@@ -25,7 +26,7 @@ Router路由的页面是一个`@Entry`修饰的Component，每一个页面都需
 以下为Router页面的示例。
 
 ```ts
-// index.ets
+// Index.ets
 import { router } from '@kit.ArkUI';
 
 @Entry
@@ -95,7 +96,7 @@ struct pageOne {
 以下为Navigation导航页的示例。
 
 ```ts
-// index.ets
+// Index.ets
 @Entry
 @Component
 struct Index {
@@ -377,7 +378,7 @@ struct CustomNode {
 >
 > 3.应用前后台切换会同时触发router页面和Navigation页面的生命周期。
 
-[Router页面生命周期](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)为`@Entry`页面中的通用方法，主要有如下四个生命周期：
+Router页面[生命周期](arkts-routing.md#生命周期)为`@Entry`页面中的通用方法，主要有如下四个生命周期：
 
 ```ts
 // 页面创建后挂树的回调

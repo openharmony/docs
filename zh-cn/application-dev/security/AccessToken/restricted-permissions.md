@@ -3,8 +3,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: Security-->
 <!--Owner: @harylee-->
-<!--SE: @linshuqing; @hehehe-li-->
-<!--TSE: @leiyuqian-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
 
 ## 申请方式
 

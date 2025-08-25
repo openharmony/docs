@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @sd-wu-->
-<!--SE: @sunbees-->
-<!--TSE: @liuli0427-->
+<!--Designer: @sunbees-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 用于渲染并管理Native层使用C-API创建的组件。
 

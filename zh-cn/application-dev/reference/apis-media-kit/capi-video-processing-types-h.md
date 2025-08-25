@@ -2,12 +2,15 @@
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @wang-haizhou6-->
-<!--SE: @HmQQQ-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
 视频处理类型定义。
+
+**引用文件：** <multimedia/video_processing_engine/video_processing_types.h>
 
 **库：** libvideo_processing.so
 

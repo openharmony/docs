@@ -2,8 +2,9 @@
 <!--Kit: Distributed Service Kit-->
 <!--Subsystem: DistributedSched-->
 <!--Owner: @hobbycao-->
-<!--SE: @gsxiaowen-->
-<!--TSE: @hanjiawei-->
+<!--Designer: @gsxiaowen-->
+<!--Tester: @hanjiawei-->
+<!--Adviser: @w_Machine_cc-->
 
 
 ## 简介
@@ -304,10 +305,10 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
   });
 ```
 <!--RP1End-->  
-
+<!--Del-->
 **发送数据**
-
-**1.发送消息**
+<!--DelEnd-->
+**<!--Del-->1.<!--DelEnd-->发送消息**
 
 应用连接成功后，开发者可在设备A或者设备B上调用sendMessage()方法给对端应用发送文本信息。
 

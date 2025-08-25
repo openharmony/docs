@@ -3,8 +3,9 @@
 <!--Kit: User Authentication Kit-->
 <!--Subsystem: UserIAM-->
 <!--Owner: @WALL_EYE-->
-<!--SE: @lichangting518-->
-<!--TSE: @jane_lz-->
+<!--Designer: @lichangting518-->
+<!--Tester: @jane_lz-->
+<!--Adviser: @zengyawen-->
 
 User Authentication Kit（用户认证服务）提供了基于用户在设备本地注册的锁屏口令、人脸和指纹来认证用户身份的能力。
 

@@ -55,7 +55,7 @@ Skip this step if the NDK is downloaded from DevEco Studio.
   
   ![en-us_image_20-24-01-16-14-38](figures/en-us_image_20-24-01-16-14-38.png)
   
-  Open the CLI and run **{*cmake_installation_path*}\cmake.exe -version** command. If the CMake version number is displayed correctly, the environment variable configuration is complete.
+  Open the CLI and run the **{*cmake_installation_path*}\cmake.exe -version** command. If the CMake version number is displayed correctly, the environment variable configuration is complete.
 
   ![en-us_image_20-24-01-16-14-41](figures/en-us_image_20-24-01-16-14-41.png)
 

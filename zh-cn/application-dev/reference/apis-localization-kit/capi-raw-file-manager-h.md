@@ -1,5 +1,12 @@
 # raw_file_manager.h
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @liule_123-->
+<!--Designer: @buda_wy-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## 概述
 
 提供资源管理rawfile相关功能，可以使用ResourceManager打开rawfile进行后续相关操作，像搜索和读取等。
@@ -26,7 +33,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| [NativeResourceManager *OH_ResourceManager_InitNativeResourceManager(napi_env env, napi_value jsResMgr)](#oh_resourcemanager_initnativeresourcemanager) | 基于JavaScipt侧的ResourceManager获取native侧的ResourceManager，用来完成rawfile相关功能。 |
+| [NativeResourceManager *OH_ResourceManager_InitNativeResourceManager(napi_env env, napi_value jsResMgr)](#oh_resourcemanager_initnativeresourcemanager) | 基于JavaScript侧的ResourceManager获取native侧的ResourceManager，用来完成rawfile相关功能。 |
 | [void OH_ResourceManager_ReleaseNativeResourceManager(NativeResourceManager *resMgr)](#oh_resourcemanager_releasenativeresourcemanager) | 释放native侧ResourceManager。 |
 | [RawDir *OH_ResourceManager_OpenRawDir(const NativeResourceManager *mgr, const char *dirName)](#oh_resourcemanager_openrawdir) | 打开rawfile目录，打开后可以遍历对应目录下的rawfile文件。 |
 | [RawFile *OH_ResourceManager_OpenRawFile(const NativeResourceManager *mgr, const char *fileName)](#oh_resourcemanager_openrawfile) | 打开rawfile文件，打开后可以读取它的数据。 |
@@ -43,7 +50,7 @@ NativeResourceManager *OH_ResourceManager_InitNativeResourceManager(napi_env env
 
 **描述**
 
-基于JavaScipt侧的ResourceManager获取native侧的ResourceManager，用来完成rawfile相关功能。
+基于JavaScript侧的ResourceManager获取native侧的ResourceManager，用来完成rawfile相关功能。
 
 **起始版本：** 8
 
@@ -53,7 +60,7 @@ NativeResourceManager *OH_ResourceManager_InitNativeResourceManager(napi_env env
 | 参数项 | 描述 |
 | -- | -- |
 | napi_env env | 表示JavaScript Native Interface（napi）环境指针。 |
-| napi_value jsResMgr | 表示JavaScipt resource manager。 |
+| napi_value jsResMgr | 表示JavaScript resource manager。 |
 
 **返回：**
 

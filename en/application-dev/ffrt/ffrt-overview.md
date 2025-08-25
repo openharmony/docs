@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## Introduction
 
@@ -35,7 +36,7 @@ The following describes the basic concepts in FFRT development:
 
 The FFRT programming model allows you to develop applications by describing tasks and their dependencies. Its main features include `Task-Based`, `Queue-Enabled`, and `Graph-Driven`.
 
-#### Task-Based
+**Task-Based**
 
 The `Task-Based` feature means that you can use tasks to express an application and schedule the tasks at runtime.
 
@@ -49,7 +50,7 @@ The tasks in the FFRT programming model have the following features:
 >
 > The task granularity determines the number of concurrent tasks and therefore affects the application execution performance. A small granularity increases the scheduling overhead, whereas a large granularity decreases the DOP. The minimum task granularity allowed in the FFRT programming model is 100 μs.
 
-#### Queue-Enabled
+**Queue-Enabled**
 
 The `Queue-Enabled` feature means that you can use task queues to restrict task execution sequence and concurrency at runtime. Task queues include serial queues and concurrent queues, which are used in different scenarios.
 
@@ -59,7 +60,7 @@ The `Queue-Enabled` feature means that you can use task queues to restrict task 
 
 The `Queue-Enabled` feature provides you with flexible task scheduling modes. You can select a proper task execution policy based on your requirements to optimize the performance of your applications.
 
-#### Graph-Driven
+**Graph-Driven**
 
 The `Graph-Driven` feature means that you can use dependency graphs to manage task dependencies and implement efficient scheduling of complex task flows.
 

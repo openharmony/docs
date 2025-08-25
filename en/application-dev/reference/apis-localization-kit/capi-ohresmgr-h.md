@@ -1,8 +1,17 @@
 # ohresmgr.h
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @liule_123-->
+<!--Designer: @buda_wy-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## Overview
 
 Provides native APIs for obtaining resources.
+
+**File to include**: <resourcemanager/ohresmgr.h>
 
 **Library**: libohresmgr.so
 
@@ -314,7 +323,7 @@ Obtains the **DrawableDescriptor** object of the icon resource with the specifie
 | uint32_t resId                                                                                                      | Resource ID.|
 | uint32_t density = 0                                                                                                | Screen density. This parameter is optional. For details about the value range, see [ScreenDensity](capi-resmgr-common-h.md#screendensity). The default value is 0, indicating that the current system screen density (in DPI) is used.|
 | uint32_t type = 0                                                                                                   | Icon type. The value **0** indicates an application icon, and the value **1** indicates a theme icon.|
-| ArkUI_DrawableDescriptor **drawableDescriptor | Result of writing **drawableDescriptor**.|
+| [ArkUI_DrawableDescriptor](../apis-arkui/capi-arkui-nativemodule-arkui-drawabledescriptor.md) **drawableDescriptor | Result of writing **drawableDescriptor**.|
 
 **Returns**
 
@@ -341,7 +350,7 @@ Obtains the **DrawableDescriptor** object of the icon resource with the specifie
 | -- | -- |
 | const [NativeResourceManager](capi-rawfile-nativeresourcemanager.md) *mgr | Pointer to [NativeResourceManager](capi-rawfile-nativeresourcemanager.md). It is obtained by using [OH_ResourceManager_InitNativeResourceManager](capi-raw-file-manager-h.md#oh_resourcemanager_initnativeresourcemanager).|
 | uint32_t resId | Resource ID.|
-| ArkUI_DrawableDescriptor **drawableDescriptor | Result of writing **drawableDescriptor**.|
+| [ArkUI_DrawableDescriptor](../apis-arkui/capi-arkui-nativemodule-arkui-drawabledescriptor.md) **drawableDescriptor | Result of writing **drawableDescriptor**.|
 | uint32_t density | Screen density. This parameter is optional. For details about the value range, see [ScreenDensity](capi-resmgr-common-h.md#screendensity). The default value is **0**, indicating that the current system screen density (in DPI) is used. If this parameter is not required, set it to **0**.|
 | uint32_t type | Icon type. This parameter is optional. The value **0** indicates an application icon, and the value **1** indicates a theme icon. If this parameter is not required, set it to **0**.|
 
@@ -372,7 +381,7 @@ Obtains the **DrawableDescriptor** object of the icon resource with the specifie
 | const char *resName | Resource name.|
 | uint32_t density = 0 | Screen density. This parameter is optional. For details about the value range, see [ScreenDensity](capi-resmgr-common-h.md#screendensity). The default value is 0, indicating that the current system screen density (in DPI) is used.|
 | uint32_t type = 0 | Icon type. This parameter is optional. The value **0** indicates an application icon, the value **1** indicates a theme icon, and the value **2** indicates a dynamic icon.|
-| ArkUI_DrawableDescriptor **drawableDescriptor | Result of writing **drawableDescriptor**.|
+| [ArkUI_DrawableDescriptor](../apis-arkui/capi-arkui-nativemodule-arkui-drawabledescriptor.md) **drawableDescriptor | Result of writing **drawableDescriptor**.|
 
 **Returns**
 
@@ -399,7 +408,7 @@ Obtains the **DrawableDescriptor** object of the icon resource with the specifie
 | -- | -- |
 | const [NativeResourceManager](capi-rawfile-nativeresourcemanager.md) *mgr | Pointer to [NativeResourceManager](capi-rawfile-nativeresourcemanager.md). It is obtained by using [OH_ResourceManager_InitNativeResourceManager](capi-raw-file-manager-h.md#oh_resourcemanager_initnativeresourcemanager).|
 | const char *resName | Resource name.|
-| ArkUI_DrawableDescriptor **drawableDescriptor | Result of writing **drawableDescriptor**.|
+| [ArkUI_DrawableDescriptor](../apis-arkui/capi-arkui-nativemodule-arkui-drawabledescriptor.md) **drawableDescriptor | Result of writing **drawableDescriptor**.|
 | uint32_t density | Screen density. This parameter is optional. For details about the value range, see [ScreenDensity](capi-resmgr-common-h.md#screendensity). The default value is **0**, indicating that the current system screen density (in DPI) is used. If this parameter is not required, set it to **0**.|
 | uint32_t type | Icon type. This parameter is optional. The value **0** indicates an application icon, and the value **1** indicates a theme icon. If this parameter is not required, set it to **0**.|
 
@@ -1185,3 +1194,5 @@ Removes overlay resources when an application is running.
 | Type| Description|
 | -- | -- |
 | [ResourceManager_ErrorCode](capi-resmgr-common-h.md#resourcemanager_errorcode) | [SUCCESS](capi-resmgr-common-h.md#resourcemanager_errorcode) 0 - The operation is successful.<br>         [ERROR_CODE_INVALID_INPUT_PARAMETER](capi-resmgr-common-h.md#resourcemanager_errorcode) 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.<br>          [ERROR_CODE_OVERLAY_RES_PATH_INVALID](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001010 - The resource path is invalid.|
+
+<!--no_check-->

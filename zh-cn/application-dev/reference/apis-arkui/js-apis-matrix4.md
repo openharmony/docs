@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
-<!--SE: @yangfan229-->
-<!--TSE: @lxl007-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 本模块提供矩阵变换功能，支持对图形进行平移、旋转和缩放等。
 
@@ -672,7 +673,7 @@ struct Index {
 | srcIndex    | number | 否   | 源点坐标起始索引。<br>默认值:0 <br/> 取值范围：[0, +∞)|
 | dst    |  Array<[Point](#point12)>  | 是   | 目标点坐标。 |
 | dstIndex    | number | 否   |  目标坐标起始索引。<br>默认值: src.length/2 <br/> 取值范围：[0, +∞) |
-| pointCount    | number | 否   | 使用到的点数量。<br>默认值: 0 <br/> 取值范围：[0, +∞)|
+| pointCount    | number | 否   | 使用到的点数量。要使用的点的数量如果为0，则返回单位矩阵。如果为1，则返回一个将两个点之前改变的平移矩阵。如果为2-4，则返回一个变换矩阵。<br>默认值: 0 <br/> 取值范围：[0, +∞)|
 
 ## Point<sup>12+</sup>
 

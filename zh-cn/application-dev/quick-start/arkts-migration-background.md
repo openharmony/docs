@@ -3,10 +3,11 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @Fouckttt1-->
-<!--SE: @qyhuo32-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @qyhuo32-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @zhang_yixin13-->
 
-ArkTS在保留TypeScript（简称TS）基本语法风格的基础上，进一步通过规范强化了静态检查和分析，使得在程序开发阶段能够检测出更多错误，提升程序的稳定性和运行性能。本文将详细解释为什么建议将TS代码适配为ArkTS代码。
+ArkTS在保留TypeScript（简称TS）基本语法风格的基础上，进一步通过规范强化了静态检查和分析，使得开发者在程序开发阶段能够检测出更多错误，提升程序的稳定性和运行性能。本文将详细解释为什么建议将TS代码适配为ArkTS代码。
 
 ## 程序稳定性
 
@@ -141,7 +142,7 @@ TS通过启用编译选项`strictNullChecks`实现此特性。虽然TS被编译�
 
 根据工程的compatibleSdkVersion，具体策略如下：
 
-  - compatibleSdkVersion >= 10 为标准模式。在该模式下，所有.ets文件必须严格遵循ArkTS语法规则，任何语法违规工程都将编译失败，开发者需要修正所有语法问题后才能编译成功。
+  - compatibleSdkVersion >= 10 为标准模式。在该模式下，所有.ets文件必须严格遵循ArkTS语法规则，任何语法违规工程都会编译不通过，开发者需要修正所有语法问题后才能获得编译通过。
   - compatibleSdkVersion < 10 为兼容模式。在该模式下，对.ets文件以warning形式提示违反ArkTS语法规则的所有代码。尽管违反ArkTS语法规则的工程在兼容模式下仍可编译成功，但需完全适配ArkTS语法后方可在标准模式下编译成功。
 
 ## 支持与TS/JS的交互

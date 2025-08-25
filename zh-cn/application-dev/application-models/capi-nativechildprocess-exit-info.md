@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @SKY2001-->
-<!--SE: @jsjzju-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 ## 场景介绍
 

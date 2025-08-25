@@ -33,7 +33,7 @@
 
 **变更的接口/组件**
 
-i18n.system.getDisplayCountry
+i18n.System.getDisplayCountry
 
 **适配指导**
 
@@ -73,7 +73,7 @@ i18n.system.getDisplayCountry
 
 **变更的接口/组件**
 
-i18n.system.getRegionInfoArray
+i18n.SystemLocaleManager.getRegionInfoArray
 
 **适配指导**
 
@@ -178,7 +178,7 @@ API 9
 
 **变更的接口/组件**
 
-intl.PhoneNumberFormat.getLocationName
+i18n.PhoneNumberFormat.getLocationName
 
 **适配指导**
 
@@ -212,7 +212,7 @@ API 9
 
 **变更的接口/组件**
 
-i18n.system.getSystemCountries
+i18n.System.getSystemCountries
 
 **适配指导**
 

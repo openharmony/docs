@@ -2,8 +2,9 @@
 <!--Kit: IME Kit-->
 <!--Subsystem: MiscServices-->
 <!--Owner: @illybyy-->
-<!--SE: @andeszhang-->
-<!--TSE: @murphy1984-->
+<!--Designer: @andeszhang-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 本模块提供对输入法面板的属性管理。
 

@@ -2,8 +2,9 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @woodenarow-->
-<!--SE: @woodenarow; @xuelei3-->
-<!--TSE: @chenwan188; @logic42-->
+<!--Designer: @woodenarow; @xuelei3-->
+<!--Tester: @chenwan188; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 **DataShareExtensionAbility**基于ExtensionAbility框架，提供支持数据共享业务的能力。
 

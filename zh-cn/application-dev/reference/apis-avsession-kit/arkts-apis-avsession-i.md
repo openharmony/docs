@@ -2,8 +2,9 @@
 <!--Kit: AVSession Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @ccfriend; @liao_qian-->
-<!--SE: @ccfriend-->
-<!--TSE: @chenmingxi1_huawei-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -46,7 +47,7 @@
 
 | 名称            | 类型                      | 只读 | 可选 | 说明               |
 | --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
-| assetId         | string                  | 否   | 否   | 媒体ID。歌曲的唯一标识，由应用自定义。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                     |
+| assetId         | string                  | 否   | 否   | 媒体ID。歌曲的唯一标识，由应用自定义。该属性发生变化则其他元数据属性都将被刷新。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                     |
 | title           | string                  | 否   | 是   | 标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。              |
 | artist          | string                  | 否   | 是   | 艺术家。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。             |
 | author          | string                  | 否   | 是   | 专辑作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。            |
@@ -91,8 +92,8 @@
 | lyricContent     | string                  | 否   | 是   | 播放列表媒体歌词内容。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | lyricUri     | string                  | 否   | 是   | 播放列表媒体歌词URI。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | artist     | string                  | 否   | 是   | 播放列表媒体专辑作者。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| fdSrc     | media.AVFileDescriptor        | 否   | 是   | 播放列表媒体本地文件的句柄。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | 否   | 是   | 播放列表数据源描述。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| fdSrc     | [media.AVFileDescriptor](../apis-media-kit/arkts-apis-media-i.md#avfiledescriptor9)        | 否   | 是   | 播放列表媒体本地文件的句柄。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| dataSrc<sup>12+</sup>     | [media.AVDataSrcDescriptor](../apis-media-kit/arkts-apis-media-i.md#avdatasrcdescriptor10)        | 否   | 是   | 播放列表数据源描述。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
 | pcmSrc<sup>20+</sup>     | boolean        | 否   | 是   | 播放列表是否使用PCM数据源。true表示使用PCM数据源，false表示不使用PCM数据源。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>由于设备限制，暂时无法使用，将在后续版本提供支持。 |
 | drmScheme<sup>12+</sup>     | string        | 否   | 是   | 播放列表媒体支持的DRM方案，由uuid表示。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
 | duration     | number                  | 否   | 是   | 播放列表媒体播放时长。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -184,7 +185,7 @@
 
 | 名称       | 类型           | 必填 | 说明                   |
 | ---------- | -------------- | ---- | ---------------------- |
-| castCategory   | AVCastCategory        | 是   | 投播的类别。  <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core  <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| castCategory   | [AVCastCategory](arkts-apis-avsession-e.md#avcastcategory10)        | 是   | 投播的类别。  <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core  <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | deviceId   | string | 是   | 播放设备的ID。<br> **系统能力：** SystemCapability.Multimedia.AVSession.Core  <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | deviceName | string | 是   | 播放设备的名称。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | deviceType | DeviceType | 是   | 播放设备的类型。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|

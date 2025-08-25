@@ -2,14 +2,17 @@
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @wang-haizhou6-->
-<!--SE: @HmQQQ-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
 声明视频处理函数。
 
 提供视频处理能力，包括颜色空间转换、元数据生成和视频缩放。
+
+**引用文件：** <multimedia/video_processing_engine/video_processing.h>
 
 **库：** libvideo_processing.so
 

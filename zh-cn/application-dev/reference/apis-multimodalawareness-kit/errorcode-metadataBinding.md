@@ -2,8 +2,9 @@
 <!--Kit: Multimodal Awareness Kit-->
 <!--Subsystem: Msdp-->
 <!--Owner: @codexu62-->
-<!--SE: @yuxiaoyang-->
-<!--TSE: @zhaodengqi-->
+<!--Designer: @yuxiaoyang-->
+<!--Tester: @zhaodengqi-->
+<!--Adviser: @hu-zhiqiong-->
 
 > **说明：**
 >

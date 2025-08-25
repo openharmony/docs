@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
-<!--SE: @hanfeng6-->
-<!--TSE: @kongjing2-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 
 app对象包含应用全局配置信息，内部结构如下：

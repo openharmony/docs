@@ -2,8 +2,9 @@
 <!--Kit: ArkGraphics 3D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @zzhao0-->
-<!--SE: @zdustc-->
-<!--TSE: @zhangyue283-->
+<!--Designer: @zdustc-->
+<!--Tester: @zhangyue283-->
+<!--Adviser: @ge-yafang-->
 
 @ohos.graphics.scene将3D开发相关模块的API组织在一起，方便开发者进行导出使用。
 

@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
-<!--SE: @hanfeng6-->
-<!--TSE: @kongjing2-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 共享包信息，通过接口[bundleManager.getSharedBundleInfo](js-apis-bundleManager-sys.md#bundlemanagergetsharedbundleinfo10)获取。
 

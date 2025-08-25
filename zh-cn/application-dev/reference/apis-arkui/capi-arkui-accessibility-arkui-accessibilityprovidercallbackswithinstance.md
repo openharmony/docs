@@ -1,4 +1,10 @@
 # ArkUI_AccessibilityProviderCallbacksWithInstance
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zhanghangkai10241-->
+<!--Designer: @lmleon-->
+<!--Tester: @fredyuan0912-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
@@ -100,7 +106,7 @@ int32_t (*findFocusedAccessibilityNode)(const char* instanceId, int64_t elementI
 |------------------------------------------------------------------------------------| -- |
 | const char* instanceId                                                             | 第三方框架的实例编码。 |
 | int64_t elementId                                                                  | 无障碍元素的唯一编号。 |
-| [ArkUI_AccessibilityFocusType](capi-native-interface-accessibility-h.md) focusType | 焦点类型。 |
+| [ArkUI_AccessibilityFocusType](capi-native-interface-accessibility-h.md#arkui_accessibilityfocustype) focusType | 焦点类型。 |
 | int32_t requestId                                                                  | 请求id，用于关联请求过程，方便问题定位。建议日志打印时附带输出该信息，方便定位。 |
 | [ArkUI_AccessibilityElementInfo](capi-arkui-accessibility-arkui-accessibilityelementinfo.md)* elementInfo                                    | 本次查询到的无障碍元素。 |
 

@@ -2,8 +2,9 @@
 <!--Kit: Driver Development Kit-->
 <!--Subsystem: Driver-->
 <!--Owner: @lixinsheng2-->
-<!--SE: @w00373942-->
-<!--TSE: @dong-dongzhen-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
 
 ## 概述
 

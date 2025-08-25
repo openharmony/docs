@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @yp99ustc-->
-<!--SE: @LongLie-->
-<!--TSE: @ghiker-->
+<!--Designer: @LongLie-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Web页面出现白屏的原因众多，本文列举了若干常见白屏问题的排查步骤，供开发者快速定位。
 
@@ -88,7 +89,7 @@ Web页面出现白屏的原因众多，本文列举了若干常见白屏问题�
 ## 使用DevTools工具进行页面内容验证
 在确保网络与权限配置无误后，若仍出现白屏，则应利用DevTools工具调试前端页面以及监听Web相关错误上报接口，来定位具体报错类型。
 
-1. 查阅控制台的错误信息，定位具体的资源加载失败问题。资源加载失败会导致页面元素缺失，布局紊乱，图片和动画效果失效等，严重时可能导致渲染进程崩溃，页面呈现空白。如同所示，依次排查：<br>
+1. 查阅控制台的错误信息，定位具体的资源加载失败问题。资源加载失败会导致页面元素缺失，布局紊乱，图片和动画效果失效等，严重时可能导致渲染进程崩溃，页面呈现空白。如图所示，依次排查：<br>
   （1）元素是否完整，html元素、结构是否正确。<br> （2）控制台是否有报错。<br>（3）网络里面是否有资源加载时间特别长等。<br>
    ![web-white-devtools](figures/web-white-devtools.PNG)
 
@@ -303,7 +304,6 @@ Web页面出现白屏的原因众多，本文列举了若干常见白屏问题�
 若页面使用了复杂布局或渲染模式，需注意其应用场景和约束条件，不当使用可能导致布局混乱或白屏。
 Web组件提供了两种渲染模式，能够根据不同的容器大小进行适配，从而满足使用场景中对容器尺寸的需求，详情见[Web组件渲染模式](web-render-mode.md)。在使用过程中需要注意以下几点：
 - 异步渲染模式下（renderMode: [RenderMode](../reference/apis-arkweb/arkts-basic-components-web-e.md#rendermode12).ASYNC_RENDER），Web组件的宽高不能超过7,680px（物理像素），超过会导致白屏。
-- 同步渲染模式下（renderMode: [RenderMode](../reference/apis-arkweb/arkts-basic-components-web-e.md#rendermode12).SYNC_RENDER），Web组件的宽高不能超过500,000px（物理像素），超过会导致白屏。
 
 Web组件提供了自适应页面布局的能力，详情见[ Web组件大小自适应页面内容布局](web-fit-content.md)，使用时也需要注意以下约束条件：
 - 配置同步渲染模式：`webSetting({renderingMode: WebRenderingMode.SYNCHRONOUS})`。

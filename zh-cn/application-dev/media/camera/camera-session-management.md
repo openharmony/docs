@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 相机使用预览、拍照、录像、元数据功能前，均需要创建相机会话。
 
@@ -73,7 +74,7 @@
        videoSession.canAddOutput(previewOutput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to canAdd previewOutput. error: ${err}`);
+       console.error(`Failed to add previewOutput. error: ${err}`);
      }
      try {
        videoSession.addOutput(previewOutput);
@@ -85,7 +86,7 @@
        videoSession.canAddOutput(photoOutput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to canAdd photoOutput error: ${err}`);
+       console.error(`Failed to add photoOutput error: ${err}`);
      }
      try {
        videoSession.addOutput(photoOutput);
@@ -138,7 +139,7 @@
        videoSession.canAddOutput(videoOutput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to canAdd videoOutput error: ${err}`);
+       console.error(`Failed to add videoOutput error: ${err}`);
      }
      // 向会话中添加视频输出流。
      try {

@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @Armstrong15-->
-<!--SE: @zhanghaibo0-->
-<!--TSE: @lxl007-->
+<!--Designer: @zhanghaibo0-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 该组件用来展示菜单MenuItem的分组。
 

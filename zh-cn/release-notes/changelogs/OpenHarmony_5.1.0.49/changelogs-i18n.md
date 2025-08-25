@@ -28,7 +28,7 @@
 
 **变更的接口/组件**
 
-i18n.system.getDisplayLanguage
+i18n.System.getDisplayLanguage
 
 **适配指导**
 

@@ -3,8 +3,9 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Account-->
 <!--Owner: @steven-q-->
-<!--SE: @JiDong-CS1-->
-<!--TSE: @zhaimengchao-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
 
 本模块提供管理系统账号的基础能力，包括系统账号的添加、删除、查询、设置、订阅、启动等功能。
 
@@ -70,6 +71,8 @@ checkMultiOsAccountEnabled(callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -108,6 +111,8 @@ checkMultiOsAccountEnabled(): Promise&lt;boolean&gt;
 | Promise&lt;boolean&gt; | Promise对象。返回true表示支持多系统账号；返回false表示不支持。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)。
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
@@ -151,6 +156,8 @@ checkOsAccountActivated(localId: number, callback: AsyncCallback&lt;boolean&gt;)
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示账号已激活；返回false表示账号未激活。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
@@ -207,6 +214,8 @@ checkOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 201 | Permission denied.|
@@ -254,6 +263,8 @@ isOsAccountConstraintEnabled(constraint: string): Promise&lt;boolean&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -299,6 +310,8 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: A
 | callback   | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示已使能指定的约束；返回false表示未使能指定的约束。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
@@ -357,6 +370,8 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 201 | Permission denied.|
@@ -399,6 +414,8 @@ checkOsAccountTestable(callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -438,6 +455,8 @@ checkOsAccountTestable(): Promise&lt;boolean&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)。
+
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 12300001 | The system service works abnormally. |
@@ -473,6 +492,8 @@ isOsAccountUnlocked(): Promise&lt;boolean&gt;
 | Promise&lt;boolean&gt; | Promise对象。返回true表示当前账号已认证解锁；返回false表示当前账号未认证解锁。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)。
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
@@ -513,6 +534,8 @@ checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示当前账号已认证解锁；返回false表示当前账号未认证解锁。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)。
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
@@ -556,6 +579,8 @@ checkOsAccountVerified(): Promise&lt;boolean&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)。
+
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 12300001 | The system service works abnormally. |
@@ -598,6 +623,8 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示当前账号已认证解锁；返回false表示当前账号未认证解锁。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
@@ -654,6 +681,8 @@ checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 201 | Permission denied.|
@@ -697,6 +726,8 @@ getOsAccountCount(callback: AsyncCallback&lt;number&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 201 | Permission denied.|
@@ -739,6 +770,8 @@ getOsAccountCount(): Promise&lt;number&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 201 | Permission denied.|
@@ -775,6 +808,8 @@ getOsAccountLocalId(callback: AsyncCallback&lt;number&gt;): void
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。如果获取成功，err为null，data为当前进程所属的系统账号ID；否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
@@ -815,6 +850,8 @@ getOsAccountLocalId(): Promise&lt;number&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)。
+
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 12300001 | The system service works abnormally. |
@@ -851,6 +888,8 @@ getOsAccountLocalIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): v
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。如果查询成功，err为null，data为对应的系统账号ID；否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | -------- | --------------- |
@@ -898,6 +937,8 @@ getOsAccountLocalIdForUid(uid: number): Promise&lt;number&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -943,6 +984,8 @@ getOsAccountLocalIdForUidSync(uid: number): number
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -979,6 +1022,8 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo, callback: AsyncCallb
 | callback   | AsyncCallback&lt;number&gt;             | 是   | 回调函数。如果查询成功，err为null，data为域账号关联的系统账号ID；否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
@@ -1030,6 +1075,8 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo): Promise&lt;number&g
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
 | 201 | Permission denied.|
@@ -1076,6 +1123,8 @@ getOsAccountConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;str
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是   | 回调函数，如果获取成功，err为null，data为该系统账号的全部[约束](#系统账号约束列表)；否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
@@ -1132,6 +1181,8 @@ getOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 201 | Permission denied.|
@@ -1172,6 +1223,8 @@ getActivatedOsAccountLocalIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;
 | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数。如果查询成功，err为null，data为当前处于激活状态的系统账号的ID列表；否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
@@ -1215,6 +1268,8 @@ getActivatedOsAccountLocalIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)。
+
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
 | 12300001 | The system service works abnormally. |
@@ -1256,6 +1311,8 @@ getCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 | callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调函数。如果查询成功，err为null，data为当前进程所属的系统账号信息；否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
@@ -1303,6 +1360,8 @@ getCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 201 | Permission denied. |
@@ -1339,6 +1398,8 @@ getOsAccountType(callback: AsyncCallback&lt;OsAccountType&gt;): void
 | callback | AsyncCallback&lt;[OsAccountType](#osaccounttype)&gt; | 是   | 回调函数。如果查询成功，err为null，data为当前进程所属的系统账号的账号类型；否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
@@ -1379,6 +1440,8 @@ getOsAccountType(): Promise&lt;OsAccountType&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)。
+
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 12300001 | The system service works abnormally. |
@@ -1416,6 +1479,8 @@ queryDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。如果获取成功，err为null，data为分布式虚拟设备ID；否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
@@ -1459,6 +1524,8 @@ queryDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 201 | Permission denied.|
@@ -1496,6 +1563,8 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number, callback: AsyncCallback
 | callback     | AsyncCallback&lt;number&gt; | 是   | 回调函数。如果成功，err为null，data为与SN码关联的系统账号的账号ID；否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
@@ -1546,6 +1615,8 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number): Promise&lt;number&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1586,6 +1657,8 @@ getSerialNumberForOsAccountLocalId(localId: number, callback: AsyncCallback&lt;n
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。如果获取成功，err为null，data为与该系统账号关联的SN码；否则为错误对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
@@ -1635,6 +1708,8 @@ getSerialNumberForOsAccountLocalId(localId: number): Promise&lt;number&gt;
 | Promise&lt;number&gt; | Promise对象，返回与该系统账号关联的SN码。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
@@ -2812,6 +2887,8 @@ getOsAccountName(): Promise&lt;string&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)。
+
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
 | 12300001 | The system service works abnormally. |
@@ -2846,6 +2923,8 @@ getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
 | Promise&lt;number&gt; | Promise对象。返回前台系统账号的ID。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)。
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
@@ -2890,6 +2969,8 @@ getOsAccountDomainInfo(localId: number): Promise&lt;DomainAccountInfo&gt;;
 | Promise&lt;[DomainAccountInfo](#domainaccountinfo8)&gt; | Promise对象。返回与指定系统账号关联的域账号信息。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
@@ -2944,6 +3025,8 @@ updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccou
 | Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
@@ -3048,6 +3131,8 @@ static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;Dom
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
@@ -3096,6 +3181,8 @@ static removeServerConfig(configId: string): Promise&lt;void&gt;
 | Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
@@ -3146,6 +3233,8 @@ static updateServerConfig(configId: string, parameters: Record&lt;string, Object
 | Promise&lt;[DomainServerConfig](#domainserverconfig18)&gt; | Promise对象，返回更新后的域服务器配置。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
@@ -3202,6 +3291,8 @@ static getServerConfig(configId: string): Promise&lt;DomainServerConfig&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
@@ -3246,6 +3337,8 @@ static getAllServerConfigs(): Promise&lt;Array&lt;DomainServerConfig&gt;&gt;
 | Promise&lt;Array&lt;[DomainServerConfig](#domainserverconfig18)&gt;&gt; | Promise对象，返回获取的所有域服务器配置。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
@@ -3296,6 +3389,8 @@ static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;
 | Promise&lt;[DomainServerConfig](#domainserverconfig18)&gt; | Promise对象，返回目标账号的域服务器配置。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[账号管理错误码](errorcode-account.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |

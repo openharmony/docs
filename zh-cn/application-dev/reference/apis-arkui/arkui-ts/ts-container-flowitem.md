@@ -3,8 +3,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @fangyuhao-->
-<!--SE: @zcdqs-->
-<!--TSE: @liuzhenshuo-->
+<!--Designer: @zcdqs-->
+<!--Tester: @liuzhenshuo-->
+<!--Adviser: @HelloCrease-->
 
 [瀑布流组件](ts-container-waterflow.md)的子组件，用来展示瀑布流具体item。
 

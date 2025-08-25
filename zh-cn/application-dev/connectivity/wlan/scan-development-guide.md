@@ -3,8 +3,9 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @qq_43802146-->
-<!--SE: @qq_43802146-->
-<!--TSE: @furryfurry123-->
+<!--Designer: @qq_43802146-->
+<!--Tester: @furryfurry123-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 简介
 Wi-Fi扫描是指设备（如手机、电脑、路由器等）搜索周围可用Wi-Fi网络的过程。通过扫描，设备可以获取附近网络的基本信息（如网络名称、信号强度、加密方式等），从而实现连接、管理或分析周围网络。

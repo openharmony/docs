@@ -2,8 +2,9 @@
 <!--Kit: Sensor Service Kit-->
 <!--Subsystem: Sensors-->
 <!--Owner: @dilligencer-->
-<!--SE: @butterls-->
-<!--TSE: @murphy84-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 - ArkTS API
   - [@ohos.sensor(传感器)](js-apis-sensor.md)

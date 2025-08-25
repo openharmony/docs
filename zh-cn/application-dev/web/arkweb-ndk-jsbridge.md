@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @aohui-->
-<!--SE: @yaomingliu-->
-<!--TSE: @ghiker-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 本指导适用于ArkWeb应用侧与前端网页通信场景，开发者可根据应用架构选择使用ArkWeb Native接口完成业务通信机制（以下简称Native JSBridge）。
 针对JSBridge进行性能优化可参考[JSBridge优化解决方案](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-web-develop-optimization#section58781855115017)
@@ -46,7 +47,7 @@
   ```js
   // 自定义webTag，在WebviewController创建时作为入参传入，建立controller与webTag的映射关系
   webTag: string = 'ArkWeb1';
-  controller: web_webview.WebviewController = new web_webview.WebviewController(this.webTag);
+  controller: webview.WebviewController = new webview.WebviewController(this.webTag);
 
   // 在aboutToAppear方法中，通过Node-API接口将webTag传入C++侧，C++侧使用webTag作为ArkWeb组件的唯一标识
   aboutToAppear() {
@@ -76,6 +77,7 @@
       // 将webTag保存在实例对象中
       jsbridge_object_ptr = std::make_shared<JSBridgeObject>(webTagValue);
       // ...
+      }
   ```
 
 ### 使用Native接口获取API结构体

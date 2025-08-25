@@ -1,5 +1,12 @@
 # hdc
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @kunsilva-->
+<!--Designer: @weimingjin-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 hdc（HarmonyOS Device Connector）是提供给开发人员的命令行调试工具，用于与设备进行交互调试、数据传输、日志查看以及应用安装等操作。该工具支持在Windows/Linux/MacOS系统上运行，为开发者提供高效，便捷的设备调试能力。
 
 hdc包含三部分：
@@ -22,7 +29,11 @@ hdc包含三部分：
 
 ## 环境准备
 
-下载并安装[DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/)。hdc程序默认安装在DevEco Studio/sdk/default/openharmony/toolchains路径下。
+hdc可以选择以下任意一种方式获取：
+
+1.通过SDK获取hdc工具。SDK已嵌入[DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/)中，无需额外下载配置。hdc默认安装在DevEco Studio/sdk/default/openharmony/toolchains路径下。
+
+2.通过[Command Line Tools](https://developer.huawei.com/consumer/cn/download/)工具中的sdk目录获取相关工具。hdc程序默认安装在Command Line Tools/sdk/default/openharmony/toolchains路径下。
 
 hdc支持USB和无线两种连接调试方式。在设备的设置>系统>开发者选项中开启或关闭调试开关 ，无需重启设备即可生效。如果设备未启用“开发者选项”，可参考[开发者选项](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-developer-mode#section530763213432)进行启用。具体调试连接方式及操作步骤请参考[USB连接场景](#usb连接场景)和[TCP连接场景](#tcp连接场景)。
 
@@ -108,6 +119,7 @@ hdc -t connect-key shell echo "Hello world"
 | [-s](#远程连接场景) | 可选参数，指定客户端连接服务器时，服务进程的网络监听参数，格式为IP:port。 |
 | [-p](#快速执行命令) | 可选参数，绕过对服务进程的查询步骤，用于快速执行客户端命令。 |
 | [-m](#前台启动服务) | 可选参数，使用前台启动模式启动服务进程。 |
+| [-e](#创建正向端口转发任务) | 可选参数，指定在TCP端口转发时，本地监听的IP地址，默认是127.0.0.1。该参数必须和-m一起使用。<br/>**说明**：从API version 20开始，支持该接口。|
 
 ### 命令列表
 
@@ -131,12 +143,12 @@ hdc -t connect-key shell echo "Hello world"
 | [start](#启动服务) | 启动hdc服务进程。 |
 | [kill](#终止服务) | 终止hdc服务进程。 |
 | [hilog](#打印设备端日志) | 打印设备端的日志信息。 |
-| [jpid](#显示设备开启jdwp调试协议的进程pid) | 显示设备上开启了JDWP调试协议的应用的PID。 |
-| [track-jpid](#显示设备开启jdwp调试协议的进程pid和应用名) | 实时显示设备上开启了JDWP调试协议的应用的PID和应用名。 |
+| [jpid](#显示设备已打开应用的进程pid) | 显示设备上已打开应用的进程pid。 |
+| [track-jpid](#实时显示设备已打开应用的进程pid和应用名) | 实时显示设备上已打开应用的进程pid和应用名。 |
 | [target boot](#重启目标设备) | 重启目标设备。 |
-| <!--DelRow--> target mount | 以读写模式挂载系统分区（非root的设备不可用）。 |
-| <!--DelRow--> smode | 授予设备端hdc后台服务进程root权限， 使用-r参数取消授权（非root的设备不可用）。 |
-| [keygen](#安全相关命令) | 生成一个新的秘钥对。 |
+| <!--DelRow--> [target mount](#以读写模式挂载系统分区) | 以读写模式挂载系统分区（非root的设备不可用）。 |
+| <!--DelRow--> [smode](#授予设备端hdc后台服务进程root权限) | 授予设备端hdc后台服务进程root权限，使用-r参数取消授权（非root的设备不可用）。 |
+| [keygen](#安全相关命令) | 生成一个新的密钥对。 |
 | [version](#查询hdc版本号) | 打印hdc版本信息，也可使用hdc -v打印版本信息。 |
 | [checkserver](#查询客户端和服务器进程版本) | 获取客户进程与服务进程版本信息。 |
 
@@ -546,7 +558,7 @@ hdc shell [-b bundlename] [command]
 
 | 参数 | 说明 |
 | -------- | -------- |
-| -b bundlename | 3.1.0e版本新增参数。指定可调试应用包名，在可调试应用数据目录内，以非交互式模式执行命令。<br/>[命令行方式访问应用沙箱](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-device-file-explorer#section9381241102211)。<br/>此参数当前仅支持以非交互式模式执行命令，不支持缺省command参数执行命令进入交互式shell会话。<br/>未配置此参数时，默认执行路径为系统根目录。 |
+| -b bundlename | 3.1.0e版本新增参数。指定可调试应用包名，在可调试应用数据目录内，以非交互式模式执行命令。<br/>[命令行方式访问应用沙箱](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-device-file-explorer#section48216711204)。<br/>此参数当前仅支持以非交互式模式执行命令，不支持缺省command参数执行命令进入交互式shell会话。<br/>未配置此参数时，默认执行路径为系统根目录。 |
 | command | 需要在设备上执行的单次命令，不同类型或版本的系统支持的command命令有所差异，可以通过hdc shell ls /system/bin查阅支持的命令列表。当前大多数命令都是由[toybox](../tools/toybox.md)提供，可通过 hdc shell toybox --help 获取命令帮助。<br/>缺省该参数，hdc将会启动一个交互式的shell会话，开发者可以在命令提示符下输入命令，比如 ls、cd、pwd 等。 |
 
 > **说明：**
@@ -702,7 +714,7 @@ hdc file send [-a|-sync|-z|-m|-b bundlename] SOURCE DEST
 | -sync | 只传输文件mtime有更新的文件。<br/>mtime（modified timestamp）：修改后的时间戳。 |
 | -z | 通过LZ4格式压缩传输，此功能未开放，请勿使用。 |
 | -m | 文件传输时同步文件DAC权限，uid，gid，MAC权限。<br/>DAC（Discretionary Access Control）：自主访问控制，<br/>uid（User identifier）：用户标识符（或用户ID），<br/>gid（Group identifier）：组标识符（或组ID），<br/>MAC（Mandatory Access Control）：强制访问控制（或非自主访问控制）。 |
-| -b | 3.1.0e版本新增参数（低版本使用会提示[Fail]Unknown file option: -b），用于指定可调试应用包名。<br/>使用方法可参考[通过命令往应用沙箱目录中发送文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-device-file-explorer#section9381241102211)。 |
+| -b | 3.1.0e版本新增参数（低版本使用会提示[Fail]Unknown file option: -b），用于指定可调试应用包名。<br/>使用方法可参考[通过命令往应用沙箱目录中发送文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-device-file-explorer#section48216711204)。 |
 | bundlename | 指定可调试应用包名。 |
 
 **返回信息**：
@@ -808,6 +820,7 @@ hdc fport [IP:port] [IP:port]
 | [Fail]Incorrect forward command. | 端口转发任务设置失败，端口转发参数错误。 |
 | [Fail]TCP Port listen failed at XXXX. | 端口转发任务设置失败，本地转发端口被占用。 |
 | [Fail]Forward parament failed. | 端口转发任务格式有误，或转发端口协议或端口范围有误。 |
+| [Fail]Not support forward-type. | 当前平台不支持参数中使用的转发端口协议。 |
 
 **使用方法**：
 
@@ -815,6 +828,10 @@ hdc fport [IP:port] [IP:port]
 $ hdc fport tcp:1234 tcp:1080
 Forwardport result:OK
 ```
+> **说明：**
+>
+> 在创建正向端口转发任务时，如果本地端口为TCP协议，指定端口为port，且启动服务进程时使用了-e参数， 则本地主机会监听-e参数指定的IP地址的port端口；如果启动服务进程时未使用-e参数，则本地主机会监听127.0.0.1:port。
+
 
 ### 创建反向端口转发任务
 
@@ -876,6 +893,7 @@ Remove forward ruler success, ruler:tcp:1234 tcp:1080
 | kill [-r] | 终止hdc服务进程，使用-r参数触发服务进程重新启动。 |
 | -p | 绕过对服务进程的查询步骤，用于快速执行客户端命令。 |
 | -m | 使用前台启动模式启动服务进程。<br/>前台启动模式（添加-m参数）：实时打印服务日志到客户端窗口。<br/>后台启动模式（不添加-m参数）：客户端不打印服务日志，日志内容写入本地磁盘文件，具体文件存放路径可参考[服务器进程日志](#服务器进程日志)。 |
+| -e |  指定在TCP端口转发时，本地监听的IP地址，默认是127.0.0.1。该参数必须和-m一起使用。|
 
 ### 启动服务
 
@@ -981,24 +999,27 @@ hdc -m
 ```shell
 $ hdc -s 127.0.0.1:8710 -m # 指定当前服务进程的网络监听参数并启动服务进程
 [I][1970-01-01 00:00:00.000] Program running. Ver: 3.1.0e Pid:8236
+$ hdc -e 0.0.0.0 -m # 指定端口转发本地监听IP地址为0.0.0.0并启动服务进程
+[I][1970-01-01 00:00:00.000] Program running. Ver: 3.1.0e Pid:8236
 ...
 ```
 
 > **说明：**
 >
-> 1. 在前台启动模式下，可通过附加 -s 参数来指定服务进程的网络监听参数。如果既没有使用 -s 指定网络监听参数，也没有配置环境变量OHOS_HDC_SERVER_PORT配置监听端口，系统将采用默认网络监听参数：127.0.0.1:8710。
+> 1. 在前台启动模式下，可通过附加 -s 参数来指定服务进程的网络监听参数。如果既没有使用 -s 指定网络监听参数，也没有配置环境变量OHOS_HDC_SERVER_PORT配置监听端口，系统将采用默认网络监听参数：127.0.0.1:8710。也可以通过-e参数来指定端口转发时本地主机监听的IP地址，如果没有使用-e参数，则默认监听127.0.0.1。
 >
 > 2. 在服务进程前台启动模式下，系统默认的日志输出等级为 LOG_DEBUG。如果需要变更日志等级，可通过使用 -l 参数来进行相应的设置。
 >
 > 3. 在运行环境中，仅允许存在一个服务进程实例。如果运行环境中已存在一个活跃的后台服务进程，尝试在前台启动新的服务进程实例将无法成功。
+
 
 ## 设备操作
 
 | 命令 | 说明 |
 | -------- | -------- |
 | hilog [-h] | 打印设备端的日志信息，可通过hdc hilog -h查阅支持的参数列表。 |
-| jpid | 显示设备上所有开启了JDWP调试协议的应用的PID。<br/>JDWP：定义调试器和被调试设备之间的通信协议。 |
-| track-jpid [-a\|-p] | 实时显示设备上开启了JDWP调试协议的应用PID和应用名。不加参数只显示debug的应用的进程，使用-a或-p参数显示debug和release应用的进程，使用-p参数不显示debug和release的标签。 |
+| jpid | 显示设备上已打开应用的进程pid。 |
+| track-jpid [-a\|-p] | 实时显示设备上已打开应用的进程pid和应用名，其中只有debug标签的应用可以被调试。不加参数时只显示debug应用的进程pid，使用-a或-p参数显示debug和release应用的进程标签，使用-p参数不显示debug和release的进程标签。 |
 | target boot [-bootloader\|-recovery] | 重启目标设备，使用-bootloader参数重启后进入fastboot模式，使用-recovery参数重启后进入recovery模式。 |
 | target boot [MODE] | 重启目标设备，加参数重启后进入相应的模式，其中MODE为/bin/begetctl命令中reboot支持的参数，可通过hdc shell "/bin/begetctl -h \| grep reboot"查看。 |
 | <!--DelRow--> target mount | 以读写模式挂载系统分区（设备root后支持此命令）。 |
@@ -1035,7 +1056,7 @@ Usage:
 ...
 ```
 
-### 显示设备开启JDWP调试协议的进程PID
+### 显示设备已打开应用的进程pid
 
 命令格式如下：
 
@@ -1047,8 +1068,8 @@ hdc jpid
 
 | 返回信息 | 说明 |
 | -------- | -------- |
-| 进程号列表 | 开启了JDWP调试协议的应用的PID。 |
-| [Empty] | 无开启了JDWP调试协议的进程。 |
+| 进程号列表 | 设备上已打开应用的pid。 |
+| [Empty] | 设备上无打开的进程。 |
 
 **使用方法**：
 
@@ -1059,9 +1080,9 @@ $ hdc jpid
 ...
 ```
 
-### 显示设备开启JDWP调试协议的进程PID和应用名
+### 实时显示设备已打开应用的进程pid和应用名
 
-实时显示设备上开启JDWP调试协议的进程PID和应用名称，命令格式如下：
+实时显示设备上已打开应用的进程pid和应用名称，命令格式如下：
 
 ```shell
 hdc track-jpid [-a|-p]
@@ -1071,15 +1092,15 @@ hdc track-jpid [-a|-p]
 
 | 参数 | 说明 |
 | -------- | -------- |
-| 不加参数 | 只显示debug的应用的进程号和包名/进程名。 |
-| -a | 显示debug和release应用的进程号和包名/进程名。 |
+| 不加参数 | 只显示已打开的应用的进程号。 |
+| -a | 显示debug和release应用的进程号和包名/进程名，同时显示debug和release的标签。 |
 | -p | 显示debug和release应用的进程号和包名/进程名，但不显示debug和release的标签。 |
 
 **返回信息**：
 
 | 返回信息 | 说明 |
 | -------- | -------- |
-| 进程号和包名/进程名列表。 | 不加参数时显示开启了JDWP调试协议的debug应用的进程，使用-a或-p参数时表示开启了JDWP调试协议的debug和release进程。 |
+| 进程号和包名/进程名列表。 | 不加参数时显示已打开的应用的进程，使用-a或-p参数时显示已打开的debug和release进程。 |
 | [Empty] | 无开启JDWP调试协议的应用进程。 |
 
 **使用方法**：
@@ -1174,7 +1195,7 @@ hdc target boot shutdown     # 关机
 
 | 命令 | 说明 |
 | -------- | -------- |
-| keygen FILE | 生成一个新的秘钥对，并将私钥和公钥分别保存到FILE和FILE.pub，其中FILE为自定义的文件名。 |
+| keygen FILE | 生成一个新的密钥对，并将私钥和公钥分别保存到FILE和FILE.pub，其中FILE为自定义的文件名。 |
 
 命令格式如下：
 
@@ -1557,13 +1578,14 @@ MacOS环境：
    如存在抢占的软件，请关闭该软件进程或更换OHOS_HDC_SERVER_PORT环境变量为其他端口号。
 
 3. 排查未关闭的其他版本服务器进程。
+
    Windows：
 
    使用任务管理器>详细信息查询hdc.exe进程，右键打开文件所在位置，核对位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc.exe进程（执行hdc kill命令或者在任务管理器直接结束进程）并重新执行hdc命令。（关闭服务器进程后执行hdc命令会重启服务器）。
 
    Unix：
 
-   使用ps -ef |grep hdc查询hdc后台服务器进程，核对进程启动位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc进程（hdc kill或者kill -9 hdc进程的PID）并重新执行hdc命令。（关闭服务器进程后执行hdc命令会重启服务器）。
+   使用ps -ef |grep hdc查询hdc后台服务器进程，核对进程启动位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc进程（hdc kill或者kill -9 hdc进程的pid）并重新执行hdc命令。（关闭服务器进程后执行hdc命令会重启服务器）。
 
 **注册表异常**
 
@@ -1736,9 +1758,10 @@ hdc命令执行后未输出预期内容，可能涉及以下场景。
    如存在抢占的软件，可以终止该软件进程，或者修改OHOS_HDC_SERVER_PORT环境变量为其他端口号。
 
 3. 排查未关闭的其他版本服务器进程。
+
    Windows：使用任务管理器>详细信息查询hdc.exe进程，右键打开文件所在位置，核对位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc.exe进程（命令行工具中执行hdc kill或者任务管理器直接结束进程）并重新执行hdc命令。（关闭服务器进程后执行hdc命令会重新启动服务器）。
 
-   Unix：使用ps -ef | grep hdc查询hdc后台服务器进程，核对进程启动位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc进程（hdc kill或者kill -9 hdc进程的PID）并重新执行hdc命令。（关闭服务器进程后执行hdc命令会重新启动服务器）。
+   Unix：使用ps -ef | grep hdc查询hdc后台服务器进程，核对进程启动位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc进程（hdc kill或者kill -9 hdc进程的pid）并重新执行hdc命令。（关闭服务器进程后执行hdc命令会重新启动服务器）。
 
 ### 其他问题排查常用步骤
 
@@ -2302,3 +2325,21 @@ Operation not allowed.
 **处理步骤**
 
 无需进行处理。
+
+### E001106 -e指定的IP不正确
+
+**错误信息**
+
+-e content IP incorrect
+
+**错误描述**
+
+-e指定的IP不正确。
+
+**可能原因**
+
+不是合法的IP地址格式。
+
+**处理步骤**
+
+检查输入是否为合法的IP格式，并确认该IP地址属于本机。

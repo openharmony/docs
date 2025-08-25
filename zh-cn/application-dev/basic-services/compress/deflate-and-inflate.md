@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @jinsenjun-->
-<!--SE: @jinsenjun-->
-<!--TSE: @lixueqing-->
+<!--Designer: @jinsenjun-->
+<!--Tester: @lixueqing-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本文针对常见的几种压缩、解压场景，介绍相关函数的使用方法。
 
@@ -375,7 +376,7 @@
            let inFile = fs.openSync(path + '/data.gz', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
            let outFile = fs.openSync(path + '/data.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
            inflateGzipFile(inFile, outFile).then(() => {
-             console.info('deflateGzipFile success');
+             console.info('inflateGzipFile success');
              fs.closeSync(inFile.fd);
              fs.closeSync(outFile.fd);
            })

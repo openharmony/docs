@@ -3,8 +3,9 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @amunra03-->
-<!--SE: @wenxiaolin-->
-<!--TSE: @zs_111-->
+<!--Designer: @wenxiaolin-->
+<!--Tester: @zs_111-->
+<!--Adviser: @zhang_yixin13-->
 
 本模块主要提供NFC卡模拟业务，包括判断支持哪种卡模拟类型，HCE卡模拟的业务实现等。<br>
 HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安全单元芯片，应用程序模拟NFC卡片，可以通过NFC服务和NFC读卡器通信。
@@ -47,7 +48,7 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
       {
         "name": "ohos.permission.NFC_CARD_EMULATION",
         // 必须要添加reason: card_mulation_reason
-        "reason": "$string:card_emulation_reason",
+        "reason": "$string:card_emulation_reason"
       }
     ]
   }
@@ -61,7 +62,7 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
     "abilities": [
       {
         // 其他已声明的属性
-        "metadata": {
+        "metaData": {
           "customizeData": [
             {
               "name": "paymentAid",
@@ -114,7 +115,7 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
 ```
 > **注意：**
 >1. 声明"actions"字段的内容填写，必须包含"ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"，不能更改。
->2. 声明aid时，name必须为payment-aid，或者other-aid。填写错误会造成解析失败。
+>2. 声明aid（参考ISO/IEC 7816-4规范）时，name必须为payment-aid或者other-aid。填写错误会造成解析失败。
 >3. 声明权限时"requestPermissions"中的"name"字段的内容填写，必须是"ohos.permission.NFC_CARD_EMULATION"，不能更改。
 >4. 轻量级智能穿戴产品不同于其他设备，仅支持FA模型，属性配置和接口调用方式与其它设备有所区别，详见示例。
 
@@ -502,7 +503,7 @@ let appName = "com.example.testquestionlite";
 export default {
   data:{
     fontSize: '30px',
-    fontClolor: '#50609f',
+    fontColor: '#50609f',
     hide: 'show',
     headCon: appName,
     paymentAid: ["A0000000041010", "A0000000041012"]
@@ -585,10 +586,6 @@ export default class EntryAbility extends UIAbility {
       abilityName: want.abilityName ?? '',
       moduleName: want.moduleName
     }
-    const apduCallback: AsyncCallback<number[]> = (err, data) => {
-      // 处理数据和异常
-      console.log("got apdu data");
-    };
     hceService.on('hceCmd', apduCallback);
   }
   onDestroy() {

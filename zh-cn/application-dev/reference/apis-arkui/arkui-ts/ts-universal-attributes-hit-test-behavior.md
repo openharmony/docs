@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiangtao92-->
-<!--SE: @piggyguy-->
-<!--TSE: @songyanhong-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 设置组件的触摸测试类型。在ArkUI开发框架中，处理触屏事件时，会在触屏事件触发前进行按压点与组件区域的触摸测试，以收集需响应触屏事件的组件。基于测试结果，框架会分发相应的触屏事件。hitTestBehavior属性用于设置不同的触摸测试响应模式，影响触摸测试收集结果及后续触屏事件分发。具体影响参考[HitTestMode](./ts-appendix-enums.md#hittestmode9)枚举说明。
 

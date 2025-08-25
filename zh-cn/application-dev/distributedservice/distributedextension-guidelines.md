@@ -2,8 +2,9 @@
 <!--Kit: Distributed Service Kit-->
 <!--Subsystem: DistributedSched-->
 <!--Owner: @hobbycao-->
-<!--SE: @gsxiaowen-->
-<!--TSE: @hanjiawei-->
+<!--Designer: @gsxiaowen-->
+<!--Tester: @hanjiawei-->
+<!--Adviser: @w_Machine_cc-->
 
 ## 简介
 

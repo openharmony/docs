@@ -40,11 +40,14 @@ Provides the C APIs of the network connection module for network management.
 | [NetConn_NetCap](#netconn_netcap) | NetConn_NetCap | Network capability set.|
 | [NetConn_NetBearerType](#netconn_netbearertype) | NetConn_NetBearerType | Network carrier type.|
 | [NetConn_ErrorCode](#netconn_errorcode) | NetConn_ErrorCode | Network connection error code.|
+| [NetConn_PacketsType](#netconn_packetstype) | NetConn_PacketsType | Trace route packet type.|
+
 
 ### Macros
 
 | Name| Description| 
 | -------- | -------- |
+| **NETCONN_MAX_RTT_NUM** | 4 | 
 | **NETCONN_MAX_NET_SIZE** | 32 | 
 | **NETCONN_MAX_BEARER_TYPE_SIZE** | 32 | 
 | **NETCONN_MAX_CAP_SIZE** | 32 | 
@@ -127,8 +130,25 @@ Enumerates network connection error codes.
 | NETCONN_SUCCESS = 0 | Success.|
 | NETCONN_PERMISSION_DENIED = 201 | Missing permissions.|
 | NETCONN_PARAMETER_ERROR = 401 | Invalid parameter.|
-| NETCONN_OPERATION_FAILED = 2100002 | Service conection failure.|
+| NETCONN_OPERATION_FAILED = 2100002 | Service connection failure.|
 | NETCONN_INTERNAL_ERROR = 2100003 | Internal error.1. Memory-related error, for example, insufficient memory, memory data copy failure, or memory request failure.2. Null pointer, for example, access to a released memory pointer.|
+
+### NetConn_PacketsType
+
+```
+enum NetConn_PacketsType
+```
+
+**Description**
+
+Enumerates trace route packet types.
+
+**Since**: 20
+
+| Enum Item| Description|
+| -- | -- |
+| NETCONN_PACKETS_ICMP = 0 | Internet Control Message Protocol.|
+| NETCONN_PACKETS_UDP = 1 | User Datagram Protocol.|
 
 
 ## Function Description

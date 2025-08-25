@@ -2,8 +2,9 @@
 <!--Kit: Multimodal Awareness Kit-->
 <!--Subsystem: MultimodalAwareness-->
 <!--Owner: @dilligencer-->
-<!--SE: @zou_ye-->
-<!--TSE: @judan-->
+<!--Designer: @zou_ye-->
+<!--Tester: @judan-->
+<!--Adviser: @hu-zhiqiong-->
 
 
 ## 场景介绍
@@ -79,7 +80,7 @@
    let reportLatencyNs = 1000000000;
    try {
       stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
-         console.log('data='+ JSON.stringify(data));
+         console.info('data='+ JSON.stringify(data));
       })
    } catch (error) {
       let message = (error as BusinessError).message;
@@ -94,7 +95,7 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    try {
       stationary.once('still', (data) => {
-         console.log('data='+ JSON.stringify(data));
+         console.info('data='+ JSON.stringify(data));
       })
    } catch (error) {
       let message = (error as BusinessError).message;
@@ -109,7 +110,7 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    try {
       stationary.off('still', stationary.ActivityEvent.ENTER, (data) => {
-         console.log('data='+ JSON.stringify(data));
+         console.info('data='+ JSON.stringify(data));
       })
    } catch (error) {
       let message = (error as BusinessError).message;

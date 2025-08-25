@@ -2,8 +2,9 @@
 <!--Kit: Multimodal Awareness Kit-->
 <!--Subsystem: MultimodalAwareness-->
 <!--Owner: @dilligencer-->
-<!--SE: @zou_ye-->
-<!--TSE: @judan-->
+<!--Designer: @zou_ye-->
+<!--Tester: @judan-->
+<!--Adviser: @hu-zhiqiong-->
 
 UserStatus（用户状态感知）模块提供用户感知能力，可以感知到操作者特定状态，例如：检测用户年龄组。
 
@@ -38,7 +39,7 @@ UserStatus（用户状态感知）模块提供用户感知能力，可以感知�
 
    ```
    let callback : Callback<userStatus.UserClassification> = (data : userStatus.UserClassification) => {
-     console.info('callback success, ageGroup:' + data.ageGroup + ", confidence:" + data.confidence);
+     console.info('callback succeeded, ageGroup:' + data.ageGroup + ", confidence:" + data.confidence);
    };
    ```
 

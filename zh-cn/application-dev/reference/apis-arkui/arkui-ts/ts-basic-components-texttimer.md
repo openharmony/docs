@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyujie43-->
-<!--SE: @weixin_52725220-->
-<!--TSE: @xiong0104-->
+<!--Designer: @weixin_52725220-->
+<!--Tester: @xiong0104-->
+<!--Adviser: @HelloCrease-->
 
 通过文本显示计时信息并控制其计时器状态的组件。
 

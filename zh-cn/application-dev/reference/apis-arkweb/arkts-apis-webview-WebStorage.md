@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @yuzhouhang1-->
-<!--SE: @handyohos-->
-<!--TSE: @ghiker-->
+<!--Designer: @handyohos-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 通过WebStorage可管理Web SQL数据库接口和HTML5 Web存储接口，每个应用中的所有Web组件共享一个WebStorage。
 

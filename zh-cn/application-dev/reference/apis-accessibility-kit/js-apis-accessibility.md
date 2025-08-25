@@ -3,8 +3,9 @@
 <!--Kit: Accessibility Kit-->
 <!--Subsystem: BarrierFree-->
 <!--Owner: @qiiiiiiian-->
-<!--SE: @z7o-->
-<!--TSE: @A_qqq-->
+<!--Designer: @z7o-->
+<!--Tester: @A_qqq-->
+<!--Adviser: @w_Machine_cc-->
 
 本模块提供辅助应用查询能力，包括获取辅助应用列表、获取辅助应用启用状态、获取无障碍字幕配置等。
 
@@ -434,7 +435,7 @@ struct Index {
 
 ### constructor
 
-constructor(jsonObject)
+constructor(jsonObject: Object)
 
 构造函数。
 

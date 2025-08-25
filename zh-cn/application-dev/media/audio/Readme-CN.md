@@ -2,8 +2,9 @@
 <!--Kit: Audio Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @songshenke-->
-<!--SE: @caixuejiang; @hao-liangfei; @zhanganxiang-->
-<!--TSE: @Filger-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 - [Audio Kit简介](audio-kit-intro.md)
 - [使用合适的音频类型](using-right-streamusage-and-sourcetype.md)

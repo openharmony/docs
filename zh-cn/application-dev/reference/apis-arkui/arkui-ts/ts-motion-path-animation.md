@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
-<!--SE: @yangfan229-->
-<!--TSE: @lxl007-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 设置组件进行位移动画时的运动路径。
 

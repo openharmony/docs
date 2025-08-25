@@ -22,9 +22,9 @@
         - [TaskPool](taskpool-introduction.md)
         - [Worker](worker-introduction.md)
         - [Comparison Between TaskPool and Worker](taskpool-vs-worker.md)
-    - Inter-Thread Communication<!--interthead-communication-->
+    - Inter-Thread Communication<!--interthread-communication-->
         - [Overview of ArkTS Inter-Thread Communication](interthread-communication-overview.md)
-        - Inter-Thread Communication Objects<!--interthead-communication-object-->
+        - Inter-Thread Communication Objects<!--interthread-communication-object-->
             - [Overview of Inter-Thread Communication Objects](serializable-overview.md)
             - [Regular Object](normal-object.md)
             - [ArrayBuffer Object](arraybuffer-object.md)
@@ -40,7 +40,7 @@
                 - [Shared Module](arkts-sendable-module.md)
                 - [Freezing Sendable Objects](sendable-freeze.md)
                 - [Use Scenarios of Sendable](sendable-guide.md)
-        - Communication Between Threads<!--interthead-communication-guide-->
+        - Communication Between Threads<!--interthread-communication-guide-->
             - [Using TaskPool for Independent Time-Consuming Tasks](independent-time-consuming-task.md)
             - [Using TaskPool for Multiple Time-Consuming Tasks](multi-time-consuming-tasks.md)
             - [Communication Between the TaskPool Task and Host Thread](taskpool-communicates-with-mainthread.md)

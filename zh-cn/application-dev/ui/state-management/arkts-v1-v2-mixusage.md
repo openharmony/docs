@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liwenzhen3-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 概述
 
@@ -56,7 +57,7 @@ static makeV1Observed\<T extends object\>(source: T): T
 - makeV1Observed不会递归执行，仅会将第一层包装成V1的状态变量。
 
 **限制条件**
-- 不支持[collections类型](../../reference/apis-arkts/js-apis-arkts-collections.md)和[\@Sendable](../../arkts-utils/arkts-sendable.md)装饰的class。
+- 不支持[collections类型](../../reference/apis-arkts/arkts-apis-arkts-collections.md)和[\@Sendable](../../arkts-utils/arkts-sendable.md)装饰的class。
 - 不支持非object类型。
 - 不支持undefined、null。
 - 不支持\@ObservedV2、[makeObserved](../../reference/apis-arkui/js-apis-StateManagement.md#makeobserved)的返回值和V2装饰器装饰的built-in类型的变量（Array、Map、Set和Date）。

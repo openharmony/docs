@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @wang_zhaoyong-->
-<!--SE: @weng-changcheng-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 并发指在同一时间内，多个任务同时执行。在多核设备上，任务可以在不同CPU上并行执行。对于单核设备，尽管多个任务不会同时并行，但CPU会在某个任务休眠或进行I/O操作时切换任务，调度其他任务，提高CPU的资源利用率。
 

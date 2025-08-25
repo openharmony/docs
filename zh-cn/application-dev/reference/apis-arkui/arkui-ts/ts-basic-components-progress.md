@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyujie43-->
-<!--SE: @weixin_52725220-->
-<!--TSE: @xiong0104-->
+<!--Designer: @weixin_52725220-->
+<!--Tester: @xiong0104-->
+<!--Adviser: @HelloCrease-->
 
 进度条组件，用于显示内容加载或操作处理等进度。
 

@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @yewei0794-->
-<!--SE: @jsjzju-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 ServiceExtensionAbility模块提供后台服务相关扩展能力，提供后台服务创建、销毁、连接、断开等生命周期回调。
 

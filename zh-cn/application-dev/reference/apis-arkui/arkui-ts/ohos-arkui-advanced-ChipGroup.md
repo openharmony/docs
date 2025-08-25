@@ -1,9 +1,10 @@
 # ChipGroup
-<!--Kit: ArkUI--> 
-<!--Subsystem: ArkUI--> 
-<!--Owner: @xieziang--> 
-<!--SE: @youzhi92--> 
-<!--TSE: @TerryTsao-->
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xieziang-->
+<!--Designer: @youzhi92-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @HelloCrease-->
 
 ChipGroup组件提供操作块群组，用于文件或资源内容的分类等场景。
 
@@ -11,7 +12,6 @@ ChipGroup组件提供操作块群组，用于文件或资源内容的分类等�
 >
 > 该组件从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 不支持Wearable设备。
 
 ## 导入模块
 
@@ -44,20 +44,22 @@ ChipGroup({
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称            | 类型                                            | 必填 | 装饰器类型 | 说明                                                                                     |
 | --------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------                             | ------------------------------------------------------------                             |
-| items           | [ChipGroupItemOptions[]](#chipgroupitemoptions) | 是   | @Require &nbsp;@Prop | 每个chip的特定属性，参考[ChipGroupItemOptions[]](#chipgroupitemoptions)类型。<br/>若为undefined时，ChipGroup默认为空。             |
-| itemStyle       | [ChipItemStyle](#chipitemstyle)                 | 否   | @Prop | `chip`的`style`属性，如颜色，大小等，参考[ChipItemStyle](#chipitemstyle)类型。<br/>如果未定义，`ChipGroup`中的`Chip`样式为默认值。 |
-| selectedIndexes | Array&lt;number&gt;                             | 否   | @Prop | 被选中chip的索引。<br/>当为undefined时，默认选中第一个Chip。                                         |
+| items           | [ChipGroupItemOptions[]](#chipgroupitemoptions) | 是   | @Require &nbsp;@Prop | 每个Chip的特定属性，参考[ChipGroupItemOptions[]](#chipgroupitemoptions)类型。<br/>若为undefined时，ChipGroup默认为空。            |
+| itemStyle       | [ChipItemStyle](#chipitemstyle)                 | 否   | @Prop | `Chip`的`style`属性，如颜色，大小等，参考[ChipItemStyle](#chipitemstyle)类型。<br/>如果未定义，`ChipGroup`中的`Chip`样式为默认值。 |
+| selectedIndexes | Array&lt;number&gt;                             | 否   | @Prop | 被选中Chip的索引。<br/>当为undefined时，默认选中第一个Chip。                                      |
 | multiple        | boolean                                         | 否   | @Prop | `true`：支持多个芯片选中；`false`：仅支持单个芯片选中。<br/>默认值：`false`<br/>当未定义时，使用默认值。 |
-| chipGroupSpace  | [ChipGroupSpaceOptions](#chipgroupspaceoptions) | 否   | @Prop | 左右内边距及chip之间间距。参考[ChipGroupSpaceOptions](#chipgroupspaceoptions)类型。<br/>默认值为undefined。 |
-| chipGroupPadding  | [ChipGroupPaddingOptions](#chipgrouppaddingoptions) | 否   | @Prop | 设置chipGroup的上下内边距，以控制整体高度。类型为[ChipGroupPaddingOptions](#chipgrouppaddingoptions)。<br/>当值为undefined时，使用默认值。 |
-| onChange        | Callback\<Array\<number>>  | 否   | -  | chip状态改变时的回调方法。<br/>若为undefined，表示解绑事件。                                                               |
+| chipGroupSpace  | [ChipGroupSpaceOptions](#chipgroupspaceoptions) | 否   | @Prop | 左右内边距及Chip之间间距。参考[ChipGroupSpaceOptions](#chipgroupspaceoptions)类型。<br/>默认值为undefined。 |
+| chipGroupPadding  | [ChipGroupPaddingOptions](#chipgrouppaddingoptions) | 否   | @Prop | 设置ChipGroup的上下内边距，以控制整体高度。类型为[ChipGroupPaddingOptions](#chipgrouppaddingoptions)。<br/>当值为undefined时，使用默认值。 |
+| onChange        | Callback\<Array\<number>>  | 否   | -  | Chip状态改变时的回调方法。<br/>若为undefined，表示解绑事件。                                                              |
 | suffix          | Callback\<void\>                                        | 否   | @BuilderParam | 最右侧的builder由开发者自定义，需引入[IconGroupSuffix](#icongroupsuffix)接口。<br/>默认不传入时，没有suffix。 |
 
 > **说明：**
 >
-> 1. 针对`selectedIndexes`和`multiple`接口，当`multiple`等于`false`时，如果没有传入`selectedIndexes`，默认是第一个chip被选中，如果传入的`selectedIndexes`有一个以上的元素时，默认第一个索引的chip被选中。
+> 1. 针对`selectedIndexes`和`multiple`接口，当`multiple`等于`false`时，如果没有传入`selectedIndexes`，默认是第一个Chip被选中，如果传入的`selectedIndexes`有一个以上的元素时，默认第一个索引的Chip被选中。
 >
 > 2. 使用suffix接口时，需引入IconGroupSuffix接口，若不传入，suffix将为空。
 >
@@ -65,9 +67,11 @@ ChipGroup({
 
 ## ChipGroupItemOptions
 
-ChipGroupItemOptions定义每个chip的非通用属性。
+ChipGroupItemOptions定义每个Chip的非通用属性。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称         | 类型                           | 必填 | 说明                              |
 | ----------   | ----------------------------- | ---- | ----------------------------------- |
@@ -90,19 +94,21 @@ ChipGroupItemOptions定义每个chip的非通用属性。
 
 ## ChipItemStyle
 
-ChipItemStyle定义了chip的共通属性。
+ChipItemStyle定义了Chip的共通属性。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称                    | 类型                                                         | 必填 | 说明                                                         |
 | ----------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| size                    | [ChipSize](ohos-arkui-advanced-Chip.md#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | 否   | chip尺寸，使用时需要从chip组件引入ChipSize类型。<br/>默认值：ChipSize.NORMAL<br/> 为undefined时，使用默认值。 |
-| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | chip背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal')<br/>为undefined时，backgroundColor走默认值。 |
-| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | chip文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary')<br/>为undefined时，fontColor走默认值。 |
-| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | chip激活时的文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_contrary')<br/>为undefined时，selectedFontColor走默认值。 |
-| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | chip激活时的背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_emphasize')<br/>为undefined时，selectedBackgroundColor走默认值。 |
+| size                    | [ChipSize](ohos-arkui-advanced-Chip.md#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | 否   | Chip尺寸，使用时需要从Chip组件引入ChipSize类型。<br/>默认值：ChipSize.NORMAL<br/> 为undefined时，使用默认值。 |
+| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | Chip背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal')<br/>为undefined时，backgroundColor走默认值。 |
+| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | Chip文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary')<br/>为undefined时，fontColor走默认值。 |
+| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | Chip激活时的文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_contrary')<br/>为undefined时，selectedFontColor走默认值。 |
+| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | Chip激活时的背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_emphasize')<br/>为undefined时，selectedBackgroundColor走默认值。 |
 
 > **说明：**
 >
@@ -112,7 +118,7 @@ ChipItemStyle定义了chip的共通属性。
 
 ## ChipGroupSpaceOptions
 
-ChipGroupSpaceOptions 定义了chipGroup左右内边距，以及chip与chip之间的间距。
+ChipGroupSpaceOptions 定义了ChipGroup左右内边距，以及Chip与Chip之间的间距。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -120,22 +126,24 @@ ChipGroupSpaceOptions 定义了chipGroup左右内边距，以及chip与chip之�
 
 | 名称       | 类型            | 必填 | 说明                                             |
 | ---------- | -------------- | ---- | ------------------------------------------------ |
-| itemSpace | string \| number  | 否   | chip与chip之间的间距（不支持百分比）。<br/>取值范围：<br/>number类型: ≥ 0 的数值（如：0、8、16、24.5）。<br/>string类型: 单位为fp\|vp\|px\|lpx且数值部份 ≥ 0 的字符串（如："8vp"、"16fp"、"12px"、"10lpx"）。<br/>不支持: 负数、百分比单位、无效字符串格式。 <br/>默认值：8<br/>单位：vp<br/>为undefined时，itemSpace采取默认值。 |
+| itemSpace | string \| number  | 否   | Chip与Chip之间的间距（不支持百分比）。<br/>取值范围：<br/>number类型: ≥ 0 的数值（如：0、8、16、24.5）。<br/>string类型: 单位为fp\|vp\|px\|lpx且数值部份 ≥ 0 的字符串（如："8vp"、"16fp"、"12px"、"10lpx"）。<br/>不支持: 负数、百分比单位、无效字符串格式。 <br/>默认值：8<br/>单位：vp<br/>为undefined时，itemSpace采取默认值。 |
 | startSpace | [Length](ts-types.md#length)         | 否   | 左侧内边距（不支持百分比）。<br/>默认值：16<br/>单位：vp<br/>为undefined时，startSpace取默认值。           |
 | endSpace   | [Length](ts-types.md#length)         | 否   | 右侧内边距（不支持百分比）。<br/>默认值：16<br/>单位：vp<br/>如果为undefined，则使用默认值。 |
 
 ## ChipGroupPaddingOptions
 
-ChipGroupPaddingOptions定义了chipGroup的上下内边距，用于控制其整体高度。
+ChipGroupPaddingOptions定义了ChipGroup的上下内边距，用于控制其整体高度。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称   | 类型            | 必填 | 说明                                                      |
 | ------ | -------------- | ---- | ------------------------------------------------            |
-| top    | [Length](ts-types.md#length)         | 是   | chipGroup的上方内边距（不支持百分比）。<br/>默认值：14<br/>为undefined时，top取默认值。      |
-| bottom | [Length](ts-types.md#length)         | 是   | chipGroup的下方内边距（不支持百分比）。<br/>默认值：14<br/>为undefined时，bottom取默认值。       |
+| top    | [Length](ts-types.md#length)         | 是   | ChipGroup的上方内边距（不支持百分比）。<br/>默认值：14<br/>为undefined时，top取默认值。     |
+| bottom | [Length](ts-types.md#length)         | 是   | ChipGroup的下方内边距（不支持百分比）。<br/>默认值：14<br/>为undefined时，bottom取默认值。     |
 
 ## SuffixImageIconOptions<sup>14+</sup>
 
@@ -146,6 +154,8 @@ ChipGroupPaddingOptions定义了chipGroup的上下内边距，用于控制其整
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | ---- | ---- | --- | ---- |
@@ -161,6 +171,8 @@ ChipGroup的尾部图标选项类型。
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | ---- | ---- | --- | ---- |
@@ -178,6 +190,8 @@ ChipGroup的尾部图标选项类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称     | 类型                    | 必填 | 装饰器类型 | 说明                                                              |
 | -------- | ---------------------- | ---- | ----------------------------------------------| ----------------------------------------------|
 | items    | Array<[IconItemOptions](#iconitemoptions) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) \| [ SymbolItemOptions](#symbolitemoptions14)> | 是   | @Require &nbsp;@Prop | 自定义builder items。|
@@ -193,9 +207,11 @@ ChipGroup的尾部图标选项类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称     | 类型                            | 必填 | 说明                                    |
 | -------- | --------------                 | ---- | ------------------------------           |
-| icon     | [IconOptions](#iconoptions)    | 是   | 自定义Builder icon。<br/>chip大小是ChipSize.SMALL时，suffix默认值：{width: 16,height: 16}。<br/>chip大小是ChipSize.NORMAL时，suffix默认值：{width: 24,height: 24}。</br> 如果想动态修改size，那么必须在引入[IconGroupSuffix](#icongroupsuffix)时，使用[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)类型。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                       |
+| icon     | [IconOptions](#iconoptions)    | 是   | 自定义Builder icon。<br/>Chip大小是ChipSize.SMALL时，suffix默认值：{width: 16,height: 16}。<br/>Chip大小是ChipSize.NORMAL时，suffix默认值：{width: 24,height: 24}。</br> 如果想动态修改size，那么必须在引入[IconGroupSuffix](#icongroupsuffix)时，使用[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)类型。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
 | action   | Callback\<void>        | 是   | 自定义Builder items 的Callback<br/>为undefined时，表示解绑事件。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。            |
 | accessibilityText<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 尾部图标无障碍文本属性。用于为用户进一步说明尾部图标，开发人员可为尾部图标的该属性设置相对较详细的解释文本，帮助用户理解将要执行的操作。如帮助用户理解将要执行的操作可能导致什么后果，尤其是当这些后果无法从尾部图标本身属性与无障碍文本中了解到时。若尾部图标既拥有文本属性又拥有无障碍说明属性，则尾部图标被选中时，先播报尾部图标的文本属性，再播报无障碍说明属性的内容。<br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 | accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 尾部图标无障碍描述。此描述用于向用户详细解释尾部图标，开发人员应为尾部图标的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从尾部图标的属性和无障碍文本中直接获知时。如果尾部图标同时具备文本属性和无障碍说明属性，当尾部图标被选中时，系统将首先播报尾部图标的文本属性，随后播报无障碍说明属性的内容。<br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
@@ -209,6 +225,8 @@ IconOptions定义图标的共通属性。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称 | 类型                                   | 必填 | 说明                                                         |
 | ---- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | src  | [ResourceStr](ts-types.md#resourcestr) | 是   | 图标图片或图片地址引用。                                     |
@@ -221,6 +239,8 @@ Label定义图标属性。
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称 | 类型   | 必填  | 说明     |
 | ---- | ------ | ---- | -------- |

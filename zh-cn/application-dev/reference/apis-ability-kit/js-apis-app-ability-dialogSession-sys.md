@@ -3,8 +3,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @zhu-feimo; @Luobniz21-->
-<!--SE: @ccllee1-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 dialogSession模块用于支持系统应用弹框功能。
 

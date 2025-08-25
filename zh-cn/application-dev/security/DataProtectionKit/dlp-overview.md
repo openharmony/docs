@@ -2,8 +2,9 @@
 <!--Kit: Data Protection Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @winnieHuYu-->
-<!--SE: @lucky-jinduo-->
-<!--TSE: @nacyli-->
+<!--Designer: @lucky-jinduo-->
+<!--Tester: @nacyli-->
+<!--Adviser: @zengyawen-->
 
 数据防泄漏服务（Data Loss Prevention，简称为DLP），是系统提供的系统级的数据防泄漏解决方案，提供文件权限管理、加密存储、授权访问等能力，数据所有者可以基于账号认证对机密文件进行权限配置，允许拥有只读、编辑、拥有者权限，随后机密文件会通过密文存储，在支持DLP机制的设备上可以通过端云协调进行认证授权，获取对数据的访问和修改的能力。
 

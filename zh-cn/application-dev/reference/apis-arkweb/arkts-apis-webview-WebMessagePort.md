@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @aohui-->
-<!--SE: @yaomingliu-->
-<!--TSE: @ghiker-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 通过WebMessagePort可以进行消息的发送以及接收，发送[WebMessageType](./arkts-apis-webview-e.md#webmessagetype10)/[WebMessage](./arkts-apis-webview-t.md#webmessage)类型消息给HTML5侧。
 

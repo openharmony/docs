@@ -2,8 +2,9 @@
 <!--Kit: Telephony Kit-->
 <!--Subsystem: Telephony-->
 <!--Owner: @Fanyl8-->
-<!--SE: @ghxbob-->
-<!--TSE: @weitiantian-->
+<!--Designer: @ghxbob-->
+<!--Tester: @weitiantian-->
+<!--Adviser: @zhang_yixin13-->
 
 SIM卡管理模块提供了SIM卡管理的基础能力，包括获取指定卡槽SIM卡的名称、号码、ISO国家码、归属PLMN号、服务提供商名称、SIM卡状态、卡类型、是否插卡、是否激活、锁状态，设置指定卡槽SIM卡显示的名称、号码、锁状态，激活、禁用指定卡槽SIM卡，更改Pin密码，以及解锁指定卡槽SIM卡密码、SIM卡密码的解锁密码等。
 

@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @Armstrong15-->
-<!--SE: @zhanghaibo0-->
-<!--TSE: @lxl007-->
+<!--Designer: @zhanghaibo0-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 以垂直列表形式显示的菜单。
 
@@ -197,6 +198,7 @@ Menu子菜单展开样式枚举。
 @Component
 struct Index {
   @State select: boolean = true;
+  // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
   private iconStr: ResourceStr = $r("app.media.view_list_filled");
   private iconStr2: ResourceStr = $r("app.media.arrow_right_filled");
 

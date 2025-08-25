@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
-<!--SE: @hanfeng6-->
-<!--TSE: @kongjing2-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供应用信息查询能力，支持[包信息](js-apis-bundle-BundleInfo.md)、[应用信息](js-apis-bundle-ApplicationInfo.md)、[Ability组件信息](js-apis-bundle-AbilityInfo.md)等信息的查询，以及应用禁用状态的查询、设置等。
 
@@ -105,9 +106,9 @@ import bundle from '@ohos.bundle';
 
 bundle.getBundleInstaller((err, data) => {
   if (err.code == 0) {
-    console.error('getBundleInstaller failed.');
+    console.error('getBundleInstaller successfully.');
   } else {
-    console.info('getBundleInstaller successfully');
+    console.info('getBundleInstaller failed.');
   }
 });
 ```

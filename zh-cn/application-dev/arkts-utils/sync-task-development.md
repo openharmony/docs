@@ -2,11 +2,12 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
-<!--SE: @weng-changcheng-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 
-同步任务用于在多个线程间协调执行，确保任务按特定顺序和规则进行，如使用锁防止数据竞争。
+同步任务用于在多个线程间协调执行，确保任务按特定顺序和规则进行（如使用锁防止数据竞争）。
 
 
 同步任务的实现需要考虑多个线程之间的协作和同步，以确保数据的正确性和程序的正确执行。
@@ -26,7 +27,7 @@
 
 > **说明：**
 >
-> 由于[Actor模型](multi-thread-concurrency-overview.md#actor模型)不同线程间内存隔离的特性，普通单例无法在不同线程间使用。可以通过共享模块导出单例解决该问题。
+> 由于[Actor模型](multi-thread-concurrency-overview.md#actor模型)不同线程间内存隔离的特性，普通单例无法在不同线程间使用。可通过共享模块导出单例解决此问题。
 
 1. 定义并发函数，实现业务逻辑。
 

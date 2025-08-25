@@ -1,10 +1,11 @@
 # @ohos.net.connection (网络连接管理)
 
-<!--Kit:Network Kit-->
-<!--Subsystem:Communication-->
-<!--Owner:@wmyao_mm-->
-<!--SE:@guo-min_net-->
-<!--TSE:@tongxilin-->
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
 
 网络连接管理提供管理网络一些基础能力，包括获取默认激活的数据网络、获取所有激活数据网络列表、开启关闭飞行模式、获取网络能力信息等功能。
 

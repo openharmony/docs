@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
@@ -329,6 +330,7 @@ Camera_ErrorCode OH_CameraManager_DeleteSupportedCameras(Camera_Manager* cameraM
 | -- | -- |
 | [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
 | [Camera_Device](capi-oh-camera-camera-device.md)* cameras | 要删除的Camera_Device列表。 |
+| uint32_t size | 要删除的相机设备数量。 |
 
 **返回：**
 
@@ -435,7 +437,7 @@ Camera_ErrorCode OH_CameraManager_IsCameraMuted(Camera_Manager* cameraManager, b
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
-| bool* isCameraMuted | 如果方法调用成功，将返回相机是否静音的结果。 |
+| bool* isCameraMuted | 如果方法调用成功，将返回相机是否静音的结果。返回true表示相机已静音，返回false表示未静音。 |
 
 **返回：**
 
@@ -818,7 +820,7 @@ Camera_ErrorCode OH_CameraManager_IsTorchSupported(Camera_Manager* cameraManager
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
-| bool* isTorchSupported | 设备是否支持手电筒。 |
+| bool* isTorchSupported | 设备是否支持手电筒。返回true表示设备支持手电筒，返回false表示不支持。 |
 
 **返回：**
 
@@ -845,7 +847,7 @@ Camera_ErrorCode OH_CameraManager_IsTorchSupportedByTorchMode(Camera_Manager* ca
 | -- | -- |
 | [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
 | [Camera_TorchMode](capi-camera-h.md#camera_torchmode) torchMode | 要检查的相机手电筒模式。 |
-| bool* isTorchSupported | 设备是否支持指定的手电筒模式。 |
+| bool* isTorchSupported | 设备是否支持指定的手电筒模式。返回true表示设备支持该模式，返回false表示不支持。 |
 
 **返回：**
 

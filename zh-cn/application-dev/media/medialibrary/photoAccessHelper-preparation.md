@@ -2,8 +2,9 @@
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
-<!--SE: @liweilu1-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 应用需获取相册管理模块实例，才能访问和修改相册中的媒体数据。相册管理模块涉及用户个人数据信息，应用需向用户申请相册管理模块读写权限，以保证功能的正常运行。使用相册管理模块接口时，如无其他注明，默认在工程代码的pages/index.ets或其他自创的ets文件中使用。
 
