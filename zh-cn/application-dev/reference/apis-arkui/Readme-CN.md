@@ -341,6 +341,7 @@
     - [QRCode](arkui-ts/ts-basic-components-qrcode.md)
     - [TextClock](arkui-ts/ts-basic-components-textclock.md)
     - [TextTimer](arkui-ts/ts-basic-components-texttimer.md)
+    - [信息展示公共接口](arkui-ts/ts-information-display-common.md)
   - 空白与分隔<!--blank-and-divider-->
     - [Blank](arkui-ts/ts-basic-components-blank.md)
     - [Divider](arkui-ts/ts-basic-components-divider.md)
