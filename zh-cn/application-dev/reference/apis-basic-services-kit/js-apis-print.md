@@ -370,7 +370,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
 
 第三方应用程序实现此接口来渲染要打印的文件。
 
-### onStartLayoutWrite
+### onStartLayoutWrite<sup>11+</sup>
 
 onStartLayoutWrite(jobId: string, oldAttrs: PrintAttributes, newAttrs: PrintAttributes, fd: number, writeResultCallback: (jobId: string, writeResult: PrintFileCreationState) => void): void
 
@@ -425,7 +425,7 @@ class MyPrintDocumentAdapter implements print.PrintDocumentAdapter {
 }
 ```
 
-### onJobStateChanged
+### onJobStateChanged<sup>11+</sup>
 
 onJobStateChanged(jobId: string, state: PrintDocumentAdapterState): void
 
