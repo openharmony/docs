@@ -129,7 +129,7 @@ this.__messageStr = new ObservedPropertySimplePU('Hello World', this, "messageSt
 源码：
 
 ```ts
-//Sample.ets
+// Sample.ets
 import { Type } from '@kit.ArkUI';
 
 // 数据中心
@@ -222,7 +222,7 @@ Error message: ArkTSCompilerError: ArkTS:ERROR Failed to execute ByteCode Obfusc
 Error message: [Class]get different name for method:&entry/src/main/ets/pages/XXXX&.#~@0>#setController^1.
 
 ```ts
-//代码1
+// 代码1
 @CustomDialog
 export default struct TmsDialog {
     controller?: CustomDialogController
@@ -232,7 +232,7 @@ export default struct TmsDialog {
     }
 }
 
-//代码2
+// 代码2
 @CustomDialog
 struct Index{
 	controller?: CustomDialogController
@@ -352,7 +352,7 @@ linkSource
 使用@Type和@Trace组合修饰的装饰器属性，可以正常混淆，但混淆后，功能异常。
 
 ```ts
-//Sample.ets
+// Sample.ets
 import { Type } from '@kit.ArkUI';
 
 @ObservedV2
@@ -368,7 +368,7 @@ export class Sample {
     @Trace f123: SampleChild = new SampleChild();
 }
 
-//调用
+// 调用
 // a.ets
 import { PersistenceV2 } from '@kit.ArkUI';
 import { Sample } from './Sample';
@@ -573,7 +573,7 @@ namespace中的foo属于export元素，当通过NS.foo调用时被视为属性�
 #### 案例三：使用了declare global，混淆后报语法错误	
 
 ```ts
-//file.ts
+// file.ts
 
 // 混淆前
 declare global {
@@ -606,15 +606,15 @@ Stacktrace：Cannot get SourceMap info, dump raw stack: at anonymous (ads_servic
 ```
 
 ```js
-//oh-package.json5
+// oh-package.json5
 "dependencies": {
   "reflect-metadata": "0.2.1"
 }
   
-//test.ts
+// test.ts
 import 'reflect-metadata';
  
-//调用代码
+// 调用代码
 export const FIELD_TYPE_KEY = Symbol('fieldType');
 export function FieldType(...types: Function[]): PropertyDecorator {
     return (target, key) => {
@@ -634,13 +634,13 @@ export function FieldType(...types: Function[]): PropertyDecorator {
 
 ```txt
 -keep
-../xxx/xxx/xxx/Reflect.ts  //使用文件的相对路径
+../xxx/xxx/xxx/Reflect.ts  // 使用文件的相对路径
 ```
 
 ### 未开启-enable-string-property-obfuscation混淆选项，字符串字面量属性名却被混淆，导致字符串字面量属性名的值为undefined
 
 ```ts
-//file.ts
+// file.ts
 // 混淆前
 const person = {
     myAge: 18
@@ -648,7 +648,7 @@ const person = {
 person["myAge"] = 20;
 ```
 ```ts
-//file.ts
+// file.ts
 // 混淆后
 const person = {
     myAge: 18
