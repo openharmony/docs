@@ -12,7 +12,6 @@
 >
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 
-> 当前不支持在预览器中使用RenderNode。
 >
 > 不建议对BuilderNode中的RenderNode进行修改操作。
 
@@ -382,9 +381,9 @@ struct Index {
           for (let i = 0; i < 11; i++) {
             let childNode: RenderNode | null = renderNode.getChild(i);
             if (childNode == null) {
-              console.log(`the ${i} of renderNode's childNode is null`);
+              console.info(`the ${i} of renderNode's childNode is null`);
             } else {
-              console.log(`the ${i} of renderNode's childNode has a size of {${childNode.size.width},${childNode.size.height}}`);
+              console.info(`the ${i} of renderNode's childNode has a size of {${childNode.size.width},${childNode.size.height}}`);
             }
           }
 
@@ -454,9 +453,9 @@ struct Index {
         .onClick(() => {
           const firstChild = renderNode.getFirstChild();
           if (firstChild === null) {
-            console.log('the fist child is null');
+            console.info('the fist child is null');
           } else {
-            console.log(`the position of fist child is x: ${firstChild.position.x}, y: ${firstChild.position.y}`);
+            console.info(`the position of fist child is x: ${firstChild.position.x}, y: ${firstChild.position.y}`);
           }
         })
     }
@@ -524,9 +523,9 @@ struct Index {
           const child = renderNode.getChild(1);
           const nextSibling = child!.getNextSibling()
           if (nextSibling === null || child === null) {
-            console.log('the child or nextChild is null');
+            console.info('the child or nextChild is null');
           } else {
-            console.log(`the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
+            console.info(`the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
               `the position of nextSibling is x: ${nextSibling.position.x}, y: ${nextSibling.position.y}`);
           }
         })
@@ -595,9 +594,9 @@ struct Index {
           const child = renderNode.getChild(1);
           const previousSibling = child!.getPreviousSibling()
           if (child === null || previousSibling === null) {
-            console.log('the child or previousChild is null');
+            console.info('the child or previousChild is null');
           } else {
-            console.log(`the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
+            console.info(`the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
               `the position of previousSibling is x: ${previousSibling.position.x}, y: ${previousSibling.position.y}`);
           }
         })
@@ -1556,7 +1555,7 @@ class MyNodeController extends NodeController {
       renderChildNode.frame = { x: 0, y: 0, width: 100, height: 100 };
       renderChildNode.backgroundColor = 0xffff0000;
       renderChildNode.label = 'customRenderChildNode';
-      console.log('label:', renderChildNode.label);
+      console.info('label:', renderChildNode.label);
       renderNode.appendChild(renderChildNode);
     }
 
@@ -1771,7 +1770,7 @@ renderNode.shadowOffset = { x: 10, y: 10 };
 renderNode.shadowAlpha = 0.7
 renderNode.shadowRadius = 30;
 const shadowRadius = renderNode.shadowRadius;
-console.log(`FrameNode ${shadowRadius}`);
+console.info(`FrameNode ${shadowRadius}`);
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
@@ -2451,7 +2450,7 @@ get shapeClip(): ShapeClip
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController, ShapeMask, ShapeClip } from '@kit.ArkUI';
+import { RenderNode, FrameNode, NodeController, ShapeClip } from '@kit.ArkUI';
 
 const clip = new ShapeClip();
 clip.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
