@@ -82,7 +82,7 @@ PanGesture(options?: PanGestureHandlerOptions)
 
 ### constructor
 
-PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance?: number })
+constructor(value?: { fingers?: number; direction?: PanDirection; distance?: number })
 
 通过PanGestureOptions对象接口可以动态修改平移手势识别器的属性，从而避免通过状态变量修改属性（状态变量修改会导致UI刷新）。
 
