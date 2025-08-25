@@ -139,7 +139,7 @@ struct Index {
 <!--deprecated_code_no_check-->
 ```ts
 // 执行绑定实例的闭包
-import { PromptAction } from '@kit.ArkUI'
+import { PromptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
