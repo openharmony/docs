@@ -129,7 +129,7 @@ this.__messageStr = new ObservedPropertySimplePU('Hello World', this, "messageSt
 源码：
 
 ```ts
-@ObservedV2
+//Sample.ets
 import { Type } from '@kit.ArkUI';
 
 // 数据中心
@@ -146,6 +146,7 @@ export class Sample {
     @Trace f123: SampleChild = new SampleChild();
 }
 
+@ObservedV2
 class Info {
     @Trace sample: Sample = new Sample();
 }
@@ -611,8 +612,8 @@ Stacktrace：Cannot get SourceMap info, dump raw stack: at anonymous (ads_servic
     "reflect-metadata": "0.2.1"
   }
   
- //test.ts
- import 'reflect-metadata';
+//test.ts
+import 'reflect-metadata';
  
 //调用代码
 export const FIELD_TYPE_KEY = Symbol('fieldType');
