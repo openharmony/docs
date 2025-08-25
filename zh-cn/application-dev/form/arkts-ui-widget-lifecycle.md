@@ -37,7 +37,7 @@
         }
     
         onCastToNormalForm(formId: string): void {
-          // 当前设备使用方不会使用临时卡片
+          // 当前卡片使用方不会涉及该场景，无需实现该回调函数
           hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onCastToNormalForm');
         }
     
