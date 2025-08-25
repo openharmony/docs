@@ -10,6 +10,8 @@
 
 声明图像的剪辑矩形、大小和组件数据的接口函数。
 
+**引用文件：** <multimedia/image_framework/image/image_native.h>
+
 **库：** libohimage.so
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -185,7 +187,6 @@ Image_ErrorCode OH_ImageNative_GetRowStride(OH_ImageNative *image,uint32_t compo
 
 ```
 Image_ErrorCode OH_ImageNative_GetPixelStride(OH_ImageNative *image,uint32_t componentType, int32_t *pixelStride)
-	
 ```
 
 **描述**

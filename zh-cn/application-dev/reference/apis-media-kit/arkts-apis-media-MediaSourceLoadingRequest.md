@@ -125,6 +125,7 @@ finishLoading(uuid: number, state: LoadingRequestError): void
 
 ```ts
 import { HashMap } from '@kit.ArkTS';
+
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 

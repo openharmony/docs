@@ -1,5 +1,12 @@
 # AtomicServiceTabs
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @qq_36417014-->
+<!--Designer: @zhangbeilei-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @zengyawen-->
+
 AtomicServiceTabs高级组件，对Tabs组件一些不需提供给用户自定义设计的属性进行简化，限制最多显示5个页签，固定页签样式，位置和大小。
 
 > **说明：**
@@ -71,15 +78,13 @@ AtomicServiceTabs ({
 
 ## TabContentBuilder
 
+内容视图容器。
+
 type TabContentBuilder = () => void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 类型 | 说明 |
-| ---- | ---------- |
-| () => void | 内容视图容器 |
 
 ## TabBarOptions
 
@@ -116,14 +121,24 @@ TabBarOptions的构造函数。
 
 type OnContentWillChangeCallback = (currentIndex: number, comingIndex: number) => boolean
 
+页面内容发生变化时触发的回调函数。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
 | --------------- | ------ |------ |------ |
 | currentIndex | number | 是 | 当前页签索引。 |
 | comingIndex | number | 是 | 即将切换的页签索引。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+|--|--|
+| boolean | 回调函数正常执行则返回true，反之返回false。 |
 
 ## 示例
 

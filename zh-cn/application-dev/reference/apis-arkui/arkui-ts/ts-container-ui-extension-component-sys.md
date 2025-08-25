@@ -384,6 +384,7 @@ UIExtensionComponent组件使用分为使用方和提供方。本示例仅展示
 使用方入口界面Index.ets内容如下:
 ```ts
 import { ComponentContent } from '@kit.ArkUI';
+
 class Params {
 }
 @Builder

@@ -444,7 +444,7 @@ struct Page01 {
 
   build() {
     NavDestination() {
-...
+      // ...
     }.title('Page01')
     .onReady((context: NavDestinationContext) => {
       this.pathStack = context.pathStack;
@@ -676,13 +676,13 @@ Navigation作为路由容器，其生命周期承载在NavDestination组件上�
    // 在UIAbility中使用
    import { UIContext, uiObserver } from '@kit.ArkUI';
   
-   // callBackFunc 是开发者定义的监听回调函数
-   function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {}
-   uiObserver.on('navDestinationSwitch', this.context, callBackFunc);
+   // callbackFunc是开发者定义的监听回调函数
+   function callbackFunc(info: uiObserver.NavDestinationSwitchInfo) {}
+   uiObserver.on('navDestinationSwitch', this.context, callbackFunc);
   
    // 可以通过窗口的getUIContext()方法获取对应的UIContent
    uiContext: UIContext | null = null;
-   uiObserver.on('navDestinationSwitch', this.uiContext, callBackFunc);
+   uiObserver.on('navDestinationSwitch', this.uiContext, callbackFunc);
   ```
 
 ## 页面转场

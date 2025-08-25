@@ -44,8 +44,8 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 | toolBarList                   | [ToolBarOptions](#toolbaroptions)                            | 是   | @ObjectLink | 工具栏列表。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                     |
 | activateIndex                 | number                                                       | 否   | @Prop       | 激活态的子项。<br/>取值范围：大于等于-1。<br/>默认值：-1，没有激活态的子项。若设置数值小于-1，按没有激活项处理。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                           |
 | controller                    | [TabsController](ts-container-tabs.md#tabscontroller)        | 是   | -           | 工具栏控制器，不支持控制工具栏子项。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                         |
-| dividerModifier<sup>13+</sup> | [DividerModifier](ts-universal-attributes-attribute-modifier.md) | 否   | @Prop       | 工具栏头部分割线属性，可设置分割线高度、颜色等。<br/>默认值：系统默认值。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。                                                                    |
-| toolBarModifier<sup>13+</sup> | [ToolBarModifier](#toolbarmodifier13)                        | 否   | @Prop       | 工具栏属性，可设置工具栏高度、背景色、内边距（仅在工具栏子项数量小于5时生效）、是否显示按压态。<br/>默认值：<br/>工具栏高度：56vp。<br/>背景色：ohos_id_toolbar_bg。<br/>内边距：24vp。<br/>显示按压态。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| dividerModifier<sup>13+</sup> | [DividerModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier) | 否   | @Prop       | 工具栏头部分割线属性，可设置分割线高度、颜色等。<br/>默认值：系统默认值。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。                                                                    |
+| toolBarModifier<sup>13+</sup> | [ToolBarModifier](#toolbarmodifier13)                        | 否   | @Prop       | 工具栏属性，可设置工具栏高度、背景色、内边距（仅在工具栏子项数量小于5时生效）、是否显示按压态。<br/>默认值：<br/>工具栏高度：56vp<br/>背景色：ohos_id_toolbar_bg<br/>内边距：24vp<br/>显示按压态。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ## ToolBarOptions
 
@@ -67,23 +67,23 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 |----------------------------------------|-----------------------------------------------------------| -------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | content                                | [ResourceStr](ts-types.md#resourcestr)                    | 是 | 工具栏子项的文本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                          |
 | action                                 | ()&nbsp;=&gt;&nbsp;void                                   | 否 | 工具栏子项点击事件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                         |
-| icon                                   | [Resource](ts-types.md#resource)                          | 否 | 工具栏子项的图标。<br/>toolBarSymbolOptions有传入参数时，icon不生效。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                  |
-| state                                  | [ItemState](#itemstate)                                   | 否 | 工具栏子项的状态。<br/>默认为ENABLE。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                           |
+| icon                                   | [Resource](ts-types.md#resource)                          | 否 | 工具栏子项的图标。<br/>默认不设置或者设置为undefined，图标不显示。<br/>toolBarSymbolOptions有传入参数时，icon不生效。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                   |
+| state                                  | [ItemState](#itemstate)                                   | 否 | 工具栏子项的状态。<br/>默认为ItemState.ENABLE。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                 |
 | iconColor<sup>13+</sup>                | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项的图标填充颜色。<br/>默认值为$r('sys.color.icon_primary')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。                                                                                                                                                |
 | activatedIconColor<sup>13+</sup>       | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项激活态的图标填充颜色。<br/>默认值为$r('sys.color.icon_emphasize')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。                                                                                                                                           |
 | textColor<sup>13+</sup>                | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项的文本颜色。<br/>默认值为$r('sys.color.font_primary')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。                                                                                                                                                  |
 | activatedTextColor<sup>13+</sup>       | [ResourceColor](ts-types.md#resourcecolor)                | 否 | 工具栏子项激活态的文本颜色。<br/>默认值为$r('sys.color.font_emphasize')。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。                                                                                                                                             |
 | toolBarSymbolOptions<sup>13+</sup>     | [ToolBarSymbolGlyphOptions](#toolbarsymbolglyphoptions13) | 否 | 工具栏子项的图标属性，symbol类型。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。                                                                                                                                                                               |
-| accessibilityText<sup>18+</sup>        | [ResourceStr](ts-types.md#resourcestr)                    | 否 | 工具栏子项的无障碍文本属性。当组件不包含文本属性时，屏幕朗读选中此组件时不播报，使用者无法清楚地知道当前选中了什么组件。为了解决此场景，开发人员可为不包含文字信息的组件设置无障碍文本，当屏幕朗读选中此组件时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己选中了什么组件。<br/>默认值为当前项content属性内容。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                                             |
-| accessibilityDescription<sup>18+</sup> | [ResourceStr](ts-types.md#resourcestr)                    | 否 | 工具栏子项的无障碍描述。此描述用于向用户详细解释当前组件，开发人员应为组件的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从组件的属性和无障碍文本中直接获知时。如果组件同时具备文本属性和无障碍说明属性，当组件被选中时，系统将首先播报组件的文本属性，随后播报无障碍说明属性的内容。<br/>默认值为“单指双击即可执行”。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                                    |
-| accessibilityLevel<sup>18+</sup>       | string                                                    | 否 | 工具栏子项无障碍重要性。用于控制当前项是否可被无障碍辅助服务所识别。<br/>支持的值为：<br/>"auto"：当前组件会转换'yes'。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| accessibilityText<sup>18+</sup>        | [ResourceStr](ts-types.md#resourcestr)                    | 否 | 工具栏子项的无障碍文本属性。当组件不包含文本属性时，屏幕朗读选中此组件时不播报，使用者无法清楚地知道当前选中了什么组件。为了解决此场景，开发人员可为不包含文字信息的组件设置无障碍文本，当屏幕朗读选中此组件时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己选中了什么组件。<br/>默认值为当前项content属性内容。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                |
+| accessibilityDescription<sup>18+</sup> | [ResourceStr](ts-types.md#resourcestr)                    | 否 | 工具栏子项的无障碍描述。此描述用于向用户详细解释当前组件，开发人员应为组件的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从组件的属性和无障碍文本中直接获知时。如果组件同时具备文本属性和无障碍说明属性，当组件被选中时，系统将首先播报组件的文本属性，随后播报无障碍说明属性的内容。<br/>默认值为“单指双击即可执行”。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
+| accessibilityLevel<sup>18+</sup>       | string                                                    | 否 | 工具栏子项无障碍重要性。用于控制当前项是否可被无障碍辅助服务所识别。<br/>支持的值为：<br/>"auto"：当前组件会转换"yes"。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## ToolBarModifier<sup>13+</sup>
 ToolBarModifier提供设置工具栏高度(height)、背景色(backgroundColor)、左右内边距（padding，仅在item小于5个时生效）、是否显示按压态（stateEffect）的方法。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
-### backgroundColor
+### backgroundColor<sup>13+</sup>
 
 backgroundColor(backgroundColor: ResourceColor): ToolBarModifier
 
@@ -105,7 +105,7 @@ backgroundColor(backgroundColor: ResourceColor): ToolBarModifier
 |---------------------------------------|---------------------------------------|
 | [ToolBarModifier](#toolbarmodifier13) | 设置backgroundColor后的ToolBarModifier对象。 |
 
-### padding
+### padding<sup>13+</sup>
 
 padding(padding: LengthMetrics): ToolBarModifier
 
@@ -119,7 +119,7 @@ padding(padding: LengthMetrics): ToolBarModifier
 
 | 参数名  | 类型     | 必填 | 说明                                                                                  |
 | ------- |--------| ---- |-------------------------------------------------------------------------------------|
-| padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 是   | 工具栏左右内边距，仅在item小于5个时生效。<br/>工具栏默认在item小于5个时padding为24vp，大于等于5个时为0。 |
+| padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 工具栏左右内边距，仅在item小于5个时生效。<br/>工具栏默认在item小于5个时padding为24vp，大于等于5个时为0。 |
 
 **返回值：**
 
@@ -127,7 +127,7 @@ padding(padding: LengthMetrics): ToolBarModifier
 |---------------------------------------|---------------------------------------|
 | [ToolBarModifier](#toolbarmodifier13) | 设置padding后的ToolBarModifier对象。 |
 
-### height
+### height<sup>13+</sup>
 
 height(height: LengthMetrics): ToolBarModifier
 
@@ -141,7 +141,7 @@ height(height: LengthMetrics): ToolBarModifier
 
 | 参数名  | 类型                              | 必填 | 说明                                 |
 | ------- |---------------------------------| ---- |------------------------------------|
-| height | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 是   | 工具栏高度。<br/>工具栏高度默认为56vp（不包含分割线）。 |
+| height | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 工具栏高度。<br/>工具栏高度默认为56vp（不包含分割线）。 |
 
 **返回值：**
 
@@ -150,7 +150,7 @@ height(height: LengthMetrics): ToolBarModifier
 | [ToolBarModifier](#toolbarmodifier13) | 设置height后的ToolBarModifier对象。 |
 
 
-### stateEffect
+### stateEffect<sup>13+</sup>
 
 stateEffect(stateEffect: boolean): ToolBarModifier
 
@@ -194,8 +194,8 @@ ToolBarSymbolGlyphOptions定义图标的属性。
 
 | 名称   | 类型       | 必填 | 说明                                                                                       |
 | ------ | ---------- | ---- |------------------------------------------------------------------------------------------|
-| normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 工具栏symbol图标普通态样式。<br/>默认值：fontColor：$r('sys.color.icon_primary')，fontSize：24vp。  |
-| activated| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 工具栏symbol图标激活态样式。<br/>默认值：fontColor：$r('sys.color.icon_emphasize')，fontSize：24vp。 |
+| normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | 否   | 工具栏symbol图标普通态样式。<br/>默认值：fontColor：$r('sys.color.icon_primary')，fontSize：24vp。  |
+| activated| [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | 否   | 工具栏symbol图标激活态样式。<br/>默认值：fontColor：$r('sys.color.icon_emphasize')，fontSize：24vp。 |
 
 ## 事件
 不支持[通用事件](ts-component-general-events.md)。

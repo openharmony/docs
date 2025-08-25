@@ -43,6 +43,8 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type |[window.AvoidAreaType](arkts-apis-window-e.md#avoidareatype7) | 是 | 表示规避区类型。 |
@@ -88,6 +90,8 @@ on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaInfo&gt;): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
 | type   | string | 是 | 监听的事件类型，固定为'avoidAreaChange'，即系统规避区变化事件。 |
@@ -129,6 +133,8 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaInfo&gt;): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**参数：**
+
 | 参数名   | 类型 | 必填 | 说明 |
 | -------- | ---- | ---- | ---  |
 | type     | string | 是 | 注销的事件类型，固定为'avoidAreaChange'，即系统规避区变化事件。 |
@@ -166,6 +172,8 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
 
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
@@ -207,6 +215,8 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
 
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |

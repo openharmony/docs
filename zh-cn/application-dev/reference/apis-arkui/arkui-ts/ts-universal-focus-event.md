@@ -73,7 +73,7 @@ onBlur(event:()&nbsp;=&gt;&nbsp;void): T
 @Entry
 @Component
 struct FocusEventExample {
-  @State oneButtonColor: string = '#FFC0CB'
+  @State oneButtonColor: string = '#0066FF'
   @State twoButtonColor: string = '#87CEFA'
   @State threeButtonColor: string = '#90EE90'
 
@@ -87,10 +87,10 @@ struct FocusEventExample {
         .fontColor(Color.Black)
         .focusable(true)
         .onFocus(() => {
-          this.oneButtonColor = '#FF0000'
+          this.oneButtonColor = '#FFFFFF'
         })
         .onBlur(() => {
-          this.oneButtonColor = '#FFC0CB'
+          this.oneButtonColor = '#0066FF'
         })
       Button('Second Button')
         .backgroundColor(this.twoButtonColor)
@@ -99,7 +99,7 @@ struct FocusEventExample {
         .fontColor(Color.Black)
         .focusable(true)
         .onFocus(() => {
-          this.twoButtonColor = '#FF0000'
+          this.twoButtonColor = '#FFFFFF'
         })
         .onBlur(() => {
           this.twoButtonColor = '#87CEFA'
@@ -111,7 +111,7 @@ struct FocusEventExample {
         .fontColor(Color.Black)
         .focusable(true)
         .onFocus(() => {
-          this.threeButtonColor = '#FF0000'
+          this.threeButtonColor = '#FFFFFF'
         })
         .onBlur(() => {
           this.threeButtonColor = '#90EE90'

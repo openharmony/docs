@@ -66,6 +66,8 @@ track变更事件回调方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
+**参数：**
+
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ---------------------------------------------------------- |
 | index  | number | 是 | 当前变更的track索引。     |
@@ -80,6 +82,8 @@ type OnAVPlayerStateChangeHandle = (state: AVPlayerState, reason: StateChangeRea
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ---------------------------------------------------------- |
@@ -96,6 +100,8 @@ type OnBufferingUpdateHandler = (infoType: BufferingInfoType, value: number) => 
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
+**参数：**
+
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
 | infoType  | [BufferingInfoType](arkts-apis-media-e.md#bufferinginfotype8) | 是 | 缓存时间类型。     |
@@ -109,6 +115,8 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
@@ -128,6 +136,8 @@ type OnSuperResolutionChanged = (enabled: boolean) => void
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
@@ -159,6 +169,8 @@ type OnPlaybackRateDone = (rate: number) => void
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
@@ -193,6 +205,8 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**参数：**
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
