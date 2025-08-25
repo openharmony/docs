@@ -412,7 +412,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
           });
         });
       }).catch((error: BusinessError) => {
-        console.error(`Create subwindow failed. Cause code: ${err.code}, message: ${err.message}`);
+        console.error(`Create subwindow failed. Cause code: ${error.code}, message: ${error.message}`);
       })
   }
 }
@@ -699,7 +699,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
                       });
                   });
               }).catch((error: BusinessError) => {
-                  console.error(`Create subwindow failed. Cause code: ${err.code}, message: ${err.message}`);
+                  console.error(`Create subwindow failed. Cause code: ${error.code}, message: ${error.message}`);
               })
         })
       }.width('100%').height('100%')
