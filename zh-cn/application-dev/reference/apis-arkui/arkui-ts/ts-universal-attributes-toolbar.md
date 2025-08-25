@@ -159,3 +159,4 @@ struct SideBarContainerExample {
   }
 }
 ```
+![toolbar.png](figures/toolbar.png)
