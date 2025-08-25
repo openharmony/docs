@@ -300,7 +300,7 @@ int32_t OH_WindowManager_SetWindowBrightness(int32_t windowId, float brightness)
 | 参数项 | 描述 |
 | -- | -- |
 | int32_t windowId | 创建窗口时的窗口id。默认值为0。该参数为整数。 |
-| float brightness | 指定的屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]或-1.0。1.0表示最亮，-1.0表示恢复成系统亮度。 |
+| float brightness | 指定的屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]或-1.0。1.0表示最亮，-1.0表示恢复成设置窗口亮度前的系统控制中心亮度。 |
 
 **返回：**
 
