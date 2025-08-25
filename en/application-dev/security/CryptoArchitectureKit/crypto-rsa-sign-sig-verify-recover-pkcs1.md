@@ -1,5 +1,12 @@
 # Signing and Signature Recovery Using an RSA Key Pair (PKCS1 Mode) (ArkTS)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify-overview.md#rsa).
 
 **Signing**
@@ -27,7 +34,6 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
-  // The plaintext is split into input1 and input2.
   let input1: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
   async function signMessagePromise(priKey: cryptoFramework.PriKey) {
     let signAlg = "RSA1024|PKCS1|NoHash|OnlySign";
@@ -62,7 +68,6 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
-  // The plaintext is split into input1 and input2.
   let input1: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
   function signMessagePromise(priKey: cryptoFramework.PriKey) {
     let signAlg = "RSA1024|PKCS1|NoHash|OnlySign";

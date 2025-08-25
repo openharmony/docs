@@ -1,5 +1,10 @@
 # 嵌入ArkTS组件
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Native侧提供，如声明式UI语法，自定义struct组件，UI高级组件。
 
@@ -155,7 +160,7 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
 
 2. 将创建和更新函数注册给Native侧。
    ```ts
-   // entry.ets
+   // Index.ets
    import nativeNode from 'libentry.so';
    import { NodeContent } from '@kit.ArkUI';
    import { createMixedRefresh, updateMixedRefresh } from './MixedModule'
@@ -209,13 +214,12 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
    EXTERN_C_START
    static napi_value Init(napi_env env, napi_value exports) {
        napi_property_descriptor desc[] = {
+           // 注册NDK根节点。 
            {"createNativeRoot", nullptr, NativeModule::CreateNativeRoot, nullptr, nullptr, nullptr, napi_default, nullptr},
-           // 注册混合模式创建方法。
-           {"registerCreateMixedRefreshNode", nullptr, NativeModule::ArkUIMixedRefresh::RegisterCreateRefresh, nullptr,
+           // 注册混合模式创建和更新方法。
+           {"registerCreateMixedRefreshNode", nullptr, NativeModule::ArkUIMixedRefresh::RegisterCreateAndUpdateRefresh, nullptr,
             nullptr, nullptr, napi_default, nullptr},
-           // 注册混合模式更新方法。
-           {"registerUpdateMixedRefreshNode", nullptr, NativeModule::ArkUIMixedRefresh::RegisterUpdateRefresh, nullptr,
-            nullptr, nullptr, napi_default, nullptr},
+           // 销毁NDK根节点。 
            {"destroyNativeRoot", nullptr, NativeModule::DestroyNativeRoot, nullptr, nullptr, nullptr, napi_default,
             nullptr}};
        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
@@ -255,8 +259,7 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
    
    class ArkUIMixedRefresh : public ArkUIMixedNode {
    public:
-       static napi_value RegisterCreateRefresh(napi_env env, napi_callback_info info);
-       static napi_value RegisterUpdateRefresh(napi_env env, napi_callback_info info);
+       static napi_value RegisterCreateAndUpdateRefresh(napi_env env, napi_callback_info info);
    };
    
    } // namespace NativeModule
@@ -269,7 +272,6 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
    // 混合模式交互类。
    
    #include "ArkUIMixedRefresh.h"
-   #include <hilog/log.h>
    
    namespace NativeModule {
    namespace {
@@ -278,7 +280,7 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
    napi_ref g_updateRefresh;
    } // namespace
    
-   napi_value ArkUIMixedRefresh::RegisterCreateRefresh(napi_env env, napi_callback_info info) {
+   napi_value ArkUIMixedRefresh::RegisterCreateAndUpdateRefresh(napi_env env, napi_callback_info info) {
        size_t argc = 1;
        napi_value args[1] = {nullptr};
    
@@ -293,22 +295,52 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
        return nullptr;
    }
    
-   napi_value ArkUIMixedRefresh::RegisterUpdateRefresh(napi_env env, napi_callback_info info) {
-       size_t argc = 1;
-       napi_value args[1] = {nullptr};
-   
-       napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-   
-       g_env = env;
-       napi_ref refer;
-       // 创建引用之后保存，防止释放。
-       napi_create_reference(env, args[0], 1, &refer);
-   
-       g_updateRefresh = refer;
-       return nullptr;
-   }
-   
    } // namespace NativeModule
+   ```
+
+   ```cpp
+   // CMakeLists.txt
+   // optional依赖C++17
+
+   # the minimum version of CMake.
+   cmake_minimum_required(VERSION 3.4.1)
+   project(testndk)
+
+   set(CMAKE_CXX_STANDARD 17)
+   set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+
+   include_directories(${NATIVERENDER_ROOT_PATH}
+                        ${NATIVERENDER_ROOT_PATH}/include)
+
+   add_library(nativeNode SHARED container.cpp manager.cpp init.cpp)
+   # target_link_libraries(entry PUBLIC libace_napi.z.so, libace_ndk.z.so, libhilog_ndk.z.so)
+
+   find_library(
+        # Sets the name of the path variable.
+        hilog-lib
+        # Specifies the name of the NDK library that
+        # you want CMake to locate.
+        hilog_ndk.z
+    )
+
+   find_library(
+        # Sets the name of the path variable.
+        libace-lib
+        # Specifies the name of the NDK library that
+        # you want CMake to locate.
+        ace_ndk.z
+    )
+
+   find_library(
+        # Sets the name of the path variable.
+        libnapi-lib
+        # Specifies the name of the NDK library that
+        # you want CMake to locate.
+        ace_napi.z
+    )
+
+   target_link_libraries(nativeNode PUBLIC
+        ${hilog-lib} ${libace-lib} ${libnapi-lib} )
    ```
 
 4. 抽象混合模式下组件的基类，用于通用逻辑管理。
@@ -408,8 +440,7 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
        // 避免频繁跨语言，在Native侧缓存属性事件，批量通知。
        void FlushMixedModeCmd();
    
-       static napi_value RegisterCreateRefresh(napi_env env, napi_callback_info info);
-       static napi_value RegisterUpdateRefresh(napi_env env, napi_callback_info info);
+       static napi_value RegisterCreateAndUpdateRefresh(napi_env env, napi_callback_info info);
    
    protected:
        void OnAddChild(const std::shared_ptr<ArkUIBaseNode> &child) override {
@@ -447,6 +478,8 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
    相关实现类说明：
 
    ```c
+   // ArkUIMixedRefresh.cpp
+
    #include "ArkUIMixedRefresh.h"
    #include <hilog/log.h>
    
@@ -607,7 +640,7 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
        napi_call_function(g_env, nullptr, updateRefresh, 3, argv, &result);
    }
    
-   napi_value ArkUIMixedRefresh::RegisterCreateRefresh(napi_env env, napi_callback_info info) {
+   napi_value ArkUIMixedRefresh::RegisterCreateAndUpdateRefresh(napi_env env, napi_callback_info info) {
        size_t argc = 1;
        napi_value args[1] = {nullptr};
    
@@ -621,25 +654,86 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
        return nullptr;
    }
    
-   napi_value ArkUIMixedRefresh::RegisterUpdateRefresh(napi_env env, napi_callback_info info) {
-       size_t argc = 1;
-       napi_value args[1] = {nullptr};
-   
-       napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-   
-       g_env = env;
-       napi_ref refer;
-       napi_create_reference(env, args[0], 1, &refer);
-   
-       g_updateRefresh = refer;
-       return nullptr;
-   }
-   
    } // namespace NativeModule
    
    ```
 
-6. 使用[接入ArkTS页面](ndk-access-the-arkts-page.md)章节的页面结构，并沿用[定时器模块相关简单实现](ndk-loading-long-list.md)，将Refresh组件作为文本列表的父组件。
+6. 定时器模块相关简单实现。
+   ```c
+   // UITimer.h
+   // 定时器模块。
+   
+   #ifndef MYAPPLICATION_UITIMER_H
+   #define MYAPPLICATION_UITIMER_H
+   
+   #include <hilog/log.h>
+   #include <js_native_api.h>
+   #include <js_native_api_types.h>
+   #include <node_api.h>
+   #include <node_api_types.h>
+   #include <string>
+   #include <thread>
+   #include <uv.h>
+   
+   namespace NativeModule {
+   
+   struct UIData {
+       void *userData = nullptr;
+       int32_t count = 0;
+       int32_t totalCount = 0;
+       void (*func)(void *userData, int32_t count) = nullptr;
+   };
+   
+   napi_threadsafe_function threadSafeFunction = nullptr;
+   
+   void CreateNativeTimer(napi_env env, void *userData, int32_t totalCount, void (*func)(void *userData, int32_t count)) {
+       napi_value name;
+       std::string str = "UICallback";
+       napi_create_string_utf8(env, str.c_str(), str.size(), &name);
+       // UI主线程回调函数。
+       napi_create_threadsafe_function(
+           env, nullptr, nullptr, name, 0, 1, nullptr, nullptr, nullptr,
+           [](napi_env env, napi_value value, void *context, void *data) {
+               auto userdata = reinterpret_cast<UIData *>(data);
+               userdata->func(userdata->userData, userdata->count);
+               delete userdata;
+           },
+           &threadSafeFunction);
+       // 启动定时器，模拟数据变化。
+       std::thread timerThread([data = userData, totalCount, func]() {
+           uv_loop_t *loop = uv_loop_new();
+           uv_timer_t *timer = new uv_timer_t();
+           uv_timer_init(loop, timer);
+           timer->data = new UIData{data, 0, totalCount, func};
+           uv_timer_start(
+               timer,
+               [](uv_timer_t *handle) {
+                   OH_LOG_INFO(LOG_APP, "on timeout");
+                   napi_acquire_threadsafe_function(threadSafeFunction);
+                   auto *customData = reinterpret_cast<UIData *>(handle->data);
+                   // 创建回调数据。
+                   auto *callbackData =
+                       new UIData{customData->userData, customData->count, customData->totalCount, customData->func};
+                   napi_call_threadsafe_function(threadSafeFunction, callbackData, napi_tsfn_blocking);
+                   customData->count++;
+                   if (customData->count > customData->totalCount) {
+                       uv_timer_stop(handle);
+                       delete handle;
+                       delete customData;
+                   }
+               },
+               4000, 4000);
+           uv_run(loop, UV_RUN_DEFAULT);
+           uv_loop_delete(loop);
+       });
+       timerThread.detach();
+   }
+   } // namespace NativeModule
+   
+   #endif // MYAPPLICATION_UITIMER_H
+   ```
+
+7. 使用[接入ArkTS页面](ndk-access-the-arkts-page.md)章节的页面结构，并沿用[定时器模块相关简单实现](ndk-embed-arkts-components.md)，将Refresh组件作为文本列表的父组件。
    ```c
    // MixedRefreshExample.h
    // 混合模式示例代码。
@@ -649,7 +743,7 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
    
    #include "ArkUIBaseNode.h"
    #include "ArkUIMixedRefresh.h"
-   #include "TextListExample.h"
+   #include "NormalTextListExample.h"
    #include "UITimer.h"
    
    #include <js_native_api_types.h>
@@ -691,11 +785,13 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
    替换入口组件创建为下拉刷新文本列表。
 
    ```c
+   // NativeEntry.cpp
+
    #include "NativeEntry.h"
    
    #include "ArkUIMixedRefresh.h"
    #include "MixedRefreshExample.h"
-   #include "TextListExample.h"
+   #include "NormalTextListExample.h"
    
    #include <arkui/native_node_napi.h>
    #include <arkui/native_type.h>

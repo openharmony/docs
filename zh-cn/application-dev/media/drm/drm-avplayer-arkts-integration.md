@@ -1,5 +1,10 @@
 # 基于AVPlayer播放DRM节目(ArkTS)
-
+<!--Kit: Drm Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qin_wei_jie-->
+<!--Designer: @chris2981-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 开发者可以调用DRM Kit和Media Kit的ArkTS接口实现AVPlayer播放器，完成DRM节目播放。
 
 ## 开发步骤
@@ -17,7 +22,7 @@
    import { BusinessError } from '@kit.BasicServicesKit'
    ```
 
-3. 创建AVPlayer实例并设置DRM信息监听事件。
+3. 调用[createAVPlayer](../../reference/apis-media-kit/arkts-apis-media-f.md#mediacreateavplayer9)，创建AVPlayer实例并设置DRM信息监听事件。
 
    ```ts
    let playerHandle: media.AVPlayer = await media.createAVPlayer()
@@ -28,7 +33,7 @@
    })
    ```
 
-4. 根据DRM信息中的uuid创建MediaKeySystem和MediaKeySession实例。
+4. 调用[createMediaKeySystem](../../reference/apis-drm-kit/arkts-apis-drm-f.md#drmcreatemediakeysystem)和[createMediaKeySession](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySystem.md#createmediakeysession)根据DRM信息中的uuid创建MediaKeySystem和MediaKeySession实例。
 
    ```ts
    let mediaKeySystem: drm.MediaKeySystem
@@ -53,7 +58,7 @@
    }
    ```
 
-5. 根据DRM信息中的pssh信息生成媒体密钥请求并处理媒体密钥响应。
+5. 调用[generateMediaKeyRequest](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySession.md#generatemediakeyrequest)生成媒体密钥请求，并调用[processMediaKeyResponse](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySession.md#processmediakeyresponse)处理媒体密钥响应。
 
    ```ts
    let initData: Uint8Array = new Uint8Array(drmInfoArr[i].pssh);
@@ -75,7 +80,7 @@
    });
    ```
 
-6. 在处理媒体密钥响应成功后设置解密session。
+6. 调用[requireSecureDecoderModule](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySession.md#requiresecuredecodermodule)和[setDecryptionConfig](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#setdecryptionconfig11)，在处理媒体密钥响应成功后设置解密session。
 
    ```ts
    let svp: boolean = mediaKeySession.requireSecureDecoderModule('video/avc');
@@ -86,10 +91,12 @@
 
    ```ts
    playerHandle.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
-     if (state == 'released') {
-       mediaKeySession.destroy();
-       mediaKeySystem.destroy();
-     }
-   }
-   await this.playerHandle.release()
+      if (state == 'released') {
+    mediaKeySession.destroy();
+    mediaKeySystem.destroy();
+  } else if (state == 'releasing') {  
+    await playerHandle.release();    
+  }
+   })
+  
    ```

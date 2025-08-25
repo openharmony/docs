@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @qq_44167590-->
-<!--SE: @hjoksky-->
-<!--TSE: @ghiker-->
+<!--Designer: @hjoksky-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Web组件支持使用crashpad记录进程崩溃信息。crashpad是chromium内核提供的进程崩溃信息处理工具，在应用使用Web组件导致的进程崩溃出现后（包括应用主进程与Web渲染进程），crashpad会在应用主进程沙箱目录写入minidump文件。该文件为二进制格式，后缀为dmp，其记录了进程崩溃的原因、线程信息、寄存器信息等，应用可以使用该文件分析Web组件相关进程崩溃问题。
 

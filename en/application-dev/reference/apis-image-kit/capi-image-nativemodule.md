@@ -1,8 +1,13 @@
 # Image_NativeModule
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 ## Overview
 
-The Image_NativeModule module provides image processing capabilities, including encoding and decoding an image and obtaining image data from the native layer.
+The module provides image processing capabilities, including encoding and decoding an image and obtaining image data from the native layer.
 
 The APIs of this module do not need to be imported through the JS interface. You can directly use the NDK to develop the features.
 

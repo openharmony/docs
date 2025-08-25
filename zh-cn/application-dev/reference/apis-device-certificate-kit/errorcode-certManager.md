@@ -3,8 +3,9 @@
 <!--Kit: Device Certificate Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @chaceli-->
-<!--SE: @chande-->
-<!--TSE: @zhangzhi1995-->
+<!--Designer: @chande-->
+<!--Tester: @zhangzhi1995-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -14,7 +15,7 @@
 
 **错误信息**
 
-Internal error.
+Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.
 
 **可能原因**
 

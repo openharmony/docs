@@ -3,8 +3,9 @@
 <!--Kit: User Authentication Kit-->
 <!--Subsystem: UserIAM-->
 <!--Owner: @WALL_EYE-->
-<!--SE: @lichangting518-->
-<!--TSE: @jane_lz-->
+<!--Designer: @lichangting518-->
+<!--Tester: @jane_lz-->
+<!--Adviser: @zengyawen-->
 
 提供用户认证能力，可应用于设备解锁、支付、应用登录等身份认证场景。
 
@@ -444,7 +445,10 @@ try {
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
+**系统接口**: 此接口为系统接口。
+
 | 名称                    |   值   | 说明                 |
 | ----------------------- | ------ | -------------------- |
 | AUTH_TOKEN_CHECK_FAILED | 12500015      | verifyAuthToken系统接口错误码，表示验证的AuthToken无效。|
 | AUTH_TOKEN_EXPIRED      | 12500016      | verifyAuthToken系统接口错误码，AuthToken的签发时间至发起验证时的时间间隔超过传入的最大有效时长。|
+| REUSE_AUTH_RESULT_FAILED<sup>20+</sup>| 12500017      | queryReusableAuthResult系统接口错误码，表示复用身份认证结果失败。|

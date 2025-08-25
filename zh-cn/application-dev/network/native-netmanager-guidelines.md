@@ -2,8 +2,9 @@
 <!--Kit: Network Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @wmyao_mm-->
-<!--SE: @guo-min_net-->
-<!--TSE: @tongxilin-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 场景介绍
 
@@ -26,9 +27,9 @@ NetConnection常用接口如下表所示，详细的接口说明请参考[net_co
 | OH_NetConn_FreeDnsResult(struct addrinfo \*res) | 释放DNS结果内存。 |
 | OH_NetConn_GetAllNets(NetConn_NetHandleList \*netHandleList) | 获取所有处于连接状态的网络列表。 |
 | OHOS_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver) | 注册自定义dns解析器。<br/>**弃用：** 从API version 13开始废弃。<br/>**替代：** 推荐使用OH_NetConn_RegisterDnsResolver。|
-| OHOS_NetConn_UnregisterDnsResolver(void) | 去注册自定义dns解析器。<br/>**弃用：** 从API version 13开始废弃。<br/>**替代：** 推荐使用OH_NetConn_UnregisterDnsResolver。|
+| OHOS_NetConn_UnregisterDnsResolver(void) | 取消注册自定义dns解析器。<br/>**弃用：** 从API version 13开始废弃。<br/>**替代：** 推荐使用OH_NetConn_UnregisterDnsResolver。|
 | OH_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver) | 注册自定义dns解析器。 |
-| OH_NetConn_UnregisterDnsResolver(void) | 去注册自定义dns解析器。|
+| OH_NetConn_UnregisterDnsResolver(void) | 取消注册自定义dns解析器。|
 | OH_NetConn_SetPacUrl(const char \*pacUrl) | 设置系统级代理自动配置(PAC)脚本地址。 |
 | OH_NetConn_GetPacUrl(char \*pacUrl) | 获取系统级代理自动配置(PAC)脚本地址。 |
 | OH_NetConn_QueryProbeResult(char *destination, int32_t duration, NetConn_ProbeResultInfo *probeResultInfo)| 查询探测结果。 |
@@ -65,7 +66,7 @@ libnet_connection.so
 
 ### 构建工程
 
-1、在源文件中编写调用该API的代码，并将结果封装成一个`napi_value`类型的值返回给 Node.js 环境。
+1. 在源文件中编写调用该API的代码，并将结果封装成一个`napi_value`类型的值返回给Node.js环境。
 
 ```C
 // Get the execution results of the default network connection.
@@ -104,10 +105,10 @@ static napi_value NetId(napi_env env, napi_callback_info info) {
 }
 ```
 
-简要说明：这两个函数是用于获取系统默认网络连接的相关信息的。其中，GetDefaultNet是接收ArkTs端传入的测试参数，返回调用接口后对应的返回值，param可以自行调整；如果返回值为0，代表获取成功，401代表参数错误，201代表没有权限；而NetId函数则用于获取默认网络连接的ID。这些信息可以用于进一步的网络操作。
+简要说明：这两个函数用于获取系统默认网络连接的相关信息。其中，GetDefaultNet是接收ArkTs端传入的测试参数，返回调用接口后对应的返回值，param可以自行调整；如果返回值为0，代表获取成功，401代表参数错误，201代表没有权限；而NetId函数则用于获取默认网络连接的ID。这些信息可以用于进一步的网络操作。
 
 
-2、将通过napi封装好的`napi_value`类型对象初始化导出，通过外部函数接口，将以上两个函数暴露给JavaScript使用。
+2. 将通过napi封装好的`napi_value`类型对象初始化导出，通过外部函数接口，将以上两个函数暴露给JavaScript使用。
 
 ```C
 EXTERN_C_START
@@ -123,7 +124,7 @@ static napi_value Init(napi_env env, napi_value exports)
 EXTERN_C_END
 ```
 
-3、将上一步中初始化成功的对象通过`RegisterEntryModule`函数，使用`napi_module_register`函数将模块注册到 Node.js 中。
+3. 将上一步中初始化成功的对象通过`RegisterEntryModule`函数，使用`napi_module_register`函数将模块注册到Node.js中。
 
 ```C
 static napi_module demoModule = {
@@ -142,17 +143,17 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 }
 ```
 
-4、在工程的index.d.ts文件中定义两个函数的类型。
+4. 在工程的index.d.ts文件中定义两个函数的类型。
 
-- GetDefaultNet 函数接受一个数字参数 code，返回一个数字类型的值。
-- NetId 函数不接受参数，返回一个数字类型的值。
+- GetDefaultNet函数接受一个数字参数code，返回一个数字类型的值。
+- NetId函数不接受参数，返回一个数字类型的值。
 
 ```ts
 export const GetDefaultNet: (code: number) => number;
 export const NetId: () => number;
 ```
 
-5、在index.ets文件中对上述封装好的接口进行调用。
+5. 在index.ets文件中对上述封装好的接口进行调用。
 
 ```ts
 import testNetManager from 'libentry.so';
@@ -200,9 +201,11 @@ struct Index {
 
 ```
 
-6、配置`CMakeLists.txt`，本模块需要用到的共享库是`libnet_connection.so`，在工程自动生成的`CMakeLists.txt`中的`target_link_libraries`中添加此共享库。
+6. 配置`CMakeLists.txt`，本模块需要用到的共享库是`libnet_connection.so`，在工程自动生成的`CMakeLists.txt`中的`target_link_libraries`中添加此共享库。
 
-注意：如图所示，在`add_library`中的`entry`是工程自动生成的`modename`，若要做修改，需和步骤3中`.nm_modname`保持一致。
+> **注意：**
+>
+> 如图所示，在`add_library`中的`entry`是工程自动生成的`modename`。若要做修改，需和步骤3中`.nm_modname`保持一致。
 
 ![netmanager-4.png](./figures/netmanager-4.png)
 
@@ -210,27 +213,23 @@ struct Index {
 
 ## 测试步骤
 
-1、连接设备，使用DevEco Studio打开搭建好的工程。
+1. 连接设备，使用DevEco Studio打开搭建好的工程。
 
-2、运行工程，设备上会弹出以下所示图片：
+2. 运行工程，设备上会弹出以下所示图片。
 
-简要说明：
-
-- 在点击 `GetDefaultNet` 时，获取的是默认网络ID。
-- 在点击 `codeNumber` 时，获取的是接口返回的响应状态码。
+- 点击`GetDefaultNet`时获取的是默认网络ID。
+- 点击`codeNumber`时获取的是接口返回的响应状态码。
 
 ![netmanager-1.png](./figures/netmanager-1.png)
 
-3、点击 `GetDefaultNet` 按钮，控制台会打印日志：
+3. 点击`GetDefaultNet`按钮，控制台会打印日志。
 
 ![netmanager-2.png](./figures/netmanager-2.png)
 
-4、点击 `codeNumber` 按钮，控制台会打印相应的响应状态码：
+4. 点击`codeNumber`按钮，控制台会打印相应的响应状态码。
 
 ![netmanager-3.png](./figures/netmanager-3.png)
 
 ## 相关实例
 
-针对网络连接的开发，有以下相关实例可供参考：
-
-- [NetConnection开发指导](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Exploitation_case)
+针对网络连接的开发，可参考相关实例：[NetConnection开发指导](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Exploitation_case)。

@@ -1,12 +1,18 @@
 # Requesting User Authorization
 
-Before an application accesses user privacy information or use a system capability, for example, to obtain location information, access the Calendar, or use the camera to take a photo or record a video, the application needs to request user authorization. The permissions that must be authorized by users are user_grant permissions.
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
+User authorization is required when an application needs to access user privacy information (such as Location or Calendar information) or using system abilities (such as the camera ability to take photos or record videos). The permissions that must be authorized by users are user_grant permissions.
 
 The procedure for requesting user_grant permissions is as follows:
 
 1. Declare the permissions required by your application in the configuration file. 
 
-2. Associate each object that requires a user_grant permission with the related permission. This lets the user know what operations need user authorization.<br>
+2. Associate each object that requires a user_grant permission with the related permission. This lets the user know what operations need user authorization.
    For details about the preceding two steps, see [Declaring Permissions](declare-permissions.md).
 
 3. Trigger user authorization via an API when the application in running needs to access the target object. The API first checks whether the user has granted the permission required. If no, a dialog box will be displayed to request authorization from the user.

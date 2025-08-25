@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @yp99ustc; @aohui; @zourongchun-->
-<!--SE: @LongLie; @yaomingliu; @zhufenghao-->
-<!--TSE: @ghiker-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 >
@@ -21,7 +22,7 @@
 | ---------- | ------------------------------|---- | ---- | ---------------------------------------- |
 | src        | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)   | 否    | 否    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件(文件支持html和txt类型)，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](./arkts-apis-webview-WebviewController.md#loadurl)重新加载。 |
 | controller | [WebController](./arkts-basic-components-web-WebController.md) \| [WebviewController<sup>9+</sup>](./arkts-basic-components-web-t.md#webviewcontroller9)  | 否    | 否   | 控制器，通过controller可以控制Web组件各种行为（包括页面导航、声明周期状态、JavaScript交互等行为）。从API version 9开始，WebController不再维护，建议使用WebviewController替代。 |
-| renderMode<sup>12+</sup> | [RenderMode](./arkts-basic-components-web-e.md#rendermode12)| 否    | 是   | 表示当前Web组件的渲染方式，`RenderMode.ASYNC_RENDER`表示Web组件自渲染，`RenderMode.SYNC_RENDER`表示支持Web组件统一渲染能力，默认值`RenderMode.ASYNC_RENDER`，该模式不支持动态调整。 |
+| renderMode<sup>12+</sup> | [RenderMode](./arkts-basic-components-web-e.md#rendermode12)| 否    | 是   | 表示当前Web组件的渲染方式，`RenderMode.ASYNC_RENDER`表示Web组件异步渲染，`RenderMode.SYNC_RENDER`表示支持Web组件同步渲染能力，默认值`RenderMode.ASYNC_RENDER`，该模式不支持动态调整。 |
 | incognitoMode<sup>11+</sup> | boolean | 否    | 是 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview，false表示创建正常模式的webview。<br> 默认值：false。 |
 | sharedRenderProcessToken<sup>12+</sup> | string | 否    | 是 | 表示当前Web组件指定共享渲染进程的token，多渲染进程模式下，相同token的Web组件会优先尝试复用与token相绑定的渲染进程。token与渲染进程的绑定发生在渲染进程的初始化阶段。当渲染进程没有关联的Web组件时，其与token绑定关系将被移除。<br> 默认值： ""。  |
 
@@ -31,11 +32,11 @@ Web媒体策略的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ------- | ---- | ---------------------------------------- |
-| resumeInterval | number  | 否    | 被其他应用暂停的Web音视频能够自动续播的有效期，单位：秒。取值范围：[-2147483648, 2147483647]。resumeInterval值为0时，不自动续播；大于0时，将在该时间内尝试续播；小于0时，将在无限时间内尝试续播。由于近似值原因，该有效期可能存在一秒内的误差。 <br>**说明：** <br>HLS视频被打断后，回到前台将自动续播，不受该时间控制。|
-| audioExclusive | boolean | 否    | 应用内多个Web实例的音频是否独占。<br>true表示应用内多个Web实例的音频独占，false表示应用内多个Web实例的音频不独占。                       |
-| audioSessionType<sup>20+</sup> | [AudioSessionType](./arkts-basic-components-web-e.md#audiosessiontype20) | 否    | 应用中Web音频类型。默认值对应[系统音频流类型](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)STREAM_USAGE_MUSIC。设置该参数会改变组件音频类型与系统音频类型映射关系，进而影响ArkWeb音频焦点策略。|
+| 名称             | 类型      | 只读 | 可选  | 说明                                       |
+| -------------- | ------- | ---- | ---- | ---------------------------------------- |
+| resumeInterval | number  | 否 | 是 | 被其他应用暂停的Web音视频能够自动续播的有效期，单位：秒。取值范围：[-2147483648, 2147483647]。resumeInterval值为0时，不自动续播；大于0时，将在该时间内尝试续播；小于0时，将在无限时间内尝试续播。由于近似值原因，该有效期可能存在一秒内的误差。 <br>**说明：** <br>HLS视频被打断后，回到前台将自动续播，不受该时间控制。|
+| audioExclusive | boolean | 否 | 是 | 应用内多个Web实例的音频是否独占。<br>true表示应用内多个Web实例的音频独占，false表示应用内多个Web实例的音频不独占。<br>默认值:true。                       |
+| audioSessionType<sup>20+</sup> | [AudioSessionType](./arkts-basic-components-web-e.md#audiosessiontype20) | 否 | 是 | 应用中Web音频类型。默认值对应[系统音频流类型](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)STREAM_USAGE_MUSIC。设置该参数会改变组件音频类型与系统音频类型映射关系，进而影响ArkWeb音频焦点策略。|
 
 ## ScriptItem<sup>11+</sup>
 
@@ -54,12 +55,12 @@ Web媒体策略的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型               | 只读 | 可选 | 必填   | 说明                   |
-| -------------- | ---------------- | ---- | ---- | ---- | -------------------- |
-| scrollUp  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 否    | 可滚动组件往上滚动时的嵌套滚动选项。 |
-| scrollDown | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 否    | 可滚动组件往下滚动时的嵌套滚动选项。 |
-| scrollLeft  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 否    | 可滚动组件往左滚动时的嵌套滚动选项。 |
-| scrollRight | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 否    | 可滚动组件往右滚动时的嵌套滚动选项。 |
+| 名称             | 类型               | 只读 | 可选 | 说明                   |
+| -------------- | ---------------- | ---- | ---- | -------------------- |
+| scrollUp  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往上滚动时的嵌套滚动选项。<br/>默认值：NestedScrollMode.SELF_FIRST。|
+| scrollDown | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往下滚动时的嵌套滚动选项。<br/>默认值：NestedScrollMode.SELF_FIRST。|
+| scrollLeft  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往左滚动时的嵌套滚动选项。<br/>默认值：NestedScrollMode.SELF_FIRST。|
+| scrollRight | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往右滚动时的嵌套滚动选项。<br/>默认值：NestedScrollMode.SELF_FIRST。|
 
 ## NativeMediaPlayerConfig<sup>12+</sup>
 
@@ -67,10 +68,10 @@ Web媒体策略的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-|  enable  | boolean | 是 | 是否开启应用接管网页媒体播放功能。<br/> true表示开启应用接管网页媒体播放功能，false表示关闭应用接管网页媒体播放功能。<br/> 默认值：false。 |
-|  shouldOverlay | boolean | 是 | 开启应用接管网页媒体播放功能后，应用接管网页视频的播放器画面是否覆盖网页内容。<br/> true表示改变视频图层的高度，使其覆盖网页内容。false表示不覆盖网页内容，跟原视频图层高度一样，嵌入在网页中。<br>默认值：false。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+|------|------|------|------|------|
+|  enable  | boolean | 否 | 否 | 是否开启应用接管网页媒体播放功能。<br/> true表示开启应用接管网页媒体播放功能，false表示关闭应用接管网页媒体播放功能。<br/> 默认值：false。 |
+|  shouldOverlay | boolean | 否 | 否 | 开启应用接管网页媒体播放功能后，应用接管网页视频的播放器画面是否覆盖网页内容。<br/> true表示改变视频图层的高度，使其覆盖网页内容。false表示不覆盖网页内容，跟原视频图层高度一样，嵌入在网页中。<br>默认值：false。 |
 
 ## ExpandedMenuItemOptions<sup>12+</sup>
 
@@ -78,11 +79,11 @@ Web媒体策略的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称           | 类型                                             | 必填    | 说明             |
-| ---------- | -----------------------------------------------------| ------ | ---------------- |
-| content   | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 是     | 显示内容。     |
-| startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 显示图标。     |
-| action    | (selectedText: {plainText: string}) => void                    | 是     | 选中的文本信息。|
+| 名称           | 类型                                             | 只读    | 可选    | 说明             |
+| ---------- | -----------------------------------------------------| ------ | ------ | ---------------- |
+| content   | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 否     | 显示内容。     |
+| startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 是     | 显示图标。默认值为空，不显示图标。     |
+| action    | (selectedText: {plainText: string}) => void                    | 否     | 否     | 选中的文本信息。|
 
 ## AdsBlockedDetails<sup>12+</sup>
 
@@ -101,13 +102,13 @@ Web媒体策略的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称           | 类型                                             | 必填    | 说明             |
-| ---------- | -----------------------------------------------------| ------ | ---------------- |
-| onAppear   | Callback\<void\>   | 否     | 自定义选择菜单弹出时回调。     |
-| onDisappear | Callback\<void\>  | 否     | 自定义选择菜单关闭时回调。     |
-| preview    | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8)          | 否     | 自定义选择菜单的预览内容样式，未配置时无预览内容。|
-| menuType   | [MenuType](../apis-arkui/arkui-ts/ts-text-common.md#menutype13枚举说明)      | 否     | 自定义选择菜单类型。<br>默认值：`MenuType.SELECTION_MENU`。<br> 从API version 20起，`MenuType.PREVIEW_MENU`支持超链接预览。     |
-| previewMenuOptions<sup>20+</sup> | [PreviewMenuOptions](#previewmenuoptions20) | 否     | 自定义选择预览菜单选项。 |
+| 名称           | 类型                                             | 只读    | 可选    | 说明             |
+| ---------- | -----------------------------------------------------| ------ | ------ | ---------------- |
+| onAppear   | Callback\<void\>   | 否     | 是     | 自定义选择菜单弹出时回调。     |
+| onDisappear | Callback\<void\>  | 否     | 是     | 自定义选择菜单关闭时回调。     |
+| preview    | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8)          | 否     | 是     | 自定义选择菜单的预览内容样式，未配置时无预览内容。|
+| menuType   | [MenuType](../apis-arkui/arkui-ts/ts-text-common.md#menutype13枚举说明)      | 否     | 是     | 自定义选择菜单类型。<br>默认值：`MenuType.SELECTION_MENU`。<br> 从API version 20起，`MenuType.PREVIEW_MENU`支持超链接预览。     |
+| previewMenuOptions<sup>20+</sup> | [PreviewMenuOptions](#previewmenuoptions20) | 否     | 是     | 自定义选择预览菜单选项。 |
 
 ## PreviewMenuOptions<sup>20+</sup>
 
@@ -115,9 +116,9 @@ Web媒体策略的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称           | 类型                                             | 必填    | 说明             |
-| ---------- | -----------------------------------------------------| ------ | ---------------- |
-| hapticFeedbackMode   | [HapticFeedbackMode](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#hapticfeedbackmode18)   | 否     | 菜单弹出时振动效果。需配置"ohos.permission.VIBRATE"权限<br/>默认值：HapticFeedbackMode.DISABLED，菜单弹出时不振动。     |
+| 名称           | 类型                                             | 只读    | 可选    | 说明             |
+| ---------- | -----------------------------------------------------| ------ | ------ | ---------------- |
+| hapticFeedbackMode   | [HapticFeedbackMode](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#hapticfeedbackmode18)   | 否     | 是     | 菜单弹出时振动效果。需配置"ohos.permission.VIBRATE"权限<br/>默认值：HapticFeedbackMode.DISABLED，菜单弹出时不振动。     |
 
 ## EmbedOptions<sup>16+</sup>
 
@@ -127,20 +128,20 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 只读 | 可选 | 说明                                       |
 | -------------- | ------- | ---- |  ---- |---------------------------------------- |
-| supportDefaultIntrinsicSize | boolean | 否    | 否 | 设置同层渲染元素是否支持固定大小 300 * 150。<br>当H5侧CSS设置了大小时，同层渲染元素大小为CSS大小，否则为固定大小。<br>为true时，固定大小为 300 * 150。<br>为false时，若H5侧CSS未设置大小，则同层渲染元素不渲染。<br>默认值：false<br>单位：px |
-| supportCssDisplayChange<sup>20+</sup> | boolean | 否    | 否 | 设置同层渲染可见性接口是否支持显示属性。 <br>同层渲染可见性接口默认支持同层标签相对于视口的可见状态。 <br>设置为true时，支持显示CSS属性，包括visibility、display和宽高。 <br>设置为false时，不支持显示CSS属性，仅支持同层标签相对于视口的可见性。 |
+| supportDefaultIntrinsicSize | boolean | 否    | 是 | 设置同层渲染元素是否支持固定大小 300 * 150。<br>当H5侧CSS设置了大小时，同层渲染元素大小为CSS大小，否则为固定大小。<br>为true时，固定大小为 300 * 150。<br>为false时，若H5侧CSS未设置大小，则同层渲染元素不渲染。<br>默认值：false<br>单位：px |
+| supportCssDisplayChange<sup>20+</sup> | boolean | 否    | 是 | 设置同层渲染可见性接口是否支持显示属性。 <br>同层渲染可见性接口默认支持同层标签相对于视口的可见状态。 <br>设置为true时，支持显示CSS属性，包括visibility、display和宽高。 <br>设置为false时，不支持显示CSS属性，仅支持同层标签相对于视口的可见性。 |
 
 ## OnAlertEvent<sup>12+</sup>
 
-定义网页触发alert()告警弹窗时触发回调。
+定义网页触发 `alert()` 告警时的回调函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | 是 | 当前显示弹窗所在网页的URL。                       |
-| message | string | 是 | 弹窗中显示的信息。                       |
-| result | [JsResult](./arkts-basic-components-web-JsResult.md) | 是 | 通知Web组件用户操作行为。                       |
+| 名称    | 类型                                                 | 只读 | 可选 | 说明                        |
+| ------- | ---------------------------------------------------- | ---- | ---- | --------------------------- |
+| url     | string                                               | 否   | 否   | 当前显示弹窗的网页的URL。   |
+| message | string                                               | 否   | 否   | 显示在弹窗中的信息。        |
+| result  | [JsResult](./arkts-basic-components-web-JsResult.md) | 否   | 否   | 通知Web组件用户的操作结果。 |
 
 ## OnBeforeUnloadEvent<sup>12+</sup>
 
@@ -157,28 +158,28 @@ Web同层渲染的配置。
 
 ## OnConfirmEvent<sup>12+</sup>
 
-定义网页调用confirm()告警时触发此回调。
+定义网页触发 `confirm()` 弹窗时的回调函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | 是 | 当前显示弹窗所在网页的URL。                       |
-| message | string | 是 | 弹窗中显示的信息。                       |
-| result | [JsResult](./arkts-basic-components-web-JsResult.md) | 是 | 通知Web组件用户操作行为。                       |
+| 名称    | 类型                                                 | 只读 | 可选 | 说明                        |
+| ------- | ---------------------------------------------------- | ---- | ---- | --------------------------- |
+| url     | string                                               | 否   | 否   | 当前显示弹窗的网页的URL。   |
+| message | string                                               | 否   | 否   | 显示在弹窗中的信息。        |
+| result  | [JsResult](./arkts-basic-components-web-JsResult.md) | 否   | 否   | 通知Web组件用户的操作结果。 |
 
 ## OnPromptEvent<sup>12+</sup>
 
-定义网页调用prompt()告警时触发此回调。
+定义网页触发 `prompt()` 弹窗时的回调函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | 是 | 当前显示弹窗所在网页的URL。                       |
-| message | string | 是 | 弹窗中显示的信息。                       |
-| value | string | 是 | 提示对话框的信息。                       |
-| result | [JsResult](./arkts-basic-components-web-JsResult.md) | 是 | 通知Web组件用户操作行为。                       |
+| 名称    | 类型                                                 | 只读 | 可选 | 说明                        |
+| ------- | ---------------------------------------------------- | ---- | ---- | --------------------------- |
+| url     | string                                               | 否   | 否   | 当前显示弹窗的网页的URL。   |
+| message | string                                               | 否   | 否   | 显示在弹窗中的信息。        |
+| value   | string                                               | 否   | 否   | 对话框默认返回的信息。      |
+| result  | [JsResult](./arkts-basic-components-web-JsResult.md) | 否   | 否   | 通知Web组件用户的操作结果。 |
 
 ## OnConsoleEvent<sup>12+</sup>
 
@@ -243,9 +244,9 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| renderExitReason | [RenderExitReason](./arkts-basic-components-web-e.md#renderexitreason9) | 是 | 渲染进程异常退出的具体原因。 |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ------------|---------------------------- |
+| renderExitReason | [RenderExitReason](./arkts-basic-components-web-e.md#renderexitreason9) | 否 | 否 | 渲染进程异常退出的具体原因。 |
 
 ## OnShowFileSelectorEvent<sup>12+</sup>
 
@@ -253,10 +254,10 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| result       | [FileSelectorResult](./arkts-basic-components-web-FileSelectorResult.md) | 是 | 用于通知Web组件文件选择的结果。 |
-| fileSelector | [FileSelectorParam](./arkts-basic-components-web-FileSelectorParam.md) | 是 | 文件选择器的相关信息。       |
+| 名称         | 类型                                                                     | 只读 | 可选 | 说明                            |
+| ------------ | ------------------------------------------------------------------------ | ---- | ---- | ------------------------------- |
+| result       | [FileSelectorResult](./arkts-basic-components-web-FileSelectorResult.md) | 否   | 否   | 用于通知Web组件文件选择的结果。 |
+| fileSelector | [FileSelectorParam](./arkts-basic-components-web-FileSelectorParam.md)   | 否   | 否   | 文件选择器的相关信息。          |
 
 ## OnResourceLoadEvent<sup>12+</sup>
 
@@ -274,10 +275,10 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| oldScale | number | 是 | 变化前的显示比例百分比。 |
-| newScale | number | 是 | 变化后的显示比例百分比。 |
+| 名称     | 类型   | 只读 | 可选 | 说明                     |
+| -------- | ------ | ---- | ---- | ------------------------ |
+| oldScale | number | 否   | 否   | 变化前的显示比例百分比。 |
+| newScale | number | 否   | 否   | 变化后的显示比例百分比。 |
 
 ## OnHttpAuthRequestEvent<sup>12+</sup>
 
@@ -307,9 +308,9 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| request | [PermissionRequest](./arkts-basic-components-web-PermissionRequest.md) | 是 | 通知Web组件用户操作行为。 |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ---- | ---------------------------------------- |
+| request | [PermissionRequest](./arkts-basic-components-web-PermissionRequest.md) | 否 | 否 | 通知Web组件用户操作行为。 |
 
 ## OnScreenCaptureRequestEvent<sup>12+</sup>
 
@@ -317,9 +318,9 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| handler | [ScreenCaptureHandler](./arkts-basic-components-web-ScreenCaptureHandler.md) | 是 | 通知Web组件用户操作行为。 |
+| 名称             | 类型      | 只读 | 可选 | 说明                                       |
+| -------------- | ---- | ---- | ---- | ---------------------------------------- |
+| handler | [ScreenCaptureHandler](./arkts-basic-components-web-ScreenCaptureHandler.md) | 否 | 否 | 通知Web组件用户操作行为。 |
 
 ## OnContextMenuShowEvent<sup>12+</sup>
 
@@ -327,10 +328,10 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| param  | [WebContextMenuParam](./arkts-basic-components-web-WebContextMenuParam.md) | 是 | 菜单相关参数。     |
-| result | [WebContextMenuResult](./arkts-basic-components-web-WebContextMenuResult.md) | 是 | 菜单相应事件传入内核。 |
+| 名称             | 类型      | 只读   | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ---- | ---------------------------------------- |
+| param  | [WebContextMenuParam](./arkts-basic-components-web-WebContextMenuParam.md) | 否 | 否 | 菜单相关参数。     |
+| result | [WebContextMenuResult](./arkts-basic-components-web-WebContextMenuResult.md) | 否 | 否 | 菜单相应事件传入内核。 |
 
 ## OnSearchResultReceiveEvent<sup>12+</sup>
 
@@ -350,10 +351,10 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 只读 | 可选 | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---- | ---- | ---------------------------------------- |
-| xOffset | number |  否   | 否   | 是 | 以网页最左端为基准，水平滚动条滚动所在位置。<br>单位：vp。 |
-| yOffset | number |  否   | 否   | 是 | 以网页最上端为基准，竖直滚动条滚动所在位置。<br>单位：vp。 |
+| 名称             | 类型      | 只读 | 可选 | 说明                                       |
+| -------------- | ---- | ---- | ---- | ---------------------------------------- |
+| xOffset | number |  否   | 否   | 以网页最左端为基准，水平滚动条滚动所在位置。<br>单位：vp。 |
+| yOffset | number |  否   | 否   | 以网页最上端为基准，竖直滚动条滚动所在位置。<br>单位：vp。 |
 
 ## OnSslErrorEventReceiveEvent<sup>12+</sup>
 
@@ -458,9 +459,9 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| playing | boolean | 是 | 当前页面的音频播放状态，true表示正在播放，false表示未播放。 |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ---- | ---------------------------------------- |
+| playing | boolean | 否 | 否 | 当前页面的音频播放状态，true表示正在播放，false表示未播放。 |
 
 ## OnFirstContentfulPaintEvent<sup>12+</sup>
 
@@ -470,8 +471,8 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 只读 | 可选 | 说明                                       |
 | -------------- | ---- | ---- | ---- | ---------------------------------------- |
-| navigationStartTick    | number | 否 | 是 | 启动页面加载开始的时间，单位以微秒表示。          |
-| firstContentfulPaintMs | number | 否 | 是 | 从启动页面加载开始到第一次绘制内容的时间，单位是以毫秒表示。 |
+| navigationStartTick    | number | 否 | 否 | 启动页面加载开始的时间，单位以微秒表示。          |
+| firstContentfulPaintMs | number | 否 | 否 | 从启动页面加载开始到第一次绘制内容的时间，单位是以毫秒表示。 |
 
 ## OnLoadInterceptEvent<sup>12+</sup>
 
@@ -489,10 +490,10 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 只读 | 可选 | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---- | ---- | ---------------------------------------- |
-| xOffset | number |  否   | 否   | 是 | 以网页最左端为基准，水平过度滚动的偏移量。<br>单位：vp。 |
-| yOffset | number |  否   | 否   | 是 | 以网页最上端为基准，竖直过度滚动的偏移量。<br>单位：vp。 |
+| 名称             | 类型      | 只读 | 可选 | 说明                                       |
+| -------------- | ---- | ---- | ---- | ---------------------------------------- |
+| xOffset | number |  否   | 否   | 以网页最左端为基准，水平过度滚动的偏移量。<br>单位：vp。 |
+| yOffset | number |  否   | 否   | 以网页最上端为基准，竖直过度滚动的偏移量。<br>单位：vp。 |
 
 ## JavaScriptProxy<sup>12+</sup>
 
@@ -505,7 +506,7 @@ Web同层渲染的配置。
 | object     | object                                   | 否 | 否    | 参与注册的对象。只能声明方法，不能声明属性。                   |
 | name       | string                                   | 否 | 否    | 注册对象的名称，与window中调用的对象名一致。                |
 | methodList | Array\<string\>                          | 否 | 否    | 参与注册的应用侧JavaScript对象的同步方法。                 |
-| controller | [WebController](./arkts-basic-components-web-WebController.md) \| [WebviewController<sup>9+</sup>](./arkts-apis-webview-WebviewController.md) | 否 | 否    | -    | 控制器。从API version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| controller | [WebController](./arkts-basic-components-web-WebController.md) \| [WebviewController<sup>9+</sup>](./arkts-apis-webview-WebviewController.md) | 否 | 否    |  控制器。从API version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | asyncMethodList<sup>12+</sup>  | Array\<string\>      | 否 | 是    | 参与注册的应用侧JavaScript对象的异步方法。异步方法无法获取返回值。   |
 | permission<sup>12+</sup>  | string  | 否 | 是    | json字符串，默认为空，通过该字符串配置JSBridge的权限管控，可以定义object、method一级的url白名单。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。 |
 
@@ -548,7 +549,7 @@ Web同层渲染的配置。
 | 名称             | 类型      | 只读 | 可选    | 说明                                       |
 | -------------- | ---- | ---- | -------------|--------------------------- |
 | title | string | 否 | 否 | document标题内容。                       |
-| isRealTitle<sup>20+</sup> | boolean | 否 | 是 | document标题来源，true表示来自网页的title标签，false表示该title是根据url自动生成。                       |
+| isRealTitle<sup>20+</sup> | boolean | 否 | 是 | document标题来源，true表示来自网页的title标签，false表示该title是根据url自动生成。 <br>默认值：false |
 
 ## OnGeolocationShowEvent<sup>12+</sup>
 
@@ -556,10 +557,10 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| origin | string | 是 | 指定源的字符串索引。                       |
-| geolocation | [JsGeolocation](./arkts-basic-components-web-JsGeolocation.md) | 是 | 通知Web组件用户操作行为。                       |
+| 名称             | 类型      | 只读 | 可选    | 说明                                       |
+| -------------- | ---- | ---- | -------------|--------------------------- |
+| origin | string | 否 | 否 | 指定源的字符串索引。                       |
+| geolocation | [JsGeolocation](./arkts-basic-components-web-JsGeolocation.md) | 否 | 否 | 通知Web组件用户操作行为。                       |
 
 ## NativeEmbedVisibilityInfo<sup>12+</sup>
 
@@ -569,8 +570,8 @@ Web同层渲染的配置。
 
 | 名称           | 类型                                | 只读 | 可选 | 说明              |
 | -------------  | ------------------------------------| ----- | ----- | ------------------ |
-| visibility     | boolean                             | 否     | 是 | 可见性。<br>true表示可见，false表示不可见。         |
-| embedId        | string                              | 否     | 是 | 同层渲染标签的唯一id。  |
+| visibility     | boolean                             | 否     | 否 | 可见性。<br>true表示可见，false表示不可见。         |
+| embedId        | string                              | 否     | 否 | 同层渲染标签的唯一id。  |
 
 ## RenderProcessNotRespondingData<sup>12+</sup>
 
@@ -590,11 +591,11 @@ Web组件进入全屏回调事件的详情。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型                                  | 必填   | 说明                    |
-| -----------     | ------------------------------------ | ---- | --------------------- |
-| handler     | [FullScreenExitHandler](./arkts-basic-components-web-FullScreenExitHandler.md) | 是    | 用于退出全屏模式的函数句柄。 |
-| videoWidth  | number | 否    | 视频的宽度，单位：px。如果进入全屏的是 `<video>` 元素，表示其宽度；如果进入全屏的子元素中包含 `<video>` 元素，表示第一个子视频元素的宽度；其他情况下，为0。 |
-| videoHeight  | number | 否    | 视频的高度，单位：px。如果进入全屏的是 `<video>` 元素，表示其高度；如果进入全屏的子元素中包含 `<video>` 元素，表示第一个子视频元素的高度；其他情况下，为0。 |
+| 名称             | 类型                                  | 只读 | 可选   | 说明                    |
+| -----------     | ------------------------------------ | ---- | ---- | --------------------- |
+| handler     | [FullScreenExitHandler](./arkts-basic-components-web-FullScreenExitHandler.md) | 否 | 否  | 用于退出全屏模式的函数句柄。 |
+| videoWidth  | number | 否 | 是 | 视频的宽度，单位：px。如果进入全屏的是 `<video>` 元素，表示其宽度；如果进入全屏的子元素中包含 `<video>` 元素，表示第一个子视频元素的宽度；其他情况下，为0。 |
+| videoHeight  | number | 否 | 是  | 视频的高度，单位：px。如果进入全屏的是 `<video>` 元素，表示其高度；如果进入全屏的子元素中包含 `<video>` 元素，表示第一个子视频元素的高度；其他情况下，为0。 |
 
 ## LoadCommittedDetails<sup>11+</sup>
 
@@ -618,15 +619,15 @@ Web组件进入全屏回调事件的详情。
 
 | 名称                | 类型                                  | 只读 | 可选 | 说明                        |
 |-------------------| ------------------------------------ | ---- | ---- |---------------------------|
-| id                | string             | 否    | 否 | 同层标签的id信息。             |
-| type              | string                              | 否    | 否 | 同层标签的type信息，统一为小写字符。   |
-| src               | string                              | 否    | 否 | 同层标签的src信息。            |
-| width             | number  | 否    | 否 | 同层标签的宽，单位为px。          |
-| height            | number                              | 否    | 否 | 同层标签的高，单位为px。          |
-| url               | string                              | 否    | 否 | 同层标签的url信息。            |
-| tag<sup>12+</sup> | string              | 否    | 否 | 标签名，统一为大写字符。              |
-| params<sup>12+</sup>            | Map<string, string> | 否    | 否 | object标签包含的param标签键值对列表，该map本质为Object类型，请使用Object提供的方法操作该对象，即`embed.info?.param?.["name"]`。  |
-| position<sup>12+</sup>          | Position            | 否    | 否 | 同层标签在屏幕坐标系中相对于Web组件的位置信息，此处区别于标准Position，单位为px。 |
+| id                | string             | 否    | 是 | 同层标签的id信息。             |
+| type              | string                              | 否    | 是 | 同层标签的type信息，统一为小写字符。   |
+| src               | string                              | 否    | 是 | 同层标签的src信息。            |
+| width             | number  | 否    | 是 | 同层标签的宽，单位为px。          |
+| height            | number                              | 否    | 是 | 同层标签的高，单位为px。          |
+| url               | string                              | 否    | 是 | 同层标签的url信息。            |
+| tag<sup>12+</sup> | string              | 否    | 是 | 标签名，统一为大写字符。              |
+| params<sup>12+</sup>            | Map<string, string> | 否    | 是 | object标签包含的param标签键值对列表，该map本质为Object类型，请使用Object提供的方法操作该对象，即`embed.info?.param?.["name"]`。  |
+| position<sup>12+</sup>          | Position            | 否    | 是 | 同层标签在屏幕坐标系中相对于Web组件的位置信息，此处区别于标准Position，单位为px。 |
 
 ## IntelligentTrackingPreventionDetails<sup>12+</sup>
 
@@ -659,7 +660,7 @@ Web组件进入全屏回调事件的详情。
 | 名称             | 类型   | 只读   | 可选   | 说明                                       |
 | -------------- | ---- | ---- | ---- | ---------------------------------------- |
 | useSystemKeyboard | boolean  | 否 | 否 | 是否使用系统默认软键盘。<br>true表示使用系统默认软键盘，false表示不使用系统默认软键盘。<br>默认值：true。 |
-| enterKeyType | number | 否 | 是 | 指定系统软键盘enter键的类型，取值范围见输入框架的定义[EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)，该参数为可选参数，当useSystemKeyboard为true，并且设置了有效的enterKeyType时候，才有效。|
+| enterKeyType | number | 否 | 是 | 指定系统软键盘enter键的类型，取值范围见输入框架的定义[EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)，该参数为可选参数，默认值为UNSPECIFIED。当useSystemKeyboard为true，并且设置了有效的enterKeyType时候，才有效。|
 | customKeyboard | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | 否 | 是 | 指定自定义键盘组件builder，可选参数，当useSystemKeyboard为false时，需要设置该参数，然后Web组件会拉起该自定义键盘。
 
 
@@ -671,8 +672,8 @@ Web组件进入全屏回调事件的详情。
 
 | 名称                     | 类型   | 只读 | 可选 | 说明                                   |
 | ------------------------ | ------ | ---- | ---- | -------------------------------------- |
-| navigationStartTime      | number | 否 | 否  | 导航条加载时间，单位以微秒表示。       |
-| firstMeaningfulPaintTime | number | 否 | 否   | 绘制页面主要内容时间，单位以毫秒表示。 |
+| navigationStartTime      | number | 否 | 是  | 导航条加载时间，单位以微秒表示。       |
+| firstMeaningfulPaintTime | number | 否 | 是   | 绘制页面主要内容时间，单位以毫秒表示。 |
 
 ## LargestContentfulPaint<sup>12+</sup>
 
@@ -682,12 +683,12 @@ Web组件进入全屏回调事件的详情。
 
 | 名称                      | 类型   | 只读 | 可选 | 说明                                     |
 | ------------------------- | ------ | ---- | ---- | ---------------------------------------- |
-| navigationStartTime       | number | 否 | 否   | 导航条加载时间，单位以微秒表示。         |
-| largestImagePaintTime     | number | 否 | 否   | 最大图片加载的时间，单位是以毫秒表示。   |
-| largestTextPaintTime      | number | 否 | 否   | 最大文本加载时间，单位是以毫秒表示。     |
-| largestImageLoadStartTime | number | 否 | 否   | 最大图片开始加载时间，单位是以毫秒表示。 |
-| largestImageLoadEndTime   | number | 否 | 否   | 最大图片结束记载时间，单位是以毫秒表示。 |
-| imageBPP                  | number | 否 | 否   | 最大图片像素位数。                           |
+| navigationStartTime       | number | 否 | 是   | 导航条加载时间，单位以微秒表示。         |
+| largestImagePaintTime     | number | 否 | 是   | 最大图片加载的时间，单位是以毫秒表示。   |
+| largestTextPaintTime      | number | 否 | 是   | 最大文本加载时间，单位是以毫秒表示。     |
+| largestImageLoadStartTime | number | 否 | 是   | 最大图片开始加载时间，单位是以毫秒表示。 |
+| largestImageLoadEndTime   | number | 否 | 是   | 最大图片结束记载时间，单位是以毫秒表示。 |
+| imageBPP                  | number | 否 | 是   | 最大图片像素位数。                           |
 
 ## NativeEmbedDataInfo<sup>11+</sup>
 
@@ -697,10 +698,10 @@ Web组件进入全屏回调事件的详情。
 
 | 名称             | 类型                                  | 只读 | 可选   | 说明                    |
 | -----------     | ------------------------------------ | ---- | ---- | --------------------- |
-| status     | [NativeEmbedStatus](./arkts-basic-components-web-e.md#nativeembedstatus11)             | 否    | 否    | 同层标签生命周期状态。 |
-| surfaceId  | string                              | 否 | 否    | NativeImage的psurfaceid。  |
-| embedId | string                              | 否 | 否    | 同层标签的唯一id。  |
-| info  | [NativeEmbedInfo](./arkts-basic-components-web-i.md#nativeembedinfo11)  | 否 | 否    | 同层标签的详细信息。       |
+| status     | [NativeEmbedStatus](./arkts-basic-components-web-e.md#nativeembedstatus11)             | 否    | 是    | 同层标签生命周期状态。 |
+| surfaceId  | string                              | 否 | 是    | NativeImage的psurfaceid。  |
+| embedId | string                              | 否 | 是    | 同层标签的唯一id。  |
+| info  | [NativeEmbedInfo](./arkts-basic-components-web-i.md#nativeembedinfo11)  | 否 | 是    | 同层标签的详细信息。       |
 
 ## NativeEmbedTouchInfo<sup>11+</sup>
 
@@ -710,9 +711,9 @@ Web组件进入全屏回调事件的详情。
 
 | 名称             | 类型                                  | 只读 | 可选   | 说明                    |
 | -----------     | ------------------------------------  | ---- | ---- | --------------------- |
-| embedId     | string   | 否    | 否 | 同层标签的唯一id。 |
-| touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 否 | 否    | 手指触摸动作信息。 |
-| result<sup>12+</sup>     | [EventResult](./arkts-basic-components-web-EventResult.md)   | 否 | 否    | 通知Web组件手势事件的消费结果。 |
+| embedId     | string   | 否    | 是 | 同层标签的唯一id。 |
+| touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 否 | 是    | 手指触摸动作信息。 |
+| result<sup>12+</sup>     | [EventResult](./arkts-basic-components-web-EventResult.md)   | 否 | 是    | 通知Web组件手势事件的消费结果。 |
 
 ## NativeEmbedMouseInfo<sup>20+</sup>
 
@@ -720,11 +721,11 @@ Web组件进入全屏回调事件的详情。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型                                  | 必填   | 说明                    |
-| -----------     | ------------------------------------ | ---- | --------------------- |
-| embedId     | string   | 否    | 同层标签的唯一id。 |
-| mouseEvent  | [MouseEvent](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#mouseevent对象说明)  | 否    | 鼠标/触摸板点击/长按信息。 |
-| result     | [EventResult](./arkts-basic-components-web-EventResult.md)   | 否    | 通知Web组件鼠标事件的消费结果。 |
+| 名称             | 类型                                  | 只读 | 可选   | 说明                    |
+| -----------     | ------------------------------------  | ---- | ---- | --------------------- |
+| embedId     | string   | 否    | 是    | 同层标签的唯一id。 |
+| mouseEvent  | [MouseEvent](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#mouseevent对象说明)  | 否    | 是    | 鼠标/触摸板点击/长按信息。 |
+| result     | [EventResult](./arkts-basic-components-web-EventResult.md)   | 否    | 是   | 通知Web组件鼠标事件的消费结果。 |
 
 ## OnLoadStartedEvent<sup>20+</sup>
 
@@ -732,9 +733,9 @@ Web组件进入全屏回调事件的详情。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | 是 | 页面的URL地址。                       |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ------------|---------------------------- |
+| url | string | 否 | 否 | 页面的URL地址。                       |
 
 ## OnLoadFinishedEvent<sup>20+</sup>
 
@@ -742,9 +743,9 @@ Web组件进入全屏回调事件的详情。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | 是 | 页面的URL地址。                       |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ------------|---------------------------- |
+| url | string | 否 | 否 | 页面的URL地址。                       |
 
 ## OnPdfLoadEvent<sup>20+</sup>
 
@@ -784,6 +785,6 @@ Web屏幕捕获的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称          | 类型                                      | 必填   | 说明         |
-| ----------- | --------------------------------------- | ---- | ---------- |
-| captureMode | [WebCaptureMode](./arkts-basic-components-web-e.md#webcapturemode10) | 是    | Web屏幕捕获模式。 |
+| 名称          | 类型                                      | 只读 | 可选  | 说明         |
+| ----------- | --------------------------------------- | ---- |----| ---------- |
+| captureMode | [WebCaptureMode](./arkts-basic-components-web-e.md#webcapturemode10) | 否 | 否 | Web屏幕捕获模式。 |

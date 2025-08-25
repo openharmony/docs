@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @jiyujia926-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 为了降低反复创建销毁自定义组件带来的性能开销，开发者可以使用\@ReusableV2装饰[\@ComponentV2](./arkts-new-componentV2.md)装饰的自定义组件，达成组件复用的效果。
 
@@ -11,8 +12,9 @@
 
 >**说明：**
 >
->从API version 18开始，可以使用\@ReusableV2装饰\@ComponentV2装饰的自定义组件。
+> 从API version 18开始，可以使用\@ReusableV2装饰\@ComponentV2装饰的自定义组件。
 >
+> 从API version 18开始，该装饰器支持在原子化服务中使用。
 
 ## 概述
 
@@ -49,25 +51,7 @@ struct ReusableV2Component {
 
 ## 接口说明
 
-### ReuseIdCallback
-
-ReuseIdCallback用于计算reuseId，类型为() => string。
-
-### ReuseOptions
-
-ReuseOptions保存了reuseId信息，用于.reuse属性中。
-
-| 属性    | 类型            | 说明                  |
-| ------- | --------------- | --------------------- |
-| reuseId | ReuseIdCallback | 获取reuseId的回调函数 |
-
-### reuse属性
-
-reuse属性用于\@ReusableV2装饰的自定义组件，给组件指定reuseId。相同reuseId的自定义组件会被互相复用。如果未指定reuseId，则使用自定义组件名作为reuseId。
-
-| 参数    | 类型         | 说明                                                   |
-| ------- | ------------ | ------------------------------------------------------ |
-| options | ReuseOptions | reuse的配置选项，例如{reuseId: () => 'reuseComponent'} |
+reuse、ReuseOptions、ReuseIdCallback的接口说明参考API文档：[复用选项](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse.md)。
 
 ```ts
 @Entry

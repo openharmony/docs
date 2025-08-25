@@ -2,8 +2,9 @@
 <!--Kit: Multimodal Awareness Kit-->
 <!--Subsystem: MultimodalAwareness-->
 <!--Owner: @dilligencer-->
-<!--SE: @zou_ye-->
-<!--TSE: @judan-->
+<!--Designer: @zou_ye-->
+<!--Tester: @judan-->
+<!--Adviser: @hu-zhiqiong-->
 
 本模块，提供对用户行为、动作的感知能力，包括用户的手势、动作等。
 
@@ -79,13 +80,14 @@ on(type: 'operatingHandChanged', callback: Callback&lt;OperatingHandStatus&gt;):
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { Callback } from '@ohos.base';
 
-callback(data:motion.OperatingHandStatus) {
-    console.info('callback success' + data);
+let callback:Callback<motion.OperatingHandStatus> = (data:motion.OperatingHandStatus) => {
+    console.info('callback succeeded' + data);
 };
 
 try {
-    motion.on('operatingHandChanged', this.callback);  
+    motion.on('operatingHandChanged', callback);  
     console.info("on succeeded");
 } catch (err) {
     let error = err as BusinessError;
@@ -169,7 +171,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let data:motion.OperatingHandStatus = motion.getRecentOperatingHandStatus();
-    console.info('get success' + data);
+    console.info('get succeeded' + data);
 } catch (err) {
     let error = err as BusinessError;
     console.error("Failed get and err code is " + error.code);
@@ -208,9 +210,10 @@ on(type: 'holdingHandChanged', callback: Callback&lt;HoldingHandStatus&gt;): voi
 
 ```typescript
 import { BusinessError } from '@kit.BasicServicesKit';
+import { Callback } from '@ohos.base';
 
-callback(data: motion.HoldingHandStatus) {
-  console.info('callback success: ' + data);
+let callback:Callback<motion.HoldingHandStatus> = (data:motion.HoldingHandStatus) => {
+  console.info('callback succeeded: ' + data);
 };
 
 try {

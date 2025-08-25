@@ -1,5 +1,13 @@
 # Ability Kit（程序框架服务）<!--ability-kit-->
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @jayleehw-->
+<!--Designer: @jayleehw-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+
 - [Ability Kit简介](abilitykit-overview.md)
 - [应用模型](application-models.md)
 - Stage模型开发指导<!--stage-model-development-->
@@ -19,12 +27,12 @@
       - [ServiceExtensionAbility（仅对系统应用开放）](serviceextensionability.md)
       - [UIServiceExtension（仅对系统应用开放）](uiserviceextension-sys.md)
       - [UIExtensionAbility（仅对系统应用开放）](uiextensionability.md)
-      - [AutoFillExtensionAbility（仅对系统应用开放）](autofillextensionablility-guide.md)
-      <!--DelEnd-->
+      - [使用AutoFillExtensionAbility实现自动填充功能（仅对系统应用开放）](autofillextensionablility-guide.md)
       - [使用通过UIServiceExtensionAbility实现的系统悬浮窗](uiserviceextension.md)
+      <!--DelEnd-->
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
       - [使用AppServiceExtensionAbility实现后台服务](app-service-extension-ability.md)
-    - [AbilityStage组件容器](abilitystage.md)
+    - [AbilityStage组件管理器](abilitystage.md)
     - [应用上下文Context](application-context-stage.md)
     - 信息传递载体Want<!--want-->
       - [Want概述](want-overview.md)
@@ -162,3 +170,4 @@
 - Native子进程开发指导<!--native-childprocess-development-->
     - [创建Native子进程](capi_nativechildprocess_development_guideline.md)
     - [获取Native子进程退出信息](capi-nativechildprocess-exit-info.md)
+- [Ability Kit术语](ability-terminology.md)

@@ -1,8 +1,14 @@
 # Requesting One-Time User Authorization
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 To comply with the minimum authorization principle and protect user data against unauthorized access from applications and abuse, the **Allow this time only** option is added to the user authorization dialog box for certain sensitive permissions.
 
-No additional configuration is required in application development. When **requestPermissionsFromUser()** is called to [request user authorization](request-user-authorization.md), the system displays a dialog box based on the [requested permissions](#supported-permissions).
+During development, simply call requestPermissionsFromUser()[Requesting User Authorization](request-user-authorization.md) without any additional configurations. The system displays a dialog box based on the [requested permissions](#supported-permissions).
 
 The following figure shows an example of the user authorization dialog box.
 

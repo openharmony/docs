@@ -1,4 +1,10 @@
 # Notification Error Codes
+<!--Kit: Notification Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 > **NOTE**
 >
@@ -353,7 +359,7 @@ Check whether the queried Do Not Disturb profile ID is correct.
 
 **Error Message**
 
-The application is not allowed to publish notifications due to permission control settings.
+The application is not allowed to send notifications due to permission settings.
 
 **Description**
 
@@ -365,7 +371,7 @@ The application is restricted by the enterprise-customized devices.
 
 **Solution**
 
-The application is under permission control of [Enterprise Device Manager](../../mdm/mdm-kit-admin.md) and it cannot exit the permission control list automatically.
+The application is under permission control of [Enterprise Device Manager](../../mdm/mdm-kit-intro.md) and it cannot exit the permission control list automatically.
 
 ## 1600021 Cross-Device Communication Timeout
 
@@ -384,40 +390,3 @@ Device connection error.
 **Solution**
 
 Make sure that devices (for example, mobile phone and the watch) are properly connected.
-
-## 2300007 Network Access Failure
-
-**Error Message**
-
-Network unreachable.
-
-**Description**
-
-This error code is reported when the network cannot be accessed.
-
-**Possible Causes**
-
-The network cannot be accessed.
-
-**Solution**
-
-Check the network status.
-
-## 17700001 Bundle Name Not Found
-
-**Error Message**
-
-The specified bundle name was not found.
-
-**Description**
-
-This error code is reported when the bundle name is incorrect or the application is not installed.
-
-**Possible Causes**
-
-1. The bundle name is incorrect.
-2. The application is not installed.
-
-**Solution**
-
-Verify the bundle name and make sure the application is installed.

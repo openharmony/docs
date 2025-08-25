@@ -1,15 +1,21 @@
 # Workflow for Requesting Permissions
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
 You need to determine whether your application needs related permissions before accessing data or performing an operation. If permissions are required, request the permissions in the application installation package.
 
 The procedure for requesting a permission varies depending on the permission level and authorization mode. Before requesting a permission, you need to:
 
-1. Determine the permission type in the related permission list.
+1. Determine the permission type of the target permission by referring to the permission list.
 2. Request the permission by following the corresponding operation path.
 
- 
+You can request a permission based on its level and authorization mode by referring to the following operation paths.
 
-## Requesting Permissions for <!--Del-->normal <!--DelEnd-->Applications
+## <!--Del-->Requesting Permissions for <!--Del-->normal <!--DelEnd-->Applications
 
 | Permission Type| Authorization Mode| Operation Path|
 | -------- | -------- | -------- |
@@ -37,7 +43,7 @@ To change the application APL to system_basic or system_core, modify the Harmony
 
 **Example**
 
-Modify the **"bundle-info"** &gt; **"apl"** field in the file.
+Modify the **"bundle-info"** &gt; **"apl"** field in the **HarmonyAppProvision** configuration file.
 
 ```json
 "bundle-info" : {
@@ -48,6 +54,7 @@ Modify the **"bundle-info"** &gt; **"apl"** field in the file.
 ```
 
 > **NOTE**
-> Modifying the HarmonyAppProvision configuration file applies to the applications in the debug phase, but not to the applications released to the app market. For a commercial application, apply for a release certificate and profile in the app market.
+>
+> Modifying the **HarmonyAppProvision** configuration file applies to the applications in the debug phase, but not to the applications released to the app market. For a commercial application, apply for a release certificate and profile in the app market.
 
 <!--DelEnd-->

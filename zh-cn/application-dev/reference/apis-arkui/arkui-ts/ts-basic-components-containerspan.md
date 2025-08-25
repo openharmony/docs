@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiangyuan6-->
-<!--SE: @pssea-->
-<!--TSE: @jiaoaozihao-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 [Text](ts-basic-components-text.md)组件的子组件，用于统一管理多个[Span](ts-basic-components-span.md)、[ImageSpan](ts-basic-components-imagespan.md)的背景色及圆角弧度。
 
@@ -77,6 +78,7 @@ struct Index {
     Column() {
       Text() {
         ContainerSpan() {
+          // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
           ImageSpan($r('app.media.app_icon'))
             .width('40vp')
             .height('40vp')
@@ -114,6 +116,7 @@ struct ContainerSpanModifierExample {
     Column() {
       Text() {
         ContainerSpan() {
+          // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
           ImageSpan($r('app.media.app_icon'))
             .width('40vp')
             .height('40vp')

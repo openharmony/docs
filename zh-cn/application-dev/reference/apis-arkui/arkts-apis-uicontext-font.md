@@ -1,4 +1,10 @@
 # Class (Font)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @hddgzw-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 注册自定义字体的信息。
 
@@ -9,6 +15,8 @@
 > - 本Class首批接口从API version 10开始支持。
 >
 > - 以下API需先使用UIContext中的[getFont()](./arkts-apis-uicontext-uicontext.md#getfont)方法获取到Font对象，再通过该对象调用对应方法。
+>
+> - 推荐使用字体引擎的[loadFontSync](../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)接口注册自定义字体。
 
 ## registerFont
 
@@ -26,7 +34,7 @@ registerFont(options: font.FontOptions): void
 
 | 参数名     | 类型                                       | 必填   | 说明          |
 | ------- | ---------------------------------------- | ---- | ----------- |
-| options | [font.FontOptions](js-apis-font.md#fontoptions) | 是    | 注册的自定义字体信息。 |
+| options | [font.FontOptions](js-apis-font.md#fontoptions) | 是    | 注册的自定义字体信息。<br/>**说明：**<br/>设置注册字体文件的路径，读取系统沙箱路径内的资源时，建议使用file://路径前缀的字符串，需要确保沙箱目录路径下的文件存在并且有可读权限。 |
 
 **示例：**
 
@@ -65,9 +73,9 @@ getSystemFontList(): Array\<string>
 
 获取系统支持的字体名称列表。
 
->  **说明：**
->
->  该接口仅在2in1设备上生效。
+该接口仅在PC/2in1设备上生效，在其他设备上返回空数组。
+
+推荐使用[getSystemFontFullNamesByType](../apis-arkgraphics2d/js-apis-graphics-text.md#textgetsystemfontfullnamesbytype14)接口获取系统最新支持的字体列表数据。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -101,7 +109,7 @@ struct Index {
         .height('6%')
         .onClick(() => {
           this.fontList = this.font.getSystemFontList();
-          console.log('getSystemFontList', JSON.stringify(this.fontList))
+          console.info('getSystemFontList', JSON.stringify(this.fontList))
         })
     }.width('100%')
   }
@@ -142,7 +150,7 @@ import { Font, font } from '@kit.ArkUI';
 struct Index {
   private uiContext: UIContext = this.getUIContext();
   private font: Font = this.uiContext.getFont();
-  fontInfo: font.FontInfo = this.font.getFontByName('')
+  fontInfo: font.FontInfo = this.font.getFontByName('');
 
   build() {
     Column() {
@@ -154,8 +162,8 @@ struct Index {
           console.info("getFontByName(): path = " + this.fontInfo.path);
           console.info("getFontByName(): postScriptName = " + this.fontInfo.postScriptName);
           console.info("getFontByName(): fullName = " + this.fontInfo.fullName);
-          console.info("getFontByName(): Family = " + this.fontInfo.family);
-          console.info("getFontByName(): Subfamily = " + this.fontInfo.subfamily);
+          console.info("getFontByName(): family = " + this.fontInfo.family);
+          console.info("getFontByName(): subfamily = " + this.fontInfo.subfamily);
           console.info("getFontByName(): weight = " + this.fontInfo.weight);
           console.info("getFontByName(): width = " + this.fontInfo.width);
           console.info("getFontByName(): italic = " + this.fontInfo.italic);

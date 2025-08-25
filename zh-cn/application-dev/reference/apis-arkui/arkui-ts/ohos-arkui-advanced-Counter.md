@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xieziang-->
-<!--SE: @youzhi92-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @youzhi92-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @HelloCrease-->
 
 Counter组件用于精确调节数值。
 

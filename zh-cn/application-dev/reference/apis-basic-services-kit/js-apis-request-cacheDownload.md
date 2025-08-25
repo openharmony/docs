@@ -2,8 +2,9 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Request-->
 <!--Owner: @huaxin05-->
-<!--SE: @hu-kai45-->
-<!--TSE: @murphy1984-->
+<!--Designer: @hu-kai45-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 request部件主要给应用提供上传下载文件、后台传输代理的基础能力。
 
@@ -83,7 +84,7 @@ import { cacheDownload } from '@kit.BasicServicesKit';
 
 ## cacheDownload.download
 
-download(url: string, options: CacheDownloadOptions)
+download(url: string, options: CacheDownloadOptions): void
 
 启动一个缓存下载任务，若传输成功，则将数据下载到内存缓存和文件缓存中。
 
@@ -133,7 +134,7 @@ download(url: string, options: CacheDownloadOptions)
 
 ## cacheDownload.cancel
 
-cancel(url: string)
+cancel(url: string): void
 
 根据url移除一个正在执行的缓存下载任务，已保存的内存缓存和文件缓存不会受到影响。
 
@@ -184,7 +185,7 @@ cancel(url: string)
 
 ## cacheDownload.setMemoryCacheSize
 
-setMemoryCacheSize(bytes: number)
+setMemoryCacheSize(bytes: number): void
 
 设置缓存下载组件能够保存的内存缓存上限。
 
@@ -223,13 +224,15 @@ setMemoryCacheSize(bytes: number)
 
 ## cacheDownload.setFileCacheSize
 
-setFileCacheSize(bytes: number)
+setFileCacheSize(bytes: number): void
 
-设置缓存下载组件能够保存的文件缓存上限。
+设置缓存下载组件能够保存的文件缓存的上限。
 
 - 使用该接口调整缓存大小时，默认使用“LRU”（最近最少使用）方式清除多余的已缓存的文件缓存内容。
 
-- 该方法为同步方法，不阻塞调用线程。
+- 使用该接口时，若bytes设置为0，将会删除所有缓存文件。
+
+- 该方法为同步方法，不会阻塞调用线程。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
 
@@ -259,6 +262,12 @@ setFileCacheSize(bytes: number)
     console.error(`Failed to set file cache size. err code: ${err.code}, err message: ${err.message}`);
   }
   ```
+
+> ​**说明：​**​
+>
+> * 预下载模块下载的网络缓存文件会保存在应用沙箱的缓存目录中。
+> * 应用可以借助该接口的能力达成清理缓存文件的目的。
+> * 不建议应用直接对缓存目录和文件进行修改，以避免功能异常。
 
 ## cacheDownload.setDownloadInfoListSize<sup>20+</sup>
 

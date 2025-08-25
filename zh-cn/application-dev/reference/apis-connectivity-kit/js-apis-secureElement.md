@@ -1,5 +1,12 @@
 # @ohos.secureElement (安全单元的通道管理)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @amunra03-->
+<!--Designer: @wenxiaolin-->
+<!--Tester: @zs_111-->
+<!--Adviser: @zhang_yixin13-->
+
 本模块主要用于操作及管理安全单元（SecureElement，简称SE），电子设备上可能存在的安全单元有eSE（Embedded SE）和SIM卡。文档中出现的SE服务为SEService实例，参见[createService](#omapicreateservice12)。
 
 对于文档中出现以下类型说明：
@@ -279,6 +286,8 @@ function secureElementDemo() {
     }
     if (seReaders == undefined || seReaders.length == 0) {
         hilog.error(0x0000, 'testTag', 'no valid reader found.');
+        // 释放SeService资源
+        seService.shutdown();
         return;
     }
 }
@@ -582,6 +591,8 @@ function secureElementDemo() {
     }
     if (seSession == undefined) {
         hilog.error(0x0000, 'testTag', 'seSession invalid.');
+        // 释放SeService资源
+        seService.shutdown();
         return;
     }
     try {

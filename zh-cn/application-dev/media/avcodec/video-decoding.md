@@ -1,5 +1,12 @@
 # 视频解码
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zhanghongran-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
+<!--Adviser: @zengyawen-->
+
 开发者可以调用本模块的Native API接口，完成视频解码，即将媒体数据解码成YUV文件或送显。
 
 <!--RP3--><!--RP3End-->
@@ -18,15 +25,14 @@
 
 ## 限制约束
 
-1. Buffer模式不支持HDR Vivid解码。
-2. Flush，Reset，Stop之后，重新Start时，需要重新传PPS/SPS。具体示例请参考[Surface模式](#surface模式)“步骤-13：调用OH_VideoDecoder_Flush()”。
-3. Flush，Reset，Stop，Destroy在非回调线程中执行时，会等待所有回调执行完成后，将执行结果返回给开发者。
-4. 由于硬件解码器资源有限，每个解码器在使用完毕后都必须调用OH_VideoDecoder_Destroy接口来销毁实例并释放资源。
-5. 视频解码输入码流仅支持AnnexB格式，且支持的AnnexB格式支持多slice，要求同一帧的多个slice一次送入解码器。
-6. 在调用Flush，Reset，Stop的过程中，开发者不应对之前回调函数获取到的OH_AVBuffer继续进行操作。
-7. DRM解密能力在[Surface模式](#surface模式)下既支持非安全视频通路，也支持安全视频通路，在[Buffer模式](#buffer模式)下仅支持非安全视频通路。
-8. Buffer模式和Surface模式使用方式一致的接口，所以只提供了Surface模式的示例。
-9. 在Buffer模式下，开发者通过输出回调函数OH_AVCodecOnNewOutputBuffer获取到OH_AVBuffer的指针实例后，必须通过调用OH_VideoDecoder_FreeOutputBuffer接口来通知系统该实例已被使用完毕。这样系统才能够将后续解码的数据写入到相应的位置。如果开发者在调用OH_AVBuffer_GetNativeBuffer接口时获取到OH_NativeBuffer指针实例，并且该实例的生命周期超过了当前的OH_AVBuffer指针实例，那么需要进行一次数据的拷贝操作。在这种情况下，开发者需要自行管理新生成的OH_NativeBuffer实例的生命周期，确保其正确使用和释放。
+1. Flush，Reset，Stop之后，重新Start时，需要重新传PPS/SPS。具体示例请参考[Surface模式](#surface模式)“步骤-13：调用OH_VideoDecoder_Flush()”。
+2. Flush，Reset，Stop，Destroy在非回调线程中执行时，会等待所有回调执行完成后，将执行结果返回给开发者。
+3. 由于硬件解码器资源有限，每个解码器在使用完毕后都必须调用OH_VideoDecoder_Destroy接口来销毁实例并释放资源。
+4. 视频解码输入码流仅支持AnnexB格式，且支持的AnnexB格式支持多slice，要求同一帧的多个slice一次送入解码器。
+5. 在调用Flush，Reset，Stop的过程中，开发者不应对之前回调函数获取到的OH_AVBuffer继续进行操作。
+6. DRM解密能力在[Surface模式](#surface模式)下既支持非安全视频通路，也支持安全视频通路，在[Buffer模式](#buffer模式)下仅支持非安全视频通路。
+7. Buffer模式和Surface模式使用方式一致的接口，所以只提供了Surface模式的示例。
+8. 在Buffer模式下，开发者通过输出回调函数OH_AVCodecOnNewOutputBuffer获取到OH_AVBuffer的指针实例后，必须通过调用OH_VideoDecoder_FreeOutputBuffer接口来通知系统该实例已被使用完毕。这样系统才能够将后续解码的数据写入到相应的位置。如果开发者在调用OH_AVBuffer_GetNativeBuffer接口时获取到OH_NativeBuffer指针实例，并且该实例的生命周期超过了当前的OH_AVBuffer指针实例，那么需要进行一次数据的拷贝操作。在这种情况下，开发者需要自行管理新生成的OH_NativeBuffer实例的生命周期，确保其正确使用和释放。
 <!--RP6--><!--RP6End-->
 
 ## surface输出与buffer输出
@@ -262,8 +268,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 可通过format获取到变化后的视频宽、高等。
         (void)codec;
         (void)userData;
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, &width);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, &height);
+        bool ret = OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, &width) &&
+                   OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, &height);
+        if (!ret) {
+         	// 异常处理。
+        }
     }
 
     // 解码输入回调OH_AVCodecOnNeedInputBuffer实现。
@@ -286,7 +295,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     // 配置异步回调，调用 OH_VideoDecoder_RegisterCallback 接口。
     OH_AVCodecCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputBuffer, &OnNewOutputBuffer};
     // 配置异步回调。
-    int32_t ret = OH_VideoDecoder_RegisterCallback(videoDec, cb, nullptr); // nullptr:开发者执行回调所依赖的数据userData为空。
+    OH_AVErrCode ret = OH_VideoDecoder_RegisterCallback(videoDec, cb, nullptr); // nullptr:开发者执行回调所依赖的数据userData为空。
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
@@ -363,20 +372,22 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     ```c++
 
-    OH_AVFormat *format = OH_AVFormat_Create();
+    auto format = std::shared_ptr<OH_AVFormat>(OH_AVFormat_Create(), OH_AVFormat_Destroy);
+    if (format == nullptr) {
+        // 异常处理。
+    }
     // 写入format。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width); // 必须配置。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height); // 必须配置。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, pixelFormat);
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_WIDTH, width); // 必须配置。
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_HEIGHT, height); // 必须配置。
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_PIXEL_FORMAT, pixelFormat);
     // 可选，配置低时延解码。
     // 若平台支持，当使能OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY接口时，视频解码器将按照解码序输出帧。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY, 1);
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY, 1);
     // 配置解码器。
-    int32_t ret = OH_VideoDecoder_Configure(videoDec, format);
+    OH_AVErrCode ret = OH_VideoDecoder_Configure(videoDec, format.get());
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
-    OH_AVFormat_Destroy(format);
     ```
 
 6. 设置surface。
@@ -414,7 +425,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```c++
     // 设置surface。
     // 配置送显窗口参数。
-    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, nativeWindow);  // nativeWindow通过以上两种方式获取。
+    OH_AVErrCode ret = OH_VideoDecoder_SetSurface(videoDec, nativeWindow);  // nativeWindow通过以上两种方式获取。
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
@@ -435,7 +446,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     该接口将在解码器运行前进行一些数据的准备工作。
 
     ```c++
-    int32_t ret = OH_VideoDecoder_Prepare(videoDec);
+    OH_AVErrCode ret = OH_VideoDecoder_Prepare(videoDec);
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
@@ -445,7 +456,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     ```c++
     // 启动解码器，开始解码。
-    int32_t ret = OH_VideoDecoder_Start(videoDec);
+    OH_AVErrCode ret = OH_VideoDecoder_Start(videoDec);
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
@@ -455,14 +466,16 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
 
     ```c++
-    OH_AVFormat *format = OH_AVFormat_Create();
+    auto format = std::shared_ptr<OH_AVFormat>(OH_AVFormat_Create(), OH_AVFormat_Destroy);
+    if (format == nullptr) {
+        // 异常处理。
+    }
     // 配置显示旋转角度。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_ROTATION, 90);
-    int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_ROTATION, 90);
+    OH_AVErrCode ret = OH_VideoDecoder_SetParameter(videoDec, format.get());
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
-    OH_AVFormat_Destroy(format);
     ```
 
 10. （可选）调用OH_AVCencInfo_SetAVBuffer()，设置cencInfo。
@@ -555,10 +568,10 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     // 写入码流数据。
     uint8_t *addr = OH_AVBuffer_GetAddr(bufferInfo->buffer);
     if (addr == nullptr) {
-       // 异常处理 
+       // 异常处理。
     }
-    int32_t capcacity = OH_AVBuffer_GetCapacity(bufferInfo->buffer);
-    if (size > capcacity) {
+    int32_t capacity = OH_AVBuffer_GetCapacity(bufferInfo->buffer);
+    if (size > capacity) {
         // 异常处理。
     }
     memcpy(addr, frameData, size);
@@ -569,13 +582,13 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     info.pts = pts;
     info.flags = flags;
     // info信息写入buffer。
-    int32_t ret = OH_AVBuffer_SetBufferAttr(bufferInfo->buffer, &info);
-    if (ret != AV_ERR_OK) {
+    OH_AVErrCode setBufferRet = OH_AVBuffer_SetBufferAttr(bufferInfo->buffer, &info);
+    if (setBufferRet != AV_ERR_OK) {
         // 异常处理。
     }
     // 送入解码输入队列进行解码。
-    ret = OH_VideoDecoder_PushInputBuffer(videoDec, bufferInfo->index);
-    if (ret != AV_ERR_OK) {
+    OH_AVErrCode pushInputRet = OH_VideoDecoder_PushInputBuffer(videoDec, bufferInfo->index);
+    if (pushInputRet != AV_ERR_OK) {
         // 异常处理。
     }
     ```
@@ -596,13 +609,14 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     // 获取解码后信息。
     OH_AVCodecBufferAttr info;
-    int32_t ret = OH_AVBuffer_GetBufferAttr(bufferInfo->buffer, &info);
-    if (ret != AV_ERR_OK) {
+    OH_AVErrCode getBufferRet = OH_AVBuffer_GetBufferAttr(bufferInfo->buffer, &info);
+    if (getBufferRet != AV_ERR_OK) {
         // 异常处理。
     }
     // 值由开发者决定。
     bool isRender;
     bool isNeedRenderAtTime;
+    OH_AVErrCode ret = AV_ERR_OK;
     if (isRender) {
         // 显示并释放已完成处理的信息，index为对应buffer队列的下标。
         if (isNeedRenderAtTime){
@@ -611,7 +625,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
                 std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count();
             ret = OH_VideoDecoder_RenderOutputBufferAtTime(videoDec, bufferInfo->index, renderTimestamp);
         } else {
-           ret = OH_VideoDecoder_RenderOutputBuffer(videoDec, bufferInfo->index);
+            ret = OH_VideoDecoder_RenderOutputBuffer(videoDec, bufferInfo->index);
         }
 
     } else {
@@ -641,15 +655,15 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```c++
     std::unique_lock<std::shared_mutex> lock(codecMutex);
     // 刷新解码器videoDec。
-    int32_t ret = OH_VideoDecoder_Flush(videoDec);
-    if (ret != AV_ERR_OK) {
+    OH_AVErrCode flushRet = OH_VideoDecoder_Flush(videoDec);
+    if (flushRet != AV_ERR_OK) {
         // 异常处理。
     }
     inQueue.Flush();
     outQueue.Flush();
     // 重新开始解码。
-    ret = OH_VideoDecoder_Start(videoDec);
-    if (ret != AV_ERR_OK) {
+    OH_AVErrCode startRet = OH_VideoDecoder_Start(videoDec);
+    if (startRet != AV_ERR_OK) {
         // 异常处理。
     }
 
@@ -663,21 +677,21 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     if (addr == nullptr) {
        // 异常处理 
     }
-    int32_t capcacity = OH_AVBuffer_GetCapacity(bufferInfo->buffer);
-    if (xpsSize > capcacity) {
+    int32_t capacity = OH_AVBuffer_GetCapacity(bufferInfo->buffer);
+    if (xpsSize > capacity) {
         // 异常处理。
     }
     memcpy(addr, xpsData, xpsSize);
     OH_AVCodecBufferAttr info;
     info.flags = AVCODEC_BUFFER_FLAG_CODEC_DATA;
     // info信息写入buffer。
-    ret = OH_AVBuffer_SetBufferAttr(bufferInfo->buffer, &info);
-    if (ret != AV_ERR_OK) {
+    OH_AVErrCode setBufferRet = OH_AVBuffer_SetBufferAttr(bufferInfo->buffer, &info);
+    if (setBufferRet != AV_ERR_OK) {
         // 异常处理。
     }
     // 将帧数据推送到解码器中，index为对应buffer队列的下标。
-    ret = OH_VideoDecoder_PushInputBuffer(videoDec, bufferInfo->index);
-    if (ret != AV_ERR_OK) {
+    OH_AVErrCode pushInputRet = OH_VideoDecoder_PushInputBuffer(videoDec, bufferInfo->index);
+    if (pushInputRet != AV_ERR_OK) {
         // 异常处理。
     }
 
@@ -694,27 +708,29 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```c++
     std::unique_lock<std::shared_mutex> lock(codecMutex);
     // 重置解码器videoDec。
-    int32_t ret = OH_VideoDecoder_Reset(videoDec);
-    if (ret != AV_ERR_OK) {
+    OH_AVErrCode resetRet = OH_VideoDecoder_Reset(videoDec);
+    if (resetRet != AV_ERR_OK) {
         // 异常处理。
     }
     inQueue.Flush();
     outQueue.Flush();
     // 重新配置解码器参数。
-    OH_AVFormat *format = OH_AVFormat_Create();
-    ret = OH_VideoDecoder_Configure(videoDec, format);
-    if (ret != AV_ERR_OK) {
+    auto format = std::shared_ptr<OH_AVFormat>(OH_AVFormat_Create(), OH_AVFormat_Destroy);
+    if (format == nullptr) {
         // 异常处理。
     }
-    OH_AVFormat_Destroy(format);
+    OH_AVErrCode configRet = OH_VideoDecoder_Configure(videoDec, format.get());
+    if (configRet != AV_ERR_OK) {
+        // 异常处理。
+    }
     // Surface模式重新配置surface，而Buffer模式不需要配置surface。
-    ret = OH_VideoDecoder_SetSurface(videoDec, nativeWindow);
-    if (ret != AV_ERR_OK) {
+    OH_AVErrCode setRet = OH_VideoDecoder_SetSurface(videoDec, nativeWindow);
+    if (setRet != AV_ERR_OK) {
         // 异常处理。
     }
     // 解码器重新就绪。
-    ret = OH_VideoDecoder_Prepare(videoDec);
-    if (ret != AV_ERR_OK) {
+    OH_AVErrCode prepareRet = OH_VideoDecoder_Prepare(videoDec);
+    if (prepareRet != AV_ERR_OK) {
         // 异常处理。
     }
     ```
@@ -726,7 +742,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```c++
     std::unique_lock<std::shared_mutex> lock(codecMutex);
     // 终止解码器videoDec。
-    int32_t ret = OH_VideoDecoder_Stop(videoDec);
+    OH_AVErrCode ret = OH_VideoDecoder_Stop(videoDec);
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
@@ -750,7 +766,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         nativeWindow = nullptr;
     }
     // 调用OH_VideoDecoder_Destroy，注销解码器。
-    int32_t ret = AV_ERR_OK;
+    OH_AVErrCode ret = AV_ERR_OK;
     if (videoDec != nullptr) {
         ret = OH_VideoDecoder_Destroy(videoDec);
         videoDec = nullptr;
@@ -834,15 +850,18 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 可通过format获取到变化后的视频宽、高、跨距等。
         (void)codec;
         (void)userData;
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, &width);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, &height);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, &widthStride);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, &heightStride);
-        // 获取裁剪矩形信息可选。
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_TOP, &cropTop);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_BOTTOM, &cropBottom);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_LEFT, &cropLeft);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_RIGHT, &cropRight);
+        bool ret = OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, &width) &&
+                   OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, &height) &&
+                   OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, &widthStride) &&
+                   OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, &heightStride) &&
+                   // 获取裁剪矩形信息可选。
+                   OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_TOP, &cropTop) &&
+                   OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_BOTTOM, &cropBottom) &&
+                   OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_LEFT, &cropLeft) &&
+                   OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_RIGHT, &cropRight);
+        if (!ret) {
+         	// 异常处理。
+        }
     }
     
     // 解码输入回调OH_AVCodecOnNeedInputBuffer实现。
@@ -860,17 +879,22 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 可选，开发者需要获取视频宽、高、跨距等时可配置。
         // 获取视频宽、高、跨距。
         if (isFirstFrame) {
-            OH_AVFormat *format = OH_VideoDecoder_GetOutputDescription(codec);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, &width);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, &height);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, &widthStride);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, &heightStride);
-            // 获取裁剪矩形信息可选。
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_TOP, &cropTop);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_BOTTOM, &cropBottom);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_LEFT, &cropLeft);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_RIGHT, &cropRight);
-            OH_AVFormat_Destroy(format);
+            auto format = std::shared_ptr<OH_AVFormat>(OH_VideoDecoder_GetOutputDescription(codec), OH_AVFormat_Destroy);
+            if (format == nullptr) {
+                // 异常处理。
+            }
+            bool ret = OH_AVFormat_GetIntValue(format.get(), OH_MD_KEY_VIDEO_PIC_WIDTH, &width) &&
+                       OH_AVFormat_GetIntValue(format.get(), OH_MD_KEY_VIDEO_PIC_HEIGHT, &height) &&
+                       OH_AVFormat_GetIntValue(format.get(), OH_MD_KEY_VIDEO_STRIDE, &widthStride) &&
+                       OH_AVFormat_GetIntValue(format.get(), OH_MD_KEY_VIDEO_SLICE_HEIGHT, &heightStride) &&
+                       // 获取裁剪矩形信息可选。
+                       OH_AVFormat_GetIntValue(format.get(), OH_MD_KEY_VIDEO_CROP_TOP, &cropTop) &&
+                       OH_AVFormat_GetIntValue(format.get(), OH_MD_KEY_VIDEO_CROP_BOTTOM, &cropBottom) &&
+                       OH_AVFormat_GetIntValue(format.get(), OH_MD_KEY_VIDEO_CROP_LEFT, &cropLeft) &&
+                       OH_AVFormat_GetIntValue(format.get(), OH_MD_KEY_VIDEO_CROP_RIGHT, &cropRight);
+            if (!ret) {
+             	// 异常处理。
+            }
             isFirstFrame = false;
         }
         // 完成帧的数据buffer和对应的index送入outQueue队列。
@@ -880,7 +904,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     // 配置异步回调，调用OH_VideoDecoder_RegisterCallback接口。
     OH_AVCodecCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputBuffer, &OnNewOutputBuffer};
     // 配置异步回调。
-    int32_t ret = OH_VideoDecoder_RegisterCallback(videoDec, cb, nullptr); // nullptr:开发者执行回调所依赖的数据userData为空。
+    OH_AVErrCode ret = OH_VideoDecoder_RegisterCallback(videoDec, cb, nullptr); // nullptr:开发者执行回调所依赖的数据userData为空。
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
@@ -944,17 +968,19 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     与Surface模式相同，此处不再赘述。
 
     ```c++
-    OH_AVFormat *format = OH_AVFormat_Create();
+    auto format = std::shared_ptr<OH_AVFormat>(OH_AVFormat_Create(), OH_AVFormat_Destroy);
+    if (format == nullptr) {
+        // 异常处理。
+    }
     // 写入format。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width); // 必须配置。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height); // 必须配置。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, pixelFormat);
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_WIDTH, width); // 必须配置。
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_HEIGHT, height); // 必须配置。
+    OH_AVFormat_SetIntValue(format.get(), OH_MD_KEY_PIXEL_FORMAT, pixelFormat);
     // 配置解码器。
-    int32_t ret = OH_VideoDecoder_Configure(videoDec, format);
+    OH_AVErrCode ret = OH_VideoDecoder_Configure(videoDec, format.get());
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
-    OH_AVFormat_Destroy(format);
     ```
 
 6. 调用OH_VideoDecoder_Prepare()解码器就绪。
@@ -962,7 +988,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     该接口将在解码器运行前进行一些数据的准备工作。
 
     ```c++
-    int32_t ret = OH_VideoDecoder_Prepare(videoDec);
+    OH_AVErrCode ret = OH_VideoDecoder_Prepare(videoDec);
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
@@ -972,9 +998,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     ```c++
     std::unique_ptr<std::ofstream> outputFile = std::make_unique<std::ofstream>();
-    outputFile->open("/*yourpath*.yuv", std::ios::out | std::ios::binary | std::ios::ate);
+    if (outputFile != nullptr) {
+        outputFile->open("/*yourpath*.yuv", std::ios::out | std::ios::binary | std::ios::ate);
+    }
     // 启动解码器，开始解码。
-    int32_t ret = OH_VideoDecoder_Start(videoDec);
+    OH_AVErrCode ret = OH_VideoDecoder_Start(videoDec);
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
@@ -984,14 +1012,16 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
 
     ```c++
-    OH_AVFormat *format = OH_AVFormat_Create();
+    auto format = std::shared_ptr<OH_AVFormat>(OH_AVFormat_Create(), OH_AVFormat_Destroy);
+    if (format == nullptr) {
+        // 异常处理。
+    }
     // 配置帧率。
-    OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, 30.0);
-    int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
+    OH_AVFormat_SetDoubleValue(format.get(), OH_MD_KEY_FRAME_RATE, 30.0);
+    OH_AVErrCode ret = OH_VideoDecoder_SetParameter(videoDec, format.get());
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
-    OH_AVFormat_Destroy(format);
     ```
 
 9. （可选）调用OH_AVCencInfo_SetAVBuffer()，设置cencInfo。
@@ -1065,10 +1095,10 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     // 写入码流数据。
     uint8_t *addr = OH_AVBuffer_GetAddr(bufferInfo->buffer);
     if (addr == nullptr) {
-       // 异常处理 
+       // 异常处理。
     }
-    int32_t capcacity = OH_AVBuffer_GetCapacity(bufferInfo->buffer);
-    if (size > capcacity) {
+    int32_t capacity = OH_AVBuffer_GetCapacity(bufferInfo->buffer);
+    if (size > capacity) {
         // 异常处理。
     }
     memcpy(addr, frameData, size);
@@ -1079,13 +1109,13 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     info.pts = pts;
     info.flags = flags;
     // info信息写入buffer。
-    ret = OH_AVBuffer_SetBufferAttr(bufferInfo->buffer, &info);
-    if (ret != AV_ERR_OK) {
+    OH_AVErrCode setBufferRet = OH_AVBuffer_SetBufferAttr(bufferInfo->buffer, &info);
+    if (setBufferRet != AV_ERR_OK) {
         // 异常处理。
     }
     // 送入解码输入队列进行解码，index为对应buffer队列的下标。
-    int32_t ret = OH_VideoDecoder_PushInputBuffer(videoDec, bufferInfo->index);
-    if (ret != AV_ERR_OK) {
+    OH_AVErrCode pushInputRet = OH_VideoDecoder_PushInputBuffer(videoDec, bufferInfo->index);
+    if (pushInputRet != AV_ERR_OK) {
         // 异常处理。
     }
     ```
@@ -1106,19 +1136,21 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     // 获取解码后信息。
     OH_AVCodecBufferAttr info;
-    int32_t ret = OH_AVBuffer_GetBufferAttr(bufferInfo->buffer, &info);
-    if (ret != AV_ERR_OK) {
+    OH_AVErrCode getBufferRet = OH_AVBuffer_GetBufferAttr(bufferInfo->buffer, &info);
+    if (getBufferRet != AV_ERR_OK) {
         // 异常处理。
     }
     // 将解码完成数据data写入到对应输出文件中。
     uint8_t *addr = OH_AVBuffer_GetAddr(bufferInfo->buffer);
     if (addr == nullptr) {
-       // 异常处理 
+       // 异常处理。
     }
-    outputFile->write(reinterpret_cast<char *>(addr), info.size);
+    if (outputFile != nullptr && outputFile->is_open()) {
+        outputFile->write(reinterpret_cast<char *>(addr), info.size);
+    }
     // Buffer模式，释放已完成写入的数据，index为对应buffer队列的下标。
-    ret = OH_VideoDecoder_FreeOutputBuffer(videoDec, bufferInfo->index);
-    if (ret != AV_ERR_OK) {
+    OH_AVErrCode freeOutputRet = OH_VideoDecoder_FreeOutputBuffer(videoDec, bufferInfo->index);
+    if (freeOutputRet != AV_ERR_OK) {
         // 异常处理。
     }
     ```
@@ -1169,6 +1201,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     uint8_t* src = new uint8_t[srcRect.hStride * srcRect.wStride * 3 / 2]; // 源内存区域的指针。
     uint8_t* dstTemp = dst;
     uint8_t* srcTemp = src;
+    rect.height = ((rect.height + 1) / 2)  * 2 // 避免height为奇数；
+    rect.width = ((rect.width + 1) / 2)  * 2 // 避免width为奇数；
 
     // Y 将Y区域的源数据复制到另一个区域的目标数据中。
     for (int32_t i = 0; i < rect.height; ++i) {

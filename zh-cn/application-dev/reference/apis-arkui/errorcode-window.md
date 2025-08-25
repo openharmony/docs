@@ -1,4 +1,10 @@
 # 窗口错误码
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 > **说明：**
 >
@@ -83,6 +89,7 @@ This window context is abnormal.
 **处理步骤**<br>
 在对窗口上下文进行操作前，检查该窗口上下文是否存在，确保其未被销毁，再进行相关操作。
 
+<!--Del-->
 ## 1300007 WindowExtension拉起应用失败
 
 **错误信息**<br>
@@ -96,6 +103,7 @@ WindowExtension拉起应用的参数异常。
 
 **处理步骤**<br>
 检查WindowExtension参数是否被异常修改，确保其参数合法，再进行相关操作。
+<!--DelEnd-->
 
 ## 1300008 显示设备异常
 
@@ -300,7 +308,7 @@ Wrong parameters for operating the floating ball.
 
 1.参数值应处于允许的范围内。
 
-2.参数的长度超出允许的范围。
+2.参数的长度应处于允许的长度范围内。
 
 3.参数应使用正确的格式。
 
@@ -458,7 +466,7 @@ Failed to restore the main window.
 
 1.传入参数有误。
 
-2.点击后5秒内未拉起应用窗口。
+2.拉起应用窗口前未点击闪控球。
 
 3.拉起非本应用的窗口。
 
@@ -466,7 +474,7 @@ Failed to restore the main window.
 
 1.请检查应用窗口的拉起参数。
 
-2.点击后5秒内拉起应用窗口。
+2.拉起应用窗口前需点击闪控球。
 
 3.仅拉起本应用窗口。
 

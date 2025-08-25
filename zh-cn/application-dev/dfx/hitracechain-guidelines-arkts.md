@@ -3,8 +3,9 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @qq_437963121-->
-<!--SE: @MontSaintMichel-->
-<!--TSE: @gcw_KuLfPSbe-->
+<!--Designer: @MontSaintMichel-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
 ## 接口说明
 
@@ -90,7 +91,7 @@ async/await和promise/then异步任务支持HiTraceChain自动传递，示例结
                // 业务开始前，开启分布式跟踪
                // INCLUDE_ASYNC表示会在系统支持的异步机制里自动传递HiTraceId
                let traceId = hiTraceChain.begin("testTag: hiTraceChain begin", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
-               // 开始HiTraceMeter同步打点，该接口API19开始支持
+               // 开始HiTraceMeter同步打点，该接口API version 19开始支持
                hiTraceMeter.startSyncTrace(hiTraceMeter.HiTraceOutputLevel.COMMERCIAL, "onClick", this.message);
    
                // 在按钮点击函数中进行事件打点，以记录按钮点击事件
@@ -153,7 +154,7 @@ async/await和promise/then异步任务支持HiTraceChain自动传递，示例结
                  hilog.info(0x0000, "testTag", "hiTraceChain end in async/await");
                });
    
-               // 结束HiTraceMeter同步打点，，该接口API19开始支持
+               // 结束HiTraceMeter同步打点，该接口API version 19开始支持
                hiTraceMeter.finishSyncTrace(hiTraceMeter.HiTraceOutputLevel.COMMERCIAL);
                // 业务结束后，关闭分布式跟踪
                hiTraceChain.end(traceId);
@@ -167,14 +168,14 @@ async/await和promise/then异步任务支持HiTraceChain自动传递，示例结
    }
    ```
 
-3. 点击DevEco Studio界面中的运行按钮，运行应用工程。在DevEco Studio Terminal窗口中执行如下命令，捕获10s内的应用trace，并使用关键字“onClick”过滤示例代码中hiTraceMeter.startSyncTrace和hiTraceMeter.finishSyncTrace生成的trace日志。
+3. 点击DevEco Studio界面中的运行按钮，运行应用工程。在DevEco Studio Terminal窗口中执行以下命令，捕获10秒内的应用trace，并使用关键字“onClick”过滤示例代码中hiTraceMeter.startSyncTrace和hiTraceMeter.finishSyncTrace生成的trace日志。
 
    ```shell
    PS D:\xxx\xxx> hdc shell
    $ hitrace -t 10 app | grep onClick
    ```
 
-4. 点击设备上“clickTime=0”按钮（需在10s内完成，否则步骤3捕获不到trace数据），触发业务逻辑。
+4. 点击设备上的“clickTime=0”按钮（需在10秒内完成，否则步骤3捕获不到trace数据），触发业务逻辑。
 
 5. 查看运行结果。
    - 设备屏幕上按钮显示“clickTime=1”，表示点击了按钮一次，已触发业务逻辑。
@@ -212,7 +213,7 @@ async/await和promise/then异步任务支持HiTraceChain自动传递，示例结
 
 ### 异步宏任务setInterval和setTimeout中使用HiTraceChain
 
-异步宏任务setInterval和setTimeout不支持HiTraceChain自动传递，示例说明如何使用hiTraceChain.getId、hiTraceChain.setId接口传递HiTraceId，如何使用hiTraceChain.createSpan接口创建分支标识，进行分布式跟踪。
+异步宏任务setInterval和setTimeout不支持HiTraceChain自动传递，以下示例说明如何使用hiTraceChain.getId、hiTraceChain.setId接口传递HiTraceId，如何使用hiTraceChain.createSpan接口创建分支标识，进行分布式跟踪。
 
 1. 在DevEco Studio中新建工程，选择“Empty Ability”，工程的目录结构如下：
 
@@ -231,7 +232,7 @@ async/await和promise/then异步任务支持HiTraceChain自动传递，示例结
 
 2. 编辑工程中的“entry &gt; src &gt; main &gt; ets &gt; pages &gt; Index.ets”文件，使用HiTraceChain跟踪异步任务，完整的示例代码如下：
 
-   ```txt
+   ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    import { hilog, hiTraceChain } from '@kit.PerformanceAnalysisKit';
    

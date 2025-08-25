@@ -1,5 +1,12 @@
 # Wi-Fi扫描开发指南
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @qq_43802146-->
+<!--Designer: @qq_43802146-->
+<!--Tester: @furryfurry123-->
+<!--Adviser: @zhang_yixin13-->
+
 ## 简介
 Wi-Fi扫描是指设备（如手机、电脑、路由器等）搜索周围可用Wi-Fi网络的过程。通过扫描，设备可以获取附近网络的基本信息（如网络名称、信号强度、加密方式等），从而实现连接、管理或分析周围网络。
 
@@ -35,47 +42,49 @@ Wi-Fi扫描是指设备（如手机、电脑、路由器等）搜索周围可用
 > **说明：**
 > 主动扫描接口，从API version 10开始废弃。替代接口仅向系统应用开放。
 
-```ts
-  import { wifiManager } from '@kit.ConnectivityKit';
+   ```ts
+   import { wifiManager } from '@kit.ConnectivityKit';
 
-  try {
-    let recvWifiScanStateChangeFunc = (result:number) => {
-        console.info("Receive Wifi scan state change event: " + result);
-    }
+   try {
+     let recvWifiScanStateChangeFunc = (result:number) => {
+         console.info("Receive Wifi scan state change event: " + result);
+     }
 
-    // 获取扫描状态 0：扫描失败；1：扫描成功。
-    wifiManager.on("wifiScanStateChange", recvWifiScanStateChangeFunc);
+     // 获取扫描状态 0：扫描失败；1：扫描成功。
+     wifiManager.on("wifiScanStateChange", recvWifiScanStateChangeFunc);
 
-    let isWifiActive = wifiManager.isWifiActive();
-    if (!isWifiActive) {
-      console.error("wifi not enable"); // 请先手动打开WiFi
-      return;
-    }
+     let isWifiActive = wifiManager.isWifiActive();
+     if (!isWifiActive) {
+       console.error("wifi not enable"); // 请先手动打开WiFi
+       return;
+     }
 
-    let scanInfoList = wifiManager.getScanInfoList();
+     let scanInfoList = wifiManager.getScanInfoList();
 
-    let len = scanInfoList.length;
-    console.info("wifi received scan info: " + len);
-    if(len > 0){
-      for (let i = 0; i < len; ++i) {
-        console.info("ssid: " + scanInfoList[i].ssid);
-        console.info("bssid: " + scanInfoList[i].bssid);
-        console.info("capabilities: " + scanInfoList[i].capabilities);
-        console.info("securityType: " + scanInfoList[i].securityType);
-        console.info("rssi: " + scanInfoList[i].rssi);
-        console.info("band: " + scanInfoList[i].band);
-        console.info("frequency: " + scanInfoList[i].frequency);
-        console.info("channelWidth: " + scanInfoList[i].channelWidth);
-        console.info("timestamp: " + scanInfoList[i].timestamp);
-        console.info("supportedWifiCategory: " + scanInfoList[i].supportedWifiCategory);
-        console.info("isHiLinkNetwork: " + scanInfoList[i].isHiLinkNetwork);
-      }
-    }
+     let len = scanInfoList.length;
+     console.info("wifi received scan info: " + len);
+     if(len > 0){
+       for (let i = 0; i < len; ++i) {
+         console.info("ssid: " + scanInfoList[i].ssid);
+         console.info("bssid: " + scanInfoList[i].bssid);
+         console.info("capabilities: " + scanInfoList[i].capabilities);
+         console.info("securityType: " + scanInfoList[i].securityType);
+         console.info("rssi: " + scanInfoList[i].rssi);
+         console.info("band: " + scanInfoList[i].band);
+         console.info("frequency: " + scanInfoList[i].frequency);
+         console.info("channelWidth: " + scanInfoList[i].channelWidth);
+         console.info("timestamp: " + scanInfoList[i].timestamp);
+         console.info("supportedWifiCategory: " + scanInfoList[i].supportedWifiCategory);
+         console.info("isHiLinkNetwork: " + scanInfoList[i].isHiLinkNetwork);
+       }
+     }
 
-    // 取消注册，停止获取扫描状态。
-    wifiManager.off("wifiScanStateChange", recvWifiScanStateChangeFunc);
-  }
-```
+     // 取消注册，停止获取扫描状态。
+     wifiManager.off("wifiScanStateChange", recvWifiScanStateChangeFunc);
+   } catch (error) {
+     console.error(`WiFi scan fail. ${error.message}`);
+   }
+   ```
 
  5. 错误码详情请参见[WIFI错误码](../../reference/apis-connectivity-kit/errorcode-wifi.md)。
 

@@ -1,8 +1,13 @@
 # image_source_native.h
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 ## Overview
 
-The **image_source_native.h** file declares the APIs for image decoding.
+The file declares the APIs for image decoding.
 
 **File to include**: <multimedia/image_framework/image/image_source_native.h>
 
@@ -940,7 +945,7 @@ Creates the pointer to an OH_ImageSourceNative object by using the raw file desc
 
 | Name| Description|
 | -- | -- |
-| [RawFileDescriptor](../apis-localization-kit/_raw_file_descriptor.md) *rawFile | Pointer to the file descriptor of the raw file.|
+| [RawFileDescriptor](../apis-localization-kit/capi-rawfile-rawfiledescriptor.md) *rawFile | Pointer to the file descriptor of the raw file.|
 | [OH_ImageSourceNative](capi-image-imagesourcenative-.md) **res | Double pointer to the OH_ImageSourceNative object created at the C++ local layer.|
 
 **Returns**

@@ -28,7 +28,7 @@ OpenHarmony SDK 5.1.0.49
 
 **Key API/Component Changes**
 
-i18n.system.getDisplayLanguage
+i18n.System.getDisplayLanguage
 
 **Adaptation Guide**
 

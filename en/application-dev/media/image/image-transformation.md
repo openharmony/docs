@@ -62,7 +62,7 @@ Read the [API reference](../../reference/apis-image-kit/arkts-apis-image-PixelMa
    - Rotate the image.
 
      ```ts
-     // Rate the image clockwise by 90°.
+     // Rotate the image clockwise by 90°.
      pixelMap.rotate(90);
      ```
 

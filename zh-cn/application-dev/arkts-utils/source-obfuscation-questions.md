@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @zju-wyx-->
-<!--SE: @xiao-peiyang; @dengxinyu-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @xiao-peiyang; @dengxinyu-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 ## 如何排查功能异常
 
@@ -44,7 +45,7 @@
     * 在本地依赖的library中的consumer-rules.txt文件中检索"-compact"。
     * 在工程目录下的oh_modules文件夹中，对全部的obfuscation.txt文件检索"-compact"。
 
-从`API19`开始，主模块默认不合并三方库的`obfuscation.txt`文件中的混淆选项，保留选项仍然有效。
+从API version 18开始，主模块默认不合并三方库的`obfuscation.txt`文件中的混淆选项，保留选项仍然有效。
 
 > **说明**：
 > 
@@ -81,10 +82,12 @@
 
 // 混淆前
 import jsonData from "./testjson";
+
 let jsonProp = jsonData.jsonObj.jsonProperty;
 
 // 混淆后
 import jsonData from "./test.json";
+
 let jsonProp = jsonData.i.j;
 ```
 
@@ -126,6 +129,7 @@ export namespace NS {
 
 // import.ts
 import { NS } from './export';
+
 NS.foo();
 ```
 
@@ -138,6 +142,7 @@ export namespace i {
 
 // import.ts
 import { i } from './export';
+
 i.foo();
 ```
 
@@ -240,12 +245,14 @@ add
 ```ts
 // 混淆前
 import { nativeNapi } from 'library.so';
+
 nativeNapi.getAge();
 ```
 
 ```ts
 // 混淆后
 import { nativeNapi } from 'library.so';
+
 nativeNapi.m();
 ```
 
@@ -282,6 +289,7 @@ export function add() {}
 
 // entry模块
 import { add } from 'hsp';
+
 add();
 ```
 
@@ -292,6 +300,7 @@ export function b() {}
 
 // entry模块
 import { n } from '@normalized:N&myhsp&&myhsp/Index&';
+
 n();
 ```
 
@@ -331,9 +340,10 @@ add
 
 示例代码如下：
 
-```
+```ts
 // 混淆前
 import { Want } from '@kit.AbilityKit';
+
 let petalMapWant: Want = {
   bundleName: 'com.example.myapplication',
   uri: 'maps://',
@@ -343,9 +353,10 @@ let petalMapWant: Want = {
 }
 ```
 
-```
+```ts
 // 混淆后
 import type Want from "@ohos:app.ability.Want";
+
 let petalMapWant: Want = {
     bundleName: 'com.example.myapplication',
     uri: 'maps://',
@@ -396,6 +407,7 @@ export interface MyInfo {
 
 // file2.ts
 import { MyInfo } from './file1';
+
 const person: MyInfo = {
   age: 20,
   address: {
@@ -416,6 +428,7 @@ export interface MyInfo {
 
 // file2.ts
 import { MyInfo } from './file1';
+
 const person: MyInfo = {
   age: 20,
   address: {
@@ -476,10 +489,10 @@ person["m"] = 20;
 
 **解决方案**
 
-从`API19`开始，主模块默认不会被三方库的混淆规则所影响，因此不会有这种情况。但如果API版本低于19，可参考以下两种解决方案。
+从API version 18开始，主模块默认不会被三方库的混淆规则所影响，因此不会有这种情况。但如果API version低于18，可参考以下两种解决方案。
 
-方案一：确认依赖模块是否开启了字符串属性名混淆。若开启，会影响主模块，需将其关闭。参考[排查非预期的混淆能力](source-obfuscation-questions.md#排查非预期的混淆能力)。
-方案二：若工程复杂无法找到开启了该混淆配置选项的模块，可以将属性名直接配置到白名单中。
+方案一：确认依赖的远程HAR包的`obfuscation.txt`文件中是否配置了`-enable-string-property-obfuscation`选项。若配置了则会影响主模块，需将其关闭。参考[排查非预期的混淆能力](source-obfuscation-questions.md#排查非预期的混淆能力)。
+方案二：若工程复杂无法找到配置了该混淆选项的远程HAR包，可以将属性名直接配置到白名单中。
 
 ### 数据库相关的字段被混淆后导致功能异常
 

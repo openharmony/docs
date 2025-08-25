@@ -2,12 +2,15 @@
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @wang-haizhou6-->
-<!--SE: @HmQQQ-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
 定义AVImageGenerator接口。使用其C API从视频资源中获取指定时间点视频帧。
+
+**引用文件：** <multimedia/player_framework/avimage_generator.h>
 
 **库：** libavimage_generator.so
 

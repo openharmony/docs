@@ -155,11 +155,11 @@ Describes the camera's concurrency information.
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name  | Type   | Read-only| Optional | Description        |
-| ------ | ------ | ---- |-----| ------------ |
-| device              | [CameraDevice](arkts-apis-camera-i.md#cameradevice)   | No  | No  | Concurrent camera device.|
-| type                | [CameraConcurrentType](arkts-apis-camera-e.md#cameraconcurrenttype18)  | No  | No  | Concurrency type.|
-| modes               | Array\<[SceneMode](arkts-apis-camera-e.md#scenemode11) \>              | No  | No  | Scene mode.|
-| outputCapabilities  | Array\<[CameraOutputCapability](#cameraoutputcapability) \> | No  | No  | Output capabilities of the camera.|
+| ------ | ------ |----|-----| ------------ |
+| device              | [CameraDevice](arkts-apis-camera-i.md#cameradevice)   | Yes | No  | Concurrent camera device.|
+| type                | [CameraConcurrentType](arkts-apis-camera-e.md#cameraconcurrenttype18)  | Yes | No  | Concurrency type.|
+| modes               | Array\<[SceneMode](arkts-apis-camera-e.md#scenemode11) \>              | Yes | No  | Scene mode.|
+| outputCapabilities  | Array\<[CameraOutputCapability](#cameraoutputcapability) \> | Yes | No  | Output capabilities of the camera.|
 
 ## Location
 
@@ -183,12 +183,12 @@ Describes the settings for taking an image.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name     | Type                           | Read-only| Optional| Description                                                                  |
-| -------- | ------------------------------- | ---- | ---- |----------------------------------------------------------------------|
-| quality  | [QualityLevel](arkts-apis-camera-e.md#qualitylevel)   | No  | Yes  | Image quality (low by default).                                                          |
-| rotation | [ImageRotation](arkts-apis-camera-e.md#imagerotation) | No  | Yes  | Rotation angle of the image. The default value is **0**, indicating clockwise rotation.                                                 |
-| location | [Location](#location)           | No  | Yes  | Geolocation information of the image (depending on the device hardware information by default).                                              |
-| mirror   | boolean                         | No  | Yes  | Whether mirror photography is enabled (disabled by default). Before using this enumerated value, call [isMirrorSupported](arkts-apis-camera-PhotoOutput.md#ismirrorsupported) to check whether mirror photography is supported.|
+| Name     | Type                           | Read-only| Optional| Description                                                                                                                          |
+| -------- | ------------------------------- | ---- | ---- |------------------------------------------------------------------------------------------------------------------------------|
+| quality  | [QualityLevel](arkts-apis-camera-e.md#qualitylevel)   | No  | Yes  | Image quality (low by default).                                                                                                                  |
+| rotation | [ImageRotation](arkts-apis-camera-e.md#imagerotation) | No  | Yes  | Rotation angle of the image. The default value is **0**, indicating clockwise rotation.                                                                                                         |
+| location | [Location](#location)           | No  | Yes  | Geolocation information of the image (depending on the device hardware information by default).                                                                                                      |
+| mirror   | boolean                         | No  | Yes  | Whether mirror photography is enabled (disabled by default). Before using this enumerated value, call [isMirrorSupported](arkts-apis-camera-PhotoOutput.md#ismirrorsupported) to check whether mirror photography is supported. **true** if enabled, **false** otherwise.|
 
 ## FrameShutterInfo
 

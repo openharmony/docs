@@ -2,8 +2,9 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @zju-wyx-->
-<!--SE: @xiao-peiyang; @dengxinyu-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @xiao-peiyang; @dengxinyu-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 ## 术语清单
 
@@ -85,7 +86,7 @@ test(a2);
 
 **2.安全保证的有限性**
 
-与其他源码混淆工具类似，混淆只能在一定程度上增加逆向过程的难度，并不能完全阻止逆向工程。
+与其他源码混淆工具类似，混淆只能在一定程度上增加逆向工程的难度，并不能完全阻止逆向工程。
 
 并且，由于ArkGuard混淆工具仅支持基础混淆功能，开发者不应只依赖ArkGuard来保证应用的安全性，对于源码安全有高要求的开发者，应考虑使用[应用加密](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/code-protect)、安全加固等安全措施来保护代码。
 
@@ -446,6 +447,8 @@ test(a2);
 
 该选项支持输出未混淆名单和全量白名单，并支持配置*filepath*。*filepath*为可选参数，仅支持相对路径。相对路径的起始位置为混淆配置文件的当前目录。*filepath*参数中的文件名请以`.json`为后缀。
 
+从API version 18开始，支持输出未混淆名单和全量白名单。
+
 当*filepath*参数缺省时，未混淆名单（keptNames.json）和全量白名单（whitelist.json）默认输出到缓存路径`build/default/cache/{...}/release/obfuscation`中。
 
 若开发者配置了*filepath*参数，未混淆名单将输出到*filepath*参数指定的路径。
@@ -501,6 +504,8 @@ test(a2);
 
 如果开发者需要混淆这部分代码，需要配置`-extra-options strip-language-default`选项。
 
+从API version 18开始，支持此选项。
+
 开发者可通过以下方式确定混淆工具默认保留的API的具体减少范围：
 
 开启`-print-kept-names`选项，对比开启和关闭`-extra-options strip-language-default`选项时，全量白名单（whitelist.json）中`lang`字段的内容差异，该差异即为预置语言白名单的具体减少范围。
@@ -510,6 +515,8 @@ test(a2);
 当前混淆的系统API白名单中**默认包含了系统API中的局部变量名称**，且系统API白名单默认对开发者源码中的局部变量生效。如果开发者源码中的属性与系统API中的局部变量重名或源码中的局部变量与系统API白名单重名，混淆工具会对这部分属性和局部变量名称进行保留。
 
 需要混淆这部分代码时，配置`-extra-options strip-system-api-args`选项。
+
+从API version 18开始，支持此选项。
 
 系统API白名单文件（systemApiCache.json）的ReservedLocalNames、ReservedPropertyNames和ReservedGlobalNames字段可以查看系统API白名单的具体内容。系统API白名单文件位于模块目录下build/default/cache/{...}/release/obfuscation路径中，记录了SDK中的接口与属性名称，与其重名的源码不会被混淆。
 
@@ -542,7 +549,7 @@ strip-language-default
 ```
 
 ### -keep-parameter-names
-保留声明文件中对外接口的参数名称。开启此选项后，有如下效果：
+从API version 18开始，支持保留声明文件中对外接口的参数名称。开启此选项后，有如下效果：
 - 对于函数与类中成员方法，如果函数或方法名称没有被混淆，则保留其参数名称。
 - 对于类的构造器，如果类名没有被混淆，则保留构造器中的参数名称。
 
@@ -554,6 +561,8 @@ strip-language-default
 
 ### -enable-lib-obfuscation-options  
 配置此开关后，依赖模块的混淆选项将被合并到当前编译模块的混淆配置中。
+
+从API version 18开始，支持此选项。
 
 混淆配置分为[混淆选项](#混淆选项)和[保留选项](#保留选项)：
 - **默认情况下**，生效的混淆配置为当前编译模块的混淆配置与依赖模块的保留选项的合并结果。  
@@ -869,7 +878,7 @@ testNapi.foo() // foo需要保留，示例如：-keep-property-name foo
 
 4.JSON数据解析和对象序列化时，需要保留使用到的字段，例如：
 
-```
+```ts
 // 示例JSON文件结构(test.json)：
 /*
 {
@@ -878,9 +887,9 @@ testNapi.foo() // foo需要保留，示例如：-keep-property-name foo
 }
 */
 
-const jsonData = fs.readFileSync('./test.json', 'utf8');
-let jsonObj = JSON.parse(jsonData);
-let jsonProp = jsonObj.jsonProperty; // jsonProperty应该被保留
+import jsonData from './test.json';
+
+let jsonProp = jsonData.jsonProperty; // jsonProperty应该被保留
 
 class jsonTest {
   prop1: string = '';
@@ -888,7 +897,7 @@ class jsonTest {
 }
 
 let obj = new jsonTest();
-const jsonStr = JSON.stringify(obj); // prop1、prop2会被混淆，应该被保留
+const jsonStr = JSON.stringify(obj); // prop1 和 prop2 会被混淆，应该被保留
 ```
 
 5.使用到的数据库相关的字段，需要手动保留。例如，数据库键值对类型（ValuesBucket）中的属性：
@@ -913,10 +922,10 @@ function ParamDecorator(target: Object, propertyKey: string, parameterIndex: num
 
 class A {
   // 1.成员变量装饰器
-  @CustomDecoarter
+  @CustomDecorator
   propertyName1: string = ""   // propertyName1 需要被保留
   // 2.成员方法装饰器
-  @MethodDecoarter
+  @MethodDecorator
   methodName1() {} // methodName1 需要被保留
   // 3.方法参数装饰器
   methodName2(@ParamDecorator param: string): void {} // methodName2 需要被保留
@@ -1264,7 +1273,8 @@ a*
 
 - **如果当前编译模块混淆配置包含`-enable-lib-obfuscation-options`选项**：合并对象为当前模块的所有混淆规则与依赖模块的所有混淆规则。
 
-当`consumerFiles`指定的混淆配置文件中包含以下混淆规则时，这些混淆规则会被合并到远程HAR和远程HSP的`obfuscation.txt`文件中，而其他混淆规则不会。
+对于API version 18之前版本，如果`consumerFiles`指定的混淆配置文件中包含以下混淆选项和保留选项，这些规则将被合并到远程HAR和HSP的`obfuscation.txt`文件中，其他混淆规则不会被合并。
+
 ```
 // 混淆选项
 -enable-property-obfuscation
@@ -1277,6 +1287,8 @@ a*
 -keep-property-name
 -keep-global-name
 ```
+
+对于API version 18及之后版本，默认仅合并上述保留选项。这种设计避免了其他模块依赖远程HAR或HSP时受其混淆配置的影响。同时，远程HAR或HSP在打包时使用自身的`obfuscation-rules.txt`文件中的混淆规则，并不会影响其实际混淆效果。如果需要恢复到API version 18之前的混淆规则合并逻辑，可以通过配置`-enable-lib-obfuscation-options`选项实现。
 
 **HSP和HAR中混淆注意事项**
 

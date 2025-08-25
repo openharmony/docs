@@ -1,5 +1,10 @@
 # UI Development (ArkTS-based Declarative Development Paradigm) Overview
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Designer: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
 
 Powered by the ArkTS-based declarative development paradigm, ArkUI is a simplified, high-performance UI development framework for cross-device applications. It provides the capabilities required for building the application UI, including:
 
@@ -48,7 +53,7 @@ Powered by the ArkTS-based declarative development paradigm, ArkUI is a simplifi
   - Language compiler and runtime optimization: The productivity punch includes unified bytecode, efficient Foreign Function Interface (FFI), ahead-of-time (AOT), engine minimization, and type optimization.
 
 - Promising ecosystem
-  ArkUI can gain traction with its relatively neutral and friendly programming language. It can tap on the ecosystems of mainstream languages ecosystem and pushed toward a steady revolutionary path with standards organizations.
+  ArkUI can gain traction with its relatively neutral and friendly programming language. It can tap on the ecosystems of mainstream languages and pushed toward a steady revolutionary path with standards organizations.
 
 
 ## Architecture
@@ -82,7 +87,7 @@ The table below lists the main tasks involved in UI development with ArkUI.
 
 | Task         | Description                                 | Guide                                    |
 | ----------- | ----------------------------------- | ---------------------------------------- |
-| Get started with ArkTS    | Learn the basic syntax, state management, and rendering control scenarios of ArkTS.        | - [Basic Syntax Overview](../ui/state-management/arkts-basic-syntax-overview.md)<br>- [State Management](../ui/state-management/arkts-state-management-overview.md)<br>- [Rendering Control](../ui/state-management/arkts-rendering-control-ifelse.md)|
+| Get started with ArkTS    | Learn the basic syntax, state management, and rendering control scenarios of ArkTS.        | - [Basic Syntax Overview](state-management/arkts-basic-syntax-overview.md)<br>- [State Management](../ui/state-management/arkts-state-management-overview.md)<br>- [Rendering Control](../ui/state-management/arkts-rendering-control-ifelse.md)|
 | Develop the layout       | Understand the common layouts.            | - [Layout Overview](arkts-layout-development-overview.md)<br>|
 | Add components       | Understand how to use common built-in components and create custom components.| - [Common Components](arkts-common-components-button.md)<br>- [Custom Components](../ui/state-management/arkts-create-custom-components.md)|
 | Set component navigation and page routing| Learn how to set up navigation between components and page routing.               | - [Component Navigation (Recommended)](arkts-navigation-navigation.md)<br>- [Page Routing](arkts-routing.md)|

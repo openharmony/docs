@@ -1,6 +1,11 @@
 # SceneNode
+<!--Kit: ArkGraphics 3D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @zzhao0-->
+<!--SE: @zdustc-->
+<!--TSE: @zhangyue283-->
 
-The SceneNode module provides the types and operation methods of scene nodes in 3D graphics.
+The module provides the types and operation methods of scene nodes in 3D graphics.
 
 > **NOTE**
 >
@@ -31,7 +36,7 @@ Checks whether the mask is enabled for a layer of a given index.
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| boolean | Check result. The value **true** means that the layer mask is enabled, and **false** means the opposite.|
+| boolean | Check result for whether the layer mask is enabled. **true** if enabled, **false** otherwise.|
 
 **Example**
 ```ts
@@ -64,7 +69,7 @@ Enables the mask of a layer of a given index.
 | Name| Type| Mandatory| Description|
 | ---- | ---- | ---- | ---- |
 | index | number | Yes| Index of the layer. The value is an integer greater than or equal to 0.|
-| enabled | boolean | Yes| Enabled status to set. The value **true** means to enable the layer mask, and **false** means the opposite.|
+| enabled | boolean | Yes| Whether to enable the layer mask. **true** to enable, **false** otherwise.|
 
 **Example**
 ```ts
@@ -289,7 +294,7 @@ The 3D scene consists of nodes in a tree hierarchy, where each node implements a
 | position | [Position3](js-apis-inner-scene-types.md#position3) | No| No| Position of the node.|
 | rotation | [Quaternion](js-apis-inner-scene-types.md#quaternion) | No| No| Rotation angle of the node.|
 | scale | [Scale3](js-apis-inner-scene-types.md#scale3) | No| No| Scale factor of the node.|
-| visible | boolean | No| No| Whether the node is visible. The value **true** means that the node is visible, and **false** means the opposite.|
+| visible | boolean | No| No| Whether the node is visible. **true** if visible, **false** otherwise.|
 | nodeType | [NodeType](#nodetype) | Yes| No| Type of the node.|
 | layerMask | [LayerMask](#layermask) | Yes| No| Layer mask of the node.|
 | path | string | Yes| No| Path of the node.|
@@ -311,7 +316,7 @@ Obtains a node by path. If no node is obtained, null is returned.
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| [Node](#node) \| null | **Node** object.|
+| [Node](#node) \| null | Node object.|
 
 **Example**
 ```ts
@@ -338,7 +343,7 @@ Geometric node type that holds renderable mesh data and supports optional deform
 
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
-| mesh | [Mesh](js-apis-inner-scene-resources.md#mesh) | Yes| No| Mesh attribute.|
+| mesh | [Mesh](js-apis-inner-scene-resources.md#mesh) | Yes| No| Mesh property.|
 | morpher<sup>20+</sup> | [Morpher](js-apis-inner-scene-resources.md#morpher20) | Yes| Yes| Optional morpher that adds vertex-based deformation or animation effects to the geometry. If this parameter is not specified, the geometry does not support deformation.|
 
 ## LightType
@@ -363,8 +368,8 @@ Light node, which inherits from [Node](#node).
 | lightType | [LightType](#lighttype) | Yes| No| Light type.|
 | color | [Color](js-apis-inner-scene-types.md#color) | No| No| Color.|
 | intensity | number | No| No| Light intensity. The value is a real number greater than 0.|
-| shadowEnabled | boolean | No| No| Whether the shadow effect is enabled. The value **true** means that the shadow effect is enabled, and **false** means the opposite.|
-| enabled | boolean | No| No| Whether the light is used. The value **true** means that the light is used, and **false** means the opposite.|
+| shadowEnabled | boolean | No| No| Whether the shadow effect is enabled. **true** if enabled, **false** otherwise.|
+| enabled | boolean | No| No| Whether the light is used. **true** if used, **false** otherwise.|
 
 ## SpotLight
 Spot light, which inherits from [Light](#light).
@@ -389,7 +394,7 @@ Camera node, which inherits from [Node](#node).
 | fov | number | No| No| Field of view. The value ranges from 0 to π radians.|
 | nearPlane | number | No| No| Near plane. The value is greater than 0.|
 | farPlane | number | No| No| Remote plane. The value must be greater than that of **nearPlane**.|
-| enabled | boolean | No| No| Whether the camera is enabled. The value **true** means that the camera is enabled, and **false** means the opposite.|
+| enabled | boolean | No| No| Whether the camera is enabled. **true** if enabled, **false** otherwise.|
 | postProcess | [PostProcessSettings](js-apis-inner-scene-post-process-settings.md#postprocesssettings) \| null | No| No| Post-processing settings.|
 | clearColor | [Color](js-apis-inner-scene-types.md#color) \| null | No| No| Color after the render target is cleared.|
 
@@ -414,22 +419,107 @@ Casts a ray from a specific position on the screen to detect and retrieve inform
 **Example**
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Vec2, Vec3, RaycastParameters,
-  RaycastResult } from '@kit.ArkGraphics3D';
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Vec2, Vec3,
+  Quaternion } from '@kit.ArkGraphics3D';
+import { RaycastParameters } from '@ohos.graphics.scene';
 
-function Raycast() : void {
-  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: Scene) => {
-    if (result) {
+function Raycast(): void {
+  Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"))
+    .then(async (result: Scene) => {
+      if (!result.root) {
+        return;
+      }
+      let node: Node | null | undefined = result.root.getNodeByPath("rootNode_/Unnamed Node 1/AnimatedCube");
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
       let sceneCameraParameter: SceneNodeParameters = { name: "camera1" };
       // Create a camera.
-      let camera: Promise<Camera> = sceneFactory.createCamera(sceneCameraParameter);
+      let camera: Camera = await sceneFactory.createCamera(sceneCameraParameter);
       camera.enabled = true;
-      lookAt(this.cam, { x: 15, y: 10, z: 20 }, { x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 });
-      let viewPos: scene3d.Vec2 = { x: 0.5, y: 0.5 };
-      return camera?.raycast(viewPos, result.root);
+      // Set the camera view.
+      lookAt(camera, { x: 0, y: 0, z: -3 }, { x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 });
+
+      let viewPos: Vec2 = { x: 0.5, y: 0.5 };
+      let raycastParams: RaycastParameters = {};
+      if (node) {
+        raycastParams.rootNode = node;
+      }
+      return camera.raycast(viewPos, raycastParams);
+    });
+}
+
+function Sub(l: Vec3, r: Vec3): Vec3 {
+  return { x: l.x - r.x, y: l.y - r.y, z: l.z - r.z };
+}
+function Dot(l: Vec3, r: Vec3): number {
+  return l.x * r.x + l.y * r.y + r.z * l.z;
+}
+function Normalize(l: Vec3): Vec3 {
+  let d = Math.sqrt(Dot(l, l));
+  return { x: l.x / d, y: l.y / d, z: l.z / d };
+}
+function Cross(l: Vec3, r: Vec3): Vec3 {
+  return { x: (l.y * r.z - l.z * r.y), y: (l.z * r.x - l.x * r.z), z: (l.x * r.y - l.y * r.x) };
+}
+function Mul(l: Quaternion, d: number): Quaternion {
+  return {
+    x: l.x * d,
+    y: l.y * d,
+    z: l.z * d,
+    w: l.w * d
+  };
+}
+function lookAt(node: Node, eye: Vec3, center: Vec3, up: Vec3) {
+
+  let t: number;
+
+  let q: Quaternion = {
+    x: 0.0,
+    y: 0.0,
+    z: 0.0,
+    w: 0.0
+  };
+  let f = Normalize(Sub(center, eye));
+  let m0 = Normalize(Cross(f, up));
+  let m1 = Cross(m0, f);
+  let m2: Vec3 = { x: -f.x, y: -f.y, z: -f.z };
+  if (m2.z < 0) {
+    if (m0.x > m1.y) {
+      t = 1.0 + m0.x - m1.y - m2.z;
+      q = {
+        x: t,
+        y: m0.y + m1.x,
+        z: m2.x + m0.z,
+        w: m1.z - m2.y
+      };
+    } else {
+      t = 1.0 - m0.x + m1.y - m2.z;
+      q = {
+        x: m0.y + m1.x,
+        y: t,
+        z: m1.z + m2.y,
+        w: m2.x - m0.z
+      };
     }
-  });
+  } else {
+    if (m0.x < -m1.y) {
+      t = 1.0 - m0.x - m1.y + m2.z;
+      q = {
+        x: m2.x + m0.z,
+        y: m1.z + m2.y,
+        z: t,
+        w: m0.y - m1.x
+      };
+    } else {
+      t = 1.0 + m0.x + m1.y + m2.z;
+      q = {
+        x: m1.z - m2.y,
+        y: m2.x - m0.z,
+        z: m0.y - m1.x,
+        w: t
+      }
+    }
+  }
+  node.position = eye;
+  node.rotation = Mul(q, 0.5 / Math.sqrt(t));
 }
 ```

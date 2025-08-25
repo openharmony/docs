@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyi0309-->
-<!--SE: @liyi0309-->
-<!--TSE: @lxl007-->
+<!--Designer: @liyi0309-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 >  **说明：**
 > 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -44,7 +45,7 @@
 | star-secondary | string | - | 否 | 设置单个星级部分选中的次级背景图片，该图片会覆盖背景图片，只支持本地路径图片，图片格式为png和jpg。 |
 | width | &lt;length&gt;\|&lt;percentage&gt; | 120px<br/>60px（不可操作） | 否 | 默认值是在未设置自定义资源和评分星数时，使用5个星和默认资源下的宽度值。 |
 | height | &lt;length&gt;\|&lt;percentage&gt; | 24px<br/>12px（不可操作） | 否 | 默认值是在未设置自定义资源和评分星数时，使用5个星和默认资源下的高度值。 |
-| rtl-flip | boolean | true | 否 | 在RTL文字方向下是否自动翻转图源。<br/>true：在RTL文字方向下自动翻转图源。<br/>false：在RTL文字方向下不自动翻转图源。 |
+| rtl-flip | boolean | true | 否 | 在rtl文字方向下是否自动翻转图源。<br/>true：在rtl文字方向下自动翻转图源。<br/>false：在rtl文字方向下不自动翻转图源。 |
 
 >  **说明：**
 > star-background，star-secondary，star-foreground三个星级图源必须全部设置，否则默认的星级颜色为灰色，以此提示图源设置错误。

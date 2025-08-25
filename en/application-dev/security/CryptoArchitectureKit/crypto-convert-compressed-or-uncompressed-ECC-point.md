@@ -1,5 +1,12 @@
 # Converting Compressed or Uncompressed ECC Point Data (ArkTS)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+ 
 You can convert compressed or uncompressed point data into a **Point** object for generating a key object, or convert a **Point** object into compressed or uncompressed point data. 
 For details about the ECC algorithm specifications, see [ECC](crypto-asym-key-generation-conversion-spec.md#ecc). 
 You can pass in the string parameter **format** to specify the format of the point data to obtain. To obtain compressed point data, set **format** to **COMPRESSED**. To obtain uncompressed point data, set **format** to **UNCOMPRESSED**.
@@ -25,9 +32,9 @@ function eccPointUncompressedToCompressed() {
 
 1. Call [ECCKeyUtil.convertPoint](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertpoint12) to convert the compressed ECC point data of the Uint8Array type into a [Point](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#point10) object.
 2. Call [ECCKeyUtil.genECCCommonParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#genecccommonparamsspec11) with the curve name set to **NID_brainpoolP256r1** to generate the common key parameters for the ECC key pair.
-3. Construct a [ECCPubKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#eccpubkeyspec10) object to specify the parameters for the ECC public key. **ECCPubKeySpec** is a child class of **AsyKeySpec**. Set **algName** to **ECC**, specify [AsyKeySpecType.PUBLIC_KEY_SPEC](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#asykeyspectype10), and set **pk** to the **Point** object obtained in step 1.
+3. Construct a [ECCPubKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#eccpubkeyspec10) object to specify the parameters for the ECC public key. **ECCPubKeySpec** is a child class of **AsyKeySpec**. Set **algName** to **ECC**, specify [AsyKeySpecType.PUBLIC_KEY_SPEC](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#asykeyspectype10), and set **pk** to the point object obtained.
 4. Call [createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) with the public key parameters to create an asymmetric key generator (**AsyKeyGeneratorBySpec**) object.
-5. Call [AsyKeyGeneratorBySpec.generatePubKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatepubkey-1) to generate the public key.
+5. Call [AsyKeyGeneratorBySpec.generatePubKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatepubkey10) to generate the public key.
 6. Call [ECCKeyUtil.getEncodedPoint](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencodedpoint12) to obtain uncompressed point data.
 7. Call [PubKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10) to obtain the x coordinate of the ECC public key **pk**.
 

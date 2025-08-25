@@ -3,8 +3,9 @@
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: PowerManager-->
 <!--Owner: @zhang-yinglie; @volcano_wang-->
-<!--SE: @wangyantian0-->
-<!--TSE: @alien0208-->
+<!--Designer: @wangyantian0-->
+<!--Tester: @alien0208-->
+<!--Adviser: @w_Machine_cc-->
 
 > **说明：**
 >
@@ -55,3 +56,21 @@ Operation failed. The system is shutting down.
 **处理步骤**
 
 在系统正常运行的状态下进行操作。
+
+## 4900201 接口调用间隔过短
+
+**错误信息**
+
+The device activity is being refreshed too frequently; the minimum timeinterval is 100 ms.
+
+**错误描述**
+
+频繁刷新设备活跃状态导致刷新失败，刷新设备活跃状态最小时间间隔为100ms。
+
+**可能原因**
+
+频繁刷新设备活跃状态。
+
+**处理步骤**
+
+此错误说明100ms内已经刷新设备活跃状态，无需再次刷新设备活跃状态。如需再次刷新，请在100ms后进行重试。

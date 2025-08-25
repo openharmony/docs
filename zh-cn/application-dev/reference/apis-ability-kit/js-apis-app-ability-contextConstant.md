@@ -2,8 +2,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @wangkailong; @yangxuguang-huawei; @Luobniz21-->
-<!--SE: @ccllee1; @li-weifeng2-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @ccllee1; @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 ContextConstant提供Context相关的枚举，当前仅包含数据加密等级的枚举。
 
@@ -36,7 +37,7 @@ import { contextConstant } from '@kit.AbilityKit';
 
 ## ProcessMode<sup>12+</sup>
 
-UIAbility启动后的进程模式。该功能仅在2in1和tablet设备上生效。
+UIAbility启动后的进程模式。该功能仅在2in1和Tablet设备上生效。
 
 ProcessMode作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属性，仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#startability-1)中生效，用来指定目标UIAbility的进程模式。
 
@@ -88,7 +89,7 @@ ProcessMode作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属
 
 ## StartupVisibility<sup>12+</sup>
 
-UIAbility启动后的可见性。该功能仅在2in1和tablet设备上生效。
+UIAbility启动后的可见性。该功能仅在2in1和Tablet设备上生效。
 
 StartupVisibility作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属性，仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#startability-1)中生效，用来指定目标UIAbility启动后的可见性。
 

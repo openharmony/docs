@@ -10,7 +10,7 @@
 > - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The initial APIs of this interface are supported since API version 13.
 
-AutoDeviceSwitch extends [AutoDeviceSwitchQuery](arkts-apis-camera-AutoDeviceSwitch.md).
+AutoDeviceSwitch inherits from [AutoDeviceSwitchQuery](arkts-apis-camera-AutoDeviceSwitch.md).
 
 It is used to enable or disable automatic camera switch. This class inherits from [AutoDeviceSwitchQuery](arkts-apis-camera-AutoDeviceSwitch.md).
 

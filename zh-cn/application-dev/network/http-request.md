@@ -2,14 +2,15 @@
 <!--Kit: Network Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @wmyao_mm-->
-<!--SE: @guo-min_net-->
-<!--TSE: @tongxilin-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
 
 <!--Kit: Network Kit-->
 <!--Subsystem: Communication-->
-<!--Owner: @liuleiminhw-->
-<!--SE: @guo-min_net-->
-<!--TSE: @tongxilin-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
 
 ## 场景介绍
 

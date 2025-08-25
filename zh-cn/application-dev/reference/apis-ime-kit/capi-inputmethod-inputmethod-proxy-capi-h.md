@@ -2,8 +2,9 @@
 <!--Kit: IME Kit-->
 <!--Subsystem: MiscServices-->
 <!--Owner: @illybyy-->
-<!--SE: @andeszhang-->
-<!--TSE: @murphy1984-->
+<!--Designer: @andeszhang-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 概述
 
@@ -217,7 +218,7 @@ InputMethod_ErrorCode OH_InputMethodProxy_SendPrivateCommand(InputMethod_InputMe
 | 参数项                                                                                                | 描述 |
 |----------------------------------------------------------------------------------------------------| -- |
 | [InputMethod_InputMethodProxy](capi-inputmethod-inputmethod-inputmethodproxy.md) *inputMethodProxy | 表示指向[InputMethod_InputMethodProxy](capi-inputmethod-inputmethod-inputmethodproxy.md)实例的指针。inputMethodProxy由调用[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)获取。 |
-| [nputMethod_PrivateCommand](capi-inputmethod-inputmethod-privatecommand.md) *privateCommand[]                                                    | 私有命令, 定义在[InputMethod_PrivateCommand](capi-inputmethod-inputmethod-privatecommand.md)，最大大小为32KB。 |
+| [InputMethod_PrivateCommand](capi-inputmethod-inputmethod-privatecommand.md) *privateCommand[]                                                    | 私有命令, 定义在[InputMethod_PrivateCommand](capi-inputmethod-inputmethod-privatecommand.md)，最大大小为32KB。 |
 | size_t size                                                                                        | 私有命令的大小. 最大大小为5。 |
 
 **返回：**

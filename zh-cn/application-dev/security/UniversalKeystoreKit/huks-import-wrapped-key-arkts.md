@@ -3,12 +3,13 @@
 <!--Kit: Universal Keystore Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @wutiantian-gitee-->
-<!--SE: @HighLowWorld-->
-<!--TSE: @wxy1234564846-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
 
 以加密导入ECDH密钥对为例，涉及业务侧加密密钥的[密钥生成](huks-key-generation-overview.md)、[协商](huks-key-agreement-overview.md)等操作不在本示例中体现。
 
-具体的场景介绍及支持的算法规格，请参考[密钥导入的支持的算法](huks-key-import-overview.md#支持的算法)。
+具体的场景介绍及支持的算法规格，请参考[密钥导入支持的算法](huks-key-import-overview.md#支持的算法)。
 
 ## 开发步骤
 
@@ -41,7 +42,7 @@ let NONCE = "hahahahahaha"; // 此处为样例代码，实际使用需采用随�
 let TAG_SIZE = 16;
 let FILED_LENGTH = 4;
 let importedAes192PlainKey = "The aes192 key to import";
-let callerAes256Kek = "The is kek to encrypt aes192 key";
+let callerAes256Kek = "It's a kek to encrypt aes192 key";
 let callerKeyAlias = "test_caller_key_ecdh_aes192";
 let callerKekAliasAes256 = "test_caller_kek_ecdh_aes256";
 let callerAgreeKeyAliasAes256 = "test_caller_agree_key_ecdh_aes256";
@@ -99,7 +100,7 @@ let genWrappingKeyParams: huks.HuksOptions = {
     },
     {
       tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-      value: huks.HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256
+      value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
     },
     {
       tag: huks.HuksTag.HUKS_TAG_PADDING,
@@ -119,7 +120,7 @@ let genCallerEcdhParams: huks.HuksOptions = {
     },
     {
       tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-      value: huks.HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256
+      value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
     }
   )
 }
@@ -289,10 +290,10 @@ async function publicGenerateItemFunc(keyAlias: string, huksOptions: huks.HuksOp
   }
 }
 
-async function publicImportKeyItemFunc(keyAlias: string, HuksOptions: huks.HuksOptions) {
+async function publicImportKeyItemFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise importKeyItem`);
   try {
-    await huks.importKeyItem(keyAlias, HuksOptions)
+    await huks.importKeyItem(keyAlias, huksOptions)
       .then(data => {
         console.info(`promise: importKeyItem success, data = ${JSON.stringify(data)}`);
       }).catch((err: Error) => {
@@ -303,10 +304,10 @@ async function publicImportKeyItemFunc(keyAlias: string, HuksOptions: huks.HuksO
   }
 }
 
-async function publicDeleteKeyItemFunc(KeyAlias: string, HuksOptions: huks.HuksOptions) {
+async function publicDeleteKeyItemFunc(KeyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise deleteKeyItem`);
   try {
-    await huks.deleteKeyItem(KeyAlias, HuksOptions)
+    await huks.deleteKeyItem(KeyAlias, huksOptions)
       .then(data => {
         console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
       })
@@ -336,7 +337,7 @@ function importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, huksOp
 async function publicImportWrappedKeyFunc(keyAlias: string, wrappingKeyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise importWrappedKeyItem`);
   for (let i = 0; i < huksOptions.inData!.length; i++) {
-    console.error(`${i}: ${huksOptions.inData![i]}`);
+    console.info(`${i}: ${huksOptions.inData![i]}`);
   }
   try {
     await importWrappedKeyItem(keyAlias, wrappingKeyAlias, huksOptions)
@@ -351,27 +352,11 @@ async function publicImportWrappedKeyFunc(keyAlias: string, wrappingKeyAlias: st
   }
 }
 
-async function publicImportWrappedKeyPromise(keyAlias: string, wrappingKeyAlias: string,
-  huksOptions: huks.HuksOptions) {
-  console.info(`enter promise importWrappedKeyItem`);
-  try {
-    await huks.importWrappedKeyItem(keyAlias, wrappingKeyAlias, huksOptions)
-      .then((data) => {
-        console.info(`promise: importWrappedKeyItem success, data = ${JSON.stringify(data)}`);
-      })
-      .catch((error: Error) => {
-        console.error(`promise: importWrappedKeyItem failed, ${JSON.stringify(error)}`);
-      });
-  } catch (error) {
-    console.error(`promise: importWrappedKeyItem input arg invalid, ${JSON.stringify(error)}`);
-  }
-}
-
-async function publicInitFunc(srcKeyAlias: string, HuksOptions: huks.HuksOptions) {
+async function publicInitFunc(srcKeyAlias: string, huksOptions: huks.HuksOptions) {
   let handle: number = 0;
   console.info(`enter promise doInit`);
   try {
-    await huks.initSession(srcKeyAlias, HuksOptions)
+    await huks.initSession(srcKeyAlias, huksOptions)
       .then((data) => {
         console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
         handle = data.handle;
@@ -385,9 +370,9 @@ async function publicInitFunc(srcKeyAlias: string, HuksOptions: huks.HuksOptions
   return handle;
 }
 
-async function publicUpdateSessionFunction(handle: number, HuksOptions: huks.HuksOptions) {
+async function publicUpdateSessionFunction(handle: number, huksOptions: huks.HuksOptions) {
   const maxUpdateSize = 64;
-  const inData = HuksOptions.inData!;
+  const inData = huksOptions.inData!;
   const lastInDataPosition = inData.length - 1;
   let inDataSegSize = maxUpdateSize;
   let inDataSegPosition = 0;
@@ -401,12 +386,12 @@ async function publicUpdateSessionFunction(handle: number, HuksOptions: huks.Huk
       console.info(`enter promise doUpdate`);
       break;
     }
-    HuksOptions.inData = new Uint8Array(
+    huksOptions.inData = new Uint8Array(
       Array.from(inData).slice(inDataSegPosition, inDataSegPosition + inDataSegSize)
     );
     console.info(`enter promise doUpdate`);
     try {
-      await huks.updateSession(handle, HuksOptions)
+      await huks.updateSession(handle, huksOptions)
         .then((data) => {
           console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
           outData = outData.concat(Array.from(data.outData!));
@@ -428,11 +413,11 @@ async function publicUpdateSessionFunction(handle: number, HuksOptions: huks.Huk
   return outData;
 }
 
-async function publicFinishSession(handle: number, HuksOptions: huks.HuksOptions, inData: number[]) {
+async function publicFinishSession(handle: number, huksOptions: huks.HuksOptions, inData: number[]) {
   let outData: number[] = [];
   console.info(`enter promise doFinish`);
   try {
-    await huks.finishSession(handle, HuksOptions)
+    await huks.finishSession(handle, huksOptions)
       .then((data) => {
         console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
         outData = inData.concat(Array.from(data.outData!));
@@ -446,22 +431,22 @@ async function publicFinishSession(handle: number, HuksOptions: huks.HuksOptions
   return new Uint8Array(outData);
 }
 
-async function cipherFunction(keyAlias: string, HuksOptions: huks.HuksOptions) {
-  let handle = await publicInitFunc(keyAlias, HuksOptions);
-  let tmpData = await publicUpdateSessionFunction(handle, HuksOptions);
-  let outData = await publicFinishSession(handle, HuksOptions, tmpData!);
+async function cipherFunction(keyAlias: string, huksOptions: huks.HuksOptions) {
+  let handle = await publicInitFunc(keyAlias, huksOptions);
+  let tmpData = await publicUpdateSessionFunction(handle, huksOptions);
+  let outData = await publicFinishSession(handle, huksOptions, tmpData!);
   return outData;
 }
 
-async function agreeFunction(keyAlias: string, HuksOptions: huks.HuksOptions, huksPublicKey: Uint8Array) {
-  let handle = await publicInitFunc(keyAlias, HuksOptions);
+async function agreeFunction(keyAlias: string, huksOptions: huks.HuksOptions, huksPublicKey: Uint8Array) {
+  let handle = await publicInitFunc(keyAlias, huksOptions);
   let outSharedKey: Uint8Array = new Uint8Array();
-  HuksOptions.inData = huksPublicKey;
+  huksOptions.inData = huksPublicKey;
   console.info(`enter promise doUpdate`);
   try {
-    await huks.updateSession(handle, HuksOptions)
+    await huks.updateSession(handle, huksOptions)
       .then((data) => {
-        console.error(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
+        console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
       })
       .catch((error: Error) => {
         console.error(`promise: doUpdate failed, ${JSON.stringify(error)}`);
@@ -471,7 +456,7 @@ async function agreeFunction(keyAlias: string, HuksOptions: huks.HuksOptions, hu
   }
   console.info(`enter promise doInit`);
   try {
-    await huks.finishSession(handle, HuksOptions)
+    await huks.finishSession(handle, huksOptions)
       .then((data) => {
         console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
         outSharedKey = data.outData as Uint8Array;
@@ -493,10 +478,10 @@ async function ImportKekAndAgreeSharedSecret(callerKekAlias: string, importKekPa
   await publicImportKeyItemFunc(callerAgreeKeyAliasAes256, importParamsAgreeKey);
 }
 
-async function generateAndExportPublicKey(keyAlias: string, HuksOptions: huks.HuksOptions, caller: Boolean) {
-  await publicGenerateItemFunc(keyAlias, HuksOptions);
+async function generateAndExportPublicKey(keyAlias: string, huksOptions: huks.HuksOptions, caller: Boolean) {
+  await publicGenerateItemFunc(keyAlias, huksOptions);
   try {
-    await huks.exportKeyItem(keyAlias, HuksOptions)
+    await huks.exportKeyItem(keyAlias, huksOptions)
       .then((data) => {
         console.info(`promise: exportKeyItem success, data = ${JSON.stringify(data)}`);
         if (caller) {
@@ -568,8 +553,8 @@ async function BuildWrappedDataAndImportWrappedKey(plainKey: string) {
 /* 模拟加密导入密钥场景，设备A为远端设备（导入设备），设备B为本端设备（被导入设备） */
 async function ImportWrappedKey() {
   /**
-   * 1.设备A将待导入密钥转换成HUKS密钥材料格式To_Import_Key（仅针对非对称密钥，若待导入密钥是对称密钥则可省略此步骤），
-   *   本示例使用importedAes256PlainKey（对称密钥）作为模拟
+   * 1.设备A将待导入密钥转换成HUKS密钥材料格式To_Import_Key（仅针对非对称密钥，若待导入密钥是对称密钥则可省略此步骤）。
+   *   本示例使用importedAes192PlainKey（对称密钥）作为模拟。
    */
 
   /* 2.设备B生成一个加密导入用途的、用于协商的非对称密钥对Wrapping_Key（公钥Wrapping_Pk，私钥Wrapping_Sk），其密钥用途设置为unwrap，导出Wrapping_Key公钥Wrapping_Pk存放在变量huksPubKey中 */
@@ -602,7 +587,6 @@ async function ImportWrappedKey() {
   /* 10.设备A、B删除用于加密导入的密钥 */
   await publicDeleteKeyItemFunc(srcKeyAliasWrap, genWrappingKeyParams);
   await publicDeleteKeyItemFunc(callerKeyAlias, genCallerEcdhParams);
-  await publicDeleteKeyItemFunc(importedKeyAliasAes192, importWrappedAes192Params);
   await publicDeleteKeyItemFunc(callerKekAliasAes256, callerAgreeParams);
 }
 

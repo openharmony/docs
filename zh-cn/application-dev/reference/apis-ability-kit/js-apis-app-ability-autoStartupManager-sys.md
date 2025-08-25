@@ -3,10 +3,11 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @zhu-feimo; @Luobniz21-->
-<!--SE: @ccllee1-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-autoStartupManager模块提供注册、注销监听应用开机自启动状态变化的回调函数的能力。
+autoStartupManager模块提供应用开机自启动状态的监听能力，允许开发者通过回调机制感知应用自启动状态的变化。
 
 > **说明：**
 >
@@ -26,7 +27,7 @@ import { autoStartupManager } from '@kit.AbilityKit';
 
 on(type: 'systemAutoStartup', callback: AutoStartupCallback): void
 
-注册监听应用组件开机自启动状态变化。
+注册监听应用组件开机自启动状态变化的回调函数。
 
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
@@ -68,7 +69,7 @@ try {
 } catch (err) {
   let code = (err as BusinessError).code;
   let msg = (err as BusinessError).message;
-  console.error(`autostartupmanager on success, err code: ${code}, err msg: ${msg}.`);
+  console.error(`autostartupmanager on failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -76,7 +77,7 @@ try {
 
 off(type: 'systemAutoStartup', callback?: AutoStartupCallback): void
 
-注销监听应用组件开机自启动状态变化。
+注销监听应用组件开机自启动状态变化的回调函数。
 
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
@@ -118,7 +119,7 @@ try {
 } catch (err) {
   let code = (err as BusinessError).code;
   let msg = (err as BusinessError).message;
-  console.error(`autostartupmanager on success, err code: ${code}, err msg: ${msg}.`);
+  console.error(`autostartupmanager on failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -128,13 +129,13 @@ setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>
 
 设置应用组件开机自启动。使用callback异步回调。
 
-> **说明：**
->
-> 从API version 18开始，该接口仅在2in1和wearable设备上生效。对于API version 18之前版本，该接口仅在2in1设备上生效。
-
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：
+- 从API version 18开始，该接口仅在2in1和Wearable设备中可正常调用，在其他设备上返回16000050错误码。
+- 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
 
 **参数**：
 
@@ -186,13 +187,13 @@ setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 设置应用组件开机自启动。使用Promise异步回调。
 
-> **说明：**
->
-> 从API version 18开始，该接口仅在2in1和wearable设备上生效。对于API version 18之前版本，该接口仅在2in1设备上生效。
-
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：
+- 从API version 18开始，该接口仅在2in1和Wearable设备中可正常调用，在其他设备上返回16000050错误码。
+- 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
 
 **参数**：
 
@@ -247,13 +248,13 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<voi
 
 取消应用组件开机自启动。使用callback异步回调。
 
-> **说明：**
->
-> 从API version 18开始，该接口仅在2in1和wearable设备上生效。对于API version 18之前版本，该接口仅在2in1设备上生效。
-
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：
+- 从API version 18开始，该接口仅在2in1和Wearable设备中可正常调用，在其他设备上返回16000050错误码。
+- 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
 
 **参数**：
 
@@ -305,13 +306,13 @@ cancelApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 取消应用组件开机自启动。使用Promise异步回调。
 
-> **说明：**
->
-> 从API version 18开始，该接口仅在2in1和wearable设备上生效。对于API version 18之前版本，该接口仅在2in1设备上生效。
-
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：
+- 从API version 18开始，该接口仅在2in1和Wearable设备中可正常调用，在其他设备上返回16000050错误码。
+- 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
 
 **参数**：
 
@@ -366,13 +367,13 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 
 查询自启动应用组件信息。使用callback异步回调。
 
-> **说明：**
->
-> 从API version 18开始，该接口仅在2in1和wearable设备上生效。对于API version 18之前版本，该接口仅在2in1设备上生效。
-
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：
+- 从API version 18开始，该接口仅在2in1和Wearable设备中可正常调用，在其他设备上返回16000050错误码。
+- 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
 
 **参数**：
 
@@ -418,13 +419,13 @@ try {
 
 查询自启动应用组件信息。使用Promise异步回调。
 
-> **说明：**
->
-> 从API version 18开始，该接口仅在2in1和wearable设备上生效。对于API version 18之前版本，该接口仅在2in1设备上生效。
-
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：
+- 从API version 18开始，该接口仅在2in1和Wearable设备中可正常调用，在其他设备上返回16000050错误码。
+- 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
 
 **返回值：**
 

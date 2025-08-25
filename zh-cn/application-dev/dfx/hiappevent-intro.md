@@ -3,8 +3,9 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @liujiaxing2024-->
-<!--SE: @junjie_shi-->
-<!--TSE: @gcw_KuLfPSbe-->
+<!--Designer: @junjie_shi-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
 ## 简介
 
@@ -21,7 +22,7 @@ HiAppEvent是系统为应用开发者提供的事件打点机制，支持记录�
 - 事件类型：指定事件的类型，支持以下四种类型事件：
 
   - 行为事件：记录用户日常操作行为的事件，例如按钮点击、界面跳转等行为。
-  - 故障事件：定位和分析应用故障的事件，例如界面卡顿、网络终端等故障。
+  - 故障事件：定位和分析应用故障的事件，例如界面卡顿、网络中断等故障。
   - 统计事件：统计和度量应用关键行为的事件，例如对使用时长、访问数等的统计。
   - 安全事件：记录涉及应用安全行为的事件，例如用户授权等行为。
 
@@ -43,7 +44,7 @@ HiAppEvent是系统为应用开发者提供的事件打点机制，支持记录�
 
 应用调用addWatcher()接口订阅关注的应用事件后，还需在应用事件发生时，调用write()接口进行打点，用来记录应用事件。
 
-在同一生命周期中，HiAppEvent根据事件领域和事件名称关联应用事件，并通过addWatcher()接口设置的回调方式将事件回调给应用。
+HiAppEvent通过事件领域和事件名称关联应用事件，并通过addWatcher()接口设置的回调方式将事件回调给应用。
 
 ![hiappevent-watch-appevents](figures/hiappevent-watch-appevents.PNG)
 

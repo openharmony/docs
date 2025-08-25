@@ -1,10 +1,11 @@
 # 使用picker管理联系人
 
-<!--Kit: contacts-kit-->
-<!--Subsystem: contacts-->
+<!--Kit: Contacts Kit-->
+<!--Subsystem: Applications-->
 <!--Owner: @librahCode-->
-<!--SE: @yanghaoqian-->
-<!--TSE: @shangzhijie-->
+<!--Designer: @yanghaoqian-->
+<!--Tester: @shangzhijie-->
+<!--Adviser: @zhang_yixin13-->
 ## 接口说明
 
 | 接口名                  | 描述                                       |

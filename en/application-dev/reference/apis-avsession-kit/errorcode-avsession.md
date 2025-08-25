@@ -1,4 +1,9 @@
 # AVSession Management Error Codes
+ <!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--SE: @ccfriend-->
+<!--TSE: @chenmingxi1_huawei-->
 
 > **NOTE**
 >
@@ -62,6 +67,7 @@ The controller has been destroyed.
 
 Query the session record and create the corresponding controller.
 
+<!--Del-->
 ## 6600104 Remote Session Connection Failure
 
 **Error Message**
@@ -79,6 +85,7 @@ The communication between devices is interrupted.
 **Solution**
 
 Stop sending control commands to the session. Subscribe to output device changes, and resume the sending when the output device is changed.
+<!--DelEnd-->
 
 ## 6600105 Invalid Session Command
 
@@ -134,6 +141,7 @@ The server is overloaded with messages or events.
 
 Control the frequency of sending commands or events.
 
+<!--Del-->
 ## 6600108 Device Connection Failure
 
 **Error Message**
@@ -151,6 +159,7 @@ The device connection logic is abnormal or the device status is abnormal.
 **Solution**
 
 Refresh the device list and check whether the device is offline.
+<!--DelEnd-->
 
 ## 6600109 Remote Session Does Not Exist
 

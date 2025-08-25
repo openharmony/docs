@@ -1,4 +1,9 @@
 # @ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--SE: @liweilu1-->
+<!--TSE: @xchaosioda-->
 
 The module provides APIs for album management, including creating an album and accessing and modifying media data in an album, based on a [Sendable](../../arkts-utils/arkts-sendable.md) object.
 
@@ -1138,8 +1143,10 @@ Converts this Sendable album to a non-Sendable album.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| Type                   | Description                                                     |
-| ----------------------- | --------------------------------------------------------- |
+**Return value**
+
+| Type                        | Description                                                        |
+| ---------------------------- | ------------------------------------------------------------ |
 | [photoAccessHelper.Album](arkts-apis-photoAccessHelper-Album.md) | Album of the non-Sendable type.|
 
 **Error codes**

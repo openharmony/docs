@@ -1,5 +1,11 @@
 # 使用Emitter进行线程间通信
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 Emitter是一种作用在进程内的事件处理机制，为应用程序提供订阅事件、发布事件、取消事件订阅的能力。
 
@@ -66,12 +72,6 @@ Emitter通过维护一个内部事件队列，来进行任务分发。应用需�
      eventId: 1,
      priority: emitter.EventPriority.LOW
    };
-
-   let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
-     console.info(`eventData: ${JSON.stringify(eventData)}`);
-   }
-   //订阅该事件，并接收eventData数据。
-   emitter.once(event, callback);
 
    let eventData: emitter.EventData = {
      data: {

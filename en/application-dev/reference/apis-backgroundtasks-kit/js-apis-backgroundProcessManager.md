@@ -1,6 +1,13 @@
 # @ohos.resourceschedule.backgroundProcessManager (Background Child Process Management)
 
-The **backgroundProcessManager** module provides APIs for background child process management. You can use these APIs to suppress and unsuppress child processes to prevent child processes from occupying too many system resources and causing system stuttering. The APIs take effect only for the child processes created through [OH_Ability_StartNativeChildProcess](../apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess).
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: Resourceschedule-->
+<!--Owner: @hongjianfeng-->
+<!--Designer: @zhouben25-->
+<!--Tester: @fenglili18-->
+<!--Adviser: @Brilliantry_Rui-->
+
+The **backgroundProcessManager** module provides APIs for background child process management. You can use these APIs to suppress and unsuppress child processes to prevent child processes from occupying too many system resources and causing system stuttering. The APIs take effect only for the child processes created through [OH_Ability_StartNativeChildProcess](../apis-ability-kit/capi-native-child-process-h.md#oh_ability_startnativechildprocess).
 
 >  **NOTE**
 >
@@ -24,7 +31,7 @@ Sets the child process priority. After a child process is suppressed, the CPU re
 
 | Name     | Type                                 | Mandatory  | Description                                                                                                                           |
 |----------|-------------------------------------| ---- |-------------------------------------------------------------------------------------------------------------------------------|
-| pid      | number                              | Yes   | ID of the child process to be suppressed, which is returned when the child process is created through [OH_Ability_StartNativeChildProcess](../apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess).|
+| pid      | number                              | Yes   | ID of the child process to be suppressed, which is the **pid** parameter after the child process is created through the [OH_Ability_StartNativeChildProcess](../apis-ability-kit/capi-native-child-process-h.md#oh_ability_startnativechildprocess) API.|
 | priority | [ProcessPriority](#processpriority) | Yes   | Suppression priority.                                                                                                                        |
 
 **Return value**
@@ -68,7 +75,7 @@ Unsuppresses the child process. In this case, the child process follows the sche
 
 | Name     | Type                | Mandatory  | Description                                                                                                                       |
 |----------|--------------------| ---- |---------------------------------------------------------------------------------------------------------------------------|
-| pid      | number             | Yes   | Child process ID, which is returned when the child process is created through [OH_Ability_StartNativeChildProcess](../apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess).|
+| pid      | number             | Yes   | ID of the child process, which is the **pid** parameter of the [OH_Ability_StartNativeChildProcess](../apis-ability-kit/capi-native-child-process-h.md#oh_ability_startnativechildprocess) API.|
 
 **Return value**
 
@@ -213,3 +220,5 @@ Specifies the power saving mode.
 |-----|----|-------|
 | EFFICIENCY_MODE | 1 | Efficiency mode. Applications set to this mode will not enter the power saving mode, where fewer CPU resources are available.|
 | DEFAULT_MODE | 2 | Default mode. Applications set to this mode may follow the system to enter the power saving mode.|
+
+<!--no_check-->

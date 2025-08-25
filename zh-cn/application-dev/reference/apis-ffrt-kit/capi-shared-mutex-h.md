@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## 概述
 
@@ -32,6 +33,7 @@
 | [FFRT_C_API int ffrt_rwlock_rdlock(ffrt_rwlock_t* rwlock)](#ffrt_rwlock_rdlock) | 获取读锁。 |
 | [FFRT_C_API int ffrt_rwlock_tryrdlock(ffrt_rwlock_t* rwlock)](#ffrt_rwlock_tryrdlock) | 尝试获取读锁。 |
 | [FFRT_C_API int ffrt_rwlock_unlock(ffrt_rwlock_t* rwlock)](#ffrt_rwlock_unlock) | 释放rwlock。 |
+| [FFRT_C_API int ffrt_rwlock_destroy(ffrt_rwlock_t* rwlock)](#ffrt_rwlock_destroy) | 销毁rwlock。 |
 
 ## 函数说明
 
@@ -185,5 +187,30 @@ FFRT_C_API int ffrt_rwlock_unlock(ffrt_rwlock_t* rwlock)
 | 类型 | 说明 |
 | -- | -- |
 | FFRT_C_API int | 释放rwlock成功返回ffrt_success，<br>          释放rwlock失败返回ffrt_error_inval。 |
+
+### ffrt_rwlock_destroy()
+
+```
+FFRT_C_API int ffrt_rwlock_destroy(ffrt_rwlock_t* rwlock)
+```
+
+**描述**
+
+销毁rwlock。
+
+**起始版本：** 18
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [ffrt_rwlock_t](capi-ffrt-ffrt-rwlock-t.md)* rwlock | rwlock指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| FFRT_C_API int | 销毁rwlock成功返回ffrt_success，<br>销毁rwlock失败返回ffrt_error_inval。 |
 
 

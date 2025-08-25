@@ -3,8 +3,9 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--SE: @chengguohong; @tangjia15-->
-<!--TSE: @wangfeng517-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+<!--Adviser: @zhang_yixin13-->
 
 connection模块提供了蓝牙设备的配对、连接及状态查询等能力。
 
@@ -739,7 +740,7 @@ import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // callback
 try {
     connection.setDevicePinCode('11:22:33:44:55:66', '12345', (err: BusinessError) => {
-        console.info('setDevicePinCode,device name err:' + JSON.stringify(err));
+        console.info('setDevicePinCode,device name err: ' + JSON.stringify(err));
     });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -933,9 +934,10 @@ try {
 startBluetoothDiscovery(): void
 
 开启蓝牙扫描，发现对端蓝牙设备。<br>
-- 该接口支持发现传统蓝牙设备和低功耗蓝牙设备。<br>
+- 该接口支持发现传统蓝牙设备和低功耗蓝牙设备，整个蓝牙扫描过程大约持续12s。<br>
 - 扫描结果可通过API version 10开始支持的[connection.on('bluetoothDeviceFind')](#connectiononbluetoothdevicefind)或者API version 18开始支持的[connection.on('discoveryResult')](#connectionondiscoveryresult18)的回调函数获取到。推荐使用[connection.on('discoveryResult')](#connectionondiscoveryresult18)，该方式可以获取到更多设备信息。<br>
-- 调用[stopBluetoothDiscovery](#connectionstopbluetoothdiscovery)可以停止该方法开启的扫描流程。
+- 若在扫描过程中，请勿重复调用该方法（可使用[connection.isBluetoothDiscovering](#connectionisbluetoothdiscovering11)判断蓝牙当前是否处于扫描过程中）。<br>
+- 调用[connection.stopBluetoothDiscovery](#connectionstopbluetoothdiscovery)可以停止该方法开启的扫描流程，扫描停止后，才能开启下一次蓝牙扫描。<br>
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -977,7 +979,8 @@ stopBluetoothDiscovery(): void
 
 关闭蓝牙扫描。<br>
 - 关闭的扫描是由[connection.startBluetoothDiscovery](#connectionstartbluetoothdiscovery)触发的。<br>
-- 当应用不再需要扫描设备时，需主动调用该方法关闭扫描。
+- 当应用不再需要扫描设备时，需主动调用该方法关闭扫描。<br>
+- 若不在扫描过程中，请勿重复调用该方法（可使用[connection.isBluetoothDiscovering](#connectionisbluetoothdiscovering11)判断蓝牙当前是否处于扫描过程中）。<br>
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1089,15 +1092,14 @@ setRemoteDeviceName(deviceId: string, name: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 // promise
 try {
     connection.setRemoteDeviceName('11:22:33:44:55:66', 'RemoteDeviceName').then(() => {
         console.info('setRemoteDeviceName success');
     }, (error: BusinessError) => {
-        console.error('setRemoteDeviceName: errCode:' + error.code + ',errMessage' + error.message);
+        console.error('setRemoteDeviceName: errCode: ' + error.code + ',errMessage' + error.message);
     })
-
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }

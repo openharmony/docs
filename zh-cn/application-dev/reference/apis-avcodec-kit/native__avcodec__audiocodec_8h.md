@@ -1,5 +1,11 @@
 # native_avcodec_audiocodec.h
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @mr-chencxy-->
+<!--Designer: @dpy2650--->
+<!--Tester: @baotianhao-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
@@ -38,3 +44,7 @@
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_FreeOutputBuffer](_audio_codec.md#oh_audiocodec_freeoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的输出缓冲区返回给编解码器。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_IsValid](_audio_codec.md#oh_audiocodec_isvalid) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, bool \*isValid) | 检查当前编解码器实例是否有效。<br>可用于后台故障恢复或应用程序从后台恢复时检测编解码器有效状态。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_SetDecryptionConfig](_audio_codec.md#oh_audiocodec_setdecryptionconfig) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, MediaKeySession \*mediaKeySession, bool secureAudio) | 设置解密信息。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_QueryInputBuffer](_audio_codec.md#oh_audiocodec_queryinputbuffer) (struct [OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs) | 在设置的超时时间内，尝试查询对应音频编解码器可用的输入缓冲区的索引值。  | 
+| [OH_AVBuffer](_core.md#oh_avbuffer) \*[OH_AudioCodec_GetInputBuffer](_audio_codec.md#oh_audiocodec_getinputbuffer)(struct [OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 输入索引值，获取对应音频编解码器中该索引值对应的输入缓冲区。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_QueryOutputBuffer](_audio_codec.md#oh_audiocodec_queryoutputbuffer)(struct [OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t \*index, int64_t timeoutUs) | 在设置的超时时间内，尝试查询对应音频编解码器可用的输出缓冲区的索引值。  | 
+| [OH_AVBuffer](_core.md#oh_avbuffer) \*[OH_AudioCodec_GetOutputBuffer](_audio_codec.md#oh_audiocodec_getoutputbuffer)(struct [OH_AVCodec](_codec_base.md#oh_avcodec) *codec, uint32_t index) | 输入索引值，获取对应音频编解码器中该索引值对应的输出缓冲区。  | 

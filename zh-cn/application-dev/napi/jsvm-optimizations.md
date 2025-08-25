@@ -2,8 +2,9 @@
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @yuanxiaogou; @string_sz-->
-<!--SE: @knightaoko-->
-<!--TSE: @test_lzz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## JSVM 调用结构
 
@@ -41,7 +42,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileScript(JSVM_Env env,
                                               JSVM_Script* result);
 ```
 
-同时 code cache 的生成和使用也会对编译产生影响，这部分可以参考 [使用 code cache 加速编译](use-jsvm-about-code-cache.md)。
+同时，code cache 的生成和使用也会对编译产生影响，这部分可以参考 [使用 code cache 加速编译](use-jsvm-about-code-cache.md)。
 
 **热启动：生成足够多的 code cache**
 
@@ -130,7 +131,7 @@ if (script_run_completed) {
 
 ```cpp
 bool Test::IsFunction(JSVM_Env env, JSVM_Value jsvmValue) const {
-    // type judement
+    // type judgment
     JSVM_ValueType valueType;
     OH_JSVM_TypeOf(*env, jsvmValue, &valueType);
     return valueType == JSVM_FUNCTION;
@@ -142,7 +143,7 @@ bool Test::IsFunction(JSVM_Env env, JSVM_Value jsvmValue) const {
 
 ```cpp
 bool Test::IsFunction(JSVM_Env env, JSVM_Value jsvmValue) const {
-    // type judement
+    // type judgment
     bool result = false;
     OH_JSVM_IsFunction(*env, jsvmValue, &result); // 可直接判断是否为Function类型
     return result;

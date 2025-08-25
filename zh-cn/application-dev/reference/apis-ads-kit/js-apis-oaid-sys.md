@@ -3,8 +3,9 @@
 <!--Kit: Ads Kit-->
 <!--Subsystem: Advertising-->
 <!--Owner: @SukiEvas-->
-<!--SE: @zhansf1988-->
-<!--TSE: @hongmei_may-->
+<!--Designer: @zhansf1988-->
+<!--Tester: @hongmei_may-->
+<!--Adviser: @RayShih-->
 
 本模块提供开放匿名设备标识符（Open Anonymous Device Identifier, 以下简称OAID）的重置能力。
 
@@ -43,11 +44,6 @@ resetOAID(): void
 
 ```ts
 import { identifier } from '@kit.AdsKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
-try {
-  identifier.resetOAID();
-} catch (err) {
-  hilog.error(0x0000, 'testTag', `Fail to reset OAID. Code is ${err.code}, message is ${err.message}`);
-}
+identifier.resetOAID();
 ```

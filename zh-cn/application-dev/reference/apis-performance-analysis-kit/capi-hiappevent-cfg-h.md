@@ -3,8 +3,9 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @liujiaxing2024-->
-<!--SE: @junjie_shi-->
-<!--TSE: @gcw_KuLfPSbe-->
+<!--Designer: @junjie_shi-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
 ## 概述
 
@@ -24,9 +25,9 @@
 
 ### 宏定义
 
-| 名称                                        | 描述                                                         |
-|-------------------------------------------|------------------------------------------------------------|
-| [DISABLE](#disable) "disable"             | 事件打点开关。默认值为false。true：关闭打点功能，false：不关闭打点功能。<br>**起始版本：** 8 |
+| 名称 | 描述 |
+| -- | -- |
+| [DISABLE](#disable) "disable" | 事件打点开关。默认值为false。true：关闭打点功能，false：不关闭打点功能。<br>**起始版本：** 8 |
 | [MAX_STORAGE](#max_storage) "max_storage" | 事件文件目录存储配额大小。默认值为“10M”。<br>**起始版本：** 8 |
 
 

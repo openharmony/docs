@@ -3,8 +3,9 @@
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @hanamaru-->
-<!--SE: @comicchang-->
-<!--TSE: @gcw_fsLqk7gL-->
+<!--Designer: @comicchang-->
+<!--Tester: @gcw_fsLqk7gL-->
+<!--Adviser: @ge-yafang-->
 
 本模块提供组件效果的一些基础能力，包括模糊、边缘像素扩展、提亮等。效果被分为Filter和VisualEffect大类，同类效果可以级联在一个效果大类的实例下。在实际开发中，模糊可用于背景虚化，提亮可用于亮屏显示等。
 

@@ -2,8 +2,9 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yaozhupeng-->
-<!--SE: @yaozhupeng-->
-<!--TSE: @zhaoxiaoguang2-->
+<!--Designer: @yaozhupeng-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -16,7 +17,7 @@
 
 在调用PixelMap的方法前，需要先通过[image.createPixelMap](arkts-apis-image-f.md#imagecreatepixelmap8)构建一个PixelMap对象。
 
-开发原子化服务请通过[ImageSoure](arkts-apis-image-ImageSource.md)构建PixelMap对象。
+开发原子化服务请通过[ImageSource](arkts-apis-image-ImageSource.md)构建PixelMap对象。
 
 ## 导入模块
 

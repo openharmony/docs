@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @katabanga-->
-<!--SE: @s10021109-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 概述
 
@@ -66,7 +67,7 @@ struct TodoList {
         .fontSize(40)
         .margin({ bottom: 10 })
       Row() {
-        // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错
+        // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
         Image(this.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
           .width(28)
           .height(28)
@@ -96,7 +97,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -142,7 +143,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -210,7 +211,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -285,7 +286,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -380,7 +381,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -485,7 +486,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -542,8 +543,8 @@ struct TodoList {
         Button('设置')
           .onClick(() => {
             let wantInfo: Want = {
-              deviceId: '', // deviceId为空表示本设备
-              bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName
+              deviceId: '', // deviceId为空表示本设备。
+              bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName。
               abilityName: 'SettingAbility',
             };
             this.context.startAbility(wantInfo);
@@ -565,7 +566,7 @@ struct TodoList {
 ```
 
 ```ts
-// SettingAbility的SettingPage页面代码
+// SettingAbility的SettingPage页面代码。
 import { AppStorageV2 } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 
@@ -619,14 +620,14 @@ import util from '@ohos.util';
 
 @ObservedV2
 class Task {
-  // 未实现构造函数，因为@Type当前不支持带参数的构造函数
+  // 未实现构造函数，因为@Type当前不支持带参数的构造函数。
   @Trace taskName: string = 'Todo';
   @Trace isFinish: boolean = false;
 }
 
 @ObservedV2
 class TaskList {
-  // 对于复杂对象需要@Type修饰，确保序列化成功
+  // 对于复杂对象需要@Type修饰，确保序列化成功。
   @Type(Task)
   @Trace tasks: Task[] = [];
 
@@ -659,7 +660,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -719,8 +720,8 @@ struct TodoList {
         Button('设置')
           .onClick(() => {
             let wantInfo: Want = {
-              deviceId: '', // deviceId为空表示本设备
-              bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName
+              deviceId: '', // deviceId为空表示本设备。
+              bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName。
               abilityName: 'SettingAbility',
             };
             this.context.startAbility(wantInfo);
@@ -758,7 +759,7 @@ JSON文件存放在src/main/resources/rawfile/defaultTasks.json路径下。
 
 随着应用功能逐步扩展，代码中的某些UI元素开始重复，这不仅增加了代码量，也让维护变得复杂。为了解决这一问题，可以使用\@Builder装饰器，将重复的UI组件抽象成独立的构建方法，便于复用和代码的模块化。
 
-在示例10中，使用\@Builder定义了ActionButton方法，统一管理按钮的文字、样式和点击事件，使代码更简洁、结构更清晰，提升了代码的可维护性。在此基础上，调整了待办事项界面的布局和样式，例如组件的间距、颜色和大小，使UI界面更美观，最终呈现一个功能完善、界面简洁的待办事项应用。
+在示例10中，通过使用\@Builder定义的ActionButton方法，实现了按钮文字、样式和点击事件的统一管理，提高了代码的简洁性可维护性。同时优化了界面组件的布局和样式，包括间距、颜色和尺寸等视觉元素，最终呈现出一个功能完善且界面简洁美观的待办事项应用。
 
 **示例10**
 
@@ -772,7 +773,7 @@ import util from '@ohos.util';
 
 @ObservedV2
 class Task {
-  // 未实现构造函数，因为@Type当前不支持带参数的构造函数
+  // 未实现构造函数，因为@Type当前不支持带参数的构造函数。
   @Trace taskName: string = 'Todo';
   @Trace isFinish: boolean = false;
 }
@@ -785,7 +786,7 @@ class Task {
 
 @ObservedV2
 class TaskList {
-  // 对于复杂对象需要@Type修饰，确保序列化成功
+  // 对于复杂对象需要@Type修饰，确保序列化成功。
   @Type(Task)
   @Trace tasks: Task[] = [];
 
@@ -818,7 +819,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -881,8 +882,8 @@ struct TodoList {
         ActionButton('全部未完成', (): void => this.finishAll(false))
         ActionButton('设置', (): void => {
           let wantInfo: Want = {
-            deviceId: '', // deviceId为空表示本设备
-            bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName
+            deviceId: '', // deviceId为空表示本设备。
+            bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName。
             abilityName: 'SettingAbility',
           };
           this.context.startAbility(wantInfo);
@@ -1099,7 +1100,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -1162,8 +1163,8 @@ export default struct BottomView {
         ActionButton('全部未完成', (): void => this.taskList.finishAll(false))
         ActionButton('设置', (): void => {
           let wantInfo: Want = {
-            deviceId: '', // deviceId为空表示本设备
-            bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName
+            deviceId: '', // deviceId为空表示本设备。
+            bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName。
             abilityName: 'SettingAbility',
           };
           this.context.startAbility(wantInfo);
@@ -1274,7 +1275,7 @@ struct SettingPage {
 
 ## 总结
 
-本教程通过待办事项应用示例，引入状态管理V2装饰器，通过代码重构实现MVVM架构。最终，将数据、逻辑和视图分层，使得代码结构更加清晰、易于维护。合理地使用Model、View和ViewModel，可以帮助开发者更好地理解MVVM模式，并能将其灵活应用到自己项目的开发中，从而提高开发效率和代码质量，实现高效的数据与UI同步，简化开发流程。
+本指南通过待办事项应用示例，引入状态管理V2装饰器，并通过代码重构实现MVVM架构。最终将数据、业务逻辑和视图展示分层处理，使得代码结构更加清晰且易于维护。开发者通过正确应用Model、View和ViewModel分层结构，能够更好地理解和应用MVVM模式，进而在实际项目中提升开发效率、保证代码质量，并优化数据与UI的同步机制，简化整体开发流程。
 
 ## 代码示例
 [完整源码](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/StateMgmtV2MVVM/entry)

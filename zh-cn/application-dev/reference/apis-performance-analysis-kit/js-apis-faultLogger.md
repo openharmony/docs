@@ -1,4 +1,10 @@
 # @ohos.faultLogger (故障日志获取)
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @chenshi51-->
+<!--Designer: @Maplestory-->
+<!--Tester: @yufeifei-->
+<!--Adviser: @foryourself-->
 
 应用可以使用faultLogger接口查询系统侧缓存的当前应用的故障日志。接口以应用包名和系统分配的UID作为唯一键值。
 系统侧保存的应用故障日志数量受系统日志的压力限制，推荐使用[@ohos.hiviewdfx.hiAppEvent](js-apis-hiviewdfx-hiappevent.md)订阅APP_CRASH及APP_FREEZE等故障事件。

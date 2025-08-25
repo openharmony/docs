@@ -1,5 +1,12 @@
 # 订阅任务执行超时事件（C/C++）
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @rr_cn-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## 简介
 
 本文介绍如何使用HiAppEvent提供的C/C++接口订阅任务执行超时事件。接口的详细使用说明（参数限制、取值范围等）请参考[HiAppEvent C API文档](../reference/apis-performance-analysis-kit/capi-hiappevent-h.md)。
@@ -58,7 +65,6 @@
    #include "json/json.h"
    #include "hilog/log.h"
    #include "hiappevent/hiappevent.h"
-   #include <thread>
    #include <unistd.h>
    
    #undef LOG_TAG
@@ -328,7 +334,6 @@
    HiAppEvent eventInfo.params.exception={"message":"","name":"APP_HICOLLIE"}
    HiAppEvent eventInfo.params.hilog.size=77
    HiAppEvent eventInfo.params.peer_binder.size=18
-   HiAppEvent eventInfo.params.threads.size=28
    HiAppEvent eventInfo.params.memory={"pss":0,"rss":124668,"sys_avail_mem":2220032,"sys_free_mem":526680,"sys_total_mem":11692576,"vss":4238700}
    HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_HICOLLIE_1740993644458_26215.log"]
    HiAppEvent eventInfo.params.log_over_limit=0

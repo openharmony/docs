@@ -3,8 +3,9 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @rr_cn-->
-<!--SE: @peterhuangyu-->
-<!--TSE: @gcw_KuLfPSbe-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
 ## 场景介绍
 
@@ -60,7 +61,7 @@
 
 > **注意：**
 >
-> 建议在异常回调函数处理的最后，增加同步退出操作，否则可能出现多次异常回调的现象。
+> 建议在异常回调函数处理的最后，增加同步退出操作，以避免多次异常回调。
 
 ### 单线程监听场景
 
@@ -77,7 +78,7 @@ let callback: errorManager.ErrorObserver = {
     onException: (errorObj) => {
         console.info('onException, name: ', errorObj.name);
         console.info('onException, message: ', errorObj.message);
-        if (typeof(errorObj.stack) === 'string') {
+        if (typeof(errorObj.stack) == 'string') {
             console.info('onException, stack: ', errorObj.stack);
         }
         //回调函数执行完，采用同步退出方式，避免多次触发异常

@@ -3,8 +3,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @xia-bubai-->
-<!--SE: @linshuqing; @hehehe-li-->
-<!--TSE: @leiyuqian-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
 
 当应用需要访问用户的隐私信息或使用系统能力时，如获取位置信息、访问日历、使用相机拍摄照片或录制视频等，应向用户申请授权。这些权限属于user_grant权限。
 
@@ -25,7 +26,7 @@
 
 - user_grant权限授权要基于用户可知可控的原则，需要应用在运行时主动调用系统动态申请权限的接口，系统弹框由用户授权，用户结合应用运行场景的上下文，识别出应用申请相应敏感权限的合理性，从而做出正确的选择。
 
-- 系统不鼓励频繁弹窗打扰用户。如果用户拒绝授权，将无法再次弹窗，应用需引导用户在系统设置中手动授予权限。
+- 系统不鼓励频繁弹窗打扰用户。如果用户拒绝授权，将无法再次弹窗，应用需引导用户在系统设置中手动授予权限。或是调用[requestPermissionOnSetting](request-user-authorization-second.md)，拉起权限设置弹窗，引导用户授权。
 
 - 系统权限弹窗不可被遮挡。
 
@@ -198,6 +199,11 @@
 
 4. 处理授权结果。
 
-   调用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)方法后，应用程序将等待用户授权的结果。如果用户授权，则可以继续访问目标操作。如果用户拒绝授权，则需要提示用户必须授权才能访问当前页面的功能，并引导用户到系统应用“设置”中打开相应的权限。<!--RP3-->
+   调用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)方法后，应用程序将等待用户授权的结果。
+   
+   如果用户授权，则可以继续访问目标操作。
+   
+   如果用户拒绝授权，则需要提示用户必须授权才能访问当前页面的功能，并引导用户到系统应用“设置”中打开相应的权限；或是调用[requestPermissionOnSetting()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissiononsetting12)，拉起权限设置弹框，引导用户授权。<!--RP3-->
+
 
    路径：设置 \> 隐私 \> 权限管理 \> 应用 \> 目标应用<!--RP3End-->

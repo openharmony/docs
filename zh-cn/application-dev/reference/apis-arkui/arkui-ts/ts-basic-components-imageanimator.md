@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @liyujie43-->
-<!--SE: @weixin_52725220-->
-<!--TSE: @xiong0104-->
+<!--Designer: @weixin_52725220-->
+<!--Tester: @xiong0104-->
+<!--Adviser: @HelloCrease-->
 
 提供帧动画组件来实现逐帧播放图片的能力，可以配置需要播放的图片列表，每张图片可以配置时长。
 
@@ -84,7 +85,7 @@ duration(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 播放时长。<br/>value为0时，不播放图片。<br/>设置为负数时，取默认值。<br/>value的改变只会在下一次循环开始时生效。<br/>单位：毫秒<br/>默认值：1000ms |
+| value  | number | 是   | 播放时长。<br/>value为0时，不播放图片。<br/>value平均分配给单张图片的播放时长小于一帧时间，将导致播放异常。<br/>设置为负数时，取默认值。<br/>value的改变只会在下一次循环开始时生效。<br/>单位：毫秒<br/>默认值：1000ms |
 
 ### reverse
 
@@ -318,15 +319,19 @@ struct ImageAnimatorExample {
       ImageAnimator()
         .images([
           {
+            // $r('app.media.img1')需要替换为开发者所需的图像资源文件。
             src: $r('app.media.img1')
           },
           {
+            // $r('app.media.img2')需要替换为开发者所需的图像资源文件。
             src: $r('app.media.img2')
           },
           {
+            // $r('app.media.img3')需要替换为开发者所需的图像资源文件。
             src: $r('app.media.img3')
           },
           {
+            // $r('app.media.img4')需要替换为开发者所需的图像资源文件。
             src: $r('app.media.img4')
           }
         ])
@@ -402,9 +407,13 @@ struct ImageAnimatorExample {
   @State images: Array<ImageFrameInfo> = [];
 
   async aboutToAppear() {
+    // $r('app.media.1')需要替换为开发者所需的图像资源文件。
     this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.1')));
+    // $r('app.media.2')需要替换为开发者所需的图像资源文件。
     this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.2')));
+    // $r('app.media.3')需要替换为开发者所需的图像资源文件。
     this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.3')));
+    // $r('app.media.4')需要替换为开发者所需的图像资源文件。
     this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.4')));
     this.images.push({ src: this.imagePixelMap[0] });
     this.images.push({ src: this.imagePixelMap[1] });
@@ -502,15 +511,19 @@ struct ImageAnimatorAutoPauseTest {
           ImageAnimator()
             .images([
               {
+                // $r('app.media.Clouds')需要替换为开发者所需的图像资源文件。
                 src: $r('app.media.Clouds')
               },
               {
+                // $r('app.media.landscape')需要替换为开发者所需的图像资源文件。
                 src: $r('app.media.landscape')
               },
               {
+                // $r('app.media.sky')需要替换为开发者所需的图像资源文件。
                 src: $r('app.media.sky')
               },
               {
+                // $r('app.media.mountain')需要替换为开发者所需的图像资源文件。
                 src: $r('app.media.mountain')
               }
             ])

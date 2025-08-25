@@ -1,4 +1,10 @@
 # @ohos.multimedia.movingphotoview (动态照片)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @tangye123456-->
+<!--Designer: @YanSanzo-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @zengyawen-->
 
 用于播放动态照片文件并控制其播放状态的组件。
 
@@ -102,7 +108,9 @@ autoPlayPeriod(startTime: number, endTime: number)
 
 autoPlay(isAutoPlay: boolean)
 
-设置自动播放，自动播放一遍视频，完成播放后显示静态图。
+设置自动播放，自动播放一遍视频。
+
+动态照片加载完成后，准备播放时可以调用，播放完成后显示静态图。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -259,7 +267,7 @@ onStop(callback: MovingPhotoViewEventCallback)
 
 onPrepared(callback: MovingPhotoViewEventCallback)
 
-动态照片准备完成图片时触发该事件。
+动态照片准备播放时触发该事件。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -270,7 +278,7 @@ onPrepared(callback: MovingPhotoViewEventCallback)
 
 | 参数名   | 类型                                                          | 必填 | 说明                           |
 | -------- | ------------------------------------------------------------- | ---- | ------------------------------ |
-| callback | [MovingPhotoViewEventCallback](#movingphotovieweventcallback) | 是   | 动态照片加载完成图片的回调。 |
+| callback | [MovingPhotoViewEventCallback](#movingphotovieweventcallback) | 是   | 动态照片准备播放时的回调。 |
 
 ## MovingPhotoViewEventCallback
 
@@ -278,15 +286,29 @@ declare type MovingPhotoViewEventCallback = () => void
 
 动态照片播放状态发生变化时触发的回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
 ## MovingPhotoViewController
 
 一个MovingPhotoViewController对象可以控制一个MovingPhotoView，可用视频播放实例请参考[@ohos.multimedia.media](../apis-media-kit/arkts-apis-media.md)。
+
+### constructor
+
+constructor(): void
+
+MovingPhotoViewController的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 ### startPlayback
 
 startPlayback(): void
 
-开始播放。
+开始播放，动态照片加载完成后，在播放准备，暂停，完成时调用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -458,161 +480,7 @@ class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHan
 }
 ```
 ![autoplay](figures/AutoPlay.gif)
-## 示例2：图像分析功能使用
-
-```ts
-// xxx.ets
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { emitter } from '@kit.BasicServicesKit';
-import { dataSharePredicates } from '@kit.ArkData';
-import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
-import visionImageAnalyzer from '@hms.ai.visionImageAnalyzer';
-const PHOTO_SELECT_EVENT_ID: number = 80001
-
-@Entry
-@Component
-struct MovingPhotoViewDemo {
-  @State src: photoAccessHelper.MovingPhoto | undefined = undefined
-  @State isMuted: boolean = false
-  controller: MovingPhotoViewController = new MovingPhotoViewController()
-  private aiController: visionImageAnalyzer.VisionImageAnalyzerController =
-    new visionImageAnalyzer.VisionImageAnalyzerController()
-  private options: ImageAIOptions = {
-    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT, ImageAnalyzerType.OBJECT_LOOKUP],
-    aiController: this.aiController
-  }
-  private uiContext: UIContext = this.getUIContext()
-
-  aboutToAppear(): void {
-    emitter.on({
-      eventId: PHOTO_SELECT_EVENT_ID,
-      priority: emitter.EventPriority.IMMEDIATE,
-    }, (eventData: emitter.EventData) => {
-      this.src = AppStorage.get<photoAccessHelper.MovingPhoto>('mv_data') as photoAccessHelper.MovingPhoto
-    })
-  }
-
-  aboutToDisappear(): void {
-    emitter.off(PHOTO_SELECT_EVENT_ID)
-  }
-
-  build() {
-    Column() {
-      Row() {
-        Button('PICK')
-          .margin(5)
-          .onClick(async () => {
-            try {
-              let uris: Array<string> = []
-              const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions()
-              photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE
-              photoSelectOptions.maxSelectNumber = 2
-              const photoViewPicker = new photoAccessHelper.PhotoViewPicker()
-              let photoSelectResult: photoAccessHelper.PhotoSelectResult = await photoViewPicker.select(photoSelectOptions)
-              uris = photoSelectResult.photoUris
-              if (uris[0]) {
-                this.handlePickerResult(this.uiContext.getHostContext()!, uris[0], new MediaDataHandlerMovingPhoto())
-              }
-            } catch (e) {
-              console.error(`pick file failed`)
-            }
-          })
-      }
-      .alignItems(VerticalAlign.Center)
-      .justifyContent(FlexAlign.Center)
-      .height('15%')
-
-      Row() {
-        Column() {
-          MovingPhotoView({
-            movingPhoto: this.src,
-            controller: this.controller,
-            imageAIOptions: this.options
-          })
-            .width('100%')
-            .height('100%')
-            .muted(this.isMuted)
-            .autoPlay(true)
-            .repeatPlay(false)
-            .autoPlayPeriod(0, 600)
-            .objectFit(ImageFit.Cover)
-            .enableAnalyzer(true)
-            .onComplete(() => {
-              console.log('Completed');
-            })
-            .onStart(() => {
-              console.log('onStart')
-            })
-            .onFinish(() => {
-              console.log('onFinish')
-            })
-            .onStop(() => {
-              console.log('onStop')
-            })
-            .onError(() => {
-              console.log('onError')
-            })
-        }
-      }
-      .height('70%')
-
-      Row() {
-        Button('start')
-          .onClick(() => {
-            this.controller.startPlayback()
-          })
-          .margin(5)
-        Button('stop')
-          .onClick(() => {
-            this.controller.stopPlayback()
-          })
-          .margin(5)
-        Button('mute')
-          .onClick(() => {
-            this.isMuted = !this.isMuted
-          })
-          .margin(5)
-      }
-      .alignItems(VerticalAlign.Center)
-      .justifyContent(FlexAlign.Center)
-      .height('15%')
-    }
-  }
-
-  async handlePickerResult(context: Context, uri: string, handler: photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto>): Promise<void> {
-    let uriPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-    uriPredicates.equalTo('uri', uri)
-    let fetchOptions: photoAccessHelper.FetchOptions = {
-      fetchColumns: [],
-      predicates: uriPredicates
-    };
-    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context)
-    let assetResult = await phAccessHelper.getAssets(fetchOptions)
-    let asset = await assetResult.getFirstObject()
-    let requestOptions: photoAccessHelper.RequestOptions = {
-      deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
-    }
-    try {
-      photoAccessHelper.MediaAssetManager.requestMovingPhoto(context, asset, requestOptions, handler)
-    } catch (err) {
-      console.error("request error: ", err)
-    }
-  }
-}
-
-class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
-  async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
-    AppStorage.setOrCreate('mv_data', movingPhoto)
-    emitter.emit({
-      eventId: PHOTO_SELECT_EVENT_ID,
-      priority: emitter.EventPriority.IMMEDIATE,
-    }, {
-    })
-  }
-}
-```
-![AiAnalysis](figures/AiAnalysis.gif)
-## 示例3：在原子化服务中使用动态照片
+## 示例2：在原子化服务中使用动态照片
 
 ```ts
 // xxx.ets
@@ -704,3 +572,5 @@ struct Index {
 }
 ```
 ![AutomicEnergy](figures/AutomicEnergy.gif)
+
+<!--RP1--><!--RP1End-->

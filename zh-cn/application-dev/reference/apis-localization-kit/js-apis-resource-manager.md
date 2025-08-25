@@ -1,5 +1,12 @@
 # @ohos.resourceManager (资源管理)
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @liule_123-->
+<!--Designer: @buda_wy-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
+
 本模块提供资源获取能力。根据当前的[Configuration](#configuration)配置，获取最匹配的应用资源或系统资源。具体匹配规则参考[资源匹配](../../quick-start/resource-categories-and-access.md#资源匹配)。
 
 Configuration配置包括语言、区域、横竖屏、Mcc（移动国家码）和Mnc（移动网络码）、Device capability（设备类型）、Density（分辨率）。
@@ -60,6 +67,7 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
       console.error("error is " + error);
       return;
     }
+    // 'app.string.test'仅作示例，请替换为实际使用的资源
     mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
@@ -93,6 +101,7 @@ getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManage
   import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // "com.example.myapplication"仅作示例，请替换为实际使用的包名
   resourceManager.getResourceManager("com.example.myapplication", (error, mgr) => {
     if (error != null) {
       console.error("error is " + error);
@@ -124,6 +133,7 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
+    // 'app.string.test'仅作示例，请替换为实际使用的资源
     mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
@@ -164,6 +174,7 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
   import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // "com.example.myapplication"仅作示例，请替换为实际使用的包名
   resourceManager.getResourceManager("com.example.myapplication").then((mgr: resourceManager.ResourceManager) => {
   }).catch((error: BusinessError) => {
     console.error("error is " + error);
@@ -201,6 +212,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let systemResourceManager = resourceManager.getSysResourceManager();
+    // 'sys.string.ohos_lab_vibrate'仅作示例，请替换为实际使用的资源
     systemResourceManager.getStringValue($r('sys.string.ohos_lab_vibrate').id).then((value: string) => {
       let str = value;
     }).catch((error: BusinessError) => {
@@ -396,6 +408,7 @@ getStringSync(resId: number): string
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // 'app.string.test'仅作示例，请替换为实际使用的资源
     let testStr = this.context.resourceManager.getStringSync($r('app.string.test').id);
     console.log(`getStringSync, result: ${testStr}`);
     // 打印输出结果: getStringSync, result: I'm a test string resource.
@@ -457,6 +470,7 @@ getStringSync(resId: number, ...args: Array<string | number>): string
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // 'app.string.test'仅作示例，请替换为实际使用的资源
     let testStr = this.context.resourceManager.getStringSync($r('app.string.test').id, "format string", 10, 98.78);
     console.log(`getStringSync, result: ${testStr}`);
     // 打印输出结果: getStringSync, result: I'm a format string, format int: 10, format float: 98.78.
@@ -516,6 +530,7 @@ getStringByNameSync(resName: string): string
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "test"仅作示例，请替换为实际使用的资源
     let testStr = this.context.resourceManager.getStringByNameSync("test");
     console.log(`getStringByNameSync, result: ${testStr}`);
     // 打印输出结果: getStringByNameSync, result: I'm a test string resource.
@@ -577,6 +592,7 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "test"仅作示例，请替换为实际使用的资源
     let testStr = this.context.resourceManager.getStringByNameSync("test", "format string", 10, 98.78);
     console.log(`getStringByNameSync, result: ${testStr}`);
     // 打印输出结果: getStringByNameSync, result: I'm a format string, format int: 10, format float: 98.78.
@@ -630,6 +646,7 @@ getStringValue(resId: number, callback: _AsyncCallback&lt;string&gt;): void
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // 'app.string.test'仅作示例，请替换为实际使用的资源
   this.context.resourceManager.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
     if (error != null) {
       console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
@@ -688,6 +705,7 @@ getStringValue(resId: number): Promise&lt;string&gt;
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // 'app.string.test'仅作示例，请替换为实际使用的资源
   this.context.resourceManager.getStringValue($r('app.string.test').id).then((value: string) => {
     console.log(`getStringValue, result: ${value}`);
     // 打印输出结果: getStringValue, result: I'm a test string resource.
@@ -739,6 +757,7 @@ getStringByName(resName: string, callback: _AsyncCallback&lt;string&gt;): void
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // "test"仅作示例，请替换为实际使用的资源
   this.context.resourceManager.getStringByName("test", (error: BusinessError, value: string) => {
     if (error != null) {
       console.error(`callback getStringByName failed, error code: ${error.code}, message: ${error.message}.`);
@@ -797,6 +816,7 @@ getStringByName(resName: string): Promise&lt;string&gt;
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // "test"仅作示例，请替换为实际使用的资源
   this.context.resourceManager.getStringByName("test").then((value: string) => {
     console.log(`getStringByName, result: ${value}`);
     // 打印输出结果: getStringByName, result: I'm a test string resource.
@@ -858,6 +878,7 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // 'app.strarray.test'仅作示例，请替换为实际使用的资源
     let strArray: Array<string> = this.context.resourceManager.getStringArrayValueSync($r('app.strarray.test').id);
     console.log(`getStringArrayValueSync, result: ${strArray[0]}`);
     // 打印输出结果: getStringArrayValueSync, result: I'm one of the array's values.
@@ -921,6 +942,7 @@ getStringArrayByNameSync(resName: string): Array&lt;string&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "test"仅作示例，请替换为实际使用的资源
     let strArray: Array<string> = this.context.resourceManager.getStringArrayByNameSync("test");
     console.log(`getStringArrayByNameSync, result: ${strArray[0]}`);
     // 打印输出结果: getStringArrayByNameSync, result: I'm one of the array's values.
@@ -978,6 +1000,7 @@ getStringArrayValue(resId: number, callback: _AsyncCallback&lt;Array&lt;string&g
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // 'app.strarray.test'仅作示例，请替换为实际使用的资源
   this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id,
     (error: BusinessError, value: Array<string>) => {
       if (error != null) {
@@ -1041,6 +1064,7 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // 'app.strarray.test'仅作示例，请替换为实际使用的资源
   this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id)
     .then((value: Array<string>) => {
       console.log(`getStringArrayValue, result: ${value[0]}`);
@@ -1098,6 +1122,7 @@ getStringArrayByName(resName: string, callback: _AsyncCallback&lt;Array&lt;strin
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // "test"仅作示例，请替换为实际使用的资源
   this.context.resourceManager.getStringArrayByName("test", (error: BusinessError, value: Array<string>) => {
     if (error != null) {
       console.error(`callback getStringArrayByName failed, error code: ${error.code}, message: ${error.message}.`);
@@ -1161,6 +1186,7 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // "test"仅作示例，请替换为实际使用的资源
   this.context.resourceManager.getStringArrayByName("test")
     .then((value: Array<string>) => {
       console.log(`getStringArrayByName, result: ${value[0]}`);
@@ -1237,6 +1263,7 @@ getIntPluralStringValueSync(resId: number, num: number, ...args: Array<string | 
   try {
     // 根据语言单复数规则，参数num取值为1，英文环境下对应单复数类别为one
     // 在资源文件中用quantity字段表示单复数类别，因此会获取quantity为one的字符串
+    // 'app.plural.format_test'仅作示例，请替换为实际使用的资源
     let pluralStr = this.context.resourceManager.getIntPluralStringValueSync($r('app.plural.format_test').id, 1, 1, "basket", 0.3);
     console.log(`getIntPluralStringValueSync, result: ${pluralStr}`);
     // 打印输出结果: getIntPluralStringValueSync, result: There is 1 apple in the basket, the total amount is 0.3 kg.
@@ -1313,6 +1340,7 @@ getIntPluralStringByNameSync(resName: string, num: number, ...args: Array<string
   try {
     // 根据语言单复数规则，参数num取值为1，英文环境下对应单复数类别为one
     // 在资源文件中用quantity字段表示单复数类别，因此会获取quantity为one的字符串
+    // "format_test"仅作示例，请替换为实际使用的资源
     let pluralStr = this.context.resourceManager.getIntPluralStringByNameSync("format_test", 1, 1, "basket", 0.3);
     console.log(`getIntPluralStringByNameSync, result: ${pluralStr}`);
     // 打印输出结果: getIntPluralStringByNameSync, result: There is 1 apple in the basket, the total amount is 0.3 kg.
@@ -1389,6 +1417,7 @@ getDoublePluralStringValueSync(resId: number, num: number, ...args: Array<string
   try {
     // 根据语言单复数规则，参数num取值为2.1，英文环境下对应单复数类别为other
     // 在资源文件中用quantity字段表示单复数类别，因此会获取quantity为other的字符串
+    // 'app.plural.format_test'仅作示例，请替换为实际使用的资源
     let pluralStr = this.context.resourceManager.getDoublePluralStringValueSync($r('app.plural.format_test').id, 2.1, 2, "basket", 0.6);
     console.log(`getDoublePluralStringValueSync, result: ${pluralStr}`);
     // 打印输出结果: getDoublePluralStringValueSync, result: There are 2 apples in the basket, the total amount is 0.6 kg.
@@ -1465,6 +1494,7 @@ getDoublePluralStringByNameSync(resName: string, num: number, ...args: Array<str
   try {
     // 根据语言单复数规则，参数num取值为2.1，英文环境下对应单复数类别为other
     // 在资源文件中用quantity字段表示单复数类别，因此会获取quantity为other的字符串
+    // "format_test"仅作示例，请替换为实际使用的资源
     let pluralStr = this.context.resourceManager.getDoublePluralStringByNameSync("format_test", 2.1, 2, "basket", 0.6);
     console.log(`getDoublePluralStringByNameSync, result: ${pluralStr}`);
     // 打印输出结果: getIntPluralStringValueSync, result: There are 2 apples in the basket, the total amount is 0.6 kg.
@@ -1513,6 +1543,7 @@ getMediaContentSync(resId: number, density?: number): Uint8Array
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // 'app.media.test'仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaContentSync($r('app.media.test').id); // 默认屏幕密度
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -1521,6 +1552,7 @@ getMediaContentSync(resId: number, density?: number): Uint8Array
   }
 
   try {
+    // 'app.media.test'仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaContentSync($r('app.media.test').id, 120); // 指定屏幕密度
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -1567,6 +1599,7 @@ getMediaByNameSync(resName: string, density?: number): Uint8Array
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "test"仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaByNameSync("test"); // 默认屏幕密度
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -1575,6 +1608,7 @@ getMediaByNameSync(resName: string, density?: number): Uint8Array
   }
 
   try {
+    // "test"仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaByNameSync("test", 120); // 指定屏幕密度
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -1615,6 +1649,7 @@ getMediaContent(resId: number, callback: _AsyncCallback&lt;Uint8Array&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // 'app.media.test'仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaContent($r('app.media.test').id, (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error("error is " + error);
@@ -1662,6 +1697,7 @@ getMediaContent(resId: number, density: number, callback: _AsyncCallback&lt;Uint
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // 'app.media.test'仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaContent($r('app.media.test').id, 120, (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
@@ -1713,6 +1749,7 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // 'app.media.test'仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaContent($r('app.media.test').id).then((value: Uint8Array) => {
       let media = value;
     }).catch((error: BusinessError) => {
@@ -1763,6 +1800,7 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // 'app.media.test'仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaContent($r('app.media.test').id, 120).then((value: Uint8Array) => {
       let media = value;
     }).catch((error: BusinessError) => {
@@ -1807,6 +1845,7 @@ getMediaByName(resName: string, callback: _AsyncCallback&lt;Uint8Array&gt;): voi
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "test"仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaByName("test", (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error("error is " + error);
@@ -1854,6 +1893,7 @@ getMediaByName(resName: string, density: number, callback: _AsyncCallback&lt;Uin
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "test"仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaByName("test", 120, (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
@@ -1905,6 +1945,7 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "test"仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaByName("test").then((value: Uint8Array) => {
       let media = value;
     }).catch((error: BusinessError) => {
@@ -1955,6 +1996,7 @@ getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "test"仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaByName("test", 120).then((value: Uint8Array) => {
       let media = value;
     }).catch((error: BusinessError) => {
@@ -2005,6 +2047,7 @@ getMediaContentBase64Sync(resId: number, density?: number): string
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // 'app.media.test'仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaContentBase64Sync($r('app.media.test').id); // 默认屏幕密度
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2013,6 +2056,7 @@ getMediaContentBase64Sync(resId: number, density?: number): string
   }
 
   try {
+    // 'app.media.test'仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaContentBase64Sync($r('app.media.test').id, 120); // 指定屏幕密度
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2059,6 +2103,7 @@ getMediaBase64ByNameSync(resName: string, density?: number): string
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "test"仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaBase64ByNameSync("test"); // 默认屏幕密度
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2067,6 +2112,7 @@ getMediaBase64ByNameSync(resName: string, density?: number): string
   }
 
   try {
+    // "test"仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaBase64ByNameSync("test", 120); // 指定屏幕密度
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2107,6 +2153,7 @@ getMediaContentBase64(resId: number, callback: _AsyncCallback&lt;string&gt;): vo
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // 'app.media.test'仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
@@ -2154,6 +2201,7 @@ getMediaContentBase64(resId: number, density: number, callback: _AsyncCallback&l
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // 'app.media.test'仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
@@ -2205,6 +2253,7 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // 'app.media.test'仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id).then((value: string) => {
       let media = value;
     }).catch((error: BusinessError) => {
@@ -2255,6 +2304,7 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // 'app.media.test'仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120).then((value: string) => {
       let media = value;
     }).catch((error: BusinessError) => {
@@ -2299,6 +2349,7 @@ getMediaBase64ByName(resName: string, callback: _AsyncCallback&lt;string&gt;): v
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "test"仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaBase64ByName("test", (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
@@ -2350,6 +2401,7 @@ getMediaBase64ByName(resName: string, density: number, callback: _AsyncCallback&
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "test"仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaBase64ByName("test", 120, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
@@ -2401,6 +2453,7 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "test"仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaBase64ByName("test").then((value: string) => {
       let media = value;
     }).catch((error: BusinessError) => {
@@ -2451,6 +2504,7 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "test"仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getMediaBase64ByName("test", 120).then((value: string) => {
       let media = value;
     }).catch((error: BusinessError) => {
@@ -2503,6 +2557,7 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
   import { DrawableDescriptor } from '@kit.ArkUI';
 
   try {
+    // 'app.media.icon'仅作示例，请替换为实际使用的资源
     let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id);
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2510,6 +2565,7 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
+    // 'app.media.icon'仅作示例，请替换为实际使用的资源
     let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120);
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2517,6 +2573,7 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
+    // 'app.media.icon'仅作示例，请替换为实际使用的资源
     let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2565,6 +2622,7 @@ getDrawableDescriptorByName(resName: string, density?: number, type?: number): D
   import { DrawableDescriptor } from '@kit.ArkUI';
 
   try {
+    // "icon"仅作示例，请替换为实际使用的资源
     let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptorByName('icon');
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2572,6 +2630,7 @@ getDrawableDescriptorByName(resName: string, density?: number, type?: number): D
     console.error(`getDrawableDescriptorByName failed, error code: ${code}, message: ${message}.`);
   }
   try {
+    // "icon"仅作示例，请替换为实际使用的资源
     let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2579,6 +2638,7 @@ getDrawableDescriptorByName(resName: string, density?: number, type?: number): D
     console.error(`getDrawableDescriptorByName failed, error code: ${code}, message: ${message}.`);
   }
   try {
+    // "icon"仅作示例，请替换为实际使用的资源
     let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptorByName('icon', 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2636,6 +2696,7 @@ getBoolean(resId: number): boolean
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // 'app.boolean.boolean_test'仅作示例，请替换为实际使用的资源
     let boolTest = this.context.resourceManager.getBoolean($r('app.boolean.boolean_test').id);
     console.log(`getBoolean, result: ${boolTest}`);
     // 打印输出结果: getBoolean, result: true
@@ -2695,6 +2756,7 @@ getBooleanByName(resName: string): boolean
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "boolean_test"仅作示例，请替换为实际使用的资源
     let boolTest = this.context.resourceManager.getBooleanByName("boolean_test");
     console.log(`getBooleanByName, result: ${boolTest}`);
     // 打印输出结果: getBooleanByName, result: true
@@ -2768,6 +2830,7 @@ getNumber(resId: number): number
 
   try {
     // integer对应返回的是原数值
+    // 'app.integer.integer_test'仅作示例，请替换为实际使用的资源
     let intValue = this.context.resourceManager.getNumber($r('app.integer.integer_test').id);
     console.log(`getNumber, int value: ${intValue}`);
     // 打印输出结果: getNumber, int value: 100
@@ -2779,6 +2842,7 @@ getNumber(resId: number): number
 
   try {
     // float对应返回的是真实像素点值，带"vp","fp"单位的像素值 = 原数值 * densityPixels
+    // 'app.float.float_test'仅作示例，请替换为实际使用的资源
     let floatValue = this.context.resourceManager.getNumber($r('app.float.float_test').id);
     console.log(`getNumber, densityPixels: ${display.getDefaultDisplaySync().densityPixels}, float value: ${floatValue}`);
     // 打印输出结果: getNumber, densityPixels: 3.25, float value: 99.45000457763672
@@ -2853,6 +2917,7 @@ getNumberByName(resName: string): number
 
   try {
     // integer对应返回的是原数值
+    // "integer_test"仅作示例，请替换为实际使用的资源
     let intValue = this.context.resourceManager.getNumberByName("integer_test");
     console.log(`getNumberByName, int value: ${intValue}`);
     // 打印输出结果: getNumberByName, int value: 100
@@ -2864,6 +2929,7 @@ getNumberByName(resName: string): number
 
   try {
     // float对应返回的是真实像素点值，带"vp","fp"单位的像素值 = 原数值 * densityPixels
+    // "float_test"仅作示例，请替换为实际使用的资源
     let floatValue = this.context.resourceManager.getNumberByName("float_test");
     console.log(`getNumberByName, densityPixels: ${display.getDefaultDisplaySync().densityPixels}, float value: ${floatValue}`);
     // 打印输出结果: getNumberByName, densityPixels: 3.25, float value: 99.45000457763672
@@ -2923,6 +2989,7 @@ getColorSync(resId: number) : number
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // 'app.color.test'仅作示例，请替换为实际使用的资源
     let colorValue = this.context.resourceManager.getColorSync($r('app.color.test').id);
     console.log(`getColorSync, result: ${colorValue}`);
     // 打印输出结果: getColorSync, result: 4294967295
@@ -2983,6 +3050,7 @@ getColorByNameSync(resName: string) : number
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "test"仅作示例，请替换为实际使用的资源
     let colorValue = this.context.resourceManager.getColorByNameSync("test");
     console.log(`getColorByNameSync, result: ${colorValue}`);
     // 打印输出结果: getColorByNameSync, result: 4294967295
@@ -3036,6 +3104,7 @@ getColor(resId: number, callback: _AsyncCallback&lt;number&gt;): void
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // 'app.color.test'仅作示例，请替换为实际使用的资源
   this.context.resourceManager.getColor($r('app.color.test').id, (error: BusinessError, value: number) => {
     if (error != null) {
       console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`);
@@ -3094,6 +3163,7 @@ getColor(resId: number): Promise&lt;number&gt;
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // 'app.color.test'仅作示例，请替换为实际使用的资源
   this.context.resourceManager.getColor($r('app.color.test').id)
     .then((value: number) => {
       console.log(`getColor, result: ${value}`);
@@ -3148,6 +3218,7 @@ getColorByName(resName: string, callback: _AsyncCallback&lt;number&gt;): void
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // "test"仅作示例，请替换为实际使用的资源
   this.context.resourceManager.getColorByName("test", (error: BusinessError, value: number) => {
     if (error != null) {
       console.error(`callback getColorByName failed, error code: ${error.code}, message: ${error.message}.`);
@@ -3206,6 +3277,7 @@ getColorByName(resName: string): Promise&lt;number&gt;
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // "test"仅作示例，请替换为实际使用的资源
   this.context.resourceManager.getColorByName("test")
     .then((value: number) => {
       console.log(`getColorByName, result: ${value}`);
@@ -3252,6 +3324,7 @@ getRawFileContentSync(path: string): Uint8Array
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "test.txt"仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getRawFileContentSync("test.txt");
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -3291,6 +3364,7 @@ getRawFileContent(path: string, callback: _AsyncCallback&lt;Uint8Array&gt;): voi
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "test.txt"仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getRawFileContent("test.txt", (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error("error is " + error);
@@ -3341,6 +3415,7 @@ getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "test.txt"仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getRawFileContent("test.txt").then((value: Uint8Array) => {
       let rawFile = value;
     }).catch((error: BusinessError) => {
@@ -3394,6 +3469,7 @@ getRawFileListSync(path: string): Array\<string>
 
   try {
     // 传入""表示获取rawfile根目录下的文件列表，假设rawfile根目录下存在test.txt文件
+    // 传入""仅作示例，请替换为rawfile目录下实际的文件路径
     let fileList: Array<string> = this.context.resourceManager.getRawFileListSync("");
     console.log(`getRawFileListSync, result: ${JSON.stringify(fileList)}`);
     // 打印输出结果: getRawFileListSync, result: ["test.txt"] 
@@ -3439,6 +3515,7 @@ getRawFileList(path: string, callback: _AsyncCallback&lt;Array\<string\>&gt;): v
   import { BusinessError } from '@kit.BasicServicesKit';
 
   // 传入""表示获取rawfile根目录下的文件列表，假设rawfile根目录下存在test.txt文件
+  // 传入""仅作示例，请替换为rawfile目录下实际的文件路径
   this.context.resourceManager.getRawFileList("", (error: BusinessError, value: Array<string>) => {
     if (error != null) {
       console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
@@ -3489,6 +3566,7 @@ getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   // 传入""表示获取rawfile根目录下的文件列表，假设rawfile根目录下存在test.txt文件
+  // 传入""仅作示例，请替换为rawfile目录下实际的文件路径
   this.context.resourceManager.getRawFileList("")
     .then((value: Array<string>) => {
       console.log(`getRawFileListSync, result: ${JSON.stringify(value)}`);
@@ -3539,6 +3617,7 @@ getRawFdSync(path: string): RawFileDescriptor
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "test.txt"仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getRawFdSync("test.txt");
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -3583,6 +3662,7 @@ getRawFd(path: string, callback: _AsyncCallback&lt;RawFileDescriptor&gt;): void
   import { resourceManager } from '@kit.LocalizationKit';
 
   try {
+    // "test.txt"仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getRawFd("test.txt", (error: BusinessError, value: resourceManager.RawFileDescriptor) => {
       if (error != null) {
         console.error(`callback getRawFd failed error code: ${error.code}, message: ${error.message}.`);
@@ -3640,6 +3720,7 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
   import { resourceManager } from '@kit.LocalizationKit';
 
   try {
+    // "test.txt"仅作示例，请替换为实际使用的资源
     this.context.resourceManager.getRawFd("test.txt").then((value: resourceManager.RawFileDescriptor) => {
       let fd = value.fd;
       let offset = value.offset;
@@ -3684,6 +3765,7 @@ closeRawFdSync(path: string): void
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "test.txt"仅作示例，请替换为实际使用的资源
     this.context.resourceManager.closeRawFdSync("test.txt");
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -3723,6 +3805,7 @@ closeRawFd(path: string, callback: _AsyncCallback&lt;void&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "test.txt"仅作示例，请替换为实际使用的资源
     this.context.resourceManager.closeRawFd("test.txt", (error: BusinessError) => {
       if (error != null) {
         console.error("error is " + error);
@@ -3771,6 +3854,7 @@ closeRawFd(path: string): Promise&lt;void&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "test.txt"仅作示例，请替换为实际使用的资源
     this.context.resourceManager.closeRawFd("test.txt");
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -4000,6 +4084,7 @@ addResource(path: string): void
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // "/library1-default-signed.hsp"仅作示例，请替换为实际的文件路径
   let path = this.context.bundleCodeDir + "/library1-default-signed.hsp";
   try {
     this.context.resourceManager.addResource(path);
@@ -4043,6 +4128,7 @@ removeResource(path: string): void
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
+  // "/library1-default-signed.hsp"仅作示例，请替换为实际的文件路径
   let path = this.context.bundleCodeDir + "/library1-default-signed.hsp";
   try {
     this.context.resourceManager.removeResource(path);
@@ -4143,6 +4229,7 @@ getSymbol(resId: number): number
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // 'sys.symbol.message'仅作示例，请替换为实际使用的资源
     let symbolValue = this.context.resourceManager.getSymbol($r('sys.symbol.message').id);
     console.log(`getSymbol, result: ${symbolValue}`);
     // 打印输出结果: getSymbol, result: 983183
@@ -4192,6 +4279,7 @@ getSymbolByName(resName: string): number
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // "message"仅作示例，请替换为实际使用的资源
     let symbolValue = this.context.resourceManager.getSymbolByName("message");
     console.log(`getSymbolByName, result: ${symbolValue}`);
     // 打印输出结果: getSymbolByName, result: 983183
@@ -4239,11 +4327,13 @@ isRawDir(path: string): boolean
 
   try {
     // 假设rawfile根目录下存在非空文件夹sub，则isRawDir返回结果为true
+    // "sub"仅作示例，请替换为实际使用的目录名称
     let isRawDir = this.context.resourceManager.isRawDir("sub");
     // 打印输出结果: sub isRawDir, result: true
     console.log(`sub isRawDir, result: ${isRawDir}`);
 
     // 假设rawfile根目录下存在test.txt文件，则isRawDir返回结果为false
+    // "test.txt"仅作示例，请替换为实际使用的资源
     isRawDir = this.context.resourceManager.isRawDir("test.txt");
     // 打印输出结果: test.txt isRawDir, result: false
     console.log(`test.txt isRawDir, result: ${isRawDir}`);

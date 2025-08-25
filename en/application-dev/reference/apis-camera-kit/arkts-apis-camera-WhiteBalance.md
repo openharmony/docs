@@ -10,11 +10,9 @@
 > - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The initial APIs of this interface are supported since API version 20.
 
-WhiteBalance extends [WhiteBalanceQuery](arkts-apis-camera-WhiteBalanceQuery.md).
+WhiteBalance inherits from [WhiteBalanceQuery](arkts-apis-camera-WhiteBalanceQuery.md).
 
 It provides APIs to process white balance, including obtaining and setting the white balance mode and white balance value.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
 
 ## Modules to Import
 
@@ -26,7 +24,9 @@ import { camera } from '@kit.CameraKit';
 
 setWhiteBalanceMode(mode: WhiteBalanceMode): void
 
-Sets a white balance mode. Before setting the white balance mode, run [isWhiteBalanceModeSupported](arkts-apis-camera-WhiteBalanceQuery.md#iswhitebalancemodesupported20) to check whether the device supports the specified white balance mode.
+Sets a white balance mode.
+
+Before the setting, run [isWhiteBalanceModeSupported](arkts-apis-camera-WhiteBalanceQuery.md#iswhitebalancemodesupported20) to check whether the device supports the specified white balance mode.
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
@@ -108,6 +108,8 @@ function getWhiteBalanceMode(session: camera.PhotoSession | camera.VideoSession)
 setWhiteBalance(whiteBalance: number): void
 
 Sets a white balance value.
+
+Before the setting, run [isWhiteBalanceModeSupported](arkts-apis-camera-WhiteBalanceQuery.md#iswhitebalancemodesupported20) to check the white balance value range supported by the device.
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 

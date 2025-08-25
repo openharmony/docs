@@ -1,5 +1,12 @@
 # @ohos.print (打印)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Print-->
+<!--Owner: @guoshengbang-->
+<!--Designer: @gcw_4D6e0BBd-->
+<!--Tester: @guoshengbang-->
+<!--Adviser: @RayShih-->
+
 该模块为基本打印的操作API，提供调用基础打印功能的接口。
 
 > **说明：**  
@@ -954,6 +961,7 @@ struct Index {
 | PRINT_JOB_BLOCK_LOW_ON_TONER | 14 | 表示打印墨粉不足。 |
 | PRINT_JOB_BLOCK_REALLY_LOW_ON_INK | 15 | 表示打印墨水量非常低。 |
 | PRINT_JOB_BLOCK_BAD_CERTIFICATE | 16 | 表示打印证书有误。 |
+| PRINT_JOB_BLOCK_DRIVER_EXCEPTION<sup>20+</sup> | 17 | 表示打印驱动异常。 |
 | PRINT_JOB_BLOCK_ACCOUNT_ERROR | 18 | 表示打印账户时出错。 |
 | PRINT_JOB_BLOCK_PRINT_PERMISSION_ERROR | 19 | 表示打印许可异常。 |
 | PRINT_JOB_BLOCK_PRINT_COLOR_PERMISSION_ERROR | 20 | 表示彩色打印权限异常。 |
@@ -965,6 +973,9 @@ struct Index {
 | PRINT_JOB_RUNNING_UPLOADING_FILES | 26 | 表示正在上传文件。 |
 | PRINT_JOB_RUNNING_CONVERTING_FILES | 27 | 表示正在转换文件。 |
 | PRINT_JOB_BLOCK_FILE_UPLOADING_ERROR<sup>18+</sup> | 30 | 表示文件上传失败。 |
+| PRINT_JOB_BLOCK_DRIVER_MISSING<sup>20+</sup> | 34 | 表示打印驱动缺失。 |
+| PRINT_JOB_BLOCK_INTERRUPT<sup>20+</sup> | 35 | 表示打印任务中断。 |
+| PRINT_JOB_BLOCK_PRINTER_UNAVAILABLE<sup>20+</sup> | 98 | 表示打印机不可用。 |
 | PRINT_JOB_BLOCK_UNKNOWN | 99 | 表示打印未知问题。 |
 
 ## PrintErrorCode<sup>14+</sup>
@@ -1043,8 +1054,8 @@ let printerInformation : print.PrinterInformation = {
     printerMake : 'testPrinterMake',
     options : 'testOps'
 };
-print.addPrinterToDiscovery(printerInformation).then((data : void) => {
-    console.log('addPrinterToDiscovery data : ' + JSON.stringify(data));
+print.addPrinterToDiscovery(printerInformation).then(() => {
+    console.log('addPrinterToDiscovery success');
 }).catch((error: BusinessError) => {
     console.error('addPrinterToDiscovery error : ' + JSON.stringify(error));
 })
@@ -1112,8 +1123,8 @@ let printerInformation : print.PrinterInformation = {
     printerMake : 'testPrinterMake',
     options : 'testOptions'
 };
-print.updatePrinterInDiscovery(printerInformation).then((data : void) => {
-    console.log('updatePrinterInDiscovery data : ' + JSON.stringify(data));
+print.updatePrinterInDiscovery(printerInformation).then(() => {
+    console.log('updatePrinterInDiscovery success');
 }).catch((error: BusinessError) => {
     console.error('updatePrinterInDiscovery error : ' + JSON.stringify(error));
 })
@@ -1155,8 +1166,8 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId : string = 'testPrinterId';
-print.removePrinterFromDiscovery(printerId).then((data : void) => {
-    console.log('removePrinterFromDiscovery data : ' + JSON.stringify(data));
+print.removePrinterFromDiscovery(printerId).then(() => {
+    console.log('removePrinterFromDiscovery success');
 }).catch((error: BusinessError) => {
     console.error('removePrinterFromDiscovery error : ' + JSON.stringify(error));
 })
@@ -1449,4 +1460,248 @@ let onPrinterChange =
     };
 print.on('printerChange', onPrinterChange);
 print.off('printerChange');
+```
+
+## print.startDiscoverPrinter<sup>20+</sup>
+
+startDiscoverPrinter(extensionList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+通过指定“打印扩展能力列表”来发现打印机，发现的打印机具备包含指定的打印扩展能力。如果指定空的打印扩展能力列表，则表示加载所有扩展能力。使用callback异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB 或 ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| extensionList | Array&lt;string&gt; | 是 | 要加载的[打印扩展能力](./js-apis-app-ability-PrintExtensionAbility.md)列表，列表成员为打印扩展能力的包名，空列表表示加载所有扩展能力。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 异步开始发现打印机之后的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+
+**示例：**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+// 加载所有打印扩展能力
+let extensionList: string[] = [];
+// 通过指定自己应用的包名，在发现时加载自己的打印扩展能力
+// let extensionList: string[] = ['com.myapplication.test'];
+print.startDiscoverPrinter(extensionList, (err: BusinessError) => {
+    if (err) {
+        console.error('failed to start Discover Printer because : ' + JSON.stringify(err));
+    } else {
+        console.log('start Discover Printer success');
+    }
+})
+```
+
+## print.startDiscoverPrinter<sup>20+</sup>
+
+startDiscoverPrinter(extensionList: Array&lt;string&gt;): Promise&lt;void&gt;
+
+通过指定“打印扩展能力列表”来发现打印机，发现的打印机具备包含指定的打印扩展能力。如果指定空的打印扩展能力列表，则表示加载所有扩展能力，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB 或 ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| extensionList | Array&lt;string&gt; | 是 | 要加载的[打印扩展能力](./js-apis-app-ability-PrintExtensionAbility.md)列表，列表成员为打印扩展能力的包名，空列表表示加载所有扩展能力。 |
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;void&gt; | 开始发现打印机的完成结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+
+**示例：**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+// 加载所有打印扩展能力
+let extensionList: string[] = [];
+// 通过指定自己应用的包名，在发现时加载自己的打印扩展能力
+// let extensionList: string[] = ['com.myapplication.test'];
+print.startDiscoverPrinter(extensionList).then(() => {
+    console.log('start Discovery success');
+}).catch((error: BusinessError) => {
+    console.error('failed to start Discovery because : ' + JSON.stringify(error));
+})
+```
+
+## print.stopDiscoverPrinter<sup>20+</sup>
+
+stopDiscoverPrinter(callback: AsyncCallback&lt;void&gt;): void
+
+停止发现打印机，使用callback异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB 或 ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | 是 | 停止发现打印机的异步回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+
+**示例：**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+print.stopDiscoverPrinter((err: BusinessError) => {
+    if (err) {
+        console.error('failed to stop Discover Printer because : ' + JSON.stringify(err));
+    } else {
+        console.log('stop Discover Printer success');
+    }
+})
+```
+
+## print.stopDiscoverPrinter<sup>20+</sup>
+
+stopDiscoverPrinter(): Promise&lt;void&gt;
+
+停止发现打印机，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB 或 ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;void&gt; | 停止发现打印机的完成结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+
+**示例：**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+print.stopDiscoverPrinter().then(() => {
+    console.log('stop Discovery success');
+}).catch((error: BusinessError) => {
+    console.error('failed to stop Discovery because : ' + JSON.stringify(error));
+})
+```
+
+## print.connectPrinter<sup>20+</sup>
+
+connectPrinter(printerId: string, callback: AsyncCallback&lt;void&gt;): void
+
+通过打印机ID连接打印机，使用callback异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB 或 ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| printerId | string | 是 | 打印机ID。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 通过打印机ID异步连接打印机的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+
+**示例：**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+let printerId: string = 'printerId_32';
+print.connectPrinter(printerId, (err: BusinessError) => {
+    if (err) {
+        console.error('failed to connect Printer because : ' + JSON.stringify(err));
+    } else {
+        console.log('start connect Printer success');
+    }
+})
+```
+
+## print.connectPrinter<sup>20+</sup>
+
+connectPrinter(printerId: string): Promise&lt;void&gt;
+
+通过打印机ID连接打印机，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB 或 ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| printerId | string | 是 | 打印机ID |
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;void&gt; |通过打印机ID连接打印机完成结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+
+**示例：**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+let printerId: string = 'printerId_32';
+print.connectPrinter(printerId).then(() => {
+    console.log('start connect Printer success');
+}).catch((error: BusinessError) => {
+    console.error('failed to connect Printer because : ' + JSON.stringify(error));
+})
 ```

@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: Window-->
 <!--Owner: @waterwin-->
-<!--SE: @nyankomiya-->
-<!--TSE: @qinliwen0417-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 > **说明：**
 >
@@ -259,7 +260,7 @@ WindowStage生命周期的状态类型枚举。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.Window.SessionManager
 
 | 名称       | 值 | 说明       |
 | ---------- | ------ | ---------- |
@@ -279,7 +280,7 @@ WindowStage生命周期的状态类型枚举。
 | 名称                 | 值      | 说明       |
 | -------------------- | ------ | ---------- |
 | WINDOW_MODALITY      | 0      | 模态子窗类型为模窗口子窗，当仅需要其父级窗口不响应用户操作时，可选此参数。 |
-| APPLICATION_MODALITY | 1      | 模态子窗类型为模应用子窗，该窗口仅在自由窗口模式下生效。<br> 除其父级窗口外还需要该应用其他实例的窗口不响应用户操作时，可选此参数。<br> **设备行为差异：** 该枚举在2in1设备、Tablet设备中可正常调用，在其他设备类型中作为入参使用时，对应接口返回801错误码。 |
+| APPLICATION_MODALITY | 1      | 模态子窗类型为模应用子窗，该窗口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效。<br> 除其父级窗口外还需要该应用其他实例的窗口不响应用户操作时，可选此参数。<br> **设备行为差异：** 该枚举在2in1设备、Tablet设备中可正常调用，在其他设备类型中作为入参使用时，对应接口返回801错误码。 |
 
 ## ScreenshotEventType<sup>20+</sup>
 

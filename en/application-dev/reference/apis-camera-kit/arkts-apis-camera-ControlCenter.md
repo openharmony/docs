@@ -1,11 +1,16 @@
 # Interface (ControlCenter)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The initial APIs of this interface are supported since API version 20.
 
-ControlCenter extends [ControlCenterQuery](arkts-apis-camera-ControlCenterQuery.md).
+ControlCenter inherits from [ControlCenterQuery](arkts-apis-camera-ControlCenterQuery.md).
 
 It is a class used to enable the camera controller.
 

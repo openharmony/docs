@@ -4,7 +4,7 @@
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-## 29210001 Unknown Error
+## 29200001 Unknown Error
 
 **Error Message**
 
@@ -24,7 +24,7 @@ An unknown error occurs. For example, GPU computation fails or content copy fail
 1. Check whether the resources have been initialized.
 2. Check whether the memory is valid.
 
-## 29210002 Initialization Failure
+## 29200002 Initialization Failure
 
 **Error Message**
 
@@ -42,7 +42,7 @@ GPU initialization fails.
 
 Check the log for any GPU exceptions.
 
-## 29210003 Creation Failure
+## 29200003 Creation Failure
 
 **Error Message**
 
@@ -60,7 +60,7 @@ Too many instances have been created.
 
 Reduce the number of instances created.
 
-## 29210004 Processing Failure
+## 29200004 Processing Failure
 
 **Error Message**
 
@@ -78,7 +78,7 @@ Processing timed out.
 
 Reduce the load.
 
-## 29210005 Unsupported Operations
+## 29200005 Unsupported Operations
 
 **Error Message**
 
@@ -96,7 +96,7 @@ The capability is not supported.
 
 Check the log for details.
 
-## 29210006 Operation Not Allowed
+## 29200006 Operation Not Allowed
 
 **Error Message**
 
@@ -114,7 +114,7 @@ The status is abnormal.
 
 Check the log for details.
 
-## 29210007 Insufficient Memory
+## 29200007 Insufficient Memory
 
 **Error Message**
 
@@ -132,7 +132,7 @@ The memory is insufficient.
 
 Reduce memory allocation.
 
-## 29210008 Invalid Instance
+## 29200008 Invalid Instance
 
 **Error Message**
 
@@ -150,7 +150,7 @@ Invalid instance.
 
 Check instance creation.
 
-## 29210009 Invalid Value
+## 29200009 Invalid Value
 
 **Error Message**
 

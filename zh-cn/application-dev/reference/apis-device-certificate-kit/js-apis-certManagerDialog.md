@@ -3,8 +3,9 @@
 <!--Kit: Device Certificate Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @chaceli-->
-<!--SE: @chande-->
-<!--TSE: @zhangzhi1995-->
+<!--Designer: @chande-->
+<!--Tester: @zhangzhi1995-->
+<!--Adviser: @zengyawen-->
 
 证书管理对话框主要提供拉起证书管理界面的能力，用户在拉起的证书管理对话框可对证书进行管理（安装，存储，使用，销毁）。
 
@@ -150,11 +151,11 @@ openInstallCertificateDialog(context: common.Context, certType: CertificateType,
 
 表示拉起证书管理安装证书向导，显示相应的页面，使用Promise方式异步返回结果。
 
-仅2in1设备支持。
-
 **需要权限：** ohos.permission.ACCESS_CERT_MANAGER
 
 **系统能力：** SystemCapability.Security.CertificateManagerDialog
+
+**设备行为差异：** 该接口在PC/2in1设备可正常调用，在其他设备中返回29700004错误码。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -221,11 +222,11 @@ openUninstallCertificateDialog(context: common.Context, certType: CertificateTyp
 
 表示拉起证书管理删除证书向导，显示相应的页面，使用Promise方式异步返回结果。
 
-仅2in1设备支持。
-
 **需要权限：** ohos.permission.ACCESS_CERT_MANAGER
 
 **系统能力：** SystemCapability.Security.CertificateManagerDialog
+
+**设备行为差异：** 该接口在PC/2in1设备可正常调用，在其他设备中返回29700004错误码。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -287,11 +288,11 @@ openCertificateDetailDialog(context: common.Context, cert: Uint8Array, property:
 
 表示拉起证书管理对话框显示证书的详情，使用Promise方式异步返回结果。
 
-仅2in1设备支持。
-
 **需要权限：** ohos.permission.ACCESS_CERT_MANAGER
 
 **系统能力：** SystemCapability.Security.CertificateManagerDialog
+
+**设备行为差异：** 该接口在PC/2in1设备可正常调用，在其他设备中返回29700004错误码。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 

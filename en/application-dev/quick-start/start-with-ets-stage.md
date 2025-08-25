@@ -1,26 +1,50 @@
 # Building the First ArkTS Application in Stage Model
 
+## Creating an ArkTS Project
 
 > **NOTE**
 >
-> In this document, DevEco Studio 4.1 Beta1 is used.<!--Del--> You can download it [here](../../release-notes/OpenHarmony-v4.1-beta1.md#version-mapping).<!--DelEnd-->
-
-## Creating an ArkTS Project
+> - Since DevEco Studio 4.1 Beta1, you can only create a HarmonyOS project by default. To create an OpenHarmony project, you should modify some fields in the created HarmonyOS project.
+>
+> - To ensure the running effect, the latest [DevEco Studio](https://developer.huawei.com/consumer/en/download/) is used as an example.
 
 1. If you are opening DevEco Studio for the first time, click **Create Project**. If a project is already open, choose **File** > **New** > **Create Project** from the menu bar.
 
-2. On the **Choose Your Ability Template** page, select **Application** (or **Atomic Service**, depending on your project), select **[OpenHarmony]Empty Ability** as the template, and click **Next**.
+2. On the **Choose Your Ability Template** page, select **Application** (or **Atomic Service**, depending on your project), select **Empty Ability** as the template, and click **Next**.
+   
+   To develop native projects, select the Native C++ template. For details about how to use templates, see [Introduction to Project Templates](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-template).
 
-   ![createProject](figures/createProject.png)
+   ![createProject](figures/en-us_image_00250403.png)
 
-3. On the project configuration page, set **Compile SDK** to **11** and retain the default values for other parameters.
+3. On the **Create Project** page, **Compatible SDK** indicates the earliest compatible API version. Choose **5.0.0(12)** as an example and retain the default values for other parameters.
 
-   The **Node** parameter sets the Node.js version to use for the project. You can use an existing version or download a new one.
+   ![chooseStageModel](figures/en-us_image_compatible_version.png)
 
-   ![chooseStageModel](figures/chooseStageModel.png)
+4. Click **Finish**. DevEco Studio will automatically generate the sample code and resources that match your project type. Wait until the HarmonyOS project is created.
 
-4. Click **Finish**. DevEco Studio will automatically generate the sample code and resources that match your project type. Wait until the project is created.
+5. After the project is created, perform the following operations to modify related fields in the project-level **build-profile.json5** file (at the same directory level as **entry**):
+   
+   1. Add the **compileSdkVersion** field.
 
+   2. Set the value of **compatibleSdkVersion** and **compileSdkVersion** to an integer, such as **10**, **11**, or **12**.
+
+   3. Change the **runtimeOS** field from **HarmonyOS** to **OpenHarmony**.
+
+   ```json
+   "products": [
+     {
+       "name": "default",
+       "signingConfig": "default", 
+       "compileSdkVersion": 12,    // Version for compiling the OpenHarmony application or atomic service.
+       "compatibleSdkVersion": 12, // Minimum version compatible with the OpenHarmony application or atomic service.
+       "runtimeOS": "OpenHarmony",
+     }
+   ],
+   ```
+
+6. Click **Sync Now** to start synchronization.
+
+   In the **Sync Check** dialog box, click **Yes** to switch the phone type in the **module.json5/config.json** file to the default type supported by the OpenHarmony, and delete other device types that are not applicable to the OpenHarmony. The OpenHarmony project is created if the synchronization is successful and no other error is reported.
 
 ## ArkTS Project Directory Structure (Stage Model)
 
@@ -28,7 +52,7 @@
 
 - **AppScope &gt; app.json5**: application-level configuration information. For details, see [app.json5 Configuration File](app-configuration-file.md).
 
-- **entry**: OpenHarmony project module, which can be built into an ability package (HAP).
+- **entry**: application/service module, which can be built into a HAP.
   - **src > main > ets**: a collection of ArkTS source code.
   
   - **src > main > ets > entryability**: entry to your application/service.
@@ -46,7 +70,7 @@
   
 - **oh_modules**: third-party library dependency information.
 
-- **build-profile.json5**: application-level configuration information, including the **signingConfigs** and **products** configuration.
+- **build-profile.json5**: project-level configuration, including **signingConfigs** and **products**.
 
 - **hvigorfile.ts**: application-level build script.
 
@@ -125,13 +149,14 @@
 
 1. Create the second page.
 
-   - Create the second page file: In the **Project** window, choose **entry** > **src** > **main** > **ets**. Right-click the **pages** folder, choose **New** > **ArkTS File**, name the page **Second**, and click **Finish**. Below is the structure of the **Second** folder.
+   - Create the second page file: In the **Project** window, choose **entry** > **src** > **main** > **ets**. Right-click the **pages** folder, choose **New** > **ArkTS File**, name the page **Second**, and press **Enter**. Below is the structure of the **Second** folder.
 
       ![secondPage](figures/secondPage.png)
 
       >  **NOTE**
       >
-      > You can also right-click the **pages** folder and choose **New** > **Page** from the shortcut menu. In this scenario, you do not need to manually configure page routes.
+      > You can also right-click the **pages** folder, choose **New** > **Page** > **Empty Page** from the shortcut menu, name the page **Second**, and click **Finish**. This way, you can skip the step for manually configuring the route for the second page.
+
    - Configure the route for the second page: In the **Project** window, choose **entry** > **src** > **main** > **resources** > **base** > **profile**. In the **main_pages.json** file, set **pages/Second** under **src**. The sample code is as follows:
      
       ```json
@@ -194,7 +219,6 @@ To deliver better transition effects, use [Navigation](../ui/arkts-navigation-na
    ```ts
    // Index.ets
    // Import the router module.
-   import { router } from '@kit.ArkUI';
    import { BusinessError } from '@kit.BasicServicesKit';
    
    @Entry
@@ -224,6 +248,9 @@ To deliver better transition effects, use [Navigation](../ui/arkts-navigation-na
            // Bind the onClick event to the Next button so that clicking the button redirects the user to the second page.
            .onClick(() => {
              console.info(`Succeeded in clicking the 'Next' button.`)
+             // Obtain UIContext.
+             let uiContext : UIContext = this.getUIContext();
+             let router = uiContext.getRouter();
             // Go to the second page.
               router.pushUrl({ url: 'pages/Second' }).then(() => {
                 console.info('Succeeded in jumping to the second page.')
@@ -246,7 +273,6 @@ To deliver better transition effects, use [Navigation](../ui/arkts-navigation-na
    ```ts
    // Second.ets
    // Import the router module.
-   import { router } from '@kit.ArkUI';
    import { BusinessError } from '@kit.BasicServicesKit';
    
    @Entry
@@ -275,6 +301,9 @@ To deliver better transition effects, use [Navigation](../ui/arkts-navigation-na
            // Bind the onClick event to the Back button so that clicking the button redirects the user back to the first page.
            .onClick(() => {
              console.info(`Succeeded in clicking the 'Back' button.`)
+             // Obtain UIContext.
+             let uiContext : UIContext = this.getUIContext();
+             let router = uiContext.getRouter();
              try {
                // Return to the first page.
                router.back()

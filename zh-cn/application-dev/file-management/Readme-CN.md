@@ -3,8 +3,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @wangke25-->
-<!--SE: @bubble_mao; @zhuangzhuang; @gsl_1234-->
-<!--TSE: @liuhonggang123-->
+<!--Designer: @bubble_mao; @zhuangzhuang; @gsl_1234-->
+<!--Tester: @liuhonggang123-->
+<!--Adviser: @foryourself-->
 
 - [Core File Kit简介](core-file-kit-intro.md)
 - 应用文件<!--app-file-->

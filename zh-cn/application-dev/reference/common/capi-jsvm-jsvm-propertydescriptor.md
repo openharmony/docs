@@ -2,8 +2,9 @@
 <!--Kit: Common Basic Capability-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @yuanxiaogou; @string_sz-->
-<!--SE: @knightaoko-->
-<!--TSE: @test_lzz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## 概述
 
@@ -21,7 +22,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| const char* utf8name | 描述属性键值的可选字符串，UTF8编码。必须为属性提供utf8name或name之一。 |
+| const char* utf8name | 描述属性键值的可选字符串，UTF-8编码。必须为属性提供utf8name或name之一。 |
 | JSVM_Value name | 可选的JSVM_Value，指向用作属性键的JavaScript字符串或符号。必须为属性提供utf8name或name之一。 |
 | JSVM_Callback method | 设置此项使属性描述符对象的value属性成为method表示的JavaScript函数。 |
 | JSVM_Callback getter | 执行对属性的获取访问时调用的函数。 |

@@ -1,9 +1,10 @@
 # HAR
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
-<!--Owner: @wanghang-->
-<!--SE: @hanfeng6; @lihaitao-->
-<!--TSE: @kongjing2-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资源和配置文件。通过HAR可以实现多个模块或多个工程共享ArkUI组件、资源等相关代码。
 
@@ -34,7 +35,7 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 
 
 ## 创建
-开发者可以通过DevEco Studio创建一个HAR模块，详见[创建库模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har#section643521083015)。
+开发者可以通过DevEco Studio创建一个用于调用C++代码的HAR模块，创建过程中需要在Configure New Module界面中开启Enable native。详见[创建库模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har#section643521083015)。
 
 
 ## 开发
@@ -181,8 +182,7 @@ struct IndexSec {
 通过`import`引用HAR导出的类和方法，示例如下所示：
 ```ts
 // entry/src/main/ets/pages/Index.ets
-import { Log } from 'library';
-import { func } from 'library';
+import { Log, func } from 'library';
 
 @Entry
 @Component
@@ -195,11 +195,6 @@ struct Index {
         .fontFamily('HarmonyHeiTi')
         .fontWeight(FontWeight.Bold)
         .fontSize(32)
-        .fontWeight(700)
-        .fontColor($r('app.color.text_color'))
-        .textAlign(TextAlign.Start)
-        .margin({ top: '32px' })
-        .width('624px')
 
       //引用HAR的ets类和方法
       Button($r('app.string.button'))
@@ -208,11 +203,6 @@ struct Index {
         .width('624px')
         .margin({ top: '4%' })
         .type(ButtonType.Capsule)
-        .fontFamily('HarmonyHeiTi')
-        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
-        .backgroundColor($r('app.color.button_background'))
-        .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
-        .fontSize($r('sys.float.ohos_id_text_size_button1'))
         .onClick(() => {
           // 引用HAR的类和方法
           Log.info('har msg');
@@ -243,11 +233,6 @@ struct Index {
         .fontFamily('HarmonyHeiTi')
         .fontWeight(FontWeight.Bold)
         .fontSize(32)
-        .fontWeight(700)
-        .fontColor($r('app.color.text_color'))
-        .textAlign(TextAlign.Start)
-        .margin({ top: '32px' })
-        .width('624px')
 
       //引用HAR的native方法
       Button($r('app.string.native_add'))
@@ -256,11 +241,6 @@ struct Index {
         .width('624px')
         .margin({ top: '4%', bottom: '6%' })
         .type(ButtonType.Capsule)
-        .fontFamily('HarmonyHeiTi')
-        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
-        .backgroundColor($r('app.color.button_background'))
-        .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
-        .fontSize($r('sys.float.ohos_id_text_size_button1'))
         .onClick(() => {
           this.message = 'result: ' + nativeAdd(1, 2);
         })
@@ -357,9 +337,15 @@ HAR模块原先默认开启混淆能力，会对API 10及以上的HAR模块，�
 
 > **使用限制**
 >
->在依赖TS HAR时，禁止引用TS HAR中的ArkUI组件。
+> 在依赖TS HAR时，禁止引用TS HAR中的ArkUI组件。
+
 
 HAR模块中arkts文件编译后，默认产物为js文件，想要将产物修改为ts文件，可以在HAR模块下的module.json5文件中将"metadata"字段下的"name"设置为“UseTsHar”，配置如下所示：
+>
+> **说明：**
+>
+> 从DevEco Studio NEXT Beta1（5.0.3.800）版本开始，默认构建字节码HAR，详情参考[构建HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-har)。
+>
 
   ```json
   {

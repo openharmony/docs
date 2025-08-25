@@ -1,5 +1,11 @@
 # @ohos.userIAM.userAccessCtrl (User Access Control) (System API)
 
+<!--Kit: User Authentication Kit-->
+<!--Subsystem: UserIAM-->
+<!--Owner: @WALL_EYE-->
+<!--SE: @lichangting518-->
+<!--TSE: @jane_lz-->
+
 The **userAccessCtrl** module provides APIs for setting and obtaining user identity authentication policies and verifying user identity authentication results.
 
 > **NOTE**
@@ -78,9 +84,9 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
-| 201      | Permission verification failed.         |
-| 202      | The caller is not a system application. |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.    |
+| 201      | Permission denied.        |
+| 202      | Permission denied. Called by non-system application. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.    |
 | 12500002 | General operation error.                |
 | 12500015 | AuthToken integrity check failed.     |
 | 12500016 | AuthToken has expired.                |
@@ -97,7 +103,18 @@ try {
   const rand = cryptoFramework.createRandom();
   const allowableDuration: number = 5000;
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN],
@@ -116,15 +133,21 @@ try {
             console.error('userAuthInstance callback result.token is null');
             return;
         }
-        // Initiate a request for verifying the AuthToken.
-        userAccessCtrl.verifyAuthToken(result.token, allowableDuration)
-            .then((retAuthToken: userAccessCtrl.AuthToken) => {
-                Object.keys(retAuthToken).forEach((key) => {
-                    console.info(`retAuthToken key:${key}, value:${retAuthToken[key]}`);
-                })
-            }).catch ((error: BusinessError) => {
-                console.error(`verify authToken error. Code is ${error?.code}, message is ${error?.message}`);
-            })
+        try {
+          // Initiate a request for verifying the AuthToken.
+          userAccessCtrl.verifyAuthToken(result.token, allowableDuration)
+              .then((retAuthToken: userAccessCtrl.AuthToken) => {
+                  Object.keys(retAuthToken).forEach((key) => {
+                      // Process the service logic.
+                      console.info(`retAuthToken key:${key}`);
+                  })
+              }).catch ((error: BusinessError) => {
+                  console.error(`verify authToken error. Code is ${error?.code}, message is ${error?.message}`);
+              })
+        } catch (error) {
+          const err: BusinessError = error as BusinessError;
+          console.error(`verify authToken error. Code is ${err?.code}, message is ${err?.message}`);
+        }
     }
   });
   console.info('auth on success');

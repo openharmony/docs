@@ -3,8 +3,9 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @xia-bubai-->
-<!--SE: @linshuqing; @hehehe-li-->
-<!--TSE: @leiyuqian-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
 
 在申请目标权限前，建议开发者先了解[不同权限的申请路径](determine-application-mode.md)，对权限的工作流程有基本了解后，再结合以下权限字段的具体说明，判断应用能否申请目标权限，提高开发效率。
 
@@ -5048,6 +5049,20 @@
 
 **起始版本**：20
 
+## ohos.permission.ACCESS_DISTRIBUTED_KEY_STORE
+
+允许应用使用分布式密钥能力。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | Tablet | PC/2in1 | Wearable | TV
+
+**起始版本**：20
+
 ## ohos.permission.SANDBOX_ACCESS_MANAGER_EXT
 
 允许应用访问其它扩展应用的沙箱目录。
@@ -5069,6 +5084,34 @@
 该SO指具有开发者证书或AdHoc签名的独立二进制SO。
 
 **权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
+## ohos.permission.GET_DEVICE_INDEPENDENT_BINARY_CERT
+
+允许系统应用查询独立二进制程序的证书信息。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
+## ohos.permission.SET_DEVICE_INDEPENDENT_BINARY_CERT_STATUS
+
+允许系统应用设置独立二进制程序的证书状态。
+
+**权限级别**：system_core
 
 **授权方式**：系统授权（system_grant）
 

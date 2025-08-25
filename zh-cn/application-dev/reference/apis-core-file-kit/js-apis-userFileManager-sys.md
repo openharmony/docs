@@ -2,8 +2,9 @@
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
-<!--SE: @liweilu1-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 该模块提供用户数据管理能力：包括访问、修改用户公共媒体数据信息等常用功能。
 
@@ -698,10 +699,11 @@ async function example(mgr: userFileManager.UserFileManager) {
   let album: userFileManager.Album = await fetchResult.getFirstObject();
   mgr.deleteAlbums([album]).then(() => {
     console.info('deletePhotoAlbumsPromise successfully');
+      fetchResult.close();
     }).catch((err: BusinessError) => {
       console.error('deletePhotoAlbumsPromise failed with err: ' + err);
+      fetchResult.close();
   });
-  fetchResult.close();
 }
 ```
 
@@ -1799,12 +1801,14 @@ async function example(mgr: userFileManager.UserFileManager) {
   let onCallback2 = (changeData: userFileManager.ChangeData) => {
     console.info('onCallback2 on');
   }
-  // 注册onCallback1监听
-  mgr.on(fileAsset.uri, false, onCallback1);
-  // 注册onCallback2监听
-  mgr.on(fileAsset.uri, false, onCallback2);
-  // 关闭onCallback1监听，onCallback2 继续监听
-  mgr.off(fileAsset.uri, onCallback1);
+  if (fileAsset.uri !== undefined) {
+    // 注册onCallback1监听
+    mgr.on(fileAsset.uri, false, onCallback1);
+    // 注册onCallback2监听
+    mgr.on(fileAsset.uri, false, onCallback2);
+    // 关闭onCallback1监听，onCallback2 继续监听
+    mgr.off(fileAsset.uri, onCallback1);  
+  }
   fileAsset.favorite(true, (err) => {
     if (err == undefined) {
       console.info('favorite successfully');
@@ -2732,7 +2736,7 @@ async function example(mgr: userFileManager.UserFileManager) {
 
 getExif(callback: AsyncCallback&lt;string&gt;): void
 
-返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
+返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用callback方式返回结果。
 
 **注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与[ImageVideoKey.USER_COMMENT](#imagevideokey)组成，fetchColumns需要传入这两个字段。
 
@@ -3373,8 +3377,12 @@ async function example(mgr: userFileManager.UserFileManager) {
     predicates: predicates
   };
   let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
-  let fileAsset: userFileManager.FileAsset = await fetchResult.getPositionObject(0);
-  console.info('fileAsset displayName: ', fileAsset.displayName);
+  if (fetchResult.getCount() > 0) {
+    let fileAsset: userFileManager.FileAsset = await fetchResult.getPositionObject(0);
+    console.info('fileAsset displayName: ', fileAsset.displayName);
+  } else {
+    console.info('No file assets found');
+  } 
 }
 ```
 

@@ -12,8 +12,6 @@
 
 WhiteBalanceQuery provides APIs to check whether a white balance mode is supported and obtain the white balance mode range supported.
 
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
 ## Modules to Import
 
 ```ts

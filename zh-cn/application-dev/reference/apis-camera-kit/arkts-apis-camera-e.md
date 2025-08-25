@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -34,7 +35,7 @@
 
 | 名称                     | 值   | 说明            |
 | ----------------------- | ---- | -------------- |
-| CAMERA_TYPE_DEFAULT     | 0    | 相机类型未指定。  |
+| CAMERA_TYPE_DEFAULT     | 0    | 默认相机类型。  |
 | CAMERA_TYPE_WIDE_ANGLE  | 1    | 广角相机。       |
 | CAMERA_TYPE_ULTRA_WIDE  | 2    | 超广角相机。     |
 | CAMERA_TYPE_TELEPHOTO   | 3    | 长焦相机。       |
@@ -160,7 +161,7 @@
 | 名称                     | 值        | 说明         |
 | ----------------------- | --------- | ------------ |
 | CAMERA_FORMAT_RGBA_8888 | 3         | RGBA_8888格式的图片。        |
-| CAMERA_FORMAT_YUV_420_SP| 1003      | YUV_420_SP格式的图片。      |
+| CAMERA_FORMAT_YUV_420_SP| 1003      | YUV_420_SP格式的图片，对应为NV21格式的图片。      |
 | CAMERA_FORMAT_JPEG      | 2000      | JPEG格式的图片。            |
 | CAMERA_FORMAT_YCBCR_P010<sup>11+</sup> |   2001    | YCBCR_P010格式的图片。      |
 | CAMERA_FORMAT_YCRCB_P010<sup>11+</sup> |   2002    | YCRCB_P010格式的图片。      |
@@ -231,7 +232,7 @@
 
 | 名称                       | 值   | 说明              |
 | ------------------------- | ---- | ----------------- |
-| FACE_DETECTION            | 0    | metadata对象类型，用于人脸检测。<br> 检测点应在0-1坐标系内，该坐标系左上角为(0，0)，右下角为(1，1)。<br> 此坐标系以设备充电口在右侧时的横向设备方向为基准。<br>例如应用的预览界面布局以设备充电口在下侧时的竖向方向为基准，<br>布局宽高为(w，h)， 返回点为(x，y)，则转换后的坐标点为(1-y，x)。 |
+| FACE_DETECTION            | 0    | metadata对象类型，用于人脸检测。 |
 
 ## FlashMode
 

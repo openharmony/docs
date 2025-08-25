@@ -3,22 +3,23 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @xia-bubai-->
-<!--SE: @linshuqing; @hehehe-li-->
-<!--TSE: @leiyuqian-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
 
 ## 使用须知
 
 - 在申请目标权限前，建议开发者先阅读[应用权限管控概述-权限组和子权限](app-permission-mgmt-overview.md#权限组和子权限)，了解相关概念，再合理申请对应的权限组。
 
-- 当应用请求权限时，同一个权限组的权限将会在一个弹窗内一起请求用户授权，用户同意授权后，权限组内权限将被统一授权。地理位置、通讯录、通话记录、电话、信息、日历权限组除外。
+- 应用请求权限时，同一权限组内的权限将在一个弹窗内请求用户授权。用户同意授权后，权限组内的权限将被统一授权。但地理位置、通讯录、通话记录、电话、信息、日历权限组除外。
 
-  以位置信息和相机权限组举例说明：
+  以位置信息权限组和相机权限组为例说明。
 
-  - 当应用只申请了权限ohos.permission.APPROXIMATELY_LOCATION（属于位置信息权限组）时，应用用户将收到一个请求位置信息的弹窗，包含单个权限的申请。
-  - 当应用同时申请权限ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION（均属于位置信息权限组）时，应用用户将收到一个请求位置信息的弹窗，包含两个权限的申请。
-  - 当应用同时申请权限ohos.permission.APPROXIMATELY_LOCATION（属于位置信息权限组）和ohos.permission.CAMERA（属于相机权限组）时，应用用户将收到请求位置信息、请求使用相机的两个弹窗。
+  - 当应用只申请权限ohos.permission.APPROXIMATELY_LOCATION（属于位置信息权限组）时，用户将收到一个请求位置信息的弹窗，包含单个权限的申请。
+  - 当应用同时申请权限ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION（均属于位置信息权限组）时，用户将收到一个请求位置信息的弹窗，包含两个权限的申请。
+  - 当应用同时申请权限ohos.permission.APPROXIMATELY_LOCATION（属于位置信息权限组）和ohos.permission.CAMERA（属于相机权限组）时，用户将收到请求位置信息、请求使用相机的两个弹窗。
 
-- 当前系统支持的权限组如下所示，各子权限的含义请查阅[应用权限列表](permissions-for-all-user.md)。
+- 当前系统支持的权限组如下所示。各子权限的含义请查阅[应用权限列表](permissions-for-all-user.md)。
 
 ## 位置<!--Del-->信息<!--DelEnd-->
 
@@ -168,16 +169,16 @@
 
 **替代方案：**
 
-- 读写媒体库图片或视频：
+- 读写媒体库中的图片或视频。
 
-  - 推荐方案（无需申请权限）：使用[Picker](../../media/medialibrary/photoAccessHelper-photoviewpicker.md)读取媒体库的图片与视频；使用[保存控件/授权弹窗](../../media/medialibrary/photoAccessHelper-savebutton.md)保存媒体库的图片与视频。
-  - 受限使用方案：申请受限权限[ohos.permission.READ_IMAGEVIDEO](restricted-permissions.md#ohospermissionread_imagevideo)或[ohos.permission.WRITE_IMAGEVIDEO](restricted-permissions.md#ohospermissionwrite_imagevideo)读取媒体库的图片与视频。
+  - 推荐方案（无需申请权限）：使用[Picker](../../media/medialibrary/photoAccessHelper-photoviewpicker.md)读取媒体库的图片与视频。使用[保存控件/授权弹窗](../../media/medialibrary/photoAccessHelper-savebutton.md)保存媒体库的图片与视频。
+  - 受限使用方案：申请受限权限[ohos.permission.READ_IMAGEVIDEO](restricted-permissions.md#ohospermissionread_imagevideo)或[ohos.permission.WRITE_IMAGEVIDEO](restricted-permissions.md#ohospermissionwrite_imagevideo)以读取媒体库的图片与视频。
 
-- 读取媒体库音频文件：
+- 读写媒体库音频文件。
 
-  申请受限权限[ohos.permission.READ_AUDIO](restricted-permissions.md#ohospermissionread_audio)或[ohos.permission.WRITE_AUDIO](restricted-permissions.md#ohospermissionwrite_audio)读写媒体库的音频文件。
+  申请受限权限[ohos.permission.READ_AUDIO](restricted-permissions.md#ohospermissionread_audio)或[ohos.permission.WRITE_AUDIO](restricted-permissions.md#ohospermissionwrite_audio)以读写媒体库的音频文件。
 
-- 读取文件管理器中的文件：
+- 读取文件管理器中的文件。
 
   无需申请权限，通过文件Picker读写文件管理器中的文件。参考：[选择用户文件](../../file-management/select-user-file.md#选择文档类文件)、[保存用户文件](../../file-management/save-user-file.md#保存文档类文件)。
 

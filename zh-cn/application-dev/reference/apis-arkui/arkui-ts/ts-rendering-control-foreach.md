@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @maorh-->
-<!--SE: @lixingchi1-->
-<!--TSE: @TerryTsao-->
+<!--Designer: @lixingchi1-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @HelloCrease-->
 
 ForEach接口基于数组类型数据来进行循环渲染。
 
@@ -37,3 +38,17 @@ ForEach接口基于数组类型数据来进行循环渲染，需要与容器组�
 >
 > - `ForEach`的`itemGenerator`函数可以包含`if/else`条件渲染逻辑。另外，也可以在`if/else`条件渲染语句中使用`ForEach`组件。
 > - 在初始化渲染时，`ForEach`会加载数据源的所有数据，并为每个数据项创建对应的组件，然后将其挂载到渲染树上。如果数据源非常大或有特定的性能需求，建议使用`LazyForEach`组件。最佳实践请参考[使用懒加载优化性能](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-lazyforeach-optimization)。
+
+由于数据源的数据项类型为`any`，缺少类型一致性校验，建议在使用`ForEach`时保持类型声明一致（详见如下代码片段），不规范写法可能会导致子组件无法正常渲染。
+
+```ts
+// 不规范写法
+arr: Array<Type1 | Type2> = [];
+
+ForEach(this.arr, (item: Type1) => {...}, (item: Type2) => item.toString()) // item类型和数据项类型不一致
+
+// 正确写法
+arr: Array<Type1 | Type2> = [];
+
+ForEach(this.arr, (item: Type1 | Type2) => {...}, (item: Type1 | Type2) => item.toString()) // item类型和数据项类型保持一致
+```

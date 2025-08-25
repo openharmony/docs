@@ -1,4 +1,9 @@
 # AVSession Kit
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--SE: @ccfriend-->
+<!--TSE: @chenmingxi1_huawei-->
 
 - [Introduction to AVSession Kit](avsession-overview.md)
 - Local AVSession<!--local-avsession-->
@@ -6,6 +11,7 @@
   - [AVSession Provider](using-avsession-developer.md)
   - [AVSession Provider (C/C++)](using-ohavsession-developer.md)
   - [Accessing AVSession](avsession-access-scene.md)
+  - [Background Playback](avsession-background-scene.md)
   <!--Del-->
   - [AVSession Controller (for System Applications Only)](using-avsession-controller.md)
   <!--DelEnd-->

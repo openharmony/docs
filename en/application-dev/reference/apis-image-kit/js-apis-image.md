@@ -8065,7 +8065,7 @@ let creator: image.ImageCreator = image.createImageCreator(8192, 8, image.ImageF
 
 ## ImageCreator<sup>9+</sup>
 
-Provides APIs for applications to request an image native data area and compile native image data.
+Provides APIs for applications to request an image data area and compile image data.
 Before calling any APIs in ImageCreator, you must create an [ImageCreator](#imagecreator9) instance. ImageCreator does not support multiple threads.
 
 ### Properties
@@ -9181,4 +9181,5 @@ The SVG tags are supported since API version 10. The used version is (SVG) 1.1, 
 - textPath
 - tspan
 - use
+
 <!--no_check-->

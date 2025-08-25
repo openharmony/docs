@@ -2,8 +2,9 @@
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @lvcong_oh-->
-<!--SE: @lvcong_oh-->
-<!--TSE: @ltttjs; @logic42-->
+<!--Designer: @lvcong_oh-->
+<!--Tester: @ltttjs; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 端云共享Extension，提供三方厂商适配共享云服务的能力。通过实现端云共享Extension提供的接口，对接端侧的数据共享到服务端，实现端云共享的发起、取消或退出，更改共享数据的操作权限、查询共享参与者、根据共享邀请码查询共享参与者、确认或更改共享邀请，并支持返回共享云服务的相关结果。
 
@@ -295,7 +296,7 @@ createCloudServiceStub(instance: CloudService): Promise&lt;rpc.RemoteObject&gt;
 import { Want, ServiceExtensionAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
 
-export default class MyCloudService implements cloudExtension.CloudService {
+class MyCloudService implements cloudExtension.CloudService {
   constructor() {}
   async connectShareCenter(userId: number, bundleName: string): Promise<rpc.RemoteObject> {
     // ...
@@ -347,12 +348,12 @@ createShareServiceStub(instance: ShareCenter): Promise&lt;rpc.RemoteObject&gt;
 ```ts
 import { rpc } from '@kit.IPCKit';
 
-export default class MyShareCenter implements cloudExtension.ShareCenter {
+class MyShareCenter implements cloudExtension.ShareCenter {
   constructor() {}
   // ...
 }
 
-export default class MyCloudService implements cloudExtension.CloudService {
+class MyCloudService implements cloudExtension.CloudService {
   constructor() {}
   async connectShareCenter(userId: number, bundleName: string): Promise<rpc.RemoteObject> {
     console.info(`connect share center, bundle: ${bundleName}`);
@@ -384,11 +385,11 @@ createCloudDBStub(instance: CloudDB): Promise&lt;rpc.RemoteObject&gt;
 ```ts
 import { rpc } from '@kit.IPCKit';
 
-export default class MyCloudDB implements cloudExtension.CloudDB {
+class MyCloudDB implements cloudExtension.CloudDB {
   // ...
 }
 
-export default class MyCloudService implements cloudExtension.CloudService {
+class MyCloudService implements cloudExtension.CloudService {
   constructor() {}
   // ...
   async connectDB(bundleName: string, database: cloudExtension.Database): Promise<rpc.RemoteObject> {
@@ -423,11 +424,11 @@ createAssetLoaderStub(instance: AssetLoader): Promise&lt;rpc.RemoteObject&gt;
 ```ts
 import { rpc } from '@kit.IPCKit';
 
-export default class MyAssetLoader implements cloudExtension.AssetLoader {
+class MyAssetLoader implements cloudExtension.AssetLoader {
   // ...
 }
 
-export default class MyCloudService implements cloudExtension.CloudService {
+class MyCloudService implements cloudExtension.CloudService {
   constructor() {}
   // ...   
   async connectAssetLoader(bundleName: string, database: cloudExtension.Database): Promise<rpc.RemoteObject> {
@@ -466,7 +467,7 @@ generateId(count: number): Promise&lt;Result&lt;Array&lt;string&gt;&gt;&gt;
 **示例：**
 
 ```ts
-export default class MyCloudDB implements cloudExtension.CloudDB {
+class MyCloudDB implements cloudExtension.CloudDB {
   async generateId(count: number): Promise<cloudExtension.Result<Array<string>>> {
     console.info(`generate id, count: ${count}`);
     let result = new Array<string>();
@@ -506,7 +507,7 @@ update(table: string, values: Array&lt;Record&lt;string, CloudType>>, extensions
 **示例：**
 
 ```ts
-export default class MyCloudDB implements cloudExtension.CloudDB {
+class MyCloudDB implements cloudExtension.CloudDB {
   // ...
   async update(table: string, values: Array<Record<string, cloudExtension.CloudType>>, extensions: Array<Record<string, cloudExtension.CloudType>>): Promise<Array<cloudExtension.Result<Record<string, cloudExtension.CloudType>>>> {
     console.info(`update, table: ${table}`);
@@ -544,7 +545,7 @@ insert(table: string, values: Array<Record<string, CloudType>>, extensions: Arra
 **示例：**
 
 ```ts
-export default class MyCloudDB implements cloudExtension.CloudDB {
+class MyCloudDB implements cloudExtension.CloudDB {
   // ...
   async insert(table: string, values: Array<Record<string, cloudExtension.CloudType>>, extensions: Array<Record<string, cloudExtension.CloudType>>): Promise<Array<cloudExtension.Result<Record<string, cloudExtension.CloudType>>>> {
     console.info(`insert, table: ${table}`);
@@ -581,13 +582,13 @@ delete(table: string, extensions: Array&lt;Record&lt;string, CloudType>> ): Prom
 **示例：**
 
 ```ts
-export default class MyCloudDB implements cloudExtension.CloudDB {
+class MyCloudDB implements cloudExtension.CloudDB {
   // ...
   async delete(table: string, extensions: Array<Record<string, cloudExtension.CloudType>>): Promise<Array<cloudExtension.Result<Record<string, cloudExtension.CloudType>>>> {
     console.info(`delete, table: ${table}`);
     let deleteRes: Array<cloudExtension.Result<Record<string, cloudExtension.CloudType>>> = [];
     // ...
-    // 返回插入数据的结果
+    // 返回删除数据的结果
     return deleteRes;
   }
   // ...
@@ -620,12 +621,12 @@ query(table: string, fields: Array&lt;string&gt;, queryCount: number, queryCurso
 **示例：**
 
 ```ts
-export default class MyCloudDB implements cloudExtension.CloudDB {
+class MyCloudDB implements cloudExtension.CloudDB {
   // ...
   async query(table: string, fields: Array<string>, queryCount: number, queryCursor: string): Promise<cloudExtension.Result<cloudExtension.CloudData>> {
     console.info(`query, table: ${table}`);
     // ...
-    // 返回插入数据的结果
+    // 返回查询数据的结果
     return {
       code: cloudExtension.ErrorCode.SUCCESS,
       description: 'query succeeded',
@@ -659,12 +660,12 @@ lock(): Promise&lt;Result&lt;LockInfo&gt;&gt;
 ```ts
 let test_time: number = 10;
 let test_lockId: number = 1;
-export default class MyCloudDB implements cloudExtension.CloudDB {
+class MyCloudDB implements cloudExtension.CloudDB {
   // ...
   async lock(): Promise<cloudExtension.Result<cloudExtension.LockInfo>> {
     console.info(`DB lock`);
     // ...
-    // 返回插入数据的结果
+    // 返回锁定数据的结果
     return {
       code: cloudExtension.ErrorCode.SUCCESS,
       description: 'lock succeeded',
@@ -703,12 +704,12 @@ heartbeat(lockId: number): Promise&lt;Result&lt;LockInfo&gt;&gt;
 ```ts
 let test_lockId: number = 1;
 let test_time: number = 10;
-export default class MyCloudDB implements cloudExtension.CloudDB {
+class MyCloudDB implements cloudExtension.CloudDB {
   // ...
   async heartbeat(lockId: number): Promise<cloudExtension.Result<cloudExtension.LockInfo>> {
     console.info(`heartbeat lock`);
     // ...
-    // 返回插入数据的结果
+    // 返回心跳检查的结果
     return {
       code: cloudExtension.ErrorCode.SUCCESS,
       description: 'heartbeat succeeded',
@@ -745,12 +746,12 @@ unlock(lockId: number): Promise&lt;Result&lt;boolean&gt;&gt;
 **示例：**
 
 ```ts
-export default class MyCloudDB implements cloudExtension.CloudDB {
+class MyCloudDB implements cloudExtension.CloudDB {
     // ...
   async unlock(lockId: number): Promise<cloudExtension.Result<boolean>> {
     console.info(`unlock`);
     // ...
-    // 返回插入数据的结果
+    // 返回解锁数据的结果
     return {
       code: cloudExtension.ErrorCode.SUCCESS,
       description: 'unlock succeeded',
@@ -787,7 +788,7 @@ import { rpc } from '@kit.IPCKit';
 let test_space: number = 100;
 let test_userId: number = 1;
 
-export default class MyCloudService implements cloudExtension.CloudService {
+class MyCloudService implements cloudExtension.CloudService {
   constructor() {}
   // ...
   async getServiceInfo(): Promise<cloudExtension.ServiceInfo> {
@@ -821,7 +822,7 @@ getAppBriefInfo(): Promise<Record<string, AppBriefInfo>>
 **示例：**
 
 ```ts
-export default class MyCloudService implements cloudExtension.CloudService {
+class MyCloudService implements cloudExtension.CloudService {
   constructor() {}
   // ...
   async getAppBriefInfo(): Promise<Record<string, cloudExtension.AppBriefInfo>> {
@@ -863,7 +864,7 @@ export default class MyCloudService implements cloudExtension.CloudService {
 **示例：**
 
 ```ts
-export default class MyCloudService implements cloudExtension.CloudService {
+class MyCloudService implements cloudExtension.CloudService {
   constructor() {
   }
   // ...
@@ -908,7 +909,7 @@ subscribe(subInfo: Record&lt;string, Array&lt;Database&gt;&gt;, expirationTime: 
 
 ```ts
 let test_time: number = 10;
-export default class MyCloudService implements cloudExtension.CloudService {
+class MyCloudService implements cloudExtension.CloudService {
   constructor() {
   }
   // ...
@@ -951,7 +952,7 @@ unsubscribe(unsubscribeInfo: Record&lt;string, Array&lt;string&gt;&gt;): Promise
 | Promise&lt;number&gt; | Promise对象，返回取消订阅结果的错误码。 |
 
 ```ts
-export default class MyCloudService implements cloudExtension.CloudService {
+class MyCloudService implements cloudExtension.CloudService {
   constructor() {
   }
   // ...
@@ -987,11 +988,11 @@ export default class MyCloudService implements cloudExtension.CloudService {
 ```ts
 import { rpc } from '@kit.IPCKit';
 
-export default class MyCloudDB implements cloudExtension.CloudDB {
+class MyCloudDB implements cloudExtension.CloudDB {
   // ...
 }
 
-export default class MyCloudService implements cloudExtension.CloudService {
+class MyCloudService implements cloudExtension.CloudService {
   constructor() {}
     // ...
   async connectDB(bundleName: string, database: cloudExtension.Database): Promise<rpc.RemoteObject> {
@@ -1027,11 +1028,11 @@ connectAssetLoader(bundleName: string, database: Database): Promise&lt;rpc.Remot
 ```ts
 import { rpc } from '@kit.IPCKit';
 
-export default class MyAssetLoader implements cloudExtension.AssetLoader {
+class MyAssetLoader implements cloudExtension.AssetLoader {
   // ...
 }
 
-export default class MyCloudService implements cloudExtension.CloudService {
+class MyCloudService implements cloudExtension.CloudService {
   constructor() {}
   async connectAssetLoader(bundleName: string, database: cloudExtension.Database): Promise<rpc.RemoteObject> {
       // ...
@@ -1067,12 +1068,12 @@ connectShareCenter(userId: number, bundleName: string): Promise&lt;rpc.RemoteObj
 ```ts
 import { rpc } from '@kit.IPCKit';
 
-export default class MyShareCenter implements cloudExtension.ShareCenter {
+class MyShareCenter implements cloudExtension.ShareCenter {
   constructor() {}
   // ...
 }
 
-export default class MyCloudService implements cloudExtension.CloudService {
+class MyCloudService implements cloudExtension.CloudService {
   constructor() {}
   async connectShareCenter(userId: number, bundleName: string): Promise<rpc.RemoteObject> {
     console.info(`connect share center, bundle: ${bundleName}`);
@@ -1111,7 +1112,7 @@ download(table: string, gid: string, prefix: string, assets: Array&lt;CloudAsset
 **示例：**
 
 ```ts
-export default class MyAssetLoader implements cloudExtension.AssetLoader {
+class MyAssetLoader implements cloudExtension.AssetLoader {
   async download(table: string, gid: string, prefix: string, assets: Array<cloudExtension.CloudAsset>): Promise<Array<cloudExtension.Result<cloudExtension.CloudAsset>>> {
     console.info(`download asset loader, table: ${table}, gid: ${gid}, prefix: ${prefix}`);
     let downloadRes = Array<cloudExtension.Result<cloudExtension.CloudAsset>>();
@@ -1146,7 +1147,7 @@ upload(table: string, gid: string, assets: Array&lt;CloudAsset&gt;): Promise&lt;
 **示例：**
 
 ```ts
-export default class MyAssetLoader implements cloudExtension.AssetLoader {
+class MyAssetLoader implements cloudExtension.AssetLoader {
   async upload(table: string, gid: string, assets: Array<cloudExtension.CloudAsset>): Promise<Array<cloudExtension.Result<cloudExtension.CloudAsset>>> {
     console.info(`upload asset loader, table: ${table}, gid: ${gid}`);
     let uploadRes = Array<cloudExtension.Result<cloudExtension.CloudAsset>>();
@@ -1191,7 +1192,7 @@ import { cloudData } from '@kit.ArkData';
 
 type Participant = cloudData.sharing.Participant;
 
-export default class MyShareCenter implements cloudExtension.ShareCenter {
+class MyShareCenter implements cloudExtension.ShareCenter {
   constructor() {}
   async share(userId: number, bundleName: string, sharingResource: string, participants: Array<Participant>):
     Promise<cloudExtension.Result<Array<cloudExtension.Result<Participant>>>> {
@@ -1246,7 +1247,7 @@ import { cloudData } from '@kit.ArkData';
 
 type Participant = cloudData.sharing.Participant;
 
-export default class MyShareCenter implements cloudExtension.ShareCenter {
+class MyShareCenter implements cloudExtension.ShareCenter {
   constructor() {}
   async unshare(userId: number, bundleName: string, sharingResource: string, participants: Array<Participant>):
     Promise<cloudExtension.Result<Array<cloudExtension.Result<Participant>>>> {
@@ -1298,7 +1299,7 @@ exit(userId: number, bundleName: string, sharingResource: string): Promise&lt;Re
 ```ts
 import { cloudData } from '@kit.ArkData';
 
-export default class MyShareCenter implements cloudExtension.ShareCenter {
+class MyShareCenter implements cloudExtension.ShareCenter {
   constructor() {}
   async exit(userId: number, bundleName: string, sharingResource: string):
     Promise<cloudExtension.Result<void>> {
@@ -1345,7 +1346,7 @@ import { cloudData } from '@kit.ArkData';
 
 type Participant = cloudData.sharing.Participant;
 
-export default class MyShareCenter implements cloudExtension.ShareCenter {
+class MyShareCenter implements cloudExtension.ShareCenter {
   constructor() {}
   async changePrivilege(userId: number, bundleName: string, sharingResource: string, participants: Array<Participant>):
     Promise<cloudExtension.Result<Array<cloudExtension.Result<Participant>>>> {
@@ -1399,7 +1400,7 @@ import { cloudData } from '@kit.ArkData';
 
 type Participant = cloudData.sharing.Participant;
 
-export default class MyShareCenter implements cloudExtension.ShareCenter {
+class MyShareCenter implements cloudExtension.ShareCenter {
   constructor() {}
   async queryParticipants(userId: number, bundleName: string, sharingResource: string):
     Promise<cloudExtension.Result<Array<Participant>>> {
@@ -1473,7 +1474,7 @@ import { cloudData } from '@kit.ArkData';
 
 type Participant = cloudData.sharing.Participant;
 
-export default class MyShareCenter implements cloudExtension.ShareCenter {
+class MyShareCenter implements cloudExtension.ShareCenter {
   constructor() {}
   async queryParticipantsByInvitation(userId: number, bundleName: string, invitationCode: string):
     Promise<cloudExtension.Result<Array<Participant>>> {
@@ -1546,7 +1547,7 @@ confirmInvitation(userId: number, bundleName: string, invitationCode: string, st
 ```ts
 import { cloudData } from '@kit.ArkData';
 
-export default class MyShareCenter implements cloudExtension.ShareCenter {
+class MyShareCenter implements cloudExtension.ShareCenter {
   constructor() {}
   async confirmInvitation(userId: number, bundleName: string, invitationCode: string, state: cloudData.sharing.State):
     Promise<cloudExtension.Result<string>> {
@@ -1592,7 +1593,7 @@ changeConfirmation(userId: number, bundleName: string, sharingResource: string, 
 ```ts
 import { cloudData } from '@kit.ArkData';
 
-export default class MyShareCenter implements cloudExtension.ShareCenter {
+class MyShareCenter implements cloudExtension.ShareCenter {
   constructor() {}
   async changeConfirmation(userId: number, bundleName: string, sharingResource: string, state: cloudData.sharing.State):
     Promise<cloudExtension.Result<void>> {
@@ -1656,14 +1657,14 @@ class MyCloudDB implements cloudExtension.CloudDB {
     console.info(`delete, table: ${table}`);
     let deleteRes: Array<cloudExtension.Result<Record<string, cloudExtension.CloudType>>> = [];
     // ...
-    // 返回插入数据的结果
+    // 返回删除数据的结果
     return deleteRes;
   }
 
   async query(table: string, fields: Array<string>, queryCount: number, queryCursor: string): Promise<cloudExtension.Result<cloudExtension.CloudData>> {
     console.info(`query, table: ${table}`);
     // ...
-    // 返回插入数据的结果
+    // 返回查询数据的结果
     return {
       code: cloudExtension.ErrorCode.SUCCESS,
       description: 'query succeeded',
@@ -1678,7 +1679,7 @@ class MyCloudDB implements cloudExtension.CloudDB {
   async lock(): Promise<cloudExtension.Result<cloudExtension.LockInfo>> {
     console.info(`DB lock`);
     // ...
-    // 返回插入数据的结果
+    // 返回锁定数据的结果
     return {
       code: cloudExtension.ErrorCode.SUCCESS,
       description: 'lock succeeded',
@@ -1692,7 +1693,7 @@ class MyCloudDB implements cloudExtension.CloudDB {
   async heartbeat(lockId: number): Promise<cloudExtension.Result<cloudExtension.LockInfo>> {
     console.info(`heartbeat lock`);
     // ...
-    // 返回插入数据的结果
+    // 返回心跳检测的结果
     return {
       code: cloudExtension.ErrorCode.SUCCESS,
       description: 'heartbeat succeeded',
@@ -1706,7 +1707,7 @@ class MyCloudDB implements cloudExtension.CloudDB {
   async unlock(lockId: number): Promise<cloudExtension.Result<boolean>> {
     console.info(`unlock`);
     // ...
-    // 返回插入数据的结果
+    // 返回解锁数据的结果
     return {
       code: cloudExtension.ErrorCode.SUCCESS,
       description: 'unlock succeeded',

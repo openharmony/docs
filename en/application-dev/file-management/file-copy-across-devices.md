@@ -1,4 +1,10 @@
 # Copying Files Across Devices
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wang_zhangjun; @zhuangzhuang-->
+<!--Designer: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 The distributed file system provides the cross-device file copy capability for applications. You can use [@ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) to copy files across devices and applications. This topic walks you through the process of copying a file from device A to device B.  
 

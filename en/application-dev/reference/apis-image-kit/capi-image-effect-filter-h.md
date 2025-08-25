@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **image_effect_filter.h** file declares the APIs related to an image effect filter.<br>With these APIs, you can quickly implement basic effect processing or connect multiple filters in series in an image effector to implement complex effect processing. The system provides basic effect processing filters such as brightness and crop filters.
+The file declares the APIs related to an image effect filter.<br>With these APIs, you can quickly implement basic effect processing or connect multiple filters in series in an image effector to implement complex effect processing. The system provides basic effect processing filters such as brightness and crop filters.
 
 **File to include**: <multimedia/image_effect/image_effect_filter.h>
 
@@ -79,6 +79,16 @@ The **image_effect_filter.h** file declares the APIs related to an image effect 
 | [ImageEffect_ErrorCode OH_EffectFilter_Render(OH_EffectFilter *filter, OH_PixelmapNative *inputPixelmap,OH_PixelmapNative *outputPixelmap)](#oh_effectfilter_render) | - | Starts image rendering.|
 | [ImageEffect_ErrorCode OH_EffectFilter_RenderWithTextureId(OH_EffectFilter *filter, int32_t inputTextureId,int32_t outputTextureId, int32_t colorSpace)](#oh_effectfilter_renderwithtextureid) | - | Applies the filter effect using texture IDs. This function does not support using the same texture for both input and output.|
 | [ImageEffect_ErrorCode OH_EffectFilter_Release(OH_EffectFilter *filter)](#oh_effectfilter_release) | - | Destroys an OH_EffectFilter instance.|
+
+### Macros
+
+| Name| Description|
+| -- | -- |
+| OH_EFFECT_BRIGHTNESS_FILTER "Brightness" | Brightness filter. The corresponding parameter is **OH_EFFECT_FILTER_INTENSITY_KEY** and the parameter type is **EFFECT_DATA_TYPE_FLOAT**.<br>**Since**: 12|
+| OH_EFFECT_CONTRAST_FILTER "Contrast" | Contrast filter. The corresponding parameter is **OH_EFFECT_FILTER_INTENSITY_KEY** and the parameter type is **EFFECT_DATA_TYPE_FLOAT**.<br>**Since**: 12|
+| OH_EFFECT_CROP_FILTER "Crop" | Crop filter. The corresponding parameter is **OH_EFFECT_FILTER_REGION_KEY**, the parameter type is **EFFECT_DATA_TYPE_PTR**, and the parameter value is [ImageEffect_Region](capi-imageeffect-imageeffect-region.md).<br>**Since**: 12|
+| OH_EFFECT_FILTER_INTENSITY_KEY "FilterIntensity" | Intensity filter.<br>**Since**: 12|
+| OH_EFFECT_FILTER_REGION_KEY "FilterRegion" | Image region filter.<br>**Since**: 12|
 
 ## Enum Description
 

@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @aohui-->
-<!--SE: @yaomingliu-->
-<!--TSE: @ghiker-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Web组件资源响应对象。示例代码参考[onHttpErrorReceive事件](./arkts-basic-components-web-events.md#onhttperrorreceive)。
 
@@ -119,11 +120,7 @@ getResponseDataEx(): string | number | ArrayBuffer | Resource | undefined
 
 |类型|说明|
 |---|---|
-|string|返回HTML格式的字符串。|
-|number|返回文件句柄。|
-|ArrayBuffer|返回二进制数据。|
-|[Resource](../apis-arkui/arkui-ts/ts-types.md#resource)|返回`$rawfile`资源。|
-|undefined|如果没有可用数据，返回`undefined`。|
+|string \| number \| ArrayBuffer \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) \| undefined | string返回HTML格式的字符串。 number返回文件句柄。 ArrayBuffer返回二进制数据。 Resource返回`$rawfile`资源。 如果没有可用数据，返回`undefined`。 |
 
 ## getResponseIsReady<sup>13+</sup>
 

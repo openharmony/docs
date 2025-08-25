@@ -2,8 +2,9 @@
 <!--Kit: IME Kit-->
 <!--Subsystem: MiscServices-->
 <!--Owner: @illybyy-->
-<!--SE: @andeszhang-->
-<!--TSE: @murphy1984-->
+<!--Designer: @andeszhang-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 > **说明：**
 >
@@ -110,7 +111,7 @@ Configuration persistence error.
 
 **错误信息**
 
-Input method controller error. Possible cause: create InputmethodController object failed.
+Input method controller error. Possible cause: create InputMethodController object failed.
 
 **错误描述**
 
@@ -118,7 +119,7 @@ Input method controller error. Possible cause: create InputmethodController obje
 
 **可能原因**
 
-在调用getCotroller接口获取输入法控制器InputMethodController时发生异常时会报错。
+在调用getController接口获取输入法控制器InputMethodController时发生异常时会报错。
 
 **处理步骤**
 
@@ -128,7 +129,7 @@ Input method controller error. Possible cause: create InputmethodController obje
 
 **错误信息**
 
-Input method setter error. Possible cause: create InputmethodSetting object failed.
+Input method setter error. Possible cause: create InputMethodSetting object failed.
 
 **错误描述**
 
@@ -365,7 +366,7 @@ Current operation cannot be applied to the preconfigured default input method.
 
 **错误信息**
 
-invalid immersive effect.
+Invalid immersive effect.
 1. The gradient mode and the fluid light mode can only be used when the immersive mode is enabled.
 2. The fluid light mode can only be used when the gradient mode is enabled.
 3. When the gradient mode is not enabled, the gradient height can only be 0.

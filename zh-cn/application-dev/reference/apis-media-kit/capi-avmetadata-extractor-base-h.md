@@ -2,12 +2,15 @@
 <!--Kit: Media Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @wang-haizhou6-->
-<!--SE: @HmQQQ-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
 定义AVMetadataExtractor常量。
+
+**引用文件：** <multimedia/player_framework/avmetadata_extractor_base.h>
 
 **库：** libavmetadata_extractor.so
 

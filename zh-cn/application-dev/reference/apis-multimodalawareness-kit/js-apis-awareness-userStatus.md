@@ -2,8 +2,9 @@
 <!--Kit: Multimodal Awareness Kit-->
 <!--Subsystem: MultimodalAwareness-->
 <!--Owner: @dilligencer-->
-<!--SE: @zou_ye-->
-<!--TSE: @judan-->
+<!--Designer: @zou_ye-->
+<!--Tester: @judan-->
+<!--Adviser: @hu-zhiqiong-->
 
 本模块，提供对用户状态感知能力，包括年龄群组检测等能力。
 
@@ -77,7 +78,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     userStatus.on('userAgeGroupDetected', (data: userStatus.UserClassification) => {
-        console.info('callback success, ageGroup:' + data.ageGroup + ", confidence:" + data.confidence);
+        console.info('callback succeeded, ageGroup:' + data.ageGroup + ", confidence:" + data.confidence);
     });
     console.info("on succeeded");
 } catch (err) {

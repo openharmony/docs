@@ -2,14 +2,15 @@
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @yuanxiaogou; @string_sz-->
-<!--SE: @knightaoko-->
-<!--TSE: @test_lzz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## 简介
 
 V8的trace是V8引擎提供的一种用于分析和调试JavaScript代码执行过程的工具。它可以记录并输出关于代码执行的详细信息，包括函数调用、执行时间、内存使用情况等，帮助开发者了解代码的性能、诊断潜在问题，进行优化。
 
-HiSmartPerf目前已经对接了V8的compile\runtime、builtin、JS_Execution类别的trace点，可以在HiSmartPerf中直接看到这些类别event的相关信息。
+HiSmartPerf目前已经对接了V8的compile、runtime、builtin、JS_Execution类别的trace点，可以在HiSmartPerf中直接看到这些类别event的相关信息。
 
 ## 使用方法
 

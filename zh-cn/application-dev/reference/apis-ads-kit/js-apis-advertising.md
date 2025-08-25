@@ -3,8 +3,9 @@
 <!--Kit: Ads Kit-->
 <!--Subsystem: Advertising-->
 <!--Owner: @SukiEvas-->
-<!--SE: @zhansf1988-->
-<!--TSE: @hongmei_may-->
+<!--Designer: @zhansf1988-->
+<!--Tester: @hongmei_may-->
+<!--Adviser: @RayShih-->
 
 本模块提供广告操作能力，包括请求广告、展示广告。
 
@@ -47,38 +48,17 @@ showAd(ad: Advertisement, options: AdDisplayOptions, context?: common.UIAbilityC
 
 **示例：**
 
+其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#context的获取方式)。
+
 ```ts
 import { common } from '@kit.AbilityKit';
 import { advertising } from '@kit.AdsKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
-@Entry
-@Component
-struct Index {
-  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  // 请求到的广告内容
-  private ad?: advertising.Advertisement;
-  // 广告展示参数
-  private adDisplayOptions: advertising.AdDisplayOptions = {
-    // 是否静音，默认不静音
-    mute: false
-  }
-
-  build() {
-    Column() {
-      Button('showAd')
-        .onClick(() => {
-          try {
-            // 调用全屏广告展示接口
-            advertising.showAd(this.ad, this.adDisplayOptions, this.context);
-          } catch (err) {
-            hilog.error(0x0000, 'testTag', `Fail to show ad. Code is ${err.code}, message is ${err.message}`);
-          }
-        });
-    }
-    .width('100%')
-    .height('100%')
-  }
+function showAd(ad: advertising.Advertisement, context?: common.UIAbilityContext): void {
+  // 广告展示参数，开发者可根据项目实际情况设置
+  const adDisplayOptions: advertising.AdDisplayOptions = {};
+  // 调用全屏广告展示接口
+  advertising.showAd(ad, adDisplayOptions, context);
 }
 ```
 
@@ -86,16 +66,16 @@ struct Index {
 
 getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise&lt;string&gt;
 
-获取广告请求响应体，使用Promise异步回调（该接口仅对部分系统预置应用开放）。
+获取广告请求响应体，使用Promise异步回调。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
 **参数：**
 
-| 参数名    | 类型                                  | 必填 | 说明                                             |
-|-----------|---------------------------------------|-----|------------------------------------------------|
-| adParams  | [AdRequestParams[]](#adrequestparams) | 是   | 广告请求参数。<br/> - 该接口体的adid参数可以不传。 |
-| adOptions | [AdOptions](#adoptions)               | 是   | 广告配置。                                        |
+| 参数名    | 类型                                  | 必填 | 说明          |
+|-----------|---------------------------------------|-----|-------------|
+| adParams  | [AdRequestParams[]](#adrequestparams) | 是   | 广告请求参数。 |
+| adOptions | [AdOptions](#adoptions)               | 是   | 广告配置参数。 |
 
 **返回值：**
 
@@ -117,43 +97,14 @@ getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise&lt;
 
 ```ts
 import { advertising } from '@kit.AdsKit';
-import { Prompt } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-function getAdRequestBody(): void {
-  const adRequestParamsArray: advertising.AdRequestParams[] = [];
-  const adRequestParams: advertising.AdRequestParams = {
-    adId: 'testu7m3hc4gvm',
-    adType: 3,
-    adCount: 2,
-    adWidth: 100,
-    adHeight: 100
-  };
-  adRequestParamsArray.push(adRequestParams);
-  const adOptions: advertising.AdOptions = {
-    // 设置是否只请求非个性化广告 0：请求个性化广告与非个性化广告 1：只请求非个性化广告。不填以业务逻辑为准
-    nonPersonalizedAd: 0,
-    // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容: -1默认值，不确定 0不希望 1希望
-    tagForChildProtection: -1,
-    // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求： -1默认值，不确定 0不希望 1希望
-    tagForUnderAgeOfPromise: -1,
-    // 设置广告内容分级上限: W: 3+,所有受众 PI: 7+,家长指导 J:12+,青少年 A: 16+/18+，成人受众
-    adContentClassification: 'A'
-  };
-  advertising.getAdRequestBody(adRequestParamsArray, adOptions).then((data) => {
-    hilog.info(0x0000, 'testTag', `Succeeded in getting ad request body. Data is ${JSON.stringify(data)}`);
-    Prompt.showToast({
-      message: data,
-      duration: 1000
-    });
-  }).catch((error: BusinessError) => {
-    hilog.error(0x0000, 'testTag', `Fail to get ad request body. Code is ${error.code}, message is ${error.message}`);
-    Prompt.showToast({
-      message: error.code.toString() + ',' + error.message,
-      duration: 1000
-    });
-  })
+function getAdRequestBody(adRequestParamsArray: advertising.AdRequestParams[]): void {
+  // 广告配置参数，开发者可根据项目实际情况设置
+  const adOptions: advertising.AdOptions = {};
+  advertising.getAdRequestBody(adRequestParamsArray, adOptions).then((data: string) => {
+    hilog.info(0x0000, 'testTag', `Succeeded in getting ad request body. Data is ${data}`);
+  });
 }
 ```
 
@@ -161,7 +112,7 @@ function getAdRequestBody(): void {
 
 parseAdResponse(adResponse: string, listener: MultiSlotsAdLoadListener, context: common.UIAbilityContext): void
 
-解析并处理广告响应体（该接口仅对部分系统预置应用开放）。
+解析并处理广告响应体。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -186,7 +137,7 @@ parseAdResponse(adResponse: string, listener: MultiSlotsAdLoadListener, context:
 
 **示例：**
 
-其中context的获取方式参见[UIAbilityContext的获取方式](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。
+其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#context的获取方式)。
 
 ```ts
 import { common } from '@kit.AbilityKit';
@@ -196,20 +147,17 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 function parseAdResponse(adResponse: string, context: common.UIAbilityContext): void {
   // 广告解析处理回调监听
   const multiSlotsAdLoaderListener: advertising.MultiSlotsAdLoadListener = {
-    // 广告解析处理失败回调
     onAdLoadFailure: (errorCode: number, errorMsg: string) => {
-      hilog.error(0x0000, 'testTag', `Fail to load multiSlots ad. Code is ${errorCode}, message is ${errorMsg}`);
+      hilog.error(0x0000, 'testTag', `Failed to load multiSlots ad. Code is ${errorCode}, message is ${errorMsg}`);
     },
-    // 广告解析处理成功回调
     onAdLoadSuccess: (ads: Map<string, Array<advertising.Advertisement>>) => {
-      hilog.info(0x0000, 'testTag', 'Succeed in loading multiSlots ad');
-      // 保存解析处理完成的广告内容为数组用于展示
-      const returnAds: Array<advertising.Advertisement> = [];
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading multiSlots ad');
+      // 保存解析处理完成的广告内容用于展示
+      const returnAds: advertising.Advertisement[] = [];
       ads.forEach((adsArray) => returnAds.push(...adsArray));
     }
   };
   // 调用响应体解析接口
-  hilog.info(0x0000, 'testTag', 'Start to parse ad response');
   advertising.parseAdResponse(adResponse, multiSlotsAdLoaderListener, context);
 }
 ```
@@ -218,7 +166,7 @@ function parseAdResponse(adResponse: string, context: common.UIAbilityContext): 
 
 registerWebAdInterface(controller: web_webview.WebviewController, context: common.UIAbilityContext): void
 
-注入广告JavaScript对象到Web组件中（该接口仅对部分系统预置应用开放）。
+注入广告JavaScript对象到Web组件中。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -246,32 +194,24 @@ registerWebAdInterface(controller: web_webview.WebviewController, context: commo
 import { common } from '@kit.AbilityKit';
 import { advertising } from '@kit.AdsKit';
 import { webview } from '@kit.ArkWeb';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
 struct Index {
-  private webController: webview.WebviewController = new webview.WebviewController();
   private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  private webViewController: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('registerWebAdInterface')
         .onClick(() => {
-          try {
-            advertising.registerWebAdInterface(this.webController, this.context);
-          } catch (err) {
-            hilog.error(0x0000, 'testTag', `Fail to register web ad interface. Code is ${err.code}, message is ${err.message}`);
-          }
+          advertising.registerWebAdInterface(this.webViewController, this.context);
         })
 
-      Web({
-        src: 'www.example.com',
-        controller: this.webController
-      })
-        .width("100%")
-        .height("100%")
+      Web({ src: 'https://www.example.com', controller: this.webViewController })
     }
+    .width('100%')
+    .height('100%')
   }
 }
 ```
@@ -280,7 +220,7 @@ struct Index {
 
 registerWebAdInterface(controller: web_webview.WebviewController, context: common.UIAbilityContext, needRefresh: boolean): void
 
-注入广告JavaScript对象到Web组件中（该接口仅对部分系统预置应用开放）。
+注入广告JavaScript对象到Web组件中。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -309,32 +249,24 @@ registerWebAdInterface(controller: web_webview.WebviewController, context: commo
 import { common } from '@kit.AbilityKit';
 import { advertising } from '@kit.AdsKit';
 import { webview } from '@kit.ArkWeb';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
 struct Index {
-  private webController: webview.WebviewController = new webview.WebviewController();
   private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  private webViewController: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('registerWebAdInterface')
         .onClick(() => {
-          try {
-            advertising.registerWebAdInterface(this.webController, this.context, true);
-          } catch (err) {
-            hilog.error(0x0000, 'testTag', `Fail to register web ad interface. Code is ${err.code}, message is ${err.message}`);
-          }
+          advertising.registerWebAdInterface(this.webViewController, this.context, true);
         })
 
-      Web({
-        src: 'www.example.com',
-        controller: this.webController
-      })
-        .width("100%")
-        .height("100%")
+      Web({ src: 'https://www.example.com', controller: this.webViewController })
     }
+    .width('100%')
+    .height('100%')
   }
 }
 ```
@@ -343,7 +275,7 @@ struct Index {
 
 deleteWebAdInterface(controller: web_webview.WebviewController, needRefresh: boolean): void
 
-删除通过registerWebAdInterface注入的广告JavaScript对象（该接口仅对部分系统预置应用开放）。
+删除通过registerWebAdInterface注入的广告JavaScript对象。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -370,31 +302,23 @@ deleteWebAdInterface(controller: web_webview.WebviewController, needRefresh: boo
 ```ts
 import { advertising } from '@kit.AdsKit';
 import { webview } from '@kit.ArkWeb';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
 struct Index {
-  private webController: webview.WebviewController = new webview.WebviewController();
+  private webViewController: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('deleteWebAdInterface')
         .onClick(() => {
-          try {
-            advertising.deleteWebAdInterface(this.webController, true);
-          } catch (err) {
-            hilog.error(0x0000, 'testTag', `Fail to delete web ad interface. Code is ${err.code}, message is ${err.message}`);
-          }
+          advertising.deleteWebAdInterface(this.webViewController, true);
         })
 
-      Web({
-        src: 'www.example.com',
-        controller: this.webController,
-      })
-        .width('100%')
-        .height('100%')
+      Web({ src: 'https://www.example.com', controller: this.webViewController })
     }
+    .width('100%')
+    .height('100%')
   }
 }
 ```
@@ -425,13 +349,13 @@ constructor(context: common.Context)
 
 **示例：**
 
-其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#概述)。
+其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#context的获取方式)。
 
 ```ts
-import { advertising } from '@kit.AdsKit';
 import { common } from '@kit.AbilityKit';
+import { advertising } from '@kit.AdsKit';
 
-function createConstructor(context: common.Context): void {
+function createAdLoader(context: common.Context): void {
   const adLoader: advertising.AdLoader = new advertising.AdLoader(context);
 }
 ```
@@ -451,7 +375,7 @@ loadAd(adParam: AdRequestParams, adOptions: AdOptions, listener: AdLoadListener)
 | 参数名    | 类型                                | 必填 | 说明              |
 |-----------|-------------------------------------|-----|-----------------|
 | adParam   | [AdRequestParams](#adrequestparams) | 是   | 广告请求参数。     |
-| adOptions | [AdOptions](#adoptions)             | 是   | 广告配置。         |
+| adOptions | [AdOptions](#adoptions)             | 是   | 广告配置参数。     |
 | listener  | [AdLoadListener](#adloadlistener)   | 是   | 请求广告回调监听。 |
 
 **错误码：**
@@ -467,47 +391,30 @@ loadAd(adParam: AdRequestParams, adOptions: AdOptions, listener: AdLoadListener)
 
 **示例：**
 
-其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#概述)。
+其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#context的获取方式)。
 
 ```ts
 import { common } from '@kit.AbilityKit';
 import { advertising } from '@kit.AdsKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-function loadAd(context: common.Context): void {
-  const adRequestParams: advertising.AdRequestParams = {
-    // 广告类型
-    adType: 3,
-    // 测试广告位ID
-    adId: 'testy63txaom86'
-  };
-  const adOptions: advertising.AdOptions = {
-    // 可选自定义参数，设置是否允许使用流量下载广告素材 0：不允许，1：允许，不设置以广告主设置为准。
-    allowMobileTraffic: 0,
-    // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容: -1默认值，不确定 0不希望 1希望
-    tagForChildProtection: -1,
-    // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求： -1默认值，不确定 0不希望 1希望
-    tagForUnderAgeOfPromise: -1,
-    // 设置广告内容分级上限: W: 3+,所有受众 PI: 7+,家长指导 J:12+,青少年 A: 16+/18+，成人受众
-    adContentClassification: 'A'
-  };
+function loadAd(context: common.Context, adRequestParams: advertising.AdRequestParams): void {
+  // 广告配置参数，开发者可根据项目实际情况设置
+  const adOptions: advertising.AdOptions = {};
   // 广告请求回调监听
   const adLoaderListener: advertising.AdLoadListener = {
-    // 广告请求失败回调
     onAdLoadFailure: (errorCode: number, errorMsg: string) => {
-      hilog.error(0x0000, 'testTag', `Fail to load ad. Code is ${errorCode}, message is ${errorMsg}`);
+      hilog.error(0x0000, 'testTag', `Failed to load ad. Code is ${errorCode}, message is ${errorMsg}`);
     },
-    // 广告请求成功回调
     onAdLoadSuccess: (ads: Array<advertising.Advertisement>) => {
-      hilog.info(0x0000, 'testTag', 'Succeed in loading ad');
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading ad');
       // 保存请求到的广告内容用于展示
-      const returnAds = ads;
+      const returnAds: advertising.Advertisement[] = ads;
     }
   };
   // 创建AdLoader广告对象
   const adLoader: advertising.AdLoader = new advertising.AdLoader(context);
   // 调用广告请求接口
-  hilog.info(0x0000, 'testTag', 'Start to load ad');
   adLoader.loadAd(adRequestParams, adOptions, adLoaderListener);
 }
 ```
@@ -527,7 +434,7 @@ loadAdWithMultiSlots(adParams: AdRequestParams[], adOptions: AdOptions, listener
 | 参数名    | 类型                                                  | 必填 | 说明              |
 |-----------|-------------------------------------------------------|-----|-----------------|
 | adParams  | [AdRequestParams](#adrequestparams)[]                 | 是   | 广告请求参数。     |
-| adOptions | [AdOptions](#adoptions)                               | 是   | 广告配置。         |
+| adOptions | [AdOptions](#adoptions)                               | 是   | 广告配置参数。     |
 | listener  | [MultiSlotsAdLoadListener](#multislotsadloadlistener) | 是   | 请求广告回调监听。 |
 
 **错误码：**
@@ -543,56 +450,31 @@ loadAdWithMultiSlots(adParams: AdRequestParams[], adOptions: AdOptions, listener
 
 **示例：**
 
-其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#概述)。
+其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#context的获取方式)。
 
 ```ts
 import { common } from '@kit.AbilityKit';
 import { advertising } from '@kit.AdsKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-function loadAdWithMultiSlots(context: common.Context): void {
-  const adRequestParamsArray: advertising.AdRequestParams[] = [
-    {
-      // 广告类型
-      adType: 3,
-      // 测试广告位ID
-      adId: 'testy63txaom86'
-    },
-    {
-      // 广告类型
-      adType: 3,
-      // 测试广告位ID
-      adId: 'testy63txaom86'
-    }
-  ];
-  const adOptions: advertising.AdOptions = {
-    // 可选自定义参数，设置是否允许使用流量下载广告素材 0：不允许，1：允许，不设置以广告主设置为准。
-    allowMobileTraffic: 0,
-    // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容: -1默认值，不确定 0不希望 1希望
-    tagForChildProtection: -1,
-    // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求： -1默认值，不确定 0不希望 1希望
-    tagForUnderAgeOfPromise: -1,
-    // 设置广告内容分级上限: W: 3+,所有受众 PI: 7+,家长指导 J:12+,青少年 A: 16+/18+，成人受众
-    adContentClassification: 'A'
-  };
+function loadAdWithMultiSlots(context: common.Context, adRequestParamsArray: advertising.AdRequestParams[]): void {
+  // 广告配置参数，开发者可根据项目实际情况设置
+  const adOptions: advertising.AdOptions = {};
   // 广告请求回调监听
   const multiSlotsAdLoaderListener: advertising.MultiSlotsAdLoadListener = {
-    // 广告请求失败回调
     onAdLoadFailure: (errorCode: number, errorMsg: string) => {
-      hilog.error(0x0000, 'testTag', `Fail to load multiSlots ad. Code is ${errorCode}, message is ${errorMsg}`);
+      hilog.error(0x0000, 'testTag', `Failed to load multiSlots ad. Code is ${errorCode}, message is ${errorMsg}`);
     },
-    // 广告请求成功回调
     onAdLoadSuccess: (ads: Map<string, Array<advertising.Advertisement>>) => {
-      hilog.info(0x0000, 'testTag', 'Succeed in loading multiSlots ad');
-      // 保存请求到的广告内容为数组用于展示
-      const returnAds: Array<advertising.Advertisement> = [];
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading multiSlots ad');
+      // 保存请求到的广告内容用于展示
+      const returnAds: advertising.Advertisement[] = [];
       ads.forEach((adsArray) => returnAds.push(...adsArray));
     }
   };
   // 创建AdLoader广告对象
   const adLoader: advertising.AdLoader = new advertising.AdLoader(context);
   // 调用广告请求接口
-  hilog.info(0x0000, 'testTag', 'Start to load multiSlots ad');
   adLoader.loadAdWithMultiSlots(adRequestParamsArray, adOptions, multiSlotsAdLoaderListener);
 }
 ```
@@ -738,7 +620,6 @@ import { advertising } from '@kit.AdsKit';
 
 const adInteractionListener: advertising.AdInteractionListener = {
   onStatusChanged: (status: string, ad: advertising.Advertisement, data: string) => {
-
   }
 }
 ```
@@ -751,12 +632,12 @@ const adInteractionListener: advertising.AdInteractionListener = {
 
 **系统能力：** SystemCapability.Advertising.Ads
 
-| 名称                    | 类型                                     | 只读 | 可选 | 说明                                                                                                                 |
-|-------------------------|------------------------------------------|-----|-----|--------------------------------------------------------------------------------------------------------------------|
-| tagForChildProtection   | number                                   | 否   | 是   | 设置儿童保护标签，否希望根据 COPPA 的规定将您的内容视为面向儿童的内容。<br/>- -1：不确定。<br/>- 0：不希望。<br/>- 1：希望。 |
-| adContentClassification | string                                   | 否   | 是   | 设置广告内容分级上限。<br/>- W：3+，所有受众。<br/>- PI：7+，家长指导。<br/>- J：12+，青少年。<br/>- A：16+/18+，成人受众。       |
-| nonPersonalizedAd       | number                                   | 否   | 是   | 设置是否只请求非个性化广告。<br/>- 0：请求个性化广告与非个性化广告。<br/>- 1：只请求非个性化广告。                        |
-| [key: string]           | number \| boolean \| string \| undefined | 否   | 是   | 自定义参数。                                                                                                          |
+| 名称                    | 类型                                     | 只读 | 可选 | 说明                                                                                                                   |
+|-------------------------|------------------------------------------|-----|-----|----------------------------------------------------------------------------------------------------------------------|
+| tagForChildProtection   | number                                   | 否   | 是   | 设置儿童保护标签，是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容。<br/>- -1：不确定。<br/>- 0：不希望。<br/>- 1：希望。 |
+| adContentClassification | string                                   | 否   | 是   | 设置广告内容分级上限。<br/>- W：3+，所有受众。<br/>- PI：7+，家长指导。<br/>- J：12+，青少年。<br/>- A：16+/18+，成人受众。         |
+| nonPersonalizedAd       | number                                   | 否   | 是   | 设置是否只请求非个性化广告。<br/>- 0：请求个性化广告与非个性化广告。<br/>- 1：只请求非个性化广告。                          |
+| [key: string]           | number \| boolean \| string \| undefined | 否   | 是   | 自定义参数。                                                                                                            |
 
 ## AdRequestParams
 
@@ -768,7 +649,7 @@ const adInteractionListener: advertising.AdInteractionListener = {
 
 | 名称            | 类型                                     | 只读 | 可选 | 说明                                                                                                                          |
 |-----------------|------------------------------------------|-----|-----|-----------------------------------------------------------------------------------------------------------------------------|
-| adId            | string                                   | 否   | 否   | 广告位ID。<br/>- getAdRequestBody接口可以不传该参数。                                                                           |
+| adId            | string                                   | 否   | 否   | 广告位ID。                                                                                                                     |
 | adType          | number                                   | 否   | 是   | 请求的广告类型。<br/>- 1：开屏广告。<br/>- 3：原生广告。<br/>- 7：激励广告。<br/>- 8：横幅广告。<br/>- 12：插屏广告。<br/>- 60：贴片广告。 |
 | adCount         | number                                   | 否   | 是   | 请求的广告数量。                                                                                                               |
 | adWidth         | number                                   | 否   | 是   | 请求广告时期望的创意宽度，单位vp。                                                                                              |

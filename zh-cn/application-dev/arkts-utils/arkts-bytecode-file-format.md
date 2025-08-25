@@ -1,12 +1,13 @@
 # 方舟字节码文件格式
 
 <!--Kit: ArkTS-->
-<!--Subsystem: arkcompiler-->
-<!--Owner: @ctw-ian; @huyunhui1; @oh-rgx1; @zmw1-->
-<!--SE: @ctw-ian; @hufeng20-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @huyunhui1; @oh-rgx1; @zmw1-->
+<!--Designer: @ctw-ian; @hufeng20-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
-本文详细介绍了方舟字节码文件的格式，旨在帮助开发者深入理解字节码的组成结构，以指导字节码的分析和修改。
+本文详细介绍了方舟字节码文件的格式，旨在帮助开发者深入理解字节码文件的组成结构，以指导字节码的分析和修改。
 
 ## 约束
 本文内容基于方舟字节码版本号12.0.6.0（版本号为方舟编译器内部保留字段，开发者无需关注，仅供准确对照之用）。

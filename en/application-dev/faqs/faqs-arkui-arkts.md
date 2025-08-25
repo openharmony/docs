@@ -750,7 +750,7 @@ Text in the **Text** component is centered by default. You do not need to set th
 
 **Solution**
 
-Use the global function **encodeURI** for encoding and **decodeURI** for decoding. For example, the space character ""is encoded as %20.
+Use the global function **encodeURI** for encoding and **decodeURI** for decoding. For example, the space character "" is encoded as %20.
 
 ```
 let a = encodeURI(" ")

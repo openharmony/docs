@@ -2,13 +2,14 @@
 <!--Kit: ArkTS-->
 <!--Subsystem: CommonLibrary-->
 <!--Owner: @lijiamin2025-->
-<!--SE: @weng-changcheng-->
-<!--TSE: @kirl75; @zsw_zhushiwei-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
-TaskPool支持使用异步队列来控制任务的并发度，能有效的避免资源过载，减少任务阻塞，可以应用在网络请求、视频流处理、数据库操作等场景。
+TaskPool支持使用异步队列来控制任务的并发度，能有效避免资源过载，减少任务阻塞，适用于网络请求、视频流处理和数据库操作等场景。
 
 此处提供使用TaskPool创建[异步队列](../reference/apis-arkts/js-apis-taskpool.md#asyncrunner18)的开发指导，以相机预览流采集数据处理的功能为例。
-由于处理过程是个频繁耗时任务，如果相机采集过快，就丢弃之前的采集数据，保留最新的一帧数据处理。
+由于处理过程是一个频繁且耗时的任务，当相机采集速度过快时，将丢弃之前的采集数据，仅保留最新的一帧数据进行处理。
 
 1. 导入需要用到的模块。
 

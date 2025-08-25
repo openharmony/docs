@@ -1,4 +1,15 @@
 # Enums
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--SE: @liweilu1-->
+<!--TSE: @xchaosioda-->
+
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xuchangda;@yixiaoff-->
+<!--SE: @guxinggang;@liweilu1-->
+<!--TSE: @wangbeibei;@xchaosioda-->
 
 > **NOTE**
 >
@@ -177,32 +188,28 @@ Enumerates the **DefaultChangeUri** subtypes.
 
 Enumerates the media file types.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name                                   |  Value| Description      |
 |---------------------------------------|  ---- |----------|
-| IMAGE_TYPE                            |  'image/*' | Image.   |
-| VIDEO_TYPE                            |  'video/*' | Video.   |
-| IMAGE_VIDEO_TYPE                      |  '\*/*' | Image and video.|
+| IMAGE_TYPE                            |  'image/*' | Image.<br>**Atomic service API**: This API can be used in atomic services since API version 11.   |
+| VIDEO_TYPE                            |  'video/*' | Video.<br>**Atomic service API**: This API can be used in atomic services since API version 11.   |
+| IMAGE_VIDEO_TYPE                      |  '\*/*' | Image and video.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | MOVING_PHOTO_IMAGE_TYPE<sup>12+</sup> |  'image/movingPhoto' | Moving photo.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 
 ## RecommendationType<sup>11+</sup>
 
 Enumerates the types of recommended images.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name |  Value|  Description|
 | ----- |  ---- | ---- |
-| QR_OR_BAR_CODE  |  1 | QR code or barcode.|
-| QR_CODE |  2 | QR code.|
-| BAR_CODE |  3 | Barcode.|
-| ID_CARD |  4 | ID card.|
-| PROFILE_PICTURE |  5 | Profile.|
+| QR_OR_BAR_CODE  |  1 | QR code or barcode.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| QR_CODE |  2 | QR code.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| BAR_CODE |  3 | Barcode.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| ID_CARD |  4 | ID card.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| PROFILE_PICTURE |  5 | Profile.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | PASSPORT<sup>12+</sup> |  6 | Passport.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | BANK_CARD<sup>12+</sup> |  7 | Bank card.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | DRIVER_LICENSE<sup>12+</sup> |  8 | Driver license.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -314,3 +321,15 @@ Enumerates the types of changes that trigger the media asset or album change eve
 | NOTIFY_CHANGE_ADD         | 0    | A media asset or an album is created.    |
 | NOTIFY_CHANGE_UPDATE      | 1    | A media asset or an album is modified.    |
 | NOTIFY_CHANGE_REMOVE      | 2    | A media asset or an album is deleted.    |
+
+## PhotoSource<sup>20+</sup>
+
+Enumerates the sources of the image or video data.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name               | Value  | Description                                                                                                                |
+|-------------------|-----|--------------------------------------------------------------------------------------------------------------------|
+| ALL | 0   | Images and videos from all sources.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+| CAMERA | 1   | Photo or video taken by the camera.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+| SCREENSHOT | 2   | Screenshot or screen capture video.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|

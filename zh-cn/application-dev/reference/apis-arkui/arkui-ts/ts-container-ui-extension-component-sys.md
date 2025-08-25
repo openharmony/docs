@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @dutie123-->
-<!--SE: @lmleon-->
-<!--TSE: @fredyuan0912-->
+<!--Designer: @lmleon-->
+<!--Tester: @fredyuan0912-->
+<!--Adviser: @HelloCrease-->
 
 UIExtensionComponent用于支持在本页面内嵌入其他应用提供的UI。展示的内容在另外一个进程中运行，本应用并不参与其中的布局和渲染。
 
@@ -383,6 +384,7 @@ UIExtensionComponent组件使用分为使用方和提供方。本示例仅展示
 使用方入口界面Index.ets内容如下:
 ```ts
 import { ComponentContent } from '@kit.ArkUI';
+
 class Params {
 }
 @Builder

@@ -1,8 +1,8 @@
-# struct
+# OH_PixelmapNative
 
 ## Overview
 
-The struct describes the native pixel image information.
+The struct describes the pixel image information.
 
 **Since**: 15
 

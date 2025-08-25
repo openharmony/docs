@@ -2,8 +2,9 @@
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @zhangyao75477-->
-<!--SE: @qiu-gongkai-->
-<!--TSE: @ghiker-->
+<!--Designer: @qiu-gongkai-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 表示媒体源的信息。
 
@@ -19,8 +20,8 @@
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-| type<sup>12+</sup> | [SourceType](./arkts-apis-webview-e.md#sourcetype12) | 是 | 媒体源的类型。 |
-| source<sup>12+</sup> | string | 是 | 媒体源地址。 |
-| format<sup>12+</sup> | string | 是 | 媒体源格式， 可能为空， 需要使用者自己去判断格式。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+|------|------|------|------|------|
+| type<sup>12+</sup> | [SourceType](./arkts-apis-webview-e.md#sourcetype12) | 否 | 否 | 媒体源的类型。 |
+| source<sup>12+</sup> | string | 否 | 否 | 媒体源地址。 |
+| format<sup>12+</sup> | string | 否 | 否 | 媒体源格式， 可能为空， 需要使用者自己去判断格式。 |

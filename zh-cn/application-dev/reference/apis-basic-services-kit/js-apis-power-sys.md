@@ -1,5 +1,12 @@
 # @ohos.power (系统电源管理)(系统接口)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--Designer: @wangyantian0-->
+<!--Tester: @alien0208-->
+<!--Adviser: @w_Machine_cc-->
+
 该模块主要提供重启、关机、查询屏幕状态等接口。
 
 > **说明：**
@@ -342,5 +349,45 @@ try {
     power.hibernate(true);
 } catch(err) {
     console.error('hibernate failed, err: ' + err);
+}
+```
+
+## power.refreshActivity<sup>20+</sup>
+
+refreshActivity(reason: string): void
+
+刷新设备活动状态（如：重设屏幕超时息屏时间等）。
+只有设备在活动状态下生效，设备活动状态见[power.isActive](js-apis-power.md#powerisactive9)接口。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.REFRESH_USER_ACTION
+
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明    |
+| ------ | ------ | ---- | ----- |
+| reason | string | 是    | 刷新设备活动状态的原因。该参数必须为字符串类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID   | 错误信息    |
+|---------|---------|
+| 4900101 | Failed to connect to the service. |
+| 4900201 |The device activity is being refreshed too frequently; the minimum time interval is 100 ms. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+
+**示例：**
+
+```js
+try {
+    power.refreshActivity('refreshActivity_test');
+} catch(err) {
+    console.error('refreshActivity failed, err: ' + err);
 }
 ```

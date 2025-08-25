@@ -1,8 +1,13 @@
 # image_receiver_native.h
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 ## Overview
 
-The **image_receiver_native.h** file declares the APIs used to obtain image data from the native layer.
+The file declares the APIs used to obtain image data from the native layer.
 
 **Library**: libimage_receiver.so
 

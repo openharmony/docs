@@ -1,4 +1,10 @@
 # SmartPerf Device性能工具使用指导
+<!--Kit: Test Kit-->
+<!--Subsystem: Test-->
+<!--Owner: @niu-guoliang-->
+<!--Designer: @niu-guoliang-->
+<!--Tester: @laonie666-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ## 工具简介
 
@@ -64,14 +70,14 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 ### 采集前提
 
-#### 进入shell
+- 进入shell
 
   ```
   C:\Users\issusser>hdc shell
   $
   ```
 
-#### 拉起和查看daemon进程
+- 拉起和查看daemon进程
 
   ```
   C:\Users\issusser>hdc shell
@@ -84,7 +90,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   $
   ```
 
-#### 执行和查看帮助命令
+- 执行和查看帮助命令
 
   ```
   $ SP_daemon --help
@@ -153,9 +159,12 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    $
   ```
 
+
 ### 基础采集
 
-#### 通过-N开启采集
+基础采集主要采集整机或者应用的gpu、fps、CPU、DDR、内存等，支持秒级采集和启停采集，并将采集的结果写入data.csv。
+
+**1. 秒级采集**
 
 | 命令参数   |必选| 说明                   |
 | :-----| :-----| :--------------------- |
@@ -176,7 +185,6 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | -d    |否| 采集DDR。                 |
 | -sections|否| 设置分段采集。          |
 
-##### 使用示例
 - 设置包名并采集1次应用的线程数量
 
   ```
@@ -815,18 +823,16 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   >
   >- 使用该命令采集时需进入被测应用内。
 
+**2. 启停采集**
 
-#### 通过-start开启采集
-
-先执行start开始采集命令，然后操作设备或应用，最后执行stop结束采集命令。
+执行start命令开始采集，操作设备或应用后，执行stop命令结束采集。
 
 | 命令参数   |必选| 说明                   |
 | :-----|:-----| :--------------------- |
-| -start |是| 开始采集，该命令参数后可添加基础采集命令，一秒采集一次。            |
-| -stop |是| 结束采集，执行后会生成采集报告。              |
-| -print |否| 一秒打印一次启停采集信息。              |
+| -start |是| 开始采集，该命令参数后可添加基础采集命令，每秒采集一次。            |
+| -stop |是| 结束采集，生成采集报告。              |
+| -print |否| 每秒打印启停采集信息。              |
 
-##### 使用示例
   
 - 启停采集整机CPU大中小核频率、各核使用率
 
@@ -909,17 +915,17 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    >
    >- 开始采集示例1（采整机cpu、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图）：SP_daemon -start -c -g -t -r -d -net -snapshot。
    >
-   >- 开始采集示例2（采整机和进程cpu负载、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图、线程数、文件描述符）：SP_daemon -start -PKG ohos.samples.ecg -c -g -t -f -r -d -net -snapshot -threads -fd。
+   >- 开始采集示例2（采整机和进程cpu负载、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图、线程数、文件描述符）：SP_daemon -start -PKG ohos.samples.ecg -c -g -t -f -r -d -net -snapshot -threads -fds。
    >
-   >- 开始采集示例3（采整机和进程cpu负载、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图、线程数、文件描述符）：SP_daemon -start -PID 18847 -c -g -t -f -r -d -net -snapshot -threads -fd。
+   >- 开始采集示例3（采整机和进程cpu负载、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图、线程数、文件描述符）：SP_daemon -start -PID 18847 -c -g -t -f -r -d -net -snapshot -threads -fds。
    >
-   >- 开始采集示例4（采整机cpu、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图、线程数、文件描述符并且打印采集信息）：SP_daemon -start -c -g -t -r -d -net -snapshot -threads -fd -print。
+   >- 开始采集示例4（采整机cpu、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图、线程数、文件描述符并且打印采集信息）：SP_daemon -start -c -g -t -r -d -net -snapshot -threads -fds -print。
    >
-   >- 开始采集示例5（采整机和进程cpu负载、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图、线程数、文件描述符并且打印采集信息）：SP_daemon -start -PID 18847 -c -g -t -f -r -d -net -snapshot -threads -fd -print。
+   >- 开始采集示例5（采整机和进程cpu负载、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图、线程数、文件描述符并且打印采集信息）：SP_daemon -start -PID 18847 -c -g -t -f -r -d -net -snapshot -threads -fds -print。
    >
-   >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告。具体请参考[查看csv采集结果](#查看csv采集结果)。
+   >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告，具体请查看csv采集结果。
 
-#### 查看csv采集结果
+**3. 查看csv采集结果**
 
 若采集结果保存在csv文件中，可以按照如下操作导出和查看结果内容。
 
@@ -935,7 +941,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     $
     ```
 
-  - 导出文件
+  - 导出文件到指定路径
     ```
     C:\Users\issusser>hdc file recv data/local/tmp/data.csv D:\
     [I][2023-11-08 16:16:41] HdcFile::TransferSummary success
@@ -943,8 +949,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
     C:\Users\issusser>
     ```
-
-  - 打开data.csv查看采集数据
+  - 打开data.csv文件查看采集数据
 
     在自定义导出路径里找到data.csv文件打开查看采集数据表，data.csv数据名描述如下：
 
@@ -1026,7 +1031,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 ### 场景化采集
 
-除基本采集外，还支持采集响应和完成时延等内容。场景化采集结果不写入data.csv，采集结果直接在命令框显示。
+除基础采集外，还支持采集响应和完成时延等内容。场景化采集结果不写入data.csv，采集结果直接在命令框显示。
 
 | 命令参数   |必选| 说明                   |
 | :-----|:-----| :--------------------- |
@@ -1034,8 +1039,6 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | -responseTime|否|    响应时延。         |
 | -completeTime|否|    完成时延。         |
 | -fpsohtest|否|    validator用于获取fps，1秒采集一次，默认采集10次。       |
-
-#### 使用示例
 
 - 应用响应时延（命令仅支持RK）
 
@@ -1085,8 +1088,6 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | -editorServer|否|    editor工具用来拉起daemon进程。         |
 | -recordcapacity|否|    获取当前设备电量。         |
 | -profilerfps |否| 采集当前界面fps。          |
-
-#### 使用示例
 
 - 获取屏幕分辨率
 
@@ -1202,7 +1203,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   >
   >- recordTime表示时间戳，recordPower表示当前时刻的电量。
   >
-  >- 该命令需单独采集，采集结果写入/data/local/tmp/powerLeftRecord.csv，可以使用hdc file recv导出到本地。具体请参考[查看csv采集结果](#查看csv采集结果)。
+  >- 该命令需单独采集，采集结果写入/data/local/tmp/powerLeftRecord.csv，可以使用hdc file recv导出到本地。具体请参考查看csv采集结果。
 
 - 采集当前界面fps
 

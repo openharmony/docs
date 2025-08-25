@@ -3,8 +3,9 @@
 <!--Kit: Asset Store Kit-->
 <!--Subsystem: Security-->
 <!--Owner: @JeremyXu-->
-<!--SE: @skye_you-->
-<!--TSE: @nacyli-->
+<!--Designer: @skye_you-->
+<!--Tester: @nacyli-->
+<!--Adviser: @zengyawen-->
 
 关键资产存储服务提供了用户短敏感数据的安全存储及管理能力。其中，短敏感数据可以是密码类（账号/密码）、Token类（应用凭据）、其他关键明文（如银行卡号）等长度较短的用户敏感数据。
 
@@ -69,7 +70,6 @@ add(attributes: AssetMap): Promise\<void>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -131,7 +131,6 @@ addSync(attributes: AssetMap): void
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -191,7 +190,6 @@ remove(query: AssetMap): Promise\<void>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -244,7 +242,6 @@ removeSync(query: AssetMap): void
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -304,7 +301,6 @@ update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -362,7 +358,6 @@ updateSync(query: AssetMap, attributesToUpdate: AssetMap): void
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -424,7 +419,6 @@ preQuery(query: AssetMap): Promise\<Uint8Array>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -486,7 +480,6 @@ preQuerySync(query: AssetMap): Uint8Array
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -496,6 +489,7 @@ function stringToArray(str: string): Uint8Array {
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 let challenge: Uint8Array = asset.preQuerySync(query);
+console.info(`Succeeded in pre-querying with sync, the challenge is: `, challenge);
 ```
 
 ## asset.query
@@ -546,7 +540,6 @@ query(query: AssetMap): Promise\<Array\<AssetMap>>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -559,6 +552,7 @@ asset.query(query).then((res: Array<asset.AssetMap>) => {
   for (let i = 0; i < res.length; i++) {
     // 解析属性。
     let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
+    console.info(`Succeeded in getting accessibility, which is: ${accessibility}.`);
   }
   console.info(`Succeeded in querying Asset.`);
 });
@@ -612,7 +606,6 @@ querySync(query: AssetMap): Array\<AssetMap>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -625,6 +618,7 @@ let res: Array<asset.AssetMap> = asset.querySync(query);
 for (let i = 0; i < res.length; i++) {
   // 解析属性。
   let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
+  console.info(`Succeeded in getting accessibility, which is: ${accessibility}.`);
 }
 console.info(`Succeeded in querying Asset.`);
 ```
@@ -669,7 +663,6 @@ postQuery(handle: AssetMap): Promise\<void>
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 let handle: asset.AssetMap = new Map();
 // 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuery执行成功返回的挑战值。
@@ -713,7 +706,6 @@ postQuerySync(handle: AssetMap): void
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 let handle: asset.AssetMap = new Map();
 // 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuerySync执行成功返回的挑战值。
@@ -760,7 +752,6 @@ querySyncResult(query: AssetMap): Promise\<SyncResult>
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 let query: asset.AssetMap = new Map();
 asset.querySyncResult(query).then((res: asset.SyncResult) => {
@@ -888,10 +879,6 @@ type AssetMap = Map\<Tag, Value>
 
 枚举，关键资产支持的同步类型。
 
-> **说明：**
->
-> 本字段是能力预埋，当前不支持同步。
-
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Asset
@@ -899,9 +886,9 @@ type AssetMap = Map\<Tag, Value>
 | 名称                          | 值     | 说明                                             |
 | ----------------------------- | ------ | ------------------------------------------------ |
 | NEVER                         | 0      | 不允许同步关键资产。                             |
-| THIS_DEVICE                   | 1 << 0 | 只在本设备进行同步，如仅在本设备还原的备份场景。 |
+| THIS_DEVICE                   | 1 << 0 | 只在本设备进行同步，如仅在本设备还原的备份场景。<br>**说明：** 本字段是能力预埋，当前不支持。 |
 | TRUSTED_DEVICE                | 1 << 1 | 只在可信设备间进行同步，如克隆场景。             |
-| TRUSTED_ACCOUNT<sup>12+</sup> | 1 << 2 | 只在登录可信账号的设备间进行同步，如云同步场景。 |
+| TRUSTED_ACCOUNT<sup>12+</sup> | 1 << 2 | 只在登录可信账号的设备间进行同步，如云同步场景。<br>**说明：** 本字段是能力预埋，当前不支持。 |
 
 ## ReturnType
 

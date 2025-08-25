@@ -3,8 +3,9 @@
 <!--Kit: MindSpore Lite Kit-->
 <!--Subsystem: AI-->
 <!--Owner: @zhuguodong8-->
-<!--SE: @zhuguodong8; @jjfeing-->
-<!--TSE: @principal87-->
+<!--Designer: @zhuguodong8; @jjfeing-->
+<!--Tester: @principal87-->
+<!--Adviser: @ge-yafang-->
 
 ## 概述
 
@@ -26,8 +27,8 @@
 
 | 名称                                | typedef关键字 | 描述            |
 |-----------------------------------|---|---------------|
-| [OH_AI_CompCode](#oh_ai_compcode) | - | Minspore不同组件的代码。              |
-| [OH_AI_Status](#oh_ai_status)     | OH_AI_Status  | Minspore的状态码。 |
+| [OH_AI_CompCode](#oh_ai_compcode) | - | MindSpore不同组件的代码。              |
+| [OH_AI_Status](#oh_ai_status)     | OH_AI_Status  | MindSpore的状态码。 |
 
 
 ## 枚举类型说明
@@ -40,7 +41,7 @@ enum OH_AI_CompCode
 
 **描述**
 
-Minspore不同组件的代码。
+MindSpore不同组件的代码。
 
 **起始版本：** 9
 
@@ -61,7 +62,7 @@ enum OH_AI_Status
 
 **描述**
 
-Minspore的状态码。
+MindSpore的状态码。
 
 **起始版本：** 9
 

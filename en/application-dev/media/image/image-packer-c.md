@@ -1,4 +1,9 @@
 # Using Image_NativeModule to Encode Images
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 You can use the **ImagePacker** class to create and release ImagePacker instances.
 

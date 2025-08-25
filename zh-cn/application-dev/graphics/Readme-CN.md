@@ -1,5 +1,12 @@
 # ArkGraphics 2D（方舟2D图形服务）
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk; @goumiao; @hangmengxin-->
+<!--Designer: @liumingxiang; @wangyanglan-->
+<!--Tester: @yhl0101; @nobuggers-->
+<!--Adviser: @ge-yafang-->
+
 - [ArkGraphics 2D简介](arkgraphics2D-introduction.md)
 - 使用可变帧率能力定制不同内容的绘制帧率<!--displaysync-->
   - [可变帧率简介](displaysync-overview.md)
@@ -47,6 +54,7 @@
       - [复杂文本绘制与显示（ArkTS）](complex-text-arkts.md)
       - [简单文本绘制与显示（C/C++）](simple-text-c.md)
       - [复杂文本绘制与显示（C/C++）](complex-text-c.md)
+    - [文本开发常见问题](text-faqs.md)
 - [NativeBuffer开发指导 (C/C++)](native-buffer-guidelines.md)
 - [NativeImage开发指导 (C/C++)](native-image-guidelines.md)
 - [NativeVsync开发指导 (C/C++)](native-vsync-guidelines.md)

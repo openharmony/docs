@@ -1,4 +1,10 @@
 # @ohos.file.recent (Latest Access List) (System API)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wang_zhangjun; @zhuangzhuang-->
+<!--Designer: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 The **file.recent** module provides APIs for managing the list of recently accessed files.
 
@@ -125,7 +131,7 @@ Represents information about the recent file list.
 
 | Name| Type  | Read-Only| Optional| Description    |
 | ------ | ------ | -------- | ------ | -------- |
-| uri | string | Yes| No| URI of the file.|
+| uri | string | Yes| No| File URI.|
 | srcPath | string | Yes| No| File path.|
 | fileName | string | Yes| No| File name.|
 | mode | number | Yes| No| [Permissions on the file](js-apis-file-fs.md#stat).|

@@ -1,16 +1,20 @@
 # Security Component Overview
 
-Security components are a set of ArkUI components provided with certain permissions by the system. You can integrate the security components to your application UI. When the **SaveButton** component is used for the first time, a dialog box will be displayed, asking for user authorization. If the user grants the permission, no dialog box is required for subsequent use. When the **PasteButton** component is tapped, user authorization is automatically granted without any dialog box. The security components can be used as special buttons that help implement authorization upon a user tap.
+<!--Kit: ArkUI-->
+<!--Subsystem: Security-->
+<!--Owner: @harylee-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
+
+Security components are a set of ArkUI basic components, including the **SaveButton** and **PasteButton** components. The security components can be used as special buttons that help implement authorization upon a user tap.
 
 Compared with dynamic permission requesting, security components allow scenario-based authorization and simplify development and user operations. The security components stand out with the following features:
 
-- Minimizes the authorization by allowing the user to control when to grant the permission.
+1. Minimizes the authorization by allowing the user to control when to grant the permission.
 
-- Allows the authorization scenario to match the user's real intent.
+2. Allows the authorization scenario to match the user's real intent.
 
-- Reduces pop-up windows.
-
-- Simplifies operations as you do not need to request permissions from AppGallery.
+3. Reduces pop-up windows.
 
 Security components collect only personal data necessary for implementing service functions and help develop transparent, optional, and controllable privacy compliance applications.
 
@@ -19,14 +23,14 @@ Security components collect only personal data necessary for implementing servic
 Currently, the following security components are available:
 
 - [PasteButton](pastebutton.md)
-  
-  The **PasteButton** component comes with the pasteboard read privilege. After the component integrated into your application is tapped, no authorization dialog box will be displayed when your application reads data from the pasteboard.
+
+  The **PasteButton** component comes with the pasteboard read privilege. After it is integrated into your application and is tapped, no authorization dialog box will be displayed when your application reads data from the pasteboard. The application permission is revoked 10 seconds after the application is switched to the background.
 
   You can use this component for applications that need to read data from the pasteboard.
 
 - [SaveButton](savebutton.md)
-  
-  The **SaveButton** component comes with the privilege for writing data to the media library. When it is tapped, the application can access the **mediaLibrary** APIs within 10 seconds.
+
+  The **SaveButton** component comes with the privilege for writing data to the media library. After it is integrated into your application and is used for the first time, a dialog box is displayed to ask for user authorization. If the user taps **Allow**, the application automatically obtains the permission to access the media library within one minute. No more dialog box is displayed for authorization.
 
   You can use the **SaveButton** component when your application needs to save image or videos to the media library. This component allows for simpler operations than Pickers, which have to start a system application and have the user select a directory for saving the image or video.
 
@@ -63,13 +67,12 @@ The following figure illustrates the working mechanism.
 
 ## Constraints
 
-Due to the automatic authorization feature, many restrictions are imposed on security components to prevent user privacy from being obtained by malicious applications. The security components must be clearly visible on the application UI and can be clearly identified by users to prevent authorization failures.
+Due to the "authorization upon a user tap" feature, many restrictions are imposed on security components to prevent user privacy from being obtained by malicious applications. The security components must be clearly visible on the application UI and can be clearly identified by users to prevent authorization failures.
 
-If the authorization fails due to invalid component style, check the device error logs with the keyword "SecurityComponentCheckFail".
+If the authorization fails due to invalid component style, check the device logs with the keyword "SecurityComponentCheckFail".
 
 > **NOTE**
->
-> Pay attention to logs of all levels related to the keyword.
+> Logs containing the keyword can appear at any level. Avoid filtering them by level.
 
 Possible causes include but are not limited to the following:
 

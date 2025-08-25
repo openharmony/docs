@@ -3,12 +3,13 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @qq_437963121-->
-<!--SE: @MontSaintMichel-->
-<!--TSE: @gcw_KuLfPSbe-->
+<!--Designer: @MontSaintMichel-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
 ## 简介
 
-HiTraceMeter提供系统性能打点接口。开发者通过在关键代码位置调用HiTraceMeter接口提供的API接口，能够有效跟踪进程轨迹、查看系统、应用性能。
+HiTraceMeter提供系统性能打点接口。开发者在关键代码位置调用这些API，能够有效跟踪进程轨迹，查看系统和应用性能。
 
 
 ## 接口说明
@@ -21,8 +22,8 @@ HiTraceMeter提供系统性能打点接口。开发者通过在关键代码位�
 | hiTraceMeter.finishSyncTrace(level: HiTraceOutputLevel): void | 结束一个同步时间片跟踪事件，分级控制跟踪输出。<br/>level必须与流程开始的startSyncTrace对应参数值保持一致。<br/>**说明**：从API version 19开始，支持该接口。 | 
 | hiTraceMeter.startAsyncTrace(level: HiTraceOutputLevel, name: string, taskId: number, customCategory: string, customArgs?: string): void | 开启一个异步时间片跟踪事件，分级控制跟踪输出。<br/>taskId是trace中用来表示关联的ID，如果有多个name相同的任务并行执行，则开发者每次调用startAsyncTrace时传入的taskId需不同；如果具有相同name的任务是串行执行的，则taskId可以相同。<br/>**说明**：从API version 19开始，支持该接口。 | 
 | hiTraceMeter.finishAsyncTrace(level: HiTraceOutputLevel, name: string, taskId: number): void | 结束一个异步时间片跟踪事件，分级控制跟踪输出。<br/>level、name和taskId必须与流程开始的startAsyncTrace对应参数值保持一致。<br/>**说明**：从API version 19开始，支持该接口。 | 
-| hiTraceMeter.traceByValue(level: HiTraceOutputLevel, name: string, count: number): void | 整数跟踪事件，分级控制跟踪输出。<br/>name、count两个参数分别用来标记一个跟踪的整数变量名及整数值。<br/>**说明**：从API version 19开始，支持该接口。 | 
-| hiTraceMeter.isTraceEnabled(): boolean | 判断当前是否开启应用trace捕获。<br/>使用hitrace命令行工具等方式开启采集时返回true，未开启采集或停止采集后返回false（此时调用HiTraceMeter性能跟踪打点接口无效）。<br/>**说明**：从API version 19开始，支持该接口。 | 
+| hiTraceMeter.traceByValue(level: HiTraceOutputLevel, name: string, count: number): void | 整数跟踪事件，分级控制跟踪输出。<br/>name和count两个参数分别用来标记一个跟踪的整数变量名及整数值。<br/>**说明**：从API version 19开始，支持该接口。 | 
+| hiTraceMeter.isTraceEnabled(): boolean | 判断当前是否开启应用trace捕获。<br/>使用hitrace命令行工具等方式开启采集时返回true。未开启采集或停止采集后返回false，此时调用HiTraceMeter性能跟踪打点接口无效。<br/>**说明**：从API version 19开始，支持该接口。 | 
 
 > **注意：**
 >
@@ -31,35 +32,38 @@ HiTraceMeter提供系统性能打点接口。开发者通过在关键代码位�
 
 ### 接口分类
 
-HiTraceMeter打点接口按功能分为三类：同步时间片跟踪、异步时间片跟踪和整数跟踪。HiTraceMeter提供的接口的实现都是同步的，同步和异步是针对需要被跟踪的业务而言的，同步业务流程中使用同步时间片跟踪接口，异步流程中使用异步时间片跟踪接口。HiTraceMeter打点接口可与[HiTraceChain](hitracechain-guidelines-arkts.md)一起使用，进行跨设备/跨进程/跨线程的打点关联与分析。
+HiTraceMeter打点接口分为三类：同步时间片跟踪、异步时间片跟踪和整数跟踪。HiTraceMeter接口实现均为同步，同步和异步针对的是被跟踪的业务。同步业务使用同步时间片跟踪接口，异步业务使用异步时间片跟踪接口。HiTraceMeter打点接口可与[HiTraceChain](hitracechain-guidelines-arkts.md)一起使用，进行跨设备、跨进程或跨线程的打点关联与分析。
 
 
 ### 接口使用场景
 
 - 同步时间片跟踪接口
-  用于顺序执行的打点场景，使用时需要注意startSyncTrace接口和finishSyncTrace接口按序成对使用，未按序成对使用会导致采集到的trace文件在smartperf等可视化工具上显示时出现泳道异常问题。
+  用于顺序执行的打点场景，需按序成对使用startSyncTrace接口和finishSyncTrace接口，否则会导致trace文件在smartperf等可视化工具上显示异常。
 
 - 异步时间片跟踪接口
-  用于在异步操作执行前进行开始打点，在异步操作完成后进行结束打点。由于多个异步跟踪的开始和结束不是顺序发生的，解析trace时需要通过name与taskId参数进行识别，使用时startAsyncTrace接口和finishAsyncTrace接口按序成对使用且传入同样的name和taskId，不同的异步流程里要使用不同的name和taskId（在异步跟踪流程不会同时发生的情况下可以使用相同的name和taskId），调用错误会导致采集到的trace文件在smartperf等可视化工具上显示时出现泳道异常问题。
+  在异步操作执行前调用startAsyncTrace接口进行开始打点，在异步操作完成后调用finishAsyncTrace接口进行结束打点。  
+  解析trace时，通过name和taskId参数识别不同的异步跟踪。这两个接口必须按序成对使用，并传入相同的name和taskId。  
+  不同的异步流程中应使用不同的name和taskId，但在异步跟踪流程不会同时发生的情况下，可以使用相同的name和taskId。  
+  调用错误会导致trace文件在smartperf等可视化工具上显示异常。
 
 - 整数跟踪接口
-  用于跟踪整数变量。在被跟踪的整数值变动时调用traceByValue接口后，可以在smartperf的泳道图中观测该数值变动情况（由于从开始采集到第一次打点存在时间差，所以在smartperf上查看trace文件时，这段时间无法查看到数值）。
+  用于跟踪整数变量。整数值变动时调用traceByValue接口，可在smartperf的泳道图中观察变动情况。由于从开始采集到首次打点存在时间差，这段时间的数值无法查看。
 
 
 ### 参数解析
 
 | 参数名 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| level | enum | 是 | 跟踪输出级别，低于系统阈值的跟踪将不会被输出。<br/>log版本阈值默认为INFO，nolog版本阈值默认为COMMERCIAL。 | 
+| level | enum | 是 | 跟踪输出级别。低于系统阈值的跟踪将不会被输出。<br/>log版本阈值默认为INFO，nolog版本阈值默认为COMMERCIAL。 | 
 | name | string | 是 | 要跟踪的任务名称或整数变量名称。 | 
-| taskId | number | 是 | 用来表示关联的ID，如果有多个name相同的任务是并行执行的，则开发者每次调用startAsyncTrace时传入的taskId需不同。 | 
+| taskId | number | 是 | 用来表示关联的ID，如果有多个name相同的任务并行执行，开发者每次调用startAsyncTrace时必须传入不同的taskId。 | 
 | count | number | 是 | 整数变量的值。 | 
 | customCategory | string | 是 | 自定义聚类名称，用于聚合同一类异步跟踪打点。<br/>若不需要聚类，可传入一个空字符串。 | 
 | customArgs | string | 否 | 自定义键值对，若有多组键值对，使用逗号进行分隔，例"key1=value1,key2=value2"。<br/>若不需要该参数，可不传入该参数或传入一个空字符串。 | 
 
 > **说明：**
 >
-> [用户态trace](hitracemeter-view.md#用户态trace格式说明)总长度限制512字符，超过的部分将会被截断，因此建议name、customCategory和customArgs三个字段的总长度不超过420字符，避免输出的用户态trace被截断。
+> [用户态trace](hitracemeter-view.md#用户态trace格式说明)总长度限制为512字符，超过部分将会被截断。建议name、customCategory和customArgs三个字段的总长度不超过420字符，以避免trace被截断。
 
 
 ## 开发步骤
@@ -158,14 +162,14 @@ HiTraceMeter打点接口按功能分为三类：同步时间片跟踪、异步�
 
 ### 步骤二：采集trace信息并查看
 
-1. 在DevEco Studio Terminal窗口中执行如下命令，开启应用trace捕获。
+1. 在DevEco Studio Terminal窗口中执行以下命令，开启应用的trace捕获。
 
    ```shell
    PS D:\xxx\xxx> hdc shell
    $ hitrace --trace_begin app
    ```
 
-2. 单击DevEco Studio界面上的运行按钮，启动应用，点击应用界面的“Hello World”文本，执行包含HiTraceMeter打点的业务逻辑，然后执行如下命令抓取trace数据，并使用“myTest”关键字过滤trace数据（示例打点接口传递的name字段前缀均为“myTest”）。
+2. 单击DevEco Studio界面上的运行按钮，启动应用。点击应用界面的“Hello World”文本，执行包含HiTraceMeter打点的业务逻辑。然后执行如下命令抓取trace数据，并使用“myTest”关键字过滤trace数据（示例打点接口传递的name字段前缀均为“myTest”）。
 
    ```shell
    $ hitrace --trace_dump | grep myTest
@@ -185,24 +189,24 @@ HiTraceMeter打点接口按功能分为三类：同步时间片跟踪、异步�
    e.myapplication-39945   (  39945) [010] .... 347921.342615: tracing_mark_write: F|39945|H:myTestAsyncTrace|1003|M62
    ```
 
-   每一行trace数据中，tracing_mark_write为打点事件类型，应用程序中调用HiTraceMeter接口打点使用的均为此事件。打点事件类型前面的数据分别为线程名-线程id、进程id、cpu、打点时间（从开机到当前的时间，单位为秒），打点事件类型后面的数据可查看[用户态trace格式](hitracemeter-view.md#用户态trace格式说明)。
+   每一行trace数据中，tracing_mark_write为打点事件类型。应用程序中调用HiTraceMeter接口打点使用的均为此事件。打点事件类型前面的数据分别为线程名-线程ID、进程ID、CPU和打点时间（从开机到当前的时间，单位为秒）。打点事件类型后面的数据可查看[用户态trace格式](hitracemeter-view.md#用户态trace格式说明)。
 
 
 ### 步骤三：停止采集trace
 
 
-1. 执行如下命令，结束应用trace捕获。
+1. 执行以下命令，停止应用的trace捕获。
 
    ```shell
    $ hitrace --trace_finish
    ```
 
-2. 再次点击应用界面的“Hello World”文本，此时应用trace捕获已关闭，isTraceEnabled接口返回false，在DevEco Studio Log窗口使用关键字“not enabled”进行过滤，会打印如下日志。
+2. 再次点击应用界面的“Hello World”文本，此时应用trace捕获已关闭，isTraceEnabled接口返回false。在DevEco Studio Log窗口使用关键字“not enabled”进行过滤，会打印如下日志。
 
    ```text
    myTraceTest running, trace is not enabled
    ```
 
    > **说明：**
->
-   > log版本在使用hitrace --trace_finish命令停止采集后会自动拉起快照模式，打开应用trace捕获，此时isTraceEnabled接口返回true，不会打印上述日志。
+   >
+   > log版本在使用hitrace --trace_finish命令停止采集后会自动拉起快照模式，打开trace捕获，此时isTraceEnabled接口返回true，不会打印上述日志。

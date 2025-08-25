@@ -1,5 +1,11 @@
 # 绘制效果概述
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hangmengxin-->
+<!--Designer: @wangyanglan-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
 
 Canvas在创建后会有默认的填充和描边效果，可以直接进行图元的绘制。但多数情况下默认的效果并不能满足需要，比如默认的颜色是黑色，只能绘制黑色的图形，默认没有模糊或渐变效果等。如果需要更多的绘制效果，比如绘制红色的图形、添加模糊效果或渐变效果等，则需要给Canvas设置自定义的画刷（Brush）或者画笔（Pen）。
 

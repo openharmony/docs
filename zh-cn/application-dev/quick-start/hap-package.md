@@ -1,9 +1,10 @@
 # HAP
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
-<!--Owner: @xiasenlin-->
-<!--SE: @hanfeng6; @lihaitao-->
-<!--TSE: @kongjing2-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包是由代码、资源、第三方库、配置文件等打包生成的模块包，其主要分为两种类型：entry和feature。
 
@@ -91,7 +92,7 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
       uninstall bundle successfully.
       ```
 
-   完成HAP安装或更新后，即可参考相关调试命令进行[调试](../tools/aa-tool.md)。
+   完成HAP安装或更新后，即可参考相关调试命令进行[调试](../tools/aa-tool.md#进入调试模式命令attach)。
 
 <!--RP4-->
 <!--RP4End-->

@@ -143,7 +143,7 @@
 - 避免使用含义模糊的词，如表示程度、强调等语气的词。
     | **正例** | **反例** |
   | -------- | -------- |
-  | 无 | -&nbsp;表示程度的词：较多（more）、较好（better）、基本地（basically）、决定性的（decisively）、最后的&nbsp;&nbsp;(&nbsp;finally&nbsp;)、很（very）、可能（may/maybe/could）、大概（probably）、通常(&nbsp;usually&nbsp;)、一般&nbsp;&nbsp;(&nbsp;generally&nbsp;)。<br/>-&nbsp;表示转折的词：当然（of&nbsp;&nbsp;course）、然而（however）。<br/>-&nbsp;表示量的词：有些（some）、非常（very）、大量（large&nbsp;&nbsp;number）、一些（several）、少许（few）。 |
+  | 无 | -&nbsp;表示程度的词：较多（more）、较好（better）、基本地（basically）、决定性的（decisively）、最后的&nbsp;&nbsp;(&nbsp;finally&nbsp;)、很（very）、可能（may/maybe/could）、大概（probably）、一般&nbsp;&nbsp;(&nbsp;generally&nbsp;)。<br/>-&nbsp;表示转折的词：当然（of&nbsp;&nbsp;course）、然而（however）。<br/>-&nbsp;表示量的词：有些（some）、非常（very）、大量（large&nbsp;&nbsp;number）、一些（several）、少许（few）。 |
 
 【规则】确保逻辑清晰：
 
@@ -160,7 +160,9 @@
 
 - 对于存在分支的步骤，提供明确的选取原则。
 
-- 适当使用图、表，使逻辑和表意更直观。
+【规则】适当使用图、表，使逻辑和表意更直观。
+
+【规则】在阐述规格、约束限制类信息时，不应使用具体设备型号，而应告知开发者如何以可感知、可操作的方式判断目标功能/场景是否可用，如具备某特征、通过某接口查询等，以便举一反三。
 
 
 ## 一致
@@ -173,8 +175,6 @@ OpenHarmony常用词必须遵从下表。
 | -------- | -------- |
 | 登录 | 登陆 |
 | 单击 | 点击 |
-| 帐户 | 账户 |
-| 帐号 | 账号 |
 | 图像 | 图象 |
 | 计费 | 记费 |
 | 阈值 | 阀值 |

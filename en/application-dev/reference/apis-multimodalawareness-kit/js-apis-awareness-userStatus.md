@@ -1,4 +1,10 @@
-# @ohos.multimodalawareness.userStatus (User Status Awareness)
+# @ohos.multimodalAwareness.userStatus (User Status Awareness)
+<!--Kit: Multimodal Awareness Kit-->
+<!--Subsystem: MultimodalAwareness-->
+<!--Owner: @dilligencer-->
+<!--Designer: @zou_ye-->
+<!--Tester: @judan-->
+<!--Adviser: @hu-zhiqiong-->
 
 The UserStatus module, designed for user state awareness, empowers the system to perceive specific conditions of users, such as determining their age group.
 
@@ -44,6 +50,8 @@ Enables the age group detection function.
 
 When the function is enabled, the application can recommend content based on the age group detection result.
 
+If the device does not support the function, error code 801 is returned.
+
 **System capability**: SystemCapability.MultimodalAwareness.UserStatus
 
 **Parameters**
@@ -70,7 +78,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     userStatus.on('userAgeGroupDetected', (data: userStatus.UserClassification) => {
-        console.info('callback success, ageGroup:' + data.ageGroup + ", confidence:" + data.confidence);
+        console.info('callback succeeded, ageGroup:' + data.ageGroup + ", confidence:" + data.confidence);
     });
     console.info("on succeeded");
 } catch (err) {

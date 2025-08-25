@@ -3,8 +3,9 @@
 <!--Kit: User Authentication Kit-->
 <!--Subsystem: UserIAM-->
 <!--Owner: @WALL_EYE-->
-<!--SE: @lichangting518-->
-<!--TSE: @jane_lz-->
+<!--Designer: @lichangting518-->
+<!--Tester: @jane_lz-->
+<!--Adviser: @zengyawen-->
 
 提供用户认证能力，应用于设备解锁、支付、应用登录等场景。
 
@@ -38,8 +39,9 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 | TIMEOUT            | 2    | 认证超时。 |
 | TEMPORARILY_LOCKED | 3    | 临时冻结。 |
 | PERMANENTLY_LOCKED | 4    | 永久冻结。 |
-| WIDGET_LOADED      | 5    | 身份认证控件已拉起。 |
-| WIDGET_RELEASED    | 6    | 身份认证控件已退出。 |
+| WIDGET_LOADED      | 5    | 身份认证界面加载完毕。 |
+| WIDGET_RELEASED    | 6    | 当前的身份认证界面退出，切换其他认证界面或身份认证控件关闭。 |
+| COMPARE_FAILURE_WITH_FROZEN    | 7    | 认证失败并触发了认证冻结。 |
 
 ## EnrolledState<sup>12+</sup>
 
@@ -156,7 +158,7 @@ try {
 
 | 名称                 | 类型                                | 必填 | 说明                                                         |
 | -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| title                | string                              | 是   | 用户认证界面的标题，最大长度为500字符。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| title                | string                              | 是   | 用户认证界面的标题，建议传入认证目的，例如用于支付、登录应用等，不支持传空字串，最大长度为500字符。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | navigationButtonText | string                              | 否   | 导航按键的说明文本，最大长度为60字符。在单指纹、单人脸场景下支持，从API 18开始，增加支持人脸+指纹场景。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | uiContext<sup>18+</sup>            | Context               | 否   | 以模应用方式显示身份认证对话框，仅支持在2in1设备上使用，如果没有此参数或其他类型的设备，身份认证对话框将以模系统方式显示。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
@@ -674,16 +676,13 @@ start(): void
 | -------- | ------------------------------------------------ |
 | 201      | Permission denied. Possible causes:1.No permission to access biometric. 2.No permission to start authentication from background.|
 | 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 12500001 | Authentication failed.                           |
 | 12500002 | General operation error.                         |
 | 12500003 | Authentication canceled.                         |
-| 12500004 | Authentication timeout.                          |
 | 12500005 | The authentication type is not supported.        |
 | 12500006 | The authentication trust level is not supported. |
-| 12500007 | Authentication service is busy.                  |
 | 12500009 | Authentication is locked out.                    |
 | 12500010 | The type of credential has not been enrolled.    |
-| 12500011 | Switched to the custom authentication process.   |
+| 12500011 | Switched to the customized authentication process.   |
 | 12500013 | Operation failed because of PIN expired. |
 
 **示例：**
@@ -817,7 +816,6 @@ on(type: 'authTip', callback: AuthTipCallback): void
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
 | 12500002 | General operation error. |
-| 12500008 | The parameter is out of range. |
 
 **示例：**
 
@@ -892,7 +890,6 @@ off(type: 'authTip', callback?: AuthTipCallback): void
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
 | 12500002 | General operation error. |
-| 12500008 | The parameter is out of range. |
 
 **示例：**
 

@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## 概述
 
@@ -22,8 +23,8 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| ffrt_function_t exec | 任务执行函数 |
-| ffrt_function_t destroy | 任务销毁函数 |
+| [ffrt_function_t](capi-type-def-h.md#ffrt_function_t) exec | 任务执行函数 |
+| [ffrt_function_t](capi-type-def-h.md#ffrt_function_t) destroy | 任务销毁函数 |
 | uint64_t reserve[2] | 保留位需要设置为0 |
 
 

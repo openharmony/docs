@@ -1,8 +1,14 @@
 # Interface (PixelMap)
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yaozhupeng-->
+<!--SE: @yaozhupeng-->
+<!--TSE: @zhaoxiaoguang2-->
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this interface are supported since API version 7.
 
 The **PixelMap** class provides APIs to read or write image data and obtain image information. Before calling any API in PixelMap, you must use [createPixelMap](arkts-apis-image-f.md#imagecreatepixelmap8) to create a PixelMap object. Currently, the maximum size of a serialized PixelMap is 128 MB. A larger size will cause a display failure. The size is calculated as follows: Width * Height * Number of bytes occupied by each pixel.
 
@@ -10,7 +16,7 @@ Since API version 11, PixelMap supports cross-thread calls through workers. If a
 
 Before calling any API in PixelMap, you must use [createPixelMap](arkts-apis-image-f.md#imagecreatepixelmap8) to create a PixelMap object.
 
-To develop an atomic service, use [ImageSoure](arkts-apis-image-ImageSource.md) to create a PixelMap object.
+To develop an atomic service, use [ImageSource](arkts-apis-image-ImageSource.md) to create a PixelMap object.
 
 ## Modules to Import
 
@@ -24,8 +30,8 @@ import { image } from '@kit.ImageKit';
 
 | Name             | Type   | Read Only| Optional| Description                      |
 | -----------------| ------- | ---- | ---- | -------------------------- |
-| isEditable        | boolean | Yes  | No  | Whether the PixelMap is editable. The value **true** means that the PixelMap is editable, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
-| isStrideAlignment<sup>11+</sup> | boolean | Yes  | No  | Whether the PixelMap uses DMA memory. The value** true** means that the PixelMap uses DMA memory, and **false** means the opposite.|
+| isEditable<sup>7+</sup>        | boolean | Yes  | No  | Whether the PixelMap is editable. **true** if editable, **false** otherwise.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
+| isStrideAlignment<sup>11+</sup> | boolean | Yes  | No  | Whether the PixelMap uses DMA memory. ** true** if the PixelMap uses DMA memory, **false** otherwise.|
 
 ## readPixelsToBuffer<sup>7+</sup>
 
@@ -143,7 +149,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
 async function ReadPixelsToBufferSync(pixelMap : image.PixelMap) {
-  const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
+  const bufferSize = pixelMap.getPixelBytesNumber();
+  const readBuffer = new ArrayBuffer(bufferSize);
   if (pixelMap != undefined) {
     pixelMap.readPixelsToBufferSync(readBuffer);
   }
@@ -196,6 +203,7 @@ async function ReadPixelsRGBA(pixelMap : image.PixelMap) {
   if (pixelMap != undefined) {
     pixelMap.readPixels(area).then(() => {
       console.info('Succeeded in reading the image data in the area.'); // Called if the condition is met.
+      console.info('RGBA data is ', new Uint8Array(area.pixels));
     }).catch((error: BusinessError) => {
       console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`); // Called if no condition is met.
     })
@@ -212,6 +220,7 @@ async function ReadPixelsYUV(pixelMap : image.PixelMap) {
   if (pixelMap != undefined) {
     pixelMap.readPixels(area).then(() => {
       console.info('Succeeded in reading the image data in the area.'); // Called if the condition is met.
+      console.info('YUV data is ', new Uint8Array(area.pixels));
     }).catch((error: BusinessError) => {
       console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`); // Called if no condition is met.
     })
@@ -264,6 +273,7 @@ async function ReadPixelsRGBA(pixelMap : image.PixelMap) {
         return;
       } else {
         console.info('Succeeded in reading pixelmap from the specified area.');
+        console.info('RGBA data is ', new Uint8Array(area.pixels));
       }
     })
   }
@@ -283,6 +293,7 @@ async function ReadPixelsYUV(pixelMap : image.PixelMap) {
         return;
       } else {
         console.info('Succeeded in reading pixelmap from the specified area.');
+        console.info('YUV data is ', new Uint8Array(area.pixels));
       }
     })
   }
@@ -318,6 +329,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
 async function ReadPixelsSync(pixelMap : image.PixelMap) {
   const area : image.PositionArea = {
@@ -366,8 +378,9 @@ RGBA region calculation formula: region to read (region.size{width * height}) * 
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function WritePixelsRGBA() {
+async function WritePixelsRGBA(pixelMap:image.PixelMap) {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8), // 8 is the size of the PixelMap buffer to create. The value is calculated as follows: height * width * 4.
     offset: 0,
@@ -387,11 +400,11 @@ async function WritePixelsRGBA() {
   }
 }
 
-async function WritePixelsYUV() {
+async function WritePixelsYUV(pixelMap:image.PixelMap) {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(6),  // 6 is the size of the PixelMap buffer to create. The value is calculated as follows: height * width * 1.5.
     offset: 0,
-    stride: 8,
+    stride: 8, // This variable is not used by writePixels when the PixelMap is in YUV format.
     region: { size: { height: 2, width: 2 }, x: 0, y: 0 }
   };
   let bufferArr: Uint8Array = new Uint8Array(area.pixels);
@@ -438,7 +451,7 @@ RGBA region calculation formula: region to read (region.size{width * height}) * 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function WritePixelsRGBA() {
+async function WritePixelsRGBA(pixelMap:image.PixelMap) {
   const area: image.PositionArea = { pixels: new ArrayBuffer(8), // 8 is the size of the PixelMap buffer to create. The value is calculated as follows: height * width * 4.
     offset: 0,
     stride: 8,
@@ -460,10 +473,10 @@ async function WritePixelsRGBA() {
   }
 }
 
-async function WritePixelsYUV() {
+async function WritePixelsYUV(pixelMap:image.PixelMap) {
   const area: image.PositionArea = { pixels: new ArrayBuffer(6), // 6 is the size of the PixelMap buffer to create. The value is calculated as follows: height * width * 1.5.
     offset: 0,
-    stride: 8,
+    stride: 8, // This variable is not used by writePixels when the PixelMap is in YUV format.
     region: { size: { height: 2, width: 2 }, x: 0, y: 0 }
   };
   let bufferArr: Uint8Array = new Uint8Array(area.pixels);
@@ -514,8 +527,9 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function WritePixelsSync() {
+async function WritePixelsSync(pixelMap:image.PixelMap) {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8),
     offset: 0,
@@ -560,8 +574,9 @@ Reads the pixels in the buffer based on the PixelMap's pixel format and writes t
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function WriteBufferToPixels() {
+async function WriteBufferToPixels(pixelMap:image.PixelMap) {
   const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
   let bufferArr: Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
@@ -600,8 +615,9 @@ Reads the pixels in the buffer based on the PixelMap's pixel format and writes t
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function WriteBufferToPixels() {
+async function WriteBufferToPixels(pixelMap:image.PixelMap) {
   const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
   let bufferArr: Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
@@ -649,8 +665,9 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function WriteBufferToPixelsSync() {
+async function WriteBufferToPixelsSync(pixelMap:image.PixelMap) {
   const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
   let bufferArr : Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
@@ -721,8 +738,9 @@ Obtains the image information. This API uses an asynchronous callback to return 
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
-async function GetImageInfo() {
+function GetImageInfoSync(pixelMap : image.PixelMap){
   if (pixelMap != undefined) {
     pixelMap.getImageInfo((error: BusinessError, imageInfo: image.ImageInfo) => {
       if (error) {
@@ -766,8 +784,9 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function GetImageInfoSync() {
+function GetImageInfoSync(pixelMap:image.PixelMap) {
   if (pixelMap != undefined) {
     let imageInfo : image.ImageInfo = pixelMap.getImageInfoSync();
     return imageInfo;
@@ -871,8 +890,9 @@ Sets an opacity rate for this image. This API uses an asynchronous callback to r
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function Opacity() {
+async function Opacity(pixelMap:image.PixelMap) {
   let rate: number = 0.5;
   if (pixelMap != undefined) {
     pixelMap.opacity(rate, (err: BusinessError) => {
@@ -915,8 +935,9 @@ Sets an opacity rate for this image. This API uses a promise to return the resul
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function Opacity() {
+async function Opacity(pixelMap:image.PixelMap) {
   let rate: number = 0.5;
   if (pixelMap != undefined) {
     pixelMap.opacity(rate).then(() => {
@@ -957,8 +978,9 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function OpacitySync() {
+async function OpacitySync(pixelMap:image.PixelMap) {
   let rate : number = 0.5;
   if (pixelMap != undefined) {
     pixelMap.opacitySync(rate);
@@ -988,8 +1010,9 @@ Creates a PixelMap object that contains only the alpha channel information. This
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function CreateAlphaPixelmap() {
+async function CreateAlphaPixelmap(pixelMap:image.PixelMap) {
   if (pixelMap != undefined) {
     pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
       console.info('Succeeded in creating alpha pixelmap.');
@@ -1022,8 +1045,9 @@ Creates a PixelMap object that contains only the alpha channel information. This
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function CreateAlphaPixelmap() {
+async function CreateAlphaPixelmap(pixelMap:image.PixelMap) {
   if (pixelMap != undefined) {
     pixelMap.createAlphaPixelmap((err: BusinessError, alphaPixelMap: image.PixelMap) => {
       if (alphaPixelMap == undefined) {
@@ -1066,8 +1090,10 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function CreateAlphaPixelmapSync() {
+async function CreateAlphaPixelmapSync(pixelMap:image.PixelMap) {
+
   if (pixelMap != undefined) {
     let pixelmap : image.PixelMap = pixelMap.createAlphaPixelmapSync();
     return pixelmap;
@@ -1106,12 +1132,13 @@ Scales this image based on the scale factors of the width and height. This API u
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit'
 
-async function Scale() {
+async function Scale(pixelMap:image.PixelMap) {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
-    pixelMap.scale(scaleX, scaleY, (err: BusinessError) => {
+    await pixelMap.scale(scaleX, scaleY, (err: BusinessError) => {
       if (err) {
         console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
         return;
@@ -1158,8 +1185,9 @@ Scales this image based on the scale factors of the width and height. This API u
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function Scale() {
+async function ScaleSync(pixelMap:image.PixelMap) {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
@@ -1264,8 +1292,9 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function Scale() {
+async function ScaleSync(pixelMap:image.PixelMap) {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
@@ -1361,8 +1390,9 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function CreateScaledPixelMap() {
+async function CreateScaledPixelMap(pixelMap:image.PixelMap) {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
@@ -1410,8 +1440,9 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function CreateScaledPixelMapSync() {
+async function CreateScaledPixelMapSync(pixelMap:image.PixelMap) {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
@@ -1450,8 +1481,9 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function Demo() {
+async function Demo(pixelMap:image.PixelMap) {
   if (pixelMap != undefined) {
     pixelMap.clone().then((clonePixelMap: image.PixelMap) => {
       console.info('Succeeded clone pixelmap.');
@@ -1492,11 +1524,12 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
 async function Demo(pixelMap: image.PixelMap) {
   if (pixelMap != undefined) {
     try {
-      let clonedPixelMap = pixelMap.cloneSync();
+      let clonedPixelMap:image.PixelMap = pixelMap.cloneSync();
     } catch(e) {
       let error = e as BusinessError;
       console.error(`clone pixelmap error. code is ${error.code}, message is ${error.message}`);
@@ -1531,8 +1564,9 @@ The size of the translated image is changed to width+X and height+Y. It is recom
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function Translate() {
+async function Translate(pixelMap:image.PixelMap) {
   let translateX: number = 50.0;
   let translateY: number = 10.0;
   if (pixelMap != undefined) {
@@ -1579,8 +1613,9 @@ The size of the translated image is changed to width+X and height+Y. It is recom
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function Translate() {
+async function Translate(pixelMap:image.PixelMap) {
   let translateX: number = 50.0;
   let translateY: number = 10.0;
   if (pixelMap != undefined) {
@@ -1625,8 +1660,9 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function TranslateSync() {
+async function TranslateSync(pixelMap:image.PixelMap) {
   let translateX : number = 50.0;
   let translateY : number = 10.0;
   if (pixelMap != undefined) {
@@ -1664,8 +1700,9 @@ Rotates this image based on a given angle. This API uses an asynchronous callbac
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function Rotate() {
+async function Rotate(pixelMap:image.PixelMap) {
   let angle: number = 90.0;
   if (pixelMap != undefined) {
     pixelMap.rotate(angle, (err: BusinessError) => {
@@ -1714,8 +1751,9 @@ Rotates this image based on a given angle. This API uses a promise to return the
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function Rotate() {
+async function Rotate(pixelMap:image.PixelMap) {
   let angle: number = 90.0;
   if (pixelMap != undefined) {
     pixelMap.rotate(angle).then(() => {
@@ -1787,16 +1825,17 @@ Flips this image horizontally or vertically, or both. This API uses an asynchron
 
 | Name    | Type                | Mandatory| Description                         |
 | ---------- | -------------------- | ---- | ----------------------------- |
-| horizontal | boolean              | Yes  | Whether to flip the image horizontally. The value **true** means to flip the image horizontally, and **false** means the opposite.           |
-| vertical   | boolean              | Yes  | Whether to flip the image vertically. The value **true** means to flip the image vertically, and **false** means the opposite.           |
+| horizontal | boolean              | Yes  | Whether to flip the image horizontally. **true** to flip the image horizontally, **false** otherwise.           |
+| vertical   | boolean              | Yes  | Whether to flip the image vertically. **true** to flip the image vertically, **false** otherwise.           |
 | callback   | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function Flip() {
+async function Flip(pixelMap:image.PixelMap) {
   let horizontal: boolean = true;
   let vertical: boolean = false;
   if (pixelMap != undefined) {
@@ -1828,8 +1867,8 @@ Flips this image horizontally or vertically, or both. This API uses a promise to
 
 | Name    | Type   | Mandatory| Description     |
 | ---------- | ------- | ---- | --------- |
-| horizontal | boolean              | Yes  | Whether to flip the image horizontally. The value **true** means to flip the image horizontally, and **false** means the opposite.           |
-| vertical   | boolean              | Yes  | Whether to flip the image vertically. The value **true** means to flip the image vertically, and **false** means the opposite.           |
+| horizontal | boolean              | Yes  | Whether to flip the image horizontally. **true** to flip the image horizontally, **false** otherwise.           |
+| vertical   | boolean              | Yes  | Whether to flip the image vertically. **true** to flip the image vertically, **false** otherwise.           |
 
 **Return value**
 
@@ -1841,8 +1880,9 @@ Flips this image horizontally or vertically, or both. This API uses a promise to
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function Flip() {
+async function Flip(pixelMap:image.PixelMap) {
   let horizontal: boolean = true;
   let vertical: boolean = false;
   if (pixelMap != undefined) {
@@ -1869,8 +1909,8 @@ Flips this image horizontally or vertically, or both. This API returns the resul
 
 | Name    | Type                | Mandatory| Description                         |
 | ---------- | -------------------- | ---- | ----------------------------- |
-| horizontal | boolean              | Yes  | Whether to flip the image horizontally. The value **true** means to flip the image horizontally, and **false** means the opposite.           |
-| vertical   | boolean              | Yes  | Whether to flip the image vertically. The value **true** means to flip the image vertically, and **false** means the opposite.           |
+| horizontal | boolean              | Yes  | Whether to flip the image horizontally. **true** to flip the image horizontally, **false** otherwise.           |
+| vertical   | boolean              | Yes  | Whether to flip the image vertically. **true** to flip the image vertically, **false** otherwise.           |
 
 **Error codes**
 
@@ -1885,8 +1925,9 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function FlipSync() {
+async function FlipSync(pixelMap:image.PixelMap) {
   let horizontal : boolean = true;
   let vertical : boolean = false;
   if (pixelMap != undefined) {
@@ -1918,11 +1959,12 @@ Crops this image based on a given size. This API uses an asynchronous callback t
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit'
 
-async function Crop() {
+async function Crop(pixelMap:image.PixelMap) {
   let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
   if (pixelMap != undefined) {
-    pixelMap.crop(region, (err: BusinessError) => {
+    await pixelMap.crop(region, (err: BusinessError) => {
       if (err) {
         console.error(`Failed to crop pixelmap. code is ${err.code}, message is ${err.message}`);
         return;
@@ -1962,8 +2004,9 @@ Crops this image based on a given size. This API uses a promise to return the re
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit'
 
-async function Crop() {
+async function Crop(pixelMap:image.PixelMap) {
   let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
   if (pixelMap != undefined) {
     pixelMap.crop(region).then(() => {
@@ -2005,8 +2048,9 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function CropSync() {
+function CropSync(pixelMap:image.PixelMap) {
   let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
   if (pixelMap != undefined) {
     pixelMap.cropSync(region);
@@ -2041,7 +2085,10 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-async function GetColorSpace() {
+import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
+
+function GetColorSpace(pixelMap:image.PixelMap) {
   if (pixelMap != undefined) {
     let csm = pixelMap.getColorSpace();
   }
@@ -2075,7 +2122,9 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
-async function SetColorSpace() {
+import {image} from '@kit.ImageKit';
+
+async function SetColorSpace(pixelMap:image.PixelMap) {
   let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
   let csm: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
@@ -2115,19 +2164,19 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function ApplyColorSpace() {
+async function ApplyColorSpace(pixelMap:image.PixelMap) {
   let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
   let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
-    pixelMap.applyColorSpace(targetColorSpace, (error: BusinessError) => {
-      if (error) {
-        console.error(`Failed to apply color space for pixelmap object, error code is ${error}`);
-        return;
-      } else {
-        console.info('Succeeded in applying color space for pixelmap object.');
-      }
-    })
+    try {
+      await pixelMap.applyColorSpace(targetColorSpace);
+    } catch (error) {
+      console.error(`Failed to apply color space for pixelmap object, error code is ${error}`);
+      return;
+    }
+    console.info('Succeeded in applying color space for pixelmap object.');
   }
 }
 ```
@@ -2168,16 +2217,19 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function ApplyColorSpace() {
+async function ApplyColorSpace(pixelMap:image.PixelMap) {
   let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
   let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
-    pixelMap.applyColorSpace(targetColorSpace).then(() => {
-      console.info('Succeeded in applying color space for pixelmap object.');
-    }).catch((error: BusinessError) => {
+    try {
+      await pixelMap.applyColorSpace(targetColorSpace);
+    } catch (error) {
       console.error(`Failed to apply color space for pixelmap object, error code is ${error}`);
-    })
+      return;
+    }
+    console.info('Succeeded in applying color space for pixelmap object.');
   }
 }
 ```
@@ -2208,15 +2260,15 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 <!--code_no_check-->
 ```ts
-import image from '@ohos.multimedia.image';
-import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
+import { image } from '@kit.ImageKit';
+import { resourceManager } from '@kit.LocalizationKit';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 'hdr.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-let img = context.resourceManager.getMediaContentSync($r('app.media.hdr'));
+let img = context.resourceManager.getMediaContentSync($r('app.media.hdr').id);
 let imageSource = image.createImageSource(img.buffer.slice(0));
 let decodingOptions: image.DecodingOptions = {
   desiredDynamicRange: image.DecodingDynamicRange.AUTO
@@ -2270,14 +2322,15 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 <!--code_no_check-->
 ```ts
+import { image } from '@kit.ImageKit';
+import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
-import image from '@ohos.multimedia.image';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // Replace 'app.media.test' with a local HDR image.
-let img = context.resourceManager.getMediaContentSync($r('app.media.test'));
+let img = context.resourceManager.getMediaContentSync($r('app.media.test').id);
 let imageSource = image.createImageSource(img.buffer.slice(0));
 let decodingOptions: image.DecodingOptions = {
   desiredDynamicRange: image.DecodingDynamicRange.AUTO
@@ -2370,7 +2423,7 @@ Sets whether to detach from the original thread when this PixelMap is transmitte
 
 | Name  | Type              | Mandatory| Description                         |
 | ------- | ------------------ | ---- | ----------------------------- |
-| detached | boolean   | Yes  | Whether to detach from the original thread. The value **true** means to detach from the original thread, and **false** means the opposite.|
+| detached | boolean   | Yes  | Whether to detach from the original thread. **true** to detach, **false** otherwise.|
 
 **Error codes**
 
@@ -2494,7 +2547,7 @@ async function Marshalling() {
     alphaType: image.AlphaType.UNPREMUL
   }
   let pixelMap: image.PixelMap | undefined = undefined;
-  image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
+  await image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
     pixelMap = srcPixelMap;
   })
   if (pixelMap != undefined) {
@@ -2516,7 +2569,7 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 
 Unmarshals a MessageSequence object to obtain a PixelMap object.
 
- To create a PixelMap object in synchronous mode, use [createPixelMapFromParcel](arkts-apis-image-f.md#imagecreatepixelmapfromparcel11).
+To create a PixelMap object in synchronous mode, use [createPixelMapFromParcel](arkts-apis-image-f.md#imagecreatepixelmapfromparcel11).
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -2540,7 +2593,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ------- | --------------------------------------------|
 | 62980115 | Invalid image parameter.              |
 | 62980097 | IPC error. Possible cause: 1.IPC communication failed. 2. Image upload exception. 3. Decode process exception. 4. Insufficient memory.              |
-| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.         |
+| 62980096 | The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.         |
 
 **Example**
 
@@ -2583,7 +2636,7 @@ async function Unmarshalling() {
     alphaType: image.AlphaType.UNPREMUL
   }
   let pixelMap: image.PixelMap | undefined = undefined;
-  image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
+  await image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
     pixelMap = srcPixelMap;
   })
   if (pixelMap != undefined) {
@@ -2623,10 +2676,11 @@ ArkTS supports memory reclamation. Even if the application does not call **relea
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function Release() {
+async function Release(pixelMap:image.PixelMap) {
   if (pixelMap != undefined) {
-    pixelMap.release().then(() => {
+    await pixelMap.release().then(() => {
       console.info('Succeeded in releasing pixelmap object.');
     }).catch((error: BusinessError) => {
       console.error(`Failed to release pixelmap object. code is ${error.code}, message is ${error.message}`);
@@ -2659,8 +2713,9 @@ ArkTS supports memory reclamation. Even if the application does not call **relea
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-async function Release() {
+async function Release(pixelMap:image.PixelMap) {
   if (pixelMap != undefined) {
     pixelMap.release((err: BusinessError) => {
       if (err) {
@@ -2758,8 +2813,9 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import {image} from '@kit.ImageKit';
 
-async function SetMemoryNameSync() {
+function SetMemoryNameSync(pixelMap:image.PixelMap) {
   if (pixelMap != undefined) {
     try {
       pixelMap.setMemoryNameSync("PixelMapName Test");

@@ -1,5 +1,12 @@
 # Generating an Asymmetric Key Pair Based on Key Parameters (ArkTS)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 This topic walks you through on how to generate an RSA, an ECC, and an SM2 asymmetric key pair (**KeyPair**) based on the specified key parameters and obtain the key parameter properties.
 
 The **KeyPair** object created can be used for subsequent operations, such as encryption and decryption. The obtained key parameter properties can be used for key storage and transfer.
@@ -20,7 +27,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
 
 3. Call [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) with the **RSAPubKeySpec** object to create an asymmetric key generator (**AsyKeyGeneratorBySpec**) object.
 
-4. Call [AsyKeyGeneratorBySpec.generatePubKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatepubkey-1) to generate the public key (**PubKey**).
+4. Call [AsyKeyGeneratorBySpec.generatePubKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatepubkey10) to generate the public key (**PubKey**).
 
 5. Call [PubKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10) to obtain the modulus **n** and the public key exponent **pk** (expressed as e in the formula).
 
@@ -162,7 +169,7 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
 
 2. Call [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) with the **ECCCommonParamsSpec** object to create an asymmetric key generator (**AsyKeyGeneratorBySpec**) object.
 
-3. Call [AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-3) to generate a key pair (**KeyPair**).
+3. Call [AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair10) to generate a key pair (**KeyPair**).
 
 4. Call [PriKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10-1) to obtain the private key specifications, and call [PubKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10) to obtain the public key specifications of the ECC.
 
@@ -252,7 +259,7 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
     try {
       let commKeySpec = genEccCommonSpec(); // Construct the EccCommonSpec object.
       let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(commKeySpec); // Create an AsyKeyGenerator instance based on the EccCommonSpec object.
-      let keyPairPromise = generatorBySpec.generateKeyPair(); // Generate an ECC key pair.
+      let keyPairPromise = generatorBySpec.generateKeyPair(); // Generates an ECC key pair.
       keyPairPromise.then(keyPair => {// Use AsyKeyGenerator to create an ECC key pair.
         showEccSpecDetailInfo(keyPair.priKey, "priKey"); // Obtain the ECC private key specifications.
         showEccSpecDetailInfo(keyPair.pubKey, "pubKey"); // Obtain the ECC public key specifications.
@@ -352,7 +359,7 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
     try {
       let commKeySpec = genEccCommonSpec(); // Construct the EccCommonSpec object.
       let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(commKeySpec); // Create an AsyKeyGenerator instance based on the EccCommonSpec object.
-      let keyPair = generatorBySpec.generateKeyPairSync(); // Generate an ECC key pair.
+      let keyPair = generatorBySpec.generateKeyPairSync(); // Generates an ECC key pair.
       if (keyPair !== null) {
         showEccSpecDetailInfo(keyPair.priKey, "priKey"); // Obtain the ECC private key specifications.
         showEccSpecDetailInfo(keyPair.pubKey, "pubKey"); // Obtain the ECC public key specifications.
@@ -379,7 +386,7 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
 
 3. Call [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) with the **ECCKeyPairSpec** object to create an asymmetric key generator object.
 
-4. Call [AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-3) to generate an SM2 key pair (**KeyPair**).
+4. Call [AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair10) to generate an SM2 key pair (**KeyPair**).
 
 5. Call [PriKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10-1) to obtain elliptic curve parameters of SM2.
 
