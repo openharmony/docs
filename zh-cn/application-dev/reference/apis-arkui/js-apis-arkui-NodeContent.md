@@ -1,6 +1,12 @@
 # NodeContent
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
-NodeContent是ArkUI提供的ContentSlot的管理器。
+NodeContent是ArkUI提供的[ContentSlot](./arkui-ts/ts-components-contentSlot.md)的管理器。
 
 > **说明：**
 >
@@ -13,6 +19,12 @@ import { NodeContent } from '@kit.ArkUI';
 ```
 
 ## NodeContent
+
+NodeContent是节点内容的实体封装。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### constructor
 
