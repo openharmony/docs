@@ -878,6 +878,12 @@ type MonitorCallback = (monitorValue: IMonitor) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明     |
+| ------ | ---- | ---- | ------------ |
+| monitorValue | IMonitor | 是   | 回调函数传入的变化信息。 |
+
 ## StorageDefaultCreator\<T\>
 
 type StorageDefaultCreator\<T\> = () => T
