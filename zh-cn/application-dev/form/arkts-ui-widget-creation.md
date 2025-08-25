@@ -62,6 +62,7 @@ ArkTS卡片有两种创建卡片包的方式。开发者在开发过程中任选
 >**说明：** 
 >
 > 基于不同版本的DevEco Studio，请以实际界面为准。<br>
+
 **2. 新建卡片**<br>
 - 选中entry目录单击右键选择【New】->【Service Widget】->【Dynamic Widget(Standalone)】。在Service Widget菜单可直接选择创建独立包的动态卡片（Dynamic Widget(standalone)）或静态卡片（Static Widget(standalone)）。创建服务卡片后，也可以在卡片的[form_config.json配置文件](arkts-ui-widget-configuration.md)中，通过isDynamic参数修改卡片类型：isDynamic置空或赋值为“true”，则该卡片为[动态卡片](./arkts-form-overview.md#动态卡片)；isDynamic赋值为"false"，则该卡片为[静态卡片](./arkts-form-overview.md#静态卡片)。静态卡片和动态卡片切换之后用户交互实现也需要修改，具体参考ArkTS卡片概述中的[动态卡片](./arkts-form-overview.md#动态卡片)和[静态卡片](./arkts-form-overview.md#静态卡片)。<br>
 ![WidgetProjectCreate2](figures/独立包卡片创建_1.png)
@@ -71,8 +72,8 @@ ArkTS卡片有两种创建卡片包的方式。开发者在开发过程中任选
 ![WidgetProjectCreate2](figures/创建独立卡片包卡片_3.png)。
 ### 工程结构介绍
 文件和卡片与应用共包是一致的，区别在与工程目录不一致。工程目录在下图展示，文件含义参考[共包方式工程结构介绍](./arkts-ui-widget-creation.md#工程结构介绍)<br>
-**图2** 独立卡片包工程目录。
+**图2** 独立卡片包工程目录。<br>
 ![WidgetModules](figures/独立包卡片目录结构.png)<br>
 >**说明：**
 >
-> 独立卡片包把应用包和卡片包区分开了，需要注意同时安装的应用包和卡片包要保持相同版本号。
+> 独立卡片包中应用包和卡片包为2个独立模块，因此需要关注同时安装的应用包和卡片包版本号一致。
