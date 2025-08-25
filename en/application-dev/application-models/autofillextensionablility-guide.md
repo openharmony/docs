@@ -1,4 +1,11 @@
-# AutoFillExtensionAbility
+# Using AutoFillExtensionAbility for Auto-Fill (for System Applications Only)
+
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 ## Overview
 
@@ -8,6 +15,8 @@ The auto-fill service can be classified as follows:
 
 - Auto-fill for accounts and passwords: Saved accounts and passwords are automatically populated, improving the efficiency of information input.
 - Scenario-specific auto-fill: Information such as the mobile number and address is automatically populated based on the usage scenario.
+
+In this example, the party that provides the [AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md) capability is called the provider, and the party that starts the AutoFillExtensionAbility is called the client.
 
 ## Available APIs
 
@@ -19,25 +28,21 @@ The table below describes the main APIs related to the auto-fill service. For de
 | onSaveRequest(session: UIExtensionContentSession, request: SaveRequest, callback: SaveRequestCallback): void | Called when an automatic or manual save request is initiated.                |
 | FillRequestCallback.onSuccess(response: FillResponse): void  | Implements the callback for an auto-fill request, which is used to automatically fill in or generate a password. The callback can be used to notify the client of the success of the request.|
 
-## How to Develop
+## Developing the AutoFillExtensionAbility Provider
 
-In this example, the party that provides the [AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md) capability is called the provider, and the party that starts the AutoFillExtensionAbility is called the client.
-
-### Developing the AutoFillExtensionAbility Provider
-
-#### Lifecycle
+### Lifecycle
 
 The [AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md) provides the lifecycle callbacks [onCreate](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#oncreate), [onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onsessiondestroy), [onForeground](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onforeground), [onBackground](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onbackground), [onDestroy](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#ondestroy), [onSaveRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onsaverequest), and [onFillRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#onfillrequest). Override them as required.
 
 - **onCreate**: called to initialize the service logic when an AutoFillExtensionAbility is created.
-- **onSessionDestroy**: called when a **UIExtensionContentSession** instance is destroyed for the AutoFillExtensionAbility.
+- **onSessionDestroy**: called when a UIExtensionContentSession instance is destroyed for the AutoFillExtensionAbility.
 - **onForeground**: called when the AutoFillExtensionAbility is switched from the background to the foreground.
 - **onBackground**: called when the AutoFillExtensionAbility is switched from the foreground to the background.
 - **onDestroy**: called to clear resources when the AutoFillExtensionAbility is destroyed.
 - **onSaveRequest**: called to trigger auto-save when form data exists and the page is to be switched.
-- **onFillRequest**: called to automatically fill in the account and password when a fill request is sent.
+- **onFillRequest**: called when an auto-fill request is initiated or a password is generated.
 
-#### Implementing Auto-Fill for Accounts and Passwords
+### Implementing Auto-Fill for Accounts and Passwords
 
 Before implementing auto-fill for accounts and passwords, manually create an AutoFillExtensionAbility in the DevEco Studio project.
 
@@ -297,11 +302,11 @@ Before implementing auto-fill for accounts and passwords, manually create an Aut
       }
       ```
 
-#### Implementing Scenario-specific Auto-Fill
+### Implementing Scenario-specific Auto-Fill
 
 For details about the types of scenario-specific auto-fill, see [AutoFillType](../reference/apis-ability-kit/js-apis-inner-application-autoFillType-sys.md).
 
-Before implementing scenario-specific auto-fill, you need to create a **SmartAutoFillExtensionAbility** object in the DevEco Studio project.
+Before implementing scenario-specific auto-fill, you need to create a SmartAutoFillExtensionAbility object in the DevEco Studio project.
 
 1. Set the bundle name of the AutoFillExtensionAbility provider.
 
@@ -331,17 +336,17 @@ Before implementing scenario-specific auto-fill, you need to create a **SmartAut
 
 3. The implementation of the scenario-specific auto-fill service is basically the same as that of auto-fill for accounts and passwords. For details, see [Implementing Auto-Fill for Accounts and Passwords](#implementing-auto-fill-for-accounts-and-passwords).
 
-### Developing the AutoFillExtensionAbility Client
+## Developing the AutoFillExtensionAbility Client
 
 You can click the auto-fill component on the home page to start the [AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md). For example, you can add the following component to the main page:
 
-#### Component That Supports Auto-Fill of Accounts and Passwords
+### Component That Supports Auto-Fill of Accounts and Passwords
 
 ```ts
 @Entry
 @Component
 struct Index {
-  loginBtnColor: String = '#bfdbf9';
+  loginBtnColor: string = '#bfdbf9';
 
   build() {
     Column() {
@@ -409,7 +414,7 @@ struct Index {
 }
 ```
 
-#### Component That Supports Scenario-Specific Auto-Fill
+### Component That Supports Scenario-Specific Auto-Fill
 
 ```ts
 @Entry

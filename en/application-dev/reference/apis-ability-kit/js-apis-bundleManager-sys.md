@@ -1,4 +1,9 @@
 # @ohos.bundle.bundleManager (bundleManager) (System API)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @zhoushihui4-->
+<!--Designer: @hanfeng6; @lihaitao74-->
+<!--Tester: @kongjing2-->
 
 The module provides APIs for obtaining application information, including [BundleInfo](js-apis-bundleManager-bundleInfo.md), [ApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md), [AbilityInfo](js-apis-bundleManager-abilityInfo.md), and [ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md).
 
@@ -846,6 +851,8 @@ queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: Asy
 
 Obtains the ability information based on the given Want, ability flags, and user ID. This API uses an asynchronous callback to return the result.
 
+No permission is required for obtaining the caller's own information.
+
 **System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -910,6 +917,8 @@ queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array
 
 Obtains the ability information based on the given Want and ability flags. This API uses an asynchronous callback to return the result.
 
+No permission is required for obtaining the caller's own information.
+
 **System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -970,6 +979,8 @@ try {
 queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Array\<AbilityInfo>>
 
 Obtains the ability information based on the given Want, ability flags, and user ID. This API uses a promise to return the result.
+
+No permission is required for obtaining the caller's own information.
 
 **System API**: This is a system API.
 
@@ -1061,6 +1072,8 @@ queryAbilityInfoSync(want: Want, abilityFlags: number, userId?: number): Array\<
 
 Obtains the ability information based on the given want, ability flags, and user ID. This API returns the result synchronously.
 
+No permission is required for obtaining the caller's own information.
+
 **System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -1146,6 +1159,8 @@ queryAbilityInfo(wants: Array\<Want>, abilityFlags: number, userId?: number): Pr
 
 Obtains the ability information based on the given Want list, ability flags, and user ID. This API uses a promise to return the result.
 
+No permission is required for obtaining the caller's own information.
+
 **System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -1217,6 +1232,8 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 
 Obtains the ExtensionAbility information based on the given Want, ExtensionAbility type, ExtensionAbility flags, and user ID. This API uses an asynchronous callback to return the result.
 
+No permission is required for obtaining the caller's own information.
+
 **System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -1282,6 +1299,8 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 
 Obtains the ExtensionAbility information based on the given Want, ExtensionAbility type, and ExtensionAbility flags. This API uses an asynchronous callback to return the result.
 
+No permission is required for obtaining the caller's own information.
+
 **System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -1343,6 +1362,8 @@ try {
 queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType, extensionAbilityFlags: number, userId?: number): Promise<Array\<ExtensionAbilityInfo>>
 
 Obtains the ExtensionAbility information based on the given Want, ExtensionAbility type, ExtensionAbility flags, and user ID. This API uses a promise to return the result.
+
+No permission is required for obtaining the caller's own information.
 
 **System API**: This is a system API.
 
@@ -1436,6 +1457,8 @@ try {
 queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: ExtensionAbilityType, extensionAbilityFlags: number, userId?: number): Array\<ExtensionAbilityInfo>
 
 Obtains the ExtensionAbility information based on the given Want, ExtensionAbility type, ExtensionAbility flags, and user ID. This API returns the result synchronously.
+
+No permission is required for obtaining the caller's own information.
 
 **System API**: This is a system API.
 
@@ -1836,6 +1859,8 @@ getAllBundleCacheSize(): Promise\<number>
 
 Obtains the global cache size. This API uses a promise to return the result.
 
+It is not possible to obtain the cache of applications that are currently running or have been granted the "AllowAppDataNotCleared" privilege as specified in the [application configuration guide](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
+
 **System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
@@ -2113,7 +2138,7 @@ Enables or disables an application. This API uses an asynchronous callback to re
 | Name     | Type   | Mandatory| Description                                 |
 | ---------- | ------- | ---- | ------------------------------------- |
 | bundleName | string  | Yes  | Bundle name.               |
-| isEnabled  | boolean | Yes  | Whether to enable the application. The value **true** means to enable it, and **false** means to disable it.|
+| isEnabled  | boolean | Yes  | Whether to enable the application. **true** to enable, **false** otherwise.|
 | callback | AsyncCallback\<void> | Yes| [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -2166,7 +2191,7 @@ Enables or disables an application. This API uses a promise to return the result
 | Name     | Type   | Mandatory| Description                                 |
 | ---------- | ------- | ---- | ------------------------------------- |
 | bundleName | string  | Yes  | Bundle name.           |
-| isEnabled  | boolean | Yes  | Whether to enable the application. The value **true** means to enable it, and **false** means to disable it.|
+| isEnabled  | boolean | Yes  | Whether to enable the application. **true** to enable, **false** otherwise.|
 
 **Return value**
 
@@ -2223,7 +2248,7 @@ Enables or disables an application or an application clone. This API uses a prom
 | ---------- | ------- | ---- | ------------------------------------- |
 | bundleName | string  | Yes  | Bundle name.           |
 | appIndex   | number  | Yes  | Index of the application clone.<br>The value **0** means to enable or disable the main application. A value greater than 0 means to enable or disable the application clone.             |
-| isEnabled  | boolean | Yes  | Whether to enable the application or application clone. The value **true** means to enable it, and **false** means to disable it.|
+| isEnabled  | boolean | Yes  | Whether to enable the application or application clone. **true** to enable, **false** otherwise.|
 
 **Return value**
 
@@ -2280,7 +2305,7 @@ Enables or disables an application. This API returns the result synchronously.
 | Name     | Type   | Mandatory| Description                                 |
 | ---------- | ------- | ---- | ------------------------------------- |
 | bundleName | string  | Yes  | Bundle name.               |
-| isEnabled  | boolean | Yes  | Whether to enable the application. The value **true** means to enable it, and **false** means to disable it.|
+| isEnabled  | boolean | Yes  | Whether to enable the application. **true** to enable, **false** otherwise.|
 
 **Error codes**
 
@@ -2327,7 +2352,7 @@ Enables or disables an ability. This API uses an asynchronous callback to return
 | Name   | Type       | Mandatory| Description                                 |
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.             |
-| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable it, and **false** means to disable it.|
+| isEnabled| boolean     | Yes  | Whether to enable the ability. **true** to enable, **false** otherwise.|
 | callback | AsyncCallback\<void> | Yes| [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -2394,7 +2419,7 @@ Enables or disables an ability. This API uses a promise to return the result.
 | Name   | Type       | Mandatory| Description                                 |
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.                  |
-| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable it, and **false** means to disable it.|
+| isEnabled| boolean     | Yes  | Whether to enable the ability. **true** to enable, **false** otherwise.|
 
 **Return value**
 
@@ -2465,7 +2490,7 @@ Enables or disables an ability of an application or an application clone. This A
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.                  |
 | appIndex   | number    | Yes  | Index of the application clone.<br>The value **0** means to enable or disable the ability of the main application. A value greater than 0 means to enable or disable the ability of the application clone.           |
-| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable it, and **false** means to disable it.|
+| isEnabled| boolean     | Yes  | Whether to enable the ability. **true** to enable, **false** otherwise.|
 
 **Return value**
 
@@ -2536,7 +2561,7 @@ Enables or disables an ability. This API returns the result synchronously.
 | Name   | Type       | Mandatory| Description                                 |
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.             |
-| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable it, and **false** means to disable it.|
+| isEnabled| boolean     | Yes  | Whether to enable the ability. **true** to enable, **false** otherwise.|
 
 **Error codes**
 
@@ -2600,7 +2625,7 @@ Checks whether an application is enabled. This API uses an asynchronous callback
 | Name     | Type  | Mandatory| Description                      |
 | ---------- | ------ | ---- | -------------------------- |
 | bundleName | string | Yes  | Bundle name.|
-| callback | AsyncCallback\<boolean> | Yes| [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. The value** true** is returned if the application is enabled, and **false** is returned otherwise.|
+| callback | AsyncCallback\<boolean> | Yes| [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -2654,7 +2679,7 @@ Checks whether an application is enabled. This API uses a promise to return the 
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the application is enabled, and **false** means the opposite.|
+| Promise\<boolean> | Promise used to return the result. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -2707,7 +2732,7 @@ Checks whether an application or an application clone is enabled. This API uses 
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the application or application clone is enabled, and **false** means the opposite.|
+| Promise\<boolean> | Promise used to return the result. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -2760,7 +2785,7 @@ Checks whether an application is enabled. This API returns the result synchronou
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the application is enabled; returns **false** otherwise.|
+| boolean | Check result for whether the application is enabled. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -2804,7 +2829,7 @@ Checks whether an ability is enabled. This API uses an asynchronous callback to 
 | Name| Type       | Mandatory| Description                       |
 | ---- | ----------- | ---- | --------------------------- |
 | info | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.|
-| callback | AsyncCallback\<boolean> | Yes| [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. The value** true** is returned if the ability is enabled, and **false** is returned otherwise.|
+| callback | AsyncCallback\<boolean> | Yes| [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -2872,7 +2897,7 @@ Checks whether an ability is enabled. This API uses a promise to return the resu
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the ability is enabled, and **false** means the opposite.|
+| Promise\<boolean> | Promise used to return the result. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -2939,7 +2964,7 @@ Checks whether an ability of an application or an application clone is enabled. 
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the ability is enabled, and **false** means the opposite.|
+| Promise\<boolean> | Promise used to return the result. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -3006,7 +3031,7 @@ Checks whether an ability is enabled. This API returns the result synchronously.
 
 | Type   | Description                                                                |
 | ------- | ------------------------------------------------------------------- |
-| boolean | Returns **true** if the ability is enabled; returns **false** otherwise.|
+| boolean | Check result for whether the ability is enabled. **true** if enabled, **false** otherwise.|
 
 **Error codes**
 
@@ -3459,6 +3484,8 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string, cal
 
 Obtains the label based on the given bundle name, module name, and ability name. This API uses an asynchronous callback to return the result.
 
+No permission is required for obtaining the caller's own information.
+
 **System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -3519,6 +3546,8 @@ try {
 getAbilityLabel(bundleName: string, moduleName: string, abilityName: string): Promise\<string>
 
 Obtains the label based on the given bundle name, module name, and ability name. This API uses a promise to return the result.
+
+No permission is required for obtaining the caller's own information.
 
 **System API**: This is a system API.
 
@@ -3584,6 +3613,8 @@ getAbilityLabelSync(bundleName: string, moduleName: string, abilityName: string)
 
 Obtains the ability label based on the given bundle name, module name, and ability name. This API returns the result synchronously.
 
+No permission is required for obtaining the caller's own information.
+
 **System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -3645,6 +3676,8 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: num
 
 Obtains the application information based on the given bundle name, application flags, and user ID. This API returns the result synchronously.
 
+No permission is required for obtaining the caller's own information.
+
 **System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -3702,6 +3735,8 @@ try {
 getApplicationInfoSync(bundleName: string, applicationFlags: number) : ApplicationInfo
 
 Obtains the application information based on the given bundle name and application flags. This API returns the result synchronously.
+
+No permission is required for obtaining the caller's own information.
 
 **System API**: This is a system API.
 
@@ -3813,7 +3848,7 @@ try {
 
 getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 
-Obtains the bundle information based on the given bundle name and bundle flags. This API returns the result synchronously.
+Obtains the bundle information for the caller's user based on the given bundle name and bundle flags. This API returns the result synchronously.
 
 No permission is required for obtaining the caller's own information.
 
@@ -3867,6 +3902,8 @@ try {
 getSharedBundleInfo(bundleName: string,  moduleName: string, callback: AsyncCallback\<Array\<SharedBundleInfo\>\>): void
 
 Obtains the shared bundle information based on the given bundle name. This API uses an asynchronous callback to return the result.
+
+No permission is required for obtaining the caller's own information.
 
 **System API**: This is a system API.
 
@@ -3922,6 +3959,8 @@ try {
 getSharedBundleInfo(bundleName: string, moduleName: string): Promise\<Array\<SharedBundleInfo\>\>
 
 Obtains the shared bundle information based on the given bundle name. This API uses a promise to return the result.
+
+No permission is required for obtaining the caller's own information.
 
 **System API**: This is a system API.
 
@@ -4075,6 +4114,8 @@ getAppProvisionInfo(bundleName: string, callback: AsyncCallback\<AppProvisionInf
 
 Obtains the provision profile based on the given bundle name. This API uses an asynchronous callback to return the result.
 
+No permission is required for obtaining the caller's own information.
+
 **System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
@@ -4126,6 +4167,8 @@ try {
 getAppProvisionInfo(bundleName: string, userId: number, callback: AsyncCallback\<AppProvisionInfo\>): void
 
 Obtains the provision profile based on the given bundle name and user ID. This API uses an asynchronous callback to return the result.
+
+No permission is required for obtaining the caller's own information.
 
 **System API**: This is a system API.
 
@@ -4182,6 +4225,8 @@ try {
 getAppProvisionInfo(bundleName: string, userId?: number): Promise\<AppProvisionInfo\>
 
 Obtains the provision profile based on the given bundle name and user ID. This API uses a promise to return the result.
+
+No permission is required for obtaining the caller's own information.
 
 **System API**: This is a system API.
 
@@ -4253,6 +4298,8 @@ getAppProvisionInfoSync(bundleName: string, userId?: number): AppProvisionInfo
 
 Obtains the provision profile based on the given bundle name and user ID. This API returns the result synchronously.
 
+No permission is required for obtaining the caller's own information.
+
 **System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
@@ -4315,6 +4362,8 @@ try {
 getSpecifiedDistributionType(bundleName: string): string
 
 Obtains the [distribution type](../../security/app-provision-structure.md) of a bundle in synchronous mode. The return value is the **specifiedDistributionType** field value in [InstallParam](./js-apis-installer-sys.md#installparam) passed when **install** is called.
+
+No permission is required for obtaining the caller's own information.
 
 **System API**: This is a system API.
 
@@ -4417,6 +4466,8 @@ try {
 queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: string, extensionAbilityFlags: number, userId?: number): Array\<ExtensionAbilityInfo>
 
 Obtains the ExtensionAbility information based on the given Want, ExtensionAbility type, ExtensionAbility flags, and user ID. This API returns the result synchronously.
+
+No permission is required for obtaining the caller's own information.
 
 **System API**: This is a system API.
 
@@ -4762,6 +4813,8 @@ queryExtensionAbilityInfoSync(extensionAbilityType: string, extensionAbilityFlag
 
 Obtains the ExtensionAbility information based on the given ExtensionAbility type, ExtensionAbility flags, and user ID.
 
+No permission is required for obtaining the caller's own information.
+
 **System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
@@ -4780,7 +4833,7 @@ Obtains the ExtensionAbility information based on the given ExtensionAbility typ
 
 | Type                                                        | Description                                  |
 | ------------------------------------------------------------ | -------------------------------------- |
-| Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)> | the array of ExtensionAbility information obtained.|
+| Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)> | An array of ExtensionAbility information obtained.|
 
 **Error codes**
 
@@ -4942,7 +4995,7 @@ try {
 
 switchUninstallState(bundleName: string, state: boolean): void
 
-Switches the uninstall state of an application. This API is independent from EDM application interception control.
+Switches the uninstall state of an application. This API is independent of EDM application interception control.
 
 **System API**: This is a system API.
 
@@ -4955,7 +5008,7 @@ Switches the uninstall state of an application. This API is independent from EDM
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName | string | Yes  | Bundle name of the application.|
-| state | boolean | Yes  | Whether the application can be uninstalled. The value **true** means that the application can be uninstalled, and **false** means the opposite.|
+| state | boolean | Yes  | Whether the application can be uninstalled. T**true** if the application can be uninstalled, **false** otherwise.|
 
 **Error codes**
 
@@ -4981,6 +5034,81 @@ try {
 } catch (err) {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'switchUninstallState failed: %{public}s', message);
+}
+```
+
+## bundleManager.getAllPluginInfo<sup>19+</sup>
+
+getAllPluginInfo(hostBundleName: string, userId?: number): Promise<Array\<PluginBundleInfo>>
+
+Obtains all the plugin information in the system based on the given host bundle name and user ID. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| hostBundleName | string | Yes  | Bundle name of the target application.|
+| userId         | number   | No  | User ID, which can be obtained by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9). The default value is the user ID of the caller. The value must be greater than or equal to 0.|
+
+**Return value**
+
+| Type                                                        | Description                                  |
+| ------------------------------------------------------------ | -------------------------------------- |
+| Promise<Array\<[PluginBundleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md)>> | Promise used to return the array of plugin information obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 17700001 | The specified bundleName is not found.  |
+| 17700004 | The specified user ID is not found.      |
+
+**Example**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+let hostBundleName = 'com.ohos.demo';
+let userId = 100;
+
+try {
+    bundleManager.getAllPluginInfo(hostBundleName, userId).then((data) => {
+        hilog.info(0x0000, 'testTag', 'getAllPluginInfo successfully. Data: %{public}s', JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getAllPluginInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAllPluginInfo failed. Cause: %{public}s', message);
+}
+```
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+let hostBundleName = 'com.ohos.demo';
+
+try {
+    bundleManager.getAllPluginInfo(hostBundleName).then((data) => {
+        hilog.info(0x0000, 'testTag', 'getAllPluginInfo successfully. Data: %{public}s', JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getAllPluginInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAllPluginInfo failed. Cause: %{public}s', message);
 }
 ```
 
@@ -5271,7 +5399,7 @@ getAppCloneBundleInfo(bundleName: string, appIndex: number, bundleFlags: number,
 
 Obtains the bundle information of an application or an application clone based on the given bundle name, app index, [bundleFlags](js-apis-bundleManager.md#bundleflag), and user ID. This API uses a promise to return the result.
 
-No permission is required if **bundleName** matches the caller's own bundle name.
+No permission is required for obtaining the caller's own information.
 
 **System API**: This is a system API.
 
@@ -5335,6 +5463,8 @@ try {
 getAllAppCloneBundleInfo(bundleName: string, bundleFlags: number, userId?: number): Promise\<Array\<BundleInfo>>;
 
 Obtains all the bundle information of applications and application clones based on the given bundle name, [bundleFlags](js-apis-bundleManager.md#bundleflag), and user ID. This API uses a promise to return the result.
+
+No permission is required for obtaining the caller's own information.
 
 **System API**: This is a system API.
 
@@ -5409,7 +5539,7 @@ Verifies an .abc file. This API uses an asynchronous callback to return the resu
 | Name    | Type  | Mandatory| Description                      |
 | ----------- | ------ | ---- | ---------------------------- |
 | abcPaths  | Array\<string> | Yes  | Path of the .abc file.|
-| deleteOriginalFiles | boolean | Yes  | Whether to delete the .abc file. The value **true** means to delete the file, and **false** means the opposite.|
+| deleteOriginalFiles | boolean | Yes  | Whether to delete the .abc file. **true** to delete, **false** otherwise.|
 | callback | AsyncCallback\<void> | Yes| [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -5529,7 +5659,7 @@ Verifies an .abc file. This API uses a promise to return the result.
 | Name    | Type  | Mandatory| Description                      |
 | ----------- | ------ | ---- | ---------------------------- |
 | abcPaths  | Array\<string> | Yes  | Path of the .abc file.|
-| deleteOriginalFiles | boolean | Yes  | Whether to delete the .abc file. The value **true** means to delete the file, and **false** means the opposite.      |
+| deleteOriginalFiles | boolean | Yes  | Whether to delete the .abc file. **true** to delete, **false** otherwise.      |
 
 **Return value**
 
@@ -5709,3 +5839,31 @@ Defines the preinstalled application information.
 | Type                                                        | Description          |
 | ------------------------------------------------------------ | -------------- |
 | [_PreinstalledApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md#preinstalledapplicationinfo12) |Preinstalled application information.|
+
+## PluginBundleInfo<sup>19+</sup>
+
+type PluginBundleInfo = _PluginBundleInfo
+
+Defines the plugin information.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_PluginBundleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginbundleinfo) |Plugin information.|
+
+## PluginModuleInfo<sup>19+</sup>
+
+type PluginModuleInfo = _PluginModuleInfo
+
+Defines the module information of a plugin.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_PluginModuleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginmoduleinfo) |Module information of the plugin.|

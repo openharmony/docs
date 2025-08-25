@@ -1,6 +1,12 @@
-# @ohos.app.ability.AbilityStage (AbilityStage Component Container)
+# @ohos.app.ability.AbilityStage (Component Manager)
 
-AbilityStage is a component container at the [module](../../../application-dev/quick-start/application-package-overview.md#multi-module-design-mechanism) level. When the [HAP](../../../application-dev/quick-start/hap-package.md) or [HSP](../../../application-dev/quick-start/in-app-hsp.md) of an application is loaded for the first time, an AbilityStage instance is created. You can use the instance to perform initialization operations such as resource preloading and thread creation at the module level. An AbilityStage instance corresponds to a module.
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+
+AbilityStage is a [module](../../../application-dev/quick-start/application-package-overview.md#multi-module-design-mechanism)-level component manager. When the [HAP](../../../application-dev/quick-start/hap-package.md) or [HSP](../../../application-dev/quick-start/in-app-hsp.md) of an application is first loaded, an AbilityStage instance is created. It is used for initializing operations such as resource preloading and thread creation at the module level. An AbilityStage instance corresponds to a module.
 
 An AbilityStage has the lifecycle callbacks [onCreate()](#oncreate) and [onDestroy()](#ondestroy12), and the event callbacks [onAcceptWant()](#onacceptwant), [onConfigurationUpdate()](#onconfigurationupdate), and [onMemoryLevel()](#onmemorylevel).
 
@@ -57,7 +63,7 @@ export default class MyAbilityStage extends AbilityStage {
 
 onAcceptWant(want: Want): string
 
-Called when an [UIAbility with the launch mode set to specified](../../../application-dev/application-models/uiability-launch-type.md#specified) is launched. This API returns a string representing the unique ID of the UIAbility instance. This API returns the result synchronously and does not support asynchronous callbacks.
+Called when a UIAbility with the launch mode set to [specified](../../application-models/uiability-launch-type.md#specified) is launched. This API returns a string representing the unique ID of the UIAbility instance. This API returns the result synchronously and does not support asynchronous callbacks.
 
 If a UIAbility instance with the same ID already exists in the system, that instance is reused. Otherwise, a new instance is created.
 
@@ -95,9 +101,19 @@ export default class MyAbilityStage extends AbilityStage {
 
 onNewProcessRequest(want: Want): string
 
-Called when a UIAbility is launched in a specified process. This API returns the result synchronously and does not support asynchronous callbacks.
+Called when a UIAbility or UIExtensionAbility, which is configured to run in an independent process (with **isolationProcess** set to **true** in the [module.json5](../../quick-start/module-configuration-file.md) file), is launched. This API returns a string representing the unique process ID. This API returns the result synchronously and does not support asynchronous callbacks.
+
+If the application already has a process with the same ID, the UIAbility or UIExtensionAbility runs in that process. Otherwise, a new process is created.
+
+If you implement both **onNewProcessRequest** and [onAcceptWant](#onacceptwant), the system first invokes the **onNewProcessRequest** callback, and then the **onAcceptWant** callback.
+
+<!--Del-->
+The **isolationProcess** field can be set to **true** in the [module.json5](../../quick-start/module-configuration-file.md) file, but only for the UIExtensionAbility of the sys/commonUI type.
+<!--DelEnd-->
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Device behavior differences**: This API executes the callback normally only on 2-in-1 devices and tablets. It does not execute the callback on other devices.
 
 **Parameters**
 
@@ -157,7 +173,7 @@ export default class MyAbilityStage extends AbilityStage {
 
 onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
-Listens for changes in the system memory level status. When the system detects low memory resources, it will proactively invoke this callback. You can implement this callback to promptly release non-essential resources (such as cached data or temporary objects) upon receiving a memory shortage event, thereby preventing the application process from being forcibly terminated by the system.
+Listens for changes in the system memory level status. Called when the available memory of the entire device changes to a specified level. You can implement this callback to promptly release non-essential resources (such as cached data or temporary objects) upon receiving a memory shortage event, thereby preventing the application process from being forcibly terminated by the system.
 
 This API returns the result synchronously and does not support asynchronous callbacks.
 
@@ -213,8 +229,6 @@ Called when the application is closed by the user, allowing the user to choose b
 
 > **NOTE**
 >
-> - Currently, this API takes effect only on 2-in-1 devices.
->
 > - The API is called only when the application exits under normal circumstances (for example, when the application is closed through the doc bar or tray, or when the application shuts down along with the device). It will not be called if the application is terminated forcibly.
 >
 > - This API is not executed when [AbilityStage.onPrepareTerminationAsync](#onprepareterminationasync15) is implemented.
@@ -224,6 +238,10 @@ Called when the application is closed by the user, allowing the user to choose b
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Device behavior differences**
+- Starting from API version 15, this API executes the callback normally only on 2-in-1 devices. It does not execute the callback on other devices.
+- Starting from API version 19, this API executes the callback normally only on 2-in-1 devices and tablets. It does not execute the callback on other devices.
 
 **Return value**
 
@@ -252,8 +270,6 @@ Called when the application is closed by the user, allowing the user to choose b
 
 > **NOTE**
 >
-> - Currently, this API takes effect only on 2-in-1 devices.
->
 > - The API is called only when the application exits under normal circumstances (for example, when the application is closed through the doc bar or tray, or when the application shuts down along with the device). It will not be called if the application is terminated forcibly.
 >
 > - If an asynchronous callback crashes, it will be handled as a timeout. If the application does not respond within 10 seconds, it will be terminated forcibly.
@@ -263,6 +279,10 @@ Called when the application is closed by the user, allowing the user to choose b
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Device behavior differences**
+- Starting from API version 15, this API executes the callback normally only on 2-in-1 devices. It does not execute the callback on other devices.
+- Starting from API version 19, this API executes the callback normally only on 2-in-1 devices and tablets. It does not execute the callback on other devices.
 
 **Return value**
 
