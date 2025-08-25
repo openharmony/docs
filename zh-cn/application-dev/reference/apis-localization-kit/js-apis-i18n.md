@@ -247,7 +247,7 @@ static isSuggested(language: string, region?: string): boolean
 
 static getSystemLanguage(): string
 
-获取系统当前设置的语言。
+获取系统当前设置的语言。若要监听系统语言变化，可以监听[公共事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED，具体可参考[系统语言与区域](../../internationalization/i18n-system-language-region.md#开发步骤)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -270,7 +270,7 @@ static getSystemLanguage(): string
 
 static getSystemRegion(): string
 
-获取系统当前设置的国家地区。
+获取系统当前设置的国家地区。若要监听系统地区变化，可以监听[公共事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED，具体可参考[系统语言与区域](../../internationalization/i18n-system-language-region.md#开发步骤)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -314,7 +314,7 @@ static getSystemLocale(): string
 
 static getSystemLocaleInstance(): Intl.Locale
 
-获取系统当前设置的区域对象。
+获取系统当前设置的区域对象。若要监听系统区域变化，可以监听[公共事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED，具体可参考[系统语言与区域](../../internationalization/i18n-system-language-region.md#开发步骤)。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -336,7 +336,7 @@ static getSystemLocaleInstance(): Intl.Locale
 
 static is24HourClock(): boolean
 
-判断系统时制是否为24小时制。
+判断系统时制是否为24小时制。若要监听系统时制变化，可以监听[公共事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_time_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_TIME_CHANGED，具体可参考[用户偏好](../../internationalization/i18n-user-preferences.md#开发步骤)。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -2310,20 +2310,20 @@ transform(text: string): string
 **示例：**
   ```ts
   let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Any-Latn');
-  let wordArray = ['中国', '德国', '美国', '法国']
+  let wordArray: string[] = ['中国', '德国', '美国', '法国']
   for (let i = 0; i < wordArray.length; i++) {
-    let transliterLatn =
+    let transliterateLatn: string =
       transliterator.transform(wordArray[i]); // transliterLatn依次为：'zhōng guó', 'dé guó', 'měi guó', 'fǎ guó'
   }
 
   // 汉语音译去声调
-  let transliter = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
-  let transliterAscii = transliter.transform('中国'); // transliterAscii = 'zhong guo'
+  transliterator = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
+  let transliterateAscii: string = transliterator.transform('中国'); // transliterateAscii = 'zhong guo'
 
   // 汉语姓氏读音
-  let nameTransliter = i18n.Transliterator.getInstance('Han-Latin/Names');
-  let transliterNames = nameTransliter.transform('单老师'); // transliterNames = 'shàn lǎo shī'
-  transliterNames = nameTransliter.transform('长孙无忌'); // transliterNames = 'zhǎng sūn wú jì'
+  transliterator = i18n.Transliterator.getInstance('Han-Latin/Names');
+  let transliterateNames: string = transliterator.transform('单老师'); // transliterateNames = 'shàn lǎo shī'
+  transliterateNames = transliterator.transform('长孙无忌'); // transliterateNames = 'zhǎng sūn wú jì'
   ```
 
 

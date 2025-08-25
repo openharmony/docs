@@ -1144,7 +1144,7 @@ System error occurred during copy execution.
 ## 17700087 当前设备不支持安装插件
 
 **错误信息**<br/>
-Failed to install the plugin because the current device does not support plugin. 
+Failed to install the plugin because the current device does not support plugins. 
 
 **错误描述**<br/>
 当前设备不支持插件能力。
@@ -1183,11 +1183,11 @@ Failed to install the plugin because the plugin id fails to be parsed.
 插件应用签名文件中的pluginDistributionIDs配置不符合规范。
 
 **处理步骤**<br/>
-参考如下格式，重新配置插件profile签名文件中的"app-services-capabilities"字段。
+参考如下格式，重新配置插件[profile文件](../../security/app-provision-structure.md)中的"app-services-capabilities"字段。
 ```
 "app-services-capabilities":{
     "ohos.permission.kernel.SUPPORT_PLUGIN":{
-        "pluginDistributionIDs":"value-1|value-2|···"
+        "pluginDistributionIDs":"value-1,value-2,···"
     }
 }
 ```
@@ -1205,12 +1205,19 @@ Failed to install the plugin because the plugin id fails to be verified.
 插件与应用的pluginDistributionIDs之间没有共同值。
 
 **处理步骤**<br/>
-重新配置应用或者插件[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的pluginDistributionIDs。
+重新配置应用或者插件[profile文件](../../security/app-provision-structure.md)中的pluginDistributionIDs。配置格式如下：
+```
+"app-services-capabilities":{
+    "ohos.permission.kernel.SUPPORT_PLUGIN":{
+        "pluginDistributionIDs":"value-1,value-2,···"
+    }
+}
+```
 
 ## 17700091 插件与主体同包名
 
 **错误信息**<br/>
-Failed to install the plugin because the plugin name is same as host bundle name.
+Failed to install the plugin because the plugin name is the same as the host bundle name.
 
 **错误描述**<br/>
 插件的包名与应用的包名一致，不符合插件与应用之间异包名的规格，安装插件失败。

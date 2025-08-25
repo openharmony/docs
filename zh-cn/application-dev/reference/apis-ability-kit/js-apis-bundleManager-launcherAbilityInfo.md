@@ -27,7 +27,7 @@ import { launcherBundleManager } from '@kit.AbilityKit';
 | --------------- | ----------------------------------------------------------- | ---- | ---- | ------------------------------------ |
 | applicationInfo | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 是   | 否   | launcher ability的应用程序的配置信息。 |
 | elementName     | [ElementName](js-apis-bundleManager-elementName.md)         | 是   | 否   | launcher ability的ElementName信息。    |
-| labelId         | number                                                      | 是   | 否   | launcher ability的标签ID。             |
-| iconId          | number                                                      | 是   | 否   | launcher ability的图标ID。             |
+| labelId         | number                                                      | 是   | 否   | launcher ability的标签的资源ID值。      |
+| iconId          | number                                                      | 是   | 否   | launcher ability的图标的资源ID值。      |
 | userId          | number                                                      | 是   | 否   | launcher ability的用户ID。             |
 | installTime     | number                                                      | 是   | 否   | launcher ability的安装时间戳，单位毫秒。 |

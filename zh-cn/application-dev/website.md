@@ -932,12 +932,10 @@
       - 应用国际化<!--i18n-->
           - [国际化界面设计](internationalization/i18n-ui-design.md)
           - [区域ID与文化习惯划分](internationalization/i18n-locale-culture.md)
-          - 设置语言与用户偏好<!--i18n-language-user-preferences-->
-              - [设置系统语言与区域](internationalization/i18n-system-language-region.md)
-              - [设置应用偏好语言](internationalization/i18n-preferred-language.md)
-              <!--Del-->
-              - [设置用户偏好（仅对系统应用开放）](internationalization/i18n-user-preferences.md)
-              <!--DelEnd-->
+          - 语言与用户偏好<!--i18n-language-user-preferences-->
+              - [系统语言与区域](internationalization/i18n-system-language-region.md)
+              - [应用偏好语言](internationalization/i18n-preferred-language.md)
+              - [用户偏好](internationalization/i18n-user-preferences.md)
           - [时间日期国际化](internationalization/i18n-time-date.md)
           - [数字与度量衡国际化](internationalization/i18n-numbers-weights-measures.md)
           - [电话号码格式化](internationalization/i18n-phone-numbers.md)
@@ -2653,6 +2651,7 @@
         - [语言基础类库错误码](reference/apis-arkts/errorcode-utils.md)
         - [Typescript Compiler错误码](reference/apis-arkts/errorcode-tsc.md)
         - [编译工具链错误码](reference/apis-arkts/errorcode-ets-loader.md)
+        - [Es2abc编译器错误码](reference/apis-arkts/errorcode-es2abc.md)
     - ArkUI（方舟UI框架）<!--arkui-api-->
       - ArkTS API<!--arkui-arkts-->
         - UI界面<!--ui-->
@@ -2988,6 +2987,7 @@
           - [QRCode](reference/apis-arkui/arkui-ts/ts-basic-components-qrcode.md)
           - [TextClock](reference/apis-arkui/arkui-ts/ts-basic-components-textclock.md)
           - [TextTimer](reference/apis-arkui/arkui-ts/ts-basic-components-texttimer.md)
+          - [信息展示公共接口](reference/apis-arkui/arkui-ts/ts-information-display-common.md)
         - 空白与分隔<!--blank-and-divider-->
           - [Blank](reference/apis-arkui/arkui-ts/ts-basic-components-blank.md)
           - [Divider](reference/apis-arkui/arkui-ts/ts-basic-components-divider.md)
@@ -4104,7 +4104,7 @@
           <!--Del-->
           - [键鼠穿越管理错误码](reference/apis-distributedservice-kit/errorcode-devicestatus.md)
           <!--DelEnd-->
-          - [连接增强错误码](reference/apis-distributedservice-kit/errorcode_linkEnhance.md)
+          - [增强连接错误码](reference/apis-distributedservice-kit/errorcode-link-enhance.md)
           - [代理通道管理错误码](reference/apis-distributedservice-kit/errorcode_proxyChannelManager.md)
         - C API<!--distributed-service-c-->
           - 模块<!--distributed-service-moudle-->
@@ -5672,15 +5672,17 @@
       - [Vulkan开发指导](reference/native-lib/vulkan-guidelines.md)
       - [Vulkan支持能力](reference/native-lib/vulkan.md)
       - Vulkan扩展能力<!--vulkan-extensions-->
-        - [Vulkan模块](reference/native-lib/_vulkan.md)
-        - [vulkan_ohos.h](reference/native-lib/vulkan__ohos_8h.md)
-        - [VkExternalFormatOHOS](reference/native-lib/_vk_external_format_o_h_o_s.md)
-        - [VkImportNativeBufferInfoOHOS](reference/native-lib/_vk_import_native_buffer_info_o_h_o_s.md)
-        - [VkMemoryGetNativeBufferInfoOHOS](reference/native-lib/_vk_memory_get_native_buffer_info_o_h_o_s.md)
-        - [VkNativeBufferFormatPropertiesOHOS](reference/native-lib/_vk_native_buffer_format_properties_o_h_o_s.md)
-        - [VkNativeBufferPropertiesOHOS](reference/native-lib/_vk_native_buffer_properties_o_h_o_s.md)
-        - [VkNativeBufferUsageOHOS](reference/native-lib/_vk_native_buffer_usage_o_h_o_s.md)
-        - [VkSurfaceCreateInfoOHOS](reference/native-lib/_vk_surface_create_info_o_h_o_s.md)
+        - [Vulkan模块](reference/native-lib/capi-vulkan.md)
+        - [vulkan_ohos.h](reference/native-lib/capi-vulkan-ohos-h.md)
+        - [VkSurfaceCreateInfoOHOS](reference/native-lib/capi-vulkan-vksurfacecreateinfoohos.md)
+        - [VkNativeBufferUsageOHOS](reference/native-lib/capi-vulkan-vknativebufferusageohos.md)
+        - [VkNativeBufferPropertiesOHOS](reference/native-lib/capi-vulkan-vknativebufferpropertiesohos.md)
+        - [VkNativeBufferFormatPropertiesOHOS](reference/native-lib/capi-vulkan-vknativebufferformatpropertiesohos.md)
+        - [VkImportNativeBufferInfoOHOS](reference/native-lib/capi-vulkan-vkimportnativebufferinfoohos.md)
+        - [VkMemoryGetNativeBufferInfoOHOS](reference/native-lib/capi-vulkan-vkmemorygetnativebufferinfoohos.md)
+        - [VkExternalFormatOHOS](reference/native-lib/capi-vulkan-vkexternalformatohos.md)
+        - [NativeWindow](reference/native-lib/capi-vulkan-nativewindow.md)
+        - [OH_NativeBuffer](reference/native-lib/capi-vulkan-oh-nativebuffer.md) 
     - 附录<!--appendixes-->
       - [libc中没有导出的符号列表](reference/native-lib/musl-peculiar-symbol.md)
       - [NDK musl-libc接口受权限影响的说明](reference/native-lib/guidance-on-ndk-libc-interfaces-affected-by-permissions.md)
