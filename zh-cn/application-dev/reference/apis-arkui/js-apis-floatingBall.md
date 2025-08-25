@@ -499,6 +499,7 @@ restoreMainWindow(want: Want): Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
 
 let want: Want = {
   bundleName: 'xxx.xxx.xxx',
