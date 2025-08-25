@@ -512,3 +512,5 @@
 
 ## 实现效果
 以下是按照本文档代码示例开发而成的效果demo。
+
+![live-form-system-demo.gif](figures/live-form-system-demo.gif)
