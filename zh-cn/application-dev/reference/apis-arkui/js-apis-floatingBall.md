@@ -461,7 +461,7 @@ floatingBallController.getFloatingBallWindowInfo().then((data: floatingBall.Floa
 
 restoreMainWindow(want: Want): Promise&lt;void&gt;
 
-恢复应用主窗口并加载指定页面。仅支持在闪控球点击事件回调上下文的5秒内调用，使用Promise异步回调。
+恢复应用主窗口并加载指定页面。仅支持在点击闪控球后调用，使用Promise异步回调。
 
 **需要权限：** ohos.permission.USE_FLOAT_BALL
 
