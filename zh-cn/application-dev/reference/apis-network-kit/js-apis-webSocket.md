@@ -1583,7 +1583,7 @@ type ClientConnectionCloseCallback = (clientConnection: WebSocketConnection, clo
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称 | 类型   | 只读 | 可选 | 说明                            |
-| ---------------- | ------------------- | ---- | ------ | --------------------------------------------- |
-| clientConnection | [WebSocketConnection](#websocketconnection19) | 否 | 否 | 客户端信息，包括客户端的ip地址和端口号port。             |
-| closeReason | [CloseResult](#closeresult10) | 否 | 否 | 关闭WebSocket连接时，订阅close事件得到的关闭结果。 |
+| 参数名 | 类型    | 必填 | 说明                            |
+| ---------------- | -------------------  | ------ | --------------------------------------------- |
+| clientConnection | [WebSocketConnection](#websocketconnection19) | 是 | 客户端信息，包括客户端的ip地址和端口号port。             |
+| closeReason | [CloseResult](#closeresult10)  | 是 | 关闭WebSocket连接时，订阅close事件得到的关闭结果。 |
