@@ -165,6 +165,47 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 }
 ```
 
+### 生成VPN Id
+
+当VPN应用需要创建新的VPN ，需要生成一个VPN Id 作为VPN 的唯一标识。
+您可参考如下示例：
+
+```ts
+import VpnExtensionAbility from "@ohos.app.ability.VpnExtensionAbility";
+import { vpnExtension } from "@kit.NetworkKit";
+
+export default class VpnTest extends VpnExtensionAbility {
+  vpnId:string = ''
+
+  getVpnId(){
+    let vpnConnection = vpnExtension.createVpnConnection(this.context);
+    vpnConnection?.generateVpnId().then((data)=>{
+      if (data) {
+        this.vpnId = data;
+      }
+    });
+  }
+}
+```
+
+### 断开VPN
+
+当VPN应用需要断开VPN ，您可参考如下示例：
+```ts
+import VpnExtensionAbility from "@ohos.app.ability.VpnExtensionAbility";
+import { vpnExtension } from "@kit.NetworkKit";
+
+export default class VpnTest extends VpnExtensionAbility {
+  vpnId: string = 'test_vpn_id'
+  vpnConnection: vpnExtension.VpnConnection | undefined
+
+  destroy(){
+    this.vpnConnection = vpnExtension.createVpnConnection(this.context);
+    this.vpnConnection?.destroy(this.vpnId);
+  }
+}
+```
+
 ## 服务生命周期
 
 为了保障设备的网络连接，当系统观察到VPN相关应用出现异常时会主动停止VPN连接：
