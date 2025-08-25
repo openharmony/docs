@@ -1,5 +1,12 @@
 # Device Certificate Kit（设备证书服务）
 
+<!--Kit: Device Certificate Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3--; @chaceli-->
+<!--Designer: @lanming--; @chande-->
+<!--Tester: @PAFT--; @zhangzhi1995-->
+<!--Adviser: @zengyawen-->
+
 - [Device Certificate Kit简介](device-certificate-kit-intro.md)
 - 证书算法库框架<!--certificate-framework-->
   - [证书算法库框架概述](certificate-framework-overview.md)
@@ -12,6 +19,7 @@
   - [证书链对象的创建和校验](create-verify-certchain-object.md)
   - [使用系统预置CA证书校验证书链](verify-certchain-by-systemca.md)
   - [证书PKCS7签名](create-pkcs7-sign-object.md)
+  - [证书PKCS12的创建和解析](create-parse-pkcs12.md)
 - 证书管理<!--certmanager-->
   - [证书管理概述](certManager-overview.md)
   - [应用证书凭据开发指导](certManager-private-credential-guidelines.md)
