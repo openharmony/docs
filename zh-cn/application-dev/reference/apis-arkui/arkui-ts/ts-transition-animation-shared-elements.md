@@ -50,7 +50,7 @@ sharedTransition(id: string, options?: sharedTransitionOptions): T
 | 名称              | 类型      | 只读 |  可选     | 说明                                                     |
 | ----------------- | -------------|------- | ------- | --------------------------------------------------------------|
 | duration          |     number   |  否  |    是          | 描述共享元素转场动效播放时长。<br>默认值：1000。 <br>单位：毫秒。<br/>取值范围：[0, +∞)。 |
-| curve             |      [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve9)<sup>10+</sup>  | 否 | 是 | 动画曲线。<br/>推荐以Curve或ICurve形式指定。<br/>当类型为string时，为动画插值曲线，取值参考[AnimateParam](./ts-explicit-animation.md#animateparam对象说明)的curve参数。<br/>默认值：Curve.Linear |
+| curve             |      [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve9)  | 否 | 是 | 动画曲线。<br/>推荐以Curve或ICurve形式指定。<br/>当类型为string时，为动画插值曲线，取值参考[AnimateParam](./ts-explicit-animation.md#animateparam对象说明)的curve参数。<br/>默认值：Curve.Linear |
 | delay          |     number   |  否  |  是         | 延迟播放时间。<br>默认值：0。 <br>单位：毫秒。 |
 | motionPath          | [MotionPathOptions](./ts-motion-path-animation.md)  |  否   |  是        | 运动路径信息。 |
 | zIndex          |     number   |  否   |   是           | 设置Z轴。<br/>取值范围：(-∞, +∞)。 |
