@@ -795,7 +795,7 @@ struct Child {
 
 **单变量监听**
 
-对于简单案例，V1的@Watch可以直接替换为替换为V2的@Monitor。
+对于简单案例，V1的@Watch可以直接替换为V2的@Monitor。
 
 V1实现：
 
