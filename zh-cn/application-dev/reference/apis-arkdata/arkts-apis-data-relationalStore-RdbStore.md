@@ -6005,3 +6005,57 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+
+## setLocale<sup>20+</sup>
+
+setLocale(locale: string) : Promise\<void>
+
+设置自定义排序的语言。使用Promise异步回调。
+
+该值符合ISO 639标准，但是仅支持ICU中的部分语言，对于不支持的语言，设置自定义排序的语言时会报错14800001。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名 | 类型     | 必填 | 说明                                       |
+| ------ | ------- | ---- | ----------------------------------------- |
+| locale  | string | 是   | 设置自定义排序的语言。该值符合ISO 639标准，如："zh"。|
+
+**返回值：**
+
+| 类型          | 说明                       |
+| -------------- | ------------------------ |
+| Promise\<void> | 无返回结果的Promise对象。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                            |
+| ------------ | ---------------------------------------------------------------------- |
+| 801          | Capability not supported.                                              |
+| 14800001     | Invalid arguments. Possible causes: 1.Parameter is out of valid range. |
+| 14800014     | The RdbStore or ResultSet is already closed.                           |
+| 14800024     | SQLite: The database file is locked.                                   |
+| 14800026     | SQLite: The database is out of memory.                                 |
+| 14800034     | SQLite: Library used incorrectly.                                         |
+
+**示例：**
+
+```ts
+try {
+  if (store != undefined) {
+    await store.setLocale("zh");
+    store.querySql("SELECT * FROM EMPLOYEE ORDER BY NAME COLLATE LOCALES", async (err, resultSet) => {
+      if (err) {
+        console.error(`Query failed, code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`ResultSet rowCount ${resultSet.rowCount}`);
+    });
+  }
+} catch (err) {
+  console.error(`SetLocale failed, code: ${err.code}, message: ${err.message}`);
+}
+```
