@@ -162,7 +162,7 @@ allowedTypes(types: Array\<SourceTool>): T
 
 | 参数名 | 类型                                       | 必填 | 说明                        |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
-| types  |  Array\<SourceTool> | 是   | 手势响应的输入类型。 |
+| types  |  Array\<[SourceTool](#sourcetool枚举说明9)> | 是   | 手势响应的输入类型。 |
 
 **返回值：**
 
@@ -184,16 +184,10 @@ allowedTypes(types: Array\<SourceTool>): T
 
 ## 响应手势事件
 
-组件通过手势事件绑定不同GestureType的手势对象，各手势对象在响应手势操作的事件回调中提供手势相关信息。下面通过TapGesture手势对象的onAction事件响应点击事件，获取事件相关信息。其余手势对象的事件定义见各个手势对象章节。 若需绑定多种手势，请使用[组合手势](ts-combined-gestures.md)。
-
-**TapGesture事件说明**
-
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onAction((event:GestureEvent)&nbsp;=&gt;&nbsp;void) | Tap手势识别成功回调。 |
+组件通过手势事件绑定不同GestureType的手势对象，各手势对象在响应手势操作的事件回调中提供手势相关信息。下面通过[TapGesture](./ts-basic-gestures-tapgesture.md#tapgesture)手势对象的[onAction](./ts-basic-gestures-tapgesture.md#onaction)事件响应点击事件，获取事件相关信息。其余手势对象的事件定义见各个手势对象章节。 若需绑定多种手势，请使用[组合手势](ts-combined-gestures.md)。
 
 ## GestureEvent对象说明
-继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)。
+继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent8)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

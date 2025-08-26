@@ -124,7 +124,7 @@ getType(): GestureControl.GestureType
 
 | 类型     | 说明        |
 | ------ | --------- |
-| [GestureControl.GestureType](ts-gesture-customize-judge.md#gesturetype12) | 当前手势识别器的类型。 |
+| [GestureControl.GestureType](ts-gesture-customize-judge.md#gesturetype11) | 当前手势识别器的类型。 |
 
 ### isBuiltIn
 
@@ -220,7 +220,7 @@ isValid(): boolean;
 
 | 类型     | 说明        |
 | ------ | --------- |
-| boolean | 当前手势识别器是否有效。当该识别器绑定的组件被析构或者该识别器不在响应链上时返回false。 |
+| boolean | 当前手势识别器是否有效。<br/>当该识别器绑定的组件被析构或该识别器不在响应链上时返回false。<br/>当该识别器绑定的组件未被析构且该识别器在响应链上时返回true。 |
 
 ### getFingerCount<sup>18+</sup>
 
@@ -814,6 +814,7 @@ struct FatherControlChild {
   }
 }
 ```
+![fatherControlChild](figures/fatherControlChild.gif)
 
 ### 示例2（嵌套场景下拦截内部容器手势）
 
