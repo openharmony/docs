@@ -27,7 +27,7 @@ UIExtension宿主窗代理。
 | ------------------------------------| -------------------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------ |
 | properties<sup>14+</sup>            | [WindowProxyProperties](#windowproxyproperties14) |  否  |  否  | 组件（EmbeddedComponent或UIExtensionComponent）的信息。<br/>**约束：** 由于架构约束，不建议在[onSessionCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)阶段同步获取该值，建议在收到[on('windowSizeChange')](../apis-arkui/js-apis-arkui-uiExtension.md#onwindowsizechange)回调之后获取。                                                                            |
 
-### getWindowAvoidArea
+### getWindowAvoidArea<sup>12+</sup>
 
 getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 
@@ -72,7 +72,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-### on('avoidAreaChange')
+### on('avoidAreaChange')<sup>12+</sup>
 
 on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaInfo&gt;): void
 
@@ -113,7 +113,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-### off('avoidAreaChange')
+### off('avoidAreaChange')<sup>12+</sup>
 
 off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaInfo&gt;): void
 
@@ -151,7 +151,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-### on('windowSizeChange')
+### on('windowSizeChange')<sup>12+</sup>
 
 on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 
@@ -192,7 +192,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-### off('windowSizeChange')
+### off('windowSizeChange')<sup>12+</sup>
 
 off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 
@@ -320,7 +320,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-### createSubWindowWithOptions
+### createSubWindowWithOptions<sup>12+</sup>
 
 createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptions): Promise&lt;window.Window&gt;
 

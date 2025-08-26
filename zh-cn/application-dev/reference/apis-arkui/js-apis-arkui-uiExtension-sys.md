@@ -18,7 +18,7 @@ import { uiExtension } from '@kit.ArkUI';
 
 UIExtension宿主窗代理。
 
-### hideNonSecureWindows<sup>11+</sup>
+### hideNonSecureWindows<sup>12+</sup>
 
 hideNonSecureWindows(shouldHide: boolean): Promise\<void>
 
