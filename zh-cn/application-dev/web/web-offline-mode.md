@@ -76,7 +76,7 @@ let wrap = wrapBuilder<Data[]>(WebBuilder);
 // myNodeController需要与NodeContainer一起使用,用于控制和反馈对应的NodeContainer上的节点的行为
 export class myNodeController extends NodeController {
   private rootNode: BuilderNode<Data[]> | null = null;
-  // 必须要重写的方法，用于构建节点数、返回节点挂载在对应NodeContainer中
+  // 必须要重写的方法，用于构建节点树、返回节点挂载在对应NodeContainer中
   // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新
   makeNode(uiContext: UIContext): FrameNode | null {
     console.log(" uicontext is undefined : "+ (uiContext === undefined));
@@ -217,7 +217,7 @@ let wrap = wrapBuilder<Data[]>(WebBuilder);
 // 用于控制和反馈对应的NodeContainer上的节点的行为，需要与NodeContainer一起使用
 export class myNodeController extends NodeController {
   private rootNode: BuilderNode<Data[]> | null = null;
-  // 必须要重写的方法，用于构建节点数、返回节点挂载在对应NodeContainer中
+  // 必须要重写的方法，用于构建节点树、返回节点挂载在对应NodeContainer中
   // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新
   makeNode(uiContext: UIContext): FrameNode | null {
     console.log(" uicontext is undefined : "+ (uiContext === undefined));
@@ -397,7 +397,7 @@ let wrap = wrapBuilder<Data[]>(WebBuilder);
 // 用于控制和反馈对应的NodeContainer上的节点的行为，需要与NodeContainer一起使用
 export class myNodeController extends NodeController {
   private rootNode: BuilderNode<Data[]> | null = null;
-  // 必须要重写的方法，用于构建节点数、返回节点挂载在对应NodeContainer中
+  // 必须要重写的方法，用于构建节点树、返回节点挂载在对应NodeContainer中
   // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新
   makeNode(uiContext: UIContext): FrameNode | null {
     console.info(" uicontext is undefined : "+ (uiContext === undefined));
