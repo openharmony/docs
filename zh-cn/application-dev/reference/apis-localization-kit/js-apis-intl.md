@@ -458,7 +458,7 @@ let formatter: intl.NumberFormat = new intl.NumberFormat('en-GB', { style: 'deci
 
 ### format
 
-format(number: number): string
+format(num: number): string
 
 对数字进行格式化。
 
@@ -470,7 +470,7 @@ format(number: number): string
 
 | 参数名    | 类型     | 必填   | 说明   |
 | ------ | ------ | ---- | ---- |
-| number | number | 是    | 数字对象。 |
+| num | number | 是    | 数字对象。 |
 
 **返回值：**
 
