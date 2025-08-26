@@ -1113,12 +1113,12 @@ resources/base/profile路径下的menu.json资源文件示例如下：
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | startWindowType | 标识当前UIAbility组件是否隐藏启动页。<br/>当前仅支持在2in1设备或平板设备的自由多窗模式下使用。<br/>不同取值含义如下：<br/>\- "REQUIRED_SHOW"：强制显示启动页。不受[Ability管理服务（即StartOptions中hideStartWindow字段）](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md#startoptions)的影响。<br/>\- "REQUIRED_HIDE"：强制隐藏启动页。不受[Ability管理服务（即StartOptions中hideStartWindow字段）](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md#startoptions)的影响。<br/>\- "OPTIONAL_SHOW"：可选显示，默认行为为显示启动页，如果[Ability管理服务（即StartOptions中hideStartWindow字段）](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md#startoptions)设置隐藏启动页，则隐藏启动页。<br/>\- 如未配置该字段，默认取值为"REQUIRED_SHOW"，即强制显示启动页。<br/>从API version 20开始支持该字段。 | 字符串 | 可缺省，缺省值为REQUIRED_SHOW。 |
-| startWindowAppIcon | 标识当前UIAbility组件启动页面图标资源文件的索引，取值为长度不超过255字节的字符串。<br/><!--RP11-->从API version 20开始支持该字段。<!--RP11End-->| 字符串 | 可缺省，缺省值为空。 |
-| startWindowIllustration | 标识当前UIAbility组件启动页面插画资源文件的索引，取值为长度不超过255字节的字符串。<br/><!--RP11-->从API version 20开始支持该字段。<!--RP11End--> | 字符串 | 可缺省，缺省值为空。 |
-| startWindowBrandingImage | 标识当前UIAbility组件启动页面品牌标识资源文件的索引，取值为长度不超过255字节的字符串。<br/><!--RP11-->从API version 20开始支持该字段。<!--RP11End--> | 字符串 | 可缺省，缺省值为空。 |
-| startWindowBackgroundColor | 标识当前UIAbility组件启动页面背景颜色资源文件的索引，取值为长度不超过255字节的字符串。<br/><!--RP11-->从API version 20开始支持该字段。<!--RP11End--> | 字符串 | 不可缺省。 |
-| startWindowBackgroundImage | 标识当前UIAbility组件启动页面背景图片资源文件的索引，取值为长度不超过255字节的字符串。<br/><!--RP11-->从API version 20开始支持该字段。<!--RP11End--> | 字符串 | 可缺省，缺省值为空。 |
-| startWindowBackgroundImageFit | 标识当前UIAbility组件启动页面背景图像适应方式，支持的取值如下：<br/>-&nbsp;Contain：按照宽高比进行缩小或放大，图片完全显示在显示边界内。<br/>-&nbsp;Cover：按照宽高比进行缩小或放大，图片两边都大于或等于显示边界。<br/>-&nbsp;Auto：自适应显示。<br/>-&nbsp;Fill：不按照宽高比进行放大或缩小，图片充满显示边界。<br/>-&nbsp;ScaleDown：按照宽高比显示，图片缩小或保持不变。<br/>-&nbsp;None：保持原有尺寸显示。<br/><!--RP11-->从API version 20开始支持该字段。<!--RP11End--> | 字符串 | 可缺省，缺省值为Cover。 |
+| startWindowAppIcon | 标识当前UIAbility组件启动页面图标资源文件的索引，取值为长度不超过255字节的字符串。<br/><!--RP12-->从API version 20开始支持该字段。<!--RP12End-->| 字符串 | 可缺省，缺省值为空。 |
+| startWindowIllustration | 标识当前UIAbility组件启动页面插画资源文件的索引，取值为长度不超过255字节的字符串。<br/><!--RP12-->从API version 20开始支持该字段。<!--RP12End--> | 字符串 | 可缺省，缺省值为空。 |
+| startWindowBrandingImage | 标识当前UIAbility组件启动页面品牌标识资源文件的索引，取值为长度不超过255字节的字符串。<br/><!--RP12-->从API version 20开始支持该字段。<!--RP12End--> | 字符串 | 可缺省，缺省值为空。 |
+| startWindowBackgroundColor | 标识当前UIAbility组件启动页面背景颜色资源文件的索引，取值为长度不超过255字节的字符串。<br/><!--RP12-->从API version 20开始支持该字段。<!--RP12End--> | 字符串 | 不可缺省。 |
+| startWindowBackgroundImage | 标识当前UIAbility组件启动页面背景图片资源文件的索引，取值为长度不超过255字节的字符串。<br/><!--RP12-->从API version 20开始支持该字段。<!--RP12End--> | 字符串 | 可缺省，缺省值为空。 |
+| startWindowBackgroundImageFit | 标识当前UIAbility组件启动页面背景图像适应方式，支持的取值如下：<br/>-&nbsp;Contain：按照宽高比进行缩小或放大，图片完全显示在显示边界内。<br/>-&nbsp;Cover：按照宽高比进行缩小或放大，图片两边都大于或等于显示边界。<br/>-&nbsp;Auto：自适应显示。<br/>-&nbsp;Fill：不按照宽高比进行放大或缩小，图片充满显示边界。<br/>-&nbsp;ScaleDown：按照宽高比显示，图片缩小或保持不变。<br/>-&nbsp;None：保持原有尺寸显示。<br/><!--RP12-->从API version 20开始支持该字段。<!--RP12End--> | 字符串 | 可缺省，缺省值为Cover。 |
 
 resources/base/profile路径下的start_window.json资源文件示例如下：
 ```json
