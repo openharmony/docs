@@ -24,10 +24,6 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。当前提供
 - 用于手动启动和停止连接的控件。
 - 当VPN启动连接时，在通知栏显示VPN应用的连接状态或提供网络统计信息 (如连接时长、流量等) 。点击该通知能够将您的VPN应用调入前台。
 
-## 接口说明
-
-完整的JS API说明以及示例代码请参考：[VPN扩展应用API](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
-<br/>使用该功能需要INTERNET权限。
 
 ## 创建VPN Extension Ability
 
