@@ -98,7 +98,7 @@
         console.log(`onSessionCreate formId: ${formId}, rect: ${JSON.stringify(rect)}` +
           `, borderRadius: ${borderRadius}`);
     
-        // 加载提供方页面
+        // 加载卡片提供方页面
         session.loadContent(PAGE_PATH, storage);
     
         // 卡片提供方需在激活态页面准备就绪时，通过 session 发送信息告知卡片使用方
@@ -159,7 +159,7 @@
           return;
         }
     
-        // 当系统识别卡片状态变化时，通过session通知卡片提供方，提供方根据业务需求处理动效接续和数据保存。
+        // 当系统识别卡片状态变化时，通过session通知卡片提供方，卡片提供方根据业务需求处理动效接续和数据保存。
         this.session.setReceiveDataCallback(that.handleMessage);
       }
     
@@ -185,7 +185,7 @@
       }
 
       /**
-       * 当系统识别卡片状态变化时，通过session通知卡片提供方，提供方根据业务需求处理动效接续和数据保存。
+       * 当系统识别卡片状态变化时，通过session通知卡片提供方，卡片提供方根据业务需求处理动效接续和数据保存。
        * @param status 卡片状态
        */
       private async handleFormStatus(status: string): Promise<void> {
