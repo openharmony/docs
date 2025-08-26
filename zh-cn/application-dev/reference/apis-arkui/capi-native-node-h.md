@@ -1302,8 +1302,8 @@ ArkUI_NodeAdapterHandle handle, void* userData, void (*receiver)(ArkUI_NodeAdapt
 
 | 参数项 | 描述 |
 | -- | -- |
-| handle | 组件适配器对象。 |
-| userData | 自定义数据。 |
+| ArkUI_NodeAdapterHandle handle | 组件适配器对象。 |
+| void* userData | 自定义数据。 |
 | receiver | 事件接收回调。 |
 
 **返回：**
@@ -2701,8 +2701,8 @@ int32_t OH_ArkUI_RegisterSystemColorModeChangeEvent(ArkUI_NodeHandle node,void* 
 | 参数项 | 描述 |
 | -- | -- |
 | node | 指定的节点。 |
-|  void* userData | 自定义事件参数，当事件触发时在回调参数中携带回来。 |
-| onColorModeChange | 事件触发后的回调。 |
+| void* userData | 自定义事件参数，当事件触发时在回调参数中携带回来。 |
+| onColorModeChange | 事件触发后的回调。[ArkUI_SystemColorMode](capi-native-type-h.md#arkui_systemcolormode)用于定义系统深浅色模式。 |
 
 **返回：**
 
@@ -3232,7 +3232,7 @@ ArkUI_ErrorCode OH_ArkUI_AddSupportedUIStates(ArkUI_NodeHandle node, int32_t uiS
 | [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 目标节点。 |
 | int32_t uiStates | 目标节点需要处理的目标UI状态。所有目标UI状态的组合结果可以通过“\|”操作来计算。例如：targetUIStates = ArkUI_UIState::PRESSED | ArkUI_UIState::FOCUSED。 |
 | void (statesChangeHandler)(int32_t currentStates, void* userData) | UI状态改变处理函数。返回当前UI状态，该值是所有当前状态枚举值“\|”计算的结果，可以通过执行“&”操作来确定状态。例如：if (currentStates & ArkUI_UIState::PRESSED == ArkUI_UIState::PRESSED)。但是，对于正常状态检查，应直接使用等号。例如：if (currentStates == ArkUI_UIState::NORMAL) |
-|  bool excludeInner | 禁止内部默认状态样式的标志。 |
+|  bool excludeInner | 禁止内部默认状态样式的标志。​​true​​表示禁用系统内部的默认样式，false表示不禁用。|
 |  void* userData | onDrawCompleted回调函数中使用的自定义数据。 |
 
 **返回：**
