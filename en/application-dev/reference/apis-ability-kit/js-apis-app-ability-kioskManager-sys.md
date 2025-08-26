@@ -1,4 +1,10 @@
 # @ohos.app.ability.kioskManager (Kiosk Mode Management) (System APIs)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhu-feimo-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 The KioskManager module provides APIs to manage kiosk mode, including entering/exiting kiosk mode and querying the kiosk mode status.
 
@@ -8,8 +14,6 @@ This module applies only to enterprise applications. In kiosk mode, an enterpris
 >
 > The initial APIs of this module are supported since API version 20. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module are system APIs and cannot be called by third-party applications.
->
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.app.ability.kioskManager (Kiosk Mode Management)](js-apis-app-ability-kioskManager.md).
 
 ## Modules to Import
@@ -18,7 +22,7 @@ This module applies only to enterprise applications. In kiosk mode, an enterpris
 import { kioskManager } from '@kit.AbilityKit';
 ```
 
-## getKioskStatus
+## kioskManager.getKioskStatus
 
 getKioskStatus(): Promise&lt;KioskStatus&gt;
 
@@ -32,7 +36,7 @@ Obtains the Kiosk mode status information, including whether the system is in ki
 
 | Type| Description|
 |------|------|
-| Promise&lt;[KioskStatus](./js-apis-application-KioskStatus.md#kioskstatus)&gt; | Promise used to return the kiosk mode status information.|
+| Promise&lt;[KioskStatus](./js-apis-app-ability-kioskManager.md#kioskstatus20)&gt; | Promise used to return the kiosk mode status information.|
 
 **Error codes**
 
@@ -41,7 +45,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 |---------|---------|
 | 202 | Not system application. |
-| 801 | Capability not support. |
+| 801 | Capability not supported. |
 | 16000050 | Internal error. |
 
 **Example**

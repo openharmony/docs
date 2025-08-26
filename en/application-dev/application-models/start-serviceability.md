@@ -1,4 +1,10 @@
 # Starting a ServiceAbility
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @xialiangwei-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 <!--deprecated_code_no_check-->
 
 A ServiceAbility is started in the same way other abilities. You can start a ServiceAbility by calling **featureAbility.startAbility()** in the PageAbility or calling **particleAbility.startAbility()** in another ServiceAbility. For details about the startup rules, see [Component Startup Rules](component-startup-rules.md).

@@ -1,5 +1,12 @@
 # @ohos.app.ability.InsightIntentExecutor (Base Class for Intent Call Execution)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @linjunjie6-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 The module provides the base class for intent call execution. Through this base class, you can access the InsightIntent framework on the device side. You need to implement the service logic to respond to intent calls. To access the InsightIntent framework, you need to declare the intent name and intent access mode in the intent configuration file. The system calls the intent based on the user interaction and intent configuration file and triggers the corresponding intent call execution callback.
 
 > **NOTE**
@@ -59,8 +66,8 @@ Called when the intent is to bring the UIAbility to the foreground. Both synchro
 
 | Type| Description|
 | -------- | -------- |
-| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) | Intent call execution result.|
-| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Promise used to return the intent call execution result.|
+| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) \| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Intent execution result or a Promise object containing the intent execution result|
+|  |  |
 
 **Example**
 
@@ -171,8 +178,7 @@ Called when the intent is to bring the UIAbility to the background. Both synchro
 
 | Type| Description|
 | -------- | -------- |
-| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) | Intent call execution result.|
-| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Promise used to return the intent call execution result.|
+| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) \| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Intent execution result or a Promise object containing the intent execution result|
 
 **Example**
 
@@ -242,8 +248,7 @@ When an intent is called, the UIExtensionAbility lifecycle callbacks are trigger
 
 | Type| Description|
 | -------- | -------- |
-| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) | Intent call execution result.|
-| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Promise used to return the intent call execution result.|
+| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) \| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Intent execution result or a Promise object containing the intent execution result|
 
 **Example**
 
@@ -343,8 +348,7 @@ When an intent is called, the ServiceExtensionAbility lifecycle callbacks are tr
 
 | Type| Description|
 | -------- | -------- |
-| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) | Intent call execution result.|
-| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Promise used to return the intent call execution result.|
+| [insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult) \| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Intent execution result or a Promise object containing the intent execution result|
 
 **Example**
 

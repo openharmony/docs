@@ -1,12 +1,14 @@
-# @ohos.app.ability.InsightIntentEntryExecutor (Base Class for Intent Call Execution of @InsightIntentEntry)
+# @ohos.app.ability.InsightIntentEntryExecutor (Base Class for Intent Execution of @InsightIntentEntry)
 
-The module provides the base class for executing intent calls decorated with [@InsightIntentEntry](js-apis-app-ability-InsightIntentDecorator.md#insightintententry). It must be used together with the @InsightIntentEntry decorator.
+The module provides the base class for implementing the execution of intents decorated with [@InsightIntentEntry](js-apis-app-ability-InsightIntentDecorator.md#insightintententry). It must be used together with the @InsightIntentEntry decorator.
 
 You are required to implement the [onExecute()](#onexecute) callback for intent execution in the child class that inherits from this base class and use the @InsightIntentEntry decorator to decorate the child class.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 20. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
 
@@ -18,35 +20,31 @@ import { InsightIntentEntryExecutor } from '@kit.AbilityKit';
 
 ### Properties
 
-**Model restriction**: This API can be used only in the stage model.
-
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
-| Name              | Type           | Read-Only        | Optional| Description                                                        |
-| ------------------ | ----------------| ---------- | ---- | ------------------------------------------------------------ |
-| executeMode        | [insightIntent.ExecuteMode](./js-apis-app-ability-insightIntent.md#executemode) | No      | No  | Execution mode of the intent call, that is, execution mode supported when the bound ability is started.|
-| context            | [InsightIntentContext](./js-apis-app-ability-insightIntentContext.md)          | No      | No | Intent call execution context.|
-| windowStage        | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md)       | No      | Yes  | Window manager that displays the intent. It is valid only when **executeMode** is set to **UI_ABILITY_FOREGROUND** (the UIAbility needs to be displayed in the foreground during the intent call).   |
-| uiExtensionSession     | [UIExtensionContentSession](./js-apis-app-ability-uiExtensionContentSession.md)       | No      | Yes  | Instance created when the [UIExtensionAbility](./js-apis-app-ability-uiExtensionAbility.md) loads the UI content. It takes effect only when **executeMode** is set to **UI_EXTENSION_ABILITY** (the UIExtensionAbility needs to be started during the intent call).   |
+| Name| Type| Read-Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| executeMode | [insightIntent.ExecuteMode](./js-apis-app-ability-insightIntent.md#executemode) | No| No| Intent execution mode, that is, execution mode supported when the bound ability is started.|
+| context | [InsightIntentContext](./js-apis-app-ability-insightIntentContext.md) | No| No| Context for intent execution.|
+| windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | No| Yes| WindowStage instance, which is the same as the WindowStage instance in the [onWindowStageCreate](./js-apis-app-ability-uiAbility.md#onwindowstagecreate) API and can be used to load the page for intent execution. It is valid only when **executeMode** is set to **UI_ABILITY_FOREGROUND** (the UIAbility needs to be displayed in the foreground during intent execution).|
+| uiExtensionSession | [UIExtensionContentSession](./js-apis-app-ability-uiExtensionContentSession.md) | No| Yes| UIExtensionContentSession instance, which is the same as the UIExtensionContentSession instance in the [onSessionCreate](./js-apis-app-ability-uiExtensionAbility.md#onsessioncreate) API and can be used to load the page for intent execution. It takes effect only when **executeMode** is set to **UI_EXTENSION_ABILITY** (the UIExtensionAbility needs to be started during intent execution).|
 
 ### onExecute
 
 onExecute(): Promise\<insightIntent.IntentResult\<T>>
 
-When the AI entry triggers intent call, the system starts the ability bound to the entry and automatically triggers this callback. This API uses a promise to return the result. You can implement intent operations in this callback.
+ When the AI entry triggers intent execution, the system starts the ability bound to this class and triggers this callback. You can implement the required intent operations in this callback. This API uses a promise to return the result.
 
 The following table describes the relationship between the callback and the intent execution mode.
 
 | Intent Execution Mode| API Calling Timing and Sequence|
 | ----------- | -----------------|
-| [UI_ABILITY_FOREGROUND](./js-apis-app-ability-insightIntent.md#executemode)<br>Foreground mode of the UIAbility| - If the UIAbility is cold started, the UIAbility lifecycle callbacks are triggered in the following sequence: **onCreate**, **onWindowStageCreate**, **onExecute**, and **onForeground**.<br>- If the UIAbility is hot started in the background, the UIAbility lifecycle callbacks are triggered in the following sequence: **onNewWant**, **onExecute**, and **onForeground**.<br>- If the UIAbility is hot started in the foreground, the UIAbility lifecycle callbacks are triggered in the following sequence: **onExecute**.|
-| [UI_ABILITY_BACKGROUND](./js-apis-app-ability-insightIntent.md#executemode)<br>Background mode of the UIAbility| - If the UIAbility is cold started, the UIAbility lifecycle callbacks are triggered in the following sequence: **onCreate**, **onExecute**, and **onBackground**.<br>- If the UIAbility is hot started, the UIAbility lifecycle callbacks are triggered in the following sequence: **onExecute**.|
-| [UI_EXTENSION_ABILITY](./js-apis-app-ability-insightIntent.md#executemode)<br>UIExtension mode| When an intent is called, the UIExtensionAbility lifecycle callbacks are triggered in the following sequence: **onCreate**, **onSessionCreate**, **onExecute**, and **onForeground**.|
-|<!--DelRow-->[SERVICE_EXTENSION_ABILITY](./js-apis-app-ability-insightIntent-sys.md)<br>ServiceExtension mode| When an intent is called, the ServiceExtensionAbility lifecycle callbacks are triggered in the following sequence: **onCreate**, **onRequest**, and **onExecute**.|
-
-**Model restriction**: This API can be used only in the stage model.
+| [UI_ABILITY_FOREGROUND](./js-apis-app-ability-insightIntent.md#executemode)<br>Foreground mode of the UIAbility| - If the UIAbility is cold started, the UIAbility lifecycle callbacks are triggered in the following sequence during intent execution: [onCreate](./js-apis-app-ability-uiAbility.md#oncreate), [onWindowStageCreate](./js-apis-app-ability-uiAbility.md#onwindowstagecreate), onExecute, and [onForeground](./js-apis-app-ability-uiAbility.md#onforeground).<br>- If the UIAbility is hot started in the background, the UIAbility lifecycle callbacks are triggered in the following sequence during intent execution: [onNewWant](./js-apis-app-ability-uiAbility.md#onnewwant), onExecute, and [onForeground](./js-apis-app-ability-uiAbility.md#onforeground).<br>- If the UIAbility is hot started in the foreground, the UIAbility lifecycle callbacks are triggered in the following sequence during intent execution: onExecute.|
+| [UI_ABILITY_BACKGROUND](./js-apis-app-ability-insightIntent.md#executemode)<br>Background mode of the UIAbility| - If the UIAbility is cold started, the UIAbility lifecycle callbacks are triggered in the following sequence during intent execution: [onCreate](./js-apis-app-ability-uiAbility.md#oncreate), onExecute, and [onBackground](./js-apis-app-ability-uiAbility.md#onbackground).<br>- If the UIAbility is hot started, the UIAbility lifecycle callbacks are triggered in the following sequence during intent execution: onExecute.|
+| [UI_EXTENSION_ABILITY](./js-apis-app-ability-insightIntent.md#executemode)<br>UIExtension mode| The UIExtensionAbility lifecycle callbacks are triggered in the following sequence during intent execution: [onCreate](./js-apis-app-ability-uiExtensionAbility.md#oncreate), [onSessionCreate](./js-apis-app-ability-uiExtensionAbility.md#onsessioncreate), onExecute, and [onForeground](./js-apis-app-ability-uiExtensionAbility.md#onforeground).|
+|<!--DelRow-->[SERVICE_EXTENSION_ABILITY](./js-apis-app-ability-insightIntent-sys.md)<br>ServiceExtension mode| The ServiceExtensionAbility lifecycle callbacks are triggered in the following sequence during intent execution: [onCreate](./js-apis-app-ability-serviceExtensionAbility-sys.md#oncreate), [onRequest](./js-apis-app-ability-serviceExtensionAbility-sys.md#onrequest), and onExecute.|
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 

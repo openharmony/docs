@@ -89,15 +89,13 @@ Restarts the current atomic service.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**Model restriction**: This API can be used only in the stage model.
-
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| context    | [Context](./js-apis-inner-application-context.md)   | Yes   | Context of the ability.<br>**NOTE**: Currently, only [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) is supported.<br>|
+| context    | [Context](./js-apis-inner-application-context.md)   | Yes   | Context of the ability.<br>Note: Currently, only [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) is supported.<br>|
 
 **Error codes**
 
