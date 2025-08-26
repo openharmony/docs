@@ -45,7 +45,7 @@ Sets the start row number of the component.
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| value  | number | Yes  | Start row number of the component.<br>In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1-creating-a-fixed-row-and-column-grid-layout) and [Grid Example 3](ts-container-grid.md#example-3-implementing-a-scrollable-grid-with-grid-items-spanning-rows-and-columns).<br>Value range: [0, Total number of rows ¨C 1].|
+| value  | number | Yes  | Start row number of the component.<br>In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1-creating-a-fixed-row-and-column-grid-layout) and [Grid Example 3](ts-container-grid.md#example-3-implementing-a-scrollable-grid-with-grid-items-spanning-rows-and-columns).<br>Value range: [0, Total number of rows - 1].|
 
 ### rowEnd
 
@@ -61,7 +61,7 @@ Sets the end row number of the component.
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| value  | number | Yes  | End row number of the component.<br>In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1-creating-a-fixed-row-and-column-grid-layout) and [Grid Example 3](ts-container-grid.md#example-3-implementing-a-scrollable-grid-with-grid-items-spanning-rows-and-columns).<br>Value range: [0, Total number of rows ¨C 1].|
+| value  | number | Yes  | End row number of the component.<br>In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1-creating-a-fixed-row-and-column-grid-layout) and [Grid Example 3](ts-container-grid.md#example-3-implementing-a-scrollable-grid-with-grid-items-spanning-rows-and-columns).<br>Value range: [0, Total number of rows âˆ’ 1].|
 
 ### columnStart
 
@@ -77,7 +77,7 @@ Sets the start column number of the component.
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| value  | number | Yes  | Start column number of the component.<br>In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1-creating-a-fixed-row-and-column-grid-layout) and [Grid Example 3](ts-container-grid.md#example-3-implementing-a-scrollable-grid-with-grid-items-spanning-rows-and-columns).<br>Value range: [0, Total number of columns ¨C 1].|
+| value  | number | Yes  | Start column number of the component.<br>In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1-creating-a-fixed-row-and-column-grid-layout) and [Grid Example 3](ts-container-grid.md#example-3-implementing-a-scrollable-grid-with-grid-items-spanning-rows-and-columns).<br>Value range: [0, Total number of columns âˆ’ 1].|
 
 ### columnEnd
 
@@ -93,7 +93,7 @@ Sets the end column number of the component.
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| value  | number | Yes  | End column number of the component.<br>In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1-creating-a-fixed-row-and-column-grid-layout) and [Grid Example 3](ts-container-grid.md#example-3-implementing-a-scrollable-grid-with-grid-items-spanning-rows-and-columns).<br>Value range: [0, Total number of columns ¨C 1].|
+| value  | number | Yes  | End column number of the component.<br>In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1-creating-a-fixed-row-and-column-grid-layout) and [Grid Example 3](ts-container-grid.md#example-3-implementing-a-scrollable-grid-with-grid-items-spanning-rows-and-columns).<br>Value range: [0, Total number of columns âˆ’ 1].|
 
 >  **NOTE**
 >
