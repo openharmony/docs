@@ -1701,6 +1701,8 @@ Swiper滑动时触发的回调，参数可参考[SwiperContentTransitionProxy](#
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
 | selectedIndex | number | 是 | 当前选中页面的索引。 |
