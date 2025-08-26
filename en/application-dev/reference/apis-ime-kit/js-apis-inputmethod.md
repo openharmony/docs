@@ -2,8 +2,9 @@
 <!--Kit: IME Kit-->
 <!--Subsystem: MiscServices-->
 <!--Owner: @illybyy-->
-<!--SE: @andeszhang-->
-<!--TSE: @murphy1984-->
+<!--Designer: @andeszhang-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 The **inputMethod** module is oriented to common foreground applications (third-party applications and system applications such as Notes, Messaging, and Settings). It provides input method control and management capabilities, including displaying or hiding the soft keyboard, switching between input methods, and obtaining the list of all input methods.
 
@@ -38,7 +39,7 @@ Describes the input method application attributes.
 | -------- | -------- | -------- | -------- | -------- |
 | name<sup>9+</sup>  | string | Yes| No| Mandatory. Name of the input method package.|
 | id<sup>9+</sup>    | string | Yes| No| Mandatory. Unique identifier of an input method extension in an app. **id** and **name** form a globally unique identifier of the input method extension.|
-| label<sup>9+</sup>    | string | Yes| Yes| Optional.<br>- When **InputMethodProperty** is used as the input parameter of an API for switching or querying, you do not need to set this field. You can use name and ID to uniquely specify an input method extension.<br>- When **InputMethodProperty** is used as the return value of an API for querying (for example, [getCurrentInputMethod](#inputmethodgetcurrentinputmethod9)), this field indicates the name of the input method extension displayed externally. Use the label configured for the InputmethodExtensionAbility. If no label is configured, the label of the application entry ability is automatically used. If no label is configured for the application entry ability, the label configured in **AppScope** is automatically used.|
+| label<sup>9+</sup>    | string | Yes| Yes| Optional.<br>- When **InputMethodProperty** is used as the input parameter of an API for switching or querying, you do not need to set this field. You can use name and ID to uniquely specify an input method extension.<br>- When **InputMethodProperty** is used as the return value of an API for querying (for example, [getCurrentInputMethod](#inputmethodgetcurrentinputmethod9)), this field indicates the name of the input method extension displayed externally. Use the label configured for the InputMethodExtensionAbility. If no label is configured, the label of the application entry ability is automatically used. If no label is configured for the application entry ability, the label configured in **AppScope** is automatically used.|
 | labelId<sup>10+</sup>    | number | Yes| Yes| Optional.<br>- When **InputMethodProperty** is used as the input parameter of an API for switching or querying, you do not need to set this field. You can use name and ID to uniquely specify an input method extension.<br>- When **InputMethodProperty** is used as the return value of an API for querying (for example, [getCurrentInputMethod](#inputmethodgetcurrentinputmethod9)), this field indicates the resource ID of the **label** field.|
 | icon<sup>9+</sup>    | string | Yes| Yes| Optional.<br>- When **InputMethodProperty** is used as the input parameter of an API for switching or querying, you do not need to set this field. You can use name and ID to uniquely specify an input method extension.<br>- When **InputMethodProperty** is used as the return value of an API for querying (for example, [getCurrentInputMethod](#inputmethodgetcurrentinputmethod9)), this field indicates the input method icon data, which can be obtained through icon ID.|
 | iconId<sup>9+</sup>    | number | Yes| Yes| Optional.<br>- When **InputMethodProperty** is used as the input parameter of an API for switching or querying, you do not need to set this field. You can use name and ID to uniquely specify an input method extension.<br>- When **InputMethodProperty** is used as the return value of an API for querying (for example, [getCurrentInputMethod](#inputmethodgetcurrentinputmethod9)), this field indicates the resource ID of the **icon** field.|
@@ -80,7 +81,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                    |
 | -------- | ------------------------------ |
-| 12800006 | input method controller error. Possible cause: create InputmethodController object failed. |
+| 12800006 | input method controller error. Possible cause: create InputMethodController object failed. |
 
 **Example**
 
@@ -172,7 +173,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800007 |  input method setter error. Possible cause: create InputmethodSetting object failed. |
+| 12800007 |  input method setter error. Possible cause: create InputMethodSetting object failed. |
 
 **Example**
 
@@ -222,9 +223,9 @@ try{
       return;
     }
     if (result) {
-      console.info('Succeeded in switching inputmethod.');
+      console.info('Succeeded in switching input method.');
     } else {
-      console.error('Failed to switchInputMethod.');
+      console.error('Failed to switch input method.');
     }
   });
 } catch(err) {
@@ -278,9 +279,9 @@ let currentIme = inputMethod.getCurrentInputMethod();
 try {
   inputMethod.switchInputMethod(currentIme).then((result: boolean) => {
     if (result) {
-      console.info('Succeeded in switching inputmethod.');
+      console.info('Succeeded in switching input method.');
     } else {
-      console.error('Failed to switchInputMethod.');
+      console.error('Failed to switch input method.');
     }
   }).catch((err: BusinessError) => {
     console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);

@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## Overview
 
@@ -35,12 +36,12 @@ The APIs are as follows:
 
 ### Long-Time Task Monitoring
 
-#### Mechanism
+**Mechanism**
 
 - When the task execution reaches one second, stack printing is triggered. The stack printing interval is then changed to one minute. After 10 prints, the interval is changed to 10 minutes. After another 10 prints, the interval is changed to and fixed at 30 minutes.
 - The `GetBacktraceStringByTid` API of DFX is called for stack printing. This API sends stack capture signals to the blocked thread to trigger interrupts and capture the call stack return.
 
-#### Example
+**Example**
 
 Search for the keyword **RecordSymbolAndBacktrace** in the corresponding process log. The following is an example of the corresponding log:
 
@@ -61,13 +62,13 @@ W C01719/ffrt: #09 pc 00000000000467b0 /system/lib64/chipset-sdk/libffrt.so
 
 The log prints the task stack, Worker thread ID, and execution time of the long-time task. Find the corresponding component based on the stack to determine the blocking cause.
 
-#### Precautions
+**Precautions**
 
 N/A
 
 ### Running Information Dump
 
-#### Mechanism
+**Mechanism**
 
 FFRT provides an external interface API `ffrt_dump` to dump the internal information about the running of the FFRT subsystem, including:
 
@@ -78,7 +79,7 @@ FFRT provides an external interface API `ffrt_dump` to dump the internal informa
 
 When the current process is frozen, the DFX module proactively calls the `ffrt_dump` API to dump the FFRT information to the freeze file and store the file in the `/data/log/faultlog/faultlogger/` directory. You can directly use the task call stack information in the file to locate the frame freezing of the corresponding task.
 
-#### Example
+**Example**
 
 ```txt
 ready task ptr: qos 0 readptr 79 writeptr 79
@@ -113,17 +114,17 @@ proc status: taskCnt 23 vercnt 0sigCnt0
 #05 pc 0000000000066d18 /system/lib64/ndk/libffrt.so(22be57f01a789a03813d26a19c3a4042)
 ```
 
-#### Precautions
+**Precautions**
 
-The DFX module has requirements on the processing time during freeze, which has a low probability that the information collected by `ffrt_dump` is incomplete and the freeze processing time expires. In this case, the information flushed to the disk is missing.
+The DFX module has requirements on the processing time during freeze. There is a low probability that the information collected by `ffrt_dump` is incomplete and the freeze processing time expires. In this case, the information flushed to the disk is missing.
 
 ### Blackbox Logs
 
-#### Mechanism
+**Mechanism**
 
 When a process crashes, the FFRT module receives signals (`SIGABRT`, `SIGBUS`, `SIGFPE`, `SIGILL`, `SIGSTKFLT`, `SIGSTOP`, `SIGSYS`, and `SIGTRAP`) and saves important running information to the faultlog, including the running task, running information and call stack information of the current Worker thread, common task information, and queue task information. You can use the information to locate the crashes.
 
-#### Example
+**Example**
 
 ```txt
 C01719/CameraDaemon/ffrt: 9986:operator():254 <<<=== ffrt black box(BBOX) start ===>>>
@@ -143,17 +144,17 @@ C01719/CameraDaemon/ffrt: 9999:SaveWorkerStatus:100 qos 2: worker tid 1145 is ru
 C01719/CameraDaemon/ffrt: 10000:SaveWorkerStatus:100 qos 2: worker tid 5966 is running nothing
 ```
 
-#### Precautions
+**Precautions**
 
 N/A
 
 ### Tracing
 
-#### Mechanism
+**Mechanism**
 
 During FFRT task scheduling and execution, the system traces the task status in the FFRT framework in real time. You can use the trace graphical tool to analyze whether the task behavior meets the expectation.
 
-#### Example
+**Example**
 
 1. Starting trace capture
 
@@ -168,13 +169,13 @@ During FFRT task scheduling and execution, the system traces the task status in 
 
     Obtain the trace file from the device and use a graphical tool, for example, [Perfetto](https://perfetto.dev/), to analyze the file.
 
-#### Precautions
+**Precautions**
 
 You can also add traces to your service code to locate the fault. Note that in the high-frequency call process, adding traces will cause system overhead and affect service performance.
 
 ### Debug Logs
 
-#### Mechanism
+**Mechanism**
 
 - By default, debug logs are disabled for the FFRT, but can be enabled by using commands to obtain more maintenance and test information for fault locating in the development.
 - Enable the FFRT debug log function:
@@ -189,14 +190,14 @@ You can also add traces to your service code to locate the fault. Note that in t
     hdc shell hilog -b INFO -D 0xD001719
     ```
 
-#### Example
+**Example**
 
 ```txt
 4190  5631 D C01719/neboard:EngineServiceAbility:1/ffrt: 275337:Detach:147 qos 3 thread not joinable
 3257  6075 D C01719/com.ohos.sceneboard/ffrt: 513070:SetDefaultThreadAttr:148 qos apply tid[6075] level[3]
 ```
 
-#### Precautions
+**Precautions**
 
 The FFRT is the system base and supports the running of a large number of upper-layer services and frameworks. If the debug log function is enabled globally, the number of logs will exceed the threshold, which affects the log output of other modules.
 

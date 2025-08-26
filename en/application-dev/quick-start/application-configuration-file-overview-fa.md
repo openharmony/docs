@@ -1,4 +1,10 @@
-# Overview of Application Configuration Files in FA Model
+# Application Configuration Files (FA Model)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 
 Each application project must have configuration files in its code directory. These configuration files provide basic application information for build tools, the operating system, and application markets.

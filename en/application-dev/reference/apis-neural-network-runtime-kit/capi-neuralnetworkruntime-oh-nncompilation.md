@@ -1,5 +1,10 @@
 # OH_NNCompilation
-<!--Kit_Neural Network Runtime Kit--><!--System_AI-->
+<!--Kit: Neural Network Runtime Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @GbuzhidaoR-->
+<!--Designer: @GbuzhidaoR-->
+<!--Tester: @GbuzhidaoR-->
+<!--Adviser: @ge-yafang-->
 
 ## Overview
 
