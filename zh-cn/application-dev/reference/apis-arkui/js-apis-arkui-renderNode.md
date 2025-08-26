@@ -1,4 +1,10 @@
 # RenderNode
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 提供自绘制渲染节点RenderNode，支持开发者通过C API进行开发，完成自定义绘制需求。
 
@@ -2356,6 +2362,8 @@ get shapeMask(): ShapeMask
 
 获取当前RenderNode的遮罩。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -2432,7 +2440,7 @@ get shapeClip(): ShapeClip
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.clip
 
 **返回值：**
 
@@ -2621,6 +2629,8 @@ get markNodeGroup(): boolean
 
 获取当前节点是否标记了优先绘制。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -2706,6 +2716,8 @@ set lengthMetricsUnit(unit: LengthMetricsUnit)
 get lengthMetricsUnit(): LengthMetricsUnit
 
 获取RenderNode各个属性使用的单位。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
