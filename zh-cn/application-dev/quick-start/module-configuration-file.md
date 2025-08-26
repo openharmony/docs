@@ -1134,7 +1134,7 @@ resources/base/profile路径下的start_window.json资源文件示例如下：
   "startWindowBackgroundImageFit": "Cover"
 }
 ```
-<!--RP15End-->
+<!--RP14End-->
 
 ## systemTheme标签
 
