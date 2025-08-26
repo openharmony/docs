@@ -1,4 +1,10 @@
 # @ohos.app.form.FormExtensionAbility (FormExtensionAbility)
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 
 FormExtensionAbility为卡片扩展模块，提供卡片创建、销毁、刷新等生命周期回调。
 
