@@ -1,4 +1,10 @@
 # LifecycleData Switching
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @xialiangwei-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 
   | API in the FA Model| Corresponding .d.ts File in the Stage Model| Corresponding API in the Stage Model| 
@@ -10,9 +16,9 @@
 | batchInsert?(uri: string, valueBuckets: Array&lt;rdb.ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void; | \@ohos.application.DataShareExtensionAbility.d.ts | [batchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void;](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md#batchinsert) |
 | denormalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void; | \@ohos.application.DataShareExtensionAbility.d.ts | [denormalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void;](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md#denormalizeuri) |
 | insert?(uri: string, valueBucket: rdb.ValuesBucket, callback: AsyncCallback&lt;number&gt;): void; | \@ohos.application.DataShareExtensionAbility.d.ts | [insert?(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void;](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md#insert) |
-| openFile?(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): void; | There is no corresponding API in the stage model.| The stage model does not support cross-process URI access. You are advised to use [the **want** parameter to carry the file descriptor and file information](file-processing-apps-startup.md) for cross-process file access.|
-| getFileTypes?(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void; | There is no corresponding API in the stage model.| The stage model does not support cross-process URI access. You are advised to use [the **want** parameter to carry the file descriptor and file information](file-processing-apps-startup.md) for cross-process file access.|
+| openFile?(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): void; | There is no corresponding API in the stage model.| The stage model does not support cross-process URI access. You are advised to use the **want** parameter to carry the file descriptor and file information for cross-process file access. For details, see [Using startAbility to Start a File Application](file-processing-apps-startup.md). |
+| getFileTypes?(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void; | There is no corresponding API in the stage model.| The stage model does not support cross-process URI access. You are advised to use the **want** parameter to carry the file descriptor and file information for cross-process file access. For details, see [Using startAbility to Start a File Application](file-processing-apps-startup.md). |
 | onInitialized?(info: AbilityInfo): void; | \@ohos.application.DataShareExtensionAbility.d.ts | [onCreate?(want: Want, callback: AsyncCallback&lt;void&gt;): void;](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md#oncreate) |
-| getType?(uri: string, callback: AsyncCallback&lt;string&gt;): void; | There is no corresponding API in the stage model.| The stage model does not support cross-process URI access. You are advised to use [the **want** parameter to carry the file descriptor and file information](file-processing-apps-startup.md) for cross-process file access.|
+| getType?(uri: string, callback: AsyncCallback&lt;string&gt;): void; | There is no corresponding API in the stage model.| The stage model does not support cross-process URI access. You are advised to use the **want** parameter to carry the file descriptor and file information for cross-process file access. For details, see [Using startAbility to Start a File Application](file-processing-apps-startup.md). |
 | executeBatch?(ops: Array&lt;DataAbilityOperation&gt;, callback: AsyncCallback&lt;Array&lt;DataAbilityResult&gt;&gt;): void; | There is no corresponding API in the stage model.| No corresponding API is provided.|
 | call?(method: string, arg: string, extras: PacMap, callback: AsyncCallback&lt;PacMap&gt;): void; | There is no corresponding API in the stage model.| No corresponding API is provided.|

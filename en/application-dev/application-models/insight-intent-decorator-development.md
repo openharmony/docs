@@ -26,7 +26,7 @@ This section uses the development of standard intents and custom intents with @I
 
 The following uses the standard intent [ViewLogistics](./insight-intent-access-specifications.md#viewing-logistics) as an example to describe how to develop a standard intent with the @InsightIntentEntry decorator.
 
-1. If a new intent execution file is added and not referenced by other entry files, declare the executor path via the **insightIntentsSrcEntry** field in the **insight_intent.json** file to include it in compilation.
+1. Declare the intent execution file in the **insightIntentsSrcEntry** field of the **insight_intent.json** file.
 
     ```json
     {
@@ -85,7 +85,7 @@ The intent execution process is as follows:
 
 The following uses the development of a custom intent "Play Music" as an example. You are required to define the large language model description, intent search keywords, intent parameters, and intent execution results for the intent.
 
-1. If a new intent execution file is added and not referenced by other entry files, declare the executor path via the **insightIntentsSrcEntry** field in the **insight_intent.json** file to include it in compilation.
+1. Declare the intent execution file in the **insightIntentsSrcEntry** field of the **insight_intent.json** file.
 
     ```json
     {
