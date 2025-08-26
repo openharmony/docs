@@ -774,7 +774,7 @@ type DataLoadParams = DataLoadParams
 
 ## executeDropAnimation<sup>18+</sup>
 
-executeDropAnimation(customDragAnimation: Callback\<void\>): void
+executeDropAnimation(customDropAnimation: Callback\<void\>): void
 
 设置一个自定义落位动效的执行函数，仅在useCustomDropAnimation为true时有效。
 
@@ -825,7 +825,7 @@ type OnDragEventCallback = (event: DragEvent, extraParams?: string) => void
 
 | 名称     | 类型  | 只读 | 可选 | 说明           |
 | ------ | ------ | ---------------- | ------ | ------ |
-| disableDataPrefetch | bool  | 否  | 否  | 设置拖拽是否提前获取数据。true表示不提前获取数据，false表示提前获取数据，默认值为false。<br/>**说明：**<br/> 当使用startDataLoading获取数据时需设置该参数为true，防止拖拽提前获取数据。 |
+| disableDataPrefetch | boolean  | 否  | 否  | 设置拖拽是否提前获取数据。true表示不提前获取数据，false表示提前获取数据，默认值为false。<br/>**说明：**<br/> 当使用startDataLoading获取数据时需设置该参数为true，防止拖拽提前获取数据。 |
 
 ## SpringLoadingContext<sup>20+</sup>
 
