@@ -177,7 +177,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 | popupColor                   | [ResourceColor](ts-types.md#resourcecolor) | 否    | 是   | 提示气泡的颜色。如需去除模糊背景填充效果，需将backgroundBlurStyle设置为BlurStyle.NONE。默认值：透明色[TRANSPARENT](ts-appendix-enums.md#color)加模糊背景填充效果[COMPONENT_ULTRA_THICK](ts-universal-attributes-background.md#blurstyle9)。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 | enableArrow                  | boolean                                  | 否    | 是   | 是否显示箭头。值为true时显示箭头，值为false时不显示箭头。<br/>如果箭头所在方位侧的气泡长度不足以显示下箭头，则会默认不显示箭头。比如：placement设置为Left，此时如果气泡高度小于箭头的宽度（32vp）与气泡圆角两倍（48vp）之和（80vp），则实际不会显示箭头。<br/>默认值：true <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 | autoCancel                   | boolean                                  | 否    | 是   | 页面有操作时，值为true表示自动关闭气泡，值为false表示气泡不会自动关闭。<br/>默认值：true <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| onStateChange                | [PopupStateChangeCallback](#popupstatechangecallback18类型说明) | 否    | 是   | 气泡状态变化事件回调。<br />**说明：**<br />不支持通过[updatePopup](../arkts-apis-uicontext-promptaction.md#updatepopup18)进行更新。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| onStateChange                | [PopupStateChangeCallback](#popupstatechangecallback18) | 否    | 是   | 气泡状态变化事件回调。<br />**说明：**<br />不支持通过[updatePopup](../arkts-apis-uicontext-promptaction.md#updatepopup18)进行更新。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | arrowOffset     | [Length](ts-types.md#length) | 否    | 是   | Popup箭头在气泡处的偏移。箭头在气泡上下方时，数值为0表示箭头居最左侧，偏移量为箭头至最左侧的距离，默认居中。箭头在气泡左右侧时，偏移量为箭头至最上侧的距离，默认居中。显示在屏幕边缘时，气泡会自动左右偏移，数值为0时箭头始终指向绑定组件。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | showInSubWindow | boolean                                  | 否    | 是   | 取值为true时，气泡会显示在创建的子窗里，取值为false时，气泡会显示在对应的主窗中。<br />默认值：false<br />**说明：**<br />不支持通过[updatePopup](../arkts-apis-uicontext-promptaction.md#updatepopup18)进行更新。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | mask           | boolean&nbsp;\|&nbsp;[PopupMaskType](#popupmasktype18类型说明) | 否    | 是   | 设置气泡是否有遮罩层及遮罩颜色。设置为false时不显示遮罩层，设置为true时显示透明色遮罩层，设置为PopupMaskType时显示指定颜色的遮罩层。默认值：true<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
@@ -213,11 +213,11 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 | --------- | ------- | ---- | ---- | ------------------------------------------------------------ |
 | isVisible | boolean | 否   | 否   | 气泡的显示状态。返回true时，表示气泡从关闭到打开，返回false时，表示气泡从打开到关闭。 |
 
-## PopupStateChangeCallback<sup>18+</sup>类型说明
-
-气泡状态变化事件回调。
+## PopupStateChangeCallback<sup>18+</sup>
 
 type PopupStateChangeCallback = (event: PopupStateChangeParam) => void;
+
+气泡状态变化事件回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
