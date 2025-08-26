@@ -3845,10 +3845,42 @@ struct WebComponent {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile("index.html"), controller: this.controller })
     }
   }
 }
+```
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .blue {
+          background-color: lightblue;
+        }
+        .green {
+          background-color: lightgreen;
+        }
+        .blue, .green {
+         font-size:16px;
+         height:200px;
+         text-align: center;       /* 水平居中 */
+         line-height: 200px;       /* 垂直居中（值等于容器高度） */
+        }
+    </style>
+</head>
+<body>
+<div class="blue" >webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+</body>
+</html>
 ```
 
 ## pageDown
@@ -3896,10 +3928,45 @@ struct WebComponent {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile("index.html"), controller: this.controller })
     }
   }
 }
+```
+
+加载的html文件。
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .blue {
+          background-color: lightblue;
+        }
+        .green {
+          background-color: lightgreen;
+        }
+        .blue, .green {
+         font-size:16px;
+         height:200px;
+         text-align: center;       /* 水平居中 */
+         line-height: 200px;       /* 垂直居中（值等于容器高度） */
+        }
+    </style>
+</head>
+<body>
+<div class="blue" >webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+</body>
+</html>
 ```
 
 ## getBackForwardEntries
@@ -8756,6 +8823,29 @@ struct WebComponent {
   }
 }
 ```
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0">
+      <title>Demo</title>
+      <style>
+          body {
+            width:3000px;
+            height:6000px;
+            padding-right:170px;
+            padding-left:170px;
+            border:5px solid blueviolet
+          }
+      </style>
+  </head>
+  <body>
+  Scroll Test
+  </body>
+  </html>
+  ```
 
 ## getPageOffset<sup>20+</sup>
 
