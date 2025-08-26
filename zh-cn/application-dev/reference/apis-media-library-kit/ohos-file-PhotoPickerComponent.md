@@ -565,6 +565,7 @@ import {
 } from '@ohos.file.PhotoPickerComponent';
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
