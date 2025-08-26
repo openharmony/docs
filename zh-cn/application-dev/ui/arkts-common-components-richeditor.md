@@ -840,6 +840,7 @@ struct RichEditorExample {
 
 此接口保护内容安全，适用于限制文本操作的场景，例如展示保密内容或禁止复制的版权文本。屏蔽系统服务菜单项，防止用户通过系统服务菜单复制、分享文本，降低内容泄露风险。
 
+
   ```ts
   import { TextMenuController } from '@kit.ArkUI';
 
