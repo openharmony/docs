@@ -232,7 +232,7 @@ Failed to install the HAP since the version of the HAP to install is too early.
 **处理步骤**<br/>
 确认新安装的应用版本号是否不低于已安装的同应用版本号。
 
-1. 已安装应用版本号查询，依赖[hdc工具](../../dfx/hdc.md#环境准备)。执行命令行后会输出已安装应用的versionCode（输出多个versionCode，选择大于0的）；如果应用未安装，该命令无输出打印值。
+1. 已安装应用版本号查询，依赖[hdc工具](../../dfx/hdc.md#环境准备)。执行命令行后会输出已安装应用的版本号versionCode，如果输出多个versionCode，选择大于0的。如果该命令无打印值输出，表示应用未安装。
 ```
 # 需要将com.xxx.demo替换为查询的bundleName
 hdc shell "bm dump -n com.xxx.demo |grep versionCode"
@@ -284,7 +284,7 @@ The specified uid is invalid.
 传入的uid对应的应用不存在。
 
 **处理步骤**<br/>
-检查系统中是否存在对应的应用uid值。可以使用[查询应用信息命令（dump）](../../tools/bm-tool.md#查询应用信息命令dump)查看已安装应用的uid。命令执行后会输出应用的uid信息（输出多个时，选择大于0的）；如果应用未安装，该命令无输出打印值。
+检查系统中是否存在对应的应用uid值。可以使用[查询应用信息命令（dump）](../../tools/bm-tool.md#查询应用信息命令dump)查看已安装应用的uid。执行命令行后会输出对应已安装应用的uid，如果输出多个uid，选择大于0的。如果该命令无打印值输出，表示应用未安装。
 ```
 # 需要将com.xxx.demo替换为实际查询的bundleName
 hdc shell "bm dump -n com.xxx.demo |grep uid"
