@@ -2933,10 +2933,49 @@ createNode(context: UIContext, nodeType: 'Scroll'): Scroll
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Scroll');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyScrollController extends NodeController {
+  public rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    let scroller: Scroller = new Scroller();
+    let scrollNode = typeNode.createNode(uiContext, 'Scroll');
+    scrollNode.initialize(scroller).size({ width: '100%', height: 500 });
+
+    let colNode = typeNode.createNode(uiContext, 'Column');
+    scrollNode.appendChild(colNode);
+
+    for (let i = 0; i < 10; i++) {
+      let text = typeNode.createNode(uiContext, 'Text');
+      text.initialize('item' + i)
+        .size({ width: '90%', height: 100 })
+        .textAlign(TextAlign.Center)
+        .backgroundColor(0xF9CF93);
+      colNode.appendChild(text);
+    }
+
+    this!.rootNode!.appendChild(scrollNode);
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myScrollController: MyScrollController = new MyScrollController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('ScrollSample')
+      NodeContainer(this.myScrollController)
+
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('Scroll')<sup>15+</sup>
@@ -3408,10 +3447,53 @@ createNode(context: UIContext, nodeType: 'List'): List
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'List');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyListController extends NodeController {
+  public rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    let listNode = typeNode.createNode(uiContext, 'List');
+    listNode.initialize({ space: 3 }).size({ width: '100%', height: '100%' });
+
+    let listItemGroupNode = typeNode.createNode(uiContext, 'ListItemGroup');
+    listItemGroupNode.initialize({ space: 3 });
+    listNode.appendChild(listItemGroupNode);
+
+    let listItemNode1 = typeNode.createNode(uiContext, 'ListItem');
+    listItemNode1.initialize({ style: ListItemStyle.NONE }).height(100).borderWidth(1).backgroundColor('#FF00FF');
+    let text1 = typeNode.createNode(uiContext, 'Text');
+    text1.initialize('ListItem1');
+    listItemNode1.appendChild(text1);
+    listItemGroupNode.appendChild(listItemNode1);
+
+    let listItemNode2 = typeNode.createNode(uiContext, 'ListItem');
+    listItemNode2.initialize({ style: ListItemStyle.CARD }).height(100).borderWidth(1).backgroundColor('#FF00FF');
+    let text2 = typeNode.createNode(uiContext, 'Text');
+    text2.initialize('ListItem2');
+    listItemNode2.appendChild(text2);
+    listItemGroupNode.appendChild(listItemNode2);
+
+    this!.rootNode!.appendChild(listNode);
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myListController: MyListController = new MyListController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('ListSample')
+      NodeContainer(this.myListController)
+
+    }.width('100%')
+  }
+}
 ```
 
 ### getEvent('List')<sup>19+</sup>
@@ -3545,11 +3627,7 @@ createNode(context: UIContext, nodeType: 'ListItem'): ListItem
 
 **示例：** 
 
-<!--code_no_check-->
-
-```ts
-typeNode.createNode(uiContext, 'ListItem');
-```
+参考[createNode('List')](#createnodelist12)示例。
 
 ### getAttribute('ListItem')<sup>20+</sup>
 getAttribute(node: FrameNode, nodeType: 'ListItem'): ListItemAttribute | undefined
@@ -3829,11 +3907,7 @@ createNode(context: UIContext, nodeType: 'ListItemGroup'): ListItemGroup
 
 **示例：** 
 
-<!--code_no_check-->
-
-```ts
-typeNode.createNode(uiContext, 'ListItemGroup');
-```
+参考[createNode('List')](#createnodelist12)示例。
 
 ### getAttribute('ListItemGroup')<sup>20+</sup>
 getAttribute(node: FrameNode, nodeType: 'ListItemGroup'): ListItemGroupAttribute | undefined
@@ -3902,10 +3976,60 @@ createNode(context: UIContext, nodeType: 'WaterFlow'): WaterFlow
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'WaterFlow');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyWaterFlowController extends NodeController {
+  public rootNode: FrameNode | null = null;
+  private minHeight: number = 80;
+  private maxHeight: number = 180;
+
+  // 计算FlowItem高
+  private getHeight() {
+    let ret = Math.floor(Math.random() * this.maxHeight);
+    return (ret > this.minHeight ? ret : this.minHeight);
+  }
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    let waterFlowNode = typeNode.createNode(uiContext, 'WaterFlow');
+    waterFlowNode.attribute.size({ width: '100%', height: '100%' })
+      .columnsTemplate('1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(5);
+
+    for (let i = 0; i < 20; i++) {
+      let flowItemNode = typeNode.createNode(uiContext, 'FlowItem');
+      flowItemNode.attribute.size({ width: '100%', height: this.getHeight() });
+      waterFlowNode.appendChild(flowItemNode);
+
+      let text = typeNode.createNode(uiContext, 'Text');
+      text.initialize('N' + i)
+        .size({ width: '100%', height: '100%' })
+        .textAlign(TextAlign.Center)
+        .backgroundColor(0xF9CF93);
+      flowItemNode.appendChild(text);
+    }
+
+    this!.rootNode!.appendChild(waterFlowNode);
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myWaterFlowController: MyWaterFlowController = new MyWaterFlowController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('WaterFlowSample')
+      NodeContainer(this.myWaterFlowController);
+
+    }.width('100%')
+  }
+}
 ```
 
 ### getEvent('WaterFlow')<sup>19+</sup>
@@ -4039,11 +4163,7 @@ createNode(context: UIContext, nodeType: 'FlowItem'): FlowItem
 
 **示例：** 
 
-<!--code_no_check-->
-
-```ts
-typeNode.createNode(uiContext, 'FlowItem');
-```
+参考[createNode('WaterFlow')](#createnodewaterflow12)示例。
 
 ### getAttribute('FlowItem')<sup>20+</sup>
 getAttribute(node: FrameNode, nodeType: 'FlowItem'): FlowItemAttribute | undefined
@@ -4341,10 +4461,55 @@ createNode(context: UIContext, nodeType: 'Grid'): Grid
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Grid');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyGridController extends NodeController {
+  public rootNode: FrameNode | null = null;
+  private scroller: Scroller = new Scroller();
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    let gridNode = typeNode.createNode(uiContext, 'Grid');
+    gridNode.initialize(this.scroller, { regularSize: [1, 1] })
+      .size({ width: '90%', height: 300 })
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .rowsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(10);
+
+    for (let i = 0; i < 25; i++) {
+      let gridItemNode = typeNode.createNode(uiContext, 'GridItem');
+      gridItemNode.initialize({ style: GridItemStyle.NONE }).size({ width: '100%', height: '100%' });
+
+      let text = typeNode.createNode(uiContext, 'Text');
+      text.initialize((i % 5).toString())
+        .size({ width: '100%', height: '100%' })
+        .textAlign(TextAlign.Center)
+        .backgroundColor(0xF9CF93);
+      gridItemNode.appendChild(text);
+      gridNode.appendChild(gridItemNode);
+    }
+
+    this!.rootNode!.appendChild(gridNode);
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myGridController: MyGridController = new MyGridController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('GridSample')
+      NodeContainer(this.myGridController)
+
+    }.width('100%')
+  }
+}
 ```
 
 ### getEvent('Grid')<sup>19+</sup>
@@ -4478,11 +4643,7 @@ createNode(context: UIContext, nodeType: 'GridItem'): GridItem
 
 **示例：** 
 
-<!--code_no_check-->
-
-```ts
-typeNode.createNode(uiContext, 'GridItem');
-```
+参考[createNode('Grid')](#createnodegrid14)示例。
 
 ### getAttribute('GridItem')<sup>20+</sup>
 getAttribute(node: FrameNode, nodeType: 'GridItem'): GridItemAttribute | undefined
