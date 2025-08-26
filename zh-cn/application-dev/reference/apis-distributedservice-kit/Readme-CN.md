@@ -1,9 +1,9 @@
 # Distributed Service Kit（分布式管理服务）
 <!--Kit: Distributed Service Kit-->
 <!--Subsystem: DistributedSched-->
-<!--Owner: @hobbycao,@huangkai71-->
-<!--Designer: @gsxiaowen,@lee_jet520-->
-<!--Tester: @hanjiawei,@Ytt-test-->
+<!--Owner: @hobbycao;@huangkai71-->
+<!--Designer: @gsxiaowen;@lee_jet520-->
+<!--Tester: @hanjiawei;@Ytt-test-->
 <!--Adviser: @w_Machine_cc-->
 
 - ArkTS API<!--distributed-service-arkts-->
