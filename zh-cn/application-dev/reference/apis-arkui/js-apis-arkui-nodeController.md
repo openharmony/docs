@@ -67,7 +67,7 @@ aboutToAppear?(): void
 
 aboutToDisappear?(): void
 
-当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)卸载消失时触发此回调。
+当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)销毁时触发此回调。
 
 > **说明：**
 >
