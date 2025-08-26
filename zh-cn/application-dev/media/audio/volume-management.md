@@ -135,9 +135,6 @@ let appVolumeChangeCallback = (volumeEvent: audio.VolumeEvent) => {
 };
 audioVolumeManager.on('appVolumeChange', appVolumeChangeCallback);
 audioVolumeManager.off('appVolumeChange', appVolumeChangeCallback);
-
-// 取消该事件的所有监听。
-audioVolumeManager.off('appVolumeChange');
 ```
 
 <!--Del-->
@@ -179,9 +176,6 @@ let appVolumeChangeForUidCallback = (volumeEvent: audio.VolumeEvent) => {
 };
 audioVolumeManager.on('appVolumeChangeForUid', uid, appVolumeChangeForUidCallback);
 audioVolumeManager.off('appVolumeChangeForUid', appVolumeChangeForUidCallback);
-
-// 取消该事件的所有监听。
-audioVolumeManager.off('appVolumeChangeForUid');
 ```
 <!--DelEnd-->
 
