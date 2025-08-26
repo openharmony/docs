@@ -508,7 +508,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 | 名称 | 类型  | 必填 | 说明                   |
 | ---- | ----- | ---- | ---------------------- |
-| type | 'tab' | 是   | 类型为页签类分段按钮。 |
+| type | "tab" | 是   | 类型为页签类分段按钮。 |
 
 ## CapsuleSegmentButtonOptions
 
@@ -522,7 +522,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 | 名称 | 类型      | 必填 | 说明                        |
 | ---- | --------- | ---- | ----------------------------- |
-| type | 'capsule' | 是   | 类型为胶囊类分段按钮。 |
+| type | "capsule" | 是   | 类型为胶囊类分段按钮。 |
 
 ## SegmentButtonTextItem
 

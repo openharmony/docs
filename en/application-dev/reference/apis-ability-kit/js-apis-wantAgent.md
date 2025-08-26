@@ -1,7 +1,7 @@
 # @ohos.wantAgent (WantAgent)
 <!--deprecated_code_no_check-->
 
-The **WantAgent** module provides APIs for creating and comparing **WantAgent** objects, and obtaining the user ID and bundle name of a **WantAgent** object.
+The WantAgent module provides APIs for creating and comparing WantAgent objects, and obtaining the user ID and bundle name of a WantAgent object.
 
 > **NOTE**
 > 
@@ -17,7 +17,7 @@ import wantAgent from '@ohos.wantAgent';
 
 getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
-Creates a **WantAgent** object. If the creation fails, a null **WantAgent** object is returned. This API uses an asynchronous callback to return the result.
+Creates a WantAgent object. If the creation fails, a null WantAgent object is returned. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -27,8 +27,8 @@ Creates a **WantAgent** object. If the creation fails, a null **WantAgent** obje
 
 | Name    | Type                      | Mandatory| Description                   |
 | -------- | -------------------------- | ---- | ----------------------- |
-| info     | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)              | Yes  | **WantAgent** object.          |
-| callback | AsyncCallback\<WantAgent\> | Yes  | Callback used to return the **WantAgent** object.|
+| info     | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)              | Yes  | WantAgent object.          |
+| callback | AsyncCallback\<WantAgent\> | Yes  | Callback used to return the WantAgent object.|
 
 **Example**
 
@@ -77,7 +77,7 @@ wantAgent.getWantAgent({
 
 getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
-Creates a **WantAgent** object. If the creation fails, a null **WantAgent** object is returned. This API uses a promise to return the result.
+Creates a WantAgent object. If the creation fails, a null WantAgent object is returned. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -87,13 +87,13 @@ Creates a **WantAgent** object. If the creation fails, a null **WantAgent** obje
 
 | Name| Type         | Mandatory| Description         |
 | ---- | ------------- | ---- | ------------- |
-| info | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | Yes  | **WantAgent** object.|
+| info | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | Yes  | WantAgent object.|
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<WantAgent\> | Promise used to return the **WantAgent** object.|
+| Promise\<WantAgent\> | Promise used to return the WantAgent object.|
 
 **Example**
 
@@ -134,7 +134,7 @@ wantAgent.getWantAgent({
 
 getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 
-Obtains the bundle name of a **WantAgent** object. This API uses an asynchronous callback to return the result.
+Obtains the bundle name of a WantAgent object. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -144,7 +144,7 @@ Obtains the bundle name of a **WantAgent** object. This API uses an asynchronous
 
 | Name    | Type                   | Mandatory| Description                             |
 | -------- | ----------------------- | ---- | --------------------------------- |
-| agent    | WantAgent               | Yes  | **WantAgent** object.                    |
+| agent    | WantAgent               | Yes  | WantAgent object.                    |
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the bundle name.|
 
 **Example**
@@ -207,7 +207,7 @@ wantAgent.getWantAgent({
 
 getBundleName(agent: WantAgent): Promise\<string\>
 
-Obtains the bundle name of a **WantAgent** object. This API uses a promise to return the result.
+Obtains the bundle name of a WantAgent object. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -217,7 +217,7 @@ Obtains the bundle name of a **WantAgent** object. This API uses a promise to re
 
 | Name | Type     | Mandatory| Description         |
 | ----- | --------- | ---- | ------------- |
-| agent | WantAgent | Yes  | **WantAgent** object.|
+| agent | WantAgent | Yes  | WantAgent object.|
 
 **Return value**
 
@@ -275,7 +275,7 @@ wantAgent.getWantAgent({
 
 getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 
-Obtains the user ID of a **WantAgent** object. This API uses an asynchronous callback to return the result.
+Obtains the user ID of a WantAgent object. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -285,7 +285,7 @@ Obtains the user ID of a **WantAgent** object. This API uses an asynchronous cal
 
 | Name    | Type                   | Mandatory| Description                               |
 | -------- | ----------------------- | ---- | ----------------------------------- |
-| agent    | WantAgent               | Yes  | **WantAgent** object.                      |
+| agent    | WantAgent               | Yes  | WantAgent object.                      |
 | callback | AsyncCallback\<number\> | Yes  | Callback used to return the user ID.|
 
 **Example**
@@ -348,7 +348,7 @@ wantAgent.getWantAgent({
 
 getUid(agent: WantAgent): Promise\<number\>
 
-Obtains the user ID of a **WantAgent** object. This API uses a promise to return the result.
+Obtains the user ID of a WantAgent object. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -358,7 +358,7 @@ Obtains the user ID of a **WantAgent** object. This API uses a promise to return
 
 | Name | Type     | Mandatory| Description         |
 | ----- | --------- | ---- | ------------- |
-| agent | WantAgent | Yes  | **WantAgent** object.|
+| agent | WantAgent | Yes  | WantAgent object.|
 
 **Return value**
 
@@ -415,7 +415,7 @@ wantAgent.getWantAgent({
 
 cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 
-Cancels a **WantAgent** object. This API uses an asynchronous callback to return the result.
+Cancels a WantAgent object. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -425,7 +425,7 @@ Cancels a **WantAgent** object. This API uses an asynchronous callback to return
 
 | Name    | Type                 | Mandatory| Description                       |
 | -------- | --------------------- | ---- | --------------------------- |
-| agent    | WantAgent             | Yes  | **WantAgent** object.              |
+| agent    | WantAgent             | Yes  | WantAgent object.              |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -488,7 +488,7 @@ wantAgent.getWantAgent({
 
 cancel(agent: WantAgent): Promise\<void\>
 
-Cancels a **WantAgent** object. This API uses a promise to return the result.
+Cancels a WantAgent object. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -498,7 +498,7 @@ Cancels a **WantAgent** object. This API uses a promise to return the result.
 
 | Name | Type     | Mandatory| Description         |
 | ----- | --------- | ---- | ------------- |
-| agent | WantAgent | Yes  | **WantAgent** object.|
+| agent | WantAgent | Yes  | WantAgent object.|
 
 **Return value**
 
@@ -557,7 +557,7 @@ wantAgent.getWantAgent({
 
 trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<CompleteData\>): void
 
-Triggers a **WantAgent** object. This API uses an asynchronous callback to return the result.
+Triggers a WantAgent object. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -567,8 +567,8 @@ Triggers a **WantAgent** object. This API uses an asynchronous callback to retur
 
 | Name       | Type                         | Mandatory| Description                           |
 | ----------- | ----------------------------- | ---- | ------------------------------- |
-| agent       | WantAgent                     | Yes  | **WantAgent** object.                  |
-| triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                     | Yes  | **TriggerInfo** object.                |
+| agent       | WantAgent                     | Yes  | WantAgent object.                  |
+| triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                     | Yes  | TriggerInfo object.                |
 | callback    | Callback\<CompleteData\> | No  | Callback used to return the result.|
 
 **Example**
@@ -632,7 +632,7 @@ wantAgent.getWantAgent({
 
 equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\>): void
 
-Checks whether two **WantAgent** objects are equal to determine whether the same operation is from the same application. This API uses an asynchronous callback to return the result.
+Checks whether two WantAgent objects are equal to determine whether the same operation is from the same application. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -642,9 +642,9 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 
 | Name      | Type                    | Mandatory| Description                                   |
 | ---------- | ------------------------ | ---- | --------------------------------------- |
-| agent      | WantAgent                | Yes  | The first **WantAgent** object.                          |
-| otherAgent | WantAgent                | Yes  | **WantAgent** object.                          |
-| callback   | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that the two **WantAgent** objects are equal, and **false** means the opposite.|
+| agent      | WantAgent                | Yes  | The first WantAgent object.                          |
+| otherAgent | WantAgent                | Yes  | The second WantAgent object.                          |
+| callback   | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. **true** if the two WantAgent objects are equal, **false** otherwise.|
 
 **Example**
 
@@ -708,7 +708,7 @@ wantAgent.getWantAgent({
 
 equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
-Checks whether two **WantAgent** objects are equal to determine whether the same operation is from the same application. This API uses a promise to return the result.
+Checks whether two WantAgent objects are equal to determine whether the same operation is from the same application. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -718,14 +718,14 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 
 | Name      | Type     | Mandatory| Description         |
 | ---------- | --------- | ---- | ------------- |
-| agent      | WantAgent | Yes  | The first **WantAgent** object.|
-| otherAgent | WantAgent | Yes  | **WantAgent** object.|
+| agent      | WantAgent | Yes  | The first WantAgent object.|
+| otherAgent | WantAgent | Yes  | The second WantAgent object.|
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result. The value **true** means that the two **WantAgent** objects are equal, and **false** means the opposite.|
+| Promise\<boolean\> | Promise used to return the result. **true** if the two WantAgent objects are equal, **false** otherwise.|
 
 **Example**
 
@@ -781,11 +781,11 @@ wantAgent.getWantAgent({
 
 | Name               | Value            | Description                                                        |
 | ------------------- | -------------- | ------------------------------------------------------------ |
-| ONE_TIME_FLAG       | 0 | The **WantAgent** object can be used only once.                                     |
-| NO_BUILD_FLAG       | 1 | The **WantAgent** object does not exist and hence it is not created. In this case, **null** is returned.     |
-| CANCEL_PRESENT_FLAG | 2 | The existing **WantAgent** object should be canceled before a new object is generated.|
-| UPDATE_PRESENT_FLAG | 3 | Extra information of the existing **WantAgent** object is replaced with that of the new object.|
-| CONSTANT_FLAG       | 4 | The **WantAgent** object is immutable.                                       |
+| ONE_TIME_FLAG       | 0 | The WantAgent object can be used only once.                                     |
+| NO_BUILD_FLAG       | 1 | The WantAgent object does not exist and hence it is not created. In this case, **null** is returned.     |
+| CANCEL_PRESENT_FLAG | 2 | The existing WantAgent object should be canceled before a new object is generated.|
+| UPDATE_PRESENT_FLAG | 3 | Extra information of the existing WantAgent object is replaced with that of the new object.|
+| CONSTANT_FLAG       | 4 | The WantAgent object is immutable.                                       |
 | REPLACE_ELEMENT     | 5 | The **element** property in the current Want can be replaced by the **element** property in the Want passed in **WantAgent.trigger()**.|
 | REPLACE_ACTION      | 6 | The **action** property in the current Want can be replaced by the **action** property in the Want passed in **WantAgent.trigger()**.|
 | REPLACE_URI         | 7 | The **uri** property in the current Want can be replaced by the **uri** property in the Want passed in **WantAgent.trigger()**.|
@@ -814,9 +814,9 @@ wantAgent.getWantAgent({
 
 | Name          | Type                          | Mandatory| Description                   |
 | -------------- | ------------------------------ | ---- | ---------------------- |
-| info           | WantAgent                       | Yes  | A triggered **WantAgent** object.      |
+| info           | WantAgent                       | Yes  | A triggered WantAgent object.      |
 | want           | Want                            | Yes  | An existing triggered Want.    |
-| finalCode      | number                          | Yes  | Request code that triggers the **WantAgent** object.|
+| finalCode      | number                          | Yes  | Request code that triggers the WantAgent object.|
 | finalData      | string                          | Yes  | Final data collected by the common event. |
 | extraInfo      | { [key: string]: any }            | No  | Extra information.              |
 
@@ -824,7 +824,7 @@ wantAgent.getWantAgent({
 
 type WantAgent = object
 
-Defines the **WantAgent** object.
+Defines the WantAgent object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -832,4 +832,4 @@ Defines the **WantAgent** object.
 
 | Type| Description|
 | --- | --- |
-| object | **WantAgent** object.|
+| object | WantAgent object.|

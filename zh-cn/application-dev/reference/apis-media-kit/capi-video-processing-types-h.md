@@ -10,6 +10,8 @@
 
 视频处理类型定义。
 
+**引用文件：** <multimedia/video_processing_engine/video_processing_types.h>
+
 **库：** libvideo_processing.so
 
 **系统能力：** SystemCapability.Multimedia.VideoProcessingEngine

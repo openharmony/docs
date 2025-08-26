@@ -1,4 +1,10 @@
 # DataAbilityOperation
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @xialiangwei-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 The module defines the operation on DataAbilities. It can be used as an input parameter of [executeBatch](js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperexecutebatch) to specify the database operation information.
 
@@ -26,7 +32,5 @@ import ability from '@ohos.ability.ability';
 | valueBackReferences   | [rdb.ValuesBucket](../apis-arkdata/arkts-apis-data-relationalStore-t.md#valuesbucket) | No | Yes   | ValuesBucket object that contains a set of key-value pairs. |
 | predicates   | [dataAbility.DataAbilityPredicates](../apis-arkdata/js-apis-data-ability.md#dataabilitypredicates) | No | Yes  | Predicates to set. If no predicate is set, all data records are displayed. |
 | predicatesBackReferences   | Map\<number, number> | No | Yes   | Back references of the predicates. |
-| interrupted   | boolean | No | Yes   | Whether batch operations can be interrupted. The value **true** means that batch operations can be interrupted, and **false** means the opposite.|
+| interrupted   | boolean | No | Yes   | Whether batch operations can be interrupted. **true** if batch operations can be interrupted, **false** otherwise.|
 | expectedCount   | number | No | Yes   | Expected number of rows to be updated or deleted. |
-
-<!--no_check-->

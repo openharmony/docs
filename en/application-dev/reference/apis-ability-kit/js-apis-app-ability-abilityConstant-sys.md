@@ -1,14 +1,21 @@
-# @ohos.app.ability.AbilityConstant (AbilityConstant) (System API)
+# @ohos.app.ability.AbilityConstant (Ability-related Constants) (System APIs)
 
-The AbilityConstant module defines the enums of the window types in the UIAbility.
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @littlejerry1-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+AbilityConstant provides enums related to abilities, including the window mode.
 
 > **NOTE**
-> 
+>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > The APIs of this module can be used only in the stage model.
 >
-> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.app.ability.AbilityConstant (AbilityConstant)](js-apis-app-ability-abilityConstant.md).
+> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.app.ability.AbilityConstant (Ability-related Constants)](js-apis-app-ability-abilityConstant.md).
 
 ## Modules to Import
 
@@ -44,12 +51,12 @@ let option: StartOptions = {
 };
 
 // Ensure that the context is obtained.
-class MyAbility extends UIAbility {
+export default class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.startAbility(want, option).then(() => {
       console.log('Succeed to start ability.');
     }).catch((error: BusinessError) => {
-      console.error('Failed to start ability with error: ${JSON.stringify(error)}');
+      console.error(`Failed to start ability with error: ${JSON.stringify(error)}`);
     });
   }
 }

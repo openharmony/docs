@@ -21,11 +21,11 @@ Defines the quick fix information at the HAP file level.
 
 **System API**: This is a system API.
 
-| Name       | Type                | Read-only| Mandatory| Description                                                        |
+| Name       | Type                | Read-only| Optional| Description                                                        |
 | ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
-| moduleName    | string               | Yes|  Yes  | Name of the HAP file.                              |
-| originHapHash    | string            | Yes| Yes  | Hash value of the HAP file.                              |
-| quickFixFilePath    | string         | Yes| Yes  | Installation path of the quick fix patch file.                              |
+| moduleName    | string               | Yes|  No  | Name of the HAP file.                              |
+| originHapHash    | string            | Yes|  No  | Hash value of the HAP file.                              |
+| quickFixFilePath    | string         | Yes|  No  | Installation path of the quick fix patch file.                              |
 
 ## ApplicationQuickFixInfo
 
@@ -35,14 +35,14 @@ Defines the quick fix information at the application level.
 
 **System API**: This is a system API.
 
-| Name       | Type                | Read-only| Mandatory| Description                                                        |
+| Name       | Type                | Read-only| Optional| Description                                                        |
 | ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
-| bundleName    | string               | Yes| Yes  | Bundle name.                      |
-| bundleVersionCode    | number        | Yes| Yes  | Internal version number of the application.                              |
-| bundleVersionName    | string        | Yes| Yes  | Version number of the application that is shown to users.                              |
-| quickFixVersionCode    | number      | Yes| Yes  | Version code of the quick fix patch package.                              |
-| quickFixVersionName    | string      | Yes| Yes  | Text description of the version number of the quick fix patch package.                              |
-| hapModuleQuickFixInfo    | Array\<[HapModuleQuickFixInfo](#hapmodulequickfixinfo)>   | Yes| Yes  | Quick fix information at the HAP file level.    |
+| bundleName    | string               | Yes| No  | Bundle name.                      |
+| bundleVersionCode    | number        | Yes| No  | Internal version number of the application.                              |
+| bundleVersionName    | string        | Yes| No  | Version number of the application that is shown to users.                              |
+| quickFixVersionCode    | number      | Yes| No  | Version code of the quick fix patch package.                              |
+| quickFixVersionName    | string      | Yes| No  | Text description of the version number of the quick fix patch package.                              |
+| hapModuleQuickFixInfo    | Array\<[HapModuleQuickFixInfo](#hapmodulequickfixinfo)>   | Yes| No  | Quick fix information at the HAP file level.    |
 
 ## quickFixManager.applyQuickFix
 

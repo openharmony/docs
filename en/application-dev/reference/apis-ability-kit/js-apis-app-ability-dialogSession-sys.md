@@ -1,6 +1,13 @@
 # @ohos.app.ability.dialogSession (dialogSession) (System API)
 
-The **dialogSession** module provides APIs related to the dialog box.
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhu-feimo; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+The dialogSession module provides APIs related to the dialog box.
 
 > **NOTE**
 >
@@ -22,18 +29,18 @@ Provides DialogAbility information, including the bundle name, module name, and 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Read-only| Mandatory| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Yes| Bundle name.|
-| moduleName | string | Yes| Yes| Module name.|
-| abilityName | string | Yes| Yes| Ability name.|
-| abilityIconId | number | Yes| Yes| ID of the ability icon.|
-| abilityLabelId | number | Yes| Yes| ID of the ability label.|
-| bundleIconId | number | Yes| Yes| ID of the bundle icon.|
-| bundleLabelId | number | Yes| Yes| ID of the bundle label.|
-| visible<sup>12+</sup> | boolean | Yes| Yes| Whether the ability is visible. The value **true** means that the ability is visible, and **false** means the opposite.|
-| appIndex<sup>12+</sup> | number | Yes| Yes| Index of the application clone.|
-| multiAppMode<sup>12+</sup> | [MultiAppMode](./js-apis-bundleManager-applicationInfo.md#multiappmode12) | Yes| Yes| Multi-app mode.|
+| bundleName | string | No| No| Bundle name.|
+| moduleName | string | No| No| Module name.|
+| abilityName | string | No| No| Ability name.|
+| abilityIconId | number | No| No| ID of the ability icon.|
+| abilityLabelId | number | No| No| ID of the ability label.|
+| bundleIconId | number | No| No| ID of the bundle icon.|
+| bundleLabelId | number | No| No| ID of the bundle label.|
+| visible<sup>12+</sup> | boolean | No| No| Whether the ability is visible. **true** if visible, **false** otherwise.|
+| appIndex<sup>12+</sup> | number | No| No| Index of the application clone.|
+| multiAppMode<sup>12+</sup> | [MultiAppMode](./js-apis-bundleManager-applicationInfo.md#multiappmode12) | No| No| Multi-app mode.|
 
 ## DialogSessionInfo
 
@@ -41,11 +48,11 @@ Provides session information, including the requester information, target applic
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Read-only| Mandatory| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| callerAbilityInfo | [DialogAbilityInfo](#dialogabilityinfo)| Yes| Yes| Ability information of the requester.|
-| targetAbilityInfos | Array\<[DialogAbilityInfo](#dialogabilityinfo)\> | Yes| Yes| Target application list.|
-| parameters | Record<string, Object> | Yes| No| Other parameters.|
+| callerAbilityInfo | [DialogAbilityInfo](#dialogabilityinfo)| Yes| No| Ability information of the requester.|
+| targetAbilityInfos | Array\<[DialogAbilityInfo](#dialogabilityinfo)\> | Yes| No| Target application list.|
+| parameters | Record<string, Object> | Yes| Yes| Other parameters.|
 
 ## getDialogSessionInfo
 
@@ -109,7 +116,7 @@ Sends a request for a dialog box. This API uses an asynchronous callback to retu
   | -------- | -------- | -------- | -------- |
   | dialogSessionId | string | Yes| Session ID.|
   | targetWant | Want | Yes| Target of the request.|
-  | isAllowed | boolean | Yes| Whether the target ability can be started. The value **true** means that the target ability can be started, and **false** means the opposite.|
+  | isAllowed | boolean | Yes| Whether the target ability can be started. **true** if allowed, **false** otherwise.|
   | callback | AsyncCallback\<void\> | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -173,7 +180,7 @@ Sends a request for a dialog box. This API uses a promise to return the result.
   | -------- | -------- | -------- | -------- |
   | dialogSessionId | string | Yes| Session ID.|
   | targetWant | Want | Yes| Target of the request.|
-  | isAllowed | boolean | Yes| Whether the target ability can be started. The value **true** means that the target ability can be started, and **false** means the opposite.|
+  | isAllowed | boolean | Yes| Whether the target ability can be started. **true** if allowed, **false** otherwise.|
 
 **Return value**
 

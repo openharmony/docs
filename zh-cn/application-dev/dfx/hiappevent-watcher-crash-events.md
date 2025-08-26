@@ -2,8 +2,8 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @chenshi51-->
-<!--Designer: @Maplestory-->
-<!--Tester: @yufeifei-->
+<!--Designer: @Maplestory91-->
+<!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @foryourself-->
 
 ## 简介
@@ -108,6 +108,7 @@ Timestamp:2025-05-17 19:17:07.000
 | threads | object[] | 全量线程调用栈，详见[thread字段说明](#thread字段说明)。仅在NativeCrash类型的崩溃事件提供。 |
 | external_log<sup></sup> | string[] | 故障日志文件[应用沙箱路径](../file-management/app-sandbox-directory.md)。开发者可通过路径读取故障日志文件内容。**为避免目录空间超限导致新生成的日志文件写入失败，日志文件处理完后请及时删除，超限规格请参考log_over_limit字段。** |
 | log_over_limit | boolean | 生成的与已存在的故障日志文件的大小总和是否超过5M上限。true表示超过上限，日志写入失败；false表示未超过上限。 |
+| process_name | string | 故障进程名。<br>**说明**：从API version 21开始支持。 |
 
 ### exception字段说明
 
@@ -118,6 +119,7 @@ Timestamp:2025-05-17 19:17:07.000
 | name | string | 异常类型。 |
 | message | string | 异常原因。 |
 | stack | string | 异常调用栈。 |
+| thread_name | string | 线程名称。<br>**说明**：从API version 21开始支持。 |
 
 **NativeCrash类型exception字段说明**
 

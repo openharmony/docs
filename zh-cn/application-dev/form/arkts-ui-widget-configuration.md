@@ -6,7 +6,7 @@
 <!--Tester: @chenmingze-->
 <!--Adviser: @Brilliantry_Rui-->
 
-卡片相关的配置文件包括[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)配置和卡片配置。如果是[独立卡片包](./arkts-ui-widget-creation.md#创建arkts卡片)，还会包含[独立卡片包配置](./arkts-ui-widget-configuration.md#独立卡片包配置)。
+卡片相关的配置文件包括[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)配置和卡片配置。如果是[独立卡片包](./arkts-ui-widget-creation.md)，还会包含[独立卡片包配置](./arkts-ui-widget-configuration.md#独立卡片包配置)。
 
 ## FormExtensionAbility配置
 卡片需要在[module.json5配置文件](../quick-start/module-configuration-file.md)的`extensionAbilities`标签下，配置`FormExtensionAbility`相关信息。`FormExtensionAbility`需要填写`metadata`元信息标签，其中键名称为固定字符串 “ohos.extension.form”，资源为[卡片具体配置信息的资源索引](#卡片配置)。

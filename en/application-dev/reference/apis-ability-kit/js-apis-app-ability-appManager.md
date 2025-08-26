@@ -1,4 +1,10 @@
 # @ohos.app.ability.appManager (Application Management)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @SKY2001-->
+<!--Designer: @yzkp-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 The appManager module implements application management. You can use the APIs of this module to query whether the application is undergoing a stability test, whether the application is running on a RAM constrained device, the memory size of the application, and information about the running process.
 
@@ -42,7 +48,7 @@ Checks whether this application is undergoing a stability test. This API uses an
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes|Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite. | 
+  | callback | AsyncCallback&lt;boolean&gt; | Yes|Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. **true** if undergoing a stability test, **false** otherwise. | 
 
 **Error codes**
 
@@ -82,7 +88,7 @@ Checks whether this application is undergoing a stability test. This API uses a 
 
   | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.| 
+  | Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. **true** if undergoing a stability test, **false** otherwise.| 
 
 **Error codes**
 
@@ -120,7 +126,7 @@ Checks whether this application is running on a RAM constrained device. This API
 
   | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.| 
+  | Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. **true** if running on a RAM constrained device, **false** otherwise.| 
 
 **Error codes**
 
@@ -157,7 +163,7 @@ Checks whether this application is running on a RAM constrained device. This API
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes|Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite. | 
+  | callback | AsyncCallback&lt;boolean&gt; | Yes|Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. **true** if running on a RAM constrained device, **false** otherwise. | 
 
 **Error codes**
 
@@ -267,7 +273,7 @@ Obtains information about the running processes of this application. This API us
 > **NOTE**
 >
 > - In versions earlier than API version 11, this API requires the ohos.permission.GET_RUNNING_INFO permission, which is available only for system applications.
-> - Since API version 11, this API is used only to obtain the process information of the caller. No permission is required.
+> - Starting from API version 11, this API is used only to obtain the process information of the caller. No permission is required.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -309,7 +315,7 @@ Obtains information about the running processes of this application. This API us
 > **NOTE**
 >
 > - In versions earlier than API version 11, this API requires the ohos.permission.GET_RUNNING_INFO permission, which is available only for system applications.
-> - Since API version 11, this API is used only to obtain the process information of the caller. No permission is required.
+> - Starting from API version 11, this API is used only to obtain the process information of the caller. No permission is required.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -685,7 +691,7 @@ Kills a process by bundle name. This API uses an asynchronous callback to return
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | bundleName | string | Yes| Bundle name.|
-| clearPageStack | boolean | Yes| Whether to clear the page stack. The value **true** means to clear the page stack, and **false** means the opposite.|
+| clearPageStack | boolean | Yes| Whether to clear the page stack. **true** to clear, **false** otherwise.|
 | appIndex | number | No| ID of an application clone. The default value is **0**. If the value is **0**, all processes of the main application are terminated. If the value is greater than 0, all processes of the specified application clone are terminated.|
 
 **Return value**
@@ -748,7 +754,7 @@ Checks whether an application is running. This API uses a promise to return the 
 
 | Type          | Description             |
 | -------------- | ---------------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the application is running, and **false** means the opposite.|
+| Promise\<boolean> | Promise used to return the result. **true** if running, **false** otherwise.|
 
 **Error codes**
 

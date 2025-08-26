@@ -79,6 +79,8 @@ function foo(): number {
 
 示例代码：
 ```ts
+let a = 1;
+let b = 1;
 function foo(): void {
     a += 2;
     b = 5;
