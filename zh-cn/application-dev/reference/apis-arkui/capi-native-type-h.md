@@ -2835,6 +2835,12 @@ ArkUI_LayoutConstraint* OH_ArkUI_LayoutConstraint_Create()
 
 **起始版本：** 12
 
+**返回：**
+
+| 类型                          | 说明 |
+|-----------------------------| -- |
+| [ArkUI_LayoutConstraint](capi-arkui-nativemodule-arkui-layoutconstraint.md)* | 创建约束尺寸的对象指针。 |
+
 ### OH_ArkUI_LayoutConstraint_Copy()
 
 ```
@@ -3797,7 +3803,7 @@ float OH_ArkUI_GuidelineOption_GetPositionStart(ArkUI_GuidelineOption* guideline
 **描述：**
 
 
-获取距离容器左侧或者顶部的距离。
+获取辅助线距离容器左侧或者顶部的距离。
 
 **起始版本：** 12
 
@@ -3813,7 +3819,7 @@ float OH_ArkUI_GuidelineOption_GetPositionStart(ArkUI_GuidelineOption* guideline
 
 | 类型 | 说明 |
 | -- | -- |
-| float | 距离容器左侧或者顶部的距离。 |
+| float | 辅助线距离容器左侧或者顶部的距离。单位为vp。 |
 
 ### OH_ArkUI_GuidelineOption_GetPositionEnd()
 
@@ -3824,7 +3830,7 @@ float OH_ArkUI_GuidelineOption_GetPositionEnd(ArkUI_GuidelineOption* guideline, 
 **描述：**
 
 
-获取距离容器右侧或者底部的距离。
+获取辅助线距离容器右侧或者底部的距离。
 
 **起始版本：** 12
 
@@ -3840,7 +3846,7 @@ float OH_ArkUI_GuidelineOption_GetPositionEnd(ArkUI_GuidelineOption* guideline, 
 
 | 类型 | 说明 |
 | -- | -- |
-| float | 距离容器右侧或者底部的距离。 |
+| float | 辅助线距离容器右侧或者底部的距离。单位为vp。 |
 
 ### OH_ArkUI_BarrierOption_Create()
 
