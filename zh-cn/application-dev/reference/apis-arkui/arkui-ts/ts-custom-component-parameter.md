@@ -25,6 +25,6 @@
 > 从API version 12开始，支持通过此参数配置[@ComponentV2](../../../ui/state-management/arkts-new-componentV2.md)组件冻结。例子可见[自定义组件冻结](../../../ui/state-management/arkts-custom-components-freezeV2.md)。
 >
 
-| 名称 | 类型 | 必填 | 说明     |
+| 参数名 | 类型 | 必填 | 说明     |
 | ------ | ---- | ---- | ------------ |
 |freezeWhenInactive|boolean|是|配置自定义组件支持组件冻结。true：开启组件冻结，false：不开启组件冻结。|

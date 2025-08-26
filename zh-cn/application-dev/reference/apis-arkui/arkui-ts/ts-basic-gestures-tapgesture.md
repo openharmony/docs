@@ -19,7 +19,7 @@
 
 TapGesture(value?: TapGestureParameters)
 
-设置点击手势的相关参数。
+继承自[GestureInterface\<T>](ts-gesture-settings.md#gestureinterfacet11)，设置点击手势的相关参数。
 
 触发点击手势事件的设备类型为键盘或手柄时，事件的[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)值为Unknown。
 
@@ -74,15 +74,6 @@ Tap手势识别成功回调。
 | 参数名 | 类型                                       | 必填 | 说明                         |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
 | event  |  (event: [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)) => void | 是   | 手势事件回调函数。 |
-
-## 属性
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称 | 类型    | 只读 | 可选 | 说明                       |
-| ----  | ------ | ---- | ---- | ----------------- |
-| tag<sup>11+</sup>   | string  | 否 | 否 | 设置Tap手势标志，用于自定义手势判定时区分绑定的手势。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)> | 否 | 否 | 设置Tap手势支持的事件输入源。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## EventLocationInfo<sup>20+</sup>对象说明
 
