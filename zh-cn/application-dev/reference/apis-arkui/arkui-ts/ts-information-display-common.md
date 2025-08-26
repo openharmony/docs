@@ -6,7 +6,7 @@
 <!--Tester: @xiong0104-->
 <!--Adviser: @HelloCrease-->
 
-用于修饰组件，为[数据量规图表组件](ts-basic-components-gauge.md#gauge)和[数据面板组件](ts-basic-components-datapanel.md#datapanel)提供信息展示能力的公共接口。
+用于修饰组件，为[Gauge](ts-basic-components-gauge.md)和[DataPanel](ts-basic-components-datapanel.md)组件提供信息展示能力的公共接口。
 
 >**说明：**
 >

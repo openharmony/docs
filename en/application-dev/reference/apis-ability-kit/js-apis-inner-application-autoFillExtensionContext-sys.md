@@ -1,5 +1,12 @@
 # AutoFillExtensionContext (System API)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 The AutoFillExtensionContext module provides the context environment for the AutoFillExtensionAbility. It inherits from [ExtensionContext](js-apis-inner-application-extensionContext.md).
 
 > **NOTE**
@@ -22,7 +29,9 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
 }
 ```
 
-## AutoFillExtensionContext.reloadInModal<sup>13+</sup>
+## AutoFillExtensionContext
+
+### reloadInModal<sup>13+</sup>
 
 reloadInModal(customData: CustomData): Promise\<void>
 
@@ -57,7 +66,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 The autofill service is triggered when a user touches the account and password text box, and an account selection page is displayed in the **onFillRequest** lifecycle of the [AutoFillExtensionAbility](js-apis-app-ability-autoFillExtensionAbility-sys.md).
 
-When an account is selected, **reloadInModal** is called to trigger the autofill service again, and a modal page is started in the** onFillRequest** lifecycle of the AutoFillExtensionAbility.
+When an account is selected, **reloadInModal** is called to trigger the autofill service again, and a modal page is started in the **onFillRequest** lifecycle of the AutoFillExtensionAbility.
 
 ```ts
 // AutoFillAbility.ts
@@ -67,8 +76,8 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export default class AutoFillAbility extends AutoFillExtensionAbility {
   // ...
   onFillRequest(session: UIExtensionContentSession,
-                request: autoFillManager.FillRequest,
-                callback: autoFillManager.FillRequestCallback) {
+    request: autoFillManager.FillRequest,
+    callback: autoFillManager.FillRequestCallback) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
     try {
       let storage_fill: LocalStorage = new LocalStorage(
@@ -79,7 +88,7 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
           'viewData': request.viewData,
           'autoFillExtensionContext': this.context,
           'customData': request.customData
-        });
+        } as Record<string, Object>);
       if (request.customData == undefined) {
         // Load the autofill processing page.
         session.loadContent('pages/AccountPage', storage_fill);

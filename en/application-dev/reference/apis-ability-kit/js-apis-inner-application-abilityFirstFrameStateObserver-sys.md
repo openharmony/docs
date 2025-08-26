@@ -13,12 +13,41 @@
 import { appManager } from '@kit.AbilityKit';
 ```
 
-## Properties
+## AbilityFirstFrameStateObserver
+
+### onAbilityFirstFrameDrawn
+
+onAbilityFirstFrameDrawn(data: AbilityFirstFrameStateData): void
+
+Called when the first frame of the ability is rendered.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name                    | Type                | Read Only| Mandatory| Description                                                        |
-| ------------------------ | -------------------- | ---- | ---- | ------------------------------------------------------------ |
-| onAbilityFirstFrameDrawn | AsyncCallback\<void> | Yes  | No  | Callback invoked when the first frame of an ability is rendered. The parameter type passed in is [AbilityFirstFrameStateData](js-apis-inner-application-abilityFirstFrameStateData-sys.md).|
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| data | [AbilityFirstFrameStateData](js-apis-inner-application-abilityFirstFrameStateData-sys.md) | Yes| Data returned after the first frame is rendered.|
+
+**Example**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let observer: appManager.AbilityFirstFrameStateObserver = {
+  onAbilityFirstFrameDrawn(data: appManager.AbilityFirstFrameStateData) {
+    console.info(`onAbilityFirstFrameDrawn success, abilityFirstFrameStateData: ${data}.`);
+  }
+};
+
+try {
+  appManager.on('abilityFirstFrameState', observer);
+} catch (e) {
+  let code = (e as BusinessError).code;
+  let msg = (e as BusinessError).message;
+  console.error(`appmanager.on failed, err code: ${code}, err msg: ${msg}.`);
+}
+```

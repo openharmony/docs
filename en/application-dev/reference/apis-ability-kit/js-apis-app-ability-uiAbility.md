@@ -1,4 +1,11 @@
-# @ohos.app.ability.UIAbility (ExtensionAbilities with UI)
+# @ohos.app.ability.UIAbility (Ability with UI)
+
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @littlejerry1; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 UIAbility is an application component that has the UI. It inherits from [Ability](js-apis-app-ability-ability.md) and provides [lifecycle](#uiability-lifecycle-states) callbacks such as component creation, destruction, and foreground/background switching. It also provides the [background communication capability](#background-communication-capability).
 
@@ -527,7 +534,7 @@ Called to save data during the UIAbility migration preparation process.
 
 > **NOTE**
 >
-> Since API version 12, **UIAbility.onContinue** supports the return value in the form of Promise\<[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#oncontinueresult)\>.
+> Starting from API version 12, **UIAbility.onContinue** supports the return value in the form of Promise\<[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#oncontinueresult)\>.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -662,7 +669,7 @@ When the application has enabled the fault recovery feature (with the **saveOcca
 
 > **NOTE**
 >
-> Since API version 20, this callback is not executed when [UIAbility.onSaveStateAsync](#onsavestateasync20) is implemented.
+> Starting from API version 20, this callback is not executed when [UIAbility.onSaveStateAsync](#onsavestateasync20) is implemented.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -766,16 +773,12 @@ export default class MyUIAbility extends UIAbility {
 
 onPrepareToTerminate(): boolean
 
-Triggered by the system just before the UIAbility is about to close, allowing you to perform additional operations before the UIAbility is officially shut down. You can return **true** to block the current closure attempt and then manually call [terminateSelf](js-apis-inner-application-uiAbilityContext.md#terminateself) at an appropriate time to close it. For example, you might ask the user to confirm whether they want to close the UIAbility and then proceed with the closure manually.
+Triggered by the system just before the UIAbility is about to close (for example, when the user clicks the close button in the top-right corner of the application window or exits from the dock or system tray), allowing for additional operations to be performed before the UIAbility is officially shut down. You can return **true** to block the current closure attempt and then manually call [terminateSelf](js-apis-inner-application-uiAbilityContext.md#terminateself) at an appropriate time to close it. For example, you might ask the user to confirm whether they want to close the UIAbility and then proceed with the closure manually.
 
 
 > **NOTE**
 >
-> - Prerequisites: This API takes effect only on 2-in-1 devices and requires the application to have the ohos.permission.PREPARE_APP_TERMINATE permission.
->
-> - Trigger scenario: This API can be used when the user closes the application by clicking the close button in the top-right corner of the application window or by right-clicking to exit from the dock or system tray.
->
-> - Since API version 15, this callback is not executed when[UIAbility.onPrepareToTerminateAsync](#onpreparetoterminateasync15) is implemented. When [AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#onprepareterminationasync15) or [AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#onpreparetermination15) is implemented, this callback is not executed if the user right-clicks the dock bar or system tray to close the UIAbility.
+> - Starting from API version 15, this callback is not executed when[UIAbility.onPrepareToTerminateAsync](#onpreparetoterminateasync15) is implemented. When [AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#onprepareterminationasync15) or [AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#onpreparetermination15) is implemented, this callback is not executed if the user right-clicks the dock bar or system tray to close the UIAbility.
 > - Additionally, if the application or a third-party framework registers a listener for [window.WindowStage.on('windowStageClose')](../apis-arkui/arkts-apis-window-WindowStage.md#onwindowstageclose14), this callback is not executed.
 
 **Required permissions**: ohos.permission.PREPARE_APP_TERMINATE
@@ -784,11 +787,13 @@ Triggered by the system just before the UIAbility is about to close, allowing yo
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+**Device behavior differences**: This API executes the callback normally only on 2-in-1 devices and tablets. It does not execute the callback on other devices.
+
 **Return value**
 
 | Type| Description|
 | -- | -- |
-| boolean | Whether to terminate the UIAbility. The value **true** means that the termination process is canceled. The value **false** means to continue terminating the UIAbility.|
+| boolean | Whether to terminate the UIAbility. **true** if the termination process is canceled; **false** to continue terminating the UIAbility.|
 
 **Example**
 
@@ -827,16 +832,12 @@ export default class EntryAbility extends UIAbility {
 
 onPrepareToTerminateAsync(): Promise\<boolean>
 
-Triggered by the system just before the UIAbility is about to close, allowing you to perform additional operations before the UIAbility is officially shut down.
+Triggered by the system just before the UIAbility is close (for example, when the user clicks the close button in the top-right corner of the application window or exits from the dock or system tray), allowing for additional operations to be performed before the UIAbility is officially shut down.
 
 You can return **true** to block the current closure attempt and then manually call [terminateSelf](js-apis-inner-application-uiAbilityContext.md#terminateself) at an appropriate time to close it. For example, you might ask the user to confirm whether they want to close the UIAbility and then proceed with the closure manually.
 
 
 > **NOTE**
->
-> - Prerequisites: This API takes effect only on 2-in-1 devices and requires the application to have the ohos.permission.PREPARE_APP_TERMINATE permission.
->
-> - Trigger scenario: This API can be used when the user closes the application by clicking the close button in the top-right corner of the application window or by right-clicking to exit from the dock or system tray.
 >
 > - When [AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#onprepareterminationasync15) or [AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#onpreparetermination15) is implemented, this callback is not executed if the user right-clicks the dock bar or system tray to close the UIAbility.
 > - Additionally, if the application or a third-party framework registers a listener for [window.WindowStage.on('windowStageClose')](../apis-arkui/arkts-apis-window-WindowStage.md#onwindowstageclose14), this callback is not executed.
@@ -849,11 +850,15 @@ You can return **true** to block the current closure attempt and then manually c
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+**Device behavior differences**
+- Starting from API version 15, this API executes the callback normally only on 2-in-1 devices. It does not execute the callback on other devices.
+- Starting from API version 19, this API executes the callback normally only on 2-in-1 devices and tablets. It does not execute the callback on other devices.
+
 **Return value**
 
 | Type| Description|
 | -- | -- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the termination process is canceled. The value **false** means to continue terminating the UIAbility.|
+| Promise\<boolean> | Promise used to return the result. **true** if the termination process is canceled; **false** to continue terminating the UIAbility.|
 
 **Example**
 
@@ -887,7 +892,7 @@ Called when an operation of going back to the previous page is triggered on this
 
 | Type| Description|
 | -- | -- |
-| boolean | The value **true** means that the UIAbility instance will be moved to the background and will not be destroyed, and **false** means that the UIAbility instance will be destroyed.|
+| boolean | **true** if the UIAbility instance will be moved to the background and will not be destroyed; **false** if the UIAbility instance will be destroyed.|
 
 **Example**
 
@@ -984,9 +989,9 @@ import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class MyMessageAble implements rpc.Parcelable { // Custom parcelable data structure.
-  name: string
-  str: string
-  num: number = 1
+  name: string;
+  str: string;
+  num: number = 1;
   constructor(name: string, str: string) {
     this.name = name;
     this.str = str;
@@ -1003,9 +1008,8 @@ class MyMessageAble implements rpc.Parcelable { // Custom parcelable data struct
     console.info(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
     return true;
   }
-};
-let method = 'call_Function'; // Notification message string negotiated by the two UIAbilities.
-let caller: Caller;
+}
+let method = 'call_Function'; // Notification message string negotiated by the two UIAbility components.
 
 export default class MainUIAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -1014,7 +1018,7 @@ export default class MainUIAbility extends UIAbility {
       abilityName: 'MainUIAbility',
       deviceId: ''
     }).then((obj) => {
-      caller = obj;
+      let caller: Caller = obj;
       let msg = new MyMessageAble('msg', 'world'); // See the definition of Parcelable.
       caller.call(method, msg)
         .then(() => {
@@ -1200,8 +1204,6 @@ import { UIAbility, Caller } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let caller: Caller;
-
 export default class MainUIAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     this.context.startAbilityByCall({
@@ -1209,13 +1211,13 @@ export default class MainUIAbility extends UIAbility {
       abilityName: 'MainUIAbility',
       deviceId: ''
     }).then((obj) => {
-      caller = obj;
+      let caller: Caller = obj;
       try {
         caller.onRelease((str) => {
           console.info(`Caller OnRelease CallBack is called ${str}`);
         });
       } catch (error) {
-        console.error(`Caller.onRelease catch error, error.code: $error.code}, error.message: ${error.message}`);
+        console.error(`Caller.onRelease catch error, error.code: ${error.code}, error.message: ${error.message}`);
       }
     }).catch((err: BusinessError) => {
       console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
@@ -1254,17 +1256,15 @@ import { UIAbility, Caller } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let caller: Caller;
-let dstDeviceId: string;
-
 export default class MainAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
+    let dstDeviceId: string = 'xxxxx';
     this.context.startAbilityByCall({
       bundleName: 'com.example.myservice',
       abilityName: 'MainUIAbility',
       deviceId: dstDeviceId
     }).then((obj) => {
-      caller = obj;
+      let caller: Caller = obj;
       try {
         caller.onRemoteStateChange((str) => {
           console.info('Remote state changed ' + str);
@@ -1274,7 +1274,7 @@ export default class MainAbility extends UIAbility {
       }
     }).catch((err: BusinessError) => {
       console.error(`Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}`);
-    })
+    });
   }
 }
 ```
@@ -1310,16 +1310,15 @@ import { UIAbility, Caller } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let caller: Caller;
-
 export default class MainUIAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
+    let dstDeviceId: string = 'xxxx';
     this.context.startAbilityByCall({
       bundleName: 'com.example.myservice',
       abilityName: 'MainUIAbility',
-      deviceId: ''
+      deviceId: dstDeviceId
     }).then((obj) => {
-      caller = obj;
+      let caller: Caller = obj;
       try {
         caller.on('release', (str) => {
           console.info(`Caller OnRelease CallBack is called ${str}`);
@@ -1364,8 +1363,6 @@ import { UIAbility, Caller, OnReleaseCallback } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let caller: Caller;
-
 export default class MainUIAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     this.context.startAbilityByCall({
@@ -1373,7 +1370,7 @@ export default class MainUIAbility extends UIAbility {
       abilityName: 'MainUIAbility',
       deviceId: ''
     }).then((obj) => {
-      caller = obj;
+      let caller: Caller = obj;
       try {
         let onReleaseCallBack: OnReleaseCallback = (str) => {
           console.info(`Caller OnRelease CallBack is called ${str}`);
@@ -1461,7 +1458,7 @@ Registers a caller notification callback, which is invoked when the target UIAbi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| method | string | Yes| Notification message string negotiated between the two UIAbilities.|
+| method | string | Yes| Notification message string negotiated between the two UIAbility components.|
 | callback | [CalleeCallback](#calleecallback) | Yes| JS notification synchronization callback of the [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9) type. The callback must return at least one empty [rpc.Parcelable](../apis-ipc-kit/js-apis-rpc.md#parcelable9) object. Otherwise, the function execution fails.|
 
 **Error codes**
@@ -1504,7 +1501,6 @@ class MyMessageAble implements rpc.Parcelable {
 let method = 'call_Function';
 
 function funcCallBack(pdata: rpc.MessageSequence) {
-  console.info(`Callee funcCallBack is called ${pdata}`);
   let msg = new MyMessageAble('test', '');
   pdata.readParcelable(msg);
   return new MyMessageAble('test1', 'Callee test');
