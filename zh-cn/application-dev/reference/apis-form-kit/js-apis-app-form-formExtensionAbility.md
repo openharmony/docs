@@ -1,4 +1,10 @@
 # @ohos.app.form.FormExtensionAbility (FormExtensionAbility)
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 
 FormExtensionAbility为卡片扩展模块，提供卡片创建、销毁、刷新等生命周期回调。
 
@@ -372,8 +378,10 @@ onFormLocationChanged(formId: string, newFormLocation: formInfo.FormLocation): v
 
 当卡片位置发生变化时，触发该回调。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **模型约束：** 此接口仅可在Stage模型下使用。
-  
+
 **系统能力：** SystemCapability.Ability.Form
 
 **参数：**
