@@ -72,7 +72,7 @@ Job Partner中定义原先的线程为master线程，并支持动态管理partne
 | -------------------------------------------------------------- | ------------------ |
 | [submit](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#submit-suspendable-job)     | 提交可暂停的任务。 |
 | [wait](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#wait)                         | 等待所有任务完成。 |
-| [submit_to_master](ffrt-api-guideline-cpp.md#submit_to_master) | 提交任务到主线程。 |
+| [submit_to_master](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#submit_to_master) | 提交任务到主线程。 |
 
 > **说明：**
 >
