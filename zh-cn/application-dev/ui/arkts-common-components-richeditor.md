@@ -1111,7 +1111,9 @@ Button('setTypingStyle', {
 
 ![RichEditor_decoration](figures/RichEditor_decoration.jpg)
 
-- 从API version 20开始，支持开启多装饰线，比如同时设置下划线和中划线。
+通过[DecorationOptions](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#decorationoptions20)中的enableMultiType设置多装饰线，比如同时设置下划线和中划线。
+
+此接口适用于复杂业务场景，满足文本装饰的多样化需求。在文档协作过程中，多人编辑时，可以通过使用不同的装饰线组合来区分文本状态，从而提高协作效率。
 
   ```ts
   RichEditor({ controller: this.styledStringController })
