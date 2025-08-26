@@ -1620,11 +1620,11 @@ setDragKeyFramePolicy(keyFramePolicy: KeyFramePolicy): Promise&lt;KeyFramePolicy
 
 | 错误码ID | 错误信息                                      |
 | ------- | --------------------------------------------- |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 801     | Capability not supported. Function setSubWindowZLevel can not work correctly due to limited device capabilities. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation.                       |
-| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range; 2. The parameter format is incorrect.|
+| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range. 2. Incorrect parameter format.|
 
 **示例：**
 
