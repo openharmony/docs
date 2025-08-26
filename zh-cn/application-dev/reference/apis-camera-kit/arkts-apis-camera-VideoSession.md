@@ -557,7 +557,7 @@ on(type: 'macroStatusChanged', callback: AsyncCallback\<boolean\>): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 202 | Permission verification failed. |
+| 202 | Not System Application. |
 
 **示例：**
 
@@ -600,7 +600,7 @@ off(type: 'macroStatusChanged', callback?: AsyncCallback\<boolean\>): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 202 | Permission verification failed. |
+| 202 | Not System Application. |
 
 **示例：**
 
