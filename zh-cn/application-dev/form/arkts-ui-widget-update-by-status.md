@@ -178,18 +178,7 @@
     }
   
     // 当前卡片使用方不会涉及该场景，无需实现该回调函数
-    onCastToNormalForm(formId: string): void {
-      hilog.info(DOMAIN_NUMBER, TAG, 'onCastToNormalForm, formId:' + formId);
-      let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, 'myStore');
-      promise.then(async (storeDB: preferences.Preferences) => {
-        hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded to get preferences.');
-        await storeDB.put('A' + formId, 'false');
-        await storeDB.put('B' + formId, 'false');
-        await storeDB.flush();
-      }).catch((err: BusinessError) => {
-      hilog.info(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
-      });
-    }
+    onCastToNormalForm(formId: string): void { }
   
     onUpdateForm(formId: string): void {
       let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, 'myStore');

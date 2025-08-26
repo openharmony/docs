@@ -71,6 +71,7 @@ ArkTS卡片有两种创建卡片包的方式。开发者在开发过程中任选
 - 填写卡片配置之后点击【Finish】。卡片创建成功后，entry包中包含应用和卡片后端能力；library包中包含卡片UI侧能力。entry模块下的`module.json5`配置文件中的`formWidgetModule`字段需关联library模块，library模块下的`module.json5`配置文件中的`formExtensionModule`字段需关联entry模块，以实现卡片包和应用包相互关联。创建完成后，会自动生成配置文件并进行配置，后续也可以在按照[卡片配置文件](./arkts-ui-widget-configuration.md#配置arkts卡片的配置文件)指导配置。<br>
 ![WidgetProjectCreate2](figures/创建独立卡片包卡片_3.png)
 ### 工程结构介绍
+独立卡片包与卡片共包方式创建卡片，仅工程结构存在差异，生成的文件是一致的，各文件具体内容请参考[共包方式工程结构介绍](./arkts-ui-widget-creation.md#工程结构介绍)。<br>
 **图2** 独立卡片包工程目录。<br>
 ![WidgetModules](figures/独立包卡片目录结构.png)<br>
 >**说明：**
