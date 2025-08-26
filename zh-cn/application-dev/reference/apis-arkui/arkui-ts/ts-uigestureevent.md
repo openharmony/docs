@@ -99,6 +99,12 @@ tag(tag: string): T
 | ----  | ------  | ------|---------------------------------- |
 | tag   | string  | 是 |设置手势处理器标志。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ### allowedTypes<sup>14+</sup>
 
 allowedTypes(types: Array\<SourceTool>): T
@@ -115,6 +121,12 @@ allowedTypes(types: Array\<SourceTool>): T
 | ----  | ------  | ------|---------------------------------- |
 | types   | Array\<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)>  | 是 |设置手势处理器所支持的事件输入源。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## BaseHandlerOptions<sup>15+</sup>
 
 基础手势处理器配置参数。
@@ -123,7 +135,7 @@ allowedTypes(types: Array\<SourceTool>): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名           | 类型          | 只读 | 可选 | 说明            |
+| 名称           | 类型          | 只读 | 可选 | 说明            |
 |---------------|---------------|-----|------|----------------|
 | isFingerCountLimited | boolean | 否 | 是 | 是否检查触摸屏幕的手指数量。true表示检查触摸屏幕的手指数量，false表示不检查触摸屏幕的手指数量。如果触摸手指的数量不等于设置的触发点击的手指数，那么该手势识别失败。<br>默认值：false |
 
@@ -475,7 +487,7 @@ constructor(options?: SwipeGestureHandlerOptions)
 
 ### onAction
 
-onAction(event: Callback\<GestureEvent>): SwipeGestureHandlerOptions
+onAction(event: Callback\<GestureEvent>): SwipeGestureHandler
 
 Swipe手势识别成功回调。
 
