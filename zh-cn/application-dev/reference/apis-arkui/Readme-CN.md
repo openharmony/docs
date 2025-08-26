@@ -196,7 +196,6 @@
       - [Tips控制](arkui-ts/ts-universal-attributes-tips.md)
       - [菜单控制](arkui-ts/ts-universal-attributes-menu.md)
     - [无障碍属性](arkui-ts/ts-universal-attributes-accessibility.md)
-    - [文本通用](arkui-ts/ts-universal-attributes-text-style.md)
     - 模态转场设置<!--transition-->
       - [全屏模态转场](arkui-ts/ts-universal-attributes-modal-transition.md)
       - [半模态转场](arkui-ts/ts-universal-attributes-sheet-transition.md)
@@ -309,6 +308,7 @@
     - [Hyperlink](arkui-ts/ts-container-hyperlink.md)
     - [RichText](arkui-ts/ts-basic-components-richtext.md)
     - [属性字符串](arkui-ts/ts-universal-styled-string.md)
+    - [输入框类组件通用接口](arkui-ts/ts-universal-attributes-text-style.md)
     - [文本组件公共接口](arkui-ts/ts-text-common.md)
     <!--Del-->
     - [文本组件公共接口 (系统接口)](arkui-ts/ts-text-common-sys.md)
