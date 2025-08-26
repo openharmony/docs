@@ -433,7 +433,7 @@ colorFilter(value: ColorFilter | DrawingColorFilter)
 
 | 参数名 | 类型                                    | 必填 | 说明                                                         |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](#drawingcolorfilter12) | 是   | 1. 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>2. 从API version12开始支持@ohos.graphics.drawing的ColorFilter类型作为入参。<br/>**说明：** <br/>API version 11及之前，SVG类型图源不支持该属性。<br/>从API version 12开始，该接口中的DrawingColorfilter类型支持在原子化服务中使用。其中，SVG类型的图源只有设置了stroke属性（无论是否有值）才会生效。|
+| value  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter<sup>12+</sup>](#drawingcolorfilter12) | 是   | 1. 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>2. 从API version12开始支持@ohos.graphics.drawing的ColorFilter类型作为入参。<br/>**说明：** <br/>API version 11及之前，SVG类型图源不支持该属性。<br/>从API version 12开始，该接口中的DrawingColorfilter类型支持在原子化服务中使用。其中，SVG类型的图源只有设置了stroke属性（无论是否有值）才会生效。|
 
 颜色滤镜通过一个4x5的矩阵来设置图像的颜色滤镜，矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br/>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br/> **计算规则：**<br/>如果输入的滤镜矩阵如下（其中矩阵值的范围[0, 1]）：<br/>![image-matrix-1](figures/image_matrix_1.png) <br/>像素点为[R, G, B, A]，色值的范围[0, 255]<br/>则过滤后的颜色为 [R’, G’, B’, A’]<br/>![image-matrix-2](figures/image_matrix_2.png)
 ### draggable<sup>9+</sup>
@@ -632,7 +632,7 @@ SVG类型图源不支持该属性。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | --------- |-----------|-----------|-----------|-----------|
-| slice | [EdgeWidths](ts-types.md#edgewidths9) |  否  |  是  | 边框宽度类型，用于描述组件边框不同方向的宽度。<br>**说明：**<br>只有当bottom和right同时大于0时，该属性生效。<br>当设置了top时，图片顶部拉伸，图片的像素值保持不变。<br>当设置了right时，图片右部拉伸，图片的像素值保持不变。<br>当设置了bottom时，图片底部拉伸，图片的像素值保持不变。<br>当设置了left时，图片左部拉伸，图片的像素值保持不变。<br>每个方向的宽度默认值为0，传入数字时默认单位为vp。<br>设置了EdgeWidths后的效果如图1（设置EdgeWidths效果图）所示。|
+| slice | [EdgeWidths<sup>9+</sup>](ts-types.md#edgewidths9) |  否  |  是  | 边框宽度类型，用于描述组件边框不同方向的宽度。<br>**说明：**<br>只有当bottom和right同时大于0时，该属性生效。<br>当设置了top时，图片顶部拉伸，图片的像素值保持不变。<br>当设置了right时，图片右部拉伸，图片的像素值保持不变。<br>当设置了bottom时，图片底部拉伸，图片的像素值保持不变。<br>当设置了left时，图片左部拉伸，图片的像素值保持不变。<br>每个方向的宽度默认值为0，传入数字时默认单位为vp。<br>设置了EdgeWidths后的效果如图1（设置EdgeWidths效果图）所示。|
 | lattice<sup>12+</sup> | [DrawingLattice](#drawinglattice12) |  否  |  是  | 矩形网格对象。<br>**说明：**<br> 通过@ohos.graphics.drawing的createImageLattice接口创建Lattice类型作为入参。将图像划分为矩形网格，同时处于偶数列和偶数行上的网格图像是固定的，不会被拉伸。<br>该参数对[backgroundImageResizable](ts-universal-attributes-background.md#backgroundimageresizable12)接口不生效。<br> 传入数字时默认单位为px。 |
 
 **图1** 设置EdgeWidths效果图
