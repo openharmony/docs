@@ -62,7 +62,7 @@
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。|
 | 同步类型           | 双向同步。<br/>从\@Provide变量到所有\@Consume变量以及相反的方向的数据同步。双向同步的操作与\@State和\@Link的组合相同。 |
-| 允许装饰的变量类型      | object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API version 10开始支持[Date类型](#装饰date类型变量)。<br/>API version 11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型、undefined和null类型、ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型以及这些类型的联合类型，示例见[@Provide和Consume支持联合类型实例](#provide和consume支持联合类型实例)。<br/>支持类型的场景请参考[观察变化](#观察变化)。|
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API version 10开始支持[Date类型](#装饰date类型变量)。<br/>API version 11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型、undefined和null类型、ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型以及这些类型的联合类型，示例见[@Provide和Consume支持联合类型实例](#provide和consume支持联合类型实例)。<br/>支持类型的场景请参考[观察变化](#观察变化)。|
 | 不允许装饰的变量类型 | 不支持装饰Function类型。      |
 | 被装饰变量的初始值      | 必须本地初始化。                                    |
 | 支持allowOverride参数          | 允许重写，只要声明了allowOverride，则别名和属性名都可以被Override。示例见[\@Provide支持allowOverride参数](#provide支持allowoverride参数)。 |
@@ -71,7 +71,7 @@
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。 |
 | 同步类型           | 双向同步：从\@Provide变量（具体请参见\@Provide）到所有\@Consume变量，以及相反的方向。双向同步操作与\@State和\@Link的组合相同。 |
-| 允许装饰的变量类型      | object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API version 10开始支持[Date类型](#装饰date类型变量)。<br/>API version 11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型、undefined和null类型、ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型以及这些类型的联合类型，示例见[@Provide和Consume支持联合类型实例](#provide和consume支持联合类型实例)。<br/>支持类型的场景请参考[观察变化](#观察变化)。 <br/>**说明：** <br/>API version 20之前，\@Consume装饰的变量，在其父组件或者祖先组件上，必须有对应的属性和别名的\@Provide装饰的变量。
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API version 10开始支持[Date类型](#装饰date类型变量)。<br/>API version 11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型、undefined和null类型、ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型以及这些类型的联合类型，示例见[@Provide和Consume支持联合类型实例](#provide和consume支持联合类型实例)。<br/>支持类型的场景请参考[观察变化](#观察变化)。 <br/>**说明：** <br/>API version 20之前，\@Consume装饰的变量，在其父组件或者祖先组件上，必须有对应的属性和别名的\@Provide装饰的变量。
 | 被装饰变量的初始值      | 从API version 20开始，\@Consume支持设置默认值。若存在匹配成功的\@Provide，则会使用\@Provide的变量值作为初始值。示例见[\@Consume装饰的变量支持设置默认值](#consume装饰的变量支持设置默认值)。                            |
 
 ## 变量的传递/访问规则说明
@@ -295,7 +295,7 @@ class B {}
 ```
 在非BuilderNode场景中，仍建议配对的\@Provide/\@Consume类型一致。虽然在运行时不会有强校验，但在\@Consume装饰的变量初始化时，会隐式转换成\@Provide装饰变量的类型。
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
+import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
 @Builder
 function buildText() {
@@ -425,16 +425,16 @@ struct Child {
         Divider()
       })
       Button('Consume init Map').onClick(() => {
-        this.message = new Map([[0, "a"], [1, "b"], [3, "c"]])
+        this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c']])
       })
       Button('Consume set new one').onClick(() => {
-        this.message.set(4, "d")
+        this.message.set(4, 'd')
       })
       Button('Consume clear').onClick(() => {
         this.message.clear()
       })
       Button('Consume replace the first item').onClick(() => {
-        this.message.set(0, "aa")
+        this.message.set(0, 'aa')
       })
       Button('Consume delete the first item').onClick(() => {
         this.message.delete(0)
@@ -447,13 +447,13 @@ struct Child {
 @Entry
 @Component
 struct MapSample {
-  @Provide message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+  @Provide message: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']])
 
   build() {
     Row() {
       Column() {
         Button('Provide init Map').onClick(() => {
-          this.message = new Map([[0, "a"], [1, "b"], [3, "c"], [4, "d"]])
+          this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c'], [4, 'd']])
         })
         Child()
       }
@@ -638,7 +638,7 @@ allowOverride：\@Provide重写选项。
 ```ts
 @Component
 struct MyComponent {
-  @Provide({allowOverride : "reviewVotes"}) reviewVotes: number = 10;
+  @Provide({allowOverride : 'reviewVotes'}) reviewVotes: number = 10;
 }
 ```
 
@@ -648,7 +648,7 @@ struct MyComponent {
 @Component
 struct GrandSon {
   // @Consume装饰的变量通过相同的属性名绑定其祖先内的@Provide装饰的变量
-  @Consume("reviewVotes") reviewVotes: number;
+  @Consume('reviewVotes') reviewVotes: number;
 
   build() {
     Column() {
@@ -662,7 +662,7 @@ struct GrandSon {
 
 @Component
 struct Child {
-  @Provide({ allowOverride: "reviewVotes" }) reviewVotes: number = 10;
+  @Provide({ allowOverride: 'reviewVotes' }) reviewVotes: number = 10;
 
   build() {
     Row({ space: 5 }) {
@@ -673,7 +673,7 @@ struct Child {
 
 @Component
 struct Parent {
-  @Provide({ allowOverride: "reviewVotes" }) reviewVotes: number = 20;
+  @Provide({ allowOverride: 'reviewVotes' }) reviewVotes: number = 20;
 
   build() {
     Child()
@@ -683,7 +683,7 @@ struct Parent {
 @Entry
 @Component
 struct GrandParent {
-  @Provide("reviewVotes") reviewVotes: number = 40;
+  @Provide('reviewVotes') reviewVotes: number = 40;
 
   build() {
     Column() {
@@ -696,10 +696,10 @@ struct GrandParent {
 ```
 
 在上面的示例中：
-- GrandParent声明了@Provide("reviewVotes") reviewVotes: number = 40。
-- Parent是GrandParent的子组件，声明@Provide为allowOverride，重写父组件GrandParent的@Provide("reviewVotes") reviewVotes: number = 40。如果不设置allowOverride，则会抛出运行时报错，提示@Provide重复定义。Child同理。
+- GrandParent声明了@Provide('reviewVotes') reviewVotes: number = 40。
+- Parent是GrandParent的子组件，声明@Provide为allowOverride，重写父组件GrandParent的@Provide('reviewVotes') reviewVotes: number = 40。如果不设置allowOverride，则会抛出运行时报错，提示@Provide重复定义。Child同理。
 - GrandSon在初始化@Consume的时候，@Consume装饰的变量通过相同的属性名绑定其最近的祖先的@Provide装饰的变量。
-- GrandSon查找到相同属性名的@Provide在祖先Child中，所以@Consume("reviewVotes") reviewVotes: number初始化数值为10。如果Child中没有定义与@Consume同名的@Provide，则继续向上寻找Parent中的同名@Provide值为20，以此类推。
+- GrandSon查找到相同属性名的@Provide在祖先Child中，所以@Consume('reviewVotes') reviewVotes: number初始化数值为10。如果Child中没有定义与@Consume同名的@Provide，则继续向上寻找Parent中的同名@Provide值为20，以此类推。
 - 如果查找到根节点还没有找到key对应的@Provide，则会报初始化@Consume找不到@Provide的报错。
 
 ### \@Consume装饰的变量支持设置默认值
@@ -807,7 +807,7 @@ BuilderNode支持\@Provide/\@Consume，需注意：
 4. 点击`dispose Child`，释放BuilderNode下子节点，BuilderNode子节点`Child`销毁，执行aboutToDisappear。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
+import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
 @Builder
 function buildText() {
