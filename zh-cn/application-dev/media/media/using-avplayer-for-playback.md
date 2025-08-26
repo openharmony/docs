@@ -59,9 +59,7 @@
     // 此处仅为示例，开发者根据需要设置合适的监听事件。
     import { BusinessError } from '@kit.BasicServicesKit';
     import { audio } from '@kit.AudioKit';
-    import { media } from '@kit.MediaKit';
 
-    let avPlayer = await media.createAVPlayer();
     avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
         // 开发者根据需要写入业务逻辑。
     });
@@ -107,9 +105,6 @@
    > 此外，如果需要设置音频渲染信息，则只允许在initialized状态下，第一次调用prepare()之前设置，以便音频渲染器信息在之后生效。若媒体源包含视频，则usage默认值为STREAM_USAGE_MOVIE，否则usage默认值为STREAM_USAGE_MUSIC。rendererFlags默认值为0。为了确保音频行为符合使用预期，建议根据具体业务场景和实际需求，主动配置[audio.AudioRendererInfo](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiorendererinfo8)，为音频选择恰当的流类型[usage](../../media/audio/using-right-streamusage-and-sourcetype.md)。
 
     ```ts
-    import { media } from '@kit.MediaKit';
-
-    let avPlayer = await media.createAVPlayer();
     let url = 'https://xxx.xxx.xxx.mp3';
     if (avPlayer == null) {
         return;
@@ -120,10 +115,8 @@
 4. 准备播放：调用prepare()，AVPlayer进入prepared状态，此时可以获取duration，设置音量。
 
     ```ts
-    import { media } from '@kit.MediaKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
-    let avPlayer = await media.createAVPlayer();
     avPlayer.prepare((err: BusinessError) => {
         if (err) {
             console.error('Failed to prepare,error message is :' + err.message);
@@ -136,10 +129,8 @@
 5. 音频播控：播放play()，暂停pause()，跳转seek()，停止stop() 等操作。
 
     ```ts
-    import { media } from '@kit.MediaKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
-    let avPlayer = await media.createAVPlayer();
     // 播放操作。
     avPlayer.play().then(() => {
         console.info('Succeeded in playing');
@@ -170,10 +161,8 @@
 6. （可选）更换资源：调用reset()重置资源，AVPlayer重新进入idle状态，允许更换资源url。
 
     ```ts
-    import { media } from '@kit.MediaKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
-    let avPlayer = await media.createAVPlayer();
     avPlayer.reset((err: BusinessError) => {
         avPlayer.url = url;
         if (err) {
@@ -193,10 +182,8 @@
 7. 退出播放：调用release()销毁实例，AVPlayer进入released状态，退出播放。
 
     ```ts
-    import { media } from '@kit.MediaKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
-    let avPlayer = await media.createAVPlayer();
     avPlayer.release((err: BusinessError) => {
         if (err) {
             console.error('Failed to release,error message is :' + err.message);
