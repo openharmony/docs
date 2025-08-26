@@ -270,15 +270,9 @@ try {
 }
 ```
 
-## IAuthWidgetCallback<sup>10+</sup>
+## AuthWidgetCallbackSendCommandFunc<sup>22+</sup>
 
-认证组件通过该回调获取用户认证框架发送的命令。
-
-### sendCommand<sup>10+</sup>
-
-ArkTS1.1: sendCommand(cmdData: string): void
-
-ArkTS1.2: sendCommand: (cmdData: string) => void
+type AuthWidgetCallbackSendCommandFunc = (cmdData: string) => void
 
 回调函数，用于用户认证框架向组件发送命令。
 
@@ -294,8 +288,6 @@ ArkTS1.2: sendCommand: (cmdData: string) => void
 
 **示例：**
 
-ArkTS1.1示例：
-
 ```ts
 import { userAuth } from '@kit.UserAuthenticationKit';
 
@@ -304,17 +296,45 @@ try {
   let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
   console.info('get userAuthWidgetMgr instance success');
   userAuthWidgetMgr.on('command', {
-    sendCommand(cmdData) {
+    sendCommand: (cmdData: string) => {
       console.info(`The cmdData is ${cmdData}`);
     }
   })
   console.info('subscribe authentication event success');
 } catch (error) {
-  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
+  console.error(`userAuth widgetMgr catch error. Code is ${error?.code}, 
+    message is ${error?.message}`);
 }
 ```
 
-ArkTS1.2示例：
+## IAuthWidgetCallback<sup>10+</sup>
+
+认证组件通过该回调获取用户认证框架发送的命令。
+
+### 属性
+| 名称     | 类型                           | 必填 | 说明                                                         |
+| -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
+| sendCommand<sup>22+</sup> | [AuthWidgetCallbackSendCommandFunc](#authwidgetcallbacksendcommandfunc22) | 是   | 回调函数，用于用户认证框架向组件发送命令。 |
+
+### sendCommand<sup>10+</sup>
+
+sendCommand(cmdData: string): void
+
+回调函数，用于用户认证框架向组件发送命令。
+
+**ArkTS模式：** 该接口适用于ArkTS-Dyn。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                               |
+| ------- | ------ | ---- | ---------------------------------- |
+| cmdData | string | 是   | 用户身份认证框架向控件发送的命令。 |
+
+**示例：**
 
 ```ts
 import { userAuth } from '@kit.UserAuthenticationKit';
