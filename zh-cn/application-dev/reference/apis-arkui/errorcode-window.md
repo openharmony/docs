@@ -105,6 +105,7 @@ WindowExtension拉起应用的参数异常。
 检查WindowExtension参数是否被异常修改，确保其参数合法，再进行相关操作。
 <!--DelEnd-->
 
+<!--Del-->
 ## 1300008 显示设备异常
 
 **错误信息**<br>
@@ -120,6 +121,7 @@ The display device is abnormal.
 
 **处理步骤**<br>
 确保显示设备正常，再进行相关开发。
+<!--DelEnd-->
 
 ## 1300009 父窗口无效
 
@@ -243,24 +245,6 @@ Parameter validation error.
 **处理步骤**
 
 检查参数是否符合规范。
-
-## 1300017 filter控制器调用错误
-
-**错误信息**
-
-Incorrect filter calling.
-
-**错误描述**
-
-filter控制器无效调用，比如调用时序不对。
-
-**可能原因**
-
-setBackgroundFilter在animateBackgroungFilter之后使用。
-
-**处理步骤**
-
-检查使用时的步骤时序，保证在animateBackgroungFilter之前使用setBackgroundFilter。
 
 ## 1300018 API调用超时
 
