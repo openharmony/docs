@@ -1,4 +1,4 @@
-# MDM Kit 术语
+# MDM Kit术语
 <!--Kit: MDM Kit-->
 <!--Subsystem: Customization-->
 <!--Owner: @huanleima-->
