@@ -480,6 +480,8 @@ SQL语句中的函数，如下所示：
 
     ```ts
     try {
+      // 删除数据库前，需要先将store对象关闭，否则会导致下一次调用getRdbStore接口创建数据库失败
+      await store!.close();
       await relationalStore.deleteRdbStore(this.context, STORE_CONFIG);
     } catch (err) {
       console.error(`delete rdbStore failed, code is ${err.code},message is ${err.message}`);
