@@ -230,7 +230,7 @@ uinput -M -c 0 -i 500 -c 0
 
 ## 键盘事件
 
-模拟编辑框键盘按键输入。
+模拟键盘按键输入。
 
 ### 键盘按键按下事件
 模拟键盘按下按键，建议与键盘按键抬起事件搭配使用，确保事件闭环。keyCode：[键值定义说明](../reference/apis-input-kit/js-apis-keycode.md)。
@@ -318,8 +318,8 @@ uinput --keyboard --text <text>
 
 **使用示例**
 ```bash
-# 模拟在编辑框输入一段文本"123"
-uinput -K -t 123
+# 模拟输入一段文本"Hello,World!"
+uinput -K -t Hello,World!
 ```
 
 ## 触控笔事件
@@ -548,7 +548,7 @@ uinput -T -k -s <dx1> <dy1> <dx2> <dy2> [interval time]
 uinput --touch --knuckle --single <dx1> <dy1> <dx2> <dy2> [interval time]
 
 # <dx1> <dy1>单指关节第一次敲击以屏幕左上角为原点的相对坐标系的位置坐标。
-# <dx2> <dy2>单指关节第二次敲击以屏幕左上角为原点的相对坐标系的位置坐标
+# <dx2> <dy2>单指关节第二次敲击以屏幕左上角为原点的相对坐标系的位置坐标。
 # [interval time]间隔时间，可选参数，单位：ms，默认值200，取值范围：[1,250]，仅支持整数。
 ```
 
@@ -595,7 +595,7 @@ uinput --touchpad --pinch <dx> <dy> scalePercent
 
 **使用示例**
 ```bash
-# 模拟触控板手指捏合图片。
+# 模拟触控板手指捏合。
 uinput -P -p 100 300 89
 ```
 
@@ -613,7 +613,7 @@ uinput --touchpad --swipe <startX> <startY> <endX> <endY>
 
 **使用示例**
 ```bash
-# 模拟在触控板滑动手指，可以看到后台多任务视图。
+# 模拟触控板滑动手势。
 uinput -P -s 100 1100 100 300
 ```
 
@@ -630,6 +630,6 @@ uinput --touchpad --rotate <rotateValue>
 
 **使用示例**
 ```bash
-# 模拟在触控板顺时针旋转180°。
+# 模拟触控板双指旋转180°。
 uinput -P -r 180
 ```
