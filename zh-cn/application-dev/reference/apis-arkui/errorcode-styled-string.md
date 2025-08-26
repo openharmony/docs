@@ -52,7 +52,7 @@ NA
 
 **错误信息**
 
-Invalid styled string.
+invalid styled string.
 
 **错误描述**
 

@@ -1075,7 +1075,7 @@ Search组件的控制器继承自[TextContentControllerBase](ts-types.md#textcon
 controller: SearchController = new SearchController();
 ```
 
-### constructor<sup>8+</sup>
+### constructor
 
 constructor()
 
@@ -1085,7 +1085,7 @@ SearchController的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### caretPosition<sup>8+</sup>
+### caretPosition
 
 caretPosition(value: number): void
 
@@ -1318,7 +1318,7 @@ struct SearchExample {
           this.text = value;
         })
         .onSubmit((value: string) => {
-          console.log("trigger search onsubmit" + value);
+          console.info("trigger search onsubmit" + value);
         })
 
       Button('改变EnterKeyType').onClick(() => {
@@ -1595,19 +1595,19 @@ struct SearchExample {
   }
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
     if (menuItem.id.equals(TextMenuItemId.of("create2"))) {
-      console.log("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
+      console.info("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.of("prepare1"))) {
-      console.log("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
+      console.info("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
+      console.info("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+      console.info("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
       return false;
     }
     return false;
