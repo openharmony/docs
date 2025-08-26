@@ -246,26 +246,6 @@ Parameter validation error.
 
 检查参数是否符合规范。
 
-<!--Del-->
-## 1300017 filter控制器调用错误
-
-**错误信息**
-
-Incorrect filter calling.
-
-**错误描述**
-
-filter控制器无效调用，比如调用时序不对。
-
-**可能原因**
-
-setBackgroundFilter在animateBackgroungFilter之后使用。
-
-**处理步骤**
-
-检查使用时的步骤时序，保证在animateBackgroungFilter之前使用setBackgroundFilter。
-<!--DelEnd-->
-
 ## 1300018 API调用超时
 
 **错误信息**
