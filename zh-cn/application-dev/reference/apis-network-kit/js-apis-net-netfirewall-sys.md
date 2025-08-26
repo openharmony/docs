@@ -54,7 +54,7 @@ getInterceptedRecords(userId: number, requestParam: RequestParam): Promise\<Inte
 **示例：**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let interceptRecordParam: netFirewall.RequestParam = {

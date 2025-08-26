@@ -106,9 +106,9 @@ import bundle from '@ohos.bundle';
 
 bundle.getBundleInstaller((err, data) => {
   if (err.code == 0) {
-    console.error('getBundleInstaller failed.');
+    console.error('getBundleInstaller successfully.');
   } else {
-    console.info('getBundleInstaller successfully');
+    console.info('getBundleInstaller failed.');
   }
 });
 ```

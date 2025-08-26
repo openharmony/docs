@@ -642,7 +642,7 @@ showCounter(value: boolean, options?: InputCounterOptions)
 | 参数名                | 类型                                                  | 必填 | 说明             |
 | --------------------- | ----------------------------------------------------- | ---- | ---------------- |
 | value                 | boolean                                               | 是   | 是否显示计数器。<br/>true表示显示计时器，false表示不显示。 |
-| options<sup>11+</sup> | [InputCounterOptions](ts-types.md#inputcounteroptions11对象说明) | 否   | 计数器的配置项。 |
+| options | [InputCounterOptions](ts-types.md#inputcounteroptions11对象说明) | 否   | 计数器的配置项。 |
 
 ### contentType<sup>12+</sup>
 
@@ -1775,7 +1775,7 @@ struct TextInputExample {
         .fontSize(14)
         .fontColor(Color.Black)
         .inputFilter('[a-z]', (e) => {
-          console.log(JSON.stringify(e));
+          console.info(JSON.stringify(e));
         })
       Text(this.text)
       Button('Set caretPosition 1')
@@ -2088,7 +2088,7 @@ struct TextInputExample {
 
   setCaret() {
     if (this.nextCaret != -1) {
-      console.log("to keep caret position right, change caret to", this.nextCaret);
+      console.info("to keep caret position right, change caret to", this.nextCaret);
       this.controller.caretPosition(this.nextCaret);
       this.nextCaret = -1;
     }
@@ -2104,7 +2104,7 @@ struct TextInputExample {
         }
       }
       this.actualCh += this.teleNumberNoSpace.length - befNumberNoSpace.length;
-      console.log("actualCh: " + this.actualCh);
+      console.info("actualCh: " + this.actualCh);
       for (let i = 0; i < nextText.length; i++) {
         if (nextText[i] != ' ') {
           this.actualCh -= 1;
@@ -2116,7 +2116,7 @@ struct TextInputExample {
       }
     } else if (befNumberNoSpace.length > this.teleNumberNoSpace.length) { // 删除场景
       if (this.lastCaretPosition === this.text.length) {
-        console.log("Caret at last, no need to change");
+        console.info("Caret at last, no need to change");
       } else if (this.lastCaretPosition === this.lastCaretPositionEnd) {
         // 按键盘上回退键一个一个删的情况
         for (let i = this.lastCaretPosition; i < this.text.length; i++) {
@@ -2165,7 +2165,7 @@ struct TextInputExample {
             } else {
               nextText = value;
             }
-            console.log("onChange Triggered:" + this.text + "|" + nextText + "|" + value);
+            console.info("onChange Triggered:" + this.text + "|" + nextText + "|" + value);
             if (this.text === nextText && nextText === value) {
               // 此时说明数字已经格式化完成了 在这个时候改变光标位置不会被重置掉
               this.setCaret();
@@ -2176,7 +2176,7 @@ struct TextInputExample {
           })
           .onTextSelectionChange((selectionStart, selectionEnd) => {
             // 记录光标位置
-            console.log("selection change: ", selectionStart, selectionEnd);
+            console.info("selection change: ", selectionStart, selectionEnd);
             this.lastCaretPosition = selectionStart;
             this.lastCaretPositionEnd = selectionEnd;
           })// 从API version 10开始支持
@@ -2575,19 +2575,19 @@ struct TextInputExample {
   }
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
     if (menuItem.id.equals(TextMenuItemId.of("create2"))) {
-      console.log("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
+      console.info("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.of("prepare1"))) {
-      console.log("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
+      console.info("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
+      console.info("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+      console.info("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
       return false;
     }
     return false;
@@ -2882,7 +2882,7 @@ struct TextInputExample {
         console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
       } else {
         this.currentFontSizeScale = scale;
-        console.log('updateConfiguration success.');
+        console.info('updateConfiguration success.');
       }
     });
   }

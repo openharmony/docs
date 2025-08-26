@@ -466,7 +466,7 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 | 名称   | 类型 |只读|可选| 说明             |
 | ------ | ---- |------|------| ---------------- |
 | width  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[EdgeWidths](./ts-types.md#edgewidths9)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeWidths](./ts-types.md#localizededgewidths12)<sup>12+</sup> | 否|是   | 设置边框宽度。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。     |
-| color  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](./ts-types.md#edgecolors9)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeColors](./ts-types.md#localizededgecolors12)<sup>12+</sup> | 否|是   | 设置边框颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。     |
+| color  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](./ts-types.md#edgecolors9)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeColors](#localizededgecolors12)<sup>12+</sup> | 否|是   | 设置边框颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。     |
 | radius | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](#borderradiuses9)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedBorderRadiuses](#localizedborderradiuses12)<sup>12+</sup> | 否|是   | 设置边框圆角半径。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | style  | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](#edgestyles9)<sup>9+</sup> | 否|是   | 设置边框样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。    |
 | dashGap<sup>12+</sup>  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[EdgeWidths](#edgewidths9)&nbsp;\|&nbsp;[LocalizedEdgeWidths](#localizededgewidths12) | 否|是  | 设置虚线的线段间距，仅在边框样式为虚线时生效。<br/>不支持设置百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 该接口不支持在ArkTS卡片中使用。|
@@ -520,6 +520,70 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 | NONE    | 全屏模态无转场动画。   |
 | DEFAULT | 全屏模态上下切换动画。  |
 | ALPHA   | 全屏模态透明度渐变动画。 |
+
+## OutlineOptions<sup>11+</sup>对象说明
+
+外描边选项设置。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+| 名称   | 类型                   | 只读   |   可选                             | 说明                                                         |
+| ------ | ----------------------|----------------- | --------------------- | ------------------------------------------------------------ |
+| width  | [Dimension](#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](#edgeoutlinewidths11对象说明)| 否 | 是 | 设置外描边宽度，不支持百分比。<br/>默认值：0，外描边效果中width为必设项，否则不显示外描边。 |
+| color  | [ResourceColor](#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors9)&nbsp;\|&nbsp;[LocalizedEdgeColors](#localizededgecolors12)<sup>12+</sup> | 否 | 是 | 设置外描边颜色。<br/>默认值：Color.Black                   |
+| radius | [Dimension](#dimension10)&nbsp;\|&nbsp;[OutlineRadiuses](#outlineradiuses11对象说明)| 否 | 是 | 设置外描边圆角半径，不支持百分比。<br/>默认值：0<br/>最大生效值：组件width/2 + outlineWidth或组件height/2 + outlineWidth。 |
+| style  | [OutlineStyle](ts-universal-attributes-outline.md#outlinestyle11枚举说明)&nbsp;\|&nbsp;[EdgeOutlineStyles](#edgeoutlinestyles11对象说明)| 否 | 是 | 设置外描边样式。<br/>默认值：OutlineStyle.SOLID            |
+
+## EdgeOutlineWidths<sup>11+</sup>对象说明
+
+引入该对象时，至少传入一个参数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+| 名称     | 类型                         | 只读 | 可选   | 说明      |
+| ------ | ---------------------------- | -- | -- | ------- |
+| left   | [Dimension](#dimension10) | 否 | 是   | 左侧外描边宽度。 |
+| right  | [Dimension](#dimension10) | 否 | 是    | 右侧外描边宽度。 |
+| top    | [Dimension](#dimension10) | 否 | 是   | 上侧外描边宽度。 |
+| bottom | [Dimension](#dimension10) | 否 | 是  | 下侧外描边宽度。 |
+
+## OutlineRadiuses<sup>11+</sup>对象说明
+
+引用该对象时，至少传入一个参数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型                         | 只读 | 可选   | 说明       |
+| ----------- | -------------------- | -------- | ---- | -------- |
+| topLeft     | [Dimension](ts-types.md#dimension10) | 否 | 是   | 左上角圆角半径。 |
+| topRight    | [Dimension](ts-types.md#dimension10) | 否 | 是   | 右上角圆角半径。 |
+| bottomLeft  | [Dimension](ts-types.md#dimension10) | 否 | 是   | 左下角圆角半径。 |
+| bottomRight | [Dimension](ts-types.md#dimension10) | 否 | 是   | 右下角圆角半径。 |
+
+## EdgeOutlineStyles<sup>11+</sup>对象说明
+
+引入该对象时，至少传入一个参数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型                                     | 只读 | 可选  | 说明      |
+| ------ | ---------------------------------------- | -- | -- | ------- |
+| left   | [OutlineStyle](ts-universal-attributes-outline.md#outlinestyle11枚举说明) | 否 | 是   | 左侧外描边样式。 |
+| right  | [OutlineStyle](ts-universal-attributes-outline.md#outlinestyle11枚举说明) | 否 | 是   | 右侧外描边样式。 |
+| top    | [OutlineStyle](ts-universal-attributes-outline.md#outlinestyle11枚举说明) | 否 | 是   | 上侧外描边样式。 |
+| bottom | [OutlineStyle](ts-universal-attributes-outline.md#outlinestyle11枚举说明) | 否  | 是  | 下侧外描边样式。 |
 
 ## Dimension<sup>10+</sup>
 
@@ -609,20 +673,6 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
 | {number}deg               | 需要指定以deg像素单位，如'10deg'。 |
-
-## MultiShadowOptions<sup>10+</sup>
-
-投影样式。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称          | 类型 | 只读 | 可选 | 说明 |
-| ------------- | ------- | -- | -- | -------- |
-| radius | number \| [Resource](#resource) | 否 | 是 | 投影模糊半径。 <br/>API version 10及以前，默认值：5<br/>API version 11及以后，默认值：20<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
-| offsetX | number \| [Resource](#resource) | 否 | 是 | X轴偏移量。 <br/>默认值：5<br/>单位：vp |
-| offsetY | number \| [Resource](#resource) | 否 | 是 | Y轴偏移量。 <br/>默认值：5<br/>单位：vp |
 
 ## TouchPoint<sup>11+</sup>
 

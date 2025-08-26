@@ -100,7 +100,7 @@ MDNS管理的典型场景有：
 
     <!--code_no_check-->
     ```ts
-    let context = getContext(this) as Context;
+   let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     // 创建DiscoveryService对象，用于发现指定服务类型的MDNS服务。
     let serviceType = "_print._tcp";

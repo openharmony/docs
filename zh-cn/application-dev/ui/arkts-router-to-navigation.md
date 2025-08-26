@@ -535,7 +535,7 @@ Navigation作为路由组件，默认支持跨包跳转。
    }
    ```
 
-2. 在HSP（HAR）的index.ets中导出组件。
+2. 在HSP（HAR）的Index.ets中导出组件。
 
    ```ts
    export { PageInHSP } from "./src/main/ets/pages/PageInHSP"
@@ -619,15 +619,15 @@ Router可以通过observer实现注册监听，接口定义请参考Router无感
 ```ts
 import { uiObserver } from '@kit.ArkUI';
 
-function callBackFunc(info: uiObserver.RouterPageInfo) {
+function callbackFunc(info: uiObserver.RouterPageInfo) {
     console.info("RouterPageInfo is : " + JSON.stringify(info));
 }
 
 // used in ability context.
-uiObserver.on('routerPageUpdate', this.context, callBackFunc);
+uiObserver.on('routerPageUpdate', this.context, callbackFunc);
 
 // used in UIContext.
-uiObserver.on('routerPageUpdate', this.getUIContext(), callBackFunc);
+uiObserver.on('routerPageUpdate', this.getUIContext(), callbackFunc);
 ```
 
 在页面状态发生变化时，注册的回调将会触发，开发者可以通过回调中传入的入参拿到页面的相关信息，如：页面的名字，索引，路径，生命周期状态等。

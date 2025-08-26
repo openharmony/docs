@@ -1,4 +1,10 @@
 # @ohos.app.appstartup.StartupConfigEntry (AppStartup Configuration)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yzkp-->
+<!--Designer: @yzkp-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 
 The module provides APIs for configuring AppStartup.
@@ -63,7 +69,7 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
 
 onRequestCustomMatchRule(want: Want): string
 
-Called to obtain a custom match rule during application launch. Depending on the parameters in the Want passed in, you can return various custom rules to match against the **customization** field in **matchRules** configured for the startup task. If a match is successful, the task is executed automatically. This API is useful when the URI, action, and intent name fail to find a match rule. For details, see [Adding a Task Match Rule](../../application-models/app-startup.md).
+Called to obtain a custom matching rule during application launch. Depending on the parameters in the Want passed in, you can return various custom rules to match against the **customization** field in **matchRules** configured for the startup task. If a match is successful, the task is executed automatically. This API can be used to further refine the matching rules when a startup scenario cannot match a startup task through the URI, action, or intent name. For details, see [Adding Task Matching Rules](../../application-models/app-startup.md#adding-task-matching-rules).
 
 **System capability**: SystemCapability.Ability.AppStartup
 
@@ -77,7 +83,7 @@ Called to obtain a custom match rule during application launch. Depending on the
 
 | Type| Description|
 | -------- | -------- |
-| string | Custom match rule, which is used to determine whether to automatically execute the task.|
+| string | Custom matching rule, which is used to determine whether to automatically execute the task.|
 
 **Example**
 
@@ -94,7 +100,7 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
     if (want?.parameters?.customParam == 'param1') {
       return 'customRule1';
     }
-    return "";
+    return '';
   }
 }
 ```
