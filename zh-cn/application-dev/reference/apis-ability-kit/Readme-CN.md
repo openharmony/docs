@@ -138,7 +138,7 @@
       - [abilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md)
       - [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md)
       - [AbilityStateData](js-apis-inner-application-abilityStateData.md)
-      - [ApplicationContext](js-apis-inner-application-applicationContext.md)
+      - [ApplicationContext (应用上下文)](js-apis-inner-application-applicationContext.md)
       - [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)
       - [AppServiceExtensionContext](js-apis-inner-application-appServiceExtensionContext.md)
       - [AppStateData](js-apis-inner-application-appStateData.md)
