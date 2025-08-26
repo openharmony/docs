@@ -1,4 +1,10 @@
 # FoldSplitContainer
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fenglinbailu-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 
 **FoldSplitContainer** is a layout container designed to manage regions for two-panel and three-panel arrangements on a foldable device across various states, including the expanded state, the hover state, and the folded state.
@@ -84,7 +90,7 @@ Defines the layout information for the hover state.
 > **NOTE**
 >
 > 1. When the device is in the hover state, there is an avoid area, and layout calculations need to account for the impact of the avoid area on the layout.
-> 2 In the hover state, the upper half screen is used for display, and the lower half is used for interaction.
+> 2. In the hover state, the upper half screen is used for display, and the lower half is used for interaction.
 
 ## FoldedRegionLayoutOptions
 
@@ -507,7 +513,7 @@ struct Index {
                 }
               },
               {
-                label: "Bottom,"
+                label: "Bottom",
                 value: ExtraRegionPosition.BOTTOM,
                 onChecked: () => {
                   this.foldingRegionLayoutOptions.extraRegionPosition = ExtraRegionPosition.BOTTOM
@@ -531,12 +537,12 @@ struct Index {
   @Builder
   ExtraRegion() {
     Region({
-      title: "Expanded state settings,"
+      title: "Expanded state settings",
       compBackgroundColor: "rgba(0, 0, 255, 0.1)"
     }) {
       Column({ space: 4 }) {
         RadioOption({
-          label: "Width ratio,"
+          label: "Width ratio",
           value: this.expandedRegionLayoutOptions.horizontalSplitRatio,
           options: [
             {
@@ -615,18 +621,18 @@ struct Index {
 
         if (!this.expandedRegionLayoutOptions.isExtraRegionPerpendicular) {
           RadioOption({
-            label: "Extra region location,"
+            label: "Extra region location",
             value: this.expandedRegionLayoutOptions.extraRegionPosition,
             options: [
               {
-                label: "Top,"
+                label: "Top",
                 value: ExtraRegionPosition.TOP,
                 onChecked: () => {
                   this.expandedRegionLayoutOptions.extraRegionPosition = ExtraRegionPosition.TOP
                 }
               },
               {
-                label: "Bottom,"
+                label: "Bottom",
                 value: ExtraRegionPosition.BOTTOM,
                 onChecked: () => {
                   this.expandedRegionLayoutOptions.extraRegionPosition = ExtraRegionPosition.BOTTOM

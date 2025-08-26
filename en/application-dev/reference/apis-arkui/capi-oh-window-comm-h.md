@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **oh_window_comm.h** file declares the common enums and definitions of the window manager.
+The file declares the common enums and definitions of the window manager.
 
 **File to include**: <window_manager/oh_window_comm.h>
 
@@ -21,7 +21,7 @@ The **oh_window_comm.h** file declares the common enums and definitions of the w
 | Name| typedef Keyword| Description|
 | -- | -- | -- |
 | [WindowManager_Rect](capi-windowmanager-rect.md) | WindowManager_Rect | Describes the window rectangle, including the window position, width, and height.|
-| [struct](capi-struct.md) | OH_PixelmapNative | Describes the native pixel image information.|
+| [OH_PixelmapNative](capi-struct.md) | OH_PixelmapNative | Describes the pixel image information.|
 | [WindowManager_WindowProperties](capi-windowmanager-windowproperties.md) | WindowManager_WindowProperties | Describes the window properties.|
 | [WindowManager_AvoidArea](capi-windowmanager-avoidarea.md) | WindowManager_AvoidArea | Describes the avoid area.|
 

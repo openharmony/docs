@@ -44,8 +44,8 @@ You can create a child window, such as a dialog box, and set its properties.
 
 > **NOTE**
 >
-> Due to the following limitations, using child windows is not recommended in mobile device scenarios. Instead, you are advised to use the [overlay](../reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md) capability of components. 
-> - Child windows on mobile devices are constrained within the main window's boundaries, mirroring the limitations of components. 
+> In the following scenarios, you are not advised to use child windows. Instead, consider using the [overlay](../reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md) capability of components first. 
+> - On mobile devices (tablets in non-freeform mode and phones), child windows cannot extend beyond the boundaries of the main window when it is in floating or split-screen mode, just like components. 
 > - In split-screen or freeform window mode, components, when compared with child windows, offer better real-time adaptability to changes in the main window's position and size. 
 > - On certain platforms, system configurations may restrict child windows to default system animations and rounded shadows, offering no customization options for applications and thereby limiting their versatility.
 
@@ -71,6 +71,10 @@ You can create a child window, such as a dialog box, and set its properties.
      }
      console.info('Succeeded in creating subWindow. Data: ' + JSON.stringify(data));
      windowClass = data;
+     if (!windowClass) {
+      console.error('windowClass is null');
+      return;
+     }
    });
    // Method 2: Find a child window.
    try {
@@ -86,7 +90,6 @@ You can create a child window, such as a dialog box, and set its properties.
 
    ```ts
    // Move the child window.
-   let windowClass: window.Window = window.findWindow("test");
    windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
      let errCode: number = err.code;
      if (errCode) {
@@ -112,7 +115,6 @@ You can create a child window, such as a dialog box, and set its properties.
 
    ```ts
    // Load content to the child window.
-   let windowClass: window.Window = window.findWindow("test");
    windowClass.setUIContent("pages/page2", (err: BusinessError) => {
      let errCode: number = err.code;
      if (errCode) {
@@ -120,6 +122,10 @@ You can create a child window, such as a dialog box, and set its properties.
        return;
      }
      console.info('Succeeded in loading the content.');
+     if (!windowClass) {
+       console.error('windowClass is null');
+       return;
+     }
      // Show the child window.
      windowClass.showWindow((err: BusinessError) => {
        let errCode: number = err.code;
@@ -138,7 +144,6 @@ You can create a child window, such as a dialog box, and set its properties.
 
    ```ts
    // Call destroy() to destroy the child window when it is no longer needed.
-   let windowClass: window.Window = window.findWindow("test");
    windowClass.destroyWindow((err: BusinessError) => {
      let errCode: number = err.code;
      if (errCode) {
@@ -179,11 +184,15 @@ To create a better video watching and gaming experience, you can use the immersi
    window.getLastWindow(context, (err: BusinessError, data) => {
      let errCode: number = err.code;
      if (errCode) {
-       console.error('Failed to get the subWindow. Cause: ' + JSON.stringify(err));
+       console.error('Failed to get the mainWindow. Cause: ' + JSON.stringify(err));
        return;
      }
-     console.info('Succeeded in getting subWindow. Data: ' + JSON.stringify(data));
+     console.info('Succeeded in getting mainWindow. Data: ' + JSON.stringify(data));
      mainWindowClass = data;
+     if (!mainWindowClass) {
+      console.error('mainWindowClass is null');
+      return;
+     }
    });
    ```
 
@@ -195,7 +204,6 @@ To create a better video watching and gaming experience, you can use the immersi
    ```ts
    // Implement the immersive effect by hiding the status bar and navigation bar.
    let names: Array<'status' | 'navigation'> = [];
-   let mainWindowClass: window.Window = window.findWindow("test");
    mainWindowClass.setWindowSystemBarEnable(names)
     .then(() => {
       console.info('Succeeded in setting the system bar to be visible.');
@@ -235,7 +243,6 @@ To create a better video watching and gaming experience, you can use the immersi
 
    ```ts
    // Load content to the immersive window.
-   let mainWindowClass: window.Window = window.findWindow("test");
    mainWindowClass.setUIContent("pages/page3", (err: BusinessError) => {
      let errCode: number = err.code;
      if (errCode) {
@@ -243,6 +250,10 @@ To create a better video watching and gaming experience, you can use the immersi
        return;
      }
      console.info('Succeeded in loading the content.');
+     if (!mainWindowClass) {
+      console.error('mainWindowClass is null');
+      return;
+     }
      // Show the immersive window.
      mainWindowClass.showWindow((err: BusinessError) => {
        let errCode: number = err.code;

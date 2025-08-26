@@ -1,4 +1,10 @@
 # Deferred Task (ArkTS)
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: ResourceSchedule-->
+<!--Owner: @cheng-shichang-->
+<!--Designer: @zhouben25-->
+<!--Tester: @fenglili18-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ## Overview
 
@@ -20,14 +26,14 @@ When the scheduling conditions are met or the task scheduling ends, the system c
 
 - **Quantity limit**: An application can request a maximum of 10 deferred tasks during a time segment.
 
-- **Execution frequency limit**: The system controls the execution frequency of deferred tasks<!--RP1--> based on the application activity group in the [device usage statistics](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)<!--RP1End-->. <!--Del-->Applications that request the WORK_SCHEDULER resource are placed in the efficiency resource exemption group.<!--DelEnd-->
+- **Execution frequency limit**: The system controls the execution frequency of deferred tasks <!--RP1-->based on the application activity group in the [device usage statistics](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)<!--RP1End-->. <!--Del-->Applications that request the WORK_SCHEDULER resource are placed in the efficiency resource exemption group.<!--DelEnd-->
 
   **Table 1** Application activity groups  
   | Group| Deferred Task Execution Frequency|
   | -------- | -------- |
   | Group of active applications| At a minimum interval of 2 hours|
   | Group of frequently used applications| At a minimum interval of 4 hours|
-  | Group of applications that are used neither frequently nor rarely| At a minimum interval of 24 hours|
+  | Group of commonly used applications| At a minimum interval of 24 hours|
   | Group of rarely used applications| At a minimum interval of 48 hours|
   | Group of restricted applications| Forbidden|
   | Group of applications never used| Forbidden|<!--Del-->
@@ -137,7 +143,7 @@ The development of deferred task scheduling consists of two steps: implementing 
        // console.info(`work info parameters: ${JSON.parse(workInfo.parameters?.toString()).key1}`)
      }
    
-     // Callback invoked when the system stops scheduling the deferred task.
+     // Callback invoked when the deferred task ends. This callback is triggered when the deferred task times out for 2 minutes or the stopWork API is called to cancel the task.
      onWorkStop(workInfo: workScheduler.WorkInfo) {
        console.info(`onWorkStop, workInfo is ${JSON.stringify(workInfo)}`);
      }
@@ -215,7 +221,7 @@ The development of deferred task scheduling consists of two steps: implementing 
 ### Verifying Deferred Task Scheduling
 Check whether the **onWorkStart** and **onWorkStop** methods of WorkSchedulerExtensionAbility are correctly implemented and can be successfully called.
 
-   After the deferred task is requested, its callback can be triggered only when the required conditions are met. To quickly perform the verification, trigger the callback manually with the following [hidumper](../dfx/hidumper.md) command.
+   After the deferred task is requested, its callback can be triggered only when the required conditions are met. To quickly perform the verification, trigger the callback manually using the following [hidumper](../dfx/hidumper.md) command.
 
    ```ts
    $ hidumper -s 1904 -a '-t com.example.application MyWorkSchedulerExtensionAbility'
@@ -225,4 +231,3 @@ Check whether the **onWorkStart** and **onWorkStop** methods of WorkSchedulerExt
 
    ----------------------------------WorkSchedule----------------------------------
    ```
-<!--no_check-->

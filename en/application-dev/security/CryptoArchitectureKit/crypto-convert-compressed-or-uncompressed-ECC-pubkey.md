@@ -1,14 +1,21 @@
 # Converting a Compressed or Uncompressed ECC Public Key (ArkTS)
 
-You can generate a public key object (**PubKey**) from ECC public key data or obtain the ECC public key data from a public key (**PubKey**) object. 
-Currently, only the compressed/uncompressed public key data that complies with the ECC X.509 standard is supported. <br>The public key data mentioned in this topic is a complete X509 public key. For details about the operations on point data, see [Converting Compressed or Uncompressed ECC Point Data](crypto-convert-compressed-or-uncompressed-ECC-point.md). 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
+You can generate a public key object (**PubKey**) from ECC public key data or obtain the ECC public key data from a public key (**PubKey**) object.
+Currently, only the X.509-certified compressed or uncompressed ECC public key data is supported. <br>The public key data mentioned in this topic is a complete X509 public key. For details about the operations on point data, see [Converting Compressed or Uncompressed ECC Point Data](crypto-convert-compressed-or-uncompressed-ECC-point.md). 
 <br>For details about the ECC algorithm specifications, see [ECC](crypto-asym-key-generation-conversion-spec.md#ecc). 
 <br>You can specify the string parameter **format** to set the format of the ECC public key to obtain. To obtain a compressed public key that complies with the X.509 standard, set **format** to **X509|COMPRESSED**. To obtain an uncompressed public key, set **format** to **X509|UNCOMPRESSED**.
 
 ##  Converting Uncompressed Public Key Data to Compressed Public Key Data
 
 1. Encapsulate uncompressed ECC public key data of the Uint8Array type into a **DataBlob** object.
-Either the public key or private key can be passed in. In this example, an uncompressed public key is passed in.
+You can pass either the public key or the private key. In the following example, an uncompressed public key is passed.
 2. Call [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) with the string parameter **'ECC_BrainPoolP256r1'** to create an asymmetric key generator (**AsyKeyGenerator**) object for a 256-bit ECC key pair.
 3. Call [AsyKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3) to convert the **DataBlob** object into an asymmetric key (**KeyPair**) object.
 4. Call [PubKey.getEncodedDer](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencodedder12) with **format** set to **'X509|COMPRESSED'** to obtain the byte stream of the compressed public key.

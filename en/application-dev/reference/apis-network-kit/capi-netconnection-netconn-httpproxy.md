@@ -16,7 +16,7 @@ Defines the proxy configuration.
 
 | Name| Description|
 | -- | -- |
-| char host[NETCONN_MAX_STR_LEN] | Host name.|
-| char exclusionList[NETCONN_MAX_EXCLUSION_SIZE][NETCONN_MAX_STR_LEN] | Exclusion list of proxy servers.|
+| char host[[NETCONN_MAX_STR_LEN]](capi-net-connection-type-h.md#macros) | Host name.|
+| char exclusionList[[NETCONN_MAX_EXCLUSION_SIZE]](capi-net-connection-type-h.md#macros) [[NETCONN_MAX_STR_LEN]](capi-net-connection-type-h.md#macros)| Exclusion list of proxy servers.|
 | int32_t exclusionListSize | Actual size of the exclusion list.|
 | uint16_t port | Port number.|

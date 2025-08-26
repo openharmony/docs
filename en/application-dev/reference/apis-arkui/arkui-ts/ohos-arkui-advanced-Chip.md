@@ -1,4 +1,10 @@
 # Chip
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xieziang-->
+<!--Designer: @youzhi92-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @HelloCrease-->
 
 The chip component is typically used in the search box history or email address list.
 
@@ -6,7 +12,6 @@ The chip component is typically used in the search box history or email address 
 >
 > This component is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
 >
-> This component is not supported on wearables.
 
 ## Modules to Import
 
@@ -28,6 +33,8 @@ Chip(options:ChipOptions): void
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 **Parameters**
 
 | Name   | Type                       | Mandatory| Description                |
@@ -39,6 +46,8 @@ Chip(options:ChipOptions): void
 Defines the type and style parameters of the chip.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name           | Type                                                        | Mandatory| Description                                                        |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -83,6 +92,8 @@ Enumerates the size types of the chip.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name  | Value      | Description              |
 | ------ | -------- | ------------------ |
 | NORMAL | "NORMAL" | Normal size.|
@@ -95,6 +106,8 @@ Enumerates the selected state types of the chip. It allows you to specify how ac
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name| Value| Description|
 | ---- | -- | ---- |
@@ -109,6 +122,8 @@ Defines the common icon options of the chip.
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name     | Type                                      | Mandatory| Description                                                        |
 | --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -132,6 +147,8 @@ Inherits from [IconCommonOptions](#iconcommonoptions).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 ## SuffixIconOptions
 
 Defines the suffix icon options.
@@ -139,6 +156,8 @@ Defines the suffix icon options.
 Inherits from [IconCommonOptions](#iconcommonoptions).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name  | Type      | Mandatory| Description              |
 | ------ | ---------- | ---- | ------------------ |
@@ -155,6 +174,8 @@ Defines the accessibility options of the suffix icon.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name| Type| Mandatory| Description|
 | ------ | ---------- | ---- | ------------------ |
 | accessibilityText | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility text, that is, accessible label name. If a component does not contain text information, it will not be announced by the screen reader when selected. In this case, the screen reader user cannot know which component is selected. To solve this problem, you can set accessibility text for components without text information. When such a component is selected, the screen reader announces the specified accessibility text, informing the user which component is selected.|
@@ -169,6 +190,8 @@ Defines the accessibility options of the symbol-type suffix icon.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name| Type| Mandatory| Description|
 | ---- | ---- | --- | ---- |
 | action | [VoidCallback](ts-types.md#voidcallback12) | No| Action of the suffix icon.|
@@ -182,6 +205,8 @@ Defines the prefix and suffix icon options.
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name  | Type      | Mandatory| Description              |
 | ------ | ---------- | ---- | ------------------ |
@@ -200,6 +225,8 @@ Defines the label options of the chip.
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name       | Type                                      | Mandatory| Description                                                        |
 | ----------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -221,6 +248,8 @@ Inherits from [AccessibilityOptions](#accessibilityoptions14).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 ## LabelMarginOptions
 
 Defines the spacing between the text and the left and right icons.
@@ -228,6 +257,8 @@ Defines the spacing between the text and the left and right icons.
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name | Type                                | Mandatory| Description                                  |
 | ----- | ------------------------------------ | ---- | -------------------------------------- |
@@ -241,6 +272,8 @@ Defines the spacing between the localized text and the left and right icons.
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name | Type                                                        | Mandatory| Description                                  |
 | ----- | ------------------------------------------------------------ | ---- | -------------------------------------- |
@@ -793,7 +826,7 @@ struct ChipAccessibilityExample {
         size: ChipSize.NORMAL,
         accessibilitySelectedType: AccessibilitySelectedType.CLICKED, // Clickable type
         accessibilityDescription: "This is a clickable chip", // Overall accessibility description
-        accessibilityLevel: "yes," // Make sure it can be recognized by accessibility services.
+        accessibilityLevel: "yes", // Make sure it can be recognized by accessibility services.
         closeOptions: {
           accessibilityDescription: "Remove this chip. This action cannot be undone" // Detailed description for the close icon.
         },
@@ -847,9 +880,9 @@ struct ChipAccessibilityExample {
 
       // Example of setting the accessibility level
       Chip({
-        label: { text: ""Accessibility level set to no" },
+        label: { text: "Accessibility level set to no" },
         size: ChipSize.NORMAL,
-        accessibilityLevel: "no," // This chip cannot be recognized by accessibility services.
+        accessibilityLevel: "no", // This chip cannot be recognized by accessibility services.
         closeOptions: {
           accessibilityLevel: "no"
         },

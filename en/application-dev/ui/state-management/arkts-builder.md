@@ -13,7 +13,7 @@ Before reading this topic, you are advised to read [Basic Syntax Overview](./ark
 > This decorator can be used in atomic services since API version 11.
 
 
-## Rules of Use
+## Usage Rules
 
 The \@Builder decorator can be used for the private custom build function defined in the custom component and global custom build function defined globally.
 

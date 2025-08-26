@@ -1,5 +1,12 @@
 # Symmetric Key Generation and Conversion Specifications
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 This topic describes the supported algorithms and specifications for symmetric key generation and conversion.
 
 A key can be generated based on a string parameter, which holds key specifications. The string parameters supported by each algorithm are provided in the specific algorithm specifications.
@@ -23,6 +30,19 @@ An AES key can be generated from a string parameter. When creating a symmetric k
 | AES | 128 | AES128 | 9+ | 
 | AES | 192 | AES192 | 9+ | 
 | AES | 256 | AES256 | 9+ | 
+
+## DES
+The DES algorithm has the following features:
+
+ 
+
+DES is a block encryption algorithm. It divides plaintext into 64-bit blocks and encrypts each block.
+
+A DES key can be generated from a string parameter. When creating a symmetric key generator instance, you need to specify the key specifications in a string parameter. The string parameter consists of the symmetric key algorithm and key length.
+
+| Symmetric Key Algorithm| Key Length (Bit)| String Parameter| API Version| 
+| -------- | -------- | -------- | -------- |
+| DES | 64 | DES64 | 20+ | 
 
 ## 3DES
 

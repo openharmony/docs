@@ -1,31 +1,36 @@
 # \@Require Decorator: Validating Constructor Input Parameters
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @VictorS67-->
+<!--Designer: @lixingchi1-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
-
-\@Require is a decorator for declaring that parameters – regular variables (those not decorated by any decorator) or variables decorated by \@Prop, \@State, \@Provide, or \@BuilderParam – must be passed in to the constructor.
-
+The \@Require decorator is used to declare that specific parameters – either regular variables (not decorated by any other decorator) or variables decorated with \@Prop, \@State, \@Provide, \@BuilderParam, or \@Param – must be passed in to the constructor.
 
 > **NOTE**
 >
 > Validation for \@Prop and \@BuilderParam decorated variables is supported since API version 11.
 >
+> This decorator is supported in ArkTS widgets since API version 11.
+>
 > This decorator can be used in atomic services since API version 11.
 >
-> Validation for regular variables and \@State or \@Provide decorated variables is supported since API version 12.
-
+> Validation for regular variables and \@State, \@Provide, or \@Param decorated variables is supported since API version 12.
 
 ## Overview
 
-When \@Require is used together with a regular variable or a variable decorated by \@Prop, \@State, \@Provide, \@Param, or \@BuilderParam in a custom component, the variable must be passed from the parent component during construction of the custom component.
+When \@Require is applied to a regular variable or a variable decorated with [\@Prop](./arkts-prop.md), [\@State](./arkts-state.md), [\@Provide](./arkts-provide-and-consume.md), [\@Param](./arkts-new-param.md), or [\@BuilderParam](./arkts-builderparam.md) within a custom component, that variable must be provided during the construction of the custom component.
 
 ## Constraints
 
-The \@Require decorator can only decorate a regular variable or a variable decorated by \@Prop, \@State, \@Provide, or \@BuilderParam in a struct.
+The \@Require decorator can only decorate a regular variable or a variable decorated with \@Prop, \@State, \@Provide, \@BuilderParam, or \@Param in a struct.
 
 For details about the usage in DevEco Studio Previewer, see [PreviewChecker Inspection Rules](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-previewer-previewchecker-V5).
 
 ## Use Scenarios
 
-When the \@Require decorator is used together with a regular variable or a variable decorated by \@Prop, \@State, \@Provide, or \@BuilderParam in the **Child** component, the parent component **Index** must pass in the variable for constructing the **Child** component. Otherwise, the compilation fails.
+When the \@Require decorator is used together with a regular variable or a variable decorated with \@Prop, \@State, \@Provide, \@BuilderParam, or \@Param in a child component, the parent component (for example, **Index**) must pass in the variable for constructing the child component. Failure to do so will result in a compilation error.
 
 ```ts
 @Entry
@@ -33,7 +38,8 @@ When the \@Require decorator is used together with a regular variable or a varia
 struct Index {
   @State message: string = 'Hello World';
 
-  @Builder buildTest() {
+  @Builder
+  buildTest() {
     Row() {
       Text('Hello, world')
         .fontSize(30)
@@ -42,23 +48,33 @@ struct Index {
 
   build() {
     Row() {
-      Child({ regular_value: this.message, state_value: this.message, provide_value: this.message, initMessage: this.message, message: this.message,
-        buildTest: this.buildTest, initBuildTest: this.buildTest })
+      // All @Require decorated parameters in Child must be passed here.
+      Child({
+        regular_value: this.message,
+        state_value: this.message,
+        provide_value: this.message,
+        initMessage: this.message,
+        message: this.message,
+        buildTest: this.buildTest,
+        initBuildTest: this.buildTest
+      })
     }
   }
 }
 
 @Component
 struct Child {
-  @Builder buildFunction() {
+  @Builder
+  buildFunction() {
     Column() {
       Text('initBuilderParam')
         .fontSize(30)
     }
   }
+
   @Require regular_value: string = 'Hello';
-  @Require @State state_value: string = "Hello";
-  @Require @Provide provide_value: string = "Hello";
+  @Require @State state_value: string = 'Hello';
+  @Require @Provide provide_value: string = 'Hello';
   @Require @BuilderParam buildTest: () => void;
   @Require @BuilderParam initBuildTest: () => void = this.buildFunction;
   @Require @Prop initMessage: string = 'Hello';
@@ -79,9 +95,8 @@ struct Child {
 }
 ```
 
- ![img](figures/9e2d58bc-b0e1-4613-934b-8e4237bd5c05.png) 
 
-@ComponentV2 decorated custom component **ChildPage** is initialized through the parent component **ParentPage**. Because \@Param is decorated by @Require, **ParentPage** must be constructed and assigned a value.
+A custom component **ChildPage** decorated with \@ComponentV2 is initialized by its parent component **ParentPage**. Since \@Param decorated variables are also decorated with \@Require, **ParentPage** must pass these variables with assigned values during construction.
 
 ```ts
 @ObservedV2
@@ -93,7 +108,8 @@ class Info {
 @ComponentV2
 struct ChildPage {
   @Require @Param childInfo: Info = new Info();
-  @Require @Param state_value: string = "Hello";
+  @Require @Param state_value: string = 'Hello';
+
   build() {
     Column() {
       Text(`ChildPage childInfo name :${this.childInfo.name}`)
@@ -112,66 +128,74 @@ struct ChildPage {
 @Entry
 @ComponentV2
 struct ParentPage {
-  info1: Info = { name: "Tom", age: 25 };
-  label1: string = "Hello World";
-  @Local info2: Info = { name: "Tom", age: 25 };
-  @Local label2: string = "Hello World";
+  info1: Info = { name: 'Tom', age: 25 };
+  label1: string = 'Hello World';
+  @Local info2: Info = { name: 'Tom', age: 25 };
+  @Local label2: string = 'Hello World';
 
   build() {
     Column() {
       Text(`info1: ${this.info1.name}  ${this.info1.age}`) // Text1
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
-      ChildPage({ childInfo: this.info1, state_value: this.label1}) // Calling a custom component.
+      // The parent component ParentPage performs construction assignment when initializing the child component ChildPage.
+      // Values are passed to the childInfo and state_value properties in ChildPage, which are decorated with @Require and @Param.
+      ChildPage({ childInfo: this.info1, state_value: this.label1 }) // Create a custom component.
       Line()
         .width('100%')
         .height(5)
         .backgroundColor('#000000').margin(10)
-      Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text2
+      Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text2.
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
-      ChildPage({ childInfo: this.info2, state_value: this.label2}) // Calling a custom component.
+      // Similarly, construction assignment is performed when the parent component creates the child component.
+      ChildPage({ childInfo: this.info2, state_value: this.label2 }) // Create a custom component.
       Line()
         .width('100%')
         .height(5)
         .backgroundColor('#000000').margin(10)
-      Button("change info1&info2")
+      Button('change info1&info2')
         .onClick(() => {
-          this.info1 = { name: "Cat", age: 18} // Text1 is not re-rendered because no decorator is used to listen for value changes.
-          this.info2 = { name: "Cat", age: 18} // Text2 is re-rendered because a decorator is used to listen for value changes.
-          this.label1 = "Luck"; // ChildPage is not re-rendered because no decorator is used to listen for value changes.
-          this.label2 = "Luck"; // ChildPage is re-rendered because a decorator is used to listen for value changes.
+          this.info1 = { name: 'Cat', age: 18 }; // Text1 is not re-rendered because info1 is not decorated with a decorator and cannot listen for value changes.
+          this.info2 = { name: 'Cat', age: 18 }; // Text2 will be re-rendered because info2 is decorated with a decorator and can listen for value changes.
+          this.label1 = 'Luck'; // No re-rendering occurs because label1 is not decorated with a decorator and cannot listen for value changes.
+          this.label2 = 'Luck'; // Re-rendering occurs because label2 is decorated with a decorator and can listen for value changes.
         })
     }
   }
 }
 ```
 
-Since API version 16, use \@Require to decorate the \@State, \@Prop, or \@Provide decorated state variables. These state variables can be directly used in components without local initial values and no compilation error is reported.
+Since API version 18, \@Require can decorate state variables decorated with \@State, \@Prop, or \@Provide) without requiring a local initial value. These variables can be used directly in the component without compilation errors.
 
 ```ts
 @Entry
 @Component
 struct Index {
   message: string = 'Hello World';
+
   build() {
     Column() {
       Child({ message: this.message })
     }
   }
 }
+
 @Component
 struct Child {
   @Require @State message: string;
+
   build() {
     Column() {
-      Text(this.message) // Compilation succeeds since API version 16.
+      Text(this.message) // No local initial value needed (since API version 18).
     }
   }
 }
 ```
 
-## Incorrect Usage
+## Common Issues
+
+If a parent component fails to pass a parameter required by \@Require in the child component, compilation will fail.
 
 ```ts
 @Entry
@@ -179,7 +203,8 @@ struct Child {
 struct Index {
   @State message: string = 'Hello World';
 
-  @Builder buildTest() {
+  @Builder
+  buildTest() {
     Row() {
       Text('Hello, world')
         .fontSize(30)
@@ -188,23 +213,27 @@ struct Index {
 
   build() {
     Row() {
+      // Error: The @Require decorated parameters are not passed during Child and ChildV2 construction.
       Child()
+      ChildV2()
     }
   }
 }
 
 @Component
 struct Child {
-  @Builder buildFunction() {
+  @Builder
+  buildFunction() {
     Column() {
       Text('initBuilderParam')
         .fontSize(30)
     }
   }
-  // As @Require is used here, parameters must be passed in to the constructor.
+
+  // @Require decorated parameters that are not passed by the parent component
   @Require regular_value: string = 'Hello';
-  @Require @State state_value: string = "Hello";
-  @Require @Provide provide_value: string = "Hello";
+  @Require @State state_value: string = 'Hello';
+  @Require @Provide provide_value: string = 'Hello';
   @Require @BuilderParam initBuildTest: () => void = this.buildFunction;
   @Require @Prop initMessage: string = 'Hello';
 
@@ -213,6 +242,18 @@ struct Child {
       Text(this.initMessage)
         .fontSize(30)
       this.initBuildTest();
+    }
+  }
+}
+
+@ComponentV2
+struct ChildV2 {
+  // @Require decorated parameters that are not passed by the parent component
+  @Require @Param message: string;
+
+  build() {
+    Column() {
+      Text(this.message)
     }
   }
 }

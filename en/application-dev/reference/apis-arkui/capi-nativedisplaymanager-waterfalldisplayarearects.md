@@ -2,7 +2,7 @@
 
 ## Overview
 
-The NativeDisplayManager_WaterfallDisplayAreaRects struct describes the curved area on a waterfall display.
+The struct describes the curved area on a waterfall display.
 
 **Since**: 12
 

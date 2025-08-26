@@ -2,8 +2,9 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @luoying_ace_admin-->
-<!--SE: @weixin_52725220-->
-<!--TSE: @xiong0104-->
+<!--Designer: @weixin_52725220-->
+<!--Tester: @xiong0104-->
+<!--Adviser: @HelloCrease-->
 
 A time picker dialog box is a dialog box that allows users to select a time from the 24-hour range through scrolling.
 
@@ -31,7 +32,7 @@ Shows a time picker dialog box.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Device behavior**: This API has no effect on wearables and works on other devices.
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 **Parameters**
 
