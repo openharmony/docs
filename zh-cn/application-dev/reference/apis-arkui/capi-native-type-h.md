@@ -2775,8 +2775,8 @@ enum ArkUI_FocusWrapMode
 
 | 枚举项 | 描述 |
 | -- | -- |
-| FOCUS_WRAP_MODE_DEFAULT = 0 | 默认规则，使用方向键走焦不换行。 |
-| FOCUS_WRAP_WITH_ARROW = 1 | 使用方向键走焦自动换行。 |
+| ARKUI_FOCUS_WRAP_MODE_DEFAULT = 0 | 默认规则，使用方向键走焦不换行。 |
+| ARKUI_FOCUS_WRAP_WITH_ARROW = 1 | 使用方向键走焦自动换行。 |
 
 ### ArkUI_EdgeDirection
 
