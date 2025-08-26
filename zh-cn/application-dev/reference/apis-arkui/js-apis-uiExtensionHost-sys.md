@@ -18,7 +18,7 @@ import { uiExtensionHost } from '@kit.ArkUI';
 
 ## UIExtensionHostWindowProxy
 
-### getWindowAvoidArea
+### getWindowAvoidArea<sup>11+</sup>
 
 getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 
@@ -26,7 +26,7 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -62,7 +62,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-### on('avoidAreaChange')
+### on('avoidAreaChange')<sup>11+</sup>
 
 on(type: 'avoidAreaChange', callback: Callback<{ type: window.AvoidAreaType, area: window.AvoidArea }>): void
 
@@ -70,7 +70,7 @@ on(type: 'avoidAreaChange', callback: Callback<{ type: window.AvoidAreaType, are
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
@@ -100,7 +100,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-### off('avoidAreaChange')
+### off('avoidAreaChange')<sup>11+</sup>
 
 off(type: 'avoidAreaChange', callback?: Callback<{ type: window.AvoidAreaType, area: window.AvoidArea }>): void
 
@@ -108,7 +108,7 @@ off(type: 'avoidAreaChange', callback?: Callback<{ type: window.AvoidAreaType, a
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
@@ -136,7 +136,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-### on('windowSizeChange')
+### on('windowSizeChange')<sup>11+</sup>
 
 on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 
@@ -144,7 +144,7 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
@@ -174,7 +174,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-### off('windowSizeChange')
+### off('windowSizeChange')<sup>11+</sup>
 
 off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 
@@ -182,7 +182,7 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
@@ -218,7 +218,7 @@ properties: UIExtensionHostWindowProxyProperties
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 参数名     | 类型                                 | 说明                             |
 | ---------- | ------------------------------------ | -------------------------------- |
@@ -240,22 +240,21 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-### hideNonSecureWindows
+### hideNonSecureWindows<sup>11+</sup>
 
 hideNonSecureWindows(shouldHide: boolean): Promise&lt;void&gt;
 
 设置是否隐藏不安全窗口。
 > **说明：**
 >
-> 不安全窗口是指可能遮挡UIExtensionComponent的窗口类型，如全局悬浮窗、宿主子窗口和宿主创建的Dialog窗口（不包括系统应用创建的上述类型窗口）。当UIExtensionComponent组件被用来显示敏感操作提示内容时，可以选择隐藏不安全窗口，保护敏感操作提示内容不会被遮挡。当UIExtensionComponent不显示或销毁时需要让不安全窗口重新显示。使用CreateModalUIExtension接口创建的UIExtensionComponent会默认隐藏不安全窗口，若要取消隐藏，需要申请ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS权限，并调用本接口将shouldHide设为false。
-
+> -不安全窗口是指可能遮挡[EmbeddedComponent](arkui-ts/ts-container-embedded-component.md)（或[UIExtensionComponent](arkui-ts/ts-container-ui-extension-component-sys.md)）组件的窗口，如全局悬浮窗、宿主子窗口和宿主创建的Dialog窗口（不包括系统应用创建的上述类型窗口）。
+> -当EmbeddedComponent（或UIExtensionComponent）组件被用来显示敏感操作提示内容时，可以选择隐藏不安全窗口，保护敏感操作提示内容不会被遮挡。当EmbeddedComponent（或UIExtensionComponent）组件不显示或销毁时需要让不安全窗口重新显示。
+> -针对PC/2in1设备，当调用hideNonSecureWindows(true)时，不安全窗口中的全局悬浮窗不会被隐藏。
 **需要权限**：ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口，三方应用不支持调用。
-
-**设备行为差异：** 该接口在2in1设备中，shouldHide为true时，全局悬浮窗不会被隐藏。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -316,7 +315,7 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口：** 此接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口。
 
 **模型约束：** StageModelOnly
 
@@ -401,7 +400,7 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -463,7 +462,7 @@ hidePrivacyContentForHost(shouldHide: boolean): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -517,7 +516,7 @@ export default class EntryAbility extends UIExtensionAbility {
 
 | 名称                         | 类型        | 必填      | 说明                             |
 | ------------------------------ | ----------- | -------------------------------- | -------------------------------- |
-| uiExtensionHostWindowProxyRect | [window.Rect](arkts-apis-window-i.md#rect7) | 是 | UIExtensionComponent的位置和宽高。 |
+| uiExtensionHostWindowProxyRect<sup>11+</sup> | [window.Rect](arkts-apis-window-i.md#rect7) | 是 | UIExtensionComponent的位置和宽高。 |
 
 ## 完整示例
 

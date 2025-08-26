@@ -18,7 +18,7 @@ import { uiExtension } from '@kit.ArkUI';
 
 UIExtension宿主窗代理。
 
-### hideNonSecureWindows
+### hideNonSecureWindows<sup>11+</sup>
 
 hideNonSecureWindows(shouldHide: boolean): Promise\<void>
 
@@ -26,16 +26,15 @@ hideNonSecureWindows(shouldHide: boolean): Promise\<void>
 
 > **说明：**
 >
-> 不安全窗口是指可能遮挡EmbeddedComponent（或UIExtensionComponent）组件的窗口，如全局悬浮窗、宿主子窗口和宿主创建的Dialog窗口（不包括系统应用创建的上述类型窗口）。当EmbeddedComponent（或UIExtensionComponent）组件被用来显示敏感操作提示内容时，可以选择隐藏不安全窗口，保护敏感操作提示内容不会被遮挡。当EmbeddedComponent（或UIExtensionComponent）组件不显示或销毁时需要让不安全窗口重新显示。使用CreateModalUIExtension接口创建的UIExtensionComponent会默认隐藏不安全窗口，若要取消隐藏，需要申请ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS权限，并调用本接口将shouldHide设为false。
-> 
+> -不安全窗口是指可能遮挡[EmbeddedComponent](arkui-ts/ts-container-embedded-component.md)（或[UIExtensionComponent](arkui-ts/ts-container-ui-extension-component-sys.md)）组件的窗口，如全局悬浮窗、宿主子窗口和宿主创建的Dialog窗口（不包括系统应用创建的上述类型窗口）。
+> -当EmbeddedComponent（或UIExtensionComponent）组件被用来显示敏感操作提示内容时，可以选择隐藏不安全窗口，保护敏感操作提示内容不会被遮挡。当EmbeddedComponent（或UIExtensionComponent）组件不显示或销毁时需要让不安全窗口重新显示。
+> -针对PC/2in1设备，当调用hideNonSecureWindows(true)时，不安全窗口中的全局悬浮窗不会被隐藏。
 
 **需要权限**：ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口，三方应用不支持调用。
-
-**设备行为差异：** 该接口在2in1设备中，shouldHide为true时，全局悬浮窗不会被隐藏。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -88,7 +87,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-### setWaterMarkFlag
+### setWaterMarkFlag<sup>12+</sup>
 
 setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 
@@ -99,7 +98,7 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
