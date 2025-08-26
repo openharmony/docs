@@ -94,7 +94,7 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | screenX<sup>(deprecated)</sup> | number               | 否 | 否 | 触摸点相对于应用窗口左上角的X坐标。<br/>单位：vp <br>从API version 10开始不再维护，建议使用windowX代替。   |
 | screenY<sup>(deprecated)</sup> | number               | 否 | 否 | 触摸点相对于应用窗口左上角的Y坐标。<br/>单位：vp <br>从API version 10开始不再维护，建议使用windowY代替。   |
 | pressedTime<sup>15+</sup> | number | 否 | 是 | 当前手指按下的时间。<br>单位：ns<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
-| pressure<sup>15+</sup> | number | 否 | 是 | 当前手指按压的压力值。<br/>取值范围：[0,65535)，压力越大值越大。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| pressure<sup>15+</sup> | number | 否 | 是 | 当前手指按压的压力值。<br/>取值范围：[0,65535)，压力越大，值越大。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | width<sup>15+</sup> | number | 否 | 是 | 当前手指按压区域的宽度。<br />单位：vp<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | height<sup>15+</sup> | number | 否 | 是 | 当前手指按压区域的高度。<br />单位：vp<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | hand<sup>15+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand枚举说明15) | 否 | 是 | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
