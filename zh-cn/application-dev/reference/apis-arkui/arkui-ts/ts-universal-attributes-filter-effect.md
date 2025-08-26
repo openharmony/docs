@@ -26,7 +26,7 @@ visualEffect(effect: VisualEffect): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                 |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| effect | [VisualEffect](../../apis-arkgraphics2d/js-apis-uiEffect.md#visualeffect) | 是   | 非滤镜视觉效果。 |
+| effect | [VisualEffect](#visualeffect) | 是   | 非滤镜视觉效果。 |
 
 **返回值：**
 
@@ -48,7 +48,7 @@ backgroundFilter(filter: Filter): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                 |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| filter | [Filter](../../apis-arkgraphics2d/js-apis-uiEffect.md#filter) | 是   | 背景滤镜视觉效果。 |
+| filter | [Filter](#filter) | 是   | 背景滤镜视觉效果。 |
 
 **返回值：**
 
@@ -70,7 +70,7 @@ foregroundFilter(filter: Filter): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                 |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| filter | [Filter](../../apis-arkgraphics2d/js-apis-uiEffect.md#filter) | 是   | 前景滤镜（内容）视觉效果。 |
+| filter | [Filter](#filter) | 是   | 前景滤镜（内容）视觉效果。 |
 
 **返回值：**
 
@@ -92,13 +92,41 @@ compositingFilter(filter: Filter): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                 |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| filter | [Filter](../../apis-arkgraphics2d/js-apis-uiEffect.md#filter) | 是   | 合成滤镜视觉效果。 |
+| filter | [Filter](#filter) | 是   | 合成滤镜视觉效果。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
 | T | 返回当前组件。 |
+
+## Filter
+
+type Filter = Filter
+
+导入Filter类型对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| [Filter](../../apis-arkgraphics2d/js-apis-uiEffect.md#filter) | 用于将相应的效果添加到指定的组件上。 |
+
+## VisualEffect
+
+type VisualEffect = VisualEffect
+
+导入VisualEffect类型对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| [VisualEffect](../../apis-arkgraphics2d/js-apis-uiEffect.md#visualeffect) | 用于将相应的效果添加到指定的组件上。 |
 
 ## 示例
 
