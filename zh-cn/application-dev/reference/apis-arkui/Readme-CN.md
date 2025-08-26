@@ -341,6 +341,7 @@
     - [QRCode](arkui-ts/ts-basic-components-qrcode.md)
     - [TextClock](arkui-ts/ts-basic-components-textclock.md)
     - [TextTimer](arkui-ts/ts-basic-components-texttimer.md)
+    - [信息展示公共接口](arkui-ts/ts-information-display-common.md)
   - 空白与分隔<!--blank-and-divider-->
     - [Blank](arkui-ts/ts-basic-components-blank.md)
     - [Divider](arkui-ts/ts-basic-components-divider.md)
@@ -433,8 +434,8 @@
     - [自定义组件参数](arkui-ts/ts-custom-component-parameter.md)
     - 组件扩展装饰器<!--arkts-extend-component-decorator-->
       - [定义可动画属性 (@AnimatableExtend)](arkui-ts/ts-animatable-extend.md)
-    - [@Entry：页面入口](arkui-ts/ts-universal-entry.md)
-    - [wrapBuilder: 封装全局@Builder](arkui-ts/ts-universal-wrapBuilder.md)
+      - [@Entry：页面入口](arkui-ts/ts-universal-entry.md)
+      - [wrapBuilder: 封装全局@Builder](arkui-ts/ts-universal-wrapBuilder.md)
   - 系统预置UI组件库<!--system-preset-ui-component-library-->
     - [Chip](arkui-ts/ohos-arkui-advanced-Chip.md)
     - [ChipGroup](arkui-ts/ohos-arkui-advanced-ChipGroup.md)
@@ -468,6 +469,7 @@
     - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
     - [状态管理V1装饰器参数](arkui-ts/ts-state-management-v1-parameter.md)
     - [状态变量变化监听](arkui-ts/ts-state-management-watch-monitor.md)
+    - [内置环境变量说明](arkui-ts/ts-state-management-environment-variables.md)
     - [ForEach](arkui-ts/ts-rendering-control-foreach.md)
     - [LazyForEach](arkui-ts/ts-rendering-control-lazyforeach.md)
     - [Repeat](arkui-ts/ts-rendering-control-repeat.md)

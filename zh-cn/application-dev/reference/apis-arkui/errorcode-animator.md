@@ -14,7 +14,7 @@
 
 **错误信息**
 
-Internal error.
+The specified page is not found or the object property list is not obtained.
 
 **错误描述**
 

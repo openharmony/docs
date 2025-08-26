@@ -121,7 +121,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 >
 >  setKeyboardAvoidMode针对页面生效，对于弹窗类组件不生效，比如Dialog、Popup、Menu、BindSheet、BindContentCover、Toast、OverlayManager。弹窗类组件的避让模式可以参考[CustomDialogControllerOptions对象说明](./ts-methods-custom-dialog-box.md#customdialogcontrolleroptions对象说明)。
 
-## getKeyboardAvoidMode
+## getKeyboardAvoidMode<sup>11+</sup>
 
 getKeyboardAvoidMode(): KeyboardAvoidMode
 
@@ -300,6 +300,7 @@ struct SafeAreaExample3 {
 
 该示例通过调用setKeyboardAvoidMode设置键盘避让模式为RESIZE模式，实现键盘抬起时page的压缩效果。
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { KeyboardAvoidMode } from '@kit.ArkUI';
@@ -343,6 +344,7 @@ struct KeyboardAvoidExample1 {
 
 该示例通过调用setKeyboardAvoidMode设置键盘避让模式为OFFSET模式，实现键盘抬起时page的上抬效果。但当输入光标距离屏幕底部的高度大于键盘高度时，page不会抬起，如本例中所示。
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { KeyboardAvoidMode } from '@kit.ArkUI';

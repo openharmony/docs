@@ -15,9 +15,6 @@ FolderStack继承于Stack(层叠布局)控件，新增了<!--RP1-->折叠屏悬�
 >  该组件的悬停态能力针对<!--RP2-->双折叠<!--RP2End-->设计，只在双折叠设备生效。
 >
 >  当该组件的父组件为[if/else条件渲染节点](../../../ui/state-management/arkts-rendering-control-ifelse.md)时，折叠屏悬停能力将会失效。
->  
->  该组件不支持在Wearable设备上使用。
-
 
 ## 子组件
 

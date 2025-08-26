@@ -774,7 +774,7 @@ type DataLoadParams = DataLoadParams
 
 ## executeDropAnimation<sup>18+</sup>
 
-executeDropAnimation(customDragAnimation: Callback\<void\>): void
+executeDropAnimation(customDropAnimation: Callback\<void\>): void
 
 设置一个自定义落位动效的执行函数，仅在useCustomDropAnimation为true时有效。
 

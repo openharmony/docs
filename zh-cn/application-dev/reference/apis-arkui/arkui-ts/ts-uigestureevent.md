@@ -81,7 +81,7 @@ clearGestures(): void
 
 ## GestureHandler\<T>
 
-手势对象的基础类型。
+手势处理器的基础类型。
 
 ### tag
 
@@ -97,7 +97,13 @@ tag(tag: string): T
 
 | 参数名 | 类型 | 必填 |说明                                        |
 | ----  | ------  | ------|---------------------------------- |
-| tag   | string  | 是 |设置手势处理器标志。|
+| tag   | string  | 是 |手势处理器的标志。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ### allowedTypes<sup>14+</sup>
 
@@ -113,7 +119,13 @@ allowedTypes(types: Array\<SourceTool>): T
 
 | 参数名 | 类型 | 必填 |说明                                        |
 | ----  | ------  | ------|---------------------------------- |
-| types   | Array\<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)>  | 是 |设置手势处理器所支持的事件输入源。|
+| types   | Array\<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)>  | 是 |手势处理器所支持的事件输入源。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## BaseHandlerOptions<sup>15+</sup>
 
@@ -123,9 +135,9 @@ allowedTypes(types: Array\<SourceTool>): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名           | 类型          | 只读 | 可选 | 说明            |
+| 名称           | 类型          | 只读 | 可选 | 说明            |
 |---------------|---------------|-----|------|----------------|
-| isFingerCountLimited | boolean | 否 | 是 | 是否检查触摸屏幕的手指数量。true表示检查触摸屏幕的手指数量，false表示不检查触摸屏幕的手指数量。如果触摸手指的数量不等于设置的触发点击的手指数，那么该手势识别失败。<br>默认值：false |
+| isFingerCountLimited | boolean | 否 | 是 | 是否检查触摸屏幕的手指数量。true表示检查触摸屏幕的手指数量，false表示不检查触摸屏幕的手指数量。<br>默认值：false |
 
 ## TapGestureHandler
 
@@ -151,7 +163,7 @@ constructor(options?: TapGestureHandlerOptions)
 
 onAction(event: Callback\<GestureEvent>): TapGestureHandler
 
-Tap手势识别成功回调。
+设置点击手势处理器识别成功回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -161,7 +173,7 @@ Tap手势识别成功回调。
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | Tap手势识别成功回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 点击手势处理器识别成功回调。 |
 
 **返回值：**
 
@@ -208,7 +220,7 @@ constructor(options?: LongPressGestureHandlerOptions)
 
 onAction(event: Callback\<GestureEvent>): LongPressGestureHandler
 
-LongPress手势识别成功回调。
+设置长按手势处理器识别成功回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -218,7 +230,7 @@ LongPress手势识别成功回调。
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | LongPress手势识别成功回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 长按手势处理器识别成功回调。 |
 
 **返回值：**
 
@@ -230,7 +242,7 @@ LongPress手势识别成功回调。
 
 onActionEnd(event: Callback\<GestureEvent>): LongPressGestureHandler
 
-LongPress手势识别成功，最后一根手指抬起后触发回调。
+设置长按手势处理器结束回调。长按手势处理器识别成功后，最后一根手指抬起时触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -240,7 +252,7 @@ LongPress手势识别成功，最后一根手指抬起后触发回调。
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | LongPress手势识别成功，最后一根手指抬起后触发回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 长按手势处理器结束回调。 |
 
 **返回值：**
 
@@ -252,7 +264,7 @@ LongPress手势识别成功，最后一根手指抬起后触发回调。
 
 onActionCancel(event: Callback\<void>): LongPressGestureHandler
 
-LongPress手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。
+设置长按手势处理器取消回调。长按手势处理器识别成功后，接收到触摸取消事件时触发回调。不返回手势事件信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -262,7 +274,7 @@ LongPress手势识别成功，接收到触摸取消事件触发回调。不返�
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)\<void> | 是 | LongPress手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。 |
+| event  | [Callback](./ts-types.md#callback12)\<void> | 是 | 长按手势处理器取消回调。 |
 
 **返回值：**
 
@@ -274,7 +286,7 @@ LongPress手势识别成功，接收到触摸取消事件触发回调。不返�
 
 onActionCancel(event: Callback\<GestureEvent>): LongPressGestureHandler
 
-LongPress手势识别成功，接收到触摸取消事件触发回调。与[onActionCancel](#onactioncancel)接口相比，此接口返回手势事件信息。
+设置长按手势处理器取消回调。长按手势处理器识别成功后，接收到触摸取消事件时触发回调。与[onActionCancel](#onactioncancel)接口相比，此接口返回手势事件信息。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -284,7 +296,7 @@ LongPress手势识别成功，接收到触摸取消事件触发回调。与[onAc
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | LongPress手势识别成功，接收到触摸取消事件触发回调。返回手势事件信息。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 长按手势处理器取消回调。该回调会返回手势事件信息。 |
 
 **返回值：**
 
@@ -332,7 +344,7 @@ constructor(options?: PanGestureHandlerOptions)
 
 onActionStart(event: Callback\<GestureEvent>): PanGestureHandler
 
-Pan手势识别成功回调。
+设置拖动手势处理器识别成功回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -342,7 +354,7 @@ Pan手势识别成功回调。
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | Pan手势识别成功回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 拖动手势处理器识别成功回调。 |
 
 **返回值：**
 
@@ -354,7 +366,7 @@ Pan手势识别成功回调。
 
 onActionUpdate(event: Callback\<GestureEvent>): PanGestureHandler
 
-Pan手势移动过程中回调。
+设置拖动手势处理器更新回调。拖动手势处理器移动过程中触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -364,7 +376,7 @@ Pan手势移动过程中回调。
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | Pan手势移动过程中回调。<br/>fingerList为多根手指时，该回调监听每次只会更新一根手指的位置信息。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 拖动手势处理器更新回调。<br/>fingerList为多根手指时，该回调监听每次只会更新一根手指的位置信息。 |
 
 **返回值：**
 
@@ -376,7 +388,7 @@ Pan手势移动过程中回调。
 
 onActionEnd(event: Callback\<GestureEvent>): PanGestureHandler
 
-Pan手势识别成功，手指抬起后触发回调。
+设置拖动手势处理器结束回调。拖动手势处理器识别成功后，手指抬起时触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -386,7 +398,7 @@ Pan手势识别成功，手指抬起后触发回调。
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | Pan手势识别成功，手指抬起后触发回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 拖动手势处理器结束回调。 |
 
 **返回值：**
 
@@ -398,7 +410,7 @@ Pan手势识别成功，手指抬起后触发回调。
 
 onActionCancel(event: Callback\<void>): PanGestureHandler
 
-Pan手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。
+设置拖动手势处理器取消回调。拖动手势处理器识别成功后，接收到触摸取消事件时触发回调。不返回手势事件信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -408,7 +420,7 @@ Pan手势识别成功，接收到触摸取消事件触发回调。不返回手�
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)\<void> | 是 | Pan手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。 |
+| event  | [Callback](./ts-types.md#callback12)\<void> | 是 | 拖动手势处理器取消回调。 |
 
 **返回值：**
 
@@ -420,7 +432,7 @@ Pan手势识别成功，接收到触摸取消事件触发回调。不返回手�
 
 onActionCancel(event: Callback\<GestureEvent>): PanGestureHandler
 
-Pan手势识别成功，接收到触摸取消事件触发回调。与[onActionCancel](#onactioncancel-1)接口相比，此接口返回手势事件信息。
+设置拖动手势处理器取消回调。拖动手势处理器识别成功后，接收到触摸取消事件时触发回调。与[onActionCancel](#onactioncancel-1)接口相比，此接口返回手势事件信息。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -430,7 +442,7 @@ Pan手势识别成功，接收到触摸取消事件触发回调。与[onActionCa
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | Pan手势识别成功，接收到触摸取消事件触发回调。返回手势事件信息。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 拖动手势处理器取消回调。返回手势事件信息。 |
 
 **返回值：**
 
@@ -475,9 +487,9 @@ constructor(options?: SwipeGestureHandlerOptions)
 
 ### onAction
 
-onAction(event: Callback\<GestureEvent>): SwipeGestureHandlerOptions
+onAction(event: Callback\<GestureEvent>): SwipeGestureHandler
 
-Swipe手势识别成功回调。
+设置滑动手势处理器识别成功回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -487,7 +499,7 @@ Swipe手势识别成功回调。
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | Swipe手势识别成功回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 滑动手势处理器识别成功回调。 |
 
 **返回值：**
 
@@ -497,7 +509,7 @@ Swipe手势识别成功回调。
 
 ## SwipeGestureHandlerOptions
 
-滑动事件处理器配置参数。继承自[BaseHandlerOptions](#basehandleroptions15)。
+滑动手势处理器配置参数。继承自[BaseHandlerOptions](#basehandleroptions15)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -535,7 +547,7 @@ constructor(options?: PinchGestureHandlerOptions)
 
 onActionStart(event: Callback\<GestureEvent>): PinchGestureHandler
 
-Pinch手势识别成功回调。
+设置捏合手势处理器识别成功回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -545,7 +557,7 @@ Pinch手势识别成功回调。
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | Pinch手势识别成功回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 捏合手势处理器识别成功回调。 |
 
 **返回值：**
 
@@ -557,7 +569,7 @@ Pinch手势识别成功回调。
 
 onActionUpdate(event: Callback\<GestureEvent>): PinchGestureHandler
 
-Pinch手势移动过程中回调。
+设置捏合手势处理器更新回调。捏合手势处理器移动过程中触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -567,7 +579,7 @@ Pinch手势移动过程中回调。
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | Pinch手势移动过程中回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 捏合手势处理器更新回调。 |
 
 **返回值：**
 
@@ -579,7 +591,7 @@ Pinch手势移动过程中回调。
 
 onActionEnd(event: Callback\<GestureEvent>): PinchGestureHandler
 
-Pinch手势识别成功，手指抬起后触发回调。
+设置捏合手势处理器结束回调。捏合手势处理器识别成功后，手指抬起时触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -589,7 +601,7 @@ Pinch手势识别成功，手指抬起后触发回调。
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | Pinch手势识别成功，手指抬起后触发回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 捏合手势处理器结束回调。 |
 
 **返回值：**
 
@@ -601,7 +613,7 @@ Pinch手势识别成功，手指抬起后触发回调。
 
 onActionCancel(event: Callback\<void>): PinchGestureHandler
 
-Pinch手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。
+设置捏合手势处理器取消回调。捏合手势处理器识别成功后，接收到触摸取消事件时触发回调。不返回手势事件信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -611,7 +623,7 @@ Pinch手势识别成功，接收到触摸取消事件触发回调。不返回手
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)\<void> | 是 | Pinch手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。 |
+| event  | [Callback](./ts-types.md#callback12)\<void> | 是 | 捏合手势处理器取消回调。不返回手势事件信息。 |
 
 **返回值：**
 
@@ -623,7 +635,7 @@ Pinch手势识别成功，接收到触摸取消事件触发回调。不返回手
 
 onActionCancel(event: Callback\<GestureEvent>): PinchGestureHandler
 
-Pinch手势识别成功，接收到触摸取消事件触发回调。与[onActionCancel](#onactioncancel-2)接口相比，此接口返回手势事件信息。
+设置捏合手势处理器取消回调。捏合手势处理器识别成功后，接收到触摸取消事件时触发回调。与[onActionCancel](#onactioncancel-2)接口相比，此接口返回手势事件信息。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -633,7 +645,7 @@ Pinch手势识别成功，接收到触摸取消事件触发回调。与[onAction
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | Pinch手势识别成功，接收到触摸取消事件触发回调。返回手势事件信息。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 捏合手势处理器取消回调。返回手势事件信息。 |
 
 **返回值：**
 
@@ -680,7 +692,7 @@ constructor(options?: RotationGestureHandlerOptions)
 
 onActionStart(event: Callback\<GestureEvent>): RotationGestureHandler
 
-Rotation手势识别成功回调。
+设置旋转手势处理器识别成功回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -690,7 +702,7 @@ Rotation手势识别成功回调。
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | Rotation手势识别成功回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 旋转手势处理器识别成功回调。 |
 
 **返回值：**
 
@@ -702,7 +714,7 @@ Rotation手势识别成功回调。
 
 onActionUpdate(event: Callback\<GestureEvent>): RotationGestureHandler
 
-Rotation手势移动过程中回调。
+设置旋转手势处理器更新回调。旋转手势处理器移动过程中触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -712,7 +724,7 @@ Rotation手势移动过程中回调。
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | Rotation手势移动过程中回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 旋转手势处理器更新回调。 |
 
 **返回值：**
 
@@ -724,7 +736,7 @@ Rotation手势移动过程中回调。
 
 onActionEnd(event: Callback\<GestureEvent>): RotationGestureHandler
 
-Rotation手势识别成功，手指抬起后触发回调。
+设置旋转手势处理器结束回调。旋转手势处理器识别成功后，手指抬起时触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -734,7 +746,7 @@ Rotation手势识别成功，手指抬起后触发回调。
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | Rotation手势识别成功，手指抬起后触发回调。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 旋转手势处理器结束回调。 |
 
 **返回值：**
 
@@ -746,7 +758,7 @@ Rotation手势识别成功，手指抬起后触发回调。
 
 onActionCancel(event: Callback\<void>): RotationGestureHandler
 
-Rotation手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。
+设置旋转手势处理器取消回调。旋转手势处理器识别成功后，接收到触摸取消事件时触发回调。不返回手势事件信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -756,7 +768,7 @@ Rotation手势识别成功，接收到触摸取消事件触发回调。不返回
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)\<void> | 是 | Rotation手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。 |
+| event  | [Callback](./ts-types.md#callback12)\<void> | 是 | 旋转手势处理器取消回调。不返回手势事件信息。 |
 
 **返回值：**
 
@@ -768,7 +780,7 @@ Rotation手势识别成功，接收到触摸取消事件触发回调。不返回
 
 onActionCancel(event: Callback\<GestureEvent>): RotationGestureHandler
 
-Rotation手势识别成功，接收到触摸取消事件触发回调。与[onActionCancel](#onactioncancel-3)相比，此接口返回手势事件信息。
+设置旋转手势处理器取消回调。旋转手势处理器识别成功后，接收到触摸取消事件时触发回调。与[onActionCancel](#onactioncancel-3)相比，此接口返回手势事件信息。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -778,7 +790,7 @@ Rotation手势识别成功，接收到触摸取消事件触发回调。与[onAct
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | Rotation手势识别成功，接收到触摸取消事件触发回调。返回手势事件信息。 |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | 旋转手势处理器取消回调。返回手势事件信息。 |
 
 **返回值：**
 
@@ -824,7 +836,7 @@ constructor(options?: GestureGroupGestureHandlerOptions)
 
 onCancel(event: Callback\<void>): GestureGroupHandler
 
-Rotation手势识别成功，接收到触摸取消事件触发回调。
+设置手势组处理器取消回调。顺序组合手势（[GestureMode](./ts-combined-gestures.md#gesturemode枚举说明).Sequence）取消后触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -834,7 +846,7 @@ Rotation手势识别成功，接收到触摸取消事件触发回调。
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)\<void> | 是 | 顺序组合手势（GestureMode.Sequence）取消后触发回调。 |
+| event  | [Callback](./ts-types.md#callback12)\<void> | 是 | 手势组处理器取消回调。 |
 
 **返回值：**
 
