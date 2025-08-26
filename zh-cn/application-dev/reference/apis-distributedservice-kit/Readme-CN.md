@@ -6,7 +6,7 @@
   - [@ohos.distributedsched.abilityConnectionManager (应用多端协同管理)](js-apis-distributed-abilityConnectionManager.md)
   - [@ohos.application.DistributedExtensionAbility (协同Extension)](js-apis-distributedExtensionAbility.md)
   - [@ohos.distributedsched.linkEnhance (增强连接)](js-apis-link-enhance.md)
-  - [@ohos.distributedsched.proxyChannelManager(代理通道管理)](js-apis-proxyChannelManager.md)
+  - [@ohos.distributedsched.proxyChannelManager(代理通道管理)](js-api-proxyChannelManager.md)
   
   <!--Del-->
   
