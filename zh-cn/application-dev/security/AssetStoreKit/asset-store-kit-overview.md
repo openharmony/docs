@@ -66,7 +66,7 @@ Asset Store Kit（关键资产存储服务，简称ASSET）包含了一系列开
 
 - 关键资产删除时机
   - 业务主动调用remove删除关键资产时，删除符合条件的数据。详见删除关键资产[ArkTS](asset-js-remove.md)、[C/C++](asset-native-remove.md)开发指导。
-  - 应用卸载时，清除该应用存储在ASSET中的非群组数据。对于群组数据，只有在群组内所有应用均被卸载时，才会清除该群组存储在ASSET中的群组数据。[IS_PERSISTENT](../../reference/apis-asset-store-kit/js-apis-asset.md#tag)属性设置为true的数据将保留。
+  - 应用卸载时，清除其存储在ASSET中的非群组数据。群组数据仅在群组内所有应用均卸载时清除。[IS_PERSISTENT](../../reference/apis-asset-store-kit/js-apis-asset.md#tag)属性设置为true的数据保留。
   - 系统子用户删除时，清除该用户下ASSET中所有数据。
   - 设备恢复出厂设置时，清除ASSET中所有数据。
 
