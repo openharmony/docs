@@ -931,8 +931,8 @@ showInSubWindow(showInSubWindow:Optional\<boolean>)
 
 | 名称   | 类型                   |只读                                      |可选                                      | 说明                                                         |
 | ------ | ----------------------|-------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| width  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](ts-universal-attributes-outline.md#edgeoutlinewidths对象说明)| 否| 是 | 设置外描边宽度，不支持百分比。<br/>默认值：0 |
-| color  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-universal-attributes-outline.md#edgecolors对象说明)|否 |是 | 设置外描边颜色。<br/>默认值：#19ffffff|
+| width  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](ts-types.md#edgeoutlinewidths11对象说明)| 否| 是 | 设置外描边宽度，不支持百分比。<br/>默认值：0 |
+| color  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-types.md#edgecolors9)|否 |是 | 设置外描边颜色。<br/>默认值：#19ffffff|
 
 ## 事件
 

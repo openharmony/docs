@@ -58,7 +58,7 @@ TipsDialog({controller: CustomDialogController, imageRes: ResourceStr | PixelMap
 | primaryButton                 | [ButtonOptions](#buttonoptions)                                                                                                     | 否   | -          | 提示框左侧按钮。<br/>默认不设置或设置为undefined，左侧按钮不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                              |
 | secondaryButton               | [ButtonOptions](#buttonoptions)                                                                                                     | 否   | -          | 提示框右侧按钮。<br/>默认不设置或设置为undefined，右侧按钮不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                   |
 | theme<sup>12+</sup>           | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme)                                    | 否   | -          | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
-| themeColorMode<sup>12+</sup>  | [ThemeColorMode](ts-container-with-theme.md#themecolormode10枚举说明)                                                                   | 否 | -     | 自定义弹窗深浅色模式。<br/>默认值：ThemeColorMode.SYSTEM<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                       |
+| themeColorMode<sup>12+</sup>  | [ThemeColorMode](ts-universal-attributes-foreground-blur-style.md#themecolormode枚举说明)                                                                   | 否 | -     | 自定义弹窗深浅色模式。<br/>默认值：ThemeColorMode.SYSTEM<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                       |
 
 ## SelectDialog
 
@@ -79,7 +79,7 @@ SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: 
 | confirm             | [ButtonOptions](#buttonoptions)                              | 否   | 选择弹出框底部按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                          |
 | radioContent        | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo对象说明)&gt; | 是   | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                   |
 | theme<sup>12+</sup> | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
-| themeColorMode<sup>12+</sup> | [ThemeColorMode](ts-container-with-theme.md#themecolormode10枚举说明) | 否 | 自定义弹窗深浅色模式。<br/>默认值：ThemeColorMode.SYSTEM<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                         |
+| themeColorMode<sup>12+</sup> | [ThemeColorMode](ts-universal-attributes-foreground-blur-style.md#themecolormode枚举说明) | 否 | 自定义弹窗深浅色模式。<br/>默认值：ThemeColorMode.SYSTEM<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                         |
 
 ## ConfirmDialog
 
@@ -102,7 +102,7 @@ ConfirmDialog({controller: CustomDialogController, title: ResourceStr, content?:
 | primaryButton                 | [ButtonOptions](#buttonoptions)                                                                  | 否   | -          | 确认框左侧按钮。<br/>默认不设置或设置为undefined，确认框左侧按钮不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                         |
 | secondaryButton               | [ButtonOptions](#buttonoptions)                                                                  | 否   | -          | 确认框右侧按钮。<br/>默认不设置或设置为undefined，确认框右侧按钮不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                         |
 | theme<sup>12+</sup>           | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | -          | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                |
-| themeColorMode<sup>12+</sup>  | [ThemeColorMode](ts-container-with-theme.md#themecolormode10枚举说明)                                | 否 | -     | 自定义弹窗深浅色模式。<br/>默认值：ThemeColorMode.SYSTEM<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                        |
+| themeColorMode<sup>12+</sup>  | [ThemeColorMode](ts-universal-attributes-foreground-blur-style.md#themecolormode枚举说明)                                | 否 | -     | 自定义弹窗深浅色模式。<br/>默认值：ThemeColorMode.SYSTEM<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                        |
 
 
 ## AlertDialog
@@ -124,7 +124,7 @@ AlertDialog({controller: CustomDialogController, primaryTitle?: ResourceStr, sec
 | primaryButton                | [ButtonOptions](#buttonoptions)                              | 否   | 确认框左侧按钮。<br/>默认不设置或设置为undefined，确认框左侧按钮不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                     |
 | secondaryButton              | [ButtonOptions](#buttonoptions)                              | 否   | 确认框右侧按钮。<br/>默认不设置或设置为undefined，确认框右侧按钮不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                     |
 | theme<sup>12+</sup>          | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。            |
-| themeColorMode<sup>12+</sup> | [ThemeColorMode](ts-container-with-theme.md#themecolormode10枚举说明) | 否 | 自定义弹窗深浅色模式。<br/>默认值：ThemeColorMode.SYSTEM<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                  |
+| themeColorMode<sup>12+</sup> | [ThemeColorMode](ts-universal-attributes-foreground-blur-style.md#themecolormode枚举说明) | 否 | 自定义弹窗深浅色模式。<br/>默认值：ThemeColorMode.SYSTEM<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                  |
 
 
 ## LoadingDialog
@@ -142,7 +142,7 @@ LoadingDialog({controller: CustomDialogController, content?: ResourceStr, theme?
 | Controller         | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller)                 | 是 | 加载弹出框控制器。<br/>**说明：** 未使用@Require装饰，构造时不强制校验参数。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | content             | [ResourceStr](ts-types.md#resourcestr)                                                           | 否   | 加载弹出框内容。<br/> 默认不设置或设置为undefined，加载弹出框内容不显示。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                 |
 | theme<sup>12+</sup> | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| themeColorMode<sup>12+</sup> | [ThemeColorMode](ts-container-with-theme.md#themecolormode10枚举说明)                                | 否 | 自定义弹窗深浅色模式。<br/>默认值：ThemeColorMode.SYSTEM<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
+| themeColorMode<sup>12+</sup> | [ThemeColorMode](ts-universal-attributes-foreground-blur-style.md#themecolormode枚举说明)                                | 否 | 自定义弹窗深浅色模式。<br/>默认值：ThemeColorMode.SYSTEM<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
 
 
 ## CustomContentDialog<sup>12+</sup>
@@ -167,7 +167,7 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 | contentAreaPadding  | [Padding](ts-types.md#padding)                                                                   | 否   | -  | 弹出框内容区内边距。设置了localizedContentAreaPadding属性时该属性不生效。|
 | buttons             | [ButtonOptions](#buttonoptions)[]                                                                | 否   | -  | 弹出框操作区按钮，最多支持4个按钮。                          |
 | theme | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | -  | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。 |
-| themeColorMode | [ThemeColorMode](ts-container-with-theme.md#themecolormode10枚举说明)                                | 否 | - | 自定义弹窗深浅色模式。<br/>默认值：ThemeColorMode.SYSTEM |
+| themeColorMode | [ThemeColorMode](ts-universal-attributes-foreground-blur-style.md#themecolormode枚举说明)                                | 否 | - | 自定义弹窗深浅色模式。<br/>默认值：ThemeColorMode.SYSTEM |
 
 >  **说明：**
 >

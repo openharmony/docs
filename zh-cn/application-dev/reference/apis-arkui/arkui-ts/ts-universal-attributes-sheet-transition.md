@@ -55,6 +55,8 @@ bindSheet(isShow: boolean, builder: CustomBuilder, options?: SheetOptions): T
 
 继承自[BindOptions](#bindoptions)。
 
+半模态页面内容选项。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称              | 类型                                       | 必填   | 说明              |
