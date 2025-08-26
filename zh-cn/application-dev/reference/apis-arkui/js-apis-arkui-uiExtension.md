@@ -412,7 +412,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
           });
         });
       }).catch((error: BusinessError) => {
-        console.error(`Create subwindow failed: ${JSON.stringify(error)}`);
+        console.error(`Create subwindow failed. Cause code: ${error.code}, message: ${error.message}`);
       })
   }
 }
@@ -456,6 +456,7 @@ occupyEvents(eventFlags: number): Promise&lt;void&gt;
 // ExtensionProvider.ts
 import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 import { uiExtension } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
@@ -503,10 +504,10 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称 | 类型                 | 必填 | 说明        |
-| ------ | -------------------- | ------------------ | ------------------ |
-| type   | [window.AvoidAreaType](arkts-apis-window-e.md#avoidareatype7) | 是 | 窗口规避区类型。   |
-| area   | [window.AvoidArea](arkts-apis-window-i.md#avoidarea7)     | 是| 窗口内容规避区域。 |
+| 名称 | 类型                 | 只读 | 可选 | 说明        |
+| ------ | -------------------- | ----- | ---- | ------------------ |
+| type   | [window.AvoidAreaType](arkts-apis-window-e.md#avoidareatype7) | 否 | 否 | 窗口规避区类型。|
+| area   | [window.AvoidArea](arkts-apis-window-i.md#avoidarea7)     | 否 | 否 | 窗口内容规避区域。 |
 
 ## WindowProxyProperties<sup>14+</sup>
 
@@ -516,9 +517,9 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
-| 名称                         | 类型        | 必填      | 说明                             |
-| ------------------------------ | ----------- | -------------------------------- | -------------------------------- |
-| uiExtensionHostWindowProxyRect | [window.Rect](arkts-apis-window-i.md#rect7) | 是 | 组件（EmbeddedComponent或UIExtensionComponent）的位置和宽高。 |
+| 名称                         | 类型        | 只读 | 可选 | 说明                             |
+| ------------------------------ | ----------- | ----- | ---- | -------------------------------- |
+| uiExtensionHostWindowProxyRect | [window.Rect](arkts-apis-window-i.md#rect7) | 否 | 否 |组件（EmbeddedComponent或UIExtensionComponent）的位置和宽高。 |
 
 ## RectChangeReason<sup>14+</sup>
 
@@ -698,7 +699,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
                       });
                   });
               }).catch((error: BusinessError) => {
-                  console.error(`Create subwindow failed: ${JSON.stringify(error)}`);
+                  console.error(`Create subwindow failed. Cause code: ${error.code}, message: ${error.message}`);
               })
         })
       }.width('100%').height('100%')

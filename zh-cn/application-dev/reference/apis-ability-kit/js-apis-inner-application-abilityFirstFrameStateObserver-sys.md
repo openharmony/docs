@@ -1,6 +1,12 @@
 # AbilityFirstFrameStateObserver(系统接口)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhu-feimo-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-定义Ability首帧绘制完成事件监听对象，可以作为[on](js-apis-app-ability-appManager-sys.md#appmanageronabilityfirstframestate12)的入参监听Ability首帧绘制完成事件。
+定义了Ability首帧绘制完成事件监听对象，可以作为[on](js-apis-app-ability-appManager-sys.md#appmanageronabilityfirstframestate12)的入参，用于监听Ability首帧绘制完成事件。
 
 > **说明：**
 >
@@ -19,7 +25,7 @@ import { appManager } from '@kit.AbilityKit';
 
 onAbilityFirstFrameDrawn(data: AbilityFirstFrameStateData): void
 
-Ability首帧绘制完成后触发的回调函数。
+Ability首帧绘制完成时触发的回调函数。
 
 **系统接口**：此接口为系统接口。
 
@@ -29,7 +35,7 @@ Ability首帧绘制完成后触发的回调函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| data | [AbilityFirstFrameStateData](js-apis-inner-application-abilityFirstFrameStateData-sys.md) | 是 | 表示首帧绘制完成后返回的数据。 |
+| data | [AbilityFirstFrameStateData](js-apis-inner-application-abilityFirstFrameStateData-sys.md) | 是 | 表示首帧绘制完成时返回的数据。 |
 
 **示例**：
 

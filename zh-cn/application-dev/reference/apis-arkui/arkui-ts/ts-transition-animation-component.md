@@ -34,7 +34,7 @@ transition(value: TransitionOptions | TransitionEffect): T
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- |  ---- | -------- |
-| value | [TransitionOptions](#transitionoptionsdeprecated)<sup>(deprecated)</sup> \| [TransitionEffect](#transitioneffect10对象说明)<sup>10+</sup>  | 是 | 设置组件插入显示和删除隐藏的过渡效果。<br/>**说明：** <br/>详细描述见[TransitionOptions](#transitionoptionsdeprecated)和[TransitionEffect](#transitioneffect10对象说明)对象说明。|
+| value | [TransitionOptions](#transitionoptionsdeprecated)<sup>(deprecated)</sup> \| [TransitionEffect](#transitioneffect10对象说明)  | 是 | 设置组件插入显示和删除隐藏的过渡效果。<br/>**说明：** <br/>详细描述见[TransitionOptions](#transitionoptionsdeprecated)和[TransitionEffect](#transitioneffect10对象说明)对象说明。|
 
 **返回值：**
 

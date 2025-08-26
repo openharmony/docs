@@ -20,7 +20,7 @@
 
 ## 接口
 
-### RichEditor<sup>10+</sup>
+### RichEditor
 
 RichEditor(value: RichEditorOptions)
 
@@ -103,7 +103,7 @@ bindSelectionMenu(spanType: RichEditorSpanType, content: CustomBuilder, response
 | spanType     | [RichEditorSpanType](#richeditorspantype)                    | 是   | 菜单的类型。<br/>默认值：<br/>RichEditorSpanType.TEXT    |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)                  | 是   | 菜单的内容。                                              |
 | responseType | &nbsp;[ResponseType](ts-appendix-enums.md#responsetype8)&nbsp; \| &nbsp;[RichEditorResponseType](#richeditorresponsetype11) | 是   | 菜单的响应类型。<br/> 默认值：<br/>ResponseType.LongPress |
-| options      | [SelectionMenuOptions](#selectionmenuoptions10)              | 否   | 菜单的选项。                                              |
+| options      | [SelectionMenuOptions](#selectionmenuoptions)              | 否   | 菜单的选项。                                              |
 
 ### copyOptions
 
@@ -448,6 +448,23 @@ enableAutoSpacing(enable: Optional\<boolean>)
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
+
+### scrollBarColor<sup>21+</sup>
+
+scrollBarColor(color: Optional\<ColorMetrics>)
+
+设置组件滚动条颜色。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                     |
+| ------ | ------------------------------------------------------------ | ---- | ---------------------------------------- |
+| color  | [Optional\<ColorMetrics>](../js-apis-arkui-graphics.md#colormetrics12) | 是   | 设置组件滚动条颜色。<br />默认值：'\#66182431' |
+
 
 ## 事件
 
@@ -1822,7 +1839,7 @@ RichEditor span信息。
 | [RichEditorImageSpanResult](#richeditorimagespanresult) | 后端返回的图片信息。 |
 | [RichEditorTextSpanResult](#richeditortextspanresult) | 后端返回的文本信息。 |
 
-## SelectionMenuOptions<sup>10+</sup>
+## SelectionMenuOptions
 
 菜单的选项。
 
@@ -5195,11 +5212,13 @@ struct RichEditorExample {
 ![RichEditorEditMenuOptions](figures/richEditorEditMenuOptions.gif)
 
 ### 示例24（组件部分常用属性）
-从API version 18开始，该示例通过[barState](#barstate13)属性设置组件滚动条的显示模式。通过[enableKeyboardOnFocus](#enablekeyboardonfocus12)属性设置组件通过点击以外的方式获焦时，是否主动拉起软键盘。通过[enableHapticFeedback](#enablehapticfeedback13)属性设置组件是否支持触感反馈。通过[getPreviewText](#getpreviewtext12)接口获取组件预上屏信息。通过[stopBackPress](#stopbackpress18)属性设置是否阻止返回键向其它组件或应用侧传递。
+从API version 18开始，该示例通过[barState](#barstate13)属性设置组件滚动条的显示模式。通过[enableKeyboardOnFocus](#enablekeyboardonfocus12)属性设置组件通过点击以外的方式获焦时，是否主动拉起软键盘。通过[enableHapticFeedback](#enablehapticfeedback13)属性设置组件是否支持触感反馈。通过[getPreviewText](#getpreviewtext12)接口获取组件预上屏信息。通过[stopBackPress](#stopbackpress18)属性设置是否阻止返回键向其它组件或应用侧传递。</br>
+从API version 21开始，该示例通过[scrollBarColor](#scrollbarcolor21)属性设置RichEditor组件滚动条颜色。
 
 ```ts
 // xxx.ets
 import { JSON } from '@kit.ArkTS';
+import { ColorMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -5222,9 +5241,9 @@ struct RichEditor_example {
           this.controller.addTextSpan('文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本', {
             style: {
               fontColor: Color.Black,
-              fontSize: 15
+              fontSize: 20
             }
-          })
+          });
         })
         .onDidIMEInput((value: TextRange) => {
           this.controller1.addTextSpan("\n" + "触发了onDidIMEInput回调,输入法本次输入内容范围为：(" + value.start + "," + value.end + ")", {
@@ -5232,7 +5251,7 @@ struct RichEditor_example {
               fontColor: Color.Gray,
               fontSize: 10
             }
-          })
+          });
         })
         .onSelectionChange((value: RichEditorRange) => {
           this.controller1.addTextSpan("\n" + "触发了onSelectionChange回调，起始范围信息为：(" + value.start + "," + value.end + ")", {
@@ -5240,7 +5259,7 @@ struct RichEditor_example {
               fontColor: Color.Gray,
               fontSize: 10
             }
-          })
+          });
         })
         .width(300)
         .height(100)
@@ -5248,7 +5267,8 @@ struct RichEditor_example {
         .barState(this.bs[this.bs_num])
         .enableKeyboardOnFocus(this.e)
         .enableHapticFeedback(true)
-        .stopBackPress(false);
+        .stopBackPress(false)
+        .scrollBarColor(ColorMetrics.resourceColor("#2787D9"));
 
       RichEditor(this.options1).width(300)
 
@@ -5281,7 +5301,7 @@ struct RichEditor_example {
 
 ```
 
-![StyledString](figures/example23.gif)
+![StyledString](figures/rich_editor_example24.gif)
 
 ### 示例25（获取光标相对组件位置的矩形）
 从API version 18开始，该示例通过RichEditorBaseController的[getCaretRect](#getcaretrect18)方法来获取当前光标相对于组件位置的Rect。

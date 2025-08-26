@@ -2175,7 +2175,7 @@
           - [@ohos.app.ability.StartOptions (startAbility的可选参数)](reference/apis-ability-kit/js-apis-app-ability-startOptions.md)
           - [@ohos.app.ability.UIAbility (带界面的应用组件)](reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)
           - [@ohos.app.ability.UIExtensionAbility (带界面的ExtensionAbility组件)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)
-          - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md)
+          - [@ohos.app.ability.UIExtensionContentSession (UIExtensionAbility界面操作类)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md)
           - [@ohos.app.ability.sendableContextManager (sendable上下文管理)](reference/apis-ability-kit/js-apis-app-ability-sendableContextManager.md)
           - [@ohos.app.appstartup.StartupConfig (启动框架配置信息)](reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md)
           - [@ohos.app.appstartup.StartupConfigEntry (启动框架配置)](reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md)
@@ -2195,7 +2195,7 @@
           - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)
           - [@ohos.app.ability.StartOptions (StartOptions)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-startOptions-sys.md)
           - [@ohos.app.ability.UIServiceExtensionAbility (UIServiceExtensionAbility)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)
-          - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession-sys.md)
+          - [@ohos.app.ability.UIExtensionContentSession (UIExtensionAbility界面操作类)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession-sys.md)
           <!--DelEnd-->
         - FA模型能力的接口<!--fa-model-->
           - [@ohos.ability.ability (Ability模块)](reference/apis-ability-kit/js-apis-ability-ability.md)
@@ -2846,7 +2846,6 @@
             - [Tips控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-tips.md)
             - [菜单控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)
           - [无障碍属性](reference/apis-arkui/arkui-ts/ts-universal-attributes-accessibility.md)
-          - [文本通用](reference/apis-arkui/arkui-ts/ts-universal-attributes-text-style.md)
           - 模态转场设置<!--transition-->
             - [全屏模态转场](reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md)
             - [半模态转场](reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md)
@@ -2959,6 +2958,7 @@
           - [Hyperlink](reference/apis-arkui/arkui-ts/ts-container-hyperlink.md)
           - [RichText](reference/apis-arkui/arkui-ts/ts-basic-components-richtext.md)
           - [属性字符串](reference/apis-arkui/arkui-ts/ts-universal-styled-string.md)
+          - [输入框类组件通用接口](reference/apis-arkui/arkui-ts/ts-universal-attributes-text-style.md)
           - [文本组件公共接口](reference/apis-arkui/arkui-ts/ts-text-common.md)
           <!--Del-->
           - [文本组件公共接口 (系统接口)](reference/apis-arkui/arkui-ts/ts-text-common-sys.md)
@@ -3696,6 +3696,7 @@
       - ArkTS API<!--core-file-arkts-->
         - [@ohos.application.BackupExtensionAbility (备份恢复扩展能力)](reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md)
         - [@ohos.file.cloudSync (端云同步能力)](reference/apis-core-file-kit/js-apis-file-cloudsync.md)
+        - [@ohos.file.cloudSyncManager (端云同步管理能力)](reference/apis-core-file-kit/js-apis-file-cloudsyncmanager.md)
         - [@ohos.file.environment (目录环境能力)](reference/apis-core-file-kit/js-apis-file-environment.md)
         - [@ohos.file.fileuri (文件URI)](reference/apis-core-file-kit/js-apis-file-fileuri.md)
         - [@ohos.file.fs (文件管理)](reference/apis-core-file-kit/js-apis-file-fs.md)
@@ -4112,7 +4113,7 @@
           <!--Del-->
           - [键鼠穿越管理错误码](reference/apis-distributedservice-kit/errorcode-devicestatus.md)
           <!--DelEnd-->
-          - [连接增强错误码](reference/apis-distributedservice-kit/errorcode_linkEnhance.md)
+          - [增强连接错误码](reference/apis-distributedservice-kit/errorcode-link-enhance.md)
           - [代理通道管理错误码](reference/apis-distributedservice-kit/errorcode_proxyChannelManager.md)
         - C API<!--distributed-service-c-->
           - 模块<!--distributed-service-moudle-->
@@ -5690,7 +5691,7 @@
         - [VkMemoryGetNativeBufferInfoOHOS](reference/native-lib/capi-vulkan-vkmemorygetnativebufferinfoohos.md)
         - [VkExternalFormatOHOS](reference/native-lib/capi-vulkan-vkexternalformatohos.md)
         - [NativeWindow](reference/native-lib/capi-vulkan-nativewindow.md)
-        - [OH_NativeBuffer](reference/native-lib/capi-vulkan-oh-nativebuffer.md) 
+        - [OH_NativeBuffer](reference/native-lib/capi-vulkan-oh-nativebuffer.md)
     - 附录<!--appendixes-->
       - [libc中没有导出的符号列表](reference/native-lib/musl-peculiar-symbol.md)
       - [NDK musl-libc接口受权限影响的说明](reference/native-lib/guidance-on-ndk-libc-interfaces-affected-by-permissions.md)
