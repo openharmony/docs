@@ -3079,8 +3079,11 @@
           - [自定义组件的生命周期](reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md)
           - [自定义组件的自定义布局](reference/apis-arkui/arkui-ts/ts-custom-component-layout.md)
           - [自定义组件内置方法](reference/apis-arkui/arkui-ts/ts-custom-component-api.md)
+          - [自定义组件参数](reference/apis-arkui/arkui-ts/ts-custom-component-parameter.md)
           - 组件扩展装饰器<!--arkts-extend-component-decorator-->
             - [定义可动画属性 (@AnimatableExtend)](reference/apis-arkui/arkui-ts/ts-animatable-extend.md)
+            - [@Entry：页面入口](reference/apis-arkui/arkui-ts/ts-universal-entry.md)
+            - [wrapBuilder: 封装全局@Builder](reference/apis-arkui/arkui-ts/ts-universal-wrapBuilder.md)
         - 系统预置UI组件库<!--system-preset-ui-component-library-->
           - [Chip](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md)
           - [ChipGroup](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ChipGroup.md)
