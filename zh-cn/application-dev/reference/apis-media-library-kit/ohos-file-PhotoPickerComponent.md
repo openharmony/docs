@@ -742,7 +742,8 @@ struct PickerDemo {
                   fetchColumns: [],
                   predicates: predicates
                 };
-                let photoHelper = photoAccessHelper.getPhotoAccessHelper(getContext());
+                let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+                let photoHelper = photoAccessHelper.getPhotoAccessHelper(context);
                 let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> =
                   await photoHelper.getAssets(fetchOptions);
                 let asset = await fetchResult.getFirstObject()
