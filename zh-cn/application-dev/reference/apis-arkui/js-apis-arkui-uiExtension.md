@@ -506,8 +506,8 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 | 名称 | 类型                 | 只读 | 可选 | 说明        |
 | ------ | -------------------- | ----- | ---- | ------------------ |
-| type   | [window.AvoidAreaType](arkts-apis-window-e.md#avoidareatype7) | 否 | 否 窗口规避区类型。   |
-| area   | [window.AvoidArea](arkts-apis-window-i.md#avoidarea7)     | 否 | 否 |窗口内容规避区域。 |
+| type   | [window.AvoidAreaType](arkts-apis-window-e.md#avoidareatype7) | 否 | 否 | 窗口规避区类型。|
+| area   | [window.AvoidArea](arkts-apis-window-i.md#avoidarea7)     | 否 | 否 | 窗口内容规避区域。 |
 
 ## WindowProxyProperties<sup>14+</sup>
 
