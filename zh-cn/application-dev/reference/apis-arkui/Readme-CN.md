@@ -434,8 +434,8 @@
     - [自定义组件参数](arkui-ts/ts-custom-component-parameter.md)
     - 组件扩展装饰器<!--arkts-extend-component-decorator-->
       - [定义可动画属性 (@AnimatableExtend)](arkui-ts/ts-animatable-extend.md)
-    - [@Entry：页面入口](arkui-ts/ts-universal-entry.md)
-    - [wrapBuilder: 封装全局@Builder](arkui-ts/ts-universal-wrapBuilder.md)
+      - [@Entry：页面入口](arkui-ts/ts-universal-entry.md)
+      - [wrapBuilder: 封装全局@Builder](arkui-ts/ts-universal-wrapBuilder.md)
   - 系统预置UI组件库<!--system-preset-ui-component-library-->
     - [Chip](arkui-ts/ohos-arkui-advanced-Chip.md)
     - [ChipGroup](arkui-ts/ohos-arkui-advanced-ChipGroup.md)
