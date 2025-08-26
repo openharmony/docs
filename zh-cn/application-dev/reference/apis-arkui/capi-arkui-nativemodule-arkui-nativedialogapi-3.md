@@ -420,7 +420,7 @@ int32_t (*setCustomShadow)(ArkUI_NativeDialogHandle handle, const ArkUI_Attribut
 | 参数项                                                                                | 描述 |
 |------------------------------------------------------------------------------------| -- |
 | [ArkUI_NativeDialogHandle](capi-arkui-nativemodule-arkui-nativedialog8h.md) handle | 指向自定义弹窗控制器的指针。 |
-| const [ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)* customShadow                                        | 自定义阴影参数，格式与NODE_SHADOW属性一致。 |
+| const [ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)* customShadow                                        | 自定义阴影参数，格式与[ArkUI_NodeAttributeType](./capi-native-node-h.md#arkui_nodeattributetype)中的NODE_SHADOW属性一致。 |
 
 **返回：**
 
