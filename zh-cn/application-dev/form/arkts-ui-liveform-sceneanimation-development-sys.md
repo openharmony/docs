@@ -18,40 +18,22 @@
 针对[场景动效类型互动卡片](arkts-ui-liveform-sceneanimation-overview.md)，若用户在桌面的长按、拖拽等操作会打断当前动效，卡片重新变成非激活态。系统应用可通过form_config.json中[disabledDesktopBehaviors](arkts-ui-widget-configuration.md#sceneanimationparams标签)字段进行配置取消该限制，确保用户在激活态卡片交互热区内操作时，不打断当前卡片动效。
 不配置时，默认不拦截桌面的任何有效手势操作。手势操作被拦截后，对应的手势事件由LiveFormExtensionAbility响应。
 
-```ts
-// entry/src/main/resources/base/profile/form_config.json
-{
-  "forms": [
-    {
-      // ...
-      "sceneAnimationParams": {
-        "abilityName": "MySystemLiveFormExtensionAbility",
-        "disabledDesktopBehaviors": [
-          "SWIPE_DESKTOP",
-          "PULL_DOWN_SEARCH",
-          "LONG_CLICK",
-          "DRAG"
-        ]
-      }
-    }
-  ]
-}
-```
-
 ## 卡片长时间保持激活态
 
-系统应用支持通过接口控制卡片状态切换，卡片可长时间保持激活态（后文简称为长时激活态，处于该状态的卡片简称为长时激活卡片）。卡片状态切换由[formProvider.activateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#activatesceneanimation20)和[formProvider.deactivateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#deactivatesceneanimation20)接口控制。此时卡片动效渲染区域和卡片自身等大，无破框效果，因此不受互动卡片的[动效请求约束](arkts-ui-liveform-sceneanimation-overview.md#动效请求约束)。而系统限制长时间保持激活态卡片不超过5个。数量超过时将淘汰最早切换为长时间保持激活态的卡片。
+系统应用支持通过接口控制卡片状态切换，卡片可长时间保持激活态（后文简称为长时激活态，处于该状态的卡片简称为长时激活卡片）。卡片状态切换由[formProvider.activateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#activatesceneanimation20)和[formProvider.deactivateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#deactivatesceneanimation20)接口控制。此时卡片动效渲染区域和卡片自身等大，无破框效果。系统限制长时间保持激活态卡片不超过5个。数量超过时将淘汰最早切换为长时间保持激活态的卡片。
 
 ### 长时激活卡片扩展动效渲染区域
 
-长时激活卡片支持调用[formProvider.requestOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20)接口长时间扩展卡片动效渲染区域。当接口中传入的动效时长大于60000毫秒时，卡片可实现长时间获得扩展后的动效渲染区域（后文简称为长时破框态，处于该状态卡片简称为长时破框卡片），反之扩展动效渲染区域请求失败。同时，针对长时破框卡片，系统为其设置了60秒的动效保护倒计时。在动效保护倒计时结束前，针对其他互动卡片非用户点击触发的动效请求均返回失败，当前卡片动效渲染区域不做变化。在动效保护倒计时结束后，其他互动给卡片的动效请求即可响应，并调整当前卡片动效渲染区域大小为卡片尺寸大小。
+长时激活卡片支持调用[formProvider.requestOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20)接口长时间扩展卡片动效渲染区域。当接口中传入的动效时长大于60000毫秒时，卡片可实现长时间获得扩展后的动效渲染区域（后文简称为长时破框态，处于该状态卡片简称为长时破框卡片），反之扩展动效渲染区域请求失败。长时破框态卡片被其他互动卡片动效打断时，卡片动效渲染区域大小调整为卡片尺寸大小，卡片切换为长时激活态。
 
-互动卡片破框动效请求约束进一步扩展如下：
+### 动效请求约束扩展
+
+互动卡片破框[动效请求约束](arkts-ui-liveform-sceneanimation-overview.md#动效请求约束)进一步扩展如下：
 1. 同一时刻，全局只有一个卡片执行互动卡片破框动效。
-2. 当用户通过点击等方式主动触发互动卡片破框动效时，优先响应此次请求。此时，当前卡片切换到激活态，执行动效，其他卡片切换到非激活态。
+2. 当用户通过点击等方式主动触发互动卡片破框动效时，优先响应此次请求。此时，当前卡片切换到激活态，执行动效，其他卡片动效被打断（长时破框态卡片，动效渲染区域大小调整为卡片尺寸大小，普通互动卡片切换为非激活态）。
 3. 其他触发方式，例如通过卡片定时定数据刷新机制触发动效，遵循先到先得原则。系统只处理第一个合法动效请求。其他请求返回失败，同时不做缓存。
-4. 针对系统应用，长时激活态卡片不受请求约束影响；
-5. 针对系统应用，处于长时破框态的卡片，系统设置60秒倒计时。倒计时结束前，其他卡片的非用户点击触发的动效请求均返回失败。倒计时结束后，其他卡片的动效请求均可响应。当前卡片的动效渲染区域回退为与卡片自身等大，并切换为长时激活态。
+4. 长时激活态卡片不受请求约束影响；
+5. 处于长时破框态的卡片，系统设置60秒倒计时。倒计时结束前，其他卡片的非用户点击触发的动效请求均返回失败。倒计时结束后，其他卡片的动效请求均可响应。当前卡片的动效渲染区域回退为与卡片自身等大，并切换为长时激活态。
 
 ### 长时激活卡片状态信息同步
 
@@ -67,9 +49,9 @@
 |extensionready|卡片的激活态已切换完毕|
 |longPress|用户触发卡片长按手势，系统即将弹出卡片长按菜单|
 
-### 开发流程
+## 开发流程
 
-#### 卡片激活态UI开发
+### 卡片激活态UI开发
 
 1. 创建互动卡片
 
@@ -325,7 +307,7 @@
     }
     ```
 
-#### 卡片非激活态UI开发
+### 卡片非激活态UI开发
 
 1. 非激活态卡片页面实现
 
@@ -414,14 +396,20 @@
             "4*4"
           ],
           "sceneAnimationParams": {
-            "abilityName": "MySystemLiveFormExtensionAbility"
+            "abilityName": "MySystemLiveFormExtensionAbility"，
+            "disabledDesktopBehaviors": [
+              "SWIPE_DESKTOP",
+              "PULL_DOWN_SEARCH",
+              "LONG_CLICK",
+              "DRAG"
+            ]            
           }
         }
       ]
     }
     ```
 
-#### 互动卡片动效实现
+### 互动卡片动效实现
 
 1. 长时激活态卡片实现    
     ```ts
@@ -510,7 +498,7 @@
     }
     ```
 
-### 实现效果
+## 实现效果
 以下是按照本文档代码示例开发而成的效果demo。
 
 ![live-form-system-demo.gif](figures/live-form-system-demo.gif)
