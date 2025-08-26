@@ -1628,7 +1628,7 @@ getLastConnectionTime(deviceId: string): Promise&lt;number&gt;
 **示例：**
 
 ```js
-import { connection } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 // promise
 try {
     connection.getLastConnectionTime('11:22:33:44:55:66').then((time: number) => {
