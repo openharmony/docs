@@ -889,9 +889,9 @@ type BusinessError\<T> = BusinessError\<T>
 | 102013    | async http task of uri failed. | 数据加载 | 网络文件 |
 | 102030    | wrong code format.             | 数据加载 | base64字符串文件 |
 | 102031    | decode base64 image failed.    | 数据加载 | base64字符串文件 |
-| 102050    | path is too long.              | 数据加载 | base64字符串文件 |
+| 102050    | path is too long.              | 数据加载 | 沙箱文件 |
 | 102051    | read data failed.              | 数据加载 | 沙箱文件 |
-| 102070    | get image data by name failed. | 数据加载 | 沙箱文件 |
+| 102070    | get image data by name failed. | 数据加载 | 资源文件 |
 | 102071    | get image data by id failed.   | 数据加载 | 资源文件 |
 | 102072    | uri is invalid.                | 数据加载 | 资源文件 |
 | 102090    | uri is invalid.                | 数据加载 | 包内文件 |
