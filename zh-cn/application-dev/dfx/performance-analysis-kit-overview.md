@@ -24,7 +24,7 @@ Performance Analysis Kit承载着HarmonyOS DFX子系统面向应用开发者提�
 
 - [故障检测](fault-detection-overview.md)，提供开发者检测应用稳定性故障的能力，包括崩溃检测、地址越界检测、应用冻屏检测、资源泄漏检测、任务超时检测等。
 
-- [功耗检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/power-analysis)，提供开发者检测应用功耗异常的能力，如CPU高负载检测。
+- [功耗检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/power-detection)，提供开发者检测应用功耗异常的能力，如CPU高负载检测。
 
 - [性能检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/perf-detection)，提供开发者检测应用性能异常的能力，如应用启动耗时检测、滑动丢帧检测等。
 
