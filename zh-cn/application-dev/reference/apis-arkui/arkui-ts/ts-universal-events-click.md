@@ -121,7 +121,7 @@ onClick(event: (event: ClickEvent) => void): T
 
 ## EventTarget<sup>8+</sup>对象说明
 
-[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)中参数target的类型。
+[BaseEvent](ts-gesture-customize-judge.md#baseevent8)中参数target的类型。
 
 触发事件的元素对象的显示区域。
 
