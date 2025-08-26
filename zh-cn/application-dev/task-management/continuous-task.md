@@ -208,6 +208,46 @@
         }
       }
 
+      // 申请长时任务async/awiat写法
+      // async startContinuousTask() {
+      //   let wantAgentInfo: wantAgent.WantAgentInfo = {
+      //     // 点击通知后，将要执行的动作列表
+      //     // 添加需要被拉起应用的bundleName和abilityName
+      //     wants: [
+      //       {
+      //         bundleName: "com.example.myapplication",
+      //         abilityName: "MainAbility"
+      //       }
+      //     ],
+      //     // 指定点击通知栏消息后的动作是拉起ability
+      //     actionType: wantAgent.OperationType.START_ABILITY,
+      //     // 使用者自定义的一个私有值
+      //     requestCode: 0,
+      //     // 点击通知后，动作执行属性
+      //     actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG],
+      //     // 车钥匙长时任务子类型。只有申请bluetoothInteraction类型的长时任务，车钥匙子类型才能生效。
+      //     // 确保extraInfo参数中的Key值为backgroundTaskManager.BackgroundModeType.SUB_MODE，否则子类型不生效。
+      //     // extraInfo: { [backgroundTaskManager.BackgroundModeType.SUB_MODE] : backgroundTaskManager.BackgroundSubMode.CAR_KEY }
+      //   };
+      // 
+      //   try {
+      //     // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
+      //     // 在原子化服务中，使用const wantAgentObj: object = wantAgent.getWantAgent(wantAgentInfo);替换下面一行代码
+      //     const wantAgentObj: WantAgent = await wantAgent.getWantAgent(wantAgentInfo);
+      //     try {
+      //       let list: Array<string> = ["audioRecording"];
+      //       // let list: Array<string> = ["bluetoothInteraction"]; 长时任务类型包含bluetoothInteraction，CAR_KEY子类型合法
+      //       // 在原子化服务中，let list: Array<string> = ["audioPlayback"];
+      //       const res: backgroundTaskManager.ContinuousTaskNotification = await backgroundTaskManager.startBackgroundRunning(this.context as Context, list, wantAgentObj);
+      //       console.info(`Operation startBackgroundRunning succeeded, notificationId: ${res.notificationId}`);
+      //       // 此处执行具体的长时任务逻辑，如录音，录制等。
+      //     } catch (error) {
+      //       console.error(`Failed to Operation startBackgroundRunning. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+      //     }
+      //   } catch (error) {
+      //     console.error(`Failed to Operation getWantAgent. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+      //   }
+      // }
    
       stopContinuousTask() {
          backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
@@ -216,7 +256,17 @@
            console.error(`Failed to operation stopBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
          });
       }
-   
+
+      // 取消长时任务async/awiat写法
+      // async stopContinuousTask() {
+      //   try {
+      //     await backgroundTaskManager.stopBackgroundRunning(this.context);
+      //     console.info(`Succeeded in operationing stopBackgroundRunning.`);
+      //   } catch (error) {
+      //     console.error(`Failed to operation stopBackgroundRunning. Code is ${error.code}, message is ${error.message}`)
+      //   }
+      // }
+
       build() {
         Row() {
           Column() {
