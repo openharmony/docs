@@ -1621,7 +1621,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 Connects this ability to a ServiceExtensionAbility of a given account. This API can be called only by the main thread.
 
-Currently, this API takes effect only on mobile phones and tablets.
+Currently, this API takes effect only on phones and tablets.
 
 > **NOTE**
 >
@@ -2559,7 +2559,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.preStartMission<sup>12+<sup>
 
-preStartMission(bundleName:string, moduleName: string, abilitName: string, startTime: string): Promise&lt;void&gt;
+preStartMission(bundleName:string, moduleName: string, abilityName: string, startTime: string): Promise&lt;void&gt;
 
 Starts an atomic service and pre-opens the window, with the loading box skipped. This API uses a promise to return the result.
 
@@ -2701,7 +2701,7 @@ export default class MyServiceExtensionAbility extends ServiceExtensionAbility {
     this.context.startUIServiceExtensionAbility(startWant).then(() => {
       console.info('succeeded');
     }).catch((error: BusinessError) => {
-      console.error(`error code: ${error.code}, error essage : ${error.message}`);
+      console.error(`error code: ${error.code}, error message : ${error.message}`);
     })
   }
 }

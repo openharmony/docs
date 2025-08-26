@@ -1,5 +1,11 @@
 # UIExtensionContext
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhangyafei-echo-->
+<!--Designer: @zhangyafei-echo-->
+<!--Tester: @lixueqing513-->
+
 UIExtensionContext provides the context environment for the [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md). It inherits from [ExtensionContext](js-apis-inner-application-extensionContext.md) and provides UIExtensionAbility-related configurations and APIs for operating the [UIAbility](js-apis-app-ability-uiAbility.md). For example, you can use the APIs to start a UIAbility.
 
 > **NOTE**
@@ -1271,7 +1277,7 @@ export default class ShareExtAbility extends ShareExtensionAbility {
             console.error(`openLink callback failed, err code: ${err.code}, err msg: ${err.message}.`);
             return;
           }
-          console.info(`openLink success, resule code: ${result.resultCode} result data: ${result.want}.`);
+          console.info(`openLink success, result code: ${result.resultCode} result data: ${result.want}.`);
         }
       ).then(() => {
         console.info(`open link success.`);

@@ -1,6 +1,12 @@
-#  @ohos.app.ability.application (Application Basic Capability)
+#  @ohos.app.ability.application (Application Utility Class)
 
-You can use this module to create a [Context](../../application-models/application-context-stage.md).
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @li-weifeng2-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+
+You can use this module to manage and obtain the application [context](../../application-models/application-context-stage.md) and control the application process state.
 
 > **NOTE**
 >
@@ -17,7 +23,7 @@ import { application } from '@kit.AbilityKit';
 
 createModuleContext(context: Context, moduleName: string): Promise\<Context>
 
-Creates the context for a module.
+Creates the context for a module. The [resourceManager.Configuration](../apis-localization-kit/js-apis-resource-manager.md#configuration) in the created module context inherits from the input context, making it convenient for you to access [application resources across HAP/HSP packages](../../quick-start/resource-categories-and-access.md#cross-haphsp-resources).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -38,7 +44,7 @@ Creates the context for a module.
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message       |
 | -------- | --------------- |
@@ -56,7 +62,7 @@ export default class EntryAbility extends UIAbility {
     try {
       application.createModuleContext(this.context, 'entry').then((data: Context) => {
         moduleContext = data;
-        console.info('createBundleContext success!');
+        console.info('createModuleContext success!');
       }).catch((error: BusinessError) => {
         let code: number = (error as BusinessError).code;
         let message: string = (error as BusinessError).message;
@@ -75,10 +81,7 @@ export default class EntryAbility extends UIAbility {
 
 getApplicationContext(): ApplicationContext
 
-Obtains the application context.
-> **NOTE**
->
->The application context obtained through this API can only be used to obtain the corresponding [application information](js-apis-bundleManager-applicationInfo.md) and all [sandbox paths](js-apis-inner-application-context.md#properties).
+Obtains the application context. This API provides context access independent of the base class **Context**.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -88,7 +91,7 @@ Obtains the application context.
 
 | Type                                                        | Description               |
 | ------------------------------------------------------------ | ------------------- |
-| [ApplicationContext](js-apis-inner-application-applicationContext.md) | Application context obtained.|
+| [ApplicationContext](js-apis-inner-application-applicationContext.md) | Application context.|
 
 **Error codes**
 
