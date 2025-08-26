@@ -164,6 +164,7 @@
         }
       }
 
+      // 申请长时任务.then()写法
       startContinuousTask() {
         let wantAgentInfo: wantAgent.WantAgentInfo = {
           // 点击通知后，将要执行的动作列表
@@ -208,7 +209,7 @@
         }
       }
 
-      // 申请长时任务async/awiat写法
+      // 申请长时任务async/await写法
       // async startContinuousTask() {
       //   let wantAgentInfo: wantAgent.WantAgentInfo = {
       //     // 点击通知后，将要执行的动作列表
@@ -232,7 +233,7 @@
       // 
       //   try {
       //     // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
-      //     // 在原子化服务中，使用const wantAgentObj: object = wantAgent.getWantAgent(wantAgentInfo);替换下面一行代码
+      //     // 在原子化服务中，使用const wantAgentObj: object = await wantAgent.getWantAgent(wantAgentInfo);替换下面一行代码
       //     const wantAgentObj: WantAgent = await wantAgent.getWantAgent(wantAgentInfo);
       //     try {
       //       let list: Array<string> = ["audioRecording"];
@@ -248,7 +249,8 @@
       //     console.error(`Failed to Operation getWantAgent. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
       //   }
       // }
-   
+
+      // 取消长时任务.then()写法
       stopContinuousTask() {
          backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
            console.info(`Succeeded in operationing stopBackgroundRunning.`);
@@ -257,13 +259,13 @@
          });
       }
 
-      // 取消长时任务async/awiat写法
+      // 取消长时任务async/await写法
       // async stopContinuousTask() {
       //   try {
       //     await backgroundTaskManager.stopBackgroundRunning(this.context);
       //     console.info(`Succeeded in operationing stopBackgroundRunning.`);
       //   } catch (error) {
-      //     console.error(`Failed to operation stopBackgroundRunning. Code is ${error.code}, message is ${error.message}`)
+      //     console.error(`Failed to operation stopBackgroundRunning. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`)
       //   }
       // }
 
