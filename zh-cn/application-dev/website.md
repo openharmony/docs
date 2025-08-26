@@ -4093,7 +4093,7 @@
           - [@ohos.distributedsched.abilityConnectionManager (应用多端协同管理)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager.md)
           - [@ohos.application.DistributedExtensionAbility (协同Extension)](reference/apis-distributedservice-kit/js-apis-distributedExtensionAbility.md)
           - [@ohos.distributedsched.linkEnhance (增强连接)](reference/apis-distributedservice-kit/js-apis-link-enhance.md)
-          - [@ohos.distributedsched.proxyChannelManager(代理通道管理)](reference/apis-distributedservice-kit/js-api-proxyChannelManager.md)
+          - [@ohos.distributedsched.proxyChannelManager(代理通道管理)](reference/apis-distributedservice-kit/js-apis-proxyChannelManager.md)
           <!--Del-->
           - [@ohos.distributedHardware.hardwareManager (分布式硬件管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedHardwareManager-sys.md)
           - [@ohos.distributedDeviceManager (设备管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager-sys.md)
