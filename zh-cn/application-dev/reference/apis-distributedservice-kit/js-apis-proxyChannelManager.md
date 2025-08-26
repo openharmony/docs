@@ -1,4 +1,10 @@
 # @ohos.distributedsched.proxyChannelManager (代理通道管理)
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedSched-->
+<!--Owner: @huangkai71-->
+<!--Designer: @lee_jet520-->
+<!--Tester: @Ytt-test-->
+<!--Adviser: @w_Machine_cc-->
 
 软总线具备常驻运行能力，可为跨设备通信提供稳定可靠的底层通道。本模块基于软总线进程开发，支持手机与穿戴设备间高效的数据互通，可为用户提供无缝的设备互联体验。使用场景：手机侧APP与手表侧APP协同时，当手机APP不在前台被使用，手机应用的下行消息经由通知服务器，通过代理模块发送给手表侧。模块核心功能包括：代理通道管理、数据路由管理、 应用状态感知和唤醒、链路状态监听。
 
