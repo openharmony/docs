@@ -954,7 +954,7 @@ replacePath(info: NavPathInfo, animated?: boolean): void
 | 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | 新栈顶页面参数信息。 |
-| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
+| animated | boolean | 否    | 是否支持转场动画。<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 ### replacePath<sup>12+</sup>
 
