@@ -1754,12 +1754,12 @@ enum ArkUI_BlendMode
 | ARKUI_BLEND_MODE_SCREEN | r = s + d - s * d，将两个图像的像素值相加，然后减去它们的乘积来实现混合。 |
 | ARKUI_BLEND_MODE_OVERLAY | 根据目标像素来决定使用MULTIPLY混合模式还是SCREEN混合模式。 |
 | ARKUI_BLEND_MODE_DARKEN | rc = s + d - max(s * da, d * sa), ra = kSrcOver，当两个颜色重叠时，较暗的颜色会覆盖较亮的颜色。 |
-| ARKUI_BLEND_MODE_LIGHTEN | rc = s + d - min(s * da, d * sa), ra = |
+| ARKUI_BLEND_MODE_LIGHTEN | rc = s + d - min(s * da, d * sa), ra = kSrcOver，将源图像和目标图像中的像素进行比较，选取两者中较亮的像素作为最终的混合结果。|
 | ARKUI_BLEND_MODE_COLOR_DODGE | 使目标像素变得更亮来反映源像素。 |
 | ARKUI_BLEND_MODE_COLOR_BURN | 使目标像素变得更暗来反映源像素。 |
 | ARKUI_BLEND_MODE_HARD_LIGHT | 根据源像素的值来决定目标像素变得更亮或者更暗。根据源像素来决定使用MULTIPLY混合模式还是SCREEN混合模式。 |
 | ARKUI_BLEND_MODE_SOFT_LIGHT | 根据源像素来决定使用LIGHTEN混合模式还是DARKEN混合模式。 |
-| ARKUI_BLEND_MODE_DIFFERENCE | rc = s + d - 2 * (min(s * da, d * sa)), ra = |
+| ARKUI_BLEND_MODE_DIFFERENCE | rc = s + d - 2 * (min(s * da, d * sa)), ra = kSrcOver，对比源像素和目标像素，亮度更高的像素减去亮度更低的像素，产生高对比度的效果。 |
 | ARKUI_BLEND_MODE_EXCLUSION | rc = s + d - two(s * d), ra = kSrcOver，对比源像素和目标像素，亮度更高的像素减去亮度更低的像素，产生柔和的效果。 |
 | ARKUI_BLEND_MODE_MULTIPLY | r = s * (1 - da) + d * (1 - sa) + s * d，将源图像与目标图像进行乘法混合，得到一张新的图像。 |
 | ARKUI_BLEND_MODE_HUE | 保留源图像的亮度和饱和度，但会使用目标图像的色调来替换源图像的色调。 |
