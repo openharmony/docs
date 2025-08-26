@@ -6,15 +6,15 @@
 <!--Tester: @lixueqing513-->
 <!--Adviser: @huipeizi-->
 
-本模块提供了两种创建子进程的方式，开发者可根据需要进行选择。
-- [创建支持IPC回调的子进程](#创建支持ipc回调的子进程)：创建子进程，并在父子进程间建立IPC通道，适用于父子进程需要IPC通信的场景。对[IPCKit](../ipc/ipc-capi-development-guideline.md)存在依赖。
-- [创建支持参数传递的子进程](#创建支持参数传递的子进程)：创建子进程，并传递字符串和fd句柄参数到子进程。适用于需要传递参数到子进程的场景。
+本模块提供了两种创建[Native子进程](../application-models/ability-terminology.md#native子进程)的方式，开发者可根据需要进行选择。
+- [创建支持IPC通信的Native子进程](#创建支持ipc通信的native子进程)：创建子进程，并在父子进程间建立IPC通道，适用于父子进程需要IPC通信的场景。对[IPCKit](../ipc/ipc-capi-development-guideline.md)存在依赖。
+- [创建支持参数传递的Native子进程](#创建支持参数传递的native子进程)：创建子进程，并传递字符串和fd句柄参数到子进程。适用于需要传递参数到子进程的场景。
 
 > **说明：** 
 > 
 > 创建的子进程会随着父进程的退出而退出，无法脱离父进程独立运行。
 
-## 创建支持IPC回调的子进程
+## 创建支持IPC通信的Native子进程
 
 ### 场景介绍
 
@@ -24,7 +24,7 @@
 
 | 名称                                                                                                                                                                                                                                                                                                                                | 描述                                                                                    |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| int [OH_Ability_CreateNativeChildProcess](../reference/apis-ability-kit/capi-native-child-process-h.md#oh_ability_createnativechildprocess) (const char *libName, [OH_Ability_OnNativeChildProcessStarted](../reference/apis-ability-kit/capi-native-child-process-h.md#oh_ability_onnativechildprocessstarted) onProcessStarted) | 创建子进程并加载参数中指定的动态链接库文件，进程启动结果通过回调参数异步通知，需注意回调通知为独立线程，回调函数实现需要注意线程同步，且不能执行高耗时操作避免长时间阻塞。 |
+| int [OH_Ability_CreateNativeChildProcess](../reference/apis-ability-kit/capi-native-child-process-h.md#oh_ability_createnativechildprocess) (const char *libName, [OH_Ability_OnNativeChildProcessStarted](../reference/apis-ability-kit/capi-native-child-process-h.md#oh_ability_onnativechildprocessstarted) onProcessStarted) | 创建子进程并加载参数中指定的动态链接库文件，进程启动结果通过参数中的回调函数onProcessStarted异步通知。回调函数运行在独立线程，如果需要访问共享资源在实现时需要注意线程同步，由于系统对于单个进程拥有的回调线程数量有限制，因此不建议在回调函数中执行高耗时操作。 |
 
 > **说明：**
 >
@@ -51,12 +51,48 @@ libchild_process.so
 
 1. 子进程-实现必要的导出方法。
 
-    在子进程中，实现必要的两个函数**NativeChildProcess_OnConnect**及**NativeChildProcess_MainProc**并导出（假设代码所在的文件名为ChildProcessSample.cpp）。其中NativeChildProcess_OnConnect方法返回的OHIPCRemoteStub对象负责主进程进行IPC通信，具体实现方法请参考[IPC通信开发指导（C/C++)](../ipc/ipc-capi-development-guideline.md)，本文不再赘述。
+    在子进程中，实现必要的两个函数**NativeChildProcess_OnConnect**及**NativeChildProcess_MainProc**并导出（假设代码所在的文件名为ChildProcessSample.cpp）。其中NativeChildProcess_OnConnect方法返回的OHIPCRemoteStub对象负责与主进程进行IPC通信，具体实现方法请参考[IPC通信开发指导（C/C++)](../ipc/ipc-capi-development-guideline.md)，本文不再赘述。
 
     子进程启动后会先调用NativeChildProcess_OnConnect获取IPC Stub对象，之后再调用NativeChildProcess_MainProc移交主线程控制权，该函数返回后子进程随即退出。
 
     ```c++
     #include <IPCKit/ipc_kit.h>
+    #include <IPCKit/ipc_cremote_object.h>
+    #include <IPCKit/ipc_cparcel.h>
+    #include <IPCKit/ipc_error_code.h>
+
+    class IpcCapiStubTest {
+    public:
+        explicit IpcCapiStubTest();
+        ~IpcCapiStubTest();
+        OHIPCRemoteStub* GetRemoteStub();
+        static int OnRemoteRequest(uint32_t code, const OHIPCParcel *data,  OHIPCParcel *reply, void  *userData);
+    private:
+        OHIPCRemoteStub *stub_{nullptr};
+    }; 
+
+    IpcCapiStubTest::IpcCapiStubTest() {
+        // 创建stub对象
+        stub_ = OH_IPCRemoteStub_Create("testIpc",  &IpcCapiStubTest::OnRemoteRequest,
+            nullptr, this);
+    }
+
+    IpcCapiStubTest::~IpcCapiStubTest() {
+        if (stub_ != nullptr) {
+            OH_IPCRemoteStub_Destroy(stub_);
+        }
+    }
+
+    OHIPCRemoteStub* IpcCapiStubTest::GetRemoteStub() {
+        return stub_;
+    }
+
+    int IpcCapiStubTest::OnRemoteRequest(uint32_t code, const OHIPCParcel *data,  OHIPCParcel *reply, void  *userData) {
+        return OH_IPC_SUCCESS;
+    }
+
+
+    IpcCapiStubTest ipcStubObj;
 
     extern "C" {
 
@@ -64,7 +100,7 @@ libchild_process.so
     {
         // ipcRemoteStub指向子进程实现的ipc stub对象，用于接收来自主进程的IPC消息并响应
         // 子进程根据业务逻辑控制其生命周期
-        return ipcRemoteStub;
+        return ipcStubObj.GetRemoteStub();
     }
 
     void NativeChildProcess_MainProc()
@@ -103,14 +139,15 @@ libchild_process.so
 
     ```c++
     #include <IPCKit/ipc_kit.h>
+    #include <AbilityKit/native_child_process.h>
 
     static void OnNativeChildProcessStarted(int errCode, OHIPCRemoteProxy *remoteProxy)
     {
-        if (errCode != NCP_NO_ERROR) {
-            // 子进程未能正常启动时的异常处理
-            // ...
-            return;
-        }
+        if (errCode != NCP_NO_ERROR) {
+            // 子进程未能正常启动时的异常处理
+            // ...
+            return;
+        }
 
         // 保存remoteProxy对象，后续基于IPC Kit提供的API同子进程间进行IPC通信
         // 耗时操作建议转移到独立线程去处理，避免长时间阻塞回调线程
@@ -126,13 +163,30 @@ libchild_process.so
     调用API启动Native子进程，需要注意返回值为NCP_NO_ERROR仅代表成功调用native子进程启动逻辑，实际的启动结果通过第二个参数中指定的回调函数异步通知。需注意**仅允许在主进程中创建子进程**。
 
     ```c++
+    #include <IPCKit/ipc_kit.h>
     #include <AbilityKit/native_child_process.h>
 
-    // 第一个参数"libchildprocesssample.so"为实现了子进程必要导出方法的动态库文件名称
-    int32_t ret = OH_Ability_CreateNativeChildProcess("libchildprocesssample.so", OnNativeChildProcessStarted);
-    if (ret != NCP_NO_ERROR) {
-        // 子进程未能正常启动时的异常处理
+    static void OnNativeChildProcessStarted(int errCode, OHIPCRemoteProxy *remoteProxy)
+    {
+        if (errCode != NCP_NO_ERROR) {
+            // 子进程未能正常启动时的异常处理
+            // ...
+            return;
+        }
+        
+        // 保存remoteProxy对象，后续基于IPC Kit提供的API同子进程间进行IPC通信
+        // 耗时操作建议转移到独立线程去处理，避免长时间阻塞回调线程
+        // IPC对象使用完毕后，需要调用OH_IPCRemoteProxy_Destroy方法释放
         // ...
+    }
+    
+    void CreateNativeChildProcess() {
+        // 第一个参数"libchildprocesssample.so"为实现了子进程必要导出方法的动态库文件名称
+        int32_t ret = OH_Ability_CreateNativeChildProcess("libchildprocesssample.so", OnNativeChildProcessStarted);
+        if (ret != NCP_NO_ERROR) {
+            // 子进程未能正常启动时的异常处理
+            // ...
+        }
     }
     ```
 
@@ -151,7 +205,7 @@ libchild_process.so
     )
     ```
 
-## 创建支持参数传递的子进程
+## 创建支持参数传递的Native子进程
 
 ### 场景介绍
 
@@ -180,7 +234,7 @@ libchild_process.so
 
 1. 子进程-实现必要的导出方法。
 
-    在子进程中，实现参数为[NativeChildProcess_Args](../reference/apis-ability-kit/capi-nativechildprocess-args.md)入口函数并导出（假设代码所在的文件名为ChildProcessSample.cpp）。子进程启动后会调用该入口函数，该函数返回后子进程随即退出。
+    在子进程中，实现参数为[NativeChildProcess_Args](../reference/apis-ability-kit/capi-nativechildprocess-args.md)的入口函数并导出（假设代码所在的文件名为ChildProcessSample.cpp）。子进程启动后会调用该入口函数，该函数返回后子进程随即退出。
 
     ```c++
     #include <AbilityKit/native_child_process.h>
