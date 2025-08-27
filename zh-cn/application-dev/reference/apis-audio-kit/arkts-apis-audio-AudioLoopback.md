@@ -242,7 +242,7 @@ setReverbPreset(preset: AudioLoopbackReverbPreset): boolean
 
 | 类型                                              | 说明                                |
 | :------------------------------------------------ | :---------------------------------- |
-| boolean | 返回混响模式是否设置成功。 |
+| boolean | 返回混响模式是否设置成功。true表示成功，false表示不成功。 |
 
 **错误码：**
 
