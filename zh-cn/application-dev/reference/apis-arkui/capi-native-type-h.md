@@ -8960,7 +8960,7 @@ void OH_ArkUI_EmbeddedComponentOption_SetOnError(ArkUI_EmbeddedComponentOption* 
 | 参数项 | 描述                           |
 | -- |------------------------------|
 | [ArkUI_EmbeddedComponentOption](capi-arkui-nativemodule-arkui-embeddedcomponentoption.md)* option | EmbeddedComponent组件选项的对象的指针。 |
-| void (\*callback)(int32_t code, const char* name, const char* message) | 开发者自定义回调函数。<br>- code：接口调用失败返回的错误码信息。业务错误码详细介绍请参见[UIExtension错误码](errorcode-uiextension.md)。<br>- name：接口调用失败返回的名称信息。<br>- message：接口调用失败返回的详细信息。 |
+| void (\*callback)(int32_t code, const char* name, const char* message) | 开发者自定义回调函数。<br>- code：接口调用失败返回的错误码信息。错误码的详细介绍请参考[UIExtension错误码](errorcode-uiextension.md)。<br>- name：接口调用失败返回的名称信息。<br>- message：接口调用失败返回的详细信息。 |
 
 
 ### OH_ArkUI_EmbeddedComponentOption_SetOnTerminated()
