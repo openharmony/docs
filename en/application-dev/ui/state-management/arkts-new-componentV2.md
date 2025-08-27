@@ -1,4 +1,4 @@
-# \@ComponentV2 Decorator: Custom Component
+# \@ComponentV2 Decorator: Declaring a Custom Component
 
 To use the capability of the state variable decorator V2 in a custom component, you can use the \@ComponentV2 Decorator to decorate the custom component.
 

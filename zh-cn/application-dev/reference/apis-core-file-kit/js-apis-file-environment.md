@@ -16,9 +16,11 @@ import { Environment } from '@kit.CoreFileKit';
 
 getUserDownloadDir(): string
 
-获取当前用户预授权下载目录的沙箱路径。当前仅支持2in1设备使用。
+获取当前用户预授权下载目录的沙箱路径。
 
 **系统能力**：SystemCapability.FileManagement.File.Environment.FolderObtain
+
+**设备行为差异**：该接口在2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **返回值：**
 
@@ -53,9 +55,11 @@ function getUserDownloadDirExample() {
 
 getUserDesktopDir(): string
 
-获取当前用户预授权桌面目录的沙箱路径。当前仅支持2in1设备使用。
+获取当前用户预授权桌面目录的沙箱路径。
 
 **系统能力**：SystemCapability.FileManagement.File.Environment.FolderObtain
+
+**设备行为差异**：该接口在2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **返回值：**
 
@@ -90,9 +94,11 @@ function getUserDesktopDirExample() {
 
 getUserDocumentDir(): string
 
-获取当前用户预授权文档目录的沙箱路径。当前仅支持2in1设备使用。
+获取当前用户预授权文档目录的沙箱路径。
 
 **系统能力**：SystemCapability.FileManagement.File.Environment.FolderObtain
+
+**设备行为差异**：该接口在2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **返回值：**
 

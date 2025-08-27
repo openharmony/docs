@@ -6,7 +6,7 @@ Web组件嵌套滚动可通过[方案1：使用nestedScroll属性实现嵌套滚
 
 > **说明：**
 >
-> 如果Web组件用到了全量展开的场景（layoutMode为`WebLayoutMode.FIT_CONTENT`），需要显式指明渲染模式(`RenderMode.SYNC_RENDER`)，[详见](../reference/apis-arkweb/ts-basic-components-web-attributes.md#layoutmode11)。
+> 如果Web组件用到了全量展开的场景（layoutMode为`WebLayoutMode.FIT_CONTENT`），需要显式指明渲染模式(`RenderMode.SYNC_RENDER`)，详见[layoutMode](../reference/apis-arkweb/ts-basic-components-web-attributes.md#layoutmode11)。
 
 ## 使用nestedScroll属性实现嵌套滚动
 

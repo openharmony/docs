@@ -228,7 +228,7 @@ int IpcCApiStubTest::RequestExitChildProcess() {
 #### 客户端代理对象: IpcCApiProxyTest
 
 ```cpp
-// 用戶自定义错误码
+// 用户自定义错误码
 static constexpr int OH_IPC_CREATE_OBJECT_ERROR = OH_IPC_USER_ERROR_CODE_MIN + 1;
 
 class IpcCApiProxyTest {

@@ -64,7 +64,7 @@ You are advised to use the stage model for window development.
 
 ### Main Window Lifecycle in the Stage Model
 
-In the stage model, the main window is managed and its lifecycle is maintained by the UIAbility through WindowStage. Notifications for the creation and destruction of the main window can be received via **onWindowStageCreate** and **onWindowStageDestroy**. For details, see [UIAbility Lifecycle](../application-models/uiability-lifecycle.md#windowstagecreate-and-windowstagedestroy).
+In the stage model, the main window is managed and its lifecycle is maintained by the UIAbility through WindowStage. Notifications for the creation and destruction of the main window can be received via **onWindowStageCreate** and **onWindowStageDestroy**. For details, see [UIAbility Lifecycle](../application-models/uiability-lifecycle.md#lifecycle-callbacks).
 
 WindowStage also provides [on('windowStageEvent')](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9) to listen for its lifecycle changes.
 

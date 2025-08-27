@@ -1,5 +1,11 @@
 # 订阅公共事件（C/C++）
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 ## 场景介绍
 
@@ -72,7 +78,7 @@
 
 4. 创建订阅者。
 
-   先创建订阅者时通过传入公共事件的回调函数[CommonEvent_ReceiveCallback](../../reference/apis-basic-services-kit/capi-common-event.md#commonevent_receivecallback)，事件发布时，订阅者会接收到回调数据[CommonEvent_RcvData](../../reference/apis-basic-services-kit/capi-common-event.md#commonevent_rcvdata)。
+   创建订阅者时需传入公共事件的回调函数[CommonEvent_ReceiveCallback](../../reference/apis-basic-services-kit/capi-common-event.md#commonevent_receivecallback)。待事件发布时，订阅者会接收到回调数据[CommonEvent_RcvData](../../reference/apis-basic-services-kit/capi-common-event.md#commonevent_rcvdata)。
 
    ```c++
    // 公共事件回调函数
@@ -88,9 +94,6 @@
        
        // 获取回调公共事件包名称
        const char *bundle = OH_CommonEvent_GetBundleNameFromRcvData(data);
-       
-       // 获取回调公共事件附件信息
-       const CommonEvent_Parameters *parameters = OH_CommonEvent_GetParametersFromRcvData(data);
        OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "event: %{public}s, code: %{public}d, data: %{public}s, bundle: %{public}s", event, code, retData, bundle);
    }
    ```
@@ -193,7 +196,7 @@
    }
    ```
 
-   通过[OH_CommonEvent_CreateSubscriber](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_createsubscriber)创建订阅者，传入订阅者信息[CommonEvent_SubscribeInfo](../../reference/apis-basic-services-kit/capi-common-event.md#commonevent_subscribeinfo)和事件回调函数[OnReceive](../../reference/apis-basic-services-kit/capi-common-event.md#commonevent_receivecallback)。
+   通过[OH_CommonEvent_CreateSubscriber](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_createsubscriber)创建订阅者，传入订阅者信息[CommonEvent_SubscribeInfo](../../reference/apis-basic-services-kit/capi-common-event.md#commonevent_subscribeinfo)和步骤4公共事件回调函数OnReceive。
 
    ```c++
    // 创建订阅者

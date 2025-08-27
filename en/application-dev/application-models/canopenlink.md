@@ -1,4 +1,5 @@
 # (Optional) Using canOpenLink to Check Application Accessibility
+
 ## When to Use
 Before starting application B, application A can call **canOpenLink** to check whether application B is accessible.
 

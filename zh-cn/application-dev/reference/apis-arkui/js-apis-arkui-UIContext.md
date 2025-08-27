@@ -2,8 +2,8 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiang-shouxing-->
-<!--SE: @xiang-shouxing-->
-<!--TSE: @sally__-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
 
 在Stage模型中，WindowStage/Window可以通过[loadContent](js-apis-window.md#loadcontent9)接口加载页面并创建UI的实例，并将页面内容渲染到关联的窗口中，所以UI实例和窗口是一一关联的。一些全局的UI接口是和具体UI实例的执行上下文相关的，在当前接口调用时，通过追溯调用链跟踪到UI的上下文，来确定具体的UI实例。若在非UI页面中或者一些异步回调中调用这类接口，可能无法跟踪到当前UI的上下文，导致接口执行失败。
 
@@ -85,10 +85,6 @@ getFont(): Font
 
 完整示例请参考[Font](#font)中的示例。
 
-<!--code_no_check-->
-```ts
-uiContext.getFont();
-```
 ### getComponentUtils
 
 getComponentUtils(): ComponentUtils
@@ -213,11 +209,6 @@ getMediaQuery(): MediaQuery
 
 完整示例请参考[mediaquery示例](js-apis-mediaquery.md#示例)。
 
-<!--code_no_check-->
-```ts
-uiContext.getMediaQuery();
-```
-
 ### getRouter
 
 getRouter(): Router
@@ -273,13 +264,6 @@ getOverlayManager(): OverlayManager
 | 类型                           | 说明                 |
 | ----------------------------- | ------------------- |
 | [OverlayManager](#overlaymanager12) | 返回OverlayManager实例对象。 |
-
-**示例：**
-
-<!--code_no_check-->
-```ts
-uiContext.getOverlayManager();
-```
 
 ### setOverlayManagerOptions<sup>15+</sup>
 
@@ -903,7 +887,7 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**设备行为差异：** 该接口在Wearable设备中无效果，在其他设备中可正常调用。
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：** 
 
@@ -972,7 +956,7 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**设备行为差异：** 该接口在Wearable设备中无效果，在其他设备中可正常调用。
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：** 
 
@@ -1035,7 +1019,7 @@ showTextPickerDialog(options: TextPickerDialogOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**设备行为差异：** 该接口在Wearable设备中无效果，在其他设备中可正常调用。
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：** 
 
@@ -1722,13 +1706,6 @@ getContextMenuController(): ContextMenuController
 |----|----|
 |[ContextMenuController](#contextmenucontroller12)| 获取ContextMenuController对象。|
 
-**示例：**
-
-<!--code_no_check-->
-```ts
-uiContext.getContextMenuController();
-```
-
 ### getMeasureUtils<sup>12+</sup>
 
 getMeasureUtils(): MeasureUtils
@@ -1748,11 +1725,6 @@ getMeasureUtils(): MeasureUtils
 **示例：**
 
 完整示例请参考[MeasureUtils](#measureutils12)中的示例。
-
-<!--code_no_check-->
-```ts
-uiContext.getMeasureUtils();
-```
 
 ### getComponentSnapshot<sup>12+</sup>
 
@@ -3348,7 +3320,7 @@ registerFont(options: font.FontOptions): void
 
 | 参数名     | 类型                                       | 必填   | 说明          |
 | ------- | ---------------------------------------- | ---- | ----------- |
-| options | [font.FontOptions](js-apis-font.md#fontoptions) | 是    | 注册的自定义字体信息。 |
+| options | [font.FontOptions](js-apis-font.md#fontoptions) | 是    | 注册的自定义字体信息。<br/>**说明：**<br/>推荐使用字体引擎的[loadFontSync](../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)接口注册自定义字体。<br/>设置注册字体文件的路径，读取系统沙箱路径内的资源时，建议使用file://路径前缀的字符串，需要确保沙箱目录路径下的文件存在并且有可读权限。 |
 
 **示例：**
 
@@ -3548,12 +3520,36 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 ```ts
 import { ComponentUtils } from '@kit.ArkUI';
 
-let componentUtils: ComponentUtils = uiContext.getComponentUtils();
-let modePosition = componentUtils.getRectangleById("onClick");
-let localOffsetWidth = modePosition.size.width;
-let localOffsetHeight = modePosition.size.height;
-let localOffsetX = modePosition.localOffset.x;// 获取组件相对于父组件的x轴偏移
-let localOffsetY = modePosition.localOffset.y;// 获取组件相对于父组件的y轴偏移
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    RelativeContainer() {
+      Text(this.message)
+        .id('HelloWorld')
+        .fontSize($r('app.float.page_text_font_size'))
+        .fontWeight(FontWeight.Bold)
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+        .onClick(() => {
+          this.message = 'Welcome';
+          let componentUtils: ComponentUtils = this.getUIContext().getComponentUtils();
+          let modePosition = componentUtils.getRectangleById("HelloWorld");
+          let width = modePosition.size.width; //获取组件的宽度
+          let height = modePosition.size.height; //获取组件的高度
+          let localOffsetX = modePosition.localOffset.x; // 获取组件相对于父组件的x轴偏移
+          let localOffsetY = modePosition.localOffset.y; // 获取组件相对于父组件的y轴偏移
+          console.info(`width: ${width}, height: ${height}, localOffsetX: ${localOffsetX}, localOffsetY: ${localOffsetY}`);
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
 ```
 
 ## UIInspector
@@ -3850,7 +3846,7 @@ on(type: 'scrollEvent', callback: Callback\<observer.ScrollEventInfo\>): void
 
 **示例：**
 
-请参考[offscrollevent示例](#offscrollevent12-1)
+参考[off('scrollEvent')](#offscrollevent12-1)示例。
 
 ### off('scrollEvent')<sup>12+</sup>
 
@@ -3871,7 +3867,7 @@ off(type: 'scrollEvent', callback?: Callback\<observer.ScrollEventInfo\>): void
 
 **示例：**
 
-请参考[offscrollevent示例](#offscrollevent12-1)
+参考[off('scrollEvent')](#offscrollevent12-1)示例。
 
 ### on('scrollEvent')<sup>12+</sup>
 
@@ -3893,7 +3889,7 @@ on(type: 'scrollEvent', options: observer.ObserverOptions, callback: Callback\<o
 
 **示例：**
 
-请参考[offscrollevent示例](#offscrollevent12-1)
+参考[off('scrollEvent')](#offscrollevent12-1)示例。
 
 ### off('scrollEvent')<sup>12+</sup>
 
@@ -5256,14 +5252,6 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 **示例：**
 
 完整示例请参考[mediaquery示例](js-apis-mediaquery.md#示例)。
-
-<!--code_no_check-->
-```ts
-import { MediaQuery } from '@kit.ArkUI';
-
-let mediaquery: MediaQuery = uiContext.getMediaQuery();
-let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
-```
 
 ## Router
 
@@ -6830,6 +6818,10 @@ getParams(): Object
 
 获取发起跳转的页面往当前页传入的参数。
 
+> **说明：**
+>
+> getParams只获取当前页面的参数，并不会清除页面关联的参数。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -7050,7 +7042,7 @@ closeToast(toastId: number): void
 
 **示例：**
 
-示例请看[openToaset18](#opentoast18)的示例。
+示例请看[openToast18](#opentoast18)的示例。
 
 ### showDialog
 
@@ -7413,7 +7405,7 @@ struct Index {
 
 openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
-创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。暂不支持[isModal](js-apis-promptAction.md#basedialogoptions11) = true与[showInSubWindow](js-apis-promptAction.md#basedialogoptions11) = true同时使用。如果同时设置为true时，则只生效showInSubWindow = true。
+创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customDialog设置customStyle为true时的显示效果。暂不支持[isModal](js-apis-promptAction.md#basedialogoptions11) = true与[showInSubWindow](js-apis-promptAction.md#basedialogoptions11) = true同时使用。如果同时设置为true时，则只生效showInSubWindow = true。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7545,7 +7537,7 @@ openCustomDialogWithController\<T extends Object>(dialogContent: ComponentConten
 
 创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。支持传入弹窗控制器与自定义弹窗绑定，后续可以通过控制器控制自定义弹窗。
 
-通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。
+通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customDialog设置customStyle为true时的显示效果。
 
 暂不支持[isModal](js-apis-promptAction.md#basedialogoptions11) = true与[showInSubWindow](js-apis-promptAction.md#basedialogoptions11) = true同时使用。如果同时设置为true时，则只生效showInSubWindow = true。
 
@@ -8738,7 +8730,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | 是   | 拖拽发起后跟手效果所拖拽的对象。 <br/> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。 |
+| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | 是   | 拖拽发起后跟手效果所拖拽的对象。 <br/> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片。builder的根组件宽高为0时，无法生成拖拽显示的图片导致拖拽失败。builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。 |
 | dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo) | 是   | 拖拽信息。                                                   |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[dragController.DragEventParam](js-apis-arkui-dragController.md#drageventparam12)&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。 |
 
@@ -10372,7 +10364,7 @@ struct Index {
 >
 > 调用文本计算接口时，不推荐同时用[ApplicationContext.setFontSizeScale](../apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextsetfontsizescale13)设置应用字体大小缩放比例。为了确保时序正确性，建议开发者自行监听字体缩放变化，以保证测算结果的准确性。
 >
-> 如果计算裁剪后的文本，在裁剪字符串时，建议按照unicode单位迭代，而非按照字符串length长度迭代。否则容易出现字符被截断，导致计算结果不准确的情况，常见emoji字符被截断。
+> 在测算裁剪后的文本时，由于某些Unicode字符（如emoji）的码位长度大于1，直接按字符串长度裁剪会导致不准确的结果。建议基于Unicode码点进行迭代处理，避免错误截断字符，确保测算结果准确。
 
 ### measureText<sup>12+</sup>
 

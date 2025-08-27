@@ -19,7 +19,7 @@ Defines the **InputMethodExtensionAbility** class.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-### context
+### Properties
 
 Context of the **InputMethodExtensionAbility**.
 

@@ -15,6 +15,10 @@ import { distributedMissionManager } from '@kit.AbilityKit';
 
 ## MissionCallback.notifyMissionsChanged
 
+notifyMissionsChanged(deviceId: string): void
+
+注册任务监听的callback，通知任务变化。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
 **系统接口**：此接口为系统接口。
@@ -50,6 +54,10 @@ distributedMissionManager.registerMissionListener(
 ```
 
 ## MissionCallback.notifySnapshot
+
+notifySnapshot(deviceId: string, mission: number): void
+
+注册任务监听的callback，通知快照变化。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -87,6 +95,10 @@ distributedMissionManager.registerMissionListener(
 ```
 
 ## MissionCallback.notifyNetDisconnect
+
+notifyNetDisconnect(deviceId: string, state: number): void
+
+注册任务监听的callback，通知断开连接。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 

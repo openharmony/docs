@@ -42,7 +42,7 @@ httpRequest.request(// Customize EXAMPLE_URL in extraData on your own. It is up 
     expectDataType: http.HttpDataType.STRING, // Optional. This parameter specifies the type of the return data.
     usingCache: true, // Optional. The default value is true.
     priority: 1, // Optional. The default value is 1.
-    // You can add header fields based on service requirements.
+    // You can add header fields based on service requirements. Note that map objects cannot be passed to header fields.
     header: { 'Accept' : 'application/json' },
     readTimeout: 60000, // Optional. The default value is 60000, in ms.
     connectTimeout: 60000 // Optional. The default value is 60000, in ms.
@@ -146,8 +146,10 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 Initiates an HTTP request to a given URL. This API uses an asynchronous callback to return the result. 
 
 > **NOTE**
-> This API supports only receiving of data not greater than 5 MB.
-> If the URL contains non-English characters, call **encodeURL(url)** to encode the URL before initiating an HTTP request.
+>
+>(1) This API can receive only data whose size is less than 5 MB. If the data size exceeds 5 MB, you need to set **maxLimit** to a larger value in [HttpRequestOptions](#httprequestoptions) or call [requestInStream](#requestinstream10) to initiate a streaming request.<br>
+>(2) If you need to pass in cookies, add them to the **options** parameter.<br>
+>(3) If the URL contains non-English characters, call **encodeURL(url)** to encode the URL before initiating an HTTP request.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -230,9 +232,10 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 Initiates an HTTP request containing specified options to a given URL. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> This API can receive only data whose size is less than 5 MB. If the data size exceeds 5 MB, you need to set **maxLimit** to a larger value in **HttpRequestOptions**.
 >
-> If you need to pass in cookies, add them to the **options** parameter.
+>(1) This API can receive only data whose size is less than 5 MB. If the data size exceeds 5 MB, you need to set **maxLimit** to a larger value in [HttpRequestOptions](#httprequestoptions) or call [requestInStream](#requestinstream10) to initiate a streaming request.<br>
+>(2) If you need to pass in cookies, add them to the **options** parameter.<br>
+>(3) If the URL contains non-English characters, call **encodeURL(url)** to encode the URL before initiating an HTTP request.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -339,9 +342,10 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 Initiates an HTTP request containing specified options to a given URL. This API uses a promise to return the result. 
 
 > **NOTE**
-> This API can receive only data whose size is less than 5 MB. If the data size exceeds 5 MB, you need to set **maxLimit** to a larger value in **HttpRequestOptions**.
 >
-> If you need to pass in cookies, add them to the **options** parameter.
+>(1) This API can receive only data whose size is less than 5 MB. If the data size exceeds 5 MB, you need to set **maxLimit** to a larger value in [HttpRequestOptions](#httprequestoptions) or call [requestInStream](#requestinstream10) to initiate a streaming request.<br>
+>(2) If you need to pass in cookies, add them to the **options** parameter.<br>
+>(3) If the URL contains non-English characters, call **encodeURL(url)** to encode the URL before initiating an HTTP request.
 
 **Required permissions**: ohos.permission.INTERNET
 

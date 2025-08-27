@@ -119,13 +119,13 @@
     
       build() {
         Column() {
-          // 调用this.componentBuilder()时，this指向当前@Entry所装饰的Parent组件，即label变量的值为"Parent"。
+          // 调用this.componentBuilder()时，this指向当前@Entry所装饰的Parent组件，即label变量的值为'Parent'。
           this.componentBuilder()
           Child({
-            // 把this.componentBuilder传给子组件Child的@BuilderParam customBuilderParam，this指向的是子组件Child，即label变量的值为"Child"。
+            // 把this.componentBuilder传给子组件Child的@BuilderParam customBuilderParam，this指向的是子组件Child，即label变量的值为'Child'。
             customBuilderParam: this.componentBuilder,
             // 把():void=>{this.componentBuilder()}传给子组件Child的@BuilderParam customChangeThisBuilderParam，
-            // 因为箭头函数的this指向的是宿主对象，所以label变量的值为"Parent"。
+            // 因为箭头函数的this指向的是宿主对象，所以label变量的值为'Parent'。
             customChangeThisBuilderParam: (): void => {
               this.componentBuilder()
             }
@@ -287,7 +287,7 @@ struct CustomContainerUser {
 ```ts
 @ComponentV2
 struct ChildPage {
-  @Require @Param message: string = "";
+  @Require @Param message: string = '';
 
   @Builder
   customBuilder() {
@@ -379,7 +379,7 @@ function navigationAction(params: navigationParams) {
         .onClick(() => {
           // 通过修改@BuilderParam参数决定是否跳转。
           if (params.boo) {
-            params.pathStack.pushPath({ name: "HelloWorldPage" });
+            params.pathStack.pushPath({ name: 'HelloWorldPage' });
           } else {
             console.info('@BuilderParam setting does not jump');
           }
@@ -542,13 +542,13 @@ struct ParentPage {
 
   build() {
     Column() {
-      // 调用this.componentBuilder()时，this指向当前@Entry所装饰的ParentPage组件，所以label变量的值为"Parent Page"。
+      // 调用this.componentBuilder()时，this指向当前@Entry所装饰的ParentPage组件，所以label变量的值为'Parent Page'。
       this.componentBuilder()
       ChildPage({
-        // 把this.componentBuilder传给子组件ChildPage的@BuilderParam customBuilderParam，this指向的是子组件ChildPage，所以label变量的值为"Child Page"。
+        // 把this.componentBuilder传给子组件ChildPage的@BuilderParam customBuilderParam，this指向的是子组件ChildPage，所以label变量的值为'Child Page'。
         customBuilderParam: this.componentBuilder,
         // 把():void=>{this.componentBuilder()}传给子组件ChildPage的@BuilderParam customChangeThisBuilderParam，
-        // 因为箭头函数的this指向的是宿主对象，所以label变量的值为"Parent Page"。
+        // 因为箭头函数的this指向的是宿主对象，所以label变量的值为'Parent Page'。
         customChangeThisBuilderParam: (): void => {
           this.componentBuilder()
         }
@@ -557,12 +557,12 @@ struct ParentPage {
         .width('100%')
         .height(10)
         .backgroundColor('#000000').margin(10)
-      // 调用全局overBuilder()时，this指向当前整个活动页，所以展示的内容为"Hello World"。
+      // 调用全局overBuilder()时，this指向当前整个活动页，所以展示的内容为'Hello World'。
       overBuilder()
       ChildPage({
-        // 把全局overBuilder传给子组件ChildPage的@BuilderParam customBuilderParam，this指向当前整个活动页，所以展示的内容为"Hello World"。
+        // 把全局overBuilder传给子组件ChildPage的@BuilderParam customBuilderParam，this指向当前整个活动页，所以展示的内容为'Hello World'。
         customBuilderParam: overBuilder,
-        // 把全局overBuilder传给子组件ChildPage的@BuilderParam customChangeThisBuilderParam，this指向当前整个活动页，所以展示的内容为"Hello World"。
+        // 把全局overBuilder传给子组件ChildPage的@BuilderParam customChangeThisBuilderParam，this指向当前整个活动页，所以展示的内容为'Hello World'。
         customChangeThisBuilderParam: overBuilder
       })
     }
@@ -624,13 +624,13 @@ struct ParentPage {
 
   build() {
     Column() {
-      // 调用this.componentBuilder()时，this指向当前@Entry所装饰的ParentPage组件，所以label变量的值为"Parent Page"。
+      // 调用this.componentBuilder()时，this指向当前@Entry所装饰的ParentPage组件，所以label变量的值为'Parent Page'。
       this.componentBuilder()
       ChildPage({
-        // 把this.componentBuilder传给子组件ChildPage的@BuilderParam customBuilderParam，this指向的是子组件ChildPage，所以label变量的值为"Child Page"。
+        // 把this.componentBuilder传给子组件ChildPage的@BuilderParam customBuilderParam，this指向的是子组件ChildPage，所以label变量的值为'Child Page'。
         customBuilderParam: this.componentBuilder,
         // 把():void=>{this.componentBuilder()}传给子组件ChildPage的@BuilderParam customChangeThisBuilderPara
-        // 因为箭头函数的this指向的是宿主对象，所以label变量的值为"Parent Page"。
+        // 因为箭头函数的this指向的是宿主对象，所以label变量的值为'Parent Page'。
         customChangeThisBuilderParam: (): void => {
           this.componentBuilder()
         }
@@ -639,12 +639,12 @@ struct ParentPage {
         .width('100%')
         .height(5)
         .backgroundColor('#000000').margin(10)
-      // 调用全局overBuilder()时，this指向当前整个活动页，所以展示的内容为"Hello World"。
+      // 调用全局overBuilder()时，this指向当前整个活动页，所以展示的内容为'Hello World'。
       overBuilder()
       ChildPage({
-        // 把全局overBuilder传给子组件ChildPage的@BuilderParam customBuilderParam，this指向当前整个活动页，所以展示的内容为"Hello World"。
+        // 把全局overBuilder传给子组件ChildPage的@BuilderParam customBuilderParam，this指向当前整个活动页，所以展示的内容为'Hello World'。
         customBuilderParam: overBuilder,
-        // 把全局overBuilder传给子组件ChildPage的@BuilderParam customChangeThisBuilderParam，this指向当前整个活动页，所以展示的内容为"Hello World"。
+        // 把全局overBuilder传给子组件ChildPage的@BuilderParam customChangeThisBuilderParam，this指向当前整个活动页，所以展示的内容为'Hello World'。
         customChangeThisBuilderParam: overBuilder
       })
     }
@@ -845,7 +845,7 @@ function globalBuilder() {
 @Entry
 @Component
 struct CustomBuilderDemo {
-  @State message: string = "";
+  @State message: string = '';
 
   build() {
     Column() {

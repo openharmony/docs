@@ -1,8 +1,8 @@
-# Traffic Management
+# Collecting Network Statistics
 
 ## Introduction
 
-The traffic management module allows you to query real-time or historical data traffic by the specified network interface card (NIC) or user ID (UID).
+The network statistics module allows you to query real-time or historical data traffic by the specified network interface card (NIC) or user ID (UID).
 
 Its functions include:
 

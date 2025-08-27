@@ -3,8 +3,8 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @zhu-feimo; @Luobniz21-->
-<!--SE: @ccllee1-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
 
 dialogSession模块用于支持系统应用弹框功能。
 
@@ -88,15 +88,21 @@ getDialogSessionInfo(dialogSessionId: string): [DialogSessionInfo](#dialogsessio
 | 16000050  | Internal error. |
 
 **示例：**
-
 ```ts
-import { dialogSession, Want } from '@kit.AbilityKit';
+import { dialogSession, Want, UIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 
-// want由系统内部指定，dialogSessionId为内置参数
-let dialogSessionId: string = want?.parameters?.dialogSessionId;
+const TAG: string = '[testTag] UIExtAbility';
 
-// 查询DialogSessionInfo
-let dialogSessionInfo: dialogSession.DialogSessionInfo = dialogSession.getDialogSessionInfo(dialogSessionId);
+export default class UIExtAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    // want由系统内部指定，dialogSessionId为内置参数
+    let dialogSessionId = want?.parameters?.dialogSessionId.toString();
+
+    // 查询DialogSessionInfo
+    let dialogSessionInfo: dialogSession.DialogSessionInfo = dialogSession.getDialogSessionInfo(dialogSessionId);
+    console.info(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
+  }
+}
 ```
 
 ## sendDialogResult
@@ -133,33 +139,37 @@ sendDialogResult(dialogSessionId: string, targetWant: Want, isAllowed: boolean, 
 **示例：**
 
 ```ts
-import { dialogSession, Want } from '@kit.AbilityKit';
+import { dialogSession, Want, UIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// want由系统内部指定，dialogSessionId为内置参数
-let dialogSessionId: string = want?.parameters?.dialogSessionId;
+export default class UIExtAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    // want由系统内部指定，dialogSessionId为内置参数
+    let dialogSessionId = want?.parameters?.dialogSessionId.toString();
 
-// 查询DialogSessionInfo
-let dialogSessionInfo: dialogSession.DialogSessionInfo = dialogSession.getDialogSessionInfo(dialogSessionId);
+    // 查询DialogSessionInfo
+    let dialogSessionInfo: dialogSession.DialogSessionInfo =
+      dialogSession.getDialogSessionInfo(dialogSessionId);
 
-let isAllow: boolean = true;
+    let isAllow: boolean = true;
 
-// isAllow为true时，用户请求结果targetWant为dialogSessionInfo.targetAbilityInfos之一
-let targetWant: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
+    let targetWant: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
 
-try {
-  dialogSession.sendDialogResult(dialogSessionId, targetWant, isAllow, (err, data) => {
-    if (err) {
-      console.error(`sendDialogResult error, errorCode: ${err.code}`);
-    } else {
-      console.log(`sendDialogResult success`);
+    try {
+      dialogSession.sendDialogResult(dialogSessionId, targetWant, isAllow, (err, data) => {
+        if (err) {
+          console.error(`sendDialogResult error, errorCode: ${err.code}`);
+        } else {
+          console.log(`sendDialogResult success`);
+        }
+      });
+    } catch (err) {
+      console.error(`sendDialogResult error, errorCode: ${(err as BusinessError).code}`);
     }
-  });
-} catch (err) {
-  console.error(`sendDialogResult error, errorCode: ${(err as BusinessError).code}`);
+  }
 }
 ```
 
@@ -202,31 +212,34 @@ sendDialogResult(dialogSessionId: string, targetWant: Want, isAllowed: boolean):
 **示例：**
 
 ```ts
-import { dialogSession, Want } from '@kit.AbilityKit';
+import { dialogSession, Want, UIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// want由系统内部指定，dialogSessionId为内置参数
-let dialogSessionId: string = want?.parameters?.dialogSessionId;
+export default class UIExtAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    // want由系统内部指定，dialogSessionId为内置参数
+    let dialogSessionId = want?.parameters?.dialogSessionId.toString();
 
-// 查询DialogSessionInfo
-let dialogSessionInfo: dialogSession.DialogSessionInfo = dialogSession.getDialogSessionInfo(dialogSessionId);
+    // 查询DialogSessionInfo
+    let dialogSessionInfo: dialogSession.DialogSessionInfo = dialogSession.getDialogSessionInfo(dialogSessionId);
 
-let isAllow: boolean = true;
+    let isAllow: boolean = true;
 
-// isAllow为true时，用户请求结果targetWant为dialogSessionInfo.targetAbilityInfos之一
-let targetWant: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
+    let targetWant: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
 
-try {
-  dialogSession.sendDialogResult(dialogSessionId, targetWant, isAllow)
-    .then((data) => {
-      console.log(`startChildProcess success, pid: ${data}`);
-    }, (err: BusinessError) => {
-      console.error(`startChildProcess error, errorCode: ${err.code}`);
-    })
-} catch (err) {
-  console.error(`sendDialogResult error, errorCode: ${(err as BusinessError).code}`);
+    try {
+      dialogSession.sendDialogResult(dialogSessionId, targetWant, isAllow)
+        .then((data) => {
+          console.log(`sendDialogResult success, pid: ${data}`);
+        }, (err: BusinessError) => {
+          console.error(`sendDialogResult error, errorCode: ${err.code}`);
+        });
+    } catch (err) {
+      console.error(`sendDialogResult error, errorCode: ${(err as BusinessError).code}`);
+    }
+  }
 }
 ```

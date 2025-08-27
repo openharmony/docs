@@ -8,7 +8,7 @@
 
 请求开始时回调ArkWeb_OnRequestStart，请求结束时回调ArkWeb_OnRequestStop。
 
-若想要拦截Web组件发出的第一个请求，可以通过[initializeWebEngine](../reference/apis-arkweb/js-apis-webview-WebviewController.md#initializewebengine)方法提前进行初始化Web组建，再设置拦截器实现拦截。
+若想要拦截Web组件发出的第一个请求，可以通过[initializeWebEngine](../reference/apis-arkweb/js-apis-webview-WebviewController.md#initializewebengine)方法提前进行初始化Web组建，再设置拦截器实现拦截。详细代码请参考[完整示例](#完整示例)。
 
   ```c++
     // 创建一个ArkWeb_SchemeHandler对象。

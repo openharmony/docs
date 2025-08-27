@@ -1,5 +1,12 @@
 # UIAbilityContext
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhu-feimo-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 UIAbilityContext provides the context environment for a [UIAbility](./js-apis-app-ability-uiAbility.md). It inherits from [Context](./js-apis-inner-application-context.md). For details about the relationships and differences between various types of contexts, see [Context](../../application-models/application-context-stage.md).
 
 When a UIAbility component is instantiated, the system automatically creates the corresponding UIAbilityContext. You can use the APIs provided by UIAbilityContext to obtain the ability information (AbilityInfo), application information (ApplicationInfo), and other information, start another UIAbility, connect to system services, and destroy a UIAbility.
@@ -671,9 +678,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 2. (Optional) To remove the mission from the task center (that is, not to retain the snapshot in the recent tasks list) when terminating the UIAbility, set the **removeMissionAfterTerminate** field to **true** in the [module.json5](../../quick-start/module-configuration-file.md) file.
 
     ```json
-    { 
-      "module": { 
-        // ... 
+    {
+      "module": {
+        // ...
         "abilities": [
           {
             // ...
@@ -1139,7 +1146,7 @@ This API cannot be used to start the UIAbility with the launch type set to [spec
 
 > **NOTE**
 >
-> In versions earlier than API version 11, this API requires the ohos.permission.ABILITY_BACKGROUND_COMMUNICATION permission, which is available only for system applications. Since API version 11, this API requires the ohos.permission.DISTRIBUTED_DATASYNC permission.
+> In versions earlier than API version 11, this API requires the ohos.permission.ABILITY_BACKGROUND_COMMUNICATION permission, which is available only for system applications. Starting from API version 11, this API requires the ohos.permission.DISTRIBUTED_DATASYNC permission.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1449,7 +1456,7 @@ export default class EntryAbility extends UIAbility {
 
 restoreWindowStage(localStorage: LocalStorage): void
 
-Restores the WindowStage data in the ability. It can be called only by the main thread.
+Restores the WindowStage data in the UIAbility. It can be called only by the main thread.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1498,7 +1505,7 @@ Checks whether this UIAbility is in the terminating state.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Check result. The value **true** means that the UIAbility is in the terminating state, and **false** means the opposite.|
+| boolean | Check result for whether the UIAbility is in the terminating state. **true** if in the terminating state, **false** otherwise.|
 
 **Error codes**
 
@@ -1867,11 +1874,13 @@ export default class EntryAbility extends UIAbility {
 
 showAbility(): Promise\<void>
 
-Shows this UIAbility. This API uses a promise to return the result. It takes effect only on 2-in-1 devices and tablets. It can be called only by the main thread.
+Shows this UIAbility. This API uses a promise to return the result. It can be called only by the main thread.
 
 Before calling this API, ensure that the application has been added to the status bar.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Device behavior differences**: This API can be properly called only on 2-in-1 devices and tablets. If it is called on other device types, error code 801 is returned.
 
 **Return value**
 
@@ -1965,11 +1974,13 @@ export default class EntryAbility extends UIAbility {
 
 hideAbility(): Promise\<void>
 
-Hides this UIAbility. This API uses a promise to return the result. It takes effect only on 2-in-1 devices and tablets. It can be called only by the main thread.
+Hides this UIAbility. This API uses a promise to return the result. It can be called only by the main thread.
 
 Before calling this API, ensure that the application has been added to the status bar.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Device behavior differences**: This API can be properly called only on 2-in-1 devices and tablets. If it is called on other device types, error code 801 is returned.
 
 **Return value**
 
@@ -2060,6 +2071,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ### moveAbilityToBackground<sup>12+<sup>
+
 moveAbilityToBackground(): Promise\<void>
 
 Moves this UIAbility from the foreground to the background. This API uses a promise to return the result. It can be called only by the main thread.<br><!--RP1--><!--RP1End-->
@@ -2067,6 +2079,10 @@ Moves this UIAbility from the foreground to the background. This API uses a prom
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Device behavior differences**
+- Starting from API version 12, this API can be properly called on phones, wearables, and TVs. If it is called on other device types, error code 16000061 is returned.
+- Starting from API version 13, this API can be properly called on phones, tablets, wearables, and TVs. If it is called on other device types, error code 16000061 is returned.
 
 **Return value**
 
@@ -2316,7 +2332,7 @@ struct Index {
 
 backToCallerAbilityWithResult(abilityResult: AbilityResult, requestCode: string): Promise&lt;void&gt;
 
-Returns the startup result to the caller of [startAbilityForResult](#startabilityforresult) or [openLink](#openlink12). Different from [terminateSelfWithResult](#terminateselfwithresult), this API does not destroy the current ability (target ability) when it returns the result. This API uses a promise to return the result.
+Returns the startup result to the caller of [startAbilityForResult](#startabilityforresult) or [openLink](#openlink12). Different from [terminateSelfWithResult](#terminateselfwithresult), this API does not destroy the current UIAbility when it returns the result. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2473,7 +2489,7 @@ Sets whether to enable backup and restore for this UIAbility.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| enabled | boolean | Yes| Whether to enable backup and restore. The value **true** means to enable backup and restore, and **false** means the opposite.|
+| enabled | boolean | Yes| Whether to enable backup and restore. **true** to enable, **false** otherwise.|
 
 **Error codes**
 
@@ -2508,7 +2524,7 @@ export default class EntryAbility extends UIAbility {
 
 startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 
-Starts a [UIServiceExtensionAbility](../../application-models/uiserviceextension.md). This API uses a promise to return the result.
+Starts a UIServiceExtensionAbility. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -2593,7 +2609,7 @@ struct Index {
 
 connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnectCallback) : Promise&lt;UIServiceProxy&gt;
 
-Connects to a [UIServiceExtensionAbility](../../application-models/uiserviceextension.md). This API uses a promise to return the result.
+Connects to a UIServiceExtensionAbility. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -2706,7 +2722,7 @@ struct UIServiceExtensionAbility {
 
 disconnectUIServiceExtensionAbility(proxy: UIServiceProxy): Promise&lt;void&gt;
 
-Disconnects from a [UIServiceExtensionAbility](../../application-models/uiserviceextension.md). This API uses a promise to return the result.
+Disconnects from a UIServiceExtensionAbility. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -2783,7 +2799,7 @@ struct UIServiceExtensionAbility {
       // Disconnect from the UIServiceExtensionAbility.
       context.disconnectUIServiceExtensionAbility(this.comProxy)
         .then(() => {
-          console.info(TAG + `disconnectUIServiceExtensionAbility succeed ${this.comProxy}}`);
+          console.info(TAG + `disconnectUIServiceExtensionAbility succeed ${this.comProxy}`);
         }).catch((err: Error) => {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
@@ -2804,14 +2820,11 @@ setAbilityInstanceInfo(label: string, icon: image.PixelMap) : Promise&lt;void&gt
 
 Sets the icon and label for this UIAbility. The icon and label can be displayed in the task center and the shortcut bar. This API uses a promise to return the result.
 
-
-> **NOTE**
->
-> This API is available only for 2-in-1 devices.
-
 **Required permissions**: ohos.permission.SET_ABILITY_INSTANCE_INFO
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Device behavior differences**: This API can be properly called only on 2-in-1 devices. If it is called on other device types, error code 801 is returned.
 
 **Parameters**
 
@@ -2855,20 +2868,25 @@ export default class EntryAbility extends UIAbility {
       }
 
       let newLabel: string = 'instance label';
-      let color = new ArrayBuffer(0);
-      let imagePixelMap: image.PixelMap = await image.createPixelMap(color, {
-        size: {
-          height: 100,
-          width: 100
-        }
-      });
+      let color = new ArrayBuffer(512 * 512 * 4); // Create an ArrayBuffer object to store image pixels. The size of the object is (height * width * 4) bytes.
+      let bufferArr = new Uint8Array(color);
+      for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 0;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 255;
+      }
+      let opts: image.InitializationOptions = {
+        editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 512, width: 512 }
+      };
+      let imagePixelMap: image.PixelMap = await image.createPixelMap(color, opts);
       this.context.setAbilityInstanceInfo(newLabel, imagePixelMap)
         .then(() => {
           console.info('setAbilityInstanceInfo success');
         }).catch((err: BusinessError) => {
-          console.error(`setAbilityInstanceInfo failed, code is ${err.code}, message is ${err.message}`);
-        });
+        console.error(`setAbilityInstanceInfo failed, code is ${err.code}, message is ${err.message}`);
       });
+    });
   }
 }
 ```

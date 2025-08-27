@@ -1292,9 +1292,9 @@ grant(config: ScreenCaptureConfig): void
 
 **参数：**
 
-| 参数名    | 类型                                     | 必填   | 说明    |
-| ------ | ---------------------------------------- | ---- | ------- |
-| config | [ScreenCaptureConfig](#screencaptureconfig10) | 是   | 屏幕捕获配置。 |
+| 参数名    | 类型                                     | 只读 | 可选 | 说明    |
+| ------ | ---------------------------------------- | ---- | ---- |------- |
+| config | [ScreenCaptureConfig](#screencaptureconfig10) | 否 | 否 | 屏幕捕获配置。 |
 
 ## EventResult<sup>12+</sup>
 

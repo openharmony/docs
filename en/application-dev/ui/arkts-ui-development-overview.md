@@ -48,7 +48,7 @@ Powered by the ArkTS-based declarative development paradigm, ArkUI is a simplifi
   - Language compiler and runtime optimization: The productivity punch includes unified bytecode, efficient Foreign Function Interface (FFI), ahead-of-time (AOT), engine minimization, and type optimization.
 
 - Promising ecosystem
-  ArkUI can gain traction with its relatively neutral and friendly programming language. It can tap on the ecosystems of mainstream languages ecosystem and pushed toward a steady revolutionary path with standards organizations.
+  ArkUI can gain traction with its relatively neutral and friendly programming language. It can tap on the ecosystems of mainstream languages and pushed toward a steady revolutionary path with standards organizations.
 
 
 ## Architecture

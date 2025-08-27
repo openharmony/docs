@@ -12,10 +12,10 @@ Web媒体策略的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ------- | ---- | ---------------------------------------- |
-| resumeInterval | number  | 否    | 被其他应用暂停的Web音视频能够自动续播的有效期，单位：秒。取值范围：[-2147483648, 2147483647]。resumeInterval值为0时，不自动续播；大于0时，将在该时间内尝试续播；小于0时，将在无限时间内尝试续播。由于近似值原因，该有效期可能存在一秒内的误差。 |
-| audioExclusive | boolean | 否    | 应用内多个Web实例的音频是否独占。<br>true表示应用内多个Web实例的音频独占，false表示应用内多个Web实例的音频不独占。                       |
+| 名称             | 类型      | 只读 | 可选  | 说明                                       |
+| -------------- | ------- | ---- | ---- | ---------------------------------------- |
+| resumeInterval | number  | 否 | 是 | 被其他应用暂停的Web音视频能够自动续播的有效期，单位：秒。取值范围：[-2147483648, 2147483647]。resumeInterval值为0时，不自动续播；大于0时，将在该时间内尝试续播；小于0时，将在无限时间内尝试续播。由于近似值原因，该有效期可能存在一秒内的误差。 |
+| audioExclusive | boolean | 否 | 是 | 应用内多个Web实例的音频是否独占。<br>true表示应用内多个Web实例的音频独占，false表示应用内多个Web实例的音频不独占。                       |
 
 ## ScriptItem<sup>11+</sup>
 
@@ -34,12 +34,12 @@ Web媒体策略的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型               | 只读 | 可选 | 必填   | 说明                   |
-| -------------- | ---------------- | ---- | ---- | ---- | -------------------- |
-| scrollUp  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 否    | 可滚动组件往上滚动时的嵌套滚动选项。 |
-| scrollDown | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 否    | 可滚动组件往下滚动时的嵌套滚动选项。 |
-| scrollLeft  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 否    | 可滚动组件往左滚动时的嵌套滚动选项。 |
-| scrollRight | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 否    | 可滚动组件往右滚动时的嵌套滚动选项。 |
+| 名称             | 类型               | 只读 | 可选 | 说明                   |
+| -------------- | ---------------- | ---- | ---- | -------------------- |
+| scrollUp  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往上滚动时的嵌套滚动选项。<br/>默认值：NestedScrollMode.SELF_FIRST。|
+| scrollDown | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往下滚动时的嵌套滚动选项。<br/>默认值：NestedScrollMode.SELF_FIRST。|
+| scrollLeft  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往左滚动时的嵌套滚动选项。<br/>默认值：NestedScrollMode.SELF_FIRST。|
+| scrollRight | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | 否   | 是   | 可滚动组件往右滚动时的嵌套滚动选项。<br/>默认值：NestedScrollMode.SELF_FIRST。|
 
 ## NativeMediaPlayerConfig<sup>12+</sup>
 
@@ -47,10 +47,10 @@ Web媒体策略的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-|  enable  | boolean | 是 | 是否开启应用接管网页媒体播放功能。<br/> true表示开启应用接管网页媒体播放功能，false表示关闭应用接管网页媒体播放功能。<br/> 默认值：false。 |
-|  shouldOverlay | boolean | 是 | 开启应用接管网页媒体播放功能后，应用接管网页视频的播放器画面是否覆盖网页内容。<br/> true表示改变视频图层的高度，使其覆盖网页内容。false表示不覆盖网页内容，跟原视频图层高度一样，嵌入在网页中。<br>默认值：false。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+|------|------|------|------|------|
+|  enable  | boolean | 否 | 否 | 是否开启应用接管网页媒体播放功能。<br/> true表示开启应用接管网页媒体播放功能，false表示关闭应用接管网页媒体播放功能。<br/> 默认值：false。 |
+|  shouldOverlay | boolean | 否 | 否 | 开启应用接管网页媒体播放功能后，应用接管网页视频的播放器画面是否覆盖网页内容。<br/> true表示改变视频图层的高度，使其覆盖网页内容。false表示不覆盖网页内容，跟原视频图层高度一样，嵌入在网页中。<br>默认值：false。 |
 
 ## ExpandedMenuItemOptions<sup>12+</sup>
 
@@ -100,15 +100,15 @@ Web同层渲染的配置。
 
 ## OnAlertEvent<sup>12+</sup>
 
-定义网页触发alert()告警弹窗时触发回调。
+定义网页触发 `alert()` 告警时的回调函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称                   | 类型     | 只读| 可选  | 说明                              |
-| --------------------- | -------- | -- | ----|--------------------------------- |
-| url                   | string   | 否 | 否  | 当前显示弹窗所在网页的URL。                 |
-| message               | string   | 否 | 否  | 弹窗中显示的信息。                              |
-| result                | [JsResult](./ts-basic-components-web.md#jsresult) | 否 | 否 | 通知Web组件用户操作行为。                       |
+| 名称    | 类型                                              | 只读 | 可选 | 说明                        |
+| ------- | ------------------------------------------------- | ---- | ---- | --------------------------- |
+| url     | string                                            | 否   | 否   | 当前显示弹窗的网页的URL。   |
+| message | string                                            | 否   | 否   | 显示在弹窗中的信息。        |
+| result  | [JsResult](./ts-basic-components-web.md#jsresult) | 否   | 否   | 通知Web组件用户的操作结果。 |
 
 ## OnBeforeUnloadEvent<sup>12+</sup>
 
@@ -124,28 +124,29 @@ Web同层渲染的配置。
 
 ## OnConfirmEvent<sup>12+</sup>
 
-定义网页调用confirm()告警时触发此回调。
+
+定义网页触发 `confirm()` 弹窗时的回调函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | 是 | 当前显示弹窗所在网页的URL。                       |
-| message | string | 是 | 弹窗中显示的信息。                       |
-| result | [JsResult](./ts-basic-components-web.md#jsresult) | 是 | 通知Web组件用户操作行为。                       |
+| 名称    | 类型                                              | 只读 | 可选 | 说明                        |
+| ------- | ------------------------------------------------- | ---- | ---- | --------------------------- |
+| url     | string                                            | 否   | 否   | 当前显示弹窗的网页的URL。   |
+| message | string                                            | 否   | 否   | 显示在弹窗中的信息。        |
+| result  | [JsResult](./ts-basic-components-web.md#jsresult) | 否   | 否   | 通知Web组件用户的操作结果。 |
 
 ## OnPromptEvent<sup>12+</sup>
 
-定义网页调用prompt()告警时触发此回调。
+定义网页触发 `prompt()` 弹窗时的回调函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | 是 | 当前显示弹窗所在网页的URL。                       |
-| message | string | 是 | 弹窗中显示的信息。                       |
-| value | string | 是 | 提示对话框的信息。                       |
-| result | [JsResult](./ts-basic-components-web.md#jsresult) | 是 | 通知Web组件用户操作行为。                       |
+| 名称    | 类型                                              | 只读 | 可选 | 说明                        |
+| ------- | ------------------------------------------------- | ---- | ---- | --------------------------- |
+| url     | string                                            | 否   | 否   | 当前显示弹窗的网页的URL。   |
+| message | string                                            | 否   | 否   | 显示在弹窗中的信息。        |
+| value   | string                                            | 否   | 否   | 对话框默认返回的信息。      |
+| result  | [JsResult](./ts-basic-components-web.md#jsresult) | 否   | 否   | 通知Web组件用户的操作结果。 |
 
 ## OnConsoleEvent<sup>12+</sup>
 
@@ -220,10 +221,10 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| result       | [FileSelectorResult](./ts-basic-components-web.md#fileselectorresult9) | 是 | 用于通知Web组件文件选择的结果。 |
-| fileSelector | [FileSelectorParam](./ts-basic-components-web.md#fileselectorparam9) | 是 | 文件选择器的相关信息。       |
+| 名称         | 类型                                                                     | 只读 | 可选 | 说明                            |
+| ------------ | ------------------------------------------------------------------------ | ---- | ---- | ------------------------------- |
+| result       | [FileSelectorResult](./ts-basic-components-web.md#fileselectorresult9) | 否   | 否   | 用于通知Web组件文件选择的结果。 |
+| fileSelector | [FileSelectorParam](./ts-basic-components-web.md#fileselectorparam9)   | 否   | 否   | 文件选择器的相关信息。          |
 
 ## OnResourceLoadEvent<sup>12+</sup>
 
@@ -241,10 +242,10 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| oldScale | number | 是 | 变化前的显示比例百分比。 |
-| newScale | number | 是 | 变化后的显示比例百分比。 |
+| 名称     | 类型   | 只读 | 可选 | 说明                     |
+| -------- | ------ | ---- | ---- | ------------------------ |
+| oldScale | number | 否   | 否   | 变化前的显示比例百分比。 |
+| newScale | number | 否   | 否   | 变化后的显示比例百分比。 |
 
 ## OnHttpAuthRequestEvent<sup>12+</sup>
 
@@ -274,9 +275,9 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| request | [PermissionRequest](./ts-basic-components-web.md#permissionrequest9) | 是 | 通知Web组件用户操作行为。 |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ---- | ---------------------------------------- |
+| request | [PermissionRequest](./ts-basic-components-web.md#permissionrequest9) | 否 | 否 | 通知Web组件用户操作行为。 |
 
 ## OnScreenCaptureRequestEvent<sup>12+</sup>
 
@@ -284,9 +285,9 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
+| 名称             | 类型      | 只读 | 可选 | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| handler | [ScreenCaptureHandler](./ts-basic-components-web.md#screencapturehandler10) | 是 | 通知Web组件用户操作行为。 |
+| handler | [ScreenCaptureHandler](./ts-basic-components-web.md#screencapturehandler10) | 否 | 否 | 通知Web组件用户操作行为。 |
 
 ## OnContextMenuShowEvent<sup>12+</sup>
 
@@ -317,10 +318,10 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 只读 | 可选 | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---- | ---- | ---------------------------------------- |
-| xOffset | number |  否   | 否   | 是 | 以网页最左端为基准，水平滚动条滚动所在位置。<br>单位：vp。 |
-| yOffset | number |  否   | 否   | 是 | 以网页最上端为基准，竖直滚动条滚动所在位置。<br>单位：vp。 |
+| 名称             | 类型      | 只读 | 可选 | 说明                                       |
+| -------------- | ---- | ---- | ---- | ---------------------------------------- |
+| xOffset | number |  否   | 否   | 以网页最左端为基准，水平滚动条滚动所在位置。<br>单位：vp。 |
+| yOffset | number |  否   | 否   | 以网页最上端为基准，竖直滚动条滚动所在位置。<br>单位：vp。 |
 
 ## OnSslErrorEventReceiveEvent<sup>12+</sup>
 
@@ -424,9 +425,9 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| playing | boolean | 是 | 当前页面的音频播放状态，true表示正在播放，false表示未播放。 |
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ---- | ---------------------------------------- |
+| playing | boolean | 否 | 否 | 当前页面的音频播放状态，true表示正在播放，false表示未播放。 |
 
 ## OnFirstContentfulPaintEvent<sup>12+</sup>
 
@@ -455,10 +456,10 @@ Web同层渲染的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型      | 只读 | 可选 | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---- | ---- | ---------------------------------------- |
-| xOffset | number |  否   | 否   | 是 | 以网页最左端为基准，水平过度滚动的偏移量。<br>单位：vp。 |
-| yOffset | number |  否   | 否   | 是 | 以网页最上端为基准，竖直过度滚动的偏移量。<br>单位：vp。 |
+| 名称             | 类型      | 只读 | 可选 | 说明                                       |
+| -------------- | ---- | ---- | ---- | ---------------------------------------- |
+| xOffset | number |  否   | 否   | 以网页最左端为基准，水平过度滚动的偏移量。<br>单位：vp。 |
+| yOffset | number |  否   | 否   | 以网页最上端为基准，竖直过度滚动的偏移量。<br>单位：vp。 |
 
 ## JavaScriptProxy<sup>12+</sup>
 
@@ -471,7 +472,7 @@ Web同层渲染的配置。
 | object     | object                                   | 否 | 否    | 参与注册的对象。只能声明方法，不能声明属性。                   |
 | name       | string                                   | 否 | 否    | 注册对象的名称，与window中调用的对象名一致。                |
 | methodList | Array\<string\>                          | 否 | 否    | 参与注册的应用侧JavaScript对象的同步方法。                 |
-| controller | [WebController](./ts-basic-components-web.md#webcontroller) \| [WebviewController<sup>9+</sup>](./ts-basic-components-web.md#webviewcontroller9) | 否 | 否    | -    | 控制器。从API version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| controller | [WebController](./ts-basic-components-web.md#webcontroller) \| [WebviewController<sup>9+</sup>](./ts-basic-components-web.md#webviewcontroller9) | 否 | 否  | 控制器。从API version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | asyncMethodList<sup>12+</sup>  | Array\<string\>      | 否 | 是    | 参与注册的应用侧JavaScript对象的异步方法。异步方法无法获取返回值。   |
 | permission<sup>12+</sup>  | string  | 否 | 是    | json字符串，默认为空，通过该字符串配置JSBridge的权限管控，可以定义object、method一级的url白名单。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。 |
 
@@ -513,7 +514,7 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 只读 | 可选    | 说明                                       |
 | -------------- | ---- | ---- | -------------|--------------------------- |
-| title | string | 否 | 否 | document标题内容。                       |
+| title | string | 否 | 否 | document标题内容。    <br>默认值：false                   |
 
 ## OnGeolocationShowEvent<sup>12+</sup>
 
@@ -555,11 +556,11 @@ Web组件进入全屏回调事件的详情。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称             | 类型                                  | 必填   | 说明                    |
-| -----------     | ------------------------------------ | ---- | --------------------- |
-| handler     | [FullScreenExitHandler](./ts-basic-components-web.md#fullscreenexithandler9) | 是    | 用于退出全屏模式的函数句柄。 |
-| videoWidth  | number | 否    | 视频的宽度，单位：px。如果进入全屏的是 `<video>` 元素，表示其宽度；如果进入全屏的子元素中包含 `<video>` 元素，表示第一个子视频元素的宽度；其他情况下，为0。 |
-| videoHeight  | number | 否    | 视频的高度，单位：px。如果进入全屏的是 `<video>` 元素，表示其高度；如果进入全屏的子元素中包含 `<video>` 元素，表示第一个子视频元素的高度；其他情况下，为0。 |
+| 名称             | 类型                                  | 只读 | 可选   | 说明                    |
+| -----------     | ------------------------------------ | ---- | ---- | --------------------- |
+| handler     | [FullScreenExitHandler](./ts-basic-components-web.md#fullscreenexithandler9) | 否 | 否  | 用于退出全屏模式的函数句柄。 |
+| videoWidth  | number | 否 | 是 | 视频的宽度，单位：px。如果进入全屏的是 `<video>` 元素，表示其宽度；如果进入全屏的子元素中包含 `<video>` 元素，表示第一个子视频元素的宽度；其他情况下，为0。 |
+| videoHeight  | number | 否 | 是  | 视频的高度，单位：px。如果进入全屏的是 `<video>` 元素，表示其高度；如果进入全屏的子元素中包含 `<video>` 元素，表示第一个子视频元素的高度；其他情况下，为0。 |
 
 ## LoadCommittedDetails<sup>11+</sup>
 

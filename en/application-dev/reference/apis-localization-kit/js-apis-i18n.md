@@ -2103,7 +2103,7 @@ Converts the input text from the source format to the target format.
 
 | Name | Type    | Mandatory  | Description    |
 | ---- | ------ | ---- | ------ |
-| text | string | Yes   | **text** object.|
+| text | string | Yes   | Input text.|
 
 **Return value**
 
@@ -2775,7 +2775,7 @@ Normalizes input strings.
 
 | Name   | Type    | Mandatory  | Description                       |
 | ------ | ------ | ---- | ------------------------- |
-| text | string | Yes   | **text** object.|
+| text | string | Yes   | Input text.|
 
 **Return value**
 

@@ -938,6 +938,7 @@ struct AlphabetIndexerSample {
       }
       .width('100%')
       .height('100%')
+      // $r('app.media.image')需要替换为开发者所需的图像资源文件。
       .backgroundImage($r("app.media.image"))
     }
   }

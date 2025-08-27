@@ -1,5 +1,12 @@
 # @ohos.application.uriPermissionManager(URI权限管理)(系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @duan-sizhao-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 URI权限管理模块。用于应用A授权/撤销授权URI给应用B。
 
 > **说明：**

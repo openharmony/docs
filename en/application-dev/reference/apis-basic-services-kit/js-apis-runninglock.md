@@ -397,7 +397,7 @@ Checks the hold status of the **RunningLock** object.
 
 **Error codes**
 
-For details about the error codes, see [Running Lock Error Codes](errorcode-runninglock.md)¡£
+For details about the error codes, see [Running Lock Error Codes](errorcode-runninglock.md).
 
 | ID   | Description    |
 |---------|---------|

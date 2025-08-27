@@ -19,7 +19,7 @@
 
 JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
 
-### OH_JSVM_JsonParse && OH_JSVM_JsonStringify
+### OH_JSVM_JsonParse & OH_JSVM_JsonStringify
 
 对JSON对象进行解析操作，并输出解析结果的有效值。
 

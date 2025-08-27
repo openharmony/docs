@@ -71,7 +71,7 @@ const char *srcCallNative = R"JS(coerceToBool("123"))JS";
 
 预期结果
 ```
-SVM OH_JSVM_CoerceToBool success:1
+JSVM OH_JSVM_CoerceToBool success:1
 ```
 
 ### OH_JSVM_CoerceToNumber

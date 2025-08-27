@@ -278,13 +278,13 @@ try {
 try {
   testNapi.napiThrowError(5, 0);
 } catch (error) {
-  hilog.error(0x0000, 'testTag', 'Test Node-API napi_throw_error errorCode: %{public}s , errorManager: %{public}s', error.code, error.message);
+  hilog.error(0x0000, 'testTag', 'Test Node-API napi_throw_error errorCode: %{public}s , errorMessage: %{public}s', error.code, error.message);
 }
 ```
 
 ### napi_throw_type_error
 
-创建并抛出一个带文本信息的ArkTS TypeError。
+抛出一个带文本信息的ArkTS TypeError。
 
 cpp部分代码
 
@@ -343,7 +343,7 @@ try {
 
 ### napi_throw_range_error
 
-创建并获取一个带文本信息的ArkTS RangeError。
+抛出一个带文本信息的ArkTS RangeError。
 
 cpp部分代码
 

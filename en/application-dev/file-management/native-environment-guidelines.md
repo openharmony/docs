@@ -11,7 +11,7 @@ You can use [Environment](../reference/apis-core-file-kit/_environment.md) to al
 
 ## Available APIs
 
-For details about the APIs, see [Environment](../reference/apis-core-file-kit/_environment.md).
+For details about the APIs, see [API Reference](../reference/apis-core-file-kit/_environment.md).
 
 | API| Description|
 | -------- | -------- |

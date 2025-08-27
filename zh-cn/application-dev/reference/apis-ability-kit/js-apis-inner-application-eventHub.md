@@ -3,8 +3,8 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @zexin_c-->
-<!--SE: @li-weifeng2-->
-<!--TSE: @lixueqing513-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
 
 EventHub是系统提供的基于发布-订阅模式实现的事件通信机制。通过事件名，实现了发送方和订阅方之间的解耦，支持不同业务模块间的高效数据传递和状态同步。
 主要用于[UIAbility组件与UI的数据通信](../../application-models/uiability-data-sync-with-ui.md)。
@@ -235,7 +235,7 @@ emit(event: string, ...args: Object[]): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | event | string | 是 | 事件名称。 |
-| ...args | Object[] | 否 | 可变参数，事件触发时，传递给回调函数的参数。 |
+| ...args | Object[] | 是 | 可变参数，事件触发时，传递给回调函数的参数。 |
 
 **错误码**：
 
