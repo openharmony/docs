@@ -430,14 +430,3 @@ try {
     console.error('setPowerKeyFilteringStrategy failed, err: ' + err);
 }
 ```
-
-## PowerKeyFilteringStrategy<sup>21+</sup>
-
-表示电源键过滤策略。
-
-**系统能力：** SystemCapability.PowerManager.PowerManager.Core
-
-| 名称                    | 值   | 说明                   |
-| ----------------------- | ---- | ---------------------- |
-| DISABLE_LONG_PRESS_FILTERING | 0  | 表示不使能电源键过滤策略，默认值。 |
-| LONG_PRESS_FILTERING_ONCE | 1  | 表示过滤一次长按电源键。 |
