@@ -85,7 +85,7 @@ onCreate(want: Want): void
 
   const TAG: string = '[AppServiceExtAbility]';
 
-  class AppServiceExtAbility extends AppServiceExtensionAbility {
+  export default class AppServiceExtAbility extends AppServiceExtensionAbility {
     onCreate(want: Want) {
       hilog.info(0x0000, TAG, `onCreate, want: ${want.abilityName}`);
     }
@@ -108,7 +108,7 @@ onDestroy(): void
 
   const TAG: string = '[AppServiceExtAbility]';
 
-  class AppServiceExtAbility extends AppServiceExtensionAbility {
+  export default class AppServiceExtAbility extends AppServiceExtensionAbility {
     onDestroy() {
       hilog.info(0x0000, TAG, `onDestroy`);
     }
@@ -138,7 +138,7 @@ onRequest(want: Want, startId: number): void
 
   const TAG: string = '[AppServiceExtAbility]';
 
-  class AppServiceExtAbility extends AppServiceExtensionAbility {
+  export default class AppServiceExtAbility extends AppServiceExtensionAbility {
     onRequest(want: Want, startId: number) {
       hilog.info(0x0000, TAG, `onRequest, want: ${want.abilityName}, startId: ${startId}`);
     }
@@ -186,7 +186,7 @@ onConnect(want: Want): rpc.RemoteObject
     }
   }
 
-  class AppServiceExtAbility extends AppServiceExtensionAbility {
+  export default class AppServiceExtAbility extends AppServiceExtensionAbility {
     onConnect(want: Want) {
       hilog.info(0x0000, TAG, `onConnect, want: ${want.abilityName}`);
       return new StubTest('test');
@@ -216,7 +216,7 @@ onDisconnect(want: Want): void
 
   const TAG: string = '[AppServiceExtAbility]';
 
-  class AppServiceExtAbility extends AppServiceExtensionAbility {
+  export default class AppServiceExtAbility extends AppServiceExtensionAbility {
     onDisconnect(want: Want) {
       hilog.info(0x0000, TAG, `onDisconnect, want: ${want.abilityName}`);
     }

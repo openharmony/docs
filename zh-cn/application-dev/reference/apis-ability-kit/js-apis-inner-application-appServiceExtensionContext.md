@@ -32,8 +32,8 @@ import { common } from '@kit.AbilityKit';
 ```ts
 import { AppServiceExtensionAbility } from '@kit.AbilityKit';
 
-class AppServiceExtension extends AppServiceExtensionAbility {
-  onCreate() {
+export default class AppServiceExtension extends AppServiceExtensionAbility {
+  onCreate(want: Want) {
     let context = this.context; // 获取AppServiceExtensionContext
   }
 }
@@ -175,7 +175,7 @@ let commRemote: rpc.IRemoteObject | null = null; // 断开连接时需要释放
 const TAG: string = '[AppServiceExtensionAbility]';
 
 export default class AppServiceExtension extends AppServiceExtensionAbility {
-  onCreate() {
+  onCreate(want: Want) {
     let want: Want = {
       bundleName: 'com.example.myapp',
       abilityName: 'MyAbility'
@@ -281,8 +281,8 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[AppServiceExtensionAbility]';
 
-class AppServiceExtension extends AppServiceExtensionAbility {
-  onCreate() {
+export default class AppServiceExtension extends AppServiceExtensionAbility {
+  onCreate(want: Want) {
     this.context.terminateSelf().then(() => {
       // 执行正常业务
       hilog.info(0x0000, TAG, '----------- terminateSelf succeed -----------');

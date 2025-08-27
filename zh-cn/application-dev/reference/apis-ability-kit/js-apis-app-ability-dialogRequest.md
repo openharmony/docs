@@ -219,10 +219,10 @@ export default class ServiceExtension extends ServiceExtensionAbility {
     try {
       let requestCallback = dialogRequest.getRequestCallback(want);
       let myResult: dialogRequest.RequestResult = {
-        result : dialogRequest.ResultCode.RESULT_CANCEL,
+        result: dialogRequest.ResultCode.RESULT_CANCEL,
       };
       requestCallback.setRequestResult(myResult);
-    } catch(err) {
+    } catch (err) {
       console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
     }
   }
