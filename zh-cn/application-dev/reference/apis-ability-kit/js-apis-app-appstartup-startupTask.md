@@ -24,6 +24,8 @@ import { StartupTask } from '@kit.AbilityKit';
 
 该类提供启动任务的相关能力，使用[@Sendable装饰器](../../arkts-utils/arkts-sendable.md#sendable装饰器)装饰。
 
+**装饰器类型**：\@Sendable
+
 ### onDependencyCompleted
 
 onDependencyCompleted?(dependency: string, result: Object): void
