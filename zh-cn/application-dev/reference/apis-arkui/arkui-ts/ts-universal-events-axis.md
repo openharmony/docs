@@ -44,9 +44,11 @@ onAxisEvent(event: Callback\<AxisEvent>): T
 
 ### 属性
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称            | 类型  | 只读|可选                              | 说明                                                    |
 | ------------------- | -----------------------|------|----- | -------------------------------------------------------- |
-| action              | [AxisAction](ts-appendix-enums.md#axisaction17)           | 是   | 否   | 轴事件的动作类型<br/>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。                   |
+| action              | [AxisAction](ts-appendix-enums.md#axisaction17)           | 是   | 否   | 轴事件的动作类型。<br/>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。                   |
 | x                   | number                 | 是   | 否   | 鼠标光标相对于被点击元素左边缘的X坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。  |
 | y                   | number                 | 是   | 否   | 鼠标光标相对于被点击元素上边缘的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。  |
 | windowX             | number                 | 是   | 否   | 鼠标光标相对于当前窗口左上角的X坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。 |
@@ -92,7 +94,7 @@ getVerticalAxisValue(): number
 
 ## 示例
 
-该示例中，按钮设置轴事件，通过滚动鼠标滚轮可获取轴事件的相关参数。
+该示例中，对按钮设置轴事件，通过滚动鼠标滚轮可获取轴事件的相关参数。
 
 ```ts
 // xxx.ets
