@@ -1,4 +1,10 @@
 # ArkUI_NativeNodeAPI_1
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
@@ -97,8 +103,13 @@ void (*disposeNode)(ArkUI_NodeHandle node)
 
 **描述：**
 
-
 销毁组件指针指向的组件对象。
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 组件指针对象。 |
 
 ### addChild()
 

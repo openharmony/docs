@@ -188,6 +188,8 @@
 | [ArkUI_RouterPageState](#arkui_routerpagestate)                     | ArkUI_RouterPageState           | 定义Router Page的状态。                 |
 | [ArkUI_UIState](#arkui_uistate)                                     | ArkUI_UIState                   | 组件的UI状态枚举，用于处理状态样式。               |
 | [ArkUI_FocusWrapMode](#arkui_focuswrapmode)                         | ArkUI_FocusWrapMode             | 组件走焦换行规则。                         |
+| [ArkUI_EdgeDirection](#arkui_edgedirection)                         | ArkUI_EdgeDirection             | 定义矩形边方向。                         |
+| [ArkUI_CornerDirection](#arkui_cornerdirection)                     | ArkUI_CornerDirection           | 定义角度方向。                         |
 
 ### 函数
 
@@ -2787,7 +2789,7 @@ enum ArkUI_EdgeDirection
 **描述：**
 
 
-定义方向枚举类。
+定义矩形边方向。
 
 **起始版本：** 20
 
@@ -2808,7 +2810,7 @@ enum ArkUI_CornerDirection
 **描述：**
 
 
-定义角度方向枚举类。
+定义角度方向。
 
 **起始版本：** 20
 
