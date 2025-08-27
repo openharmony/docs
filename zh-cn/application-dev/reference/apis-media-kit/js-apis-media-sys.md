@@ -316,8 +316,6 @@ media.createParallelSoundPool(5, audioRendererInfo).then((soundpool_: media.Soun
 | 名称     | 类型   |  只读   |   可选    |  说明                   |
 | -------- | ------ |   ------| ------ | ---------------------- |
 | colorFormat  | [PixelFormat](#pixelformat11) |  是   |  否   | 输出的缩略图颜色格式<br>**系统接口：** 该接口为系统接口      |
-| width<sup>20+</sup>   | number |  是   |  否   | 缩略图的宽。 该值必须大于0且小于等于原始视频的宽度。否则，返回的缩略图将不会缩放。   |
-| height<sup>20+</sup>  | number |  是   |  否   | 缩略图的高。 该值必须大于0且小于等于原始视频的宽度。否则，返回的缩略图将不会缩放。   |
 
 ## PixelFormat<sup>11+</sup>
 
