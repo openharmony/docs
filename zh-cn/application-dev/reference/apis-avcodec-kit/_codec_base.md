@@ -109,7 +109,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER](#oh_md_key_video_encoder_repeat_previous_frame_after)         | 如果在上一帧提交给编码器之后没有新的帧可用，则会以毫秒为单位重复提交最后一帧，值类型为int32_t。该键只用于视频编码Surface模式，在Configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT](#oh_md_key_video_encoder_repeat_previous_max_count)         | 描述编码器在没有新的帧可用的情况下，可以对之前的帧进行重复编码的最大次数，值类型为int32_t。该键仅在OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER可用时生效，在Configure阶段使用。|
 | [OH_MD_KEY_SQR_FACTOR](#oh_md_key_sqr_factor)     | 描述SQR码控模式的质量参数，取值范围为[0, 51]（同编码量化参数QP），值越小，编码输出码率越大，质量越好，值类型为int32_t。该键值是可选的且只用于视频编码。 |
-| [OH_MD_KEY_MAX_BITRATE](#oh_md_key_max_bitrate)     | 描述SQR码控模式的最大码率，使用[OH_AVCapability_GetEncoderBitrateRange](_a_v_capability.md#oh_avcapability_getencoderbitraterange)方法获取取值范围（同[OH_MD_KEY_BITRATE](#oh_md_key_bitrate)），单位bps，值类型为int64_t。该键值是可选的且只用于视频编码。 |
+| [OH_MD_KEY_MAX_BITRATE](#oh_md_key_max_bitrate)     | 描述SQR码控模式的最大码率，使用[OH_AVCapability_GetEncoderBitrateRange](capi-native-avcapability-h.md#oh_avcapability_getencoderbitraterange)方法获取取值范围（同[OH_MD_KEY_BITRATE](#oh_md_key_bitrate)），单位bps，值类型为int64_t。该键值是可选的且只用于视频编码。 |
 | [OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS](#oh_md_key_video_encoder_roi_params)    | 描述ROI编码参数，包括ROI区域和deltaQp，值类型为string。该键值是可选的且只用于视频编码。 |
 | [OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL](#oh_md_key_video_encoder_enable_pts_based_ratecontrol)    | 使能基于显示时间戳(PTS)的码控模式的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。该键值是可选的且只用于视频编码。如果使能，则必须在每个视频帧中携带PTS信息，并发送到编码器。在Configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME](#oh_md_key_video_encoder_enable_b_frame)    | 使能B帧编码的键，值类型为int32_t，1表示使能，0表示不使能。该键值是可选的且只用于视频编码，默认值为0，在Configure阶段使用。 |
@@ -320,7 +320,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_VIDEO_CROP_RIGHT](#oh_md_key_video_crop_right) | 描述裁剪矩形右坐标(x)值的键，值类型为int32_t。 | 
 | const char \* [OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR](#oh_md_key_video_decoder_output_enable_vrr) | 解码器是否打开视频可变帧率功能的键，值类型为int32_t。 |
 | const char \* [OH_MD_KEY_SQR_FACTOR](#oh_md_key_sqr_factor)     | 描述SQR码控模式的质量参数，取值范围为[0, 51]（同编码量化参数QP），值越小，编码输出码率越大，质量越好，值类型为int32_t。 |
-| const char \* [OH_MD_KEY_MAX_BITRATE](#oh_md_key_max_bitrate)     | 描述SQR码控模式的最大码率，使用[OH_AVCapability_GetEncoderBitrateRange](_a_v_capability.md#oh_avcapability_getencoderbitraterange)方法获取取值范围（同[OH_MD_KEY_BITRATE](#oh_md_key_bitrate)），单位bps，值类型为int64_t。 |
+| const char \* [OH_MD_KEY_MAX_BITRATE](#oh_md_key_max_bitrate)     | 描述SQR码控模式的最大码率，使用[OH_AVCapability_GetEncoderBitrateRange](capi-native-avcapability-h.md#oh_avcapability_getencoderbitraterange)方法获取取值范围（同[OH_MD_KEY_BITRATE](#oh_md_key_bitrate)），单位bps，值类型为int64_t。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS](#oh_md_key_video_encoder_roi_params)    | 描述ROI编码参数，包括ROI区域和deltaQp，值类型为string。 |
 | const char \* [OH_MD_KEY_VIDEO_STRIDE](#oh_md_key_video_stride) | 描述视频帧宽跨距的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_SLICE_HEIGHT](#oh_md_key_video_slice_height) | 描述视频帧高跨距的键，值类型为int32_t。  | 
@@ -2069,7 +2069,7 @@ const char* OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT
 **描述**
 在视频编码中获取长期参考帧的最大个数的键，值类型为int32_t。 
 
-可以通过[OH_AVCapability_GetFeatureProperties](_a_v_capability.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_LONG_TERM_REFERENCE](_a_v_capability.md#oh_avcapabilityfeature-1)来查询这个最大值。
+可以通过[OH_AVCapability_GetFeatureProperties](capi-native-avcapability-h.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_LONG_TERM_REFERENCE](capi-native-avcapability-h.md#oh_avcapabilityfeature-1)来查询这个最大值。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2214,7 +2214,7 @@ const char* OH_MD_KEY_BITRATE
 **描述**
 比特率的键，值类型为int64_t。
 
-可以通过能力查询接口[OH_AVCapability_GetEncoderBitrateRange](_a_v_capability.md#oh_avcapability_getencoderbitraterange)来获取取值范围。
+可以通过能力查询接口[OH_AVCapability_GetEncoderBitrateRange](capi-native-avcapability-h.md#oh_avcapability_getencoderbitraterange)来获取取值范围。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2376,7 +2376,7 @@ const char* OH_MD_KEY_FRAME_RATE
 **描述**
 视频帧率的键，值类型为double。该值必须大于0。
 
-可以通过能力查询接口[OH_AVCapability_GetVideoFrameRateRange](_a_v_capability.md#oh_avcapability_getvideoframeraterange)来获取取值范围。
+可以通过能力查询接口[OH_AVCapability_GetVideoFrameRateRange](capi-native-avcapability-h.md#oh_avcapability_getvideoframeraterange)来获取取值范围。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2406,7 +2406,7 @@ const char* OH_MD_KEY_HEIGHT
 
 在视频编解码流程中调用Configure接口时，使用此接口来设置视频帧的显示高。
 
-可以通过能力查询接口[OH_AVCapability_GetVideoHeightRange](_a_v_capability.md#oh_avcapability_getvideoheightrange)来获取取值范围。
+可以通过能力查询接口[OH_AVCapability_GetVideoHeightRange](capi-native-avcapability-h.md#oh_avcapability_getvideoheightrange)来获取取值范围。
 
 使用指导请参见：[视频编码](../../media/avcodec/video-encoding.md)中的中的Surface模式的“步骤-5”或Buffer模式“步骤-4”。
 
@@ -2517,7 +2517,7 @@ const char* OH_MD_KEY_PROFILE
 **描述**
 编码档次，值类型为int32_t，请参见[OH_AVCProfile](#oh_avcprofile)，[OH_HEVCProfile](#oh_hevcprofile)，[OH_AACProfile](#oh_aacprofile)。
 
-可以通过能力查询接口[OH_AVCapability_GetSupportedProfiles](_a_v_capability.md#oh_avcapability_getsupportedprofiles)来获取支持的档次。
+可以通过能力查询接口[OH_AVCapability_GetSupportedProfiles](capi-native-avcapability-h.md#oh_avcapability_getsupportedprofiles)来获取支持的档次。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2530,7 +2530,7 @@ const char* OH_MD_KEY_PROFILE
 const char* OH_MD_KEY_QUALITY
 ```
 **描述**
-所需编码质量的键。值类型为int32_t，默认值为50。在H.264、H.265编码场景值范围可以通过能力查询接口[OH_AVCapability_GetEncoderQualityRange](_a_v_capability.md#oh_avcapability_getencoderqualityrange)来获取取值范围，此键仅适用于配置在恒定质量模式下的编码器。
+所需编码质量的键。值类型为int32_t，默认值为50。在H.264、H.265编码场景值范围可以通过能力查询接口[OH_AVCapability_GetEncoderQualityRange](capi-native-avcapability-h.md#oh_avcapability_getencoderqualityrange)来获取取值范围，此键仅适用于配置在恒定质量模式下的编码器。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2733,7 +2733,7 @@ const char* OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY
 
 如果使能，则视频解码器持有的输入和输出数据不会超过解码器标准所要求的数量。 
 
-可以通过能力查询接口[OH_AVCapability_IsFeatureSupported](_a_v_capability.md#oh_avcapability_isfeaturesupported)来查询特定解码器是否支持低时延。若解码器支持，使能此接口时，视频解码器将按照解码序输出帧。
+可以通过能力查询接口[OH_AVCapability_IsFeatureSupported](capi-native-avcapability-h.md#oh_avcapability_isfeaturesupported)来查询特定解码器是否支持低时延。若解码器支持，使能此接口时，视频解码器将按照解码序输出帧。
 
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
@@ -2779,8 +2779,8 @@ const char* OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY
 **描述**
 使能分层编码的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。
 
-使用前可以通过[OH_AVCapability_IsFeatureSupported](_a_v_capability.md#oh_avcapability_isfeaturesupported)接口和枚举值
-[VIDEO_ENCODER_TEMPORAL_SCALABILITY](_a_v_capability.md#oh_avcapabilityfeature-1)来查询当前视频编码器是否支持分层编码。
+使用前可以通过[OH_AVCapability_IsFeatureSupported](capi-native-avcapability-h.md#oh_avcapability_isfeaturesupported)接口和枚举值
+[VIDEO_ENCODER_TEMPORAL_SCALABILITY](capi-native-avcapability-h.md#oh_avcapabilityfeature-1)来查询当前视频编码器是否支持分层编码。
 详情请参见：[时域可分层视频编码](../../media/avcodec/video-encoding-temporal-scalability.md#接口介绍)。
 
 该键是可选的且只用于视频编码，在Configure阶段使用。
@@ -2798,7 +2798,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT
 **描述**
 描述长期参考帧个数的键，值类型为int32_t，必须在支持的值范围内使用。 
 
-使用前可以通过[OH_AVCapability_GetFeatureProperties](_a_v_capability.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_LONG_TERM_REFERENCE](_a_v_capability.md#oh_avcapabilityfeature-1)来查询支持的LTR数目。 
+使用前可以通过[OH_AVCapability_GetFeatureProperties](capi-native-avcapability-h.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_LONG_TERM_REFERENCE](capi-native-avcapability-h.md#oh_avcapabilityfeature-1)来查询支持的LTR数目。 
 
 该键是可选的且只用于视频编码，在Configure阶段使用。
 
@@ -3154,7 +3154,7 @@ const char* OH_MD_KEY_WIDTH
 
 在视频编解码流程中调用Configure接口时，使用此接口来设置视频帧的显示宽度。
 
-可以通过能力查询接口[OH_AVCapability_GetVideoWidthRange](_a_v_capability.md#oh_avcapability_getvideowidthrange)来获取取值范围。
+可以通过能力查询接口[OH_AVCapability_GetVideoWidthRange](capi-native-avcapability-h.md#oh_avcapability_getvideowidthrange)来获取取值范围。
 
 使用指导请参见：[视频编码](../../media/avcodec/video-encoding.md)中的Surface模式的“步骤-5”或Buffer模式“步骤-4”。
 
@@ -3246,7 +3246,7 @@ const char* OH_MD_KEY_SQR_FACTOR
 const char* OH_MD_KEY_MAX_BITRATE
 ```
 **描述**
-指定SQR码控模式的最大码率，使用[OH_AVCapability_GetEncoderBitrateRange](_a_v_capability.md#oh_avcapability_getencoderbitraterange)方法获取取值范围（同[OH_MD_KEY_BITRATE](#oh_md_key_bitrate)），单位bps。
+指定SQR码控模式的最大码率，使用[OH_AVCapability_GetEncoderBitrateRange](capi-native-avcapability-h.md#oh_avcapability_getencoderbitraterange)方法获取取值范围（同[OH_MD_KEY_BITRATE](#oh_md_key_bitrate)），单位bps。
 
 在Configure/SetParameter阶段使用。
 
@@ -3310,7 +3310,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME
 
 该键值是可选的且只用于视频编码，默认值为0。
 
-使用前可以通过[OH_AVCapability_isFeatureSupported](_a_v_capability.md#oh_avcapability_isfeaturesupported)接口和枚举值[VIDEO_ENCODER_B_FRAME](_a_v_capability.md#oh_avcapabilityfeature-1)来查询平台是否支持该特性。 
+使用前可以通过[OH_AVCapability_isFeatureSupported](capi-native-avcapability-h.md#oh_avcapability_isfeaturesupported)接口和枚举值[VIDEO_ENCODER_B_FRAME](capi-native-avcapability-h.md#oh_avcapabilityfeature-1)来查询平台是否支持该特性。 
 
 该键是可选的且只用于视频编码，在Configure阶段使用。
 
@@ -3326,9 +3326,9 @@ const char* OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES
 **描述**
 在视频编码中获取B帧编码支持最大B帧数量的键，值类型为int32_t。
 
-使用前可以通过[OH_AVCapability_GetFeatureProperties](_a_v_capability.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_B_FRAME](_a_v_capability.md#oh_avcapabilityfeature-1)来查询平台是否支持B帧编码。
+使用前可以通过[OH_AVCapability_GetFeatureProperties](capi-native-avcapability-h.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_B_FRAME](capi-native-avcapability-h.md#oh_avcapabilityfeature-1)来查询平台是否支持B帧编码。
 
-通过[OH_AVCapability_GetFeatureProperties](_a_v_capability.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_B_FRAME](_a_v_capability.md#oh_avcapabilityfeature-1)获取[OH_AVFormat](_core.md#oh_avformat)句柄。
+通过[OH_AVCapability_GetFeatureProperties](capi-native-avcapability-h.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_B_FRAME](capi-native-avcapability-h.md#oh_avcapabilityfeature-1)获取[OH_AVFormat](_core.md#oh_avformat)句柄。
 
 通过[OH_AVFormat_GetIntValue](_core.md#oh_avformat_getintvalue)接口查询支持的B帧数目。
 
