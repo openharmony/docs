@@ -77,9 +77,9 @@ namespace market_system {
 
 | 名称                                                                                                                                | 描述               |
 | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
-| [submit](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#submit-suspendable-job)     | 提交可暂停的任务。 |
-| [wait](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#wait)                         | 等待所有任务完成。 |
-| [submit_to_master](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#submit_to_master) | 提交任务到主线程。 |
+| [job_partner](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#job_partner)     | 细粒度任务伙伴接口。 |
+| [job_ring](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#job_ring)                         | 细粒度任务队列接口。 |
+| [job_promise](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#job_promise) | 细粒度任务返回值接口。 |
 
 > **说明：**
 >
