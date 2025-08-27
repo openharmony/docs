@@ -378,10 +378,10 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     ## 当前支持的属性信息
     | 属性信息名称 | 属性值 | 属性值类型 | 场景 |
     | -------- | -------- | -------- | -------- |
-      | DeviceHealthyStatus |1 | 整形 | 设备健康报告显示正常。 |
-    | NetStatus | InterNet | 字符串 | 设备在公司内部使用。 |
-    | DebugMode | 1 | 整形 | 该设备已开启调试模式。 |
-    | AdvancedSecurityMode | 1 | 整形 | 该设备已开启高级安全模式。 |
+      | DeviceHealthyStatus |1 <br> 2 <br> 3 <br> 4 | 整形 | 设备健康报告显示正常。 <br> 设备有健康风险，但风险因子和root无关。 <br> 设备有健康风险，且风险因子和root相关。 <br> 异常场景。 |
+    | NetStatus | InterNet <br> ExtraNet <br> NoNet | 字符串 | 设备在公司内部使用。 <br> 设备在公司外部使用。 <br> 设备处于离线断网状态。 |
+    | DebugMode | 1 <br> 2 | 整形 | 该设备已开启调试模式。 <br> 该设备未开启调试模式。 |
+    | AdvancedSecurityMode | 1 <br> 2 | 整形 | 该设备已开启高级安全模式。 <br> 该设备未开启高级安全模式。  |
     | FileType | jpg | 字符串 | DLP文件的真实类型。 |
 
     ```ts
