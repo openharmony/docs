@@ -237,10 +237,10 @@
       //       console.info(`Operation startBackgroundRunning succeeded, notificationId: ${res.notificationId}`);
       //       // 此处执行具体的长时任务逻辑，如录音，录制等。
       //     } catch (error) {
-      //       console.error(`Failed to Operation startBackgroundRunning. code is ${(error as BusinessError).code}, message is ${(error as BusinessError).message}`);
+      //       console.error(`Failed to Operation startBackgroundRunning. Code is ${(error as BusinessError).code}, message is ${(error as BusinessError).message}`);
       //     }
       //   } catch (error) {
-      //     console.error(`Failed to Operation getWantAgent. code is ${(error as BusinessError).code}, message is ${(error as BusinessError).message}`);
+      //     console.error(`Failed to Operation getWantAgent. Code is ${(error as BusinessError).code}, message is ${(error as BusinessError).message}`);
       //   }
       // }
    
@@ -259,7 +259,7 @@
       //     await backgroundTaskManager.stopBackgroundRunning(this.context);
       //     console.info(`Succeeded in operationing stopBackgroundRunning.`);
       //   } catch (error) {
-      //     console.error(`Failed to operation stopBackgroundRunning. code is ${(error as BusinessError).code}, message is ${(error as BusinessError).message}`)
+      //     console.error(`Failed to operation stopBackgroundRunning. Code is ${(error as BusinessError).code}, message is ${(error as BusinessError).message}`)
       //   }
       // }
    
