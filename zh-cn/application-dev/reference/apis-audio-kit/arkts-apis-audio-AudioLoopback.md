@@ -274,7 +274,7 @@ getReverbPreset(): AudioLoopbackReverbPreset
 
 | 类型                                              | 说明                                |
 | :------------------------------------------------ | :---------------------------------- |
-| AudioLoopbackEqualizerPreset | 返回当前音频返听器的混响模式。默认混响模式是 THEATRE|
+| AudioLoopbackReverbPreset | 返回当前音频返听器的混响模式。默认混响模式是THEATRE。|
 
 **示例：**
 
