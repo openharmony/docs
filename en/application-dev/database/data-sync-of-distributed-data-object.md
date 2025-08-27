@@ -400,7 +400,7 @@ export default class EntryAbility extends UIAbility {
  The sample code is as follows:
 
 ```ts
-import { AbilityConstant, Caller, common, UIAbility, Want } from '@kit.AbilityKit';
+import { AbilityConstant, Caller, UIAbility, Want } from '@kit.AbilityKit';
 import { distributedDataObject } from '@kit.ArkData';
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
