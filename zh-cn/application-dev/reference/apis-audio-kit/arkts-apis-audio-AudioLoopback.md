@@ -266,7 +266,7 @@ try {
 
 getReverbPreset(): AudioLoopbackReverbPreset
 
-得到当前音频返听器的混响模式。
+获取当前音频返听器的混响模式。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -291,7 +291,7 @@ try {
 
 setEqualizerPreset(preset: AudioLoopbackEqualizerPreset): boolean
 
-设置音频返听器的均衡器类型。
+设置音频返听器的均衡器模式。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -329,7 +329,7 @@ try {
 
 getEqualizerPreset(): AudioLoopbackEqualizerPreset
 
-得到当前音频返听器的均衡器类型。
+获取当前音频返听器的均衡器类型。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
