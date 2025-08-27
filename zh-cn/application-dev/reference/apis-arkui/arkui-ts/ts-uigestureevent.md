@@ -475,7 +475,7 @@ constructor(options?: SwipeGestureHandlerOptions)
 
 ### onAction
 
-onAction(event: Callback\<GestureEvent>): SwipeGestureHandlerOptions
+onAction(event: Callback\<GestureEvent>): SwipeGestureHandler
 
 Swipe手势识别成功回调。
 
@@ -493,7 +493,7 @@ Swipe手势识别成功回调。
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [SwipeGestureHandlerOptions](#swipegesturehandleroptions) | 返回当前滑动手势处理器对象。 |
+| [SwipeGestureHandler](#swipegesturehandler) | 返回当前滑动手势处理器对象。 |
 
 ## SwipeGestureHandlerOptions
 
