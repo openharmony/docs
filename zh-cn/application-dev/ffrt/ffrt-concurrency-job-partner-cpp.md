@@ -48,7 +48,7 @@ namespace market_system {
 ```cpp
 #include <array>
 #include <memory>
-#include "ffrt/ffrt.h"
+#include "ffrt/ffrt.h" // 来自 OpenHarmony 第三方库 "@ppd/ffrt"
 
 namespace market_system {
     // 批量创建节点，在js线程上被调用
@@ -78,8 +78,6 @@ namespace market_system {
 | 名称                                                                                                                                | 描述               |
 | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | [job_partner](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#job_partner)     | 细粒度任务伙伴接口。 |
-| [job_ring](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#job_ring)                         | 细粒度任务队列接口。 |
-| [job_promise](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#job_promise) | 细粒度任务返回值接口。 |
 
 > **说明：**
 >
