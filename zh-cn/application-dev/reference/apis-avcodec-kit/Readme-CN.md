@@ -1,5 +1,12 @@
 # AVCodec Kit（音视频编解码服务）
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @mr-chencxy; @zhanghongran; @yang-xiaoyu5-->
+<!--Designer: @dpy2650--->
+<!--Tester: @baotianhao; @cyakee-->
+<!--Adviser: @zengyawen-->
+
 - C API<!--avcodec-c-->
   - 模块<!--avcodec-module-->
     - [AVCapability](capi-avcapability.md)

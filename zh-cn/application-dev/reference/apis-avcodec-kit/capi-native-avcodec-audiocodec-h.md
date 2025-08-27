@@ -1,5 +1,12 @@
 # native_avcodec_audiocodec.h
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @mr-chencxy-->
+<!--Designer: @dpy2650--->
+<!--Tester: @baotianhao-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 音频编解码Native API的声明。
