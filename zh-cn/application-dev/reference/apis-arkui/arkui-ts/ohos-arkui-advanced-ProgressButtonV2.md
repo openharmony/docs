@@ -143,9 +143,9 @@ struct Index {
               let timer = setInterval(() => {
                 if (this.isRunning) {
                   if (this.progressIndex === 100) {
-
+                    clearInterval(timer);
                   } else {
-                    this.progressIndex++
+                    this.progressIndex++;
                     if (this.progressIndex === 100) {
                       this.textState = '已完成';
                       this.enableState = false;
