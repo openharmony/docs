@@ -12,7 +12,7 @@ HAP不支持导出接口或ArkUI组件给其他模块或应用使用，如果需
 1. 修改HAP模块下的[module.json5](./module-configuration-file.md)文件，具体操作如下：
     - 将type标签值改为har，删除mainElement、deliveryWithInstall、installationFree和pages标签。
     - 由于HAR模块不支持ExtensionAbility，需要删除extensionAbilities标签，并将关联的ExtensionAbility组件删除或迁移到其他HAP模块中。
-    - 由于HAR模块在API version 13及以下不支持UIAbility，如果当前的API version低于或等于13，需要删除abilities标签，并将关联的UIAbility组件删除或迁移到其他HAP模块中。
+    - 由于HAR模块在API version 13及以下不支持UIAbility，因此在API version 13及以前的版本，需要删除abilities标签，并将关联的UIAbility组件删除或迁移到其他HAP模块中。
     ```json
     {
         "module": {
