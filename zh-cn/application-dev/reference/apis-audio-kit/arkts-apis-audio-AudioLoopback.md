@@ -337,7 +337,7 @@ getEqualizerPreset(): AudioLoopbackEqualizerPreset
 
 | 类型                                              | 说明                                |
 | :------------------------------------------------ | :---------------------------------- |
-| AudioLoopbackEqualizerPreset | 返回当前音频返听器的均衡器类型。默认均衡器类型是 FULL|
+| AudioLoopbackEqualizerPreset | 返回当前音频返听器的均衡器类型。默认均衡器类型是FULL。|
 
 **示例：**
 
