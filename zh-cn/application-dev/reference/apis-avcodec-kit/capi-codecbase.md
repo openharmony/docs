@@ -1,5 +1,12 @@
 # CodecBase
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @mr-chencxy-->
+<!--Designer: @dpy2650--->
+<!--Tester: @baotianhao-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 CodecBase模块提供用于音视频封装、解封装、编解码基础功能的变量、属性以及函数。
