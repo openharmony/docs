@@ -167,8 +167,8 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 
 ### 生成VPN Id
 
-当VPN应用需要创建新的VPN ，需要生成一个VPN Id 作为VPN 的唯一标识。
-您可参考如下示例：
+创建新的VPN时，应生成一个VPN Id作为VPN的唯一标识。
+可参考如下示例：
 
 ```ts
 import VpnExtensionAbility from "@ohos.app.ability.VpnExtensionAbility";
@@ -190,7 +190,7 @@ export default class VpnTest extends VpnExtensionAbility {
 
 ### 断开VPN
 
-当VPN应用需要断开VPN ，您可参考如下示例：
+若需断开VPN，可参考如下示例：
 ```ts
 import VpnExtensionAbility from "@ohos.app.ability.VpnExtensionAbility";
 import { vpnExtension } from "@kit.NetworkKit";
