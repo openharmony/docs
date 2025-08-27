@@ -18,7 +18,7 @@ import { uiExtensionHost } from '@kit.ArkUI';
 
 ## UIExtensionHostWindowProxy
 
-### getWindowAvoidArea<sup>11+</sup>
+### getWindowAvoidArea
 
 getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 
@@ -62,7 +62,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-### on('avoidAreaChange')<sup>11+</sup>
+### on('avoidAreaChange')
 
 on(type: 'avoidAreaChange', callback: Callback<{ type: window.AvoidAreaType, area: window.AvoidArea }>): void
 
@@ -100,7 +100,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-### off('avoidAreaChange')<sup>11+</sup>
+### off('avoidAreaChange')
 
 off(type: 'avoidAreaChange', callback?: Callback<{ type: window.AvoidAreaType, area: window.AvoidArea }>): void
 
@@ -136,7 +136,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-### on('windowSizeChange')<sup>11+</sup>
+### on('windowSizeChange')
 
 on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 
@@ -174,7 +174,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-### off('windowSizeChange')<sup>11+</sup>
+### off('windowSizeChange')
 
 off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 
@@ -240,16 +240,17 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-### hideNonSecureWindows<sup>11+</sup>
+### hideNonSecureWindows
 
 hideNonSecureWindows(shouldHide: boolean): Promise&lt;void&gt;
 
-设置是否隐藏不安全窗口。
+设置是否隐藏不安全窗口，使用Promise异步回调。
 > **说明：**
 >
 > - 不安全窗口是指可能遮挡[EmbeddedComponent](arkui-ts/ts-container-embedded-component.md)（或[UIExtensionComponent](arkui-ts/ts-container-ui-extension-component-sys.md)）组件的窗口，如全局悬浮窗、宿主子窗口和宿主创建的Dialog窗口（不包括系统应用创建的上述类型窗口）。
 > - 当EmbeddedComponent（或UIExtensionComponent）组件被用来显示敏感操作提示内容时，可以选择隐藏不安全窗口，保护敏感操作提示内容不会被遮挡。当EmbeddedComponent（或UIExtensionComponent）组件不显示或销毁时需要让不安全窗口重新显示。
 > - 针对PC/2in1设备，当调用hideNonSecureWindows(true)时，不安全窗口中的全局悬浮窗不会被隐藏。
+
 **需要权限**：ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
@@ -516,7 +517,7 @@ export default class EntryAbility extends UIExtensionAbility {
 
 | 名称                         | 类型        | 必填      | 说明                             |
 | ------------------------------ | ----------- | -------------------------------- | -------------------------------- |
-| uiExtensionHostWindowProxyRect<sup>11+</sup> | [window.Rect](arkts-apis-window-i.md#rect7) | 是 | UIExtensionComponent的位置和宽高。 |
+| uiExtensionHostWindowProxyRect | [window.Rect](arkts-apis-window-i.md#rect7) | 是 | UIExtensionComponent的位置和宽高。 |
 
 ## 完整示例
 

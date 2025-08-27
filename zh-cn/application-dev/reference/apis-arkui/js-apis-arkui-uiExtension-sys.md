@@ -18,11 +18,11 @@ import { uiExtension } from '@kit.ArkUI';
 
 UIExtension宿主窗代理。
 
-### hideNonSecureWindows<sup>12+</sup>
+### hideNonSecureWindows
 
 hideNonSecureWindows(shouldHide: boolean): Promise\<void>
 
-设置是否隐藏不安全窗口。
+设置是否隐藏不安全窗口，使用Promise异步回调。
 
 > **说明：**
 >
@@ -87,7 +87,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-### setWaterMarkFlag<sup>12+</sup>
+### setWaterMarkFlag
 
 setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 
