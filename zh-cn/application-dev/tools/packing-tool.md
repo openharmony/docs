@@ -683,6 +683,23 @@ Check atomicService size failed.
 
 优化并减少包的大小，例如删除不必要的资源、精简代码或减少依赖。
 
+### 10012054 校验HAR去重属性失败
+**错误信息**
+
+Check deduplicateHar field failed.
+
+**错误描述**
+
+打包HSP/HAP时，校验module.json文件中的deduplicateHar属性（是否HAR去重）失败。
+
+**可能原因**
+
+HSP/HAP模块module.json文件中minAPIVersion小于21，且deduplicateHar的值为true。
+
+**处理步骤**
+
+打包HSP/HAP时，如果deduplicateHar的属性值为true时，则要求minAPIVersion大于等于21。
+
 ### 10013005 检查模块bundleType失败
 **错误信息**
 
