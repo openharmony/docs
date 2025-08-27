@@ -266,7 +266,7 @@ try {
 
 getReverbPreset(): AudioLoopbackReverbPreset
 
-获取当前音频返听器的混响模式。
+获取当前音频返听器的混响模式。在没有被修改的情况下，默认的混响模式是THEATRE。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -274,7 +274,7 @@ getReverbPreset(): AudioLoopbackReverbPreset
 
 | 类型                                              | 说明                                |
 | :------------------------------------------------ | :---------------------------------- |
-| AudioLoopbackReverbPreset | 返回当前音频返听器的混响模式。默认混响模式是THEATRE。|
+| [AudioLoopbackReverbPreset](arkts-apis-audio-e.md#audioloopbackreverbpreset21) | 返回当前音频返听器的混响模式。默认混响模式是THEATRE。|
 
 **示例：**
 
@@ -305,7 +305,7 @@ setEqualizerPreset(preset: AudioLoopbackEqualizerPreset): boolean
 
 | 类型                                              | 说明                                |
 | :------------------------------------------------ | :---------------------------------- |
-| boolean | 返回均衡器类型是否设置成功。 |
+| boolean | 返回均衡器类型是否设置成功。true表示成功，false表示不成功。 |
 
 **错误码：**
 
@@ -329,7 +329,7 @@ try {
 
 getEqualizerPreset(): AudioLoopbackEqualizerPreset
 
-获取当前音频返听器的均衡器类型。
+获取当前音频返听器的均衡器类型。在没有被修改的情况下，默认的均衡器类型是FULL。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -337,7 +337,7 @@ getEqualizerPreset(): AudioLoopbackEqualizerPreset
 
 | 类型                                              | 说明                                |
 | :------------------------------------------------ | :---------------------------------- |
-| AudioLoopbackEqualizerPreset | 返回当前音频返听器的均衡器类型。默认均衡器类型是FULL。|
+| [AudioLoopbackEqualizerPreset](arkts-apis-audio-e.md#audioloopbackequalizerpreset21) | 返回当前音频返听器的均衡器类型。默认均衡器类型是FULL。|
 
 **示例：**
 
