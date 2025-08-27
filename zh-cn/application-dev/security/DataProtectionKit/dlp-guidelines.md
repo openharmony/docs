@@ -372,7 +372,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     | -------- | -------- | -------- |
       | attributeId |string | 属性信息名称。 |
     | attributeValues | Array&lt;string&gt; | 属性值，一条属性信息可以设置多个属性值，最多32个。 |
-    | valueType | number | 属性值类型，0表示整形，1代表字符串。 |
+    | valueType | number | 属性值类型，0表示整型，1代表字符串。 |
     | opt | number | 判断方法，用于真实属性信息与策略属性信息作比较。 |
 
     16.4 当前支持的属性信息
