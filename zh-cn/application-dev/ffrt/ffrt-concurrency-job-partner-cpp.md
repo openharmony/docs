@@ -29,47 +29,47 @@ Job Partner中定义原先的线程为master线程，并支持动态管理partne
 
 以下是原有伪代码实现：
 
-````cpp
-    namespace market_system {
-        // 批量创建节点，在js线程上被调用
-        void create_nodes(std::array<Node>& nodes)
-        {
-            for (int i = 0; i < nodes.size(); i++) {
-                code1(); // 可以在任意线程上执行的代码片段
-                code2(); // 必须在js线程上执行的代码片段
-                code3(); // 可以在任意线程上执行的代码片段
-            }
+```cpp
+namespace market_system {
+    // 批量创建节点，在js线程上被调用
+    void create_nodes(std::array<Node>& nodes)
+    {
+        for (int i = 0; i < nodes.size(); i++) {
+            code1(); // 可以在任意线程上执行的代码片段
+            code2(); // 必须在js线程上执行的代码片段
+            code3(); // 可以在任意线程上执行的代码片段
         }
-    };
-````
+    }
+};
+```
 
 使用Job Partner并行化后的伪代码如下：
 
-````cpp
-    #include <array>
-    #include <memory>
-    #include "ffrt/ffrt.h" // 来自 OpenHarmony 第三方库 "@ppd/ffrt"
+```cpp
+#include <array>
+#include <memory>
+#include "ffrt/ffrt.h"
 
-    namespace market_system {
-        // 批量创建节点，在js线程上被调用
-        void create_nodes(std::array<Node>& nodes)
-        {
-            constexpr uint64_t stack_size = 16 * 1024;
-            auto stack = std::make_unique<std::array<char, stack_size>[]>(nodes.size()); // 创建job_num个执行栈
-            auto partner = ffrt::job_partner<>::get_partner_of_this_thread(); // 获得当前js线程的伙伴
-            for (int i = 0; i < nodes.size(); i++) {
-                partner->submit([&] { // 每个节点的创建提交给partner
-                    code1(); // 可以在任意线程上执行的代码片段
-                    ffrt::job_partner<>::submit_to_master([&] { // 遇到必须在master线程执行的任务时发给主线程并同步等待
-                        code2(); // 必须在js线程上执行的代码片段
-                    });
-                    code3(); // 可以在任意线程上执行的代码片段
-                }, &stack[i], stack_size);
-            }
-            partner->wait(); // 等待所有节点创建完成
+namespace market_system {
+    // 批量创建节点，在js线程上被调用
+    void create_nodes(std::array<Node>& nodes)
+    {
+        constexpr uint64_t stack_size = 16 * 1024;
+        auto stack = std::make_unique<std::array<char, stack_size>[]>(nodes.size()); // 创建job_num个执行栈
+        auto partner = ffrt::job_partner<>::get_partner_of_this_thread(); // 获得当前js线程的伙伴
+        for (int i = 0; i < nodes.size(); i++) {
+            partner->submit([&] { // 每个节点的创建提交给partner
+                code1(); // 可以在任意线程上执行的代码片段
+                ffrt::job_partner<>::submit_to_master([&] { // 遇到必须在master线程执行的任务时发给主线程并同步等待
+                    code2(); // 必须在js线程上执行的代码片段
+                });
+                code3(); // 可以在任意线程上执行的代码片段
+            }, &stack[i], stack_size);
         }
-    };
-````
+        partner->wait(); // 等待所有节点创建完成
+    }
+};
+```
 
 ## 接口说明
 
@@ -88,6 +88,6 @@ Job Partner中定义原先的线程为master线程，并支持动态管理partne
 
 ## 约束限制
 
-- 适用Job Partner并发范式的场景是粒度较小、不会长时间阻塞线程的大批量任务。
-- 如果任务粒度较大（例如数百微秒以上），建议使用FFRT的通用任务提交接口。
-- 如果任务不满足大批量的特征，使用Job Partner并发范式无法显著降低调度开销。
+- 适用Job Partner并发范式的场景应该是粒度较小且不会长时间阻塞线程的大批量任务。
+- 如果任务粒度较大（比如数百微秒以上），推荐使用FFRT更为通用的任务提交接口。
+- 如果任务不满足大批量的特征，使用Job Partner并发范式并不能显著降低调度开销。
