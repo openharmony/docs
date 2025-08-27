@@ -97,6 +97,7 @@ struct Index {
               let timer = setInterval(() => {
                 if (this.isRunning) {
                   if (this.progressIndex === 100) {
+                    clearInterval(timer);
                   } else {
                     this.progressIndex++;
                     if (this.progressIndex === 100) {
@@ -158,6 +159,7 @@ struct Index {
               let timer = setInterval(() => {
                 if (this.isRunning) {
                   if (this.progressIndex === 100) {
+                    clearInterval(timer);
                   } else {
                     this.progressIndex++;
                     if (this.progressIndex === 100) {
@@ -211,6 +213,7 @@ struct Index {
               let timer = setInterval(() => {
                 if (this.isRunning) {
                   if (this.progressIndex === 100) {
+                    clearInterval(timer);
                   } else {
                     this.progressIndex++;
                     if (this.progressIndex === 100) {
