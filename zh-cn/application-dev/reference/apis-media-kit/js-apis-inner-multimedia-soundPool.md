@@ -300,13 +300,12 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 **示例2：**
 
-<!-- code_no_check-->
 ```ts
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-create(context: Context) {
+function create(context: Context) {
   // 创建soundPool实例。
   let soundPool: media.SoundPool;
   let audioRendererInfo: audio.AudioRendererInfo = {
@@ -418,13 +417,12 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 **示例2：**
 
-<!-- code_no_check-->
 ```ts
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-create(context: Context) {
+function create(context: Context) {
   // 创建soundPool实例。
   let soundPool: media.SoundPool;
   let audioRendererInfo: audio.AudioRendererInfo = {
