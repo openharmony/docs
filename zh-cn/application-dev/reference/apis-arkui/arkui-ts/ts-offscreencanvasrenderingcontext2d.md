@@ -775,6 +775,7 @@ struct ShadowOffsetY {
 struct ImageSmoothingEnabled {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  // "common/images/icon.jpg"需要替换为开发者所需的图像资源文件
   private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg");
   private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
   
@@ -812,6 +813,7 @@ struct ImageSmoothingEnabled {
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.
 settings);
     private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
+    // "common/images/example.jpg"需要替换为开发者所需的图像资源文件
     private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
 
     build() {
@@ -891,6 +893,7 @@ justifyContent: FlexAlign.Center }) {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
     private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
+    // "common/images/example.jpg"需要替换为开发者所需的图像资源文件
     private img: ImageBitmap = new ImageBitmap("common/images/example.jpg");
 
     build() {
@@ -1677,6 +1680,7 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
   struct CreatePattern {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    // "common/images/example.jpg"需要替换为开发者所需的图像资源文件
     private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
     private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
@@ -3068,6 +3072,7 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
   struct DrawImage {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    // "common/images/example.jpg"需要替换为开发者所需的图像资源文件
     private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
     private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
     build() {
@@ -3175,6 +3180,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
   struct GetPixelMap {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    // "common/images/example.jpg"需要替换为开发者所需的图像资源文件
     private img: ImageBitmap = new ImageBitmap("common/images/example.jpg");
     private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
@@ -3256,6 +3262,7 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
     private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
+    // "/common/images/1234.png"需要替换为开发者所需的图像资源文件
     private img:ImageBitmap = new ImageBitmap("/common/images/1234.png");
 
     build() {

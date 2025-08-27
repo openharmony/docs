@@ -612,6 +612,7 @@ setCurrentTime(value: number, seekMode: SeekMode)
 @Entry
 @Component
 struct VideoCreateComponent {
+  // $rawfile('video1.mp4')、$r('app.media.poster1')需要分别替换为开发者所需的视频、图片资源文件
   @State videoSrc: Resource = $rawfile('video1.mp4');
   @State previewUri: Resource = $r('app.media.poster1');
   @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
@@ -677,11 +678,12 @@ struct VideoCreateComponent {
         })
 
       Row() {
+        // $rawfile('video2.mp4')、$r('app.media.poster2')需要分别替换为开发者所需的视频、图片资源文件
         Button('src').onClick(() => {
-          this.videoSrc = $rawfile('video2.mp4') // 切换视频源
+          this.videoSrc = $rawfile('video2.mp4') // 切换视频源。
         }).margin(5)
         Button('previewUri').onClick(() => {
-          this.previewUri = $r('app.media.poster2') // 切换视频预览海报
+          this.previewUri = $r('app.media.poster2') // 切换视频预览海报。
         }).margin(5)
         Button('controls').onClick(() => {
           this.showControls = !this.showControls // 切换是否显示视频控制栏
@@ -743,6 +745,7 @@ interface FullscreenObject {
 @Entry
 @Component
 struct ImageAnalyzerExample {
+  // $rawfile('video1.mp4')、$r('app.media.poster1')需要分别替换为开发者所需的视频、图片资源文件
   @State videoSrc: Resource = $rawfile('video1.mp4');
   @State previewUri: Resource = $r('app.media.poster1');
   controller: VideoController = new VideoController();
@@ -802,6 +805,7 @@ import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 @Entry
 @Component
 struct Index {
+  // $rawfile('video1.mp4')需要替换为开发者所需的视频资源文件
   @State videoSrc: Resource | string = $rawfile('video1.mp4');
   private controller: VideoController = new VideoController();
 
@@ -839,6 +843,7 @@ struct Index {
 @Entry
 @Component
 struct VideoObject {
+  // $rawfile('rabbit.mp4')、$r('app.media.tree')需要分别替换为开发者所需的视频、图片资源文件
   @State videoSrc: Resource = $rawfile('rabbit.mp4');
   @State previewUri: Resource = $r('app.media.tree');
   @State showControls: boolean = true;
@@ -991,6 +996,7 @@ class MyVideoModifier implements AttributeModifier<VideoAttribute> {
 @Entry
 @Component
 struct VideoModifierDemo {
+  // $rawfile('video.mp4')需要替换为开发者所需的视频资源文件
   @State videoSrc: Resource = $rawfile('video.mp4');
   @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
   @State isAutoPlay: boolean = false;
