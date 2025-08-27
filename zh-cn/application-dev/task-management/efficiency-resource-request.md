@@ -1,5 +1,12 @@
 # 能效资源申请(ArkTS)（仅对系统特权应用开放）
 
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: ResourceSchedule-->
+<!--Owner: @cheng-shichang-->
+<!--Designer: @zhouben25-->
+<!--Tester: @fenglili18-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## 概述
 
 ### 功能介绍

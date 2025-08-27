@@ -1,5 +1,12 @@
 # oh_commonevent_support.h
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
+
 ## 概述
 
 提供系统定义的公共事件常量。

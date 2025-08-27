@@ -172,7 +172,7 @@ DASH流媒体资源包含多路不同分辨率、码率、采样率、编码格�
           let propertyWidth: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_WIDTH];
           let propertyHeight: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_HEIGHT];
           if (propertyType == media.MediaType.MEDIA_TYPE_VID && propertyWidth == 1920 && propertyHeight == 1080) {
-            this.videoTrackIndex = parseInt(propertyIndex.toString()); // 获取1080p视频轨道索引。
+            this.videoTrackIndex = parseInt(propertyIndex?.toString()); // 获取1080p视频轨道索引。
           }
         }
       } else {

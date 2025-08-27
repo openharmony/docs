@@ -20,7 +20,7 @@
 
 ## 接口
 
-### RichEditor<sup>10+</sup>
+### RichEditor
 
 RichEditor(value: RichEditorOptions)
 
@@ -103,7 +103,7 @@ bindSelectionMenu(spanType: RichEditorSpanType, content: CustomBuilder, response
 | spanType     | [RichEditorSpanType](#richeditorspantype)                    | 是   | 菜单的类型。<br/>默认值：<br/>RichEditorSpanType.TEXT    |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)                  | 是   | 菜单的内容。                                              |
 | responseType | &nbsp;[ResponseType](ts-appendix-enums.md#responsetype8)&nbsp; \| &nbsp;[RichEditorResponseType](#richeditorresponsetype11) | 是   | 菜单的响应类型。<br/> 默认值：<br/>ResponseType.LongPress |
-| options      | [SelectionMenuOptions](#selectionmenuoptions10)              | 否   | 菜单的选项。                                              |
+| options      | [SelectionMenuOptions](#selectionmenuoptions)              | 否   | 菜单的选项。                                              |
 
 ### copyOptions
 
@@ -413,7 +413,7 @@ stopBackPress(isStopped: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)&lt;boolean&gt; | 否   | 是否阻止返回键。<br/>默认值：true，true表示阻止返回键，false表示不阻止返回键。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值。|
+| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)&lt;boolean&gt; | 是   | 是否阻止返回键。<br/>默认值：true，true表示阻止返回键，false表示不阻止返回键。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值。|
 
 ### undoStyle<sup>20+</sup>
 
@@ -431,7 +431,7 @@ undoStyle(style: Optional&lt;UndoStyle&gt;)
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)&lt;[UndoStyle](#undostyle20-1)&gt; | 否   | 撤销还原是否保留原样式选项。默认值：UndoStyle.CLEAR_STYLE |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)&lt;[UndoStyle](#undostyle20-1)&gt; | 是   | 撤销还原是否保留原样式选项。默认值：UndoStyle.CLEAR_STYLE |
 
 ### enableAutoSpacing<sup>20+</sup>
 
@@ -448,6 +448,23 @@ enableAutoSpacing(enable: Optional\<boolean>)
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
+
+### scrollBarColor<sup>21+</sup>
+
+scrollBarColor(color: Optional\<ColorMetrics>)
+
+设置组件滚动条颜色。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                     |
+| ------ | ------------------------------------------------------------ | ---- | ---------------------------------------- |
+| color  | [Optional\<ColorMetrics>](../js-apis-arkui-graphics.md#colormetrics12) | 是   | 设置组件滚动条颜色。<br />默认值：'\#66182431' |
+
 
 ## 事件
 
@@ -1110,7 +1127,7 @@ selectionStart和selectionEnd均为-1时表示全选，均为0时可以清空选
 | -------------- | ------ | ---- | ------- |
 | selectionStart | number | 是    | 选中开始位置。 |
 | selectionEnd   | number | 是    | 选中结束位置。 |
-| options<sup>12+</sup>   | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选择项配置。 |
+| options<sup>12+</sup>   | [SelectionOptions](ts-universal-attributes-text-style.md#selectionoptions12对象说明) | 否    | 选择项配置。 |
 
 ### isEditing<sup>12+</sup>
 
@@ -1822,7 +1839,7 @@ RichEditor span信息。
 | [RichEditorImageSpanResult](#richeditorimagespanresult) | 后端返回的图片信息。 |
 | [RichEditorTextSpanResult](#richeditortextspanresult) | 后端返回的文本信息。 |
 
-## SelectionMenuOptions<sup>10+</sup>
+## SelectionMenuOptions
 
 菜单的选项。
 
@@ -2132,7 +2149,8 @@ struct Index {
                   fontSize: 30
                 }
               })
-            this.controller.addImageSpan($r("app.media.icon"),
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'),
               {
                 imageStyle:
                 {
@@ -2327,9 +2345,10 @@ struct SelectionMenu {
   @State colorTransparent: Color = Color.Transparent;
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
+  // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
   private iconArr: Array<Resource> =
-    [$r('app.media.icon'), $r("app.media.icon"), $r('app.media.icon'),
-    $r("app.media.icon"), $r('app.media.icon')];
+    [$r('app.media.startIcon'), $r('app.media.startIcon'), $r('app.media.startIcon'),
+    $r('app.media.startIcon'), $r('app.media.startIcon')];
   @State iconBgColor: ResourceColor[] = new Array(this.iconArr.length).fill(this.colorTransparent);
   @State pasteEnable: boolean = false;
   @State visibilityValue: Visibility = Visibility.Visible;
@@ -2351,10 +2370,14 @@ struct SelectionMenu {
       }
     }
     let sysBoard = pasteboard.getSystemPasteboard()
-    if (sysBoard && sysBoard.hasDataSync()) {
-      this.pasteEnable = true;
-    } else {
-      this.pasteEnable = false;
+    try {
+      if (sysBoard && sysBoard.hasDataSync()) {
+        this.pasteEnable = true
+      } else {
+        this.pasteEnable = false
+      }
+    } catch (err) {
+      console.error('Failed to check the PasteData. Cause:' + err.message)
     }
   }
 
@@ -2886,7 +2909,8 @@ struct Index {
         Button('addImageSpan1')
           .fontSize(12)
           .onClick(() => {
-            this.controller.addImageSpan($r('app.media.app_icon'), {
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'), {
               imageStyle: {
                 size: ["80px", "80px"],
                 layoutStyle: {
@@ -2900,7 +2924,8 @@ struct Index {
         Button('addImageSpan2')
           .fontSize(12)
           .onClick(() => {
-            this.controller.addImageSpan($r('app.media.app_icon'), {
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'), {
               imageStyle: {
                 size: ["100px", "100px"],
                 verticalAlign: ImageSpanAlignment.BOTTOM,
@@ -2915,7 +2940,8 @@ struct Index {
         Button('addImageSpan3')
           .fontSize(12)
           .onClick(() => {
-            this.controller.addImageSpan($r('app.media.app_icon'), {
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'), {
               imageStyle: {
                 size: ["60px", "60px"],
                 verticalAlign: ImageSpanAlignment.BOTTOM,
@@ -2944,7 +2970,8 @@ struct Index {
                 }
               })
 
-            this.controller.addImageSpan($r("app.media.app_icon"),
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'),
               {
                 imageStyle:
                 {
@@ -3078,7 +3105,8 @@ struct Index {
               }
             })
 
-            this.controller.addImageSpan($r("app.media.icon"),
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'),
               {
                 imageStyle:
                 {
@@ -3565,7 +3593,8 @@ struct Index {
 @Builder
 function placeholderBuilder2() {
   Row({ space: 2 }) {
-    Image($r("app.media.icon")).width(24).height(24).margin({ left: -5 })
+    // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+    Image($r('app.media.startIcon')).width(24).height(24).margin({ left: -5 })
     Text('okokokok').fontSize(10)
   }.width('20%').height(50).padding(10).backgroundColor(Color.Red)
 }
@@ -3587,7 +3616,8 @@ struct Index {
   @Builder
   placeholderBuilder() {
     Row({ space: 2 }) {
-      Image($r("app.media.icon")).width(24).height(24).margin({ left: -5 })
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+      Image($r('app.media.startIcon')).width(24).height(24).margin({ left: -5 })
       Text('Custom Popup').fontSize(10)
     }.width(100).height(50).padding(5)
   }
@@ -3655,8 +3685,9 @@ struct Index {
   @Builder
   MyMenu() {
     Menu() {
-      MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项1" })
-      MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项2" })
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+      MenuItem({ startIcon: $r('app.media.startIcon'), content: "菜单选项1" })
+      MenuItem({ startIcon: $r('app.media.startIcon'), content: "菜单选项2" })
         .enabled(false)
     }
   }
@@ -3748,7 +3779,8 @@ struct Index {
                   fontSize: 30
                 }
               })
-            this.controller.addImageSpan($r("app.media.icon"),
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'),
               {
                 imageStyle:
                 {
@@ -3810,7 +3842,8 @@ struct Index {
           })
         Button("add image")
           .onClick(() => {
-            let num = this.controller.addImageSpan($r("app.media.icon"), {
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            let num = this.controller.addImageSpan($r('app.media.startIcon'), {
               imageStyle: {
                 size: ["50px", "50px"],
                 verticalAlign: ImageSpanAlignment.BOTTOM,
@@ -3992,7 +4025,8 @@ struct Index {
       Button("addImageTextBuilder")
         .onClick(() => {
           let insertOffset = this.controller.getCaretOffset();
-          let builder = new BuilderObject('Custom PopUP ' + this.builderId, 'imageTextBuilder', 'app.media.icon');
+          // 'app.media.startIcon'需要替换为开发者所需的图像资源文件。
+          let builder = new BuilderObject('Custom PopUP ' + this.builderId, 'imageTextBuilder', 'app.media.startIcon');
           this.customBuilder = () => {
             this.imageTextBuilder(builder);
           }
@@ -4923,8 +4957,9 @@ struct Index {
           Button("插入图片")
             .stateEffect(true)
             .onClick(() => {
+              // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
               let imageStyledString = new MutableStyledString(new ImageAttachment({
-                resourceValue: $r('app.media.app_icon'),
+                resourceValue: $r('app.media.startIcon'),
                 size: { width: 50, height: 50 },
                 layoutStyle: { borderRadius: LengthMetrics.vp(10) },
                 verticalAlign: ImageSpanAlignment.BASELINE,
@@ -5102,6 +5137,7 @@ struct RichEditorExample {
       TextMenuItemId.AI_WRITER
     ]
     const items = menuItems.filter(item => !idsToFilter.some(id => id.equals(item.id)))
+    // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
     let item1: TextMenuItem = {
       content: 'create1',
       icon: $r('app.media.startIcon'),
@@ -5135,6 +5171,7 @@ struct RichEditorExample {
     }
     return false;
   }
+  // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
   onPrepareMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'prepare1_' + this.endIndex,
@@ -5175,11 +5212,13 @@ struct RichEditorExample {
 ![RichEditorEditMenuOptions](figures/richEditorEditMenuOptions.gif)
 
 ### 示例24（组件部分常用属性）
-从API version 18开始，该示例通过[barState](#barstate13)属性设置组件滚动条的显示模式。通过[enableKeyboardOnFocus](#enablekeyboardonfocus12)属性设置组件通过点击以外的方式获焦时，是否主动拉起软键盘。通过[enableHapticFeedback](#enablehapticfeedback13)属性设置组件是否支持触感反馈。通过[getPreviewText](#getpreviewtext12)接口获取组件预上屏信息。通过[stopBackPress](#stopbackpress18)属性设置是否阻止返回键向其它组件或应用侧传递。
+从API version 18开始，该示例通过[barState](#barstate13)属性设置组件滚动条的显示模式。通过[enableKeyboardOnFocus](#enablekeyboardonfocus12)属性设置组件通过点击以外的方式获焦时，是否主动拉起软键盘。通过[enableHapticFeedback](#enablehapticfeedback13)属性设置组件是否支持触感反馈。通过[getPreviewText](#getpreviewtext12)接口获取组件预上屏信息。通过[stopBackPress](#stopbackpress18)属性设置是否阻止返回键向其它组件或应用侧传递。</br>
+从API version 21开始，该示例通过[scrollBarColor](#scrollbarcolor21)属性设置RichEditor组件滚动条颜色。
 
 ```ts
 // xxx.ets
 import { JSON } from '@kit.ArkTS';
+import { ColorMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -5202,9 +5241,9 @@ struct RichEditor_example {
           this.controller.addTextSpan('文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本', {
             style: {
               fontColor: Color.Black,
-              fontSize: 15
+              fontSize: 20
             }
-          })
+          });
         })
         .onDidIMEInput((value: TextRange) => {
           this.controller1.addTextSpan("\n" + "触发了onDidIMEInput回调,输入法本次输入内容范围为：(" + value.start + "," + value.end + ")", {
@@ -5212,7 +5251,7 @@ struct RichEditor_example {
               fontColor: Color.Gray,
               fontSize: 10
             }
-          })
+          });
         })
         .onSelectionChange((value: RichEditorRange) => {
           this.controller1.addTextSpan("\n" + "触发了onSelectionChange回调，起始范围信息为：(" + value.start + "," + value.end + ")", {
@@ -5220,7 +5259,7 @@ struct RichEditor_example {
               fontColor: Color.Gray,
               fontSize: 10
             }
-          })
+          });
         })
         .width(300)
         .height(100)
@@ -5228,7 +5267,8 @@ struct RichEditor_example {
         .barState(this.bs[this.bs_num])
         .enableKeyboardOnFocus(this.e)
         .enableHapticFeedback(true)
-        .stopBackPress(false);
+        .stopBackPress(false)
+        .scrollBarColor(ColorMetrics.resourceColor("#2787D9"));
 
       RichEditor(this.options1).width(300)
 
@@ -5261,7 +5301,7 @@ struct RichEditor_example {
 
 ```
 
-![StyledString](figures/example23.gif)
+![StyledString](figures/rich_editor_example24.gif)
 
 ### 示例25（获取光标相对组件位置的矩形）
 从API version 18开始，该示例通过RichEditorBaseController的[getCaretRect](#getcaretrect18)方法来获取当前光标相对于组件位置的Rect。
@@ -5361,7 +5401,8 @@ struct RichEditorExample {
       Row() {
         Button("插入占1字符数的图片")
           .onClick(() => {
-            this.controller1.addImageSpan($r("app.media.app_icon"),
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller1.addImageSpan($r('app.media.startIcon'),
               {
                 imageStyle:
                 {
@@ -5492,7 +5533,8 @@ struct StyledUndo {
               })
           })
           Button("插入图片").onClick(() => {
-            this.controller.addImageSpan($r("app.media.icon"),
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'),
               {
                 imageStyle:
                 {
@@ -5560,7 +5602,8 @@ struct StyledUndo {
       Column() {
         RichEditor(this.options)
           .onReady(()=>{
-            this.controller.addImageSpan($r("app.media.icon"),
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'),
             {
               imageStyle:
               {
@@ -5847,7 +5890,8 @@ struct AutoSpacing {
               })
           })
           Button("插入图片").onClick(() => {
-            this.controller.addImageSpan($r("app.media.icon"),
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'),
               {
                 imageStyle:
                 {
@@ -5889,7 +5933,8 @@ struct AutoSpacing {
       Column() {
         RichEditor(this.options)
           .onReady(() => {
-            this.controller.addImageSpan($r("app.media.icon"),
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            this.controller.addImageSpan($r('app.media.startIcon'),
               {
                 imageStyle:
                 {

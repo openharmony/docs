@@ -1,4 +1,10 @@
 # 常见问题
+<!--Kit: Common-->
+<!--Subsystem: Common-->
+<!--Owner: @fang-jinxu-->
+<!--Designer: @lingminghw-->
+<!--Tester: @RayShih-->
+<!--Adviser: @fang-jinxu-->
 
 - [如何编译full-SDK](full-sdk-compile-guide.md)
 - [如何替换full-SDK](full-sdk-switch-guide.md)
@@ -11,6 +17,7 @@
   - [ArkUI动画/交互事件开发常见问题(ArkTS)](faqs-arkui-animation-interactive-event.md)
 - [ArkUI框架开发常见问题(JS)](faqs-arkui-js.md)
 - [ArkTS语言基础类库开发常见问题](faqs-arkts-utils.md)
+- [ArkTS语言模块化加载异常常见问题](faqs-arkts-module.md)
 - [Web开发常见问题](faqs-arkui-web.md)
 - [包管理开发常见问题](faqs-bundle-management.md)
 - [资源管理开发常见问题](faqs-globalization.md)

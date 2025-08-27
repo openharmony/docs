@@ -30,7 +30,7 @@
 
 PanGesture(value?: { fingers?: number; direction?: PanDirection; distance?: number } | PanGestureOptions)
 
-设置滑动手势事件。
+继承自[GestureInterface\<T>](ts-gesture-settings.md#gestureinterfacet11)，设置滑动手势事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -82,7 +82,7 @@ PanGesture(options?: PanGestureHandlerOptions)
 
 ### constructor
 
-PanGestureOptions(value?: { fingers?: number, direction?: PanDirection, distance?: number })
+constructor(value?: { fingers?: number; direction?: PanDirection; distance?: number })
 
 通过PanGestureOptions对象接口可以动态修改平移手势识别器的属性，从而避免通过状态变量修改属性（状态变量修改会导致UI刷新）。
 
@@ -331,15 +331,6 @@ Pan手势识别成功，接收到触摸取消事件触发回调。返回手势�
 | 参数名 | 类型                                       | 必填 | 说明                         |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
 | event  |  Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是   | 手势信息回调函数。 |
-
-## 属性
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称 | 类型    | 只读 | 可选 | 说明                     |
-| ----  | ------ | ---- | ---- | ----------------------- |
-| tag<sup>11+</sup>   | string  | 否 | 否 | 设置Pan手势标志，用于自定义手势判定时区分绑定的手势。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)>  | 否 | 否 | 设置Pan手势支持的事件输入源。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## 示例
 

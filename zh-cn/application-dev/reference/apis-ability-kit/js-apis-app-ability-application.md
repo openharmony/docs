@@ -63,7 +63,7 @@ export default class EntryAbility extends UIAbility {
     try {
       application.createModuleContext(this.context, 'entry').then((data: Context) => {
         moduleContext = data;
-        console.info('createBundleContext success!');
+        console.info('createModuleContext success!');
       }).catch((error: BusinessError) => {
         let code: number = (error as BusinessError).code;
         let message: string = (error as BusinessError).message;
@@ -186,7 +186,7 @@ promoteCurrentToCandidateMasterProcess(insertToHead: boolean): Promise\<void>
 	- 对于UIExtensionAbility组件，系统会优先复用已有的UIExtensionAbility进程作为新的主控进程，无可用进程时则创建新的空进程作为主控进程。
 
 > **说明：**
-> - 当前仅支持2in1、tablet设备。
+> - 当前仅支持2in1、Tablet设备。
 <!--Del-->
 >
 > - 当前仅支持sys/commonUI类型的UIExtensionAbility组件在[module.json5配置文件](../../quick-start/module-configuration-file.md)中配置isolationProcess字段为true。
@@ -249,7 +249,7 @@ demoteCurrentFromCandidateMasterProcess(): Promise\<void>
 
 > **说明：**
 >
-> 当前仅支持2in1、tablet设备。
+> 当前仅支持2in1、Tablet设备。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

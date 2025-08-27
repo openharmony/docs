@@ -120,7 +120,7 @@ videoElement.addEventListener('leavepictureinpicture', function (event) {
 * 前端页面html代码。
 
   ```html
-  <!-- picture-in-picture.html -->
+  <!-- PictureInPicture.html -->
   <!DOCTYPE html>
   <html lang="en">
   <head>

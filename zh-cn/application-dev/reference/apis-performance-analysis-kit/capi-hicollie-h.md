@@ -1,5 +1,12 @@
 # hicollie.h
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @rr_cn-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## 概述
 
 HiCollie模块对外提供检测业务线程卡死、卡顿，以及上报卡死事件的能力。

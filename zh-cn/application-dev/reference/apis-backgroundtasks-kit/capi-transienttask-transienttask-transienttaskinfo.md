@@ -1,5 +1,12 @@
 # TransientTask_TransientTaskInfo
 
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: ResourceSchedule-->
+<!--Owner: @cheng-shichang-->
+<!--Designer: @zhouben25-->
+<!--Tester: @fenglili18-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## 概述
 
 定义所有短时任务信息结构体。

@@ -1,5 +1,11 @@
 # Application Model Development
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @ccllee1-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 ## How do I obtain a notification when the device orientation changes? (API version 9)
 
@@ -74,10 +80,10 @@ Add the field **"srcEntry": "./ets/myabilitystage/MyAbilityStage.ts"** under **m
 
 **References**
 
-[AbilityStage Component Container](../application-models/abilitystage.md)
+[AbilityStage Component Manager](../application-models/abilitystage.md)
 
 
-## How do I delete the mission snapshot in Recents after terminateself is called in the multiton scenario? (API version 9)
+## How do I delete the mission snapshot in the recent task list after terminateself is called in the multiton scenario? (API version 9)
 
 **Solution**
 

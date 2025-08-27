@@ -8,7 +8,7 @@
 
 ## 概述
 
-Controller相关的Native API结构体。在调用接口前建议通过ARKWEB_MEMBER_MISSING校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。
+Controller相关的Native API结构体。在调用接口前建议通过[ARKWEB_MEMBER_MISSING](capi-arkweb-type-h.md#宏定义)校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。
 
 **起始版本：** 12
 
@@ -39,6 +39,7 @@ Controller相关的Native API结构体。在调用接口前建议通过ARKWEB_ME
 | [ArkWeb_ErrorCode (\*postWebMessage)(const char* webTag, const char* name, ArkWeb_WebMessagePortPtr* webMessagePorts, size_t size, const char* url)](#postwebmessage) | 将端口发送到HTML主页面. |
 | [const char* (\*getLastJavascriptProxyCallingFrameUrl)()](#getlastjavascriptproxycallingframeurl) | 获取调用JavaScriptProxy最后一帧的url。在JavaScriptProxy调用的线程上调用。通过registerJavaScriptProxy或者javaScriptProxy注入JavaScript对象到window对象中。该接口可以获取最后一次调用注入对象frame的url。在被调用函数内部获取url才能获取到正确值，可以在函数里内部获取url后保存下来。<br>**起始版本：** 14 |
 | [void (\*registerJavaScriptProxyEx)(const char* webTag, const ArkWeb_ProxyObjectWithResult* proxyObject,const char* permission)](#registerjavascriptproxyex) | 注入JavaScript对象到window对象中，并在window对象中调用该对象的同步方法。该对象的同步方法可以带返回值。<br>**起始版本：** 18 |
+| [void (\*registerAsyncJavaScriptProxyEx)(const char* webTag, const ArkWeb_ProxyObject* proxyObject,const char* permission)](#registerasyncjavascriptproxyex) | 注入JavaScript对象到window对象中，并在window对象中调用该对象的异步方法。<br>**起始版本：** 18 |
 
 ## 成员函数说明
 
@@ -52,6 +53,13 @@ void (*runJavaScript)(const char* webTag, const ArkWeb_JavaScriptObject* javascr
 
 注入JavaScript脚本。
 
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const char* webTag | Web组件名称。                   |
+|const ArkWeb_JavaScriptObject* javascriptObject  | 注入的JavaScript对象。           |
+
 ### registerJavaScriptProxy()
 
 ```
@@ -61,6 +69,13 @@ void (*registerJavaScriptProxy)(const char* webTag, const ArkWeb_ProxyObject* pr
 **描述：**
 
 注入JavaScript对象到window对象中，并在window对象中调用该对象的同步方法。
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const char* webTag | Web组件名称。                   |
+| const ArkWeb_ProxyObject* proxyObject  | 注册的对象。          |
 
 ### deleteJavaScriptRegister()
 
@@ -72,6 +87,12 @@ void (*deleteJavaScriptRegister)(const char* webTag, const char* objName)
 
 删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。
 
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const char* webTag | Web组件名称。                   |
+| const char* objName  | JavaScript对象名称           |
 
 ### refresh()
 
@@ -83,6 +104,12 @@ void (*refresh)(const char* webTag)
 
 刷新当前网页。刷新的同时会清理页面栈，导致当前页面无法前进后退。
 
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const char* webTag | Web组件名称。                   |
+
 ### registerAsyncJavaScriptProxy()
 
 ```
@@ -92,6 +119,13 @@ void (*registerAsyncJavaScriptProxy)(const char* webTag, const ArkWeb_ProxyObjec
 **描述：**
 
 注入JavaScript对象到window对象中，并在window对象中调用该对象的异步方法。
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const char* webTag | Web组件名称。                   |
+| const ArkWeb_ProxyObject* proxyObject  | 注册的对象。       |
 
 ### createWebMessagePorts()
 
@@ -211,12 +245,9 @@ void (*registerAsyncJavaScriptProxyEx)(const char* webTag, const ArkWeb_ProxyObj
 
 **参数：**
 
-**参数:**
-
-| 名称 | 描述 | 
+| 参数项 | 描述 | 
 | -------- | -------- |
-| webTag | Web组件名称。  | 
-| proxyObject | 注册的对象。  | 
-| permission | json格式字符串，默认值为空。该字符串用来配置JSBridge的权限限制，可以配置对象和方法级别。 | 
-
+| const char* webTag | Web组件名称。  | 
+| const ArkWeb_ProxyObject* proxyObject | 注册的对象。  | 
+| const char* permission | json格式字符串，默认值为空。该字符串用来配置JSBridge的权限限制，可以配置对象和方法级别。 | 
 

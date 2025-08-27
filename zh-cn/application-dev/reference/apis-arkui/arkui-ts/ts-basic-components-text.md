@@ -606,6 +606,8 @@ selection(selectionStart: number, selectionEnd: number)
 
 当selectionStart或selectionEnd位于截断的不可见区域时，文本不选中。截断为false时，超出父组件的文本选中区域生效。
 
+可通过[onTextSelectionChange](#ontextselectionchange11)接口获取选区位置变化结果。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -713,7 +715,7 @@ bindSelectionMenu的长按响应时长为600ms，bindContextMenu的长按响应�
 | spanType     | [TextSpanType](#textspantype11枚举说明)          | 是   | 选择菜单的类型。<br/>默认值：TextSpanType.TEXT               |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)                  | 是   | 选择菜单的内容。                                             |
 | responseType | [TextResponseType](#textresponsetype11枚举说明)  | 是   | 选择菜单的响应类型。<br/>默认值：TextResponseType.LONG_PRESS |
-| options      | [SelectionMenuOptions](ts-basic-components-richeditor.md#selectionmenuoptions10) | 否   | 选择菜单的选项。                                             |
+| options      | [SelectionMenuOptions](ts-basic-components-richeditor.md#selectionmenuoptions) | 否   | 选择菜单的选项。                                             |
 
 >  **说明：**
 >
@@ -751,8 +753,8 @@ fontFeature属性列表：
 
 ![alt text](figures/arkts-fontfeature.png)
 
-设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
-更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/
+设置fontFeature属性，fontFeature是OpenType字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
+更多fontFeature能力介绍可参考[font-feature-settings property](https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop)和[OpenType Features](https://sparanoid.com/lab/opentype-features/)。
 
 >  **说明：**
 >
@@ -1168,7 +1170,7 @@ shaderStyle(shader: ShaderStyle)
 
 onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
-长按文本内部区域弹出剪贴板后，点击剪贴板复制按钮，触发该回调。目前文本复制仅支持文本。
+长按文本内部区域弹出剪贴板后，点击剪贴板复制按钮，触发该回调。目前只有文本可以复制。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1846,7 +1848,7 @@ struct TextExample7 {
       // 使用parallelGesture中的TapGesture替代onClick属性，达到非冒泡事件类似冒泡
       // 的效果，点击Text组件区域Column上的点击事件正常响应
       .parallelGesture(TapGesture().onAction((event: GestureEvent) => {
-        console.log('test column onClick timestamp:' + event.timestamp);
+        console.info('test column onClick timestamp:' + event.timestamp);
       }), GestureMask.Normal)
     }
     .height('100%')
@@ -1873,7 +1875,8 @@ struct TextExample8 {
       Column() {
         Text(undefined, this.options) {
           Span('Hello World')
-          ImageSpan($r('app.media.startIcon'))// $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          ImageSpan($r('app.media.startIcon'))
             .width(50)
             .height(50)
             .objectFit(ImageFit.Fill)
@@ -1916,9 +1919,7 @@ struct TextExample8 {
             .onClick((event) => {
               this.controller.closeSelectionMenu();
             })
-          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
           MenuItem({ startIcon: $r('app.media.startIcon'), content: "Right Click Menu 2", labelInfo: "" })
-          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
           MenuItem({ startIcon: $r('app.media.startIcon'), content: "Right Click Menu 3", labelInfo: "" })
         }
       }
@@ -1936,9 +1937,7 @@ struct TextExample8 {
             .onClick((event) => {
               this.controller.closeSelectionMenu();
             })
-          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
           MenuItem({ startIcon: $r('app.media.startIcon'), content: "Long Press Image Menu 2", labelInfo: "" })
-          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
           MenuItem({ startIcon: $r('app.media.startIcon'), content: "Long Press Image Menu 3", labelInfo: "" })
         }
       }
@@ -1956,9 +1955,7 @@ struct TextExample8 {
             .onClick((event) => {
               this.controller.closeSelectionMenu();
             })
-          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
           MenuItem({ startIcon: $r('app.media.startIcon'), content: "Select Mixed Menu 2", labelInfo: "" })
-          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
           MenuItem({ startIcon: $r('app.media.startIcon'), content: "Select Mixed Menu 3", labelInfo: "" })
         }
       }
@@ -2164,6 +2161,7 @@ struct TextExample12 {
   @State text: string = 'Text editMenuOptions'
   @State endIndex: number = 0;
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
+    // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
     let item1: TextMenuItem = {
       content: 'create1',
       icon: $r('app.media.startIcon'),
@@ -2180,23 +2178,24 @@ struct TextExample12 {
   }
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
     if (menuItem.id.equals(TextMenuItemId.of("create2"))) {
-      console.log("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
+      console.info("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.of("prepare1"))) {
-      console.log("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
+      console.info("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
+      console.info("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+      console.info("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
       return false;
     }
     return false;
   }
+  // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
   onPrepareMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'prepare1_' + this.endIndex,
@@ -2393,7 +2392,8 @@ struct TextExample14 {
       Text() {
         Span("Hello")
           .fontSize(50)
-        ImageSpan($r('app.media.startIcon'))// $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+        // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+        ImageSpan($r('app.media.startIcon'))
           .width(30).height(30)
           .verticalAlign(ImageSpanAlignment.FOLLOW_PARAGRAPH)// 从API version 20开始，支持ImageSpanAlignment.FOLLOW_PARAGRAPH
         Span("World")

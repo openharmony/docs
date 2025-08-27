@@ -32,7 +32,7 @@
 
    > **注意：**
    >
-   > 启动主线程超时检测抓取trace的功能的前提**：开发者使用nolog版本，开发者模式处于关闭状态**；
+   > 启动主线程超时检测抓取trace的功能的前提：**开发者使用nolog版本，开发者模式处于关闭状态**；
    >
    > log和nolog版本：在手机中，点击设置——搜索关键字“关于本机”——软件版本进行查看。log版本会以log结尾；
    >
@@ -69,7 +69,7 @@
 
 **方式一：通过HiAppEvent接口订阅**
 
-HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hiappevent-intro.md)。参考[订阅应用冻屏事件（ArkTS）](hiappevent-watcher-mainthreadjank-events-arkts.md)或[订阅主线程超时事件（C/C++）](hiappevent-watcher-mainthreadjank-events-ndk.md)完成主线程超时事件订阅，并通过事件的[external_log](hiappevent-watcher-crash-events.md#事件字段说明)字段读取故障日志文件名。
+HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hiappevent-intro.md)。参考[订阅主线程超时事件（ArkTS）](hiappevent-watcher-mainthreadjank-events-arkts.md)或[订阅主线程超时事件（C/C++）](hiappevent-watcher-mainthreadjank-events-ndk.md)完成主线程超时事件订阅，并通过事件的[external_log](hiappevent-watcher-mainthreadjank-events.md#事件字段说明)字段读取故障日志文件名。
 
 ### 日志规格
 
@@ -152,12 +152,12 @@ HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hia
 
 ### 日志获取
 
-主线程超时日志保存在应用沙箱目录下，可通过以下方式获取
+任务执行超时日志可通过以下方式获取：
 
 **方式一：通过HiAppEvent接口订阅**
 
-HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hiappevent-intro.md)。参考[订阅应用冻屏事件（ArkTS）](hiappevent-watcher-mainthreadjank-events-arkts.md)或[订阅主线程超时事件（C/C++）](hiappevent-watcher-mainthreadjank-events-ndk.md)完成主线程超时事件订阅，并通过事件的[external_log](hiappevent-watcher-crash-events.md#事件字段说明)字段读取故障日志文件名。
+HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hiappevent-intro.md)。参考[订阅任务执行超时事件（ArkTS）](hiappevent-watcher-apphicollie-events-arkts.md)或[订阅任务执行超时事件（C/C++）](hiappevent-watcher-apphicollie-events-ndk.md)完成任务执行超时事件订阅，并通过事件的[external_log](hiappevent-watcher-apphicollie-events.md#事件字段说明)字段读取故障日志文件名。
 
 ### 日志规格
 
-详见[应用冻屏日志规格](appfreeze-guidelines.md#日志规格)
+任务执行超时事件日志规格与应用冻屏日志相同，可详见[应用冻屏日志规格](appfreeze-guidelines.md#日志规格)。

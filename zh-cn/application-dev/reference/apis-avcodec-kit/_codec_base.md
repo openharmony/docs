@@ -51,7 +51,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 
 用于描述媒体数据的键值对查找表如下。键的类型是常量字符串，值的类型可以是int32_t/int64_t/float/double/char */uint8_t *。
 
-使用以下key的主要接口是[OH_AVFormat](_core.md#函数)，通过以下key可以进行参数配置或查询。
+使用以下key的主要接口是[OH_AVFormat](_core.md#oh_avformat)，通过以下key可以进行参数配置或查询。
 
 能力查询专有的键值对：
 
@@ -90,7 +90,6 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_VIDEO_SLICE_HEIGHT](#oh_md_key_video_slice_height)    | 描述视频帧高跨距的键，值类型为int32_t。该键是可选的。        |
 | [OH_MD_KEY_VIDEO_PIC_WIDTH](#oh_md_key_video_pic_width)       | 描述视频帧真实宽度的键，值类型为int32_t。该键是可选的。        |
 | [OH_MD_KEY_VIDEO_PIC_HEIGHT](#oh_md_key_video_pic_height)    | 描述视频帧真实高度的键，值类型为int32_t。该键是可选的。        |
-| [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency)   | 使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。该键是可选，在Configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | 视频编码码率模式，值类型为int32_t，请参见[OH_BitrateMode](#oh_bitratemode-1)。该键是可选的。 |
 | [OH_MD_KEY_QUALITY](#oh_md_key_quality)                      | 所需编码质量的键。值类型为int32_t，此键仅适用于配置在恒定质量模式下的编码器。该键是可选的。 |
 | [OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame)      | 请求立即编码I帧的键。值类型为int32_t。该键是可选的。            |
@@ -122,6 +121,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_VIDEO_CROP_BOTTOM](#oh_md_key_video_crop_bottom)        | 描述裁剪矩形底部坐标(y)值的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
 | [OH_MD_KEY_VIDEO_CROP_LEFT](#oh_md_key_video_crop_left)     | 描述裁剪矩形左坐标(x)值的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
 | [OH_MD_KEY_VIDEO_CROP_RIGHT](#oh_md_key_video_crop_right)     | 描述裁剪矩形右坐标(x)值的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
+| [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency)   | 使能低时延视频解码的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。该键是可选，在Configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR](#oh_md_key_video_decoder_output_enable_vrr)     | 解码器是否打开视频可变帧率功能的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
 | [OH_MD_KEY_VIDEO_DECODER_BLANK_FRAME_ON_SHUTDOWN](#oh_md_key_video_decoder_blank_frame_on_shutdown)   | 用于指定视频解码器关闭时是否输出空白帧的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。该键是可选的且仅用于视频解码Surface模式。 |
 
@@ -326,7 +326,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_VIDEO_SLICE_HEIGHT](#oh_md_key_video_slice_height) | 描述视频帧高跨距的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_PIC_WIDTH](#oh_md_key_video_pic_width) | 描述视频帧真实宽度的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_PIC_HEIGHT](#oh_md_key_video_pic_height) | 描述视频帧真实高度的键，值类型为int32_t。  | 
-| const char \* [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency) | 使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。如果使能，则视频编码器或视频解码器持有的输入和输出数据不会超过编解码器标准所要求的数量。   |
+| const char \* [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency) | 使能低时延视频解码的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。如果使能，则视频编码器或视频解码器持有的输入和输出数据不会超过编解码器标准所要求的数量。   |
 | const char \* [OH_MD_KEY_ENABLE_SYNC_MODE](#oh_md_key_enable_sync_mode) | 使能音视频编解码同步模式的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。该键是可选，在Configure阶段使用。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL](#oh_md_key_video_encoder_enable_pts_based_ratecontrol) | 使能基于显示时间戳(PTS)的码控模式的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。如果使能，则必须在每个视频帧中携带PTS信息，并发送到编码器。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME](#oh_md_key_video_encoder_enable_b_frame) | 使能B帧编码的键，值类型为int32_t，1表示使能，0表示不使能。该键值是可选的且只用于视频编码，默认值为0，在Configure阶段使用。 |
@@ -2729,11 +2729,11 @@ const char* OH_MD_KEY_VIDEO_CROP_TOP
 const char* OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY
 ```
 **描述**
-使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。该键是可选的，在Configure阶段使用。
+使能低时延视频解码的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。该键是可选的，在Configure阶段使用。
 
-如果使能，则视频编码器或视频解码器持有的输入和输出数据不会超过编解码器标准所要求的数量。 
+如果使能，则视频解码器持有的输入和输出数据不会超过解码器标准所要求的数量。 
 
-若平台支持，当使能此接口时，视频解码器将按照解码序输出帧。
+可以通过能力查询接口[OH_AVCapability_IsFeatureSupported](_a_v_capability.md#oh_avcapability_isfeaturesupported)来查询特定解码器是否支持低时延。若解码器支持，使能此接口时，视频解码器将按照解码序输出帧。
 
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase

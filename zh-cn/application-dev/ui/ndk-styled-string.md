@@ -150,6 +150,8 @@ Text组件不对本文涉及的任何对象的生命周期进行管理，需由�
 Text组件提供[OH_ArkUI_StyledString_Destroy](../reference/apis-arkui/capi-styled-string-h.md#oh_arkui_styledstring_destroy)，用于销毁属性字符串对象。
 
 ## 完整示例
+本篇示例仅提供核心接口的调用方法，完整的示例工程请参考<!--RP1-->[StyledStringNDK](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/StyledStringNDK)<!--RP1End-->。
+
 ```c++
 #include <arkui/native_interface.h>
 #include <arkui/styled_string.h>

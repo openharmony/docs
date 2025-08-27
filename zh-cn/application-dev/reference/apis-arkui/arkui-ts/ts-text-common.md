@@ -133,7 +133,7 @@ getRectsForRange(range: TextRange, widthStyle: RectWidthStyle, heightStyle: Rect
 | 名称      | 类型                   | 只读 | 可选 | 说明                      |
 | --------- | --------------------- | ---- | ---- | ------------------------ |
 | position  | number                | 否   | 否   | 字形相对于组件内容的索引，整数。  |
-| affinity  | [Affinity](#affinity12) | 否   | 是   | 位置亲和度。             |
+| affinity  | [Affinity](#affinity12) | 否   | 否   | 位置亲和度。             |
 
 ## TextMenuItemId<sup>12+</sup>
 
@@ -570,7 +570,7 @@ selectionStart和selectionEnd均为-1时表示全选。
 | -------------- | ------ | ---- | ------- |
 | selectionStart | number | 是    | 选中开始位置。<br/>取值小于0时，按0处理。 |
 | selectionEnd   | number | 是    | 选中结束位置。<br/>取值大于文本长度时，按当前文本长度处理。 |
-| options   | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选择项配置。 |
+| options   | [SelectionOptions](ts-universal-attributes-text-style.md#selectionoptions12对象说明) | 否    | 选择项配置。 |
 
 ### closeSelectionMenu<sup>12+</sup>
 
@@ -782,6 +782,18 @@ type TextBox = TextBox
 | 类型                              | 说明   |
 | --------------------------------- | --------------------------------- |
 | [TextBox](../../apis-arkgraphics2d/js-apis-graphics-text.md#textbox) | 文本矩形区域。 |
+
+## Paragraph<sup>20+</sup>
+
+type Paragraph = Paragraph
+
+保存文本内容及样式的载体，支持排版与绘制操作。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                              | 说明   |
+| --------------------------------- | --------------------------------- |
+| [Paragraph](../../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph) | 保存文本内容及样式的载体，支持排版与绘制操作。 |
 
 ## RectHeightStyle<sup>14+</sup>
 

@@ -1,5 +1,10 @@
 # WindowExtensionAbility（仅对系统应用开放）
-
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 [WindowExtensionAbility](../reference/apis-arkui/js-apis-application-windowExtensionAbility-sys.md)是一种ExtensionAbility组件，用于提供界面组合扩展能力，仅允许系统应用进行跨应用的界面拉起和嵌入。
 

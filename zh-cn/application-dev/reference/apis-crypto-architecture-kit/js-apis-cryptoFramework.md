@@ -1732,7 +1732,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 | 参数名  | 类型   | 必填 | 说明                             |
 | ------- | ------ | ---- | -------------------------------- |
-| algName | string | 是   | [非对称密钥生成支持的算法名](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md)。 |
+| algName | string | 是   | 非对称密钥生成支持的算法名。详见[非对称密钥生成和转换规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md)中的字符串参数。 |
 
 **返回值：**
 
@@ -3227,7 +3227,7 @@ try {
 
 提供加解密的算法操作功能，按序调用本类中的[init()](#init-1)、[update()](#update)、[doFinal()](#dofinal)方法，可以实现对称加密/对称解密/非对称加密/非对称解密。
 
-完整的加解密流程示例可参考开发指导中的[加解密开发指导](../../security/CryptoArchitectureKit/crypto-encryption-decryption-overview.md)。
+完整的加解密流程示例可参考[开发指南](../../security/CryptoArchitectureKit/crypto-encryption-decryption-overview.md)。
 
 一次完整的加/解密流程在对称加密和非对称加密中略有不同：
 
@@ -4458,11 +4458,11 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 ```ts
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
-let verifyer1 = cryptoFramework.createVerify('RSA1024|PKCS1|SHA256');
+let verifier1 = cryptoFramework.createVerify('RSA1024|PKCS1|SHA256');
 
-let verifyer2 = cryptoFramework.createVerify('RSA1024|PSS|SHA256|MGF1_SHA256');
+let verifier2 = cryptoFramework.createVerify('RSA1024|PSS|SHA256|MGF1_SHA256');
 
-let verifyer3 = cryptoFramework.createVerify('RSA1024|PKCS1|SHA256|Recover');
+let verifier3 = cryptoFramework.createVerify('RSA1024|PKCS1|SHA256|Recover');
 ```
 
 ## Verify
@@ -4825,11 +4825,11 @@ function verifyByCallback() {
   // 该数据取自Sign中的signData.data。
   let signMessageBlob: cryptoFramework.DataBlob = { data: new Uint8Array([9, 68, 164, 161, 230, 155, 255, 153, 10, 12, 14, 22, 146, 115, 209, 167, 223, 133, 89, 173, 50, 249, 176, 104, 10, 251, 219, 104, 117, 196, 105, 65, 249, 139, 119, 41, 15, 171, 191, 11, 177, 177, 1, 119, 130, 142, 87, 183, 32, 220, 226, 28, 38, 73, 222, 172, 153, 26, 87, 58, 188, 42, 150, 67, 94, 214, 147, 64, 202, 87, 155, 125, 254, 112, 95, 176, 255, 207, 106, 43, 228, 153, 131, 240, 120, 88, 253, 179, 207, 207, 110, 223, 173, 15, 113, 11, 183, 122, 237, 205, 206, 123, 246, 33, 167, 169, 251, 237, 199, 26, 220, 152, 190, 117, 131, 74, 232, 50, 39, 172, 232, 178, 112, 73, 251, 235, 131, 209]) }
   let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
-  let verifyer = cryptoFramework.createVerify('RSA1024|PKCS1|SHA256');
+  let verifier = cryptoFramework.createVerify('RSA1024|PKCS1|SHA256');
   rsaGenerator.convertKey(pubKeyBlob, priKeyBlob, (err, keyPair) => {
-    verifyer.init(keyPair.pubKey, err => {
-      verifyer.update(inputUpdate, err => {
-        verifyer.verify(inputVerify, signMessageBlob, (err, res) => {
+    verifier.init(keyPair.pubKey, err => {
+      verifier.update(inputUpdate, err => {
+        verifier.verify(inputVerify, signMessageBlob, (err, res) => {
           console.info('verify result is ' + res);
         });
       });
@@ -5056,9 +5056,9 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 <!--code_no_check-->
 ```ts
-let verifyer: cryptoFramework.Verify; // The process of generating the Verify instance is omitted here.
+let verifier: cryptoFramework.Verify; // The process of generating the Verify instance is omitted here.
 let setN = 20;
-verifyer.setVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
+verifier.setVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
 ```
 
 ### getVerifySpec<sup>10+</sup>
@@ -5101,8 +5101,8 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 <!--code_no_check-->
 ```ts
-let verifyer: cryptoFramework.Verify; // The process of generating the Verify instance is omitted here.
-let saltLen = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
+let verifier: cryptoFramework.Verify; // The process of generating the Verify instance is omitted here.
+let saltLen = verifier.getVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
 ```
 
 ## cryptoFramework.createKeyAgreement

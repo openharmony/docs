@@ -338,10 +338,10 @@ enum Camera_ImageRotation
 
 | 枚举项 | 描述 |
 | -- | -- |
-| IAMGE_ROTATION_0 = 0 | 捕获图像旋转0度。 |
-| IAMGE_ROTATION_90 = 90 | 捕获图像旋转90度。 |
-| IAMGE_ROTATION_180 = 180 | 捕获图像旋转180度。 |
-| IAMGE_ROTATION_270 = 270 | 捕获图像旋转270度。 |
+| IMAGE_ROTATION_0 = 0 | 捕获图像旋转0度。 |
+| IMAGE_ROTATION_90 = 90 | 捕获图像旋转90度。 |
+| IMAGE_ROTATION_180 = 180 | 捕获图像旋转180度。 |
+| IMAGE_ROTATION_270 = 270 | 捕获图像旋转270度。 |
 
 ### Camera_QualityLevel
 

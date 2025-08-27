@@ -28,15 +28,16 @@
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 装饰器参数                                                   | 无。                                                           |
 | 同步类型                                                     | 双向同步。<br/>父组件状态变量与子组件\@Link建立双向同步，当其中一方改变时，另一方也会同步更新。 |
-| 允许装饰的变量类型                                           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>[支持Date类型](#装饰date类型变量)。<br/>支持ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型。<br/>类型必须指定，且与双向绑定状态变量类型相同。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any类型。<br/>API version 11及以上支持支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型以及上述支持类型的联合类型。例如：string \| number, string \| undefined或者ClassA \| null，示例见[Link支持联合类型实例](#link支持联合类型实例)。 <br/>**注意：**<br/>使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验。例如：`@Link a : string \| undefined`。 |
-| 被装饰变量的初始值                                           | 无，禁止本地初始化。                                         |
+| 允许装饰的变量类型                                           |object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API version 10开始支持[Date类型](#装饰date类型变量)。<br/>API version 11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型、undefined和null类型、ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型以及这些类型的联合类型，示例见[Link支持联合类型实例](#link支持联合类型实例)。<br/>支持类型的场景请参考[观察变化](#观察变化)。|
+| 不允许装饰的变量类型 | 不支持装饰Function类型。      |
+| 被装饰变量的初始值                                           | 禁止本地初始化。                                         |
 
 
 ## 变量的传递/访问规则说明
 
 | 传递/访问      | 说明                                       |
 | ---------- | ---------------------------------------- |
-| 从父组件初始化和更新 | 必选。<br/>- 与父组件\@State,&nbsp;\@StorageLink和\@Link&nbsp;建立双向绑定。允许父组件中[\@State](./arkts-state.md)、\@Link、[\@Prop](./arkts-prop.md)、[\@Provide](./arkts-provide-and-consume.md)、[\@Consume](./arkts-provide-and-consume.md)、[\@ObjectLink](./arkts-observed-and-objectlink.md)、[\@StorageLink](./arkts-appstorage.md#storagelink)、[\@StorageProp](./arkts-appstorage.md#storageprop)、[\@LocalStorageLink](./arkts-localstorage.md#localstoragelink)和[\@LocalStorageProp](./arkts-localstorage.md#localstorageprop)装饰变量初始化子组件\@Link。<br/>- 从API&nbsp;version&nbsp;9开始，\@Link子组件从父组件初始化\@State的语法为Comp({&nbsp;aLink:&nbsp;this.aState&nbsp;})，同样支持Comp({aLink:&nbsp;$aState})。 |
+| 从父组件初始化和更新 | 必选。<br/>允许父组件中[\@State](./arkts-state.md)、\@Link、[\@Prop](./arkts-prop.md)、[\@Provide](./arkts-provide-and-consume.md)、[\@Consume](./arkts-provide-and-consume.md)、[\@ObjectLink](./arkts-observed-and-objectlink.md)、[\@StorageLink](./arkts-appstorage.md#storagelink)、[\@StorageProp](./arkts-appstorage.md#storageprop)、[\@LocalStorageLink](./arkts-localstorage.md#localstoragelink)和[\@LocalStorageProp](./arkts-localstorage.md#localstorageprop)装饰变量初始化子组件\@Link，并建立双向绑定。<br/>- 从API&nbsp;version&nbsp;9开始，\@Link子组件从父组件初始化\@State的语法为Comp({&nbsp;aLink:&nbsp;this.aState&nbsp;})，同样支持Comp({aLink:&nbsp;$aState})。 |
 | 用于初始化子组件   | 允许，可用于初始化常规变量、\@State、\@Link、\@Prop、\@Provide。 |
 | 是否支持组件外访问  | 私有，只能在所属组件内访问。                           |
 

@@ -1,4 +1,10 @@
 # BundleInfo (System API)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The module defines the bundle information. Applications can obtain bundle information of a specific application through [bundleManager.getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo14), with [bundleFlags](js-apis-bundleManager.md#bundleflag) set to the information to be contained in the returned [BundleInfo](js-apis-bundleManager-bundleInfo.md).
 

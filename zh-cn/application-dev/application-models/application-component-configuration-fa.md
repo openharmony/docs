@@ -32,7 +32,9 @@
 FA模型不支持直接配置应用图标和标签，会以符合规则的PageAbility的图标和标签作为应用图标和标签。存在多个时，则取位置靠前的Ability的icon和label作为应用的icon和label。
 
 ### 入口图标和标签配置
-#### 入口图标和标签配置方法
+
+1.入口图标和标签配置方法
+
 FA模型的入口图标和标签是Page类型的Ability配置的icon和label。
 
 PageAbility的图标和标签配置请参见[PageAbility组件配置](pageability-configuration.md)。需在config.json文件的abilities标签下做如下配置：
@@ -76,7 +78,9 @@ PageAbility的图标和标签配置请参见[PageAbility组件配置](pageabilit
   }
 }
 ```
-#### 入口图标和标签管控规则
+
+2.入口图标和标签管控规则
+
 系统对无图标应用实施严格管控，防止一些恶意应用故意配置无入口图标，导致用户找不到软件所在的位置，无法操作卸载应用，在一定程度上保证用户终端设备的安全。
 
 如果应用确需隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权<!--Del-->，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)<!--DelEnd-->。详细的入口图标及入口标签的显示规则如下。

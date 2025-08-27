@@ -75,8 +75,8 @@ type SubHeaderV2IconType = ResourceStr | SymbolGlyphModifier
 
 | 类型                        | 说明                     |
 | ----------------------------- |------------------------|
-| ResourceStr                 | 资源类型，用于定义普通图标。         |
-| SymbolGlyphModifier | Symbol类型，用于定义Symbol图标。 |
+| [ResourceStr](ts-types.md#resourcestr)                 | 资源类型，用于定义普通图标。         |
+| [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | Symbol类型，用于定义Symbol图标。 |
 
 ## SubHeaderV2Title
 标题设置项
@@ -93,8 +93,8 @@ type SubHeaderV2IconType = ResourceStr | SymbolGlyphModifier
 | -------- | -------- | -------- | -------- |------------------------------|
 | primaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | @Trace | 标题内容。<br />默认值：undefined                        |
 | secondaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | @Trace | 副标题内容。<br />默认值：undefined                       |
-| primaryTitleModifier|  [TextModifier](ts-universal-attributes-attribute-modifier.md)  | 否 | @Trace | 设置标题文本属性，如设置标题颜色、字体大小、字重等。<br />默认值：undefined   |
-| secondaryTitleModifier|   [TextModifier](ts-universal-attributes-attribute-modifier.md)  | 否 | @Trace | 设置副标题文本属性，如设置副标题颜色、字体大小、字重等。<br />默认值：undefined |
+| primaryTitleModifier|  [TextModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier)  | 否 | @Trace | 设置标题文本属性，如设置标题颜色、字体大小、字重等。<br />默认值：undefined   |
+| secondaryTitleModifier|   [TextModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier)  | 否 | @Trace | 设置副标题文本属性，如设置副标题颜色、字体大小、字重等。<br />默认值：undefined |
 
 ### constructor
 
@@ -124,8 +124,8 @@ constructor(options: SubHeaderV2TitleOptions)
 | -------- | -------- | -------- |-----------------------------|
 | primaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | 标题内容。<br />默认值：undefined                       |
 | secondaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | 副标题内容。<br />默认值：undefined                      |
-| primaryTitleModifier|  [TextModifier](ts-universal-attributes-attribute-modifier.md)  | 否 | 设置标题文本属性，如设置副标题颜色、字体大小、字重等。<br />默认值：undefined |
-| secondaryTitleModifier|   [TextModifier](ts-universal-attributes-attribute-modifier.md)  | 否 | 设置副标题文本属性，如设置标题颜色、字体大小、字重等。<br />默认值：undefined |
+| primaryTitleModifier|  [TextModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier)  | 否 | 设置标题文本属性，如设置副标题颜色、字体大小、字重等。<br />默认值：undefined |
+| secondaryTitleModifier|   [TextModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier)  | 否 | 设置副标题文本属性，如设置标题颜色、字体大小、字重等。<br />默认值：undefined |
 
 ## SubHeaderV2Select
 
@@ -223,8 +223,8 @@ type SubHeaderV2OperationItemType = ResourceStr | SymbolGlyphModifier
 
 | 类型                        | 说明                                |
 | ----------------------------- |-----------------------------------|
-| ResourceStr                 | 字符串类型用于定义文本显示或普通图标；资源类型，用于定义普通图标。 |
-| SymbolGlyphModifier | Symbol类型，用于定义Symbol图标。            |
+| [ResourceStr](ts-types.md#resourcestr)                 | 字符串类型用于定义文本显示或普通图标；资源类型，用于定义普通图标。 |
+| [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | Symbol类型，用于定义Symbol图标。            |
 
 ## SubHeaderV2OperationItem
 
@@ -259,9 +259,9 @@ constructor(options: SubHeaderV2OperationItemOptions)
 
 **参数：**
 
-| 参数名    | 类型             | 必填 | 说明             |
-| --------- | -------------------- | ------ | ------------------ |
-| options | SubHeaderV2OperationItemOptions| 是   | 下拉选项信息。 |
+| 参数名    | 类型                                                                  | 必填 | 说明             |
+| --------- |---------------------------------------------------------------------| ------ | ------------------ |
+| options | [SubHeaderV2OperationItemOptions](#subheaderv2operationitemoptions) | 是   | 下拉选项信息。 |
 
 ## SubHeaderV2OperationItemAction
 
@@ -272,6 +272,7 @@ type SubHeaderV2OperationItemAction = () => void
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 
 ## SubHeaderV2OperationItemOptions
 
@@ -299,6 +300,7 @@ type SubHeaderV2TitleBuilder= () => void
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 
 ## 事件
 不支持[通用事件](ts-component-general-events.md)。
@@ -845,7 +847,7 @@ struct SubHeaderExample {
   @Local index: number = 1;
   @Local primaryTitle: ResourceStr = '一级标题';
   @Local secondaryTitle: ResourceStr = '二级标题';
-  @Local subHeaderIcon: Resource = $r('app.media.app_icon');
+  @Local subHeaderIcon: Resource = $r('sys.media.ohos_ic_public_email');
   @Local title: SubHeaderV2Title = new SubHeaderV2Title({ primaryTitle: '一级标题' });
   @Local primaryModifier: TextModifier = new TextModifier().fontColor(Color.Red);
   @Local secondaryModifier: TextModifier = new TextModifier().fontColor(Color.Red);

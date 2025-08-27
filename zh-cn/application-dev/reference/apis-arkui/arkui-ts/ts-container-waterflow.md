@@ -635,6 +635,8 @@ WaterFlow组件可见区域item变化事件的回调类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名 | 类型   | 必填 | 说明                                  |
 | ------ | ------ | ---- | ------------------------------------- |
 | first  | number | 是   | 当前显示的瀑布流起始位置的索引值。 |
@@ -644,6 +646,8 @@ WaterFlow组件可见区域item变化事件的回调类型。
 
 ### 示例1（使用基本瀑布流）
 该示例展示了WaterFlow组件数据加载处理、属性设置和事件回调等基本使用场景。
+
+WaterFlowDataSource实现了LazyForEach数据源接口[IDataSource](ts-rendering-control-lazyforeach.md#idatasource)，用于通过LazyForEach给WaterFlow提供子组件。
 
 <!--code_no_check-->
 ```ts
@@ -931,6 +935,8 @@ struct WaterFlowDemo {
 ### 示例2（自动计算列数）
 该示例通过auto-fill实现了自动计算列数的效果。
 
+WaterFlowDataSource说明及完整代码参考[示例1使用基本瀑布流](#示例1使用基本瀑布流)。
+
 <!--code_no_check-->
 ```ts
 // Index.ets
@@ -997,6 +1003,8 @@ struct WaterFlowDemo {
 ### 示例3（使用分组）
 该示例展示了分组的初始化以及splice、push、update、values、length等接口的不同效果。
 如果配合状态管理V2使用，详情见：[WaterFlow与makeObserved](../../../ui/state-management/arkts-v1-v2-migration-application-and-others.md#滑动组件)。
+
+WaterFlowDataSource说明及完整代码参考[示例1使用基本瀑布流](#示例1使用基本瀑布流)。
 
 <!--code_no_check-->
 ```ts
@@ -1207,6 +1215,8 @@ struct WaterFlowDemo {
 ### 示例4（双指缩放改变列数）
 该示例通过[priorityGesture](ts-gesture-settings.md)和[PinchGesture](ts-basic-gestures-pinchgesture.md)实现了双指缩放改变列数效果。
 
+WaterFlowDataSource说明及完整代码参考[示例1使用基本瀑布流](#示例1使用基本瀑布流)。
+
 <!--code_no_check-->
 ```ts
 // Index.ets
@@ -1393,6 +1403,8 @@ struct WaterFlowDemo {
 ### 示例5（设置边缘渐隐效果）
 该示例通过[fadingEdge](ts-container-scrollable-common.md#fadingedge14)实现了WaterFlow组件开启边缘渐隐效果，并通过fadingEdgeLength参数设置边缘渐隐长度。
 
+WaterFlowDataSource说明及完整代码参考[示例1使用基本瀑布流](#示例1使用基本瀑布流)。
+
 <!--code_no_check-->
 ```ts
 // Index.ets
@@ -1459,6 +1471,8 @@ struct WaterFlowDemo {
 
 该示例通过edgeEffect接口，实现了WaterFlow组件设置单边边缘效果。
 
+WaterFlowDataSource说明及完整代码参考[示例1使用基本瀑布流](#示例1使用基本瀑布流)。
+
 <!--code_no_check-->
 ```ts
 // Index.ets
@@ -1523,6 +1537,8 @@ struct WaterFlowDemo {
 ### 示例7（WaterFlow组件设置和改变尾部组件）
 
 该示例通过footerContent接口，实现了WaterFlow组件设置尾部组件。通过ComponentContent的update函数更新尾部组件。
+
+WaterFlowDataSource说明及完整代码参考[示例1使用基本瀑布流](#示例1使用基本瀑布流)。
 
 <!--code_no_check-->
 ```ts
@@ -1617,6 +1633,8 @@ struct Index {
 ### 示例8（WaterFlow组件实现下拉刷新）
 
 该示例通过Refresh组件和WaterFlow组件，实现了下拉刷新瀑布流组件数据源。
+
+WaterFlowDataSource说明及完整代码参考[示例1使用基本瀑布流](#示例1使用基本瀑布流)。
 
 <!--code_no_check-->
 ```ts

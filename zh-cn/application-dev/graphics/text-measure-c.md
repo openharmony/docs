@@ -35,7 +35,12 @@
 
 ## 开发步骤
 
-1. 导入依赖的相关头文件。
+1. 在工程的`src/main/cpp/CMakeLists.txt`文件中添加以下lib。
+   ```c++
+   libnative_drawing.so
+   ```
+
+2. 导入依赖的相关头文件。
 
    ```c++
    #include <native_drawing/drawing_font_collection.h>
@@ -43,7 +48,7 @@
    #include <native_drawing/drawing_text_typography.h>
    ```
 
-2. 创建段落生成器ParagraphBuilder，并设置段落样式。
+3. 创建段落生成器ParagraphBuilder，并设置段落样式。
 
    ```c++
    // 创建段落样式
@@ -61,14 +66,14 @@
    OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
    ```
 
-3. 调用排版接口并设置段落排版宽度，对段落进行塑型排版。
+4. 调用排版接口并设置段落排版宽度，对段落进行塑型排版。
 
    ```c++
    // 对段落进行塑形排版，设置排版宽度1000
    OH_Drawing_TypographyLayout(typography, 1000);
    ```
 
-4. 调用段落测量信息获取接口，获取指定数据。
+5. 调用段落测量信息获取接口，获取指定数据。
 
    ```c++
    // case1: 获取排版后最长行行宽

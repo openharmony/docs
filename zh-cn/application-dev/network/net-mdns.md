@@ -100,37 +100,7 @@ MDNS管理的典型场景有：
 
     <!--code_no_check-->
     ```ts
-    // 构造单例对象。
-    export class GlobalContext {
-      private constructor() {}
-      private static instance: GlobalContext;
-      private _objects = new Map<string, Object>();
-
-      public static getContext(): GlobalContext {
-        if (!GlobalContext.instance) {
-          GlobalContext.instance = new GlobalContext();
-        }
-        return GlobalContext.instance;
-      }
-
-      getObject(value: string): Object | undefined {
-        return this._objects.get(value);
-      }
-
-      setObject(key: string, objectClass: Object): void {
-        this._objects.set(key, objectClass);
-      }
-    }
-
-    // Stage模型获取context。
-    class EntryAbility extends UIAbility {
-      value:number = 0;
-      onWindowStageCreate(windowStage: window.WindowStage): void{
-        GlobalContext.getContext().setObject("value", this.value);
-      }
-    }
-
-    let context = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+   let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     // 创建DiscoveryService对象，用于发现指定服务类型的MDNS服务。
     let serviceType = "_print._tcp";

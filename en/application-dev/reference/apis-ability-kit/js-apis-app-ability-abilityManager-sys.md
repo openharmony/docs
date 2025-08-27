@@ -1,5 +1,12 @@
 # @ohos.app.ability.abilityManager (AbilityManager) (System API)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @duan-sizhao; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 The AbilityManager module provides APIs for obtaining, adding, and updating ability information and running status information.
 
 > **NOTE**
@@ -126,7 +133,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { abilityManager, Configuration, ConfigurationConstant } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';;
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const config: Configuration = {
   language: 'Zh-Hans',                 // Simplified Chinese.
@@ -889,7 +896,7 @@ Checks whether the [EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that embedded startup is allowed, and **false** means the opposite.|
+| Promise\<boolean> | Promise used to return the result. **true** if embedded startup is allowed, **false** otherwise.|
 
 **Error codes**
 
@@ -938,7 +945,7 @@ Enables or disables the resident process of an application.
 | Name| Type| Mandatory| Description|
 | ------- | -------- | -------- | -------- |
 | bundleName | string | Yes| Bundle name of the resident process.|
-| enable | boolean | Yes| Whether to enable or disable the resident process. The value **true** means to enable the resident process, and **false** means to disable the resident process.|
+| enable | boolean | Yes| Whether to enable or disable the resident process. **true** to enable, **false** otherwise.|
 
 **Return value**
 
@@ -990,8 +997,8 @@ Describes the rule for launching an embedded atomic service.
 
 | Name| Type| Read-Only| Optional| Description|
 | -------- | ---------| ---- | ---- | --------- |
-| isOpenAllowed | boolean   | No  | No  | Whether launching the atomic service is allowed. The value **true** means that launching the atomic service is allowed, and **false** means the opposite.|
-| isEmbeddedAllowed | boolean   | No  | No | Whether launching the embedded atomic service is allowed. The value **true** means that launching the embedded atomic service is allowed, and **false** means the opposite.|
+| isOpenAllowed | boolean   | No  | No  | Whether launching the atomic service is allowed. **true** if allowed, **false** otherwise.|
+| isEmbeddedAllowed | boolean   | No  | No | Whether launching the embedded atomic service is allowed. **true** if allowed, **false** otherwise.|
 
 ## abilityManager.queryAtomicServiceStartupRule<sup>18+</sup>
 
@@ -1007,7 +1014,7 @@ Obtains the rule for launching an [EmbeddableUIAbility](js-apis-app-ability-embe
 
 | Name| Type| Mandatory| Description|
 | ------- | -------- | -------- | -------- |
-| context | [Context](js-apis-inner-application-context.md) | Yes| Context of the caller.<br>**Note**: Currently, only [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) is supported.|
+| context | [Context](js-apis-inner-application-context.md) | Yes| Context of the caller.<br>Note: Currently, only [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) is supported.|
 | appId | string | Yes| Unique ID of the application, which is allocated by the cloud.|
 
 **Return value**

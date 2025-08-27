@@ -867,12 +867,12 @@ pixelStretchEffect(options: Optional\<PixelStretchEffectOptions>): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型                | 必填   | 说明             |
-| ------ | ----------------- | ---- | -------------- |
-| left   | [Length](ts-types.md#length) | 否    | 组件图像左边沿像素扩展距离。 |
-| right  | [Length](ts-types.md#length) | 否    | 组件图像右边沿像素扩展距离。 |
-| top    | [Length](ts-types.md#length) | 否    | 组件图像上边沿像素扩展距离。 |
-| bottom | [Length](ts-types.md#length) | 否    | 组件图像下边沿像素扩展距离。 |
+| 名称     | 类型                | 只读   | 可选   | 说明             |
+| ------ | ----------------- | ---- | ---- | -------------- |
+| left   | [Length](ts-types.md#length) | 否    | 是    | 组件图像左边沿像素扩展距离。 |
+| right  | [Length](ts-types.md#length) | 否    | 是    | 组件图像右边沿像素扩展距离。 |
+| top    | [Length](ts-types.md#length) | 否    | 是    | 组件图像上边沿像素扩展距离。 |
+| bottom | [Length](ts-types.md#length) | 否    | 是    | 组件图像下边沿像素扩展距离。 |
 
 ## systemBarEffect<sup>12+</sup>
 
@@ -1013,12 +1013,12 @@ type FractionStop = [ number, number ]
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            |  类型  | 必填  | 说明                                       |
-| -------------- | ------ | ----- | ------------------------------------------ |
-| low            | number | 是    | 背景颜色灰度值大于阈值区间时的取值。 <br/>取值范围：[0,1]                 |
-| high           | number | 是    | 背景颜色灰度值小于阈值区间时的取值。  <br/>取值范围：[0,1]            |
-| threshold      | number | 是    | 灰度阈值。    <br/>取值范围：[0,1]                              |
-| thresholdRange | number | 是    | 阈值范围。<br/>取值范围：[0,1]<br/>**说明：**<br/>灰度阈值上下偏移thresholdRange构成阈值区间，背景颜色灰度值在区间内取值由high线性渐变到low。|
+| 名称            |  类型  | 只读  | 可选  | 说明                                       |
+| -------------- | ------ | ----- | ----- | ------------------------------------------ |
+| low            | number | 否    | 否    | 背景颜色灰度值大于阈值区间时的取值。 <br/>取值范围：[0, 1]                 |
+| high           | number | 否    | 否    | 背景颜色灰度值小于阈值区间时的取值。  <br/>取值范围：[0, 1]            |
+| threshold      | number | 否    | 否    | 灰度阈值。    <br/>取值范围：[0, 1]                            |
+| thresholdRange | number | 否    | 否    | 阈值范围。<br/>取值范围：[0, 1]<br/>**说明：**<br/>灰度阈值上下偏移thresholdRange构成阈值区间，背景颜色灰度值在区间内取值由high线性渐变到low。|
 
 ## BackgroundImageOptions<sup>18+</sup>
 
@@ -1034,10 +1034,10 @@ type FractionStop = [ number, number ]
 >
 >  背景图片的同步加载可能会带来潜在性能问题，详情可见[Image](ts-basic-components-image.md#image-1)中说明。
 
-| 名称            |  类型                                           | 必填  | 说明                                                     |
-| -------------- | ------------------------------------------------| ----- | --------------------------------------------------------|
-| syncLoad       | boolean                                         | 否    | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false，false表示异步加载图片，true表示同步加载图片。      |
-| repeat         | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | 否    | 设置背景图片的重复样式。默认值为ImageRepeat.NoRepeat。                     |
+| 名称            |  类型                                           | 只读  | 可选  | 说明                                                     |
+| -------------- | ------------------------------------------------| ----- | ----- | --------------------------------------------------------|
+| syncLoad       | boolean                                         | 否    | 是    | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false，false表示异步加载图片，true表示同步加载图片。      |
+| repeat         | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | 否    | 是    | 设置背景图片的重复样式。默认值为ImageRepeat.NoRepeat。                     |
 
 ## freeze<sup>12+</sup>
 

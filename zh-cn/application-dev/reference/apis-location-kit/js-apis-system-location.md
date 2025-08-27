@@ -1,4 +1,10 @@
 # @system.geolocation (地理位置)
+<!--Kit: Location Kit-->
+<!--Subsystem: Location-->
+<!--Owner: @liu-binjun-->
+<!--Designer: @liu-binjun-->
+<!--Tester: @mhy123456789-->
+<!--Adviser: @RayShih-->
 
 本模块仅提供GNSS定位、网络定位等基本功能。
 

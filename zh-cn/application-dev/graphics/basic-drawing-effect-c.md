@@ -26,7 +26,7 @@
 | 接口 | 描述 |
 | -------- | -------- |
 | OH_Drawing_Brush\* OH_Drawing_BrushCreate (void) | 用于创建一个画刷对象。 |
-| void OH_Drawing_CanvasAttachBrush (OH_Drawing_Canvas\*, const OH_Drawing_Brush\*) | 用于设置画刷给画布，画布将会使用设置的画刷样式和颜色去填充绘制的图形形状。 |
+| void OH_Drawing_CanvasAttachBrush (OH_Drawing_Canvas\*, const OH_Drawing_Brush\*) | 用于设置画刷给画布，画布将使用设置的画刷样式和颜色填充绘制的图形形状。 |
 | void OH_Drawing_BrushSetColor (OH_Drawing_Brush\* , uint32_t color) | 用于设置画刷的颜色属性，颜色属性描述了画刷填充图形时使用的颜色，用一个32位（ARGB）的变量表示。 |
 | void OH_Drawing_BrushSetAntiAlias (OH_Drawing_Brush\* , bool) | 用于设置画刷的抗锯齿属性，设置为true则画刷在绘制图形时会对图形的边缘像素进行半透明的模糊处理，以使图形边缘更加平滑。 |
 | void OH_Drawing_CanvasDetachBrush (OH_Drawing_Canvas\*) | 用于去除画布中的画刷，执行后画布将不使用此前设置的画刷，恢复到默认的填充效果。 |
@@ -96,7 +96,7 @@
 | void OH_Drawing_PenSetAntiAlias (OH_Drawing_Pen\* , bool ) | 用于设置画笔的抗锯齿属性，设置为true则画笔在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 |
 | void OH_Drawing_PenSetCap (OH_Drawing_Pen\* , OH_Drawing_PenLineCapStyle) | 用于设置画笔线帽样式。 |
 | void OH_Drawing_PenSetJoin (OH_Drawing_Pen\* , OH_Drawing_PenLineJoinStyle) | 用于设置画笔绘制转角的样式。 |
-| void OH_Drawing_CanvasDetachPen (OH_Drawing_Canvas\*) | 用于去除画布中的画笔，执行后后画布将不去绘制图形形状的轮廓，恢复到默认的填充效果。 |
+| void OH_Drawing_CanvasDetachPen (OH_Drawing_Canvas\*) | 用于去除画布中的画笔，执行后画布将不去绘制图形形状的轮廓，恢复到默认的填充效果。 |
 | void OH_Drawing_PenDestroy (OH_Drawing_Pen\*) | 用于销毁画笔对象并回收该对象占有的内存。 |
 
 
@@ -108,7 +108,7 @@
    OH_Drawing_Pen* pen = OH_Drawing_PenCreate(); 
    ```
 
-2. 使用OH_Drawing_CanvasAttachPen()接口给Canvas画布设置画笔。接口接受两个参数，一个是画布对象Canvas，请确保已创建或获取得到画布Canvas，具体可见[画布的获取与绘制结果的显示（C/C++）](canvas-get-result-draw-c.md)；另一个是要画设置的画笔对象。画布将会使用设置的画笔样式和颜色等绘制图形轮廓。
+2. 使用OH_Drawing_CanvasAttachPen()接口给Canvas画布设置画笔。接口接受两个参数，一个是画布对象Canvas，请确保已创建或获取得到画布Canvas，具体可见[画布的获取与绘制结果的显示（C/C++）](canvas-get-result-draw-c.md)；另一个是要设置的画笔对象。画布将会使用设置的画笔样式和颜色等绘制图形轮廓。
 
    ```c++
    OH_Drawing_CanvasAttachPen(canvas, pen); 
@@ -130,7 +130,7 @@
       OH_Drawing_PenSetWidth(pen, width);
       ```
 
-      width指线宽的像素值。
+      width表示线宽的像素值。
 
    - 可使用OH_Drawing_PenSetAntiAlias()接口设置画笔抗锯齿，以使图形绘制边缘更平滑。
 

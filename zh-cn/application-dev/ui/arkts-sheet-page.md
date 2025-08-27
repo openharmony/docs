@@ -117,6 +117,8 @@ struct SheetDemo {
 }
 ```
 
+![sheetTwo](figures/sheetTwo.PNG)
+
 ## 二次确认能力
 
 推荐使用onWillDismiss接口，此接口支持在回调中处理二次确认，或自定义关闭行为。
@@ -126,41 +128,69 @@ struct SheetDemo {
 > 声明onWillDismiss接口后，半模态页面的所有关闭操作，包括侧滑、点击关闭按钮、点击蒙层和下拉关闭，都需通过调用dismiss方法来实现。若未实现此逻辑，半模态页面将无法响应上述关闭操作。
 
 ```ts
-// 第一步：声明onWillDismiss回调
-onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
-// 第二步：确认二次回调交互能力，此处用AlertDialog提示 "是否需要关闭半模态"
-  this.getUIContext().showAlertDialog(
-    {
-      message: '是否选择关闭半模态',
-      autoCancel: true,
-      alignment: DialogAlignment.Bottom,
-      gridCount: 4,
-      offset: { dx: 0, dy: -20 },
-      primaryButton: {
-        value: 'cancel',
-        action: () => {
-          console.info('Callback when the cancel button is clicked');
-        }
-      },
-      secondaryButton: {
-        enabled: true,
-        defaultFocus: true,
-        style: DialogButtonStyle.HIGHLIGHT,
-        value: 'ok',
-        // 第三步：确认关闭半模态逻辑所在，此处为AlertDialog的Button回调
-        action: () => {
-          // 第四步：上述第三步逻辑触发的时候，调用dismiss()关闭半模态
-          DismissSheetAction.dismiss();
-          console.info('Callback when the ok button is clicked');
-        }
-      },
-      cancel: () => {
-        console.info('AlertDialog Closed callbacks');
-      }
+@Entry
+@Component
+struct onWillDismiss_Dismiss {
+  @State isShow: Boolean = false;
+
+  @Builder
+  myBuilder() {
+    Column() {
+      Button('Button')
     }
-  )
-})
+  }
+
+  build() {
+    Button("OpenBindSheet")
+      .onClick(() => {
+        this.isShow = true
+      })
+      .margin(120)
+      .bindSheet($$this.isShow, this.myBuilder(), {
+        height: SheetSize.MEDIUM,
+        blurStyle: BlurStyle.Thick,
+        dragBar: true,
+        detents: [SheetSize.MEDIUM, SheetSize.LARGE],
+        title: { title: "title", subtitle: "subtitle" },
+        enableOutsideInteractive: false,
+        onWillDismiss: ((DismissSheetAction: DismissSheetAction) => { 
+          // 第二步：确认二次回调交互能力，此处用AlertDialog提示 "是否需要关闭半模态"
+          this.getUIContext().showAlertDialog(
+            {
+              message: '是否选择关闭半模态',
+              autoCancel: true,
+              alignment: DialogAlignment.Bottom,
+              gridCount: 4,
+              offset: { dx: 0, dy: -20 },
+              primaryButton: {
+                value: 'cancel',
+                action: () => {
+                  console.info('Callback when the cancel button is clicked');
+                }
+              },
+              secondaryButton: {
+                enabled: true,
+                defaultFocus: true,
+                style: DialogButtonStyle.HIGHLIGHT,
+                value: 'ok',
+                // 第三步：确认关闭半模态逻辑所在，此处为AlertDialog的Button回调
+                action: () => {
+                  // 第四步：上述第三步逻辑触发的时候，调用dismiss()关闭半模态
+                  DismissSheetAction.dismiss();
+                  console.info('Callback when the ok button is clicked');
+                }
+              },
+              cancel: () => {
+                console.info('AlertDialog Closed callbacks');
+              }
+            }
+          )
+        })
+      })
+  }
+}
 ```
+![onWillDismiss](figures/onWillDismiss.png)
 
 ## 屏蔽部分关闭行为
 
@@ -196,7 +226,7 @@ onWillSpringBackWhenDismiss: ((SpringBackAction: SpringBackAction) => {
 
 半模态从API version 14开始支持中轴避让，当前在2in1设备默认开启（仅窗口处于瀑布模式时产生避让）中轴避让能力，且在2in1设备默认避让区域为上半屏。开发者可以通过[SheetOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions)的enableHoverMode主动设置是否避让中轴，及[SheetOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions)的hoverModeArea设置避让中轴后显示区域。
 
-- 半模态中轴避让不支持控件子窗能力，showInSubWindow=true场景。
+- 半模态中轴避让不支持控件子窗能力，[SheetOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions)中的showInSubWindow为true的场景。
 - 2in1设备上需同时满足窗口处于瀑布模式才会产生避让。
 
 完整示例代码如下：
@@ -260,3 +290,5 @@ struct SheetTransitionExample {
   }
 }
 ```
+
+![sheetOne](figures/sheetOne.PNG)

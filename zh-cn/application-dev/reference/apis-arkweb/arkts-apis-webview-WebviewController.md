@@ -6,7 +6,7 @@
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloCrease-->
 
-通过WebviewController可以控制Web组件各种行为（包括页面导航、声明周期状态、JavaScript交互等行为）。一个WebviewController对象只能控制一个Web组件，且必须在Web组件和WebviewController绑定后，才能调用WebviewController上的方法（静态方法除外）。
+通过WebviewController可以控制Web组件各种行为（包括页面导航、生命周期状态、JavaScript交互等行为）。一个WebviewController对象只能控制一个Web组件，且必须在Web组件和WebviewController绑定后，才能调用WebviewController上的方法（静态方法除外）。
 
 > **说明：**
 >
@@ -1946,7 +1946,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-  @State factor: number = 1;
+  @State factor: number = 2;
 
   build() {
     Column() {
@@ -3845,10 +3845,42 @@ struct WebComponent {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile("index.html"), controller: this.controller })
     }
   }
 }
+```
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .blue {
+          background-color: lightblue;
+        }
+        .green {
+          background-color: lightgreen;
+        }
+        .blue, .green {
+         font-size:16px;
+         height:200px;
+         text-align: center;       /* 水平居中 */
+         line-height: 200px;       /* 垂直居中（值等于容器高度） */
+        }
+    </style>
+</head>
+<body>
+<div class="blue" >webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+</body>
+</html>
 ```
 
 ## pageDown
@@ -3896,10 +3928,45 @@ struct WebComponent {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile("index.html"), controller: this.controller })
     }
   }
 }
+```
+
+加载的html文件。
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .blue {
+          background-color: lightblue;
+        }
+        .green {
+          background-color: lightgreen;
+        }
+        .blue, .green {
+         font-size:16px;
+         height:200px;
+         text-align: center;       /* 水平居中 */
+         line-height: 200px;       /* 垂直居中（值等于容器高度） */
+        }
+    </style>
+</head>
+<body>
+<div class="blue" >webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+</body>
+</html>
 ```
 
 ## getBackForwardEntries
@@ -6482,7 +6549,7 @@ struct Index {
 
 ## pauseAllTimers<sup>12+</sup>
 
-pauseAllTimers(): void
+static pauseAllTimers(): void
 
 暂停所有WebView的定时器。
 
@@ -6542,7 +6609,7 @@ struct WebComponent {
 
 ## resumeAllTimers<sup>12+</sup>
 
-resumeAllTimers(): void
+static resumeAllTimers(): void
 
 恢复从pauseAllTimers()接口中被暂停的所有的定时器。
 
@@ -6784,7 +6851,7 @@ struct WebComponent {
 
 getMediaPlaybackState(): MediaPlaybackState
 
-查询当前所有音视频播控状态。
+查询当前网页音视频播放状态。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6792,7 +6859,7 @@ getMediaPlaybackState(): MediaPlaybackState
 
 | 类型                                        | 说明                                                      |
 | ------------------------------------------- | --------------------------------------------------------- |
-| [MediaPlaybackState](./arkts-apis-webview-e.md#mediaplaybackstate12) | 当前网页的播控状态，具体值为NONE、PLAYING、PAUSED、STOPPED。 |
+| [MediaPlaybackState](./arkts-apis-webview-e.md#mediaplaybackstate12) | 当前网页的播放状态，具体值为NONE、PLAYING、PAUSED、STOPPED。 |
 
 **错误码：**
 
@@ -8107,7 +8174,11 @@ struct WebComponent {
 
 getSurfaceId(): string
 
-获取ArkWeb对应Surface的ID，仅Web组件渲染模式是ASYNC_RENDER时有效。getSurfaceId需要在Web组件初始化之后才能获取到值。
+获取ArkWeb对应Surface的ID，此ID可用于网页截图。
+
+> **说明：**
+>
+> 仅Web组件渲染模式是ASYNC_RENDER时有效。getSurfaceId需要在Web组件初始化之后才能获取到值。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8752,6 +8823,29 @@ struct WebComponent {
   }
 }
 ```
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0">
+      <title>Demo</title>
+      <style>
+          body {
+            width:3000px;
+            height:6000px;
+            padding-right:170px;
+            padding-left:170px;
+            border:5px solid blueviolet
+          }
+      </style>
+  </head>
+  <body>
+  Scroll Test
+  </body>
+  </html>
+  ```
 
 ## getPageOffset<sup>20+</sup>
 

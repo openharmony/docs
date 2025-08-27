@@ -2,7 +2,7 @@
 
 ## Overview
 
-The NativeDisplayManager_CutoutInfo struct describes the unusable area of a display, including punch hole, notch, and curved area of a waterfall display.
+The struct describes the unusable area of a display, including punch hole, notch, and curved area of a waterfall display.
 
 **Since**: 12
 

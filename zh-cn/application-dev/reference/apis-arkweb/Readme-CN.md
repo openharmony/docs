@@ -1,4 +1,10 @@
 # ArkWeb（方舟Web）
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc-->
+<!--Designer: @ctqctq99-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 - ArkTS API<!--arkweb-arkts-->
   - @ohos.web.webview (Webview)<!--js-apis-webview-->
@@ -78,6 +84,7 @@
     - [native_interface_arkweb.h](capi-native-interface-arkweb-h.md)
   - 结构体<!--arkweb-struct-->
     - [ArkWeb_AnyNativeAPI](capi-web-arkweb-anynativeapi.md)
+    - [ArkWeb_BlanklessInfo](capi-web-arkweb-blanklessinfo.md)
     - [ArkWeb_SchemeHandler_](capi-web-arkweb-schemehandler.md)
     - [ArkWeb_ResourceHandler_](capi-web-arkweb-resourcehandler.md)
     - [ArkWeb_Response_](capi-web-arkweb-response.md)

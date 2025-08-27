@@ -1,4 +1,4 @@
-# Mechanic Kit（机械设备管理）<!--mechanic-kit-->
+# Mechanic Kit（机械体设备控制器）<!--mechanic-kit-->
 <!--Kit: Mechanic Kit-->
 <!--Subsystem: Mechanic-->
 <!--Owner: @hobbycao-->

@@ -363,3 +363,6 @@
 针对InputMethodExtensionAbility开发，有以下相关实例可供参考：
 
 - [轻量级输入法](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Solutions/InputMethod/KikaInput)
+
+## 示例效果图
+![示例效果图](./figures/实现一个输入法应用示例效果图.png)

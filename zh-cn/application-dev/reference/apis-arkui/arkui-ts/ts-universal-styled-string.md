@@ -644,11 +644,11 @@ constructor(value?: GestureStyleInterface)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 类型                              | 必填 | 说明   |
-| ------- | --------------------------------- | ---- | --------------------------------- |
-| onClick | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)> | 否   | 设置点击事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| onLongPress | Callback\<[GestureEvent](./ts-gesture-settings.md#gestureevent对象说明)> | 否   | 设置长按事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| onTouch<sup>20+</sup> | Callback\<[TouchEvent](ts-universal-events-touch.md#touchevent对象说明)> | 否   | 设置触摸事件。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| 名称  | 类型                              |  只读 | 可选  | 说明   |
+| ------- | --------------------------------- | ---- | ---- | --------------------------------- |
+| onClick | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)> | 否   | 是 | 设置点击事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| onLongPress | Callback\<[GestureEvent](./ts-gesture-settings.md#gestureevent对象说明)> | 否   | 是 | 设置长按事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| onTouch<sup>20+</sup> | Callback\<[TouchEvent](ts-universal-events-touch.md#touchevent对象说明)> | 否   | 是 | 设置触摸事件。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## DecorationOptions<sup>20+</sup>
 
@@ -944,7 +944,7 @@ type ColorFilterType = ColorFilter | DrawingColorFilter
 | 名称  | 类型                              | 只读 | 可选 | 说明   |
 | ------- | --------------------------------- | ---- | ---- | --------------------------------- |
 | value | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) |  否  | 否 | 设置图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 是 | 设置图片大小。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>size的默认值与objectFit的值有关，不同的objectFit的值对应size的默认值不同。比如当objectFit的值为Cover时，图片高度为组件高度减去组件上下的内边距，图片宽度为组件宽度减去组件左右的内边距。 |
+| size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 是 | 设置图片大小，不支持百分比。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>size的默认值与objectFit的值有关，不同的objectFit的值对应size的默认值不同。比如当objectFit的值为Cover时，图片高度为组件高度减去组件上下的内边距，图片宽度为组件宽度减去组件左右的内边距。 |
 | verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | 否    | 是 | 设置图片基于文本的对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>默认值：ImageSpanAlignment.BOTTOM |
 | objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否    | 是 | 设置图片的缩放类型，当前枚举类型不支持ImageFit.MATRIX。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>默认值：ImageFit.Cover |
 | layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) | 否    | 是 | 设置图片布局。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -1304,7 +1304,8 @@ struct styled_string_process_demo {
             Span("span and styledString test")
               .fontColor(Color.Yellow)
               .decoration({ type: TextDecorationType.LineThrough })
-            ImageSpan($r('app.media.startIcon')) // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            ImageSpan($r('app.media.startIcon'))
           }
           .key('styledString2')
           .fontColor(this.fontColor1)
@@ -1331,7 +1332,8 @@ struct styled_string_process_demo {
             Span(this.string1)
               .fontColor(this.color1)
               .decoration({ type: TextDecorationType.LineThrough })
-            ImageSpan($r('app.media.startIcon'))// $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            ImageSpan($r('app.media.startIcon'))
               .width(50).height(50)
           }
           .letterSpacing(10)
@@ -1718,8 +1720,9 @@ struct styled_string_set_image_demo {
 
   async aboutToAppear() {
     console.info("aboutToAppear initial imagePixelMap");
+    // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
     this.imagePixelMap =
-      await this.getPixmapFromMedia($r('app.media.startIcon')); // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+      await this.getPixmapFromMedia($r('app.media.startIcon')); 
   }
 
   private async getPixmapFromMedia(resource: Resource) {
@@ -1756,7 +1759,8 @@ struct styled_string_set_image_demo {
           .onClick(() => {
             if (this.imagePixelMap !== undefined) {
               this.mutableStr = new MutableStyledString(new ImageAttachment({
-                resourceValue: $r('app.media.sky'), //建议使用自定义的本地图片
+                // $r('app.media.sky')需要替换为开发者所需的图像资源文件。
+                resourceValue: $r('app.media.sky'), 
                 size: { width: 50, height: 50 },
                 layoutStyle: { borderRadius: LengthMetrics.vp(10) },
                 verticalAlign: ImageSpanAlignment.BASELINE,
@@ -2231,6 +2235,7 @@ struct styled_string_set_image_colorfilter_demo {
           .fontSize(30)
           .onAppear(() => {
             this.mutableStr = new MutableStyledString(new ImageAttachment({
+              // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
               resourceValue: $r('app.media.startIcon'),
               size: { width: 50, height: 50 },
               layoutStyle: { borderRadius: LengthMetrics.vp(10) },
@@ -2247,6 +2252,7 @@ struct styled_string_set_image_colorfilter_demo {
         Button('set image color filter')
           .onClick(() => {
             this.mutableStr2 = new MutableStyledString(new ImageAttachment({
+              // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
               resourceValue: $r('app.media.startIcon'),
               size: { width: 50, height: 50 },
               layoutStyle: { borderRadius: LengthMetrics.vp(10) },

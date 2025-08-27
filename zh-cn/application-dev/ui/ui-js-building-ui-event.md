@@ -79,32 +79,36 @@ longpress：用户在相同位置长时间保持与屏幕接触。
 ```js
 // xxx.js
 export default {
-  data: {
-    touchstart: 'touchstart',
-    touchmove: 'touchmove',
-    touchend: 'touchend',
-    touchcancel: 'touchcancel',
-    onClick: 'onclick',
-    onLongPress: 'onlongpress',
-  },
-  touchCancel: function (event) {
-    this.touchcancel = 'canceled';
-  },
-  touchEnd: function(event) {
-    this.touchend = 'ended';
-  },
-  touchMove: function(event) {
-    this.touchmove = 'moved';
-  }, 
-  touchStart: function(event) {
-    this.touchstart = 'touched';
-  },
-  longPress: function() {
-    this.onLongPress = 'longpressed';
-  },
-  click: function() {
-    this.onClick = 'clicked';
-  },
+    data: {
+        touchstart: 'touchstart',
+        touchmove: 'touchmove',
+        touchend: 'touchend',
+        touchcancel: 'touchcancel',
+        onClick: 'onclick',
+        onLongPress: 'onLongPress',
+    },
+    touchCancel: function (event) {
+        console.info('event is', JSON.stringify(event));
+        this.touchcancel = 'canceled';
+    },
+    touchEnd: function(event) {
+        console.info('event is', JSON.stringify(event));
+        this.touchend = 'ended';
+    },
+    touchMove: function(event) {
+        console.info('event is', JSON.stringify(event));
+        this.touchmove = 'moved';
+    },
+    touchStart: function(event) {
+        console.info('event is', JSON.stringify(event));
+        this.touchstart = 'touched';
+    },
+    longPress: function() {
+        this.onLongPress = 'longPressed';
+    },
+    click: function() {
+        this.onClick = 'clicked';
+    },
 }
 ```
 

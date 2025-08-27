@@ -366,7 +366,7 @@ setOverlayManagerOptions(options: OverlayManagerOptions): boolean
 
 getOverlayManagerOptions(): OverlayManagerOptions
 
-用于获取当前[OverlayManager](arkts-apis-uicontext-overlaymanager.md)参数。
+用于获取当前[OverlayManagerOptions](arkts-apis-uicontext-i.md#overlaymanageroptions15)参数。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -1353,6 +1353,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 完整示例请参考[示例4（设置键盘避让模式为压缩）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例4设置键盘避让模式为压缩)、[示例5（设置键盘避让模式为上抬）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例5设置键盘避让模式为上抬)以及[示例6（切换避让模式）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例6切换避让模式)。
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
@@ -1396,6 +1397,7 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 
 完整示例请参考[示例4（设置键盘避让模式为压缩）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例4设置键盘避让模式为压缩)、[示例5（设置键盘避让模式为上抬）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例5设置键盘避让模式为上抬)以及[示例6（切换避让模式）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例6切换避让模式)。
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
@@ -1494,7 +1496,7 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 | 参数名 | 类型                                              | 必填 | 说明                      |
 | ------------ | ---------------------------------------------------- | ------- | ---------------------------- |
 | param        | [KeyframeAnimateParam](arkui-ts/ts-keyframeAnimateTo.md#keyframeanimateparam对象说明) | 是      | 关键帧动画的整体动画参数。     |
-| keyframes    | Array&lt;[KeyframeState](arkui-ts/ts-keyframeAnimateTo.md#keyframestate对象说明)&gt;  | 是      | 所有的关键帧状态。            |
+| keyframes    | Array&lt;[KeyframeState](arkui-ts/ts-keyframeAnimateTo.md#keyframestate对象说明)&gt;  | 是      | 所有的关键帧状态的列表。            |
 
 **示例：**
 
@@ -1522,7 +1524,7 @@ struct KeyframeDemo {
         .scale({ x: this.myScale, y: this.myScale })
         .onClick(() => {
           if (!this.uiContext) {
-            console.info("no uiContext, keyframe failed");
+            console.error("no uiContext, keyframe failed");
             return;
           }
           this.myScale = 1;
@@ -2517,7 +2519,7 @@ openBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheetOp
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    返回Promise对象。 |
+|   Promise&lt;void&gt;           |    Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -2563,7 +2565,7 @@ function buildText(params: Params) {
             console.info('updateBindSheet success');
           })
           .catch((err: BusinessError) => {
-            console.info('updateBindSheet error: ' + err.code + ' ' + err.message);
+            console.error('updateBindSheet error: ' + err.code + ' ' + err.message);
           })
       })
 
@@ -2575,7 +2577,7 @@ function buildText(params: Params) {
             console.info('closeBindSheet success');
           })
           .catch((err: BusinessError) => {
-            console.info('closeBindSheet error: ' + err.code + ' ' + err.message);
+            console.error('closeBindSheet error: ' + err.code + ' ' + err.message);
           })
       })
   }
@@ -2610,7 +2612,7 @@ struct UIContextBindSheet {
                 console.info('openBindSheet success');
               })
               .catch((err: BusinessError) => {
-                console.info('openBindSheet error: ' + err.code + ' ' + err.message);
+                console.error('openBindSheet error: ' + err.code + ' ' + err.message);
               })
           })
       }
@@ -2648,7 +2650,7 @@ updateBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheet
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    返回Promise对象。 |
+|   Promise&lt;void&gt;           |    Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -2691,7 +2693,7 @@ function buildText(params: Params) {
             console.info('updateBindSheet success');
           })
           .catch((err: BusinessError) => {
-            console.info('updateBindSheet error: ' + err.code + ' ' + err.message);
+            console.error('updateBindSheet error: ' + err.code + ' ' + err.message);
           })
       })
 
@@ -2703,7 +2705,7 @@ function buildText(params: Params) {
             console.info('closeBindSheet success');
           })
           .catch((err: BusinessError) => {
-            console.info('closeBindSheet error: ' + err.code + ' ' + err.message);
+            console.error('closeBindSheet error: ' + err.code + ' ' + err.message);
           })
       })
   }
@@ -2738,7 +2740,7 @@ struct UIContextBindSheet {
                 console.info('openBindSheet success');
               })
               .catch((err: BusinessError) => {
-                console.info('openBindSheet error: ' + err.code + ' ' + err.message);
+                console.error('openBindSheet error: ' + err.code + ' ' + err.message);
               })
           })
       }
@@ -2774,7 +2776,7 @@ closeBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>): Promi
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    返回Promise对象。 |
+|   Promise&lt;void&gt;           |    Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -2817,7 +2819,7 @@ function buildText(params: Params) {
             console.info('updateBindSheet success');
           })
           .catch((err: BusinessError) => {
-            console.info('updateBindSheet error: ' + err.code + ' ' + err.message);
+            console.error('updateBindSheet error: ' + err.code + ' ' + err.message);
           })
       })
 
@@ -2829,7 +2831,7 @@ function buildText(params: Params) {
             console.info('closeBindSheet success');
           })
           .catch((err: BusinessError) => {
-            console.info('closeBindSheet error: ' + err.code + ' ' + err.message);
+            console.error('closeBindSheet error: ' + err.code + ' ' + err.message);
           })
       })
   }
@@ -2864,7 +2866,7 @@ struct UIContextBindSheet {
                 console.info('openBindSheet success');
               })
               .catch((err: BusinessError) => {
-                console.info('openBindSheet error: ' + err.code + ' ' + err.message);
+                console.error('openBindSheet error: ' + err.code + ' ' + err.message);
               })
           })
       }
@@ -2893,9 +2895,19 @@ isFollowingSystemFontScale(): boolean
 
 **示例：**
 
-<!--code_no_check-->
+参考[configuration标签](../../quick-start/app-configuration-file.md#configuration标签)，配置fontSizeScale的值为“followSystem”。
 ```ts
-uiContext.isFollowingSystemFontScale();
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Button('isFollowingSystemFontScale').onClick(() => {
+        console.info('isFollowingSystemFontScale', this.getUIContext().isFollowingSystemFontScale());
+      });
+    }
+  }
+}
 ```
 
 ## getMaxFontScale<sup>13+</sup>
@@ -2916,9 +2928,19 @@ getMaxFontScale(): number
 
 **示例：**
 
-<!--code_no_check-->
+参考[configuration标签](../../quick-start/app-configuration-file.md#configuration标签)，配置fontSizeMaxScale的值为“1.75”。
 ```ts
-uiContext.getMaxFontScale();
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Button('getMaxFontScale').onClick(() => {
+        console.info('getMaxFontScale', this.getUIContext().getMaxFontScale().toFixed(2));
+      });
+    }
+  }
+}
 ```
 
 ## bindTabsToScrollable<sup>13+</sup>
@@ -3328,6 +3350,7 @@ setPixelRoundMode(mode: PixelRoundMode): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIContext } from '@kit.ArkUI';
@@ -3369,6 +3392,7 @@ getPixelRoundMode(): PixelRoundMode
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIContext } from '@kit.ArkUI';

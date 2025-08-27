@@ -1,4 +1,10 @@
 # WindowManager_WindowProperties
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## 概述
 
@@ -16,9 +22,9 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| WindowManager_Rect windowRect | 窗口的位置和尺寸。 |
-| WindowManager_Rect drawableRect | 窗口内可绘制区域的尺寸。 |
-| WindowManager_WindowType type | 窗口类型。 |
+| [WindowManager_Rect](capi-windowmanager-rect.md) windowRect | 窗口的位置和尺寸。 |
+| [WindowManager_Rect](capi-windowmanager-rect.md) drawableRect | 窗口内可绘制区域的尺寸。 |
+| [WindowManager_WindowType](capi-oh-window-comm-h.md#windowmanager_windowtype) type | 窗口类型。 |
 | bool isFullScreen | 窗口是否全屏模式。默认值为false。true表示窗口是全屏模式，false表示窗口是非全屏模式。 |
 | bool isLayoutFullScreen | 窗口布局是否沉浸式。默认值为false。true表示窗口布局是沉浸式，false表示窗口布局是非沉浸式。 |
 | bool focusable | 窗口是否能获取焦点。默认值为true。true表示窗口能获取焦点，false表示窗口不能获取焦点。 |

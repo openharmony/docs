@@ -83,11 +83,11 @@ on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void
 ```ts
 import bundleMonitor from '@ohos.bundle.bundleMonitor';
 import { BusinessError } from '@ohos.base';
-
+let callbackFun = (bundleChangeInfo: bundleMonitor.BundleChangedInfo) => {
+  console.info(`bundleName : ${bundleChangeInfo.bundleName} userId : ${bundleChangeInfo.userId}`);
+};
 try {
-    bundleMonitor.on('add', (bundleChangeInfo) => {
-        console.info(`bundleName : ${bundleChangeInfo.bundleName} userId : ${bundleChangeInfo.userId}`);
-	})
+    bundleMonitor.on('add', callbackFun);
 } catch (errData) {
     let message = (errData as BusinessError).message;
     let errCode = (errData as BusinessError).code;
@@ -112,7 +112,7 @@ off(type: BundleChangedEvent, callback?: Callback\<BundleChangedInfo>): void
 | 参数名                       | 类型     | 必填 | 说明                                                       |
 | ---------------------------- | -------- | ---- | ---------------------------------------------------------- |
 | type| [BundleChangedEvent](js-apis-bundleMonitor-sys.md#bundlechangedevent)| 是   | 注销监听的事件类型。                                         |
-| callback | callback\<BundleChangedInfo>| 否   | 注销监听的[回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，默认值：注销当前事件的所有callback。 |
+| callback | callback\<BundleChangedInfo>| 否   | 注销监听的[回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，参数不传时，默认值：注销当前事件的所有callback。 |
 
 **错误码：**
 
@@ -130,8 +130,13 @@ off(type: BundleChangedEvent, callback?: Callback\<BundleChangedInfo>): void
 import bundleMonitor from '@ohos.bundle.bundleMonitor';
 import { BusinessError } from '@ohos.base';
 
+// 该方法变量需要和bundleMonitor.on方法是同一个，才能移除对应监听的方法，否则注销监听无效
+let callbackFun = (bundleChangeInfo: bundleMonitor.BundleChangedInfo) => {
+  console.info(`bundleName : ${bundleChangeInfo.bundleName} userId : ${bundleChangeInfo.userId}`);
+};
+
 try {
-    bundleMonitor.off('add');
+    bundleMonitor.off('add', callbackFun);
 } catch (errData) {
     let message = (errData as BusinessError).message;
     let errCode = (errData as BusinessError).code;

@@ -543,6 +543,10 @@ const valueBucket: ValuesBucket = {
 示例：
 
 ```ts
+function CustomDecorator(target: Object, propertyKey: string) {}
+function MethodDecorator(target: Object, propertyKey: string, descriptor: PropertyDescriptor) {}
+function ParamDecorator(target: Object, propertyKey: string, parameterIndex: number) {}
+
 class A {
   // 1.成员变量装饰器
   @CustomDecorator
