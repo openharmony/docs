@@ -55,7 +55,7 @@ zh-cn/application-dev/quick-start/arkts-high-performance-programming.md @zhang_y
 
 [开发-Ability Kit-元能力]
 zh-cn/application-dev/application-models/ @huipeizi @ccllee1 @lixueqing513
-zh-cn/application-dev/application-models/Readme-CN.md @huipeizi @jayleehw @lixueqing513
+zh-cn/application-dev/application-models/Readme-CN.md @huipeizi 
 zh-cn/application-dev/application-models/ability-recover-guideline.md @huipeizi @wendel @lixueqing513
 zh-cn/application-dev/application-models/ability-terminology.md @huipeizi @ccllee1 @lixueqing513
 zh-cn/application-dev/application-models/abilitystage.md @huipeizi @li-weifeng2024 @lixueqing513
@@ -835,7 +835,7 @@ zh-cn/application-dev/reference/common/js-apis-logs.md @gongjunsong @ge-yafang @
 [API参考-Ability Kit-元能力]
 zh-cn/application-dev/reference/apis-ability-kit/ @huipeizi @ccllee1 @lixueqing513
 zh-cn/application-dev/reference/apis-ability-kit/errorcode-ability.md @huipeizi @ccllee1 @lixueqing513
-zh-cn/application-dev/reference/apis-ability-kit/Readme-CN.md @huipeizi @hanfeng6 @lihaitao @kongjing2
+zh-cn/application-dev/reference/apis-ability-kit/Readme-CN.md @huipeizi 
 zh-cn/application-dev/reference/apis-ability-kit/capi-native-child-process-h.md @huipeizi @jsjzju @lixueqing513
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-ability-errorCode.md @huipeizi @ccllee1 @lixueqing513
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-ability.md @huipeizi @ccllee1 @lixueqing513
