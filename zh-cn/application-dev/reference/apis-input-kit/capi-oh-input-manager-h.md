@@ -408,7 +408,7 @@ enum Input_Result
 | INPUT_REPEAT_INTERCEPTOR = 4200001 | 应用创建拦截后，再次执行创建拦截的操作。 |
 | INPUT_OCCUPIED_BY_SYSTEM = 4200002 | 已经被系统应用占用。<br>**起始版本：** 14。 |
 | INPUT_OCCUPIED_BY_OTHER = 4200003 | 已经被其他应用占用。<br>**起始版本：** 14。 |
-| INPUT_KEYBOARD_DEVICE_NOT_EXIST = 3900002 |  未连接键盘设备。<br>**起始版本：** 15。 |
+| INPUT_KEYBOARD_DEVICE_NOT_EXIST = 3900002 |  包含CapsLock键的键盘设备没有连接。<br>**起始版本：** 15。 |
 | INPUT_INJECTION_AUTHORIZING = 3900005 |  正在授权中。<br>**起始版本：** 20。 |
 | INPUT_INJECTION_OPERATION_FREQUENT = 3900006 |  重复请求。<br>**起始版本：** 20。 |
 | INPUT_INJECTION_AUTHORIZED = 3900007 |  当前应用已经授权。<br>**起始版本：** 20。 |

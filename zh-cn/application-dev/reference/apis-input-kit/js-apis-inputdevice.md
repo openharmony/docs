@@ -907,7 +907,7 @@ isFunctionKeyEnabled(functionKey: FunctionKey): Promise&lt;boolean&gt;
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-| 3900002      | There is currently no keyboard device connected. |
+| 3900002      | The keyboard device containing the CapsLock key is not connected. |
 
 **示例**：
 
@@ -966,7 +966,7 @@ setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;vo
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-| 3900002      | There is currently no keyboard device connected. |
+| 3900002      | The keyboard device containing the CapsLock key is not connected. |
 | 3900003      | It is prohibited for non-input applications. |
 
 **示例**：
