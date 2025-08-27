@@ -32,7 +32,7 @@
 | off(type: 'loopObserver', observer?: LoopObserver): void | 以LoopObserver的形式解除应用主线程消息处理耗时监听。 |
 | on(type: 'freeze', observer: FreezeObserver): void | 注册应用主线程freeze监听。只能在主线程调用，重复注册后，后一次的注册会覆盖前一次的。 |
 | off(type: 'freeze', observer?: FreezeObserver): void | 以FreezeObserver的形式解除应用主线程消息处理耗时监听。<br/>说明：从API version 18开始，支持该接口。 |
-
+|setDefaultErrorObserver(defaultObserver?: ErrorHandler) : ErrorHandler| 基于责任链（Chain of Responsibility）设计模式实现，仅允许在主线程调用，支持注册多个错误处理函数并形成链式调用关系 —— 每次注册会覆盖前一次的默认处理器，同时返回上一次注册的处理器实例以支撑链式关联；当未捕获的异常发生时，将从最后注册的处理器开始触发，通过链式传递依次调用所有已注册的处理器，最终形成与注册顺序一致的执行序列。
 当采用callback作为异步回调时，可以在callback中进行下一步处理。
 当采用Promise对象返回时，可以在Promise对象中类似地处理接口返回值，具体结果码说明见[解除注册结果码](#解除注册结果码)。
 
@@ -309,4 +309,62 @@ export default class EntryAbility extends UIAbility {
         console.info("[Demo] EntryAbility onBackground");
     }
 };
+```
+### 错误处理器责任链模式场景
+
+```ts
+import { errorManager } from '@kit.AbilityKit';
+
+// 定义5个错误处理器，每个处理器先调用上一级，再执行自身逻辑
+let observer1: errorManager.ErrorHandler;
+const handler1: errorManager.ErrorHandler = (reason: Error) => {
+  if (observer1) observer1(reason); // 调用上一级（若存在）
+  console.info('[Handler 1] First uncaught exception handler invoked.');
+};
+
+let observer2: errorManager.ErrorHandler;
+const handler2: errorManager.ErrorHandler = (reason: Error) => {
+  if (observer2) observer2(reason); // 调用上一级（handler1）
+  console.info('[Handler 2] Second uncaught exception handler invoked.');
+};
+
+let observer3: errorManager.ErrorHandler;
+const handler3: errorManager.ErrorHandler = (reason: Error) => {
+  if (observer3) observer3(reason); // 调用上一级（handler2）
+  console.info('[Handler 3] Third uncaught exception handler invoked.');
+};
+
+let observer4: errorManager.ErrorHandler;
+const handler4: errorManager.ErrorHandler = (reason: Error) => {
+  if (observer4) observer4(reason); // 调用上一级（handler3）
+  console.info('[Handler 4] Fourth uncaught exception handler invoked.');
+};
+
+let observer5: errorManager.ErrorHandler;
+const handler5: errorManager.ErrorHandler = (reason: Error) => {
+  if (observer5) observer5(reason); // 调用上一级（handler4）
+  console.info('[Handler 5] Fifth uncaught exception handler invoked.');
+};
+@Entry
+@Component
+struct Index{
+    build(){
+        RelativeContainer(){
+            Column(){
+                Button('Test Handler Chain - Normal Registration')
+                 .onClick(() => {
+                // 按顺序注册处理器
+                observer1 = errorManager.setDefaultErrorObserver(handler1); // 注册第1个，返回undefined（无上级）
+                observer2 = errorManager.setDefaultErrorObserver(handler2); // 注册第2个，返回handler1
+                observer3 = errorManager.setDefaultErrorObserver(handler3); // 注册第3个，返回handler2
+                observer4 = errorManager.setDefaultErrorObserver(handler4); // 注册第4个，返回handler3
+                observer5 = errorManager.setDefaultErrorObserver(handler5); // 注册第5个，返回handler4
+
+                // 触发错误
+                throw new Error('Test uncaught exception!');
+                 })
+            }
+        }
+    }
+}
 ```

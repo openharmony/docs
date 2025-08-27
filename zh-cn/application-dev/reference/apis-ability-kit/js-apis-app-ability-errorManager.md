@@ -765,3 +765,70 @@ type GlobalObserver = (reason: GlobalError) => void
 | WORKER   | 1   | 表示工作虚拟机实例。 |
 | TASKPOOL | 2   | 表示任务池虚拟机实例。 |
 | CUSTOM   | 3   | 表示用户通过[napi_create_ark_runtime](../native-lib/napi.md#napi_create_ark_runtime)从本机代码创建的虚拟机实例。 |
+
+## ErrorHandler<sup>21+</sup>
+
+type ErrorHandler = (reason: Error) => void
+
+作为 [errorManager.setDefaultErrorObserver](#setDefaultErrorObserver21) 接口的入参，ErrorHandler 类型的函数承担具体的错误处理逻辑，
+
+**原子化服务API**：从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名  | 类型          | 必填 | 说明 |
+|--------| ------------- | ---- | --- |
+| reason | Error   | 是   | 有关异常事件名字、消息、错误堆栈信息。 |
+
+
+## setDefaultErrorObserver<sup>21+</sup>
+
+> **注意：**
+> 
+> 在主线程注册errormanager.setDefaultErrorObserver接口，当前版本不支持捕获子线程（如：taskpool）中的异常。
+
+setDefaultErrorObserver(defaultObserver?: ErrorHandler) : ErrorHandler
+
+基于责任链（Chain of Responsibility）设计模式实现，仅允许在主线程调用，支持注册多个错误处理函数并形成链式调用关系 —— 每次注册会覆盖前一次的默认处理器，同时返回上一次注册的处理器实例以支撑链式关联；当未捕获的异常发生时，将从最后注册的处理器开始触发，通过链式传递依次调用所有已注册的处理器，最终形成与注册顺序一致的执行序列。
+
+**原子化服务API**：从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+ 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| defaultObserver |  ErrorHandler | 否 | 新注册的错误处理函数，接收一个 Error 类型参数表示发生的错误。 |
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | ErrorHandler | 返回上一次注册的错误处理器（前一级处理器），用于在当前处理器中实现链式调用。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
+**示例：**
+    
+```ts
+import { errorManager } from '@kit.AbilityKit';
+
+let observer: errorManager.ErrorHandler;
+const handler: errorManager.ErrorHandler = (reason: Error) => {
+  if (observer) observer(reason); 
+  console.info('[Handler]  Uncaught exception handler invoked.');
+};
+ observer = errorManager.setDefaultErrorObserver(handler);
+```
+
+
+
