@@ -117,7 +117,7 @@ setWhiteBalance(whiteBalance: number): void
 
 | 参数名      | 类型                     | 必填 | 说明                 |
 | -------- | ----------------------- | ---- | ------------------- |
-| whiteBalance | number | 是   | 设置手动白平衡值。白平衡值先获取。 |
+| whiteBalance | number | 是   | 设置手动白平衡值。 |
 
 **错误码：**
 
