@@ -148,13 +148,16 @@ struct TouchExample {
               this.eventType = 'Cancel';
             }
             if (event.touches) {
-              this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
-                + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
-                + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
-                + event.target.area.width + '\nheight:' + event.target.area.height + '\ntargetDisplayId:' +
-              event.targetDisplayId + '\npressedTime:' + event.touches[0].pressedTime + '\npressure:' +
-              event.touches[0].pressure +
-                '\nwidth:' + event.touches[0].width + '\nheight:' + event.touches[0].height;
+              this.text = 'TouchType:' + this.eventType
+                + '\nDistance between touch point and touch element:'
+                + '\n  x: ' + event.touches[0].x + '\n  y: ' + event.touches[0].y
+                + '\n  width: ' + event.touches[0].width + '\n  height: ' + event.touches[0].height
+                + '\n  pressedTime: ' + event.touches[0].pressedTime
+                + '\n  pressure: ' + event.touches[0].pressure
+                + '\nComponent globalPos:'
+                + '\n  x: ' + event.target.area.globalPosition.x + '\n  y: ' + event.target.area.globalPosition.y
+                + '\n  width: ' + event.target.area.width + '\n  height: ' + event.target.area.height
+                + '\ntargetDisplayId: ' + event.targetDisplayId;
             }
           }
         })
@@ -176,13 +179,16 @@ struct TouchExample {
               this.eventType = 'Cancel';
             }
             if (event.touches) {
-              this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
-                + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
-                + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
-                + event.target.area.width + '\nheight:' + event.target.area.height + '\ntargetDisplayId:' +
-              event.targetDisplayId + '\npressedTime:' + event.touches[0].pressedTime + '\npressure:' +
-              event.touches[0].pressure +
-                '\nwidth:' + event.touches[0].width + '\nheight:' + event.touches[0].height;
+              this.text = 'TouchType:' + this.eventType
+                + '\nDistance between touch point and touch element:'
+                + '\n  x: ' + event.touches[0].x + '\n  y: ' + event.touches[0].y
+                + '\n  width: ' + event.touches[0].width + '\n  height: ' + event.touches[0].height
+                + '\n  pressedTime: ' + event.touches[0].pressedTime
+                + '\n  pressure: ' + event.touches[0].pressure
+                + '\nComponent globalPos:'
+                + '\n  x: ' + event.target.area.globalPosition.x + '\n  y: ' + event.target.area.globalPosition.y
+                + '\n  width: ' + event.target.area.width + '\n  height: ' + event.target.area.height
+                + '\ntargetDisplayId: ' + event.targetDisplayId;
             }
           }
         })
