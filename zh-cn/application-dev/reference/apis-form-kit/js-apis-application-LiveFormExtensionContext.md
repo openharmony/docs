@@ -39,8 +39,7 @@ startAbilityByLiveForm(want: Want): Promise&lt;void&gt;
 
   | 参数名 | 类型    | 必填 | 说明                                   |
   | ------ | ------ | ---- | ------------------------------------- |
-  | want  |  [Want](../apis-ability-kit/js-apis-app-ability-want.md)  | 是   | 需要被拉起的应用页面信息。其中bundleName和abilityName是必填项。|
-
+  | want  |  [Want](../apis-ability-kit/js-apis-app-ability-want.md)  | 是   | 需要被拉起的应用页面信息。[仅支持使用显式want。](../../../application-dev/application-models/ability-startup-with-explicit-want.md) |
 
 **返回值：**  
   | 类型 | 说明    |
