@@ -251,7 +251,7 @@ OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_SetItem(OH_CryptoSm2CiphertextSpec 
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoSm2CiphertextSpec](capi-cryptoasymcipherapi-oh-cryptosm2ciphertextspec.md) *spec | SM2密文规格。 |
-| [CryptoSm2CiphertextSpec_item](#cryptosm2ciphertextspec_item) item | SM2密文规规格。 |
+| [CryptoSm2CiphertextSpec_item](#cryptosm2ciphertextspec_item) item | SM2密文规格项。 |
 | [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *in | 输入数据。 |
 
 **返回：**
