@@ -93,6 +93,7 @@ close(): void
   struct ImageExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    // "common/images/example.jpg"需要替换为开发者所需的图像资源文件
     private img: ImageBitmap = new ImageBitmap("common/images/example.jpg");
 
     build() {
@@ -167,6 +168,7 @@ struct imageBitmapExamplePage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   private myWorker = new worker.ThreadWorker('entry/ets/workers/Worker.ts');
+  // "common/images/example.jpg"需要替换为开发者所需的图像资源文件
   private img: ImageBitmap = new ImageBitmap("common/images/example.jpg");
 
   build() {
