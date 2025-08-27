@@ -32,23 +32,23 @@ The specified device does not exist.
 1. 通过[inputDevice.getDeviceList](js-apis-inputdevice.md#inputdevicegetdevicelist9)查询设备id，并传入正确的设备id。
 2. 检查设备的物理连接是否断开。<!--DelEnd-->
 
-## 3900002 键盘设备没有连接
+## 3900002 包含CapsLock键的键盘设备没有连接
 
 **错误信息**
 
-There is currently no keyboard device connected.
+The keyboard device containing the CapsLock key is not connected.
 
 **错误描述**
 
-当前未检测到已连接的键盘设备。
+未检测到包含CapsLock键的已连接的键盘设备。
 
 **可能原因**
 
-输入设备的物理连接断开。
+包含CapsLock键的键盘设备物理连接断开。
 
 **处理步骤**
 
-检查设备的物理连接是否断开。
+检查包含CapsLock键的键盘设备的物理连接是否断开。
 
 ## 3900003 非输入法应用调用
 
