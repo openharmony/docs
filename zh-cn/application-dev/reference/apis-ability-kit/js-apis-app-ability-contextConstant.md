@@ -6,7 +6,7 @@
 <!--Tester: @lixueqing513-->
 <!--Adviser: @huipeizi-->
 
-ContextConstant提供Context相关的枚举，包含文件加密分区等级、UIAbility启动后的进程模式等。
+ContextConstant提供Context相关的枚举，当前仅包含数据加密等级的枚举。
 
 > **说明：**
 > 
@@ -22,7 +22,7 @@ import { contextConstant } from '@kit.AbilityKit';
 
 ## AreaMode
 
-文件加密分区等级，保证应用在不同场景下的数据安全。开发者可以根据应用的具体需求选择合适的加密等级，以保护用户的数据安全。
+数据加密等级。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

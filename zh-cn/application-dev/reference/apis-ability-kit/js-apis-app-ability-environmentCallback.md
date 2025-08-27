@@ -20,7 +20,7 @@ import { EnvironmentCallback } from '@kit.AbilityKit';
 
 onConfigurationUpdated(config: Configuration): void
 
-[注册系统环境变化的监听](js-apis-inner-application-applicationcontext.md#applicationcontextonenvironment)后，在系统环境变化时触发回调。
+注册系统环境变化的监听后，在系统环境变化时触发回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -40,7 +40,7 @@ onConfigurationUpdated(config: Configuration): void
 
 onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
-[注册系统环境变化的监听](js-apis-inner-application-applicationcontext.md#applicationcontextonenvironment)后，在系统内存变化时触发回调。
+注册系统环境变化的监听后，在系统内存变化时触发回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -50,7 +50,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#memorylevel) | 是 | 回调返回整机可用的内存级别，显示当前整机可以用内存的等级。|
+  | level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#memorylevel) | 是 | 回调返回内存微调级别，显示当前内存使用状态。|
 
 **示例：**
 
