@@ -648,7 +648,7 @@
 
 ## AudioLoopbackReverbPreset<sup>21+</sup>
 
-表示返听混响模式的枚举
+表示返听混响模式的枚举。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
