@@ -2157,6 +2157,7 @@
           - [@ohos.app.ability.ChildProcessOptions (子进程启动选项)](reference/apis-ability-kit/js-apis-app-ability-childProcessOptions.md)
           - [@ohos.app.ability.common (Ability公共模块)](reference/apis-ability-kit/js-apis-app-ability-common.md)
           - [@ohos.app.ability.CompletionHandler (拉起应用结果的操作类)](reference/apis-ability-kit/js-apis-app-ability-completionHandler.md)
+          - [@ohos.app.ability.CompletionHandlerForAtomicService (打开原子化服务结果的操作类)](reference/apis-ability-kit/js-apis-app-ability-CompletionHandlerForAtomicService.md)
           - [@ohos.app.ability.contextConstant (Context相关常量)](reference/apis-ability-kit/js-apis-app-ability-contextConstant.md)
           - [@ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility)](reference/apis-ability-kit/js-apis-app-ability-embeddableUIAbility.md)
           - [@ohos.app.ability.EmbeddedUIExtensionAbility (跨进程界面嵌入扩展能力)](reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)
