@@ -300,6 +300,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 **示例2：**
 
+<!-- code_no_check-->
 ```ts
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
@@ -417,6 +418,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 **示例2：**
 
+<!-- code_no_check-->
 ```ts
 import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
