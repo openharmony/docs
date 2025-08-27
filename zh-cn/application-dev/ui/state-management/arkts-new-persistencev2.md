@@ -10,7 +10,7 @@
 
 PersistenceV2是应用程序中的可选单例对象。此对象的作用是持久化存储UI相关的数据，以确保这些属性在应用程序重新启动时的值与应用程序关闭时的值相同。
 
-PersistenceV2提供状态变量持久化能力，开发者可以通过connect或者globalConnect绑定同一个key，在状态变量变换和应用冷启动时，实现持久化能力。
+PersistenceV2提供状态变量持久化能力，开发者可以通过connect或者globalConnect绑定同一个key，在状态变量变化和应用冷启动时，实现持久化能力。
 
 在阅读本文档前，建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)，[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)，配合阅读：[PersistentV2-API文档](../../reference/apis-arkui/js-apis-StateManagement.md#persistencev2)。
 
@@ -57,11 +57,11 @@ PersistenceV2支持应用的[主线程](../../application-models/thread-model-st
 
 2、不支持collections.Set、collections.Map等类型。
 
-3、不支持非buildin类型，如PixelMap、NativePointer、ArrayList等Native类型。
+3、不支持非built-in类型，如PixelMap、NativePointer、ArrayList等Native类型。
 
 4、单个key支持数据大小约8k，过大会导致持久化失败。
 
-5、持久化的数据必须是class对象，不支持容器类型（如Array、Set、Map），不支持buildin的构造对象（如Date、Number），不支持持久化基本类型（如string、number、boolean）。如果需要持久化非class对象，建议使用[prefrence](../../database/preferences-guidelines.md)进行数据持久化。
+5、持久化的数据必须是class对象，不支持容器类型（如Array、Set、Map），不支持built-in的构造对象（如Date、Number），不支持持久化基本类型（如string、number、boolean）。如果需要持久化非class对象，建议使用[prefrence](../../database/preferences-guidelines.md)进行数据持久化。
 
 6、不支持循环引用的对象。
 
