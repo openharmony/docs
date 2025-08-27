@@ -8,11 +8,11 @@ Use the native bundle APIs to obtain application information.
 
 | API                                                      | Description                                    |
 | :----------------------------------------------------------- | :--------------------------------------- |
-| [OH_NativeBundle_GetCurrentApplicationInfo](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getcurrentapplicationinfo) | Obtains the information about the current application.         |
-| [OH_NativeBundle_GetAppId](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getappid) | Obtains the appId information about the application.|
-| [OH_NativeBundle_GetAppIdentifier](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getappidentifier) | Obtains the appIdentifier information about the application.|
-| [OH_NativeBundle_GetMainElementName](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getmainelementname) | Obtains the entry information of the application.|
-| [OH_NativeBundle_GetCompatibleDeviceType](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getcompatibledevicetype) | Obtains the compatible device type of the application.|
+| [OH_NativeBundle_GetCurrentApplicationInfo](../reference/apis-ability-kit/capi-native-interface-bundle-h.md#oh_nativebundle_getcurrentapplicationinfo) | Obtains the information about the current application.         |
+| [OH_NativeBundle_GetAppId](../reference/apis-ability-kit/capi-native-interface-bundle-h.md#oh_nativebundle_getappid) | Obtains the appId information about the application.|
+| [OH_NativeBundle_GetAppIdentifier](../reference/apis-ability-kit/capi-native-interface-bundle-h.md#oh_nativebundle_getappidentifier) | Obtains the appIdentifier information about the application.|
+| [OH_NativeBundle_GetMainElementName](../reference/apis-ability-kit/capi-native-interface-bundle-h.md#oh_nativebundle_getmainelementname) | Obtains the entry information of the application.|
+| [OH_NativeBundle_GetCompatibleDeviceType](../reference/apis-ability-kit/capi-native-interface-bundle-h.md#oh_nativebundle_getcompatibledevicetype) | Obtains the compatible device type of the application.|
 
 
 ## How to Develop
@@ -218,4 +218,4 @@ export const getCompatibleDeviceType: () => string;     // Add the exposed API g
     }
     ```
 
-For details about the APIs, see [Bundle](../reference/apis-ability-kit/_bundle.md).
+For details about the APIs, see [Bundle](../reference/apis-ability-kit/capi-native-bundle.md).
