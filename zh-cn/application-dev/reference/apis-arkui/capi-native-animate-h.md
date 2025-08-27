@@ -672,7 +672,7 @@ int32_t OH_ArkUI_KeyframeAnimateOption_RegisterOnFinishCallback(ArkUI_KeyframeAn
 |-----------------------------------------| -- |
 | [ArkUI_KeyframeAnimateOption](capi-arkui-nativemodule-arkui-keyframeanimateoption.md)* option | 关键帧动画参数。 |
 | void* userData                          | 用户自定义对象指针。 |
-| void (*onFinish)(void* userData)                                | 回调方法。<br/>- userData：回调函数的入参，用户自定义对象指针。 |
+| void (\*onFinish)(void\* userData)                                | 回调方法。<br/>- userData：回调函数的入参，用户自定义对象指针。 |
 
 **返回：**
 
