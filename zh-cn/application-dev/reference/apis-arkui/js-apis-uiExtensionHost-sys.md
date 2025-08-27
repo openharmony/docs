@@ -513,7 +513,7 @@ export default class EntryAbility extends UIExtensionAbility {
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口
+**系统接口**：此接口为系统接口。
 
 | 名称                         | 类型        | 必填      | 说明                             |
 | ------------------------------ | ----------- | -------------------------------- | -------------------------------- |
