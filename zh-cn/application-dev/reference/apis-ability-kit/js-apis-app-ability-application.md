@@ -188,7 +188,7 @@ promoteCurrentToCandidateMasterProcess(insertToHead: boolean): Promise\<void>
 <!--Del-->
 > **说明：**
 >
-> - 当前仅支持sys/commonUI类型的UIExtensionAbility组件在[module.json5配置文件](../../quick-start/module-configuration-file.md)中配置isolationProcess字段为true。
+> 当前仅支持sys/commonUI类型的UIExtensionAbility组件在[module.json5配置文件](../../quick-start/module-configuration-file.md)中配置isolationProcess字段为true。
 <!--DelEnd-->
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
