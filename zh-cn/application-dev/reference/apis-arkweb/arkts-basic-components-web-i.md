@@ -109,6 +109,8 @@ Web媒体策略的配置。
 | preview    | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8)          | 否     | 是     | 自定义选择菜单的预览内容样式，未配置时无预览内容。|
 | menuType   | [MenuType](../apis-arkui/arkui-ts/ts-text-common.md#menutype13枚举说明)      | 否     | 是     | 自定义选择菜单类型。<br>默认值：`MenuType.SELECTION_MENU`。<br> 从API version 20起，`MenuType.PREVIEW_MENU`支持超链接预览。     |
 | previewMenuOptions<sup>20+</sup> | [PreviewMenuOptions](#previewmenuoptions20) | 否     | 是     | 自定义选择预览菜单选项。 |
+| onMenuShow<sup>21+</sup> | Callback\<void\> | 否     | 是     | 自定义选择菜单显示时回调。 |
+| onMenuHide<sup>21+</sup> | Callback\<void\> | 否     | 是     | 自定义选择菜单隐藏时回调。 |
 
 ## PreviewMenuOptions<sup>20+</sup>
 
