@@ -3866,10 +3866,43 @@ getAttribute(node: FrameNode, nodeType: 'Button'): ButtonAttribute | undefined
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.getAttribute(node, 'Button');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyButtonController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let button = typeNode.createNode(uiContext, 'Button')
+    button.initialize("This is Button")
+      .onClick(() => {
+        uiContext.getPromptAction().showToast({ message: "Button clicked" })
+      })
+    typeNode.getAttribute(button,'Button')?.buttonStyle(ButtonStyleMode.TEXTUAL)
+    col.appendChild(button)
+
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myButtonController: MyButtonController = new MyButtonController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('ButtonSample')
+      NodeContainer(this.myButtonController);
+
+    }.width('100%')
+  }
+}
 ```
 
 ### ListItemGroup<sup>12+</sup>
@@ -5055,10 +5088,42 @@ getAttribute(node: FrameNode, nodeType: 'Checkbox'): CheckboxAttribute | undefin
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.getAttribute(node, 'Checkbox');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyCheckboxController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let checkbox = typeNode.createNode(uiContext, 'Checkbox')
+    checkbox.initialize({ name: 'checkbox1', group: 'checkboxGroup1' })
+
+    let checkbox1 = typeNode.createNode(uiContext, 'Checkbox')
+    checkbox1.initialize({ name: 'checkbox2', group: 'checkboxGroup1' })
+    typeNode.getAttribute(checkbox1,'Checkbox')?.shape(CheckBoxShape.ROUNDED_SQUARE)
+    col.appendChild(checkbox)
+    col.appendChild(checkbox1)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myCheckboxController: MyCheckboxController = new MyCheckboxController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('CheckboxSample')
+      NodeContainer(this.myCheckboxController);
+    }.width('100%')
+  }
+}
 ```
 
 ### CheckboxGroup<sup>18+</sup>
@@ -5311,10 +5376,43 @@ getAttribute(node: FrameNode, nodeType: 'Radio'): RadioAttribute | undefined
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.getAttribute(node, 'Radio');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyRadioController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let radio1 = typeNode.createNode(uiContext, 'Radio')
+    radio1.initialize({ value: 'radio1', group: 'radioGroup' })
+    typeNode.getAttribute(radio1,'Radio')?.checked(true)
+    let radio2 = typeNode.createNode(uiContext, 'Radio')
+    radio2.initialize({ value: 'radio2', group: 'radioGroup' })
+
+
+    col.appendChild(radio1)
+    col.appendChild(radio2)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myRadioController: MyRadioController = new MyRadioController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('RadioSample')
+      NodeContainer(this.myRadioController);
+    }.width('100%')
+  }
+}
 ```
 
 ### Slider<sup>18+</sup>
@@ -5412,10 +5510,39 @@ getAttribute(node: FrameNode, nodeType: 'Slider'): SliderAttribute | undefined
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.getAttribute(node, 'Slider');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MySliderController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let slider = typeNode.createNode(uiContext, 'Slider')
+    slider.initialize({value:50})
+    typeNode.getAttribute(slider,'Slider')?.selectedColor(Color.Pink)
+    col.appendChild(slider)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private mySliderController: MySliderController = new MySliderController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('SliderSample')
+      NodeContainer(this.mySliderController);
+
+    }.width('100%')
+  }
+}
 ```
 
 ### Select<sup>18+</sup>
@@ -5585,10 +5712,39 @@ getAttribute(node: FrameNode, nodeType: 'Toggle'): ToggleAttribute | undefined
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.getAttribute(node, 'Toggle');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyToggleController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let toggleSwitch = typeNode.createNode(uiContext, 'Toggle')
+    toggleSwitch.initialize({ type: ToggleType.Switch })
+    typeNode.getAttribute(toggleSwitch,'Toggle')?.selectedColor(Color.Orange)
+    col.appendChild(toggleSwitch)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myToggleController: MyToggleController = new MyToggleController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('ToggleSample')
+      NodeContainer(this.myToggleController);
+
+    }.width('100%')
+  }
+}
 ```
 
 ## NodeAdapter<sup>12+</sup>
