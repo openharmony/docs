@@ -212,9 +212,9 @@ setRequestResult(result: RequestResult): void
 **示例：**
 
 ```ts
-import { AbilityConstant, ServiceExtensionAbility, Want, dialogRequest } from '@kit.AbilityKit';
+import { ServiceExtensionAbility, Want, dialogRequest } from '@kit.AbilityKit';
 
-export default class EntryAbility extends ServiceExtensionAbility {
+export default class ServiceExtension extends ServiceExtensionAbility {
   onCreate(want: Want): void {
     try {
       let requestCallback = dialogRequest.getRequestCallback(want);

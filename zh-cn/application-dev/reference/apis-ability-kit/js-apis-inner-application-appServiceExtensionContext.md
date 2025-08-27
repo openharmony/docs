@@ -174,7 +174,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 let commRemote: rpc.IRemoteObject | null = null; // 断开连接时需要释放
 const TAG: string = '[AppServiceExtensionAbility]';
 
-class AppServiceExtension extends AppServiceExtensionAbility {
+export default class AppServiceExtension extends AppServiceExtensionAbility {
   onCreate() {
     let want: Want = {
       bundleName: 'com.example.myapp',

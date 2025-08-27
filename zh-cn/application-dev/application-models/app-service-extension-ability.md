@@ -12,7 +12,7 @@
 例如，企业部署的数据防泄漏 (DLP) 软件需要能够长期无界面长期运行，持续监听文件操作、网络流量，并拦截违规行为，可以使用AppServiceExtensionAbility组件来实现其核心的后台监控服务。
 > **说明**
 >
-> 本文将被启动或被连接的AppServiceExtensionAbility组件为服务端，将启动或连接AppServiceExtensionAbility组件的应用组件（当前仅支持UIAbility）称为客户端。
+> 本文将被启动或被连接的AppServiceExtensionAbility组件称为服务端，将启动或连接AppServiceExtensionAbility组件的应用组件（当前仅支持UIAbility）称为客户端。
 
 ## 约束与限制
 
@@ -98,24 +98,24 @@ AppServiceExtensionAbility组件当前仅支持2in1设备。
       onCreate(want: Want): void {
         let appServiceExtensionContext = this.context;
         hilog.info(DOMAIN_NUMBER, TAG, `onCreate, want: ${want.abilityName}`);
-      };
+      }
 
       onRequest(want: Want, startId: number): void {
         hilog.info(DOMAIN_NUMBER, TAG, `onRequest, want: ${want.abilityName}`);
-      };
+      }
 
       onConnect(want: Want): rpc.RemoteObject {
         hilog.info(DOMAIN_NUMBER, TAG, `onConnect, want: ${want.abilityName}`);
         return new StubTest("test");
-      };
+      }
 
       onDisconnect(want: Want): void {
         hilog.info(DOMAIN_NUMBER, TAG, `onDisconnect, want: ${want.abilityName}`);
-      };
+      }
 
       onDestroy(): void {
         hilog.info(DOMAIN_NUMBER, TAG, 'onDestroy');
-      };
+      }
     };
     ```
 
@@ -128,7 +128,6 @@ AppServiceExtensionAbility组件当前仅支持2in1设备。
         "extensionAbilities": [
           {
             "name": "MyAppServiceExtAbility",
-            "icon": "$media:icon",
             "description": "appService",
             "type": "appService",
             "exported": true,
@@ -263,7 +262,7 @@ AppServiceExtensionAbility组件当前仅支持2in1设备。
     const TAG: string = '[MyAppServiceExtAbility]';
 
     export default class MyAppServiceExtAbility extends AppServiceExtensionAbility {
-      onCreate() {
+      onCreate(want: Want) {
       // 执行业务逻辑
         this.context.terminateSelf().then(() => {
           hilog.info(0x0000, TAG, '----------- terminateSelf succeed -----------');
@@ -278,9 +277,9 @@ AppServiceExtensionAbility组件当前仅支持2in1设备。
 
 ### 客户端连接服务端
 
-客户端可以通过[connectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20)连接服务端（在Want对象中指定启动的目标服务），服务端的[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md#onconnect)就会被调用，并在该回调方法中接收到客户端传递过来的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象。
+客户端可以通过[connectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20)连接服务端（在Want对象中指定连接的目标服务），服务端的[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md#onconnect)就会被调用，并在该回调方法中接收到客户端传递过来的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象。
 
-服务端的AppServiceExtensionAbility组件会在onConnect()中返回[IRemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#iremoteobject)对象给作客户端[ConnectOptions](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md)的[onConnect()](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md#onconnect)方法的入参。开发者通过该IRemoteObject定义通信接口，实现客户端与服务端进行RPC交互。多个客户端可以同时连接到同一个后台服务，客户端完成与服务端的交互后，客户端需要通过调用[disconnectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectappserviceextensionability20)来断开连接。如果所有连接到某个后台服务的客户端均已断开连接，则系统会销毁该服务。
+服务端的AppServiceExtensionAbility组件会在onConnect()中返回[IRemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#iremoteobject)对象给客户端[ConnectOptions](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md)的[onConnect()](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md#onconnect)方法的入参。开发者通过该IRemoteObject定义通信接口，实现客户端与服务端的RPC交互。多个客户端可以同时连接到同一个后台服务，客户端完成与服务端的交互后，客户端需要通过调用[disconnectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectappserviceextensionability20)来断开连接。如果所有连接到某个后台服务的客户端均已断开连接，则系统会销毁该服务。
 
 - 使用[connectAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20)建立与后台服务的连接。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
   
@@ -411,7 +410,7 @@ import { rpc } from '@kit.IPCKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const TAG: string = '[Page_CollaborateAbility]';
+const TAG: string = '[Page_AppServiceExtensionAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 const REQUEST_CODE = 1;
 let connectionId: number;
@@ -460,7 +459,7 @@ let options: common.ConnectOptions = {
 
 @Entry
 @Component
-struct Page_CollaborateAbility {
+struct Page_AppServiceExtensionAbility {
   build() {
     Column() {
       //...
@@ -489,7 +488,7 @@ import { AppServiceExtensionAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG: string = '[AppServiceExtImpl]';
+const TAG: string = '[MyAppServiceExtAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 // 开发者需要在这个类型里对接口进行实现
@@ -506,22 +505,22 @@ class Stub extends rpc.RemoteObject {
 }
 
 // 服务端实现
-class AppServiceExtImpl extends AppServiceExtensionAbility {
+class MyAppServiceExtAbility extends AppServiceExtensionAbility {
   onCreate(want: Want): void {
-    hilog.info(DOMAIN_NUMBER, TAG, 'AppServiceExtImpl onCreate');
+    hilog.info(DOMAIN_NUMBER, TAG, 'MyAppServiceExtAbility onCreate');
   }
 
   onDestroy(): void {
-    hilog.info(DOMAIN_NUMBER, TAG, 'AppServiceExtImpl onDestroy');
+    hilog.info(DOMAIN_NUMBER, TAG, 'MyAppServiceExtAbility onDestroy');
   }
 
   onConnect(want: Want): rpc.RemoteObject {
-    hilog.info(DOMAIN_NUMBER, TAG, 'AppServiceExtImpl onConnect');
+    hilog.info(DOMAIN_NUMBER, TAG, 'MyAppServiceExtAbility onConnect');
     return new Stub('test');
   }
 
   onDisconnect(): void {
-    hilog.info(DOMAIN_NUMBER, TAG, 'AppServiceExtImpl onDisconnect');
+    hilog.info(DOMAIN_NUMBER, TAG, 'MyAppServiceExtAbility onDisconnect');
   }
 }
 ```
@@ -539,11 +538,7 @@ class AppServiceExtImpl extends AppServiceExtensionAbility {
 import { AppServiceExtensionAbility } from '@kit.AbilityKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { osAccount, BusinessError } from '@kit.BasicServicesKit';
-
-const TAG: string = "[AppServiceExtImpl]";
-const DOMAIN_NUMBER: number = 0xFF00;
 
 class Stub extends rpc.RemoteObject {
   private validAppIdentifier: string = "your_valid_app_identifier_here";
@@ -613,7 +608,7 @@ class Stub extends rpc.RemoteObject {
   }
 }
 
-export default class AppServiceExtension extends AppServiceExtensionAbility {
+export default class MyAppServiceExtAbility extends AppServiceExtensionAbility {
   onConnect(want: Want): rpc.RemoteObject {
     return new Stub('test');
   }
@@ -672,7 +667,7 @@ class Stub extends rpc.RemoteObject {
   }
 }
 
-export default class AppServiceExtension extends AppServiceExtensionAbility {
+export default class MyAppServiceExtAbility extends AppServiceExtensionAbility {
   onConnect(want: Want): rpc.RemoteObject {
       return new Stub('test');
   }
