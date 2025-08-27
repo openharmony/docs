@@ -4651,26 +4651,26 @@ Allows a system application to start the components provided by Tips.
 
 Allows an application to read the parental control website configuration.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Supported devices**：Phone | Tablet | 2in1
+**Supported devices**: Phone | Tablet | 2in1
 
-**Valid since**：19
+**Valid since**: 19
 
 ## ohos.permission.WRITE_PARENT_CONTROL_DATA
 
 Allows an application to write the parental control website configuration.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Supported devices**：Phone | Tablet | 2in1
+**Supported devices**: Phone | Tablet | 2in1
 
-**Valid since**：19
+**Valid since**: 19
