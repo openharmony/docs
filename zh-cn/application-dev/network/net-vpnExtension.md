@@ -8,7 +8,9 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。当前提供
 
 > **说明：**
 >
-> 为了保证应用的运行效率，所有API调用都是异步的，对于异步调用的API均提供了Promise的方式，以下示例均采用Promise方式，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
+>- 为了保证应用的运行效率，所有API调用都是异步的，对于异步调用的API均提供了Promise的方式，以下示例均采用Promise方式，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
+>- 完整的JS API说明以及示例代码请参考：[VPN扩展应用API](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
+>- 使用该功能需要INTERNET权限。
 
 ## VPN应用的显示体验
 
@@ -22,9 +24,6 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。当前提供
 - 用于手动启动和停止连接的控件。
 - 当VPN启动连接时，在通知栏显示VPN应用的连接状态或提供网络统计信息 (如连接时长、流量等) 。点击该通知能够将您的VPN应用调入前台。
 
-## 接口说明
-
-完整的JS API说明以及示例代码请参考：[VPN扩展应用API](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
 
 ## 创建VPN Extension Ability
 
