@@ -2257,7 +2257,7 @@ onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
   var locationInfo=document.getElementById("locationInfo");
   function getLocation(){
     if (navigator.geolocation) {
-      <!-- 前端页面访问设备地理位置 -->
+      // 前端页面访问设备地理位置
       navigator.geolocation.getCurrentPosition(showPosition);
     }
   }
@@ -2299,7 +2299,7 @@ onGeolocationHide(callback: () => void)
         Web({ src: 'www.example.com', controller: this.controller })
           .geolocationAccess(true)
           .onGeolocationHide(() => {
-            console.log("onGeolocationHide...");
+            console.info("onGeolocationHide...");
           })
       }
     }

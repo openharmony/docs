@@ -6323,7 +6323,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let enable = this.controller.getPrintBackground();
-            console.log("getPrintBackground: " + enable);
+            console.info("getPrintBackground: " + enable);
           } catch (error) {
             console.error(`ErrorCode:${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
           }

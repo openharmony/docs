@@ -180,7 +180,7 @@ struct WebComponent {
           try {
             webview.GeolocationPermissions.getAccessibleGeolocation(this.origin)
               .then(result => {
-                console.log('getAccessibleGeolocationPromise result: ' + result);
+                console.info('getAccessibleGeolocationPromise result: ' + result);
               }).catch((error: BusinessError) => {
               console.error(`getAccessibleGeolocationPromise error, ErrorCode: ${error.code},  Message: ${error.message}`);
             });
