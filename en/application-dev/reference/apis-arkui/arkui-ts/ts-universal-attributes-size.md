@@ -1,4 +1,10 @@
 # Size
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @camlostshi-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 The size attributes set the width, height, and margins of a component.
 
@@ -86,7 +92,7 @@ Sets the width of the component or its horizontal layout policy. By default, the
 
 | Name  | Type                          | Mandatory  | Description                 |
 | ----- | ---------------------------- | ---- | ------------------- |
-| widthValue | [Length](ts-types.md#length) \|  [LayoutPolicy](ts-types.md#layoutpolicy15) | Yes   | Width of the component to set.<br>Unit: vp<br>The [Flex](./ts-container-flex.md), [Row](./ts-container-row.md), [Column](./ts-container-column.md) and [Stack](./ts-container-stack.md) components support all parameters in [LayoutPolicy](ts-types.md#layoutpolicy15).<br> The [RelativeContainer](./ts-container-relativecontainer.md), [FolderStack](./ts-container-folderstack.md), [Divider](./ts-basic-components-divider.md), and [Blank](./ts-basic-components-blank.md) components support the **matchParent** parameter in [LayoutPolicy](ts-types.md#layoutpolicy15).|
+| widthValue | [Length](ts-types.md#length) \|  [LayoutPolicy](ts-universal-attributes-size.md#layoutpolicy15) | Yes   | Width of the component to set.<br>Unit: vp|
 
 **Return value**
 
@@ -110,7 +116,7 @@ Sets the height of the component or its vertical layout policy. By default, the 
 
 | Name  | Type                          | Mandatory  | Description                 |
 | ----- | ---------------------------- | ---- | ------------------- |
-| heightValue | [Length](ts-types.md#length) \|  [LayoutPolicy](ts-types.md#layoutpolicy15) | Yes   | Height of the component to set.<br>Unit: vp<br>The [Flex](./ts-container-flex.md), [Row](./ts-container-row.md), [Column](./ts-container-column.md) and [Stack](./ts-container-stack.md) components support all parameters in [LayoutPolicy](ts-types.md#layoutpolicy15).<br> The [RelativeContainer](./ts-container-relativecontainer.md), [FolderStack](./ts-container-folderstack.md), [Divider](./ts-basic-components-divider.md), and [Blank](./ts-basic-components-blank.md) components support the **matchParent** parameter in [LayoutPolicy](ts-types.md#layoutpolicy15).<br> The [GridRow](./ts-container-gridrow.md) and [GridCol](./ts-container-gridcol.md) components support the **fixAtIdealSize** parameter in [LayoutPolicy](ts-types.md#layoutpolicy15).|
+| heightValue | [Length](ts-types.md#length) \|  [LayoutPolicy](ts-universal-attributes-size.md#layoutpolicy15) | Yes   | Height of the component to set.<br>Unit: vp|
 
 **Return value**
 
@@ -136,7 +142,7 @@ Since API version 10, this API supports the calc calculation feature.
 
 | Name  | Type                             | Mandatory  | Description               |
 | ----- | ------------------------------- | ---- | ----------------- |
-| value | [SizeOptions](#sizeoptions) | Yes   | Size of the component to set.<br>Unit: vp|
+| value | [SizeOptions](ts-types.md#sizeoptions) | Yes   | Size of the component to set.<br>Exception handling: If the parameter is **undefined**, the attribute setting does not take effect. For other invalid values, the **size** attribute reverts to its default behavior when unconfigured.<br>Unit: vp|
 
 **Return value**
 
@@ -174,7 +180,7 @@ Since API version 10, this API supports the calc calculation feature.
 
 margin(value: Margin | Length | LocalizedMargin): T
 
-Sets the margin of the component.
+Sets the margin of the component. The margin is considered as a part of the component's size during position calculation, thereby affecting the component's placement.
 
 Since API version 10, this API supports the calc calculation feature.
 
@@ -224,7 +230,7 @@ Sets the safe area padding. This allows the container to add a component-level s
 > 
 > When parent and ancestor containers define component-level safe areas, child components can detect and utilize these areas, referred to as Accumulated Safe Area Expansion (SAE), which represents the maximum extendable length in each direction. When ancestor containers have contiguous **safeAreaPadding** (undivided by margin, border, or padding), SAE accumulates recursively outward until no adjacent outer **safeAreaPadding** exists or the recursion extends beyond the page container. System-level avoid areas (status bar, navigation bar, notch areas, and more**) are treated as the page container's inherent safeAreaPadding** and participate in SAE calculations. For details about the avoid areas, see [expandSafeArea](./ts-universal-attributes-expand-safe-area.md).
 >
->These component-level safe areas can be leveraged by combining with other attributes. For example, setting the [ignoreLayoutSafeArea](./ts-universal-attributes-expand-safe-area.md) attribute on a child component allows it to extend its layout into the SAE region.
+>These component-level safe areas can be leveraged by combining with other attributes. For example, setting the [ignoreLayoutSafeArea](./ts-universal-attributes-expand-safe-area.md#ignorelayoutsafearea20) attribute on a child component allows it to extend its layout into the SAE region.
 
 ## layoutWeight
 
@@ -268,7 +274,7 @@ Since API version 10, this API supports the calc calculation feature.
 
 | Name  | Type                                      | Mandatory  | Description                                      |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| value | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | Yes   | Constraint size of the component to set. **constraintSize** takes precedence over **width** and **height**. See **Impact of constraintSize on width/height**.<br>Default value:<br>{<br>minWidth: 0,<br>maxWidth: Infinity,<br>minHeight: 0,<br>maxHeight: Infinity<br>}<br>Unit: vp<br>|
+| value | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | Yes   | Constraint size of the component to set. **constraintSize** takes precedence over **width** and **height**. See **Impact of constraintSize on width/height**.<br>Default value:<br>{<br>minWidth: 0,<br>maxWidth: Infinity,<br>minHeight: 0,<br>maxHeight: Infinity<br>}<br>Exception handling: For strings beginning with numerals, only the numeric part is parsed. Strings not beginning with numerals are parsed as 0. For other invalid values, the **constraintSize** attribute reverts to its default behavior when unconfigured.<br>Unit: vp<br>|
 
 **Return value**
 
@@ -290,37 +296,27 @@ Since API version 10, this API supports the calc calculation feature.
 | width, minWidth, and maxWidth| The layout restrictions passed by the parent container are used for layout.|
 | height, minHeight, and maxHeight| The layout restrictions passed by the parent container are used for layout.|
 
-## SizeOptions
+## LayoutPolicy<sup>15+</sup>
 
-Describes the width and height of a component during layout.
+Enumerates the layout policies for component width and height.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-| Name  | Type                                      | Mandatory  | Description                                      |
-| ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| width  | [Length](ts-types.md#length) | No| Component width.|
-| height | [Length](ts-types.md#length) | No| Component height.|
-
-## ConstraintSizeOptions
-
-Describes the size constraints of a component during layout.
-
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-| Name  | Type                                      | Mandatory  | Description                                      |
-| ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| minWidth  | [Length](ts-types.md#length) | No| Minimum width of the component.|
-| maxWidth  | [Length](ts-types.md#length) | No| Maximum width of the component.|
-| minHeight | [Length](ts-types.md#length) | No| Minimum height of the component.|
-| maxHeight | [Length](ts-types.md#length) | No| Maximum height of the component.|
+| Name     | Type  | Read-Only| Optional| Description|
+| --------- | ------ | ---- | ---- |---------- |
+| matchParent | [LayoutPolicy](ts-universal-attributes-size.md#layoutpolicy15) | Yes| No  | When the component adapts to the parent component's layout, its size equals the parent component's content area (excluding the areas defined by **padding**, **border**, and **safeAreaPadding**).<br>**Widget capability**: This API can be used in ArkTS widgets since API version 15.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| wrapContent<sup>20+</sup> | [LayoutPolicy](ts-universal-attributes-size.md#layoutpolicy15) | Yes| No  | When the component adapts to its child components (content), its size equals the child components (content) and is constrained by the parent component's content area size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 20.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+| fixAtIdealSize<sup>20+</sup> | [LayoutPolicy](ts-universal-attributes-size.md#layoutpolicy15) | Yes| No  | When the component adapts to its child components (content), its size equals the child components (content) and is not constrained by the parent component's content area size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 20.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
 
 >  **NOTE**
 >
->  In the [Row](./ts-container-row.md), [Column](./ts-container-column.md), and [RelativeContainer](./ts-container-relativecontainer.md) components, setting **width** and **height** to **auto** means that the size adapts to the size of their child components. In the [TextInput](./ts-basic-components-textinput.md) component, setting **width** to **auto** means that the width adapts to the width of the text content.
+> - **LayoutPolicy** supports three layout policies: **matchParent** (adapts to the parent component's layout), **wrapContent** (adapts to content but does not exceed the parent component's size), **fixAtIdealSize** (adapts to content and may exceed the parent component's size). For the implementation example, see [Example 5: Setting the Layout Policy](./ts-universal-attributes-size.md#example-5-setting-the-layout-policy).
+>
+> - For **wrapContent** and **fixAtIdealSize**: If the component's size cannot be determined by its content, it uses the default size (if available); otherwise, it calculates the size as (0, 0).
+> 
+> - If a container uses **wrapContent** and has child components set to **matchParent**: (1) The container is first sized by child components with a fixed size. (2) Child components with **matchParent** then match the container's size. (3) If no child components have a fixed size, both the container and its children have a size of (0, 0).
+>
+> - **LayoutPolicy** has lower priority than **constraintSize**.
 
 ## Example
 
@@ -547,7 +543,7 @@ struct LayoutPolicyExample {
   build() {
     Column() {
       Column() {
-        // When matchParent is effective, the current component's size is equal to its parent component's content area size (180x180 vp) and not subject to its own constraintSize (150x150 vp), so the current component's size is 180x180 vp.
+        // When matchParent is effective, the current component's size is equal to its parent component's content area size (180x180 vp) and is subject to its own constraintSize (150x150 vp), so the current component's size is 150x150 vp.
         Text("matchParent")
         Flex()
           .backgroundColor('rgb(0, 74, 175)')
@@ -567,7 +563,7 @@ struct LayoutPolicyExample {
         .height(LayoutPolicy.wrapContent)
         .constraintSize({ maxWidth: 250, maxHeight: 250 })
 
-        // When fixAtIdealSize is effective, the current component's size is equal to its child component size (300x300 vp), it can exceed the parent component's content size (180x180 vp) but is subject to its own constraintSize (250x250 vp), so the current component's size is 250x250 vp.
+        // Since API version 20, layoutPolicy supports wrapContent and fixAtIdealSize. When fixAtIdealSize is effective, the current component's size is equal to its child component size (300x300 vp), it can exceed the parent component's content size (180x180 vp) but is subject to its own constraintSize (250x250 vp), so the current component's size is 250x250 vp.
         Text("fixAtIdealSize")
 
         Row() {
