@@ -205,6 +205,7 @@
           - [Storage Switching](application-models/storage-switch.md)
       <!--DelEnd-->
       - [Native Child Process Development (C/C++)](application-models/capi_nativechildprocess_development_guideline.md)
+      - [Ability Kit Terminology](application-models/ability-terminology.md)
     - ArkData<!--arkdata-->
       - [Introduction to ArkData](database/data-mgmt-overview.md)
       - Unified Data Definition<!--uniform-data-definition-->

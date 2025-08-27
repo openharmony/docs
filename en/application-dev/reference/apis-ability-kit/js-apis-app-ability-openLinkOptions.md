@@ -23,7 +23,7 @@ import { OpenLinkOptions } from '@kit.AbilityKit';
 
 | Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| appLinkingOnly | boolean | No| Yes| Whether the UIAbility must be started using <!--RP1-->[App Linking](../../application-models/app-linking-startup.md)<!--RP1End-->.<br>- If this parameter is set to **true** and no UIAbility matches the URL in App Linking, the result is returned directly.<br>- If this parameter is set to **false** and no UIAbility matches the URL in App Linking, App Linking falls back to [Deep Linking](../../application-models/deep-linking-startup.md). The default value is **false**.<br>When the aa command is used to implicitly start an ability, you can set **--pb appLinkingOnly true** or **--pb appLinkingOnly false** to start the ability in App Linking mode.|
+| appLinkingOnly | boolean | No| Yes| Whether the UIAbility must be started using App Linking.<br>- If this parameter is set to **true** and no UIAbility matches the URL in App Linking, the result is returned directly.<br>- If this parameter is set to **false** and no UIAbility matches the URL in App Linking, App Linking falls back to [Deep Linking](../../application-models/deep-linking-startup.md). The default value is **false**.<br>When the aa command is used to implicitly start an ability, you can set **--pb appLinkingOnly true** or **--pb appLinkingOnly false** to start the ability in App Linking mode.|
 | parameters | Record\<string, Object> | No| Yes| List of parameters in Want.<br>Note: For details about the usage rules, see **parameters** in [want](./js-apis-app-ability-want.md).|
 
 **Example**
