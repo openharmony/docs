@@ -265,7 +265,7 @@
               // 假设已经创建了一个session，如何创建session可以参考之前的案例。
               let type: AVSessionManager.AVSessionType = 'audio';
               let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-              await session.setExtras({ extra: 'This is my custom meida packet' }).then(() => {
+              await session.setExtras({ extra: 'This is my custom media packet' }).then(() => {
                 console.info(`Set extras successfully`);
               }).catch((err: BusinessError) => {
                 console.error(`Failed to set extras. Code: ${err.code}, message: ${err.message}`);
@@ -349,7 +349,7 @@
               });
               session.on('setSpeed', (speed) => {
                 console.info(`on setSpeed , the speed is ${speed}`);
-                // do some tasks ···
+                // 实现具体功能
               });
               session.on('setLoopMode', (mode) => {
                 console.info(`on setLoopMode , the loop mode is ${mode}`);
@@ -398,19 +398,19 @@
               // 不要忘记处理完后需要通过set接口同步播放相关信息，参考上面的用例。
               session.on('skipToQueueItem', (itemId) => {
                 console.info(`on skipToQueueItem , do skip task`);
-                // do some tasks ···
+                // 实现具体功能
               });
               session.on('handleKeyEvent', (event) => {
                 console.info(`on handleKeyEvent , the event is ${JSON.stringify(event)}`);
-                // do some tasks ···
+                // 实现具体功能
               });
               session.on('outputDeviceChange', (device) => {
                 console.info(`on outputDeviceChange , the device info is ${JSON.stringify(device)}`);
-                // do some tasks ···
+                // 实现具体功能
               });
               session.on('commonCommand', (commandString, args) => {
                 console.info(`on commonCommand , command is ${commandString}, args are ${JSON.stringify(args)}`);
-                // do some tasks ···
+                // 实现具体功能
               });
             })
         }
