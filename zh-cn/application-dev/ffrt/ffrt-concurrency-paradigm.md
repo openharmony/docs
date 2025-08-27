@@ -21,7 +21,7 @@
 
 ![image](figures/ffrt_figure4.png)
 
-串行队列并发范式开发样例可以参考 [串行队列(C)](ffrt-concurrency-serial-queue-c.md) / [串行队列(C++)](ffrt-concurrency-serial-queue-cpp.md)
+串行队列并发范式开发样例可以参考[串行队列(C)](ffrt-concurrency-serial-queue-c.md)/[串行队列(C++)](ffrt-concurrency-serial-queue-cpp.md)
 
 ## 并发队列（Concurrent Queue）
 
@@ -34,7 +34,7 @@
 
 ![image](figures/ffrt_figure5.png)
 
-并发队列并发范式开发样例可以参考 [并发队列(C)](ffrt-concurrency-concurrent-queue-c.md) / [并发队列(C++)](ffrt-concurrency-concurrent-queue-cpp.md)
+并发队列并发范式开发样例可以参考[并发队列(C)](ffrt-concurrency-concurrent-queue-c.md)/[并发队列(C++)](ffrt-concurrency-concurrent-queue-cpp.md)
 
 ## 图依赖并发（Task Graph）
 
@@ -47,7 +47,7 @@
 
 ![image](figures/ffrt_figure6.png)
 
-图依赖并发范式开发样例可以参考 [图依赖并发(C)](ffrt-concurrency-graph-c.md) / [图依赖并发(C++)](ffrt-concurrency-graph-cpp.md)
+图依赖并发范式开发样例可以参考[图依赖并发(C)](ffrt-concurrency-graph-c.md)/[图依赖并发(C++)](ffrt-concurrency-graph-cpp.md)
 
 ## 任务伙伴（Job Partner）
 
@@ -61,4 +61,4 @@
 
     ![image](figures/ffrt_figure9.png)
 
-协作并发范式开发样例可以参考 [任务伙伴(C++)](ffrt-concurrency-job-partner-cpp.md)
+协作并发范式开发样例可以参考[任务伙伴(C++)](ffrt-concurrency-job-partner-cpp.md)
