@@ -1,5 +1,11 @@
 # @ohos.multimodalInput.inputDevice (输入设备)(系统接口)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供输入设备管理能力，包括查询输入设备信息等。
 

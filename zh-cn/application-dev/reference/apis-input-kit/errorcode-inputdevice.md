@@ -1,5 +1,12 @@
 # 输入设备错误码
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 > **说明：**
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
@@ -55,7 +62,7 @@ It is prohibited for non-input applications.
 
 **可能原因**
 
-该接口不支持三方应用或者非输入法系统应用调用。
+非输入法应用调用此接口。
 
 **处理步骤**
 
