@@ -19,7 +19,7 @@
 
 TapGesture(value?: TapGestureParameters)
 
-继承自[GestureInterface\<T>](ts-gesture-settings.md#gestureinterfacet11)，设置点击手势的相关参数。
+创建点击手势对象。继承自[GestureInterface\<T>](ts-gesture-settings.md#gestureinterfacet11)。
 
 触发点击手势事件的设备类型为键盘或手柄时，事件的[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)值为Unknown。
 
@@ -63,7 +63,7 @@ TapGesture(value?: TapGestureParameters)
 
 onAction(event: (event: GestureEvent) => void)
 
-Tap手势识别成功回调。
+点击手势识别成功回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -77,7 +77,7 @@ Tap手势识别成功回调。
 
 ## EventLocationInfo<sup>20+</sup>对象说明
 
-用于点击手势获取坐标。
+用于点击手势获取点击位置坐标。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -132,7 +132,7 @@ struct TapGestureExample {
 
 ### 示例2（获取单击手势坐标）
 
-该示例通过TapGesture获取单击手势相关的坐标。
+该示例通过TapGesture获取单击手势点击位置的坐标。
 
 ```ts
 // xxx.ets
