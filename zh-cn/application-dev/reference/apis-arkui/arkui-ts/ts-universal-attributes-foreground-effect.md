@@ -56,6 +56,7 @@ foregroundEffect(options: ForegroundEffectOptions): T
 struct Index {
   build() {
     Row() {
+      // $r("app.media.icon")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.icon'))
           .width(100)
           .height(100)
