@@ -270,8 +270,8 @@ type Matrix4Transit = Matrix4Transit
 | y                         | number                     | 否   | 是   | 旋转轴向量y坐标。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。|
 | z                         | number                     | 否   | 是   | 旋转轴向量z坐标。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。|
 | angle                     | number&nbsp;\|&nbsp;string | 否   | 否   | 旋转角度。取值为正时相对于旋转轴方向顺时针转动，取值为负时相对于旋转轴方向逆时针转动。取值可为string类型，如'90deg'。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| centerX                   | number&nbsp;\|&nbsp;string | 否   | 是   | 变换中心点x轴坐标。表示组件变换中心点（即锚点）的x方向坐标。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| centerY                   | number&nbsp;\|&nbsp;string | 否   | 是   | 变换中心点y轴坐标。表示组件变换中心点（即锚点）的y方向坐标。<br/>单位：vp<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
+| centerX                   | number&nbsp;\|&nbsp;string | 否   | 是   | 变换中心点x轴坐标。表示组件变换中心点（即锚点）的x方向坐标。取值可为string类型，如'50'，'50%'。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| centerY                   | number&nbsp;\|&nbsp;string | 否   | 是   | 变换中心点y轴坐标。表示组件变换中心点（即锚点）的y方向坐标。取值可为string类型，如'50'，'50%'。<br/>单位：vp<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | centerZ<sup>10+</sup>     | number                     | 否   | 是   | z轴锚点，即3D旋转中心点的z轴分量。<br/>默认值：0<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | perspective<sup>10+</sup> | number                     | 否   | 是   | 视距，即视点到z=0平面的距离。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值：0<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 
@@ -321,8 +321,8 @@ type Matrix4Transit = Matrix4Transit
 | x       | number                     | 否   | 是   | x轴的缩放倍数。x>1时以x轴方向放大，0<x<1时以x轴方向缩小，x<0时沿x轴反向并缩放。 |
 | y       | number                     | 否   | 是   | y轴的缩放倍数。y>1时以y轴方向放大，0<y<1时以y轴方向缩小，y<0时沿y轴反向并缩放。 |
 | z       | number                     | 否   | 是   | z轴的缩放倍数。z>1时以z轴方向放大，0<z<1时以z轴方向缩小，z<0时沿z轴反向并缩放。 |
-| centerX | number&nbsp;\|&nbsp;string | 否   | 是   | 变换中心点x轴坐标。表示组件变换中心点（即锚点）的x方向坐标。<br/>单位：vp |
-| centerY | number&nbsp;\|&nbsp;string | 否   | 是   | 变换中心点y轴坐标。表示组件变换中心点（即锚点）的y方向坐标。<br/>单位：vp |
+| centerX | number&nbsp;\|&nbsp;string | 否   | 是   | 变换中心点x轴坐标。表示组件变换中心点（即锚点）的x方向坐标。取值可为string类型，如'50'，'50%'。<br/>单位：vp |
+| centerY | number&nbsp;\|&nbsp;string | 否   | 是   | 变换中心点y轴坐标。表示组件变换中心点（即锚点）的y方向坐标。取值可为string类型，如'50'，'50%'。<br/>单位：vp |
 
 > **说明：**
 >
