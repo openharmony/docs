@@ -35,7 +35,7 @@
 ## 约束和限制
 
 ### 请求参数约束
-1. 互动卡片申请破框动效的最大合法动效时长：3500ms，倒计时结束时，卡片将切换回非激活态。<!--Del-->仅三方应用生效，系统应用不作限制。<!--DelEnd-->
+1. 互动卡片申请破框动效的最大合法动效时长：3500ms，倒计时结束时，卡片将切换回非激活态。<!--Del-->系统应用额外支持长时激活和长时破框动效，这些动效的时间不受限制，可参考[场景动效类型互动卡片开发指导（系统应用）](arkts-ui-liveform-sceneanimation-development-sys.md)<!--DelEnd-->
 2. 由卡片定时定点刷新触发的互动卡片破框动效，一天内单张卡片最多触发50次。
 3. 最大可申请动效区域：如下图，矩形ABCD表示卡片自身渲染区域，矩形IJKL表示卡片最大可申请动效区域。两个矩形中心对齐。尺寸满足以下表格描述。
 
@@ -75,5 +75,4 @@
 3. 其他触发方式，例如通过卡片定时定数据刷新机制触发动效，遵循先到先得原则。系统只处理第一个合法动效请求。其他请求返回失败，同时不做缓存。
 4. 用户在桌面的其他有效操作（点击应用、卡片等，滑动翻页，下拉进入全搜、双中心、拖动卡片、长按卡片等）均会打断当前动效，卡片重新变成非激活态。<!--Del-->系统应用可以通过禁用手势配置项方式禁用用户在桌面的某些操作，可参考[场景动效类型互动卡片开发指导（系统应用）](arkts-ui-liveform-sceneanimation-development-sys.md)。<!--DelEnd-->
 5. 互动卡片执行动效期间，超过卡片自身渲染范围（对应图5中的矩形ABCD）的交互事件，互动卡片不做响应。
-6. 更多场景动效类型互动卡片激活态能力约束，可参考[LiveFormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)中说明。<!--Del-->
-7. 系统应用额外支持长时激活和长时破框动效，这些动效的时间不受限制，可参考[场景动效类型互动卡片开发指导（系统应用）](arkts-ui-liveform-sceneanimation-development-sys.md)。<!--DelEnd-->
+6. 更多场景动效类型互动卡片激活态能力约束，可参考[LiveFormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)中说明。
