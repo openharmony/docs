@@ -379,7 +379,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     | 属性信息名称 | 属性值 | 属性值类型 | 场景 |
     | -------- | -------- | -------- | -------- |
      | DeviceHealthyStatus |1 <br> 2 <br> 3 <br> 4 | 整型 | 1：设备健康报告显示正常。 <br>2：设备有健康风险，但风险因子和root无关。 <br> 3：设备有健康风险，且风险因子和root相关。 <br> 4：异常场景。 |
-    | NetStatus | InterNet <br> ExtraNet <br> NoNet | 字符串 | 设备在公司内部使用。 <br> 设备在公司外部使用。 <br> 设备处于离线断网状态。 |
+    | NetStatus | InterNet <br> ExtraNet <br> NoNet | 字符串 | InterNet：设备在公司内部使用。<br>ExtraNet：设备在公司外部使用。<br>NoNet：设备处于离线断网状态。 |
     | DebugMode | 1 <br> 2 | 整型 | 1：该设备已开启调试模式。<br>2：该设备未开启调试模式。 |
     | AdvancedSecurityMode | 1 <br> 2 | 整型 | 1：该设备已开启高级安全模式。<br>2：该设备未开启高级安全模式。  |
 
