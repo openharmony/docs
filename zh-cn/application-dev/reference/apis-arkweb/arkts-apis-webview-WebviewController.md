@@ -9901,7 +9901,7 @@ export default class EntryAbility extends UIAbility {
 
 ## setAutoPreconnect<sup>21+</sup>
 
-static setAutoPreconnect(enabled: boolean): void;
+static setAutoPreconnect(enabled: boolean): void
 
 设置Web内核的自动预连接状态。若未设置，默认启用自动预连接。
 
@@ -9935,7 +9935,7 @@ export default class EntryAbility extends UIAbility {
 
 ## isAutoPreconnectEnabled<sup>21+</sup>
 
-static isAutoPreconnectEnabled(): boolean;
+static isAutoPreconnectEnabled(): boolean
 
 查询Web内核的自动预连接状态。
 
