@@ -1,8 +1,13 @@
 # Key Agreement (ArkTS)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
 
-This topic walks you through on how to agree on an X25519 key that is used only in HUKS. For details about the scenarios and supported algorithms, see [Supported Algorithms](huks-key-generation-overview.md#supported-algorithms).
-
+This topic uses X25519 and DH as an example to demonstrate how to perform key agreement for HUKS-managed keys. For details about the scenarios and supported algorithms, see [Supported Algorithms](huks-key-generation-overview.md#supported-algorithms).
 
 ## How to Develop
 
@@ -10,11 +15,11 @@ This topic walks you through on how to agree on an X25519 key that is used only 
 
 Generate an asymmetric key for device A and device B each. For details, see [Key Generation](huks-key-generation-overview.md) or [Key Import](huks-key-import-overview.md).
 
-When generating a key, you can set **HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG** (optional) to specify how the shared secret generated from this key through key agreement is managed.
+(Optional) You can specify the [HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_keystoragetype) parameter when generating a key to decide if HUKS manages the resulting key from the key agreement process.
 
 - If this tag is set to **HUKS_STORAGE_ONLY_USED_IN_HUKS**, the shared secret is managed by HUKS. That is, the shared secret is always in a secure environment throughout its lifecycle.
 
-- If this tag is set to **HUKS_STORAGE_KEY_EXPORT_ALLOWED**, the shared secret generated will be returned to the caller for management. That is, the service side ensures the key security.
+- If this tag is set to **HUKS_STORAGE_KEY_EXPORT_ALLOWED**, the shared secret generated will be returned to the caller for management. That is, service side ensures the key security.
 
 - If this tag is not set, the shared secret generated can be either managed by HUKS or returned to the caller for management. The key protection mode can be set in the subsequent key agreement on the service side.
 
@@ -36,7 +41,7 @@ During key agreement, you can set **HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG** (
 | The tag is not set.| HUKS_STORAGE_KEY_EXPORT_ALLOWED | The key is returned to the caller for management.|
 | The tag is not set.| The tag is not set.| The key is returned to the caller for management.|
 
->**NOTE**<br>The tag value set in key agreement should not conflict with the tag value set in key generation. The above table lists only valid settings.
+Note: The tag value set in key agreement should not conflict with the tag value set in key generation. The above table lists only valid settings.
 
 **Key Deletion**
 
@@ -44,12 +49,20 @@ Delete the keys from device A and device B when the keys are not required. For d
 
 
 The following uses X25519 and DH key agreement as examples. 
-Example: Perform X25519 key agreement.
+### X25519 asymmetric key agreement example
   ```ts
   /*
   * Agree on an X25519 key using promise-based APIs.
   */
   import { huks } from '@kit.UniversalKeystoreKit';
+
+  function StringToUint8Array(str: string) {
+    let arr: number[] = new Array();
+    for (let i = 0, j = str.length; i < j; ++i) {
+      arr.push(str.charCodeAt(i));
+    }
+    return new Uint8Array(arr);
+  }
 
   /*
   * Set the key alias and encapsulate the key property set.
@@ -135,20 +148,12 @@ Example: Perform X25519 key agreement.
     inData: StringToUint8Array(agreeX25519InData)
   }
 
-  function StringToUint8Array(str: string) {
-    let arr: number[] = new Array();
-    for (let i = 0, j = str.length; i < j; ++i) {
-      arr.push(str.charCodeAt(i));
-    }
-    return new Uint8Array(arr);
-  }
-
-  class throwObject {
+  class ThrowObject {
     isThrow: boolean = false
   }
 
   /* Generate a key. */
-  function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+  function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
     return new Promise<void>((resolve, reject) => {
       try {
         huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
@@ -168,7 +173,7 @@ Example: Perform X25519 key agreement.
   /* Call generateKeyItem to generate a key. */
   async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
     console.info(`enter promise generateKeyItem`);
-    let throwObject: throwObject = { isThrow: false };
+    let throwObject: ThrowObject = { isThrow: false };
     try {
       await generateKeyItem(keyAlias, huksOptions, throwObject)
         .then((data) => {
@@ -187,7 +192,7 @@ Example: Perform X25519 key agreement.
   }
 
   /* Initializes a key session, which returns a session handle (mandatory) and a challenge (optional). */
-  function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+  function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
     return new Promise<huks.HuksSessionHandle>((resolve, reject) => {
       try {
         huks.initSession(keyAlias, huksOptions, (error, data) => {
@@ -207,7 +212,7 @@ Example: Perform X25519 key agreement.
   /* Call initSession. A session handle is returned. */
   async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
     console.info(`enter promise doInit`);
-    let throwObject: throwObject = { isThrow: false };
+    let throwObject: ThrowObject = { isThrow: false };
     try {
       await initSession(keyAlias, huksOptions, throwObject)
         .then((data) => {
@@ -227,7 +232,7 @@ Example: Perform X25519 key agreement.
   }
 
   /* Call updateSession multiple times to process data by segment and output the processed data. */
-  function updateSession(handle: number, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+  function updateSession(handle: number, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
     return new Promise<huks.HuksReturnResult>((resolve, reject) => {
       try {
         huks.updateSession(handle, huksOptions, (error, data) => {
@@ -247,7 +252,7 @@ Example: Perform X25519 key agreement.
   /* Call updateSession to perform key agreement. */
   async function publicUpdateFunc(handle: number, huksOptions: huks.HuksOptions) {
     console.info(`enter promise doUpdate`);
-    let throwObject: throwObject = { isThrow: false };
+    let throwObject: ThrowObject = { isThrow: false };
     try {
       await updateSession(handle, huksOptions, throwObject)
         .then((data) => {
@@ -266,7 +271,7 @@ Example: Perform X25519 key agreement.
   }
 
   /* Finish the key session to output the shared secret key. */
-  function finishSession(handle: number, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+  function finishSession(handle: number, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
     return new Promise<huks.HuksReturnResult>((resolve, reject) => {
       try {
         huks.finishSession(handle, huksOptions, (error, data) => {
@@ -286,7 +291,7 @@ Example: Perform X25519 key agreement.
   /* Call finishSession to finish the operation. */
   async function publicFinishFunc(handle: number, huksOptions: huks.HuksOptions) {
     console.info(`enter promise doFinish`);
-    let throwObject: throwObject = { isThrow: false };
+    let throwObject: ThrowObject = { isThrow: false };
     try {
       await finishSession(handle, huksOptions, throwObject)
         .then((data) => {
@@ -306,7 +311,7 @@ Example: Perform X25519 key agreement.
   }
 
   /* Export a key. */
-  function exportKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+  function exportKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
     return new Promise<huks.HuksReturnResult>((resolve, reject) => {
       try {
         huks.exportKeyItem(keyAlias, huksOptions, (error, data) => {
@@ -326,7 +331,7 @@ Example: Perform X25519 key agreement.
   /* Call exportKeyItem to export the public key. */
   async function publicExportKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
     console.info(`enter promise export`);
-    let throwObject: throwObject = { isThrow: false };
+    let throwObject: ThrowObject = { isThrow: false };
     try {
       await exportKeyItem(keyAlias, huksOptions, throwObject)
         .then((data) => {
@@ -346,7 +351,7 @@ Example: Perform X25519 key agreement.
   }
 
   /* Delete the keys. */
-  function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+  function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
     return new Promise<void>((resolve, reject) => {
       try {
         huks.deleteKeyItem(keyAlias, huksOptions, (error, data) => {
@@ -366,7 +371,7 @@ Example: Perform X25519 key agreement.
   /* Call deleteKeyItem to delete a key. */
   async function publicDeleteKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
     console.info(`enter promise deleteKeyItem`);
-    let throwObject: throwObject = { isThrow: false };
+    let throwObject: ThrowObject = { isThrow: false };
     try {
       await deleteKeyItem(keyAlias, huksOptions, throwObject)
         .then((data) => {
@@ -411,13 +416,13 @@ Example: Perform X25519 key agreement.
   }
   ```
 
-Example: Perform DH key agreement.
+### DH key agreement example
 
   ```ts
   /*
   * Agree on a DH key using promise-based APIs.
   */
-  import { huks } from '@kit.UniversalKeystoreKit'
+  import { huks } from '@kit.UniversalKeystoreKit';
 
   function StringToUint8Array(str: string) {
     let arr: number[] = []
