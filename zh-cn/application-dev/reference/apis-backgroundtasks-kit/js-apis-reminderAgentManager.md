@@ -910,7 +910,7 @@ reminderAgentManager.updateReminder(reminderId, timer).then(() => {
 | maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 是 | 提醒到达时，全屏显示自动拉起目标的ability信息。如果设备正在使用中，则弹出一个通知横幅框。 <br> 说明：该接口为预留接口，暂不支持使用。|
 | ringDuration | number | 否 | 是 | 指明响铃时长（单位：秒），默认1秒。 |
 | snoozeTimes | number | 否 | 是 | 指明延时提醒次数，默认0次(不适用于倒计时提醒类型)。 |
-| timeInterval | number | 否 | 是 | 执行延时提醒间隔（单位：秒），最少5分钟(不适用于倒计时提醒类型)。 |
+| timeInterval | number | 否 | 是 | 执行延时提醒间隔（单位：秒），最少30秒(不适用于倒计时提醒类型)。 |
 | title | string | 否 | 是 | 指明提醒标题。 |
 | titleResourceId<sup>18+</sup> | number | 否 | 是 | 指明提醒标题的资源ID。 |
 | content | string | 否 | 是 | 指明提醒内容。 |
