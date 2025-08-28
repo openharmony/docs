@@ -2,6 +2,61 @@
 
 场景动效类型互动卡片基础开发指导，可以参考文档[场景动效类型互动卡片开发指导](arkts-ui-liveform-sceneanimation-development.md)。针对系统应用，场景动效类型互动卡片提供了**手势禁用配置**和**卡片长时间保持激活态**两个扩展能力。
 
+## 手势禁用配置
+针对[场景动效类型互动卡片](arkts-ui-liveform-sceneanimation-overview.md)，若用户在桌面的长按、拖拽等操作会打断当前动效，卡片重新变成非激活态。系统应用可通过form_config.json中[disabledDesktopBehaviors](arkts-ui-widget-configuration.md#sceneanimationparams标签)字段进行配置取消该限制，确保用户在激活态卡片交互热区内操作时，不打断当前卡片动效。
+不配置时，默认不拦截桌面的任何有效手势操作。手势操作被拦截后，对应的手势事件由LiveFormExtensionAbility响应。
+
+```ts
+// entry/src/main/resources/base/profile/form_config.json
+{
+  "forms": [
+    {
+      // ...
+      "sceneAnimationParams": {
+        "abilityName": "MySystemLiveFormExtensionAbility",
+        "disabledDesktopBehaviors": [
+          "SWIPE_DESKTOP",
+          "PULL_DOWN_SEARCH",
+          "LONG_CLICK",
+          "DRAG"
+        ]
+      }
+    }
+  ]
+}
+```
+
+## 卡片长时间保持激活态
+
+系统应用支持通过接口控制卡片状态切换，卡片可长时间保持激活态（后文简称为长时激活态，处于该状态的卡片简称为长时激活卡片）。卡片状态切换由[formProvider.activateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#activatesceneanimation20)和[formProvider.deactivateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#deactivatesceneanimation20)接口控制。此时卡片动效渲染区域和卡片自身等大，无破框效果。
+
+### 长时激活卡片扩展动效渲染区域
+
+长时激活卡片支持调用[formProvider.requestOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20)接口长时间扩展卡片动效渲染区域。当接口中传入的动效时长大于等于60秒时，卡片可长时间扩展动效渲染区域（后文简称为长时破框态，处于该状态卡片简称为长时破框卡片），反之扩展动效渲染区域请求失败。长时破框态卡片被其他卡片破框动效打断时，卡片动效渲染区域大小调整为卡片尺寸大小，卡片切换为长时激活态。
+
+### 长时激活卡片状态信息同步
+
+系统针对卡片关键状态信息更新时，通过代理向卡片提供方发送当前卡片最新状态信息。卡片提供方可以通过[setReceiveDataCallback](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession-sys.md#setreceivedatacallback)能力进行监听。支持监听的卡片状态信息参见下表。
+
+|状态|说明|
+|-----|---------|
+|stopOverflow|卡片动效渲染区域回退为同卡片自身等大，切换为长时激活态。|
+|startSwipe|用户触发桌面水平滑动翻页手势。|
+|endSwipe|用户完成桌面水平滑动翻页手势。|
+|onBackground|卡片由可见变为不可见，对应[LiveFormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)切换到后台。|
+|onForeground|卡片由不可见变为可见，对应[LiveFormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)切换到前台。|
+|extensionready|卡片的激活态已切换完毕。|
+|longPress|用户触发卡片长按手势，系统即将弹出卡片长按菜单。|
+
+### 约束与限制
+
+互动卡片破框[动效请求约束](arkts-ui-liveform-sceneanimation-overview.md#动效请求约束)进一步扩展如下：
+1. 同一时刻，全局只有一个卡片执行互动卡片破框动效。
+2. 当用户通过点击等方式主动触发互动卡片破框动效时，优先响应此次请求。此时，当前卡片切换到激活态，执行动效，其他卡片动效被打断（长时破框态卡片，动效渲染区域大小调整为卡片尺寸大小，普通互动卡片切换为非激活态）。
+3. 其他触发方式，例如通过卡片定时定数据刷新机制触发动效，遵循先到先得原则。系统只处理第一个合法动效请求。其他请求返回失败，同时不做缓存。
+4. 长时激活态卡片不受请求约束影响，系统限制长时间保持激活态卡片不超过5个，超过5个时将淘汰最早切换为激活态的卡片。
+5. 处于长时破框态的卡片，系统设置60秒倒计时。倒计时结束前，其他卡片的非用户点击触发的动效请求均返回失败。倒计时结束后，其他卡片的动效请求均可响应，当前卡片切换为长时激活态，动效渲染区域回退为与卡片自身等大。
+
 ## 接口说明
 
 场景动效类型互动卡片开发关键接口如下表所示。
@@ -13,43 +68,7 @@
 | [formProvider.activateSceneAnimation(formId: string): Promise&lt;void&gt;](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#activatesceneanimation20)     | 互动卡片请求状态切换到激活态。 |
 | [formProvider.deactivateSceneAnimation(formId: string): Promise&lt;void&gt;](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#deactivatesceneanimation20) | 互动卡片请求切换到非激活态。 |
 
-
-## 手势禁用配置
-针对[场景动效类型互动卡片](arkts-ui-liveform-sceneanimation-overview.md)，若用户在桌面的长按、拖拽等操作会打断当前动效，卡片重新变成非激活态。系统应用可通过form_config.json中[disabledDesktopBehaviors](arkts-ui-widget-configuration.md#sceneanimationparams标签)字段进行配置取消该限制，确保用户在激活态卡片交互热区内操作时，不打断当前卡片动效。
-不配置时，默认不拦截桌面的任何有效手势操作。手势操作被拦截后，对应的手势事件由LiveFormExtensionAbility响应。
-
-## 卡片长时间保持激活态
-
-系统应用支持通过接口控制卡片状态切换，卡片可长时间保持激活态（后文简称为长时激活态，处于该状态的卡片简称为长时激活卡片）。卡片状态切换由[formProvider.activateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#activatesceneanimation20)和[formProvider.deactivateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#deactivatesceneanimation20)接口控制。此时卡片动效渲染区域和卡片自身等大，无破框效果。系统限制长时间保持激活态卡片不超过5个。数量超过时将淘汰最早切换为长时间保持激活态的卡片。
-
-### 长时激活卡片扩展动效渲染区域
-
-长时激活卡片支持调用[formProvider.requestOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20)接口长时间扩展卡片动效渲染区域。当接口中传入的动效时长大于60000毫秒时，卡片可实现长时间获得扩展后的动效渲染区域（后文简称为长时破框态，处于该状态卡片简称为长时破框卡片），反之扩展动效渲染区域请求失败。长时破框态卡片被其他互动卡片动效打断时，卡片动效渲染区域大小调整为卡片尺寸大小，卡片切换为长时激活态。
-
-### 长时激活卡片状态信息同步
-
-系统针对卡片关键状态信息更新时，通过代理向卡片提供方发送当前卡片最新状态信息。卡片提供方可以通过[uiExtensionContentSession](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession-sys.md#setreceivedatacallback)能力进行监听。当前支持的卡片状态数据有
-
-|状态|说明|
-|-----|---------|
-|stopOverflow|卡片动效渲染区域回退为同卡片自身等大，切换为长时激活态|
-|startSwipe|用户触发桌面水平滑动翻页手势|
-|endSwipe|用户完成桌面水平滑动翻页手势|
-|onBackground|卡片由可见变为不可见，对应LiveFormExtensionAbility切换到后台|
-|onForeground|卡片由不可见变为可见，对应LiveFormExtensionAbility切换到前台|
-|extensionready|卡片的激活态已切换完毕|
-|longPress|用户触发卡片长按手势，系统即将弹出卡片长按菜单|
-
-### 约束与限制
-
-互动卡片破框[动效请求约束](arkts-ui-liveform-sceneanimation-overview.md#动效请求约束)进一步扩展如下：
-1. 同一时刻，全局只有一个卡片执行互动卡片破框动效。
-2. 当用户通过点击等方式主动触发互动卡片破框动效时，优先响应此次请求。此时，当前卡片切换到激活态，执行动效，其他卡片动效被打断（长时破框态卡片，动效渲染区域大小调整为卡片尺寸大小，普通互动卡片切换为非激活态）。
-3. 其他触发方式，例如通过卡片定时定数据刷新机制触发动效，遵循先到先得原则。系统只处理第一个合法动效请求。其他请求返回失败，同时不做缓存。
-4. 长时激活态卡片不受请求约束影响。
-5. 处于长时破框态的卡片，系统设置60秒倒计时。倒计时结束前，其他卡片的非用户点击触发的动效请求均返回失败。倒计时结束后，其他卡片的动效请求均可响应。当前卡片的动效渲染区域回退为与卡片自身等大，并切换为长时激活态。
-
-## 开发流程
+## 开发步骤
 
 ### 卡片激活态UI开发
 
@@ -70,25 +89,25 @@
         let storage: LocalStorage = new LocalStorage();
         storage.setOrCreate(Constants.SESSION, session);
     
-        // 获取参卡片 ID 与激活态渲染区域
+        // 获取参卡片ID与激活态渲染区域
         let formId: string = liveFormInfo.formId as string;
         storage.setOrCreate(Constants.FORM_ID, formId);
         let rect: formInfo.Rect = liveFormInfo.rect as formInfo.Rect
         storage.setOrCreate(Constants.FORM_RECT, rect);
         let borderRadius: number = liveFormInfo.borderRadius as number;
         storage.setOrCreate(Constants.BORDER_RADIUS, borderRadius);
-        console.log(`onSessionCreate formId: ${formId}, rect: ${JSON.stringify(rect)}` +
+        console.info(`onSessionCreate formId: ${formId}, rect: ${JSON.stringify(rect)}` +
           `, borderRadius: ${borderRadius}`);
     
         // 加载卡片提供方页面
         session.loadContent(PAGE_PATH, storage);
     
-        // 卡片提供方需在激活态页面准备就绪时，通过 session 发送信息告知卡片使用方
+        // 卡片提供方需在激活态页面准备就绪时，通过session发送信息告知卡片使用方
         session.sendData({['isFormReady']: true});
       }
     
       onLiveFormDestroy(liveFormInfo: LiveFormInfo) {
-        console.log(`MySystemLiveFormExtensionAbility onDestroy`);
+        console.info(`MySystemLiveFormExtensionAbility onDestroy`);
       }
     }
     ```
@@ -115,10 +134,10 @@
       @State formBorderRadius: number | undefined = undefined;
     
       aboutToAppear(): void {
-        console.log('aboutToAppear');
+        console.info('aboutToAppear');
         this.uiContext = this.getUIContext();
         if (!this.uiContext) {
-          console.log('no uiContext');
+          console.info('no uiContext');
           return;
         }
         that = this;
@@ -155,14 +174,14 @@
           let formStatusChange: string = data[Constants.FORM_STATUS_CHANGE] as string;
           let formStatusObject: Record<string, Object> = JSON.parse(formStatusChange) as Record<string, Object>;
           if (!formStatusObject || !that.formId) {
-            console.log(`sth wrong when get form status`);
+            console.info(`sth wrong when get form status`);
             return;
           }
           let status: string = formStatusObject[Constants.FORM_STATUS] as string;
-          console.log(`data: ${JSON.stringify(data)}, status: ${status}`);
+          console.info(`data: ${JSON.stringify(data)}, status: ${status}`);
           await that.handleFormStatus(status);
         } catch (e) {
-          console.log(`sth wrong when handleMessage, code: ${e.code}, message: ${e.message}`);
+          console.info(`sth wrong when handleMessage, code: ${e.code}, message: ${e.message}`);
         }
       }
 
@@ -238,14 +257,14 @@
           Button('扩展动效区域')
             .backgroundColor(Color.Grey)
             .onClick(() => {
-              console.log('MyLiveFormPage start overflow animation');
+              console.info('MyLiveFormPage start overflow animation');
               this.requestOverflow();
             })
     
           Button('取消扩展动效区域')
             .backgroundColor(Color.Grey)
             .onClick(() => {
-              console.log('MyLiveFormPage cancel overflow animation');
+              console.info('MyLiveFormPage cancel overflow animation');
               formProvider.cancelOverflow(this.formId);
             })
         }
@@ -253,7 +272,7 @@
         Button('切换卡片到非激活态')
           .backgroundColor(Color.Grey)
           .onClick(() => {
-            console.log('MyLiveFormPage cancel active status');
+            console.info('MyLiveFormPage cancel active status');
             formProvider.deactivateSceneAnimation(this.formId);
           })
       }
@@ -430,13 +449,13 @@
       private activateSceneAnimation(formId: string): void {
         try {
           formProvider.activateSceneAnimation(formId).then(() => {
-            console.log('activateSceneAnimation succeed');
+            console.info('activateSceneAnimation succeed');
           }).catch((error: BusinessError) => {
-            console.log(`activateSceneAnimation catch error` +
+            console.info(`activateSceneAnimation catch error` +
               `, code: ${error.code}, message: ${error.message}`);
           })
         } catch (e) {
-          console.log(`activateSceneAnimation call requestOverflow catch error` +
+          console.info(`activateSceneAnimation call requestOverflow catch error` +
             `, code: ${e.code}, message: ${e.message}`);
         }
       }
