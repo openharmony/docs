@@ -8,7 +8,7 @@
 
 ## 概述
 
-用于特定组件设置组件的行数、列数以及选择模式，如list、flex、select、swiper组件。
+用于特定组件设置组件的行数、列数以及选择模式，如List、Flex、Select、Swiper组件。
 
 **起始版本：** 13
 

@@ -159,7 +159,7 @@ struct Index {
   private mCameraInput: camera.CameraInput | undefined = undefined;
   private mPreviewOutput: camera.PreviewOutput | undefined = undefined;
   private mPhotoSession: camera.PhotoSession | undefined = undefined;
-  // One of the recommended preview resolutions.
+  // 请根据实际业务诉求选择符合需求场景的预览流Profile，此处以分辨率1080P，CameraFormat：1003为例。
   private previewProfileObj: camera.Profile = {
     format: 1003,
     size: {

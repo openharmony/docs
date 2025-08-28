@@ -183,7 +183,7 @@ disappearTextStyle(style: Optional\<PickerTextStyle\|TextPickerTextStyle>)
 
 textStyle(value: PickerTextStyle)
 
-设置一般项（以选中项为基准向上或向下的第一项）的文本样式。
+设置一般项（以选中项为基准向上或向下的第一项）的文本颜色、字号、字体粗细。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -642,8 +642,6 @@ onCancel(callback: () => void)
 
 | 名称   | 类型                                     | 只读 | 可选 | 说明                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- | ------------------------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 是   | 文本颜色。                     |
-| font  | [Font](ts-types.md#font)                 | 否   | 是   | 文本样式。 |
 | minFontSize | number \| string \| [Resource](ts-types.md#resource) | 否 | 是 | 文本最小显示字号，与maxFontSize配合使用。当设置minFontSize和maxFontSize时，font中的size将不生效。默认最大行数为1，自适应高度方式为MIN_FONT_SIZE_FIRST。详细规则请参考Text组件的[minFontSize](ts-basic-components-text.md#minfontsize)属性。 |
 | maxFontSize  | number \| string \| [Resource](ts-types.md#resource) | 否   | 是   | 文本最大显示字号。详细规则请参考Text组件的[maxFontSize](ts-basic-components-text.md#maxfontsize)属性。                     |
 | overflow | [TextOverflow](ts-appendix-enums.md#textoverflow) | 否 | 是 | 文本截断方式。当设置为MARQUEE时，该属性不生效。详细规则请参考Text组件的[textOverflow](ts-basic-components-text.md#textoverflow)属性。 |

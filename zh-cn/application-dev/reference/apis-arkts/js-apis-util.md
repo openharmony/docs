@@ -68,14 +68,14 @@ format(format: string,  ...args: Object[]): string
 ```ts
 import { util } from '@kit.ArkTS';
 
-interface utilAddresstype {
+interface utilAddressType {
   city: string;
   country: string;
 }
-interface utilPersontype {
+interface utilPersonType {
   name: string;
   age: number;
-  address: utilAddresstype;
+  address: utilAddressType;
 }
 
 let name = 'John';
@@ -99,7 +99,7 @@ const obj: Record<string,number | string> = { "name": 'John', "age": 20 };
 formattedString = util.format('The object is %j', obj);
 console.info(formattedString);
 // 输出结果：The object is {"name":"John","age":20}
-const person: utilPersontype = {
+const person: utilPersonType = {
   name: 'John',
   age: 20,
   address: {
@@ -1271,7 +1271,7 @@ encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 | 参数名 | 类型       | 必填 | 说明                                                    |
 | ------ | ---------- | ---- | ------------------------------------------------------- |
 | input  | string     | 是   | 需要编码的字符串。                                      |
-| dest   | Uint8Array | 是   | Uint8Array对象实例，用于将生成的UTF-8编码文本放入其中。 |
+| dest   | Uint8Array | 是   | Uint8Array对象实例，用于将生成的utf-8编码文本放入其中。 |
 
 **返回值：**
 
@@ -1306,7 +1306,7 @@ console.info("result.written = " + result.written);
 
 encodeInto(input: string, dest: Uint8Array): { read: number; written: number }
 
-将生成的UTF-8编码文本写入dest数组。
+将生成的utf-8编码文本写入dest数组。
 
 > **说明：**
 >
@@ -1319,7 +1319,7 @@ encodeInto(input: string, dest: Uint8Array): { read: number; written: number }
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | input | string | 是 | 需要编码的字符串。 |
-| dest | Uint8Array | 是 | Uint8Array对象实例，用于将生成的UTF-8编码文本放入其中。 |
+| dest | Uint8Array | 是 | Uint8Array对象实例，用于将生成的utf-8编码文本放入其中。 |
 
 **返回值：**
 

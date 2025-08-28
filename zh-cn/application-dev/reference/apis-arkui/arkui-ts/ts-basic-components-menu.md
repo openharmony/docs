@@ -198,6 +198,7 @@ Menu子菜单展开样式枚举。
 @Component
 struct Index {
   @State select: boolean = true;
+  // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
   private iconStr: ResourceStr = $r("app.media.view_list_filled");
   private iconStr2: ResourceStr = $r("app.media.arrow_right_filled");
 

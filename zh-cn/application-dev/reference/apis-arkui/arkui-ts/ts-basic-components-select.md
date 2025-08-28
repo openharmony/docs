@@ -906,7 +906,7 @@ showInSubWindow(showInSubWindow:Optional\<boolean>)
 
 ## MenuItemConfiguration<sup>12+</sup>对象说明
 
-开发者需要自定义class实现ContentModifier接口。
+开发者需要自定义class实现ContentModifier接口。继承自[CommonConfiguration](ts-universal-attributes-content-modifier.md#commonconfigurationt)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -931,8 +931,8 @@ showInSubWindow(showInSubWindow:Optional\<boolean>)
 
 | 名称   | 类型                   |只读                                      |可选                                      | 说明                                                         |
 | ------ | ----------------------|-------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| width  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](ts-universal-attributes-outline.md#edgeoutlinewidths对象说明)| 否| 是 | 设置外描边宽度，不支持百分比。<br/>默认值：0 |
-| color  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-universal-attributes-outline.md#edgecolors对象说明)|否 |是 | 设置外描边颜色。<br/>默认值：#19ffffff|
+| width  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](ts-types.md#edgeoutlinewidths11对象说明)| 否| 是 | 设置外描边宽度，不支持百分比。<br/>默认值：0 |
+| color  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-types.md#edgecolors9)|否 |是 | 设置外描边颜色。<br/>默认值：#19ffffff|
 
 ## 事件
 
@@ -1002,6 +1002,7 @@ struct SelectExample {
 
   build() {
     Column() {
+      // $r('app.media.selection')需要替换为开发者所需的图像资源文件。
       Select([{ value: 'aaa', icon: $r("app.media.selection") },
         { value: 'bbb', icon: $r("app.media.selection") },
         { value: 'ccc', icon: $r("app.media.selection") },
@@ -1143,6 +1144,7 @@ struct SelectExample {
   build() {
     Column() {
       Row() {
+        // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
         Select([{ value: 'item1', icon: $r('app.media.icon'), symbolIcon: this.symbolModifier1 },
           { value: 'item1', icon: $r('app.media.icon'), symbolIcon: this.symbolModifier2 }])
           .value(this.text)
@@ -1173,6 +1175,7 @@ struct SelectExample {
 
   build() {
     Column() {
+      // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
       Select([{ value: 'aaa', icon: $r("app.media.icon") },
         { value: 'bbb', icon: $r("app.media.icon") },
         { value: 'ccc', icon: $r("app.media.icon") },
@@ -1221,6 +1224,7 @@ struct SelectExample {
 
   build() {
     Column() {
+      // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
       Select([{ value: 'aaa', icon: $r("app.media.icon") },
         { value: 'bbb', icon: $r("app.media.icon") },
         { value: 'ccc', icon: $r("app.media.icon") },
@@ -1281,6 +1285,7 @@ struct SelectExample {
   build() {
     Column() {
       Select([
+        // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
         { value: 'A very long option text that should be truncated nicely'.repeat(3), icon: $r("app.media.startIcon") },
         { value: 'Option B', icon: $r("app.media.startIcon") },
         { value: 'Option C', icon: $r("app.media.startIcon") },
@@ -1350,6 +1355,7 @@ struct SelectExample {
   build() {
     Column() {
       Select([
+        // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
         { value: 'A very long option text that should be truncated nicely'.repeat(3), icon: $r("app.media.startIcon") },
         { value: 'Option B', icon: $r("app.media.startIcon") },
         { value: 'Option C', icon: $r("app.media.startIcon") },

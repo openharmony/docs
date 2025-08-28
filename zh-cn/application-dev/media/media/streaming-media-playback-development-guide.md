@@ -28,8 +28,8 @@
 
    | 事件类型 | 说明 |
    | -------- | -------- |
-   | stateChange | 必要事件，监听播放器的state属性改变。 |
-   | error | 必要事件，监听播放器的错误信息。 |
+   | stateChange | 必要事件，监听播放器的state属性改变。<br>需要播放器在idle状态下、未调用设置资源接口前完成设置监听，若在调用设置资源接口后再设置监听，可能导致无法收到资源设置过程中上报的stateChange事件。 |
+   | error | 必要事件，监听播放器的错误信息。<br>需要播放器在idle状态下、未调用设置资源接口前完成设置监听，若在调用设置资源接口后再设置监听，可能导致无法收到资源设置过程中上报的error事件。 |
    | durationUpdate | 监听进度条长度，刷新资源时长。 |
    | timeUpdate | 监听进度条当前位置，刷新当前时间。 |
    | seekDone | 监听seek()请求完成情况。<br/>当使用seek()跳转到指定播放位置后，如果seek操作成功，将上报该事件。 |
@@ -172,7 +172,7 @@ DASH流媒体资源包含多路不同分辨率、码率、采样率、编码格�
           let propertyWidth: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_WIDTH];
           let propertyHeight: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_HEIGHT];
           if (propertyType == media.MediaType.MEDIA_TYPE_VID && propertyWidth == 1920 && propertyHeight == 1080) {
-            this.videoTrackIndex = parseInt(propertyIndex.toString()); // 获取1080p视频轨道索引。
+            this.videoTrackIndex = parseInt(propertyIndex?.toString()); // 获取1080p视频轨道索引。
           }
         }
       } else {

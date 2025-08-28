@@ -36,7 +36,6 @@ Function Flow Runtime Kit<br>
 Localization Kit<br>
 MDM Kit<br>
 MindSpore Lite Kit<br>
-Mechanic Kit<br>
 Media Kit<br>
 Basic Services Kit<br>
 ArkWeb<br>

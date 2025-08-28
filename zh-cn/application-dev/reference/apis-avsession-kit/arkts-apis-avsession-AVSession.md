@@ -3130,7 +3130,7 @@ on(type: 'castDisplayChange', callback: Callback\<CastDisplayInfo>): void
 | 参数名    | 类型                  | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
 | type     | string    | 是   | 事件回调类型，支持事件`'castDisplayChange'`：当扩展屏投播显示设备变化时触发事件。 |
-| callback | Callback<[CastDisplayInfo](arkts-apis-avsession-i.md#castdisplayinfo12)>>   | 是   | 回调函数。参数是扩展屏投播显示设备信息。                            |
+| callback | Callback\<[CastDisplayInfo](arkts-apis-avsession-i.md#castdisplayinfo12)\>   | 是   | 回调函数。参数是扩展屏投播显示设备信息。                            |
 
 **错误码：**
 
@@ -3171,7 +3171,7 @@ currentAVSession.on('castDisplayChange', (display: avSession.CastDisplayInfo) =>
 | 参数名    | 类型                  | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
 | type     | string    | 是   | 关闭对应的监听事件，支持的事件是`'castDisplayChange'`。 |
-| callback | Callback<[CastDisplayInfo](arkts-apis-avsession-i.md#castdisplayinfo12)   | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
+| callback | Callback\<[CastDisplayInfo](arkts-apis-avsession-i.md#castdisplayinfo12)\>  | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
 
 **错误码：**
 

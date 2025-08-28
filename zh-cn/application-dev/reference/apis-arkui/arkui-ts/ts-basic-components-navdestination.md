@@ -746,7 +746,7 @@ NavDestination上下文信息。
 
 ### getConfigInRouteMap<sup>12+</sup>
 
-getConfigInRouteMap(): RouteMapConfig |undefined
+getConfigInRouteMap(): RouteMapConfig | undefined
 
 获取当前NavDestination的路由配置信息。
 
@@ -758,7 +758,7 @@ getConfigInRouteMap(): RouteMapConfig |undefined
 
 | 类型 | 说明 |
 | --- | --- |
-| [RouteMapConfig](#routemapconfig12) \|undefined | 当前页面路由配置信息。 |
+| [RouteMapConfig](#routemapconfig12) | 当前页面路由配置信息。 |
 | undefined | 当该页面不是通过路由表配置时返回undefined。 |
 
 ## RouteMapConfig<sup>12+</sup>

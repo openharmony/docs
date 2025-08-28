@@ -36,7 +36,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| show   | boolean                                                      | 是   | 气泡显示状态，值为true时弹出气泡，值为false时关闭气泡，默认值为false，隐藏气泡。Popup气泡必须等待页面全部构建完成才能展示，因此show不能在页面构建中设置为true，否则会导致Popup气泡显示位置及形状错误。该参数从API version 13开始支持[!!语法](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
+| show   | boolean                                                      | 是   | 气泡显示状态，值为true时弹出气泡，值为false时关闭气泡，默认值为false，隐藏气泡。Popup气泡必须等待页面全部构建完成才能展示，因此show不能在页面构建中设置为true，否则会导致Popup气泡显示位置及形状错误。该参数从API version 18开始支持[!!语法](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
 | popup  | [PopupOptions](#popupoptions类型说明)&nbsp;\|&nbsp;[CustomPopupOptions](#custompopupoptions8类型说明)<sup>8+</sup> | 是   | 配置弹出气泡的参数。                                         |
 
 **返回值：** 
@@ -124,7 +124,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 | TOUCH_OUTSIDE | 1    | 点击遮障层时。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | CLOSE_BUTTON  | 2    | 点击关闭按钮。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | SLIDE_DOWN    | 3    | 下拉关闭。<br/>**说明：** <br/>该接口仅支持在[半模态转场](ts-universal-attributes-sheet-transition.md)中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| SLIDE<sup>20+</sup>    | 4    | 侧拉关闭。<br/>**说明：** <br/>该接口仅支持在[半模态转场](ts-universal-attributes-sheet-transition.md)中使用。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| SLIDE<sup>20+</sup>    | 4    | 侧滑（左滑/右滑）关闭。默认表示向右滑动关闭，镜像场景表示向左滑动关闭，不支持选择向左或向右滑动。<br/>**说明：** <br/>该接口仅支持在[半模态转场](ts-universal-attributes-sheet-transition.md)中使用。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## CustomPopupOptions<sup>8+</sup>类型说明
 
@@ -177,7 +177,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 | popupColor                   | [ResourceColor](ts-types.md#resourcecolor) | 否    | 是   | 提示气泡的颜色。如需去除模糊背景填充效果，需将backgroundBlurStyle设置为BlurStyle.NONE。默认值：透明色[TRANSPARENT](ts-appendix-enums.md#color)加模糊背景填充效果[COMPONENT_ULTRA_THICK](ts-universal-attributes-background.md#blurstyle9)。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 | enableArrow                  | boolean                                  | 否    | 是   | 是否显示箭头。值为true时显示箭头，值为false时不显示箭头。<br/>如果箭头所在方位侧的气泡长度不足以显示下箭头，则会默认不显示箭头。比如：placement设置为Left，此时如果气泡高度小于箭头的宽度（32vp）与气泡圆角两倍（48vp）之和（80vp），则实际不会显示箭头。<br/>默认值：true <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 | autoCancel                   | boolean                                  | 否    | 是   | 页面有操作时，值为true表示自动关闭气泡，值为false表示气泡不会自动关闭。<br/>默认值：true <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| onStateChange                | [PopupStateChangeCallback](#popupstatechangecallback18类型说明) | 否    | 是   | 气泡状态变化事件回调。<br />**说明：**<br />不支持通过[updatePopup](../arkts-apis-uicontext-promptaction.md#updatepopup18)进行更新。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| onStateChange                | [PopupStateChangeCallback](#popupstatechangecallback18) | 否    | 是   | 气泡状态变化事件回调。<br />**说明：**<br />不支持通过[updatePopup](../arkts-apis-uicontext-promptaction.md#updatepopup18)进行更新。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | arrowOffset     | [Length](ts-types.md#length) | 否    | 是   | Popup箭头在气泡处的偏移。箭头在气泡上下方时，数值为0表示箭头居最左侧，偏移量为箭头至最左侧的距离，默认居中。箭头在气泡左右侧时，偏移量为箭头至最上侧的距离，默认居中。显示在屏幕边缘时，气泡会自动左右偏移，数值为0时箭头始终指向绑定组件。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | showInSubWindow | boolean                                  | 否    | 是   | 取值为true时，气泡会显示在创建的子窗里，取值为false时，气泡会显示在对应的主窗中。<br />默认值：false<br />**说明：**<br />不支持通过[updatePopup](../arkts-apis-uicontext-promptaction.md#updatepopup18)进行更新。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | mask           | boolean&nbsp;\|&nbsp;[PopupMaskType](#popupmasktype18类型说明) | 否    | 是   | 设置气泡是否有遮罩层及遮罩颜色。设置为false时不显示遮罩层，设置为true时显示透明色遮罩层，设置为PopupMaskType时显示指定颜色的遮罩层。默认值：true<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
@@ -213,11 +213,11 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 | --------- | ------- | ---- | ---- | ------------------------------------------------------------ |
 | isVisible | boolean | 否   | 否   | 气泡的显示状态。返回true时，表示气泡从关闭到打开，返回false时，表示气泡从打开到关闭。 |
 
-## PopupStateChangeCallback<sup>18+</sup>类型说明
-
-气泡状态变化事件回调。
+## PopupStateChangeCallback<sup>18+</sup>
 
 type PopupStateChangeCallback = (event: PopupStateChangeParam) => void;
+
+气泡状态变化事件回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -284,7 +284,7 @@ struct PopupExample {
   // Popup构造器定义弹框内容
   @Builder popupBuilder() {
     Row({ space: 2 }) {
-      // icon仅作示例，请替换为实际使用的图片。
+      // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
       Image($r("app.media.icon")).width(24).height(24).margin({ left: -5 })
       Text('Custom Popup').fontSize(10)
     }.width(100).height(50).padding(5)

@@ -135,7 +135,7 @@
 8. 在EntryAbility.ets中接收主题字变更事件，并调用渲染节点更新函数。
 
    ```ts
-   // entryability/EntryAbility.ets
+   // entry/src/main/ets/entryability/EntryAbility.ets
    export default class EntryAbility extends UIAbility {
        // ...  
        preFontId ="";
@@ -290,7 +290,7 @@ struct RenderTest {
 ```
 
 ```ts
-// entryability/EntryAbility.ets
+// entry/src/main/ets/entryability/EntryAbility.ets
 import { AbilityConstant, Configuration, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';

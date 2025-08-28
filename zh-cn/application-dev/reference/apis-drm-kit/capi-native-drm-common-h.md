@@ -89,6 +89,8 @@ enum DRM_EventType
 
 监听事件类型。
 
+**系统能力：** SystemCapability.Multimedia.Drm.Core
+
 **起始版本：** 11
 
 | 枚举项 | 描述 |

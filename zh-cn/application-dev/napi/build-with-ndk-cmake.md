@@ -214,7 +214,7 @@ int sum(int a, int b)
 
 Step 1. 同样在工程目录下创建 build 文件夹并执行以下指令：
 ```
- F:\windows\native\build-tools\cmake\bin\cmake.exe -G "Ninja" -D OHOS_STL=c++_shared -D OHOS_ARCH=armeabi-v7a -D OHOS_PLATFORM=OHOS -D CMAKE_TOOLCHAIN_FILE=F:\windows\native\build\cmake\ohos.toolchain.cmake ..
+ F:\windows\native\build-tools\cmake\bin\cmake.exe -G "Ninja" -D OHOS_STL=c++_shared -D OHOS_ARCH=arm64-v8a -D OHOS_PLATFORM=OHOS -D CMAKE_TOOLCHAIN_FILE=F:\windows\native\build\cmake\ohos.toolchain.cmake ..
 ```
 **注意**：如需debug调试，增加参数 -D CMAKE_BUILD_TYPE=normal；cmake路径和编译工具链ohos.toolchain.cmake路径都是下载好的ndk路径。
 执行结果如下图：

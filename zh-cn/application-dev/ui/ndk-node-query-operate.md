@@ -1,6 +1,14 @@
 # 查询和操作自定义节点
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 NDK提供一系列节点查询、遍历、操作能力，通过使用以下接口，开发者可以高效地访问和操控节点。
+
+以下场景基于[接入ArkTS页面](ndk-access-the-arkts-page.md)章节，创建前置工程。
 
 ## 查询节点uniqueId及通过uniqueId获取节点信息
 
@@ -35,7 +43,7 @@ nodeAPI->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
         ArkUI_NodeHandle Test_Column;
         auto ec = OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId(idl->id, &Test_Column);
         if (ec == 0) {
-            OH_LOG_Print(LOG_APP, LOG_WARN, LOG_PRINT_DOMAIN, "Manager","GetNodeHandleByUniqueId success");
+            OH_LOG_Print(LOG_APP, LOG_WARN, 0xFF00, "Manager","GetNodeHandleByUniqueId success");
         }
     }
 });
@@ -309,6 +317,10 @@ nodeAPI->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
         nodeAPI->setAttribute(column, NODE_ID, &column_id);
         
         // 创建Row
+        ArkUI_NumberValue text_height[] = {50};
+        ArkUI_AttributeItem text_item1 = {text_height, sizeof(text_height) / sizeof(ArkUI_NumberValue)};
+        ArkUI_NumberValue margin[] = {10};
+        ArkUI_AttributeItem item_margin = {margin, sizeof(margin) / sizeof(ArkUI_NumberValue)};
         ArkUI_NodeHandle row0 = nodeAPI->createNode(ARKUI_NODE_ROW);
         ArkUI_NumberValue width_value[] = {{.f32=330}};
         ArkUI_AttributeItem width_item = {width_value, sizeof(width_value) / sizeof(ArkUI_NumberValue)};
@@ -597,7 +609,7 @@ NDK支持通过不同的展开方式获取目标节点下的有效节点信息�
               Text(item)
                 .fontSize(20)
                 .onAppear(() => {
-                  console.log(TEST_TAG + " node appear: " + item)
+                  console.info(TEST_TAG + " node appear: " + item)
                 })
                 .backgroundColor(Color.Pink)
                 .margin({
@@ -641,43 +653,43 @@ NDK支持通过不同的展开方式获取目标节点下的有效节点信息�
 
       // 获取不展开场景下第一个活跃节点的下标
       getFirstChildIndexWithoutExpand() {
-        console.log(`${TEST_TAG} getFirstChildIndexWithoutExpand: ${this.rootNode!.getFirstChildIndexWithoutExpand()}`);
+        console.info(`${TEST_TAG} getFirstChildIndexWithoutExpand: ${this.rootNode!.getFirstChildIndexWithoutExpand()}`);
       }
 
       // 获取不展开场景下最后一个活跃节点的下标
       getLastChildIndexWithoutExpand() {
-        console.log(`${TEST_TAG} getLastChildIndexWithoutExpand: ${this.rootNode!.getLastChildIndexWithoutExpand()}`);
+        console.info(`${TEST_TAG} getLastChildIndexWithoutExpand: ${this.rootNode!.getLastChildIndexWithoutExpand()}`);
       }
 
       // 用不展开的方式获取节点
       getChildWithNotExpand() {
         const childNode = this.rootNode!.getChild(3, ExpandMode.NOT_EXPAND);
-        console.log(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND): " + childNode!.getId());
-        if (childNode!.getId() === "N9") {
-          console.log(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND)  result: success.");
+        console.info(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND): " + childNode?.getId());
+        if (childNode?.getId() === "N9") {
+          console.info(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND)  result: success.");
         } else {
-          console.log(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND)  result: fail.");
+          console.info(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND)  result: fail.");
         }
       }
       
       // 以展开的方式获取节点
       getChildWithExpand() {
         const childNode = this.rootNode!.getChild(3, ExpandMode.EXPAND);
-        console.log(TEST_TAG + " getChild(3, ExpandMode.EXPAND): " + childNode!.getId());
-        if (childNode!.getId() === "N3") {
-          console.log(TEST_TAG + " getChild(3, ExpandMode.EXPAND)  result: success.");
+        console.info(TEST_TAG + " getChild(3, ExpandMode.EXPAND): " + childNode?.getId());
+        if (childNode?.getId() === "N3") {
+          console.info(TEST_TAG + " getChild(3, ExpandMode.EXPAND)  result: success.");
         } else {
-          console.log(TEST_TAG + " getChild(3, ExpandMode.EXPAND)  result: fail.");
+          console.info(TEST_TAG + " getChild(3, ExpandMode.EXPAND)  result: fail.");
         }
       }
       
       getChildWithLazyExpand() {
         const childNode = this.rootNode!.getChild(3, ExpandMode.LAZY_EXPAND);
-        console.log(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND): " + childNode!.getId());
-        if (childNode!.getId() === "N3") {
-          console.log(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND)  result: success.");
+        console.info(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND): " + childNode?.getId());
+        if (childNode?.getId() === "N3") {
+          console.info(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND)  result: success.");
         } else {
-          console.log(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND)  result: fail.");
+          console.info(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND)  result: fail.");
         }
       }
     }
@@ -748,7 +760,7 @@ NDK支持通过不同的展开方式获取目标节点下的有效节点信息�
     OH_ArkUI_NodeUtils_GetLastChildIndexWithoutExpand(childNode, &index1);
     ArkUI_NodeHandle child = nullptr;
     auto result = OH_ArkUI_NodeUtils_GetChildWithExpandMode(childNode, 3, child, 0);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "firstChildIndex - lastChildIndex == %{public}d -- %{public}d, -- getResult= %{public}d",
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "firstChildIndex - lastChildIndex == %{public}d -- %{public}d, -- getResult= %{public}d",
         index, index1, result);
     ```
 

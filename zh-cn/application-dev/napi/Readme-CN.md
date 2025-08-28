@@ -27,7 +27,7 @@
       - [使用Node-API接口创建基本数据类型](use-napi-basic-data-types.md)
       - [使用Node-API进行class相关开发](use-napi-about-class.md)
       - [使用Node-API接口注册和使用环境清理钩子](use-napi-about-cleanuphook.md)
-      - [使用Node-API接口进行date相关开发](use-napi-about-date.md)
+      - [使用Node-API接口进行Date相关开发](use-napi-about-date.md)
       - [使用Node-API接口进行错误处理开发](use-napi-about-error.md)
       - [使用Node-API接口关联数据，使其生命周期与当前环境的生命周期相关联](use-napi-about-environmental-life-cycle.md)
       - [使用Node-API接口进行函数创建和调用](use-napi-about-function.md)
@@ -99,6 +99,7 @@
       - [JSVM-API调试&定位](jsvm-debugger-cpuprofiler-heapsnapshot.md)
       - [使用JSVM-API接口进行Trace相关开发](use-jsvm-about-trace.md)
       - [JSVM 申请JIT权限指导](jsvm-apply-jit-profile.md)
+      - [JSVM-API 坚盾守护模式](jsvm-secure-shield-mode.md)
       - [JSVM 定位内存泄漏问题指导](jsvm-locate-memory-leak.md)
       - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
         - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](use-jsvm-runtime-task.md)

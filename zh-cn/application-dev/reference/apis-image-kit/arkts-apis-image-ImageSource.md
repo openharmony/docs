@@ -274,7 +274,7 @@ imageSourceApi.getImageProperties(key).then((data) => {
 
 getImagePropertySync(key:PropertyKey): string
 
-获取图片exif指定属性键的值，用String形式返回结果。
+获取图片exif指定属性键的值，使用同步形式返回结果。
 
 >**说明：**
 >

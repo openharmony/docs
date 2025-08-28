@@ -247,7 +247,7 @@ contentModifier(modifier: ContentModifier\<GaugeConfiguration>)
 
 ## GaugeShadowOptions<sup>11+</sup>对象说明
 
-GaugeShadowOptions继承自[MultiShadowOptions](ts-types.md#multishadowoptions10)，具有MultiShadowOptions的全部属性。
+GaugeShadowOptions继承自[MultiShadowOptions](ts-information-display-common.md#multishadowoptions)，具有MultiShadowOptions的全部属性。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -759,6 +759,7 @@ struct Gauge2 {
   build() {
     Column() {
       Gauge({ value: 50, min: 1, max: 100 })
+        // $r('app.media.indicator')需要替换为开发者所需的图像资源文件。
         .indicator({ space: 10, icon: $r('app.media.indicator') })
         .startAngle(210)
         .endAngle(150)

@@ -19,13 +19,11 @@ Wi-Fi扫描是指设备（如手机、电脑、路由器等）搜索周围可用
 
 ## 接口说明
 
-完整的JS API说明以及示例代码请参考：[SCAN接口](../../reference/apis-connectivity-kit/js-apis-wifiManager.md)。
-
-接口具体说明如下表所示。
+扫描接口说明如下表所示。具体API说明详见[接口文档](../../reference/apis-connectivity-kit/js-apis-wifiManager.md)。
 
 | 接口名 | 功能描述 |
 | -------- | -------- |
-| getScanInfoList() | 获取扫描结果。|
+| getScanInfoList() | 获取包含当前时间点前30s内的缓存扫描结果。|
 | on(type: 'wifiScanStateChange') | 注册扫描状态改变事件。|
 | off(type: 'wifiScanStateChange') | 取消注册扫描状态改变事件。|
 

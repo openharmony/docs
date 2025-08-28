@@ -25,7 +25,8 @@ ArkUI在Native侧提供的能力是ArkTS的子集，某些能力不会在Native�
 本示例展示EmbeddedComponent组件NDK的基础使用方式，ability相关使用请参考[EmbeddedComponent](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md)。示例应用的bundleName为"com.example.embeddeddemo"，同一应用下被拉起的EmbeddedUIExtensionAbility为"ExampleEmbeddedAbility"。本示例仅支持在具有多进程权限的设备上运行，例如PC/2in1。
 
   ```c
-#include "native_node.h"
+#include "<arkui/native_node.h>"
+#include "<arkui/native_type.h>"
 #include <AbilityKit/ability_base/want.h> //引用元能力want头文件
 //创建节点
 ArkUI_NodeHandle embeddedNode = nodeAPI->createNode(ARKUI_NODE_EMBEDDED_COMPONENT);
@@ -40,7 +41,7 @@ nodeAPI->setAttribute(embeddedNode, NODE_EMBEDDED_COMPONENT_WANT, &itemobjwant);
 void onError(int32_t code, const char* name, const char* message) {}
 void onTerminated(int32_t code, AbilityBase_Want* want) {}
 
-auto embeddedNode_option = ArkUI_EmbeddedComponentOption_Create();
+auto embeddedNode_option = OH_ArkUI_EmbeddedComponentOption_Create();
 auto onErrorCallback = onError;
 auto onTerminatedCallback = onTerminated;
 OH_ArkUI_EmbeddedComponentOption_SetOnError(embeddedNode_option, onErrorCallback);
@@ -55,6 +56,17 @@ ArkUI_AttributeItem item = {value, sizeof(value) / sizeof(ArkUI_NumberValue)};
 value[0].f32 = 300;
 nodeAPI->setAttribute(embeddedNode, NODE_WIDTH, &item);
 nodeAPI->setAttribute(embeddedNode, NODE_HEIGHT, &item);
+
+// 创建Column
+ArkUI_NodeHandle column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
+ArkUI_NumberValue value[] = {480};
+ArkUI_AttributeItem item = {value, sizeof(value) / sizeof(ArkUI_NumberValue)};
+nodeAPI->setAttribute(column, NODE_WIDTH, &item);
+ArkUI_NumberValue column_bc[] = {{.u32 = 0xFFF00BB}};
+ArkUI_AttributeItem column_item = {column_bc, 1};
+nodeAPI->setAttribute(column, NODE_BACKGROUND_COLOR, &column_item);
+ArkUI_AttributeItem column_id = {.string = "Column_CAPI"};
+nodeAPI->setAttribute(column, NODE_ID, &column_id);
 
 //上树
 nodeAPI->addChild(column, embeddedNode);

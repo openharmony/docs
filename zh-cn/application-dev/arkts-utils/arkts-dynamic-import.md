@@ -176,7 +176,7 @@ import('harlibrary').then((ns:ESObject) => {
 
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
-  import('myHsp').then((ns:ESObject) => {
+  import('myhsp').then((ns:ESObject) => {
     console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
   ```
@@ -184,7 +184,7 @@ import('harlibrary').then((ns:ESObject) => {
   ```json5
   // HAP's oh-package.json5
   "dependencies": {
-    "myHsp": "file:../myHsp"
+    "myhsp": "file:../myhsp"
   }
   ```
 
@@ -201,7 +201,7 @@ import('harlibrary').then((ns:ESObject) => {
 
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
-  import('myHsp/Index').then((ns:ESObject) => {
+  import('myhsp/Index').then((ns:ESObject) => {
     console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
   ```
@@ -209,7 +209,7 @@ import('harlibrary').then((ns:ESObject) => {
   ```json5
   // HAP's oh-package.json5
   "dependencies": {
-    "myHsp": "file:../myHsp"
+    "myhsp": "file:../myhsp"
   }
   ```
 
@@ -384,7 +384,7 @@ import(filePath).then((obj: ESObject) => {
   ```
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
-  let packageName = 'myHsp';
+  let packageName = 'myhsp';
   import(packageName).then((ns:ESObject) => {
     console.info('DynamicImport ns.add(3, 5) = %d', ns.add(3, 5));
   });
@@ -392,7 +392,7 @@ import(filePath).then((obj: ESObject) => {
   ```json5
   // HAP's oh-package.json5
   "dependencies": {
-    "myHsp": "file:../myHsp"
+    "myhsp": "file:../myhsp"
   }
   ```
   ```json5
@@ -401,7 +401,7 @@ import(filePath).then((obj: ESObject) => {
     "arkOptions": {
       "runtimeOnly": {
         "packages": [
-          "myHsp"  // 仅用于使用变量动态import其他模块名场景，静态import或常量动态import无需配置。
+          "myhsp"  // 仅用于使用变量动态import其他模块名场景，静态import或常量动态import无需配置。
         ]
       }
     }
@@ -558,7 +558,7 @@ HAR之间的依赖关系转移至HAP/HSP后：
 - 被转移依赖的HAR之间只能通过变量动态import，不能有静态import或常量动态import。
 - 转移依赖时，需同时转移**dependencies**和**runtimeOnly**依赖配置。
 - HSP不支持转移依赖。即：HAP->HSP1->HSP2->HSP3，这里的HSP2和HSP3不能转移到HAP上面。
-- 转移依赖的整个链路上只能有HAR包，不能跨越HSP转移。即：HAP->HAR1->HAR2->HSP->HAR3->HAR4。HAR1对HAR2的依赖可以转移到HAP上，HAR3对HAR4的依赖可以转移到HSP上。但是，不能将HAR3或HAR4转移到HAP上。
+- 转移依赖的整个链路上只能有HAR包，不能跨越HSP转移。即：HAP->HAR1->HAR2->HSP->HAR3->HAR4，HAR1对HAR2的依赖可以转移到HAP上，HAR3对HAR4的依赖可以转移到HSP上。但是，不能将HAR3或HAR4转移到HAP上。
 - 如果引用了其他工程模块、远程包或集成HSP，需确保**useNormalizedOHMUrl**配置一致，同时设置为true或false，否则可能导致运行错误：**Cannot find dynamic-import module library**。
 
 

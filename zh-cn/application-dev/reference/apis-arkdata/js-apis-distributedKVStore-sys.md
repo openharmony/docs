@@ -159,7 +159,7 @@ try {
 
 ### delete
 
-delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;void&gt;)
+delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;void&gt;): void
 
 从数据库中删除符合predicates条件的键值对，使用callback异步回调。
 

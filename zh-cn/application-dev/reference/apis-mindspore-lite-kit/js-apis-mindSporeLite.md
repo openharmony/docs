@@ -584,7 +584,7 @@ NNRt设备信息描述，包含设备ID，设备名称等信息。
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
-### deviceID
+### deviceID<sup>12+</sup>
 
 deviceID() : bigint
 
@@ -614,7 +614,7 @@ if (allDevices == null) {
 }
 ```
 
-### deviceType
+### deviceType<sup>12+</sup>
 
 deviceType() : NNRTDeviceType
 
@@ -644,7 +644,7 @@ if (allDevices == null) {
 }
 ```
 
-### deviceName
+### deviceName<sup>12+</sup>
 
 deviceName() : string
 

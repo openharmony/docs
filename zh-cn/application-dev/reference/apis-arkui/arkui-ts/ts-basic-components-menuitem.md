@@ -32,6 +32,8 @@ MenuItem(value?: MenuItemOptions | CustomBuilder)
 
 ## MenuItemOptions对象说明
 
+Menu中具体item菜单项信息。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 类型                                        | 只读 | 可选 | 说明                             |
@@ -82,7 +84,7 @@ selectIcon(value: boolean | ResourceStr | SymbolGlyphModifier)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | boolean&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)<sup>10+</sup>\|&nbsp;[SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md)sup>12+</sup> | 是   | 菜单项被选中时，是否显示被选中的图标。<br/>默认值：false<br/>true：显示默认的对勾图标。<br/>false：不显示图标。<br/>ResourceStr：显示指定的图标。<br/>SymbolGlyphModifier：显示指定的HMSymbol图标。 |
+| value  | boolean&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)<sup>10+</sup>\|&nbsp;[SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md)<sup>12+</sup> | 是   | 菜单项被选中时，是否显示被选中的图标。<br/>默认值：false<br/>true：显示默认的对勾图标。<br/>false：不显示图标。<br/>ResourceStr：显示指定的图标。<br/>SymbolGlyphModifier：显示指定的HMSymbol图标。 |
 ### contentFont<sup>10+</sup>
 
 contentFont(value: Font)

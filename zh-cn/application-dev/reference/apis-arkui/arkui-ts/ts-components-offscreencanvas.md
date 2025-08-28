@@ -8,7 +8,7 @@
 
 OffscreenCanvas组件用于绘制自定义图形。
 
-使用[Canvas](ts-components-canvas-canvas.md)组件或[Canvas API](ts-canvasrenderingcontext2d.md)时，渲染、动画和用户交互通常发生在应用程序的主线程上，与画布动画和渲染相关的计算可能会影响应用程序性能。OffscreenCanvas提供了一个可以在屏幕外渲染的画布，这样可以在单独的线程中运行一些任务，从而避免影响应用程序主线程性能。
+使用[Canvas](ts-components-canvas-canvas.md)组件或[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)时，渲染、动画和用户交互通常发生在应用程序的主线程上，与画布动画和渲染相关的计算可能会影响应用程序性能。OffscreenCanvas提供了一个可以在屏幕外渲染的画布，这样可以在单独的线程中运行一些任务，从而避免影响应用程序主线程性能。
 
 > **说明：** 
 >
@@ -197,7 +197,7 @@ getContext(contextType: "2d", options?: RenderingContextSettings): OffscreenCanv
 
 | 参数名  | 类型 | 必填 | 说明    |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| contextType | string | 是   | OffscreenCanvas组件绘图上下文的类型，当前仅支持"2d"类型。|
+| contextType | string | 是   | OffscreenCanvas组件绘图上下文的类型，当前仅支持"2d"类型。<br>"2d"：创建一个表示二维渲染上下文的OffscreenCanvasRenderingContext2D对象。|
 | options      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 否 | 用来配置OffscreenCanvasRenderingContext2D对象的参数，见[RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings)。<br>默认值：null |
 
 **返回值：**

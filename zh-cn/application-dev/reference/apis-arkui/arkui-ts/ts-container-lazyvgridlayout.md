@@ -111,6 +111,8 @@ rowsGap(value: LengthMetrics): T
 
 该示例通过WaterFlow和LazyVGridLayout实现懒加载网格布局。
 
+MyDataSource实现了LazyForEach数据源接口[IDataSource](ts-rendering-control-lazyforeach.md#idatasource)，用于通过LazyForEach给LazyVGridLayout提供子组件。 
+
 <!--code_no_check-->
 ```ts
 import { LengthMetrics } from '@kit.ArkUI'

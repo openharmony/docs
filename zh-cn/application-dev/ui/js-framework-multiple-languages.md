@@ -1,4 +1,10 @@
 # 多语言支持
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sunfei2021-->
+<!--Designer: @sunfei2021-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 基于开发框架的应用会覆盖多个国家和地区，开发框架支持多语言能力后，可以让应用开发者无需开发多个不同语言的版本，就可以同时支持多种语言的切换，为项目维护带来便利。
 
@@ -101,7 +107,7 @@ ar-AE.json
   | 参数   | 类型          | 必填 | 描述                                                         |
   | ------ | ------------- | ---- | ------------------------------------------------------------ |
   | path   | string        | 是   | 资源路径。                                                   |
-  | params | Array\|Object | 否   | 运行时用来替换占位符的实际内容，占位符分为两种：<br/>- 具名占位符，例如{name}。实际内容必须用Object类型指定，例如：```$t('strings.object', {name:'Hello world'})```。 <br> - 数字占位符，例如{0}。实际内容必须用Array类型指定，例如：```$t('strings.array', ['Hello world']```。 |
+  | params | Array \| Object | 否   | 运行时用来替换占位符的实际内容，占位符分为两种：<br/>- 具名占位符，例如{name}。实际内容必须用Object类型指定，例如：```$t('strings.object', {name:'Hello world'})```。 <br> - 数字占位符，例如{0}。实际内容必须用Array类型指定，例如：```$t('strings.array', ['Hello world']```。 |
 
 - 简单格式化示例代码
   ```html

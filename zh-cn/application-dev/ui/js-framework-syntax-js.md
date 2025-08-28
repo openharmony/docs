@@ -1,4 +1,10 @@
 # JS语法参考
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sunfei2021-->
+<!--Designer: @sunfei2021-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
 
 JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语言。基于JavaScript语言的动态化能力，可以使应用更加富有表现力，具备更加灵活的设计能力。下面讲述JS文件的编译和运行的支持情况。
 
@@ -143,7 +149,9 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
 
   ```js
   this.$rootElement().scrollTo({ position: 0 });
-  this.$rootElement().scrollTo({ id: 'id', duration: 200, timingFunction: 'ease-in', complete: () => void });
+  this.$rootElement().scrollTo({ id: 'id', duration: 200, timingFunction: 'ease-in', complete: () => {
+      console.info('滚动已完成');
+  } });
   ```
 
 
@@ -170,9 +178,9 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
      handleClick() {
        const animator = this.$refs.animator; // 获取ref属性为animator的DOM元素
        const state = animator.getState();
-       if (state === 'paused') {
+       if (state === 'Paused') {
          animator.resume();
-       } else if (state === 'stopped') {
+       } else if (state === 'Stopped') {
          animator.start();
        } else {
          animator.pause();
@@ -202,9 +210,9 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
      handleClick() {
        const animator = this.$element('animator'); // 获取id属性为animator的DOM元素
        const state = animator.getState();
-       if (state === 'paused') {
+       if (state === 'Paused') {
          animator.resume();
-       } else if (state === 'stopped') {
+       } else if (state === 'Stopped') {
          animator.start();
        } else {
          animator.pause();

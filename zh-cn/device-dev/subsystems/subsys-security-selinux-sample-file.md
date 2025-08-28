@@ -41,6 +41,15 @@
 
       其中，SELinux更新标签函数参考[OpenHarmony SELinux对外接口](subsys-security-selinux-func.md)。
 
+4. 调试阶段，可以使用restorecon命令刷新文件或者目录的标签。刷新目录标签时，它会遍历刷新其子目录和文件的标签。命令使用方法：
+    ```bash
+    restorecon path
+    ```
+    **参数：**
+    | 参数名 | 类型 | 必填 | 描述 |
+    | ------ | -----| ----- | -------- |
+    | path | string | 是 | 文件或者目录的绝对路径。 |
+
 ## 虚拟文件系统新增文件
 
 **适用场景**

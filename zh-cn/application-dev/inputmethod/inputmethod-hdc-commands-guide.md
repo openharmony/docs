@@ -1,4 +1,4 @@
-# Ime工具
+# 通过hdc命令管理输入法
 <!--Kit: IME Kit-->
 <!--Subsystem: MiscServices-->
 <!--Owner: @illybyy-->

@@ -67,9 +67,9 @@ Web组件的文本选中菜单是一种通过自定义元素实现的上下文�
         // 用户自定义行为
         console.log("拦截 id：customItem1")
         return true;// 用户自定义菜单选项返回true时点击后不关闭菜单，返回false时关闭菜单
-      } else if (menuItem.id.equals(TextMenuItemId.of($r('app.string.EntryAbility_label')))){
+      } else if (menuItem.id.equals(TextMenuItemId.of('customItem2'))){
         // 用户自定义行为
-        console.log("拦截 id：app.string.customItem2")
+        console.log("拦截 id：customItem2")
         return true;
       }
       return false;// 返回默认值false
@@ -101,7 +101,7 @@ Web组件的文本选中菜单是一种通过自定义元素实现的上下文�
   ```
   ![editMenuOption](./figures/editMenuOption.gif)
 ## 上下文菜单
-上下文菜单是用户通过特定操作（如右键点击或长按富文本）触发的快捷菜单，用于提供与当前操作对象或界面元素相关的功能选项。菜单项纵向排列。系统未提供默认实现，若应用未实现，则不显示上下文菜单。要应用需通过[Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md)组件创建一个菜单子窗口并与Web绑定，通过菜单弹出时的[onContextMenuShow](../reference/apis-arkweb/arkts-basic-components-web-events.md#oncontextmenushow9)接口获取上下文菜单的详细信息，包括点击位置的HTML元素信息及点击位置信息。
+上下文菜单是用户通过特定操作（如右键点击或长按富文本）触发的快捷菜单，用于提供与当前操作对象或界面元素相关的功能选项。菜单项纵向排列。系统未提供默认实现，若应用未实现，则不显示上下文菜单。需要创建一个[Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md)组件并与Web绑定，在菜单弹出时可通过Web组件的[onContextMenuShow](../reference/apis-arkweb/arkts-basic-components-web-events.md#oncontextmenushow9)回调接口获取上下文菜单的详细信息，包括点击位置的HTML元素信息及点击位置信息。
 
 1. [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md)组件作为弹出的菜单，包含所有菜单项行为与样式。
 2. 使用bindPopup方法将Menu组件与Web组件绑定。当上下文菜单弹出时，将显示创建的Menu组件。
@@ -237,6 +237,7 @@ struct WebComponent {
 <body>
   <h1>onContextMenuShow</h1>
   <a href="http://www.example.com" style="font-size:27px">超链接www.example.com</a>
+  <!--example.png为html同目录下图片-->
   <div><img src="example.png"></div>
   <p>选中文字鼠标右键弹出菜单</p>
 </body>
@@ -337,6 +338,7 @@ struct WebComponent {
   </head>
   <body>
     <h1>bindSelectionMenu Demo</h1>
+    <!--img.png为html同目录下图片-->
     <img src="./img.png" >
   </body>
 </html>
@@ -522,16 +524,19 @@ html示例
     <title>综合信息页面</title>
 </head>
 <body>
-    <div>
-        <section>
-            <a href="https://www.example1.com/">EMAPLE1</a>
-            <a href="https://www.example.com">EXAMPLE</a>
-        </section>
-    </div>
-    <footer>
-        <p>请注意，以上提供的所有网址仅供演示之用。</p>
-    </footer>
-</body></html>
+<div>
+    <h1>综合信息与联系详情</h1>
+    <section>
+        <a href="https://www.example.com">EXAMPLE</a>
+        <br>
+        <a href="https://www.example1.com/">EXAMPLE1</a>
+    </section>
+</div>
+<footer>
+    <p>请注意，以上提供的所有网址仅供演示之用。</p>
+</footer>
+</body>
+</html>
 ```
 ![bindSelectionMenu_link](./figures/web-menu-bindselectionmenu-link.gif)
 
@@ -664,6 +669,7 @@ struct WebComponent {
 <br>
 <br>
 <br>
+<!--startIcon.png为html同目录下图片-->
 <img src="./startIcon.png">
 </body>
 </html>
@@ -763,10 +769,10 @@ struct WebComponent {
 ![web-menu-get-select](./figures/web-menu-get-select.gif)
 
 ## Web菜单识别图片二维码
-在二维码跳转页面或者付款场景中，开发者可通过实现上下文菜单，提供给用户扫描二维码入口，获取到[onContextMenuShow](../reference/apis-arkweb/arkts-basic-components-web-events.md#oncontextmenushow9)接口中的二维码信息进行处理。
+在二维码跳转页面或者付款场景中，开发者可通过实现上下文菜单，获取到[onContextMenuShow](../reference/apis-arkweb/arkts-basic-components-web-events.md#oncontextmenushow9)接口中的二维码图片信息进行处理，提供给用户扫描二维码入口。
 1. 创建MenuBuilder组件作为菜单弹窗，通过bindContextMenu将MenuBuilder与Web绑定。
 2. 在onContextMenuShow中获取图片url，通过copyLocalPicToDir或copyUrlPicToDir将图片保存至应用沙箱。
-3. 通过detectBarcode.decode描保存在沙箱中的图片，获取扫描到扫描结果。
+3. 通过detectBarcode.decode解析保存在沙箱中的图片，获取到结果。
   ```ts
 import { webview } from '@kit.ArkWeb';
 import { common } from '@kit.AbilityKit';

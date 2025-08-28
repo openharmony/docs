@@ -68,13 +68,13 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 获取指定流的音量。
-audioVolumeManager.getVolumeByStream(audio.StreamUsage.STREA_USAGE_MUSIC);
+audioVolumeManager.getVolumeByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
 
 // 获取指定流的最小音量。
-audioVolumeManager.getMinVolumeByStream(audio.StreamUsage.STREA_USAGE_MUSIC);
+audioVolumeManager.getMinVolumeByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
 
 // 获取指定流的最大音量。
-audioVolumeManager.getMaxVolumeByStream(audio.StreamUsage.STREA_USAGE_MUSIC);
+audioVolumeManager.getMaxVolumeByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
 ```
 
 ### 监听系统音量变化
@@ -135,9 +135,6 @@ let appVolumeChangeCallback = (volumeEvent: audio.VolumeEvent) => {
 };
 audioVolumeManager.on('appVolumeChange', appVolumeChangeCallback);
 audioVolumeManager.off('appVolumeChange', appVolumeChangeCallback);
-
-// 取消该事件的所有监听。
-audioVolumeManager.off('appVolumeChange');
 ```
 
 <!--Del-->
@@ -179,9 +176,6 @@ let appVolumeChangeForUidCallback = (volumeEvent: audio.VolumeEvent) => {
 };
 audioVolumeManager.on('appVolumeChangeForUid', uid, appVolumeChangeForUidCallback);
 audioVolumeManager.off('appVolumeChangeForUid', appVolumeChangeForUidCallback);
-
-// 取消该事件的所有监听。
-audioVolumeManager.off('appVolumeChangeForUid');
 ```
 <!--DelEnd-->
 
