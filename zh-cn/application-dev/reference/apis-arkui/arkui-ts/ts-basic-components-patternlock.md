@@ -40,6 +40,10 @@ sideLength(value: Length)
 
 设置组件的宽度和高度（宽高相同）。当设置为0或负数时，组件不显示。
 
+> **说明：**
+> 
+> PatternLock组件设置了通用属性宽高比[aspectRatio](ts-universal-attributes-layout-constraints.md#aspectratio)，且不等于1时（组件尺寸被设定为长方形），九宫格依然绘制为正方形（超出组件范围）。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
