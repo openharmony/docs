@@ -62,12 +62,13 @@
    ```ts
    import { InputMethodSubtype, inputMethodEngine } from '@kit.IMEKit';
    
-   let panel: inputMethodEngine.Panel;
+   let panel: inputMethodEngine.Panel; // 此处panel需要在createPanel接口创建panel实例后使用
    let inputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
    inputMethodAbility.on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
-     let subType = inputMethodSubtype; // 保存当前输入法子类型, 此处也可以改变状态变量的值，布局中判断状态变量，不同的子类型显示不同的布局控件
+     // 保存当前输入法子类型, 此处也可以改变状态变量的值，布局中判断状态变量，不同的子类型显示不同的布局控件
+     let subType: InputMethodSubtype = inputMethodSubtype;
      if (inputMethodSubtype.id == 'InputMethodExtAbility') { // 根据不同的子类型，可以加载不同的软键盘界面
-       panel.setUiContent('pages/Index'); 
+       panel.setUiContent('pages/Index');
      }
      if (inputMethodSubtype.id == 'InputMethodExtAbility1') { // 根据不同的子类型，可以加载不同的软键盘界面
        panel.setUiContent('pages/Index1');

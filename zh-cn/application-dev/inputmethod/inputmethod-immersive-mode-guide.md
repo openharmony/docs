@@ -41,5 +41,11 @@
 
    设置沉浸模式，示例代码如下。setImmersiveMode接口需使用[createPanel](../reference/apis-ime-kit/js-apis-inputmethodengine.md#createpanel10)获取到Panel实例后，通过实例调用。
    ```ts
-   panel.setImmersiveMode(inputMethodEngine.ImmersiveMode.LIGHT_IMMERSIVE);
+   // 需要在createPanel创建输入法窗口实例后执行
+   try {
+     this.panel?.setImmersiveMode(inputMethodEngine.ImmersiveMode.LIGHT_IMMERSIVE);
+   } catch (err) {
+     let error: BusinessError = err as BusinessError;
+     console.error(`Faild to setImmersiveMode, code: ${error.code}, message: ${error.message}`);
+   }
    ```
