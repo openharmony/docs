@@ -28,6 +28,10 @@ openToast(options: ShowToastOptions): Promise&lt;number&gt;
 
 显示文本提示框并通过Promise返回其id。
 
+> **说明：**
+> 
+> 不支持在输入法类型窗口中使用子窗（showMode设置为TOP_MOST或者SYSTEM_TOP_MOST）的openToast，详情见输入法框架的约束与限制说明[createPanel](../apis-ime-kit/js-apis-inputmethodengine.md#createpanel10-1)。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full

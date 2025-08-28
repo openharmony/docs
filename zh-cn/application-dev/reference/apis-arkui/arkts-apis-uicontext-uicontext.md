@@ -824,6 +824,10 @@ showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButto
 
 显示警告弹窗组件，可设置文本内容与响应回调。
 
+>  **说明：**
+>
+>  不支持在输入法类型窗口中使用子窗（showInSubwindow为true）的showAlertDialog，详情见输入法框架的约束与限制说明[createPanel](../apis-ime-kit/js-apis-inputmethodengine.md#createpanel10-1)。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -948,6 +952,10 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 定义日期滑动选择器弹窗并弹出。
 
+>  **说明：**
+>
+>  不支持在输入法类型窗口中使用子窗（showInSubwindow为true）的showDatePickerDialog，详情见输入法框架的约束与限制说明[createPanel](../apis-ime-kit/js-apis-inputmethodengine.md#createpanel10-1)。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1017,6 +1025,10 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 
 定义时间滑动选择器弹窗并弹出。
 
+>  **说明：**
+>
+>  不支持在输入法类型窗口中使用子窗（showInSubwindow为true）的showTimePickerDialog，详情见输入法框架的约束与限制说明[createPanel](../apis-ime-kit/js-apis-inputmethodengine.md#createpanel10-1)。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1079,6 +1091,10 @@ struct TimePickerDialogExample {
 showTextPickerDialog(options: TextPickerDialogOptions): void
 
 定义文本滑动选择器弹窗并弹出。
+
+>  **说明：**
+>
+>  不支持在输入法类型窗口中使用子窗（showInSubwindow为true）的showTextPickerDialog，详情见输入法框架的约束与限制说明[createPanel](../apis-ime-kit/js-apis-inputmethodengine.md#createpanel10-1)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1150,6 +1166,10 @@ struct TextPickerDialogExample {
 showTextPickerDialog(style: TextPickerDialogOptions\|TextPickerDialogOptionsExt): void
 
 定义文本滑动选择器弹窗并弹出，相比API version 11，新增了TextPickerDialogOptionsExt参数支持。
+
+>  **说明：**
+>
+>  不支持在输入法类型窗口中使用子窗（showInSubwindow为true）的showTextPickerDialog，详情见输入法框架的约束与限制说明[createPanel](../apis-ime-kit/js-apis-inputmethodengine.md#createpanel10-1)。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
