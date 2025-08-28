@@ -74,11 +74,11 @@ let p : Parameter = { selectTextBegin: '0', selectTextEnd: '8', selectTextInForW
 
 | 名称                  | 类型     | 只读  |可选| 说明                                |
 | ------------------- | ------ | ---- | ----|--------------------------------- |
-| spanId             | number | 是   |是 |超链接文本编号。                 |
-| spanText          | string | 是  | 是|超链接文本的文本内容。        |
-| accessibilityText          | string | 是  | 是|超链接文本的辅助功能文本。        |
-| accessibilityDescription          | string | 是  | 是|超链接文本的辅助功能描述。        |
-| accessibilityLevel          | string | 是  | 是|超链接文本的辅助功能级别。        |
+| spanId             | number | 否   |否 |超链接文本编号。                 |
+| spanText          | string | 否 | 否|超链接文本的文本内容。        |
+| accessibilityText          | string | 否  | 否|超链接文本的辅助功能文本。        |
+| accessibilityDescription          | string | 否  | 否|超链接文本的辅助功能描述。        |
+| accessibilityLevel          | string | 否  | 否|超链接文本的辅助功能级别。        |
 
 
 ## startAbility<sup>12+</sup>
@@ -678,7 +678,11 @@ export default class AccessibilityManager {
   }
 
   onEvent(accessibilityEvent: AccessibilityEvent): void {
-    this.context?.getWindowRootElement().then((rootElement: AccessibilityElement) => {
+    if (!this.context) {
+      console.error('context is not available!');
+      return;
+    }
+    this.context.getWindowRootElement().then((rootElement: AccessibilityElement) => {
       console.log(`Succeeded in get root element of the window, ${JSON.stringify(rootElement)}`);
       rootElement.enableScreenCurtain(true);
       console.log(`Succeeded in enableScreenCurtain`);
@@ -865,7 +869,8 @@ executeAction(action: AccessibilityAction, parameters?: Parameter): Promise\<voi
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401     | Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 201     | Permission verification failed.The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.     |
 | 9300005 | This action is not supported.            |
 
 **示例：**
@@ -1052,7 +1057,7 @@ for (let window of windows) {
 
 ### findElementByContent<sup>20+</sup>
 
-findElementByContent(content: string): Promise\<Array\<AccessibilityElement>>;
+findElementByContent(condition: string): Promise\<Array\<AccessibilityElement>>;
 
 根据内容查找元素。
 
@@ -1064,7 +1069,7 @@ findElementByContent(content: string): Promise\<Array\<AccessibilityElement>>;
 
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | ---- | -------- | ------------------------------------------------------------ |
-| content | string | 是 | 内容。 |
+| condition | string | 是 | 内容。 |
 
 **返回值：**
 
@@ -1080,6 +1085,7 @@ findElementByContent(content: string): Promise\<Array\<AccessibilityElement>>;
 | ------- | ---------------------------------------- |
 | 201 | Permission verification failed.The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
+| 9300006 | The target application failed to connect to accessibility service. |
 
 **示例：**
 
