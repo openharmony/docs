@@ -126,7 +126,7 @@ useMilitaryTime(value: boolean)
 
 useMilitaryTime(isMilitaryTime: Optional\<boolean>)
 
-设置展示时间是否为24小时制。与[useMilitaryTime](#usemilitarytime)相比，isMilitaryTime参数新增了对undefined类型的支持。
+设置展示时间是否为24小时制，默认展示时间为12小时制。与[useMilitaryTime](#usemilitarytime)相比，isMilitaryTime参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -230,7 +230,7 @@ selectedTextStyle(value: PickerTextStyle)
 
 selectedTextStyle(style: Optional\<PickerTextStyle>)
 
-设置选中项的文本颜色、字号及字体粗细。与[selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
+设置选中项的文本颜色、字号及字体粗细。与[selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。Wearable设备不支持设置该属性。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
