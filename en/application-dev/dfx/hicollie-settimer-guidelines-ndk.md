@@ -1,15 +1,25 @@
 # Using HiCollie to Detect Function Execution Timeout Events (C/C++)
 
-HiCollie provides APIs for detecting the function execution timeout events.
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @rr_cn-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
+## Overview
+
+Task execution timeout indicates that the execution duration of the monitored service code logic exceeds the expected duration. This topic describes the capability of the HiCollie module to detect function execution timeout events.
 
 ## Available APIs
 
-| API                         | Description                             |
-| ------------------------------  | --------------------------------- |
-| OH_HiCollie_SetTimer | Sets a timer to check whether the execution time of a function or code block exceeds the custom time.<br>This API is used before the time-consuming function is called. It must be used together with the **OH_HiCollie_CancelTimer** API.|
-| OH_HiCollie_CancelTimer | Cancels a timer based on task ID.<br>This API is used after the function or code block is executed. It must be used together with the **OH_HiCollie_SetTimer** API.<br>If the timer is not canceled within the custom time, a callback function is executed to generate fault logs for the specified timeout event.|
+| API| Description|
+| -------- | -------- |
+| OH_HiCollie_SetTimer | Sets a timer to check whether the execution time of a function or code block exceeds the custom time.<br>This API is used before the time-consuming function is called. It must be used together with the **OH_HiCollie_CancelTimer** API.<br>Note: This API is supported since API version 18.|
+| OH_HiCollie_CancelTimer | Cancels a timer based on task ID.<br>This API is used after the function or code block is executed. It must be used together with the **OH_HiCollie_SetTimer** API.<br>If the timer is not canceled within the custom time, a callback function is executed to generate fault logs for the specified timeout event.<br>Note: This API is supported since API version 18.|
 
-- For details (such as parameter usage and value ranges) about the APIs, see [HiCollie](../reference/apis-performance-analysis-kit/_hi_collie.md).
+- For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [HiCollie](../reference/apis-performance-analysis-kit/capi-hicollie-h.md).
+
 - The fault log file is saved in the **/data/log/faultlog/faultlogger/** directory. The file name format is **syswarning-application bundle name-application UID-second-level time.log**.
 
 ## How to Develop
@@ -23,16 +33,16 @@ The following describes how to add a button in the application and click the but
      src:
        main:
          cpp:
-           - types:
-               libentry:
-                 - index.d.ts
+           types:
+             libentry:
+               - index.d.ts
            - CMakeLists.txt
            - napi_init.cpp
          ets:
-           - entryability:
-               - EntryAbility.ts
-           - pages:
-               - Index.ets
+           entryability:
+             - EntryAbility.ts
+           pages:
+             - Index.ets
    ```
 
 2. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
@@ -48,18 +58,18 @@ The following describes how to add a button in the application and click the but
    #include "napi/native_api.h"
    #include "hicollie/hicollie.h"
    #include "hilog/log.h"
-
+   
    #include <unistd.h>
-
+   
    #undef LOG_TAG
    #define LOG_TAG "testTag"
-
+   
    // Define the callback.
    void CallBack(void*)
    {
-     OH_LOG_INFO(LogType::LOG_APP, "HiCollieTimerNdk callBack");  // Logs are printed in the callback.
+     OH_LOG_INFO(LogType::LOG_APP, "HiCollieTimerNdk CallBack");  // Logs are printed in the callback.
    }
-
+   
    static napi_value TestHiCollieTimerNdk(napi_env env, napi_callback_info info)
    {
      int id;
@@ -70,9 +80,9 @@ The following describes how to add a button in the application and click the but
        sleep (2); // Simulate a time-consuming function to block the thread for 2s.
        OH_HiCollie_CancelTimer (id); // Cancel the registered timer based on the ID.
      }
-     return 0;
+     return nullptr;
    }
-
+   
    EXTERN_C_START
    static napi_value Init(napi_env env, napi_value exports)
    {
@@ -83,7 +93,7 @@ The following describes how to add a button in the application and click the but
        return exports;
    }
    EXTERN_C_END
-
+   
    static napi_module demoModule = {
        .nm_version = 1,
        .nm_flags = 0,
@@ -93,7 +103,7 @@ The following describes how to add a button in the application and click the but
        .nm_priv = ((void*)0),
        .reserved = { 0 },
    };
-
+   
    extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
    {
        napi_module_register(&demoModule);
@@ -134,14 +144,14 @@ The following describes how to add a button in the application and click the but
 6. Click the **Run** button in DevEco Studio to run the project.
 
 7. At the bottom of DevEco Studio, switch to the **Log** tab, choose **HiLog** and set the filter criteria to **testTag**.
-   
-   Click the **testHiCollieTimerNdk** button to execute the timer, and the task ID is logged.
-   
+
+   (1) Click the **testHiCollieTimerNdk** button to execute the timer, and the task ID is logged.
+
    ```
    .../testTag ... HiCollieTimer taskId: x
    ```
 
-   After 2s, the callback function is executed and logs are displayed.
+   (2) After 2s, the callback function is executed and logs are displayed.
 
    ```
    .../testTag ... HiCollieTimerNdk CallBack
