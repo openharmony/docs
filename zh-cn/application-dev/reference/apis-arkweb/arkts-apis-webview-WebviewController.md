@@ -9622,6 +9622,8 @@ getBlanklessInfoWithKey(key: string): BlanklessInfo
 > - 调用本接口后，将启用页面加载快照检测及生成过渡帧计算，会产生一定的资源开销。
 > - 启用无白屏加载的页面会带来一定的资源开销，开销的大小与Web组件的分辨率相关。假设分辨率的宽度和高度分别为：w, h。页面在打开阶段会增加峰值内存，增加约12*w*h B，页面打开后内存回收，不影响稳态内存。增加固态应用缓存的大小，每个页面增加的缓存约w*h/10 B，缓存位于应用缓存的位置。
 
+**需要权限：** ohos.permission.INTERNET和ohos.permission.GET_NETWORK_INFO
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **设备行为差异：** 该接口在Phone中可正常调用，在其他设备类型中返回801错误码。
@@ -9694,6 +9696,8 @@ setBlanklessLoadingWithKey(key: string, is_start: boolean): WebBlanklessErrorCod
 > - 需在触发页面加载的接口之后调用，其他约束同[getBlanklessInfoWithKey](#getblanklessinfowithkey20)。
 > - 页面加载必须在调用本接口的组件中进行。
 > - 当相似度较低时，系统将判定为跳变过大，启用插帧会失败。
+
+**需要权限：** ohos.permission.INTERNET和ohos.permission.GET_NETWORK_INFO
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
