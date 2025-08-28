@@ -528,7 +528,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 设置期望展示的图像动态范围。SVG类型图源不支持该属性。
 
-只在手机、PC/2in1和Tablet设备上生效。
+**设备行为差异**：该接口在手机、PC/2in1和Tablet设备中可正常生效，在其他设备类型中无效果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
