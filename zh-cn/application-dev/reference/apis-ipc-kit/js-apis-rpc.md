@@ -3,7 +3,7 @@
 <!--Subsystem: Communication-->
 <!--Owner: @xdx19211@luodonghui0157-->
 <!--Designer: @zhaopeng_gitee-->
-<!--Tester: @maxiaorong2-->
+<!--Tester: @maxiaorong-->
 <!--Adviser: @zhang_yixin13-->
 
 本模块提供进程间通信能力，包括设备内的进程间通信（IPC）和设备间的进程间通信（RPC），前者基于Binder驱动，后者基于软总线驱动。
@@ -244,7 +244,7 @@ writeInterfaceToken(token: string): void
 
   | 参数名 | 类型   | 必填 | 说明               |
   | ------ | ------ | ---- | ------------------ |
-  | token  | string | 是   | 字符串类型描述符。 |
+  | token  | string | 是   | 字符串类型描述符，其长度应小于40960字节。 |
 
 **错误码：**
 
@@ -3191,7 +3191,7 @@ containFileDescriptors(): boolean
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let sequence = rpc.MessageSequence().create();
+    let sequence = rpc.MessageSequence.create();
     let filePath = "path/to/file";
     let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
     let containFD = sequence.containFileDescriptors();
@@ -3235,7 +3235,7 @@ writeFileDescriptor(fd: number): void
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let sequence = rpc.MessageSequence().create();
+    let sequence = rpc.MessageSequence.create();
     let filePath = "path/to/file";
     let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
     sequence.writeFileDescriptor(file.fd);
@@ -3277,7 +3277,7 @@ readFileDescriptor(): number
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let sequence = rpc.MessageSequence().create();
+    let sequence = rpc.MessageSequence.create();
     let filePath = "path/to/file";
     let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
     sequence.writeFileDescriptor(file.fd);
@@ -3321,7 +3321,7 @@ writeAshmem(ashmem: Ashmem): void
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let sequence = rpc.MessageSequence().create();
+    let sequence = rpc.MessageSequence.create();
     let ashmem = rpc.Ashmem.create("ashmem", 1024);
     // ashmem里写入数据
     let buffer = new ArrayBuffer(1024);
@@ -3373,7 +3373,7 @@ readAshmem(): Ashmem
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let sequence = rpc.MessageSequence().create();
+    let sequence = rpc.MessageSequence.create();
     let ashmem = rpc.Ashmem.create("ashmem", 1024);
     // ashmem里写入数据
     let buffer = new ArrayBuffer(1024);
@@ -3384,12 +3384,15 @@ readAshmem(): Ashmem
     let size = buffer.byteLength;
     ashmem.mapReadWriteAshmem();
     ashmem.writeDataToAshmem(buffer, size, 0);
+    // 将传递的数据大小写入messageSequence对象中
+    sequence.writeInt(size);
     // 将ashmem对象写入messageSequence对象中
     sequence.writeAshmem(ashmem);
-    // 从messageSequence对象中读取ashmem对象
-    let ashmem1 = sequence.readAshmem();
+
     // 读取传递的数据大小
     let dataSize = sequence.readInt();
+    // 从messageSequence对象中读取ashmem对象
+    let ashmem1 = sequence.readAshmem();
     // 从ashmem对象中读取数据
     ashmem1.mapReadWriteAshmem();
     let readResult = ashmem1.readDataFromAshmem(dataSize, 0);
@@ -3424,7 +3427,7 @@ getRawDataCapacity(): number
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let sequence = rpc.MessageSequence().create();
+    let sequence = rpc.MessageSequence.create();
     let result = sequence.getRawDataCapacity();
     hilog.info(0x0000, 'testTag', 'sequence get RawDataCapacity result is ' + result);
   } catch (error) {
@@ -3473,7 +3476,7 @@ writeRawData(rawData: number[], size: number): void
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let sequence = rpc.MessageSequence().create();
+    let sequence = rpc.MessageSequence.create();
     let arr = [1, 2, 3, 4, 5];
     sequence.writeRawData(arr, arr.length);
   } catch (error) {
@@ -3526,7 +3529,7 @@ writeRawDataBuffer(rawData: ArrayBuffer, size: number): void
       int32View[i] = i * 2 + 1;
     }
     let size = buffer.byteLength;
-    let sequence = rpc.MessageSequence().create();
+    let sequence = rpc.MessageSequence.create();
     sequence.writeRawDataBuffer(buffer, size);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
@@ -3577,7 +3580,7 @@ readRawData(size: number): number[]
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let sequence = rpc.MessageSequence().create();
+    let sequence = rpc.MessageSequence.create();
     let arr = [1, 2, 3, 4, 5];
     sequence.writeRawData(arr, arr.length);
     let size = array.length;
@@ -3633,7 +3636,7 @@ readRawDataBuffer(size: number): ArrayBuffer
       int32View[i] = i * 2 + 1;
     }
     let size = buffer.byteLength;
-    let sequence = rpc.MessageSequence().create();
+    let sequence = rpc.MessageSequence.create();
     sequence.writeRawDataBuffer(buffer, size);
     let result = sequence.readRawDataBuffer(size);
     let readInt32View = new Int32Array(result);
@@ -3906,7 +3909,7 @@ writeInterfaceToken(token: string): boolean
 
   | 参数名 | 类型   | 必填 | 说明               |
   | ------ | ------ | ---- | ------------------ |
-  | token  | string | 是   | 字符串类型描述符。 |
+  | token  | string | 是   | 字符串类型描述符，其长度应小于40960字节。 |
 
 **返回值：**
 
@@ -9051,7 +9054,7 @@ static restoreCallingIdentity(identity: string): void
 
   | 参数名   | 类型   | 必填 | 说明                                                               |
   | -------- | ------ | ---- | ------------------------------------------------------------------ |
-  | identity | string | 是   | 标识表示包含远程用户UID和PID的字符串。由resetCallingIdentity返回。 |
+  | identity | string | 是   | 标识表示包含远程用户UID和PID的字符串，其长度应小于40960字节。由resetCallingIdentity返回。 |
 
 **错误码：**
 
@@ -9142,7 +9145,7 @@ RemoteObject构造函数。
 
   | 参数名     | 类型   | 必填 | 说明         |
   | ---------- | ------ | ---- | ------------ |
-  | descriptor | string | 是   | 接口描述符。 |
+  | descriptor | string | 是   | 接口描述符，其长度应小于40960字节。 |
 
 **示例：**
 
@@ -9694,7 +9697,7 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
   | 参数名     | 类型   | 必填 | 说明                 |
   | ---------- | ------ | ---- | -------------------- |
-  | descriptor | string | 是   | 接口描述符的字符串。 |
+  | descriptor | string | 是   | 接口描述符的字符串，其长度应小于40960字节。 |
 
 **返回值：**
 
@@ -9887,7 +9890,7 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 | 参数名         | 类型                            | 必填 | 说明                                  |
 | -------------- | ------------------------------- | ---- | ------------------------------------- |
 | localInterface | [IRemoteBroker](#iremotebroker) | 是   | 将与描述符绑定的IRemoteBroker对象。   |
-| descriptor     | string                          | 是   | 用于与IRemoteBroker对象绑定的描述符。 |
+| descriptor     | string                          | 是   | 用于与IRemoteBroker对象绑定的描述符，其长度应小于40960字节。 |
 
 **错误码：**
 
@@ -10006,8 +10009,8 @@ static create(name: string, size: number): Ashmem
 
   | 参数名 | 类型   | 必填 | 说明                         |
   | ------ | ------ | ---- | ---------------------------- |
-  | name   | string | 是   | 名称，用于查询Ashmem信息。   |
-  | size   | number | 是   | Ashmem的大小，以字节为单位。 |
+  | name   | string | 是   | ashmem名称，用于查询Ashmem信息，其长度不能为0。   |
+  | size   | number | 是   | Ashmem的大小，其大小应大于0，以字节为单位。 |
 
 **返回值：**
 
