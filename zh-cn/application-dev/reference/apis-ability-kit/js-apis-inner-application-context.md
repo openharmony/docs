@@ -313,7 +313,7 @@ createDisplayContext(displayId: number): Context
 
 | 参数名   | 类型                                                         | 必填 | 说明                     |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------ |
-| [displayId](../apis-arkui/arkts-apis-window-i.md#windowproperties) | number | 是    | 物理屏幕ID。 |
+| [displayId](../apis-arkui/js-apis-window.md#windowproperties) | number | 是    | 物理屏幕ID。 |
 
 **返回值：**
 
