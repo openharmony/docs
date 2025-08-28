@@ -109,10 +109,10 @@ InlineStyleOptions定义了数值内联型Counter的属性和事件。
 
 | 名称      | 类型                   | 必填 | 说明                                                   |
 | --------- | ---------------------- | ---- | ------------------------------------------------------ |
-| value     | number                 | 否   | 设置Counter的初始值。默认值为0。          |
-| min       | number                 | 否   | 设置Counter的最小值。默认值为0。            |
-| max       | number                 | 否   | 设置Counter的最大值。默认值为999。        |
-| textWidth | number                 | 否   | 设置数值文本的宽度。默认值为0。            |
+| value     | number                 | 否   | 设置Counter的初始值。<br/>默认值：0 |
+| min       | number                 | 否   | 设置Counter的最小值。<br/>默认值：0     |
+| max       | number                 | 否   | 设置Counter的最大值。<br/>默认值：999 |
+| textWidth | number                 | 否   | 设置数值文本的宽度。<br/>默认值：0<br/>取值范围：[0, +∞)<br/>单位：vp |
 | onChange  | (value: number) => void | 否   | 数值改变时，返回当前值。<br/>value：当前显示的数值。 |
 
 ## NumberStyleOptions
@@ -145,9 +145,9 @@ DateStyleOptions定义日期内联型Counter的属性和事件。
 
 | 名称         | 类型                                | 必填 | 说明                                                      |
 | ------------ | ----------------------------------- | ---- | --------------------------------------------------------- |
-| year         | number                              | 否   | 设置日期内联型初始年份。<br/>默认值：1                    |
-| month        | number                              | 否   | 设置日期内联型初始月份。<br/>默认值：1                    |
-| day          | number                              | 否   | 设置日期内联型初始日。<br/>默认值：1                      |
+| year         | number                              | 否   | 设置日期内联型初始年份。<br/>默认值：1<br/>取值范围：[1, 5000] |
+| month        | number                              | 否   | 设置日期内联型初始月份。<br/>默认值：1<br/>取值范围：[1, 12] |
+| day          | number                              | 否   | 设置日期内联型初始日。<br/>默认值：1<br/>取值范围：[1, 31] |
 | onDateChange | (date: [DateData](#datedata)) => void | 否   | 当日期改变时，返回当前日期。<br/>date：当前显示的日期值。 |
 
 ## DateData
@@ -158,11 +158,11 @@ DateData定义了日期通用属性和方法，包括年、月、日。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 类型   | 只读 | 可选 | 说明                     |
-| ----- | ------ | ---- | ---- | ------------------------ |
-| year  | number | 否   | 否   | 设置日期内联型初始年份。 |
-| month | number | 否   | 否   | 设置日期内联型初始月份。 |
-| day   | number | 否   | 否   | 设置日期内联型初始日。   |
+| 名称  | 类型   | 只读 | 可选 | 说明                                                         |
+| ----- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| year  | number | 否   | 否   | 设置日期内联型初始年份。<br/>默认值：1<br/>取值范围：[1, 5000] |
+| month | number | 否   | 否   | 设置日期内联型初始月份。<br/>默认值：1<br/>取值范围：[1, 12] |
+| day   | number | 否   | 否   | 设置日期内联型初始日。<br/>默认值：1<br/>取值范围：[1, 31]   |
 
 ### constructor
 
@@ -286,7 +286,7 @@ struct NumberStyleExample {
             max: 1000,
             textWidth: 100,
             onChange: (value: number) => {
-              console.log("onDateChange Date: " + value.toString());
+              console.info('onDateChange Date: ' + value.toString());
             }
           }
         }
@@ -317,7 +317,7 @@ struct DataStyleExample {
           dateOptions: {
             year: 2016,
             onDateChange: (date: DateData) => {
-              console.log("onDateChange Date: " + date.toString());
+              console.info('onDateChange Date: ' + date.toString());
             }
           }
         }
@@ -387,7 +387,7 @@ struct CounterPage {
             max: 1000,
             textWidth: 100,
             onChange: (value: number) => {
-              console.log("onDateChange Date: " + value.toString());
+              console.info('onDateChange Date: ' + value.toString());
             }
           }
         }
@@ -400,7 +400,7 @@ struct CounterPage {
           dateOptions: {
             year: 2024,
             onDateChange: (date: DateData) => {
-              console.log("onDateChange Date: " + date.toString());
+              console.info('onDateChange Date: ' + date.toString());
             }
           }
         }
