@@ -318,7 +318,7 @@ int32_t OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance(const char* i
 ### OH_ArkUI_SendAccessibilityAsyncEvent()
 
 ```
-void OH_ArkUI_SendAccessibilityAsyncEvent(ArkUI_AccessibilityProvider* provider, ArkUI_AccessibilityEventInfo* eventInfo,void (*callback)(int32_t errorCode))
+void OH_ArkUI_SendAccessibilityAsyncEvent(ArkUI_AccessibilityProvider* provider, ArkUI_AccessibilityEventInfo* eventInfo, void (*callback)(int32_t errorCode))
 ```
 
 **描述：**
@@ -335,7 +335,7 @@ void OH_ArkUI_SendAccessibilityAsyncEvent(ArkUI_AccessibilityProvider* provider,
 |--------------------------------------------------------------------------------------------------| -- |
 | [ArkUI_AccessibilityProvider](capi-arkui-accessibility-arkui-accessibilityprovider.md)* provider | 第三方平台接入provider句柄。 |
 | [ArkUI_AccessibilityEventInfo](capi-arkui-accessibility-arkui-accessibilityeventinfo.md)* eventInfo                                                      | 表示指向Accessibility事件信息的指针。 |
-| callback                                                                                         | 表示指向SendAccessibilityAsyncEvent的回调。 |
+| void (*callback)(int32_t errorCode)                                                                                         | 表示指向SendAccessibilityAsyncEvent的回调。 |
 
 ### OH_ArkUI_AddAndGetAccessibilityElementInfo()
 
@@ -1224,7 +1224,7 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetEndItemIndex(ArkUI_AccessibilityElem
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 成功返回 {@link OH_ARKUI_ACCESSIBILITY_RESULT_SUCCESS}。<br>参数错误返回 {@link OH_ARKUI_ACCESSIBILITY_RESULT_BAD_PARAMETER}。 |
+| int32_t | 成功返回[ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL](capi-native-interface-accessibility-h.md#arkui_acessbilityerrorcode)。<br>参数错误返回[ARKUI_ACCESSIBILITY_RESULT_BAD_PARAMETER](capi-native-interface-accessibility-h.md#arkui_acessbilityerrorcode)。 |
 
 ### OH_ArkUI_AccessibilityElementInfoSetItemCount()
 
