@@ -83,7 +83,7 @@ struct ParentComponent {
   
 ### \@Component
 
-\@Component装饰器仅能装饰struct关键字声明的数据结构。struct被\@Component装饰后具备组件化的能力，需要实现build方法描述UI，一个struct只能被一个\@Component装饰。\@Component可以接受一个可选的boolean类型参数。
+\@Component装饰器仅装饰struct关键字声明的数据结构。被装饰的struct具备组件化的能力，需要实现build方法描述UI，一个struct只能被一个\@Component装饰。\@Component可以接受一个可选的boolean类型参数。
 
   > **说明：**
   >
@@ -126,13 +126,13 @@ build()函数用于定义自定义组件的声明式UI描述，自定义组件�
 
 ### \@Entry
 
-\@Entry装饰的自定义组件将作为UI页面的入口。在单个UI页面中，仅允许存在一个由@Entry装饰的自定义组件作为页面的入口。\@Entry可以接受一个可选的[LocalStorage](arkts-localstorage.md)的参数。
+\@Entry装饰的自定义组件将作为UI页面的入口。在单个UI页面中，仅允许存在一个由@Entry装饰的自定义组件作为页面的入口。\@Entry可以接受一个可选的[LocalStorage](arkts-localstorage.md)参数。
 
   > **说明：**
   >
   > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
   >
-  > 从API version 10开始，\@Entry可以接受一个可选的[LocalStorage](arkts-localstorage.md)的参数或者一个可选的EntryOptions<sup>10+</sup>参数。
+  > 从API version 10开始，\@Entry可以接受一个可选的[LocalStorage](arkts-localstorage.md)参数或者一个可选的EntryOptions<sup>10+</sup>参数。
   >
   > 从API version 11开始，该装饰器支持在原子化服务中使用。
 
@@ -155,7 +155,7 @@ build()函数用于定义自定义组件的声明式UI描述，自定义组件�
 
   > **说明：**
   >
-  > 当useSharedStorage设置为true，并且storage也被赋值时，useSharedStorage的值优先级更高。
+  > 当useSharedStorage设置为true且storage已赋值时，useSharedStorage的值优先级更高。
 
   ```ts
   @Entry({ routeName : 'myPage' })
@@ -425,9 +425,9 @@ struct Son {
   所以，不能在自定义组件的build()或\@Builder方法里直接改变状态变量，这可能会造成循环渲染的风险。Text('${this.count++}')在全量更新或最小化更新会产生不同的影响：
 
   - 全量更新（API8及以前版本）： ArkUI可能会陷入一个无限的重渲染的循环里，因为Text组件的每一次渲染都会改变应用的状态，就会再引起下一轮渲染的开启。 当 this.columnColor 更改时，都会执行整个build构建函数，因此，Text(`${this.count++}`)绑定的文本也会更改，每次重新渲染Text(`${this.count++}`)，又会使this.count状态变量更新，导致新一轮的build执行，从而陷入无限循环。
-  - 最小化更新（API9-至今版本）：当this.columnColor更改时，只有Column组件会更新，Text组件不会更改。只有当this.textColor更改时，会去更新整个Text组件，其所有属性函数都会执行，所以会看到Text(`${this.count++}`)自增。因为目前UI以组件为单位进行更新，如果组件上某一个属性发生改变，会更新整体的组件。所以整体的更新链路是：this.textColor = Color.Pink -&gt;Text组件整体更新-&gt;this.count++ -&gt;Text组件整体更新。值得注意的是，这种写法在初次渲染时会导致Text组件渲染两次，从而影响性能。
+  - 最小化更新（API9及以上版本）：当this.columnColor更新时，仅Column组件更新，Text组件不会更新。只有当this.textColor更改时，会去更新整个Text组件，其所有属性函数都会执行，所以会看到Text(`${this.count++}`)自增。因为目前UI以组件为单位进行更新，如果组件上某一个属性发生改变，会更新整个的组件。所以整体的更新链路是：this.textColor = Color.Pink -&gt;Text组件整个更新-&gt;this.count++ -&gt;Text组件整个更新。值得注意的是，这种写法在初次渲染时会导致Text组件渲染两次，影响性能。
 
-  build函数中更改应用状态的行为可能会比上面的示例更加隐蔽，比如：
+  build函数中更改应用状态的行为可能比上面的示例更加隐蔽，例如：
 
   - 在\@Builder，\@Extend或\@Styles方法内改变状态变量 。
 
