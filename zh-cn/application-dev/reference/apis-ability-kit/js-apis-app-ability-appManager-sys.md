@@ -1768,11 +1768,13 @@ try {
 getKeepAliveBundles(type: KeepAliveAppType, userId?: number): Promise\<Array\<KeepAliveBundleInfo>>
 
 获取指定用户下指定类型的保活应用信息。该应用信息由[KeepAliveBundleInfo](#keepalivebundleinfo14)定义。
-使用Promise异步回调。本接口当前仅支持2in1设备。
+使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_APP_KEEP_ALIVE
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口在PC/2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **系统接口**：此接口为系统接口。
 
@@ -1827,11 +1829,13 @@ try {
 
 killProcessesInBatch(pids: Array\<number>): Promise\<void>
 
-批量查杀进程。本接口当前仅支持2in1设备。
+批量查杀进程。
 
 **需要权限**：ohos.permission.KILL_APP_PROCESSES
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口在PC/2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **系统接口**：此接口为系统接口。
 
