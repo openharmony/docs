@@ -607,7 +607,7 @@ struct Child {
 }
 ```
 
-## Link支持联合类型实例
+### Link支持联合类型实例
 
 `@Link`支持联合类型、`undefined`和`null`。在以下示例中，`name`类型为`string | undefined`。点击父组件`Index`中的按钮可以改变`name`的属性或类型，`Child`组件也会相应刷新。
 
