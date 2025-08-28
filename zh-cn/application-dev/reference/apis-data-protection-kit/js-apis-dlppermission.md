@@ -1158,7 +1158,7 @@ setEnterprisePolicy(policy: EnterprisePolicy): void
 
 设置企业应用防护策略。
 
-**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+**需要权限：** ohos.permission.ENTERPRISE_ACCESS_DLP_FILE
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
@@ -1315,6 +1315,6 @@ DLP文件授权类型的枚举。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 只读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | policyString | string | 是 | 是 | 表示企业定制策略的json字符串。长度不超过4M（单位：兆）。 |
