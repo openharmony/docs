@@ -1,4 +1,11 @@
 # 入门<!--application-getting-started-->
+<!--Kit: Common-->
+<!--Subsystem: Common-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
+
 <!--Del-->
 - 快速入门<!--quick-start-->
   - [开发准备](start-overview.md)
