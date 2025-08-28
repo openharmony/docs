@@ -61,4 +61,11 @@
 
     ![image](figures/ffrt_figure9.png)
 
+    图中的参数如下所示：
+    - `job_num` 提交的任务数。
+    - `partner_num` worker数量。
+    - `threshold` 表示任务堆积到指定数量后才会启动worker。
+    - `ratio` 表示任务数和worker数的比例。
+    - `max` 表示最大worker数。
+
 协作并发范式开发样例可以参考[任务伙伴(C++)](ffrt-concurrency-job-partner-cpp.md)
