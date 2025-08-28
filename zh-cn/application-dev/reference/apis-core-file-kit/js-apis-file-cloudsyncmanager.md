@@ -78,4 +78,4 @@ import { cloudSyncManager } from '@kit.CoreFileKit';
 | localFileCount     | number | 否   | 否   | 本地未上传云端的文件总个数，取值范围[0, INT32_MAX]，单位：个。   |
 | localFileTotalSize | number | 否   | 否   | 本地未上传云端的文件总大小，取值范围[0, INT64_MAX]，单位：Byte。 |
 | bothFileCount      | number | 否   | 否   | 本地已上传云端的文件总个数，取值范围[0, INT32_MAX]，单位：个。   |
-| bothlFileTotalSize | number | 否   | 否   | 本地已上传云端的文件总大小，取值范围[0, INT64_MAX]，单位：Byte。 |
+| bothFileTotalSize | number | 否   | 否   | 本地已上传云端的文件总大小，取值范围[0, INT64_MAX]，单位：Byte。 |

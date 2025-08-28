@@ -16,7 +16,6 @@ FolderStack继承于Stack(层叠布局)控件，新增了<!--RP1-->折叠屏悬�
 >
 >  当该组件的父组件为[if/else条件渲染节点](../../../ui/state-management/arkts-rendering-control-ifelse.md)时，折叠屏悬停能力将会失效。
 
-
 ## 子组件
 
 可以包含多个子组件。
@@ -104,7 +103,7 @@ autoHalfFold(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                |
 | ------ | ------- | ---- | ----------------------------------- |
-| value  | boolean | 是   | 是否开启自动旋转。<br/>默认值：true，设置true表示开启自动旋转，设置false表示关闭自动旋转。<br />非法值：按默认值处理。 |
+| value  | boolean | 是   | 是否开启自动旋转。<br/>默认值：true，设置true表示FolderStack在[半折叠状态](ts-appendix-enums.md#foldstatus11)进行布局时开启自动旋转，设置false表示关闭自动旋转。该属性不区分设备类型。<br />非法值：按默认值处理。 |
 
 ## 事件
 

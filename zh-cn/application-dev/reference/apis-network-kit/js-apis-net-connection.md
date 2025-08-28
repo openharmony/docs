@@ -865,6 +865,7 @@ getNetCapabilities(netHandle: NetHandle): Promise\<NetCapabilities>
 
 ```ts
 import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {

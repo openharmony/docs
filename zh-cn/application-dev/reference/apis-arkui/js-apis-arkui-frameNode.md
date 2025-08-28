@@ -22,6 +22,20 @@ FrameNode表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeC
 import { FrameNode, LayoutConstraint, ExpandMode, typeNode, NodeAdapter } from "@kit.ArkUI";
 ```
 
+## LayoutConstraint<sup>12+</sup>
+
+描述组件的布局约束。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称            |  类型  | 只读   | 可选   | 说明                                       |
+| -------------- | ------ | ----- | ----------|-------------------------------- |
+| maxSize           | [Size](./js-apis-arkui-graphics.md#size) |否| 是    | 最大尺寸。              |
+| minSize            | [Size](./js-apis-arkui-graphics.md#size) |否| 是    | 最小尺寸。                  |
+| percentReference      | [Size](./js-apis-arkui-graphics.md#size) |否| 是    | 子节点计算百分比时的尺寸基准。|
+
 ## CrossLanguageOptions<sup>15+</sup>
 
 该接口用于配置或查询FrameNode的跨语言访问权限。例如，针对ArkTS语言创建的节点，可通过该接口控制是否允许通过非ArkTS语言进行属性访问或修改。
@@ -1588,20 +1602,6 @@ FrameNode的自定义测量方法，该方法会重写默认测量方法，在Fr
 **示例：**
 
 请参考[节点自定义示例](#节点自定义示例)。
-
-### LayoutConstraint<sup>12+</sup>
-
-描述组件的布局约束。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称            |  类型  | 必填  | 说明                                       |
-| -------------- | ------ | ----- | ------------------------------------------ |
-| maxSize           | [Size](./js-apis-arkui-graphics.md#size) | 是    | 最大尺寸。              |
-| minSize            | [Size](./js-apis-arkui-graphics.md#size) | 是    | 最小尺寸。                  |
-| percentReference      | [Size](./js-apis-arkui-graphics.md#size) | 是    | 子节点计算百分比时的尺寸基准。
 
 ### onLayout<sup>12+</sup>
 

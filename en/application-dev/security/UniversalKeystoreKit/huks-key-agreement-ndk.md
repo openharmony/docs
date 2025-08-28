@@ -1,11 +1,17 @@
 # Key Agreement (C/C++)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
 
-This topic walks you through on how to agree on an ECDH key that is used only in HUKS. For details about the scenarios and supported algorithms, see [Supported Algorithms](huks-key-generation-overview.md#supported-algorithms).
+This topic uses ECDH as an example to demonstrate how to perform key agreement for HUKS-managed keys. For details about the scenarios and supported algorithms, see [Supported Algorithms](huks-key-generation-overview.md#supported-algorithms).
 
 ## Add the dynamic library in the CMake script.
 ```txt
-   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 ```
 
 ## How to Develop
@@ -14,7 +20,7 @@ This topic walks you through on how to agree on an ECDH key that is used only in
 
 Generate an asymmetric key for device A and device B each. For details, see [Key Generation](huks-key-generation-overview.md) or [Key Import](huks-key-import-overview.md).
 
-When generating a key, you can set the **OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG** parameter (optional) to specify whether the key generated is managed by HUKS.
+When generating a key, you can specify the **OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG** parameter (optional) to indicate whether the key generated is managed by HUKS.
 
 **Key Export**
 
@@ -40,7 +46,7 @@ During key agreement, you can set **OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG*
 | The tag is not set.| OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED | The key is returned to the caller for management.|
 | The tag is not set.| The tag is not set.| The key is returned to the caller for management.|
 
->**NOTE**<br>The tag value set in key agreement should not conflict with the tag value set in key generation. The above table lists only valid settings.
+Note: The tag value set in key agreement should not conflict with the tag value set in key generation. The above table lists only valid settings.
 
 **Key Deletion**
 
@@ -49,6 +55,7 @@ Delete the keys from device A and device B when the keys are not required. For d
 ```c++
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
+#include "napi/native_api.h"
 #include <string.h>
 /* Initialize parameters. */
 OH_Huks_Result InitParamSet(
@@ -73,7 +80,7 @@ OH_Huks_Result InitParamSet(
     return ret;
 }
 static const uint32_t IV_SIZE = 16;
-static uint8_t IV[IV_SIZE] = { 0 }; // this is a test value, for real use the iv should be different every time
+static uint8_t IV[IV_SIZE] = { 0 }; // this is a test value, for real use the iv should be different every time.
 static struct OH_Huks_Blob g_keyAliasFinal1001 = {
     (uint32_t)strlen("HksECDHAgreeKeyAliasTest001_1_final"),
     (uint8_t *)"HksECDHAgreeKeyAliasTest001_1_final"
