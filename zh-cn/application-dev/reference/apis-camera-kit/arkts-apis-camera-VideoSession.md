@@ -46,7 +46,7 @@ canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boo
 
 | 类型      | 说明                                      |
 |---------|-----------------------------------------|
-| boolean | true: 支持指定预配值类型。<br/>false: 不支持指定预配值类型。 |
+| boolean | true: 支持指定预配置类型。<br/>false: 不支持指定预配置类型。 |
 
 **错误码：**
 
