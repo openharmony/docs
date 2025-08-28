@@ -59,7 +59,7 @@ AVCapability模块提供用于编解码能力查询的函数。
 | OH_AVCapability \*[OH_AVCodec_GetCapability](#oh_avcodec_getcapability) (const char \*mime, bool isEncoder) | 获取系统推荐的编解码器能力。  | 
 | OH_AVCapability \*[OH_AVCodec_GetCapabilityByCategory](#oh_avcodec_getcapabilitybycategory) (const char \*mime, bool isEncoder, [OH_AVCodecCategory](#oh_avcodeccategory) category) | 获取指定类别中的编解码器能力。 | 
 | bool [OH_AVCapability_IsHardware](#oh_avcapability_ishardware) (OH_AVCapability \*capability) | 检查能力实例是否描述了硬件编解码器。  | 
-| const char \* [OH_AVCapability_GetName](#oh_avcapability_getname) (OH_AVCapabilitadd b-frame interface define.y \*capability) | 获取编解码器名称。  | 
+| const char \* [OH_AVCapability_GetName](#oh_avcapability_getname) (OH_AVCapability \*capability) | 获取编解码器名称。  | 
 | int32_t [OH_AVCapability_GetMaxSupportedInstances](#oh_avcapability_getmaxsupportedinstances) (OH_AVCapability \*capability) | 获取编解码器支持的最大实例数。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderBitrateRange](#oh_avcapability_getencoderbitraterange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*bitrateRange) | 获取编码器支持的比特率范围。  | 
 | bool [OH_AVCapability_IsEncoderBitrateModeSupported](#oh_avcapability_isencoderbitratemodesupported) (OH_AVCapability \*capability, [OH_BitrateMode](_codec_base.md#oh_bitratemode) bitrateMode) | 检查编码器是否支持特定的比特率模式。  | 
