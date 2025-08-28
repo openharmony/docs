@@ -468,7 +468,7 @@ int OH_Values_IsNull(OH_Data_Values *values, int index, bool *val)
 | ------------------------------------------------ | ------------------------------------------------------------ |
 | [OH_Data_Values](capi-rdb-oh-data-values.md) *values | 表示指向[OH_Data_Values](capi-rdb-oh-data-values.md)实例的指针。 |
 | int index                                        | 表示values中目标数据的从零开始的索引。                       |
-| bool *val                                        | 一个输出参数，ture表示空，false表示不为空。                  |
+| bool *val                                        | 一个输出参数，true表示空，false表示不为空。                  |
 
 **返回：**
 
