@@ -394,7 +394,7 @@ setGlobalProxyForAccount(admin: Want, httpProxy: connection.HttpProxy, accountId
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801      | The API is not available for this device type. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
@@ -518,7 +518,7 @@ getGlobalProxyForAccount(admin: Want, accountId: number): connection.HttpProxy
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801      | The API is not available for this device type. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 

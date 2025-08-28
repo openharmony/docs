@@ -223,7 +223,7 @@ setDomainAccountPolicy(admin: Want, domainAccountInfo: osAccount.DomainAccountIn
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 801      | The API is not available for this device type. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
@@ -317,7 +317,7 @@ getDomainAccountPolicy(admin: Want, domainAccountInfo: osAccount.DomainAccountIn
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 801      | The API is not available for this device type. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
