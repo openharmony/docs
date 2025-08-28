@@ -24,7 +24,7 @@ hdc包含三部分：
 
 hdc可以选择以下任意一种方式获取：
 
-1.通过SDK获取hdc工具。SDK已嵌入[DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/)中，无需额外下载配置。hdc默认安装在DevEco Studio/sdk/default/openharmony/toolchains路径下。
+1.通过SDK获取hdc工具。SDK已嵌入[DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/)中，无需额外下载配置。hdc默认安装在DevEco Studio/sdk/default/openharmony/toolchains路径下，MacOS系统的sdk位于DevEco Studio/Contents目录下。
 
 2.通过[Command Line Tools](https://developer.huawei.com/consumer/cn/download/)工具中的sdk目录获取相关工具。hdc程序默认安装在Command Line Tools/sdk/default/openharmony/toolchains路径下。
 
@@ -1003,7 +1003,7 @@ $ hdc -s 127.0.0.1:8710 -m # 指定当前服务进程的网络监听参数并启
 | -------- | -------- |
 | hilog [-h] | 打印设备端的日志信息，可通过hdc hilog -h查阅支持的参数列表。 |
 | jpid | 显示设备上已打开应用的进程pid。 |
-| track-jpid [-a\|-p] | 实时显示设备上已打开应用的进程pid和应用名，其中只有debug标签的应用可以被调试。不加参数时只显示debug应用的进程pid，使用-a或-p参数显示debug和release应用的进程标签，使用-p参数不显示debug和release的进程标签。 |
+| track-jpid [-a\|-p] | 实时显示设备上已打开应用的进程pid和应用包名，其中只有debug标签的应用可以被调试。不加参数时只显示已打开应用的进程pid，使用-a参数会显示debug和release应用的进程标签，使用-p参数不显示debug和release的进程标签。 |
 | target boot [-bootloader\|-recovery] | 重启目标设备，使用-bootloader参数重启后进入fastboot模式，使用-recovery参数重启后进入recovery模式。 |
 | target boot [MODE] | 重启目标设备，加参数重启后进入相应的模式，其中MODE为/bin/begetctl命令中reboot支持的参数，可通过hdc shell "/bin/begetctl -h \| grep reboot"查看。 |
 | <!--DelRow--> target mount | 以读写模式挂载系统分区（设备root后支持此命令）。 |
@@ -1076,15 +1076,15 @@ hdc track-jpid [-a|-p]
 
 | 参数 | 说明 |
 | -------- | -------- |
-| 不加参数 | 只显示已打开的应用的进程号。 |
-| -a | 显示debug和release应用的进程号和包名/进程名，同时显示debug和release的标签。 |
-| -p | 显示debug和release应用的进程号和包名/进程名，但不显示debug和release的标签。 |
+| 不加参数 | 只显示已打开的应用的进程pid。 |
+| -a | 显示debug和release应用的进程pid和包名/进程名，同时显示debug和release的标签。 |
+| -p | 显示debug和release应用的进程pid和包名/进程名，但不显示debug和release的标签。 |
 
 **返回信息**：
 
 | 返回信息 | 说明 |
 | -------- | -------- |
-| 进程号和包名/进程名列表。 | 不加参数时显示开启了JDWP调试协议的debug应用的进程，使用-a或-p参数时表示开启了JDWP调试协议的debug和release进程。 |
+| 进程号和包名/进程名列表。 | 不加参数时仅显示已打开应用的进程pid，使用-p参数额外显示应用包名，使用-a参数同时显示debug和release标签。 |
 | [Empty] | 无开启JDWP调试协议的应用进程。 |
 
 **使用方法**：
@@ -1443,7 +1443,7 @@ hdc file recv /data/log/hilog {local_path}            # 获取hilog已落盘日�
 | hdc版本 | API版本 | 新增特性 |
 | -------- | -------- | -------- |
 | 3.1.0a | 12 | wait命令支持-t参数：详细说明参见[等待设备正常连接](#等待设备正常连接)。 |
-| 3.1.0e | 15及以上版本 | - file send命令支持-b参数：详细说明参见[文件传输](#文件传输)。<br/>- file recv命令支持-b参数：详细说明参见[文件传输](#文件传输)。<br/>- shell命令支持-b参数：详细说明参见[执行交互命令](#执行交互命令)。 |
+| 3.1.0e | 15 | - file send命令支持-b参数：详细说明参见[文件传输](#文件传输)。<br/>- file recv命令支持-b参数：详细说明参见[文件传输](#文件传输)。<br/>- shell命令支持-b参数：详细说明参见[执行交互命令](#执行交互命令)。 |
 
 > **注意：**
 >
@@ -1686,7 +1686,6 @@ hdc文件传输命令执行出现乱码，如使用file recv从设备侧发送�
    计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Protect\Providers\df9d8cd0-1501-11d1-8c7a-00c04fc297eb；
 
 3. 右键新建DWORD(32位)值(D)，新增值名称为ProtectionPolicy 值为 1 （16进制），然后点击确定；
-   ![FAQ-1](figures/FAQ-1.png)
 
 4. 重启电脑后问题解决。
 
@@ -1695,8 +1694,6 @@ hdc文件传输命令执行出现乱码，如使用file recv从设备侧发送�
 **现象描述**
 
 使用USB方式连接调试设备，电脑端设备管理器通用串行总线控制器出现未知USB设备（设备描述符请求失败）
-
-![Unknown Device ](figures/unknown_device.png)
 
 **可能原因&amp;解决方法**
 
@@ -2138,7 +2135,7 @@ Unsupport shell option: XXX.
 
 **错误信息**
 
-Device does not supported this shell command.
+Device does not support this shell option.
 
 **错误描述**
 
@@ -2174,7 +2171,7 @@ hdc shell xxx，设备侧命令不支持。
 
 **错误信息**
 
-There is no bundle name.
+The parameter is missing, correct your input by referring below: Usage...
 
 **错误描述**
 
