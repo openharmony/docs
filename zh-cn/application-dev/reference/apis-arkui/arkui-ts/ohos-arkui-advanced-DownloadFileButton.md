@@ -191,4 +191,4 @@ struct Index {
 }
 ```
 
-![zh-cn_image_0000001643320073](figures/zh-cn_image_0000001643320073.png)
+![zh-cn_image_0000001643320073](figures/zh-cn_image_0000001643329999.png)

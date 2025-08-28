@@ -4838,6 +4838,20 @@ Allows an application to start virus scanning tasks.
 
 **Valid since**: 20
 
+## ohos.permission.ACCESS_DISTRIBUTED_KEY_STORE
+
+Allows an application to use the distributed keystore capabilities.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Supported devices**: Phone | Tablet | PC/2in1 | Wearable | TV
+
+**Valid since**: 20
+
 ## ohos.permission.UPLOAD_SAMPLE_FILE
 
 Allows an application to upload sample files to the cloud.

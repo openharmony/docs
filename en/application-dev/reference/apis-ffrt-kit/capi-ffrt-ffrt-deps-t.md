@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## Overview
 
@@ -20,7 +21,7 @@ The **ffrt_deps_t** struct describes dependencies.
 
 ### Member Variables
 
-| Name                                | Description|
-|------------------------------------| -- |
-| uint32_t len                       | Number of dependencies.|
-| const [ffrt_dependence_t](capi-ffrt-ffrt-dependence-t.md)* items | Dependency data.|
+| Name| Description|
+| -- | -- |
+| uint32_t len | Number of dependencies.|
+| const [ffrt_dependence_t*](capi-ffrt-ffrt-dependence-t.md) items | Dependency data.|

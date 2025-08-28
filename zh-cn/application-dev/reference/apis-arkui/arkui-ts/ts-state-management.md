@@ -4,7 +4,7 @@
 <!--Owner: @zzq212050299-->
 <!--Designer: @s10021109-->
 <!--Tester: @TerryTsao-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @zhang_yixin13-->
 
 状态管理模块提供了应用程序的数据存储能力、持久化数据管理能力、UIAbility数据存储能力和应用程序需要的环境状态。
 
@@ -2079,32 +2079,8 @@ let keys: Array<string> = Environment.Keys(); // keys 包含 accessibilityEnable
 | key                  | 类型            | 说明                                                         |
 | -------------------- | --------------- | ------------------------------------------------------------ |
 | accessibilityEnabled | string          | 无障碍屏幕朗读是否启用。当无法获取环境变量中的accessibilityEnabled的值时，将通过envProp、envProps等接口传入的开发者指定的默认值添加到AppStorage中。 |
-| colorMode            | ColorMode       | 深浅色模式，可选值为：<br/>-&nbsp;ColorMode.LIGHT：浅色模式；<br/>-&nbsp;ColorMode.DARK：深色模式。 |
+| colorMode            | [ColorMode](./ts-state-management-environment-variables.md#colormode)       | 深浅色模式，可选值为：<br/>-&nbsp;ColorMode.LIGHT：浅色模式；<br/>-&nbsp;ColorMode.DARK：深色模式。 |
 | fontScale            | number          | 字体大小比例。                                               |
 | fontWeightScale      | number          | 字重比例。                                                   |
-| layoutDirection      | LayoutDirection | 布局方向类型，可选值为：<br/>-&nbsp;LayoutDirection.LTR：从左到右；<br/>-&nbsp;LayoutDirection.RTL：从右到左。<br/>-&nbsp;Auto：跟随系统。 |
+| layoutDirection      | [LayoutDirection](./ts-state-management-environment-variables.md#layoutdirection) | 布局方向类型，可选值为：<br/>-&nbsp;LayoutDirection.LTR：从左到右；<br/>-&nbsp;LayoutDirection.RTL：从右到左。<br/>-&nbsp;Auto：跟随系统。 |
 | languageCode         | string          | 当前系统语言，小写字母，例如zh。                             |
-
-### ColorMode
-
-系统当前深浅色模式
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称  | 值    | 说明      |
-| ----- | -----| ----------|
-| LIGHT | 0    | 浅色模式。 |
-| DARK  | 1    | 深色模式。 |
-
-
-### LayoutDirection
-
-系统的布局方向类型
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称  | 值    | 说明      |
-| ----- | -----| ----------|
-| LTR   | 0    | 从左向右布局。 |
-| RTL   | 1    | 从右向左布局。 |
-| AUTO  | 2    | 自动布局，跟随系统。 |

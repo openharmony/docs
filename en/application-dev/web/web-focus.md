@@ -27,7 +27,7 @@ For details about the focus, focus chain, and focus navigation of the **Web** co
 Focus traversal can be divided into active and passive based on how it is triggered. For details, see [Focus Traversal Guidelines](../ui/arkts-common-events-focus-event.md#focus-traversal-guidelines).
 
 ### Active Focus Traversal
-Refers to focus movement initiated by deliberate actions, such as keyboard shortcuts (Tab, Shift+Tab) and clicks/touches (gesture, mouse, or touchpad).
+Active focus traversal refers to focus movement initiated by deliberate actions, such as keyboard shortcuts (Tab, Shift+Tab) and clicks/touches (gesture, mouse, or touchpad).
 
 - requestFocus
 

@@ -144,7 +144,7 @@ static getWidth(rect: common2D.Rect): number
 import { drawing, common2D } from '@kit.ArkGraphics2D';
 let rect = drawing.RectUtils.makeLtrb(10, 10, 20, 20);
 let width = drawing.RectUtils.getWidth(rect);
-console.info('width ：', width);
+console.info('width:', width);
 ```
 
 ## getHeight<sup>20+</sup>

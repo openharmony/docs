@@ -373,12 +373,12 @@ on(type: 'timeUpdate', callback: Callback\<number>): void
 ```ts
 audioPlayer.on('timeUpdate', (newTime: number) => {    //设置'timeUpdate'事件回调。
   if (newTime == null) {
-    console.error('Failed to do timeUpadate');
+    console.error('Failed to do timeUpdate');
     return;
   }
-  console.info('Succeeded in doing timeUpadate. seekDoneTime: ' + newTime);
+  console.info('Succeeded in doing timeUpdate. seekDoneTime: ' + newTime);
 });
-audioPlayer.play();    //开始播放后，自动触发时间戳更新事件。
+audioPlayer.play();    // 开始播放后，自动触发时间戳更新事件。
 ```
 
 ## on('audioInterrupt')<sup>(deprecated)</sup>

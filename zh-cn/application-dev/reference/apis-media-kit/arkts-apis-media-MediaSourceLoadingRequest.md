@@ -62,7 +62,7 @@ let uuid = 1;
 let request = requests.get(uuid);
 let offset = 0; // 当前媒体数据相对于资源起始位置的偏移量
 let buf = new ArrayBuffer(0); // 由应用定义，推送给播放器的数据
-let num = request.respondData(uuid, offset, buf);
+let num = request?.respondData(uuid, offset, buf);
 ```
 
 ## respondHeader<sup>18+</sup>
@@ -101,7 +101,7 @@ let header:Record<string, string> = {
   'content-length' : 'xxx'
 };
 let request = requests.get(uuid);
-request.respondHeader(uuid, header);
+request?.respondHeader(uuid, header);
 ```
 
 ## finishLoading<sup>18+</sup>
@@ -125,10 +125,11 @@ finishLoading(uuid: number, state: LoadingRequestError): void
 
 ```ts
 import { HashMap } from '@kit.ArkTS';
+
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
 let request = requests.get(uuid);
 let loadingError = media.LoadingRequestError.LOADING_ERROR_SUCCESS;
-request.finishLoading(uuid, loadingError);
+request?.finishLoading(uuid, loadingError);
 ```

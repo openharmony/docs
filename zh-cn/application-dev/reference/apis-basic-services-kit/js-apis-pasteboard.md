@@ -544,7 +544,7 @@ type ProgressListener = (progress: ProgressInfo) => void
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-### cancel
+### cancel<sup>15+</sup>
 
 cancel(): void
 

@@ -1,10 +1,17 @@
 # Clearing Repeated Notifications Across Devices
 
+<!--Kit: Notification Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
+
 Since API version 20, you can clear repeated notifications across devices to prevent users from being disturbed by notifications published through different ways (for example, notifications sent from a mobile phone to the current device are the same as those published by Push Kit).
 
 ## Implementation Principles
 
-When an application publishes a notification, the notification carries the [appMessageId](../../application-dev/reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest) field, which is a unique identifier. After receiving notifications from multiple ways, the distributed notification service checks the notification based on this field to clear repeated notifications.
+When an application publishes a notification, the notification carries the [appMessageId](../../application-dev/reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1) field, which is a unique identifier. After receiving notifications from multiple ways, the cross-device notification service checks the notification based on this field to clear duplicate notifications.
 
 Only the first notification is displayed on the device. Duplicate notifications received later will be silently cleared and will not be displayed or notified.
 
@@ -14,8 +21,8 @@ Only the first notification is displayed on the device. Duplicate notifications 
 
 ## Constraints
 
-- The uniqueness of the [appMessageId](../../application-dev/reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest) field must be ensured. This field for the same notification must stay consistent on all devices.
-- The [appMessageId](../../application-dev/reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest) field is valid only within 24 hours after the notification is published. If the notification is published beyond 24 hours or the device is restarted, this field becomes invalid.
+- The uniqueness of the [appMessageId](../../application-dev/reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1) field must be ensured. This field for the same notification must stay consistent on all devices.
+- The [appMessageId](../../application-dev/reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1) field is valid only within 24 hours after the notification is published. If the notification is published beyond 24 hours or the device is restarted, this field becomes invalid.
 
 ## Available APIs
 
@@ -37,11 +44,11 @@ Only the first notification is displayed on the device. Duplicate notifications 
     ```typescript
     // publish callback
     let publishCallback = (err: BusinessError): void => {
-    if (err) {
-        console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info(`Succeeded in publishing notification.`);
-    }
+        if (err) {
+            console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+        } else {
+            console.info(`Succeeded in publishing notification.`);
+        }
     }
     // NotificationRequest object
     let notificationRequest: notificationManager.NotificationRequest = {
@@ -49,12 +56,12 @@ Only the first notification is displayed on the device. Duplicate notifications 
         content: {
             notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
             normal: {
-            title: "test_title",
-            text: "test_text",
-            additionalText: "test_additionalText"
+            title: 'test_title',
+            text: 'test_text',
+            additionalText: 'test_additionalText'
             }
         },
-        appMessageId: 'test_appmessageid_1'
+        appMessageId: 'test_appMessageId_1'
     };
     notificationManager.publish(notificationRequest, publishCallback);
     ```

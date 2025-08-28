@@ -42,57 +42,57 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme, CustomDarkColor
 
 | 名称                           | 类型                                                 | 只读 | 可选 | 说明               |
 |-------------------------------|-----------------------------------------------------|-----|-----|------------------|
-| brand                         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 品牌色。             |
-| warning                       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 一级警示色。           |
-| alert                         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 二级提示色。           |
-| confirm                       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 确认色。             |
-| fontPrimary                   | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 一级文本字体颜色。        |
-| fontSecondary                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 二级文本字体颜色。        |
-| fontTertiary                  | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 三级文本字体颜色。        |
-| fontFourth                    | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 四级文本字体颜色。        |
-| fontEmphasize                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 高亮字体颜色。          |
-| fontOnPrimary                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 一级文本反转颜色，用于彩色背景。 |
-| fontOnSecondary               | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 二级文本反转颜色，用于彩色背景。 |
-| fontOnTertiary                | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 三级文本反转颜色，用于彩色背景。 |
-| fontOnFourth                  | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 四级文本反转颜色，用于彩色背景。 |
-| iconPrimary                   | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 一级图标颜色。          |
-| iconSecondary                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 二级图标颜色。          |
-| iconTertiary                  | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 三级图标颜色。          |
-| iconFourth                    | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 四级图标颜色。          |
-| iconEmphasize                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 高亮图标颜色。          |
-| iconSubEmphasize              | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 高亮辅助图标颜色。        |
-| iconOnPrimary                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 一级图标反转颜色，用于彩色背景。 |
-| iconOnSecondary               | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 二级图标反转颜色，用于彩色背景。 |
-| iconOnTertiary                | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 三级图标反转颜色，用于彩色背景。 |
-| iconOnFourth                  | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 四级图标反转颜色，用于彩色背景。 |
-| backgroundPrimary             | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 一级背景颜色（实色，不透明）。  |
-| backgroundSecondary           | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 二级背景颜色（实色，不透明）。  |
-| backgroundTertiary            | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 三级背景颜色（实色，不透明）。  |
-| backgroundFourth              | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 四级背景颜色（实色，不透明）。  |
-| backgroundEmphasize           | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 高亮背景颜色（实色，不透明）。  |
-| compForegroundPrimary         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 前背景。             |
-| compBackgroundPrimary         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 白色背景。            |
-| compBackgroundPrimaryTran     | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 白色透明背景。          |
-| compBackgroundPrimaryContrary | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 常亮背景。            |
-| compBackgroundGray            | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 灰色背景。            |
-| compBackgroundSecondary       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 二级背景。            |
-| compBackgroundTertiary        | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 三级背景。            |
-| compBackgroundEmphasize       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 高亮背景。            |
-| compBackgroundNeutral         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 黑色中性高亮背景颜色。      |
-| compEmphasizeSecondary        | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 20%高亮背景颜色。       |
-| compEmphasizeTertiary         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 10%高亮背景颜色。       |
-| compDivider                   | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 通用分割线颜色。         |
-| compCommonContrary            | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 通用反转颜色。          |
-| compBackgroundFocus           | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 获焦态背景颜色。         |
-| compFocusedPrimary            | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 获焦态一级反转颜色。       |
-| compFocusedSecondary          | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 获焦态二级反转颜色。       |
-| compFocusedTertiary           | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 获焦态三级反转颜色。       |
-| interactiveHover              | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 通用悬停交互式颜色。       |
-| interactivePressed            | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 通用按压交互式颜色。       |
-| interactiveFocus              | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 通用获焦交互式颜色。       |
-| interactiveActive             | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 通用激活交互式颜色。       |
-| interactiveSelect             | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 通用选择交互式颜色。       |
-| interactiveClick              | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 通用点击交互式颜色。       |
+| brand                         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 品牌色。</br>**影响组件：** [TextInput](./arkui-ts/ts-basic-components-textinput.md)、[Search](./arkui-ts/ts-basic-components-search.md)        |
+| warning                       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 一级警示色。</br>**影响组件：** [TipsDialog](./arkui-ts/ohos-arkui-advanced-Dialog.md#tipsdialog)、[AlertDialog](./arkui-ts/ohos-arkui-advanced-Dialog.md#alertdialog)、[CustomContentDialog](./arkui-ts/ohos-arkui-advanced-Dialog.md#customcontentdialog12)、</br>[Badge](./arkui-ts/ts-container-badge.md)、[Button](./arkui-ts/ts-basic-components-button.md)          |
+| alert                         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 二级提示色。</br>**影响组件：** 暂无组件使用。           |
+| confirm                       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 确认色。</br>**影响组件：** 暂无组件使用。             |
+| fontPrimary                   | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 一级文本字体颜色。</br>**影响组件：** [EditableTitleBar](./arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)、[LoadingDialog](./arkui-ts/ohos-arkui-advanced-Dialog.md#loadingdialog)、[TipsDialog](./arkui-ts/ohos-arkui-advanced-Dialog.md#tipsdialog)、</br>[ConfirmDialog](./arkui-ts/ohos-arkui-advanced-Dialog.md#confirmdialog)、[AlertDialog](./arkui-ts/ohos-arkui-advanced-Dialog.md#alertdialog)、[SelectDialog](./arkui-ts/ohos-arkui-advanced-Dialog.md#selectdialog)、</br>[CustomContentDialog](./arkui-ts/ohos-arkui-advanced-Dialog.md#customcontentdialog12)、[Swiper](./arkui-ts/ts-container-swiper.md)、[Text](./arkui-ts/ts-basic-components-text.md)、</br>[SubHeader](./arkui-ts/ohos-arkui-advanced-SubHeader.md)、[ProgressButton](./arkui-ts/ohos-arkui-advanced-ProgressButton.md)、[AlphabetIndexer](./arkui-ts/ts-container-alphabet-indexer.md)、</br>[Popup](./arkui-ts/ohos-arkui-advanced-Popup.md)、[Select](./arkui-ts/ts-basic-components-select.md)、[Chip](./arkui-ts/ohos-arkui-advanced-Chip.md)、</br>[ToolBar](./arkui-ts/ohos-arkui-advanced-ToolBar.md)、[Menu](./arkui-ts/ts-basic-components-menu.md)、[TextInput](./arkui-ts/ts-basic-components-textinput.md)、</br>[Search](./arkui-ts/ts-basic-components-search.md)、[Counter](./arkui-ts/ts-container-counter.md)、[TimePicker](./arkui-ts/ts-basic-components-timepicker.md)、[DatePicker](./arkui-ts/ts-basic-components-datepicker.md)、</br>[TextPicker](./arkui-ts/ts-basic-components-textpicker.md)、[ComposeListItem](./arkui-ts/ohos-arkui-advanced-ComposeListItem.md)、[TreeView](./arkui-ts/ohos-arkui-advanced-TreeView.md)        |
+| fontSecondary                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 二级文本字体颜色。</br>**影响组件：** [EditableTitleBar](./arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)、[AlertDialog](./arkui-ts/ohos-arkui-advanced-Dialog.md#alertdialog)、[CustomContentDialog](./arkui-ts/ohos-arkui-advanced-Dialog.md#customcontentdialog12)、</br>[SubHeader](./arkui-ts/ohos-arkui-advanced-SubHeader.md)、[AlphabetIndexer](./arkui-ts/ts-container-alphabet-indexer.md)、[Popup](./arkui-ts/ohos-arkui-advanced-Popup.md)、</br>[TextInput](./arkui-ts/ts-basic-components-textinput.md)、[Search](./arkui-ts/ts-basic-components-search.md)、[ComposeListItem](./arkui-ts/ohos-arkui-advanced-ComposeListItem.md)、</br>[TreeView](./arkui-ts/ohos-arkui-advanced-TreeView.md)        |
+| fontTertiary                  | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 三级文本字体颜色。</br>**影响组件：** [ComposeListItem](./arkui-ts/ohos-arkui-advanced-ComposeListItem.md)        |
+| fontFourth                    | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 四级文本字体颜色。</br>**影响组件：** 暂无组件使用。        |
+| fontEmphasize                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 高亮字体颜色。</br>**影响组件：** [TipsDialog](./arkui-ts/ohos-arkui-advanced-Dialog.md#tipsdialog)、[ConfirmDialog](./arkui-ts/ohos-arkui-advanced-Dialog.md#confirmdialog)、[AlertDialog](./arkui-ts/ohos-arkui-advanced-Dialog.md#alertdialog)、</br>[SelectDialog](./arkui-ts/ohos-arkui-advanced-Dialog.md#selectdialog)、[CustomContentDialog](./arkui-ts/ohos-arkui-advanced-Dialog.md#customcontentdialog12)、[SubHeader](./arkui-ts/ohos-arkui-advanced-SubHeader.md)、</br>[AlphabetIndexer](./arkui-ts/ts-container-alphabet-indexer.md)、[Popup](./arkui-ts/ohos-arkui-advanced-Popup.md)、[Button](./arkui-ts/ts-basic-components-button.md)、</br>[Select](./arkui-ts/ts-basic-components-select.md)、[ToolBar](./arkui-ts/ohos-arkui-advanced-ToolBar.md)、[Search](./arkui-ts/ts-basic-components-search.md)、</br>[TimePicker](./arkui-ts/ts-basic-components-timepicker.md)、[DatePicker](./arkui-ts/ts-basic-components-datepicker.md)、[TextPicker](./arkui-ts/ts-basic-components-textpicker.md)          |
+| fontOnPrimary                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 一级文本反转颜色，用于彩色背景。</br>**影响组件：** [Badge](./arkui-ts/ts-container-badge.md)、[Button](./arkui-ts/ts-basic-components-button.md)、[Chip](./arkui-ts/ohos-arkui-advanced-Chip.md) |
+| fontOnSecondary               | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 二级文本反转颜色，用于彩色背景。</br>**影响组件：** 暂无组件使用。 |
+| fontOnTertiary                | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 三级文本反转颜色，用于彩色背景。</br>**影响组件：** 暂无组件使用。 |
+| fontOnFourth                  | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 四级文本反转颜色，用于彩色背景。</br>**影响组件：** 暂无组件使用。 |
+| iconPrimary                   | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 一级图标颜色。</br>**影响组件：** [EditableTitleBar](./arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)、[Swiper](./arkui-ts/ts-container-swiper.md)、[ToolBar](./arkui-ts/ohos-arkui-advanced-ToolBar.md)、</br>[TreeView](./arkui-ts/ohos-arkui-advanced-TreeView.md)          |
+| iconSecondary                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 二级图标颜色。</br>**影响组件：** [LoadingDialog](./arkui-ts/ohos-arkui-advanced-Dialog.md#loadingdialog)、[SubHeader](./arkui-ts/ohos-arkui-advanced-SubHeader.md)、[LoadingProgress](./arkui-ts/ts-basic-components-loadingprogress.md)、</br>[Popup](./arkui-ts/ohos-arkui-advanced-Popup.md)、[Chip](./arkui-ts/ohos-arkui-advanced-Chip.md)、[Search](./arkui-ts/ts-basic-components-search.md)、</br>[TreeView](./arkui-ts/ohos-arkui-advanced-TreeView.md)          |
+| iconTertiary                  | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 三级图标颜色。</br>**影响组件：** [SubHeader](./arkui-ts/ohos-arkui-advanced-SubHeader.md)          |
+| iconFourth                    | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 四级图标颜色。</br>**影响组件：** [Checkbox](./arkui-ts/ts-basic-components-checkbox.md)、[CheckboxGroup](arkui-ts/ts-basic-components-checkboxgroup.md)、[Radio](./arkui-ts/ts-basic-components-radio.md)          |
+| iconEmphasize                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 高亮图标颜色。</br>**影响组件：** [ToolBar](./arkui-ts/ohos-arkui-advanced-ToolBar.md)          |
+| iconSubEmphasize              | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 高亮辅助图标颜色。</br>**影响组件：** 暂无组件使用。        |
+| iconOnPrimary                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 一级图标反转颜色，用于彩色背景。</br>**影响组件：** [Checkbox](./arkui-ts/ts-basic-components-checkbox.md)、[CheckboxGroup](arkui-ts/ts-basic-components-checkboxgroup.md)、[Radio](./arkui-ts/ts-basic-components-radio.md) |
+| iconOnSecondary               | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 二级图标反转颜色，用于彩色背景。</br>**影响组件：** [Chip](./arkui-ts/ohos-arkui-advanced-Chip.md) |
+| iconOnTertiary                | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 三级图标反转颜色，用于彩色背景。</br>**影响组件：** 暂无组件使用。 |
+| iconOnFourth                  | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 四级图标反转颜色，用于彩色背景。</br>**影响组件：** [ProgressButton](./arkui-ts/ohos-arkui-advanced-ProgressButton.md) |
+| backgroundPrimary             | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 一级背景颜色（实色，不透明）。</br>**影响组件：** [TextInput](./arkui-ts/ts-basic-components-textinput.md)、[QRCode](./arkui-ts/ts-basic-components-qrcode.md)  |
+| backgroundSecondary           | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 二级背景颜色（实色，不透明）。</br>**影响组件：** 暂无组件使用。  |
+| backgroundTertiary            | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 三级背景颜色（实色，不透明）。</br>**影响组件：** 暂无组件使用。  |
+| backgroundFourth              | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 四级背景颜色（实色，不透明）。</br>**影响组件：** 暂无组件使用。  |
+| backgroundEmphasize           | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 高亮背景颜色（实色，不透明）。</br>**影响组件：** [Progress](./arkui-ts/ts-basic-components-progress.md)、[Button](./arkui-ts/ts-basic-components-button.md)、[Slider](./arkui-ts/ts-basic-components-slider.md)  |
+| compForegroundPrimary         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 前背景。</br>**影响组件：** [QRCode](./arkui-ts/ts-basic-components-qrcode.md)            |
+| compBackgroundPrimary         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 白色背景。</br>**影响组件：** 暂无组件使用。            |
+| compBackgroundPrimaryTran     | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 白色透明背景。</br>**影响组件：** 暂无组件使用。         |
+| compBackgroundPrimaryContrary | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 常亮背景。</br>**影响组件：** [Toggle](./arkui-ts/ts-basic-components-toggle.md)、[Slider](./arkui-ts/ts-basic-components-slider.md)           |
+| compBackgroundGray            | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 灰色背景。</br>**影响组件：** 暂无组件使用。            |
+| compBackgroundSecondary       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 二级背景。</br>**影响组件：** [Swiper](./arkui-ts/ts-container-swiper.md)、[Slider](./arkui-ts/ts-basic-components-slider.md)            |
+| compBackgroundTertiary        | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 三级背景。</br>**影响组件：** [EditableTitleBar](./arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)、[Progress](./arkui-ts/ts-basic-components-progress.md)、[AlphabetIndexer](./arkui-ts/ts-container-alphabet-indexer.md)、</br>[Button](./arkui-ts/ts-basic-components-button.md)、[Select](./arkui-ts/ts-basic-components-select.md)、[Toggle](./arkui-ts/ts-basic-components-toggle.md)、</br>[Chip](./arkui-ts/ohos-arkui-advanced-Chip.md)、[TextInput](./arkui-ts/ts-basic-components-textinput.md)、[Search](./arkui-ts/ts-basic-components-search.md)            |
+| compBackgroundEmphasize       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 高亮背景。</br>**影响组件：** [Swiper](./arkui-ts/ts-container-swiper.md)、[Toggle](./arkui-ts/ts-basic-components-toggle.md)、[Chip](./arkui-ts/ohos-arkui-advanced-Chip.md)、</br>[Checkbox](./arkui-ts/ts-basic-components-checkbox.md)、[CheckboxGroup](arkui-ts/ts-basic-components-checkboxgroup.md)、[Radio](./arkui-ts/ts-basic-components-radio.md)            |
+| compBackgroundNeutral         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 黑色中性高亮背景颜色。</br>**影响组件：** [PatternLock](./arkui-ts/ts-basic-components-patternlock.md)      |
+| compEmphasizeSecondary        | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 20%高亮背景颜色。</br>**影响组件：** [Progress](./arkui-ts/ts-basic-components-progress.md)、[ProgressButton](./arkui-ts/ohos-arkui-advanced-ProgressButton.md)、[AlphabetIndexer](./arkui-ts/ts-container-alphabet-indexer.md)、</br>[Select](./arkui-ts/ts-basic-components-select.md)、[Toggle](./arkui-ts/ts-basic-components-toggle.md)       |
+| compEmphasizeTertiary         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 10%高亮背景颜色。</br>**影响组件：** 暂无组件使用。       |
+| compDivider                   | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 通用分割线颜色。</br>**影响组件：** [SelectDialog](./arkui-ts/ohos-arkui-advanced-Dialog.md#selectdialog)、[PatternLock](./arkui-ts/ts-basic-components-patternlock.md)、[Divider](./arkui-ts/ts-basic-components-divider.md)         |
+| compCommonContrary            | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 通用反转颜色。</br>**影响组件：** 暂无组件使用。          |
+| compBackgroundFocus           | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 获焦态背景颜色。</br>**影响组件：** 暂无组件使用。         |
+| compFocusedPrimary            | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 获焦态一级反转颜色。</br>**影响组件：** 暂无组件使用。       |
+| compFocusedSecondary          | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 获焦态二级反转颜色。</br>**影响组件：** 暂无组件使用。       |
+| compFocusedTertiary           | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 获焦态三级反转颜色。</br>**影响组件：** [Scroll](arkui-ts/ts-container-scroll.md)       |
+| interactiveHover              | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 通用悬停交互式颜色。</br>**影响组件：** [EditableTitleBar](./arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)、[Chip](./arkui-ts/ohos-arkui-advanced-Chip.md)、[TreeView](./arkui-ts/ohos-arkui-advanced-TreeView.md)      |
+| interactivePressed            | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 通用按压交互式颜色。</br>**影响组件：** [EditableTitleBar](./arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)、[Chip](./arkui-ts/ohos-arkui-advanced-Chip.md)、[TreeView](./arkui-ts/ohos-arkui-advanced-TreeView.md)       |
+| interactiveFocus              | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 通用获焦交互式颜色。</br>**影响组件：** [EditableTitleBar](./arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)、[Chip](./arkui-ts/ohos-arkui-advanced-Chip.md)、[TreeView](./arkui-ts/ohos-arkui-advanced-TreeView.md)       |
+| interactiveActive             | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 通用激活交互式颜色。</br>**影响组件：** [TreeView](./arkui-ts/ohos-arkui-advanced-TreeView.md)       |
+| interactiveSelect             | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 通用选择交互式颜色。</br>**影响组件：** [TreeView](./arkui-ts/ohos-arkui-advanced-TreeView.md)       |
+| interactiveClick              | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 通用点击交互式颜色。</br>**影响组件：** 暂无组件使用。       |
 
 ## CustomTheme
 

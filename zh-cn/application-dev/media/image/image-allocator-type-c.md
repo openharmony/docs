@@ -55,7 +55,7 @@
 
 - 解码HDR图片。
 - 解码HEIF格式图片。
-- 解码JPEG格式图片，当原图的宽和高均在1024至8192之间，[desiredPixelFormat](../../reference/apis-image-kit/capi-image-nativemodule-oh-decodingoptions.md)为RGBA_8888或NV21，同时硬件不繁忙（并发数为3）。
+- 解码JPEG格式图片，当原图的宽和高均在1024至8192之间，[pixelFormat](../../reference/apis-image-kit/capi-image-nativemodule-oh-decodingoptions.md)为[PIXEL_FORMAT_RGBA_8888](../../reference/apis-image-kit/capi-pixelmap-native-h.md#pixel_format)或[PIXEL_FORMAT_NV21](../../reference/apis-image-kit/capi-pixelmap-native-h.md#pixel_format)，同时硬件不繁忙（并发数为3）。
 - 解码其他格式图片。要求[desiredSize](../../reference/apis-image-kit/capi-image-nativemodule-oh-decodingoptions.md)大于等于512 * 512（未设置desiredSize时按原图尺寸考虑），并且宽度为64的倍数。
 
 除上述场景外，其余情况均使用SHARE_MEMORY。

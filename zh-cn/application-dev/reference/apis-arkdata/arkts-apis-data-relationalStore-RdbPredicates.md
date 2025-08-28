@@ -1016,7 +1016,7 @@ predicates.indexedBy("SALARY");
 
 in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
-配置谓词以匹配数据表的field列中值在给定范围内的字段。
+配置谓词，使数据表中`field`列的值在给定范围内。若`value`为空数组，则查询时不对此列进行限定，查询全部数据。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 

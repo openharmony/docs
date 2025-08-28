@@ -62,43 +62,66 @@ ArkUI开发框架在NDK接口主要提供点击手势、拖动手势、滑动手
   通过给组件绑定点击手势可在组件被点击时触发此回调，可指定触发回调需要的点击次数和手指个数。
 
   ```
-  ArkUI_GestureRecognizer* (*createTapGesture)(int32_t countNum, int32_t fingersNum);
+   // 获取手势Native接口集合
+   auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
+               OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
+   // 创建点击手势
+   auto tapGesture = gestureApi->createTapGesture(1, 1);
   ```
 
 - 拖动手势
   通过给组件绑定拖动手势可在用户拖动组件时触发回调，可指定触发回调需要的手指个数、拖动方向、拖动距离。单位为px。
   ```
-  ArkUI_GestureRecognizer* (*createPanGesture)(
-  int32_t fingersNum, ArkUI_GestureDirectionMask directions, double distanceNum);
+    // 获取手势Native接口集合
+    auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
+        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
+    // 创建拖动手势
+    auto panGesture = gestureApi->createPanGesture(1, GESTURE_DIRECTION_ALL, 1);
   ```
 
 - 长按手势
   通过给组件绑定长按手势可在用户长按组件时触发回调，可指定触发回调需要的手指个数、长按时间（单位毫秒）、是否连续触发。
 
   ```
-  ArkUI_GestureRecognizer* (*createLongPressGesture)(int32_t fingersNum, bool repeatResult, int32_t durationNum);
+    // 获取手势Native接口集合
+    auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
+        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
+    // 创建长按手势
+    auto longPressGesture = gestureApi->createLongPressGesture(1, true, 1000);
   ```
 
 - 捏合手势
   通过给组件绑定捏合手势可在用户捏合组件时触发回调，可指定触发回调需要的手指个数（最小为2）、捏合距离（单位px）。
 
   ```
-  ArkUI_GestureRecognizer* (*createPinchGesture)(int32_t fingersNum, double distanceNum);
+    // 获取手势Native接口集合
+    auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
+        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
+    // 创建捏合手势
+    auto pinchGesture = gestureApi->createPinchGesture(1, 10);
   ```
 
 - 旋转手势
   通过给组件绑定旋转手势可在用户旋转组件时触发回调，可指定触发回调需要的手指个数（最小为2）、旋转角度。
 
   ```
-  ArkUI_GestureRecognizer* (*createRotationGesture)(int32_t fingersNum, double angleNum);
+    // 获取手势Native接口集合
+    auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
+        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
+    // 创建旋转手势
+    auto rotationGesture = gestureApi->createRotationGesture(1, 10);
   ```
 
 - 滑动手势
   通过给组件绑定滑动手势可在用户滑动组件时触发回调，可指定触发回调需要的手指个数（最小为1）、滑动方向、滑动速度（单位px/s）。
 
   ```
-  ArkUI_GestureRecognizer* (*createSwipeGesture)(
-  int32_t fingersNum, ArkUI_GestureDirectionMask directions, double speedNum);
+    // 获取手势Native接口集合
+    auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
+        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
+    // 创建滑动手势
+    auto swipeGesture = gestureApi->createSwipeGesture(1, GESTURE_DIRECTION_ALL, 50);
+  
   ```
 
 
@@ -116,10 +139,18 @@ ArkUI开发框架在NDK接口主要提供点击手势、拖动手势、滑动手
 以顺序识别长按和滑动手势为例：
 
 ```
+#include "napi/native_api.h"
+#include <arkui/native_animate.h>
+#include <arkui/native_gesture.h>
+#include <arkui/native_interface.h>
+#include <arkui/native_node_napi.h>
+#include <hilog/log.h>
+const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
+
 ArkUI_NodeHandle testGestureExample() {
     auto column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
 
-    // 创建手势并设置回调
+    // 创建节点
     ArkUI_NumberValue value[] = {{.u32 = 0xff112233}};
     ArkUI_AttributeItem item = {value, 1};
     nodeAPI->setAttribute(column, NODE_BACKGROUND_COLOR, &item);
@@ -130,15 +161,15 @@ ArkUI_NodeHandle testGestureExample() {
     ArkUI_AttributeItem height = {heightValue, 1};
     nodeAPI->setAttribute(column, NODE_HEIGHT, &height);
 
-    // 判断是否有手势API
+    // 判断是否支持创建手势
     auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
     if (gestureApi->createGroupGesture) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
-                     "onPanActionCallBack, createGroupGesture api exist");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "GestureSampleLog, createGroupGesture api exist");
     } else {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
-                     "onPanActionCallBack, createGroupGesture api not exist");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "GestureSampleLog, createGroupGesture api not exist");
     }
     auto groupGesture = gestureApi->createGroupGesture(ArkUI_GroupGestureMode::SEQUENTIAL_GROUP);
 
@@ -146,8 +177,8 @@ ArkUI_NodeHandle testGestureExample() {
     auto longPressGesture = gestureApi->createLongPressGesture(1, true, 500);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(longPressGesture);
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
-                     "onPanActionCallBack longPressGesture,ArkUI_GestureRecognizerType%{public}d", type);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "GestureSampleLog longPressGesture,ArkUI_GestureRecognizerType%{public}d", type);
     }
     // 给长按手势定回调
     auto onActionCallBackPanLongPress = [](ArkUI_GestureEvent *event, void *extraParam) {
@@ -167,8 +198,8 @@ ArkUI_NodeHandle testGestureExample() {
         float repeat = OH_ArkUI_LongPress_GetRepeatCount(event);
 
         OH_LOG_Print(
-            LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
-            "onPanActionCallBack,longPressGesturecallback actionType:%{public}d,velocity%{public}f,velocityX"
+            LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+            "GestureSampleLog,longPressGesturecallback actionType:%{public}d,velocity%{public}f,velocityX"
             "%{public}f;"
             "velocityY%{public}f,offsetX%{public}f,offsetY%{public}f,scale%{public}fcenterX"
             "%{public}fcenterY"
@@ -183,14 +214,14 @@ ArkUI_NodeHandle testGestureExample() {
     // 将长按手势添加到手势组
     if (gestureApi->addChildGesture) {
         gestureApi->addChildGesture(groupGesture, longPressGesture);
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "onPanActionCallBack, addChildGesture longPressGesture");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GestureSampleLog, addChildGesture longPressGesture");
     }
     // 创建滑动手势 swipe
     auto swipeGesture = gestureApi->createSwipeGesture(1, GESTURE_DIRECTION_ALL, 100);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(swipeGesture);
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
-                     "onPanActionCallBack, ArkUI_GestureRecognizerType %{public}d", type);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "GestureSampleLog, ArkUI_GestureRecognizerType %{public}d", type);
     }
     // 给滑动手势绑定回调
     auto onActionCallBack = [](ArkUI_GestureEvent *event, void *extraParam) {
@@ -211,8 +242,8 @@ ArkUI_NodeHandle testGestureExample() {
 
 
         // 通过日志查看
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
-                     "onPanActionCallBack, swipeGesture callback actionType: %{public}d, velocity "
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "GestureSampleLog, swipeGesture callback actionType: %{public}d, velocity "
                      "%{public}f,velocityX "
                      "%{public}f; "
                      "velocityY %{public}f, offsetX %{public}f, offsetY %{public}f, scale %{public}fcenterX "
@@ -234,8 +265,8 @@ ArkUI_NodeHandle testGestureExample() {
     // 将滑动手势添加到手势组
     if (gestureApi->addChildGesture) {
         gestureApi->addChildGesture(groupGesture, swipeGesture);
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
-                     "onPanActionCallBack, addChildGesture swipeGesture");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "GestureSampleLog, addChildGesture swipeGesture");
     }
     // 将手势组设置到组件上
     gestureApi->addGestureToNode(column, groupGesture, PRIORITY, NORMAL_GESTURE_MASK);
@@ -251,10 +282,18 @@ ArkUI_NodeHandle testGestureExample() {
 以并行识别长按和滑动手势为例：
 
 ```
+#include "napi/native_api.h"
+#include <arkui/native_animate.h>
+#include <arkui/native_gesture.h>
+#include <arkui/native_interface.h>
+#include <arkui/native_node_napi.h>
+#include <hilog/log.h>
+const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
+
 ArkUI_NodeHandle testGestureExample() {
     auto column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
 
-    // 创建手势并设置回调
+    // 创建节点
     ArkUI_NumberValue value[] = {{.u32 = 0xff112233}};
     ArkUI_AttributeItem item = {value, 1};
     nodeAPI->setAttribute(column, NODE_BACKGROUND_COLOR, &item);
@@ -265,15 +304,15 @@ ArkUI_NodeHandle testGestureExample() {
     ArkUI_AttributeItem height = {heightValue, 1};
     nodeAPI->setAttribute(column, NODE_HEIGHT, &height);
 
-    // 判断是否有手势API
+    // 判断是否支持创建手势
     auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
     if (gestureApi->createGroupGesture) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
-                     "onPanActionCallBack, createGroupGesture api exist");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "GestureSampleLog, createGroupGesture api exist");
     } else {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
-                     "onPanActionCallBack, createGroupGesture api not exist");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "GestureSampleLog, createGroupGesture api not exist");
     }
 
     // 创建手势组
@@ -283,8 +322,8 @@ ArkUI_NodeHandle testGestureExample() {
     auto longPressGesture = gestureApi->createLongPressGesture(1, true, 500);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(longPressGesture);
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
-                     "onPanActionCallBack,ArkUI_GestureRecognizerType%{public}d", type);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "GestureSampleLog,ArkUI_GestureRecognizerType%{public}d", type);
     }
     // 给长按手势定回调
     auto onActionCallBackPanLongPress = [](ArkUI_GestureEvent *event, void *extraParam) {
@@ -304,8 +343,8 @@ ArkUI_NodeHandle testGestureExample() {
         float repeat = OH_ArkUI_LongPress_GetRepeatCount(event);
 
         OH_LOG_Print(
-            LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
-            "onPanActionCallBack,longPressGesturecallback actionType:%{public}d,velocity%{public}f,velocityX"
+            LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+            "GestureSampleLog,longPressGesturecallback actionType:%{public}d,velocity%{public}f,velocityX"
             "%{public}f;"
             "velocityY%{public}f,OffsetX%{public}f,OffsetY%{public}f,scale%{public}fCenterX"
             "%{public}fCenterY"
@@ -321,14 +360,14 @@ ArkUI_NodeHandle testGestureExample() {
     // 将长按手势添加到手势组
     if (gestureApi->addChildGesture) {
         gestureApi->addChildGesture(groupGesture, longPressGesture);
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "onPanActionCallBack, addChildGesture longPressGesture");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GestureSampleLog, addChildGesture longPressGesture");
     }
     // 创建滑动手势 swipe
     auto swipeGesture = gestureApi->createSwipeGesture(1, GESTURE_DIRECTION_ALL, 100);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(swipeGesture);
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
-                     "onPanActionCallBack, ArkUI_GestureRecognizerType %{public}d", type);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "GestureSampleLog, ArkUI_GestureRecognizerType %{public}d", type);
     }
     // 给滑动手势绑定回调
     auto onActionCallBack = [](ArkUI_GestureEvent *event, void *extraParam) {
@@ -349,8 +388,8 @@ ArkUI_NodeHandle testGestureExample() {
 
 
         // 通过日志查看
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
-                     "onPanActionCallBack, swipeGesture callback actionType: %{public}d, velocity "
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "GestureSampleLog, swipeGesture callback actionType: %{public}d, velocity "
                      "%{public}f,velocityX "
                      "%{public}f; "
                      "velocityY %{public}f, OffsetX %{public}f, OffsetY %{public}f, scale %{public}fCenterX "
@@ -372,8 +411,8 @@ ArkUI_NodeHandle testGestureExample() {
     // 将滑动手势添加到手势组
     if (gestureApi->addChildGesture) {
         gestureApi->addChildGesture(groupGesture, swipeGesture);
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
-                     "onPanActionCallBack, addChildGesture swipeGesture");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "GestureSampleLog, addChildGesture swipeGesture");
     }
     // 将手势组设置到组件上
     gestureApi->addGestureToNode(column, groupGesture, PRIORITY, NORMAL_GESTURE_MASK);
@@ -386,14 +425,26 @@ ArkUI_NodeHandle testGestureExample() {
 
 互斥识别组合手势对应的ArkUI_GroupGestureMode为EXCLUSIVE_GROUP。互斥识别组合手势中注册的手势将同时进行识别，若有一个手势识别成功，则结束手势识别，其他所有手势识别失败。
 
-以互斥识别平移手势和捏合手势为例：
+以互斥识别拖动手势和捏合手势为例：
 
 ```
-ArkUI_NodeHandle testGestureExample() {
-    auto column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
-    auto button = nodeAPI->createNode(ARKUI_NODE_BUTTON);
+#include "napi/native_api.h"
+#include <arkui/native_animate.h>
+#include <arkui/native_gesture.h>
+#include <arkui/native_interface.h>
+#include <arkui/native_node_napi.h>
+#include <hilog/log.h>
+const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
+static ArkUI_NativeNodeAPI_1 *nodeAPI = nullptr;
 
-    // 创建手势并设置回调
+ArkUI_NodeHandle testGestureExample() {
+    OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nodeAPI);
+    if (nodeAPI == nullptr) {
+        return nullptr;
+    }
+    auto column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
+
+    // 创建节点
     ArkUI_NumberValue value[] = {{.u32 = 0xff112233}};
     ArkUI_AttributeItem item = {value, 1};
     nodeAPI->setAttribute(column, NODE_BACKGROUND_COLOR, &item);
@@ -404,15 +455,15 @@ ArkUI_NodeHandle testGestureExample() {
     ArkUI_AttributeItem height = {heightValue, 1};
     nodeAPI->setAttribute(column, NODE_HEIGHT, &height);
 
-    // 判断是否有手势API
+    // 判断是否支持创建手势
     auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
     if (gestureApi->createGroupGesture) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
-                     "onPanActionCallBack, createGroupGesture api exist");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "GestureSampleLog, createGroupGesture api exist");
     } else {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
-                     "onPanActionCallBack, createGroupGesture api not exist");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "GestureSampleLog, createGroupGesture api not exist");
     }
     auto groupGesture = gestureApi->createGroupGesture(ArkUI_GroupGestureMode::EXCLUSIVE_GROUP);
 
@@ -420,8 +471,8 @@ ArkUI_NodeHandle testGestureExample() {
     auto panGesture = gestureApi->createPanGesture(1, GESTURE_DIRECTION_VERTICAL, 5);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(panGesture);
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
-                     "onPanActionCallBack panGesture, ArkUI_GestureRecognizerType %{public}d", type);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "GestureSampleLog panGesture, ArkUI_GestureRecognizerType %{public}d", type);
     }
     // 给拖动手势绑定回调
     auto onActionCallBackPan = [](ArkUI_GestureEvent *event, void *extraParam) {
@@ -442,8 +493,8 @@ ArkUI_NodeHandle testGestureExample() {
 
         // 通过日志查看
         OH_LOG_Print(
-            LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
-            "onPanActionCallBack, panGesture callback actionType: %{public}d, velocity %{public}f,velocityX "
+            LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+            "GestureSampleLog, panGesture callback actionType: %{public}d, velocity %{public}f,velocityX "
             "%{public}f; "
             "velocityY %{public}f, OffsetX %{public}f, OffsetY %{public}f, scale %{public}fCenterX "
             "%{public}f CenterY"
@@ -458,14 +509,14 @@ ArkUI_NodeHandle testGestureExample() {
     // 将拖动手势添加到手势组
     if (gestureApi->addChildGesture) {
         gestureApi->addChildGesture(groupGesture, panGesture);
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "onPanActionCallBack, addChildGesture panGesture");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GestureSampleLog, addChildGesture panGesture");
     }
     // 创建捏合手势
     auto pinchGesture = gestureApi->createPinchGesture(0, 0);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(pinchGesture);
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
-                     "onPanActionCallBack pinchGesture, ArkUI_GestureRecognizerType %{public}d", type);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "GestureSampleLog pinchGesture, ArkUI_GestureRecognizerType %{public}d", type);
     }
     // 给捏合手势绑定回调
     auto onActionCallBack = [](ArkUI_GestureEvent *event, void *extraParam) {
@@ -486,8 +537,8 @@ ArkUI_NodeHandle testGestureExample() {
 
 
         OH_LOG_Print(
-            LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
-            "onPanActionCallBack, pinchGesture callback actionType: %{public}d, velocity %{public}f,velocityX "
+            LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+            "GestureSampleLog, pinchGesture callback actionType: %{public}d, velocity %{public}f,velocityX "
             "%{public}f; "
             "velocityY %{public}f, OffsetX %{public}f, OffsetY %{public}f, scale %{public}fCenterX "
             "%{public}f CenterY"
@@ -508,7 +559,7 @@ ArkUI_NodeHandle testGestureExample() {
     // 将捏合手势添加到手势组
     if (gestureApi->addChildGesture) {
         gestureApi->addChildGesture(groupGesture, pinchGesture);
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "onPanActionCallBack, addChildGesture pinchGesture");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GestureSampleLog, addChildGesture pinchGesture");
     }
     // 将手势组设置到组件上
     gestureApi->addGestureToNode(column, groupGesture, PRIORITY, NORMAL_GESTURE_MASK);
@@ -607,7 +658,7 @@ ArkUI_NodeHandle testGestureExample() {
                                        GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE |
                                            GESTURE_EVENT_ACTION_END | GESTURE_EVENT_ACTION_CANCEL,
                                        column, onActionCallback);
-   // 将手势添加到colunm组件上，使column组件可以触发单指点击手势
+   // 将手势添加到column组件上，使column组件可以触发单指点击手势
    gestureApi->addGestureToNode(column, TapGesture, ArkUI_GesturePriority::PARALLEL,
                                            ArkUI_GestureMask::NORMAL_GESTURE_MASK);
    ```

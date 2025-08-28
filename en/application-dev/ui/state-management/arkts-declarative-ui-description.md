@@ -1,22 +1,24 @@
 # Declarative UI Description
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sunfei2021-->
+<!--Designer: @sunfei2021-->
+<!--Tester: @sally__-->
+<!--Adviser: @zhang_yixin13-->
 
-
-ArkTS declaratively combines and extends components to describe the UI of an application. It also provides basic methods for configuring attributes, events, and child components to help you implement application interaction logic.
-
+ArkTS describes an application's UI by combining and extending components in a declarative manner. It also provides basic methods for configuring attributes, events, and child components to help you implement application interaction logic.
 
 ## Creating a Component
 
-Depending on the builder, you can create components with or without mandatory parameters.
+You can create a component with or without parameters, depending on the component's constructor.
 
 >  **NOTE**
 >
->  The **new** operator is not required when you create a component.
+>  The **new** keyword is not required for component instantiation.
 
+### Without Parameters
 
-### Without Mandatory Parameters
-
-A struct without mandatory parameters is a component whose API definition has empty parentheses. No parameter needs to be passed to this type of component, for example, the **Divider** component in the following snippet:
-
+If a component's API definition does not include mandatory constructor parameters, leave the parentheses empty. For example, the **Divider** component requires no parameters.
 
 ```ts
 Column() {
@@ -26,32 +28,30 @@ Column() {
 }
 ```
 
+### With Parameters
 
-### With Mandatory Parameters
+If a component's API definition includes constructor parameters, configure the required parameters in the parentheses.
 
-A struct with mandatory parameters is a component whose API definition expects parameters enclosed in parentheses.
-
-- Set the mandatory parameter **src** of the **Image** component as follows:
+- **Image** component with a mandatory **src** parameter:
 
   ```ts
   Image('https://xyz/test.jpg')
   ```
 
 
-- Set the optional parameter **content** of the **Text** component.
+- **Text** component with an optional **content** parameter:
 
   ```ts
   // Parameter of the string type
   Text('test')
-  // Add application resources in $r format, which can be used in multi-language scenarios.
+  // Reference application resources using $r, applicable to multi-language scenarios.
   Text($r('app.string.title_value'))
-  // No mandatory parameters
+  // Parameter-free form
   Text()
   ```
 
-
-- You can also use variables or expressions to assign values to parameters. The result type returned by an expression must meet the parameter type requirements.
-    For example, to set a variable or expression to construct the **Image** and **Text** components:
+- Variables or expressions can be used for parameter assignment, with types matching the parameter requirements.
+    For example, set variables or expressions to construct parameters for **Image** and **Text** components:
 
     ```ts
     Image(this.imagePath)
@@ -62,17 +62,16 @@ A struct with mandatory parameters is a component whose API definition expects p
 
 ## Configuring Attributes
 
-Use chainable attribute methods to configure the style and other attributes of built-in components. It is recommended that a separate line be used for each attribute method.
+Configure styles and other attributes using chained method calls, one per line recommended.
 
-
-- Example of configuring the **fontSize** attribute for the **Text** component:
+- Set the font size for the **Text** component:
 
   ```ts
   Text('test')
     .fontSize(12)
   ```
 
-- Example of configuring multiple attributes for the **Image** component:
+- Set multiple attributes for the **Image** component:
 
   ```ts
   Image('test.jpg')
@@ -81,7 +80,7 @@ Use chainable attribute methods to configure the style and other attributes of b
     .height(100)
   ```
 
-- Attribute methods accept expressions and variables as well constant parameters.
+- Attribute methods accept expressions and variables as well constant parameters.<br>Use expressions and variables:
 
   ```ts
   Text('hello')
@@ -91,8 +90,8 @@ Use chainable attribute methods to configure the style and other attributes of b
     .height(this.offset + 100)
   ```
 
-- For built-in components, ArkUI also predefines some enumeration types. These enumeration types can be passed as parameters, as long as they meet the parameter type requirements.
-  Example of configuring the font color and style of the **Text** component:
+- For built-in components, ArkUI also predefines some enumeration types for their attributes. Enumeration types can be passed as parameters but must meet the parameter type requirements.
+  Set the font color and style for the **Text** component:
 
   ```ts
   Text('hello')
@@ -102,12 +101,11 @@ Use chainable attribute methods to configure the style and other attributes of b
   ```
 
 
-## Handling Events
+## Configuring Events
 
-Use chainable event methods to configure events supported by built-in components. It is recommended that a separate line be used for each event method.
+Configure built-in component events using chained method calls, one per line recommended.
 
-
-- Example of using an arrow function expression to configure the event of a component:
+- Use the arrow function syntax for event configuration:
 
   ```ts
   Button('Click me')
@@ -116,7 +114,7 @@ Use chainable event methods to configure events supported by built-in components
     })
   ```
 
-- Example of using an arrow function expression to configure the event of a component (**() => {...}** must be used to ensure that the function is bound to the component and complies with the ArkTS syntax specifications):
+- Use the arrow function expression syntax for event configuration, requiring the use of "() => {...}" to ensure that the function is bound to the component and complies with ArkTS syntax specifications:
 
   ```ts
   Button('add counter')
@@ -125,25 +123,25 @@ Use chainable event methods to configure events supported by built-in components
     })
   ```
 
-- Example of using a component's member function to configure the event of the component, where **this** binding is needed: (This usage is not recommended in ArkTS.)
+- (Not recommended in ArkTS) Use a member function for event configuration, which requires explicit **bind(this)**:
 
   ```ts
   myClickHandler(): void {
     this.counter += 2;
   }
-  ...
+  // ...
   Button('add counter')
     .onClick(this.myClickHandler.bind(this))
   ```
 
-- Example of using an arrow function expression for a declaration, where **this** binding is not needed:
+- Use a pre-declared arrow function for event configuration, where binding **this** is not needed:
 
   ```ts
   fn = () => {
     console.info(`counter: ${this.counter}`)
     this.counter++
   }
-  ...
+  // ...
   Button('add counter')
     .onClick(this.fn)
   ```
@@ -152,13 +150,11 @@ Use chainable event methods to configure events supported by built-in components
 >
 > In arrow functions, **this** inherits its value from the surrounding (lexical) scope in which they are defined. This means that, in anonymous functions, **this** may present an unclear reference and is therefore not allowed in ArkTS.
 
-
 ## Configuring Child Components
 
-For a component with child components, for example, a container component, add the UI descriptions of the child components inside parentheses. The **Column**, **Row**, **Stack**, **Grid**, and **List** components are all container components.
+For a component with child components, for example, a container component, add the UI descriptions of the child components within trailing closures {...}. The **Column**, **Row**, **Stack**, **Grid**, and **List** components are all container components.
 
-
-- Simple example of configuring child components for the **Column** component:
+- Configure child components for the **Column** component:
 
   ```ts
   Column() {
@@ -171,7 +167,7 @@ For a component with child components, for example, a container component, add t
   }
   ```
 
-- Example of nested child components in the **Column** component:.
+- Configure nested child components in the **Column** component:.
 
   ```ts
   Column() {

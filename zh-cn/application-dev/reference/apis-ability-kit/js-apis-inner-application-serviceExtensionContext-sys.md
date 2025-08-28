@@ -1627,7 +1627,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 将当前Ability连接到一个指定account的ServiceExtensionAbility。仅支持在主线程调用。
 
-当前仅在phone、tablet设备上生效。
+当前仅在Phone、Tablet设备上生效。
 
 > **说明：**
 >
@@ -2793,7 +2793,7 @@ startUIAbilities(wantList: Array\<Want>): Promise\<void>
 
 > **说明：**
 >
-> 该接口仅在phone和tablet设备上生效。
+> 该接口仅在Phone和Tablet设备上生效。
 > 
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 

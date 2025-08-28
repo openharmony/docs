@@ -478,7 +478,7 @@ enableHapticFeedback(enabled: boolean)
 
 设置是否开启触控反馈。
 
-开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+开启触控反馈时，需要在工程的[module.json5](../../../quick-start/module-configuration-file.md)中配置requestPermissions字段开启振动权限，配置如下：
 
 ```json
 "requestPermissions": [
@@ -739,7 +739,7 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 
 ## SliderConfiguration<sup>12+</sup>对象说明
 
-开发者需要自定义class实现ContentModifier接口。
+开发者需要自定义class实现ContentModifier接口。继承自[CommonConfiguration](ts-universal-attributes-content-modifier.md#commonconfigurationt)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -989,7 +989,7 @@ struct SliderExample {
       Slider({ style: SliderStyle.OutSet, value: 40 })
         .blockStyle({ type: SliderBlockType.DEFAULT })
       Slider({ style: SliderStyle.OutSet, value: 40 })
-        .blockStyle({ type: SliderBlockType.IMAGE, image: $r('sys.media.ohos_app_icon') }) // $r('app.media.ohos_app_icon')需要替换为开发者所需的图像资源文件。
+        .blockStyle({ type: SliderBlockType.IMAGE, image: $r('sys.media.ohos_app_icon') })
       Slider({ style: SliderStyle.OutSet, value: 40 })
         .blockSize({ width: '60px', height: '60px' })
         .blockColor(Color.Red)

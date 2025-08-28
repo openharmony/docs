@@ -36,8 +36,8 @@ struct NestedScroll {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .nestedScroll({
-            scrollUp: NestedScrollMode.PARENT_FIRST,//Scroll up the parent component first.
-            scrollDown: NestedScrollMode.SELF_FIRST,//Scroll down the child component first.
+            scrollUp: NestedScrollMode.PARENT_FIRST,// Scroll up the parent component first.
+            scrollDown: NestedScrollMode.SELF_FIRST,// Scroll down the child component first.
           }).height("100%")
         Repeat<number>(this.arr)
           .each((item: RepeatItem<number>) => {

@@ -17,5 +17,5 @@ Defines the trace route information.
 | Name| Description|
 | -- | -- |
 | uint8_t jumpNo | Number of hops.|
-| char address[NETCONN_MAX_STR_LEN] | Host name or address.|
-| uint32_t rtt[NETCONN_MAX_RTT_NUM] | Round-trip time, in ms.|
+| char address[[NETCONN_MAX_STR_LEN]](capi-net-connection-type-h.md#macros)| Host name or address.|
+| uint32_t rtt[[NETCONN_MAX_RTT_NUM]](capi-net-connection-type-h.md#macros)| Round-trip time, in ms.|

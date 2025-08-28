@@ -37,7 +37,7 @@
     - Development<!--huks-key-derivation-dev-->
       - [Key Derivation (ArkTS)](huks-key-derivation-arkts.md)
       - [Key Derivation (C/C++)](huks-key-derivation-ndk.md)
-  - Access Control<!--huks-identity-authentication-->
+  - Access Control <!--huks-identity-authentication-->
     - [HUKS Access Control Overview](huks-identity-authentication-overview.md)
     - Development<!--huks-identity-authentication-dev-->
       - [HUKS Access Control Development](huks-user-identity-authentication.md)
@@ -47,7 +47,7 @@
     - Development<!--huks-hmac-dev-->
       - [HMAC(ArkTS)](huks-hmac-arkts.md)
       - [HMAC(C/C++)](huks-hmac-ndk.md)
-- Key Deletion<!--huks-delete-key-->
+- Key Deletion <!--huks-delete-key-->
   - [Deleting a Key (ArkTS)](huks-delete-key-arkts.md)
   - [Deleting a Key (C/C++)](huks-delete-key-ndk.md)
 - Key Attestation<!--huks-key-attestation-->

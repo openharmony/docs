@@ -1,4 +1,10 @@
 # Types
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 > **NOTE**
 >
@@ -30,11 +36,15 @@ Defines the parameters for the animation curve. The meaning of **WindowAnimation
 
 **System capability**: SystemCapability.Window.SessionManager
 
+| Type     | Description                         |
+| -----------| ---------------------------- |
+| Array&lt;number&gt;    | An array of numbers. The range of values for each element depends on the specific curve type.    |
+
 When the curve type is **LINEAR**, **WindowAnimationCurveParam** is optional and have no effect.
 
 When the curve type is **INTERPOLATION_SPRING**, **WindowAnimationCurveParam** must be set as an array of length 4: [velocity,mass,stiffness,damping].
 
-- **velocity**: initial velocity, which is of the number type. This parameter is mandatory.
+- **velocity**: initial velocity, which is of the number type. This parameter is mandatory. The value range is (-∞, +∞).
 
   It describes the impact of external factors to the spring animation, designed to help ensure smooth transition from the previous motion state. This is a normalized velocity, and it is calculated as the actual initial velocity divided by the change in the animation property.
 
@@ -49,3 +59,13 @@ When the curve type is **INTERPOLATION_SPRING**, **WindowAnimationCurveParam** m
 - **damping**: damping, which is of the number type. This parameter is mandatory. The value range is (0, +∞). If the value is less than or equal to 0, the value **1** is used.
 
   It is used to describe the oscillation and attenuation of the system after being disturbed. The larger the damping, the smaller the number of oscillations of elastic motion, and the smaller the oscillation amplitude.
+
+When the curve type is **CUBIC_BEZIER**, **WindowAnimationCurveParam** must be set as an array of length 4: [x1, y1, x2, y2].
+
+- x1: horizontal coordinate of the first point of the Bezier curve. It is of the number type, mandatory, with a range of [0, 1]. Values less than 0 are treated as 0, and values greater than 1 are treated as 1.
+
+- y1: vertical coordinate of the first point of the Bezier curve. It is of the number type, mandatory, with a range of (-∞, +∞).
+
+- x2: horizontal coordinate of the second point of the Bezier curve. It is of the number type, mandatory, with a range of [0, 1]. Values less than 0 are treated as 0, and values greater than 1 are treated as 1.
+
+- y2: vertical coordinate of the second point of the Bezier curve. It is of the number type, mandatory, with a range of (-∞, +∞).

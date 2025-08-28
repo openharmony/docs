@@ -331,7 +331,7 @@ AppearSymbolEffect继承自父类SymbolEffect。
 ### 属性
 
 | 名称 | 类型 | 只读 | 可选 | 说明  |
-| ---- | ---- | ---- | ---- |
+| ---- | ---- | ---- | ---- | ---- |
 | scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
@@ -365,7 +365,7 @@ DisappearSymbolEffect继承自父类SymbolEffect。
 ### 属性
 
 | 名称 | 类型 | 只读 | 可选 | 说明  |
-| ---- | ---- | ---- | ---- |
+| ---- | ---- | ---- | ---- | ---- |
 | scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
@@ -456,6 +456,25 @@ ReplaceSymbolEffect的构造函数，替换动效。
 | ---- | ---- | ---- | ---- |
 | scope  | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
 
+### constructor<sup>20+</sup>
+
+constructor(scope?: EffectScope, replaceType?: ReplaceEffectType)
+
+ReplaceSymbolEffect的构造函数，替换动效。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ---- | ---- | ---- | ---- |
+| scope  | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+| replaceType  | [ReplaceEffectType](#replaceeffecttype20枚举说明) | 否   | 替换动效类型。<br/>默认值：ReplaceEffectType.SEQUENTIAL |
+
 ## SymbolEffectStrategy<sup>11+</sup>枚举说明
 
 动效类型的枚举值。设置动效后，动效启动即生效，无需触发。
@@ -500,7 +519,7 @@ ReplaceSymbolEffect的构造函数，替换动效。
 
 ## PulseSymbolEffect<sup>12+</sup>对象说明
 
-PulseSymbolEffect的构造函数，脉冲动效。
+PulseSymbolEffect继承自父类SymbolEffect，脉冲动效。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -520,74 +539,6 @@ PulseSymbolEffect的构造函数，脉冲动效。
 | ---- | ---- | ---------------- |
 | DOWN | 0    | 图标缩小再复原。 |
 | UP   | 1    | 图标放大再复原。 |
-
-## DisableSymbolEffect<sup>20+</sup>
-
-DisableSymbolEffect继承自父类[SymbolEffect](#symboleffect12)。
-
-**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### 属性
-
-| 名称 | 类型 | 只读 | 可选 | 说明  |
-| ---- | ---- | ---- | ---- | ---- |
-| scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER<br/>**说明：** <br/>EffectScope.WHOLE模式不生效。 |
-
-### constructor<sup>20+</sup>
-
-constructor(scope?: EffectScope)
-
-DisableSymbolEffect的构造函数，禁用动效。
-
-**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| scope  | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER<br/>**说明：** <br/>EffectScope.WHOLE模式不生效。 |
-
-## QuickReplaceSymbolEffect<sup>20+</sup>
-
-QuickReplaceSymbolEffect继承自父类[SymbolEffect](#symboleffect12)。
-
-**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### 属性
-
-| 名称 | 类型 | 只读 | 可选 | 说明  |
-| ---- | ---- | ---- | ---- | ---- |
-| scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
-
-### constructor<sup>20+</sup>
-
-constructor(scope?: EffectScope)
-
-QuickReplaceSymbolEffect的构造函数，快速替换动效。
-
-**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明  |
-| ---- | ---- | ---- | ---- |
-| scope  | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ## EffectScope<sup>12+</sup>枚举说明
 
@@ -614,6 +565,22 @@ QuickReplaceSymbolEffect的构造函数，快速替换动效。
 | ---------- | ---- | ---------- |
 | CUMULATIVE | 0    | 累加模式。 |
 | ITERATIVE  | 1    | 迭代模式。 |
+
+## ReplaceEffectType<sup>20+</sup>枚举说明
+
+替换动效类型的枚举值。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 值   | 说明       |
+| ---------- | ---- | ---------- |
+| SEQUENTIAL | 0    | 默认替换动效：当前symbol完全消失后，新symbol出现。 |
+| CROSS_FADE | 1    | 快速替换动效：当前symbol淡出的同时，新symbol淡入，产生更流畅、更快速的过渡效果。|
+| SLASH_OVERLAY | 2    | 禁用动效：用带有斜杠遮罩层的symbol替换当前symbol，通常用于表示禁用或非活动状态。|
 
 ## 事件
 
@@ -769,7 +736,7 @@ struct Index {
           SymbolGlyph(this.replaceFlag1 ? $r('sys.symbol.eye_slash') : $r('sys.symbol.eye'))
             .fontSize(96)
             .renderingStrategy(this.renderMode)
-            .symbolEffect(new DisableSymbolEffect(EffectScope.LAYER), this.triggerValueReplace1)
+            .symbolEffect(new ReplaceSymbolEffect(EffectScope.LAYER, ReplaceEffectType.SLASH_OVERLAY), this.triggerValueReplace1)
           Button('trigger')
             .onClick(() => {
               this.replaceFlag1 = !this.replaceFlag1;
@@ -781,7 +748,7 @@ struct Index {
           Text("快速替换动效")
           SymbolGlyph(this.replaceFlag2 ? $r('sys.symbol.checkmark_circle') : $r('sys.symbol.repeat_1'))
             .fontSize(96)
-            .symbolEffect(new QuickReplaceSymbolEffect(EffectScope.WHOLE), this.triggerValueReplace2)
+            .symbolEffect(new ReplaceSymbolEffect(EffectScope.WHOLE, ReplaceEffectType.CROSS_FADE), this.triggerValueReplace2)
           Button('trigger')
             .onClick(() => {
               this.replaceFlag2 = !this.replaceFlag2;

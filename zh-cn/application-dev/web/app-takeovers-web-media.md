@@ -470,10 +470,15 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
 
 ## 完整示例
 
-- 使用前在module.json5中添加如下权限。
+- 涉及网页媒体播放，需在配置文件中配置网络访问权限。添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)。
 
   ```ts
-  "ohos.permission.INTERNET"
+  // src/main/module.json5
+  "requestPermissions":[
+      {
+        "name" : "ohos.permission.INTERNET"
+      }
+    ]
   ```
 
 - 在应用启动阶段保存UIContext。
@@ -1221,6 +1226,7 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
 - 前端页面示例。通过[AVPlayer](../media/media/media-kit-intro.md#avplayer)托管Web媒体的播放，支持的媒体资源可以参考AVPlayer[支持的格式与协议](../media/media/media-kit-intro.md#支持的格式与协议)。
 
   ```html
+  <!-- main.html -->
   <html>
   <head>
       <title>视频托管测试html</title>

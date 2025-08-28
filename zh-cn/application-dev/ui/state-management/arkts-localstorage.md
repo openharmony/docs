@@ -65,7 +65,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 | \@LocalStorageProp变量装饰器 | 说明                                                         |
 | ---------------------------- | ------------------------------------------------------------ |
 | 装饰器参数                   | key：常量字符串，必填（字符串需要有引号）。                  |
-| 允许装饰的变量类型           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API12及以上支持Map、Set、Date、undefined和null类型。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>API12及以上还支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[LocalStorage支持联合类型](#localstorage支持联合类型)。 <br/>**注意**<br/>变量类型必须被指定，建议和LocalStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@LocalStorageProp("AA") a: number \| null = null`是支持的，不支持`@LocalStorageProp("AA") a: number = null`。<br/>不支持any。 |
+| 允许装饰的变量类型           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API version 12及以上支持Map、Set、Date、undefined和null类型。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>API version 12及以上还支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[LocalStorage支持联合类型](#localstorage支持联合类型)。 <br/>**说明：**<br/>变量类型必须被指定，建议和LocalStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。|
 | 同步类型                     | 单向同步：从LocalStorage的对应属性到组件的状态变量。组件本地的修改是允许的，但是LocalStorage中给定的属性一旦发生变化，将覆盖本地的修改。 |
 | 被装饰变量的初始值           | 必须指定，如果LocalStorage实例中不存在属性，则用该初始值初始化该属性，并存入LocalStorage中。 |
 
@@ -133,7 +133,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 | \@LocalStorageLink变量装饰器 | 说明                                                         |
 | ---------------------------- | ------------------------------------------------------------ |
 | 装饰器参数                   | key：常量字符串，必填（字符串需要有引号）。                  |
-| 允许装饰的变量类型           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API12及以上支持Map、Set、Date、undefined和null类型。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现-1)。<br/>API12及以上还支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[LocalStorage支持联合类型](#localstorage支持联合类型)。 <br/>**注意**<br/>变量类型必须被指定，建议和LocalStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@LocalStorageLink("AA") a: number \| null = null`是支持的，不支持`@LocalStorageLink("AA") a: number = null`。<br/>不支持any。 |
+| 允许装饰的变量类型           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API12及以上支持Map、Set、Date、undefined和null类型。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现-1)。<br/>API12及以上还支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[LocalStorage支持联合类型](#localstorage支持联合类型)。 <br/>**说明：**<br/>变量类型必须被指定，建议和LocalStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。|
 | 同步类型                     | 双向同步：从LocalStorage的对应属性到自定义组件，从自定义组件到LocalStorage对应属性。 |
 | 被装饰变量的初始值           | 必须指定，如果LocalStorage实例中不存在属性，则用该初始值初始化该属性，并存入LocalStorage中。 |
 
@@ -508,7 +508,7 @@ struct Index {
           Text(`${this.propA}`)
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
-          Button("To Page")
+          Button('To Page')
             .onClick(() => {
               this.pageStack.pushPathByName('Page', null);
             })
@@ -543,12 +543,12 @@ struct Page {
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
 
-          Button("Change propA")
+          Button('Change propA')
             .onClick(() => {
               this.propA = 100;
             })
 
-          Button("Back Index")
+          Button('Back Index')
             .onClick(() => {
               this.pathStack.pop();
             })
@@ -679,7 +679,7 @@ struct Child {
     @Component
     struct Child {
       build() {
-        Text("hello")
+        Text('hello')
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
       }
@@ -902,16 +902,16 @@ struct NavigationContentMsgStack {
 ```ts
 @Component
 struct LocalStorageLinkComponent {
-  @LocalStorageLink("LinkA") LinkA: number | null = null;
-  @LocalStorageLink("LinkB") LinkB: number | undefined = undefined;
+  @LocalStorageLink('LinkA') LinkA: number | null = null;
+  @LocalStorageLink('LinkB') LinkB: number | undefined = undefined;
 
   build() {
     Column() {
-      Text("@LocalStorageLink接口初始化，@LocalStorageLink取值")
-      Text(this.LinkA + "").fontSize(20).onClick(() => {
+      Text('@LocalStorageLink接口初始化，@LocalStorageLink取值')
+      Text(`${this.LinkA}`).fontSize(20).onClick(() => {
         this.LinkA ? this.LinkA = null : this.LinkA = 1;
       })
-      Text(this.LinkB + "").fontSize(20).onClick(() => {
+      Text(`${this.LinkB}`).fontSize(20).onClick(() => {
         this.LinkB ? this.LinkB = undefined : this.LinkB = 1;
       })
     }
@@ -922,16 +922,16 @@ struct LocalStorageLinkComponent {
 
 @Component
 struct LocalStoragePropComponent {
-  @LocalStorageProp("PropA") PropA: number | null = null;
-  @LocalStorageProp("PropB") PropB: number | undefined = undefined;
+  @LocalStorageProp('PropA') PropA: number | null = null;
+  @LocalStorageProp('PropB') PropB: number | undefined = undefined;
 
   build() {
     Column() {
-      Text("@LocalStorageProp接口初始化，@LocalStorageProp取值")
-      Text(this.PropA + "").fontSize(20).onClick(() => {
+      Text('@LocalStorageProp接口初始化，@LocalStorageProp取值')
+      Text(`${this.PropA}`).fontSize(20).onClick(() => {
         this.PropA ? this.PropA = null : this.PropA = 1;
       })
-      Text(this.PropB + "").fontSize(20).onClick(() => {
+      Text(`${this.PropB}`).fontSize(20).onClick(() => {
         this.PropB ? this.PropB = undefined : this.PropB = 1;
       })
     }
@@ -971,7 +971,7 @@ struct Index {
 @Entry
 @Component
 struct LocalDateSample {
-  @LocalStorageLink("date") selectedDate: Date = new Date('2021-08-08');
+  @LocalStorageLink('date') selectedDate: Date = new Date('2021-08-08');
 
   build() {
     Column() {
@@ -1018,7 +1018,7 @@ struct LocalDateSample {
 @Entry
 @Component
 struct LocalMapSample {
-  @LocalStorageLink("map") message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+  @LocalStorageLink('map') message: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
 
   build() {
     Row() {
@@ -1029,16 +1029,16 @@ struct LocalMapSample {
           Divider()
         })
         Button('init map').onClick(() => {
-          this.message = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+          this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
         })
         Button('set new one').onClick(() => {
-          this.message.set(4, "d");
+          this.message.set(4, 'd');
         })
         Button('clear').onClick(() => {
           this.message.clear();
         })
         Button('replace the existing one').onClick(() => {
-          this.message.set(0, "aa");
+          this.message.set(0, 'aa');
         })
         Button('delete the existing one').onClick(() => {
           this.message.delete(0);
@@ -1064,7 +1064,7 @@ struct LocalMapSample {
 @Entry
 @Component
 struct LocalSetSample {
-  @LocalStorageLink("set") memberSet: Set<number> = new Set([0, 1, 2, 3, 4]);
+  @LocalStorageLink('set') memberSet: Set<number> = new Set([0, 1, 2, 3, 4]);
 
   build() {
     Row() {

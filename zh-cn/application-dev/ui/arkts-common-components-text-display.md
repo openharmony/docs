@@ -603,6 +603,7 @@ struct Index {
     Text() {
       Span("Hello")
         .fontSize(50)
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       ImageSpan($r('app.media.startIcon'))
         .width(30).height(30)
         .verticalAlign(ImageSpanAlignment.FOLLOW_PARAGRAPH)
@@ -651,6 +652,7 @@ struct Index {
       Column() {
         Menu() {
           MenuItemGroup() {
+            // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
             MenuItem({ startIcon: $r('app.media.app_icon'), content: "CustomMenu One", labelInfo: "" })
               .onClick(() => {
                 // 使用closeSelectionMenu接口关闭菜单
@@ -679,6 +681,7 @@ struct Index {
     ```ts
     // 定义onCreateMenu，onMenuItemClick
     onCreateMenu = (menuItems: Array<TextMenuItem>) => {
+      // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
       let item1: TextMenuItem = {
         content: 'customMenu1',
         icon: $r('app.media.app_icon'),
@@ -860,6 +863,7 @@ struct TextExample12 {
   @State text: string = 'Text editMenuOptions';
   @State endIndex: number = 0;
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
+    // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
     let item1: TextMenuItem = {
       content: 'create1',
       icon: $r('app.media.startIcon'),
@@ -893,6 +897,7 @@ struct TextExample12 {
     }
     return false;
   }
+  // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
   onPrepareMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'prepare1_' + this.endIndex,
