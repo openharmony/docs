@@ -2342,7 +2342,7 @@ onFullScreenEnter(callback: OnFullScreenEnterCallback)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onFullScreenEnter((event) => {
-            console.log("onFullScreenEnter videoWidth: " + event.videoWidth +
+            console.info("onFullScreenEnter videoWidth: " + event.videoWidth +
               ", videoHeight: " + event.videoHeight);
             // 应用可以通过 this.handler.exitFullScreen() 主动退出全屏。
             this.handler = event.handler;
@@ -2382,7 +2382,7 @@ onFullScreenExit(callback: () => void)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onFullScreenExit(() => {
-            console.log("onFullScreenExit...")
+            console.info("onFullScreenExit...")
             if (this.handler) {
               this.handler.exitFullScreen();
             }
@@ -2916,7 +2916,7 @@ onAudioStateChanged(callback: Callback\<OnAudioStateChangedEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onAudioStateChanged(event => {
             this.playing = event.playing;
-            console.debug('onAudioStateChanged playing: ' + this.playing);
+            console.info('onAudioStateChanged playing: ' + this.playing);
           })
       }
     }
