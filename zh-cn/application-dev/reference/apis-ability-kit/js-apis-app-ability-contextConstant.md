@@ -37,11 +37,13 @@ import { contextConstant } from '@kit.AbilityKit';
 
 ## ProcessMode<sup>12+</sup>
 
-UIAbility启动后的进程模式。该功能仅在2in1和Tablet设备上生效。
+UIAbility启动后的进程模式。
 
 ProcessMode作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属性，仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#startability-1)中生效，用来指定目标UIAbility的进程模式。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该功能仅在2in1和Tablet设备上生效，在其他设备中返回801错误码。
 
 | 名称  | 值 | 说明                                                                                                                   |
 |-----| -------- |----------------------------------------------------------------------------------------------------------------------|
@@ -89,13 +91,15 @@ ProcessMode作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属
 
 ## StartupVisibility<sup>12+</sup>
 
-UIAbility启动后是否可见。该功能仅在2in1和Tablet设备上生效。
+UIAbility启动后是否可见。
 
 当用户设置目标UIAbility为不可见时，目标UIAbility的窗口不会显示在前台，dock栏也不会有图标，同时目标UIAbility的onForeground生命周期不会被调用。
 
 StartupVisibility作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属性，仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#startability-1)中生效，用来指定目标UIAbility启动后的可见性。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该功能仅在2in1和Tablet设备上生效，在其他设备中返回801错误码。
 
 | 名称  | 值 | 说明                                                                                                                   |
 |-----| -------- |----------------------------------------------------------------------------------------------------------------------|
