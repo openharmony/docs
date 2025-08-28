@@ -212,7 +212,7 @@ import { window } from '@kit.ArkUI';
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**设备行为差异：** 该接口在Phone设备、非自由多窗模式的Tablet设备中可正常调用，在其他设备中不生效也不报错。
+**设备行为差异：** 该接口在Phone设备、非[自由多窗模式](../../windowmanager/window-terminology.md#自由多窗模式)的Tablet设备中可正常调用，在其他设备中不生效也不报错。
 
 | 名称             | 类型                                                                     | 只读 | 可选 | 说明                                                         |
 | ---------------- | ----------------------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -774,7 +774,7 @@ setGestureNavigationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;
 
 | 参数名   | 类型                      | 必填 | 说明           |
 | -------- | ------------------------- | ---- | -------------- |
-| enable   | boolean                  | 是   | 设置手势导航启用状态。true表示启用手势导航；false表示禁用手势导航。当前仅禁用从屏幕下拉的手势，其他手势为未禁用。 |
+| enable   | boolean                  | 是   | 设置手势导航启用状态。true表示启用手势导航；false表示禁用手势导航。当前仅禁用从屏幕下拉的手势，其他手势未禁用。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。 |
 
 **错误码：**
@@ -1882,9 +1882,9 @@ try {
 ### setSnapshotSkip<sup>9+</sup>
 setSnapshotSkip(isSkip: boolean): void
 
-截屏/录屏/投屏是否忽略当前窗口。此接口一般用于禁止截屏/录屏/投屏的场景。
+截屏、录屏、投屏是否忽略当前窗口。此接口一般用于禁止截屏、录屏、投屏的场景。
 
-若要实现窗口始终在前台忽略截屏/录屏/投屏，在窗口从后台回到前台时，需要通过[on('windowEvent')](arkts-apis-window-Window.md#onwindowevent10)监听窗口生命周期变化，在后台状态时设置为false，而在前台状态时设置为true。
+若要实现窗口始终在前台忽略截屏、录屏、投屏，在窗口从后台回到前台时，需要通过[on('windowEvent')](arkts-apis-window-Window.md#onwindowevent10)监听窗口生命周期变化，在后台状态时设置为false，而在前台状态时设置为true。
 
 **系统接口：** 此接口为系统接口。
 
