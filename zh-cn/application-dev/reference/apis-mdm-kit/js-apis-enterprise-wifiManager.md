@@ -484,8 +484,7 @@ Wi-Fi的SSID和BSSID信息。
 | 名称          | 类型                             | 只读 | 可选 | 说明                                                        |
 | ------------- | --------------------------------| ---- | -----| ------------------------------------------------------ |
 | ssid          | string                           | 否   | 否 | Wi-Fi热点名称，编码格式为UTF-8，最大长度为32字节（中文字符占3位，英文字符占1位）。           |
-| bssid         | string                           | 否   | 是 | Wi-Fi热点的mac地址，例如：00:11:22:33:44:55。
-<br/>调用[addAllowedWifiList](#wifimanageraddallowedwifilist19)和[removeAllowedWifiList](#wifimanagerremoveallowedwifilist19)时为必填。<br/>调用[addDisallowedWifiList](#wifimanageradddisallowedwifilist19)和[removeDisallowedWifiList](#wifimanagerremovedisallowedwifilist19)时为选填。<br/>从API21开始，调用[addAllowedWifiList](#wifimanageraddallowedwifilist19)和[removeAllowedWifiList](#wifimanagerremoveallowedwifilist19)时为选填（默认值为空字符串）。            |
+| bssid         | string                           | 否   | 是 | Wi-Fi热点的mac地址，例如：00:11:22:33:44:55。<br/>调用[addAllowedWifiList](#wifimanageraddallowedwifilist19)和[removeAllowedWifiList](#wifimanagerremoveallowedwifilist19)时为必填。<br/>调用[addDisallowedWifiList](#wifimanageradddisallowedwifilist19)和[removeDisallowedWifiList](#wifimanagerremovedisallowedwifilist19)时为选填。<br/>从API21开始，调用[addAllowedWifiList](#wifimanageraddallowedwifilist19)和[removeAllowedWifiList](#wifimanagerremoveallowedwifilist19)时为选填（默认值为空字符串）。            |
 
 ## WifiProfile
 
