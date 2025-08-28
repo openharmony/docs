@@ -1166,7 +1166,7 @@ setEnterprisePolicy(policy: EnterprisePolicy): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| policy | [EnterprisePolicy](#EnterprisePolicy21) | 是 | 待设置的企业应用防护策略。 |
+| policy | [EnterprisePolicy](#enterprisepolicy21) | 是 | 待设置的企业应用防护策略。 |
 
 **错误码：**
 
@@ -1209,16 +1209,16 @@ try {
     attributeValues: attributeValues;
     valueType: 0;
     opt: 2;
-  }; // 属性信息
+  }; // 属性信息。
   let rule: Rule = {
     ruleId: 'ruleId';
     attributes: [ attribute ];
-  }; // 规则
+  }; // 规则。
   let policy: Policy = {
     rules: [ rule ];
     policyId: 'policyId';
     ruleConflictAlg: 0;
-  }; // 策略
+  }; // 策略。
   let enterprisePolicy: dlpPermission.EnterprisePolicy = {
     policyString: JSON.stringify(policy);
   };
@@ -1315,6 +1315,6 @@ DLP文件授权类型的枚举。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| policyString | string | 是 | 是 | 表示企业定制策略的json字符串。长度不超过4M（单位：兆）。 |
+| policyString | string | 否 | 否 | 表示企业定制策略的json字符串。长度不超过4M（单位：兆）。 |
