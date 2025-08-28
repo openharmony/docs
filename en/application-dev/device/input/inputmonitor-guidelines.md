@@ -36,30 +36,42 @@ The following table lists the common APIs provided by the **inputMonitor** modul
 This example assumes that the application needs to change the style based on the mouse button pressing status. Specifically, listen for mouse button events by calling [on](../../reference/apis-input-kit/js-apis-inputmonitor-sys.md#inputmonitoronmouse9), and cancel listening for mouse button events by calling [off](../../reference/apis-input-kit/js-apis-inputmonitor-sys.md#inputmonitoroffmouse9).
 
 ```js
+import { inputMonitor } from '@kit.InputKit';
 import { MouseEvent } from '@kit.InputKit';
 
-let BUTTON_DOWN = 2;
-let callback = (mouseEvent: MouseEvent) => {
-  console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
-    if(mouseEvent.action = BUTTON_DOWN){
-      return true;// Callback triggered when the mouse button is pressed.
-    }
-    return false;
-};
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let BUTTON_DOWN = 2;
+          let callback = (mouseEvent: MouseEvent) => {
+            console.info(`Monitor on success ${JSON.stringify(mouseEvent)}`);
+            if(mouseEvent.action = BUTTON_DOWN){
+              return true;// Callback triggered when the mouse button is pressed.
+            }
+            return false;
+          };
 
-try {
-  inputMonitor.on('mouse', (mouseEvent: MouseEvent) => {// Start to listen for mouse events.
-    console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
-    return false;
-  });
-} catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-}
-// Callback triggered when the mouse button is pressed.
-try {
-  inputMonitor.off('mouse', callback);// Cancel listening for mouse events.
-  console.log(`Monitor off success`);
-} catch (error) {
-  console.log(`Monitor off failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          try {
+            inputMonitor.on('mouse', (mouseEvent: MouseEvent) => {// Start to listen for mouse events.
+              console.info(`Monitor on success ${JSON.stringify(mouseEvent)}`);
+              return false;
+            });
+          } catch (error) {
+            console.error(`Monitor on failed, error: ${JSON.stringify(error, ["code", "message"])}`);
+          }
+          // Callback triggered when the mouse button is pressed.
+          try {
+            inputMonitor.off('mouse', callback);// Cancel listening for mouse events.
+            console.info(`Monitor off success`);
+          } catch (error) {
+            console.error(`Monitor off failed, error: ${JSON.stringify(error, ["code", "message"])}`);
+          }
+        })
+    }
+  }
 }
 ```

@@ -28,7 +28,7 @@ Generates IR signals at the specified frequency and level.
 | Name      | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | infraredFrequency | number             | Yes   | IR frequency, in Hz.|
-| pattern | Array&lt;number&gt; | Yes   | IR level signal, in μs. The value must be an even number within the value range of [0,1024].<br>For example, in the IR level signal array [100,200,300,400], 100 μs is a high-level signal, 200 μs is a low-level signal, 300 μs is a high-level signal, and 400 μs is a low-level signal.|
+| pattern | Array&lt;number&gt; | Yes   | IR level signal, in μs. The value range of the number of level signals is [0, 1024]. The value of the level signal must be greater than 0.<br>For example, in the IR level signal array [100,200,300,400], 100 μs is a high-level signal, 200 μs is a low-level signal, 300 μs is a high-level signal, and 400 μs is a low-level signal.|
 
 **Error codes**
 
@@ -42,10 +42,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  infraredEmitter.transmitInfrared(38000, [100, 200, 300, 400]);
-} catch (error) {
-  console.error(`transmitInfrared failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { infraredEmitter } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            infraredEmitter.transmitInfrared(38000, [100, 200, 300, 400]);
+          } catch (error) {
+            console.error(`transmitInfrared failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -76,11 +89,24 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  let frequencies = infraredEmitter.getInfraredFrequencies();
-  console.log(`frequencies: ${JSON.stringify(frequencies)}`);
-} catch (error) {
-  console.error(`Get infrared frequencies failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { infraredEmitter } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            let frequencies = infraredEmitter.getInfraredFrequencies();
+            console.log(`frequencies: ${JSON.stringify(frequencies)}`);
+          } catch (error) {
+            console.error(`Get infrared frequencies failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 

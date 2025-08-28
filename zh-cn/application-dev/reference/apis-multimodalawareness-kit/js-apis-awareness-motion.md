@@ -61,13 +61,14 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { Callback } from '@ohos.base';
 
-callback(data:motion.OperatingHandStatus) {
-    console.info('callback success' + data);
+let callback:Callback<motion.OperatingHandStatus> = (data:motion.OperatingHandStatus) => {
+    console.info('callback succeeded' + data);
 };
 
 try {
-    motion.on('operatingHandChanged', this.callback);  
+    motion.on('operatingHandChanged', callback);  
     console.info("on succeeded");
 } catch (err) {
     let error = err as BusinessError;
@@ -155,7 +156,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let data:motion.OperatingHandStatus = motion.getRecentOperatingHandStatus();
-    console.info('get success' + data);
+    console.info('get succeeded' + data);
 } catch (err) {
     let error = err as BusinessError;
     console.error("Failed get and err code is " + error.code);

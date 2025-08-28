@@ -4,7 +4,7 @@
 A certificate chain is an ordered list of certificates, in which each certificate is signed by the entity identified by the next certificate in the chain.
 
 
-As shown in the following figure, the certificate chain consists three certificates. The root certificate is self-signed by GlobalSign, which signed the intermediary certificate held by GlobalSign RSA OV SSL CA 2018. GlobalSign RSA OV SSL CA 2018 (the holder of the intermediate certificate) signed the end certificate.
+As shown in the following figure, the certificate chain consists of three certificates. The root certificate is self-signed by GlobalSign, which signed the intermediate certificate held by GlobalSign RSA OV SSL CA 2018. GlobalSign RSA OV SSL CA 2018 (the holder of the intermediate certificate) signed the end certificate.
 
 
 ![](figures/certificate_chain_example.png)

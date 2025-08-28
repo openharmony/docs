@@ -1,4 +1,8 @@
 # SegmentButton
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xieziang-->
+<!--Designer: @youzhi92-->
 
 分段按钮组件，包含页签类分段按钮、胶囊类单选分段按钮、胶囊类多选分段按钮。
 
@@ -6,7 +10,6 @@
 >
 >该组件从 API Version 11 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->该组件不支持在Wearable设备上使用。
 
 ## 导入模块
 
@@ -25,6 +28,8 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[], onItem
 **装饰器类型：**@Component
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称            | 类型                                      | 必填 | 装饰器类型  | 说明                                                         |
 | --------------- | --------------------------------------------- | ---- | ----------- | ------------------------------------------------------------ |
@@ -84,6 +89,9 @@ constructor(options: TabSegmentButtonOptions | CapsuleSegmentButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
+**参数**
 
 | 名称    | 类型                                                     | 必填 | 说明                 |
 | ------- | ------------------------------------------------------------ | ---- | -------------------- |
@@ -99,6 +107,9 @@ static tab(options: TabSegmentButtonConstructionOptions): SegmentButtonOptions
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
+**参数**
 
 | 名称    | 类型                                                         | 必填 | 说明                 |
 | ------- | ------------------------------------------------------------ | ---- | -------------------- |
@@ -120,6 +131,9 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
+**参数**
 
 | 名称    | 类型                                                         | 必填 | 说明                        |
 | ------- | ------------------------------------------------------------ | ---- | --------------------------- |
@@ -141,6 +155,8 @@ type DimensionNoPercentage = PX | VP | FP | LPX | Resource
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 类型                             | 说明                                          |
 | -------------------------------- | --------------------------------------------- |
 | [PX](ts-types.md#px10)           | 长度类型，用于描述以px为单位的长度。  |
@@ -156,6 +172,8 @@ type DimensionNoPercentage = PX | VP | FP | LPX | Resource
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 ### 属性
 
@@ -187,6 +205,8 @@ type DimensionNoPercentage = PX | VP | FP | LPX | Resource
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 ### 属性
 
 | 名称    | 类型                                                         | 必填 | 说明       |
@@ -202,6 +222,8 @@ type DimensionNoPercentage = PX | VP | FP | LPX | Resource
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 ### 属性
 
@@ -219,6 +241,8 @@ type ItemRestriction\<T> = [T, T, T?, T?, T?]
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 类型                                      | 说明                              |
 | ----------------------------------------- | --------------------------------- |
@@ -238,6 +262,8 @@ type SegmentButtonItemTuple = ItemRestriction\<SegmentButtonTextItem> | ItemRest
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 类型                                                         | 说明                      |
 | ------------------------------------------------------------ | ------------------------- |
 | [ItemRestriction](#itemrestriction)\<[SegmentButtonTextItem](#segmentbuttontextitem)\> | 仅文本按钮信息的元组。    |
@@ -253,6 +279,8 @@ type SegmentButtonItemArray = Array\<SegmentButtonTextItem> | Array\<SegmentButt
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 类型                                                         | 说明                      |
 | ------------------------------------------------------------ | ------------------------- |
@@ -280,6 +308,8 @@ constructor(elements: SegmentButtonItemTuple)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 
@@ -296,6 +326,8 @@ push(...items: SegmentButtonItemArray): number
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：**
 
@@ -324,6 +356,8 @@ pop(): SegmentButtonItemOptions | undefined
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **返回值：**
 
 | 类型                                                         | 说明           |
@@ -344,6 +378,8 @@ shift(): SegmentButtonItemOptions | undefined
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **返回值：**
 
 | 类型                                                         | 说明           |
@@ -363,6 +399,8 @@ unshift(...items: SegmentButtonItemArray): number
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：**
 
@@ -390,6 +428,8 @@ splice(start: number, deleteCount: number, ...items: SegmentButtonItemOptions[])
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：**
 
@@ -420,6 +460,8 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：** 
 
 
@@ -441,6 +483,8 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称 | 类型  | 必填 | 说明                   |
 | ---- | ----- | ---- | ---------------------- |
 | type | 'tab' | 是   | 类型为页签类分段按钮。 |
@@ -453,6 +497,8 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称 | 类型      | 必填 | 说明                        |
 | ---- | --------- | ---- | ----------------------------- |
 | type | 'capsule' | 是   | 类型为胶囊类分段按钮。 |
@@ -462,6 +508,8 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 仅文本按钮信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称 | 类型                                   | 必填 | 说明      |
 | ---- | -------------------------------------- | ---- | ---------- |
@@ -474,6 +522,8 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 仅图标按钮信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 |名称      | 类型                                   | 必填 | 说明               |
 | ------------ | -------------------------------------- | ---- | -------------------- |
@@ -493,6 +543,8 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 图标+文本按钮信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 ### 属性
 
@@ -518,6 +570,8 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 ### 属性
 
 | 名称         | 类型                                   | 必填 | 说明                 |
@@ -540,6 +594,8 @@ constructor(options: SegmentButtonItemOptionsConstructorOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 
@@ -552,6 +608,8 @@ constructor(options: SegmentButtonItemOptionsConstructorOptions)
 SegmentButtonItemOptions的构造参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 ### 属性
 

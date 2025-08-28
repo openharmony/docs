@@ -2,7 +2,7 @@
 
 ## Basic Concepts
 
-The system no longer provides APIs for switching audio output devices. To switch an audio output device, you must implement the **AVCastPicker** component. For details about the component, see [@ohos.multimedia.avCastPicker](../../reference/apis-avsession-kit/ohos-multimedia-avcastpicker.md) and [@ohos.multimedia.avCastPickerParam](../../reference/apis-avsession-kit/js-apis-avCastPickerParam.md).
+The system no longer provides APIs for switching audio output devices. If you need to switch audio output devices within your application, implement the **AVCastPicker** component. For details about the component, see [@ohos.multimedia.avCastPicker](../../reference/apis-avsession-kit/ohos-multimedia-avcastpicker.md) and [@ohos.multimedia.avCastPickerParam](../../reference/apis-avsession-kit/js-apis-avCastPickerParam.md).
 
 This topic describes how to integrate the **AVCastPicker** component to implement the switching of call devices.
 

@@ -2,7 +2,7 @@
 
 ## 简介
 
-开发者实现在应用中跳转显示网页需要分为两个方面：使用@ohos.web.webview提供Web控制能力；使用Web组件提供网页显示的能力。在实际应用中往往由于各种原因导致首次跳转Web网页或Web组件内跳转时出现白屏、卡顿等情况。本文介绍提升Web首页加载与Web网页间跳转速度的几种方法，并提供[示例源码](https://www.gitee.com/openharmony/applications_app_samples/tree/master/code/Performance/PerformanceLibrary/feature/webPerformance)。
+开发者实现在应用中跳转显示网页需要分为两个方面：使用@ohos.web.webview提供Web控制能力；使用Web组件提供网页显示的能力。在实际应用中往往由于各种原因导致首次跳转Web网页或Web组件内跳转时出现白屏、卡顿等情况。本文介绍提升Web首页加载与Web网页间跳转速度的几种方法，并提供[示例源码](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Performance/PerformanceLibrary/feature/webPerformance)。
 
 ## 优化思路
 
@@ -199,7 +199,7 @@ struct WebComponent {
 >
 > 预渲染相比于预下载、预连接方案，会消耗更多的内存、算力，仅建议针对高频页面使用，单应用后台创建的ArkWeb组件要求小于200个。
 >
-> 在后台，预渲染的网页会持续进行渲染，为了防止发热和功耗问题，建议在预渲染完成后立即停止渲染过程。可以参考以下示例，使用 [onFirstMeaningfulPaint](../reference/apis-arkweb/ts-basic-components-web.md#onfirstmeaningfulpaint12) 来确定预渲染的停止时机，该接口适用于http和https的在线网页。
+> 在后台，预渲染的网页会持续进行渲染，为了防止发热和功耗问题，建议在预渲染完成后立即停止渲染过程。可以参考以下示例，使用 [onFirstMeaningfulPaint](../reference/apis-arkweb/ts-basic-components-web-events.md#onfirstmeaningfulpaint12) 来确定预渲染的停止时机，该接口适用于http和https的在线网页。
 
 **实践案例**
 

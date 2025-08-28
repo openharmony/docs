@@ -87,7 +87,7 @@ fs.copyFile(file.fd, 'dstPath', 0).then(() => {
 1. 使用fs.openSyn获取json文件的fd。
 
    ```
-   import fs from '@ohos.file.fs';  
+   import fs from '@ohos.file.fs';
    let sanFile = fs.open(basePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
    let fd = sanFile.fd;
    ```
@@ -95,7 +95,9 @@ fs.copyFile(file.fd, 'dstPath', 0).then(() => {
 2. 通过fs.readSync读取json文件内容。
 
    ```
-   let content = fs.readSync(basePath);
+   // 4096为缓存区大小，可根据读取文件大小自定义
+   let buf = new ArrayBuffer(4096);
+   fs.readSync(sanFile.fd, buf);
    ```
 
 3. 修改内容。

@@ -49,14 +49,7 @@ The event interaction pipeline describes the end-to-end process where ArkUI rece
 
 ## Event Response Chain Mechanism
 
-ArkUI constructs event response chains through hit testing using a reverse post-order traversal (right-subtree-first) of the component tree. The pseudocode implementation is as follows:
-
-```
-forEach((item, node.rbegin(),node.rend())=> {
-    item.TouchTest();
-})
-node.collectEvent()
-```
+ArkUI constructs event response chains through hit testing using a reverse post-order traversal (right-subtree-first) of the component tree.
 
 Consider the following component tree, where all components have **hitTestBehavior** set to **Default**. If the user taps component 5, the final response chain collected will be [5 -> 3 -> 1].
 

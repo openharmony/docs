@@ -29,7 +29,7 @@ I/O密集型任务的性能关键在于I/O操作的速度和效率，而非CPU�
     import { common } from '@kit.AbilityKit';
 
     @Concurrent
-    async function concurrentTest(context: common.UIAbilityContext): Promise<boolean> {
+    async function concurrentTest(context: common.UIAbilityContext): Promise<void> {
       let filePath1: string = context.filesDir + "/path1.txt"; // 应用文件路径
       let filePath2: string = context.filesDir + "/path2.txt";
       // 循环写文件操作
@@ -41,10 +41,9 @@ I/O密集型任务的性能关键在于I/O操作的速度和效率，而非CPU�
           console.info(`Succeeded in writing the file. FileList: ${fileList[i]}`);
         }).catch((err: BusinessError) => {
           console.error(`Failed to write the file. Code is ${err.code}, message is ${err.message}`)
-          return false;
         })
       }
-      return true;
+      return;
     }
 	```
 

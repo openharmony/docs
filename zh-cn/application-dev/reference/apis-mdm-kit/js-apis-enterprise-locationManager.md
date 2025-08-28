@@ -117,7 +117,7 @@ try {
     let result: locationManager.LocationPolicy = locationManager.getLocationPolicy(wantTemp);
     console.info(`Succeeded in getting location policy. policy: ${result}`);
 } catch(err) {
-    console.error(`Failed to get device encryption status. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to get location policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 

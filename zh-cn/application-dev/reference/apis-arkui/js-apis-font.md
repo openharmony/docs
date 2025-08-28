@@ -7,6 +7,8 @@
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
+>
+> 推荐使用字体引擎的[loadFontSync](../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)接口注册自定义字体。
 
 ## 导入模块
 
@@ -46,10 +48,10 @@ registerFont(options: FontOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型     | 必填   | 说明           |
-| ---------- | ------ | ---- | ------------ |
-| familyName | string \| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | 是    | 设置注册的字体名称。   |
-| familySrc  | string \| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | 是    | 设置注册字体文件的路径。 |
+| 名称         | 类型     | 只读 | 可选   | 说明           |
+| ---------- | ------ | ---- | ---- | ------------ |
+| familyName | string \| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | 否  | 否  | 设置注册的字体名称。   |
+| familySrc  | string \| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | 否  | 否  | 设置注册字体文件的路径。<br/>**说明：**<br/>读取系统沙箱路径内的资源时，建议使用file://路径前缀的字符串，需要确保沙箱目录路径下的文件存在并且有可读权限。 |
 
 **示例：**
 
@@ -214,18 +216,18 @@ getFontByName(fontName: string): FontInfo
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 类型    | 必填  | 说明                       |
-| -------------- | ------- | ------------------------- | ------------------------- |
-| path           | string  | 是 | 系统字体的文件路径。        |
-| postScriptName | string  | 是 | 系统字体的postScript名称。 |
-| fullName       | string  | 是 | 系统字体的名称。           |
-| family         | string  | 是 | 系统字体的字体家族。       |
-| subfamily      | string  | 是 | 系统字体的子字体家族。      |
-| weight         | number  | 是 | 系统字体的字重。<br/>取值范围：[0,8]，取值间隔为1，分别对应[FontWeight](../apis-arkgraphics2d/js-apis-graphics-text.md#fontweight)枚举中的值。<br/>默认值：0        |
-| width          | number  | 是 | 系统字体的宽度。<br/>取值范围：[1,9]，取值间隔为1，分别对应[FontWidth](../apis-arkgraphics2d/js-apis-graphics-text.md#fontwidth)枚举中的值。    |
-| italic         | boolean | 是 | 系统字体是否倾斜。<br/>默认值：false<br/>值为true，表示斜体字体，值为false，表示非斜体字体。          |
-| monoSpace      | boolean | 是 | 系统字体是否紧凑。<br/>默认值：false<br/>值为true，表示等宽字体，值为false，表示非等宽字体。         |
-| symbolic       | boolean | 是 | 系统字体是否支持符号字体。<br/>默认值：false<br/>值为true，表示支持符号字体，值为false，表示不支持符号字体。  |
+| 名称            | 类型    | 只读 | 可选  | 说明                       |
+| -------------- | ------- | ------------------------- | ------------------------- | ------------------------- |
+| path           | string  | 否 | 否 | 系统字体的文件路径。        |
+| postScriptName | string  | 否 | 否 | 系统字体的postScript名称。 |
+| fullName       | string  | 否 | 否 | 系统字体的名称。           |
+| family         | string  | 否 | 否 | 系统字体的字体家族。       |
+| subfamily      | string  | 否 | 否 | 系统字体的子字体家族。      |
+| weight         | number  | 否 | 否 | 系统字体的字重。<br/>取值范围：[0,8]，取值间隔为1，分别对应[FontWeight](../apis-arkgraphics2d/js-apis-graphics-text.md#fontweight)枚举中的值。<br/>默认值：0        |
+| width          | number  | 否 | 否 | 系统字体的宽度。<br/>取值范围：[1,9]，取值间隔为1，分别对应[FontWidth](../apis-arkgraphics2d/js-apis-graphics-text.md#fontwidth)枚举中的值。    |
+| italic         | boolean | 否 | 否 | 系统字体是否倾斜。<br/>默认值：false<br/>值为true，表示斜体字体，值为false，表示非斜体字体。          |
+| monoSpace      | boolean | 否 | 否 | 系统字体是否紧凑。<br/>默认值：false<br/>值为true，表示等宽字体，值为false，表示非等宽字体。         |
+| symbolic       | boolean | 否 | 否 | 系统字体是否支持符号字体。<br/>默认值：false<br/>值为true，表示支持符号字体，值为false，表示不支持符号字体。  |
 
 **示例：**
 
@@ -287,11 +289,11 @@ getUIFontConfig() : UIFontConfig
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-| 名称            | 类型    | 必填  | 说明                       |
-| -------------- | ------- | ------------------------- | ------------------------- |
-| fontDir        | Array\<string>  | 是 | 系统字体文件所在的路径。      |
-| generic | Array\<[UIFontGenericInfo](#uifontgenericinfo11)>  | 是 | 系统所支持的通用字体集列表。 |
-| fallbackGroups       | Array\<[UIFontFallbackGroupInfo](#uifontfallbackgroupinfo11)>  | 是 | 备用字体集。           |
+| 名称            | 类型    | 只读 | 可选  | 说明                       |
+| -------------- | ------- | ------------------------- | ------- | ------------------------- |
+| fontDir        | Array\<string>  | 否 | 否 | 系统字体文件所在的路径。      |
+| generic | Array\<[UIFontGenericInfo](#uifontgenericinfo11)>  | 否 | 否 | 系统所支持的通用字体集列表。 |
+| fallbackGroups       | Array\<[UIFontFallbackGroupInfo](#uifontfallbackgroupinfo11)>  | 否 | 否 | 备用字体集。           |
 
 ## UIFontGenericInfo<sup>11+</sup>
 
@@ -300,11 +302,11 @@ getUIFontConfig() : UIFontConfig
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-| 名称            | 类型    | 必填  | 说明                       |
-| -------------- | ------- | ------------------------- | ------------------------- |
-| family        | string | 是 | 字体集名，字体文件中指定的"family"值。      |
-| alias        | Array\<[UIFontAliasInfo](#uifontaliasinfo11)>  | 是 | 别名列表。 |
-| adjust       | Array\<[UIFontAdjustInfo](#uifontadjustinfo11)>  | 是 | 字体原本的weight值对应需显示的值。 |
+| 名称            | 类型    | 只读 | 可选  | 说明                       |
+| -------------- | ------- | ------------------------- | ------------------------- | ------------------------- |
+| family        | string | 否 | 否 | 字体集名，字体文件中指定的"family"值。      |
+| alias        | Array\<[UIFontAliasInfo](#uifontaliasinfo11)>  | 否 | 否 | 别名列表。 |
+| adjust       | Array\<[UIFontAdjustInfo](#uifontadjustinfo11)>  | 否 | 否 | 字体原本的weight值对应需显示的值。 |
 
 ## UIFontFallbackGroupInfo<sup>11+</sup>
 
@@ -313,10 +315,10 @@ getUIFontConfig() : UIFontConfig
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-| 名称            | 类型    | 必填  | 说明                       |
-| -------------- | ------- | ------------------------- | ------------------------- |
-| fontSetName  | string | 是 | 备用字体集所对应的字体集名称。      |
-| fallback        | Array\<[UIFontFallbackInfo](#uifontfallbackinfo11)>  | 是 | 表示以下列表为该字体集的备用字体，如果fontSetName为""，表示可以作为所有字体集的备用字体。 |
+| 名称            | 类型    | 只读 | 可选  | 说明                       |
+| -------------- | ------- | ------------------------- | ------------------------- | ------------------------- |
+| fontSetName  | string | 否 | 否 | 备用字体集所对应的字体集名称。      |
+| fallback        | Array\<[UIFontFallbackInfo](#uifontfallbackinfo11)>  | 否 | 否 | 表示以下列表为该字体集的备用字体，如果fontSetName为""，表示可以作为所有字体集的备用字体。 |
 
 ## UIFontAliasInfo<sup>11+</sup>
 
@@ -325,10 +327,10 @@ getUIFontConfig() : UIFontConfig
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-| 名称            | 类型    | 必填  | 说明                       |
-| -------------- | ------- | ------------------------- | ------------------------- |
-| name          | string  | 是 | 别名名称。      |
-| weight        | number  | 是 | 当weight>0时表示此字体集只包含所指定weight的字体，当weight=0时，表示此字体集包含所有字体。<br/>可返回的值有0、100、400、700、900。 |
+| 名称            | 类型    | 只读 | 可选  | 说明                       |
+| -------------- | ------- | ------- | ------------------------- | ------------------------- |
+| name          | string  | 否 | 否 | 别名名称。      |
+| weight        | number  | 否 | 否 | 当weight>0时表示此字体集只包含所指定weight的字体，当weight=0时，表示此字体集包含所有字体。<br/>可返回的值有0、100、400、700、900。 |
 
 ## UIFontAdjustInfo<sup>11+</sup>
 
@@ -337,10 +339,10 @@ getUIFontConfig() : UIFontConfig
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-| 名称            | 类型    | 必填  | 说明                       |
-| -------------- | ------- | ------------------------- | ------------------------- |
-| weight        | number  | 是 | 字体原本的weight值。<br/>可返回的值有50、80、100、200。      |
-| to            | number  | 是 | 字体在应用中显示的weight值。<br/>可返回的值有100、400、700、900。 |
+| 名称            | 类型    | 只读 | 可选  | 说明                       |
+| -------------- | ------- | ------- | ------------------------- | ------------------------- |
+| weight        | number  | 否 | 否 | 字体原本的weight值。<br/>可返回的值有50、80、100、200。      |
+| to            | number  | 否 | 否 |  | 字体在应用中显示的weight值。<br/>可返回的值有100、400、700、900。 |
 
 ## UIFontFallbackInfo<sup>11+</sup>
 
@@ -349,10 +351,10 @@ getUIFontConfig() : UIFontConfig
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-| 名称            | 类型    | 必填  | 说明                       |
-| -------------- | ------- | ------------------------- | ------------------------- |
-| language       | string  | 是 | 字体集所支持的语言类型，语言格式为bcp47。    |
-| family         | string  | 是 | 字体集名，字体文件中指定的"family"值。 |
+| 名称            | 类型    | 只读 | 可选  | 说明                       |
+| -------------- | ------- | ------- | ------------------------- | ------------------------- |
+| language       | string  | 否 | 否 | 字体集所支持的语言类型，语言格式为bcp47。    |
+| family         | string  | 否 | 否 | 字体集名，字体文件中指定的"family"值。 |
 
 **示例：**
 

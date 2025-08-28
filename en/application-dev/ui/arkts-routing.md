@@ -340,13 +340,13 @@ function onBackClick(): void {
       message: 'Payment not completed yet. Are you sure you want to return?' // Set the content of the confirmation dialog box.
     });
   } catch (err) {
-    let message = (err as BusinessError).message
-    let code = (err as BusinessError).code
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
     console.error(`Invoke showAlertBeforeBackPage failed, code is ${code}, message is ${message}`);
   }
 
-  // Invoke the router.back() API to return to the previous page.
-  router.back();
+  // Invoke the this.getUIContext().getRouter().back() API to return to the previous page.
+  this.getUIContext().getRouter().back();
 }
 ```
 
@@ -359,7 +359,7 @@ When the user clicks the back button, a confirmation dialog box is displayed, pr
 
 ### Custom Confirmation Dialog Box
 
-To implement a custom confirmation dialog box, use APIs in the [promptAction.showDialog](../reference/apis-arkui/js-apis-promptAction.md#promptactionshowdialog) module or create a custom dialog box . This topic uses the APIs in the **PromptAction** module an example to describe how to implement a custom confirmation dialog box.
+To implement a custom confirmation dialog box, use the [showDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showdialog-1) API or create a custom dialog box. This topic uses the APIs in the **PromptAction** module an example to describe how to implement a custom confirmation dialog box.
 
 Before using the **Router** module, import it first.
 
@@ -368,16 +368,16 @@ Before using the **Router** module, import it first.
 import { router } from '@kit.ArkUI';
 ```
 
-In the event callback, call the [promptAction.showDialog](../reference/apis-arkui/js-apis-promptAction.md#promptactionshowdialog) API of the **PromptAction** module.
+In the event callback, call the [showDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showdialog-1) API.
 
 ```ts
-import { promptAction, router } from '@kit.ArkUI';
+import { promptAction} from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function onBackClick() {
   // Display a custom confirmation dialog box.
-  promptAction.showDialog({
-    message:'Payment not completed yet. Are you sure you want to return?',
+  this.getUIContext().getPromptAction().showDialog({
+    message: 'Payment not completed yet. Are you sure you want to return?',
     buttons: [
       {
         text: 'Cancel',
@@ -395,12 +395,12 @@ function onBackClick() {
     } else if (result.index === 1) {
       // The user selects OK.
       console.info('User confirmed the operation.');
-      // Invoke the router.back() API to return to the previous page.
-      router.back();
+      // Invoke the this.getUIContext().getRouter().back() API to return to the previous page.
+      this.getUIContext().getRouter().back();
     }
   }).catch((err: Error) => {
-    let message = (err as BusinessError).message
-    let code = (err as BusinessError).code
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
     console.error(`Invoke showDialog failed, code is ${code}, message is ${message}`);
   })
 }
@@ -473,8 +473,8 @@ struct Index {
               }
             })
           } catch (err) {
-            let message = (err as BusinessError).message
-            let code = (err as BusinessError).code
+            let message = (err as BusinessError).message;
+            let code = (err as BusinessError).code;
             console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
           }
         })

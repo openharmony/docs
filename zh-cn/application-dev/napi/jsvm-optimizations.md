@@ -36,9 +36,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileScript(JSVM_Env env,
                                               JSVM_Script* result);
 ```
 
-同时 code cache 的生成和使用也会对编译产生影响，这部分可以参考 [使用 code cache 加速编译](use-jsvm-about-code-cache.md)。
+同时，code cache 的生成和使用也会对编译产生影响，这部分可以参考 [使用 code cache 加速编译](use-jsvm-about-code-cache.md)。
 
-#### 热启动：生成足够多的 code cache
+**热启动：生成足够多的 code cache**
 
 热启动场景下，我们会在热启动前生成 code cache 以减少编译带来的开销。这个时候生成的 code cache 的覆盖率会影响 code cache 对热启动的优化效果。
 
@@ -46,14 +46,14 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileScript(JSVM_Env env,
 
 这个方法会增加额外的编译时间开销，可能影响冷启动时间。后续将详细讨论 native 层的冷启动优化方法。
 
-#### 冷启动：使用 lazy compile 代替 eager compile
+**冷启动：使用 lazy compile 代替 eager compile**
 
 在冷启动时，`eager compile` 会增加不必要的编译时间。这其中主要的原因是没有拿到 v8 lazy compile 优化效果：v8 会将不在必经路径上的函数推迟编译，在实际运行到的时候才进行编译，这样会减少一些不被运行到函数的编译，从而优化冷启动的时间。
 
 因此，在冷启动时，可以通过关闭 `eager compile` 选项来避免阻塞主线程，从而获得足够的冷启动优化效果。
 
 ### 在 native 层减少时间开销
-#### 冷启动：减少 code cache 的影响
+**冷启动：减少 code cache 的影响**
 
 上面在考虑减少 v8 层开销的时候，提到了为了热启动的性能可以开启 `eager compile` 进行编译，而为了冷启动性能却又需要关闭 `eager compile` 选项，看起来是矛盾的。为了解决这个矛盾，避免在冷热启动性能上的权衡，关键点是在 code cache 生成本身。
 
@@ -112,7 +112,7 @@ if (script_run_completed) {
 
 在能达到相同效果时，使用更高效的 JSVM-API 是一种有效的性能优化方法，以下是一些具体的实践示例。
 
-#### 使用 IsXXX 代替 TypeOf
+**使用 IsXXX 代替 TypeOf**
 
 过去发现，针对仅需要判断对象类型的场景，存在一种相对低效的使用方法：
 
@@ -146,7 +146,7 @@ bool Test::IsFunction(JSVM_Env env, JSVM_Value jsvmValue) const {
 
 以某生态应用小程序场景为例，这个优化可以带来的性能收益端到端有 150ms，总占比约 5%。
 
-#### 直接使用 OH_JSVM_CreateReference，避免创建冗余的 object
+**直接使用 OH_JSVM_CreateReference，避免创建冗余的 object**
 
 过去存在这样一种创建 reference 的路径：
 

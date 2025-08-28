@@ -34,7 +34,7 @@ RelativeContainer()
 
 guideLine(value: Array&lt;GuideLineStyle&gt;)
 
-设置RelativeContainer容器内的辅助线，Array中每个项目即为一条guideline。
+设置RelativeContainer容器内的辅助线，Array中每个项目即为一条guideline，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -50,7 +50,7 @@ guideLine(value: Array&lt;GuideLineStyle&gt;)
 
 barrier(value: Array&lt;BarrierStyle&gt;)
 
-设置RelativeContainer容器内的屏障，Array中每个项目即为一条barrier。
+设置RelativeContainer容器内的屏障，Array中每个项目即为一条barrier，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -66,7 +66,7 @@ barrier(value: Array&lt;BarrierStyle&gt;)
 
 barrier(barrierStyle: Array&lt;LocalizedBarrierStyle&gt;)
 
-设置RelativeContainer容器内的屏障，Array中每个项目即为一条barrier。
+设置RelativeContainer容器内的屏障，Array中每个项目即为一条barrier，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -399,7 +399,7 @@ struct Index {
 
 ### 示例4（设置偏移）
 
-本示例通过[bias](ts-universal-attributes-location.md#bias对象说明)实现了子组件的位置在竖直方向的两个锚点间偏移的效果。
+本示例通过[bias](ts-types.md#bias对象说明)实现了子组件的位置在竖直方向的两个锚点间偏移的效果。
 
 ```ts
 @Entry
@@ -689,7 +689,7 @@ struct Index {
 
 ### 示例8（链中设置偏移）
 
-本示例通过[chainMode](ts-universal-attributes-location.md#chainmode12)和[bias](ts-universal-attributes-location.md#bias对象说明)接口实现了水平方向的带偏移的[PACKED链](ts-universal-attributes-location.md#chainstyle12)。
+本示例通过[chainMode](ts-universal-attributes-location.md#chainmode12)和[bias](ts-types.md#bias对象说明)接口实现了水平方向的带偏移的[PACKED链](ts-universal-attributes-location.md#chainstyle12)。
 
 ```ts
 @Entry

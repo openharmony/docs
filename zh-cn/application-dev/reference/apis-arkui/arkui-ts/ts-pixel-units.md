@@ -27,8 +27,8 @@ ArkUI为开发者提供4种像素单位，采用vp为基准数据单位。
 
 | 接口                                                | 描述                                                         |
 | --------------------------------------------------- | ------------------------------------------------------------ |
-| vp2px(value&nbsp;:&nbsp;number)&nbsp;:&nbsp;number<sup>(deprecated)</sup>  | 将vp单位的数值转换为以px为单位的数值。<br/>value取值范围：(-∞, +∞)<br/>返回值取值范围：(-∞, +∞)<br/> **说明：** <br/> 默认使用当前UI实例所在屏幕的虚拟像素比进行转换，UI实例未创建时，使用默认屏幕的虚拟像素比进行转换。 |
-| px2vp(value&nbsp;:&nbsp;number)&nbsp;:&nbsp;number<sup>(deprecated)</sup>  | 将px单位的数值转换为以vp为单位的数值。<br/>value取值范围：(-∞, +∞)<br/>返回值取值范围：(-∞, +∞)<br/> **说明：** <br/> 默认使用当前UI实例所在屏幕的虚拟像素比进行转换，UI实例未创建时，使用默认屏幕的虚拟像素比进行转换。 |
+| vp2px(value&nbsp;:&nbsp;number)&nbsp;:&nbsp;number<sup>(deprecated)</sup>  | 将vp单位的数值转换为以px为单位的数值。<br/>value取值范围：(-∞, +∞)<br/>返回值取值范围：(-∞, +∞)<br/> **说明：** <br/> 默认使用当前UI实例所在屏幕的虚拟像素比进行转换，UI实例不明确时，使用默认屏幕的虚拟像素比进行转换。 |
+| px2vp(value&nbsp;:&nbsp;number)&nbsp;:&nbsp;number<sup>(deprecated)</sup>  | 将px单位的数值转换为以vp为单位的数值。<br/>value取值范围：(-∞, +∞)<br/>返回值取值范围：(-∞, +∞)<br/> **说明：** <br/> 默认使用当前UI实例所在屏幕的虚拟像素比进行转换，UI实例不明确时，使用默认屏幕的虚拟像素比进行转换。 |
 | fp2px(value&nbsp;:&nbsp;number)&nbsp;:&nbsp;number<sup>(deprecated)</sup>  | 将fp单位的数值转换为以px为单位的数值。<br/>value取值范围：(-∞, +∞)<br/>返回值取值范围：(-∞, +∞)                       |
 | px2fp(value&nbsp;:&nbsp;number)&nbsp;:&nbsp;number<sup>(deprecated)</sup>  | 将px单位的数值转换为以fp为单位的数值。<br/>value取值范围：(-∞, +∞)<br/>返回值取值范围：(-∞, +∞)                       |
 | lpx2px(value&nbsp;:&nbsp;number)&nbsp;:&nbsp;number<sup>(deprecated)</sup> | 将lpx单位的数值转换为以px为单位的数值。<br/>value取值范围：(-∞, +∞)<br/>返回值取值范围：(-∞, +∞)                      |

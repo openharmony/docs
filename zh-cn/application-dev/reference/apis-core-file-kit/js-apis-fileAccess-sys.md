@@ -2394,7 +2394,7 @@ let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
 let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
 try {
   if (fileAccessHelper != undefined) {
-    fileAccessHelper.moveItem(sourceUri, destUri, async (err: BusinessError, copyResult: Array<fileAccess.MoveResult>) => {
+    fileAccessHelper.moveItem(sourceUri, destUri, async (err: BusinessError, moveResult: Array<fileAccess.MoveResult>) => {
       if (err) {
         console.error("moveItem failed, errCode:" + err.code + ", errMessage:" + err.message);
       }
@@ -2459,7 +2459,7 @@ try {
         console.error("moveItem failed, errCode:" + err.code + ", errMessage:" + err.message);
       }
       if (moveResult.length === 0) {
-        console.log("copy success");
+        console.log("moveItem success");
       } else {
         for (let i = 0; i < moveResult.length; i++) {
           console.error("errCode" + moveResult[i].errCode);

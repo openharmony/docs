@@ -24,7 +24,7 @@ Sets the child process priority. After a child process is suppressed, the CPU re
 
 | Name     | Type                                 | Mandatory  | Description                                                                                                                           |
 |----------|-------------------------------------| ---- |-------------------------------------------------------------------------------------------------------------------------------|
-| pid      | number                              | Yes   | ID of the child process to be suppressed, which is returned when the child process is created through [OH_Ability_StartNativeChildProcess](../apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess).|
+| pid      | number                              | Yes   | ID of the child process to be suppressed, which is the **pid** parameter after the child process is created through the [OH_Ability_StartNativeChildProcess](../apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess) API.|
 | priority | [ProcessPriority](#processpriority) | Yes   | Suppression priority.                                                                                                                        |
 
 **Return value**
@@ -68,7 +68,7 @@ Unsuppresses the child process. In this case, the child process follows the sche
 
 | Name     | Type                | Mandatory  | Description                                                                                                                       |
 |----------|--------------------| ---- |---------------------------------------------------------------------------------------------------------------------------|
-| pid      | number             | Yes   | Child process ID, which is returned when the child process is created through [OH_Ability_StartNativeChildProcess](../apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess).|
+| pid      | number             | Yes   | ID of the child process, which is the **pid** parameter of the [OH_Ability_StartNativeChildProcess](../apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess) API.|
 
 **Return value**
 

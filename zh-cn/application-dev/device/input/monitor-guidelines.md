@@ -45,7 +45,7 @@ target_link_libraries(entry PUBLIC libohinput.so)
 
 ### 创建事件监听
 
-#### 按键事件
+- **按键事件**
 
 ```c++
 #include "multimodalinput/oh_input_manager.h"
@@ -75,7 +75,7 @@ void TestKeyEventMonitor()
 }
 ```
 
-#### 鼠标事件
+- **鼠标事件**
 
 ```c++
 #include "multimodalinput/oh_input_manager.h"
@@ -113,7 +113,7 @@ void TestMouseEventMonitor()
 }
 ```
 
-#### 触摸事件
+- **触摸事件**
 
 ```c++
 #include "multimodalinput/oh_input_manager.h"
@@ -147,7 +147,7 @@ void TestTouchEventMonitor()
 }
 ```
 
-#### 轴事件
+- **轴事件**
 
 ```c++
 #include "multimodalinput/oh_input_manager.h"

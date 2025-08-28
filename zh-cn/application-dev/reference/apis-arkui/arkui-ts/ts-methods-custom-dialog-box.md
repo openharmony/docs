@@ -64,7 +64,7 @@ constructor(value: CustomDialogControllerOptions)
 | backgroundBlurStyle<sup>12+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 否   | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK <br/>**说明：** <br/>设置为BlurStyle.NONE即可关闭背景虚化。当设置了backgroundBlurStyle为非NONE值时，则不要设置backgroundColor，否则颜色显示将不符合预期效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | backgroundBlurStyleOptions<sup>19+</sup> | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明) | 否 | 背景模糊效果。默认值请参考BackgroundBlurStyleOptions类型说明。<br />**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 | backgroundEffect<sup>19+</sup> | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | 否 | 背景效果参数。默认值请参考BackgroundEffectOptions类型说明。<br />**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
-| keyboardAvoidMode<sup>12+</sup> | [KeyboardAvoidMode](ts-types.md#keyboardavoidmode12枚举说明) | 否 | 用于设置弹窗是否在拉起软键盘时进行自动避让。<br/>默认值：KeyboardAvoidMode.DEFAULT<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| keyboardAvoidMode<sup>12+</sup> | [KeyboardAvoidMode](ts-universal-attributes-popup.md#keyboardavoidmode12枚举说明) | 否 | 用于设置弹窗是否在拉起软键盘时进行自动避让。<br/>默认值：KeyboardAvoidMode.DEFAULT<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | enableHoverMode<sup>14+</sup>     | boolean | 否   | 是否响应悬停态，值为true时，响应悬停态。<br />默认值：false，默认不响应。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 | hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 | onWillAppear<sup>19+</sup> | Callback&lt;void&gt; | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 <br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
@@ -195,8 +195,8 @@ struct CustomDialogExample {
     builder: CustomDialogExampleTwo(),
     alignment: DialogAlignment.Bottom,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.info("dialog onWillDismiss");
+      console.info(`reason= ${dismissDialogAction.reason}`);
+      console.info('dialog onWillDismiss');
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -264,8 +264,8 @@ struct CustomDialogUser {
     cancel: this.exitApp,
     autoCancel: true,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.info("dialog onWillDismiss");
+      console.info(`reason= ${dismissDialogAction.reason}`);
+      console.info('dialog onWillDismiss');
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -350,8 +350,8 @@ struct CustomDialogUser {
     cancel: this.existApp,
     autoCancel: true,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.info("dialog onWillDismiss");
+      console.info(`reason= ${dismissDialogAction.reason}`);
+      console.info('dialog onWillDismiss');
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -436,8 +436,8 @@ struct CustomDialogUser {
     cancel: this.existApp,
     autoCancel: true,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-      console.info("dialog onWillDismiss")
+      console.info(`reason= ${dismissDialogAction.reason}`);
+      console.info('dialog onWillDismiss')
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -544,8 +544,8 @@ struct CustomDialogUser {
     cancel: this.exitApp,
     autoCancel: true,
     onWillDismiss: (dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.info("dialog onWillDismiss");
+      console.info(`reason= ${dismissDialogAction.reason}`);
+      console.info('dialog onWillDismiss');
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -971,8 +971,8 @@ struct Example3 {
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.info("dialog onWillDismiss");
+      console.info(`reason= ${dismissDialogAction.reason}`);
+      console.info('dialog onWillDismiss');
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -982,19 +982,19 @@ struct Example3 {
     },
     onDidAppear: () => {
       this.log += '# onDidAppear';
-      console.info("CustomDialog,is onDidAppear!");
+      console.info('CustomDialog,is onDidAppear!');
     },
     onDidDisappear: () => {
       this.log += '# onDidDisappear';
-      console.info("CustomDialog,is onDidDisappear!");
+      console.info('CustomDialog,is onDidDisappear!');
     },
     onWillAppear: () => {
       this.log = 'Log information:onWillAppear';
-      console.info("CustomDialog,is onWillAppear!");
+      console.info('CustomDialog,is onWillAppear!');
     },
     onWillDisappear: () => {
       this.log += '# onWillDisappear';
-      console.info("CustomDialog,is onWillDisappear!");
+      console.info('CustomDialog,is onWillDisappear!');
     },
     offset: { dx: 0, dy: -20 },
     customStyle: false,
@@ -1068,10 +1068,10 @@ struct CustomDialogUser {
 
   build() {
     Column() {
-      Button("change  customStyle:" + this.customStyle).onClick(() => {
+      Button('change  customStyle:' + this.customStyle).onClick(() => {
         this.customStyle = !this.customStyle;
       })
-      Button("show dialog").onClick(() => {
+      Button('show dialog').onClick(() => {
         if (this.dialogController != null) {
           this.dialogController.close();
         }
@@ -1108,3 +1108,122 @@ struct CustomDialogUser {
 }
 ```
 ![zh-cn_image_custom](figures/customstyle_dialog_demo.gif)
+
+### 示例10（自定义背景模糊效果参数）
+
+从API version 19开始，该示例通过配置[backgroundBlurStyleOptions](#customdialogcontrolleroptions对象说明)，实现自定义背景模糊效果。
+
+```ts
+@CustomDialog
+struct CustomDialogExample {
+  controller?: CustomDialogController;
+
+  build() {
+    Column() {
+      Text('这是自定义弹窗')
+        .fontSize(30)
+        .height(100)
+      Button('点我关闭弹窗')
+        .onClick(() => {
+          if (this.controller != undefined) {
+            this.controller.close();
+          }
+        })
+        .margin(20)
+    }
+  }
+}
+
+@Entry
+@Component
+struct CustomDialogUser {
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample(),
+    backgroundColor: undefined,
+    backgroundBlurStyle: BlurStyle.Thin,
+    backgroundBlurStyleOptions: {
+      colorMode: ThemeColorMode.LIGHT,
+      adaptiveColor: AdaptiveColor.AVERAGE,
+      scale: 1,
+      blurOptions: { grayscale: [20, 20] },
+    },
+  })
+
+  build() {
+    Stack({ alignContent: Alignment.Top }) {
+      Image($r('app.media.bg'))
+      Column() {
+        Button('CustomDialog')
+          .margin(20)
+          .onClick(() => {
+            if (this.dialogController != null) {
+              this.dialogController.open();
+            }
+          })
+      }.width('100%')
+    }
+  }
+}
+```
+
+![zh-cn_image_custom-backgroundBlurStyleOptions](figures/zh-cn_image_custom-backgroundBlurStyleOptions.png)
+
+### 示例11（自定义背景效果参数）
+
+从API version 19开始，该示例通过配置[backgroundEffect](#customdialogcontrolleroptions对象说明)，实现自定义背景效果。
+
+```ts
+@CustomDialog
+struct CustomDialogExample {
+  controller?: CustomDialogController;
+
+  build() {
+    Column() {
+      Text('这是自定义弹窗')
+        .fontSize(30)
+        .height(100)
+      Button('点我关闭弹窗')
+        .onClick(() => {
+          if (this.controller != undefined) {
+            this.controller.close();
+          }
+        })
+        .margin(20)
+    }
+  }
+}
+
+@Entry
+@Component
+struct CustomDialogUser {
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample(),
+    backgroundColor: undefined,
+    backgroundBlurStyle: BlurStyle.Thin,
+    backgroundEffect: {
+      radius: 60,
+      saturation: 0,
+      brightness: 1,
+      color: Color.White,
+      blurOptions: { grayscale: [20, 20] }
+    },
+  })
+
+  build() {
+    Stack({ alignContent: Alignment.Top }) {
+      Image($r('app.media.bg'))
+      Column() {
+        Button('CustomDialog')
+          .margin(20)
+          .onClick(() => {
+            if (this.dialogController != null) {
+              this.dialogController.open();
+            }
+          })
+      }.width('100%')
+    }
+  }
+}
+```
+
+![zh-cn_image_custom-backgroundEffect](figures/zh-cn_image_custom-backgroundEffect.png)

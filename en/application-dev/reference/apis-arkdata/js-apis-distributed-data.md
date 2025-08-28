@@ -3276,7 +3276,7 @@ try {
 ```
 
 
-### getResultSet<sup>8+</sup><a name="singlekvstore_getresultset"></a>
+### getResultSet<sup>8+</sup>
 
 getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
@@ -3493,7 +3493,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void
 
-Closes the **KvStoreResultSet** object obtained by [SingleKvStore.getResultSet](#singlekvstore_getresultset). This API uses an asynchronous callback to return the result.
+Closes the **KvStoreResultSet** object obtained by [SingleKvStore.getResultSet](#getresultset8). This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3527,7 +3527,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
-Closes the **KvStoreResultSet** object obtained by [SingleKvStore.getResultSet](#singlekvstore_getresultset). This API uses a promise to return the result.
+Closes the **KvStoreResultSet** object obtained by [SingleKvStore.getResultSet](#getresultset8). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4522,7 +4522,7 @@ try {
 ```
 
 
-### getResultSet<sup>8+</sup><a name="devicekvstore_getresultset"></a>
+### getResultSet<sup>8+</sup>
 
 getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
@@ -4855,7 +4855,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void
 
-Closes the **KvStoreResultSet** object obtained by [DeviceKVStore.getResultSet](#devicekvstore_getresultset). This API uses an asynchronous callback to return the result.
+Closes the **KvStoreResultSet** object obtained by [DeviceKVStore.getResultSet](#getresultset8-4). This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4863,7 +4863,7 @@ Closes the **KvStoreResultSet** object obtained by [DeviceKVStore.getResultSet](
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| resultSet  |[KvStoreResultSet](#getresultset8)  | Yes   |**KvStoreResultSet** object to close.  |
+| resultSet  |[KvStoreResultSet](#kvstoreresultset8)  | Yes   |**KvStoreResultSet** object to close.  |
 | callback   |AsyncCallback&lt;void&gt;                 | Yes   |Callback used to return the result.   |
 
 **Example**
@@ -4890,7 +4890,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
-Closes the **KvStoreResultSet** object obtained by [DeviceKVStore.getResultSet](#devicekvstore_getresultset). This API uses a promise to return the result.
+Closes the **KvStoreResultSet** object obtained by [DeviceKVStore.getResultSet](#getresultset8-4). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4898,7 +4898,7 @@ Closes the **KvStoreResultSet** object obtained by [DeviceKVStore.getResultSet](
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| resultSet  |[KvStoreResultSet](#getresultset8)  | Yes   |**KvStoreResultSet** object to close.  |
+| resultSet  |[KvStoreResultSet](#kvstoreresultset8)  | Yes   |**KvStoreResultSet** object to close.  |
 
 **Return value**
 

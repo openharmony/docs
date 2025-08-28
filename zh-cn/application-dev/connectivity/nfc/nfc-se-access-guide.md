@@ -1,5 +1,11 @@
 # 安全单元访问开发指南
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @amunra03-->
+<!--Designer: @wenxiaolin-->
+<!--Tester: @zs_111-->
+
 ## 简介
 安全单元（SecureElement，简称SE），电子设备上可能存在一个或多个安全单元，比如有eSE(Embedded SE)和SIM卡。能够充当安全单元的SIM卡，要求具备NFC功能。
 

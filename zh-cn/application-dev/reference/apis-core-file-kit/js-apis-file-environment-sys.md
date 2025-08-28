@@ -31,7 +31,7 @@ getStorageDataDir():Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)和[通用错误码](../errorcode-universal.md)。
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
 | 202 | The caller is not a system application |
@@ -67,7 +67,7 @@ getStorageDataDir(callback:AsyncCallback&lt;string&gt;):void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)和[通用错误码](../errorcode-universal.md)。
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
 | 202 | The caller is not a system application |
@@ -105,7 +105,7 @@ getUserDataDir():Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)和[通用错误码](../errorcode-universal.md)。
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
 | 202 | The caller is not a system application |
@@ -141,7 +141,7 @@ getUserDataDir(callback:AsyncCallback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)和[通用错误码](../errorcode-universal.md)。
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
 | 202 | The caller is not a system application |
@@ -181,7 +181,7 @@ getExternalStorageDir(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID                     | 错误信息       |
 | ---------------------------- | --------- |
@@ -197,9 +197,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function getExternalStorageDirExample() {
   try {
     let path = Environment.getExternalStorageDir();
-    console.log(`success to getExternalStorageDir: ${JSON.stringify(path)}`);
-  } catch (error) {
-    console.error(`failed to getExternalStorageDir because: ${JSON.stringify(error)}`);
+    console.info(`Succeeded in getExternalStorageDir, path is ${path}`);
+  } catch (err) {
+    console.error(`Failed to getExternalStorageDir. Code: ${err.code}, message: ${err.message}`);
   }
 }
 ```
@@ -224,7 +224,7 @@ getUserHomeDir(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID                     | 错误信息       |
 | ---------------------------- | --------- |
@@ -240,9 +240,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function getUserHomeDirExample() {
   try {
     let path = Environment.getUserHomeDir();
-    console.log(`success to getUserHomeDir: ${JSON.stringify(path)}`);
-  } catch (error) {
-    console.error(`failed to getUserHomeDir because: ${JSON.stringify(error)}`);
+    console.info(`Succeeded in getUserHomeDir, path is ${path}`);
+  } catch (err) {
+    console.error(`Failed to getUserHomeDir. Code: ${err.code}, message: ${err.message}`);
   }
 }
 ```

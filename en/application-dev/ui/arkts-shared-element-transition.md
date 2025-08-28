@@ -2063,6 +2063,6 @@ export default struct  Post {
 
 After a profile picture on the home page is clicked, the corresponding profile page is displayed in a modal, and there is a shared element transition between the profile pictures on the two pages.
 
-![en-us_image_0000001597320327](figures/en-us_image_0000001597320327.gif)
+
 
 <!--RP1--><!--RP1End-->

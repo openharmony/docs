@@ -117,7 +117,10 @@ Before developing an application related to HCE, you must declare NFC-related at
 ```
 // Applicable to devices other than lite wearables
 import { cardEmulation } from '@kit.ConnectivityKit';
+```
 
+<!--code_no_check_fa-->
+```
 // Applicable to lite wearables
 import cardEmulation from '@ohos.nfc.cardEmulation';
 ```
@@ -186,6 +189,7 @@ if (!isHceSupported) {
     console.log('this device is not supported for HCE, ignore it.');
 }
 ```
+<!--code_no_check_fa-->
 ```js
 // Applicable to lite wearables
 import cardEmulation from '@ohos.nfc.cardEmulation';
@@ -235,6 +239,7 @@ if (!hasHceCap) {
 }
 ```
 
+<!--code_no_check_fa-->
 ```js
 // Applicable to lite wearables
 import cardEmulation from '@ohos.nfc.cardEmulation';
@@ -297,6 +302,7 @@ let elementName: bundleManager.ElementName = {
 let isDefaultService: boolean = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
 ```
 
+<!--code_no_check_fa-->
 ```js
 // Applicable to lite wearables
 import cardEmulation from '@ohos.nfc.cardEmulation';
@@ -480,6 +486,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 **Example**
+<!--code_no_check_fa-->
 ```js
 // Applicable to lite wearables
 import cardEmulation from '@ohos.nfc.cardEmulation';
@@ -659,6 +666,7 @@ hceService.transmit(responseData).then(() => {
 });
 ```
 
+<!--code_no_check_fa-->
 ```js
 // Applicable to lite wearables
 import cardEmulation from '@ohos.nfc.cardEmulation';
@@ -728,6 +736,8 @@ try {
     `message: ${(error as BusinessError).message}`);
 }
 ```
+
+<!--code_no_check_fa-->
 ```js
 // Applicable to lite wearables
 import cardEmulation from '@ohos.nfc.cardEmulation';

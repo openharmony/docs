@@ -9,7 +9,11 @@
 
 ## 接口
 
-RotationGesture(value?: { fingers?: number, angle?: number, isFingerCountLimited?: boolean })
+### RotationGesture
+
+RotationGesture(value?: { fingers?: number, angle?: number })
+
+设置旋转手势事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -17,33 +21,117 @@ RotationGesture(value?: { fingers?: number, angle?: number, isFingerCountLimited
 
 **参数：**
 
-| 参数名称 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fingers | number | 否 | 触发旋转的最少手指数，&nbsp;最小为2指，最大为5指。<br/>默认值：2 <br/>触发手势时手指数量可以多于fingers参数值，但仅最先落下的两指参与手势计算。|
-| angle | number | 否 | 触发旋转手势的最小改变度数，单位为deg。<br/>默认值：1 <br/>**说明：** <br/>当改变度数的值小于等于0或大于360时，会被转化为默认值。|
-| isFingerCountLimited<sup>15+</sup> | boolean | 否 | 是否检查触摸屏幕的手指数量。若触摸屏幕的手指数量不等于设置的触发旋转的最少手指数（即上述fingers参数），手势将不会被识别。只有当触摸屏幕的手指数等于设置的触发旋转的最少手指数，并且滑动距离达到阈值时，手势才能被成功识别（只有先落下的两根手指参与手势计算，若抬起其中的一个，手势识别失败）。<br>对于已成功识别的手势，后续改变触摸屏幕的手指数量，不会触发[onActionUpdate](ts-basic-gestures-rotationgesture.md#事件)事件，但可以触发[onActionEnd](ts-basic-gestures-rotationgesture.md#事件)事件。<br>true：检查触摸屏幕的手指数量。<br>false：不检查触摸屏幕的手指数量。<br>默认值：false|
+| value | { fingers?: number, angle?: number } | 否 | 设置旋转手势事件参数。<br> - fingers：触发旋转的最少手指数，&nbsp;最小为2指，最大为5指。<br/>默认值：2 <br/>触发手势时手指数量可以多于fingers参数值，但仅最先落下的两指参与手势计算。<br> - angle：触发旋转手势的最小改变度数，单位为deg。<br/>默认值：1 <br/>**说明：** <br/>当改变度数的值小于等于0或大于360时，会被转化为默认值。 |
+
+### RotationGesture<sup>15+</sup>
+
+RotationGesture(options?: RotationGestureHandlerOptions)
+
+设置旋转手势事件。与[RotationGesture](#rotationgesture-1)相比，options参数新增了对isFingerCountLimited参数，表示是否检查触摸屏幕的手指数量。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| options | [RotationGestureHandlerOptions](./ts-uigestureevent.md#rotationgesturehandleroptions) | 否 |旋转手势处理器配置参数。 |
 
 
 ## 事件
 
+### onActionStart
+
+onActionStart(event: (event: GestureEvent) => void)
+
+Rotation手势识别成功回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onActionStart(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功回调。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| onActionUpdate(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Rotation手势移动过程中回调。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| onActionEnd(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功，手指抬起后触发回调。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| onActionCancel(event:&nbsp;Callback<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)>)<sup>18+</sup> | Rotation手势识别成功，接收到触摸取消事件触发回调。返回手势事件信息。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                         |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| event  |  (event: [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)) => void | 是   | 手势事件回调函数。 |
+
+### onActionUpdate
+
+onActionUpdate(event: (event: GestureEvent) => void)
+
+Rotation手势移动过程中回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                        |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| event  |  (event: [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)) => void | 是   | 手势事件回调函数。 |
+
+### onActionEnd
+
+onActionEnd(event: (event: GestureEvent) => void)
+
+Rotation手势识别成功，手指抬起后触发回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                         |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| event  |  (event: [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)) => void | 是   | 手势事件回调函数。 |
+
+### onActionCancel
+
+onActionCancel(event: () => void)
+
+Rotation手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                         |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| event  |  () => void | 是   | 手势事件回调函数。 |
+
+### onActionCancel<sup>18+</sup>
+
+onActionCancel(event: Callback\<GestureEvent\>)
+
+Rotation手势识别成功，接收到触摸取消事件触发回调。返回手势事件信息。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 参数描述                         |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| event  |  Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是   | 手势事件回调函数。 |
 
 ## 属性
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型    |描述                                        |
-| ----  | ------  | ---------------------------------------- |
-| tag<sup>11+</sup>   | string  | 设置Rotation手势标志，用于自定义手势判定时区分绑定的手势。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)> | 设置Rotation手势支持的事件输入源。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| 名称 | 类型    | 只读 | 可选 | 说明                              |
+| ----  | ------  | --- | ----- | -------------------------------- |
+| tag<sup>11+</sup>   | string  | 否 | 否 | 设置Rotation手势标志，用于自定义手势判定时区分绑定的手势。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)> | 否 | 否 | 设置Rotation手势支持的事件输入源。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## 示例
 
@@ -89,4 +177,4 @@ struct RotationGestureExample {
 }
 ```
 
- ![zh-cn_image_0000001174264372](figures/zh-cn_image_0000001174264372.png ) 
+ ![zh-cn_image_0000001174264372](figures/zh-cn_image_0000001174264372.png) 

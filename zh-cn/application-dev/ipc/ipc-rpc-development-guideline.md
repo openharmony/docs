@@ -8,7 +8,7 @@ IPC/RPC的主要工作是跨进程建立对象通信的连接（客户端进程�
 
 > **说明：**
 >
-> - 当前不支持三方应用实现ServiceExtensionAbility，三方应用的UIAbility组件可以通过[Context](../application-models/uiability-usage.md#获取uiability的上下文信息)连接系统提供的ServiceExtensionAbility实现。
+> - 当前不支持三方应用实现ServiceExtensionAbility，三方应用的UIAbility组件可以通过[Context](../application-models/uiability-usage.md#获取uiability的上下文信息)连接系统提供的ServiceExtensionAbility。
 >
 > - 使用场景约束：客户端是第三方/系统应用，服务端是系统应用/服务。
 
@@ -169,7 +169,7 @@ IPC/RPC的主要工作是跨进程建立对象通信的连接（客户端进程�
   ```
 
   Stage模型使用common.UIAbilityContext的[connectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability)接口连接Ability。
-  在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
+  在本文档的示例中，通过this.getUIContext().getHostContext()来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts
@@ -262,7 +262,7 @@ IPC/RPC的主要工作是跨进程建立对象通信的连接（客户端进程�
    ```
 
    Stage模型使用common.UIAbilityContext提供的[disconnectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectserviceextensionability-1)接口断开连接，此处的connectId是在连接服务时保存的。
-   在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
+   在本文档的示例中，通过this.getUIContext().getHostContext()来获取UIAbilityContext。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts
@@ -276,4 +276,4 @@ IPC/RPC的主要工作是跨进程建立对象通信的连接（客户端进程�
 
 针对IPC与RPC通信开发，端到端的完整示例，请参考：
 
-- [IPC通信完整样例-使用Parcelable/ArrayBuffer通信](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/IPC/ObjectTransfer)
+- [IPC通信完整样例-使用Parcelable/ArrayBuffer通信](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/IPC/ObjectTransfer)

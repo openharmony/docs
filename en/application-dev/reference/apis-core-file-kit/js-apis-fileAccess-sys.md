@@ -24,9 +24,9 @@ Represents a URI used for observing the device online/offline status.
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
 
-| Name| Type                       | Read-Only| Optional| Description                                                     |
-| ---- | --------------------------- | ---- | ---- | --------------------------------------------------------- |
-| DEVICES_URI<sup>11+</sup>  | string | No  | No  | URI used for observing the device online/offline status.                   |
+| Name| Type                       | Value | Description                                                     |
+| ---- | --------------------------- | ----  | --------------------------------------------------------- |
+| DEVICES_URI<sup>11+</sup>  | string | 'file://doc'  | URI used for observing the device online/offline status.                   |
 
 ## fileAccess.getFileAccessAbilityInfo
 
@@ -726,7 +726,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
           console.error("createFile return undefined object");
           return;
         }
-        console.log("createFile sucess, fileUri: " + JSON.stringify(fileUri));       
+        console.log("createFile success, fileUri: " + JSON.stringify(fileUri));       
       }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
@@ -774,7 +774,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
         if (err) {
           console.error("Failed to createFile in async, errCode:" + err.code + ", errMessage:" + err.message);
         }
-        console.log("createFile sucess, fileUri: " + JSON.stringify(fileUri));
+        console.log("createFile success, fileUri: " + JSON.stringify(fileUri));
       });
     }
   } catch (err) {
@@ -878,7 +878,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
         if (err) {
           console.error("Failed to mkDir in async, errCode:" + err.code + ", errMessage:" + err.message);
         }
-        console.log("mkDir sucess, dirUri: " + JSON.stringify(dirUri));
+        console.log("mkDir success, dirUri: " + JSON.stringify(dirUri));
       });
     }
   } catch (err) {
@@ -974,7 +974,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
         if (err) {
           console.error("Failed to openFile in async, errCode:" + err.code + ", errMessage:" + err.message);
         }
-        console.log("openFile sucess, fd: " + fd);
+        console.log("openFile success, fd: " + fd);
       });
     }
   } catch (err) {
@@ -1003,7 +1003,7 @@ Deletes a file or directory. This API uses a promise to return the result.
 
 | Type| Description|
 | --- | -- |
-| Promise&lt;number&gt; | Promise used to return the result.|
+| Promise&lt;number&gt; | Promise used to return the error code.|
 
 **Error codes**
 
@@ -1048,7 +1048,7 @@ Deletes a file or directory. This API uses an asynchronous callback to return th
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
 | uri | string | Yes| URI of the file or directory to delete.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the error code.|
 
 **Error codes**
 
@@ -1070,7 +1070,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
         if (err) {
           console.error("Failed to delete in async, errCode:" + err.code + ", errMessage:" + err.message);
         }
-        console.log("delete sucess, code: " + code);
+        console.log("delete success, code: " + code);
       });
     }
   } catch (err) {
@@ -1121,7 +1121,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     try {
       if (fileAccessHelper != undefined) {
         let fileUri = await fileAccessHelper.move(sourceFile, destFile);
-        console.log("move sucess, fileUri: " + JSON.stringify(fileUri));
+        console.log("move success, fileUri: " + JSON.stringify(fileUri));
       }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
@@ -1169,7 +1169,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
         if (err) {
           console.error("Failed to move in async, errCode:" + err.code + ", errMessage:" + err.message);
         }
-        console.log("move sucess, fileUri: " + JSON.stringify(fileUri));
+        console.log("move success, fileUri: " + JSON.stringify(fileUri));
       });
     }
   } catch (err) {
@@ -1219,7 +1219,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     try {
       if (fileAccessHelper != undefined) {
         let DestDir = await fileAccessHelper.rename(sourceDir, "testDir");
-        console.log("rename sucess, DestDir: " + JSON.stringify(DestDir));
+        console.log("rename success, DestDir: " + JSON.stringify(DestDir));
       }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
@@ -1266,7 +1266,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
         if (err) {
           console.error("Failed to rename in async, errCode:" + err.code + ", errMessage:" + err.message);
         }
-        console.log("rename sucess, DestDir: " + JSON.stringify(DestDir));
+        console.log("rename success, DestDir: " + JSON.stringify(DestDir));
       });
     }
   } catch (err) {
@@ -2394,7 +2394,7 @@ let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
 let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
 try {
   if (fileAccessHelper != undefined) {
-    fileAccessHelper.moveItem(sourceUri, destUri, async (err: BusinessError, copyResult: Array<fileAccess.MoveResult>) => {
+    fileAccessHelper.moveItem(sourceUri, destUri, async (err: BusinessError, moveResult: Array<fileAccess.MoveResult>) => {
       if (err) {
         console.error("moveItem failed, errCode:" + err.code + ", errMessage:" + err.message);
       }
@@ -2459,7 +2459,7 @@ try {
         console.error("moveItem failed, errCode:" + err.code + ", errMessage:" + err.message);
       }
       if (moveResult.length === 0) {
-        console.log("copy success");
+        console.log("moveItem success");
       } else {
         for (let i = 0; i < moveResult.length; i++) {
           console.error("errCode" + moveResult[i].errCode);
@@ -2520,13 +2520,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     // You can use the URI obtained.
     let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
     let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
-    let fileName: string;
+    let fileName: string = "2.txt";
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
     if (fileAccessHelper != undefined) {
         let fileUri = await fileAccessHelper.moveFile(sourceUri, destUri, fileName);
-        console.log("moveFile sucess, fileUri: " + JSON.stringify(fileUri));
+        console.log("moveFile success, fileUri: " + JSON.stringify(fileUri));
     }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
@@ -2573,7 +2573,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   // You can use the URI obtained.
   let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
   let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
-  let fileName: string;
+  let fileName: string = "2.txt";
   // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
   let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
@@ -2582,7 +2582,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
         if (err) {
           console.error("Failed to moveFile in async, errCode:" + err.code + ", errMessage:" + err.message);
         }
-        console.log("moveFile sucess, fileUri: " + JSON.stringify(fileUri));
+        console.log("moveFile success, fileUri: " + JSON.stringify(fileUri));
       });
     }
   } catch (err) {

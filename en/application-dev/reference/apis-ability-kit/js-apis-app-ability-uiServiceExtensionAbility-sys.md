@@ -74,9 +74,9 @@ Called to request to start a [UIServiceExtensionAbility](js-apis-app-ability-uiS
 
 **Parameters**
 
-| Name| Type| Read Only| Optional| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| want |  [Want](js-apis-app-ability-want.md) | Yes| No|  [Want](js-apis-app-ability-want.md) information about the [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md), including the ability name and bundle name.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want |  [Want](js-apis-app-ability-want.md) | Yes|  [Want](js-apis-app-ability-want.md) information about the [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md), including the ability name and bundle name.|
 | startId | number | Yes| Number of times the instance has been started. The initial value is **1** for the first start, and it increments automatically for subsequent starts.|
 
 **Example**

@@ -98,8 +98,29 @@ You can use either of the following solutions.
       AppStorage.setOrCreate<number>('foldStatus', foldStatus);
     })
     ```
-
-## Example
+## Checking the Presence of a Camera at a Specific Position
+You can call [CameraManager.getSupportedCameras](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedcameras) to obtain all the cameras supported by the device in the current fold state. By iterating through the results and using [CameraPosition](../../reference/apis-camera-kit/js-apis-camera.md#cameraposition), you can determine whether a camera exists at the specified position.
+```ts
+// The default value of connectionType is camera.ConnectionType.CAMERA_CONNECTION_BUILT_IN, indicating the device's built-in camera.
+function hasCameraAt(cameraManager: camera.CameraManager, cameraPosition: camera.CameraPosition,
+  connectionType: camera.ConnectionType = camera.ConnectionType.CAMERA_CONNECTION_BUILT_IN): boolean {
+  let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
+  if (cameraArray.length <= 0) {
+    console.error('cameraManager.getSupportedCameras error');
+    return false;
+  }
+  for (let index = 0; index < cameraArray.length; index++) {
+    if (cameraArray[index].cameraPosition === cameraPosition &&
+      cameraArray[index].connectionType === connectionType) {
+      return true;
+    }
+  }
+  return false;
+}
+```
+## Camera Switching Logic
+When a fold state change is detected, the **foldStatus** variable, decorated with @StorageLink, is updated. This triggers the **reloadXComponent** API to reload the **XComponent**, thereby implementing the camera switching logic.
+## Sample Code
 ```ts
 import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -290,7 +311,8 @@ struct Index {
     return previewProfiles[index];
   }
 
-  async initCamera(surfaceId: string, cameraPosition: camera.CameraPosition): Promise<void> {
+  async initCamera(surfaceId: string, cameraPosition: camera.CameraPosition,
+    connectionType: camera.ConnectionType = camera.ConnectionType.CAMERA_CONNECTION_BUILT_IN): Promise<void> {
     await this.releaseCamera();
     // Create a CameraManager object.
     if (!this.mCameraManager) {
@@ -313,7 +335,7 @@ struct Index {
     }
 
     let deviceIndex = cameraArray.findIndex((cameraDevice: camera.CameraDevice) => {
-      return cameraDevice.cameraPosition === cameraPosition;
+      return cameraDevice.cameraPosition === cameraPosition && cameraDevice.connectionType === connectionType;
     })
     // If no camera is found at the specified position, you can select another camera. Handle the situation based on the specific scenario.
     if (deviceIndex === -1) {

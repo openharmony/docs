@@ -36,11 +36,11 @@ TextInput初始化参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型  | 必填   | 说明 |
-| ---- | ----- | ---- | ---- |
-| placeholder             | [ResourceStr](ts-types.md#resourcestr)   | 否    | 设置无输入时的提示文本。                             |
-| text                    | [ResourceStr](ts-types.md#resourcestr)   | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextInput中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
-| controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否    | 设置TextInput控制器。                          |
+| 名称 | 类型  | 只读 | 可选   | 说明 |
+| ---- | ----- | ---- | ---- | ---- |
+| placeholder             | [ResourceStr](ts-types.md#resourcestr)   | 否    | 是 | 设置无输入时的提示文本。                             |
+| text                    | [ResourceStr](ts-types.md#resourcestr)   | 否    | 是 | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextInput中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
+| controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否    | 是 | 设置TextInput控制器。                          |
 
 ## 属性
 
@@ -51,7 +51,7 @@ TextInput初始化参数。
 >  
 >  输入框开启下划线模式时，通用属性padding的默认值为：<br>{<br>&nbsp;top: '12vp',<br>&nbsp;right: '0vp',<br>&nbsp;bottom: '12vp',<br>&nbsp;left: '0vp'<br> }
 >
->  当输入框设置padding为0时，可设置borderRadius为0避免光标被截断。当光标在文本框边缘显示异常时，请检查是否是padding、borderRadius属性影响造成。
+>  当输入框设置padding为0时，可设置[borderRadius](ts-universal-attributes-border.md#borderradius)为0避免光标被截断。当光标在文本框边缘显示异常时，请检查是否是padding、borderRadius属性影响造成。
 >
 >   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md)。
 
@@ -60,8 +60,6 @@ TextInput初始化参数。
 type(value: InputType)
 
 设置输入框类型。
-
-InputType设置为Password后，设置placeholderColor不生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -82,8 +80,6 @@ placeholderColor(value: ResourceColor)
 
 设置placeholder文本颜色。
 
-InputType设置为Password后，设置placeholderColor不生效。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -98,7 +94,7 @@ InputType设置为Password后，设置placeholderColor不生效。
 
 placeholderFont(value?: Font)
 
-设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。
+设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。当前支持'HarmonyOS Sans'字体和注册自定义字体[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -239,7 +235,7 @@ fontFamily(value: ResourceStr)
 
 | 参数名 | 类型                                   | 必填 | 说明                                                         |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>使用多个字体时，请用逗号','分隔，字体的优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>使用多个字体时，请用逗号','分隔，字体的优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和注册自定义字体[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
 
 ### inputFilter<sup>8+</sup>
 
@@ -266,7 +262,7 @@ inputFilter(value: ResourceStr, error?: Callback\<string>)
 
 copyOption(value: CopyOptions)
 
-设置输入的文本是否可复制。设置CopyOptions.None时，当前TextInput中的文字无法被复制、剪切、翻译、分享、搜索和帮写，仅支持粘贴。
+设置输入的文本是否可复制。设置CopyOptions.None时，当前TextInput中的文字无法被复制、剪切、翻译、分享、搜索和帮写，支持粘贴和全选。
 
 设置CopyOptions.None时，不允许拖拽。
 
@@ -619,9 +615,9 @@ showCounter(value: boolean, options?: InputCounterOptions)
 
 设置当通过InputCounterOptions输入的字符数超过阈值时显示计数器。
 
-参数value为true时，才能设置options，文本框开启计数下标功能，需要配合maxLength（设置最大字符限制）一起使用。字符计数器显示的效果是当前输入字符数/最大可输入字符数。
+参数value为true时，才能设置options，文本框开启计数下标功能，需要配合[maxLength](#maxlength)（设置最大字符限制）一起使用。字符计数器显示的效果是当前输入字符数/最大可输入字符数。
 
-当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数超过最大字符数时，边框和计数器下标将变为红色。用户同时设置参数value为true和InputCounterOptions，当thresholdPercentage数值在有效区间内，且输入字符数超过最大字符数时，边框和计数器下标将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色，框体抖动。
+当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数超过最大字符数时，边框和计数器下标将变为红色。用户同时设置参数value为true和[InputCounterOptions](ts-types.md#inputcounteroptions11对象说明)，当thresholdPercentage数值在有效区间内，且输入字符数超过最大字符数时，边框和计数器下标将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色，框体抖动。
 
 内联模式和密码模式下字符计数器不显示。
 
@@ -658,11 +654,13 @@ underlineColor(value: ResourceColor|UnderlineColor|undefined)
 
 设置下划线颜色。
 
-开启下划线时，支持配置下划线颜色。
+开启输入框下划线[showUnderline](#showunderline10)时，支持配置下划线颜色。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -827,6 +825,8 @@ minFontSize(value: number | string | Resource)
 
 自适应字号生效时，fontSize设置不生效。
 
+minFontSize小于或等于0时，自适应字号不生效，此时按照[fontSize](#fontsize)属性的值生效，未设置时按照其默认值生效。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -846,6 +846,8 @@ maxFontSize(value: number | string | Resource)
 需配合[minFontSize](#minfontsize12)以及[maxLines](#maxlines10)(组件设置为内联输入风格且编辑态时使用)或布局大小限制使用，单独设置不生效。
 
 自适应字号生效时，fontSize设置不生效。
+
+maxFontSize小于等于0或者maxFontSize小于minFontSize时，自适应字号不生效，此时按照[fontSize](#fontsize)属性的值生效，未设置时按照其默认值生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -943,7 +945,7 @@ enablePreviewText(enable: boolean)
 
 设置是否开启输入预上屏。
 
-预上屏内容定义为文字暂存态，目前不支持文字拦截功能，因此不触发onWillInsert、onDidInsert、onWillDelete、onDidDelete回调。
+预上屏内容定义为文字暂存态，目前不支持文字拦截功能，因此不触发[onWillInsert](#onwillinsert12)、[onDidInsert](#ondidinsert12)、[onWillDelete](#onwilldelete12)、[onDidDelete](#ondiddelete12)回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1000,7 +1002,7 @@ keyboardAppearance(appearance: Optional\<KeyboardAppearance>)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
-| appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15枚举说明)> | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
+| appearance | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15枚举说明)> | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
 
 ### stopBackPress<sup>15+</sup>
 
@@ -1016,7 +1018,7 @@ stopBackPress(isStopped: Optional\<boolean>)
 
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
-| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否阻止返回键。<br/>true表示阻止返回键向其它组件或应用侧传递，false表示不阻止。<br />默认值：true |
+| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 是否阻止返回键。<br/>true表示阻止返回键向其它组件或应用侧传递，false表示不阻止。<br />默认值：true |
 
 ### halfLeading<sup>18+</sup>
 
@@ -1032,7 +1034,7 @@ halfLeading(halfLeading: Optional\<boolean>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| halfLeading | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
+| halfLeading | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
 
 ### minFontScale<sup>18+</sup>
 
@@ -1048,7 +1050,7 @@ minFontScale(scale: Optional\<number | Resource>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最小的字体缩放倍数，支持undefined类型。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例18设置最小字体范围与最大字体范围](#示例18设置最小字体范围与最大字体范围)。 |
+| scale  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最小的字体缩放倍数，支持undefined类型。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例18设置最小字体范围与最大字体范围](#示例18设置最小字体范围与最大字体范围)。 |
 
 ### maxFontScale<sup>18+</sup>
 
@@ -1064,7 +1066,7 @@ maxFontScale(scale: Optional\<number | Resource>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最大的字体缩放倍数，支持undefined类型。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理。异常值默认不生效。<br/>当设置maxFontScale属性后，showError最多放大到2倍。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例18设置最小字体范围与最大字体范围](#示例18设置最小字体范围与最大字体范围)。 |
+| scale  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最大的字体缩放倍数，支持undefined类型。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理。异常值默认不生效。<br/>当设置maxFontScale属性后，showError最多放大到2倍。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例18设置最小字体范围与最大字体范围](#示例18设置最小字体范围与最大字体范围)。 |
 
 ### cancelButton<sup>18+</sup>
 
@@ -1098,7 +1100,7 @@ ellipsisMode(mode: Optional\<EllipsisMode>)
 
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
-| mode  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[EllipsisMode](ts-appendix-enums.md#ellipsismode11)> | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
+| mode  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[EllipsisMode](ts-appendix-enums.md#ellipsismode11)> | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
 
 ## InputType枚举说明
 
@@ -1176,10 +1178,10 @@ ellipsisMode(mode: Optional\<EllipsisMode>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型  | 必填   | 说明 |
-| ---- | ----- | ---- | ---- |
-| onIconSrc  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码隐藏的显示状态的图标。<br/>string格式可用于加载网络图片和本地图片。 |
-| offIconSrc | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码显示的隐藏状态的图标。<br/>string格式可用于加载网络图片和本地图片。 |
+| 名称 | 类型  | 只读 | 可选   | 说明 |
+| ---- | ----- | ---- | ---- |---- |
+| onIconSrc  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否 | 是   | 密码输入模式时，能够切换密码可见时显示的图标。<br/>string格式可用于加载网络图片和本地图片。 |
+| offIconSrc | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 是 | 密码输入模式时，能够切换密码不可见时显示的图标。<br/>string格式可用于加载网络图片和本地图片。 |
 
 ## EnterKeyType枚举说明
 
@@ -1451,7 +1453,7 @@ onWillChange的回调时序晚于onWillInsert、onWillDelete，早于onDidInsert
 
 ## TextInputController<sup>8+</sup>
 
-TextInput组件的控制器继承自[TextContentControllerBase](ts-types.md#textcontentcontrollerbase10)。
+TextInput组件的控制器继承自[TextContentControllerBase](ts-types.md#textcontentcontrollerbase10)，涉及的接口有[getTextContentRect](ts-types.md#gettextcontentrect10)、[getTextContentLineCount](ts-types.md#gettextcontentlinecount10)、[getCaretOffset](ts-types.md#getcaretoffset11)、[addText](ts-types.md#addtext15)、[deleteText](ts-types.md#deletetext15)、[getSelection](ts-types.md#getselection15)、[clearPreviewText](ts-types.md#clearpreviewtext17)以及系统接口[getText](ts-text-common-sys.md#gettext19)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1529,12 +1531,12 @@ stopEditing(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型  | 必填   | 说明 |
-| ---- | ----- | ---- | ---- |
-| typing  | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 键入时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
-| normal  | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 非特殊状态时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
-| error   | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 错误时下划线颜色。不填写、undefined、null、无效值时恢复默认。此选项会修改showCounter属性中达到最大字符数时的颜色。 |
-| disable | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 禁用时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
+| 名称 | 类型  | 只读 | 可选   | 说明 |
+| ---- | ----- | ---- | ---- | ---- |
+| typing  | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 是 | 键入时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
+| normal  | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 是 | 非特殊状态时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
+| error   | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 是 | 错误时下划线颜色。不填写、undefined、null、无效值时恢复默认。此选项会修改showCounter属性中达到最大字符数时的颜色。 |
+| disable | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 是 | 禁用时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
 
 ## SubmitEvent<sup>11+</sup>
 
@@ -1550,9 +1552,9 @@ stopEditing(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型  | 必填   | 说明 |
-| ---- | ----- | ---- | ---- |
-| text              | string     | 是   | 输入框文本内容。                                   |
+| 名称 | 类型  | 只读 | 可选   | 说明 |
+| ---- | ----- | ---- | ---- | ---- |
+| text              | string     | 否   | 否 | 输入框文本内容。                                   |
 
 ### keepEditableState
 
@@ -1636,7 +1638,7 @@ type OnContentScrollCallback = (totalOffsetX: number, totalOffsetY: number) => v
 
 ### 示例1（设置与获取光标位置）
 
-该示例通过controller实现了光标位置的设置与获取的功能。
+从API version 8开始，该示例通过[controller](#textinputcontroller8)实现了光标位置的设置与获取的功能，同时，可以使用!!实现text参数的双向数据绑定（从API version 18开始）。
 
 ```ts
 // xxx.ets
@@ -1650,7 +1652,6 @@ struct TextInputExample {
 
   build() {
     Column() {
-      // 使用!!实现text参数的双向数据绑定
       TextInput({ text: this.text!!, placeholder: 'input your word...', controller: this.controller })
         .placeholderColor(Color.Grey)
         .placeholderFont({ size: 14, weight: 400 })
@@ -1712,7 +1713,7 @@ struct TextInputExample {
 
 ### 示例2（设置下划线）
 
-该示例通过showUnderline、showError、showUnit、passwordIcon属性展示了下划线在不同场景的效果。
+从API version 10开始支持，该示例通过[showUnderline](#showunderline10)、[showError](#showerror10)、[showUnit](#showunit10)、[passwordIcon](#passwordicon10)属性展示了下划线在不同场景的效果，同时，可以通过[underlineColor](#underlinecolor12)（从API version 12开始）支持配置下划线颜色。
 
 ```ts
 // xxx.ets
@@ -1797,7 +1798,7 @@ struct TextInputExample {
           typing: Color.Green,
           error: Color.Red,
           disable: Color.Gray
-        });
+        })
       TextInput({ placeholder: '提示文本内容' })
         .width(350)
         .showUnderline(true)
@@ -1812,7 +1813,7 @@ struct TextInputExample {
 
 ### 示例3（设置自定义键盘）
 
-该示例通过customKeyboard属性实现了自定义键盘的功能。
+从API version 10开始，该示例通过[customKeyboard](#customkeyboard10)属性实现了自定义键盘的功能。
 
 ```ts
 // xxx.ets
@@ -1856,7 +1857,7 @@ struct TextInputExample {
 
 ### 示例4（设置右侧清除按钮样式）
 
-该示例通过cancelButton属性展示了自定义右侧清除按钮样式的效果。
+该示例通过[cancelButton](#cancelbutton11)属性展示了自定义右侧清除按钮样式的效果。
 
 ```ts
 // xxx.ets
@@ -1875,7 +1876,7 @@ struct TextInputExample {
           style: CancelButtonStyle.CONSTANT,
           icon: {
             size: 45,
-            src: $r('app.media.app_icon'),
+            src: $r('app.media.startIcon'),// $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
             color: Color.Blue
           }
         })
@@ -1891,7 +1892,7 @@ struct TextInputExample {
 
 ### 示例5（设置计数器）
 
-该示例通过maxLength、showCounter、showUnderline属性实现了计数器的功能。
+该示例通过[maxLength](#maxlength)、[showCounter](#showcounter11)（从API version 11开始）、[showUnderline](#showunderline10)（从API version 10开始）属性实现了计数器的功能。
 
 ```ts
 // xxx.ets
@@ -1926,7 +1927,7 @@ struct TextInputExample {
 
 ### 示例6（电话号码格式化）
 
-该示例通过onChange回调实现了电话号码格式化为XXX XXXX XXXX的功能。
+该示例通过[onChange](#onchange)回调实现了电话号码格式化为XXX XXXX XXXX的功能。
 
 ```ts
 // xxx.ets
@@ -2062,7 +2063,7 @@ struct TextInputExample {
             console.log("selection change: ", selectionStart, selectionEnd);
             this.lastCaretPosition = selectionStart;
             this.lastCaretPositionEnd = selectionEnd;
-          })
+          })// 从API version 10开始支持
       }
     }
     .width('100%')
@@ -2074,7 +2075,7 @@ struct TextInputExample {
 
 ### 示例7（设置文本断行规则）
 
-该示例通过wordBreak属性实现了TextInput不同断行规则下的效果。
+从API version 12开始，该示例通过[wordBreak](#wordbreak12)属性实现了TextInput不同断行规则下的效果。
 
 ```ts
 // xxx.ets
@@ -2133,7 +2134,7 @@ struct TextInputExample {
 
 ### 示例8（设置文本样式）
 
-该示例通过lineHeight、letterSpacing、decoration属性展示了不同样式的文本效果。
+从API version 12开始，该示例通过[lineHeight](#lineheight12)、[letterSpacing](#letterspacing12)、[decoration](#decoration12)属性展示了不同样式的文本效果。
 
 ```ts
 // xxx.ets
@@ -2181,7 +2182,7 @@ struct TextInputExample {
 
 ### 示例9（设置文字特性效果）
 
-该示例通过fontFeature属性实现了文本在不同文字特性下的展示效果。
+从API version 12开始，该示例通过[fontFeature](#fontfeature12)属性实现了文本在不同文字特性下的展示效果。
 
 ```ts
 // xxx.ets
@@ -2212,7 +2213,7 @@ struct TextInputExample {
 
 ### 示例10（自定义键盘避让）
 
-该示例通过自定义键盘实现了键盘避让的效果。
+该示例通过[customKeyboard](#customkeyboard10)（从API version 10开始）属性配置[KeyboardOptions](ts-basic-components-richeditor.md#keyboardoptions12)（从API version 12开始）接口实现了自定义键盘避让的效果。
 
 ```ts
 // xxx.ets
@@ -2283,7 +2284,7 @@ struct TextInputExample {
 
 ### 示例11（设置文本自适应）
 
-该示例通过minFontSize、maxFontSize、heightAdaptivePolicy属性实现了文本自适应字号的功能。
+从API version 12开始，该示例通过[minFontSize](#minfontsize12)、[maxFontSize](#maxfontsize12)、[heightAdaptivePolicy](#heightadaptivepolicy12)属性实现了文本自适应字号的功能。
 
 ```ts
 // xxx.ets
@@ -2335,7 +2336,7 @@ struct TextInputExample {
 
 ### 示例12（设置折行规则）
 
-该示例通过lineBreakStrategy属性实现了TextInput不同折行规则下的效果。
+从API version 12开始，该示例通过[lineBreakStrategy](#linebreakstrategy12)属性实现了TextInput不同折行规则下的效果。
 
 ```ts
 // xxx.ets
@@ -2378,7 +2379,7 @@ struct TextInputExample {
 ![textInputLineBreakStrategy](figures/textInputLineBreakStrategy.gif)
 
 ### 示例13（支持插入和删除回调）
-该示例通过onWillInsert、onDidInsert、onWillDelete、onDidDelete接口实现了插入和删除的效果。
+从API version 12开始，该示例通过[onWillInsert](#onwillinsert12)、[onDidInsert](#ondidinsert12)、[onWillDelete](#onwilldelete12)、[onDidDelete](#ondiddelete12)接口实现了插入和删除的效果。
 ```ts
 // xxx.ets
 @Entry
@@ -2431,7 +2432,7 @@ struct TextInputExample {
 
 ### 示例14（文本扩展自定义菜单）
 
-该示例通过editMenuOptions接口实现了文本设置自定义菜单扩展项的文本内容、图标以及回调的功能。
+从API version 12开始，该示例通过[editMenuOptions](#editmenuoptions12)接口实现了文本设置自定义菜单扩展项的文本内容、图标以及回调的功能。
 
 ```ts
 // xxx.ets
@@ -2491,7 +2492,7 @@ struct TextInputExample {
 
 ### 示例15（设置symbol类型清除按钮）
 
-该示例通过cancelButton属性展示了自定义右侧symbol类型清除按钮样式的效果。
+从API version 18开始，该示例通过[cancelButton](#cancelbutton18)属性展示了自定义右侧symbol类型清除按钮样式的效果。
 
 ```ts
 import { SymbolGlyphModifier } from '@kit.ArkUI';
@@ -2520,7 +2521,7 @@ struct TextInputExample {
 
 ### 示例16（文本设置省略模式）
 
-该示例通过textOverflow、ellipsisMode、style属性展示了文本超长省略以及调整省略位置的效果。
+该示例通过[textOverflow](#textoverflow12)（从API version 12开始）、[ellipsisMode](#ellipsismode18)（从API version 18开始）、[style](#style9)（从API version 9开始）属性展示了文本超长省略以及调整省略位置的效果。
 
 ```ts
 // xxx.ets
@@ -2579,7 +2580,7 @@ struct EllipsisModeExample {
 
 ### 示例17（输入框支持输入状态变化等回调）
 
-该示例通过onEditChange、onCopy、onCut、onPaste、onContentScroll接口实现了输入框监测输入状态变化、复制、剪切、粘贴、文本内容滚动回调的效果。
+从API version 8开始，该示例通过[onEditChange](#oneditchange8)、[onCopy](#oncopy8)、[onCut](#oncopy8)、[onPaste](#onpaste8)、[onContentScroll](#oncontentscroll10)（从API version 10开始）接口实现了输入框监测输入状态变化、复制、剪切、粘贴、文本内容滚动回调的效果，同时，可以通过设置[selectAll](#selectall11)（从API version 11开始）属性，输入框初始状态下是否全选文本。
 
 ```ts
 // xxx.ets
@@ -2605,13 +2606,13 @@ struct TextInputExample {
           .textAlign(TextAlign.Center)
           .selectedBackgroundColor(Color.Blue)
           .caretStyle({ width: '4vp' })
-          .caretPosition(10)// 设置TextInput光标位置
-          .selectionMenuHidden(true)// 设置TextInput不弹出系统文本选择菜单
+          .caretPosition(10)
+          .selectionMenuHidden(true)
           .onEditChange((status: boolean) => {
             this.editStatus = status;
           })
           .defaultFocus(true)// 设置TextInput默认获焦
-          .enableKeyboardOnFocus(false)// 设置TextInput通过点击以外的方式获焦时，不主动拉起软键盘
+          .enableKeyboardOnFocus(false)
           .selectAll(false)
 
         Text("editStatus:" + this.editStatus).height(30)
@@ -2688,7 +2689,7 @@ struct TextInputExample {
 
 ### 示例18（设置最小字体范围与最大字体范围）
 
-该示例通过minFontScale、maxFontScale设置字体显示最小与最大范围（<!--Del-->该示例使用系统接口，应用类型需调整为系统应用，可参考HarmonyAppProvision的[系统接口说明](../../../reference/development-intro.md#系统接口说明)<!--DelEnd-->）。
+从API version 18开始，该示例通过[minFontScale](#minfontscale18)、[maxFontScale](#maxfontscale18)设置字体显示最小与最大范围（<!--Del-->该示例使用系统接口，应用类型需调整为系统应用，可参考HarmonyAppProvision的[系统接口说明](../../../reference/development-intro.md#系统接口说明)<!--DelEnd-->）。
 <!--code_no_check-->
 ```json
 // 开启应用缩放跟随系统
@@ -2717,8 +2718,8 @@ struct TextInputExample {
   }
 }
 ```
-<!--code_no_check-->
 <!--RP3-->
+<!--code_no_check-->
 ```ts
 // xxx.ets
 import { abilityManager, Configuration } from '@kit.AbilityKit';
@@ -2790,7 +2791,7 @@ struct TextInputExample {
 <!--RP3End-->
 ### 示例19（设置选中指定区域的文本内容）
 
-该示例通过setTextSelection方法展示如何设置选中指定区域的文本内容以及菜单的显隐策略。
+从API version 10开始，该示例通过[setTextSelection](#settextselection10)方法展示如何设置选中指定区域的文本内容以及菜单的显隐策略。
 
 ```ts
 // xxx.ets

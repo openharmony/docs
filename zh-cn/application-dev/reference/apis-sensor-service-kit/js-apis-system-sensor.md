@@ -338,7 +338,7 @@ import { Sensor, HeartRateResponse, SubscribeHeartRateOptions } from '@kit.Senso
 
 let subscribeHeartRateOptions: SubscribeHeartRateOptions = {
   success: (ret: HeartRateResponse) => {
-    console.info('Succeeded in subscribing. Get heartrate value:' + ret.heartRate);
+    console.info('Succeeded in subscribing. Get heartRate value:' + ret.heartRate);
   },
   fail: (data: string, code: number) => {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);

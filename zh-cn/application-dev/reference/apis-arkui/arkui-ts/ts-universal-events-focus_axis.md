@@ -36,11 +36,10 @@ onFocusAxisEvent(event: Callback\<FocusAxisEvent>): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                                    | 属性类型                                       | 描述                 |
-| ------------------------------------- | ---------------------------------------- | --------------------------- |
-| axisMap                               | Map<[AxisModel](ts-appendix-enums.md#axismodel15), number>     | 焦点轴事件的轴值表。          |
-| stopPropagation                       | Callback\<void>                           | 阻塞事件冒泡传递。            |
-
+| 名称                                      | 类型                  | 只读    |  可选   |         说明                 |
+| ------------------------------------- | ---------------------------------------     | ------------- | ------------- | ------------------------- |
+| axisMap                               | Map<[AxisModel](ts-appendix-enums.md#axismodel15), number>      |  否    |  否     | 焦点轴事件的轴值表。          |
+| stopPropagation                       | Callback\<void>                      |     否         |  否     |阻塞事件冒泡传递。            |
 ## 示例
 
 该示例通过按钮设置了焦点轴事件，当按钮获得焦点时，操控游戏手柄的十字按键或者操作杆将触发onFocusAxisEvent回调。

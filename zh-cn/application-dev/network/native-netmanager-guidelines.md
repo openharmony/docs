@@ -1,4 +1,4 @@
-# NetConnection开发指导
+# 管理网络连接(C/C++)
 
 ## 场景介绍
 
@@ -21,9 +21,9 @@ NetConnection常用接口如下表所示，详细的接口说明请参考[NetCon
 | OH_NetConn_FreeDnsResult(struct addrinfo \*res) | 释放DNS结果内存。 |
 | OH_NetConn_GetAllNets(NetConn_NetHandleList \*netHandleList) | 获取所有处于连接状态的网络列表。 |
 | OHOS_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver) | 注册自定义dns解析器。<br/>**弃用：** 从API version 13开始废弃。<br/>**替代：** 推荐使用OH_NetConn_RegisterDnsResolver。|
-| OHOS_NetConn_UnregisterDnsResolver(void) | 去注册自定义dns解析器。<br/>**弃用：** 从API version 13开始废弃。<br/>**替代：** 推荐使用OH_NetConn_UnregisterDnsResolver。|
+| OHOS_NetConn_UnregisterDnsResolver(void) | 取消注册自定义dns解析器。<br/>**弃用：** 从API version 13开始废弃。<br/>**替代：** 推荐使用OH_NetConn_UnregisterDnsResolver。|
 | OH_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver) | 注册自定义dns解析器。 |
-| OH_NetConn_UnregisterDnsResolver(void) | 去注册自定义dns解析器。|
+| OH_NetConn_UnregisterDnsResolver(void) | 取消注册自定义dns解析器。|
 | OH_NetConn_SetPacUrl(const char \*pacUrl) | 设置系统级代理自动配置(PAC)脚本地址。 |
 | OH_NetConn_GetPacUrl(char \*pacUrl) | 获取系统级代理自动配置(PAC)脚本地址。 |
 
@@ -35,7 +35,7 @@ NetConnection常用接口如下表所示，详细的接口说明请参考[NetCon
 
 本文以实现获取默认激活的数据网络为例，给出具体的开发指导。
 
-其他接口开发请参考：[完整示例代码](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Exploitation_case)。
+其他接口开发请参考：[完整示例代码](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Exploitation_case)。
 
 ### 添加开发依赖
 

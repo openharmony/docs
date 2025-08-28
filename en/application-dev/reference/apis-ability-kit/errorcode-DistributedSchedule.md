@@ -18,8 +18,8 @@ This error code is reported when the system ability is abnormal.
 
 The possible causes are as follows:
 1. The DMS service is not started.
-2. The **binder** object of DMS is not obtained.
-3. Other services on which ability continuation depends are not started or the **binder** object is not obtained.
+2. The binder object of DMS is not obtained.
+3. Other services on which ability continuation depends are not started or the binder object is not obtained.
 
 **Solution**
 
@@ -93,8 +93,8 @@ This error code is reported when the system ability is abnormal.
 
 The possible causes are as follows:
 1. The DMS service is not started.
-2. The **binder** object of DMS is not obtained.
-3. Other services on which ability continuation depends are not started or the **binder** object is not obtained.
+2. The binder object of DMS is not obtained.
+3. Other services on which ability continuation depends are not started or the binder object is not obtained.
 
 **Solution**
 
@@ -245,8 +245,8 @@ This error code is reported if DMS and other objects are empty or reading in ser
 
 The possible causes are as follows:
 1. Reading the input parameters in serialization fails.
-2. The DMS service is not started or the **binder** object is not obtained.
-3. Other services on which DMS depends are not started or the **binder** object is not obtained.
+2. The DMS service is not started or the binder object is not obtained.
+3. Other services on which DMS depends are not started or the binder object is not obtained.
 
 **Solution**
 

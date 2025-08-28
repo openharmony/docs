@@ -1,4 +1,9 @@
 # 应用文件上传下载
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Request-->
+<!--Owner: @huaxin05-->
+<!--Designer: @hu-kai45-->
+<!--Tester: @murphy1984-->
 
 应用可以将应用文件上传到网络服务器，也可以从网络服务器下载网络资源文件到本地应用文件目录。
 
@@ -12,7 +17,7 @@
 >
 > 使用上传下载模块，需[声明权限](../../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
 >
-> 上传下载模块不支持Charles、Fiddler等代理抓包工具。如需抓包，请使用其他模块接口。
+> 上传下载模块不支持Charles、Fiddler等代理抓包工具。
 
 以下示例代码演示两种将缓存文件上传至服务器的方法：
 
@@ -36,9 +41,14 @@ struct Index {
           let cacheDir = context.cacheDir;
 
           // 新建一个本地应用文件
-          let file = fs.openSync(cacheDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-          fs.writeSync(file.fd, 'upload file test');
-          fs.closeSync(file);
+          try {
+            let file = fs.openSync(cacheDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+            fs.writeSync(file.fd, 'upload file test');
+            fs.closeSync(file);
+          } catch (error) {
+            let err: BusinessError = error as BusinessError;
+            console.error(`Invoke uploadFile failed, code is ${err.code}, message is ${err.message}`);
+          }
 
           // 上传任务配置项
           let files: Array<request.File> = [

@@ -125,7 +125,7 @@ Represents information about the recent file list.
 
 | Name| Type  | Read-Only| Optional| Description    |
 | ------ | ------ | -------- | ------ | -------- |
-| uri | string | Yes| No| URI of the file.|
+| uri | string | Yes| No| File URI.|
 | srcPath | string | Yes| No| File path.|
 | fileName | string | Yes| No| File name.|
 | mode | number | Yes| No| [Permissions on the file](js-apis-file-fs.md#stat).|

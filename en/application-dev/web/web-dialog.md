@@ -276,7 +276,7 @@ An application can listen for the **confirm** method of a web page through the [
         // Selected state of the check box
         isChecked: this.isChecked,
         // Content of the check box
-        checkTips: 'Don't ask again after denying',
+        checkTips: 'Do not ask again after denying',
         primaryButton: {
           value: 'Disable',
           action: () => {

@@ -23,7 +23,7 @@ Use [onControllerAttached()](./ts-basic-components-web-events.md#oncontrolleratt
 
 **Error Message**
 
-URL error.Possible causes: 1. No valid cookie found for the specified URL. 2. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048.
+URL error. Possible causes: 1. No valid cookie found for the specified URL. 2. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048.
 
 **Description**
 

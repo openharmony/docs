@@ -10,24 +10,20 @@
 
 转换数据类型：在回调中将JavaScript结果转换为c++可用的数据。
 
-线程安全处理：确保跨线程操作的安全性。
-
 ### 示例代码
 - 模块注册
     ```c++
     #include "hilog/log.h"
     #include "napi/native_api.h"
-    #include <napi/common.h>
-    #include <pthread.h>
-
+    
     //解析Promise结果的回调
     static napi_value ResolvedCallback(napi_env env, napi_callback_info info)
     {
         size_t argc = 1;
-        napi_value args[1];
+        napi_value args[1] = { nullptr };
         napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-        int result;
+        int result = 0;
         napi_get_value_int32(env, args[0], &result);
         OH_LOG_INFO(LOG_APP, "Promise resolved with result:%{public}d", result);
         return nullptr;
@@ -37,10 +33,10 @@
     static napi_value RejectedCallback(napi_env env, napi_callback_info info)
     {
         size_t argc = 1;
-        napi_value args[1];
+        napi_value args[1] = { nullptr };
         napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-        napi_value error;
+        napi_value error = nullptr;
         napi_coerce_to_string(env, args[0], &error);
         char errorMsg[1024];
         size_t len;
@@ -69,9 +65,9 @@
         napi_create_function(env, "onResolve", NAPI_AUTO_LENGTH, ResolvedCallback, nullptr, &onResolve);
         napi_create_function(env, "onReject", NAPI_AUTO_LENGTH, RejectedCallback, nullptr, &onReject);
         // 创建参数数组
-        napi_value argv1[2] = {onResolve, onReject};
-        napi_call_function(env, promise, thenFunc, 2, argv1, nullptr);
-
+        napi_value thenArgv[2] = {onResolve, onReject};
+        napi_call_function(env, promise, thenFunc, 2, thenArgv, nullptr);
+    
         return nullptr;
     }
 
@@ -110,8 +106,8 @@
     export const callArkTSAsync: (func: Function) => object;
     ```
 
-- 编译配置
-1. CMakeLists.txt文件需要按照以下配置：
+- CMakeLists.txt文件需要按照以下配置：
+
     ```
     // CMakeLists.txt
     # the minimum version of CMake.
@@ -126,23 +122,14 @@
 
     include_directories(${NATIVERENDER_ROOT_PATH}
                         ${NATIVERENDER_ROOT_PATH}/include)
-    add_library(entry SHARED hello.cpp)
-    target_link_libraries(entry PUBLIC libace_napi.z.so)
+
+    add_definitions( "-DLOG_DOMAIN=0xd0d0" )
+    add_definitions( "-DLOG_TAG=\"testTag\"" )
+
+    add_library(entry SHARED napi_init.cpp)
+    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
     ```
-2. 需要在工程的build-profile.json5文件中进行以下配置：
-    ```json
-    {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "sources": [
-                        "./src/main/ets/pages/ObjectUtils.ets"
-                    ]
-                }
-            }
-        }
-    }
-    ```
+
 - ArkTS代码示例
     ```ts
     // index.ets

@@ -16,14 +16,14 @@ import { appManager } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name                    | Type    | Mandatory| Description                      |
-| ----------------------- | ---------| ---- | ------------------------- |
-| pid         | number   | Yes  | Process ID.                   |
-| bundleName  | string   | Yes  | Bundle name of the application.                 |
-| uid         | number   | Yes  | UID of the application.                 |
-| isContinuousTask | boolean   | Yes  | Whether the task is a continuous task. The value **true** means that the task is a continuous task, and **false** means the opposite.                |
-| isKeepAlive      | boolean   | Yes  | Whether the process is a resident task. The value **true** means that the process is a resident, and **false** means the opposite.                  |
-| state       | number   | Yes  | Application state. The options are as follows:<br>**0**: newly created.<br>**1**: ready.<br>**2**: running in the foreground.<br>**4**: running in the background.<br>**5**: terminated.    |
+| Name        | Type    | Read-Only| Optional| Description                      |
+| ------------| ---------| ---- | ---- | ------------------------- |
+| pid         | number   | No  | No| Process ID.                   |
+| bundleName  | string   | No  | No| Bundle name of the application.                 |
+| uid         | number   | No  | No|UID of the application.                 |
+| isContinuousTask | boolean   | No  | No| Whether the task is a continuous task. **true** if yes, **false** otherwise.                |
+| isKeepAlive      | boolean   | No  | No|Whether the process is a resident task. **true** if yes, **false** otherwise.                  |
+| state       | number   | No  |  No|Application state. The options are as follows:<br>**0**: newly created.<br>**1**: ready.<br>**2**: running in the foreground.<br>**4**: running in the background.<br>**5**: terminated.    |
 
 **Example**
 ```ts

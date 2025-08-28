@@ -1021,7 +1021,7 @@ Enables listening for sensor status changes. This API asynchronously returns the
 
 | Name  | Type                                                        | Mandatory| Description                                                       |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| sensorStatusChange     |  sensorStatusChange        | Yes  | Event type. The value **sensorStatusChange** indicates a sensor status change event.            |
+| type     |  sensorStatusChange        | Yes  | Event type. The value **sensorStatusChange** indicates a sensor status change event.            |
 | callback | Callback&lt;[SensorStatusEvent](#sensorstatusevent19)&gt; | Yes  | Callback used to return the sensor status change event.|
 
 **Error codes**
@@ -2059,9 +2059,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -2190,9 +2197,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -2315,9 +2329,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -2413,7 +2434,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -2440,9 +2461,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -2539,7 +2567,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -2566,9 +2594,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -2665,7 +2700,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -2692,9 +2727,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -2800,7 +2842,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -2827,9 +2869,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -2931,7 +2980,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -2958,9 +3007,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -3056,7 +3112,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3083,9 +3139,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -3187,7 +3250,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3214,9 +3277,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -3312,7 +3382,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3339,9 +3409,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -3443,7 +3520,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3470,9 +3547,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -3568,7 +3652,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3595,9 +3679,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -3693,7 +3784,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3720,9 +3811,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -3822,7 +3920,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3849,9 +3947,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -3953,7 +4058,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3980,9 +4085,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -4084,7 +4196,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -4111,9 +4223,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -4209,7 +4328,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -4236,9 +4355,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -4334,7 +4460,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -4361,9 +4487,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -4459,7 +4592,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -4486,9 +4619,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -4584,7 +4724,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -4611,9 +4751,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -4649,7 +4796,7 @@ Disables listening for sensor status changes.
 
 | Name  | Type                                                        | Mandatory| Description                                                       |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| sensorStatusChange     |  sensorStatusChange        | Yes  | Event type. The value **sensorStatusChange** indicates a sensor status change event.            |
+| type     |  sensorStatusChange        | Yes  | Event type. The value **sensorStatusChange** indicates a sensor status change event.            |
 | callback | Callback&lt;[SensorStatusEvent](#sensorstatusevent19)&gt; | No  | Callback passed to **sensor.on**. If this parameter is left unspecified, listening will be disabled for all callbacks.|
 
 **Error codes**
@@ -4704,7 +4851,7 @@ Obtains the information about all sensors on the device.
 
 | Name         | Type                                                        | Mandatory| Description    |
 | --------------- | ------------------------------------------------------------ | ---- |--------|
-| deviceId | number                 | No  | Device ID. The default value is the ID of the local device.|
+| deviceId | number                 | No  | Device ID. The default value is **-1**, indicating the local device. To query the ID of other devices, call [getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19).|
 
 
 **Return value**
@@ -4746,8 +4893,7 @@ Obtains information about the sensor of a specific type.
 | Name         | Type                                                        | Mandatory| Description      |
 | --------------- | ------------------------------------------------------------ | ---- |----------|
 | type     | [SensorId](#sensorid9) | Yes  | Sensor type.|
-| deviceId | number                 | No  | Device ID. The default value is the ID of the local device.  |
-
+| deviceId | number                 | No  | Device ID. The default value is **-1**, indicating the local device. To query the ID of other devices, call [getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19). |
 
 **Return value**
 
@@ -6104,7 +6250,7 @@ Describes the timestamp of the sensor data.
 
 | Name     | Type  | Read-Only| Optional| Description                    |
 | --------- | ------ | ---- | ---- | ------------------------ |
-| timestamp | number | Yes  | Yes  | Timestamp when the sensor reports data.|
+| timestamp | number | Yes  | Yes  | Timestamp when the sensor reports data. Time from device startup to data reporting, in nanoseconds.|
 | accuracy<sup>11+</sup> | [SensorAccuracy](#sensoraccuracy11)<sup>11+</sup> | Yes  | No  | Accuracy of the sensor data.|
 
 ## Sensor<sup>9+</sup>

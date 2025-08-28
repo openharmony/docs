@@ -1,6 +1,6 @@
 # @ohos.url (URL字符串解析)
 
-URL代表着是统一资源定位符，本模块提供了常用的工具函数，实现了解析URL字符串和构造[URL](#url)对象等功能。
+URL代表的是统一资源定位符，本模块提供了常用的工具函数，实现了解析URL字符串和构造[URL](#url)对象等功能。
 
 > **说明：**
 >
@@ -259,8 +259,7 @@ get(name: string): string | null
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回第一个值。 |
-| null | 如果没找到，返回 null。 |
+| string \| null | 返回第一个值，如果没找到，返回 null。 |
 
 **错误码：**
 
@@ -359,7 +358,7 @@ paramsObject.set('baz', '3'); // Add a third parameter.
 
 sort(): void
 
-对包含在此对象中的所有键值对进行排序，并返回undefined。排序顺序是根据键的Unicode代码点。该方法使用稳定的排序算法 （即，将保留具有相等键的键值对之间的相对顺序）。
+对包含在此对象中的所有键值对进行排序。排序顺序是根据键的Unicode代码点。该方法使用稳定的排序算法（保留具有相等键的键值对之间的相对顺序）。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -378,7 +377,7 @@ console.log(searchParamsObject.toString()); // Display the sorted query string /
 
 keys(): IterableIterator&lt;string&gt;
 
-返回一个所有键值对的name的ES6迭代器。
+返回一个包含所有键值对的name的ES6迭代器。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -388,7 +387,7 @@ keys(): IterableIterator&lt;string&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator&lt;string&gt; | 返回一个所有键值对的name的ES6迭代器。 |
+| IterableIterator&lt;string&gt; | 返回一个包含所有键值对的name的ES6迭代器。 |
 
 **示例：**
 
@@ -405,7 +404,7 @@ for (let key of keys) { // Output key-value pairs
 
 values(): IterableIterator&lt;string&gt;
 
-返回一个所有键值对的value的ES6迭代器。
+返回一个包含所有键值对的value的ES6迭代器。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -415,7 +414,7 @@ values(): IterableIterator&lt;string&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator&lt;string&gt; | 返回一个所有键值对的value的ES6迭代器。 |
+| IterableIterator&lt;string&gt; | 返回一个包含所有键值对的value的ES6迭代器。 |
 
 **示例：**
 
@@ -876,8 +875,7 @@ get(name: string): string | null
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回第一个值。 |
-| null | 如果没找到，返回 null。 |
+| string \| null | 返回第一个值，如果没找到，返回 null。 |
 
 **示例：**
 

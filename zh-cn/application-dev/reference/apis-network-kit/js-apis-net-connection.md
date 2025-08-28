@@ -1028,6 +1028,7 @@ getNetCapabilities(netHandle: NetHandle): Promise\<NetCapabilities>
 
 ```ts
 import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
@@ -1438,10 +1439,19 @@ reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;)
 
 ```ts
 import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  connection.reportNetDisconnected(netHandle).then( () => {
-    console.log(`report success`);
+connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
+    return;
+  }
+  connection.reportNetDisconnected(netHandle, (error: BusinessError, data: void) => {
+    if (error) {
+      console.error(`Failed to get default net. Code:${error.code}, message:${error.message}`);
+      return;
+    }
+    console.info("report succeed.");
   });
 });
 ```
@@ -1649,7 +1659,7 @@ addCustomDnsRule(host: string, ip: Array\<string\>): Promise\<void\>
 
 | 类型                   | 说明                    |
 | ---------------------- | ----------------------- |
-| Promise\<Array\<void>> | 无返回值的Promise对象。 |
+| Promise\<void> | 无返回值的Promise对象。 |
 
 **错误码：**
 
@@ -1744,7 +1754,7 @@ removeCustomDnsRule(host: string): Promise\<void\>
 
 | 类型                   | 说明                    |
 | ---------------------- | ----------------------- |
-| Promise\<Array\<void>> | 无返回值的Promise对象。 |
+| Promise\<void> | 无返回值的Promise对象。 |
 
 **错误码：**
 

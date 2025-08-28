@@ -9,8 +9,8 @@ Node-API接口提供了一些实用接口，可以帮助开发者更好地进行
 - **模块加载：** 在Node-API模块中，模块是指包含特定功能的ArkTS文件，通过import导入lib共享库中的模块。了解Node-API模块中的加载机制以及模块之间的依赖关系对于理解node_api_get_module_file_name接口的使用很有帮助。
 - **文件路径和URL：** node_api_get_module_file_name返回的是加载项的绝对路径的URL。
 - **比较ArkTS值严格相等：** 比较两个ArkTS值是否严格相等。严格相等比较不会进行类型转换，它要求两个值的类型和值完全相同才会返回true。
-- **处理异步操作：**：通过Libuv可以实现异步操作，避免阻塞主线程，使得程序可以同时执行多个任务而不会出现阻塞现象。
-- **实现事件循环：**：Libuv提供了事件循环机制，可以处理事件、触发回调函数，并管理事件队列，使得Node-API模块能够实现事件驱动的编程模型。
+- **处理异步操作：** 通过Libuv可以实现异步操作，避免阻塞主线程，使得程序可以同时执行多个任务而不会出现阻塞现象。
+- **实现事件循环：** Libuv提供了事件循环机制，可以处理事件、触发回调函数，并管理事件队列，使得Node-API模块能够实现事件驱动的编程模型。
 
 ## 场景和功能介绍
 
@@ -85,7 +85,7 @@ static napi_value StrictEquals(napi_env env, napi_callback_info info)
     bool result = true;
     napi_status status = napi_strict_equals(env, args[0], args[1], &result);
     if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "Node-API napi_get_cb_info fail");
+        napi_throw_error(env, nullptr, "Node-API napi_strict_equals fail");
         return nullptr;
     }
     // 将结果转成napi_value类型返回
@@ -126,5 +126,5 @@ try {
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

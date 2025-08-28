@@ -79,7 +79,7 @@ The following lists only the APIs for persisting vector store data. For details 
    let store: relationalStore.RdbStore | undefined = undefined;
    const STORE_CONFIG :relationalStore.StoreConfig= {
      name: 'VectorTest.db', // Database file name.
-     securityLevel: relationalStore.SecurityLevel.S1 // Database security level.
+     securityLevel: relationalStore.SecurityLevel.S1, // Database security level.
      vector: true // Optional. This parameter must be true for a vector store.
    };   
    
@@ -143,7 +143,7 @@ The following lists only the APIs for persisting vector store data. For details 
 
    > **NOTE**
    >
-   > Call **close()** to close the **ResultSet** that is no longer used in a timely manner so that the memory allocated can be released.
+   > Use **close()** to close the **ResultSet** that is no longer used in a timely manner so that the memory allocated can be released.
 
    The sample code is as follows:
 

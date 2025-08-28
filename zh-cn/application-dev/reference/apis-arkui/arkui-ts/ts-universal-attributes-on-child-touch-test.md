@@ -42,16 +42,16 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型   | 描述                                       |
-| ------------- | ------ | ---------------------------------------- |
-| windowX | number | 按压点相对于窗口左上角的x轴坐标。<br />单位：vp |
-| windowY   | number |按压点相对于窗口左上角的y轴坐标。<br />单位：vp|
-| parentX   | number |按压点相对于父组件左上角的x轴坐标。<br />单位：vp  |
-| parentY   | number |按压点相对于父组件左上角的y轴坐标。<br />单位：vp  |
-| x   | number | 按压点相对于子组件左上角的x轴坐标。<br />单位：vp |
-| y   | number | 按压点相对于子组件左上角的y轴坐标。<br />单位：vp |
-| rect   | [RectResult](ts-types.md#rectresult10) |子组件的大小。  |
-| [id](ts-universal-attributes-component-id.md)   | string | 通过id属性设置的组件id。 |
+| 名称          | 类型  | 只读    | 可选   |  说明                                       |
+| ------------- | ------ | ------ | ------ | ---------------------------------------- |
+| windowX | number | 否 | 否| 按压点相对于窗口左上角的x轴坐标。<br />单位：vp |
+| windowY   | number| 否 |否|按压点相对于窗口左上角的y轴坐标。<br />单位：vp|
+| parentX   | number| 否  |否|按压点相对于父组件左上角的x轴坐标。<br />单位：vp  |
+| parentY   | number| 否 |否|按压点相对于父组件左上角的y轴坐标。<br />单位：vp  |
+| x   | number| 否  | 否|按压点相对于子组件左上角的x轴坐标。<br />单位：vp |
+| y   | number| 否  |否| 按压点相对于子组件左上角的y轴坐标。<br />单位：vp |
+| rect   | [RectResult](ts-types.md#rectresult10)| 否  |否|子组件的大小。  |
+| [id](ts-universal-attributes-component-id.md)   | string| 否  | 否|通过id属性设置的组件id。 |
 
 ## TouchResult
 
@@ -61,24 +61,26 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                     | 必填   | 描述                                |
-| --------- | --------- | ---- |--------------------------------------- |
-| strategy  | [TouchTestStrategy](#touchteststrategy枚举说明) | 是    | 事件派发策略。                     |
-| id  | string | 否    | 通过id属性设置的组件id。<br>当strategy为TouchTestStrategy.DEFAULT时，id是可选的；当strategy是TouchTestStrategy.FORWARD_COMPETITION或TouchTestStrategy.FORWARD时，id是必需的（如果没有返回id，则当成TouchTestStrategy.DEFAULT处理）。 |
+| 名称      | 类型                                     | 只读    | 可选   |  说明                                |
+| --------- | --------- | ---- |----- |--------------------------------------- |
+| strategy  | [TouchTestStrategy](#touchteststrategy枚举说明) | 否     | 否  |事件派发策略。                     |
+| id  | string | 否    | 是  |通过id属性设置的组件id。<br>当strategy为TouchTestStrategy.DEFAULT时，id是可选的；当strategy是TouchTestStrategy.FORWARD_COMPETITION或TouchTestStrategy.FORWARD时，id是必需的（如果没有返回id，则当成TouchTestStrategy.DEFAULT处理）。 |
 
 ## TouchTestStrategy枚举说明
 
 事件的派发策略。
 
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 描述                                       |
-| ------------| ----------------------------------------- |
-| DEFAULT     | 自定义分发不产生影响，系统按当前节点命中状态分发事件。 |
-| FORWARD_COMPETITION       | 应用指定分发事件到某个子节点，其他兄弟节点是否分发事件交由系统决定。 |
-| FORWARD | 应用指定分发事件到某个子节点，系统不再处理分发事件到其他兄弟节点。 |
+| 名称          | 值    |说明                                       |
+| ------------| ---------| ----------------------------------------- |
+| DEFAULT   | 0  | 自定义分发不产生影响，系统按当前节点命中状态分发事件。 |
+| FORWARD_COMPETITION  | 1  | 应用指定分发事件到某个子节点，其他兄弟节点是否分发事件交由系统决定。 |
+| FORWARD |2 | 应用指定分发事件到某个子节点，系统不再处理分发事件到其他兄弟节点。 |
 
 ## 示例
 
@@ -129,7 +131,7 @@ struct ListExample {
       Button(this.text)
         .width(312)
         .height(40)
-        .id('Mybutton')
+        .id('MyButton')
         .fontSize(16)
         .fontWeight(FontWeight.Medium)
         .margin({ top: 80 })
@@ -143,8 +145,8 @@ struct ListExample {
     .backgroundColor(0xF1F3F5)
     .justifyContent(FlexAlign.End)
     .padding({ left: 12, right: 12, bottom: 24 })
-    .onChildTouchTest((touchinfo) => {
-      for (let info of touchinfo) {
+    .onChildTouchTest((touchInfo) => {
+      for (let info of touchInfo) {
         if (info.id == 'MyList') {
           return { id: info.id, strategy: TouchTestStrategy.FORWARD_COMPETITION }
         }
@@ -204,7 +206,7 @@ struct ListExample {
       Button(this.text)
         .width(312)
         .height(40)
-        .id('Mybutton')
+        .id('MyButton')
         .fontSize(16)
         .fontWeight(FontWeight.Medium)
         .margin({ top: 80 })
@@ -218,8 +220,8 @@ struct ListExample {
     .backgroundColor(0xF1F3F5)
     .justifyContent(FlexAlign.End)
     .padding({ left: 12, right: 12, bottom: 24 })
-    .onChildTouchTest((touchinfo) => {
-      for (let info of touchinfo) {
+    .onChildTouchTest((touchInfo) => {
+      for (let info of touchInfo) {
         if (info.id == 'MyList') {
           return { id: info.id, strategy: TouchTestStrategy.FORWARD }
         }
@@ -279,7 +281,7 @@ struct ListExample {
       Button(this.text)
         .width(312)
         .height(40)
-        .id('Mybutton')
+        .id('MyButton')
         .fontSize(16)
         .fontWeight(FontWeight.Medium)
         .margin({ top: 80 })
@@ -293,7 +295,7 @@ struct ListExample {
     .backgroundColor(0xF1F3F5)
     .justifyContent(FlexAlign.End)
     .padding({ left: 12, right: 12, bottom: 24 })
-    .onChildTouchTest((touchinfo) => {
+    .onChildTouchTest((touchInfo) => {
       return { strategy: TouchTestStrategy.DEFAULT }
     })
   }

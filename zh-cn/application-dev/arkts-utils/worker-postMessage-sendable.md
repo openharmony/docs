@@ -129,16 +129,14 @@
    ```ts
    // Index.ets
    import { worker, collections } from '@kit.ArkTS';
-   import { BusinessError } from '@kit.BasicServicesKit';
    import { CopyEntry } from './CopyEntry'
 
    function promiseCase() {
      let p: Promise<void> = new Promise<void>((resolve: Function, reject: Function) => {
        setTimeout(() => {
-         resolve(1);
-       }, 100)
-     }).then(undefined, (error: BusinessError) => {
-     })
+         resolve();
+       }, 100);
+     });
      return p;
    }
 

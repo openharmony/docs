@@ -29,31 +29,31 @@
 
 | 业务场景                                      | Navigation                            | Router                                 |
 | --------------------------------------------- | ------------------------------------- | -------------------------------------- |
-| 一次开发多端部署能力                                      | 支持，Auto模式自适应单栏跟双栏显示    | 不支持                                 |
-| 跳转指定页面                                  | pushPath & pushDestination            | pushUrl & pushNameRoute                |
+| 一次开发多端部署能力                                      | 支持，Auto模式自适应单栏跟双栏显示。    | 不支持                                 |
+| 跳转指定页面                                  | pushPath & pushDestination            | pushUrl & pushNameRoute               |
 | 跳转HSP中页面                                 | 支持                                  | 支持                                   |
 | 跳转HAR中页面                                 | 支持                                  | 支持                                   |
-| 跳转传参                                      | 支持                                  | 支持                                   |
+| 跳转传参                                      | 支持                                  | 支持                                  |
 | 获取指定页面参数                              | 支持                                  | 不支持                                 |
-| 传参类型                                      | 传参为对象形式                        | 传参为对象形式，对象中暂不支持方法变量 |
+| 传参类型                                      | 传参为对象形式。                        | 传参为对象形式，对象中暂不支持方法变量。 |
 | 跳转结果回调                                  | 支持                                  | 支持                                   |
 | 跳转单例页面                                  | 支持                                  | 支持                                   |
 | 页面返回                                      | 支持                                  | 支持                                   |
 | 页面返回传参                                  | 支持                                  | 支持                                   |
 | 返回指定路由                                  | 支持                                  | 支持                                   |
-| 页面返回弹窗                                  | 支持，通过路由拦截实现                | showAlertBeforeBackPage                |
+| 页面返回弹窗                                  | 支持，通过路由拦截实现。                | showAlertBeforeBackPage              |
 | 路由替换                                      | replacePath & replacePathByName       | replaceUrl & replaceNameRoute          |
 | 路由栈清理                                    | clear                                 | clear                                  |
 | 清理指定路由                                  | removeByIndexes & removeByName        | 不支持                                 |
 | 转场动画                                      | 支持                                  | 支持                                   |
-| 自定义转场动画                                | 支持                                  | 支持，动画类型受限                     |
-| 屏蔽转场动画                                  | 支持全局和单次                        | 支持 设置pageTransition方法duration为0 |
-| geometryTransition共享元素动画                | 支持（NavDestination之间共享）        | 不支持                                 |
+| 自定义转场动画                                | 支持                                  | 支持，动画类型受限。                     |
+| 屏蔽转场动画                                  | 支持全局和单次。                        | 支持，设置pageTransition方法duration为0。 |
+| geometryTransition共享元素动画                | 支持（NavDestination之间共享）。        | 不支持                                 |
 | 页面生命周期监听                              | UIObserver.on('navDestinationUpdate') | UIObserver.on('routerPageUpdate')      |
 | 获取页面栈对象                                | 支持                                  | 不支持                                 |
-| 路由拦截                                      | 支持通过setInterception做路由拦截       | 不支持                                 |
+| 路由拦截                                      | 支持通过setInterception做路由拦截 。      | 不支持                                 |
 | 路由栈信息查询                                | 支持                                  | getState() & getLength()               |
 | 路由栈move操作                                | moveToTop & moveIndexToTop            | 不支持                                 |
-| 沉浸式页面                                    | 支持                                  | 不支持，需通过window配置               |
+| 沉浸式页面                                    | 支持                                  | 不支持，需通过window配置。               |
 | 设置页面标题栏（titlebar）和工具栏（toolbar） | 支持                                  | 不支持                                 |
 | 模态嵌套路由                                  | 支持                                  | 不支持                                 |

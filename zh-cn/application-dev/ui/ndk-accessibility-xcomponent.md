@@ -8,6 +8,7 @@
 
 > **说明：**
 >
+> - 无障碍能力：指开发者能够创建可访问的应用界面，满足视觉、听觉、运动和认知障碍等用户需求的能力。
 > - 实现[OH_ArkUI_AccessibilityProviderRegisterCallback](../reference/apis-arkui/arkui_native_interface_accessibility.md#oh_arkui_accessibilityproviderregistercallback)回调查询接口时，查询到的每个无障碍节点信息通过[OH_ArkUI_AddAndGetAccessibilityElementInfo](../reference/apis-arkui/arkui_native_interface_accessibility.md#oh_arkui_addandgetaccessibilityelementinfo)创建分配element内存，并将其加入到指定的elementList中。
 > - 使用[OH_ArkUI_SendAccessibilityAsyncEvent](../reference/apis-arkui/arkui_native_interface_accessibility.md#oh_arkui_sendaccessibilityasyncevent)发送事件时，需要使用[OH_ArkUI_CreateAccessibilityEventInfo](../reference/apis-arkui/arkui_native_interface_accessibility.md#oh_arkui_createaccessibilityeventinfo)创建[ArkUI_AccessibilityEventInfo](../reference/apis-arkui/arkui_native_interface_accessibility.md#arkui_accessibilityeventinfo)，使用[OH_ArkUI_CreateAccessibilityElementInfo](../reference/apis-arkui/arkui_native_interface_accessibility.md#oh_arkui_createaccessibilityelementinfo)创建[ArkUI_AccessibilityElementInfo](../reference/apis-arkui/arkui_native_interface_accessibility.md#arkui_accessibilityelementinfo)，使用结束后，需要调用[OH_ArkUI_DestoryAccessibilityEventInfo](../reference/apis-arkui/arkui_native_interface_accessibility.md#oh_arkui_destoryaccessibilityeventinfo)以及[OH_ArkUI_DestoryAccessibilityElementInfo](../reference/apis-arkui/arkui_native_interface_accessibility.md#oh_arkui_destoryaccessibilityelementinfo)销毁函数释放内存。
 > - 回调函数打印日志时，携带输入的requestId，用于关联一次交互过程相关的日志，便于索引查询整个流程，协助问题定位。
@@ -16,7 +17,7 @@
 
 以下示例提供了对接无障碍能力的实现方法。对接完成后，在开启无障碍功能时，可使XComponent中的三方绘制组件接入，实现无障碍交互。
 
-1.按照 [自定义渲染（XComponent）](napi-xcomponent-guidelines.md)创建前置工程。
+1.参照自定义渲染（XComponent）创建前置工程，可以具体可以参照[Native XComponent场景](napi-xcomponent-guidelines.md#native-xcomponent场景)或者[ArkTS XComponent场景](napi-xcomponent-guidelines.md#native-xcomponent场景)。
 
 2.根据接口定义实现回调函数。
 
@@ -165,9 +166,9 @@ void SendAccessibilityAsyncEvent(ArkUI_AccessibilityEventInfo *eventInfo, ArkUI_
     // 2.callback
     auto callback = [](int32_t errorCode){
          OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, LOG_PRINT_TEXT, "result: %{public}d", errorCode);
-    }
+    };
     // 3. 调用接口发送事件给OH侧
-    OH_ArkUI_SendAccessibilityAsyncEvent(provider_, eventInfo, callback)
+    OH_ArkUI_SendAccessibilityAsyncEvent(provider_, eventInfo, callback);
 }
 ```
 
@@ -192,7 +193,7 @@ int32_t ClearFocusedFocusAccessibilityNode()
 int32_t GetAccessibilityNodeCursorPosition(int64_t elementId, int32_t requestId, int32_t* index)
 {	
 	// 获取文本组件光标位置，并返回
-    // 查找对应组件节点
+    // 查找对应组件节点node
     // ...
     *index = node.cursorPosition;
     // ...
@@ -316,9 +317,9 @@ void SendAccessibilityAsyncEvent(ArkUI_AccessibilityEventInfo *eventInfo, ArkUI_
     // 2.设置创建callback函数，获取发送事件结果
     auto callback = [](int32_t errorCode){
          OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, LOG_PRINT_TEXT, "result: %{public}d", errorCode);
-    }
+    };
     // 3. 调用接口发送事件给无障碍子系统
-    OH_ArkUI_SendAccessibilityAsyncEvent(provider_, eventInfo, callback)
+    OH_ArkUI_SendAccessibilityAsyncEvent(provider_, eventInfo, callback);
 }
 ```
 

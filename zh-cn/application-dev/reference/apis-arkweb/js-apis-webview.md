@@ -11,6 +11,36 @@
 >
 > - 静态方法必须在用户界面（UI）线程上使用。
 
+该模块提供以下Web控制相关的常用功能：
+
+- [AdsBlockManager](#adsblockmanager12)：广告过滤配置。
+- [BackForwardCacheOptions](#backforwardcacheoptions12)：前进后退缓存配置。
+- [BackForwardCacheSupportedFeatures](#backforwardcachesupportedfeatures12)：前进后退缓存特性配置。
+- [GeolocationPermissions](./js-apis-webview-GeolocationPermissions.md)：地理位置权限配置。
+- [JsMessageExt](#jsmessageext10)：执行JavaScript脚本的结果。
+- [MediaSourceInfo](#mediasourceinfo12)：媒体源信息配置。
+- [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12)：应用接管媒体播放时渲染信息。
+- [PdfData](#pdfdata14)：生成的PDF输出数据。
+- [ProxyConfig](#proxyconfig15)：网络代理配置。
+- [ProxyController](#proxycontroller15)：网络代理控制器。
+- [WebviewController](./js-apis-webview-WebviewController.md)：Web组件控制器。
+- [WebCookieManager](./js-apis-webview-WebCookieManager.md)：Cookie管理。
+- [WebDataBase](./js-apis-webview-WebDataBase.md)：数据库管理。
+- [WebDownloadDelegate](#webdownloaddelegate11)：下载任务状态事件。
+- [WebDownloadItem](#webdownloaditem11)：下载任务。
+- [WebDownloadManager](#webdownloadmanager11)：下载任务管理。
+- [WebHttpBodyStream](#webhttpbodystream12)：HTTP请求体。
+- [WebMessageExt](./js-apis-webview-WebMessageExt.md)：前端与应用通信数据对象。
+- [WebResourceHandler](#webresourcehandler12)：资源加载控制。
+- [WebSchemeHandler](#webschemehandler12)：指定Scheme的请求拦截器。
+- [WebSchemeHandlerRequest](#webschemehandlerrequest12)：通过拦截器拦截到的请求。
+- [WebSchemeHandlerResponse](#webschemehandlerresponse12)：为拦截到的请求创建自定义响应。
+- [WebStorage](./js-apis-webview-WebStorage.md)：Web组件存储操作接口。
+- [BackForwardList](./js-apis-webview-BackForwardList.md)：历史信息列表。
+- [NativeMediaPlayerBridge](#nativemediaplayerbridge12)：托管网页媒体播放器桥接接口。
+- [NativeMediaPlayerHandler](#nativemediaplayerhandler12)：托管网页媒体播放器的事件接口。
+- [WebMessagePort](./js-apis-webview-WebMessagePort.md)：网页前端与应用的消息端口。
+
 ## 需要权限
 
 访问在线网页时需添加网络权限：ohos.permission.INTERNET，具体申请方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。
@@ -206,7 +236,7 @@ getArray(): Array\<string | number | boolean\>
 
 | 名称          | 类型                                   | 只读 | 可选 | 说明                         |
 | ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
-| icon          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 否   | 历史页面图标的PixelMap对象。 |
+| icon          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否   | 否   | 历史页面图标的PixelMap对象。 |
 | historyUrl    | string                                 | 否   | 否   | 历史记录项的url地址。        |
 | historyRawUrl | string                                 | 否   | 否   | 历史记录项的原始url地址。    |
 | title         | string                                 | 否   | 否   | 历史记录项的标题。           |
@@ -4028,11 +4058,11 @@ suspendPlayer?(type: SuspendType): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-| type | [SourceType](./js-apis-webview-e.md#sourcetype12) | 是 | 媒体源的类型。 |
-| source | string | 是 | 媒体源地址。 |
-| format | string | 是 | 媒体源格式， 可能为空， 需要使用者自己去判断格式。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+|------|------|------|------|------|
+| type | [SourceType](./js-apis-webview-e.md#sourcetype12) | 否 | 否 | 媒体源的类型。 |
+| source | string | 否 | 否 | 媒体源地址。 |
+| format | string | 否 | 否 | 媒体源格式， 可能为空， 需要使用者自己去判断格式。 |
 
 ## NativeMediaPlayerSurfaceInfo<sup>12+<sup>
 
@@ -4040,10 +4070,10 @@ suspendPlayer?(type: SuspendType): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-| id | string | 是 | surface的id，用于同层渲染的NativeImage的psurfaceid。<br/>详见[NativeEmbedDataInfo](./ts-basic-components-web-i.md#nativeembeddatainfo11)。 |
-| rect | [RectEvent](#rectevent12) | 是 | surface的位置信息。 |
+| 名称 | 类型 | 只读 | 可选  | 说明 |
+|------|------|------|------|------|
+| id | string | 否 | 否 | surface的id，用于同层渲染的NativeImage的psurfaceid。<br/>详见[NativeEmbedDataInfo](./ts-basic-components-web-i.md#nativeembeddatainfo11)。 |
+| rect | [RectEvent](#rectevent12) | 否 | 否 | surface的位置信息。 |
 
 ## MediaInfo<sup>12+<sup>
 
@@ -4052,20 +4082,19 @@ suspendPlayer?(type: SuspendType): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-| embedID | string | 是 | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
-| mediaType | [MediaType](./js-apis-webview-e.md#mediatype12) | 是 | 媒体的类型。 |
-| mediaSrcList | [MediaSourceInfo](#mediasourceinfo12)[] | 是 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
-| surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | 是 | 用于同层渲染的 surface 信息。 |
-| controlsShown | boolean | 是 | `<video>` 或 `<audio>` 中是否有 `controls`属性。<br>true表示有，false表示没有。 |
-| controlList | string[] | 是 | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
-| muted | boolean | 是 | 是否要求静音播放。<br>true表示静音播放，false表示未静音播放。 |
-| posterUrl | string | 是 | 海报的地址。 |
-| preload | [Preload](./js-apis-webview-e.md#preload12) | 是 | 是否需要预加载。 |
-| headers | Record\<string, string\> | 是 | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
-| attributes | Record\<string, string\> | 是 | `<video>` 或 `<audio>` 标签中的属性。 |
-
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+|------|------|------|------|------|
+| embedID | string | 否 | 否  | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
+| mediaType | [MediaType](./js-apis-webview-e.md#mediatype12) | 否 | 否 | 媒体的类型。 |
+| mediaSrcList | [MediaSourceInfo](#mediasourceinfo12)[] | 否 | 否 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
+| surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12)  | 否 | 否 | 用于同层渲染的 surface 信息。 |
+| controlsShown | boolean | 否 | 否 | `<video>` 或 `<audio>` 中是否有 `controls`属性。<br>true表示有，false表示没有。 |
+| controlList | string[] | 否 | 否 | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
+| muted | boolean | 否 | 否 | 是否要求静音播放。<br>true表示静音播放，false表示未静音播放。 |
+| posterUrl | string | 否 | 否 | 海报的地址。 |
+| preload | [Preload](./js-apis-webview-e.md#preload12) | 否 | 否 | 是否需要预加载。 |
+| headers | Record\<string, string\> | 否 | 否 | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
+| attributes | Record\<string, string\> | 否 | 否 | `<video>` 或 `<audio>` 标签中的属性。 |
 
 ## CreateNativeMediaPlayerCallback<sup>12+<sup>
 
@@ -4112,10 +4141,10 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-| nativeEmbed | boolean | 是 | 是否允许使用同层渲染的页面进入前进后退缓存。<br>如果设置为允许，需要维护为同层渲染元素创建的系统控件的生命周期，避免造成泄漏。<br>true：允许使用同层渲染的页面进入前进后退缓存，false：不允许使用同层渲染的页面进入前进后退缓存。<br>默认值：false。 |
-| mediaTakeOver | boolean | 是 | 是否允许使用视频托管的页面进入前进后退缓存。<br>如果设置为允许，需要维护为视频元素创建的系统控件的生命周期，避免造成泄漏。<br>true：允许使用视频托管的页面进入前进后退缓存，false：不允许使用视频托管的页面进入前进后退缓存。<br>默认值：false。|
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+|------|------|------|------|------|
+| nativeEmbed | boolean | 否  | 否 | 是否允许使用同层渲染的页面进入前进后退缓存。<br>如果设置为允许，需要维护为同层渲染元素创建的系统控件的生命周期，避免造成泄漏。<br>true：允许使用同层渲染的页面进入前进后退缓存，false：不允许使用同层渲染的页面进入前进后退缓存。<br>默认值：false。 |
+| mediaTakeOver | boolean | 否  | 否 | 是否允许使用视频托管的页面进入前进后退缓存。<br>如果设置为允许，需要维护为视频元素创建的系统控件的生命周期，避免造成泄漏。<br>true：允许使用视频托管的页面进入前进后退缓存，false：不允许使用视频托管的页面进入前进后退缓存。<br>默认值：false。|
 
 ### constructor<sup>12+</sup>
 
@@ -4131,10 +4160,10 @@ BackForwardCacheSupportedFeatures的构造函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-| size | number | 是 | 设置每个Web组件允许缓存的最大页面个数。<br>默认为1，最大可设置为50。<br>设置为0或负数时，前进后退缓存功能不生效。<br>Web会根据内存压力对缓存进行回收。 |
-| timeToLive | number | 是 | 设置每个Web组件允许页面在前进后退缓存中停留的时间。<br>设置为0或负数时，前进后退缓存功能不生效。<br>默认值：600。<br>单位：秒。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+|------|------|------|------|------|
+| size | number | 否  | 否 | 设置每个Web组件允许缓存的最大页面个数。<br>默认为1，最大可设置为50。<br>设置为0或负数时，前进后退缓存功能不生效。<br>Web会根据内存压力对缓存进行回收。 |
+| timeToLive | number | 否  | 否 | 设置每个Web组件允许页面在前进后退缓存中停留的时间。<br>设置为0或负数时，前进后退缓存功能不生效。<br>默认值：600。<br>单位：秒。 |
 
 ### constructor<sup>12+</sup>
 
@@ -4173,7 +4202,7 @@ static setAdsBlockRules(rulesFile: string, replace: boolean): void
 | 参数名     | 类型   | 必填 | 说明                               |
 | ---------- | ------ | ---- | -------------------------------- |
 | rulesFile | string | 是   | 指定了符合 easylist 通用语法的规则文件路径，应用需要有此文件的读权限。 |
-| replace   | boolean | 是   | true表示强制替换掉内置的默认规则，false表示设置的自定义规则将与内置规则共同工作。 |
+| replace   | boolean | 是   | true表示强制替换掉内置的默认规则，false表示设置的自定义规则将与内置规则共同工作。<br>默认值：false。 |
 
 **错误码：**
 

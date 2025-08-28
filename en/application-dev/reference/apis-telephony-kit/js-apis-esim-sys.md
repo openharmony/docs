@@ -242,7 +242,7 @@ Obtains the list of downloadable profiles. This API uses a promise to return the
 | ------ | ------ | ----- | ----- |
 | slotId              | number  | Yes| Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | portIndex           | number  | Yes| Port index of the slot.|
-| forceDisableProfile | boolean | Yes| Whether to forcibly deactivate the current profile during profile switching.<br> **true**: If the current profile needs to be deactivated for profile switching, the profile is forcibly deactivated. **false**: An error is returned, and profile switching can be performed only after the user authorization is obtained.|
+| forceDisableProfile | boolean | Yes| Whether to forcibly deactivate the current profile during profile switching.<br> **true**: The current profile is forcibly deactivated, and profile switching can be directly performed.<br> **false**: An error is returned, and profile switching can be performed only after the user authorization is obtained.|
 
 **Returns**
 
@@ -518,7 +518,7 @@ Switches to the specified profile. This API uses a promise to return the result.
 | slotId              | number  | Yes| Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | portIndex           | number  | Yes| Port index of the slot.|
 | iccid               | string  | Yes| Profile ID.  |
-| forceDisableProfile | boolean | Yes| Whether to forcibly deactivate the current profile during profile switching.<br> **true**: If the current profile needs to be deactivated for profile switching, the profile is forcibly deactivated.<br> **false**: An error is returned, and profile switching can be performed only after the user authorization is obtained.|
+| forceDisableProfile | boolean | Yes| Whether to forcibly deactivate the current profile during profile switching.<br> **true**: The current profile is forcibly deactivated, and profile switching can be directly performed.<br> **false**: An error is returned, and profile switching can be performed only after the user authorization is obtained.|
 
 **Returns**
 
@@ -851,11 +851,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 import { eSIM } from '@kit.TelephonyKit';
 
-eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).then((data: string) => {
+let transactionId = '';
+eSIM.cancelSession(0, transactionId, eSIM.CancelReason.CANCEL_REASON_END_USER_REJECTION)
+  .then((data: eSIM.ResultCode) => {
     console.log(`cancelSession, result: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
+  })
+  .catch((err: BusinessError) => {
     console.error(`cancelSession execution failed: err->${JSON.stringify(err)}`);
-});
+  });
 ```
 
 ## AccessRule<sup>18+</sup>
@@ -884,7 +887,7 @@ Obtains the metadata of the downloadable profile.
 | ----- | ----- | ----- | -----|
 | downloadableProfile | DownloadableProfile  |  Yes | Downloadable profile.  |
 | pprType             | number               |  Yes | Profile policy rule type.|
-| pprFlag             | boolean              |  Yes | Whether the profile has a policy rule. The value **true** indicates that the the profile has a policy rule, and the value **false** indicates the opposite.|
+| pprFlag             | boolean              |  Yes | Whether the profile has a policy rule. The value **true** indicates that the profile has a policy rule, and the value **false** indicates the opposite.|
 | iccid               | string               |  Yes | Profile ICCID.    |
 | serviceProviderName | string               |  Yes | Service provider name.|
 | profileName         | string               |  Yes | Profile name.|
@@ -1140,5 +1143,5 @@ Defines the download configuration.
 | Name| Type| Mandatory| Description|
 | ----- | ----- | ----- | -----|
 |switchAfterDownload | boolean | Yes| Whether to enable the profile after being downloaded. The value **true** means to enable the profile after being downloaded, and the value **false** means the opposite.|
-|forceDisableProfile | boolean | Yes| Whether to forcibly deactivate the current profile during profile switching.<br> **true**: If the current profile needs to be deactivated for profile switching, the profile is forcibly deactivated.<br> **false**: An error is returned, and profile switching can be performed only after the user authorization is obtained.|
+|forceDisableProfile | boolean | Yes| Whether to forcibly deactivate the current profile during profile switching.<br> **true**: The current profile is forcibly deactivated, and profile switching can be directly performed.<br> **false**: An error is returned, and profile switching can be performed only after the user authorization is obtained.|
 |isPprAllowed        | boolean | Yes| Whether user authorization is obtained to implement the profile policy rule. The value **true** indicates that user authorization is obtained, and the value **false** indicates the opposite.|

@@ -1351,7 +1351,7 @@ int32_t OH_ArkUI_PointerEvent_SetStopPropagation (const ArkUI_UIInputEvent * eve
 ```
 **描述：**
 
-设置是否阻止事件冒泡。
+设置是否阻止事件冒泡。仅适用于接收基础事件的场景，如使用NODE_ON_TOUCH接收touch事件场景，不适用于轴事件。对于通过[OH_ArkUI_GestureEvent_GetRawInputEvent](_ark_u_i___native_module.md#oh_arkui_gestureevent_getrawinputevent)接口从一个手势事件中获取到的ArkUI_UIInputEvent对象，无法使用该接口。
 
 **起始版本：** 12
 
@@ -1386,7 +1386,7 @@ int32_t OH_ArkUI_UIInputEvent_GetAction (const ArkUI_UIInputEvent * event)
 
 **返回：**
 
-返回当前UI输入事件的操作类型，如果参数异常则返回0。
+返回当前UI输入事件的操作类型，如果参数异常则返回-1。
 
 
 ### OH_ArkUI_UIInputEvent_GetDeviceId()
@@ -1464,7 +1464,7 @@ int32_t OH_ArkUI_UIInputEvent_GetSourceType (const ArkUI_UIInputEvent * event)
 ```
 **描述：**
 
-获取产生UI输入事件的来源类型。
+获取UI输入事件的触发源类型。输入源为产生输入事件的真实物理设备，如触摸屏，鼠标等，由UI_INPUT_EVENT_SOURCE_TYPE_XXX定义，而输入工具为操作输入源设备来产生事件的工具，如手指、触控笔。在某些情况下两者可能容易发生混淆，比如当用户在操作鼠标时，鼠标既是输入源，也是输入工具。对于按键事件，并不支持获取输入源类型，返回unkown。
 
 **起始版本：** 12
 
@@ -1486,7 +1486,7 @@ int32_t OH_ArkUI_UIInputEvent_GetToolType (const ArkUI_UIInputEvent * event)
 ```
 **描述：**
 
-获取产生UI输入事件的工具类型。
+获取UI输入事件的工具类型。输入工具为操作输入源设备来产生事件的操作方，如手指、触控笔，他们自身不真实产生事件，但可以驱动输入源设备不断产生事件。返回的类型由UI_INPUT_EVENT_TOOL_TYPE_XXX枚举值定义。对于按键事件，并不支持获取输入工具类型，返回unkown。
 
 **起始版本：** 12
 
@@ -1689,7 +1689,7 @@ int32_t OH_ArkUI_PointerEvent_GetInteractionHand (const ArkUI_UIInputEvent * eve
 ```
 **描述：**
 
-获取当前触摸事件是左手点击触发还是右手点击触发。仅在部分触控产品上有效。
+获取当前触摸事件是左手点击触发还是右手点击触发。仅在部分触控产品上有效。该值并非在按下时即可获取，直到系统推断出结果前，都只会返回NONE，请不要过度依赖该接口返回的结果。
 
 **起始版本：** 15
 
@@ -1712,7 +1712,7 @@ int32_t OH_ArkUI_PointerEvent_GetInteractionHandByIndex (const ArkUI_UIInputEven
 ```
 **描述：**
 
-获取当前触摸事件是左手点击触发还是右手点击触发。仅在部分触控产品上有效。
+获取当前触摸事件是左手点击触发还是右手点击触发。仅在部分触控产品上有效。该值并非在按下时即可获取，直到系统推断出结果前，都只会返回NONE，请不要过度依赖该接口返回的结果。
 
 **起始版本：** 15
 

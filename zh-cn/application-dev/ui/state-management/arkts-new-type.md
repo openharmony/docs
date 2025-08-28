@@ -6,8 +6,9 @@
 
 >**说明：**
 >
->\@Type从API version 12开始支持。
+> \@Type从API version 12开始支持。
 >
+> 从API version 12开始，该装饰器支持在原子化服务中使用。
 
 ## 概述
 
@@ -22,7 +23,7 @@
 
 ## 使用限制
 
-1. 只能用在\@ObservedV2装饰的类中，不能用在自定义组件中。
+1. 只能用在[\@ObservedV2](./arkts-new-observedV2-and-trace.md)装饰的类中，不能用在自定义组件中。
 
     ```ts
     class Sample {

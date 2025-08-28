@@ -1,5 +1,11 @@
 # @ohos.graphics.sendableColorSpaceManager (可共享的色彩管理)
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphic-->
+<!--Owner: @xubo85-->
+<!--Designer: @comicchang-->
+<!--Tester: @civilong-->
+
 本模块提供管理抽象化色域对象的一些基础能力，包括可共享的色彩管理的创建与可共享的色域基础属性的获取等。
 
 > **说明：**
@@ -17,7 +23,7 @@ type ISendable = lang.ISendable
 
 ISendable是所有Sendable类型（除null和undefined）的父类型。自身没有任何必须的方法和属性。
 
-**系统能力：** SystemCapability.Utils.Lang
+**系统能力：** SystemCapability.Graphic.Graphic2D.ColorManager.Core
 
 | 类型                | 说明                     |
 | ------------------ | ------------------------ |
@@ -55,7 +61,7 @@ create(colorSpaceName: colorSpaceManager.ColorSpace): ColorSpaceManager
 **示例：**
 
 ```ts
-import { colorSpaceManager } from '@kit.ArkGraphics2D';
+import { colorSpaceManager, sendableColorSpaceManager } from '@kit.ArkGraphics2D';
 let colorSpace: sendableColorSpaceManager.ColorSpaceManager;
 colorSpace = sendableColorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB);
 ```
@@ -93,7 +99,7 @@ create(primaries: colorSpaceManager.ColorSpacePrimaries, gamma: number): ColorSp
 **示例：**
 
 ```ts
-import { colorSpaceManager } from '@kit.ArkGraphics2D';
+import { colorSpaceManager, sendableColorSpaceManager } from '@kit.ArkGraphics2D';
 let colorSpace: sendableColorSpaceManager.ColorSpaceManager;
 let primaries: colorSpaceManager.ColorSpacePrimaries = {
   redX: 0.1,

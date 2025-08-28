@@ -1,5 +1,11 @@
 # NFC标签读写开发指南
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @amunra03-->
+<!--Designer: @wenxiaolin-->
+<!--Tester: @zs_111-->
+
 ## 简介
 近场通信(Near Field Communication，NFC)是一种短距高频的无线电技术，在13.56MHz频率运行，通信距离一般在10厘米距离内。电子设备可以通过NFC通信技术和NFC标签通信，从标签中读取数据，或写入数据到标签。<br>
 NFC标签支持一种或多种通信技术，具体技术如下：
@@ -96,15 +102,15 @@ let foregroundRegister: boolean;
 async function readerModeCb(error : BusinessError, tagInfo : tag.TagInfo) {
   if (!error) {
     // 获取特定技术类型的NFC标签对象
-    if (tagInfo == null || tagInfo == undefined) {
+    if (tagInfo == null) {
       hilog.error(0x0000, 'testTag', 'readerModeCb tagInfo is invalid');
       return;
     }
-    if (tagInfo.uid == null || tagInfo.uid == undefined) {
+    if (tagInfo.uid == null) {
       hilog.error(0x0000, 'testTag', 'readerModeCb uid is invalid');
       return;
     }
-    if (tagInfo.technology == null || tagInfo.technology == undefined || tagInfo.technology.length == 0) {
+    if (tagInfo.technology == null || tagInfo.technology.length == 0) {
       hilog.error(0x0000, 'testTag', 'readerModeCb technology is invalid');
       return;
     }
@@ -168,6 +174,7 @@ export default class EntryAbility extends UIAbility {
       return;
     }
 
+    // 根据应用程序信息，初始化正确的值
     nfcTagElementName = {
       bundleName: want.bundleName ?? '',
       abilityName: want.abilityName ?? '',
@@ -276,15 +283,15 @@ export default class EntryAbility extends UIAbility {
       return;
     }
 
-    if (tagInfo == null || tagInfo == undefined) {
+    if (tagInfo == null) {
       hilog.error(0x0000, 'testTag', 'tagInfo is invalid');
       return;
     }
-    if (tagInfo.uid == null || tagInfo.uid == undefined) {
+    if (tagInfo.uid == null) {
       hilog.error(0x0000, 'testTag', 'uid is invalid');
       return;
     }
-    if (tagInfo.technology == null || tagInfo.technology == undefined || tagInfo.technology.length == 0) {
+    if (tagInfo.technology == null || tagInfo.technology.length == 0) {
       hilog.error(0x0000, 'testTag', 'technology is invalid');
       return;
     }
@@ -303,7 +310,7 @@ export default class EntryAbility extends UIAbility {
       }
       // 使用其他技术访问此nfc 标签
     }
-    if (isoDep == undefined) {
+    if (isoDep == null) {
       hilog.error(0x0000, 'testTag', 'getIsoDep is invalid');
       return;
     }

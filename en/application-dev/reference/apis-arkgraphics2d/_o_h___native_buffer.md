@@ -317,7 +317,7 @@ Defines an enum for the **OH_NativeBuffer** usages.
 ### OHNativeErrorCode
 
 ```
-typedef enum OHNativeErrorCodeOHNativeErrorCode
+typedef enum OHNativeErrorCode OHNativeErrorCode
 ```
 
 **Description**
@@ -638,7 +638,7 @@ Returns the pointer to the **OH_NativeBuffer** instance created if the operation
 ### OH_NativeBuffer_FromNativeWindowBuffer()
 
 ```
-int32_t OH_NativeBuffer_FromNativeWindowBuffer (OHNativeWindowBuffer *nativeWindowBuffer, OH_NativeBuffer **buffer )
+int32_t OH_NativeBuffer_FromNativeWindowBuffer (OHNativeWindowBuffer *nativeWindowBuffer, OH_NativeBuffer **buffer)
 ```
 
 **Description**
@@ -666,7 +666,7 @@ Returns **0** if the operation is successful; returns an error code defined in [
 ### OH_NativeBuffer_GetColorSpace()
 
 ```
-int32_t OH_NativeBuffer_GetColorSpace (OH_NativeBuffer *buffer, OH_NativeBuffer_ColorSpace *colorSpace )
+int32_t OH_NativeBuffer_GetColorSpace (OH_NativeBuffer *buffer, OH_NativeBuffer_ColorSpace *colorSpace)
 ```
 
 **Description**
@@ -694,7 +694,7 @@ Returns **0** if the operation is successful; returns an error code defined in [
 ### OH_NativeBuffer_GetConfig()
 
 ```
-void OH_NativeBuffer_GetConfig (OH_NativeBuffer *buffer, OH_NativeBuffer_Config* config )
+void OH_NativeBuffer_GetConfig (OH_NativeBuffer *buffer, OH_NativeBuffer_Config* config)
 ```
 
 **Description**
@@ -718,7 +718,7 @@ This function is not thread-safe.
 ### OH_NativeBuffer_GetMetadataValue()
 
 ```
-int32_t OH_NativeBuffer_GetMetadataValue (OH_NativeBuffer *buffer, OH_NativeBuffer_MetadataKey metadataKey, int32_t *size, uint8_t **metaData )
+int32_t OH_NativeBuffer_GetMetadataValue (OH_NativeBuffer *buffer, OH_NativeBuffer_MetadataKey metadataKey, int32_t *size, uint8_t **metaData)
 ```
 
 **Description**
@@ -775,7 +775,7 @@ Returns the unique sequence number of the **OH_NativeBuffer** instance.
 ### OH_NativeBuffer_Map()
 
 ```
-int32_t OH_NativeBuffer_Map (OH_NativeBuffer *buffer, void **virAddr )
+int32_t OH_NativeBuffer_Map (OH_NativeBuffer *buffer, void **virAddr)
 ```
 
 **Description**
@@ -805,7 +805,7 @@ Returns **0** if the operation is successful; returns an error code defined in [
 ### OH_NativeBuffer_MapPlanes()
 
 ```
-int32_t OH_NativeBuffer_MapPlanes (OH_NativeBuffer *buffer, void **virAddr, OH_NativeBuffer_Planes *outPlanes )
+int32_t OH_NativeBuffer_MapPlanes (OH_NativeBuffer *buffer, void **virAddr, OH_NativeBuffer_Planes *outPlanes)
 ```
 
 **Description**
@@ -863,7 +863,7 @@ Returns **0** if the operation is successful; returns an error code defined in [
 ### OH_NativeBuffer_SetColorSpace()
 
 ```
-int32_t OH_NativeBuffer_SetColorSpace (OH_NativeBuffer *buffer, OH_NativeBuffer_ColorSpace colorSpace )
+int32_t OH_NativeBuffer_SetColorSpace (OH_NativeBuffer *buffer, OH_NativeBuffer_ColorSpace colorSpace)
 ```
 
 **Description**
@@ -891,7 +891,7 @@ Returns **0** if the operation is successful; returns an error code defined in [
 ### OH_NativeBuffer_SetMetadataValue()
 
 ```
-int32_t OH_NativeBuffer_SetMetadataValue (OH_NativeBuffer *buffer, OH_NativeBuffer_MetadataKey metadataKey, int32_t size, uint8_t *metaData )
+int32_t OH_NativeBuffer_SetMetadataValue (OH_NativeBuffer *buffer, OH_NativeBuffer_MetadataKey metadataKey, int32_t size, uint8_t *metaData)
 ```
 
 **Description**

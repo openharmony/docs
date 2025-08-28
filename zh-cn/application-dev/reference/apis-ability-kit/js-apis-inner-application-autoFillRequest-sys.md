@@ -1,6 +1,13 @@
 # AutoFillRequest (系统接口)
 
-当AutoFillExtensionAbility触发回调函数时，提供给开发者的页面数据和回调接口。
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+当AutoFillExtensionAbility触发回调函数时，会提供给开发者页面数据及回调接口。
 
 > **说明：**
 > 
@@ -20,12 +27,12 @@ import { autoFillManager } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称        | 类型                 | 必填 | 说明                                                         |
-| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type        | [AutoFillType](js-apis-inner-application-autoFillType-sys.md)       | 是   | 自动填充类型。          |
-| viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | 是   | 页面数据。              |
-| customData<sup>13+</sup>    | [CustomData](js-apis-inner-application-customData-sys.md)               | 是   | 自定义数据。             |
-| isPopup<sup>12+</sup>    | boolean               | 是   | 自动填充服务是否拉起popup窗口。<br>true：当前拉起popup窗口。<br>false：当前拉起模态窗。              |
+| 名称        | 类型                 | 只读 | 可选 | 说明                                                         |
+| ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
+| type        | [AutoFillType](js-apis-inner-application-autoFillType-sys.md)       | 否   | 否   | 自动填充类型。          |
+| viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | 否   | 否   | 页面数据。              |
+| customData<sup>13+</sup>    | [CustomData](js-apis-inner-application-customData-sys.md)               | 否   | 否   | 自定义数据。             |
+| isPopup<sup>12+</sup>    | boolean               | 否   | 否   | 自动填充服务是否拉起popup窗口。<br>true：当前拉起popup窗口。<br>false：当前拉起模态窗。              |
 
 ## SaveRequest
 
@@ -33,9 +40,9 @@ import { autoFillManager } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称        | 类型                 | 必填 | 说明                                                         |
-| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | 是   | 页面数据。              |
+| 名称        | 类型                 | 只读 | 可选 | 说明                                                         |
+| ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
+| viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | 否   | 否   | 页面数据。              |
 
 ## UpdateRequest<sup>12+</sup>
 
@@ -43,9 +50,9 @@ import { autoFillManager } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称        | 类型                 | 必填 | 说明                                                         |
-| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | 是   | 页面数据。              |
+| 名称        | 类型                 | 只读 | 可选 | 说明                                                         |
+| ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
+| viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | 否   | 否   | 页面数据。              |
 
 ## FillResponse
 
@@ -53,15 +60,15 @@ import { autoFillManager } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称        | 类型                 | 必填 | 说明                                                         |
-| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | 是   | 页面数据。              |
+| 名称        | 类型                 | 只读 | 可选 | 说明                                                         |
+| ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
+| viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | 否   | 否   | 页面数据。              |
 
 ## FillRequestCallback
 
 自动填充或者生成密码时的回调对象，可以通过此回调通知客户端成功或者失败。
 
-### FillRequestCallback.onSuccess
+### onSuccess
 
 onSuccess(response: FillResponse): void
 
@@ -160,7 +167,7 @@ struct AutoFillPage {
 }
 ```
 
-### FillRequestCallback.onFailure
+### onFailure
 
 onFailure(): void
 
@@ -246,7 +253,7 @@ struct AutoFillPage {
 }
 ```
 
-### FillRequestCallback.onCancel<sup>11+</sup>
+### onCancel<sup>11+</sup>
 
 onCancel(fillContent?: string): void
 
@@ -339,7 +346,7 @@ struct AutoFillPage {
 }
 ```
 
-### FillRequestCallback.setAutoFillPopupConfig<sup>12+</sup>
+### setAutoFillPopupConfig<sup>12+</sup>
 
 setAutoFillPopupConfig(autoFillPopupConfig: AutoFillPopupConfig ): void
 
@@ -366,7 +373,6 @@ setAutoFillPopupConfig(autoFillPopupConfig: AutoFillPopupConfig ): void
 **示例：**
 
 ```ts
-// MyAutoFillExtensionAbility.ts
 // MyAutoFillExtensionAbility.ts
 import { AutoFillExtensionAbility, UIExtensionContentSession, autoFillManager } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';

@@ -21,6 +21,7 @@ static map<int, JSVM_Env *> g_envMap;
 static map<int, JSVM_CallbackStruct *> g_callBackStructMap;
 static uint32_t ENVTAG_NUMBER = 0;
 static std::mutex envMapLock;
+static int g_aa = 0;
 
 #define CHECK_COND(cond)                                                                                               \
     do {                                                                                                               \
@@ -135,9 +136,10 @@ static JSVM_Value AssertEqual(JSVM_Env env, JSVM_CallbackInfo info) {
 static int fromOHStringValue(JSVM_Env &env, JSVM_Value &value, std::string &result) {
     size_t size = 0;
     CHECK_RET(OH_JSVM_GetValueStringUtf8(env, value, nullptr, 0, &size));
-    char resultStr[size + 1];
+    char *resultStr = new char[size + 1];
     CHECK_RET(OH_JSVM_GetValueStringUtf8(env, value, resultStr, size + 1, &size));
     result = resultStr;
+    delete[] resultStr;
     return 0;
 }
 

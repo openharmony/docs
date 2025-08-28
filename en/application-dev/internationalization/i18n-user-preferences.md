@@ -1,4 +1,4 @@
-# Setting User Preferences (For System Applications Only)
+# Setting User Preferences
 
 ## Use Cases
 
@@ -6,21 +6,49 @@ In addition to system locales and application preferred languages, the system su
 
 ## How to Develop
 
-For details about how to use the APIs, see [setUsingLocalDigit](../reference/apis-localization-kit/js-apis-i18n-sys.md#setusinglocaldigit9) and [set24HourClock](../reference/apis-localization-kit/js-apis-i18n-sys.md#set24hourclock9).
+For details about how to use the APIs, see [System](../reference/apis-localization-kit/js-apis-i18n.md#system9).
 
 
-1. Import the **intl** module.
    ```ts
-   import { i18n, intl } from '@kit.LocalizationKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
+   import { i18n } from '@kit.LocalizationKit';
+   import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
    ```
 
-2. Obtain the preferred language of an application.
+2. Obtain user preferences.
    ```ts
-   // Obtain the preferred language of an application.
-   let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage();
+   // Check whether the system is using local digits.
+   let usingLocalDigit: boolean = i18n.System.getUsingLocalDigit();
+
+   // Check whether the system is using a 24-hour clock.
+   let is24HourClock: boolean = i18n.System.is24HourClock();
+
+   // Listen for the common event COMMON_EVENT_TIME_CHANGED to detect changes in the system's time format.
+   let subscriber: commonEventManager.CommonEventSubscriber; //  This will hold the subscriber object once it is created.
+   let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+     events: [commonEventManager.Support.COMMON_EVENT_TIME_CHANGED]
+   };
+   // Create the subscriber.
+   commonEventManager.createSubscriber(subscribeInfo)
+     .then((commonEventSubscriber: commonEventManager.CommonEventSubscriber) => {
+       console.info("CreateSubscriber");
+       subscriber = commonEventSubscriber;
+       commonEventManager.subscribe(subscriber, (err, data) => {
+         if (err) {
+           console.error(`Failed to subscribe common event. error code: ${err.code}, message: ${err.message}.`);
+           return;
+         }
+         // Check whether the event data indicates a 24-hour format change.
+         if (data.data != undefined && data.data == '24HourChange') {
+            console.info("The subscribed event has occurred."); // This runs when the system time format changes.
+          }
+       })
+     })
+     .catch((err: BusinessError) => {
+       console.error(`CreateSubscriber failed, code is ${err.code}, message is ${err.message}`);
+     });
    ```
 
+<!--Del-->
 3. Enable display of local digits on the application page.
    ```ts
    try {
@@ -29,10 +57,6 @@ For details about how to use the APIs, see [setUsingLocalDigit](../reference/api
      let err: BusinessError = error as BusinessError;
      console.error(`call System.setUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
    }
-   let date: Date = new Date(2023, 9, 25); // The date is 2023-10-25.
-   let appPreferredLanguage: string = 'ar';
-   let dateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(appPreferredLanguage);
-   let formattedTime: string = dateTimeFmt.format(date); // formattedTime = '٢٠٢٣/١٠/٢٥' (represented by localized numbers in Arabic)
    ```
 
 4. Set the 24-hour clock format.
@@ -43,8 +67,5 @@ For details about how to use the APIs, see [setUsingLocalDigit](../reference/api
      let err: BusinessError = error as BusinessError;
      console.error(`call System.set24HourClock failed, error code: ${err.code}, message: ${err.message}.`);
    }
-   let date: Date = new Date(2023, 9, 25, 16, 48, 0); // The date and time is 2023-10-25 16:48:00.
-   let appPreferredLanguage: string = 'zh';
-   let dateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(appPreferredLanguage, { timeStyle: 'medium' });
-   let formattedTime: string = dateTimeFmt.format(date); // formattedTime = '16:48:00'
    ```
+<!--DelEnd-->

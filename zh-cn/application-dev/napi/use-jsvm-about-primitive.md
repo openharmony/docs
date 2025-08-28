@@ -71,7 +71,7 @@ const char *srcCallNative = R"JS(coerceToBool("123"))JS";
 
 预期结果
 ```
-SVM OH_JSVM_CoerceToBool success:1
+JSVM OH_JSVM_CoerceToBool success:1
 ```
 
 ### OH_JSVM_CoerceToNumber
@@ -240,11 +240,11 @@ static JSVM_Value GetBoolean(JSVM_Env env, JSVM_CallbackInfo info)
     }
     JSVM_Status status = OH_JSVM_GetBoolean(env, type, &returnValue);
     if (status != JSVM_OK) {
-        OH_JSVM_ThrowError(env, nullptr, "JSVM OH_JSVM_CoerceToNumber fail");
+        OH_JSVM_ThrowError(env, nullptr, "JSVM OH_JSVM_GetBoolean fail");
     } else {
         bool result = false;
         OH_JSVM_GetValueBool(env, returnValue, &result);
-        OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_CoerceToNumber success:%{public}d", result);
+        OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_GetBoolean success:%{public}d", result);
     }
     // 返回结果
     return returnValue;
@@ -265,9 +265,9 @@ const char *srcCallNative2 = R"JS(getBoolean(1, 1))JS";
 
 预期结果
 ```
-JSVM OH_JSVM_CoerceToNumber success:0
+JSVM OH_JSVM_GetBoolean success:0
 JSVM resultType equal
-JSVM OH_JSVM_CoerceToNumber success:1
+JSVM OH_JSVM_GetBoolean success:1
 ```
 
 ### OH_JSVM_GetValueBool
@@ -289,7 +289,7 @@ static JSVM_Value GetValueBool(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
     bool result = false;
     JSVM_Status status = OH_JSVM_GetValueBool(env, args[0], &result);
-    if (status == JSVM_BOOLEAN_EXPECTED || status != JSVM_OK) {
+    if (status != JSVM_OK) {
         // 如果OH_JSVM_GetValueBool成功会返回JSVM_OK，如果传入一个非布尔值则会返回JSVM_BOOLEAN_EXPECTED
         OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_GetValueBool fail:%{public}d", status);
         return nullptr;

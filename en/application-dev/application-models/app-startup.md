@@ -9,7 +9,7 @@ AppStartup offers an efficient approach to application launch. By supporting asy
 
 ## Working Mechanism
 
-AppStartup supports startup tasks in automatic or manual mode. By default, automatic mode is used. During the creation of an [AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md), the configured startup tasks are loaded and executed in automatic mode. You can also call [startupManager.run](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md#startupmanagerrun) to execute the startup tasks in manual mode after an AbilityStage is created.
+AppStartup supports startup tasks in automatic or manual mode. By default, automatic mode is used. During the creation of an [AbilityStage](ability-terminology.md#abilitystage), the configured startup tasks are loaded and executed in automatic mode. You can also call [startupManager.run](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md#startupmanagerrun) to execute the startup tasks in manual mode after an AbilityStage is created.
 
 **Figure 1** Startup procedure
 
@@ -177,7 +177,7 @@ AppStartup supports startup tasks in automatic or manual mode. By default, autom
         | -------- | -------- | -------- | -------- |
         | startupTasks | Configuration about the startup tasks. For details, see the following table.| Object array| Optional, defaults to an empty array|
         | appPreloadHintStartupTasks | Configuration about the .so file preloading tasks. For details, see the following table.| Object array| Optional, defaults to an empty array|
-        | configEntry | Path of the startup parameter file.<br>**NOTE**<br> Do not configure this field for the HSP and HAR.| String| Mandatory|
+        | configEntry | Path of the startup parameter file.<br>**NOTE**<br>- Do not configure this field for the HSP and HAR.<br>- If [file name obfuscation](../arkts-utils/source-obfuscation.md#-enable-filename-obfuscation) is enabled, the file path must be added to the trustlist. For details, see [-keep-file-name](../arkts-utils/source-obfuscation.md#-keep-file-name).| String| Mandatory|
         
         
         **Table 2** Description of startupTasks
@@ -185,7 +185,7 @@ AppStartup supports startup tasks in automatic or manual mode. By default, autom
         | Field| Description| Data Type| Optional|
         | -------- | -------- | -------- | -------- |
         | name | Name of the startup task, which can be customized. It is recommended that the name be the same as the class name.| String| Mandatory|
-        | srcEntry | Path of the file corresponding to the startup task.| String| Mandatory|
+        | srcEntry | Path of the file corresponding to the startup task.<br>**NOTE**<br> If [file name obfuscation](../arkts-utils/source-obfuscation.md#-enable-filename-obfuscation) is enabled, the file path must be added to the trustlist. For details, see [-keep-file-name](../arkts-utils/source-obfuscation.md#-keep-file-name).| String| Mandatory|
         | dependencies | Array holding the class names of other startup tasks on which this task depends.| Object array| Optional, defaults to an empty array|
         | excludeFromAutoStart | Whether to exclude automatic mode. For details, see [Changing the Startup Mode](#optional-changing-the-startup-mode).<br>- **true**: manual mode.<br>- **false**: automatic mode.<br>**NOTE**<br> This field must be set to **true** for the HSP and HAR.| Boolean| Optional, defaults to **false**|
         | runOnThread | Thread where the startup task is executed.<br>- **mainThread**: executed in the main thread.<br>- **taskPool**: executed in an asynchronous thread.| String| Optional, defaults to **mainThread**|

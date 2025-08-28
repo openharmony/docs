@@ -126,7 +126,7 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 ```ts
 import { abilityManager, Configuration, ConfigurationConstant } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';;
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const config: Configuration = {
   language: 'Zh-Hans',                 // 简体中文

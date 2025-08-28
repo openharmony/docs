@@ -76,14 +76,14 @@ struct RepeatExample {
 
 运行后界面如下图所示：
 
-![Repeat-Example-With-Each](./figures/Repeat-Example-With-Each.png)
+![Repeat-Example-With-Each](./figures/Repeat-Example-With-Each.png) 
 
 Repeat提供渲染模板（template）能力，可以在同一个数据源中渲染多种子组件。每个数据项会根据`.templateId()`得到template type，从而渲染type对应的`.template()`中的子组件。
 
-- 如果`.templateId()`缺省，则type默认为空字符串。
-- 当多个template type相同时，Repeat会覆盖先定义的`.template()`函数，仅生效最后定义的`.template()`。
-- 如果找不到对应的template type，Repeat会优先渲染type为空的`.template()`中的子组件，如果没有，则渲染`.each()`中的子组件。
-- 只有相同template的节点可以互相复用。
+- `.each()`等价于template type为空字符串的`.template()`。
+- 当多个template type相同时（包括template type为空字符串），Repeat仅生效最新定义的`.each()`或`.template()`。
+- 如果`.templateId()`缺省，或`templateId()`计算得到的template type不存在，则template type取默认值空字符串。
+- 只有相同template type的节点可以互相复用。
 
 下列示例代码中使用Repeat组件进行循环渲染，并使用了多个渲染模板。
 
@@ -626,7 +626,7 @@ struct RepeatNest {
 
 本节展示Repeat与滚动容器组件的常见应用场景。
 
-#### 与List组合使用
+**与List组合使用**
 
 在List容器组件中使用Repeat，示例代码如下：
 
@@ -730,7 +730,7 @@ struct DemoList {
 
 ![Repeat-Demo-List](./figures/Repeat-Demo-List.gif)
 
-#### 与Grid组合使用
+**与Grid组合使用**
 
 在Grid容器组件中使用Repeat，示例如下：
 
@@ -859,7 +859,7 @@ struct DemoGrid {
 
 ![Repeat-Demo-Grid](./figures/Repeat-Demo-Grid.gif)
 
-#### 与Swiper组合使用
+**与Swiper组合使用**
 
 在Swiper容器组件中使用Repeat，示例如下：
 

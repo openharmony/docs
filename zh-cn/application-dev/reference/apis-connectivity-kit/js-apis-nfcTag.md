@@ -1,5 +1,11 @@
 # @ohos.nfc.tag (标准NFC-Tag)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @amunra03-->
+<!--Designer: @wenxiaolin-->
+<!--Tester: @zs_111-->
+
 本模块主要用于操作及管理NFC Tag，提供后台读卡和前台应用优先分发两种读卡模式。
 后台读卡是指不需要打开应用程序，电子设备通过NFC读取标签卡片后，根据标签卡片的类型匹配到一个或多个应用程序。如果仅匹配到一个，则直接拉起应用程序的读卡页面；如果是多个则弹出应用选择器，让用户选择指定的读卡应用。
 前台读卡是指提前打开应用程序，并进入对应的NFC读卡页面后读卡，只会把读到的标签卡片信息分发给前台应用程序。
@@ -43,7 +49,7 @@
         "requestPermissions": [
             {
                 "name": "ohos.permission.NFC_TAG",
-                "reason": "$string:app_name",
+                "reason": "$string:app_name"
             }
         ]
     }
@@ -81,7 +87,7 @@ export default class EntryAbility extends UIAbility {
         } catch (error) {
             console.error("tag.getTagInfo catch error: " + error);
         }
-        if (tagInfo == null || tagInfo == undefined) {
+        if (tagInfo == null) {
             console.log("no TagInfo to be created, ignore it.");
             return;
         }
@@ -527,7 +533,7 @@ getBarcodeTag(tagInfo: [TagInfo](#taginfo)): [BarcodeTag](js-apis-nfctech.md#bar
 
 | 类型                        | 说明                 |
 | ------------------------- | ------------------ |
-| [BartcodeTag](js-apis-nfctech.md#barcodetag18) | BarcodeTag类型Tag对象。 |
+| [BarcodeTag](js-apis-nfctech.md#barcodetag18) | BarcodeTag类型Tag对象。 |
 
 **错误码：**
 
@@ -680,7 +686,7 @@ export default class MainAbility extends UIAbility {
         try {
             tag.unregisterForegroundDispatch(elementName);
         } catch (e) {
-            console.error("registerForegroundDispatch error: " + (e as BusinessError).message);
+            console.error("unregisterForegroundDispatch error: " + (e as BusinessError).message);
         }
     }
 
@@ -689,7 +695,7 @@ export default class MainAbility extends UIAbility {
         try {
             tag.unregisterForegroundDispatch(elementName);
         } catch (e) {
-            console.error("registerForegroundDispatch error: " + (e as BusinessError).message);
+            console.error("unregisterForegroundDispatch error: " + (e as BusinessError).message);
         }
     }
 

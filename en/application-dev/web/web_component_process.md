@@ -4,7 +4,7 @@ ArkWeb is a multi-process model, which consists of the application process, Web 
 
 > **NOTE**
 >
-> The Web kernel does not limit the allocated memory size. Theoretically, the memory size can be infinite until it is released by the resource management module.
+> The web kernel has no restriction on the request for memory size.
 
 **Figure 1** ArkWeb process model
 
@@ -42,7 +42,7 @@ ArkWeb is a multi-process model, which consists of the application process, Web 
 
 1. You can use [setRenderProcessMode](../reference/apis-arkweb/js-apis-webview-WebviewController.md#setrenderprocessmode12) to set the rendering process mode to single-process or multi-process.
 
-   By default, a mobile device uses single-process rendering, and a 2-in-1 device uses multi-process rendering. You can call [getRenderProcessMode](../reference/apis-arkweb/js-apis-webview-WebviewController.md#getrenderprocessmode12) to obtain the current rendering process mode. The value **0** means the single-process rendering, and the value **1** means the multi-process rendering. If the obtained value is not included in the enumerated values of [RenderProcessMode](../reference/apis-arkweb/js-apis-webview-e.md#renderprocessmode12), the multi-process rendering mode is used by default.
+   By default, a mobile device uses single-process rendering, and a 2-in-1 device uses multi-process rendering. You can call [getRenderProcessMode](../reference/apis-arkweb/js-apis-webview-WebviewController.md#getrenderprocessmode12) to obtain the current rendering process mode. The value **0** means the single-process rendering, and the value **1** means the multi-process rendering. If the obtained value is not within the value range of [RenderProcessMode](../reference/apis-arkweb/js-apis-webview-e.md#renderprocessmode12), the system automatically uses the multi-process rendering mode by default.
 
    ```ts
    // xxx.ets
@@ -80,7 +80,6 @@ ArkWeb is a multi-process model, which consists of the application process, Web 
    ```ts
    // xxx.ets
    import { webview } from '@kit.ArkWeb';
-   import { BusinessError } from '@kit.BasicServicesKit';
    
    @Entry
    @Component
@@ -124,7 +123,7 @@ ArkWeb is a multi-process model, which consists of the application process, Web 
    }
    ```
 
-4. You can use [onRenderProcessNotResponding](../reference/apis-arkweb/ts-basic-components-web-events.md#onrenderprocessnotresponding12) and [onRenderProcessResponding](../reference/apis-arkweb/ts-basic-components-web-events.md#onrenderprocessresponding12) to listen for the unresponsive state of a rendering process.
+4. You can use [onRenderProcessNotResponding](../reference/apis-arkweb/ts-basic-components-web-events.md#onrenderprocessnotresponding12) and [onRenderProcessResponding](../reference/apis-arkweb/ts-basic-components-web-events.md#onrenderprocessresponding12) to listen for the non-response status of the rendering process.
 
    When a **Web** component cannot process an input event or fails to navigate to a new URL within the expected time, the system determines that the web page process does not respond and triggers the **onRenderProcessNotResponding** callback. When a web page process does not respond for a long time, this callback may be triggered repeatedly until the process is restored to the normal running state. In this case, the **onRenderProcessResponding** callback is triggered.
 
@@ -169,7 +168,7 @@ ArkWeb is a multi-process model, which consists of the application process, Web 
    }
    ```
 
-5. Parameters of the [Web component](../reference/apis-arkweb/ts-basic-components-web.md#web) cover the use of the multi-process model. **sharedRenderProcessToken** identifies the token of a shared rendering process specified by the current **Web** component. In multi-rendering process mode, **Web** components with the same token preferentially attempt to reuse the rendering process bound to the token. The token and the rendering process are bound in the initialization phase of the rendering process. Once a rendering process is no longer associated with any **Web** component, its binding to the token is removed.
+5. Parameters of the [Web component](../reference/apis-arkweb/ts-basic-components-web.md) cover the use of the multi-process model. **sharedRenderProcessToken** identifies the token of a shared rendering process specified by the current **Web** component. In multi-rendering process mode, **Web** components with the same token preferentially attempt to reuse the rendering process bound to the token. The token and the rendering process are bound in the initialization phase of the rendering process. Once a rendering process is no longer associated with any **Web** component, its binding to the token is removed.
 
    ```ts
    // xxx.ets

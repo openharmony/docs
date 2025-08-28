@@ -77,7 +77,7 @@ let properties: Array<huks.HuksParam> = [
   value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256,
 }, {
   tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-  value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128,
+  value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256,
 }, {
   tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
   value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
@@ -383,7 +383,7 @@ let properties: Array<huks.HuksParam> = [
     value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256,
   }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128,
+    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256,
   }, {
     tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
     value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
