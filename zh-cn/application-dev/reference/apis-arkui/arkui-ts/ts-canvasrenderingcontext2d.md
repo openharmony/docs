@@ -713,6 +713,7 @@ struct ShadowOffsetY {
 struct ImageSmoothingEnabled {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  // "common/images/icon.jpg"需要替换为开发者所需的图像资源文件
   private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg")
   
   build() {
@@ -849,6 +850,7 @@ struct CanvasExample {
   struct ImageSmoothingQualityDemo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    // "common/images/example.jpg"需要替换为开发者所需的图像资源文件
     private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
 
     build() {
@@ -917,6 +919,7 @@ struct CanvasExample {
   struct FilterDemo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    // "common/images/example.jpg"需要替换为开发者所需的图像资源文件
     private img: ImageBitmap = new ImageBitmap("common/images/example.jpg");
 
     build() {
@@ -1648,6 +1651,7 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
   struct CreatePattern {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    // "common/images/icon.jpg"需要替换为开发者所需的图像资源文件
     private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg")
 
     build() {
@@ -2948,6 +2952,7 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
   struct ImageExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    // "common/images/example.jpg"需要替换为开发者所需的图像资源文件
     private img: ImageBitmap = new ImageBitmap("common/images/example.jpg")
 
     build() {
@@ -3057,6 +3062,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
   struct GetPixelMap {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    // "common/images/example.jpg"需要替换为开发者所需的图像资源文件
     private img: ImageBitmap = new ImageBitmap("common/images/example.jpg")
 
     build() {
@@ -3132,6 +3138,7 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
   struct GetImageData {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    // "/common/images/1234.png"需要替换为开发者所需的图像资源文件
     private img:ImageBitmap = new ImageBitmap("/common/images/1234.png")
 
     build() {
@@ -3957,7 +3964,7 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| config   | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | 是   | 执行AI分析所需要的入参，用于配置AI分析功能。 |
+| config   | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig12) | 是   | 执行AI分析所需要的入参，用于配置AI分析功能。 |
 
 **返回值：**
 
@@ -4004,6 +4011,7 @@ struct ImageAnalyzerExample {
   private config: ImageAnalyzerConfig = {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
   }
+  // 'common/images/example.png'需要替换为开发者所需的图像资源文件
   private img = new ImageBitmap('common/images/example.png')
   private aiController: ImageAnalyzerController = new ImageAnalyzerController()
   private options: ImageAIOptions = {

@@ -1,6 +1,13 @@
 # AbilityMonitor
 
-The AbilityMonitor module provides monitors for abilities that meet specified conditions. The latest matched abilities are stored in an AbilityMonitor object.
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+The module provides the capability of listening for lifecycle state changes of a specified [UIAbility](js-apis-app-ability-uiAbility.md). You can use AbilityMonitor as an input parameter of [abilityDelegator.addAbilityMonitor](../apis-test-kit/js-apis-inner-application-abilityDelegator.md#addabilitymonitor9) to register a listener.
 
 > **NOTE**
 > 
@@ -24,15 +31,15 @@ AbilityMonitor can be used as an input parameter of [addAbilityMonitor](../apis-
 
 | Name                                                        | Type    | Read Only| Optional| Description                                                        |
 | ------------------------------------------------------------ | -------- | ---- | ---- | ------------------------------------------------------------ |
-| abilityName                                                  | string   | No  | No  | Name of the ability bound to the ability monitor.|
-| moduleName                                                  | string   | No  | Yes  | Name of the module bound to the ability monitor.|
-| onAbilityCreate | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | No  | Yes  | Called when the ability is created.<br>If this property is not set, the corresponding lifecycle callback cannot be received.|
-| onAbilityForeground | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | No  | Yes  | Called when the ability starts to run in the foreground.<br>If this property is not set, the corresponding lifecycle callback cannot be received.|
-| onAbilityBackground | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | No  | Yes  | Called when the ability starts to run in the background.<br>If this property is not set, the corresponding lifecycle callback cannot be received.|
-| onAbilityDestroy | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | No  | Yes  | Called when the ability is destroyed.<br>If this property is not set, the corresponding lifecycle callback cannot be received.|
-| onWindowStageCreate | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | No  | Yes  | Called when the window stage is created.<br>If this property is not set, the corresponding lifecycle callback cannot be received.|
-| onWindowStageRestore | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | No  | Yes  | Called when the window stage is restored.<br>If this property is not set, the corresponding lifecycle callback cannot be received.|
-| onWindowStageDestroy | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | No  | Yes  | Called when the window stage is destroyed.<br>If this property is not set, the corresponding lifecycle callback cannot be received.|
+| abilityName                                                  | string   | No  | No  |  Name of the UIAbility object to be listened.|
+| moduleName                                                  | string   | No  | Yes  | Module name of the UIAbility object.|
+| onAbilityCreate | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | No  | Yes  | Callback invoked when the UIAbility object is created.|
+| onAbilityForeground | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | No  | Yes  | Callback invoked when the UIAbility object transitions to the foreground.|
+| onAbilityBackground | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | No  | Yes  | Callback invoked when the UIAbility object transitions to the background.|
+| onAbilityDestroy | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | No  | Yes  | Callback invoked when the UIAbility object is destroyed.|
+| onWindowStageCreate | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | No  | Yes  | Callback invoked when a WindowStage instance is created.|
+| onWindowStageRestore | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | No  | Yes  | Callback invoked when the page stack is restored for the target UIAbility during cross-device migration.|
+| onWindowStageDestroy | (ability: [UIAbility](js-apis-app-ability-uiAbility.md)) => void | No  | Yes  | Callback invoked when the WindowStage instance is destroyed.|
 
 **Example**
 

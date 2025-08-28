@@ -1,15 +1,15 @@
-# LocalStorage: Storing UI State
+# LocalStorage: Storing Page-Level UI State
 
 
-LocalStorage provides storage for the page-level UI state. The parameters of the LocalStorage type accepted through the \@Entry decorator share the same LocalStorage instance on the page. LocalStorage also allows for state sharing between pages with UIAbility instances.
+LocalStorage provides storage for the page-level UI state. The parameters of the LocalStorage type accepted through the \@Entry decorator share the same LocalStorage instance on the page. LocalStorage also allows for state sharing across pages in a UIAbility instance.
 
 
-This topic describes only the LocalStorage application scenarios and related decorators: \@LocalStorageProp and \@LocalStorageLink.
+This topic focuses on the usage scenarios of LocalStorage and its associated decorators: \@LocalStorageProp and \@LocalStorageLink.
 
 
 Before reading this topic, you are advised to read [State Management Overview](./arkts-state-management-overview.md) to have a basic understanding of the positioning of AppStorage in the state management framework.
 
-LocalStorage also provides APIs for you to manually add, delete, change, and query keys of Storage outside the custom component. You are advised to read this topic together with [LocalStorage API reference](../../reference/apis-arkui/arkui-ts/ts-state-management.md#localstorage9).
+LocalStorage also provides APIs for manual create, retrieve, update, delete (CRUD) operations outside custom components. For details, see [LocalStorage API Reference](../../reference/apis-arkui/arkui-ts/ts-state-management.md#localstorage9). For best practices, see [State Management](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-status-management).
 
 > **NOTE**
 >
@@ -20,29 +20,29 @@ LocalStorage also provides APIs for you to manually add, delete, change, and que
 
 LocalStorage is an in-memory "database" that ArkTS provides for storing state variables required to build pages of the application UI.
 
-- An application can create multiple LocalStorage instances. These instances can be shared on a page or, by using the **getShared** API, across pages in a UIAbility instance.
+- An application can create multiple LocalStorage instances. These instances can be shared on a page or, by using the **getSharedLocalStorage** API, across multiple pages and UIAbility instances.
 
 - The root node of a component tree, that is, the \@Component decorated by \@Entry, can be assigned to a LocalStorage instance. All child instances of this custom component automatically gain access to the same LocalStorage instance.
 
-- The \@Component decorated components can automatically inherit the LocalStorage instance from the parent component or receive the specified LocalStorage instance. For details, see [Example of Providing a Custom Component with Access to a LocalStorage Instance](#example-of-providing-a-custom-component-with-access-to-a-localstorage-instance).
+- The \@Component decorated components can automatically inherit the LocalStorage instance from the parent component or receive the specified LocalStorage instance. For details, see [Providing a Custom Component with Access to a LocalStorage Instance](#providing-a-custom-component-with-access-to-a-localstorage-instance).
 
-- All attributes in LocalStorage are mutable.
+- All properties in LocalStorage are mutable.
 
 The application determines the lifecycle of a LocalStorage object. The JS Engine will garbage collect a LocalStorage object when the application releases the last reference to it, which includes deleting the last custom component.
 
 LocalStorage provides two decorators based on the synchronization type of the component decorated with \@Component:
 
-- [@LocalStorageProp](#localstorageprop): creates a one-way data synchronization with the named attribute in LocalStorage.
+- [@LocalStorageProp](#localstorageprop): creates a one-way data synchronization with the named property in LocalStorage.
 
-- [@LocalStorageLink](#localstoragelink): creates a two-way data synchronization with the named attribute in LocalStorage.
+- [@LocalStorageLink](#localstoragelink): creates a two-way data synchronization with the named property in LocalStorage.
 
 
 ## \@LocalStorageProp
 
-As mentioned above, if you want to establish a binding between LocalStorage and a custom component, you need to use the \@LocalStorageProp and \@LocalStorageLink decorators. Specially, use \@LocalStorageProp(key) or \@LocalStorageLink(key) to decorate variables in the component, where **key** identifies the attribute in LocalStorage.
+As mentioned above, if you want to establish a binding between LocalStorage and a custom component, you need to use the \@LocalStorageProp and \@LocalStorageLink decorators. Specially, use \@LocalStorageProp(key) or \@LocalStorageLink(key) to decorate variables in the component, where **key** identifies the property in LocalStorage.
 
 
-When a custom component is initialized, the \@LocalStorageProp(key)/\@LocalStorageLink(key) decorated variable is initialized with the value of the attribute with the given key in LocalStorage. Local initialization is mandatory. If an attribute with the given key is missing from LocalStorage, it will be added with the stated initializing value. (Whether the attribute with the given key exists in LocalStorage depends on the application logic.)
+When a custom component is initialized, the \@LocalStorageProp(key)/\@LocalStorageLink(key) decorated variable is initialized with the value of the property with the given key in LocalStorage. Local initialization is mandatory. If an property with the given key is missing from LocalStorage, it will be added with the stated initializing value. (Whether the property with the given key exists in LocalStorage depends on the application logic.)
 
 
 > **NOTE**
@@ -51,31 +51,31 @@ When a custom component is initialized, the \@LocalStorageProp(key)/\@LocalStora
 >
 > This decorator can be used in atomic services since API version 11.
 
-By decorating a variable with \@LocalStorageProp(key), a one-way data synchronization is established from the attribute with the given key in LocalStorage to the variable. This means that, local changes (if any) will not be synchronized to LocalStorage, and an update to the attribute with the given key in LocalStorage – for example, a change made with the **set** API – will overwrite local changes.
+By decorating a variable with \@LocalStorageProp(key), a one-way data synchronization is established from the property with the given key in LocalStorage to the variable. This means that, local changes (if any) will not be synchronized to LocalStorage, and an update to the property with the given key in LocalStorage – for example, a change made with the **set** API – will overwrite local changes.
 
 
-### Rules of Use
+### Rules for Using the \@LocalStorageProp Decorator
 
-| \@LocalStorageProp Decorator| Description                                      |
-| ----------------------- | ---------------------------------------- |
-| Decorator parameters                  | **key**: constant string, mandatory (the string must be quoted)                 |
-| Allowed variable types              | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) Map, Set, and Date types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in LocalStorage. Otherwise, implicit type conversion occurs, causing application behavior exceptions.<br>**any** is not supported. **undefined** and **null** are supported since API version 12.<br>(Applicable to API version 12 or later) Union type of the preceding types, for example, **string \| number**, **string \| undefined**, or **ClassA \| null**. For details, see [Union Type @LocalStorage](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@LocalStorageProp("AA") a: number \| null = null** is supported, but **@LocalStorageProp("AA") a: number = null** is not.|
-| Synchronization type                   | One-way: from the attribute in LocalStorage to the component variable. The component variable can be changed locally, but an update from LocalStorage will overwrite local changes.|
-| Initial value for the decorated variable              | Mandatory. If the attribute does not exist in LocalStorage, it will be created and initialized with this value.|
+| \@LocalStorageProp Decorator| Description                                                        |
+| ---------------------------- | ------------------------------------------------------------ |
+| Parameters                  | **key**: constant string, mandatory (the string must be quoted)                 |
+| Allowed variable types          | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) **Map**, **Set**, **Date**, **undefined**, and **null**. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>API version 12 or later: union types, for example, string \| number, string \| undefined, or ClassA \| null. For details, see [Using Union Types in LocalStorage](#using-union-types-in-localstorage).<br>**NOTE**<br>The variable type must be specified. Whenever possible, use the same type as that of the corresponding property in LocalStorage. Otherwise, implicit type conversion occurs, causing application behavior exceptions.<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@LocalStorageProp("AA") a: number \| null = null** is supported, but **@LocalStorageProp("AA") a: number = null** is not.<br>**any** is not supported.|
+| Synchronization type                    | One-way: from the property in LocalStorage to the component variable. The component variable can be changed locally, but an update from LocalStorage will overwrite local changes.|
+| Initial value for the decorated variable          | Mandatory. If the property does not exist in LocalStorage, it will be created and initialized with this value.|
 
 
 ### Variable Transfer/Access Rules
 
-| Transfer/Access     | Description                                      |
-| ---------- | ---------------------------------------- |
+| Behavior   | Description                                                                                 |
+| ---------- |-------------------------------------------------------------------------------------|
 | Initialization and update from the parent component| Forbidden.|
-| Child component initialization    | Supported. The \@LocalStorageProp decorated variable can be used to initialize an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
-| Access from outside the component | Not supported.                                      |
+| Child component initialization    | Supported. The \@LocalStorageProp decorated variable can be used to initialize an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.                                          |
+| Access from outside the component | Not supported.                                                                                 |
 
-  **Figure 1** \@LocalStorageProp initialization rule 
 
 ![en-us_image_0000001501936014](figures/en-us_image_0000001501936014.png)
 
+  **Figure 1** \@LocalStorageProp initialization rule
 
 ### Observed Changes and Behavior
 
@@ -84,28 +84,29 @@ By decorating a variable with \@LocalStorageProp(key), a one-way data synchroniz
 
 - When the decorated variable is of the Boolean, string, or number type, its value change can be observed.
 
-- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes can be observed. For details, see [Example for Using LocalStorage from Inside the UI](#example-for-using-localstorage-from-inside-the-ui).
+- When the decorated variable is of the class or object type, its value change as well as value changes of all its properties can be observed. For details, see [Using LocalStorage from Inside the UI](#using-localstorage-from-inside-the-ui).
 
-- When the decorated variable is of the array type, the addition, deletion, and updates of array items can be observed.
+- When the decorated object is an array, you can observe the changes of adding, deleting, and updating array units.
 
-- When the decorated object is of the **Date** type, the overall value changes of **Date** can be observed. In addition, you can call the following APIs to update **Date** properties: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**. For details, see [Decorating Variables of the Date Type](#decorating-variables-of-the-date-type).
+- When the decorated object is of the **Date** type, the following changes can be observed: (1) complete **Date** object reassignment; (2) property changes caused by calling **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, or **setUTCMilliseconds**. For details, see [Decorating Variables of the Date Type](#decorating-variables-of-the-date-type).
 
-- When the decorated variable is **Map**, value changes of **Map** can be observed. In addition, you can call the **set**, **clear**, and **delete** APIs of **Map** to update its value. For details, see [Decorating Variables of the Map Type](#decorating-variables-of-the-map-type).
+- When the decorated object is of the **Map** type, the following changes can be observed: (1) complete **Map** object reassignment; (2) changes caused by calling **set**, **clear**, or **delete**. For details, see [Decorating Variables of the Map Type](#decorating-variables-of-the-map-type).
 
-- When the decorated variable is **Set**, value changes of **Set** can be observed. In addition, you can call the **add**, **clear**, and **delete** APIs of **Set** to update its value. For details, see [Decorating Variables of the Set Type](#decorating-variables-of-the-set-type).
+- When the decorated object is of the **Set** type, the following changes can be observed: (1) complete **Set** object reassignment; (2) changes caused by calling **add**, **clear**, or **delete**. For details, see [Decorating Variables of the Set Type](#decorating-variables-of-the-set-type).
 
 
 **Framework Behavior**
 
 
-- Value changes of the variables decorated by \@LocalStorageProp are not synchronized to LocalStorage.
+1. When a variable decorated by \@LocalStorageProp (key) is updated, LocalStorage is not written back, but the current custom component is re-rendered.
 
-- Value changes of the variables decorated by \@LocalStorageProp will cause a re-render of components associated with the current custom component.
+2. When the value of the corresponding key in LocalStorage changes, all variables decorated by \@LocalStorageProp (key) are updated synchronously to overwrite the local modification.
 
-- When an attribute with the given key in LocalStorage is updated, the change is synchronized to all the \@LocalStorageProp(key) decorated variables and overwrite all local changes of these variables.
+The following figure shows the data synchronization between LocalStorage and \@LocalStorageProp.
 
 ![LocalStorageProp_framework_behavior](figures/LocalStorageProp_framework_behavior.png)
 
+  Figure 2 Data synchronization between LocalStorage and \@LocalStorageProp
 
 ## \@LocalStorageLink
 
@@ -115,36 +116,34 @@ By decorating a variable with \@LocalStorageProp(key), a one-way data synchroniz
 
 \@LocalStorageLink is required if you need to synchronize the changes of the state variables in a custom component back to LocalStorage.
 
-\@LocalStorageLink(key) creates a two-way data synchronization with the attribute with the given key in LocalStorage.
+\@LocalStorageLink(key) creates a two-way data synchronization with the property with the given key in LocalStorage.
 
-1. If a local change occurs, it is synchronized to LocalStorage.
+1. Local changes are synchronized to LocalStorage.
 
-2. Changes in LocalStorage are synchronized to all attributes with the given key, including one-way bound variables (\@LocalStorageProp decorated variables and one-way bound variables created through \@Prop) and two-way bound variables (\@LocalStorageLink decorated variables and two-way bound variables created through \@Link).
+2. Changes in LocalStorage are synchronized to all properties with the given key, including one-way bound variables (\@LocalStorageProp decorated variables and one-way bound variables created through \@Prop) and two-way bound variables (\@LocalStorageLink decorated variables and two-way bound variables created through **link**).
 
-### Rules of Use
+### Rules for Using the \@LocalStorageLink Decorator
 
-| \@LocalStorageLink Decorator| Description                                      |
-| ----------------------- | ---------------------------------------- |
-| Decorator parameters                  | **key**: constant string, mandatory (the string must be quoted)                 |
-| Allowed variable types              | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) Map, Set, and Date types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior-1).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in LocalStorage. Otherwise, implicit type conversion occurs, causing application behavior exceptions.<br>**any** is not supported. **undefined** and **null** are supported since API version 12.<br>(Applicable to API version 12 or later) Union type of the preceding types, for example, **string \| number**, **string \| undefined**, or **ClassA \| null**. For details, see [Union Type @LocalStorage](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@LocalStorageLink("AA") a: number \| null = null** is supported, but **@LocalStorageLink("AA") a: number = null** is not.|
-| Synchronization type                   | Two-way: from the attribute in LocalStorage to the custom component variable and back|
-| Initial value for the decorated variable              | Mandatory. If the attribute does not exist in LocalStorage, it will be created and initialized with this value.|
+| \@LocalStorageLink Decorator| Description                                                        |
+| ---------------------------- | ------------------------------------------------------------ |
+| Parameters                  | **key**: constant string, mandatory (the string must be quoted)                 |
+| Allowed variable types          | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) **Map**, **Set**, **Date**, **undefined**, and **null**. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior-1).<br>(Applicable to API version 12 or later) Union type of the preceding types, for example, **string \| number, string \| undefined**, or **ClassA \| null. For details, see [Using Union Types in LocalStorage](#using-union-types-in-localstorage).<br>**Notice**<br>The variable type must be specified. Whenever possible, use the same type as that of the corresponding property in LocalStorage. Otherwise, implicit type conversion occurs, causing application behavior exceptions.<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@LocalStorageLink("AA") a: number \| null = null** is supported, but **@LocalStorageProp("AA") a: number = null** is not.<br>**any** is not supported.|
+| Synchronization type                    | Two-way: from the property in LocalStorage to the custom component variable and back|
+| Initial value for the decorated variable          | Mandatory. If the property does not exist in LocalStorage, it will be created and initialized with this value.|
 
 
 ### Variable Transfer/Access Rules
 
-| Transfer/Access     | Description                                      |
-| ---------- | ---------------------------------------- |
+| Behavior     | Description                                                                                 |
+| ---------- |-------------------------------------------------------------------------------------|
 | Initialization and update from the parent component| Forbidden.|
-| Child component initialization    | Supported. The \@LocalStorageProp decorated variable can be used to initialize an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
-| Access from outside the component | Not supported.                                      |
-
-
-  **Figure 2** \@LocalStorageLink initialization rule 
+| Child component initialization    | Supported. The \@StorageProp decorated variable can be used to initialize an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.                                          |
+| Access from outside the component | No                                                                                 |
 
 
 ![en-us_image_0000001552855957](figures/en-us_image_0000001552855957.png)
 
+  **Figure 3** \@LocalStorageLink initialization rule
 
 ### Observed Changes and Behavior
 
@@ -153,28 +152,29 @@ By decorating a variable with \@LocalStorageProp(key), a one-way data synchroniz
 
 - When the decorated variable is of the Boolean, string, or number type, its value change can be observed.
 
-- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes can be observed. For details, see [Example for Using LocalStorage from Inside the UI](#example-for-using-localstorage-from-inside-the-ui).
+- When the decorated variable is of the class or object type, its value change as well as value changes of all its properties can be observed. For details, see [Using LocalStorage from Inside the UI](#using-localstorage-from-inside-the-ui).
 
-- When the decorated variable is of the array type, the addition, deletion, and updates of array items can be observed.
+- When the decorated object is an array, you can observe the changes of adding, deleting, and updating array units.
 
-- When the decorated object is of the **Date** type, the overall value changes of **Date** can be observed. In addition, you can call the following APIs to update **Date** properties: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**. For details, see [Decorating Variables of the Date Type](#decorating-variables-of-the-date-type).
+- When the decorated object is of the **Date** type, the following changes can be observed: (1) complete **Date** object reassignment; (2) property changes caused by calling **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, or **setUTCMilliseconds**. For details, see [Decorating Variables of the Date Type](#decorating-variables-of-the-date-type).
 
-- When the decorated variable is **Map**, value changes of **Map** can be observed. In addition, you can call the **set**, **clear**, and **delete** APIs of **Map** to update its value. For details, see [Decorating Variables of the Map Type](#decorating-variables-of-the-map-type).
+- When the decorated object is of the **Map** type, the following changes can be observed: (1) complete **Map** object reassignment; (2) changes caused by calling **set**, **clear**, or **delete**. For details, see [Decorating Variables of the Map Type](#decorating-variables-of-the-map-type).
 
-- When the decorated variable is **Set**, value changes of **Set** can be observed. In addition, you can call the **add**, **clear**, and **delete** APIs of **Set** to update its value. For details, see [Decorating Variables of the Set Type](#decorating-variables-of-the-set-type).
+- When the decorated object is of the **Set** type, the following changes can be observed: (1) complete **Set** object reassignment; (2) changes caused by calling **add**, **clear**, or **delete**. For details, see [Decorating Variables of the Set Type](#decorating-variables-of-the-set-type).
 
 
 **Framework Behavior**
 
 
-1. When the value change of the \@LocalStorageLink(key) decorated variable is observed, the change is synchronized to the attribute with the give key value in LocalStorage.
+1. When a variable decorated by \@LocalStorageLink(key) is updated, the change is synchronized back to the corresponding key in LocalStorage and triggers re-rendering of the owning custom component.
 
-2. Once the attribute with the given key in LocalStorage is updated, all the data (including \@LocalStorageLink and \@LocalStorageProp decorated variables) bound to the attribute key is changed synchronously.
+2. When the value of a key in LocalStorage changes, all data bound to that key (including both two-way binding with \@LocalStorageLink and one-way binding with \@LocalStorageProp) will be synchronized.
 
-3. When the data decorated by \@LocalStorageLink(key) is a state variable, the change of the data is synchronized to LocalStorage, and the owning custom component is re-rendered.
+The figure below shows the data synchronization between LocalStorage and \@LocalStorageLink.
 
 ![LocalStorageLink_framework_behavior](figures/LocalStorageLink_framework_behavior.png)
 
+  **Figure 4** Data synchronization between LocalStorage and \@LocalStorageLink
 
 ## Constraints
 
@@ -188,22 +188,22 @@ By decorating a variable with \@LocalStorageProp(key), a one-way data synchroniz
     @LocalStorageProp() localStorageProp: number = 1;
     @LocalStorageLink() localStorageLink: number = 2;
 
-    // Correct format.
+    // Correct usage.
     @LocalStorageProp('PropA') localStorageProp: number = 1;
     @LocalStorageLink('PropA') localStorageLink: number = 2;
     ```
 
 2. \@LocalStorageProp and \@LocalStorageLink cannot decorate variables of the function type. Otherwise, the framework throws a runtime error.
 
-3. Once created, a named attribute cannot have its type changed. Subsequent calls to **Set** must set a value of same type.
+3. Once created, a named property cannot have its type changed. A value of same type must be used for subsequent calls to the Set method.
 
-4. LocalStorage provides page-level storage. The [getShared](../../reference/apis-arkui/arkui-ts/ts-state-management.md#getshared10) API can only obtain the LocalStorage instance passed through [windowStage.loadContent](../../reference/apis-arkui/js-apis-window.md#loadcontent9) in the current stage. If the instance is not available, **undefined** is returned. For the example, see [Example of Sharing a LocalStorage Instance from UIAbility to One or More Pages](#example-of-sharing-a-localstorage-instance-from-uiability-to-one-or-more-pages).
+4. LocalStorage is a page-level storage mechanism. The [getSharedLocalStorage](../../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getsharedlocalstorage12) API can only obtain the **LocalStorage** instance passed through [windowStage.loadContent](../../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9) in the current **Stage** context. Otherwise, it returns **undefined**. For the example, see [Sharing a LocalStorage Instance from UIAbility to Multiple Pages](#sharing-a-localstorage-instance-from-uiability-to-multiple-pages).
 
 
 ## Use Scenarios
 
 
-### Example of Using LocalStorage in Application Logic
+### Using LocalStorage in Application Logic
 
 
 ```ts
@@ -219,7 +219,7 @@ link1.set(49); // Two-way synchronization: link1.get() == link2.get() == prop.ge
 ```
 
 
-### Example for Using LocalStorage from Inside the UI
+### Using LocalStorage from Inside the UI
 
 The two decorators \@LocalStorageProp and \@LocalStorageLink can work together to obtain the state variable stored in a LocalStorage instance in the UI component.
 
@@ -229,7 +229,7 @@ This example uses \@LocalStorageLink to implement the following:
 
 - Use the \@Entry decorator to add **storage** to the top-level component **Parent**.
 
-- Use \@LocalStorageLink to create a two-way data synchronization with the given attribute in LocalStorage.
+- Use \@LocalStorageLink to create a two-way data synchronization with the given property in LocalStorage.
 
  ```ts
 class Data {
@@ -246,19 +246,20 @@ storage.setOrCreate('PropB', new Data(50));
 
 @Component
 struct Child {
-  // @LocalStorageLink creates a two-way data synchronization with the PropA attribute in LocalStorage.
+  // @LocalStorageLink creates a two-way data synchronization with the PropA property in LocalStorage.
   @LocalStorageLink('PropA') childLinkNumber: number = 1;
-  // @LocalStorageLink creates a two-way data synchronization with the PropB attribute in LocalStorage.
+  // @LocalStorageLink creates a two-way data synchronization with the PropB property in LocalStorage.
   @LocalStorageLink('PropB') childLinkObject: Data = new Data(0);
 
   build() {
     Column({ space: 15 }) {
-      Button(`Child from LocalStorage ${this.childLinkNumber}`) // The changes will be synchronized to PropA in LocalStorage and with Parent.parentLinkNumber.
+      // The changes will be synchronized to PropA in LocalStorage and with Parent.storageLink1.
+      Button(`Child from LocalStorage ${this.childLinkNumber}`)
         .onClick(() => {
           this.childLinkNumber += 1;
         })
-
-      Button(`Child from LocalStorage ${this.childLinkObject.code}`) // The changes will be synchronized to PropB in LocalStorage and with Parent.parentLinkObject.code.
+      // The changes will be synchronized to PropB and Parent.parentLinkObject.code in LocalStorage.
+      Button(`Child from LocalStorage ${this.childLinkObject.code}`)
         .onClick(() => {
           this.childLinkObject.code += 1;
         })
@@ -269,19 +270,20 @@ struct Child {
 @Entry(storage)
 @Component
 struct Parent {
-  // @LocalStorageLink creates a two-way data synchronization with the PropA attribute in LocalStorage.
+  // @LocalStorageLink creates a two-way data synchronization with the PropA property in LocalStorage.
   @LocalStorageLink('PropA') parentLinkNumber: number = 1;
-  // @LocalStorageLink creates a two-way data synchronization with the PropB attribute in LocalStorage.
+  // @LocalStorageLink creates a two-way data synchronization with the PropB property in LocalStorage.
   @LocalStorageLink('PropB') parentLinkObject: Data = new Data(0);
 
   build() {
     Column({ space: 15 }) {
-      Button(`Parent from LocalStorage ${this.parentLinkNumber}`) // The value of this.parentLinkNumber is 47 because PropA in LocalStorage has been initialized.
+      // Because PropA in LocalStorage has been initialized, the value of this.parentLinkNumber is 47.
+      Button(`Parent from LocalStorage ${this.parentLinkNumber}`)
         .onClick(() => {
           this.parentLinkNumber += 1;
         })
-
-      Button(`Parent from LocalStorage ${this.parentLinkObject.code}`) // The value of this.parentLinkObject.code is 50 because PropB in LocalStorage has been initialized.
+      // Because PropB in LocalStorage has been initialized, the value of this.parentLinkObject.code is 50.
+      Button(`Parent from LocalStorage ${this.parentLinkObject.code}`)
         .onClick(() => {
           this.parentLinkObject.code += 1;
         })
@@ -293,9 +295,9 @@ struct Parent {
 ```
 
 
-### Simple Example of Using \@LocalStorageProp with LocalStorage
+### Implementing One-Way Synchronization with @LocalStorageProp and LocalStorage
 
-In this example, the **Parent** and **Child** components create local data that is one-way synchronized with the PropA attribute in the LocalStorage instance **storage**.
+This example demonstrates one-way data synchronization between **Parent** and **Child** components and the **'PropA'** property in LocalStorage:
 
 - The change of **this.storageProp1** in **Parent** takes effect only in **Parent** and is not synchronized to **storage**.
 
@@ -309,7 +311,7 @@ let storage: LocalStorage = new LocalStorage(para);
 @Entry(storage)
 @Component
 struct Parent {
-  // @LocalStorageProp creates a one-way data synchronization with the PropA attribute in LocalStorage.
+  // @LocalStorageProp creates a one-way data synchronization with the PropA property in LocalStorage.
   @LocalStorageProp('PropA') storageProp1: number = 1;
 
   build() {
@@ -326,7 +328,7 @@ struct Parent {
 
 @Component
 struct Child {
-  // @LocalStorageProp creates a one-way data synchronization with the PropA attribute in LocalStorage.
+  // @LocalStorageProp creates a one-way data synchronization with the PropA property in LocalStorage.
   @LocalStorageProp('PropA') storageProp2: number = 2;
 
   build() {
@@ -339,7 +341,7 @@ struct Child {
 ```
 
 
-### Simple Example of Using \@LocalStorageLink with LocalStorage
+### Implementing Two-Way Synchronization with @LocalStorageLink and LocalStorage
 
 This example shows how to create a two-way data synchronization between an \@LocalStorageLink decorated variable and LocalStorage.
 
@@ -375,7 +377,7 @@ struct Parent {
 ```
 
 
-### Example of Syncing State Variables Between Sibling Components
+### Syncing State Variables Between Sibling Components
 
 This example shows how to use \@LocalStorageLink to create a two-way synchronization for the state between sibling components.
 
@@ -383,7 +385,7 @@ Check the changes in the **Parent** custom component.
 
 1. Clicking **playCount ${this.playCount} dec by 1** decreases the value of **this.playCount** by 1. This change is synchronized to LocalStorage and to the components bound to **playCountLink** in the **Child** component.
 
-2. Click **countStorage ${this.playCount} incr by 1** to call the **set** API in LocalStorage to update the attributes corresponding to **countStorage** in LocalStorage. The components bound to** playCountLink** in the **Child** component are updated synchronously.
+2. Click **countStorage ${this.playCount} incr by 1** to call the **set** API in LocalStorage to update the properties corresponding to **countStorage** in LocalStorage. The components bound to** playCountLink** in the **Child** component are updated synchronously.
 
 3. The **playCount in LocalStorage for debug ${storage.get&lt;number&gt;('countStorage')}** **Text** component is not updated synchronously, because **storage.get&lt;number&gt;('countStorage')** returns a regular variable. The update of a regular variable does not cause the **Text** component to be re-rendered.
 
@@ -453,9 +455,9 @@ struct Parent {
 ```
 
 
-### Example of Sharing a LocalStorage Instance from UIAbility to One or More Pages
+### Sharing a LocalStorage Instance from UIAbility to Multiple Pages
 
-In the preceding examples, the LocalStorage instance is shared only in an \@Entry decorated component and its child component (a page). To enable a LocalStorage instance to be shared across pages, you can create a LocalStorage instance in its owning UIAbility and call windowStage.[loadContent](../../reference/apis-arkui/js-apis-window.md#loadcontent9).
+In the preceding examples, the LocalStorage instance is shared only in an \@Entry decorated component and its child component (a page). To enable a LocalStorage instance to be shared across pages, you can create a LocalStorage instance in the owning UIAbility and pass it through windowStage.[loadContent](../../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9).
 
 
 ```ts
@@ -476,17 +478,17 @@ export default class EntryAbility extends UIAbility {
 ```
 > **NOTE**
 >
-> On the page, call the **getShared** API to obtain the LocalStorage instance shared through **loadContent**.
+> To obtain the LocalStorage instance shared by the current stage in UI pages, use **getSharedLocalStorage**.
 >
-> **LocalStorage.getShared()** works only on emulators and real devices, not in DevEco Studio Previewer.
+> **this.getUIContext().getSharedLocalStorage()** works only on emulators and real devices, not in DevEco Studio Previewer.
 
 
-In the following example, **propA** on the **Index** page uses the **getShared()** API to obtain the shared LocalStorage instance. Click the button to go to the **Page** page. Click **Change propA** and then return to the **Index** page. It can be observed that the value of **propA** on the page is changed.
+In the following example, propA on the **Index** page uses a shared LocalStorage instance. Clicking the button navigates to the **Page** page. When you modify the value of **propA** using **Change propA** and then return to the **Index** page, the updated value of **propA** will be synchronized between the two pages.
 ```ts
 // index.ets
 
-// Use the getShared API to obtain the LocalStorage instance shared by stage.
-@Entry({ storage: LocalStorage.getShared() })
+// The Previewer does not support accessing LocalStorage instances shared across pages.
+@Entry({ useSharedStorage: true })
 @Component
 struct Index {
   // You can use @LocalStorageLink/Prop to establish a relationship with the variables in the LocalStorage instance.
@@ -554,7 +556,7 @@ struct Page {
   }
 }
 ```
-When using **Navigation**, you need to add the **route_map.json** file to the **src/main/resources/base/profile** directory, replace the value of **pageSourceFile** with the path of **Page**, and add **"routerMap": "$profile: route_map"** to the **module.json5** file.
+When using **Navigation**, create a **route_map.json** file as shown below in the **src/main/resources/base/profile** directory, replacing the value of **pageSourceFile** with the actual path to **Page**. Then, add **"routerMap": "$profile: route_map"** to the **module.json5** file.
 ```json
 {
   "routerMap": [
@@ -575,9 +577,9 @@ When using **Navigation**, you need to add the **route_map.json** file to the **
 > It is good practice to always create a LocalStorage instance with meaningful default values, which serve as a backup when execution exceptions occur and are also useful for unit testing of pages.
 
 
-### Example of Providing a Custom Component with Access to a LocalStorage Instance
+### Providing a Custom Component with Access to a LocalStorage Instance
 
-LocalStorage instances are accessible to both root nodes through @Entry and custom components (child nodes) through constructors.
+LocalStorage instances are accessible to both root nodes through \@Entry and custom components (child nodes) through constructor parameters.
 
 This example uses \@LocalStorageLink to implement the following:
 
@@ -588,10 +590,10 @@ This example uses \@LocalStorageLink to implement the following:
 > **NOTE**
 >
 > LocalStorage instances are accessible to custom components since API version 12.
-> If a custom component functions as a subnode and has member attributes defined, a LocalStorage instance must be passed in as the second parameter. Otherwise, a type mismatch error is reported at compile time.
-> If a custom component has any attribute defined, it does not accept a LocalStorage instance as the only input parameter. If a custom component does not have any attribute defined, it can accept a LocalStorage instance as the only input parameter.
-> If the defined attribute does not need to be initialized from the parent component, {} must be passed in as the first parameter.
-> The LocalStorage instance that is passed to a child component as a constructor parameter is determined at initialization. You can use @LocalStorageLink or the API of LocalStorage to modify the attribute values stored in the LocalStorage instance, but the LocalStorage instance itself cannot be dynamically modified.
+> When a custom child component has defined member properties, a LocalStorage instance must be passed in as the second parameter. Otherwise, a type mismatch error is reported at compile time.
+> Custom components with defined properties cannot accept a single LocalStorage instance as the only parameter. Components without defined properties may accept a single LocalStorage instance.
+> When properties do not require parent initialization, **{}** must be passed in as the first parameter.
+> The LocalStorage instance passed to child components as a constructor parameter is determined at initialization. You can use @LocalStorageLink or LocalStorage APIs to modify the property values stored in the LocalStorage instance, but the LocalStorage instance itself cannot be dynamically modified.
 
 ```ts
 let localStorage1: LocalStorage = new LocalStorage();
@@ -626,7 +628,7 @@ struct Index {
 @Component
 struct Child {
   @Link count: number;
-  // Hello World is in two-way synchronization with PropB in localStorage2. If there is no PropB in localStorage2, the default value Hello World is used.
+  // 'Hello World' is in two-way synchronization with 'PropB' in localStorage2. If there is no 'PropB' in localStorage2, the default value 'Hello World' is used.
   @LocalStorageLink('PropB') PropB: string = 'Hello World';
 
   build() {
@@ -637,7 +639,7 @@ struct Child {
 }
 ```
 
-1. If a custom component does not have any attribute defined, it can accept a LocalStorage instance as the only input parameter.
+1. If a custom component does not have any property defined, it can accept a LocalStorage instance as the only input parameter.
 
     ```ts
     let localStorage1: LocalStorage = new LocalStorage();
@@ -668,7 +670,6 @@ struct Child {
       }
     }
 
-
     @Component
     struct Child {
       build() {
@@ -679,7 +680,7 @@ struct Child {
     }
     ```
 
-2. If the defined attribute does not need to be initialized from the parent component, {} must be passed in as the first parameter.
+2. If the defined property does not need to be initialized from the parent component, {} must be passed in as the first parameter.
 
     ```ts
     let localStorage1: LocalStorage = new LocalStorage();
@@ -710,7 +711,6 @@ struct Child {
       }
     }
 
-
     @Component
     struct Child {
       @State count: number = 5;
@@ -728,7 +728,7 @@ struct Child {
 
 ### Using LocalStorage with a Navigation Component
 
-You can pass multiple LocalStorage instances to a custom component and bind them to different target navigation pages, which can then display the attribute values of the bound instances.
+You can pass multiple LocalStorage instances to a custom component and bind them to different target navigation pages, which can then display the property values of the bound instances.
 
 This example uses \@LocalStorageLink to implement the following:
 
@@ -762,11 +762,11 @@ struct MyNavigationTestStack {
   PageMap(name: string) {
     if (name === 'pageOne') {
       // Pass multiple LocalStorage instances.
-      pageOneStack({}, localStorageA)
+      PageOneStack({}, localStorageA)
     } else if (name === 'pageTwo') {
-      pageTwoStack({}, localStorageB)
+      PageTwoStack({}, localStorageB)
     } else if (name === 'pageThree') {
-      pageThreeStack({}, localStorageC)
+      PageThreeStack({}, localStorageC)
     }
   }
 
@@ -791,7 +791,7 @@ struct MyNavigationTestStack {
 }
 
 @Component
-struct pageOneStack {
+struct PageOneStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
   @LocalStorageLink('PropA') PropA: string = 'Hello World';
 
@@ -818,7 +818,7 @@ struct pageOneStack {
 }
 
 @Component
-struct pageTwoStack {
+struct PageTwoStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
   @LocalStorageLink('PropB') PropB: string = 'Hello World';
 
@@ -846,7 +846,7 @@ struct pageTwoStack {
 }
 
 @Component
-struct pageThreeStack {
+struct PageThreeStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
   @LocalStorageLink('PropC') PropC: string = 'pageThreeStack';
 
@@ -889,13 +889,13 @@ struct NavigationContentMsgStack {
 ```
 
 
-### Union Type
+### Using Union Types in LocalStorage
 
-In the following example, the type of variable **A** is **number | null**, and the type of variable **B** is **number | undefined**. The **Text** components display **null** and **undefined** upon initialization, numbers when clicked, and **null** and **undefined** when clicked again.
+The following example demonstrates how to use union types in LocalStorage. The type of variable **A** is **number | null**, and the type of variable **B** is **number | undefined**. The **Text** components display **null** and **undefined** upon initialization, numbers when clicked, and **null** and **undefined** when clicked again.
 
 ```ts
 @Component
-struct LocalStorLink {
+struct LocalStorageLinkComponent {
   @LocalStorageLink("LinkA") LinkA: number | null = null;
   @LocalStorageLink("LinkB") LinkB: number | undefined = undefined;
 
@@ -915,7 +915,7 @@ struct LocalStorLink {
 }
 
 @Component
-struct LocalStorProp {
+struct LocalStoragePropComponent {
   @LocalStorageProp("PropA") PropA: number | null = null;
   @LocalStorageProp("PropB") PropB: number | undefined = undefined;
 
@@ -942,8 +942,8 @@ struct Index {
   build() {
     Row() {
       Column() {
-        LocalStorLink()
-        LocalStorProp()
+        LocalStorageLinkComponent()
+        LocalStoragePropComponent()
       }
       .width('100%')
     }
@@ -959,7 +959,7 @@ struct Index {
 >
 > LocalStorage supports the Date type since API version 12.
 
-In this example, the **selectedDate** variable decorated by @LocalStorageLink is of the Date type. After the button is clicked, the value of **selectedDate** changes, and the UI is re-rendered.
+In this example, the **selectedDate** variable decorated by \@LocalStorageLink is of the Date type. After the button is clicked, the value of **selectedDate** changes, and the UI is re-rendered.
 
 ```ts
 @Entry
@@ -1125,4 +1125,4 @@ struct Test {
 }
 ```
 
-
+<!--no_check-->

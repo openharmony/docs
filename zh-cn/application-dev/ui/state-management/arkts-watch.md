@@ -70,7 +70,7 @@
 // 正确写法
 @State @Watch('change') num: number = 10;
 change() {
-  console.log(`xxx`);
+  console.info(`xxx`);
 }
 ```
 
@@ -80,13 +80,13 @@ change() {
 // 错误写法，没有对应名称的函数，编译报错
 @State @Watch('change') num: number = 10;
 onChange() {
-  console.log(`xxx`);
+  console.info(`xxx`);
 }
 
 // 正确写法
 @State @Watch('change') num: number = 10;
 change() {
-  console.log(`xxx`);
+  console.info(`xxx`);
 }
 ```
 
@@ -96,13 +96,13 @@ change() {
 //错误写法
 @Watch('change') num: number = 10;
 change() {
-  console.log(`xxx`);
+  console.info(`xxx`);
 }
 
 // 正确写法
 @State @Watch('change') num: number = 10;
 change() {
-  console.log(`xxx`);
+  console.info(`xxx`);
 }
 ```
 
@@ -251,11 +251,11 @@ struct ParentComponent {
   @State @Watch('onTaskBChanged') taskB: Task = new Task(false);
 
   onTaskAChanged(changedPropertyName: string): void {
-    console.log(`观测到父组件任务属性变化: ${changedPropertyName}`);
+    console.info(`观测到父组件任务属性变化: ${changedPropertyName}`);
   }
 
   onTaskBChanged(changedPropertyName: string): void {
-    console.log(`观测到父组件任务属性变化: ${changedPropertyName}`);
+    console.info(`观测到父组件任务属性变化: ${changedPropertyName}`);
   }
 
   build() {
@@ -278,11 +278,11 @@ struct ChildComponent {
   @Link @Watch('onLinkTaskChanged') taskA: Task;
 
   onObjectLinkTaskChanged(changedPropertyName: string): void {
-    console.log(`观测到子组件@ObjectLink关联的任务属性变化: ${changedPropertyName}`);
+    console.info(`观测到子组件@ObjectLink关联的任务属性变化: ${changedPropertyName}`);
   }
 
   onLinkTaskChanged(changedPropertyName: string): void {
-    console.log(`观测到子组件@Link关联的任务属性变化: ${changedPropertyName}`);
+    console.info(`观测到子组件@Link关联的任务属性变化: ${changedPropertyName}`);
   }
 
   build() {

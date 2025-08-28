@@ -933,12 +933,10 @@
       - 应用国际化<!--i18n-->
           - [国际化界面设计](internationalization/i18n-ui-design.md)
           - [区域ID与文化习惯划分](internationalization/i18n-locale-culture.md)
-          - 设置语言与用户偏好<!--i18n-language-user-preferences-->
-              - [设置系统语言与区域](internationalization/i18n-system-language-region.md)
-              - [设置应用偏好语言](internationalization/i18n-preferred-language.md)
-              <!--Del-->
-              - [设置用户偏好（仅对系统应用开放）](internationalization/i18n-user-preferences.md)
-              <!--DelEnd-->
+          - 语言与用户偏好<!--i18n-language-user-preferences-->
+              - [系统语言与区域](internationalization/i18n-system-language-region.md)
+              - [应用偏好语言](internationalization/i18n-preferred-language.md)
+              - [用户偏好](internationalization/i18n-user-preferences.md)
           - [时间日期国际化](internationalization/i18n-time-date.md)
           - [数字与度量衡国际化](internationalization/i18n-numbers-weights-measures.md)
           - [电话号码格式化](internationalization/i18n-phone-numbers.md)
@@ -1407,6 +1405,7 @@
         - [MDM Kit简介](mdm/mdm-kit-intro.md)
         - [MDM Kit开发指南](mdm/mdm-kit-guide.md)
         - [EnterpriseAdminExtensionAbility开发指南](mdm/mdm-kit-admin.md)
+        - [MDM Kit术语](mdm/mdm-kit-term.md)
     - 硬件<!--system-hardware-->
       - Driver Development Kit（驱动开发服务）<!--driver-development-kit-->
         - [Driver Development Kit简介](device/driver/driverdevelopment-overview.md)
@@ -2177,7 +2176,7 @@
           - [@ohos.app.ability.StartOptions (startAbility的可选参数)](reference/apis-ability-kit/js-apis-app-ability-startOptions.md)
           - [@ohos.app.ability.UIAbility (带界面的应用组件)](reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)
           - [@ohos.app.ability.UIExtensionAbility (带界面的ExtensionAbility组件)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)
-          - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md)
+          - [@ohos.app.ability.UIExtensionContentSession (UIExtensionAbility界面操作类)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md)
           - [@ohos.app.ability.sendableContextManager (sendable上下文管理)](reference/apis-ability-kit/js-apis-app-ability-sendableContextManager.md)
           - [@ohos.app.appstartup.StartupConfig (启动框架配置信息)](reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md)
           - [@ohos.app.appstartup.StartupConfigEntry (启动框架配置)](reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md)
@@ -2197,7 +2196,7 @@
           - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)
           - [@ohos.app.ability.StartOptions (StartOptions)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-startOptions-sys.md)
           - [@ohos.app.ability.UIServiceExtensionAbility (UIServiceExtensionAbility)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)
-          - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession-sys.md)
+          - [@ohos.app.ability.UIExtensionContentSession (UIExtensionAbility界面操作类)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession-sys.md)
           <!--DelEnd-->
         - FA模型能力的接口<!--fa-model-->
           - [@ohos.ability.ability (Ability模块)](reference/apis-ability-kit/js-apis-ability-ability.md)
@@ -2274,7 +2273,7 @@
             - [AbilityStageMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md)
             - [AbilityStartCallback](reference/apis-ability-kit/js-apis-inner-application-abilityStartCallback.md)
             - [AbilityStateData](reference/apis-ability-kit/js-apis-inner-application-abilityStateData.md)
-            - [ApplicationContext (应用级别的上下文)](reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)
+            - [ApplicationContext (应用上下文)](reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)
             - [ApplicationStateObserver](reference/apis-ability-kit/js-apis-inner-application-applicationStateObserver.md)
             - [AppServiceExtensionContext (应用后台服务扩展组件上下文)](reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md)
             - [AppStateData](reference/apis-ability-kit/js-apis-inner-application-appStateData.md)
@@ -2848,7 +2847,6 @@
             - [Tips控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-tips.md)
             - [菜单控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)
           - [无障碍属性](reference/apis-arkui/arkui-ts/ts-universal-attributes-accessibility.md)
-          - [文本通用](reference/apis-arkui/arkui-ts/ts-universal-attributes-text-style.md)
           - 模态转场设置<!--transition-->
             - [全屏模态转场](reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md)
             - [半模态转场](reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md)
@@ -2961,6 +2959,7 @@
           - [Hyperlink](reference/apis-arkui/arkui-ts/ts-container-hyperlink.md)
           - [RichText](reference/apis-arkui/arkui-ts/ts-basic-components-richtext.md)
           - [属性字符串](reference/apis-arkui/arkui-ts/ts-universal-styled-string.md)
+          - [输入框类组件通用接口](reference/apis-arkui/arkui-ts/ts-universal-attributes-text-style.md)
           - [文本组件公共接口](reference/apis-arkui/arkui-ts/ts-text-common.md)
           <!--Del-->
           - [文本组件公共接口 (系统接口)](reference/apis-arkui/arkui-ts/ts-text-common-sys.md)
@@ -2992,6 +2991,7 @@
           - [QRCode](reference/apis-arkui/arkui-ts/ts-basic-components-qrcode.md)
           - [TextClock](reference/apis-arkui/arkui-ts/ts-basic-components-textclock.md)
           - [TextTimer](reference/apis-arkui/arkui-ts/ts-basic-components-texttimer.md)
+          - [信息展示公共接口](reference/apis-arkui/arkui-ts/ts-information-display-common.md)
         - 空白与分隔<!--blank-and-divider-->
           - [Blank](reference/apis-arkui/arkui-ts/ts-basic-components-blank.md)
           - [Divider](reference/apis-arkui/arkui-ts/ts-basic-components-divider.md)
@@ -3083,8 +3083,11 @@
           - [自定义组件的生命周期](reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md)
           - [自定义组件的自定义布局](reference/apis-arkui/arkui-ts/ts-custom-component-layout.md)
           - [自定义组件内置方法](reference/apis-arkui/arkui-ts/ts-custom-component-api.md)
+          - [自定义组件参数](reference/apis-arkui/arkui-ts/ts-custom-component-parameter.md)
           - 组件扩展装饰器<!--arkts-extend-component-decorator-->
             - [定义可动画属性 (@AnimatableExtend)](reference/apis-arkui/arkui-ts/ts-animatable-extend.md)
+            - [@Entry：页面入口](reference/apis-arkui/arkui-ts/ts-universal-entry.md)
+            - [wrapBuilder: 封装全局@Builder](reference/apis-arkui/arkui-ts/ts-universal-wrapBuilder.md)
         - 系统预置UI组件库<!--system-preset-ui-component-library-->
           - [Chip](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md)
           - [ChipGroup](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ChipGroup.md)
@@ -3116,7 +3119,9 @@
           - [TreeView](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-TreeView.md)
         - 状态管理与渲染控制<!--state-management-and-rendering-control-->
           - [应用级变量的状态管理](reference/apis-arkui/arkui-ts/ts-state-management.md)
+          - [状态管理V1装饰器参数](reference/apis-arkui/arkui-ts/ts-state-management-v1-parameter.md)
           - [状态变量变化监听](reference/apis-arkui/arkui-ts/ts-state-management-watch-monitor.md)
+          - [内置环境变量说明](reference/apis-arkui/arkui-ts/ts-state-management-environment-variables.md)
           - [ForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)
           - [LazyForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)
           - [Repeat](reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
@@ -3692,6 +3697,7 @@
       - ArkTS API<!--core-file-arkts-->
         - [@ohos.application.BackupExtensionAbility (备份恢复扩展能力)](reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md)
         - [@ohos.file.cloudSync (端云同步能力)](reference/apis-core-file-kit/js-apis-file-cloudsync.md)
+        - [@ohos.file.cloudSyncManager (端云同步管理能力)](reference/apis-core-file-kit/js-apis-file-cloudsyncmanager.md)
         - [@ohos.file.environment (目录环境能力)](reference/apis-core-file-kit/js-apis-file-environment.md)
         - [@ohos.file.fileuri (文件URI)](reference/apis-core-file-kit/js-apis-file-fileuri.md)
         - [@ohos.file.fs (文件管理)](reference/apis-core-file-kit/js-apis-file-fs.md)
@@ -4094,7 +4100,7 @@
           - [@ohos.distributedsched.abilityConnectionManager (应用多端协同管理)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager.md)
           - [@ohos.application.DistributedExtensionAbility (协同Extension)](reference/apis-distributedservice-kit/js-apis-distributedExtensionAbility.md)
           - [@ohos.distributedsched.linkEnhance (增强连接)](reference/apis-distributedservice-kit/js-apis-link-enhance.md)
-          - [@ohos.distributedsched.proxyChannelManager(代理通道管理)](reference/apis-distributedservice-kit/js-api-proxyChannelManager.md)
+          - [@ohos.distributedsched.proxyChannelManager(代理通道管理)](reference/apis-distributedservice-kit/js-apis-proxyChannelManager.md)
           <!--Del-->
           - [@ohos.distributedHardware.hardwareManager (分布式硬件管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedHardwareManager-sys.md)
           - [@ohos.distributedDeviceManager (设备管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager-sys.md)
@@ -4108,7 +4114,7 @@
           <!--Del-->
           - [键鼠穿越管理错误码](reference/apis-distributedservice-kit/errorcode-devicestatus.md)
           <!--DelEnd-->
-          - [连接增强错误码](reference/apis-distributedservice-kit/errorcode_linkEnhance.md)
+          - [增强连接错误码](reference/apis-distributedservice-kit/errorcode-link-enhance.md)
           - [代理通道管理错误码](reference/apis-distributedservice-kit/errorcode_proxyChannelManager.md)
         - C API<!--distributed-service-c-->
           - 模块<!--distributed-service-moudle-->
@@ -4783,8 +4789,8 @@
     - AVCodec Kit（音视频编解码服务）<!--avcodec-api-->
       - C API<!--avcodec-c-->
         - 模块<!--avcodec-module-->
-          - [AudioCodec](reference/apis-avcodec-kit/_audio_codec.md)
-          - [AVCapability](reference/apis-avcodec-kit/_a_v_capability.md)
+          - [AVCapability](reference/apis-avcodec-kit/capi-avcapability.md)
+          - [AudioCodec](reference/apis-avcodec-kit/capi-audiocodec.md)
           - [AVDemuxer](reference/apis-avcodec-kit/_a_v_demuxer.md)
           - [AVMuxer](reference/apis-avcodec-kit/_a_v_muxer.md)
           - [AVSource](reference/apis-avcodec-kit/_a_v_source.md)
@@ -4794,12 +4800,12 @@
           - [VideoEncoder](reference/apis-avcodec-kit/_video_encoder.md)
           - [Multimedia_Drm](reference/apis-avcodec-kit/_multimedia___drm.md)
         - 头文件<!--avcodec-headerfile-->
+          - [native_avcapability.h](reference/apis-avcodec-kit/capi-native-avcapability-h.md)
+          - [native_avcodec_audiocodec.h](reference/apis-avcodec-kit/capi-native-avcodec-audiocodec-h.md)
           - [media_types.h](reference/apis-avcodec-kit/media__types_8h.md)
           - [native_audio_channel_layout.h](reference/apis-avcodec-kit/native__audio__channel__layout_8h.md)
           - [native_avbuffer.h](reference/apis-avcodec-kit/native__avbuffer_8h.md)
           - [native_avbuffer_info.h](reference/apis-avcodec-kit/native__avbuffer__info_8h.md)
-          - [native_avcapability.h](reference/apis-avcodec-kit/native__avcapability_8h.md)
-          - [native_avcodec_audiocodec.h](reference/apis-avcodec-kit/native__avcodec__audiocodec_8h.md)
           - [native_avcodec_base.h](reference/apis-avcodec-kit/native__avcodec__base_8h.md)
           - [native_avcodec_videodecoder.h](reference/apis-avcodec-kit/native__avcodec__videodecoder_8h.md)
           - [native_avcodec_videoencoder.h](reference/apis-avcodec-kit/native__avcodec__videoencoder_8h.md)
@@ -4811,12 +4817,14 @@
           - [native_avsource.h](reference/apis-avcodec-kit/native__avsource_8h.md)
           - [native_cencinfo.h](reference/apis-avcodec-kit/native__cencinfo_8h.md)
         - 结构体<!--avcodec-struct-->
+          - [OH_AVRange](reference/apis-avcodec-kit/capi-avcapability-oh-avrange.md)
+          - [OH_AVCapability](reference/apis-avcodec-kit/capi-avcapability-oh-avcapability.md)
+          - [MediaKeySession](reference/apis-avcodec-kit/capi-audiocodec-mediakeysession.md)
           - [OH_AVCodecAsyncCallback](reference/apis-avcodec-kit/_o_h___a_v_codec_async_callback.md)
           - [OH_AVCodecBufferAttr](reference/apis-avcodec-kit/_o_h___a_v_codec_buffer_attr.md)
           - [OH_AVCodecCallback](reference/apis-avcodec-kit/_o_h___a_v_codec_callback.md)
           - [OH_AVDataSource](reference/apis-avcodec-kit/_o_h___a_v_data_source.md)
           - [OH_AVDataSourceExt](reference/apis-avcodec-kit/_o_h___a_v_data_source_ext.md)
-          - [OH_AVRange](reference/apis-avcodec-kit/_o_h___a_v_range.md)
           - [DrmSubsample](reference/apis-avcodec-kit/_drm_subsample.md)
         - 已停止维护的接口<!--avcodec-arkts-dep-->
           - 模块<!--avcodec-module-arkts-dep-->
@@ -5676,15 +5684,17 @@
       - [Vulkan开发指导](reference/native-lib/vulkan-guidelines.md)
       - [Vulkan支持能力](reference/native-lib/vulkan.md)
       - Vulkan扩展能力<!--vulkan-extensions-->
-        - [Vulkan模块](reference/native-lib/_vulkan.md)
-        - [vulkan_ohos.h](reference/native-lib/vulkan__ohos_8h.md)
-        - [VkExternalFormatOHOS](reference/native-lib/_vk_external_format_o_h_o_s.md)
-        - [VkImportNativeBufferInfoOHOS](reference/native-lib/_vk_import_native_buffer_info_o_h_o_s.md)
-        - [VkMemoryGetNativeBufferInfoOHOS](reference/native-lib/_vk_memory_get_native_buffer_info_o_h_o_s.md)
-        - [VkNativeBufferFormatPropertiesOHOS](reference/native-lib/_vk_native_buffer_format_properties_o_h_o_s.md)
-        - [VkNativeBufferPropertiesOHOS](reference/native-lib/_vk_native_buffer_properties_o_h_o_s.md)
-        - [VkNativeBufferUsageOHOS](reference/native-lib/_vk_native_buffer_usage_o_h_o_s.md)
-        - [VkSurfaceCreateInfoOHOS](reference/native-lib/_vk_surface_create_info_o_h_o_s.md)
+        - [Vulkan模块](reference/native-lib/capi-vulkan.md)
+        - [vulkan_ohos.h](reference/native-lib/capi-vulkan-ohos-h.md)
+        - [VkSurfaceCreateInfoOHOS](reference/native-lib/capi-vulkan-vksurfacecreateinfoohos.md)
+        - [VkNativeBufferUsageOHOS](reference/native-lib/capi-vulkan-vknativebufferusageohos.md)
+        - [VkNativeBufferPropertiesOHOS](reference/native-lib/capi-vulkan-vknativebufferpropertiesohos.md)
+        - [VkNativeBufferFormatPropertiesOHOS](reference/native-lib/capi-vulkan-vknativebufferformatpropertiesohos.md)
+        - [VkImportNativeBufferInfoOHOS](reference/native-lib/capi-vulkan-vkimportnativebufferinfoohos.md)
+        - [VkMemoryGetNativeBufferInfoOHOS](reference/native-lib/capi-vulkan-vkmemorygetnativebufferinfoohos.md)
+        - [VkExternalFormatOHOS](reference/native-lib/capi-vulkan-vkexternalformatohos.md)
+        - [NativeWindow](reference/native-lib/capi-vulkan-nativewindow.md)
+        - [OH_NativeBuffer](reference/native-lib/capi-vulkan-oh-nativebuffer.md)
     - 附录<!--appendixes-->
       - [libc中没有导出的符号列表](reference/native-lib/musl-peculiar-symbol.md)
       - [NDK musl-libc接口受权限影响的说明](reference/native-lib/guidance-on-ndk-libc-interfaces-affected-by-permissions.md)

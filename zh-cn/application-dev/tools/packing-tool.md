@@ -30,6 +30,7 @@
 | minCompatibleVersionCode | -                        | minCompatibleVersionCode   | -                                |
 | minAPIVersion            | -                        | minAPIVersion              | compatibleSdkVersion             |
 | targetAPIVersion         | -                        | targetAPIVersion           | targetSdkVersion/compileSdkVersion  <br/>说明：targetSdkVersion存在时，targetAPIVersion由targetSdkVersion决定；<br/>否则，targetAPIVersion由compileSdkVersion决定。               |
+| querySchemes             | querySchemes              | -                          | -                                |
 
 ## 约束与限制
 
@@ -39,6 +40,9 @@
 ## HAP打包指令
 
 开发者可以使用打包工具的JAR包对模块进行打包，通过传入打包选项、文件路径，生成所需的HAP包。
+
+**HAP打包时合法性校验**
+- 从API version 21开始，在打包entry类型的HAP时，如果module.json文件中querySchemes配置了超过50个URL scheme，则要求minAPIVersion大于等于21。
 
 **打包HAP时的压缩规则：**
 - 应用配置compressNativeLibs为true时，会按照--compress-level设置的压缩等级对--lib-path指定目录下的文件进行压缩。

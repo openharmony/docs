@@ -1,24 +1,24 @@
-# $$ Syntax: Two-Way Synchronization of Built-in Components
+# $$ Syntax: Implementing Two-Way Synchronization for Built-in Components
+<!--Kit: ArkUI--> 
+<!--Subsystem: ArkUI--> 
+<!--Owner: @Cuecuexiaoyu--> 
+<!--Designer: @lixingchi1--> 
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
+
+The **$$** operator provides a TypeScript variable by-reference to a built-in component so that the variable's value and the component's internal state are kept in sync.
 
 
-The $$ operator provides a TypeScript variable by-reference to a built-in component so that the variable value and the internal state of that component are kept in sync.
+The specific meaning of "internal state" varies by component. For example, for the [TextInput](../../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) component, it refers to the **text** parameter.
 
 
-What the internal state is depends on the component. For example, for the [TextInput](../../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) component, it is the **text** parameter.
+## Usage Rules
 
+- Currently, **$$* supports variables of basic types. When such variables are decorated with state management V1 decorators such as [\@State](arkts-state.md), [\@Link](arkts-link.md), [\@Prop](arkts-prop.md), and [\@Provide](arkts-provide-and-consume.md), or state management V2 decorators such as [\@Local](arkts-new-local.md), changes in variable values will trigger UI updates.
 
-> **NOTE**
->
-> $$ is also used for [by-reference parameter passing for the @Builder decorator](arkts-builder.md#by-reference-parameter-passing). Pay attention to the differences between the two usages.
+- Components supported by **$$** are listed below.
 
-
-## Rules of Use
-
-- Currently, $$ supports basic variables and variables decorated by [\@State](arkts-state.md), [\@Link](arkts-link.md), and [\@Prop](arkts-prop.md).
-
-- $$ supports the components listed below.
-
-  | Component                                                        | Supported Parameter/Attribute| Initial API Version|
+  | Component                                                        | Parameter/Attribute| Initial API Version|
   | ------------------------------------------------------------ | --------------- | ----------- |
   | [Checkbox](../../reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md) | select          | 10          |
   | [CheckboxGroup](../../reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md) | selectAll       | 10          |
@@ -40,18 +40,18 @@ What the internal state is depends on the component. For example, for the [TextI
   | [Toggle](../../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md) | isOn            | 10          |
   | [AlphabetIndexer](../../reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md) | selected        | 10          |
   | [Select](../../reference/apis-arkui/arkui-ts/ts-basic-components-select.md) | selected, value| 10          |
-  | [BindSheet](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md) | isShow | 10          |
-  | [BindContentCover](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) | isShow | 10          |
+  | [BindSheet](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet) | isShow | 10          |
+  | [BindContentCover](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover) | isShow | 10          |
   | [Refresh](../../reference/apis-arkui/arkui-ts/ts-container-refresh.md) | refreshing | 8 |
   | [GridItem](../../reference/apis-arkui/arkui-ts/ts-container-griditem.md) | selected | 10 |
   | [ListItem](../../reference/apis-arkui/arkui-ts/ts-container-listitem.md) | selected | 10 |
 
-- When the variable bound to $$ changes, the UI is re-rendered synchronously.
+- When a variable bound using **$$** changes, it triggers synchronous UI re-rendering.
 
 
 ## Example
 
-This example uses the **text** parameter of the [TextInput](../../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) component.
+This example demonstrates two-way data binding using the **$$** operator with the **text** parameter of the [TextInput](../../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) component.
 
 
 ```ts

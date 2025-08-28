@@ -1,4 +1,10 @@
 # WithTheme
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @lushi871202-->
+<!--Designer: @lushi871202-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 WithTheme组件用于设置应用局部页面自定义主题风格，可设置子组件深浅色模式和自定义配色。
 
@@ -43,7 +49,7 @@ WithTheme(options: WithThemeOptions)
 | 名称        | 类型                               | 必填 | 说明                |
 |------------------------|---------------------------------------------------------| ---- |------------------------------------------------------------------|
 | theme     | [CustomTheme](#customtheme)    | 否   | 用于自定义WithTheme作用域内组件缺省配色。 <br/> 默认值：undefined，缺省样式跟随系统token默认样式。 |
-| colorMode | [ThemeColorMode](#themecolormode10枚举说明) | 否   | 用于指定WithTheme作用域内组件配色深浅色模式。<br/>默认值：ThemeColorMode.System       |
+| colorMode | [ThemeColorMode](ts-universal-attributes-foreground-blur-style.md#themecolormode枚举说明) | 否   | 用于指定WithTheme作用域内组件配色深浅色模式。<br/>默认值：ThemeColorMode.System       |
 
 ## CustomTheme
 
@@ -58,18 +64,6 @@ type CustomTheme = CustomTheme
 | 类型     | 说明       |
 | ------ | ---------- |
 | [CustomTheme](../js-apis-arkui-theme.md#customtheme)  | 自定义WithTheme作用域内组件缺省配色。 |
-
-## ThemeColorMode<sup>10+</sup>枚举说明
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称     | 说明       |
-| ------ | ---------- |
-| SYSTEM | 跟随系统深浅色模式。 |
-| LIGHT  | 固定使用浅色模式。  |
-| DARK   | 固定使用深色模式。  |
 
 ## 示例
 

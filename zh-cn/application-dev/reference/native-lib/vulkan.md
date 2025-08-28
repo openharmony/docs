@@ -1,5 +1,12 @@
 # Vulkan支持能力
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphic-->
+<!--Owner: @andrew1993-->
+<!--Designer: @ext4FAT1-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
+
 [Vulkan](https://www.vulkan.org/)是一套2D和3D绘图应用程序接口，具有跨平台、高性能的特点。OpenHarmony SDK 现已支持Vulkan v1.4.309版本接口，具体可用版本取决于GPU驱动实现。
 
 ## 支持的标准库接口列表
@@ -287,4 +294,4 @@
 |FUNC|vkAcquireImageOHOS|
 |FUNC|vkQueueSignalReleaseImageOHOS|
 
-新增接口的详细介绍请见[Vulkan模块](_vulkan.md)。
+新增接口的详细介绍请见[Vulkan模块](capi-vulkan.md)。

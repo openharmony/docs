@@ -14,11 +14,18 @@
 
 ### 自定义参数设置接口描述
 
-| 接口名                                                       | 描述                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 接口名 | 描述 |
+| -------- | -------- |
 | setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: string): Promise&lt;void&gt; | 此方法用于设置事件的自定义参数，在资源泄漏检测事件中，仅支持设置JS内存泄漏事件的参数。<br />**说明**：从API version 20开始，支持该接口。 |
 
+### 自定义配置设置接口描述
+
+| 接口名 | 描述 |
+| -------- | -------- |
+| setEventConfig(name: string, config: Record&lt;string, ParamType>): Promise&lt;void> | 此方法用于设置事件的自定义配置。在资源泄漏检测事件中，仅支持设置js内存泄漏事件的配置。<br />**说明**：从API version 21开始，支持该接口。 |
+
 ### 接口描述
+
 | 接口名 | 描述 |
 | -------- | -------- |
 | addWatcher(watcher: Watcher): AppEventPackageHolder | 添加应用事件观察者以订阅应用事件。 |
@@ -48,6 +55,12 @@
    }).catch((err: BusinessError) => {
      hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
    });
+   // 完成自定义配置键值对赋值
+   let configParams: Record<string, hiAppEvent.ParamType> = {
+     "js_heap_logtype": "event", // 仅获取事件
+   }
+   // 设置资源泄漏事件的自定义配置
+   hiAppEvent.setEventConfig(hiAppEvent.event.RESOURCE_OVERLIMIT, configParams);
    hiAppEvent.addWatcher({
      // 自定义观察者名称，系统会使用名称来标识不同的观察者
      name: "watcher",
@@ -147,7 +160,15 @@
 
 ### 步骤三：nolog版本订阅js_heap快照
 
-1. 在nolog版本中，开放应用因为js_heap泄漏导致的OOM场景下订阅虚拟机堆快照的功能。应用需要依次调用 hidebug.setAppResourceLimit和hiAppEvent.addWatcher，且在 AppScope/app.json5 文件中配置如下环境变量：
+请应用在收到该订阅事件后，首先从事件的external_log字段中获取堆快照文件存储路径，并将其尽快搬移或上传云，然后再删除原堆快照文件，以避免因应用沙箱路径目录剩余存储空间不足（最大2GB）导致下次堆快照文件无法生成。
+
+订阅后生成的.log日志文件需要将后缀名修改为.rawheap文件，再通过[translator工具](../tools/rawheap-translator.md)转换为.heapsnapshot文件，通过DevEco Studio或浏览器打开展示，详情见[Snapshot离线导入](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-snapshot-basic-operations#section6760173514388)。
+
+API version 14后，开发者可以将日志文件后缀名修改为.rawheap后，将其导入DevEco Studio并展示，详情见[Raw Heap离线导入](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-snapshot-basic-operations#section1888195110017)。
+
+提供两种方法，任选其一即可。
+
+   方法1. 应用需要在AppScope/app.json5文件中配置如下环境变量：
 
    ```text
    "appEnvironments": [
@@ -170,10 +191,16 @@
 
    > **注意：**
    >
-   > 请应用在收到该订阅事件后，首先从事件的external_log字段中获取堆快照文件存储路径，并将其尽快搬移或上传云，然后再删除原堆快照文件，以避免因应用沙箱路径目录剩余存储空间不足（最大2GB）导致下次堆快照文件无法生成。
-   >
    > json5配置文件中的value字段内容格式支持键值对集合“key1:value1;key2:value2;...”。目前系统仅支持配置如上键值对的应用，在nolog版本使能oomdump功能。
-   >
-   > 订阅后生成的.log日志文件需要将后缀名修改为.rawheap文件，再通过[translator工具](../tools/rawheap-translator.md)转换为.heapsnapshot文件，通过DevEco Studio或浏览器打开展示，详情见[Snapshot离线导入](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-snapshot-basic-operations#section6760173514388)。
-   >
-   > API14后，开发者可以将日志文件后缀名修改为.rawheap后，将其导入DevEco Studio并展示，详情见[Raw Heap离线导入](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-snapshot-basic-operations#section1888195110017)。
+
+   方法2. 应用调用setEventConfig并传入以下参数：
+
+   ```ts
+   let configParams: Record<string, hiAppEvent.ParamType> = {
+     "js_heap_logtype": "event_rawheap",
+   };
+
+   hiAppEvent.setEventConfig(hiAppEvent.event.RESOURCE_OVERLIMIT, configParams);
+   ```
+
+   方法2生成堆快照的数量**不**受到**nolog版本虚拟机堆快照生成规格限制**的约束。

@@ -3,7 +3,7 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @qq_437963121-->
-<!--Designer: @MontSaintMichel-->
+<!--Designer: @kutcherzhou1; @MontSaintMichel-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @foryourself-->
 
@@ -36,6 +36,8 @@ HiTraceChain是基于分布式跟踪调用链思想，在端侧业务流程（�
 
 
 ## 约束与限制
+
+若跟踪启用了[异步调用跟踪标志](../reference/apis-performance-analysis-kit/js-apis-hitracechain.md#hitraceflag)，可以在支持HiTraceChain自动传递的机制中自动传递HiTraceId。
 
 下表列举了一些常见的支持与不支持HiTraceChain自动传递的机制，不支持HiTraceChain自动传递的机制无法传递HiTraceId到创建的异步任务、线程或进程中，会导致HiTraceChain调用链中断，需要开发者手动传递并设置HiTraceId，以实现完整的调用链跟踪。
 

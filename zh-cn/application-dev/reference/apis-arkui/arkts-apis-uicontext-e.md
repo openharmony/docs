@@ -1,5 +1,12 @@
 # Enums
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Designer: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
+
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -66,8 +73,8 @@
 
 | 名称   | 值   | 说明       |
 | ------ | ---- | ---------- |
-| WILL_START | 0 | 手势已被系统成功识别，action-start/action回调将立即执行。 |
-|  WILL_END | 1 | 表示手势已被判定为结束状态（通常发生在用户抬起手指终止交互时），action-end回调将立即执行。 |
+| WILL_START | 0 | 手势已被系统成功识别，将立即触发onActionStart或onAction回调。若手势绑定了onActionStart，则在onActionStart处触发；若手势绑定了onAction，则在onAction处触发；若两者同时绑定，则优先在onActionStart处触发；若两者均未绑定，则不会触发任何回调。某些容器有内置手势绑定了回调（如滚动类容器），默认支持上述回调触发机制，无需显式绑定即可触发回调。 |
+|  WILL_END | 1 | 表示手势已被判定为结束状态（通常发生在用户抬起手指终止交互时）。onActionEnd回调将立即触发，但手势必须显式绑定onActionEnd。某些容器有内置手势绑定了回调（如滚动类容器），默认支持该结束状态判定，无需显式绑定即可触发onActionEnd回调。|
 
 ## GestureListenerType<sup>20+</sup>
 

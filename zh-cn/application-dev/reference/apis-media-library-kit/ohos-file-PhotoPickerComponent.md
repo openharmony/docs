@@ -565,6 +565,7 @@ import {
 } from '@ohos.file.PhotoPickerComponent';
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -742,7 +743,8 @@ struct PickerDemo {
                   fetchColumns: [],
                   predicates: predicates
                 };
-                let photoHelper = photoAccessHelper.getPhotoAccessHelper(getContext());
+                let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+                let photoHelper = photoAccessHelper.getPhotoAccessHelper(context);
                 let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> =
                   await photoHelper.getAssets(fetchOptions);
                 let asset = await fetchResult.getFirstObject()

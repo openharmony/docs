@@ -21,7 +21,7 @@
 
 对于支持多点触控的输入设备，使用多根手指同时操作可以产生多个触点，全部的触点信息可以通过touches成员得到，而changedTouches会给出当前事件上报时，是哪些触点在产生变化。
 
-其他更多的事件信息可以从TouchEvent的基类[BaseEvent](../reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md#baseevent对象说明8)中获得。
+其他更多的事件信息可以从TouchEvent的基类[BaseEvent](../reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md#baseevent8)中获得。
 
 
 ## 阻止冒泡
@@ -188,7 +188,7 @@ struct Index {
 
 ## 触控笔
 
-触控笔操作触摸屏与通过手指操作类似，都会产生触摸事件，可以通过sourceTool进行区分。而对于一些主动式电容笔，上报的触摸事件中，还会包含笔接触屏幕时的夹角信息，可参考[BaseEvent](../reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md#baseevent对象说明8)。
+触控笔操作触摸屏与通过手指操作类似，都会产生触摸事件，可以通过sourceTool进行区分。而对于一些主动式电容笔，上报的触摸事件中，还会包含笔接触屏幕时的夹角信息，可参考[BaseEvent](../reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md#baseevent8)。
 
 - tiltX：触控笔在设备平面上的投影与设备平面X轴的夹角。
 - tiltY：触控笔在设备平面上的投影与设备平面Y轴的夹角。

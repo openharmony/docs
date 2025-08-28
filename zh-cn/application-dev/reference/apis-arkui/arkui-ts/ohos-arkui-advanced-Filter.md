@@ -14,7 +14,6 @@
 >
 > 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 该组件不支持在Wearable设备上使用。
 
 
 ## 导入模块
@@ -41,6 +40,8 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters?: FilterParam
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 
@@ -58,6 +59,8 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters?: FilterParam
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称 | 类型 | 必填 | 说明                                                              |
 | -------- | -------- | -------- |-----------------------------------------------------------------|
 | name | [ResourceStr](ts-types.md#resourcestr) | 是 | 筛选项维度名称。<br/>默认值：空字符串。<br/>**说明**：如果文本大于列宽时，文本被截断。              |
@@ -69,6 +72,8 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters?: FilterParam
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | MULTI_LINE_FILTER | 0 | 多行可折叠类型筛选器。 |
@@ -79,6 +84,8 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters?: FilterParam
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称 | 类型 | 必填 | 说明                                                                       |
 | -------- | -------- | -------- |--------------------------------------------------------------------------|

@@ -13,7 +13,7 @@ Before reading this topic, you are advised to read [\@Builder](./arkts-builder.m
 > This decorator can be used in atomic services since API version 11.
 
 
-## Rules of Use
+## Usage Rules
 
 
 ### Initializing \@BuilderParam Decorated Methods

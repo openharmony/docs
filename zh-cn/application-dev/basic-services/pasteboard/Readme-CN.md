@@ -3,7 +3,7 @@
 <!--Subsystem: MiscServices-->
 <!--Owner: @yangxiaodong41-->
 <!--Designer: @guo867-->
-<!--Tester: @maxiaorong2-->
+<!--Tester: @maxiaorong-->
 <!--Adviser: @HelloCrease-->
 
 - [申请访问剪贴板权限](get-pastedata-permission-guidelines.md)

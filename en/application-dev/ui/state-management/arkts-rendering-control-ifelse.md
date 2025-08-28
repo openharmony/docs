@@ -7,7 +7,7 @@ ArkTS provides conditional rendering. It supports the use of the **if**, **else*
 >
 > This API can be used in ArkTS widgets since API version 9.
 
-## Rules of Use
+## Usage Rules
 
 - The **if**, **else**, and **else if** statements are supported.
 

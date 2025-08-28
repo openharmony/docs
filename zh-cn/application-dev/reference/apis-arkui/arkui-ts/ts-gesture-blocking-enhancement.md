@@ -16,7 +16,7 @@
 
 shouldBuiltInRecognizerParallelWith(callback: ShouldBuiltInRecognizerParallelWithCallback): T
 
-提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件。此接口对应的capi接口为[setInnerGestureParallelTo](../capi-arkui-nativemodule-arkui-nativegestureapi-1.md#setinnergestureparallelto)。
+提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件。此接口对应的C API接口为[setInnerGestureParallelTo](../capi-arkui-nativemodule-arkui-nativegestureapi-1.md#setinnergestureparallelto)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -25,7 +25,7 @@ shouldBuiltInRecognizerParallelWith(callback: ShouldBuiltInRecognizerParallelWit
 **参数：**
 | 参数名        | 类型                    | 必填  | 说明                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| callback      | [ShouldBuiltInRecognizerParallelWithCallback](#shouldbuiltinrecognizerparallelwithcallback) | 是   |  提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件，当该组件进行触摸碰撞测试时，会触发用户定义的回调来形成手势并行关系。 |
+| callback      | [ShouldBuiltInRecognizerParallelWithCallback](#shouldbuiltinrecognizerparallelwithcallback) | 是   |  系统内置手势与响应链上其他组件的手势设置并行关系的回调事件，当该组件进行触摸碰撞测试时，会触发用户定义的回调来形成手势并行关系。 |
 
 **返回值：**
 
@@ -37,7 +37,7 @@ shouldBuiltInRecognizerParallelWith(callback: ShouldBuiltInRecognizerParallelWit
 
 type ShouldBuiltInRecognizerParallelWithCallback = (current: GestureRecognizer, others: Array\<GestureRecognizer\>) => GestureRecognizer
 
-提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件类型。
+系统内置手势与响应链上其他组件的手势设置并行关系的回调事件类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -108,7 +108,7 @@ getTag(): string
 
 | 类型     | 说明        |
 | ------ | --------- |
-| string | 当前手势识别器的tag。 |
+| string | 当前手势识别器的标志。 |
 
 ### getType
 
@@ -124,7 +124,7 @@ getType(): GestureControl.GestureType
 
 | 类型     | 说明        |
 | ------ | --------- |
-| [GestureControl.GestureType](ts-gesture-customize-judge.md#gesturetype12) | 当前手势识别器的类型。 |
+| [GestureControl.GestureType](ts-gesture-customize-judge.md#gesturetype11) | 当前手势识别器的类型。 |
 
 ### isBuiltIn
 
@@ -220,7 +220,7 @@ isValid(): boolean;
 
 | 类型     | 说明        |
 | ------ | --------- |
-| boolean | 当前手势识别器是否有效。当该识别器绑定的组件被析构或者该识别器不在响应链上时返回false。 |
+| boolean | 当前手势识别器是否有效。<br/>当该识别器绑定的组件被析构或该识别器不在响应链上时返回false。<br/>当该识别器绑定的组件未被析构且该识别器在响应链上时返回true。 |
 
 ### getFingerCount<sup>18+</sup>
 
@@ -361,7 +361,7 @@ getPanGestureOptions(): PanGestureOptions
 
 getDirection(): PanDirection
 
-返回当前拖动手势识别器的方向。
+返回当前拖动手势识别器的识别方向。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -371,7 +371,7 @@ getDirection(): PanDirection
 
 | 类型     | 说明        |
 | ------ | --------- |
-| [PanDirection](./ts-basic-gestures-pangesture.md#pandirection枚举说明) | 当前拖动手势识别器的方向。 |
+| [PanDirection](./ts-basic-gestures-pangesture.md#pandirection枚举说明) | 当前拖动手势识别器的识别方向。 |
 
 ### getDistance<sup>19+</sup>
 
@@ -393,11 +393,11 @@ getDistance(): number
 
 getDistanceMap(): Map\<SourceTool, number\>
 
-返回不同输入源的拖动手势识别器触发的最小滑动距离。
+返回拖动手势识别器在不同输入源的情况下触发的最小滑动距离。
 
 >  **说明：**
 >
->  仅支持对通过Pan手势初始化配置修改的设备类型进行阈值查询；对于默认滑动阈值，可通过查询[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9).Unknown类型获取其他未主动设置的类型不返回。
+>  仅支持对通过Pan手势初始化配置修改的设备类型进行阈值查询。对于默认滑动阈值，可通过查询[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9).Unknown类型获取。其他未主动设置的类型则无法获取。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -547,8 +547,8 @@ onGestureRecognizerJudgeBegin(callback: GestureRecognizerJudgeBeginCallback, exp
 
 给组件绑定自定义手势识别器判定回调。
 
-新增exposeInnerGesture参数作为是否将回调暴露给ArkUI系统组合组件的内置组件的标识。当该标识置为true时，将回调暴露给ArkUI系统组合组件的内置组件。<br>
-对于不需要将回调暴露给ArkUI系统组合组件内置组件的场景，建议采用原有[onGestureRecognizerJudgeBegin](#ongesturerecognizerjudgebegin)接口。若要求将回调暴露给ArkUI系统组合组件的内置组件，建议使用该接口并将exposeInnerGesture设置为true。
+新增exposeInnerGesture参数作为是否将ArkUI系统组合组件的内置组件的手势暴露给开发者的标识。当该标识置为true时，将ArkUI系统组合组件的内置组件的手势暴露给开发者。<br>
+对于不需要将ArkUI系统组合组件的内置组件的手势暴露给开发者的场景，建议采用原有[onGestureRecognizerJudgeBegin](#ongesturerecognizerjudgebegin)接口。若要求将ArkUI系统组合组件的内置组件的手势暴露给开发者，建议使用该接口并将exposeInnerGesture设置为true。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -557,8 +557,14 @@ onGestureRecognizerJudgeBegin(callback: GestureRecognizerJudgeBeginCallback, exp
 **参数：**
 | 参数名        | 类型                    | 必填  | 说明                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| callback      | [GestureRecognizerJudgeBeginCallback](#gesturerecognizerjudgebegincallback) | 是     |  给组件绑定自定义手势识别器判定回调，当绑定到该组件的手势被接受时，会触发用户定义的回调来获取结果。 |
-| exposeInnerGesture   | boolean         | 是    | 暴露内部手势标识。<br/>默认值：false<br/>**说明:**<br/>如果是组合组件，此参数设置true，则会在current参数回调出组合组件内部的手势识别器。<br>当前仅支持[Tabs](ts-container-tabs.md)，其他组件请不要设置此参数。<br/>设置为false时，功能与原接口[onGestureRecognizerJudgeBegin](#ongesturerecognizerjudgebegin)相同。 |
+| callback      | [GestureRecognizerJudgeBeginCallback](#gesturerecognizerjudgebegincallback) | 是     |  给组件绑定自定义手势识别器判定回调，当绑定到该组件的手势即将成功时，会触发用户定义的回调来获取结果。 |
+| exposeInnerGesture   | boolean         | 是    | 暴露内部手势标识。<br/>默认值：false<br/>**说明:**<br/>如果是组合组件，此参数设置true，回调中的current参数则会包含组合组件内部的手势识别器。<br>当前仅支持[Tabs](ts-container-tabs.md)，其他组件请不要设置此参数。<br/>设置为false时，功能与原接口[onGestureRecognizerJudgeBegin](#ongesturerecognizerjudgebegin)相同。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## onGestureRecognizerJudgeBegin
 
@@ -573,7 +579,7 @@ onGestureRecognizerJudgeBegin(callback: GestureRecognizerJudgeBeginCallback): T
 **参数：**
 | 参数名        | 类型                    | 必填  | 说明                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| callback      | [GestureRecognizerJudgeBeginCallback](#gesturerecognizerjudgebegincallback) | 是     |  给组件绑定自定义手势识别器判定回调，当绑定到该组件的手势被接受时，会触发用户定义的回调来获取结果。 |
+| callback      | [GestureRecognizerJudgeBeginCallback](#gesturerecognizerjudgebegincallback) | 是     |  自定义手势识别器判定回调。当绑定到该组件的手势即将成功时，会触发用户定义的回调来获取结果。 |
 
 **返回值：**
 
@@ -808,6 +814,7 @@ struct FatherControlChild {
   }
 }
 ```
+![fatherControlChild](figures/fatherControlChild.gif)
 
 ### 示例2（嵌套场景下拦截内部容器手势）
 
@@ -931,41 +938,41 @@ struct Index {
     .gesture(PinchGesture())
     .gesture(RotationGesture())
     .gesture(SwipeGesture({ direction: SwipeDirection.Horizontal }))
-    //通过给组件绑定自定义手势识别器判定回调
+    // 给组件绑定自定义手势识别器判定回调
     .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
       others: Array<GestureRecognizer>) => {
       if (current) {
-        //判断是否为拖动手势
+        // 判断是否为拖动手势
         if (current.getType() == GestureControl.GestureType.PAN_GESTURE) {
           let target = current as PanRecognizer;
           this.message = 'PanGesture\ndistance:' + target.getPanGestureOptions().getDistance() + '\nfingers:' +
           target.getFingerCount() + '\nisFingerCountLimited:' + target.isFingerCountLimit();
         }
-        //判断是否为长按手势
+        // 判断是否为长按手势
         if (current.getType() == GestureControl.GestureType.LONG_PRESS_GESTURE) {
           let target = current as LongPressRecognizer;
           this.message = 'LongPressGesture\nfingers:' + target.getFingerCount() + '\nisFingerCountLimited:' +
           target.isFingerCountLimit() + '\nrepeat:' + target.isRepeat() + '\nduration:' + target.getDuration();
         }
-        //判断是否为捏合手势
+        // 判断是否为捏合手势
         if (current.getType() == GestureControl.GestureType.PINCH_GESTURE) {
           let target = current as PinchRecognizer;
           this.message = 'PinchGesture\ndistance:' + target.getDistance() + '\nfingers:' +
           target.getFingerCount() + '\nisFingerCountLimited:' + target.isFingerCountLimit();
         }
-        //判断是否为点击手势
+        // 判断是否为点击手势
         if (current.getType() == GestureControl.GestureType.TAP_GESTURE) {
           let target = current as TapRecognizer;
           this.message = 'TapGesture\ncount:' + target.getTapCount() + '\nfingers:' +
           target.getFingerCount() + '\nisFingerCountLimited:' + target.isFingerCountLimit();
         }
-        //判断是否为旋转手势
+        // 判断是否为旋转手势
         if (current.getType() == GestureControl.GestureType.ROTATION_GESTURE) {
           let target = current as RotationRecognizer;
           this.message = 'RotationGesture\nangle:' + target.getAngle() + '\nfingers:' +
           target.getFingerCount() + '\nisFingerCountLimited:' + target.isFingerCountLimit();
         }
-        //判断是否为滑动手势
+        // 判断是否为滑动手势
         if (current.getType() == GestureControl.GestureType.SWIPE_GESTURE) {
           let target = current as SwipeRecognizer;
           this.message = 'SwipeGesture\ndirection:' + target.getDirection() + '\nfingers:' +

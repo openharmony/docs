@@ -25,7 +25,7 @@ An @State decorated variable, like all other decorated variables in the declarat
 - The lifecycle of the \@State decorated variable is the same as that of its owning custom component.
 
 
-## Rules of Use
+## Usage Rules
 
 | \@State Decorator | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |

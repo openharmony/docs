@@ -1,4 +1,10 @@
 # SharedBundleInfo (System API)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The module provides information about the shared bundle. The information can be obtained by calling [bundleManager.getSharedBundleInfo](js-apis-bundleManager-sys.md#bundlemanagergetsharedbundleinfo10).
 
@@ -25,7 +31,7 @@ Defines the shared bundle information.
 | Name            | Type                          | Read-Only| Optional| Description                  |
 | ---------------- | ------------------------------ | ---- | ---- | ---------------------- |
 | name             | string                         | Yes  | No  | Name of the shared bundle.      |
-| compatiblePolicy | bundleManager.CompatiblePolicy | Yes  | No  | Compatibility type of the shared bundle.|
+| compatiblePolicy | bundleManager.[CompatiblePolicy](js-apis-bundleManager.md#compatiblepolicy10) | Yes  | No  | Compatibility type of the shared bundle.|
 | sharedModuleInfo | Array\<SharedModuleInfo>       | Yes  | No  | Information about the shared module.    |
 
 ## SharedModuleInfo
