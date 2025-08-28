@@ -291,7 +291,7 @@ try {
 
 setEqualizerPreset(preset: AudioLoopbackEqualizerPreset): boolean
 
-设置音频返听器的均衡器模式。
+设置音频返听器的均衡器类型。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
