@@ -50,7 +50,7 @@ constructor(width: number, height: number, data?: Uint8ClampedArray, unit?: Leng
 | width | number |是| 矩形区域宽度，默认单位为vp。 |
 | height | number |是| 矩形区域高度，默认单位为vp。|
 | data | [Uint8ClampedArray](../../apis-arkts/arkts-apis-arkts-collections-Uint8ClampedArray.md) |否| 一维数组，保存了相应的颜色数据，数据值范围为0到255。<br/>默认值：值全为0的一维数组 |
-| unit  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否   |  用来配置ImageData对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT |
+| unit  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否   |  用来配置ImageData对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)。<br>默认值：DEFAULT |
 
 ## 属性
 
