@@ -568,9 +568,9 @@ try {
 | longClickable<sup>20+</sup> | boolean                                                            | 否  | 是  | 元素是否可长按。值为 **true** 表示元素可长按，**false** 表示相反情况。<br>默认值：**false**。|
 | pageId<sup>20+</sup> | number                                                             | 否  | 是 | 页面 ID。<br>默认值：**-1**。|
 | pluralLineSupported<sup>20+</sup>  | boolean                                                            | 否  | 是  | 元素是否支持多行文本。值为 **true** 表示元素支持多行文本，**false** 表示相反情况。<br>默认值：**false**。|
-| rect<sup>20+</sup>                 | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#Rect)                                                      | 是  | 否  | 元素的区域。|
+| rect<sup>20+</sup>                 | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#Rect)                                                      | 否  | 是  | 元素的区域。|
 | resourceName<sup>20+</sup>         | string                                                             | 否  | 是  | 元素的资源名称。|
-| screenRect<sup>20+</sup>           | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#Rect)                                                      | 是  | 否  | 元素的显示区域。|
+| screenRect<sup>20+</sup>           | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#Rect)                                                      | 否  | 是  | 元素的显示区域。|
 | scrollable<sup>20+</sup>           | boolean                                                            | 否  | 是  | 元素是否可滚动。值为 **true** 表示元素可滚动，**false** 表示相反情况。<br>默认值：**false**。|
 | selected<sup>20+</sup>             | boolean                                                            | 否  | 是  | 元素是否已选中。值为 **true** 表示元素已选中，**false** 表示相反情况。<br>默认值：**false**。|
 | startIndex<sup>20+</sup>           | number                                                             | 否  | 是  | 屏幕上第一个列表项的索引。<br>默认值：**0**。|
@@ -578,7 +578,7 @@ try {
 | textLengthLimit<sup>20+</sup>      | number                                                             | 否  | 是  | 元素的最大文本长度。|
 | textMoveUnit<sup>20+</sup>         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit)| 否  | 是  | 文本朗读时的移动单位。<br>默认值：**0**。|
 | triggerAction<sup>20+</sup>        | [accessibility.Action](js-apis-accessibility.md#action)            | 否  | 是  | 触发元素事件的操作。|
-| type<sup>20+</sup>                 | [WindowType](js-apis-inner-application-accessibilityExtensionContext.md#windowtype)                                          | 是  | 否  | 元素的窗口类型。|
+| type<sup>20+</sup>                 | [WindowType](js-apis-inner-application-accessibilityExtensionContext.md#windowtype)                                          | 否  | 是  | 元素的窗口类型。|
 | valueMax<sup>20+</sup>             | number                                                             | 否  | 是  | 最大值。<br>默认值：**0**。|
 | valueMin<sup>20+</sup>             | number                                                             | 否  | 是  | 最小值。<br>默认值：**0**。|
 | valueNow<sup>20+</sup>             | number                                                             | 否  | 是  | 当前值。<br>默认值：**0**。|
