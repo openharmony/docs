@@ -364,7 +364,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     16.2 规则格式
     | 字段名 | 类型 | 说明 |
     | -------- | -------- | -------- |
-      | ruleId |string | 规则名称，长度不超过64字节，只允许由字母（包括大写字母A-Z和小写字母a-z）、数字（0-9）、下划线（_）组成。 |
+      | ruleId |string | 规则名称，长度不超过64字节，只允许由字母（包括大写和小写）、数字（0-9）、下划线（_）组成。 |
     | attributes | Array&lt;Attribute&gt; | 具体属性信息列表，一条规则可以设置多条规则，最多32条。 |
 
     16.3 属性信息格式
@@ -378,11 +378,10 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     16.4 当前支持的属性信息
     | 属性信息名称 | 属性值 | 属性值类型 | 场景 |
     | -------- | -------- | -------- | -------- |
-      | DeviceHealthyStatus |1 <br> 2 <br> 3 <br> 4 | 整型 | 设备健康报告显示正常。 <br> 设备有健康风险，但风险因子和root无关。 <br> 设备有健康风险，且风险因子和root相关。 <br> 异常场景。 |
+     | DeviceHealthyStatus |1 <br> 2 <br> 3 <br> 4 | 整型 | 1：设备健康报告显示正常。 <br>2：设备有健康风险，但风险因子和root无关。 <br> 3：设备有健康风险，且风险因子和root相关。 <br> 4：异常场景。 |
     | NetStatus | InterNet <br> ExtraNet <br> NoNet | 字符串 | 设备在公司内部使用。 <br> 设备在公司外部使用。 <br> 设备处于离线断网状态。 |
-    | DebugMode | 1 <br> 2 | 整型 | 该设备已开启调试模式。 <br> 该设备未开启调试模式。 |
-    | AdvancedSecurityMode | 1 <br> 2 | 整型 | 该设备已开启高级安全模式。 <br> 该设备未开启高级安全模式。  |
-    | FileType | jpg | 字符串 | DLP文件的真实类型。 |
+    | DebugMode | 1 <br> 2 | 整型 | 1：该设备已开启调试模式。<br>2：该设备未开启调试模式。 |
+    | AdvancedSecurityMode | 1 <br> 2 | 整型 | 1：该设备已开启高级安全模式。<br>2：该设备未开启高级安全模式。  |
 
     ```ts
     import { dlpPermission } from '@kit.DataProtectionKit';
@@ -412,16 +411,16 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
         attributeValues: attributeValues;
         valueType: 0;
         opt: 2;
-      }; // 属性信息
+      }; // 属性信息。
       let rule: Rule = {
         ruleId: 'ruleId';
         attributes: [ attribute ];
-      }; // 规则
+      }; // 规则。
       let policy: Policy = {
         rules: [ rule ];
         policyId: 'policyId';
         ruleConflictAlg: 0;
-      }; // 策略
+      }; // 策略。
       let enterprisePolicy: dlpPermission.EnterprisePolicy = {
         policyString: JSON.stringify(policy);
       };
