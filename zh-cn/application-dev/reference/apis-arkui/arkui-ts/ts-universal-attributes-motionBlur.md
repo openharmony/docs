@@ -115,7 +115,7 @@ import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component
-struct motionBlurTest {
+struct MotionBlurTest {
   @State widthSize: number = 400;
   @State heightSize: number = 320;
   @State flag: boolean = true;
@@ -126,6 +126,7 @@ struct motionBlurTest {
   build() {
     Column() {
       Column() {
+        // $r("app.media.testImg")需要替换为开发者所需的图像资源文件。
         Image($r('app.media.testImg'))
           .width(this.widthSize)
           .height(this.heightSize)
