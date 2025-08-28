@@ -104,7 +104,7 @@ enum HiDebug_ErrorCode
 | HIDEBUG_NO_PERMISSION = 11400103 | 没有写文件的权限。 |
 | HIDEBUG_TRACE_ABNORMAL = 11400104 | 系统内部错误。 |
 | HIDEBUG_NO_TRACE_RUNNING = 11400105 | 当前没有trace正在运行。 |
-| HIDEBUG_INVALID_SYMBOLIC_PC_ADDRESS = 11400200 |  |
+| HIDEBUG_INVALID_SYMBOLIC_PC_ADDRESS = 11400200 | 传入符号解析函数的pc地址是无效的。<br/>**起始版本：** 20。 |
 
 ### HiDebug_TraceFlag
 
