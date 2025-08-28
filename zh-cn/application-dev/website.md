@@ -1385,6 +1385,7 @@
           - [串行队列(C++)](ffrt/ffrt-concurrency-serial-queue-cpp.md)
           - [并发队列(C++)](ffrt/ffrt-concurrency-concurrent-queue-cpp.md)
           - [图依赖并发(C++)](ffrt/ffrt-concurrency-graph-cpp.md)
+          - [任务伙伴(C++)](ffrt/ffrt-concurrency-job-partner-cpp.md)
         - [Function Flow Runtime开发指导](ffrt/ffrt-development-guideline.md)
         - [Function Flow Runtime C API](ffrt/ffrt-api-guideline-c.md)
       - Input Kit（多模输入服务）<!--input-kit-->
