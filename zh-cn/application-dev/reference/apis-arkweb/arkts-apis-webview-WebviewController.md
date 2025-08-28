@@ -8861,6 +8861,14 @@ getPageOffset(): ScrollOffset
 | :------------------------------ | ---------------------- |
 | [ScrollOffset](./arkts-apis-webview-i.md#scrolloffset13) | 网页当前的滚动偏移量（不包含过滚动偏移量）。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+|  801     | Capability not supported. |
+
 **示例：**
 
 ```ts
@@ -8876,8 +8884,12 @@ struct WebComponent {
     Column() {
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .onScroll((event) => {
-          console.log("getPageOffset x:" + this.controller.getPageOffset().x + ",y:" +
-          this.controller.getPageOffset().y);
+          try {
+            console.log("getPageOffset x:" + this.controller.getPageOffset().x + ",y:" +
+            this.controller.getPageOffset().y);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
         })
     }
   }
