@@ -456,7 +456,7 @@ copyWithin(target: number, start: number, end?: number): Uint32Array
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| target | number | 是 | 目标起始位置的下标。 |
+| target | number | 是 | 目标起始位置的下标，如果`target < 0`，则会从`target + array.length`位置开始。 |
 | start | number | 是 | 源起始位置下标，如果`start < 0`，则会从`start + Uint32Array.length`位置开始。 |
 | end | number | 否 | 源终止位置下标（不包含end位置的元素），如果`end < 0`，则会从`end + Uint32Array.length`位置终止。默认为ArkTS Uint32Array的长度。|
 
@@ -993,7 +993,7 @@ console.info(reducedValue + ''); // 预期输出： 15
 ```
 
 ## reduce
-reduce(callbackFn: TypedArrayReduceCallback\<number, number, Uint32Array>, initialValue: number): number
+reduce\<U>(callbackFn: TypedArrayReduceCallback\<U, number, Uint32Array>, initialValue: U): U
 
 对ArkTS Uint32Array中的每个元素执行归约函数，且接收一个初始值作为归约函数首次调用的参数，并返回最终的归约结果。
 
