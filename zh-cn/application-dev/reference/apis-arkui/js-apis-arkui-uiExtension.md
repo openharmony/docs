@@ -281,6 +281,7 @@ on(type: 'rectChange', reasons: number, callback: Callback&lt;RectChangeOptions&
 // ExtensionProvider.ts
 import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 import { uiExtension } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
