@@ -128,7 +128,7 @@ int OH_Data_Asset_SetUri(Data_Asset *asset, const char *uri)
 | 参数项 | 描述 |
 | -- | -- |
 | [Data_Asset](capi-rdb-data-asset.md) *asset | 表示指向[Data_Asset](capi-rdb-data-asset.md)实例的指针。 |
-| uri |  表示要设置的URI。 |
+| const char *uri |  表示要设置的URI。 |
 
 **返回：**
 
@@ -484,7 +484,6 @@ int OH_Data_Asset_DestroyOne(Data_Asset *asset)
 销毁[Data_Asset](capi-rdb-data-asset.md) 对象并回收该对象占用的内存。
 
 **起始版本：** 11
-
 
 **参数：**
 
