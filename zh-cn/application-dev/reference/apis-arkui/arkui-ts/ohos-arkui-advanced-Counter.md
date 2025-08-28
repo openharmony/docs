@@ -40,7 +40,7 @@ CounterComponent({&nbsp;options:&nbsp;CounterOptions&nbsp;})
 
 | 名称   | 类型                              | 必填 | 装饰器类型 | 说明                    |
 | ------- | --------------------------------- | ---- | ---------- | ----------------------- |
-| options | [CounterOptions](#counteroptions) | 是   | @Prop      | 定义Counter组件的类型。 |
+| options | [CounterOptions](#counteroptions) | 否   | @Prop      | 定义Counter组件的类型。 |
 
 ## CounterOptions
 
