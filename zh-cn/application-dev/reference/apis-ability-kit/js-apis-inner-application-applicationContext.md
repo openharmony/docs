@@ -1071,7 +1071,6 @@ setSupportedProcessCache(isSupported : boolean): void
 该接口仅对单个进程实例生效，不同进程实例互不影响。应用进程实例销毁后，已设置的状态不保留，需要重新设置。
 
 > **说明：**
-> - 当前仅支持Phone、2in1设备。
 > - 该接口仅表示应用自身是否为缓存后快速启动做好了准备，还需综合其他条件来判断最终是否为应用启用快速启动。
 > - 为了确保该接口在进程退出前生效，调用时机应尽量提前。建议在[AbilityStage](../../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)的`onCreate()`中调用该接口。
 > - 在同一进程多次调用该接口时，会以最后一次调用的结果为准。当存在多个AbilityStage时，为了确保结果符合预期，需要在各个AbilityStage中分别调用该接口并配置相同的取值。
@@ -1079,6 +1078,8 @@ setSupportedProcessCache(isSupported : boolean): void
 **模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在Phone和2in1设备中可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 | 参数名        | 类型     | 必填 | 说明                       |
@@ -1167,11 +1168,9 @@ getCurrentInstanceKey(): string
 
 获取当前应用多实例的唯一实例标识。仅支持主线程调用。
 
-> **说明：**
->
-> 当前仅支持2in1设备。
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在2in1设备中可正常调用，在其他设备中返回16000078错误码。
 
 **返回值：**
 
@@ -1215,10 +1214,6 @@ class MyAbilityStage extends AbilityStage {
 getAllRunningInstanceKeys(): Promise\<Array\<string>>;
 
 获取应用的所有多实例的唯一实例标识。使用Promise异步回调。仅支持主线程调用。
-
-> **说明：**
->
-> 当前仅支持2in1设备。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
