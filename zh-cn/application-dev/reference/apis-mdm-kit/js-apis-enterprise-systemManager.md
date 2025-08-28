@@ -514,7 +514,7 @@ addDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProtocol
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 9200012  | Parameter verification failed. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 801      | The API is not available for this device type. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 
 **示例：**
@@ -577,7 +577,7 @@ removeDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProto
 | 9200002  | The administrator application does not have permission to manage the device. | 
 | 9200012  | Parameter verification failed. |                
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 801      | The API is not available for this device type. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
@@ -641,7 +641,7 @@ getDisallowedNearLinkProtocols(admin: Want, accountId: number): Array&lt;NearLin
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 801      | The API is not available for this device type. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
@@ -696,7 +696,7 @@ setInstallLocalEnterpriseAppEnabled(admin: Want, isEnable: boolean): void
 | 9200001 | The application is not an administrator application of the device. |
 | 9200002 | The administrator application does not have permission to manage the device. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 801      | The API is not available for this device type. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
@@ -755,7 +755,7 @@ getInstallLocalEnterpriseAppEnabled(admin: Want): boolean
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 801      | The API is not available for this device type. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
@@ -807,7 +807,7 @@ setAutoUnlockAfterReboot(admin: Want, isAllowed: boolean): void
 | 9200001 | The application is not an administrator application of the device. |
 | 9200002 | The administrator application does not have permission to manage the device. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 801      | The API is not available for this device type. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
@@ -864,7 +864,7 @@ getAutoUnlockAfterReboot(admin: Want): boolean
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 801      | The API is not available for this device type. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 

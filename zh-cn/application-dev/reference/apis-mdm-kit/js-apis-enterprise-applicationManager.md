@@ -638,7 +638,7 @@ addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): v
 | 9201005  | Add keep alive applications failed. |
 | 201  | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801      | The API is not available for this device type. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
@@ -696,7 +696,7 @@ addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, di
 | 9200010  | A conflict policy has been configured. |
 | 9201005  | Add keep alive applications failed. |
 | 201  | Permission verification failed.The application does not have the permission required to call the API. |
-| 801      | The API is not available for this device type. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
