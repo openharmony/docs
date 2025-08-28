@@ -170,7 +170,7 @@ enum NativeDisplayManager_DisplayState
 | DISPLAY_MANAGER_DISPLAY_STATE_DOZE = 3 | 表示显示设备为低电耗模式。 |
 | DISPLAY_MANAGER_DISPLAY_STATE_DOZE_SUSPEND = 4 | 表示显示设备为睡眠模式，CPU为挂起状态。 |
 | DISPLAY_MANAGER_DISPLAY_STATE_VR = 5 | 表示显示设备为VR模式。 |
-| DISPLAY_MANAGER_DISPLAY_STATE_ON_SUSPEND = 6 | d表示显示设备为开启状态，CPU为挂起状态。 |
+| DISPLAY_MANAGER_DISPLAY_STATE_ON_SUSPEND = 6 | 表示显示设备为开启状态，CPU为挂起状态。 |
 
 ### NativeDisplayManager_SourceMode
 
