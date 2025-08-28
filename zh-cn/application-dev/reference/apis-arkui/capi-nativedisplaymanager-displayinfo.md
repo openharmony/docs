@@ -39,7 +39,7 @@
 | float yDPI | 显示设备y方向中每英寸屏幕的确切物理像素值，该参数为大于0的浮点数。 |
 | [NativeDisplayManager_Rotation](capi-oh-display-info-h.md#nativedisplaymanager_rotation) rotation | 显示设备的屏幕顺时针旋转角度。 |
 | [NativeDisplayManager_DisplayState](capi-oh-display-info-h.md#nativedisplaymanager_displaystate) state | 显示设备的状态。 |
-| [NativeDisplayManager_Rotation](capi-oh-display-info-h.md#nativedisplaymanager_rotation) orientation | 表示屏幕当前显示的方向。 |
+| [NativeDisplayManager_Orientation](capi-oh-display-info-h.md#nativedisplaymanager_orientation) orientation | 表示屏幕当前显示的方向。 |
 | [NativeDisplayManager_DisplayHdrFormat](capi-nativedisplaymanager-displayhdrformat.md)* hdrFormat | 显示设备支持的所有HDR格式。 |
 | [NativeDisplayManager_DisplayColorSpace](capi-nativedisplaymanager-displaycolorspace.md)* colorSpace | 显示设备支持的所有色域类型。 |
 

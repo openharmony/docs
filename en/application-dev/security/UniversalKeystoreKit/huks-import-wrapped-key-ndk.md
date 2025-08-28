@@ -1,20 +1,24 @@
 # Importing a Key in Ciphertext (C/C++)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
 
 This topic walks you through on how to import an ECDH key pair. However, the example does not cover the operations such as [key generation](huks-key-generation-overview.md) and [key agreement](huks-key-agreement-overview.md) of the service side.
-
 
 For details about the scenarios and supported algorithm specifications, see [Supported Algorithms](huks-key-import-overview.md#supported-algorithms).
 
 ## Add the dynamic library in the CMake script.
 ```txt
-   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 ```
 
 ## How to Develop
-> **NOTE**
-> <br>In the following, wrap means encrypt and unwrap means decrypt.
-1. Convert the key to be imported from device A (device from which the key is imported) to [HUKS key material format](huks-concepts.md#key-material-format) **To_Import_Key**. (This step applies only to asymmetric key pairs. If the key to be imported is a symmetric key, skip over this step.)
+
+1. Convert the key to be imported from device A (device from which the key is imported) to [HUKS key material format](huks-concepts.md#key material format) **To_Import_Key**. (This step applies only to asymmetric key pairs. If the key to be imported is a symmetric key, skip over this step.)
 
 2. Generate an asymmetric key pair **Wrapping_Key** (public key **Wrapping_Pk** and private key **Wrapping_Sk**) with the purpose of **HUKS_KEY_PURPOSE_UNWRAP** for device B (device to which the key is imported), and export the public key **Wrapping_Pk** of **Wrapping_Key** and save it. The asymmetric key pair **Wrapping_Key** is used for key agreement in the encrypted import process.
 
@@ -35,9 +39,9 @@ For details about the scenarios and supported algorithm specifications, see [Sup
 10. Delete the intermediate keys (keys used for encrypting the key to import) from devices A and B.
 
 ```c++
-#include "napi/native_api.h"
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
+#include "napi/native_api.h"
 #include <algorithm>
 OH_Huks_Result InitParamSet(struct OH_Huks_ParamSet **paramSet, const struct OH_Huks_Param *params,
                             uint32_t paramCount) {
@@ -58,7 +62,7 @@ OH_Huks_Result InitParamSet(struct OH_Huks_ParamSet **paramSet, const struct OH_
     return ret;
 }
 struct HksImportWrappedKeyTestParams {
-    // server key, for real
+    // server key, for real.
     struct OH_Huks_Blob *wrappingKeyAlias;
     struct OH_Huks_ParamSet *genWrappingKeyParamSet;
     uint32_t publicKeySize;
@@ -565,11 +569,12 @@ static napi_value ImportWrappedKey(napi_env env, napi_callback_info info) {
 
 ## Verification
 
-Use [OH_Huks_IsKeyItemExist](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_iskeyitemexist) to check whether the key exists. If the key exists, the key is successfully imported.
+Use [OH_Huks_IsKeyItemExist](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_iskeyitemexist) to check whether the key exists. If the key exists, the key is successfully imported.
 
 ```c++
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
+#include "napi/native_api.h"
 #include <string.h>
 static napi_value IsKeyExist(napi_env env, napi_callback_info info)
 {
@@ -582,9 +587,12 @@ static napi_value IsKeyExist(napi_env env, napi_callback_info info)
     /* 2. Call OH_Huks_IsKeyItemExist to check whether the key exists. */
     struct OH_Huks_Result ohResult = OH_Huks_IsKeyItemExist(&keyAlias, NULL);
     if (ohResult.errorCode != OH_HUKS_SUCCESS) {
-        // Operation failed.
+        // Failed.
     } else {
-        // Operation successful.
+        // Successful.
     }
+    napi_value ret;
+    napi_create_int32(env, ohResult.errorCode, &ret);
+    return ret;
 }
 ```

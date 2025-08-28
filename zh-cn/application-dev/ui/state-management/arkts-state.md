@@ -6,7 +6,7 @@
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
 
-被@State装饰的变量称为状态变量，使普通变量具备状态属性。当状态变量改变时，会触发其直接绑定的UI组件渲染更新。
+被状态变量装饰器装饰的变量称为状态变量，使普通变量具备状态属性。当状态变量改变时，会触发其直接绑定的UI组件渲染更新。
 
 在状态变量相关装饰器中，@State是最基础的装饰器，也是大部分状态变量的数据源。
 
@@ -311,7 +311,7 @@ struct MyComponent {
 @Entry
 @Component
 struct MapSample {
-  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+  @State message: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
 
   build() {
     Row() {
@@ -322,16 +322,16 @@ struct MapSample {
           Divider()
         })
         Button('init map').onClick(() => {
-          this.message = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+          this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
         })
         Button('set new one').onClick(() => {
-          this.message.set(4, "d");
+          this.message.set(4, 'd');
         })
         Button('clear').onClick(() => {
           this.message.clear();
         })
         Button('replace the first one').onClick(() => {
-          this.message.set(0, "aa");
+          this.message.set(0, 'aa');
         })
         Button('delete the first one').onClick(() => {
           this.message.delete(0);
@@ -428,7 +428,7 @@ struct SetSample {
   ```
 
 
-## State支持联合类型实例
+### State支持联合类型实例
 
 \@State支持联合类型和undefined和null，在下面的示例中，count类型为number | undefined，点击Button改变count的属性或者类型，视图会随之刷新。
 
@@ -584,7 +584,7 @@ export class TestModel {
   constructor() {
     this.model = new Model(() => {
       this.isSuccess = true;
-      console.log(`this.isSuccess: ${this.isSuccess}`);
+      console.info(`this.isSuccess: ${this.isSuccess}`);
     })
   }
 
@@ -806,11 +806,11 @@ struct ConsumerChild {
   @Link @Watch('onDataObjChange') dataObj: DataObj;
 
   onDataObjChange() {
-    console.log("dataObj changed");
+    console.info('dataObj changed');
   }
 
   getContent() {
-    console.log(`this.dataObj.name change: ${this.dataObj.name}`);
+    console.info(`this.dataObj.name change: ${this.dataObj.name}`);
     return this.dataObj.name;
   }
 
@@ -858,7 +858,7 @@ struct ConsumerChild {
   @Link @Watch('onDataObjChange') dataObj: DataObj;
 
   onDataObjChange() {
-    console.log("dataObj changed");
+    console.info('dataObj changed');
   }
 
   build() {
@@ -908,7 +908,7 @@ struct ConsumerChild {
   @Link @Watch('onDataObjChange') dataObj: DataObj;
 
   onDataObjChange() {
-    console.log("dataObj changed");
+    console.info('dataObj changed');
   }
 
   build() {

@@ -77,8 +77,6 @@ enum NativeDisplayManager_Rotation
 
 屏幕顺时针的旋转角度。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
 **起始版本：** 12
 
 | 枚举项 | 描述 |
@@ -97,8 +95,6 @@ enum NativeDisplayManager_Orientation
 **描述**
 
 屏幕的旋转方向。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **起始版本：** 12
 
@@ -119,8 +115,6 @@ enum NativeDisplayManager_ErrorCode
 **描述**
 
 屏幕管理接口返回状态码枚举。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **起始版本：** 12
 
@@ -145,8 +139,6 @@ enum NativeDisplayManager_FoldDisplayMode
 **描述**
 
 可折叠设备的显示模式枚举。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **起始版本：** 12
 
