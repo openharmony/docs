@@ -29,7 +29,7 @@ import { camera } from '@kit.CameraKit';
 
 canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boolean
 
-查询当前Session是否支持指定的与配置类型。
+查询当前Session是否支持指定的预配置类型。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -465,7 +465,7 @@ off(type: 'systemPressureLevelChange', callback?: AsyncCallback\<SystemPressureL
 | 参数名    | 类型                           | 必填    | 说明                                                             |
 |----------|--------------------------------|---------|------------------------------------------------------------------|
 | type     | string                         | 是      | 注销监听事件，固定为'systemPressureLevelChange'，session创建成功可触发此事件。|
-| callback | AsyncCallback\<[SystemPressureLevel](arkts-apis-camera-e.md#systempressurelevel20)\> | 否 | 回调函数，如果指定参数则取消对应callback (callabck对象不可是匿名函数)，否则参数默认为空，取消所有callback。 |
+| callback | AsyncCallback\<[SystemPressureLevel](arkts-apis-camera-e.md#systempressurelevel20)\> | 否 | 回调函数，如果指定参数则取消对应callback (callbck对象不可是匿名函数)，否则参数默认为空，取消所有callback。 |
 
 **示例：**
 
@@ -528,7 +528,7 @@ off(type: 'controlCenterEffectStatusChange', callback?: AsyncCallback\<ControlCe
 | 参数名    | 类型 | 必填 | 说明 |
 |----------|-------|----|------------------------------------------------------------------------|
 | type     | string | 是 | 注销监听事件，固定为'controlCenterEffectStatusChange'，session创建成功可触发此事件。 |
-| callback | AsyncCallback\<[ControlCenterStatusInfo](arkts-apis-camera-i.md#controlcenterstatusinfo20)\> | 否 | 回调函数，如果指定参数则取消对应callback (callabck对象不可是匿名函数)，否则参数默认为空，取消所有callback。|
+| callback | AsyncCallback\<[ControlCenterStatusInfo](arkts-apis-camera-i.md#controlcenterstatusinfo20)\> | 否 | 回调函数，如果指定参数则取消对应callback (callbck对象不可是匿名函数)，否则参数默认为空，取消所有callback。|
 
 **示例：**
 
