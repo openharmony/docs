@@ -82,7 +82,7 @@ router路由页面（仅[\@Entry](../../../../application-dev/ui/state-managemen
 
 onPageHide?(): void
 
-router路由页面（仅[\@Entry](../../../../application-dev/ui/state-management/arkts-create-custom-components.md#entry)装饰的自定义组件）每次隐藏时触发一次，包括路由跳转、应用进入后台等场景。
+router路由页面每次隐藏时触发一次，包括路由跳转、应用进入后台等场景。
 
 > **说明：**
 >
