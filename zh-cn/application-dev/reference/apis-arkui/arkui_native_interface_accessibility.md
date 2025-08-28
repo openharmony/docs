@@ -702,7 +702,7 @@ void OH_ArkUI_SendAccessibilityAsyncEvent(
 | --------- | -------------------------- |
 | provider  | 第三方平台接入provider句柄。 |
 | eventInfo | 上报事件。                 |
-| callback  | 结果返回回调。             |
+| void (*callback)(int32_t errorCode)  | 结果返回回调。             |
 
 **返回：** 无
 

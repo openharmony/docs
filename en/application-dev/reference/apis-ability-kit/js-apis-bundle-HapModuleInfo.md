@@ -30,4 +30,4 @@ This API is deprecated since API version 9. You are advised to use [bundleManage
 | abilityInfo                       | Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>         | Yes  | No  | Ability information.         |
 | moduleName                        | string                                                       | Yes  | No  | Module name.              |
 | mainAbilityName                   | string                                                       | Yes  | No  | Name of the main ability.     |
-| installationFree                  | boolean                                                      | Yes  | No  | Whether installation-free is supported. The value **true** means that installation-free is supported, and **false** means the opposite.      |
+| installationFree                  | boolean                                                      | Yes  | No  | Whether installation-free is supported. **true** if supported, **false** otherwise.      |

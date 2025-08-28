@@ -1,12 +1,12 @@
 # @ohos.bundle.installer (installer) (System API)
 
-The module provides APIs for you to install, uninstall, and recover bundles on devices.
-
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > The APIs provided by this module are system APIs.
+
+The module provides APIs for you to install, uninstall, and recover bundles on devices.
 
 ## Modules to Import
 
@@ -148,7 +148,7 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 **Required permissions**: ohos.permission.INSTALL_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE<sup>10+</sup>, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE<sup>10+</sup>
 > **NOTE**
 >
-> From API version 10, this API can be called with the permission ohos.permission.INSTALL_ENTERPRISE_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE.
+> Starting from API version 10, this API can be called with the permission ohos.permission.INSTALL_ENTERPRISE_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE.
 >
 > To install an enterprise application, you must have the ohos.permission.INSTALL_ENTERPRISE_BUNDLE permission.
 >
@@ -245,7 +245,7 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 **Required permissions**: ohos.permission.INSTALL_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE<sup>10+</sup>, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE<sup>10+</sup>
 > **NOTE**
 >
-> From API version 10, this API can be called with the permission ohos.permission.INSTALL_ENTERPRISE_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE.
+> Starting from API version 10, this API can be called with the permission ohos.permission.INSTALL_ENTERPRISE_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE.
 >
 > To install an enterprise application, you must have the ohos.permission.INSTALL_ENTERPRISE_BUNDLE permission.
 >
@@ -337,7 +337,7 @@ Installs a bundle. This API uses a promise to return the result.
 **Required permissions**: ohos.permission.INSTALL_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE<sup>10+</sup>, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE<sup>10+</sup>
 > **NOTE**
 >
-> From API version 10, this API can be called with the permission ohos.permission.INSTALL_ENTERPRISE_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE.
+> Starting from API version 10, this API can be called with the permission ohos.permission.INSTALL_ENTERPRISE_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE.
 >
 > To install an enterprise application, you must have the ohos.permission.INSTALL_ENTERPRISE_BUNDLE permission.
 >
@@ -1646,6 +1646,151 @@ try {
 }
 ```
 
+## BundleInstaller.installPlugin<sup>19+</sup>
+
+installPlugin(hostBundleName: string, pluginFilePaths: Array\<string\>, pluginParam?: PluginParam): Promise\<void\> 
+
+Installs a plugin for an application. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.INSTALL_PLUGIN_BUNDLE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name       | Type                         | Mandatory| Description                                                         |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| hostBundleName   | string                        | Yes  | Bundle name of the application for which the plugin is to be installed.                                          |
+| pluginFilePaths  | Array\<string\>                  | Yes  | Paths where the plugin package files are stored. If multiple file paths or a directory is provided, ensure that these files are HSPs of the same plugin program and their signatures are consistent. |
+| pluginParam  | [PluginParam](#pluginparam19)      | No  | Parameters required for installing the plugin. For details about the default value, see [PluginParam](#pluginparam19).|
+
+**Return value**
+
+| Type           | Description                                  |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_PLUGIN_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 17700001 | The specified hostBundleName cannot be found or the bundle is not installed by the specified user. |
+| 17700004 | The userId is invalid. |
+| 17700010 | Failed to install the plugin because the plugin fails to be parsed. |
+| 17700011 | Failed to install the plugin because the plugin signature fails to be verified. |
+| 17700012 | Failed to install the plugin because the HSP path is invalid or the HSP is too large. |
+| 17700015 | Failed to install the plugin because they have different configuration information. |
+| 17700016 | Failed to install the plugin because of insufficient system disk space. |
+| 17700017 | Failed to install the plugin since the version of the plugin to install is too early. |
+| 17700048 | Failed to install the plugin because the code signature verification is failed. |
+| 17700052 | Failed to install the plugin because debug bundle cannot be installed under non-developer mode. |
+| 17700073 | Failed to install the plugin because a plugin with the same bundle name but different signature information exists on the device. |
+| 17700087 | Failed to install the plugin because the current device does not support plugin. |
+| 17700088 | Failed to install the plugin because the host application lacks ohos.permission.kernel.SUPPORT_PLUGIN. |
+| 17700089 | Failed to install the plugin because the plugin id fails to be parsed. |
+| 17700090 | Failed to install the plugin because the plugin id fails to be verified. |
+| 17700091 | Failed to install the plugin because the plugin name is same as host bundle name. |
+
+**Example**
+```ts
+import { installer } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let hostBundleName = 'com.example.application';
+let pluginFilePaths = ['/data/bms_app_install/test.hsp'];
+let pluginParam : installer.PluginParam = {
+    userId : 100,
+};
+
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.installPlugin(hostBundleName, pluginFilePaths, pluginParam)
+            .then(() => {
+                console.info('installPlugin successfully.');
+        }).catch((error: BusinessError) => {
+            console.error('installPlugin failed:' + error.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('installPlugin failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
+## BundleInstaller.uninstallPlugin<sup>19+</sup>
+
+uninstallPlugin(hostBundleName: string, pluginBundleName: string, pluginParam?: PluginParam): Promise\<void\>
+
+Uninstalls a plugin for an application. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.UNINSTALL_PLUGIN_BUNDLE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name       | Type                         | Mandatory| Description                                                         |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| hostBundleName   | string                        | Yes  | Bundle name of the application for which the plugin is to be uninstalled.                      |
+| pluginBundleName  | string                  | Yes  |   Bundle name of the plugin.|
+| pluginParam  | [PluginParam](#pluginparam19)      | No  | Parameters required for uninstalling the plugin. For details about the default value, see [PluginParam](#pluginparam19).|
+
+**Return value**
+
+| Type           | Description                                  |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.UNINSTALL_PLUGIN_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 17700001 | The specified bundle name is not found. |
+| 17700004 | The user id is invalid. |
+| 17700092 | Failed to uninstall the plugin because the specified plugin is not found. |
+
+**Example**
+```ts
+import { installer } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let hostBundleName = 'com.example.application';
+let pluginBundleName = 'com.ohos.pluginDemo';
+let pluginParam : installer.PluginParam = {
+    userId : 100,
+};
+
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.uninstallPlugin(hostBundleName, pluginBundleName, pluginParam)
+            .then(() => {
+                console.info('uninstallPlugin successfully.');
+        }).catch((error: BusinessError) => {
+            console.error('uninstallPlugin failed:' + error.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('uninstallPlugin failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
 ## HashParam
 
 Defines the hash parameters for bundle installation and uninstall.
@@ -1671,7 +1816,7 @@ Defines the parameters that need to be specified for bundle installation, uninst
 | ------------------------------ | ------------------------------ | ------------------| ------------------ | ------------------ |
 | userId                         | number                         | No                      | Yes | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. You can call [queryOsAccountLocalIdFromProcess](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID of the current process. When a driver application is installed, uninstalled, or restored, this parameter is ignored and the operation is executed for all users.|
 | installFlag                    | number                         | No                      | Yes| Installation flag. The value **0x00** means initial installation, **0x01** means overwrite installation, and **0x10** means installation-free. The default value is **0x00**.|
-| isKeepData                     | boolean                        | No                      | Yes| Whether to retain the data directory during bundle uninstall. The default value is **false**. The value **true** means to retain the data directory during bundle uninstall, and **false** means the opposite.|
+| isKeepData                     | boolean                        | No                      | Yes| Whether to retain the data directory during bundle uninstall. The default value is **false**. **true** to retain, **false** otherwise.|
 | hashParams        | Array<[HashParam](#hashparam)> | No| Yes| Hash parameters. By default, no value is passed.        |
 | crowdtestDeadline| number                         | No                      | Yes| End date of crowdtesting. The default value is **-1**, indicating that no end date is specified for crowdtesting.|
 | sharedBundleDirPaths<sup>10+</sup> | Array\<string> | No| Yes|Paths of the shared bundle files. By default, no value is passed.|
@@ -1695,7 +1840,7 @@ Defines the parameters required for the uninstall of a shared bundle.
 
 ## VerifyCodeParam<sup>deprecated<sup>
 
-> Since API version 11, the code signature file of an application is integrated into the installation package, rather than being specified by using this field.
+> Starting from API version 11, the code signature file of an application is integrated into the installation package, rather than being specified by using this field.
 
 Defines the information about the code signature file.
 
@@ -1759,3 +1904,16 @@ Describes the parameters used for destroying an application clone.
 | ----------- | ------ | ----| ---- | ------------------------------------------------------------ |
 | userId      | number | No| Yes | ID of the user for whom the clone is to be destroyed. You can obtain the user ID by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9). The default value is the user ID of the caller.            |
 | parameters  | Array<[Parameters](#parameters15)> | No| Yes  | Extended parameters for destroying the clone. The default value is null.           |
+
+## PluginParam<sup>19+</sup>
+
+Defines the parameters for installing or uninstalling a plugin.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**System API**: This is a system API.
+
+| Name       | Type  | Read-Only |  Optional| Description                                                         |
+| ----------- | ------ | ---- |---- | ------------------------------------------------------------ |
+| userId      | number | No| Yes  | ID of the user for whom the plugin is to be installed or uninstalled. You can obtain the user ID by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9). The default value is the user ID of the caller.            |
+| parameters  | Array<[Parameters](#parameters15)> | No| Yes  | Extension parameters for installing or uninstalling the plugin. The default value is empty.           |

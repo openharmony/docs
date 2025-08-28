@@ -27,7 +27,7 @@ Called when all startup tasks are complete.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| error | [BusinessError](../apis-basic-services-kit/js-apis-base.md#businesserror) | Yes| Error message.|
+| error | [BusinessError\<void>](../apis-basic-services-kit/js-apis-base.md#businesserror) | Yes| Error message.|
 
 **Example**
 

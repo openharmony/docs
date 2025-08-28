@@ -5606,6 +5606,7 @@ getConfiguration(callback: _AsyncCallback&lt;Configuration&gt;): void
 **示例：**
   ```ts
   import { resourceManager } from '@kit.LocalizationKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getConfiguration((error: BusinessError, value: resourceManager.Configuration) => {
@@ -5700,6 +5701,7 @@ getDeviceCapability(callback: _AsyncCallback&lt;DeviceCapability&gt;): void
 **示例：**
   ```ts
   import { resourceManager } from '@kit.LocalizationKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getDeviceCapability((error: BusinessError, value: resourceManager.DeviceCapability) => {

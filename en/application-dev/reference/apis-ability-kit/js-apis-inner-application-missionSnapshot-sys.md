@@ -45,7 +45,7 @@ try {
 
     missionManager.getMissionSnapShot('', id, (err, snapshot) => {
       if (err) {
-        console.error(`getMissionInfos failed, err.code: ${JSON.stringify(err.code)}, err.message: ${JSON.stringify(err.message)}`);
+        console.error(`getMissionSnapShot failed, err.code: ${JSON.stringify(err.code)}, err.message: ${JSON.stringify(err.message)}`);
         return;
       }
       // Carry out normal service processing.
