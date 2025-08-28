@@ -14,7 +14,6 @@
 >
 > 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 该组件不支持在Wearable设备上使用。
 
 
 ## 导入模块
@@ -39,6 +38,8 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称                          | 类型                                                         | 必填 | 装饰器类型  | 说明                                                                                                                                                             |
 | ----------------------------- | ------------------------------------------------------------ | ---- | ----------- |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | toolBarList                   | [ToolBarOptions](#toolbaroptions)                            | 是   | @ObjectLink | 工具栏列表。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                     |
@@ -57,11 +58,15 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 ## ToolBarOption
 
 **装饰器类型：**\@Observed
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称                                     | 类型                                                        | 必填 | 说明                                                                                                                                                                                                                                                     |
 |----------------------------------------|-----------------------------------------------------------| -------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -93,6 +98,8 @@ backgroundColor(backgroundColor: ResourceColor): ToolBarModifier
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名  | 类型                                                   | 必填 | 说明                                                               |
@@ -115,6 +122,8 @@ padding(padding: LengthMetrics): ToolBarModifier
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名  | 类型     | 必填 | 说明                                                                                  |
@@ -136,6 +145,8 @@ height(height: LengthMetrics): ToolBarModifier
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：**
 
@@ -160,6 +171,8 @@ stateEffect(stateEffect: boolean): ToolBarModifier
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名  | 类型                             | 必填 | 说明                                                       |
@@ -178,6 +191,8 @@ stateEffect(stateEffect: boolean): ToolBarModifier
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | ENABLE | 1 | 工具栏子项为正常可点击状态。 |
@@ -191,6 +206,8 @@ ToolBarSymbolGlyphOptions定义图标的属性。
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称   | 类型       | 必填 | 说明                                                                                       |
 | ------ | ---------- | ---- |------------------------------------------------------------------------------------------|
