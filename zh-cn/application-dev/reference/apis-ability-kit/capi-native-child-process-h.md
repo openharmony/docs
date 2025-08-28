@@ -59,7 +59,7 @@
 | [typedef void (\*OH_Ability_OnNativeChildProcessExit)(int32_t pid, int32_t signal)](#oh_ability_onnativechildprocessexit) | OH_Ability_OnNativeChildProcessExit | 获取子进程退出信息。 |
 | [Ability_NativeChildProcess_ErrCode OH_Ability_RegisterNativeChildProcessExitCallback(OH_Ability_OnNativeChildProcessExit onProcessExit)](#oh_ability_registernativechildprocessexitcallback) | - | 注册子进程退出回调。重复注册同一个回调函数只会保留一个。 |
 | [Ability_NativeChildProcess_ErrCode OH_Ability_UnregisterNativeChildProcessExitCallback(OH_Ability_OnNativeChildProcessExit onProcessExit)](#oh_ability_unregisternativechildprocessexitcallback) | - | 解注册子进程退出回调。 |
-| [Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetIsolationUid(Ability_ChildProcessConfigs* configs, bool enableIsolationUid)](#oh_ability_childprocessconfigs_setisolationuid) | - | 设置子进程配置信息对象的uid是否隔离。该设置仅在NativeChildProcess_IsolationMode为NCP_ISOLATION_MODE_ISOLATED时且调用[OH_Ability_StartNativeChildProcessWithConfigs](capi-native-child-process-h.md#oh_ability_startnativechildprocesswithconfigs)、[OH_Ability_CreateNativeChildProcessWithConfigs](#oh_ability_createnativechildprocesswithconfigs)接口时生效。 |
+| [Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetIsolationUid(Ability_ChildProcessConfigs* configs, bool enableIsolationUid)](#oh_ability_childprocessconfigs_setisolationuid) | - | 设置子进程配置信息对象的uid是否隔离。该设置仅在NativeChildProcess_IsolationMode为NCP_ISOLATION_MODE_ISOLATED时生效。 |
 
 ## 枚举类型说明
 
@@ -152,7 +152,7 @@ Ability_NativeChildProcess_ErrCode OH_Ability_DestroyChildProcessConfigs(Ability
 
 | 类型 | 说明 |
 | -- | -- |
-| [Ability_NativeChildProcess_ErrCode](capi-native-child-process-h.md#ability_nativechildprocess_errcode) | NCP_NO_ERROR - 操作成功。<br>NCP_NO_ERR_INVALID_PARAM - 传入参数为nullptr。 |
+| [Ability_NativeChildProcess_ErrCode](capi-native-child-process-h.md#ability_nativechildprocess_errcode) | NCP_NO_ERROR - 操作成功。<br>NCP_ERR_INVALID_PARAM - 传入参数为nullptr。 |
 
 ### OH_Ability_ChildProcessConfigs_SetIsolationMode()
 
@@ -162,7 +162,7 @@ Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetIsolationMo
 
 **描述**
 
-设置子进程配置信息对象的数据沙箱与网络环境的共享模式，详见[NativeChildProcess_IsolationMode](capi-native-child-process-h.md#nativechildprocess_isolationmode)。该设置仅当调用[OH_Ability_StartNativeChildProcessWithConfigs](capi-native-child-process-h.md#oh_ability_startnativechildprocesswithconfigs)接口时生效。
+设置子进程配置信息对象的数据沙箱与网络环境的共享模式，详见[NativeChildProcess_IsolationMode](capi-native-child-process-h.md#nativechildprocess_isolationmode)。该设置仅当调用[OH_Ability_StartNativeChildProcessWithConfigs](capi-native-child-process-h.md#oh_ability_startnativechildprocesswithconfigs)、[OH_Ability_CreateNativeChildProcessWithConfigs](#oh_ability_createnativechildprocesswithconfigs)接口时生效。
 
 **起始版本：** 20
 
@@ -178,7 +178,33 @@ Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetIsolationMo
 
 | 类型 | 说明 |
 | -- | -- |
-| [Ability_NativeChildProcess_ErrCode](capi-native-child-process-h.md#ability_nativechildprocess_errcode) | NCP_NO_ERROR - 执行成功。<br>NCP_NO_ERR_INVALID_PARAM - 传入参数configs为nullptr。 |
+| [Ability_NativeChildProcess_ErrCode](capi-native-child-process-h.md#ability_nativechildprocess_errcode) | NCP_NO_ERROR - 执行成功。<br>NCP_ERR_INVALID_PARAM - 传入参数configs为nullptr。 |
+
+### OH_Ability_ChildProcessConfigs_SetIsolationUid()
+
+```
+Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetIsolationUid(Ability_ChildProcessConfigs* configs, bool isolationUid)
+```
+
+**描述**
+
+设置子进程配置信息对象的uid是否隔离。该设置仅在NativeChildProcess_IsolationMode为NCP_ISOLATION_MODE_ISOLATED时生效。(不调用该接口设置isolationUid时，则默认为false，即子进程与主进程拥有相同uid。)
+
+**起始版本：** 21
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Ability_ChildProcessConfigs](capi-ability-childprocessconfigs.md)* configs | 子进程的配置信息对象指针。不可以为空指针。 |
+| bool isolationUid | 控制子进程是否使用独立的uid。true表示子进程拥有独立的uid，false表示子进程与主进程拥有相同uid。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Ability_NativeChildProcess_ErrCode](capi-native-child-process-h.md#ability_nativechildprocess_errcode) | NCP_NO_ERROR - 执行成功。<br>NCP_ERR_INVALID_PARAM - 传入参数configs为nullptr。 |
 
 ### OH_Ability_ChildProcessConfigs_SetProcessName()
 
@@ -204,7 +230,7 @@ Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetProcessName
 
 | 类型 | 说明 |
 | -- | -- |
-| [Ability_NativeChildProcess_ErrCode](capi-native-child-process-h.md#ability_nativechildprocess_errcode) | NCP_NO_ERROR - 执行成功。<br>NCP_NO_ERR_INVALID_PARAM - 传入参数configs为nullptr，或者processName包含除字母、数字、下划线以外的字符。 |
+| [Ability_NativeChildProcess_ErrCode](capi-native-child-process-h.md#ability_nativechildprocess_errcode) | NCP_NO_ERROR - 执行成功。<br>NCP_ERR_INVALID_PARAM - 传入参数configs为nullptr，或者processName包含除字母、数字、下划线以外的字符。 |
 
 ### OH_Ability_OnNativeChildProcessStarted()
 
@@ -471,29 +497,3 @@ Ability_NativeChildProcess_ErrCode OH_Ability_UnregisterNativeChildProcessExitCa
 | 类型 | 说明 |
 | -- | -- |
 | [Ability_NativeChildProcess_ErrCode](capi-native-child-process-h.md#ability_nativechildprocess_errcode) | NCP_NO_ERROR - 调用成功。<br>NCP_ERR_INVALID_PARAM - 参数不合法。<br>NCP_ERR_INTERNAL - 内部错误。<br>NCP_ERR_CALLBACK_NOT_EXIST - 未找到回调函数。<br>详见Ability_NativeChildProcess_ErrCode。 |
-
-### OH_Ability_ChildProcessConfigs_SetIsolationUid()
-
-```
-Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetIsolationUid(Ability_ChildProcessConfigs* configs, bool enableIsolationUid)
-```
-
-**描述**
-
-设置子进程配置信息对象的uid是否隔离。该设置仅在NativeChildProcess_IsolationMode为NCP_ISOLATION_MODE_ISOLATED时且调用[OH_Ability_StartNativeChildProcessWithConfigs](capi-native-child-process-h.md#oh_ability_startnativechildprocesswithconfigs)接口时生效。
-
-**起始版本：** 21
-
-
-**参数：**
-
-| 参数项 | 描述 |
-| -- | -- |
-| [Ability_ChildProcessConfigs](capi-ability-childprocessconfigs.md)* configs | 子进程的配置信息对象指针。不可以为空指针。 |
-| bool enableIsolationUid | 控制子进程是否使用独立的uid。true表示子进程运行在独立沙箱环境中，且拥有独立的uid，false表示子进程与主进程共享沙箱和UID。默认为false。 |
-
-**返回：**
-
-| 类型 | 说明 |
-| -- | -- |
-| [Ability_NativeChildProcess_ErrCode](capi-native-child-process-h.md#ability_nativechildprocess_errcode) | NCP_NO_ERROR - 执行成功。<br>NCP_NO_ERR_INVALID_PARAM - 传入参数configs为nullptr。 |
