@@ -1230,6 +1230,7 @@ struct CustomDialogUser {
 
   build() {
     Stack({ alignContent: Alignment.Top }) {
+      // $r('app.media.bg')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.bg'))
       Column() {
         Button('CustomDialog')
@@ -1290,6 +1291,7 @@ struct CustomDialogUser {
 
   build() {
     Stack({ alignContent: Alignment.Top }) {
+      // $r('app.media.bg')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.bg'))
       Column() {
         Button('CustomDialog')
