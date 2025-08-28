@@ -422,8 +422,8 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
   }
   "component-config": {
     "Network Kit": true,
-     "ArkWeb": true
-    }
+    "ArkWeb": true
+  }
 }
 ```
 
