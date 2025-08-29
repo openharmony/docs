@@ -1882,9 +1882,9 @@ try {
 ### setSnapshotSkip<sup>9+</sup>
 setSnapshotSkip(isSkip: boolean): void
 
-截屏、录屏、投屏是否忽略当前窗口。此接口一般用于禁止截屏、录屏、投屏的场景。
+截屏、录屏或投屏是否忽略当前窗口。此接口一般用于禁止截屏、录屏或投屏的场景。
 
-若要实现窗口始终在前台忽略截屏、录屏、投屏，在窗口从后台回到前台时，需要通过[on('windowEvent')](arkts-apis-window-Window.md#onwindowevent10)监听窗口生命周期变化，在后台状态时设置为false，而在前台状态时设置为true。
+若要实现窗口始终在前台忽略截屏、录屏或投屏，在窗口从后台回到前台时，需要通过[on('windowEvent')](arkts-apis-window-Window.md#onwindowevent10)监听窗口生命周期变化，在后台状态时设置为false，而在前台状态时设置为true。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1894,7 +1894,7 @@ setSnapshotSkip(isSkip: boolean): void
 
 | 参数名        | 类型    | 必填 | 说明                 |
 | ------------- | ------- | ---- | -------------------- |
-| isSkip | boolean | 是   | 截屏/录屏/投屏是否忽略当前窗口，默认为false。<br>true表示忽略当前窗口，false表示不忽略当前窗口。</br> |
+| isSkip | boolean | 是   | 截屏、录屏或投屏是否忽略当前窗口，默认为false。<br>true表示忽略当前窗口，false表示不忽略当前窗口。</br> |
 
 **错误码：**
 
@@ -3086,13 +3086,15 @@ export default class EntryAbility extends UIAbility {
 
 hideNonSystemFloatingWindows(shouldHide: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置是否隐藏非系统级悬浮窗口，仅在非2in1设备生效。使用callback异步回调。
+设置是否隐藏非系统级悬浮窗口，使用callback异步回调。
 
 非系统级悬浮窗口是指非系统应用创建的悬浮窗口。默认情况下，一个系统应用主窗口可以与非系统级悬浮窗口共同显示，即该主窗口可以被上层的非系统级悬浮窗口遮挡，如果设置为true，则所有的非系统级悬浮窗口会被隐藏，此时该主窗口就不会被上层的非系统级悬浮窗口遮挡了。
 
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备中调用不生效也不报错，在其他设备中可正常调用。
 
 **参数：**
 
