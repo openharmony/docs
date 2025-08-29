@@ -411,7 +411,7 @@ requireSecureDecoderModule(mimeType: string): boolean
 
 | 参数名     | 类型                                             | 必填 | 说明                                                                                                     |
 | -------- | ----------------------------------------------- | ---- |--------------------------------------------------------------------------------------------------------|
-| mimeType  | string     | 是   | 媒体类型，支持的媒体类型取决于DRM解决方案[isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported-1)。 |
+| mimeType  | string     | 是   | 媒体类型，DRM解决方案名称。建议先调用[isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported)判断解决方案名称是否支持。 |
 
 **返回值：**
 
