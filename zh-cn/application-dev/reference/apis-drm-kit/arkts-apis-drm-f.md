@@ -62,7 +62,6 @@ try {
 ```
 
 ## drm.isMediaKeySystemSupported 
-{#drm-issupported-name}
 
 isMediaKeySystemSupported(name: string): boolean
 
