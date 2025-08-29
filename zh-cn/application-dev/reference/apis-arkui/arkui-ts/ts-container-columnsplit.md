@@ -62,7 +62,7 @@ divider(value: ColumnSplitDividerStyle | null)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ColumnSplitDividerStyle](#columnsplitdividerstyle10对象说明)&nbsp;\|&nbsp;null | 是   | 分割线的margin。<br/>默认值：null，分割线上下margin为0。ColumnSplitDividerStyle设置分割线与上下子节点的距离。<br />非法值：按默认值处理。 |
+| value  | [ColumnSplitDividerStyle](#columnsplitdividerstyle10对象说明)&nbsp;\|&nbsp;null | 是   | 分割线的margin，即设置分割线与上下子节点的距离。<br/>默认值：null。当设置为null时，分割线上下margin为0.0vp。<br />非法值：按默认值处理。 |
 
 ## ColumnSplitDividerStyle<sup>10+</sup>对象说明
 
