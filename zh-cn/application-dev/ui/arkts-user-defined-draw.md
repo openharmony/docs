@@ -142,7 +142,7 @@ ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI) {
     //自定义节点上树
     nodeAPI->addChild(column, customNode);
     return column;
-    }
+}
 ```
 ![自定义绘制](figures/自定义绘制.jpg)
 
