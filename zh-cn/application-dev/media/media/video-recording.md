@@ -168,21 +168,41 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
 
 
 ```ts
+import { common } from '@kit.AbilityKit';
+import { camera } from '@kit.CameraKit';
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs, fileUri } from '@kit.CoreFileKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-
-export class VideoRecorderDemo extends CustomComponent {
-  private context: Context;
-  constructor() {
-    super();
-    this.context = this.getUIContext().getHostContext()!;
+async function videoRecording(context: common.Context): Promise<void> {
+  // 创建avRecorder对象。
+  let avRecorder: media.AVRecorder | undefined = undefined;
+  try {
+    avRecorder = await media.createAVRecorder();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to create avRecorder, error code: ${err.code}, message: ${err.message}`);
+    return;
   }
-  private avRecorder: media.AVRecorder | undefined = undefined;
-  private videoOutSurfaceId: string = "";
-  private avProfile: media.AVRecorderProfile = {
+  
+  // 注册avRecorder回调函数。
+  try {
+    // 状态机变化回调函数。
+    avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
+      console.info(`AVRecorder state is changed to ${state}, reason: ${reason}`);
+    });
+    // 错误上报回调函数。
+    avRecorder.on('error', (error: BusinessError) => {
+      console.error(`Error occurred in avRecorder, error code: ${error.code}, message: ${error.message}`);
+    });
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to set avRecorder callback, error code: ${err.code}, message: ${err.message}`);
+  }
+
+  // 配置录制参数完成准备工作。
+  let avProfile: media.AVRecorderProfile = {
     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4。
     videoBitrate: 100000, // 视频比特率。
     videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持avc格式。
@@ -190,137 +210,145 @@ export class VideoRecorderDemo extends CustomComponent {
     videoFrameHeight: 480, // 视频分辨率的高。
     videoFrameRate: 30 // 视频帧率。
   };
-  private videoMetaData: media.AVMetadata = {
+  let videoMetaData: media.AVMetadata = {
     videoOrientation: '0' // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270。
   };
-  private avConfig: media.AVRecorderConfig = {
+  let avConfig: media.AVRecorderConfig = {
     videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式。
-    profile: this.avProfile,
+    profile: avProfile,
     url: 'fd://35', //  参考应用文件访问与管理开发示例新建并读写一个文件。
-    metadata: this.videoMetaData
+    metadata: videoMetaData
   };
-  
-  private filePath: string = ''; // 文件路径。
-  private fileFd: number = 0;
-  
+
   // 创建文件以及设置avConfig.url。
-  async createAndSetFd() {
-    const path: string = this.context.filesDir + '/example.mp4'; // 文件沙箱路径，文件后缀名应与封装格式对应。
-    const videoFile: fs.File = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-    this.avConfig.url = 'fd://' + videoFile.fd; // 设置url。
-    this.fileFd = videoFile.fd; // 文件fd。
-    this.filePath = path;
+  let filePath: string = ''; // 文件路径。
+  let videoFile: fs.File | undefined = undefined;
+  try {
+    filePath = context.filesDir + '/example.mp4'; // 文件沙箱路径，文件后缀名应与封装格式对应。
+    videoFile = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE); // 打开文件。
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to open file, error code: ${err.code}, message: ${err.message}`);
+  }
+  if (videoFile !== undefined) {
+    avConfig.url = 'fd://' + videoFile.fd; // 更新url。
   }
 
-  // 注册avRecorder回调函数。
-  setAvRecorderCallback() {
-    if (this.avRecorder !== undefined) {
-      // 状态机变化回调函数。
-      this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
-        console.info(`AVRecorder state is changed to ${state}, reason: ${reason}`);
-      });
-      // 错误上报回调函数。
-      this.avRecorder.on('error', (err: BusinessError) => {
-        console.error(`Error occurred in avRecorder, error code: ${err.code}, message: ${err.message}`);
-      });
+  // 配置录制参数完成准备工作。
+  try {
+    if (avRecorder.state === 'idle' || avRecorder.state === 'stopped') { // 仅在idle或者stopped状态下调用prepare为合理状态切换。
+      await avRecorder.prepare(avConfig);
     }
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to prepare avRecorder, error code: ${err.code}, message: ${err.message}`);
   }
 
-  // 相机相关准备工作。
-  async prepareCamera() {
-    // 具体实现查看相机资料。
-  }
+  // 完成相机相关准备工作。
+  let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+  let videoOutSurfaceId: string = await avRecorder.getInputSurface();
+  await prepareCamera(cameraManager, videoOutSurfaceId);
 
-  // 启动相机出流。
-  async startCameraOutput() {
-    // 调用VideoOutput的start接口开始录像输出。
-  }
-
-  // 停止相机出流。
-  async stopCameraOutput() {
-    // 调用VideoOutput的stop接口停止录像输出。
-  }
-
-  // 释放相机实例。
-  async releaseCamera() {
-    // 释放相机准备阶段创建出的实例。
-  }
-
-  // 开始录制对应的流程。
-  async startRecordingProcess() {
-    if (this.avRecorder === undefined) {
-      // 1.创建录制实例。
-      this.avRecorder = await media.createAVRecorder();
-      this.setAvRecorderCallback();
+  // 启动录制。
+  try {
+    if (avRecorder.state === 'prepared') { // 仅在prepared状态下调用start为合理状态切换。
+      await startCameraOutput(); // 启动相机出流。
+      await avRecorder.start();
     }
-    // 2.获取录制文件fd，将获取到的值传递给avConfig中的url属性。
-    await this.createAndSetFd();
-    // 3.配置录制参数完成准备工作。
-    await this.avRecorder.prepare(this.avConfig);
-    this.videoOutSurfaceId = await this.avRecorder.getInputSurface();
-    // 4.完成相机相关准备工作。
-    await this.prepareCamera();
-    // 5.启动相机出流。
-    await this.startCameraOutput();
-    // 6.启动录制。
-    await this.avRecorder.start();
-
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to start avRecorder, error code: ${err.code}, message: ${err.message}`);
   }
 
-  // 暂停录制对应的流程。
-  async pauseRecordingProcess() {
-    if (this.avRecorder !== undefined && this.avRecorder.state === 'started') { // 仅在started状态下调用pause为合理状态切换。
-      await this.avRecorder.pause();
-      await this.stopCameraOutput(); // 停止相机出流。
+  // 暂停录制。
+  try {
+    if (avRecorder.state === 'started') { // 仅在started状态下调用pause为合理状态切换。
+      await avRecorder.pause();
+      await stopCameraOutput(); // 停止相机出流。
     }
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to pause avRecorder, error code: ${err.code}, message: ${err.message}`);
   }
 
-  // 恢复录制对应的流程。
-  async resumeRecordingProcess() {
-    if (this.avRecorder !== undefined && this.avRecorder.state === 'paused') { // 仅在paused状态下调用resume为合理状态切换。
-      await this.startCameraOutput();  // 启动相机出流。
-      await this.avRecorder.resume();
+  // 恢复录制。
+  try {
+    if (avRecorder.state === 'paused') { // 仅在paused状态下调用resume为合理状态切换。
+      await startCameraOutput(); // 启动相机出流。
+      await avRecorder.resume();
     }
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to resume avRecorder, error code: ${err.code}, message: ${err.message}`);
   }
 
-  async stopRecordingProcess() {
-    if (this.avRecorder !== undefined) {
-      // 1.停止录制。
-      if (this.avRecorder.state === 'started'
-        || this.avRecorder.state === 'paused' ) { // 仅在started或者paused状态下调用stop为合理状态切换。
-        await this.avRecorder.stop();
-        await this.stopCameraOutput();
-      }
-      // 2.重置。
-      await this.avRecorder.reset();
-      // 3.释放录制实例。
-      await this.avRecorder.release();
-      // 4.文件录制完成后，关闭fd。
-      await fs.close(this.fileFd);
-      // 5.释放相机相关实例。
-      await this.releaseCamera();
+  // 停止录制。
+  try {
+    if (avRecorder.state === 'started' || avRecorder.state === 'paused') { // 仅在started或者paused状态下调用stop为合理状态切换。
+      await avRecorder.stop();
+      await stopCameraOutput(); // 停止相机出流。
     }
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to stop avRecorder, error code: ${err.code}, message: ${err.message}`);
   }
+  
+  // 重置。
+  try {
+    await avRecorder.reset();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to reset avRecorder, error code: ${err.code}, message: ${err.message}`);
+  }
+
+  // 释放录制实例。
+  try {
+    await avRecorder.release();
+    avRecorder = undefined;
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to release avRecorder, error code: ${err.code}, message: ${err.message}`);
+  }
+
+  // 关闭录制文件fd。
+  try {
+    if (videoFile !== undefined) {
+      await fs.close(videoFile.fd);
+    }
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to close fd, error code: ${err.code}, message: ${err.message}`);
+  }
+
+  // 释放相机相关实例。
+  await releaseCamera();
   
   // 安全控件保存媒体资源至图库。
-  async saveRecorderAsset() {
-    let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
-    // 需要确保uriPath对应的资源存在。
-    let uriPath: string = fileUri.getUriFromPath(this.filePath); // 获取录制文件的uri，用于安全控件保存至图库。
-    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = 
-      photoAccessHelper.MediaAssetChangeRequest.createVideoAssetRequest(this.context, uriPath);
-    await phAccessHelper.applyChanges(assetChangeRequest);
-  }
+  let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  // 需要确保uriPath对应的资源存在。
+  let uriPath: string = fileUri.getUriFromPath(filePath); // 获取录制文件的uri，用于安全控件保存至图库。
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = 
+    photoAccessHelper.MediaAssetChangeRequest.createVideoAssetRequest(context, uriPath);
+  await phAccessHelper.applyChanges(assetChangeRequest);
+}
 
-  // 一个完整的【开始录制-暂停录制-恢复录制-停止录制】示例。
-  async videoRecorderDemo() {
-    await this.startRecordingProcess();         // 开始录制。
-    // 用户此处可以自行设置录制时长，例如通过设置休眠阻止代码执行。
-    await this.pauseRecordingProcess();         //暂停录制。
-    await this.resumeRecordingProcess();        // 恢复录制。
-    await this.stopRecordingProcess();          // 停止录制。
-    // 安全控件保存媒体资源至图库。
-    await this.saveRecorderAsset();
-  }
+// 相机相关准备工作。
+async function prepareCamera(cameraManager: camera.CameraManager, videoOutSurfaceId: string) {
+  // 具体实现查看相机资料。
+}
+
+// 启动相机出流。
+async function startCameraOutput() {
+  // 调用VideoOutput的start接口开始录像输出。
+}
+
+// 停止相机出流。
+async function stopCameraOutput() {
+  // 调用VideoOutput的stop接口停止录像输出。
+}
+
+// 释放相机实例。
+async function releaseCamera() {
+  // 释放相机准备阶段创建出的实例。
 }
 ```
