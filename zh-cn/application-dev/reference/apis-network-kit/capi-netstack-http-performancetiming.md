@@ -1,5 +1,10 @@
 # Http_PerformanceTiming
-
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
 ## 概述
 
 HTTP响应时间信息，会在{@link Http_Response.performanceTiming}中收集。
