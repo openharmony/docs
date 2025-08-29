@@ -776,7 +776,7 @@ getStringValue(resId: number, callback: _AsyncCallback&lt;string&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the module resId invalid.             |
+| 9001001  | Invalid resource ID.             |
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.         |
 
@@ -4648,7 +4648,7 @@ getColor(resId: number, callback: _AsyncCallback&lt;number&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the module resId invalid.             |
+| 9001001  | Invalid resource ID.             |
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.         |
 
@@ -5455,7 +5455,7 @@ closeRawFdSync(path: string): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | The resource not found by path.          |
+| 9001005  | Invalid relative path.          |
 
 **示例：**
   ```ts
@@ -5495,7 +5495,7 @@ closeRawFd(path: string, callback: _AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | The resource not found by path.          |
+| 9001005  | Invalid relative path.          |
 
 **示例：**
   ```ts
@@ -5860,6 +5860,14 @@ getLocales(includeSystem?: boolean): Array\<string>
 | ------------------------- | ----------- |
 | Array\<string> | 返回获取的语言列表，列表中的字符串由语言、脚本（可选）、地区（可选），按照顺序使用中划线“-”连接组成。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+
 **示例：**
   ```ts
   import { resourceManager } from '@kit.LocalizationKit';
@@ -6131,7 +6139,7 @@ getOverrideResourceManager(configuration?: Configuration): ResourceManager
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
 
 **示例：**
 
@@ -6207,7 +6215,7 @@ updateOverrideConfiguration(configuration: Configuration): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
 
 **示例：**
 
