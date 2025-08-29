@@ -709,7 +709,7 @@ openNetworkManagerSettings(context: Context): Promise\<boolean>
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
-**设备行为差异**：该接口在Phone、PC/2in1、Tablet设备中可正常调用，在其他设备中返回14800010错误码。
+**设备行为差异**：该接口在Phone、PC/2in1、Tablet设备中可正常调用，在其他设备调用不生效。
 
 **参数**：
 
