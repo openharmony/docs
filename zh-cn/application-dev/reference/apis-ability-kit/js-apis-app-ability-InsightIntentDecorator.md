@@ -66,7 +66,7 @@ import { InsightIntentLink, LinkParamCategory } from '@kit.AbilityKit';
   intentVersion: '1.0.1',
   displayName: '播放歌曲',
   displayDescription: '播放音乐意图',
-  icon: $r('app.media.app_icon'),
+  icon: $r('app.media.app_icon'), // $r表示本地图标，需要在资源目录中定义
   llmDescription: '支持传递歌曲名称，播放音乐',
   keywords: ['音乐播放', '播放歌曲', 'PlayMusic'],
   uri: 'https://www.example.com/music/',
@@ -327,7 +327,7 @@ export class ClassForFuncDemo {
   intentVersion: '1.0.1',
   displayName: '查询天气',
   displayDescription: '显示天气信息',
-  icon: $r('app.media.app_icon'),
+  icon: $r('app.media.app_icon'), // $r表示本地图标，需要在资源目录中定义
   llmDescription: 'Get weather of an location',
   parameters: {
     'schema': 'http://json-schema.org/draft-07/schema#',
@@ -393,7 +393,7 @@ const LOG_TAG: string = 'testTag-EntryIntent';
   intentVersion: '1.0.1',
   displayName: '播放歌曲',
   displayDescription: '播放音乐意图',
-  icon: $r('app.media.app_icon'),
+  icon: $r('app.media.app_icon'), // $r表示本地图标，需要在资源目录中定义
   llmDescription: '支持传递歌曲名称，播放音乐',
   keywords: ['音乐播放', '播放歌曲', 'PlayMusic'],
   abilityName: 'EntryAbility',
@@ -483,7 +483,7 @@ import { insightIntent, Want, InsightIntentForm } from '@kit.AbilityKit';
   intentVersion: '1.0.1',
   displayName: '播放歌曲',
   displayDescription: '播放音乐意图',
-  icon: $r('app.media.app_icon'),
+  icon: $r('app.media.app_icon'), // $r表示本地图标，需要在资源目录中定义
   llmDescription: '支持传递歌曲名称，播放音乐',
   keywords: ['音乐播放', '播放歌曲', 'PlayMusic'],
   parameters: {
