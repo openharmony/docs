@@ -6,7 +6,7 @@
 <!--Tester: @lixueqing513-->
 <!--Adviser: @huipeizi-->
 
-AppServiceExtensionContext模块是AppServiceExtensionAbility的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)。
+AppServiceExtensionContext模块是[AppServiceExtensionAbility](../apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)。
 
 AppServiceExtensionContext提供了连接、断开ServiceExtensionAbility（系统应用后台服务扩展组件）的能力，以及AppServiceExtensionAbility终止自身的能力。这里的ServiceExtensionAbility只能由系统应用开发，支持三方应用连接。
 
@@ -32,8 +32,8 @@ import { common } from '@kit.AbilityKit';
 ```ts
 import { AppServiceExtensionAbility } from '@kit.AbilityKit';
 
-class AppServiceExtension extends AppServiceExtensionAbility {
-  onCreate() {
+export default class AppServiceExtension extends AppServiceExtensionAbility {
+  onCreate(want: Want) {
     let context = this.context; // 获取AppServiceExtensionContext
   }
 }
@@ -45,7 +45,7 @@ class AppServiceExtension extends AppServiceExtensionAbility {
 
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
-启动Ability。仅支持在主线程调用。使用Promise异步回调。
+启动UIAbility。仅支持在主线程调用。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -171,11 +171,11 @@ import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let commRemote: rpc.IRemoteObject; // 断开连接时需要释放
+let commRemote: rpc.IRemoteObject | null = null; // 断开连接时需要释放
 const TAG: string = '[AppServiceExtensionAbility]';
 
-class AppServiceExtension extends AppServiceExtensionAbility {
-  onCreate() {
+export default class AppServiceExtension extends AppServiceExtensionAbility {
+  onCreate(want: Want) {
     let want: Want = {
       bundleName: 'com.example.myapp',
       abilityName: 'MyAbility'
@@ -196,7 +196,18 @@ class AppServiceExtension extends AppServiceExtensionAbility {
 
     try {
       connection = this.context.connectServiceExtensionAbility(want, callback);
+      this.context.disconnectServiceExtensionAbility(connection).then(() => {
+        commRemote = null;
+        // 执行正常业务
+        hilog.info(0x0000, TAG, '----------- disconnectServiceExtensionAbility success -----------');
+      })
+      .catch((error: BusinessError) => {
+        commRemote = null;
+        // 处理业务逻辑错误
+        hilog.error(0x0000, TAG, `disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
+      });
     } catch (paramError) {
+      commRemote = null;
       // 处理入参错误异常
       hilog.error(0x0000, TAG, `error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
@@ -235,39 +246,7 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
 **示例：**
 
-```ts
-import { AppServiceExtensionAbility } from '@kit.AbilityKit';
-import { rpc } from '@kit.IPCKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
-let commRemote: rpc.IRemoteObject | null; // 断开连接时需要释放
-const TAG: string = '[AppServiceExtensionAbility]';
-
-class AppServiceExtension extends AppServiceExtensionAbility {
-  onCreate() {
-    // connection为connectServiceExtensionAbility中的返回值
-    let connection = 1;
-    try {
-      this.context.disconnectServiceExtensionAbility(connection)
-        .then(() => {
-          commRemote = null;
-          // 执行正常业务
-          hilog.info(0x0000, TAG, '----------- disconnectServiceExtensionAbility success -----------');
-        })
-        .catch((error: BusinessError) => {
-          commRemote = null;
-          // 处理业务逻辑错误
-          hilog.error(0x0000, TAG, `disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
-        });
-    } catch (paramError) {
-      commRemote = null;
-      // 处理入参错误异常
-      hilog.error(0x0000, TAG, `error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
-    }
-  }
-}
-```
+参见[connectServiceExtensionAbility](#connectserviceextensionability)。
 
 ### terminateSelf
 
@@ -302,8 +281,8 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[AppServiceExtensionAbility]';
 
-class AppServiceExtension extends AppServiceExtensionAbility {
-  onCreate() {
+export default class AppServiceExtension extends AppServiceExtensionAbility {
+  onCreate(want: Want) {
     this.context.terminateSelf().then(() => {
       // 执行正常业务
       hilog.info(0x0000, TAG, '----------- terminateSelf succeed -----------');

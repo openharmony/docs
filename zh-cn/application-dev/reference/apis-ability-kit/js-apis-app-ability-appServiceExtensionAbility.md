@@ -85,7 +85,7 @@ onCreate(want: Want): void
 
   const TAG: string = '[AppServiceExtAbility]';
 
-  class AppServiceExtAbility extends AppServiceExtensionAbility {
+  export default class AppServiceExtAbility extends AppServiceExtensionAbility {
     onCreate(want: Want) {
       hilog.info(0x0000, TAG, `onCreate, want: ${want.abilityName}`);
     }
@@ -108,7 +108,7 @@ onDestroy(): void
 
   const TAG: string = '[AppServiceExtAbility]';
 
-  class AppServiceExtAbility extends AppServiceExtensionAbility {
+  export default class AppServiceExtAbility extends AppServiceExtensionAbility {
     onDestroy() {
       hilog.info(0x0000, TAG, `onDestroy`);
     }
@@ -119,10 +119,7 @@ onDestroy(): void
 
 onRequest(want: Want, startId: number): void
 
-调用方使用[startAppServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)拉起AppServiceExtensionAbility实例时，系统会触发该回调。
-
-- 如果该实例已创建，则会直接回调该接口。
-- 如果该实例此前未被创建，则会先创建实例并触发[onCreate()](#oncreate)回调，再回调该接口。
+调用方每次使用[startAppServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)拉起AppServiceExtensionAbility实例时，系统都会触发该回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -141,7 +138,7 @@ onRequest(want: Want, startId: number): void
 
   const TAG: string = '[AppServiceExtAbility]';
 
-  class AppServiceExtAbility extends AppServiceExtensionAbility {
+  export default class AppServiceExtAbility extends AppServiceExtensionAbility {
     onRequest(want: Want, startId: number) {
       hilog.info(0x0000, TAG, `onRequest, want: ${want.abilityName}, startId: ${startId}`);
     }
@@ -154,8 +151,6 @@ onConnect(want: Want): rpc.RemoteObject
 
 调用方使用[connectAppServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20)连接AppServiceExtensionAbility实例时，系统会触发该回调。
 
-- 如果该实例已创建，则会直接回调该接口。
-- 如果该实例此前未被创建，则会先创建实例并触发[onCreate()](#oncreate)回调，再回调该接口。
 
 应用需要在该接口中返回一个RemoteObject对象，用于客户端和服务端进行通信。当AppServiceExtensionAbility实例处于连接状态时，如果调用方发起新的连接，系统会返回缓存的RemoteObject对象，而不会重复回调[onConnect()](#onconnect)接口。
 
@@ -191,7 +186,7 @@ onConnect(want: Want): rpc.RemoteObject
     }
   }
 
-  class AppServiceExtAbility extends AppServiceExtensionAbility {
+  export default class AppServiceExtAbility extends AppServiceExtensionAbility {
     onConnect(want: Want) {
       hilog.info(0x0000, TAG, `onConnect, want: ${want.abilityName}`);
       return new StubTest('test');
@@ -221,7 +216,7 @@ onDisconnect(want: Want): void
 
   const TAG: string = '[AppServiceExtAbility]';
 
-  class AppServiceExtAbility extends AppServiceExtensionAbility {
+  export default class AppServiceExtAbility extends AppServiceExtensionAbility {
     onDisconnect(want: Want) {
       hilog.info(0x0000, TAG, `onDisconnect, want: ${want.abilityName}`);
     }
