@@ -38,7 +38,7 @@
          }
        } catch (err) {
          let error: BusinessError = err as BusinessError;
-         console.error(`Faild to switchCurrentInputMethodSubtype, code: ${err.code}, message: ${err.message}`);
+         console.error(`Failed to switchCurrentInputMethodSubtype, code: ${err.code}, message: ${err.message}`);
        }
      }
    }
@@ -87,7 +87,7 @@ export class KeyboardController {
       }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
-      console.error(`Faild to switchInputMethod, code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to switchInputMethod, code: ${err.code}, message: ${err.message}`);
     }
   }
 }
@@ -117,7 +117,7 @@ export class KeyboardController {
       }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
-      console.error(`Faild to switchCurrentInputMethodAndSubtype, code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to switchCurrentInputMethodAndSubtype, code: ${err.code}, message: ${err.message}`);
     }
   }
 }
