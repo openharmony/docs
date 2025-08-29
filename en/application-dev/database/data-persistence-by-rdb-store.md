@@ -74,7 +74,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
    // In this example, Ability is used to obtain an RdbStore instance. You can use other implementations as required.
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
-       // Before using a tokenizer, call isStorageTypeSupported to check whether the tokenizer is supported by the current platform.
+       // Before using a tokenizer, call isTokenizerSupported to check whether the tokenizer is supported by the current platform.
        let tokenType = relationalStore.Tokenizer.ICU_TOKENIZER;
        let tokenTypeSupported = relationalStore.isTokenizerSupported(tokenType);
        if (!tokenTypeSupported) {
