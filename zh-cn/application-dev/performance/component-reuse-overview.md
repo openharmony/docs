@@ -332,7 +332,7 @@ struct ChildComponentA {
       Grid() {
         ForEach((new Array(20)).fill(''), (item: string,index: number) => {
           GridItem() {
-            Image($r('app.media.startIcon'))
+            Image($r('app.media.icon'))
               .height(20)
           }
         })
@@ -512,7 +512,7 @@ struct ChildComponentA {
       Grid() {
         ForEach((new Array(20)).fill(''), (item: string,index: number) => {
           GridItem() {
-            Image($r('app.media.startIcon'))
+            Image($r('app.media.icon'))
               .height(20)
           }
         })
