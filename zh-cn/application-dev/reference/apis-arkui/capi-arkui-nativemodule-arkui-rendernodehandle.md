@@ -10,7 +10,7 @@
 
 定义渲染节点指针。
 
-**起始版本：** 12
+**起始版本：** 20
 
 **相关模块：** [ArkUI_NativeModule](capi-arkui-nativemodule.md)
 
