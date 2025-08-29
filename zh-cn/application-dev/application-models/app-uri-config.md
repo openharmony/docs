@@ -1,9 +1,9 @@
 # 应用链接说明
 <!--Kit: Ability Kit-->
-<!--Subsystem: Ability;AGC-->
-<!--Owner: @hanchen45;@liusu23-->
-<!--Designer: @ccllee1;@xukeke-->
-<!--Tester: @lixueqing513;@lusq-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45; @liusu23-->
+<!--Designer: @ccllee1; @xukeke-->
+<!--Tester: @lixueqing513; @lusq-->
 <!--Adviser: @huipeizi-->
 
 ## uris标签说明
