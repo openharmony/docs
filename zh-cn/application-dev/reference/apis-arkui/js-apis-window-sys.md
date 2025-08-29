@@ -983,7 +983,7 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
 
 getSnapshot(windowId: number): Promise<image.PixelMap>
 
-获取指定窗口相同尺寸截图，使用Promise异步回调。若当前窗口设置为隐私模式（可通过[setWindowPrivacyMode](#setwindowprivacymode9)接口设置），截图结果为白屏。
+获取指定窗口相同尺寸截图，使用Promise异步回调。若当前窗口设置为隐私模式（可通过[setWindowPrivacyMode](arkts-apis-window-Window.md#setwindowprivacymode9)接口设置），截图结果为白屏。
 
 **系统接口：** 此接口为系统接口。
 
