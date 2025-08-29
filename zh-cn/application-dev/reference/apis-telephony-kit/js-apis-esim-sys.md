@@ -867,20 +867,6 @@ eSIM.cancelSession(0, transactionId, eSIM.CancelReason.CANCEL_REASON_END_USER_RE
   });
 ```
 
-## AccessRule<sup>18+</sup>
-
-访问规则。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.CoreService.Esim
-
-| 名称 | 类型 | 只读 | 可选 | 说明 |
-| ----- | ----- | ----- | ----- | -----|
-| certificateHashHexStr | string  | 否 | 否 | 证书哈希的十六进制字符串。 |
-| packageName           | string  | 否 | 否 | 规则适用的程序包名称。 |
-| accessType            | number  | 否 | 否 | 规则的类型。 |
-
 ## GetDownloadableProfileMetadataResult<sup>18+</sup>
 
 获取可下载配置文件的元数据。
