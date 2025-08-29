@@ -114,7 +114,7 @@ autoHalfFold(value: boolean)
 
 onFolderStateChange(callback: OnFoldStatusChangeCallback)
 
-当折叠状态改变的时候回调，仅在横屏状态下生效，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
+当折叠状态改变的时候回调，仅在横屏状态下生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -131,7 +131,7 @@ onFolderStateChange(callback: OnFoldStatusChangeCallback)
 
 onHoverStatusChange(handler: OnHoverStatusChangeCallback)
 
-当悬停状态改变的时候回调，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
+当悬停状态改变的时候回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
