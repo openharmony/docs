@@ -402,3 +402,89 @@ export default class EntryUIExtAbility extends UIExtensionAbility {
   }
 }
 ```
+### startUIAbilitiesInSplitWindowMode<sup>20+</sup>
+
+startUIAbilitiesInSplitWindowMode(primaryWindowId: number, secondaryWant: Want): Promise\<void>
+
+当第一个UIAbility实例被创建后，启动第二个UIAbility，并以分屏模式进行显示。使用Promise异步回调。
+
+> **说明：**
+>
+> 如果第一个UIAbility实例被销毁，那么第二个UIAbility将以全屏模式启动。
+> 
+> 第二个UIAbility仅支持[显示启动](../../application-models/explicit-implicit-want-mappings.md#显式want匹配原理)。
+> 
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在Phone设备中可正常调用，在其他设备中返回801错误码。
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明                                                                                                                                                                                                                     |
+| ------ |--------| ------ |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| primaryWindowId | number | 是| 启动第一个UIAbility的主窗的窗口ID。窗口ID是[WindowProperties](../apis-arkui/arkts-apis-window-i.md#windowproperties)的属性，WindowProperties可通过[getWindowProperties()](../apis-arkui/arkts-apis-window-Window.md#getwindowproperties9)获取。 |
+| secondaryWant | [Want](js-apis-app-ability-want.md) | 是| 启动第二个UIAbility所需的Want信息。                                                                                                                                                                                               |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------ | ------ |
+| 201 | The application does not have permission to call the interface. |
+| 202 | Not system application. |
+| 801 | Capability not supported. |
+| 16000001 | Target UIAbility does not exist. |
+| 16000004 | Cannot start an invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist. |
+| 16000050 | Failed to connect to the system service or system server handle failed. |
+| 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000080 | Creating a new instance is not supported. |
+| 16000122 | The target component is blocked by the system module and does not support startup. |
+| 16000123 | Implicit startup is not supported. |
+| 16000124 | Starting a remote UIAbility is not supported. |
+| 16000125 | Starting a plugin UIAbility is not supported. |
+| 16000126 | Starting DLP files is not supported. |
+
+**示例**
+
+```ts
+import { UIExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryUIExtAbility extends UIExtensionAbility {
+  onForeground() {
+    // 启动第一个UIAbility的主窗ID，实际使用需替换为第一个UIAbility实际主窗ID
+    let primaryWindowId = 123;
+    let secdonaryWant: Want = {
+      bundleName: 'com.example.myapplication1',
+      abilityName: 'EntryAbility'
+    };
+    try {
+      this.context.startUIAbilitiesInSplitWindowMode(primaryWindowId, secdonaryWant).then(() => {
+        console.info(`TestTag:: start succeeded.`);
+      }).catch((error: BusinessError) => {
+        console.error(`TestTag:: startUIAbilitiesInSplitWindowMode failed: ${JSON.stringify(error)}`);
+      });
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+    }
+  }
+}
+```
