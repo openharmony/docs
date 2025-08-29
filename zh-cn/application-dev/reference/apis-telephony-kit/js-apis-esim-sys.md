@@ -951,16 +951,16 @@ eSIM.cancelSession(0, transactionId, eSIM.CancelReason.CANCEL_REASON_END_USER_RE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
-| 名称 | 类型                                                | 只读 | 可选 | 说明 |
-| ----- |---------------------------------------------------|---|---- |  -----|
-| iccid               | string                                 | 否 | 否 | 配置文件的iccId。 |
-| nickName            | string                                 | 否 | 否 | 昵称。 |
-| serviceProviderName | string                                 | 否 | 否 | 配置文件的服务提供商名称。 |
-| profileName         | string                                 | 否 | 否 | 配置文件名称。   |
-| state               | [ProfileState](#profilestate18)                  | 否 | 否 | 配置文件的状态。 |
-| profileClass        | [ProfileClass](#profileclass18)                  | 否 | 否 | 配置文件类。     |
-| operatorId          | [OperatorId](#operatorid18)                     | 否 | 否 | 配置文件的操作ID。|
-| policyRules         | [PolicyRules](#policerules18)                     | 否 | 否 | 配置文件策略。   |
+| 名称 | 类型                                                    | 只读 | 可选 | 说明 |
+| ----- |-------------------------------------------------------|---|---- |  -----|
+| iccid               | string                                                | 否 | 否 | 配置文件的iccId。 |
+| nickName            | string                                                | 否 | 否 | 昵称。 |
+| serviceProviderName | string                                                | 否 | 否 | 配置文件的服务提供商名称。 |
+| profileName         | string                                                | 否 | 否 | 配置文件名称。   |
+| state               | [ProfileState](#profilestate18)                       | 否 | 否 | 配置文件的状态。 |
+| profileClass        | [ProfileClass](#profileclass18)                       | 否 | 否 | 配置文件类。     |
+| operatorId          | [OperatorId](#operatorid18)                           | 否 | 否 | 配置文件的操作ID。|
+| policyRules         | [PolicyRules](#policyrules18)                         | 否 | 否 | 配置文件策略。   |
 | accessRules         | Array\<[AccessRule](./js-apis-esim.md#accessrule20)\> | 否 | 否 | 配置文件规则。   |
 
 ## EuiccInfo<sup>18+</sup>
