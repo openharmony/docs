@@ -32,6 +32,10 @@ ColumnSplit()
 
 除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
+> **说明：**
+>
+> ColumnSplit组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
+
 ### resizeable
 
 resizeable(value: boolean)
