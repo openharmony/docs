@@ -1,5 +1,12 @@
 # @ohos.net.connection (网络连接管理)（系统接口）
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 网络连接管理提供管理网络一些基础能力，包括获取默认激活的数据网络、获取所有激活数据网络列表、开启关闭飞行模式、获取网络能力信息等功能。
 
 > **说明：**
@@ -385,4 +392,95 @@ connection.factoryReset().then(() => {
 }).catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
 })
+```
+
+## ProxyMode<sup>20+</sup>
+
+表示代理模式的枚举。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+| 名称              | 值   | 说明                     |
+| -------------------- | ------ | ------------------------ |
+| PROXY_MODE_OFF     | 0 | 关闭代理模式。          |
+| PROXY_MODE_AUTO    | 1 | 自动代理模式。          |
+
+## connection.setProxyMode<sup>20+</sup>
+
+setProxyMode(mode: ProxyMode): Promise\<void\>
+
+设置代理模式。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名 | 类型             | 必填 | 说明               |
+| ------ |----------------| ---- | ------------------ |
+| mode   | [ProxyMode](#proxymode20) | 是   | 指定的代理模式。   |
+
+**返回值：**
+
+| 类型 | 说明                     |
+| -------- | ------------------------ |
+| Promise\<void\> | Promise对象，无返回结果。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息          |
+|-------|---------------|
+| 201   | Permission denied.   |
+| 202   | Non-system applications use system APIs. |
+
+
+
+**示例：**
+
+```ts
+import { connection, ProxyMode } from '@kit.NetworkKit';
+
+connection.setProxyMode(ProxyMode.AUTO).then(() => {
+    console.log("Proxy mode set successfully.");
+}).catch(error => {
+    console.error("Error setting proxy mode:", error);
+});
+```
+
+## connection.getProxyMode<sup>20+</sup>
+
+getProxyMode(): Promise\<ProxyMode\>
+
+获取当前的代理模式。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型                        | 说明                          |
+|---------------------------| ------------------------ |
+| Promise\<[ProxyMode](#proxymode20)\> | 返回的Promise对象，包含当前代理模式。 |
+
+
+**示例：**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+
+connection.getProxyMode().then(mode => {
+    console.log("Current proxy mode:", mode);
+}).catch(error => {
+    console.error("Error getting proxy mode:", error);
+});
 ```
