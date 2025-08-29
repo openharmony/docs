@@ -61,6 +61,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     #include <fstream>
     #include <mutex>
     #include <shared_mutex>
+    #include <string.h>
     ```
     
 2. 全局变量（仅作参考，可以根据实际情况将其封装到对象中）。
@@ -201,6 +202,10 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
                    return false;
                 }
                 // buffer数据填充。
+                int32_t capacity = OH_AVBuffer_GetCapacity(buffer);
+                if (size > capacity) {
+                    // 异常处理。
+                }
                 memcpy(addr, frameData, size);
 
                 OH_AVCodecBufferAttr info;
@@ -526,6 +531,10 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
                    return false;
                 }
                 // buffer数据填充。
+                int32_t capacity = OH_AVBuffer_GetCapacity(buffer);
+                if (size > capacity) {
+                    // 异常处理。
+                }
                 memcpy(addr, frameData, size);
 
                 OH_AVCodecBufferAttr info;
