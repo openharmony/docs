@@ -756,7 +756,7 @@ const genWrappingKeyParams: huks.HuksOptions = {
     },
     {
       tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-      value: huks.HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256
+      value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
     },
     {
       tag: huks.HuksTag.HUKS_TAG_PADDING,

@@ -1,4 +1,10 @@
 # Class (Router)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @mayaolll-->
+<!--Designer: @jiangdayuan-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 提供通过不同的url访问不同的页面，包括跳转到应用内的指定页面、同应用内的某个页面替换当前页面、返回上一页面或指定的页面等。
 
@@ -92,7 +98,7 @@ struct Index {
 
 pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
-跳转到应用内的指定页面。
+跳转到应用内的指定页面。使用callback异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -103,7 +109,7 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
 | options  | [router.RouterOptions](js-apis-router.md#routeroptions) | 是    | 跳转页面描述信息。 |
-| callback | AsyncCallback&lt;void&gt;                | 是    | 异常响应回调。   |
+| callback | AsyncCallback&lt;void&gt;                | 是    | router跳转结果回调函数。<br/>当路由跳转成功时，error为undefined。当路由跳转失败时，error为系统返回的错误对象。|
 
 **错误码：**
 
@@ -253,7 +259,7 @@ struct Index {
 
 pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
-跳转到应用内的指定页面。
+跳转到应用内的指定页面。使用callback异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -265,7 +271,7 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncC
 | -------- | ---------------------------------------- | ---- | ---------- |
 | options  | [router.RouterOptions](js-apis-router.md#routeroptions) | 是    | 跳转页面描述信息。  |
 | mode     | [router.RouterMode](js-apis-router.md#routermode9) | 是    | 跳转页面使用的模式。 |
-| callback | AsyncCallback&lt;void&gt;                | 是    | 异常响应回调。    |
+| callback | AsyncCallback&lt;void&gt;                | 是    | router跳转结果回调函数。<br/>当路由跳转成功时，error为undefined。当路由跳转失败时，error为系统返回的错误对象。    |
 
 **错误码：**
 
@@ -410,7 +416,7 @@ struct Index {
 
 replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
-用应用内的某个页面替换当前页面，并销毁被替换的页面。
+用应用内的某个页面替换当前页面，并销毁被替换的页面。使用callback异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -421,7 +427,7 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
 | options  | [router.RouterOptions](js-apis-router.md#routeroptions) | 是    | 替换页面描述信息。 |
-| callback | AsyncCallback&lt;void&gt;                | 是    | 异常响应回调。   |
+| callback | AsyncCallback&lt;void&gt;                | 是    | router跳转结果回调函数。<br/>当路由跳转成功时，error为undefined。当路由跳转失败时，error为系统返回的错误对象。   |
 
 **错误码：**
 
@@ -563,7 +569,7 @@ struct Index {
 
 replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
-用应用内的某个页面替换当前页面，并销毁被替换的页面。
+用应用内的某个页面替换当前页面，并销毁被替换的页面。使用callback异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -575,7 +581,7 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: Asy
 | -------- | ---------------------------------------- | ---- | ---------- |
 | options  | [router.RouterOptions](js-apis-router.md#routeroptions) | 是    | 替换页面描述信息。  |
 | mode     | [router.RouterMode](js-apis-router.md#routermode9) | 是    | 跳转页面使用的模式。 |
-| callback | AsyncCallback&lt;void&gt;                | 是    | 异常响应回调。    |
+| callback | AsyncCallback&lt;void&gt;                | 是    | router跳转结果回调函数。<br/>当路由跳转成功时，error为undefined。当路由跳转失败时，error为系统返回的错误对象。    |
 
 **错误码：**
 
@@ -720,7 +726,7 @@ struct Index {
 
 pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
-跳转到指定的命名路由页面。
+跳转到指定的命名路由页面。使用callback异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -731,7 +737,7 @@ pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;vo
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
 | options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 跳转页面描述信息。 |
-| callback | AsyncCallback&lt;void&gt;                | 是    | 异常响应回调。   |
+| callback | AsyncCallback&lt;void&gt;                | 是    | router跳转结果回调函数。<br/>当路由跳转成功时，error为undefined。当路由跳转失败时，error为系统返回的错误对象。   |
 
 **错误码：**
 
@@ -879,7 +885,7 @@ struct Index {
 
 pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
-跳转到指定的命名路由页面。
+跳转到指定的命名路由页面。使用callback异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -891,7 +897,7 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, call
 | -------- | ---------------------------------------- | ---- | ---------- |
 | options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 跳转页面描述信息。  |
 | mode     | [router.RouterMode](js-apis-router.md#routermode9) | 是    | 跳转页面使用的模式。 |
-| callback | AsyncCallback&lt;void&gt;                | 是    | 异常响应回调。    |
+| callback | AsyncCallback&lt;void&gt;                | 是    | router跳转结果回调函数。<br/>当路由跳转成功时，error为undefined。当路由跳转失败时，error为系统返回的错误对象。    |
 
 **错误码：**
 
@@ -1036,7 +1042,7 @@ struct Index {
 
 replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
-用指定的命名路由页面替换当前页面，并销毁被替换的页面。
+用指定的命名路由页面替换当前页面，并销毁被替换的页面。使用callback异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1047,7 +1053,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
 | options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 替换页面描述信息。 |
-| callback | AsyncCallback&lt;void&gt;                | 是    | 异常响应回调。   |
+| callback | AsyncCallback&lt;void&gt;                | 是    | router跳转结果回调函数。<br/>当路由跳转成功时，error为undefined。当路由跳转失败时，error为系统返回的错误对象。   |
 
 **错误码：**
 
@@ -1190,7 +1196,7 @@ struct Index {
 
 replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
-用指定的命名路由页面替换当前页面，并销毁被替换的页面。
+用指定的命名路由页面替换当前页面，并销毁被替换的页面。使用callback异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1202,7 +1208,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, c
 | -------- | ---------------------------------------- | ---- | ---------- |
 | options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 替换页面描述信息。  |
 | mode     | [router.RouterMode](js-apis-router.md#routermode9) | 是    | 跳转页面使用的模式。 |
-| callback | AsyncCallback&lt;void&gt;                | 是    | 异常响应回调。    |
+| callback | AsyncCallback&lt;void&gt;                | 是    | router跳转结果回调函数。<br/>当路由跳转成功时，error为undefined。当路由跳转失败时，error为系统返回的错误对象。    |
 
 **错误码：**
 

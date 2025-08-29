@@ -1,6 +1,13 @@
-# Generating an HMAC
+# Generating an HMAC (ArkTS)
 
-A message authentication code (MAC) is used to check the authenticity and integrity of a message transmitted between two parties that share a secret key. A Hash-based Message Authentication Code (HMAC) is a type of MAC involving a hash function and a secret key. The generated MAC has a fixed length.
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
+The hash-based message authentication code (HMAC) algorithm employs a designated digest algorithm and takes a shared key and message as inputs to generate a fixed-length message authentication code (MAC) to check the integrity of packets. The HMAC adds key input on the basis of the message digest algorithm to ensure information correctness.
 
 ## How to Develop
 
@@ -44,7 +51,7 @@ The following provides examples of HMAC operations with different data passing m
     let message = 'hmacTestMessage'; // Message to be HMACed.
     let mac = cryptoFramework.createMac(macAlgName);
     await mac.init(key);
-    // If there is a small amount of data to be processed, call update() to pass in all the data at a time. The amount of data to be passed in by a single update() call is not limited.
+    // For a small amount of data, you can pass in full data in a single update. The API does not limit the length of the input parameter.
     await mac.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let macResult = await mac.doFinal();
     console.info('HMAC result:' + macResult.data);
@@ -74,7 +81,7 @@ The following provides examples of HMAC operations with different data passing m
     let message = 'hmacTestMessage'; // Message to be HMACed.
     let mac = cryptoFramework.createMac(macAlgName);
     mac.initSync(key);
-    // If there is a small amount of data to be processed, call update() to pass in all the data at a time. The amount of data to be passed in by a single update() call is not limited.
+    // For a small amount of data, you can pass in full data in a single update. The API does not limit the length of the input parameter.
     mac.updateSync({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let macResult = mac.doFinalSync();
     console.info('[Sync]HMAC result:' + macResult.data);
@@ -117,10 +124,10 @@ The following provides examples of HMAC operations with different data passing m
     let key = await genSymKeyByData(keyData);
     let macAlgName = "SHA256"; // MD algorithm.
     let mac = cryptoFramework.createMac(macAlgName);
-    // In this example, the message is of 43 bytes. After decoded in UTF-8 format, the message is also of 43 bytes.
+    // The message is of 43 bytes. After decoded in UTF-8 format, the message is also of 43 bytes.
     let messageText = "aaaaa......bbbbb......ccccc......ddddd......eee";
     let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
-    let updateLength = 20; // Pass in 20 bytes each time. You can set this parameter as required.
+    let updateLength = 20; // Update data in segments of 20 bytes.
     await mac.init(key);
     for (let i = 0; i < messageData.length; i += updateLength) {
       let updateMessage = messageData.subarray(i, i + updateLength);
@@ -134,7 +141,7 @@ The following provides examples of HMAC operations with different data passing m
   }
   ```
 
-- Example: Pass in data by segment to generate a MAC using synchronous APIs.
+- Pass in data by segment to generate a MAC using synchronous APIs.
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -153,7 +160,7 @@ The following provides examples of HMAC operations with different data passing m
     let key = genSymKeyByData(keyData);
     let macAlgName = "SHA256"; // MD algorithm.
     let mac = cryptoFramework.createMac(macAlgName);
-    // In this example, the message is of 43 bytes. After decoded in UTF-8 format, the message is also of 43 bytes.
+    // The message is of 43 bytes, decoded in UTF-8 format.
     let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
     let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
     let updateLength = 20; // Pass in 20 bytes each time. You can set this parameter as required.
@@ -209,7 +216,7 @@ The following provides examples of HMAC operations with different data passing m
     let message = 'hmacTestMessage'; // Message to be HMACed.
     let mac = cryptoFramework.createMac(spec);
     await mac.init(key);
-    // If there is a small amount of data to be processed, call update() to pass in all the data at a time. The amount of data to be passed in by a single update() call is not limited.
+    // For a small amount of data, you can pass in full data in a single update. The API does not limit the length of the input parameter.
     await mac.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let macResult = await mac.doFinal();
     console.info('HMAC result:' + macResult.data);

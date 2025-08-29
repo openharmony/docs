@@ -20,7 +20,7 @@
 ### 三方UI框架
 Flutter提供了PlatformView与Texture抽象组件，这些组件可使用系统组件渲染，用来支持Flutter组件功能不足的部分。Weex2.0框架的Camera、Video和Canvas组件可以使用系统组件渲染，以增强功能和性能。
 
-- 在三方框架页面侧，由于Flutter、Weex等三方框架不在操作系统范围，本文不列举可被同层渲染的三方框架UI组件的范围与使用方式。
+- 在三方框架页面侧，由于Flutter、Weex等三方框架不在操作系统范围内，本文不列举可被同层渲染的三方框架UI组件的范围与使用方式。
 
 - 在应用侧，应用开发者可以使用ArkUI的NodeContainer等接口，构建三方框架同层标签对应的同层渲染组件。可支持同层渲染的ArkUI常用组件包括：[TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md), [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md), [Canvas](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md), [Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md), [Web](../reference/apis-arkweb/arkts-basic-components-web.md)。具体规格可参见[同层渲染规格](#规格约束)。
 

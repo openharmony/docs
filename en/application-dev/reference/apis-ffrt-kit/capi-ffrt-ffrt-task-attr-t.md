@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## Overview
 
@@ -20,6 +21,6 @@ The **ffrt_task_attr_t** struct describes a concurrent task attribute.
 
 ### Member Variables
 
-| Name| Description|
-| -- | -- |
+| Name| Description|	
+| -- | -- |	
 | uint32_t storage[(ffrt_task_attr_storage_size + sizeof(uint32_t) - 1) / sizeof(uint32_t)] | Storage size of a task attribute.|

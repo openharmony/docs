@@ -207,11 +207,7 @@ hiAppEvent.removeWatcher(watcher);
 
 setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: string): Promise&lt;void&gt;
 
-事件自定义参数设置方法，使用Promise方式作为异步回调。在同一生命周期中，可以通过事件领域和事件名称关联系统事件和应用事件，系统事件仅支持[崩溃事件](../../dfx/hiappevent-watcher-crash-events.md)、[应用冻屏事件](../../dfx/hiappevent-watcher-freeze-events.md)和[资源泄漏事件](../../dfx/hiappevent-watcher-resourceleak-events.md)下的js内存泄漏。
-
->**注意：**
->
-> 从API version 20开始，支持[资源泄漏事件](../../dfx/hiappevent-watcher-resourceleak-events.md)下的js内存泄漏。
+事件自定义参数设置方法，使用Promise方式作为异步回调。在同一生命周期中，可以通过事件领域和事件名称关联系统事件和应用事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -223,7 +219,7 @@ setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: st
 | ------ | ------------------------------ | ---- | -------------- |
 | params | Record&lt;string, [ParamType](#paramtype12)&gt; | 是 | 事件自定义参数对象。参数名和参数值规格定义如下：<br>- 参数名为string类型，首字符必须为字母字符或$字符。中间字符必须为数字字符、字母字符或下划线字符。结尾字符必须为数字字符或字母字符。长度非空且不超过32个字符。<br>- 参数值为[ParamType](#paramtype12)类型，参数值长度需在1024个字符以内。<br>- 参数个数需在64个以内。 |
 | domain | string                        | 是 | 事件领域。事件领域可支持关联应用事件和系统事件（hiAppEvent.domain.OS）。 |
-| name   | string                        | 否 | 事件名称。默认为空字符串，空字符串表示关联事件领域下的所有事件名称。事件名称可支持关联应用事件和系统事件，其中系统事件仅支持关联崩溃事件（hiAppEvent.event.APP_CRASH）和应用冻屏事件（hiAppEvent.event.APP_FREEZE）。 |
+| name   | string                        | 否 | 事件名称。默认为空字符串，空字符串表示关联事件领域下的所有事件名称。事件名称可支持关联应用事件和系统事件，其中系统事件仅支持关联：<br>- [崩溃事件](../../dfx/hiappevent-watcher-crash-events.md)（hiAppEvent.event.APP_CRASH）<br>- [应用冻屏事件](../../dfx/hiappevent-watcher-freeze-events.md)（hiAppEvent.event.APP_FREEZE）<br>- [资源泄漏事件](../../dfx/hiappevent-watcher-resourceleak-events.md)（hiAppEvent.event.RESOURCE_OVERLIMIT）。<br>**注意**：从API version 20开始，支持[资源泄漏事件](../../dfx/hiappevent-watcher-resourceleak-events.md)。 |
 
 **返回值：**
 
@@ -269,7 +265,10 @@ hiAppEvent.setEventParam(params, "test_domain", "test_event").then(() => {
 
 setEventConfig(name: string, config: Record&lt;string, ParamType&gt;): Promise&lt;void&gt;
 
-事件相关的配置参数设置方法，使用Promise方式作为异步回调。在同一生命周期中，可以通过事件名称，设置事件相关的配置参数。<br/>不同的事件有不同的配置项，目前仅支持MAIN_THREAD_JANK（参数配置详见[主线程超时事件检测](../../dfx/hiappevent-watcher-mainthreadjank-events.md#自定义参数)）和APP_CRASH（参数配置详见[崩溃日志配置参数设置介绍](../../dfx/hiappevent-watcher-crash-events.md#崩溃日志规格自定义参数设置)）事件。
+事件相关的配置参数设置方法，使用Promise方式作为异步回调。在同一生命周期中，可以通过事件名称，设置事件相关的配置参数。<br />不同的事件有不同的配置项，目前仅支持以下事件：
+- MAIN_THREAD_JANK（参数配置详见[主线程超时事件检测](../../dfx/hiappevent-watcher-mainthreadjank-events.md#自定义参数)）
+- APP_CRASH（参数配置详见[崩溃日志配置参数设置介绍](../../dfx/hiappevent-watcher-crash-events.md#崩溃日志规格自定义参数设置)）
+- RESOURCE_OVERLIMIT（参数配置详见[资源泄漏事件检测](../../dfx/hiappevent-watcher-resourceleak-events.md#自定义规格设置)）
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 

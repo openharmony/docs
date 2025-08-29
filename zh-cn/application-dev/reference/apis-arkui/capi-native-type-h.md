@@ -140,6 +140,8 @@
 | [ArkUI_ImageSpanAlignment](#arkui_imagespanalignment)               | ArkUI_ImageSpanAlignment        | 定义图片基于文本的对齐方式。                    |
 | [ArkUI_ObjectFit](#arkui_objectfit)                                 | ArkUI_ObjectFit                 | 定义image填充效果。ImageSpanAlignment    |
 | [ArkUI_ImageInterpolation](#arkui_imageinterpolation)               | ArkUI_ImageInterpolation        | 定义图片插值效果。                         |
+| [ArkUI_DynamicRangeMode](#arkui_dynamicrangemode)                   | ArkUI_DynamicRangeMode          | 定义图像动态范围模式（例如：SDR/HDR），用于控制图像的明暗与色彩显示范围。 |
+| [ArkUI_ImageRotateOrientation](#arkui_imagerotateorientation)       | ArkUI_ImageRotateOrientation    | 定义图像旋转方向。                         |
 | [ArkUI_BlendMode](#arkui_blendmode)                                 | ArkUI_BlendMode                 | 混合模式枚举值。                          |
 | [ArkUI_Direction](#arkui_direction)                                 | ArkUI_Direction                 | 设置容器元素内主轴方向上的布局枚举值。               |
 | [ArkUI_ItemAlignment](#arkui_itemalignment)                         | ArkUI_ItemAlignment             | 设置子组件在父容器交叉轴的对齐格式枚举值。             |
@@ -224,7 +226,7 @@
 | [float OH_ArkUI_WaterFlowSectionOption_GetRowGap(ArkUI_WaterFlowSectionOption* option, int32_t index)](#oh_arkui_waterflowsectionoption_getrowgap) | 通过FlowItem分组配置信息获取对应索引下的分组的行间距。 |
 | [void OH_ArkUI_WaterFlowSectionOption_SetMargin(ArkUI_WaterFlowSectionOption* option, int32_t index,float marginTop, float marginRight, float marginBottom, float marginLeft)](#oh_arkui_waterflowsectionoption_setmargin) | 设置分组的外边距。 |
 | [ArkUI_Margin OH_ArkUI_WaterFlowSectionOption_GetMargin(ArkUI_WaterFlowSectionOption* option, int32_t index)](#oh_arkui_waterflowsectionoption_getmargin) | 通过FlowItem分组配置信息获取对应索引下的分组的外边距。 |
-| [void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndex(ArkUI_WaterFlowSectionOption* option, int32_t index, float(\*callback)(int32_t itemIndex))](#oh_arkui_waterflowsectionoption_registergetitemmainsizecallbackbyindex) | 通过FlowItem分组配置信息根据flowItemIndex获取指定Item的主轴大小。 |
+| [void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndex (ArkUI_WaterFlowSectionOption* option, int32_t index, float(\*callback)(int32_t itemIndex))](#oh_arkui_waterflowsectionoption_registergetitemmainsizecallbackbyindex) | 通过FlowItem分组配置信息根据flowItemIndex获取指定Item的主轴大小。 |
 | [void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndexWithUserData (ArkUI_WaterFlowSectionOption* option, int32_t index, void* userData, float (\*callback)(int32_t itemIndex, void* userData))](#oh_arkui_waterflowsectionoption_registergetitemmainsizecallbackbyindexwithuserdata) | 通过FlowItem分组配置信息根据flowItemIndex获取指定Item的主轴大小。 |
 | [ArkUI_GuidelineOption* OH_ArkUI_GuidelineOption_Create(int32_t size)](#oh_arkui_guidelineoption_create) | 创建RelativeContainer容器内的辅助线信息。 |
 | [void OH_ArkUI_GuidelineOption_Dispose(ArkUI_GuidelineOption* guideline)](#oh_arkui_guidelineoption_dispose) | 销毁辅助线信息。 |
@@ -343,13 +345,13 @@
 | [void OH_ArkUI_ListItemSwipeActionItem_SetActionAreaDistance(ArkUI_ListItemSwipeActionItem* item, float distance)](#oh_arkui_listitemswipeactionitem_setactionareadistance) | 设置组件长距离滑动删除距离阈值。 |
 | [float OH_ArkUI_ListItemSwipeActionItem_GetActionAreaDistance(ArkUI_ListItemSwipeActionItem* item)](#oh_arkui_listitemswipeactionitem_getactionareadistance) | 获取组件长距离滑动删除距离阈值。 |
 | [void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionArea(ArkUI_ListItemSwipeActionItem* item, void (\*callback)())](#oh_arkui_listitemswipeactionitem_setonenteractionarea) | 设置滑动条目进入删除区域时调用的事件。 |
-| [void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionAreaWithUserData(ArkUI_ListItemSwipeActionItem* item,void* userData, void (\*callback)(void* userData))](#oh_arkui_listitemswipeactionitem_setonenteractionareawithuserdata) | 设置滑动条目进入删除区域时调用的事件。 |
+| [void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionAreaWithUserData (ArkUI_ListItemSwipeActionItem* item,void* userData, void (\*callback)(void* userData))](#oh_arkui_listitemswipeactionitem_setonenteractionareawithuserdata) | 设置滑动条目进入删除区域时调用的事件。 |
 | [void OH_ArkUI_ListItemSwipeActionItem_SetOnAction(ArkUI_ListItemSwipeActionItem* item, void (\*callback)())](#oh_arkui_listitemswipeactionitem_setonaction) | 设置组件进入长距删除区后删除ListItem时调用的事件。 |
 | [void OH_ArkUI_ListItemSwipeActionItem_SetOnActionWithUserData(ArkUI_ListItemSwipeActionItem* item,void* userData, void (\*callback)(void* userData))](#oh_arkui_listitemswipeactionitem_setonactionwithuserdata) | 设置组件进入长距删除区后删除ListItem时调用的事件。 |
 | [void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionArea(ArkUI_ListItemSwipeActionItem* item, void (\*callback)())](#oh_arkui_listitemswipeactionitem_setonexitactionarea) | 设置滑动条目退出删除区域时调用的事件。 |
-| [void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionAreaWithUserData(ArkUI_ListItemSwipeActionItem* item,void* userData, void (\*callback)(void* userData))](#oh_arkui_listitemswipeactionitem_setonexitactionareawithuserdata) | 设置滑动条目退出删除区域时调用的事件。 |
-| [void OH_ArkUI_ListItemSwipeActionItem_SetOnStateChange(ArkUI_ListItemSwipeActionItem* item,void (\*callback)(ArkUI_ListItemSwipeActionState swipeActionState))](#oh_arkui_listitemswipeactionitem_setonstatechange) | 设置列表项滑动状态变化时候触发的事件。 |
-| [void OH_ArkUI_ListItemSwipeActionItem_SetOnStateChangeWithUserData(ArkUI_ListItemSwipeActionItem* item,void* userData, void (\*callback)(ArkUI_ListItemSwipeActionState swipeActionState, void* userData))](#oh_arkui_listitemswipeactionitem_setonstatechangewithuserdata) | 设置列表项滑动状态变化时候触发的事件。 |
+| [void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionAreaWithUserData (ArkUI_ListItemSwipeActionItem* item,void* userData, void (\*callback)(void* userData))](#oh_arkui_listitemswipeactionitem_setonexitactionareawithuserdata) | 设置滑动条目退出删除区域时调用的事件。 |
+| [void OH_ArkUI_ListItemSwipeActionItem_SetOnStateChange (ArkUI_ListItemSwipeActionItem* item,void (\*callback)(ArkUI_ListItemSwipeActionState swipeActionState))](#oh_arkui_listitemswipeactionitem_setonstatechange) | 设置列表项滑动状态变化时候触发的事件。 |
+| [void OH_ArkUI_ListItemSwipeActionItem_SetOnStateChangeWithUserData (ArkUI_ListItemSwipeActionItem* item,void* userData, void (\*callback)(ArkUI_ListItemSwipeActionState swipeActionState, void* userData))](#oh_arkui_listitemswipeactionitem_setonstatechangewithuserdata) | 设置列表项滑动状态变化时候触发的事件。 |
 | [ArkUI_ListItemSwipeActionOption* OH_ArkUI_ListItemSwipeActionOption_Create()](#oh_arkui_listitemswipeactionoption_create) | 创建ListItemSwipeActionOption接口设置的配置项。 |
 | [void OH_ArkUI_ListItemSwipeActionOption_Dispose(ArkUI_ListItemSwipeActionOption* option)](#oh_arkui_listitemswipeactionoption_dispose) | 销毁ListItemSwipeActionOption实例。 |
 | [void OH_ArkUI_ListItemSwipeActionOption_SetStart(ArkUI_ListItemSwipeActionOption* option, ArkUI_ListItemSwipeActionItem* item)](#oh_arkui_listitemswipeactionoption_setstart) | 设置ListItemSwipeActionItem的左侧（垂直布局）或上方（横向布局）布局内容。 |
@@ -357,7 +359,7 @@
 | [void OH_ArkUI_ListItemSwipeActionOption_SetEdgeEffect(ArkUI_ListItemSwipeActionOption* option, ArkUI_ListItemSwipeEdgeEffect edgeEffect)](#oh_arkui_listitemswipeactionoption_setedgeeffect) | 设置滑动效果。 |
 | [int32_t OH_ArkUI_ListItemSwipeActionOption_GetEdgeEffect(ArkUI_ListItemSwipeActionOption* option)](#oh_arkui_listitemswipeactionoption_getedgeeffect) | 获取滑动效果。 |
 | [void OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChange(ArkUI_ListItemSwipeActionOption* option, void (\*callback)(float offset))](#oh_arkui_listitemswipeactionoption_setonoffsetchange) | 滑动操作偏移量更改时调用的事件。 |
-| [void OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChangeWithUserData(ArkUI_ListItemSwipeActionOption* option, void* userData, void (\*callback)(float offset, void* userData))](#oh_arkui_listitemswipeactionoption_setonoffsetchangewithuserdata) | 滑动操作偏移量更改时调用的事件。 |
+| [void OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChangeWithUserData (ArkUI_ListItemSwipeActionOption* option, void* userData, void (\*callback)(float offset, void* userData))](#oh_arkui_listitemswipeactionoption_setonoffsetchangewithuserdata) | 滑动操作偏移量更改时调用的事件。 |
 | [ArkUI_AccessibilityState* OH_ArkUI_AccessibilityState_Create(void)](#oh_arkui_accessibilitystate_create) | 创建无障碍状态。 |
 | [void OH_ArkUI_AccessibilityState_Dispose(ArkUI_AccessibilityState* state)](#oh_arkui_accessibilitystate_dispose) | 销毁无障碍状态指针。 |
 | [void OH_ArkUI_AccessibilityState_SetDisabled(ArkUI_AccessibilityState* state, int32_t isDisabled)](#oh_arkui_accessibilitystate_setdisabled) | 设置无障碍状态是否禁用。 |
@@ -433,7 +435,7 @@
 | [bool OH_ArkUI_ProgressLinearStyleOption_GetScanEffectEnabled(ArkUI_ProgressLinearStyleOption* option)](#oh_arkui_progresslinearstyleoption_getscaneffectenabled) | 获取扫光效果的开关信息。 |
 | [float OH_ArkUI_ProgressLinearStyleOption_GetStrokeWidth(ArkUI_ProgressLinearStyleOption* option)](#oh_arkui_progresslinearstyleoption_getstrokewidth) | 获取进度条宽度。 |
 | [float OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius(ArkUI_ProgressLinearStyleOption* option)](#oh_arkui_progresslinearstyleoption_getstrokeradius) | 获取进度条圆角半径值。 |
-| [ArkUI_SnapshotOptions* OH_ArkUI_CreateSnapshotOptions()](#oh_arkui_createsnapshotoptions) | 创建一个截图选项，当返回值不再使用时必须通过{@link OH_ArkUI_SnapshotOptions_Dispose}释放。 |
+| [ArkUI_SnapshotOptions* OH_ArkUI_CreateSnapshotOptions()](#oh_arkui_createsnapshotoptions) | 创建一个截图选项，当返回值不再使用时必须通过[OH_ArkUI_DestroySnapshotOptions()](#oh_arkui_destroysnapshotoptions)释放。 |
 | [void OH_ArkUI_DestroySnapshotOptions(ArkUI_SnapshotOptions* snapshotOptions)](#oh_arkui_destroysnapshotoptions) | 销毁截图选项指针。 |
 | [int32_t OH_ArkUI_SnapshotOptions_SetScale(ArkUI_SnapshotOptions* snapshotOptions, float scale)](#oh_arkui_snapshotoptions_setscale) | 配置截图选项中的缩放属性。 |
 | [ArkUI_CrossLanguageOption* OH_ArkUI_CrossLanguageOption_Create(void)](#oh_arkui_crosslanguageoption_create) | 创建跨语言配置项实例。 |
@@ -451,13 +453,13 @@
 | [void OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex(ArkUI_TextPickerRangeContentArray* handle, char* text, int32_t index)](#oh_arkui_textpickerrangecontentarray_settextatindex) | 指定TextPickerRangeContent数组指定位置的text数据。 |
 | [void OH_ArkUI_TextPickerRangeContentArray_Destroy(ArkUI_TextPickerRangeContentArray* handle)](#oh_arkui_textpickerrangecontentarray_destroy) | 删除TextPickerRangeContent数组对象。 |
 | [ArkUI_TextCascadePickerRangeContentArray* OH_ArkUI_TextCascadePickerRangeContentArray_Create(int32_t length)](#oh_arkui_textcascadepickerrangecontentarray_create) | 删除TextCascadePickerRangeContent数组对象。 |
-| [void OH_ArkUI_TextCascadePickerRangeContentArray_SetTextAtIndex(ArkUI_TextCascadePickerRangeContentArray* handle, char* text, int32_t index)](#oh_arkui_textcascadepickerrangecontentarray_settextatindex) | 指定TextCascadePickerRangeContent数组指定位置的text数据。 |
-| [void OH_ArkUI_TextCascadePickerRangeContentArray_SetChildAtIndex(ArkUI_TextCascadePickerRangeContentArray* handle, ArkUI_TextCascadePickerRangeContentArray* child, int32_t index)](#oh_arkui_textcascadepickerrangecontentarray_setchildatindex) | 指定TextCascadePickerRangeContent数组指定位置的child数据。 |
-| [void OH_ArkUI_TextCascadePickerRangeContentArray_Destroy(ArkUI_TextCascadePickerRangeContentArray* handle)](#oh_arkui_textcascadepickerrangecontentarray_destroy) | 删除TextCascadePickerRangeContent数组对象。 |
+| [void OH_ArkUI_TextCascadePickerRangeContentArray_SetTextAtIndex (ArkUI_TextCascadePickerRangeContentArray* handle, char* text, int32_t index)](#oh_arkui_textcascadepickerrangecontentarray_settextatindex) | 指定TextCascadePickerRangeContent数组指定位置的text数据。 |
+| [void OH_ArkUI_TextCascadePickerRangeContentArray_SetChildAtIndex (ArkUI_TextCascadePickerRangeContentArray* handle, ArkUI_TextCascadePickerRangeContentArray* child, int32_t index)](#oh_arkui_textcascadepickerrangecontentarray_setchildatindex) | 指定TextCascadePickerRangeContent数组指定位置的child数据。 |
+| [void OH_ArkUI_TextCascadePickerRangeContentArray_Destroy (ArkUI_TextCascadePickerRangeContentArray* handle)](#oh_arkui_textcascadepickerrangecontentarray_destroy) | 删除TextCascadePickerRangeContent数组对象。 |
 | [ArkUI_EmbeddedComponentOption* OH_ArkUI_EmbeddedComponentOption_Create()](#oh_arkui_embeddedcomponentoption_create) | 创建EmbeddedComponent组件选项的对象。 |
 | [void OH_ArkUI_EmbeddedComponentOption_Dispose(ArkUI_EmbeddedComponentOption* option)](#oh_arkui_embeddedcomponentoption_dispose) | 删除EmbeddedComponent组件选项的对象。 |
-| [void OH_ArkUI_EmbeddedComponentOption_SetOnError(ArkUI_EmbeddedComponentOption* option, void (\*callback)(int32_t code, const char* name, const char* message))](#oh_arkui_embeddedcomponentoption_setonerror) | 设置EmbeddedComponent组件的onError回调。EmbeddedComponent组件在运行过程中发生异常时触发本回调。 |
-| [void OH_ArkUI_EmbeddedComponentOption_SetOnTerminated(ArkUI_EmbeddedComponentOption* option, void (\*callback)(int32_t code, AbilityBase_Want* want))](#oh_arkui_embeddedcomponentoption_setonterminated) | 设置EmbeddedComponent组件的onTerminated回调。EmbeddedComponent组件正常退出时触发本回调。 |
+| [void OH_ArkUI_EmbeddedComponentOption_SetOnError (ArkUI_EmbeddedComponentOption* option, void (\*callback)(int32_t code, const char* name, const char* message))](#oh_arkui_embeddedcomponentoption_setonerror) | 设置EmbeddedComponent组件的onError回调。EmbeddedComponent组件在运行过程中发生异常时触发本回调。 |
+| [void OH_ArkUI_EmbeddedComponentOption_SetOnTerminated (ArkUI_EmbeddedComponentOption* option, void (\*callback)(int32_t code, AbilityBase_Want* want))](#oh_arkui_embeddedcomponentoption_setonterminated) | 设置EmbeddedComponent组件的onTerminated回调。EmbeddedComponent组件正常退出时触发本回调。 |
 
 ## 枚举类型说明
 
@@ -1700,6 +1702,7 @@ enum ArkUI_ObjectFit
 | ARKUI_OBJECT_FIT_NONE_AND_ALIGN_BOTTOM_START | 图片大小不变，在image组件中底部起始端对齐。 |
 | ARKUI_OBJECT_FIT_NONE_AND_ALIGN_BOTTOM | 图片大小不变，在image组件中底部横向居中对齐。 |
 | ARKUI_OBJECT_FIT_NONE_AND_ALIGN_BOTTOM_END | 图片大小不变，在image组件中底部尾端对齐。 |
+| ARKUI_OBJECT_FIT_NONE_MATRIX | 不改变图像原始大小，需要配合NODE_IMAGE_IMAGE_MATRIX使用。 |
 
 ### ArkUI_ImageInterpolation
 
@@ -1720,6 +1723,50 @@ enum ArkUI_ImageInterpolation
 | ARKUI_IMAGE_INTERPOLATION_LOW | 低图片插值。 |
 | ARKUI_IMAGE_INTERPOLATION_MEDIUM | 中图片插值。 |
 | ARKUI_IMAGE_INTERPOLATION_HIGH | 高图片插值，插值质量最高。 |
+
+### ArkUI_DynamicRangeMode
+
+```
+enum ArkUI_DynamicRangeMode
+```
+
+**描述：**
+
+
+定义图像动态范围模式（例如：SDR/HDR），用于控制图像的明暗与色彩显示范围。
+
+**起始版本：** 21
+
+| 枚举项 | 描述 |
+| -- | -- |
+| ARKUI_DYNAMIC_RANGE_MODE_HIGH = 0 | 高动态范围（High Dynamic Range，简称HDR），表示图片中显示亮度（brightness）的最小值和最大值的范围，范围越大图像的亮度表达更逼近真实环境，在太亮的环境下不会产生过曝（一片白），太暗的环境下产生过暗的效果（一片黑）。 |
+| ARKUI_DYNAMIC_RANGE_MODE_CONSTRAINT | 受限的高动态范围，包含比SDR更丰富的亮度和色彩，但不是完整的HDR，一般用于需要兼容SDR的情况。 |
+| ARKUI_DYNAMIC_RANGE_MODE_STANDARD | 标准动态范围（Standard Dynamic Range，简称SDR），表示亮度范围有限，一般在0~100尼特（亮度单位）左右，明暗对比度较小，暗部容易糊成黑，亮部容易爆白。 |
+
+### ArkUI_ImageRotateOrientation
+
+```
+enum ArkUI_ImageRotateOrientation
+```
+
+**描述：**
+
+
+定义图像旋转方向。
+
+**起始版本：** 21
+
+| 枚举项 | 描述 |
+| -- | -- |
+| ARKUI_ORIENTATION_AUTO = 0 | 读取图片携带的EXIF元数据作为显示方向，支持旋转和镜像。 |
+| ARKUI_ORIENTATION_UP | 默认按照当前图片的像素数据进行显示，不做任何处理。 |
+| ARKUI_ORIENTATION_RIGHT | 将当前图片顺时针旋转90度后显示。 |
+| ARKUI_ORIENTATION_DOWN  | 将当前图片顺时针旋转180度后显示。 |
+| ARKUI_ORIENTATION_LEFT | 将当前图片顺时针旋转270度后显示。 |
+| ARKUI_ORIENTATION_UP_MIRRORED | 将当前图片水平翻转后显示。 |
+| ARKUI_ORIENTATION_RIGHT_MIRRORED  | 将当前图片水平翻转再顺时针旋转90度后显示。 |
+| ARKUI_ORIENTATION_DOWN_MIRRORED | 将当前图片垂直翻转后显示。 |
+| ARKUI_ORIENTATION_LEFT_MIRRORED | 将当前图片水平翻转再顺时针旋转270度后显示。 |
 
 ### ArkUI_BlendMode
 
@@ -1754,12 +1801,12 @@ enum ArkUI_BlendMode
 | ARKUI_BLEND_MODE_SCREEN | r = s + d - s * d，将两个图像的像素值相加，然后减去它们的乘积来实现混合。 |
 | ARKUI_BLEND_MODE_OVERLAY | 根据目标像素来决定使用MULTIPLY混合模式还是SCREEN混合模式。 |
 | ARKUI_BLEND_MODE_DARKEN | rc = s + d - max(s * da, d * sa), ra = kSrcOver，当两个颜色重叠时，较暗的颜色会覆盖较亮的颜色。 |
-| ARKUI_BLEND_MODE_LIGHTEN | rc = s + d - min(s * da, d * sa), ra = |
+| ARKUI_BLEND_MODE_LIGHTEN | rc = s + d - min(s * da, d * sa), ra = kSrcOver，将源图像和目标图像中的像素进行比较，选取两者中较亮的像素作为最终的混合结果。|
 | ARKUI_BLEND_MODE_COLOR_DODGE | 使目标像素变得更亮来反映源像素。 |
 | ARKUI_BLEND_MODE_COLOR_BURN | 使目标像素变得更暗来反映源像素。 |
 | ARKUI_BLEND_MODE_HARD_LIGHT | 根据源像素的值来决定目标像素变得更亮或者更暗。根据源像素来决定使用MULTIPLY混合模式还是SCREEN混合模式。 |
 | ARKUI_BLEND_MODE_SOFT_LIGHT | 根据源像素来决定使用LIGHTEN混合模式还是DARKEN混合模式。 |
-| ARKUI_BLEND_MODE_DIFFERENCE | rc = s + d - 2 * (min(s * da, d * sa)), ra = |
+| ARKUI_BLEND_MODE_DIFFERENCE | rc = s + d - 2 * (min(s * da, d * sa)), ra = kSrcOver，对比源像素和目标像素，亮度更高的像素减去亮度更低的像素，产生高对比度的效果。 |
 | ARKUI_BLEND_MODE_EXCLUSION | rc = s + d - two(s * d), ra = kSrcOver，对比源像素和目标像素，亮度更高的像素减去亮度更低的像素，产生柔和的效果。 |
 | ARKUI_BLEND_MODE_MULTIPLY | r = s * (1 - da) + d * (1 - sa) + s * d，将源图像与目标图像进行乘法混合，得到一张新的图像。 |
 | ARKUI_BLEND_MODE_HUE | 保留源图像的亮度和饱和度，但会使用目标图像的色调来替换源图像的色调。 |
@@ -2030,7 +2077,7 @@ enum ArkUI_WordBreak
 | -- | -- |
 | ARKUI_WORD_BREAK_NORMAL = 0 | CJK(中文、日文、韩文)文本可以在任意2个字符间断行，而Non-CJK文本（如英文等）只能在空白符处断行。 |
 | ARKUI_WORD_BREAK_BREAK_ALL | 对于Non-CJK的文本，可在任意2个字符间断行。CJK(中文、日文、韩文)文本可以在任意2个字符间断行。 |
-| ARKUI_WORD_BREAK_BREAK_WORD | 对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行。 |
+| ARKUI_WORD_BREAK_BREAK_WORD | 对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行。对于CJK的文本，换行效果与NORMAL效果保持一致。 |
 | ARKUI_WORD_BREAK_HYPHENATION | 对于Non-CJK的文本，可以按照音节断行。对于CJK的文本，换行效果与NORMAL效果保持一致。<br>**起始版本：** 18 |
 
 ### ArkUI_EllipsisMode
@@ -2363,7 +2410,6 @@ enum ArkUI_RenderFit
 | ARKUI_RENDER_FIT_RESIZE_COVER_TOP_LEFT | 保持动画终态内容的宽高比进行缩小或放大，使内容的两边都恰好大于或等于组件两边。当内容宽方向有剩余时，内容与组件保持左侧对齐，显示内容的左侧部分。当内容高方向有剩余时，内容与组件保持顶部对齐，显示内容的顶侧部分。 |
 | ARKUI_RENDER_FIT_RESIZE_COVER_BOTTOM_RIGHT | 保持动画终态内容的宽高比进行缩小或放大，使内容的两边都恰好大于或等于组件两边。当内容宽方向有剩余时，内容与组件保持右侧对齐，显示内容的右侧部分。当内容高方向有剩余时，内容与组件保持底部对齐，显示内容的底侧部分。 |
 
-
 ### ArkUI_SwiperIndicatorType
 
 ```
@@ -2673,7 +2719,7 @@ enum ArkUI_HoverModeAreaType
 | 枚举项 | 描述 |
 | -- | -- |
 | ARKUI_HOVER_MODE_AREA_TYPE_TOP = 0 | 上半屏。 |
-| ARKUI_HOVER_MODE_AREA_TYPE_BUTTOM | 下半屏。 |
+| ARKUI_HOVER_MODE_AREA_TYPE_BOTTOM | 下半屏。 |
 
 ### ArkUI_ExpandMode
 
@@ -2776,8 +2822,8 @@ enum ArkUI_FocusWrapMode
 
 | 枚举项 | 描述 |
 | -- | -- |
-| FOCUS_WRAP_MODE_DEFAULT = 0 | 默认规则，使用方向键走焦不换行。 |
-| FOCUS_WRAP_WITH_ARROW = 1 | 使用方向键走焦自动换行。 |
+| ARKUI_FOCUS_WRAP_MODE_DEFAULT = 0 | 默认规则，使用方向键走焦不换行。 |
+| ARKUI_FOCUS_WRAP_WITH_ARROW = 1 | 使用方向键走焦自动换行。 |
 
 ### ArkUI_EdgeDirection
 
@@ -2835,6 +2881,12 @@ ArkUI_LayoutConstraint* OH_ArkUI_LayoutConstraint_Create()
 创建约束尺寸。
 
 **起始版本：** 12
+
+**返回：**
+
+| 类型                          | 说明 |
+|-----------------------------| -- |
+| [ArkUI_LayoutConstraint](capi-arkui-nativemodule-arkui-layoutconstraint.md)* | 创建约束尺寸的对象指针。 |
 
 ### OH_ArkUI_LayoutConstraint_Copy()
 
@@ -3798,7 +3850,7 @@ float OH_ArkUI_GuidelineOption_GetPositionStart(ArkUI_GuidelineOption* guideline
 **描述：**
 
 
-获取距离容器左侧或者顶部的距离。
+获取辅助线距离容器左侧或者顶部的距离。
 
 **起始版本：** 12
 
@@ -3814,7 +3866,7 @@ float OH_ArkUI_GuidelineOption_GetPositionStart(ArkUI_GuidelineOption* guideline
 
 | 类型 | 说明 |
 | -- | -- |
-| float | 距离容器左侧或者顶部的距离。 |
+| float | 辅助线距离容器左侧或者顶部的距离。单位为vp。 |
 
 ### OH_ArkUI_GuidelineOption_GetPositionEnd()
 
@@ -3825,7 +3877,7 @@ float OH_ArkUI_GuidelineOption_GetPositionEnd(ArkUI_GuidelineOption* guideline, 
 **描述：**
 
 
-获取距离容器右侧或者底部的距离。
+获取辅助线距离容器右侧或者底部的距离。
 
 **起始版本：** 12
 
@@ -3841,7 +3893,7 @@ float OH_ArkUI_GuidelineOption_GetPositionEnd(ArkUI_GuidelineOption* guideline, 
 
 | 类型 | 说明 |
 | -- | -- |
-| float | 距离容器右侧或者底部的距离。 |
+| float | 辅助线距离容器右侧或者底部的距离。单位为vp。 |
 
 ### OH_ArkUI_BarrierOption_Create()
 
@@ -5270,7 +5322,7 @@ int32_t OH_ArkUI_SwiperIndicator_SetMaxDisplayCount(ArkUI_SwiperIndicator* indic
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_SwiperIndicator](capi-arkui-nativemodule-arkui-swiperindicator.md)* indicator | 导航指示器对象指针。 |
-| int32_t maxDisplayCount | 导航点显示个数最大值，有效取值范围6-9。 |
+| int32_t maxDisplayCount | 导航点显示个数最大值，有效取值范围[6, 9]。 |
 
 **返回：**
 
@@ -5302,7 +5354,7 @@ int32_t OH_ArkUI_SwiperIndicator_GetMaxDisplayCount(ArkUI_SwiperIndicator* indic
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 导航点显示个数最大值，有效取值范围6-9。 |
+| int32_t | 导航点显示个数最大值，有效取值范围[6, 9]。 |
 
 ### OH_ArkUI_SwiperDigitIndicator_Create()
 
@@ -8432,7 +8484,7 @@ ArkUI_SnapshotOptions* OH_ArkUI_CreateSnapshotOptions()
 **描述：**
 
 
-创建一个截图选项，当返回值不再使用时必须通过{@link OH_ArkUI_SnapshotOptions_Dispose}释放。
+创建一个截图选项，当返回值不再使用时必须通过[OH_ArkUI_DestroySnapshotOptions()](#oh_arkui_destroysnapshotoptions)释放。
 
 **起始版本：** 15
 
@@ -8961,7 +9013,7 @@ void OH_ArkUI_EmbeddedComponentOption_SetOnError(ArkUI_EmbeddedComponentOption* 
 | 参数项 | 描述                           |
 | -- |------------------------------|
 | [ArkUI_EmbeddedComponentOption](capi-arkui-nativemodule-arkui-embeddedcomponentoption.md)* option | EmbeddedComponent组件选项的对象的指针。 |
-| callback | 回调函数。                        |
+| void (\*callback)(int32_t code, const char* name, const char* message) | 开发者自定义回调函数。<br>- code：接口调用失败返回的错误码信息。错误码的详细介绍请参考[UIExtension错误码](errorcode-uiextension.md)。<br>- name：接口调用失败返回的名称信息。<br>- message：接口调用失败返回的详细信息。 |
 
 
 ### OH_ArkUI_EmbeddedComponentOption_SetOnTerminated()
@@ -8983,6 +9035,6 @@ void OH_ArkUI_EmbeddedComponentOption_SetOnTerminated(ArkUI_EmbeddedComponentOpt
 | 参数项 | 描述                           |
 | -- |------------------------------|
 | [ArkUI_EmbeddedComponentOption](capi-arkui-nativemodule-arkui-embeddedcomponentoption.md)* option | EmbeddedComponent组件选项的对象的指针。 |
-| callback | 回调函数   |
+| void (\*callback)(int32_t code, [AbilityBase_Want](capi-arkui-nativemodule-abilitybase-want.md)* want) | 开发者自定义回调函数。<br>- code：被拉起EmbeddedUIExtensionAbility退出时返回的结果码。若Ability通过调用terminateSelfWithResult退出，结果码为Ability设置的值。若Ability通过调用terminateSelf退出，结果码为默认值"0"。<br>- want：被拉起EmbeddedUIExtensionAbility退出时返回的数据。   |
 
 

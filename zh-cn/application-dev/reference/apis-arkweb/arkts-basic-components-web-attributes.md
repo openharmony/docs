@@ -56,7 +56,7 @@ domStorageAccess(domStorageAccess: boolean)
 
 fileAccess(fileAccess: boolean)
 
-设置是否开启应用中文件系统的访问。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
+设置是否开启应用中文件系统的访问。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中的文件不受该属性影响而被限制访问。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -64,7 +64,7 @@ fileAccess(fileAccess: boolean)
 
 | 参数名        | 类型    | 必填   | 说明                   |
 | ---------- | ------- | ---- | ---------------------- |
-| fileAccess | boolean | 是    | 设置是否开启应用中文件系统的访问。<br>true表示启动应用中文件系统的访问。false表示不启用应用中文件系统的访问。<br>API version 11及以前：默认值：true。<br>API version 12及以后：默认值：false，同时，当fileAccess为false的时候，仅只读资源目录`/data/storage/el1/bundle/entry/resources/resfile`里面的file协议资源依然可以访问，不受fileAccess管控。 |
+| fileAccess | boolean | 是    | 设置是否开启应用中文件系统的访问。<br>true表示开启应用中文件系统的访问。false表示不开启应用中文件系统的访问。<br>API version 11及以前：默认值：true。<br>API version 12及以后：默认值：false，同时，当fileAccess为false的时候，仅只读资源目录`/data/storage/el1/bundle/entry/resources/resfile`里面的资源依然可以通过file协议访问，不受fileAccess管控。 |
 
 **示例：**
 
@@ -369,9 +369,11 @@ zoomAccess(zoomAccess: boolean)
 
 overviewModeAccess(overviewModeAccess: boolean)
 
-设置是否使用概览模式加载网页，即缩小内容以适应屏幕宽度。当前仅支持移动设备。
+设置是否使用概览模式加载网页，即缩小内容以适应屏幕宽度。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**设备行为差异：** 该接口在PC/2in1设备中无效果，在其他设备中可正常调用。
 
 **参数：**
 
@@ -886,7 +888,7 @@ defaultFixedFontSize(size: number)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| size | number | 是    | 设置网页的默认等宽字体大小，单位px。<br>输入值的范围为-2^31到2^31-1，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>默认值：13。 |
+| size | number | 是    | 设置网页的默认等宽字体大小，单位px。<br>输入值的范围为[-2^31, 2^31-1]，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>默认值：13。 |
 
 **示例：**
 
@@ -921,7 +923,7 @@ defaultFontSize(size: number)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| size | number | 是    | 设置网页的默认字体大小，单位px。<br>输入值的范围为-2^31到2^31-1，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>默认值：16。 |
+| size | number | 是    | 设置网页的默认字体大小，单位px。<br>输入值的范围为[-2^31, 2^31-1]，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>默认值：16。 |
 
 **示例：**
 
@@ -956,7 +958,7 @@ minFontSize(size: number)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| size | number | 是    | 设置网页字体大小最小值，单位px。<br>输入值的范围为-2^31到2^31-1，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>默认值：8。 |
+| size | number | 是    | 设置网页字体大小最小值，单位px。<br>输入值的范围为[-2^31, 2^31-1]，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>默认值：8。 |
 
 **示例：**
 
@@ -991,7 +993,7 @@ minLogicalFontSize(size: number)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| size | number | 是    | 设置网页逻辑字体大小最小值，单位px。<br>输入值的范围为-2^31到2^31-1，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>默认值：8。 |
+| size | number | 是    | 设置网页逻辑字体大小最小值，单位px。<br>输入值的范围为[-2^31, 2^31-1]，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>默认值：8。 |
 
 **示例：**
 
@@ -1586,6 +1588,7 @@ struct Index {
   ```
 
 ```html
+<!--index.html-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -1733,6 +1736,7 @@ struct Index {
   ```
 
 ```html
+<!--index.html-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -1796,6 +1800,7 @@ struct Index {
   ```
 
 ```html
+<!--index.html-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -1821,7 +1826,7 @@ layoutMode(mode: WebLayoutMode)
 > Web组件高度基于前端页面自适应布局有如下限制：
 > - 如果Web组件宽或长度超过7680px，请在Web组件创建的时候指定`RenderMode.SYNC_RENDER`模式，否则会整个白屏。
 > - Web组件创建后不支持动态切换layoutMode模式。
-> - Web组件宽高规格：指定`RenderMode.SYNC_RENDER`模式时，分别不超过50万px；指定`RenderMode.ASYNC_RENDER`模式时，分别不超过7680px。
+> - Web组件宽高规格：指定`RenderMode.ASYNC_RENDER`模式时，分别不超过7680px。
 > - 频繁更改页面宽高会触发Web组件重新布局，影响体验。
 > - 不支持瀑布流网页（下拉到底部加载更多）。
 > - 不支持宽度自适应，仅支持高度自适应。
@@ -2192,6 +2197,7 @@ defaultTextEncodingFormat(textEncodingFormat: string)
   ```
 
 ```html
+<!--index.html-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -2244,6 +2250,7 @@ struct WebComponent {
   ```
 
 ```html
+<!--index.html-->
 <!DOCTYPE html>
 <html>
 <head>

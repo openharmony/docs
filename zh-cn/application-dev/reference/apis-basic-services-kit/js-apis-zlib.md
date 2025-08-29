@@ -4964,6 +4964,8 @@ gzwrite(buf: ArrayBuffer, len: number): Promise&lt;number&gt;
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
+**参数：**
+
 | 参数名 | 类型        | 必填 | 说明                         |
 | ------ | ----------- | ---- | ---------------------------- |
 | buf    | ArrayBuffer | 是   | 对象指向要写入的数据缓冲区。 |
@@ -5037,6 +5039,8 @@ gzungetc(c: number): Promise&lt;number&gt;
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明                     |
 | ------ | ------ | ---- | ------------------------ |

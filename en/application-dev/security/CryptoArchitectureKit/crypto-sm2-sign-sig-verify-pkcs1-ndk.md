@@ -1,4 +1,11 @@
-# Signature Verification with an SM2 Key Pair (C/C++)
+# Signing and Signature Verification with an SM2 Key Pair (C/C++)
+
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
 
 For details about the algorithm specifications, see [SM2](crypto-sign-sig-verify-overview.md#sm2).
 
@@ -7,16 +14,93 @@ For details about the algorithm specifications, see [SM2](crypto-sign-sig-verify
 target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
-## How to Develop
+## Signing Data
+1. Call [OH_CryptoSign_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md#oh_cryptosign_create) with the string parameter **'SM2_256|SM3'** to create a **Sign** instance. The key type is **SM2_256**, and MD algorithm is **SM3**.
 
-1. Call [OH_CryptoVerify_Create](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_create) with the string parameter **'SM2_256|SM3'** to create a **Verify** instance. The key type is **SM2_256**, and MD algorithm is **SM3**.
+2. Call [OH_CryptoSign_Init](../../reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md#oh_cryptosign_init) to initialize the **Sign** instance using [OH_CryptoPrivKey](../../reference/apis-crypto-architecture-kit/capi-cryptoasymkeyapi-oh-cryptoprivkey.md).
 
-2. Call [OH_CryptoVerify_Init](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_init) to initialize the **Verify** instance by using the public key (**OH_CryptoPubKey**).
+3. Call [OH_CryptoSign_Update](../../reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md#oh_cryptosign_update) to pass in the data to be signed. Currently, the amount of data to be passed in by a single **update** is not limited. You can determine how to pass in data based on the data volume. If the data size is small, you can simply call **OH_CryptoSign_Final** to pass in the full data.
 
-3. Call [OH_CryptoVerify_Update](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_update) to pass in the data to be verified.<br>Currently, the amount of data to be passed in by a single **OH_CryptoVerify_Update** is not limited. You can determine how to pass in data based on the data volume. If a small amount of data is to be verified, you can call **OH_CryptoVerify_Final** immediately after **OH_CryptoVerify_Init()**.
+4. Call [OH_CryptoSign_Final](../../reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md#oh_cryptosign_final) to obtain the signed data.
 
-4. Call [OH_CryptoVerify_Final](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_final) to verify the signature.
-**Example**
+5. Call [OH_CryptoSign_Destroy](../../reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md#oh_cryptosign_destroy) to free the memory.
+
+```c++
+#include "CryptoArchitectureKit/crypto_common.h"
+#include "CryptoArchitectureKit/crypto_asym_key.h"
+#include "CryptoArchitectureKit/crypto_signature.h"
+
+static OH_Crypto_ErrCode doSm2Test() {
+   OH_CryptoAsymKeyGenerator *keyCtx = nullptr;
+   OH_CryptoKeyPair *keyPair = nullptr;
+   OH_CryptoSign *sign = nullptr;
+
+   uint8_t plainText[] = {
+      0x96, 0x46, 0x2e, 0xde, 0x3f, 0x47, 0xbf, 0xd6, 0x87, 0x48, 0x36, 0x1d, 0x75, 0x35, 0xbd, 0xbc,
+      0x6b, 0x06, 0xe8, 0xb3, 0x68, 0x91, 0x53, 0xce, 0x76, 0x5d, 0x24, 0xda, 0xdc, 0xc4, 0x9f, 0x94,
+   };
+   Crypto_DataBlob msgBlob = {
+      .data = reinterpret_cast<uint8_t *>(plainText),
+      .len = sizeof(plainText)};
+
+   OH_Crypto_ErrCode ret = OH_CryptoAsymKeyGenerator_Create((const char *)"SM2_256", &keyCtx);
+   if (ret != CRYPTO_SUCCESS) {
+      return ret;
+   }
+   ret = OH_CryptoAsymKeyGenerator_Generate(keyCtx, &keyPair);
+   if (ret != CRYPTO_SUCCESS) {
+      OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
+      return ret;
+   }
+
+   OH_CryptoPrivKey *privKey = OH_CryptoKeyPair_GetPrivKey(keyPair);
+   ret = OH_CryptoSign_Create((const char *)"SM2_256|SM3", &sign);
+   if (ret != CRYPTO_SUCCESS) {
+      OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
+      OH_CryptoKeyPair_Destroy(keyPair);
+      return ret;
+   }
+   ret = OH_CryptoSign_Init(sign, privKey);
+   if (ret != CRYPTO_SUCCESS) {
+      OH_CryptoSign_Destroy(sign);
+      OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
+      OH_CryptoKeyPair_Destroy(keyPair);
+      return ret;
+   }
+
+   ret = OH_CryptoSign_Update(sign, &msgBlob);
+   if (ret != CRYPTO_SUCCESS) {
+      OH_CryptoSign_Destroy(sign);
+      OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
+      OH_CryptoKeyPair_Destroy(keyPair);
+      return ret;
+   }
+
+   Crypto_DataBlob signBlob = {.data = nullptr, .len = 0};
+   ret = OH_CryptoSign_Final(sign, nullptr, &signBlob);
+   if (ret != CRYPTO_SUCCESS) {
+      OH_CryptoSign_Destroy(sign);
+      OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
+      OH_CryptoKeyPair_Destroy(keyPair);
+      return ret;
+   }
+   OH_CryptoSign_Destroy(sign);
+   OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
+   OH_CryptoKeyPair_Destroy(keyPair);
+   OH_Crypto_FreeDataBlob(&signBlob);
+   return CRYPTO_SUCCESS;
+}
+```
+
+## Verifying the Signature
+
+1. Call [OH_CryptoVerify_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md#oh_cryptoverify_create) with the string parameter **'SM2_256|SM3'** to create a **Verify** instance. The key type is **SM2_256**, and MD algorithm is **SM3**.
+
+2. Call [OH_CryptoVerify_Init](../../reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md#oh_cryptoverify_init) to initialize the **Verify** instance by using the public key (**OH_CryptoPubKey**).
+
+3. Call [OH_CryptoVerify_Update](../../reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md#oh_cryptoverify_update) to pass in the data to be verified. Currently, the amount of data to be passed in by a single **OH_CryptoVerify_Update** is not limited. You can determine how to pass in data based on the data volume. If a small amount of data is to be verified, you can call **OH_CryptoVerify_Final** immediately after **OH_CryptoVerify_Init()**.
+
+4. Call [OH_CryptoVerify_Final](../../reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md#oh_cryptoverify_final) to verify the signature.
 
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"

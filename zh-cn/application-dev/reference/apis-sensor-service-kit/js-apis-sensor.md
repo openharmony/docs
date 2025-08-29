@@ -9374,7 +9374,7 @@ promise.then((data: Array<number>) => {
     console.info("data[" + i + "]: " + data[i]);
   }
 }).catch((err: BusinessError) => {
-  console.info(`Failed to get promise.`);
+  console.error(`Failed to get promise.`);
 })
 ```
 
@@ -9452,7 +9452,7 @@ promise.then((data: Array<number>) => {
     console.info("Succeeded in getting sensor_getDirection_promise" + data[i]);
   }
 }).catch((err: BusinessError) => {
-  console.info(`Failed to get promise.`);
+  console.error(`Failed to get promise.`);
 })
 ```
 
@@ -9527,6 +9527,6 @@ const promise = sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], 
 promise.then((data: sensor.RotationMatrixResponse) => {
   console.info(JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.info(`Failed to get promise.`);
+  console.error(`Failed to get promise.`);
 })
 ```

@@ -14,9 +14,9 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。当前提供
 
 > **说明：**
 >
-> 为了保证应用的运行效率，所有API调用都是异步的，对于异步调用的API均提供了Promise的方式，以下示例均采用Promise方式，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
-
-完整的JS API说明以及示例代码请参考：[VPN扩展应用API](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
+>- 为了保证应用的运行效率，所有API调用都是异步的，对于异步调用的API均提供了Promise的方式，以下示例均采用Promise方式，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
+>- 完整的JS API说明以及示例代码请参考：[VPN扩展应用API](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
+>- 使用该功能需要INTERNET权限。
 
 ## VPN应用的显示体验
 
@@ -161,6 +161,47 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
     }).catch((error : BusinessError) => {
       console.error("destroy fail" + JSON.stringify(error));
     });
+  }
+}
+```
+
+### 生成VPN Id
+
+创建新的VPN时，应生成一个VPN Id作为VPN的唯一标识。
+可参考如下示例：
+
+```ts
+import VpnExtensionAbility from "@ohos.app.ability.VpnExtensionAbility";
+import { vpnExtension } from "@kit.NetworkKit";
+
+export default class VpnTest extends VpnExtensionAbility {
+  vpnId:string = ''
+
+  getVpnId(){
+    let vpnConnection = vpnExtension.createVpnConnection(this.context);
+    vpnConnection?.generateVpnId().then((data)=>{
+      if (data) {
+        this.vpnId = data;
+      }
+    });
+  }
+}
+```
+
+### 断开VPN
+
+若需断开VPN，可参考如下示例：
+```ts
+import VpnExtensionAbility from "@ohos.app.ability.VpnExtensionAbility";
+import { vpnExtension } from "@kit.NetworkKit";
+
+export default class VpnTest extends VpnExtensionAbility {
+  vpnId: string = 'test_vpn_id'
+  vpnConnection: vpnExtension.VpnConnection | undefined
+
+  destroy(){
+    this.vpnConnection = vpnExtension.createVpnConnection(this.context);
+    this.vpnConnection?.destroy(this.vpnId);
   }
 }
 ```

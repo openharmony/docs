@@ -85,7 +85,7 @@ This attribute supports two-way binding through [$$](../../../ui/state-managemen
 
 | Name       | Type                                                        | Mandatory| Description                                                        |
 | ------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| isAllSelected | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether to select all.<br>If **isAllSelected** is set to **undefined**, the default value **false** is used.<br>**true**: Select all check boxes in the group. **false**: Do not select any check box in the group.|
+| isAllSelected | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | Yes  | Whether to select all.<br>If **isAllSelected** is set to **undefined**, the default value **false** is used.<br>**true**: Select all check boxes in the group. **false**: Do not select any check box in the group.|
 
 ### selectedColor
 
@@ -121,7 +121,7 @@ Sets the color of the selected check box. Compared with [selectedColor](#selecte
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | Yes  | Color of the selected check box.<br>If **resColor** is set to **undefined**, the default value **$r('sys.color.ohos_id_color_text_primary_activated')** is used.<br>An invalid value is handled as the default value.|
+| resColor | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ResourceColor](ts-types.md#resourcecolor)> | Yes  | Color of the selected check box.<br>If **resColor** is set to **undefined**, the default value **$r('sys.color.ohos_id_color_text_primary_activated')** is used.<br>An invalid value is handled as the default value.|
 
 ### unselectedColor<sup>10+</sup>
 
@@ -153,7 +153,7 @@ Sets the border color of the check box when it is not selected. Compared with [u
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | Yes  | Border color of the check box when it is not selected.<br>If **resColor** is set to **undefined**, the default value **$r('sys.color.ohos_id_color_switch_outline_off')** is used.|
+| resColor | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ResourceColor](ts-types.md#resourcecolor)> | Yes  | Border color of the check box when it is not selected.<br>If **resColor** is set to **undefined**, the default value **$r('sys.color.ohos_id_color_switch_outline_off')** is used.|
 
 ### mark<sup>10+</sup>
 
@@ -185,7 +185,7 @@ Sets the check mark style of the check box. Compared with [mark](#mark10)<sup>10
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[MarkStyle](ts-types.md#markstyle10)> | Yes  | Check mark style of the check box.<br>If **style** is set to **undefined**, the previous value is retained.|
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[MarkStyle](ts-types.md#markstyle10)> | Yes  | Check mark style of the check box.<br>If **style** is set to **undefined**, the previous value is retained.|
 
 ### checkboxShape<sup>12+</sup>
 
@@ -221,7 +221,7 @@ Sets the check box shape of the check box group. Compared with [checkboxShape](#
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| shape  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CheckBoxShape](ts-appendix-enums.md#checkboxshape11)> | Yes  | Check box shape of the check box group.<br>If **shape** is set to **undefined**, the default value **CheckBoxShape.CIRCLE** is used.<br>**NOTE**<br>The shape of the check box group component follows the settings configured.<br>All check boxes within the check box group that do not have an individual shape set will conform to the shape of the check box group.<br>If a check box within the check box group has an individual shape set, that shape takes precedence over the check box group's shape.|
+| shape  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[CheckBoxShape](ts-appendix-enums.md#checkboxshape11)> | Yes  | Check box shape of the check box group.<br>If **shape** is set to **undefined**, the default value **CheckBoxShape.CIRCLE** is used.<br>**NOTE**<br>The shape of the check box group component follows the settings configured.<br>All check boxes within the check box group that do not have an individual shape set will conform to the shape of the check box group.<br>If a check box within the check box group has an individual shape set, that shape takes precedence over the check box group's shape.|
 
 ## Events
 
@@ -261,7 +261,7 @@ Triggered when the selected status of the check box group or any check box where
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnCheckboxGroupChangeCallback](#oncheckboxgroupchangecallback18)> | Yes  | Information about the check box group.<br>If **callback** is set to **undefined**, the callback function is not used.|
+| callback | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[OnCheckboxGroupChangeCallback](#oncheckboxgroupchangecallback18)> | Yes  | Information about the check box group.<br>If **callback** is set to **undefined**, the callback function is not used.|
 
 ## OnCheckboxGroupChangeCallback<sup>18+</sup>
 

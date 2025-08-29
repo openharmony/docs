@@ -223,7 +223,7 @@ Video控制器主要用于控制视频的状态，包括播放、暂停、停止
 
 - 自定义控制器
 
-  使用自定义的控制器，先关闭默认控制器，然后使用button以及slider等组件进行自定义的控制与显示，适合自定义较强的场景下使用。
+  使用自定义的控制器，先关闭默认控制器，然后使用[Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md)以及[Slider](../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md)等组件进行自定义的控制与显示，适合自定义较强的场景下使用。
 
   ```ts
   // xxx.ets

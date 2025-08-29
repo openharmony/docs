@@ -59,7 +59,7 @@ onHoverMove(event: Callback&lt;HoverEvent&gt;): T
 
 ## HoverEvent<sup>10+</sup>对象说明
 
-继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)。
+继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent8)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -91,7 +91,7 @@ struct HoverEventExample {
 
   build() {
     Column({ space: 20 }) {
-      Button(this.hoverText)
+      Button(this.hoverText, { type: ButtonType.Capsule })
         .width(180).height(80)
         .backgroundColor(this.color)
         .onHover((isHover: boolean, event: HoverEvent) => {
@@ -138,7 +138,7 @@ struct OnHoverMoveEventExample {
 
   build() {
     Column({ space: 20 }) {
-      Button('onHoverMove')
+      Button('onHoverMove', { type: ButtonType.Capsule })
         .width(180).height(80)
         .onHoverMove((event: HoverEvent) => {
           this.hoverMoveText = 'onHoverMove:\nXY = (' + event.x + ', ' + event.y + ')' + 

@@ -12,13 +12,13 @@ AppStorage是与应用进程绑定的全局UI状态存储中心，由UI框架在
 
 作为应用的“中枢”，AppStorage是[持久化数据PersistentStorage](arkts-persiststorage.md)和[环境变量Environment](arkts-environment.md)与UI交互的中转桥梁。其核心价值在于为开发者提供跨ability的大范围UI状态数据共享能力。
 
-AppStorage提供了API接口，允许开发者在自定义组件外手动触发AppStorage对应key的增、删、改、查操作。建议配合[AppStorage API文档](../../reference/apis-arkui/arkui-ts/ts-state-management.md#appstorage)阅读。最佳实践请参考[状态管理最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-status-management)。
+AppStorage提供了API接口，允许开发者在自定义组件外手动触发AppStorage对应属性的增、删、改、查操作。建议配合[AppStorage API文档](../../reference/apis-arkui/arkui-ts/ts-state-management.md#appstorage)阅读。最佳实践请参考[状态管理最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-status-management)。
 
 ## 概述
 
 AppStorage是在应用启动时创建的单例，用于提供应用状态数据的中心存储。这些状态数据在应用级别可访问。AppStorage在应用运行过程中保留其属性。
 
-AppStorage中保存的属性通过唯一的字符串类型key值访问，该属性可以和UI组件同步，且可以在应用业务逻辑中被访问。
+AppStorage中保存的属性通过唯一的字符串类型属性名（key）访问，该属性可以和UI组件同步，且可以在应用业务逻辑中被访问。
 
 AppStorage支持应用的[主线程](../../application-models/thread-model-stage.md)内多个[UIAbility](../../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例间的UI状态数据共享。
 
@@ -28,14 +28,7 @@ AppStorage中的属性可以被双向同步，并具有不同的功能，比如�
 
 ## \@StorageProp
 
-在上文中已经提到，如果要建立AppStorage和自定义组件的联系，需使用\@StorageProp和\@StorageLink装饰器。使用\@StorageProp(key)或\@StorageLink(key)装饰组件内的变量，key标识了AppStorage的属性。
-
-当自定义组件初始化时，使用AppStorage中对应key的属性值初始化\@StorageProp(key)或\@StorageLink(key)装饰的变量。由于应用逻辑的差异，无法确认组件初始化前是否已向AppStorage实例中存入对应属性，因此对\@StorageProp(key)或\@StorageLink(key)装饰的变量进行本地初始化是必要的。
-
-\@StorageProp(key)与AppStorage中key对应的属性建立单向数据同步：
-
-1. 本地修改时，该修改不会被写回AppStorage中。
-2. AppStorage修改key对应的属性时，该修改会被同步到所有绑定AppStorage对应key的属性上，覆盖本地的修改。
+\@StorageProp与AppStorage中对应的属性建立单向数据同步。
 
 > **说明：**
 >
@@ -45,10 +38,11 @@ AppStorage中的属性可以被双向同步，并具有不同的功能，比如�
 
 | \@StorageProp变量装饰器 | 说明                                                         |
 | ----------------------- | ------------------------------------------------------------ |
-| 装饰器参数              | key：常量字符串，必填（字符串需要有引号）。                  |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API12及以上支持Map、Set、Date、undefined和null类型。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>API12及以上还支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[AppStorage支持联合类型](#appstorage支持联合类型)。 <br/>**注意**<br/>变量类型必须被指定，建议和AppStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@StorageProp('AA') a: number \| null = null`是支持的，不支持`@StorageProp('AA') a: number = null`。<br/>不支持any。 |
+| 装饰器参数              | 常量字符串，必填（字符串需要有引号）。<br/>**说明：**<br/>使用null和undefined作为key时，会隐式转换为对应的字符串，不建议该用法。                |
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>>API Version 12及以上，支持Map、Set、Date、undefined和null类型，嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>同时，API Version 12及以上还支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[AppStorage支持联合类型](#appstorage支持联合类型)。 <br/>**说明：**<br/>变量类型必须被指定，建议和AppStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。|
+| 不允许装饰的变量类型                | 不支持装饰Function类型。 |
 | 同步类型                | 单向同步：从AppStorage的对应属性到组件的状态变量。<br/>组件本地的修改是允许的，但是AppStorage中给定的属性一旦发生变化，将覆盖本地的修改。 |
-| 被装饰变量的初始值      | 必须指定，如果AppStorage实例中不存在属性，则用该初始值初始化该属性，并存入AppStorage中。 |
+| 被装饰变量的初始值      | 必须本地初始化，如果AppStorage实例中不存在属性，则用该初始值初始化该属性，并存入AppStorage中。 |
 
 ### 变量的传递/访问规则说明
 
@@ -86,24 +80,21 @@ AppStorage中的属性可以被双向同步，并具有不同的功能，比如�
 
 ## \@StorageLink
 
+\@StorageLink与AppStorage中对应的属性建立双向数据同步。
+
 > **说明：**
 >
 > 从API version 11开始，该装饰器支持在原子化服务中使用。
-
-\@StorageLink(key)是和AppStorage中key对应的属性建立双向数据同步：
-
-1. 本地修改发生时，该修改会被写回AppStorage中。
-
-2. 当AppStorage中的修改发生后，该修改会被同步到所有绑定AppStorage对应key的属性上，包括单向（\@StorageProp和通过[@Prop](./arkts-prop.md)创建的单向绑定变量）、双向（\@StorageLink和通过link创建的双向绑定变量）变量和其他实例（如PersistentStorage）。
 
 ### 装饰器使用规则说明
 
 | \@StorageLink变量装饰器 | 说明                                                         |
 | ----------------------- | ------------------------------------------------------------ |
-| 装饰器参数              | key：常量字符串，必填（字符串需要有引号）。                  |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API12及以上支持Map、Set、Date、undefined和null类型。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现-1)。<br/>API12及以上还支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[AppStorage支持联合类型](#appstorage支持联合类型)。 <br/>**注意**<br/>变量类型必须被指定，建议和AppStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@StorageLink('AA') a: number \| null = null`是支持的，不支持`@StorageLink('AA') a: number = null`。<br/>不支持any。 |
+| 装饰器参数              | key：常量字符串，必填（字符串需要有引号）。<br/>**注意：**<br/>使用null和undefined作为key时，会隐式转换为对应的字符串，不建议该用法。                  |
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API Version 12及以上支持Map、Set、Date、undefined和null类型。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现-1)。<br/>>API Version 12及以上还支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[AppStorage支持联合类型](#appstorage支持联合类型)。 <br/>**注意：**<br/>变量类型必须被指定，建议和AppStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。 |
+| 不允许装饰的变量类型                | 不支持装饰Function类型。 |
 | 同步类型                | 双向同步：从AppStorage的对应属性到自定义组件，从自定义组件到AppStorage对应属性。 |
-| 被装饰变量的初始值      | 必须指定，如果AppStorage实例中不存在属性，则用该初始值初始化该属性，并存入AppStorage中。 |
+| 被装饰变量的初始值      | 必须本地初始化，如果AppStorage实例中不存在属性，则用该初始值初始化该属性，并存入AppStorage中。 |
 
 
 ### 变量的传递/访问规则说明
@@ -280,10 +271,10 @@ struct StorageLinkComponent {
   build() {
     Column() {
       Text('@StorageLink接口初始化，@StorageLink取值')
-      Text(this.linkA + '').fontSize(20).onClick(() => {
+      Text(`${this.LinkA}`).fontSize(20).onClick(() => {
         this.linkA ? this.linkA = null : this.linkA = 1;
       })
-      Text(this.linkB + '').fontSize(20).onClick(() => {
+      Text(`${this.LinkB}`).fontSize(20).onClick(() => {
         this.linkB ? this.linkB = undefined : this.linkB = 1;
       })
     }
@@ -299,10 +290,10 @@ struct StoragePropComponent {
   build() {
     Column() {
       Text('@StorageProp接口初始化，@StorageProp取值')
-      Text(this.propA + '').fontSize(20).onClick(() => {
+      Text(`${this.propA}`).fontSize(20).onClick(() => {
         this.propA ? this.propA = null : this.propA = 1;
       })
-      Text(this.propB + '').fontSize(20).onClick(() => {
+      Text(`${this.propB}`).fontSize(20).onClick(() => {
         this.propB ? this.propB = undefined : this.propB = 1;
       })
     }
@@ -767,7 +758,7 @@ struct Index {
 }
 ```
 
-上述示例，在点击事件之前，PropA的值已经在本地被更改为true，而AppStorage中存的值仍为false。当点击事件通过setOrCreate接口尝试更新PropA的值为false时，由于AppStorage中的值为false，两者相等，不会触发更新同步，因此@StorageProp的值仍为true。
+上述示例，在点击事件之前，propA的值已经在本地被更改为true，而AppStorage中存的值仍为false。当点击事件通过setOrCreate接口尝试更新propA的值为false时，由于AppStorage中的值为false，两者相等，不会触发更新同步，因此@StorageProp的值仍为true。
 
 实现二者同步有以下两种方式：
 1. 将\@StorageProp更改为\@StorageLink。

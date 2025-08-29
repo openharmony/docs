@@ -41,7 +41,7 @@ RelativeContainer()
 
 guideLine(value: Array&lt;GuideLineStyle&gt;)
 
-设置RelativeContainer容器内的辅助线，Array中每个项目即为一条guideline，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
+设置RelativeContainer容器内的辅助线，Array中每个项目即为一条guideLine。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -57,7 +57,7 @@ guideLine(value: Array&lt;GuideLineStyle&gt;)
 
 barrier(value: Array&lt;BarrierStyle&gt;)
 
-设置RelativeContainer容器内的屏障，Array中每个项目即为一条barrier，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
+设置RelativeContainer容器内的屏障，Array中每个项目即为一条barrier。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -73,7 +73,7 @@ barrier(value: Array&lt;BarrierStyle&gt;)
 
 barrier(barrierStyle: Array&lt;LocalizedBarrierStyle&gt;)
 
-设置RelativeContainer容器内的屏障，Array中每个项目即为一条barrier，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
+设置RelativeContainer容器内的屏障，Array中每个项目即为一条barrier。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -87,7 +87,7 @@ barrier(barrierStyle: Array&lt;LocalizedBarrierStyle&gt;)
 
 ## GuideLineStyle<sup>12+</sup>对象说明
 
-guideLine参数，用于定义一条guideline的id、方向和位置。
+guideLine参数，用于定义一条guideLine的id、方向和位置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -95,13 +95,13 @@ guideLine参数，用于定义一条guideline的id、方向和位置。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| id  | string  | 否 | 否    | guideline的id，必须是唯一的并且不可与容器内组件重名。|
-| direction | [Axis](ts-appendix-enums.md#axis) | 否 | 否    | 指定guideline的方向。</br> 垂直方向的guideline仅能作为组件水平方向的锚点，作为垂直方向的锚点时值为0；水平方向的guideline仅能作为组件垂直方向的锚点，作为水平方向的锚点时值为0。</br>默认值：Axis.Vertical <br />非法值：按默认值处理。 |
-| position | [GuideLinePosition](#guidelineposition12对象说明) |  否 | 否    | 指定guideline的位置。</br>当未声明或声明异常值（如undefined）时，guideline的位置默认为start: 0。start和 end两种声明方式选择一种即可。若同时声明，仅start生效。若容器在某个方向的size被声明为"auto"，则该方向上guideline的位置只能使用start方式声明（不允许使用百分比）。<br />默认值：<br />{<br />start: 0<br />} <br />非法值：按默认值处理。 |
+| id  | string  | 否 | 否    | guideLine的id，必须是唯一的并且不可与容器内组件重名。|
+| direction | [Axis](ts-appendix-enums.md#axis) | 否 | 否    | 指定guideLine的方向。</br> 垂直方向的guideLine仅能作为组件水平方向的锚点，作为垂直方向的锚点时值为0；水平方向的guideLine仅能作为组件垂直方向的锚点，作为水平方向的锚点时值为0。</br>默认值：Axis.Vertical <br />非法值：按默认值处理。 |
+| position | [GuideLinePosition](#guidelineposition12对象说明) |  否 | 否    | 指定guideLine的位置。</br>当未声明或声明异常值（如undefined）时，guideLine的位置默认为start: 0。start和end两种声明方式选择一种即可。若同时声明，仅start生效。若容器在某个方向的size被声明为"auto"，则该方向上guideLine的位置只能使用start方式声明（不允许使用百分比）。<br />默认值：<br />{<br />start: 0<br />} <br />非法值：按默认值处理。 |
 
 ## GuideLinePosition<sup>12+</sup>对象说明
 
-guideLine位置参数，用于定义guideline的位置。
+guideLine位置参数，用于定义guideLine的位置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -109,8 +109,8 @@ guideLine位置参数，用于定义guideline的位置。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| start  | [Dimension](ts-types.md#dimension10)  | 否 | 是    | guideline距离容器左侧或者顶部的距离。|
-| end | [Dimension](ts-types.md#dimension10) | 否 | 是   | guideline距离容器右侧或者底部的距离。|
+| start  | [Dimension](ts-types.md#dimension10)  | 否 | 是    | guideLine距离容器左侧或者顶部的距离。|
+| end | [Dimension](ts-types.md#dimension10) | 否 | 是   | guideLine距离容器右侧或者底部的距离。|
 
 ## BarrierStyle<sup>12+</sup>对象说明
 
@@ -871,7 +871,7 @@ struct Index {
           top: { anchor: "row1", align: VerticalAlign.Top }
         })
         .id("row2")
-        .chainWeight({horizontal:1})
+        .chainWeight({ horizontal: 1 })
 
         Row() {
           Text('row3')
@@ -886,7 +886,7 @@ struct Index {
           top: { anchor: "row1", align: VerticalAlign.Top }
         })
         .id("row3")
-        .chainWeight({horizontal:2})
+        .chainWeight({ horizontal: 2 })
       }
       .width(300).height(300)
       .margin({ left: 50 })

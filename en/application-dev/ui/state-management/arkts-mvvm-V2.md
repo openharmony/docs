@@ -1,4 +1,10 @@
 # MVVM (V2)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @katabanga-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 ## Overview
 
@@ -8,18 +14,17 @@ During application development, UI updates need to be synchronized in real time 
 - View: displays data on the UI and interacts with users. No service logic is contained. It dynamically updates the UI by binding the data provided by the ViewModel.
 - ViewModel: manages UI state and interaction logic. As a bridge between Model and View, ViewModel monitors data changes in Model, notifies views to update the UI, processes user interaction events, and converts the events into data operations.
 
-
 ## Implementing ViewModel Through V2
 
-In the MVVM mode, the ViewModel plays an important role in managing data state and automatically updating views when data changes. The state management of V2 (referred to as V2) in ArkUI provides various decorators and tools to help you share data between custom components and ensure that data changes are automatically synchronized to the UI. Common state management decorators include \@Local, \@Param, \@Event, \@ObservedV2, and \@Trace. In addition, V2 provides **AppStorageV2** and **PersistenceV2** as global state storage tools for state sharing between applications and persistent storage.
+In the MVVM mode, ViewModel manages data state and automatically updates views when data changes. The state management of V2 (referred to as V2) in ArkUI provides various decorators and tools to help you share data between custom components and ensure that data changes are automatically synchronized to the UI. Common state management decorators include \@Local, \@Param, \@Event, \@ObservedV2, and \@Trace. In addition, V2 provides **AppStorageV2** and **PersistenceV2** as global state storage tools for state sharing between applications and persistent storage.
 
 This section uses a simple to-do list as an example to introduce the decorators and tools of V2 and gradually extend functions based on a basic static to-do list. With step-by-step extension, you can gradually understand and grasp the usage of each decorator.
 
 ### Basic Example
 
-First, start with the most basic static to-do list with no state change or dynamic interaction.
+First, start with a static to-do list with no state change or dynamic interaction.
 
-**Example  1**
+**Example 1**
 
 ```ts
 // src/main/ets/pages/1-Basic.ets
@@ -40,11 +45,11 @@ struct TodoList {
 }
 ```
 
-### Adding \@Local to Observe the Internal State of Components
+### Implementing Component State Observation with \@Local
 
-After the static to-do list is displayed, it needs to respond to interactions and be dynamically updated so that users can change the task completion status. Therefore, the \@Local decorator is introduced to manage the internal state of the component. When the variable decorated by \@Local changes, the bound UI component is re-rendered.
+After the static to-do list is displayed, it needs to respond to interactions and be dynamically updated so that users can change the task completion status. To achieve this, the \@Local decorator is used to manage the component's internal state: When the variable decorated with \@Local changes, the bound UI component is re-rendered.
 
-In Example 2, the **isFinish** property decorated by \@Local is added to indicate whether the task is finished. Two icons, **finished.png** and **unfinished.png**, are provided to display the task status. When a user taps a to-do item, the **isFinish** state is switched to change the icon and add a strikethrough.
+In Example 2, an \@Local decorated **isFinish** property is added to indicate whether the task is finished. Two icons, **finished.png** and **unfinished.png**, display the task status. When a user taps a to-do item, the **isFinish** state changes, updating the icon and adding a strikethrough to the task text.
 
 **Example 2**
 
@@ -62,7 +67,7 @@ struct TodoList {
         .fontSize(40)
         .margin({ bottom: 10 })
       Row() {
-        // Add the finished.png and unfinished.png images to the src/main/resources/base/media directory. Otherwise, an error will be reported due to missing resources.
+        // To avoid runtime errors, you must add the finished.png and unfinished.png images to the src/main/resources/base/media directory.
         Image(this.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
           .width(28)
           .height(28)
@@ -75,10 +80,10 @@ struct TodoList {
 }
 ```
 
-### Adding \@Param to Enable Components to Receive External Input
-After the local status of the task is switched, to enhance flexibility of the to-do list, a name of each task should be dynamically set, instead of being fixed in code. After the \@Param decorator is introduced, the decorated variable of the child component can receive the value passed by the parent component, implementing one-way data synchronization. By default, \@Param is read-only. To locally update the input value in the child component, use \@Param and \@Once.
+### Implementing Component Input with \@Param
+After implementing local task status switching, you can enhance the to-do list's flexibility by dynamically setting each task's name (instead of hardcoding it). The \@Param decorator enables this purpose: Variables decorated with @Param in a child component can receive values passed from the parent component, implementing one-way data synchronization. By default, \@Param is read-only. To locally update the input value in the child component, combine \@Param with \@Once.
 
-In Example 3, each to-do item is abstracted as a **TaskItem** component. The **taskName** attribute decorated by \@Param passes the task name from the parent component **TodoList** so that the **TaskItem** component is flexible and reusable, and can receive and render different task names. After receiving the initial value, the **isFinish** property decorated by \@Param and \@Once can be updated in the child component.
+In Example 3, each to-do item is abstracted into a **TaskItem** component. The \@Param decorated **taskName** attribute receives the task name from the parent **TodoList** component. This makes the **TaskItem** component flexible and reusable, as it can accept and render different task names. In addition, the **isFinish** property, decorated with both \@Param and \@Once, can be updated locally in the child component after receiving its initial value.
 
 **Example 3**
 
@@ -92,7 +97,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // Add the finished.png and unfinished.png images to the src/main/resources/base/media directory. Otherwise, an error will be reported due to missing resources.
+      // To avoid runtime errors, you must add the finished.png and unfinished.png images to the src/main/resources/base/media directory.
       Image(this.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -119,11 +124,11 @@ struct TodoList {
 }
 ```
 
-### Adding \@Event to Enable Components to Output Externally
+### Implementing Component Output with \@Event
 
-After the task name can be dynamically set, the content of the task list is still fixed. You need to add the functions of adding and deleting task items to dynamically expand the task list. Therefore, use the \@Event decorator to enable the child component to output data to the parent component.
+With dynamic task names now supported, the task list content remains fixed. To enable dynamic expansion of the task list, we need to add task creation and deletion functionality. This is where the \@Event decorator comes in. It allows child components to output data to parent components.
 
-In Example 4, the delete button is added to each task item, and the function of adding a new task is added to the bottom of the task list. When the delete button of the child component **TaskItem** is clicked, the **deleteTask** event is triggered and passed to the parent component **TodoList**. Then the parent component responds and removes the task from the list. By using \@Param and \@Event, the child component can receive data from and pass events back to the parent component to implement two-way data synchronization.
+In Example 4, a delete button is added to each task item, and a feature to add new tasks is included at the bottom of the list. When the delete button in the child **TaskItem** component is clicked, a **deleteTask** event is triggered and passed to the parent **TodoList** component. The parent component then responds by removing the corresponding task from the list. By combining \@Param (for receiving data) and \@Event (for passing events), child components can achieve two-way data synchronization with parent components, receiving input and sending outputs.
 
 **Example 4**
 
@@ -138,7 +143,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // Add the finished.png and unfinished.png images to the src/main/resources/base/media directory. Otherwise, an error will be reported due to missing resources.
+      // To avoid runtime errors, you must add the finished.png and unfinished.png images to the src/main/resources/base/media directory.
       Image(this.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -183,11 +188,16 @@ struct TodoList {
 }
 ```
 
-### Adding Repeat to Implement Child Component Reuse
+### Implementing Component Reuse with Repeat
 
-As the number of task list items increases after the function of adding or deleting tasks is added, a method for efficiently rendering multiple child components with the same structure is required to improve the performance of the UI. Therefore, the **Repeat** method is introduced to optimize the rendering process of the task list. **Repeat** supports two modes: virtualScroll is applicable to scenarios with a large amount of data. It loads components as required in scrolling containers, greatly saving memory and improving rendering efficiency; non-virtualScroll is applicable to scenarios with a small amount of data. All components are rendered at a time, and only the changed data is updated, avoiding overall re-rendering.
+After the task creation and deletion functionality is added, you may want to efficiently render multiple identical child components as the task list grows. This is where **Repeat** comes in handy.
 
-In Example 5, the non-virtualScroll mode is selected because of few task items. Create an array **tasks**, use the **Repeat** method to iterate each item in the array, and dynamically generate and reuse the **TaskItem** component. In this way, you can efficiently reuse existing components when adding or deleting a task to avoid repeated component renderings, improving code reusability and rendering efficiency.
+**Repeat** provides optimized list rendering with two distinct modes:
+- Lazy loading mode: suitable for large datasets. It loads components on demand within scrollable containers, significantly reducing memory usage and improving rendering efficiency.
+- Eager loading mode: ideal for small datasets. It renders all components at once and only updates changed items when data updates, avoiding unnecessary full re-renders.
+
+In Example 5, the eager loading mode is used due to the small number of task items. A **tasks** array is created, and the **Repeat** method iterates over each item in the array to dynamically generate and reuse **TaskItem** components. This approach enables efficient reuse of existing components during task additions or deletions, reducing redundant re-renders and improving code reusability and rendering efficiency.
+
 **Example 5**
 
 ```ts
@@ -201,7 +211,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // Add the finished.png and unfinished.png images to the src/main/resources/base/media directory. Otherwise, an error will be reported due to missing resources.
+      // To avoid runtime errors, you must add the finished.png and unfinished.png images to the src/main/resources/base/media directory.
       Image(this.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -247,11 +257,11 @@ struct TodoList {
 }
 ```
 
-### Adding \@ObservedV2 and \@Trace to Observe Changes of Class Properties
+### Implementing Deep Property Observation with \@ObservedV2 and \@Trace
 
-After multiple functions are implemented, the management of the task list becomes more and more complex. To better process task data changes, especially in multi-level nested structures, you should ensure that property changes can be deeply observed and the UI can be automatically re-rendered. In this case, the \@ObservedV2 and \@Trace decorators are introduced. Compared with \@Local, which can only observe the changes of the object itself and its first level, \@ObservedV2 and \@Trace are more suitable for complex structure scenarios such as multi-level nesting and inheritance. In the \@ObservedV2 decorated class, when the \@Trace decorated property changes, the UI component bound to the attribute is re-rendered.
+As more features are implemented, task list management becomes increasingly complex. To better handle task data changes—especially in multi-level nested structures—you must ensure that property changes can be deeply observed and trigger automatic UI re-renders. This is where the \@ObservedV2 and \@Trace decorators come into play. Unlike \@Local (which only observes changes to the object itself and its first-level properties), \@ObservedV2 and \@Trace are better suited for complex scenarios involving multi-level nesting and inheritance. In a class decorated with @ObservedV2, when a property decorated with @Trace changes, the UI component bound to that property is re-rendered automatically.
 
-In Example 6, **Task** is abstracted as a class and marked by \@ObservedV2. \@Trace is used to mark the **isFinish** property. **Task** is nested in **TaskItem** when the later is nested in the **TodoList** component. In the outermost **TodoList**, the "All finished" and "All unfinished" buttons are added. Each time these buttons are clicked, the **isFinish** property of the innermost **Task** class is directly updated. \@ObservedV2 and \@Trace ensure that the re-render of the corresponding UI component of **isFinish** can be observed, thereby implementing in-depth observation of nested class properties.
+In Example 6, the **Task** class is abstracted and decorated with \@ObservedV2, while its **isFinish** property is decorated with \@Trace. The **Task** class is nested within the **TaskItem** component, which in turn is nested within the **TodoList** component. At the outermost **TodoList** level, **All Finished** and **All Unfinished** buttons are added. Clicking these buttons directly updates the **isFinish** property of the innermost **Task** class instances. Thanks to \@ObservedV2 and \@Trace, these changes are detected, triggering re-renders of the UI components bound to **isFinish**, thereby enabling deep observation of nested class properties.
 
 **Example 6**
 
@@ -276,7 +286,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // Add the finished.png and unfinished.png images to the src/main/resources/base/media directory. Otherwise, an error will be reported due to missing resources.
+      // To avoid runtime errors, you must add the finished.png and unfinished.png images to the src/main/resources/base/media directory.
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -338,11 +348,11 @@ struct TodoList {
 }
 ```
 
-### Adding \@Monitor and \@Computed to Listen for State Variables and Computation Properties
+### Implementing State Listening and Computed Properties with \@Monitor and \@Computed
 
-Based on the current task list function, some additional functions can be added to improve user experience, such as listening for task status changes and dynamic computation of the number of unfinished tasks. Therefore, the \@Monitor and \@Computed decorators are introduced. \@Monitor is used to listen for in-depth state variables and trigger the custom callback method when the property changes. \@Computed is used to decorate the **get** method and detect the changes of computed properties. When the value changes, it is computed only once to reduce the overhead of repeated computation.
+Building on the current task list functionality, you can enhance the user experience with additional features, such as listening for task status changes and dynamically calculating the number of unfinished tasks. This is where the \@Monitor and \@Computed decorators prove useful: \@Monitor is used to listen for deep changes in state variables, triggering custom callback methods when properties are modified. \@Computed decorates getter methods to detect changes in computed properties. It recalculates the value only once when dependencies change, reducing the overhead of redundant computations.
 
-In Example 7, \@Monitor is used to listen for the in-depth **isFinish** property of **task** in **TaskItem**. When the task status changes, the **onTasksFinished** callback is invoked to output a log to record the change. In addition, the number of unfinished tasks in the **TodoList** is recorded. Use \@Computed to decorate **tasksUnfinished**. The value is automatically recomputed when the task status changes. The two decorators are used to implement in-depth listening and efficient computation of state variables.
+In Example 7, \@Monitor is applied to listen for deep changes in the **isFinish** property of the **task** object within **TaskItem**. When the task status changes, the **onTasksFinished** callback is invoked to log the update. In addition, the number of unfinished tasks in **TodoList** is recorded using \@Computed to decorate **tasksUnfinished**, whose value automatically recalculates whenever task statuses change. Together, these two decorators enable deep listening of state variables and efficient computation of derived properties.
 
 **Example 7**
 
@@ -371,7 +381,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // Add the finished.png and unfinished.png images to the src/main/resources/base/media directory. Otherwise, an error will be reported due to missing resources.
+      // To avoid runtime errors, you must add the finished.png and unfinished.png images to the src/main/resources/base/media directory.
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -439,11 +449,11 @@ struct TodoList {
 }
 ```
 
-### Adding AppStorageV2 to Store Global UI State of Applications
+### Implementing Global UI State Storage with AppStorageV2
 
-With continuous enhancement of a to-do list function, an application may involve a plurality of pages or function modules. In this case, a global state needs to be shared with multiple pages. For example, in a to-do list application, you can add a settings page to link with the home page. To implement cross-page state sharing, **AppStorageV2** is introduced to store and share the global state of an application among multiple UIAbility instances.
+As the to-do list functionality continues to expand, an application may involve multiple pages or functional modules that require access to shared global state. For example, a to-do list application might include a settings page linked to the home page, which requires cross-page state sharing. To address this, use AppStorageV2, which stores and shares an application's global state across multiple UIAbility instances.
 
-In Example 8, **SettingAbility** is added to load **SettingPage**. **SettingPage** contains a **Setting** class, in which the **showCompletedTask** property is used to control whether to display finished tasks. Users can switch the option by using a switch. Two abilities share the data through **AppStorageV2** with the key **Setting**, and the corresponding data is of the **Setting** class. When **AppStorageV2** connects to **Setting** for the first time, if no stored data exists, a **Setting** instance whose **showCompletedTask** is **true** is created by default. After you change the settings on the settings page, the task list on the home page is updated accordingly. With **AppStorageV2**, data can be shared across abilities and pages.
+In Example 8, a **SettingAbility** is added to load **SettingPage**, which contains a **Setting** class. This class includes a **showCompletedTask** property that controls whether finished tasks are displayed, with a switch allowing users to modify the setting. The two abilities share data through AppStorageV2 using the key **Setting**, where the corresponding data is an instance of the **Setting** class. When AppStorageV2 first connects to **Setting**, if no stored data exists, it creates a **Setting** instance by default, with **showCompletedTask** set to **true**. After users adjust settings on **SettingPage**, the task list on the home page updates accordingly. With **AppStorageV2**, data can be shared across abilities and pages.
 
 **Example 8**
 
@@ -476,7 +486,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // Add the finished.png and unfinished.png images to the src/main/resources/base/media directory. Otherwise, an error will be reported due to missing resources.
+      // To avoid runtime errors, you must add the finished.png and unfinished.png images to the src/main/resources/base/media directory.
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -556,7 +566,7 @@ struct TodoList {
 ```
 
 ```ts
-// SettingPage code of the SettingAbility.
+// SettingPage code of the SettingAbility
 import { AppStorageV2 } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 
@@ -592,11 +602,11 @@ struct SettingPage {
 }
 ```
 
-### Adding PersistenceV2 to Implement Persistent UI State Storage
+### Implementing Persistent UI State with PersistenceV2
 
-To ensure that the user can still view the previous task status when the application is restarted, a persistent storage solution can be introduced. **PersistenceV2** can persistently store data on device disks. Different from the runtime memory of **AppStorageV2**, **PersistenceV2** ensures that data remains unchanged even if an application is closed and restarted.
+To ensure users can view their previous task states after restarting the application, a persistent storage solution is needed. PersistenceV2 enables data to be stored persistently on the device's disk. Unlike AppStorageV2, which uses runtime memory, PersistenceV2 ensures data remains intact even after the application is restarted.
 
-In Example 9, a **TaskList** class is created to persistently store all task information through **PersistenceV2** with the key **TaskList**, and the corresponding data is of the **TaskList** class. When **PersistenceV2** connects to the **TaskList** for the first time, if there is no data, a **TaskList** instance whose array **tasks** is empty by default. In the **aboutToAppear** lifecycle function, if **TaskList** connected to **PersistenceV2** does not store task data, tasks are loaded from the local file **defaultTasks.json** and stored in **PersistenceV2**. After that, the completion status of each task is synchronized to **PersistenceV2**. In this way, even if the application is closed and restarted, all task data remains unchanged, thereby storing application status persistently.
+In Example 9, a **TaskList** class is created to store all task information persistently through PersistenceV2, using the key **TaskList** (with the corresponding data being an instance of the **TaskList** class). When PersistenceV2 connects to **TaskList** for the first time, if no existing data is found, it initializes a **TaskList** instance with an empty tasks array by default. In the **aboutToAppear** lifecycle function, if **TaskList** connected to PersistenceV2 contains no task data, tasks are loaded from the local file **defaultTasks.json** and stored in PersistenceV2. Subsequent changes to each task's completion status are synchronized to PersistenceV2. This ensures all task data remains unchanged even after the application is restarted, achieving persistent storage of the application's state.
 
 **Example 9**
 
@@ -617,7 +627,7 @@ class Task {
 
 @ObservedV2
 class TaskList {
-  // Complex objects need to be decorated by @Type to ensure successful serialization.
+  // For complex objects, use the @Type decorator to ensure successful serialization.
   @Type(Task)
   @Trace tasks: Task[] = [];
 
@@ -650,7 +660,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // Add the finished.png and unfinished.png images to the src/main/resources/base/media directory. Otherwise, an error will be reported due to missing resources.
+      // To avoid runtime errors, you must add the finished.png and unfinished.png images to the src/main/resources/base/media directory.
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -745,11 +755,11 @@ The **defaultTasks.json** file is stored in **src/main/resources/rawfile** direc
 ]
 ```
 
-### Adding \@Builder to Customize a Constructor
+### Implementing Custom UI Components with \@Builder
 
-As application functions gradually expand, some UI elements in the code start to be repeated, increasing the code volume and making maintenance more complex. To solve this problem, you can use the \@Builder decorator to abstract repeated UI components into an independent **builder** method, facilitating reuse and code modularization.
+As application features expand, repeated UI elements in the code can increase volume and complicate maintenance. To address this, you can use the \@Builder decorator to abstract repetitive UI components into independent builder methods, facilitating reuse and code modularization.
 
-In Example 10, \@Builder is used to define the **ActionButton** method to manage the text, style, and touch events of various buttons in a unified manner, making the code simpler and improving the code maintainability. On this basis, \@Builder adjusts the layout and style, such as spacing, color, and size of the components, to make the to-do list UI more attractive and present a to-do list application with complete functions and a user-friendly UI.
+In Example 10, \@Builder is used to define an **ActionButton** API that unifies the management of text, styles, and touch events for various buttons. This simplifies the code and enhances maintainability. In addition, \@Builder enables adjustments to component layouts and styles, such as spacing, colors, and sizes, making the to-do list UI more visually appealing. The result is a fully functional to-do list application with a user-friendly UI.
 
 **Example 10**
 
@@ -776,7 +786,7 @@ class Task {
 
 @ObservedV2
 class TaskList {
-  // Complex objects need to be decorated by @Type to ensure successful serialization.
+  // For complex objects, use the @Type decorator to ensure successful serialization.
   @Type(Task)
   @Trace tasks: Task[] = [];
 
@@ -809,7 +819,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // Add the finished.png and unfinished.png images to the src/main/resources/base/media directory. Otherwise, an error will be reported due to missing resources.
+      // To avoid runtime errors, you must add the finished.png and unfinished.png images to the src/main/resources/base/media directory.
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -905,7 +915,7 @@ struct TodoList {
 
 ## Reconstructing Code to Comply with the MVVM Architecture
 
-The preceding example uses a series of state management decorators to implement data synchronization and UI re-render in the to-do list. However, as application functions become more complex, the code structure becomes difficult to maintain. The responsibilities of Model, View, and ViewModel are not completely separated, and there is still some coupling. To better organize code and improve maintainability, the MVVM mode is used to reconstruct code to further separate the data layer (Model), logic layer (ViewModel), and display layer (View).
+The previous examples implement data synchronization and UI re-rendering in the to-do list using an array of state management decorators. However, as application functionality grows more complex, the code structure becomes harder to maintain: The responsibilities of Model, View, and ViewModel are not fully separated, resulting in lingering coupling. To better organize the code and enhance maintainability, you can refactor the code using the MVVM pattern. This further separates the data layer (Model), logic layer (ViewModel), and presentation layer (View), creating a clearer, more maintainable architecture.
 
 ### Reconstructed Code Structure
 ```
@@ -933,7 +943,7 @@ The preceding example uses a series of state management decorators to implement 
 ```
 
 ### Model
-The Model layer manages application data and its service logic, and usually interacts with the backend or data storage. In the To-Do-List application, the Model layer is used to store task data, load the task list, and provide APIs for data operations, without involving UI display.
+The Model layer manages application data and its service logic, typically interacting with backends or data storage systems. In the to-do list application, the Model layer handles task data storage and task list loading, and provides data operation APIs, with no direct involvement in UI presentation.
 
 - **TaskModel**: basic data structure of a single task, including the task name and completion status.
 
@@ -946,7 +956,7 @@ export default class TaskModel {
 }
 ```
 
-- **TaskListModel**: a set of tasks, which provides the function of loading task data from the local host.
+- **TaskListModel**: a set of tasks, which provides functionality to load task data from local storage.
 ```ts
 // src/main/ets/model/TaskListModel.ets
 
@@ -978,7 +988,7 @@ export default class TaskListModel {
 
 ### ViewModel
 
-The ViewModel layer manages the UI state and service logic, and functions as a bridge between Model and View. ViewModel monitors Model data changes, processes application logic, and synchronizes data to the View layer to implement automatic UI re-render. This layer decouples data from views, improving code readability and maintainability.
+The ViewModel layer manages UI state and service logic, acting as a bridge between the Model and View layers. It monitors changes in Model data, processes application logic, and synchronizes data to the View layer, enabling automatic UI re-renders. This layer decouples data from views, enhancing code readability and maintainability.
 
 - **TaskViewModel**: encapsulates the change logic of data and status of a single task, and listens for data changes through the state decorator.
 
@@ -1003,7 +1013,7 @@ export default class TaskViewModel {
 }
 ```
 
-- **TaskListViewModel**: encapsulates the task list and management functions, including loading tasks, updating task status in batches, and adding and deleting tasks.
+- **TaskListViewModel**: encapsulates the task list and its management functionality, including loading tasks, updating task status in batches, adding tasks, and deleting tasks.
 
 ```ts
 // src/main/ets/viewmodel/TaskListViewModel.ets
@@ -1046,7 +1056,7 @@ export default class TaskListViewModel {
 
 ### View
 
-The View layer is responsible for UI display of applications and interaction with users. It focuses only on how to render the UI and display data without containing service logic. All data state and logic come from the ViewModel layer. View receives the state data passed by ViewModel for rendering, ensuring that the view and data are separated.
+The View layer is responsible for application UI rendering and user interactions. It focuses solely on how to display the UI and present data, with no inclusion of service logic. All data states and logic are derived from the ViewModel layer. By receiving and rendering state data passed from the ViewModel, the View ensures strict separation of view and data.
 
 - **TitleView**: displays application titles and statistics about unfinished tasks.
 
@@ -1069,7 +1079,7 @@ export default struct TitleView {
 }
 ```
 
-- **ListView**: displays the task list and determines whether to show finished tasks based on the settings. It depends on **TaskListViewModel** to obtain task data and renders the data, including the task name, completion status, and delete button, through the **TaskItem** component. In addition, **TaskViewModel** and **TaskListViewModel** are used to implement user interaction, such as switching the task completion status and deleting a task.
+- **ListView**: displays the task list and controls visibility of completed tasks based on settings. It depends on **TaskListViewModel** to obtain task data (including the task name, completion status, and delete button), which it renders using the **TaskItem** component. It also uses **TaskViewModel** and **TaskListViewModel** to handle user interactions, such as switching the task completion status and deleting a task.
 
 ```ts
 // src/main/ets/view/ListView.ets
@@ -1090,7 +1100,7 @@ struct TaskItem {
 
   build() {
     Row() {
-      // Add the finished.png and unfinished.png images to the src/main/resources/base/media directory. Otherwise, an error will be reported due to missing resources.
+      // To avoid runtime errors, you must add the finished.png and unfinished.png images to the src/main/resources/base/media directory.
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -1125,7 +1135,7 @@ export default struct ListView {
 }
 ```
 
-- **BottomView**: provides buttons (**All Finished**, **All Unfinished**, and **Settings**) and the text box for adding a task. When a user clicks **All Finished** or **All Unfinished**, **TaskListViewModel** will change the status of all tasks. When a user clicks **Settings**, the settings page of the SettingAbility is displayed. When a user adds a task, **TaskListViewModel** will add the task to the task list.
+- **BottomView**: provides buttons (**All Finished**, **All Unfinished**, and **Settings**) and the text box for adding a task. Clicking **All Finished** or **All Unfinished** triggers **TaskListViewModel** to update the status of all tasks. Clicking **Settings** opens the **SettingAbility** settings page. Adding a task through the text box triggers **TaskListViewModel** to add the task to the task list.
 
 ```ts
 // src/main/ets/view/BottomView.ets
@@ -1144,7 +1154,7 @@ import TaskListViewModel from '../viewmodel/TaskListViewModel';
 export default struct BottomView {
   @Param taskList: TaskListViewModel = new TaskListViewModel();
   @Local newTaskName: string = '';
-  private context = getContext() as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {
@@ -1177,7 +1187,7 @@ export default struct BottomView {
 }
 ```
 
-- **TodoListPage**: main page of the to-do list, which contains the preceding three **View** components (**TitleView**, **ListView**, and **BottomView**) and is used to display all parts of the to-do list in a unified manner and manage the task list and settings. It obtains data from ViewModel, passes the data to each child component of View for rendering, and persists task data through **PersistenceV2** to ensure data consistency after the application is restarted.
+- **TodoListPage**: represents the main page of the to-do list and integrates the preceding three **View** components (**TitleView**, **ListView**, and **BottomView**) to unify display of all to-do list sections.It manages the task list and settings by obtaining data from ViewModel, passing the data to each child **View** component for rendering, and using PersistenceV2 to persist task data, which ensures consistency after application restarts.
 
 ```ts
 // src/main/ets/pages/TodoListPage.ets
@@ -1223,7 +1233,7 @@ struct TodoList {
 }
 ```
 
-- **SettingPage**: settings page, which is used to set whether to show finished tasks. It uses **AppStorageV2** to store the global settings. The user can switch the status of **showCompletedTask** by using the toggle switch.
+- **SettingPage**: represents the settings page for configuring whether to show finished tasks. It uses AppStorageV2 to store the global settings. The user can switch the status of **showCompletedTask** by using the toggle switch.
 
 ```ts
 // src/main/ets/pages/SettingPage.ets
@@ -1241,7 +1251,7 @@ export class Setting {
 struct SettingPage {
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  
+
   build(){
     Column(){
       Text('Settings')
@@ -1265,7 +1275,4 @@ struct SettingPage {
 
 ## Summary
 
-This guide uses a simple to-do list application as an example to introduce decorators of V2 and implement the MVVM architecture through code reconstruction. Finally, data, logic, and views are layered to provide a clearer code structure and easier maintenance. Proper use of Model, View, and ViewModel helps efficiently synchronize data with the UI, simplify the development process, and reduce complexity. It is hoped that you can better understand the MVVM mode and flexibly apply it to your application development, thereby improving the development efficiency and code quality.
-
-## Sample Code
-[Complete Source Code](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/StateMgmtV2MVVM/entry)
+This guide uses a simple to-do list application to demonstrate the use of V2 decorators and the implementation of the MVVM architecture through code refactoring. By separating data, service logic, and views into distinct layers, you can achieve a clearer code structure that is easier to maintain. By correctly implementing the layered architecture of Model, View, and ViewModel, you can gain a clearer understanding of the MVVM pattern and apply it more effectively. This layered approach delivers multiple practical benefits in real-world projects: It boosts development efficiency, ensures consistent code quality, optimizes the synchronization mechanism between data and the UI, and ultimately streamlines the entire development workflow.

@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## Overview
 
@@ -57,6 +58,7 @@ The **queue.h** file declares the queue APIs in C.
 | [FFRT_C_API void ffrt_queue_wait(ffrt_task_handle_t handle)](#ffrt_queue_wait) | Waits until a task in the queue is complete.|
 | [FFRT_C_API int ffrt_queue_cancel(ffrt_task_handle_t handle)](#ffrt_queue_cancel) | Cancels a task in the queue.|
 | [FFRT_C_API ffrt_queue_t ffrt_get_main_queue(void)](#ffrt_get_main_queue) | Obtains the main thread queue.|
+| [FFRT_C_API ffrt_queue_t ffrt_get_current_queue(void)](#ffrt_get_current_queue) | Obtains the ArkTS Worker thread queue.|
 
 ## Enum Description
 
@@ -520,3 +522,23 @@ Obtains the main thread queue.
 | Type| Description|
 | -- | -- |
 | FFRT_C_API [ffrt_queue_t](capi-ffrt-ffrt-queue-t.md) | Returns the handle to the main thread queue.|
+
+### ffrt_get_current_queue()
+
+```
+FFRT_C_API ffrt_queue_t ffrt_get_current_queue(void)
+```
+
+**Description**
+
+Obtains the ArkTS Worker thread queue.
+
+**Since**: 12
+
+**Deprecated from**: 18
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| FFRT_C_API ffrt_queue_t | Returns the handle to the thread queue.|

@@ -1,4 +1,10 @@
 # 请求UI绘制帧率
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hudi33-->
+<!--Designer: @hudi33-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @ge-yafang-->
 
 如果开发者需要以独立的帧率绘制更新操作UI界面时，可以通过DisplaySync来实现。应用中绘制内容的帧率可以使用DisplaySync实例来控制，具体请查阅[@ohos.graphics.displaySync(可变帧率)](../reference/apis-arkgraphics2d/js-apis-graphics-displaySync.md)。
 
@@ -295,8 +301,8 @@ struct Index {
 }
 ```
 
+<!--RP1-->
 ## 相关实例
 
-针对可变帧率的开发，有以下相关实例可供参考：
-
-- [DisplaySync分级管控(ArkTS)(API11)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Graphics/DisplaySync)
+- [DisplaySync (API14)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/graphic/DisplaySync)
+<!--RP1End-->

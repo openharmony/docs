@@ -111,7 +111,7 @@ struct ColoringStrategyExample {
 // xxx.ets
 @Entry
 @Component
-struct foregroundColorInherit {
+struct ForegroundColorInherit {
   build() {
     Column() {
       Button('设置前景色为橘色').fontSize(20).foregroundColor(Color.Orange).backgroundColor(Color.Gray)

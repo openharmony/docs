@@ -184,7 +184,7 @@ height(heightValue: Length | LayoutPolicy): T
 
 **适配指导**
 
-默认行为变更，无需适配。
+默认行为变更，若子组件设置matchParent时不需要考虑父组件的padding、border以及safeAreaPadding，建议父组件不设置padding、border以及safeAreaPadding。
 
 ## cl.arkui.3 GridRow组件columns参数和GridCol组件span参数默认值变更
 
@@ -274,7 +274,7 @@ struct Example {
   }
 }
 ```
-## cl.arkui.2 UI Input相关NDK接口行为变更
+## cl.arkui.4 UI Input相关NDK接口行为变更
 
 **访问级别**
 

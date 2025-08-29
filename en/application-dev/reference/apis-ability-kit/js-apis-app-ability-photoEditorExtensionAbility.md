@@ -1,4 +1,12 @@
 # @ohos.app.ability.PhotoEditorExtensionAbility (Image Editing)
+
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @liusu23-->
+<!--Designer: @xukeke-->
+<!--Tester: @lusq-->
+<!--Adviser: @huipeizi-->
+
 The PhotoEditorExtensionAbility enables your application to provide an image editing page for applications that do not have the image editing capability. It inherits from the [ExtensionAbility](js-apis-app-ability-extensionAbility.md). After an application uses [startAbilityByType](js-apis-inner-application-uiAbilityContext.md#startability) to start a vertical domain panel with available image editing applications that have implemented the PhotoEditorExtensionAbility, the user can select one of the applications on the panel to display an image editing page.
 
 > **NOTE**
@@ -144,7 +152,7 @@ Called to clear resources when this PhotoEditorExtensionAbility is destroyed.
 **Return value**
 |  Type|Description  |
 | ------------ | ------------ |
-|  Promise\<void> |  Promise that returns no value.|
+| void \| Promise\<void> | No return value or a Promise object that returns no value.|
 
 **Example**
 

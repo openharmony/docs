@@ -1,5 +1,12 @@
 # HiCollie_DetectionParam
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @rr_cn-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## 概述
 
 检测业务线程卡顿的相关参数。请注意，API 12及以上支持。

@@ -22,7 +22,7 @@
 | ---------- | ------------------------------|---- | ---- | ---------------------------------------- |
 | src        | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)   | 否    | 否    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件(文件支持html和txt类型)，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](./arkts-apis-webview-WebviewController.md#loadurl)重新加载。 |
 | controller | [WebController](./arkts-basic-components-web-WebController.md) \| [WebviewController<sup>9+</sup>](./arkts-basic-components-web-t.md#webviewcontroller9)  | 否    | 否   | 控制器，通过controller可以控制Web组件各种行为（包括页面导航、声明周期状态、JavaScript交互等行为）。从API version 9开始，WebController不再维护，建议使用WebviewController替代。 |
-| renderMode<sup>12+</sup> | [RenderMode](./arkts-basic-components-web-e.md#rendermode12)| 否    | 是   | 表示当前Web组件的渲染方式，`RenderMode.ASYNC_RENDER`表示Web组件自渲染，`RenderMode.SYNC_RENDER`表示支持Web组件统一渲染能力，默认值`RenderMode.ASYNC_RENDER`，该模式不支持动态调整。 |
+| renderMode<sup>12+</sup> | [RenderMode](./arkts-basic-components-web-e.md#rendermode12)| 否    | 是   | 表示当前Web组件的渲染方式，`RenderMode.ASYNC_RENDER`表示Web组件异步渲染，`RenderMode.SYNC_RENDER`表示支持Web组件同步渲染能力，默认值`RenderMode.ASYNC_RENDER`，该模式不支持动态调整。 |
 | incognitoMode<sup>11+</sup> | boolean | 否    | 是 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview，false表示创建正常模式的webview。<br> 默认值：false。 |
 | sharedRenderProcessToken<sup>12+</sup> | string | 否    | 是 | 表示当前Web组件指定共享渲染进程的token，多渲染进程模式下，相同token的Web组件会优先尝试复用与token相绑定的渲染进程。token与渲染进程的绑定发生在渲染进程的初始化阶段。当渲染进程没有关联的Web组件时，其与token绑定关系将被移除。<br> 默认值： ""。  |
 
@@ -116,9 +116,9 @@ Web媒体策略的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称           | 类型                                             | 必填    | 说明             |
-| ---------- | -----------------------------------------------------| ------ | ---------------- |
-| hapticFeedbackMode   | [HapticFeedbackMode](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#hapticfeedbackmode18)   | 否     | 菜单弹出时振动效果。需配置"ohos.permission.VIBRATE"权限<br/>默认值：HapticFeedbackMode.DISABLED，菜单弹出时不振动。     |
+| 名称           | 类型                                             | 只读    | 可选    | 说明             |
+| ---------- | -----------------------------------------------------| ------ | ------ | ---------------- |
+| hapticFeedbackMode   | [HapticFeedbackMode](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#hapticfeedbackmode18)   | 否     | 是     | 菜单弹出时振动效果。需配置"ohos.permission.VIBRATE"权限<br/>默认值：HapticFeedbackMode.DISABLED，菜单弹出时不振动。     |
 
 ## EmbedOptions<sup>16+</sup>
 
@@ -229,7 +229,7 @@ Web同层渲染的配置。
 
 ## OnRefreshAccessedHistoryEvent<sup>12+</sup>
 
-定义网页刷新访问历史记录时触发。
+定义导航完成时触发。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

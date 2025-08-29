@@ -1,5 +1,11 @@
 # @ohos.hidebug (HiDebug)
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @hello_harmony; @yu_haoqiaida-->
+<!--SE: @kutcherzhou1-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 This module provides multiple methods for debugging and profiling applications. With these methods, you can obtain memory, CPU, GPU, and GC data, collect process trace and profiler data, and dump VM heap snapshots. Since most APIs of this module are both performance-consuming and time-consuming, and are defined based on the HiDebug module, you are advised to use these APIs only during the application debugging and profiling phases. If the APIs are required in other scenarios, evaluate the impact of the APIs on application performance.
 
 > **NOTE**
@@ -183,6 +189,10 @@ Obtains the CPU usage of a process.
 
 For example, if the CPU usage is **50%**, **0.5** is returned.
 
+> **NOTE**
+>
+> This API involves cross-process communication and takes a long time. To avoid performance problems, you are advised not to call this API in the main thread.
+
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **Return value**
@@ -213,7 +223,7 @@ Obtains system service information.
 
 | Name  | Type  | Mandatory| Description                        |
 | -------- | ------ | ---- |----------------------------|
-| serviceid | number | Yes  | Obtains the system service information based on the specified service ID.|
+| serviceid | number | Yes  | Service ID used to obtain system service information.|
 | fd | number | Yes  | File descriptor to which data is written by the API.        |
 | args | Array&lt;string&gt; | Yes  | Parameter list of the **Dump** API of the system service.          |
 
@@ -228,6 +238,7 @@ For details about the error codes, see [HiDebug Error Codes](errorcode-hiviewdfx
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -235,6 +246,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let fileFd = -1;
 try {
+  // Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
   let path: string = this.getUIContext().getHostContext()!.filesDir + "/serviceInfo.txt";
   console.info("output path: " + path);
   fileFd = fileIo.openSync(path, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE).fd;
@@ -262,7 +274,7 @@ Starts the VM profiling method. **startJsCpuProfiling(filename: string)** and **
 
 | Name  | Type  | Mandatory| Description                                              |
 | -------- | ------ | ---- |--------------------------------------------------|
-| filename | string | Yes  | User-defined file name of the sampling data. The .json file is generated in the **files** directory of the application based on the specified file name.|
+| filename | string | Yes  | Custom file name of the sampling data. The .json file is generated in the **files** directory of the application based on the specified file name.|
 
 **Error codes**
 
@@ -316,13 +328,17 @@ dumpJsHeapData(filename: string) : void
 
 Exports the heap data.
 
+> **NOTE**
+>
+> Exporting the VM heap is time-consuming, and this API is a synchronous API. Therefore, you are advised not to call this API in the release version. Otherwise, the application screen may freeze, affecting user experience.
+
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **Parameters**
 
 | Name  | Type  | Mandatory| Description                                           |
 | -------- | ------ | ---- | ----------------------------------------------- |
-| filename | string | Yes  | User-defined file name of the sampling data. The .heapsnapshot file is generated in the **files** directory of the application based on the specified file name.|
+| filename | string | Yes  | Custom file name of the sampling data. The .heapsnapshot file is generated in the **files** directory of the application based on the specified file name.|
 
 **Error codes**
 
@@ -361,7 +377,7 @@ Starts the VM profiling method. **startProfiling(filename: string)** and **stopP
 
 | Name  | Type  | Mandatory| Description                                            |
 | -------- | ------ | ---- | ------------------------------------------------ |
-| filename | string | Yes  | User-defined file name of the sampling data. The .json file is generated in the **files** directory of the application based on the specified file name.|
+| filename | string | Yes  | Custom file name of the sampling data. The .json file is generated in the **files** directory of the application based on the specified file name.|
 
 **Example**
 
@@ -454,6 +470,10 @@ console.info(`totalHeap = ${vmMemory.totalHeap}, heapUsed = ${vmMemory.heapUsed}
 getAppThreadCpuUsage(): ThreadCpuUsage[]
 
 Obtains the CPU usage of application threads.
+
+> **NOTE**
+>
+> This API involves cross-process communication and takes a long time. To avoid performance problems, you are advised not to call this API in the main thread.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -593,7 +613,7 @@ Obtains the memory limit of an application process.
 
 | Type | Description                     |
 | ------ | -------------------------- |
-| [MemoryLimit](#memorylimit12) | Defines the memory limit of the application process.|
+| [MemoryLimit](#memorylimit12) | Memory limit of the application process.|
 
 **Example**
 
@@ -610,6 +630,10 @@ getSystemCpuUsage() : number
 Obtains the CPU usage of the system.
 
 For example, if the CPU usage of system resources is **50%**, **0.5** is returned.
+
+> **NOTE**
+>
+> This API involves cross-process communication and takes a long time. To avoid performance problems, you are advised not to call this API in the main thread.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -645,6 +669,8 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 Sets the number of FDs, number of threads, JS memory, or native memory limit of the application.
 
+This API is used to construct a memory leak. For details, see [Subscribing to Resource Leak Events (ArkTS)](../../dfx/hiappevent-watcher-resourceleak-events-arkts.md) and [Subscribing to Resource Leak Events (C/C++)](../../dfx/hiappevent-watcher-resourceleak-events-ndk.md).
+
 > **NOTE**
 >
 > This API is valid only when the **Developer options** is enabled.
@@ -655,11 +681,11 @@ Sets the number of FDs, number of threads, JS memory, or native memory limit of 
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                                                        |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| type | string |  Yes | Types of leak resources:<br>- pss_memory (native memory)<br>- js_heap (JavaScript heap memory)<br>- fd (file descriptor)<br>- thread (thread)                                                                      |
+| Name  | Type  | Mandatory| Description                                                                                                                                                                     |
+| -------- | ------ | ---- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| type | string |  Yes | Types of leak resources:<br>- pss_memory (native memory)<br>- js_heap (JavaScript heap memory)<br>- fd (file descriptor)<br>- thread (thread)                                                                           |
 | value | number |  Yes | Value range of the maximum values of the leak resource types:<br>- pss_memory: **[1024, 4 x 1024 x 1024]** (Unit: KB)<br>- js_heap: **[85, 95]** (85% to 95% of the upper size limit of the JS heap memory)<br>- fd: **[10, 10000]**<br>- thread: **[1, 1000]**|
-| enableDebugLog | boolean |  Yes | Whether to enable external debug log. The default value is **false**. Set this parameter to **true** only in the gray version because collecting debug logs consumes too much CPU or memory.                                                                                    |
+| enableDebugLog | boolean |  Yes | Whether to enable external debugging logs. Enable external debugging logs only in the grayscale version (test version released to a small number of users before the official version is released). Collecting debugging logs occupies a large number of CPU and memory resources, which may cause application smoothness problems.<br>The value **true** means to enable external debugging logs, and false means the opposite.<br>                                     |
 
 **Error codes**
 
@@ -696,7 +722,7 @@ Obtains the memory information of the application process. This API is implement
 
 > **NOTE**
 >
-> Reading the **/proc/{pid}/smaps_rollup** node is time-consuming. Therefore, you are advised not to use this API in the main thread. You can use this API in the asynchronous thread started by calling [@ohos.taskpool](../apis-arkts/js-apis-taskpool.md) or [@ohos.worker](../apis-arkts/js-apis-worker.md) to avoid frame freezing.
+> Reading the **/proc/{pid}/smaps_rollup** node takes a long time. You are advised to use the asynchronous API [hidebug.getAppNativeMemInfoAsync](#hidebuggetappnativememinfoasync20) to avoid frame loss or frame freezing.
 
 **Return value**
 
@@ -710,6 +736,63 @@ Obtains the memory information of the application process. This API is implement
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let nativeMemInfo: hidebug.NativeMemInfo = hidebug.getAppNativeMemInfo();
+console.info(`pss: ${nativeMemInfo.pss}, vss: ${nativeMemInfo.vss}, rss: ${nativeMemInfo.rss}, ` +
+  `sharedDirty: ${nativeMemInfo.sharedDirty}, privateDirty: ${nativeMemInfo.privateDirty}, ` +
+  `sharedClean: ${nativeMemInfo.sharedClean}, privateClean: ${nativeMemInfo.privateClean}`);
+```
+
+## hidebug.getAppNativeMemInfoAsync<sup>20+</sup>
+
+getAppNativeMemInfoAsync(): Promise&lt;NativeMemInfo&gt;
+
+Obtains the memory information of an application process in asynchronous mode. This API is implemented by reading data from the **/proc/{pid}/smaps_rollup and /proc/{pid}/statm** node.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Return value**
+
+| Type                                              | Description                     |
+|--------------------------------------------------| -------------------------- |
+| Promise&lt;[NativeMemInfo](#nativememinfo12)&gt; | Promise used to return the application process memory information.|
+
+**Example**
+
+```ts
+hidebug.getAppNativeMemInfoAsync().then((nativeMemInfo: hidebug.NativeMemInfo)=>{
+  console.info(`pss: ${nativeMemInfo.pss}, vss: ${nativeMemInfo.vss}, rss: ${nativeMemInfo.rss}, ` +
+    `sharedDirty: ${nativeMemInfo.sharedDirty}, privateDirty: ${nativeMemInfo.privateDirty}, ` +
+    `sharedClean: ${nativeMemInfo.sharedClean}, privateClean: ${nativeMemInfo.privateClean}`);
+});
+```
+
+## hidebug.getAppNativeMemInfoWithCache<sup>20+</sup>
+
+getAppNativeMemInfoWithCache(forceRefresh?: boolean): NativeMemInfo
+
+Obtains the memory information of the application process. This API uses the cache mechanism and has higher performance than the **getAppNativeMemInfo** API. The cache is valid for 5 minutes.
+
+> **NOTE**
+>
+> Reading **/proc/{pid}/smaps_rollup** is time-consuming. Therefore, you are advised not to use this API in the main thread. You can use @ohos.taskpool or @ohos.worker to enable asynchronous threads to avoid application freezing.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Parameters**
+
+| Name                    | Type     | Mandatory| Description                                                                                                    |
+|-------------------------|---------|----|--------------------------------------------------------------------------------------------------------|
+| forceRefresh         | boolean | No | Whether to ignore the cache validity and forcibly update the cache value. The default value is **false**.<br>The value **true** means to directly obtain the current memory data and update the cache value.<br>The value **false** means to directly return the cache value if the cache is valid and obtain the current memory data and update the cache value if the cache is invalid.|
+
+**Return value**
+
+| Type | Description                     |
+| ------ | -------------------------- |
+| [NativeMemInfo](#nativememinfo12) | Memory information of the application process.|
+
+**Example**
+
+```ts
+let nativeMemInfo: hidebug.NativeMemInfo = hidebug.getAppNativeMemInfoWithCache();
 console.info(`pss: ${nativeMemInfo.pss}, vss: ${nativeMemInfo.vss}, rss: ${nativeMemInfo.rss}, ` +
   `sharedDirty: ${nativeMemInfo.sharedDirty}, privateDirty: ${nativeMemInfo.privateDirty}, ` +
   `sharedClean: ${nativeMemInfo.sharedClean}, privateClean: ${nativeMemInfo.privateClean}`);
@@ -744,7 +827,7 @@ console.info(`totalMem: ${systemMemInfo.totalMem}, freeMem: ${systemMemInfo.free
 
 getVMRuntimeStats(): GcStats
 
-Obtains all system GC statistics.
+Obtains the system [GC](../../arkts-utils/gc-introduction.md) statistics.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -771,7 +854,7 @@ console.info(`fullgc-longtime-count: ${vMRuntimeStats['ark.gc.fullgc-longtime-co
 
 getVMRuntimeStat(item: string): number
 
-Obtains the specified system GC statistics based on parameters.
+Obtains the specified system [GC](../../arkts-utils/gc-introduction.md) statistics based on parameters.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -780,6 +863,12 @@ Obtains the specified system GC statistics based on parameters.
 | Name  | Type  | Mandatory| Description         |
 | -------- | ------ | ---- |-------------|
 | item | string | Yes  | Item of the GC statistics to be obtained.|
+
+**Return value**
+
+| Type    | Description                       |
+|--------|---------------------------|
+| number | System GC statistics returned based on the input parameters.|
 
 | Input Parameter                        | Return Value Description         |
 |------------------------------|----------------|
@@ -818,12 +907,12 @@ Defines the memory limit of the application process.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| Name     | Type  | Mandatory| Description        |
-| --------- | ------ | ---- | ------------ |
-| rssLimit    | bigint |  Yes | Limit on the resident set size, in KB.    |
-| vssLimit  | bigint |  Yes | Limit on the virtual memory size, in KB.      |
-| vmHeapLimit | bigint |  Yes | Limit on the JS VM heap size of the calling thread, in KB.|
-| vmTotalHeapSize | bigint |  Yes | Size limit of the JS heap memory of the process, in KB. |
+| Name     | Type  | Read Only| Optional| Description        |
+| --------- | ------ | --|----| ------------ |
+| rssLimit    | bigint |  No | No | Limit on the resident set size, in KB.    |
+| vssLimit  | bigint |  No | No | Limit on the virtual memory size, in KB.      |
+| vmHeapLimit | bigint |  No | No | Limit on the JS VM heap size of the calling thread, in KB.|
+| vmTotalHeapSize | bigint |  No | No | Size limit of the JS heap memory of the process, in KB. |
 
 ## VMMemoryInfo<sup>12+</sup>
 
@@ -831,11 +920,11 @@ Describes the VM memory information.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| Name              | Type   | Readable| Writable| Description                               |
-| -------------------| ------- | ---- | ---- | ---------------------------------- |
-| totalHeap          | bigint  | Yes  | No  | Total heap size of the current VM, in KB.    |
-| heapUsed           | bigint  | Yes  | No  | Heap size used by the current VM, in KB.   |
-| allArraySize       | bigint  | Yes  | No  | Size of all array objects of the current VM, in KB.|
+| Name              | Type   | Read Only| Optional| Description                               |
+| -------------------| ------- | ---|----| ---------------------------------- |
+| totalHeap          | bigint  | No | No | Total heap size of the current VM, in KB.    |
+| heapUsed           | bigint  | No | No | Heap size used by the current VM, in KB.   |
+| allArraySize       | bigint  | No | No | Size of all array objects of the current VM, in KB.|
 
 ## ThreadCpuUsage<sup>12+</sup>
 
@@ -843,10 +932,10 @@ Describes the CPU usage of a thread.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| Name              | Type   | Readable| Writable| Description                               |
-| -------------------| ------- | ---- | ---- | ----------------------------------- |
-| threadId           | number  | Yes  | No  | Thread ID.     |
-| cpuUsage           | number  | Yes  | No  | CPU usage of the thread.|
+| Name              | Type   | Read Only| Optional| Description                               |
+| -------------------| ------- |----|----| ----------------------------------- |
+| threadId           | number  | No | No | Thread ID.     |
+| cpuUsage           | number  | No | No | CPU usage of the thread.|
 
 ## hidebug.tags<sup>12+</sup>
 
@@ -899,15 +988,15 @@ Describes memory information of the application process.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| Name     | Type  | Mandatory| Description                                                                            |
-| --------- | ------ | ---- |--------------------------------------------------------------------------------|
-| pss  | bigint |  Yes | Size of the occupied physical memory (including the proportionally allocated memory occupied by the shared library), in KB. The value of this parameter is obtained by summing up the values of **Pss** and **SwapPss** in the **/proc/{pid}/smaps_rollup** node.|
-| vss  | bigint |  Yes |  Size of the occupied virtual memory (including the memory occupied by the shared library), in KB. The value of this parameter is obtained by multiplying the value of **size** in the **/proc/{pid}/statm** node by **4**.               |
-| rss  | bigint |  Yes | Size of the occupied physical memory (including the memory occupied by the shared library), in KB. The value of this parameter is obtained by reading the value of **Rss** in the **/proc/{pid}/smaps_rollup** node.               |
-| sharedDirty  | bigint |  Yes | Size of the shared dirty memory, in KB. The value of this parameter is obtained by reading the value of **Shared_Dirty** in the **/proc/{pid}/smaps_rollup** node.                   |
-| privateDirty  | bigint |  Yes | Size of the private dirty memory, in KB. The value of this parameter is obtained by reading the value of **Private_Dirty** in the **/proc/{pid}/smaps_rollup** node.                  |
-| sharedClean  | bigint |  Yes | Size of the shared clean memory, in KB. The value of this parameter is obtained by reading the value of **Shared_Clean** in the **/proc/{pid}/smaps_rollup** node.                   |
-| privateClean  | bigint |  Yes | Size of the private clean memory, in KB. The value of this parameter is obtained by reading the value of **Private_Clean** in the **/proc/{pid}/smaps_rollup** node.                 |
+| Name     | Type  | Read Only | Optional| Description                                                                            |
+| --------- | ------ | --|----|--------------------------------------------------------------------------------|
+| pss  | bigint |  No | No | Size of the occupied physical memory (including the proportionally allocated memory occupied by the shared library), in KB. The value of this parameter is obtained by summing up the values of **Pss** and **SwapPss** in the **/proc/{pid}/smaps_rollup** node.|
+| vss  | bigint |  No | No |  Size of the occupied virtual memory (including the memory occupied by the shared library), in KB. The value of this parameter is obtained by multiplying the value of **size** in the **/proc/{pid}/statm** node by **4**.               |
+| rss  | bigint |  No | No | Size of the occupied physical memory (including the memory occupied by the shared library), in KB. The value of this parameter is obtained by reading the value of **Rss** in the **/proc/{pid}/smaps_rollup** node.               |
+| sharedDirty  | bigint |  No | No | Size of the shared dirty memory, in KB. The value of this parameter is obtained by reading the value of **Shared_Dirty** in the **/proc/{pid}/smaps_rollup** node.                   |
+| privateDirty  | bigint |  No | No | Size of the private dirty memory, in KB. The value of this parameter is obtained by reading the value of **Private_Dirty** in the **/proc/{pid}/smaps_rollup** node.                  |
+| sharedClean  | bigint |  No | No | Size of the shared clean memory, in KB. The value of this parameter is obtained by reading the value of **Shared_Clean** in the **/proc/{pid}/smaps_rollup** node.                   |
+| privateClean  | bigint |  No | No | Size of the private clean memory, in KB. The value of this parameter is obtained by reading the value of **Private_Clean** in the **/proc/{pid}/smaps_rollup** node.                 |
 
 ## SystemMemInfo<sup>12+</sup>
 
@@ -915,11 +1004,11 @@ Describes the system memory information, including the total memory, free memory
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| Name     | Type  | Mandatory| Description                                             |
-| --------- | ------ | ---- |-------------------------------------------------|
-| totalMem  | bigint |  Yes | Total memory of the system, in KB. The value of this parameter is obtained by reading the value of **MemTotal** in the **/proc/meminfo** node.     |
-| freeMem  | bigint |  Yes | Free memory of the system, in KB. The value of this parameter is obtained by reading the value of **MemFree** in the **/proc/meminfo** node.     |
-| availableMem  | bigint |  Yes | Available memory of the system, in KB. The value of this parameter is obtained by reading the value of **MemAvailable** in the **/proc/meminfo** node.|
+| Name     | Type  | Read Only | Optional| Description                                             |
+| --------- | ------ | ---- |---- |-------------------------------------------------|
+| totalMem  | bigint |  No |   No |Total memory of the system, in KB. The value of this parameter is obtained by reading the value of **MemTotal** in the **/proc/meminfo** node.     |
+| freeMem  | bigint |  No |   No |Free memory of the system, in KB. The value of this parameter is obtained by reading the value of **MemFree** in the **/proc/meminfo** node.     |
+| availableMem  | bigint |  No |   No |Available memory of the system, in KB. The value of this parameter is obtained by reading the value of **MemAvailable** in the **/proc/meminfo** node.|
 
 ## TraceFlag<sup>12+</sup>
 
@@ -954,19 +1043,34 @@ GcStats contains the following information:
 | ark.gc.gc-bytes-freed   | number | Memory freed by the GC of the calling thread, in bytes.|
 | ark.gc.fullgc-longtime-count | number |  Count of long fullGC of the calling thread.|
 
+## JsRawHeapTrimLevel<sup>20+</sup>
+
+Enumerates the trimming levels of the heap snapshot.
+
+**TRIM_LEVEL_2** takes a longer time than **TRIM_LEVEL_1**. The threshold for screen freezing is 6 seconds. With **TRIM_LEVEL_1**, the trim duration stays below this threshold. When switched to **TRIM_LEVEL_2**, the duration may exceed 6s, triggering an **APP_FREEZE** (screen freeze event) and causing the system to kill the application; the trim level then reverts to **TRIM_LEVEL_1**.
+
+You are advised to use **TRIM_LEVEL_1** to ensure application stability and use **TRIM_LEVEL_2 **only when more complete trimming is required.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| Name        | Value  | Description                                                        |
+| ------------ | ---- | ------------------------------------------------------------ |
+| TRIM_LEVEL_1 | 0    | Level 1 trimming, mainly used for strings.                      |
+| TRIM_LEVEL_2 | 1    | Level 2 trimming, which reduces the size of the object address identifier from 8 bytes to 4 bytes.|
+
 ## hidebug.isDebugState<sup>12+</sup>
 
 isDebugState(): boolean
 
-Obtains the debugging state of an application process. If the Ark or native layer of the application process is in debugging state, **true** is returned. Otherwise, **false** is returned.
+Obtains the debugging state of an application process.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **Return value**
 
-| Type | Description                     |
-| ------ | -------------------------- |
-| boolean | Whether an application process is in the debugging state.|
+| Type | Description                                                  |
+| ------ |------------------------------------------------------|
+| boolean | Whether the Ark or native layer of the application process is in the debugging state. The value **true** indicates that the layer is in the debugging state, and **false** indicates the opposite.|
 
 **Example**
 
@@ -1019,7 +1123,7 @@ Obtains the size of the GPU memory synchronously.
 
 > **NOTE**
 >
-> This API involves multiple cross-process communications and may have performance problems. The asynchronous API **getGraphicsMemory** is recommended.
+> This API involves multiple cross-process communications, which may take seconds. To avoid performance problems, you are advised to use the asynchronous API **getGraphicsMemory** instead of this API in the main thread.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -1059,15 +1163,17 @@ Dumps the original heap snapshot of the VM for the current thread. The API uses 
 > **NOTE**
 >
 > This API is resource-consuming. Therefore, the calling frequency and times are strictly limited. You need to delete the files immediately after processing them.
-> You are advised to use this API only in the gray testing version of an application.  
+> You are advised to use this API only in the grayscale version of an application.  
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| Name                    | Type     | Mandatory| Description                                      |
-|-------------------------|---------|----|------------------------------------------|
-| needGC         | boolean | No | Whether GC is required when a heap snapshot is dumped. The default value is **true**. If this parameter is not specified, GC is triggered before dumping.|
+**Parameters**
+
+| Name                    | Type     | Mandatory| Description                                         |
+|-------------------------|---------|----|---------------------------------------------|
+| needGC         | boolean | No | Whether GC is required before storing heap snapshots. The value **true** indicates that GC is required, and **false** indicates the opposite. The default value is **true**.|
 
 **Return value**
 
@@ -1100,4 +1206,133 @@ hidebug.dumpJsRawHeapData().then((filePath: string) => {
 }).catch((error: BusinessError) => {
   console.error(`error code: ${error.code}, error msg: ${error.message}`);
 })
+```
+
+## hidebug.enableGwpAsanGrayscale<sup>20+</sup>
+
+enableGwpAsanGrayscale(options?: GwpAsanOptions, duration?: number): void
+
+Enables GWP-Asan to detect illegal behaviors in heap memory usage.
+
+This API is used to dynamically configure and enable GWP-Asan to adapt to the custom GWP-Asan detection policy. The configuration takes effect after the application is restarted.
+
+For details about GWP-Asan, see [Using GWP-Asan to Detect Memory Errors](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-stability-gwpasan-detection).
+
+> **NOTE**
+> 
+> 1. If more than 20 applications have been enabled during device running, this API will fail to be called and an error code will be thrown.
+> 2. To prevent abnormal application exit, use **try-catch** to capture exceptions.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description  |
+|---------|---------|--------|-----|
+|options | [GwpAsanOptions](#gwpasanoptions20) | No| Configuration options of GWP-Asan. If no parameter is set, the default value is used.|
+|duration | number | No| GWP-Asan duration. The default value is 7 days. The value must be a positive integer.|
+
+**Error codes**
+
+For details about the error codes, see [HiDebug Error Codes](errorcode-hiviewdfx-hidebug.md).
+
+| ID   | Error Message|
+|----------| ----------------------------------------------------------------- |
+| 11400114 | The number of GWP-ASAN applications of this device overflowed after last boot. |
+
+**Example**:
+
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let options: hidebug.GwpAsanOptions = {
+  alwaysEnabled: true,
+  sampleRate: 2500,
+  maxSimutaneousAllocations: 5000,
+};
+let duration: number = 4;
+
+try {
+  hidebug.enableGwpAsanGrayscale(options, duration);
+  console.info(`Succeeded in enabling GWP-Asan.`);
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`Failed to enable GWP-Asan. Code: ${err.code}, message: ${err.message}`);
+}
+```
+## GwpAsanOptions<sup>20+</sup>
+Defines configuration options of GWP-Asan. You can configure whether to enable GWP-Asan, the sampling frequency, and the maximum number of allocated slots.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| Name        | Type | Read Only | Optional| Description|
+|--------------|------|-------|-------|-----|
+|alwaysEnabled | boolean | No | Yes| Whether to always enable GWP-Asan. The value **true** means to always enable GWP-Asan.<br>The value **false** means to enable GWP-Asan at a probability of 1/128.<br> The default value is **false**.|
+|sampleRate    |number| No |Yes|Sampling rate of GWP-Asan. The default value is **2500**. The value must be a positive integer greater than 0. If the value is a decimal, it is rounded up.<br> GWP-Asan performs sampling on the allocated memory at a probability of 1/**sampleRate**.|
+|maxSimutaneousAllocations|number|No|Yes|Maximum number of allocated slots. The default value is **1000**. The value must be a positive integer greater than 0. If the value is a decimal, it is rounded up.<br>When the slots are used up, the newly allocated memory is no longer monitored.<br>After the used memory is released, the slots occupied by the memory are automatically reused to facilitate subsequent memory monitoring.|
+
+## hidebug.disableGwpAsanGrayscale<sup>20+</sup>
+disableGwpAsanGrayscale(): void
+
+Disables GWP-Asan. This API is used to cancel the custom configuration and restore the default parameter [GwpAsanOptions](#gwpasanoptions20).
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Example**:
+
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+hidebug.disableGwpAsanGrayscale();
+```
+
+## hidebug.getGwpAsanGrayscaleState<sup>20+</sup>
+getGwpAsanGrayscaleState(): number
+
+Obtains the number of remaining days for enabling GWP-Asan.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Return value**
+
+| Type| Description|
+|-----------|-------------|
+| number    |Number of remaining days for enabling GWP-Asan. If GWP-Asan is disabled, **0** is returned.|
+
+**Example**:
+
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let remainDays: number = hidebug.getGwpAsanGrayscaleState();
+console.info(`remainDays: ${remainDays}`);
+```
+
+## hidebug.setJsRawHeapTrimLevel<sup>20+</sup>
+
+setJsRawHeapTrimLevel(level: JsRawHeapTrimLevel): void
+
+Sets the trimming level of the original heap snapshot stored by the current process. Using **TRIM_LEVEL_2** for this API can effectively reduce the size of the heap snapshot file.
+
+> **NOTE**
+>
+> The default trimming level is **TRIM_LEVEL_1**. If **TRIM_LEVEL_2** is set, you need to use [rawheap-translator](../../tools/rawheap-translator.md) since API version 20 to convert the .rawheap file to the .heapsnapshot file. Otherwise, the conversion may fail.
+>
+> This API affects the result of [dumpJsRawHeapData](#hidebugdumpjsrawheapdata18).
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| Name| Type                                       | Mandatory| Description                  |
+| ------ | ------------------------------------------- | ---- | ---------------------- |
+| level  | [JsRawHeapTrimLevel](#jsrawheaptrimlevel20) | Yes  | Trimming level for storing heap snapshots. The default value is **TRIM_LEVEL_1**.|
+
+**Example**
+
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+hidebug.setJsRawHeapTrimLevel(TRIM_LEVEL_2);
+}
 ```

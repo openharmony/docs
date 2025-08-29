@@ -19,7 +19,7 @@ Defines a **LogEntry** object.
 
 **System capability**: SystemCapability.HiviewDFX.Hiview.LogLibrary
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | name | string | Yes| No| Log file name. |
 | mtime | number | Yes| No | Time of the last modification to the file. The value is the number of seconds elapsed since 00:00:00 on January 1, 1970.|
