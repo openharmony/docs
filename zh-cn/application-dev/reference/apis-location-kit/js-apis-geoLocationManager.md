@@ -553,7 +553,7 @@ beacon围栏信息类型。当前仅支持设备制造商数据过滤。
 
 ## BeaconManufactureData<sup>20+</sup>
 
-beacon设备制造商数据。当前仅支持ibeacon数据类型
+beacon设备制造商数据。当前仅支持ibeacon数据类型。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -563,7 +563,7 @@ beacon设备制造商数据。当前仅支持ibeacon数据类型
 | -------- | -------- | -------- | -------- | -------- |
 | manufactureId | number | 否 | 否 | 制造商标识。例如：0X004C |
 | manufactureData | ArrayBuffer | 否 | 否 | 制造商数据的广播报文。格式：类型标识 + uuid。例如：[0x02,0x15,0x00...0xFF] |
-| manufactureDataMask | ArrayBuffer | 否 | 否 | 搭配manufactureData使用，可设置过滤部分制造商数据。例如：[0xFF,0xFF,0xFF...0xFF] |
+| manufactureDataMask | ArrayBuffer | 否 | 否 | 搭配manufactureData使用，可设置过滤部分制造商数据，0xFF为全匹配，0x00为模糊匹配。例如：[0xFF,0xFF,0xFF...0xFF] |
 
 
 ## BeaconFence<sup>20+</sup>
@@ -2741,7 +2741,7 @@ addBeaconFence(fenceRequest: BeaconFenceRequest): Promise&lt;number&gt;
 
 添加一个beacon围栏，并订阅地理围栏事件。使用Promise异步回调。
 
-APP可以在入参[BeaconFenceRequest](#beaconfencerequest20)中传入回调函数用于接收围栏事件；也可以传入[FenceExtensionAbility](js-apis-app-ability-FenceExtensionAbility.md)名称，在系统识别到围栏事件发生时通知APP。
+应用可以在入参[BeaconFenceRequest](#beaconfencerequest20)中传入回调函数用于接收围栏事件；也可以传入[FenceExtensionAbility](js-apis-app-ability-FenceExtensionAbility.md)名称，在系统识别到围栏事件发生时通知APP。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2889,7 +2889,7 @@ removeBeaconFence(beaconFence?: BeaconFence): Promise&lt;void&gt;
 
 isBeaconFenceSupported(): boolean;
 
-判断是否支持beacon围栏。
+判断当前设备是否支持beacon围栏。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
