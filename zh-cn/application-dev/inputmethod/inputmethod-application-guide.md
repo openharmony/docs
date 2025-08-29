@@ -139,7 +139,7 @@
            await this.panel.setUiContent('InputMethodExtensionAbility/pages/Index');
          }
        }).catch((err: BusinessError) => {
-         console.error(`Faild to createPanel, code: ${err.code}, message: ${err.message}`);
+         console.error(`Failed to createPanel, code: ${err.code}, message: ${err.message}`);
        });
      }
    
@@ -150,7 +150,7 @@
      }
    
      private registerInputListener(): void {
-       // 注册对输入法框架服务的开启及停止事件监听
+       // 注册开始输入的事件监听
        inputMethodAbility.on('inputStart', (kbController, textInputClient) => {
          this.textInputClient = textInputClient; // 此为输入法客户端实例，由此调用输入法框架提供给输入法应用的功能接口
          this.keyboardController = kbController;
