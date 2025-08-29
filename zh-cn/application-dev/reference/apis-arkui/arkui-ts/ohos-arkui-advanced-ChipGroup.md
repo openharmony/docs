@@ -229,8 +229,8 @@ IconOptions定义图标的共通属性。
 
 | 名称 | 类型                                   | 必填 | 说明                                                         |
 | ---- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| src  | [ResourceStr](ts-types.md#resourcestr) | 是   | 图标图片或图片地址引用。                                     |
-| size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 图标大小，不支持百分比。|
+| src  | [ResourceStr](ts-types.md#resourcestr) | 是   | 图标图片或图片地址引用请参考[Image](ts-basic-components-image.md#image-1)。 |
+| size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 图标大小，不支持百分比。                                     |
 
 ## LabelOptions
 
