@@ -110,6 +110,7 @@
    
    长时任务相关的模块为@ohos.resourceschedule.backgroundTaskManager和@ohos.app.ability.wantAgent，其余模块按实际需要导入。
 
+   <!--RP1--> 
    ```ts
     import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
     import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -119,6 +120,7 @@
     import { wantAgent, WantAgent } from '@kit.AbilityKit';
     // 在原子化服务中，请删除WantAgent导入
    ```
+   <!--RP1End-->
 
 4. 申请和取消长时任务。
 
