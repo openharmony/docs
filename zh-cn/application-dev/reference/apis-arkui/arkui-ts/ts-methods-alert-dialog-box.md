@@ -721,6 +721,7 @@ struct Example2 {
 struct AlertDialogExample {
   build() {
     Stack({ alignContent: Alignment.Top }) {
+      // $r('app.media.bg')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.bg'))
       Column() {
         Button("AlertDialog")
@@ -769,6 +770,7 @@ struct AlertDialogExample {
 struct AlertDialogExample {
   build() {
     Stack({ alignContent: Alignment.Top }) {
+      // $r('app.media.bg')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.bg'))
       Column() {
         Button("AlertDialog")
