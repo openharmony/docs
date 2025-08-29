@@ -22,7 +22,7 @@
    import { InputMethodSubtype, inputMethod } from '@kit.IMEKit';
    
    export class KeyboardController {
-    async switchCurrentInputMethodSubtype() {
+     async switchCurrentInputMethodSubtype() {
        try {
          let subTypes: Array<InputMethodSubtype> =
            await inputMethod.getSetting().listCurrentInputMethodSubtype(); // 获取当前输入法的所有子类型
