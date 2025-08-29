@@ -49,9 +49,9 @@ import { dialogSession } from '@kit.AbilityKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| callerAbilityInfo | [DialogAbilityInfo](#dialogabilityinfo)| 是 | 否 | 表示请求方组件信息。 |
-| targetAbilityInfos | Array\<[DialogAbilityInfo](#dialogabilityinfo)\> | 是 | 否 | 表示目标组件信息列表。 |
-| parameters | Record<string, Object> | 是 | 是 | 表示其他参数。 |
+| callerAbilityInfo | [DialogAbilityInfo](#dialogabilityinfo)| 否 | 否 | 表示请求方组件信息。 |
+| targetAbilityInfos | Array\<[DialogAbilityInfo](#dialogabilityinfo)\> | 否 | 否 | 表示目标组件信息列表。 |
+| parameters | Record<string, Object> | 否 | 是 | 表示其他参数。 |
 
 ## getDialogSessionInfo
 
