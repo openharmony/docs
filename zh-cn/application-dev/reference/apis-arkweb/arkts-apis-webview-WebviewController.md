@@ -8340,7 +8340,7 @@ setPathAllowingUniversalAccess(pathList: Array\<string\>): void
 
 * /data/storage/el2/base/cache
 * /data/storage/el2/base/haps/entry/cache/example
-* 注意：设置的目录路径中，不允许包含cache/web；如若设置，会抛出异常码401；如果设置了cache这个目录，cache/web也是不允许访问的。
+* 注意：设置的目录路径中，不允许包含cache/web，否则会抛出异常码401。如果设置的是cache这个目录，cache/web也是不允许访问的。
 
 4.应用临时目录及其子目录（应用临时目录通过Ability Kit中的[Context.tempDir](../apis-ability-kit/js-apis-inner-application-context.md#context)获取），例如：
 
