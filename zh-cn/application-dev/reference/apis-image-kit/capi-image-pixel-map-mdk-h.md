@@ -1,8 +1,17 @@
 # image_pixel_map_mdk.h
 
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yaozhupeng-->
+<!--Designer: @yaozhupeng-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 声明可以锁定并访问pixelmap数据的方法，声明解锁的方法。
+
+**引用文件：** <multimedia/image_framework/image_pixel_map_mdk.h>
 
 **库：** libpixelmapndk.z.so
 

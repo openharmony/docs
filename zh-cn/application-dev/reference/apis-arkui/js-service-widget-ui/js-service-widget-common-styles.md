@@ -15,8 +15,8 @@
 
 | 名称 | 类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| width | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt; | - | 设置组件自身的宽度。<br/>缺省时使用元素自身内容需要的宽度。<br/>未设置时组件宽度默认为0。 |
-| height | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt; | - | 设置组件自身的高度。<br/>缺省时使用元素自身内容需要的高度。<br/>未设置时组件高度默认为0。 |
+| width | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt; | - | 设置组件自身的宽度。<br/>缺省时使用元素自身内容需要的宽度。 |
+| height | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt; | - | 设置组件自身的高度。<br/>缺省时使用元素自身内容需要的高度。 |
 | min-width | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt; | 0 | 设置元素的最小宽度。 |
 | min-height | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt; | 0 | 设置元素的最小高度。 |
 | max-width | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt; | - | 设置元素的最大宽度。默认无限制。 |

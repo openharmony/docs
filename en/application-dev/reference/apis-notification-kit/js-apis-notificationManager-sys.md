@@ -1,4 +1,10 @@
 # @ohos.notificationManager (NotificationManager) (System API)
+<!--Kit: Notification Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 The **NotificationManager** module provides notification management capabilities, covering notifications, notification slots, notification enabled status, and notification badge status.
 
@@ -36,7 +42,7 @@ Publishes a notification to a specified user. This API uses an asynchronous call
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [HTTP Error Codes](../apis-network-kit/errorcode-net-http.md).
 
 | ID| Error Message                                             |
 | -------- | ---------------------------------------------------- |
@@ -115,7 +121,7 @@ Publishes a notification to a specified user. This API uses a promise to return 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [HTTP Error Codes](../apis-network-kit/errorcode-net-http.md).
 
 | ID| Error Message                                             |
 | -------- | ---------------------------------------------------- |
@@ -287,7 +293,7 @@ Adds an array of notification slots. This API uses an asynchronous callback to r
 
 | Name    | Type                     | Mandatory| Description                    |
 | -------- | ------------------------- | ---- | ------------------------ |
-| slots    | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)\> | Yes  | Notification slots to add.|
+| slots    | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)\> | Yes  | Notification slots to add. The number of elements in the array ranges from 0 to 5.|
 | callback | AsyncCallback\<void\>     | Yes  | Callback used to return the result.    |
 
 **Error codes**
@@ -344,7 +350,7 @@ Adds an array of notification slots. This API uses a promise to return the resul
 
 | Name | Type                     | Mandatory| Description                    |
 | ----- | ------------------------- | ---- | ------------------------ |
-| slots | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)\> | Yes  | Notification slots to add.|
+| slots | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)\> | Yes  | Notification slots to add. The number of elements in the array ranges from 0 to 5.|
 
 **Return value**
 
@@ -409,7 +415,7 @@ Sets whether to enable notification for a specified application. This API uses a
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -466,7 +472,7 @@ Sets whether to enable notification for a specified application. This API uses a
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -560,7 +566,7 @@ Checks whether notification is enabled for the specified application. This API u
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -618,7 +624,7 @@ Checks whether notification is enabled for the specified application. This API u
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -774,7 +780,7 @@ This API is not supported on wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -834,7 +840,7 @@ This API is not supported on wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -885,7 +891,7 @@ This API is not supported on wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -944,7 +950,7 @@ This API is not supported on wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -1002,7 +1008,7 @@ This API is not supported on wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -1059,7 +1065,7 @@ This API is not supported on wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -1124,7 +1130,7 @@ This API is not supported on wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -1185,7 +1191,7 @@ This API is not supported on wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -1236,7 +1242,7 @@ This API is not supported on wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -1295,7 +1301,7 @@ This API is not supported on wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -1347,7 +1353,7 @@ This API is not supported on wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -1408,7 +1414,7 @@ This API is not supported on wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -1545,11 +1551,11 @@ Obtains information about the common live view that matches the specified filter
 | Name    | Type                                                        | Mandatory| Description                          |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
 | filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest-sys.md#notificationfilter11) | Yes  | Filter criteria for querying the common live view.|
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)>> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                 |
 | -------- | ---------------------------------------- | 
@@ -1612,7 +1618,7 @@ Obtains information about the common live view that matches the specified filter
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                 |
 | -------- | ---------------------------------------- | 
@@ -1667,7 +1673,7 @@ Removes notifications under a notification group of the specified application. T
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -1725,7 +1731,7 @@ Removes notifications under a notification group of the specified application. T
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -2435,7 +2441,7 @@ This API is not supported on TVs and wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -2499,7 +2505,7 @@ This API is not supported on TVs and wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -2552,7 +2558,7 @@ This API is not supported on TVs and wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -2612,7 +2618,7 @@ This API is not supported on TVs and wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -2760,7 +2766,7 @@ Publishes a notification through the reminder agent. This API uses an asynchrono
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [HTTP Error Codes](../apis-network-kit/errorcode-net-http.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
@@ -2842,7 +2848,7 @@ Publishes a notification through the reminder agent. This API uses a promise to 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [HTTP Error Codes](../apis-network-kit/errorcode-net-http.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
@@ -2919,7 +2925,7 @@ Publishes a notification through the reminder agent. This API uses a promise to 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [HTTP Error Codes](../apis-network-kit/errorcode-net-http.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
@@ -2929,7 +2935,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect to the service.                |
-| 1600004  | Notification is not enabled.              |
+| 1600004  | Notification disabled.              |
 | 1600005  | Notification slot disabled.         |
 | 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.                    |
@@ -2991,7 +2997,7 @@ Cancels a notification published through the reminder agent. This API uses an as
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -3053,7 +3059,7 @@ Cancels a notification published through the reminder agent. This API uses a pro
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -3112,7 +3118,7 @@ Cancels a notification published through the reminder agent. This API uses a pro
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
@@ -3223,7 +3229,7 @@ This API is not supported on wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -3283,7 +3289,7 @@ This API is not supported on wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -3349,7 +3355,7 @@ This API is not supported on wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -3403,7 +3409,7 @@ This API is not supported on wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -3465,7 +3471,7 @@ This API is not supported on wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -3758,7 +3764,7 @@ let onCheckNotification = (info : notificationManager.NotificationCheckInfo): no
 }
 try{
     notificationManager.on("checkNotification", onCheckNotification);
-} catch (err: BusinessError){
+} catch (err){
     console.error(`notificationManager.on failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -3842,7 +3848,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |
 | 202      | Not system application.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
@@ -3854,7 +3859,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     notificationManager.off("checkNotification");
-} catch (err: BusinessError){
+} catch (err){
     console.error(`notificationManager.off failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -3889,7 +3894,7 @@ This API is not supported on wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -4012,7 +4017,7 @@ This API is not supported on TVs and wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -4074,7 +4079,7 @@ This API is not supported on TVs and wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -4135,7 +4140,7 @@ This API is not supported on TVs and wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -4192,7 +4197,7 @@ This API is not supported on TVs and wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -4247,7 +4252,7 @@ This API is not supported on wearables.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |  
@@ -4309,7 +4314,7 @@ Before obtaining the notification slot, create a slot through [addSlot](#notific
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -4610,17 +4615,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 202      | Permission verification failed. A non-system application calls a system API. |
+| 201      | Permission denied. |
+| 202      | Not system application to call the interface. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801 | Capability not supported. | 
 | 1600001      | Internal error.                     |
 | 1600002      | Marshalling or unmarshalling error. |
 
 **Example**
 
 ```ts
-import { notificationManager } from '@kit.NotificationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -4628,6 +4631,65 @@ let disabled: boolean = true;
 let bundleList: Array<string> = ["com.example.myapplication"];
 try {
   notificationManager.disableNotificationFeature(disabled, bundleList).then(() => {
+    hilog.info(0x0000, 'testTag', '%{public}s', `disableNotificationFeature success.`);
+  }).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', '%{public}s', `disableNotificationFeature failed, code is ${err.code}, message is ${err.message}`);
+  });
+} catch (err) {
+  hilog.error(0x0000, 'testTag', '%{public}s', `testTag failed, code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## notificationManager.disableNotificationFeature<sup>20+</sup>
+
+disableNotificationFeature(disabled: boolean, bundleList: Array\<string\>, userId: number): Promise\<void\>
+
+Disables the application from publishing notifications by adding the application bundle name to the permission control list. This API uses a promise to return the result.
+
+This API is not supported on wearables.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER or ohos.permission.MANAGE_EDM_POLICY
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                    |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| disabled | boolean | Yes  | Whether to enable the notification permission control list. The value **true** indicates that the notification permission control list is enabled; **false** indicates the opposite.|
+| bundleList | Array\<string\> | Yes  | Bundles under the permission control list. The bundle name is used to represent a specific application.|
+| userId | number | Yes  | User ID.|
+
+**Return value**
+
+| Type           | Description                    | 
+|-----------------|-------------------------|
+| Promise\<void\> | Promise that returns no value.| 
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 1600001      | Internal error.                     |
+| 1600002      | Marshalling or unmarshalling error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let disabled: boolean = true;
+let bundleList: Array<string> = ["com.example.myapplication"];
+let userId: number = 1;
+try {
+  notificationManager.disableNotificationFeature(disabled, bundleList, userId).then(() => {
     hilog.info(0x0000, 'testTag', '%{public}s', `disableNotificationFeature success.`);
   }).catch((err: BusinessError) => {
     hilog.error(0x0000, 'testTag', '%{public}s', `disableNotificationFeature failed, code is ${err.code}, message is ${err.message}`);
@@ -4668,8 +4730,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 202      | Permission verification failed. A non-system application calls a system API. |
+| 201      | Permission denied. |
+| 202      | Not system application to call the interface. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
@@ -4701,8 +4763,8 @@ Sets whether the notification of a specified slot can be sent to devices of a sp
 | Name  | Type                                                        | Mandatory| Description                    |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------ |
 | slot | [SlotType](js-apis-notificationManager.md#slottype) | Yes  | Types of the notification slot.|
-| deviceType | string | Yes  | Device type. The value can be **wearable**, **litewearable**, or **headset**.|
-| enabled | boolean | Yes  | Whether to enable cross-device collaboration for notifications. The value **true** indicates that the function is enabled; **false** indicates the opposite.|
+| deviceType | string | Yes  | Device type.<br>Since API version 18, the following device types are supported:<br>- **headset**: wearable audio device<br>- **liteWearable**: lite wearables<br>- **wearable**: wearables<br>Since API version 20, the following device types are supported:<br>- **headset**: wearable audio device<br>- **liteWearable**: lite wearables<br>- **wearable**: wearables<br>- **current**: current device<br>- **2in1**: PC<br>- **tablet**: tablet|
+| enabled | boolean | Yes  | Whether to enable cross-device collaboration for notifications. The value **true** means to enable cross-device collaboration, and **false** means the opposite.|
 
 **Return value**
 
@@ -4716,14 +4778,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 202      | Permission verification failed. A non-system application calls a system API. |
+| 201      | Permission denied. |
+| 202      | Not system application to call the interface. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import { notificationManager } from '@kit.NotificationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -4742,7 +4803,7 @@ notificationManager.setDistributedEnabledBySlot(slot, deviceType, enabled).then(
 
 isDistributedEnabledBySlot(slot: SlotType, deviceType: string): Promise\<boolean\>
 
-Queries whether notifications of a specified slot can be sent to devices of a specified type through cross-device collaboration. This API uses a promise to return the result.
+Queries whether notifications of a specified slot can be sent to devices of a specified type. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -4755,13 +4816,13 @@ Queries whether notifications of a specified slot can be sent to devices of a sp
 | Name  | Type                                                        | Mandatory| Description                    |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------ |
 | slot | [SlotType](js-apis-notificationManager.md#slottype) | Yes  | Types of the notification slot.|
-| deviceType | string | Yes  | Device type. The value can be **wearable**, **litewearable**, or **headset**.|
+| deviceType | string | Yes  | Device type.<br>Since API version 18, the following device types are supported:<br>- **headset**: wearable audio device<br>- **liteWearable**: lite wearables<br>- **wearable**: wearables<br>Since API version 20, the following device types are supported:<br>- **headset**: wearable audio device<br>- **liteWearable**: lite wearables<br>- **wearable**: wearables<br>- **current**: current device<br>- **2in1**: PC<br>- **tablet**: tablet|
 
 **Return value**
 
 | Type           | Description                    | 
 |-----------------|-------------------------|
-| Promise\<boolean\> | Promise used to return the result. The value **true** indicates that cross-device collaboration is supported; **false** indicates the opposite.| 
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that cross-device collaboration is supported, and **false** means the opposite.| 
 
 **Error codes**
 
@@ -4769,14 +4830,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 202      | Permission verification failed. A non-system application calls a system API. |
+| 201      | Permission denied. |
+| 202      | Not system application to call the interface. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import { notificationManager } from '@kit.NotificationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -4788,6 +4848,284 @@ notificationManager.isDistributedEnabledBySlot(slot, deviceType).then((data: boo
 }).catch((err: BusinessError) => {
     hilog.error(0x0000, 'testTag', '%{public}s', `isDistributedEnabledBySlot failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## notificationManager.setSilentReminderEnabled<sup>20+</sup>
+
+setSilentReminderEnabled(bundle: BundleOption, enabled: boolean): Promise\<void\>
+
+Sets the enabling status of the silent reminder. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                    |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.|
+| enabled | boolean | Yes  | Whether to enable the silent reminder. The value **true** means to enable the silent reminder, and **false** means the opposite.|
+
+**Return value**
+
+| Type           | Description                    | 
+|-----------------|-------------------------|
+| Promise\<void\> | Promise that returns no value.| 
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+| 1600012  | No memory space.                          |
+| 17700001 | The specified bundle name was not found. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let bundle: notificationManager.BundleOption = {
+    bundle: "bundleName",
+};
+notificationManager.setSilentReminderEnabled(bundle, true).then(() => {
+    hilog.info(0x0000, 'testTag', '%{public}s', `setSilentReminderEnabled success.`);
+}).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', '%{public}s', `setSilentReminderEnabled failed, code is ${err.code}, message is ${err.message}`);
+});
+```
+
+## notificationManager.isSilentReminderEnabled<sup>20+</sup>
+
+isSilentReminderEnabled(bundle: BundleOption): Promise\<SwitchState\>
+
+Checks whether the silent reminder is enabled. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                    |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.|
+
+**Return value**
+
+| Type           | Description                    | 
+|-----------------|-------------------------|
+| Promise\<[SwitchState](#switchstate20)\> | Promise used to return the result.| 
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Notification Error Codes](./errorcode-notification.md), and [Bundle Error Codes](../../reference/apis-ability-kit/errorcode-bundle.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+| 1600012  | No memory space.                          |
+| 17700001 | The specified bundle name was not found. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let bundle: notificationManager.BundleOption = {
+    bundle: "bundleName1",
+};
+notificationManager.isSilentReminderEnabled(bundle).then((data: notificationManager.SwitchState) => {
+    hilog.info(0x0000, 'testTag', '%{public}s', `isSilentReminderEnabled success, switchState:  ${JSON.stringify(data)}.`);
+}).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', '%{public}s', `isSilentReminderEnabled failed, code is ${err.code}, message is ${err.message}`);
+});
+```
+
+## notificationManager.isDistributedEnabled<sup>20+</sup>
+
+isDistributedEnabled(deviceType: string): Promise\<boolean\>
+
+Checks whether the device supports cross-device notifications. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                    |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| deviceType | string | Yes  | Device type. The options are as follows:<br>- **headset**: wearable audio device<br>- **liteWearable**: lite wearables<br>- **wearable**: wearables<br>- **current**: current device<br>- **2in1**: PC<br>- **tablet**: tablet|
+
+**Return value**
+
+| Type           | Description                    |
+|-----------------|-------------------------|
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that the cross-device notifications are supported, and **false** means the opposite. Promise|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied. |
+| 202      | Not system application to call the interface. |
+
+**Example**
+
+```ts
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+  }
+
+  onForeground(): void {
+    try {
+      let deviceType: string = "wearable";
+      notificationManager.isDistributedEnabled(deviceType).then((data: boolean) => {
+        console.info('isDistributedEnabled succeeded, result = ' + data);
+      }).catch((err: BusinessError) => {
+        console.error(`isDistributedEnabled failed. Code is ${err.code}, message is ${err.message}`);
+      });
+    } catch (err) {
+      console.error(`isDistributedEnabled failed. Code is ${err.code}, message is ${err.message}`);
+    }
+  }
+}
+```
+
+## notificationManager.setDistributedEnabled<sup>20+</sup>
+
+setDistributedEnabled(enable: boolean, deviceType: string): Promise\<void\>
+
+Sets whether the device of a specified type supports cross-device notifications. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                    |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| enable   | boolean | Yes  | Whether the device of a specified type supports cross-device notifications. The value **true** means cross-device notifications are supported, and **false** means the opposite.|
+| deviceType | string | Yes  | Device type. The options are as follows:<br>- **headset**: wearable audio device<br>- **liteWearable**: lite wearables<br>- **wearable**: wearables<br>- **current**: current device<br>- **2in1**: PC<br>- **tablet**: tablet|
+
+**Return value**
+
+| Type           | Description                    |
+|-----------------|-------------------------|
+| Promise\<void\> | Promise that returns no result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied. |
+| 202      | Not system application to call the interface. |
+
+**Example**
+
+```ts
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+  }
+
+  onForeground(): void {
+    try {
+      let isEnable: boolean = true;
+      let deviceType: string = "wearable";
+      notificationManager.setDistributedEnabled(isEnable, deviceType).then(() => {
+        console.info('setDistributedEnabled succeeded.');
+      }).catch((err: BusinessError) => {
+        console.error(`setDistributedEnabled failed. Code is ${err.code}, message is ${err.message}`);
+      });
+    } catch (err) {
+      console.error(`setDistributedEnabled failed. Code is ${err.code}, message is ${err.message}`);
+    }
+  }
+}
+```
+
+## notificationManager.getDistributedDeviceList<sup>20+</sup>
+
+getDistributedDeviceList(): Promise\<Array\<string\>\>
+
+Obtains the device types that support cross-device notifications. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Type           | Description                    |
+|-----------------|-------------------------|
+| Promise\<Array\<string\>\> | Promise used to return the list of devices that support cross-device notifications.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied. |
+| 202      | Not system application to call the interface. |
+
+**Example**
+
+```ts
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+  }
+
+  onForeground(): void {
+    try {
+      notificationManager.getDistributedDeviceList().then((data: Array<string>) => {
+        console.info('getDistributedDeviceList succeeded, result = ' + data);
+      }).catch((err: BusinessError) => {
+        console.error(`getDistributedDeviceList failed. Code is ${err.code}, message is ${err.message}`);
+      });
+    } catch (err) {
+      console.error(`getDistributedDeviceList failed. Code is ${err.code}, message is ${err.message}`);
+    }
+  }
+}
 ```
 
 ## DoNotDisturbDate
@@ -4850,15 +5188,15 @@ notificationManager.isDistributedEnabledBySlot(slot, deviceType).then((data: boo
 
 **System API**: This is a system API.
 
-| Name                        | Type                        | Mandatory| Description           |
-| ---------------------------- | ---------------------------- | --- | --------------- |
-| bundleName                   | string                       | Yes  | Bundle name.   |
-| notificationId               | number                       | Yes  | Notification ID.       |
-| label<sup>11+</sup>          | string                       | No  | Notification label.     |
-| contentType                  | [ContentType](./js-apis-notificationManager.md#contenttype)  | Yes  | Notification type.     |
-| creatorUserId<sup>11+</sup>  | number                       | Yes  | User ID of the notification.|
-| slotType<sup>11+</sup>       | [SlotType](./js-apis-notificationManager.md#slottype)        | Yes  | Notification slot type.     |
-| extraInfos<sup>11+</sup>     | [key: string]: object        | No  | Extra information about the live view.|
+| Name                        | Type                         | Read-Only| Optional| Description           |
+| ---------------------------- | ---------------------------- | ---- | ---- |--------------- |
+| bundleName                   | string                       |  No | No  | Bundle name.   |
+| notificationId               | number                       |  No | No  | Notification ID.       |
+| label<sup>11+</sup>          | string                       |  No | Yes  | Notification label.     |
+| contentType                  | [ContentType](./js-apis-notificationManager.md#contenttype)  |  No | No  | Notification type.     |
+| creatorUserId<sup>11+</sup>  | number                       |  No | No  | User ID of the notification.|
+| slotType<sup>11+</sup>       | [SlotType](./js-apis-notificationManager.md#slottype)        |  No | No  | Notification slot type.     |
+| extraInfos<sup>11+</sup>     | Record<string, Object>       |  No | Yes  | Extra information about the live view.|
 
 ## NotificationCheckResult<sup>10+</sup>
 
@@ -4868,10 +5206,10 @@ notificationManager.isDistributedEnabledBySlot(slot, deviceType).then((data: boo
 
 **System API**: This is a system API.
 
-| Name   | Type                                 | Mandatory| Description                  |
-| ------- | ------------------------------------ | ---- | ---------------------- |
-| code    | number                               | Yes  | Result code.<br>**0**: display.<br>**1**: no display.|
-| message | string                               | Yes  | Result.   |
+| Name   | Type    | Read-Only| Optional| Description                    |
+| ------- | ------- | ---- | ---- | ----------------------- |
+| code    | number  |  No | No  | Result code.<br>**0**: display.<br>**1**: no display.|
+| message | string  |  No | No  | Result.               |
 
 
 ## ButtonOptions<sup>11+</sup>
@@ -4884,9 +5222,9 @@ Provides the button information of the notification.
 
 **System API**: This is a system API.
 
-| Name   | Type                                 | Mandatory| Description                  |
-| ------- | ------------------------------------ | ---- | ---------------------- |
-| buttonName    | string                         | Yes  | Button name.|
+| Name      |   Type | Read-Only| Optional| Description                   |
+| ---------- | ------ | ---- | ---- | ---------------------- |
+| buttonName | string |  No | No  | Button name.             |
 
 
 ## SystemLiveViewSubscriber<sup>11+</sup>
@@ -4953,3 +5291,18 @@ Describes the common live view.
 | Type| Description|
 | --- | --- |
 | [_NotificationLiveViewContent](js-apis-inner-notification-notificationContent-sys.md#notificationliveviewcontent11) | Common live view.|
+
+## SwitchState<sup>20+</sup>
+
+Describes the switch state of notifications.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API.
+
+| Name                | Value | Description                              |
+| --------------------| --- | --------------------------------- |
+| USER_MODIFIED_OFF   | 0   | Disabled state set by the user.           |
+| USER_MODIFIED_ON    | 1   | Enabled state set by the user.                |
+| SYSTEM_DEFAULT_OFF  | 2   | Initial disabled state before user settings.           |
+| SYSTEM_DEFAULT_ON   | 3   | Initial enabled state before user settings.                |

@@ -1,5 +1,12 @@
 # Ability Error Codes
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @duan-sizhao; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -47,7 +54,7 @@ The ability with the specified type does not support the API call.
 **Solution**
 
 1. Pass in correct values of **bundleName**, **moduleName**, and **abilityName** in **want**.
-2. Call APIs based on the ability type. For example, call <!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#startserviceextensionability) to start the ServiceExtensionAbility, or call <!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability) to connect to the ServiceExtensionAbility.
+2. Call APIs based on the ability type. For example, call <!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#startserviceextensionability) to start the ServiceExtensionAbility, or call <!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability) to connect to the ServiceExtensionAbility. Additionally, ensure that the value of **type** under **extensionAbilities** in the [module.json5](../../quick-start/module-configuration-file.md) file matches the service you are using.
 
 ## 16000003 ID Not Exist
 
@@ -332,17 +339,16 @@ Internal error.
 
 **Description**
 
-This error code is reported when an error occurs during internal processing, such as memory application or multithreading processing.
+This error code is reported when an internal exception occurs that is beyond the control of the developer, such as memory allocation failure, multithreading issues, or IPC failure.
 
 **Possible Causes**
 
-Common kernel errors such as memory application and multithreading processing errors occur. The possible causes are as follows: empty internal object, processing timeout, failure in obtaining application information, failing in obtaining the system service, and too many started ability instances.
+This is a generic system error code and can be triggered by various issues depending on the API. Common causes include: null pointer exceptions for internal objects, processing timeouts, IPC failures, failure in obtaining application information, failure in obtaining system services, and reaching the maximum limit of launched ability instances.
 
 **Solution**
 
-1. Ensure sufficient system memory. Ensure that the system version used by the device is normal.
-2. Limit the number of ability processes started.
-3. Restart the device.
+1. Since this is a system-level error, it is typically out of the developer's control. You can try the operation again.
+2. If the ability fails to start, check whether the data passed in Want is too large.
 
 ## 16000053 Ability Is Not on Top
 
@@ -684,7 +690,7 @@ The caller does not exist.
 
 **Description**
 
-This error code is reported when the **backTocallerAbilityResult** API attempts to return the result to the caller but fails to find the caller based on **requestCode**.
+This error code is reported when the **backToCallerAbilityWithResult** API attempts to return the result to the caller but fails to find the caller based on **requestCode**.
 
 **Possible Causes**
 
@@ -1135,7 +1141,7 @@ The target component is not a UIAbility.
 
 **Possible Causes**
 
-**startUIAbilities** can start only UIAbilities. This error code is reported when the target component is not a UIAbility.
+**startUIAbilities** can start only UIAbility components. This error code is reported when the target component is not a UIAbility.
 
 **Solution**
 
@@ -1782,7 +1788,7 @@ The input bundleName is not a system HSP.
 
 **Description**
 
-When the [createSystemHspModuleResourceManager](js-apis-inner-application-context-sys.md#contextcreatesystemhspmoduleresourcemanager12) API is used to create a [ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager), if the passed **bundleName** does not belong to a module of a [system HSP](../../quick-start/application-package-glossary.md#system-level-hsp), this error code is reported.
+When the [createSystemHspModuleResourceManager](js-apis-inner-application-context-sys.md#createsystemhspmoduleresourcemanager12) API is used to create a [ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager), if the passed **bundleName** does not belong to a module of a [system HSP](../../quick-start/application-package-glossary.md#system-level-hsp), this error code is reported.
 
 **Possible Causes**
 
@@ -1900,5 +1906,3 @@ The current process is not a candidate master process and cannot be canceled.
 **Solution**
 
 No action can be taken. Cancellation is not supported since the current process is not a candidate master process.
-
-<!--no_check-->

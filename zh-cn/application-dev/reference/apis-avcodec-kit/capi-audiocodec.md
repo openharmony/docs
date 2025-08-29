@@ -1,5 +1,12 @@
 # AudioCodec
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @mr-chencxy-->
+<!--Designer: @dpy2650--->
+<!--Tester: @baotianhao-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 AudioCodec模块提供用于音频编解码功能的函数。

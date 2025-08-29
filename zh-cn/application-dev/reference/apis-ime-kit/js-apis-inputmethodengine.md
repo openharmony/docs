@@ -175,6 +175,8 @@ type SizeChangeCallback = (size: window.Size, keyboardArea?: KeyboardArea) => vo
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
+**参数：**
+
 | 参数名       | 类型                                                 | 必填 | 说明                             |
 | ------------ | ---------------------------------------------------- | ---- | -------------------------------- |
 | size         | [window.Size](../apis-arkui/arkts-apis-window-i.md#size7) | 是   | 当前面板大小。                   |
@@ -283,7 +285,7 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 要取消监听的输入法软键盘类型。<br/>-'keyboardShow'表示显示输入法软键盘。<br/>-'keyboardHide'表示隐藏输入法软键盘。|
+| type     | string | 是   | 要取消监听的输入法软键盘事件类型。<br/>-'keyboardShow'表示显示输入法软键盘。<br/>-'keyboardHide'表示隐藏输入法软键盘。|
 | callback | () => void   | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
@@ -489,7 +491,7 @@ try {
 
 off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
-取消订阅输入法事件。使用callback异步回调。
+取消订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -548,7 +550,7 @@ try {
 
 off(type: 'setSubtype', callback?: (inputMethodSubtype: InputMethodSubtype) => void): void
 
-取消订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
+取消订阅设置输入法子类型事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -718,7 +720,7 @@ try {
 
 on(type: 'callingDisplayDidChange', callback: Callback\<number>): void
 
-订阅编辑框对应窗口所在屏幕ID变化。使用callback异步回调。
+订阅编辑框对应窗口所在屏幕ID变化事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -759,7 +761,7 @@ try {
 
 off(type: 'callingDisplayDidChange', callback?: Callback\<number>): void
 
-取消编辑框对应窗口所在屏幕ID变化。使用callback异步回调。
+取消订阅编辑框对应窗口所在屏幕ID变化事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -886,7 +888,12 @@ try {
 
 createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>): void
 
-创建输入法面板，仅支持输入法应用调用。使用callback异步回调。<br>单个输入法应用仅允许创建一个[软键盘类型](#paneltype10)和[状态栏类型](#paneltype10)的面板。
+创建输入法面板，仅支持输入法应用调用。使用callback异步回调。
+
+> **说明：**
+>
+> 单个输入法应用仅允许创建一个[软键盘类型](#paneltype10)和一个[状态栏类型](#paneltype10)的面板。<br>
+> 输入法面板不支持创建子窗口。例如：不支持使用[window.createWindow](../../windowmanager/application-window-fa.md#设置应用子窗口)、[bindContextMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)、[CustomDialog](../../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)等接口创建子窗口弹窗。建议开发者采用非子窗的替代方案，如[弹出框](../../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)、[bindMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu)或设置showInSubwindow为false。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -932,7 +939,12 @@ try {
 
 createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
-创建输入法面板，仅支持输入法应用调用。使用promise异步回调。<br>单个输入法应用仅允许创建一个[软键盘类型](#paneltype10)和[状态栏类型](#paneltype10)的面板。
+创建输入法面板，仅支持输入法应用调用。使用promise异步回调。
+
+> **说明：**
+>
+> 单个输入法应用仅允许创建一个[软键盘类型](#paneltype10)和一个[状态栏类型](#paneltype10)的面板。<br>
+> 输入法面板不支持创建子窗口。例如：不支持使用[window.createWindow](../../windowmanager/application-window-fa.md#设置应用子窗口)、[bindContextMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)、[CustomDialog](../../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)等接口创建子窗口弹窗。建议开发者采用非子窗的替代方案，如[弹出框](../../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)、[bindMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu)或设置showInSubwindow为false。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2225,7 +2237,7 @@ try {
 
 off(type: 'show', callback?: () => void): void
 
-取消监听当前输入法面板的隐藏状态，使用callback异步回调。
+取消监听当前面板的显示状态，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2258,7 +2270,7 @@ try {
 
 off(type: 'hide', callback?: () => void): void
 
-取消监听当前面板隐藏状态，使用callback异步回调。
+取消监听当前面板的隐藏状态，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2429,7 +2441,7 @@ try {
 
 getImmersiveMode(): ImmersiveMode
 
-获取输入法应用沉浸模式。
+获取输入法应用的沉浸模式。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -4084,7 +4096,7 @@ try {
 
 selectByMovement(movement: Movement): Promise&lt;void&gt;
 
-根据索引范围选中文本。使用promise异步回调。
+根据光标移动方向选中文本。使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 

@@ -1,6 +1,12 @@
 # Freezing a Custom Component
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liwenzhen3-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
-When a custom component decorated by @ComponentV2 is inactive, it can be frozen so that its state variables do not respond to updates. This means that the @Monitor decorated callback will not be triggered, and any nodes associated with these state variables will not be re-rendered. This freezing mechanism offers significant performance benefits in complex UI scenarios. It prevents inactive components from performing unnecessary updates when their state variables update, thereby reducing resource consumption. You can use the **freezeWhenInactive** attribute to specify whether to enable the freezing feature. If no parameter is passed in, this feature is disabled. The freezing feature is supported in the following scenarios and components: [page navigation and routing](../../reference/apis-arkui/js-apis-router.md), [TabContent](../../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md), [Navigation](../../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md), [Repeat](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md).
+When a custom component decorated by @ComponentV2 is inactive, it can be frozen so that its state variables do not respond to updates. This means that the [@Monitor](./arkts-new-monitor.md) decorated callback will not be triggered, and any nodes associated with these state variables will not be re-rendered. This freezing mechanism offers significant performance benefits in complex UI scenarios. It prevents inactive components from performing unnecessary updates when their state variables update, thereby reducing resource consumption. You can use the **freezeWhenInactive** attribute to specify whether to enable the freezing feature. If no parameter is passed in, this feature is disabled. The freezing feature is supported in the following scenarios and components: [page navigation and routing](../../reference/apis-arkui/js-apis-router.md), [TabContent](../../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md), [Navigation](../../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md), [Repeat](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md).
 
 To implement this feature, a solid understanding of the basic syntax for @ComponentV2 is required. Therefore, you are advised to read the [\@ComponentV2 documentation](./arkts-new-componentV2.md) before proceeding.
 
@@ -44,7 +50,7 @@ export struct Page1 {
 
   @Monitor("bookTest.name")
   onMessageChange(monitor: IMonitor) {
-    console.log(`The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   build() {
@@ -88,7 +94,7 @@ In the preceding example:
 
 1. After the **changeBookName** button on page 1 is clicked, the **name** property of the **bookTest** variable is changed, triggering the **onMessageChange** method registered in @Monitor.
 
-2. After the **go to next page** button on page 1 is displayed, the application navigates to page 2, and the **bookTest** state variable is updated after a 1s delay. When **bookTest** is updated, page 1 is already in the inactive state, where the **@Local bookTest** state variable does not respond to updates. Therefore, the @Monitor is not called, and no UI re-rendering occurs for nodes bound to this state variable.
+2. After the **go to next page** button on page 1 is displayed, the application navigates to page 2, and the **bookTest** state variable is updated after a 1s delay. When **bookTest** is updated, page 1 is already in the inactive state, where the [@Local](./arkts-new-local.md) decorated state variable **bookTest** does not respond to updates. Therefore, the @Monitor is not called, and no UI re-rendering occurs for nodes bound to this state variable.
 
 The trace information is shown below.
 
@@ -181,11 +187,11 @@ struct MyNavigationTestStack {
   @Builder
   PageMap(name: string) {
     if (name === 'pageOne') {
-      pageOneStack({ message: this.message })
+      PageOneStack({ message: this.message })
     } else if (name === 'pageTwo') {
-      pageTwoStack({ message: this.message })
+      PageTwoStack({ message: this.message })
     } else if (name === 'pageThree') {
-      pageThreeStack({ message: this.message })
+      PageThreeStack({ message: this.message })
     }
   }
 
@@ -210,7 +216,7 @@ struct MyNavigationTestStack {
 }
 
 @ComponentV2
-struct pageOneStack {
+struct PageOneStack {
   @Consumer('pageInfo') pageInfo: NavPathStack = new NavPathStack();
   @Local index: number = 1;
   @Param message: number = 0;
@@ -239,7 +245,7 @@ struct pageOneStack {
 }
 
 @ComponentV2
-struct pageTwoStack {
+struct PageTwoStack {
   @Consumer('pageInfo') pageInfo: NavPathStack = new NavPathStack();
   @Local index: number = 2;
   @Param message: number = 0;
@@ -268,7 +274,7 @@ struct pageTwoStack {
 }
 
 @ComponentV2
-struct pageThreeStack {
+struct PageThreeStack {
   @Consumer('pageInfo') pageInfo: NavPathStack = new NavPathStack();
   @Local index: number = 3;
   @Param message: number = 0;
@@ -321,21 +327,21 @@ In the preceding example:
 
 1. When **change message** is clicked, the value of **message** changes, triggering the @Monitor decorated **info** method of the **MyNavigationTestStack** component being displayed.
 
-2. When **Next Page** is clicked, the page is switched to **PageOne** and the **pageOneStack** node is created.
+2. When **Next Page** is clicked, the page is switched to **PageOne** and the **PageOneStack** node is created.
 
-3. When **change message** is clicked again, the value of **message** changes, triggering only the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component in **pageOneStack**.
+3. When **change message** is clicked again, the value of **message** changes, triggering only the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component in **PageOneStack**.
 
-4. When **Next Page** is clicked, the page is switched to **PageTwo** and the **pageTwoStack** node is created. The state of the **pageOneStack** node changes from active to inactive.
+4. When **Next Page** is clicked, the page is switched to **PageTwo** and the **PageTwoStack** node is created. The state of the **PageOneStack** node changes from active to inactive.
 
-5. When **change message** is clicked again, the value of **message** changes, triggering only the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component in **pageTwoStack**. The child custom components in **NavDestination** that are not at the top of the navigation stack are in the inactive state, and their @Monitor decorated methods are not triggered.
+5. When **change message** is clicked again, the value of **message** changes, triggering only the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component in **PageTwoStack**. The child custom components in **NavDestination** that are not at the top of the navigation stack are in the inactive state, and their @Monitor decorated methods are not triggered.
 
-6. When **Next Page** is clicked, the page is switched to **PageThree** and the **pageThreeStack** node is created. The state of the **pageTwoStack** node changes from active to inactive.
+6. When **Next Page** is clicked, the page is switched to **PageThree** and the **PageThreeStack** node is created. The state of the **PageTwoStack** node changes from active to inactive.
 
-7. When **change message** is clicked again, the value of **message** changes, triggering only the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component in **pageThreeStack**. The child custom components in **NavDestination** that are not at the top of the navigation stack are in the inactive state, and their @Monitor decorated methods are not triggered.
+7. When **change message** is clicked again, the value of **message** changes, triggering only the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component in **PageThreeStack**. The child custom components in **NavDestination** that are not at the top of the navigation stack are in the inactive state, and their @Monitor decorated methods are not triggered.
 
-8. After **Back Page** is clicked to return to **PageTwo**, the state of the **pageTwoStack** node changes from inactive to active, triggering the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component.
+8. After **Back Page** is clicked to return to **PageTwo**, the state of the **PageTwoStack** node changes from inactive to active, triggering the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component.
 
-9. After **Back Page** is clicked again to return to **PageOne**, the state of the **pageOneStack** node changes from inactive to active, triggering the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component.
+9. After **Back Page** is clicked again to return to **PageOne**, the state of the **PageOneStack** node changes from inactive to active, triggering the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component.
 
 10. When **Back Page** is clicked once more, the UI is switched to the initial page.
 
@@ -404,7 +410,7 @@ struct ChildComponent {
   @Monitor(`bgColor`)
   onBgColorChange(monitor: IMonitor) {
     // When the value of bgColor changes, the components in the cache pool are not re-rendered, so no log is printed.
-    console.log(`repeat---bgColor change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`repeat---bgColor change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   build() {
@@ -432,7 +438,7 @@ struct ChildComponent {
   @Monitor(`bgColor`)
   onBgColorChange(monitor: IMonitor) {
     // When the value of bgColor changes, components in the cache pool are also re-rendered, printing logs.
-    console.log(`repeat---bgColor change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`repeat---bgColor change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   build() {
@@ -487,11 +493,11 @@ export struct Child {
 
   @Monitor('bookTest.name')
   onMessageChange(monitor: IMonitor) {
-    console.log(`The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   textUpdate(): number {
-    console.log('The text is update');
+    console.info('The text is update');
     return 25;
   }
 
@@ -562,9 +568,13 @@ In the preceding example:
 
 ### Component Freezing Across Mixed Scenarios
 
-When component freezing is applied across different scenarios, freezing behavior varies by API version. Key differences exist when parent components have freezing enabled:<br> API version 17 or earlier:<br>Thawing a parent component automatically thaws all its child components.<br>API version 18 or later:<br>Thawing a parent component only thaws on-screen child components. For details, see [Mixing the Use of Components](./arkts-custom-components-freeze.md#mixing-the-use-of-components).
+When component freezing is applied across different scenarios, freezing behavior varies by API version. Key differences exist when parent components have freezing enabled:
 
-#### Mixed Use of Navigation and TabContent
+- API version 17 or earlier: Thawing a parent component automatically thaws all its child components.
+
+- API version 18 or later: Thawing a parent component only thaws on-screen child components. For details, see [Mixing the Use of Components](./arkts-custom-components-freeze.md#mixing-the-use-of-components).
+
+**Mixed Use of Navigation and TabContent**
 
 ```ts
 @ComponentV2
@@ -572,7 +582,7 @@ struct ChildOfParamComponent {
   @Require @Param child_val: number;
 
   @Monitor('child_val') onChange(m: IMonitor) {
-    console.log(`Appmonitor ChildOfParamComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
+    console.info(`Appmonitor ChildOfParamComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
   }
 
   build() {
@@ -587,7 +597,7 @@ struct ParamComponent {
   @Require @Param val: number;
 
   @Monitor('val') onChange(m: IMonitor) {
-    console.log(`Appmonitor ParamComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
+    console.info(`Appmonitor ParamComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
   }
 
   build() {
@@ -603,7 +613,7 @@ struct DelayComponent {
   @Require @Param delayVal1: number;
 
   @Monitor('delayVal1') onChange(m: IMonitor) {
-    console.log(`Appmonitor DelayComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
+    console.info(`Appmonitor DelayComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
   }
 
   build() {
@@ -612,14 +622,14 @@ struct DelayComponent {
     }
   }
 }
- 
+
 @ComponentV2 ({freezeWhenInactive: true})
 struct TabsComponent {
   private controller: TabsController = new TabsController();
   @Local tabState: number = 47;
 
   @Monitor('tabState') onChange(m: IMonitor) {
-    console.log(`Appmonitor TabsComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
+    console.info(`Appmonitor TabsComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
   }
 
   build() {
@@ -627,7 +637,7 @@ struct TabsComponent {
       Button(`Incr state ${this.tabState}`)
         .fontSize(25)
         .onClick(() => {
-          console.log('Button increment state value');
+          console.info('Button increment state value');
           this.tabState = this.tabState + 1;
         })
 
@@ -658,9 +668,9 @@ struct MyNavigationTestStack {
   @Builder
   PageMap(name: string) {
     if (name === 'pageOne') {
-      pageOneStack()
+      PageOneStack()
     } else if (name === 'pageTwo') {
-      pageTwoStack()
+      PageTwoStack()
     }
   }
 
@@ -684,7 +694,7 @@ struct MyNavigationTestStack {
 }
 
 @Component
-struct pageOneStack {
+struct PageOneStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
 
   build() {
@@ -709,7 +719,7 @@ struct pageOneStack {
 }
 
 @Component
-struct pageTwoStack {
+struct PageTwoStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
 
   build() {
@@ -780,7 +790,7 @@ struct buildNodeChild {
   // Use the @Monitor decorator to listen for the changes of storage.message.
   @Monitor("storage.message")
   onMessageChange(monitor: IMonitor) {
-    console.log(`FreezeBuildNode buildNodeChild message callback func ${this.storage.message}, index:${this.index}`);
+    console.info(`FreezeBuildNode buildNodeChild message callback func ${this.storage.message}, index:${this.index}`);
   }
 
   build() {
@@ -858,7 +868,7 @@ struct FreezeBuildNode {
   // Use the @Monitor decorator to listen for the changes of storage.message.
   @Monitor("storage.message")
   onMessageChange(monitor: IMonitor) {
-    console.log(`FreezeBuildNode message callback func ${this.storage.message}, index: ${this.index}`);
+    console.info(`FreezeBuildNode message callback func ${this.storage.message}, index: ${this.index}`);
   }
 
   build() {
@@ -872,7 +882,7 @@ struct FreezeBuildNode {
 
 After the **change** button is clicked, the value of **message** changes, resulting in both expected and unexpected behaviors:
 
-- Expected: The @Watch decorated **onMessageUpdated** callback of the **TabContent** component that is being displayed is triggered.
+- Expected: The [@Watch](./arkts-watch.md) decorated **onMessageUpdated** callback of the **TabContent** component that is being displayed is triggered.
 - Unexpected: For **TabContent** components that are not being displayed, the @Watch decorated **onMessageUpdated** callbacks of child components under the BuilderNode are also triggered, indicating that these components are not frozen.
 
 ![builderNode.gif](figures/builderNode.gif)

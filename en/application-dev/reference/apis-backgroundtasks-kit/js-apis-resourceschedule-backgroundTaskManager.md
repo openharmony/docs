@@ -1,5 +1,12 @@
 # @ohos.resourceschedule.backgroundTaskManager (Background Task Management)
 
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: ResourceSchedule-->
+<!--Owner: @cheng-shichang-->
+<!--Designer: @zhouben25-->
+<!--Tester: @fenglili18-->
+<!--Adviser: @Brilliantry_Rui-->
+
 The **backgroundTaskManager** module provides APIs to request background tasks. You can use the APIs to request transient tasks, continuous tasks, or efficiency resources to prevent the application process from being terminated or suspended when your application is switched to the background.
 
 >  **NOTE**
@@ -293,8 +300,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```js
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { wantAgent, WantAgent } from '@kit.AbilityKit';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { wantAgent, WantAgent } from '@kit.AbilityKit';
+// In atomic services, please remove the WantAgent import.
 
 function callback(error: BusinessError, data: void) {
     if (error) {
@@ -324,10 +332,11 @@ export default class EntryAbility extends UIAbility {
 
         try {
             // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
+            // In atomic services, please replace the following line of code with wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: object) => {.
             wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
                 try {
                     backgroundTaskManager.startBackgroundRunning(this.context,
-                        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
+                        backgroundTaskManager.BackgroundMode.AUDIO_PLAYBACK, wantAgentObj, callback)
                 } catch (error) {
                     console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
                 }
@@ -387,8 +396,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```js
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { wantAgent, WantAgent } from '@kit.AbilityKit';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { wantAgent, WantAgent } from '@kit.AbilityKit';
+// In atomic services, please remove the WantAgent import.
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -410,10 +420,11 @@ export default class EntryAbility extends UIAbility {
 
         try {
             // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
+            // In atomic services, please replace the following line of code with wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: object) => {.
             wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
                 try {
                     backgroundTaskManager.startBackgroundRunning(this.context,
-                        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
+                        backgroundTaskManager.BackgroundMode.AUDIO_PLAYBACK, wantAgentObj).then(() => {
                         console.info("Operation startBackgroundRunning succeeded");
                     }).catch((error: BusinessError) => {
                         console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
@@ -595,8 +606,9 @@ import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { wantAgent, WantAgent } from '@kit.AbilityKit';
 import { notificationManager } from '@kit.NotificationKit';
+import { wantAgent, WantAgent } from '@kit.AbilityKit';
+// In atomic services, please remove the WantAgent import.
 
 export default class EntryAbility extends UIAbility {
   id: number = 0; // Save the notification ID.
@@ -620,9 +632,11 @@ export default class EntryAbility extends UIAbility {
 
     try {
       // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
+      // In atomic services, please replace the following line of code with wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: object) => {.
       wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
         try {
           let list: Array<string> = ["dataTransfer"];
+          // In atomic services, let list: Array<string> = ["audioPlayback"];
           backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
             console.info("Operation startBackgroundRunning succeeded");
             // For a continuous task of the upload and download type, the application can use the notification ID returned in res to update the notification, for example, sending a template notification with a progress bar.

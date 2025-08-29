@@ -182,7 +182,6 @@ createAVRecorder(): Promise\<AVRecorder>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-
 let avRecorder: media.AVRecorder;
 media.createAVRecorder().then((recorder: media.AVRecorder) => {
   if (recorder != null) {
@@ -226,7 +225,6 @@ createAVTranscoder(): Promise\<AVTranscoder>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avTranscoder: media.AVTranscoder | undefined = undefined;
 media.createAVTranscoder().then((transcoder: media.AVTranscoder) => {
@@ -267,7 +265,6 @@ createAVMetadataExtractor(callback: AsyncCallback\<AVMetadataExtractor>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avMetadataExtractor: media.AVMetadataExtractor;
 media.createAVMetadataExtractor((error: BusinessError, extractor: media.AVMetadataExtractor) => {
@@ -306,7 +303,6 @@ createAVMetadataExtractor(): Promise\<AVMetadataExtractor>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avMetadataExtractor: media.AVMetadataExtractor;
 media.createAVMetadataExtractor().then((extractor: media.AVMetadataExtractor) => {
@@ -354,7 +350,6 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo, ca
 
 ```js
 import { audio } from '@kit.AudioKit';
-import { media } from '@kit.MediaKit';
 
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -412,7 +407,6 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): P
 ```js
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -496,7 +490,6 @@ createAVImageGenerator(callback: AsyncCallback\<AVImageGenerator>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator;
 media.createAVImageGenerator((error: BusinessError, generator: media.AVImageGenerator) => {
@@ -535,7 +528,6 @@ createAVImageGenerator(): Promise\<AVImageGenerator>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator;
 media.createAVImageGenerator().then((generator: media.AVImageGenerator) => {
