@@ -198,4 +198,4 @@ power.isScreenOn()
 | 名称                    | 值   | 说明                   |
 | ----------------------- | ---- | ---------------------- |
 | DISABLE_LONG_PRESS_FILTERING | 0  | 表示不使能电源键过滤策略，默认值。 |
-| LONG_PRESS_FILTERING_ONCE | 1  | 表示过滤一次长按电源键。 |
+| LONG_PRESS_FILTERING_ONCE | 1  | 表示仅过滤当前电源键长按事件，下一次不过滤。 |
