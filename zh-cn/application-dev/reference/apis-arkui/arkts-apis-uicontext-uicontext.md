@@ -661,7 +661,7 @@ struct MyComponent {
         })
         .onClick(() => {
           let node = this.getUIContext().getAttachedFrameNodeById("HelloWorld");
-          console.log(`Find HelloWorld Tag:${node!.getNodeType()} id:${node!.getUniqueId()}`);
+          console.info(`Find HelloWorld Tag:${node!.getNodeType()} id:${node!.getUniqueId()}`);
         })
     }
     .height('100%')
