@@ -1,4 +1,10 @@
 # Network Kit（网络服务）<!--network-api-->
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
 
 - ArkTS API<!--network-api-arkts-->
   - [@ohos.net.connection (网络连接管理)](js-apis-net-connection.md)
