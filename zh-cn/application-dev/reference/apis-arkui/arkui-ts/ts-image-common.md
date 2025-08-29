@@ -74,6 +74,8 @@ type PixelMap = PixelMap
 
 图像分析控制器。可以将此对象绑定至支持的组件，通过控制器来调用支持的方法。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### constructor<sup>12+</sup>
