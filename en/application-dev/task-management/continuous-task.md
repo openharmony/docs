@@ -103,6 +103,7 @@ The following walks you through how to request a continuous task for recording t
    
    Import the modules related to continuous tasks: @ohos.resourceschedule.backgroundTaskManager and @ohos.app.ability.wantAgent. Import other modules based on the project requirements.
 
+   <!--RP1--> 
    ```ts
     import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
     import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -111,6 +112,7 @@ The following walks you through how to request a continuous task for recording t
     import { BusinessError } from '@kit.BasicServicesKit';
     import { wantAgent, WantAgent } from '@kit.AbilityKit';
    ```
+   <!--RP1End-->
 
 4. Request and cancel a continuous task.
 
