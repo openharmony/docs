@@ -322,14 +322,14 @@ startUIAbilities(wantList: Array\<Want>): Promise\<void>
 开发者可以传入多个UIAbility对应的Want信息，这些UIAbility可以指向一个或多个应用。当所有的UIAbility都能启动成功时，系统会通过多个窗口同时展示这些UIAbility。根据窗口的处理，不同设备上可能会有不同的展示效果（包括窗口形态、数量和排版布局）。
 
 > **说明：**
->
-> 该接口仅在Phone和Tablet设备上生效。
 > 
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在Phone和Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数**：
 

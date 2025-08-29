@@ -286,6 +286,8 @@ function secureElementDemo() {
     }
     if (seReaders == undefined || seReaders.length == 0) {
         hilog.error(0x0000, 'testTag', 'no valid reader found.');
+        // 释放SeService资源
+        seService.shutdown();
         return;
     }
 }
@@ -589,6 +591,8 @@ function secureElementDemo() {
     }
     if (seSession == undefined) {
         hilog.error(0x0000, 'testTag', 'seSession invalid.');
+        // 释放SeService资源
+        seService.shutdown();
         return;
     }
     try {

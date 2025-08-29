@@ -20,9 +20,13 @@ OffscreenCanvas组件用于绘制自定义图形。
 
 不支持。
 
-## 接口
+## 构造函数
 
-OffscreenCanvas(width: number, height: number, unit?: LengthMetricsUnit)
+### constructor
+
+constructor(width: number, height: number)
+
+构造用于创建离屏画布对象的OffscreenCanvas。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -36,7 +40,26 @@ OffscreenCanvas(width: number, height: number, unit?: LengthMetricsUnit)
 | ------ | -------- | ---- | ------------------------------------- |
 | width  | number   | 是  | OffscreenCanvas组件的宽度。<br>默认单位为vp。 |
 | height | number   | 是  | OffscreenCanvas组件的高度。<br>默认单位为vp。 |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否   |  用来配置OffscreenCanvas对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT |
+
+### constructor<sup>12+</sup>
+
+constructor(width: number, height: number, unit: LengthMetricsUnit)
+
+构造用于创建离屏画布对象的OffscreenCanvas，支持配置OffscreenCanvas的单位模式。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                        |
+| ------ | -------- | ---- | ------------------------------------- |
+| width  | number   | 是  | OffscreenCanvas组件的宽度。<br>默认单位为vp。 |
+| height | number   | 是  | OffscreenCanvas组件的高度。<br>默认单位为vp。 |
+| unit   | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 是   |  用来配置OffscreenCanvas对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)。<br>默认值：DEFAULT |
 
 ## 属性
 

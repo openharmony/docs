@@ -1,4 +1,11 @@
 # 应用内状态变量和其他场景迁移指导
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
+
 本文档主要介绍应用内状态变量和其他场景迁移场景，包含以下场景。
 
 | V1装饰器名/场景                | V2装饰器名                  |
@@ -1096,7 +1103,7 @@ V1中PersistentStorage提供了持久化UI数据的能力，而V2则提供了更
 
 对于PersistenceV2：
 - 与PersistenceV2关联的\@ObservedV2对象，其\@Trace属性的变化，会触发整个关联对象的自动持久化。
-- 开发者也可以调用[PersistenceV2.save](./arkts-new-persistencev2.md#save手动持久化数据)和[PersistenceV2.globalConnect](./arkts-new-persistencev2.md#使用globalconnect存储数据)接口来手动触发持久化写入和读取。
+- 开发者也可以调用[PersistenceV2.save](../../reference/apis-arkui/js-apis-StateManagement.md#save)和[PersistenceV2.globalConnect](./arkts-new-persistencev2.md#使用globalconnect存储数据)接口来手动触发持久化写入和读取。
 
 V1:
 

@@ -1,4 +1,10 @@
 # Accessing a DataAbility
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @xialiangwei-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 <!--deprecated_code_no_check-->
 
 To access a DataAbility, import the basic dependency packages and obtain the URI string for communicating with the DataAbility.
@@ -15,7 +21,7 @@ The basic dependency packages include:
 The sample code for accessing a DataAbility is as follows:
 
 
-1. Create a **DataAbilityHelper** instance.
+1. Create a DataAbilityHelper instance.
    
     ```ts
     import featureAbility from '@ohos.ability.featureAbility';

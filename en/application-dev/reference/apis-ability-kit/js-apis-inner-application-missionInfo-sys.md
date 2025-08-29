@@ -23,14 +23,14 @@ import { missionManager } from '@kit.AbilityKit';
 | -------- | -------- | -------- | -------- | -------- |
 | missionId | number | No| No| Mission ID.|
 | runningState | number | No| No| Running state of the mission.|
-| lockedState | boolean | No| No| Locked state of the mission. The value **true** means that the mission is locked, and **false** means the opposite.|
+| lockedState | boolean | No| No| Locked state of the mission. **true** if locked, **false** otherwise.|
 | timestamp | string | No| No| Latest time when the mission was created or updated.|
 | want | [Want](js-apis-app-ability-want.md) | No| No| Want information of the mission.|
 | label | string | No| No| Label of the mission.|
 | iconPath | string | No| No| Path of the mission icon.|
-| continuable | boolean | No| No| Whether the mission can be continued on another device. The value **true** means that the mission can be continued on another device, and **false** means the opposite.|
+| continuable | boolean | No| No| Whether the mission can be continued on another device. **true** if the mission can be continued on another device, **false** otherwise.|
 | abilityState<sup>10+</sup> | number | No| No| Capability status of the mission.|
-| unclearable<sup>10+</sup> | boolean | No| No| Whether the mission can be manually deleted. The value **true** means that the mission can be manually deleted, and **false** means the opposite.|
+| unclearable<sup>10+</sup> | boolean | No| No| Whether the mission can be manually deleted. **true** if the mission can be manually deleted, **false** otherwise.|
 
 **Example**
 ```ts

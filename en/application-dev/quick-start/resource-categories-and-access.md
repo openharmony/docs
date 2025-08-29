@@ -228,7 +228,7 @@ The following takes the Chinese and English string resource files as examples to
 
 2. Similarly, select **en** for language and **US** for country/region to create the **en_US/element/string_sample.json** file.
 
-The following figure shows the created resource files. For details about how to access the created resource files, see [Resource Access](#resource-access).
+The following figure shows the created resource files. For details about how to access the created resource files, see [Accessing Resources](#accessing-resources).
 
 ![create-resource-file-5](figures/create-resource-file-5.png)
 
@@ -244,7 +244,7 @@ If the **attr** attribute is not configured, a string is translated by default.
 
 | Name       | Type                   |  Description  |
 | --------- | ----------------------- |  ---- |
-| translatable |  boolean | Whether the string needs to be translated.<br> **true**: The string needs to be translated.<br> **false**: The string does not need to be translated. |
+| translatable |  boolean | Whether the string needs to be translated.<br>**true**: The string needs to be translated.<br>**false**: The string does not need to be translated. |
 | priority    | string   |  Translation status of the string.<br>**code**: untranslated<br>**translate**: translated but not verified<br>**LT**: translated and verified<br>**customer**: custom  |
 
 ### Constraints
@@ -292,7 +292,7 @@ The following shows the **attr** attribute configured in **string**. The **strin
    >
    > For details about how to use native APIs to access raw files, see [Raw File Development](../napi/rawfile-guidelines.md).
 
-[Resource file examples](#Resource file example) show different .json files, including **color.json**, **string.json**, and **plural.json**. Before accessing application resources, you need to learn the usage specifications of the .json files.<br>The usage is as follows:
+[Resource file examples](#resource-file-examples) show different .json files, including **color.json**, **string.json**, and **plural.json**. Before accessing application resources, you need to learn the usage specifications of the .json files.<br>The usage is as follows:
 
   ```ts
     // Access through $r('app.type.name').

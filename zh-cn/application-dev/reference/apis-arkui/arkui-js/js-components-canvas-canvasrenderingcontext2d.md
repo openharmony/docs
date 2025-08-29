@@ -555,6 +555,7 @@ export default {
     const el = this.$refs.canvas;
     const ctx = el.getContext('2d');
     var img = new Image();
+    // 'common/image/example.jpg'需要替换为开发者所需的图像资源文件
     img.src = 'common/image/example.jpg';
     img.onload = function() {
     ctx.imageSmoothingEnabled = false;
@@ -1024,6 +1025,7 @@ createPattern(image: Image, repetition: string): Object
       const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       var img = new Image();
+      // 'common/images/example.jpg'需要替换为开发者所需的图像资源文件
       img.src = 'common/images/example.jpg';
       var pat = ctx.createPattern(img, 'repeat');
       ctx.fillStyle = pat;
@@ -1644,6 +1646,7 @@ drawImage(image: Image | PixelMap, sx: number, sy: number, sWidth: number, sHeig
       var test = this.$refs.canvas;
       var ctx = test.getContext('2d');
       var img = new Image();
+      // 'common/image/test.jpg'需要替换为开发者所需的图像资源文件
       img.src = 'common/image/test.jpg';
       ctx.drawImage(img, 0, 0, 200, 200, 10, 10, 200, 200);
     }

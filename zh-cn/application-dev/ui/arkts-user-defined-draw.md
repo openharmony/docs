@@ -6,6 +6,8 @@
 <!--Tester: @sally__-->
 <!--Adviser: @HelloCrease-->
 
+NDK提供了自定义绘制节点的能力，通过以下接口，开发者可以实现基于NDK侧Custom节点的自绘制能力。
+
 ## 自定义绘制内容
 
 当监听到注册的事件为绘制类型时，可通过自定义绘制功能执行绘制逻辑，自定义绘制的内容。
@@ -13,6 +15,8 @@
 > - 在事件注册过程中，需将事件注册为绘制事件（如ARKUI_NODE_CUSTOM_EVENT_ON_DRAW），通过查阅[ArkUI_NodeCustomEventType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodecustomeventtype)枚举值，获取事件类型及含义。
 > 
 > - 若需实现自定义绘制逻辑，应自定义UserData，并在事件注册时进行传递。
+
+以下场景基于[接入ArkTS页面](ndk-access-the-arkts-page.md)章节，创建前置工程。
 
 - 自定义节点的创建，通过ArkUI_NativeNodeAPI_1的create接口，传入ARKUI_NODE_CUSTOM创建自定义节点。
     ```c++
@@ -67,10 +71,17 @@
     OH_Drawing_CanvasAttachPen(canvas, pen);
     OH_Drawing_CanvasDrawPath(canvas, path);
     ```
-**完整示例：** 
+**内容绘制的完整示例：** 
    
 ```c++
-ArkUI_NodeHandle test(ArkUI_NativeNodeAPI_1 *nodeAPI) {
+#include <arkui/native_interface.h>
+#include <arkui/native_node.h>
+#include <native_drawing/drawing_canvas.h>
+#include <native_drawing/drawing_color.h>
+#include <native_drawing/drawing_path.h>
+#include <native_drawing/drawing_pen.h>
+
+ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI) {
     //创建节点
     auto column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
     auto customNode = nodeAPI->createNode(ARKUI_NODE_CUSTOM);
@@ -278,6 +289,7 @@ private:
 
 3. 使用自定义绘制组件和自定义容器创建示例界面
 ```c
+// ArkUICustomNode.cpp
 // 自定义NDK接口入口组件。
 
 #include <arkui/native_node_napi.h>

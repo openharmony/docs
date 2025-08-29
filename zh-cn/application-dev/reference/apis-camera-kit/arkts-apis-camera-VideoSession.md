@@ -29,7 +29,7 @@ import { camera } from '@kit.CameraKit';
 
 canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boolean
 
-查询当前Session是否支持指定的与配置类型。
+查询当前Session是否支持指定的预配置类型。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -46,7 +46,7 @@ canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boo
 
 | 类型      | 说明                                      |
 |---------|-----------------------------------------|
-| boolean | true: 支持指定预配值类型。<br/>false: 不支持指定预配值类型。 |
+| boolean | true: 支持指定预配置类型。<br/>false: 不支持指定预配置类型。 |
 
 **错误码：**
 
@@ -59,6 +59,8 @@ canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boo
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testCanPreconfig(videoSession: camera.VideoSession, preconfigType: camera.PreconfigType,
   preconfigRatio: camera.PreconfigRatio): void {
   try {
@@ -99,6 +101,8 @@ preconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testPreconfig(videoSession: camera.VideoSession, preconfigType: camera.PreconfigType,
   preconfigRatio: camera.PreconfigRatio): void {
   try {
@@ -551,6 +555,7 @@ on(type: 'macroStatusChanged', callback: AsyncCallback\<boolean\>): void
 | type     | string      | 是   | 监听事件，固定为'macroStatusChanged'，session创建成功可监听。 |
 | callback | AsyncCallback\<boolean\>     | 是   | 回调函数，用于获取当前微距状态，返回true是开启状态，返回false是禁用状态。  |
 
+
 **示例：**
 
 ```ts
@@ -585,6 +590,7 @@ off(type: 'macroStatusChanged', callback?: AsyncCallback\<boolean\>): void
 | -------- | ------------------------ | ---- |------------------------------------------------------------------------|
 | type     | string                   | 是   | 注销监听事件，固定为'macroStatusChanged'，session创建成功可触发此事件。                      |
 | callback | AsyncCallback\<boolean\> | 否   | 回调函数，可选，如果指定参数则取消对应callback (callback对象不可是匿名函数)，否则参数默认为空，取消所有callback。 |
+
 
 **示例：**
 

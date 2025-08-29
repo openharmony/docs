@@ -1,5 +1,12 @@
 # 视频处理引擎错误码
 
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xjtu_liushang-->
+<!--Designer: @changjiuy-->
+<!--Tester: @yangwang01-->
+<!--Adviser: @zengyawen-->
+
 > **说明：**
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
@@ -28,11 +35,11 @@ Some unknown error occurred, such as GPU calculation failure or memcpy failure.
 
 **错误信息**
 
-The global environment initialization for video processing failed, such as failure to initialize the GPU environment.
+The global environment initialization for image processing failed, such as failure to initialize the GPU environment.
 
 **错误描述**
 
-视频处理全局环境初始化失败。例如，初始化GPU环境失败。
+图像处理全局环境初始化失败。例如，初始化GPU环境失败。
 
 **可能原因**
 
@@ -46,11 +53,11 @@ GPU初始化失败。
 
 **错误信息**
 
-Failed to create video processing instance. For example, the number of instances exceeds the upper limit.
+Failed to create image processing instance. For example, the number of instances exceeds the upper limit.
 
 **错误描述**
 
-创建视频处理实例失败。例如，实例数量超出上限。
+创建图像处理实例失败。例如，实例数量超出上限。
 
 **可能原因**
 
@@ -64,11 +71,11 @@ Failed to create video processing instance. For example, the number of instances
 
 **错误信息**
 
-Failed to process video buffer. For example, the processing times out.
+Failed to process image buffer. For example, the processing times out.
 
 **错误描述**
 
-处理视频缓冲区失败。例如，处理超时。
+处理图像缓冲区失败。例如，处理超时。
 
 **可能原因**
 
@@ -82,11 +89,11 @@ Failed to process video buffer. For example, the processing times out.
 
 **错误信息**
 
-The processing is not supported. You may call OH_VideoProcessing_IsXXXSupported to check whether the capability is supported.
+The processing is not supported. You may call OH_ImageProcessing_IsXXXSupported to check whether the capability is supported.
 
 **错误描述**
 
-不支持该处理。可以调用OH_VideoProcessing_IsXXXSupported来检查是否支持该能力。
+不支持该处理。可以调用OH_ImageProcessing_IsXXXSupported来检查是否支持该能力。
 
 **可能原因**
 
@@ -136,11 +143,11 @@ Out of memory.
 
 **错误信息**
 
-The video processing instance is invalid. This may be caused by null instance.
+The image processing instance is invalid. This may be caused by null instance.
 
 **错误描述**
 
-视频处理实例无效。可能由于实例为空导致。
+图像处理实例无效。可能由于实例为空导致。
 
 **可能原因**
 
@@ -155,14 +162,14 @@ The video processing instance is invalid. This may be caused by null instance.
 **错误信息**
 
 Input value is invalid. This error is returned for all of the following error conditions:
-1. Invalid input or output video buffer - The video buffer width(height) is too large or colorspace is incorrect.
+1. Invalid input or output image buffer - The image buffer width(height) is too large or colorspace is incorrect.
 2. Invalid parameter - The parameter does not contain valid information, such as detail enhancer level is incorrect.
 
 **错误描述**
 
 输入值无效。以下所有错误情况都会返回此错误：
 
-1. 输入或输出视频缓冲区无效：视频缓冲区宽度（高度）过大或色彩空间不正确。
+1. 输入或输出图像缓冲区无效：图像缓冲区宽度（高度）过大或色彩空间不正确。
 2. 参数无效：参数不包含有效信息（例如，算法档位不正确）。
 
 **可能原因**
