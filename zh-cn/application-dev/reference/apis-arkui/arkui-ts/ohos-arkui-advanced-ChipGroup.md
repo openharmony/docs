@@ -512,7 +512,9 @@ struct Index {
 ```typescript
 import { ChipGroup, IconGroupSuffix, SymbolGlyphModifier } from '@kit.ArkUI';
 
-@Builder function DefaultFunction(): void {}
+@Builder
+function DefaultFunction(): void {
+}
 
 @Component
 struct SectionGroup {
@@ -536,6 +538,7 @@ struct SectionGroup {
     .width('100%')
   }
 }
+
 @Component
 struct SectionItem {
   @Prop
@@ -652,6 +655,7 @@ export struct ChipGroupExample2 {
                 ]
               })
             }
+
             SectionItem({ title: '单选 有后缀区域' }) {
               ChipGroup({
                 items: [
@@ -675,7 +679,8 @@ export struct ChipGroupExample2 {
         top: 8,
         bottom: 8,
         left: 16,
-        right: 16, })
+        right: 16,
+      })
     }
     .title('基础用法')
     .backgroundColor('#F1F3F5')
@@ -690,7 +695,9 @@ export struct ChipGroupExample2 {
 ```typescript
 import { ChipGroup, IconGroupSuffix, SymbolGlyphModifier } from '@kit.ArkUI';
 
-@Builder function DefaultFunction(): void {}
+@Builder
+function DefaultFunction(): void {
+}
 
 @Component
 struct SectionGroup {
@@ -714,6 +721,7 @@ struct SectionGroup {
     .width('100%')
   }
 }
+
 @Component
 struct SectionItem {
   @Prop
@@ -798,6 +806,7 @@ export struct ChipGroupExample2 {
                 multiple: true
               })
             }
+
             SectionItem({ title: '多选 有后缀区域' }) {
               ChipGroup({
                 items: [
@@ -822,7 +831,8 @@ export struct ChipGroupExample2 {
         top: 8,
         bottom: 8,
         left: 16,
-        right: 16, })
+        right: 16,
+      })
     }
     .title('基础用法')
     .backgroundColor('#F1F3F5')
