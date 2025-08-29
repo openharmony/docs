@@ -895,9 +895,9 @@ setBadgeNumber(badgeNumber: number): Promise\<void\>
 
 当角标设定个数取值小于或等于0时，表示清除角标。取值大于99时，通知角标将显示99+。
 
-该接口不支持wearable设备。
-
 **系统能力**：SystemCapability.Notification.Notification
+
+**设备行为差异**：该接口在Wearable中返回801错误码，在其他设备类型中可正常调用。
 
 **参数：**
 
@@ -945,9 +945,9 @@ setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 
 当角标设定个数取值小于或等于0时，表示清除角标。取值大于99时，通知角标将显示99+。
 
-该接口不支持wearable设备。
-
 **系统能力**：SystemCapability.Notification.Notification
+
+**设备行为差异**：该接口在Wearable中返回801错误码，在其他设备类型中可正常调用。
 
 **参数：**
 
@@ -1608,9 +1608,9 @@ openNotificationSettings(context: UIAbilityContext): Promise\<void\>
 
 拉起应用的通知设置界面，该页面以半模态形式呈现，可用于设置通知开关、通知提醒方式等。使用Promise异步回调。
 
-该接口不支持wearable设备。
-
 **模型约束**：此接口仅可在Stage模型下使用。
+
+**设备行为差异**：该接口在Wearable中返回801错误码，在其他设备类型中可正常调用。
 
 **系统能力**：SystemCapability.Notification.NotificationSettings
 
