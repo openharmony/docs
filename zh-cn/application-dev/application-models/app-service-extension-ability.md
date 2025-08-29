@@ -481,7 +481,7 @@ struct Page_AppServiceExtensionAbility {
 }
 ```
 
-**服务端**：使用[onRemoteMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#onremotemessagerequest10)接口接收客户端发送的消息。
+**服务端**：使用[onRemoteMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#onremotemessagerequest9)接口接收客户端发送的消息。
 
 ```ts
 import { AppServiceExtensionAbility } from '@kit.AbilityKit';
