@@ -278,7 +278,7 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
 
    ```ts
    let credentialId: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
-   let token: Uint8Array = new Uint8Array([1, 2, 3, 4, 5])
+   let token: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
    let credInfoList: osAccount.EnrolledCredInfo[] = await userIDM.getAuthInfo(osAccount.AuthType.FINGERPRINT);
    if (credInfoList.length != 0) {
      credentialId = credInfoList[0].credentialId;
