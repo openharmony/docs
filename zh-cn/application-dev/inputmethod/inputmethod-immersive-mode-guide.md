@@ -55,9 +55,9 @@
        inputPanel?.setImmersiveMode(inputMethodEngine.ImmersiveMode.LIGHT_IMMERSIVE);
      } catch (err) {
        let error: BusinessError = err as BusinessError;
-       console.error(`Faild to setImmersiveMode, code: ${error.code}, message: ${error.message}`);
+       console.error(`Failed to setImmersiveMode, code: ${error.code}, message: ${error.message}`);
      }
    }).catch((err: BusinessError) => {
-     console.log(`Faild to createPanel, code: ${err.code}, message: ${err.message}`);
+     console.log(`Failed to createPanel, code: ${err.code}, message: ${err.message}`);
    });
    ```
