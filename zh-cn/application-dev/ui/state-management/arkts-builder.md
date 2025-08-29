@@ -102,7 +102,7 @@ struct BuilderDemo {
 
 自定义构建函数的参数传递有[按值传递](#按值传递参数)和[按引用传递](#按引用传递参数)两种，均需遵守以下规则：
 
-- 参数的类型必须与参数声明的类型一致，不允许undefined、null和返回undefined、null的表达式。
+- @Builder装饰的函数参数类型不允许为undefined、null和返回undefined、null的表达式。
 
 - 在\@Builder装饰的函数内部，不允许改变参数值。
 

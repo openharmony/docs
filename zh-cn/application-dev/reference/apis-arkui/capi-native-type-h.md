@@ -140,6 +140,8 @@
 | [ArkUI_ImageSpanAlignment](#arkui_imagespanalignment)               | ArkUI_ImageSpanAlignment        | 定义图片基于文本的对齐方式。                    |
 | [ArkUI_ObjectFit](#arkui_objectfit)                                 | ArkUI_ObjectFit                 | 定义image填充效果。ImageSpanAlignment    |
 | [ArkUI_ImageInterpolation](#arkui_imageinterpolation)               | ArkUI_ImageInterpolation        | 定义图片插值效果。                         |
+| [ArkUI_DynamicRangeMode](#arkui_dynamicrangemode)                   | ArkUI_DynamicRangeMode          | 定义图像动态范围模式（例如：SDR/HDR），用于控制图像的明暗与色彩显示范围。 |
+| [ArkUI_ImageRotateOrientation](#arkui_imagerotateorientation)       | ArkUI_ImageRotateOrientation    | 定义图像旋转方向。                         |
 | [ArkUI_BlendMode](#arkui_blendmode)                                 | ArkUI_BlendMode                 | 混合模式枚举值。                          |
 | [ArkUI_Direction](#arkui_direction)                                 | ArkUI_Direction                 | 设置容器元素内主轴方向上的布局枚举值。               |
 | [ArkUI_ItemAlignment](#arkui_itemalignment)                         | ArkUI_ItemAlignment             | 设置子组件在父容器交叉轴的对齐格式枚举值。             |
@@ -1702,6 +1704,7 @@ enum ArkUI_ObjectFit
 | ARKUI_OBJECT_FIT_NONE_AND_ALIGN_BOTTOM_START | 图片大小不变，在image组件中底部起始端对齐。 |
 | ARKUI_OBJECT_FIT_NONE_AND_ALIGN_BOTTOM | 图片大小不变，在image组件中底部横向居中对齐。 |
 | ARKUI_OBJECT_FIT_NONE_AND_ALIGN_BOTTOM_END | 图片大小不变，在image组件中底部尾端对齐。 |
+| ARKUI_OBJECT_FIT_NONE_MATRIX | 不改变图像原始大小，需要配合NODE_IMAGE_IMAGE_MATRIX使用。 |
 
 ### ArkUI_ImageInterpolation
 
@@ -1722,6 +1725,50 @@ enum ArkUI_ImageInterpolation
 | ARKUI_IMAGE_INTERPOLATION_LOW | 低图片插值。 |
 | ARKUI_IMAGE_INTERPOLATION_MEDIUM | 中图片插值。 |
 | ARKUI_IMAGE_INTERPOLATION_HIGH | 高图片插值，插值质量最高。 |
+
+### ArkUI_DynamicRangeMode
+
+```
+enum ArkUI_DynamicRangeMode
+```
+
+**描述：**
+
+
+定义图像动态范围模式（例如：SDR/HDR），用于控制图像的明暗与色彩显示范围。
+
+**起始版本：** 21
+
+| 枚举项 | 描述 |
+| -- | -- |
+| ARKUI_DYNAMIC_RANGE_MODE_HIGH = 0 | 高动态范围（High Dynamic Range，简称HDR），表示图片中显示亮度（brightness）的最小值和最大值的范围，范围越大图像的亮度表达更逼近真实环境，在太亮的环境下不会产生过曝（一片白），太暗的环境下产生过暗的效果（一片黑）。 |
+| ARKUI_DYNAMIC_RANGE_MODE_CONSTRAINT | 受限的高动态范围，包含比SDR更丰富的亮度和色彩，但不是完整的HDR，一般用于需要兼容SDR的情况。 |
+| ARKUI_DYNAMIC_RANGE_MODE_STANDARD | 标准动态范围（Standard Dynamic Range，简称SDR），表示亮度范围有限，一般在0~100尼特（亮度单位）左右，明暗对比度较小，暗部容易糊成黑，亮部容易爆白。 |
+
+### ArkUI_ImageRotateOrientation
+
+```
+enum ArkUI_ImageRotateOrientation
+```
+
+**描述：**
+
+
+定义图像旋转方向。
+
+**起始版本：** 21
+
+| 枚举项 | 描述 |
+| -- | -- |
+| ARKUI_ORIENTATION_AUTO = 0 | 读取图片携带的EXIF元数据作为显示方向，支持旋转和镜像。 |
+| ARKUI_ORIENTATION_UP | 默认按照当前图片的像素数据进行显示，不做任何处理。 |
+| ARKUI_ORIENTATION_RIGHT | 将当前图片顺时针旋转90度后显示。 |
+| ARKUI_ORIENTATION_DOWN  | 将当前图片顺时针旋转180度后显示。 |
+| ARKUI_ORIENTATION_LEFT | 将当前图片顺时针旋转270度后显示。 |
+| ARKUI_ORIENTATION_UP_MIRRORED | 将当前图片水平翻转后显示。 |
+| ARKUI_ORIENTATION_RIGHT_MIRRORED  | 将当前图片水平翻转再顺时针旋转90度后显示。 |
+| ARKUI_ORIENTATION_DOWN_MIRRORED | 将当前图片垂直翻转后显示。 |
+| ARKUI_ORIENTATION_LEFT_MIRRORED | 将当前图片水平翻转再顺时针旋转270度后显示。 |
 
 ### ArkUI_BlendMode
 
@@ -2837,6 +2884,12 @@ ArkUI_LayoutConstraint* OH_ArkUI_LayoutConstraint_Create()
 
 **起始版本：** 12
 
+**返回：**
+
+| 类型                          | 说明 |
+|-----------------------------| -- |
+| [ArkUI_LayoutConstraint](capi-arkui-nativemodule-arkui-layoutconstraint.md)* | 创建约束尺寸的对象指针。 |
+
 ### OH_ArkUI_LayoutConstraint_Copy()
 
 ```
@@ -3799,7 +3852,7 @@ float OH_ArkUI_GuidelineOption_GetPositionStart(ArkUI_GuidelineOption* guideline
 **描述：**
 
 
-获取距离容器左侧或者顶部的距离。
+获取辅助线距离容器左侧或者顶部的距离。
 
 **起始版本：** 12
 
@@ -3815,7 +3868,7 @@ float OH_ArkUI_GuidelineOption_GetPositionStart(ArkUI_GuidelineOption* guideline
 
 | 类型 | 说明 |
 | -- | -- |
-| float | 距离容器左侧或者顶部的距离。 |
+| float | 辅助线距离容器左侧或者顶部的距离。单位为vp。 |
 
 ### OH_ArkUI_GuidelineOption_GetPositionEnd()
 
@@ -3826,7 +3879,7 @@ float OH_ArkUI_GuidelineOption_GetPositionEnd(ArkUI_GuidelineOption* guideline, 
 **描述：**
 
 
-获取距离容器右侧或者底部的距离。
+获取辅助线距离容器右侧或者底部的距离。
 
 **起始版本：** 12
 
@@ -3842,7 +3895,7 @@ float OH_ArkUI_GuidelineOption_GetPositionEnd(ArkUI_GuidelineOption* guideline, 
 
 | 类型 | 说明 |
 | -- | -- |
-| float | 距离容器右侧或者底部的距离。 |
+| float | 辅助线距离容器右侧或者底部的距离。单位为vp。 |
 
 ### OH_ArkUI_BarrierOption_Create()
 
@@ -8962,7 +9015,7 @@ void OH_ArkUI_EmbeddedComponentOption_SetOnError(ArkUI_EmbeddedComponentOption* 
 | 参数项 | 描述                           |
 | -- |------------------------------|
 | [ArkUI_EmbeddedComponentOption](capi-arkui-nativemodule-arkui-embeddedcomponentoption.md)* option | EmbeddedComponent组件选项的对象的指针。 |
-| void (\*callback)(int32_t code, const char* name, const char* message) | 开发者自定义回调函数。<br>- code：接口调用失败返回的错误码信息。业务错误码详细介绍请参见[UIExtension错误码](errorcode-uiextension.md)。<br>- name：接口调用失败返回的名称信息。<br>- message：接口调用失败返回的详细信息。 |
+| void (\*callback)(int32_t code, const char* name, const char* message) | 开发者自定义回调函数。<br>- code：接口调用失败返回的错误码信息。错误码的详细介绍请参考[UIExtension错误码](errorcode-uiextension.md)。<br>- name：接口调用失败返回的名称信息。<br>- message：接口调用失败返回的详细信息。 |
 
 
 ### OH_ArkUI_EmbeddedComponentOption_SetOnTerminated()

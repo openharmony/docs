@@ -515,14 +515,14 @@ export default {
     cardEmulation.hasHceCapability();
     cardEmulation.isDefaultService(appName, cardEmulation.CardType.PAYMENT);
     cardEmulation.isDefaultService(appName, cardEmulation.CardType.OTHER);
-    let hcesrv = new cardEmulation.HceService();
+    let HceService = new cardEmulation.HceService();
 
-    hcesrv.start(appName, this.paymentAid);
-    hcesrv.on("hceCmd", (data) => {
+    HceService.start(appName, this.paymentAid);
+    HceService.on("hceCmd", (data) => {
       console.log('data:' + data);
       // 应用程序实际想要发送的数据， 此处仅做为示例
       let responseData = [0x1, 0x2];
-      hcesrv.transmit(responseData, () => {
+      HceService.transmit(responseData, () => {
         console.log('sendResponse start');
       });
       console.log('sendResponse end');

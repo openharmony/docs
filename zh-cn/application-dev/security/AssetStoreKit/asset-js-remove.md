@@ -68,8 +68,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to remove Asset. Code is ${err.code}, message is ${err.message}`);
   });
-} catch (error) {
-  let err = error as BusinessError;
-  console.error(`Failed to remove Asset. Code is ${err.code}, message is ${err.message}`);
+} catch (err) {
+  console.error(`Failed to remove Asset. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```

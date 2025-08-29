@@ -182,7 +182,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelBuildFromFile(OH_AI_ModelHandle model, const c
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AI_ModelHandle](capi-mindspore-oh-ai-modelhandle.md) model | 模型对象指针。 |
-| const char *model_path | 模型文件路径。 |
+| const char *model_path | 模型文件路径。字符串长度限制跟随文件系统。 |
 | [OH_AI_ModelType](capi-types-h.md#oh_ai_modeltype) model_type | 模型文件类型，具体见[OH_AI_ModelType](capi-types-h.md#oh_ai_modeltype)。 |
 | const [OH_AI_ContextHandle](capi-mindspore-oh-ai-contexthandle.md) model_context | 模型运行时的上下文环境，具体见 [OH_AI_ContextHandle](capi-mindspore-oh-ai-contexthandle.md)。 |
 
@@ -317,7 +317,7 @@ OH_AI_API OH_AI_TensorHandle OH_AI_ModelGetInputByTensorName(const OH_AI_ModelHa
 | 参数项 | 描述 |
 | -- | -- |
 | const [OH_AI_ModelHandle](capi-mindspore-oh-ai-modelhandle.md) model | 模型对象指针。 |
-| const char *tensor_name | 张量名称。 |
+| const char *tensor_name | 张量名称。字符串长度跟随系统限制。 |
 
 **返回：**
 
@@ -343,7 +343,7 @@ OH_AI_API OH_AI_TensorHandle OH_AI_ModelGetOutputByTensorName(const OH_AI_ModelH
 | 参数项 | 描述 |
 | -- | -- |
 | const [OH_AI_ModelHandle](capi-mindspore-oh-ai-modelhandle.md) model | 模型对象指针。 |
-| const char *tensor_name | 张量名称。 |
+| const char *tensor_name | 张量名称。字符串长度跟随系统限制。 |
 
 **返回：**
 
@@ -528,7 +528,7 @@ OH_AI_API OH_AI_Status OH_AI_TrainModelBuildFromFile(OH_AI_ModelHandle model, co
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AI_ModelHandle](capi-mindspore-oh-ai-modelhandle.md) model | 模型对象指针。 |
-| const char *model_path | 模型文件路径。 |
+| const char *model_path | 模型文件路径。字符串长度限制跟随文件系统。 |
 | [OH_AI_ModelType](capi-types-h.md#oh_ai_modeltype) model_type | 模型文件类型，具体见[OH_AI_ModelType](capi-types-h.md#oh_ai_modeltype)。 |
 | const [OH_AI_ContextHandle](capi-mindspore-oh-ai-contexthandle.md) model_context | 模型运行时的上下文环境，具体见 [OH_AI_ContextHandle](capi-mindspore-oh-ai-contexthandle.md)。 |
 | const [OH_AI_TrainCfgHandle](capi-mindspore-oh-ai-traincfghandle.md) train_cfg | 训练配置对象指针。 |
@@ -691,7 +691,7 @@ OH_AI_API bool OH_AI_ModelGetTrainMode(OH_AI_ModelHandle model)
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_AI_API bool | 表示是否是训练模式。 |
+| OH_AI_API bool | 表示是否是训练模式。true表示是训练模式，false表示不是训练模式。 |
 
 ### OH_AI_ModelSetTrainMode()
 
@@ -711,7 +711,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelSetTrainMode(OH_AI_ModelHandle model, bool tra
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AI_ModelHandle](capi-mindspore-oh-ai-modelhandle.md) model | 模型对象指针。 |
-| bool train | 是否为训练模式。 |
+| bool train | 是否为训练模式。true表示是训练模式，false表示不是训练模式。 |
 
 **返回：**
 
@@ -737,7 +737,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelSetupVirtualBatch(OH_AI_ModelHandle model, int
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AI_ModelHandle](capi-mindspore-oh-ai-modelhandle.md) model | 模型对象指针。 |
-| int virtual_batch_multiplier | 虚拟batch乘法器，当设置值小于1时，表示禁用虚拟batch。 |
+| int virtual_batch_multiplier | 虚拟batch乘法器，当设置值小于1时，表示禁用虚拟batch。长度跟随系统限制。 |
 | float lr | 学习率，默认为-1.0f。 |
 | float momentum | 动量，默认为-1.0f。 |
 
@@ -766,9 +766,9 @@ OH_AI_API OH_AI_Status OH_AI_ExportModel(OH_AI_ModelHandle model, OH_AI_ModelTyp
 |------------------------------------------------------------------------------------| -- |
 | [OH_AI_ModelHandle](capi-mindspore-oh-ai-modelhandle.md) model                     | 模型对象指针。 |
 | [OH_AI_ModelType](capi-types-h.md#oh_ai_modeltype) model_type                      | 模型文件类型，具体见[OH_AI_ModelType](capi-types-h.md#oh_ai_modeltype)。 |
-| const char *model_file                                                             | 导出的模型文件路径。 |
+| const char *model_file                                                             | 导出的模型文件路径。字符串长度限制跟随文件系统。 |
 | [OH_AI_QuantizationType](capi-types-h.md#oh_ai_quantizationtype) quantization_type | 量化类型。 |
-| bool export_inference_only                                                         | 是否导出推理模型。 |
+| bool export_inference_only                                                         | 是否导出推理模型。true表示导出推理模型，false表示不导出推理模型。 |
 | char **output_tensor_name                                                          | 设置导出模型的输出Tensor，默认为空表示全量导出。 |
 | size_t num                                                                         | 输出Tensor的数量。 |
 
@@ -800,7 +800,7 @@ OH_AI_API OH_AI_Status OH_AI_ExportModelBuffer(OH_AI_ModelHandle model, OH_AI_Mo
 | void *model_data | 指向导出模型文件缓冲区的指针。 |
 | size_t *data_size | 缓冲区大小。 |
 | [OH_AI_QuantizationType](capi-types-h.md#oh_ai_quantizationtype) quantization_type | 量化类型。 |
-| bool export_inference_only | 是否导出推理模型。 |
+| bool export_inference_only | 是否导出推理模型。true表示导出推理模型，false表示不导出推理模型。 |
 | char **output_tensor_name | 设置导出模型的输出Tensor，默认为空表示全量导出。 |
 | size_t num | 输出Tensor的数量。 |
 
@@ -829,9 +829,9 @@ OH_AI_API OH_AI_Status OH_AI_ExportWeightsCollaborateWithMicro(OH_AI_ModelHandle
 | -- | -- |
 | [OH_AI_ModelHandle](capi-mindspore-oh-ai-modelhandle.md) model | 模型对象指针。 |
 | [OH_AI_ModelType](capi-types-h.md#oh_ai_modeltype) model_type | 模型文件类型，具体见[OH_AI_ModelType](capi-types-h.md#oh_ai_modeltype)。 |
-| const char *weight_file | 导出的权重文件路径。 |
+| const char *weight_file | 导出的权重文件路径。字符串长度限制跟随文件系统。 |
 | bool is_inference | 是否导出推理模型，当前只支持设置为true。 |
-| bool enable_fp16 | 浮点权重是否保存为float16格式。 |
+| bool enable_fp16 | 浮点权重是否保存为float16格式。true表示保存为float16格式，false表示不保存为float16格式。 |
 | char **changeable_weights_name | shape可变的权重Tensor名称。 |
 | size_t num | shape可变的权重Tensor名称的数量。 |
 
@@ -855,10 +855,10 @@ OH_AI_API OH_AI_Status OH_AI_ModelLoadConfig(OH_AI_ModelHandle model, const char
 
 **参数：**
 
-| 参数项                                                       | 描述           |
-| ------------------------------------------------------------ | -------------- |
-| [OH_AI_ModelHandle](capi-mindspore-oh-ai-modelhandle.md) model | 模型对象指针。 |
-| const char *config_path                                      | 配置文件路径。 |
+| 参数项                                                       | 描述                                       |
+| ------------------------------------------------------------ | ------------------------------------------ |
+| [OH_AI_ModelHandle](capi-mindspore-oh-ai-modelhandle.md) model | 模型对象指针。                             |
+| const char *config_path                                      | 配置文件路径。字符串长度限制跟随文件系统。 |
 
 **返回：**
 

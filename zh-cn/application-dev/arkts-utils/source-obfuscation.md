@@ -46,6 +46,7 @@ ArkGuard支持名称混淆、代码压缩和注释删除的基础混淆功能，
 
 ```typescript
 // 混淆前
+// example.ts
 class A1 {
   prop1: string = '';
 }
@@ -65,6 +66,7 @@ test(a2);
 
 ```typescript
 // 混淆后
+// example.ts
 class A1 {
   prop1: string = '';
 }
@@ -160,21 +162,25 @@ test(a2);
 
 配置该选项后，所有属性名将被混淆，以下场景除外：
 
-* 在未开启`-enable-export-obfuscation`选项的情况下，被`import/export`直接导入或导出的类或对象的属性名不会被混淆。例如，下面例子中的属性名`data`不会被混淆。
+* 在未开启`-enable-export-obfuscation`选项的情况下，被`import/export`直接导入或导出的类或对象的属性名不会被混淆。例如，下面例子中的属性名`data1`不会被混淆。
 
-    ```
+    ```ts
+    // example.ts
     export class MyClass {
-       data: string;
+       data1: string;
     }
     ```
 
 * ArkUI组件中的属性名不会被混淆。例如，下面例子中的`message`和`data`不会被混淆。
 
     ```
+    // example.ets
     @Component struct MyExample {
-        @State message: string = "hello";
-        data: number[] = [];
-        // ...
+      @State message: string = "hello";
+      data: number[] = [];
+      // ...
+      build() {
+      }
     }
     ```
 
@@ -182,7 +188,8 @@ test(a2);
 * SDK API列表中的属性名不会被混淆。SDK API列表是构建时从SDK中自动提取出来的一个名称列表。其缓存文件为systemApiCache.json，路径为工程目录/build/default/cache/{...}/release/obfuscation。
 * 字符串字面量属性名不会被混淆。例如，下面例子中的`exampleName`和`exampleAge`不会被混淆。
 
-    ```
+    ```ts
+    // example.ts
     let person = {"exampleName": "abc"};
     person["exampleAge"] = 22;
     ```
@@ -207,14 +214,16 @@ test(a2);
 
 根据上述配置，`exampleName`和`exampleAge`的混淆效果如下：
 
-  ```
+  ```ts
   // 混淆前：
+  // example.ts
   let person = {"exampleName": "abc"};
   person["exampleAge"] = 22;
   ```
 
-  ```
+  ```ts
   // 混淆后：
+  // example.ts
   let person = {"a": "abc"};
   person["b"] = 22;
   ```
@@ -291,19 +300,37 @@ test(a2);
 
 开启文件/文件夹名称混淆，效果如下：
 
+  ```ts
+  // test1/test2.ts
+  export function foo () {}
   ```
+
+  ```ts
+  // example.ts
   // 混淆前：
   import * as m from '../test1/test2';
   import { foo } from '../test1/test2';
-  const module = import('../test1/test2');
+
+  m.foo();
+  foo();
+  async function func() {
+    const modules = await import('../test1/test2');
+    const result = modules.foo();
+  }
   ```
 
 
-  ```
+  ```ts
+  // example.ts
   // 混淆后：
-  import * as m from '../a/b';
-  import { foo } from '../a/b';
-  const module = import('../a/b');
+  import * as m from "@normalized:N&&&entry/src/main/ets/c/d&";
+  import { foo } from "@normalized:N&&&entry/src/main/ets/c/d&";
+  m.foo();
+  foo();
+  async function func() {
+      const f = await import("@normalized:N&&&entry/src/main/ets/c/d&");
+      const g = f.foo();
+  }
   ```
 
 配置该选项后，所有文件和文件夹名称都将被混淆，以下场景除外：
@@ -369,16 +396,18 @@ test(a2);
 ### -remove-log
 
 删除对console.*语句的调用，要求console.*语句的返回值未被使用。效果如下：
-  ```
+  ```ts
   // 混淆前：
-  if (flag) {
-    console.info("hello");
+  function add(a: number, b: number) {
+    console.info("result", a + b);
+    return a + b;
   }
   ```
 
-  ```
+  ```ts
   // 混淆后：
-  if (flag) {
+  function add(a: number, b: number) {
+      return a + b;
   }
   ```
 
@@ -398,22 +427,29 @@ test(a2);
    ```
 3. module或namespace中的调用。  
    例如：
-   ```
+   ```ts
+   // example.ts
    namespace ns {
     console.info('in ns');
    }
    ```
 4. switch语句中的调用。  
    例如：
-   ```js
-   switch (value) {
-     case 1:
-       console.info("in switch case");
-       break;
-     default:
-       console.warn("default");
-   }
-   ```
+    ```ts
+    function getDayName(day: number): string {
+      switch (day) {
+        case 1:
+          console.info("Matched case 1: 星期一");
+          return "星期一";
+        case 2:
+          console.info("Matched case 2: 星期二");
+          return "星期二";
+        default:
+          console.error("No matching case for day:", day);
+          return "无效的日期";
+      }
+    }
+    ```
 
 ### -print-namecache
 
@@ -490,6 +526,7 @@ test(a2);
 
     例如：
     ```ts
+    // example.ts
     let outdoor = 1;
     enum Test {
       member1,
@@ -762,6 +799,7 @@ export class MyClass {
 **示例**
 
 ```typescript
+// example.ts
 const myMethodName = "myMethod";
 
 // 11，aa，myMethod不会被收集到白名单中
@@ -820,6 +858,7 @@ lastName
 1.如果代码中通过字符串拼接、变量访问或使用`defineProperty`方法定义对象属性，则这些属性名应被保留。例如：
 
 ```js
+// example.js
 var obj = {x0: '0', x1: '1', x2: '2'};
 for (var i = 0; i <= 2; i++) {
     console.info(obj['x' + i]);  // x0, x1, x2应该被保留
@@ -844,6 +883,7 @@ console.info(obj['t' + '1']);        // t1应该被保留
 // -enable-property-obfuscation
 // -enable-string-property-obfuscation
 
+// example.ts
 var obj = {t:'1', m:'2'};
 obj.t = 'a';
 console.info(obj['t']); // 此时，'t'会被正确混淆，t可以选择性保留
@@ -869,24 +909,30 @@ export class MyClass1 {
 }
 ```
 
-3.在ArkTS/TS/JS文件中使用so库的API（如示例中的foo）时，需手动保留API名称。
+3.在ArkTS/TS/JS文件中使用so库的API（如示例中的add）时，需手动保留API名称。
 
-```
-import testNapi from 'library.so'
-testNapi.foo() // foo需要保留，示例如：-keep-property-name foo
+```ts
+// src/main/cpp/types/libentry/Index.d.ts
+export const add: (a: number, b: number) => number;
+
+// example.ets
+import testNapi from 'libentry.so';
+
+testNapi.add(2, 3); // add需要保留，示例如：-keep-property-name add
 ```
 
 4.JSON数据解析和对象序列化时，需要保留使用到的字段，例如：
 
-```ts
-// 示例JSON文件结构(test.json)：
-/*
+示例JSON文件结构（test.json）：
+
+```json
 {
   "jsonProperty": "value",
   "otherProperty": "value2"
 }
-*/
+```
 
+```ts
 import jsonData from './test.json';
 
 let jsonProp = jsonData.jsonProperty; // jsonProperty应该被保留
@@ -902,12 +948,14 @@ const jsonStr = JSON.stringify(obj); // prop1 和 prop2 会被混淆，应该被
 
 5.使用到的数据库相关的字段，需要手动保留。例如，数据库键值对类型（ValuesBucket）中的属性：
 
-```
+```ts
+import { ValuesBucket } from '@kit.ArkData';
+
 const valueBucket: ValuesBucket = {
-  'ID1': ID1, // ID1应该被保留
-  'NAME1': name, // NAME1应该被保留
-  'AGE1': age, // AGE1应该被保留
-  'SALARY1': salary // SALARY1应该被保留
+  ID1: 'ID1', // ID1应该被保留
+  NAME1: 'jack', // NAME1应该被保留
+  AGE1: 20, // AGE1应该被保留
+  SALARY1: 100 // SALARY1应该被保留
 }
 ```
 
@@ -945,6 +993,7 @@ printPersonName
 `namespace`中导出的名称也可以通过`-keep-global-name`选项保留，示例如下：
 
 ```ts
+// example.ts
 export namespace Ns {
   export const myAge = 18 // -keep-global-name myAge 保留变量myAge
   export function myFunc() {} // -keep-global-name myFunc 保留函数myFunc
@@ -962,7 +1011,15 @@ export namespace Ns {
 当以命名导入的方式导入so库的API时，如果同时开启`-enable-toplevel-obfuscation`和`-enable-export-obfuscation`选项，需要手动保留API的名称。
 
 ```ts
-import { testNapi, testNapi1 as myNapi } from 'library.so' // testNapi 和 testNapi1 应该被保留
+// src/main/cpp/types/libentry/Index.d.ts
+declare function testNapi(): void;
+declare function testNapi2(): void;
+
+// example.ets
+import { testNapi, testNapi2 as myNapi } from 'libentry.so'; // testNapi 和 testNapi2 应该被保留
+
+testNapi();
+myNapi();
 ```
 
 ### -keep-file-name
@@ -987,15 +1044,26 @@ file
 
 1.在使用`require`引入文件路径时，由于`ArkTS`不支持[CommonJS](../arkts-utils/module-principle.md#commonjs模块)语法，因此这种情况下路径应该被保留。
 
-```
-const module1 = require('./file1')   // file1 应该被保留
+```js
+// example.js
+const module1 = require('./file1');   // file1 应该被保留
 ```
 
 2.对于动态导入的路径名，由于无法识别`import`函数中的参数是否为路径，因此在这种情况下应保留路径。
 
+```ts
+// file2.ts
+export function foo () {}
 ```
-const moduleName = './file2'         // moduleName对应的路径名file2应该被保留
-const module2 = import(moduleName)
+
+```ts
+// main.ts
+const moduleName = './file2'; // moduleName对应的路径名file2应该被保留
+async function func() {
+  const modules = await import(moduleName);
+  const result = modules.foo();
+}
+
 ```
 
 3.在使用[动态路由](../ui/arkts-navigation-navigation.md#跨包动态路由)进行路由跳转时，传递给动态路由的路径应被保留。动态路由提供系统路由表和自定义路由表两种方式。若采用自定义路由表进行跳转，配置白名单的方式与第二种动态引用场景一致。若采用系统路由表进行跳转，则需将模块下`resources/base/profile/route_map.json`文件中`pageSourceFile`字段对应的路径添加到白名单中。

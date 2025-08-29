@@ -109,7 +109,7 @@ Sets the height of each item in the picker. Compared with [defaultPickerItemHeig
 
 | Name| Type                      | Mandatory| Description                  |
 | ------ | -------------------------- | ---- | ---------------------- |
-| height  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| string> | Yes  | Height of each item in the picker. For the number type, the value range is [0, +∞). For the string type, only numeric string values, for example, **"56"**, are supported.<br>Default value: 56 vp (selected) and 36 vp (unselected).<br>**NOTE**<br>The set value applies to both selected and unselected items.<br>If **height** is set to **undefined**, the previous value is retained.|
+| height  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number \| string> | Yes  | Height of each item in the picker. For the number type, the value range is [0, +∞). For the string type, only numeric string values, for example, **"56"**, are supported.<br>Default value: 56 vp (selected) and 36 vp (unselected).<br>**NOTE**<br>The set value applies to both selected and unselected items.<br>If **height** is set to **undefined**, the previous value is retained.|
 
 ### disappearTextStyle<sup>10+</sup>
 
@@ -141,7 +141,7 @@ Sets the font color, font size, and font weight for the top and bottom items. Co
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font weight of the top and bottom items.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font weight of the top and bottom items.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>} |
 
 ### textStyle<sup>10+</sup>
 
@@ -173,7 +173,7 @@ Sets the font color, font size, and font weight for all items except the top, bo
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font weight of all items except the top, bottom, and selected items.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font weight of all items except the top, bottom, and selected items.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
 
 ### selectedTextStyle<sup>10+</sup>
 
@@ -205,7 +205,7 @@ Sets the font color, font size, and font weight for the selected item. Compared 
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font weight of the selected item.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20fp', <br>weight: FontWeight.Medium<br>}<br>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font weight of the selected item.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20fp', <br>weight: FontWeight.Medium<br>}<br>} |
 
 ### selectedIndex<sup>10+</sup>
 
@@ -237,7 +237,7 @@ Sets the index of the default selected item in the array. Its priority is higher
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| index  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| number[]> | Yes  | Index of the default selected item in the array. The index is zero-based.<br>Default value: **0**<br>If the value of **index** is **undefined**, the default value is the same as the value of **selected** in [options](#textpickeroptions). If the value of **selected** in [options](#textpickeroptions) is also **undefined**, the default value is **0**.<br>|
+| index  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number \| number[]> | Yes  | Index of the default selected item in the array. The index is zero-based.<br>Default value: **0**<br>If the value of **index** is **undefined**, the default value is the same as the value of **selected** in [options](#textpickeroptions). If the value of **selected** in [options](#textpickeroptions) is also **undefined**, the default value is **0**.<br>|
 
 ### canLoop<sup>10+</sup>
 
@@ -269,7 +269,7 @@ Sets whether scrolling is loopable. Compared with [canLoop](#canloop10)<sup>10+<
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether scrolling is loopable.<br>**true**: loopable<br>**false**: not loopable<br>If **isLoop** is set to **undefined**, the default value **true** is used.|
+| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | Yes  | Whether scrolling is loopable.<br>**true**: loopable<br>**false**: not loopable<br>If **isLoop** is set to **undefined**, the default value **true** is used.|
 
 ### divider<sup>12+</sup>
 
@@ -304,7 +304,7 @@ If the sum of **startMargin** and **endMargin** exceeds the component width, bot
 
 | Name| Type   | Mandatory| Description                                                                 |
 | ------ | ------- | ---- | --------------------------------------------------------------------- |
-| textDivider | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[DividerOptions](#divideroptions12) \| null> | Yes  | Divider options.<br>1. If **DividerOptions** is set, the divider is displayed in the configured style.<br>If **textDivider** is set to **undefined**, the default value is used:<br>{<br>strokeWidth: '2px', <br>startMargin: 0, <br>endMargin: 0, <br>color: '#33000000'<br>}<br>2. If this parameter is set to **null**, the divider is not displayed.|
+| textDivider | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[DividerOptions](#divideroptions12) \| null> | Yes  | Divider options.<br>1. If **DividerOptions** is set, the divider is displayed in the configured style.<br>If **textDivider** is set to **undefined**, the default value is used:<br>{<br>strokeWidth: '2px', <br>startMargin: 0, <br>endMargin: 0, <br>color: '#33000000'<br>}<br>2. If this parameter is set to **null**, the divider is not displayed.|
 
 ### gradientHeight<sup>12+</sup>
 
@@ -336,7 +336,7 @@ Sets the height for the fade effect. If this attribute is not set, the default f
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| height  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Dimension](ts-types.md#dimension10)> | Yes  | Height of the fade effect at the top and bottom edges of the content area. It can be set in percentage, with 100% (the maximum value) being half the height of the picker. Setting it to **0** results in no fade effect, while negative numbers or other invalid values display the default fade effect. Default value: **36vp**<br>If **height** is set to **undefined**, the default value **36vp** is used.|
+| height  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[Dimension](ts-types.md#dimension10)> | Yes  | Height of the fade effect at the top and bottom edges of the content area. It can be set in percentage, with 100% (the maximum value) being half the height of the picker. Setting it to **0** results in no fade effect, while negative numbers or other invalid values display the default fade effect. Default value: **36vp**<br>If **height** is set to **undefined**, the default value **36vp** is used.|
 
 > **NOTE**
 >
@@ -390,7 +390,7 @@ Specifies whether to enable haptic feedback.
 
 | Name| Type                                         | Mandatory | Description                                                                                 |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| enable  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether to enable haptic feedback.<br>**true** (default): Haptic feedback is enabled.<br>**false**: Haptic feedback is disabled.|
+| enable  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | Yes  | Whether to enable haptic feedback.<br>**true** (default): Haptic feedback is enabled.<br>**false**: Haptic feedback is disabled.|
 
 >  **NOTE**
 >
@@ -414,7 +414,7 @@ Sets the sensitivity to the digital crown rotation.
 
 | Name  | Type                                    | Mandatory  | Description                     |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
-| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | Yes   | Sensitivity to the digital crown rotation.<br>Default value: **CrownSensitivity.MEDIUM**                    |
+| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | Yes   | Sensitivity to the digital crown rotation.<br>Default value: **CrownSensitivity.MEDIUM**                    |
 
 >  **NOTE**
 >
@@ -455,7 +455,7 @@ Triggered when the text picker snaps to the selected item. Compared with [onChan
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnTextPickerChangeCallback](#ontextpickerchangecallback18)> | Yes  | Callback invoked when an item in the picker is selected.<br>If **callback** is set to **undefined**, the callback function is not used.|
+| callback | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[OnTextPickerChangeCallback](#ontextpickerchangecallback18)> | Yes  | Callback invoked when an item in the picker is selected.<br>If **callback** is set to **undefined**, the callback function is not used.|
 
 ### onScrollStop<sup>14+</sup>
 
