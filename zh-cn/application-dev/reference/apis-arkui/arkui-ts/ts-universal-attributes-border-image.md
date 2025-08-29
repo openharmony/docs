@@ -68,7 +68,7 @@ borderImage(value: BorderImageOption): T
 | Round   | - | 被切割的图片会以整数次平铺在图片边框上，无法以整数次平铺时会压缩图片。 |
 | Space   | - | 被切割的图片会以整数次平铺在图片边框上，无法以整数次平铺时会以空白填充。   |
 
-## LinearGradient<sup>9+</sup>
+## LinearGradient
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -77,8 +77,8 @@ borderImage(value: BorderImageOption): T
 | 名称          | 类型   | 必填 | 说明                      |
 | --------------- | ------ | ---- | ------------------------- |
 | angle  | number \| string | 否   |  线性渐变的起始角度。0点方向顺时针旋转为正向角度。<br/>默认值：180<br/>角度为字符串时仅支持类型'deg'，'grad'，'rad'，'turn'。 |
-| direction  | GradientDirection | 否   | 线性渐变的方向，设置angle后不生效。<br/>默认值：GradientDirection.Bottom |
-| colors  | Array<[ResourceColor, number]> | 是   | 指定渐变色颜色和其对应的百分比位置的数组，设置非法颜色直接跳过。 |
+| direction  | [GradientDirection](ts-appendix-enums.md#gradientdirection) | 否   | 线性渐变的方向，设置angle后不生效。<br/>默认值：GradientDirection.Bottom |
+| colors  | Array<[[ResourceColor](ts-types.md#resourcecolor), number]> | 是   | 指定渐变色颜色和其对应的百分比位置的数组，设置非法颜色直接跳过。 |
 | repeating  | boolean | 否   | 为渐变的颜色重复着色。<br/>默认值：false<br>true：允许为渐变的颜色重复着色。<br>false：不允许为渐变的颜色重复着色。 |
 
 ## 示例
