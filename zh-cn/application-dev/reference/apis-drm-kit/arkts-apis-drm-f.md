@@ -61,7 +61,8 @@ try {
 }
 ```
 
-## drm.isMediaKeySystemSupported
+## drm.isMediaKeySystemSupported 
+(#drm-issupported-name)
 
 isMediaKeySystemSupported(name: string): boolean
 
@@ -108,7 +109,8 @@ try {
 }
 ```
 
-## drm.isMediaKeySystemSupported
+## drm.isMediaKeySystemSupported 
+(#drm-issupported-mimeType)
 
 isMediaKeySystemSupported(name: string, mimeType: string): boolean
 
@@ -122,7 +124,7 @@ isMediaKeySystemSupported(name: string, mimeType: string): boolean
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | 是   | DRM解决方案名称，如"com.clearplay.drm"。                     |
+| name  | string     | 是   | DRM解决方案名称，支持的解决方案名称见于[isMediaKeySystemSupported](#drm-issupported-name)。                     |
 | mimeType  | string     | 是   | 媒体类型，支持的媒体类型取决于DRM解决方案，如：video/avc、video/hev。                   |
 
 **返回值：**
@@ -170,7 +172,7 @@ isMediaKeySystemSupported(name: string, mimeType: string, level: ContentProtecti
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | 是   | DRM解决方案名称，如"com.clearplay.drm"。                     |
+| name  | string     | 是   | DRM解决方案名称，支持的解决方案名称见于[isMediaKeySystemSupported](#drm-issupported-name)                     |
 | mimeType  | string     | 是   | 媒体类型，支持的媒体类型取决于DRM解决方案，如：video/avc、video/hev。                   |
 | level  | [ContentProtectionLevel](arkts-apis-drm-e.md#contentprotectionlevel)     | 是   | 内容保护级别。                   |
 
@@ -219,7 +221,7 @@ getMediaKeySystemUuid(name: string): string;
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | 是   | DRM解决方案名称，如"com.clearplay.drm"。                   |
+| name  | string     | 是   | DRM解决方案名称，支持的解决方案名称见于[isMediaKeySystemSupported](#drm-issupported-name)                   |
 
 **返回值：**
 
