@@ -1,4 +1,11 @@
 # @ohos.app.ability.dialogRequest (dialogRequest模块)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhu-feimo-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 
 dialogRequest模块用于处理模态弹框的能力，包括获取RequestInfo（用于绑定模态弹框）、获取RequestCallback（用于设置结果）。
 模态弹框是指一个系统弹框，该弹框会拦截弹框之下的页面的鼠标、键盘、触屏等事件。销毁该弹框后，才能对页面进行操作。
@@ -212,17 +219,17 @@ setRequestResult(result: RequestResult): void
 **示例：**
 
 ```ts
-import { AbilityConstant, UIAbility, Want, dialogRequest } from '@kit.AbilityKit';
+import { ServiceExtensionAbility, Want, dialogRequest } from '@kit.AbilityKit';
 
-export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+export default class ServiceExtension extends ServiceExtensionAbility {
+  onCreate(want: Want): void {
     try {
       let requestCallback = dialogRequest.getRequestCallback(want);
       let myResult: dialogRequest.RequestResult = {
-        result : dialogRequest.ResultCode.RESULT_CANCEL,
+        result: dialogRequest.ResultCode.RESULT_CANCEL,
       };
       requestCallback.setRequestResult(myResult);
-    } catch(err) {
+    } catch (err) {
       console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
     }
   }
