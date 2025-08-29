@@ -33,11 +33,11 @@ onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | D
 
 第一次拖拽此事件绑定的组件时，长按时间 >= 500ms，然后手指移动距离 >= 10vp，触发回调。
 
-针对默认支持拖出能力的组件，如果开发者设置了onDragStart，优先执行开发者的onDragStart，并根据执行情况决定是否使用系统默认的拖出能力，具体为：
-- 如果开发者返回了自定义背板图，则不再使用系统默认的拖拽背板图；
+针对默认支持拖拽能力的组件，如果开发者设置了onDragStart，优先执行onDragStart，并根据执行情况决定是否使用系统默认的拖拽能力，具体规则为：
+- 如果开发者返回了自定义预览图，则不再使用系统默认的拖拽预览图；
 - 如果开发者设置了拖拽数据，则不再使用系统默认填充的拖拽数据。
 
-文本类组件[Text](ts-basic-components-text.md)、[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)对选中的文本内容进行拖拽时，不支持背板图的自定义。当onDragStart与菜单预览一起使用或使用了默认支持拖出能力的组件时，预览及菜单项上的自定义内容不支持拖拽。
+文本类组件[Text](ts-basic-components-text.md)、[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)对选中的文本内容进行拖拽时，不支持自定义预览图。当onDragStart与菜单预览一起使用或使用了默认支持拖拽能力的组件时，预览及菜单项上的自定义内容不支持拖拽。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -127,7 +127,7 @@ onDragLeave(event: (event: DragEvent, extraParams?: string) => void): T
 
 onDrop(event: (event: DragEvent, extraParams?: string) => void): T
 
-绑定此事件的组件可作为释放目标。当在本组件范围内停止拖放行为时，将触发回调。如果开发者未在onDrop中主动调用event.setResult()来设置拖拽接收的结果，对于系统支持的默认可拖入组件，处理结果将依据系统实际处理的数据。对于其他组件，系统将默认视为数据接收成功。
+绑定此事件的组件可作为释放目标。当在本组件范围内停止拖放行为时，将触发回调。如果开发者未在onDrop中主动调用event.setResult()来设置拖拽接收的结果，对于系统支持的默认可拖入组件，处理结果将以系统实际处理的数据为准。对于其他组件，系统将默认视为数据接收成功。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -259,7 +259,7 @@ onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configura
 
 | 名称       | 类型 | 只读 | 可选 | 说明                                                         |
 | ---------- | ---- | ---- | ---- | ------------------------------------------------------------ |
-| onlyForLifting | boolean | 否    | 是    | 自定义配置的预览图是否仅用于浮起。<br /> **说明：** <br/>默认值为false。true表示自定义预览图仅用于浮起，false表示可用于浮起和拖拽。设置为true时，如果发起长按拖拽，浮起时的跟手图为自定义配置的预览图，拖拽时的跟手图不使用[dragPreview](ts-universal-attributes-drag-drop.md#dragpreview11)属性，优先使用开发者在[onDragStart](ts-universal-events-drag-drop.md#ondragstart)中返回的背板图，如果[onDragStart](ts-universal-events-drag-drop.md#ondragstart)中没有返回背板图则使用组件自截图。|
+| onlyForLifting | boolean | 否    | 是    | 自定义配置的预览图是否仅用于浮起。<br /> **说明：** <br/>默认值为false。true表示自定义预览图仅用于浮起，false表示可用于浮起和拖拽。设置为true时，如果发起长按拖拽，浮起时的预览图为自定义配置的预览图，拖拽时的预览图不使用[dragPreview](ts-universal-attributes-drag-drop.md#dragpreview11)属性，优先使用开发者在[onDragStart](ts-universal-events-drag-drop.md#ondragstart)中返回的预览图，如果[onDragStart](ts-universal-events-drag-drop.md#ondragstart)中没有返回预览图则使用组件自截图。|
 | delayCreating  | boolean | 否    | 是    | 组件预览builder是否在设置时加载。<br/>默认值为false。true表示组件预览builder在设置时加载，false表示组件预览builder不在设置时加载。|
 
 ## extraParams说明
@@ -776,7 +776,7 @@ type DataLoadParams = DataLoadParams
 
 executeDropAnimation(customDropAnimation: Callback\<void\>): void
 
-设置一个自定义落位动效的执行函数，仅在useCustomDropAnimation为true时有效。
+设置自定义落位动效的执行函数，仅在useCustomDropAnimation为true时有效。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
