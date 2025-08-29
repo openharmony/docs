@@ -107,9 +107,10 @@
    ```
 
 3. 导入模块。
-   <!--RP1--> 
+   
    长时任务相关的模块为@ohos.resourceschedule.backgroundTaskManager和@ohos.app.ability.wantAgent，其余模块按实际需要导入。
 
+  <!--RP1--> 
    ```ts
     import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
     import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
