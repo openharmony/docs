@@ -29,7 +29,7 @@ import { missionManager } from '@kit.AbilityKit';
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | ability | ElementName | 否 | 否 | 表示该任务的组件信息。 | 
-| snapshot | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 否 | 表示任务快照。 |
+| snapshot | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | 否 | 表示任务快照。 |
 
 **示例：**
 
