@@ -485,7 +485,7 @@ struct Parent {
   @Local childX: number = 0;
   @Local childY: number = 1;
   @Provider() onDrag: (x: number, y: number) => void = (x: number, y: number) => {
-    console.log(`onDrag event at x=${x} y:${y}`);
+    console.info(`onDrag event at x=${x} y:${y}`);
     this.childX = x;
     this.childY = y;
   }
