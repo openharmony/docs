@@ -219,7 +219,7 @@ getMediaKeySystemUuid(name: string): string;
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | 是   | DRM解决方案名称，支持的解决方案名称请参考[isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported)。                   |
+| name  | string     | 是   | DRM解决方案名称，支持的解决方案名称可通过[isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported)判断。                   |
 
 **返回值：**
 
