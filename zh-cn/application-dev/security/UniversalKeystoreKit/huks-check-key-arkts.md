@@ -51,32 +51,32 @@ let generateHuksOptions: huks.HuksOptions = {
 /* 4.生成密钥 */
 async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions): Promise<string> {
   console.info(`enter promise generateKeyItem`);
+  let ret: string = 'Success';
   try {
     await huks.generateKeyItem(keyAlias, huksOptions)
-      .then((data) => {
+      .then(() => {
         console.info(`promise: generateKeyItem success`);
-      })
-      .catch((error: BusinessError) => {
+      }).catch((error: BusinessError) => {
         console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMag : ${error.message}`);
+        ret = 'Failed';
       });
-    return 'Success';
   } catch (error) {
-    console.error(`promise: generateKeyItem input arg invalid, errCode : ${error.code}, errMag : ${error.message}`);
-    return 'Failed';
+    console.error(`promise: generateKeyItem input arg invalid`);
+    ret = 'Failed';
   }
+  return ret;
 }
 
 /* 5.查询密钥是否存在 */
 async function hasKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): Promise<boolean> {
   console.info(`enter promise hasKeyItem`);
-  let ret: boolean = false;
+  let ret: boolean = true;
   try {
     await huks.hasKeyItem(keyAlias, huksOptions)
       .then((data) => {
+        let outData = data.outData;
         console.info(`promise: hasKeyItem success, data = ${data}`);
-        ret = true;
-      })
-      .catch((error: BusinessError) => {
+      }).catch((error: BusinessError) => {
         console.error(`promise: hasKeyItem failed, errCode : ${error.code}, errMag : ${error.message}`);
         ret = false;
       });
@@ -85,6 +85,8 @@ async function hasKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): Prom
     console.error(`promise: hasKeyItem input arg invalid, errCode : ${error.code}, errMag : ${error.message}`);
     return false;
   }
+
+  return ret;
 }
 
 async function testKeyExist() {
@@ -93,7 +95,7 @@ async function testKeyExist() {
   /* 2.判断密钥是否存在 */
   if (genResult === 'Success') {
     isKeyExist = await hasKeyItem(keyAlias, huksOptions);
-    console.info(`callback: hasKeyItem success, isKeyExist = ${isKeyExist}`);
+    console.info(`hasKeyItem success, isKeyExist = ${isKeyExist}`);
   } else {
     console.error('Key generation failed, skipping query');
   }
