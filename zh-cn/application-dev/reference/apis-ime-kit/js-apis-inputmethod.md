@@ -339,7 +339,7 @@ let extra: Record<string, string> = {}
 inputMethod.switchCurrentInputMethodSubtype({
   id: "ServiceExtAbility",
   label: "",
-  name: "com.example.kikakeyboard",
+  name: "com.example.keyboard",
   mode: "upper",
   locale: "",
   language: "",
@@ -408,7 +408,7 @@ let extra: Record<string, string> = {}
 inputMethod.switchCurrentInputMethodSubtype({
   id: "ServiceExtAbility",
   label: "",
-  name: "com.example.kikakeyboard",
+  name: "com.example.keyboard",
   mode: "upper",
   locale: "",
   language: "",
@@ -3217,9 +3217,9 @@ import { InputMethodSubtype } from '@kit.IMEKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let inputMethodProperty: inputMethod.InputMethodProperty = {
-  name: 'com.example.kikakeyboard',
+  name: 'com.example.keyboard',
   id: 'propertyId',
-  packageName: 'com.example.kikakeyboard',
+  packageName: 'com.example.keyboard',
   methodId: 'propertyId',
 }
 let inputMethodSetting: inputMethod.InputMethodSetting = inputMethod.getSetting();
@@ -3271,9 +3271,9 @@ import { InputMethodSubtype } from '@kit.IMEKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let inputMethodProperty: inputMethod.InputMethodProperty = {
-  name: 'com.example.kikakeyboard',
+  name: 'com.example.keyboard',
   id: 'propertyId',
-  packageName: 'com.example.kikakeyboard',
+  packageName: 'com.example.keyboard',
   methodId: 'propertyId',
 }
 let inputMethodSetting: inputMethod.InputMethodSetting = inputMethod.getSetting();
