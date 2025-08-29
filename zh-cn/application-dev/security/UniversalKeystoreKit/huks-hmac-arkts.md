@@ -36,6 +36,7 @@ HMAC是密钥相关的哈希运算消息认证码（Hash-based Message Authentic
  * 以下以HMAC密钥的Promise操作使用为例
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
 
 let HMACKeyAlias = 'test_HMAC';
 let handle: number;
@@ -91,10 +92,10 @@ async function GenerateHMACKey() {
   * 3. 调用generateKeyItem
   */
   await huks.generateKeyItem(HMACKeyAlias, options)
-    .then((data) => {
+    .then(() => {
       console.info(`promise: generate HMAC Key success`);
-    }).catch((error: Error) => {
-      console.error(`promise: generate HMAC Key failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: generate HMAC Key failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
@@ -120,8 +121,8 @@ async function HMACData() {
   await huks.initSession(HMACKeyAlias, options)
     .then((data) => {
       handle = data.handle;
-    }).catch((error: Error) => {
-      console.error(`promise: init EncryptData failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: init EncryptData failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
   /*
   * 5. 调用finishSession获取HMAC的结果
@@ -130,8 +131,8 @@ async function HMACData() {
     .then((data) => {
       console.info(`promise: HMAC data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
       hashData = data.outData as Uint8Array;
-    }).catch((error: Error) => {
-      console.error(`promise: HMAC data failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: HMAC data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 

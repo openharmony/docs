@@ -36,6 +36,7 @@
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit'
+import { BusinessError } from "@kit.BasicServicesKit";
 
 let IV = cryptoFramework.createRandom().generateRandomSync(16).data
 let AAD = "abababababababab";
@@ -269,9 +270,9 @@ let importWrappedAes192Params: huks.HuksOptions = {
       tag: huks.HuksTag.HUKS_TAG_UNWRAP_ALGORITHM_SUITE,
       value: huks.HuksUnwrapSuite.HUKS_UNWRAP_SUITE_ECDH_AES_256_GCM_NOPADDING
     }, {
-      tag: huks.HuksTag.HUKS_TAG_IV,
-      value: IV
-    }
+    tag: huks.HuksTag.HUKS_TAG_IV,
+    value: IV
+  }
   )
 }
 
@@ -279,14 +280,13 @@ async function publicGenerateItemFunc(keyAlias: string, huksOptions: huks.HuksOp
   console.info(`enter promise generateKeyItem`);
   try {
     await huks.generateKeyItem(keyAlias, huksOptions)
-      .then(data => {
-        console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
+      .then(() => {
+        console.info(`promise: generateKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-      .catch((err: Error) => {
-        console.error(`promise: generateKeyItem failed, ${JSON.stringify(err)}`);
-      })
-  } catch (err) {
-    console.error(`promise: generateKeyItem invalid, ${JSON.stringify(err)}`);
+  } catch (error) {
+    console.error(`promise: generateKeyItem invalid`);
   }
 }
 
@@ -294,13 +294,13 @@ async function publicImportKeyItemFunc(keyAlias: string, huksOptions: huks.HuksO
   console.info(`enter promise importKeyItem`);
   try {
     await huks.importKeyItem(keyAlias, huksOptions)
-      .then(data => {
-        console.info(`promise: importKeyItem success, data = ${JSON.stringify(data)}`);
-      }).catch((err: Error) => {
-        console.error(`promise: importKeyItem failed, ${JSON.stringify(err)}`);
+      .then(() => {
+        console.info(`promise: importKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: importKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-  } catch (err) {
-    console.error(`promise: importKeyItem input arg invalid, ${JSON.stringify(err)}`);
+  } catch (error) {
+    console.error(`promise: importKeyItem input arg invalid`);
   }
 }
 
@@ -308,48 +308,36 @@ async function publicDeleteKeyItemFunc(KeyAlias: string, huksOptions: huks.HuksO
   console.info(`enter promise deleteKeyItem`);
   try {
     await huks.deleteKeyItem(KeyAlias, huksOptions)
-      .then(data => {
-        console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
+      .then(() => {
+        console.info(`promise: deleteKeyItem key success`);
       })
-      .catch((err: Error) => {
-        console.error(`promise: deleteKeyItem failed, ${JSON.stringify(err)}`);
+      .catch((error: BusinessError) => {
+        console.error(`promise: deleteKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-  } catch (err) {
-    console.error(`promise: deleteKeyItem input arg invalid, ${JSON.stringify(err)}`);
+  } catch (error) {
+    console.error(`promise: deleteKeyItem input arg invalid`);
   }
 }
 
-function importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, huksOptions: huks.HuksOptions) {
-  return new Promise<void>((resolve, reject) => {
-    try {
-      huks.importWrappedKeyItem(keyAlias, wrappingKeyAlias, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-    }
-  });
-}
-
-async function publicImportWrappedKeyFunc(keyAlias: string, wrappingKeyAlias: string, huksOptions: huks.HuksOptions) {
+async function importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise importWrappedKeyItem`);
   for (let i = 0; i < huksOptions.inData!.length; i++) {
     console.info(`${i}: ${huksOptions.inData![i]}`);
   }
   try {
-    await importWrappedKeyItem(keyAlias, wrappingKeyAlias, huksOptions)
-      .then((data) => {
-        console.info(`promise: importWrappedKeyItem success, data = ${JSON.stringify(data)}`);
+    await huks.importWrappedKeyItem(keyAlias, wrappingKeyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: importWrappedKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: importWrappedKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-      .catch((error: Error) => {
-        console.error(`promise: importWrappedKeyItem failed, ${JSON.stringify(error)}`);
-      });
   } catch (error) {
-    console.error(`promise: importWrappedKeyItem input arg invalid, ${JSON.stringify(error)}`);
+    console.error(`promise: importWrappedKeyItem input arg invalid`);
   }
+}
+
+async function publicImportWrappedKeyFunc(keyAlias: string, wrappingKeyAlias: string, huksOptions: huks.HuksOptions) {
+  await importWrappedKeyItem(keyAlias, wrappingKeyAlias, huksOptions);
 }
 
 async function publicInitFunc(srcKeyAlias: string, huksOptions: huks.HuksOptions) {
@@ -358,14 +346,13 @@ async function publicInitFunc(srcKeyAlias: string, huksOptions: huks.HuksOptions
   try {
     await huks.initSession(srcKeyAlias, huksOptions)
       .then((data) => {
-        console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
+        console.info(`promise: doInit success`);
         handle = data.handle;
-      })
-      .catch((error: Error) => {
-        console.error(`promise: doInit key failed, ${JSON.stringify(error)}`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: doInit key failed, errCode : ${error.code}, errMsg : ${error.message}`);
       });
   } catch (error) {
-    console.error(`promise: doInit input arg invalid, ${JSON.stringify(error)}`);
+    console.error(`promise: doInit input arg invalid`);
   }
   return handle;
 }
@@ -393,14 +380,13 @@ async function publicUpdateSessionFunction(handle: number, huksOptions: huks.Huk
     try {
       await huks.updateSession(handle, huksOptions)
         .then((data) => {
-          console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
           outData = outData.concat(Array.from(data.outData!));
-        })
-        .catch((error: Error) => {
-          console.error(`promise: doUpdate failed, ${JSON.stringify(error)}`);
+          console.info(`promise: doUpdate success, data = ${outData}`);
+        }).catch((error: BusinessError) => {
+          console.error(`promise: doUpdate failed, errCode : ${error.code}, errMsg : ${error.message}`);
         });
     } catch (error) {
-      console.error(`promise: doUpdate input arg invalid, ${JSON.stringify(error)}`);
+      console.error(`promise: doUpdate input arg invalid`);
     }
     if ((!isFinished) && (inDataSegPosition + maxUpdateSize > lastInDataPosition)) {
       console.error(`update size invalid isFinished = ${isFinished}`);
@@ -419,14 +405,13 @@ async function publicFinishSession(handle: number, huksOptions: huks.HuksOptions
   try {
     await huks.finishSession(handle, huksOptions)
       .then((data) => {
-        console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
         outData = inData.concat(Array.from(data.outData!));
-      })
-      .catch((error: Error) => {
-        console.error(`promise: doFinish key failed, ${JSON.stringify(error)}`);
+        console.info(`promise: doFinish success, data = ${outData}`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: doFinish key failed, errCode : ${error.code}, errMsg : ${error.message}`);
       });
   } catch (error) {
-    console.error(`promise: doFinish input arg invalid, ${JSON.stringify(error)}`);
+    console.error(`promise: doFinish input arg invalid`);
   }
   return new Uint8Array(outData);
 }
@@ -446,26 +431,24 @@ async function agreeFunction(keyAlias: string, huksOptions: huks.HuksOptions, hu
   try {
     await huks.updateSession(handle, huksOptions)
       .then((data) => {
-        console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
-      })
-      .catch((error: Error) => {
-        console.error(`promise: doUpdate failed, ${JSON.stringify(error)}`);
+        console.info(`promise: doUpdate success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: doUpdate failed, errCode : ${error.code}, errMsg : ${error.message}`);
       });
   } catch (error) {
-    console.error(`promise: doUpdate input arg invalid, ${JSON.stringify(error)}`);
+    console.error(`promise: doUpdate input arg invalid`);
   }
-  console.info(`enter promise doInit`);
+  console.info(`enter promise doFinish`);
   try {
     await huks.finishSession(handle, huksOptions)
       .then((data) => {
-        console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
         outSharedKey = data.outData as Uint8Array;
-      })
-      .catch((error: Error) => {
-        console.error(`promise: doInit key failed, ${JSON.stringify(error)}`);
+        console.info(`promise: doFinish success, data = ${outSharedKey}`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: doFinish key failed, errCode : ${error.code}, errMsg : ${error.message}`);
       });
   } catch (error) {
-    console.error(`promise: doInit input arg invalid, ${JSON.stringify(error)}`);
+    console.error(`promise: doFinish input arg invalid`);
   }
   return outSharedKey;
 }
@@ -483,18 +466,18 @@ async function generateAndExportPublicKey(keyAlias: string, huksOptions: huks.Hu
   try {
     await huks.exportKeyItem(keyAlias, huksOptions)
       .then((data) => {
-        console.info(`promise: exportKeyItem success, data = ${JSON.stringify(data)}`);
         if (caller) {
           callerSelfPublicKey = data.outData as Uint8Array;
+          console.info(`promise: exportKeyItem success, caller data = ${callerSelfPublicKey}`);
         } else {
           huksPubKey = data.outData as Uint8Array;
+          console.info(`promise: exportKeyItem success, data = ${huksPubKey}`);
         }
-      })
-      .catch((error: Error) => {
-        console.error(`promise: exportKeyItem failed, ${JSON.stringify(error)}`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: exportKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
       });
   } catch (error) {
-    console.error(`promise: generate pubKey failed, ${JSON.stringify(error)}`);
+    console.error(`promise: generate pubKey failed`);
   }
 }
 
@@ -591,13 +574,13 @@ async function ImportWrappedKey() {
 }
 ```
 
-
 ## 调测验证
 
 调用[huks.isKeyItemExist](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksiskeyitemexist9)验证密钥是否存在，如密钥存在即表示密钥导入成功。
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
 
 /*
  * 确定密钥别名和封装密钥属性参数集
@@ -613,20 +596,30 @@ let huksOptions: huks.HuksOptions = {
   inData: new Uint8Array(new Array()) // 非空填充。
 }
 
-async function ImportWrappedKeyTest() {
+async function isKeyItemExist(keyAlias: string, options: huks.HuksOptions): Promise<string> {
+  console.info(`promise: enter isKeyItemExist`);
+  let ret = 'Success';
   try {
-    huks.isKeyItemExist(keyAlias, huksOptions, (error, data) => {
-      if (error) {
-        console.error(`callback: isKeyItemExist failed, ${JSON.stringify(error)}`);
-      } else {
-        if (data !== null && data.valueOf() !== null) {
-          isKeyExist = data.valueOf();
-          console.info(`callback: isKeyItemExist success, isKeyExist = ${isKeyExist}`);
-        }
-      }
-    });
+    await huks.isKeyItemExist(keyAlias, options)
+      .then((data) => {
+        console.info(`promise: isKeyItemExist success, data = ${data}`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: isKeyItemExist failed, errCode : ${error.code}, errMsg : ${error.message}`);
+        ret = 'Failed';
+      })
   } catch (error) {
-    console.error(`callback: isKeyItemExist input arg invalid, ${JSON.stringify(error)}`);
+    console.error(`promise: isKeyItemExist input arg invalid`);
+    ret = 'Failed';
   }
+  return ret;
+}
+
+async function importWrappedKeyExistTest() {
+  let retImp = await isKeyItemExist(keyAlias, huksOptions);
+  if (retImp == 'Failed') {
+    console.error("importWrappedKeyExistTest failed");
+    return;
+  }
+  console.error("importWrappedKeyExistTest success");
 }
 ```

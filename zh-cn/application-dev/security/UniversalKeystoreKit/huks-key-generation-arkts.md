@@ -32,6 +32,7 @@
 ```ts
 /* 以下以生成DH密钥为例 */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
 
 /* 1.确定密钥别名 */
 let keyAlias = 'dh_key';
@@ -56,38 +57,21 @@ let huksOptions: huks.HuksOptions = {
 }
 
 /* 3.生成密钥 */
-function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
-  return new Promise<void>((resolve, reject) => {
-    try {
-      huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throw (error as Error);
-    }
-  });
-}
-
-async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
+async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise generateKeyItem`);
   try {
-    await generateKeyItem(keyAlias, huksOptions)
-      .then((data) => {
-        console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
-      })
-      .catch((error: Error) => {
-        console.error(`promise: generateKeyItem failed, ${JSON.stringify(error)}`);
+    await huks.generateKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: generateKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMag : ${error.message}`);
       });
   } catch (error) {
-    console.error(`promise: generateKeyItem input arg invalid, ` + JSON.stringify(error));
+    console.error(`promise: generateKeyItem input arg invalid`);
   }
 }
 
 async function TestGenKey() {
-  await publicGenKeyFunc(keyAlias, huksOptions);
+  await generateKeyItem(keyAlias, huksOptions);
 }
 ```

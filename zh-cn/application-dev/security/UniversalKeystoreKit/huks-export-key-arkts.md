@@ -21,6 +21,7 @@
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
 
 /* 1. 设置密钥别名 */
 let keyAlias = 'keyAlias';
@@ -49,71 +50,56 @@ let huksOptions: huks.HuksOptions = {
 }
 
 /* 3.生成密钥 */
-function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
-  return new Promise<void>((resolve, reject) => {
-    try {
-      huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
+async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): Promise<string> {
+  console.info(`enter promise generateKeyItem`);
+  let ret: string = 'Success';
+  try {
+    await huks.generateKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: generateKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMag : ${error.message}`);
+        ret = 'Failed';
       });
-    } catch (error) {
-      throw (error as Error);
-    }
-  });
+  } catch (error) {
+    console.error(`promise: generateKeyItem input arg invalid`);
+    ret = 'Failed';
+  }
+  return ret;
 }
 
-async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions): Promise<string> {
+/* 4.导出密钥 */
+async function exportKeyItem(keyAlias: string, emptyOptions: huks.HuksOptions) {
+  console.info(`enter promise exportKeyItem`);
+  let ret: string = 'Success';
   try {
-    await generateKeyItem(keyAlias, huksOptions)
+    await huks.exportKeyItem(keyAlias, emptyOptions)
       .then((data) => {
-        console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
-      })
-      .catch((error: Error) => {
-        console.error(`promise: generateKeyItem failed, ${JSON.stringify(error)}`);
+        console.info(`promise: exportKeyItem success, data = ${data}`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: exportKeyItem failed, errCode : ${error.code}, errMag : ${error.message}`);
+        ret = 'Failed';
       });
-    return 'Success';
   } catch (error) {
-    console.error(`promise: generateKeyItem input arg invalid, ${JSON.stringify(error)}`);
-    return 'Failed';
+    console.error(`promise: exportKeyItem input arg invalid`);
+    ret = 'Failed';
   }
+  return ret;
 }
 
-/* 导出密钥 */
-function exportKeyItem(keyAlias: string, emptyOptions: huks.HuksOptions) {
-  return new Promise<huks.HuksReturnResult>((resolve, reject) => {
-    try {
-      huks.exportKeyItem(keyAlias, emptyOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throw (error as Error);
-    }
-  });
-}
-
-async function testExportKeyItem(): Promise<string> {
-  try {
-    /* 1. 生成密钥 */
-    let genResult = await publicGenKeyFunc(keyAlias, huksOptions);
-    /* 2. 导出密钥 */
-    if (genResult === 'Success') {
-      let data = await exportKeyItem(keyAlias, emptyOptions);
-      console.info(`callback: exportKeyItem success, data = ${JSON.stringify(data)}`);
-    } else {
-      console.error('Key generation failed, skipping export');
-      return 'Failed';
-    }
-    return 'Success';
-  } catch (error) {
-    console.error(`callback: exportKeyItem input arg invalid, ${JSON.stringify(error)}`);
-    return 'Failed';
+async function testExportKeyItem() {
+  let retGen = await generateKeyItem(keyAlias, huksOptions);
+  if (retGen == 'Failed') {
+    console.error(`generateKeyItem failed`);
+    return;
   }
+
+  let retExp = await exportKeyItem(keyAlias, emptyOptions);
+  if (retExp == 'Failed') {
+    console.error(`exportKeyItem failed`);
+    return;
+  }
+
+  console.info(`testExportKeyItem success`);
 }
 ```

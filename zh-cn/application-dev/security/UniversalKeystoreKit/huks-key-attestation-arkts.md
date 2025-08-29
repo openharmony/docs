@@ -24,6 +24,7 @@
  * 以下以attestKey的Promise接口操作验证为例
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
 
 function StringToUint8Array(str: string) {
   let arr: number[] = [];
@@ -41,10 +42,6 @@ let securityLevel = StringToUint8Array('sec_level');
 let challenge = StringToUint8Array('challenge_data');
 let versionInfo = StringToUint8Array('version_info');
 let attestCertChain: Array<string>;
-
-class throwObject {
-  isThrow: boolean = false;
-}
 
 /* 封装生成时的密钥参数集 */
 let genKeyProperties: Array<huks.HuksParam> = [
@@ -82,7 +79,7 @@ let genOptions: huks.HuksOptions = {
 };
 
 /* 2.封装证明密钥的参数集 */
-let attestKeyproperties: Array<huks.HuksParam> = [
+let attestKeyProperties: Array<huks.HuksParam> = [
   {
     tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
     value: securityLevel
@@ -101,91 +98,45 @@ let attestKeyproperties: Array<huks.HuksParam> = [
   }
 ]
 let huksOptions: huks.HuksOptions = {
-  properties: attestKeyproperties
+  properties: attestKeyProperties
 };
 
-function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
-  return new Promise<void>((resolve, reject) => {
-    try {
-      huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throwObject.isThrow = true;
-      throw (error as Error);
-    }
-  });
-}
-
 /* 3.生成密钥 */
-async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise generateKeyItem`);
-  let throwObject: throwObject = { isThrow: false };
+async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter generateKeyItem`);
   try {
-    await generateKeyItem(keyAlias, huksOptions, throwObject)
-      .then((data) => {
-        console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
+    await huks.generateKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: generateKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-      .catch((error: Error) => {
-        if (throwObject.isThrow) {
-          throw (error as Error);
-        } else {
-          console.error(`promise: generateKeyItem failed, ${JSON.stringify(error)}`);
-        }
-      });
   } catch (error) {
-    console.error(`promise: generateKeyItem input arg invalid, ${JSON.stringify(error)}`);
+    console.error(`promise: generateKeyItem input arg invalid`);
   }
 }
 
 /* 4.证明密钥 */
-function attestKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
-  return new Promise<huks.HuksReturnResult>((resolve, reject) => {
-    try {
-      huks.attestKeyItem(keyAlias, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throwObject.isThrow = true;
-      throw (error as Error);
-    }
-  });
-}
-
-async function publicAttestKey(keyAlias: string, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise attestKeyItem`);
-  let throwObject: throwObject = { isThrow: false };
+async function attestKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter attestKeyItem`);
   try {
-    await attestKeyItem(keyAlias, huksOptions, throwObject)
+    await huks.attestKeyItem(keyAlias, huksOptions)
       .then((data) => {
-        console.info(`promise: attestKeyItem success, data = ${JSON.stringify(data)}`);
         if (data !== null && data.certChains !== null) {
           attestCertChain = data.certChains as string[];
         }
+        console.info(`promise: attestKeyItem success, attestCertChain = ${attestCertChain}`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: attestKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-      .catch((error: Error) => {
-        if (throwObject.isThrow) {
-          throw (error as Error);
-        } else {
-          console.error(`promise: attestKeyItem failed, ${JSON.stringify(error)}`);
-        }
-      });
   } catch (error) {
-    console.error(`promise: attestKeyItem input arg invalid, ${JSON.stringify(error)}`);
+    console.error(`promise: attestKeyItem input arg invalid`);
   }
 }
 
 async function AttestKeyTest() {
-  await publicGenKeyFunc(aliasString, genOptions);
-  await publicAttestKey(aliasString, huksOptions);
+  await generateKeyItem(aliasString, genOptions);
+  await attestKeyItem(aliasString, huksOptions);
   console.info('attest certChain data: ' + attestCertChain)
 }
 ```
