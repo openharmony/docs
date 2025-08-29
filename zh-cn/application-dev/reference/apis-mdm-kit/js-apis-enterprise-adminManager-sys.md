@@ -1345,7 +1345,7 @@ setAdminRunningMode(admin: Want, mode: RunningMode): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**设备行为差异：** 该接口在PC设备上生效，在其他设备中调用无效果。
+**设备行为差异：** 该接口在PC/2in1设备上生效，在其他设备中调用无效果。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
