@@ -10009,7 +10009,7 @@ static create(name: string, size: number): Ashmem
 
   | 参数名 | 类型   | 必填 | 说明                         |
   | ------ | ------ | ---- | ---------------------------- |
-  | name   | string | 是   | ashmem名称，用于查询Ashmem信息，其长度不能为0。   |
+  | name   | string | 是   | Ashmem名称，用于查询Ashmem信息，其长度不能为0。   |
   | size   | number | 是   | Ashmem的大小，其大小应大于0，以字节为单位。 |
 
 **返回值：**
