@@ -1,46 +1,45 @@
 # Subscribing to Main Thread Jank Events (C/C++)
 
-## Main Thread Jank Event Specifications
+## Overview
 
-For details, see [Main Thread Jank Event Overview](./hiappevent-watcher-mainthreadjank-events.md).
+This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscribe to main thread jank events. For details (such as parameter restrictions and value ranges), see [hiappevent.h](../reference/apis-performance-analysis-kit/capi-hiappevent-h.md).
 
 ## Available APIs
 
-For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent).
-
-**Subscription APIs**
-
-| API                                                      | Description                                        |
-| ------------------------------------------------------------ | -------------------------------------------- |
-| int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher *watcher)   | Adds a watcher to listen for application events.|
-| int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher *watcher) | Removes a watcher to unsubscribe from application events.|
+| API| Description|
+| -------- | -------- |
+| int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher \*watcher) | Adds a watcher to listen for application events.|
+| int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher \*watcher) | Removes a watcher to unsubscribe from application events.|
 
 ## How to Develop
 
-1. Create a native C++ project and import the **jsoncpp** file to the project. The directory structure is as follows:
+### Adding an Event Watcher
+1. Obtain the **jsoncpp.cpp**, **json.h**, and **json-forwards.h** files by referring to **Using JsonCpp in your project** in [the third-party open-source library JsonCpp]((https://github.com/open-source-parsers/jsoncpp).
+
+2. Create a native C++ project and import the preceding files to the project. The directory structure is as follows:
 
    ```yml
    entry:
      src:
        main:
          cpp:
-           - json:
-               - json.h
-               - json-forwards.h
-           - types:
-               libentry:
-                 - index.d.ts
+           json:
+             - json.h
+             - json-forwards.h
+           types:
+             libentry:
+               - index.d.ts
            - CMakeLists.txt
-           - napi_init.cpp
            - jsoncpp.cpp
+           - napi_init.cpp
          ets:
-           - entryability:
-               - EntryAbility.ets
-           - pages:
-               - Index.ets
+           entryability:
+             - EntryAbility.ets
+           pages:
+             - Index.ets
    ```
 
-2. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
+3. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
 
    ```cmake
    # Add the jsoncpp.cpp file, which is used to parse the JSON strings in the subscription events.
@@ -49,7 +48,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libhiappevent_ndk.z.so)
    ```
 
-3. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
+4. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
 
    ```c++
    #include "napi/native_api.h"
@@ -61,16 +60,16 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    #define LOG_TAG "testTag"
    ```
 
-4. Subscribe to system events.
+5. Subscribe to system events.
 
-    - Watcher of the onReceive type.
+   - Watcher of the **onReceive** type.
 
-      In the **napi_init.cpp** file, define the methods related to the watcher of the onReceive type.
+      In the **napi_init.cpp** file, define the methods related to the watcher of the **onReceive** type.
 
       ```c++
       // Define a variable to cache the pointer to the created watcher.
       static HiAppEvent_Watcher *systemEventWatcher; 
-
+      
       static void OnReceive(const char *domain, const struct HiAppEvent_AppEventGroup *appEventGroups, uint32_t groupLen) {
           for (int i = 0; i < groupLen; ++i) {
               for (int j = 0; j < appEventGroups[i].infoLen; ++j) {
@@ -112,7 +111,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
               }
           }
       }
-
+      
       static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent RegisterWatcher");
           // Set the watcher name. The system identifies different watchers based on their names.
@@ -129,7 +128,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
       }
       ```
 
-5. Register **RegisterWatcher** as an ArkTS API.
+6. Register **RegisterWatcher** as an ArkTS API.
 
    In the **napi_init.cpp** file, register **RegisterWatcher** as an ArkTS API.
 
@@ -150,18 +149,18 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    export const registerWatcher: () => void;
    ```
 
-6. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, add the following interface invocation to **onCreate()**.
+7. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, add the following API call to **onCreate()**.
 
    ```typescript
    // Import the dependent module.
    import testNapi from 'libentry.so';
-
+   
    // Add the interface invocation to onCreate().
    // Register the system event watcher at startup.
    testNapi.registerWatcher();
    ```
 
-7. In the **entry/src/main/ets/pages/Index.ets** file, add the **timeOut500** button with **onClick()** to trigger a main thread jank event when the button is clicked. The sample code is as follows:
+8. In the **entry/src/main/ets/pages/Index.ets** file, add the **timeOut500** button with **onClick()** to trigger a main thread jank event when the button is clicked. The sample code is as follows:
 
    ```typescript
       Button("timeOut350")
@@ -173,45 +172,50 @@ For details about how to use the APIs (such as parameter usage restrictions and 
       })
    ```
 
-8. In DevEco Studio, click the **Run** button to run the application project. Click the **timeOut350** button twice consecutively to trigger a main thread jank event.
+9. In DevEco Studio, click the **Run** button to run the application project. Click the **timeOut350** button twice consecutively to trigger a main thread jank event.
 
-9. After the main thread jank event is reported, you can view the following event information in the **Log** window.
+### Verifying the Subscription
 
-    ```text
-      HiAppEvent eventInfo.domain=OS
-      HiAppEvent eventInfo.name=MAIN_THREAD_JANK
-      HiAppEvent eventInfo.eventType=1
-      HiAppEvent eventInfo.params.time=1717597063727
-      HiAppEvent eventInfo.params.pid=45572
-      HiAppEvent eventInfo.params.uid=20020151
-      HiAppEvent eventInfo.params.bundle_name=com.example.nativemainthread
-      HiAppEvent eventInfo.params.bundle_version=1.0.0
-      HiAppEvent eventInfo.params.begin_time=1717597063225
-      HiAppEvent eventInfo.params.end_time=1717597063727
-      HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_20240613221239_45572.txt"]
-      HiAppEvent eventInfo.params.log_over_limit=0
-    ```
+1. After the main thread jank event is reported, you can view the following event information in the **Log** window.
+
+   ```text
+     HiAppEvent eventInfo.domain=OS
+     HiAppEvent eventInfo.name=MAIN_THREAD_JANK
+     HiAppEvent eventInfo.eventType=1
+     HiAppEvent eventInfo.params.time=1717597063727
+     HiAppEvent eventInfo.params.pid=45572
+     HiAppEvent eventInfo.params.uid=20020151
+     HiAppEvent eventInfo.params.bundle_name=com.example.nativemainthread
+     HiAppEvent eventInfo.params.bundle_version=1.0.0
+     HiAppEvent eventInfo.params.begin_time=1717597063225
+     HiAppEvent eventInfo.params.end_time=1717597063727
+     HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_20240613221239_45572.txt"]
+     HiAppEvent eventInfo.params.log_over_limit=0
+   ```
 
     > **NOTE**
-    > For details, see [Default Main Thread Jank Event Time Specifications](./hiappevent-watcher-mainthreadjank-events.md#default-main-thread-jank-event-time-specifications) and [Log Specifications of the Main Thread Jank Event](./hiappevent-watcher-mainthreadjank-events.md#log-specifications-of-the-main-thread-jank-event).
+    >
+    > For details about the main thread jank event specifications, see [main thread jank event detection principles](apptask-timeout-guidelines.md#detection-principles) and [main thread jank event log specifications](apptask-timeout-guidelines.md#log-specifications).
 
-11. Remove the event watcher.
+### Removing and Destroying an Event Watcher
 
-    ```c++
-    static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
-        // Remove the watcher.
-        OH_HiAppEvent_RemoveWatcher(systemEventWatcher);
-        return {};
-    }
-    ```
+1. Remove the event watcher.
 
-12. Destroy the event watcher.
+   ```c++
+   static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
+       // Remove the watcher.
+       OH_HiAppEvent_RemoveWatcher(systemEventWatcher);
+       return {};
+   }
+   ```
 
-    ```c++
-    static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
-        // Destroy the created watcher and set systemEventWatcher to nullptr.
-        OH_HiAppEvent_DestroyWatcher(systemEventWatcher);
-        systemEventWatcher = nullptr;
-        return {};
-    }
-    ```
+2. Destroy the event watcher.
+
+   ```c++
+   static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
+       // Destroy the created watcher and set systemEventWatcher to nullptr.
+       OH_HiAppEvent_DestroyWatcher(systemEventWatcher);
+       systemEventWatcher = nullptr;
+       return {};
+   }
+   ```
