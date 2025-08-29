@@ -1906,3 +1906,21 @@ The current process is not a candidate master process and does not support cance
 **处理步骤**
 
 不支持处理，当前进程不是备选主控进程，不支持取消。
+
+## 16000205 当前接口未在主线程中调用
+
+**错误信息**
+
+The API is not called in the main thread.
+
+**错误描述**
+
+当前接口未在主线程调用。
+
+**可能原因**
+
+当前接口在worker或taskpool中调用，不支持该操作。
+
+**处理步骤**
+
+请将接口调用逻辑迁移到主线程中执行。
