@@ -248,6 +248,9 @@ build() {
 class MyDataSource implements IDataSource {
   private dataArray: string[] = [];
   private listener: DataChangeListener | undefined;
+  public pushData(item:string){
+    this.dataArray.push(item);
+  }
   // ...
 }
 
@@ -530,27 +533,27 @@ struct MyComponent {
 @Entry
 @Component
 struct AspectRatioExample12 {
-    @State children: number[] = Array.from(Array<number>(900), (v, k) => k);
-
-    build() {
-      Scroll() {
-        Grid() {
-          ForEach(this.children, (item: number[]) => {
-            GridItem() {
+  @State children: number[] = Array.from(Array<number>(900), (v, k) => k);
+  
+  build() {
+    Scroll() {
+      Grid() {
+        ForEach(this.children, (item: number) => {
+          GridItem() {
+            Stack() {
               Stack() {  
                 Stack() {  
-                  Stack() {  
-                    Text(item.toString())  
-                  }.size({ width: "100%"})  
-                }.backgroundColor(Color.Yellow)  
-              }.backgroundColor(Color.Pink)  
-            }  
-          }, (item: number) => item.toString())  
-        }  
-        .columnsTemplate('1fr 1fr 1fr 1fr')  
-        .columnsGap(0)  
-        .rowsGap(0)  
-        .size({ width: "100%", height: "100%" })  
+                  Text(item.toString())  
+                }.size({ width: "100%"})  
+              }.backgroundColor(Color.Yellow)  
+            }.backgroundColor(Color.Pink)  
+          }  
+        }, (item: number) => item.toString())  
+      }  
+      .columnsTemplate('1fr 1fr 1fr 1fr')  
+      .columnsGap(0)  
+      .rowsGap(0)  
+      .size({ width: "100%", height: "100%" })  
     }  
   }  
 }
@@ -671,10 +674,22 @@ struct StackExample2 {
 反例代码如下：
 
 ```typescript
+interface Data {
+  text: string;
+}
+
+function getData(): Data {
+  return {
+    text: 'parent'
+  }
+}
+
 // 父组件
 @Component
 struct componentParent{
-  @State data: Data = {};
+  @State data: Data = {
+    text: ''
+  };
 
   aboutToAppear() {
     // 获取子组件数据
@@ -696,7 +711,7 @@ struct componentSon{
 
   build() {
     Column() {
-      Text(data.text)
+      Text(this.data.text)
       componentGrandSon({ data: this.data })
     }
   }
@@ -709,7 +724,7 @@ struct componentGrandSon{
 
   build() {
     Column() {
-      Text(data.text)
+      Text(this.data.text)
     }
   }
 }
@@ -718,61 +733,22 @@ struct componentGrandSon{
 正例代码如下：
 
 ```typescript
+interface Data {
+  text: string;
+}
+
+function getData(): Data {
+  return {
+    text: 'parent'
+  }
+}
+
 // 父组件
 @Component
 struct componentParent{
-  @Provide('data') data: Data = {};
-
-  aboutToAppear() {
-    // 获取子组件数据
-    this.data = getData()
-  }
-
-  build() {
-    Column() {
-      componentSon({ data: this.data })
-    }
-  }
-}
-
-// 子组件
-@Component
-struct componentSon{
-  // 获取传递参数
-  @Consume("data") data: Data;
-
-  build() {
-    Column() {
-      Text(data.text)
-      componentGrandSon({ data: this.data })
-    }
-  }
-}
-
-@Component
-struct componentGrandSon{
-  // 获取传递参数
-  @Consume("data") data: Data;
-
-  build() {
-    Column() {
-      Text(data.text)
-    }
-  }
-}
-```
-
-#### 避免滥用@Provide+@Consume
-
-在父子组件关联的场景下，@Provide+@Consume开销要大于@State+@Prop/@Link，因此在该场景下推荐使用@State+@Prop/@Link的组合。
-
-反例代码如下：
-
-```typescript
-// 父组件
-@Component
-struct componentParent{
-  @Provide("data") data: Data = {};
+  @Provide('data') data: Data = {
+    text: ''
+  };
 
   aboutToAppear() {
     // 获取子组件数据
@@ -794,7 +770,70 @@ struct componentSon{
 
   build() {
     Column() {
-      Text(data.text)
+      Text(this.data.text)
+      componentGrandSon()
+    }
+  }
+}
+
+@Component
+struct componentGrandSon{
+  // 获取传递参数
+  @Consume("data") data: Data;
+
+  build() {
+    Column() {
+      Text(this.data.text)
+    }
+  }
+}
+```
+
+#### 避免滥用@Provide+@Consume
+
+在父子组件关联的场景下，@Provide+@Consume开销要大于@State+@Prop/@Link，因此在该场景下推荐使用@State+@Prop/@Link的组合。
+
+反例代码如下：
+
+```typescript
+interface Data {
+  text: string;
+}
+
+function getData(): Data {
+  return {
+    text: 'parent'
+  }
+}
+
+// 父组件
+@Component
+struct componentParent{
+  @Provide("data") data: Data = {
+    text: ''
+  };
+
+  aboutToAppear() {
+    // 获取子组件数据
+    this.data = getData();
+  }
+
+  build() {
+    Column() {
+      componentSon()
+    }
+  }
+}
+
+// 子组件
+@Component
+struct componentSon{
+  // 获取传递参数
+  @Consume("data") data: Data;
+
+  build() {
+    Column() {
+      Text(this.data.text)
     }
   }
 }
@@ -803,10 +842,22 @@ struct componentSon{
 正例代码如下：
 
 ```typescript
+interface Data {
+  text: string;
+}
+
+function getData(): Data {
+  return {
+    text: 'parent'
+  }
+}
+
 // 父组件
 @Component
 struct componentParent{
-  @State data:Data = {};
+  @State data:Data = {
+    text: ''
+  };
 
   aboutToAppear() {
     // 获取子组件数据
@@ -828,7 +879,7 @@ struct componentSon{
 
   build() {
     Column() {
-      Text(data.text)
+      Text(this.data.text)
     }
   }
 }
@@ -840,7 +891,7 @@ struct componentSon{
 
 #### 控制状态变量关联组件数量
 
-反例代码如下：
+反
 
 ```typescript
 @Observed
@@ -970,7 +1021,7 @@ struct Page {
           })
           .rotate({
             x: this.animationParam.rotationX,
-            y: this.animationParam.translateY,
+            y: this.animationParam.rotationY,
             centerX: this.animationParam.centerX,
             centerY: this.animationParam.centerY,
             angle: this.animationParam.angle

@@ -38,12 +38,10 @@
   async mockRequestData(): Promise<ModelDetailVO[]> {
     let result: modelDetailDTO[] = [];
     // data.json是存在本地的json数据，大小大约20M,模拟从网络端获取数据
-    await this.getUIContext().getHostContext()?.resourceManager.getRawFileContent("data.json").then((data: Uint8Array) => {
-      // 耗时回调函数
-      let jsonData = buffer.from(data).toString();
-      let res: responseData = JSON.parse(jsonData);
-      result = res.data;
-    })
+    let data: Uint8Array = await context.resourceManager.getRawFileContent("data.json");
+    let jsonData: string = buffer.from(data).toString();
+    let res: responseData = JSON.parse(jsonData);
+    result = res.data;
     return this.transArrayDTO2VO(result);
   }
   // ...
@@ -97,11 +95,10 @@
   async function mockRequestData(index: number, context: Context): Promise<ModelDetailVO[]> {
     let result: modelDetailDTO[] = [];
     // data.json是存在本地的json数据，大小大约20M,模拟从网络端获取数据
-    await context.resourceManager.getRawFileContent("data.json").then((data: Uint8Array) => {
-      let jsonData = buffer.from(data).toString();
-      let res: responseData = JSON.parse(jsonData);
-      result = res.data;
-    })
+    let data: Uint8Array = await context.resourceManager.getRawFileContent("data.json");
+    let jsonData: string = buffer.from(data).toString();
+    let res: responseData = JSON.parse(jsonData);
+    result = res.data;
     return transArrayDTO2VO(result, index);
   }
 ```
