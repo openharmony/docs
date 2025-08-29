@@ -547,10 +547,10 @@ try {
 
 | 名称 | 值 | 说明 |
 |------------|------------|------------|
-| STATIC | 1 | 静态布局，支持图标和标题。使用此模板时，图标参数必传。 |
-| NORMAL | 2 | 普通文本布局，支持标题和内容。 |
-| EMPHATIC | 3 | 强调文本布局，支持图标、标题和内容。 |
-| SIMPLE | 4 | 纯文本布局，只支持标题，可双行展示。 |
+| STATIC | 1 | 静态布局，支持标题和图标。使用此模板时，FloatingBallParams中的title参数和icon参数必传。 |
+| NORMAL | 2 | 普通文本布局，支持标题和内容。使用此模板时，FloatingBallParams中的title参数必传。 |
+| EMPHATIC | 3 | 强调文本布局，支持图标、标题和内容。使用此模板时，FloatingBallParams中的title参数必传。 |
+| SIMPLE | 4 | 纯文本布局，只支持标题。使用此模板时，FloatingBallParams中的title参数必传。 |
 
 ## FloatingBallWindowInfo
 
