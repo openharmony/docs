@@ -31,7 +31,7 @@ generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: nu
 
 | 参数名     | 类型                                             | 必填 | 说明                                                                                                     |
 | -------- | ----------------------------------------------- | ---- |--------------------------------------------------------------------------------------------------------|
-| mimeType  | string     | 是   | 媒体类型，支持的媒体类型取决于DRM解决方案[isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported-1)。 |
+| mimeType  | string     | 是   | 媒体类型，DRM解决方案名称，建议先调用[isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported)判断解决方案名称是否支持。 |
 | initData  | Uint8Array     | 是   | 初始数据。                                                                                                  |
 | mediaKeyType| number     | 是   | 媒体密钥类型。0表示在线，1表示离线。                                                                                    |
 | options  | [OptionsData[]](arkts-apis-drm-i.md#optionsdata)     | 否   | 可选数据。                                                                                                  |
@@ -411,7 +411,7 @@ requireSecureDecoderModule(mimeType: string): boolean
 
 | 参数名     | 类型                                             | 必填 | 说明                                                                                                     |
 | -------- | ----------------------------------------------- | ---- |--------------------------------------------------------------------------------------------------------|
-| mimeType  | string     | 是   | 媒体类型，DRM解决方案名称。建议先调用[isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported)判断解决方案名称是否支持。 |
+| mimeType  | string     | 是   | 媒体类型，支持的媒体类型取决于DRM解决方案，可通过[isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported-1)查询。 |
 
 **返回值：**
 
