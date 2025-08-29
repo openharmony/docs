@@ -1,9 +1,9 @@
 # ArkUI_NativeNodeAPI_1
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @xiang-shouxing-->
-<!--Designer: @xiang-shouxing-->
-<!--Tester: @sally__-->
+<!--Owner: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Designer: @piggyguy; @xiang-shouxing; @yangfan229-->
+<!--Tester: @fredyuan912-->
 <!--Adviser: @HelloCrease-->
 
 ## 概述
@@ -638,7 +638,7 @@ int32_t (*setLayoutPosition)(ArkUI_NodeHandle node, int32_t positionX, int32_t p
 **描述：**
 
 
-在布局回调函数中设置组件的位置。
+在布局回调函数中设置组件的位置。该接口优先级低于NODE_POSITION。
 
 **参数：**
 

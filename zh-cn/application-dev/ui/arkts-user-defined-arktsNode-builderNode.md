@@ -336,7 +336,7 @@ function ButtonBuilder(params: Params) {
       .gesture(
         TapGesture()
           .onAction((event: GestureEvent) => {
-            console.log("TapGesture");
+            console.info("TapGesture");
           })
       )
   }
@@ -360,7 +360,7 @@ class MyNodeController extends NodeController {
       return;
     }
     let result = this.rootNode.postTouchEvent(touchEvent);
-    console.log("result " + result);
+    console.info("result " + result);
   }
 }
 
@@ -1026,10 +1026,10 @@ struct Index {
   aboutToAppear(): void {
     let environmentCallback: EnvironmentCallback = {
       onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
-        console.log('onMemoryLevel');
+        console.info('onMemoryLevel');
       },
       onConfigurationUpdated: (config: Configuration): void => {
-        console.log('onConfigurationUpdated ' + JSON.stringify(config));
+        console.info('onConfigurationUpdated ' + JSON.stringify(config));
         updateColorMode();
       }
     }
