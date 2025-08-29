@@ -41,7 +41,7 @@ If asynchronous ArkTS APIs are called, you can use **napi_run_event_loop** to ru
         // 2. Load the custom module.
         napi_value objectUtils;
         // 'com.example.myapplication' is the bundle name of the current application.
-        ret = napi_load_module_with_info(env, "ets/pages/ObjectUtils", "com.example.myapplication/entry", &objectUtils);
+        ret = napi_load_module_with_info(env, "entry/src/main/ets/pages/ObjectUtils", "com.example.myapplication/entry", &objectUtils);
         if (ret != napi_ok) {
             return nullptr;
         }
@@ -144,7 +144,7 @@ If asynchronous ArkTS APIs are called, you can use **napi_run_event_loop** to ru
     add_library(entry SHARED hello.cpp)
     target_link_libraries(entry PUBLIC libace_napi.z.so)
     ```
-2. Add the following to the **build-profile.json5** file of the project.
+2. Add the following to the **build-profile.json5** file of the module.
     ```json
     {
         "buildOption" : {
