@@ -81,7 +81,7 @@
        }
      });
    }).catch((err: BusinessError) => {
-     console.log(`Faild to createPanel, code: ${err.code}, message: ${err.message}`);
+     console.log(`Failed to createPanel, code: ${err.code}, message: ${err.message}`);
    });
    ```
 
