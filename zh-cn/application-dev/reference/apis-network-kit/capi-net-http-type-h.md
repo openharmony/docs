@@ -41,8 +41,8 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [Http_ErrCode](#http_errcode) | Http_ErrCode | 定义HTTP请求的错误码。 |
-| [Http_ResponseCode](#http_responsecode) | Http_ResponseCode | Defines http response code. |
-| [Http_AddressFamilyType](#http_addressfamilytype) | Http_AddressFamilyType | Defines the address Family. |
+| [Http_ResponseCode](#http_responsecode) | Http_ResponseCode | 定义HTTP响应码。 |
+| [Http_AddressFamilyType](#http_addressfamilytype) | Http_AddressFamilyType | 定义解析目标域名时限定的地址类型。 |
 | [Http_HttpProtocol](#http_httpprotocol) | Http_HttpProtocol | HTTP协议版本号枚举定义。 |
 | [Http_CertType](#http_certtype) | Http_CertType | 证书类型枚举。 |
 | [Http_ProxyType](#http_proxytype) | Http_ProxyType | 代理配置类型枚举定义。 |
@@ -67,7 +67,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [typedef void (\*Http_ResponseCallback)(struct Http_Response *response, uint32_t errCode)](#http_responsecallback) | Http_ResponseCallback | 接收到HTTP响应的回调函数 |
+| [typedef void (\*Http_ResponseCallback)(struct Http_Response *response, uint32_t errCode)](#http_responsecallback) | Http_ResponseCallback | 接收到HTTP响应的回调函数。 |
 | [typedef void (\*Http_OnDataReceiveCallback)(const char *data, size_t length)](#http_ondatareceivecallback) | Http_OnDataReceiveCallback | 接收到数据的回调。 |
 | [typedef void (\*Http_OnProgressCallback)(uint64_t totalSize, uint64_t transferredSize)](#http_onprogresscallback) | Http_OnProgressCallback | 请求/响应数据传输过程中调用的回调函数。 |
 | [typedef void (\*Http_OnHeaderReceiveCallback)(Http_Headers *headers)](#http_onheaderreceivecallback) | Http_OnHeaderReceiveCallback | 收到HTTP响应头的回调函数。 |
@@ -100,7 +100,7 @@ enum Http_ErrCode
 | OH_HTTP_CONNECT_SERVER_FAILED = (OH_HTTP_NETSTACK_E_BASE + 7) | 无法连接到服务器。 |
 | OH_HTTP_INVALID_SERVER_RESPONSE = (OH_HTTP_NETSTACK_E_BASE + 8) | 服务器返回非法数据。 |
 | OH_HTTP_ACCESS_REMOTE_DENIED = (OH_HTTP_NETSTACK_E_BASE + 9) | 拒绝访问远程资源。 |
-| OH_HTTP_HTTP2_FRAMING_ERROR = (OH_HTTP_NETSTACK_E_BASE + 16) | HTTP2 框架层出现错误。 |
+| OH_HTTP_HTTP2_FRAMING_ERROR = (OH_HTTP_NETSTACK_E_BASE + 16) | HTTP2框架层出现错误。 |
 | OH_HTTP_TRANSFER_PARTIAL_FILE = (OH_HTTP_NETSTACK_E_BASE + 18) | 传输了部分文件。 |
 | OH_HTTP_WRITE_DATA_FAILED = (OH_HTTP_NETSTACK_E_BASE + 23) | 无法将接收到的数据写入磁盘或应用程序。 |
 | OH_HTTP_UPLOAD_FAILED = (OH_HTTP_NETSTACK_E_BASE + 25) | 上传失败。 |
@@ -132,7 +132,7 @@ enum Http_ResponseCode
 
 **描述**
 
-Defines http response code.
+定义HTTP响应码。
 
 **起始版本：** 20
 
@@ -183,7 +183,7 @@ enum Http_AddressFamilyType
 
 **描述**
 
-Defines the address Family.
+定义解析目标域名时限定的地址类型。
 
 **起始版本：** 20
 
@@ -259,7 +259,7 @@ typedef void (*Http_ResponseCallback)(struct Http_Response *response, uint32_t e
 
 **描述**
 
-接收到HTTP响应的回调函数
+接收到HTTP响应的回调函数。
 
 **起始版本：** 20
 
@@ -268,7 +268,7 @@ typedef void (*Http_ResponseCallback)(struct Http_Response *response, uint32_t e
 
 | 参数项 | 描述 |
 | -- | -- |
-| [struct Http_Response](capi-netstack-http-response.md) *response | HTTP影响结构体，指向Http_Response的指针，参考[Http_Response](capi-netstack-http-response.md)。 |
+| [struct Http_Response](capi-netstack-http-response.md) *response | HTTP响应结构体，指向Http_Response的指针，参考[Http_Response](capi-netstack-http-response.md)。 |
 |  uint32_t errCode | 响应码。 |
 
 ### Http_OnDataReceiveCallback()
