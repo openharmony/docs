@@ -1,4 +1,5 @@
 # 应用冻屏事件介绍
+
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @rr_cn-->
