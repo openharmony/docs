@@ -442,8 +442,6 @@ draggable(value: boolean)
 
 设置组件默认拖拽效果。
 
-此属性不能与onDragStart事件同时使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full

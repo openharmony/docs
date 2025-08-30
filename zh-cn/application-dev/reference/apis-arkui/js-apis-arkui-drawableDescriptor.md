@@ -47,11 +47,9 @@ import { image } from '@kit.ImageKit'
 let resManager = this.getUIContext().getHostContext()?.resourceManager;
 // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
 let pixmap: DrawableDescriptor = (resManager?.getDrawableDescriptor($r('app.media.icon')
-    .id)) as DrawableDescriptor;
+    .id)) as DrawableDescriptor; // 当传入资源id或name为普通图片时，生成DrawableDescriptor对象。
 let pixmapNew: image.PixelMap | undefined = pixmap?.getPixelMap();
   ```
-
-当传入资源id或name为普通图片时，生成DrawableDescriptor对象。
 
 ## PixelMapDrawableDescriptor<sup>12+</sup>
 
