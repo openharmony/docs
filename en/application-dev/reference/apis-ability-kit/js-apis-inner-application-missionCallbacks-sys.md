@@ -1,6 +1,12 @@
 # MissionCallback (System API)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hobbycao-->
+<!--Designer: @gsxiaowen-->
+<!--Tester: @hanjiawei-->
+<!--Adviser: @huipeizi-->
 
-The MissionCallback module defines the callbacks invoked after synchronization starts. These callbacks can be used as input parameters in [registerMissionListener](js-apis-distributedMissionManager-sys.md#distributedmissionmanagerregistermissionlistener).
+The module defines the callbacks invoked after synchronization starts. These callbacks can be used as input parameters in [registerMissionListener](js-apis-distributedMissionManager-sys.md#distributedmissionmanagerregistermissionlistener).
 
 > **NOTE**
 >
@@ -15,6 +21,10 @@ import { distributedMissionManager } from '@kit.AbilityKit';
 
 ## MissionCallback.notifyMissionsChanged
 
+notifyMissionsChanged(deviceId: string): void
+
+Called to notify that the list of missions has changed.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 **System API**: This is a system API.
@@ -26,6 +36,7 @@ import { distributedMissionManager } from '@kit.AbilityKit';
 | deviceId |  string | Yes| Device ID in the callback that notifies a mission change.|
 
 **Example**
+
 ```ts
 import { distributedMissionManager } from '@kit.AbilityKit';
 
@@ -50,6 +61,10 @@ distributedMissionManager.registerMissionListener(
 ```
 
 ## MissionCallback.notifySnapshot
+
+notifySnapshot(deviceId: string, mission: number): void
+
+Called to notify that the snapshot has changed.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -87,6 +102,10 @@ distributedMissionManager.registerMissionListener(
 ```
 
 ## MissionCallback.notifyNetDisconnect
+
+notifyNetDisconnect(deviceId: string, state: number): void
+
+Called to notify that the network connection is interrupted.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 

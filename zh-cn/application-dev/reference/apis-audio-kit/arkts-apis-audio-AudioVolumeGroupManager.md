@@ -502,8 +502,12 @@ getRingerMode(): Promise&lt;AudioRingMode&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 audioVolumeGroupManager.getRingerMode().then((value: audio.AudioRingMode) => {
   console.info(`Promise returned to indicate that the ringer mode is obtained ${value}.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getRingerMode. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -651,8 +655,12 @@ isMicrophoneMute(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 audioVolumeGroupManager.isMicrophoneMute().then((value: boolean) => {
   console.info(`Promise returned to indicate that the mute status of the microphone is obtained ${value}.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to isMicrophoneMute. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 

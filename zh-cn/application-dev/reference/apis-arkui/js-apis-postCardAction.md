@@ -1,4 +1,10 @@
 # postCardAction
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 
 用于卡片内部和提供方应用间的交互，当前支持router、message和call三种类型的事件，仅在卡片中可以调用。
 
@@ -14,9 +20,11 @@ postCardAction(component: Object, action: Object): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**模型约束：**此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -104,10 +112,10 @@ Button('URI跳转')
             "scheme": "example",
             "host": "uri.ohos.com",
             "path": "link_page"
-          },
+          }
         ]
       }
-    ],
+    ]
   }
 ]
 ```

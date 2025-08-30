@@ -31,11 +31,9 @@ wukong部件架构图以及部件内子模块职责如下所述。
 
 1. wukong测试工具在API 9版本开始预置使用。
 
-2. PC被检测设备连接后，才可执行命令行，支持单个和多个设备。
-
-3. 所有命令行执行前需要先进入shell模式。
+2. 所有命令执行前需完成<!--RP1-->[hdc环境配置](../dfx/hdc.md)<!--RP1End-->，并进入shell模式。
 <!--Del-->
-4. 在低于API 9版本，不能随版本编译，使用时需自行编译后推送至被检测设备，具体步骤如下。
+3. 在低于API 9版本，不能随版本编译，使用时需自行编译后推送至被检测设备，具体步骤如下。
 
    ```bash
    # 构建方式
@@ -64,10 +62,10 @@ wukong部件架构图以及部件内子模块职责如下所述。
 - 进入shell模式
 
   ```bash
-  #若为单设备，则直接输入如下命令进入shell模式
+  #若连接单个设备，则直接输入如下命令进入shell模式
   C:\Users>hdc shell
   $
-  #若为多设备，则需先获取sn号，先输入hdc list targets获取sn号，然后进入shell模式
+  #若同时连接多个设备，则需先获取sn号，先输入hdc list targets获取sn号，然后进入shell模式
   C:\Users>hdc list targets
   15xxx424axxxx345209d94xxxx8fxx900
   C:\Users>hdc -t 15xxx424axxxx345209d94xxxx8fxx900 shell

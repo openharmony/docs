@@ -300,7 +300,7 @@ int32_t OH_WindowManager_SetWindowBrightness(int32_t windowId, float brightness)
 | 参数项 | 描述 |
 | -- | -- |
 | int32_t windowId | 创建窗口时的窗口id。默认值为0。该参数为整数。 |
-| float brightness | 指定的屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]或-1.0。1.0表示最亮，-1.0表示默认亮度。 |
+| float brightness | 指定的屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]或-1.0。1.0表示最亮，-1.0表示恢复成设置窗口亮度前的系统控制中心亮度。 |
 
 **返回：**
 
@@ -344,7 +344,7 @@ int32_t OH_WindowManager_SetWindowPrivacyMode(int32_t windowId, bool isPrivacy)
 
 设置指定窗口是否开启隐私模式。
 
-**需要权限：** {@code ohos.permission.PRIVACY_WINDOW}。
+**需要权限：** ohos.permission.PRIVACY_WINDOW
 
 **起始版本：** 15
 
@@ -360,7 +360,7 @@ int32_t OH_WindowManager_SetWindowPrivacyMode(int32_t windowId, bool isPrivacy)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_INVALID_PERMISSION，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL，表示窗口状态异常。<br> 返回WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL，表示窗口管理器服务异常。<br> 返回WINDOW_MANAGER_ERRORCODE_NO_PERMISSION，权限校验错误。 |
+| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功。<br> 返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL，表示窗口状态异常。<br> 返回WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL，表示窗口管理器服务异常。<br> 返回WINDOW_MANAGER_ERRORCODE_NO_PERMISSION，权限校验错误。 |
 
 ### OH_WindowManager_GetWindowProperties()
 
@@ -386,7 +386,7 @@ int32_t OH_WindowManager_GetWindowProperties(int32_t windowId, WindowManager_Win
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功，在windowProperties中返回窗口属性的指针。<br> 返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL，表示窗口状态异常。<br> 返回WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL，表示窗口管理器服务异常。 |
+| int32_t | 返回结果代码。<br> 返回OK，表示函数调用成功，在windowProperties中返回窗口属性的指针。<br> 返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数错误。<br> 返回WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL，表示窗口状态异常。 |
 
 ### OH_WindowManager_Snapshot()
 
@@ -405,7 +405,7 @@ int32_t OH_WindowManager_Snapshot(int32_t windowId, OH_PixelmapNative* pixelMap)
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t windowId | 创建窗口时的窗口id。默认值为0。该参数为整数。<br>窗口id非法或者窗口已经销毁，不能获取指定窗口截图，需要传入有效的窗口id才能成功获取指定窗口截图。<br>请通过窗口对象调用getWindowProperties接口（ArkTS接口）获取有效的窗口id。 |
+| int32_t windowId | 创建窗口时的窗口id。默认值为0。该参数为整数。<br>窗口id非法或者窗口已经销毁，不能获取指定窗口截图，需要传入有效的窗口id才能成功获取指定窗口截图。<br>请通过窗口对象调用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)接口（ArkTS接口）获取有效的窗口id。 |
 | [OH_PixelmapNative](capi-struct.md)* pixelMap | 返回指向指定窗口的截图的指针，作为出参使用。 |
 
 **返回：**
@@ -431,7 +431,7 @@ int32_t OH_WindowManager_GetAllWindowLayoutInfoList(int64_t displayId,WindowMana
 
 | 参数项 | 描述 |
 | -- | -- |
-| int64_t displayId | 指定屏幕的id。请通过窗口对象调用getWindowProperties接口（ArkTS接口）获取有效的屏幕id。 |
+| int64_t displayId | 指定屏幕的id。请通过窗口对象调用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)接口（ArkTS接口）获取有效的屏幕id。 |
 | [WindowManager_Rect](capi-windowmanager-rect.md)** windowLayoutInfoList | 指定屏幕上可见的窗口布局信息数组的数组指针，作为出参使用。 |
 | size_t* windowLayoutInfoSize | 指定屏幕上可见的窗口布局信息数组长度的指针，作为出参使用。 |
 

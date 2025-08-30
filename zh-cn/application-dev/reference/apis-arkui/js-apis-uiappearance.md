@@ -41,7 +41,7 @@ getDarkMode(): DarkMode
 <!--Del-->
 > **说明：**
 >
-> 在API version 19及之前版本中，该接口为系统接口。开发者使用该接口时需要申请ohos.permission.UPDATE_CONFIGURATION权限。
+> 该接口在API version 19及之前版本中为系统接口。开发者使用该接口时需要申请ohos.permission.UPDATE_CONFIGURATION权限。
 <!--DelEnd-->
 
 **系统能力**：SystemCapability.ArkUI.UiAppearance
@@ -65,12 +65,13 @@ getDarkMode(): DarkMode
 ```ts
 import { uiAppearance } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
-    let darkMode = uiAppearance.getDarkMode();
-    console.info('Get dark-mode ' + darkMode);
+  let darkMode = uiAppearance.getDarkMode();
+  console.info('Get dark-mode ' + darkMode);
 } catch (error) {
-    let message = (error as BusinessError).message;
-    console.error('Get dark-mode failed, ' + message);
+  let message = (error as BusinessError).message;
+  console.error('Get dark-mode failed, ' + message);
 }
 ```
 
@@ -84,7 +85,7 @@ getFontScale(): number
 <!--Del-->
 > **说明：**
 >
-> 在API version 19及之前版本中，该接口为系统接口。开发者使用该接口时需要申请ohos.permission.UPDATE_CONFIGURATION权限。
+> 该接口在API version 19及之前版本中为系统接口。开发者使用该接口时需要申请ohos.permission.UPDATE_CONFIGURATION权限。
 <!--DelEnd-->
 
 **系统能力**：SystemCapability.ArkUI.UiAppearance
@@ -108,12 +109,13 @@ getFontScale(): number
 ```ts
 import { uiAppearance } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
-    let fontScale = uiAppearance.getFontScale();
-    console.info('Get fontScale ' + fontScale);
+  let fontScale = uiAppearance.getFontScale();
+  console.info('Get fontScale ' + fontScale);
 } catch (error) {
-    let message = (error as BusinessError).message;
-    console.error('Get fontScale failed, ' + message);
+  let message = (error as BusinessError).message;
+  console.error('Get fontScale failed, ' + message);
 }
 ```
 
@@ -127,7 +129,7 @@ getFontWeightScale(): number
 <!--Del-->
 > **说明：**
 >
-> 在API version 19及之前版本中，该接口为系统接口。开发者使用该接口时需要申请ohos.permission.UPDATE_CONFIGURATION权限。
+> 该接口在API version 19及之前版本中为系统接口。开发者使用该接口时需要申请ohos.permission.UPDATE_CONFIGURATION权限。
 <!--DelEnd-->
 
 **系统能力**：SystemCapability.ArkUI.UiAppearance
@@ -151,11 +153,12 @@ getFontWeightScale(): number
 ```ts
 import { uiAppearance } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
-    let fontWeightScale = uiAppearance.getFontWeightScale();
-    console.info('Get fontScale ' + fontWeightScale);
+  let fontWeightScale = uiAppearance.getFontWeightScale();
+  console.info('Get fontScale ' + fontWeightScale);
 } catch (error) {
-    let message = (error as BusinessError).message;
-    console.error('Get fontWeightScale failed, ' + message);
+  let message = (error as BusinessError).message;
+  console.error('Get fontWeightScale failed, ' + message);
 }
 ```

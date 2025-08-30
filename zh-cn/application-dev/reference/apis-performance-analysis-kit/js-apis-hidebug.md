@@ -466,6 +466,28 @@ console.info(`totalHeap = ${vmMemory.totalHeap}, heapUsed = ${vmMemory.heapUsed}
   `allArraySize = ${vmMemory.allArraySize}` );
 ```
 
+## hidebug.getAppVMObjectUsed<sup>21+</sup>
+
+getAppVMObjectUsed(): bigint
+
+获取当前虚拟机中ArkTS对象所占用的内存大小。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值**：
+
+| 类型     | 说明                           |
+|--------|------------------------------|
+| bigint | 当前虚拟机中ArkTS对象所占用的内存大小，单位为KB。 |
+
+**示例：**
+
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+console.info(`getAppVMObjectUsed = ${hidebug.getAppVMObjectUsed()}`);
+```
+
 ## hidebug.getAppThreadCpuUsage<sup>12+</sup>
 
 getAppThreadCpuUsage(): ThreadCpuUsage[]
@@ -616,7 +638,7 @@ getAppMemoryLimit(): MemoryLimit
 | ------ | -------------------------- |
 | [MemoryLimit](#memorylimit12) | 应用程序进程内存限制。 |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -652,7 +674,7 @@ getSystemCpuUsage(): number
 | ------- |-------------------------------------------------|
 | 11400104 | The status of the system CPU usage is abnormal. |
 
-**示例**
+**示例：**
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -731,7 +753,7 @@ getAppNativeMemInfo(): NativeMemInfo
 | ------ | -------------------------- |
 | [NativeMemInfo](#nativememinfo12) | 应用进程内存信息。 |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -756,7 +778,7 @@ getAppNativeMemInfoAsync(): Promise&lt;NativeMemInfo&gt;
 |--------------------------------------------------| --------------------- |
 | Promise&lt;[NativeMemInfo](#nativememinfo12)&gt; | promise对象，返回应用进程内存信息。 |
 
-**示例**
+**示例：**
 
 ```ts
 hidebug.getAppNativeMemInfoAsync().then((nativeMemInfo: hidebug.NativeMemInfo)=>{
@@ -790,7 +812,7 @@ getAppNativeMemInfoWithCache(forceRefresh?: boolean): NativeMemInfo
 | ------ | -------------------------- |
 | [NativeMemInfo](#nativememinfo12) | 应用进程内存信息。 |
 
-**示例**
+**示例：**
 
 ```ts
 let nativeMemInfo: hidebug.NativeMemInfo = hidebug.getAppNativeMemInfoWithCache();
@@ -813,7 +835,7 @@ getSystemMemInfo(): SystemMemInfo
 | ------ | -------------------------- |
 | [SystemMemInfo](#systemmeminfo12) | 系统内存信息。 |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -838,7 +860,7 @@ getVMRuntimeStats(): GcStats
 |-----------------------|----------|
 | [GcStats](#gcstats12) | 系统GC统计信息。 |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -885,7 +907,7 @@ getVMRuntimeStat(item: string): number
 | ------- |------------------------------------------------------------------------------------------------------------|
 | 401 | Possible causes:1. Invalid parameter, a string parameter required. 2. Invalid parameter, unknown property. |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1073,7 +1095,7 @@ isDebugState(): boolean
 | ------ |------------------------------------------------------|
 | boolean | 应用进程的Ark层或Native层是否处于调试状态。true：处于调试状态。false：未处于调试状态。 |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1103,7 +1125,7 @@ getGraphicsMemory(): Promise&lt;number&gt;
 | ------- | ----------------------------------------------------------------- |
 | 11400104 | Failed to get the application memory due to a remote exception. |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
@@ -1142,7 +1164,7 @@ getGraphicsMemorySync(): number
 | ------- | ----------------------------------------------------------------- |
 | 11400104 | Failed to get the application memory due to a remote exception. |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1197,7 +1219,7 @@ dumpJsRawHeapData(needGC?: boolean): Promise&lt;string&gt;
 | 11400112 | Repeated data dump. |
 | 11400113 | Failed to create dump file. |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1213,16 +1235,16 @@ hidebug.dumpJsRawHeapData().then((filePath: string) => {
 
 enableGwpAsanGrayscale(options?: GwpAsanOptions, duration?: number): void
 
-使能GWP-Asan，用于检测堆内存使用中的非法行为。
+使能GWP-ASan，用于检测堆内存使用中的非法行为。
 
-该接口主要用于动态配置并启用GWP-Asan，以适配应用自定义的GWP-Asan检测策略。配置在应用重新启动后生效。
+该接口主要用于动态配置并启用GWP-ASan，以适配应用自定义的GWP-ASan检测策略。配置在应用重新启动后生效。
 
-更多关于GWP-Asan的说明，请参见[使用GWP-Asan检测内存错误](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-gwpasan-detection)。
+更多关于GWP-ASan的说明，请参见[使用GWP-ASan检测内存错误](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-gwpasan-detection)。
 
 > **说明**：
 > 
-> 1. 若设备运行期间已使能超过20个应用，调用该接口将会失败，并抛出错误码。
-> 2. 为避免应用异常退出，请务必使用try-catch捕获异常。
+> 1. 若设备运行期间通过本接口设置的GWP-ASan应用数量超过配额限制，调用该接口将会失败并抛出错误码。请使用try-catch捕获异常，以避免应用异常退出。
+> 2. 设备重启后，本接口设置的GWP-ASan参数将会失效。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -1230,8 +1252,8 @@ enableGwpAsanGrayscale(options?: GwpAsanOptions, duration?: number): void
 
 | 参数名   | 类型   | 必填 | 说明   |
 |---------|---------|--------|-----|
-|options | [GwpAsanOptions](#gwpasanoptions20) | 否 | GWP-Asan配置项。如果未进行设置，则会使用默认参数。|
-|duration | number | 否 | GWP-Asan持续时间，默认7天，需要传入大于0的正整数，单位：天。|
+| options | [GwpAsanOptions](#gwpasanoptions20) | 否 | GWP-ASan配置项。未设置时，使用默认参数。|
+| duration | number | 否 | GWP-ASan持续时间，单位为天，默认值为7。需传入大于0的正整数。 |
 
 **错误码**：
 
@@ -1241,7 +1263,7 @@ enableGwpAsanGrayscale(options?: GwpAsanOptions, duration?: number): void
 |----------| ----------------------------------------------------------------- |
 | 11400114 | The number of GWP-ASAN applications of this device overflowed after last boot. |
 
-**示例**：
+**示例：**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1256,31 +1278,31 @@ let duration: number = 4;
 
 try {
   hidebug.enableGwpAsanGrayscale(options, duration);
-  console.info(`Succeeded in enabling GWP-Asan.`);
+  console.info(`Succeeded in enabling GWP-ASan.`);
 } catch (error) {
   const err: BusinessError = error as BusinessError;
-  console.error(`Failed to enable GWP-Asan. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to enable GWP-ASan. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 ## GwpAsanOptions<sup>20+</sup>
-GWP-Asan配置项。可用于配置是否使能、采样频率，以及最大分配的插槽数。
+GWP-ASan配置项。可用于配置是否使能、采样频率，以及最大分配的插槽数。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 | 名称         | 类型  | 只读  | 可选 | 说明 |
 |--------------|------|-------|-------|-----|
-|alwaysEnabled | boolean | 否  | 是 | true：100%使能GWP-Asan。<br/>false：1/128概率使能GWP-Asan。<br/> 默认值：false。|
-|sampleRate    |number| 否  |是|GWP-Asan采样频率，默认值为2500，需要传入大于0的正整数，若传入小数则向上取整。<br/> 1/sampleRate的概率对分配的内存进行采样。|
-|maxSimutaneousAllocations|number|否|是|最大分配的插槽数，默认值为1000，需要传入大于0的正整数，若传入小数则向上取整。<br/>当插槽用尽时，新分配的内存将不再受监控。<br/>释放已使用的内存后，其占用的插槽将自动复用，以便于后续内存的监控。|
+|alwaysEnabled | boolean | 否  | 是 | true：100%使能GWP-ASan。<br/>false：1/128概率使能GWP-ASan。<br/> 默认值：false。|
+|sampleRate    |number| 否  |是|GWP-ASan采样频率，默认值为2500，需要传入大于0的正整数，若传入小数则向上取整。<br/> 1/sampleRate的概率对分配的内存进行采样。<br/> 建议值：>=1000，过小会显著影响性能。|
+|maxSimutaneousAllocations|number|否|是|最大分配的插槽数，默认值为1000，需要传入大于0的正整数，若传入小数则向上取整。<br/>当插槽用尽时，新分配的内存将不再受监控。<br/>释放已使用的内存后，其占用的插槽将自动复用，以便于后续内存的监控。<br/> 建议值：<=20000，过大会可能导致VMA超限崩溃。|
 
 ## hidebug.disableGwpAsanGrayscale<sup>20+</sup>
 disableGwpAsanGrayscale(): void
 
-停止使能GWP-Asan。调用该接口将取消自定义配置，恢复默认参数[GwpAsanOptions](#gwpasanoptions20)。
+停止使能GWP-ASan。调用该接口将取消自定义配置，恢复默认参数[GwpAsanOptions](#gwpasanoptions20)。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**示例**：
+**示例：**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1291,7 +1313,7 @@ hidebug.disableGwpAsanGrayscale();
 ## hidebug.getGwpAsanGrayscaleState<sup>20+</sup>
 getGwpAsanGrayscaleState(): number
 
-获取当前GWP-Asan剩余使能天数。
+获取当前GWP-ASan剩余使能天数。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -1299,9 +1321,9 @@ getGwpAsanGrayscaleState(): number
 
 | 类型 | 说明 |
 |-----------|-------------|
-| number    |获取当前GWP-Asan剩余使能天数。若当前未使能，返回值0。|
+| number    |获取当前GWP-ASan剩余使能天数。若当前未使能，返回值0。|
 
-**示例**：
+**示例：**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1324,15 +1346,17 @@ setJsRawHeapTrimLevel(level: JsRawHeapTrimLevel): void
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
+**参数：**
+
 | 参数名 | 类型                                        | 必填 | 说明                   |
 | ------ | ------------------------------------------- | ---- | ---------------------- |
 | level  | [JsRawHeapTrimLevel](#jsrawheaptrimlevel20) | 是   | 转储堆快照的裁剪级别，默认为TRIM_LEVEL_1。 |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-hidebug.setJsRawHeapTrimLevel(TRIM_LEVEL_2);
+hidebug.setJsRawHeapTrimLevel(hidebug.JsRawHeapTrimLevel.TRIM_LEVEL_2);
 ```

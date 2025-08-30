@@ -37,6 +37,7 @@ export default {
     var offscreen = new OffscreenCanvas(360, 500);
     var offCanvas2 = offscreen.getContext("2d");
     var img = new Image();
+    // 'common/images/flower.jpg'需要替换为开发者所需的图像资源文件
     img.src = 'common/images/flower.jpg';
     offCanvas2.drawImage(img, 0, 0, 100, 100);
     offCanvas2.filter = 'blur(5px)';

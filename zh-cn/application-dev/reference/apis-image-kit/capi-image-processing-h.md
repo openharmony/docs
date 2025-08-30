@@ -1,8 +1,17 @@
 # image_processing.h
 
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xjtu_liushang-->
+<!--Designer: @yangwang01-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 声明图片处理函数。提供图片处理能力，包括色彩空间转换，元数据生成及图片缩放。
+
+**引用文件：** <multimedia/video_processing_engine/image_processing.h>
 
 **库：** libimage_processing.so
 

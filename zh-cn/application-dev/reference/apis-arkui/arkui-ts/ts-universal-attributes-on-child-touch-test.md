@@ -12,7 +12,7 @@
 >
 >  - 从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  - onClick以及旋转、捏合手势经过自定义事件分发之后可能会因为未命中触摸热区导致事件不响应。
+>  - onClick和旋转、捏合手势经过自定义事件分发后，可能会因为未命中触摸热区导致事件不响应。
 
 ## onChildTouchTest
 
@@ -74,7 +74,7 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 ## TouchTestStrategy枚举说明
 
-事件的派发策略。
+事件派发策略。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 

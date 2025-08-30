@@ -8,6 +8,10 @@ A typical scenario is when a UIAbility (for example, UIAbility A) needs to launc
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+## Constraints
+
+Launching an ability is subject to IPC limitations. The maximum data supported in the **Want** field is 100 KB.
+
 ## Modules to Import
 
 ```ts

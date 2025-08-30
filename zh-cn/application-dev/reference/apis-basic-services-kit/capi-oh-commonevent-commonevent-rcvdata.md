@@ -1,5 +1,12 @@
 # CommonEvent_RcvData
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
+
 ## 概述
 
 提供CommonEvent_RcvData公共事件回调数据结构体声明。
