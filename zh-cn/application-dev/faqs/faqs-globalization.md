@@ -131,11 +131,12 @@ import resourceManager from '@ohos.resourceManager';
 
 export default {
     onCreate() {
-        console.info('getResourceManager onCreate');
-        resourceManager.getResourceManager((error,res)=> {
-
+        resourceManager.getResourceManager((error, res) => {
+            if (error != null) {
+                console.log("error is " + error);
+                return
+            }
             res.getRawFileContent("test.xml", (error, value) => {
-                console.info('getRawFileContent callback');
                 if (error != null) {
                     console.log("error is " + error);
                     return
@@ -144,9 +145,6 @@ export default {
                 console.info(`getRawFileContent success : ${rawFileString}`);
             })
         })
-    },
-    onDestroy() {
-        console.info('TestApplication onDestroy');
     }
 };
 ```
