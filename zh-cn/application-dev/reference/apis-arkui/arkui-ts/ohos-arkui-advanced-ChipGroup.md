@@ -309,7 +309,7 @@ struct Index {
         chipGroupSpace: { itemSpace: 8, endSpace: 0 },
         chipGroupPadding: { top: 10, bottom: 10 },
         onChange: (activatedChipsIndex:Array<number>) => {
-          console.log('chips on clicked, activated index ' + activatedChipsIndex)
+          console.info('chips on clicked, activated index ' + activatedChipsIndex)
         },
       })
     }
@@ -401,7 +401,7 @@ struct Index {
         chipGroupSpace: { itemSpace: 8, endSpace: 0 },
         chipGroupPadding: { top: 10, bottom: 10 },
         onChange: (activatedChipsIndex: Array<number>) => {
-          console.log('chips on clicked, activated index ' + activatedChipsIndex)
+          console.info('chips on clicked, activated index ' + activatedChipsIndex)
         },
         suffix: this.ChipGroupSuffix
       })
@@ -494,7 +494,7 @@ struct Index {
         chipGroupSpace: { itemSpace: 8, endSpace: 0 },
         chipGroupPadding: { top: 10, bottom: 10 },
         onChange: (activatedChipsIndex: Array<number>) => {
-          console.log('chips on clicked, activated index ' + activatedChipsIndex)
+          console.info('chips on clicked, activated index ' + activatedChipsIndex)
         },
         suffix: this.ChipGroupSuffix
       })
@@ -669,7 +669,7 @@ export struct ChipGroupExample2 {
                   { label: { text: "选项8" } },
                   { label: { text: "选项9" } },
                 ],
-                suffix: this.Suffix.bind(this),
+                suffix: this.Suffix,
               })
             }
           }
@@ -820,7 +820,7 @@ export struct ChipGroupExample2 {
                   { label: { text: "选项8" } },
                   { label: { text: "选项9" } },
                 ],
-                suffix: this.Suffix.bind(this),
+                suffix: this.Suffix,
                 multiple: true,
               })
             }
