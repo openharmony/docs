@@ -2988,7 +2988,7 @@ on(event: 'pause', callback: (progress: [Progress](#progress10)) =&gt; void): vo
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
-    method: "PUT",
+    method: "POST",
     data: attachments,
     saveas: "./",
     network: request.agent.Network.CELLULAR,
