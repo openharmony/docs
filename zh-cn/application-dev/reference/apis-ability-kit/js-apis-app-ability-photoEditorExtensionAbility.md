@@ -9,7 +9,7 @@
 
 PhotoEditorExtensionAbility继承自[ExtensionAbility](js-apis-app-ability-extensionAbility.md)，开发者可通过PhotoEditorExtensionAbility实现图片编辑扩展页面。应用通过[startAbilityByType](js-apis-inner-application-uiAbilityContext.md#startability)拉起图片编辑类应用扩展面板后，由用户在面板上选择实现了PhotoEditorExtensionAbility的图片编辑扩展页面并拉起该页面。
 
-![Targetapp_PhotoEditorExtensionAbility](figures/photoeditor_demo.jpg)
+![Targetapp_PhotoEditorExtensionAbility](figures/photo_editor_demo.jpg)
 
 > **说明：**
 > 
