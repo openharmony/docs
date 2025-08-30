@@ -92,9 +92,9 @@
 1. 导入相关模块：
 
 ```ts
-import common from '@ohos.app.ability.common';
-import fs from '@ohos.file.fs';
-import zlib from '@ohos.zlib';
+import { common } from '@kit.AbilityKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { zlib } from '@kit.BasicServicesKit';
 ```
 2. 创建压缩上传相关类：
 
@@ -114,13 +114,13 @@ class ZipUpload {
 async zipUploadFiles(fileUris: Array<string>): Promise<void> {
   this.context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let cacheDir = this.context?.cacheDir;
-  let tempDir = fs.mkdtempSync(`${cacheDir}/XXXXXX`);
+  let tempDir = fileIo.mkdtempSync(`${cacheDir}/XXXXXX`);
   // 将图库图片获取的uri放入fileUris中，遍历复制到临时文件夹
   for (let i = 0; i < fileUris.length; i++) {
     let fileName = fileUris[i].split('/').pop();
-    let resourceFile: fs.File = fs.openSync(fileUris[i], fs.OpenMode.READ_ONLY);
-    fs.copyFileSync(resourceFile.fd, `${tempDir}/${fileName}`, 0);
-    fs.closeSync(resourceFile);
+    let resourceFile: fileIo.File = fileIo.openSync(fileUris[i], fileIo.OpenMode.READ_ONLY);
+    fileIo.copyFileSync(resourceFile.fd, `${tempDir}/${fileName}`, 0);
+    fileIo.closeSync(resourceFile);
   }
   // 文件压缩，将之前生成的临时文件夹内打包到test.zip内
   let options: zlib.Options = {
@@ -130,7 +130,7 @@ async zipUploadFiles(fileUris: Array<string>): Promise<void> {
   };
   let data = await zlib.compressFile(tempDir, `${cacheDir}/test.zip`, options);
   // 删除临时文件夹
-  fs.rmdirSync(tempDir);
+  fileIo.rmdirSync(tempDir);
   // 将生成的zip包放到传输队列
   this.waitList.push(`${cacheDir}/test.zip`);
 }
@@ -156,7 +156,7 @@ async zipUploadFiles(fileUris: Array<string>): Promise<void> {
 
 本文基于[上传和下载](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/UploadAndDownLoad)中的后台上传场景，给出了部分断点续传的示例代码，具体可以参考该工程。
 
-#### 文件上传
+**文件上传**
 
 对于大文件断点续传上传，本文采用[@ohos.request（上传下载）](../reference/apis-basic-services-kit/js-apis-request.md)模块中的**request.agent**任务托管接口，可以自动实现暂停继续重试等操作，无需手动将文件分片和记录上传分片信息。流程图如图四所示：
 
@@ -170,8 +170,8 @@ async zipUploadFiles(fileUris: Array<string>): Promise<void> {
 
 1. 导入相关模块：
 ```ts
-import common from '@ohos.app.ability.common';
-import request from '@ohos.request';
+import { common } from '@kit.AbilityKit';
+import { request } from '@kit.BasicServicesKit';
 ```
 
 2. 创建相关上传类：
@@ -268,7 +268,7 @@ async resume() {
   await this.backgroundTask.resume();
 }
 ```
-#### 文件下载
+**文件下载**
 
 对于大文件断点续传下载，也可以直接调用**request.agent**接口，该接口的断点续传是基于HTTP协议Header里的Range字段实现的，在任务暂停重启的时候，会自动设置Header中的Range字段，无需进行额外的配置。
 
@@ -308,8 +308,8 @@ async resume() {
 
 1. 导入模块：
 ```ts
-import common from '@ohos.app.ability.common';
-import request from '@ohos.request';
+import { common } from '@kit.AbilityKit';
+import { request } from '@kit.BasicServicesKit';
 ```
 2. 创建下载类：
 ```ts
