@@ -24,7 +24,7 @@ The application event logging function is disabled.
 Invoke the **configure** API to enable the application event logging function.
 
    ```ts
-   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
+   import { hiAppEvent } from '@kit.PerformanceAnalysisKit';
 
    hiAppEvent.configure({
        disable: false

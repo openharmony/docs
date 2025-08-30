@@ -9,6 +9,7 @@ Defines a struct for the memory limit of an application process.
 
 **Related module**: [HiDebug](_hi_debug.md)
 
+**Header file**: [hidebug_type.h](hidebug__type_8h.md)
 
 ## Summary
 

@@ -1,6 +1,6 @@
-# HiTrace
+# hitrace
 
-HiTrace provides APIs to implement call chain tracing throughout a service process. This can help you quickly obtain the run log for the call chain of a service process and locate faults across devices, processes, and threads.
+hitrace provides APIs to implement call chain tracing throughout a service process. This can help you quickly obtain the run log for the call chain of a service process and locate faults across devices, processes, and threads.
 
 ## Environment Requirements
 
@@ -30,11 +30,11 @@ HiTrace provides APIs to implement call chain tracing throughout a service proce
 
 > **Description**
 >
-> The snapshot mode is a trace collection with a fixed trace tag. By default, the trace data is not stored. You can run the **--dump_bgsrv** command to trigger trace dump in binary format at the current time. The trace file is generated in **/data/log/hitrace** by default. The file name format is **trace-YYMMDDHHmmSS@[BOOT_TIME].sys**. You can visually analyze the trace file using [HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host). You can download the tool from [developertools_smartperf_host Release](https://gitee.com/openharmony/developtools_smartperf_host/releases).
+> The snapshot mode is a trace collection with a fixed trace tag. By default, the trace data is not stored. You can run the **--dump_bgsrv** command to trigger trace dump in binary format at the current time. The trace file is generated in **/data/log/hitrace** by default. The file name format is **trace-YYMMDDHHmmSS@[BOOT_TIME].sys**. You can visually analyze the trace file using [HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host). You can download the tool from [developtools_smartperf_host Release](https://gitee.com/openharmony/developtools_smartperf_host/releases).
 
 ## Examples
 
-### Displaying the Tag List in HiTrace
+### Displaying the Tag List in hitrace
 
 ```shell
 hitrace -l
@@ -238,7 +238,7 @@ $ hitrace --start_bgsrv
 
 ### Dumping Trace Data in the Snapshot Mode
 
-By default, the trace data is stored in the binary format in **/data/log/hitrace/**. The file is named in the format of **trace-YYMMDDHHmmSS@[BOOT_TIME].sys**. You can visually analyze the trace file using [HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host). You can download the tool from [developertools_smartperf_host Release](https://gitee.com/openharmony/developtools_smartperf_host/releases).
+By default, the trace data is stored in the binary format in **/data/log/hitrace/**. The file is named in the format of **trace-YYMMDDHHmmSS@[BOOT_TIME].sys**. You can visually analyze the trace file using [HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host). You can download the tool from [developtools_smartperf_host Release](https://gitee.com/openharmony/developtools_smartperf_host/releases).
 
 ```shell
 hitrace --dump_bgsrv
@@ -308,16 +308,13 @@ $ hitrace --trace_finish_nodump
 2024/11/14 12:03:07 end capture trace.
 ```
 
-### Obtaining and Setting the Trace Output Level Threshold
+### Setting the Trace Output Level Threshold
 
 The priority of the trace level is as follows: **M** (**Commercial**), **C** (**Critical**), **I** (**Info**) and **D** (**Debug**). The trace level lower than the threshold does not take effect.
 
 You can use the logging APIs with the trace level (for details, see the logging APIs of API version 19 in [js-apis-hitracemeter](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md) and [_hitrace](../reference/apis-performance-analysis-kit/_hitrace.md)) to test whether the trace output under different thresholds meets the expectation.
 
 ```shell
-// Check the trace output level threshold. The value 0 indicates Debug, 1 indicates Info, 2 indicates Critical, and 3 indicates Commercial.
-param get persist.hitrace.level.threshold
-
 // Set the trace output level threshold.
 hitrace --trace_level D/I/C/M
 hitrace --trace_level Debug/Info/Critical/Commercial
@@ -328,6 +325,4 @@ hitrace --trace_level Debug/Info/Critical/Commercial
 $ hitrace --trace_level Info
 2024/11/14 12:05:07 hitrace enter, running_state is SET_TRACE_LEVEL
 2024/11/14 12:05:07 success to set trace level.
-$ param get persist.hitrace.level.threshold
-1
 ```
