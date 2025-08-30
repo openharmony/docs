@@ -69,7 +69,7 @@ Grid布局选项。其中，irregularIndexes和onGetIrregularSizeByIndex可对�
 | 名称    | 类型      | 只读   | 可选 | 说明                    |
 | ----- | ------- | ---- | --  | --------------------- |
 | regularSize  | [number, number]  | 否    | 否 | 大小规则的GridItem在Grid中占的行数和列数，只支持占1行1列即[1, 1]。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| irregularIndexes | number[] | 否    | 是 | 指定的GridItem索引在Grid中的大小是不规则的。当不设置onGetIrregularSizeByIndex时，irregularIndexes中GridItem的默认大小为垂直滚动Grid的一整行或水平滚动Grid的一整列。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| irregularIndexes | number[] | 否    | 是 | 指定索引的GridItem在Grid中的大小是不规则的。当不设置onGetIrregularSizeByIndex时，irregularIndexes中GridItem的默认大小为垂直滚动Grid的一整行或水平滚动Grid的一整列。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onGetIrregularSizeByIndex | (index: number) => [number, number] | 否    | 是 | 配合irregularIndexes使用，设置不规则GridItem占用的行数和列数。开发者可为irregularIndexes中指明的index对应的GridItem设置占用的行数和列数。在API version 12之前，垂直滚动Grid不支持GridItem占多行，水平滚动Grid不支持GridItem占多列。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onGetRectByIndex<sup>11+</sup> | (index: number) => [number, number,number,number] | 否  | 是 | 设置指定索引index对应的GridItem的位置及大小[rowStart,columnStart,rowSpan,columnSpan]。 <br/>其中rowStart为行起始位置，columnStart为列起始位置，无单位。 <br/>rowSpan为GridItem占用的行数，columnSpan为GridItem占用的列数，无单位。 <br/>rowStart和columnStart取大于等于0的自然数，若取负数时，rowStart和columnStart默认为0。 <br/>rowSpan和columnSpan取大于等于1的自然数，若取小数则向下取整，若小于1则按1计算。<br/>**说明：** <br/>第一种情况：某个GridItem发现给它指定的起始位置被占据了，则从起始位置[0,0]开始按顺序从左到右，从上到下寻找起始的放置位置。<br/>第二种情况：如果起始位置没有被占据，但其他位置被占据了，无法显示全部的GridItem大小，则只会布局一部分。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
@@ -132,7 +132,7 @@ rowsTemplate('repeat(auto-stretch, track-size)')是设置固定行高值为track
 其中repeat、auto-fit、auto-fill、auto-stretch为关键字。track-size为行高，支持的单位包括px、vp、%或有效数字，默认单位为vp，track-size至少包括一个有效行高。<br/>
 auto-stretch模式只支持track-size为一个有效行高值，并且track-size只支持px、vp和有效数字，不支持%。
 
-设置为'0fr'，则这一行的行宽为0，这一行GridItem不显示。设置为其他非法值，按固定1行处理。
+设置为'0fr'，则这一行的行高为0，这一行GridItem不显示。设置为其他非法值，按固定1行处理。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1935,7 +1935,7 @@ struct GridExample {
 @Entry
 @Component
 struct GridExample {
-  scroller: Scroller = new Scroller()
+  scroller: Scroller = new Scroller();
   build() {
     Column() {
       Grid(this.scroller) {
@@ -2029,30 +2029,30 @@ class MyNodeController extends NodeController {
   addCommonEvent(frameNode: FrameNode) {
     let gridEvent: UIGridEvent | undefined = typeNode.getEvent(frameNode, "Grid");
     gridEvent?.setOnWillScroll((scrollOffset: number, scrollState: ScrollState, scrollSource: ScrollSource) => {
-      console.log(`onWillScroll scrollOffset = ${scrollOffset}, scrollState = ${scrollState}, scrollSource = ${scrollSource}`)
-    })
+      console.log(`onWillScroll scrollOffset = ${scrollOffset}, scrollState = ${scrollState}, scrollSource = ${scrollSource}`);
+    });
     gridEvent?.setOnDidScroll((scrollOffset: number, scrollState: ScrollState) => {
-      console.log(`onDidScroll scrollOffset = ${scrollOffset}, scrollState = ${scrollState}`)
-    })
+      console.log(`onDidScroll scrollOffset = ${scrollOffset}, scrollState = ${scrollState}`);
+    });
     gridEvent?.setOnReachStart(() => {
-      console.log(`onReachStart`)
-    })
+      console.log(`onReachStart`);
+    });
     gridEvent?.setOnReachEnd(() => {
-      console.log(`onReachEnd`)
-    })
+      console.log(`onReachEnd`);
+    });
     gridEvent?.setOnScrollStart(() => {
-      console.log(`onScrollStart`)
-    })
+      console.log(`onScrollStart`);
+    });
     gridEvent?.setOnScrollStop(() => {
-      console.log(`onScrollStop`)
-    })
+      console.log(`onScrollStop`);
+    });
     gridEvent?.setOnScrollFrameBegin((offset: number, state: ScrollState) => {
-      console.log(`onScrollFrameBegin offset = ${offset}, state = ${state}`)
+      console.log(`onScrollFrameBegin offset = ${offset}, state = ${state}`);
       return undefined;
-    })
+    });
     gridEvent?.setOnScrollIndex((first: number, last: number) => {
-      console.log(`onScrollIndex start = ${first}, end = ${last}`)
-    })
+      console.log(`onScrollIndex start = ${first}, end = ${last}`);
+    });
   }
 }
 
@@ -2061,7 +2061,7 @@ class MyNodeController extends NodeController {
 struct Index {
   @State index: number = 0;
   private myNodeController: MyNodeController = new MyNodeController();
-  @State numbers: string[] = []
+  @State numbers: string[] = [];
 
   aboutToAppear() {
     for (let i = 0; i < 5; i++) {
@@ -2075,7 +2075,7 @@ struct Index {
     Column() {
       Button("add CommonEvent to Grid")
         .onClick(() => {
-          this.myNodeController!.addCommonEvent(this.myNodeController!.rootNode!.getParent()!.getPreviousSibling()!)
+          this.myNodeController!.addCommonEvent(this.myNodeController!.rootNode!.getParent()!.getPreviousSibling()!);
         })
       Grid() {
         ForEach(this.numbers, (day: string, index: number) => {
@@ -2166,7 +2166,7 @@ struct GridScrollToIndexSample {
 
 ### 示例15（实现Grid滑动选择）
 
-该示例通过PanGesture接口，实现了Grid组件一边滑动一边选择的效果。
+该示例通过[PanGesture](./ts-basic-gestures-pangesture.md#pangesture)接口，实现了Grid组件一边滑动一边选择的效果。
 
 GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
 
@@ -2193,7 +2193,7 @@ const AUTO_SPEED_MAX: number = Math.round(2400 / display.getDefaultDisplaySync()
 struct GridExample {
   numbers: GridDataSource = new GridDataSource([]);
   scroller: Scroller = new Scroller();
-  @State selectedIndexes: string[] = []
+  @State selectedIndexes: string[] = [];
   // 滑动多选时，当前变更选中状态的item
   @State updateIndex: number = -1;
   @State lastUpdateIndex: number = -1;
@@ -2284,12 +2284,12 @@ struct GridExample {
     const start = Math.min(this.startIndex, index);
     const end = Math.max(this.startIndex, index);
     for (let i = start; i < end+1;i++) {
-      const item = (i+1).toString()
+      const item = (i+1).toString();
       if (this.setChecked) {
-        this.selectedIndexes.push(item)
+        this.selectedIndexes.push(item);
       } else {
         if (this.selectedIndexes.includes(item)) {
-          this.selectedIndexes = this.selectedIndexes.filter(selectIndex => selectIndex != item)
+          this.selectedIndexes = this.selectedIndexes.filter(selectIndex => selectIndex != item);
         }
       }
 
@@ -2322,7 +2322,7 @@ struct GridExample {
         .interpolate(1 - pointY / HOT_AREA_LENGTH) : 1;
       this.scroller.scrollEdge(Edge.Top, {
         velocity: speedFlag * AUTO_SPEED_MAX
-      })
+      });
       this.isAutoScroll = true;
     } else if (pointY > this.contentHeight - HOT_AREA_LENGTH) {
       if (this.isAutoScroll && pointY >= this.contentHeight) {
@@ -2332,7 +2332,7 @@ struct GridExample {
         .interpolate(1 - (this.contentHeight - pointY) / HOT_AREA_LENGTH) : 1;
       this.scroller.scrollEdge(Edge.Bottom, {
         velocity: speedFlag * AUTO_SPEED_MAX
-      })
+      });
       this.isAutoScroll = true;
     } else {
       if (this.isAutoScroll) {
@@ -2380,7 +2380,7 @@ struct GridExample {
                 .textAlign(TextAlign.Center)
               if (this.canSlideSelect) {
                 // $r('app.media.gouxuan')和$r('app.media.weigouxuan')需要替换为开发者所需的图像资源文件。
-                Image(this.selectedIndexes.includes(day) ? $r('app.media.gouxuan') :$r('app.media.weigouxuan'))
+                Image(this.selectedIndexes.includes(day) ? $r('app.media.gouxuan') :$r('app.media.weigouxuan'));
                   .width(30)
                   .height(30)
                   .position({right:5,top:5})
@@ -2439,12 +2439,12 @@ struct GridExample {
       })
       Row() {
         Button('开始编辑').onClick(()=>{
-          this.selectedIndexes = []
-          this.canSlideSelect = true
+          this.selectedIndexes = [];
+          this.canSlideSelect = true;
         })
         Button('结束编辑').onClick(()=>{
-          this.canSlideSelect = false
-          this.selectedIndexes = []
+          this.canSlideSelect = false;
+          this.selectedIndexes = [];
         })
       }
       .margin({
@@ -2460,7 +2460,7 @@ struct GridExample {
 
 ### 示例16（实现GridItem自定义拖拽）
 
-该示例通过gesture接口，实现了GridItem组件自定义拖拽效果。
+该示例通过[gesture](./ts-gesture-settings.md#gesture)接口，实现了GridItem组件自定义拖拽效果。
 
 ```ts
 import { curves } from '@kit.ArkUI';
@@ -2468,134 +2468,134 @@ import { curves } from '@kit.ArkUI';
 @Entry
 @Component
 struct GridItemExample {
-  @State numbers: number[] = []
-  @State dragItem: number = -1
-  @State scaleItem: number = -1
-  @State item: number = -1
-  private dragRefOffsetX: number = 0
-  private dragRefOffsetY: number = 0
-  @State offsetX: number = 0
-  @State offsetY: number = 0
-  private FIX_VP_X: number = 108
-  private FIX_VP_Y: number = 120
+  @State numbers: number[] = [];
+  @State dragItem: number = -1;
+  @State scaleItem: number = -1;
+  @State item: number = -1;
+  private dragRefOffsetX: number = 0;
+  private dragRefOffsetY: number = 0;
+  @State offsetX: number = 0;
+  @State offsetY: number = 0;
+  private FIX_VP_X: number = 108;
+  private FIX_VP_Y: number = 120;
 
   aboutToAppear() {
     for (let i = 1; i <= 11; i++) {
-      this.numbers.push(i)
+      this.numbers.push(i);
     }
   }
 
   itemMove(index: number, newIndex: number): void {
-    console.info('index:' + index + ' newIndex:' + newIndex)
+    console.info('index:' + index + ' newIndex:' + newIndex);
     if (!this.isDraggable(newIndex)) {
-      return
+      return;
     }
-    let tmp = this.numbers.splice(index, 1)
-    this.numbers.splice(newIndex, 0, tmp[0])
+    let tmp = this.numbers.splice(index, 1);
+    this.numbers.splice(newIndex, 0, tmp[0]);
   }
 
   //向下滑
   down(index: number): void {
     // 指定固定GridItem不响应事件
     if (!this.isDraggable(index + 3)) {
-      return
+      return;
     }
-    this.offsetY -= this.FIX_VP_Y
-    this.dragRefOffsetY += this.FIX_VP_Y
-    this.itemMove(index, index + 3)
+    this.offsetY -= this.FIX_VP_Y;
+    this.dragRefOffsetY += this.FIX_VP_Y;
+    this.itemMove(index, index + 3);
   }
 
   //向下滑(右下角为空)
   down2(index: number): void {
     if (!this.isDraggable(index + 3)) {
-      return
+      return;
     }
-    this.offsetY -= this.FIX_VP_Y
-    this.dragRefOffsetY += this.FIX_VP_Y
-    this.itemMove(index, index + 3)
+    this.offsetY -= this.FIX_VP_Y;
+    this.dragRefOffsetY += this.FIX_VP_Y;
+    this.itemMove(index, index + 3);
   }
 
   //向上滑
   up(index: number): void {
     if (!this.isDraggable(index - 3)) {
-      return
+      return;
     }
-    this.offsetY += this.FIX_VP_Y
-    this.dragRefOffsetY -= this.FIX_VP_Y
-    this.itemMove(index, index - 3)
+    this.offsetY += this.FIX_VP_Y;
+    this.dragRefOffsetY -= this.FIX_VP_Y;
+    this.itemMove(index, index - 3);
   }
 
   //向左滑
   left(index: number): void {
     if (!this.isDraggable(index - 1)) {
-      return
+      return;
     }
-    this.offsetX += this.FIX_VP_X
-    this.dragRefOffsetX -= this.FIX_VP_X
-    this.itemMove(index, index - 1)
+    this.offsetX += this.FIX_VP_X;
+    this.dragRefOffsetX -= this.FIX_VP_X;
+    this.itemMove(index, index - 1);
   }
 
   //向右滑
   right(index: number): void {
     if (!this.isDraggable(index + 1)) {
-      return
+      return;
     }
-    this.offsetX -= this.FIX_VP_X
-    this.dragRefOffsetX += this.FIX_VP_X
-    this.itemMove(index, index + 1)
+    this.offsetX -= this.FIX_VP_X;
+    this.dragRefOffsetX += this.FIX_VP_X;
+    this.itemMove(index, index + 1);
   }
 
   //向右下滑
   lowerRight(index: number): void {
     if (!this.isDraggable(index + 4)) {
-      return
+      return;
     }
-    this.offsetX -= this.FIX_VP_X
-    this.dragRefOffsetX += this.FIX_VP_X
-    this.offsetY -= this.FIX_VP_Y
-    this.dragRefOffsetY += this.FIX_VP_Y
-    this.itemMove(index, index + 4)
+    this.offsetX -= this.FIX_VP_X;
+    this.dragRefOffsetX += this.FIX_VP_X;
+    this.offsetY -= this.FIX_VP_Y;
+    this.dragRefOffsetY += this.FIX_VP_Y;
+    this.itemMove(index, index + 4);
   }
 
   //向右上滑
   upperRight(index: number): void {
     if (!this.isDraggable(index - 2)) {
-      return
+      return;
     }
-    this.offsetX -= this.FIX_VP_X
-    this.dragRefOffsetX += this.FIX_VP_X
-    this.offsetY += this.FIX_VP_Y
-    this.dragRefOffsetY -= this.FIX_VP_Y
-    this.itemMove(index, index - 2)
+    this.offsetX -= this.FIX_VP_X;
+    this.dragRefOffsetX += this.FIX_VP_X;
+    this.offsetY += this.FIX_VP_Y;
+    this.dragRefOffsetY -= this.FIX_VP_Y;
+    this.itemMove(index, index - 2);
   }
 
   //向左下滑
   lowerLeft(index: number): void {
     if (!this.isDraggable(index + 2)) {
-      return
+      return;
     }
-    this.offsetX += this.FIX_VP_X
-    this.dragRefOffsetX -= this.FIX_VP_X
-    this.offsetY -= this.FIX_VP_Y
-    this.dragRefOffsetY += this.FIX_VP_Y
-    this.itemMove(index, index + 2)
+    this.offsetX += this.FIX_VP_X;
+    this.dragRefOffsetX -= this.FIX_VP_X;
+    this.offsetY -= this.FIX_VP_Y;
+    this.dragRefOffsetY += this.FIX_VP_Y;
+    this.itemMove(index, index + 2);
   }
 
   //向左上滑
   upperLeft(index: number): void {
     if (!this.isDraggable(index - 4)) {
-      return
+      return;
     }
-    this.offsetX += this.FIX_VP_X
-    this.dragRefOffsetX -= this.FIX_VP_X
-    this.offsetY += this.FIX_VP_Y
-    this.dragRefOffsetY -= this.FIX_VP_Y
-    this.itemMove(index, index - 4)
+    this.offsetX += this.FIX_VP_X;
+    this.dragRefOffsetX -= this.FIX_VP_X;
+    this.offsetY += this.FIX_VP_Y;
+    this.dragRefOffsetY -= this.FIX_VP_Y;
+    this.itemMove(index, index - 4);
   }
 
   isDraggable(index: number): boolean {
     console.info('index:' + index)
-    return index > 1
+    return index > 1;
   }
 
   build() {
@@ -2636,83 +2636,83 @@ struct GridItemExample {
               LongPressGesture({ repeat: true })
                 .onAction((event?: GestureEvent) => {
                   this.getUIContext()?.animateTo({ curve: Curve.Friction, duration: 300 }, () => {
-                    this.scaleItem = item
+                    this.scaleItem = item;
                   })
                 })
                 .onActionEnd(() => {
                   this.getUIContext()?.animateTo({ curve: Curve.Friction, duration: 300 }, () => {
-                    this.scaleItem = -1
+                    this.scaleItem = -1;
                   })
                 }),
               PanGesture({ fingers: 1, direction: null, distance: 0 })
                 .onActionStart(() => {
-                  this.dragItem = item
-                  this.dragRefOffsetX = 0
-                  this.dragRefOffsetY = 0
+                  this.dragItem = item;
+                  this.dragRefOffsetX = 0;
+                  this.dragRefOffsetY = 0;
                 })
                 .onActionUpdate((event: GestureEvent) => {
-                  this.offsetY = event.offsetY - this.dragRefOffsetY
-                  this.offsetX = event.offsetX - this.dragRefOffsetX
+                  this.offsetY = event.offsetY - this.dragRefOffsetY;
+                  this.offsetX = event.offsetX - this.dragRefOffsetX;
                   this.getUIContext()?.animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
-                    let index = this.numbers.indexOf(this.dragItem)
+                    let index = this.numbers.indexOf(this.dragItem);
                     if (this.offsetY >= this.FIX_VP_Y / 2 && (this.offsetX <= 44 && this.offsetX >= -44) &&
                       ![8, 9, 10].includes(index)) {
                       //向下滑
-                      this.down(index)
+                      this.down(index);
                     } else if (this.offsetY <= -this.FIX_VP_Y / 2 && (this.offsetX <= 44 && this.offsetX >= -44) &&
                       ![0, 1, 2].includes(index)) {
                       //向上滑
-                      this.up(index)
+                      this.up(index);
                     } else if (this.offsetX >= this.FIX_VP_X / 2 && (this.offsetY <= 50 && this.offsetY >= -50) &&
                       ![2, 5, 8, 10].includes(index)) {
                       //向右滑
-                      this.right(index)
+                      this.right(index);
                     } else if (this.offsetX <= -this.FIX_VP_X / 2 && (this.offsetY <= 50 && this.offsetY >= -50) &&
                       ![0, 3, 6, 9].includes(index)) {
                       //向左滑
-                      this.left(index)
+                      this.left(index);
                     } else if (this.offsetX >= this.FIX_VP_X / 2 && this.offsetY >= this.FIX_VP_Y / 2 &&
                       ![2, 5, 7, 8, 9, 10].includes(index)) {
                       //向右下滑
-                      this.lowerRight(index)
+                      this.lowerRight(index);
                     } else if (this.offsetX >= this.FIX_VP_X / 2 && this.offsetY <= -this.FIX_VP_Y / 2 &&
                       ![0, 1, 2, 5, 8].includes(index)) {
                       //向右上滑
-                      this.upperRight(index)
+                      this.upperRight(index);
                     } else if (this.offsetX <= -this.FIX_VP_X / 2 && this.offsetY >= this.FIX_VP_Y / 2 &&
                       ![0, 3, 6, 9, 10].includes(index)) {
                       //向左下滑
-                      this.lowerLeft(index)
+                      this.lowerLeft(index);
                     } else if (this.offsetX <= -this.FIX_VP_X / 2 && this.offsetY <= -this.FIX_VP_Y / 2 &&
                       ![0, 1, 2, 3, 6, 9].includes(index)) {
                       //向左上滑
-                      this.upperLeft(index)
+                      this.upperLeft(index);
                     } else if (this.offsetX >= this.FIX_VP_X / 2 && this.offsetY >= this.FIX_VP_Y / 2 &&
                     [7].includes(index)) {
                       //向右下滑(右下角为空)
-                      this.down2(index)
+                      this.down2(index);
                     }
                   })
                 })
                 .onActionEnd(() => {
                   this.getUIContext()?.animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
-                    this.dragItem = -1
+                    this.dragItem = -1;
                   })
                   this.getUIContext()?.animateTo({
                     curve: curves.interpolatingSpring(14, 1, 170, 17), delay: 150
                   }, () => {
-                    this.scaleItem = -1
+                    this.scaleItem = -1;
                   })
                 })
             )
               .onCancel(() => {
                 this.getUIContext()?.animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
-                  this.dragItem = -1
+                  this.dragItem = -1;
                 })
                 this.getUIContext()?.animateTo({
                   curve: curves.interpolatingSpring(14, 1, 170, 17)
                 }, () => {
-                  this.scaleItem = -1
+                  this.scaleItem = -1;
                 })
               })
           )

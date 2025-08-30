@@ -180,7 +180,7 @@ toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: 
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | &nbsp;Array&lt;[ToolbarItem](#toolbaritem10)&gt; &nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容，使用Array&lt;[ToolbarItem](#toolbaritem10)&gt;写法设置的工具栏有如下特性：<br/>工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后截断。<br/>竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。横屏时，如果为[Split](#navigationmode9枚举说明)模式，仍按照竖屏规则显示，如果为[Stack](#navigationmode9枚举说明)模式需配合menus属性的Array&lt;[NavigationMenuItem](#navigationmenuitem)&gt;使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
+| value   | &nbsp;Array&lt;[ToolbarItem](#toolbaritem10)&gt; &nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容，使用Array&lt;[ToolbarItem](#toolbaritem10)&gt;写法设置的工具栏有如下特性：<br/>工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。横屏时，如果为[Split](#navigationmode9枚举说明)模式，仍按照竖屏规则显示，如果为[Stack](#navigationmode9枚举说明)模式需配合menus属性的Array&lt;[NavigationMenuItem](#navigationmenuitem)&gt;使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
 | options | [NavigationToolbarOptions](#navigationtoolbaroptions11)<sup>11+</sup> | 否   | 工具栏选项。 包含工具栏背景颜色、工具栏背景模糊样式及模糊选项、工具栏背景属性、工具栏布局方式、是否隐藏工具栏的文本、工具栏更多图标的菜单选项。                                                |
 
 ### hideToolBar
@@ -512,7 +512,7 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 
 enableDragBar(isEnabled: Optional&lt;boolean&gt;)
 
-控制分栏场景下是否显示拖拽条。
+控制分栏场景下是否显示拖拽条。该属性在PC/2in1设备上不生效。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -688,7 +688,7 @@ customNavContentTransition(delegate:(from: NavContentInfo, to: NavContentInfo, o
 
 ## NavPathStack<sup>10+</sup>
 
-Navigation导航控制器，从API version 12开始，NavPathStack允许被继承。开发者可以在派生类中新增属性方法，也可以重写基类NavPathStack的方法。派生类对象可以替代基类NavPathStack对象使用。Navigation中的NavDeatination页面存在于NavPathStack中，以栈的结构管理，我们称为路由栈。使用示例参见[示例10](#示例10定义导航控制器派生类)。
+Navigation导航控制器，从API version 12开始，NavPathStack允许被继承。开发者可以在派生类中新增属性方法，也可以重写基类NavPathStack的方法。派生类对象可以替代基类NavPathStack对象使用。Navigation中的NavDestination页面存在于NavPathStack中，以栈的结构管理，我们称为路由栈。使用示例参见[示例10](#示例10定义导航控制器派生类)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1612,7 +1612,7 @@ Navigation跳转拦截对象。
 
 ### InterceptionShowCallback<sup>12+</sup>
 
-type InterceptionShowCallback = (from: NavDestinationContext|NavBar, to: NavDestinationContext|NavBar, operation: NavigationOperation, isAnimated: boolean) => void
+type InterceptionShowCallback = (from: NavDestinationContext | NavBar, to: NavDestinationContext | NavBar, operation: NavigationOperation, isAnimated: boolean) => void
 
 navigation页面跳转前和页面跳转后的拦截回调。
 
@@ -1624,8 +1624,8 @@ navigation页面跳转前和页面跳转后的拦截回调。
 
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |
-| from | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \|[NavBar](#navbar12) | 是 |  页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前的页面为Navigation首页。 |
-| to | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \|[NavBar](#navbar12) | 是 | 页面跳转之后的栈顶页面信息。参数值为navBar，则表示跳转的目标页面为Navigation首页。 |
+| from | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \| [NavBar](#navbar12) | 是 |  页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前的页面为Navigation首页。 |
+| to | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \| [NavBar](#navbar12) | 是 | 页面跳转之后的栈顶页面信息。参数值为navBar，则表示跳转的目标页面为Navigation首页。 |
 | operation | [NavigationOperation](#navigationoperation11枚举说明) | 是 | 当前页面跳转类型。 |
 | isAnimated | boolean | 是 | 页面跳转是否有动画。<br/>true：页面跳转有动画。<br/>false：页面跳转没有动画。 |
 
@@ -1999,14 +1999,17 @@ struct NavigationExample {
       .titleMode(NavigationTitleMode.Full)
       .toolbarConfiguration([
         {
+          // $r("app.string.navigation_toolbar_add")和$r("app.media.ic_public_highlightsed")需要替换为开发者所需的资源文件
           value: $r("app.string.navigation_toolbar_add"),
           icon: $r("app.media.ic_public_highlightsed")
         },
         {
+          // $r("app.string.navigation_toolbar_app")和$r("app.media.ic_public_highlights")需要替换为开发者所需的资源文件
           value: $r("app.string.navigation_toolbar_app"),
           icon: $r("app.media.ic_public_highlights")
         },
         {
+          // $r("app.string.navigation_toolbar_collect")和$r("app.media.ic_public_highlights")需要替换为开发者所需的资源文件
           value: $r("app.string.navigation_toolbar_collect"),
           icon: $r("app.media.ic_public_highlights")
         }
@@ -3623,7 +3626,7 @@ struct NavigationExample {
         Column() {
           Scroll(this.scrollerForScroll) {
             Column() {
-              // 需要替换为开发者所需的资源文件
+              // $r('app.media.image_1')需要替换为开发者所需的资源文件
               Image($r('app.media.image_1'))// 设置与标题栏高度一致，以便观察STACK效果
                 .height(138)
                 .width('100%')
@@ -3815,18 +3818,21 @@ struct NavigationExample {
       icon: 'resources/base/media/ic_public_ok.svg' // 图标资源路径
     },
     {
+      // $r('sys.symbol.ohos_folder_badge_plus')需要替换为开发者所需的资源文件
       value: 'menuItem2',
       icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red, Color.Green])
         .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
     },
     {
+      // $r('sys.symbol.ohos_lungs')需要替换为开发者所需的资源文件
       value: 'menuItem3',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
     },
   ];
   @State toolItems: Array<ToolbarItem> = [
     {
+      // $r('sys.symbol.ohos_lungs')和$r('sys.symbol.ohos_folder_badge_plus')需要替换为开发者所需的资源文件
       value: 'toolItem1',
       icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
@@ -3837,6 +3843,7 @@ struct NavigationExample {
       }
     },
     {
+      // $r('sys.symbol.ohos_star')需要替换为开发者所需的资源文件
       value: 'toolItem2',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
       status: ToolbarItemStatus.ACTIVE,
@@ -3845,6 +3852,7 @@ struct NavigationExample {
       }
     },
     {
+      // $r('sys.symbol.ohos_star')和$r('sys.symbol.ohos_lungs')需要替换为开发者所需的资源文件
       value: 'toolItem3',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
       status: ToolbarItemStatus.ACTIVE,
@@ -3869,7 +3877,7 @@ struct NavigationExample {
         })
       }
     }
-    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')))
+    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')))// $r('sys.symbol.ohos_wifi')需要替换为开发者所需的资源文件
     .titleMode(NavigationTitleMode.Mini)
     .menus(this.menuItems)
     .toolbarConfiguration(this.toolItems)
@@ -3889,6 +3897,7 @@ export struct NavigationMenu {
       }
     },
     {
+      // $r('sys.symbol.ohos_folder_badge_plus')需要替换为开发者所需的资源文件
       value: 'menuItem2',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red, Color.Green])
         .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
@@ -3896,6 +3905,7 @@ export struct NavigationMenu {
       }
     },
     {
+      // $r('sys.symbol.repeat_1')需要替换为开发者所需的资源文件
       value: 'menuItem3',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.repeat_1')),
       action: () => {
@@ -3914,8 +3924,9 @@ export struct NavigationMenu {
     }
     .hideTitleBar(false)
     .title('NavDestination title')
-    .backgroundColor($r('sys.color.ohos_id_color_titlebar_sub_bg'))
-    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Blue]))
+    .backgroundColor($r('sys.color.ohos_id_color_titlebar_sub_bg'))// $r('sys.color.ohos_id_color_titlebar_sub_bg')需要替换为开发者所需的资源文件
+    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_star'))// $r('sys.symbol.ohos_star')需要替换为开发者所需的资源文件
+    .fontColor([Color.Blue]))
     .menus(this.menuItems)
   }
 }
@@ -4479,17 +4490,17 @@ struct NavigationExample {
       .titleMode(NavigationTitleMode.Full)
       .toolbarConfiguration([
         {
-          // 如下资源文件需要替换为开发者所需的图像资源文件
+          // $r("app.string.navigation_toolbar_add")和$r("app.media.startIcon")需要替换为开发者所需的图像资源文件
           value: $r("app.string.navigation_toolbar_add"),
           icon: $r("app.media.startIcon")
         },
         {
-          // 如下资源文件需要替换为开发者所需的图像资源文件
+          // $r("app.string.navigation_toolbar_app")和$r("app.media.startIcon")需要替换为开发者所需的图像资源文件
           value: $r("app.string.navigation_toolbar_app"),
           icon: $r("app.media.startIcon")
         },
         {
-          // 如下资源文件需要替换为开发者所需的图像资源文件
+          // $r("app.string.navigation_toolbar_collect")和$r("app.media.startIcon")需要替换为开发者所需的图像资源文件
           value: $r("app.string.navigation_toolbar_collect"),
           icon: $r("app.media.startIcon")
         }
@@ -4523,14 +4534,17 @@ struct NavigationExample {
   @State enable: boolean = false
   @State menuItems:Array<NavigationMenuItem> = [
     {
+      // $r('sys.symbol.card_writer')需要替换为开发者所需的资源文件
       value:'menuItem1',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.card_writer')),
     },
     {
+      // $r('sys.symbol.ohos_folder_badge_plus')需要替换为开发者所需的资源文件
       value:'menuItem2',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus'))
     },
     {
+      // $r('sys.symbol.ohos_lungs')需要替换为开发者所需的资源文件
       value:'menuItem3',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
     },
@@ -4538,16 +4552,19 @@ struct NavigationExample {
 
   @State toolItems:Array<ToolbarItem> = [
     {
+      // $r('sys.symbol.ohos_lungs')需要替换为开发者所需的资源文件
       value:'toolItem1',
       symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
       action:()=>{}
     },
     {
+      // $r('sys.symbol.card_migration')需要替换为开发者所需的资源文件
       value:'toolItem2',
       symbolIcon:new SymbolGlyphModifier($r('sys.symbol.card_migration')),
       action:()=>{}
     },
     {
+      // 需要替换为开发者所需的资源文件
       value:'toolItem3',
       symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
       action:()=>{}
@@ -4565,7 +4582,7 @@ struct NavigationExample {
     }
     .mode(NavigationMode.Stack)
     .enableToolBarAdaptation(this.enable) //是否启用工具栏自适应能力
-    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')))
+    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')))// $r('sys.symbol.ohos_wifi')需要替换为开发者所需的资源文件
     .titleMode(NavigationTitleMode.Mini)
     .menus(this.menuItems)
     .toolbarConfiguration(this.toolItems)

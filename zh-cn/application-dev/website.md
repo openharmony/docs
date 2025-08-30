@@ -878,6 +878,7 @@
             - [ArkTS卡片界面开发概述](form/arkts-ui-widget-page-overview.md)
             - [ArkTS卡片为组件添加动效](form/arkts-ui-widget-page-animation.md)
             - [ArkTS卡片使用画布组件绘制自定义图形](form/arkts-ui-widget-page-custom-drawing.md)
+            - [ArkTS卡片界面适配深浅色模式](form/arkts-ui-widget-dark-light-color-adapt.md)
           - ArkTS卡片页面刷新<!--arkts-ui-widget-interaction-->
             - [ArkTS卡片页面刷新概述](form/arkts-ui-widget-interaction-overview.md)
             - [ArkTS卡片主动刷新](form/arkts-ui-widget-active-refresh.md)
@@ -2166,7 +2167,7 @@
           - [@ohos.app.ability.EnvironmentCallback (系统环境变化监听器)](reference/apis-ability-kit/js-apis-app-ability-environmentCallback.md)
           - [@ohos.app.ability.ExtensionAbility (扩展能力基类)](reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)
           - [@ohos.app.ability.insightIntent (意图框架基础定义)](reference/apis-ability-kit/js-apis-app-ability-insightIntent.md)
-          - [@ohos.app.ability.InsightIntentContext (意图调用执行上下文)](reference/apis-ability-kit/js-apis-app-ability-insightIntentContext.md)
+          - [@ohos.app.ability.InsightIntentContext (意图执行上下文)](reference/apis-ability-kit/js-apis-app-ability-insightIntentContext.md)
           - [@ohos.app.ability.InsightIntentDecorator (意图装饰器定义)](reference/apis-ability-kit/js-apis-app-ability-InsightIntentDecorator.md)
           - [@ohos.app.ability.InsightIntentEntryExecutor (@InsightIntentEntry的意图调用执行基类)](reference/apis-ability-kit/js-apis-app-ability-InsightIntentEntryExecutor.md)
           - [@ohos.app.ability.InsightIntentExecutor (意图调用执行基类)](reference/apis-ability-kit/js-apis-app-ability-insightIntentExecutor.md)
