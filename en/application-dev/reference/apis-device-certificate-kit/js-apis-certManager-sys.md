@@ -1,6 +1,6 @@
 # @ohos.security.certManager (Certificate Management) (System API)
 
-The **certManager** module provides system-level certificate management capabilities to ensure secure use and management of certificates throughout their lifecycle (installation, storage, use, and destruction).
+The **certManager** module provides system-level certificate management capabilities to implement management and secure use of certificates throughout their lifecycle (installation, storage, use, and destruction).
 
 > **NOTE**
 >
@@ -39,7 +39,7 @@ Obtains all private credentials. This API uses an asynchronous callback to retur
 
 | Name  | Type                                                       | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[CMResult](js-apis-certManager.md#cmresult)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is **credentialList** in the [CMResult](#cmresult) object. Otherwise, **err** is an error object.|
+| callback | AsyncCallback\<[CMResult](js-apis-certManager.md#cmresult)> | Yes  | Callback used to return the result. If all private credentials are obtained, **err** is **null**, and **data** is the **credentialList** attribute in the [CMResult](js-apis-certManager.md#cmresult) object. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -92,7 +92,7 @@ Obtains all private credentials. This API uses a promise to return the result.
 
 | Type                                                 | Description                                                        |
 | ----------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | Promise used to return all the private credentials obtained, that is, **credentialList** in the [CMResult](#cmresult) object.|
+| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | Promise used to return the private credentials (that is, the **credentialList** attribute in the [CMResult](js-apis-certManager.md#cmresult) object obtained.|
 
 **Error codes**
 
@@ -143,7 +143,7 @@ Obtains all system credentials. This API uses a promise to return the result.
 
 | Type                                                 | Description                                                        |
 | ----------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | Promise used to return all the system credentials obtained, that is, **credentialList** in the [CMResult](#cmresult) object.|
+| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | Promise used to return the system credentials (that is, the **credentialList** attribute in the [CMResult](js-apis-certManager.md#cmresult) object obtained.|
 
 **Error codes**
 

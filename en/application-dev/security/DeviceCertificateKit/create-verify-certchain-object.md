@@ -78,10 +78,10 @@ let certChainData = "-----BEGIN CERTIFICATE-----\n" +
 
 async function sample() {
   let textEncoder = new util.TextEncoder();
-  // Certificate chain binary data, which may vary with the service.
+  // Binary data of the certificate chain, which needs to be assigned by the service.
   const encodingBlob: cert.EncodingBlob = {
     data: textEncoder.encodeInto(certChainData),
-    // Set the encoding format, which can be FORMAT_PEM, FORMAT_DER, or FORMAT_PKCS7.
+    // Assign a value based on the encodingData format. FORMAT_PEM, FORMAT_DER, and FORMAT_PKCS7 are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   let x509CertChain: cert.X509CertChain = {} as cert.X509CertChain;
@@ -99,7 +99,7 @@ async function sample() {
     console.error(`X509CertChain getCertList failed, errCode: ${e.code}, errMsg: ${e.message}`);
   }
 
-  // Certificate chain validation data, which may vary with the service.
+  // Certificate chain verification data, which needs to be assigned by the service.
   const param: cert.CertChainValidationParameters = {
     date: '20231212080000Z',
     trustAnchors: [{
