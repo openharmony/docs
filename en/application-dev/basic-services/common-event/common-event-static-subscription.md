@@ -1,8 +1,14 @@
 # Subscribing to Common Events in Static Mode (for System Applications Only)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 ## When to Use
 
-A static subscriber is started once it receives a target event published by the system or application. At the same time, [onReceiveEvent()](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md#staticsubscriberextensionabilityonreceiveevent) is triggered, in which you can implement the service logic.<br>
+A static subscriber is started once it receives a target event published by the system or application. At the same time, [onReceiveEvent()](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md#staticsubscriberextensionabilityonreceiveevent) is triggered, in which you can implement the service logic.
 
 For example, if an application needs to execute some initialization tasks during device power-on, the application can subscribe to the power-on event in static mode. After receiving the power-on event, the application is started to execute the initialization tasks.
 

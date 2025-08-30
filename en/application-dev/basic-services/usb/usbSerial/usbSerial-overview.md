@@ -1,5 +1,12 @@
 # USB Serial Communication Development Overview
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 ## Overview
 
 The USB serial communication service provides the USB host-to-serial port communication. With this service, you can obtain the list of connected ports that comply with the USB host-to-serial protocol and be able to enable and disable ports, set parameters, obtain parameters, read data, write data, and manage device permissions.
@@ -30,14 +37,14 @@ The USB serial port service consists of two phases:
   Receiving data:
   The device receives the data from the physical serial port. → The device packages and uploads data to the USB host. → The driver receives and stores data in the serial port buffer. → The application layer reads the data.
 
-
+ 
 **Figure 1** Process of transmitting and receiving data
 
 ![Data Receiving and Transmission Through the Serial Port](../figures/en-us_image_22989BBB5490.png)
 
 ### Constraints
 
-- Before data transmission between the host and the serial port device, you need to request a permission to access the device. Data can be transmitted only after the user grants the permission.
+- Before data transmission between the host and the serial port device, you need to request permission to access the device. Data can be transmitted only after the user grants the permission.
 
 - If the configuration parameters during data transmission are not set, the default configuration parameters are used (baud rate: 9600 bit/s; data bit: 8; parity bit: 0; stop bit: 1).
 
@@ -51,10 +58,10 @@ The USB serial port service consists of two phases:
 
 - SDK version configuration:
 
-  API version 18 or later.
+  API version 19 or later.
 
 ### Environment Setup
 
 - Install [DevEco Studio](https://developer.huawei.com/consumer/en/download/deveco-studio) 4.1 or later on the PC.
-- Update the public SDK to API version 18 or later.
+- Update the public SDK to API version 19 or later.
 - Prepare a USB-to-serial cable. Connect the USB port and the serial port of the cable to that of the OpenHarmony device.

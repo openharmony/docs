@@ -1,9 +1,14 @@
 # Publishing Common Events
-
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 ## When to Use
 
-You can use [publish()](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerpublish) to publish a custom common event, which can carry data for subscribers to parse and process.
+You can use [publish()](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerpublish) to publish a common event, which can carry data for subscribers to parse and process.
 
 > **NOTE**
 > Subscribers can receive sticky common events that have been sent. However, they must subscribe to common events of other types before receiving them. For details about subscription, see [Subscribing to Common Events](common-event-subscription.md).
