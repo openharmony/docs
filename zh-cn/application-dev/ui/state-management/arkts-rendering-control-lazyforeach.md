@@ -692,9 +692,9 @@ struct MyComponent {
 
 ```ts
 // 修改之前的数组
-["Hello a","Hello b","Hello c","Hello d","Hello e","Hello f","Hello g","Hello h","Hello i","Hello j","Hello k","Hello l","Hello m","Hello n","Hello o","Hello p","Hello q","Hello r"]
+['Hello a','Hello b','Hello c','Hello d','Hello e','Hello f','Hello g','Hello h','Hello i','Hello j','Hello k','Hello l','Hello m','Hello n','Hello o','Hello p','Hello q','Hello r']
 // 修改之后的数组
-["Hello a","Hello c","Hello d","Hello b","Hello g","Hello f","Hello e","Hello h","Hello 1","Hello 2","Hello i","Hello j","Hello m","Hello n","Hello o","Hello p","Hello q","Hello r"]
+['Hello a','Hello c','Hello d','Hello b','Hello g','Hello f','Hello e','Hello h','Hello 1','Hello 2','Hello i','Hello j','Hello m','Hello n','Hello o','Hello p','Hello q','Hello r']
 ```
 "Hello b" 从第2项变成第4项，因此第一个 operation 为 `{ type: DataOperationType.MOVE, index: { from: 1, to: 3 } }`。
 "Hello e" 跟 "Hello g" 对调了，而 "Hello e" 在修改前的原数组中的 index=4，"Hello g" 在修改前的原数组中的 index=6, 因此第二个 operation 为 `{ type: DataOperationType.EXCHANGE, index: { start: 4, end: 6 } }`。
@@ -837,10 +837,10 @@ class SecondLayer {
 
 @ObservedV2
 class ThirdLayer {
-  @Trace forthLayer: String;
+  @Trace fourthLayer: string;
 
-  constructor(forthLayer: String) {
-    this.forthLayer = forthLayer;
+  constructor(fourthLayer: string) {
+    this.fourthLayer = fourthLayer;
   }
 }
 
@@ -859,9 +859,9 @@ struct MyComponent {
     List({ space: 3 }) {
       LazyForEach(this.data, (item: StringData, index: number) => {
         ListItem() {
-          Text(item.firstLayer.secondLayer.thirdLayer.forthLayer.toString()).fontSize(50)
+          Text(item.firstLayer.secondLayer.thirdLayer.fourthLayer).fontSize(50)
             .onClick(() => {
-              item.firstLayer.secondLayer.thirdLayer.forthLayer += '!';
+              item.firstLayer.secondLayer.thirdLayer.fourthLayer += '!';
             })
         }
       }, (item: StringData, index: number) => index.toString())
@@ -1068,10 +1068,10 @@ struct Parent {
             Text(item.toString())
               .fontSize(16)
               .textAlign(TextAlign.Center)
-              .size({ height: 100, width: "100%" })
+              .size({ height: 100, width: '100%' })
           }.margin(10)
           .borderRadius(10)
-          .backgroundColor("#FFFFFFFF")
+          .backgroundColor('#FFFFFFFF')
         }, (item: string) => item)
           .onMove((from: number, to: number) => {
             this.data.moveDataWithoutNotify(from, to);
@@ -1079,7 +1079,7 @@ struct Parent {
       }
       .width('100%')
       .height('100%')
-      .backgroundColor("#FFDCDCDC")
+      .backgroundColor('#FFDCDCDC')
     }
   }
 }

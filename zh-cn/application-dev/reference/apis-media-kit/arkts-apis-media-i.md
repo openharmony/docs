@@ -80,6 +80,7 @@ SEI信息内容，描述SEI信息的负载类型和数据。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
 function printfItemDescription(obj: media.MediaDescription, key: string) {
   let property: Object = obj[key];

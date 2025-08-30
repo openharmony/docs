@@ -339,13 +339,12 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbility(AbilityBase_Want *
 
 启动当前应用的UIAbility。
 
-> **说明：**
->
-> 当前仅支持2in1设备。
 
 **需要权限：** ohos.permission.NDK_START_SELF_UI_ABILITY
 
 **起始版本：** 15
+
+**设备行为差异**：该接口仅在2in1和Tablet设备中可正常调用，在其他设备中返回ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED错误码。
 
 **参数：**
 
@@ -393,13 +392,11 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions(Ab
 
 通过StartOptions启动当前应用的UIAbility。
 
-> **说明：**
->
-> 当前仅支持2in1设备。
-
 **需要权限：** ohos.permission.NDK_START_SELF_UI_ABILITY
 
 **起始版本：** 17
+
+**设备行为差异**：该接口仅在2in1和Tablet设备中可正常调用，在其他设备中返回ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED错误码。
 
 **参数：**
 

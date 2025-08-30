@@ -1,27 +1,23 @@
-# Subscribing to Freeze Events (ArkTS)
+# Subscribing to Application Freeze Events (ArkTS)
+
+## Overview
+
+The following describes how to subscribe to application freeze events by using the ArkTS APIs provided by HiAppEvent. For details about how to use the APIs (such as parameter restrictions and value ranges), see [@ohos.hiviewdfx.hiAppEvent (Application Event Logging)](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
 
 ## Available APIs
 
-For details about how to use the APIs (such as parameter usage constraints and value ranges), see [Application Event Logging](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
-
-**API for Setting Custom Event Parameters**
-
-| API                                             | Description                                        |
-| --------------------------------------------------- | -------------------------------------------- |
-| setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: string): Promise&lt;void&gt; | Sets custom event parameters.|
-
-**Subscription APIs**
-
-| API                                             | Description                                        |
-| --------------------------------------------------- | -------------------------------------------- |
+| API| Description|
+| -------- | -------- |
 | addWatcher(watcher: Watcher): AppEventPackageHolder | Adds a watcher to listen for application events.|
-| removeWatcher(watcher: Watcher): void               | Removes a watcher to unsubscribe from application events.|
+| removeWatcher(watcher: Watcher): void | Removes a watcher to unsubscribe from application events.|
 
 ## How to Develop
 
-The following describes how to subscribe to the freeze event triggered by a button click.
+### Adding an Event Watcher
 
-1. Create an ArkTS application project. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, import the dependent modules.
+The following describes how to subscribe to the application freeze event triggered by button clicking.
+
+1. Create an ArkTS application project. In the **entry/src/main/ets/entryability/EntryAbility.ets** file of the project, import the dependent modules. The sample code is as follows:
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -35,9 +31,9 @@ The following describes how to subscribe to the freeze event triggered by a butt
     let params: Record<string, hiAppEvent.ParamType> = {
       "test_data": 100,
     };
-    // Set custom parameters for the freeze event.
+    // Set custom parameters for the application freeze event.
     hiAppEvent.setEventParam(params, hiAppEvent.domain.OS, hiAppEvent.event.APP_FREEZE).then(() => {
-      hilog.info(0x0000, 'testTag', `HiAppEvent success to set svent param`);
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to set event param`);
     }).catch((err: BusinessError) => {
       hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
     });
@@ -46,10 +42,10 @@ The following describes how to subscribe to the freeze event triggered by a butt
 3. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, add a watcher in **onCreate()** to subscribe to system events. The sample code is as follows:
 
    ```ts
-    hiAppEvent.addWatcher({
+     hiAppEvent.addWatcher({
       // Set the watcher name. The system identifies different watchers based on their names.
       name: "watcher",
-      // Add the system events to watch, for example, freeze events.
+      // You can subscribe to system events that you are interested in. For example, the application freeze event.
       appEventFilters: [
         {
           domain: hiAppEvent.domain.OS,
@@ -67,38 +63,38 @@ The following describes how to subscribe to the freeze event triggered by a butt
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.domain=${eventInfo.domain}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.name=${eventInfo.name}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.eventType=${eventInfo.eventType}`);
-            // Obtain the timestamp of the freeze event.
+            // Obtain the timestamp of the application freeze event.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.time=${eventInfo.params['time']}`);
-            // Obtain the foreground and background status of the application when the freeze event occurs.
+            // Obtain the foreground/background status of the frozen application.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params['foreground']}`);
-            // Obtain the version information of the application.
+            // Obtain the version of the frozen application.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_version=${eventInfo.params['bundle_version']}`);
-            // Obtain the bundle name of the application.
+            // Obtain the bundle name of the frozen application.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_name=${eventInfo.params['bundle_name']}`);
-            // Obtain the process name of the application.
+            // Obtain the process name of the frozen application.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.process_name=${eventInfo.params['process_name']}`);
-            // Obtain the process ID of the application.
+            // Obtain the process ID of the frozen application.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.pid=${eventInfo.params['pid']}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uid=${eventInfo.params['uid']}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uuid=${eventInfo.params['uuid']}`);
-            // Obtain the exception type and cause of the freeze event.
+            // Obtain the exception type and cause of the application freeze event.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.exception=${JSON.stringify(eventInfo.params['exception'])}`);
-            // Obtain the log information when the freeze event occurs.
+            // Obtain the log information when the application freezes.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.hilog.size=${eventInfo.params['hilog'].length}`);
-            // Obtain the messages that are not yet processed by the main thread when the freeze event occurs.
+            // Obtain the messages that are not yet processed by the main thread when the application freezes.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.event_handler.size=${eventInfo.params['event_handler'].length}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.event_handler_size_3s=${eventInfo.params['event_handler_size_3s']}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.event_handler_size_6s=${eventInfo.params['event_handler_size_6s']}`);
-            // Obtain the synchronous binder call information when the freeze event occurs.
+            // Obtain the synchronous binder call information when the application freezes.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.peer_binder.size=${eventInfo.params['peer_binder'].length}`);
-            // Obtain the full thread call stack when the freeze event occurs.
+            // Obtain the full thread call stack when the application freezes.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.threads.size=${eventInfo.params['threads'].length}`);
-            // Obtain the memory information when the freeze event occurs.
+            // Obtain the memory information when the application freezes.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.memory=${JSON.stringify(eventInfo.params['memory'])}`);
-            // Obtain the error log file when the freeze event occurs.
+            // Obtain the fault log file when the application freezes.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.log_over_limit=${eventInfo.params['log_over_limit']}`);
-            // Obtain the custom test_data of the freeze event.
+            // Obtain the custom test_data of the application freeze event.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.test_data=${eventInfo.params['test_data']}`);
           }
         }
@@ -106,20 +102,23 @@ The following describes how to subscribe to the freeze event triggered by a butt
     });
    ```
 
-4. In the **entry/src/main/ets/pages/index.ets** file, add the **appFreeze** button and construct a scenario for triggering a freeze event in **onClick()**. The sample code is as follows: 
+4. In the **entry/src/main/ets/pages/index.ets** file, add a button and construct an application freeze scenario for triggering an application freeze event in **onClick()**. The sample code is as follows:
 
    ```ts
     Button("appFreeze").onClick(()=>{
-      // Construct a scenario in onClick() for triggering a freeze event.
+      // Construct a freeze scenario in onClick() to trigger an application freeze event.
       setTimeout(() => {
-        while (true) {}
-      }, 1000)
+        let t = Date.now();
+        while (Date.now() - t <= 15000) {}
+      }, 5000);
     })
    ```
 
-5. In DevEco Studio, click the **Run** button to run the project. Then, click the **appfreeze** button to trigger a freeze event.
+5. In DevEco Studio, click the **Run** button to run the project. Then, click the **appfreeze** button to trigger an application freeze event.
 
-6. The application crashes. After restarting the application, you can view the following event information in the **Log** window.
+### Verifying the Subscription
+
+1. The application exits due to the application freeze event. After restarting the application, you can view the following event information in the **Log** window.
 
    ```text
    HiAppEvent onReceive: domain=OS
@@ -147,3 +146,6 @@ The following describes how to subscribe to the freeze event triggered by a butt
    HiAppEvent eventInfo.params.log_over_limit=false
    HiAppEvent eventInfo.params.test_data=100
    ```
+
+<!--RP1-->
+<!--RP1End-->

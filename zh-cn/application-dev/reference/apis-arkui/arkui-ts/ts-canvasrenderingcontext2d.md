@@ -18,9 +18,13 @@
 >
 > Canvas组件的宽或高超过8000px时使用CPU渲染，会导致性能明显下降。
 
-## 接口
+## 构造函数
 
-CanvasRenderingContext2D(settings?: RenderingContextSettings, unit?: LengthMetricsUnit)
+### constructor
+
+constructor(settings?: RenderingContextSettings)
+
+构造Canvas画布对象，支持配置CanvasRenderingContext2D对象的参数。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -33,32 +37,29 @@ CanvasRenderingContext2D(settings?: RenderingContextSettings, unit?: LengthMetri
 | 参数名      | 类型  | 必填   | 说明    |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | settings | [RenderingContextSettings](#renderingcontextsettings) | 否    | 用来配置CanvasRenderingContext2D对象的参数，见[RenderingContextSettings](#renderingcontextsettings)。 |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否    | 用来配置CanvasRenderingContext2D对象的单位模式，配置后无法更改，见[LengthMetricsUnit](#lengthmetricsunit12)。<br>默认值：DEFAULT |
 
+### constructor<sup>12+</sup>
 
-### RenderingContextSettings
+constructor(settings?: RenderingContextSettings, unit?: LengthMetricsUnit)
 
-RenderingContextSettings(antialias?: boolean)
+构造Canvas画布对象，支持配置CanvasRenderingContext2D对象的参数和单位模式。
 
-用来配置CanvasRenderingContext2D对象的参数，包括是否开启抗锯齿。
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 在API version 12中，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名       | 类型    | 必填   | 说明                          |
-| --------- | ------- | ---- | ----------------------------- |
-| antialias | boolean | 否    | 表明canvas是否开启抗锯齿。<br>默认值：false，表示不开启抗锯齿功能。 |
-
-### LengthMetricsUnit<sup>12+</sup>
-
-用来配置CanvasRenderingContext2D对象的单位模式，默认单位模式为LengthMetricsUnit.DEFAULT，对应默认单位vp，配置后无法动态更改。详细说明见[LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12)。
+| 参数名      | 类型  | 必填   | 说明    |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| settings | [RenderingContextSettings](#renderingcontextsettings) | 否    | 用来配置CanvasRenderingContext2D对象的参数，见[RenderingContextSettings](#renderingcontextsettings)。 |
+| unit  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否    | 用来配置CanvasRenderingContext2D对象的单位模式，配置后无法更改。<br>默认值：DEFAULT |
 
 **示例：**
+
+以下示例展示了配置CanvasRenderingContext2D对象的单位模式，默认单位模式为LengthMetricsUnit.DEFAULT，对应默认单位vp，配置后无法动态更改。详细说明见[LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12)。
 
 ```ts
 // xxx.ets
@@ -2063,7 +2064,7 @@ roundRect(x: number, y: number, w: number, h: number, radii?: number | Array\<nu
 
 **示例：**
 
-该示例展示了绘制五个圆角矩形：
+该示例展示了绘制六个圆角矩形：
 
 1. 创建一个(10vp, 10vp)为起点，宽高为100vp，四个矩形角圆弧半径为10vp的圆角矩形并填充；
 
@@ -2073,15 +2074,19 @@ roundRect(x: number, y: number, w: number, h: number, radii?: number | Array\<nu
 
 4. 创建一个(120vp, 120vp)为起点，宽高为100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径及左下矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp的圆角矩形并描边；
 
-5. 创建一个(10vp, 230vp)为起点，宽高为100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp，左下矩形角圆弧半径为40vp的圆角矩形并描边。
+5. 创建一个(10vp, 230vp)为起点，宽高为100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp，左下矩形角圆弧半径为40vp的圆角矩形并描边；
+
+6. 创建一个(220vp, 330vp)为起点，宽高为-100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp，左下矩形角圆弧半径为40vp的圆角矩形并描边。
 
   ```ts
   // xxx.ets
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   @Entry
   @Component
   struct CanvasExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -2090,25 +2095,28 @@ roundRect(x: number, y: number, w: number, h: number, radii?: number | Array\<nu
           .height('100%')
           .backgroundColor('#D5D5D5')
           .onReady(() => {
-            this.context.beginPath()
-            // Create a 100*100 rectangle at (10, 10) and specifies a 10vp radius for all the corners.
-            this.context.roundRect(10, 10, 100, 100, 10)
-            // Create a 100*100 rectangle at (120, 10) and specifies a 10vp radius for all the corners in a list.
-            let radii = [10]
-            this.context.roundRect(120, 10, 100, 100, radii)
-            this.context.fillStyle = '#707070'
-            this.context.fill()
-            this.context.beginPath()
-            // Create a 100*100 rectangle at (10, 120) and specifies [10, 20] for the corners.
-            radii = [10, 20]
-            this.context.roundRect(10, 120, 100, 100, radii)
-            // Create a 100*100 rectangle at (120, 120) and specifies [10, 20, 30] for the corners.
-            radii = [10, 20, 30]
-            this.context.roundRect(120, 120, 100, 100, radii)
-            // Create a 100*100 rectangle at (10, 230) and specifies [10, 20, 30, 40] for the corners.
-            radii = [10, 20, 30, 40]
-            this.context.roundRect(10, 230, 100, 100, radii)
-            this.context.stroke()
+            try {
+              this.context.fillStyle = '#707070'
+              this.context.beginPath()
+              // 创建一个(10vp, 10vp)为起点，宽高为100vp，四个矩形角圆弧半径为10vp的圆角矩形
+              this.context.roundRect(10, 10, 100, 100, 10)
+              // 创建一个(120vp, 10vp)为起点，宽高为100vp，四个矩形角圆弧半径为10vp的圆角矩形
+              this.context.roundRect(120, 10, 100, 100, [10])
+              this.context.fill()
+              this.context.beginPath()
+              // 创建一个(10vp, 120vp)为起点，宽高为100vp，左上矩形角圆弧半径及右下矩形角圆弧半径为10vp，右上矩形角圆弧半径及左下矩形角圆弧半径为20vp的圆角矩形
+              this.context.roundRect(10, 120, 100, 100, [10, 20])
+              // 创建一个(120vp, 120vp)为起点，宽高为100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径及左下矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp的圆角矩形
+              this.context.roundRect(120, 120, 100, 100, [10, 20, 30])
+              // 创建一个(10vp, 230vp)为起点，宽高为100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp，左下矩形角圆弧半径为40vp的圆角矩形
+              this.context.roundRect(10, 230, 100, 100, [10, 20, 30, 40])
+              // 创建一个(220vp, 330vp)为起点，宽高为-100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp，左下矩形角圆弧半径为40vp的圆角矩形
+              this.context.roundRect(220, 330, -100, -100, [10, 20, 30, 40])
+              this.context.stroke()
+            } catch (error) {
+              let e: BusinessError = error as BusinessError;
+              console.error(`Failed to create roundRect. Code: ${e.code}, message: ${e.message}`);
+            }
           })
       }
       .width('100%')
@@ -2706,6 +2714,8 @@ setTransform方法使用的参数和transform()方法相同，但setTransform()�
 
   ![zh-cn_image_0000001238712421](figures/zh-cn_image_0000001238712421.png)
 
+### setTransform
+
 setTransform(transform?: Matrix2D): void
 
 以Matrix2D对象为模板重置现有的变换矩阵并创建新的变换矩阵。
@@ -2895,13 +2905,45 @@ drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number): void
 
 | 参数名  | 类型  | 必填  | 说明 |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
+| image | [ImageBitmap](ts-components-canvas-imagebitmap.md) \| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
 | dx    | number                                   | 是  | 绘制区域左上角在x轴的位置。<br>默认单位：vp|
 | dy    | number                                   | 是  | 绘制区域左上角在y轴的位置。<br>默认单位：vp|
 
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct ImageExample {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    // "common/images/example.jpg"需要替换为开发者所需的图像资源文件
+    private img: ImageBitmap = new ImageBitmap("common/images/example.jpg");
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#D5D5D5')
+          .onReady(() => {
+            this.context.drawImage(this.img, 0, 0)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+
+  ![drawImage](figures/drawImage1.png)
+
+### drawImage
+
 drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number, dw: number, dh: number): void
 
-进行图像绘制。
+将图像拉伸或压缩绘制。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用，卡片中不支持PixelMap对象。
 
@@ -2913,15 +2955,47 @@ drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number, dw: number, dh:
 
 | 参数名  | 类型  | 必填  | 说明 |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
+| image | [ImageBitmap](ts-components-canvas-imagebitmap.md) \| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
 | dx    | number                                   | 是  | 绘制区域左上角在x轴的位置。<br>默认单位：vp|
 | dy    | number                                   | 是  | 绘制区域左上角在y轴的位置。<br>默认单位：vp|
 | dw    | number                                   | 是  | 绘制区域的宽度。当绘制区域的宽度和裁剪图像的宽度不一致时，将图像宽度拉伸或压缩为绘制区域的宽度。<br>默认单位：vp |
 | dh    | number                                   | 是  | 绘制区域的高度。当绘制区域的高度和裁剪图像的高度不一致时，将图像高度拉伸或压缩为绘制区域的高度。<br>默认单位：vp |
 
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct ImageExample {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    // "common/images/example.jpg"需要替换为开发者所需的图像资源文件
+    private img: ImageBitmap = new ImageBitmap("common/images/example.jpg");
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#D5D5D5')
+          .onReady(() => {
+            this.context.drawImage(this.img, 0, 0, 300, 300)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+
+  ![drawImage](figures/drawImage2.png)
+
+### drawImage
+
 drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh: number, dx: number, dy: number, dw: number, dh: number): void
 
-进行图像绘制。
+将图像裁剪后拉伸或压缩绘制。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用，卡片中不支持PixelMap对象。
 
@@ -2933,7 +3007,7 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 
 | 参数名  | 类型  | 必填  | 说明 |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
+| image | [ImageBitmap](ts-components-canvas-imagebitmap.md) \| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
 | sx    | number                                   | 是  | 裁切源图像时距离源图像左上角的x坐标值。<br>image类型为ImageBitmap时，默认单位：vp<br>image类型为PixelMap时，API version 18前，默认单位：px；API version 18及以后，默认单位：vp |
 | sy    | number                                   | 是  | 裁切源图像时距离源图像左上角的y坐标值。<br>image类型为ImageBitmap时，默认单位：vp<br>image类型为PixelMap时，API version 18前，默认单位：px；API version 18及以后，默认单位：vp  |
 | sw    | number                                   | 是  | 裁切源图像时需要裁切的宽度。<br>image类型为ImageBitmap时，默认单位：vp<br>image类型为PixelMap时，API version 18前，默认单位：px；API version 18及以后，默认单位：vp  |
@@ -2950,21 +3024,19 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
   @Entry
   @Component
   struct ImageExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
     // "common/images/example.jpg"需要替换为开发者所需的图像资源文件
-    private img: ImageBitmap = new ImageBitmap("common/images/example.jpg")
+    private img: ImageBitmap = new ImageBitmap("common/images/example.jpg");
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
+          .backgroundColor('#D5D5D5')
           .onReady(() => {
-            this.context.drawImage(this.img, 0, 0)
-            this.context.drawImage(this.img, 0, 150, 300, 100)
-            this.context.drawImage(this.img, 0, 0, 500, 500, 0, 300, 400, 200)
+            this.context.drawImage(this.img, 0, 0, 500, 500, 0, 0, 400, 300)
           })
       }
       .width('100%')
@@ -2973,7 +3045,7 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
   }
   ```
 
-  ![zh-cn_image_0000001194352442](figures/zh-cn_image_0000001194352441.png)
+  ![drawImage](figures/drawImage3.png)
 
 
 ### createImageData
@@ -3001,7 +3073,9 @@ createImageData(sw: number, sh: number): ImageData
 | ---------------------------------------- | ------------- |
 | [ImageData](ts-components-canvas-imagedata.md) | 新的ImageData对象。 |
 
-createImageData(imagedata: ImageData): ImageData
+### createImageData
+
+createImageData(imageData: ImageData): ImageData
 
 根据一个现有的ImageData对象重新创建一个宽、高相同的ImageData对象（不会复制图像数据），请参考[ImageData](ts-components-canvas-imagedata.md)，该接口存在内存拷贝行为，高耗时，应避免频繁使用。createImageData示例同putImageData。
 
@@ -3015,7 +3089,7 @@ createImageData(imagedata: ImageData): ImageData
 
 | 参数名 | 类型  | 必填 | 说明  |
 | --------- | ---------------------------------------- | ---- | ----------------- |
-| imagedata | [ImageData](ts-components-canvas-imagedata.md) | 是 | 现有的ImageData对象。 |
+| imageData | [ImageData](ts-components-canvas-imagedata.md) | 是 | 现有的ImageData对象。 |
 
   **返回值：**
 
@@ -3164,7 +3238,7 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
 ### putImageData
 
-putImageData(imagedata: ImageData, dx: number | string, dy: number | string): void
+putImageData(imageData: ImageData, dx: number | string, dy: number | string): void
 
 使用[ImageData](ts-components-canvas-imagedata.md)数据填充新的矩形区域。
 
@@ -3178,7 +3252,7 @@ putImageData(imagedata: ImageData, dx: number | string, dy: number | string): vo
 
 | 参数名 | 类型 | 必填  | 说明 |
 | ----------- | ---------------------------------------- | ---- | ----------------------------- |
-| imagedata   | [ImageData](ts-components-canvas-imagedata.md) | 是    | 包含像素值的ImageData对象。 |
+| imageData   | [ImageData](ts-components-canvas-imagedata.md) | 是    | 包含像素值的ImageData对象。 |
 | dx          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 填充区域在x轴方向的偏移量。<br>默认单位：vp |
 | dy          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 填充区域在y轴方向的偏移量。<br>默认单位：vp |
 
@@ -3220,7 +3294,7 @@ putImageData(imagedata: ImageData, dx: number | string, dy: number | string): vo
 
 ### putImageData
 
-putImageData(imagedata: ImageData, dx: number | string, dy: number | string, dirtyX: number | string, dirtyY: number | string, dirtyWidth: number | string, dirtyHeight: number | string): void
+putImageData(imageData: ImageData, dx: number | string, dy: number | string, dirtyX: number | string, dirtyY: number | string, dirtyWidth: number | string, dirtyHeight: number | string): void
 
 使用[ImageData](ts-components-canvas-imagedata.md)数据裁剪后填充至新的矩形区域。
 
@@ -3234,7 +3308,7 @@ putImageData(imagedata: ImageData, dx: number | string, dy: number | string, dir
 
 | 参数名 | 类型 | 必填  | 说明 |
 | ----------- | ---------------------------------------- | ---- | ----------------------------- |
-| imagedata   | [ImageData](ts-components-canvas-imagedata.md) | 是    | 包含像素值的ImageData对象。 |
+| imageData   | [ImageData](ts-components-canvas-imagedata.md) | 是    | 包含像素值的ImageData对象。 |
 | dx          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 填充区域在x轴方向的偏移量。<br>默认单位：vp |
 | dy          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 填充区域在y轴方向的偏移量。<br>默认单位：vp |
 | dirtyX      | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 源图像数据矩形裁切范围左上角距离源图像左上角的x轴偏移量。<br>默认单位：vp |
@@ -3863,7 +3937,9 @@ off(type: 'onDetach', callback?: () => void): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
 import { FrameNode } from '@kit.ArkUI'
+
 // xxx.ets
 @Entry
 @Component
@@ -3873,30 +3949,39 @@ struct AttachDetachExample {
   private scroller: Scroller = new Scroller()
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
   private node: FrameNode | null = null
-  private attachCallback: Callback<void> = this.attachFunc.bind(this)
-  private detachCallback: Callback<void> = this.detachFunc.bind(this)
-
-  attachFunc(): void {
+  attachCallback = () => {
     console.info('CanvasRenderingContext2D attached to the canvas frame node.')
     this.node = this.context.canvas
   }
-  detachFunc(): void {
+  detachCallback = () => {
     console.info('CanvasRenderingContext2D detach from the canvas frame node.')
     this.node = null
   }
+
   aboutToAppear(): void {
-    this.context.on('onAttach', this.attachCallback)
-    this.context.on('onDetach', this.detachCallback)
+    try {
+      this.context.on('onAttach', this.attachCallback)
+      this.context.on('onDetach', this.detachCallback)
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error(`Error code: ${e.code}, message: ${e.message}`);
+    }
   }
+
   aboutToDisappear(): void {
-    this.context.off('onAttach')
-    this.context.off('onDetach')
+    try {
+      this.context.off('onAttach')
+      this.context.off('onDetach')
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error(`Error code: ${e.code}, message: ${e.message}`);
+    }
   }
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Scroll(this.scroller) {
-        Flex({ direction: FlexDirection.Column}) {
+        Flex({ direction: FlexDirection.Column }) {
           ForEach(this.arr, (item: number) => {
             Row() {
               if (item == 3) {
@@ -3907,7 +3992,7 @@ struct AttachDetachExample {
                   .onReady(() => {
                     this.context.font = '30vp sans-serif'
                     this.node?.commonEvent.setOnVisibleAreaApproximateChange(
-                      { ratios: [0, 1], expectedUpdateInterval: 10},
+                      { ratios: [0, 1], expectedUpdateInterval: 10 },
                       (isVisible: boolean, currentRatio: number) => {
                         if (!isVisible && currentRatio <= 0.0) {
                           console.info('Canvas is completely invisible.')
@@ -3948,7 +4033,7 @@ struct AttachDetachExample {
 
 startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
-配置并启动AI分析功能，使用前需先[启用图像AI分析能力](ts-components-canvas-canvas.md#enableanalyzer12)。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>未执行完重复调用该方法会触发错误回调。示例代码同stopImageAnalyzer。
+配置并启动AI分析功能，使用Promise异步回调。使用前需先[启用图像AI分析能力](ts-components-canvas-canvas.md#enableanalyzer12)。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>未执行完重复调用该方法会触发错误回调。示例代码同stopImageAnalyzer。
 
 > **说明：**
 > 
@@ -3970,7 +4055,7 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
 | 类型              | 说明                                 |
 | ----------------- | ------------------------------------ |
-| Promise\<void>  | Promise对象，用于获取AI分析是否成功执行。 |
+| Promise\<void>  | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -4066,6 +4151,10 @@ struct ImageAnalyzerExample {
 
 ## CanvasDirection类型说明
 
+type CanvasDirection = "inherit" | "ltr" | "rtl"
+
+定义当前文本方向的类型。取值类型为下表类型中的并集。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -4080,6 +4169,10 @@ struct ImageAnalyzerExample {
 
 ## CanvasFillRule类型说明
 
+type CanvasFillRule = "evenodd" | "nonzero"
+
+定义用于确定点是在路径内还是路径外的填充样式算法的类型。取值类型为下表类型中的并集。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -4092,6 +4185,10 @@ struct ImageAnalyzerExample {
 | nonzero | 非零规则。<br/>此规则通过从画布上的某点向任意方向发射一条射线，并检查图形路径与射线的交点来判断该点是否在图形内部。初始计数为0，为路径的每一段线段指定一个方向值，每当路径从左向右穿过射线时加1，从右向左穿过时减1。如果最终的结果是0，则该点在图形外部，否则在图形内部。 |
 
 ## CanvasLineCap类型说明
+
+type CanvasLineCap = "butt" | "round" | "square"
+
+定义绘制每条线段端点的类型。取值类型为下表类型中的并集。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -4107,6 +4204,10 @@ struct ImageAnalyzerExample {
 
 ## CanvasLineJoin类型说明
 
+type CanvasLineJoin = "bevel" | "miter" | "round"
+
+定义长度不为0的两个连接部分（线段、圆弧和曲线）的类型。取值类型为下表类型中的并集。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -4120,6 +4221,10 @@ struct ImageAnalyzerExample {
 | round | 在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。              |
 
 ## CanvasTextAlign类型说明
+
+type CanvasTextAlign = "center" | "end" | "left" | "right" | "start"
+
+定义文本对齐方式的类型。取值类型为下表类型中的并集。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -4137,6 +4242,10 @@ struct ImageAnalyzerExample {
 
 ## CanvasTextBaseline类型说明
 
+type CanvasTextBaseline = "alphabetic" | "bottom" | "hanging" | "ideographic" | "middle" | "top"
+
+定义文本基线类型。取值类型为下表类型中的并集。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -4153,6 +4262,10 @@ struct ImageAnalyzerExample {
 | top         | 文本基线在文本块的顶部。                             |
 
 ## ImageSmoothingQuality类型说明
+
+type ImageSmoothingQuality = "high" | "low" | "medium"
+
+定义图片平滑度类型。取值类型为下表类型中的并集。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -4189,3 +4302,37 @@ struct ImageAnalyzerExample {
 | fontBoundingBoxDescent   | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到渲染文本的所有字体的矩形边界最底部的距离。 |
 | hangingBaseline          | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到线框的 hanging 基线的距离。 |
 | ideographicBaseline      | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到线框的 ideographic 基线的距离。 |
+
+## RenderingContextSettings
+
+用来配置CanvasRenderingContext2D对象的参数，包括是否开启抗锯齿。
+
+### constructor
+
+constructor(antialias?: boolean)
+
+构造CanvasRenderingContext2D对象，支持配置开启抗锯齿。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名       | 类型    | 必填   | 说明                          |
+| --------- | ------- | ---- | ----------------------------- |
+| antialias | boolean | 否    | 表明canvas是否开启抗锯齿。<br>默认值：false，表示不开启抗锯齿功能。 |
+
+### 属性
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型   | 只读 | 可选 | 说明 |
+| ------ | -------- | --------- | ---------- | ------------------------------ |
+| antialias | boolean | 否 | 是 | 表明canvas是否开启抗锯齿。<br>默认值：false，表示不开启抗锯齿功能。 |
