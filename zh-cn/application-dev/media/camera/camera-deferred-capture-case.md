@@ -84,7 +84,7 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput, context: Context): vo
     // 调用媒体库落盘接口保存一阶段低质量图，二阶段真图就绪后媒体库会主动帮应用替换落盘图片。
     mediaLibSavePhoto(photoAsset, getPhotoAccessHelper(context));
     // 调用媒体库接口注册低质量图或高质量图buffer回调，自定义处理。
-    mediaLibRequestBuffer(photoAsset, context);
+    // mediaLibRequestBuffer(photoAsset, context);
   });
 }
 

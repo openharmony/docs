@@ -25,7 +25,7 @@ import { camera } from '@kit.CameraKit';
 
 enableMacro(enabled: boolean): void
 
-使能当前的微距能力，需要在支持微距能力的情况下进行调用。
+使能当前的微距能力，需要通过[isMacroSupported](arkts-apis-camera-MacroQuery.md#ismacrosupported19)接口查询支持的微距能力范围。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
