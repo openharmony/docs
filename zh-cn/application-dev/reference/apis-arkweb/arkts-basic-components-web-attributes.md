@@ -152,18 +152,18 @@ javaScriptProxy(javaScriptProxy: JavaScriptProxy)
     }
 
     test(data1: string, data2: string, data3: string): string {
-      console.log("data1:" + data1);
-      console.log("data2:" + data2);
-      console.log("data3:" + data3);
+      console.info("data1:" + data1);
+      console.info("data2:" + data2);
+      console.info("data3:" + data3);
       return "AceString";
     }
 
     asyncTest(data: string): void {
-      console.log("async data:" + data);
+      console.info("async data:" + data);
     }
 
     toString(): void {
-      console.log('toString' + "interface instead.");
+      console.info('toString' + "interface instead.");
     }
   }
 
@@ -2372,10 +2372,10 @@ onAdsBlocked(callback: OnAdsBlockedCallback)
         Web({ src: 'https://www.example.com', controller: this.controller })
         .onAdsBlocked((details: AdsBlockedDetails) => {
           if (details) {
-            console.log(' Blocked ' + details.adsBlocked.length + ' in ' + details.url);
+            console.info(' Blocked ' + details.adsBlocked.length + ' in ' + details.url);
             let adList: Array<string> = Array.from(new Set(details.adsBlocked));
             this.totalAdsBlockCounts += adList.length;
-            console.log('Total blocked counts :' + this.totalAdsBlockCounts);
+            console.info('Total blocked counts :' + this.totalAdsBlockCounts);
           }
         })
       }
