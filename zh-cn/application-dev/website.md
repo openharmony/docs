@@ -38,6 +38,7 @@
       - [集成态HSP](quick-start/integrated-hsp.md)
       - [HAR转HSP指导](quick-start/har-to-hsp.md)
       - [HSP转HAR指导](quick-start/hsp-to-har.md)
+      - [HAP转HAR指导](quick-start/hap-to-har.md)
       - [创建应用静态快捷方式](quick-start/typical-scenario-configuration.md)
       - [创建应用分身](quick-start/app-clone.md)
       - [创建应用多实例](quick-start/multiInstance.md)
@@ -878,6 +879,7 @@
             - [ArkTS卡片界面开发概述](form/arkts-ui-widget-page-overview.md)
             - [ArkTS卡片为组件添加动效](form/arkts-ui-widget-page-animation.md)
             - [ArkTS卡片使用画布组件绘制自定义图形](form/arkts-ui-widget-page-custom-drawing.md)
+            - [ArkTS卡片界面适配深浅色模式](form/arkts-ui-widget-dark-light-color-adapt.md)
           - ArkTS卡片页面刷新<!--arkts-ui-widget-interaction-->
             - [ArkTS卡片页面刷新概述](form/arkts-ui-widget-interaction-overview.md)
             - [ArkTS卡片主动刷新](form/arkts-ui-widget-active-refresh.md)
@@ -1386,6 +1388,7 @@
           - [串行队列(C++)](ffrt/ffrt-concurrency-serial-queue-cpp.md)
           - [并发队列(C++)](ffrt/ffrt-concurrency-concurrent-queue-cpp.md)
           - [图依赖并发(C++)](ffrt/ffrt-concurrency-graph-cpp.md)
+          - [任务伙伴(C++)](ffrt/ffrt-concurrency-job-partner-cpp.md)
         - [Function Flow Runtime开发指导](ffrt/ffrt-development-guideline.md)
         - [Function Flow Runtime C API](ffrt/ffrt-api-guideline-c.md)
       - Input Kit（多模输入服务）<!--input-kit-->
@@ -1405,6 +1408,7 @@
         - [MDM Kit简介](mdm/mdm-kit-intro.md)
         - [MDM Kit开发指南](mdm/mdm-kit-guide.md)
         - [EnterpriseAdminExtensionAbility开发指南](mdm/mdm-kit-admin.md)
+        - [MDM Kit术语](mdm/mdm-kit-term.md)
     - 硬件<!--system-hardware-->
       - Driver Development Kit（驱动开发服务）<!--driver-development-kit-->
         - [Driver Development Kit简介](device/driver/driverdevelopment-overview.md)
@@ -2164,8 +2168,8 @@
           - [@ohos.app.ability.EmbeddedUIExtensionAbility (跨进程界面嵌入扩展能力)](reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)
           - [@ohos.app.ability.EnvironmentCallback (系统环境变化监听器)](reference/apis-ability-kit/js-apis-app-ability-environmentCallback.md)
           - [@ohos.app.ability.ExtensionAbility (扩展能力基类)](reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)
-          - [@ohos.app.ability.insightIntent (意图调用基础能力)](reference/apis-ability-kit/js-apis-app-ability-insightIntent.md)
-          - [@ohos.app.ability.InsightIntentContext (意图调用执行上下文)](reference/apis-ability-kit/js-apis-app-ability-insightIntentContext.md)
+          - [@ohos.app.ability.insightIntent (意图框架基础定义)](reference/apis-ability-kit/js-apis-app-ability-insightIntent.md)
+          - [@ohos.app.ability.InsightIntentContext (意图执行上下文)](reference/apis-ability-kit/js-apis-app-ability-insightIntentContext.md)
           - [@ohos.app.ability.InsightIntentDecorator (意图装饰器定义)](reference/apis-ability-kit/js-apis-app-ability-InsightIntentDecorator.md)
           - [@ohos.app.ability.InsightIntentEntryExecutor (@InsightIntentEntry的意图调用执行基类)](reference/apis-ability-kit/js-apis-app-ability-InsightIntentEntryExecutor.md)
           - [@ohos.app.ability.InsightIntentExecutor (意图调用执行基类)](reference/apis-ability-kit/js-apis-app-ability-insightIntentExecutor.md)
@@ -2190,7 +2194,7 @@
           - [@ohos.app.ability.autoStartupManager(autoStartupManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-autoStartupManager-sys.md)
           - [@ohos.app.ability.common (Ability公共模块)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-common-sys.md)
           - [@ohos.app.ability.dialogSession (dialogSession)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-dialogSession-sys.md)
-          - [@ohos.app.ability.insightIntent (insightIntent)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-insightIntent-sys.md)
+          - [@ohos.app.ability.insightIntent (意图框架基础定义)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-insightIntent-sys.md)
           - [@ohos.app.ability.insightIntentDriver (执行意图调用)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-insightIntentDriver-sys.md)
           - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)
           - [@ohos.app.ability.StartOptions (StartOptions)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-startOptions-sys.md)
@@ -2272,7 +2276,7 @@
             - [AbilityStageMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md)
             - [AbilityStartCallback](reference/apis-ability-kit/js-apis-inner-application-abilityStartCallback.md)
             - [AbilityStateData](reference/apis-ability-kit/js-apis-inner-application-abilityStateData.md)
-            - [ApplicationContext (应用级别的上下文)](reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)
+            - [ApplicationContext (应用上下文)](reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)
             - [ApplicationStateObserver](reference/apis-ability-kit/js-apis-inner-application-applicationStateObserver.md)
             - [AppServiceExtensionContext (应用后台服务扩展组件上下文)](reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md)
             - [AppStateData](reference/apis-ability-kit/js-apis-inner-application-appStateData.md)
@@ -2878,6 +2882,7 @@
           - 手势控制<!--gesture-control-->
             - [自定义手势判定](reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md)
             - [手势拦截增强](reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md)
+          - [手势公共接口](reference/apis-arkui/arkui-ts/ts-gesture-common.md)
         - 行列与堆叠<!--rows-columns-and-stacking-->
           - [Flex](reference/apis-arkui/arkui-ts/ts-container-flex.md)
           - [Column](reference/apis-arkui/arkui-ts/ts-container-column.md)
@@ -4788,8 +4793,8 @@
     - AVCodec Kit（音视频编解码服务）<!--avcodec-api-->
       - C API<!--avcodec-c-->
         - 模块<!--avcodec-module-->
-          - [AudioCodec](reference/apis-avcodec-kit/_audio_codec.md)
-          - [AVCapability](reference/apis-avcodec-kit/_a_v_capability.md)
+          - [AVCapability](reference/apis-avcodec-kit/capi-avcapability.md)
+          - [AudioCodec](reference/apis-avcodec-kit/capi-audiocodec.md)
           - [AVDemuxer](reference/apis-avcodec-kit/_a_v_demuxer.md)
           - [AVMuxer](reference/apis-avcodec-kit/_a_v_muxer.md)
           - [AVSource](reference/apis-avcodec-kit/_a_v_source.md)
@@ -4799,12 +4804,12 @@
           - [VideoEncoder](reference/apis-avcodec-kit/_video_encoder.md)
           - [Multimedia_Drm](reference/apis-avcodec-kit/_multimedia___drm.md)
         - 头文件<!--avcodec-headerfile-->
+          - [native_avcapability.h](reference/apis-avcodec-kit/capi-native-avcapability-h.md)
+          - [native_avcodec_audiocodec.h](reference/apis-avcodec-kit/capi-native-avcodec-audiocodec-h.md)
           - [media_types.h](reference/apis-avcodec-kit/media__types_8h.md)
           - [native_audio_channel_layout.h](reference/apis-avcodec-kit/native__audio__channel__layout_8h.md)
           - [native_avbuffer.h](reference/apis-avcodec-kit/native__avbuffer_8h.md)
           - [native_avbuffer_info.h](reference/apis-avcodec-kit/native__avbuffer__info_8h.md)
-          - [native_avcapability.h](reference/apis-avcodec-kit/native__avcapability_8h.md)
-          - [native_avcodec_audiocodec.h](reference/apis-avcodec-kit/native__avcodec__audiocodec_8h.md)
           - [native_avcodec_base.h](reference/apis-avcodec-kit/native__avcodec__base_8h.md)
           - [native_avcodec_videodecoder.h](reference/apis-avcodec-kit/native__avcodec__videodecoder_8h.md)
           - [native_avcodec_videoencoder.h](reference/apis-avcodec-kit/native__avcodec__videoencoder_8h.md)
@@ -4816,12 +4821,14 @@
           - [native_avsource.h](reference/apis-avcodec-kit/native__avsource_8h.md)
           - [native_cencinfo.h](reference/apis-avcodec-kit/native__cencinfo_8h.md)
         - 结构体<!--avcodec-struct-->
+          - [OH_AVRange](reference/apis-avcodec-kit/capi-avcapability-oh-avrange.md)
+          - [OH_AVCapability](reference/apis-avcodec-kit/capi-avcapability-oh-avcapability.md)
+          - [MediaKeySession](reference/apis-avcodec-kit/capi-audiocodec-mediakeysession.md)
           - [OH_AVCodecAsyncCallback](reference/apis-avcodec-kit/_o_h___a_v_codec_async_callback.md)
           - [OH_AVCodecBufferAttr](reference/apis-avcodec-kit/_o_h___a_v_codec_buffer_attr.md)
           - [OH_AVCodecCallback](reference/apis-avcodec-kit/_o_h___a_v_codec_callback.md)
           - [OH_AVDataSource](reference/apis-avcodec-kit/_o_h___a_v_data_source.md)
           - [OH_AVDataSourceExt](reference/apis-avcodec-kit/_o_h___a_v_data_source_ext.md)
-          - [OH_AVRange](reference/apis-avcodec-kit/_o_h___a_v_range.md)
           - [DrmSubsample](reference/apis-avcodec-kit/_drm_subsample.md)
         - 已停止维护的接口<!--avcodec-arkts-dep-->
           - 模块<!--avcodec-module-arkts-dep-->

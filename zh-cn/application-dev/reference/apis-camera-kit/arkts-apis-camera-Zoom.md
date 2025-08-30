@@ -123,7 +123,7 @@ setSmoothZoom(targetRatio: number, mode?: SmoothZoomMode): void
 
 | 参数名       | 类型            | 必填 | 说明               |
 | ------------ | -------------- | ---- | ----------------- |
-| targetRatio  | number         | 是   | 目标值。      |
+| targetRatio  | number         | 是   | 目标值。通过[getZoomRatioRange](arkts-apis-camera-ZoomQuery.md#getzoomratiorange11)获取支持的变焦范围，如果设置超过支持范围的值，则只保留精度范围内的数值。      |
 | mode         | [SmoothZoomMode](arkts-apis-camera-e.md#smoothzoommode11) | 否   | 模式。      |
 
 **示例：**

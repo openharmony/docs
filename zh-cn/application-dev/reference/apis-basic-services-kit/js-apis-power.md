@@ -188,3 +188,14 @@ power.isScreenOn()
 | MODE_PERFORMANCE        | 602  | 表示性能模式。         |
 | MODE_EXTREME_POWER_SAVE | 603  | 表示超级省电模式。     |
 | MODE_CUSTOM_POWER_SAVE<sup>20+</sup>  | 650  | 表示自定义省电模式。     |
+
+## PowerKeyFilteringStrategy<sup>21+</sup>
+
+表示电源键过滤策略。
+
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+| 名称                    | 值   | 说明                   |
+| ----------------------- | ---- | ---------------------- |
+| DISABLE_LONG_PRESS_FILTERING | 0  | 表示不使能电源键过滤策略，默认值。 |
+| LONG_PRESS_FILTERING_ONCE | 1  | 表示仅过滤当前电源键长按事件，下一次不过滤。 |

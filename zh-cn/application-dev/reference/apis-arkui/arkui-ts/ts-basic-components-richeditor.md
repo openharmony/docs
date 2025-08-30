@@ -1127,7 +1127,7 @@ selectionStart和selectionEnd均为-1时表示全选，均为0时可以清空选
 | -------------- | ------ | ---- | ------- |
 | selectionStart | number | 是    | 选中开始位置。 |
 | selectionEnd   | number | 是    | 选中结束位置。 |
-| options<sup>12+</sup>   | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选择项配置。 |
+| options<sup>12+</sup>   | [SelectionOptions](ts-universal-attributes-text-style.md#selectionoptions12对象说明) | 否    | 选择项配置。 |
 
 ### isEditing<sup>12+</sup>
 
@@ -1913,7 +1913,7 @@ RichEditor span信息。
 | 名称          | 类型            | 只读 | 可选   | 说明            |
 | ----------- | ---------- | ---- | ------|------- |
 | onClick    | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)\> | 否 | 是    | [ClickEvent](ts-universal-events-click.md#clickevent对象说明)为用户点击事件。<br/>点击完成时回调事件。<br/>双击时，第一次点击触发回调事件。|
-| onLongPress | Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)\>  | 否 | 是    | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)为用户长按事件。<br/>长按完成时回调事件。 |
+| onLongPress | Callback\<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)\>  | 否 | 是    | [GestureEvent](ts-gesture-common.md#gestureevent对象说明)为用户长按事件。<br/>长按完成时回调事件。 |
 
 ## KeyboardOptions<sup>12+</sup>
 

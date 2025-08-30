@@ -449,7 +449,7 @@ Image($r('sys.media.ohos_app_icon'))
 
 **示例**
 
-以获取非当前系统语言的资源为例，说明如何获取指定配置的资源。假设工程中定义了中文、英文、德文的同名资源如下：
+以获取非当前系统语言的资源为例，说明如何获取指定配置的资源。假设工程中定义了中文、英文、日文的同名资源如下：
 
 - entry/src/main/resources/zh_CN/element/string.json
 
@@ -477,14 +477,14 @@ Image($r('sys.media.ohos_app_icon'))
 }
 ```
 
-- entry/src/main/resources/de_DE/element/string.json
+- entry/src/main/resources/ja_JP/element/string.json
 
 ```json
 {
   "string": [
     {
       "name": "greetings",
-      "value": "Hallo, Welt"
+      "value": "こんにちは、世界"
     }
   ]
 }
@@ -494,6 +494,7 @@ Image($r('sys.media.ohos_app_icon'))
 
 ```ts
 import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -519,8 +520,8 @@ struct Index {
       let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig);
       this.englishString = overrideResMgr.getStringSync(resId);
 
-      //获取符合当前系统颜色模式、分辨率等配置的德文资源
-      overrideConfig.locale = "de_DE"; //指定资源的语言为德语，地区为德国
+      //获取符合当前系统颜色模式、分辨率等配置的日文资源
+      overrideConfig.locale = "ja_JP"; //指定资源的语言为日文，地区为日本
       overrideResMgr.updateOverrideConfiguration(overrideConfig); //等效于resMgr.updateOverrideConfiguration(overrideConfig)
       this.germanString = overrideResMgr.getStringSync(resId);
     } catch (err) {
@@ -555,15 +556,14 @@ struct Index {
 
 overlay是一种资源替换机制，针对不同品牌、产品的显示风格，开发者可以在不重新打包HAP的情况下，通过配置和使用overlay资源包，实现应用界面风格变换。overlay资源包只包含资源文件、资源索引文件和配置文件。
 
-该功能默认使能，使能及去使能请参考[包管理接口](../reference/apis-ability-kit/js-apis-overlay.md)。
-
 ### 动态overlay使用方式
 
-1、对应的overlay资源包需要放在对应应用安装路径下，通过`hdc install`的方式安装。如应用`com.example.overlay`的安装路径为`data/app/el1/bundle/public/com.example.overlay/`。
-
-2、应用通过[addResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#addresource10)，实现资源覆盖；通过[removeResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#removeresource10)，实现overlay删除。overlay资源路径需经过元能力的getContext().bundleCodeDir获取此应用对应的沙箱根目录，由应用的沙箱根目录与overlay资源包名称拼接而成。如：`let path = getContext().bundleCodeDir + "overlay资源包名称"`，其对应沙箱路径为`/data/storage/el1/bundle/overlay资源包名称`。
+1. 对应的overlay资源包需要放在对应应用安装路径下。如应用`com.example.overlay`的安装路径为`data/app/el1/bundle/public/com.example.overlay/`。
+2. 应用通过[addResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#addresource10)，实现资源覆盖；通过[removeResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#removeresource10)，实现overlay删除。overlay资源路径需经过元能力的getContext().bundleCodeDir获取此应用对应的沙箱根目录，由应用的沙箱根目录与overlay资源包名称拼接而成。如：`let path = getContext().bundleCodeDir + "overlay资源包名称"`，其对应沙箱路径为`/data/storage/el1/bundle/overlay资源包名称`。
 
 ### 静态overlay配置方式
+
+该功能默认使能，使能及去使能请参考[包管理接口](../reference/apis-ability-kit/js-apis-overlay.md)。
 
 包内overlay资源包中的配置文件app.json5中支持的字段：
 ```json

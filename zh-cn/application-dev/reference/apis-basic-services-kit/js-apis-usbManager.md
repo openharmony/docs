@@ -892,12 +892,6 @@ usbCancelTransfer(transfer: UsbDataTransferParams): void
 | -------- | -------- | -------- | -------- |
 | transfer | [UsbDataTransferParams](#usbdatatransferparams18) | 是 | 在取消传输的接口中，只需要填充USBDevicePipe和endpoint即可。|
 
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| &lt;void&gt; | 无。 |
-
 **错误码：**
 
 以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。

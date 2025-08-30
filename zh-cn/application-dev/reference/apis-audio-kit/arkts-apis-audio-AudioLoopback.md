@@ -223,3 +223,129 @@ audioLoopback.enable(true).then((isSuccess) => {
   console.error(`ERROR: ${err}`);
 });
 ```
+
+## setReverbPreset<sup>21+</sup>
+
+setReverbPreset(preset: AudioLoopbackReverbPreset): boolean
+
+设置音频返听器的混响模式。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                |
+| :----- | :----- | :--- | :-------------------------------------------------- |
+| preset   | [AudioLoopbackReverbPreset](arkts-apis-audio-e.md#audioloopbackreverbpreset21) | 是   | 混响模式。 |
+
+**返回值：**
+
+| 类型                                              | 说明                                |
+| :------------------------------------------------ | :---------------------------------- |
+| boolean | 返回混响模式是否设置成功。true表示成功，false表示不成功。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------|
+| 6800101 | Parameter verification failed. |
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+  audioLoopback.setReverbPreset(audio.AudioLoopbackReverbPreset.THEATER);
+} catch (err) {
+  console.error(`setReverbPreset :ERROR: ${err}`);
+}
+```
+
+## getReverbPreset<sup>21+</sup>
+
+getReverbPreset(): AudioLoopbackReverbPreset
+
+获取当前音频返听器的混响模式。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型                                              | 说明                                |
+| :------------------------------------------------ | :---------------------------------- |
+| [AudioLoopbackReverbPreset](arkts-apis-audio-e.md#audioloopbackreverbpreset21) | 返回当前音频返听器的混响模式。<br>在没有被修改的情况下，默认的混响模式是THEATER。|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+  let reverbPreset = audioLoopback.getReverbPreset();
+} catch (err) {
+  console.error(`getReverbPreset:ERROR: ${err}`);
+}
+```
+
+## setEqualizerPreset<sup>21+</sup>
+
+setEqualizerPreset(preset: AudioLoopbackEqualizerPreset): boolean
+
+设置音频返听器的均衡器类型。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                |
+| :----- | :----- | :--- | :-------------------------------------------------- |
+| preset   | [AudioLoopbackEqualizerPreset](arkts-apis-audio-e.md#audioloopbackequalizerpreset21) | 是   | 均衡器类型。 |
+
+**返回值：**
+
+| 类型                                              | 说明                                |
+| :------------------------------------------------ | :---------------------------------- |
+| boolean | 返回均衡器类型是否设置成功。true表示成功，false表示不成功。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------|
+| 6800101 | Parameter verification failed. |
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+  audioLoopback.setEqualizerPreset(audio.AudioLoopbackEqualizerPreset.FULL);
+} catch (err) {
+  console.error(`setEqualizerPreset :ERROR: ${err}`);
+}
+```
+
+## getEqualizerPreset<sup>21+</sup>
+
+getEqualizerPreset(): AudioLoopbackEqualizerPreset
+
+获取当前音频返听器的均衡器类型。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型                                              | 说明                                |
+| :------------------------------------------------ | :---------------------------------- |
+| [AudioLoopbackEqualizerPreset](arkts-apis-audio-e.md#audioloopbackequalizerpreset21) | 返回当前音频返听器的均衡器类型。<br>在没有被修改的情况下，默认的均衡器类型是FULL。|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+  let reverbPreset = audioLoopback.getEqualizerPreset();
+} catch (err) {
+  console.error(`getEqualizerPreset:ERROR: ${err}`);
+}
+```
