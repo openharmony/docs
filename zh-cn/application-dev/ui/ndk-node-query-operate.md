@@ -463,9 +463,9 @@ nodeAPI->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
 
 ![moveToNativeDemo](figures/moveToNativeDemo.gif)
 
-## 在当前帧触发节点属性更新
+## 在当前即时帧触发节点属性更新
 
-从API version 21开始，使用[OH_ArkUI_NativeModule_InvalidateAttributes](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_nativemodule_invalidateattributes)接口，可触发节点更新，避免组件切换过程中出现闪烁。
+从API version 21开始，使用[OH_ArkUI_NativeModule_InvalidateAttributes](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_nativemodule_invalidateattributes)接口，在当前帧即时触发节点属性更新，避免组件切换过程中出现闪烁。
 
 1. ArkTS侧接入Native组件。
     ```ts
@@ -494,9 +494,9 @@ nodeAPI->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
       build() {
         Row() {
           Column() {
-            Button("show parent").onClick(()=>{
-              this.showParent = !this.showParent;
-            })
+             Button("切换").onClick(()=>{
+                 this.showParent = !this.showParent;
+             }).margin(20)
             if(this.showParent) {
               ImageContent()
             } else {

@@ -2210,10 +2210,11 @@ getNodePropertyValue(property: AnimationPropertyType): number[]
 
 invalidateAttributes(): void
 
-在当前帧触发节点属性更新。<br/>
+在当前帧触发节点属性更新。
 
-当前节点的属性在构建阶段之后被修改，这些改动不会立即生效，而是会延迟到下一帧统一处理。<br/>
-此功能强制当前帧内的即时节点更新，确保同步应用渲染效果。
+当前节点的属性在构建阶段后被修改，这些改动不会立即生效，而是延迟到下一帧统一处理。
+
+此功能强制当前帧内即时节点更新，确保同步应用渲染效果。
 
 **原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
 
@@ -2221,7 +2222,7 @@ invalidateAttributes(): void
 
 **示例：** 
 
- 从API version 21开始，通过if else动态切换两个节点，并且在节点创建时调用invalidateAttributes触发节点属性更新,避免组件切换过程中出现闪烁。
+  从API version 21开始，通过if else动态切换两个节点，并且在节点创建时调用invalidateAttributes即时触发节点属性更新，避免组件切换过程中出现闪烁。
  
  ```ts
  //index.ets
