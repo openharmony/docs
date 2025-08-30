@@ -301,7 +301,7 @@ struct Index {
 7
 ```
 
-单击replace entire arr后，屏幕将显示以下信息。
+点击replace entire arr后，屏幕将显示以下信息。
 
 ```
 3
