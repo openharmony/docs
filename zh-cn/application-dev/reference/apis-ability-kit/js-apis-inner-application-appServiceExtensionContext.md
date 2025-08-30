@@ -175,7 +175,9 @@ let commRemote: rpc.IRemoteObject | null = null; // 断开连接时需要释放
 const TAG: string = '[AppServiceExtensionAbility]';
 
 export default class AppServiceExtension extends AppServiceExtensionAbility {
-  onCreate(want: Want) {
+  connection: number = 0;
+
+  onCreate(localWant: Want) {
     let want: Want = {
       bundleName: 'com.example.myapp',
       abilityName: 'MyAbility'
@@ -192,25 +194,28 @@ export default class AppServiceExtension extends AppServiceExtensionAbility {
         hilog.error(0x0000, TAG, '----------- onFailed -----------');
       }
     };
-    let connection: number;
+
 
     try {
-      connection = this.context.connectServiceExtensionAbility(want, callback);
-      this.context.disconnectServiceExtensionAbility(connection).then(() => {
-        commRemote = null;
-        // 执行正常业务
-        hilog.info(0x0000, TAG, '----------- disconnectServiceExtensionAbility success -----------');
-      })
-      .catch((error: BusinessError) => {
-        commRemote = null;
-        // 处理业务逻辑错误
-        hilog.error(0x0000, TAG, `disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
-      });
+      this.connection = this.context.connectServiceExtensionAbility(want, callback);
     } catch (paramError) {
       commRemote = null;
       // 处理入参错误异常
       hilog.error(0x0000, TAG, `error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
+  }
+
+  onDestroy(): void {
+    this.context.disconnectServiceExtensionAbility(this.connection).then(() => {
+      commRemote = null;
+      // 执行正常业务
+      hilog.info(0x0000, TAG, '----------- disconnectServiceExtensionAbility success -----------');
+    })
+      .catch((error: BusinessError) => {
+        commRemote = null;
+        // 处理业务逻辑错误
+        hilog.error(0x0000, TAG, `disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
+      });
   }
 }
 ```
