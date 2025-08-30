@@ -48,7 +48,7 @@ static OH_ImageReceiverOptions* options = nullptr;
 static void OnCallback(OH_ImageReceiverNative *receiver)
 {
     // callback回调处理接收到的图像数据。
-    OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer avaliable.");
+    OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer available.");
 
     // 读取 OH_ImageReceiverNative 的下一个图片对象。
     OH_ImageNative* image = nullptr;
