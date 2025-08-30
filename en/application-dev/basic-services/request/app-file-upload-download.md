@@ -16,7 +16,7 @@ You can use **uploadFile()** in [ohos.request](../../reference/apis-basic-servic
 >
 > · Currently, only files in the **cacheDir** directory can be uploaded using **request.uploadFile**; user public files and files in the **cacheDir** directory can be uploaded together using **request.agent**.
 >
-> · The ohos.permission.INTERNET permission is required for using **ohos.request**. For details about how to request the permission, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+> · The ohos.permission.INTERNET permission is required for using **ohos.request**. For details about how to request the permission, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
 >
 > · The **ohos.request** module does not support proxy packet capture tools such as Charles and Fiddler.
 >
@@ -568,7 +568,7 @@ struct Index {
 
 ## Configuring Task Speed Limit and Timeout
 
-You can use the APIs of the [ohos.request](upload and download) (../../reference/apis-basic-services-kit/js-apis-request.md) module to upload local files or download network resource files. To set the task speed limit and duration, the [setMaxSpeed](../../reference/apis-basic-services-kit/js-apis-request.md#setmaxspeed18) API is available since API version 18 and the minimum speed and timeout parameters are available in the [request.agent.create](../../reference/apis-basic-services-kit/js-apis-request.md#requestagentcreate10-1) API since API version 20.
+You can use the APIs of the [ohos.request](../../reference/apis-basic-services-kit/js-apis-request.md) module to upload local files or download network resource files. To set the task speed limit and duration, the [setMaxSpeed](../../reference/apis-basic-services-kit/js-apis-request.md#setmaxspeed18) API is available since API version 18 and the minimum speed and timeout parameters are available in the [request.agent.create](../../reference/apis-basic-services-kit/js-apis-request.md#requestagentcreate10-1) API since API version 20.
 
 The following sample code shows how to configure the speed and timeout of a download task:
 

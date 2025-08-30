@@ -194,7 +194,7 @@ CommonEvent_SubscribeInfo* CreateSubscribeInfo(const char* events[], int32_t eve
    }
    ```
 
-   Create a subscriber through [OH_CommonEvent_CreateSubscriber](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_createsubscriber), and pass in [CommonEvent_SubscribeInfo](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md# structure) and the **OnReceive** function defined in step 4.
+   Create a subscriber through [OH_CommonEvent_CreateSubscriber](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_createsubscriber), and pass in [CommonEvent_SubscribeInfo](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#structs) and the **OnReceive** function defined in step 4.
 
    ```c++
    // Create a subscriber.

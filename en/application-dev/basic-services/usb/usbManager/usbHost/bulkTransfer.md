@@ -160,7 +160,7 @@ Connect a host to a device and use the **bulkTransfer** API to transfer data. Th
 
 > Before data transfer, you are advised to obtain the **type** of the **endpoint** to which the **interface** belongs and determine whether the **interface** supports the required transfer type.
 >
-> If the transfer API fails to be called, check whether the device interface supports [alternateSetting](../../../../reference/apis-basic-services-kit/js-apis-usbManager.md#usbinterface). If it is supported, you can call [usbManager.setInterface](../../../../ reference/apis-basic-services-kit/js-apis-usbManager.md#usbmanagersetinterface) to reset the **interface** before data transfer to match the endpoint with the transfer type, ensuring normal communications.
+> If the transfer API fails to be called, check whether the device interface supports [alternateSetting](../../../../reference/apis-basic-services-kit/js-apis-usbManager.md#usbinterface). If it is supported, you can call [usbManager.setInterface](../../../../reference/apis-basic-services-kit/js-apis-usbManager.md#usbmanagersetinterface) to reset the **interface** before data transfer to match the endpoint with the transfer type, ensuring normal communications.
 
     ```ts
     /*
