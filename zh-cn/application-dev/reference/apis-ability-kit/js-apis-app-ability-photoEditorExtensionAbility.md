@@ -1,4 +1,4 @@
-# @ohos.app.ability.PhotoEditorExtensionAbility (图片编辑能力)
+# @ohos.app.ability.PhotoEditorExtensionAbility (支持图片编辑能力的ExtensionAbility组件)
 
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
@@ -8,6 +8,8 @@
 <!--Adviser: @huipeizi-->
 
 PhotoEditorExtensionAbility继承自[ExtensionAbility](js-apis-app-ability-extensionAbility.md)，开发者可通过PhotoEditorExtensionAbility实现图片编辑扩展页面。应用通过[startAbilityByType](js-apis-inner-application-uiAbilityContext.md#startability)拉起图片编辑类应用扩展面板后，由用户在面板上选择实现了PhotoEditorExtensionAbility的图片编辑扩展页面并拉起该页面。
+
+![Targetapp_PhotoEditorExtensionAbility](figures/photoeditor_demo.jpg)
 
 > **说明：**
 > 
@@ -29,13 +31,13 @@ import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
 
 |  名称 |类型   |只读   |可选   |说明   |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|  context | [PhotoEditorExtensionContext](./js-apis-app-ability-photoEditorExtensionContext.md)  | 否  | 是  | 上下文  |
+|  context | [PhotoEditorExtensionContext](./js-apis-app-ability-photoEditorExtensionContext.md)  | 否  | 否  | PhotoEditorExtensionAbility的上下文，提供保存图片能力  |
 
-### onCreate
+### PhotoEditorExtensionAbility.onCreate
 
 onCreate(): void
 
-PhotoEditorExtensionAbility创建时回调，执行初始化业务逻辑操作。
+当PhotoEditorExtensionAbility创建时，系统会触发该回调，开发者可以在该回调内执行初始化业务逻辑操作。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -56,11 +58,11 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 ```
 
-### onStartContentEditing
+### PhotoEditorExtensionAbility.onStartContentEditing
 
 onStartContentEditing(uri: string, want: Want, session: UIExtensionContentSession): void
 
-当PhotoEditorExtensionAbility界面内容对象创建后调用，可以执行读取原始图片、加载页面等操作。
+当实现PhotoEditorExtensionAbility的图片编辑扩展界面内容对象创建时，系统会触发该回调，开发者可以在该回调内执行读取原始图片、加载页面等操作。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -89,11 +91,11 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 ```
 
-### onForeground
+###  PhotoEditorExtensionAbility.onForeground
 
 onForeground(): void
 
-PhotoEditorExtensionAbility生命周期回调，当PhotoEditorExtensionAbility从后台转到前台时触发。
+当PhotoEditorExtensionAbility从后台转到前台时，系统会触发该生命周期回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -114,11 +116,11 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 ```
 
-### onBackground
+###  PhotoEditorExtensionAbility.onBackground
 
 onBackground(): void
 
-PhotoEditorExtensionAbility生命周期回调，当PhotoEditorExtensionAbility从前台转到后台时触发。
+当PhotoEditorExtensionAbility从前台转到后台时，系统会触发该生命周期回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -139,7 +141,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 ```
 
-### onDestroy
+### PhotoEditorExtensionAbility.onDestroy
 
 onDestroy(): void | Promise\<void>
 
@@ -152,7 +154,7 @@ PhotoEditorExtensionAbility生命周期回调，在销毁时回调，执行资�
 **返回值：**
 |  类型 |说明   |
 | ------------ | ------------ |
-| void \| Promise\<void> | 无返回结果或无返回结果的Promise对象。 |
+|  Promise\<void> |  无返回结果的Promise对象。 |
 
 **示例：**
 
