@@ -26,7 +26,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 **参数：**
 | 参数名        | 类型                    | 必填  | 说明                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| callback      | (gestureInfo: [GestureInfo](#gestureinfo对象说明), event: [BaseGestureEvent](#basegestureevent对象说明)) => [GestureJudgeResult](#gesturejudgeresult11) | 是     | 自定义手势判定回调。当手势即将成功时，触发用户定义的回调获取结果。 |
+| callback      | (gestureInfo: [GestureInfo](#gestureinfo对象说明), event: [BaseGestureEvent](#basegestureevent对象说明)) => [GestureJudgeResult](#gesturejudgeresult) | 是     | 自定义手势判定回调。当手势即将成功时，触发用户定义的回调获取结果。 |
 
 **返回值：**
 
@@ -35,7 +35,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | T | 返回当前组件。 |
 
 
-## GestureJudgeResult<sup>11+</sup>
+## GestureJudgeResult
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -55,10 +55,10 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | 名称            | 类型                  | 只读 | 可选 | 说明         |
 | ---------------  | ---------------------|----|------| -----------|
 | tag              | string                | 否 | 是 | 手势标志。<br/>**说明：**<br/>未设置事件标志tag属性时，tag不返回或返回undefined。      |
-| type             | [GestureControl.GestureType](#gesturetype11) | 否 | 否 | 手势类型。<br/>**说明：**<br/> 当手势为未暴露类型的系统内置手势事件时，type的值为-1。 |
+| type             | [GestureControl.GestureType](#gesturetype) | 否 | 否 | 手势类型。<br/>**说明：**<br/> 当手势为未暴露类型的系统内置手势事件时，type的值为-1。 |
 | isSystemGesture  | boolean                 | 否 | 否 | 当前手势是否为组件自带手势。true表示是，false表示否。<br/>默认值：false |
 
-## GestureType<sup>11+</sup>
+## GestureType
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

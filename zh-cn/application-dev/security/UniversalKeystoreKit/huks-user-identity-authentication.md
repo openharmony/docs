@@ -187,31 +187,36 @@ function userIAMAuthFinger(huksChallenge: Uint8Array) {
     title: '请输入密码',
   };
   let auth: userAuth.UserAuthInstance;
+  let err: BusinessError;
   try {
     auth = userAuth.getUserAuthInstance(authParam, widgetParam);
     console.info("get auth instance success");
   } catch (error) {
-    console.error("get auth instance failed" + JSON.stringify(error));
+    err = error as BusinessError;
+    console.error(`get auth instance failed, errCode : ${err.code}, errMsg : ${err.message}`);
     return;
   }
   // 订阅认证结果。
   try {
     auth.on("result", {
       onResult(result) {
-        console.info("[HUKS] -> [IAM]  userAuthInstance callback result = " + JSON.stringify(result));
+        console.info(`[HUKS] -> [IAM]  userAuthInstance callback result =
+          ${result.result}, ${result.token}, ${result.authType}, ${result.enrolledState}`);
         fingerAuthToken = result.token;
       }
     });
     console.log("subscribe authentication event success");
   } catch (error) {
-    console.error("subscribe authentication event failed, " + JSON.stringify(error));
+    err = error as BusinessError;
+    console.error(`subscribe authentication event failed, errCode : ${err.code}, errMsg : ${err.message}`);
   }
   // 开始认证。
   try {
     auth.start();
     console.info("authV9 start auth success");
   } catch (error) {
-    console.error("authV9 start auth failed, error = " + JSON.stringify(error));
+    err = error as BusinessError;
+    console.error(`authV9 start auth failed, errCode : ${err.code}, errMsg : ${err.message}`);
   }
 }
 

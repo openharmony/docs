@@ -18,7 +18,7 @@
 
 ## 开发步骤
 
-#### 1. 生成密钥
+### 生成密钥
 指定指纹类型的访问控制及相关属性，指定HUKS_TAG_KEY_AUTH_PURPOSE值。
    
 ```ts
@@ -85,7 +85,7 @@ async function TestGenKeyForFingerprintAccessControl() {
 }
 ```
 
-#### 2. 使用密钥
+### 使用密钥
 加密时不需要用户身份认证访问控制，解密时需要进行用户身份认证访问控制。
    
 ```ts

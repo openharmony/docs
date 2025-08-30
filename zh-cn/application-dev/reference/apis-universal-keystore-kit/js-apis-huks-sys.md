@@ -73,6 +73,7 @@ generateKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const aesKeyAlias = 'test_aesKeyAlias';
 const userId = 100;
@@ -107,8 +108,8 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
   }
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("成功生成了一个别名为：" + keyAlias + " 的密钥")
-  }).catch((err: Error) => {
-    console.error("密钥生成失败，错误:" + JSON.stringify(err))
+  }).catch((err: BusinessError) => {
+    console.error("密钥生成失败，错误码是： " + err.code + " 错误码信息： " + err.message)
   })
 }
 
@@ -1587,6 +1588,7 @@ hasKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : P
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 import { BusinessError } from "@kit.BasicServicesKit"
+
 const aesKeyAlias = 'test_aesKeyAlias';
 const userId = 100;
 const userIdStorageLevel = huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_CE;
