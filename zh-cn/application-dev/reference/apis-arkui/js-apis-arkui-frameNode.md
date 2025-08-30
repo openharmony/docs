@@ -4655,7 +4655,35 @@ createNode(context: UIContext, nodeType: 'XComponent'): XComponent
 <!--code_no_check-->
 
 ```ts
-typeNode.createNode(uiContext, 'XComponent');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col);
+    let xcomponent = typeNode.createNode(uiContext, 'XComponent');
+    xcomponent.attribute.backgroundColor(Color.Red);
+    col.appendChild(xcomponent);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('XComponentSample')
+      NodeContainer(this.myNodeController)
+    }.width('100%')
+  }
+}
 ```
 
 ### createNode('XComponent')<sup>12+</sup>
@@ -4687,12 +4715,40 @@ createNode(context: UIContext, nodeType: 'XComponent', options: XComponentOption
 <!--code_no_check-->
 
 ```ts
-let controller: XComponentController = new XComponentController();
-let options: XComponentOptions = {
-  type: XComponentType.TEXTURE,
-  controller: controller
-};
-typeNode.createNode(uiContext, 'XComponent', options);
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  controller: XComponentController = new XComponentController();
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col);
+    let options: XComponentOptions = {
+      type: XComponentType.SURFACE,
+      controller: this.controller
+    };
+    let xcomponent = typeNode.createNode(uiContext, 'XComponent', options);
+    xcomponent.attribute.backgroundColor(Color.Red);
+    col.appendChild(xcomponent);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('XComponentSample')
+      NodeContainer(this.myNodeController)
+    }.width('100%')
+  }
+}
 ```
 
 ### createNode('XComponent')<sup>19+</sup>
@@ -4724,10 +4780,39 @@ createNode(context: UIContext, nodeType: 'XComponent', parameters: NativeXCompon
 <!--code_no_check-->
 
 ```ts
-let parameters: NativeXComponentParameters = {
-  type: XComponentType.SURFACE
-};
-typeNode.createNode(uiContext, 'XComponent', parameters);
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  controller: XComponentController = new XComponentController();
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col);
+    let parameters: NativeXComponentParameters = {
+      type: XComponentType.SURFACE
+    };
+    let xcomponent = typeNode.createNode(uiContext, 'XComponent', parameters);
+    xcomponent.attribute.backgroundColor(Color.Red);
+    col.appendChild(xcomponent);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('XComponentSample')
+      NodeContainer(this.myNodeController)
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('XComponent')<sup>20+</sup>
