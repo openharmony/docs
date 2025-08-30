@@ -8209,7 +8209,7 @@ struct Example{
         .onClick(()=>{
           try {
             let surfaceId = this.controller.getSurfaceId();
-            console.log("surfaceId: " + surfaceId);
+            console.info("surfaceId: " + surfaceId);
             if(surfaceId.length != 0) {
               let region:image.Region = { x: 0, y: 0, size: { height: 800, width: 1000}}
               this.imagePixelMap = image.createPixelMapFromSurfaceSync(surfaceId, region)
