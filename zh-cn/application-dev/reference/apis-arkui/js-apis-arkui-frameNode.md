@@ -2960,7 +2960,48 @@ createNode(context: UIContext, nodeType: 'Swiper'): Swiper
 <!--code_no_check-->
 
 ```ts
-typeNode.createNode(uiContext, 'Swiper');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MySwiperController extends NodeController {
+  swiperController: SwiperController = new SwiperController()
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let swiperNode = typeNode.createNode(uiContext, 'Swiper')
+
+    let text0 = typeNode.createNode(uiContext, 'Text')
+    text0.initialize("0")
+      .width('100%')
+      .height('100%')
+      .textAlign(TextAlign.Center)
+    swiperNode.appendChild(text0)
+    let text1 = typeNode.createNode(uiContext, 'Text')
+    text1.initialize("1")
+      .width('100%')
+      .height('100%')
+      .textAlign(TextAlign.Center)
+    swiperNode.appendChild(text1)
+    swiperNode.commonAttribute.width('100%')
+      .height('20%')
+      .backgroundColor(0xAFEEEE)
+    typeNode.bindController(swiperNode, this.swiperController, 'Swiper')
+    typeNode.getAttribute(swiperNode, 'Swiper')?.loop(false)
+    return swiperNode;
+
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private mySwiperController: MySwiperController = new MySwiperController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('SwiperSample')
+      NodeContainer(this.mySwiperController);
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('Swiper')<sup>20+</sup>
@@ -2988,11 +3029,7 @@ getAttribute(node: FrameNode, nodeType: 'Swiper'): SwiperAttribute | undefined
 
 **示例：**
 
-<!--code_no_check-->
-
-```ts
-typeNode.getAttribute(node, 'Swiper');
-```
+请参考[createNode('Swiper')<sup>12+</sup>示例](#createnodeswiper12)。
 
 ### bindController('Swiper')<sup>20+</sup>
 
@@ -3023,11 +3060,7 @@ bindController(node: FrameNode, controller: SwiperController, nodeType: 'Swiper'
 
 **示例：**
 
-<!--code_no_check-->
-
-```ts
-typeNode.bindController(node, swiperController, 'Swiper');
-```
+请参考[createNode('Swiper')<sup>12+</sup>示例](#createnodeswiper12)。
 
 ### Progress<sup>12+</sup>
 
