@@ -71,6 +71,7 @@ setDisallowedPolicy(admin: Want, feature: string, disallow: boolean): void
 |nfc<sup>20+</sup>|Near Field Communication（近距离无线通信），NFC能力。|
 |privateSpace<sup>20+</sup>|创建隐私空间能力，当前仅支持手机、平板使用。对已创建的隐私空间无效。|
 |telephoneCall<sup>20+</sup>|设备通话能力，禁用后电话无法呼入和呼出。当前仅支持手机、平板设备使用。|
+|appClone<sup>21+</sup>|应用分身能力，禁用后无法创建新的应用分身。|
 <!--RP1--><!--RP1End-->
 
 **错误码**：
@@ -152,6 +153,7 @@ getDisallowedPolicy(admin: Want, feature: string): boolean
 |nfc<sup>20+</sup>|Near Field Communication（近距离无线通信），NFC能力。|
 |privateSpace<sup>20+</sup>|创建隐私空间能力，当前仅支持手机、平板使用。|
 |telephoneCall<sup>20+</sup>|设备通话能力，禁用后电话无法呼入和呼出。当前仅支持手机、平板设备使用。|
+|appClone<sup>21+</sup>|应用分身能力，禁用后无法创建新的应用分身。|
 <!--RP2--><!--RP2End-->
 
 **返回值：**
