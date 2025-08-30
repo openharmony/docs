@@ -629,7 +629,7 @@ showCounter(value: boolean, options?: InputCounterOptions)
 
 参数value为true时，才能设置options，文本框开启计数下标功能，需要配合[maxLength](#maxlength)（设置最大字符限制）一起使用。字符计数器显示的效果是当前输入字符数/最大可输入字符数。
 
-当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数超过最大字符数时，边框和计数器下标将变为红色。用户同时设置参数value为true和[InputCounterOptions](ts-types.md#inputcounteroptions11对象说明)，当thresholdPercentage数值在有效区间内，且输入字符数超过最大字符数时，边框和计数器下标将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色，框体抖动。
+当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数超过最大字符数时，边框和计数器下标将变为红色。用户同时设置参数value为true和[InputCounterOptions](ts-universal-attributes-text-style.md#inputcounteroptions11对象说明)，当thresholdPercentage数值在有效区间内，且输入字符数超过最大字符数时，边框和计数器下标将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色，框体抖动。
 
 内联模式和密码模式下字符计数器不显示。
 
@@ -642,7 +642,7 @@ showCounter(value: boolean, options?: InputCounterOptions)
 | 参数名                | 类型                                                  | 必填 | 说明             |
 | --------------------- | ----------------------------------------------------- | ---- | ---------------- |
 | value                 | boolean                                               | 是   | 是否显示计数器。<br/>true表示显示计时器，false表示不显示。 |
-| options<sup>11+</sup> | [InputCounterOptions](ts-types.md#inputcounteroptions11对象说明) | 否   | 计数器的配置项。 |
+| options | [InputCounterOptions](ts-universal-attributes-text-style.md#inputcounteroptions11对象说明) | 否   | 计数器的配置项。 |
 
 ### contentType<sup>12+</sup>
 
@@ -713,7 +713,7 @@ decoration(value: TextDecorationOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextDecorationOptions](ts-types.md#textdecorationoptions12对象说明) | 是   | 文本装饰线对象。<br />默认值：{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
+| value  | [TextDecorationOptions](ts-universal-attributes-text-style.md#textdecorationoptions12对象说明) | 是   | 文本装饰线对象。<br />默认值：{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
 
 ### letterSpacing<sup>12+</sup>
 
@@ -1566,7 +1566,7 @@ onWillAttachIME(callback: Callback\<IMEClient>)
 
 ## TextInputController<sup>8+</sup>
 
-TextInput组件的控制器继承自[TextContentControllerBase](ts-types.md#textcontentcontrollerbase10)，涉及的接口有[getTextContentRect](ts-types.md#gettextcontentrect10)、[getTextContentLineCount](ts-types.md#gettextcontentlinecount10)、[getCaretOffset](ts-types.md#getcaretoffset11)、[addText](ts-types.md#addtext15)、[deleteText](ts-types.md#deletetext15)、[getSelection](ts-types.md#getselection15)、[clearPreviewText](ts-types.md#clearpreviewtext17)<!--Del-->以及系统接口[getText](ts-text-common-sys.md#gettext19)<!--DelEnd-->。
+TextInput组件的控制器继承自[TextContentControllerBase](ts-universal-attributes-text-style.md#textcontentcontrollerbase)，涉及的接口有[getTextContentRect](ts-universal-attributes-text-style.md#gettextcontentrect)、[getTextContentLineCount](ts-universal-attributes-text-style.md#gettextcontentlinecount)、[getCaretOffset](ts-universal-attributes-text-style.md#getcaretoffset11)、[addText](ts-universal-attributes-text-style.md#addtext15)、[deleteText](ts-universal-attributes-text-style.md#deletetext15)、[getSelection](ts-universal-attributes-text-style.md#getselection15)、[clearPreviewText](ts-universal-attributes-text-style.md#clearpreviewtext17)<!--Del-->以及系统接口[getText](ts-text-common-sys.md#gettext19)<!--DelEnd-->。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1618,7 +1618,7 @@ setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options
 | ------- | ------ | ---- | ----- |
 | selectionStart | number | 是    | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
 | selectionEnd   | number | 是    | 文本选择区域结束位置。 |
-| options<sup>12+</sup>   | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT<br/>从API version 12开始，该接口中的options参数支持在原子化服务中使用。 |
+| options<sup>12+</sup>   | [SelectionOptions](ts-universal-attributes-text-style.md#selectionoptions12对象说明) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT<br/>从API version 12开始，该接口中的options参数支持在原子化服务中使用。 |
 
 >  **说明：**
 >
@@ -1775,7 +1775,7 @@ struct TextInputExample {
         .fontSize(14)
         .fontColor(Color.Black)
         .inputFilter('[a-z]', (e) => {
-          console.log(JSON.stringify(e));
+          console.info(JSON.stringify(e));
         })
       Text(this.text)
       Button('Set caretPosition 1')
@@ -2088,7 +2088,7 @@ struct TextInputExample {
 
   setCaret() {
     if (this.nextCaret != -1) {
-      console.log("to keep caret position right, change caret to", this.nextCaret);
+      console.info("to keep caret position right, change caret to", this.nextCaret);
       this.controller.caretPosition(this.nextCaret);
       this.nextCaret = -1;
     }
@@ -2104,7 +2104,7 @@ struct TextInputExample {
         }
       }
       this.actualCh += this.teleNumberNoSpace.length - befNumberNoSpace.length;
-      console.log("actualCh: " + this.actualCh);
+      console.info("actualCh: " + this.actualCh);
       for (let i = 0; i < nextText.length; i++) {
         if (nextText[i] != ' ') {
           this.actualCh -= 1;
@@ -2116,7 +2116,7 @@ struct TextInputExample {
       }
     } else if (befNumberNoSpace.length > this.teleNumberNoSpace.length) { // 删除场景
       if (this.lastCaretPosition === this.text.length) {
-        console.log("Caret at last, no need to change");
+        console.info("Caret at last, no need to change");
       } else if (this.lastCaretPosition === this.lastCaretPositionEnd) {
         // 按键盘上回退键一个一个删的情况
         for (let i = this.lastCaretPosition; i < this.text.length; i++) {
@@ -2165,7 +2165,7 @@ struct TextInputExample {
             } else {
               nextText = value;
             }
-            console.log("onChange Triggered:" + this.text + "|" + nextText + "|" + value);
+            console.info("onChange Triggered:" + this.text + "|" + nextText + "|" + value);
             if (this.text === nextText && nextText === value) {
               // 此时说明数字已经格式化完成了 在这个时候改变光标位置不会被重置掉
               this.setCaret();
@@ -2176,7 +2176,7 @@ struct TextInputExample {
           })
           .onTextSelectionChange((selectionStart, selectionEnd) => {
             // 记录光标位置
-            console.log("selection change: ", selectionStart, selectionEnd);
+            console.info("selection change: ", selectionStart, selectionEnd);
             this.lastCaretPosition = selectionStart;
             this.lastCaretPositionEnd = selectionEnd;
           })// 从API version 10开始支持
@@ -2575,19 +2575,19 @@ struct TextInputExample {
   }
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
     if (menuItem.id.equals(TextMenuItemId.of("create2"))) {
-      console.log("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
+      console.info("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.of("prepare1"))) {
-      console.log("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
+      console.info("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
+      console.info("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+      console.info("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
       return false;
     }
     return false;
@@ -2882,7 +2882,7 @@ struct TextInputExample {
         console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
       } else {
         this.currentFontSizeScale = scale;
-        console.log('updateConfiguration success.');
+        console.info('updateConfiguration success.');
       }
     });
   }

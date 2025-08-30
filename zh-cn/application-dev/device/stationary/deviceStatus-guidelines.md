@@ -39,50 +39,50 @@ DeviceStatus（设备状态感知）模块提供设备状态感知能力，可�
 
 1. 导入模块。
 
-  ```ts
-  import { deviceStatus } from '@kit.MultimodalAwarenessKit';
-  ```
+   ```ts
+   import { deviceStatus } from '@kit.MultimodalAwarenessKit';
+   ```
 
 2. 订阅设备静止姿态（支架态）感知事件。
 
-  ```ts
-  try {
-    deviceStatus.on('steadyStandingDetect', (data:deviceStatus.SteadyStandingStatus) => {
-      console.info('now status = ' + data);
-    });
-  } catch (err) {
-    console.info('on failed, err = ' + err);
-  }
-  ```
+   ```ts
+   try {
+      deviceStatus.on('steadyStandingDetect', (data:deviceStatus.SteadyStandingStatus) => {
+         console.info('succeed to get status, now status = ' + data);
+      });
+   } catch (err) {
+      console.error('on failed, err = ' + err);
+   }
+   ```
 
 3. 取消订阅本客户端订阅的所有设备静止姿态（支架态）感知事件。
 
-  ```ts
-  try {
-    deviceStatus.off('steadyStandingDetect');
-  } catch (err) {
-    console.info('off failed, err = ' + err);
-  }
-  ```
+   ```ts
+   try {
+      deviceStatus.off('steadyStandingDetect');
+   } catch (err) {
+      console.error('off failed, err = ' + err);
+   }
+   ```
 
 4. 取消订阅设备静止姿态（支架态）感知事件的特定回调。
 
-  ```ts
-  import { Callback } from '@ohos.base';
-  // 定义callback变量
-  let callback : Callback<deviceStatus.SteadyStandingStatus> = (data : deviceStatus.SteadyStandingStatus) => {
-    console.info('now status = ' + data);
-  };
-  // 以callback为回调函数，订阅设备静止姿态感知（支架态）事件
-  try {
-    deviceStatus.on('steadyStandingDetect', callback);
-  } catch (err) {
-    console.info('on failed, err = ' + err);
-  }
-  // 取消该客户端订阅设备静止姿态感知（支架态）事件的特定回调函数
-  try {
-    deviceStatus.off('steadyStandingDetect', callback);
-  } catch (err) {
-    console.info('off failed, err = ' + err);
-  }
-  ```
+   ```ts
+   import { Callback } from '@ohos.base';
+   // 定义callback变量
+   let callback : Callback<deviceStatus.SteadyStandingStatus> = (data : deviceStatus. SteadyStandingStatus) => {
+      console.info('succeed to get status, now status = ' + data);
+   };
+   // 以callback为回调函数，订阅设备静止姿态感知（支架态）事件
+   try {
+      deviceStatus.on('steadyStandingDetect', callback);
+   } catch (err) {
+      console.error('on failed, err = ' + err);
+   }
+   // 取消该客户端订阅设备静止姿态感知（支架态）事件的特定回调函数
+   try {
+      deviceStatus.off('steadyStandingDetect', callback);
+   } catch (err) {
+      console.error('off failed, err = ' + err);
+   }
+   ```

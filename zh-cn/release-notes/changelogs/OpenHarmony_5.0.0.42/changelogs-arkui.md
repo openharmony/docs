@@ -1,12 +1,12 @@
 # ArkUI子系统ChangeLog
-## cl.arkui.1 Navigation、NavDestination的title和menus接口支持Resource类型资源
+## cl.arkui.1 Navigationd的menus接口、NavDestination的title和menus接口支持Resource类型资源
 **访问级别**
 
 公开接口
 
 **变更原因**
 
-基础能力增强，Navigation、navdestination的title和menus接口支持Resource类型
+基础能力增强，Navigationd的menus接口、NavDestination的title和menus接口支持Resource类型资源。
 
 **变更影响**
 
@@ -17,7 +17,6 @@
 ```
 const myIcon: NavigationMenuItem = { value: "图标", icon: "https://example.png"}
 const myString: string = myIcon.value
-
 ```
 
 **起始API Level**
@@ -30,7 +29,9 @@ const myString: string = myIcon.value
 
 **变更的接口/组件**
 
-Navigation/NavDestination
+navigation的menus接口
+
+navDestination的menus和title接口
 
 **适配指导**
 
@@ -40,18 +41,22 @@ Navigation/NavDestination
 Navigation() {
     // xxx
 }
+// 需要替换为开发者所需的资源文件
 .title($r('app.string.MyTestNavigationTitle'))  // 可直接将resource类型资源传递给title接口
 // menus内的item设置可直接支持resource类型资源
 .menus([
   {
+    // 需要替换为开发者所需的资源文件
     value: $r("app.string.MyTestMenuValue1"),
     icon: $r("app.media.1")
   },
   {
+    // 需要替换为开发者所需的资源文件
     value: $r("app.string.MyTestMenuValue2"),
     icon: $r("app.media.2")
   },
   {
+    // 需要替换为开发者所需的资源文件
     value: $r("app.string.MyTestMenuValue3"),
     icon: $r("app.media.3")
   }
@@ -62,20 +67,24 @@ Navigation() {
 ```
 // navDestination.ets
 // Navigation及NavDestination的CommonTitle类型，支持设置resource资源
+// 需要替换为开发者所需的资源文件
 @State commonTitle: NavDestinationCommonTitle = { main: $r('app.string.MyTestNavigationTitle'), sub: $r('app.string.MyTestNavigationTitle')}
 NavDestination() {
     // xxx
 }
 .menus([
   {
+    // 需要替换为开发者所需的资源文件
     value: $r("app.string.MyTestMenuValue1"),
     icon: $r("app.media.4")
   },
   {
+    // 需要替换为开发者所需的资源文件
     value: $r("app.string.MyTestMenuValue2"),
     icon: $r("app.media.5")
   },
   {
+    // 需要替换为开发者所需的资源文件
     value: $r("app.string.MyTestMenuValue3"),
     icon: $r("app.media.6")
   }
@@ -200,7 +209,7 @@ struct MyComponent {
 
 **变更原因**
 
-Navdestination的Dialog模式支持系统动画
+Navdestination的Dialog模式支持系统动画。
 
 **变更影响**
 该变更为不兼容变更。

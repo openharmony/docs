@@ -1,6 +1,12 @@
 # @ohos.application.WindowExtensionAbility (WindowExtensionAbility) (System API)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @chbchb12-->
+<!--Designer: @stupidb-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
-**WindowExtensionAbility** inherits from **ExtensionAbility**. The content in a **WindowExtensionAbility** object can be displayed as an ability component in other application windows.
+**WindowExtensionAbility** inherits from **ExtensionAbility**. The content in a WindowExtensionAbility object can be displayed as an ability component in other application windows.
 
 > **NOTE**
 >
@@ -20,9 +26,9 @@ import { WindowExtensionAbility } from '@kit.ArkUI';
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name     | Type| Readable| Writable| Description                     |
+| Name     | Type| Read-Only| Optional| Description                     |
 | --------- | -------- | ---- | ---- | ------------------------- |
-| context      | [WindowExtensionContext](js-apis-inner-application-windowExtensionContext-sys.md)   | Yes  | No  | Context of an Extension ability.     |
+| context      | [WindowExtensionContext](js-apis-inner-application-windowExtensionContext-sys.md)   | No  | No  | Context of an Extension ability.     |
 
 ## WindowExtensionAbility.onConnect
 
@@ -46,7 +52,7 @@ import { Want } from '@kit.AbilityKit';
 
 export default class MyWindowExtensionAbility extends WindowExtensionAbility {
   onConnect(want: Want) {
-    console.info('WindowExtAbility onConnect, abilityName: ${want.abilityName}');
+    console.info(`WindowExtAbility onConnect, abilityName: ${want.abilityName}`);
   }
 }
 ```
@@ -74,7 +80,7 @@ import { Want } from '@kit.AbilityKit';
 
 export default class MyWindowExtensionAbility extends WindowExtensionAbility {
   onDisconnect(want: Want) {
-    console.info('WindowExtAbility onDisconnect, abilityName: ${want.abilityName}');
+    console.info(`WindowExtAbility onDisconnect, abilityName: ${want.abilityName}`);
   }
 }
 ```
@@ -91,7 +97,7 @@ Called when a window is ready.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| window | [window.Window](arkts-apis-window-Window.md#window) | Yes| Current **Window** instance.|
+| window | [window.Window](arkts-apis-window-Window.md) | Yes| Current Window instance.|
 
 
 **Example**
@@ -104,7 +110,7 @@ export default class MyWindowExtensionAbility extends WindowExtensionAbility {
   onWindowReady(window: window.Window) {
     window.setUIContent('WindowExtAbility/pages/index1',(err:BusinessError) => {
       let pro = window.getWindowProperties();
-      console.log('WindowExtension pro: ${JSON.stringify(pro)}');
+      console.info(`WindowExtension pro: ${JSON.stringify(pro)}`);
       window.showWindow();
     });
   }

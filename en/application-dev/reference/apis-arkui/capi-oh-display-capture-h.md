@@ -1,8 +1,14 @@
 # oh_display_capture.h
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## Overview
 
-The **oh_display_capture.h** file declares the capability to take screenshots.
+The file declares the capability to take screenshots.
 
 **File to include**: <window_manager/oh_display_capture.h>
 
@@ -45,7 +51,7 @@ Takes a screenshot of the entire screen. This function can be used only on table
 | Parameter| Description|
 | -- | -- |
 | uint32_t displayId | ID of the display. The value must be a non-negative integer.|
-| [OH_PixelmapNative](../apis-image-kit/capi-oh-pixelmapnative.md **pixelMap | Double pointer to an **OH_PixelmapNative** object, which is the screenshot taken.|
+| [OH_PixelmapNative](../apis-image-kit/capi-image-nativemodule-oh-pixelmapnative.md) **pixelMap | Double pointer to an OH_PixelmapNative object, which is the screenshot taken.|
 
 **Return value**
 

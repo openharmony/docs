@@ -1,4 +1,10 @@
 # 订阅地址越界事件（ArkTS）
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @mlkgeek-->
+<!--Designer: @StevenLai1994-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
 
 ## 接口说明
 

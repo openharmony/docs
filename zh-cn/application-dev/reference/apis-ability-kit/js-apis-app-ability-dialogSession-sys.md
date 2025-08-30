@@ -15,7 +15,7 @@ dialogSession模块用于支持系统应用弹框功能。
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块为系统接口。
+> 本模块接口为系统接口。
 
 ## 导入模块
 
@@ -44,21 +44,21 @@ import { dialogSession } from '@kit.AbilityKit';
 
 ## DialogSessionInfo
 
-提供会话信息，包括请求方信息、目标应用列表信息、其他参数。
+提供会话信息，包括请求方信息、目标组件信息列表、其他参数。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| callerAbilityInfo | [DialogAbilityInfo](#dialogabilityinfo)| 是 | 否 | 表示请求方组件信息。 |
-| targetAbilityInfos | Array\<[DialogAbilityInfo](#dialogabilityinfo)\> | 是 | 否 | 表示目标应用列表信息。 |
-| parameters | Record<string, Object> | 是 | 是 | 表示其他参数。 |
+| callerAbilityInfo | [DialogAbilityInfo](#dialogabilityinfo)| 否 | 否 | 表示请求方组件信息。 |
+| targetAbilityInfos | Array\<[DialogAbilityInfo](#dialogabilityinfo)\> | 否 | 否 | 表示目标组件信息列表。 |
+| parameters | Record<string, Object> | 否 | 是 | 表示其他参数。 |
 
 ## getDialogSessionInfo
 
 getDialogSessionInfo(dialogSessionId: string): [DialogSessionInfo](#dialogsessioninfo)
 
-根据dialogSessionId获取会话信息。
+通过dialogSessionId获取会话信息。
 
 **系统接口**：此接口为系统接口。
 
@@ -89,15 +89,21 @@ getDialogSessionInfo(dialogSessionId: string): [DialogSessionInfo](#dialogsessio
 | 16000050  | Internal error. |
 
 **示例：**
-
 ```ts
-import { dialogSession, Want } from '@kit.AbilityKit';
+import { dialogSession, Want, UIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 
-// want由系统内部指定，dialogSessionId为内置参数
-let dialogSessionId: string = want?.parameters?.dialogSessionId;
+const TAG: string = '[testTag] UIExtAbility';
 
-// 查询DialogSessionInfo
-let dialogSessionInfo: dialogSession.DialogSessionInfo = dialogSession.getDialogSessionInfo(dialogSessionId);
+export default class UIExtAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    // want由系统内部指定，dialogSessionId为内置参数
+    let dialogSessionId = want?.parameters?.dialogSessionId.toString();
+
+    // 查询DialogSessionInfo
+    let dialogSessionInfo: dialogSession.DialogSessionInfo = dialogSession.getDialogSessionInfo(dialogSessionId);
+    console.info(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
+  }
+}
 ```
 
 ## sendDialogResult
@@ -134,33 +140,37 @@ sendDialogResult(dialogSessionId: string, targetWant: Want, isAllowed: boolean, 
 **示例：**
 
 ```ts
-import { dialogSession, Want } from '@kit.AbilityKit';
+import { dialogSession, Want, UIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// want由系统内部指定，dialogSessionId为内置参数
-let dialogSessionId: string = want?.parameters?.dialogSessionId;
+export default class UIExtAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    // want由系统内部指定，dialogSessionId为内置参数
+    let dialogSessionId = want?.parameters?.dialogSessionId.toString();
 
-// 查询DialogSessionInfo
-let dialogSessionInfo: dialogSession.DialogSessionInfo = dialogSession.getDialogSessionInfo(dialogSessionId);
+    // 查询DialogSessionInfo
+    let dialogSessionInfo: dialogSession.DialogSessionInfo =
+      dialogSession.getDialogSessionInfo(dialogSessionId);
 
-let isAllow: boolean = true;
+    let isAllow: boolean = true;
 
-// isAllow为true时，用户请求结果targetWant为dialogSessionInfo.targetAbilityInfos之一
-let targetWant: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
+    let targetWant: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
 
-try {
-  dialogSession.sendDialogResult(dialogSessionId, targetWant, isAllow, (err, data) => {
-    if (err) {
-      console.error(`sendDialogResult error, errorCode: ${err.code}`);
-    } else {
-      console.log(`sendDialogResult success`);
+    try {
+      dialogSession.sendDialogResult(dialogSessionId, targetWant, isAllow, (err, data) => {
+        if (err) {
+          console.error(`sendDialogResult error, errorCode: ${err.code}`);
+        } else {
+          console.log(`sendDialogResult success`);
+        }
+      });
+    } catch (err) {
+      console.error(`sendDialogResult error, errorCode: ${(err as BusinessError).code}`);
     }
-  });
-} catch (err) {
-  console.error(`sendDialogResult error, errorCode: ${(err as BusinessError).code}`);
+  }
 }
 ```
 
@@ -203,31 +213,34 @@ sendDialogResult(dialogSessionId: string, targetWant: Want, isAllowed: boolean):
 **示例：**
 
 ```ts
-import { dialogSession, Want } from '@kit.AbilityKit';
+import { dialogSession, Want, UIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// want由系统内部指定，dialogSessionId为内置参数
-let dialogSessionId: string = want?.parameters?.dialogSessionId;
+export default class UIExtAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    // want由系统内部指定，dialogSessionId为内置参数
+    let dialogSessionId = want?.parameters?.dialogSessionId.toString();
 
-// 查询DialogSessionInfo
-let dialogSessionInfo: dialogSession.DialogSessionInfo = dialogSession.getDialogSessionInfo(dialogSessionId);
+    // 查询DialogSessionInfo
+    let dialogSessionInfo: dialogSession.DialogSessionInfo = dialogSession.getDialogSessionInfo(dialogSessionId);
 
-let isAllow: boolean = true;
+    let isAllow: boolean = true;
 
-// isAllow为true时，用户请求结果targetWant为dialogSessionInfo.targetAbilityInfos之一
-let targetWant: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
+    let targetWant: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
 
-try {
-  dialogSession.sendDialogResult(dialogSessionId, targetWant, isAllow)
-    .then((data) => {
-      console.log(`startChildProcess success, pid: ${data}`);
-    }, (err: BusinessError) => {
-      console.error(`startChildProcess error, errorCode: ${err.code}`);
-    })
-} catch (err) {
-  console.error(`sendDialogResult error, errorCode: ${(err as BusinessError).code}`);
+    try {
+      dialogSession.sendDialogResult(dialogSessionId, targetWant, isAllow)
+        .then((data) => {
+          console.log(`sendDialogResult success, pid: ${data}`);
+        }, (err: BusinessError) => {
+          console.error(`sendDialogResult error, errorCode: ${err.code}`);
+        });
+    } catch (err) {
+      console.error(`sendDialogResult error, errorCode: ${(err as BusinessError).code}`);
+    }
+  }
 }
 ```

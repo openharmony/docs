@@ -10,6 +10,7 @@
 - ArkTS API<!--core-file-arkts-->
   - [@ohos.application.BackupExtensionAbility (备份恢复扩展能力)](js-apis-application-backupExtensionAbility.md)
   - [@ohos.file.cloudSync (端云同步能力)](js-apis-file-cloudsync.md)
+  - [@ohos.file.cloudSyncManager (端云同步管理能力)](js-apis-file-cloudsyncmanager.md)
   - [@ohos.file.environment (目录环境能力)](js-apis-file-environment.md)
   - [@ohos.file.fileuri (文件URI)](js-apis-file-fileuri.md)
   - [@ohos.file.fs (文件管理)](js-apis-file-fs.md)

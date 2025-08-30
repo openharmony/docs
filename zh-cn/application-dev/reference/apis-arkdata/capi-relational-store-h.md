@@ -1633,7 +1633,7 @@ int OH_Rdb_SetDistributedTables(OH_Rdb_Store *store, const char *tables[], uint3
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 表示指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
-| onst char *tables[] |  要设置的分布式数据库表表名。 |
+| const char *tables[] |  要设置的分布式数据库表表名。 |
 | uint32_t count | 要设置的分布式数据库表的数量。 |
 | [Rdb_DistributedType](#rdb_distributedtype) type | 表的分布式类型[Rdb_DistributedType](capi-relational-store-h.md#rdb_distributedtype)。 |
 | const [Rdb_DistributedConfig](capi-rdb-rdb-distributedconfig.md) *config | 表的分布式配置信息[Rdb_DistributedConfig](capi-rdb-rdb-distributedconfig.md)。 |

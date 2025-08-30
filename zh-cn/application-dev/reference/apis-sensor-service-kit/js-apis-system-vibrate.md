@@ -51,7 +51,7 @@ let vibrateOptions: VibrateOptions = {
     console.info('Succeed in vibrating');
   },
   fail: (data: string, code: number) => {
-    console.info(`Failed to vibrate. Data: ${data}, code: ${code}`);
+    console.error(`Failed to vibrate. Data: ${data}, code: ${code}`);
   },
   complete: () => {
     console.info('completed in vibrating');

@@ -1,4 +1,10 @@
 # @ohos.resourceschedule.workScheduler (Deferred Task Scheduling)
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: ResourceSchedule-->
+<!--Owner: @cheng-shichang-->
+<!--Designer: @zhouben25-->
+<!--Tester: @fenglili18-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The **workScheduler** module provides the APIs for registering, canceling, and querying deferred tasks. You can use the APIs to register tasks that do not have high requirements on real-time performance as deferred tasks. The system schedules and executes the deferred tasks at an appropriate time, subject to the storage space, power consumption, and more.
 
@@ -207,7 +213,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   })
 ```
 
-## workScheduler.obtainAllWorks<sup>deprecated<sup>
+## workScheduler.obtainAllWorks<sup>(deprecated)<sup>
 
 obtainAllWorks(callback : AsyncCallback\<void>) : Array\<WorkInfo>
 > This API is deprecated since API version 10. You are advised to use [workScheduler.obtainAllWorks<sup>10+<sup>](#workschedulerobtainallworks10) instead.
@@ -222,6 +228,12 @@ Obtains all the deferred tasks. This API uses an asynchronous callback to return
 | -------- | -------------------- | ---- | ------------------------------- |
 | callback |  AsyncCallback\<void> | Yes   | Callback used to return the result. If all the deferred tasks are obtained, **err** is **undefined**. Otherwise, **err** is an error object.|
 
+**Return value**
+
+| Type                             | Description                                      |
+| ------------------------------- | ---------------------------------------- |
+| Array\<[WorkInfo](#workinfo)> | List of deferred tasks. If deferred tasks have been added to the execution queue, the list of all deferred tasks in the current application is returned. Otherwise, an empty list is returned.|
+  
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
@@ -341,7 +353,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   }
 ```
 
-## workScheduler.isLastWorkTimeOut<sup>deprecated<sup>
+## workScheduler.isLastWorkTimeOut<sup>(deprecated)<sup>
 
 isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
@@ -358,6 +370,12 @@ Checks whether the last execution of a task timed out. This API uses an asynchro
 | workId   | number               | Yes   | ID of the deferred task.                                |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
+**Return value**
+
+| Type                             | Description                                      |
+| ------------------------------- | ---------------------------------------- |
+|boolean| Whether the last execution of a deferred task timed out. If **workId** is valid, it returns whether the last execution of the task obtained from WorkSchedulerService timed out; otherwise, an exception is thrown. **true** indicates that the last execution of the deferred task corresponding to the **workId** timed out, while **false** indicates the opposite.|
+  
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).

@@ -20,7 +20,7 @@
 
 ## 接口
 
-### RichEditor<sup>10+</sup>
+### RichEditor
 
 RichEditor(value: RichEditorOptions)
 
@@ -103,7 +103,7 @@ bindSelectionMenu(spanType: RichEditorSpanType, content: CustomBuilder, response
 | spanType     | [RichEditorSpanType](#richeditorspantype)                    | 是   | 菜单的类型。<br/>默认值：<br/>RichEditorSpanType.TEXT    |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)                  | 是   | 菜单的内容。                                              |
 | responseType | &nbsp;[ResponseType](ts-appendix-enums.md#responsetype8)&nbsp; \| &nbsp;[RichEditorResponseType](#richeditorresponsetype11) | 是   | 菜单的响应类型。<br/> 默认值：<br/>ResponseType.LongPress |
-| options      | [SelectionMenuOptions](#selectionmenuoptions10)              | 否   | 菜单的选项。                                              |
+| options      | [SelectionMenuOptions](#selectionmenuoptions)              | 否   | 菜单的选项。                                              |
 
 ### copyOptions
 
@@ -413,7 +413,7 @@ stopBackPress(isStopped: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)&lt;boolean&gt; | 否   | 是否阻止返回键。<br/>默认值：true，true表示阻止返回键，false表示不阻止返回键。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值。|
+| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)&lt;boolean&gt; | 是   | 是否阻止返回键。<br/>默认值：true，true表示阻止返回键，false表示不阻止返回键。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值。|
 
 ### undoStyle<sup>20+</sup>
 
@@ -431,7 +431,7 @@ undoStyle(style: Optional&lt;UndoStyle&gt;)
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)&lt;[UndoStyle](#undostyle20-1)&gt; | 否   | 撤销还原是否保留原样式选项。默认值：UndoStyle.CLEAR_STYLE |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)&lt;[UndoStyle](#undostyle20-1)&gt; | 是   | 撤销还原是否保留原样式选项。默认值：UndoStyle.CLEAR_STYLE |
 
 ### enableAutoSpacing<sup>20+</sup>
 
@@ -1110,7 +1110,7 @@ selectionStart和selectionEnd均为-1时表示全选，均为0时可以清空选
 | -------------- | ------ | ---- | ------- |
 | selectionStart | number | 是    | 选中开始位置。 |
 | selectionEnd   | number | 是    | 选中结束位置。 |
-| options<sup>12+</sup>   | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选择项配置。 |
+| options<sup>12+</sup>   | [SelectionOptions](ts-universal-attributes-text-style.md#selectionoptions12对象说明) | 否    | 选择项配置。 |
 
 ### isEditing<sup>12+</sup>
 
@@ -1822,7 +1822,7 @@ RichEditor span信息。
 | [RichEditorImageSpanResult](#richeditorimagespanresult) | 后端返回的图片信息。 |
 | [RichEditorTextSpanResult](#richeditortextspanresult) | 后端返回的文本信息。 |
 
-## SelectionMenuOptions<sup>10+</sup>
+## SelectionMenuOptions
 
 菜单的选项。
 
@@ -1896,7 +1896,7 @@ RichEditor span信息。
 | 名称          | 类型            | 只读 | 可选   | 说明            |
 | ----------- | ---------- | ---- | ------|------- |
 | onClick    | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)\> | 否 | 是    | [ClickEvent](ts-universal-events-click.md#clickevent对象说明)为用户点击事件。<br/>点击完成时回调事件。<br/>双击时，第一次点击触发回调事件。|
-| onLongPress | Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)\>  | 否 | 是    | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)为用户长按事件。<br/>长按完成时回调事件。 |
+| onLongPress | Callback\<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)\>  | 否 | 是    | [GestureEvent](ts-gesture-common.md#gestureevent对象说明)为用户长按事件。<br/>长按完成时回调事件。 |
 
 ## KeyboardOptions<sup>12+</sup>
 

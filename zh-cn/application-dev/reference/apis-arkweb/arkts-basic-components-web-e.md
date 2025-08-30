@@ -36,6 +36,8 @@ ConsoleMessage的信息级别。
 
 ## HitTestType
 
+点击事件检测结果类型。
+
  **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称            | 值 | 说明                       |
@@ -195,6 +197,8 @@ Web布局模式的配置。
 
 ## ContextMenuSourceType<sup>9+</sup>
 
+触发上下文菜单的事件来源。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称       | 值 | 说明         |
@@ -204,6 +208,8 @@ Web布局模式的配置。
 | LongPress | 2 | 长按事件。   |
 
 ## ContextMenuMediaType<sup>9+</sup>
+
+触发上下文菜单的网页元素类型。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

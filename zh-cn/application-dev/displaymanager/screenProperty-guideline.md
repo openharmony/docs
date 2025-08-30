@@ -1,4 +1,10 @@
 # 使用Display实现屏幕属性查询及状态监听 (ArkTS)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## 场景介绍
 
@@ -17,7 +23,7 @@
 | 接口                                                         | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | getAllDisplays(): Promise<Array\<Display>>                   | 获取当前所有的Display对象，使用Promise异步回调。             |
-| getDefaultDisplaySync(): Display                             | 获取当前默认的display对象。                                  |
+| getDefaultDisplaySync(): Display                             | 获取当前默认的Display对象。                                  |
 | getDisplayByIdSync(displayId: number): Display               | 根据DisplayId获取对应的Display对象。                         |
 | on(type: 'add'\|'remove'\|'change', callback: Callback\<number>): void | 开启显示设备变化的监听。                                     |
 | off(type: 'add'\|'remove'\|'change', callback?: Callback\<number>): void | 关闭显示设备变化的监听。                                     |
@@ -43,7 +49,11 @@ Display对象，即屏幕实例，提供屏幕相关属性及监听变化的接�
 import { display } from '@kit.ArkUI';
 
 let displayClass: display.Display | null = null;
-displayClass = display.getDefaultDisplaySync();
+try {
+  displayClass = display.getDefaultDisplaySync();
+} catch (exception) {
+  console.error(`Failed to get default display. Code: ${exception.code}, message: ${exception.message}`);
+}
 // 确保获取到Display对象，即displayClass，再进行后续相关屏幕属性信息查询和事件/状态变化监听
 ```
 
@@ -55,17 +65,20 @@ displayClass = display.getDefaultDisplaySync();
    import { display } from '@kit.ArkUI';
    
    let displayClass: display.Display | null = null;
-   displayClass = display.getDefaultDisplaySync();
-   
-   // 获取屏幕Id
-   console.info(`The screen Id is ${displayClass.id}.`);
-   // 获取屏幕刷新率
-   console.info(`The screen is ${displayClass.refreshRate}.`);
-   // 获取屏幕宽度
-   console.info(`The screen width is ${displayClass.width}.`);
-   // 获取屏幕高度
-   console.info(`The screen height is ${displayClass.height}.`);
+  try {
+    displayClass = display.getDefaultDisplaySync();
+    // 获取屏幕Id
+    console.info(`The screen Id is ${displayClass.id}.`);
+    // 获取屏幕刷新率
+    console.info(`The screen is ${displayClass.refreshRate}.`);
+    // 获取屏幕宽度
+    console.info(`The screen width is ${displayClass.width}.`);
+    // 获取屏幕高度
+    console.info(`The screen height is ${displayClass.height}.`);
    // ...
+  } catch (exception) {
+    console.error(`Failed to get default display. Code: ${exception.code}, message: ${exception.message}`);
+  }
    ```
 
 2. 还可以通过getCutoutInfo()获取挖孔屏、刘海屏、瀑布屏等不可用的屏幕区域信息，以在UI布局时更好地规避该区域。也可以通过getAvailableArea()获取当前设备屏幕的可用区域。

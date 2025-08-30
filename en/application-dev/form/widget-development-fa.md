@@ -1,4 +1,10 @@
 # Developing a JS Widget (FA Model)
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 The FA model is supported since API version 7, and no longer recommended. Application components are specified by exporting anonymous objects and fixed entry files. You cannot perform derivation for capability expansion. Now, the stage model is recommended for application development.
 
 ## Available APIs
@@ -210,7 +216,7 @@ To create a widget in the FA model, implement the widget lifecycle callbacks. Fo
 
 The widget configuration file is named **config.json**. Find the **config.json** file for the widget and edit the file depending on your need.
 
-- The **js** module in the **config.json** file provides JavaScript resources of the widget. The internal structure is described as follows: 
+- The **JS** module in the **config.json** file provides JavaScript resources of the widget. The internal structure is described as follows.
     | Name| Description| Data Type| Initial Value Allowed|
   | -------- | -------- | -------- | -------- |
   | name | Name of a JavaScript component. The default value is **default**.| String| No|
@@ -239,7 +245,7 @@ The widget configuration file is named **config.json**. Find the **config.json**
     ]
   ```
   
-- The **abilities** module in the **config.json** file corresponds to **FormAbility** of the widget. The internal structure is described as follows:
+- The **abilities** module in the **config.json** file corresponds to **FormAbility** of the widget. The internal structure is described as follows.
     | Name| Description| Data Type| Initial Value Allowed|
   | -------- | -------- | -------- | -------- |
   | name | Class name of a widget. The value is a string with a maximum of 127 bytes.| String| No|

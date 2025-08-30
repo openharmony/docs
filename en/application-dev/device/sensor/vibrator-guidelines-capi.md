@@ -1,5 +1,10 @@
 # Vibrator Development (C/C++)
-
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 ## When to Use
 
@@ -12,8 +17,8 @@ For details about the APIs, see [Vibrator API Reference](../../reference/apis-se
 
 | Name                                                        | Description                          |
 | ------------------------------------------------------------ | ------------------------------ |
-| OHOS::Sensors::OH_Vibrator_PlayVibration(int32_t duration, Vibrator_Attribute attribute) | Configues the vibrator to vibrate continuously for a given duration.|
-| OHOS::Sensors::OH_Vibrator_PlayVibrationCustom(Vibrator_FileDescription fileDescription, Vibrator_Attribute vibrateAttribute) | Configues the vibrator to vibrate with the custom sequence.          |
+| OHOS::Sensors::OH_Vibrator_PlayVibration(int32_t duration, Vibrator_Attribute attribute) | Configures the vibrator to vibrate continuously for a given duration.|
+| OHOS::Sensors::OH_Vibrator_PlayVibrationCustom(Vibrator_FileDescription fileDescription, Vibrator_Attribute vibrateAttribute) | Configures the vibrator to vibrate with the custom sequence.          |
 | OHOS::Sensors::OH_Vibrator_Cancel()                          | Stops the vibration.                |
 
 ## Vibration Effect Description
@@ -83,14 +88,17 @@ Custom vibration enables you to design desired vibration effects by customizing 
    
        int32_t ret = OH_Vibrator_PlayVibration(0, vibrateAttribute); // Configure the vibrator to vibrate continuously for a given duration.
        OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "Vibration successful");
-       if (ret != PARAMETER_ERROR) {
+       if (ret != 0) {
            return nullptr;
        }
        std::this_thread::sleep_for(std::chrono::milliseconds(TIME_WAIT_FOR_OP));
        ret = OH_Vibrator_Cancel(); // Stop vibration.
-       if (ret == 0) {
+       if (ret != 0) {
            return nullptr;
        }
+       napi_value result = nullptr;
+       napi_create_int32(env, ret, &result);
+       return result;
    }
    ```
 
@@ -99,11 +107,12 @@ Custom vibration enables you to design desired vibration effects by customizing 
    ```c
    static napi_value VibrationCustom_Test(napi_env env, napi_callback_info info)
    {
+       int32_t ret = 0;
        int32_t fd = open("/data/test/vibrator/coin_drop.json", O_RDONLY);
        OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "Test fd:%{public}d", fd);
        struct stat64 statbuf = { 0 };
-       if (fd == 0) {
-           close(fd);
+       if (fd < 0) {
+           OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "File open failed");
            return nullptr;
        }
        if (fstat64(fd, &statbuf) == 0) {
@@ -115,9 +124,9 @@ Custom vibration enables you to design desired vibration effects by customizing 
            Vibrator_Attribute vibrateAttribute = {
                .usage = VIBRATOR_USAGE_RING
            };
-           int32_t ret = OH_Vibrator_PlayVibrationCustom(fileDescription, vibrateAttribute); // Configure the vibrator to vibrate with the custom sequence.
+           ret = OH_Vibrator_PlayVibrationCustom(fileDescription, vibrateAttribute); // Configure the vibrator to vibrate with the custom sequence.
            OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "Vibratecustom successful");
-           bool isSuccess = ((ret == 0) || (ret == UNSUPPORTED));
+           bool isSuccess = ((ret != 0) || (ret == UNSUPPORTED));
            if (isSuccess == true) {
                close(fd);
                return nullptr;
@@ -126,6 +135,9 @@ Custom vibration enables you to design desired vibration effects by customizing 
        std::this_thread::sleep_for(std::chrono::milliseconds(TIME_WAIT_FOR_OP));
        close(fd);
        OH_Vibrator_Cancel(); // Stop vibration.
+       napi_value result = nullptr;
+       napi_create_int32(env, ret, &result);
+       return result;
    }
    ```
    

@@ -76,14 +76,15 @@ class MyButtonModifier implements GestureModifier {
         new TapGestureHandler({ count: 2, fingers: 1 })
           .tag("aaa")
           .onAction((event: GestureEvent) => {
-            console.info("button tap ")
+            console.info('Gesture Info is', JSON.stringify(event));
+            console.info('button tap');
           })
       )
     } else {
       event.addGesture(
         new PanGestureHandler()
-          .onActionStart(()=>{
-            console.info("Pan start");
+          .onActionStart(() => {
+            console.info('Pan start');
           })
       )
     }
@@ -93,7 +94,7 @@ class MyButtonModifier implements GestureModifier {
 @Entry
 @Component
 struct Index {
-  @State modifier: MyButtonModifier = new MyButtonModifier()
+  @State modifier: MyButtonModifier = new MyButtonModifier();
 
   build() {
     Row() {
@@ -107,7 +108,7 @@ struct Index {
           .onClick(() => {
             this.modifier.supportDoubleTap = !this.modifier.supportDoubleTap;
           })
-          .margin({top: 10})
+          .margin({ top: 10 })
       }
       .width('100%')
     }
@@ -115,6 +116,7 @@ struct Index {
   }
 }
 ```
+![gesture_moodifier_1](figures/gesture_modifier_1.png)
 
 ### 示例2（动态绑定手势组）
 
@@ -130,12 +132,16 @@ class MyButtonModifier implements GestureModifier {
       event.addGesture(new GestureGroupHandler({
         mode: GestureMode.Exclusive,
         gestures: [new TapGestureHandler({ count: 2, fingers: 1 }).onAction((event) => {
+          console.info('event info is', JSON.stringify(event));
           console.info('ExclusiveGroupGesture TapGesture is called');
         }), new LongPressGestureHandler({ repeat: true, fingers: 1 }).onAction((event) => {
+          console.info('event info is', JSON.stringify(event));
           console.info('ExclusiveGroupGesture LongPressGesture is called');
         }), new PanGestureHandler({ fingers: 1 }).onActionStart((event) => {
+          console.info('event info is', JSON.stringify(event));
           console.info('ExclusiveGroupGesture PanGesture onActionStart is called');
         }).onActionEnd((event) => {
+          console.info('event info is', JSON.stringify(event));
           console.info('ExclusiveGroupGesture PanGesture onActionEnd is called');
         })]
       }))
@@ -144,12 +150,16 @@ class MyButtonModifier implements GestureModifier {
       event.addGesture(new GestureGroupHandler({
         mode: GestureMode.Parallel,
         gestures: [new TapGestureHandler({ count: 2, fingers: 1 }).onAction((event) => {
+          console.info('event info is', JSON.stringify(event));
           console.info('ParallelGroupGesture TapGesture is called');
         }), new LongPressGestureHandler({ repeat: true, fingers: 1 }).onAction((event) => {
+          console.info('event info is', JSON.stringify(event));
           console.info('ParallelGroupGesture LongPressGesture is called');
         }), new PanGestureHandler({ fingers: 1 }).onActionStart((event) => {
+          console.info('event info is', JSON.stringify(event));
           console.info('ParallelGroupGesture PanGesture onActionStart is called');
         }).onActionEnd((event) => {
+          console.info('event info is', JSON.stringify(event));
           console.info('ParallelGroupGesture PanGesture onActionEnd is called');
         })]
       }))
@@ -183,3 +193,4 @@ struct Index {
   }
 }
 ```
+![gesture_moodifier_2](figures/gesture_modifier_2.png)

@@ -14,11 +14,11 @@ The table below lists the types of continuous tasks, which are used in various s
 | Name| Description| Item| Example Scenario|
 | -------- | -------- | -------- | -------- |
 | DATA_TRANSFER | Data transfer| dataTransfer | Non-hosting uploading and downloading operations, like those occurring in the background of a web browser for data transfer.|
-| AUDIO_PLAYBACK | Audio and video playback| audioPlayback | Audio and video playback in the background; audio and video casting.<br> **NOTE**<br>It can be used in atomic services.|
+| AUDIO_PLAYBACK | Audio and video playback| audioPlayback | Audio and video playback in the background; audio and video casting.<br> **Note**: It can be used in atomic services.|
 | AUDIO_RECORDING | Audio recording| audioRecording | Recording and screen capture in the background.|
 | LOCATION | Positioning and navigation| location | Positioning and navigation.|
 | BLUETOOTH_INTERACTION | Bluetooth-related services| bluetoothInteraction | An application transitions into the background during the process of file transfer using Bluetooth.|
-| MULTI_DEVICE_CONNECTION | Multi-device connection| multiDeviceConnection | Distributed service connection and casting.<br> **NOTE**<br>It can be used in atomic services.|
+| MULTI_DEVICE_CONNECTION | Multi-device connection| multiDeviceConnection | Distributed service connection and casting.<br> **Note**: It can be used in atomic services.|
 | <!--DelRow-->WIFI_INTERACTION | WLAN-related services (for system applications only)| wifiInteraction  | An application transitions into the background during the process of file transfer using WLAN.|
 | VOIP<sup>13+</sup> | Audio and video calls| voip  | Chat applications (with audio and video services) transition into the background during audio and video calls.|
 | TASK_KEEPING | Computing task (for 2-in-1 devices only).| taskKeeping  | Antivirus software is running.|
@@ -419,7 +419,7 @@ The following walks you through how to request a continuous task for recording t
        "abilities": [
            {
                "backgroundModes": [
-               "audioRecording",
+               "audioRecording"
                ], // Background mode
                "type": "service"  // The ability type is Service.
            }

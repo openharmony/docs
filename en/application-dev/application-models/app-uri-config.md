@@ -53,7 +53,7 @@ The use of the **linkFeature** field enables an application to deliver a more us
     |RoutePlan|Plans a route.|
     |PlaceSearch|Searches a location.|
 
-2. One-touch return: When a user switches from application A to application B, application B calls the [quick return API](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#backtocallerabilitywithresult12) to return to application A. For example, if application A is redirected to the payment page of application B and application B has applied for the linkfeature of payment, the user can return to application A at one touch after finishing the payment in application B.
+2. One-touch return: When a user switches from application A to application B, application B calls the [quick return API](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#backtocallerabilitywithresult12) to return to application A. For example, if application A is redirected to the payment page of application B and application B has applied for the **linkFeature** of payment, the user can return to application A at one touch after finishing the payment in application B.
 
     |Value|Description|
     |---|---|

@@ -129,6 +129,7 @@ export default class EntryAbility extends UIAbility {
 1. 创建应用子窗口。
 
    通过`createSubWindow`接口创建应用子窗口。
+   子窗口创建后默认是[沉浸式布局](../windowmanager/window-terminology.md#沉浸式布局)。
 
 2. 设置子窗口属性。
 

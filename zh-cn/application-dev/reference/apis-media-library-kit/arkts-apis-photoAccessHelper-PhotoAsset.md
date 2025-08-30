@@ -392,6 +392,8 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 获取文件的缩略图，使用callback方式返回异步结果。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -447,6 +449,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 getThumbnail(size: image.Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 获取文件的缩略图，传入缩略图尺寸，使用callback方式返回异步结果。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
@@ -506,6 +510,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 
 获取文件的缩略图，传入缩略图尺寸，使用promise方式返回异步结果。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 

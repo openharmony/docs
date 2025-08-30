@@ -1,5 +1,12 @@
 # Encryption and Decryption with an SM4 Symmetric Key (GCM Mode) (ArkTS)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-decrypt-spec.md#sm4).
 
 **Encryption**
@@ -14,7 +21,7 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
 
 4. Call [Cipher.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-1) to pass in the data to be encrypted (plaintext).
    
-   Currently, the amount of data to be passed in by a single **Cipher.update** is not limited. You can determine how to pass in data based on the data volume.
+   Currently, the amount of the data to be passed in by a single **Cipher.update** is not limited. You can determine how to pass in data based on the data volume.
 
    - If a small amount of data is to be encrypted, you can use **Cipher.doFinal** immediately after **Cipher.init**.
    - If a large amount of data is to be encrypted, you can call **Cipher.update** multiple times to [pass in the data by segment](crypto-sm4-sym-encrypt-decrypt-gcm-by-segment.md).

@@ -1946,7 +1946,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-  @State factor: number = 1;
+  @State factor: number = 2;
 
   build() {
     Column() {
@@ -3845,10 +3845,42 @@ struct WebComponent {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile("index.html"), controller: this.controller })
     }
   }
 }
+```
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .blue {
+          background-color: lightblue;
+        }
+        .green {
+          background-color: lightgreen;
+        }
+        .blue, .green {
+         font-size:16px;
+         height:200px;
+         text-align: center;       /* 水平居中 */
+         line-height: 200px;       /* 垂直居中（值等于容器高度） */
+        }
+    </style>
+</head>
+<body>
+<div class="blue" >webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+</body>
+</html>
 ```
 
 ## pageDown
@@ -3896,10 +3928,45 @@ struct WebComponent {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile("index.html"), controller: this.controller })
     }
   }
 }
+```
+
+加载的html文件。
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .blue {
+          background-color: lightblue;
+        }
+        .green {
+          background-color: lightgreen;
+        }
+        .blue, .green {
+         font-size:16px;
+         height:200px;
+         text-align: center;       /* 水平居中 */
+         line-height: 200px;       /* 垂直居中（值等于容器高度） */
+        }
+    </style>
+</head>
+<body>
+<div class="blue" >webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+</body>
+</html>
 ```
 
 ## getBackForwardEntries
@@ -6323,7 +6390,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let enable = this.controller.getPrintBackground();
-            console.log("getPrintBackground: " + enable);
+            console.info("getPrintBackground: " + enable);
           } catch (error) {
             console.error(`ErrorCode:${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
           }
@@ -6784,7 +6851,7 @@ struct WebComponent {
 
 getMediaPlaybackState(): MediaPlaybackState
 
-查询当前所有音视频播控状态。
+查询当前网页音视频播放状态。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6792,7 +6859,7 @@ getMediaPlaybackState(): MediaPlaybackState
 
 | 类型                                        | 说明                                                      |
 | ------------------------------------------- | --------------------------------------------------------- |
-| [MediaPlaybackState](./arkts-apis-webview-e.md#mediaplaybackstate12) | 当前网页的播控状态，具体值为NONE、PLAYING、PAUSED、STOPPED。 |
+| [MediaPlaybackState](./arkts-apis-webview-e.md#mediaplaybackstate12) | 当前网页的播放状态，具体值为NONE、PLAYING、PAUSED、STOPPED。 |
 
 **错误码：**
 
@@ -8107,7 +8174,11 @@ struct WebComponent {
 
 getSurfaceId(): string
 
-获取ArkWeb对应Surface的ID，仅Web组件渲染模式是ASYNC_RENDER时有效。getSurfaceId需要在Web组件初始化之后才能获取到值。
+获取ArkWeb对应Surface的ID，此ID可用于网页截图。
+
+> **说明：**
+>
+> 仅Web组件渲染模式是ASYNC_RENDER时有效。getSurfaceId需要在Web组件初始化之后才能获取到值。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8138,7 +8209,7 @@ struct Example{
         .onClick(()=>{
           try {
             let surfaceId = this.controller.getSurfaceId();
-            console.log("surfaceId: " + surfaceId);
+            console.info("surfaceId: " + surfaceId);
             if(surfaceId.length != 0) {
               let region:image.Region = { x: 0, y: 0, size: { height: 800, width: 1000}}
               this.imagePixelMap = image.createPixelMapFromSurfaceSync(surfaceId, region)
@@ -8752,6 +8823,29 @@ struct WebComponent {
   }
 }
 ```
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0">
+      <title>Demo</title>
+      <style>
+          body {
+            width:3000px;
+            height:6000px;
+            padding-right:170px;
+            padding-left:170px;
+            border:5px solid blueviolet
+          }
+      </style>
+  </head>
+  <body>
+  Scroll Test
+  </body>
+  </html>
+  ```
 
 ## getPageOffset<sup>20+</sup>
 
@@ -8766,6 +8860,14 @@ getPageOffset(): ScrollOffset
 | 类型                            | 说明                   |
 | :------------------------------ | ---------------------- |
 | [ScrollOffset](./arkts-apis-webview-i.md#scrolloffset13) | 网页当前的滚动偏移量（不包含过滚动偏移量）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+|  801     | Capability not supported. |
 
 **示例：**
 
@@ -8782,8 +8884,12 @@ struct WebComponent {
     Column() {
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .onScroll((event) => {
-          console.log("getPageOffset x:" + this.controller.getPageOffset().x + ",y:" +
-          this.controller.getPageOffset().y);
+          try {
+            console.log("getPageOffset x:" + this.controller.getPageOffset().x + ",y:" +
+            this.controller.getPageOffset().y);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
         })
     }
   }
@@ -9528,6 +9634,8 @@ getBlanklessInfoWithKey(key: string): BlanklessInfo
 > - 调用本接口后，将启用页面加载快照检测及生成过渡帧计算，会产生一定的资源开销。
 > - 启用无白屏加载的页面会带来一定的资源开销，开销的大小与Web组件的分辨率相关。假设分辨率的宽度和高度分别为：w, h。页面在打开阶段会增加峰值内存，增加约12*w*h B，页面打开后内存回收，不影响稳态内存。增加固态应用缓存的大小，每个页面增加的缓存约w*h/10 B，缓存位于应用缓存的位置。
 
+**需要权限：** ohos.permission.INTERNET和ohos.permission.GET_NETWORK_INFO
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **设备行为差异：** 该接口在Phone中可正常调用，在其他设备类型中返回801错误码。
@@ -9600,6 +9708,8 @@ setBlanklessLoadingWithKey(key: string, is_start: boolean): WebBlanklessErrorCod
 > - 需在触发页面加载的接口之后调用，其他约束同[getBlanklessInfoWithKey](#getblanklessinfowithkey20)。
 > - 页面加载必须在调用本接口的组件中进行。
 > - 当相似度较低时，系统将判定为跳变过大，启用插帧会失败。
+
+**需要权限：** ohos.permission.INTERNET和ohos.permission.GET_NETWORK_INFO
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -9801,6 +9911,102 @@ export default class EntryAbility extends UIAbility {
     webview.WebviewController.setWebDestroyMode(webview.WebDestroyMode.FAST_MODE);
     AppStorage.setOrCreate("abilityWant", want);
     console.log("EntryAbility onCreate done");
+  }
+}
+```
+
+## setActiveWebEngineVersion<sup>20+</sup>
+
+static setActiveWebEngineVersion(engineVersion: ArkWebEngineVersion): void
+
+设置ArkWeb内核版本。若系统不支持指定版本，则设置无效。该接口为全局静态API，须在调用initializeWebEngine前执行，若已加载任何Web组件，则该设置无效。
+
+**遗留内核适配：**
+
+在OpenHarmony 6.0及以后，使用遗留内核时，部分ArkWeb接口不会生效，参考[M114内核在OpenHarmony6.0系统上的适配指导](https://gitcode.com/openharmony-tpc/chromium_src/blob/132_trunk/web/ReleaseNote/CompatibleWithLegacyWebEngine.md)。
+
+> **说明：**
+>
+> - setActiveWebEngineVersion不支持在异步线程中调用。
+> - setActiveWebEngineVersion全局生效，在整个APP生命周期中调用一次即可，不需要重复调用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名              | 类型    | 必填   |  说明 |
+| ------------------ | ------- | ---- | ------------- |
+| engineVersion         |   [ArkWebEngineVersion](./arkts-apis-webview-e.md#arkwebengineversion20)   | 是   | ArkWeb内核版本。 |
+
+**示例：**
+
+本示例以EntryAbility为例，实现了在Ability创建阶段设置ArkWeb内核版本的功能。
+
+```ts
+// xxx.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate")
+    webview.WebviewController.setActiveWebEngineVersion(webview.ArkWebEngineVersion.M114)
+    if (webview.WebviewController.getActiveWebEngineVersion() == webview.ArkWebEngineVersion.M114) {
+      console.log("Active Web Engine Version set to M114")
+    }
+    console.log("EntryAbility onCreate done")
+  }
+}
+```
+
+## getActiveWebEngineVersion<sup>20+</sup>
+
+static getActiveWebEngineVersion(): ArkWebEngineVersion
+
+获取当前ArkWeb内核版本。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型    | 说明                              |
+| ------- | --------------------------------- |
+| [ArkWebEngineVersion](./arkts-apis-webview-e.md#arkwebengineversion20) | 返回由[ArkWebEngineVersion](./arkts-apis-webview-e.md#arkwebengineversion20)所定义的当前使用的ArkWeb内核版本。 |
+
+**示例：**
+
+请参考[setActiveWebEngineVersion](#setactivewebengineversion20)。
+
+## isActiveWebEngineEvergreen<sup>20+</sup>
+
+static isActiveWebEngineEvergreen(): boolean
+
+判断当前系统是否正在使用常青内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型    | 说明                              |
+| ------- | --------------------------------- |
+| boolean | 表示是否正在使用常青内核。正在使用返回true，否则返回false。 |
+
+**示例：**
+
+本示例以EntryAbility为例，实现了在Ability创建阶段判断应用是否正在使用常青内核的功能。
+
+```ts
+// xxx.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate")
+    if (webview.WebviewController.isActiveWebEngineEvergreen()) {
+      console.log("Active Web Engine is Evergreen")
+    }
+    console.log("EntryAbility onCreate done")
   }
 }
 ```

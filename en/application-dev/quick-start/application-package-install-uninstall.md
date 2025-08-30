@@ -1,16 +1,22 @@
 # Application Installation, Uninstall, and Update
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
-This topic describes how to install, uninstall, and update an application.
+This topic describes application installation, uninstallation, and two update modes.
 
 ## Installing or Uninstalling an Application
-You can install and uninstall applications by running debug commands. For details, see the [compilation, release, and deployment process](./application-package-structure-stage.md#package-structure-in-the-release-phase).
+You can install and uninstall applications using debug commands, for example, the [install](../tools/bm-tool.md#install) and [uninstall](../tools/bm-tool.md#uninstall) commands in the bm tool. For details, see the [compilation, release, and deployment process](./application-package-structure-stage.md#package-structure-in-the-release-phase) flowchart.
 
 **Figure 1** Process of installing and uninstalling an application (applicable to developers)
 
 ![hap-intall-uninstall](figures/hap-install-uninstall-developer.png)
 
 
-When an application has been released to the application market, consumers can install or uninstall the application on their device through the application market.
+After an application is released to AppGallery, users can install or uninstall the application on their devices through the AppGallery.
 
 **Figure 2** Process of installing and uninstalling an application (applicable to consumers)
 
@@ -19,8 +25,7 @@ When an application has been released to the application market, consumers can i
 ## Updating an Application
 
 
-For developers, to update an application, you need to first update the **versionCode** field in the [app.json5](./app-configuration-file.md#appjson5-configuration-file) file, package the application using DevEco Studio, and release the application in the AppGallery. For users, the application may be updated in the following approaches:
+For developers, you need to first update the **versionCode** field in the [app.json5FrF configuration file](./app-configuration-file.md), package the application using DevEco Studio, and release it on AppGallery. For users, you can update the application in either of the following ways after a new version is released:
 
-- [On the AppGallery](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V14/store-update-V14?catalogVersion=V14): The application market notifies the user of an available update, and the user can install the update by following the onscreen instructions.
-- [In the application](https://developer.huawei.com/consumer/en/doc/AppGallery-connect-Guides/appgallerykit-app-update-0000001055118286): When the application for which an update is available starts up, the AppGallery notifies the user of the update, and the user can install the update by following the onscreen instructions.
-
+- On AppGallery: AppGallery notifies the user of an available update, and the user can install the update by following the on-screen instructions.
+- In the application: <!--RP1-->When the application for which an update is available starts up, it notifies the user of the update, and the user can install the update by following the on-screen instructions.<!--RP1End-->

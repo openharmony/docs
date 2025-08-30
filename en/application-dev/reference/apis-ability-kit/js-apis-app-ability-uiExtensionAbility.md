@@ -1,5 +1,12 @@
 # @ohos.app.ability.UIExtensionAbility (Base Class for ExtensionAbilities with UI)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhangyafei-echo; @xuzhihao666-->
+<!--Designer: @zhangyafei-echo-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 UIExtensionAbility is a base class for ExtensionAbilities with UI in specific scenarios. It provides properties and APIs related to ExtensionAbilities with UI. It inherits from [ExtensionAbility](js-apis-app-ability-extensionAbility.md). You cannot inherit from this base class. For details about the inheritance relationship of each ability, see [Inheritance Relationship](./js-apis-app-ability-ability.md#ability-inheritance-relationship).
 
 > **NOTE**
@@ -33,6 +40,8 @@ onCreate(launchParam: AbilityConstant.LaunchParam): void
 Called to initialize the service logic when a UIExtensionAbility is being created.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -171,7 +180,7 @@ After the **onDestroy()** lifecycle callback is executed, the application may ex
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<void> | Promise that returns no value.                           |
+| void \| Promise\<void> | No return value or a Promise object that returns no value.                           |
 
 **Example**
 

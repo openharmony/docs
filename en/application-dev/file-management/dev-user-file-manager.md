@@ -2,8 +2,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @wang_zhangjun; @zhuangzhuang-->
-<!--SE: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
-<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Designer: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 OpenHarmony is prebuilt with the **FileManager** application. You can also develop your own file manager application as required.
 

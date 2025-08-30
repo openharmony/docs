@@ -187,7 +187,7 @@ For better user experience, the data to be transmitted via the **wantParam** par
 
 ### Dynamically Setting the Migration State
 
-Since API version 10, you can dynamically set the migration state. Specifically, you can enable or disable migration as required by calling [setMissionContinueState()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#setmissioncontinuestate10). By default, **ACTIVE** is set for an application, indicating that migration is enabled.
+Starting from API version 10, you can dynamically set the migration state. Specifically, you can enable or disable migration as required by calling [setMissionContinueState()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#setmissioncontinuestate10). By default, **ACTIVE** is set for an application, indicating that migration is enabled.
 
 **Time for Setting the Migration State**
 
@@ -483,7 +483,7 @@ By default, the target application on the peer device is not started immediately
    ```
 With quick start, the target application starts while waiting for the data to migration, minimizing the duration that users wait for the migration to complete. Note that, for the first migration with quick start enabled, the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onnewwant) callback is triggered, in which **launchReason** is **PREPARE_CONTINUATION**. The introduction of the **launchReason** parameter solves problems related to redirection and timing. It also provides a loading screen during quick startup.
 
-Since API version 18, an application that displays a loading page during quick launch can [obtain the quick startup result during cross-device migration](../reference/apis-ability-kit/js-apis-app-ability-continueManager.md#continuemanageron). Depending on this result, the application can take appropriate actions. For example, if the quick startup is successful, the application can dismiss the loading page and proceed to the continuation page.
+Starting from API version 18, an application that displays a loading page during quick launch can [obtain the quick startup result during cross-device migration](../reference/apis-ability-kit/js-apis-app-ability-continueManager.md#continuemanageron). Depending on this result, the application can take appropriate actions. For example, if the quick startup is successful, the application can dismiss the loading page and proceed to the continuation page.
 
 The following figure shows the quick start process.
 
@@ -599,7 +599,7 @@ Two data migration modes are provided. You can select either of them as required
   >
   > If distributed data objects need to be migrated, you must perform the following operations (required only in API version 11 and earlier versions):
   >
-  > 1. Declare the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+  > 1. Declare the ohos.permission.DISTRIBUTED_DATASYNC permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
   >
   > 2. Display a dialog box to ask for authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
 
@@ -659,7 +659,7 @@ If the size of the data to migrate is greater than 100 KB or a file needs to be 
 
   > **NOTE**
   >
-  > Since API version 12, it is difficult to obtain the file synchronization completion time when [cross-device file access](../file-management/file-access-across-devices.md) is used to migrate a file. To ensure a higher success rate, you are advised to use distributed data objects to carry assets. File migration implemented through cross-device file access still takes effect.
+  > Starting from API version 12, it is difficult to obtain the file synchronization completion time when [cross-device file access](../file-management/file-access-across-devices.md) is used to migrate a file. To ensure a higher success rate, you are advised to use distributed data objects to carry assets. File migration implemented through cross-device file access still takes effect.
 
 #### Basic Data Migration
 
@@ -676,7 +676,7 @@ On the source device, save the data to migrate to a distributed [data object](..
 >
 > Distributed data objects must be activated before being made persistent. Therefore, the **save()** API must be called after **setSessionId()**.
 >
-> For applications that need to exit from the source device after migration, use **await** to wait until the **save()** API finishes execution. This prevents the application from exiting before data is saved. Since API version 12, an asynchronous **onContinue()** API is provided for this scenario.
+> For applications that need to exit from the source device after migration, use **await** to wait until the **save()** API finishes execution. This prevents the application from exiting before data is saved. Starting from API version 12, an asynchronous **onContinue()** API is provided for this scenario.
 >
 > Currently, the **sessionId** field in **wantParams** is occupied by the system in the migration process. You are advised to define another key in **wantParams** to store the ID to avoid data exceptions.
 
@@ -944,7 +944,7 @@ The target application must create an asset object whose attributes are empty as
 
 > **NOTE**
 >
-> When the target application creates the distributed data object, the assets in the **SourceObject** object cannot be directly initialized using **undefined**. You need to create an asset object whose initial values of all attributes are empty so that the distributed object can identify the asset type.
+> When the target application creates the distributed data object, the assets in the SourceObject object cannot be directly initialized using **undefined**. You need to create an asset object whose initial values of all attributes are empty so that the distributed object can identify the asset type.
 
 ```ts
 import { UIAbility, Want } from '@kit.AbilityKit';
@@ -1081,7 +1081,7 @@ A mission center demo is provided for you to verify the migration capability of 
         ![hop-cross-device-migration](figures/hop-cross-device-migration1.png)
 
     2. Complete the signature, build, and installation.
-        ​The default signature permission provided by the automatic signature template of DevEco Studio is normal. The mission center demo requires the **ohos.permission.MANAGE_MISSIONS** permission, which is at the system_core level. Therefore, you must escalate the permission to the system_core level.
+        ​The default signature permission provided by the automatic signature template of DevEco Studio is normal. The mission center demo requires the ohos.permission.MANAGE_MISSIONS permission, which is at the system_core level. Therefore, you must escalate the permission to the system_core level.
            1. Change **"apl":"normal"** to **"apl":"system_core"** in the **UnsignedReleasedProfileTemplate.json** file in **openharmony\apiVersion\toolchains\lib**, where apiVersion is a digit, for example, **10**. 
 
            2. Choose **File > Project Structure**.

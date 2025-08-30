@@ -212,7 +212,7 @@ API 8
 
 **变更的接口/组件**
 
-ArkTS的onMouse接口和Native的OH_NativeXComponent_GetMouseEvent接口。
+ArkTS的onMouse接口，Native的OH_NativeXComponent_GetMouseEvent接口和registerNodeEvent接口的NODE_ON_MOUSE。
 
 **适配指导**
 
