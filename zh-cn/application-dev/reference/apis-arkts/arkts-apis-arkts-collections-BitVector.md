@@ -672,6 +672,8 @@ for (let item of bitVector) {
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**参数：**
+
 | 参数名    | 类型   | 必填 | 说明                     |
 | ----- | ------ | ---- | -------------------------- |
 | index | number | 是   | 所需代码单元的从零开始的索引。|
