@@ -35,18 +35,18 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
   ArkUI_NativeNodeAPI_1 *nodeAPI = nullptr;
   OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nodeAPI);
   void NodeEventReceiver(ArkUI_NodeEvent *event) {
-    // 设置对应的事件类型触发时进行的操作，如NODE_ON_CLICK
+    // 设置对应的事件类型触发时进行的操作，如NODE_ON_CLICK_EVENT
   };
   auto button = nodeAPI->createNode(ARKUI_NODE_BUTTON);
   nodeAPI->addNodeEventReceiver(button, NodeEventReceiver);
-  nodeAPI->registerNodeEvent(button, NODE_ON_CLICK, 0, nullptr);
+  nodeAPI->registerNodeEvent(button, NODE_ON_CLICK_EVENT, 0, nullptr);
   ```
   详细的事件类型请参考[ArkUI_NodeEventType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype)。
 
   通过unregisterNodeEvent解注册对应的事件类型，再通过removeNodeEventReceiver卸载事件处理函数。
 
   ```
-  nodeAPI->unregisterNodeEvent(button, NODE_ON_CLICK);
+  nodeAPI->unregisterNodeEvent(button, NODE_ON_CLICK_EVENT);
   nodeAPI->removeNodeEventReceiver(button, NodeEventReceiver);
   ```
 
@@ -58,7 +58,7 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
   nodeAPI->registerNodeEventReceiver([](ArkUI_NodeEvent *event){
     auto *inputEvent = OH_ArkUI_NodeEvent_GetInputEvent(event);
     auto eventType = OH_ArkUI_NodeEvent_GetEventType(event);
-    case NODE_ON_CLICK: {
+    case NODE_ON_CLICK_EVENT: {
         // 触发点击事件所进行的操作
     }
     default: {
@@ -70,11 +70,11 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
 
 - 获取事件信息
 
-  ArkUI框架提供了[OH_ArkUI_NodeEvent_GetInputEvent()](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_nodeevent_getinputevent)接口，用于从输入交互相关的组件事件（如NODE_ON_CLICK、NODE_TOUCH_EVENT等，具体可参见每个枚举定义的说明）中获取基础事件对象。然后，可通过调用[OH_ArkUI_PointerEvent_GetDisplayX()](../reference/apis-arkui/capi-ui-input-event-h.md#oh_arkui_pointerevent_getdisplayx)、[OH_ArkUI_PointerEvent_GetDisplayXByIndex()](../reference/apis-arkui/capi-ui-input-event-h.md#oh_arkui_pointerevent_getdisplayxbyindex)、[OH_ArkUI_UIInputEvent_GetAction()](../reference/apis-arkui/capi-ui-input-event-h.md#oh_arkui_uiinputevent_getaction)和[OH_ArkUI_UIInputEvent_GetEventTime()](../reference/apis-arkui/capi-ui-input-event-h.md#oh_arkui_uiinputevent_geteventtime)等接口，从基础事件中获取更多信息。应用根据获取的事件信息，在事件执行过程中实现差异化交互逻辑。
+  ArkUI框架提供了[OH_ArkUI_NodeEvent_GetInputEvent()](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_nodeevent_getinputevent)接口，用于从输入交互相关的组件事件（如NODE_ON_CLICK_EVENT、NODE_TOUCH_EVENT等，具体可参见每个枚举定义的说明）中获取基础事件对象。然后，可通过调用[OH_ArkUI_PointerEvent_GetDisplayX()](../reference/apis-arkui/capi-ui-input-event-h.md#oh_arkui_pointerevent_getdisplayx)、[OH_ArkUI_PointerEvent_GetDisplayXByIndex()](../reference/apis-arkui/capi-ui-input-event-h.md#oh_arkui_pointerevent_getdisplayxbyindex)、[OH_ArkUI_UIInputEvent_GetAction()](../reference/apis-arkui/capi-ui-input-event-h.md#oh_arkui_uiinputevent_getaction)和[OH_ArkUI_UIInputEvent_GetEventTime()](../reference/apis-arkui/capi-ui-input-event-h.md#oh_arkui_uiinputevent_geteventtime)等接口，从基础事件中获取更多信息。应用根据获取的事件信息，在事件执行过程中实现差异化交互逻辑。
 
   ```cpp
   // 注册click事件
-  nodeAPI->registerNodeEvent(button, NODE_ON_CLICK, 0, nullptr);
+  nodeAPI->registerNodeEvent(button, NODE_ON_CLICK_EVENT, 0, nullptr);
   // 设置组件事件的全局监听
   nodeAPI->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
       // 从组件事件中获取基础事件对象
@@ -92,7 +92,7 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "eventInfo", "nodeHandle = %{public}p", nodeHandle);
       // 根据eventType来区分事件类型，进行差异化处理，其他获取事件信息的接口也可类似方式来进行差异化的处理
       switch (eventType) {
-      case NODE_ON_CLICK: {
+      case NODE_ON_CLICK_EVENT: {
           // 触发点击事件所进行的操作，从基础事件获取事件信息
           auto x = OH_ArkUI_PointerEvent_GetX(inputEvent);
           auto y = OH_ArkUI_PointerEvent_GetY(inputEvent);
@@ -135,7 +135,7 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
       }
   });
   nodeAPI->unregisterNodeEventReceiver();
-  nodeAPI->unregisterNodeEvent(button, NODE_ON_CLICK);
+  nodeAPI->unregisterNodeEvent(button, NODE_ON_CLICK_EVENT);
   ```
 
 
@@ -208,7 +208,7 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
    
        ~ArkUINode() override {
            if (onClick_) {
-               nativeModule_->unregisterNodeEvent(handle_, NODE_ON_CLICK);
+               nativeModule_->unregisterNodeEvent(handle_, NODE_ON_CLICK_EVENT);
            }
            if (onTouch_) {
                nativeModule_->unregisterNodeEvent(handle_, NODE_TOUCH_EVENT);
@@ -257,7 +257,7 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
            assert(handle_);
            onClick_ = onClick;
            // 注册点击事件。
-           nativeModule_->registerNodeEvent(handle_, NODE_ON_CLICK, 0, nullptr);
+           nativeModule_->registerNodeEvent(handle_, NODE_ON_CLICK_EVENT, 0, nullptr);
        }
    
        void RegisterOnTouch(const std::function<void(int32_t type, float x, float y)> &onTouch) {
@@ -295,7 +295,7 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
        void ProcessNodeEvent(ArkUI_NodeEvent *event) {
            auto eventType = OH_ArkUI_NodeEvent_GetEventType(event);
            switch (eventType) {
-           case NODE_ON_CLICK: {
+           case NODE_ON_CLICK_EVENT: {
                if (onClick_) {
                    onClick_(event);
                }
@@ -466,47 +466,47 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "eventInfo", "nodeHandle = %{public}p", nodeHandle);
                // 根据eventType来区分事件类型，进行差异化处理，其他获取事件信息的接口也可类似方式来进行差异化的处理
                switch (eventType) {
-               case NODE_ON_CLICK: {
-                   // 触发点击事件所进行的操作，从基础事件获取事件信息
-                   auto x = OH_ArkUI_PointerEvent_GetX(inputEvent);
-                   auto y = OH_ArkUI_PointerEvent_GetY(inputEvent);
-                   auto displayX = OH_ArkUI_PointerEvent_GetDisplayX(inputEvent);
-                   auto displayY = OH_ArkUI_PointerEvent_GetDisplayY(inputEvent);
-                   auto windowX = OH_ArkUI_PointerEvent_GetWindowX(inputEvent);
-                   auto windowY = OH_ArkUI_PointerEvent_GetWindowY(inputEvent);
-                   auto pointerCount = OH_ArkUI_PointerEvent_GetPointerCount(inputEvent);
-                   auto xByIndex = OH_ArkUI_PointerEvent_GetXByIndex(inputEvent, 0);
-                   auto yByIndex = OH_ArkUI_PointerEvent_GetYByIndex(inputEvent, 0);
-                   auto displayXByIndex = OH_ArkUI_PointerEvent_GetDisplayXByIndex(inputEvent, 0);
-                   auto displayYByIndex = OH_ArkUI_PointerEvent_GetDisplayYByIndex(inputEvent, 0);
-                   auto windowXByIndex = OH_ArkUI_PointerEvent_GetWindowXByIndex(inputEvent, 0);
-                   auto windowYByIndex = OH_ArkUI_PointerEvent_GetWindowYByIndex(inputEvent, 0);
-                   auto pointerId = OH_ArkUI_PointerEvent_GetPointerId(inputEvent, 0);
-                   auto pressure = OH_ArkUI_PointerEvent_GetPressure(inputEvent, 0);
-                   auto action = OH_ArkUI_UIInputEvent_GetAction(inputEvent);
-                   auto eventTime = OH_ArkUI_UIInputEvent_GetEventTime(inputEvent);
-                   auto sourceType = OH_ArkUI_UIInputEvent_GetSourceType(inputEvent);
-                   auto type = OH_ArkUI_UIInputEvent_GetType(inputEvent);
-                   std::string eventInfo =
-                       "x: " + std::to_string(x) + ", y: " + std::to_string(y) +
-                       ", displayX: " + std::to_string(displayX) + ", displayY: " + std::to_string(displayY) +
-                       ", windowX: " + std::to_string(windowX) + ", windowY: " + std::to_string(windowY) +
-                       ", pointerCount: " + std::to_string(pointerCount) + ", xByIndex: " + std::to_string(xByIndex) +
-                       ", yByIndex: " + std::to_string(yByIndex) +
-                       ", displayXByIndex: " + std::to_string(displayXByIndex) +
-                       ", displayYByIndex: " + std::to_string(displayYByIndex) +
-                       ", windowXByIndex: " + std::to_string(windowXByIndex) +
-                       ", windowYByIndex: " + std::to_string(windowYByIndex) +
-                       ", pointerId: " + std::to_string(pointerId) + ", pressure: " + std::to_string(pressure) +
-                       ", action: " + std::to_string(action) + ", eventTime: " + std::to_string(eventTime) +
-                       ", sourceType: " + std::to_string(sourceType) + ", type: " + std::to_string(type);
-                   OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "eventInfoOfCommonEvent",
-                                "eventInfo = %{public}s", eventInfo.c_str());
-               }
-               default: {
-                   break;
-               }
-               }
+                    case NODE_ON_CLICK_EVENT: {
+                        // 触发点击事件所进行的操作，从基础事件获取事件信息
+                        auto x = OH_ArkUI_PointerEvent_GetX(inputEvent);
+                        auto y = OH_ArkUI_PointerEvent_GetY(inputEvent);
+                        auto displayX = OH_ArkUI_PointerEvent_GetDisplayX(inputEvent);
+                        auto displayY = OH_ArkUI_PointerEvent_GetDisplayY(inputEvent);
+                        auto windowX = OH_ArkUI_PointerEvent_GetWindowX(inputEvent);
+                        auto windowY = OH_ArkUI_PointerEvent_GetWindowY(inputEvent);
+                        auto pointerCount = OH_ArkUI_PointerEvent_GetPointerCount(inputEvent);
+                        auto xByIndex = OH_ArkUI_PointerEvent_GetXByIndex(inputEvent, 0);
+                        auto yByIndex = OH_ArkUI_PointerEvent_GetYByIndex(inputEvent, 0);
+                        auto displayXByIndex = OH_ArkUI_PointerEvent_GetDisplayXByIndex(inputEvent, 0);
+                        auto displayYByIndex = OH_ArkUI_PointerEvent_GetDisplayYByIndex(inputEvent, 0);
+                        auto windowXByIndex = OH_ArkUI_PointerEvent_GetWindowXByIndex(inputEvent, 0);
+                        auto windowYByIndex = OH_ArkUI_PointerEvent_GetWindowYByIndex(inputEvent, 0);
+                        auto pointerId = OH_ArkUI_PointerEvent_GetPointerId(inputEvent, 0);
+                        auto pressure = OH_ArkUI_PointerEvent_GetPressure(inputEvent, 0);
+                        auto action = OH_ArkUI_UIInputEvent_GetAction(inputEvent);
+                        auto eventTime = OH_ArkUI_UIInputEvent_GetEventTime(inputEvent);
+                        auto sourceType = OH_ArkUI_UIInputEvent_GetSourceType(inputEvent);
+                        auto type = OH_ArkUI_UIInputEvent_GetType(inputEvent);
+                        std::string eventInfo =
+                            "x: " + std::to_string(x) + ", y: " + std::to_string(y) +
+                            ", displayX: " + std::to_string(displayX) + ", displayY: " + std::to_string(displayY) +
+                            ", windowX: " + std::to_string(windowX) + ", windowY: " + std::to_string(windowY) +
+                            ", pointerCount: " + std::to_string(pointerCount) + ", xByIndex: " + std::to_string(xByIndex) +
+                            ", yByIndex: " + std::to_string(yByIndex) +
+                            ", displayXByIndex: " + std::to_string(displayXByIndex) +
+                            ", displayYByIndex: " + std::to_string(displayYByIndex) +
+                            ", windowXByIndex: " + std::to_string(windowXByIndex) +
+                            ", windowYByIndex: " + std::to_string(windowYByIndex) +
+                            ", pointerId: " + std::to_string(pointerId) + ", pressure: " + std::to_string(pressure) +
+                            ", action: " + std::to_string(action) + ", eventTime: " + std::to_string(eventTime) +
+                            ", sourceType: " + std::to_string(sourceType) + ", type: " + std::to_string(type);
+                        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "eventInfoOfCommonEvent",
+                                        "eventInfo = %{public}s", eventInfo.c_str());
+                    }
+                    default: {
+                        break;
+                    }
+                }
            };
            listItem->RegisterOnClick(onClick);
            list->AddChild(listItem);

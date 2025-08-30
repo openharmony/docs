@@ -389,10 +389,10 @@ struct RepeatVirtualScrollOnMove {
               Text(obj.item)
                 .fontSize(16)
                 .textAlign(TextAlign.Center)
-                .size({height: 100, width: "100%"})
+                .size({height: 100, width: '100%'})
             }.margin(10)
             .borderRadius(10)
-            .backgroundColor("#FFFFFFFF")
+            .backgroundColor('#FFFFFFFF')
           })
           .key((item: string, index: number) => {
             return item;
@@ -400,7 +400,7 @@ struct RepeatVirtualScrollOnMove {
           .virtualScroll({ totalCount: this.simpleList.length })
       }
       .border({ width: 1 })
-      .backgroundColor("#FFDCDCDC")
+      .backgroundColor('#FFDCDCDC')
       .width('100%')
       .height('100%')
     }
@@ -453,24 +453,24 @@ struct PreInsertDemo {
               Row() {
                 Text(`index: ${obj.index}  `)
                   .fontSize(16)
-                  .fontColor("#70707070")
+                  .fontColor('#70707070')
                   .textAlign(TextAlign.End)
-                  .size({ height: 100, width: "40%" })
+                  .size({ height: 100, width: '40%' })
                 Text(`item: ${obj.item}`)
                   .fontSize(16)
                   .textAlign(TextAlign.Start)
-                  .size({ height: 100, width: "60%" })
+                  .size({ height: 100, width: '60%' })
               }
             }.margin(10)
             .borderRadius(10)
-            .backgroundColor("#FFFFFFFF")
+            .backgroundColor('#FFFFFFFF')
           })
           .key((item: string, index: number) => item)
           .virtualScroll({ totalCount: this.simpleList.length })
       }
       .maintainVisibleContentPosition(true) // 启用前插保持
       .border({ width: 1 })
-      .backgroundColor("#FFDCDCDC")
+      .backgroundColor('#FFDCDCDC')
       .width('100%')
       .height('100%')
     }
@@ -509,7 +509,7 @@ struct RepeatVirtualScroll2T {
   @Local selectOptions: SelectOption[] = [];
   @Local selectIdx: number = 0;
 
-  @Monitor("simpleList")
+  @Monitor('simpleList')
   reloadSelectOptions(): void {
     this.selectOptions = [];
     for (let i = 0; i < this.simpleList.length; ++i) {
@@ -671,7 +671,7 @@ struct RepeatNest {
                           .fontSize(20)
                       }
                     })
-                    .key((item) => "innerList_" + item)
+                    .key((item) => 'innerList_' + item)
                     .virtualScroll()
                 }
                 .width('80%')
@@ -683,7 +683,7 @@ struct RepeatNest {
             }
             .border({ width: 1 })
           })
-          .key((item) => "outerList_" + item)
+          .key((item) => 'outerList_' + item)
           .virtualScroll()
       }
       .width('80%')
@@ -728,8 +728,8 @@ struct DemoList {
     for (let i = 0; i < 10; i++) {
       // 此处app.media.listItem0、app.media.listItem1、app.media.listItem2仅作示例，请开发者自行替换
       this.videoList.push(new DemoListItemInfo('视频' + i,
-        i % 3 == 0 ? $r("app.media.listItem0") :
-        i % 3 == 1 ? $r("app.media.listItem1") : $r("app.media.listItem2")));
+        i % 3 == 0 ? $r('app.media.listItem0') :
+        i % 3 == 1 ? $r('app.media.listItem1') : $r('app.media.listItem2')));
     }
   }
 
@@ -831,16 +831,16 @@ struct DemoGrid {
   private layoutOptions: GridLayoutOptions = {
     regularSize: [1, 1],
     irregularIndexes: [10]
-  }
-  private GridScroller: Scroller = new Scroller();
+  };
+  private gridScroller: Scroller = new Scroller();
   private num: number = 0;
 
   aboutToAppear(): void {
     for (let i = 0; i < 10; i++) {
       // 此处app.media.gridItem0、app.media.gridItem1、app.media.gridItem2仅作示例，请开发者自行替换
       this.itemList.push(new DemoGridItemInfo('视频' + i,
-        i % 3 == 0 ? $r("app.media.gridItem0") :
-        i % 3 == 1 ? $r("app.media.gridItem1") : $r("app.media.gridItem2")));
+        i % 3 == 0 ? $r('app.media.gridItem0') :
+        i % 3 == 1 ? $r('app.media.gridItem1') : $r('app.media.gridItem2')));
     }
   }
 
@@ -851,7 +851,7 @@ struct DemoGrid {
         .fontColor(Color.Gray)
 
       Refresh({ refreshing: $$this.isRefreshing }) {
-        Grid(this.GridScroller, this.layoutOptions) {
+        Grid(this.gridScroller, this.layoutOptions) {
           Repeat<DemoGridItemInfo>(this.itemList)
             .each((obj: RepeatItem<DemoGridItemInfo>) => {
               if (obj.index === 10 ) {
@@ -862,7 +862,7 @@ struct DemoGrid {
                 .height(30)
                 .border({ width: 1 })
                 .onClick(() => {
-                  this.GridScroller.scrollToIndex(0);
+                  this.gridScroller.scrollToIndex(0);
                   this.isRefreshing = true;
                 })
                 .onAppear(() => {
@@ -907,8 +907,8 @@ struct DemoGrid {
           for (let i = 0; i < 10; i++) {
             // 此处app.media.gridItem0、app.media.gridItem1、app.media.gridItem2仅作示例，请开发者自行替换
             this.itemList.unshift(new DemoGridItemInfo('新视频' + this.num,
-              i % 3 == 0 ? $r("app.media.gridItem0") :
-              i % 3 == 1 ? $r("app.media.gridItem1") : $r("app.media.gridItem2")));
+              i % 3 == 0 ? $r('app.media.gridItem0') :
+              i % 3 == 1 ? $r('app.media.gridItem1') : $r('app.media.gridItem2')));
             this.num++;
           }
           this.isRefreshing = false;
@@ -922,7 +922,7 @@ struct DemoGrid {
 
       Button('刷新')
         .onClick(() => {
-          this.GridScroller.scrollToIndex(0);
+          this.gridScroller.scrollToIndex(0);
           this.isRefreshing = true;
         })
     }
@@ -1148,12 +1148,12 @@ struct RepeatTemplateSingle {
           })
           .template('number', (r) => {
             ListItem() {
-              Text(r.index! + ":" + r.item + "Reuse");
+              Text(r.index! + ':' + r.item + 'Reuse');
             }
           })
           .each((r) => {
             ListItem() {
-              Text(r.index! + ":" + r.item + "eachMessage");
+              Text(r.index! + ':' + r.item + 'eachMessage');
             }
           })
       }
@@ -1205,12 +1205,12 @@ struct RepeatTemplateSingle {
           })
           .template('number', (r) => {
             ListItem() {
-              Text(r.index! + ":" + r.item + "Reuse")
+              Text(r.index! + ':' + r.item + 'Reuse')
             }
           })
           .each((r) => {
             ListItem() {
-              Text(r.index! + ":" + r.item + "eachMessage")
+              Text(r.index! + ':' + r.item + 'eachMessage')
             }
           })
       }
@@ -1302,7 +1302,7 @@ struct entryCompSucc {
           }, { cachedCount: 5 })
           .each((ri) => {
             ListItem() {
-              Text("Wrong: " + `${ri.item.name} + ${ri.index}`)
+              Text('Wrong: ' + `${ri.item.name} + ${ri.index}`)
                 .width('90%')
                 .height(this.listChildrenSize.childDefaultSize)
                 .backgroundColor(0xFFA07A)
@@ -1323,7 +1323,7 @@ struct entryCompSucc {
         if (this.vehicleItems.length < 50) {
           for (let i = 0; i < 10; i++) {
             if (this.vehicleItems.length < 50) {
-              this.vehicleItems.push(new VehicleData("Vehicle_loaded", i));
+              this.vehicleItems.push(new VehicleData('Vehicle_loaded', i));
             }
           }
         }
@@ -1368,7 +1368,7 @@ struct RepeatBuilderPage {
           Repeat<number>(this.simpleList1)
             .each((ri) => {})
             .virtualScroll({ totalCount: this.simpleList1.length })
-            .templateId((item: number, index: number) => "default")
+            .templateId((item: number, index: number) => 'default')
             .template('default', (ri) => {
               ListItem() {
                 Column() {
@@ -1389,7 +1389,7 @@ struct RepeatBuilderPage {
           Repeat<number>(this.simpleList2)
             .each((ri) => {})
             .virtualScroll({ totalCount: this.simpleList2.length })
-            .templateId((item: number, index: number) => "default")
+            .templateId((item: number, index: number) => 'default')
             .template('default', (ri) => {
               ListItem() {
                 Column() {

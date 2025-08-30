@@ -449,6 +449,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetFoldDisplayMode(Native
 
 **起始版本：** 12
 
+**设备行为差异：** 该接口在2in1设备、非折叠设备中返回0，在其他设备中可正常调用。
+
 
 **参数：**
 
