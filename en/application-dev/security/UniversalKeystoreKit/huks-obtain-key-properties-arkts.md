@@ -1,6 +1,5 @@
 # Obtaining Key Properties (ArkTS)
 
-
 This topic describes how to obtain properties of a key. Before the operation, ensure that the key exists in HUKS.
 >**NOTE**<br>
 > The mini-system devices do not support the operation for obtaining key properties.
@@ -9,8 +8,7 @@ This topic describes how to obtain properties of a key. Before the operation, en
 
 1. Set the key alias (**keyAlias**), which cannot exceed 128 bytes.
 
-2. Use [getKeyItemProperties](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksgetkeyitemproperties9) to obtain the properties of the key based on **keyAlias** and **options**. 
-   **options** is a reserved parameter and is left empty currently.
+2. Use [getKeyItemProperties](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksgetkeyitemproperties9) to obtain the properties of the key based on **keyAlias** and **options**. **options** is a reserved parameter and is left empty currently.
 
 3. You can find the key properties in the **properties** field in the [HuksReturnResult](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksreturnresult9) object.
 

@@ -1,17 +1,15 @@
 # Checking a Key (C/C++)
 
-
-Check whether a key exists.
+HUKS provides APIs for applications to query whether a specified key exists.
 
 ## Add the dynamic library in the CMake script.
 ```txt
-   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 ```
-
 ## How to Develop
 
 1. Construct the parameters.
-   - Set the key alias (**keyAlias**), which cannot exceed 128 bytes.
+   - Specify the key alias. For details about the naming rules, see [Key Generation Overview and Algorithm Specifications](huks-key-generation-overview.md).
    - Set the [tag](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_tag) of the key to check. By default, this parameter is left empty.
 
 2. Use [OH_Huks_IsKeyItemExist](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_iskeyitemexist) to check whether the key exists.
@@ -19,6 +17,7 @@ Check whether a key exists.
 ```c++
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
+#include "napi/native_api.h"
 #include <string.h>
 static napi_value IsKeyExist(napi_env env, napi_callback_info info)
 {

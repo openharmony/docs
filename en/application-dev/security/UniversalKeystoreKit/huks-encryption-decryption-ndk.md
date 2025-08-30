@@ -1,18 +1,22 @@
 # Encryption and Decryption (C/C++)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--SE: @HighLowWorld-->
+<!--TSE: @wxy1234564846-->
 
 The topic uses a 256-bit AES key as an example to describe how to encrypt and decrypt data. For details about the scenarios and supported algorithms, see [Supported Algorithms](huks-key-generation-overview.md#supported-algorithms).
 
 ## Add the dynamic library in the CMake script.
 ```txt
-   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 ```
-
 ## How to Develop
 
 **Key Generation**
 
-1. Set the key alias.
+1. Specify the key alias. For details about the naming rules, see [Key Generation Overview and Algorithm Specifications](huks-key-generation-overview.md).
 
 2. Initialize the key property set.
 
@@ -26,8 +30,7 @@ Alternatively, you can [import a key](huks-key-import-overview.md).
 
 2. Obtain the data to be encrypted.
 
-3. Use [OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset) to set algorithm parameters.
-   If AES is used for encryption, the cipher mode and padding mode must be specified. In the following example, the cipher mode is **CBC** and the padding mode is **PKCS7**. In this case, the IV must be set.
+3. Use [OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset) to configure algorithm parameters. If AES is used for encryption, the cipher mode and padding mode must be specified. In the following example, the cipher mode is **CBC** and the padding mode is **PKCS7**. In this case, the IV must be set.
 
 4. Use [OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_initsession) to initialize a key session. The session handle is returned after the initialization.
 
@@ -39,8 +42,7 @@ Alternatively, you can [import a key](huks-key-import-overview.md).
 
 2. Obtain the ciphertext to be decrypted.
 
-3. Use [OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset) to set algorithm parameters.
-   If AES is used for decryption, the cipher mode and padding mode must be specified. In the following example, the cipher mode is CBC and the padding mode is PKCS7. In this case, the IV must be set.
+3. Use [OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset) to configure algorithm parameters. If AES is used for decryption, the cipher mode and padding mode must be specified. In the following example, the cipher mode is CBC and the padding mode is PKCS7. In this case, the IV must be set.
 
 4. Use [OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_initsession) to initialize a key session. The session handle is returned after the initialization.
 
@@ -53,6 +55,7 @@ Use **OH_Huks_DeleteKeyItem** to delete the key that is not required. For detail
 ```c++
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
+#include "napi/native_api.h"
 #include <string.h>
 OH_Huks_Result InitParamSet(
     struct OH_Huks_ParamSet **paramSet,
@@ -76,7 +79,7 @@ OH_Huks_Result InitParamSet(
     return ret;
 }
 static const uint32_t IV_SIZE = 16;
-static uint8_t IV[IV_SIZE] = { 0 }; // this is a test value, for real use the iv should be different every time
+static uint8_t IV[IV_SIZE] = { 0 }; // this is a test value, for real use the iv should be different every time.
 static struct OH_Huks_Param g_genEncDecParams[] = {
     {
         .tag = OH_HUKS_TAG_ALGORITHM,
@@ -115,7 +118,7 @@ static struct OH_Huks_Param g_encryptParams[] = {
         .tag = OH_HUKS_TAG_IV,
         .blob = {
             .size = IV_SIZE,
-            .data = (uint8_t *)IV // this is a test value, for real use the iv should be different every time 
+            .data = (uint8_t *)IV // this is a test value, for real use the iv should be different every time.
         }
     }
 };
@@ -139,7 +142,7 @@ static struct OH_Huks_Param g_decryptParams[] = {
         .tag = OH_HUKS_TAG_IV,
         .blob = {
             .size = IV_SIZE,
-            .data = (uint8_t *)IV // this is a test value, for real use the iv should be different every time 
+            .data = (uint8_t *)IV // this is a test value, for real use the iv should be different every time. 
         }
     }
 };

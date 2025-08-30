@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines the macros, enums, structs, and error codes used by OpenHarmony Universal KeyStore (HUKS) functions.
+Defines the macros, enums, structs, and error codes used by OpenHarmony Universal KeyStore (HUKS) APIs.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -20,22 +20,22 @@ Defines the macros, enums, structs, and error codes used by OpenHarmony Universa
 | [native_huks_type.h](native__huks__type_8h.md) | Defines the enums, structs, and macros used in the HUKS functions.| 
 
 
-### Structs
+### Struct
 
 | Name| Description| 
 | -------- | -------- |
 | struct&nbsp;&nbsp;[OH_Huks_Result](_o_h___huks___result.md) | Defines the struct of the returned data, including a status code and related description.| 
-| struct&nbsp;&nbsp;[OH_Huks_Blob](_o_h___huks___blob.md) | Defines the struct of a binary large object (BLOB).| 
-| struct&nbsp;&nbsp;[OH_Huks_Param](_o_h___huks___param.md) | Defines the struct of the parameters in a parameter set.| 
-| struct&nbsp;&nbsp;[OH_Huks_ParamSet](_o_h___huks___param_set.md) | Defines the struct of a parameter set.| 
-| struct&nbsp;&nbsp;[OH_Huks_CertChain](_o_h___huks___cert_chain.md) | Defines the struct of a certificate chain.| 
-| struct&nbsp;&nbsp;[OH_Huks_KeyInfo](_o_h___huks___key_info.md) | Defines the struct of key information.| 
-| struct&nbsp;&nbsp;[OH_Huks_PubKeyInfo](_o_h___huks___pub_key_info.md) | Defines the struct of the public key information.| 
-| struct&nbsp;&nbsp;[OH_Huks_KeyMaterialRsa](_o_h___huks___key_material_rsa.md) | Defines the struct of a Rivest-Shamir-Adleman (RSA) key.| 
-| struct&nbsp;&nbsp;[OH_Huks_KeyMaterialEcc](_o_h___huks___key_material_ecc.md) | Defines the struct of an Elliptic Curve Cryptography (ECC) key.| 
-| struct&nbsp;&nbsp;[OH_Huks_KeyMaterialDsa](_o_h___huks___key_material_dsa.md) | Defines the struct of a DSA key.| 
-| struct&nbsp;&nbsp;[OH_Huks_KeyMaterialDh](_o_h___huks___key_material_dh.md) | Defines the struct of a Diffie-Hellman (DH) key.| 
-| struct&nbsp;&nbsp;[OH_Huks_KeyMaterial25519](_o_h___huks___key_material25519.md) | Defines the struct of a 25519 key.| 
+| struct&nbsp;&nbsp;[OH_Huks_Blob](_o_h___huks___blob.md) | Defines the binary large object (BLOB) that stores data.| 
+| struct&nbsp;&nbsp;[OH_Huks_Param](_o_h___huks___param.md) | Defines the parameters in a parameter set.| 
+| struct&nbsp;&nbsp;[OH_Huks_ParamSet](_o_h___huks___param_set.md) | Defines a parameter set.| 
+| struct&nbsp;&nbsp;[OH_Huks_CertChain](_o_h___huks___cert_chain.md) | Defines a certificate chain.| 
+| struct&nbsp;&nbsp;[OH_Huks_KeyInfo](_o_h___huks___key_info.md) | Defines the key information.| 
+| struct&nbsp;&nbsp;[OH_Huks_PubKeyInfo](_o_h___huks___pub_key_info.md) | Defines the public key information.| 
+| struct&nbsp;&nbsp;[OH_Huks_KeyMaterialRsa](_o_h___huks___key_material_rsa.md) | Defines an RSA key.| 
+| struct&nbsp;&nbsp;[OH_Huks_KeyMaterialEcc](_o_h___huks___key_material_ecc.md) | Defines an Elliptic Curve Cryptography (ECC) key.| 
+| struct&nbsp;&nbsp;[OH_Huks_KeyMaterialDsa](_o_h___huks___key_material_dsa.md) | Defines a DSA key.| 
+| struct&nbsp;&nbsp;[OH_Huks_KeyMaterialDh](_o_h___huks___key_material_dh.md) | Defines the structure of a Diffie-Hellman (DH) key.| 
+| struct&nbsp;&nbsp;[OH_Huks_KeyMaterial25519](_o_h___huks___key_material25519.md) | Defines a 25519 key.| 
 | struct&nbsp;&nbsp;[OH_Huks_KeyAliasSet](_o_h___huks___key_alias_set.md) | Defines a key alias set. | 
 
 
@@ -67,17 +67,17 @@ Defines the macros, enums, structs, and error codes used by OpenHarmony Universa
 | -------- | -------- |
 | [OH_Huks_KeyPurpose](#oh_huks_keypurpose) {<br>OH_HUKS_KEY_PURPOSE_ENCRYPT = 1, <br>OH_HUKS_KEY_PURPOSE_DECRYPT = 2,<br> OH_HUKS_KEY_PURPOSE_SIGN = 4, <br>OH_HUKS_KEY_PURPOSE_VERIFY = 8,<br>OH_HUKS_KEY_PURPOSE_DERIVE = 16, <br>OH_HUKS_KEY_PURPOSE_WRAP = 32, <br>OH_HUKS_KEY_PURPOSE_UNWRAP = 64, <br>OH_HUKS_KEY_PURPOSE_MAC = 128,<br>OH_HUKS_KEY_PURPOSE_AGREE = 256<br>} | Enumerates the key purposes.| 
 | [OH_Huks_KeyDigest](#oh_huks_keydigest) {<br>OH_HUKS_DIGEST_NONE = 0, <br>OH_HUKS_DIGEST_MD5 = 1, <br>OH_HUKS_DIGEST_SM3 = 2, <br>OH_HUKS_DIGEST_SHA1 = 10,<br>OH_HUKS_DIGEST_SHA224 = 11, <br>OH_HUKS_DIGEST_SHA256 = 12, <br>OH_HUKS_DIGEST_SHA384 = 13, <br>OH_HUKS_DIGEST_SHA512 = 14<br>} | Enumerates the digest algorithms.| 
-| [OH_Huks_KeyPadding](#oh_huks_keypadding) {<br>OH_HUKS_PADDING_NONE = 0, <br>OH_HUKS_PADDING_OAEP = 1, <br>OH_HUKS_PADDING_PSS = 2, <br>OH_HUKS_PADDING_PKCS1_V1_5 = 3,<br>OH_HUKS_PADDING_PKCS5 = 4, <br>OH_HUKS_PADDING_PKCS7 = 5<br>} | Enumerates the padding algorithms.| 
+| [OH_Huks_KeyPadding](#oh_huks_keypadding) {<br>OH_HUKS_PADDING_NONE = 0, <br>OH_HUKS_PADDING_OAEP = 1, <br>OH_HUKS_PADDING_PSS = 2, <br>OH_HUKS_PADDING_PKCS1_V1_5 = 3,<br>OH_HUKS_PADDING_PKCS5 = 4, <br>OH_HUKS_PADDING_PKCS7 = 5, <br>OH_HUKS_PADDING_ISO_IEC_9796_2 = 6<br>} | Enumerates the padding algorithms.| 
 | [OH_Huks_CipherMode](#oh_huks_ciphermode) {<br>OH_HUKS_MODE_ECB = 1, <br>OH_HUKS_MODE_CBC = 2, <br>OH_HUKS_MODE_CTR = 3, <br>OH_HUKS_MODE_OFB = 4, <br>OH_HUKS_MODE_CFB = 5, <br>OH_HUKS_MODE_CCM = 31, <br>OH_HUKS_MODE_GCM = 32<br>} | Enumerates the cipher modes.| 
-| [OH_Huks_KeySize](#oh_huks_keysize) {<br>OH_HUKS_RSA_KEY_SIZE_512 = 512, <br>OH_HUKS_RSA_KEY_SIZE_768 = 768, <br>OH_HUKS_RSA_KEY_SIZE_1024 = 1024, <br>OH_HUKS_RSA_KEY_SIZE_2048 = 2048,<br>OH_HUKS_RSA_KEY_SIZE_3072 = 3072, <br>OH_HUKS_RSA_KEY_SIZE_4096 = 4096, <br>OH_HUKS_ECC_KEY_SIZE_224 = 224, <br>OH_HUKS_ECC_KEY_SIZE_256 = 256,<br>OH_HUKS_ECC_KEY_SIZE_384 = 384, <br>OH_HUKS_ECC_KEY_SIZE_521 = 521, <br>OH_HUKS_AES_KEY_SIZE_128 = 128, <br>OH_HUKS_AES_KEY_SIZE_192 = 192,<br>OH_HUKS_AES_KEY_SIZE_256 = 256, <br>OH_HUKS_AES_KEY_SIZE_512 = 512, <br>OH_HUKS_CURVE25519_KEY_SIZE_256 = 256, <br>OH_HUKS_DH_KEY_SIZE_2048 = 2048,<br>OH_HUKS_DH_KEY_SIZE_3072 = 3072, <br>OH_HUKS_DH_KEY_SIZE_4096 = 4096, <br>OH_HUKS_SM2_KEY_SIZE_256 = 256, <br>OH_HUKS_SM4_KEY_SIZE_128 = 128<br>} | Enumerates key sizes of different algorithms.| 
-| [OH_Huks_KeyAlg](#oh_huks_keyalg) {<br>OH_HUKS_ALG_RSA = 1, <br>OH_HUKS_ALG_ECC = 2, <br>OH_HUKS_ALG_DSA = 3, <br>OH_HUKS_ALG_AES = 20,<br>OH_HUKS_ALG_HMAC = 50, <br>OH_HUKS_ALG_HKDF = 51, <br>OH_HUKS_ALG_PBKDF2 = 52, <br>OH_HUKS_ALG_ECDH = 100,<br>OH_HUKS_ALG_X25519 = 101, <br>OH_HUKS_ALG_ED25519 = 102, <br>OH_HUKS_ALG_DH = 103, <br>OH_HUKS_ALG_SM2 = 150,<br>OH_HUKS_ALG_SM3 = 151, <br>OH_HUKS_ALG_SM4 = 152<br>} | Enumerates the algorithms for keys.| 
+| [OH_Huks_KeySize](#oh_huks_keysize) {<br>OH_HUKS_RSA_KEY_SIZE_512 = 512, <br>OH_HUKS_RSA_KEY_SIZE_768 = 768, <br>OH_HUKS_RSA_KEY_SIZE_1024 = 1024, <br>OH_HUKS_RSA_KEY_SIZE_2048 = 2048,<br>OH_HUKS_RSA_KEY_SIZE_3072 = 3072, <br>OH_HUKS_RSA_KEY_SIZE_4096 = 4096, <br>OH_HUKS_ECC_KEY_SIZE_224 = 224, <br>OH_HUKS_ECC_KEY_SIZE_256 = 256,<br>OH_HUKS_ECC_KEY_SIZE_384 = 384, <br>OH_HUKS_ECC_KEY_SIZE_521 = 521, <br>OH_HUKS_AES_KEY_SIZE_128 = 128, <br>OH_HUKS_AES_KEY_SIZE_192 = 192,<br>OH_HUKS_AES_KEY_SIZE_256 = 256, <br>OH_HUKS_AES_KEY_SIZE_512 = 512, <br>OH_HUKS_CURVE25519_KEY_SIZE_256 = 256, <br>OH_HUKS_DH_KEY_SIZE_2048 = 2048,<br>OH_HUKS_DH_KEY_SIZE_3072 = 3072, <br>OH_HUKS_DH_KEY_SIZE_4096 = 4096, <br>OH_HUKS_SM2_KEY_SIZE_256 = 256, <br>OH_HUKS_SM4_KEY_SIZE_128 = 128, <br>OH_HUKS_DES_KEY_SIZE_64 = 64, <br>OH_HUKS_3DES_KEY_SIZE_128 = 128, <br>OH_HUKS_3DES_KEY_SIZE_192 = 192<br>} | Enumerates the key sizes of different algorithms.| 
+| [OH_Huks_KeyAlg](#oh_huks_keyalg) {<br>OH_HUKS_ALG_RSA = 1, <br>OH_HUKS_ALG_ECC = 2, <br>OH_HUKS_ALG_DSA = 3, <br>OH_HUKS_ALG_AES = 20,<br>OH_HUKS_ALG_HMAC = 50, <br>OH_HUKS_ALG_HKDF = 51, <br>OH_HUKS_ALG_PBKDF2 = 52, <br>OH_HUKS_ALG_ECDH = 100,<br>OH_HUKS_ALG_X25519 = 101, <br>OH_HUKS_ALG_ED25519 = 102, <br>OH_HUKS_ALG_DH = 103, <br>OH_HUKS_ALG_SM2 = 150,<br>OH_HUKS_ALG_SM3 = 151, <br>OH_HUKS_ALG_SM4 = 152, <br>OH_HUKS_ALG_DES = 160, <br>OH_HUKS_ALG_3DES = 161<br>} | Enumerates the algorithms for keys.| 
 | [OH_Huks_AlgSuite](#oh_huks_algsuite) { <br>OH_HUKS_UNWRAP_SUITE_X25519_AES_256_GCM_NOPADDING = 1, <br>OH_HUKS_UNWRAP_SUITE_ECDH_AES_256_GCM_NOPADDING = 2 <br>} | Enumerates the algorithm suites that can be used for importing of a key in cipher text.| 
 | [OH_Huks_KeyGenerateType](#oh_huks_keygeneratetype) {<br> OH_HUKS_KEY_GENERATE_TYPE_DEFAULT = 0, <br>OH_HUKS_KEY_GENERATE_TYPE_DERIVE = 1, <br>OH_HUKS_KEY_GENERATE_TYPE_AGREE = 2 <br>} | Enumerates the types of the key generated.| 
 | [OH_Huks_KeyFlag](#oh_huks_keyflag) {<br>OH_HUKS_KEY_FLAG_IMPORT_KEY = 1, <br>OH_HUKS_KEY_FLAG_GENERATE_KEY = 2, <br>OH_HUKS_KEY_FLAG_AGREE_KEY = 3, <br>OH_HUKS_KEY_FLAG_DERIVE_KEY = 4 } | Enumerates the key generation types.| 
 | [OH_Huks_KeyStorageType](#oh_huks_keystoragetype) { <br>OH_HUKS_STORAGE_TEMP = 0, <br>OH_HUKS_STORAGE_PERSISTENT = 1, <br>OH_HUKS_STORAGE_ONLY_USED_IN_HUKS = 2, <br>OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED = 3 <br>} | Enumerates the key storage types.| 
 | [OH_Huks_ImportKeyType](#oh_huks_importkeytype) { <br>OH_HUKS_KEY_TYPE_PUBLIC_KEY = 0, <br>OH_HUKS_KEY_TYPE_PRIVATE_KEY = 1, <br>OH_HUKS_KEY_TYPE_KEY_PAIR = 2 <br>} | Enumerates the types of the key to import. By default, a public key is imported. This field is not required when a symmetric key is imported.| 
 | [OH_Huks_RsaPssSaltLenType](#oh_huks_rsapsssaltlentype) { <br>OH_HUKS_RSA_PSS_SALT_LEN_DIGEST = 0, <br>OH_HUKS_RSA_PSS_SALT_LEN_MAX = 1 <br>} | Enumerates the formats in which a key is stored.| 
-| [OH_Huks_ErrCode](#oh_huks_errcode) {<br>OH_HUKS_SUCCESS = 0, <br>OH_HUKS_ERR_CODE_PERMISSION_FAIL = 201, OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401, <br>OH_HUKS_ERR_CODE_NOT_SUPPORTED_API = 801,<br>OH_HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED = 12000001, <br>OH_HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT = 12000002, <br>OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT = 12000003, <br>OH_HUKS_ERR_CODE_FILE_OPERATION_FAIL = 12000004,<br>OH_HUKS_ERR_CODE_COMMUNICATION_FAIL = 12000005, <br>OH_HUKS_ERR_CODE_CRYPTO_FAIL = 12000006, <br>OH_HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED = 12000007, <br>OH_HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED = 12000008,<br>OH_HUKS_ERR_CODE_KEY_AUTH_TIME_OUT = 12000009, <br>OH_HUKS_ERR_CODE_SESSION_LIMIT = 12000010, OH_HUKS_ERR_CODE_ITEM_NOT_EXIST = 12000011, <br>OH_HUKS_ERR_CODE_INTERNAL_ERROR = 12000012,<br>OH_HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST = 12000013, <br>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY = 12000014, <br>OH_HUKS_ERR_CODE_CALL_SERVICE_FAILED = 12000015, <br>OH_HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET = 12000016<br>} | Enumerates error codes.| 
+| [OH_Huks_ErrCode](#oh_huks_errcode) {<br>OH_HUKS_SUCCESS = 0, <br>OH_HUKS_ERR_CODE_PERMISSION_FAIL = 201, OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401, <br>OH_HUKS_ERR_CODE_NOT_SUPPORTED_API = 801,<br>OH_HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED = 12000001, <br>OH_HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT = 12000002, <br>OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT = 12000003, <br>OH_HUKS_ERR_CODE_FILE_OPERATION_FAIL = 12000004,<br>OH_HUKS_ERR_CODE_COMMUNICATION_FAIL = 12000005, <br>OH_HUKS_ERR_CODE_CRYPTO_FAIL = 12000006, <br>OH_HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED = 12000007, <br>OH_HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED = 12000008,<br>OH_HUKS_ERR_CODE_KEY_AUTH_TIME_OUT = 12000009, <br>OH_HUKS_ERR_CODE_SESSION_LIMIT = 12000010, OH_HUKS_ERR_CODE_ITEM_NOT_EXIST = 12000011, <br>OH_HUKS_ERR_CODE_INTERNAL_ERROR = 12000012,<br>OH_HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST = 12000013, <br>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY = 12000014, <br>OH_HUKS_ERR_CODE_CALL_SERVICE_FAILED = 12000015, <br>OH_HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET = 12000016<br>} | Enumerates the error codes.| 
 | [OH_Huks_TagType](#oh_huks_tagtype) {<br>OH_HUKS_TAG_TYPE_INVALID = 0 &lt;&lt; 28, <br>OH_HUKS_TAG_TYPE_INT = 1 &lt;&lt; 28, <br>OH_HUKS_TAG_TYPE_UINT = 2 &lt;&lt; 28, <br>OH_HUKS_TAG_TYPE_ULONG = 3 &lt;&lt; 28,<br>OH_HUKS_TAG_TYPE_BOOL = 4 &lt;&lt; 28, <br>OH_HUKS_TAG_TYPE_BYTES = 5 &lt;&lt; 28<br>} | Enumerates the mask values of the parameter type in a parameter set.|  
 | [OH_Huks_UserAuthType](#oh_huks_userauthtype) { <br>OH_HUKS_USER_AUTH_TYPE_FINGERPRINT = 1 &lt;&lt; 0, <br>OH_HUKS_USER_AUTH_TYPE_FACE = 1 &lt;&lt; 1, <br>OH_HUKS_USER_AUTH_TYPE_PIN = 1 &lt;&lt; 2 <br>} | Enumerates the user authentication types in key access control.| 
 | [OH_Huks_UserAuthMode](#oh_huks_userauthmode) { <br>OH_HUKS_USER_AUTH_MODE_LOCAL = 0, <br>OH_HUKS_USER_AUTH_MODE_COAUTH = 1, } | Enumerates the user authentication modes in key access control.|
@@ -137,7 +137,7 @@ enum OH_Huks_AuthStorageLevel
 
 **Description**
 
-Enumerates the security levels for storing the key generated or imported.
+Enumerates the storage security levels of a key.
 
 **Since**: 11
 
@@ -180,7 +180,7 @@ Enumerates the types of the challenge generated when a key is used.
 
 **Since**: 9
 
-**See**
+**Reference**
 
 [OH_Huks_ChallengePosition](#oh_huks_challengeposition)
 
@@ -222,14 +222,14 @@ enum OH_Huks_ErrCode
 
 **Description**
 
-Enumerates the error codes.
+Result code.
 
 **Since**: 9
 
 | Value| Description| 
 | -------- | -------- |
-| OH_HUKS_SUCCESS | Success.| 
-| OH_HUKS_ERR_CODE_PERMISSION_FAIL | Permission verification failed.| 
+| OH_HUKS_SUCCESS | Operation successful.| 
+| OH_HUKS_ERR_CODE_PERMISSION_FAIL | Permission verification fails.| 
 | OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT | Invalid parameter (universal).| 
 | OH_HUKS_ERR_CODE_NOT_SUPPORTED_API | The API is not supported.| 
 | OH_HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED | The feature is not supported.| 
@@ -297,6 +297,8 @@ Enumerates the algorithms for keys.
 | OH_HUKS_ALG_SM2 | ShangMi2 (SM2).| 
 | OH_HUKS_ALG_SM3 | SM3.| 
 | OH_HUKS_ALG_SM4 | SM4.| 
+| OH_HUKS_ALG_DES | DES.<br>**Since**: 18| 
+| OH_HUKS_ALG_3DES | 3DES.<br>**Since**: 18| 
 
 
 ### OH_Huks_KeyDigest
@@ -382,6 +384,7 @@ Enumerates the padding algorithms.
 | OH_HUKS_PADDING_PKCS1_V1_5 | Public Key Cryptography Standards (PKCS) #1 v1.5.| 
 | OH_HUKS_PADDING_PKCS5 | PKCS #5.| 
 | OH_HUKS_PADDING_PKCS7 | PKCS #7.| 
+| OH_HUKS_PADDING_ISO_IEC_9796_2 | ISO IEC 9796-2.<br>**Since**: 18| 
 
 
 ### OH_Huks_KeyPurpose
@@ -403,8 +406,8 @@ Enumerates the key purposes.
 | OH_HUKS_KEY_PURPOSE_SIGN | Used for signing.| 
 | OH_HUKS_KEY_PURPOSE_VERIFY | Used to verify the signature.| 
 | OH_HUKS_KEY_PURPOSE_DERIVE | Used to derive a key.| 
-| OH_HUKS_KEY_PURPOSE_WRAP | Used for exporting a key in ciphertext.| 
-| OH_HUKS_KEY_PURPOSE_UNWRAP | Used for importing a key in ciphertext.| 
+| OH_HUKS_KEY_PURPOSE_WRAP | Used for an encrypted export.| 
+| OH_HUKS_KEY_PURPOSE_UNWRAP | Used for an encrypted import.| 
 | OH_HUKS_KEY_PURPOSE_MAC | Used to generate a message authentication code (MAC).| 
 | OH_HUKS_KEY_PURPOSE_AGREE | Used for key agreement.| 
 
@@ -443,6 +446,9 @@ Enumerates the key sizes of different algorithms.
 | OH_HUKS_DH_KEY_SIZE_4096 | DH key of 4096 bits.| 
 | OH_HUKS_SM2_KEY_SIZE_256 | SM2 key of 256 bits.| 
 | OH_HUKS_SM4_KEY_SIZE_128 | SM4 key of 128 bits.| 
+| OH_HUKS_DES_KEY_SIZE_64 | DES key of 64 bits.<br>**Since**: 18| 
+| OH_HUKS_3DES_KEY_SIZE_128 | 3DES key of 128 bits.<br>**Since**: 18| 
+| OH_HUKS_3DES_KEY_SIZE_192 | 3DES key of 192 bits.<br>**Since**: 18| 
 
 
 ### OH_Huks_KeyStorageType
@@ -508,13 +514,13 @@ enum OH_Huks_Tag
 
 **Description**
 
-Enumerates the tags used in a parameter set.
+Enumerates the tags contained in a parameter set.
 
 **Since**: 9
 
 | Value| Description| 
 | -------- | -------- |
-| OH_HUKS_TAG_ALGORITHM | Tags 1 to 200. <br>Algorithm type.| 
+| OH_HUKS_TAG_ALGORITHM | Tags 1 to 200. Algorithm type.| 
 | OH_HUKS_TAG_PURPOSE | Key purpose.| 
 | OH_HUKS_TAG_KEY_SIZE | Key length.| 
 | OH_HUKS_TAG_DIGEST | Digest algorithm.| 
@@ -538,7 +544,7 @@ Enumerates the tags used in a parameter set.
 | OH_HUKS_TAG_UNWRAP_ALGORITHM_SUITE | Algorithm suite used for importing a key in ciphertext.| 
 | OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG | Storage type of the derived key or key produced after key agreement. It is a value of [OH_Huks_KeyStorageType](#oh_huks_keystoragetype).| 
 | OH_HUKS_TAG_RSA_PSS_SALT_LEN_TYPE | Salt length type when the PSS padding mode is used with the RSA algorithm.| 
-| OH_HUKS_TAG_ALL_USERS | Tags related to key access control and authentication: 300 to 500. <br>All users in multi-user scenarios.| 
+| OH_HUKS_TAG_ALL_USERS | Tags related to key access control and authentication: 301 to 500. <br>All users in multi-user scenarios.| 
 | OH_HUKS_TAG_USER_ID | Multi-user ID.| 
 | OH_HUKS_TAG_NO_AUTH_REQUIRED | Whether key access control is required.| 
 | OH_HUKS_TAG_USER_AUTH_TYPE | User authentication type in key access control.| 
@@ -584,7 +590,7 @@ Enumerates the mask values of the parameter type in a parameter set.
 
 **Since**: 9
 
-**See**
+**Reference**
 
 [OH_Huks_Param](_o_h___huks___param.md)
 
