@@ -91,8 +91,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export default class MyUIAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // 执行异步任务
-    hilog.info(0x0000, 'testTag', `onCreate, want: ${want.abilityName}`);
-    hilog.info(0x0000, 'testTag', `the launchReason is +  ${launchParam.launchReason} + , the lastExitReason is  + ${launchParam.lastExitReason}`);
+    hilog.info(0x0000, 'testTag', `onCreate, want: ${want.abilityName}, the launchReason is ${launchParam.launchReason}, the lastExitReason is ${launchParam.lastExitReason}`);
   }
 }
 ```
