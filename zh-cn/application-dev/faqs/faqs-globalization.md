@@ -134,7 +134,7 @@ form_config.json文件中不支持使用$引用常量。
 
 ```
 import resourceManager from '@ohos.resourceManager';
-
+import xml from '@ohos.xml';
 export default {
     onCreate() {
         resourceManager.getResourceManager((error, res) => {
@@ -147,8 +147,11 @@ export default {
                     console.log("error is " + error);
                     return
                 }
-                let rawFileString = String.fromCharCode.apply(null, value);
-                console.info(`getRawFileContent success : ${rawFileString}`);
+                let arrayBuffer = value.buffer; // unit8Array
+                var xmpParser = new xml.XmlPullParser(arrayBuffer);
+                var tagName = ""
+                //do something
+                console.log("parse xml finished");
             })
         })
     }
