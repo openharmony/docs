@@ -133,11 +133,11 @@ PID:13680
 UID:20020177
 PACKAGE_NAME:com.samples.freezedebug
 PROCESS_NAME:com.samples.freezedebug
-NOTE: Current fault may be caused by system issue, you may ignore it and analysis other faults.
+NOTE: Current fault may be caused by the system's low memory and thermal throttling, you may ignore it and analysis other faults.
 ***
 ```
 
-从API版本21开始，当整机资源告警（如可用内存不足500M，机壳温度超过46℃）时，会输出NOTE行。出现此行时，开发者可以忽略应用冻屏故障。在之前的API版本中，无论整机资源状态如何，均无此行输出。
+从API version 21开始，当整机资源告警（如整机低内存或热限频）时，会输出NOTE行。出现此行时，开发者可以忽略应用冻屏故障。在之前的API版本中，无论整机资源状态如何，均无此行输出。
 
 三种AppFreeze事件都包含以下几部分信息，具体解释如下：
 
