@@ -118,7 +118,7 @@ An application can listen for the **alert** method of a web page through the [on
     build() {
       Column() {
         Button('back').onClick((event: ClickEvent) => {
-          router.back()
+          this.getUIContext().getRouter().back();
         })
         Web({ src: $rawfile('alert.html'), controller: this.webviewController })
           .onAlert((event) => {
