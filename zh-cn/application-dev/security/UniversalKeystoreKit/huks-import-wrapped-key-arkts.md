@@ -74,6 +74,14 @@ function stringToUint8Array(str: string) {
   return new Uint8Array(arr);
 }
 
+function Uint8ArrayToString(fileData: Uint8Array) {
+  let dataString = '';
+  for (let i = 0; i < fileData.length; i++) {
+    dataString += String.fromCharCode(fileData[i]);
+  }
+  return dataString;
+}
+
 function assignLength(length: number, arrayBuf: Uint8Array, startIndex: number) {
   let index = startIndex;
   for (let i = 0; i < 4; i++) {
@@ -91,68 +99,54 @@ function assignData(data: Uint8Array, arrayBuf: Uint8Array, startIndex: number) 
 }
 
 let genWrappingKeyParams: huks.HuksOptions = {
-  properties: new Array<huks.HuksParam>(
-    {
+  properties: new Array<huks.HuksParam>({
       tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
       value: huks.HuksKeyAlg.HUKS_ALG_ECC
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_PURPOSE,
       value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_UNWRAP
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
       value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_PADDING,
       value: huks.HuksKeyPadding.HUKS_PADDING_NONE
     }
   )
 }
 let genCallerEcdhParams: huks.HuksOptions = {
-  properties: new Array<huks.HuksParam>(
-    {
+  properties: new Array<huks.HuksParam>({
       tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
       value: huks.HuksKeyAlg.HUKS_ALG_ECC
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_PURPOSE,
       value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
       value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
     }
   )
 }
 let importParamsCallerKek: huks.HuksOptions = {
-  properties: new Array<huks.HuksParam>(
-    {
+  properties: new Array<huks.HuksParam>({
       tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
       value: huks.HuksKeyAlg.HUKS_ALG_AES
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_PURPOSE,
       value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
       value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_PADDING,
       value: huks.HuksKeyPadding.HUKS_PADDING_NONE
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
       value: huks.HuksCipherMode.HUKS_MODE_GCM
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_DIGEST,
       value: huks.HuksKeyDigest.HUKS_DIGEST_NONE
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_IV,
       value: IV
     }
@@ -160,119 +154,95 @@ let importParamsCallerKek: huks.HuksOptions = {
   inData: stringToUint8Array(callerAes256Kek)
 }
 let importParamsAgreeKey: huks.HuksOptions = {
-  properties: new Array<huks.HuksParam>(
-    {
+  properties: new Array<huks.HuksParam>({
       tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
       value: huks.HuksKeyAlg.HUKS_ALG_AES
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_PURPOSE,
       value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
       value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_PADDING,
       value: huks.HuksKeyPadding.HUKS_PADDING_NONE
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
       value: huks.HuksCipherMode.HUKS_MODE_GCM
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_DIGEST,
       value: huks.HuksKeyDigest.HUKS_DIGEST_NONE
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_IV,
       value: IV
     }
   ),
 }
 let callerAgreeParams: huks.HuksOptions = {
-  properties: new Array<huks.HuksParam>(
-    {
+  properties: new Array<huks.HuksParam>({
       tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
       value: huks.HuksKeyAlg.HUKS_ALG_ECDH
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_PURPOSE,
       value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
       value: huks.HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256
     }
   )
 }
 let encryptKeyCommonParams: huks.HuksOptions = {
-  properties: new Array<huks.HuksParam>(
-    {
+  properties: new Array<huks.HuksParam>({
       tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
       value: huks.HuksKeyAlg.HUKS_ALG_AES
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_PURPOSE,
       value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
       value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_PADDING,
       value: huks.HuksKeyPadding.HUKS_PADDING_NONE
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
       value: huks.HuksCipherMode.HUKS_MODE_GCM
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_NONCE,
       value: NONCE
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_ASSOCIATED_DATA,
       value: stringToUint8Array(AAD)
     }
   ),
 }
 let importWrappedAes192Params: huks.HuksOptions = {
-  properties: new Array<huks.HuksParam>(
-    {
+  properties: new Array<huks.HuksParam>({
       tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
       value: huks.HuksKeyAlg.HUKS_ALG_AES
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_PURPOSE,
       value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
       huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
       value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_192
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_PADDING,
       value: huks.HuksKeyPadding.HUKS_PADDING_NONE
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
       value: huks.HuksCipherMode.HUKS_MODE_CBC
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_DIGEST,
       value: huks.HuksKeyDigest.HUKS_DIGEST_NONE
-    },
-    {
+    }, {
       tag: huks.HuksTag.HUKS_TAG_UNWRAP_ALGORITHM_SUITE,
       value: huks.HuksUnwrapSuite.HUKS_UNWRAP_SUITE_ECDH_AES_256_GCM_NOPADDING
     }, {
-    tag: huks.HuksTag.HUKS_TAG_IV,
-    value: IV
-  }
+      tag: huks.HuksTag.HUKS_TAG_IV,
+      value: IV
+    }
   )
 }
 
@@ -431,7 +401,7 @@ async function agreeFunction(keyAlias: string, huksOptions: huks.HuksOptions, hu
   try {
     await huks.updateSession(handle, huksOptions)
       .then((data) => {
-        console.info(`promise: doUpdate success`);
+        console.info(`promise: doUpdate success, data = ${Uint8ArrayToString(outSharedKey)}`);
       }).catch((error: BusinessError) => {
         console.error(`promise: doUpdate failed, errCode : ${error.code}, errMsg : ${error.message}`);
       });
@@ -443,7 +413,7 @@ async function agreeFunction(keyAlias: string, huksOptions: huks.HuksOptions, hu
     await huks.finishSession(handle, huksOptions)
       .then((data) => {
         outSharedKey = data.outData as Uint8Array;
-        console.info(`promise: doFinish success, data = ${outSharedKey}`);
+        console.info(`promise: doFinish success, data = ${Uint8ArrayToString(outSharedKey)}`);
       }).catch((error: BusinessError) => {
         console.error(`promise: doFinish key failed, errCode : ${error.code}, errMsg : ${error.message}`);
       });
@@ -468,10 +438,10 @@ async function generateAndExportPublicKey(keyAlias: string, huksOptions: huks.Hu
       .then((data) => {
         if (caller) {
           callerSelfPublicKey = data.outData as Uint8Array;
-          console.info(`promise: exportKeyItem success, caller data = ${callerSelfPublicKey}`);
+          console.info(`promise: exportKeyItem success, caller data = ${Uint8ArrayToString(callerSelfPublicKey)}`);
         } else {
           huksPubKey = data.outData as Uint8Array;
-          console.info(`promise: exportKeyItem success, data = ${huksPubKey}`);
+          console.info(`promise: exportKeyItem success, data = ${Uint8ArrayToString(huksPubKey)}`);
         }
       }).catch((error: BusinessError) => {
         console.error(`promise: exportKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
@@ -497,15 +467,15 @@ async function BuildWrappedDataAndImportWrappedKey(plainKey: string) {
   assignLength(plainKey.length, plainKeySizeBuff, 0);
   let wrappedData = new Uint8Array(
     FILED_LENGTH + huksPubKey.length +
-      FILED_LENGTH + AAD.length +
-      FILED_LENGTH + NONCE.length +
-      FILED_LENGTH + TAG_SIZE +
-      FILED_LENGTH + outKekEncData.length +
-      FILED_LENGTH + AAD.length +
-      FILED_LENGTH + NONCE.length +
-      FILED_LENGTH + TAG_SIZE +
-      FILED_LENGTH + plainKeySizeBuff.length +
-      FILED_LENGTH + outPlainKeyEncData.length
+    FILED_LENGTH + AAD.length +
+    FILED_LENGTH + NONCE.length +
+    FILED_LENGTH + TAG_SIZE +
+    FILED_LENGTH + outKekEncData.length +
+    FILED_LENGTH + AAD.length +
+    FILED_LENGTH + NONCE.length +
+    FILED_LENGTH + TAG_SIZE +
+    FILED_LENGTH + plainKeySizeBuff.length +
+    FILED_LENGTH + outPlainKeyEncData.length
   );
   let index = 0;
   let AADUint8Array = stringToUint8Array(AAD);

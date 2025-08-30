@@ -176,7 +176,7 @@ async function updateSession(handle: number, huksOptions: huks.HuksOptions) {
     await huks.updateSession(handle, huksOptions)
       .then((data) => {
         let outData = data.outData as Uint8Array;
-        console.info(`promise: updateSession success, data = ${outData}`);
+        console.info(`promise: updateSession success, data = ${Uint8ArrayToString(outData)}`);
       }).catch((error: BusinessError) => {
         console.error(`promise: updateSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
@@ -190,8 +190,8 @@ async function finishSession(handle: number, huksOptions: huks.HuksOptions) {
   try {
     await huks.finishSession(handle, huksOptions)
       .then((data) => {
-        let outData = data.outData as Uint8Array;
-        console.info(`promise: finishSession success, data = ${outData}`);
+        signature = data.outData as Uint8Array;
+        console.info(`promise: finishSession success, data = ${Uint8ArrayToString(signature)}`);
       }).catch((error: BusinessError) => {
         console.error(`promise: finishSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
@@ -378,7 +378,7 @@ async function updateSession(handle: number, huksOptions: huks.HuksOptions) {
     await huks.updateSession(handle, huksOptions)
       .then((data) => {
         let outData = data.outData as Uint8Array;
-        console.info(`promise: updateSession success, data = ${outData}`);
+        console.info(`promise: updateSession success, data = ${Uint8ArrayToString(outData)}`);
       }).catch((error: BusinessError) => {
         console.error(`promise: updateSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
@@ -392,8 +392,8 @@ async function finishSession(handle: number, huksOptions: huks.HuksOptions) {
   try {
     await huks.finishSession(handle, huksOptions)
       .then((data) => {
-        let outData = data.outData as Uint8Array;
-        console.info(`promise: finishSession success, data = ${outData}`);
+        signature = data.outData as Uint8Array;
+        console.info(`promise: finishSession success, data = ${Uint8ArrayToString(signature)}`);
       }).catch((error: BusinessError) => {
         console.error(`promise: finishSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
@@ -455,7 +455,7 @@ async function DeleteSm2Key(keyAlias: string) {
   await deleteKeyItem(keyAlias, emptyOptions);
 }
 
-export async function testSignVerify() {
+async function testSignVerify() {
   await GenerateSm2Key(keyAlias);
   await Sign(keyAlias, plaintext);
   await Verify(keyAlias, plaintext, signature);
@@ -587,7 +587,7 @@ async function updateSession(handle: number, huksOptions: huks.HuksOptions) {
     await huks.updateSession(handle, huksOptions)
       .then((data) => {
         let outData = data.outData as Uint8Array;
-        console.info(`promise: updateSession success, data = ${outData}`);
+        console.info(`promise: updateSession success, data = ${Uint8ArrayToString(outData)}`);
       }).catch((error: BusinessError) => {
         console.error(`promise: updateSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
@@ -601,8 +601,8 @@ async function finishSession(handle: number, huksOptions: huks.HuksOptions) {
   try {
     await huks.finishSession(handle, huksOptions)
       .then((data) => {
-        let outData = data.outData as Uint8Array;
-        console.info(`promise: finishSession success, data = ${outData}`);
+        signature = data.outData as Uint8Array;
+        console.info(`promise: finishSession success, data = ${Uint8ArrayToString(signature)}`);
       }).catch((error: BusinessError) => {
         console.error(`promise: finishSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
@@ -673,7 +673,7 @@ async function DeleteRsaKey(keyAlias: string) {
   await deleteKeyItem(keyAlias, emptyOptions);
 }
 
-export async function testSignVerify() {
+async function testSignVerify() {
   await GenerateRsaKey(keyAlias);
   await Sign(keyAlias, plaintext);
   await Verify(keyAlias, plaintext, signature);
@@ -803,7 +803,7 @@ async function updateSession(handle: number, huksOptions: huks.HuksOptions) {
     await huks.updateSession(handle, huksOptions)
       .then((data) => {
         let outData = data.outData as Uint8Array;
-        console.info(`promise: updateSession success, data = ${outData}`);
+        console.info(`promise: updateSession success, data = ${Uint8ArrayToString(outData)}`);
       }).catch((error: BusinessError) => {
         console.error(`promise: updateSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
@@ -817,8 +817,8 @@ async function finishSession(handle: number, huksOptions: huks.HuksOptions) {
   try {
     await huks.finishSession(handle, huksOptions)
       .then((data) => {
-        let outData = data.outData as Uint8Array;
-        console.info(`promise: finishSession success, data = ${outData}`);
+        signature = data.outData as Uint8Array;
+        console.info(`promise: finishSession success, data = ${Uint8ArrayToString(signature)}`);
       }).catch((error: BusinessError) => {
         console.error(`promise: finishSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
@@ -882,7 +882,7 @@ async function DeleteRsaKey(keyAlias: string) {
   await deleteKeyItem(keyAlias, emptyOptions);
 }
 
-export async function testSignVerify() {
+async function testSignVerify() {
   await GenerateRsaKey(keyAlias);
   await Sign(keyAlias, plaintext);
   await Verify(keyAlias, plaintext, signature);

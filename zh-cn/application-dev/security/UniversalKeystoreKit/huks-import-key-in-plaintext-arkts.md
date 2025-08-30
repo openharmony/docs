@@ -36,16 +36,13 @@ let plainTextSize32 = new Uint8Array([
 let keyAlias = 'AES256Alias_sample';
 
 /* 2.封装密钥属性集和密钥材料 */
-let properties: Array<huks.HuksParam> = [
-  {
+let properties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_AES
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
   },
@@ -136,21 +133,17 @@ let rsa2048KeyPairMaterial = new Uint8Array([
 /* 1.确定密钥别名 */
 let keyAlias = 'RSA_sample';
 /* 2.封装密钥属性集和密钥材料 */
-let properties: Array<huks.HuksParam> = [
-  {
+let properties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_RSA
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
-  },
-  {
+  }, {
     // 此 tag表示密钥导入后的用途，导入后将不可更改。
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-  },
-  {
+  }, {
     // 此 tag表示需导入的密钥类型。
     tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
     // 此 value表示导入密钥对，若改为HUKS_KEY_TYPE_PUBLIC_KEY时表示仅导入公钥。
@@ -205,21 +198,17 @@ let x25519KeyPubMaterial = new Uint8Array([
 /* 1.确定密钥别名 */
 let keyAlias = 'X25519_Pub_import_sample';
 /* 2.封装密钥属性集和密钥材料 */
-let properties: Array<huks.HuksParam> = [
-  {
+let properties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_X25519
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256
-  },
-  {
+  }, {
     // 此 tag表示密钥导入后的用途，导入后将不可更改。
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
-  },
-  {
+  }, {
     // 此 tag表示需导入的密钥类型。
     tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
     // 此 value表示导入密钥的公钥，若改为HUKS_KEY_TYPE_KEY_PAIR时表示导入密钥对。
@@ -268,8 +257,7 @@ import { huks } from '@kit.UniversalKeystoreKit';
 import { BusinessError } from "@kit.BasicServicesKit";
 
 let keyAlias = 'AES256Alias_sample';
-let keyProperties: Array<huks.HuksParam> = [
-  {
+let keyProperties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_AES
   }

@@ -44,32 +44,25 @@ let versionInfo = StringToUint8Array('version_info');
 let attestCertChain: Array<string>;
 
 /* 封装生成时的密钥参数集 */
-let genKeyProperties: Array<huks.HuksParam> = [
-  {
+let genKeyProperties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_RSA
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_DIGEST,
     value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_PADDING,
     value: huks.HuksKeyPadding.HUKS_PADDING_PSS
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_GENERATE_TYPE,
     value: huks.HuksKeyGenerateType.HUKS_KEY_GENERATE_TYPE_DEFAULT
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
     value: huks.HuksCipherMode.HUKS_MODE_ECB
   }
@@ -79,20 +72,16 @@ let genOptions: huks.HuksOptions = {
 };
 
 /* 2.封装证明密钥的参数集 */
-let attestKeyProperties: Array<huks.HuksParam> = [
-  {
+let attestKeyProperties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
     value: securityLevel
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_ATTESTATION_CHALLENGE,
     value: challenge
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_VERSION_INFO,
     value: versionInfo
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_ALIAS,
     value: aliasUint8
   }
