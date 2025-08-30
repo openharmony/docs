@@ -79,6 +79,7 @@
       - [AttributeUpdater](js-apis-arkui-AttributeUpdater.md)
       - [Content](js-apis-arkui-Content.md)
       - [NodeContent](js-apis-arkui-NodeContent.md)
+      - [Resource](js-apis-arkui-resource.md)
   - 窗口管理<!--window-manager-api-->
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
     - [@ohos.window.floatingBall (闪控球窗口)](js-apis-floatingBall.md)
