@@ -759,7 +759,7 @@ NDK支持通过不同的展开方式获取目标节点下的有效节点信息�
     uint32_t index1 = 0;
     OH_ArkUI_NodeUtils_GetLastChildIndexWithoutExpand(childNode, &index1);
     ArkUI_NodeHandle child = nullptr;
-    auto result = OH_ArkUI_NodeUtils_GetChildWithExpandMode(childNode, 3, child, 0);
+    auto result = OH_ArkUI_NodeUtils_GetChildWithExpandMode(childNode, 3, &child, 0);
     OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "firstChildIndex - lastChildIndex == %{public}d -- %{public}d, -- getResult= %{public}d",
         index, index1, result);
     ```
