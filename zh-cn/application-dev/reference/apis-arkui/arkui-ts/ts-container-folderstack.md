@@ -45,9 +45,9 @@ FolderStack(options?: FolderStackOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 类型         | 必填 | 说明                       |
-| ------------ | -------------------------- | ---- |----------------------------|
-| upperItems<sup>11+</sup> |    Array<string\>  | 否   | FolderStack的配置项。<br/>upperItems：定义悬停态会被移到上半屏的子组件的id，组件id在此数组中的子组件悬停触发时自动避让折叠屏折痕区后移到上半屏，其它组件堆叠在下半屏区域。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| upperItems<sup>11+</sup> |    Array<string\>  | 否 | 是  | FolderStack的配置项。<br/>upperItems：定义悬停态会被移到上半屏的子组件的id，组件id在此数组中的子组件悬停触发时自动避让折叠屏折痕区后移到上半屏，其它组件堆叠在下半屏区域。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 
@@ -113,7 +113,7 @@ autoHalfFold(value: boolean)
 
 onFolderStateChange(callback: OnFoldStatusChangeCallback)
 
-当折叠状态改变的时候回调，仅在横屏状态下生效，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
+当折叠状态改变的时候回调，仅在横屏状态下生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -130,7 +130,7 @@ onFolderStateChange(callback: OnFoldStatusChangeCallback)
 
 onHoverStatusChange(handler: OnHoverStatusChangeCallback)
 
-当悬停状态改变的时候回调，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
+当悬停状态改变的时候回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

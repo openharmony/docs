@@ -16,9 +16,11 @@
 >
 >  Path2D对象的方法无法对[CanvasRenderingContext2D](./ts-canvasrenderingcontext2d.md)和[OffscreenCanvasRenderingContext2D](./ts-offscreencanvasrenderingcontext2d.md)对象中设置的路径生效。
 
-## 接口
+## 构造函数
 
-Path2D(unit?: LengthMetricsUnit)
+### constructor
+
+constructor()
 
 构造一个空的Path2D对象。
 
@@ -28,15 +30,29 @@ Path2D(unit?: LengthMetricsUnit)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+### constructor<sup>12+</sup>
+
+constructor(unit: LengthMetricsUnit)
+
+构造一个空的Path2D对象，支持配置Path2D对象的单位模式。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否 | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT|
+| unit  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 是 | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)。<br>默认值：DEFAULT|
 
-Path2D(description: string, unit?: LengthMetricsUnit)
+### constructor
 
-使用符合SVG路径描述规范的路径字符串构造一个Path2D对象。
+constructor(path: Path2D)
+
+使用路径对象构造Path2D对象。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -48,8 +64,63 @@ Path2D(description: string, unit?: LengthMetricsUnit)
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| description | string | 是 | 符合 SVG 路径描述规范的路径字符串，格式参考[Path](ts-drawing-components-path.md#svg路径描述规范)中SVG路径描述规范说明。 |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否 | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT|
+| path | Path2D | 是 | 路径对象。 |
+
+### constructor<sup>12+</sup>
+
+constructor(path: Path2D, unit: LengthMetricsUnit)
+
+使用路径对象构造Path2D对象，支持配置Path2D对象的单位模式。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型     | 必填 |  说明   |
+| ----- | -------- | ---- | ---------- |
+| path | Path2D | 是 | 路径对象。 |
+| unit | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 是 | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)。<br>默认值：DEFAULT|
+
+### constructor
+
+constructor(d: string)
+
+使用符合SVG路径描述规范的路径字符串构造Path2D对象。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型     | 必填 |  说明   |
+| ----- | -------- | ---- | ---------- |
+| d | string | 是 | 符合SVG路径描述规范的路径字符串，格式参考[SVG路径描述规范](ts-drawing-components-path.md#svg路径描述规范)。 |
+
+### constructor<sup>12+</sup>
+
+constructor(description: string, unit: LengthMetricsUnit)
+
+使用符合SVG路径描述规范的路径字符串构造Path2D对象，支持配置Path2D对象的单位模式。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型     | 必填 |  说明   |
+| ----- | -------- | ---- | ---------- |
+| description | string | 是 | 符合SVG路径描述规范的路径字符串，格式参考[SVG路径描述规范](ts-drawing-components-path.md#svg路径描述规范)。 |
+| unit | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 是 | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)。<br>默认值：DEFAULT|
 
 ## 方法
 
@@ -69,7 +140,7 @@ addPath(path: Path2D, transform?: Matrix2D): void
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| path      | [Path2D](ts-components-canvas-path2d.md)   | 是 | 需要添加到当前路径的路径对象，路径单位：px。 |
+| path      | Path2D | 是 | 需要添加到当前路径的路径对象，路径单位：px。 |
 | transform | [Matrix2D](ts-components-canvas-matrix2d.md) | 否 | 新增路径的变换矩阵对象。<br>默认值：null |
 
 
@@ -619,7 +690,7 @@ roundRect(x: number, y: number, w: number, h: number, radii?: number | Array\<nu
 
 **示例：**
 
-该示例展示了绘制五个圆角矩形：
+该示例展示了绘制六个圆角矩形：
 
 1. 创建一个(10vp, 10vp)为起点，宽高为100vp，四个矩形角圆弧半径为10vp的圆角矩形并填充；
 
@@ -629,17 +700,21 @@ roundRect(x: number, y: number, w: number, h: number, radii?: number | Array\<nu
 
 4. 创建一个(120vp, 120vp)为起点，宽高为100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径及左下矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp的圆角矩形并描边；
 
-5. 创建一个(10vp, 230vp)为起点，宽高为100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp，左下矩形角圆弧半径为40vp的圆角矩形并描边。
+5. 创建一个(10vp, 230vp)为起点，宽高为100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp，左下矩形角圆弧半径为40vp的圆角矩形并描边；
+
+6. 创建一个(220vp, 330vp)为起点，宽高为-100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp，左下矩形角圆弧半径为40vp的圆角矩形并描边。
 
   ```ts
   // xxx.ets
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   @Entry
   @Component
   struct CanvasExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private pathA: Path2D = new Path2D()
-    private pathB: Path2D = new Path2D()
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private pathA: Path2D = new Path2D();
+    private pathB: Path2D = new Path2D();
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -648,23 +723,26 @@ roundRect(x: number, y: number, w: number, h: number, radii?: number | Array\<nu
           .height('100%')
           .backgroundColor('#D5D5D5')
           .onReady(() => {
-            // Create a 100*100 rectangle at (10, 10) and specifies a 10vp radius for all the corners.
-            this.pathA.roundRect(10, 10, 100, 100, 10)
-            // Create a 100*100 rectangle at (120, 10) and specifies a 10vp radius for all the corners in a list.
-            let radii = [10]
-            this.pathA.roundRect(120, 10, 100, 100, radii)
-            this.context.fillStyle = '#707070'
-            this.context.fill(this.pathA)
-            // Create a 100*100 rectangle at (10, 120) and specifies [10, 20] for the corners.
-            radii = [10, 20]
-            this.pathB.roundRect(10, 120, 100, 100, radii)
-            // Create a 100*100 rectangle at (120, 120) and specifies [10, 20, 30] for the corners.
-            radii = [10, 20, 30]
-            this.pathB.roundRect(120, 120, 100, 100, radii)
-            // Create a 100*100 rectangle at (10, 230) and specifies [10, 20, 30, 40] for the corners.
-            radii = [10, 20, 30, 40]
-            this.pathB.roundRect(10, 230, 100, 100, radii)
-            this.context.stroke(this.pathB)
+            try {
+              this.context.fillStyle = '#707070'
+              // 创建一个(10vp, 10vp)为起点，宽高为100vp，四个矩形角圆弧半径为10vp的圆角矩形
+              this.pathA.roundRect(10, 10, 100, 100, 10)
+              // 创建一个(120vp, 10vp)为起点，宽高为100vp，四个矩形角圆弧半径为10vp的圆角矩形
+              this.pathA.roundRect(120, 10, 100, 100, [10])
+              this.context.fill(this.pathA)
+              // 创建一个(10vp, 120vp)为起点，宽高为100vp，左上矩形角圆弧半径及右下矩形角圆弧半径为10vp，右上矩形角圆弧半径及左下矩形角圆弧半径为20vp的圆角矩形
+              this.pathB.roundRect(10, 120, 100, 100, [10, 20])
+              // 创建一个(120vp, 120vp)为起点，宽高为100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径及左下矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp的圆角矩形
+              this.pathB.roundRect(120, 120, 100, 100, [10, 20, 30])
+              // 创建一个(10vp, 230vp)为起点，宽高为100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp，左下矩形角圆弧半径为40vp的圆角矩形
+              this.pathB.roundRect(10, 230, 100, 100, [10, 20, 30, 40])
+              // 创建一个(220vp, 330vp)为起点，宽高为-100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp，左下矩形角圆弧半径为40vp的圆角矩形
+              this.pathB.roundRect(220, 330, -100, -100, [10, 20, 30, 40])
+              this.context.stroke(this.pathB)
+            } catch (error) {
+              let e: BusinessError = error as BusinessError;
+              console.error(`Failed to create roundRect. Code: ${e.code}, message: ${e.message}`);
+            }
           })
       }
       .width('100%')

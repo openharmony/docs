@@ -112,10 +112,10 @@ Button('URI跳转')
             "scheme": "example",
             "host": "uri.ohos.com",
             "path": "link_page"
-          },
+          }
         ]
       }
-    ],
+    ]
   }
 ]
 ```

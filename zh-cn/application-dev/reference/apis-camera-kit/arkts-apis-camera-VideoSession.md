@@ -29,7 +29,7 @@ import { camera } from '@kit.CameraKit';
 
 canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boolean
 
-查询当前Session是否支持指定的与配置类型。
+查询当前Session是否支持指定的预配置类型。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -46,7 +46,7 @@ canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boo
 
 | 类型      | 说明                                      |
 |---------|-----------------------------------------|
-| boolean | true: 支持指定预配值类型。<br/>false: 不支持指定预配值类型。 |
+| boolean | true: 支持指定预配置类型。<br/>false: 不支持指定预配置类型。 |
 
 **错误码：**
 

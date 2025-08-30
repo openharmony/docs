@@ -17,7 +17,7 @@
 
 onHover(event: (isHover: boolean, event: HoverEvent) => void): T
 
-鼠标或手写笔进入或退出组件时触发hover事件。
+鼠标或手写笔进入或退出组件时，触发hover事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

@@ -2263,7 +2263,7 @@ onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
   var locationInfo=document.getElementById("locationInfo");
   function getLocation(){
     if (navigator.geolocation) {
-      <!-- 前端页面访问设备地理位置 -->
+      // 前端页面访问设备地理位置
       navigator.geolocation.getCurrentPosition(showPosition);
     }
   }
@@ -2305,7 +2305,7 @@ onGeolocationHide(callback: () => void)
         Web({ src: 'www.example.com', controller: this.controller })
           .geolocationAccess(true)
           .onGeolocationHide(() => {
-            console.log("onGeolocationHide...");
+            console.info("onGeolocationHide...");
           })
       }
     }
@@ -2342,7 +2342,7 @@ onFullScreenEnter(callback: OnFullScreenEnterCallback)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onFullScreenEnter((event) => {
-            console.log("onFullScreenEnter videoWidth: " + event.videoWidth +
+            console.info("onFullScreenEnter videoWidth: " + event.videoWidth +
               ", videoHeight: " + event.videoHeight);
             // 应用可以通过 this.handler.exitFullScreen() 主动退出全屏。
             this.handler = event.handler;
@@ -2382,7 +2382,7 @@ onFullScreenExit(callback: () => void)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onFullScreenExit(() => {
-            console.log("onFullScreenExit...")
+            console.info("onFullScreenExit...")
             if (this.handler) {
               this.handler.exitFullScreen();
             }
@@ -2916,7 +2916,7 @@ onAudioStateChanged(callback: Callback\<OnAudioStateChangedEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onAudioStateChanged(event => {
             this.playing = event.playing;
-            console.debug('onAudioStateChanged playing: ' + this.playing);
+            console.info('onAudioStateChanged playing: ' + this.playing);
           })
       }
     }

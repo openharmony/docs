@@ -6390,7 +6390,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let enable = this.controller.getPrintBackground();
-            console.log("getPrintBackground: " + enable);
+            console.info("getPrintBackground: " + enable);
           } catch (error) {
             console.error(`ErrorCode:${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
           }
@@ -8209,7 +8209,7 @@ struct Example{
         .onClick(()=>{
           try {
             let surfaceId = this.controller.getSurfaceId();
-            console.log("surfaceId: " + surfaceId);
+            console.info("surfaceId: " + surfaceId);
             if(surfaceId.length != 0) {
               let region:image.Region = { x: 0, y: 0, size: { height: 800, width: 1000}}
               this.imagePixelMap = image.createPixelMapFromSurfaceSync(surfaceId, region)
@@ -8861,6 +8861,14 @@ getPageOffset(): ScrollOffset
 | :------------------------------ | ---------------------- |
 | [ScrollOffset](./arkts-apis-webview-i.md#scrolloffset13) | 网页当前的滚动偏移量（不包含过滚动偏移量）。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+|  801     | Capability not supported. |
+
 **示例：**
 
 ```ts
@@ -8876,8 +8884,12 @@ struct WebComponent {
     Column() {
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .onScroll((event) => {
-          console.log("getPageOffset x:" + this.controller.getPageOffset().x + ",y:" +
-          this.controller.getPageOffset().y);
+          try {
+            console.log("getPageOffset x:" + this.controller.getPageOffset().x + ",y:" +
+            this.controller.getPageOffset().y);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
         })
     }
   }
@@ -9899,6 +9911,102 @@ export default class EntryAbility extends UIAbility {
     webview.WebviewController.setWebDestroyMode(webview.WebDestroyMode.FAST_MODE);
     AppStorage.setOrCreate("abilityWant", want);
     console.log("EntryAbility onCreate done");
+  }
+}
+```
+
+## setActiveWebEngineVersion<sup>20+</sup>
+
+static setActiveWebEngineVersion(engineVersion: ArkWebEngineVersion): void
+
+设置ArkWeb内核版本。若系统不支持指定版本，则设置无效。该接口为全局静态API，须在调用initializeWebEngine前执行，若已加载任何Web组件，则该设置无效。
+
+**遗留内核适配：**
+
+在OpenHarmony 6.0及以后，使用遗留内核时，部分ArkWeb接口不会生效，参考[M114内核在OpenHarmony6.0系统上的适配指导](https://gitcode.com/openharmony-tpc/chromium_src/blob/132_trunk/web/ReleaseNote/CompatibleWithLegacyWebEngine.md)。
+
+> **说明：**
+>
+> - setActiveWebEngineVersion不支持在异步线程中调用。
+> - setActiveWebEngineVersion全局生效，在整个APP生命周期中调用一次即可，不需要重复调用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名              | 类型    | 必填   |  说明 |
+| ------------------ | ------- | ---- | ------------- |
+| engineVersion         |   [ArkWebEngineVersion](./arkts-apis-webview-e.md#arkwebengineversion20)   | 是   | ArkWeb内核版本。 |
+
+**示例：**
+
+本示例以EntryAbility为例，实现了在Ability创建阶段设置ArkWeb内核版本的功能。
+
+```ts
+// xxx.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate")
+    webview.WebviewController.setActiveWebEngineVersion(webview.ArkWebEngineVersion.M114)
+    if (webview.WebviewController.getActiveWebEngineVersion() == webview.ArkWebEngineVersion.M114) {
+      console.log("Active Web Engine Version set to M114")
+    }
+    console.log("EntryAbility onCreate done")
+  }
+}
+```
+
+## getActiveWebEngineVersion<sup>20+</sup>
+
+static getActiveWebEngineVersion(): ArkWebEngineVersion
+
+获取当前ArkWeb内核版本。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型    | 说明                              |
+| ------- | --------------------------------- |
+| [ArkWebEngineVersion](./arkts-apis-webview-e.md#arkwebengineversion20) | 返回由[ArkWebEngineVersion](./arkts-apis-webview-e.md#arkwebengineversion20)所定义的当前使用的ArkWeb内核版本。 |
+
+**示例：**
+
+请参考[setActiveWebEngineVersion](#setactivewebengineversion20)。
+
+## isActiveWebEngineEvergreen<sup>20+</sup>
+
+static isActiveWebEngineEvergreen(): boolean
+
+判断当前系统是否正在使用常青内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型    | 说明                              |
+| ------- | --------------------------------- |
+| boolean | 表示是否正在使用常青内核。正在使用返回true，否则返回false。 |
+
+**示例：**
+
+本示例以EntryAbility为例，实现了在Ability创建阶段判断应用是否正在使用常青内核的功能。
+
+```ts
+// xxx.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate")
+    if (webview.WebviewController.isActiveWebEngineEvergreen()) {
+      console.log("Active Web Engine is Evergreen")
+    }
+    console.log("EntryAbility onCreate done")
   }
 }
 ```

@@ -1,4 +1,10 @@
 # NodeAdapter错误码
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @kangshihui-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 >
@@ -62,7 +68,7 @@ This component already has a child node.
 
 **错误信息**
 
-This param index is out of range.
+The parameter length in the parameter event exceeds the limit.
 
 **错误描述**
 
@@ -80,7 +86,7 @@ This param index is out of range.
 
 **错误信息**
 
-The data does not exist.
+The data does not exist in the component event.
 
 **错误描述**
 
@@ -98,7 +104,7 @@ The data does not exist.
 
 **错误信息**
 
-The event has not return value.
+The component event does not support return values.
 
 **错误描述**
 
@@ -111,3 +117,21 @@ The event has not return value.
 **处理步骤**
 
 确认当前事件是否存在返回值。
+
+## 106110 暂不支持该事件类型
+
+**错误信息**
+
+The event type is not supported.
+
+**错误描述**
+
+注册通用事件时传入的事件类型错误。
+
+**可能原因**
+
+传入的事件类型参数错误，不在已支持的事件类型中。
+
+**处理步骤**
+
+检查函数入参的事件类型的具体值。

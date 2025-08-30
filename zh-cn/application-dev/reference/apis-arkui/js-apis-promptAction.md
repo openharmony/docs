@@ -6,7 +6,7 @@
 <!--Tester: @lxl007-->
 <!--Adviser: @HelloCrease-->
 
-创建并显示文本提示框、对话框和操作菜单。
+创建并显示即时反馈、对话框和操作菜单。
 
 > **说明：**
 >
@@ -26,7 +26,11 @@ import { promptAction } from '@kit.ArkUI';
 
 openToast(options: ShowToastOptions): Promise&lt;number&gt;
 
-显示文本提示框并通过Promise返回其id。
+显示即时反馈并通过Promise返回其id。
+
+> **说明：**
+> 
+> 不支持在输入法类型窗口中使用子窗（showMode设置为TOP_MOST或者SYSTEM_TOP_MOST）的openToast，详情见输入法框架的约束与限制说明[createPanel](../apis-ime-kit/js-apis-inputmethodengine.md#createpanel10-1)。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -36,13 +40,13 @@ openToast(options: ShowToastOptions): Promise&lt;number&gt;
 
 | 参数名  | 类型                                                         | 必填 | 说明           |
 | ------- | ------------------------------------------------------------ | ---- | -------------- |
-| options | [ShowToastOptions](#showtoastoptions) | 是   | 文本弹窗选项。 |
+| options | [ShowToastOptions](#showtoastoptions) | 是   | Toast选项。 |
 
 **返回值**
 
 | 类型             | 说明                                 |
 | ---------------- | ------------------------------------ |
-| Promise&lt;number&gt; | 返回供closeToast使用的文本提示框id。 |
+| Promise&lt;number&gt; | 返回即时反馈的id，可供closeToast使用。 |
 
 **错误码：**
 
@@ -110,7 +114,7 @@ struct toastExample {
 
 closeToast(toastId: number): void
 
-关闭文本提示框。
+关闭即时反馈。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -120,7 +124,7 @@ closeToast(toastId: number): void
 
 | 参数名  | 类型   | 必填 | 说明                          |
 | ------- | ------ | ---- | ----------------------------- |
-| toastId | number | 是   | openToast返回的文本提示框id。 |
+| toastId | number | 是   | openToast返回的id。 |
 
 **错误码：**
 
@@ -142,28 +146,28 @@ closeToast(toastId: number): void
 
 ## ShowToastOptions
 
-文本提示框的选项。
+Toast的选项。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                    | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | ----------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | message                 | string&nbsp;\|&nbsp;[Resource](arkui-ts/ts-types.md#resource) | 否  | 否  | 显示的文本信息。<br>**说明：** <br/>默认字体为'Harmony Sans'，不支持设置其他字体。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| duration                | number                                                       | 否   | 是  | 设置提示框弹出的持续时间。<br/>默认值：1500ms<br/>取值范围：[1500, 10000]<br/>若小于1500ms则取默认值，若大于10000ms则取上限值10000ms。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| bottom                  | string&nbsp;\|&nbsp;number                                   | 否   | 是  | 设置提示框底部边框距离导航条的高度，软键盘拉起时，如果bottom值过小，toast要被软键盘遮挡时，会自动避让至距离软键盘80vp处。<br/>默认值：80vp<br/>**说明：** <br/>当底部没有导航条时，bottom为设置弹窗底部边框距离窗口底部的高度。<br/>设置对齐方式alignment后，bottom不生效。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| showMode<sup>11+</sup>  | [ToastShowMode](#toastshowmode11)                            | 否   | 是  | 设置提示框层级。<br>默认值：ToastShowMode.DEFAULT，默认显示在应用内。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| duration                | number                                                       | 否   | 是  | 设置Toast弹出的持续时间。<br/>默认值：1500ms<br/>取值范围：[1500, 10000]<br/>若小于1500ms则取默认值，若大于10000ms则取上限值10000ms。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| bottom                  | string&nbsp;\|&nbsp;number                                   | 否   | 是  | 设置Toast底部边框距离导航条的高度，软键盘拉起时，如果bottom值过小，toast要被软键盘遮挡时，会自动避让至距离软键盘80vp处。<br/>默认值：80vp<br/>**说明：** <br/>当底部没有导航条时，bottom为设置弹窗底部边框距离窗口底部的高度。<br/>设置对齐方式alignment后，bottom不生效。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| showMode<sup>11+</sup>  | [ToastShowMode](#toastshowmode11)                            | 否   | 是  | 设置Toast层级。<br>默认值：ToastShowMode.DEFAULT，默认显示在应用内。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | alignment<sup>12+</sup> | [Alignment](arkui-ts/ts-appendix-enums.md#alignment)         | 否   | 是  | 对齐方式。<br>**说明：** <br/>不同alignment下，Toast位置对齐效果，如下图所示。<br/>![zh-cn_image_0001](figures/toast_alignment.PNG)<br/>Toast的文本显示默认自左向右，不支持其他对齐方式。<br/>默认值：undefined，默认底部偏上位置。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 | offset<sup>12+</sup>    | [Offset](arkui-ts/ts-types.md#offset)                        | 否   | 是  | 在对齐方式上的偏移。<br/>默认值：{ dx: 0, dy: 0 }，默认没有偏移。<br/>**说明：** <br/>仅支持设置px类型的数值。如需设置其他类型的数值，应将其他类型转换为px类型后传入。例如，若需设置vp，应将其转换为px后传入。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| backgroundColor<sup>12+</sup>    | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 是  | 文本提示框背板颜色。<br/>默认值：Color.Transparent<br/>**说明：** <br/>backgroundColor会与模糊属性backgroundBlurStyle叠加产生效果，如果不符合预期，可将backgroundBlurStyle设置为BlurStyle.NONE，即可取消模糊。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| textColor<sup>12+</sup>    | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 是  | 文本提示框文本颜色。<br/>默认值：Color.Black<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| backgroundBlurStyle<sup>12+</sup>    | [BlurStyle](arkui-ts/ts-universal-attributes-background.md#blurstyle9) | 否   | 是  | 文本提示框背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK<br/>**说明：** <br/>设置为BlurStyle.NONE即可关闭背景虚化。当设置了backgroundBlurStyle为非NONE值时，则不要设置backgroundColor，否则颜色显示将不符合预期效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| shadow<sup>12+</sup>    | [ShadowOptions](arkui-ts/ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](arkui-ts/ts-universal-attributes-image-effect.md#shadowstyle10枚举说明) | 否   | 是  | 文本提示框背板阴影。<br/>默认值：ShadowStyle.OUTER_DEFAULT_MD<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| backgroundColor<sup>12+</sup>    | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 是  | Toast的背板颜色。<br/>默认值：Color.Transparent<br/>**说明：** <br/>backgroundColor会与模糊属性backgroundBlurStyle叠加产生效果，如果不符合预期，可将backgroundBlurStyle设置为BlurStyle.NONE，即可取消模糊。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| textColor<sup>12+</sup>    | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 是  | Toast的文本颜色。<br/>默认值：Color.Black<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| backgroundBlurStyle<sup>12+</sup>    | [BlurStyle](arkui-ts/ts-universal-attributes-background.md#blurstyle9) | 否   | 是  | Toast的背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK<br/>**说明：** <br/>设置为BlurStyle.NONE即可关闭背景虚化。当设置了backgroundBlurStyle为非NONE值时，则不要设置backgroundColor，否则颜色显示将不符合预期效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| shadow<sup>12+</sup>    | [ShadowOptions](arkui-ts/ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](arkui-ts/ts-universal-attributes-image-effect.md#shadowstyle10枚举说明) | 否   | 是  | Toast的背板阴影。<br/>默认值：ShadowStyle.OUTER_DEFAULT_MD<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | enableHoverMode<sup>14+</sup>    | boolean                       | 否   | 是  | 是否响应悬停态，值为true时，响应悬停态。<br/>默认值：false，默认不响应。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | hoverModeArea<sup>14+</sup> | [HoverModeAreaType](arkui-ts/ts-universal-attributes-sheet-transition.md#hovermodeareatype14)         | 否   | 是  | 响应悬停态时，弹窗的显示区域。<br/>默认值：HoverModeAreaType.BOTTOM_SCREEN，默认显示在下半屏。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。         |
 
 ## ToastShowMode<sup>11+</sup>
 
-设置弹窗显示模式，默认显示在应用内，支持显示在子窗。
+设置Toast的显示模式，默认显示在应用内，支持显示在子窗。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -647,7 +651,7 @@ struct Index {
 
 showToast(options: ShowToastOptions): void
 
-创建并显示文本提示框。
+创建并显示即时反馈。
 
 > **说明：**
 >
@@ -665,7 +669,7 @@ showToast(options: ShowToastOptions): void
 
 | 参数名  | 类型                                  | 必填 | 说明           |
 | ------- | ------------------------------------- | ---- | -------------- |
-| options | [ShowToastOptions](#showtoastoptions) | 是   | 文本弹窗选项。 |
+| options | [ShowToastOptions](#showtoastoptions) | 是   | Toast选项。 |
 
 **错误码：**
 
@@ -1249,8 +1253,8 @@ struct Index {
                 this.customDialogComponent()
               },
               onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
-                console.info("reason" + JSON.stringify(dismissDialogAction.reason));
-                console.log("dialog onWillDismiss");
+                console.info('reason' + JSON.stringify(dismissDialogAction.reason));
+                console.info('dialog onWillDismiss');
                 if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
                   dismissDialogAction.dismiss();
                 }

@@ -175,7 +175,7 @@ off(type: 'imeShow', callback?: (info: Array\<InputWindowInfo>) => void): void
 **示例：**
 
 ```ts
-inputMethodSetting.off('imeShow');
+inputMethod.getSetting().off('imeShow');
 ```
 
 ### off('imeHide')<sup>10+</sup>
@@ -198,7 +198,7 @@ off(type: 'imeHide', callback?: (info: Array\<InputWindowInfo>) => void): void
 **示例：**
 
 ```ts
-inputMethodSetting.off('imeHide');
+inputMethod.getSetting().off('imeHide');
 ```
 
 ### isPanelShown<sup>11+</sup>

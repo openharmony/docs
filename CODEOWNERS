@@ -41,6 +41,7 @@ zh-cn/application-dev/quick-start/typical-scenario-configuration.md @Brilliantry
 zh-cn/application-dev/quick-start/app-clone.md @Brilliantry_Rui  @hanfeng6  @kongjing2 
 zh-cn/application-dev/quick-start/multiInstance.md @Brilliantry_Rui  @hanfeng6  @kongjing2 
 zh-cn/application-dev/quick-start/layered-image.md @Brilliantry_Rui  @hanfeng6  @kongjing2 
+zh-cn/application-dev/quick-start/hap-to-har.md @Brilliantry_Rui  @hanfeng6  @kongjing2 
 
 [入门-资源分类与访问]
 zh-cn/application-dev/quick-start/resource-categories-and-access.md @Brilliantry_Rui @lliule21 @lpw_work @budda-wang
@@ -1126,7 +1127,7 @@ zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-componentSnapshot.md	@p
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-componentUtils.md	@piggyguy	@songyanhong	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-dragController.md	@piggyguy	@songyanhong	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-drawableDescriptor.md	@weixin_52725220	@xiong0104	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-frameNode.md	@yangfan229	@lxl007	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-frameNode.md	@xiang-shouxing	@sally__	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-graphics.md	@xiang-shouxing	@sally__	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-inspector.md	@lmleon	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-observer.md	@xiang-shouxing	@fredyuan912	@HelloCrease
@@ -1380,7 +1381,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-ui-extension-co
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-waterflow.md	@zcdqs	@liuzhenshuo	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-api.md	@xiang-shouxing	@sally__	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-layout.md	@lanshouren	@liuli0427	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md	@jiangdayuan	@lxl007	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md	@seaside_wu1 @TerryTsao	@zhang_yixin13
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-drawing-components-circle.md	@sunbees	@liuli0427	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-drawing-components-ellipse.md	@sunbees	@liuli0427	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-drawing-components-line.md	@sunbees	@liuli0427	@HelloCrease
