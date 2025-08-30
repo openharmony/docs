@@ -1,5 +1,11 @@
 # 资源管理开发常见问题
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @liule_123-->
+<!--Designer: @buda_wy-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ## 如何读取rawfile中的xml文件并转化为String类型(API 9)
 
