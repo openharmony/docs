@@ -26,8 +26,7 @@ import { huks } from '@kit.UniversalKeystoreKit';
 import { BusinessError } from "@kit.BasicServicesKit";
 
 /* 1.初始化密钥属性集 */
-let queryProperties: Array<huks.HuksParam> = [
-  {
+let queryProperties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_AUTH_STORAGE_LEVEL,
     value: huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_DE
   }

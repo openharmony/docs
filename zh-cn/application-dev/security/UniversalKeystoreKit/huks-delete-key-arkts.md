@@ -29,16 +29,13 @@ import { BusinessError } from "@kit.BasicServicesKit";
 /* 1.确定密钥别名 */
 let keyAlias = 'test_Key';
 /* 2.初始化密钥属性集 */
-let generateProperties: huks.HuksParam[] = [
-  {
+let generateProperties: huks.HuksParam[] = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_DH
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_2048
   }

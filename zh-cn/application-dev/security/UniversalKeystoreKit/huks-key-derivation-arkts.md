@@ -72,6 +72,14 @@ function StringToUint8Array(str: string) {
   return new Uint8Array(arr);
 }
 
+function Uint8ArrayToString(fileData: Uint8Array) {
+  let dataString = '';
+  for (let i = 0; i < fileData.length; i++) {
+    dataString += String.fromCharCode(fileData[i]);
+  }
+  return dataString;
+}
+
 /*
  * 确定密钥别名和封装密钥属性参数集
  */
@@ -194,7 +202,7 @@ async function updateSession(handle: number, huksOptions: huks.HuksOptions) {
     await huks.updateSession(handle, huksOptions)
       .then((data) => {
         let outData = data.outData as Uint8Array;
-        console.info(`promise: updateSession success, data = ${outData}`);
+        console.info(`promise: updateSession success, data = ${Uint8ArrayToString(outData)}`);
       }).catch((error: BusinessError) => {
         console.error(`promise: updateSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
@@ -209,7 +217,7 @@ async function finishSession(handle: number, huksOptions: huks.HuksOptions) {
     await huks.finishSession(handle, huksOptions)
       .then((data) => {
         let outData = data.outData as Uint8Array;
-        console.info(`promise: finishSession success, data = ${outData}`);
+        console.info(`promise: finishSession success, data = ${Uint8ArrayToString(outData)}`);
       }).catch((error: BusinessError) => {
         console.error(`promise: finishSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
@@ -260,6 +268,14 @@ function StringToUint8Array(str: string) {
   return new Uint8Array(arr);
 }
 
+function Uint8ArrayToString(fileData: Uint8Array) {
+  let dataString = '';
+  for (let i = 0; i < fileData.length; i++) {
+    dataString += String.fromCharCode(fileData[i]);
+  }
+  return dataString;
+}
+
 /*
  * 确定密钥别名和封装密钥属性参数集
  */
@@ -271,8 +287,7 @@ let handle: number;
 let finishOutData: Uint8Array;
 
 /* 集成生成密钥参数集 */
-let properties: Array<huks.HuksParam> = [
-  {
+let properties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_AES,
   }, {
@@ -296,8 +311,7 @@ let huksOptions: huks.HuksOptions = {
 }
 
 /* 集成init时密钥参数集 */
-let initProperties: Array<huks.HuksParam> = [
-  {
+let initProperties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_PBKDF2,
   }, {
@@ -324,8 +338,7 @@ let initOptions: huks.HuksOptions = {
 }
 
 /* 集成finish时密钥参数集 */
-let finishProperties: Array<huks.HuksParam> = [
-  {
+let finishProperties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
     value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
   }, {
@@ -395,7 +408,7 @@ async function updateSession(handle: number, huksOptions: huks.HuksOptions) {
     await huks.updateSession(handle, huksOptions)
       .then((data) => {
         let outData = data.outData as Uint8Array;
-        console.info(`promise: updateSession success, data = ${outData}`);
+        console.info(`promise: updateSession success, data = ${Uint8ArrayToString(outData)}`);
       }).catch((error: BusinessError) => {
         console.error(`promise: updateSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
@@ -410,7 +423,7 @@ async function finishSession(handle: number, huksOptions: huks.HuksOptions) {
     await huks.finishSession(handle, huksOptions)
       .then((data) => {
         let outData = data.outData as Uint8Array;
-        console.info(`promise: finishSession success, data = ${outData}`);
+        console.info(`promise: finishSession success, data = ${Uint8ArrayToString(outData)}`);
       }).catch((error: BusinessError) => {
         console.error(`promise: finishSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
