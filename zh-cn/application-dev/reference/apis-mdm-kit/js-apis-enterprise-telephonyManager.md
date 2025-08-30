@@ -180,7 +180,7 @@ try {
 
 addOutgoingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, numbers: Array\<string>): void
 
-添加通话呼出的允许或禁用名单，如果不添加名单，任意号码都可以呼出，添加后只有名单内的号码允许或禁止呼出。当前仅支持手机和平板设备。
+添加通话呼出的允许或禁用名单，如果不添加名单，任意号码都可以呼出，添加后只有名单内的号码允许或禁止呼出。
 
 以下情况下，通过本接口添加通话呼出的允许或禁用名单，会报策略冲突：
 
@@ -192,6 +192,8 @@ addOutgoingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, numbers: 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_TELEPHONY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在Phone和Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -216,6 +218,7 @@ addOutgoingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, numbers: 
 | 9200012  | Parameter verification failed.                       |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 203      | This function is prohibited by enterprise management policies. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
@@ -246,7 +249,7 @@ try {
 
 removeOutgoingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, numbers: Array\<string>): void
 
-移除通话呼出的允许或禁用名单，若在该名单尚未设置时进行移除，则会移除失败。当前仅支持手机和平板设备。
+移除通话呼出的允许或禁用名单，若在该名单尚未设置时进行移除，则会移除失败。
 
 以下情况下，通过本接口移除通话呼出的允许或禁用名单，会报策略冲突：
 
@@ -256,6 +259,8 @@ removeOutgoingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, number
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_TELEPHONY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在Phone和Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -279,6 +284,7 @@ removeOutgoingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, number
 | 9200012  | Parameter verification failed.                       |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 203      | This function is prohibited by enterprise management policies. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
@@ -309,12 +315,14 @@ try {
 
 getOutgoingCallPolicyNumbers(admin: Want, policy: adminManager.Policy): Array\<string>
 
-获取通话呼出的允许或禁用名单。当前仅支持手机和平板设备。
+获取通话呼出的允许或禁用名单。
 
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_TELEPHONY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在Phone和Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -341,6 +349,7 @@ getOutgoingCallPolicyNumbers(admin: Want, policy: adminManager.Policy): Array\<s
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |             |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
@@ -367,7 +376,7 @@ try {
 
 addIncomingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, numbers: Array\<string>): void
 
-添加通话呼入的允许或禁用名单，如果不添加名单，则任意号码都可以呼入，添加后仅名单内的号码允许或禁止呼入。当前仅支持手机和平板设备。
+添加通话呼入的允许或禁用名单，如果不添加名单，则任意号码都可以呼入，添加后仅名单内的号码允许或禁止呼入。
 
 以下情况下，通过本接口添加通话呼入的允许或禁用名单，会报策略冲突：
 
@@ -378,6 +387,8 @@ addIncomingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, numbers: 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_TELEPHONY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在Phone和Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -401,6 +412,7 @@ addIncomingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, numbers: 
 | 9200012  | Parameter verification failed.                       |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 203      | This function is prohibited by enterprise management policies. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
@@ -431,7 +443,7 @@ try {
 
 removeIncomingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, numbers: Array\<string>): void
 
-移除通话呼入的允许或禁用名单，若在该名单尚未设置时进行移除，则会移除失败。当前仅支持手机和平板设备。
+移除通话呼入的允许或禁用名单，若在该名单尚未设置时进行移除，则会移除失败。
 
 以下情况下，通过本接口移除通话呼入的允许或禁用名单，会报策略冲突：
 
@@ -441,6 +453,8 @@ removeIncomingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, number
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_TELEPHONY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在Phone和Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -464,6 +478,7 @@ removeIncomingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, number
 | 9200012  | Parameter verification failed.                       |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 203      | This function is prohibited by enterprise management policies. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
@@ -494,12 +509,14 @@ try {
 
 getIncomingCallPolicyNumbers(admin: Want, policy: adminManager.Policy): Array\<string>
 
-获取通话呼入的允许或禁用名单。当前仅支持手机和平板设备。
+获取通话呼入的允许或禁用名单。
 
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_TELEPHONY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在Phone和Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -526,6 +543,7 @@ getIncomingCallPolicyNumbers(admin: Want, policy: adminManager.Policy): Array\<s
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |             |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 

@@ -391,3 +391,42 @@ try {
     console.error('refreshActivity failed, err: ' + err);
 }
 ```
+
+## power.setPowerKeyFilteringStrategy<sup>21+</sup>
+
+setPowerKeyFilteringStrategy(strategy: PowerKeyFilteringStrategy): void;
+
+设置电源键过滤策略，在电源服务订阅电源键事件后，用于配置电源键事件的处理方式。
+电源键过滤策略见[power.PowerKeyFilteringStrategy](js-apis-power.md#powerkeyfilteringstrategy21)接口。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.POWER_MANAGER
+
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明    |
+| ------ | ------ | ---- | ----- |
+| strategy | PowerKeyFilteringStrategy | 是    | 电源键过滤策略。该参数必须为枚举类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID   | 错误信息    |
+|---------|---------|
+| 4900101 | Failed to connect to the service. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+
+**示例：**
+
+```js
+try {
+    power.setPowerKeyFilteringStrategy(power.PowerKeyFilteringStrategy.LONG_PRESS_FILTERING_ONCE);
+} catch(err) {
+    console.error('setPowerKeyFilteringStrategy failed, err: ' + err);
+}
+```

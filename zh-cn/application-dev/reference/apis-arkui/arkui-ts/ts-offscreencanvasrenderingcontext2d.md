@@ -3231,7 +3231,7 @@ createImageData(sw: number, sh: number): ImageData
 
 ### createImageData
 
-createImageData(imagedata: ImageData): ImageData
+createImageData(imageData: ImageData): ImageData
 
 根据已创建的ImageData对象创建新的ImageData对象（不会复制图像数据），请参考[ImageData](ts-components-canvas-imagedata.md)，该接口存在内存拷贝行为，高耗时，应避免频繁使用。createImageData示例同putImageData。
 
@@ -3241,7 +3241,7 @@ createImageData(imagedata: ImageData): ImageData
 
 | 参数名       | 类型 | 必填   | 说明 |
 | --------- | ---------------------------------------- | ---- | ---------------- |
-| imagedata | [ImageData](ts-components-canvas-imagedata.md) | 是  | 被复制的ImageData对象。 |
+| imageData | [ImageData](ts-components-canvas-imagedata.md) | 是  | 被复制的ImageData对象。 |
 
  **返回值：**
 
@@ -3398,7 +3398,7 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
 ### putImageData
 
-putImageData(imagedata: ImageData, dx: number | string, dy: number | string): void
+putImageData(imageData: ImageData, dx: number | string, dy: number | string): void
 
 使用[ImageData](ts-components-canvas-imagedata.md)数据填充新的矩形区域。
 
@@ -3412,7 +3412,7 @@ putImageData(imagedata: ImageData, dx: number | string, dy: number | string): vo
 
 | 参数名          | 类型 | 必填 | 描述 |
 | ----------- | ---------------------------------------- | ---- | ----------------------------- |
-| imagedata   | Object | 是 | 包含像素值的ImageData对象。 |
+| imageData   | [ImageData](ts-components-canvas-imagedata.md) | 是 | 包含像素值的ImageData对象。 |
 | dx          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是 | 填充区域在x轴方向的偏移量。<br>默认单位：vp |
 | dy          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是   | 填充区域在y轴方向的偏移量。<br>默认单位：vp |
 
@@ -3458,7 +3458,7 @@ putImageData(imagedata: ImageData, dx: number | string, dy: number | string): vo
 
 ### putImageData
 
-putImageData(imagedata: ImageData, dx: number | string, dy: number | string, dirtyX: number | string, dirtyY: number | string, dirtyWidth?: number | string, dirtyHeight: number | string): void
+putImageData(imageData: ImageData, dx: number | string, dy: number | string, dirtyX: number | string, dirtyY: number | string, dirtyWidth?: number | string, dirtyHeight: number | string): void
 
 使用[ImageData](ts-components-canvas-imagedata.md)数据裁剪后填充至新的矩形区域。
 
@@ -3472,7 +3472,7 @@ putImageData(imagedata: ImageData, dx: number | string, dy: number | string, dir
 
 | 参数名          | 类型 | 必填 | 描述 |
 | ----------- | ---------------------------------------- | ---- | ----------------------------- |
-| imagedata   | Object | 是 | 包含像素值的ImageData对象。 |
+| imageData   | [ImageData](ts-components-canvas-imagedata.md) | 是 | 包含像素值的ImageData对象。 |
 | dx          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是 | 填充区域在x轴方向的偏移量。<br>默认单位：vp |
 | dy          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是   | 填充区域在y轴方向的偏移量。<br>默认单位：vp |
 | dirtyX      | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是  | 源图像数据矩形裁切范围左上角距离源图像左上角的x轴偏移量。<br>默认单位：vp |

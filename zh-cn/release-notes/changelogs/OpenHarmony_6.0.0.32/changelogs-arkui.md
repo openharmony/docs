@@ -108,8 +108,6 @@ struct Index {
 
 **变更影响**
 
-此变更不涉及应用适配。
-
 变更前：Row和Column的子组件matchParent时，会将其大小设置为父组件包含padding、border以及safeAreaPadding后的大小并且不受自身constraintSize的约束。
 
 变更后：Row和Column的子组件matchParent时，会将其大小设置为父组件不包含padding、border以及safeAreaPadding后的大小，即与父组件内容区大小保持一致并且会受到自身constraintSize的约束。
