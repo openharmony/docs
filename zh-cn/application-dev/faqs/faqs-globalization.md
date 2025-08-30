@@ -126,16 +126,27 @@ form_config.json文件中不支持使用$引用常量。
 
 2. 使用resourceManager.getRawFileContent获取xml文件字节数组。
 
-   ```
-   import resourceManager from '@ohos.resourceManager';
-   resourceManager.getRawFileContent("test.xml", (error, value) => {
-     if (error != null) {
-       console.log("error is " + error);
-       return
-     }
-     let arrayBuffer = value.buffer; // unit8Array
-     var xmpParser = new xml.XmlPullParser(arrayBuffer);
-     var tagName = ""
-     //do something
-   })
-   ```
+```
+import resourceManager from '@ohos.resourceManager';
+
+export default {
+    onCreate() {
+        console.info('getResourceManager onCreate');
+        resourceManager.getResourceManager((error,res)=> {
+
+            res.getRawFileContent("test.xml", (error, value) => {
+                console.info('getRawFileContent callback');
+                if (error != null) {
+                    console.log("error is " + error);
+                    return
+                }
+                let rawFileString = String.fromCharCode.apply(null, value);
+                console.info(`getRawFileContent success : ${rawFileString}`);
+            })
+        })
+    },
+    onDestroy() {
+        console.info('TestApplication onDestroy');
+    }
+};
+```
