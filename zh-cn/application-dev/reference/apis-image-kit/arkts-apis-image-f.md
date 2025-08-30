@@ -382,7 +382,7 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | 是   | 对应Surface的ID，可通过预览组件获取，如[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件。 |
-| region                 | [Region](arkts-apis-image-i.md#region8)  | 是   | 区域信息。[Region](arkts-apis-image-i.md#region8).size的宽高需和设置的预览流大小保持一致。 |
+| region                 | [Region](arkts-apis-image-i.md#region8)  | 是   | 截取的画面区域。仅支持从画面左上角开始截取部分或整个画面，即Region中的x和y必须设置为0，Region.size中width和height的取值范围分别为(1, 预览流宽度]、(1, 预览流高度]。 |
 
 **返回值：**
 
@@ -431,7 +431,7 @@ createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | 是   | 对应Surface的ID，可通过预览组件获取，如[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件。 |
-| region                 | [Region](arkts-apis-image-i.md#region8)  | 是   | 区域信息。[Region](arkts-apis-image-i.md#region8).size的宽高需和设置的预览流大小保持一致。 |
+| region                 | [Region](arkts-apis-image-i.md#region8)  | 是   | 截取的画面区域。仅支持从画面左上角开始截取部分或整个画面，即Region中的x和y必须设置为0，Region.size中width和height的取值范围分别为(1, 预览流宽度]、(1, 预览流高度]。 |
 
 **返回值：**
 
@@ -452,11 +452,9 @@ createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 async function Demo(surfaceId: string) {
   let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-  let pixelMap : image.PixelMap = image.createPixelMapFromSurfaceSync(surfaceId, region);
+  let pixelMap: image.PixelMap = image.createPixelMapFromSurfaceSync(surfaceId, region);
   return pixelMap;
 }
 ```
