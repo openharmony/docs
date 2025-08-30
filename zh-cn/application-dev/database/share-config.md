@@ -56,9 +56,11 @@
 
 
 ```json
-"module":{
+{
+  "module":{
     "crossAppSharedConfig": "$profile:shared_config"
   }
+}
 ```
 
 
