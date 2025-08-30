@@ -5,14 +5,14 @@ HUKS provides attestation for the public keys of asymmetric key pairs.
 HUKS issues a certificate for the public key of an asymmetric key pair stored in HUKS using the public key infrastructure (PKI) certificate chain technology. The certificate can prove the validity of the public key. The service can use the root CA certificate provided by the system to verify the key certificates issued by HUKS level by level to ensure that the public key and private key in the certificates are from a trusted hardware device and stored in HUKS. In addition, the output key certificate contains the key owner information in the following format:
 | Key Owner| Format| Description| 
 | -------- | -------- | -------- |
-| Application| {appId:"xxx", bundleName:"xxx"} | **bundleName** indicates the bundle name of the application.| 
-| System service| {processName:"xxx", APL:"system_basic \| system_core"} | APL is [Ability Privilege Level](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).|
+| HAP| {appId:"xxx", bundleName:"xxx"} | **bundleName** indicates the bundle name of the application.| 
+| System Services| {processName:"xxx", APL:"system_basic \| system_core"} | APL is [Ability Privilege Level](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).|
 
 > **NOTE**
-> - Key attestation is not supported if the caller is a system service with APL of **normal**. In this case, **processName** and **APL** are left empty.
-> - Key attestation is not supported in Emulator scenarios.
-> - The mini-system devices do not support key attestation.
-> - Key attestation is available to both the keys generated and imported. The service side needs to check whether the key source meets the expectation based on the key source field in the service certificate on the server. The object identifier (OID) of the key source field is **1.3.6.1.4.1.2011.2.376.2.1.5**.  
+> 1. Key attestation is not supported if the caller is a system service with APL of **normal**. In this case, **processName** and **APL** are left empty.
+> 2. Key attestation is not supported in Emulator scenarios.
+> 3. The mini-system devices do not support key attestation.
+> 4. Key attestation is available to both the keys generated and imported. The service side needs to check whether the key source meets the expectation based on the key source field in the service certificate on the server. The object identifier (OID) of the key source field is **1.3.6.1.4.1.2011.2.376.2.1.5**.  
 
 The following table lists the key source and the corresponding value in the OID field.
 | Key Source| OID Value|
