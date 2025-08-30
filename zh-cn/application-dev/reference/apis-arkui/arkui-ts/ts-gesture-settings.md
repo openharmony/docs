@@ -184,7 +184,7 @@ allowedTypes(types: Array\<SourceTool>): T
 
 ## 响应手势事件
 
-组件通过手势事件绑定不同GestureType的手势对象，各手势对象在响应手势操作的事件回调中提供手势相关信息。下面通过[TapGesture](./ts-basic-gestures-tapgesture.md#tapgesture)手势对象的[onAction](./ts-basic-gestures-tapgesture.md#onaction)事件响应点击事件，获取事件相关信息。其余手势对象的事件定义见各个手势对象章节。 若需绑定多种手势，请使用[组合手势](ts-combined-gestures.md)。
+组件通过手势事件绑定不同GestureType的手势对象，各手势对象在响应手势操作的事件回调中提供手势相关信息。下面通过[TapGesture](./ts-basic-gestures-tapgesture.md)手势对象的[onAction](./ts-basic-gestures-tapgesture.md#onaction)事件响应点击事件，获取事件相关信息。其余手势对象的事件定义见各个手势对象章节。 若需绑定多种手势，请使用[组合手势](ts-combined-gestures.md)。
 
 ## SourceType枚举说明<sup>8+</sup>
 
@@ -236,11 +236,11 @@ allowedTypes(types: Array\<SourceTool>): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
-| -------- | -------- |
-| NONE | 未知。 |
-| LEFT | 左手。 |
-| RIGHT | 右手。 |
+| 名称 | 值 | 描述 |
+| -------- | -------- | -------- |
+| NONE | 0 | 未知。 |
+| LEFT | 1 | 左手。 |
+| RIGHT | 2 | 右手。 |
 
 
 ## 示例
