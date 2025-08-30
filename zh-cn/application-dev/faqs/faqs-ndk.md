@@ -1,5 +1,10 @@
 # NDK开发常见问题
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 ## 以libstd为例，C++的标准库放在哪里了，有没有打到hap包中？(API 10)
 
@@ -312,3 +317,65 @@ libc++_shared.so被打包到应用目录下了，每个应用都有一份独立�
 **参考资料**
 
 1. [Native与ArkTS对象绑定](../napi/use-napi-object-wrap.md)
+
+## 如何获取当前支持多线程调用的NDK接口范围？(API 21)
+
+**解决方案**
+
+支持多线程调用的NDK接口范围已在[多线程NDK接口集合规格](../ui/ndk-build-on-multi-thread.md#多线程ndk接口集合规格)中全部列出。
+
+包括[组件创建销毁](../ui/ndk-build-on-multi-thread.md#组件创建销毁)、[组件属性读写](../ui/ndk-build-on-multi-thread.md#组件属性读写)、[组件事件注册解注册](../ui/ndk-build-on-multi-thread.md#组件事件注册解注册)、[组件树操作](../ui/ndk-build-on-multi-thread.md#组件树操作)和[组件自定义数据读写](../ui/ndk-build-on-multi-thread.md#组件自定义数据读写)。
+
+**参考资料**
+
+[NDK支持多线程创建组件](../ui/ndk-build-on-multi-thread.md)
+
+## 如何获取和使用支持多线程调用的NDK接口？(API 21)
+
+调用[OH_ArkUI_GetModuleInterface](../reference/apis-arkui/capi-native-interface-h.md#oh_arkui_getmoduleinterface)接口，入参传入[ARKUI_MULTI_THREAD_NATIVE_NODE](../reference/apis-arkui/capi-native-interface-h.md#arkui_nativeapivariantkind)以获取多线程NDK接口集合。例如：
+
+  ```cpp
+  #include <arkui/native_interface.h>
+  #include <arkui/native_node.h>
+
+  ArkUI_NativeNodeAPI_1 *multiThreadNodeAPI = nullptr;
+  // 获取多线程NDK接口集合。
+  OH_ArkUI_GetModuleInterface(ARKUI_MULTI_THREAD_NATIVE_NODE, ArkUI_NativeNodeAPI_1, multiThreadNodeAPI);
+
+  if (!multiThreadNodeAPI) {
+    return;
+  }
+  // 调用集合中支持多线程的createNode接口创建UI组件。
+  multiThreadNodeAPI->createNode(ARKUI_NODE_COLUMN);
+  ```
+
+**参考资料**
+
+[NDK支持多线程创建组件](../ui/ndk-build-on-multi-thread.md)
+
+## 调用多线程NDK接口返回ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD错误码，该如何解决？(API 21)
+
+**解决方案**
+
+首先参考[多线程NDK接口集合规格](../ui/ndk-build-on-multi-thread.md#多线程ndk接口集合规格)，查看调用的接口是否支持多线程调用，之后按照如下步骤排查。
+
+1. 如果接口只支持在UI线程调用，需要调整函数调用时机，在UI线程调用接口。
+2. 如果接口支持多线程调用，报错原因可能是接口操作的节点已挂载到UI主树上，需要在UI线程调用接口，或者先将节点从UI主树上卸载再调用接口。
+3. 如果接口支持多线程调用，报错原因还可能是接口操作的节点未通过支持多线程的[createNode](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#createnode)接口创建，需要在UI线程调用接口，或操作由多线程[createNode](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#createnode)接口创建的节点。
+
+**参考资料**
+
+1. [NDK支持多线程创建组件](../ui/ndk-build-on-multi-thread.md)
+2. [ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD](../reference/apis-arkui/capi-native-type-h.md#arkui_errorcode)
+
+## 在使用多线程NDK接口时，如何保证多线程操作ArkUI组件是线程安全的？(API 21)
+
+**解决方案**
+
+开发者可以参考[多线程NDK接口调用规范与线程安全](../ui/ndk-build-on-multi-thread.md#多线程ndk接口调用规范与线程安全)，按照文档中的约束使用多线程NDK接口来保证线程安全。
+
+在使用多线程NDK接口时，多个线程同时操作同一个组件或组件树是非线程安全的，需要开发者通过合理的架构设计避免出现上述情况。
+
+**参考资料**
+
+[NDK支持多线程创建组件](../ui/ndk-build-on-multi-thread.md)
