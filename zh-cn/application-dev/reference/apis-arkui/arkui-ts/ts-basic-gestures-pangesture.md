@@ -396,6 +396,6 @@ struct PanGestureExample {
 
 ![zh-cn_image_0000001174264374](figures/zh-cn_image_0000001174264374.png) 
 
-点击按钮修改PanGesture触发条件，双指向左下方滑动：
+点击按钮时，修改PanGesture触发条件为双指向左下方滑动：
 
  ![zh-cn_image1_0000001174264374](figures/zh-cn_image1_0000001174264374.png) 
