@@ -1,4 +1,10 @@
 # @ohos.zlib (Zip)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The **Zip** module provides APIs for file compression and decompression.
 
@@ -40,11 +46,11 @@ Zips a file. This API uses a promise to return the result.
 **Example**
 
 ```ts
-// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
+// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/temp. You can obtain the path through the context.
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xxx/filename.xxx';
-let outFile = '/xxx/xxx.zip';
+let inFile = '/data/storage/el2/base/temp/filename.xxx';
+let outFile = '/data/storage/el2/base/temp/xxx.zip';
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
@@ -68,7 +74,7 @@ Unzips a file. This API uses a promise to return the result.
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [zlib.decompressFile](#zlibdecompressfile9) instead.
 >
-> The name of the zipped file or zipped folder cannot contain two consecutive periods (..) or start with a slash (/).
+> The name of the zipped file or zipped folder cannot contain two consecutive periods (..). Otherwise, the error code -1 is returned.
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
@@ -89,11 +95,11 @@ Unzips a file. This API uses a promise to return the result.
 **Example**
 
 ```ts
-// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
+// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/temp. You can obtain the path through the context.
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xx/xxx.zip';
-let outFile = '/xxx';
+let inFile = '/data/storage/el2/base/temp/xxx.zip';
+let outFile = '/data/storage/el2/base/temp/xxx';
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
@@ -143,11 +149,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
+// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/temp. You can obtain the path through the context.
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xxx/filename.xxx';
-let outFile = '/xxx/xxx.zip';
+let inFile = '/data/storage/el2/base/temp/filename.xxx';
+let outFile = '/data/storage/el2/base/temp/xxx.zip';
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
@@ -157,13 +163,15 @@ let options: zlib.Options = {
 try {
   zlib.compressFile(inFile, outFile, options, (errData: BusinessError) => {
     if (errData !== null) {
-      console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+      console.error(`compressFile errData is errCode:${errData.code}  message:${errData.message}`);
+    } else {
+      console.info(`compressFile success.`);
     }
   })
 } catch (errData) {
   let code = (errData as BusinessError).code;
   let message = (errData as BusinessError).message;
-  console.error(`errData is errCode:${code}  message:${message}`);
+  console.error(`compressFile errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -208,11 +216,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
+// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/temp. You can obtain the path through the context.
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xxx/filename.xxx';
-let outFile = '/xxx/xxx.zip';
+let inFile = '/data/storage/el2/base/temp/filename.xxx';
+let outFile = '/data/storage/el2/base/temp/xxx.zip';
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
@@ -242,7 +250,7 @@ Decompresses a file. This API uses an asynchronous callback to return the result
 >
 > To avoid path traversal, the input parameters of **inFile** and **outFile** cannot contain **../** since API version 13. Otherwise, error codes 900001 and 900002 are returned.
 >
-> The name of the zipped file or zipped folder cannot contain two consecutive periods (..) or start with a slash (/). Otherwise, the error code 900003 is returned.
+> The name of the zipped file or zipped folder cannot contain two consecutive periods (..). Otherwise, the error code 900003 is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -271,11 +279,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
+// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/temp. You can obtain the path through the context.
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xx/xxx.zip';
-let outFileDir = '/xxx';
+let inFile = '/data/storage/el2/base/temp/xxx.zip';
+let outFileDir = '/data/storage/el2/base/temp';
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   parallel: zlib.ParallelStrategy.PARALLEL_STRATEGY_PARALLEL_DECOMPRESSION
@@ -284,13 +292,15 @@ let options: zlib.Options = {
 try {
   zlib.decompressFile(inFile, outFileDir, options, (errData: BusinessError) => {
     if (errData !== null) {
-      console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+      console.error(`decompressFile errData is errCode:${errData.code}  message:${errData.message}`);
+    } else {
+      console.info(`decompressFile success.`);
     }
   })
 } catch (errData) {
   let code = (errData as BusinessError).code;
   let message = (errData as BusinessError).message;
-  console.error(`errData is errCode:${code}  message:${message}`);
+  console.error(`decompressFile errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -304,7 +314,7 @@ Decompresses a file. This API uses a promise to return the result.
 >
 > To avoid path traversal, the input parameters of **inFile** and **outFile** cannot contain **../** since API version 13. Otherwise, error codes 900001 and 900002 are returned.
 >
-> The name of the zipped file or zipped folder cannot contain two consecutive periods (..) or start with a slash (/). Otherwise, the error code 900003 is returned.
+> The name of the zipped file or zipped folder cannot contain two consecutive periods (..). Otherwise, the error code 900003 is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -338,11 +348,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
+// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/temp. You can obtain the path through the context.
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xx/xxx.zip';
-let outFileDir = '/xxx';
+let inFile = '/data/storage/el2/base/temp/xxx.zip';
+let outFileDir = '/data/storage/el2/base/temp';
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
 };
@@ -370,7 +380,7 @@ Decompresses a file. This API uses an asynchronous callback to return the result
 >
 > To avoid path traversal, the input parameters of **inFile** and **outFile** cannot contain **../** since API version 13. Otherwise, error codes 900001 and 900002 are returned.
 >
-> The name of the zipped file or zipped folder cannot contain two consecutive periods (..) or start with a slash (/). Otherwise, the error code 900003 is returned.
+> The name of the zipped file or zipped folder cannot contain two consecutive periods (..). Otherwise, the error code 900003 is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -398,16 +408,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
+// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/temp. You can obtain the path through the context.
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xx/xxx.zip';
-let outFileDir = '/xxx';
+let inFile = '/data/storage/el2/base/temp/xxx.zip';
+let outFileDir = '/data/storage/el2/base/temp';
 
 try {
   zlib.decompressFile(inFile, outFileDir, (errData: BusinessError) => {
     if (errData !== null) {
       console.error(`decompressFile failed. code is ${errData.code}, message is ${errData.message}`);
+    } else {
+      console.info(`decompressFile success.`);
     }
   })
 } catch (errData) {
@@ -510,9 +522,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 // The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/temp. You can obtain the path through the context.
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
 
-let inFile = '/xxx/filename.xxx';
-let pathDir = '';
-let outFile = '/xxx/xxx.zip';
+let inFile = '/data/storage/el2/base/temp/filename.xxx';
+let pathDir = 'data/storage/el2/base/temp/xxx';
+let outFile = '/data/storage/el2/base/temp/xxx.zip';
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
@@ -520,7 +532,7 @@ let options: zlib.Options = {
 };
 
 try {
-  zlib.compressFiles([inFile, pathDir, pathDir], outFile, options).then((data: void) => {
+  zlib.compressFiles([inFile, pathDir], outFile, options).then((data: void) => {
     console.info('compressFiles success. data: ' + JSON.stringify(data));
   }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
@@ -949,8 +961,6 @@ Creates an instance of a compressed or decompressed object and uses a promise to
 
 ```ts
 import { zlib, BusinessError } from '@kit.BasicServicesKit';
-
-let zip = zlib.createZipSync();
 
 zlib.createZip().then(data => {
   console.info('createZip success');
@@ -2310,7 +2320,8 @@ async function demo() {
   }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
-  await zip.inflateCopy(zip).then((data) => {
+  let destZip = zlib.createZipSync();
+  await destZip.inflateCopy(zip).then((data) => {
     console.info('inflateCopy success')
   }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
@@ -2558,7 +2569,7 @@ async function demo() {
           break;
         }
         console.info('have =  last = ', have, last)
-        if (last != 31 || (NEXT2() != 139 && last >= 157 && last <= 157)) {
+        if (last != 31 || NEXT2() != 139 ) {
           ret = first ? -3 : -1;
           console.info('inflateBackTest Call result last != 31 || (NEXT2() != 139 && last != 157)')
           break;
@@ -3738,12 +3749,12 @@ async function demo() {
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name    | Type            | Readable| Writable| Description                                                      |
+| Name    | Type            | Read-Only| Optional| Description                                                      |
 | -------- | ---------------- | ---- | ---------------------------------------------------------- | ---- |
-| level    | [CompressLevel](#compresslevel)     | Yes  | No | For details, see [CompressLevel](#compresslevel).<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
-| memLevel | [MemLevel](#memlevel)         | Yes  | No | For details, see [MemLevel](#memlevel).<br>**Atomic service API**: This API can be used in atomic services since API version 11.                       |
-| strategy | [CompressStrategy](#compressstrategy) | Yes  | No | For details, see [CompressStrategy](#compressstrategy).<br>**Atomic service API**: This API can be used in atomic services since API version 11.       |
-| parallel<sup>18+</sup> | [ParallelStrategy](#parallelstrategy18) | Yes  | No | For details, see [ParallelStrategy](#parallelstrategy18).<br>**Atomic service API**: This API can be used in atomic services since API version 18.       |
+| level    | [CompressLevel](#compresslevel)     | No  | Yes | For details, see [CompressLevel](#compresslevel).<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
+| memLevel | [MemLevel](#memlevel)         | No  | Yes | For details, see [MemLevel](#memlevel).<br>**Atomic service API**: This API can be used in atomic services since API version 11.                       |
+| strategy | [CompressStrategy](#compressstrategy) | No  | Yes | For details, see [CompressStrategy](#compressstrategy).<br>**Atomic service API**: This API can be used in atomic services since API version 11.       |
+| parallel<sup>18+</sup> | [ParallelStrategy](#parallelstrategy18) | No  | Yes | For details, see [ParallelStrategy](#parallelstrategy18).<br>**Atomic service API**: This API can be used in atomic services since API version 18.       |
 
 ## CompressLevel
 
@@ -3854,16 +3865,16 @@ async function demo() {
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name        | Type       | Readable| Writable| Description                                                        |
+| Name        | Type       | Read-Only| Optional| Description                                                        |
 | ------------ | ----------- | ---- | ---- | ------------------------------------------------------------ |
-| nextIn       | ArrayBuffer | Yes  | No  | Input bytes to be compressed.                                          |
-| availableIn  | number      | Yes  | No  | Number of bytes available for **nextIn**.                                          |
-| totalIn      | number      | Yes  | No  | Total number of input bytes read so far.                                |
-| nextOut      | ArrayBuffer | Yes  | No  | Output bytes after compression.                                            |
-| availableOut | number      | Yes  | No  | Number of remaining bytes available for **nextOut**.                                     |
-| totalOut     | number      | Yes  | No  | Total number of output bytes.                                      |
-| dataType     | number      | Yes  | No  | Binary or text of **deflate**, or decoding state of **inflate**.|
-| adler        | number      | Yes  | No  | Adler-32 or CRC-32 value of uncompressed data.                              |
+| nextIn       | ArrayBuffer | No  | Yes  | Input bytes to be compressed.                                          |
+| availableIn  | number      | No  | Yes  | Number of bytes available for **nextIn**.                                          |
+| totalIn      | number      | No  | Yes  | Total number of input bytes read so far.                                |
+| nextOut      | ArrayBuffer | No  | Yes  | Output bytes after compression.                                            |
+| availableOut | number      | No  | Yes  | Number of remaining bytes available for **nextOut**.                                     |
+| totalOut     | number      | No  | Yes  | Total number of output bytes.                                      |
+| dataType     | number      | No  | Yes  | Binary or text of **deflate**, or decoding state of **inflate**.|
+| adler        | number      | No  | Yes  | Adler-32 or CRC-32 value of uncompressed data.                              |
 
 ## ZipOutputInfo<sup>12+</sup>
 
@@ -3871,10 +3882,10 @@ async function demo() {
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name   | Type        | Readable| Writable| Description                                         |
+| Name   | Type        | Read-Only| Optional| Description                                         |
 | ------- | ------------ | ---- | ---- | --------------------------------------------- |
-| status  | ReturnStatus | Yes  | No  | For details, see [ReturnStatus](#returnstatus12).|
-| destLen | number       | Yes  | No  | Total length of the destination buffer.                         |
+| status  | ReturnStatus | No  | No  | For details, see [ReturnStatus](#returnstatus12).|
+| destLen | number       | No  | No  | Total length of the destination buffer.                         |
 
 ## DictionaryOutputInfo<sup>12+</sup>
 
@@ -3882,10 +3893,10 @@ async function demo() {
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name            | Type        | Readable| Writable| Description                                         |
+| Name            | Type        | Read-Only| Optional| Description                                         |
 | ---------------- | ------------ | ---- | ---- | --------------------------------------------- |
-| status           | ReturnStatus | Yes  | No  | For details, see [ReturnStatus](#returnstatus12).|
-| dictionaryLength | number       | Yes  | No  | Length of a dictionary.                                 |
+| status           | ReturnStatus | No  | No  | For details, see [ReturnStatus](#returnstatus12).|
+| dictionaryLength | number       | No  | No  | Length of a dictionary.                                 |
 
 ## DecompressionOutputInfo<sup>12+</sup>
 
@@ -3893,11 +3904,11 @@ async function demo() {
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name        | Type        | Readable| Writable| Description                                         |
+| Name        | Type        | Read-Only| Optional| Description                                         |
 | ------------ | ------------ | ---- | ---- | --------------------------------------------- |
-| status       | ReturnStatus | Yes  | No  | For details, see [ReturnStatus](#returnstatus12).|
-| destLength   | number       | Yes  | No  | Length of the destination buffer.                           |
-| sourceLength | number       | Yes  | No  | Length of the source buffer.                             |
+| status       | ReturnStatus | No  | No  | For details, see [ReturnStatus](#returnstatus12).|
+| destLength   | number       | No  | No  | Length of the destination buffer.                           |
+| sourceLength | number       | No  | No  | Length of the source buffer.                             |
 
 ## DeflatePendingOutputInfo<sup>12+</sup>
 
@@ -3905,11 +3916,11 @@ async function demo() {
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name   | Type        | Readable| Writable| Description                                         |
+| Name   | Type        | Read-Only| Optional| Description                                         |
 | ------- | ------------ | ---- | ---- | --------------------------------------------- |
-| status  | ReturnStatus | Yes  | No  | For details, see [ReturnStatus](#returnstatus12).|
-| pending | number       | Yes  | No  | Number of output bytes that have been generated.                         |
-| bits    | number       | Yes  | No  | Number of output bits that have been generated.                           |
+| status  | ReturnStatus | No  | No  | For details, see [ReturnStatus](#returnstatus12).|
+| pending | number       | No  | No  | Number of output bytes that have been generated.                         |
+| bits    | number       | No  | No  | Number of output bits that have been generated.                           |
 
 ## GzHeader<sup>12+</sup>
 
@@ -3917,18 +3928,18 @@ async function demo() {
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name    | Type       | Readable| Writable| Description                                |
+| Name    | Type       | Read-Only| Optional| Description                                |
 | -------- | ----------- | ---- | ---- | ------------------------------------ |
-| isText   | boolean     | Yes  | No  | Returns **True** if the compressed data is considered text.|
-| os       | number      | Yes  | No  | Operating system.                          |
-| time     | number      | Yes  | No  | Modification time.                          |
-| xflags   | number      | Yes  | No  | Extra flag.                          |
-| extra    | ArrayBuffer | Yes  | No  | Extra field.                          |
-| extraLen | number      | Yes  | No  | Length of the extra field.                    |
-| name     | ArrayBuffer | Yes  | No  | File name.                            |
-| comment  | ArrayBuffer | Yes  | No  | Comment.                              |
-| hcrc     | boolean     | Yes  | No  | Returns **True** if the **crc** header exists.         |
-| done     | boolean     | Yes  | No  | Returns **True** after reading the gzip file header.              |
+| isText   | boolean     | No  | Yes  | Returns **True** if the compressed data is considered text.|
+| os       | number      | No  | Yes  | Operating system.                          |
+| time     | number      | No  | Yes  | Modification time.                          |
+| xflags   | number      | No  | Yes  | Extra flag.                          |
+| extra    | ArrayBuffer | No  | Yes  | Extra field.                          |
+| extraLen | number      | No  | Yes  | Length of the extra field.                    |
+| name     | ArrayBuffer | No  | Yes  | File name.                            |
+| comment  | ArrayBuffer | No  | Yes  | Comment.                              |
+| hcrc     | boolean     | No  | Yes  | Returns **True** if the **crc** header exists.         |
+| done     | boolean     | No  | Yes  | Returns **True** after reading the gzip file header.              |
 
 ## zlib.createGZip<sup>12+</sup>
 
@@ -4953,6 +4964,8 @@ Compresses the uncompressed bytes of the declared length in the buffer and write
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
+**Parameters**
+
 | Name| Type       | Mandatory| Description                        |
 | ------ | ----------- | ---- | ---------------------------- |
 | buf    | ArrayBuffer | Yes  | Data buffer pointed by an object to be written.|
@@ -5026,6 +5039,8 @@ Pushes **c** back into the input stream so that it will be read as the first cha
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.BundleManager.Zlib
+
+**Parameters**
 
 | Name| Type  | Mandatory| Description                    |
 | ------ | ------ | ---- | ------------------------ |
@@ -5793,10 +5808,10 @@ struct Index {
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name     | Type        | Readable| Writable| Description                                        |
+| Name     | Type        | Read-Only| Optional| Description                                        |
 | --------- | ------------ | ---- | ---- | -------------------------------------------- |
-| status    | ReturnStatus | Yes  | No  | Returns the zlib file status code. For details, see ReturnStatus definition.|
-| statusMsg | string       | Yes  | No  | The last status message reported on the zlib file.    |
+| status    | ReturnStatus | No  | No  | Returns the zlib file status code. For details, see ReturnStatus definition.|
+| statusMsg | string       | No  | No  | The last status message reported on the zlib file.    |
 
 ## OffsetReferencePoint<sup>12+</sup>
 

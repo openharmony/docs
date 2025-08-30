@@ -1,5 +1,12 @@
 # @ohos.app.ability.PrintExtensionAbility (Print Extension Ability) (System API)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Print-->
+<!--Owner: @guoshengbang-->
+<!--Designer: @gcw_4D6e0BBd-->
+<!--Tester: @guoshengbang-->
+<!--Adviser: @RayShih-->
+
 The **PrintExtensionAbility** module provides operation APIs of the print extension ability.
 
 > **NOTE** 
@@ -24,7 +31,7 @@ Called when the specified print job starts.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| jobInfo | print.PrintJob | Yes| Information about the print job.|
+| jobInfo | [print.PrintJob](./js-apis-print-sys.md#printjob) | Yes| Information about the print job.|
 
 **Error codes**
 
@@ -59,7 +66,7 @@ Called when the specified print job is canceled.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| jobInfo | print.PrintJob | Yes| Information about the print job.|
+| jobInfo | [print.PrintJob](./js-apis-print-sys.md#printjob) | Yes| Information about the print job.|
 
 **Error codes**
 
@@ -140,7 +147,7 @@ Called when a print preview request is sent. The result is returned to the print
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| jobInfo | print.PrintJob | Yes| Information about the print job.|
+| jobInfo | [print.PrintJob](./js-apis-print-sys.md#printjob) | Yes| Information about the print job.|
 
 **Return value**
 | **Type**| **Description**|

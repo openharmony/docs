@@ -1,5 +1,12 @@
 # Managing Application Accounts
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
+
 You can use the [application account SDK](../../reference/apis-basic-services-kit/js-apis-appAccount.md) to manage application accounts.
 
 When an application is uninstalled, the account data of the application will be automatically deleted. When a local account is deleted, the account data of all applications of the local account will be automatically deleted.
@@ -39,10 +46,10 @@ Create an application account for an application user.
 
    ```ts
    appAccountManager.createAccount(name, options).then(()=>{
-    console.log('createAccount successfully');
-  }).catch((err: BusinessError)=>{
-    console.error('createAccount failed, error: ' + JSON.stringify(err));
-  });
+       console.info('createAccount successfully');
+   }).catch((err: BusinessError)=>{
+       console.error(`createAccount failed, error: code is ${err.code}, message is ${err.message}`);
+   });
    ```
 
 ## Obtaining Application Account List
@@ -166,7 +173,7 @@ Remove the application account after the user logs out of the system.
 Use [removeAccount](../../reference/apis-basic-services-kit/js-apis-appAccount.md#removeaccount9) to remove the application account.
 
    ```ts
-   let name: string = 'Zhangsan';
+   let name: string = 'ZhangSan';
    appAccountManager.removeAccount(name).then(() => {
        console.log('removeAccount successfully');
    }).catch((err: BusinessError) => {

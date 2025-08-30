@@ -1,21 +1,31 @@
 # Uploading and Downloading Application Files
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Request-->
+<!--Owner: @huaxin05-->
+<!--Designer: @hu-kai45-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 This topic describes how to upload an application file to a network server and download a network resource file from a network server to a local application file directory.
 
 ## Uploading Application Files
 
-You can use **uploadFile()** in [ohos.request](../../reference/apis-basic-services-kit/js-apis-request.md) to upload local files. The system service agent uploads the files. In API version 12, you can set the address of the agent in **request.agent.create()**.
+You can use **uploadFile()** in [ohos.request](../../reference/apis-basic-services-kit/js-apis-request.md) to upload local files. The system service proxy implements the upload. In API version 12, the parameter for setting the custom proxy address is added to the **request.agent.create** API.
 
 > **NOTE**
 >
-> Currently, only files in the **cacheDir** directory can be uploaded using **request.uploadFile**; user public files and files in the **cacheDir** directory can be uploaded together using **request.agent**.
+> · Currently, only files in the **cacheDir** directory can be uploaded using **request.uploadFile**; user public files and files in the **cacheDir** directory can be uploaded together using **request.agent**.
 >
-> To use **uploadFile()** in **ohos.request**, you need to [declare permissions](../../security/AccessToken/declare-permissions.md): ohos.permission.INTERNET.
+> · The ohos.permission.INTERNET permission is required for using **ohos.request**. For details about how to request the permission, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
+>
+> · The **ohos.request** module does not support proxy packet capture tools such as Charles and Fiddler.
+>
+> · Currently, APIs of the **ohos.request** module cannot be called in sub-threads, such as [TaskPool](../../arkts-utils/taskpool-introduction.md).
 
-The following code demonstrates how to upload files from a cache directory of an application to a network server in two approaches:
+The following sample code shows how to upload cache files to the server in two ways:
 
 ```ts
-// Approach 1: Use request.uploadFile.
+// Method 1: Use request.uploadFile.
 // pages/xxx.ets
 import { common } from '@kit.AbilityKit';
 import fs from '@ohos.file.fs';
@@ -34,9 +44,14 @@ struct Index {
           let cacheDir = context.cacheDir;
 
           // Create an application file locally.
-          let file = fs.openSync(cacheDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-          fs.writeSync(file.fd, 'upload file test');
-          fs.closeSync(file);
+          try {
+            let file = fs.openSync(cacheDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+            fs.writeSync(file.fd, 'upload file test');
+            fs.closeSync(file);
+          } catch (error) {
+            let err: BusinessError = error as BusinessError;
+            console.error(`Invoke uploadFile failed, code is ${err.code}, message is ${err.message}`);
+          }
 
           // Configure the upload task.
           let files: Array<request.File> = [
@@ -80,7 +95,7 @@ struct Index {
 ```
 
 ```ts
-// Approach 2: Use request.agent.
+// Method 2: Use request.agent.
 // pages/xxx.ets
 import { common } from '@kit.AbilityKit';
 import fs from '@ohos.file.fs';
@@ -107,7 +122,7 @@ struct Index {
             value: [
               {
                 filename: "test.txt",
-                path: "./test.txt",
+                path: cacheDir + '/test.txt',
               },
             ]
           }];
@@ -121,8 +136,7 @@ struct Index {
               'key1':'value1',
               'key2':'value2'
             },
-            data: attachments,
-            saveas: "./"
+            data: attachments
           };
           request.agent.create(context, config).then((task: request.agent.Task) => {
             task.start((err: BusinessError) => {
@@ -160,10 +174,10 @@ You can use **downloadFile()** in [ohos.request](../../reference/apis-basic-serv
 >
 > To use **uploadFile()** in **ohos.request**, you need to [declare permissions](../../security/AccessToken/declare-permissions.md): ohos.permission.INTERNET.
 
-The following code demonstrates how to download files from a network server to an application directory in two approaches:
+The following sample code shows how to download network resource files to the application file directory in two ways:
 
 ```ts
-// Approach 1: Use request.downloadFile.
+// Method 1: Use request.downloadFile.
 // pages/xxx.ets
 // Download the network resource file to the local application file directory, and read data from the file.
 import { common } from '@kit.AbilityKit';
@@ -211,7 +225,7 @@ struct Index {
 }
 ```
 ```ts
-// Approach 2: Use request.agent.
+// Method 2: Use request.agent.
 // pages/xxx.ets
 // Download the network resource file to the local application file directory, and read data from the file.
 import { common } from '@kit.AbilityKit';
@@ -272,7 +286,11 @@ struct Index {
 ```
 
 ## Downloading Network Resource Files to the User File
-You can use the [request.agent](../../reference/apis-basic-services-kit/js-apis-request.md#requestagentcreate10) API of the upload and download module ([ohos.request](../../reference/apis-basic-services-kit/js-apis-request.md)) to download network resource files to the user file.
+You can use the [request.agent](../../reference/apis-basic-services-kit/js-apis-request.md#requestagentcreate10) API of [ohos.request](../../reference/apis-basic-services-kit/js-apis-request.md) to download network resource files to the specified user file directory.
+
+> **NOTE**
+>
+> Since API version 20, network resource files can be downloaded to the user file directory.
 
 ### Downloading Documents
 
@@ -290,58 +308,63 @@ struct Index {
     Row() {
       Column() {
         Button("Download Document").width("50%").margin({ top: 20 }).height(40).onClick(async () => {
-          // Create a documentSaveOptions instance.
-          const documentSaveOptions = new picker.DocumentSaveOptions();
-          // (Optional) Name of the file to save. The default value is empty.
-          documentSaveOptions.newFileNames = ["xxxx.txt"];
-          // (Optional) Type of the document to save. The value is in ['Description|File name extensions'] format. To save all files, use 'All files (*.*)|.*'. If there are multiple file name extensions (a maximum of 100 extensions can be filtered), the first one is used by default. If this parameter is not specified, no extension is filtered by default.
-          documentSaveOptions.fileSuffixChoices = ['Document|.txt', '.pdf'];
 
-          let uri: string = '';
-          // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-          let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-          const documentViewPicker = new picker.DocumentViewPicker(context);
-          await documentViewPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
-            uri = documentSaveResult[0];
-            console.info('DocumentViewPicker.save to file succeed and uri is:' + uri);
-          }).catch((err: BusinessError) => {
-            console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
-          })
-          if (uri != '') {
-            let config: request.agent.Config = {
-              action: request.agent.Action.DOWNLOAD,
-              url: 'https://xxxx/xxxx.txt',
-              // The saveas field specifies the URI of the file saved by DocumentViewPicker.
-              saveas: uri,
-              gauge: true,
-              // The overwrite field must be set to true.
-              overwrite: true,
-              network: request.agent.Network.WIFI,
-              // The mode field must be set to request.agent.Mode.FOREGROUND.
-              mode: request.agent.Mode.FOREGROUND,
-            };
-            try {
-              request.agent.create(context, config).then((task: request.agent.Task) => {
-                task.start((err: BusinessError) => {
-                  if (err) {
-                    console.error(`Failed to start the download task, Code: ${err.code}  message: ${err.message}`);
-                    return;
-                  }
+          // Create a documentSaveOptions instance.
+          try {
+            const documentSaveOptions = new picker.DocumentSaveOptions();
+            // (Optional) Name of the file to save. The default value is empty.
+            documentSaveOptions.newFileNames = ["xxxx.txt"];
+            // (Optional) Type of the document to save. The value is in ['Description|File name extensions'] format. To save all files, use 'All files (*.*)|.*'. If there are multiple file name extensions (a maximum of 100 extensions can be filtered), the first one is used by default. If this parameter is not specified, no extension is filtered by default.
+            documentSaveOptions.fileSuffixChoices = ['Document|.txt', '.pdf'];
+            let uri: string = '';
+            // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+            const documentViewPicker = new picker.DocumentViewPicker(context);
+            await documentViewPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
+              uri = documentSaveResult[0];
+              console.info('DocumentViewPicker.save to file succeed and uri is:' + uri);
+            }).catch((err: BusinessError) => {
+              console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
+            })
+            if (uri != '') {
+              let config: request.agent.Config = {
+                action: request.agent.Action.DOWNLOAD,
+                url: 'https://xxxx/xxxx.txt',
+                // The saveas field specifies the URI of the file saved by DocumentViewPicker.
+                saveas: uri,
+                gauge: true,
+                // The overwrite field must be set to true.
+                overwrite: true,
+                network: request.agent.Network.WIFI,
+                // The mode field must be set to request.agent.Mode.FOREGROUND.
+                mode: request.agent.Mode.FOREGROUND,
+              };
+              try {
+                request.agent.create(context, config).then((task: request.agent.Task) => {
+                  task.start((err: BusinessError) => {
+                    if (err) {
+                      console.error(`Failed to start the download task, Code: ${err.code}  message: ${err.message}`);
+                      return;
+                    }
+                  });
+                  task.on('progress', async (progress) => {
+                    console.warn(`Request download status ${progress.state}, downloaded ${progress.processed}`);
+                  })
+                  task.on('completed', async (progress) => {
+                    console.warn('Request download completed, ' + JSON.stringify(progress));
+                    // This method requires the user to manage the task lifecycle. After the task is complete, call the remove method to release the task object.
+                    request.agent.remove(task.tid);
+                  })
+                }).catch((err: BusinessError) => {
+                  console.error(`Failed to operate a download task, Code: ${err.code}, message: ${err.message}`);
                 });
-                task.on('progress', async (progress) => {
-                  console.warn(`Request download status ${progress.state}, downloaded ${progress.processed}`);
-                })
-                task.on('completed', async (progress) => {
-                  console.warn('Request download completed, ' + JSON.stringify(progress));
-                  // This method requires the user to manage the task lifecycle. After the task is complete, call the remove method to release the task object.
-                  request.agent.remove(task.tid);
-                })
-              }).catch((err: BusinessError) => {
-                console.error(`Failed to operate a download task, Code: ${err.code}, message: ${err.message}`);
-              });
-            } catch (err) {
-              console.error(`Failed to create a download task, err: ${err}`);
+              } catch (err) {
+                console.error(`Failed to create a download task, err: ${err}`);
+              }
             }
+          } catch (err) {
+            console.error(`Failed to create a documentSaveOptions, err: ${err}`);
+            return;
           }
         })
       }
@@ -426,7 +449,7 @@ struct Index {
 
 ### Downloading Images or Videos
 
-Call the [createAsset()](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createasset-2) API of [PhotoAccessHelper](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md) to create a media file and obtain the URI of the user file. Use this URI as the value of the **saveas** field of [Config](../../reference/apis-basic-services-kit/js-apis-request.md#config10) to download the media file.
+Call the [createAsset()](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#createasset-2) API of [PhotoAccessHelper](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md) to create a media file and obtain the URI of the user file. Use this URI as the value of the **saveas** field of [Config](../../reference/apis-basic-services-kit/js-apis-request.md#config10) to download the media file.
 
 Permission required: [ohos.permission.WRITE_IMAGEVIDEO](../../security/AccessToken/permissions-for-all-user.md#ohospermissionwrite_media)
 
@@ -474,7 +497,7 @@ struct Index {
               }
             })
             .catch((err: BusinessError) => {
-              console.error(`GheckAccessToken fail, err->${JSON.stringify(err)}`);
+              console.error(`CheckAccessToken fail, err->${JSON.stringify(err)}`);
             });
 
           if (!grant) {
@@ -543,11 +566,103 @@ struct Index {
 }
 ```
 
+## Configuring Task Speed Limit and Timeout
+
+You can use the APIs of the [ohos.request](../../reference/apis-basic-services-kit/js-apis-request.md) module to upload local files or download network resource files. To set the task speed limit and duration, the [setMaxSpeed](../../reference/apis-basic-services-kit/js-apis-request.md#setmaxspeed18) API is available since API version 18 and the minimum speed and timeout parameters are available in the [request.agent.create](../../reference/apis-basic-services-kit/js-apis-request.md#requestagentcreate10-1) API since API version 20.
+
+The following sample code shows how to configure the speed and timeout of a download task:
+
+```ts
+// pages/xxx.ets
+// Download the network resource file to the local application file directory, and read data from the file.
+import { common } from '@kit.AbilityKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError, request } from '@kit.BasicServicesKit';
+import { buffer } from '@kit.ArkTS';
+
+@Entry
+@Component
+struct Index {
+    build() {
+        Row() {
+            Column() {
+                Button("Download").onClick(() => {
+                    // Obtain the application file path.
+                    // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+                    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+                    let filesDir = context.filesDir;
+
+                    let config: request.agent.Config = {
+                        action: request.agent.Action.DOWNLOAD,
+                        url: 'https://xxxx/test.txt',
+                        saveas: 'xxxx.txt',
+                        gauge: true,
+                        overwrite: true,
+                        network: request.agent.Network.WIFI,
+                        // Rules for setting the minimum speed limit:
+                        // 1. If the task speed is lower than the specified value (for example, 16 × 1024 B/s) for a specified period (for example, 10s), the task fails.
+                        // 2. Conditions for resetting the timer:
+                        //    - The speed at any given second is below the minimum speed limit.
+                        //    - The task is resumed after being paused.
+                        //    - The task is restarted after being stopped.
+                        minSpeed: {
+                            speed: 16 * 1024,
+                            duration: 10
+                        },
+                        // Rules for setting timeout:
+                        // 1. connectionTimeout:
+                        //    - If the time required for establishing a single connection exceeds the specified duration (for example, 60s), the task fails.
+                        //    - The timer is started independently for each connection (not accumulated).
+                        // 2. totalTimeout:
+                        //    - If the total task duration (including connection and transmission time) exceeds the specified duration (for example, 120s), the task fails.
+                        //    - The duration is not counted if the task is paused and is accumulated after the task is resumed.
+                        // 3. Conditions for resetting the timer: The timer is reset when the task fails or stops.
+                        timeout: {
+                            connectionTimeout: 60,
+                            totalTimeout: 120,
+                        }
+                    };
+                    request.agent.create(context, config).then((task: request.agent.Task) => {
+                        task.start((err: BusinessError) => {
+                            if (err) {
+                                console.error(`Failed to start the download task, Code: ${err.code}  message: ${err.message}`);
+                                return;
+                            }
+                            // Set the maximum task speed.
+                            task.setMaxSpeed(10 * 1024 * 1024).then(() => {
+                                console.info(`Succeeded in setting the max speed of the task. result: ${task.tid}`);
+                            }).catch((err: BusinessError) => {
+                                console.error(`Failed to set the max speed of the task. result: ${task.tid}`);
+                            });
+                        });
+                        task.on('progress', async (progress) => {
+                            console.warn(`/Request download status ${progress.state}, downloaded ${progress.processed}`);
+                        })
+                        task.on('completed', async () => {
+                            console.warn(`/Request download completed`);
+                            let file = fileIo.openSync(filesDir + '/xxxx.txt', fileIo.OpenMode.READ_WRITE);
+                            let arrayBuffer = new ArrayBuffer(1024);
+                            let readLen = fileIo.readSync(file.fd, arrayBuffer);
+                            let buf = buffer.from(arrayBuffer, 0, readLen);
+                            console.info(`The content of file: ${buf.toString()}`);
+                            fileIo.closeSync(file);
+                            request.agent.remove(task.tid);
+                        })
+                    }).catch((err: BusinessError) => {
+                        console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
+                    });
+                })
+            }
+        }
+    }
+}
+```
+
 ## Adding Network Configuration
 
 ### Intercepting HTTP
 
-You can set the configuration file to intercept HTTP. After HTTP is disabled for the upload and download module, upload and download tasks using plaintext HTTP cannot be created. The configuration file is stored in the **src/main/resources/base/profile/network_config.json** directory of the application. For details, see the parameters in the [configuration file](../../reference/apis-network-kit/js-apis-net-connection.md#connectionsetapphttpproxy11) of the network management module .
+You can set the configuration file to intercept HTTP. After HTTP is disabled for the **ohos.request** module, upload and download tasks using plaintext HTTP cannot be created. The configuration file is stored in the **src/main/resources/base/profile/network_config.json** directory of the application. For details, see the parameters in the [configuration file](../../reference/apis-network-kit/js-apis-net-connection.md#connectionsetapphttpproxy11) of the network management module.
 
 The sample configuration file is as follows:
 
