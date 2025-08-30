@@ -128,15 +128,15 @@ struct WebComponent {
             this.ports = this.controller.createWebMessagePorts();
             this.ports[1].onMessageEvent((msg) => {
               if (typeof (msg) == "string") {
-                console.log("received string message from html5, string is:" + msg);
+                console.info("received string message from html5, string is:" + msg);
               } else if (typeof (msg) == "object") {
                 if (msg instanceof ArrayBuffer) {
-                  console.log("received arraybuffer from html5, length is:" + msg.byteLength);
+                  console.info("received arraybuffer from html5, length is:" + msg.byteLength);
                 } else {
-                  console.log("not support");
+                  console.info("not support");
                 }
               } else {
-                console.log("not support");
+                console.info("not support");
               }
             })
           } catch (error) {
@@ -236,7 +236,7 @@ struct WebComponent {
         .onClick(() => {
           // 使用本侧端口发送消息给HTML5
           try {
-            console.log("In ArkTS side send true start");
+            console.info("In ArkTS side send true start");
             if (this.nativePort) {
               this.message.setType(1);
               this.message.setString("helloFromEts");
@@ -254,7 +254,7 @@ struct WebComponent {
         .onClick(() => {
           // 使用本侧端口发送消息给HTML5
           try {
-            console.log("In ArkTS side send true start");
+            console.info("In ArkTS side send true start");
             if (this.nativePort) {
               this.message.setType(2);
               this.message.setNumber(12345);
@@ -271,7 +271,7 @@ struct WebComponent {
         .onClick(() => {
           // 使用本侧端口发送消息给HTML5
           try {
-            console.log("In ArkTS side send true start");
+            console.info("In ArkTS side send true start");
             if (this.nativePort) {
               this.message.setType(3);
               this.message.setBoolean(true);
@@ -288,7 +288,7 @@ struct WebComponent {
         .onClick(() => {
           // 使用本侧端口发送消息给HTML5
           try {
-            console.log("In ArkTS side send true start");
+            console.info("In ArkTS side send true start");
             if (this.nativePort) {
               this.message.setType(4);
               this.message.setArrayBuffer(this.testObjtest.test("Name=test&Password=test"));
@@ -306,7 +306,7 @@ struct WebComponent {
         .onClick(() => {
           // 使用本侧端口发送消息给HTML5
           try {
-            console.log("In ArkTS side send true start");
+            console.info("In ArkTS side send true start");
             if (this.nativePort) {
               this.message.setType(5);
               this.message.setArray([1, 2, 3]);
@@ -324,7 +324,7 @@ struct WebComponent {
         .onClick(() => {
           // 使用本侧端口发送消息给HTML5
           try {
-            console.log("In ArkTS side send true start");
+            console.info("In ArkTS side send true start");
             throw new ReferenceError("ReferenceError");
           }
           catch (error) {
@@ -339,7 +339,7 @@ struct WebComponent {
 
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .onPageEnd(() => {
-          console.log("In ArkTS side message onPageEnd init message channel");
+          console.info("In ArkTS side message onPageEnd init message channel");
           // 1. 创建消息端口
           this.ports = this.controller.createWebMessagePorts(true);
           // 2. 发送端口1到HTML5
@@ -348,10 +348,10 @@ struct WebComponent {
           this.nativePort = this.ports[0];
           // 4. 设置回调函数
           this.nativePort.onMessageEventExt((result) => {
-            console.log("In ArkTS side got message");
+            console.info("In ArkTS side got message");
             try {
               let type = result.getType();
-              console.log("In ArkTS side getType:" + type);
+              console.info("In ArkTS side getType:" + type);
               switch (type) {
                 case webview.WebMessageType.STRING: {
                   this.msg1 = "result type:" + typeof (result.getString());
@@ -429,40 +429,40 @@ window.addEventListener('message', function(event) {
         if(event.ports[0] != null) {
             h5Port = event.ports[0]; // 1. 保存从ets侧发送过来的端口
             h5Port.onmessage = function(event) {
-                console.log("hwd In html got message");
+                console.info("hwd In html got message");
                 // 2. 接收ets侧发送过来的消息.
                 var result = event.data;
-                console.log("In html got message, typeof: ", typeof(result));
-                console.log("In html got message, result: ", (result));
+                console.info("In html got message, typeof: ", typeof(result));
+                console.info("In html got message, result: ", (result));
                 if (typeof(result) == "string") {
-                    console.log("In html got message, String: ", result);
+                    console.info("In html got message, String: ", result);
                     document.getElementById("msg").innerHTML  =  "String:" + result;
                 } else if (typeof(result) == "number") {
-                  console.log("In html side got message, number: ", result);
+                  console.info("In html side got message, number: ", result);
                     document.getElementById("msg").innerHTML = "Number:" + result;
                 } else if (typeof(result) == "boolean") {
-                    console.log("In html side got message, boolean: ", result);
+                    console.info("In html side got message, boolean: ", result);
                     document.getElementById("msg").innerHTML = "Boolean:" + result;
                 } else if (typeof(result) == "object") {
                     if (result instanceof ArrayBuffer) {
                         document.getElementById("msg2").innerHTML  =  "ArrayBuffer:" + result.byteLength;
-                        console.log("In html got message, byteLength: ", result.byteLength);
+                        console.info("In html got message, byteLength: ", result.byteLength);
                     } else if (result instanceof Error) {
-                        console.log("In html error message, err:" + (result));
-                        console.log("In html error message, typeof err:" + typeof(result));
+                        console.info("In html error message, err:" + (result));
+                        console.info("In html error message, typeof err:" + typeof(result));
                         document.getElementById("msg2").innerHTML  =  "Error:" + result.name + ", msg:" + result.message;
                     } else if (result instanceof Array) {
-                        console.log("In html got message, Array");
-                        console.log("In html got message, Array length:" + result.length);
-                        console.log("In html got message, Array[0]:" + (result[0]));
-                        console.log("In html got message, typeof Array[0]:" + typeof(result[0]));
+                        console.info("In html got message, Array");
+                        console.info("In html got message, Array length:" + result.length);
+                        console.info("In html got message, Array[0]:" + (result[0]));
+                        console.info("In html got message, typeof Array[0]:" + typeof(result[0]));
                         document.getElementById("msg2").innerHTML  =  "Array len:" + result.length + ", value:" + result;
                     } else {
-                        console.log("In html got message, not any instance of support type");
+                        console.info("In html got message, not any instance of support type");
                         document.getElementById("msg").innerHTML  = "not any instance of support type";
                     }
                 } else {
-                    console.log("In html got message, not support type");
+                    console.info("In html got message, not support type");
                     document.getElementById("msg").innerHTML  = "not support type";
                 }
             }
@@ -476,9 +476,9 @@ window.addEventListener('message', function(event) {
 // 使用h5Port往ets侧发送String类型的消息.
 function postStringToApp() {
     if (h5Port) {
-        console.log("In html send string message");
+        console.info("In html send string message");
         h5Port.postMessage("hello");
-        console.log("In html send string message end");
+        console.info("In html send string message end");
     } else {
         console.error("In html h5port is null, please init first");
     }
@@ -513,7 +513,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.msgPort = this.controller.createWebMessagePorts();
-            console.log("createWebMessagePorts size:" + this.msgPort.length)
+            console.info("createWebMessagePorts size:" + this.msgPort.length)
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }

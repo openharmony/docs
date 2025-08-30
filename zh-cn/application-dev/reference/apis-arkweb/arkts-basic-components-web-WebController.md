@@ -135,7 +135,7 @@ accessBackward(): boolean
         Button('accessBackward')
           .onClick(() => {
             let result = this.controller.accessBackward()
-            console.log('result:' + result)
+            console.info('result:' + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -173,7 +173,7 @@ accessForward(): boolean
         Button('accessForward')
           .onClick(() => {
             let result = this.controller.accessForward()
-            console.log('result:' + result)
+            console.info('result:' + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -218,7 +218,7 @@ accessStep(step: number): boolean
         Button('accessStep')
           .onClick(() => {
             let result = this.controller.accessStep(this.steps)
-            console.log('result:' + result)
+            console.info('result:' + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -356,7 +356,7 @@ getHitTest(): HitTestType
         Button('getHitTest')
           .onClick(() => {
             let hitType = this.controller.getHitTest()
-            console.log("hitType: " + hitType)
+            console.info("hitType: " + hitType)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -617,7 +617,7 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
     }
 
     toString(): void {
-      console.log('Web Component toString')
+      console.info('Web Component toString')
     }
   }
 
@@ -657,7 +657,7 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
           <script type="text/javascript">
               function htmlTest() {
                   str = objName.test("test function")
-                  console.log('objName.test result:'+ str)
+                  console.info('objName.test result:'+ str)
               }
           </script>
       </body>
@@ -723,7 +723,7 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
         Hello world!
         <script type="text/javascript">
             function test() {
-                console.log('Ark WebComponent')
+                console.info('Ark WebComponent')
                 return "This value is from index.html"
             }
         </script>

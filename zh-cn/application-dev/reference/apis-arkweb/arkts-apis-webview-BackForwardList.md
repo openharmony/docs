@@ -80,7 +80,7 @@ struct WebComponent {
           try {
             let list = this.controller.getBackForwardEntries();
             let historyItem = list.getItemAtIndex(list.currentIndex);
-            console.log("HistoryItem: " + JSON.stringify(historyItem));
+            console.info("HistoryItem: " + JSON.stringify(historyItem));
             this.icon = historyItem.icon;
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
