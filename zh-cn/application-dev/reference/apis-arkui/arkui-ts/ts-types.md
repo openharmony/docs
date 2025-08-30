@@ -345,7 +345,7 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 
 ## Area<sup>8+</sup>
 
-区域类型，用于存储元素所占区域信息。
+区域类型，用于存储元素所占的区域信息。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
