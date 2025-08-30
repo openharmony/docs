@@ -281,8 +281,8 @@ Purgeable:
 
 DMA:
             Dma:0 kB
-Process               pid         fd        size_bytes        ino       exp_pid       exp_task_comm     buf_name      exp_name      buf_type
-m.xxx.xxx             7612        87        40960             2750      1424          allocatxxxx       RSxxxxxx      xxxxx          xx
+Process               pid         fd        size_bytes        ino       exp_pid       exp_task_comm     buf_name      exp_name      buf_type      leak_type
+m.xxx.xxx             7612        87        40960             2750      1424          allocatxxxx       RSxxxxxx      xxxxx          xx            xxxx
 
 Ashmem:
 Total Ashmem:144 kB
@@ -298,9 +298,10 @@ Total Ashmem:144 kB
 | ino | 文件inode号（索引节点号）。 |
 | exp_pid | 从内核申请ION内存的进程pid。 |
 | exp_task_comm | 从内核申请ION内存的进程名。 |
-| buf_name | ION内存的buffer的名字。 |
-| exp_name | ION内存的buffer的扩展名。 |
-| buf_type | ION内存的buffer的类型。 |
+| buf_name | ION内存的buffer名字。 |
+| exp_name | ION内存的buffer扩展名。 |
+| buf_type | ION内存的buffer类型。 |
+| leak_type | ION内存泄漏维测的buffer类型。 |
 
 可使用hidumper --mem-smaps pid命令获取指定进程的详细内存使用情况，该命令会累加相同内存段的内存值。
 
