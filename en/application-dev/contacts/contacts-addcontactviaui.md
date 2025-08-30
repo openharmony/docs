@@ -1,5 +1,11 @@
 # Using the Picker for Contact Management
 
+<!--Kit: Contacts Kit-->
+<!--Subsystem: Applications-->
+<!--Owner: @librahCode-->
+<!--Designer: @yanghaoqian-->
+<!--Tester: @shangzhijie-->
+<!--Adviser: @zhang_yixin13-->
 ## Available APIs
 
 | API                 | Description                                      |

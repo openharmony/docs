@@ -3,7 +3,7 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @qq_437963121-->
-<!--Designer: @MontSaintMichel-->
+<!--Designer: @kutcherzhou1; @MontSaintMichel-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @foryourself-->
 
@@ -16,14 +16,14 @@ HiTraceMeter提供系统性能打点接口。开发者在关键代码位置调�
 
 性能打点跟踪接口由HiTraceMeter模块提供，详细API请参考[Hitrace C API参考](../reference/apis-performance-analysis-kit/capi-trace-h.md)。
 
-| 方法 | 接口描述 | 
+| 方法 | 接口描述 |
 | -------- | -------- |
-| void OH_HiTrace_StartTraceEx(HiTrace_Output_Level level, const char\* name, const char\* customArgs) | 开启一个同步时间片跟踪事件，分级控制跟踪输出。<br/>**说明**：从API version 19开始，支持该接口。 | 
-| void OH_HiTrace_FinishTraceEx(HiTrace_Output_Level level) | 结束一个同步时间片跟踪事件，分级控制跟踪输出。<br/>level必须与流程开始的OH_HiTrace_StartTraceEx对应参数值保持一致。<br/>**说明**：从API version 19开始，支持该接口。 | 
-| void OH_HiTrace_StartAsyncTraceEx(HiTrace_Output_Level level, const char\* name, int32_t taskId, const char\* customCategory, const char\* customArgs) | 开启一个异步时间片跟踪事件，分级控制跟踪输出。<br/>taskId是trace中用来表示关联的ID，如果有多个name相同的任务并行执行，则开发者每次调用OH_HiTrace_StartAsyncTraceEx时传入的taskId需不同；如果具有相同name的任务是串行执行的，则taskId可以相同。<br/>**说明**：从API version 19开始，支持该接口。 | 
-| void OH_HiTrace_FinishAsyncTraceEx(HiTrace_Output_Level level, const char\* name, int32_t taskId) | 结束一个异步时间片跟踪事件，分级控制跟踪输出。<br/>level、name和taskId必须与流程开始的OH_HiTrace_StartAsyncTraceEx对应参数值保持一致。<br/>**说明**：从API version 19开始，支持该接口。 | 
-| void OH_HiTrace_CountTraceEx(HiTrace_Output_Level level, const char\* name, int64_t count) | 整数跟踪事件，分级控制跟踪输出。<br/>name、count两个参数分别用来标记一个跟踪的整数变量名及整数值。<br/>**说明**：从API version 19开始，支持该接口。 | 
-| bool OH_HiTrace_IsTraceEnabled(void) | 判断当前是否开启应用trace捕获。<br/>使用hitrace命令行工具等方式开启采集时返回true，未开启采集或停止采集后返回false（此时调用HiTraceMeter性能跟踪打点接口无效）。<br/>**说明**：从API version 19开始，支持该接口。 | 
+| void OH_HiTrace_StartTraceEx(HiTrace_Output_Level level, const char\* name, const char\* customArgs) | 开启一个同步时间片跟踪事件，分级控制跟踪输出。<br/>**说明**：从API version 19开始，支持该接口。 |
+| void OH_HiTrace_FinishTraceEx(HiTrace_Output_Level level) | 结束一个同步时间片跟踪事件，分级控制跟踪输出。<br/>level必须与流程开始的OH_HiTrace_StartTraceEx()对应参数值保持一致。<br/>**说明**：从API version 19开始，支持该接口。 |
+| void OH_HiTrace_StartAsyncTraceEx(HiTrace_Output_Level level, const char\* name, int32_t taskId, const char\* customCategory, const char\* customArgs) | 开启一个异步时间片跟踪事件，分级控制跟踪输出。<br/>taskId是trace中用来表示关联的ID，如果有多个name相同的任务并行执行，则开发者每次调用OH_HiTrace_StartAsyncTraceEx()时，传入的taskId需不同；如果具有相同name的任务是串行执行的，则taskId可以相同。<br/>**说明**：从API version 19开始，支持该接口。 |
+| void OH_HiTrace_FinishAsyncTraceEx(HiTrace_Output_Level level, const char\* name, int32_t taskId) | 结束一个异步时间片跟踪事件，分级控制跟踪输出。<br/>level、name和taskId必须与流程开始的OH_HiTrace_StartAsyncTraceEx()对应参数值保持一致。<br/>**说明**：从API version 19开始，支持该接口。 |
+| void OH_HiTrace_CountTraceEx(HiTrace_Output_Level level, const char\* name, int64_t count) | 整数跟踪事件，分级控制跟踪输出。<br/>name、count两个参数分别用来标记一个跟踪的整数变量名及整数值。<br/>**说明**：从API version 19开始，支持该接口。 |
+| bool OH_HiTrace_IsTraceEnabled(void) | 判断当前是否开启应用trace捕获。<br/>使用hitrace命令行工具等方式开启采集时返回true，未开启采集或停止采集后返回false，此时调用HiTraceMeter性能跟踪打点接口无效。<br/>**说明**：从API version 19开始，支持该接口。 |
 
 > **注意：**
 >
@@ -39,29 +39,29 @@ HiTraceMeter打点接口主要分为三类：同步时间片跟踪接口、异�
 
 
 - 同步时间片跟踪接口
-  用于顺序执行的打点场景，需按序成对使用OH_HiTrace_StartTraceEx接口和OH_HiTrace_FinishTraceEx接口，否则会导致trace文件在smartperf等可视化工具上显示异常。
+  用于顺序执行的打点场景，需按序成对使用OH_HiTrace_StartTraceEx()接口和OH_HiTrace_FinishTraceEx()接口，否则会导致trace文件在smartperf等可视化工具上显示异常。
 
 - 异步时间片跟踪接口
-  在异步操作执行前调用OH_HiTrace_StartAsyncTraceEx接口进行开始打点，在异步操作完成后调用OH_HiTrace_FinishAsyncTraceEx接口进行结束打点。  
+  在异步操作执行前调用OH_HiTrace_StartAsyncTraceEx()接口进行开始打点，在异步操作完成后调用OH_HiTrace_FinishAsyncTraceEx()接口进行结束打点。  
   解析trace时，通过name和taskId参数识别不同的异步跟踪。所以这两个接口必须按序成对使用，并传入相同的name和taskId。  
   不同的异步流程中应使用不同的name和taskId，但在异步跟踪流程不会同时发生的情况下，可以使用相同的name和taskId。  
   调用错误会导致trace文件在smartperf等可视化工具上显示异常。
 
 - 整数跟踪接口
-  用于跟踪整数变量。整数值变动时调用OH_HiTrace_CountTraceEx接口，可在smartperf的泳道图中观察变动情况。由于从开始采集到首次打点存在时间差，这段时间的数值无法查看。
+  用于跟踪整数变量。整数值变动时调用OH_HiTrace_CountTraceEx()接口，可在smartperf的泳道图中观察变动情况。由于从开始采集到首次打点存在时间差，这段时间的数值无法查看。
 
 
 ### 参数解析
 
 
-| 参数名 | 类型 | 说明 | 
+| 参数名 | 类型 | 说明 |
 | -------- | -------- | -------- |
-| level | enum | 跟踪输出级别，低于系统阈值的跟踪将不会被输出。<br/>log版本阈值为HITRACE_LEVEL_INFO，nolog版本阈值为HITRACE_LEVEL_COMMERCIAL。 | 
-| name | const char\* | 要跟踪的任务名称或整数变量名称。 | 
-| taskId | int32_t | 用来表示关联的ID，如果有多个name相同的任务是并行执行的，则开发者每次调用OH_HiTrace_StartAsyncTraceEx时传入的taskId需不同。 | 
-| count | int64_t | 整数变量的值。 | 
-| customCategory | const char\* | 自定义聚类名称，用于聚合同一类异步跟踪打点。<br/>若不需要聚类，可传入一个空字符串。 | 
-| customArgs | const char\* | 自定义键值对，若有多组键值对，使用逗号进行分隔，例"key1=value1,key2=value2"。<br/>若不需要该参数，可传入一个空字符串。 | 
+| level | enum | 跟踪输出级别，低于系统阈值的跟踪将不会被输出。<br/>log版本阈值为HITRACE_LEVEL_INFO，nolog版本阈值为HITRACE_LEVEL_COMMERCIAL。 |
+| name | const char\* | 要跟踪的任务名称或整数变量名称。 |
+| taskId | int32_t | 用来表示关联的ID，如果有多个name相同的任务并行执行，则开发者每次调用OH_HiTrace_StartAsyncTraceEx()时，传入的taskId需不同。 |
+| count | int64_t | 整数变量的值。 |
+| customCategory | const char\* | 自定义聚类名称，用于聚合同一类异步跟踪打点。<br/>若不需要聚类，可传入一个空字符串。 |
+| customArgs | const char\* | 自定义键值对，若有多组键值对，使用逗号进行分隔，例"key1=value1,key2=value2"。<br/>若不需要该参数，可传入一个空字符串。 |
 
 
 > **说明：**
@@ -119,7 +119,7 @@ HiTraceMeter打点接口主要分为三类：同步时间片跟踪接口、异�
    target_link_libraries(entry PUBLIC libace_napi.z.so libhitrace_ndk.z.so libhilog_ndk.z.so)
    ```
 
-3. 编辑“entry &gt; src &gt; main &gt; cpp &gt; napi_init.cpp”文件，在Add函数中调用HiTraceMeter NDK_C接口进行性能打点跟踪。完整的示例代码如下。
+3. 编辑“entry &gt; src &gt; main &gt; cpp &gt; napi_init.cpp”文件，在Add函数中调用HiTraceMeter NDK_C接口进行性能打点跟踪，完整的示例代码如下。
 
    ```c++
    #include <cstdio>
@@ -269,7 +269,7 @@ HiTraceMeter打点接口主要分为三类：同步时间片跟踪接口、异�
    $ hitrace --trace_finish
    ```
 
-2. 再次点击应用界面的“Hello World”文本，此时应用trace捕获已关闭。OH_HiTrace_IsTraceEnabled接口返回false。在DevEco Studio Log窗口使用关键字“not enable”进行过滤，会打印如下日志。
+2. 再次点击应用界面的“Hello World”文本，此时应用trace捕获已关闭，OH_HiTrace_IsTraceEnabled()接口返回false。在DevEco Studio Log窗口使用关键字“not enabled”进行过滤，会打印如下日志。
 
    ```text
    myTraceTest running, trace is not enabled
@@ -277,4 +277,4 @@ HiTraceMeter打点接口主要分为三类：同步时间片跟踪接口、异�
 
    > **说明：**
    >
-   > log版本在使用hitrace --trace_finish命令停止采集后会自动拉起快照模式，打开应用trace捕获，此时isTraceEnabled接口返回true，不会打印上述日志
+   > log版本在使用hitrace --trace_finish命令停止采集后会自动拉起快照模式，打开应用trace捕获，此时OH_HiTrace_IsTraceEnabled()接口返回true，不会打印上述日志。

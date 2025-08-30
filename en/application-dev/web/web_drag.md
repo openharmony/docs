@@ -93,8 +93,8 @@ HTML example:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>HTML5 Dragging Demo</title>
 </head>
-<title>HTML5 Dragging Demo</title>
 <style>
     body {
       font-family: Arial, sans-serif;
@@ -127,7 +127,6 @@ HTML example:
       color: white;
     }
 </style>
-</head>
 <body>
 
 <h2>HTML5 Dragging Demo</h2>

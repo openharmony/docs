@@ -821,7 +821,7 @@ onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
 
 onRefreshAccessedHistory(callback: Callback\<OnRefreshAccessedHistoryEvent\>)
 
-加载网页页面完成时触发该回调，用于应用更新其访问的历史链接。
+导航完成时触发该回调，用于应用更新其访问的历史链接。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -829,7 +829,7 @@ onRefreshAccessedHistory(callback: Callback\<OnRefreshAccessedHistoryEvent\>)
 
 | 参数名         | 类型    | 必填   | 说明                                     |
 | ----------- | ------- | ---- | ---------------------------------------- |
-| callback         | Callback\<[OnRefreshAccessedHistoryEvent](./arkts-basic-components-web-i.md#onrefreshaccessedhistoryevent12)\>  | 是    | 在网页刷新访问历史记录时触发。                |
+| callback         | Callback\<[OnRefreshAccessedHistoryEvent](./arkts-basic-components-web-i.md#onrefreshaccessedhistoryevent12)\>  | 是    | 在导航完成时触发。                |
 
 **示例：**
 
@@ -1580,7 +1580,7 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
 安装私有凭证以实现双向认证。
 
 ```ts
-// xxx.ets API9
+// xxx.ets
 import { webview } from '@kit.ArkWeb';
 import { common } from '@kit.AbilityKit';
 import { certificateManager } from '@kit.DeviceCertificateKit';
@@ -1591,7 +1591,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct Index {
   controller: WebviewController = new webview.WebviewController();
-  context = getContext(this) as common.UIAbilityContext
+  uiContext : UIContext = this.getUIContext();
+  context : Context | undefined = this.uiContext.getHostContext() as common.UIAbilityContext;
   uri: string = ''
 
   aboutToAppear(): void {
@@ -1601,6 +1602,11 @@ struct Index {
   build() {
     Column() {
       Button("installPrivateCertificate").onClick(() => {
+        if (!this.context) {
+          return;
+        }
+
+        //注：badssl.com-client.p12需要替换为实际使用的证书文件
         let value: Uint8Array = this.context.resourceManager.getRawFileContentSync("badssl.com-client.p12");
         certificateManager.installPrivateCertificate(value, 'badssl.com', "1",
           async (err: BusinessError, data: certificateManager.CMResult) => {
@@ -1632,7 +1638,7 @@ struct Index {
         })
         .onErrorReceive((event) => {
           if (event) {
-            promptAction.showToast({
+            this.getUIContext().getPromptAction().showToast({
               message: `ErrorCode: ${event.error.getErrorCode()}, ErrorInfo: ${event.error.getErrorInfo()}`,
               alignment: Alignment.Center
             })
@@ -1780,7 +1786,7 @@ struct Index {
             })
             .onErrorReceive((event) => {
               if (event) {
-                promptAction.showToast({
+                this.getUIContext().getPromptAction().showToast({
                   message: `ErrorCode: ${event.error.getErrorCode()}, ErrorInfo: ${event.error.getErrorInfo()}`,
                   alignment: Alignment.Center
                 })
@@ -2257,7 +2263,7 @@ onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
   var locationInfo=document.getElementById("locationInfo");
   function getLocation(){
     if (navigator.geolocation) {
-      <!-- 前端页面访问设备地理位置 -->
+      // 前端页面访问设备地理位置
       navigator.geolocation.getCurrentPosition(showPosition);
     }
   }
@@ -2299,7 +2305,7 @@ onGeolocationHide(callback: () => void)
         Web({ src: 'www.example.com', controller: this.controller })
           .geolocationAccess(true)
           .onGeolocationHide(() => {
-            console.log("onGeolocationHide...");
+            console.info("onGeolocationHide...");
           })
       }
     }
@@ -2336,7 +2342,7 @@ onFullScreenEnter(callback: OnFullScreenEnterCallback)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onFullScreenEnter((event) => {
-            console.log("onFullScreenEnter videoWidth: " + event.videoWidth +
+            console.info("onFullScreenEnter videoWidth: " + event.videoWidth +
               ", videoHeight: " + event.videoHeight);
             // 应用可以通过 this.handler.exitFullScreen() 主动退出全屏。
             this.handler = event.handler;
@@ -2376,7 +2382,7 @@ onFullScreenExit(callback: () => void)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onFullScreenExit(() => {
-            console.log("onFullScreenExit...")
+            console.info("onFullScreenExit...")
             if (this.handler) {
               this.handler.exitFullScreen();
             }
@@ -2910,7 +2916,7 @@ onAudioStateChanged(callback: Callback\<OnAudioStateChangedEvent\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onAudioStateChanged(event => {
             this.playing = event.playing;
-            console.debug('onAudioStateChanged playing: ' + this.playing);
+            console.info('onAudioStateChanged playing: ' + this.playing);
           })
       }
     }
@@ -3047,7 +3053,7 @@ onLoadIntercept(callback: Callback\<OnLoadInterceptEvent, boolean\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnLoadInterceptEvent](./arkts-basic-components-web-i.md#onloadinterceptevent12), boolean\> | 是 | 截获资源加载时触发的回调。<br>返回值为boolean类型。返回true表示阻止此次加载，false表示允许此次加载。<br>默认值：false |
+| callback | Callback\<[OnLoadInterceptEvent](./arkts-basic-components-web-i.md#onloadinterceptevent12), boolean\> | 是 | 导航触发时的回调包括iframe导航，在回调中可以选择允许或者取消此次导航。<br>返回值为boolean类型。返回true表示取消此次导航，false表示允许此次导航。<br>返回undefined或null时允许此次导航。 |
 
 **示例：**
 

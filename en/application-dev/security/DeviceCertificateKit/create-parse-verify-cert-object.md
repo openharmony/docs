@@ -1,12 +1,17 @@
 # Certificate Development
 
+<!--Kit: Device Certificate Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
 
 This topic walks you through on how to create a certificate object, obtain information about the certificate, and check the validity period of the certificate.
 
-
 ## How to Develop
 
-1. Import the [cert](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
+1. Import the [certFramework](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
    ```ts
    import { cert } from '@kit.DeviceCertificateKit';
    ```
@@ -14,15 +19,11 @@ This topic walks you through on how to create a certificate object, obtain infor
 2. Use [cert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509cert) to create an **X509Cert** object based on the existing X.509 certificate data.
 
 3. Obtain certificate information.<br>
-   The following example shows how to obtain the certificate version and serial number. For more information, see [X509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509cert).
+   Here is an example of obtaining the certificate version, certificate serial number, certificate issuer name, certificate subject name, and string-type data of the certificate object. For more field information, see [@ohos.security.cert (Certificate)](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509cert).
 
-4. Use [X509Cert.getPublicKey](../../reference/apis-device-certificate-kit/js-apis-cert.md#getpublickey) to obtain the public key in the certificate and use [X509Cert.verify](../../reference/apis-device-certificate-kit/js-apis-cert.md#verify) to verify the signature.
-   
-   In this example, a self-signed certificate is used. Therefore, the public key in the certificate is obtained. In your app experience, obtain the public key for signature verification based on actual situation.
-   
-5. Use [X509Cert.checkValidityWithDate](../../reference/apis-device-certificate-kit/js-apis-cert.md#checkvaliditywithdate) to check the certificate validity period.
+4. Use [X509Cert.getPublicKey](../../reference/apis-device-certificate-kit/js-apis-cert.md#getpublickey) to obtain the public key in the certificate and use [X509Cert.verify](../../reference/apis-device-certificate-kit/js-apis-cert.md#verify) to verify the signature. In this example, a self-signed certificate is used. Therefore, the public key in the certificate is obtained. In your app experience, obtain the public key for signature verification based on actual situation.
 
-   The input parameter **date** is used to check whether the specified date is within the validity period of the X.509 certificate.
+5. Use [X509Cert.checkValidityWithDate](../../reference/apis-device-certificate-kit/js-apis-cert.md#checkvaliditywithdate) to check the certificate validity period. The input parameter **date** is used to check whether the specified date is within the validity period of the X.509 certificate.
 
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
@@ -62,8 +63,23 @@ function certSample(): void {
 
     // Obtain the certificate version.
     let version = x509Cert.getVersion();
+    // Obtain the certificate serial number.
     let serial = x509Cert.getCertSerialNumber();
     console.log(`X509 version: ${version} , X509 serial:${serial}`);
+
+    // Obtain the certificate issuer name.
+    let issuerName = x509Cert.getIssuerName(cert.EncodingType.ENCODING_UTF8);
+    console.log(`X509 issuerName: ${issuerName}`);
+
+    // Obtain the certificate subject name.
+    let subjectNameBin = x509Cert.getSubjectName(cert.EncodingType.ENCODING_UTF8);
+    let encoder = util.TextDecoder.create();
+    let subjectName = encoder.decodeToString(subjectNameBin.data);
+    console.log(`X509 subjectName: ${subjectName}`);
+
+    // Obtain the string-type data of the certificate object.
+    let certString = x509Cert.toString(cert.EncodingType.ENCODING_UTF8);
+    console.log(`X509 certString: ${certString}`);
 
     // Use the getPublicKey() method of the upper-level certificate object or the self-signed certificate object to obtain the public key object.
     try {

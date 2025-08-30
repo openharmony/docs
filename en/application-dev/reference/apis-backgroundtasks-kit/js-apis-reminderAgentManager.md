@@ -19,6 +19,8 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
 Publishes a reminder. This API uses an asynchronous callback to return the result.
 
+If the value of [ReminderRequest.ringDuration](#reminderrequest) is greater than 0, the custom ringtone is played on the alarm channel by default. If the value is less than or equal to 0, no ringtone is played.
+
 > **NOTE**
 >
 > This API can be called only after the [NotificationManager.requestEnableNotification](../apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification10) permission is obtained.
@@ -69,6 +71,8 @@ reminderAgentManager.publishReminder(timer, (err: BusinessError, reminderId: num
 publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
 Publishes a reminder. This API uses a promise to return the result.
+
+If the value of [ReminderRequest.ringDuration](#reminderrequest) is greater than 0, the custom ringtone is played on the alarm channel by default. If the value is less than or equal to 0, no ringtone is played.
 
 > **NOTE**
 >

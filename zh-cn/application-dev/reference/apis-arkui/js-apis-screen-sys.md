@@ -165,191 +165,6 @@ screen.off('connect', callback);
 screen.off('connect');
 ```
 
-## screen.makeExpand
-
-makeExpand(options:Array&lt;ExpandOption&gt;, callback: AsyncCallback&lt;number&gt;): void
-
-将屏幕设置为扩展模式，使用callback异步回调。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**参数：**
-
-| 参数名   | 类型                                       | 必填 | 说明                         |
-| -------- | ------------------------------------------ | ---- |----------------------------|
-| options  | Array&lt;[ExpandOption](#expandoption)&gt; | 是   | 设置扩展屏幕的参数集合。               |
-| callback | AsyncCallback&lt;number&gt;                     | 是   | 回调函数。返回扩展屏幕的群组id，其中id为整数。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ----------------------- |
-| 202     | Permission verification failed. A non-system application calls a system API.|
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 1400001 | Invalid display or screen. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let groupId: number | null = null;
-class ExpandOption {
-  screenId: number = 0;
-  startX: number = 0;
-  startY: number = 0;
-}
-let mainScreenOption: ExpandOption = { screenId: 0, startX: 0, startY: 0 };
-let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
-let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
-screen.makeExpand(expandOptionArray, (err: BusinessError, data: number) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to expand the screen. Code:${err.code},message is ${err.message}`);
-    return;
-  }
-  groupId = data;
-  console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
-});
-```
-
-## screen.makeExpand
-
-makeExpand(options:Array&lt;ExpandOption&gt;): Promise&lt;number&gt;
-
-将屏幕设置为扩展模式，使用Promise异步回调。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**参数：**
-
-| 参数名  | 类型                                       | 必填 | 说明                     |
-| ------- | ------------------------------------------ | ---- | ------------------------ |
-| options | Array&lt;[ExpandOption](#expandoption)&gt; | 是   | 设置扩展屏幕的参数集合。 |
-
-**返回值：**
-
-| 类型                  | 说明                              |
-| --------------------- |---------------------------------|
-| Promise&lt;number&gt; | Promise对象。返回扩展屏幕的群组id，其中id为整数。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ----------------------- |
-| 202     | Permission verification failed. A non-system application calls a system API.|
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 1400001 | Invalid display or screen. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-class ExpandOption {
-  screenId: number = 0;
-  startX: number = 0;
-  startY: number = 0;
-}
-let mainScreenOption: ExpandOption = { screenId: 0, startX: 0, startY: 0 };
-let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
-let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
-screen.makeExpand(expandOptionArray).then((
-  data: number) => {
-  console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
-}).catch((err: BusinessError) => {
-  console.error(`Failed to expand the screen. Code:${err.code},message is ${err.message}`);
-});
-```
-
-## screen.stopExpand<sup>10+</sup>
-
-stopExpand(expandScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;): void
-
-停止屏幕的扩展模式，使用callback异步回调。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明                                      |
-| ------------ | --------------------------- | --- |-----------------------------------------|
-| expandScreen | Array&lt;number&gt;         | 是   | 扩展屏幕id集合，其中id为整数。 expandScreen数组大小不应超过1000。  |
-| callback     | AsyncCallback&lt;void&gt; | 是   | 回调函数。当停止屏幕扩展模式成功，err为undefined，否则为错误对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ----------------------- |
-| 202     | Permission verification failed. A non-system application calls a system API.|
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
-| 1400001 | Invalid display or screen. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let expandScreenIds: Array<number> = [1, 2, 3];
-screen.stopExpand(expandScreenIds, (err: BusinessError) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to stop expand screens. Code:${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info('Succeeded in stopping expand screens.');
-});
-```
-
-## screen.stopExpand<sup>10+</sup>
-
-stopExpand(expandScreen:Array&lt;number&gt;): Promise&lt;void&gt;
-
-停止屏幕的扩展模式，使用Promise异步回调。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明                 |
-| ------------ | ------------------- | --- |--------------------|
-| expandScreen | Array&lt;number&gt; | 是   | 扩展屏幕id集合，其中id为整数。expandScreen数组大小不应超过1000。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| --------------------- | ----------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ----------------------- |
-| 202     | Permission verification failed. A non-system application calls a system API.|
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
-| 1400001 | Invalid display or screen. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let expandScreenIds: Array<number> = [1, 2, 3];
-screen.stopExpand(expandScreenIds).then(() => {
-  console.info('Succeeded in stopping expand screens.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to stop expand screens. Code:${err.code},message is ${err.message}`);
-});
-```
-
 ## screen.makeMirror
 
 makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;number&gt;): void
@@ -522,7 +337,7 @@ screen.stopMirror(mirrorScreenIds).then(() => {
 });
 ```
 
-## screen.makeUnique<sup>16+</sup>
+## screen.makeUnique<sup>18+</sup>
 
 makeUnique(uniqueScreen: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
@@ -548,7 +363,7 @@ makeUnique(uniqueScreen: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 202     | Permission verification failed. A non-system application calls a system API. |
+| 202     | Permission verification failed, non-system application uses system API. |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1400001 | Invalid display or screen. |
@@ -590,7 +405,7 @@ createVirtualScreen(options:VirtualScreenOption, callback: AsyncCallback&lt;Scre
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 201 | Permission verification failed. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
@@ -655,7 +470,7 @@ createVirtualScreen(options:VirtualScreenOption): Promise&lt;Screen&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 201 | Permission verification failed. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
@@ -798,7 +613,7 @@ setVirtualScreenSurface(screenId:number, surfaceId: string, callback: AsyncCallb
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 201 | Permission verification failed. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
@@ -849,7 +664,7 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 201 | Permission verification failed. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
@@ -1177,55 +992,6 @@ screen.setMultiScreenRelativePosition(mainScreenOptions, secondaryScreenOptions)
 });
 ```
 
-## ExpandOption
-
-扩展屏幕的参数。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-| 名称     | 类型 | 只读 | 可选 | 说明                |
-| -------- | -------- | ---- | ---- | ------------------- |
-| screenId | number   | 否   | 否   | 屏幕的id，该参数应为整数。          |
-| startX   | number   | 否   | 否   | 屏幕的起始X轴坐标，该参数应为整数。 |
-| startY   | number   | 否   | 否   | 屏幕的起始Y轴坐标，该参数应为整数。 |
-
-## MultiScreenMode<sup>13+</sup>
-
-屏幕模式枚举。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-| 参数              | 值  | 说明                            |
-| ------------------ | ---- | -------------------------------- |
-| SCREEN_MIRROR      | 0    | 表示屏幕为镜像模式。 |
-| SCREEN_EXTAND      | 1    | 表示屏幕为扩展模式。 |
-
-## MultiScreenPositionOptions<sup>13+</sup>
-
-屏幕位置信息。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-| 参数名    | 类型     | 只读 | 可选  | 说明                |
-| -------- | -------- | ---- | ---- | ------------------- |
-| id       | number   | 否   | 否   | 屏幕的id，该参数应为正整数，非正整数会作为非法参数报错。|
-| startX   | number   | 否   | 否   | 屏幕的起始X轴坐标。以两块屏幕外接矩形的左上顶点为原点，向右为正方向。该参数应为正整数，非正整数会作为非法参数报错。 |
-| startY   | number   | 否   | 否   | 屏幕的起始Y轴坐标。以两块屏幕外接矩形的左上顶点为原点，向下为正方向。该参数应为正整数，非正整数会作为非法参数报错。 |
-
-## VirtualScreenOption
-
-创建虚拟屏幕的参数。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-| 名称      | 类型 | 只读 | 可选 | 说明                       |
-| --------- | -------- | ---- | ---- |--------------------------|
-| name      | string   | 否   | 否   | 指定虚拟屏幕的名称。               |
-| width     | number   | 否   | 否   | 指定虚拟屏幕的宽度，单位为px，该参数应为整数。 |
-| height    | number   | 否   | 否   | 指定虚拟屏幕的高度，单位为px，该参数应为整数。 |
-| density   | number   | 否   | 否   | 指定虚拟屏幕的密度，单位为px，该参数为浮点数。 |
-| surfaceId | string   | 否   | 否   | 指定虚拟屏幕的surfaceId。        |
-
 ## screen.makeMirrorWithRegion<sup>19+</sup>
 
 makeMirrorWithRegion(mainScreen:number, mirrorScreen:Array&lt;number&gt;, mainScreenRegion:Rect): Promise&lt;number&gt;
@@ -1277,6 +1043,256 @@ screen.makeMirrorWithRegion(mainScreenId, mirrorScreenIds, mainScreenRegion).the
 });
 ```
 
+## screen.makeExpand<sup>(deprecated)</sup>
+
+makeExpand(options:Array&lt;ExpandOption&gt;, callback: AsyncCallback&lt;number&gt;): void
+
+将屏幕设置为扩展模式，使用callback异步回调。
+
+> **说明：**
+> 
+> 从API version 9开始支持，从API version 20开始废弃。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                         |
+| -------- | ------------------------------------------ | ---- |----------------------------|
+| options  | Array&lt;[ExpandOption](#expandoption)&gt; | 是   | 设置扩展屏幕的参数集合。               |
+| callback | AsyncCallback&lt;number&gt;                     | 是   | 回调函数。返回扩展屏幕的群组id，其中id为整数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let groupId: number | null = null;
+class ExpandOption {
+  screenId: number = 0;
+  startX: number = 0;
+  startY: number = 0;
+}
+let mainScreenOption: ExpandOption = { screenId: 0, startX: 0, startY: 0 };
+let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
+let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
+screen.makeExpand(expandOptionArray, (err: BusinessError, data: number) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to expand the screen. Code:${err.code},message is ${err.message}`);
+    return;
+  }
+  groupId = data;
+  console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
+});
+```
+
+## screen.makeExpand<sup>(deprecated)</sup>
+
+makeExpand(options:Array&lt;ExpandOption&gt;): Promise&lt;number&gt;
+
+将屏幕设置为扩展模式，使用Promise异步回调。
+
+> **说明：**
+> 
+> 从API version 9开始支持，从API version 20开始废弃。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名  | 类型                                       | 必填 | 说明                     |
+| ------- | ------------------------------------------ | ---- | ------------------------ |
+| options | Array&lt;[ExpandOption](#expandoption)&gt; | 是   | 设置扩展屏幕的参数集合。 |
+
+**返回值：**
+
+| 类型                  | 说明                              |
+| --------------------- |---------------------------------|
+| Promise&lt;number&gt; | Promise对象。返回扩展屏幕的群组id，其中id为整数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class ExpandOption {
+  screenId: number = 0;
+  startX: number = 0;
+  startY: number = 0;
+}
+let mainScreenOption: ExpandOption = { screenId: 0, startX: 0, startY: 0 };
+let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
+let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
+screen.makeExpand(expandOptionArray).then((
+  data: number) => {
+  console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error(`Failed to expand the screen. Code:${err.code},message is ${err.message}`);
+});
+```
+
+## screen.stopExpand<sup>(deprecated)</sup>
+
+stopExpand(expandScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+停止屏幕的扩展模式，使用callback异步回调。
+
+> **说明：**
+> 
+> 从API version 10开始支持，从API version 20开始废弃。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                                      |
+| ------------ | --------------------------- | --- |-----------------------------------------|
+| expandScreen | Array&lt;number&gt;         | 是   | 扩展屏幕id集合，其中id为整数。 expandScreen数组大小不应超过1000。  |
+| callback     | AsyncCallback&lt;void&gt; | 是   | 回调函数。当停止屏幕扩展模式成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let expandScreenIds: Array<number> = [1, 2, 3];
+screen.stopExpand(expandScreenIds, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to stop expand screens. Code:${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in stopping expand screens.');
+});
+```
+
+## screen.stopExpand<sup>(deprecated)</sup>
+
+stopExpand(expandScreen:Array&lt;number&gt;): Promise&lt;void&gt;
+
+停止屏幕的扩展模式，使用Promise异步回调。
+
+> **说明：**
+> 
+> 从API version 10开始支持，从API version 20开始废弃。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                 |
+| ------------ | ------------------- | --- |--------------------|
+| expandScreen | Array&lt;number&gt; | 是   | 扩展屏幕id集合，其中id为整数。expandScreen数组大小不应超过1000。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --------------------- | ----------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let expandScreenIds: Array<number> = [1, 2, 3];
+screen.stopExpand(expandScreenIds).then(() => {
+  console.info('Succeeded in stopping expand screens.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to stop expand screens. Code:${err.code},message is ${err.message}`);
+});
+```
+
+## ExpandOption
+
+扩展屏幕的参数。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称     | 类型 | 只读 | 可选 | 说明                |
+| -------- | -------- | ---- | ---- | ------------------- |
+| screenId | number   | 否   | 否   | 屏幕的id，该参数应为整数。          |
+| startX   | number   | 否   | 否   | 屏幕的起始X轴坐标，该参数应为整数。 |
+| startY   | number   | 否   | 否   | 屏幕的起始Y轴坐标，该参数应为整数。 |
+
+## MultiScreenMode<sup>13+</sup>
+
+屏幕模式枚举。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称              | 值  | 说明                            |
+| ------------------ | ---- | -------------------------------- |
+| SCREEN_MIRROR      | 0    | 表示屏幕为镜像模式。 |
+| SCREEN_EXTEND      | 1    | 表示屏幕为扩展模式。 |
+
+## MultiScreenPositionOptions<sup>13+</sup>
+
+屏幕位置信息。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称    | 类型     | 只读 | 可选  | 说明                |
+| -------- | -------- | ---- | ---- | ------------------- |
+| id       | number   | 否   | 否   | 屏幕的id，该参数应为正整数，非正整数会作为非法参数报错。|
+| startX   | number   | 否   | 否   | 屏幕的起始X轴坐标。以两块屏幕外接矩形的左上顶点为原点，向右为正方向。该参数应为正整数，非正整数会作为非法参数报错。 |
+| startY   | number   | 否   | 否   | 屏幕的起始Y轴坐标。以两块屏幕外接矩形的左上顶点为原点，向下为正方向。该参数应为正整数，非正整数会作为非法参数报错。 |
+
+## VirtualScreenOption
+
+创建虚拟屏幕的参数。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称      | 类型 | 只读 | 可选 | 说明                       |
+| --------- | -------- | ---- | ---- |--------------------------|
+| name      | string   | 否   | 否   | 指定虚拟屏幕的名称。               |
+| width     | number   | 否   | 否   | 指定虚拟屏幕的宽度，单位为px，该参数应为整数。 |
+| height    | number   | 否   | 否   | 指定虚拟屏幕的高度，单位为px，该参数应为整数。 |
+| density   | number   | 否   | 否   | 指定虚拟屏幕的密度，单位为px，该参数为浮点数。 |
+| surfaceId | string   | 否   | 否   | 指定虚拟屏幕的surfaceId。        |
+
 ## Screen
 
 屏幕实例。
@@ -1303,6 +1319,8 @@ setOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): v
 设置屏幕方向，使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
 
 | 参数名      | 类型                        | 必填 | 说明                                                         |
 | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
@@ -1363,6 +1381,8 @@ setOrientation(orientation: Orientation): Promise&lt;void&gt;
 设置屏幕方向，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
 
 | 参数名      | 类型                        | 必填 | 说明       |
 | ----------- | --------------------------- | ---- | ---------- |
@@ -1427,9 +1447,11 @@ setScreenActiveMode(modeIndex: number, callback: AsyncCallback&lt;void&gt;): voi
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**参数：**
+
 | 参数名    | 类型                      | 必填 | 说明                                                         |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| modeIndex | number                    | 是   | 模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化，该参数仅支持整数输入。 |
+| modeIndex | number                    | 是   | 模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化，该参数仅支持整数输入。索引为screen中[ScreenModeInfo](#screenmodeinfo)属性的模式id。 |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置屏幕当前显示模式成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -1487,6 +1509,8 @@ setScreenActiveMode(modeIndex: number): Promise&lt;void&gt;
 设置屏幕当前显示模式，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
 
 | 参数名    | 类型   | 必填 | 说明       |
 | --------- | ------ | ---- | ---------- |
@@ -1552,6 +1576,8 @@ setDensityDpi(densityDpi: number, callback: AsyncCallback&lt;void&gt;): void;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**参数：**
+
 | 参数名     | 类型                      | 必填 | 说明                                       |
 | ---------- | ------------------------- | ---- |------------------------------------------|
 | densityDpi | number                    | 是   | 像素密度。支持的输入范围为[80, 640]，该参数仅支持整数输入。       |
@@ -1612,6 +1638,8 @@ setDensityDpi(densityDpi: number): Promise&lt;void&gt;
 设置屏幕的像素密度，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
 
 | 参数名     | 类型   | 必填 | 说明                                 |
 | ---------- | ------ | ---- |------------------------------------|

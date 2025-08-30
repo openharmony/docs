@@ -91,7 +91,7 @@
 
    this.audioRenderer?.start((err: BusinessError) => {
     if (err) {
-      console.error(`audioRender start faild :  Error: ${JSON.stringify(err)}`);
+      console.error(`audioRenderer start failed -Code : ${err.code}, Message ${err.message}`);
     } else {
       console.info('audioRender start success');
     }

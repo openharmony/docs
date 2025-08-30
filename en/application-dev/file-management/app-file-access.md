@@ -2,8 +2,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
-<!--SE: @gsl_1234; @wangke25-->
-<!--TSE: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Designer: @gsl_1234; @wangke25-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 This topic describes how to enable an application to view, create, read, write, delete, move, or copy an application file and obtain file information.
 
@@ -234,7 +235,8 @@ function copyFileWithReadable(context: common.UIAbilityContext): void {
   });
 }
 
-function copyFileWithData(): void {
+function copyFileWithData(context: common.UIAbilityContext): void {
+  let filesDir = context.filesDir;
   // Create a readable stream.
   const rs = fs.createReadStream(`${filesDir}/read.txt`);
   // Create a writable stream.

@@ -115,15 +115,14 @@ export default {
 
 ## 事件绑定
 
-向input组件添加search和translate事件。
+向input组件添加translate事件。
 ```html
 <!-- xxx.hml -->
 <div class="content">
-  <text style="margin-left: -7px;">
-    <span>Enter text and then touch and hold what you've entered</span>
-  </text>
-  <input class="input" type="text" onsearch="search" placeholder="search"> </input>
-  <input class="input" type="text" ontranslate="translate" placeholder="translate"> </input>
+    <text style="margin-left: -7px;">
+        <span>Enter text and then touch and hold what you've entered</span>
+    </text>
+    <input class="input" type="text" ontranslate="translate" placeholder="translate"> </input>
 </div>
 ```
 
@@ -152,23 +151,18 @@ text{
 ```js
 // xxx.js
 import promptAction from '@ohos.promptAction'
+
 export default {
-  search(e){
-    promptAction.showToast({
-      message:  e.value,
-      duration: 3000,
-    });
-  },
-  translate(e){
-    promptAction.showToast({
-      message:  e.value,
-      duration: 3000,
-    });
-  }
+    translate(e) {
+        promptAction.showToast({
+            message: e.value,
+            duration: 3000,
+        });
+    }
 }
 ```
 
-![zh-cn_image_0000001189088264](figures/zh-cn_image_0000001189088264.gif)
+![JsInputTranslate](figures/JsInputTranslateEx.gif)
 
 
 ## 设置输入提示

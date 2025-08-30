@@ -1491,19 +1491,19 @@ try {
 
 | 名称                    |   值   | 说明                 |
 | ----------------------- | ------ | -------------------- |
-| SUCCESS<sup>9+</sup>    | 12500000      | 执行成功。           |
-| FAIL<sup>9+</sup>                    | 12500001      | 认证失败。           |
-| GENERAL_ERROR<sup>9+</sup>           | 12500002      | 操作通用错误。       |
-| CANCELED<sup>9+</sup>                | 12500003      | 认证取消。           |
-| TIMEOUT<sup>9+</sup>                 | 12500004      | 认证超时。           |
-| TYPE_NOT_SUPPORT<sup>9+</sup>        | 12500005      | 认证类型不支持。      |
-| TRUST_LEVEL_NOT_SUPPORT<sup>9+</sup> | 12500006      | 认证等级不支持。      |
-| BUSY<sup>9+</sup>                    | 12500007      | 系统繁忙。           |
-| INVALID_PARAMETERS<sup>20+</sup>      | 12500008      | 参数校验失败。           |
-| LOCKED<sup>9+</sup>                  | 12500009      | 认证器已锁定。       |
-| NOT_ENROLLED<sup>9+</sup>            | 12500010      | 用户未录入指定的系统身份认证凭据。 |
-| CANCELED_FROM_WIDGET<sup>10+</sup> | 12500011 | 用户取消了系统认证方式，选择应用自定义认证。需调用者拉起自定义认证界面。 |
-| PIN_EXPIRED<sup>12+</sup> | 12500013 | 当前的认证操作执行失败。返回这个错误码，表示系统锁屏口令过期。 |
+| SUCCESS                          | 12500000      | 执行成功。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
+| FAIL                             | 12500001      | 认证失败。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
+| GENERAL_ERROR                    | 12500002      | 操作通用错误。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| CANCELED                         | 12500003      | 认证取消。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
+| TIMEOUT                          | 12500004      | 认证超时。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
+| TYPE_NOT_SUPPORT                 | 12500005      | 认证类型不支持。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| TRUST_LEVEL_NOT_SUPPORT          | 12500006      | 认证等级不支持。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| BUSY                             | 12500007      | 系统繁忙。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
+| INVALID_PARAMETERS<sup>20+</sup> | 12500008      | 参数校验失败。<br/> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。  |
+| LOCKED                           | 12500009      | 认证器已锁定。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| NOT_ENROLLED                     | 12500010      | 用户未录入指定的系统身份认证凭据。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| CANCELED_FROM_WIDGET<sup>10+</sup> | 12500011 | 用户取消了系统认证方式，选择应用自定义认证。需调用者拉起自定义认证界面。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| PIN_EXPIRED<sup>12+</sup> | 12500013 | 当前的认证操作执行失败。返回这个错误码，表示系统锁屏口令过期。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## UserAuth<sup>(deprecated)</sup>
 

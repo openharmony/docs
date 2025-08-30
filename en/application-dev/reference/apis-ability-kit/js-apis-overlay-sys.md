@@ -1,4 +1,10 @@
 # @ohos.bundle.overlay (overlay) (System API)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The module provides APIs for installing a [module with the overlay feature](js-apis-overlay.md), querying the [module information](js-apis-bundleManager-overlayModuleInfo.md), and disabling and enabling the module.
 
@@ -34,7 +40,7 @@ No permission is required when the specified application is the caller itself.
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName  | string | Yes   | Bundle name of the application.                |
 | moduleName  | string | Yes   | Name of the module with the overlay feature.   |
-| isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. The value **true** means to enable the module, and **false** means to disable the module.|
+| isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. **true** to enable, **false** otherwise.|
 
 **Return value**
 
@@ -99,7 +105,7 @@ No permission is required when the specified application is the caller itself.
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName  | string | Yes   | Bundle name of the application.                |
 | moduleName  | string | Yes   | Name of the module with the overlay feature.   |
-| isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. The value **true** means to enable the module, and **false** means to disable the module.|
+| isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. **true** to enable, **false** otherwise.|
 | callback    | AsyncCallback\<void> | Yes   | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                   |
 
 **Error codes**

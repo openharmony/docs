@@ -47,7 +47,7 @@ Blank(min?: number&nbsp;|&nbsp;string)
 
 color(value: ResourceColor)
 
-设置空白填充的填充颜色。
+设置空白填充的填充颜色，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

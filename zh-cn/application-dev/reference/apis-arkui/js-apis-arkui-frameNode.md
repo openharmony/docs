@@ -22,6 +22,20 @@ FrameNode表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeC
 import { FrameNode, LayoutConstraint, ExpandMode, typeNode, NodeAdapter } from "@kit.ArkUI";
 ```
 
+## LayoutConstraint<sup>12+</sup>
+
+描述组件的布局约束。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称            |  类型  | 只读   | 可选   | 说明                                       |
+| -------------- | ------ | ----- | ----------|-------------------------------- |
+| maxSize           | [Size](./js-apis-arkui-graphics.md#size) |否| 是    | 最大尺寸。              |
+| minSize            | [Size](./js-apis-arkui-graphics.md#size) |否| 是    | 最小尺寸。                  |
+| percentReference      | [Size](./js-apis-arkui-graphics.md#size) |否| 是    | 子节点计算百分比时的尺寸基准。|
+
 ## CrossLanguageOptions<sup>15+</sup>
 
 该接口用于配置或查询FrameNode的跨语言访问权限。例如，针对ArkTS语言创建的节点，可通过该接口控制是否允许通过非ArkTS语言进行属性访问或修改。
@@ -88,6 +102,8 @@ type UIStatesChangeHandler = (node: FrameNode, currentUIStates: number) => void
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
 
 | 参数名   | 类型                      | 必填 | 说明                                                     |
 | -------- | ----------------------------- | ---- | ------------------------------------------------------------ |
@@ -1587,20 +1603,6 @@ FrameNode的自定义测量方法，该方法会重写默认测量方法，在Fr
 
 请参考[节点自定义示例](#节点自定义示例)。
 
-### LayoutConstraint<sup>12+</sup>
-
-描述组件的布局约束。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称            |  类型  | 必填  | 说明                                       |
-| -------------- | ------ | ----- | ------------------------------------------ |
-| maxSize           | [Size](./js-apis-arkui-graphics.md#size) | 是    | 最大尺寸。              |
-| minSize            | [Size](./js-apis-arkui-graphics.md#size) | 是    | 最小尺寸。                  |
-| percentReference      | [Size](./js-apis-arkui-graphics.md#size) | 是    | 子节点计算百分比时的尺寸基准。
-
 ### onLayout<sup>12+</sup>
 
 onLayout(position: Position): void
@@ -2220,7 +2222,7 @@ TypedFrameNode继承自[FrameNode](#framenode-1)，用于声明具体类型的Fr
 | 名称       | 类型 | 只读 | 可选 | 说明                                                         |
 | ---------- | ---- | ---- | ---- | ------------------------------------------------------------ |
 | initialize | C    | 否   | 否   | 该接口用于创建对应组件的构造参数，用于设置/更新组件的初始值。 |
-| attribute  | T    | 否   | 否   | 该接口用于获取对应组件的属性设置对象，用于设置/更新组件的通用、私有属性。 |
+| attribute  | T    | 是   | 否   | 该接口用于获取对应组件的属性设置对象，用于设置/更新组件的通用、私有属性。 |
 
 > **说明：**
 >
@@ -2382,7 +2384,34 @@ createNode(context: UIContext, nodeType: 'Column'): Column
 <!--code_no_check-->
 
 ```ts
-typeNode.createNode(uiContext, 'Column');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyColumnController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('50%')
+      .height('50%')
+      .backgroundColor(Color.Gray)
+    node.appendChild(col)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myColumnController: MyColumnController = new MyColumnController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('ColumnSample')
+      NodeContainer(this.myColumnController);
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('Column')<sup>20+</sup>
@@ -2455,7 +2484,34 @@ createNode(context: UIContext, nodeType: 'Row'): Row
 <!--code_no_check-->
 
 ```ts
-typeNode.createNode(uiContext, 'Row');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyRowController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let row = typeNode.createNode(uiContext, 'Row')
+    row.initialize({ space: 5 })
+      .width('50%')
+      .height('50%')
+      .backgroundColor(Color.Gray)
+    node.appendChild(row)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myRowController: MyRowController = new MyRowController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('RowSample')
+      NodeContainer(this.myRowController);
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('Row')<sup>20+</sup>
@@ -2528,7 +2584,37 @@ createNode(context: UIContext, nodeType: 'Stack'): Stack
 <!--code_no_check-->
 
 ```ts
-typeNode.createNode(uiContext, 'Stack');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyStackController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let stack = typeNode.createNode(uiContext, 'Stack')
+    stack.initialize({ alignContent: Alignment.Top })
+      .width('50%')
+      .height('50%')
+      .backgroundColor(Color.Gray)
+    node.appendChild(stack)
+    let text = typeNode.createNode(uiContext, 'Text')
+    text.initialize("This is Text")
+    stack.appendChild(text)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myStackController: MyStackController = new MyStackController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('StackSample')
+      NodeContainer(this.myStackController);
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('Stack')<sup>20+</sup>
@@ -2601,7 +2687,39 @@ createNode(context: UIContext, nodeType: 'GridRow'): GridRow
 <!--code_no_check-->
 
 ```ts
-typeNode.createNode(uiContext, 'GridRow');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyGridRowController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let gridRow = typeNode.createNode(uiContext, 'GridRow')
+    gridRow.initialize({ columns: 12 })
+      .width('50%')
+      .height('50%')
+      .backgroundColor(Color.Gray)
+    node.appendChild(gridRow)
+    let gridCol = typeNode.createNode(uiContext, 'GridCol')
+    gridCol.initialize({ span: 2, offset: 4 })
+      .height("100%")
+      .backgroundColor(Color.Red)
+    gridRow.appendChild(gridCol)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myGridRowController: MyGridRowController = new MyGridRowController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('GridRowSample')
+      NodeContainer(this.myGridRowController);
+    }.width('100%')
+  }
+}
 ```
 ### GridCol<sup>12+</sup>
 type GridCol = TypedFrameNode&lt;GridColInterface, GridColAttribute&gt;
@@ -2643,7 +2761,39 @@ createNode(context: UIContext, nodeType: 'GridCol'): GridCol
 <!--code_no_check-->
 
 ```ts
-typeNode.createNode(uiContext, 'GridCol');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyGridRowController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let gridRow = typeNode.createNode(uiContext, 'GridRow')
+    gridRow.initialize({ columns: 12 })
+      .width('50%')
+      .height('50%')
+      .backgroundColor(Color.Gray)
+    node.appendChild(gridRow)
+    let gridCol = typeNode.createNode(uiContext, 'GridCol')
+    gridCol.initialize({ span: 2, offset: 4 })
+      .height("100%")
+      .backgroundColor(Color.Red)
+    gridRow.appendChild(gridCol)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myGridRowController: MyGridRowController = new MyGridRowController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('GridColSample')
+      NodeContainer(this.myGridRowController);
+    }.width('100%')
+  }
+}
 ```
 ### Flex<sup>12+</sup>
 type Flex = TypedFrameNode&lt;FlexInterface, FlexAttribute&gt;
@@ -2685,7 +2835,34 @@ createNode(context: UIContext, nodeType: 'Flex'): Flex
 <!--code_no_check-->
 
 ```ts
-typeNode.createNode(uiContext, 'Flex');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyFlexController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let flex = typeNode.createNode(uiContext, 'Flex')
+    flex.initialize()
+      .width('50%')
+      .height('50%')
+      .backgroundColor(Color.Gray)
+    node.appendChild(flex)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myFlexController: MyFlexController = new MyFlexController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('FlexSample')
+      NodeContainer(this.myFlexController);
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('Flex')<sup>20+</sup>
@@ -2933,10 +3110,49 @@ createNode(context: UIContext, nodeType: 'Scroll'): Scroll
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Scroll');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyScrollController extends NodeController {
+  public rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    let scroller: Scroller = new Scroller();
+    let scrollNode = typeNode.createNode(uiContext, 'Scroll');
+    scrollNode.initialize(scroller).size({ width: '100%', height: 500 });
+
+    let colNode = typeNode.createNode(uiContext, 'Column');
+    scrollNode.appendChild(colNode);
+
+    for (let i = 0; i < 10; i++) {
+      let text = typeNode.createNode(uiContext, 'Text');
+      text.initialize('item' + i)
+        .size({ width: '90%', height: 100 })
+        .textAlign(TextAlign.Center)
+        .backgroundColor(0xF9CF93);
+      colNode.appendChild(text);
+    }
+
+    this!.rootNode!.appendChild(scrollNode);
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myScrollController: MyScrollController = new MyScrollController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('ScrollSample')
+      NodeContainer(this.myScrollController)
+
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('Scroll')<sup>15+</sup>
@@ -3070,7 +3286,34 @@ createNode(context: UIContext, nodeType: 'RelativeContainer'): RelativeContainer
 <!--code_no_check-->
 
 ```ts
-typeNode.createNode(uiContext, 'RelativeContainer');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyRelativeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let relative = typeNode.createNode(uiContext, 'RelativeContainer')
+    relative.initialize()
+      .width('50%')
+      .height('50%')
+      .backgroundColor(Color.Gray)
+    node.appendChild(relative)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myRelativeController: MyRelativeController = new MyRelativeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('RelativeContainerSample')
+      NodeContainer(this.myRelativeController);
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('RelativeContainer')<sup>20+</sup>
@@ -3143,7 +3386,39 @@ createNode(context: UIContext, nodeType: 'Divider'): Divider
 <!--code_no_check-->
 
 ```ts
-typeNode.createNode(uiContext, 'Divider');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyDividerController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let divider = typeNode.createNode(uiContext, 'Divider')
+    divider.initialize()
+      .strokeWidth(1)
+    col.appendChild(divider)
+
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myDividerController: MyDividerController = new MyDividerController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('DividerSample')
+      NodeContainer(this.myDividerController);
+
+    }.width('100%')
+  }
+}
 ```
 ### LoadingProgress<sup>12+</sup>
 type LoadingProgress = TypedFrameNode&lt;LoadingProgressInterface, LoadingProgressAttribute&gt;
@@ -3298,7 +3573,41 @@ createNode(context: UIContext, nodeType: 'Blank'): Blank
 <!--code_no_check-->
 
 ```ts
-typeNode.createNode(uiContext, 'Blank');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyBlankController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let blank = typeNode.createNode(uiContext, 'Blank')
+    blank.initialize()
+      .width('50%')
+      .height('50%')
+      .backgroundColor(Color.Blue)
+    col.appendChild(blank)
+
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myBlankController: MyBlankController = new MyBlankController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('BlankSample')
+      NodeContainer(this.myBlankController);
+
+    }.width('100%')
+  }
+}
 ```
 ### Image<sup>12+</sup>
 type Image = TypedFrameNode&lt;ImageInterface, ImageAttribute&gt;
@@ -3408,10 +3717,53 @@ createNode(context: UIContext, nodeType: 'List'): List
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'List');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyListController extends NodeController {
+  public rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    let listNode = typeNode.createNode(uiContext, 'List');
+    listNode.initialize({ space: 3 }).size({ width: '100%', height: '100%' });
+
+    let listItemGroupNode = typeNode.createNode(uiContext, 'ListItemGroup');
+    listItemGroupNode.initialize({ space: 3 });
+    listNode.appendChild(listItemGroupNode);
+
+    let listItemNode1 = typeNode.createNode(uiContext, 'ListItem');
+    listItemNode1.initialize({ style: ListItemStyle.NONE }).height(100).borderWidth(1).backgroundColor('#FF00FF');
+    let text1 = typeNode.createNode(uiContext, 'Text');
+    text1.initialize('ListItem1');
+    listItemNode1.appendChild(text1);
+    listItemGroupNode.appendChild(listItemNode1);
+
+    let listItemNode2 = typeNode.createNode(uiContext, 'ListItem');
+    listItemNode2.initialize({ style: ListItemStyle.CARD }).height(100).borderWidth(1).backgroundColor('#FF00FF');
+    let text2 = typeNode.createNode(uiContext, 'Text');
+    text2.initialize('ListItem2');
+    listItemNode2.appendChild(text2);
+    listItemGroupNode.appendChild(listItemNode2);
+
+    this!.rootNode!.appendChild(listNode);
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myListController: MyListController = new MyListController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('ListSample')
+      NodeContainer(this.myListController)
+
+    }.width('100%')
+  }
+}
 ```
 
 ### getEvent('List')<sup>19+</sup>
@@ -3545,11 +3897,7 @@ createNode(context: UIContext, nodeType: 'ListItem'): ListItem
 
 **示例：** 
 
-<!--code_no_check-->
-
-```ts
-typeNode.createNode(uiContext, 'ListItem');
-```
+参考[createNode('List')](#createnodelist12)示例。
 
 ### getAttribute('ListItem')<sup>20+</sup>
 getAttribute(node: FrameNode, nodeType: 'ListItem'): ListItemAttribute | undefined
@@ -3724,10 +4072,42 @@ createNode(context: UIContext, nodeType: 'Button'): Button
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Button');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyButtonController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let button = typeNode.createNode(uiContext, 'Button')
+    button.initialize("This is Button")
+      .onClick(() => {
+        uiContext.getPromptAction().showToast({ message: "Button clicked" })
+      })
+    col.appendChild(button)
+
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myButtonController: MyButtonController = new MyButtonController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('ButtonSample')
+      NodeContainer(this.myButtonController);
+
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('Button')<sup>20+</sup>
@@ -3754,10 +4134,43 @@ getAttribute(node: FrameNode, nodeType: 'Button'): ButtonAttribute | undefined
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.getAttribute(node, 'Button');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyButtonController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let button = typeNode.createNode(uiContext, 'Button')
+    button.initialize("This is Button")
+      .onClick(() => {
+        uiContext.getPromptAction().showToast({ message: "Button clicked" })
+      })
+    typeNode.getAttribute(button,'Button')?.buttonStyle(ButtonStyleMode.TEXTUAL)
+    col.appendChild(button)
+
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myButtonController: MyButtonController = new MyButtonController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('ButtonSample')
+      NodeContainer(this.myButtonController);
+
+    }.width('100%')
+  }
+}
 ```
 
 ### ListItemGroup<sup>12+</sup>
@@ -3797,11 +4210,7 @@ createNode(context: UIContext, nodeType: 'ListItemGroup'): ListItemGroup
 
 **示例：** 
 
-<!--code_no_check-->
-
-```ts
-typeNode.createNode(uiContext, 'ListItemGroup');
-```
+参考[createNode('List')](#createnodelist12)示例。
 
 ### getAttribute('ListItemGroup')<sup>20+</sup>
 getAttribute(node: FrameNode, nodeType: 'ListItemGroup'): ListItemGroupAttribute | undefined
@@ -3870,10 +4279,60 @@ createNode(context: UIContext, nodeType: 'WaterFlow'): WaterFlow
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'WaterFlow');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyWaterFlowController extends NodeController {
+  public rootNode: FrameNode | null = null;
+  private minHeight: number = 80;
+  private maxHeight: number = 180;
+
+  // 计算FlowItem高
+  private getHeight() {
+    let ret = Math.floor(Math.random() * this.maxHeight);
+    return (ret > this.minHeight ? ret : this.minHeight);
+  }
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    let waterFlowNode = typeNode.createNode(uiContext, 'WaterFlow');
+    waterFlowNode.attribute.size({ width: '100%', height: '100%' })
+      .columnsTemplate('1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(5);
+
+    for (let i = 0; i < 20; i++) {
+      let flowItemNode = typeNode.createNode(uiContext, 'FlowItem');
+      flowItemNode.attribute.size({ width: '100%', height: this.getHeight() });
+      waterFlowNode.appendChild(flowItemNode);
+
+      let text = typeNode.createNode(uiContext, 'Text');
+      text.initialize('N' + i)
+        .size({ width: '100%', height: '100%' })
+        .textAlign(TextAlign.Center)
+        .backgroundColor(0xF9CF93);
+      flowItemNode.appendChild(text);
+    }
+
+    this!.rootNode!.appendChild(waterFlowNode);
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myWaterFlowController: MyWaterFlowController = new MyWaterFlowController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('WaterFlowSample')
+      NodeContainer(this.myWaterFlowController);
+
+    }.width('100%')
+  }
+}
 ```
 
 ### getEvent('WaterFlow')<sup>19+</sup>
@@ -4007,11 +4466,7 @@ createNode(context: UIContext, nodeType: 'FlowItem'): FlowItem
 
 **示例：** 
 
-<!--code_no_check-->
-
-```ts
-typeNode.createNode(uiContext, 'FlowItem');
-```
+参考[createNode('WaterFlow')](#createnodewaterflow12)示例。
 
 ### getAttribute('FlowItem')<sup>20+</sup>
 getAttribute(node: FrameNode, nodeType: 'FlowItem'): FlowItemAttribute | undefined
@@ -4309,10 +4764,55 @@ createNode(context: UIContext, nodeType: 'Grid'): Grid
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Grid');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyGridController extends NodeController {
+  public rootNode: FrameNode | null = null;
+  private scroller: Scroller = new Scroller();
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    let gridNode = typeNode.createNode(uiContext, 'Grid');
+    gridNode.initialize(this.scroller, { regularSize: [1, 1] })
+      .size({ width: '90%', height: 300 })
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .rowsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(10);
+
+    for (let i = 0; i < 25; i++) {
+      let gridItemNode = typeNode.createNode(uiContext, 'GridItem');
+      gridItemNode.initialize({ style: GridItemStyle.NONE }).size({ width: '100%', height: '100%' });
+
+      let text = typeNode.createNode(uiContext, 'Text');
+      text.initialize((i % 5).toString())
+        .size({ width: '100%', height: '100%' })
+        .textAlign(TextAlign.Center)
+        .backgroundColor(0xF9CF93);
+      gridItemNode.appendChild(text);
+      gridNode.appendChild(gridItemNode);
+    }
+
+    this!.rootNode!.appendChild(gridNode);
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myGridController: MyGridController = new MyGridController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('GridSample')
+      NodeContainer(this.myGridController)
+
+    }.width('100%')
+  }
+}
 ```
 
 ### getEvent('Grid')<sup>19+</sup>
@@ -4446,11 +4946,7 @@ createNode(context: UIContext, nodeType: 'GridItem'): GridItem
 
 **示例：** 
 
-<!--code_no_check-->
-
-```ts
-typeNode.createNode(uiContext, 'GridItem');
-```
+参考[createNode('Grid')](#createnodegrid14)示例。
 
 ### getAttribute('GridItem')<sup>20+</sup>
 getAttribute(node: FrameNode, nodeType: 'GridItem'): GridItemAttribute | undefined
@@ -4798,10 +5294,42 @@ createNode(context: UIContext, nodeType: 'Checkbox'): Checkbox
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Checkbox');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyCheckboxController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let checkbox = typeNode.createNode(uiContext, 'Checkbox')
+    checkbox.initialize({ name: 'checkbox1', group: 'checkboxGroup1' })
+
+    let checkbox1 = typeNode.createNode(uiContext, 'Checkbox')
+    checkbox1.initialize({ name: 'checkbox2', group: 'checkboxGroup1' })
+
+    col.appendChild(checkbox)
+    col.appendChild(checkbox1)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myCheckboxController: MyCheckboxController = new MyCheckboxController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('CheckboxSample')
+      NodeContainer(this.myCheckboxController);
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('Checkbox')<sup>20+</sup>
@@ -4828,10 +5356,42 @@ getAttribute(node: FrameNode, nodeType: 'Checkbox'): CheckboxAttribute | undefin
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.getAttribute(node, 'Checkbox');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyCheckboxController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let checkbox = typeNode.createNode(uiContext, 'Checkbox')
+    checkbox.initialize({ name: 'checkbox1', group: 'checkboxGroup1' })
+
+    let checkbox1 = typeNode.createNode(uiContext, 'Checkbox')
+    checkbox1.initialize({ name: 'checkbox2', group: 'checkboxGroup1' })
+    typeNode.getAttribute(checkbox1,'Checkbox')?.shape(CheckBoxShape.ROUNDED_SQUARE)
+    col.appendChild(checkbox)
+    col.appendChild(checkbox1)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myCheckboxController: MyCheckboxController = new MyCheckboxController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('CheckboxSample')
+      NodeContainer(this.myCheckboxController);
+    }.width('100%')
+  }
+}
 ```
 
 ### CheckboxGroup<sup>18+</sup>
@@ -4871,10 +5431,46 @@ createNode(context: UIContext, nodeType: 'CheckboxGroup'): CheckboxGroup
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'CheckboxGroup');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyCheckboxGroupController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let checkbox = typeNode.createNode(uiContext, 'Checkbox')
+    checkbox.initialize({ name: 'checkbox1', group: 'checkboxGroup1' })
+
+    let checkbox1 = typeNode.createNode(uiContext, 'Checkbox')
+    checkbox1.initialize({ name: 'checkbox2', group: 'checkboxGroup1' })
+
+    let checkboxGroup = typeNode.createNode(uiContext, 'CheckboxGroup')
+    checkboxGroup.initialize({ group: 'checkboxGroup1' })
+
+    col.appendChild(checkbox)
+    col.appendChild(checkbox1)
+    col.appendChild(checkboxGroup)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myCheckboxGroupController: MyCheckboxGroupController = new MyCheckboxGroupController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('CheckboxGroupSample')
+      NodeContainer(this.myCheckboxGroupController);
+    }.width('100%')
+  }
+}
 ```
 
 ### Rating<sup>18+</sup>
@@ -4914,10 +5510,39 @@ createNode(context: UIContext, nodeType: 'Rating'): Rating
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Rating');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyRatingController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let rating = typeNode.createNode(uiContext, 'Rating')
+    rating.initialize({ rating: 0 })
+    col.appendChild(rating)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myRatingController: MyRatingController = new MyRatingController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('RatingSample')
+
+      NodeContainer(this.myRatingController);
+
+    }.width('100%')
+  }
+}
 ```
 
 ### Radio<sup>18+</sup>
@@ -4957,10 +5582,42 @@ createNode(context: UIContext, nodeType: 'Radio'): Radio
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Radio');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyRadioController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let radio1 = typeNode.createNode(uiContext, 'Radio')
+    radio1.initialize({ value: 'radio1', group: 'radioGroup' })
+
+    let radio2 = typeNode.createNode(uiContext, 'Radio')
+    radio2.initialize({ value: 'radio2', group: 'radioGroup' })
+
+    col.appendChild(radio1)
+    col.appendChild(radio2)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myRadioController: MyRadioController = new MyRadioController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('RadioSample')
+      NodeContainer(this.myRadioController);
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('Radio')<sup>20+</sup>
@@ -4987,10 +5644,43 @@ getAttribute(node: FrameNode, nodeType: 'Radio'): RadioAttribute | undefined
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.getAttribute(node, 'Radio');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyRadioController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let radio1 = typeNode.createNode(uiContext, 'Radio')
+    radio1.initialize({ value: 'radio1', group: 'radioGroup' })
+    typeNode.getAttribute(radio1,'Radio')?.checked(true)
+    let radio2 = typeNode.createNode(uiContext, 'Radio')
+    radio2.initialize({ value: 'radio2', group: 'radioGroup' })
+
+
+    col.appendChild(radio1)
+    col.appendChild(radio2)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myRadioController: MyRadioController = new MyRadioController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('RadioSample')
+      NodeContainer(this.myRadioController);
+    }.width('100%')
+  }
+}
 ```
 
 ### Slider<sup>18+</sup>
@@ -5030,10 +5720,38 @@ createNode(context: UIContext, nodeType: 'Slider'): Slider
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Slider');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MySliderController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let slider = typeNode.createNode(uiContext, 'Slider')
+    slider.initialize({value:50})
+    col.appendChild(slider)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private mySliderController: MySliderController = new MySliderController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('SliderSample')
+      NodeContainer(this.mySliderController);
+
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('Slider')<sup>20+</sup>
@@ -5060,10 +5778,39 @@ getAttribute(node: FrameNode, nodeType: 'Slider'): SliderAttribute | undefined
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.getAttribute(node, 'Slider');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MySliderController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let slider = typeNode.createNode(uiContext, 'Slider')
+    slider.initialize({value:50})
+    typeNode.getAttribute(slider,'Slider')?.selectedColor(Color.Pink)
+    col.appendChild(slider)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private mySliderController: MySliderController = new MySliderController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('SliderSample')
+      NodeContainer(this.mySliderController);
+
+    }.width('100%')
+  }
+}
 ```
 
 ### Select<sup>18+</sup>
@@ -5103,10 +5850,37 @@ createNode(context: UIContext, nodeType: 'Select'): Select
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Select');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MySelectController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let select = typeNode.createNode(uiContext, 'Select')
+    select.initialize([{ value: "option one" }, { value: "option two" }, { value: "option three" }])
+    col.appendChild(select)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private mySelectController: MySelectController = new MySelectController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('SelectSample')
+      NodeContainer(this.mySelectController);
+    }.width('100%')
+  }
+}
 ```
 
 ### Toggle<sup>18+</sup>
@@ -5147,11 +5921,39 @@ createNode(context: UIContext, nodeType: 'Toggle', options?: ToggleOptions): Tog
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-let toggleOptions: ToggleOptions = {type: ToggleType.Button, isOn: false};
-typeNode.createNode(uiContext, 'Toggle', toggleOptions);
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyToggleController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let toggleSwitch = typeNode.createNode(uiContext, 'Toggle')
+    toggleSwitch.initialize({ type: ToggleType.Switch })
+    col.appendChild(toggleSwitch)
+
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myToggleController: MyToggleController = new MyToggleController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('ToggleSample')
+      NodeContainer(this.myToggleController);
+
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('Toggle')<sup>20+</sup>
@@ -5178,10 +5980,39 @@ getAttribute(node: FrameNode, nodeType: 'Toggle'): ToggleAttribute | undefined
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.getAttribute(node, 'Toggle');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyToggleController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let toggleSwitch = typeNode.createNode(uiContext, 'Toggle')
+    toggleSwitch.initialize({ type: ToggleType.Switch })
+    typeNode.getAttribute(toggleSwitch,'Toggle')?.selectedColor(Color.Orange)
+    col.appendChild(toggleSwitch)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myToggleController: MyToggleController = new MyToggleController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('ToggleSample')
+      NodeContainer(this.myToggleController);
+
+    }.width('100%')
+  }
+}
 ```
 
 ## NodeAdapter<sup>12+</sup>
@@ -5584,7 +6415,7 @@ class MyNodeController extends NodeController {
 
   addCommonEvent(frameNode: FrameNode) {
     frameNode.commonEvent.setOnClick((event: ClickEvent) => {
-      console.log(`Click FrameNode: ${JSON.stringify(event)}`)
+      console.info(`Click FrameNode: ${JSON.stringify(event)}`)
     })
   }
 
@@ -5613,7 +6444,7 @@ class MyNodeController extends NodeController {
   removeChild(index: number) {
     let childNode = this.rootNode!.getChild(index);
     if (childNode == null) {
-      console.log(`${TEST_TAG} getchild at index {${index}} : fail`);
+      console.info(`${TEST_TAG} getchild at index {${index}} : fail`);
       return;
     }
     this.rootNode!.removeChild(childNode);
@@ -5621,8 +6452,8 @@ class MyNodeController extends NodeController {
   }
 
   getChildNumber() {
-    console.log(TEST_TAG + " getChildNumber " + this.rootNode!.getChildrenCount())
-    console.log(TEST_TAG + " children count is " + this.childrenCount);
+    console.info(TEST_TAG + " getChildNumber " + this.rootNode!.getChildrenCount())
+    console.info(TEST_TAG + " children count is " + this.childrenCount);
   }
 
   clearChildren() {
@@ -5631,36 +6462,36 @@ class MyNodeController extends NodeController {
 
   searchFrameNode() {
     if (this.rootNode!.getFirstChild() === null) {
-      console.log(TEST_TAG + " the rootNode does not have child node.")
+      console.info(TEST_TAG + " the rootNode does not have child node.")
     }
     if (this.rootNode!.getFirstChild() === this.frameNode) {
-      console.log(TEST_TAG +
+      console.info(TEST_TAG +
         " getFirstChild  result: success. The first child of the rootNode is equals to frameNode.");
     } else {
-      console.log(TEST_TAG +
+      console.info(TEST_TAG +
         " getFirstChild  result: fail. The first child of the rootNode is not equals to frameNode.");
     }
     if (this.frameNode!.getChild(5) === this.frameNode!.getChild(4)!.getNextSibling()) {
-      console.log(TEST_TAG + " getNextSibling  result: success.");
+      console.info(TEST_TAG + " getNextSibling  result: success.");
     } else {
-      console.log(TEST_TAG + " getNextSibling  result: fail.");
+      console.info(TEST_TAG + " getNextSibling  result: fail.");
     }
     if (this.frameNode!.getChild(3) === this.frameNode!.getChild(4)!.getPreviousSibling()) {
-      console.log(TEST_TAG + " getPreviousSibling  result: success.");
+      console.info(TEST_TAG + " getPreviousSibling  result: success.");
     } else {
-      console.log(TEST_TAG + " getPreviousSibling  result: fail.");
+      console.info(TEST_TAG + " getPreviousSibling  result: fail.");
     }
     if (this.rootNode!.getFirstChild() !== null && this.rootNode!.getFirstChild()!.getParent() === this.rootNode) {
-      console.log(TEST_TAG + " getParent  result: success.");
+      console.info(TEST_TAG + " getParent  result: success.");
     } else {
-      console.log(TEST_TAG + " getParent  result: fail.");
+      console.info(TEST_TAG + " getParent  result: fail.");
     }
     if (this.rootNode!.getParent() !== undefined || this.rootNode!.getParent() !== null) {
-      console.log(TEST_TAG + " get ArkTsNode success.")
-      console.log(TEST_TAG + " check rootNode whether is modifiable " + this.rootNode!.isModifiable())
-      console.log(TEST_TAG + " check getParent whether is modifiable " + this.rootNode!.getParent()!.isModifiable())
+      console.info(TEST_TAG + " get ArkTsNode success.")
+      console.info(TEST_TAG + " check rootNode whether is modifiable " + this.rootNode!.isModifiable())
+      console.info(TEST_TAG + " check getParent whether is modifiable " + this.rootNode!.getParent()!.isModifiable())
     } else {
-      console.log(TEST_TAG + " get ArkTsNode fail.");
+      console.info(TEST_TAG + " get ArkTsNode fail.");
     }
   }
 
@@ -5669,159 +6500,159 @@ class MyNodeController extends NodeController {
     try {
       currentNode!.moveTo(this.rootNode, 0);
       if (this.rootNode!.getChild(0) === currentNode) {
-        console.log(TEST_TAG + " moveTo  result: success.");
+        console.info(TEST_TAG + " moveTo  result: success.");
       } else {
-        console.log(TEST_TAG + " moveTo  result: fail.");
+        console.info(TEST_TAG + " moveTo  result: fail.");
       }
     } catch (err) {
-      console.log(TEST_TAG + " " + (err as BusinessError).code + " : " + (err as BusinessError).message);
-      console.log(TEST_TAG + " moveTo  result: fail.");
+      console.info(TEST_TAG + " " + (err as BusinessError).code + " : " + (err as BusinessError).message);
+      console.info(TEST_TAG + " moveTo  result: fail.");
     }
   }
 
   getPositionToWindow() {
     let positionToWindow = this.rootNode?.getPositionToWindow();
-    console.log(TEST_TAG + JSON.stringify(positionToWindow));
+    console.info(TEST_TAG + JSON.stringify(positionToWindow));
   }
 
   getPositionToParent() {
     let positionToParent = this.rootNode?.getPositionToParent();
-    console.log(TEST_TAG + JSON.stringify(positionToParent));
+    console.info(TEST_TAG + JSON.stringify(positionToParent));
   }
 
   getPositionToScreen() {
     let positionToScreen = this.rootNode?.getPositionToScreen();
-    console.log(TEST_TAG + JSON.stringify(positionToScreen));
+    console.info(TEST_TAG + JSON.stringify(positionToScreen));
   }
 
   getGlobalPositionOnDisplay() {
     let positionOnGlobalDisplay = this.rootNode?.getGlobalPositionOnDisplay();
-    console.log(TEST_TAG + JSON.stringify(positionOnGlobalDisplay));
+    console.info(TEST_TAG + JSON.stringify(positionOnGlobalDisplay));
   }
 
   getPositionToWindowWithTransform() {
     let positionToWindowWithTransform = this.rootNode?.getPositionToWindowWithTransform();
-    console.log(TEST_TAG + JSON.stringify(positionToWindowWithTransform));
+    console.info(TEST_TAG + JSON.stringify(positionToWindowWithTransform));
   }
 
   getPositionToParentWithTransform() {
     let positionToParentWithTransform = this.rootNode?.getPositionToParentWithTransform();
-    console.log(TEST_TAG + JSON.stringify(positionToParentWithTransform));
+    console.info(TEST_TAG + JSON.stringify(positionToParentWithTransform));
   }
 
   getPositionToScreenWithTransform() {
     let positionToScreenWithTransform = this.rootNode?.getPositionToScreenWithTransform();
-    console.log(TEST_TAG + JSON.stringify(positionToScreenWithTransform));
+    console.info(TEST_TAG + JSON.stringify(positionToScreenWithTransform));
   }
 
   getMeasuredSize() {
     let measuredSize = this.frameNode?.getMeasuredSize();
-    console.log(TEST_TAG + JSON.stringify(measuredSize));
+    console.info(TEST_TAG + JSON.stringify(measuredSize));
   }
 
   getLayoutPosition() {
     let layoutPosition = this.frameNode?.getLayoutPosition();
-    console.log(TEST_TAG + JSON.stringify(layoutPosition));
+    console.info(TEST_TAG + JSON.stringify(layoutPosition));
   }
 
   getUserConfigBorderWidth() {
     let userConfigBorderWidth = this.frameNode?.getUserConfigBorderWidth();
-    console.log(TEST_TAG + JSON.stringify(userConfigBorderWidth));
+    console.info(TEST_TAG + JSON.stringify(userConfigBorderWidth));
   }
 
   getUserConfigPadding() {
     let userConfigPadding = this.frameNode?.getUserConfigPadding();
-    console.log(TEST_TAG + JSON.stringify(userConfigPadding));
+    console.info(TEST_TAG + JSON.stringify(userConfigPadding));
   }
 
   getUserConfigMargin() {
     let userConfigMargin = this.frameNode?.getUserConfigMargin();
-    console.log(TEST_TAG + JSON.stringify(userConfigMargin));
+    console.info(TEST_TAG + JSON.stringify(userConfigMargin));
   }
 
   getUserConfigSize() {
     let userConfigSize = this.frameNode?.getUserConfigSize();
-    console.log(TEST_TAG + JSON.stringify(userConfigSize));
+    console.info(TEST_TAG + JSON.stringify(userConfigSize));
   }
 
   getId() {
     let id = this.frameNode?.getId();
-    console.log(TEST_TAG + id);
+    console.info(TEST_TAG + id);
   }
 
   getUniqueId() {
     let uniqueId = this.frameNode?.getUniqueId();
-    console.log(TEST_TAG + uniqueId);
+    console.info(TEST_TAG + uniqueId);
   }
 
   getNodeType() {
     let nodeType = this.frameNode?.getNodeType();
-    console.log(TEST_TAG + nodeType);
+    console.info(TEST_TAG + nodeType);
   }
 
   getOpacity() {
     let opacity = this.frameNode?.getOpacity();
-    console.log(TEST_TAG + JSON.stringify(opacity));
+    console.info(TEST_TAG + JSON.stringify(opacity));
   }
 
   isVisible() {
     let visible = this.frameNode?.isVisible();
-    console.log(TEST_TAG + JSON.stringify(visible));
+    console.info(TEST_TAG + JSON.stringify(visible));
   }
 
   isClipToFrame() {
     let clipToFrame = this.frameNode?.isClipToFrame();
-    console.log(TEST_TAG + JSON.stringify(clipToFrame));
+    console.info(TEST_TAG + JSON.stringify(clipToFrame));
   }
 
   isAttached() {
     let attached = this.frameNode?.isAttached();
-    console.log(TEST_TAG + JSON.stringify(attached));
+    console.info(TEST_TAG + JSON.stringify(attached));
   }
 
   getInspectorInfo() {
     let inspectorInfo = this.frameNode?.getInspectorInfo();
-    console.log(TEST_TAG + JSON.stringify(inspectorInfo));
+    console.info(TEST_TAG + JSON.stringify(inspectorInfo));
   }
 
   setCrossLanguageOptions() {
-    console.log(TEST_TAG + " getCrossLanguageOptions " + JSON.stringify(this.frameNode?.getCrossLanguageOptions()));
+    console.info(TEST_TAG + " getCrossLanguageOptions " + JSON.stringify(this.frameNode?.getCrossLanguageOptions()));
     try {
       this.frameNode?.setCrossLanguageOptions({
         attributeSetting: true
       });
-      console.log(TEST_TAG + " setCrossLanguageOptions success.");
+      console.info(TEST_TAG + " setCrossLanguageOptions success.");
     } catch (err) {
-      console.log(TEST_TAG + " " + (err as BusinessError).code + " : " + (err as BusinessError).message);
-      console.log(TEST_TAG + " setCrossLanguageOptions fail.");
+      console.error(TEST_TAG + " " + (err as BusinessError).code + " : " + (err as BusinessError).message);
+      console.error(TEST_TAG + " setCrossLanguageOptions fail.");
     }
-    console.log(TEST_TAG + " getCrossLanguageOptions " + JSON.stringify(this.frameNode?.getCrossLanguageOptions()));
+    console.info(TEST_TAG + " getCrossLanguageOptions " + JSON.stringify(this.frameNode?.getCrossLanguageOptions()));
   }
 
   getInteractionEventBindingInfo() {
     let bindingInfo = this.frameNode?.getInteractionEventBindingInfo(EventQueryType.ON_CLICK);
-    console.log(TEST_TAG + bindingInfo?.baseEventRegistered);
-    console.log(TEST_TAG + bindingInfo?.nodeEventRegistered);
-    console.log(TEST_TAG + bindingInfo?.nativeEventRegistered);
-    console.log(TEST_TAG + bindingInfo?.builtInEventRegistered);
-    console.log(TEST_TAG + JSON.stringify(bindingInfo));
+    console.info(TEST_TAG + bindingInfo?.baseEventRegistered);
+    console.info(TEST_TAG + bindingInfo?.nodeEventRegistered);
+    console.info(TEST_TAG + bindingInfo?.nativeEventRegistered);
+    console.info(TEST_TAG + bindingInfo?.builtInEventRegistered);
+    console.info(TEST_TAG + JSON.stringify(bindingInfo));
   }
 
   throwError() {
     try {
       this.rootNode!.getParent()!.clearChildren();
     } catch (err) {
-      console.log(TEST_TAG + " " + (err as BusinessError).code + " : " + (err as BusinessError).message);
+      console.error(TEST_TAG + " " + (err as BusinessError).code + " : " + (err as BusinessError).message);
     }
     try {
       this.rootNode!.getParent()!.appendChild(new FrameNode(this.uiContext));
     } catch (err) {
-      console.log(TEST_TAG + " " + (err as BusinessError).code + " : " + (err as BusinessError).message);
+      console.error(TEST_TAG + " " + (err as BusinessError).code + " : " + (err as BusinessError).message);
     }
     try {
       this.rootNode!.getParent()!.removeChild(this.rootNode!.getParent()!.getChild(0));
     } catch (err) {
-      console.log(TEST_TAG + " " + (err as BusinessError).code + " : " + (err as BusinessError).message);
+      console.error(TEST_TAG + " " + (err as BusinessError).code + " : " + (err as BusinessError).message);
     }
   }
 }
@@ -6019,7 +6850,7 @@ struct Index {
                 for (let i = 1; i < 4; i++) {
                   const key = 'customProperty' + i;
                   const property = node.getCustomProperty(key);
-                  console.log(TEST_TAG + key, JSON.stringify(property));
+                  console.info(TEST_TAG + key, JSON.stringify(property));
                 }
               }
             }
@@ -6183,7 +7014,7 @@ function buildData(params: Params) {
           Text(item)
             .fontSize(20)
             .onAppear(() => {
-              console.log(TEST_TAG + " node appear: " + item)
+              console.info(TEST_TAG + " node appear: " + item)
             })
             .backgroundColor(Color.Pink)
             .margin({
@@ -6226,40 +7057,40 @@ class MyNodeController extends NodeController {
   }
 
   getFirstChildIndexWithoutExpand() {
-    console.log(`${TEST_TAG} getFirstChildIndexWithoutExpand: ${this.rootNode!.getFirstChildIndexWithoutExpand()}`);
+    console.info(`${TEST_TAG} getFirstChildIndexWithoutExpand: ${this.rootNode!.getFirstChildIndexWithoutExpand()}`);
   }
 
   getLastChildIndexWithoutExpand() {
-    console.log(`${TEST_TAG} getLastChildIndexWithoutExpand: ${this.rootNode!.getLastChildIndexWithoutExpand()}`);
+    console.info(`${TEST_TAG} getLastChildIndexWithoutExpand: ${this.rootNode!.getLastChildIndexWithoutExpand()}`);
   }
 
   getChildWithNotExpand() {
     const childNode = this.rootNode!.getChild(3, ExpandMode.NOT_EXPAND);
-    console.log(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND): " + childNode!.getId());
+    console.info(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND): " + childNode!.getId());
     if (childNode!.getId() === "N9") {
-      console.log(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND)  result: success.");
+      console.info(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND)  result: success.");
     } else {
-      console.log(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND)  result: fail.");
+      console.info(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND)  result: fail.");
     }
   }
 
   getChildWithExpand() {
     const childNode = this.rootNode!.getChild(3, ExpandMode.EXPAND);
-    console.log(TEST_TAG + " getChild(3, ExpandMode.EXPAND): " + childNode!.getId());
+    console.info(TEST_TAG + " getChild(3, ExpandMode.EXPAND): " + childNode!.getId());
     if (childNode!.getId() === "N3") {
-      console.log(TEST_TAG + " getChild(3, ExpandMode.EXPAND)  result: success.");
+      console.info(TEST_TAG + " getChild(3, ExpandMode.EXPAND)  result: success.");
     } else {
-      console.log(TEST_TAG + " getChild(3, ExpandMode.EXPAND)  result: fail.");
+      console.info(TEST_TAG + " getChild(3, ExpandMode.EXPAND)  result: fail.");
     }
   }
   
   getChildWithLazyExpand() {
     const childNode = this.rootNode!.getChild(3, ExpandMode.LAZY_EXPAND);
-    console.log(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND): " + childNode!.getId());
+    console.info(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND): " + childNode!.getId());
     if (childNode!.getId() === "N3") {
-      console.log(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND)  result: success.");
+      console.info(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND)  result: success.");
     } else {
-      console.log(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND)  result: fail.");
+      console.info(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND)  result: fail.");
     }
   }
 }
@@ -6337,33 +7168,33 @@ class MyNodeController extends NodeController {
 
   addCommonEvent(frameNode: FrameNode) {
     frameNode.commonEvent.setOnHover(((isHover: boolean, event: HoverEvent): void => {
-      console.log(`isHover FrameNode: ${isHover}`);
-      console.log(`isHover FrameNode: ${JSON.stringify(event)}`);
+      console.info(`isHover FrameNode: ${isHover}`);
+      console.info(`isHover FrameNode: ${JSON.stringify(event)}`);
       event.stopPropagation();
     }))
     frameNode.commonEvent.setOnClick((event: ClickEvent) => {
-      console.log(`Click FrameNode: ${JSON.stringify(event)}`)
+      console.info(`Click FrameNode: ${JSON.stringify(event)}`)
     })
     frameNode.commonEvent.setOnTouch((event: TouchEvent) => {
-      console.log(`touch FrameNode: ${JSON.stringify(event)}`)
+      console.info(`touch FrameNode: ${JSON.stringify(event)}`)
     })
     frameNode.commonEvent.setOnAppear(() => {
-      console.log(`on Appear FrameNode`)
+      console.info(`on Appear FrameNode`)
     })
     frameNode.commonEvent.setOnDisappear(() => {
-      console.log(`onDisAppear FrameNode`)
+      console.info(`onDisAppear FrameNode`)
     })
     frameNode.commonEvent.setOnFocus(() => {
-      console.log(`onFocus FrameNode`)
+      console.info(`onFocus FrameNode`)
     })
     frameNode.commonEvent.setOnBlur(() => {
-      console.log(`onBlur FrameNode`)
+      console.info(`onBlur FrameNode`)
     })
     frameNode.commonEvent.setOnKeyEvent((event: KeyEvent) => {
-      console.log(`Key FrameNode: ${JSON.stringify(event)}`)
+      console.info(`Key FrameNode: ${JSON.stringify(event)}`)
     })
     frameNode.commonEvent.setOnMouse((event: MouseEvent) => {
-      console.log(`Mouse FrameNode: ${JSON.stringify(event)}`)
+      console.info(`Mouse FrameNode: ${JSON.stringify(event)}`)
     })
     frameNode.commonEvent.setOnSizeChange((oldValue: SizeOptions, newValue: SizeOptions) => {
       console.info(`onSizeChange FrameNode: oldValue is ${JSON.stringify(oldValue)} value is ${JSON.stringify(newValue)}`)
@@ -6387,33 +7218,33 @@ struct Index {
         .fontSize(16)
         .borderWidth(1)
         .onHover(((isHover: boolean, event: HoverEvent): void => {
-          console.log(`isHover Text: ${isHover}`);
-          console.log(`isHover Text: ${JSON.stringify(event)}`);
+          console.info(`isHover Text: ${isHover}`);
+          console.info(`isHover Text: ${JSON.stringify(event)}`);
           event.stopPropagation();
         }))
         .onClick((event: ClickEvent) => {
-          console.log(`Click Text    : ${JSON.stringify(event)}`)
+          console.info(`Click Text    : ${JSON.stringify(event)}`)
         })
         .onTouch((event: TouchEvent) => {
-          console.log(`touch Text    : ${JSON.stringify(event)}`)
+          console.info(`touch Text    : ${JSON.stringify(event)}`)
         })
         .onAppear(() => {
-          console.log(`on Appear Text`)
+          console.info(`on Appear Text`)
         })
         .onDisAppear(() => {
-          console.log(`onDisAppear Text`)
+          console.info(`onDisAppear Text`)
         })
         .onFocus(() => {
-          console.log(`onFocus Text`)
+          console.info(`onFocus Text`)
         })
         .onBlur(() => {
-          console.log(`onBlur Text`)
+          console.info(`onBlur Text`)
         })
         .onKeyEvent((event: KeyEvent) => {
-          console.log(`Key Text    : ${JSON.stringify(event)}`)
+          console.info(`Key Text    : ${JSON.stringify(event)}`)
         })
         .onMouse((event: MouseEvent) => {
-          console.log(`Mouse Text : ${JSON.stringify(event)}`)
+          console.info(`Mouse Text : ${JSON.stringify(event)}`)
         })
         .onSizeChange((oldValue: SizeOptions, newValue: SizeOptions) => {
           console.info(`onSizeChange Text: oldValue is ${JSON.stringify(oldValue)} value is ${JSON.stringify(newValue)}`)
@@ -6607,14 +7438,14 @@ export struct TrackNode {
 
   aboutToDisappear(): void {
     TrackManager.get().removeTrack(this.trackShadow.id)
-    console.log("Track disappear:" + this.trackShadow.id)
+    console.info("Track disappear:" + this.trackShadow.id)
   }
 
   onDidBuild(): void {
     // 构建埋点的虚拟树，获取的node为当前页面的根节点（用例中为Row）。
     let uid = this.getUniqueId()
     let node: FrameNode | null = this.getUIContext().getFrameNodeByUniqueId(uid);
-    console.log("Track onDidBuild node:" + node?.getNodeType())
+    console.info("Track onDidBuild node:" + node?.getNodeType())
     if (node === null) {
       return
     }
@@ -6626,7 +7457,7 @@ export struct TrackNode {
     node?.commonEvent.setOnVisibleAreaApproximateChange(
       { ratios: [0, 0.1, 0.2, 0.5, 0.8, 1], expectedUpdateInterval: 500 },
       (ratioInc: boolean, ratio: number) => {
-        console.log(`Node ${node?.getUniqueId()}:${node?.getNodeType()} is visibleRatio is ${ratio}`);
+        console.info(`Node ${node?.getUniqueId()}:${node?.getNodeType()} is visibleRatio is ${ratio}`);
         this.trackShadow.visibleRatio = ratio
       })
 
@@ -6651,7 +7482,7 @@ export struct TrackNode {
       node?.commonEvent.setOnAppear(() => {
         let attached = attachTrackToParent(parent);
         if (attached) {
-          console.log("Track lazy attached:" + this.trackShadow.id)
+          console.info("Track lazy attached:" + this.trackShadow.id)
         }
       })
     }
@@ -6689,7 +7520,7 @@ export class TrackShadow {
 
   // 通过全局dump输出埋点树的信息
   dump(depth: number = 0): void {
-    console.log("Track DP:" + depth + " id:" + this.id + " areaPer:" + this.track?.areaPercent + " visibleRatio:" + this.visibleRatio)
+    console.info("Track DP:" + depth + " id:" + this.id + " areaPer:" + this.track?.areaPercent + " visibleRatio:" + this.visibleRatio)
     this.childIds.forEach((value: number) => {
       TrackManager.get().getTrackById(value)?.dump(depth + 1)
     })
@@ -6713,7 +7544,7 @@ export class TrackManager {
     if (this.trackMap.size == 0) {
       this.rootTrack = track
     }
-    console.log("Track add id:" + id)
+    console.info("Track add id:" + id)
     this.trackMap.set(id, track)
   }
 
@@ -6733,7 +7564,7 @@ export class TrackManager {
   startListenClick(context: UIContext) {
     // 通过无感监听获取FrameNode查找埋点信息。
     context.getUIObserver().on("willClick", (event: ClickEvent, node?: FrameNode) => {
-      console.log("Track clicked:" + node)
+      console.info("Track clicked:" + node)
       if (node == undefined) {
         return
       }
@@ -6772,32 +7603,32 @@ class MyNodeController extends NodeController {
   addGestureEvent(frameNode: FrameNode) {
     frameNode.gestureEvent.addGesture(new PanGestureHandler()
         .onActionStart((event: GestureEvent) => {
-            console.log(`Pan start: ${JSON.stringify(event)}`);
+            console.info(`Pan start: ${JSON.stringify(event)}`);
         })
         .onActionUpdate((event: GestureEvent) => {
-            console.log(`Pan update: ${JSON.stringify(event)}`);
+            console.info(`Pan update: ${JSON.stringify(event)}`);
         })
         .onActionEnd((event: GestureEvent) => {
-            console.log(`Pan end: ${JSON.stringify(event)}`);
+            console.info(`Pan end: ${JSON.stringify(event)}`);
         })
         .onActionCancel(() => {
-            console.log('Pan cancel');
+            console.info('Pan cancel');
         })
     )
     frameNode.gestureEvent.addGesture(new LongPressGestureHandler()
         .onAction((event: GestureEvent) => {
-            console.log(`Long press action: ${JSON.stringify(event)}`);
+            console.info(`Long press action: ${JSON.stringify(event)}`);
         })
         .onActionEnd((event: GestureEvent) => {
-            console.log(`Long press action end: ${JSON.stringify(event)}`);
+            console.info(`Long press action end: ${JSON.stringify(event)}`);
         })
         .onActionCancel(() => {
-            console.log('Long press cancel');
+            console.info('Long press cancel');
         })
     )
     frameNode.gestureEvent.addGesture(new TapGestureHandler()
         .onAction((event: GestureEvent) => {
-            console.log(`Tap action: ${JSON.stringify(event)}`);
+            console.info(`Tap action: ${JSON.stringify(event)}`);
         })
     )
   }
@@ -6962,7 +7793,7 @@ class MyNodeAdapter extends NodeAdapter {
 
   refreshData(): void {
     let items = this.getAllAvailableItems()
-    console.log("UINodeAdapter get All items:" + items.length);
+    console.info("UINodeAdapter get All items:" + items.length);
     this.reloadAllItems();
   }
 
@@ -6993,14 +7824,14 @@ class MyNodeAdapter extends NodeAdapter {
     }
     this.insertItem(from, count);
     this.totalNodeCount += count;
-    console.log("UINodeAdapter after insert count:" + this.totalNodeCount);
+    console.info("UINodeAdapter after insert count:" + this.totalNodeCount);
   }
 
   removeData(from: number, count: number): void {
     let arr = this.data.splice(from, count);
     this.removeItem(from, count);
     this.totalNodeCount -= arr.length;
-    console.log("UINodeAdapter after remove count:" + this.totalNodeCount);
+    console.info("UINodeAdapter after remove count:" + this.totalNodeCount);
   }
 
   moveData(from: number, to: number): void {
@@ -7010,32 +7841,32 @@ class MyNodeAdapter extends NodeAdapter {
   }
 
   onAttachToNode(target: FrameNode): void {
-    console.log("UINodeAdapter onAttachToNode id:" + target.getUniqueId());
+    console.info("UINodeAdapter onAttachToNode id:" + target.getUniqueId());
     this.hostNode = target;
   }
 
   onDetachFromNode(): void {
-    console.log("UINodeAdapter onDetachFromNode");
+    console.info("UINodeAdapter onDetachFromNode");
   }
 
   onGetChildId(index: number): number {
-    console.log("UINodeAdapter onGetChildId:" + index);
+    console.info("UINodeAdapter onGetChildId:" + index);
     return index;
   }
 
   onCreateChild(index: number): FrameNode {
-    console.log("UINodeAdapter onCreateChild:" + index);
+    console.info("UINodeAdapter onCreateChild:" + index);
     if (this.cachePool.length > 0) {
       let cacheNode = this.cachePool.pop();
       if (cacheNode !== undefined) {
-        console.log("UINodeAdapter onCreateChild reused id:" + cacheNode.getUniqueId());
+        console.info("UINodeAdapter onCreateChild reused id:" + cacheNode.getUniqueId());
         let text = cacheNode?.getFirstChild();
         let textNode = text as typeNode.Text;
         textNode?.initialize(this.data[index]).fontSize(20);
         return cacheNode;
       }
     }
-    console.log("UINodeAdapter onCreateChild createNew");
+    console.info("UINodeAdapter onCreateChild createNew");
     let itemNode = typeNode.createNode(this.uiContext, "ListItem");
     let textNode = typeNode.createNode(this.uiContext, "Text");
     textNode.initialize(this.data[index]).fontSize(20);
@@ -7044,10 +7875,10 @@ class MyNodeAdapter extends NodeAdapter {
   }
 
   onDisposeChild(id: number, node: FrameNode): void {
-    console.log("UINodeAdapter onDisposeChild:" + id);
+    console.info("UINodeAdapter onDisposeChild:" + id);
     if (this.cachePool.length < 10) {
       if (!this.cachePool.includes(node)) {
-        console.log("UINodeAdapter caching node id:" + node.getUniqueId());
+        console.info("UINodeAdapter caching node id:" + node.getUniqueId());
         this.cachePool.push(node);
       }
     } else {
@@ -7165,25 +7996,25 @@ class MyNodeController extends NodeController {
   }
 
   onAttach(): void {
-    console.log("myButton on attach");
+    console.info("myButton on attach");
   }
 
   onDetach(): void {
-    console.log("myButton on detach");
+    console.info("myButton on detach");
   }
 
   //  onBind时，子节点已经重新上树，此时调用reuse，保证子组件的能重新被复用。
   onBind(containerId: number): void {
     // 该方法触发子组件复用，全局复用场景下，复用FrameNode后端资源。
     this.rootNode?.reuse();
-    console.log("myButton reuse");
+    console.info("myButton reuse");
   }
 
   //  onUnbind时，子节点已经完全下树，此时调用recycle，保证子组件的能完全被回收。
   onUnbind(containerId: number): void {
     // 该方法触发子组件的回收，全局复用场景下，回收FrameNode后端资源用于重新利用。
     this.rootNode?.recycle();
-    console.log("myButton recycle");
+    console.info("myButton recycle");
   }
 
   getButtonNode(): BuilderNode<[Params]> | null {
@@ -7449,29 +8280,29 @@ class MyNodeController extends NodeController {
   addCommonEvent(frameNode: FrameNode) {
     let gridEvent: UIGridEvent | undefined = typeNode.getEvent(frameNode, "Grid");
     gridEvent?.setOnWillScroll((scrollOffset: number, scrollState: ScrollState, scrollSource: ScrollSource) => {
-      console.log(`onWillScroll scrollOffset = ${scrollOffset}, scrollState = ${scrollState}, scrollSource = ${scrollSource}`)
+      console.info(`onWillScroll scrollOffset = ${scrollOffset}, scrollState = ${scrollState}, scrollSource = ${scrollSource}`)
     })
     gridEvent?.setOnDidScroll((scrollOffset: number, scrollState: ScrollState) => {
-      console.log(`onDidScroll scrollOffset = ${scrollOffset}, scrollState = ${scrollState}`)
+      console.info(`onDidScroll scrollOffset = ${scrollOffset}, scrollState = ${scrollState}`)
     })
     gridEvent?.setOnReachStart(() => {
-      console.log(`onReachStart`)
+      console.info(`onReachStart`)
     })
     gridEvent?.setOnReachEnd(() => {
-      console.log(`onReachEnd`)
+      console.info(`onReachEnd`)
     })
     gridEvent?.setOnScrollStart(() => {
-      console.log(`onScrollStart`)
+      console.info(`onScrollStart`)
     })
     gridEvent?.setOnScrollStop(() => {
-      console.log(`onScrollStop`)
+      console.info(`onScrollStop`)
     })
     gridEvent?.setOnScrollFrameBegin((offset: number, state: ScrollState) => {
-      console.log(`onScrollFrameBegin offset = ${offset}, state = ${state}`)
+      console.info(`onScrollFrameBegin offset = ${offset}, state = ${state}`)
       return undefined;
     })
     gridEvent?.setOnScrollIndex((first: number, last: number) => {
-      console.log(`onScrollIndex start = ${first}, end = ${last}`)
+      console.info(`onScrollIndex start = ${first}, end = ${last}`)
     })
   }
 }
@@ -7666,18 +8497,18 @@ class MyNodeAdapter extends NodeAdapter {
   }
 
   onCreateChild(index: number): FrameNode {
-    console.log("UINodeAdapter onCreateChild:" + index);
+    console.info("UINodeAdapter onCreateChild:" + index);
     if (this.cachePool.length > 0) {
       let cacheNode = this.cachePool.pop();
       if (cacheNode !== undefined) {
-        console.log("UINodeAdapter onCreateChild reused id:" + cacheNode.getUniqueId());
+        console.info("UINodeAdapter onCreateChild reused id:" + cacheNode.getUniqueId());
         let text = cacheNode?.getFirstChild();
         let textNode = text as typeNode.Text;
         textNode?.initialize(this.data[index]).fontSize(20);
         return cacheNode;
       }
     }
-    console.log("UINodeAdapter onCreateChild createNew");
+    console.info("UINodeAdapter onCreateChild createNew");
     let itemNode = typeNode.createNode(this.uiContext, "ListItem");
     let textNode = typeNode.createNode(this.uiContext, "Text");
     textNode.initialize(this.data[index]).fontSize(20);
@@ -7777,11 +8608,11 @@ struct ChildView {
         .onClick(() => {
           // 通过id查询获得Text节点的FrameNode对象。不建议设置多个相同的id的节点。
           let node = this.getUIContext().getFrameNodeById("HelloWorld");
-          console.log(`Find HelloWorld Tag:${node!.getNodeType()} id:${node!.getUniqueId()}`);
+          console.info(`Find HelloWorld Tag:${node!.getNodeType()} id:${node!.getUniqueId()}`);
           // 通过while循环遍历查询页面的根节点。如果当前节点为自定义组件，则会继续遍历其父节点。
           while (node && node.getParent() && node.getParent()!.getUniqueId() > 0) {
             node = node.getParent();
-            console.log(`Find FrameNode Tag:${node!.getNodeType()} id:${node!.getUniqueId()}`);
+            console.info(`Find FrameNode Tag:${node!.getNodeType()} id:${node!.getUniqueId()}`);
           }
         })
     }

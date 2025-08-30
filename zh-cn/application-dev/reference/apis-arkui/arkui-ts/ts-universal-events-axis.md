@@ -6,7 +6,7 @@
 <!--Tester: @songyanhong-->
 <!--Adviser: @HelloCrease-->
 
-轴事件指组件被鼠标滚轮滚动或触控板双指沿特定方向（轴）滑动进行交互时触发的事件。此处“轴”指的是二维坐标系中的方向，分为水平方向（X轴）和垂直方向（Y轴）。
+轴事件指组件被鼠标滚轮滚动或触控板双指沿特定方向（轴）滑动时触发的事件。“轴”指二维坐标系中的方向，分为水平（X轴）和垂直（Y轴）。
 
 >  **说明：**
 >
@@ -16,7 +16,7 @@
 
 onAxisEvent(event: Callback\<AxisEvent>): T
 
-鼠标滚轮滚动或触控板双指移动触发该回调。
+鼠标滚轮滚动或触控板双指滑动时触发该回调。
 
 **原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
@@ -36,7 +36,7 @@ onAxisEvent(event: Callback\<AxisEvent>): T
 
 ## AxisEvent
 
-轴事件的对象说明，继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)。
+轴事件的对象说明，继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent8)。
 
 **原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
@@ -44,17 +44,19 @@ onAxisEvent(event: Callback\<AxisEvent>): T
 
 ### 属性
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称            | 类型  | 只读|可选                              | 说明                                                    |
 | ------------------- | -----------------------|------|----- | -------------------------------------------------------- |
-| action              | [AxisAction](ts-appendix-enums.md#axisaction17)           | 是   | 否   | 轴事件的动作类型                   |
-| x                   | number                 | 是   | 否   | 鼠标光标相对于被点击元素左边缘的X坐标。<br/>单位：vp  |
-| y                   | number                 | 是   | 否   | 鼠标光标相对于被点击元素上边缘的Y坐标。<br/>单位：vp  |
-| windowX             | number                 | 是   | 否   | 鼠标光标相对于当前窗口左上角的X坐标。<br/>单位：vp |
-| windowY             | number                 | 是   | 否   | 鼠标光标相对于当前窗口左上角的Y坐标。<br/>单位：vp |
-| displayX            | number                 | 是   | 否   | 鼠标光标相对于当前屏幕左上角的X坐标。<br/>单位：vp |
-| displayY            | number                 | 是   | 否   | 鼠标光标相对于当前屏幕左上角的Y坐标。<br/>单位：vp |
-| scrollStep          | number                 | 是   | 否   | 鼠标轴滚动步长配置。<br/> **说明：**&nbsp;仅支持鼠标滚轮，取值范围0~65535。|
-| propagation         | Callback\<void>        | 是   | 否   | 激活[事件冒泡](../../../ui/arkts-interaction-basic-principles.md#事件冒泡)。   |
+| action              | [AxisAction](ts-appendix-enums.md#axisaction17)           | 是   | 否   | 轴事件的动作类型。<br/>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。                   |
+| x                   | number                 | 是   | 否   | 鼠标光标相对于被点击元素左边缘的X坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。  |
+| y                   | number                 | 是   | 否   | 鼠标光标相对于被点击元素上边缘的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。  |
+| windowX             | number                 | 是   | 否   | 鼠标光标相对于当前窗口左上角的X坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。 |
+| windowY             | number                 | 是   | 否   | 鼠标光标相对于当前窗口左上角的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。 |
+| displayX            | number                 | 是   | 否   | 鼠标光标相对于当前屏幕左上角的X坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。 |
+| displayY            | number                 | 是   | 否   | 鼠标光标相对于当前屏幕左上角的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。 |
+| scrollStep          | number                 | 是   | 否   | 鼠标轴滚动步长配置。<br/> **说明：** 仅支持鼠标滚轮，取值范围：[0~65535]<br/>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。|
+| propagation         | Callback\<void>        | 是   | 否   | 激活[事件冒泡](../../../ui/arkts-interaction-basic-principles.md#事件冒泡)。<br/>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。   |
 | globalDisplayX<sup>20+</sup> | number | 否 | 是 | 鼠标光标相对于全局屏幕的左上角的X坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | globalDisplayY<sup>20+</sup> | number | 否 | 是 | 鼠标光标相对于全局屏幕的左上角的Y坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
@@ -92,7 +94,7 @@ getVerticalAxisValue(): number
 
 ## 示例
 
-该示例通过按钮设置了轴事件，在按钮上滚动鼠标滚轮可获取轴事件的相关参数。
+该示例中，对按钮设置轴事件，通过滚动鼠标滚轮可获取轴事件的相关参数。
 
 ```ts
 // xxx.ets

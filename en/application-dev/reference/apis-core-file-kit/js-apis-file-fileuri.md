@@ -2,8 +2,9 @@
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
 <!--Owner: @lvzhenjie-->
-<!--SE: @wang_zhangjun; @chenxi0605-->
-<!--TSE: @liuhonggang123-->
+<!--Designer: @wang_zhangjun; @chenxi0605-->
+<!--Tester: @liuhonggang123-->
+<!--Adviser: @foryourself-->
 
 The **fileUri** module allows the uniform resource identifier (URI) of a file to be obtained based on the file path. With the file URI, you can use the APIs provided by [@ohos.file.fs](js-apis-file-fs.md) to operate the file.
 

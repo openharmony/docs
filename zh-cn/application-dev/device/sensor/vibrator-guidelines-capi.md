@@ -126,7 +126,7 @@
            };
            ret = OH_Vibrator_PlayVibrationCustom(fileDescription, vibrateAttribute); // 播放自定义振动序列。
            OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "Vibratecustom successful");
-           bool isSuccess = ((ret != 0) || (ret == UNSUPPORTED));
+           bool isSuccess = ((ret == 0) || (ret == UNSUPPORTED));
            if (isSuccess == true) {
                close(fd);
                return nullptr;

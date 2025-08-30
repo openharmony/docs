@@ -170,29 +170,29 @@ if (AppStorage.get('aProp') > 50) {
 
 ### 支持联合类型
 
-PersistentStorage支持联合类型和undefined和null，在下面的示例中，使用persistProp方法初始化"P"为undefined。通过@StorageLink("P")绑定变量p，类型为number | undefined | null，点击Button改变P的值，视图会随之刷新。且P的值被持久化存储。
+PersistentStorage支持联合类型和undefined和null，在下面的示例中，使用persistProp方法初始化“P”为undefined。通过@StorageLink('P')绑定变量p，类型为number | undefined | null，点击Button改变P的值，视图会随之刷新。且P的值被持久化存储。
 
 ```ts
-PersistentStorage.persistProp("P", undefined);
+PersistentStorage.persistProp('P', undefined);
 
 @Entry
 @Component
 struct TestCase6 {
-  @StorageLink("P") p: number | undefined | null = 10;
+  @StorageLink('P') p: number | undefined | null = 10;
 
   build() {
     Row() {
       Column() {
-        Text(this.p + "")
+        Text(this.p + '')
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        Button("changeToNumber").onClick(() => {
+        Button('changeToNumber').onClick(() => {
           this.p = 10;
         })
-        Button("changeTo undefined").onClick(() => {
+        Button('changeTo undefined').onClick(() => {
           this.p = undefined;
         })
-        Button("changeTo null").onClick(() => {
+        Button('changeTo null').onClick(() => {
           this.p = null;
         })
       }  
@@ -209,12 +209,12 @@ struct TestCase6 {
 在下面的示例中，@StorageLink装饰的persistedDate类型为Date，点击Button改变persistedDate的值，视图会随之刷新。且persistedDate的值被持久化存储。
 
 ```ts
-PersistentStorage.persistProp("persistedDate", new Date());
+PersistentStorage.persistProp('persistedDate', new Date());
 
 @Entry
 @Component
 struct PersistedDate {
-  @StorageLink("persistedDate") persistedDate: Date = new Date();
+  @StorageLink('persistedDate') persistedDate: Date = new Date();
 
   updateDate() {
     this.persistedDate = new Date();
@@ -268,15 +268,15 @@ struct PersistedDate {
 在下面的示例中，@StorageLink装饰的persistedMapString类型为Map\<number, string\>，点击Button改变persistedMapString的值，视图会随之刷新。且persistedMapString的值被持久化存储。
 
 ```ts
-PersistentStorage.persistProp("persistedMapString", new Map<number, string>([]));
+PersistentStorage.persistProp('persistedMapString', new Map<number, string>([]));
 
 @Entry
 @Component
 struct PersistedMap {
-  @StorageLink("persistedMapString") persistedMapString: Map<number, string> = new Map<number, string>([]);
+  @StorageLink('persistedMapString') persistedMapString: Map<number, string> = new Map<number, string>([]);
 
   persistMapString() {
-    this.persistedMapString = new Map<number, string>([[3, "one"], [6, "two"], [9, "three"]]);
+    this.persistedMapString = new Map<number, string>([[3, 'one'], [6, 'two'], [9, 'three']]);
   }
 
   build() {
@@ -291,7 +291,7 @@ struct PersistedMap {
 
           Button() {
             Text('Persist Map String')
-              .fontSize(25)
+              .fontSize(20)
               .fontWeight(FontWeight.Bold)
               .fontColor(Color.White)
           }
@@ -318,12 +318,12 @@ struct PersistedMap {
 在下面的示例中，@StorageLink装饰的persistedSet类型为Set\<number\>，点击Button改变persistedSet的值，视图会随之刷新。且persistedSet的值被持久化存储。
 
 ```ts
-PersistentStorage.persistProp("persistedSet", new Set<number>([]));
+PersistentStorage.persistProp('persistedSet', new Set<number>([]));
 
 @Entry
 @Component
 struct PersistedSet {
-  @StorageLink("persistedSet") persistedSet: Set<number> = new Set<number>([]);
+  @StorageLink('persistedSet') persistedSet: Set<number> = new Set<number>([]);
 
   persistSet() {
     this.persistedSet = new Set<number>([33, 1, 3]);

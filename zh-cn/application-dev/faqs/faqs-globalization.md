@@ -1,5 +1,11 @@
 # 资源管理开发常见问题
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @liule_123-->
+<!--Designer: @buda_wy-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ## 如何读取rawfile中的xml文件并转化为String类型(API 9)
 
@@ -126,16 +132,28 @@ form_config.json文件中不支持使用$引用常量。
 
 2. 使用resourceManager.getRawFileContent获取xml文件字节数组。
 
-   ```
-   import resourceManager from '@ohos.resourceManager';
-   resourceManager.getRawFileContent("test.xml", (error, value) => {
-     if (error != null) {
-       console.log("error is " + error);
-       return
-     }
-     let arrayBuffer = value.buffer; // unit8Array
-     var xmpParser = new xml.XmlPullParser(arrayBuffer);
-     var tagName = ""
-     //do something
-   }
-   ```
+```
+import resourceManager from '@ohos.resourceManager';
+import xml from '@ohos.xml';
+export default {
+    onCreate() {
+        resourceManager.getResourceManager((error, res) => {
+            if (error != null) {
+                console.log("error is " + error);
+                return
+            }
+            res.getRawFileContent("test.xml", (error, value) => {
+                if (error != null) {
+                    console.log("error is " + error);
+                    return
+                }
+                let arrayBuffer = value.buffer; // unit8Array
+                var xmpParser = new xml.XmlPullParser(arrayBuffer);
+                var tagName = ""
+                //do something
+                console.log("parse xml finished");
+            })
+        })
+    }
+};
+```

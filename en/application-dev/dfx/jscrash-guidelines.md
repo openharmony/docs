@@ -1,6 +1,6 @@
 # Analyzing JS Crash
 
-When an application crashes dues to a JS exception, it generates a JS crash log file. You can view the log to locate the error code and analyze the cause of the crash.
+When an application crashes due to a JS exception, it generates a JS crash log file. You can view the log to locate the error code and analyze the cause of the crash.
 
 This topic describes the JS Crash capture, JS Crash analysis, and typical cases.
 
@@ -384,7 +384,7 @@ To solve this problem, locate the problematic code line based on the fault log a
 
     ```text
     Error name:Error
-    Error message:BussinessError 2501000: Operation failed.
+    Error message:BusinessError 2501000: Operation failed.
     Error code:2501000
     Stacktrace:
     Cannot get SourceMap info, dump raw stack:
@@ -423,7 +423,7 @@ To solve this problem, locate the problematic code line based on the fault log a
 
 4. Solution
 
-    According to the analysis of the source code, **wifiManager.on()** throws "BussinessError 2501000: Operation failed" occasionally. If this exception does not cause the application to crash, use try-catch to capture and process the exception. Modify the code as follows:
+    According to the analysis of the source code, **wifiManager.on()** throws "BusinessError 2501000: Operation failed" occasionally. If this exception does not cause the application to crash, use try-catch to capture and process the exception. Modify the code as follows:
 
     ```ts
     onStart(): void {
