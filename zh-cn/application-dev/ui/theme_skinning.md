@@ -14,12 +14,13 @@
 当应用需要使用换肤功能时，应自定义主题颜色。[CustomTheme](../reference/apis-arkui/js-apis-arkui-theme.md#customtheme)用于自定义主题色的内容，其属性可选，仅需要复写需修改的部分，未修改内容将继承系统默认设置，可参考[系统默认的token颜色值](#系统缺省token色值)。请参照以下示例自定义主题色：
 
   ```ts
+    // AppTheme.ets
     import { CustomColors, CustomTheme } from '@kit.ArkUI';
 
     export class AppColors implements CustomColors {
       // 自定义主题色
       brand: ResourceColor = '#FF75D9';
-      // 使用$r设置深浅色
+      // 使用$r，让一级警示色在深色和浅色模式下，设置为不同的颜色
       warning: ResourceColor = $r('app.color.start_window_background');
     }
 
@@ -35,6 +36,7 @@
   其中，[onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)回调函数用于使自定义组件获取当前生效的Theme对象。
 
   ```ts
+    // Index.ets
     import { Theme, ThemeControl } from '@kit.ArkUI';
     import { gAppTheme } from './AppTheme';
     
@@ -128,6 +130,24 @@
               .borderRadius('10vp')
               .backgroundColor(this.menuItemColor)
             }
+            ListItem() {
+              Column() {
+                Text('Warning')
+                  .width('100%')
+                  .margin({ top: '5vp', left: '14fp' })
+                Button() {
+                  Text('Text')
+                    .fontSize(30)
+                    .fontWeight(FontWeight.Bold)
+                }
+                .type(ButtonType.Capsule)
+                .role(ButtonRole.ERROR)
+                .width('40%')
+              }
+              .width('100%')
+              .height('70vp')
+              .borderRadius('10vp')
+            }
           }
         }
         .padding('10vp')
@@ -141,6 +161,7 @@
 - 在UIAbility中设置[ThemeControl](../reference/apis-arkui/js-apis-arkui-theme.md#themecontrol)，需要在onWindowStageCreate()方法中[setDefaultTheme](../reference/apis-arkui/js-apis-arkui-theme.md#setdefaulttheme)，设置应用内组件的自定义主题色。
 
   ```ts
+    // EntryAbility.ets
     import {AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { window, CustomColors, ThemeControl } from '@kit.ArkUI';

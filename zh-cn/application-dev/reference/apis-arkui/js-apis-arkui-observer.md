@@ -7,7 +7,7 @@
 <!--Tester: @fredyuan912-->
 <!--Adviser: @HelloCrease-->
 
-提供UI组件行为变化的无感监听能力。
+提供UI组件行为变化的无感监听能力。推荐使用[UIObserver](./arkts-apis-uicontext-uiobserver.md)进行组件监听。
 
 > **说明：**
 >
