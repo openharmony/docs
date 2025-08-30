@@ -40,8 +40,6 @@ import { collections } from '@kit.ArkTS';
 
 ## constructor
 
-**构造函数**
-
 constructor()
 
 创建一个ArkTS Array的构造函数。
