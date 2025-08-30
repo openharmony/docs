@@ -30,9 +30,9 @@
 
 系统应用支持通过接口控制卡片状态切换，卡片可长时间保持激活态（后文简称为长时激活态，处于该状态的卡片简称为长时激活卡片）。卡片状态切换由[formProvider.activateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#activatesceneanimation20)和[formProvider.deactivateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#deactivatesceneanimation20)接口控制。此时卡片动效渲染区域和卡片自身等大，无破框效果。
 
-### 长时激活卡片扩展动效渲染区域
+### 长时激活卡片动效
 
-长时激活卡片支持调用[formProvider.requestOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20)接口长时间扩展卡片动效渲染区域。当接口中传入的动效时长大于等于60秒时，卡片可长时间扩展动效渲染区域（后文简称为长时破框态，处于该状态卡片简称为长时破框卡片），反之扩展动效渲染区域请求失败。长时破框态卡片被其他卡片破框动效打断时，卡片动效渲染区域大小调整为卡片尺寸大小，卡片切换为长时激活态。
+长时激活卡片支持调用[formProvider.requestOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20)接口发起互动卡片动效请求。如果接口中传入的动效持续时长overflowInfo.duration大于等于60秒，动效请求申请成功且一直保持。仅当调用cancelOverflow接口取消动效或其他卡片申请动效成功，当前卡片才会退出动效并切换为长时激活态。如果接口中传入的动效持续时长overflowInfo.duration小于60秒，发起动效请求失败。
 
 ### 长时激活卡片状态信息同步
 
@@ -40,7 +40,7 @@
 
 |状态|说明|
 |-----|---------|
-|stopOverflow|卡片动效渲染区域回退为同卡片自身等大，切换为长时激活态。|
+|stopOverflow|退出动效。|
 |startSwipe|用户触发桌面水平滑动翻页手势。|
 |endSwipe|用户完成桌面水平滑动翻页手势。|
 |onBackground|卡片由可见变为不可见，对应[LiveFormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)切换到后台。|
@@ -50,12 +50,12 @@
 
 ### 约束与限制
 
-互动卡片破框[动效请求约束](arkts-ui-liveform-sceneanimation-overview.md#动效请求约束)进一步扩展如下：
-1. 同一时刻，全局只有一个卡片执行互动卡片破框动效。
-2. 当用户通过点击等方式主动触发互动卡片破框动效时，优先响应此次请求。此时，当前卡片切换到激活态，执行动效，其他卡片动效被打断（长时破框态卡片，动效渲染区域大小调整为卡片尺寸大小，普通互动卡片切换为非激活态）。
-3. 其他触发方式，例如通过卡片定时定数据刷新机制触发动效，遵循先到先得原则。系统只处理第一个合法动效请求。其他请求返回失败，同时不做缓存。
-4. 长时激活态卡片不受请求约束影响，系统限制长时间保持激活态卡片不超过5个，超过5个时将淘汰最早切换为激活态的卡片。
-5. 处于长时破框态的卡片，系统设置60秒倒计时。倒计时结束前，其他卡片的非用户点击触发的动效请求均返回失败。倒计时结束后，其他卡片的动效请求均可响应，当前卡片切换为长时激活态，动效渲染区域回退为与卡片自身等大。
+除了[动效请求约束](arkts-ui-liveform-sceneanimation-overview.md#动效请求约束)外，互动卡片切换至长时激活态后，还存在如下限制：
+1. 系统限制长时间保持激活态卡片不超过5个，超过5个时将淘汰最早切换为激活态的卡片。
+2. 互动卡片申请动效成功后，系统会设置60s倒计时，满足以下任一条件时会打断当前卡片动效并切换至长时激活态：
+   - 调用cancelOverflow接口取消动效。
+   - 用户点击其他互动卡片申请动效成功。
+   - 申请动效60s内，其他卡片的非用户点击触发的动效请求均申请失败。申请动效60s后，非用户点击导致的其他互动卡片动效请求申请成功，会打断当前动效。
 
 ## 接口说明
 
