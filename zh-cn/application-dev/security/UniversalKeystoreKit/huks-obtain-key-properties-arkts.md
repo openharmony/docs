@@ -23,22 +23,27 @@ HUKS提供了接口供业务获取指定密钥的相关属性。在获取指定�
 import { huks } from '@kit.UniversalKeystoreKit';
 import { BusinessError } from "@kit.BasicServicesKit";
 
+function Uint8ArrayToString(fileData: Uint8Array) {
+  let dataString = '';
+  for (let i = 0; i < fileData.length; i++) {
+    dataString += String.fromCharCode(fileData[i]);
+  }
+  return dataString;
+}
+
 /* 1. 设置密钥别名 */
 let keyAlias = 'keyAlias';
 /* 2. 设置密钥属性 */
 let emptyOptions: huks.HuksOptions = {
   properties: []
 };
-let properties1: huks.HuksParam[] = [
-  {
+let properties1: huks.HuksParam[] = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_DH
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_2048
   }
@@ -79,7 +84,7 @@ async function getKeyItemProperties(keyAlias: string, emptyOptions: huks.HuksOpt
   try {
     await huks.getKeyItemProperties(keyAlias, emptyOptions)
       .then((data) => {
-        console.info(`promise: getKeyItemProperties success, data = ${data.outData}`);
+        console.info(`promise: getKeyItemProperties success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
       }).catch((error: BusinessError) => {
         console.error(`promise: getKeyItemProperties failed, errCode : ${error.code}, errMag : ${error.message}`);
         ret = 'Failed';

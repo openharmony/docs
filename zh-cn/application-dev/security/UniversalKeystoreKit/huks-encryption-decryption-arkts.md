@@ -1098,7 +1098,7 @@ async function DecryptDataSm2() {
     .then((data) => {
       handle = data.handle;
     }).catch((error: BusinessError) => {
-      console.error(`promise: init DecryptDataSm2 failed, ${JSON.stringify(error)}`);
+      console.error(`promise: init DecryptDataSm2 failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
   /*
   * 5. 调用finishSession获取解密后的数据
