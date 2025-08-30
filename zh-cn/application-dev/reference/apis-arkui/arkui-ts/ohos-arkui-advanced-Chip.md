@@ -51,7 +51,7 @@ ChipOptions定义Chip的样式及具体式样参数。
 
 | 名称            | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | 否   | Chip尺寸。<br/>默认值：ChipSize.NORMAL<br/>SizeOptions类型参数不支持百分比设置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | 否   | Chip尺寸。<br/>默认值：ChipSize.NORMAL<br/>SizeOptions类型参数不支持百分比设置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**说明**：[适老化](../../../ui/arkui-support-for-aging-adaptation.md)在size指定具体宽高时不生效，size设置为{ height: 0, width: 0 }除外。 |
 | enabled         | boolean                                                      | 否   | Chip是否可选中。<br>默认值：true。<br>true：操作块可选中；false：操作块不可选中。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | activated<sup>12+</sup>    | boolean                                        | 否   | Chip是否为激活态。<br>默认值：false。<br>true：操作块为激活态；false：操作块为非激活态。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
 | prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | 否   | 前缀图标属性。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
