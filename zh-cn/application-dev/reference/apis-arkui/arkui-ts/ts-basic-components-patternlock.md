@@ -352,7 +352,7 @@ struct PatternLockExample {
         .backgroundColor('#F5F5F5')
         .autoReset(true)
         .onDotConnect((index: number) => {
-          console.log("onDotConnect index: " + index);
+          console.info("onDotConnect index: " + index);
         })
     }.width('100%').height('100%')
   }
@@ -398,7 +398,7 @@ struct PatternLockExample {
           enableWaveEffect: true
         })
         .onDotConnect((index: number) => {
-          console.log("onDotConnect index: " + index);
+          console.info("onDotConnect index: " + index);
         })
         .onPatternComplete((input: Array<number>) => {
           // 输入的密码长度小于5时，提示重新输入

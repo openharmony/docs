@@ -38,7 +38,7 @@
     - [Interface (NativeMediaPlayerBridge)](arkts-apis-webview-NativeMediaPlayerBridge.md)
     - [Interface (NativeMediaPlayerHandler)](arkts-apis-webview-NativeMediaPlayerHandler.md)
     - [Interface (WebMessagePort)](arkts-apis-webview-WebMessagePort.md)
-    - [Interfaces（其他）](arkts-apis-webview-i.md)
+    - [Interfaces (其他)](arkts-apis-webview-i.md)
     - [Enums](arkts-apis-webview-e.md)
     - [Types](arkts-apis-webview-t.md)
   - [@ohos.web.netErrorList](arkts-apis-netErrorList.md)
