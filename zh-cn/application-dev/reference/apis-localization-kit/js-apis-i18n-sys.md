@@ -1099,7 +1099,7 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
   try {
     let timeZoneCityItemArray: Array<i18n.TimeZoneCityItem> = i18n.SystemLocaleManager.getTimeZoneCityItemArray();
     for (let i = 0; i < timeZoneCityItemArray.length; i++) {
-        console.log(timeZoneCityItemArray[i].zoneId + ", " + timeZoneCityItemArray[i].cityId + ", " + timeZoneCityItemArray[i].cityDisplayName +
+        console.info(timeZoneCityItemArray[i].zoneId + ", " + timeZoneCityItemArray[i].cityId + ", " + timeZoneCityItemArray[i].cityDisplayName +
             ", " + timeZoneCityItemArray[i].offset + "\r\n");
     }
   } catch(error) {
