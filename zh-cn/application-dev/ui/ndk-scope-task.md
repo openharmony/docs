@@ -38,6 +38,8 @@ ArkUI_NodeHandle pageOneButton = nullptr;
 auto ec = OH_ArkUI_NodeUtils_GetAttachedNodeHandleById("pageOneButton", &pageOneButton);
 auto uiContext = OH_ArkUI_GetContextByNode(pageOneButton);
 OH_ArkUI_RunTaskInScope(uiContext, pageOneButton, [](void *userData) {
+        auto *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
+            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
         auto pageOneButton = (ArkUI_NodeHandle)userData;
         ArkUI_NumberValue value[] = {480};
         ArkUI_AttributeItem LABEL_Item = {.string = "success"};
