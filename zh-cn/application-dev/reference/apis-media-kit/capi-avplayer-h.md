@@ -406,7 +406,11 @@ OH_AVErrCode OH_AVPlayer_SetLoudnessGain(OH_AVPlayer *player, float loudnessGain
 
 设置播放响度。
 
+<<<<<<< HEAD
 当播放处于prepared / playing / paused / completed/ stopped状态时，可调用该接口。
+=======
+只能在已准备、正在播放、已暂停、已完成、已停止的状态中使用。
+>>>>>>> 76ab03d40a (interface setLoudnessGain)
 
 调用此API后，响度增益立即生效。响度范围为[-90.0, 24.0]。默认值为0.0dB。
 
