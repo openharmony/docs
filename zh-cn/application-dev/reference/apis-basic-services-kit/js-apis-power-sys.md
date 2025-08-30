@@ -397,7 +397,7 @@ try {
 setPowerKeyFilteringStrategy(strategy: PowerKeyFilteringStrategy): void;
 
 设置电源键过滤策略，在电源服务订阅电源键事件后，用于配置电源键事件的处理方式。
-电源键过滤策略见[power.PowerKeyFilteringStrategy](js-apis-power.md#powerKeyFilteringStrategy21)接口。
+电源键过滤策略见[power.PowerKeyFilteringStrategy](js-apis-power.md#powerkeyfilteringstrategy21)接口。
 
 **系统接口：** 此接口为系统接口。
 
