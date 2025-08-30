@@ -162,7 +162,7 @@ struct Index {
   }
 
   aboutToAppear(): void {
-    console.log(TAG + 'aboutToAppear is called');
+    console.info(TAG + 'aboutToAppear is called');
     this.initContext();
     this.requestPermissionsFn();
     this.initCameraManager();

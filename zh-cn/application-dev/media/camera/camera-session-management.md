@@ -31,17 +31,18 @@
      
    ```ts
    function getSession(cameraManager: camera.CameraManager): camera.Session | undefined {
-     let session: camera.Session | undefined = undefined;
+     let videoSession: camera.Session | undefined = undefined;
      try {
-       session = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
+       videoSession = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to create the session instance. error: ${err}`);
      }
-     return session;
+     return videoSession;
    }
    ```
 
+这里用videoSession为例。
 3. 调用VideoSession类中的[beginConfig](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#beginconfig11)方法配置会话。
      
    ```ts
