@@ -133,9 +133,11 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
                  } catch (err) {
                    let e: BusinessError = err as BusinessError;
                    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+                 } finally {
+                   vibrator.stopVibration();
+                   this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
                  }
                }
-               this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
              })
          }
          .width('100%')
@@ -290,9 +292,11 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
                  } catch (err) {
                    let e: BusinessError = err as BusinessError;
                    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+                 } finally {
+                   vibrator.stopVibration();
+                   this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
                  }
                }
-               this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
              })
          }
          .width('100%')

@@ -540,6 +540,10 @@ int32_t OH_Sensor_DestroySubscriptionAttribute(Sensor_SubscriptionAttribute *att
    static napi_value DestroySubscriptionAttribute(napi_env env, napi_callback_info info) {
        // 创建Sensor_SubscriptionAttribute实例。
        Sensor_SubscriptionAttribute *attr = OH_Sensor_CreateSubscriptionAttribute();
+       if (attr == nullptr) {
+           OH_LOG_Print(LOG_APP, LOG_ERROR, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_CreateSubscriptionAttribute failed");
+           return nullptr;
+       }
        // 销毁Sensor_SubscriptionAttribute实例：在实际应用中，创建的实例会被用于后续操作，在不再使用时销毁。
        int32_t ret = OH_Sensor_DestroySubscriptionAttribute(attr);
        if (ret != SENSOR_SUCCESS) {
