@@ -572,6 +572,22 @@ Navigation双栏模式下，支持设置右侧页面显示默认占位页，占�
 | ------ | -------------- | ---- | ------------------ |
 | placeholder  |[ComponentContent](../js-apis-arkui-ComponentContent.md#componentcontent-1) | 是   |设置Navigation双栏模式下右侧的默认占位页。|
 
+### enableShowHideWithContentCover<sup>21+</sup>
+
+enableShowHideWithContentCover(isEnabled: Optional&lt;boolean&gt;)
+
+设置是否启用[NavDestination](./ts-basic-components-navdestination.md)页面[onHidden](./ts-basic-components-navdestination.md#onhidden10)、[onShown](./ts-basic-components-navdestination.md#onshown10)生命周期与全模态的联动触发。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型         | 必填 | 说明               |
+| ------ | -------------- | ---- | ------------------ |
+| isEnabled  | Optional&lt;boolean&gt; | 是   |是否启用NavDestination页面onShown、onHidden生命周期与全模态的联动触发。<br/>默认值：true<br/>true：全模态拉起时，会触发当前NavDestination页面的onHidden生命周期；全模态关闭时会触发当前NavDestination页面的onShown生命周期<br/>false：NavDestination页面onHidden、onShown生命周期不会因为全模态的拉起、关闭而触发。|
+
 ### subTitle<sup>(deprecated)</sup>
 
 subTitle(value: string)
