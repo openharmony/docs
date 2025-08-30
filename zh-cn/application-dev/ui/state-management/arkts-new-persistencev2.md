@@ -185,11 +185,11 @@ static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
 
 2、不支持collections.Set、collections.Map等类型。
 
-3、不支持非buildin类型，如PixelMap、NativePointer、ArrayList等Native类型。
+3、不支持非built-in类型，如PixelMap、NativePointer、ArrayList等Native类型。
 
 4、单个key支持数据大小约8k，过大会导致持久化失败。
 
-5、持久化的数据必须是class对象，不支持容器类型（如Array、Set、Map），不支持buildin的构造对象（如Date、Number），不支持持久化基本类型（如string、number、boolean）。如果需要持久化非class对象，建议使用[prefrence](../../database/preferences-guidelines.md)进行数据持久化。
+5、持久化的数据必须是class对象，不支持容器类型（如Array、Set、Map），不支持built-in的构造对象（如Date、Number），不支持持久化基本类型（如string、number、boolean）。如果需要持久化非class对象，建议使用[prefrence](../../database/preferences-guidelines.md)进行数据持久化。
 
 6、不支持循环引用的对象。
 
@@ -221,6 +221,8 @@ onWindowStageCreate(windowStage: window.WindowStage): void {
   });
 }
 ```
+
+11、如果开发者对数据持久化能力有较强的诉求，例如持久化时机，建议使用[Preferences](../../database/preferences-guidelines.md)进行数据持久化。注意：不允许混用PersistenceV2和prefrence，因为Preferences存储的数据不会有状态变量信息，反序列化的数据不能触发PersistenceV2的自动化存储。
 
 ## 使用场景
 
