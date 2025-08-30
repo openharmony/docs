@@ -137,5 +137,5 @@ form_config.json文件中不支持使用$引用常量。
      var xmpParser = new xml.XmlPullParser(arrayBuffer);
      var tagName = ""
      //do something
-   }
+   })
    ```
