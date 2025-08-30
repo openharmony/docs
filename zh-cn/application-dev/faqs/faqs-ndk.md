@@ -3,8 +3,9 @@
 <!--Kit: Common-->
 <!--Subsystem: Demo&Sample-->
 <!--Owner: @mgy917-->
-<!--SE: @jiangwensai-->
-<!--TSE: @Lyuxin-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
 
 ## 以libstd为例，C++的标准库放在哪里了，有没有打到hap包中？(API 10)
 

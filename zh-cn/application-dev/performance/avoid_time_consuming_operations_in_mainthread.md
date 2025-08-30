@@ -3,8 +3,9 @@
 <!--Kit: Common-->
 <!--Subsystem: Demo&Sample-->
 <!--Owner: @mgy917-->
-<!--SE: @jiangwensai-->
-<!--TSE: @Lyuxin-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
 
 ## 简介
 在应用开发中，经常会调用执行耗时的接口，比如服务端数据接口，本地文件读取接口。如果不进行合理的处理，可能会引起卡顿等性能问题。

@@ -3,8 +3,9 @@
 <!--Kit: Common-->
 <!--Subsystem: Demo&Sample-->
 <!--Owner: @mgy917-->
-<!--SE: @jiangwensai-->
-<!--TSE: @Lyuxin-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
 
 ## 概述
 
@@ -486,7 +487,7 @@ struct ComponentB {
 
 ### 使用扁平化布局减少节点数
 
-#### 使用Column/Row替代Flex构建线性布局
+**使用Column/Row替代Flex构建线性布局**
 
 由于Flex本身带来的二次布局的影响，Flex的性能明显低于Column和Row容器，因此推荐使用Column/Row替代Flex构建线性布局，具体指导在[Flex布局性能提升使用指导](flex-development-performance-boost.md)。
 
@@ -522,7 +523,7 @@ struct MyComponent {
 }
 ```
 
-#### 使用Flex、List、Grid、RelativeContainer、绝对布局和自定义布局等构建复杂布局
+**使用Flex、List、Grid、RelativeContainer、绝对布局和自定义布局等构建复杂布局**
 
 复杂布局提供了场景化的能力，[优化布局性能](reduce-view-nesting-levels.md)可解决一种或者多种布局场景：
 
@@ -538,7 +539,7 @@ struct MyComponent {
 @Component
 struct AspectRatioExample12 {
   @State children: number[] = Array.from(Array<number>(900), (v, k) => k);
-  
+
   build() {
     Scroll() {
       Grid() {
@@ -895,7 +896,7 @@ struct componentSon{
 
 **控制状态变量关联组件数量**
 
-反
+反例代码如下：
 
 ```typescript
 @Observed
