@@ -41,5 +41,23 @@
 
    设置沉浸模式，示例代码如下。setImmersiveMode接口需使用[createPanel](../reference/apis-ime-kit/js-apis-inputmethodengine.md#createpanel10)获取到Panel实例后，通过实例调用。
    ```ts
-   panel.setImmersiveMode(inputMethodEngine.ImmersiveMode.LIGHT_IMMERSIVE);
+   import { inputMethodEngine } from '@kit.IMEKit';
+   
+   let panelInfo: inputMethodEngine.PanelInfo = {
+     type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+     flag: inputMethodEngine.PanelFlag.FLG_FIXED
+   };
+   let inputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
+   // createPanel需要在InputMethodExtensionAbility的Create声明周期中完成，this.context是InputMethodExtensionAbility中的InputMethodExtensionContext
+   inputMethodAbility.createPanel(this.context, panelInfo).then(async (panel: inputMethodEngine.Panel) => {
+     let inputPanel: inputMethodEngine.Panel = panel;
+     try {
+       inputPanel?.setImmersiveMode(inputMethodEngine.ImmersiveMode.LIGHT_IMMERSIVE);
+     } catch (err) {
+       let error: BusinessError = err as BusinessError;
+       console.error(`Failed to setImmersiveMode, code: ${error.code}, message: ${error.message}`);
+     }
+   }).catch((err: BusinessError) => {
+     console.log(`Failed to createPanel, code: ${err.code}, message: ${err.message}`);
+   });
    ```

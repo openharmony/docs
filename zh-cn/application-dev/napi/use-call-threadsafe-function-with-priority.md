@@ -35,6 +35,7 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
     #include "napi/native_api.h"
     #include <string.h>
     #include <stdlib.h>
+    #include "hilog/log.h"
 
     static constexpr int INT_NUM_2 = 2;     // int类型数值2
     static constexpr int INT_NUM_12 = 12;   // int类型数值12
@@ -61,7 +62,7 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
         int32_t res = 0;
         // 获取resultNumber对应的int32值
         napi_get_value_int32(env, resultNumber, &res);
-        OH_LOG_INFO(LOG_APP, "res is %{public}d", res);
+        OH_LOG_INFO(LOG_APP, "napi_init res is %{public}d", res);
     }
 
     // 异步线程中调用该接口向ArkTS线程投递指定优先级和入队方式的任务
@@ -154,6 +155,7 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
         include(${PACKAGE_FIND_FILE})
     endif()
 
+    add_definitions( "-DLOG_TAG=\"LOG_TAG\"" )
     include_directories(${NATIVERENDER_ROOT_PATH}
                         ${NATIVERENDER_ROOT_PATH}/include)
     add_library(entry SHARED napi_init.cpp)

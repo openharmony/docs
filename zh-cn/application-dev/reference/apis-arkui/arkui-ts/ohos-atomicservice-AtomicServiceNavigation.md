@@ -1,5 +1,12 @@
 # AtomicServiceNavigation
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @qq_36417014-->
+<!--Designer: @zhangbeilei-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @zengyawen-->
+
 作为Page页面的根容器使用，其内部默认包含了标题栏、内容区，其中内容区默认首页显示导航内容或非首页显示（[NavDestination](ts-basic-components-navdestination.md)的子组件），首页和非首页通过路由进行切换。
 
 > **说明：**
@@ -100,11 +107,13 @@ AtomicServiceNavigation({
 
 type NavDestinationBuilder = (name: string, param?: Object) => void
 
+NavDestination组件内容。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
     
-| 参数名 | 类型 | 必填 | 描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | --------------- | ------ | ---- | ---------- |
 | name | string | 是 | [NavDestination](ts-basic-components-navdestination.md)页面名称。 |
 | param | Object | 否 | [NavDestination](ts-basic-components-navdestination.md)页面详细参数。 |

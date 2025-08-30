@@ -188,12 +188,13 @@ Failed to start the UIExtension ability.
 **可能原因**
 
 1. Want参数配置错误；
-2. type类型不一致；
+2. type类型不一致，具体请参考[EmbeddedComponent组件](arkui-ts/ts-container-embedded-component.md#接口)；
 3. 提供方应用未安装；
+4. 设备类型不支持；
 
 **处理步骤**
 
-检查Want参数配置、应用是否安装等。
+检查Want参数配置、应用是否安装、当前能力是否支持此设备类型等。
 
 ## 100019 Ability切后台失败
 

@@ -32,7 +32,9 @@ Driver Development Kit（驱动开发套件）为外设驱动开发者提供高�
 - 扩展外设驱动：基于DDK能力开发的专业专用扩展外设驱动或扩展外设增强驱动，即[无UI界面基础驱动](driverextensionability.md)。
 - 扩展外设管理服务（External Device Manager）：扩展设备管理，驱动包全生命周期管理等。
 - BMS（Bundle Manager Service）：包管理服务，在OpenHarmony上主要负责应用的安装、卸载和数据管理。
-- AMS（Ability Manager Service） ：元能力管理服务，用于拉起和关闭扩展驱动能力DriverExtensionAbility。
+- AMS（Ability Manager Service）：元能力管理服务，用于拉起和关闭扩展驱动能力DriverExtensionAbility。
+- SA（SystemAbility）：系统元能力，是一种系统服务，对外提供能力。如：外设扩展服务SA就是对外提供非标外设驱动能力的系统服务。
+- 非标外设：指的是采用了非标准的协议通信（也称为厂商自定义协议）的一类外设。
 
 ## 实现原理
 
@@ -96,3 +98,15 @@ HDF扩展驱动框架为扩展外设驱动开发，提供稳定统一的外设�
   - 当用户安装某一驱动应用时，系统会将应用安装到当前已有的所有用户空间下。
   - 当创建新用户时，系统会将已安装的驱动应用在该用户空间下进行安装。
 - 卸载策略：当用户在任意用户空间下发起卸载某一驱动应用，系统会将所有用户空间下的该驱动应用卸载。
+
+3.基于DriverExtensionAbility生命周期管理说明
+- ExtensionAbility是基于场景服务的扩展能力的统称，简称为扩展能力（例如用户态扩展驱动、卡片、输入法等）以便满足不同的使用场景。
+- 各类Extension的生命周期由各个SA管理，通过connectAbility启动Extension，并驱动定义的业务接口；业务结束，SA调用disconnnectAbility接口断开Extension连接，AMS会根据该Extension是否有SA连接来决定是否销毁该Extension及进程。在用户态扩展驱动开发场景下，管理DriverExtensionAbility生命周期的系统SA为外设扩展服务SA。
+
+4.在DriverExtensionAbility中API访问安全管控说明
+- 系统支持基于ExtensionAbility构建场景化扩展Ability，DriverExtensionAbility为支持开发用户态扩展驱动的一类Ability。
+- 在DriverExtensionAbility中仅支持访问DDK（[Driver Development Kit](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/reference/apis-driverdevelopment-kit)）API，实现对非标外设进行访问控制和数据通信。
+- 基于驱动开发安全约束及驱动开发业务场景，在DriverExtensionAbility中不支持访问其它ArkTS API，以防止恶意行为和数据泄露。
+- DriverExtensionAbility受限访问ArkTS API方案说明：
+  - ArkTS API受限原理：在孵化和创建Extension进程时，会根据Extension配置的受限访问ArkTS API名单加载系统模块。在运行时，如果在DriverExtensionAbility中调用限制ArkTS API，由于孵化和创建阶段未加载相应系统模块，API会调用失败。
+- DriverExtensionAbility具体受限ArkTS API名单，请参考[受限ArkTS API](https://gitee.com/openharmony/ability_ability_runtime/blob/master/frameworks/native/ability/native/etc/extension_blocklist_config.json)中DriverExtension配置。

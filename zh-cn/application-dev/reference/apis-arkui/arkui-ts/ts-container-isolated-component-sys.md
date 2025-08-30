@@ -8,7 +8,7 @@
 
 IsolatedComponent用于支持在本页面内嵌入显示独立Abc（.abc文件）提供的UI，展示的内容在受限worker线程中运行。
 
-通常用于有Abc热更新诉求的模块化开发场景。
+通常用于有Abc热更新（可动态替换Isolated加载的abc文件，无需通过重新安装应用的方式实现内容更新）诉求的模块化开发场景。
 
 > **说明：**
 >
@@ -114,6 +114,7 @@ onError(callback:ErrorCallback)
   ```ts
   // OhCardWorker.ets
   import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
+  
   const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
   workerPort.onmessage = (e: MessageEvents) => {}

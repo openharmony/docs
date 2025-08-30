@@ -1,5 +1,10 @@
 # 管理ArkTS卡片生命周期
-
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 
 创建ArkTS卡片，需实现[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)生命周期接口。
 
@@ -32,11 +37,7 @@
         }
     
         onCastToNormalForm(formId: string): void {
-          // 卡片使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理。
-          // 1、临时卡、常态卡是卡片使用方的概念。
-          // 2、临时卡是短期存在的，在特定事件或用户行为后显示，完成后自动消失。
-          // 3、常态卡是持久存在的，在用户未进行清除或更改的情况下，会一直存在，平时开发的功能卡片属于常态卡。
-          // 4、目前手机上没有地方会使用临时卡。
+          // 当前卡片使用方不会涉及该场景，无需实现该回调函数
           hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onCastToNormalForm');
         }
     
