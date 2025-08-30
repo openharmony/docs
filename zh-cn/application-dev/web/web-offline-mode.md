@@ -73,7 +73,7 @@ function WebBuilder(data:Data) {
 
 let wrap = wrapBuilder<Data[]>(WebBuilder);
 
-// myNodeController需要与NodeContainer一起使用,用于控制和反馈对应的NodeContainer上的节点的行为
+// myNodeController需要与NodeContainer一起使用，用于控制和反馈对应的NodeContainer上的节点的行为
 export class myNodeController extends NodeController {
   private rootNode: BuilderNode<Data[]> | null = null;
   // 必须要重写的方法，用于构建节点树、返回节点挂载在对应NodeContainer中
@@ -214,7 +214,7 @@ function WebBuilder(data:Data) {
 
 let wrap = wrapBuilder<Data[]>(WebBuilder);
 
-// 用于控制和反馈对应的NodeContainer上的节点的行为，需要与NodeContainer一起使用
+// myNodeController需要与NodeContainer一起使用，用于控制和反馈对应的NodeContainer上的节点的行为
 export class myNodeController extends NodeController {
   private rootNode: BuilderNode<Data[]> | null = null;
   // 必须要重写的方法，用于构建节点树、返回节点挂载在对应NodeContainer中
@@ -394,7 +394,7 @@ function WebBuilder(data:Data) {
   }
 }
 let wrap = wrapBuilder<Data[]>(WebBuilder);
-// 用于控制和反馈对应的NodeContainer上的节点的行为，需要与NodeContainer一起使用
+// myNodeController需要与NodeContainer一起使用，用于控制和反馈对应的NodeContainer上的节点的行为
 export class myNodeController extends NodeController {
   private rootNode: BuilderNode<Data[]> | null = null;
   // 必须要重写的方法，用于构建节点树、返回节点挂载在对应NodeContainer中
