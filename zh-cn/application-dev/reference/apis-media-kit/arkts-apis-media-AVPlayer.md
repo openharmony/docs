@@ -1729,6 +1729,49 @@ let avPlayer = await media.createAVPlayer();
 avPlayer.off('mediaKeySystemInfoUpdate');
 ```
 
+## setLoudnessGain<sup>21+</sup>
+
+setLoudnessGain(loudnessGain: double): Promise\<void>
+
+设置播放响度。调用该接口后，响度增益立即生效。使用Promise异步回调。
+
+> **说明：**
+>
+> - 当播放处于prepared / playing / paused / completed/ stopped状态时，可调用该接口。
+> - 调用此接口时，需确保已设置音频渲染信息AVPlayer.audioRendererInfo，audioRendererInfo的[usage](../apis-audio-kit/arkts-apis-audio-e.md#streamusage)参数必须是STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE、STREAM_USAGE_AUDIOBOOK其中之一。
+
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| loudnessGain | double | 是   | 设置播放的响度值，单位为dB，响度范围为[-90.0, 24.0]。默认值为0.0dB。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by promise. e.g. The function is called in an incorrect state, or the stream [usage](../apis-audio-kit/arkts-apis-audio-e.md#streamusage) of audioRendererInfo is not one of STREAM_USAGE_MUSIC, STREAM_USAGE_MOVIE or STREAM_USAGE_AUDIOBOOK.|
+| 5410005  | Service died. |
+| 5410008  | Parameter check failed. Returned by promise. |
+
+**示例：**
+
+```ts
+let avPlayer = await media.createAVPlayer();
+
+let loudnessGain: number = 1.0;
+avPlayer.audioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MOVIE,
+  rendererFlags: 0
+}
+avPlayer.setLoudnessGain(loudnessGain);
+```
+
 ## setVolume<sup>9+</sup>
 
 setVolume(volume: number): void
