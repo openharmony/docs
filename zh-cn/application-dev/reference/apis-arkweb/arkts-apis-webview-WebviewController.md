@@ -5374,6 +5374,8 @@ enableIntelligentTrackingPrevention(enable: boolean): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**设备行为差异：** 该接口在Phone、Tablet、PC/2in1中可正常使用。从API version 18开始，在其他设备类型中返回801错误码。
+
 **参数：**
 
 | 参数名   | 类型    |  必填  | 说明                       |
@@ -5381,10 +5383,6 @@ enableIntelligentTrackingPrevention(enable: boolean): void
 |  enable | boolean | 是   | 是否启用智能防跟踪功能。<br>true表示启用智能防跟踪功能，false表示不启用智能防跟踪功能。<br>默认值：false。 |
 
 **错误码：**
-
-> **说明：**
->
-> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -5431,6 +5429,8 @@ isIntelligentTrackingPreventionEnabled(): boolean
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**设备行为差异：** 该接口在Phone、Tablet、PC/2in1中可正常使用。从API version 18开始，在其他设备类型中返回801错误码。
+
 **返回值：**
 
 | 类型    | 说明                                     |
@@ -5438,10 +5438,6 @@ isIntelligentTrackingPreventionEnabled(): boolean
 | boolean | 当前Web是否启用了智能防跟踪功能。<br>true表示启用了智能防跟踪功能，false表示未启用智能防跟踪功能。<br>默认值：false。 |
 
 **错误码：**
-
-> **说明：**
->
-> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -5487,6 +5483,8 @@ static addIntelligentTrackingPreventionBypassingList(hostList: Array\<string>): 
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**设备行为差异：** 该接口在Phone、Tablet、PC/2in1中可正常使用。从API version 18开始，在其他设备类型中返回801错误码。
+
 **参数：**
 
 | 参数名       | 类型           | 必填  | 说明                      |
@@ -5494,10 +5492,6 @@ static addIntelligentTrackingPreventionBypassingList(hostList: Array\<string>): 
 | hostList    | Array\<string> | 是   | 绕过智能防跟踪功能的域名列表。 |
 
 **错误码：**
-
-> **说明：**
->
-> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -5543,6 +5537,8 @@ static removeIntelligentTrackingPreventionBypassingList(hostList: Array\<string>
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**设备行为差异：** 该接口在Phone、Tablet、PC/2in1中可正常使用。从API version 18开始，在其他设备类型中返回801错误码。
+
 **参数：**
 
 | 参数名       | 类型           | 必填  | 说明                      |
@@ -5550,10 +5546,6 @@ static removeIntelligentTrackingPreventionBypassingList(hostList: Array\<string>
 | hostList    | Array\<string> | 是   | 绕过智能防跟踪功能的域名列表。 |
 
 **错误码：**
-
-> **说明：**
->
-> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -5599,11 +5591,9 @@ static clearIntelligentTrackingPreventionBypassingList(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**错误码：**
+**设备行为差异：** 该接口在Phone、Tablet、PC/2in1中可正常使用。从API version 18开始，在其他设备类型中返回801错误码。
 
-> **说明：**
->
-> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+**错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
