@@ -22,7 +22,7 @@ HSP（Harmony Shared Package）是动态共享包，包含代码、C++库、资�
 
 ## 约束限制
 
-- HSP不支持在设备上单独安装/运行，需要与依赖该HSP的HAP一起安装/运行。从API version 18开始，HAP的版本号须大于等于HSP版本号。API version 17及之前版本，HSP的版本号必须与HAP版本号一致。
+- HSP不支持在设备上单独安装/运行，需要与依赖该HSP的HAP一起安装/运行。在安装或更新时，多模块之间存在校验，详情参考[一致性校验](multi_module_installation_update_consistency_verification.md)。使用打包工具进行打包时，会进行合法性校验，详情请参考[打包工具](../../application-dev/tools/packing-tool.md)。
 - 从API version 14开始HSP支持在配置文件中[声明UIAbility](../application-models/uiability-overview.md#声明配置)组件，但不支持具有入口能力的UIAbility（即skill标签配置了entity.system.home和ohos.want.action.home）。配置UIAbility的方法参考[模块中添加UIAbility](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-add-new-ability#section18658758104318)，HSP中UIAbility的启动方式与[应用内启动UIAbility](../application-models/uiability-intra-device-interaction.md)方法相同。API version 13及之前版本，不支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md#声明配置)组件。
 - 从API version 18开始HSP支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件，但不支持具有入口能力的ExtensionAbility（即skill标签配置了entity.system.home和ohos.want.action.home）。HSP中配置ExtensionAbility的方法参考[模块中添加ExtensionAbility](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-add-new-ability#section18891639459)。 API version 17及之前版本，不支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件。
 - HSP可以依赖其他HAR或HSP，也可以被HAP或者HSP依赖集成，但不支持循环依赖，也不支持依赖传递。
@@ -433,7 +433,7 @@ export struct Library_Menu {
     ],
     "deliveryWithInstall": true,
     "pages": "$profile:main_pages",
-    "routerMap": "$profile:route_map" //新增
+    "routerMap": "$profile:route_map" //新增配置，指向route_map.json文件
   }
 }
 ```
