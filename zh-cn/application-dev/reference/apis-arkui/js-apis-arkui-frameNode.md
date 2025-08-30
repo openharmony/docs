@@ -2384,7 +2384,34 @@ createNode(context: UIContext, nodeType: 'Column'): Column
 <!--code_no_check-->
 
 ```ts
-typeNode.createNode(uiContext, 'Column');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyColumnController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('50%')
+      .height('50%')
+      .backgroundColor(Color.Gray)
+    node.appendChild(col)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myColumnController: MyColumnController = new MyColumnController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('ColumnSample')
+      NodeContainer(this.myColumnController);
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('Column')<sup>20+</sup>
@@ -2457,7 +2484,34 @@ createNode(context: UIContext, nodeType: 'Row'): Row
 <!--code_no_check-->
 
 ```ts
-typeNode.createNode(uiContext, 'Row');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyRowController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let row = typeNode.createNode(uiContext, 'Row')
+    row.initialize({ space: 5 })
+      .width('50%')
+      .height('50%')
+      .backgroundColor(Color.Gray)
+    node.appendChild(row)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myRowController: MyRowController = new MyRowController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('RowSample')
+      NodeContainer(this.myRowController);
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('Row')<sup>20+</sup>
@@ -2530,7 +2584,37 @@ createNode(context: UIContext, nodeType: 'Stack'): Stack
 <!--code_no_check-->
 
 ```ts
-typeNode.createNode(uiContext, 'Stack');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyStackController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let stack = typeNode.createNode(uiContext, 'Stack')
+    stack.initialize({ alignContent: Alignment.Top })
+      .width('50%')
+      .height('50%')
+      .backgroundColor(Color.Gray)
+    node.appendChild(stack)
+    let text = typeNode.createNode(uiContext, 'Text')
+    text.initialize("This is Text")
+    stack.appendChild(text)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myStackController: MyStackController = new MyStackController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('StackSample')
+      NodeContainer(this.myStackController);
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('Stack')<sup>20+</sup>
@@ -2603,7 +2687,39 @@ createNode(context: UIContext, nodeType: 'GridRow'): GridRow
 <!--code_no_check-->
 
 ```ts
-typeNode.createNode(uiContext, 'GridRow');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyGridRowController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let gridRow = typeNode.createNode(uiContext, 'GridRow')
+    gridRow.initialize({ columns: 12 })
+      .width('50%')
+      .height('50%')
+      .backgroundColor(Color.Gray)
+    node.appendChild(gridRow)
+    let gridCol = typeNode.createNode(uiContext, 'GridCol')
+    gridCol.initialize({ span: 2, offset: 4 })
+      .height("100%")
+      .backgroundColor(Color.Red)
+    gridRow.appendChild(gridCol)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myGridRowController: MyGridRowController = new MyGridRowController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('GridRowSample')
+      NodeContainer(this.myGridRowController);
+    }.width('100%')
+  }
+}
 ```
 ### GridCol<sup>12+</sup>
 type GridCol = TypedFrameNode&lt;GridColInterface, GridColAttribute&gt;
@@ -2645,7 +2761,39 @@ createNode(context: UIContext, nodeType: 'GridCol'): GridCol
 <!--code_no_check-->
 
 ```ts
-typeNode.createNode(uiContext, 'GridCol');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyGridRowController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let gridRow = typeNode.createNode(uiContext, 'GridRow')
+    gridRow.initialize({ columns: 12 })
+      .width('50%')
+      .height('50%')
+      .backgroundColor(Color.Gray)
+    node.appendChild(gridRow)
+    let gridCol = typeNode.createNode(uiContext, 'GridCol')
+    gridCol.initialize({ span: 2, offset: 4 })
+      .height("100%")
+      .backgroundColor(Color.Red)
+    gridRow.appendChild(gridCol)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myGridRowController: MyGridRowController = new MyGridRowController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('GridColSample')
+      NodeContainer(this.myGridRowController);
+    }.width('100%')
+  }
+}
 ```
 ### Flex<sup>12+</sup>
 type Flex = TypedFrameNode&lt;FlexInterface, FlexAttribute&gt;
@@ -2687,7 +2835,34 @@ createNode(context: UIContext, nodeType: 'Flex'): Flex
 <!--code_no_check-->
 
 ```ts
-typeNode.createNode(uiContext, 'Flex');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyFlexController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let flex = typeNode.createNode(uiContext, 'Flex')
+    flex.initialize()
+      .width('50%')
+      .height('50%')
+      .backgroundColor(Color.Gray)
+    node.appendChild(flex)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myFlexController: MyFlexController = new MyFlexController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('FlexSample')
+      NodeContainer(this.myFlexController);
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('Flex')<sup>20+</sup>
@@ -3111,7 +3286,34 @@ createNode(context: UIContext, nodeType: 'RelativeContainer'): RelativeContainer
 <!--code_no_check-->
 
 ```ts
-typeNode.createNode(uiContext, 'RelativeContainer');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyRelativeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let relative = typeNode.createNode(uiContext, 'RelativeContainer')
+    relative.initialize()
+      .width('50%')
+      .height('50%')
+      .backgroundColor(Color.Gray)
+    node.appendChild(relative)
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myRelativeController: MyRelativeController = new MyRelativeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('RelativeContainerSample')
+      NodeContainer(this.myRelativeController);
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('RelativeContainer')<sup>20+</sup>
@@ -3184,7 +3386,39 @@ createNode(context: UIContext, nodeType: 'Divider'): Divider
 <!--code_no_check-->
 
 ```ts
-typeNode.createNode(uiContext, 'Divider');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyDividerController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let divider = typeNode.createNode(uiContext, 'Divider')
+    divider.initialize()
+      .strokeWidth(1)
+    col.appendChild(divider)
+
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myDividerController: MyDividerController = new MyDividerController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('DividerSample')
+      NodeContainer(this.myDividerController);
+
+    }.width('100%')
+  }
+}
 ```
 ### LoadingProgress<sup>12+</sup>
 type LoadingProgress = TypedFrameNode&lt;LoadingProgressInterface, LoadingProgressAttribute&gt;
@@ -3339,7 +3573,41 @@ createNode(context: UIContext, nodeType: 'Blank'): Blank
 <!--code_no_check-->
 
 ```ts
-typeNode.createNode(uiContext, 'Blank');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyBlankController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column')
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col)
+    let blank = typeNode.createNode(uiContext, 'Blank')
+    blank.initialize()
+      .width('50%')
+      .height('50%')
+      .backgroundColor(Color.Blue)
+    col.appendChild(blank)
+
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myBlankController: MyBlankController = new MyBlankController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('BlankSample')
+      NodeContainer(this.myBlankController);
+
+    }.width('100%')
+  }
+}
 ```
 ### Image<sup>12+</sup>
 type Image = TypedFrameNode&lt;ImageInterface, ImageAttribute&gt;
