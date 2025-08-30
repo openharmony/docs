@@ -414,10 +414,10 @@ struct DragControllerPage {
                 }
               })
               this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-                console.info("start drag Error:" + err.message);
+                console.error("start drag Error:" + err.message);
               })
             } catch(err) {
-              console.info("create dragAction Error:" + err.message);
+              console.error("create dragAction Error:" + err.message);
             }
           }
         }
@@ -505,10 +505,10 @@ struct DragControllerPage {
                 return;
               }
               this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-                console.info("start drag Error:" + err.message);
+                console.error(`start drag Error: ${err.message}`);
               })
             } catch(err) {
-              console.info("create dragAction Error:" + err.message);
+              console.error(`create dragAction Error: ${err.message}`);
             }
           }
         }
@@ -593,7 +593,7 @@ struct ImageExample {
                   }
 
                   let func = (dragAndDropInfo: dragController.DragAndDropInfo) => {
-                    console.info("ndq Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+                    console.info(`ndq Register to listen on drag status ${JSON.stringify(dragAndDropInfo)}`);
                   }
                   try {
                     this.dragAction = this.getUIContext()
@@ -607,10 +607,10 @@ struct ImageExample {
                     this.dragAction.on('statusChange', func);
                     this.dragAction.startDrag().then(() => {
                     }).catch((err: Error) => {
-                      console.error("start drag Error:" + err.message);
+                      console.error(`start drag Error: ${err.message}`);
                     })
                   } catch (err) {
-                    console.error("create dragAction Error:" + err.message);
+                    console.error(`create dragAction Error: ${err.message}`);
                   }
                 }
               }
@@ -751,7 +751,7 @@ struct DragControllerPage {
               extraParams: ''
             }
             let func = (dragAndDropInfo: dragController.DragAndDropInfo) => {
-              console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+              console.info(`Register to listen on drag status ${JSON.stringify(dragAndDropInfo)}`);
             }
             try{
               this.dragAction = this.getUIContext().getDragController().createDragAction(this.customBuilders, dragInfo) // 建议使用 this.getUIContext().getDragController().createDragAction()接口
@@ -762,10 +762,10 @@ struct DragControllerPage {
               // 监听状态改变，触发后打印func中的日志
               this.dragAction.on('statusChange', func);
               this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-                console.info("start drag Error:" + err.message);
+                console.error(`start drag Error: ${err.message}`);
               })
             } catch(err) {
-              console.info("create dragAction Error:" + err.message);
+              console.error(`create dragAction Error: ${err.message}`);
             }
           }
         }
@@ -833,7 +833,7 @@ struct DragControllerPage {
               extraParams: ''
             }
             let func = (dragAndDropInfo: dragController.DragAndDropInfo) => {
-              console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+              console.info(`Register to listen on drag status ${JSON.stringify(dragAndDropInfo)}`);
             }
             this.dragAction = this.getUIContext().getDragController().createDragAction(this.customBuilders, dragInfo) // 建议使用 this.getUIContext().getDragController().createDragAction()接口
             if(!this.dragAction){
@@ -844,7 +844,7 @@ struct DragControllerPage {
             // 取消监听，发起拖拽后不会打印func中的日志
             this.dragAction.off('statusChange', func);
             this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-              console.info("start drag Error:" + err.message);
+              console.error(`start drag Error: ${err.message}`);
             })
           }
         }
