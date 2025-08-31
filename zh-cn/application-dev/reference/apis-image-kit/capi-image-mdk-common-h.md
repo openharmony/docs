@@ -14,13 +14,19 @@
 
 **库：** libimage_ndk.z.so
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **起始版本：** 10
 
 **相关模块：** [Image](capi-image.md)
 
 ## 汇总
+
+### 宏定义
+
+| 名称 | 描述 |
+| -- | -- |
+| IMAGE_RESULT_BASE 62980096 | 通用图像错误码，含义为操作失败。<br>**起始版本：** 10 |
 
 ### 结构体
 

@@ -14,6 +14,8 @@
 
 **库：** libpicture.so
 
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
 **起始版本：** 13
 
 **相关模块：** [Image_NativeModule](capi-image-nativemodule.md)
