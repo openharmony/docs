@@ -78,7 +78,7 @@
         console.error("cameraManager.getSupportedOutputCapability error");
         return undefined;
       }
-      console.info("outputCapability: " + JSON.stringify(cameraOutputCapability));
+      console.info("outputCapability: " + .${cameraOutputCapability});
       // 以NORMAL_PHOTO模式为例，需要添加预览流、拍照流。
       // previewProfiles属性为获取当前设备支持的预览输出流。
       let previewProfilesArray: Array<camera.Profile> = cameraOutputCapability.previewProfiles;

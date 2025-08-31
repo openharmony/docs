@@ -304,7 +304,7 @@ struct Index {
       console.error(TAG + 'cameraManager.getSupportedOutputCapability error');
       return;
     }
-    console.info(TAG + 'outputCapability: ' + JSON.stringify(cameraOutputCapability));
+    console.info(TAG + 'outputCapability: ' + ${cameraOutputCapability});
     let previewProfile = this.getPreviewProfile(cameraOutputCapability);
     if (previewProfile === undefined) {
       console.error(TAG + 'The resolution of the current preview stream is not supported.');

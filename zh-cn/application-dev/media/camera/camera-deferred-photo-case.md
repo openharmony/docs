@@ -171,7 +171,7 @@ async function deferredPhotoCase(context: Context, surfaceId: string): Promise<v
     console.error("cameraManager.getSupportedOutputCapability error");
     return;
   }
-  console.info("outputCapability: " + JSON.stringify(cameraOutputCap));
+  console.info("outputCapability: " + ${cameraOutputCap});
 
   let previewProfilesArray: Array<camera.Profile> = cameraOutputCap.previewProfiles;
   if (!previewProfilesArray) {

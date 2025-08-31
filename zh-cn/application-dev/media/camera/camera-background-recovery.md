@@ -104,7 +104,7 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../../applica
         console.error("cameraManager.getSupportedOutputCapability error");
         return;
       }
-      console.info("outputCapability: " + JSON.stringify(cameraOutputCap));
+      console.info("outputCapability: " + ${cameraOutputCap});
 
       let previewProfilesArray: Array<camera.Profile> = cameraOutputCap.previewProfiles;
       if (!previewProfilesArray) {

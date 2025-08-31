@@ -194,14 +194,14 @@ struct Index {
     try {
       curFoldStatus = display.getFoldStatus();
     } catch (error) {
-      console.info(`${TAG} getFoldStatus call failed, error ${JSON.stringify(error)}`);
+      console.info(`${TAG} getFoldStatus call failed, error: ${error.code}`);
     }
     return curFoldStatus;
   }
 
   registerFoldStatusChanged(err: BusinessError, foldStatusInfo: camera.FoldStatusInfo) {
     if (err !== undefined && err.code !== 0) {
-      console.info(`${TAG} registerFoldStatusChanged call failed, error ${JSON.stringify(err)}`);
+      console.info(`${TAG} registerFoldStatusChanged call failed, error: ${err.code}`);
       return;
     }
     if (foldStatusInfo && foldStatusInfo.supportedCameras) {
@@ -238,7 +238,7 @@ struct Index {
     ]).then((): void => {
       this.isShow = true;
     }).catch((error: BusinessError): void => {
-      console.error(`${TAG} requestPermissionsFromUser call failed, error: ${JSON.stringify(error)}`);
+      console.error(`${TAG} requestPermissionsFromUser call failed, error: ${error.code}`);
     });
   }
 
@@ -251,7 +251,7 @@ struct Index {
     try {
       this.mCameraManager = camera.getCameraManager(this.mContext);
     } catch (error) {
-      console.error(`${TAG} getCameraManager call failed, error: ${JSON.stringify(error)}`);
+      console.error(`${TAG} getCameraManager call failed, error: ${error.code}`);
     }
   }
 
@@ -416,7 +416,7 @@ struct Index {
       console.error(TAG + 'cameraManager.getSupportedOutputCapability error');
       return;
     }
-    console.info(TAG + 'outputCapability: ' + JSON.stringify(cameraOutputCapability));
+    console.info(TAG + 'outputCapability: ' + ${cameraOutputCapability});
     let previewProfile = this.getPreviewProfile(cameraOutputCapability);
     if (previewProfile === undefined) {
       console.error(TAG + 'The resolution of the current preview stream is not supported.');
