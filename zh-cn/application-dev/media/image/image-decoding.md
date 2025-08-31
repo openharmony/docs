@@ -47,18 +47,18 @@
       import { resourceManager } from '@kit.LocalizationKit';
 
       async function getFileBuffer(context: Context): Promise<ArrayBuffer | undefined> {
-         try {
-            const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
-            // 获取资源文件内容，返回Uint8Array。
-            const fileData: Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
-            console.info('Successfully got RawFileContent');
-            // 转为ArrayBuffer并返回。
-            const buffer: ArrayBuffer = fileData.buffer.slice(0);
-            return buffer;
-         } catch (error) {
-            console.error("Failed to get RawFileContent");
-            return undefined;
-         }
+        try {
+          const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+          // 获取资源文件内容，返回Uint8Array。
+          const fileData: Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
+          console.info('Successfully got RawFileContent');
+          // 转为ArrayBuffer并返回。
+          const buffer: ArrayBuffer = fileData.buffer.slice(0);
+          return buffer;
+        } catch (error) {
+          console.error("Failed to get RawFileContent");
+          return undefined;
+        }
       }
       ```
 
@@ -67,15 +67,15 @@
       import { resourceManager } from '@kit.LocalizationKit';
 
       async function getRawFd(context: Context): Promise<resourceManager.RawFileDescriptor | undefined> {
-         try {
-            const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
-            const rawFileDescriptor: resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
-            console.info('Successfully got RawFileDescriptor');
-            return rawFileDescriptor;
-         } catch (error) {
-            console.error('Failed to get RawFileDescriptor:');
-            return undefined;
-         }
+        try {
+          const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+          const rawFileDescriptor: resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
+          console.info('Successfully got RawFileDescriptor');
+          return rawFileDescriptor;
+        } catch (error) {
+          console.error('Failed to get RawFileDescriptor:');
+          return undefined;
+        }
       }
       ```
 
@@ -138,15 +138,15 @@
       let imageSource : image.ImageSource = image.createImageSource(fd);
       // 配置解码选项参数。
       let decodingOptions : image.DecodingOptions = {
-         //设置为AUTO会根据图片资源格式解码，如果图片资源为HDR资源则会解码为HDR的pixelmap。
+         //设置为AUTO会根据图片资源格式解码，如果图片资源为HDR资源则会解码为HDR的pixelMap。
          desiredDynamicRange: image.DecodingDynamicRange.AUTO,
       };
       // 创建pixelMap。
       imageSource.createPixelMap(decodingOptions).then((pixelMap : image.PixelMap) => {
          console.info("Succeeded in creating PixelMap");
-         // 判断pixelmap是否为hdr内容。
+         // 判断pixelMap是否为hdr内容。
          let info = pixelMap.getImageInfoSync();
-         console.info("pixelmap isHdr:" + info.isHdr);
+         console.info("pixelMap isHdr:" + info.isHdr);
       }).catch((err : BusinessError) => {
          console.error("Failed to create PixelMap");
       });
@@ -157,8 +157,10 @@
 
    确认pixelMap和imageSource的异步方法已经执行完成，不再使用该变量后，可按需手动调用下面方法释放。
    ```ts
-   pixelMap.release();
-   imageSource.release();
+   // 请务必在确认pixelMap不需要再使用时，再进行释放。
+   // pixelMap.release();
+   // 请务必在确认imageSource不需要再使用时，再进行释放。
+   // imageSource.release();
    ```
 
    > **补充说明：**

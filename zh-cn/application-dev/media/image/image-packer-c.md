@@ -32,7 +32,6 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libimage
 > 根据MIME标准，标准编码格式为image/jpeg。当使用image编码时，编码参数中的编码格式image_MimeType设置为image/jpeg，image编码后的文件扩展名可设为.jpg或.jpeg，可在支持image/jpeg解码的平台上使用。
 
 ```c++
-#include <linux/kd.h>
 #include <string>
 #include <set>
 #include <hilog/log.h>
@@ -52,7 +51,7 @@ Image_MimeType GetMimeTypeIfEncodable(const char *format)
 {
     auto it = g_encodeSupportedFormats.find(format);
     if (it == g_encodeSupportedFormats.end()) {
-        return {"", 0};
+        return {const_cast<char *>(""), 0};
     }
     return {const_cast<char *>(format), strlen(format)};
 }
