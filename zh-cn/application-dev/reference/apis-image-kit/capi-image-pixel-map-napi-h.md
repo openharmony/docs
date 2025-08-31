@@ -6,6 +6,8 @@
 
 **库：** libpixelmap_ndk.so
 
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
 **引用文件：** <multimedia/image_framework/image_pixel_map_napi.h>
 
 **起始版本：** 8
