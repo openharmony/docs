@@ -142,7 +142,7 @@
            y: 0
          });
          let imageInfo: image.ImageInfo = await BlurAnimateUtil.surfaceShot.getImageInfo();
-         console.info('doSurfaceShot surfaceShot:' + ${imageInfo.size});
+         console.info('doSurfaceShot surfaceShot:' + JSON.stringify(imageInfo.size));
        } catch (err) {
          console.error(err);
        }

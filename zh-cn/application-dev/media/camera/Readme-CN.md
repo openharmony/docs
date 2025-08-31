@@ -8,11 +8,12 @@
 
 - [Camera Kit简介](camera-overview.md)
 - [申请相机开发的权限](camera-preparation.md)
-- 开发相机应用(ArkTS)<!--camera-dev-arkts-->
-  - [通过系统相机拍照和录像(CameraPicker)](camera-picker.md)
+- 开发相机应用必选能力(ArkTS)<!--camera-dev-arkts-mandatory-->
   - [相机管理(ArkTS)](camera-device-management.md)
   - [设备输入(ArkTS)](camera-device-input.md)
   - [会话管理(ArkTS)](camera-session-management.md)
+- 开发相机应用基础能力(ArkTS)<!--camera-dev-arkts-->
+  - [通过系统相机拍照和录像(CameraPicker)](camera-picker.md)
   - [预览(ArkTS)](camera-preview.md)
   - [双路预览(ArkTS)](camera-dual-channel-preview.md)
   - [拍照(ArkTS)](camera-shooting.md)
@@ -35,10 +36,11 @@
   - [深度信息(仅对系统应用开放)(ArkTS)](camera-depth-data.md)
   - [性能提升实践(仅对系统应用开放)(ArkTS)](camera-performance-improvement.md)
   <!--DelEnd-->
-- 开发相机应用(C/C++)<!--camera-dev-native-->
+- 开发相机应用必选能力(C/C++)<!--camera-dev-native-mandatory-->
   - [相机管理(C/C++)](native-camera-device-management.md)
   - [设备输入(C/C++)](native-camera-device-input.md)
   - [会话管理(C/C++)](native-camera-session-management.md)
+- 开发相机应用基础能力(C/C++)<!--camera-dev-native-->
   - [预览(C/C++)](native-camera-preview.md)
   - [预览流二次处理(C/C++)](native-camera-preview-imageReceiver.md)
   - [拍照(C/C++)](native-camera-shooting.md)

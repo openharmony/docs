@@ -127,7 +127,7 @@ async function cameraShootingCase(context: Context, surfaceId: string): Promise<
     console.error("cameraManager.getSupportedOutputCapability error");
     return;
   }
-  console.info("outputCapability: " + ${cameraOutputCap});
+  console.info("outputCapability: " + JSON.stringify(cameraOutputCap));
 
   let previewProfilesArray: Array<camera.Profile> = cameraOutputCap.previewProfiles;
   if (!previewProfilesArray) {

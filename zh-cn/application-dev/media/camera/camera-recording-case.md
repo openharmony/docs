@@ -76,7 +76,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.error("cameraManager.getSupportedOutputCapability error")
     return;
   }
-  console.info("outputCapability: " + ${cameraOutputCap}));
+  console.info("outputCapability: " + JSON.stringify(cameraOutputCap));
 
   let previewProfilesArray: Array<camera.Profile> = cameraOutputCap.previewProfiles;
   if (!previewProfilesArray) {
