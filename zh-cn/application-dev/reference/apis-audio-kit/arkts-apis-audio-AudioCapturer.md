@@ -351,7 +351,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.start().then(() => {
   console.info('Succeeded in doing start.');
-  if ((audioCapturer.state == audio.AudioState.STATE_RUNNING)) {
+  if (audioCapturer.state == audio.AudioState.STATE_RUNNING) {
     console.info('AudioFrameworkRecLog: AudioCapturer is in Running State');
   }
 }).catch((err: BusinessError) => {
@@ -409,7 +409,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.stop().then(() => {
   console.info('Succeeded in doing stop.');
-  if ((audioCapturer.state == audio.AudioState.STATE_STOPPED)){
+  if (audioCapturer.state == audio.AudioState.STATE_STOPPED){
     console.info('AudioFrameworkRecLog: State is Stopped:');
   }
 }).catch((err: BusinessError) => {
@@ -559,7 +559,7 @@ getAudioTimestampInfo(): Promise\<AudioTimestampInfo>
 
 获取输入音频流时间戳和当前数据帧位置信息。
 
-该接口可以获取到音频通道实际录制位置（framePosition）以及录制到该位置时候的时间戳（timestamp），时间戳单位为纳秒。
+该接口可以获取到音频通道实际录制位置（framePos）以及录制到该位置时候的时间戳（timestamp），时间戳单位为纳秒。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -645,13 +645,10 @@ getBufferSize(callback: AsyncCallback<number\>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getBufferSize((err: BusinessError, bufferSize: number) => {
-  if (!err) {
-    console.info(`BufferSize : ${bufferSize}`);
-    audioCapturer.read(bufferSize, true).then((buffer: ArrayBuffer) => {
-      console.info(`Buffer read is ${buffer.byteLength}`);
-    }).catch((err: BusinessError) => {
-      console.error(`AudioFrameworkRecLog: AudioCapturer Created : ERROR : ${err}`);
-    });
+  if (err) {
+    console.error(`Failed to get buffer size. Code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`Succeeded in getting buffer size, BufferSize: ${bufferSize}.`);
   }
 });
 ```
@@ -675,13 +672,10 @@ getBufferSize(): Promise<number\>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let bufferSize: number = 0;
-
-audioCapturer.getBufferSize().then((data: number) => {
-  console.info(`AudioFrameworkRecLog: getBufferSize :SUCCESS ${data}`);
-  bufferSize = data;
+audioCapturer.getBufferSize().then((bufferSize: number) => {
+  console.info(`Succeeded in getting buffer size, BufferSize: ${bufferSize}.`);
 }).catch((err: BusinessError) => {
-  console.error(`AudioFrameworkRecLog: getBufferSize :ERROR : ${err}`);
+  console.error(`Failed to get buffer size. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -704,14 +698,12 @@ getBufferSizeSync(): number
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let bufferSize: number = 0;
-
 try {
-  bufferSize = audioCapturer.getBufferSizeSync();
-  console.info(`AudioFrameworkRecLog: getBufferSizeSync :SUCCESS ${bufferSize}`);
+  let bufferSize = audioCapturer.getBufferSizeSync();
+  console.info(`Succeeded in getting buffer size, BufferSize: ${bufferSize}.`);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`AudioFrameworkRecLog: getBufferSizeSync :ERROR : ${error}`);
+  console.error(`Failed to get buffer size. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
