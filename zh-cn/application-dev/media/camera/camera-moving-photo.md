@@ -74,7 +74,8 @@
 4. 使能动态照片拍照能力。
 
     > **说明：**
-    > - 使能动态照片前需要使能[分段式拍照](camera-deferred-capture.md)能力。
+    >
+    > 使能动态照片前需要使能[分段式拍照](camera-deferred-capture.md)能力。
 
     ```ts
     function enableMovingPhoto(photoOutput: camera.PhotoOutput): void {
