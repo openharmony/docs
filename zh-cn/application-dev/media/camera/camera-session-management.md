@@ -61,6 +61,7 @@
      > **说明：**
      >
      > 在调用[addOutput](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#addoutput11)添加相机的输出流前，可通过[canAddOutput](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#canaddoutput11)判断当前相机输出流是否可以添加到session中。
+     > 相机输入流cameraInput创建流程请参考[设备输入](camera-device-input.md)，相机预览输出流previewOutput和拍照输出流photoOutput创建流程请分别参考[预览](camera-preview.md)和[拍照](camera-shooting.md)。
      
    ```ts
    async function startSession(videoSession: camera.VideoSession, cameraInput: camera.CameraInput, previewOutput: camera.PreviewOutput, photoOutput: camera.PhotoOutput): Promise<void> {
