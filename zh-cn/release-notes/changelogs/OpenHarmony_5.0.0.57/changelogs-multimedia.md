@@ -33,7 +33,7 @@
 
 | 接口名| 接口说明 | 属性名 | 属性说明 |
 | -------- | -------- | -------- | -------- |
-|image.ImageSource.DecodingOptionsForPicture|图像解码设置选项|desiredAuxiliaryPictures|设置AuxiliaryPicture类型，默认解码所有AuxiliaryPicture类型|
+|image.ImageSource.DecodingOptionsForPicture|图像解码设置选项|desiredAuxiliaryPictures|设置AuxiliaryPicture类型，默认解码所有AuxiliaryPicture类型。|
 
 
 **适配指导**
@@ -68,46 +68,54 @@
 
 **变更的接口/组件**
 
-picture_native.h下的接口： 
-
-Image_ErrorCode OH_AuxiliaryPictureNative_SetInfo(OH_AuxiliaryPictureNative *auxiliaryPicture,    OH_AuxiliaryPictureInfo *info);
+| API类型 | 所在头文件 | 接口名 | 接口起始版本 |
+|--|--|--|--|
+| C API | picture_native.h | Image_ErrorCode OH_AuxiliaryPictureNative_SetInfo(OH_AuxiliaryPictureNative *auxiliaryPicture, OH_AuxiliaryPictureInfo *info) | 13 |
 
 **适配指导**
 
 设置辅助图信息时，如果将存储像素字节数变大，则设置不成功，返回错误码401。
 
 ```c++
-size_t filePathSize = 1024;
-OH_ImageSourceNative* imageSource = nullptr;
-Image_ErrorCode image_ErrorCode = OH_ImageSourceNative_CreateFromUri("test.jpg", filePathSize, &imageSource);
-if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS || imageSource == nullptr) {
-    H_LOGE("OH_ImageSourceNative_CreateFromUri failed.");
+#include <hilog/log.h>
+#include <multimedia/image_framework/image/image_native.h>
+#include <multimedia/image_framework/image/image_packer_native.h>
+#include <multimedia/image_framework/image/image_source_native.h>
+#include <multimedia/image_framework/image/picture_native.h>
+Image_ErrorCode SetAuxiliaryPictureInfoTest() {
+    size_t filePathSize = 1024;
+    OH_ImageSourceNative* imageSource = nullptr;
+    Image_ErrorCode image_ErrorCode = OH_ImageSourceNative_CreateFromUri("test.jpg", filePathSize, &imageSource);
+    if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS || imageSource == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "OH_ImageSourceNative_CreateFromUri failed.");
+    }
+    OH_DecodingOptionsForPicture *opts = nullptr;
+    OH_DecodingOptionsForPicture_Create(&opts);
+    OH_PictureNative *picture = nullptr;
+    image_ErrorCode = OH_ImageSourceNative_CreatePicture(imageSource, opts, &picture);
+    OH_ImageSourceNative_Release(imageSource);
+    OH_DecodingOptionsForPicture_Release(opts);
+    if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS || picture == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "OH_ImageSourceNative_CreatePicture failed. image_ErrorCode=%{public}d", image_ErrorCode);
+    }
+    OH_AuxiliaryPictureNative *auxiliaryPicture = nullptr;
+    image_ErrorCode = OH_PictureNative_GetAuxiliaryPicture(
+        picture, Image_AuxiliaryPictureType::AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP, &auxiliaryPicture);
+    if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS || auxiliaryPicture == nullptr) {
+       OH_LOG_ERROR(LOG_APP, "OH_PictureNative_GetAuxiliaryPicture failed. image_ErrorCode=%{public}d", image_ErrorCode);
+    }
+    OH_AuxiliaryPictureInfo *auxInfo = nullptr;
+    image_ErrorCode = OH_AuxiliaryPictureNative_GetInfo(auxiliaryPicture, &auxInfo);
+    PIXEL_FORMAT newPixelFormat = PIXEL_FORMAT_RGBA_F16;
+    OH_AuxiliaryPictureInfo_SetPixelFormat(auxInfo, newPixelFormat);
+    image_ErrorCode = OH_AuxiliaryPictureNative_SetInfo(auxiliaryPicture, auxInfo);
+    if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS || auxInfo == nullptr) {
+       OH_LOG_ERROR(LOG_APP, "OH_AuxiliaryPictureNative_SetInfo failed. image_ErrorCode=%{public}d", image_ErrorCode);
+    }
+    OH_AuxiliaryPictureInfo_Release(auxInfo);
+    OH_AuxiliaryPictureNative_Release(auxiliaryPicture);
+    return IMAGE_SUCCESS;
 }
-OH_DecodingOptionsForPicture *opts = nullptr;
-OH_DecodingOptionsForPicture_Create(&opts);
-OH_PictureNative *picture = nullptr;
-image_ErrorCode = OH_ImageSourceNative_CreatePicture(imageSource, opts, &picture);
-OH_ImageSourceNative_Release(imageSource);
-OH_DecodingOptionsForPicture_Release(opts);
-if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS || picture == nullptr) {
-    H_LOGE("OH_ImageSourceNative_CreatePicture failed. image_ErrorCode=%{public}d", image_ErrorCode);
-}
-OH_AuxiliaryPictureNative *auxiliaryPicture = nullptr;
-image_ErrorCode = OH_PictureNative_GetAuxiliaryPicture(
-    picture, Image_AuxiliaryPictureType::AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP, &auxiliaryPicture);
-if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS || auxiliaryPicture == nullptr) {
-    H_LOGE("OH_PictureNative_GetAuxiliaryPicture failed. image_ErrorCode=%{public}d", image_ErrorCode);
-}
-OH_AuxiliaryPictureInfo *auxInfo = nullptr;
-image_ErrorCode = OH_AuxiliaryPictureNative_GetInfo(auxiliaryPicture, &auxInfo);
-PIXEL_FORMAT newPixelFormat = PIXEL_FORMAT_RGBA_F16;
-OH_AuxiliaryPictureInfo_SetPixelFormat(auxInfo, newPixelFormat);
-image_ErrorCode = OH_AuxiliaryPictureNative_SetInfo(auxiliaryPicture, auxInfo);
-if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS || info == nullptr) {
-    H_LOGE("OH_AuxiliaryPictureNative_SetInfo failed. image_ErrorCode=%{public}d", image_ErrorCode);
-}
-OH_AuxiliaryPictureInfo_Release(auxInfo);
-OH_AuxiliaryPictureNative_Release(auxiliaryPicture);
 ```
 
 ## cl.multimedia.3 image.Component.setAuxiliaryPictureInfo接口行为变更
@@ -138,42 +146,44 @@ OH_AuxiliaryPictureNative_Release(auxiliaryPicture);
 
 **变更的接口/组件**
 
-@ohos.multimedia.image.d.ts中涉及的接口如下： 
-
-setAuxiliaryPictureInfo(info: AuxiliaryPictureInfo): void
+| API类型 | 所在d.ts文件 | 接口名 | 接口起始版本 |
+|--|--|--|--|
+| ArkTS API | @ohos.multimedia.image.d.ts | setAuxiliaryPictureInfo(info: AuxiliaryPictureInfo): void | 13 |
 
 **适配指导**
 
 设置辅助图信息时，如果将存储像素字节数变大，则设置不成功，返回错误码401。
 
 ```ts
-const context = getContext(this);
-const resourceMgr = context.resourceManager;
-const rawFile = await resourceMgr.getRawFileContent('test.jpg');
-let imageSource: image.ImageSource = image.createImageSource(rawFile.buffer as ArrayBuffer);
-let options: image.DecodingOptionsForPicture = {
-  desiredAuxiliaryPictures: [image.AuxiliaryPictureType.FRAGMENT_MAP]
-};
-try {
-  let picture: image.Picture = await imageSource.createPicture(options);
-  let auxiliaryPicture = picture.getAuxiliaryPicture(image.AuxiliaryPictureType.FRAGMENT_MAP);
-  let originInfo = auxiliaryPicture?.getAuxiliaryPictureInfo();
-  console.info("CreatePicture", 'originInfo = ' + JSON.stringify(originInfo));
-  let changedInfo: image.AuxiliaryPictureInfo = {
-    auxiliaryPictureType: image.AuxiliaryPictureType.FRAGMENT_MAP,
-    size: { height: 410, width: 3072 },
-    rowStride: 3072 * 8,
-    pixelFormat: image.PixelMapFormat.RGBA_F16,
-    colorSpace: colorSpaceManager.create(colorSpaceManager.ColorSpace.DCI_P3),
+import { image } from '@kit.ImageKit';
+import { colorSpaceManager } from '@kit.ArkGraphics2D';
+
+async function setAuxiliaryPitcutreInfo() {
+  const array: ArrayBuffer = new ArrayBuffer(100);
+  let imageSource: image.ImageSource = image.createImageSource(array);
+  let options: image.DecodingOptionsForPicture = {
+    desiredAuxiliaryPictures: [image.AuxiliaryPictureType.FRAGMENT_MAP]
   };
   try {
-    auxiliaryPicture?.setAuxiliaryPictureInfo(changedInfo);
-    console.info("CreatePicture", ' changedInfo = ' + JSON.stringify(changedInfo));
-  } catch (error) {
-    console.error("CreatePicture", 'setAuxiliaryPictureInfo', ` failed error.code: ` + JSON.stringify(error.code)
-      + ` error.message: ` + JSON.stringify(error.message));
+    let picture: image.Picture = await imageSource.createPicture(options);
+    let auxiliaryPicture = picture.getAuxiliaryPicture(image.AuxiliaryPictureType.FRAGMENT_MAP);
+    let originInfo = auxiliaryPicture?.getAuxiliaryPictureInfo();
+    console.info("CreatePicture", 'originInfo = ' + JSON.stringify(originInfo));
+    let changedInfo: image.AuxiliaryPictureInfo = {
+      auxiliaryPictureType: image.AuxiliaryPictureType.FRAGMENT_MAP,
+      size: { height: 410, width: 3072 },
+      rowStride: 3072 * 8,
+      pixelFormat: image.PixelMapFormat.RGBA_F16,
+      colorSpace: colorSpaceManager.create(colorSpaceManager.ColorSpace.DCI_P3),
+    };
+    try {
+      auxiliaryPicture?.setAuxiliaryPictureInfo(changedInfo);
+      console.info("CreatePicture", `changedInfo us ${changedInfo}`);
+    } catch (error) {
+      console.error("CreatePicture", `setAuxiliaryPictureInfo, error.code is ${error.code}, error.message is ${error.message}`);
+    }
+  } catch (err) {
+    console.error("CreatePicture", ' decode Picture failed !!!');
   }
-} catch (err) {
-  console.error("CreatePicture", ' decode Picture failed !!!');
 }
 ```

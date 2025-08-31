@@ -20,15 +20,15 @@
       变更前：获取Heif格式图片mimeType为image/heif。
       变更后：获取Heif格式图片mimeType为image/heic。
       
- 3. supportedFormats属性查询设备支持解码Heif格式返回类型变更，此变更涉及应用适配。
+ 3. 调用ImageSource实例提供的supportedFormats接口查询设备支持解码Heif格式返回类型变更，此变更涉及应用适配。
      变更前：查询设备支持的解码类型Heif格式返回值为image/heif。
      变更后：查询设备支持的解码类型Heif格式返回值为image/heic。
      
- 4. supportedFormats属性查询设备支持编码Heif格式返回类型变更，此变更涉及应用适配。
+ 4. 调用ImagePacker实例提供的supportedFormats接口查询设备支持编码Heif格式返回类型变更，此变更涉及应用适配。
      变更前：查询设备支持的编码类型Heif格式返回值为image/heif。
      变更后：查询设备支持的编码类型Heif格式返回值为image/heic。
      
- 5. packing()接口Heif格式编码参数变更，此变更不涉及应用适配。
+ 5. image.PackingOption结构体Heif格式编码参数变更，此变更不涉及应用适配。
      变更前：Heif格式图片编码参数的mimeType类型为image/heif。
      变更后：Heif格式图片编码参数的mimeType类型为image/heif或者image/heic。
      
@@ -49,11 +49,11 @@ API 10
 | API类型 | 所在d.ts/头文件 | 接口名 | 接口起始版本 |
 |--|--|--|--|
 | C API | image_packer_native.h | Image_ErrorCode OH_PackingOptions_SetMimeType(OH_PackingOptions *options, Image_MimeType *format) | 12 |
-| C API | image_packer_native.h | Image_ErrorCode OH_PackingOptions_GetMimeType(OH_PackingOptions * options, Image_MimeType * format) | 12 |
+| C API | image_packer_native.h | Image_ErrorCode OH_PackingOptions_GetMimeType(OH_PackingOptions *options, Image_MimeType *format) | 12 |
 | ArkTS API | @ohos.multimedia.image.d.ts |  imagePacker.supportedFormats: Array\<string> | 10 |
 | ArkTS API | @ohos.multimedia.image.d.ts |  imageSource.supportedFormats: Array\<string> | 10 |
-| ArkTS API | @ohos.multimedia.image.d.ts | imagePacker.packing() | 12 |
-| C API | image_packer_native.h | OH_PackingOptions | 12 |
+| ArkTS API | @ohos.multimedia.image.d.ts | image.PackingOption | 11 |
+| C API | image_packer_native.h | struct OH_PackingOptions | 12 |
 
 **适配指导**
 
@@ -61,10 +61,10 @@ API 10
 
 2.调用OH_PackingOptions_GetMimeType(OH_PackingOptions *options, Image_MimeType *format)获取Heif格式图片mimeType时，返回的format为image/heic，开发者需检视应用的示例工程，根据实际情况修改。
 
-3.调用supportedFormats查询设备的解码类型时，开发者调用行为不变，如果设备支持Heif类型，返回值将由image/heif变更为image/heic。
+3.调用ImageSource实例提供的supportedFormats接口查询设备的解码类型时，开发者调用行为不变，如果设备支持Heif类型，返回值将由image/heif变更为image/heic。
 
-4.调用supportedFormats查询设备的编码类型时，开发者调用行为不变，如果设备支持Heif类型，返回值将由image/heif变更为image/heic。
+4.调用ImagePacker实例提供的supportedFormats接口查询设备的编码类型时，开发者调用行为不变，如果设备支持Heif类型，返回值将由image/heif变更为image/heic。
 
-5.调用imagePacker.packing()进行Heif图片编码时，开发者调用参数可以使用变更前的image/heif类型，也可以使用image/heic类型。
+5.调用image.PackingOption进行Heif图片编码时，开发者调用参数可以使用变更前的image/heif类型，也可以使用image/heic类型。
 
 6.调用OH_PackingOptions进行Heif图片编码时，开发者调用参数可以使用变更前的image/heif类型，也可以使用image/heic类型。

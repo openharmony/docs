@@ -48,19 +48,23 @@ ImageInfo对象mimeType返回值变更。
 
 图片信息查询接口返回值变更，调用方式无需改变。
 ```js
-const context: Context = getContext(this);
-//此处'test.dng'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
-const path: string = context.filesDir + "/test.dng";
-const imageSourceApi: image.ImageSource = image.createImageSource(path);
-if (imageSourceApi != undefined) {
-  imageSourceApi.getImageInfo().then((imageInfo: image.ImageInfo) => {
-    console.info("Succeeded in obtaining the image mimeType information.");
-    // 调用方式无需修改，返回值修改后因支持识别实际raw格式，需要将此处判断更新。
-    if (imageInfo.mimeType == "image/x-adobe-dng") {
-      console.info("Image mimeType is image/x-adobe-dng.");
-    }
-  }).catch((error: BusinessError) => {
-    console.error(`Failed to obtain the image information. code is ${error.code}, message is ${error.message}`);
-  })
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getImageMimeType(context: Context) {
+  //此处'test.dng'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
+  const path: string = context.filesDir + "/test.dng";
+  const imageSourceApi: image.ImageSource = image.createImageSource(path);
+  if (imageSourceApi != undefined) {
+    imageSourceApi.getImageInfo().then((imageInfo: image.ImageInfo) => {
+      console.info("Succeeded in obtaining the image mimeType information.");
+      // 调用方式无需修改，返回值修改后因支持识别实际raw格式，需要将此处判断更新。
+      if (imageInfo.mimeType == "image/x-adobe-dng") {
+        console.info("Image mimeType is image/x-adobe-dng.");
+      }
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to obtain the image information. code is ${error.code}, message is ${error.message}`);
+    })
+  }
 }
 ```
