@@ -8,7 +8,7 @@
 
 - [Camera Kit简介](camera-overview.md)
 - [申请相机开发的权限](camera-preparation.md)
-- 开发相机应用必选能力(ArkTS)<!--camera-dev-arkts-->
+- 开发相机应用必选能力(ArkTS)<!--camera-dev-arkts-mandatory-->
   - [相机管理(ArkTS)](camera-device-management.md)
   - [设备输入(ArkTS)](camera-device-input.md)
   - [会话管理(ArkTS)](camera-session-management.md)
@@ -36,7 +36,7 @@
   - [深度信息(仅对系统应用开放)(ArkTS)](camera-depth-data.md)
   - [性能提升实践(仅对系统应用开放)(ArkTS)](camera-performance-improvement.md)
   <!--DelEnd-->
-- 开发相机应用必选能力(C/C++)<!--camera-dev-native-->
+- 开发相机应用必选能力(C/C++)<!--camera-dev-native-mandatory-->
   - [相机管理(C/C++)](native-camera-device-management.md)
   - [设备输入(C/C++)](native-camera-device-input.md)
   - [会话管理(C/C++)](native-camera-session-management.md)
