@@ -30,12 +30,6 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
 
 ```c++
 #include <hilog/log.h>
-#include <bits/alltypes.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <sstream>
 #include <multimedia/image_framework/image/image_native.h>
 #include <multimedia/image_framework/image/image_packer_native.h>
 #include <multimedia/image_framework/image/image_source_native.h>
