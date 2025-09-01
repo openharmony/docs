@@ -2864,10 +2864,38 @@ createNode(context: UIContext, nodeType: 'Progress'): Progress
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Progress');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyProgressNodeController extends NodeController {
+  public uiContext: UIContext | null = null;
+  public rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.uiContext = uiContext;
+    this.rootNode = new FrameNode(uiContext);
+    let node = typeNode.createNode(uiContext, 'Progress');
+    node.initialize({
+      value: 15,
+      total: 200,
+      type: ProgressType.ScaleRing
+    }).width(100)
+      .height(100)
+    this!.rootNode!.appendChild(node);
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Sample {
+  build() {
+    Column({ space: 10 }) {
+      NodeContainer(new MyProgressNodeController()).margin(5)
+    }.width('100%').height('100%')
+
+  }
+}
 ```
 ### getAttribute('Progress')<sup>20+</sup>
 getAttribute(node: FrameNode, nodeType: 'Progress'): ProgressAttribute | undefined
@@ -3223,10 +3251,36 @@ createNode(context: UIContext, nodeType: 'LoadingProgress'): LoadingProgress
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'LoadingProgress');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyLoadingProgressNodeController extends NodeController {
+  public uiContext: UIContext | null = null;
+  public rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.uiContext = uiContext;
+    this.rootNode = new FrameNode(uiContext);
+    let node = typeNode.createNode(uiContext, 'LoadingProgress');
+    node.initialize()
+      .width(100)
+      .height(100)
+      .color(Color.Red)
+      .enableLoading(true)
+    this!.rootNode!.appendChild(node);
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Sample {
+  build() {
+    Column({ space: 10 }) {
+      NodeContainer(new MyLoadingProgressNodeController()).margin(5)
+    }.width('100%').height('100%')
+  }
+}
 ```
 ### getAttribute('LoadingProgress')<sup>20+</sup>
 getAttribute(node: FrameNode, nodeType: 'LoadingProgress'): LoadingProgressAttribute | undefined
@@ -3378,10 +3432,46 @@ createNode(context: UIContext, nodeType: 'Image'): Image
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Image');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyImageController extends NodeController {
+  public uiContext: UIContext | null = null;
+  public rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.uiContext = uiContext;
+    this.rootNode = new FrameNode(uiContext);
+    let imageNode = typeNode.createNode(uiContext, 'Image');
+    imageNode
+      // $r('app.media.img')需要替换为开发者所需的图像资源文件。
+      .initialize($r('app.media.img'))
+      .width(100)
+      .height(100)
+      .fillColor(Color.Red)
+      .objectFit(ImageFit.Contain)
+      .renderMode(ImageRenderMode.Template)
+      .fitOriginalSize(true)
+      .matchTextDirection(true)
+      .objectRepeat(ImageRepeat.X)
+      .autoResize(true)
+
+    this!.rootNode!.appendChild(imageNode);
+    return this.rootNode;
+
+  }
+}
+
+@Entry
+@Component
+struct Sample {
+  build() {
+    Column({ space: 10 }) {
+      NodeContainer(new MyImageController()).margin(5)
+    }.width('100%').height('100%')
+
+  }
+}
 ```
 ### getAttribute('Image')<sup>20+</sup>
 getAttribute(node: FrameNode, nodeType: 'Image'): ImageAttribute | undefined
