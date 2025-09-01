@@ -30,15 +30,16 @@
 2. 调用cameraManager中的[createSession](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createsession11)方法创建一个会话。
      
    ```ts
-   function getSession(cameraManager: camera.CameraManager): camera.Session | undefined {
-     let session: camera.Session | undefined = undefined;
+   // 此处以videoSession为例。
+   function getSession(cameraManager: camera.CameraManager): camera.VideoSession | undefined {
+     let videoSession: camera.VideoSession | undefined = undefined;
      try {
-       session = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
+       videoSession = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to create the session instance. error: ${err}`);
      }
-     return session;
+     return videoSession;
    }
    ```
 
