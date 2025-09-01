@@ -4654,8 +4654,8 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>, prefetchOptions
 
 ```ts
 // xxx.ets
-import webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct WebComponent {
@@ -4671,8 +4671,7 @@ struct WebComponent {
             options.minTimeBetweenPrefetchesMs = 100;
             this.controller.prefetchPage('https://www.example.com', [{ headerKey: "headerKey", headerValue: "headerValue" }], options);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       // 需要将'www.example1.com'替换成一个真实的网站地址。
