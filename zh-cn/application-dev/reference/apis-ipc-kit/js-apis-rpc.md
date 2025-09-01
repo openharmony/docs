@@ -1,4 +1,10 @@
 # @ohos.rpc (RPC通信)
+<!--Kit: IPC Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @xdx19211@luodonghui0157-->
+<!--Designer: @zhaopeng_gitee-->
+<!--Tester: @maxiaorong-->
+<!--Adviser: @zhang_yixin13-->
 
 本模块提供进程间通信能力，包括设备内的进程间通信（IPC）和设备间的进程间通信（RPC），前者基于Binder驱动，后者基于软总线驱动。
 
@@ -208,7 +214,7 @@ writeInterfaceToken(token: string): void
 
   | 参数名 | 类型   | 必填 | 说明               |
   | ------ | ------ | ---- | ------------------ |
-  | token  | string | 是   | 字符串类型描述符。 |
+  | token  | string | 是   | 字符串类型描述符，其长度应小于40960字节。 |
 
 **错误码：**
 
@@ -3917,7 +3923,7 @@ writeInterfaceToken(token: string): boolean
 
   | 参数名 | 类型   | 必填 | 说明               |
   | ------ | ------ | ---- | ------------------ |
-  | token  | string | 是   | 字符串类型描述符。 |
+  | token  | string | 是   | 字符串类型描述符，其长度应小于40960字节。 |
 
 **返回值：**
 
@@ -8597,7 +8603,7 @@ static restoreCallingIdentity(identity: string): void
 
   | 参数名   | 类型   | 必填 | 说明                                                               |
   | -------- | ------ | ---- | ------------------------------------------------------------------ |
-  | identity | string | 是   | 标识表示包含远程用户UID和PID的字符串。由resetCallingIdentity返回。 |
+  | identity | string | 是   | 标识表示包含远程用户UID和PID的字符串，其长度应小于40960字节。由resetCallingIdentity返回。 |
 
 **错误码：**
 
@@ -8678,7 +8684,7 @@ RemoteObject构造函数。
 
   | 参数名     | 类型   | 必填 | 说明         |
   | ---------- | ------ | ---- | ------------ |
-  | descriptor | string | 是   | 接口描述符。 |
+  | descriptor | string | 是   | 接口描述符，其长度应小于40960字节。 |
 
 **示例：**
 
@@ -9225,7 +9231,7 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
   | 参数名     | 类型   | 必填 | 说明                 |
   | ---------- | ------ | ---- | -------------------- |
-  | descriptor | string | 是   | 接口描述符的字符串。 |
+  | descriptor | string | 是   | 接口描述符的字符串，其长度应小于40960字节。 |
 
 **返回值：**
 
@@ -9454,7 +9460,7 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 | 参数名         | 类型                            | 必填 | 说明                                  |
 | -------------- | ------------------------------- | ---- | ------------------------------------- |
 | localInterface | [IRemoteBroker](#iremotebroker) | 是   | 将与描述符绑定的IRemoteBroker对象。   |
-| descriptor     | string                          | 是   | 用于与IRemoteBroker对象绑定的描述符。 |
+| descriptor     | string                          | 是   | 用于与IRemoteBroker对象绑定的描述符，其长度应小于40960字节。 |
 
 **错误码：**
 
@@ -9580,7 +9586,7 @@ static create(name: string, size: number): Ashmem
 
   | 参数名 | 类型   | 必填 | 说明                         |
   | ------ | ------ | ---- | ---------------------------- |
-  | name   | string | 是   | 名称，用于查询Ashmem信息。   |
+  | name   | string | 是   | Ashmem名称，用于查询Ashmem信息，其长度不能为0。   |
   | size   | number | 是   | Ashmem的大小，以字节为单位。 |
 
 **返回值：**
