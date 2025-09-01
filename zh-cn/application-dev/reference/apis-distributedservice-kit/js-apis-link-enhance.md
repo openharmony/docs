@@ -46,8 +46,8 @@ createServer(name:&nbsp;string):&nbsp;Server
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter.  |
 | 32390203      | Duplicate server name.|
+| 32390206 | Invalid parameter.  |
 
 **示例：**
 
@@ -662,8 +662,8 @@ sendData(data:&nbsp;ArrayBuffer):&nbsp;void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter.  |
 | 32390205 | Connection is not ready. |
+| 32390206 | Invalid parameter.  |
 | 32390300 | Internal error. |
 
 **示例：**
