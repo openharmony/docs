@@ -2159,12 +2159,19 @@ import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
 import {image} from '@kit.ImageKit';
 
-async function ApplyColorSpace(pixelMap:image.PixelMap) {
+function ApplyColorSpace(pixelMap:image.PixelMap) {
   let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
   let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
     try {
-      await pixelMap.applyColorSpace(targetColorSpace);
+      pixelMap.applyColorSpace(targetColorSpace, (error: BusinessError) => {
+        if (error) {
+          console.error(`ApplyColorSpace failed. code is ${error.code}, message is ${error.message}`);
+          return;
+        } else {
+          console.info("Succeeded ApplyColorSpace.");
+        }
+      });
     } catch (error) {
       console.error(`Failed to apply color space for pixelmap object, error code is ${error}`);
       return;
@@ -2212,17 +2219,16 @@ import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
 import {image} from '@kit.ImageKit';
 
-async function ApplyColorSpace(pixelMap:image.PixelMap) {
+function ApplyColorSpace(pixelMap:image.PixelMap) {
   let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
   let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
-    try {
-      await pixelMap.applyColorSpace(targetColorSpace);
-    } catch (error) {
+      pixelMap.applyColorSpace(targetColorSpace).then(() => {
+      console.info('Succeeded in applying color space for pixelmap object.');
+    }).catch((error: BusinessError) => {
       console.error(`Failed to apply color space for pixelmap object, error code is ${error}`);
       return;
-    }
-    console.info('Succeeded in applying color space for pixelmap object.');
+    });
   }
 }
 ```
@@ -2787,7 +2793,7 @@ setMemoryNameSync(name: string): void
 
 | 参数名        | 类型                             | 必填 | 说明             |
 | ------------- | -------------------------------- | ---- | ---------------- |
-| name | string | 是   | pixelmap内存标识符，只允许DMA和ASHMEM内存形式的piexelmap设置，支持1-31位长度。 |
+| name | string | 是   | pixelmap内存标识符，只允许DMA和ASHMEM内存形式的pixelmap设置。DMA内存设置名字长度取值范围为[1, 255]，ASHMEM内存设置名字长度取值范围为[1, 244]，单位字节。 |
 
 **错误码：**
 
