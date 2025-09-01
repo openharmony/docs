@@ -54,6 +54,8 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 
 **系统能力**：SystemCapability.MultimodalAwareness.UserStatus
 
+**设备行为差异**：该接口在Phone中可正常调用，在其他设备类型中返回801错误码。
+
 **参数**：
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
@@ -96,6 +98,8 @@ off(type: 'userAgeGroupDetected', callback?: Callback&lt;UserClassification&gt;)
 取消订阅年龄群组检测功能。
 
 **系统能力**：SystemCapability.MultimodalAwareness.UserStatus
+
+**设备行为差异**：该接口在Phone中可正常调用，在其他设备类型中返回801错误码。
 
 **参数**：
 
