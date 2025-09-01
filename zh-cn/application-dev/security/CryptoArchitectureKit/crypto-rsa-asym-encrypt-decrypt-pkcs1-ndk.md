@@ -34,6 +34,7 @@
 
 ```C++
 #include "CryptoArchitectureKit/crypto_architecture_kit.h"
+#include <string.h>
 
 static OH_Crypto_ErrCode doTestRsaEncDec()
 {
