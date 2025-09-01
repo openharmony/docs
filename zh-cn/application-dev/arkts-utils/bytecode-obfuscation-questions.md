@@ -570,7 +570,7 @@ namespace中的foo属于export元素，当通过NS.foo调用时被视为属性�
 1. 开启-enable-property-obfuscation选项。
 2. 将namespace里导出的方法使用-keep-global-name选项添加到白名单。
 
-**案例三：使用了declare global，混淆后报语法错误	**
+**案例三：使用了declare global，混淆后报语法错误**
 
 ```ts
 // file.ts
