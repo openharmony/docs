@@ -417,20 +417,20 @@ struct Index {
 | type             | [EventType](#eventtype)               | 否   | 否   | 无障碍事件类型，不可缺省。         |
 | windowUpdateType | [WindowUpdateType](#windowupdatetype) | 否   | 是   | 窗口变化类型。               |
 | bundleName       | string                                | 否   | 否   | 目标应用名；不可缺省。           |
-| componentType    | string                                | 否   | 是   | 应与事件源组件类型所对应，如：按钮Button类型->'Button'、图像Image类型->'Image'。       |
-| pageId           | number                                | 否   | 是   | 事件源的页面ID。默认值为0。            |
+| componentType    | string                                | 否   | 是   | 应与事件源组件类型对应，如：按钮Button类型->'Button'、图片Image类型->'Image'。       |
+| pageId           | number                                | 否   | 是   | 事件源的页面ID，默认值为0。            |
 | description      | string                                | 否   | 是   | 事件描述，根据实际场景设置，无特殊限制。        |
 | triggerAction    | [Action](#action)                     | 否   | 否   | 触发事件的Action，不可缺省。    |
 | textMoveUnit     | [TextMoveUnit](#textmoveunit)         | 否   | 是   | 文本移动粒度。      |
 | contents         | Array&lt;string&gt;                   | 否   | 是   | 内容列表，根据实际场景设置，无特殊限制。                 |
 | lastContent      | string                                | 否   | 是   | 最新内容，根据实际场景设置，无特殊限制。                 |
-| beginIndex       | number                                | 否   | 是   | 画面显示条目的开始序号。默认值为0。 |
-| currentIndex     | number                                | 否   | 是   | 当前条目序号。默认值为0。      |
-| endIndex         | number                                | 否   | 是   | 画面显示条目的结束序号。默认值为0。 |
-| itemCount        | number                                | 否   | 是   | 条目总数。默认值为0。        |
-| elementId<sup>12+</sup>        | number                  | 否   | 是   | 组件elementId。默认值为0。        |
-| textAnnouncedForAccessibility<sup>12+</sup>     | string     | 否   | 是   | 主动播报的内容。当应用需要主动播报时根据实际场景设置播报内容，无特殊限制。        |
-| textResourceAnnouncedForAccessibility<sup>18+</sup>      | Resource   | 否   | 是   | 主动播报的内容支持传入Resource类型，Resource类型只支持传入string。  |
+| beginIndex       | number                                | 否   | 是   | 画面显示条目的开始序号，默认值为0。 |
+| currentIndex     | number                                | 否   | 是   | 当前条目序号，默认值为0。      |
+| endIndex         | number                                | 否   | 是   | 画面显示条目的结束序号，默认值为0。 |
+| itemCount        | number                                | 否   | 是   | 条目总数，默认值为0。        |
+| elementId<sup>12+</sup>        | number                  | 否   | 是   | 组件elementId，默认值为0。        |
+| textAnnouncedForAccessibility<sup>12+</sup>     | string     | 否   | 是   | 主动播报的内容。当应用需要主动播报时，根据实际场景设置播报内容，无特殊限制。 |
+| textResourceAnnouncedForAccessibility<sup>18+</sup>      | Resource   | 否   | 是   | 主动播报的内容支持传入Resource类型，且只能传入string。  |
 | customId<sup>12+</sup>        | string                                | 否   | 是   | 主动聚焦的组件ID。        |
 
 ### constructor
