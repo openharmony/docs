@@ -154,7 +154,8 @@ static napi_value SignVerifyKey(napi_env env, napi_callback_info info)
     struct OH_Huks_ParamSet *verifyParamSet = nullptr;
     OH_Huks_Result ohResult;
     do {
-        ohResult = InitParamSet(&genParamSet, g_genSignVerifyParamsTest, sizeof(g_genSignVerifyParamsTest) / sizeof(OH_Huks_Param));
+        ohResult = InitParamSet(&genParamSet, g_genSignVerifyParamsTest,
+            sizeof(g_genSignVerifyParamsTest) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
@@ -162,7 +163,8 @@ static napi_value SignVerifyKey(napi_env env, napi_callback_info info)
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
-        ohResult = InitParamSet(&verifyParamSet, g_verifyParamsTest, sizeof(g_verifyParamsTest) / sizeof(OH_Huks_Param));
+        ohResult = InitParamSet(&verifyParamSet, g_verifyParamsTest,
+            sizeof(g_verifyParamsTest) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
