@@ -138,7 +138,7 @@ AudioLoopback是音频返听器，可将音频以更低时延的方式实时传�
 7. 调用[getEqualizerPreset](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#getEqualizerPreset21)方法，查询当前的音频返听的均衡器类型。
 
     > **注意：**
-    > - 若未设置均衡器类型，查询得到将是默认均衡器类型FULL。
+    > 若未设置均衡器类型，查询得到将是默认均衡器类型FULL。
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
     try {
