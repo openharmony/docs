@@ -263,13 +263,19 @@ struct Index {
             })
             task.on('completed', async () => {
               console.warn(`/Request download completed`);
-              let file = fs.openSync(filesDir + '/xxxx.txt', fs.OpenMode.READ_WRITE);
-              let arrayBuffer = new ArrayBuffer(1024);
-              let readLen = fs.readSync(file.fd, arrayBuffer);
+              let filePath = filesDir + '/xxxx.txt';
+              let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY); // 先用只读模式打开获取大小
+
+              // 获取文件状态信息，其中包含大小
+              let fileStat = fileIo.statSync(filePath);
+              let fileSize = fileStat.size;
+
+              // 根据文件大小创建足够大的Buffer
+              let arrayBuffer = new ArrayBuffer(fileSize);
+              let readLen = fileIo.readSync(file.fd, arrayBuffer); // 现在可以安全读取全部内容
               let buf = buffer.from(arrayBuffer, 0, readLen);
               console.info(`The content of file: ${buf.toString()}`);
-              fs.closeSync(file);
-              //该方法需用户管理任务生命周期，任务结束后调用remove释放task对象
+              fileIo.closeSync(file);
               request.agent.remove(task.tid);
             })
           }).catch((err: BusinessError) => {
