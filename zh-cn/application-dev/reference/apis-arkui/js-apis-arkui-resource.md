@@ -30,7 +30,7 @@ function $r(value: string, ...params: any[]): Resource
 | 参数名 | 类型   | 必填 | 说明                                                                                                                                                                                                                                                                                                                                                                                              |
 | ------ | ------ | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | value  | string | 是   | 资源标识符，访问格式为`belonging.type.name`。<br>belonging：表示该资源为系统资源、应用资源或HSP包资源，可选值为sys、app或[hsp_name]。<br>type：资源类型，可选值为boolean，color，float，intarray，integer，pattern，plural，strarray，string或media。<br>name：资源名称，应用资源名称定义在工程resources目录下，系统资源名称获取可参考[资源分类与访问](../../quick-start/resource-categories-and-access.md)。 |
-| params | any[]  | 否   | 开发者传入的剩余参数。                                                                                                                                                                                                                                                                                                                                                                            |
+| ...params | any[]  | 否   | 开发者传入的剩余参数。                                                                                                                                                                                                                                                                                                                                                                            |
 
 **返回值：**
 
@@ -56,13 +56,19 @@ struct Page {
 }
 ```
 
-访问HSP包的资源示例可参考[资源分类与访问](../../quick-start/resource-categories-and-access.md#跨haphsp包应用资源)。
+访问HSP包的资源示例可参考[跨HAP/HSP包应用资源](../../quick-start/resource-categories-and-access.md#跨haphsp包应用资源)。
 
 ## $rawfile
 
 function $rawfile(value: string): Resource
 
 获取工程rawfile目录下的资源信息。$rawfile会在编译期由工具链转换为[Resource](../apis-localization-kit/js-apis-resource-manager.md#resource9)对象。通过\$rawfile访问应用资源或系统资源，可参考[资源分类与访问](../../quick-start/resource-categories-and-access.md)。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -94,4 +100,4 @@ struct Page {
 }
 ```
 
-访问HSP包资源示例可参考[资源分类与访问](../../quick-start/resource-categories-and-access.md#跨haphsp包应用资源)。
+访问HSP包资源示例可参考[跨HAP/HSP包应用资源](../../quick-start/resource-categories-and-access.md#跨haphsp包应用资源)。
