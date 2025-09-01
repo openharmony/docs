@@ -19,19 +19,19 @@ HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides
 | warn(domain: number, tag: string, format: string, ...args: any[]) | Outputs WARN logs, which indicate issues that have little impact on the system.|
 | error(domain: number, tag: string, format: string, ...args: any[]) | Outputs ERROR logs, which indicate program or functional errors.|
 | fatal(domain: number, tag: string, format: string, ...args: any[]) | Outputs FATAL logs, which indicate program or functionality crashes that cannot be rectified.|
-| setMinLogLevel(level: LogLevel) | Sets the minimum log level. When a process prints logs, both the minimum log level and the global log level are verified. Therefore, the minimum log level cannot be lower than the global log level. The default value of [global log level](hilog.md#displaying-and-setting-log-levels) is **Info**.|
+| setMinLogLevel(level: LogLevel) | Sets the minimum log level. When a process prints logs, both the minimum log level and the global log level are verified. Therefore, the minimum log level cannot be lower than the global log level.|
+
+<!--RP2-->
+> **NOTE**
+>
+> The default value of the global log level is **info**. For details, see [Displaying and Setting Log Levels](hilog.md#displaying-and-setting-log-levels).
+<!--RP2End-->
 
 ### Parameters
 
-> **NOTE**
-> 
-> - The domain and tag specified in **isLoggable()** must be the same as those of the logging API.
-> 
-> - The log level specified in **isLoggable()** must match that of the logging API.
-
 - **domain**: service domain of logs. The value range is 0x0000 to 0xFFFF. You can define the value as required.
 
-- **tag**: log identifier. It can be any string. You are advised to use this parameter to identify the class or service behavior of a method call. A tag can contain a maximum of 31 bytes. If a tag contains more than 31 bytes, it will be truncated. Chinese characters are not recommended because garbled characters or alignment problems may occur.
+- **tag**: log identifier. It can be any string. You are advised to use this parameter to identify the class or service behavior of a method call. A tag can contain a maximum of 31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because garbled characters or alignment problems may occur.
 
 - **level**: log level. For details about the value, see [LogLevel](../reference/apis-performance-analysis-kit/js-apis-hilog.md#loglevel).
 
@@ -54,11 +54,25 @@ HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides
 
 - **args**: parameters of the types specified by **specifier** in **format**. This parameter can be left blank. The number and type of parameters must match **specifier**.
 
+> **NOTE**
+> 
+> - The domain and tag specified in **isLoggable()** must be the same as those of the logging API.
+> 
+> - The log level specified in **isLoggable()** must match that of the logging API.
+>
+> - **isLoggable()** returns **true** if the specified logs can be printed; returns **false** otherwise.
+>
+>   For debug applications, all log levels can be printed.
+>
+>   For release applications, logs are printed only if the log level is not lower than the global log level.
+>
+>   During debugging, you can change the log level. For details, see [Displaying and Setting Log Levels](hilog.md#displaying-and-setting-log-levels).
+
 ## Constraints
 
 The maximum size of a log file is 4096 bytes. Excess content will be discarded.
 
-## Example
+## How to Develop
 
 Add a click event in a button, which prints a log when the button is clicked.
 

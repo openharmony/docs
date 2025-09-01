@@ -1,4 +1,4 @@
-# HiDumper
+# hidumper
 
 HiDumper is a command-line tool used to export essential system information for analyzing and locating issues.
 
@@ -30,11 +30,11 @@ HiDumper is a command-line tool used to export essential system information for 
 | --zip | Saves the exported compressed file to **/data/log/hidumper**.|
 | --ipc pid/-a --start-stat/stop-stat/stat | Collects the IPC statistics of a process in a period of time. **-a** is used to collect the IPC statistics of all processes, **--start-stat** is used to start collecting statistics, **--stat** is used to obtain statistics, and **--stop-stat** is used to stop collecting statistics.|
 | --mem-smaps pid [-v] | Obtains the memory usage of a specified process from **/proc/pid/smaps**. **-v** is used to specify more details about the process. This command is only available in the Debug version.|
-| --mem-jsheap pid [-T tid] [--gc] [--leakobj] |  Triggers Garbage Collection (GC) for all threads and exports their snapshots. **pid** is mandatory. If **tid** is specified, triggers GC for the specified thread and exports its snapshot. If **--gc** is specified, triggers GC but not exports the snapshot. If **--leakobj** is specified, obtains the list of leaked objects.|
+| --mem-jsheap pid [-T tid] [--gc] [--leakobj] | Triggers Garbage Collection (GC) for all threads and exports their snapshots. **pid** is mandatory. If **tid** is specified, triggers GC for the specified thread and exports its snapshot. If **--gc** is specified, triggers GC but not exports the snapshot. If **--leakobj** is specified, obtains the list of leaked objects.|
 
-## Examples
+## Common Commands
 
-1. Display help information.
+1. View help information.
 
     ```
     hidumper -h
@@ -368,7 +368,7 @@ HiDumper is a command-line tool used to export essential system information for 
     ```
 
 
-11. Obtains storage information. If **pid** is specified, obtains the I/O information of the specified process.
+11. Obtains storage information. If the PID of a process is specified, only the I/O information of the process is displayed.
 
     ```
     hidumper --storage pid
@@ -409,7 +409,7 @@ HiDumper is a command-line tool used to export essential system information for 
     hidumper -p
     ```
 
-    > **Note**
+    > **NOTE**
     >
     > In the Release version, this command can be used to export the process information of the debugging applications.
     >
@@ -540,26 +540,26 @@ HiDumper is a command-line tool used to export essential system information for 
 
     -------------------------------[memory]-------------------------------
 
-                            Pss        Shared        Shared       Private       Private          Swap       SwapPss          Heap          Heap          Heap
-                        Total         Clean         Dirty         Clean         Dirty         Total         Total          Size         Alloc          Free
-                        ( kB )        ( kB )        ( kB )        ( kB )        ( kB )        ( kB )        ( kB )        ( kB )        ( kB )        ( kB )
+                         Pss         Shared        Shared        Private       Private       Swap          SwapPss        Heap         Heap          Heap
+                         Total       Clean         Dirty         Clean         Dirty         Total         Total          Size         Alloc         Free
+                         ( kB )      ( kB )        ( kB )        ( kB )        ( kB )        ( kB )        ( kB )         ( kB )       ( kB )        ( kB )
                 --------------------------------------------------------------------------------------------------------------------------------------------
-                GL             0             0             0             0             0             0             0             0             0             0
-            Graph             0             0             0             0             0             0             0             0             0             0
-    native heap           924             0             0           924             0          1948          1948             0             0             0
-    AnonPage other            84            16             0            84             0            52            52             0             0             0
-            stack            28             0             0            28             0             0             0             0             0             0
-            .so           413          1548             0           248            56           216           216             0             0             0
-            dev           190             0           856             0             0             0             0             0             0             0
-    FilePage other           420             0             0           404            16             0             0             0             0             0
+                GL         0           0             0             0             0             0             0             0             0             0
+             Graph         0           0             0             0             0             0             0             0             0             0
+       native heap         924         0             0             924           0             1948          1948          0             0             0
+    AnonPage other         84          16            0             84            0             52            52            0             0             0
+             stack         28          0             0             28            0             0             0             0             0             0
+               .so         413         1548          0             248           56            216           216           0             0             0
+               dev         190         0             856           0             0             0             0             0             0             0
+    FilePage other         420         0             0            404            16            0             0             0             0             0
     ----------------------------------------------------------------------------------------------------------------------------------------------------------
-            Total          4275          1564           856          1688            72          2216          2216             0             0             0
+             Total         4275        1564          856          1688           72            2216          2216          0             0             0
 
     native heap:
-    jemalloc meta:           120             0             0           120             0            52            52             0             0             0
-    jemalloc heap:           776             0             0           776             0          1888          1888             0             0             0
-        brk heap:            20             0             0            20             0             8             8             0             0             0
-        musl heap:             8             0             0             8             0             0             0             0             0             0
+    jemalloc meta:         120          0             0            120           0             52            52            0             0             0
+    jemalloc heap:         776          0             0            776           0             1888          1888          0             0             0
+         brk heap:         20           0             0            20            0             8             8             0             0             0
+        musl heap:         8            0             0            8             0             0             0             0             0             0
 
     Purgeable:
             PurgSum:0 kB
@@ -567,6 +567,45 @@ HiDumper is a command-line tool used to export essential system information for 
 
     DMA:
                 Dma:0 kB
+    ```
+
+    Obtain the process memory usage information of the device.
+
+    ```shell
+    hidumper --mem --prune
+    ```
+
+    **Example**
+
+    ```text
+    $ hidumper --mem --prune
+
+    -------------------------------[memory]-------------------------------
+    Total Memory Usage by PID:
+    PID        Total Pss(xxx in SwapPss)           GL     AdjLabel     Name
+    1              1546(0 in SwapPss) kB         0 kB        -1000     init
+    170             691(0 in SwapPss) kB         0 kB         -900     ueventd
+    ...
+    ```
+
+    Collect process memory change information.
+
+    ```shell
+    hidumper --mem pid -t timeInterval
+    ```
+    **timeInterval** indicates the interval, in seconds.
+
+    **Example**
+
+    ```text
+    $ hidumper --mem 1 -t 1
+
+    -------------------------------[memory]-------------------------------
+    StartTime           EndTime              Count                MaxMem              Change
+    2017-09-19 01:14:43 2017-09-19 01:14:58  15                   1517kB               0kB
+    ********************      times1: PSS=1517kB
+    ********************      times2: PSS=1517kB
+    ...
     ```
 
     The **Graph** field represents the memory size used by the process in the **/proc/process_dmabuf_info** node.
@@ -654,7 +693,7 @@ HiDumper is a command-line tool used to export essential system information for 
     hidumper --mem-smaps pid [-v]
     ```
 
-    > **Note**
+    > **NOTE**
     >
     > This command is available only in the Debug version and is unavailable in the Release version.
     >
@@ -716,7 +755,7 @@ HiDumper is a command-line tool used to export essential system information for 
     hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj]
     ```
 
-    > **Note**
+    > **NOTE**
     >
     > In the Release version, this command can be used to export the snapshot information of the debugging applications.
     >
@@ -739,4 +778,254 @@ HiDumper is a command-line tool used to export essential system information for 
     hidumper-jsheap-64949-64949-1730873174145
     hidumper-leaklist-64949-1730873210483
     ```
-    
+## Common ArkUI Basic Information Display Capabilities
+ArkUI provides the capability of obtaining information such as the component tree based on the enhanced hidumper.
+### Obtaining Application Window Information
+Run the following command to print the full window information. You can find the **WinId** of the corresponding window in the full information and pass it as a parameter to other commands to obtain related information.
+
+```shell
+hdc shell hidumper -s WindowManagerService -a '-a'
+```
+ **Example**
+```text
+-------------------------------[ability]-------------------------------
+
+
+----------------------------------WindowManagerService---------------------------------
+-------------------------------------ScreenGroup 1-------------------------------------
+WindowName             DisplayId Pid     WinId Type Mode Flag ZOrd Orientation [ x    y    w    h    ]
+ScreenLockWindow       0         1274    2     2110 1    0    4    0           [ 0    0    720  1280 ]
+SystemUi_NavigationBar 0         1274    5     2112 102  1    3    0           [ 0    1208 720  72   ]
+SystemUi_StatusBar     0         1274    4     2108 102  1    2    0           [ 0    0    720  72   ]
+settings0              0         10733   11    1    1    1    1    0           [ 0    72   720  1136 ]
+EntryView              0         1546    8     2001 1    0    0    8           [ 0    0    720  1280 ]
+---------------------------------------------------------------------------------------
+SystemUi_VolumePanel   0         1274    3     2111 1    1    -1   0           [ 0    0    0    0    ]
+SystemUi_DropdownPan   0         1274    6     2109 1    1    -1   0           [ 0    0    0    0    ]
+SystemUi_BannerNotic   0         1274    7     2111 1    1    -1   0           [ 0    0    0    0    ]
+RecentView             0         1546    9     2115 1    1    -1   0           [ 0    0    0    0    ]
+imeWindow              0         1530    10    2105 1    1    -1   0           [ 0    0    0    0    ]
+Focus window: 2
+total window num: 10
+```
+
+The following table lists the mapping between common **windowName** and built-in application windows.
+|windowName|Built-in Application Window|
+|---|---|
+| EntryView|Home screen.|
+| RecentView|Recent tasks.|
+| SystemUi_NavigationBar|Three-key navigation.|
+|  SystemUi_StatusBar|Status bar.|
+| ScreenLockWindow|Lock screen.|
+
+### Obtaining an Application Component Tree
+Run the following command to view information about all components in an application:
+
+```shell
+hdc shell "hidumper -s WindowManagerService -a '-w %windowId% -element'"
+```
+**windowId** is the window ID of the target application.
+
+**Example**
+
+```text
+hdc shell "hidumper -s WindowManagerService -a '-w 5 -element'"
+
+-------------------------------[ability]-------------------------------
+----------------------------------WindowManagerService---------------------------------
+WindowName: SystemUi_NavigationBar
+DisplayId: 0
+WinId: 5
+Pid: 1274
+Type: 2112
+Mode: 102
+Flag: 1
+Orientation: 0
+IsStartingWindow: false
+FirstFrameCallbackCalled: 0
+IsVisible: false
+WindowRect: [ 0, 1208, 720, 72 ]
+TouchHotAreas: [ 0, 1208, 720, 72 ]
+  |-> RootElement childSize:1
+    | ID: 0
+    | elmtId: -1
+    | retakeID: 16
+    | Active: Y
+    |-> StackElement childSize:2
+      | ID: 1
+      | elmtId: -1
+      | retakeID: 14
+      | Active: Y
+      |-> StageElement childSize:1
+        | ID: 2
+        | elmtId: -1
+        | retakeID: 13
+        | Active: Y
+        |-> PageElement childSize:1
+          | ID: 3
+          | elmtId: -1
+          | retakeID: 569
+          | Active: Y
+......
+```
+
+### Obtaining Component Information of a Specified Application Node
+Run the following command to view component information of a node:
+
+```shell
+hdc shell "hidumper -s WindowManagerService -a '-w %windowId% -element -lastpage %nodeID%'"
+```
+**windowId** indicates the window ID of the application, and **nodeID** indicates the ID of the specified node. You can obtain the **nodeID** by obtaining the target application component tree.
+
+**Example**
+```text
+hdc shell "hidumper -s WindowManagerService -a '-w 5 -element -lastpage 3'"
+
+-------------------------------[ability]-------------------------------
+----------------------------------WindowManagerService---------------------------------
+WindowName: SystemUi_NavigationBar
+DisplayId: 0
+WinId: 5
+Pid: 1274
+Type: 2112
+Mode: 102
+Flag: 1
+Orientation: 0
+IsStartingWindow: false
+FirstFrameCallbackCalled: 0
+IsVisible: false
+WindowRect: [ 0, 1208, 720, 72 ]
+TouchHotAreas: [ 0, 1208, 720, 72 ]
+    |-> PageElement childSize:1
+        | ID: 3
+        | elmtId: -1
+        | retakeID: 569
+        | Active: Y
+......
+```
+
+### Obtaining the Inspector Tree of an Application
+The **element/render** tree in the preceding example mainly contains multiple internal implementations, which cannot be mapped to components in the application code. You can print the Inspector tree to obtain the tree structure and basic information corresponding to the application components. The Inspector tree matches DevEco Testing and ArkUI Inspector in DevEco Studio.
+
+You need to enable ArkUI debug before using this functionality.
+```shell
+hdc shell param set persist.ace.testmode.enabled 1
+```
+**set**: command for setting; **persist.ace.testmode.enabled**: ArkUI debug switch name; **1**: the switch is set to **true** to enable the debug functionality.
+
+The command is as follows:
+```shell
+hdc shell "hidumper -s WindowManagerService -a '-w %windowId% -inspector'"
+```
+**Example**
+
+```text
+hdc shell "hidumper -s WindowManagerService -a '-w 5 -inspector'"
+
+|-> rootstacktag childSize:1
+| ID: 2100001
+| compid:
+| text:
+| top: 72.000000
+| left: 0.000000
+| width: 0.000000
+| height: 0.000000
+| visible: 1
+| clickable: 0
+| checkable: 0
+|-> Column childSize:1
+| ID: 128
+| compid:
+| text:
+| top: 72.000000
+| left: 0.000000
+| width: 720.000000
+| height: 1136.000000
+| visible: 1
+| clickable: 0
+| checkable: 0
+|-> GridContainer childSize:1
+| ID: 129
+| compid:
+| text:
+| top: 72.000000
+| left: 0.000000
+| width: 720.000000
+| height: 1136.000000
+| visible: 1
+| clickable: 0
+| checkable: 0
+|-> Column childSize:2
+| ID: 130
+| compid:
+| text:
+| top: 72.000000
+| left: 0.000000
+| width: 720.000000
+| height: 180.000000
+| visible: 1
+| clickable: 0
+| checkable: 0
+
+......
+```
+
+### Obtaining Application Route Stack Information
+
+This command outputs the information about the application page route stack, which is sorted based on the stack creation sequence and parent-child relationship.
+
+> **NOTE**
+>
+> This command can be used only for applications that implement page routing through the [Navigation](../ui/arkts-navigation-navigation.md) component.
+
+The command is as follows:
+
+```shell
+hidumper -s WindowManagerService -a '-w %windowId% -navigation -c'
+```
+**Example**
+```text
+hidumper -s WindowManagerService -a '-w 15 -navigation -c'
+
+-------------------------------[ability]-------------------------------
+
+
+----------------------------------WindowManagerService--------------------------------
+WindowName: myapplication0
+DisplayId: 0
+WinId: 12
+Pid: 5908
+Type: 1
+Mode: 1
+Flag: 0
+Orientation: 0
+IsStartingWindow: false
+FirstFrameCallbackCalled: 1
+VisibilityState: 0
+Focusable: true
+DecoStatus: true
+IsPrivacyMode: false
+isSnapshotSkip: 0
+WindowRect: [ 0, 0, 720, 1280 ]
+TouchHotAreas: [ 0, 0, 720, 1280 ]
+bundleName:com.example.myapplication
+moduleName:entry
+ LastRequestVsyncTime: 2351504075334
+ transactionFlags: [ 5908, 0 ]
+ last vsyncId: 527
+Navigation number: 4
+|-> Navigation ID: 7, Depth: 7, Mode: "SPLIT", NavDestinations:
+  | [0]{ ID: 0, Name: "pageOne", Mode: "STANDARD", IsOnShow: "FALSE" }
+  | [1]{ ID: 1, Name: "pageTwo", Mode: "STANDARD", IsOnShow: "TRUE" }
+|-> Navigation ID: 19, Depth: 7, Mode: "AUTO (STACK)", NavDestinations:
+  |-> Navigation ID: 28, Depth: 11, Mode: "STACK", NavDestinations:
+  | [0]{ ID: 2, Name: "pageOne", Mode: "STANDARD", IsOnShow: "FALSE" }
+  | [1]{ ID: 3, Name: "pageTwo", Mode: "DIALOG", IsOnShow: "FALSE" }
+    |-> Navigation ID: 123, Depth: 11, Mode: "AUTO (SPLIT)", NavDestinations:
+      | [0]{ ID: 4, Name: "pageFive", Mode: "STANDARD", IsOnShow: "FALSE" }
+      | [1]{ ID: 5, Name: "pageSix", Mode: "STANDARD", IsOnShow: "FALSE" }
+  | [2]{ ID: 6, Name: "pageThree", Mode: "STANDARD", IsOnShow: "TRUE" }
+```
+> **NOTE**
+>
+> For the same-level nodes, the node displayed at the bottom is the stack top node.

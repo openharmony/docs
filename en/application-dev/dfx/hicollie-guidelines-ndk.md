@@ -13,7 +13,7 @@ HiCollie provides APIs for detecting service thread stuck and jank events and re
 | OH_HiCollie_Init_JankDetection | Registers a callback to detect service thread jank events.<br>To monitor service thread jank events, you can implement two callbacks as instrumentation functions, placing them before and after the service thread event.  |
 | OH_HiCollie_Report | Reports a service thread stuck event and generates logs to help locate application stuck issues.<br>Call **OH_HiCollie_Init_StuckDetection()** or **OH_HiCollie_Init_StuckDetectionWithTimeout()** to initialize the detection task.<br>If the task times out, call **OH_HiCollie_Report()** to report the stuck event based on the service logic.|
 
-For details (such as parameter usage and value ranges), see [HiCollie](../reference/apis-performance-analysis-kit/_hi_collie.md).
+For details (such as parameter usage and value ranges) about the APIs, see [HiCollie](../reference/apis-performance-analysis-kit/_hi_collie.md).
 
 ### Detection Principles
 
@@ -23,7 +23,7 @@ For details (such as parameter usage and value ranges), see [HiCollie](../refere
 
 - Principles of **OH_HiCollie_Init_StuckDetection**: The watchdog thread of the application periodically performs activation detection on service threads. If the activation detection is not executed within 3 seconds, a **BUSSINESS_THREAD_BLOCK_3S** warning event is reported. If the activation detection is not executed within 6 seconds, a **BUSSINESS_THREAD_BLOCK_6S** stuck event is reported. The two events constitute AppFreeze fault logs.
 
-- Principles of **OH_HiCollie_Init_StuckDetectionWithTimeout**: The watchdog thread of the application periodically performs activation detection on service threads. If the activation detection is not executed within the time specified by **stuckTimeout**, the **BUSSINESS_THREAD_BLOCK_3S** warning event is reported. If the activation detection is not executed within the time specified by **stuckTimeout** x 2, the **BUSSINESS_THREAD_BLOCK_6S** stuck event is reported. The two events constitute AppFreeze fault logs.
+- Principles of **OH_HiCollie_Init_StuckDetectionWithTimeout**: The watchdog thread of the application periodically performs activation detection on service threads. If the activation detection is not executed within the time specified by **stuckTimeout**, the **BUSSINESS_THREAD_BLOCK_3S** warning event is reported. If the activation detection is not executed within the time specified by **stuckTimeout** × 2, the **BUSSINESS_THREAD_BLOCK_6S** stuck event is reported. The two events constitute AppFreeze fault logs.
 
 ### Log Specifications
 
@@ -42,26 +42,26 @@ The following describes how to add a button in the application and click the but
      src:
        main:
          cpp:
-           - types:
-               libentry:
-                 - index.d.ts
+           types:
+             libentry:
+               - index.d.ts
            - CMakeLists.txt
            - napi_init.cpp
          ets:
-           - entryability:
-               - EntryAbility.ts
-           - pages:
-               - Index.ets
+           entryability:
+             - EntryAbility.ts
+           pages:
+             - Index.ets
    ```
 
 2. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
 
    ```cmake
-   #Add libhilog_ndk.z.so (log output).
+   # Add libhilog_ndk.z.so (log output).
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libohhicollie.so)
    ```
 
-3. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**. The following code are used to simulate the jank and stuck scenarios. Use the code based on service requirements. The sample code is as follows:
+3. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**. The following steps are used to simulate the jank and stuck scenarios. Use the code based on service requirements. The sample code is as follows:
 
   (1) **OH_HiCollie_Init_JankDetection**:
 
