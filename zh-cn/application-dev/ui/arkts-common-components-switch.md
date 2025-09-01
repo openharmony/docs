@@ -119,8 +119,8 @@ import { promptAction } from '@kit.ArkUI';
 @Entry
 @Component
 struct ToggleExample {
-  @State BOnSt: promptAction.ShowToastOptions = { 'message': 'Bluetooth is on.' };
-  @State BOffSt: promptAction.ShowToastOptions = { 'message': 'Bluetooth is off.' };
+  @State bOnSt: promptAction.ShowToastOptions = { 'message': 'Bluetooth is on.' };
+  @State bOffSt: promptAction.ShowToastOptions = { 'message': 'Bluetooth is off.' };
 
   build() {
     Column() {
