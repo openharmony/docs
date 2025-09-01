@@ -24,7 +24,7 @@ import { common } from '@kit.AbilityKit';
 | Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | No| No| ModuleInfo object corresponding to the ability stage.|
-| config | [Configuration](js-apis-app-ability-configuration.md) | No| No| Configuration for the environment where the application is running.|
+| config | [Configuration](js-apis-app-ability-configuration.md) | No| No| Environment variables.|
 
 **Example**
 

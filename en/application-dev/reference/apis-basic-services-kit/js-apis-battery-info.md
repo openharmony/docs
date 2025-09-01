@@ -1,5 +1,12 @@
 # @ohos.batteryInfo (Battery Information)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--Designer: @wangyantian0-->
+<!--Tester: @alien0208-->
+<!--Adviser: @w_Machine_cc-->
+
 The **batteryInfo** module provides APIs for querying the charger type, battery health status, and battery charging status.
 
 > **NOTE**
@@ -29,9 +36,8 @@ Describes battery information.
 | technology                                | string                                         | Yes  | No  | Battery technology of the device.                              |
 | batteryTemperature                        | number                                         | Yes  | No  | Battery temperature of the device, in unit of 0.1°C.                   |
 | isBatteryPresent<sup>7+</sup>             | boolean                                        | Yes  | No  | Whether the battery is supported or present. The value **true** means that the battery is supported or present; **false** means the opposite.<br>Default value: **false**.                |
-| batteryCapacityLevel<sup>9+</sup>         | [BatteryCapacityLevel](#batterycapacitylevel9) | Yes  | No  | Battery level of the device. |
-| nowCurrent<sup>12+</sup>                  | number                                         | Yes  | No  | Battery current of the device, in unit of mA.                       |
-
+| batteryCapacityLevel<sup>9+</sup> | [BatteryCapacityLevel](#batterycapacitylevel9) | Yes       | No       | Battery level of the device. |
+| nowCurrent<sup>12+</sup> | number                                         | Yes       | No       | Battery current of the device, in unit of mA. |
 **Example**
 
   ```ts

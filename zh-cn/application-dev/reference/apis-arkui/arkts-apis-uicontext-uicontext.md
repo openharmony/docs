@@ -366,7 +366,7 @@ setOverlayManagerOptions(options: OverlayManagerOptions): boolean
 
 getOverlayManagerOptions(): OverlayManagerOptions
 
-用于获取当前[OverlayManager](arkts-apis-uicontext-overlaymanager.md)参数。
+用于获取当前[OverlayManagerOptions](arkts-apis-uicontext-i.md#overlaymanageroptions15)参数。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -661,7 +661,7 @@ struct MyComponent {
         })
         .onClick(() => {
           let node = this.getUIContext().getAttachedFrameNodeById("HelloWorld");
-          console.log(`Find HelloWorld Tag:${node!.getNodeType()} id:${node!.getUniqueId()}`);
+          console.info(`Find HelloWorld Tag:${node!.getNodeType()} id:${node!.getUniqueId()}`);
         })
     }
     .height('100%')
@@ -824,6 +824,10 @@ showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButto
 
 显示警告弹窗组件，可设置文本内容与响应回调。
 
+>  **说明：**
+>
+>  不支持在输入法类型窗口中使用子窗（showInSubwindow为true）的showAlertDialog，详情见输入法框架的约束与限制说明[createPanel](../apis-ime-kit/js-apis-inputmethodengine.md#createpanel10-1)。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -948,6 +952,10 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 定义日期滑动选择器弹窗并弹出。
 
+>  **说明：**
+>
+>  不支持在输入法类型窗口中使用子窗（showInSubwindow为true）的showDatePickerDialog，详情见输入法框架的约束与限制说明[createPanel](../apis-ime-kit/js-apis-inputmethodengine.md#createpanel10-1)。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1017,6 +1025,10 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 
 定义时间滑动选择器弹窗并弹出。
 
+>  **说明：**
+>
+>  不支持在输入法类型窗口中使用子窗（showInSubwindow为true）的showTimePickerDialog，详情见输入法框架的约束与限制说明[createPanel](../apis-ime-kit/js-apis-inputmethodengine.md#createpanel10-1)。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1079,6 +1091,10 @@ struct TimePickerDialogExample {
 showTextPickerDialog(options: TextPickerDialogOptions): void
 
 定义文本滑动选择器弹窗并弹出。
+
+>  **说明：**
+>
+>  不支持在输入法类型窗口中使用子窗（showInSubwindow为true）的showTextPickerDialog，详情见输入法框架的约束与限制说明[createPanel](../apis-ime-kit/js-apis-inputmethodengine.md#createpanel10-1)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1151,6 +1167,10 @@ showTextPickerDialog(style: TextPickerDialogOptions\|TextPickerDialogOptionsExt)
 
 定义文本滑动选择器弹窗并弹出，相比API version 11，新增了TextPickerDialogOptionsExt参数支持。
 
+>  **说明：**
+>
+>  不支持在输入法类型窗口中使用子窗（showInSubwindow为true）的showTextPickerDialog，详情见输入法框架的约束与限制说明[createPanel](../apis-ime-kit/js-apis-inputmethodengine.md#createpanel10-1)。
+
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1198,7 +1218,7 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 
 ```ts
 // EntryAbility.ets
-import { AbilityConstant, Configuration, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { AnimatorOptions, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -1208,7 +1228,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', err.message);
         return;
       }
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
@@ -1263,7 +1283,7 @@ createAnimator(options: AnimatorOptions | SimpleAnimatorOptions): AnimatorResult
 
 ```ts
 // EntryAbility.ets
-import { AbilityConstant, Configuration, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { SimpleAnimatorOptions, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -1273,7 +1293,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', err.message);
         return;
       }
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
@@ -1339,7 +1359,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 | 参数名      | 类型         | 必填   | 说明   |
 | -------- | ---------- | ---- | ---- |
-| value | [KeyboardAvoidMode](arkts-apis-uicontext-e.md#keyboardavoidmode11)| 是    | 键盘避让时的页面避让模式。<br />默认值:KeyboardAvoidMode.OFFSET |
+| value | [KeyboardAvoidMode](arkts-apis-uicontext-e.md#keyboardavoidmode11)| 是    | 键盘弹出时的页面避让模式。<br />默认值：KeyboardAvoidMode.OFFSET |
 
 >  **说明：**
 >
@@ -1353,6 +1373,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 完整示例请参考[示例4（设置键盘避让模式为压缩）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例4设置键盘避让模式为压缩)、[示例5（设置键盘避让模式为上抬）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例5设置键盘避让模式为上抬)以及[示例6（切换避让模式）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例6切换避让模式)。
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
@@ -1396,6 +1417,7 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 
 完整示例请参考[示例4（设置键盘避让模式为压缩）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例4设置键盘避让模式为压缩)、[示例5（设置键盘避让模式为上抬）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例5设置键盘避让模式为上抬)以及[示例6（切换避让模式）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例6切换避让模式)。
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
@@ -1446,14 +1468,14 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+    console.info('Ability onWindowStageCreate');
     windowStage.loadContent('pages/Index', (err, data) => {
       let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
       let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
       if (atomicServiceBar != undefined) {
-        hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+        console.info('Get AtomServiceBar Successfully.');
       } else {
-        hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+        console.error('Get AtomicServiceBar failed.');
       }
     });
   }
@@ -1494,7 +1516,7 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 | 参数名 | 类型                                              | 必填 | 说明                      |
 | ------------ | ---------------------------------------------------- | ------- | ---------------------------- |
 | param        | [KeyframeAnimateParam](arkui-ts/ts-keyframeAnimateTo.md#keyframeanimateparam对象说明) | 是      | 关键帧动画的整体动画参数。     |
-| keyframes    | Array&lt;[KeyframeState](arkui-ts/ts-keyframeAnimateTo.md#keyframestate对象说明)&gt;  | 是      | 所有的关键帧状态。            |
+| keyframes    | Array&lt;[KeyframeState](arkui-ts/ts-keyframeAnimateTo.md#keyframestate对象说明)&gt;  | 是      | 所有的关键帧状态的列表。            |
 
 **示例：**
 
@@ -1522,7 +1544,7 @@ struct KeyframeDemo {
         .scale({ x: this.myScale, y: this.myScale })
         .onClick(() => {
           if (!this.uiContext) {
-            console.info("no uiContext, keyframe failed");
+            console.error("no uiContext, keyframe failed");
             return;
           }
           this.myScale = 1;
@@ -2517,7 +2539,7 @@ openBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheetOp
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    返回Promise对象。 |
+|   Promise&lt;void&gt;           |    Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -2563,7 +2585,7 @@ function buildText(params: Params) {
             console.info('updateBindSheet success');
           })
           .catch((err: BusinessError) => {
-            console.info('updateBindSheet error: ' + err.code + ' ' + err.message);
+            console.error('updateBindSheet error: ' + err.code + ' ' + err.message);
           })
       })
 
@@ -2575,7 +2597,7 @@ function buildText(params: Params) {
             console.info('closeBindSheet success');
           })
           .catch((err: BusinessError) => {
-            console.info('closeBindSheet error: ' + err.code + ' ' + err.message);
+            console.error('closeBindSheet error: ' + err.code + ' ' + err.message);
           })
       })
   }
@@ -2610,7 +2632,7 @@ struct UIContextBindSheet {
                 console.info('openBindSheet success');
               })
               .catch((err: BusinessError) => {
-                console.info('openBindSheet error: ' + err.code + ' ' + err.message);
+                console.error('openBindSheet error: ' + err.code + ' ' + err.message);
               })
           })
       }
@@ -2648,7 +2670,7 @@ updateBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheet
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    返回Promise对象。 |
+|   Promise&lt;void&gt;           |    Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -2691,7 +2713,7 @@ function buildText(params: Params) {
             console.info('updateBindSheet success');
           })
           .catch((err: BusinessError) => {
-            console.info('updateBindSheet error: ' + err.code + ' ' + err.message);
+            console.error('updateBindSheet error: ' + err.code + ' ' + err.message);
           })
       })
 
@@ -2703,7 +2725,7 @@ function buildText(params: Params) {
             console.info('closeBindSheet success');
           })
           .catch((err: BusinessError) => {
-            console.info('closeBindSheet error: ' + err.code + ' ' + err.message);
+            console.error('closeBindSheet error: ' + err.code + ' ' + err.message);
           })
       })
   }
@@ -2738,7 +2760,7 @@ struct UIContextBindSheet {
                 console.info('openBindSheet success');
               })
               .catch((err: BusinessError) => {
-                console.info('openBindSheet error: ' + err.code + ' ' + err.message);
+                console.error('openBindSheet error: ' + err.code + ' ' + err.message);
               })
           })
       }
@@ -2774,7 +2796,7 @@ closeBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>): Promi
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    返回Promise对象。 |
+|   Promise&lt;void&gt;           |    Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -2817,7 +2839,7 @@ function buildText(params: Params) {
             console.info('updateBindSheet success');
           })
           .catch((err: BusinessError) => {
-            console.info('updateBindSheet error: ' + err.code + ' ' + err.message);
+            console.error('updateBindSheet error: ' + err.code + ' ' + err.message);
           })
       })
 
@@ -2829,7 +2851,7 @@ function buildText(params: Params) {
             console.info('closeBindSheet success');
           })
           .catch((err: BusinessError) => {
-            console.info('closeBindSheet error: ' + err.code + ' ' + err.message);
+            console.error('closeBindSheet error: ' + err.code + ' ' + err.message);
           })
       })
   }
@@ -2864,7 +2886,7 @@ struct UIContextBindSheet {
                 console.info('openBindSheet success');
               })
               .catch((err: BusinessError) => {
-                console.info('openBindSheet error: ' + err.code + ' ' + err.message);
+                console.error('openBindSheet error: ' + err.code + ' ' + err.message);
               })
           })
       }
@@ -3348,6 +3370,7 @@ setPixelRoundMode(mode: PixelRoundMode): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIContext } from '@kit.ArkUI';
@@ -3389,6 +3412,7 @@ getPixelRoundMode(): PixelRoundMode
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIContext } from '@kit.ArkUI';

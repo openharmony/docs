@@ -36,7 +36,7 @@ Divider()
 
 vertical(value: boolean)
 
-设置分割线的方向。
+设置分割线的方向，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -54,7 +54,7 @@ vertical(value: boolean)
 
 color(value: ResourceColor)
 
-设置分割线的颜色。
+设置分割线的颜色，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -72,7 +72,7 @@ color(value: ResourceColor)
 
 strokeWidth(value: number | string)
 
-设置分割线的宽度。
+设置分割线的宽度，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -90,7 +90,7 @@ strokeWidth(value: number | string)
 
 lineCap(value: LineCapStyle)
 
-设置分割线的端点样式。
+设置分割线的端点样式，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

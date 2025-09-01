@@ -75,7 +75,7 @@ DataPanel(options: DataPanelOptions)
 
 closeEffect(value: boolean)
 
-设置是否关闭数据占比图表旋转动效和投影效果。若未设置[trackShadow属性](#trackshadow10)，则由该属性控制投影效果的开关，开启投影的效果为投影的默认效果。若设置了trackShadow属性，则由trackShadow属性值控制投影效果的开关。
+设置是否关闭数据占比图表旋转动效和投影效果。若未设置[trackShadow](#trackshadow10)属性，则由该属性控制投影效果的开关，开启投影的效果为投影的默认效果。若设置了trackShadow属性，则由trackShadow属性值控制投影效果的开关。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -172,7 +172,7 @@ contentModifier(modifier: ContentModifier\<DataPanelConfiguration>)
 
 ## DataPanelShadowOptions<sup>10+</sup>对象说明
 
-DataPanelShadowOptions继承自[MultiShadowOptions](ts-types.md#multishadowoptions10)，具有MultiShadowOptions的全部属性。
+DataPanelShadowOptions继承自[MultiShadowOptions](ts-information-display-common.md#multishadowoptions)，具有MultiShadowOptions的全部属性。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -216,7 +216,7 @@ constructor(colorStops: ColorStop[])
 
 ## DataPanelConfiguration<sup>12+</sup>对象说明
 
-开发者需要自定义class实现ContentModifier接口。
+开发者需要自定义class实现ContentModifier接口。继承自[CommonConfiguration](ts-universal-attributes-content-modifier.md#commonconfigurationt)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

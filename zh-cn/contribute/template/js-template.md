@@ -32,6 +32,7 @@
 | @syscap | 系统能力 | **系统能力**：SystemCapability.xxx.xxx |  1. 如果仅涉及一个权限，格式：<br/>    **需要权限**：ohos.permission.xxxx   <br/>2. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限**：ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：**：ohos.permission.A 或 ohos.permission.B |
 | @permission | 权限 |  1. 如果仅涉及一个权限，格式：<br/>    **需要权限**：ohos.permission.xxxx   <br/>2. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限**：ohos.permission.A 和 ohos.permission.B<br/>    **需要权限**：ohos.permission.A 或 ohos.permission.B <br/>3. 涉及版本变更时，“需要权限”后跟当前版本的权限要求，历史版本的权限要求换行按列表描述，样例：<br/>**需要权限**：ohos.permission.A <br/>- 在API x-(y-1)时，需要申请权限ohos.permission.A和B。<br/>- 从API y开始，仅需申请ohos.permission.A。<br/>4. 仅在某些固定场景下，需要申请权限。“需要权限”后跟d.ts的@permission保持一致，再补充情况说明，分为两类情况，当情况较为简单时，可采用括号补充描述；当情况较为复杂时，换行描述。<br/>样例1：<br/> **需要权限**：ohos.permission.A（仅当创建窗口类型为AA时需要申请）<br/>样例2：<br/> **需要权限**：ohos.permission.A<br/>- 当应用处于xx情况时，需要同步申请ohos.permission.B。<br/>- 当应用处于yy情况时，无需申请任何权限。|
 | @extends | 继承 |  带有该标签或实际存在extends关系但未带该标签时，在相关描述处应明确说明“xxx继承自xxx（提供链接）。” |
+| @装饰器名称 | 装饰器类型 | 若Class/Interface被装饰器修饰，则需要在相关描述处明确说明“**装饰器类型**：@装饰器名称”，例如“**装饰器类型**：@Sendable”。|
 
 下面进入具体每个API的写作。
 
@@ -283,8 +284,12 @@ import { call } from '@kit.TelephonyKit';
 >
 > 3. 如果该API中，既有属性，又有方法，需要先进行属性的写作，并使用“###”三级标题。
 >    如果该API中，只有属性，那么不需要新建三级标题，直接使用表格陈列属性。
+>
+> 4. 若Class/Interface被装饰器修饰，则需要说明“装饰器类型”。
 
 类描述/interface描述。如果有使用限制，需要在这个地方说明。比方说，是否有前提条件，是否需要通过什么方法先构造一个实例。
+
+**装饰器类型：** @Sendable
 
 ### 属性
 

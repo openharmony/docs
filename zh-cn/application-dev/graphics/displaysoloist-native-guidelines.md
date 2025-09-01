@@ -1,4 +1,10 @@
 # NativeDisplaySoloist开发指导 (C/C++)
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hudi33-->
+<!--Designer: @hudi33-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @ge-yafang-->
 
 如果开发者想在独立线程中实现帧率控制的Native侧业务，可以通过DisplaySoloist来实现，如游戏、自绘制UI框架对接等场景。
 开发者可以选择多个DisplaySoloist实例共享一个线程，也可以选择每个DisplaySoloist实例独占一个线程。
@@ -12,6 +18,8 @@
 | OH_DisplaySoloist_Start (OH_DisplaySoloist * displaySoloist, OH_DisplaySoloist_FrameCallback callback, void * data ) | 设置每帧回调函数，每次VSync信号到来时启动每帧回调。   |
 | OH_DisplaySoloist_Stop (OH_DisplaySoloist * displaySoloist)  | 停止请求下一次VSync信号，并停止调用回调函数callback。 |
 | OH_DisplaySoloist_SetExpectedFrameRateRange (OH_DisplaySoloist* displaySoloist, DisplaySoloist_ExpectedRateRange* range) | 设置期望帧率范围。                                    |
+
+详细的接口说明请参考[NativeDisplaySoloist](../reference/apis-arkgraphics2d/capi-nativedisplaysoloist.md)。
 
 ## 开发示例
 
@@ -353,8 +361,10 @@ libnative_display_soloist.so
    }
    ```
 
+<!--RP1-->
 ## 相关实例
 
 针对可变帧率的开发，有以下相关实例可供参考：
 
-- [DisplaySoloist分级管控（API12）（C/C++）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Graphics/DisplaySoloist)
+- [DisplaySoloist分级管控 (API14)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/graphic/DisplaySoloist)
+<!--RP1End-->

@@ -808,7 +808,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 ## File
 [UploadConfig<sup>6+<sup>](#uploadconfig6)中的文件列表。
 
-**系统能力**：SystemCapability.MiscServices.Upload。
+**系统能力**：SystemCapability.MiscServices.Download。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -821,7 +821,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 ## RequestData
 [UploadConfig<sup>6+<sup>](#uploadconfig6)中的表单数据。
 
-**系统能力**：SystemCapability.MiscServices.Upload。
+**系统能力**：SystemCapability.MiscServices.Download。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -3026,7 +3026,7 @@ on(event: 'pause', callback: (progress: [Progress](#progress10)) =&gt; void): vo
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
-    method: "PUT",
+    method: "POST",
     data: attachments,
     saveas: "./",
     network: request.agent.Network.CELLULAR,

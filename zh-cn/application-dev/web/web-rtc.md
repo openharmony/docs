@@ -144,7 +144,7 @@ Web组件可以通过W3C标准协议接口拉起摄像头和麦克风，通过[o
         video.srcObject = MediaStream;
         video.play();
       }).catch(function(err) {
-    	  console.log(err.name + ": " + err.message);
+    	  console.info(err.name + ": " + err.message);
       });
     }
   </script>

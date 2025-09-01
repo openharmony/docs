@@ -3,7 +3,7 @@
 <!--Subsystem: Communication-->
 <!--Owner: @xdx19211@luodonghui0157-->
 <!--Designer: @zhaopeng_gitee-->
-<!--Tester: @maxiaorong2-->
+<!--Tester: @maxiaorong-->
 <!--Adviser: @zhang_yixin13-->
 
 本模块提供进程间通信能力，包括设备内的进程间通信（IPC）和设备间的进程间通信（RPC），前者基于Binder驱动，后者基于软总线驱动。
@@ -244,7 +244,7 @@ writeInterfaceToken(token: string): void
 
   | 参数名 | 类型   | 必填 | 说明               |
   | ------ | ------ | ---- | ------------------ |
-  | token  | string | 是   | 字符串类型描述符。 |
+  | token  | string | 是   | 字符串类型描述符，其长度应小于40960字节。 |
 
 **错误码：**
 
@@ -3191,7 +3191,7 @@ containFileDescriptors(): boolean
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let sequence = rpc.MessageSequence().create();
+    let sequence = rpc.MessageSequence.create();
     let filePath = "path/to/file";
     let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
     let containFD = sequence.containFileDescriptors();
@@ -3235,7 +3235,7 @@ writeFileDescriptor(fd: number): void
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let sequence = rpc.MessageSequence().create();
+    let sequence = rpc.MessageSequence.create();
     let filePath = "path/to/file";
     let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
     sequence.writeFileDescriptor(file.fd);
@@ -3277,7 +3277,7 @@ readFileDescriptor(): number
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let sequence = rpc.MessageSequence().create();
+    let sequence = rpc.MessageSequence.create();
     let filePath = "path/to/file";
     let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
     sequence.writeFileDescriptor(file.fd);
@@ -3321,7 +3321,7 @@ writeAshmem(ashmem: Ashmem): void
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let sequence = rpc.MessageSequence().create();
+    let sequence = rpc.MessageSequence.create();
     let ashmem = rpc.Ashmem.create("ashmem", 1024);
     // ashmem里写入数据
     let buffer = new ArrayBuffer(1024);
@@ -3373,7 +3373,7 @@ readAshmem(): Ashmem
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let sequence = rpc.MessageSequence().create();
+    let sequence = rpc.MessageSequence.create();
     let ashmem = rpc.Ashmem.create("ashmem", 1024);
     // ashmem里写入数据
     let buffer = new ArrayBuffer(1024);
@@ -3384,12 +3384,15 @@ readAshmem(): Ashmem
     let size = buffer.byteLength;
     ashmem.mapReadWriteAshmem();
     ashmem.writeDataToAshmem(buffer, size, 0);
+    // 将传递的数据大小写入messageSequence对象中
+    sequence.writeInt(size);
     // 将ashmem对象写入messageSequence对象中
     sequence.writeAshmem(ashmem);
-    // 从messageSequence对象中读取ashmem对象
-    let ashmem1 = sequence.readAshmem();
+
     // 读取传递的数据大小
     let dataSize = sequence.readInt();
+    // 从messageSequence对象中读取ashmem对象
+    let ashmem1 = sequence.readAshmem();
     // 从ashmem对象中读取数据
     ashmem1.mapReadWriteAshmem();
     let readResult = ashmem1.readDataFromAshmem(dataSize, 0);
@@ -3424,7 +3427,7 @@ getRawDataCapacity(): number
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let sequence = rpc.MessageSequence().create();
+    let sequence = rpc.MessageSequence.create();
     let result = sequence.getRawDataCapacity();
     hilog.info(0x0000, 'testTag', 'sequence get RawDataCapacity result is ' + result);
   } catch (error) {
@@ -3466,14 +3469,14 @@ writeRawData(rawData: number[], size: number): void
   | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let sequence = rpc.MessageSequence().create();
+    let sequence = rpc.MessageSequence.create();
     let arr = [1, 2, 3, 4, 5];
     sequence.writeRawData(arr, arr.length);
   } catch (error) {
@@ -3526,7 +3529,7 @@ writeRawDataBuffer(rawData: ArrayBuffer, size: number): void
       int32View[i] = i * 2 + 1;
     }
     let size = buffer.byteLength;
-    let sequence = rpc.MessageSequence().create();
+    let sequence = rpc.MessageSequence.create();
     sequence.writeRawDataBuffer(buffer, size);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
@@ -3570,17 +3573,17 @@ readRawData(size: number): number[]
   | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let sequence = rpc.MessageSequence().create();
+    let sequence = rpc.MessageSequence.create();
     let arr = [1, 2, 3, 4, 5];
     sequence.writeRawData(arr, arr.length);
-    let size = array.length;
+    let size = arr.length;
     let result = sequence.readRawData(size);
     hilog.info(0x0000, 'testTag', 'sequence read raw data result is ' + result);
   } catch (error) {
@@ -3633,7 +3636,7 @@ readRawDataBuffer(size: number): ArrayBuffer
       int32View[i] = i * 2 + 1;
     }
     let size = buffer.byteLength;
-    let sequence = rpc.MessageSequence().create();
+    let sequence = rpc.MessageSequence.create();
     sequence.writeRawDataBuffer(buffer, size);
     let result = sequence.readRawDataBuffer(size);
     let readInt32View = new Int32Array(result);
@@ -3770,7 +3773,7 @@ static create(): MessageParcel
   | [MessageParcel](#messageparceldeprecated) | 返回创建的MessageParcel对象。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -3795,7 +3798,7 @@ reclaim(): void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -3829,7 +3832,7 @@ writeRemoteObject(object: IRemoteObject): boolean
   | boolean | true：操作成功，false：操作失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -3868,7 +3871,7 @@ readRemoteObject(): IRemoteObject
   | [IRemoteObject](#iremoteobject) | 读取到的远程对象。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -3906,7 +3909,7 @@ writeInterfaceToken(token: string): boolean
 
   | 参数名 | 类型   | 必填 | 说明               |
   | ------ | ------ | ---- | ------------------ |
-  | token  | string | 是   | 字符串类型描述符。 |
+  | token  | string | 是   | 字符串类型描述符，其长度应小于40960字节。 |
 
 **返回值：**
 
@@ -3915,7 +3918,7 @@ writeInterfaceToken(token: string): boolean
   | boolean | true：操作成功，false：操作失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -3944,7 +3947,7 @@ readInterfaceToken(): string
   | string | 返回读取到的接口描述符。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -3974,7 +3977,7 @@ getSize(): number
   | number | 获取的MessageParcel的数据大小。以字节为单位。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4004,7 +4007,7 @@ getCapacity(): number
   | number | 获取的MessageParcel的容量大小。以字节为单位。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4040,7 +4043,7 @@ setSize(size: number): boolean
   | boolean | true：设置成功，false：设置失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4075,7 +4078,7 @@ setCapacity(size: number): boolean
   | boolean | true：设置成功，false：设置失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4104,7 +4107,7 @@ getWritableBytes(): number
   | number | 获取到的MessageParcel的可写字节空间。以字节为单位。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4134,7 +4137,7 @@ getReadableBytes(): number
   | number | 获取到的MessageParcel的可读字节空间。以字节为单位。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4164,7 +4167,7 @@ getReadPosition(): number
   | number | 返回MessageParcel实例中的当前读取位置。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4193,7 +4196,7 @@ getWritePosition(): number
   | number | 返回MessageParcel实例中的当前写入位置。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4229,7 +4232,7 @@ rewindRead(pos: number): boolean
   | boolean | true：读取位置发生更改，false：读取位置未发生更改。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4269,7 +4272,7 @@ rewindWrite(pos: number): boolean
   | boolean | true：写入位置发生更改，false：写入位置未发生更改。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4307,7 +4310,7 @@ writeByte(val: number): boolean
   | boolean | true：写入成功，false：写入失败。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4336,7 +4339,7 @@ readByte(): number
   | number | 返回字节值。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4373,7 +4376,7 @@ writeShort(val: number): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4402,7 +4405,7 @@ readShort(): number
   | number | 返回短整数值。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4439,7 +4442,7 @@ writeInt(val: number): boolean
   | boolean | true：写入成功，false：写入失败。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4468,7 +4471,7 @@ readInt(): number
   | number | 返回整数值。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4505,7 +4508,7 @@ writeLong(val: number): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4534,7 +4537,7 @@ readLong(): number
   | number | 返回长整数值。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4571,7 +4574,7 @@ writeFloat(val: number): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4600,7 +4603,7 @@ readFloat(): number
   | number | 返回双精度浮点值。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4637,7 +4640,7 @@ writeDouble(val: number): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4666,7 +4669,7 @@ readDouble(): number
   | number | 返回双精度浮点值。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4703,7 +4706,7 @@ writeBoolean(val: boolean): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4732,7 +4735,7 @@ readBoolean(): boolean
   | boolean | 返回读取到的布尔值。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4769,7 +4772,7 @@ writeChar(val: number): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4798,7 +4801,7 @@ readChar(): number
   | number | 返回单个字符值。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4835,7 +4838,7 @@ writeString(val: string): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4864,7 +4867,7 @@ readString(): string
   | string | 返回字符串值。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4901,7 +4904,7 @@ writeSequenceable(val: Sequenceable): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -4956,7 +4959,7 @@ readSequenceable(dataIn: Sequenceable): boolean
   | boolean | true：反序列化成功，false：反序列化失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5014,7 +5017,7 @@ writeByteArray(byteArray: number[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5044,7 +5047,7 @@ readByteArray(dataIn: number[]): void
   | dataIn | number[] | 是   | 要读取的字节数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5076,7 +5079,7 @@ readByteArray(): number[]
   | number[] | 返回字节数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5114,7 +5117,7 @@ writeShortArray(shortArray: number[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5143,7 +5146,7 @@ readShortArray(dataIn: number[]): void
   | dataIn | number[] | 是   | 要读取的短整数数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5175,7 +5178,7 @@ readShortArray(): number[]
   | number[] | 返回短整数数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5212,7 +5215,7 @@ writeIntArray(intArray: number[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5241,7 +5244,7 @@ readIntArray(dataIn: number[]): void
   | dataIn | number[] | 是   | 要读取的整数数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5273,7 +5276,7 @@ readIntArray(): number[]
   | number[] | 返回整数数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5310,7 +5313,7 @@ writeLongArray(longArray: number[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5339,7 +5342,7 @@ readLongArray(dataIn: number[]): void
   | dataIn | number[] | 是   | 要读取的长整数数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5371,7 +5374,7 @@ readLongArray(): number[]
  | number[] | 返回长整数数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5408,7 +5411,7 @@ writeFloatArray(floatArray: number[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5437,7 +5440,7 @@ readFloatArray(dataIn: number[]): void
   | dataIn | number[] | 是   | 要读取的双精度浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5469,7 +5472,7 @@ readFloatArray(): number[]
   | number[] | 返回双精度浮点数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5506,7 +5509,7 @@ writeDoubleArray(doubleArray: number[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5535,7 +5538,7 @@ readDoubleArray(dataIn: number[]): void
   | dataIn | number[] | 是   | 要读取的双精度浮点数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5567,7 +5570,7 @@ readDoubleArray(): number[]
   | number[] | 返回双精度浮点数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5604,7 +5607,7 @@ writeBooleanArray(booleanArray: boolean[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5633,7 +5636,7 @@ readBooleanArray(dataIn: boolean[]): void
   | dataIn | boolean[] | 是   | 要读取的布尔数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5665,7 +5668,7 @@ readBooleanArray(): boolean[]
   | boolean[] | 返回布尔数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5702,7 +5705,7 @@ writeCharArray(charArray: number[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5731,7 +5734,7 @@ readCharArray(dataIn: number[]): void
   | dataIn | number[] | 是   | 要读取的单个字符数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5763,7 +5766,7 @@ readCharArray(): number[]
   | number[] | 返回单个字符数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5800,7 +5803,7 @@ writeStringArray(stringArray: string[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5829,7 +5832,7 @@ readStringArray(dataIn: string[]): void
   | dataIn | string[] | 是   | 要读取的字符串数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5861,7 +5864,7 @@ readStringArray(): string[]
   | string[] | 返回字符串数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5886,7 +5889,7 @@ writeNoException(): void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -5964,7 +5967,7 @@ readException(): void
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -6021,7 +6024,7 @@ writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -6073,7 +6076,7 @@ readSequenceableArray(sequenceableArray: Sequenceable[]): void
 | sequenceableArray | [Sequenceable](#sequenceabledeprecated)[] | 是   | 要读取的可序列化对象数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -6133,7 +6136,7 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -6173,7 +6176,7 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
   | objects | [IRemoteObject](#iremoteobject)[] | 是   | 从MessageParcel读取的IRemoteObject对象数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -6215,7 +6218,7 @@ readRemoteObjectArray(): IRemoteObject[]
   | [IRemoteObject](#iremoteobject)[] | 返回IRemoteObject对象数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -6257,7 +6260,7 @@ static closeFileDescriptor(fd: number): void
   | fd     | number | 是   | 要关闭的文件描述符。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { fileIo } from '@kit.CoreFileKit';
@@ -6293,7 +6296,7 @@ static dupFileDescriptor(fd: number) :number
   | number | 返回新的文件描述符。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { fileIo } from '@kit.CoreFileKit';
@@ -6323,7 +6326,7 @@ containFileDescriptors(): boolean
   | boolean |true：包含文件描述符，false：未包含文件描述符。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { fileIo } from '@kit.CoreFileKit';
@@ -6363,7 +6366,7 @@ writeFileDescriptor(fd: number): boolean
   | boolean | true：操作成功，false：操作失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { fileIo } from '@kit.CoreFileKit';
@@ -6395,7 +6398,7 @@ readFileDescriptor(): number
   | number | 返回文件描述符。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { fileIo } from '@kit.CoreFileKit';
@@ -6434,7 +6437,7 @@ writeAshmem(ashmem: Ashmem): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -6464,7 +6467,7 @@ readAshmem(): Ashmem
 | [Ashmem](#ashmem8) | 返回匿名共享对象。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -6496,7 +6499,7 @@ getRawDataCapacity(): number
   | number | 返回MessageParcel可以容纳的最大原始数据量，即128MB。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -6532,7 +6535,7 @@ writeRawData(rawData: number[], size: number): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -6568,7 +6571,7 @@ readRawData(size: number): number[]
   | number[] | 返回原始数据（以字节为单位）。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -6732,7 +6735,7 @@ marshalling(dataOut: MessageParcel): boolean
   | boolean | true：封送成功，false：封送失败。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -6790,7 +6793,7 @@ unmarshalling(dataIn: MessageParcel): boolean
   | boolean | true：反序列化成功，false：反序列化失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7402,7 +7405,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7537,7 +7540,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
       });
     }
   } catch (error) {
-    hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, error: ' + errore);
+    hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, error: ' + error);
   }
   ```
 
@@ -7610,7 +7613,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7767,7 +7770,7 @@ getLocalInterface(interface: string): IRemoteBroker
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getLocalInterface接口方法查询接口对象
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -7851,7 +7854,7 @@ queryLocalInterface(interface: string): IRemoteBroker
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的queryLocalInterface接口获取接口对象
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -8018,7 +8021,7 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的addDeathRecipient接口方法新增死亡回调
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -8191,7 +8194,7 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的removeDeathRecipient接口方法去注册死亡回调
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -8350,7 +8353,7 @@ getInterfaceDescriptor(): string
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getInterfaceDescriptor接口方法查询当前代理对象接口的描述符
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -8981,7 +8984,7 @@ static flushCommands(object: IRemoteObject): number
   | number | 如果操作成功，返回0；如果输入对象为空或RemoteObject，或者操作失败，返回错误代码。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -9051,7 +9054,7 @@ static restoreCallingIdentity(identity: string): void
 
   | 参数名   | 类型   | 必填 | 说明                                                               |
   | -------- | ------ | ---- | ------------------------------------------------------------------ |
-  | identity | string | 是   | 标识表示包含远程用户UID和PID的字符串。由resetCallingIdentity返回。 |
+  | identity | string | 是   | 标识表示包含远程用户UID和PID的字符串，其长度应小于40960字节。由resetCallingIdentity返回。 |
 
 **错误码：**
 
@@ -9106,7 +9109,7 @@ static setCallingIdentity(identity: string): boolean
   | boolean | true：设置成功，false：设置失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -9142,7 +9145,7 @@ RemoteObject构造函数。
 
   | 参数名     | 类型   | 必填 | 说明         |
   | ---------- | ------ | ---- | ------------ |
-  | descriptor | string | 是   | 接口描述符。 |
+  | descriptor | string | 是   | 接口描述符，其长度应小于40960字节。 |
 
 **示例：**
 
@@ -9183,7 +9186,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | boolean | true：发送成功，false：发送失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -9321,7 +9324,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 | Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -9588,7 +9591,7 @@ sendRequest请求的响应处理函数，服务端在该函数里处理请求，
   | boolean | true：操作成功，false：操作失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -9694,7 +9697,7 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
   | 参数名     | 类型   | 必填 | 说明                 |
   | ---------- | ------ | ---- | -------------------- |
-  | descriptor | string | 是   | 接口描述符的字符串。 |
+  | descriptor | string | 是   | 接口描述符的字符串，其长度应小于40960字节。 |
 
 **返回值：**
 
@@ -9761,7 +9764,7 @@ queryLocalInterface(descriptor: string): IRemoteBroker
   | [IRemoteBroker](#iremotebroker) | 如果接口描述符对应的远端对象存在，则返回该远端对象，否则返回Null。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -9850,7 +9853,7 @@ getInterfaceDescriptor(): string
   | string | 返回接口描述符。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -9887,7 +9890,7 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 | 参数名         | 类型                            | 必填 | 说明                                  |
 | -------------- | ------------------------------- | ---- | ------------------------------------- |
 | localInterface | [IRemoteBroker](#iremotebroker) | 是   | 将与描述符绑定的IRemoteBroker对象。   |
-| descriptor     | string                          | 是   | 用于与IRemoteBroker对象绑定的描述符。 |
+| descriptor     | string                          | 是   | 用于与IRemoteBroker对象绑定的描述符，其长度应小于40960字节。 |
 
 **错误码：**
 
@@ -9950,7 +9953,7 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 | descriptor     | string                          | 是   | 用于与IRemoteBroker对象绑定的描述符。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -10006,8 +10009,8 @@ static create(name: string, size: number): Ashmem
 
   | 参数名 | 类型   | 必填 | 说明                         |
   | ------ | ------ | ---- | ---------------------------- |
-  | name   | string | 是   | 名称，用于查询Ashmem信息。   |
-  | size   | number | 是   | Ashmem的大小，以字节为单位。 |
+  | name   | string | 是   | Ashmem名称，用于查询Ashmem信息，其长度不能为0。   |
+  | size   | number | 是   | Ashmem的大小，其大小应大于0，以字节为单位。 |
 
 **返回值：**
 
@@ -10068,7 +10071,7 @@ static createAshmem(name: string, size: number): Ashmem
 | [Ashmem](#ashmem8) | 返回创建的Ashmem对象；如果创建失败，返回null。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -10156,7 +10159,7 @@ static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 | [Ashmem](#ashmem8) | 返回创建的Ashmem对象。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -10313,7 +10316,7 @@ mapAshmem(mapType: number): boolean
   | boolean | true：映射成功，false：映射失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -10379,7 +10382,7 @@ mapReadAndWriteAshmem(): boolean
   | boolean | true：映射成功，false：映射失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -10445,7 +10448,7 @@ mapReadOnlyAshmem(): boolean
   | boolean | true：映射成功，false：映射失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -10524,7 +10527,7 @@ setProtection(protectionType: number): boolean
   | boolean | true：设置成功，false：设置失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -10624,7 +10627,7 @@ writeAshmem(buf: number[], size: number, offset: number): void
   | 1900003  | Failed to write data to the shared memory. |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -10671,7 +10674,7 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
   | boolean | true：如果数据写入成功，false：在其他情况下，如数据写入越界或未获得写入权限。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -10787,7 +10790,7 @@ readAshmem(size: number, offset: number): number[]
   | 1900004  | Failed to read data from the shared memory. |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -10835,7 +10838,7 @@ readFromAshmem(size: number, offset: number): number[]
   | number[] | 返回读取的数据。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
  ``` ts
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';

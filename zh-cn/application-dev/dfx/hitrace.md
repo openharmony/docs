@@ -3,7 +3,7 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @qq_437963121-->
-<!--Designer: @MontSaintMichel-->
+<!--Designer: @kutcherzhou1; @MontSaintMichel-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @foryourself-->
 
@@ -19,28 +19,29 @@ hitrace命令行工具提供trace信息采集能力，支持采集系统提供�
 
 ## 命令行说明
 
-| 命令 | 含义说明 | 
+| 命令 | 含义说明 |
 | -------- | -------- |
-| -h/--help | 查看帮助。 | 
-| -l/--list_categories | 查看tag列表。 | 
-| --trace_begin | 开始捕获trace。 | 
-| --trace_finish | 结束捕获trace。 | 
-| --trace_finish_nodump | 结束捕获trace，与--trace_finish的区别是不输出trace信息。 | 
-| --trace_dump | 导出trace信息。 | 
-| --record | 使能录制模式，允许长时间采集并落盘trace数据，必须和--trace_begin或--trace_finish一起使用。 | 
-| --overwrite | 设置内核缓冲区满之后的行为，未设置此选项时默认丢弃最老数据，设置此选项后丢弃最新数据。 | 
-| --file_size | 设置文件大小（单位为KB），仅在采集二进制格式trace数据时有效。 | 
-| -b N/--buffer_size N | 设置用于存储和读取trace的缓冲区大小（单位为KB）。最小值为512，最大值与设备当前可用内存有关。 | 
-| -t N/--time N | 设置hitrace采集时长，单位为s。 | 
-| -o/--output filename | 指定目标文件的名称（导出trace格式为文本时默认为stdout，如需保存到文件，建议使用/data/local/tmp路径。导出trace格式为二进制时不支持此选项）。 | 
-| -z | 压缩捕获的trace数据。 | 
-| --text | 导出trace数据为文本格式（默认为文本格式）。 | 
-| --raw | 导出trace数据为二进制格式（默认为文本格式）。 | 
-| --trace_clock | 设置向trace添加时间戳的时钟类型，可以是boot（默认）、global、mono、uptime或perf。不同设备支持的时钟类型不同，建议使用默认的boot进行采集，其时间为从本次开机起的时间戳，单位为s。每种时间类型的说明如下：<br/>- boot：系统启动后的时间戳，休眠或系统挂起时也会计时。<br/>- global：全局同步的时钟，可能有性能开销。<br/>- mono：系统启动后的时间戳，休眠或系统挂起时不会计时。<br/>- uptime：系统启动后的时间戳，类似于mono。<br/>- perf：高性能计数器，适合性能分析。 | 
-| --start_bgsrv | 开启快照模式trace捕获。 | 
-| --dump_bgsrv | 触发快照模式trace输出到文件。 | 
-| --stop_bgsrv | 关闭快照模式trace捕获。 | 
-| --trace_level | 设置trace输出级别阈值，输出级别可以是Debug、Info、Critical、Commercial或其对应缩写D、I、C、M。<br/>**说明**：从API version 19开始，支持该命令。 | 
+| -h/--help | 查看帮助。 |
+| -l/--list_categories | 查看tag列表。 |
+| --trace_begin | 开始捕获trace。 |
+| --trace_finish | 结束捕获trace。 |
+| --trace_finish_nodump | 结束捕获trace，与--trace_finish的区别是不输出trace信息。 |
+| --trace_dump | 导出trace信息。 |
+| --record | 使能录制模式，允许长时间采集并落盘trace数据，必须和--trace_begin或--trace_finish一起使用。 |
+| --overwrite | 设置内核缓冲区满之后的行为，未设置此选项时默认丢弃最老数据，设置此选项后丢弃最新数据。 |
+| --file_size | 设置文件大小（单位为KB），仅在采集二进制格式trace数据时有效。 |
+| -b N/--buffer_size N | 设置用于存储和读取trace的缓冲区大小（单位为KB）。最小值为512，最大值与设备当前可用内存有关。 |
+| -t N/--time N | 设置hitrace采集时长，单位为s。 |
+| -o/--output filename | 指定目标文件的名称（导出trace格式为文本时默认为stdout，如需保存到文件，建议使用/data/local/tmp路径。导出trace格式为二进制时不支持此选项）。 |
+| -z | 压缩捕获的trace数据。 |
+| --text | 导出trace数据为文本格式（默认为文本格式）。 |
+| --raw | 导出trace数据为二进制格式（默认为文本格式）。 |
+| --trace_clock | 设置向trace添加时间戳的时钟类型，可以是boot（默认）、global、mono、uptime或perf。不同设备支持的时钟类型不同，建议使用默认的boot进行采集，其时间为从本次开机起的时间戳，单位为s。每种时间类型的说明如下：<br/>- boot：系统启动后的时间戳，休眠或系统挂起时也会计时。<br/>- global：全局同步的时钟，可能有性能开销。<br/>- mono：系统启动后的时间戳，休眠或系统挂起时不会计时。<br/>- uptime：系统启动后的时间戳，类似于mono。<br/>- perf：高性能计数器，适合性能分析。 |
+| --start_bgsrv | 开启快照模式trace捕获。 |
+| --dump_bgsrv | 触发快照模式trace输出到文件。 |
+| --stop_bgsrv | 关闭快照模式trace捕获。 |
+| --trace_level | 设置trace输出级别阈值，输出级别可以是Debug、Info、Critical、Commercial或其对应缩写D、I、C、M。<br/>**说明**：从API version 19开始，支持该命令。 |
+| --get_level | 查询trace输出级别阈值。<br/>**说明**：从API version 20开始，支持该命令。 |
 
 > **说明：**
 >
@@ -96,8 +97,10 @@ options include:
   --file_size            Sets the size of the raw trace (KB). The default file size is 102400 KB.
                          Only effective in raw trace mode
   --trace_level level    Set the system parameter "persist.hitrace.level.threshold", which can control
-                         the level threshold of trace dotting. Valid values for "level" include
+                         the level threshold of tracing. Valid values for "level" include
                          D or Debug, I or Info, C or Critical, M or Commercial.
+  --get_level            Query the system parameter "persist.hitrace.level.threshold",
+                         which can control the level threshold of tracing.
 ```
 
 
@@ -122,7 +125,7 @@ $ hitrace -l
                  app - APP Module
                  ark - ARK Module
               binder - Binder kernel Info
-           bluetooth - communicatin bluetooth
+           bluetooth - communication bluetooth
                cloud - Cloud subsystem tag
           commercial - Commercial version tag
        commonlibrary - commonlibrary subsystem
@@ -518,7 +521,7 @@ $ hitrace -z -b 102400 -t 10 sched freq idle disk -o /data/local/tmp/test.ftrace
 ```
 
 
-### 设置trace输出级别阈值
+### 设置和查询trace输出级别阈值
 
 打点级别优先级从高到低分别为 M（Commercial）、C（Critical）、I（Info）、D（Debug），低于trace输出级别阈值的打点将不会生效。
 
@@ -528,14 +531,19 @@ $ hitrace -z -b 102400 -t 10 sched freq idle disk -o /data/local/tmp/test.ftrace
 // 设置trace输出级别阈值
 hitrace --trace_level D/I/C/M
 hitrace --trace_level Debug/Info/Critical/Commercial
+// 查询trace输出级别阈值
+hitrace --get_level
 ```
 
 **使用样例**：
 
 ```shell
 $ hitrace --trace_level Info
-2024/11/14 12:05:07 hitrace enter, running_state is SET_TRACE_LEVEL
-2024/11/14 12:05:07 success to set trace level.
+2025/08/16 10:34:23 hitrace enter, running_state is SET_TRACE_LEVEL
+2025/08/16 10:34:23 success to set trace level.
+$ hitrace --get_level
+2025/08/16 10:34:29 hitrace enter, running_state is GET_TRACE_LEVEL
+2025/08/16 10:34:29 the current trace level threshold is Info
 ```
 
 

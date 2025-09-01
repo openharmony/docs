@@ -356,3 +356,20 @@ Web组件的销毁模式，当Web组件销毁时，销毁模式会影响Web内�
 | ERR_CONTROLLER_NOT_INITED   | -3 | WebViewController未绑定组件。 |
 | ERR_KEY_NOT_MATCH   | -4 | 未匹配到key值，对于[setBlanklessLoadingWithKey](./arkts-apis-webview-WebviewController.md#setblanklessloadingwithkey20)需与[getBlanklessInfoWithKey](./arkts-apis-webview-WebviewController.md#getblanklessinfowithkey20)配套使用并且key值一致，否则返回该错误码。 |
 | ERR_SIGNIFICANT_CHANGE   | -5 | 当相似度较低时，系统会判定为跳变太大，[setBlanklessLoadingWithKey](./arkts-apis-webview-WebviewController.md#setblanklessloadingwithkey20)接口不会成功启用插帧。 |
+
+## ArkWebEngineVersion<sup>20+</sup>
+
+ArkWeb内核版本，请参考[M114内核在OpenHarmony6.0系统上的适配指导](https://gitcode.com/openharmony-tpc/chromium_src/blob/132_trunk/web/ReleaseNote/CompatibleWithLegacyWebEngine.md)。
+
+| **内核类型** | **英文** | **说明** |
+| ----------- | -------- | -------- |
+| 常青内核     | EVERGREEN WebCore | 当前系统的最新Web内核，系统基于此内核进行完整的功能实现，推荐应用使用。|
+| 遗留内核     | LEGACY WebCore    | 复用上一版本的内核，只做安全补丁及舆情问题修复，仅作为兼容性回滚使用，且遗留内核的支持有时间限制。 |
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称          | 值 | 说明                                      |
+| ------------- | -- |----------------------------------------- |
+| SYSTEM_DEFAULT   | 0     | 系统默认内核，OpenHarmony 6.0版本默认为M132。|
+| M114             | 1     | OpenHarmony 6.0版本的遗留内核。开发者可选择此遗留内核，若系统版本上不存在此内核则设置无效。|
+| M132             | 2     | OpenHarmony 6.0版本的常青内核，M132为此版本的默认内核。若系统版本上不存在此内核则设置无效。|

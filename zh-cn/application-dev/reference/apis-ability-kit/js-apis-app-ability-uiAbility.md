@@ -92,8 +92,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export default class MyUIAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // 执行异步任务
-    hilog.info(0x0000, 'testTag', `onCreate, want: ${want.abilityName}`);
-    hilog.info(0x0000, 'testTag', `the launchReason is +  ${launchParam.launchReason} + , the lastExitReason is  + ${launchParam.lastExitReason}`);
+    hilog.info(0x0000, 'testTag', `onCreate, want: ${want.abilityName}, the launchReason is ${launchParam.launchReason}, the lastExitReason is ${launchParam.lastExitReason}`);
   }
 }
 ```
@@ -787,7 +786,7 @@ onPrepareToTerminate(): boolean
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-**设备行为差异**：该接口仅在2in1和tablet设备中可正常执行回调，在其他设备上不执行回调。
+**设备行为差异**：该接口仅在2in1和Tablet设备中可正常执行回调，在其他设备上不执行回调。
 
 **返回值：**
 
@@ -852,7 +851,7 @@ onPrepareToTerminateAsync(): Promise\<boolean>
 
 **设备行为差异**：
 - 从API version 15开始，该接口仅在2in1设备中可正常执行回调，在其他设备上不执行回调。
-- 从API version 19开始，该接口在2in1和tablet设备中可正常执行回调，在其他设备上不执行回调。
+- 从API version 19开始，该接口在2in1和Tablet设备中可正常执行回调，在其他设备上不执行回调。
 
 **返回值：**
 
@@ -1238,7 +1237,7 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | [OnRemoteStateChangeCallback](#onremotestatechangecallback10) | 是 | 回调函数，返回onRemoteStateChange回调结果。 |
+| callback | [OnRemoteStateChangeCallback](#onremotestatechangecallback) | 是 | 回调函数，返回onRemoteStateChange回调结果。 |
 
 **错误码：**
 
@@ -1576,9 +1575,9 @@ export default class MainUIAbility extends UIAbility {
 | --- | ----- | --- | -------- |
 | msg | string | 是 | 用于传递释放消息。 |
 
-## OnRemoteStateChangeCallback<sup>10+</sup>
+## OnRemoteStateChangeCallback
 
-### (msg: string)
+### (msg: string)<sup>10+</sup>
 
 (msg: string): void
 

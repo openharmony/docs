@@ -56,7 +56,7 @@ domStorageAccess(domStorageAccess: boolean)
 
 fileAccess(fileAccess: boolean)
 
-设置是否开启应用中文件系统的访问。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
+设置是否开启应用中文件系统的访问。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中的文件不受该属性影响而被限制访问。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -64,7 +64,7 @@ fileAccess(fileAccess: boolean)
 
 | 参数名        | 类型    | 必填   | 说明                   |
 | ---------- | ------- | ---- | ---------------------- |
-| fileAccess | boolean | 是    | 设置是否开启应用中文件系统的访问。<br>true表示启动应用中文件系统的访问。false表示不启用应用中文件系统的访问。<br>API version 11及以前：默认值：true。<br>API version 12及以后：默认值：false，同时，当fileAccess为false的时候，仅只读资源目录`/data/storage/el1/bundle/entry/resources/resfile`里面的file协议资源依然可以访问，不受fileAccess管控。 |
+| fileAccess | boolean | 是    | 设置是否开启应用中文件系统的访问。<br>true表示开启应用中文件系统的访问。false表示不开启应用中文件系统的访问。<br>API version 11及以前：默认值：true。<br>API version 12及以后：默认值：false，同时，当fileAccess为false的时候，仅只读资源目录`/data/storage/el1/bundle/entry/resources/resfile`里面的资源依然可以通过file协议访问，不受fileAccess管控。 |
 
 **示例：**
 
@@ -208,7 +208,7 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 | 参数名              | 类型    | 必填   | 说明                |
 | ---------------- | ------- | ---- | ------------------- |
-| javaScriptAccess | boolean | 是    | 是否允许执行JavaScript脚本。<br>true表示允许执行JavaScript脚本，false表示不允许执行JavaScript脚本。<br>默认值：true。<br>传入undefined与null时为false。 |
+| javaScriptAccess | boolean | 是    | 是否允许执行JavaScript脚本。<br>true表示允许执行JavaScript脚本，false表示不允许执行JavaScript脚本。<br>传入undefined或null时不允许执行JavaScript脚本。 |
 
 **示例：**
 
@@ -267,7 +267,7 @@ overScrollMode(mode: OverScrollMode)
 
 mixedMode(mixedMode: MixedMode)
 
-设定当安全源尝试从非安全源加载资源时的行为，默认值为 MixedMode.None，即禁止安全源从非安全源加载内容。
+设定当安全源尝试从非安全源加载资源时的行为。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -275,7 +275,7 @@ mixedMode(mixedMode: MixedMode)
 
 | 参数名       | 类型                        | 必填   | 说明      |
 | --------- | --------------------------- | ---- | --------- |
-| mixedMode | [MixedMode](./arkts-basic-components-web-e.md#mixedmode) | 是    | 要设置的混合内容。<br>默认值：`MixedMode.None`，表示不允许安全来源（secure origin）加载不安全来源（insecure origin）的内容。 |
+| mixedMode | [MixedMode](./arkts-basic-components-web-e.md#mixedmode) | 是    | 要设置的混合内容模式。 |
 
 **示例：**
 
@@ -714,7 +714,7 @@ cacheMode(cacheMode: CacheMode)
 
 | 参数名       | 类型                        | 必填   | 说明      |
 | --------- | --------------------------- | ---- | --------- |
-| cacheMode | [CacheMode](./arkts-basic-components-web-e.md#cachemode) | 是    | 要设置的缓存模式。<br>默认值：`CacheMode.Default`。 |
+| cacheMode | [CacheMode](./arkts-basic-components-web-e.md#cachemode) | 是    | 要设置的缓存模式。 |
 
 **示例：**
 
@@ -853,7 +853,7 @@ blockNetwork(block: boolean)
 
 | 参数名   | 类型    | 必填   | 说明                |
 | ----- | ------- | ---- | ------------------- |
-| block | boolean | 是    | 设置Web组件是否阻止从网络加载资源。<br>true表示设置Web组件阻止从网络加载资源，false表示设置Web组件不阻止从网络加载资源。<br>默认值：false。 |
+| block | boolean | 是    | 设置Web组件是否允许从网络加载资源。<br>true表示不允许从网络加载资源，false表示允许从网络加载资源。<br>传入undefined或null时不允许从网络加载资源。 |
 
 **示例：**
 
@@ -2217,11 +2217,11 @@ metaViewport(enabled: boolean)
 
 > **说明：**
 >
-> - 如果设备为2in1，不支持viewport属性。设置为true或者false均不会解析viewport属性，进行默认布局。
-> - 如果设备为Tablet，设置为true或false均会解析meta标签viewport-fit属性。当`viewport-fit=cover`时，可通过CSS属性获取安全区域大小。
 > - 当前通过User-Agent中是否含有"Mobile"字段来判断是否开启前端HTML页面中meta标签的viewport属性。当User-Agent中不含有"Mobile"字段时，meta标签中viewport属性默认关闭，此时可通过显性设置metaViewport属性为true来覆盖关闭状态。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**设备行为差异：** 该接口在Phone、Wearable、TV设备中可正常调用，在PC/2in1设备中无效果，在Tablet设备中，设置为true或false均会解析meta标签viewport-fit属性。当`viewport-fit=cover`时，可通过CSS属性获取安全区域大小。
 
 **参数：**
 
@@ -2279,6 +2279,8 @@ textAutosizing(textAutosizing: boolean)
 > - 4. 前端无metaViewport设置，或metaViewport设置中无"width"和"initial-scale"属性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**设备行为差异：** 该接口在PC/2in1设备中无效果，在其他设备中可正常调用。
 
 **参数：**
 
@@ -3177,6 +3179,56 @@ gestureFocusMode(mode: GestureFocusMode)
   </head>
   <body>
     <input type="text" placeholder="Text">
+  </body>
+  </html>
+  ```
+
+## forceEnableZoom<sup>21+</sup>
+
+forceEnableZoom(enable: boolean)
+
+设置Web组件是否启用强制缩放功能。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名        | 类型    | 必填   | 说明          |
+| ---------- | ------- | ---- | ------------- |
+| enable | boolean | 是    | 设置是否遵从网页中`<meta name="viewport">`标签设置的缩放限制。<br>设置为`true`时，不遵从网页缩放限制；设置为`false`时，遵从网页缩放限制。<br>传入`undefined`与`null`时为`false`。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .forceEnableZoom(true)
+      }
+    }
+  }
+  ```
+
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>测试网页</title>
+  </head>
+  <body>
+    <h1>forceEnableZoom Demo</h1>
+    <span>You can scale page when forceEnableZoom is true.</span>
   </body>
   </html>
   ```

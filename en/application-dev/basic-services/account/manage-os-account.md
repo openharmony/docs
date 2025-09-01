@@ -1,5 +1,12 @@
 # Managing System Accounts (for System Applications Only)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
+
 The system provides APIs for managing system accounts. After applying for required permissions for your system application, you can use the APIs to create, activate, modify, and delete system accounts. For third-party applications, you can use the APIs to query basic information about system accounts to develop service logic related to system accounts.
 
 ## Basic Concepts
@@ -138,7 +145,7 @@ accountManager.activateOsAccount(localId, (err: BusinessError)=>{
 
 ## Removing a System Account
 
-Remove the system account that is no longer used.
+Remove a system account when it is no longer used.
 
 **Procedure**
 

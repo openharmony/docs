@@ -966,7 +966,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 getEffectPixelMap(): Promise<image.PixelMap>
 
-获取已添加链表效果的源图像的image.PixelMap，使用Promise异步回调。
+获取已添加链表效果的源图像的image.PixelMap，使用CPU渲染，使用Promise异步回调。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -998,6 +998,53 @@ let opts : image.InitializationOptions = {
 };
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createEffect(pixelMap).grayscale().getEffectPixelMap().then(data => {
+    console.info('getPixelBytesNumber = ', data.getPixelBytesNumber());
+  })
+})
+```
+
+### getEffectPixelMap<sup>20+</sup>
+
+getEffectPixelMap(useCpuRender : boolean): Promise<image.PixelMap>
+
+获取已添加链表效果的源图像的image.PixelMap，支持指定渲染模式（CPU渲染或者GPU渲染），使用Promise异步回调。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明                                                         |
+| ------ | ----------- | ---- | ------------------------------------------------------------ |
+|  useCpuRender   | boolean | 是   | 指定渲染模式。true表示使用CPU渲染，false表示使用GPU渲染。 |
+
+**返回值：**
+
+| 类型                   | 说明           |
+| ---------------------- | -------------- |
+| Promise\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)>  | Promise对象。返回已添加链表效果的源图像的image.PixelMap。 |
+
+
+**示例：**
+
+```ts
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+};
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createEffect(pixelMap).grayscale().getEffectPixelMap(false).then(data => {
     console.info('getPixelBytesNumber = ', data.getPixelBytesNumber());
   })
 })

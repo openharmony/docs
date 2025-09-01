@@ -6,9 +6,7 @@
 <!--Tester: @lixueqing513-->
 <!--Adviser: @huipeizi-->
 
-childProcessManager模块提供子进程管理能力，支持子进程启动操作。当前仅支持2in1、tablet设备。
-
-创建的子进程不支持UI界面，也不支持Context相关的接口调用。通过此模块（非SELF_FORK模式）和[ChildProcess](capi-childprocess.md)启动的子进程总数最大为512个。
+childProcessManager模块提供子进程管理能力，支持子进程创建和启动操作。
 
 创建的子进程会随着父进程的退出而退出，无法脱离父进程独立运行。
 
@@ -17,6 +15,17 @@ childProcessManager模块提供子进程管理能力，支持子进程启动操�
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块接口仅可在Stage模型下使用。
+
+## 约束限制
+
+- 本模块中的接口当前仅支持2in1、tablet设备。
+
+- 通过本模块中接口创建的子进程有如下限制:
+  - 创建的子进程不支持创建UI界面。  
+  - 创建的子进程不支持依赖Context的API调用（包括Context模块自身API及将Context实例作为入参的API）。  
+  - 创建的子进程内不支持再次创建子进程。  
+  
+- 通过本模块中定义的创建子进程的接口和[native_child_process.h](capi-native-child-process-h.md)中定义的创建子进程的接口启动的子进程总数最大为512个（系统资源充足情况下），其中[startChildProcess](#childprocessmanagerstartchildprocess)接口在SELF_FORK模式下启动的子进程不计入总数内。
 
 ## 导入模块
 
@@ -32,16 +41,21 @@ import { childProcessManager } from '@kit.AbilityKit';
 
 | 名称                       | 值                             | 说明                              |
 | --------                     |  -----------------               |  -----------------               |
-| SELF_FORK |  0   | 从App自身进程Fork子进程。以该模式启动的子进程中不能进行Binder IPC调用，会导致子进程Crash。不支持异步ArkTS API调用。 |
-| APP_SPAWN_FORK |  1   | 从AppSpawn Fork子进程。以该模式启动的子进程不会继承父进程资源，且没有ApplicationContext，子进程中不支持依赖ApplicationContext的API调用。 |
+| SELF_FORK |  0   | 从App自身进程Fork子进程。以该模式启动的子进程会继承父进程资源，不能使用Binder IPC和其他进程通信，否则会导致子进程崩溃退出。 |
+| APP_SPAWN_FORK |  1   | 从AppSpawn Fork子进程。以该模式启动的子进程不会继承父进程资源，可以使用Binder IPC和其他进程通信。 |
 
 ## childProcessManager.startChildProcess
 
 startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;
 
-启动子进程，并调用子进程的入口方法。使用Promise异步回调。
+启动[ArkTS子进程](../../application-models/ability-terminology.md#arkts子进程)，使用Promise异步回调。
 
-创建子进程成功会返回子进程pid，但并不代表入口方法调用成功，具体结果以[ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart)方法是否调用成功为准。子进程中不支持再次创建子进程。
+
+> **说明：**
+> 
+> 调用该接口创建子进程成功会返回子进程pid，然后执行子进程的[ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart)函数，[ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart)函数执行完后子进程会自动销毁。
+>
+> 调用该接口创建的子进程不支持异步ArkTS API调用，仅支持同步ArkTS API调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -108,9 +122,13 @@ try {
 
 startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallback&lt;number&gt;): void
 
-启动子进程，并调用子进程的入口方法。使用callback异步回调。
+启动[ArkTS子进程](../../application-models/ability-terminology.md#arkts子进程)，使用callback异步回调。
 
-创建子进程成功会返回子进程pid，但并不代表入口方法调用成功，具体结果以[ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart)方法是否调用成功为准。子进程中不支持再次创建子进程。
+> **说明：**
+> 
+> 调用该接口创建子进程成功会返回子进程pid，然后执行子进程的[ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart)函数，[ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart)函数执行完后子进程会自动销毁。
+>
+> 调用该接口创建的子进程不支持异步ArkTS API调用，仅支持同步ArkTS API调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -173,11 +191,13 @@ try {
 
 startArkChildProcess(srcEntry: string, args: ChildProcessArgs, options?: ChildProcessOptions): Promise&lt;number&gt;
 
-启动子进程，并调用子进程的入口方法。使用Promise异步回调。
+启动[ArkTS子进程](../../application-models/ability-terminology.md#arkts子进程)，使用Promise异步回调。
 
-子进程不会继承父进程资源。创建子进程成功会返回子进程pid，但并不代表入口方法调用成功，具体结果以[ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart)方法是否调用成功为准。子进程中不支持再次创建子进程。
 
-子进程支持传参和异步ArkTS API调用（部分依赖ApplicationContext的API除外）。[ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart)方法执行完后子进程不会自动销毁，需要子进程调用[process.abort](../apis-arkts/js-apis-process.md#processabort)销毁。主进程销毁后子进程也会一并销毁。
+> **说明：**
+>
+> 调用该接口创建的子进程不会继承父进程资源，子进程创建成功会返回子进程pid，然后执行子进程的[ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart)函数。[ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart)函数执行完后子进程不会自动销毁，需要子进程调用[process.abort](../apis-arkts/js-apis-process.md#processabort)销毁。调用该接口的进程销毁后，所创建的子进程也会一并销毁。
+
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -185,7 +205,7 @@ startArkChildProcess(srcEntry: string, args: ChildProcessArgs, options?: ChildPr
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | srcEntry | string | 是 | 子进程源文件路径，不支持源文件放在HAR类型的模块中。由“模块名” + “/” + “文件路径”组成，文件路径以src/main为根目录。例如子进程文件在module1模块下src/main/ets/process/DemoProcess.ets，则srcEntry为"module1/./ets/process/DemoProcess.ets"。<br/>另外，需要确保子进程源文件被其它文件引用到，防止被构建工具优化掉。（详见下方示例代码） |
+  | srcEntry | string | 是 | 子进程源文件路径，不支持源文件放在HAR类型的模块中。由“模块名” + “/” + “文件路径”组成，文件路径以src/main为根目录。例如子进程文件在module1模块下src/main/ets/process/DemoProcess.ets，则srcEntry为"module1/ets/process/DemoProcess.ets"。<br/>另外，需要确保子进程源文件被其它文件引用到，防止被构建工具优化掉。（详见下方示例代码） |
   | args | [ChildProcessArgs](js-apis-app-ability-childProcessArgs.md) | 是 | 传递到子进程的参数。 |
   | options | [ChildProcessOptions](js-apis-app-ability-childProcessOptions.md) | 否 | 子进程的启动配置选项。|
 
@@ -261,7 +281,7 @@ struct Index {
               let options: ChildProcessOptions = {
                 isolationMode: false
               };
-              childProcessManager.startArkChildProcess("module1/./ets/process/DemoProcess.ets", args, options)
+              childProcessManager.startArkChildProcess("module1/ets/process/DemoProcess.ets", args, options)
                 .then((pid) => {
                   console.info(`startChildProcess success, pid: ${pid}`);
                 })
@@ -284,11 +304,11 @@ struct Index {
 
 startNativeChildProcess(entryPoint: string, args: ChildProcessArgs, options?: ChildProcessOptions): Promise&lt;number&gt;
 
-启动Native子进程，加载参数中指定的动态链接库文件并调用入口函数。使用Promise异步回调。
+启动[Native子进程](../../application-models/ability-terminology.md#native子进程)，使用Promise异步回调。
 
-子进程不会继承父进程资源。创建子进程成功会返回子进程pid，但并不代表入口函数调用成功，具体结果以子进程的入口函数是否调用成功为准。子进程中不支持再次创建子进程，且不支持创建ArkTS基础运行时环境。
-
-入口函数执行完后子进程会自动销毁。主进程销毁后子进程也会一并销毁。
+> **说明：**
+> 
+> 调用该接口创建的子进程不会继承父进程资源，子进程创建成功会返回子进程pid，然后加载参数中指定的动态链接库文件并执行子进程的入口函数，入口函数执行完后子进程会自动销毁。调用该接口的进程销毁后，所创建的子进程也会一并销毁。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -320,7 +340,7 @@ startNativeChildProcess(entryPoint: string, args: ChildProcessArgs, options?: Ch
 
 **示例：**
 
-子进程部分，详见[Native子进程开发指导（C/C++）- 创建支持参数传递的子进程](../../application-models/capi_nativechildprocess_development_guideline.md#创建支持参数传递的子进程)：
+子进程部分，详见[Native子进程开发指导（C/C++）- 创建支持参数传递的Native子进程](../../application-models/capi_nativechildprocess_development_guideline.md#创建支持参数传递的native子进程)：
 
 ```c++
 #include <AbilityKit/native_child_process.h>

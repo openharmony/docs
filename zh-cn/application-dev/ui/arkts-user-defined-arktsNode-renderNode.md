@@ -1,4 +1,10 @@
 # 自定义渲染节点 (RenderNode)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
@@ -76,10 +82,10 @@ struct Index {
           const child = renderNode.getChild(1);
           const nextSibling = child!.getNextSibling()
           if (child === null || nextSibling === null) {
-            console.log(TEST_TAG + ' the child or nextChild is null');
+            console.info(TEST_TAG + ' the child or nextChild is null');
           } else {
             // 获取子节点的位置信息
-            console.log(`${TEST_TAG} the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
+            console.info(`${TEST_TAG} the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
             `the position of nextSibling is x: ${nextSibling.position.x}, y: ${nextSibling.position.y}`);
           }
         })
@@ -152,31 +158,31 @@ struct Index {
         .width(300)
         .onClick(() => {
           renderNode.position = { x: 10, y: 10 };
-          console.log(TEST_TAG + " position:" + JSON.stringify(renderNode.position));
+          console.info(TEST_TAG + " position:" + JSON.stringify(renderNode.position));
         })
       Button("pivot")
         .width(300)
         .onClick(() => {
           renderNode.pivot = { x: 0.5, y: 0.6 };
-          console.log(TEST_TAG + " pivot:" + JSON.stringify(renderNode.pivot));
+          console.info(TEST_TAG + " pivot:" + JSON.stringify(renderNode.pivot));
         })
       Button("scale")
         .width(300)
         .onClick(() => {
           renderNode.scale = { x: 0.5, y: 1 };
-          console.log(TEST_TAG + " scale:" + JSON.stringify(renderNode.scale));
+          console.info(TEST_TAG + " scale:" + JSON.stringify(renderNode.scale));
         })
       Button("translation")
         .width(300)
         .onClick(() => {
           renderNode.translation = { x: 100, y: 0 };
-          console.log(TEST_TAG + " translation:" + JSON.stringify(renderNode.translation));
+          console.info(TEST_TAG + " translation:" + JSON.stringify(renderNode.translation));
         })
       Button("rotation")
         .width(300)
         .onClick(() => {
           renderNode.rotation = { x: 45, y: 0, z: 0 };
-          console.log(TEST_TAG + " rotation:" + JSON.stringify(renderNode.rotation));
+          console.info(TEST_TAG + " rotation:" + JSON.stringify(renderNode.rotation));
         })
       Button("transform")
         .width(300)
@@ -187,7 +193,7 @@ struct Index {
             0, 0, 1, 0,
             0, 0, 0, 1
           ];
-          console.log(TEST_TAG + " transform:" + JSON.stringify(renderNode.transform));
+          console.info(TEST_TAG + " transform:" + JSON.stringify(renderNode.transform));
         })
       Button("shadow")
         .width(300)
@@ -196,10 +202,10 @@ struct Index {
           renderNode.shadowColor = 0XFF00FF00;
           renderNode.shadowOffset = { x: 10, y: 10 };
           renderNode.shadowAlpha = 0.1;
-          console.log(TEST_TAG + " shadowElevation:" + JSON.stringify(renderNode.shadowElevation));
-          console.log(TEST_TAG + " shadowColor:" + JSON.stringify(renderNode.shadowColor));
-          console.log(TEST_TAG + " shadowOffset:" + JSON.stringify(renderNode.shadowOffset));
-          console.log(TEST_TAG + " shadowAlpha:" + JSON.stringify(renderNode.shadowAlpha));
+          console.info(TEST_TAG + " shadowElevation:" + JSON.stringify(renderNode.shadowElevation));
+          console.info(TEST_TAG + " shadowColor:" + JSON.stringify(renderNode.shadowColor));
+          console.info(TEST_TAG + " shadowOffset:" + JSON.stringify(renderNode.shadowOffset));
+          console.info(TEST_TAG + " shadowAlpha:" + JSON.stringify(renderNode.shadowAlpha));
         })
       Button("shadowRadius")
         .width(300)
@@ -207,9 +213,9 @@ struct Index {
           renderNode.shadowOffset = { x: 10, y: 10 };
           renderNode.shadowAlpha = 0.7
           renderNode.shadowRadius = 30;
-          console.log(TEST_TAG + " shadowOffset:" + JSON.stringify(renderNode.shadowOffset));
-          console.log(TEST_TAG + " shadowAlpha:" + JSON.stringify(renderNode.shadowAlpha));
-          console.log(TEST_TAG + " shadowRadius:" + JSON.stringify(renderNode.shadowRadius));
+          console.info(TEST_TAG + " shadowOffset:" + JSON.stringify(renderNode.shadowOffset));
+          console.info(TEST_TAG + " shadowAlpha:" + JSON.stringify(renderNode.shadowAlpha));
+          console.info(TEST_TAG + " shadowRadius:" + JSON.stringify(renderNode.shadowRadius));
         })
       Button("border")
         .width(300)
@@ -238,22 +244,22 @@ struct Index {
             bottomLeft: 32,
             bottomRight: 32
           };
-          console.log(TEST_TAG + " borderWidth:" + JSON.stringify(renderNode.borderWidth));
-          console.log(TEST_TAG + " borderStyle:" + JSON.stringify(renderNode.borderStyle));
-          console.log(TEST_TAG + " borderColor:" + JSON.stringify(renderNode.borderColor));
-          console.log(TEST_TAG + " borderRadius:" + JSON.stringify(renderNode.borderRadius));
+          console.info(TEST_TAG + " borderWidth:" + JSON.stringify(renderNode.borderWidth));
+          console.info(TEST_TAG + " borderStyle:" + JSON.stringify(renderNode.borderStyle));
+          console.info(TEST_TAG + " borderColor:" + JSON.stringify(renderNode.borderColor));
+          console.info(TEST_TAG + " borderRadius:" + JSON.stringify(renderNode.borderRadius));
         })
       Button("shapeMask")
         .width(300)
         .onClick(() => {
           renderNode.shapeMask = mask;
-          console.log(TEST_TAG + " shapeMask:" + JSON.stringify(renderNode.shapeMask));
+          console.info(TEST_TAG + " shapeMask:" + JSON.stringify(renderNode.shapeMask));
         })
       Button("shapeClip")
         .width(300)
         .onClick(() => {
           renderNode.shapeClip = clip;
-          console.log(TEST_TAG + " shapeMask:" + JSON.stringify(renderNode.shapeMask));
+          console.info(TEST_TAG + " shapeMask:" + JSON.stringify(renderNode.shapeMask));
         })
     }
     .padding({
@@ -308,7 +314,7 @@ class MyRenderNode extends RenderNode {
       bottom: 200
     });
     canvas.detachBrush();
-    console.log(`RenderNode draw width = ${this.width}`);
+    console.info(`RenderNode draw width = ${this.width}`);
   }
 }
 
@@ -536,7 +542,7 @@ class MyNodeController extends NodeController {
       renderChildNode.frame = { x: 0, y: 0, width: 100, height: 100 };
       renderChildNode.backgroundColor = 0xffff0000;
       renderChildNode.label = 'customRenderChildNode';
-      console.log('label:', renderChildNode.label);
+      console.info('label:', renderChildNode.label);
       renderNode.appendChild(renderChildNode);
     }
 

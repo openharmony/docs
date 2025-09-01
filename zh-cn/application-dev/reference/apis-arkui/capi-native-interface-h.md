@@ -57,11 +57,11 @@ enum ArkUI_NativeAPIVariantKind
 
 | 枚举项 | 描述 |
 | -- | -- |
-| ARKUI_NATIVE_NODE | UI组件相关接口类型，详见<arkui/native_node.h>中的结构体类型定义。 |
-| ARKUI_NATIVE_DIALOG | 弹窗相关接口类型，详见<arkui/native_dialog.h>中的结构体类型定义。 |
-| ARKUI_NATIVE_GESTURE | 手势相关接口类型，详见<arkui/native_gesture.h>中的结构体类型定义。 |
-| ARKUI_NATIVE_ANIMATE | 动画相关接口类型。详见<arkui/native_animate.h>中的结构体类型定义。 |
-| ARKUI_MULTI_THREAD_NATIVE_NODE | 多线程UI组件相关接口类型，详见<arkui/native_node.h>中的结构体类型定义。 |
+| ARKUI_NATIVE_NODE | UI组件相关接口类型，详见[native_node.h](./capi-native-node-h.md)中的结构体类型定义。 |
+| ARKUI_NATIVE_DIALOG | 弹窗相关接口类型，详见[native_dialog.h](./capi-native-dialog-h.md)中的[结构体](capi-native-dialog-h.md#结构体)类型定义。 |
+| ARKUI_NATIVE_GESTURE | 手势相关接口类型，详见[native_gesture.h](./capi-native-gesture-h.md)中的[结构体](capi-native-gesture-h.md#结构体)类型定义。 |
+| ARKUI_NATIVE_ANIMATE | 动画相关接口类型。详见[native_animate.h](./capi-native-animate-h.md)中的[结构体](capi-native-animate-h.md#结构体)类型定义。 |
+| ARKUI_MULTI_THREAD_NATIVE_NODE | 多线程UI组件相关接口类型，详见[native_node.h](./capi-native-node-h.md)中的结构体类型定义。 |
 
 
 ## 函数说明
@@ -85,7 +85,7 @@ void* OH_ArkUI_QueryModuleInterfaceByName(ArkUI_NativeAPIVariantKind type, const
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_NativeAPIVariantKind](capi-native-interface-h.md#arkui_nativeapivariantkind) type | ArkUI提供的Native接口集合大类，例如UI组件接口类：ARKUI_NATIVE_NODE, 手势类：ARKUI_NATIVE_GESTURE。 |
-| const char* structName | native接口结构体的名称，通过查询对应头文件内结构体定义，例如位于<arkui/native_node.h>中的"ArkUI_NativeNodeAPI_1"。 |
+| const char* structName | native接口结构体的名称，通过查询对应头文件内结构体定义，例如位于[native_node.h](./capi-native-node-h.md)中的"ArkUI_NativeNodeAPI_1"。 |
 
 **返回：**
 

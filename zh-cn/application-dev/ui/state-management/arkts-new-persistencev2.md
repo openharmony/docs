@@ -10,7 +10,7 @@
 
 PersistenceV2是应用程序中的可选单例对象。此对象的作用是持久化存储UI相关的数据，以确保这些属性在应用程序重新启动时的值与应用程序关闭时的值相同。
 
-PersistenceV2提供状态变量持久化能力，开发者可以通过connect或者globalConnect绑定同一个key，在状态变量变换和应用冷启动时，实现持久化能力。
+PersistenceV2提供状态变量持久化能力，开发者可以通过connect或者globalConnect绑定同一个key，在状态变量变化和应用冷启动时，实现持久化能力。
 
 在阅读本文档前，建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)，[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)，配合阅读：[PersistentV2-API文档](../../reference/apis-arkui/js-apis-StateManagement.md#persistencev2)。
 
@@ -33,151 +33,23 @@ PersistenceV2支持应用的[主线程](../../application-models/thread-model-st
 
 ## 使用说明
 
-### connect：创建或获取存储的数据
-
-```JavaScript
-static connect<T extends object>(
-    type: TypeConstructorWithArgs<T>,
-    keyOrDefaultCreator?: string | StorageDefaultCreator<T>,
-    defaultCreator?: StorageDefaultCreator<T> 
-): T | undefined;
-```
-
-| connect      | 说明                                                  |
-| ------------ | ----------------------------------------------------- |
-| 参数         | type：指定的类型，若未指定key，则使用type的name作为key；</br > keyOrDefaultCreator：指定的key，或者是默认数据的构造器；</br > defaultCreator：默认数据的构造器。                                          |
-| 返回值       | 创建或获取数据成功时，返回数据；否则返回undefined。 |
+- connect：创建或获取存储的数据。
 
 >**说明：**
 >
->1、若未指定key，使用第二个参数作为默认构造器；否则使用第三个参数作为默认构造器（第二个参数非法也使用第三个参数作为默认构造器）。
+>1、关联[\@Observed](./arkts-observed-and-objectlink.md)对象时，由于该类型的name属性未定义，需要指定key或者自定义name属性。
 >
->2、确保数据已经存储在PersistenceV2中，可省略默认构造器，获取存储的数据；否则必须指定默认构造器，不指定将导致应用异常。
+>2、数据存储路径为module级别，即哪个module调用了connect，数据副本存入对应module的持久化文件中。如果多个module使用相同的key，则数据为最先使用connect的module，并且PersistenceV2中的数据也会存入最先使用connect的module里。
 >
->3、同一个key，connect不同类型的数据会导致应用异常，应用需要确保类型匹配。
->
->4、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255，使用非法字符或空字符的行为是未定义的。
->
->5、关联[\@Observed](./arkts-observed-and-objectlink.md)对象时，由于该类型的name属性未定义，需要指定key或者自定义name属性。
->
->6、数据存储路径为module级别，即哪个module调用了connect，数据副本存入对应module的持久化文件中。如果多个module使用相同的key，则数据为最先使用connect的module，并且PersistenceV2中的数据也会存入最先使用connect的module里。
->
->7、因为存储路径在应用第一个ability启动时就已确定，为该ability所属的module。如果一个ability调用了connect，并且该ability能被不同module的拉起， 那么ability存在多少种启动方式，就会有多少份数据副本。
+>3、因为存储路径在应用第一个ability启动时就已确定，为该ability所属的module。如果一个ability调用了connect，并且该ability能被不同module的拉起， 那么ability存在多少种启动方式，就会有多少份数据副本。
 
-### globalConnect：创建或获取存储的数据
+- globalConnect：创建或获取存储的数据。
+- remove：删除指定key的存储数据。删除PersistenceV2中不存在的key会报警告。
+- keys：返回所有PersistenceV2中的key。包括module级别存储路径和应用级别存储路径中的所有key。
+- save：手动持久化数据。
+- notifyOnError：响应序列化或反序列化失败的回调。将数据存入磁盘时，需要对数据进行序列化；当某个key序列化失败时，错误是不可预知的；可调用该接口捕获异常。
 
-```ts
-// globalConnect 接口
-static globalConnect<T extends object>(
-    type: ConnectOptions<T>
-  ): T | undefined;
-```
-
-```ts
-// ConnectOptions参数
-class ConnectOptions<T extends object> {
-  type: TypeConstructorWithArgs<T>;	// 必选，指定的类型；
-  key?: string;	// 可选，传入的key，若未指定key，则使用type的name作为key；
-  defaultCreator?: StorageDefaultCreator<T>;	// 默认数据的构造器，建议填写；
-  areaMode?: contextConstant.AreaMode;	// 可选，加密参数；
-}
-```
-
-| globalConnect | 说明                                                      |
-| ------------- | --------------------------------------------------------- |
-| 参数          | type：传入的connect参数，详细说明见ConnectOptions参数说明。 |
-| 返回值        | 创建或获取数据成功时，返回数据；否则返回undefined。       |
-
-| ConnectOptions参数 | 说明                                                         |
-| :----------------: | :----------------------------------------------------------- |
-|        type        | TypeConstructorWithArgs\<T\>，必选参数，指定的类型。         |
-|        key         | string，传入的key，不传则使用type的名字作为key。             |
-|   defaultCreator   | StorageDefaultCreator\<T\>，默认数据的构造器，建议传递，如果globalConnect是第一次连接key，不传会报错。 |
-|      areaMode      | contextConstant.AreaMode，加密级别：EL1-EL5，详见[加密级别](../../application-models/application-context-stage.md#获取和修改加密分区)，对应数值：0-4，不传时默认为EL2，不同加密级别对应不同的加密分区，即不同的存储路径，传入的加密等级数值不在0-4会直接运行crash。 |
-
-> **说明：**
->
-> 1、若未指定key，使用第二个参数作为默认构造器；否则使用第三个参数作为默认构造器（第二个参数非法也使用第三个参数作为默认构造器）。
->
-> 2、确保数据已经存储在PersistenceV2中，可省略默认构造器，获取存储的数据；否则必须指定默认构造器，不指定将导致应用异常。
->
-> 3、同一个key，globalConnect不同类型的数据会导致应用异常，应用需要确保类型匹配。
->
-> 4、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255，使用非法字符或空字符的行为是未定义的。
->
-> 5、关联[\@Observed](./arkts-observed-and-objectlink.md)对象时，因为该类型的name属性未定义，需要指定key或者自定义name属性。
->
-> 6、数据的存储为应用级别的路径，不同module使用相同的key和相同的加密分区进行globalConnect，存储的数据副本应用仅有一份。
->
-> 7、globalConnect使用同一个key但设置了不同的加密级别，数据为第一个使用globalConnect的加密级别，并且PersistenceV2中的数据也会存入最先使用key的加密级别。
->
-> 8、connect和globalConnect不建议混用，因为数据副本路径不同，如果混用，则key不可以一样，否则会crash。
->
-> 9、EL5加密要想生效，需要开发者在module.json中配置字段ohos.permission.PROTECT_SCREEN_LOCK_DATA，使用说明见[声明权限](../../security/AccessToken/declare-permissions.md)。
-
-### remove：删除指定key的存储数据
-
-```ts
-static remove<T>(keyOrType: string | TypeConstructorWithArgs<T>): void;
-```
-
-| remove       | 说明                                                  |
-| ------------ | ----------------------------------------------------- |
-| 参数         | keyOrType：需要删除的key；如果指定的是type类型，删除的key为type的name。                                          |
-| 返回值       | 无。 |
-
->**说明：**
->
->删除PersistenceV2中不存在的key会报警告。
-
-### keys：返回所有PersistenceV2中的key
-
-```ts
-static keys(): Array<string>;
-```
-
-| keys         | 说明                                                  |
-| ------------ | ----------------------------------------------------- |
-| 参数         | 无。                                         |
-| 返回值       | 所有PersistenceV2中的key。 |
-
-> **说明：**
->
-> keys会返回module级别存储路径和应用级别存储路径中的所有key。
-
-### save：手动持久化数据
-
-```ts
-static save<T>(keyOrType: string | TypeConstructorWithArgs<T>): void;
-```
-
-| save         | 说明                                                  |
-| ------------ | ----------------------------------------------------- |
-| 参数         | keyOrType：需要手动持久化的key；如果指定的是type类型，key为type的name。                                          |
-| 返回值       | 无。 |
-
->**说明：**
->
->由于非[\@Trace](./arkts-new-observedV2-and-trace.md)的数据改变不会触发PersistenceV2的自动持久化，如有必要，可调用该接口持久化对应key的数据。
->
->手动持久化当前内存中不处于connect状态的key是无意义的。
-
-
-### notifyOnError：响应序列化或反序列化失败的回调
-
-```ts
-static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
-```
-
-| notifyOnError| 说明                                                  |
-| ------------ | ----------------------------------------------------- |
-| 参数         | callback：当序列化或者反序列化失败时，执行该回调；若传入undefined，取消该回调。|
-| 返回值       | 无。 |
-
->**说明：**
->
->将数据存入磁盘时，需要对数据进行序列化；当某个key序列化失败时，错误是不可预知的；可调用该接口捕获异常。
-
+以上接口详细描述请参考[状态管理API指南](../../reference/apis-arkui/js-apis-StateManagement.md)。
 
 ## 使用限制
 
@@ -185,11 +57,11 @@ static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
 
 2、不支持collections.Set、collections.Map等类型。
 
-3、不支持非buildin类型，如PixelMap、NativePointer、ArrayList等Native类型。
+3、不支持非built-in类型，如PixelMap、NativePointer、ArrayList等Native类型。
 
 4、单个key支持数据大小约8k，过大会导致持久化失败。
 
-5、持久化的数据必须是class对象，不支持容器类型（如Array、Set、Map），不支持buildin的构造对象（如Date、Number），不支持持久化基本类型（如string、number、boolean）。如果需要持久化非class对象，建议使用[prefrence](../../database/preferences-guidelines.md)进行数据持久化。
+5、持久化的数据必须是class对象，不支持容器类型（如Array、Set、Map），不支持built-in的构造对象（如Date、Number），不支持持久化基本类型（如string、number、boolean）。如果需要持久化非class对象，建议使用[prefrence](../../database/preferences-guidelines.md)进行数据持久化。
 
 6、不支持循环引用的对象。
 
@@ -221,6 +93,8 @@ onWindowStageCreate(windowStage: window.WindowStage): void {
   });
 }
 ```
+
+11、如果开发者对数据持久化能力有较强的诉求，例如持久化时机，建议使用[Preferences](../../database/preferences-guidelines.md)进行数据持久化。注意：不允许混用PersistenceV2和prefrence，因为Preferences存储的数据不会有状态变量信息，反序列化的数据不能触发PersistenceV2的自动化存储。
 
 ## 使用场景
 

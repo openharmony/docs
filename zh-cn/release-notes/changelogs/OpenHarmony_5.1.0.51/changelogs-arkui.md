@@ -69,9 +69,9 @@ Image、Text和ListItem组件存在设置onDragStart接口DragItemInfo返回值�
 
 此变更涉及应用适配，只涉及Image、Text和ListItem组件。
 
-- 变更前：onDragStart接口设置返回值中的builder属性后，无法解析pixelMap和extraInfo属性。
+- 变更前：onDragStart接口设置返回值中的builder属性后，无法解析pixelMap和extraInfo属性。同时设置了builder和pixelMap时，拖拽显示的是builder的预览图。onDrop回调中无法获取extraParams参数的值（对应extraInfo）。
   
-- 变更后：onDragStart接口设置返回值中的builder属性后，能够解析pixelMap和extraInfo属性。
+- 变更后：onDragStart接口设置返回值中的builder属性后，能够解析pixelMap和extraInfo属性。同时设置了builder和pixelMap时，拖拽显示的是pixelMap的预览图。onDrop回调中能够获取extraParams参数的值（对应extraInfo）。
 
 **起始API Level**
 
@@ -79,17 +79,17 @@ Image、Text和ListItem组件存在设置onDragStart接口DragItemInfo返回值�
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.1.0.51开始, API15及以上生效。
+从OpenHarmony SDK 5.1.0.51开始，API 15及以上版本生效。
 
 **变更的接口/组件**
 
-涉及组件： Image, Text, ListItem组件。
+涉及组件：Image、Text和ListItem。
 
 涉及接口： onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | DragItemInfo)
 
 **适配指导**
 
-onDragStart接口的返回值用于指定拖拽过程中显示的图片(pixelMap，builder)以及拖拽过程中组件携带的额外信息(extraInfo)。变更后，pixelMap的显示优先级高于builder。如果开发者同时设置了pixelMap和builder，应移除返回值中的pixelMap属性。同样，若不打算传递extraInfo，也应删除该属性。具体实现代码如下：
+onDragStart接口的返回值用于指定拖拽过程中显示的图片(pixelMap，builder)以及拖拽过程中组件携带的额外信息(extraInfo)。变更后，pixelMap属性能够正常解析。由于pixelMap的优先级高于builder，如果同时设置了pixelMap和builder，应移除返回值中的pixelMap属性。同样，若不打算传递extraInfo，也应删除该属性。具体实现代码如下：
 ```ts
 @Entry
 @Component
@@ -99,7 +99,7 @@ struct SlideExample {
       Image()
       .onDragStart((event) => {
         return {
-          builder: () => { this.pixelMapBuilder },
+          builder: () => { this.pixelMapBuilder() },
           // 若需要拖拽显示builder，需要移除掉pixelMap属性的赋值。
           // pixelMap:this.pixelMap,
           // 若设置了builder并且不需要传递extraInfo，需要移除掉extraInfo属性的赋值。

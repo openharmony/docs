@@ -1,5 +1,12 @@
 # @ohos.power (Power Management) (System API)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--Designer: @wangyantian0-->
+<!--Tester: @alien0208-->
+<!--Adviser: @w_Machine_cc-->
+
 The **power** module provides APIs for rebooting and shutting down the system, as well as querying the screen status.
 
 > **NOTE**
@@ -342,5 +349,45 @@ try {
     power.hibernate(true);
 } catch(err) {
     console.error('hibernate failed, err: ' + err);
+}
+```
+
+## power.refreshActivity<sup>20+</sup>
+
+refreshActivity(reason: string): void
+
+Refreshes the device activity status (for example, resetting the screen-off time).
+This API takes effect only when the device is active. For details about the device activity status, see [power.isActive](js-apis-power.md#powerisactive9).
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.REFRESH_USER_ACTION
+
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description   |
+| ------ | ------ | ---- | ----- |
+| reason | string | Yes   | Reason for refreshing the device activity status. The value must be a string.|
+
+**Error codes**
+
+For details about the error codes, see [Power Manager Error Codes]errorcode-power.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID  | Error Message   |
+|---------|---------|
+| 4900101 | Failed to connect to the service. |
+| 4900201 |The device activity is being refreshed too frequently; the minimum time interval is 100 ms. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+
+**Example:**
+
+```js
+try {
+    power.refreshActivity('refreshActivity_test');
+} catch(err) {
+    console.error('refreshActivity failed, err: ' + err);
 }
 ```

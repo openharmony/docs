@@ -16,11 +16,11 @@
 
 [触摸事件](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md)（onTouch事件）是所有手势组成的基础，有Down，Move，Up，Cancel四种。手势均由触摸事件组成，例如，点击为Down+Up，滑动为Down+一系列Move+Up。触摸事件具有最特殊性：
 
-1.监听了onTouch事件的组件。若在手指落下时被触摸则均会收到onTouch事件的回调，被触摸受到触摸热区和触摸控制影响。
+1.监听了onTouch事件的组件。在手指落下被触摸时均会收到onTouch事件的回调，被触摸受到触摸热区和触摸控制影响。
 
 2.onTouch事件的回调是闭环的。若一个组件收到了手指Id为0的Down事件，后续也会收到手指Id为0的Move事件和Up事件。
 
-3.onTouch事件的回调是一致的。若一个组件收到了手指Id为0的Down事件未收到手指Id为1的Down事件，则后续只会收到手指Id为0的touch事件，不会收到手指Id为1的后续touch事件。
+3.onTouch事件的回调是一致的。若一个组件收到了手指Id为0的Down事件，但未收到手指Id为1的Down事件，则后续只会收到手指Id为0的touch事件，不会收到手指Id为1的后续touch事件。
 
 对于一般的容器组件（例如：Column），父子组件之间onTouch事件能够同时触发，兄弟组件之间onTouch事件根据布局进行触发。
 
@@ -77,12 +77,12 @@ ComponentA()
     )
 )
 ```
-当组件A上绑定了由点击和滑动手势组成的互斥手势组时，先达到手势触发条件的手势触发对应的回调。
+当组件A上绑定了由点击和滑动手势组成的互斥手势组时，先达到触发条件的手势触发对应的回调。
 若使用者做了一次点击操作，则响应点击对应的回调。若使用者进行了一次滑动操作并且滑动距离达到了阈值，则响应滑动对应的回调。
 
 ## 自定义控制的多层级手势事件
 
-可以通过设置属性，控制默认的多层级手势事件竞争流程，更好的实现手势事件。
+可以通过设置属性，控制默认的多层级手势事件竞争流程，更好地实现手势事件。
 
 目前，responseRegion属性和hitTestBehavior属性可以控制Touch事件的分发，从而可以影响到onTouch事件和手势的响应。而绑定手势方法属性可以控制手势的竞争从而影响手势的响应，但不能影响到onTouch事件。
 
@@ -155,7 +155,7 @@ HitTestMode.Transparent自身响应触摸测试，不会阻塞兄弟节点的触
 
 当组件C未设置hitTestBehavior时，点击组件B和组件C的重叠区域时，Stack A和组件C的onTouch事件会触发，组件C的点击事件会触发，组件B的onTouch事件和点击手势均不触发。
 
-而当组件C设置hitTestBehavior为HitTestMode.Transparent时，点击组件B和组件C的重叠区域，组件A和组件C不受到影响与之前一致，组件A和组件C的onTouch事件会触发，组件C的点击手势会触发。而组件B因为组件C设置了HitTestMode.Transparent，组件B也收到了Touch事件，从而组件B的onTouch事件和点击手势触发。
+而当组件C设置hitTestBehavior为HitTestMode.Transparent时，点击组件B和组件C的重叠区域，组件A和组件C不受到影响与之前一致，组件A和组件C的onTouch事件会触发，组件C的点击手势会触发。而组件B因为组件C设置了HitTestMode.Transparent，组件B也收到了Touch事件，从而组件B的onTouch事件触发。
 
 ```ts
 ComponentA() {

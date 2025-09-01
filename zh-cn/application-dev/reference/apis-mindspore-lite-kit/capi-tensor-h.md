@@ -73,7 +73,7 @@ OH_AI_API OH_AI_TensorHandle OH_AI_TensorCreate(const char *name, OH_AI_DataType
 
 | 参数项 | 描述 |
 | -- | -- |
-| const char *name | 张量名称。 |
+| const char *name | 张量名称。字符串长度跟随系统限制。 |
 | [OH_AI_DataType](capi-data-type-h.md#oh_ai_datatype) type | 张量的数据类型。 |
 | const int64_t *shape | 张量的维度数组。 |
 | size_t shape_num | 张量维度数组长度。 |
@@ -122,7 +122,7 @@ OH_AI_API OH_AI_TensorHandle OH_AI_TensorClone(OH_AI_TensorHandle tensor)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AI_TensorHandle](capi-mindspore-oh-ai-tensorHandle.md) tensor | 待拷贝张量的指针。 |
+| [OH_AI_TensorHandle](capi-mindspore-oh-ai-tensorHandle.md) tensor | 张量对象句柄。 |
 
 **返回：**
 
@@ -148,7 +148,7 @@ OH_AI_API void OH_AI_TensorSetName(OH_AI_TensorHandle tensor, const char *name)
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AI_TensorHandle](capi-mindspore-oh-ai-tensorHandle.md) tensor | 张量对象句柄。 |
-| const char *name | 张量名称。 |
+| const char *name | 张量名称。字符串长度跟随系统限制。 |
 
 ### OH_AI_TensorGetName()
 

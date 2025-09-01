@@ -26,6 +26,7 @@ createAVPlayer(callback: AsyncCallback\<AVPlayer>): void
 >
 > - 推荐单个应用创建的音视频播放实例（即音频、视频、音视频三类相加）不超过16个。<!--Del-->
 > - 可创建的音视频播放实例数量依赖于设备芯片的支持情况，如芯片支持创建的数量少于上述情况，请以芯片规格为准。如RK3568推荐单个应用创建6个以内的音视频播放实例。<!--DelEnd-->
+> - 应用需要按照实际业务需求合理使用AVPlayer对象，按需创建并及时释放，避免持有过多AVPlayer实例导致内存消耗过大，否则在一定情况下可能导致系统查杀应用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -71,6 +72,7 @@ createAVPlayer(): Promise\<AVPlayer>
 >
 > - 推荐单个应用创建的音视频播放实例（即音频、视频、音视频三类相加）不超过16个。<!--Del-->
 > - 可创建的音视频播放实例数量依赖于设备芯片的支持情况，如芯片支持创建的数量少于上述情况，请以芯片规格为准。如RK3568推荐单个应用创建6个以内的音视频播放实例。<!--DelEnd-->
+> - 应用需要按照实际业务需求合理使用AVPlayer对象，按需创建并及时释放，避免持有过多AVPlayer实例导致内存消耗过大，否则在一定情况下可能导致系统查杀应用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -182,7 +184,6 @@ createAVRecorder(): Promise\<AVRecorder>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-
 let avRecorder: media.AVRecorder;
 media.createAVRecorder().then((recorder: media.AVRecorder) => {
   if (recorder != null) {
@@ -226,7 +227,6 @@ createAVTranscoder(): Promise\<AVTranscoder>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avTranscoder: media.AVTranscoder | undefined = undefined;
 media.createAVTranscoder().then((transcoder: media.AVTranscoder) => {
@@ -267,7 +267,6 @@ createAVMetadataExtractor(callback: AsyncCallback\<AVMetadataExtractor>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avMetadataExtractor: media.AVMetadataExtractor;
 media.createAVMetadataExtractor((error: BusinessError, extractor: media.AVMetadataExtractor) => {
@@ -306,7 +305,6 @@ createAVMetadataExtractor(): Promise\<AVMetadataExtractor>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avMetadataExtractor: media.AVMetadataExtractor;
 media.createAVMetadataExtractor().then((extractor: media.AVMetadataExtractor) => {
@@ -354,7 +352,6 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo, ca
 
 ```js
 import { audio } from '@kit.AudioKit';
-import { media } from '@kit.MediaKit';
 
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -412,7 +409,6 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): P
 ```js
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -496,7 +492,6 @@ createAVImageGenerator(callback: AsyncCallback\<AVImageGenerator>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator;
 media.createAVImageGenerator((error: BusinessError, generator: media.AVImageGenerator) => {
@@ -535,7 +530,6 @@ createAVImageGenerator(): Promise\<AVImageGenerator>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator;
 media.createAVImageGenerator().then((generator: media.AVImageGenerator) => {

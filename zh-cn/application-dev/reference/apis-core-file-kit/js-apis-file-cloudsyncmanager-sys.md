@@ -11,7 +11,7 @@
 > **说明：**
 >
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 本模块为系统接口。
+> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.file.cloudSyncManager (端云同步管理能力)](js-apis-file-cloudsyncmanager.md)。
 
 ## 导入模块
 
@@ -24,6 +24,8 @@ import { cloudSyncManager } from '@kit.CoreFileKit';
 changeAppCloudSwitch(accountId: string, bundleName: string, status: boolean): Promise&lt;void&gt;
 
 异步方法修改应用的端云文件同步开关，以Promise形式返回结果。
+
+**系统接口**：该接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
 
@@ -70,6 +72,8 @@ changeAppCloudSwitch(accountId: string, bundleName: string, status: boolean, cal
 
 异步方法修改应用的端云文件同步开关，以callback形式返回结果。
 
+**系统接口**：该接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
 
 **参数：**
@@ -111,6 +115,8 @@ changeAppCloudSwitch(accountId: string, bundleName: string, status: boolean, cal
 notifyDataChange(accountId: string, bundleName: string): Promise&lt;void&gt;
 
 异步方法通知端云服务应用的云数据变更，以Promise形式返回结果。
+
+**系统接口**：该接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
 
@@ -156,6 +162,8 @@ notifyDataChange(accountId: string, bundleName: string, callback: AsyncCallback&
 
 异步方法通知端云服务应用的云数据变更，以callback形式返回结果。
 
+**系统接口**：该接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
 
 **参数：**
@@ -195,6 +203,8 @@ notifyDataChange(accountId: string, bundleName: string, callback: AsyncCallback&
 
 云端数据变更信息。
 
+**系统接口**：该接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
 
 | 名称     | 类型   | 必填 | 说明 |
@@ -207,6 +217,8 @@ notifyDataChange(accountId: string, bundleName: string, callback: AsyncCallback&
 notifyDataChange(userId: number, extraData: ExtraData): Promise&lt;void&gt;
 
 异步方法通知端云服务应用的云数据变更，以Promise形式返回结果。
+
+**系统接口**：该接口为系统接口。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
 
@@ -255,6 +267,8 @@ notifyDataChange(userId: number, extraData: ExtraData, callback: AsyncCallback&l
 
 异步方法通知端云服务应用的云数据变更，以callback形式返回结果。
 
+**系统接口**：该接口为系统接口。
+
 **需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
@@ -298,6 +312,8 @@ notifyDataChange(userId: number, extraData: ExtraData, callback: AsyncCallback&l
 enableCloud(accountId: string, switches: Record<string, boolean>): Promise&lt;void&gt;
 
 异步方法使能端云协同能力，以Promise形式返回结果。
+
+**系统接口**：该接口为系统接口。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
 
@@ -348,6 +364,8 @@ enableCloud(accountId: string, switches: Record<string, boolean>, callback: Asyn
 
 异步方法使能端云协同能力，以callback形式返回结果。
 
+**系统接口**：该接口为系统接口。
+
 **需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
@@ -394,6 +412,8 @@ disableCloud(accountId: string): Promise&lt;void&gt;
 
 异步方法去使能端云协同能力，以Promise形式返回结果。
 
+**系统接口**：该接口为系统接口。
+
 **需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
@@ -437,6 +457,8 @@ disableCloud(accountId: string): Promise&lt;void&gt;
 disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;): void
 
 异步方法去使能端云协同能力，以callback形式返回结果。
+
+**系统接口**：该接口为系统接口。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
 
@@ -492,6 +514,8 @@ clean(accountId: string, appActions: Record<string, Action>): Promise&lt;void&gt
 
 异步方法清理本地云相关数据，以Promise形式返回结果。
 
+**系统接口**：该接口为系统接口。
+
 **需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
@@ -541,6 +565,8 @@ clean(accountId: string, appActions: Record<string, Action>, callback: AsyncCall
 
 异步方法清理本地云相关数据，以callback形式返回结果。
 
+**系统接口**：该接口为系统接口。
+
 **需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
@@ -587,6 +613,8 @@ clean(accountId: string, appActions: Record<string, Action>, callback: AsyncCall
 
 云盘降级下载对象，用于支撑云空间应用完成云盘文件的降级下载流程。
 
+**系统接口**：该接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
 
 ### constructor<sup>20+</sup>
@@ -594,6 +622,8 @@ clean(accountId: string, appActions: Record<string, Action>, callback: AsyncCall
 constructor(bundleName: string)
 
 降级下载对象的构造函数，用于获取指定包名的DowngradeDownload类的实例。
+
+**系统接口**：该接口为系统接口。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
 
@@ -634,6 +664,8 @@ getCloudFileInfo(): Promise&lt;CloudFileInfo&gt;
 
 获取需要降级下载的应用仅位于本地、仅位于云端或者本地和云端均有的文件大小和个数信息。使用Promise异步回调。
 
+**系统接口**：该接口为系统接口。
+
 **需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
@@ -642,7 +674,7 @@ getCloudFileInfo(): Promise&lt;CloudFileInfo&gt;
 
   | 类型                              | 说明                     |
   | --------------------------------- | ------------------------ |
-  | Promise&lt;[CloudFileInfo](#cloudfileinfo20)&gt; | Promise对象，返回携带本地与云端文件信息的对象。 |
+  | Promise&lt;[CloudFileInfo](js-apis-file-cloudsyncmanager.md#cloudfileinfo20)&gt; | Promise对象，返回携带本地与云端文件信息的对象。 |
 
 **错误码：**
 
@@ -678,6 +710,8 @@ startDownload(callback: Callback&lt;DownloadProgress&gt;): Promise&lt;void&gt;
 
 同一应用存在正在执行的降级下载任务的情况下，重复触发会返回错误信息（22400006）。
 
+**系统接口**：该接口为系统接口。
+
 **需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
@@ -686,7 +720,7 @@ startDownload(callback: Callback&lt;DownloadProgress&gt;): Promise&lt;void&gt;
 
 | 参数名   | 类型                             | 必填 | 说明                                                                                |
 | -------- | -------------------------------- | ---- | ----------------------------------------------------------------------------------- |
-| callback | Callback&lt;[DownloadProgress](#downloadprogress20)&gt; | 是   | 降级下载进度回调，回调参数为DownloadProgress，返回值为void。 |
+| callback | Callback&lt;[DownloadProgress](js-apis-file-cloudsyncmanager.md#downloadprogress20)&gt; | 是   | 降级下载进度回调，回调参数为DownloadProgress，返回值为void。 |
 
 **返回值：**
 
@@ -736,6 +770,8 @@ stopDownload(): Promise&lt;void&gt;
 
 停止由[startDownload](#startdownload20)触发的降级下载任务，使用Promise异步回调。
 
+**系统接口**：该接口为系统接口。
+
 **需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
@@ -781,65 +817,3 @@ stopDownload(): Promise&lt;void&gt;
     });
   }
   ```
-## DownloadStopReason<sup>20+</sup>
-
-降级下载停止原因的枚举，默认值为NO_STOP。
-
-**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
-
-| 名称                | 值  | 说明                                                   |
-| ------------------- | --- | ------------------------------------------------------ |
-| NO_STOP             | 0   | 下载中未停止。                                         |
-| NETWORK_UNAVAILABLE | 1   | 下载过程中，移动数据网络和WIFI均不可用。               |
-| LOCAL_STORAGE_FULL  | 2   | 下载过程中，当前设备空间不足。                         |
-| TEMPERATURE_LIMIT   | 3   | 下载过程中，设备温度过高。                             |
-| USER_STOPPED        | 4   | 下载过程中，客户端主动停止下载。                       |
-| APP_UNLOAD          | 5   | 下载过程中，云文件所属应用被卸载。                     |
-| OTHER_REASON        | 6   | 下载过程中，因其他原因停止下载，如：云服务器未响应等。 |
-
-## DownloadState<sup>20+</sup>
-
-降级下载任务状态的枚举。
-
-**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
-
-| 名称      | 值  | 说明       |
-| --------- | --- | ---------- |
-| RUNNING   | 0   | 下载中。   |
-| COMPLETED | 1   | 下载完成。 |
-| STOPPED   | 2   | 下载停止。 |
-
-## DownloadProgress<sup>20+</sup>
-
-降级下载任务的进度信息。
-
-**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
-
-### 属性
-
-| 名称            | 类型                                        | 只读 | 可选 | 说明                                                                          |
-| --------------- | ------------------------------------------- | ---- | ---- | ----------------------------------------------------------------------------- |
-| state           | [DownloadState](#downloadstate20)           | 否   | 否   | 下载任务的状态。                                                              |
-| successfulCount | number                                      | 否   | 否   | 已下载的文件个数，取值范围[0, INT32_MAX]，单位：个。进度异常时返回-1。        |
-| failedCount     | number                                      | 否   | 否   | 下载失败的文件个数，取值范围[0, INT32_MAX]，单位：个。进度异常时返回-1。      |
-| totalCount      | number                                      | 否   | 否   | 待下载文件总个数，取值范围[0, INT32_MAX]，单位：个。进度异常时返回-1。        |
-| downloadedSize  | number                                      | 否   | 否   | 已下载数据大小，取值范围[0, INT64_MAX)，单位：Byte。进度异常时返回INT64_MAX。 |
-| totalSize       | number                                      | 否   | 否   | 需要下载文件的总大小，取值范围[0, INT64_MAX)，单位：Byte。进度异常时返回INT64_MAX。 |
-| stopReason      | [DownloadStopReason](#downloadstopreason20) | 否   | 否   | 下载停止的原因。                                                              |
-
-## CloudFileInfo<sup>20+</sup>
-
-应用本地和云端文件个数以及大小信息。
-
-**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
-
-### 属性
-
-| 名称               | 类型   | 只读 | 可选 | 说明                                                             |
-| ------------------ | ------ | ---- | ---- | ---------------------------------------------------------------- |
-| cloudFileCount     | number | 否   | 否   | 本地未下载的云端文件总个数，取值范围[0, INT32_MAX]，单位：个。   |
-| cloudFileTotalSize | number | 否   | 否   | 本地未下载的云端文件总大小，取值范围[0, INT64_MAX]，单位：Byte。 |
-| localFileCount     | number | 否   | 否   | 本地未上传云端的文件总个数，取值范围[0, INT32_MAX]，单位：个。   |
-| localFileTotalSize | number | 否   | 否   | 本地未上传云端的文件总大小，取值范围[0, INT64_MAX]，单位：Byte。 |
-| bothFileCount      | number | 否   | 否   | 本地已上传云端的文件总个数，取值范围[0, INT32_MAX]，单位：个。   |
-| bothlFileTotalSize | number | 否   | 否   | 本地已上传云端的文件总大小，取值范围[0, INT64_MAX]，单位：Byte。 |

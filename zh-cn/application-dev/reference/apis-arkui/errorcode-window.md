@@ -89,6 +89,7 @@ This window context is abnormal.
 **处理步骤**<br>
 在对窗口上下文进行操作前，检查该窗口上下文是否存在，确保其未被销毁，再进行相关操作。
 
+<!--Del-->
 ## 1300007 WindowExtension拉起应用失败
 
 **错误信息**<br>
@@ -102,7 +103,9 @@ WindowExtension拉起应用的参数异常。
 
 **处理步骤**<br>
 检查WindowExtension参数是否被异常修改，确保其参数合法，再进行相关操作。
+<!--DelEnd-->
 
+<!--Del-->
 ## 1300008 显示设备异常
 
 **错误信息**<br>
@@ -118,6 +121,7 @@ The display device is abnormal.
 
 **处理步骤**<br>
 确保显示设备正常，再进行相关开发。
+<!--DelEnd-->
 
 ## 1300009 父窗口无效
 
@@ -242,24 +246,6 @@ Parameter validation error.
 
 检查参数是否符合规范。
 
-## 1300017 filter控制器调用错误
-
-**错误信息**
-
-Incorrect filter calling.
-
-**错误描述**
-
-filter控制器无效调用，比如调用时序不对。
-
-**可能原因**
-
-setBackgroundFilter在animateBackgroungFilter之后使用。
-
-**处理步骤**
-
-检查使用时的步骤时序，保证在animateBackgroungFilter之前使用setBackgroundFilter。
-
 ## 1300018 API调用超时
 
 **错误信息**
@@ -302,6 +288,8 @@ Wrong parameters for operating the floating ball.
 
 3.参数的格式不正确。
 
+4.必传的参数没有传入。
+
 **处理步骤**
 
 1.参数值应处于允许的范围内。
@@ -309,6 +297,10 @@ Wrong parameters for operating the floating ball.
 2.参数的长度应处于允许的长度范围内。
 
 3.参数应使用正确的格式。
+
+4.检查是否有未传入的必传参数。
+
+闪控球相关参数具体可见[FloatingBallParams](js-apis-floatingBall.md#floatingballparams)。
 
 ## 1300020 创建闪控球窗口失败
 
@@ -464,7 +456,7 @@ Failed to restore the main window.
 
 1.传入参数有误。
 
-2.点击后5秒内未拉起应用窗口。
+2.拉起应用窗口前未点击闪控球。
 
 3.拉起非本应用的窗口。
 
@@ -472,7 +464,7 @@ Failed to restore the main window.
 
 1.请检查应用窗口的拉起参数。
 
-2.点击后5秒内拉起应用窗口。
+2.拉起应用窗口前需点击闪控球。
 
 3.仅拉起本应用窗口。
 

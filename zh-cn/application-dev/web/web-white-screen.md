@@ -200,6 +200,17 @@ Web页面出现白屏的原因众多，本文列举了若干常见白屏问题�
     * /data/storage/el1/bundle/entry/resource/resfile
     * /data/storage/el1/bundle/entry/resource/resfile/example
 
+    3.从API version 21开始，还包括了应用缓存目录通过[Context.cacheDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context)获取，其子目录示例如下：
+
+    * /data/storage/el2/base/cache
+    * /data/storage/el2/base/haps/entry/cache/example
+    * 设置的目录路径中，不允许包含cache/web，否则会抛出异常码401。如果设置目录路径是cache，cache/web也不允许访问。
+
+    4.从API version 21开始，还包括了应用临时目录通过[Context.tempDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context)获取，其子目录示例如下：
+
+    * /data/storage/el2/base/temp
+    * /data/storage/el2/base/haps/entry/temp/example
+
     当路径列表中的任一路径不满足上述条件时，系统将抛出异常码401，并判定路径列表设置失败。如果路径列表设置为空，file协议的可访问范围将遵循[fileAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#fileaccess)规则，具体示例如下。
 
     ```ts

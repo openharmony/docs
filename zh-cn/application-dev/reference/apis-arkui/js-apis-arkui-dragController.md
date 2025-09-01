@@ -24,7 +24,7 @@ import { dragController } from '@kit.ArkUI';
 
 executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo,callback:AsyncCallback\<DragEventParam>): void
 
-主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过回调返回结果。
+主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。使用callback异步回调。
 
 > **说明：**
 >
@@ -42,11 +42,11 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo,callback:As
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | 是   | 拖拽发起后跟手效果所拖拽的对象。<br/>**说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片。builder的根组件宽高为0时，无法生成拖拽显示的图片导致拖拽失败。builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。 |
 | dragInfo | [DragInfo](#draginfo)                                        | 是   | 拖拽信息。                                                   |
-| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[DragEventParam](#drageventparam12)&gt; | 是   | 拖拽结束返回结果的回调。                                     |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[DragEventParam](#drageventparam12)&gt; | 是   | 回调函数。当拖拽成功结束，err为undefined，data为获取到的DragEventParam；否则为错误对象。                                    |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -136,7 +136,7 @@ struct DragControllerPage {
 
 executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise\<DragEventParam>
 
-主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过Promise返回结果。
+主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。使用Promise异步回调。
 
 > **说明：**
 >
@@ -159,10 +159,10 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise\<
 
 | 类型                                               | 说明                     |
 | -------------------------------------------------- | ------------------------ |
-| Promise&lt;[DragEventParam](#drageventparam12)&gt; | 拖拽结束返回结果的回调。 |
+| Promise&lt;[DragEventParam](#drageventparam12)&gt; | Promise对象，拖拽结束返回结果的回调。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
@@ -281,14 +281,14 @@ struct DragControllerPage {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 类型                                                   | 必填 | 说明                                     |
-| ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| pointerId   | number                                                 | 是   | 设置启动拖拽时屏幕上触摸点的Id。取值范围为0-9的整数。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| data        | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 否   | 设置拖拽过程中携带的数据。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。               |
-| extraParams | string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。默认值为空。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | 否   | 配置跟手点坐标。不配置时，左右居中，顶部向下偏移20%。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | 否   | 设置拖拽过程中背板图处理模式及数量角标的显示。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| dataLoadParams<sup>20+</sup>| [unifiedDataChannel.DataLoadParams](../apis-arkdata/js-apis-data-unifiedDataChannel.md#dataloadparams20)                                | 否   | 设置拖起方延迟提供数据。调用此方法向系统提供数据加载参数，而非直接传入完整的数据对象。当用户将数据拖拽至目标应用程序并释放时，系统将使用此参数从起拖方请求实际数据。与data同时设置时，dataLoadParams生效。默认值为空。 <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| 名称        | 类型                                                   | 只读 | 可选 | 说明                                     |
+| ----------- | ----------------------------------------------------- | ---- | ---- | --------------------------------------- |
+| pointerId   | number                                                 |  否  |  否   | 设置启动拖拽时屏幕上触摸点的Id。取值范围为[0, 9]的整数。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| data        | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 否  |  是  | 设置拖拽过程中携带的数据。 <br/>默认值：空<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。               |
+| extraParams | string                                                 | 否  |  是  | 设置拖拽事件额外信息，具体功能暂未实现。<br/>默认值：空<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | 否  |  是  | 配置跟手点坐标。不配置时，左右居中，顶部向下偏移20%。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | 否   |  是  | 设置拖拽过程中背板图处理模式及数量角标的显示。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| dataLoadParams<sup>20+</sup>| [unifiedDataChannel.DataLoadParams](../apis-arkdata/js-apis-data-unifiedDataChannel.md#dataloadparams20)                                | 否   |  是  | 设置拖起方延迟提供数据。调用此方法向系统提供数据加载参数，而非直接传入完整的数据对象。当用户将数据拖拽至目标应用程序并释放时，系统将使用此参数从起拖方请求实际数据。与data同时设置时，dataLoadParams生效。<br/>默认值：空<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## dragController.createDragAction<sup>(deprecated)</sup>
 
@@ -323,7 +323,7 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
@@ -414,10 +414,10 @@ struct DragControllerPage {
                 }
               })
               this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-                console.info("start drag Error:" + err.message);
+                console.error("start drag Error:" + err.message);
               })
             } catch(err) {
-              console.info("create dragAction Error:" + err.message);
+              console.error("create dragAction Error:" + err.message);
             }
           }
         }
@@ -439,7 +439,7 @@ struct DragControllerPage {
 
 startDrag(): Promise&lt;void&gt;
 
-启动拖拽服务，返回Promise对象，回调启动成功和失败的结果。
+启动拖拽服务。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -449,7 +449,7 @@ startDrag(): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -505,10 +505,10 @@ struct DragControllerPage {
                 return;
               }
               this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-                console.info("start drag Error:" + err.message);
+                console.error(`start drag Error: ${err.message}`);
               })
             } catch(err) {
-              console.info("create dragAction Error:" + err.message);
+              console.error(`create dragAction Error: ${err.message}`);
             }
           }
         }
@@ -593,7 +593,7 @@ struct ImageExample {
                   }
 
                   let func = (dragAndDropInfo: dragController.DragAndDropInfo) => {
-                    console.info("ndq Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+                    console.info(`ndq Register to listen on drag status ${JSON.stringify(dragAndDropInfo)}`);
                   }
                   try {
                     this.dragAction = this.getUIContext()
@@ -607,10 +607,10 @@ struct ImageExample {
                     this.dragAction.on('statusChange', func);
                     this.dragAction.startDrag().then(() => {
                     }).catch((err: Error) => {
-                      console.error("start drag Error:" + err.message);
+                      console.error(`start drag Error: ${err.message}`);
                     })
                   } catch (err) {
-                    console.error("create dragAction Error:" + err.message);
+                    console.error(`create dragAction Error: ${err.message}`);
                   }
                 }
               }
@@ -751,7 +751,7 @@ struct DragControllerPage {
               extraParams: ''
             }
             let func = (dragAndDropInfo: dragController.DragAndDropInfo) => {
-              console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+              console.info(`Register to listen on drag status ${JSON.stringify(dragAndDropInfo)}`);
             }
             try{
               this.dragAction = this.getUIContext().getDragController().createDragAction(this.customBuilders, dragInfo) // 建议使用 this.getUIContext().getDragController().createDragAction()接口
@@ -762,10 +762,10 @@ struct DragControllerPage {
               // 监听状态改变，触发后打印func中的日志
               this.dragAction.on('statusChange', func);
               this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-                console.info("start drag Error:" + err.message);
+                console.error(`start drag Error: ${err.message}`);
               })
             } catch(err) {
-              console.info("create dragAction Error:" + err.message);
+              console.error(`create dragAction Error: ${err.message}`);
             }
           }
         }
@@ -789,7 +789,7 @@ struct DragControllerPage {
 | 参数名     | 类型  | 必填    | 说明             |
 | ------ | ------ | ------- | ---------------- |
 |  type  | string | 是      | 监听事件，固定为'statusChange'，即取消监听拖拽状态改变事件。|
-|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt; | 否      | 回调函数，取消注册了该回调函数的事件， 不设置取消所有监听。|
+|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt; | 否      | 回调函数，返回当前的[DragAndDropInfo](#draganddropinfo11)组件状态。|
 
 **示例：**
 
@@ -833,23 +833,19 @@ struct DragControllerPage {
               extraParams: ''
             }
             let func = (dragAndDropInfo: dragController.DragAndDropInfo) => {
-              console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+              console.info(`Register to listen on drag status ${JSON.stringify(dragAndDropInfo)}`);
             }
-            try{
-              this.dragAction = this.getUIContext().getDragController().createDragAction(this.customBuilders, dragInfo) // 建议使用 this.getUIContext().getDragController().createDragAction()接口
-              if(!this.dragAction){
-                console.info("listener dragAction is null");
-                return;
-              }
-              this.dragAction.on('statusChange', func);
-              // 取消监听，发起拖拽后不会打印func中的日志
-              this.dragAction.off('statusChange', func);
-              this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-                console.info("start drag Error:" + err.message);
-              })
-            } catch(err) {
-              console.info("create dragAction Error:" + err.message);
+            this.dragAction = this.getUIContext().getDragController().createDragAction(this.customBuilders, dragInfo) // 建议使用 this.getUIContext().getDragController().createDragAction()接口
+            if(!this.dragAction){
+              console.info("listener dragAction is null");
+              return;
             }
+            this.dragAction.on('statusChange', func);
+            // 取消监听，发起拖拽后不会打印func中的日志
+            this.dragAction.off('statusChange', func);
+            this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+              console.error(`start drag Error: ${err.message}`);
+            })
           }
         }
       }).margin({top:20})
@@ -1022,8 +1018,7 @@ export default class EntryAbility extends UIAbility {
           hilog.error(0x0000, `Failed to abtain the main window. Cause: ${err.message}`, '');
           return;
         }
-        let windowClass: window.Window = data;
-        uiContext = windowClass.getUIContext();
+        uiContext = data.getUIContext();
         this.storage.setOrCreate<UIContext>('uiContext', uiContext);
       })
     });
@@ -1166,11 +1161,11 @@ struct DragControllerPage {
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                 | 类型   |只读| 可选 | 说明                                   |	
-| :--------------------- | ------ | ---- | --- | ---------------------------------------------------- |	
-| stillTimeLimit         | number | 否   |    是   |进入悬停检测BEGIN状态所需保持静止的时间（ms）。取值范围为0到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值500。 |
-| updateInterval         | number | 否   |    是   |进入悬停检测UPDATE状态后，更新通知的时间间隔（ms）。取值范围为0到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值100。|
-| updateNotifyCount      | number | 否   |    是   |进入悬停检测UPDATE状态后，更新通知的最大次数。取值范围为0到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值3。|
-| updateToFinishInterval | number | 否   |    是   |从UPDATE状态到END状态的最长等待时间（ms）。取值范围为0到2<sup>31</sup>-1范围内的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值100。 |
+| --------------------- | ------ | ---- | --- | ---------------------------------------------------- |	
+| stillTimeLimit         | number | 否   |    是   |进入悬停检测BEGIN状态所需保持静止的时间（ms）。取值范围为[0, 2<sup>31</sup>-1]的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值500。 |
+| updateInterval         | number | 否   |    是   |进入悬停检测UPDATE状态后，更新通知的时间间隔（ms）。取值范围为[0, 2<sup>31</sup>-1]的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值100。|
+| updateNotifyCount      | number | 否   |    是   |进入悬停检测UPDATE状态后，更新通知的最大次数。取值范围为[0, 2<sup>31</sup>-1]的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值3。|
+| updateToFinishInterval | number | 否   |    是   |从UPDATE状态到END状态的最长等待时间（ms）。取值范围为[0, 2<sup>31</sup>-1]的整数。输入浮点数时只取整数部分。输入非法值（负数、null、undefined、NaN）时取默认值100。 |
 
 ## SpringLoadingDragInfos<sup>20+</sup>
 

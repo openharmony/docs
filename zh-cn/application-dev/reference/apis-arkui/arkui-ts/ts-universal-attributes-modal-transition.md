@@ -43,6 +43,8 @@ bindContentCover(isShow: boolean, builder: CustomBuilder, options?: ContentCover
 ## ContentCoverOptions
 继承自[BindOptions](ts-universal-attributes-sheet-transition.md#bindoptions)。
 
+全屏模态页面内容选项。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称              | 类型                                       | 只读 |  可选   | 说明            |
@@ -60,7 +62,7 @@ bindContentCover(isShow: boolean, builder: CustomBuilder, options?: ContentCover
 
 | 名称              | 类型                                       | 只读 | 可选   | 说明            |
 | --------------- | -------------------- | -------------------- | ---- | ------------- |
-| dismiss | function | 否 | 否    | 全屏模态页面关闭回调函数。开发者需要退出页面时调用。 |
+| dismiss | [Callback](./ts-types.md#callback12)\<void> | 否 | 否    | 全屏模态页面关闭回调函数。开发者需要退出页面时调用。 |
 | reason | [DismissReason](ts-universal-attributes-popup.md#dismissreason12枚举说明) | 否 | 否    | 返回本次拦截全屏模态页面退出的事件原因。  |
 
 ## 示例

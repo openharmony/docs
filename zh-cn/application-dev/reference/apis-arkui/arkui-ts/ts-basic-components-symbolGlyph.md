@@ -331,7 +331,7 @@ AppearSymbolEffect继承自父类SymbolEffect。
 ### 属性
 
 | 名称 | 类型 | 只读 | 可选 | 说明  |
-| ---- | ---- | ---- | ---- |
+| ---- | ---- | ---- | ---- | ---- |
 | scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
@@ -365,7 +365,7 @@ DisappearSymbolEffect继承自父类SymbolEffect。
 ### 属性
 
 | 名称 | 类型 | 只读 | 可选 | 说明  |
-| ---- | ---- | ---- | ---- |
+| ---- | ---- | ---- | ---- | ---- |
 | scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
@@ -519,7 +519,7 @@ ReplaceSymbolEffect的构造函数，替换动效。
 
 ## PulseSymbolEffect<sup>12+</sup>对象说明
 
-PulseSymbolEffect的构造函数，脉冲动效。
+PulseSymbolEffect继承自父类SymbolEffect，脉冲动效。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 

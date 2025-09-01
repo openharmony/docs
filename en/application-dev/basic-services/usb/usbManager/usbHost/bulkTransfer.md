@@ -1,5 +1,12 @@
 # USB Bulk Transfer
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 ## When to Use
 
 Bulk transfer is used to transfer and receive a large amount of data without bandwidth or interval requirements, for example, file or image transfer. Devices such as printers and scanners support this type of transfer.
@@ -25,8 +32,8 @@ Bulk transfer is used to transfer and receive a large amount of data without ban
 ### Environment Setup
 
 - Install [DevEco Studio](https://developer.huawei.com/consumer/en/download/) 4.1 or later on the PC.
-- Update the public SDK to API version 16 or later. For details, see [Switching to Full SDK](https://gitee.com/openharmony/docs/blob/master/en/application-dev/faqs/full-sdk-switch-guide.md).
-- Install hdc on the PC. You can use it to interact with a real device or the Emulator on Windows, Linux, or macOS. For details, see [HDC Configuration](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/hdc).
+- Update the public SDK to API version 16 or later.<!--Del--> For details, see [Switching to Full SDK](../../../../faqs/full-sdk-switch-guide.md).<!--DelEnd-->
+- Install hdc on the PC. You can use it to interact with a real device or the Emulator on Windows, Linux, or macOS.
 - Use a USB cable to connect a device to the PC.
 
 ## How to Develop
@@ -56,10 +63,19 @@ Connect a host to a device and use the **bulkTransfer** API to transfer data. Th
    ```
    
 2. Obtain the USB device list.
-   
-    ```ts
+
+> **NOTE**
+>
+> Bulk transfer can be performed only on the endpoint whose [transfer type](../../../../reference/apis-basic-services-kit/js-apis-usbManager.md#usbendpointtransfertype18) is **2**. If an incorrect endpoint type is used, an I/O error is returned.
+
+   ```ts
    // Obtain the USB device list.
    let deviceList : Array<usbManager.USBDevice> = usbManager.getDevices();
+   console.info(`deviceList: ${deviceList}`);
+   if(deviceList.length === 0) {
+     console.error('deviceList is empty');
+     return;
+   }
    /*
    Example deviceList structure:
    [
@@ -100,7 +116,7 @@ Connect a host to a device and use the **bulkTransfer** API to transfer data. Th
                    maxPacketSize: 4,
                    direction: 128,
                    number: 1,
-                   type: 3,
+                   type: 2, // Determine the transfer type.
                    interfaceId: 0,
                  }
                ]
@@ -139,6 +155,12 @@ Connect a host to a device and use the **bulkTransfer** API to transfer data. Th
    ```
 
 5. Perform data transfer.
+
+**NOTE**
+
+> Before data transfer, you are advised to obtain the **type** of the **endpoint** to which the **interface** belongs and determine whether the **interface** supports the required transfer type.
+>
+> If the transfer API fails to be called, check whether the device interface supports [alternateSetting](../../../../reference/apis-basic-services-kit/js-apis-usbManager.md#usbinterface). If it is supported, you can call [usbManager.setInterface](../../../../reference/apis-basic-services-kit/js-apis-usbManager.md#usbmanagersetinterface) to reset the **interface** before data transfer to match the endpoint with the transfer type, ensuring normal communications.
 
     ```ts
     /*

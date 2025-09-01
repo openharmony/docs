@@ -109,14 +109,14 @@ module.json5配置文件包含以下标签。
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| name | 标识当前Module的名称，确保该名称在整个应用中唯一。命名规则如下&nbsp;：<br/>-&nbsp;由字母、数字和下划线组成，且必须以字母开头。<br/>-&nbsp;最大长度31字节。<br/>应用升级时允许修改该名称，但需要应用适配Module相关数据目录的迁移，详见[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md)。 | 字符串 | 该标签不可缺省。 |
+| name | 标识当前Module的名称，确保该名称在整个应用中唯一。命名规则如下&nbsp;：<br/>-&nbsp;由字母、数字和下划线组成，且必须以字母开头。<br/>-&nbsp;最大长度128字节。<br/>应用升级时允许修改该名称，但需要应用适配Module相关数据目录的迁移，详见[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md)。 | 字符串 | 该标签不可缺省。 |
 | type | 标识当前Module的类型。支持的取值如下：<br/>-&nbsp;entry：应用的主模块。<br/>-&nbsp;feature：应用的动态特性模块。<br/>-&nbsp;har：静态共享包模块。<br/>-&nbsp;shared：动态共享包模块。 | 字符串 | 该标签不可缺省。 |
 | srcEntry | 标识AbilityStage组件的代码路径，详情参考[AbilityStage组件容器](../application-models/abilitystage.md)，取值为长度不超过127字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | description | 标识当前Module的描述信息，开发者可以通过该标签描述当前模块的功能与作用，取值为长度不超过255字节的字符串，可以采用字符串资源索引格式。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | <!--DelRow-->process | 标识当前Module的进程名，取值为长度不超过31字节的字符串。如果在HAP标签下配置了process，则该Module的所有UIAbility、DataShareExtensionAbility、ServiceExtensionAbility都运行在该进程中。<br/>**说明：**<br/>开启[多实例特权](../../device-dev/subsystems/subsys-app-privilege-config-guide.md#可由设备厂商配置的特权)生效，三方应用配置不生效。 | 字符串 | 该标签可缺省，缺省为app.json5文件下app标签下的bundleName。 |
 | mainElement | 标识当前Module的入口UIAbility名称，取值为长度不超过255字节的字符串。<br/>**说明：**<br/>如果在[abilities](#abilities标签)中配置了多个入口[UIAbility](../application-models/uiability-overview.md)，则桌面图标、名称和启动入口以该标签配置为准。如果该标签缺省或未匹配到，则按照ASCII字典序对UIAbility的name标签正序排序，返回第一个作为桌面图标、名称和启动入口。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | [deviceTypes](#devicetypes标签) | 标识当前Module可以运行在哪类设备上。<br/>**说明：**<br/>当存在多个模块时，各模块的配置可以不同，但都必须包含将要安装的设备类型，以确保正常运行。 | 字符串数组 | 该标签不可缺省。 |
-| deliveryWithInstall | 标识当前Module是否在用户主动安装的时候安装，即该Module对应的HAP/HSP是否跟随应用一起安装。<br/>-&nbsp;true：跟随应用一起安装。<br/>-&nbsp;false：不跟随应用一起安装。 | 布尔值 | 该标签不可缺省。 |
+| deliveryWithInstall | 标识当前Module是否在用户主动安装的时候安装，即该Module对应的HAP/HSP是否跟随应用一起安装。<br/>-&nbsp;true：跟随应用一起安装。<br/>-&nbsp;false：不跟随应用一起安装。<!--RP11--><!--RP11End--> | 布尔值 | 该标签不可缺省。 |
 | installationFree | 标识当前Module是否支持免安装特性。<br/>-&nbsp;true：表示支持免安装特性，且符合免安装约束。<br/>-&nbsp;false：表示不支持免安装特性。 | 布尔值 | 该标签可缺省。该标签在编译构建时自动生成，手动配置不生效。<br/>**说明：**<br/>当[bundleType](./app-configuration-file.md#配置文件标签)为原子化服务时，该标签自动配置为true。反之，该标签自动配置为false。 |
 | virtualMachine | 标识当前Module运行的目标虚拟机类型，供云端分发使用，如应用市场和分发中心。如果目标虚拟机类型为ArkTS引擎，则其值为“ark+版本号”。 | 字符串 | 该标签可缺省，手动配置不生效，由编译构建时自动生成。 |
 | [pages](#pages标签) | 标识当前Module的profile资源，用于列举每个页面信息，取值为长度不超过255字节的字符串。 | 字符串 | 在有UIAbility的场景下，该标签不可缺省。 |
@@ -125,7 +125,7 @@ module.json5配置文件包含以下标签。
 | [extensionAbilities](#extensionabilities标签) | 标识当前Module中ExtensionAbility的配置信息，只对当前ExtensionAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | <!--DelRow-->[definePermissions](#definepermissions标签) | 标识系统资源hap定义的权限，不支持应用自定义权限。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [requestPermissions](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)| 标识当前应用运行时需向系统申请的权限集合。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-| [testRunner](#testrunner标签) | 标识用于测试当前Module的测试框架的配置。 | 对象 | 该标签可缺省，缺省值为空。 |
+| [testRunner](#testrunner标签) | 标识用于测试当前Module的测试框架的配置。详情请参考[启动测试框架命令](../tools/aa-tool.md#启动测试框架命令test)。 | 对象 | 该标签可缺省，缺省值为空。 |
 | [atomicService](#atomicservice标签)| 标识当前应用是原子化服务时，有关原子化服务的相关配置。| 对象 | 该标签可缺省，缺省值为空。  |
 | [dependencies](#dependencies标签)| 标识当前模块运行时依赖的共享库列表。| 对象数组 | 该标签可缺省，缺省值为空。手动配置不生效，由编译构建时自动生成。  |
 | targetModuleName | 标识当前包所指定的目标Module。取值为长度不超过128字节的字符串，不支持中文。配置该标签的Module具有overlay特性。仅在动态共享包（HSP）中适用。 |字符串|该标签可缺省，缺省值为空。|
@@ -137,7 +137,7 @@ module.json5配置文件包含以下标签。
 | extractNativeLibs | 标识应用安装时，libs库是否解压到应用安装目录。当compressNativeLibs和extractNativeLibs都配置为false时，应用以不解压libs库的方式进行安装；其他场景，应用以解压libs库的方式进行安装。<br/>**说明：**<br/>从API version 20开始，支持该标签。 | 布尔值 | 该标签可缺省，缺省值为true。 |
 | libIsolation | 在libs目录下是否生成模块名称目录存储so，用于区分同一应用中不同HAP的.so文件，以防止.so文件冲突。<br/>-&nbsp;true：当前HAP的.so文件会储存在libs目录中以Module名命名的路径下。<br/>-&nbsp;false：当前HAP的.so文件会直接储存在libs目录中。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | [fileContextMenu](#filecontextmenu标签) | 标识当前HAP的右键菜单配置项，是一个profile文件资源。取值为长度不超过255字节的字符串。<br/>**说明：**<br/>仅在PC/2in1设备上生效。<br/>仅允许在entry类型模块中配置。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| querySchemes | 标识允许当前应用进行跳转查询的URL schemes，只允许entry类型模块配置，最多50个，每个字符串取值不超过128字节。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
+| querySchemes | 标识允许当前应用进行跳转查询的URL schemes，只允许entry类型模块配置，每个字符串取值不超过128字节。<br/>**说明：**<br/>从API version 21开始，最多允许配置200个URL scheme。API version 20及之前的版本，最多允许配置50个URL scheme。  | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | [routerMap](#routermap标签) | 标识当前模块配置的路由表路径。取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | [appEnvironments](#appenvironments标签) | 标识当前模块配置的应用环境变量，只允许entry和feature模块配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | appStartup | 标识当前Module[启动框架](../application-models/app-startup.md)配置路径，只允许entry类型模块配置。<br>从API version 18开始，新增支持在HSP、HAR中配置。<br>从API version 20开始，新增支持在feature类型的Module中配置。 | 字符串 | 该标签可缺省，缺省值为空。 |
@@ -146,6 +146,8 @@ module.json5配置文件包含以下标签。
 | abilitySrcEntryDelegator | 标识当前Module需要重定向到的UIAbility的名称，与abilityStageSrcEntryDelegator标签组合使用，共同指定重定向的目标对象。<br/>**说明：**<br/>1.从API version 17开始，支持该标签。<br/>2.当UIAbility是通过[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口启动时，该标签不生效。<br/>3.不支持在HAR的配置文件中配置该标签，也不支持重定向到HAR的UIAbility。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | abilityStageSrcEntryDelegator | 标识当前Module需要重定向到的UIAbility对应的Module名称（不可为当前Module名称），与abilitySrcEntryDelegator标签组合使用，共同指定重定向的目标对象。<br/>**说明：**<br/>1.从API version 17开始，支持该标签。<br/>2.当UIAbility是通过[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口启动时，该标签不生效。<br/>3.不支持在HAR的配置文件中配置该标签，也不支持重定向到HAR的UIAbility。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | crossAppSharedConfig | 标识应用间共享配置的配置文件名。取值为不超过255字节的字符串。用于发布配置给其他应用读取，在应用安装时生效，应用卸载时失效。详细使用方式见[共享配置使用](../database/share-config.md#配置发布方)。<br/>**说明：**<br/>从API version 20开始，支持该标签。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| formWidgetModule | 在[独立卡片包](../form/arkts-ui-widget-creation.md#方式二独立包方式创建卡片)中，应用包需要配置该标签，用来关联卡片包。取值为卡片包的模块名称，对应卡片包module.json5中的name标签。具体使用方式请参考[FormExtensionAbility配置](../form/arkts-ui-widget-configuration.md#formextensionability配置)。<br/>**说明：**<br/> 1. 从API version 20开始，支持该标签。<br/> 2. 仅在独立卡片包的应用包中，该标签配置生效，且要求对应的卡片包模块必须配置formExtensionModule标签。 | 字符串 | 该标签可缺省，缺省值为空。  |
+| formExtensionModule | 在[独立卡片包](../form/arkts-ui-widget-creation.md#方式二独立包方式创建卡片)中，卡片包需要配置该标签，用来关联应用包。取值为应用包的模块名称，对应应用包module.json5中的name标签。具体使用方式请参考[独立卡片包配置](../form/arkts-ui-widget-configuration.md#独立卡片包配置)。<br/>**说明：**<br/>1. 从API version 20开始，支持该标签。<br/>2. 仅在独立卡片包的卡片包中，该标签配置生效，且要求对应的应用包模块必须配置formWidgetModule标签。 | 字符串 | 该标签可缺省，缺省值为空。  |
 <!--RP6--><!--RP6End-->
 
 ## deviceTypes标签
@@ -357,7 +359,7 @@ abilities示例：
 | -------- | -------- | -------- | -------- |
 | actions | 标识能够接收的Action值集合，取值通常为系统预定义的action值，也允许自定义。<br>一个skill中不建议配置多个action，否则可能导致无法匹配预期场景。详情请参考[常见action与entities](../application-models/actions-entities.md)。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | entities | 标识能够接收的Entity值的集合。<br>一个skill中不建议配置多个entity，否则可能导致无法匹配预期场景。详情请参考[常见action与entities](../application-models/actions-entities.md)。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
-| uris | 标识与Want中URI（Uniform&nbsp;Resource&nbsp;Identifier）相匹配的集合。数组允许的最大数量为512。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+| uris | 标识与Want中URI（Uniform&nbsp;Resource&nbsp;Identifier）相匹配的集合。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | permissions | 标识当前UIAbility或ExtensionAbility组件的权限信息。其他应用访问该组件时，需要申请相应的权限。<br/>一个数组元素为一个权限名称，不超过255字节，取值为[系统预定义的权限](../security/AccessToken/app-permissions.md)。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | domainVerify | 标识是否开启<!--RP7-->[域名校验](../application-models/app-linking-startup.md#实现原理)<!--RP7End-->。<br/>-&nbsp;true：表示开启域名校验。<br/>-&nbsp;false：表示不开启域名校验。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 
@@ -1045,7 +1047,7 @@ fileContextMenu标签示例
 | -------- | -------- | -------- | -------- |
 | abilityName | 表示当前右键菜单对应的需要拉起的ability名称。 | 字符串 | 不可缺省。 |
 | menuItem | 右键菜单显示的信息。命名建议：<br/>原则一：[动作]+[应用名]，中文示例：用{App}打开、用{App} ({Plugin}插件) 打开；英文示例：Open with {App}、Open with {App} ({Plugin})。<br/>原则二：[动作]+[目的]，示例：压缩为{文件名}、压缩至{路径}、用{App}转换为{格式}。 | 资源id | 不可缺省。 |
-| menuHandler | 一个ability可以创建多个右键菜单， 用该标签来区分用户拉起的不同右键菜单项。该标签在用户点击右键菜单执行时，会作为参数传递给右键菜单应用。 | 字符串 | 不可缺省。 |
+| menuHandler | 一个ability可以创建多个右键菜单， 该标签与右键菜单显示项一一对应，用于区分用户拉起的不同右键菜单项。开发者可自定义该标签取值，确保该标签在整个ability中唯一。在用户点击右键菜单拉起应用时，会作为参数传递给应用。 | 字符串 | 不可缺省。 |
 | menuContext | 定义展示该菜单项需要的上下文，可以支持多种情况，类型为数组。 | 对象数组 | 不可缺省。 |
 
 **表26** menuContext标签配置说明
@@ -1112,15 +1114,17 @@ resources/base/profile路径下的menu.json资源文件示例如下：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| startWindowType | 标识当前UIAbility组件是否隐藏启动页。<br/>当前仅支持在2in1设备或平板设备的自由多窗模式下使用。<br/>不同取值含义如下：<br/>\- "REQUIRED_SHOW"：强制显示启动页。不受[Ability管理服务（即StartOptions中hideStartWindow标签）](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md#startoptions)的影响。<br/>\- "REQUIRED_HIDE"：强制隐藏启动页。不受[Ability管理服务（即StartOptions中hideStartWindow标签）](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md#startoptions)的影响。<br/>\- "OPTIONAL_SHOW"：可选显示，默认行为为显示启动页，如果[Ability管理服务（即StartOptions中hideStartWindow标签）](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md#startoptions)设置隐藏启动页，则隐藏启动页。<br/>\- 如未配置该标签，默认取值为"REQUIRED_SHOW"，即强制显示启动页。 | 字符串 | 可缺省，缺省值为REQUIRED_SHOW。 |
-| startWindowAppIcon | 标识当前UIAbility组件启动页面图标资源文件的索引，取值为长度不超过255字节的字符串。| 字符串 | 可缺省，缺省值为空。 |
-| startWindowIllustration | 标识当前UIAbility组件启动页面插画资源文件的索引，取值为长度不超过255字节的字符串。 | 字符串 | 可缺省，缺省值为空。 |
-| startWindowBrandingImage | 标识当前UIAbility组件启动页面品牌标识资源文件的索引，取值为长度不超过255字节的字符串。 | 字符串 | 可缺省，缺省值为空。 |
-| startWindowBackgroundColor | 标识当前UIAbility组件启动页面背景颜色资源文件的索引，取值为长度不超过255字节的字符串。 | 字符串 | 不可缺省。 |
-| startWindowBackgroundImage | 标识当前UIAbility组件启动页面背景图片资源文件的索引，取值为长度不超过255字节的字符串。 | 字符串 | 可缺省，缺省值为空。 |
-| startWindowBackgroundImageFit | 标识当前UIAbility组件启动页面背景图像适应方式，支持的取值如下：<br/>-&nbsp;Contain：按照宽高比进行缩小或放大，图片完全显示在显示边界内。<br/>-&nbsp;Cover：按照宽高比进行缩小或放大，图片两边都大于或等于显示边界。<br/>-&nbsp;Auto：自适应显示。<br/>-&nbsp;Fill：不按照宽高比进行放大或缩小，图片充满显示边界。<br/>-&nbsp;ScaleDown：按照宽高比显示，图片缩小或保持不变。<br/>-&nbsp;None：保持原有尺寸显示。 | 字符串 | 可缺省，缺省值为Cover。 |
+| startWindowType | 标识当前UIAbility组件是否隐藏启动页。<br/>当前仅支持在2in1设备或平板设备的自由多窗模式下使用。<br/>不同取值含义如下：<br/>\- "REQUIRED_SHOW"：强制显示启动页。不受[Ability管理服务（即StartOptions中hideStartWindow标签）](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md#startoptions)的影响。<br/>\- "REQUIRED_HIDE"：强制隐藏启动页。不受[Ability管理服务（即StartOptions中hideStartWindow标签）](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md#startoptions)的影响。<br/>\- "OPTIONAL_SHOW"：可选显示，默认行为为显示启动页，如果[Ability管理服务（即StartOptions中hideStartWindow标签）](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md#startoptions)设置隐藏启动页，则隐藏启动页。<br/>\- 如未配置该标签，默认取值为"REQUIRED_SHOW"，即强制显示启动页。<br/>从API version 20开始支持该标签。 | 字符串 | 可缺省，缺省值为REQUIRED_SHOW。 |
+| startWindowAppIcon | 标识当前UIAbility组件启动页面图标资源文件的索引，取值为长度不超过255字节的字符串。<br/><!--RP12-->从API version 20开始支持该标签。<!--RP12End-->| 字符串 | 可缺省，缺省值为空。 |
+| startWindowIllustration | 标识当前UIAbility组件启动页面插画资源文件的索引，取值为长度不超过255字节的字符串。<br/><!--RP12-->从API version 20开始支持该标签。<!--RP12End--> | 字符串 | 可缺省，缺省值为空。 |
+| startWindowBrandingImage | 标识当前UIAbility组件启动页面品牌标识资源文件的索引，取值为长度不超过255字节的字符串。<br/><!--RP12-->从API version 20开始支持该标签。<!--RP12End--> | 字符串 | 可缺省，缺省值为空。 |
+| startWindowBackgroundColor | 标识当前UIAbility组件启动页面背景颜色资源文件的索引，取值为长度不超过255字节的字符串。<br/><!--RP12-->从API version 20开始支持该标签。<!--RP12End--> | 字符串 | 不可缺省。 |
+| startWindowBackgroundImage | 标识当前UIAbility组件启动页面背景图片资源文件的索引，取值为长度不超过255字节的字符串。<br/><!--RP12-->从API version 20开始支持该标签。<!--RP12End--> | 字符串 | 可缺省，缺省值为空。 |
+| startWindowBackgroundImageFit | 标识当前UIAbility组件启动页面背景图像适应方式，支持的取值如下：<br/>-&nbsp;Contain：按照宽高比进行缩小或放大，图片完全显示在显示边界内。<br/>-&nbsp;Cover：按照宽高比进行缩小或放大，图片两边都大于或等于显示边界。<br/>-&nbsp;Auto：自适应显示。<br/>-&nbsp;Fill：不按照宽高比进行放大或缩小，图片充满显示边界。<br/>-&nbsp;ScaleDown：按照宽高比显示，图片缩小或保持不变。<br/>-&nbsp;None：保持原有尺寸显示。<br/><!--RP12-->从API version 20开始支持该标签。<!--RP12End--> | 字符串 | 可缺省，缺省值为Cover。 |
+<!--RP13--><!--RP13End-->
 
 resources/base/profile路径下的start_window.json资源文件示例如下：
+<!--RP14-->
 ```json
 {
   "startWindowType": "REQUIRED_SHOW",
@@ -1132,6 +1136,7 @@ resources/base/profile路径下的start_window.json资源文件示例如下：
   "startWindowBackgroundImageFit": "Cover"
 }
 ```
+<!--RP14End-->
 
 ## systemTheme标签
 

@@ -317,7 +317,7 @@ Navigation() {
 
 Navigation路由相关的操作都是基于导航控制器[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)提供的方法进行，每个Navigation都需要创建并传入一个NavPathStack对象，用于管理页面。主要涉及页面跳转、页面返回、页面替换、页面删除、参数获取、路由拦截等功能。
 
-从API version 12开始，导航控制器允许被继承。开发者可以在派生类中自定义属性和方法，也可以重写父类的方法。派生类对象可以替代基类NavPathStack对象使用。Navigation中的NavDeatination页面存在于NavPathStack中，以栈的结构管理，我们称为路由栈。具体示例代码参见：[导航控制器继承示例代码](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例10定义导航控制器派生类)。
+从API version 12开始，导航控制器允许被继承。开发者可以在派生类中自定义属性和方法，也可以重写父类的方法。派生类对象可以替代基类NavPathStack对象使用。Navigation中的NavDestination页面存在于NavPathStack中，以栈的结构管理，我们称为路由栈。具体示例代码参见：[导航控制器继承示例代码](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例10定义导航控制器派生类)。
 
 > **说明：**
 >
@@ -444,11 +444,36 @@ struct Page01 {
 
   build() {
     NavDestination() {
-...
+      // ...
     }.title('Page01')
     .onReady((context: NavDestinationContext) => {
       this.pathStack = context.pathStack;
       this.pageParam = context.pathInfo.param as string;
+    })
+  }
+}
+```
+
+NavDestination组件中可以通过设置[onResult](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md#onresult15)接口，接收返回时传递的路由参数。
+
+```ts
+class NavParam {
+  desc: string = 'navigation-param'
+}
+
+@Component
+struct DemoNavDestination {
+  // ...
+  build() {
+    NavDestination() {
+      // ...
+    }
+    .onResult((param: Object) => {
+      if (param instanceof NavParam) {
+        console.log('TestTag', 'get NavParam, its desc: ' + (param as NavParam).desc);
+        return;
+      }
+      console.log('TestTag', 'param not instance of NavParam');
     })
   }
 }
@@ -651,13 +676,13 @@ Navigation作为路由容器，其生命周期承载在NavDestination组件上�
    // 在UIAbility中使用
    import { UIContext, uiObserver } from '@kit.ArkUI';
   
-   // callBackFunc 是开发者定义的监听回调函数
-   function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {}
-   uiObserver.on('navDestinationSwitch', this.context, callBackFunc);
+   // callbackFunc是开发者定义的监听回调函数
+   function callbackFunc(info: uiObserver.NavDestinationSwitchInfo) {}
+   uiObserver.on('navDestinationSwitch', this.context, callbackFunc);
   
    // 可以通过窗口的getUIContext()方法获取对应的UIContent
    uiContext: UIContext | null = null;
-   uiObserver.on('navDestinationSwitch', this.uiContext, callBackFunc);
+   uiObserver.on('navDestinationSwitch', this.uiContext, callbackFunc);
   ```
 
 ## 页面转场
@@ -717,6 +742,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
     NavDestination() {
       Column() {
         // ...
+        // $r('app.media.startIcon')需要替换为开发者所需的资源文件
         Image($r('app.media.startIcon'))
         .geometryTransition('sharedId')
         .width(100)
@@ -729,6 +755,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
     NavDestination() {
       Column() {
         // ...
+        // $r('app.media.startIcon')需要替换为开发者所需的资源文件
         Image($r('app.media.startIcon'))
         .geometryTransition('sharedId')
         .width(200)

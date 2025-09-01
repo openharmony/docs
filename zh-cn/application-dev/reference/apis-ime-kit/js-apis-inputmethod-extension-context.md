@@ -24,11 +24,12 @@ import { InputMethodExtensionContext } from '@kit.IMEKit';
 在使用InputMethodExtensionContext的功能前，需要通过InputMethodExtensionAbility子类实例获取。
 
 ```ts
-import { InputMethodExtensionAbility } from '@kit.IMEKit';
+import { InputMethodExtensionAbility, InputMethodExtensionContext } from '@kit.IMEKit';
 import { Want } from '@kit.AbilityKit';
+
 class InputMethodExtAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
-    let context = this.context;
+    let context: InputMethodExtensionContext = this.context;
   }
 }
 ```
@@ -50,17 +51,18 @@ destroy(callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```ts
-import { InputMethodExtensionAbility } from '@kit.IMEKit';
+import { InputMethodExtensionAbility, InputMethodExtensionContext } from '@kit.IMEKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class InputMethodExtAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
-    let context = this.context;
+    let context: InputMethodExtensionContext = this.context;
   }
+
   onDestroy() {
     this.context.destroy((err: BusinessError) => {
-      if(err) {
+      if (err) {
         console.error(`Failed to destroy context, err code = ${err.code}`);
         return;
       }
@@ -87,14 +89,15 @@ destroy(): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-import { InputMethodExtensionAbility } from '@kit.IMEKit';
+import { InputMethodExtensionAbility, InputMethodExtensionContext } from '@kit.IMEKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class InputMethodExtAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
-    let context = this.context;
+    let context: InputMethodExtensionContext = this.context;
   }
+
   onDestroy() {
     this.context.destroy().then(() => {
       console.info('Succeed in destroying context.');
@@ -155,13 +158,13 @@ startAbility(want: Want): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-import { InputMethodExtensionAbility } from '@kit.IMEKit';
+import { InputMethodExtensionAbility, InputMethodExtensionContext } from '@kit.IMEKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class InputMethodExtAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
-    const context = this.context;
+    const context: InputMethodExtensionContext = this.context;
     const targetWant: Want = {
       bundleName: "com.example.aafwk.test",
       abilityName: "com.example.aafwk.test.TwoAbility"
@@ -173,10 +176,11 @@ class InputMethodExtAbility extends InputMethodExtensionAbility {
         console.error(`StartAbility failed. Code: ${err.code}, Message: ${err.message}`);
       });
   }
+
   onDestroy() {
     this.context.destroy().then(() => {
       console.info('Succeed in destroying context.');
-    }).catch((err: BusinessError)=>{
+    }).catch((err: BusinessError) => {
       console.error(`Failed to destroy context, err code = ${err.code}`);
     });
   }

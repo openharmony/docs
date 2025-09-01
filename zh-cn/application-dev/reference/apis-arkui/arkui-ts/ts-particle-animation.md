@@ -53,9 +53,9 @@ interface ParticleInterface {
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- |
-| particles | [Particles](#particles18)<<br/>&nbsp;&nbsp;[PARTICLE](#particletype), <br/>&nbsp;&nbsp;[COLOR_UPDATER](#particleupdater),<br/>&nbsp;&nbsp;[OPACITY_UPDATER](#particleupdater),<br/>&nbsp;&nbsp;[SCALE_UPDATER](#particleupdater),<br/>&nbsp;&nbsp;[ACC_SPEED_UPDATER](#particleupdater),<br/>&nbsp;&nbsp;[ACC_ANGLE_UPDATER](#particleupdater),<br/>&nbsp;&nbsp;[SPIN_UPDATER](#particleupdater)<br/>><br/> | 是 | 粒子动画的集合，详见[Particles](#particles18)属性说明。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | ---- | ---- | -------- |
+| particles | [Particles](#particles18)<<br/>&nbsp;&nbsp;[PARTICLE](#particletype), <br/>&nbsp;&nbsp;[COLOR_UPDATER](#particleupdater),<br/>&nbsp;&nbsp;[OPACITY_UPDATER](#particleupdater),<br/>&nbsp;&nbsp;[SCALE_UPDATER](#particleupdater),<br/>&nbsp;&nbsp;[ACC_SPEED_UPDATER](#particleupdater),<br/>&nbsp;&nbsp;[ACC_ANGLE_UPDATER](#particleupdater),<br/>&nbsp;&nbsp;[SPIN_UPDATER](#particleupdater)<br/>><br/> | 否 | 否 | 粒子动画的集合，详见[Particles](#particles18)属性说明。 |
 
 ## 属性
 
@@ -117,19 +117,21 @@ interface ParticleOptions<
 }
 ```
 
+设置粒子参数。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| emitter | [EmitterOptions](#emitteroptions)<[PARTICLE](#particletype)> | 是 | 粒子发射器配置。 |
-| color | [ParticleColorPropertyOptions](#particlecolorpropertyoptions)<[COLOR_UPDATER](#particleupdater)> | 否 | 粒子颜色配置。<br/>**说明**：<br/>默认值：{ range:[Color.White,Color.White] } 。图片粒子不支持设置颜色。|
-| opacity | [ParticlePropertyOptions](#particlepropertyoptions)\<number, [OPACITY_UPDATER](#particleupdater)> | 否 | 粒子透明度配置。<br/>默认值：{ range:[1.0,1.0] } |
-| scale | [ParticlePropertyOptions](#particlepropertyoptions)\<number, [SCALE_UPDATER](#particleupdater)> | 否 | 粒子大小配置。<br/>默认值：{ range:[1.0,1.0] } |
-| velocity | [VelocityOptions](#velocityoptions18) |否 | 粒子速度配置。<br/>**说明**：<br/>speed表示速度大小。angle表示速度的方向（单位为角度），以元素几何中心为坐标原点，水平方向为X轴，正数表示顺时针方向旋转角度。<br/>默认值：{ speed:[0.0,0.0],angle:[0.0,0.0] } |
-| acceleration | [AccelerationOptions](#accelerationoptions18)<[ACC_SPEED_UPDATER](#particleupdater), [ACC_ANGLE_UPDATER](#particleupdater)> | 否 | 粒子加速度配置。 <br/>**说明**：<br/>speed表示加速度大小，angle表示加速度方向（单位为角度）。<br/>默认值：{ speed:{range:[0.0,0.0]},angle:{range:[0.0,0.0]} } |
-| spin | [ParticlePropertyOptions](#particlepropertyoptions)<number, [SPIN_UPDATER](#particleupdater)> | 否 | 粒子自旋角度配置。 <br/>默认值：{range:[0.0,0.0]}<br/>方向：正数表示顺时针旋转，负数表示逆时针旋转。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | ---- | ---- | -------- |
+| emitter | [EmitterOptions](#emitteroptions)<[PARTICLE](#particletype)> | 否 | 否 | 粒子发射器配置。 |
+| color | [ParticleColorPropertyOptions](#particlecolorpropertyoptions)<[COLOR_UPDATER](#particleupdater)> | 否 | 是 | 粒子颜色配置。<br/>**说明**：<br/>默认值：{ range:[Color.White,Color.White] } 。图片粒子不支持设置颜色。|
+| opacity | [ParticlePropertyOptions](#particlepropertyoptions)\<number, [OPACITY_UPDATER](#particleupdater)> | 否 | 是 | 粒子透明度配置。<br/>默认值：{ range:[1.0,1.0] } |
+| scale | [ParticlePropertyOptions](#particlepropertyoptions)\<number, [SCALE_UPDATER](#particleupdater)> | 否 | 是 | 粒子大小配置。<br/>默认值：{ range:[1.0,1.0] } |
+| velocity | [VelocityOptions](#velocityoptions18) |否 | 是 | 粒子速度配置。<br/>**说明**：<br/>speed表示速度大小。angle表示速度的方向（单位为角度），以元素几何中心为坐标原点，水平方向为X轴，正数表示顺时针方向旋转角度。<br/>默认值：{ speed:[0.0,0.0],angle:[0.0,0.0] } |
+| acceleration | [AccelerationOptions](#accelerationoptions18)<[ACC_SPEED_UPDATER](#particleupdater), [ACC_ANGLE_UPDATER](#particleupdater)> | 否 | 是 | 粒子加速度配置。 <br/>**说明**：<br/>speed表示加速度大小，angle表示加速度方向（单位为角度）。<br/>默认值：{ speed:{range:[0.0,0.0]},angle:{range:[0.0,0.0]} } |
+| spin | [ParticlePropertyOptions](#particlepropertyoptions)<number, [SPIN_UPDATER](#particleupdater)> | 否 | 是 | 粒子自旋角度配置。 <br/>默认值：{range:[0.0,0.0]}<br/>方向：正数表示顺时针旋转，负数表示逆时针旋转。 |
 
 
 ## EmitterOptions
@@ -148,47 +150,53 @@ interface EmitterOptions<PARTICLE extends ParticleType> {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| particle | [EmitterParticleOptions](#emitterparticleoptions18)<[PARTICLE](#particletype)> | 是 | 粒子配置。<br>-type表示粒子类型，可以选择图片或者是点。<br>-config表示对应类型的配置。<br>-config类型和type值有关联：<br>1、如果type为ParticleType.POINT，则config类型为[PointParticleParameters](#pointparticleparameters) 。<br>2、如果type为ParticleType.IMAGE，则config类型为[ImageParticleParameters](#imageparticleparameters) 。<br>-count表示发射的粒子总数，count取值>=-1,当count为-1表示粒子总数无限大。<br>-lifetime表示单个粒子的生命周期，默认值1000（即1000ms，1s）,lifetime>=-1,当lifetime为-1表示粒子生命周期无限大。当lifetime<-1，取默认值。<br/>**说明：**如果不需要动画一直播放，建议不要将生命周期设置为-1，可能对性能造成较大影响。<br>-lifeTimeRange表示粒子生命周期取值范围，设置lifeTimeRange后粒子的生命周期为 [lifetime-lifeTimeRange,lifeTime+lifeTimeRange]中间的一个随机整数。lifeTimeRange 默认值为0，取值范围为0到正无穷。设置为负值时取默认值。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| emitRate | number | 否 | 发射器发射速率（即每秒发射粒子数）。 默认值：5，小于0时取默认值5。emitRate值超过5000时会极大影响性能，建议设置参数小于5000。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| shape | [ParticleEmitterShape](#particleemittershape) | 否 | 发射器形状。默认值：ParticleEmitterShape.RECTANGLE。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| position | [ParticleTuple](#particletuple18)<[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)> | 否 | 发射器位置（距离组件左上角的位置。第一个参数为x方向上的相对偏移，第二个参数为y轴方向相对偏移。） <br>默认值：`[0.0, 0.0]`。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| size |  [ParticleTuple](#particletuple18)<[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)>     |否 | 发射窗口的大小。第一个参数为发射器宽，第二个参数为发射器高。<br>默认值：`['100%','100%']`(即发射窗口占满Particle组件)。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| annulusRegion<sup>20+</sup>  | [ParticleAnnulusRegion](ts-particle-animation.md#particleannulusregion20)| 否  |环形发射器参数。需要发射器形状为环形（即shape参数为ParticleEmitterShape.ANNULUS）时才生效，且对于环形发射器，形状信息必须通过annulusRegion参数指定，position和size不生效。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | ---- | ---- | -------- |
+| particle | [EmitterParticleOptions](#emitterparticleoptions18)<[PARTICLE](#particletype)> | 否 | 否 | 粒子配置。<br>-type表示粒子类型，可以选择图片或者是点。<br>-config表示对应类型的配置。<br>-config类型和type值有关联：<br>1、如果type为ParticleType.POINT，则config类型为[PointParticleParameters](#pointparticleparameters) 。<br>2、如果type为ParticleType.IMAGE，则config类型为[ImageParticleParameters](#imageparticleparameters) 。<br>-count表示发射的粒子总数，count取值>=-1,当count为-1表示粒子总数无限大。<br>-lifetime表示单个粒子的生命周期，默认值1000（即1000ms，1s）,lifetime>=-1,当lifetime为-1表示粒子生命周期无限大。当lifetime<-1，取默认值。<br/>**说明：**如果不需要动画一直播放，建议不要将生命周期设置为-1，可能对性能造成较大影响。<br>-lifeTimeRange表示粒子生命周期取值范围，设置lifeTimeRange后粒子的生命周期为 [lifetime-lifeTimeRange,lifeTime+lifeTimeRange]中间的一个随机整数。lifeTimeRange 默认值为0，取值范围为0到正无穷。设置为负值时取默认值。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| emitRate | number | 否 | 是 | 发射器发射速率（即每秒发射粒子数）。 默认值：5，小于0时取默认值5。emitRate值超过5000时会极大影响性能，建议设置参数小于5000。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| shape | [ParticleEmitterShape](#particleemittershape) | 否 | 是 | 发射器形状。默认值：ParticleEmitterShape.RECTANGLE。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| position | [ParticleTuple](#particletuple18)<[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)> | 否 | 是 | 发射器位置（距离组件左上角的位置。第一个参数为x方向上的相对偏移，第二个参数为y轴方向相对偏移。） <br>默认值：`[0.0, 0.0]`。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| size |  [ParticleTuple](#particletuple18)<[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)>     |否 | 是 | 发射窗口的大小。第一个参数为发射器宽，第二个参数为发射器高。<br>默认值：`['100%','100%']`(即发射窗口占满Particle组件)。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| annulusRegion<sup>20+</sup>  | [ParticleAnnulusRegion](ts-particle-animation.md#particleannulusregion20)| 否 | 是  |环形发射器参数。需要发射器形状为环形（即shape参数为ParticleEmitterShape.ANNULUS）时才生效，且对于环形发射器，形状信息必须通过annulusRegion参数指定，position和size不生效。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## ParticleConfigs
 
+设置粒子配置项。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型   | 必填 | 说明 |
-| -------- | -------------- | -------- | -------- |
-| [ParticleType.POINT]      | [PointParticleParameters](#pointparticleparameters) | 是    | 点状粒子配置。 |
-| [ParticleType.IMAGE]      | [ImageParticleParameters](#imageparticleparameters) | 是    | 图片粒子配置。 |
+| 名称   | 类型   | 只读 | 可选 | 说明 |
+| -------- | -------- | ------ | -------- | -------- |
+| [ParticleType.POINT]      | [PointParticleParameters](#pointparticleparameters) | 否 | 否    | 点状粒子配置。 |
+| [ParticleType.IMAGE]      | [ImageParticleParameters](#imageparticleparameters) | 否 | 否    | 图片粒子配置。 |
 
 ## PointParticleParameters
 
+设置粒子半径。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型   | 必填 | 说明 |
-| -------- | -------------- | -------- | -------- |
-| radius      | [VP](ts-types.md#vp10)| 是    | 粒子半径。 |
+| 名称   | 类型   | 只读 | 可选 | 说明 |
+| -------- | ------- | ------- | -------- | -------- |
+| radius      | [VP](ts-types.md#vp10)| 否 | 否    | 粒子半径。 |
 
 ## ImageParticleParameters
 
+设置图片选项。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型   | 必填 | 说明 |
-| -------- | -------------- | -------- | -------- |
-| src      | [ResourceStr](ts-types.md#resourcestr) | 是    | 图片路径。暂不支持svg图片类型。<br>src未发生变化时，会优先使用缓存的资源，无法动态切换资源。如需动态切换资源建议切换为不同的src。 |
-| size     | [ParticleTuple](#particletuple18)<[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)> | 是    | 图像尺寸。 |
-| objectFit| [ImageFit](ts-appendix-enums.md#imagefit)| 否    | 图片显示模式。 |
+| 名称   | 类型   | 只读 | 可选 | 说明 |
+| -------- | ------- | ------- | -------- | -------- |
+| src      | [ResourceStr](ts-types.md#resourcestr) | 否 | 否    | 图片路径，支持本地图片和网络图片，引用方式请参考[加载图片资源](../../../ui/arkts-graphics-display.md#加载图片资源)。<br/>暂不支持svg图片类型。<br>src未发生变化时，会优先使用缓存的资源，无法动态切换资源。如需动态切换资源建议切换为不同的src。 |
+| size     | [ParticleTuple](#particletuple18)<[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)> | 否 | 否    | 图像尺寸。 |
+| objectFit| [ImageFit](ts-appendix-enums.md#imagefit)| 否 | 是   | 图片显示模式。 |
 
 ## ParticleColorPropertyOptions
 
@@ -200,26 +208,30 @@ interface ParticleColorPropertyOptions<UPDATER extends ParticleUpdater> {
 }
 ```
 
+设置粒子颜色属性更新器配置。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| range | [ParticleTuple](#particletuple18)<[ResourceColor](ts-types.md#resourcecolor), [ResourceColor](ts-types.md#resourcecolor)> | 是 | 粒子初始颜色区间，粒子发射器生成粒子的初始颜色在range区间随机取值。<br>默认值：range:[Color.White,Color.White] **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| distributionType<sup>12+<sup> | [DistributionType](#distributiontype12) | 否 | 粒子初始颜色随机值分布，允许用户选择颜色随机值生成的分布类型，支持均匀分布或正态（高斯）分布。<br>默认值：DistributionType.UNIFORM<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| updater | [ParticleColorUpdaterOptions](#particlecolorupdateroptions18)<[UPDATER](#particleupdater)> | 否 | 颜色属性变化配置。颜色属性变化类型type有三类：<br>1、当type为ParticleUpdater.NONE，表示无变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.NONE]。 <br>2、type为ParticleUpdater.RANDOM，表示随机变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.RANDOM]。 <br>3、type为ParticleUpdater.CURVE,表示按动画曲线变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.CURVE]。<br>默认值：type默认为 ParticleUpdater.NONE。 <br>**说明**：<br>当type为ParticleUpdater.RANDOM或者ParticleUpdater.CURVE时，updater中颜色配置的优先级高于range中的颜色配置。在updater配置的动画时间周期内，以updater中的颜色配置来变化；在updater配置的动画时间周期外，以range中的颜色配置来变化。**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | ---- | ---- | -------- |
+| range | [ParticleTuple](#particletuple18)<[ResourceColor](ts-types.md#resourcecolor), [ResourceColor](ts-types.md#resourcecolor)> | 否 | 否 | 粒子初始颜色区间，粒子发射器生成粒子的初始颜色在range区间随机取值。<br>默认值：range:[Color.White,Color.White] <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| distributionType<sup>12+<sup> | [DistributionType](#distributiontype12) | 否 | 是 | 粒子初始颜色随机值分布，允许用户选择颜色随机值生成的分布类型，支持均匀分布或正态（高斯）分布。<br>默认值：DistributionType.UNIFORM<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| updater | [ParticleColorUpdaterOptions](#particlecolorupdateroptions18)<[UPDATER](#particleupdater)> | 否 | 是 | 颜色属性变化配置。颜色属性变化类型type有三类：<br>1、当type为ParticleUpdater.NONE，表示无变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.NONE]。 <br>2、type为ParticleUpdater.RANDOM，表示随机变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.RANDOM]。 <br>3、type为ParticleUpdater.CURVE,表示按动画曲线变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.CURVE]。<br>默认值：type默认为 ParticleUpdater.NONE。 <br>**说明**：<br>当type为ParticleUpdater.RANDOM或者ParticleUpdater.CURVE时，updater中颜色配置的优先级高于range中的颜色配置。在updater配置的动画时间周期内，以updater中的颜色配置来变化；在updater配置的动画时间周期外，以range中的颜色配置来变化。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 
 ## ParticleColorPropertyUpdaterConfigs
+
+设置粒子颜色属性更新器的配置。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-|[ParticleUpdater.NONE]|void | 是 | 无变化。|
-| [ParticleUpdater.RANDOM] | [ParticleColorOptions](#particlecoloroptions18) | 是 | 表示变化方式为均匀变化的时候，在区间内随机生成一个差值。r、g、b、a四个颜色通道每秒分别使用差值叠加当前颜色值，生成目标颜色值。实现颜色随机变化的效果。 |
-[ParticleUpdater.CURVE]|Array<[ParticlePropertyAnimation](#particlepropertyanimation)\<[ResourceColor](ts-types.md#resourcecolor)\>> | 是 | 表示变化方式为曲线变化时，颜色变化的配置。数组类型表示当前属性可以设置多段动画，如0ms-3000ms，3000ms-5000ms，5000ms-8000ms分别设置动画。|
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | ---- | ---- | -------- |
+|[ParticleUpdater.NONE]|void | 否 | 否 | 无变化。|
+| [ParticleUpdater.RANDOM] | [ParticleColorOptions](#particlecoloroptions18) | 否 | 否 | 表示变化方式为均匀变化的时候，在区间内随机生成一个差值。r、g、b、a四个颜色通道每秒分别使用差值叠加当前颜色值，生成目标颜色值。实现颜色随机变化的效果。 |
+[ParticleUpdater.CURVE]|Array<[ParticlePropertyAnimation](#particlepropertyanimation)\<[ResourceColor](ts-types.md#resourcecolor)\>> | 否 | 否 | 表示变化方式为曲线变化时，颜色变化的配置。数组类型表示当前属性可以设置多段动画，如0ms-3000ms，3000ms-5000ms，5000ms-8000ms分别设置动画。|
 
 ## ParticlePropertyOptions
 ```typescript
@@ -229,14 +241,16 @@ interface ParticlePropertyOptions<TYPE, UPDATER extends ParticleUpdater> {
 }
 ```
 
+设置粒子属性选项。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| range | [ParticleTuple](#particletuple18)<[TYPE](#particleupdater), [TYPE](#particleupdater)> | 是 | 粒子初始属性值区间，粒子发射器生成粒子的属性值在range区间随机取值。<br/>**说明**<br/>各项属性的非法输入取默认值，当最大值小于最小值的时候取默认区间。TYPE为number。<br/>不同属性的默认值不同：<br>1、opacity属性：range:[1.0,1.0]，取值范围为[0, 1]，默认值为1.0。<br/>2、scale属性：range:[1.0,1.0]，取值范围为[0, 10000]，默认值为1.0。<br/>3、acceleration加速度speed属性：range:[0.0,0.0]，取值范围为[0, 10000]，默认值为0.0。<br/>4、acceleration加速度angle属性：range:[0.0,0.0]，取值范围为[-10000, 10000]，默认值为0.0。<br/>5、spin属性：range:[0.0,0.0]，取值范围为[-10000, 10000]，默认值为0.0。
-| updater | [ParticleUpdaterOptions](#particleupdateroptions18)<[TYPE](#particleupdater), [UPDATER](#particleupdater)> | 否 | 属性变化配置。属性变化类型type有三类：<br/>1、当type为ParticleUpdater.NONE，表示无变化，则config类型为[ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.NONE]。<br>2、当type为ParticleUpdater.RANDOM，表示变化类型为随机变化，则config类型为[ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.RANDOM]。<br>3、当type为ParticleUpdater.CURVE，表示变化类型为曲线变化，则config类型为[ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.CURVE] <br>默认值：type默认为ParticleUpdater.NONE。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | ---- | ---- | -------- |
+| range | [ParticleTuple](#particletuple18)<[TYPE](#particleupdater), [TYPE](#particleupdater)> | 否 | 否 | 粒子初始属性值区间，粒子发射器生成粒子的属性值在range区间随机取值。<br/>**说明**<br/>各项属性的非法输入取默认值，当最大值小于最小值的时候取默认区间。TYPE为number。<br/>不同属性的默认值不同：<br>1、opacity属性：range:[1.0,1.0]，取值范围为[0, 1]，默认值为1.0。<br/>2、scale属性：range:[1.0,1.0]，取值范围为[0, 10000]，默认值为1.0。<br/>3、acceleration加速度speed属性：range:[0.0,0.0]，取值范围为[0, 10000]，默认值为0.0。<br/>4、acceleration加速度angle属性：range:[0.0,0.0]，取值范围为[-10000, 10000]，默认值为0.0。<br/>5、spin属性：range:[0.0,0.0]，取值范围为[-10000, 10000]，默认值为0.0。
+| updater | [ParticleUpdaterOptions](#particleupdateroptions18)<[TYPE](#particleupdater), [UPDATER](#particleupdater)> | 否 | 是 | 属性变化配置。属性变化类型type有三类：<br/>1、当type为ParticleUpdater.NONE，表示无变化，则config类型为[ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.NONE]。<br>2、当type为ParticleUpdater.RANDOM，表示变化类型为随机变化，则config类型为[ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.RANDOM]。<br>3、当type为ParticleUpdater.CURVE，表示变化类型为曲线变化，则config类型为[ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.CURVE] <br>默认值：type默认为ParticleUpdater.NONE。 |
 
 
 ## ParticlePropertyUpdaterConfigs
@@ -248,15 +262,17 @@ interface ParticlePropertyUpdaterConfigs<T> {
 }
 ```
 
+设置粒子属性更新器配置。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-[[ParticleUpdater.NONE]|void | 是 | 无变化。|
-| [ParticleUpdater.RANDOM] | [ParticleTuple](#particletuple18)<T, T> | 是 | 表示变化方式为匀速变化时，每秒的变化差值为设置区间随机生成的值。<br/>目标属性值为当前属性值叠加变化差值。如当前属性值为0.2，config取[0.1,1.0]:<br/>1、如果变化差值在区间[0.1,1.0]取随机值0.5，则目标属性值为0.2+0.5 = 0.7；<br/>2、变化差值也可以取负值。如当前属性值为0.2，config为 [-3.0,2.0],如果变化差值在区间[-3.0,2.0]取随机值-2.0，则目标属性值为0.2-2.0 = -1.8。<br>**说明：**<br>config配置的是变化差值的取值范围，差值的最大最小值没有约束。但是如果当前属性值叠加差值大于属性最大值，目标属性值取属性最大值；如果当前属性值叠加差值小于属性最小值，目标属性值取属性最小值。T为number。<br>例如：opacity的取值范围[0.0,1.0]则当当前属性值叠加差值超过1.0，则取1.0。|
-|[ParticleUpdater.CURVE]|Array<[ParticlePropertyAnimation](#particlepropertyanimation)\<T\>> | 是 | 表示变化方式为曲线变化时，属性变化的配置。数组类型表示当前属性可以设置多段动画，如0ms-3000ms，3000ms-5000ms，5000ms-8000ms分别设置动画。T为number。|
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | ---- | ---- | -------- |
+[[ParticleUpdater.NONE]|void | 否 | 否 | 无变化。|
+| [ParticleUpdater.RANDOM] | [ParticleTuple](#particletuple18)<T, T> | 否 | 否 | 表示变化方式为匀速变化时，每秒的变化差值为设置区间随机生成的值。<br/>目标属性值为当前属性值叠加变化差值。如当前属性值为0.2，config取[0.1,1.0]:<br/>1、如果变化差值在区间[0.1,1.0]取随机值0.5，则目标属性值为0.2+0.5 = 0.7；<br/>2、变化差值也可以取负值。如当前属性值为0.2，config为 [-3.0,2.0],如果变化差值在区间[-3.0,2.0]取随机值-2.0，则目标属性值为0.2-2.0 = -1.8。<br>**说明：**<br>config配置的是变化差值的取值范围，差值的最大最小值没有约束。但是如果当前属性值叠加差值大于属性最大值，目标属性值取属性最大值；如果当前属性值叠加差值小于属性最小值，目标属性值取属性最小值。T为number。<br>例如：opacity的取值范围[0.0,1.0]则当当前属性值叠加差值超过1.0，则取1.0。|
+|[ParticleUpdater.CURVE]|Array<[ParticlePropertyAnimation](#particlepropertyanimation)\<T\>> | 否 | 否 | 表示变化方式为曲线变化时，属性变化的配置。数组类型表示当前属性可以设置多段动画，如0ms-3000ms，3000ms-5000ms，5000ms-8000ms分别设置动画。T为number。|
 
 ## ParticlePropertyAnimation
 ```typescript
@@ -269,20 +285,24 @@ interface ParticlePropertyAnimation<T> {
 }
 ```
 
+设置粒子属性声明周期。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-|from| T | 是 | 属性起始值。非法输入取对应属性的默认值。|
-| to | T | 是 | 属性目标值。非法输入取对应属性的默认值。|
-|startMillis|number | 是 | 动画开始时间。<br/>单位：毫秒。<br/>取值范围：[0, +∞)。|
-|endMillis|number | 是 | 动画结束时间。<br/>单位：毫秒。<br/>取值范围：[0, +∞)。|
-|curve|[Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve9)| 否 | 设置动画曲线。<br>默认值：Curve.Linear|
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | ---- | ---- | -------- | -------- |
+|from| T | 否 | 否 | 属性起始值。非法输入取对应属性的默认值。|
+| to | T | 否 | 否 | 属性目标值。非法输入取对应属性的默认值。|
+|startMillis|number | 否 | 否 | 动画开始时间。<br/>单位：毫秒。<br/>取值范围：[0, +∞)。|
+|endMillis|number | 否 | 否 | 动画结束时间。<br/>单位：毫秒。<br/>取值范围：[0, +∞)。|
+|curve|[Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve9)| 否 | 是 | 设置动画曲线。<br>默认值：Curve.Linear|
 
 
 ## ParticleType
+
+粒子类型。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -297,6 +317,8 @@ interface ParticlePropertyAnimation<T> {
 
 ## ParticleEmitterShape
 
+粒子发射器形状。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -310,6 +332,8 @@ interface ParticlePropertyAnimation<T> {
 
 ## DistributionType<sup>12+<sup>
 
+初始颜色随机值分布类型。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -320,6 +344,8 @@ interface ParticlePropertyAnimation<T> {
 | GAUSSIAN | 1 | 初始颜色随机值分布为高斯分布。|
 
 ## ParticleUpdater
+
+粒子变化类型。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -333,46 +359,52 @@ interface ParticlePropertyAnimation<T> {
 
 ## DisturbanceFieldOptions<sup>12+</sup>
 
+设置粒子扰动场参数。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型    | 必填 | 说明                         |
-| ------ | ------- | ---- | ---------------------------- |
-| strength  | number | 否   |场强，表示场从中心向外的排斥力的强度，默认值0。正数表示排斥力方向朝外，负数表示吸引力，方向朝内。<br/>取值范围：(-∞, +∞)。 |
-| shape  |   [DisturbanceFieldShape](#disturbancefieldshape12) | 否   | 场的形状。<br/>默认为DisturbanceFieldShape.RECT。 |
-| size  | [SizeT](../js-apis-arkui-graphics.md#sizett12)&lt;number&gt;| 否  |场的大小。<br/>默认值 {width:0，height:0}。<br/>width和height的取值范围：[0, +∞)。 |
-| position  | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;number&gt; | 否   |场的位置。<br/>默认值{x:0，y:0}。<br/>x、y的取值范围：(-∞, +∞)。 |
-| feather  | number | 否   |羽化值，表示场从中心点到场边缘的衰减程度，取值范围0到100的整数，如果0则表示场是一个刚体，所有范围内的粒子都被排斥在外。羽化值越大场的缓和程度越大，场范围内出现越多靠近中心点的粒子。<br/>默认值为0。 |
-| noiseScale  | number | 否   |噪声尺度，用于控制噪声图案的整体大小，取值大于等于0。<br/>默认值1。 |
-| noiseFrequency  | number | 否   |噪声频率，频率越大噪声越细腻，取值大于等于0。<br/> 默认值1。 |
-| noiseAmplitude  | number | 否   |噪声震幅，噪声的波动的范围，震幅越大噪音之间差异越大。取值大于等于0。<br/> 默认值1。 |
+| 名称 | 类型    | 只读 | 可选 | 说明                         |
+| ------ | ------- | ---- | ------- | --------------------- |
+| strength  | number | 否 | 是   |场强，表示场从中心向外的排斥力的强度，默认值0。正数表示排斥力方向朝外，负数表示吸引力，方向朝内。<br/>取值范围：(-∞, +∞)。 |
+| shape  |   [DisturbanceFieldShape](#disturbancefieldshape12) | 否 | 是   | 场的形状。<br/>默认为DisturbanceFieldShape.RECT。 |
+| size  | [SizeT](../js-apis-arkui-graphics.md#sizett12)&lt;number&gt;| 否 | 是  |场的大小。<br/>默认值 {width:0，height:0}。<br/>width和height的取值范围：[0, +∞)。 |
+| position  | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;number&gt; | 否 | 是   |场的位置。<br/>默认值{x:0，y:0}。<br/>x、y的取值范围：(-∞, +∞)。 |
+| feather  | number | 否 | 是   |羽化值，表示场从中心点到场边缘的衰减程度，取值范围0到100的整数，如果0则表示场是一个刚体，所有范围内的粒子都被排斥在外。羽化值越大场的缓和程度越大，场范围内出现越多靠近中心点的粒子。<br/>默认值为0。 |
+| noiseScale  | number | 否 | 是   |噪声尺度，用于控制噪声图案的整体大小，取值大于等于0。<br/>默认值1。 |
+| noiseFrequency  | number | 否 | 是   |噪声频率，频率越大噪声越细腻，取值大于等于0。<br/> 默认值1。 |
+| noiseAmplitude  | number | 否 | 是   |噪声震幅，噪声的波动的范围，震幅越大噪音之间差异越大。取值大于等于0。<br/> 默认值1。 |
 
 ## DisturbanceFieldShape<sup>12+</sup>
 
+粒子形状。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 描述   |
-| --------| ----------|
-| RECT    | 长方形。   |
-|  CIRCLE | 圆。       |
-| ELLIPSE | 椭圆。     |
+| 名称    | 值    | 说明   |
+| --------| ---- | ------|
+| RECT    | 0 | 长方形。   |
+| CIRCLE  | 1 | 圆。       |
+| ELLIPSE | 2 | 椭圆。     |
 
 ## EmitterProperty<sup>12+</sup>
 
+设置发射器属性。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型    | 必填 | 说明                         |
-| ------ | ------- | ---- | ---------------------------- |
-| index   | number | 是   |索引，取整，按初始化参数中发射器的数组索引指定对应的发射器。异常默认值为0。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| emitRate  | number  | 否   | 发射器发射速率，即每秒发射粒子的数量。<br/>未传入时保持其当前的发射速率， 传入值小于0时取默认值5。emitRate值超过5000时会极大影响性能，建议设置参数小于5000。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| position  | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;number&gt; | 否   |发射器位置的数组，只支持number类型。<br/>未传入时保持其当前的发射器位置。需传入两个有效参数，若其中一个为异常值，则position不生效。<br/>x、y的取值范围：(-∞, +∞)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| size  | [SizeT](../js-apis-arkui-graphics.md#sizett12)&lt;number&gt;| 否  |发射窗口的大小，只支持number类型。<br/>未传入时保持其当前发射窗口大小。需传入两个有效参数且都大于0，若其中一个为异常值，则size不生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| annulusRegion<sup>20+</sup>  | [ParticleAnnulusRegion](ts-particle-animation.md#particleannulusregion20)| 否  |环形发射器参数。需要对应index的发射器形状为环形才生效。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| 名称 | 类型    | 只读 | 可选 | 说明                         |
+| ------ | ------- | ---- | ------- | --------------------- |
+| index   | number | 否 | 否   |索引，取整，按初始化参数中发射器的数组索引指定对应的发射器。异常默认值为0。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| emitRate  | number  | 否 | 是   | 发射器发射速率，即每秒发射粒子的数量。<br/>未传入时保持其当前的发射速率， 传入值小于0时取默认值5。emitRate值超过5000时会极大影响性能，建议设置参数小于5000。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| position  | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;number&gt; | 否 | 是  |发射器位置的数组，只支持number类型。<br/>未传入时保持其当前的发射器位置。需传入两个有效参数，若其中一个为异常值，则position不生效。<br/>x、y的取值范围：(-∞, +∞)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| size  | [SizeT](../js-apis-arkui-graphics.md#sizett12)&lt;number&gt;| 否 | 是  |发射窗口的大小，只支持number类型。<br/>未传入时保持其当前发射窗口大小。需传入两个有效参数且都大于0，若其中一个为异常值，则size不生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| annulusRegion<sup>20+</sup>  | [ParticleAnnulusRegion](ts-particle-animation.md#particleannulusregion20)| 否 | 是 |环形发射器参数。需要对应index的发射器形状为环形才生效。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## ParticleTuple<sup>18+</sup>
 
@@ -424,9 +456,9 @@ interface Particles<
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型                           | 必填 | 说明                                                                                                                     |
-| ------ | ------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------- |
-| particles<sup>10+</sup>  | Array<<br/>&nbsp;&nbsp;ParticleOptions<<br/>&nbsp;&nbsp;&nbsp;&nbsp;PARTICLE,<br/>&nbsp;&nbsp;&nbsp;&nbsp;COLOR_UPDATER,<br/>&nbsp;&nbsp;&nbsp;&nbsp;OPACITY_UPDATER,<br/>&nbsp;&nbsp;&nbsp;&nbsp;SCALE_UPDATER,<br/>&nbsp;&nbsp;&nbsp;&nbsp;ACC_SPEED_UPDATER,<br/>&nbsp;&nbsp;&nbsp;&nbsp;ACC_ANGLE_UPDATER,<br/>&nbsp;&nbsp;&nbsp;&nbsp;SPIN_UPDATER<br/>&nbsp;&nbsp;><br/>>  | 是   | 粒子动画的集合。每一个的粒子动画（[ParticleOptions](#particleoptions)）包含粒子发射，同时可配置粒子的颜色、透明度、大小、速度、加速度与旋转速度，旋转速度，详见[ParticleOptions](#particleoptions)属性说明。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| 名称    | 类型                           | 只读 | 可选 | 说明                                                                                                                     |
+| ------ | ------------------------------ | ---- | ------------------------------------------ | ----------------------------------------------------------------------------- |
+| particles<sup>10+</sup>  | Array<<br/>&nbsp;&nbsp;ParticleOptions<<br/>&nbsp;&nbsp;&nbsp;&nbsp;PARTICLE,<br/>&nbsp;&nbsp;&nbsp;&nbsp;COLOR_UPDATER,<br/>&nbsp;&nbsp;&nbsp;&nbsp;OPACITY_UPDATER,<br/>&nbsp;&nbsp;&nbsp;&nbsp;SCALE_UPDATER,<br/>&nbsp;&nbsp;&nbsp;&nbsp;ACC_SPEED_UPDATER,<br/>&nbsp;&nbsp;&nbsp;&nbsp;ACC_ANGLE_UPDATER,<br/>&nbsp;&nbsp;&nbsp;&nbsp;SPIN_UPDATER<br/>&nbsp;&nbsp;><br/>>  | 否 | 否   | 粒子动画的集合。每一个的粒子动画（[ParticleOptions](#particleoptions)）包含粒子发射，同时可配置粒子的颜色、透明度、大小、速度、加速度与旋转速度，旋转速度，详见[ParticleOptions](#particleoptions)属性说明。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 
 ## VelocityOptions<sup>18+</sup>
 
@@ -440,10 +472,10 @@ interface Particles<
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型                           | 必填 | 说明                                                                                                                     |
-| ------ | ------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------- |
-| speed<sup>10+</sup>  | [ParticleTuple](#particletuple18)<number, number>  | 是   | 表示速度大小。<br/>默认值：{range:[0.0,0.0]}    <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                          |
-| angle<sup>10+</sup>  | [ParticleTuple](#particletuple18)<number, number>  | 是   | 表示速度的方向（单位为角度）。以元素几何中心为坐标原点，水平方向为X轴，正数表示顺时针方向旋转角度。<br/>默认值：{range:[0.0,0.0]} <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| 名称    | 类型                           | 只读 | 可选 | 说明                                                                                                                     |
+| ------ | ------------------------------ | ---- | ------------------------- | ---------------------------------------------------------------------------------------------- |
+| speed<sup>10+</sup>  | [ParticleTuple](#particletuple18)<number, number>  | 否 | 否   | 表示速度大小。<br/>默认值：{range:[0.0,0.0]}    <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                          |
+| angle<sup>10+</sup>  | [ParticleTuple](#particletuple18)<number, number>  | 否 | 否   | 表示速度的方向（单位为角度）。以元素几何中心为坐标原点，水平方向为X轴，正数表示顺时针方向旋转角度。<br/>默认值：{range:[0.0,0.0]} <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 
 ## AccelerationOptions<sup>18+</sup>
 
@@ -467,10 +499,10 @@ declare interface AccelerationOptions<
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型                                                | 必填 | 说明                                                       |
-| ------ | --------------------------------------------------- | ---- | --------------------------------------------------------- |
-| speed<sup>10+</sup>  | [ParticlePropertyOptions](#particlepropertyoptions)<number, [ACC_SPEED_UPDATER](#particleupdater)>  | 否   | 表示加速度大小。<br/>默认值：{range:[0.0,0.0]}      <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
-| angle<sup>10+</sup>  | [ParticlePropertyOptions](#particlepropertyoptions)<number, [ACC_ANGLE_UPDATER](#particleupdater)>  | 否   | 表示加速度方向（单位为角度）。<br/>默认值：{range:[0.0,0.0]} <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| 名称    | 类型                                                | 只读 | 可选 | 说明                                                       |
+| ------ | --------------------------------------------------- | ---- | ----------- | ---------------------------------------------- |
+| speed<sup>10+</sup>  | [ParticlePropertyOptions](#particlepropertyoptions)<number, [ACC_SPEED_UPDATER](#particleupdater)>  | 否 | 是   | 表示加速度大小。<br/>默认值：{range:[0.0,0.0]}      <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
+| angle<sup>10+</sup>  | [ParticlePropertyOptions](#particlepropertyoptions)<number, [ACC_ANGLE_UPDATER](#particleupdater)>  | 否 | 是   | 表示加速度方向（单位为角度）。<br/>默认值：{range:[0.0,0.0]} <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 
 ## EmitterParticleOptions<sup>18+</sup>
 
@@ -494,13 +526,13 @@ interface EmitterParticleOptions<PARTICLE extends ParticleType> {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型                                                | 必填 | 说明                                                       |
-| ------ | --------------------------------------------------- | ---- | --------------------------------------------------------- |
-| type<sup>10+</sup>  | [PARTICLE](#particletype)  | 是   | 表示粒子类型，可以选择图片或者是点。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。           |
-| config<sup>10+</sup>  | [ParticleConfigs](#particleconfigs)[PARTICLE]  | 是   | 表示对应类型的配置。<br/>config类型和type值有关联：<br>1、如果type为ParticleType.POINT，则config类型为[PointParticleParameters](#pointparticleparameters) 。<br>2、如果type为ParticleType.IMAGE，则config类型为[ImageParticleParameters](#imageparticleparameters) 。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| count<sup>10+</sup>  | number  | 是   | 表示发射的粒子总数，count取值>=-1,当count为-1表示粒子总数无限大。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| lifetime<sup>10+</sup>  | number  | 否   | 表示单个粒子的生命周期，默认值1000（即1000ms，1s），lifetime>=-1。当lifetime为-1表示粒子生命周期无限大。当lifetime<-1，取默认值。<br/>**说明：** 如果不需要动画一直播放，建议不要将生命周期设置为-1，可能对性能造成较大影响。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| lifetimeRange<sup>12+</sup>  | number  | 否   | 表示粒子生命周期取值范围，设置lifetimeRange后粒子的生命周期为 [lifetime-lifetimeRange,lifeTime+lifetimeRange]中间的一个随机整数。lifetimeRange 默认值为0，取值范围为0到正无穷。设置为负值时取默认值。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| 名称    | 类型                                                | 只读 | 可选 | 说明                                                       |
+| ------ | --------------------------------------------------- | ---- | ----------- | ---------------------------------------------- |
+| type<sup>10+</sup>  | [PARTICLE](#particletype)  | 否 | 否   | 表示粒子类型，可以选择图片或者是点。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。           |
+| config<sup>10+</sup>  | [ParticleConfigs](#particleconfigs)[PARTICLE]  | 否 | 否   | 表示对应类型的配置。<br/>config类型和type值有关联：<br>1、如果type为ParticleType.POINT，则config类型为[PointParticleParameters](#pointparticleparameters) 。<br>2、如果type为ParticleType.IMAGE，则config类型为[ImageParticleParameters](#imageparticleparameters) 。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| count<sup>10+</sup>  | number  | 否 | 否   | 表示发射的粒子总数，count取值>=-1,当count为-1表示粒子总数无限大。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| lifetime<sup>10+</sup>  | number  | 否 | 是   | 表示单个粒子的生命周期，默认值1000（即1000ms，1s），lifetime>=-1。当lifetime为-1表示粒子生命周期无限大。当lifetime<-1，取默认值。<br/>**说明：** 如果不需要动画一直播放，建议不要将生命周期设置为-1，可能对性能造成较大影响。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| lifetimeRange<sup>12+</sup>  | number  | 否 | 是   | 表示粒子生命周期取值范围，设置lifetimeRange后粒子的生命周期为 [lifetime-lifetimeRange,lifeTime+lifetimeRange]中间的一个随机整数。lifetimeRange 默认值为0，取值范围为0到正无穷。设置为负值时取默认值。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## ParticleUpdaterOptions<sup>18+</sup>
 
@@ -521,10 +553,10 @@ interface ParticleUpdaterOptions<TYPE, UPDATER extends ParticleUpdater> {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型                                                | 必填 | 说明                                                       |
-| ------ | --------------------------------------------------- | ---- | --------------------------------------------------------- |
-| type<sup>10+</sup>  | [UPDATER](#particleupdater)  | 是   | 表示颜色属性变化类型。 <br>默认值：type默认为ParticleUpdater.NONE。    **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。          |
-| config<sup>10+</sup>  | [ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)<[TYPE](#particleupdater)[[UPDATER](#particleupdater)] | 是   | 属性变化配置。属性变化类型type有三类：<br/>1、当type为ParticleUpdater.NONE，表示无变化，则config类型为[ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.NONE]。<br>2、当type为ParticleUpdater.RANDOM，表示变化类型为随机变化，则config类型为[ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.RANDOM]。<br>3、当type为ParticleUpdater.CURVE，表示变化类型为曲线变化，则config类型为[ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.CURVE]。 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| 名称    | 类型                                                | 只读 | 可选 | 说明                                                       |
+| ------ | ----------------------------------- | ---------------- | ---- | --------------------------------------------------------- |
+| type<sup>10+</sup>  | [UPDATER](#particleupdater)  | 否 | 否   | 表示颜色属性变化类型。 <br>默认值：type默认为ParticleUpdater.NONE。    **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。          |
+| config<sup>10+</sup>  | [ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)<[TYPE](#particleupdater)[[UPDATER](#particleupdater)] | 否 | 否   | 属性变化配置。属性变化类型type有三类：<br/>1、当type为ParticleUpdater.NONE，表示无变化，则config类型为[ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.NONE]。<br>2、当type为ParticleUpdater.RANDOM，表示变化类型为随机变化，则config类型为[ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.RANDOM]。<br>3、当type为ParticleUpdater.CURVE，表示变化类型为曲线变化，则config类型为[ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.CURVE]。 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## ParticleColorUpdaterOptions<sup>18+</sup>
 
@@ -545,10 +577,10 @@ interface ParticleColorUpdaterOptions<UPDATER extends ParticleUpdater> {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型                                                | 必填 | 说明                                                       |
-| ------ | --------------------------------------------------- | ---- | --------------------------------------------------------- |
-| type<sup>10+</sup>  | [UPDATER](#particleupdater)  | 是   | 表示颜色属性变化类型。<br>默认值：type默认为 ParticleUpdater.NONE。     <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
-| config<sup>10+</sup>  | [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[[UPDATER](#particleupdater)]  | 是   | 颜色属性变化类型type有三类：<br>1、当type为ParticleUpdater.NONE，表示无变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.NONE]。 <br>2、type为ParticleUpdater.RANDOM，表示随机变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.RANDOM]。 <br>3、type为ParticleUpdater.CURVE,表示按动画曲线变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.CURVE]。 <br>**说明**：<br>当type为ParticleUpdater.RANDOM或者ParticleUpdater.CURVE时，updater中颜色配置的优先级高于range中的颜色配置。在updater配置的动画时间周期内，以updater中的颜色配置来变化；在updater配置的动画时间周期前，以range中的颜色配置来变化。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| 名称    | 类型                                                | 只读 | 可选 | 说明                                                       |
+| ------ | --------------------------------------------------- | ---- | ---------- | ----------------------------------------------- |
+| type<sup>10+</sup>  | [UPDATER](#particleupdater)  | 否 | 否   | 表示颜色属性变化类型。<br>默认值：type默认为 ParticleUpdater.NONE。     <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
+| config<sup>10+</sup>  | [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[[UPDATER](#particleupdater)]  | 否 | 否   | 颜色属性变化类型type有三类：<br>1、当type为ParticleUpdater.NONE，表示无变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.NONE]。 <br>2、type为ParticleUpdater.RANDOM，表示随机变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.RANDOM]。 <br>3、type为ParticleUpdater.CURVE,表示按动画曲线变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.CURVE]。 <br>**说明**：<br>当type为ParticleUpdater.RANDOM或者ParticleUpdater.CURVE时，updater中颜色配置的优先级高于range中的颜色配置。在updater配置的动画时间周期内，以updater中的颜色配置来变化；在updater配置的动画时间周期前，以range中的颜色配置来变化。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## ParticleColorOptions<sup>18+</sup>
 
@@ -562,12 +594,12 @@ interface ParticleColorUpdaterOptions<UPDATER extends ParticleUpdater> {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 类型                           | 必填 | 说明                         |
-| ---- | ------------------------------ | ---- | --------------------------- |
-| r<sup>10+</sup>    | [ParticleTuple](#particletuple18)<number, number>  | 是   | r颜色通道的差值。   **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
-| g<sup>10+</sup>    | [ParticleTuple](#particletuple18)<number, number>  | 是   | g颜色通道的差值。   **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
-| b<sup>10+</sup>    | [ParticleTuple](#particletuple18)<number, number>  | 是   | b颜色通道的差值。   **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
-| a<sup>10+</sup>    | [ParticleTuple](#particletuple18)<number, number>  | 是   | a颜色通道的差值。   **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
+| 名称  | 类型                           | 只读 | 可选 | 说明                         |
+| ---- | ----------------- | ------------- | ---- | --------------------------- |
+| r<sup>10+</sup>    | [ParticleTuple](#particletuple18)<number, number>  | 否 | 否   | r颜色通道的差值。   **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
+| g<sup>10+</sup>    | [ParticleTuple](#particletuple18)<number, number>  | 否 | 否   | g颜色通道的差值。   **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
+| b<sup>10+</sup>    | [ParticleTuple](#particletuple18)<number, number>  | 否 | 否   | b颜色通道的差值。   **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
+| a<sup>10+</sup>    | [ParticleTuple](#particletuple18)<number, number>  | 否 | 否   | a颜色通道的差值。   **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
 
 ## ParticleAnnulusRegion<sup>20+</sup>
 
@@ -577,13 +609,13 @@ interface ParticleColorUpdaterOptions<UPDATER extends ParticleUpdater> {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型   | 必填 | 说明 |
-| ------ | ------ | ---- | ---- |
-| center      | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&gt; | 否   | 圆环的圆心坐标，组件的左上角为坐标原点。默认值：{x:LengthMetrics.percent(0.5),y:LengthMetrics.percent(0.5)}   |
-| outerRadius      | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 圆环的外圆半径。   |
-| innerRadius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 圆环的内圆半径。   |
-| startAngle | number | 否   | 圆环的起始角度。<br>单位：度<br>默认值：0  |
-| endAngle | number | 否   | 圆环的结束角度。<br>单位：度<br>默认值：360  |
+| 名称   | 类型   | 只读 | 可选 | 说明 |
+| ------ | ------ | -- | -- | ---- |
+| center      | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&gt; | 否 | 是  | 圆环的圆心坐标，组件的左上角为坐标原点。默认值：{x:LengthMetrics.percent(0.5),y:LengthMetrics.percent(0.5)}   |
+| outerRadius      | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 否   | 圆环的外圆半径。   |
+| innerRadius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 否  | 圆环的内圆半径。   |
+| startAngle | number | 否 | 是   | 圆环的起始角度。<br>单位：度<br>默认值：0  |
+| endAngle | number | 否 | 是   | 圆环的结束角度。<br>单位：度<br>默认值：360  |
 
 
 >  **说明：**

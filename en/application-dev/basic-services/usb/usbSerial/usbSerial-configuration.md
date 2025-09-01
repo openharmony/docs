@@ -1,5 +1,12 @@
 # USB Serial Configuration Management
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 ## Overview
 
 In the USB serial configuration management, the baud rate, data bit, parity bit, and stop bit are the core parameters of the serial port communication protocol. They define the format and rules of data transmission. By properly setting these parameters, you can significantly improve the reliability and efficiency of serial port communication.
@@ -54,7 +61,7 @@ You can obtain and set the serial port configuration as follows:
     ```ts
     // Import the usbManager module.
     import serial from '@ohos.usbManager.serial';
-    ```
+    ``` 
 
 2. Obtain the USB device list.
 
@@ -72,15 +79,18 @@ You can obtain and set the serial port configuration as follows:
 
     ```ts
     // Check whether the first USB device in the list has the access permission.
-    let portId: number = portList[0].portId;
-    if (!serial.hasSerialRight(portId)) {
-      await serial.requestSerialRight(portId).then(result => {
-        if(!result) {
-          // If the device does not have the access permission and is not granted by the user, the device exits.
-          console.error('The user does not have permission to perform this operation');
-          return;
-        }
-      });
+    // Name the function based on the specific service.
+    async function serialDefault() {
+      let portId: number = portList[0].portId;
+      if (!serial.hasSerialRight(portId)) {
+        await serial.requestSerialRight(portId).then(result => {
+          if(!result) {
+            // If the device does not have the access permission and is not granted by the user, the device exits.
+            console.error('The user does not have permission to perform this operation');
+            return;
+          }
+        });
+      }
     }
     ```
 
@@ -109,7 +119,7 @@ You can obtain and set the serial port configuration as follows:
     } catch (error) {
       console.error(`getAttribute usbSerial error: ${error}`);
     }
-      
+   
     // Set the serial port configuration.
     try {
       let attribute: serial.SerialAttribute = {

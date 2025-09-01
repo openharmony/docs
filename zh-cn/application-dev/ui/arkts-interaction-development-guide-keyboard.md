@@ -10,7 +10,7 @@
 
 > **说明：**
 >
-> 一些系统按键产生的事件并不会传递给UI组件，如电源键、音量键。
+> 一些系统按键产生的事件并不会传递给UI组件，如电源键。
 
 ## 按键事件数据流
 
@@ -27,7 +27,7 @@
 
 按键事件到ArkUI框架之后，会先找到完整的父子节点获焦链。从叶子节点到根节点，逐一发送按键事件。 
 
-Web组件的KeyEvent流程与上述过程有所不同。对于Web组件，不会在onKeyPreIme返回false时候，去匹配快捷键。而是第三次按键派发过程，Web对于未消费的KeyEvent通过ReDispatch重新派发回ArkUI，在ReDispatch中再执行匹配快捷键等操作。
+Web组件的KeyEvent流程与上述过程有所不同。在onKeyPreIme返回false时，Web组件不会匹配快捷键。而在第三次按键派发过程中，Web组件会将未消费的KeyEvent通过ReDispatch重新派发回ArkUI，在ReDispatch中再执行匹配快捷键等操作。
 
 ## onKeyEvent & onKeyPreIme
 

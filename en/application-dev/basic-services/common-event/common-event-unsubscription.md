@@ -1,5 +1,11 @@
 # Unsubscribing from Common Events in Dynamic Mode
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 ## When to Use
 
@@ -10,7 +16,7 @@ After a service is finished in the dynamic mode, the subscriber should proactive
 
 | API| Description|
 | -------- | -------- |
-| unsubscribe(subscriber:&nbsp;[CommonEventSubscriber](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscriber.md#commoneventsubscriber),&nbsp;callback?:&nbsp;AsyncCallback<void\>) | Unsubscribes from a common event.|
+| [unsubscribe](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerunsubscribe)(subscriber:&nbsp;CommonEventSubscriber,&nbsp;callback?:&nbsp;AsyncCallback<void\>) | Unsubscribes from a common event.|
 
 
 ## How to Develop
@@ -34,9 +40,9 @@ After a service is finished in the dynamic mode, the subscriber should proactive
    if (subscriber !== null) {
      commonEventManager.unsubscribe(subscriber, (err: BusinessError) => {
        if (err) {
-         hilog.error(DOMAIN_NUMBER, TAG, `UnsubscribeCallBack err = ${JSON.stringify(err)}`);
+         hilog.error(DOMAIN_NUMBER, TAG, `Failed to unsubscribe. code is ${err.code}, message is ${err.message}`);
        } else {
-         hilog.info(DOMAIN_NUMBER, TAG, `Unsubscribe success`);
+         hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in unsubscribing.`);
          subscriber = null;
        }
      })

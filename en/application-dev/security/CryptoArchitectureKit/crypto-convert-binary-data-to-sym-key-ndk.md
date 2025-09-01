@@ -1,5 +1,11 @@
 # Converting Binary Data into a Symmetric Key Pair (C/C++)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
 
 This topic uses 3DES and HMAC as an example to describe how to convert binary data into a symmetric key (**OH_CryptoSymKey**). That is, convert a piece of external or internal binary data into a key object for subsequent operations, such as encryption and decryption.
 
@@ -10,15 +16,15 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 ## Converting Binary Data into a 3DES Key
 
-For details about the algorithm specifications, see [3DES](crypto-sym-key-generation-conversion-spec.md#3des).
+For details, see [3DES](crypto-sym-key-generation-conversion-spec.md#3des).
 
-1. Obtain the 3DES binary key data and encapsulate it into a [Crypto_DataBlob](../../reference/apis-crypto-architecture-kit/_crypto_common_api.md#crypto_datablob) object.
+1. Obtain the 3DES binary key data and encapsulate it into a [Crypto_DataBlob](../../reference/apis-crypto-architecture-kit/capi-cryptocommonapi-crypto-datablob.md) object.
 
-2. Call [OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create) with the string parameter **'3DES192'** to create a symmetric key generator (**OH_CryptoSymKeyGenerator**) object for a 192-bit 3DES key.
+2. Call [OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md#oh_cryptosymkeygenerator_create) with the string parameter **'3DES192'** to create a symmetric key generator (**OH_CryptoSymKeyGenerator**) object for a 192-bit 3DES key.
 
-3. Call [OH_CryptoSymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_convert) to convert the binary data into a symmetric key object (**OH_CryptoSymKey**).
+3. Call [OH_CryptoSymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md#oh_cryptosymkeygenerator_convert) to convert the binary data into a symmetric key object (**OH_CryptoSymKey**).
 
-4. Call [OH_CryptoSymKey_GetKeyData](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_getkeydata) to obtain the binary data of the key object.
+4. Call [OH_CryptoSymKey_GetKeyData](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md#oh_cryptosymkey_getkeydata) to obtain the binary data of the key object.
 
 Example: Convert binary data into a 3DES key.
 
@@ -57,15 +63,15 @@ Example: Convert binary data into a 3DES key.
 
 ## Converting Binary Data into an HMAC Key
 
-For details about the algorithm specifications, see [HMAC](crypto-sym-key-generation-conversion-spec.md#hmac).
+For details, see [HMAC](crypto-sym-key-generation-conversion-spec.md#hmac).
 
-1. Obtain the HMAC binary key and encapsulate it into a [Crypto_DataBlob](../../reference/apis-crypto-architecture-kit/_crypto_common_api.md#crypto_datablob) object.
+1. Obtain the HMAC binary key and encapsulate it into a [Crypto_DataBlob](../../reference/apis-crypto-architecture-kit/capi-cryptocommonapi-crypto-datablob.md) object.
 
-2. Call [OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create) with the string parameter **'HMAC'** to create a symmetric key generator (**OH_CryptoSymKeyGenerator**) object for an HMAC key of [1, 32768] bits.
+2. Call [OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md#oh_cryptosymkeygenerator_create) with the string parameter **'HMAC'** to create a symmetric key generator (**OH_CryptoSymKeyGenerator**) object for a 32768-bit HMAC key.
 
-3. Call [OH_CryptoSymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_convert) to convert the binary data into a symmetric key object (**OH_CryptoSymKey**).
+3. Call [OH_CryptoSymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md#oh_cryptosymkeygenerator_convert) to convert the binary data into a symmetric key object (**OH_CryptoSymKey**).
 
-4. Call [OH_CryptoSymKey_GetKeyData](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_getkeydata) to obtain the binary data of the key object.
+4. Call [OH_CryptoSymKey_GetKeyData](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md#oh_cryptosymkey_getkeydata) to obtain the binary data of the key object.
 
 Example: Convert binary data into an HMAC key.
 

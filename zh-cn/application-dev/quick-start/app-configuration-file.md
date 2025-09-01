@@ -64,7 +64,7 @@ app.json5配置文件包含以下标签。
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | bundleName | 标识应用的Bundle名称，用于标识应用的唯一性。命名规则如下&nbsp;：<br/>-&nbsp;必须为以点号（.）分隔的字符串，且至少包含三段，每段中仅允许使用英文字母、数字、下划线（_）。<br/>-&nbsp;首段以英文字母开头，非首段以数字或英文字母开头，每一段以数字或者英文字母结尾。<br/>-&nbsp;不允许多个点号（.）连续出现。<br/>-&nbsp;字符串最小长度为7字节，最大长度128字节。<br/>-&nbsp;推荐采用反域名形式命名（如“com.example.demo”，建议第一级为域名后缀com，第二级为厂商/个人名，第三级为应用名，也可以多级）。 | 字符串 | 该标签不可缺省。 |
-| bundleType| 标识应用的Bundle类型。支持的取值如下：<br/>-&nbsp;app：当前Bundle为应用。<br/>-&nbsp;atomicService：当前Bundle为原子化服务。<br/>-&nbsp;shared：当前Bundle为共享库应用，预留标签。<br/>-&nbsp;appService：当前Bundle为系统级共享库应用，仅系统应用生效。<br/>-&nbsp;appPlugin：当前Bundle为应用的插件包。从API version 19开始，支持该标签。 | 字符串| 该标签可缺省，缺省值为app。 |
+| bundleType| 标识应用的Bundle类型。支持的取值如下：<br/>-&nbsp;app：当前Bundle为应用。<br/>-&nbsp;atomicService：当前Bundle为原子化服务。<br/>-&nbsp;shared：当前Bundle为共享库应用，三方应用配置无法安装，仅支持系统应用。<br/>-&nbsp;appService：当前Bundle为系统级共享库应用，仅系统应用生效。<br/>-&nbsp;appPlugin：当前Bundle为应用的插件包。从API version 19开始，支持该标签。 | 字符串| 该标签可缺省，缺省值为app。 |
 | debug | 标识应用是否可调试。<br/>-&nbsp;true：可调试，一般用于开发阶段。<br/>-&nbsp;false：不可调试，一般用于发布阶段。 | 布尔值 | 由DevEco Studio编译构建时生成。该标签可缺省，缺省值为false。 |
 | icon | 标识应用的图标，取值为图标资源文件的索引。支持配置单层图标和分层图标，配置规则和示例请参考[配置应用图标和名称](layered-image.md)。 | 字符串 | 该标签不可缺省。 |
 | label | 标识应用的名称，取值为字符串资源的索引，以支持多语言，字符串长度不超过63字节，具体请参考[配置应用图标和名称](layered-image.md) 。 | 字符串 | 该标签不可缺省。 |

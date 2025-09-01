@@ -1,5 +1,12 @@
 # USB Serial Communication Management
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 ## Overview
 
 In the USB serial communication service, the USB port of the host is connected to the serial port of the serial port device for serial data transmission. The core objective of communication management is to implement efficient and stable data transmission and collaborative control between devices. It is mainly used in scenarios such as industrial automation and remote management, IoT device interconnection, and medical device management.
@@ -57,15 +64,18 @@ You can read and write data as follows:
 
     ```ts
     // Check whether the first USB device in the list has the access permission.
-    let portId: number = portList[0].portId;
-    if (!serial.hasSerialRight(portId)) {
-      await serial.requestSerialRight(portId).then(result => {
-        if(!result) {
-          // If the device does not have the access permission and is not granted by the user, the device exits.
-          console.error('The user does not have permission to perform this operation');
-          return;
-        }
-      });
+    // Name the function based on the specific service.
+    async function serialDefault() {
+      let portId: number = portList[0].portId;
+      if (!serial.hasSerialRight(portId)) {
+        await serial.requestSerialRight(portId).then(result => {
+          if(!result) {
+            // If the device does not have the access permission and is not granted by the user, the device exits.
+            console.error('The user does not have permission to perform this operation');
+            return;
+          }
+        });
+      }
     }
     ```
 

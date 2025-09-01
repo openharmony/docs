@@ -6,6 +6,10 @@
 <!--Tester: @xchaosioda-->
 <!--Adviser: @zengyawen-->
 
+在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+
+相机应用可通过调用和控制相机设备，完成预览、拍照和录像等基础操作。
+
 录像也是相机应用的最重要功能之一，录像是循环帧的捕获。对于录像的流畅度，开发者可以参考[拍照](camera-shooting.md)中的步骤4，设置分辨率、闪光灯、焦距、照片质量及旋转角度等信息。
 
 ## 开发步骤
@@ -52,7 +56,7 @@
 
 3. 创建录像输出流。
 
-   通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)类中的videoProfiles属性，可获取当前设备支持的录像输出流。然后，定义创建录像的参数，通过[createVideoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createvideooutput)方法创建录像输出流。
+   通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)中的videoProfiles属性，可获取当前设备支持的录像输出流。然后，定义创建录像的参数，通过[createVideoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createvideooutput)方法创建录像输出流。
 
    > **说明：**
    >
@@ -60,9 +64,9 @@
    >
    > 2.在设置预览输出流的分辨率宽高前，需要先通过[AVRecorderProfile](../../reference/apis-media-kit/arkts-apis-media-i.md#avrecorderprofile9)查询视频帧支持可配置的宽高范围。
    >
-   > 3.获取录像旋转角度的方法：通过[VideoOutput](../../reference/apis-camera-kit/arkts-apis-camera-VideoOutput.md)类中的[getVideoRotation](../../reference/apis-camera-kit/arkts-apis-camera-VideoOutput.md#getvideorotation12)方法获取rotation实际的值。
+   > 3.获取录像旋转角度的方法：通过[VideoOutput](../../reference/apis-camera-kit/arkts-apis-camera-VideoOutput.md)中的[getVideoRotation](../../reference/apis-camera-kit/arkts-apis-camera-VideoOutput.md#getvideorotation12)方法获取rotation实际的值。
    >
-   > 4.录像输出流帧率通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)类中的videoProfiles属性，选择[VideoProfile](../../reference/apis-camera-kit/arkts-apis-camera-i.md#videoprofile)中[frameRateRange](../../reference/apis-camera-kit/arkts-apis-camera-i.md#frameraterange)满足实际业务需求的录像输出流videoProfile。
+   > 4.录像输出流帧率通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)中的videoProfiles属性，选择[VideoProfile](../../reference/apis-camera-kit/arkts-apis-camera-i.md#videoprofile)中[frameRateRange](../../reference/apis-camera-kit/arkts-apis-camera-i.md#frameraterange)满足实际业务需求的录像输出流videoProfile。
 
    ```ts
    async function getVideoOutput(cameraManager: camera.CameraManager, videoSurfaceId: string, cameraOutputCapability: camera.CameraOutputCapability): Promise<camera.VideoOutput | undefined> {

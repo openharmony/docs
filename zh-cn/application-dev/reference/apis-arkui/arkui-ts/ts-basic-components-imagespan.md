@@ -147,6 +147,8 @@ type ImageCompleteCallback = (result: ImageLoadResult) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名 | 类型                       | 必填 | 说明                               |
 | ------ | -------------------------- | ---- | ---------------------------------- |
 | result  | [ImageLoadResult](#imageloadresult12对象说明) | 是   | 图片数据加载成功和解码成功触发回调时返回的对象。 |
@@ -192,6 +194,7 @@ struct SpanExample {
       }.width('100%').textAlign(TextAlign.Center)
 
       Text() {
+        // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
         ImageSpan($r('app.media.app_icon'))
           .width('200px')
           .height('200px')
@@ -239,7 +242,8 @@ struct Index {
     Row() {
       Column() {
         Text() {
-          ImageSpan($r('app.media.sky'))//建议使用自定义的本地图片
+          // $r('app.media.sky')需要替换为开发者所需的图像资源文件。
+          ImageSpan($r('app.media.sky'))
             .width('60vp')
             .height('60vp')
             .verticalAlign(ImageSpanAlignment.CENTER)
@@ -262,6 +266,7 @@ struct Index {
 @Entry
 @Component
 struct Index {
+  // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
   @State src: ResourceStr = $r('app.media.app_icon');
 
   build() {
@@ -270,10 +275,10 @@ struct Index {
         ImageSpan(this.src)
           .width(100).height(100)
           .onError((err) => {
-            console.log("onError: " + err.message);
+            console.info("onError: " + err.message);
           })
           .onComplete((event) => {
-            console.log("onComplete: " + event.loadingStatus);
+            console.info("onComplete: " + event.loadingStatus);
           })
       }
     }.width('100%').height('100%')
@@ -299,7 +304,8 @@ struct SpanExample {
       Column({ space: 10 }) {
         //创建ColorFilter对象的方式为图片设置颜色滤镜
         Text() {
-          ImageSpan($r('app.media.sky'))//建议使用自定义的本地图片
+          // $r('app.media.sky')需要替换为开发者所需的图像资源文件。
+          ImageSpan($r('app.media.sky'))
             .width('60vp')
             .height('60vp')
             .colorFilter(this.DrawingColorFilterFirst)
@@ -307,7 +313,8 @@ struct SpanExample {
 
         //通过drawing.ColorFilter的方式为图片设置颜色滤镜
         Text() {
-          ImageSpan($r('app.media.sky'))//建议使用自定义的本地图片
+          // $r('app.media.sky')需要替换为开发者所需的图像资源文件。
+          ImageSpan($r('app.media.sky'))
             .width('60vp')
             .height('60vp')
             .colorFilter(drawing.ColorFilter.createBlendModeColorFilter({
@@ -345,7 +352,7 @@ struct SpanExample {
       if (error) {
         console.error(`http request failed with. Code: ${error.code}, message: ${error.message}`);
       } else {
-        console.log(`http request success.`);
+        console.info(`http request success.`);
         let imageData: ArrayBuffer = data.result as ArrayBuffer;
         let imageSource: image.ImageSource = image.createImageSource(imageData);
 

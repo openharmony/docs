@@ -56,7 +56,7 @@ ArkUI框架会在自定义组件确定位置时，将该自定义组件的子节
 
 | 参数名            | 类型                                                         |必填| 说明               |
 |----------------|------------------------------------------------------------|---|------------------|
-| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            |是 |计算自定义组件大小后的自身布局信息。         |
+| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            |是 |计算父组件（自定义组件）后的自身布局信息。         |
 | children       | Array&lt;[Layoutable](#layoutable10)&gt;                   |是 |计算子组件大小后的子组件布局信息。         |
 | constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) |是 |自定义组件的布局约束信息。 |
 
@@ -66,7 +66,7 @@ ArkUI框架会在自定义组件确定位置时，将该自定义组件的子节
 
 ## GeometryInfo<sup>10+</sup>
 
-父组件布局信息，继承自[SizeResult](#sizeresult10)。
+父组件（自定义组件）布局信息，继承自[SizeResult](#sizeresult10)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -74,9 +74,9 @@ ArkUI框架会在自定义组件确定位置时，将该自定义组件的子节
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| borderWidth | [EdgeWidth](ts-types.md#edgewidths9) |否|否| 父组件边框宽度。<br>单位：vp。            |
-| margin      | [Margin](ts-types.md#margin)       | 否|否|父组件margin信息。 <br>单位：vp。       |
-| padding     | [Padding](ts-types.md#padding)   |否|否| 父组件padding信息。<br>单位：vp。 |
+| borderWidth | [EdgeWidth](ts-types.md#edgewidths9) |否|否| 父组件（自定义组件）边框宽度。<br>单位：vp。            |
+| margin      | [Margin](ts-types.md#margin)       | 否|否|父组件（自定义组件）margin信息。 <br>单位：vp。       |
+| padding     | [Padding](ts-types.md#padding)   |否|否| 父组件（自定义组件）padding信息。<br>单位：vp。 |
 
 ## Layoutable<sup>10+</sup>
 
@@ -89,7 +89,7 @@ ArkUI框架会在自定义组件确定位置时，将该自定义组件的子节
 | 名称         | 类型       | 只读|可选|  说明                                                      |
 |--------------|---------------------------------- | ------|-----------------------------------------------------|---------------------|
 | measureResult| [MeasureResult](#measureresult10) |   否|否| 子组件测量后的尺寸信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>单位：vp     |
-| uniqueId<sup>18+</sup>| number | 否 |否| 系统为子组件分配的唯一标识UniqueID。<br>取值范围[0,+∞)。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| uniqueId<sup>18+</sup>| number | 否 |是| 系统为子组件分配的唯一标识UniqueID。<br>取值范围[0,+∞)。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ### layout
 
@@ -169,9 +169,9 @@ getBorderWidth() : DirectionalEdgesT\<number>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型       | 必填      |  说明                                                      |
-|--------------|---------------------------------- | -----------------------------------------------|---------------------|
-| uniqueId<sup>18+</sup>| number | 否 | 系统为子组件分配的唯一标识UniqueID。|
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| uniqueId<sup>18+</sup>| number | 否 | 是 | 系统为子组件分配的唯一标识UniqueID。|
 
 ### measure
 

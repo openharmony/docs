@@ -1,5 +1,11 @@
 # Randomly Generating a Symmetric Key (C/C++)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
 
 The following uses AES and SM4 as an example to describe how to randomly generate a symmetric key (**OH_CryptoSymKey**).
 
@@ -14,12 +20,11 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 For details about the algorithm specifications, see [AES](crypto-sym-key-generation-conversion-spec.md#aes).
 
-1. Call [OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create) with the string parameter **'AES256'** to create a symmetric key generator (**OH_CryptoSymKeyGenerator**) object for a 256-bit AES key.
+1. Call [OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md#oh_cryptosymkeygenerator_create) with the string parameter **'AES256'** to create a symmetric key generator (**OH_CryptoSymKeyGenerator**) object for a 256-bit AES key.
 
-2. Call [OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate) to randomly generate a symmetric key object (**OH_CryptoSymKey**).
+2. Call [OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md#oh_cryptosymkeygenerator_generate) to randomly generate a symmetric key object (**OH_CryptoSymKey**).
 
-3. Call [OH_CryptoSymKey_GetKeyData](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_getkeydata) to obtain the binary data of the key object.
-
+3. Call [OH_CryptoSymKey_GetKeyData](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md#oh_cryptosymkey_getkeydata) to obtain the binary data of the key object.
 
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
@@ -54,12 +59,11 @@ static OH_Crypto_ErrCode testGenerateSymKey()
 
 For details about the algorithm specifications, see [SM4](crypto-sym-key-generation-conversion-spec.md#sm4).
 
-1. Call [OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create) with the string parameter **'SM4_128'** to create a symmetric key generator (**OH_CryptoSymKeyGenerator**) object for a 128-bit SM4 key.
+1. Call [OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md#oh_cryptosymkeygenerator_create) with the string parameter **'SM4_128'** to create a symmetric key generator (**OH_CryptoSymKeyGenerator**) object for a 128-bit SM4 key.
 
-2. Call [OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate) to randomly generate a symmetric key object (**OH_CryptoSymKey**).
+2. Call [OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md#oh_cryptosymkeygenerator_generate) to randomly generate a symmetric key object (**OH_CryptoSymKey**).
 
-3. Call [OH_CryptoSymKey_GetKeyData](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_getkeydata) to obtain the binary data of the key object.
-
+3. Call [OH_CryptoSymKey_GetKeyData](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md#oh_cryptosymkey_getkeydata) to obtain the binary data of the key object.
 
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
