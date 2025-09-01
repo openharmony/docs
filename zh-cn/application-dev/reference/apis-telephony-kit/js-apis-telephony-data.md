@@ -41,7 +41,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getDefaultCellularDataSlotId((err: BusinessError, contextData: number) => {
     if(err) {
-        console.error(`getDefaultCellularDataSlotId fail,callback: err->${JSON.stringify(err)}, contextData->${JSON.stringify(contextData)}`);
+        console.error(`getDefaultCellularDataSlotId fail, callback: err->${JSON.stringify(err)}, contextData->${JSON.stringify(contextData)}`);
     } else {
         console.log(`getDefaultCellularDataSlotId success`);
     }
@@ -120,7 +120,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getCellularDataFlowType((err: BusinessError, contextData: data.DataFlowType) => {
     if(err) {
-        console.error(`getCellularDataFlowType fail,callback: err->${JSON.stringify(err)}, contextData->${JSON.stringify(contextData)}`);
+        console.error(`getCellularDataFlowType fail, callback: err->${JSON.stringify(err)}, contextData->${JSON.stringify(contextData)}`);
     } else {
         console.log(`getCellularDataFlowType success`);
     }
@@ -176,7 +176,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getCellularDataState((err: BusinessError, contextData: data.DataConnectState) => {
     if(err) {
-        console.error(`getCellularDataState fail,callback: err->${JSON.stringify(err)}, contextData->${JSON.stringify(contextData)}`);
+        console.error(`getCellularDataState fail, callback: err->${JSON.stringify(err)}, contextData->${JSON.stringify(contextData)}`);
     } else {
         console.log(`getCellularDataState success`);
     }
@@ -247,7 +247,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 data.isCellularDataEnabled((err: BusinessError, contextData: boolean) => {
     if(err) {
-        console.error(`isCellularDataEnabled fail,callback: err->${JSON.stringify(err)}, contextData->${JSON.stringify(contextData)}`);
+        console.error(`isCellularDataEnabled fail, callback: err->${JSON.stringify(err)}, contextData->${JSON.stringify(contextData)}`);
     } else {
         console.log(`isCellularDataEnabled success`);
     }
@@ -374,7 +374,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 data.isCellularDataRoamingEnabled(0, (err: BusinessError, contextData: boolean) => {
     if(err) {
-        console.error(`isCellularDataRoamingEnabled fail,callback: err->${JSON.stringify(err)}, contextData->${JSON.stringify(contextData)}`);
+        console.error(`isCellularDataRoamingEnabled fail, callback: err->${JSON.stringify(err)}, contextData->${JSON.stringify(contextData)}`);
     } else {
         console.log(`isCellularDataRoamingEnabled success`);
     }
