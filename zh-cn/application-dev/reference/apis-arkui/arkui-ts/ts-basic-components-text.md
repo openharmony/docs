@@ -1100,6 +1100,24 @@ shaderStyle(shader: ShaderStyle)
 | -------------- | -------------------------------------------- | ----------------------------------- | ----------------------------------- |
 | shader | [ShaderStyle](../arkui-ts/ts-text-common.md#shaderstyle20) | 是 | 径向渐变或线性渐变或纯色。<br/>根据传入的参数区分处理径向渐变[RadialGradientStyle](../arkui-ts/ts-text-common.md#radialgradientstyle20)或线性渐变[LinearGradientStyle](../arkui-ts/ts-text-common.md#lineargradientstyle20)或纯色[ColorShaderStyle](../arkui-ts/ts-text-common.md#colorshaderstyle20)，最终设置到Text文本上显示为渐变色效果。<br/>**说明：** <br/>当设置为径向渐变[RadialGradientStyle](../arkui-ts/ts-text-common.md#radialgradientstyle20)时，若[RadialGradientOptions](./ts-universal-attributes-gradient-color.md#radialgradientoptions18对象说明)的center参数设置到组件范围外时，可将repeating参数设置为true，此时渐变效果会更明显。 |
 
+### textContentAlign<sup>21+</sup>
+
+textContentAlign(textContentAlign: Optional\<TextContentAlign>)
+
+设置文本内容区在组件内的垂直对齐方式。
+
+此接口可以在文本内容区高度大于组件高度时生效，确保文本内容区的对齐方式正确显示。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                        | 必填 | 说明                                                       |
+| ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
+| textContentAlign  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[TextContentAlign](../arkui-ts/ts-text-common.md#textcontentalign21)> | 是   | 文本段落在垂直方向的对齐方式。<br/>默认(undefined和异常值情况下)和align属性设置为Center效果一致。|
+
 ## TextSpanType<sup>11+</sup>枚举说明
 
 [Span](ts-basic-components-span.md)类型信息。
@@ -2438,3 +2456,29 @@ struct TextNumberTransition {
 ```
 
 ![Text_content_transition](figures/Text_content_transition.gif)
+
+### 示例19（文本内容区垂直对齐）
+
+从API version 21开始，该示例通过[textContentAlign](#textcontentalign21)属性展示了当文本内容区高度大于组件高度时文本内容区的垂直对齐。
+
+```ts
+@Entry
+@Component
+struct TextContentAlignExample {
+
+  build() {
+    Column() {
+      Row() {
+        Text('这是一段展示文字')
+          .fontSize(30)
+          .backgroundColor(Color.Gray)
+          .width('80%')
+          .height(20)
+          .textContentAlign(TextContentAlign.CENTER)
+      }.height('60%')
+    }
+  }
+}
+```
+
+![Text_Content_Align](figures/TextContentAlign.png)

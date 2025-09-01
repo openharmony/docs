@@ -1157,3 +1157,17 @@ constructor(options?: NumericTextTransitionOptions)
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | constraintWidth | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | 否 | 是 | 设置被计算文本布局宽度。若不设置则宽度为单行布局所占最大宽度值。 |
+
+## TextContentAlign<sup>21+</sup>
+
+文本内容区垂直对齐方向。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                   | 值  | 说明                  |
+| --------------------- | -------  | ------------------- |
+| TOP                   | 0  | 内容区顶部对齐。 |
+| CENTER                | 1  | 内容区中心对齐。 |
+| BOTTOM                | 2  | 内容区底部对齐。 |
