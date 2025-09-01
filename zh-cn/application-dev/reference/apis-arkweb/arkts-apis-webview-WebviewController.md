@@ -4639,34 +4639,23 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>, prefetchOptions
 | ------------------| --------------------------------| ---- | ------------- |
 | url               | string                          | 是    | 预加载的url。|
 | additionalHeaders | Array\<[WebHeader](./arkts-apis-webview-i.md#webheader)> | 否    | url的附加HTTP请求头。<br>默认值： [] |
-| prefetchOptions | [PrefetchOptions](./arkts-apis-webview-PrefetchOptions.md)> | 否    | 用来自定义预取行为的相关选项。 |
+| prefetchOptions | [PrefetchOptions](./arkts-apis-webview-PrefetchOptions.md) | 否    | 用来自定义预取行为的相关选项。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048.                                                 |
+| 17100002 | URL error. Invalid url.                                                 |
 
 **示例：**
 
 ```ts
 // xxx.ets
-import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { webview } from '@kit.ArkWeb';
-export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log("EntryAbility onCreate")
-    webview.WebviewController.setAutoPreconnectEnabled(false);
-    webview.WebviewController.initializeWebEngine()
-    console.log("EntryAbility onCreate done")
-  }
-}
-// xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 @Entry
 @Component
 struct WebComponent {
@@ -4722,7 +4711,7 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
