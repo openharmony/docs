@@ -27,7 +27,7 @@
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| setEventConfig(name: string, config: Record<string, ParamType>): Promise&lt;void> | 设置资源泄漏日志规格参数，name应为资源泄漏事件名称常量hiappevent.event.RESOURCE_OVERLIMIT。**仅支持js内存泄漏类型。**<br />**说明**：从API version 21开始，支持该接口。 |
+| setEventConfig(name: string, config: Record<string, ParamType>): Promise&lt;void> | 设置资源泄漏日志规格参数，name应为资源泄漏事件名称常量hiappevent.event.RESOURCE_OVERLIMIT。**仅支持js内存泄漏类型。**<br />**说明**：从API version 20开始，支持该接口。 |
 
 ### 参数设置
 

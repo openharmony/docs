@@ -22,7 +22,7 @@
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| setEventConfig(name: string, config: Record&lt;string, ParamType>): Promise&lt;void> | 此方法用于设置事件的自定义配置。在资源泄漏检测事件中，仅支持设置js内存泄漏事件的配置。<br />**说明**：从API version 21开始，支持该接口。 |
+| setEventConfig(name: string, config: Record&lt;string, ParamType>): Promise&lt;void> | 此方法用于设置事件的自定义配置。在资源泄漏检测事件中，仅支持设置js内存泄漏事件的配置。<br />**说明**：从API version 20开始，支持该接口。 |
 
 ### 接口描述
 
