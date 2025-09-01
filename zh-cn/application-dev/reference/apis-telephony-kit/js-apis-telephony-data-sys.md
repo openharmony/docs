@@ -160,7 +160,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 data.enableCellularData((err: BusinessError) => {
     if(err){
-        console.error(`enableCellularData fail,callback: callback: err->${JSON.stringify(err)}`);
+        console.error(`enableCellularData fail,callback: err->${JSON.stringify(err)}`);
     }else{
         console.log(`enableCellularData success`);
     }
@@ -250,7 +250,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 data.disableCellularData((err: BusinessError) => {
     if(err){
-        console.error(`disableCellularData fail,callback: callback: err->${JSON.stringify(err)}`);
+        console.error(`disableCellularData fail,callback: err->${JSON.stringify(err)}`);
     }else{
         console.log(`disableCellularData success`);
     }
