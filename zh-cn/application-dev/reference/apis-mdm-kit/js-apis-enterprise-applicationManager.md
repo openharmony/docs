@@ -198,6 +198,8 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**设备行为差异：** 该接口在API version 20及之前的版本中仅支持PC/2in1设备，在其他设备中调用无效果。从API version 21开始，支持手机和平板。
+
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
@@ -255,6 +257,8 @@ removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**设备行为差异：** 该接口在API version 20及之前的版本中仅支持PC/2in1设备，在其他设备中调用无效果。从API version 21开始，支持手机和平板。
+
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
@@ -310,6 +314,8 @@ removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number)
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在API version 20及之前的版本中仅支持PC/2in1设备，在其他设备中调用无效果。从API version 21开始，支持手机和平板。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -369,6 +375,8 @@ getAutoStartApps(admin: Want): Array\<Want>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**设备行为差异：** 该接口在API version 20及之前的版本中仅支持PC/2in1设备，在其他设备中调用无效果。从API version 21开始，支持手机和平板。
+
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
@@ -423,6 +431,8 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number, di
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在API version 20及之前的版本中仅支持PC/2in1设备，在其他设备中调用无效果。从API version 21开始，支持手机和平板。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -483,6 +493,8 @@ getAutoStartApps(admin: Want, accountId: number): Array\<Want>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**设备行为差异：** 该接口在API version 20及之前的版本中仅支持PC/2in1设备，在其他设备中调用无效果。从API version 21开始，支持手机和平板。
+
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
@@ -537,6 +549,8 @@ isModifyAutoStartAppsDisallowed(admin: Want, autoStartApp: Want, accountId: numb
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**设备行为差异：** 该接口在API version 20及之前的版本中仅支持PC/2in1设备，在其他设备中调用无效果。从API version 21开始，支持手机和平板。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -595,7 +609,6 @@ try {
 addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): void
 
 添加保活应用名单。<!--RP7--><!--RP7End-->通过本接口添加至保活名单的应用，禁止用户在设备上手动取消保活<!--RP6--><!--RP6End-->，但可通过[removeKeepAliveApps](#applicationmanagerremovekeepaliveapps14)接口将应用从保活名单中移除。如果将应用添加至应用禁止运行名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活应用名单，否则会报9200010冲突错误码。
-
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
