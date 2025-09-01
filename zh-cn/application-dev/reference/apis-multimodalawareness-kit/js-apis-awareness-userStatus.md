@@ -54,7 +54,9 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 
 **设备行为差异**：该接口在Phone中可正常调用，在其他设备类型中返回801错误码。
 
-**说明**：该接口仅在部分Phone中支持使用，当Phone设备不支持时返回801错误码。
+> **说明：**
+>
+> 该接口仅在部分Phone中支持使用，当Phone设备不支持时返回801错误码。
 
 **参数**：
 
