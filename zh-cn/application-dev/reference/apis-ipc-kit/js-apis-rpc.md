@@ -3583,7 +3583,7 @@ readRawData(size: number): number[]
     let sequence = rpc.MessageSequence.create();
     let arr = [1, 2, 3, 4, 5];
     sequence.writeRawData(arr, arr.length);
-    let size = array.length;
+    let size = arr.length;
     let result = sequence.readRawData(size);
     hilog.info(0x0000, 'testTag', 'sequence read raw data result is ' + result);
   } catch (error) {
