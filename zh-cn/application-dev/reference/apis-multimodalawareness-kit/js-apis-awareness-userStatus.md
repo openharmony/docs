@@ -44,7 +44,7 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 
 ## userStatus.on('userAgeGroupDetected')
 
- on(type: 'userAgeGroupDetected', callback: Callback&lt;UserClassification&gt;): void;
+ on(type: 'userAgeGroupDetected', callback: Callback&lt;UserClassification&gt;): void
 
 订阅年龄群组检测功能。
 
@@ -91,7 +91,7 @@ try {
 
 ## userStatus.off('userAgeGroupDetected')
 
-off(type: 'userAgeGroupDetected', callback?: Callback&lt;UserClassification&gt;): void;
+off(type: 'userAgeGroupDetected', callback?: Callback&lt;UserClassification&gt;): void
 
 取消订阅年龄群组检测功能。
 
