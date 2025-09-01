@@ -322,7 +322,7 @@ chainMode(direction: Axis, style: ChainStyle): T
 
 >  **说明：**
 >
->  使用链时，RelativeContainer会为链中的相互依赖的组件定义一个大小计算顺序，大小计算完成后再确定使用ChainStyle的位置。因此使用SPREAD或PACKED风格时，只以链头组件为锚点进行布局的非链组件A和链中其他节点有相同布局优先级，组件A的id的字典排序靠前时会出现组件A的alignRules先于链的ChainStyle生效。
+>  使用链时，RelativeContainer会为链中的相互依赖的组件定义一个大小计算顺序，大小计算完成后再确定使用ChainStyle的位置。因此使用SPREAD或PACKED风格时，只以链头组件为锚点进行布局的非链组件A和链中其他节点有相同布局优先级，当组件A的id的字典排序靠前时，此时组件A的alignRules先于链的ChainStyle生效。
 
 ## chainWeight<sup>14+</sup>
 
@@ -649,7 +649,7 @@ struct buttonTestDemo {
     Row() {
       Column() {
 
-        Row() {
+        Row({ space: 5 }) {
           Button('START')
             .onClick(() => {
               this.isLocalizedAlignmentIndex = 3
@@ -664,7 +664,7 @@ struct buttonTestDemo {
             })
         }.margin(20)
 
-        Row() {
+        Row({ space: 5 }) {
           Button('Ltr')
             .onClick(() => {
               this.isDirectionIndex = 0
@@ -678,6 +678,7 @@ struct buttonTestDemo {
               this.isDirectionIndex = 2
             })
         }.margin(20)
+
         Row() {
           Button('OK', { type: ButtonType.Capsule, stateEffect: true })
             .backgroundColor(0x317aff)
@@ -693,7 +694,7 @@ struct buttonTestDemo {
   }
 }
 ```
-![position.png](figures/position4.png)
+![position4.gif](figures/position4.gif)
 
 ### 示例6（layoutGravity属性单独设置Stack容器中子组件的对齐规则）
 
