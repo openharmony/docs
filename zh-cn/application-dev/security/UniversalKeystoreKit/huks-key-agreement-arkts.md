@@ -52,8 +52,8 @@
 ### X25519非对称密钥协商用例
 ```ts
 /*
-*以下以X25519密钥的Promise操作使用为例
-*/
+ * 以下以X25519密钥的Promise操作使用为例
+ */
 import { huks } from '@kit.UniversalKeystoreKit';
 import { BusinessError } from "@kit.BasicServicesKit";
 
@@ -74,8 +74,8 @@ function Uint8ArrayToString(fileData: Uint8Array) {
 }
 
 /*
-* 确定密钥别名和封装密钥属性参数集
-*/
+ * 确定密钥别名和封装密钥属性参数集
+ */
 let srcKeyAliasFirst = "AgreeX25519KeyFirstAlias";
 let srcKeyAliasSecond = "AgreeX25519KeySecondAlias";
 let agreeX25519InData = 'AgreeX25519TestIndata';
@@ -253,7 +253,7 @@ async function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
 }
 
 async function testAgree() {
-  /* 1.确定密钥别名并集成要参数集 A设备：srcKeyAliasFirst  B设备：srcKeyAliasSecond*/
+  /* 1.确定密钥别名并集成要参数集。A设备：srcKeyAliasFirst；B设备：srcKeyAliasSecond */
   /* 2.设备A生成密钥 */
   await generateKeyItem(srcKeyAliasFirst, HuksOptions);
   /* 3.设备B生成密钥 */
@@ -263,17 +263,17 @@ async function testAgree() {
   exportKeyFirst = exportKey;
   await exportKeyItem(srcKeyAliasSecond, HuksOptions);
   exportKeySecond = exportKey;
-  /* 5.对第一个密钥进行协商（三段式）*/
+  /* 5.对第一个密钥进行协商（三段式） */
   await initSession(srcKeyAliasFirst, HuksOptions);
   HuksOptions.inData = exportKeySecond;
   await updateSession(handle, HuksOptions);
   await finishSession(handle, finishOptionsFirst);
-  /* 5.对第二个密钥进行协商（三段式） */
+  /* 6.对第二个密钥进行协商（三段式） */
   await initSession(srcKeyAliasSecond, HuksOptions);
   HuksOptions.inData = exportKeyFirst;
   await updateSession(handle, HuksOptions);
   await finishSession(handle, finishOptionsSecond);
-  /* 6.设备A、B删除密钥 */
+  /* 7.设备A、B删除密钥 */
   await deleteKeyItem(srcKeyAliasFirst, HuksOptions);
   await deleteKeyItem(srcKeyAliasSecond, HuksOptions);
 }
@@ -282,8 +282,8 @@ async function testAgree() {
 ### DH密钥协商用例
 ```ts
 /*
-*以下以 DH密钥的Promise操作使用为例
-*/
+ * 下面以DH密钥的Promise操作使用为例
+ */
 import { huks } from '@kit.UniversalKeystoreKit';
 
 function StringToUint8Array(str: string) {
