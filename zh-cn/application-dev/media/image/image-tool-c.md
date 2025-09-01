@@ -35,8 +35,6 @@ EXIF信息的读取与编辑相关C API接口的详细介绍请参见[OH_ImageSo
 在创建ImageSource实例后，读取、编辑EXIF信息。
 
 ```c++
-
-#include <linux/kd.h>
 #include <string>
 
 #include <hilog/log.h>
@@ -63,7 +61,7 @@ static napi_value exifTest(napi_env env, napi_callback_info info)
     size_t argCount = NUM_1;
     if (napi_get_cb_info(env, info, &argCount, argValue, nullptr, nullptr) != napi_ok || argCount < NUM_1 ||
         argValue[NUM_0] == nullptr) {
-        OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest exifTest napi_get_cb_info failed, argCount: %{public}d.", argCount);
+        OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest exifTest napi_get_cb_info failed, argCount: %{public}lu.", argCount);
         return getJsResult(env, IMAGE_BAD_PARAMETER);
     }
     char name[1024];
