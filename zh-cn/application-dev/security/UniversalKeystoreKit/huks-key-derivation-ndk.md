@@ -171,7 +171,8 @@ static napi_value DeriveKey(napi_env env, napi_callback_info info)
         }
 
         // finish paramset
-        ohResult = InitParamSet(&hkdfFinishParamSet, g_hkdfFinishParams, sizeof(g_hkdfFinishParams) / sizeof(OH_Huks_Param));
+        ohResult = InitParamSet(&hkdfFinishParamSet, g_hkdfFinishParams,
+            sizeof(g_hkdfFinishParams) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
