@@ -1,5 +1,12 @@
 # @ohos.ability.featureAbility (FeatureAbility模块)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @lidongrui-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 FeatureAbility模块提供与用户进行交互的Ability的能力，包括启动新的Ability、停止Ability、获取dataAbilityHelper对象、获取当前Ability对应的窗口，连接断连Service等。
 
 > **说明：**
@@ -596,9 +603,12 @@ terminateSelf(): Promise\<void>
 <!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 featureAbility.terminateSelf().then(() => {
   console.info('==========================>terminateSelf=======================>');
+}).catch((error: BusinessError) => {
+  console.error(`terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}`);
 });
 ```
 
