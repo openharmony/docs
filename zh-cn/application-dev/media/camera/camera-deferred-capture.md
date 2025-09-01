@@ -60,6 +60,7 @@
 3. 设置拍照photoAssetAvailable的回调。
 
    > **注意：**
+   >
    > 如果已经注册了photoAssetAvailable回调，并且在Session开始之后又注册了photoAvailable回调，photoAssetAvailable和photoAvailable同时注册，会导致流被重启，仅photoAssetAvailable生效。
    >
    > 不建议开发者同时注册[photoAvailable](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#onphotoavailable11)和[photoAssetAvailable](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#onphotoassetavailable12)。
