@@ -6106,6 +6106,117 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 }
 ```
 
+### setHasAppLink<sup>21+</sup>
+
+static setHasAppLink(hasAppLink: int): Promise&lt;void&gt;
+
+设置记忆链接的状态信息，使用promise方式返回异步结果。
+
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型             | 必填   | 说明    |
+| ---- | -------------- | ---- | ----- |
+| hasAppLink | int | 是    | 设置记忆链接的状态信息。 |
+
+**返回值：**
+
+| 类型                  | 说明         |
+| ------------------- | ---------- |
+| Promise&lt;void&gt; | Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202   | Called by non-system application.       |
+| 23800301 | Internal system error.It is recommended to retry and check the logs. |
+
+**示例：**
+
+```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
+enum linkType {
+  NOT_DECODED = 0,
+  LINK_NOT_EXIST = 1,
+  LINK_EXIST = 2
+}
+
+async function example(asset: photoAccessHelper.PhotoAsset, hasAppLink: linkType) {
+    try {
+      let phAccessHelper: photoAccessHelper.PhotoAccessHelper =
+        photoAccessHelper.getPhotoAccessHelper(getContext());
+      let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest =
+        new photoAccessHelper.MediaAssetChangeRequest(asset);
+      assetChangeRequest.setHasAppLink(hasAppLink);
+      await phAccessHelper.applyChanges(assetChangeRequest);
+    } catch (error) {
+      Log.error(TAG, 'set hasAppLink error: ' + error);
+      return;
+    }
+}
+```
+
+### setAppLinkInfo<sup>21+</sup>
+
+static setAppLinkInfo(appLink: string): Promise&lt;void&gt;
+
+设置记忆链接的信息，使用promise方式返回异步结果。
+
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型             | 必填   | 说明    |
+| ---- | -------------- | ---- | ----- |
+| appLink | string | 是    | 设置记忆链接的信息。 |
+
+**返回值：**
+
+| 类型                  | 说明         |
+| ------------------- | ---------- |
+| Promise&lt;void&gt; | Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202   | Called by non-system application.       |
+| 23800301 | Internal system error.It is recommended to retry and check the logs. |
+
+**示例：**
+
+```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
+
+async function example(asset: photoAccessHelper.PhotoAsset, appLinkInfo: string) {
+    try {
+      let phAccessHelper: photoAccessHelper.PhotoAccessHelper =
+        photoAccessHelper.getPhotoAccessHelper(getContext());
+      let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest =
+        new photoAccessHelper.MediaAssetChangeRequest(asset);
+      assetChangeRequest.setHasAppLink(appLinkInfo);
+      await phAccessHelper.applyChanges(assetChangeRequest);
+    } catch (error) {
+      Log.error(TAG, 'set appLinkInfo error: ' + error);
+      return;
+    }
+}
+```
+
 ### deleteLocalAssetsPermanentlyWithUri<sup>19+</sup>
 
 static deleteLocalAssetsPermanentlyWithUri(context: Context, assetUris: Array&lt;String&gt;): Promise&lt;void&gt;
@@ -9483,6 +9594,8 @@ async function example(context: Context) {
 | IS_RECENT_SHOW<sup>18+</sup>  | 'is_recent_show' | 是否设置为最近显示。**系统接口**：此接口为系统接口。 |
 | SUM_SIZE<sup>19+</sup>  | 'sum(size)' | 文件大小总和。在fetchColumns中填入SUM_SIZE属性时，仅获取到第一个资产，并且属性中带有所有资产的总大小。**系统接口**：此接口为系统接口。 |
 | EXIF_ROTATE<sup>20+</sup>  | 'exif_rotate' | 文件的旋转角度信息。**系统接口**：此接口为系统接口。 |
+| HAS_APPLINK<sup>21+</sup>  | 'has_applink' | 文件记忆链接的状态信息。**系统接口**：此接口为系统接口。 |
+| APPLINK<sup>21+</sup>  | 'applink' | 文件记忆链接的信息。**系统接口**：此接口为系统接口。 |
 
 ## AlbumKeys
 
