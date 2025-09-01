@@ -313,9 +313,9 @@ media.createParallelSoundPool(5, audioRendererInfo).then((soundpool_: media.Soun
 
 **系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
 
-| 名称     | 类型   |  可读   |   可写    |  说明                   |
+| 名称     | 类型   |  只读   |   可选    |  说明                   |
 | -------- | ------ |   ------| ------ | ---------------------- |
-| colorFormat  | [PixelFormat](#pixelformat11) |  是   |  是   | 输出的缩略图颜色格式<br>**系统接口：** 该接口为系统接口      |
+| colorFormat  | [PixelFormat](#pixelformat11) |  否   |  是   | 输出的缩略图颜色格式。<br>**系统接口：** 该接口为系统接口。      |
 
 ## PixelFormat<sup>11+</sup>
 
