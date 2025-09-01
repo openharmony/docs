@@ -36,13 +36,13 @@ AdComponent({
 
 **参数：**
 
-| 名称                        | 类型                                                                              | 必填 | 装饰器类型    | 说明                                                                                                                |
-|-----------------------------|-----------------------------------------------------------------------------------|-----|---------------|-------------------------------------------------------------------------------------------------------------------|
-| ads                         | advertising.[Advertisement](js-apis-advertising.md#advertisement)[]               | 是   | -             | 广告对象数组。<br/>原子化服务API：从API version 12开始，该接口支持在原子化服务中使用。                                  |
-| displayOptions              | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions)           | 是   | -             | 广告展示参数。<br/>原子化服务API：从API version 12开始，该接口支持在原子化服务中使用。                                  |
-| interactionListener         | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | 是   | -             | 广告状态变化回调。<br/>原子化服务API：从API version 12开始，该接口支持在原子化服务中使用。                              |
-| adRenderer<sup>12+</sup>    | () => void                                                                        | 否   | @BuilderParam | 应用自渲染广告样式。                                                                                                 |
-| rollPlayState<sup>15+</sup> | number                                                                            | 否   | @Prop         | 用于对外提供贴片广告的播放状态。设置为1表示播放，设置为2表示暂停。默认值为2。其他值被视为非法值，不会改变当前的播放状态。 |
+| 名称                        | 类型                                                                              | 必填 | 装饰器类型    | 说明                                                                                                                                                                                                  |
+|-----------------------------|-----------------------------------------------------------------------------------|------|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ads                         | advertising.[Advertisement](js-apis-advertising.md#advertisement)[]               | 是   | -             | 广告对象数组。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                            |
+| displayOptions              | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions)           | 是   | -             | 广告展示参数。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                            |
+| interactionListener         | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | 是   | -             | 广告状态变化回调。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                        |
+| adRenderer<sup>12+</sup>    | () => void                                                                        | 否   | @BuilderParam | 应用自渲染广告样式。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                                                                                      |
+| rollPlayState<sup>15+</sup> | number                                                                            | 否   | @Prop         | 用于对外提供贴片广告的播放状态。设置为1表示播放，设置为2表示暂停。默认值为2。其他值被视为非法值，不会改变当前的播放状态。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ### build
 
