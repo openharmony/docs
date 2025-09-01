@@ -581,11 +581,6 @@ let eventData: emitter.EventData = {
   data: record
 };
 
-let innerEvent: emitter.InnerEvent = {
-  eventId: 1,
-  priority: emitter.EventPriority.HIGH
-};
-
 emitter.emit("eventId", eventData);
 ```
 
