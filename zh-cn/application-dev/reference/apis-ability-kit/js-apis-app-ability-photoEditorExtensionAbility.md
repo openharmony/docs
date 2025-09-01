@@ -9,7 +9,7 @@
 
 PhotoEditorExtensionAbility继承自[ExtensionAbility](js-apis-app-ability-extensionAbility.md)，开发者可通过PhotoEditorExtensionAbility实现图片编辑扩展页面。应用通过[startAbilityByType](js-apis-inner-application-uiAbilityContext.md#startability)拉起图片编辑类应用扩展面板后，由用户在面板上选择实现了PhotoEditorExtensionAbility的图片编辑扩展页面并拉起该页面。
 
-![Targetapp_PhotoEditorExtensionAbility](figures/photo_editor_demo.jpg)
+![Targetapp_PhotoEditorExtensionAbility](figures/photo-editor-demo.jpg)
 
 > **说明：**
 > 
@@ -31,9 +31,9 @@ import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
 
 |  名称 |类型   |只读   |可选   |说明   |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|  context | [PhotoEditorExtensionContext](./js-apis-app-ability-photoEditorExtensionContext.md)  | 否  | 否  | PhotoEditorExtensionAbility的上下文，提供保存图片能力  |
+|  context | [PhotoEditorExtensionContext](./js-apis-app-ability-photoEditorExtensionContext.md)  | 否  | 否  | PhotoEditorExtensionAbility的上下文，提供保存图片能力。  |
 
-### PhotoEditorExtensionAbility.onCreate
+### onCreate
 
 onCreate(): void
 
@@ -58,7 +58,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 ```
 
-### PhotoEditorExtensionAbility.onStartContentEditing
+### onStartContentEditing
 
 onStartContentEditing(uri: string, want: Want, session: UIExtensionContentSession): void
 
@@ -91,7 +91,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 ```
 
-###  PhotoEditorExtensionAbility.onForeground
+###  onForeground
 
 onForeground(): void
 
@@ -116,7 +116,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 ```
 
-###  PhotoEditorExtensionAbility.onBackground
+### onBackground
 
 onBackground(): void
 
@@ -141,7 +141,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 ```
 
-### PhotoEditorExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void | Promise\<void>
 
@@ -154,7 +154,7 @@ PhotoEditorExtensionAbility生命周期回调，在销毁时回调，执行资�
 **返回值：**
 |  类型 |说明   |
 | ------------ | ------------ |
-|  Promise\<void> |  无返回结果的Promise对象。 |
+|  void \| Promise\<void> |  无返回结果的Promise对象。 |
 
 **示例：**
 
