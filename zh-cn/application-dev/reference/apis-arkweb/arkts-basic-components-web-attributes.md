@@ -2223,6 +2223,8 @@ metaViewport(enabled: boolean)
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**设备行为差异：** 该接口在Phone、Wearable、TV设备中可正常调用，在PC/2in1设备中无效果，在Tablet设备中，设置为true或false均会解析meta标签viewport-fit属性。当`viewport-fit=cover`时，可通过CSS属性获取安全区域大小。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明                         |
@@ -2279,6 +2281,8 @@ textAutosizing(textAutosizing: boolean)
 > - 4. 前端无metaViewport设置，或metaViewport设置中无"width"和"initial-scale"属性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**设备行为差异：** 该接口在PC/2in1设备中无效果，在其他设备中可正常调用。
 
 **参数：**
 
