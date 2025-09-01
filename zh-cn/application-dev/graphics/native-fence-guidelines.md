@@ -1,7 +1,7 @@
 # GPU/CPU内存访问同步操作开发指南 (C/C++)
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphics-->
-<!--Owner: @BruceXu; @li_hui180; @ding-panyun-->
+<!--Owner: @Felix-fangyang; @li_hui180; @dingpy-->
 <!--Designer: @conan13234-->
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
