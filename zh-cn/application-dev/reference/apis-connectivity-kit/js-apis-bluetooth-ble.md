@@ -2157,15 +2157,15 @@ server端订阅GATT profile协议的连接状态变化事件。使用Callback异
 **示例：**
 
 ```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { constant } from '@kit.ConnectivityKit';
-let Connected = (bleConnectionChangeState: ble.BLEConnectionChangeState) => {
+let connected = (bleConnectionChangeState: ble.BLEConnectionChangeState) => {
     let deviceId: string = bleConnectionChangeState.deviceId;
     let status: constant.ProfileConnectionState = bleConnectionChangeState.state;
 }
 try {
     let gattServer: ble.GattServer = ble.createGattServer();
-    gattServer.on('connectionStateChange', Connected);
+    gattServer.on('connectionStateChange', connected);
 } catch (err) {
     console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
