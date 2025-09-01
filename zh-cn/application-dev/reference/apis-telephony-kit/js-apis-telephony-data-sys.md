@@ -66,7 +66,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 data.setDefaultCellularDataSlotId(0, (err: BusinessError) => {
     if(err) {
-        console.error(`setDefaultCellularDataSlotId fail, callback: err->${JSON.stringify(err)}.`);
+        console.error(`setDefaultCellularDataSlotId fail. code: ${err.code}, message: ${err.message}`);
     } else {
         console.log(`setDefaultCellularDataSlotId success`);
     }
@@ -122,7 +122,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 data.setDefaultCellularDataSlotId(0).then(() => {
     console.log(`setDefaultCellularDataSlotId success.`);
 }).catch((err: BusinessError) => {
-    console.error(`setDefaultCellularDataSlotId fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`setDefaultCellularDataSlotId fail. code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -167,7 +167,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 data.enableCellularData((err: BusinessError) => {
     if(err) {
-        console.error(`enableCellularData fail, callback: err->${JSON.stringify(err)}`);
+        console.error(`enableCellularData fail. code: ${err.code}, message: ${err.message}`);
     } else {
         console.log(`enableCellularData success`);
     }
@@ -213,7 +213,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 data.enableCellularData().then(() => {
     console.log(`enableCellularData success.`);
 }).catch((err: BusinessError) => {
-    console.error(`enableCellularData fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`enableCellularData fail. code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -257,7 +257,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 data.disableCellularData((err: BusinessError) => {
     if(err) {
-        console.error(`disableCellularData fail, callback: err->${JSON.stringify(err)}`);
+        console.error(`disableCellularData fail. code: ${err.code}, message: ${err.message}`);
     } else {
         console.log(`disableCellularData success`);
     }
@@ -303,7 +303,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 data.disableCellularData().then(() => {
     console.log(`disableCellularData success.`);
 }).catch((err: BusinessError) => {
-    console.error(`disableCellularData fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`disableCellularData fail. code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -348,7 +348,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 data.enableCellularDataRoaming(0, (err: BusinessError) => {
     if(err) {
-        console.error(`enableCellularDataRoaming fail, callback: err->${JSON.stringify(err)}`);
+        console.error(`enableCellularDataRoaming fail. code: ${err.code}, message: ${err.message}`);
     } else {
         console.log(`enableCellularDataRoaming success`);
     }
@@ -402,7 +402,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 data.enableCellularDataRoaming(0).then(() => {
     console.log(`enableCellularDataRoaming success.`);
 }).catch((err: BusinessError) => {
-    console.error(`enableCellularDataRoaming fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`enableCellularDataRoaming fail. code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -447,7 +447,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 data.disableCellularDataRoaming(0, (err: BusinessError) => {
     if(err) {
-        console.error(`disableCellularDataRoaming fail, callback: err->${JSON.stringify(err)}`);
+        console.error(`disableCellularDataRoaming fail. code: ${err.code}, message: ${err.message}`);
     } else {
         console.log(`disableCellularDataRoaming success`);
     }
@@ -501,6 +501,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 data.disableCellularDataRoaming(0).then(() => {
     console.log(`disableCellularDataRoaming success.`);
 }).catch((err: BusinessError) => {
-    console.error(`disableCellularDataRoaming fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`disableCellularDataRoaming fail. code: ${err.code}, message: ${err.message}`);
 });
 ```
