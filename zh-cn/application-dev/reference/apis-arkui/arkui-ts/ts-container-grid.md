@@ -515,7 +515,7 @@ alignItems(alignment: Optional\<GridItemAlignment\>)
 
 focusWrapMode(mode: Optional\<FocusWrapMode\>)
 
-设置方向键走焦模式。
+设置交叉轴方向键走焦模式。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2029,29 +2029,29 @@ class MyNodeController extends NodeController {
   addCommonEvent(frameNode: FrameNode) {
     let gridEvent: UIGridEvent | undefined = typeNode.getEvent(frameNode, "Grid");
     gridEvent?.setOnWillScroll((scrollOffset: number, scrollState: ScrollState, scrollSource: ScrollSource) => {
-      console.log(`onWillScroll scrollOffset = ${scrollOffset}, scrollState = ${scrollState}, scrollSource = ${scrollSource}`);
+      console.info(`onWillScroll scrollOffset = ${scrollOffset}, scrollState = ${scrollState}, scrollSource = ${scrollSource}`);
     });
     gridEvent?.setOnDidScroll((scrollOffset: number, scrollState: ScrollState) => {
-      console.log(`onDidScroll scrollOffset = ${scrollOffset}, scrollState = ${scrollState}`);
+      console.info(`onDidScroll scrollOffset = ${scrollOffset}, scrollState = ${scrollState}`);
     });
     gridEvent?.setOnReachStart(() => {
-      console.log(`onReachStart`);
+      console.info(`onReachStart`);
     });
     gridEvent?.setOnReachEnd(() => {
-      console.log(`onReachEnd`);
+      console.info(`onReachEnd`);
     });
     gridEvent?.setOnScrollStart(() => {
-      console.log(`onScrollStart`);
+      console.info(`onScrollStart`);
     });
     gridEvent?.setOnScrollStop(() => {
-      console.log(`onScrollStop`);
+      console.info(`onScrollStop`);
     });
     gridEvent?.setOnScrollFrameBegin((offset: number, state: ScrollState) => {
-      console.log(`onScrollFrameBegin offset = ${offset}, state = ${state}`);
+      console.info(`onScrollFrameBegin offset = ${offset}, state = ${state}`);
       return undefined;
     });
     gridEvent?.setOnScrollIndex((first: number, last: number) => {
-      console.log(`onScrollIndex start = ${first}, end = ${last}`);
+      console.info(`onScrollIndex start = ${first}, end = ${last}`);
     });
   }
 }
@@ -2166,7 +2166,7 @@ struct GridScrollToIndexSample {
 
 ### 示例15（实现Grid滑动选择）
 
-该示例通过[PanGesture](./ts-basic-gestures-pangesture.md#pangesture)接口，实现了Grid组件一边滑动一边选择的效果。
+该示例通过[PanGesture](./ts-basic-gestures-pangesture.md#pangesture-1)接口，实现了Grid组件一边滑动一边选择的效果。
 
 GridDataSource说明及完整代码参考[示例2可滚动grid和滚动事件](#示例2可滚动grid和滚动事件)。
 
