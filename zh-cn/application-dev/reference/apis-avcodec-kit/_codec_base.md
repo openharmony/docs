@@ -51,7 +51,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 
 用于描述媒体数据的键值对查找表如下。键的类型是常量字符串，值的类型可以是int32_t/int64_t/float/double/char */uint8_t *。
 
-使用以下key的主要接口是[OH_AVFormat](_core.md#函数)，通过以下key可以进行参数配置或查询。
+使用以下key的主要接口是[OH_AVFormat](_core.md#oh_avformat)，通过以下key可以进行参数配置或查询。
 
 能力查询专有的键值对：
 
@@ -90,7 +90,6 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_VIDEO_SLICE_HEIGHT](#oh_md_key_video_slice_height)    | 描述视频帧高跨距的键，值类型为int32_t。该键是可选的。        |
 | [OH_MD_KEY_VIDEO_PIC_WIDTH](#oh_md_key_video_pic_width)       | 描述视频帧真实宽度的键，值类型为int32_t。该键是可选的。        |
 | [OH_MD_KEY_VIDEO_PIC_HEIGHT](#oh_md_key_video_pic_height)    | 描述视频帧真实高度的键，值类型为int32_t。该键是可选的。        |
-| [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency)   | 使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。该键是可选，在Configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | 视频编码码率模式，值类型为int32_t，请参见[OH_BitrateMode](#oh_bitratemode-1)。该键是可选的。 |
 | [OH_MD_KEY_QUALITY](#oh_md_key_quality)                      | 所需编码质量的键。值类型为int32_t，此键仅适用于配置在恒定质量模式下的编码器。该键是可选的。 |
 | [OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame)      | 请求立即编码I帧的键。值类型为int32_t。该键是可选的。            |
@@ -122,6 +121,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_VIDEO_CROP_BOTTOM](#oh_md_key_video_crop_bottom)        | 描述裁剪矩形底部坐标(y)值的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
 | [OH_MD_KEY_VIDEO_CROP_LEFT](#oh_md_key_video_crop_left)     | 描述裁剪矩形左坐标(x)值的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
 | [OH_MD_KEY_VIDEO_CROP_RIGHT](#oh_md_key_video_crop_right)     | 描述裁剪矩形右坐标(x)值的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
+| [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency)   | 使能低时延视频解码的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。该键是可选，在Configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR](#oh_md_key_video_decoder_output_enable_vrr)     | 解码器是否打开视频可变帧率功能的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
 | [OH_MD_KEY_VIDEO_DECODER_BLANK_FRAME_ON_SHUTDOWN](#oh_md_key_video_decoder_blank_frame_on_shutdown)   | 用于指定视频解码器关闭时是否输出空白帧的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。该键是可选的且仅用于视频解码Surface模式。 |
 
@@ -244,7 +244,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | -------- | -------- |
 | [AudioChannelSet](#audiochannelset) : uint64_t {<br/>FRONT_LEFT = 1ULL &lt;&lt; 0U,<br/>FRONT_RIGHT = 1ULL &lt;&lt; 1U,<br/>FRONT_CENTER = 1ULL &lt;&lt; 2U,<br/>LOW_FREQUENCY = 1ULL &lt;&lt; 3U,<br/>BACK_LEFT = 1ULL &lt;&lt; 4U,<br/>BACK_RIGHT = 1ULL &lt;&lt; 5U,<br/>FRONT_LEFT_OF_CENTER = 1ULL &lt;&lt; 6U,<br/>FRONT_RIGHT_OF_CENTER = 1ULL &lt;&lt; 7U,<br/>BACK_CENTER = 1ULL &lt;&lt; 8U,<br/>SIDE_LEFT = 1ULL &lt;&lt; 9U,<br/>SIDE_RIGHT = 1ULL &lt;&lt; 10U,<br/>TOP_CENTER = 1ULL &lt;&lt; 11U,<br/>TOP_FRONT_LEFT = 1ULL &lt;&lt; 12U,<br/>TOP_FRONT_CENTER = 1ULL &lt;&lt; 13U,<br/>TOP_FRONT_RIGHT = 1ULL &lt;&lt; 14U,<br/>TOP_BACK_LEFT = 1ULL &lt;&lt; 15U,<br/>TOP_BACK_CENTER = 1ULL &lt;&lt; 16U,<br/>TOP_BACK_RIGHT = 1ULL &lt;&lt; 17U,<br/>STEREO_LEFT = 1ULL &lt;&lt; 29U,<br/>STEREO_RIGHT = 1ULL &lt;&lt; 30U,<br/>WIDE_LEFT = 1ULL &lt;&lt; 31U,<br/>WIDE_RIGHT = 1ULL &lt;&lt; 32U,<br/>SURROUND_DIRECT_LEFT = 1ULL &lt;&lt; 33U,<br/>SURROUND_DIRECT_RIGHT = 1ULL &lt;&lt; 34U,<br/>LOW_FREQUENCY_2 = 1ULL &lt;&lt; 35U,<br/>TOP_SIDE_LEFT = 1ULL &lt;&lt; 36U,<br/>TOP_SIDE_RIGHT = 1ULL &lt;&lt; 37U,<br/>BOTTOM_FRONT_CENTER = 1ULL &lt;&lt; 38U,<br/>BOTTOM_FRONT_LEFT = 1ULL &lt;&lt; 39U,<br/>BOTTOM_FRONT_RIGHT = 1ULL &lt;&lt; 40U,<br/>AMBISONICS_ACN0 = 1ULL &lt;&lt; 41U,<br/>AMBISONICS_ACN1 = 1ULL &lt;&lt; 42U,<br/>AMBISONICS_ACN2 = 1ULL &lt;&lt; 43U,<br/>AMBISONICS_ACN3 = 1ULL &lt;&lt; 44U,<br/>AMBISONICS_W = AMBISONICS_ACN0,<br/>AMBISONICS_Y = AMBISONICS_ACN1,<br/>AMBISONICS_Z = AMBISONICS_ACN2,<br/>AMBISONICS_X = AMBISONICS_ACN3,<br/>AMBISONICS_ACN4 = 1ULL &lt;&lt; 45U,<br/>AMBISONICS_ACN5 = 1ULL &lt;&lt; 46U,<br/>AMBISONICS_ACN6 = 1ULL &lt;&lt; 47U,<br/>AMBISONICS_ACN7 = 1ULL &lt;&lt; 48U,<br/>AMBISONICS_ACN8 = 1ULL &lt;&lt; 49U,<br/>AMBISONICS_ACN9 = 1ULL &lt;&lt; 50U,<br/>AMBISONICS_ACN10 = 1ULL &lt;&lt; 51U,<br/>AMBISONICS_ACN11 = 1ULL &lt;&lt; 52U,<br/>AMBISONICS_ACN12 = 1ULL &lt;&lt; 53U,<br/>AMBISONICS_ACN13 = 1ULL &lt;&lt; 54U,<br/>AMBISONICS_ACN14 = 1ULL &lt;&lt; 55U,<br/>AMBISONICS_ACN15 = 1ULL &lt;&lt; 56U<br/>} | 音频声道数集合， 将每一个声道数映射为int64_t的变量。（API11废弃）| 
 | [AudioChannelLayout](#audiochannellayout) : uint64_t {<br/>UNKNOWN_CHANNEL_LAYOUT = 0,<br/>MONO = (AudioChannelSet::FRONT_CENTER),<br/>STEREO = (AudioChannelSet::FRONT_LEFT \| AudioChannelSet::FRONT_RIGHT),<br/>CH_2POINT1 = (STEREO \| AudioChannelSet::LOW_FREQUENCY),<br/>CH_2_1 = (STEREO \| AudioChannelSet::BACK_CENTER),<br/>SURROUND = (STEREO \| AudioChannelSet::FRONT_CENTER),<br/>CH_3POINT1 = (SURROUND \| AudioChannelSet::LOW_FREQUENCY),<br/>CH_4POINT0 = (SURROUND \| AudioChannelSet::BACK_CENTER),<br/>CH_4POINT1 = (CH_4POINT0 \| AudioChannelSet::LOW_FREQUENCY),<br/>CH_2_2 = (STEREO \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT),<br/>QUAD = (STEREO \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br/>CH_5POINT0 = (SURROUND \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT),<br/>CH_5POINT1 = (CH_5POINT0 \| AudioChannelSet::LOW_FREQUENCY),<br/>CH_5POINT0_BACK = (SURROUND \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br/>CH_5POINT1_BACK = (CH_5POINT0_BACK \| AudioChannelSet::LOW_FREQUENCY),<br/>CH_6POINT0 = (CH_5POINT0 \| AudioChannelSet::BACK_CENTER),<br/>CH_6POINT0_FRONT = (CH_2_2 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br/>HEXAGONAL = (CH_5POINT0_BACK \| AudioChannelSet::BACK_CENTER),<br/>CH_6POINT1 = (CH_5POINT1 \| AudioChannelSet::BACK_CENTER),<br/>CH_6POINT1_BACK = (CH_5POINT1_BACK \| AudioChannelSet::BACK_CENTER),<br/>CH_6POINT1_FRONT = (CH_6POINT0_FRONT \| AudioChannelSet::LOW_FREQUENCY),<br/>CH_7POINT0 = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br/>CH_7POINT0_FRONT = (CH_5POINT0 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br/>CH_7POINT1 = (CH_5POINT1 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br/>CH_7POINT1_WIDE = (CH_5POINT1 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br/>CH_7POINT1_WIDE_BACK, CH_3POINT1POINT2 = (CH_3POINT1 \| AudioChannelSet::TOP_FRONT_LEFT \| AudioChannelSet::TOP_FRONT_RIGHT),<br/>CH_5POINT1POINT2 = (CH_5POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br/>CH_5POINT1POINT4, CH_7POINT1POINT2 = (CH_7POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br/>CH_7POINT1POINT4, CH_9POINT1POINT4 = (CH_7POINT1POINT4 \| AudioChannelSet::WIDE_LEFT \| AudioChannelSet::WIDE_RIGHT),<br/>CH_9POINT1POINT6 = (CH_9POINT1POINT4 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br/>CH_10POINT2, CH_22POINT2, OCTAGONAL = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_CENTER \| AudioChannelSet::BACK_RIGHT),<br/>HEXADECAGONAL, STEREO_DOWNMIX = (AudioChannelSet::STEREO_LEFT \| AudioChannelSet::STEREO_RIGHT),<br/>HOA_FIRST,<br/>HOA_SECOND,<br/>HOA_THIRD<br/>} | 音频声道数类型，将用户申请的解码器输出格式表示为编解码器的声道类型。（API11废弃） | 
-| [OH_MediaType](#oh_mediatype-1) {<br/>MEDIA_TYPE_AUD = 0,<br/>MEDIA_TYPE_VID = 1,<br/>MEDIA_TYPE_SUBTITILE = 2,<br/>MEDIA_TYPE_TIMED_METADATA = 5,<br/>MEDIA_TYPE_AUXILIARY = 6<br/>} | 媒体类型。 |
+| [OH_MediaType](#oh_mediatype-1) {<br/>MEDIA_TYPE_AUD = 0,<br/>MEDIA_TYPE_VID = 1,<br/>MEDIA_TYPE_SUBTITLE = 2,<br/>MEDIA_TYPE_TIMED_METADATA = 5,<br/>MEDIA_TYPE_AUXILIARY = 6<br/>} | 媒体类型。 |
 | [OH_AACProfile](#oh_aacprofile-1) {<br/>AAC_PROFILE_LC = 0,<br/>AAC_PROFILE_HE = 3,<br/>AAC_PROFILE_HE_V2 = 4<br/>} | AAC档次。<!--Del--><br/>（AAC_PROFILE_HE, AAC_PROFILE_HE_V2暂未开放）<!--DelEnd--> | 
 | [OH_AVCProfile](#oh_avcprofile-1) {<br/>AVC_PROFILE_BASELINE = 0,<br/>AVC_PROFILE_HIGH = 4,<br/>AVC_PROFILE_MAIN = 8<br/>} | AVC档次。 | 
 | [OH_HEVCProfile](#oh_hevcprofile-1) {<br/>HEVC_PROFILE_MAIN = 0,<br/>HEVC_PROFILE_MAIN_10 = 1,<br/>HEVC_PROFILE_MAIN_STILL = 2,<br/>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br/>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br/>} | HEVC档次。<br>（HEVC_PROFILE_MAIN_10_HDR10、HEVC_PROFILE_MAIN_10_HDR10_PLUS在API 14废弃）。| 
@@ -326,7 +326,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_VIDEO_SLICE_HEIGHT](#oh_md_key_video_slice_height) | 描述视频帧高跨距的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_PIC_WIDTH](#oh_md_key_video_pic_width) | 描述视频帧真实宽度的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_PIC_HEIGHT](#oh_md_key_video_pic_height) | 描述视频帧真实高度的键，值类型为int32_t。  | 
-| const char \* [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency) | 使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。如果使能，则视频编码器或视频解码器持有的输入和输出数据不会超过编解码器标准所要求的数量。   |
+| const char \* [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency) | 使能低时延视频解码的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。如果使能，则视频解码器持有的输入和输出数据不会超过解码器标准所要求的数量。   |
 | const char \* [OH_MD_KEY_ENABLE_SYNC_MODE](#oh_md_key_enable_sync_mode) | 使能音视频编解码同步模式的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。该键是可选，在Configure阶段使用。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL](#oh_md_key_video_encoder_enable_pts_based_ratecontrol) | 使能基于显示时间戳(PTS)的码控模式的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。如果使能，则必须在每个视频帧中携带PTS信息，并发送到编码器。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME](#oh_md_key_video_encoder_enable_b_frame) | 使能B帧编码的键，值类型为int32_t，1表示使能，0表示不使能。该键值是可选的且只用于视频编码，默认值为0，在Configure阶段使用。 |
@@ -1400,7 +1400,7 @@ enum OH_MediaType
 | -------- | -------- |
 | MEDIA_TYPE_AUD  | 音频轨。   | 
 | MEDIA_TYPE_VID  | 视频轨。   | 
-| MEDIA_TYPE_SUBTITILE  | 字幕轨。 <br>**起始版本：** 12   |
+| MEDIA_TYPE_SUBTITLE  | 字幕轨。 <br>**起始版本：** 12   |
 | MEDIA_TYPE_TIMED_METADATA  | timed metadata轨。 <br>**起始版本：** 20   |
 | MEDIA_TYPE_AUXILIARY  | 辅助轨。 <br>**起始版本：** 20   |
 
@@ -2014,6 +2014,8 @@ MPEG4视频编码的MIME类型，仅用于封装MPEG4视频码流使用。
 **起始版本：** 10
 
 **废弃版本：** 11
+
+**替代接口：**[OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2](#oh_avcodec_mimetype_video_mpeg4_part2)
 
 
 ### OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2
@@ -2729,11 +2731,11 @@ const char* OH_MD_KEY_VIDEO_CROP_TOP
 const char* OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY
 ```
 **描述**
-使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。该键是可选的，在Configure阶段使用。
+使能低时延视频解码的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。该键是可选的，在Configure阶段使用。
 
-如果使能，则视频编码器或视频解码器持有的输入和输出数据不会超过编解码器标准所要求的数量。 
+如果使能，则视频解码器持有的输入和输出数据不会超过解码器标准所要求的数量。 
 
-若平台支持，当使能此接口时，视频解码器将按照解码序输出帧。
+可以通过能力查询接口[OH_AVCapability_IsFeatureSupported](_a_v_capability.md#oh_avcapability_isfeaturesupported)来查询特定解码器是否支持低时延。若解码器支持，使能此接口时，视频解码器将按照解码序输出帧。
 
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase

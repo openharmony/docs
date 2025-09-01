@@ -6,7 +6,7 @@
 <!--Tester: @songyanhong-->
 <!--Adviser: @HelloCrease-->
 
-手指在组件上按下、滑动或抬起时触发。
+由手指在组件上按下、滑动或抬起时触发。
 
 > **说明：**
 >
@@ -20,7 +20,7 @@
 
 onTouch(event: (event: TouchEvent) => void): T
 
-手指触摸动作触发该回调。触摸事件默认[冒泡](../../../ui/arkts-interaction-basic-principles.md#事件冒泡)，事件会被多个组件消费，如果要阻止冒泡，参考[TouchEvent](#touchevent对象说明)的stopPropagation方法。鼠标左键按下时对应的事件也会转化成触摸事件并触发该回调。
+手指触摸动作触发该回调。触摸事件默认[冒泡](../../../ui/arkts-interaction-basic-principles.md#事件冒泡)，会被多个组件消费，如果需阻止冒泡，可参考[TouchEvent](#touchevent对象说明)的stopPropagation方法。鼠标左键按下时，对应的事件也会转换成触摸事件并触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -40,17 +40,17 @@ onTouch(event: (event: TouchEvent) => void): T
 
 ## TouchEvent对象说明
 
-继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)。在非事件注入场景下，changedTouches是按屏幕刷新率重采样的点，而touches是按器件刷新率上报的点，因此changedTouches的数据可能与touches不同。
+继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent8)。在非事件注入场景下，changedTouches是按屏幕刷新率重采样的点，而touches是按器件刷新率上报的点，因此changedTouches与touches的数据可能不同。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                | 类型       | 只读 | 可选   | 说明                        |
 | ------------------- | -----------|------|-------- | -------------------------- |
 | type                | [TouchType](ts-appendix-enums.md#touchtype)      | 否 | 否 | 触摸事件的类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。     |
-| touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 否 | 否 | 全部屏幕触点（多指）的信息，每个元素代表一个触点。在使用该属性时，需要校验是否为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
-| changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 否 | 否 | 发生变化而产生事件的手指信息。在使用该属性时，需要校验是否为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| touches             | &lt;[TouchObject](#touchobject对象说明)&gt;[] | 否 | 否 | 全部屏幕触点（多指）的信息，每个元素代表一个触点。在使用该属性时，需要校验是否为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
+| changedTouches      | &lt;[TouchObject](#touchobject对象说明)&gt;[] | 否 | 否 | 发生变化而产生事件的手指信息。在使用该属性时，需要校验是否为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | stopPropagation      | () => void | 否 | 否 | 阻塞[事件冒泡](../../../ui/arkts-interaction-basic-principles.md#事件冒泡)。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| preventDefault<sup>12+</sup>      | () => void | 否 | 否 |  阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：Hyperlink，不支持的组件使用时会抛出异常。暂不支持异步调用和提供Modifier接口。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| preventDefault<sup>12+</sup>      | () => void | 否 | 否 |  阻止默认事件。<br/> **说明：** 该接口仅支持部分组件使用，当前支持组件：Hyperlink，不支持的组件在使用时会抛出异常。暂不支持异步调用和提供Modifier接口。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 **错误码：**
 
@@ -64,7 +64,7 @@ onTouch(event: (event: TouchEvent) => void): T
 
 getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 
-获取当前帧所有的历史点。不同设备每帧的触摸事件频率不同，且该接口只能在[TouchEvent](#touchevent对象说明)中调用，可以通过该接口获取触发[onTouch](#ontouch)时当前帧历史点的相关信息。[onTouch](#ontouch)一帧通常只会调用一次，如果当前帧收到的[TouchEvent](#touchevent对象说明)大于1，会将该帧最后一个点通过[onTouch](#ontouch)返还，剩余点作为历史点。如果多指在同一帧上报事件，可能存在触发多次onTouch。
+获取当前帧的所有历史点。不同设备每帧的触摸事件频率不同，且该接口仅能在[TouchEvent](#touchevent对象说明)中调用，用于获取触发[onTouch](#ontouch)时当前帧历史点的相关信息。[onTouch](#ontouch)一帧通常只会调用一次，如果当前帧收到的[TouchEvent](#touchevent对象说明)数目大于1，会将该帧最后一个点通过[onTouch](#ontouch)返还，其余点作为历史点。如果多指在同一帧上报事件，可能触发多次onTouch。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -85,21 +85,21 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | ------- | ----------------------------------|-----| -------------- | ------------------------------------- |
 | type    | [TouchType](ts-appendix-enums.md#touchtype) | 否 | 否 | 触摸事件的类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
 | id      | number                                      | 否 | 否 | 手指唯一标识符。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
-| x       | number                                      | 否 | 否 | 触摸点相对于事件响应组件的左上角的X坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| y       | number                                      | 否 | 否 | 触摸点相对于事件响应组件的左上角的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| x       | number                                      | 否 | 否 | 触摸点相对于事件响应组件左上角的X坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| y       | number                                      | 否 | 否 | 触摸点相对于事件响应组件左上角的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | windowX<sup>10+</sup>  | number                       | 否 | 否 | 触摸点相对于应用窗口左上角的X坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | windowY<sup>10+</sup>  | number                       | 否 | 否 | 触摸点相对于应用窗口左上角的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | displayX<sup>10+</sup> | number                       | 否 | 否 | 触摸点相对于应用屏幕左上角的X坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | displayY<sup>10+</sup> | number                       | 否 | 否 | 触摸点相对于应用屏幕左上角的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | screenX<sup>(deprecated)</sup> | number               | 否 | 否 | 触摸点相对于应用窗口左上角的X坐标。<br/>单位：vp <br>从API version 10开始不再维护，建议使用windowX代替。   |
 | screenY<sup>(deprecated)</sup> | number               | 否 | 否 | 触摸点相对于应用窗口左上角的Y坐标。<br/>单位：vp <br>从API version 10开始不再维护，建议使用windowY代替。   |
-| PressedTime<sup>15+</sup> | number | 否 | 是 | 当前手指按下的时间。<br>单位：ns<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
-| pressure<sup>15+</sup> | number | 否 | 是 | 当前手指按着的压力值。<br/>取值范围：[0,65535)，压力越大值越大。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
-| width<sup>15+</sup> | number | 否 | 是 | 当前手指按压区域的宽。<br />单位：vp<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
-| height<sup>15+</sup> | number | 否 | 是 | 当前手指按压区域的高。<br />单位：vp<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| pressedTime<sup>15+</sup> | number | 否 | 是 | 当前手指按下的时间。<br>单位：ns<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| pressure<sup>15+</sup> | number | 否 | 是 | 当前手指按压的压力值。<br/>取值范围：[0,65535)，压力越大，值越大。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| width<sup>15+</sup> | number | 否 | 是 | 当前手指按压区域的宽度。<br />单位：vp<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| height<sup>15+</sup> | number | 否 | 是 | 当前手指按压区域的高度。<br />单位：vp<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | hand<sup>15+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand枚举说明15) | 否 | 是 | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
-| globalDisplayX<sup>20+</sup> | number | 否 | 是 | 触摸点位置相对于全局屏幕的左上角的X坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| globalDisplayY<sup>20+</sup> | number | 否 | 是 | 触摸点位置相对于全局屏幕的左上角的Y坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| globalDisplayX<sup>20+</sup> | number | 否 | 是 | 触摸点位置相对于全局屏幕左上角的X坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| globalDisplayY<sup>20+</sup> | number | 否 | 是 | 触摸点位置相对于全局屏幕左上角的Y坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## HistoricalPoint<sup>10+</sup>对象说明
 
@@ -112,13 +112,13 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | 名称         | 类型                        | 只读 | 可选       | 说明                                                                         |
 | ----------- | -----------------------------|------ | ----------|------------------------------------------------------------------- |
 | touchObject | [TouchObject](#touchobject对象说明)  | 否 | 否 | 历史点对应触摸事件的基础信息。                                                   |
-| size        | number                              | 否 | 否 | 历史点对应触摸事件的手指与屏幕的触摸区域大小。<br/>默认值：0                                     |
-| force       | number                              | 否 | 否 | 历史点对应触摸事件的压力大小。<br/>默认值：0<br/>取值范围：[0,65535)，压力越大值越大。|
-| timestamp   | number                              | 否 | 否 | 历史点对应触摸事件的时间戳。触发事件时距离系统启动的时间间隔。<br>单位：ns           |
+| size        | number                              | 否 | 否 | 历史点对应触摸事件中手指与屏幕的触摸区域大小。<br/>默认值：0                                     |
+| force       | number                              | 否 | 否 | 历史点对应触摸事件的压力大小。<br/>默认值：0<br/>取值范围：[0,65535)，压力越大，值越大。|
+| timestamp   | number                              | 否 | 否 | 历史点对应触摸事件的时间戳，表示触发事件时距离系统启动的时间间隔。<br>单位：ns           |
 
 ## 示例
 
-该示例通过按钮设置了触摸事件，手指点击按钮时可获取触摸事件的相关参数。
+该示例中，按钮设置触摸事件，在点击按钮时可获取事件的相关参数。
 
 ```ts
 // xxx.ets
@@ -148,13 +148,16 @@ struct TouchExample {
               this.eventType = 'Cancel';
             }
             if (event.touches) {
-              this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
-                + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
-                + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
-                + event.target.area.width + '\nheight:' + event.target.area.height + '\ntargetDisplayId:' +
-              event.targetDisplayId + '\npressedTime:' + event.touches[0].pressedTime + '\npressure:' +
-              event.touches[0].pressure +
-                '\nwidth:' + event.touches[0].width + '\nheight:' + event.touches[0].height;
+              this.text = 'TouchType:' + this.eventType
+                + '\nDistance between touch point and touch element:'
+                + '\n  x: ' + event.touches[0].x + '\n  y: ' + event.touches[0].y
+                + '\n  width: ' + event.touches[0].width + '\n  height: ' + event.touches[0].height
+                + '\n  pressedTime: ' + event.touches[0].pressedTime
+                + '\n  pressure: ' + event.touches[0].pressure
+                + '\nComponent globalPos:'
+                + '\n  x: ' + event.target.area.globalPosition.x + '\n  y: ' + event.target.area.globalPosition.y
+                + '\n  width: ' + event.target.area.width + '\n  height: ' + event.target.area.height
+                + '\ntargetDisplayId: ' + event.targetDisplayId;
             }
           }
         })
@@ -176,13 +179,16 @@ struct TouchExample {
               this.eventType = 'Cancel';
             }
             if (event.touches) {
-              this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
-                + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
-                + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
-                + event.target.area.width + '\nheight:' + event.target.area.height + '\ntargetDisplayId:' +
-              event.targetDisplayId + '\npressedTime:' + event.touches[0].pressedTime + '\npressure:' +
-              event.touches[0].pressure +
-                '\nwidth:' + event.touches[0].width + '\nheight:' + event.touches[0].height;
+              this.text = 'TouchType:' + this.eventType
+                + '\nDistance between touch point and touch element:'
+                + '\n  x: ' + event.touches[0].x + '\n  y: ' + event.touches[0].y
+                + '\n  width: ' + event.touches[0].width + '\n  height: ' + event.touches[0].height
+                + '\n  pressedTime: ' + event.touches[0].pressedTime
+                + '\n  pressure: ' + event.touches[0].pressure
+                + '\nComponent globalPos:'
+                + '\n  x: ' + event.target.area.globalPosition.x + '\n  y: ' + event.target.area.globalPosition.y
+                + '\n  width: ' + event.target.area.width + '\n  height: ' + event.target.area.height
+                + '\ntargetDisplayId: ' + event.targetDisplayId;
             }
           }
         })

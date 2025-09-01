@@ -26,6 +26,8 @@ ConsoleMessage的信息级别。
 
 ## MixedMode
 
+混合内容模式。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称        | 值 | 说明                                 |
@@ -36,7 +38,7 @@ ConsoleMessage的信息级别。
 
 ## HitTestType
 
-点击事件检测结果类型.
+点击事件检测结果类型。
 
  **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -52,6 +54,8 @@ ConsoleMessage的信息级别。
 | Unknown       | 7 | 未知内容。                    |
 
 ## CacheMode
+
+缓存模式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

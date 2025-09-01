@@ -22,6 +22,10 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 
 创建子窗口或者系统窗口，使用callback异步回调。
 
+非[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下，子窗口创建后默认是[沉浸式布局](../../windowmanager/window-terminology.md#沉浸式布局)。
+
+自由窗口状态下，子窗口参数[decorEnabled](arkts-apis-window-i.md#configuration9)为false时，子窗口创建后为沉浸式布局；子窗口参数decorEnabled为true，子窗口创建后为非沉浸式布局。
+
 **需要权限：** ohos.permission.SYSTEM_FLOAT_WINDOW（仅当创建窗口类型为window.WindowType.TYPE_FLOAT时需要申请）
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -89,6 +93,10 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 
 创建子窗口或者系统窗口，使用Promise异步回调。
 
+非[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下，子窗口创建后默认是[沉浸式布局](../../windowmanager/window-terminology.md#沉浸式布局)。
+
+自由窗口状态下，子窗口参数[decorEnabled](arkts-apis-window-i.md#configuration9)为false时，子窗口创建后为沉浸式布局；子窗口参数decorEnabled为true，子窗口创建后为非沉浸式布局。
+
 **需要权限：** ohos.permission.SYSTEM_FLOAT_WINDOW（仅当创建窗口类型为window.WindowType.TYPE_FLOAT时需要申请）
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -134,8 +142,7 @@ export default class EntryAbility extends UIAbility {
     let config: window.Configuration = {
       name: "test",
       windowType: window.WindowType.TYPE_DIALOG,
-      ctx: this.context,
-      defaultDensityEnabled: true
+      ctx: this.context
     };
     try {
       window.createWindow(config).then((value:window.Window) => {
@@ -492,13 +499,13 @@ struct Index {
 ## window.shiftAppWindowTouchEvent<sup>20+</sup>
 shiftAppWindowTouchEvent(sourceWindowId: number, targetWindowId: number, fingerId: number): Promise&lt;void&gt;
 
-在同应用内窗口的分合场景下，需要将触屏输入事件从源窗口转移到目标窗口。使用Promise异步回调，针对主窗和子窗生效。
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，主窗口和子窗口可正常调用，用于将触屏输入事件从源窗口转移到目标窗口。使用Promise异步回调。
 
 源窗口仅在[onTouch](arkui-ts/ts-universal-events-touch.md#ontouch)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有触屏输入事件转移效果，成功调用此接口后，系统会向源窗口补发触屏抬起（touch up）事件，并且向目标窗口补发触屏按下（touch down）事件。
 
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
-
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其它设备中返回801错误码。
 
 **参数：**
 
@@ -845,6 +852,8 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 
 创建子窗口，使用callback异步回调。
 
+子窗口创建后默认是[沉浸式布局](../../windowmanager/window-terminology.md#沉浸式布局)。
+
 > **说明：**
 >
 > 从API version 7开始支持，从API version 9开始废弃，推荐使用[createWindow()](#windowcreatewindow9)。
@@ -884,6 +893,8 @@ window.create('test', window.WindowType.TYPE_APP, (err: BusinessError, data) => 
 create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 创建子窗口，使用Promise异步回调。
+
+子窗口创建后默认是[沉浸式布局](../../windowmanager/window-terminology.md#沉浸式布局)。
 
 > **说明：**
 >

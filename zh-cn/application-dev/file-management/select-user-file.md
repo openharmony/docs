@@ -18,7 +18,7 @@
 
 ## 选择图片或视频类文件
 
-[PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpickerdeprecated)在后续版本不再演进，请[PhotoAccessHelper的PhotoViewPicker](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md)来选择图片文件。
+[PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpickerdeprecated)在后续版本不再演进，请使用[PhotoAccessHelper的PhotoViewPicker](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md)来选择图片文件。
 
 ## 选择文档类文件
 

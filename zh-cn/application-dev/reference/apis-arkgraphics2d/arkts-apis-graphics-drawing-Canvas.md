@@ -805,7 +805,7 @@ class DrawingRenderNode extends RenderNode {
 
 drawPixelMapMesh(pixelmap: image.PixelMap, meshWidth: number, meshHeight: number, vertices: Array\<number>, vertOffset: number, colors: Array\<number>, colorOffset: number): void
 
-在网格上绘制像素图，网格均匀分布在像素图上。
+在网格上绘制像素图，网格均匀分布在像素图上。（只支持brush，使用pen没有绘制效果。）
 
 **系统能力：** SystemCapability.Graphics.Drawing
 

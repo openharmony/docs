@@ -69,6 +69,7 @@ export default {
     this.offscreen = new OffscreenCanvas(600, 500);
     this.offCanvas = this.offscreen.getContext("2d");
     this.img = new Image();
+    // "common/images/2.png"需要替换为开发者所需的图像资源文件
     this.img.src = 'common/images/2.png';
     // 图片成功获取触发方法
     let _this = this;

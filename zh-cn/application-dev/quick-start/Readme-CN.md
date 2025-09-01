@@ -1,4 +1,11 @@
 # 入门<!--application-getting-started-->
+<!--Kit: Common-->
+<!--Subsystem: Common-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
+
 <!--Del-->
 - 快速入门<!--quick-start-->
   - [开发准备](start-overview.md)
@@ -30,6 +37,7 @@
     - [集成态HSP](integrated-hsp.md)
     - [HAR转HSP指导](har-to-hsp.md)
     - [HSP转HAR指导](hsp-to-har.md)
+    - [HAP转HAR指导](hap-to-har.md)
     - [创建应用静态快捷方式](typical-scenario-configuration.md)
     - [创建应用分身](app-clone.md)
     - [创建应用多实例](multiInstance.md)
@@ -40,12 +48,12 @@
 - 学习ArkTS语言<!--learning-arkts-->
   - [初识ArkTS语言](arkts-get-started.md)
   - [ArkTS语言介绍](introduction-to-arkts.md)
-  - [ArkTS语言规范](arkts-coding-style-guide.md)
+  - [ArkTS编程规范](arkts-coding-style-guide.md)
   - 从TypeScript到ArkTS的适配指导<!--typescript-to-arkts-migration-->
     - [ArkTS语法适配背景](arkts-migration-background.md)
     - [从TypeScript到ArkTS的适配规则](typescript-to-arkts-migration-guide.md)
     - [适配指导案例](arkts-more-cases.md)
   - [ArkTS高性能编程实践](arkts-high-performance-programming.md)
-  - 面向其他语言的ArkTS迁移指导
+  - 面向其他语言的ArkTS迁移指导<!--arkts-for-other-languages-->
     - [从Java到ArkTS的迁移指导](getting-started-with-arkts-for-java-programmers.md)
     - [从Swift到ArkTS的迁移指导](getting-started-with-arkts-for-swift-programmers.md)

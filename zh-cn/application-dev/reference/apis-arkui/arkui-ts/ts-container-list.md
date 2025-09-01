@@ -753,7 +753,7 @@ onScrollStart(event: () => void)
 
 onScrollStop(event: () => void)
 
-列表滑动停止时触发。手拖动列表或列表的滚动条触发的滑动，手离开屏幕并且滑动停止时会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。
+列表滑动停止时触发。手拖动列表或列表的滚动条触发的滑动，手离开屏幕后滑动停止时会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -1127,6 +1127,8 @@ start和end的index同时返回0，代表List内只有一个子组件。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
 | start | [VisibleListContentInfo](#visiblelistcontentinfo12对象说明) | 是 | 1. 通过该参数获取List显示区域第一个子组件在List中的索引值。<br/>2. 如果当前List显示区域第一个子组件是ListItemGroup，可以获取当前List显示区域第一个组件属于该ListItemGroup的哪一区域。<br/>3. 如果当前List显示区域第一个组件是ListItemGroup内的ListItem，可以获取该ListItem在ListItemGroup内的索引值。 |
@@ -1249,6 +1251,8 @@ List组件可见区域item变化事件的回调类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名               | 类型   | 必填 | 说明                                   |
 | -------------------- | ------ | ---- | -------------------------------------- |
 | start   | number | 是   | List显示区域内第一个子组件的索引值。     |
@@ -1259,6 +1263,8 @@ List组件可见区域item变化事件的回调类型。
 
 ### 示例1（添加滚动事件）
 该示例实现了设置纵向列表，并在当前显示界面发生改变时回调索引。
+
+ListDataSource实现了LazyForEach数据源接口[IDataSource](ts-rendering-control-lazyforeach.md#idatasource)，用于通过LazyForEach给List提供子组件。 
 
 <!--code_no_check-->
 ```ts
@@ -1378,6 +1384,8 @@ struct ListExample {
 ### 示例2（设置子元素对齐）
 该示例展示了不同ListItemAlign枚举值下，List组件交叉轴方向子元素对齐效果。
 
+ListDataSource说明及完整代码参考[示例1添加滚动事件](#示例1添加滚动事件)。
+
 <!--code_no_check-->
 ```ts
 // xxx.ets
@@ -1432,6 +1440,8 @@ struct ListLanesExample {
 
 ### 示例3（设置编辑模式）
 该示例展示了如何设置当前List组件是否处于可编辑模式。
+
+ListDataSource说明及完整代码参考[示例1添加滚动事件](#示例1添加滚动事件)。
 
 <!--code_no_check-->
 ```ts
@@ -1494,6 +1504,8 @@ struct ListExample {
 ### 示例4（设置限位对齐）
 该示例展示了List组件设置居中限位的实现效果。
 
+ListDataSource说明及完整代码参考[示例1添加滚动事件](#示例1添加滚动事件)。
+
 <!--code_no_check-->
 ```ts
 // xxx.ets
@@ -1552,6 +1564,8 @@ struct ListExample {
 该示例通过设置childrenMainSize属性，实现了List在子组件高度不一致时调用scrollTo接口也可以跳转准确。
 
 如果配合状态管理V2使用，详情见：[List与makeObserved](../../../ui/state-management/arkts-v1-v2-migration-application-and-others.md#滑动组件)。
+
+ListDataSource说明及完整代码参考[示例1添加滚动事件](#示例1添加滚动事件)。
 
 <!--code_no_check-->
 ```ts
@@ -1775,6 +1789,8 @@ interface TimeTable {
 ### 示例7（设置边缘渐隐）
 该示例实现了List组件开启边缘渐隐效果并设置边缘渐隐长度。
 
+ListDataSource说明及完整代码参考[示例1添加滚动事件](#示例1添加滚动事件)。
+
 <!--code_no_check-->
 ```ts
 import { LengthMetrics } from '@kit.ArkUI'
@@ -1811,6 +1827,8 @@ struct ListExample {
 ### 示例8（单边边缘效果）
 
 该示例通过edgeEffect接口，实现了List组件设置单边边缘效果。
+
+ListDataSource说明及完整代码参考[示例1添加滚动事件](#示例1添加滚动事件)。
 
 <!--code_no_check-->
 ```ts
@@ -1896,6 +1914,8 @@ struct ListExample {
 ### 示例10（设置显示区域外插入数据时，保持显示内容不变）
 
 该示例通过maintainVisibleContentPosition接口，实现了上滑无限加载历史消息场景。
+
+ListDataSource说明及完整代码参考[示例1添加滚动事件](#示例1添加滚动事件)。
 
 <!--code_no_check-->
 ```ts

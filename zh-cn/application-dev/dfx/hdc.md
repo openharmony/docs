@@ -1,5 +1,12 @@
 # hdc
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @kunsilva-->
+<!--Designer: @weimingjin-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 hdc（HarmonyOS Device Connector）是提供给开发人员的命令行调试工具，用于与设备进行交互调试、数据传输、日志查看以及应用安装等操作。该工具支持在Windows/Linux/MacOS系统上运行，为开发者提供高效，便捷的设备调试能力。
 
 hdc包含三部分：
@@ -24,7 +31,7 @@ hdc包含三部分：
 
 hdc可以选择以下任意一种方式获取：
 
-1.通过SDK获取hdc工具。SDK已嵌入[DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/)中，无需额外下载配置。hdc默认安装在DevEco Studio/sdk/default/openharmony/toolchains路径下。
+1.通过SDK获取hdc工具。SDK已嵌入[DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/)中，无需额外下载配置。hdc默认安装在DevEco Studio/sdk/default/openharmony/toolchains路径下，MacOS系统的sdk位于DevEco Studio/Contents目录下。
 
 2.通过[Command Line Tools](https://developer.huawei.com/consumer/cn/download/)工具中的sdk目录获取相关工具。hdc程序默认安装在Command Line Tools/sdk/default/openharmony/toolchains路径下。
 
@@ -112,6 +119,7 @@ hdc -t connect-key shell echo "Hello world"
 | [-s](#远程连接场景) | 可选参数，指定客户端连接服务器时，服务进程的网络监听参数，格式为IP:port。 |
 | [-p](#快速执行命令) | 可选参数，绕过对服务进程的查询步骤，用于快速执行客户端命令。 |
 | [-m](#前台启动服务) | 可选参数，使用前台启动模式启动服务进程。 |
+| [-e](#创建正向端口转发任务) | 可选参数，指定在TCP端口转发时，本地监听的IP地址，默认是127.0.0.1。该参数必须和-m一起使用。<br/>**说明**：从API version 20开始，支持该接口。|
 
 ### 命令列表
 
@@ -425,7 +433,7 @@ $ hdc -s 127.0.0.1:8710 list targets
 
 > **说明：**
 >
-> 当命令行中明确使用 -s 参数指定服务器进程端口时，系统将忽略OHOS_HDC_SERVER_PORT环境变量中定义的端口设置。
+> 当命令行中明确使用 -s 参数指定服务器进程端口时，系统将忽略OHOS_HDC_SERVER_PORT环境变量中定义的端口设置。使用 -s 参数指定服务器地址时，如果监听地址不是本地回环地址（如127.0.0.1），需注意访问安全问题。
 
 ### USB调试和无线调试切换
 
@@ -550,7 +558,7 @@ hdc shell [-b bundlename] [command]
 
 | 参数 | 说明 |
 | -------- | -------- |
-| -b bundlename | 3.1.0e版本新增参数。指定可调试应用包名，在可调试应用数据目录内，以非交互式模式执行命令。<br/>[命令行方式访问应用沙箱](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-device-file-explorer#section9381241102211)。<br/>此参数当前仅支持以非交互式模式执行命令，不支持缺省command参数执行命令进入交互式shell会话。<br/>未配置此参数时，默认执行路径为系统根目录。 |
+| -b bundlename | 3.1.0e版本新增参数。指定可调试应用包名，在可调试应用数据目录内，以非交互式模式执行命令。<br/>[命令行方式访问应用沙箱](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-device-file-explorer#section48216711204)。<br/>此参数当前仅支持以非交互式模式执行命令，不支持缺省command参数执行命令进入交互式shell会话。<br/>未配置此参数时，默认执行路径为系统根目录。 |
 | command | 需要在设备上执行的单次命令，不同类型或版本的系统支持的command命令有所差异，可以通过hdc shell ls /system/bin查阅支持的命令列表。当前大多数命令都是由[toybox](../tools/toybox.md)提供，可通过 hdc shell toybox --help 获取命令帮助。<br/>缺省该参数，hdc将会启动一个交互式的shell会话，开发者可以在命令提示符下输入命令，比如 ls、cd、pwd 等。 |
 
 > **说明：**
@@ -706,7 +714,7 @@ hdc file send [-a|-sync|-z|-m|-b bundlename] SOURCE DEST
 | -sync | 只传输文件mtime有更新的文件。<br/>mtime（modified timestamp）：修改后的时间戳。 |
 | -z | 通过LZ4格式压缩传输，此功能未开放，请勿使用。 |
 | -m | 文件传输时同步文件DAC权限，uid，gid，MAC权限。<br/>DAC（Discretionary Access Control）：自主访问控制，<br/>uid（User identifier）：用户标识符（或用户ID），<br/>gid（Group identifier）：组标识符（或组ID），<br/>MAC（Mandatory Access Control）：强制访问控制（或非自主访问控制）。 |
-| -b | 3.1.0e版本新增参数（低版本使用会提示[Fail]Unknown file option: -b），用于指定可调试应用包名。<br/>使用方法可参考[通过命令往应用沙箱目录中发送文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-device-file-explorer#section9381241102211)。 |
+| -b | 3.1.0e版本新增参数（低版本使用会提示[Fail]Unknown file option: -b），用于指定可调试应用包名。<br/>使用方法可参考[通过命令往应用沙箱目录中发送文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-device-file-explorer#section48216711204)。 |
 | bundlename | 指定可调试应用包名。 |
 
 **返回信息**：
@@ -821,6 +829,10 @@ $ hdc fport tcp:1234 tcp:1080
 Forwardport result:OK
 ```
 
+> **说明：**
+>
+> 在创建正向端口转发任务时，如果本地端口为TCP协议，指定端口为port，且启动服务进程时使用了-e参数， 则本地主机会监听-e参数指定的IP地址的port端口；如果启动服务进程时未使用-e参数，则本地主机会监听127.0.0.1:port。
+
 ### 创建反向端口转发任务
 
 设置反向端口转发任务，系统将指定的“设备端口”转发到“主机端口”，命令格式如下：
@@ -881,6 +893,7 @@ Remove forward ruler success, ruler:tcp:1234 tcp:1080
 | kill [-r] | 终止hdc服务进程，使用-r参数触发服务进程重新启动。 |
 | -p | 绕过对服务进程的查询步骤，用于快速执行客户端命令。 |
 | -m | 使用前台启动模式启动服务进程。<br/>前台启动模式（添加-m参数）：实时打印服务日志到客户端窗口。<br/>后台启动模式（不添加-m参数）：客户端不打印服务日志，日志内容写入本地磁盘文件，具体文件存放路径可参考[服务器进程日志](#服务器进程日志)。 |
+| -e |  指定在TCP端口转发时，本地监听的IP地址，默认是127.0.0.1。该参数必须和-m一起使用。|
 
 ### 启动服务
 
@@ -986,12 +999,14 @@ hdc -m
 ```shell
 $ hdc -s 127.0.0.1:8710 -m # 指定当前服务进程的网络监听参数并启动服务进程
 [I][1970-01-01 00:00:00.000] Program running. Ver: 3.1.0e Pid:8236
+$ hdc -e 0.0.0.0 -m # 指定端口转发本地监听IP地址为0.0.0.0并启动服务进程
+[I][1970-01-01 00:00:00.000] Program running. Ver: 3.1.0e Pid:8236
 ...
 ```
 
 > **说明：**
 >
-> 1. 在前台启动模式下，可通过附加 -s 参数来指定服务进程的网络监听参数。如果既没有使用 -s 指定网络监听参数，也没有配置环境变量OHOS_HDC_SERVER_PORT配置监听端口，系统将采用默认网络监听参数：127.0.0.1:8710。
+> 1. 在前台启动模式下，可通过附加 -s 参数来指定服务进程的网络监听参数。如果既没有使用 -s 指定网络监听参数，也没有配置环境变量OHOS_HDC_SERVER_PORT配置监听端口，系统将采用默认网络监听参数：127.0.0.1:8710。也可以通过-e参数来指定端口转发时本地主机监听的IP地址，如果没有使用-e参数，则默认监听127.0.0.1。
 >
 > 2. 在服务进程前台启动模式下，系统默认的日志输出等级为 LOG_DEBUG。如果需要变更日志等级，可通过使用 -l 参数来进行相应的设置。
 >
@@ -1003,7 +1018,7 @@ $ hdc -s 127.0.0.1:8710 -m # 指定当前服务进程的网络监听参数并启
 | -------- | -------- |
 | hilog [-h] | 打印设备端的日志信息，可通过hdc hilog -h查阅支持的参数列表。 |
 | jpid | 显示设备上已打开应用的进程pid。 |
-| track-jpid [-a\|-p] | 实时显示设备上已打开应用的进程pid和应用名，其中只有debug标签的应用可以被调试。不加参数时只显示debug应用的进程pid，使用-a或-p参数显示debug和release应用的进程标签，使用-p参数不显示debug和release的进程标签。 |
+| track-jpid [-a\|-p] | 实时显示设备上已打开应用的进程pid和应用包名，其中只有debug标签的应用可以被调试。不加参数时只显示已打开应用的进程pid，使用-a参数会显示debug和release应用的进程标签，使用-p参数不显示debug和release的进程标签。 |
 | target boot [-bootloader\|-recovery] | 重启目标设备，使用-bootloader参数重启后进入fastboot模式，使用-recovery参数重启后进入recovery模式。 |
 | target boot [MODE] | 重启目标设备，加参数重启后进入相应的模式，其中MODE为/bin/begetctl命令中reboot支持的参数，可通过hdc shell "/bin/begetctl -h \| grep reboot"查看。 |
 | <!--DelRow--> target mount | 以读写模式挂载系统分区（设备root后支持此命令）。 |
@@ -1076,15 +1091,15 @@ hdc track-jpid [-a|-p]
 
 | 参数 | 说明 |
 | -------- | -------- |
-| 不加参数 | 只显示已打开的应用的进程号。 |
-| -a | 显示debug和release应用的进程号和包名/进程名，同时显示debug和release的标签。 |
-| -p | 显示debug和release应用的进程号和包名/进程名，但不显示debug和release的标签。 |
+| 不加参数 | 只显示已打开的应用的进程pid。 |
+| -a | 显示debug和release应用的进程pid和包名/进程名，同时显示debug和release的标签。 |
+| -p | 显示debug和release应用的进程pid和包名/进程名，但不显示debug和release的标签。 |
 
 **返回信息**：
 
 | 返回信息 | 说明 |
 | -------- | -------- |
-| 进程号和包名/进程名列表。 | 不加参数时显示开启了JDWP调试协议的debug应用的进程，使用-a或-p参数时表示开启了JDWP调试协议的debug和release进程。 |
+| 进程号和包名/进程名列表。 | 不加参数时仅显示已打开应用的进程pid，使用-p参数额外显示应用包名，使用-a参数同时显示debug和release标签。 |
 | [Empty] | 无开启JDWP调试协议的应用进程。 |
 
 **使用方法**：
@@ -1443,7 +1458,8 @@ hdc file recv /data/log/hilog {local_path}            # 获取hilog已落盘日�
 | hdc版本 | API版本 | 新增特性 |
 | -------- | -------- | -------- |
 | 3.1.0a | 12 | wait命令支持-t参数：详细说明参见[等待设备正常连接](#等待设备正常连接)。 |
-| 3.1.0e | 15及以上版本 | - file send命令支持-b参数：详细说明参见[文件传输](#文件传输)。<br/>- file recv命令支持-b参数：详细说明参见[文件传输](#文件传输)。<br/>- shell命令支持-b参数：详细说明参见[执行交互命令](#执行交互命令)。 |
+| 3.1.0e | 15 | - file send命令支持-b参数：详细说明参见[文件传输](#文件传输)。<br/>- file recv命令支持-b参数：详细说明参见[文件传输](#文件传输)。<br/>- shell命令支持-b参数：详细说明参见[执行交互命令](#执行交互命令)。 |
+| 3.2.0b | 20 | - 端口转发任务支持监听远端主机IP：详细说明参见[创建正向端口转发任务](#创建正向端口转发任务)。 |
 
 > **注意：**
 >
@@ -1686,7 +1702,6 @@ hdc文件传输命令执行出现乱码，如使用file recv从设备侧发送�
    计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Protect\Providers\df9d8cd0-1501-11d1-8c7a-00c04fc297eb；
 
 3. 右键新建DWORD(32位)值(D)，新增值名称为ProtectionPolicy 值为 1 （16进制），然后点击确定；
-   ![FAQ-1](figures/FAQ-1.png)
 
 4. 重启电脑后问题解决。
 
@@ -1695,8 +1710,6 @@ hdc文件传输命令执行出现乱码，如使用file recv从设备侧发送�
 **现象描述**
 
 使用USB方式连接调试设备，电脑端设备管理器通用串行总线控制器出现未知USB设备（设备描述符请求失败）
-
-![Unknown Device ](figures/unknown_device.png)
 
 **可能原因&amp;解决方法**
 
@@ -2138,7 +2151,7 @@ Unsupport shell option: XXX.
 
 **错误信息**
 
-Device does not supported this shell command.
+Device does not support this shell option.
 
 **错误描述**
 
@@ -2174,7 +2187,7 @@ hdc shell xxx，设备侧命令不支持。
 
 **错误信息**
 
-There is no bundle name.
+The parameter is missing, correct your input by referring below: Usage...
 
 **错误描述**
 
@@ -2309,3 +2322,21 @@ Operation not allowed.
 **处理步骤**
 
 无需进行处理。
+
+### E001106 -e指定的IP不正确
+
+**错误信息**
+
+-e content IP incorrect.
+
+**错误描述**
+
+-e指定的IP不正确。
+
+**可能原因**
+
+不是合法的IP地址格式。
+
+**处理步骤**
+
+检查输入是否为合法的IP格式，并确认该IP地址属于本机。

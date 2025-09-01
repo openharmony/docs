@@ -1884,7 +1884,7 @@ showAbility(): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**设备行为差异**：该接口仅在2in1和tablet设备中可正常调用，在其他设备中返回801错误码。
+**设备行为差异**：该接口仅在2in1和Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 
@@ -1984,7 +1984,7 @@ hideAbility(): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**设备行为差异**：该接口仅在2in1和tablet设备中可正常调用，在其他设备中返回801错误码。
+**设备行为差异**：该接口仅在2in1和Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 
@@ -2083,6 +2083,10 @@ moveAbilityToBackground(): Promise\<void>
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：
+- 从API version 12开始，该接口仅在Phone、Wearable和TV设备中可正常调用，在其他设备上返回16000061错误码。
+- 从API version 13开始，该接口仅在Phone、Tablet、Wearable和TV设备中可正常调用，在其他设备上返回16000061错误码。
 
 **返回值：**
 

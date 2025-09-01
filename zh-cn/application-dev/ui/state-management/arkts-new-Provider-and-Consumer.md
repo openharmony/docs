@@ -503,7 +503,7 @@ struct Child {
   @Consumer() onDrag: (x: number, y: number) => void = (x: number, y: number) => {};
 
   build() {
-    Button("changed")
+    Button('changed')
       .draggable(true)
       .onDragStart((event: DragEvent) => {
         // 当前预览器上不支持通用拖拽事件
@@ -592,7 +592,7 @@ struct Index {
 @ComponentV2
 struct Parent {
   @Provider() val: number = 20;
-  @Consumer("val") val2: number = 0; // 10
+  @Consumer('val') val2: number = 0; // 10
 
   build() {
     Column() {
