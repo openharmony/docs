@@ -1634,7 +1634,7 @@ link.aboutToBeDeleted();
 
 ### info<sup>10+</sup>
 
-info(): string;
+info(): string
 
 返回属性名称。
 
