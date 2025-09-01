@@ -395,7 +395,7 @@ Run the **hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj] [--raw]** comman
   ```
 <!--RP2End-->
 
-You can run the hdc [file transfer](hdc.md##transferring-files) command to obtain the generated file from the device.
+You can run the hdc [file transfer](hdc.md#transferring-files) command to obtain the generated file from the device.
 
 
 ## Querying CPU Usage
