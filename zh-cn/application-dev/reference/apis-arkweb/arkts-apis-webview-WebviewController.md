@@ -2591,7 +2591,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let id = this.controller.getWebId();
-            console.log("id: " + id);
+            console.info("id: " + id);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -5907,7 +5907,7 @@ struct WebComponent {
       Button('getRenderProcessMode')
         .onClick(() => {
           let mode = webview.WebviewController.getRenderProcessMode();
-          console.log("getRenderProcessMode: " + mode);
+          console.info("getRenderProcessMode: " + mode);
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -5955,7 +5955,7 @@ struct WebComponent {
       Button('terminateRenderProcess')
         .onClick(() => {
           let result = this.controller.terminateRenderProcess();
-          console.log("terminateRenderProcess result: " + result);
+          console.info("terminateRenderProcess result: " + result);
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -8991,9 +8991,9 @@ struct WebComponent {
         .onClick(() => {
           try {
             if (this.controller.getAttachState() == webview.ControllerAttachState.ATTACHED) {
-              console.log('Controller is attached.');
+              console.info('Controller is attached.');
             } else {
-              console.log('Controller is unattached.');
+              console.info('Controller is unattached.');
             }
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -9054,9 +9054,9 @@ struct WebComponent {
   // 构建回调函数
   handleControllerAttachStateChange = (state: webview.ControllerAttachState) => {
     if (state == webview.ControllerAttachState.UNATTACHED) {
-      console.log('handleControllerAttachStateChange: Controller is unattached.');
+      console.info('handleControllerAttachStateChange: Controller is unattached.');
     } else {
-      console.log('handleControllerAttachStateChange: Controller is attached.');
+      console.info('handleControllerAttachStateChange: Controller is attached.');
     }
   };
   aboutToAppear() {
@@ -9069,9 +9069,9 @@ struct WebComponent {
       // 注册回调以接收controller绑定状态更改通知
       this.controller.on('controllerAttachStateChange', (state: webview.ControllerAttachState) => {
         if (state == webview.ControllerAttachState.UNATTACHED) {
-          console.log('Controller is unattached.');
+          console.info('Controller is unattached.');
         } else {
-          console.log('Controller is attached.');
+          console.info('Controller is attached.');
         }
       })
     } catch (error) {
@@ -9131,13 +9131,13 @@ struct WebComponent {
     this.controller.waitForAttached(1000).then((state: webview.ControllerAttachState) => {
       if (state == webview.ControllerAttachState.ATTACHED) {
         //绑定完成或者超时都会触发回调
-        console.log('Controller is attached.');
+        console.info('Controller is attached.');
       }
     })
     try {
       const state = await this.controller.waitForAttached(1000);
       if (state == webview.ControllerAttachState.ATTACHED) {
-        console.log('Controller is attached.');
+        console.info('Controller is attached.');
       }
     } catch (error) {
       console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -9883,12 +9883,12 @@ import { webview } from '@kit.ArkWeb';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log("EntryAbility onCreate");
+    console.info("EntryAbility onCreate");
     webview.WebviewController.initializeWebEngine();
     // 设置快速销毁模式
     webview.WebviewController.setWebDestroyMode(webview.WebDestroyMode.FAST_MODE);
     AppStorage.setOrCreate("abilityWant", want);
-    console.log("EntryAbility onCreate done");
+    console.info("EntryAbility onCreate done");
   }
 }
 ```
