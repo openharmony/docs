@@ -245,6 +245,13 @@ zh-cn/application-dev/arkts-utils/tool-disassembler.md @oatuwwutao; @luobohua @h
 
 [开发-ArkUI-UI开发]
 zh-cn/application-dev/ui/state-management/ @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/ui/state-management/arkts-rendering-control-overview.md @zhang_yixin13 @TerryTsao @liubihao
+zh-cn/application-dev/ui/state-management/arkts-rendering-control-ifelse.md @zhang_yixin13 @TerryTsao @liubihao
+zh-cn/application-dev/ui/state-management/arkts-rendering-control-foreach.md @zhang_yixin13 @TerryTsao @liubihao
+zh-cn/application-dev/ui/state-management/arkts-rendering-control-lazyforeach.md @zhang_yixin13 @TerryTsao @liubihao
+zh-cn/application-dev/ui/state-management/arkts-new-rendering-control-repeat.md @zhang_yixin13 @TerryTsao @liubihao
+zh-cn/application-dev/ui/state-management/arkts-lazyForEach-repeat-migration-guide.md @zhang_yixin13 @TerryTsao @liubihao
+zh-cn/application-dev/ui/state-management/arkts-rendering-control-contentslot.md @zhang_yixin13 @liuli0427 @sunbees
 zh-cn/application-dev/ui/arkts-advanced-components-arcbutton.md	@liyi0309	@lxl007	@HelloCrease
 zh-cn/application-dev/ui/arkts-animation-smoothing.md	@yangfan229	@lxl007	@HelloCrease
 zh-cn/application-dev/ui/arkts-animation.md	@yangfan229	@lxl007	@HelloCrease
@@ -1131,7 +1138,7 @@ zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-frameNode.md	@xiang-sho
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-graphics.md	@xiang-shouxing	@sally__	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-inspector.md	@lmleon	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-observer.md	@xiang-shouxing	@fredyuan912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-Prefetcher.md	@lixingchi1	@TerryTsao	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-Prefetcher.md	@keerecles	@TerryTsao	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-shape.md	@yangfan229	@lxl007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-theme.md	@lushi871202	@sally__	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-xcomponentNode.md	@sunbees	@liuli0427	@HelloCrease
@@ -1412,9 +1419,9 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-offscreencanvasrenderingc
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-page-transition-animation.md	@yangfan229	@lxl007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-particle-animation.md	@yangfan229	@lxl007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-picker-common.md	@weixin_52725220	@xiong0104	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md	@lixingchi1	@TerryTsao	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md	@lixingchi1	@TerryTsao	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md	@lixingchi1	@TerryTsao	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md	@keerecles	@TerryTsao	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md	@keerecles	@TerryTsao	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md	@keerecles	@TerryTsao	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-state-management-sys.md	@s10021109	@TerryTsao	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-state-management-watch-monitor.md	@s10021109	@TerryTsao	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-state-management.md	@s10021109	@TerryTsao	@HelloCrease
