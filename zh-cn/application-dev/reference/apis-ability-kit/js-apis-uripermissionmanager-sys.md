@@ -438,7 +438,7 @@ revokeUriPermission(uri: string, targetBundleName: string, appCloneIndex: number
 
       // revoke uri permission of clone application
       try {
-        let appCloneIndex: number = 0;
+        let appCloneIndex: number = 1;
         uriPermissionManager.revokeUriPermission(uri, targetBundleName, appCloneIndex)
           .then(() => {
             console.info('revokeUriPermission succeeded.');
