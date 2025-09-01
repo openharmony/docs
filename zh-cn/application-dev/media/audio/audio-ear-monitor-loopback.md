@@ -106,7 +106,7 @@ AudioLoopback是音频返听器，可将音频以更低时延的方式实时传�
     }
    ```
 
-5. 调用[getReverbPreset](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#getReverbPreset21)方法，查询当前的音频返听的混响模式。
+5. 调用[getReverbPreset](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#getreverbpreset21)方法，查询当前的音频返听的混响模式。
 
     > **注意：**
     > - 若未设置混响模式，查询得到将是默认混响模式THEATER。
