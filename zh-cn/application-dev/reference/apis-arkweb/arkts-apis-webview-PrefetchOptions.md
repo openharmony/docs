@@ -22,8 +22,8 @@
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 |------|------|------|------|------|
-| minTimeBetweenPrefetchesMs<sup>21+</sup> | number | 否 | 否 | 设置两次网页预取的最小时间间隔。<br>每次预取时会计算和上次预取的间隔时间，若小于设置值，则取消本次预取<br>默认为500，最大值为500。<br>设置为负数时，默认为0。 |
-| ignoreCacheControlNoStore<sup>21+</sup> | boolean | 否 | 否 | 设置是否忽略Cache-Control: no-store。<br>默认值：false <br>设置为true时，会忽略响应头中的Cache-Control: no-store，为false时不会。 |
+| minTimeBetweenPrefetchesMs<sup>21+</sup> | number | 否 | 否 | 设置两次网页预取的最小时间间隔。<br>每次预取时会计算和上次预取的间隔时间，若小于设置值，则取消本次预取。<br>默认为500，最大值为500。<br>设置为负数时，默认为0。 |
+| ignoreCacheControlNoStore<sup>21+</sup> | boolean | 否 | 否 | 设置是否忽略响应头中的Cache-Control: no-store。<br>默认值：false <br>设置为true时，会忽略响应头中的Cache-Control: no-store，为false时不会。 |
 
 ## constructor<sup>21+</sup>
 
