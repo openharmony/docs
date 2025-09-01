@@ -32,11 +32,13 @@
 
 ### 长时激活卡片动效
 
-长时激活卡片支持调用[formProvider.requestOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20)接口发起互动卡片动效请求。如果接口中传入的动效持续时长overflowInfo.duration大于等于60秒，动效请求申请成功且一直保持。仅当调用cancelOverflow接口取消动效或其他卡片申请动效成功，当前卡片才会退出动效并切换为长时激活态。如果接口中传入的动效持续时长overflowInfo.duration小于60秒，发起动效请求失败。
+长时激活卡片支持调用[formProvider.requestOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20)接口发起互动卡片动效请求。
+- 如果接口中传入的动效持续时长overflowInfo.duration大于等于60秒，动效请求申请成功且一直保持。仅当调用[cancelOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovidercanceloverflow20)接口取消动效或其他卡片申请动效成功，当前卡片才会退出动效并切换为长时激活态。
+- 如果接口中传入的动效持续时长overflowInfo.duration小于60秒，发起动效请求失败。
 
 ### 长时激活卡片状态信息同步
 
-系统针对卡片关键状态信息更新时，通过代理向卡片提供方发送当前卡片最新状态信息。卡片提供方可以通过[setReceiveDataCallback](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession-sys.md#setreceivedatacallback)能力进行监听。支持监听的卡片状态信息参见下表。
+系统针对卡片关键状态信息更新时，通过代理向卡片提供方发送当前卡片最新状态信息。卡片提供方可以通过[setReceiveDataCallback](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession-sys.md#setreceivedatacallback)接口进行监听。支持监听的卡片状态信息参见下表。
 
 |状态|说明|
 |-----|---------|
@@ -52,10 +54,10 @@
 
 除了[动效请求约束](arkts-ui-liveform-sceneanimation-overview.md#动效请求约束)外，互动卡片切换至长时激活态后，还存在如下限制：
 1. 系统限制长时间保持激活态卡片不超过5个，超过5个时将淘汰最早切换为激活态的卡片。
-2. 互动卡片申请动效成功后，系统会设置60s倒计时，满足以下任一条件时会打断当前卡片动效并切换至长时激活态：
-   - 调用cancelOverflow接口取消动效。
+2. 互动卡片申请动效成功后，满足以下任一条件时会打断当前卡片动效并切换至长时激活态：
+   - 调用[cancelOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovidercanceloverflow20)接口取消动效。
    - 用户点击其他互动卡片申请动效成功。
-   - 申请动效60s内，其他卡片的非用户点击触发的动效请求均申请失败。申请动效60s后，非用户点击导致的其他互动卡片动效请求申请成功，会打断当前动效。
+   - 申请动效60s内，其他卡片的非用户点击触发的动效请求均会申请失败。申请动效60s后，非用户点击导致的其他互动卡片动效请求申请成功，会打断当前动效。
 
 ## 接口说明
 
@@ -67,6 +69,8 @@
 |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
 | [formProvider.activateSceneAnimation(formId: string): Promise&lt;void&gt;](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#activatesceneanimation20)     | 互动卡片请求状态切换到激活态。 |
 | [formProvider.deactivateSceneAnimation(formId: string): Promise&lt;void&gt;](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#deactivatesceneanimation20) | 互动卡片请求切换到非激活态。 |
+| [formProvider.requestOverflow(formId: string, overflowInfo: formInfo.OverflowInfo): Promise&lt;void&gt;](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20) | 卡片提供方发起互动卡片动效请求。   |
+| [formProvider.cancelOverflow(formId: string): Promise&lt;void&gt;](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovidercanceloverflow20)                                        | 卡片提供方发起取消互动卡片动效请求。 |
 
 ## 开发步骤
 
