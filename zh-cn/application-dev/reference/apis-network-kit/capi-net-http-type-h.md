@@ -9,6 +9,8 @@
 
 定义HTTP请求模块的C接口需要的数据结构。
 
+**引用文件：** "network/netstack/net_http_type.h"
+
 **库：** libnet_http.so
 
 **系统能力：** SystemCapability.Communication.NetStack
