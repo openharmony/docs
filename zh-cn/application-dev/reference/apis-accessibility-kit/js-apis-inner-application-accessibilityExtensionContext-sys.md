@@ -542,21 +542,21 @@ try {
 | accessibilityFocused<sup>20+</sup> | boolean | 否 | 是 | 表示元素是否因无障碍目的获得焦点。**true** 表示已获得焦点，**false** 表示未获得焦点。<br>默认值：**false**。|
 | bundleName<sup>20+</sup> | string                                                             | 否  | 是  | 包名。|
 | checkable<sup>20+</sup> | boolean | 否 | 是 | 元素是否可勾选。**true** 表示可勾选，**false** 表示不可勾选。<br>默认值：**false**。|
-| `checked` | boolean | 否 | 是 | 元素是否已勾选。**true** 表示已勾选，**false** 表示未勾选。<br>默认值：**false**。|
-| `clickable` | boolean | 否 | 是 | 元素是否可点击。**true** 表示可点击，**false** 表示不可点击。<br>默认值：**false**。|
+| checked<sup>20+</sup> | boolean | 否 | 是 | 元素是否已勾选。**true** 表示已勾选，**false** 表示未勾选。<br>默认值：**false**。|
+| clickable<sup>20+</sup> | boolean | 否 | 是 | 元素是否可点击。**true** 表示可点击，**false** 表示不可点击。<br>默认值：**false**。|
 | componentId<sup>20+</sup> | number | 否 | 是 | 元素所属组件的ID。<br>默认值：**-1**。|
 | componentType<sup>20+</sup> | string                                                             | 否  | 是  | 元素所属组件的类型。|
 | contents<sup>20+</sup> | Array&lt;string&gt;                                                | 否  | 是  | 元素显示内容。|
 | currentIndex<sup>20+</sup> | number                                                             | 否  | 是  | 当前项的索引。<br>默认值：**0**。|
 | description<sup>20+</sup> | string                                                             | 否  | 是  | 元素的描述信息。|
-| `editable`<sup>20+</sup> | boolean | 否 | 是 | 元素是否可编辑。**true** 表示可编辑，**false** 表示不可编辑。<br>默认值：**false**。|
+| editable<sup>20+</sup> | boolean | 否 | 是 | 元素是否可编辑。**true** 表示可编辑，**false** 表示不可编辑。<br>默认值：**false**。|
 | endIndex<sup>20+</sup> | number                                                             | 否  | 是  | 屏幕上显示的最后一个列表项的索引。<br>默认值：**0**。|
 | error<sup>20+</sup> | string                                                             | 否  | 是  | 元素的错误状态。|
 | focusable<sup>20+</sup> | boolean | 否 | 是 | 元素是否可获得焦点。**true** 表示可获得焦点，**false** 表示不可获得焦点。<br/>默认值：**false**。|
 | hintText<sup>20+</sup> | string                                                             | 否  | 是  | 提示文本。|
 | inputType<sup>20+</sup> | number                                                             | 否  | 是  | 输入文本的类型。<br>默认值：**0**。|
 | inspectorKey<sup>20+</sup> | string                                                             | 否  | 是  | 检查器键。|
-| `isActive`<sup>20+</sup> | boolean | 否 | 是 | 元素是否处于活动状态。**true** 表示活动状态，**false** 表示非活动状态。<br>默认值：**true**。|
+| isActive<sup>20+</sup> | boolean | 否 | 是 | 元素是否处于活动状态。**true** 表示活动状态，**false** 表示非活动状态。<br>默认值：**true**。|
 | isEnable<sup>20+</sup> | boolean | 否 | 是 | 元素是否启用。**true** 表示启用，**false** 表示未启用。<br>默认值：**false**。|
 | isHint<sup>20+</sup> | boolean | 否 | 是 | 元素是否为提示信息。**true** 表示元素是提示信息，**false** 表示非提示信息。<br>默认值：**false**。|
 | isFocused<sup>20+</sup> | boolean | 否 | 是 | 表示元素是否已获得焦点。**true** 表示已获得焦点，**false** 表示未获得焦点。<br>默认值：**false**。|
@@ -567,10 +567,10 @@ try {
 | layer<sup>20+</sup> | number                                                             | 否  | 是  | 元素的显示层级。|
 | longClickable<sup>20+</sup> | boolean | 否 | 是 | 元素是否可长按。**true** 表示可长按，**false** 表示不可长按。<br>默认值：**false**。|
 | pageId<sup>20+</sup> | number | 否 | 是 | 页面ID。<br>默认值：**-1**。|
-| `pluralLineSupported`<sup>20+</sup> | boolean | 否 | 是 | 表示元素是否支持多行文本。**true** 表示支持，**false** 表示不支持。<br>默认值：**false**。|
-| rect<sup>20+</sup>                 | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#Rect)                                                      | 否  | 是  | 元素的区域。|
+| pluralLineSupported<sup>20+</sup> | boolean | 否 | 是 | 表示元素是否支持多行文本。**true** 表示支持，**false** 表示不支持。<br>默认值：**false**。|
+| rect<sup>20+</sup>                 | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect)                                                      | 否  | 是  | 元素的区域。|
 | resourceName<sup>20+</sup>         | string                                                             | 否  | 是  | 元素的资源名称。|
-| screenRect<sup>20+</sup>           | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#Rect)                                                      | 否  | 是  | 元素的显示区域。|
+| screenRect<sup>20+</sup>           | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect)                                                      | 否  | 是  | 元素的显示区域。|
 | scrollable<sup>20+</sup>           | boolean                                                            | 否  | 是  | 元素是否可滚动。**true** 表示元素可滚动，**false** 表示不可滚动。<br>默认值：**false**。|
 | selected<sup>20+</sup>             | boolean                                                            | 否  | 是  | 元素是否已选中。**true** 表示已选中，**false** 表示未选中。<br>默认值：**false**。|
 | startIndex<sup>20+</sup>           | number                                                             | 否  | 是  | 屏幕上第一个列表项的索引。<br>默认值：**0**。|
@@ -586,7 +586,7 @@ try {
 | offset<sup>20+</sup>             | number              | 否  | 是  | 内容区域相对于可滚动组件（如 **List** 和 **Grid**）顶部坐标的像素偏移量。<br>默认值：**0**。|
 | textType<sup>20+</sup>             | string                                                             | 否  | 是  | 元素的无障碍文本类型，由组件的 **accessibilityTextHint** 属性配置。|
 | accessibilityText<sup>20+</sup> | string                                                  | 否  | 是  | 元素的无障碍文本信息。|
-| hotArea<sup>20+</sup>             | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#Rect)                                                              | 否  | 是  | 元素的可触摸区域。|
+| hotArea<sup>20+</sup>             | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect)                                                              | 否  | 是  | 元素的可触摸区域。|
 | customComponentType<sup>20+</sup>             | string                                                             | 否  | 是  | 自定义组件类型。|
 | accessibilityNextFocusId<sup>20+</sup>             | number                | 否  | 是  | 下一个要获得焦点的组件的 ID。<br>默认值：**-1**。|
 | accessibilityPreviousFocusId<sup>20+</sup>             | number                | 否  | 是  | 上一个要获得焦点的组件的 ID。<br>默认值：**-1**。|
