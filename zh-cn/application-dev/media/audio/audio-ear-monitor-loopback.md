@@ -45,7 +45,7 @@ AudioLoopback是音频返听器，可将音频以更低时延的方式实时传�
     import { audio } from '@kit.AudioKit';
     import { BusinessError } from '@kit.BasicServicesKit';
     
-    let mode: audio.AudioLoopbackMode.HARDWARE;
+    let mode: audio.AudioLoopbackMode = audio.AudioLoopbackMode.HARDWARE;
     let audioLoopback: audio.AudioLoopback;
     let isSupported = audio.getAudioManager().getStreamManager().isAudioLoopbackSupported(mode);
     if (isSupported) {
@@ -127,7 +127,7 @@ import { common } from '@kit.AbilityKit';
 
 const TAG = 'AudioLoopbackDemo';
 
-let mode: audio.AudioLoopbackMode.HARDWARE;
+let mode: audio.AudioLoopbackMode = audio.AudioLoopbackMode.HARDWARE;
 let audioLoopback: audio.AudioLoopback | undefined = undefined;
 
 let statusChangeCallback = (status: audio.AudioLoopbackStatus) => {
@@ -225,3 +225,6 @@ async function disable() {
   }
 }
 ```
+
+### Sample示例
+链接：https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Audio
