@@ -290,14 +290,7 @@ onError(event: VoidCallback | ErrorCallback)
 
 | 参数名 | 类型                                           | 必填 | 说明                                 |
 | ------ | --------------------------------------------- | ---- | ----------------------------------- |
-| event  | [VoidCallback](ts-types.md#voidcallback12) \| [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)<sup>20+</sup> | 是   | 视频播放失败时的回调函数，[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)入参用于接收异常信息。|
-
-以下错误码的详细介绍请参见[Video组件错误码](../errorcode-video.md)，其余错误码请参考[媒体错误码](../../apis-media-kit/errorcode-media.md)。
-
-|错误码ID|错误信息|
-|--|--|
-|103601 |Failed to create the media player.|
-|103602 |Not a valid source.|
+| event  | [VoidCallback](ts-types.md#voidcallback12) \| [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)<sup>20+</sup> | 是   | 视频播放失败时的回调函数。其中[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)类型入参的回调函数用于接收异常信息，回调返回的错误码详细介绍请参见[Video组件错误码](../errorcode-video.md)和[媒体错误码](../../apis-media-kit/errorcode-media.md)。|
 
 ### onStop<sup>12+</sup>
 
