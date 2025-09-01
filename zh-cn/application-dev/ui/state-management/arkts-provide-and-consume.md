@@ -479,7 +479,7 @@ struct Child {
 
   build() {
     Column() {
-      ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+      ForEach(Array.from(this.message.entries()), (item: [number, number]) => {
         Text(`${item[0]}`).fontSize(30)
         Divider()
       })
