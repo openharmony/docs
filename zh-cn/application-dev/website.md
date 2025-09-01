@@ -84,7 +84,7 @@
             - [使用通过UIServiceExtensionAbility实现的系统悬浮窗](application-models/uiserviceextension.md)
             <!--DelEnd-->
             - [EmbeddedUIExtensionAbility](application-models/embeddeduiextensionability.md)
-            - [使用AppServiceExtensionAbility实现后台服务](application-models/app-service-extension-ability.md)
+            - [使用AppServiceExtensionAbility组件实现后台服务](application-models/app-service-extension-ability.md)
           - [AbilityStage组件管理器](application-models/abilitystage.md)
           - [应用上下文Context](application-models/application-context-stage.md)
           - 信息传递载体Want<!--want-->
