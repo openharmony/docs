@@ -260,7 +260,7 @@ To enable an audio and video application to access the AVSession service as a pr
                 // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
                 let type: AVSessionManager.AVSessionType = 'audio';
                 let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-                await session.setExtras({ extra: 'This is my custom meida packet' }).then(() => {
+                await session.setExtras({ extra: 'This is my custom media packet' }).then(() => {
                   console.info(`Set extras successfully`);
                 }).catch((err: BusinessError) => {
                   console.error(`Failed to set extras. Code: ${err.code}, message: ${err.message}`);
