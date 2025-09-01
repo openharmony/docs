@@ -4,13 +4,13 @@ Security components are a set of ArkUI components provided with certain permissi
 
 Compared with dynamic permission requesting, security components allow scenario-based authorization and simplify development and user operations. The security components stand out with the following features:
 
-- Minimizes the authorization by allowing the user to control when to grant the permission.
+1. Minimizes the authorization by allowing the user to control when to grant the permission.
 
-- Allows the authorization scenario to match the user's real intent.
+2. Allows the authorization scenario to match the user's real intent.
 
-- Reduces pop-up windows.
+3. Reduces pop-up windows.
 
-- Simplifies operations as you do not need to request permissions from AppGallery.
+4. Simplifies operations as you do not need to request permissions from AppGallery.
 
 Security components collect only personal data necessary for implementing service functions and help develop transparent, optional, and controllable privacy compliance applications.
 
@@ -68,7 +68,6 @@ Due to the automatic authorization feature, many restrictions are imposed on sec
 If the authorization fails due to invalid component style, check the device error logs with the keyword "SecurityComponentCheckFail".
 
 > **NOTE**
->
 > Pay attention to logs of all levels related to the keyword.
 
 Possible causes include but are not limited to the following:
