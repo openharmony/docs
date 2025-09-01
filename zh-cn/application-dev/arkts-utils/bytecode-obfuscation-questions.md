@@ -215,7 +215,7 @@ callargs2 0x2e, v2, v3
 
 ## 编译报错处理
 
-### 案例一：报错内容为 ERROR: [Class]get different name for method.
+**案例一：报错内容为 ERROR: [Class]get different name for method.**
 
 **问题现象**：使用@CustomDialog，自定义对话框，内部再弹出另一个对话框，开启字节码混淆后，执行build失败，报错信息为：
 Error message: ArkTSCompilerError: ArkTS:ERROR Failed to execute ByteCode Obfuscate.
