@@ -14,6 +14,8 @@ OpenHarmony 6.0 Beta1版本进一步增强ArkUI组件能力，提供更安全、
 
 - 新增支持应用查询自身权限授权状态信息。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#getselfpermissionstatus20)）
 
+- 新增支持互动卡片。（[指南](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-liveform-overview.md)）
+
 
 ### ArkUI
 
@@ -33,11 +35,31 @@ OpenHarmony 6.0 Beta1版本进一步增强ArkUI组件能力，提供更安全、
 - 保存控件新增支持图标和文字的自定义能力。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md#savebuttonattribute)）
 
 
+
+### ArkWeb
+
+- ArkWeb使用的Chromium内核从114版本升级到132版本。详细说明请查看[ArkWeb版本的差异总结](https://gitcode.com/openharmony-tpc/chromium_src/blob/132_trunk/web/ReleaseNote/ArkWeb_114_132.md)。
+
+- 交互能力增强：支持组合键缩放禁用、强制手势缩放、手势获焦、自定义文本菜单等。
+
+- 新增支持手写笔PointerEvent事件。
+
+- 新增支持在网络加载错误时返回自定义的错误页。（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-events.md#onoverrideerrorpage20)）
+
+
 ### 窗口管理
 
 - 新增支持窗口显示时默认不获取焦点，点击后可获取焦点。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#showwindow20)）
 
 - 新增支持输入法动画开始前和结束后的回调，方便应用进行输入法弹出与收回动画的响应。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#onkeyboardwillshow20)
+
+- 新增支持通过C API卸载自定义字体以释放内存空间。（[API参考](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/reference/apis-arkgraphics2d/capi-drawing-register-font-h.md#oh_drawing_unregisterfont)）
+
+- 新增支持设置文本垂直对齐方式。（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-graphics-text.md#textverticalalign20)）
+
+- 新增支持拷贝段落样式、文本样式、文本阴影对象。（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkgraphics2d/capi-drawing-text-typography-h.md#oh_drawing_copytypographystyle)）
+
+- 新增支持以独立文字为单位进行塑形。（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkgraphics2d/capi-drawing-text-run-h.md#oh_drawing_getrunfont)）
 
 ### 图形
 
@@ -59,6 +81,8 @@ OpenHarmony 6.0 Beta1版本进一步增强ArkUI组件能力，提供更安全、
 - UDMF新增DataHub、系统分享、picker、右键菜单这三类数据通道的生命周期管理能力，提供ArkTS和C API。（[API参考-ArkTS](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-unifiedDataChannel.md#intention)、[API参考-C API](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-arkdata/capi-udmf-h.md#%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E8%AF%B4%E6%98%8E)）
   其中DataHub仅C API为本次新增，ArkTS已支持。
 
+- 新增支持监听附件传输的进度，支持接续传输。（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md#onprogresschanged20)）
+
 
 ### 分布式软总线
 
@@ -68,6 +92,10 @@ OpenHarmony 6.0 Beta1版本进一步增强ArkUI组件能力，提供更安全、
 ### 分布式服务
 
 新增C API支持获取本地设备名称。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-distributedservice-kit/capi-devicemanager.md)）
+
+### 分布式设备管理
+
+新增机械设备管理服务，主要面向云台、机械臂等智能机械体配件设备提供交互控制的能力。（[指南](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/reference/apis-mechanic-kit)）
 
 
 ### 事件通知
@@ -96,14 +124,19 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 
 ### 多模输入
 
-新增支持触屏上报浮点类型坐标。
+- 新增C API支持获取当前屏幕上鼠标的坐标点。（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-input-kit/capi-oh-input-manager-h.md#oh_input_getpointerlocation)）
 
+- 新增C API支持查询设备支持的最大触屏报点数。（[API参考](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-input-kit/capi-oh-input-manager-h.md#oh_input_querymaxtouchpoints)）
+
+- 新增C API支持设置和查询鼠标事件、触屏事件在指定屏幕上的相对坐标系。详情可在[API参考](https://gitcode.com/openharmony/docs/blob/ad4d1941c726b56c89948c689ad5cd8b2391ca15/zh-cn/application-dev/reference/apis-input-kit/capi-oh-input-manager-h.md)中搜索关键字“相对坐标系”。
 
 ### DFX
 
 - 新增使用HiDebug对应用主线程进行栈回溯的能力。（[指南](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/dfx/hidebug-guidelines-ndk.md#%E4%BD%BF%E7%94%A8hidebug%E5%AF%B9%E5%BA%94%E7%94%A8%E4%B8%BB%E7%BA%BF%E7%A8%8B%E8%BF%9B%E8%A1%8C%E6%A0%88%E5%9B%9E%E6%BA%AF)）
 
 - 支持sanitizer事件对接到HiAppEvent。（[指南](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/dfx/hiappevent-watcher-address-sanitizer-events.md)）
+
+- CPP_CRASH事件支持通过SetEventConfig接口设置参数控制日志内容。（[指南](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-crash-events.md#%E5%B4%A9%E6%BA%83%E6%97%A5%E5%BF%97%E8%A7%84%E6%A0%BC%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE)）
 
 
 ### 安全
@@ -113,6 +146,8 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 - 加解密算法库框架提供了非对称加解密、签名、密钥协商、密钥派生、消息认证码、随机数的C接口；提供了ASN1格式和R|S格式的sm2签名数据互转能力；新增支持DES算法。（[指南](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/security/CryptoArchitectureKit/Readme-CN.md)）
 
 - 证书算法库支持获取utf-8编码的证书或证书吊销列表的颁发者名称。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-device-certificate-kit/js-apis-cert.md#tostring20)）
+
+- 证书链校验新增支持信任系统预置的根证书。（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-device-certificate-kit/js-apis-cert.md#certchainvalidationparameters11)）
 
 
 ### 输入法框架
@@ -128,6 +163,14 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 - 新增支持短信验证码编辑框。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-ime-kit/js-apis-inputmethod.md#textinputtype10)）
 
 - 新增支持自动大小写模式。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/reference/apis-ime-kit/js-apis-inputmethodengine.md#capitalizemode20)）
+
+### 上传下载
+
+支持设置任务超时、限速，支持下载数据到公共文件。（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md#minspeed20)）
+
+### 电源管理
+
+新增系统接口，支持刷新设备活动状态（如：重设屏幕超时息屏时间等）。（[API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power-sys.md#powerrefreshactivity20)）
 
 
 ## 配套关系
