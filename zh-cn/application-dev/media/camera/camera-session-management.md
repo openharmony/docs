@@ -29,9 +29,10 @@
 
 2. 调用cameraManager类中的[createSession](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createsession11)方法创建一个会话。
      
+  这里以videoSession为例。
    ```ts
    function getSession(cameraManager: camera.CameraManager): camera.Session | undefined {
-     let videoSession: camera.Session | undefined = undefined;
+     let videoSession: camera.VideoSession | undefined = undefined;
      try {
        videoSession = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
      } catch (error) {
@@ -42,7 +43,6 @@
    }
    ```
 
-这里用videoSession为例。
 3. 调用VideoSession类中的[beginConfig](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#beginconfig11)方法配置会话。
      
    ```ts
