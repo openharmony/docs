@@ -539,40 +539,40 @@ try {
 
 | 名称                  | 类型                                                             | 只读 | 可选 | 描述             |
 |----------------------|--------------------------------------------------------------------|------|------|-------------------|
-| accessibilityFocused<sup>20+</sup> | boolean | 否 | 是 | 表示元素是否因无障碍目的获得焦点。值为 **true** 表示已获得焦点，**false** 表示未获得焦点。<br>默认值：**false**。|
+| accessibilityFocused<sup>20+</sup> | boolean | 否 | 是 | 表示元素是否因无障碍目的获得焦点。**true** 表示已获得焦点，**false** 表示未获得焦点。<br>默认值：**false**。|
 | bundleName<sup>20+</sup> | string                                                             | 否  | 是  | 包名。|
-| checkable<sup>20+</sup> | boolean | 否 | 是 | 元素是否可勾选。值为 **true** 表示可勾选，**false** 表示不可勾选。<br>默认值：**false**。|
-| `checked` | boolean | 否 | 是 | 元素是否已勾选。`true` 表示已勾选，`false` 表示未勾选。<br>默认值：`false`。|
-| `clickable` | boolean | 否 | 是 | 元素是否可点击。值为 **true** 表示可点击，**false** 表示不可点击。<br>默认值：**false**。|
-| componentId<sup>20+</sup> | number | 否 | 是 | 元素所属组件的ID。默认值：**-1**。|
+| checkable<sup>20+</sup> | boolean | 否 | 是 | 元素是否可勾选。**true** 表示可勾选，**false** 表示不可勾选。<br>默认值：**false**。|
+| `checked` | boolean | 否 | 是 | 元素是否已勾选。**true** 表示已勾选，**false** 表示未勾选。<br>默认值：**false**。|
+| `clickable` | boolean | 否 | 是 | 元素是否可点击。**true** 表示可点击，**false** 表示不可点击。<br>默认值：**false**。|
+| componentId<sup>20+</sup> | number | 否 | 是 | 元素所属组件的ID。<br>默认值：**-1**。|
 | componentType<sup>20+</sup> | string                                                             | 否  | 是  | 元素所属组件的类型。|
 | contents<sup>20+</sup> | Array&lt;string&gt;                                                | 否  | 是  | 元素显示内容。|
 | currentIndex<sup>20+</sup> | number                                                             | 否  | 是  | 当前项的索引。<br>默认值：**0**。|
 | description<sup>20+</sup> | string                                                             | 否  | 是  | 元素的描述信息。|
-| `editable`<sup>20+</sup> | boolean | 否 | 是 | 元素是否可编辑。`true` 表示可编辑，`false` 表示不可编辑。<br>默认值：`false`。|
+| `editable`<sup>20+</sup> | boolean | 否 | 是 | 元素是否可编辑。**true** 表示可编辑，**false** 表示不可编辑。<br>默认值：**false**。|
 | endIndex<sup>20+</sup> | number                                                             | 否  | 是  | 屏幕上显示的最后一个列表项的索引。<br>默认值：**0**。|
 | error<sup>20+</sup> | string                                                             | 否  | 是  | 元素的错误状态。|
-| focusable<sup>20+</sup> | boolean | 否 | 是 | 元素是否可获得焦点。<br/>- **true**：可获得焦点<br/>- **false**：不可获得焦点<br/>默认值：**false**。|
+| focusable<sup>20+</sup> | boolean | 否 | 是 | 元素是否可获得焦点。**true** 表示可获得焦点，**false** 表示不可获得焦点。<br/>默认值：**false**。|
 | hintText<sup>20+</sup> | string                                                             | 否  | 是  | 提示文本。|
 | inputType<sup>20+</sup> | number                                                             | 否  | 是  | 输入文本的类型。<br>默认值：**0**。|
 | inspectorKey<sup>20+</sup> | string                                                             | 否  | 是  | 检查器键。|
-| `isActive`<sup>20+</sup> | boolean | 否 | 是 | 元素是否处于活动状态。`true` 表示活动状态，`false` 表示非活动状态。默认值：`true`。|
-| isEnable<sup>20+</sup> | boolean | 否 | 是 | 元素是否启用。值为 **true** 表示启用，**false** 表示未启用。<br>默认值：**false**。|
-| isHint<sup>20+</sup> | boolean | 否 | 是 | 元素是否为提示信息。值为 **true** 表示元素是提示信息，**false** 表示非提示信息。<br>默认值：**false**。|
-| isFocused<sup>20+</sup> | boolean | 否 | 是 | 表示元素是否已获得焦点。值为 **true** 表示已获得焦点，**false** 表示未获得焦点。<br>默认值：**false**。|
-| isPassword<sup>20+</sup> | boolean                                                            | 否  | 是  | 元素是否为密码。值为 **true** 表示元素是密码，**false** 表示不是密码。<br>默认值：**false**。|
-| isVisible<sup>20+</sup> | boolean | 否 | 是 | 元素是否可见。值为 **true** 表示元素可见，**false** 表示元素不可见。<br>默认值：**false**。|
+| `isActive`<sup>20+</sup> | boolean | 否 | 是 | 元素是否处于活动状态。**true** 表示活动状态，**false** 表示非活动状态。<br>默认值：**true**。|
+| isEnable<sup>20+</sup> | boolean | 否 | 是 | 元素是否启用。**true** 表示启用，**false** 表示未启用。<br>默认值：**false**。|
+| isHint<sup>20+</sup> | boolean | 否 | 是 | 元素是否为提示信息。**true** 表示元素是提示信息，**false** 表示非提示信息。<br>默认值：**false**。|
+| isFocused<sup>20+</sup> | boolean | 否 | 是 | 表示元素是否已获得焦点。**true** 表示已获得焦点，**false** 表示未获得焦点。<br>默认值：**false**。|
+| isPassword<sup>20+</sup> | boolean                                                            | 否  | 是  | 元素是否为密码。**true** 表示元素是密码，**false** 表示不是密码。<br>默认值：**false**。|
+| isVisible<sup>20+</sup> | boolean | 否 | 是 | 元素是否可见。**true** 表示元素可见，**false** 表示元素不可见。<br>默认值：**false**。|
 | itemCount<sup>20+</sup> | number                                                             | 否  | 是  | 项目总数。<br>默认值：**0**。|
 | lastContent<sup>20+</sup> | string                                                             | 否  | 是  | 最后一项内容。|
 | layer<sup>20+</sup> | number                                                             | 否  | 是  | 元素的显示层级。|
-| longClickable<sup>20+</sup> | boolean | 否 | 是 | 元素是否可长按。值为 **true** 表示可长按，**false** 表示不可长按。<br>默认值：**false**。|
-| pageId<sup>20+</sup> | number | 否 | 是 | 页面ID。默认值：**-1**。|
-| `pluralLineSupported`<sup>20+</sup> | boolean | 否 | 是 | 表示元素是否支持多行文本。值为 **true** 表示支持，**false** 表示不支持。<br>默认值：**false**。|
+| longClickable<sup>20+</sup> | boolean | 否 | 是 | 元素是否可长按。**true** 表示可长按，**false** 表示不可长按。<br>默认值：**false**。|
+| pageId<sup>20+</sup> | number | 否 | 是 | 页面ID。<br>默认值：**-1**。|
+| `pluralLineSupported`<sup>20+</sup> | boolean | 否 | 是 | 表示元素是否支持多行文本。**true** 表示支持，**false** 表示不支持。<br>默认值：**false**。|
 | rect<sup>20+</sup>                 | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#Rect)                                                      | 否  | 是  | 元素的区域。|
 | resourceName<sup>20+</sup>         | string                                                             | 否  | 是  | 元素的资源名称。|
 | screenRect<sup>20+</sup>           | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#Rect)                                                      | 否  | 是  | 元素的显示区域。|
-| scrollable<sup>20+</sup>           | boolean                                                            | 否  | 是  | 元素是否可滚动。值为 **true** 表示元素可滚动，**false** 表示不可滚动。<br>默认值：**false**。|
-| selected<sup>20+</sup>             | boolean                                                            | 否  | 是  | 元素是否已选中。值为 **true** 表示已选中，**false** 表示未选中。<br>默认值：**false**。|
+| scrollable<sup>20+</sup>           | boolean                                                            | 否  | 是  | 元素是否可滚动。**true** 表示元素可滚动，**false** 表示不可滚动。<br>默认值：**false**。|
+| selected<sup>20+</sup>             | boolean                                                            | 否  | 是  | 元素是否已选中。**true** 表示已选中，**false** 表示未选中。<br>默认值：**false**。|
 | startIndex<sup>20+</sup>           | number                                                             | 否  | 是  | 屏幕上第一个列表项的索引。<br>默认值：**0**。|
 | text<sup>20+</sup>                 | string                                                             | 否  | 是  | 元素的文本内容。|
 | textLengthLimit<sup>20+</sup>      | number                                                             | 否  | 是  | 元素的最大文本长度。|
@@ -591,16 +591,16 @@ try {
 | accessibilityNextFocusId<sup>20+</sup>             | number                | 否  | 是  | 下一个要获得焦点的组件的 ID。<br>默认值：**-1**。|
 | accessibilityPreviousFocusId<sup>20+</sup>             | number                | 否  | 是  | 上一个要获得焦点的组件的 ID。<br>默认值：**-1**。|
 | extraInfo<sup>20+</sup>             | string     | 否  | 是  | 元素的额外信息。值为 JSON 字符串。|
-| accessibilityScrollable<sup>20+</sup>             | boolean                 | 否  | 是  | 元素是否因无障碍目的而可滚动。此属性优先级高于 **scrollable**。<br>- **true**（默认值）：元素可滚动。<br>- **false**：元素不可滚动。|
+| accessibilityScrollable<sup>20+</sup>             | boolean                 | 否  | 是  | 元素是否因无障碍目的而可滚动。此属性优先级高于 **scrollable**。<br>- **true** 表示元素可滚动，**false** 表示元素不可滚动。<br>默认值：**true**。|
 | supportedActionNames<sup>20+</sup> | Array&lt;string&gt;                                                | 否  | 是  | 支持的操作名称。|
-| accessibilityGroup<sup>20+</sup>  | boolean                                                            | 否  | 是  | 元素是否为无障碍组。值为 **true** 表示元素是无障碍组，**false** 表示元素不是无障碍组。<br>默认值：**false**。|
+| accessibilityGroup<sup>20+</sup>  | boolean                                                            | 否  | 是  | 元素是否为无障碍组。**true** 表示元素是无障碍组，**false** 表示元素不是无障碍组。<br>默认值：**false**。|
 | accessibilityLevel<sup>20+</sup>             | string                                                             | 否  | 是  | 组件的无障碍级别。<br> **'auto'**：当前组件由无障碍分组服务和ArkUI进行综合判断组件是否可被辅助功能识别。<br> **'yes'**：当前组件可被辅助功能识别。<br> **'no'**：当前组件不可被辅助功能识别。<br> **'no-hide-descendants'**：当前组件及其所有子组件不可被辅助功能识别。|
 | navDestinationId<sup>20+</sup>             | number                                                             | 否  | 是  | 组件的导航目标 ID。|
 | currentItem<sup>20+</sup>             | [AccessibilityGrid](#accessibilitygrid20)                                                             | 否  | 是  | 组件网格中的当前项。|
 | spans<sup>20+</sup>             | [AccessibilitySpan](#accessibilityspan20)[]                                                             | 否  | 是  | 组件的跨度数组。|
-| accessibilityVisible<sup>20+</sup>  | boolean                                                            | 否  | 是  | 组件是否无障碍可见。值为 **true** 表示可见，**false** 表示不可见。|
+| accessibilityVisible<sup>20+</sup>  | boolean                                                            | 否  | 是  | 组件是否无障碍可见。**true** 表示可见，**false** 表示不可见。|
 | mainWindowId<sup>20+</sup>             | number                                                             | 否  | 是 | 组件的主窗口ID。|
-| clip<sup>20+</sup>  | boolean                                                            | 否  | 是  | 组件是否需要裁剪。值为 **true** 表示需要裁剪，**false** 表示不需要裁剪。|
+| clip<sup>20+</sup>  | boolean                                                            | 否  | 是  | 组件是否需要裁剪。**true** 表示需要裁剪，**false** 表示不需要裁剪。|
 | parentId<sup>20+</sup>             | number                                                             | 否  | 是  | 组件的父元素 ID。|
 | childrenIds<sup>20+</sup>             | Array\<number>                                                             | 否  | 是  | 组件的子元素 ID 列表。|
 
