@@ -172,9 +172,9 @@
 
 | 名称          | 类型   | 只读 | 可选  |说明         |
 | ------------ | ------ | ---- |-----|------------ |
-| latitude     | number |  否  | 否   |纬度(度)。取值范围：-90 - 90。    |
-| longitude    | number |  否  | 否   |经度(度)。取值范围：-180 - 180.    |
-| altitude     | number |  否  | 否   |海拔(米)。    |
+| latitude     | number |  否  | 否   |纬度（度）。取值范围：[-90, 90]。    |
+| longitude    | number |  否  | 否   |经度（度）。取值范围：[-180, 180]。    |
+| altitude     | number |  否  | 否   |海拔（米）。    |
 
 ## PhotoCaptureSetting
 
