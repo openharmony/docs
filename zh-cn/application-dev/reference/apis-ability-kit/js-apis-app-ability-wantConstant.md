@@ -1,5 +1,13 @@
 # @ohos.app.ability.wantConstant (Want常量)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @linjunjie6-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+
 wantConstant模块提供了[Want](js-apis-app-ability-want.md)操作相关的系统预设枚举和常量，例如在启动Ability时常用的Flag、Param参数等。
 
 > **说明：**
@@ -55,7 +63,7 @@ import { wantConstant } from '@kit.AbilityKit';
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
 | FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 表示临时授予接收方读取该URI指向的数据的权限。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。                                  |
 | FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 表示临时授予接收方写入该URI指向的数据的权限。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。                                  |
-| FLAG_AUTH_PERSISTABLE_URI_PERMISSION<sup>12+</sup> | 0x00000040 | 表示该URI可被接收方持久化。该字段仅在2in1和tablet设备上生效。|
+| FLAG_AUTH_PERSISTABLE_URI_PERMISSION<sup>12+</sup> | 0x00000040 | 表示该URI可被接收方持久化。该字段仅在2in1和Tablet设备上生效。|
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 表示拉起原子化服务时开启免安装功能。<br>- 如果开启了免安装功能，当系统检测到被拉起的原子化服务未安装时，会自动安装原子化服务，再进行拉起。<br>- 如果未开启免安装功能，当原子化服务未安装时，将拉起失败。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。                              |
 | FLAG_START_WITHOUT_TIPS<sup>11+</sup>              | 0x40000000 | 表示是否关闭匹配失败弹窗功能。<br>通过[隐式方式拉起应用](../../application-models/app-startup-overview.md)时，如果没有能够匹配的应用，默认会弹出提示弹窗“暂无可用打开方式”。开发者可以通过该字段屏蔽该弹窗。       |
 | FLAG_ABILITY_ON_COLLABORATE<sup>18+</sup> | 0x00002000 | 在多设备协同场景下，调用方应用通过DMS系统发起请求并且通过Flags字段携带此标志，协同方应用才会触发生命周期回调方法[onCollaborate()](js-apis-app-ability-uiAbility.md#oncollaborate18)。 |

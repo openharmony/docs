@@ -25,7 +25,7 @@ ArkUI提供了使用C和C++开发拖拽功能的能力，开发者可调用C API
 
     ```cpp
     auto image = nodeAPI->createNode(ARKUI_NODE_IMAGE);
-    ArkUI_NumberValue NODE_IMAGE_SRC_Item = {.string = "/pages/common/1111.png"};
+    ArkUI_AttributeItem NODE_IMAGE_SRC_Item = {.string = "/pages/common/1111.png"}; // 图片存放于pages/common文件夹
     ArkUI_NumberValue imageWidthValue[] = {100};
     ArkUI_AttributeItem imageWidthItem = {imageWidthValue, 1};
     ArkUI_NumberValue imageHeightValue[] = {100};
@@ -62,7 +62,7 @@ ArkUI提供了使用C和C++开发拖拽功能的能力，开发者可调用C API
       OH_PixelmapNative *pixelmap = nullptr;
       OH_PixelmapNative_CreatePixelmap(data, dataSize, createOpts, &pixelmap);
       OH_PixelmapNative_Rotate(pixelmap, 45);
-      OH_PixelmapNative_Opcity(pixelmap, 0.1);
+      OH_PixelmapNative_Opacity(pixelmap, 0.1);
       OH_PixelmapNative_Scale(pixelmap, 0.5, 1.0);
       OH_PixelmapNative_Translate(pixelmap, 50.0, 10.0);
       OH_ArkUI_SetNodeDragPreview(image, pixelmap);
@@ -149,7 +149,7 @@ ArkUI提供了使用C和C++开发拖拽功能的能力，开发者可调用C API
 
 5. 处理NODE_ON_DROP事件。
 
-   在NODE_ON_DROP事件中，应用可以执行与落入阶段相关的操作，通常需要获取拖拽过程中传递的数据。例如，获取[udmfData](../reference/apis-arkdata/capi-udmf-oh-udmfdata.md)，判断是否存在所需的数据类型，从[UdmfRecord](../reference/apis-arkdata/capi-udmf-oh-udmfrecord.md)中提取相应的数据，最后销毁指针。
+   在NODE_ON_DROP事件中，应用可以执行与落入阶段相关的操作，通常需要获取拖拽过程中传递的数据。例如，引用<database/udmf/udmf_meta.h>头文件，获取[udmfData](../reference/apis-arkdata/capi-udmf-oh-udmfdata.md)，判断是否存在所需的数据类型，从[UdmfRecord](../reference/apis-arkdata/capi-udmf-oh-udmfrecord.md)中提取相应的数据，最后销毁指针。
 
     ```cpp
     case NODE_ON_DROP: {
@@ -185,7 +185,7 @@ ArkUI提供了使用C和C++开发拖拽功能的能力，开发者可调用C API
             }
         } else {
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-                          "OH_UdmfData_HasType not contain UDMF_META_PLAIN_TEXT");
+                          "OH_UdmfData_HasType not contain UDMF_META_GENERAL_FILE");
         }
         break;
     }

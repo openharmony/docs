@@ -860,6 +860,7 @@ getCurrentAudioCapturerInfo(callback: AsyncCallback\<audio.AudioCapturerChangeIn
 **示例**：
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
 import { audio } from '@kit.AudioKit';
 
 let currentCapturerInfo: audio.AudioCapturerChangeInfo;
@@ -903,6 +904,7 @@ getCurrentAudioCapturerInfo(): Promise\<audio.AudioCapturerChangeInfo>
 **示例**：
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
 import { audio } from '@kit.AudioKit';
 
 let currentCapturerInfo: audio.AudioCapturerChangeInfo;
@@ -945,6 +947,8 @@ getAudioCapturerMaxAmplitude(callback: AsyncCallback\<number>): void
 **示例**：
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let maxAmplitude: number;
 
 avRecorder.getAudioCapturerMaxAmplitude((err: BusinessError, amplitude: number) => {
@@ -987,6 +991,8 @@ getAudioCapturerMaxAmplitude(): Promise\<number>
 **示例**：
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let maxAmplitude: number;
 
 avRecorder.getAudioCapturerMaxAmplitude().then((amplitude: number) => {
@@ -1023,6 +1029,8 @@ getAvailableEncoder(callback: AsyncCallback\<Array\<EncoderInfo>>): void
 **示例**：
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let encoderInfo: media.EncoderInfo;
 
 avRecorder.getAvailableEncoder((err: BusinessError, info: media.EncoderInfo[]) => {
@@ -1039,7 +1047,7 @@ avRecorder.getAvailableEncoder((err: BusinessError, info: media.EncoderInfo[]) =
 
 getAvailableEncoder(): Promise\<Array\<EncoderInfo>>
 
-异步方式获取可用的编码器参数。通过注册回调函数获取返回值。
+异步方式获取可用的编码器参数。通过Promise获取返回值。
 
 **系统能力**：SystemCapability.Multimedia.Media.AVRecorder
 
@@ -1061,6 +1069,8 @@ getAvailableEncoder(): Promise\<Array\<EncoderInfo>>
 **示例**：
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let encoderInfo: media.EncoderInfo;
 
 avRecorder.getAvailableEncoder().then((info: media.EncoderInfo[]) => {
@@ -1185,7 +1195,7 @@ on(type: 'stateChange', callback: OnAVRecorderStateChangeHandler): void
 
 ```ts
 avRecorder.on('stateChange', async (state: media.AVRecorderState, reason: media.StateChangeReason) => {
-  console.info('case state has changed, new state is :' + state + ',and new reason is : ' + reason);
+  console.info('case state has changed, new state is: ' + state + ', and reason is: ' + reason);
 });
 ```
 

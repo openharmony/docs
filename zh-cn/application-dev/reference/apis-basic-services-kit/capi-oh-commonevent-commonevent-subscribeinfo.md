@@ -1,5 +1,12 @@
 # CommonEvent_SubscribeInfo
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
+
 ## 概述
 
 提供CommonEvent_SubscribeInfo订阅者信息结构体声明。

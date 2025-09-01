@@ -1,7 +1,13 @@
 # acm工具
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
 
-Account Manager（帐号管理工具，简称acm）是实现帐号创建、删除、查询等功能的工具，acm为开发者提供基本的管理本地帐号的能力，例如：创建帐号、删除帐号等。
+Account Manager（账号管理工具，简称acm）是实现账号创建、删除、查询等功能的工具，acm为开发者提供基本的管理本地账号的能力，例如：创建账号、删除账号等。
 
 > **说明：**
 >
@@ -13,12 +19,12 @@ Account Manager（帐号管理工具，简称acm）是实现帐号创建、删�
 | 命令 | 描述 |
 | -------- | -------- |
 | help | 帮助命令，用于显示acm支持的命令信息。 |
-| create | 创建命令，用于创建帐号。注：需要root之后才能使用该命令。 |
-| delete | 删除命令，用于删除帐号。注：需要root之后才能使用该命令。 |
-| dump | 查询命令，用于查询帐号的相关信息。注：需要root之后才能使用该命令。 |
-| switch | 切换命令，用于切换帐号。注：需要root之后才能使用该命令。 |
-| deactivate | 注销命令，用于注销帐号。注：需要root之后才能使用该命令。 |
-| set | 设置约束命令，用于设置帐号的约束。注：需要root之后才能使用该命令。 |
+| create | 创建命令，用于创建账号。注：需要root之后才能使用该命令。 |
+| delete | 删除命令，用于删除账号。注：需要root之后才能使用该命令。 |
+| dump | 查询命令，用于查询账号的相关信息。注：需要root之后才能使用该命令。 |
+| switch | 切换命令，用于切换账号。注：需要root之后才能使用该命令。 |
+| deactivate | 注销命令，用于注销账号。注：需要root之后才能使用该命令。 |
+| set | 设置约束命令，用于设置账号的约束。注：需要root之后才能使用该命令。 |
 
 
 ## help
@@ -41,23 +47,24 @@ acm help
 ```bash
 # 显示帮助命令
 acm create -h
-# 创建一个指定名字与类型的帐号
-acm create -n <accountName> -t <accountType> [-s <shortName>] [-l <disallowed-install-hap-list>]
+# 创建一个指定名字与类型的账号
+acm create -n <accountName> -t <accountType> [-s <shortName>] [-d <disallowed-pre-install-hap-bundles>] [-p <allowed-pre-install-hap-bundles>]
 ```
 
 **显示信息**
 
-当帐号创建成功时，显示"create the local account successfully."；当创建失败时，显示相应的失败信息。
+当账号创建成功时，显示"create the local account successfully."；当创建失败时，显示相应的失败信息。
 
 **创建命令参数列表**
 
 | 参数                                | 描述                       |
 | ----------------------------------- | -------------------------- |
 | -h | 可选参数。显示create支持的命令信息。 |
-| -n | 必选参数。指定新帐号的名字。 |
-| -t | 必选参数。指定新帐号的帐号类型。帐号类型分为admin（管理员帐号）、normal（普通帐号）、guest（访客帐号）、private（隐私帐号）。 |
-| -s | 可选参数。指定新帐号的短名。 |
-| -l | 可选参数。指定新帐号的预置应用黑名单。 |
+| -n | 必选参数。指定新账号的名字。 |
+| -t | 必选参数。指定新账号的账号类型。账号类型分为admin（管理员账号）、normal（普通账号）、guest（访客账号）、private（隐私账号）。 |
+| -s | 可选参数。指定新账号的短名。 |
+| -d | 可选参数。指定新账号被禁止的预置应用列表。 |
+| -p | 可选参数。指定新账号被允许的预置应用列表。 |
 
 
 ## delete
@@ -67,20 +74,20 @@ acm create -n <accountName> -t <accountType> [-s <shortName>] [-l <disallowed-in
 ```bash
 # 显示帮助命令
 acm delete -h
-# 删除指定id的帐号
+# 删除指定id的账号
 acm delete -i <accountId>
 ```
 
 **显示信息**
 
-当删除帐号成功时，显示"delete the local account successfully."；当删除失败时，显示相应的失败信息。
+当删除账号成功时，显示"delete the local account successfully."；当删除失败时，显示相应的失败信息。
 
 **删除命令参数列表**
 
 | 参数                                | 描述                       |
 | ----------------------------------- | -------------------------- |
 | -h | 可选参数。显示delete支持的命令信息。 |
-| -i | 必选参数。指定将要删除的帐号id。 |
+| -i | 必选参数。指定将要删除的账号id。 |
 
 
 ## dump
@@ -90,23 +97,23 @@ acm delete -i <accountId>
 ```bash
 # 显示帮助命令
 acm dump -h
-# 查询所有帐号的信息
+# 查询所有账号的信息
 acm dump -a
-# 查询指定帐号id的帐号信息
+# 查询指定账号id的账号信息
 acm dump -i <accountId>
 ```
 
 **显示信息**
 
-当查询成功时，显示相应的帐号信息；当查询失败时，显示相应的失败信息。
+当查询成功时，显示相应的账号信息；当查询失败时，显示相应的失败信息。
 
 **查询命令参数列表**
 
 | 参数                                | 描述                       |
 | ----------------------------------- | -------------------------- |
 | -h | 可选参数。显示dump支持的命令信息。 |
-| -a | 必选参数。表示查询所有帐号的帐号信息。 |
-| -i | 必选参数。指定帐号id，用于查询相应id的帐号信息。 |
+| -a | 必选参数。表示查询所有账号的账号信息。 |
+| -i | 必选参数。指定账号id，用于查询相应id的账号信息。 |
 
 
 ## switch
@@ -116,20 +123,20 @@ acm dump -i <accountId>
 ```bash
 # 显示帮助命令
 acm switch -h
-# 切换到指定id的帐号
+# 切换到指定id的账号
 acm switch -i <accountId>
 ```
 
 **显示信息**
 
-当切换帐号成功时，显示"switch the local account successfully."；当切换失败时，显示相应的失败信息。
+当切换账号成功时，显示"switch the local account successfully."；当切换失败时，显示相应的失败信息。
 
 **切换命令参数列表**
 
 | 参数                                | 描述                       |
 | ----------------------------------- | -------------------------- |
 | -h | 可选参数。显示switch支持的命令信息。 |
-| -i | 必选参数。指定要切换到的帐号的帐号id。 |
+| -i | 必选参数。指定要切换到的账号的账号id。 |
 
 
 ## deactivate
@@ -139,23 +146,23 @@ acm switch -i <accountId>
 ```bash
 # 显示帮助命令
 acm deactivate -h
-# 注销所有帐号
+# 注销所有账号
 acm deactivate -a
-# 注销指定帐号id的帐号
+# 注销指定账号id的账号
 acm deactivate -i <accountId>
 ```
 
 **显示信息**
 
-当注销帐号成功时，显示"deactivate the local account successfully."；当注销失败时，显示相应的失败信息。
+当注销账号成功时，显示"deactivate the local account successfully."；当注销失败时，显示相应的失败信息。
 
 **注销命令参数列表**
 
 | 参数                                | 描述                       |
 | ----------------------------------- | -------------------------- |
 | -h | 可选参数。显示deactivate支持的命令信息。 |
-| -a | 必选参数。表示注销所有帐号。 |
-| -i | 必选参数。指定帐号id，用于注销相应id的帐号。 |
+| -a | 必选参数。表示注销所有账号。 |
+| -i | 必选参数。指定账号id，用于注销相应id的账号。 |
 
 
 ## set
@@ -165,7 +172,7 @@ acm deactivate -i <accountId>
 ```bash
 # 显示帮助命令
 acm set -h
-# 设置指定id的帐号的约束
+# 设置指定id的账号的约束
 acm set -i <accountId> -c <constraints> [-e]
 ```
 
@@ -178,6 +185,6 @@ acm set -i <accountId> -c <constraints> [-e]
 | 参数                                | 描述                       |
 | ----------------------------------- | -------------------------- |
 | -h | 可选参数。显示set支持的命令信息。 |
-| -i | 必选参数。指定帐号id。 |
-| -c | 必选参数。指定要设置的约束集合，集合中每个约束用','分隔。查看约束的详细信息请查询[帐号约束列表](../reference/apis-basic-services-kit/js-apis-osAccount.md#系统账号约束列表)。 |
+| -i | 必选参数。指定账号id。 |
+| -c | 必选参数。指定要设置的约束集合，集合中每个约束用','分隔。查看约束的详细信息请查询[账号约束列表](../reference/apis-basic-services-kit/js-apis-osAccount.md#系统账号约束列表)。 |
 | -e | 可选参数。(加上/不加上)该选项表示(添加/删除)约束。 |

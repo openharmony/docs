@@ -75,7 +75,7 @@ SelectionMenuOptions定义SelectionMenu的可选菜单类型项及其具体配�
 | icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 否 | 图标资源。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | builder | ()&nbsp;=&gt;&nbsp;void | 否 | 是 | 点击时显示用户自定义组件，自定义组件在构造时结合@Builder使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 是 | 点击菜单项的事件回调。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| symbolStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | 否 | 是 | Symbol图标资源，优先级大于icon。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| symbolStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-text-style.md#symbolglyphmodifier12) | 否 | 是 | Symbol图标资源，优先级大于icon。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 
 ## ExpandedMenuOptions

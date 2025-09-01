@@ -1,12 +1,12 @@
 # ArkUI子系统ChangeLog
-## cl.arkui.1 Navigation、NavDestination的title和menus接口支持Resource类型资源
+## cl.arkui.1 Navigationd的menus接口、NavDestination的title和menus接口支持Resource类型资源
 **访问级别**
 
 公开接口
 
 **变更原因**
 
-基础能力增强，Navigation、navdestination的title和menus接口支持Resource类型
+基础能力增强，Navigationd的menus接口、NavDestination的title和menus接口支持Resource类型资源。
 
 **变更影响**
 
@@ -17,7 +17,6 @@
 ```
 const myIcon: NavigationMenuItem = { value: "图标", icon: "https://example.png"}
 const myString: string = myIcon.value
-
 ```
 
 **起始API Level**
@@ -30,7 +29,9 @@ const myString: string = myIcon.value
 
 **变更的接口/组件**
 
-Navigation/NavDestination
+Navigation的menus接口
+
+NavDestination的menus和title接口
 
 **适配指导**
 
@@ -40,18 +41,22 @@ Navigation/NavDestination
 Navigation() {
     // xxx
 }
+// $r('app.string.MyTestNavigationTitle')需要替换为开发者所需的资源文件
 .title($r('app.string.MyTestNavigationTitle'))  // 可直接将resource类型资源传递给title接口
 // menus内的item设置可直接支持resource类型资源
 .menus([
   {
+    // $r("app.string.MyTestMenuValue1")和$r("app.media.1")需要替换为开发者所需的资源文件
     value: $r("app.string.MyTestMenuValue1"),
     icon: $r("app.media.1")
   },
   {
+    // $r("app.string.MyTestMenuValue2")和$r("app.media.2")需要替换为开发者所需的资源文件
     value: $r("app.string.MyTestMenuValue2"),
     icon: $r("app.media.2")
   },
   {
+    // $r("app.string.MyTestMenuValue3")和$r("app.media.3")需要替换为开发者所需的资源文件
     value: $r("app.string.MyTestMenuValue3"),
     icon: $r("app.media.3")
   }
@@ -62,20 +67,24 @@ Navigation() {
 ```
 // navDestination.ets
 // Navigation及NavDestination的CommonTitle类型，支持设置resource资源
+// 需要替换为开发者所需的资源文件
 @State commonTitle: NavDestinationCommonTitle = { main: $r('app.string.MyTestNavigationTitle'), sub: $r('app.string.MyTestNavigationTitle')}
 NavDestination() {
     // xxx
 }
 .menus([
   {
+    // $r("app.string.MyTestMenuValue1")和$r("app.media.4")需要替换为开发者所需的资源文件
     value: $r("app.string.MyTestMenuValue1"),
     icon: $r("app.media.4")
   },
   {
+    // $r("app.string.MyTestMenuValue2")和$r("app.media.5")需要替换为开发者所需的资源文件
     value: $r("app.string.MyTestMenuValue2"),
     icon: $r("app.media.5")
   },
   {
+    // $r("app.string.MyTestMenuValue3")和$r("app.media.6")需要替换为开发者所需的资源文件
     value: $r("app.string.MyTestMenuValue3"),
     icon: $r("app.media.6")
   }
@@ -192,7 +201,7 @@ struct MyComponent {
 }
 ```
 
-## cl.arkui.3 Navdestination的Dialog模式默认支持系统动画
+## cl.arkui.3 NavDestination的Dialog模式默认支持系统动画
 
 **访问级别**
 
@@ -200,14 +209,14 @@ struct MyComponent {
 
 **变更原因**
 
-Navdestination的Dialog模式支持系统动画
+NavDestination的Dialog模式支持系统动画。
 
 **变更影响**
 该变更为不兼容变更。
 
-变更前：Navdestination的Dialog模式，无系统默认动画。
+变更前：NavDestination的Dialog模式，无系统默认动画。
 
-变更后：Navdestination的Dialog模式，默认带有系统转场动画。
+变更后：NavDestination的Dialog模式，默认带有系统转场动画。
 
 | 变更前 | 变更后 |
 |---------|---------|
@@ -223,11 +232,11 @@ Navdestination的Dialog模式支持系统动画
 
 **变更的接口/组件**
 
-Navdestination
+NavDestination
 
 **适配指导**
 
-开发者可以通过在pop与push接口中设置false关闭Navdestination的系统默认动画。
+开发者可以通过在pop与push接口中设置false关闭NavDestination的系统默认动画。
 
 示例：
 
@@ -243,11 +252,12 @@ struct NavigationDemo {
 	@Builder
 	pageOneTmp() {
 		NavDestination() {
-          // ...
-          // 需自行构造NavDestination
+          Text("This is a sample")
+            .fontSize(50)
 		}
 		.title("PageOne")
 		.mode(NavDestinationMode.DIALOG)
+    .backgroundColor(Color.Blue)
 	}
 
 	@Builder
@@ -261,13 +271,13 @@ struct NavigationDemo {
 		Column({ space: 10 }) {
 			Button('Pop Dialog')
 			.onClick(() => {
-				// set false to close system pop animation
-				this.pageInfos.pop(false)
+				// set true to open system pop animation
+				this.pageInfos.pop(true)
 			})
 			Button('Push Dialog')
 			.onClick(() => {
-				// set false to close system push animation
-				this.pageInfos.pushPath({ name: 'pageOne' }, false)
+				// set true to open system push animation
+				this.pageInfos.pushPath({ name: 'pageOne' }, true)
 			})
 			Navigation(this.pageInfos) {
 				Column({ space: 10 }) {

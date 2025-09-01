@@ -28,8 +28,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 | 名称   | 类型   | 只读 | 可选 | 说明                   |
 | ------ | ------ | ---- | ---- | ---------------------- |
-| width  | number | 是   | 是   | 组件大小的宽度。<br/>单位：vp<br/>取值范围：[0, +∞) |
-| height | number | 是   | 是   | 组件大小的高度。<br/>单位：vp<br/>取值范围：[0, +∞) |
+| width  | number | 否   | 否   | 组件大小的宽度。<br/>单位：vp<br/>取值范围：[0, +∞) |
+| height | number | 否   | 否   | 组件大小的高度。<br/>单位：vp<br/>取值范围：[0, +∞) |
 
 ## Position
 
@@ -69,10 +69,10 @@ type PositionT\<T> = Vector2T\<T>
 
 | 名称   | 类型   | 只读 | 可选 | 说明                        |
 | ------ | ------ | ---- | ---- | --------------------------- |
-| x      | number | 是   | 是   | 水平方向位置。<br/>单位：vp<br/>取值范围：(-∞, +∞) |
-| y      | number | 是   | 是   | 垂直方向位置。<br/>单位：vp<br/>取值范围：(-∞, +∞) |
-| width  | number | 是   | 是   | 组件的宽度。<br/>单位：vp<br/>取值范围：[0, +∞)   |
-| height | number | 是   | 是   | 组件的高度。<br/>单位：vp<br/>取值范围：[0, +∞)   |
+| x      | number | 否   | 否   | 水平方向位置。<br/>单位：vp<br/>取值范围：(-∞, +∞) |
+| y      | number | 否   | 否   | 垂直方向位置。<br/>单位：vp<br/>取值范围：(-∞, +∞) |
+| width  | number | 否   | 否   | 组件的宽度。<br/>单位：vp<br/>取值范围：[0, +∞)   |
+| height | number | 否   | 否   | 组件的高度。<br/>单位：vp<br/>取值范围：[0, +∞)   |
 
 ## Pivot
 
@@ -317,10 +317,10 @@ struct Index {
 
 | 名称   | 类型 | 只读 | 可选 | 说明             |
 | ------ | ---- | ---- | ---- | ---------------- |
-| left   | T    | 是   | 是   | 左侧边框的属性。 |
-| top    | T    | 是   | 是   | 顶部边框的属性。 |
-| right  | T    | 是   | 是   | 右侧边框的属性。 |
-| bottom | T    | 是   | 是   | 底部边框的属性。 |
+| left   | T    | 否   | 否   | 左侧边框的属性。 |
+| top    | T    | 否   | 否   | 顶部边框的属性。 |
+| right  | T    | 否   | 否   | 右侧边框的属性。 |
+| bottom | T    | 否   | 否   | 底部边框的属性。 |
 
 ## LengthUnit<sup>12+</sup>
 
@@ -348,8 +348,8 @@ struct Index {
 
 | 名称   | 类型 | 只读 | 可选 | 说明             |
 | ------ | ---- | ---- | ---- | ---------------- |
-| width   | T    | 是   | 是   | 宽度的属性。 |
-| height    | T    | 是   | 是   | 高度的属性。 |
+| width   | T    | 否   | 否   | 宽度的属性。 |
+| height    | T    | 否   | 否   | 高度的属性。 |
 
 ## LengthMetricsUnit<sup>12+</sup>
 
@@ -376,8 +376,8 @@ struct Index {
 
 | 名称   | 类型 | 只读 | 可选 | 说明             |
 | ------------ | ---------------------------------------- | ---- | ---- | ------ |
-| value       | number | 是   | 是   | 长度属性的值。   |
-| unit | [LengthUnit](#lengthunit12)                                   | 是   | 是   | 长度属性的单位，默认为VP。|
+| value       | number | 否   | 否   | 长度属性的值。   |
+| unit | [LengthUnit](#lengthunit12)                                   | 否   | 否   | 长度属性的单位，默认为VP。|
 
 ### constructor<sup>12+</sup>
 
@@ -794,10 +794,10 @@ struct ColorMetricsSample {
 
 | 名称        | 类型 | 只读 | 可选 | 说明                   |
 | ----------- | ---- | ---- | ---- | ---------------------- |
-| topLeft     | T    | 是   | 是   | 左上边框的圆角属性。   |
-| topRight    | T    | 是   | 是   | 右上边框的圆角属性。 |
-| bottomLeft  | T    | 是   | 是   | 左下边框的圆角属性。   |
-| bottomRight | T    | 是   | 是   | 右下边框的圆角属性。   |
+| topLeft     | T    | 否   | 否   | 左上边框的圆角属性。   |
+| topRight    | T    | 否   | 否   | 右上边框的圆角属性。 |
+| bottomLeft  | T    | 否   | 否   | 左下边框的圆角属性。   |
+| bottomRight | T    | 否   | 否   | 右下边框的圆角属性。   |
 
 ## CornerRadius<sup>12+</sup>
 
@@ -851,8 +851,8 @@ type Rect = common2D.Rect
 
 | 名称    | 类型                          | 只读 | 可选 | 说明             |
 | ------- | ----------------------------- | ---- | ---- | ---------------- |
-| rect    | [Rect](#rect12)                 | 是   | 是   | 设置矩形的属性。 |
-| corners | [CornerRadius](#cornerradius12) | 是   | 是   | 设置圆角的属性。 |
+| rect    | [Rect](#rect12)                 | 否   | 否   | 设置矩形的属性。 |
+| corners | [CornerRadius](#cornerradius12) | 否   | 否   | 设置圆角的属性。 |
 
 ## Circle<sup>12+</sup>
 
@@ -864,9 +864,9 @@ type Rect = common2D.Rect
 
 | 名称    | 类型   | 只读 | 可选 | 说明                      |
 | ------- | ------ | ---- | ---- | ------------------------- |
-| centerX | number | 是   | 是   | 圆心x轴的位置，单位为px。 |
-| centerY | number | 是   | 是   | 圆心y轴的位置，单位为px。 |
-| radius  | number | 是   | 是   | 圆形的半径，单位为px。 <br/> 取值范围：[0, +∞)   |
+| centerX | number | 否   | 否   | 圆心x轴的位置，单位为px。 |
+| centerY | number | 否   | 否   | 圆心y轴的位置，单位为px。 |
+| radius  | number | 否   | 否   | 圆形的半径，单位为px。 <br/> 取值范围：[0, +∞)   |
 
 ## CommandPath<sup>12+</sup>
 
@@ -878,11 +878,23 @@ type Rect = common2D.Rect
 
 | 名称                                                         | 类型   | 只读 | 可选 | 说明                                                         |
 | ------------------------------------------------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| [commands](./arkui-ts/ts-drawing-components-path.md#commands) | string | 是   | 是   | 路径绘制的指令字符串。像素单位的转换方法请参考[像素单位转换](./arkui-ts/ts-pixel-units.md#像素单位转换)。<br/>单位：px |
+| [commands](./arkui-ts/ts-drawing-components-path.md#commands) | string | 否   | 否   | 路径绘制的指令字符串。像素单位的转换方法请参考[像素单位转换](./arkui-ts/ts-pixel-units.md#像素单位转换)。<br/>单位：px |
 
 ## ShapeMask<sup>12+</sup>
 
 用于设置图形遮罩。
+
+### 属性
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称            | 类型    | 只读 | 可选 | 说明                                                |
+| --------------- | ------ | ---- | ---- | -------------------------------------------------- |
+| fillColor       | number | 否   | 否   | 遮罩的填充颜色，使用ARGB格式。默认值为`0XFF000000`。   |
+| strokeColor     | number | 否   | 否   | 遮罩的边框颜色，使用ARGB格式。默认值为`0XFF000000`。   |
+| strokeWidth     | number | 否   | 否   | 遮罩的边框宽度，单位为px。默认值为0。                  |
 
 ### constructor<sup>12+</sup>
 
@@ -1159,185 +1171,6 @@ import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 const mask = new ShapeMask();
 mask.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
 mask.fillColor = 0X55FF0000;
-
-const renderNode = new RenderNode();
-renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
-renderNode.backgroundColor = 0XFF00FF00;
-renderNode.shapeMask = mask;
-
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-
-  makeNode(uiContext: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(uiContext);
-
-    const rootRenderNode = this.rootNode.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(renderNode);
-    }
-
-    return this.rootNode;
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  private myNodeController: MyNodeController = new MyNodeController();
-
-  build() {
-    Row() {
-      NodeContainer(this.myNodeController)
-    }
-  }
-}
-```
-
-### fillColor<sup>12+</sup>
-
-fillColor: number
-
-遮罩的填充颜色，使用ARGB格式。默认值为`0XFF000000`。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型          | 说明             |
-| ------------- | ---------------- |
-| number | 遮罩的填充颜色，使用ARGB格式。默认值为`0XFF000000`。 |
-
-**示例：**
-
-```ts
-import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
-
-const mask = new ShapeMask();
-mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
-mask.fillColor = 0X55FF0000;
-
-const renderNode = new RenderNode();
-renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
-renderNode.backgroundColor = 0XFF00FF00;
-renderNode.shapeMask = mask;
-
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-
-  makeNode(uiContext: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(uiContext);
-
-    const rootRenderNode = this.rootNode.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(renderNode);
-    }
-
-    return this.rootNode;
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  private myNodeController: MyNodeController = new MyNodeController();
-
-  build() {
-    Row() {
-      NodeContainer(this.myNodeController)
-    }
-  }
-}
-```
-
-### strokeColor<sup>12+</sup>
-
-strokeColor: number
-
-遮罩的边框颜色，使用ARGB格式。默认值为`0XFF000000`。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型          | 说明             |
-| ------------- | ---------------- |
-| number | 遮罩的边框颜色，使用ARGB格式。默认值为`0XFF000000`。 |
-
-**示例：**
-
-```ts
-import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
-
-const mask = new ShapeMask();
-mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
-mask.strokeColor = 0XFFFF0000;
-mask.strokeWidth = 24;
-
-const renderNode = new RenderNode();
-renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
-renderNode.backgroundColor = 0XFF00FF00;
-renderNode.shapeMask = mask;
-
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-
-  makeNode(uiContext: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(uiContext);
-
-    const rootRenderNode = this.rootNode.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(renderNode);
-    }
-
-    return this.rootNode;
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  private myNodeController: MyNodeController = new MyNodeController();
-
-  build() {
-    Row() {
-      NodeContainer(this.myNodeController)
-    }
-  }
-}
-```
-
-### strokeWidth<sup>12+</sup>
-
-strokeWidth: number
-
-遮罩的边框宽度，单位为px。默认值为0。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型          | 说明             |
-| ------------- | ---------------- |
-| number | 遮罩的边框宽度，单位为px。默认值为0。 |
-
-**示例：**
-
-```ts
-import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
-
-const mask = new ShapeMask();
-mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
-mask.strokeColor = 0XFFFF0000;
-mask.strokeWidth = 24;
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };

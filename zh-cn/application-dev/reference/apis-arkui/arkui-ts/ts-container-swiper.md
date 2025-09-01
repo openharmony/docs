@@ -752,7 +752,7 @@ preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 
 | 参数名   | 类型   | 必填   | 说明                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
-| indices | Optional\<Array\<number>> | 是 | 需预加载的子节点的下标数组。<br/>默认值：空数组。 |
+| indices | Optional\<Array\<number>> | 是 | 需预加载的子节点的下标数组。|
 
 **返回值：**
 
@@ -1700,6 +1700,8 @@ Swiper滑动时触发的回调，参数可参考[SwiperContentTransitionProxy](#
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |

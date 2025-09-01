@@ -1,5 +1,12 @@
 # MissionSnapshot (系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @littlejerry1; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 一个任务的任务快照对象，可以通过[missionManager.getMissionSnapShot](js-apis-app-ability-missionManager-sys.md#missionmanagergetmissionsnapshot)获取。
 
 > **说明：**
@@ -13,7 +20,7 @@
 import { missionManager } from '@kit.AbilityKit';
 ```
 
-## 属性
+## MissionSnapshot
 
 **系统接口**：此接口为系统接口。
 
@@ -22,13 +29,10 @@ import { missionManager } from '@kit.AbilityKit';
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | ability | ElementName | 否 | 否 | 表示该任务的组件信息。 | 
-| snapshot | [PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 否 | 表示任务快照。 |
-
-## 使用说明
-
-通过missionManager中的getMissionSnapShot来获取。
+| snapshot | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 否 | 表示任务快照。 |
 
 **示例：**
+
 ```ts
 import { missionManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';

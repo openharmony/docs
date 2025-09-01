@@ -4,7 +4,7 @@
 <!--Owner: @zzq212050299-->
 <!--Designer: @s10021109-->
 <!--Tester: @TerryTsao-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @zhang_yixin13-->
 
 状态管理模块提供了应用程序的数据存储能力、持久化数据管理能力、UIAbility数据存储能力和应用程序需要的环境状态。
 
@@ -31,7 +31,7 @@ AppStorage具体UI使用说明，详见[AppStorage(应用全局的UI状态存储
 
 static ref\<T\>(propName: string): AbstractProperty\<T\>&nbsp;|&nbsp;undefined
 
-如果给定的propName在[AppStorage](../../../ui/state-management/arkts-appstorage.md)中存在，则获得AppStorage中propName对应数据的引用。否则，返回undefined。
+如果给定的propName在[AppStorage](../../../ui/state-management/arkts-appstorage.md)中存在，则返回AppStorage中propName对应数据的引用。否则，返回undefined。
 
 与[link](#link10)的功能基本一致，但不需要手动释放返回的[AbstractProperty](#abstractproperty)类型的变量。
 
@@ -64,7 +64,7 @@ refToPropA1?.set(48); // 同步修改AppStorage: refToPropA1.get() == refToPropA
 
 static setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&lt;T&gt;
 
-与[ref](#ref12)接口类似，如果给定的propName在[AppStorage](../../../ui/state-management/arkts-appstorage.md)中存在，则获得AppStorage中propName对应数据的引用。如果不存在，则使用defaultValue在AppStorage中创建和初始化propName对应的属性，并返回其引用。defaultValue须为T类型，可以为null或undefined。
+与[ref](#ref12)接口类似，如果给定的propName在[AppStorage](../../../ui/state-management/arkts-appstorage.md)中存在，则返回AppStorage中propName对应数据的引用。如果不存在，则使用defaultValue在AppStorage中创建和初始化propName对应的属性，并返回其引用。defaultValue须为T类型，可以为null或undefined。
 
 与[setAndLink](#setandlink10)的功能基本一致，但不需要手动释放返回的[AbstractProperty](#abstractproperty)类型的变量。
 
@@ -674,7 +674,7 @@ let res1: boolean = AppStorage.Set('PropB', 47) // false
 
 static SetOrCreate&lt;T&gt;(propName: string, newValue: T): void
 
-如果propName已经在[AppStorage](../../../ui/state-management/arkts-appstorage.md)中存在，则设置propName对应是属性的值为newValue。如果不存在，则创建propName属性，值为newValue。
+如果propName已经在[AppStorage](../../../ui/state-management/arkts-appstorage.md)中存在，则设置propName对应的属性值为newValue。如果不存在，则创建propName属性，值为newValue。
 
 newValue不能为null或undefined。
 
@@ -1068,7 +1068,7 @@ let res2: boolean = storage.setOrCreate('PropB', null); // true (API12及之后�
 
 public ref\<T\>(propName: string): AbstractProperty\<T\>&nbsp;|&nbsp;undefined
 
-如果给定的propName在[LocalStorage](../../../ui/state-management/arkts-localstorage.md)中存在，则获得LocalStorage中propName对应数据的引用。否则，返回undefined。
+如果给定的propName在[LocalStorage](../../../ui/state-management/arkts-localstorage.md)中存在，则返回LocalStorage中propName对应数据的引用。否则，返回undefined。
 
 与[link](#link9)的功能基本一致，但不需要手动释放返回的[AbstractProperty](#abstractproperty)类型的变量。
 
@@ -1102,7 +1102,7 @@ refToPropA1?.set(48); // refToPropA1.get() == refToPropA2.get() == 48
 
 public setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&lt;T&gt;
 
-与[ref](#ref12-1)接口类似，如果给定的propName在[LocalStorage](../../../ui/state-management/arkts-localstorage.md)中存在，则获得LocalStorage中propName对应数据的引用。如果不存在，则使用defaultValue在LocalStorage中创建和初始化propName对应的属性，并返回其引用。defaultValue须为T类型，可以为null或undefined。
+与[ref](#ref12-1)接口类似，如果给定的propName在[LocalStorage](../../../ui/state-management/arkts-localstorage.md)中存在，则返回LocalStorage中propName对应数据的引用。如果不存在，则使用defaultValue在LocalStorage中创建和初始化propName对应的属性，并返回其引用。defaultValue须为T类型，可以为null或undefined。
 
 与[setAndLink](#setandlink9)的功能基本一致，但不需要手动释放返回的[AbstractProperty](#abstractproperty)类型的变量。
 
@@ -2079,32 +2079,8 @@ let keys: Array<string> = Environment.Keys(); // keys 包含 accessibilityEnable
 | key                  | 类型            | 说明                                                         |
 | -------------------- | --------------- | ------------------------------------------------------------ |
 | accessibilityEnabled | string          | 无障碍屏幕朗读是否启用。当无法获取环境变量中的accessibilityEnabled的值时，将通过envProp、envProps等接口传入的开发者指定的默认值添加到AppStorage中。 |
-| colorMode            | ColorMode       | 深浅色模式，可选值为：<br/>-&nbsp;ColorMode.LIGHT：浅色模式；<br/>-&nbsp;ColorMode.DARK：深色模式。 |
+| colorMode            | [ColorMode](./ts-state-management-environment-variables.md#colormode)       | 深浅色模式，可选值为：<br/>-&nbsp;ColorMode.LIGHT：浅色模式；<br/>-&nbsp;ColorMode.DARK：深色模式。 |
 | fontScale            | number          | 字体大小比例。                                               |
 | fontWeightScale      | number          | 字重比例。                                                   |
-| layoutDirection      | LayoutDirection | 布局方向类型，可选值为：<br/>-&nbsp;LayoutDirection.LTR：从左到右；<br/>-&nbsp;LayoutDirection.RTL：从右到左。<br/>-&nbsp;Auto：跟随系统。 |
+| layoutDirection      | [LayoutDirection](./ts-state-management-environment-variables.md#layoutdirection) | 布局方向类型，可选值为：<br/>-&nbsp;LayoutDirection.LTR：从左到右；<br/>-&nbsp;LayoutDirection.RTL：从右到左。<br/>-&nbsp;Auto：跟随系统。 |
 | languageCode         | string          | 当前系统语言，小写字母，例如zh。                             |
-
-### ColorMode
-
-系统当前深浅色模式
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称  | 值    | 说明      |
-| ----- | -----| ----------|
-| LIGHT | 0    | 浅色模式。 |
-| DARK  | 1    | 深色模式。 |
-
-
-### LayoutDirection
-
-系统的布局方向类型
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称  | 值    | 说明      |
-| ----- | -----| ----------|
-| LTR   | 0    | 从左向右布局。 |
-| RTL   | 1    | 从右向左布局。 |
-| AUTO  | 2    | 自动布局，跟随系统。 |

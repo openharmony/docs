@@ -37,7 +37,7 @@ HMAC是密钥相关的哈希运算消息认证码（Hash-based Message Authentic
  */
 import { huks } from '@kit.UniversalKeystoreKit';
 
-let HmackeyAlias = 'test_HMAC';
+let keyAlias = 'test_HMAC';
 let handle: number;
 let plainText = '123456';
 let hashData: Uint8Array;
@@ -90,7 +90,7 @@ async function GenerateHMACKey() {
   /*
   * 3. 调用generateKeyItem
   */
-  await huks.generateKeyItem(HmackeyAlias, options)
+  await huks.generateKeyItem(keyAlias, options)
     .then((data) => {
       console.info(`promise: generate HMAC Key success`);
     }).catch((error: Error) => {
@@ -117,7 +117,7 @@ async function HMACData() {
   /*
   * 4. 调用initSession获取handle
   */
-  await huks.initSession(HmackeyAlias, options)
+  await huks.initSession(keyAlias, options)
     .then((data) => {
       handle = data.handle;
     }).catch((error: Error) => {

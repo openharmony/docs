@@ -85,7 +85,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | appId     | string         | 是   | 否   | 应用的appId，由包名、下划线和证书公钥的Base64编码组成。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                 |
 |fingerprint| string         | 是   | 否   | 应用包的指纹信息，由签名证书通过SHA-256算法计算哈希值生成。使用的签名证书发生变化时，该字段也会发生变化。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。            |
-|appIdentifier<sup>11+</sup>| string         | 是   | 否   | 应用的唯一标识，是AppGallery Connect创建应用时分配的[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。当需要进行跨设备调试、跨应用交互调试等场景，必须使用手动签名，签名方式的选择具体请参考[使用场景说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section54361623194519)。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。          |
+|appIdentifier<sup>11+</sup>| string         | 是   | 否   | 应用的唯一标识。<!--RP1-->应用[Profile签名文件](../../security/app-provision-structure.md)中的app-identifier。<!--RP1End--> <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。          |
 |certificate<sup>14+</sup>| string         | 是   | 是   | 应用的证书公钥。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。            |
 
 ## AppCloneIdentity<sup>14+<sup>

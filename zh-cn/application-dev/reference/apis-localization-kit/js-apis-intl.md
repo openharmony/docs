@@ -8,7 +8,7 @@
 <!--Adviser: @Brilliantry_Rui-->
 
 本模块提供基础的应用国际化能力，包括时间日期格式化、数字格式化、排序等，相关接口在ECMA 402标准中定义。
-[I18N模块](js-apis-i18n.md)提供其他非ECMA 402定义的国际化接口，与本模块共同使用可提供完整地国际化支持能力。
+[I18N模块](js-apis-i18n.md)提供其他非ECMA 402定义的国际化接口，与本模块共同使用可提供完整的国际化支持能力。
 
 >  **说明：**
 >
@@ -458,7 +458,7 @@ let formatter: intl.NumberFormat = new intl.NumberFormat('en-GB', { style: 'deci
 
 ### format
 
-format(number: number): string
+format(num: number): string
 
 对数字进行格式化。
 
@@ -470,7 +470,7 @@ format(number: number): string
 
 | 参数名    | 类型     | 必填   | 说明   |
 | ------ | ------ | ---- | ---- |
-| number | number | 是    | 数字对象。 |
+| num | number | 是    | 数字对象。 |
 
 **返回值：**
 

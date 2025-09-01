@@ -836,7 +836,10 @@ struct RichEditorExample {
 
 ### 屏蔽系统服务类菜单项
 
-- 可以通过[disableSystemServiceMenuItems](../reference/apis-arkui/arkts-apis-uicontext-textmenucontroller.md#disablesystemservicemenuitems20)屏蔽富文本选择菜单内所有系统服务菜单项。
+通过[disableSystemServiceMenuItems](../reference/apis-arkui/arkts-apis-uicontext-textmenucontroller.md#disablesystemservicemenuitems20)屏蔽富文本选择菜单内所有系统服务菜单项。
+
+此接口保护内容安全，适用于限制文本操作的场景，例如展示保密内容或禁止复制的版权文本。屏蔽系统服务菜单项，防止用户通过系统服务菜单复制、分享文本，降低内容泄露风险。
+
 
   ```ts
   import { TextMenuController } from '@kit.ArkUI';
@@ -887,8 +890,11 @@ struct RichEditorExample {
   }
   ```
 
-  ![RichEditor_disable_system_service_menuItems](figures/RichEditor_disable_system_service_menuItems.gif)
-- 通过[disableMenuItems](../reference/apis-arkui/arkts-apis-uicontext-textmenucontroller.md#disablemenuitems20)可以屏蔽富文本选择菜单内指定的系统服务菜单项。
+![RichEditor_disable_system_service_menuItems](figures/RichEditor_disable_system_service_menuItems.gif)
+
+通过[disableMenuItems](../reference/apis-arkui/arkts-apis-uicontext-textmenucontroller.md#disablemenuitems20)可以屏蔽富文本选择菜单内指定的系统服务菜单项。
+
+此接口可精确屏蔽指定的系统服务菜单项，保留应用所需的系统菜单功能，使菜单更贴合实际交互设计。
 
   ```ts
   import { TextMenuController } from '@kit.ArkUI';
@@ -950,54 +956,6 @@ struct RichEditorExample {
 当自定义菜单超长时，建议内部嵌套Scroll组件使用，避免键盘被遮挡。
 
 ```ts
-export interface SelectionMenuTheme {
-  imageSize: number;
-  buttonSize: number;
-  menuSpacing: number;
-  editorOptionMargin: number;
-  expandedOptionPadding: number;
-  defaultMenuWidth: number;
-  imageFillColor: Resource;
-  backGroundColor: Resource;
-  iconBorderRadius: Resource;
-  containerBorderRadius: Resource;
-  cutIcon: Resource;
-  copyIcon: Resource;
-  pasteIcon: Resource;
-  selectAllIcon: Resource;
-  shareIcon: Resource;
-  translateIcon: Resource;
-  searchIcon: Resource;
-  arrowDownIcon: Resource;
-  iconPanelShadowStyle: ShadowStyle;
-  iconFocusBorderColor: Resource;
-}
-// 自定义SelectionMenuTheme接口
-
-export const defaultTheme: SelectionMenuTheme = {
-  imageSize: 24,
-  buttonSize: 48,
-  menuSpacing: 8,
-  editorOptionMargin: 1,
-  expandedOptionPadding: 3,
-  defaultMenuWidth: 256,
-  imageFillColor: $r('sys.color.ohos_id_color_primary'),
-  backGroundColor: $r('sys.color.ohos_id_color_dialog_bg'),
-  iconBorderRadius: $r('sys.float.ohos_id_corner_radius_default_m'),
-  containerBorderRadius: $r('sys.float.ohos_id_corner_radius_card'),
-  cutIcon: $r("sys.media.ohos_ic_public_cut"),
-  copyIcon: $r("sys.media.ohos_ic_public_copy"),
-  pasteIcon: $r("sys.media.ohos_ic_public_paste"),
-  selectAllIcon: $r("sys.media.ohos_ic_public_select_all"),
-  shareIcon: $r("sys.media.ohos_ic_public_share"),
-  translateIcon: $r("sys.media.ohos_ic_public_translate_c2e"),
-  searchIcon: $r("sys.media.ohos_ic_public_search_filled"),
-  arrowDownIcon: $r("sys.media.ohos_ic_public_arrow_down"),
-  iconPanelShadowStyle: ShadowStyle.OUTER_DEFAULT_MD,
-  iconFocusBorderColor: $r('sys.color.ohos_id_color_focused_outline'),
-}
-// 定义defaultTheme变量
-
 controller: RichEditorController = new RichEditorController();
 options: RichEditorOptions = { controller: this.controller };
 
@@ -1026,17 +984,17 @@ SystemMenu() {
       if (this.controller) {
         MenuItemGroup() {
           MenuItem({
-            startIcon: this.theme.cutIcon,
+            startIcon: $r("sys.media.ohos_ic_public_cut"),
             content: "剪切",
             labelInfo: "Ctrl+X"
           })
           MenuItem({
-            startIcon: this.theme.copyIcon,
+            startIcon: $r("sys.media.ohos_ic_public_copy"),
             content: "复制",
             labelInfo: "Ctrl+C"
           })
           MenuItem({
-            startIcon: this.theme.pasteIcon,
+            startIcon: $r("sys.media.ohos_ic_public_paste"),
             content: "粘贴",
             labelInfo: "Ctrl+V"
           })
@@ -1060,7 +1018,9 @@ SystemMenu() {
 
 ### 设置最大行数
 
-通过[maxLines](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#maxlines18)可以设置富文本可显示的最大行数。
+通过[maxLines](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#maxlines18)可以设置富文本组件内可显示文本的最大行数。
+
+此接口控制组件内文本的显示范围，防止文本过长影响页面布局，确保不同设备和场景下的文本显示效果一致，提升界面兼容性和美观度。
 
 ```ts
 controller: RichEditorController = new RichEditorController();
@@ -1128,7 +1088,9 @@ Button('setTypingStyle', {
 
 ### 设置装饰线
 
-- 通过[decoration](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md#decoration)设置富文本文本装饰线的样式、颜色和粗细。
+通过[decoration](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md#decoration)设置富文本组件中文本装饰线的样式、颜色和粗细。
+
+设置文本装饰线可突出关键信息、区分文本状态、增强视觉层次。例如，为重要标题或关键词添加装饰线，帮助用户快速获取信息。
 
   ```ts
   private controller: RichEditorController = new RichEditorController();
@@ -1139,7 +1101,7 @@ Button('setTypingStyle', {
           fontSize: 25,
           decoration: {
             type: TextDecorationType.LineThrough,
-            color:Color.Blue,
+            color: Color.Blue,
             // 设置装饰线粗细比例为6
             thicknessScale: 6
           }
@@ -1150,7 +1112,9 @@ Button('setTypingStyle', {
 
 ![RichEditor_decoration](figures/RichEditor_decoration.jpg)
 
-- 从API version 20开始，支持开启多装饰线，比如同时设置下划线和中划线。
+通过[DecorationOptions](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#decorationoptions20)中的enableMultiType设置多装饰线，比如同时设置下划线和中划线。
+
+此接口适用于复杂业务场景，满足文本装饰的多样化需求。在文档协作过程中，多人编辑时，可以通过使用不同的装饰线组合来区分文本状态，从而提高协作效率。
 
   ```ts
   RichEditor({ controller: this.styledStringController })
@@ -1201,9 +1165,9 @@ Button('setTypingStyle', {
 
 ### 设置垂直居中
 
-从API version 20开始，支持通过[textVerticalAlign](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#textverticalalign20)属性设置文本段落在垂直方向的对齐。
+通过[textVerticalAlign](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#textverticalalign20)设置文本段落在垂直方向的对齐方式。
 
-- 以下示例展示了如何通过textVerticalAlign属性设置文本垂直居中对齐效果。
+此接口优化多元素排版，使组件内容与图片、图标等在垂直方向对齐时，整体布局更协调。
 
   ```ts
   controller: RichEditorController = new RichEditorController();
@@ -1236,7 +1200,9 @@ Button('setTypingStyle', {
 
 ### 设置中西文自动间距
 
-从API version 20开始，支持通过[enableAutoSpacing](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#enableautospacing20)设置中西文自动间距。
+通过[enableAutoSpacing](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#enableautospacing20)设置是否开启中文与西文的自动间距。
+
+此接口优化文本排版，提升组件内文本的可读性。设置自动间距后，中文与西文间产生适当空隙，便于区分不同语种，减少视觉干扰。
 
 ```ts
 Column() {
