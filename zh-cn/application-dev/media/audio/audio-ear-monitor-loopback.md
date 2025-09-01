@@ -90,7 +90,7 @@ AudioLoopback是音频返听器，可将音频以更低时延的方式实时传�
     });
    ```
 
-4. 调用[setReverbPreset](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#setReverbPreset21)方法，设置音频返听的混响模式。
+4. 调用[setReverbPreset](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#setreverbpreset21)方法，设置音频返听的混响模式。
 
     > **注意：**
     > - 在启用返听前设置混响模式，混响模式将在启用返听成功后生效。
@@ -109,7 +109,7 @@ AudioLoopback是音频返听器，可将音频以更低时延的方式实时传�
 5. 调用[getReverbPreset](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#getreverbpreset21)方法，查询当前的音频返听的混响模式。
 
     > **注意：**
-    > - 若未设置混响模式，查询得到将是默认混响模式THEATER。
+    > 若未设置混响模式，查询得到将是默认混响模式THEATER。
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
     try {
@@ -119,7 +119,7 @@ AudioLoopback是音频返听器，可将音频以更低时延的方式实时传�
     }
    ```
 
-6. 调用[setEqualizerPreset](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#setEqualizerPreset21)方法，设置音频返听的均衡器类型。
+6. 调用[setEqualizerPreset](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#setequalizerpreset21)方法，设置音频返听的均衡器类型。
 
     > **注意：**
     > - 在启用返听前设置均衡器类型，均衡器类型将在启用返听成功后生效。
