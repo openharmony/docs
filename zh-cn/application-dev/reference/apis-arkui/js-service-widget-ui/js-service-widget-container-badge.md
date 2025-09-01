@@ -1,5 +1,10 @@
 # badge
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyujie43-->
+<!--Designer: @weixin_52725220-->
+<!--Tester: @xiong0104-->
+<!--Adviser: @HelloCrease-->
 
 应用中如果有需用户关注的新事件提醒，可以采用新事件标记来标识。
 
@@ -51,7 +56,7 @@
    ```html
 <!-- xxx.hml -->
 <div class="container">
-    <badge class="badge" config="{{ badgeconfig }}" visible="true" count="100" maxcount="99">
+    <badge class="badge" config="{{ badgeConfig }}" visible="true" count="100" maxcount="99">
         <text class="text1">example</text>
     </badge>
     <badge class="badge" visible="true" count="1">
@@ -89,7 +94,7 @@
 // xxx.js
 export default {
     data: {
-        badgeconfig: {
+        badgeConfig: {
             badgeColor: "#0a59f7",
             textColor: "#ffffff",
         }
