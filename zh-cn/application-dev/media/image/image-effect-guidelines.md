@@ -39,6 +39,7 @@ target_link_libraries(entry PUBLIC
 **添加头文件**
 
 ```c++
+#include <hilog/log.h>
 #include <multimedia/image_effect/image_effect.h>
 #include <multimedia/image_effect/image_effect_filter.h>
 #include <multimedia/image_effect/image_effect_errors.h>
