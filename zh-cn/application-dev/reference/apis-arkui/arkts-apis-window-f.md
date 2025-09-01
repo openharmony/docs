@@ -804,7 +804,7 @@ setWatermarkImageForAppWindows(pixelMap: image.PixelMap | undefined): Promise&lt
 
 | 参数名   | 类型                                                                          | 必填 | 说明                                                                                                           |
 | -------- | ----------------------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------------------------------- |
-| pixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) \| undefined | 是   | 传入`image.PixelMap`表示设置水印图片，传入`undefined`表示取消水印显示。<br/>如果图片尺寸同时超过窗口尺寸和屏幕尺寸，返回错误码1300016。<br/>如果图片尺寸超过窗口尺寸但未超过屏幕尺寸，超出部分会被裁剪。<br/>如果图片尺寸小于窗口尺寸，会自动重复补充。|
+| pixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) \| undefined | 是   | 传入`image.PixelMap`表示设置水印图片，传入`undefined`表示取消水印显示。<br/>如果图片尺寸的宽/高同时超过窗口尺寸和屏幕尺寸的宽/高，返回错误码1300016。<br/>如果图片尺寸的宽/高超过窗口尺寸的宽/高，但均未超过屏幕尺寸的，超出窗口的部分会被裁剪。<br/>如果图片尺寸的宽/高小于窗口尺寸的宽/高，小于的部分会自动重复补充。|
 
 **返回值：**
 
