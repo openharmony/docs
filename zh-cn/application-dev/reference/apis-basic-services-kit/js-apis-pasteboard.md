@@ -534,6 +534,8 @@ type ProgressListener = (progress: ProgressInfo) => void
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
+**参数：**
+
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | progress | [ProgressInfo](#progressinfo15) | 是   | 定义进度上报的数据结构，且仅当进度指示选项[ProgressIndicator](#progressindicator15)设置为NONE时才会上报此信息。 |
