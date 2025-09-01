@@ -116,9 +116,9 @@ Web媒体策略的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称           | 类型                                             | 必填    | 说明             |
-| ---------- | -----------------------------------------------------| ------ | ---------------- |
-| hapticFeedbackMode   | [HapticFeedbackMode](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#hapticfeedbackmode18)   | 否     | 菜单弹出时振动效果。需配置"ohos.permission.VIBRATE"权限<br/>默认值：HapticFeedbackMode.DISABLED，菜单弹出时不振动。     |
+| 名称           | 类型                                             | 只读    | 可选    | 说明             |
+| ---------- | -----------------------------------------------------| ------ | ------ | ---------------- |
+| hapticFeedbackMode   | [HapticFeedbackMode](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#hapticfeedbackmode18)   | 否     | 是     | 菜单弹出时振动效果。需配置"ohos.permission.VIBRATE"权限<br/>默认值：HapticFeedbackMode.DISABLED，菜单弹出时不振动。     |
 
 ## EmbedOptions<sup>16+</sup>
 
