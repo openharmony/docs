@@ -131,7 +131,7 @@ defaultPickerItemHeight(height: Optional\<number | string>)
 
 disappearTextStyle(value: PickerTextStyle)
 
-设置过渡项（以选中项为基准向上或向下的第二项）的文本颜色、字号、字体粗细。
+设置边缘项（以选中项为基准向上或向下的第二项）的文本颜色、字号、字体粗细。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -141,13 +141,13 @@ disappearTextStyle(value: PickerTextStyle)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明) | 是   | 过渡项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明) | 是   | 边缘项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
 ### disappearTextStyle<sup>18+</sup>
 
 disappearTextStyle(style: Optional\<PickerTextStyle>)
 
-设置过渡项（以选中项为基准向上或向下的第二项）的文本颜色、字号、字体粗细。与[disappearTextStyle](#disappeartextstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
+设置边缘项（以选中项为基准向上或向下的第二项）的文本颜色、字号、字体粗细。与[disappearTextStyle](#disappeartextstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -157,17 +157,17 @@ disappearTextStyle(style: Optional\<PickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)> | 是   | 过渡项的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)> | 是   | 边缘项的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
 >  **说明：**
 >
-> 若选中项向上或向下的可视项数低于两项则无对应过渡项。
+> 若选中项向上或向下的可视项数低于两项则无对应边缘项。
 
 ### disappearTextStyle<sup>20+</sup>
 
 disappearTextStyle(style: Optional\<PickerTextStyle\|TextPickerTextStyle>)
 
-设置过渡项（以选中项为基准向上或向下的第二项）的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。与[disappearTextStyle](#disappeartextstyle18)<sup>18+</sup>相比，style参数新增了对[TextPickerTextStyle](#textpickertextstyle15类型说明)类型的支持。
+设置边缘项（以选中项为基准向上或向下的第二项）的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。与[disappearTextStyle](#disappeartextstyle18)<sup>18+</sup>相比，style参数新增了对[TextPickerTextStyle](#textpickertextstyle15类型说明)类型的支持。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -177,17 +177,17 @@ disappearTextStyle(style: Optional\<PickerTextStyle\|TextPickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)\|[TextPickerTextStyle](#textpickertextstyle15类型说明)> | 是   | 过渡项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>},<br/>minFontSize: 0,<br/>maxFontSize: 0,<br/>overflow: TextOverflow.Clip<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)\|[TextPickerTextStyle](#textpickertextstyle15类型说明)> | 是   | 边缘项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>},<br/>minFontSize: 0,<br/>maxFontSize: 0,<br/>overflow: TextOverflow.Clip<br/>} |
 
 >  **说明：**
 >
-> 若选中项向上或向下的可视项数低于两项则无对应过渡项。
+> 若选中项向上或向下的可视项数低于两项则无对应边缘项。
 
 ### textStyle<sup>10+</sup>
 
 textStyle(value: PickerTextStyle)
 
-设置一般项（以选中项为基准向上或向下的第一项）的文本颜色、字号、字体粗细。
+设置待选项（以选中项为基准向上或向下的第一项）的文本颜色、字号、字体粗细。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -197,13 +197,13 @@ textStyle(value: PickerTextStyle)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明) | 是   | 一般项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明) | 是   | 待选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
 ### textStyle<sup>18+</sup>
 
 textStyle(style: Optional\<PickerTextStyle>)
 
-设置一般项（以选中项为基准向上或向下的第一项）的文本颜色、字号、字体粗细。与[textStyle](#textstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
+设置待选项（以选中项为基准向上或向下的第一项）的文本颜色、字号、字体粗细。与[textStyle](#textstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -213,17 +213,17 @@ textStyle(style: Optional\<PickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)> | 是   | 一般项的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)> | 是   | 待选项的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
 >  **说明：**
 >
-> 若选中项向上或向下可视项数低于一项则无对应一般项。
+> 若选中项向上或向下可视项数低于一项则无对应待选项。
 
 ### textStyle<sup>20+</sup>
 
 textStyle(style: Optional\<PickerTextStyle\|TextPickerTextStyle>)
 
-设置一般项（以选中项为基准向上或向下的第一项）的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。与[textStyle](#textstyle18)<sup>18+</sup>相比，style参数新增了对[TextPickerTextStyle](#textpickertextstyle15类型说明)类型的支持。
+设置待选项（以选中项为基准向上或向下的第一项）的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。与[textStyle](#textstyle18)<sup>18+</sup>相比，style参数新增了对[TextPickerTextStyle](#textpickertextstyle15类型说明)类型的支持。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -233,11 +233,11 @@ textStyle(style: Optional\<PickerTextStyle\|TextPickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)\|[TextPickerTextStyle](#textpickertextstyle15类型说明)> | 是   | 过渡项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>},<br/>minFontSize: 0,<br/>maxFontSize: 0,<br/>overflow: TextOverflow.Clip<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)\|[TextPickerTextStyle](#textpickertextstyle15类型说明)> | 是   | 边缘项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>},<br/>minFontSize: 0,<br/>maxFontSize: 0,<br/>overflow: TextOverflow.Clip<br/>} |
 
 >  **说明：**
 >
-> 若选中项向上或向下可视项数低于一项则无对应一般项。
+> 若选中项向上或向下可视项数低于一项则无对应待选项。
 
 ### selectedTextStyle<sup>10+</sup>
 
@@ -291,7 +291,7 @@ selectedTextStyle(style: Optional\<PickerTextStyle\|TextPickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)\|[TextPickerTextStyle](#textpickertextstyle15类型说明)> | 是   | 过渡项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>},<br/>minFontSize: 0,<br/>maxFontSize: 0,<br/>overflow: TextOverflow.Clip<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)\|[TextPickerTextStyle](#textpickertextstyle15类型说明)> | 是   | 边缘项的文本颜色、字号、字体粗细、最大字号、最小字号、超长文本截断方式。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>},<br/>minFontSize: 0,<br/>maxFontSize: 0,<br/>overflow: TextOverflow.Clip<br/>} |
 
 ### selectedIndex<sup>10+</sup>
 
