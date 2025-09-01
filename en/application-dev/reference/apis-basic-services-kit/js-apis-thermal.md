@@ -1,5 +1,12 @@
 # @ohos.thermal (Thermal Management)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--Designer: @wangyantian0-->
+<!--Tester: @alien0208-->
+<!--Adviser: @w_Machine_cc-->
+
 The **thermal** module provides thermal level-related callback and query APIs to obtain the information required for thermal control.
 
 > **NOTE**

@@ -1,15 +1,19 @@
 # Importing a Key in Ciphertext (ArkTS)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
 
 This topic walks you through on how to import an ECDH key pair. However, the example does not cover the operations such as [key generation](huks-key-generation-overview.md) and [key agreement](huks-key-agreement-overview.md) of the service side.
 
-
 For details about the scenarios and supported algorithm specifications, see [Supported Algorithms](huks-key-import-overview.md#supported-algorithms).
-
 
 ## How to Develop
 
-1. Convert the key to be imported from device A (device from which the key is imported) to [HUKS key material format](huks-concepts.md#key-material-format) **To_Import_Key**. (This step applies only to asymmetric key pairs. If the key to be imported is a symmetric key, skip over this step.)
+1. Convert the key to be imported from device A (device from which the key is imported) to [HUKS key material format](huks-concepts.md#key material format) **To_Import_Key**. (This step applies only to asymmetric key pairs. If the key to be imported is a symmetric key, skip over this step.)
 
 2. Generate an asymmetric key pair **Wrapping_Key** (public key **Wrapping_Pk** and private key **Wrapping_Sk**) with the purpose of **HUKS_KEY_PURPOSE_UNWRAP** for device B (device to which the key is imported), and export the public key **Wrapping_Pk** of **Wrapping_Key** and save it. The asymmetric key pair **Wrapping_Key** is used for key agreement in the encrypted import process.
 
@@ -32,13 +36,13 @@ For details about the scenarios and supported algorithm specifications, see [Sup
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 
-let IV = '0000000000000000';
+let IV = '0000000000000000'; // Replace this example code with a random value in practice.
 let AAD = "abababababababab";
-let NONCE = "hahahahahaha";
+let NONCE = 'hahahahahaha'; // Replace this example code with a random value in practice.
 let TAG_SIZE = 16;
 let FILED_LENGTH = 4;
 let importedAes192PlainKey = "The aes192 key to import";
-let callerAes256Kek = "The is kek to encrypt aes192 key";
+let callerAes256Kek = "It's a kek to encrypt aes192 key";
 let callerKeyAlias = "test_caller_key_ecdh_aes192";
 let callerKekAliasAes256 = "test_caller_kek_ecdh_aes256";
 let callerAgreeKeyAliasAes256 = "test_caller_agree_key_ecdh_aes256";
@@ -96,7 +100,7 @@ let genWrappingKeyParams: huks.HuksOptions = {
     },
     {
       tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-      value: huks.HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256
+      value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
     },
     {
       tag: huks.HuksTag.HUKS_TAG_PADDING,
@@ -116,7 +120,7 @@ let genCallerEcdhParams: huks.HuksOptions = {
     },
     {
       tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-      value: huks.HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256
+      value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
     }
   )
 }
@@ -286,10 +290,10 @@ async function publicGenerateItemFunc(keyAlias: string, huksOptions: huks.HuksOp
   }
 }
 
-async function publicImportKeyItemFunc(keyAlias: string, HuksOptions: huks.HuksOptions) {
+async function publicImportKeyItemFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise importKeyItem`);
   try {
-    await huks.importKeyItem(keyAlias, HuksOptions)
+    await huks.importKeyItem(keyAlias, huksOptions)
       .then(data => {
         console.info(`promise: importKeyItem success, data = ${JSON.stringify(data)}`);
       }).catch((err: Error) => {
@@ -300,10 +304,10 @@ async function publicImportKeyItemFunc(keyAlias: string, HuksOptions: huks.HuksO
   }
 }
 
-async function publicDeleteKeyItemFunc(KeyAlias: string, HuksOptions: huks.HuksOptions) {
+async function publicDeleteKeyItemFunc(KeyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise deleteKeyItem`);
   try {
-    await huks.deleteKeyItem(KeyAlias, HuksOptions)
+    await huks.deleteKeyItem(KeyAlias, huksOptions)
       .then(data => {
         console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
       })
@@ -333,7 +337,7 @@ function importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, huksOp
 async function publicImportWrappedKeyFunc(keyAlias: string, wrappingKeyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise importWrappedKeyItem`);
   for (let i = 0; i < huksOptions.inData!.length; i++) {
-    console.error(`${i}: ${huksOptions.inData![i]}`);
+    console.info(`${i}: ${huksOptions.inData![i]}`);
   }
   try {
     await importWrappedKeyItem(keyAlias, wrappingKeyAlias, huksOptions)
@@ -348,27 +352,11 @@ async function publicImportWrappedKeyFunc(keyAlias: string, wrappingKeyAlias: st
   }
 }
 
-async function publicImportWrappedKeyPromise(keyAlias: string, wrappingKeyAlias: string,
-  huksOptions: huks.HuksOptions) {
-  console.info(`enter promise importWrappedKeyItem`);
-  try {
-    await huks.importWrappedKeyItem(keyAlias, wrappingKeyAlias, huksOptions)
-      .then((data) => {
-        console.info(`promise: importWrappedKeyItem success, data = ${JSON.stringify(data)}`);
-      })
-      .catch((error: Error) => {
-        console.error(`promise: importWrappedKeyItem failed, ${JSON.stringify(error)}`);
-      });
-  } catch (error) {
-    console.error(`promise: importWrappedKeyItem input arg invalid, ${JSON.stringify(error)}`);
-  }
-}
-
-async function publicInitFunc(srcKeyAlias: string, HuksOptions: huks.HuksOptions) {
+async function publicInitFunc(srcKeyAlias: string, huksOptions: huks.HuksOptions) {
   let handle: number = 0;
   console.info(`enter promise doInit`);
   try {
-    await huks.initSession(srcKeyAlias, HuksOptions)
+    await huks.initSession(srcKeyAlias, huksOptions)
       .then((data) => {
         console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
         handle = data.handle;
@@ -382,9 +370,9 @@ async function publicInitFunc(srcKeyAlias: string, HuksOptions: huks.HuksOptions
   return handle;
 }
 
-async function publicUpdateSessionFunction(handle: number, HuksOptions: huks.HuksOptions) {
+async function publicUpdateSessionFunction(handle: number, huksOptions: huks.HuksOptions) {
   const maxUpdateSize = 64;
-  const inData = HuksOptions.inData!;
+  const inData = huksOptions.inData!;
   const lastInDataPosition = inData.length - 1;
   let inDataSegSize = maxUpdateSize;
   let inDataSegPosition = 0;
@@ -398,12 +386,12 @@ async function publicUpdateSessionFunction(handle: number, HuksOptions: huks.Huk
       console.info(`enter promise doUpdate`);
       break;
     }
-    HuksOptions.inData = new Uint8Array(
+    huksOptions.inData = new Uint8Array(
       Array.from(inData).slice(inDataSegPosition, inDataSegPosition + inDataSegSize)
     );
     console.info(`enter promise doUpdate`);
     try {
-      await huks.updateSession(handle, HuksOptions)
+      await huks.updateSession(handle, huksOptions)
         .then((data) => {
           console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
           outData = outData.concat(Array.from(data.outData!));
@@ -425,11 +413,11 @@ async function publicUpdateSessionFunction(handle: number, HuksOptions: huks.Huk
   return outData;
 }
 
-async function publicFinishSession(handle: number, HuksOptions: huks.HuksOptions, inData: number[]) {
+async function publicFinishSession(handle: number, huksOptions: huks.HuksOptions, inData: number[]) {
   let outData: number[] = [];
   console.info(`enter promise doFinish`);
   try {
-    await huks.finishSession(handle, HuksOptions)
+    await huks.finishSession(handle, huksOptions)
       .then((data) => {
         console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
         outData = inData.concat(Array.from(data.outData!));
@@ -443,22 +431,22 @@ async function publicFinishSession(handle: number, HuksOptions: huks.HuksOptions
   return new Uint8Array(outData);
 }
 
-async function cipherFunction(keyAlias: string, HuksOptions: huks.HuksOptions) {
-  let handle = await publicInitFunc(keyAlias, HuksOptions);
-  let tmpData = await publicUpdateSessionFunction(handle, HuksOptions);
-  let outData = await publicFinishSession(handle, HuksOptions, tmpData!);
+async function cipherFunction(keyAlias: string, huksOptions: huks.HuksOptions) {
+  let handle = await publicInitFunc(keyAlias, huksOptions);
+  let tmpData = await publicUpdateSessionFunction(handle, huksOptions);
+  let outData = await publicFinishSession(handle, huksOptions, tmpData!);
   return outData;
 }
 
-async function agreeFunction(keyAlias: string, HuksOptions: huks.HuksOptions, huksPublicKey: Uint8Array) {
-  let handle = await publicInitFunc(keyAlias, HuksOptions);
-  let outSharedKey: Uint8Array = new Uint8Array;
-  HuksOptions.inData = huksPublicKey;
+async function agreeFunction(keyAlias: string, huksOptions: huks.HuksOptions, huksPublicKey: Uint8Array) {
+  let handle = await publicInitFunc(keyAlias, huksOptions);
+  let outSharedKey: Uint8Array = new Uint8Array();
+  huksOptions.inData = huksPublicKey;
   console.info(`enter promise doUpdate`);
   try {
-    await huks.updateSession(handle, HuksOptions)
+    await huks.updateSession(handle, huksOptions)
       .then((data) => {
-        console.error(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
+        console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
       })
       .catch((error: Error) => {
         console.error(`promise: doUpdate failed, ${JSON.stringify(error)}`);
@@ -468,7 +456,7 @@ async function agreeFunction(keyAlias: string, HuksOptions: huks.HuksOptions, hu
   }
   console.info(`enter promise doInit`);
   try {
-    await huks.finishSession(handle, HuksOptions)
+    await huks.finishSession(handle, huksOptions)
       .then((data) => {
         console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
         outSharedKey = data.outData as Uint8Array;
@@ -490,10 +478,10 @@ async function ImportKekAndAgreeSharedSecret(callerKekAlias: string, importKekPa
   await publicImportKeyItemFunc(callerAgreeKeyAliasAes256, importParamsAgreeKey);
 }
 
-async function generateAndExportPublicKey(keyAlias: string, HuksOptions: huks.HuksOptions, caller: Boolean) {
-  await publicGenerateItemFunc(keyAlias, HuksOptions);
+async function generateAndExportPublicKey(keyAlias: string, huksOptions: huks.HuksOptions, caller: Boolean) {
+  await publicGenerateItemFunc(keyAlias, huksOptions);
   try {
-    await huks.exportKeyItem(keyAlias, HuksOptions)
+    await huks.exportKeyItem(keyAlias, huksOptions)
       .then((data) => {
         console.info(`promise: exportKeyItem success, data = ${JSON.stringify(data)}`);
         if (caller) {
@@ -565,8 +553,8 @@ async function BuildWrappedDataAndImportWrappedKey(plainKey: string) {
 /* Simulate the encrypted key import scenario. Import a key from device A (remote device) to device B (local device). */
 async function ImportWrappedKey() {
   /**
-   * 1. If the key to be imported from device A is an asymmetric key pair, convert it into the HUKS key material format **To_Import_Key**. Skip over this step if the key is a symmetric key.
-   * This example uses a 256-bit AES key (symmetric key) as an example.
+   * 1. If the key to import from device A is an asymmetric key pair, convert it into the HUKS key material format **To_Import_Key**. Skip over this step if the key is a symmetric key.
+   * This example uses importedAes192PlainKey (symmetric key) as an example.
    */
 
   /* 2. Generate an asymmetric key pair Wrapping_Key (public key Wrapping_Pk and private key Wrapping_Sk) with the purpose of HUKS_KEY_PURPOSE_UNWRAP for device B, export the public key Wrapping_Pk of Wrapping_Key, and save it to huksPubKey. */
@@ -599,7 +587,6 @@ async function ImportWrappedKey() {
   /* 10. Delete the intermediate keys (keys used for encrypting the key to import) from devices A and B. */
   await publicDeleteKeyItemFunc(srcKeyAliasWrap, genWrappingKeyParams);
   await publicDeleteKeyItemFunc(callerKeyAlias, genCallerEcdhParams);
-  await publicDeleteKeyItemFunc(importedKeyAliasAes192, importWrappedAes192Params);
   await publicDeleteKeyItemFunc(callerKekAliasAes256, callerAgreeParams);
 }
 

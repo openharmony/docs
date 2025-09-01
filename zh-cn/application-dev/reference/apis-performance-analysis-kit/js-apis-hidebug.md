@@ -466,6 +466,28 @@ console.info(`totalHeap = ${vmMemory.totalHeap}, heapUsed = ${vmMemory.heapUsed}
   `allArraySize = ${vmMemory.allArraySize}` );
 ```
 
+## hidebug.getAppVMObjectUsed<sup>21+</sup>
+
+getAppVMObjectUsed(): bigint
+
+获取当前虚拟机中ArkTS对象所占用的内存大小。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值**：
+
+| 类型     | 说明                           |
+|--------|------------------------------|
+| bigint | 当前虚拟机中ArkTS对象所占用的内存大小，单位为KB。 |
+
+**示例：**
+
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+console.info(`getAppVMObjectUsed = ${hidebug.getAppVMObjectUsed()}`);
+```
+
 ## hidebug.getAppThreadCpuUsage<sup>12+</sup>
 
 getAppThreadCpuUsage(): ThreadCpuUsage[]
@@ -616,7 +638,7 @@ getAppMemoryLimit(): MemoryLimit
 | ------ | -------------------------- |
 | [MemoryLimit](#memorylimit12) | 应用程序进程内存限制。 |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -652,7 +674,7 @@ getSystemCpuUsage(): number
 | ------- |-------------------------------------------------|
 | 11400104 | The status of the system CPU usage is abnormal. |
 
-**示例**
+**示例：**
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -731,7 +753,7 @@ getAppNativeMemInfo(): NativeMemInfo
 | ------ | -------------------------- |
 | [NativeMemInfo](#nativememinfo12) | 应用进程内存信息。 |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -756,7 +778,7 @@ getAppNativeMemInfoAsync(): Promise&lt;NativeMemInfo&gt;
 |--------------------------------------------------| --------------------- |
 | Promise&lt;[NativeMemInfo](#nativememinfo12)&gt; | promise对象，返回应用进程内存信息。 |
 
-**示例**
+**示例：**
 
 ```ts
 hidebug.getAppNativeMemInfoAsync().then((nativeMemInfo: hidebug.NativeMemInfo)=>{
@@ -790,7 +812,7 @@ getAppNativeMemInfoWithCache(forceRefresh?: boolean): NativeMemInfo
 | ------ | -------------------------- |
 | [NativeMemInfo](#nativememinfo12) | 应用进程内存信息。 |
 
-**示例**
+**示例：**
 
 ```ts
 let nativeMemInfo: hidebug.NativeMemInfo = hidebug.getAppNativeMemInfoWithCache();
@@ -813,7 +835,7 @@ getSystemMemInfo(): SystemMemInfo
 | ------ | -------------------------- |
 | [SystemMemInfo](#systemmeminfo12) | 系统内存信息。 |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -838,7 +860,7 @@ getVMRuntimeStats(): GcStats
 |-----------------------|----------|
 | [GcStats](#gcstats12) | 系统GC统计信息。 |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -885,7 +907,7 @@ getVMRuntimeStat(item: string): number
 | ------- |------------------------------------------------------------------------------------------------------------|
 | 401 | Possible causes:1. Invalid parameter, a string parameter required. 2. Invalid parameter, unknown property. |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1073,7 +1095,7 @@ isDebugState(): boolean
 | ------ |------------------------------------------------------|
 | boolean | 应用进程的Ark层或Native层是否处于调试状态。true：处于调试状态。false：未处于调试状态。 |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1103,7 +1125,7 @@ getGraphicsMemory(): Promise&lt;number&gt;
 | ------- | ----------------------------------------------------------------- |
 | 11400104 | Failed to get the application memory due to a remote exception. |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
@@ -1142,7 +1164,7 @@ getGraphicsMemorySync(): number
 | ------- | ----------------------------------------------------------------- |
 | 11400104 | Failed to get the application memory due to a remote exception. |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1197,7 +1219,7 @@ dumpJsRawHeapData(needGC?: boolean): Promise&lt;string&gt;
 | 11400112 | Repeated data dump. |
 | 11400113 | Failed to create dump file. |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1241,7 +1263,7 @@ enableGwpAsanGrayscale(options?: GwpAsanOptions, duration?: number): void
 |----------| ----------------------------------------------------------------- |
 | 11400114 | The number of GWP-ASAN applications of this device overflowed after last boot. |
 
-**示例**：
+**示例：**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1280,7 +1302,7 @@ disableGwpAsanGrayscale(): void
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**示例**：
+**示例：**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1301,7 +1323,7 @@ getGwpAsanGrayscaleState(): number
 |-----------|-------------|
 | number    |获取当前GWP-ASan剩余使能天数。若当前未使能，返回值0。|
 
-**示例**：
+**示例：**：
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -1330,7 +1352,7 @@ setJsRawHeapTrimLevel(level: JsRawHeapTrimLevel): void
 | ------ | ------------------------------------------- | ---- | ---------------------- |
 | level  | [JsRawHeapTrimLevel](#jsrawheaptrimlevel20) | 是   | 转储堆快照的裁剪级别，默认为TRIM_LEVEL_1。 |
 
-**示例**
+**示例：**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';

@@ -1,18 +1,22 @@
 # Basic Concepts of HUKS
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
 
 Familiarity with the following concepts is helpful because they are used throughout your development process.
 
-
 ## TEE
 
-Trusted Execution Environment (TEE) is a secure area of a main processor of a smartphone, tablet, or a mobile device. Any date in the TEE cannot be read or tampered with by any code outside it. The TEE provides a secure execution environment for trusted applications (TAs) to ensure end-to-end security by features, such as isolated execution, integrity of applications, confidentiality of their assets, and data access permissions.
+Trusted Execution Environment (TEE) is a secure area of a main processor of a smartphone, tablet, or a mobile device. Any data in the TEE cannot be read or tampered with by any code outside it. The TEE provides a secure execution environment for trusted applications (TAs) to ensure end-to-end security by features, such as isolated execution, integrity of applications, confidentiality of their assets, and data access permissions.
 
 
 ## Key Material Format
 
 HUKS defines a set of key material formats for key pairs, public keys, and private keys of different cryptographic algorithms. The key material formats are used when a key is imported or exported.
-
 
 ### Key Pair Material Format
 
@@ -72,38 +76,36 @@ let rsa2048KeyPairMaterial = new Uint8Array([
 ]);
 ```
 
-
 - RSA key pair material format
-  | Key Algorithm| Key Size| Modulus n Length (L<sub>n</sub>)| Public Key Exponent Length (L<sub>e</sub>)| Private Key Exponent d Length (L<sub>d</sub>)| n | e | d |
+  | Key<br>Algorithm| Key<br>Size| Modulus n<br>Length L<sub>n</sub>| Public Key Exponent e<br>Length L<sub>e</sub>| Private Key Exponent d<br>Length L<sub>d</sub>| n | e | d |
   | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
   | 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| L<sub>n</sub> bytes| L<sub>e</sub> bytes| L<sub>d</sub> bytes|
 
 - ECC key pair material format
-  | Key Algorithm| Key Size| Coordinate x Length (L<sub>x</sub>)| Coordinate y Length (L<sub>y</sub>)| Coordinate z Length (L<sub>z</sub>)| x | y | z |
+  | Key<br>Algorithm| Key<br>Size| X Coordinate<br>Length L<sub>x</sub>| Y Coordinate<br>Length L<sub>y</sub>| Z Coordinate<br>Length L<sub>z</sub>| x | y | z |
   | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
   | 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| L<sub>x</sub> bytes| L<sub>y</sub> bytes| L<sub>z</sub> bytes|
 
 - DSA key pair material format
-  | Key Algorithm| Key Size| Private Key x Length (L<sub>x</sub>)| Public Key y Length (L<sub>y</sub>)| Prime p Length (L<sub>p</sub>)| Prime Factor q Length (L<sub>q</sub>)| g length (L<sub>g</sub>)| x | y | p | q | g |
+  | Key<br>Algorithm| Key<br>Size| Private Key x<br>Length L<sub>x</sub>| Public Key y<br>Length L<sub>y</sub>| Prime Number p<br>Length L<sub>p</sub>| Prime Factor q<br>Length L<sub>q</sub>| g length (L<sub>g</sub>)| x | y | p | q | g |
   | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
   | 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| L<sub>x</sub> bytes| L<sub>y</sub> bytes| L<sub>p</sub> bytes| L<sub>q</sub> bytes| L<sub>g</sub> bytes|
 
 - DH key pair material format
-  | Key Algorithm| Key Size| Public Key pk Length (L<sub>pk</sub>)| Private Key sk Length (L<sub>sk</sub>)| Reserved Field| pk | sk |
+  | Key<br>Algorithm| Key<br>Size| Public Key (pk)<br>Length L<sub>pk</sub>| Private Key (sk)<br>Length L<sub>sk</sub>| Reserved<br>Field| pk | sk |
   | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
   | 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| L<sub>pk</sub> bytes| L<sub>sk</sub> bytes|
 
 - Curve25519 key pair material format
-  | Key Algorithm| Key Size| Public Key pk Length (L<sub>pk</sub>)| Private Key sk Length (L<sub>sk</sub>)| Reserved Field| pk | sk |
+  | Key<br>Algorithm| Key<br>Size| Public Key (pk)<br>Length L<sub>pk</sub>| Private Key (sk)<br>Length L<sub>sk</sub>| Reserved<br>Field| pk | sk |
   | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
   | 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| L<sub>pk</sub> bytes| L<sub>sk</sub> bytes|
-
 
 ### Public Key Material Format
 
 When a public key is exported or imported, the key material is encapsulated in the DER format defined in X.509.
 
-The following is ECC public key in EDR format:
+The following is ECC public key in DER format:
 
 ```
 let eccP256PubKey = new Uint8Array([
@@ -115,7 +117,6 @@ let eccP256PubKey = new Uint8Array([
     0x3e, 0xb2, 0x76, 0x08, 0xa2, 0xbd, 0xe9, 0x41, 0xd5, 0x2b, 0x9e
 ]);
 ```
-
 
 ### Private Key Material Format
 

@@ -862,11 +862,11 @@ reminderAgentManager.updateReminder(reminderId, timer).then(() => {
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| title | string | 是 | 按钮显示的标题。 |
-| titleResource<sup>11+</sup> | string | 否 | 标题的资源ID，用于切换系统语言后读取对应标题信息。 |
-| type | [ActionButtonType](#actionbuttontype) | 是 | 按钮的类型。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| title | string | 否 | 否 | 按钮显示的标题。 |
+| titleResource<sup>11+</sup> | string | 否 | 是 | 标题的资源ID，用于切换系统语言后读取对应标题信息。 |
+| type | [ActionButtonType](#actionbuttontype) | 否 | 否 | 按钮的类型。 |
 
 
 ## WantAgent
@@ -876,12 +876,12 @@ reminderAgentManager.updateReminder(reminderId, timer).then(() => {
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| pkgName | string | 是 | 指明跳转目标的包名。 |
-| abilityName | string | 是 | 指明跳转目标的ability名称。 |
-| parameters<sup>12+</sup> | Record\<string, Object> | 否 | 需要传递到目标的参数。 |
-| uri<sup>12+</sup> | string | 否 | 指明跳转目标的uri信息。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| pkgName | string | 否 | 否 | 指明跳转目标的包名。 |
+| abilityName | string | 否 | 否 | 指明跳转目标的ability名称。 |
+| parameters<sup>12+</sup> | Record\<string, Object> | 否 | 是 | 需要传递到目标的参数。 |
+| uri<sup>12+</sup> | string | 否 | 是 | 指明跳转目标的uri信息。 |
 
 
 ## MaxScreenWantAgent
@@ -890,10 +890,10 @@ reminderAgentManager.updateReminder(reminderId, timer).then(() => {
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| pkgName | string | 是 | 指明提醒到达时自动拉起的目标包名（如果设备在使用中，则只弹出通知横幅框）。 |
-| abilityName | string | 是 | 指明提醒到达时自动拉起的目标ability名（如果设备在使用中，则只弹出通知横幅框）。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| pkgName | string | 否 | 否 | 指明提醒到达时自动拉起的目标包名（如果设备在使用中，则只弹出通知横幅框）。 |
+| abilityName | string | 否 | 否 | 指明提醒到达时自动拉起的目标ability名（如果设备在使用中，则只弹出通知横幅框）。 |
 
 
 ## ReminderRequest
@@ -902,31 +902,31 @@ reminderAgentManager.updateReminder(reminderId, timer).then(() => {
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| reminderType | [ReminderType](#remindertype) | 是 | 指明代理提醒类型。 |
-| actionButton | [[ActionButton?, ActionButton?, ActionButton?]](#actionbutton) | 否 | 弹出的提醒通知中显示的按钮。<br>-普通应用：最多支持两个按钮。<br>-系统应用：API9最多支持两个按钮，在API10开始最多支持三个按钮。 |
-| wantAgent | [WantAgent](#wantagent) | 否 | 点击通知后需要跳转的目标ability信息。 |
-| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时，全屏显示自动拉起目标的ability信息。如果设备正在使用中，则弹出一个通知横幅框。 <br> 说明：该接口为预留接口，暂不支持使用。|
-| ringDuration | number | 否 | 指明响铃时长（单位：秒），默认1秒。 |
-| snoozeTimes | number | 否 | 指明延时提醒次数，默认0次(不适用于倒计时提醒类型)。 |
-| timeInterval | number | 否 | 执行延时提醒间隔（单位：秒），最少5分钟(不适用于倒计时提醒类型)。 |
-| title | string | 否 | 指明提醒标题。 |
-| titleResourceId<sup>18+</sup> | number | 否 | 指明提醒标题的资源ID。 |
-| content | string | 否 | 指明提醒内容。 |
-| contentResourceId<sup>18+</sup> | number | 否 | 指明提醒内容的资源ID。 |
-| expiredContent | string | 否 | 指明提醒过期后需要显示的内容。 |
-| expiredContentResourceId<sup>18+</sup> | number | 否 | 指明提醒过期后内容的资源ID。 |
-| snoozeContent | string | 否 | 指明延时提醒时需要显示的内容(不适用于倒计时提醒类型)。 |
-| snoozeContentResourceId<sup>18+</sup> | number | 否 | 指明延时提醒内容的资源ID。 |
-| notificationId | number | 否 | 指明提醒使用的通知的id号，需开发者传入，相同id号的提醒会覆盖。 |
-| groupId<sup>11+</sup> | string | 否 | 指明提醒使用相同的组id。相同组id中，一个提醒被点击不在提醒后，组内其他提醒也会被取消。 |
-| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否 | 指明提醒的通道渠道类型。 |
-| tapDismissed<sup>10+</sup> | boolean | 否 | 通知是否自动清除，默认值为true，具体请参考[NotificationRequest.tapDismissed](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1)。<br> - true：点击通知消息或通知按钮后，自动删除当前通知。<br> - false：点击通知消息或通知按钮后，保留当前通知。 |
-| autoDeletedTime<sup>10+</sup> | number | 否 | 自动清除的时间，具体请参考[NotificationRequest.autoDeletedTime](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1)。 |
-| snoozeSlotType<sup>11+</sup> | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否 | 指明延时提醒的通道渠道类型(不适用于倒计时提醒类型)。 |
-| customRingUri<sup>11+</sup> | string | 否 | 指明自定义提示音的uri，提示音文件必须放在resources/rawfile目录下，支持m4a、aac、mp3、ogg、wav、flac、amr等格式。 |
-| ringChannel<sup>20+</sup> | [RingChannel](#ringchannel20) | 否 | 指明自定义提示音的音频播放通道，默认为闹钟通道。|
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| reminderType | [ReminderType](#remindertype) | 否 | 否 | 指明代理提醒类型。 |
+| actionButton | [[ActionButton?, ActionButton?, ActionButton?]](#actionbutton) | 否 | 是 | 弹出的提醒通知中显示的按钮。<br>-普通应用：最多支持两个按钮。<br>-系统应用：API9最多支持两个按钮，在API10开始最多支持三个按钮。 |
+| wantAgent | [WantAgent](#wantagent) | 否 | 是 | 点击通知后需要跳转的目标ability信息。 |
+| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 是 | 提醒到达时，全屏显示自动拉起目标的ability信息。如果设备正在使用中，则弹出一个通知横幅框。 <br> 说明：该接口为预留接口，暂不支持使用。|
+| ringDuration | number | 否 | 是 | 指明响铃时长（单位：秒），默认1秒。 |
+| snoozeTimes | number | 否 | 是 | 指明延时提醒次数，默认0次(不适用于倒计时提醒类型)。 |
+| timeInterval | number | 否 | 是 | 执行延时提醒间隔（单位：秒），最少30秒(不适用于倒计时提醒类型)。 |
+| title | string | 否 | 是 | 指明提醒标题。 |
+| titleResourceId<sup>18+</sup> | number | 否 | 是 | 指明提醒标题的资源ID。 |
+| content | string | 否 | 是 | 指明提醒内容。 |
+| contentResourceId<sup>18+</sup> | number | 否 | 是 | 指明提醒内容的资源ID。 |
+| expiredContent | string | 否 | 是 | 指明提醒过期后需要显示的内容。 |
+| expiredContentResourceId<sup>18+</sup> | number | 否 | 是 | 指明提醒过期后内容的资源ID。 |
+| snoozeContent | string | 否 | 是 | 指明延时提醒时需要显示的内容(不适用于倒计时提醒类型)。 |
+| snoozeContentResourceId<sup>18+</sup> | number | 否 | 是 | 指明延时提醒内容的资源ID。 |
+| notificationId | number | 否 | 是 | 指明提醒使用的通知的id号，需开发者传入，相同id号的提醒会覆盖。 |
+| groupId<sup>11+</sup> | string | 否 | 是 | 指明提醒使用相同的组id。相同组id中，一个提醒被点击不在提醒后，组内其他提醒也会被取消。 |
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否 | 是 | 指明提醒的通道渠道类型。 |
+| tapDismissed<sup>10+</sup> | boolean | 否 | 是 | 通知是否自动清除，默认值为true，具体请参考[NotificationRequest.tapDismissed](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1)。<br> - true：点击通知消息或通知按钮后，自动删除当前通知。<br> - false：点击通知消息或通知按钮后，保留当前通知。 |
+| autoDeletedTime<sup>10+</sup> | number | 否 | 是 | 自动清除的时间，具体请参考[NotificationRequest.autoDeletedTime](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1)。 |
+| snoozeSlotType<sup>11+</sup> | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否 | 是 | 指明延时提醒的通道渠道类型(不适用于倒计时提醒类型)。 |
+| customRingUri<sup>11+</sup> | string | 否 | 是 | 指明自定义提示音的uri，提示音文件必须放在resources/rawfile目录下，支持m4a、aac、mp3、ogg、wav、flac、amr等格式。 |
+| ringChannel<sup>20+</sup> | [RingChannel](#ringchannel20) | 否 | 是 | 指明自定义提示音的音频播放通道，默认为闹钟通道。|
 
 ## ReminderRequestCalendar
 
@@ -936,13 +936,13 @@ ReminderRequestCalendar extends ReminderRequest
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| dateTime | [LocalDateTime](#localdatetime) | 是 | 指明提醒的目标时间。 |
-| repeatMonths | Array\<number> | 否 | 指明重复提醒的月份。 |
-| repeatDays | Array\<number> | 否 | 指明重复提醒的日期。 |
-| daysOfWeek<sup>11+</sup> | Array\<number> | 否 | 指明每周哪几天需要重复提醒。范围为周一到周日，对应数字为1到7。 |
-| endDateTime<sup>12+</sup> | [LocalDateTime](#localdatetime) | 否 | 指明提醒的结束时间。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| dateTime | [LocalDateTime](#localdatetime) | 否 | 否 | 指明提醒的目标时间。 |
+| repeatMonths | Array\<number> | 否 | 是 | 指明重复提醒的月份。 |
+| repeatDays | Array\<number> | 否 | 是 | 指明重复提醒的日期。 |
+| daysOfWeek<sup>11+</sup> | Array\<number> | 否 | 是 | 指明每周哪几天需要重复提醒。范围为周一到周日，对应数字为1到7。 |
+| endDateTime<sup>12+</sup> | [LocalDateTime](#localdatetime) | 否 | 是 | 指明提醒的结束时间。 |
 
 
 ## ReminderRequestAlarm
@@ -953,11 +953,11 @@ ReminderRequestAlarm extends ReminderRequest
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| hour | number | 是 | 指明提醒的目标时刻。 |
-| minute | number | 是 | 指明提醒的目标分钟。 |
-| daysOfWeek | Array\<number> | 否 | 指明每周哪几天需要重复提醒。范围为周一到周日，对应数字为1到7。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| hour | number | 否 | 否 | 指明提醒的目标时刻。 |
+| minute | number | 否 | 否 | 指明提醒的目标分钟。 |
+| daysOfWeek | Array\<number> | 否 | 是 | 指明每周哪几天需要重复提醒。范围为周一到周日，对应数字为1到7。 |
 
 
 ## ReminderRequestTimer
@@ -968,9 +968,9 @@ ReminderRequestTimer extends ReminderRequest
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| triggerTimeInSeconds | number | 是 | 指明倒计时的秒数。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| triggerTimeInSeconds | number | 否 | 否 | 指明倒计时的秒数。 |
 
 
 ## LocalDateTime
@@ -979,14 +979,14 @@ ReminderRequestTimer extends ReminderRequest
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| year | number | 是 | 年 |
-| month | number | 是 | 月，取值范围是[1, 12]。 |
-| day | number | 是 | 日，取值范围是[1, 31]。 |
-| hour | number | 是 | 时，取值范围是[0, 23]。 |
-| minute | number | 是 | 分，取值范围是[0, 59]。 |
-| second | number | 否 | 秒，取值范围是[0, 59]。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| year | number | 否 | 否 | 年 |
+| month | number | 否 | 否 | 月，取值范围是[1, 12]。 |
+| day | number | 否 | 否 | 日，取值范围是[1, 31]。 |
+| hour | number | 否 | 否 | 时，取值范围是[0, 23]。 |
+| minute | number | 否 | 否 | 分，取值范围是[0, 59]。 |
+| second | number | 否 | 是 | 秒，取值范围是[0, 59]。 |
 
 ## ReminderInfo<sup>12+</sup>
 

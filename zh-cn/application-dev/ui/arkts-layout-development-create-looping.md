@@ -667,6 +667,48 @@ maintainVisibleContentPosition为true时，显示区域上方或前方插入或�
 
 ```ts
 // xxx.ets
+class MyDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = [];
+  private dataArray: string[] = ['0', '1', '2', '3', '4', '5', '6'];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): string | undefined {
+    return this.dataArray[index];
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0, data);
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    })
+  }
+
+  public deleteData(index: number): void {
+    this.dataArray.splice(index, 1);
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+    })
+  }
+
+  registerDataChangeListener(listener: DataChangelistener): void {
+    if (this.listeners.index0f(listener) < 0) {
+      console.info('add listener');
+      this.listeners.push(listener);
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListerher): void {
+    const pos = this.listeners.index0f(listener);
+    if (pos >= 0) {
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
+    }
+  }
+}
+
 @Entry
 @Component
 struct SwiperExample {
@@ -675,8 +717,13 @@ struct SwiperExample {
   build() {
     Column({ space: 5 }) {
       Swiper() {
-        LazyForEach(this.data, () => {
-          // ...
+        LazyForEach(this.data, (item: string) => {
+          Text(item.toString())
+            .width('90%')
+            .height(160)
+            .backgroundColor(0xAFEEEE)
+            .textAlign(TextAlign.Center)
+            .fontSize(30)
         })
       }
       .onChange((index) => {

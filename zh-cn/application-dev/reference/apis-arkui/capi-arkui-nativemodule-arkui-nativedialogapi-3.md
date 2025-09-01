@@ -441,7 +441,7 @@ int32_t (*setBackgroundBlurStyle)(ArkUI_NativeDialogHandle handle, ArkUI_BlurSty
 
 > **说明：** 
 >
-> setBackgroundBlurStyle方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调
+> setBackgroundBlurStyle方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
 
 **起始版本：** 19
 

@@ -1,4 +1,10 @@
 # Sample Server Development Overview
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Update-->
+<!--Owner: @RainyDay_005; @huangsiping3-->
+<!--Designer: @zhangzhengxue; @jackd320-->
+<!--Tester: @mamba-ting-->
+<!--Adviser: @zhang_yixin13-->
 
 The sample server provides a simple server instance for deploying update packages. It can be used as an auxiliary test environment for the UpdateService subsystem.
 

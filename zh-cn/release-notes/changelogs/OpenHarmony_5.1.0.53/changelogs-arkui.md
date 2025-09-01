@@ -101,7 +101,7 @@ UX规格变更，不涉及接口和组件。
 
 变更前：ButtonOptions中type的默认值为ButtonType.Capsule。
 
-变更后：ButtonOptions中type的默认值为ButtonType.ROUNDED_RECTANGLE
+变更后：ButtonOptions中type的默认值为ButtonType.ROUNDED_RECTANGLE。
 
 ![roundedRectButton](figures/roundedRectButton.PNG)
 

@@ -170,7 +170,7 @@ struct TextPickerDialogExample {
               onAccept: (value: TextPickerResult) => {
                 // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
                 this.select = value.index;
-                console.log(this.select + '');
+                console.info(this.select + '');
                 // 点击确定后，被选到的文本数据展示到页面
                 this.v = value.value as string;
                 console.info("TextPickerDialog:onAccept()" + JSON.stringify(value));
@@ -259,7 +259,7 @@ struct TextPickerDialogExample {
               onAccept: (value: TextPickerResult) => {
                 // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
                 this.select = value.index;
-                console.log(this.select + '');
+                console.info(this.select + '');
                 // 点击确定后，被选到的文本数据展示到页面
                 this.v = value.value as string;
                 console.info("TextPickerDialog:onAccept()" + JSON.stringify(value));
@@ -322,7 +322,7 @@ struct TextPickerDialogExample {
               onAccept: (value: TextPickerResult) => {
                 // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
                 this.select = value.index;
-                console.log(this.select + '');
+                console.info(this.select + '');
                 // 点击确定后，被选到的文本数据展示到页面
                 this.v = value.value as string;
                 console.info("TextPickerDialog:onAccept()" + JSON.stringify(value));
@@ -387,7 +387,7 @@ struct TextPickerDialogExample {
               onAccept: (value: TextPickerResult) => {
                 // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
                 this.select = value.index;
-                console.log(this.select + '');
+                console.info(this.select + '');
                 // 点击确定后，被选到的文本数据展示到页面
                 this.v = value.value as string;
                 console.info("TextPickerDialog:onAccept()" + JSON.stringify(value));
@@ -433,7 +433,7 @@ struct TextPickerDialogExample {
               onAccept: (value: TextPickerResult) => {
                 // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
                 this.select = value.index;
-                console.log(this.select + '');
+                console.info(this.select + '');
                 // 点击确定后，被选到的文本数据展示到页面
                 this.v = value.value as string;
                 console.info("TextPickerDialog:onAccept()" + JSON.stringify(value));
@@ -476,7 +476,7 @@ struct TextPickerDialogExample {
               onAccept: (value: TextPickerResult) => {
                 // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
                 this.select = value.index;
-                console.log(this.select + '');
+                console.info(this.select + '');
                 // 点击确定后，被选到的文本数据展示到页面
                 this.v = value.value as string;
                 console.info("TextPickerDialog:onAccept()" + JSON.stringify(value));
@@ -519,7 +519,7 @@ struct TextPickerDialogExample {
               onAccept: (value: TextPickerResult) => {
                 // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
                 this.select = value.index;
-                console.log(this.select + '');
+                console.info(this.select + '');
                 // 点击确定后，被选到的文本数据展示到页面
                 this.v = value.value as string;
                 console.info("TextPickerDialog:onAccept()" + JSON.stringify(value));

@@ -1,4 +1,10 @@
 # OH_PasteboardObserver
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @yangxiaodong41-->
+<!--Designer: @guo867-->
+<!--Tester: @maxiaorong2-->
+<!--Adviser: @HelloCrease-->
 
 ## Overview
 

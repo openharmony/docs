@@ -647,7 +647,7 @@ struct Index {
           // 在执行动画前，存在额外的修改
           this.w = 100;
           this.h = 100;
-          this.message = 'Hello Word';
+          this.message = 'Hello World';
           animateToImmediately({
             duration: 0
           }, () => {

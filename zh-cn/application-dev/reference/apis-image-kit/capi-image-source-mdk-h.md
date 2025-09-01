@@ -12,6 +12,8 @@
 
 **库：** libimage_source_ndk.z.so
 
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
 **引用文件：** <multimedia/image_framework/image_source_mdk.h>
 
 **起始版本：** 10

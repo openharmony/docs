@@ -1,28 +1,34 @@
 # Subscribing to Common Events in C
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 ## When to Use
 
-A subscriber created using [OH_CommonEvent_CreateSubscriber](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_createsubscriber) can subscribe to a common event. If a subscribed event is published, the subscriber will receive the event and its parameters. Also, the subscriber object can be used to further process ordered common events.
+A subscriber created using [OH_CommonEvent_CreateSubscriber](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_createsubscriber) can subscribe to a common event. If a subscribed event is published, the subscriber will receive the event and its parameters. Also, the subscriber object can be used to further process ordered common events.
 
 ## Available APIs
 
-For details about the APIs, see [CommonEvent](../../reference/apis-basic-services-kit/capi-common-event.md).
+For details about the APIs, see [oh_commonevent.h](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md).
 
 | API                              | Description                                                            |
 | ------------------------------------ | ---------------------------------------------------------------- |
-|[CommonEvent_SubscribeInfo* OH_CommonEvent_CreateSubscribeInfo(const char* events[], int32_t eventsNum)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_createsubscribeinfo)|Creates the subscriber information.|
-|[void OH_CommonEvent_DestroySubscribeInfo(CommonEvent_SubscribeInfo* info)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_destroysubscribeinfo)|Destroys the subscriber information.|
-|[CommonEvent_Subscriber* OH_CommonEvent_CreateSubscriber(const CommonEvent_SubscribeInfo* info, CommonEvent_ReceiveCallback callback)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_createsubscriber)| Creates a subscriber.|
-|[void OH_CommonEvent_DestroySubscriber(CommonEvent_Subscriber* subscriber)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_destroysubscriber)|Destroys a subscriber.|
-|[CommonEvent_ErrCode OH_CommonEvent_Subscribe(const CommonEvent_Subscriber* subscriber)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_subscribe)|Subscribes to an event.|
-|[bool OH_CommonEvent_AbortCommonEvent(CommonEvent_Subscriber* subscriber)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_abortcommonevent)|Whether to abort an ordered common event.|
-|[bool OH_CommonEvent_ClearAbortCommonEvent(CommonEvent_Subscriber* subscriber)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_clearabortcommonevent)|Whether to clear the aborted state of an ordered common event.|
-|[bool OH_CommonEvent_FinishCommonEvent(CommonEvent_Subscriber* subscriber)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_finishcommonevent)|Whether to finish processing an ordered common event.|
+|[CommonEvent_SubscribeInfo* OH_CommonEvent_CreateSubscribeInfo(const char* events[], int32_t eventsNum)](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_createsubscribeinfo)|Creates the subscriber information.|
+|[void OH_CommonEvent_DestroySubscribeInfo(CommonEvent_SubscribeInfo* info)](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_destroysubscribeinfo)|Destroys the subscriber information.|
+|[CommonEvent_Subscriber* OH_CommonEvent_CreateSubscriber(const CommonEvent_SubscribeInfo* info, CommonEvent_ReceiveCallback callback)](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_createsubscriber)| Creates a subscriber.|
+|[void OH_CommonEvent_DestroySubscriber(CommonEvent_Subscriber* subscriber)](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_destroysubscriber)|Destroys a subscriber.|
+|[CommonEvent_ErrCode OH_CommonEvent_Subscribe(const CommonEvent_Subscriber* subscriber)](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_subscribe)|Subscribes to an event.|
+|[bool OH_CommonEvent_AbortCommonEvent(CommonEvent_Subscriber* subscriber)](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_abortcommonevent)|Whether to abort an ordered common event.|
+|[bool OH_CommonEvent_ClearAbortCommonEvent(CommonEvent_Subscriber* subscriber)](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_clearabortcommonevent)|Whether to clear the aborted state of an ordered common event.|
+|[bool OH_CommonEvent_FinishCommonEvent(CommonEvent_Subscriber* subscriber)](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_finishcommonevent)|Whether to finish processing an ordered common event.|
 
 ## How to Develop
 
-1. Reference header files.
+1. Include header files.
 
    ```c++
    #include <cstdint>
@@ -43,21 +49,19 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
    )
    ```
 
-3. Create the subscriber information.
-
-   Use [OH_CommonEvent_CreateSubscribeInfo](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_createsubscribeinfo) to create subscriber information.
+3. Create the subscriber information using [OH_CommonEvent_CreateSubscribeInfo](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_createsubscribeinfo).
 
    ```c++
-   CommonEvent_SubscribeInfo* CreateSubscribeInfo(const char* events[], int32_t eventsNum, const char* permission, const char* bundleName) {
+CommonEvent_SubscribeInfo* CreateSubscribeInfo(const char* events[], int32_t eventsNum, const char* permission, const char* bundleName) {
        int32_t ret = -1;
        // Create the subscriber information.
        CommonEvent_SubscribeInfo* info = OH_CommonEvent_CreateSubscribeInfo(events, eventsNum);
-
-       // Set the subscriber permission.
-       ret = OH_CommonEvent_SetPublisherPermission(info, permission);
+   
+       // Set the publisher permission.
+    ret = OH_CommonEvent_SetPublisherPermission(info, permission);
        OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetPublisherPermission ret <%{public}d>.", ret);
        
-       // Set a bundle name of the subscriber.
+       // Set the publisher bundle name.
        ret = OH_CommonEvent_SetPublisherBundleName(info, bundleName);
        OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetPublisherBundleName ret <%{public}d>.", ret);
        return info;
@@ -69,10 +73,10 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
        info = nullptr;
    }
    ```
-
+   
 4. Create a subscriber.
 
-   Pass in the callback function [CommonEvent_ReceiveCallback](../../reference/apis-basic-services-kit/capi-common-event.md#commonevent_receivecallback) of the common event when a subscriber is created. When the event is published, the subscriber receives the callback data [CommonEvent_RcvData](../../reference/apis-basic-services-kit/capi-common-event.md#commonevent_rcvdata).
+   When creating a subscriber, pass in [CommonEvent_ReceiveCallback](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#commonevent_receivecallback). When the event is published, the subscriber receives [CommonEvent_RcvData](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#structs).
 
    ```c++
    // Common event callback.
@@ -88,14 +92,11 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
        
        // Obtain the bundle name of a common event.
        const char *bundle = OH_CommonEvent_GetBundleNameFromRcvData(data);
-       
-       // Obtain the additional information of a common event.
-       const CommonEvent_Parameters *parameters = OH_CommonEvent_GetParametersFromRcvData(data);
        OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "event: %{public}s, code: %{public}d, data: %{public}s, bundle: %{public}s", event, code, retData, bundle);
    }
    ```
 
-   Use [CommonEvent_Parameters](../../reference/apis-basic-services-kit/capi-common-event.md#commonevent_parameters) to pass in a key to obtain the additional information.
+   Use [CommonEvent_Parameters](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#variables) to pass in a key to obtain the additional information.
 
    ```c++
    void GetParameters(const CommonEvent_RcvData *data) {
@@ -193,7 +194,7 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
    }
    ```
 
-   Use [OH_CommonEvent_CreateSubscriber](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_createsubscriber) to create a subscriber and pass in the subscriber information [CommonEvent_SubscribeInfo](../../reference/apis-basic-services-kit/capi-common-event.md#commonevent_subscribeinfo) and event callback function [OnReceive](../../reference/apis-basic-services-kit/capi-common-event.md#commonevent_receivecallback).
+   Create a subscriber through [OH_CommonEvent_CreateSubscriber](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_createsubscriber), and pass in [CommonEvent_SubscribeInfo](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#structs) and the **OnReceive** function defined in step 4.
 
    ```c++
    // Create a subscriber.
@@ -208,18 +209,16 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
    }
    ```
 
-5. Subscribe to an event.
-
-   Subscribe to events through [OH_CommonEvent_Subscribe](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_subscribe).
+5. Subscribe to an event using [OH_CommonEvent_Subscribe](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_subscribe).
 
    ```c++
-   void Subscribe(CommonEvent_Subscriber* subscriber) {
+void Subscribe(CommonEvent_Subscriber* subscriber) {
        // Subscribe to an event by passing a subscriber.
        int32_t ret = OH_CommonEvent_Subscribe(subscriber);
        OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_Subscribe ret <%{public}d>.", ret);
    }
    ```
-
+   
 6. (Optional) Further process the subscribed event if this event is an ordered common event.
 
    Based on the priority set by the subscriber, the common event is preferentially sent to the subscriber with a higher priority. After the subscriber successfully receives the event, the public event is sent to the subscriber with a lower priority. Subscribers with the same priority receive common events in a random order.
@@ -230,7 +229,7 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
 
    - Abort an ordered common event.
 
-     Use [OH_CommonEvent_AbortCommonEvent](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_abortcommonevent) and [OH_CommonEvent_FinishCommonEvent](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_finishcommonevent) together to abort an ordered common event so that this event is not published to the next subscriber.
+     Use [OH_CommonEvent_AbortCommonEvent](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_abortcommonevent) and [OH_CommonEvent_FinishCommonEvent](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_finishcommonevent) together to abort an ordered common event so that this event is not published to the next subscriber.
 
      ```c++
      void AbortCommonEvent(CommonEvent_Subscriber* subscriber) {
@@ -253,7 +252,7 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
 
    - Clear the aborted state of an ordered common event.
 
-     Use [OH_CommonEvent_ClearAbortCommonEvent](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_clearabortcommonevent) and [OH_CommonEvent_FinishCommonEvent](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_finishcommonevent) together to clear the aborted state of an ordered common event so that this event is published to the next subscriber.
+     Use [OH_CommonEvent_ClearAbortCommonEvent](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_clearabortcommonevent) and [OH_CommonEvent_FinishCommonEvent](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_finishcommonevent) together to clear the aborted state of an ordered common event so that this event is published to the next subscriber.
 
      ```c++
      void ClearAbortCommonEvent(CommonEvent_Subscriber* subscriber) {
@@ -279,13 +278,11 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
      }
      ```
 
-   - Modify the content of an ordered common event.
-
-     Use [OH_CommonEvent_SetCodeToSubscriber](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_setcodetosubscriber) and [OH_CommonEvent_SetDataToSubscriber](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_setdatatosubscriber) to set the result code and data of an ordered common event.
+   - Modify the content of an ordered common event using [OH_CommonEvent_SetCodeToSubscriber](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_setcodetosubscriber) and [OH_CommonEvent_SetDataToSubscriber](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_setdatatosubscriber).
 
      ```c++
-     void SetToSubscriber(CommonEvent_Subscriber* subscriber, const int32_t code, const char* data) {
-         // Set the result code of an ordered common event.
+void SetToSubscriber(CommonEvent_Subscriber* subscriber, const int32_t code, const char* data) {
+         // Set the result code for an ordered common event.
          if(!OH_CommonEvent_SetCodeToSubscriber(subscriber, code)) {
              OH_LOG_Print(LOG_APP, LOG_ERROR, 1, "CES_TEST", "OH_CommonEvent_SetCodeToSubscriber failed.");
              return;
@@ -297,9 +294,9 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
              return;
          }
      }
-   
+     
      void GetFromSubscriber(CommonEvent_Subscriber* subscriber) {
-         // Obtain the result data and code of an ordered common event.
+       // Obtain the result data and code of an ordered common event.
          const char* data = OH_CommonEvent_GetDataFromSubscriber(subscriber);
          int32_t code = OH_CommonEvent_GetCodeFromSubscriber(subscriber);
          OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "Subscriber data <%{public}s>, code <%{public}d>.", data, code);

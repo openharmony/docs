@@ -14,7 +14,6 @@
 >
 > 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 该组件不支持在Wearable设备上使用。
 
 
 ## 导入模块
@@ -42,6 +41,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -53,6 +54,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 列表左侧显示的图标、图标大小以及中间元素文字内容。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 
 | 名称 | 类型 | 必填 | 说明                                                                                                                                        |
@@ -72,6 +75,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | BADGE | 1 | 左侧图标为badge类型，图标大小为8\*8vp。 |
@@ -89,6 +94,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称 | 类型 | 必填 | 说明                                                                                                                 |
 | -------- | -------- | -------- |--------------------------------------------------------------------------------------------------------------------|
 | arrow | [OperateIcon](#operateicon) | 否 | 右侧元素为箭头，大小为12\*24vp。<br/>默认不设置或设置为undefined，右侧箭头不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。           |
@@ -97,9 +104,9 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 | button | [OperateButton](#operatebutton) | 否 | 右侧元素为按钮。<br/>默认不设置或设置为undefined，右侧按钮不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                       |
 | switch | [OperateCheck](#operatecheck) | 否 | 右侧元素为开关。<br/>默认不设置或设置为undefined，右侧开关不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                       |
 | checkbox | [OperateCheck](#operatecheck) | 否 | 右侧元素为多选框，大小为24\*24vp。<br/>默认不设置或设置为undefined，右侧多选框不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
-| radio | [OperateCheck](#operatecheck) | 否 | 右侧元素为单选，大小为24\*24vp。<br/>默认不设置或设置为undefined，右侧单选框不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。          |
+| radio | [OperateCheck](#operatecheck) | 否 | 右侧元素为单选框，大小为24\*24vp。<br/>默认不设置或设置为undefined，右侧单选框不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。          |
 | image | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧元素为图片，大小为48\*48vp。<br/>默认不设置或设置为undefined，右侧图片不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。           |
-| symbolStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | 否 | 右侧元素为Symbol，大小为48\*48vp。<br/>默认不设置或设置为undefined，右侧Symbol图标不显示。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| symbolStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | 否 | 右侧元素为Symbol图标资源，大小为48\*48vp。<br/>默认不设置或设置为undefined，右侧Symbol图标不显示。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | text | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧元素为文字。 <br/>默认不设置或设置为undefined，右侧文字不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
 
 ## OperateIcon
@@ -107,6 +114,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 列表右侧显示的元素为图标的参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称 | 类型 | 必填 | 说明                                                                                                                                                                                                                                                       |
 | -------- | -------- | -------- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -123,6 +132,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称 | 类型 | 必填 | 说明                                                                                                                                                                                                                                                    |
 | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | text | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧按钮文字。<br/>默认值：""<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                |
@@ -135,6 +146,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 列表右侧显示元素类型为Switch、CheckBox、Radio的参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称 | 类型 | 必填 | 说明                                                                                                                                                                                                                                                                                   |
 | -------- | -------- | -------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

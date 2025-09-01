@@ -47,11 +47,9 @@ import { image } from '@kit.ImageKit'
 let resManager = this.getUIContext().getHostContext()?.resourceManager;
 // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
 let pixmap: DrawableDescriptor = (resManager?.getDrawableDescriptor($r('app.media.icon')
-    .id)) as DrawableDescriptor;
+    .id)) as DrawableDescriptor; // 当传入资源id或name为普通图片时，生成DrawableDescriptor对象。
 let pixmapNew: image.PixelMap | undefined = pixmap?.getPixelMap();
   ```
-
-当传入资源id或name为普通图片时，生成DrawableDescriptor对象。
 
 ## PixelMapDrawableDescriptor<sup>12+</sup>
 
@@ -204,42 +202,42 @@ getForeground(): DrawableDescriptor
 
 **示例：**
   ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
+  import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
 
-@Entry
-@Component
-struct Index {
-  @State drawableDescriptor: DrawableDescriptor | undefined = undefined;
+  @Entry
+  @Component
+  struct Index {
+    @State drawableDescriptor: DrawableDescriptor | undefined = undefined;
 
-  private getForeground(): DrawableDescriptor | undefined {
-    let resManager = this.getUIContext().getHostContext()?.resourceManager;
-    // $r('app.media.drawable')需要替换为开发者所需的图像资源文件。
-    let drawable: DrawableDescriptor | undefined = resManager?.getDrawableDescriptor($r('app.media.drawable').id);
-    if (!drawable) {
-      return undefined;
-    }
-    let layeredDrawableDescriptor = (drawable as LayeredDrawableDescriptor).getForeground();
-    return layeredDrawableDescriptor;
-  }
-
-  aboutToAppear(): void {
-    this.drawableDescriptor = this.getForeground();
-  }
-
-  build() {
-    RelativeContainer() {
-      if (this.drawableDescriptor) {
-        Image(this.drawableDescriptor)
-          .width(100)
-          .height(100)
-          .borderWidth(1)
-          .backgroundColor(Color.Green);
+    private getForeground(): DrawableDescriptor | undefined {
+      let resManager = this.getUIContext().getHostContext()?.resourceManager;
+      // $r('app.media.drawable')需要替换为开发者所需的图像资源文件。
+      let drawable: DrawableDescriptor | undefined = resManager?.getDrawableDescriptor($r('app.media.drawable').id);
+      if (!drawable) {
+        return undefined;
       }
+      let layeredDrawableDescriptor = (drawable as LayeredDrawableDescriptor).getForeground();
+      return layeredDrawableDescriptor;
     }
-    .height('100%')
-    .width('100%')
+
+    aboutToAppear(): void {
+      this.drawableDescriptor = this.getForeground();
+    }
+
+    build() {
+      RelativeContainer() {
+        if (this.drawableDescriptor) {
+          Image(this.drawableDescriptor)
+            .width(100)
+            .height(100)
+            .borderWidth(1)
+            .backgroundColor(Color.Green);
+        }
+      }
+      .height('100%')
+      .width('100%')
+    }
   }
-}
   ```
 
 ### getBackground
@@ -260,40 +258,40 @@ getBackground(): DrawableDescriptor
 
 **示例：**
   ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
+  import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
 
-@Entry
-@Component
-struct Index {
-  @State drawableDescriptor: DrawableDescriptor | undefined = undefined;
+  @Entry
+  @Component
+  struct Index {
+    @State drawableDescriptor: DrawableDescriptor | undefined = undefined;
 
-  private getBackground(): DrawableDescriptor | undefined {
-    let resManager = this.getUIContext().getHostContext()?.resourceManager;
-    // $r('app.media.drawable')需要替换为开发者所需的图像资源文件。
-    let drawable: DrawableDescriptor | undefined = resManager?.getDrawableDescriptor($r('app.media.drawable').id);
-    if (!drawable) {
-      return undefined;
-    }
-    let layeredDrawableDescriptor = (drawable as LayeredDrawableDescriptor).getBackground();
-    return layeredDrawableDescriptor;
-  }
-
-  aboutToAppear(): void {
-    this.drawableDescriptor = this.getBackground();
-  }
-
-  build() {
-    RelativeContainer() {
-      if (this.drawableDescriptor) {
-        Image(this.drawableDescriptor)
-          .width(100)
-          .height(100)
+    private getBackground(): DrawableDescriptor | undefined {
+      let resManager = this.getUIContext().getHostContext()?.resourceManager;
+      // $r('app.media.drawable')需要替换为开发者所需的图像资源文件。
+      let drawable: DrawableDescriptor | undefined = resManager?.getDrawableDescriptor($r('app.media.drawable').id);
+      if (!drawable) {
+        return undefined;
       }
+      let layeredDrawableDescriptor = (drawable as LayeredDrawableDescriptor).getBackground();
+      return layeredDrawableDescriptor;
     }
-    .height('100%')
-    .width('100%')
+
+    aboutToAppear(): void {
+      this.drawableDescriptor = this.getBackground();
+    }
+
+    build() {
+      RelativeContainer() {
+        if (this.drawableDescriptor) {
+          Image(this.drawableDescriptor)
+            .width(100)
+            .height(100)
+        }
+      }
+      .height('100%')
+      .width('100%')
+    }
   }
-}
   ```
 
 ### getMask
@@ -314,40 +312,40 @@ getMask(): DrawableDescriptor
 
 **示例：**
   ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
+  import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
 
-@Entry
-@Component
-struct Index {
-  @State drawableDescriptor: DrawableDescriptor | undefined = undefined;
+  @Entry
+  @Component
+  struct Index {
+    @State drawableDescriptor: DrawableDescriptor | undefined = undefined;
 
-  private getMask(): DrawableDescriptor | undefined {
-    let resManager = this.getUIContext().getHostContext()?.resourceManager;
-    // $r('app.media.drawable')需要替换为开发者所需的图像资源文件。
-    let drawable: DrawableDescriptor | undefined = resManager?.getDrawableDescriptor($r('app.media.drawable').id);
-    if (!drawable) {
-      return undefined;
-    }
-    let layeredDrawableDescriptor = (drawable as LayeredDrawableDescriptor).getMask();
-    return layeredDrawableDescriptor;
-  }
-
-  aboutToAppear(): void {
-    this.drawableDescriptor = this.getMask();
-  }
-
-  build() {
-    RelativeContainer() {
-      if (this.drawableDescriptor) {
-        Image(this.drawableDescriptor)
-          .width(100)
-          .height(100)
+    private getMask(): DrawableDescriptor | undefined {
+      let resManager = this.getUIContext().getHostContext()?.resourceManager;
+      // $r('app.media.drawable')需要替换为开发者所需的图像资源文件。
+      let drawable: DrawableDescriptor | undefined = resManager?.getDrawableDescriptor($r('app.media.drawable').id);
+      if (!drawable) {
+        return undefined;
       }
+      let layeredDrawableDescriptor = (drawable as LayeredDrawableDescriptor).getMask();
+      return layeredDrawableDescriptor;
     }
-    .height('100%')
-    .width('100%')
+
+    aboutToAppear(): void {
+      this.drawableDescriptor = this.getMask();
+    }
+
+    build() {
+      RelativeContainer() {
+        if (this.drawableDescriptor) {
+          Image(this.drawableDescriptor)
+            .width(100)
+            .height(100)
+        }
+      }
+      .height('100%')
+      .width('100%')
+    }
   }
-}
   ```
 ### getMaskClipPath
 
@@ -399,10 +397,10 @@ struct Index {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型    | 必填  | 说明                                    |
-| ---------- | ------ | -----| --------------------------------------- |
-| duration   | number | 否   | 设置图片数组播放总时间。默认每张图片播放1秒。<br/> 取值范围：[0, +∞)      |
-| iterations | number | 否   | 设置图片数组播放次数。默认为1，值为-1时表示无限播放，值为0时表示不播放，值大于0时表示播放次数。 |
+| 名称      | 类型    | 只读  | 可选  | 说明                                    |
+| ---------- | ------ | -----| ----- | --------------------------------------- |
+| duration   | number | 否   |  是   | 设置图片数组播放总时间。默认每张图片播放1秒。<br/> 取值范围：[0, +∞)      |
+| iterations | number | 否   |  是   | 设置图片数组播放次数。默认为1，值为-1时表示无限播放，值为0时表示不播放，值大于0时表示播放次数。 |
 
 **示例：**
 

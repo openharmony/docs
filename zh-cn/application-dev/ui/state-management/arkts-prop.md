@@ -30,7 +30,7 @@
 | ----------- | ---------------------------------------- |
 | 装饰器参数       | 无。                                        |
 | 同步类型        | 单向同步。对父组件状态变量值的修改，将同步给子组件\@Prop装饰的变量，子组件\@Prop装饰的变量的修改不会同步到父组件的状态变量上。<br>嵌套类型的场景请参考[观察变化](#观察变化)。 |
-| 允许装饰的变量类型   |  object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API version 10开始支持[Date类型](#装饰date类型变量)。<br/>API version 11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型、undefined和null类型、ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型以及这些类型的联合类型，示例见[Prop支持联合类型实例](#prop支持联合类型实例)。<br/>支持类型的场景请参考[观察变化](#观察变化)。|
+| 允许装饰的变量类型   |  Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API version 10开始支持[Date类型](#装饰date类型变量)。<br/>API version 11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型、undefined和null类型、ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型以及这些类型的联合类型，示例见[Prop支持联合类型实例](#prop支持联合类型实例)。<br/>支持类型的场景请参考[观察变化](#观察变化)。|
 | 不允许装饰的变量类型 | 不支持装饰Function类型。      |
 | 嵌套传递层数        | 在组件复用场景，建议@Prop深度嵌套数据不要超过5层，嵌套太多会导致深拷贝占用的空间过大以及GarbageCollection(垃圾回收)，引起性能问题，此时更建议使用[\@ObjectLink](arkts-observed-and-objectlink.md)。 |
 | 被装饰变量的初始值   | 允许本地初始化。API version 11及以上，需要和[\@Require](arkts-require.md)结合使用，则必须父组件构造传参。 |
@@ -67,7 +67,7 @@
   this.title = new Model('Hi');
   ```
 
-- 当装饰的类型是object或者class复杂类型时，可以观察到自身的赋值和第一层的属性的变化，属性即object.keys(observedObject)返回的所有属性。
+- 当装饰的类型是Object或者class复杂类型时，可以观察到自身的赋值和第一层的属性的变化，属性即object.keys(observedObject)返回的所有属性。
 
 ```ts
 class Info {
@@ -301,7 +301,7 @@ struct Index {
 7
 ```
 
-单击replace entire arr后，屏幕将显示以下信息。
+点击replace entire arr后，屏幕将显示以下信息。
 
 ```
 3
@@ -341,13 +341,13 @@ class Book {
 
 @Component
 struct ReaderComp {
-  @Prop book: Book = new Book("", 0);
+  @Prop book: Book = new Book('', 0);
 
   build() {
     Row() {
       Text(this.book.title)
       Text(`...has${this.book.pages} pages!`)
-      Text(`...${this.book.readIt ? "I have read" : 'I have not read it'}`)
+      Text(`...${this.book.readIt ? 'I have read' : 'I have not read it'}`)
         .onClick(() => this.book.readIt = true)
     }
   }
@@ -390,13 +390,13 @@ class Book {
 
 @Component
 struct ReaderComp {
-  @Prop book: Book = new Book("", 1);
+  @Prop book: Book = new Book('', 1);
 
   build() {
     Row() {
-      Text(` ${this.book ? this.book.title : "Book is undefined"}`).fontColor('#e6000000')
-      Text(` has ${this.book ? this.book.pages : "Book is undefined"} pages!`).fontColor('#e6000000')
-      Text(` ${this.book ? this.book.readIt ? "I have read" : 'I have not read it' : "Book is undefined"}`)
+      Text(` ${this.book ? this.book.title : 'Book is undefined'}`).fontColor('#e6000000')
+      Text(` has ${this.book ? this.book.pages : 'Book is undefined'} pages!`).fontColor('#e6000000')
+      Text(` ${this.book ? this.book.readIt ? 'I have read' : 'I have not read it' : 'Book is undefined'}`)
         .fontColor('#e6000000')
         .onClick(() => this.book.readIt = true)
     }
@@ -406,7 +406,7 @@ struct ReaderComp {
 @Entry
 @Component
 struct Library {
-  @State allBooks: Book[] = [new Book("C#", 765), new Book("JS", 652), new Book("TS", 765)];
+  @State allBooks: Book[] = [new Book('C#', 765), new Book('JS', 652), new Book('TS', 765)];
 
   build() {
     Column() {
@@ -449,7 +449,7 @@ struct Library {
         .margin(12)
         .fontColor('#FFFFFF')
         .onClick(() => {
-          this.allBooks.push(new Book("JA", 512));
+          this.allBooks.push(new Book('JA', 512));
         })
       Button('Remove first book')
         .width(312)
@@ -460,10 +460,10 @@ struct Library {
           if (this.allBooks.length > 0) {
             this.allBooks.shift();
           } else {
-            console.log("length <= 0");
+            console.info('length <= 0');
           }
         })
-      Button("Mark read for everyone")
+      Button('Mark read for everyone')
         .width(312)
         .height(40)
         .margin(12)
@@ -617,7 +617,7 @@ struct Person {
           .margin(12)
           .fontColor('#FFFFFF')
           .onClick(() => {
-            this.person.name = "Hi";
+            this.person.name = 'Hi';
           })
         Button('change Son title')
           .width(312)
@@ -625,7 +625,7 @@ struct Person {
           .margin(12)
           .fontColor('#FFFFFF')
           .onClick(() => {
-            this.person.son.title = "ArkUI";
+            this.person.son.title = 'ArkUI';
           })
         Text(this.person.name)
           .fontSize(16)
@@ -648,7 +648,7 @@ struct Person {
           .borderRadius(20)
           .textAlign(TextAlign.Center)
           .onClick(() => {
-            this.person.son.title = "openHarmony";
+            this.person.son.title = 'openHarmony';
           })
         Child({ child: this.person.son })
       }
@@ -692,7 +692,7 @@ struct Child {
 ```ts
 @Component
 struct Child {
-  @Prop value: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+  @Prop value: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
 
   build() {
     Column() {
@@ -702,16 +702,16 @@ struct Child {
         Divider()
       })
       Button('child init map').onClick(() => {
-        this.value = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+        this.value = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
       })
       Button('child set new one').onClick(() => {
-        this.value.set(4, "d");
+        this.value.set(4, 'd');
       })
       Button('child clear').onClick(() => {
         this.value.clear();
       })
       Button('child replace the first one').onClick(() => {
-        this.value.set(0, "aa");
+        this.value.set(0, 'aa');
       })
       Button('child delete the first one').onClick(() => {
         this.value.delete(0);
@@ -724,7 +724,7 @@ struct Child {
 @Entry
 @Component
 struct MapSample {
-  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+  @State message: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
 
   build() {
     Row() {
@@ -874,7 +874,7 @@ struct Child {
       Button('Child change animals into tigers')
         .onClick(() => {
           // 赋值为Animals的实例
-          this.animal = new Animals("Tiger");
+          this.animal = new Animals('Tiger');
         })
 
       Button('Child change animal to undefined')
@@ -890,7 +890,7 @@ struct Child {
 @Entry
 @Component
 struct Zoo {
-  @State animal: Animals | undefined = new Animals("lion");
+  @State animal: Animals | undefined = new Animals('lion');
 
   build() {
     Column() {
@@ -902,7 +902,7 @@ struct Zoo {
         .onClick(() => {
           // 判断animal的类型，做属性的更新
           if (this.animal instanceof Animals) {
-            this.animal.name = "Dog";
+            this.animal.name = 'Dog';
           } else {
             console.info('num is undefined, cannot change property');
           }
@@ -1027,7 +1027,7 @@ struct Parent {
 
 ### 使用a.b(this.object)形式调用，不会触发UI刷新
 
-在build方法内，当@Prop装饰的变量是object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原始对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法Score.changeScore1或者this.changeScore2修改自定义组件Child中的this.score.value时，UI不会刷新。
+在build方法内，当@Prop装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原始对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法Score.changeScore1或者this.changeScore2修改自定义组件Child中的this.score.value时，UI不会刷新。
 
 【反例】
 
