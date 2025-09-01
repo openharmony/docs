@@ -38,8 +38,8 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 
 | 名称                | 类型   |只读|可选| 说明                   |
 | ------------------- | ---- |----|----| ---------------------- |
-| ageGroup  | [UserAgeGroup](#useragegroup)   |是|否| 表示具体的年龄群组（例如，儿童、成人）。 |
-| confidence  | float    |是|否| 表示年龄群组检测结果的置信度，取值范围为0~1的浮点数，数值越大代表置信度越高。 |
+| ageGroup  | [UserAgeGroup](#useragegroup)   |否|否| 表示具体的年龄群组（例如，儿童、成人）。 |
+| confidence  | float    |否|否| 表示年龄群组检测结果的置信度，取值范围为0~1的浮点数，数值越大代表置信度越高。 |
 
 
 ## userStatus.on('userAgeGroupDetected')
