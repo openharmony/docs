@@ -72,7 +72,8 @@
 
    #include "asset/asset_api.h"
 
-   void UpdateAsset() {
+   static napi_value UpdateAsset(napi_env env, napi_callback_info info)
+   {
        static const char *ALIAS = "demo_alias";
        static const char *SECRET = "demo_pwd_new";
        static const char *LABEL = "demo_label_new";
@@ -86,12 +87,10 @@
            {.tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = new_label},
        };
 
-       int32_t ret = OH_Asset_Update(query, sizeof(query) / sizeof(query[0]), attributesToUpdate,
-                                     sizeof(attributesToUpdate) / sizeof(attributesToUpdate[0]));
-       if (ret == ASSET_SUCCESS) {
-          // 更新关键资产成功。
-       } else {
-          // 更新关键资产失败。
-       }
+       int32_t updateResult = OH_Asset_Update(query, sizeof(query) / sizeof(query[0]), attributesToUpdate,
+                                              sizeof(attributesToUpdate) / sizeof(attributesToUpdate[0]));
+       napi_value ret;
+       napi_create_int32(env, updateResult, &ret);
+       return ret;
    }
    ```
