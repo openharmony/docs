@@ -1,5 +1,12 @@
 # @ohos.batteryInfo (Battery Information) (System API)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--Designer: @wangyantian0-->
+<!--Tester: @alien0208-->
+<!--Adviser: @w_Machine_cc-->
+
 The **batteryInfo** module provides APIs for querying the charger type, battery health status, and battery charging status.
 
 > **NOTE**

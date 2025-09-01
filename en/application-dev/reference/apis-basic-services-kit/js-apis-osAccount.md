@@ -1,5 +1,12 @@
 # @ohos.account.osAccount (System Account Management)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
+
 The **osAccount** module provides basic capabilities for managing system (OS) accounts, including adding, deleting, querying, setting, subscribing to, and enabling a system account.
 
 > **NOTE**
@@ -64,6 +71,8 @@ Checks whether multiple system accounts are supported. This API uses an asynchro
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message            |
 | -------- | ------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -102,6 +111,8 @@ Checks whether multiple system accounts are supported. This API uses a promise t
 | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means multiple system accounts are supported; the value **false** means the opposite.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md).
 
 | ID| Error Message            |
 | -------- | ------------------- |
@@ -145,6 +156,8 @@ Checks whether a system account is activated. This API uses an asynchronous call
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means the account is activated; the value **false** means the opposite.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message            |
 | -------- | ------------------- |
@@ -201,6 +214,8 @@ Checks whether a system account is activated. This API uses a promise to return 
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
@@ -248,6 +263,8 @@ Checks whether a constraint is enabled for this system account. This API uses a 
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message            |
 | -------- | ------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -293,6 +310,8 @@ Checks whether the specified constraint is enabled for a system account. This AP
 | callback   | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means the specified constraint is enabled; the value **false** means the opposite.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message            |
 | -------- | ------------------- |
@@ -351,6 +370,8 @@ Checks whether the specified constraint is enabled for a system account. This AP
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
@@ -393,6 +414,8 @@ Checks whether this system account is a test account. This API uses an asynchron
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message            |
 | -------- | ------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -432,6 +455,8 @@ Checks whether this system account is a test account. This API uses a promise to
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md).
+
 | ID| Error Message            |
 | -------- | ------------------- |
 | 12300001 | The system service works abnormally. |
@@ -468,6 +493,8 @@ Checks whether this system account is unlocked. This API uses a promise to retur
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md).
+
 | ID| Error Message            |
 | -------- | ------------------- |
 | 12300001 | The system service works abnormally. |
@@ -492,7 +519,7 @@ Checks whether this system account is unlocked. This API uses a promise to retur
 
 checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether this system account has been verified. This API uses an asynchronous callback to return the result.
+Checks whether a system account has been verified. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -507,6 +534,8 @@ Checks whether this system account has been verified. This API uses an asynchron
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md).
 
 | ID| Error Message            |
 | -------- | ------------------- |
@@ -550,6 +579,8 @@ Checks whether this system account has been verified. This API uses a promise to
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md).
+
 | ID| Error Message            |
 | -------- | ------------------- |
 | 12300001 | The system service works abnormally. |
@@ -592,6 +623,8 @@ Checks whether a system account has been verified. This API uses an asynchronous
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message            |
 | -------- | ------------------- |
@@ -648,6 +681,8 @@ Checks whether a system account has been verified. This API uses a promise to re
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
@@ -691,6 +726,8 @@ Obtains the number of system accounts created. This API uses an asynchronous cal
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
@@ -733,6 +770,8 @@ Obtains the number of system accounts created. This API uses a promise to return
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
@@ -769,6 +808,8 @@ Obtains the ID of the system account to which the current process belongs. This 
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the system account ID obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message            |
 | -------- | ------------------- |
@@ -809,6 +850,8 @@ Obtains the ID of the system account to which the current process belongs. This 
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md).
+
 | ID| Error Message            |
 | -------- | ------------------- |
 | 12300001 | The system service works abnormally. |
@@ -845,6 +888,8 @@ Obtains the system account ID based on the process UID. This API uses an asynchr
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the system account ID obtained. Otherwise, **data** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message        |
 | -------- | --------------- |
@@ -892,6 +937,8 @@ Obtains the system account ID based on the process UID. This API uses a promise 
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message      |
 | -------- | ------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -937,6 +984,8 @@ Obtains the system account ID based on the process UID. The API returns the resu
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message      |
 | -------- | ------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -973,6 +1022,8 @@ Obtains the system account ID based on the domain account information. This API 
 | callback   | AsyncCallback&lt;number&gt;             | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the ID of the system account associated with the domain account. Otherwise, **err** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message      |
 | -------- | ------------- |
@@ -1024,6 +1075,8 @@ Obtains the system account ID based on the domain account information. This API 
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message      |
 | -------- | ------------- |
 | 201 | Permission denied.|
@@ -1070,6 +1123,8 @@ Obtains all constraints enabled for a system account. This API uses an asynchron
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is all [constraints](#constraints) obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message            |
 | -------- | ------------------- |
@@ -1126,6 +1181,8 @@ Obtains all constraints enabled for a system account. This API uses a promise to
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
@@ -1166,6 +1223,8 @@ Obtains information about all activated system accounts. This API uses an asynch
 | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of activated system accounts. Otherwise, **data** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message      |
 | -------- | ------------- |
@@ -1209,6 +1268,8 @@ Obtains information about all activated system accounts. This API uses a promise
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md).
+
 | ID| Error Message      |
 | -------- | ------------- |
 | 12300001 | The system service works abnormally. |
@@ -1251,9 +1312,11 @@ Obtains information about the system account to which the current process belong
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message            |
 | -------- | ------------------- |
-| 201 | Permission denied.|
+| 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
 
@@ -1297,9 +1360,11 @@ Obtains information about the system account to which the current process belong
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message            |
 | -------- | ------------------- |
-| 201 | Permission denied.|
+| 201 | Permission denied. |
 | 12300001 | The system service works abnormally. |
 
 **Example**
@@ -1333,6 +1398,8 @@ Obtains the type of the account to which the current process belongs. This API u
 | callback | AsyncCallback&lt;[OsAccountType](#osaccounttype)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the system account type obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message            |
 | -------- | ------------------- |
@@ -1373,6 +1440,8 @@ Obtains the type of the account to which the current process belongs. This API u
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md).
+
 | ID| Error Message            |
 | -------- | ------------------- |
 | 12300001 | The system service works abnormally. |
@@ -1397,7 +1466,7 @@ Obtains the type of the account to which the current process belongs. This API u
 
 queryDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
-Queries the ID of the distributed virtual device. This API uses an asynchronous callback to return the result.
+Queries the ID of a distributed virtual device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS (available only for system applications) or ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1410,6 +1479,8 @@ Queries the ID of the distributed virtual device. This API uses an asynchronous 
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the distributed virtual device ID obtained. Otherwise, **data** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message            |
 | -------- | ------------------- |
@@ -1439,7 +1510,7 @@ Queries the ID of the distributed virtual device. This API uses an asynchronous 
 
 queryDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
-Queries the ID of the distributed virtual device. This API uses a promise to return the result.
+Queries the ID of this distributed virtual device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS (available only for system applications) or ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1452,6 +1523,8 @@ Queries the ID of the distributed virtual device. This API uses a promise to ret
 | Promise&lt;string&gt; | Promise used to return the distributed virtual device ID obtained.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message            |
 | -------- | ------------------- |
@@ -1491,12 +1564,14 @@ Obtains the system account ID based on the SN. This API uses an asynchronous cal
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message              |
 | -------- | ------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid serialNumber. |
-| 12300003 | The account indicated by serialNumber dose not exist. |
+| 12300003 | The account indicated by serialNumber does not exist. |
 
 **Example**: Obtain the ID of the system account whose SN is 12345.
 
@@ -1507,13 +1582,14 @@ Obtains the system account ID based on the SN. This API uses an asynchronous cal
   try {
     accountManager.getOsAccountLocalIdForSerialNumber(serialNumber, (err: BusinessError, localId: number)=>{
       if (err) {
-        console.error('ger localId err:' + JSON.stringify(err));
+        console.error(`get localId code is ${err.code}, message is ${err.message}`);
       } else {
         console.log('get localId:' + localId + ' by serialNumber: ' + serialNumber);
       }
     });
   } catch (e) {
-    console.error('ger localId exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`get localId exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1539,12 +1615,14 @@ Obtains the system account ID based on the SN. This API uses a promise to return
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message              |
 | -------- | ------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid serialNumber. |
-| 12300003 | The account indicated by serialNumber dose not exist. |
+| 12300003 | The account indicated by serialNumber does not exist. |
 
 **Example**: Obtain the ID of the system account whose SN is 12345.
 
@@ -1580,6 +1658,8 @@ Obtains the SN of a system account based on the account ID. This API uses an asy
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message            |
 | -------- | ------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1596,13 +1676,14 @@ Obtains the SN of a system account based on the account ID. This API uses an asy
   try {
     accountManager.getSerialNumberForOsAccountLocalId(localId, (err: BusinessError, serialNumber: number)=>{
       if (err) {
-        console.error('ger serialNumber err:' + JSON.stringify(err));
+        console.error(`get serialNumber code is ${err.code}, message is ${err.message}`);
       } else {
         console.log('get serialNumber:' + serialNumber + ' by localId: ' + localId);
       }
     });
   } catch (e) {
-    console.error('ger serialNumber exception: ' + JSON.stringify(e));
+    const err = e as BusinessError;
+    console.error(`get serialNumber exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1627,6 +1708,8 @@ Obtains the SN of a system account based on the account ID. This API uses a prom
 | Promise&lt;number&gt; | Promise used to return the SN obtained.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message            |
 | -------- | ------------------- |
@@ -1934,7 +2017,7 @@ Checks whether this system account is a test account. This API uses a promise to
 
 isOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether this system account has been verified. This API uses an asynchronous callback to return the result.
+Checks whether a system account has been verified. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2018,7 +2101,7 @@ Checks whether a system account has been verified. This API uses a promise to re
 
 | Name | Type  | Mandatory| Description                                                             |
 | ------- | ------ | ---- | ---------------------------------------------------------------- |
-| localId | number | No  | ID of the target system account. If this parameter is not specified, this API checks whether the current system account has been verified.|
+| localId | number | No  | ID of the target system account. If this parameter is not specified, this API checks whether the current system account has been verified. The default value is **-1**.|
 
 **Return value**
 
@@ -2584,7 +2667,7 @@ Obtains the type of the account to which the current process belongs. This API u
 
 getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the ID of this distributed virtual device. This API uses an asynchronous callback to return the result.
+Obtains the ID of a distributed virtual device. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2673,7 +2756,7 @@ Obtains the system account ID based on the SN. This API uses an asynchronous cal
   let serialNumber: number = 12345;
   accountManager.getOsAccountLocalIdBySerialNumber(serialNumber, (err: BusinessError, localId: number)=>{
     if (err) {
-      console.error('ger localId err:' + JSON.stringify(err));
+      console.error(`get localId code is ${err.code}, message is ${err.message}`);
     } else {
       console.log('get localId:' + localId + ' by serialNumber: ' + serialNumber);
     }
@@ -2744,7 +2827,7 @@ Obtains the SN of a system account based on the account ID. This API uses an asy
   let localId: number = 100;
   accountManager.getSerialNumberByOsAccountLocalId(localId, (err: BusinessError, serialNumber: number)=>{
     if (err) {
-      console.error('ger serialNumber err:' + JSON.stringify(err));
+      console.error(`get serialNumber code is ${err.code}, message is ${err.message}`);
     } else {
       console.log('get serialNumber:' + serialNumber + ' by localId: ' + localId);
     }
@@ -2804,6 +2887,8 @@ Obtains the name of the system account of the caller. This API uses a promise to
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md).
+
 | ID| Error Message                    |
 | -------- | --------------------------- |
 | 12300001 | The system service works abnormally. |
@@ -2838,6 +2923,8 @@ Obtains the ID of the foreground system account.
 | Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md).
 
 | ID| Error Message      |
 | -------- | ------------- |
@@ -2882,6 +2969,8 @@ Obtains the domain account information associated with a specified system accoun
 | Promise&lt;[DomainAccountInfo](#domainaccountinfo8)&gt; | Promise used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message      |
 | -------- | ------------- |
@@ -2937,6 +3026,8 @@ Updates information of a domain account. This API uses a promise to return the r
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
@@ -2976,15 +3067,15 @@ Represents information about a system account.
 | localName                      | string                                                       | Yes  | Name of the system account.                   |
 | type                           | [OsAccountType](#osaccounttype)                              | Yes  | Type of the system account.                     |
 | constraints                    | Array&lt;string&gt;                                          | Yes  | [Constraints](#constraints) of the system account. By default, no value is passed in.|
-| isVerified<sup>(deprecated)</sup> | boolean                                                   | Yes  | Whether the account has been verified. The value **true** means the specified account has been verified; the value **false** means the opposite.<br>**NOTE**<br/>This parameter is supported since API version 7 and deprecated since API version 11.          |
+| isVerified<sup>(deprecated)</sup> | boolean                                                   | Yes  | Whether the account has been verified. The value **true** means the specified account has been verified; the value **false** means the opposite.<br>**Note**: This parameter is supported since API version 7 and deprecated since API version 11. You are advised to use **isUnlocked** instead.          |
 | isUnlocked<sup>11+</sup>      | boolean                                                       | Yes  | Whether the account is unlocked (whether the **el2/** directory is decrypted). The value **true** means the specified account is unlocked; the value **false** means the opposite.                     |
 | photo<sup>8+</sup>             | string                                                       | Yes  | Avatar of the system account. By default, no value is passed in.                     |
 | createTime<sup>8+</sup>        | number                                                       | Yes  | Time when the system account was created.                 |
 | lastLoginTime<sup>8+</sup>     | number                                                       | Yes  | Last login time of the system account. By default, no value is passed in.         |
 | serialNumber<sup>8+</sup>      | number                                                       | Yes  | SN of the system account.                     |
-| isActived<sup>(deprecated)</sup>         | boolean                                            | Yes  | Whether the system account is activated. The value **true** means that the specified account is activated; the value **false** means the opposite.<br>**NOTE**<br/>This parameter is supported since API version 7 and deprecated since API version 11.                 |
-| isActivated<sup>11+</sup>         | boolean                                                   | Yes  | Whether the system account is activated. The value **true** indicates that the specified account is activated; the value **false** means the opposite.                 |
-| isCreateCompleted<sup>8+</sup> | boolean                                                      | Yes  | Whether the system account information is complete. The value **true** means that the specified account is complete; the value **false** indicates the opposite.             |
+| isActived<sup>(deprecated)</sup>         | boolean                                            | Yes  | Whether the system account is activated. The value **true** means the specified account is activated; the value **false** means the opposite.<br>**Note**: This parameter is supported since API version 7 and deprecated since API version 11. You are advised to use **isActivated** instead.                 |
+| isActivated<sup>11+</sup>         | boolean                                                   | Yes  | Whether the system account is activated. The value **true** means the specified account is activated; the value **false** means the opposite.                 |
+| isCreateCompleted<sup>8+</sup> | boolean                                                      | Yes  | Whether the system account information is complete. The value **true** means the specified account is complete; the value **false** means the opposite.             |
 | distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md#distributedinfo) | Yes  | Distributed account information. By default, no value is passed in.                   |
 | domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | Yes  | Domain account information. By default, no value is passed in.                       |
 
@@ -2998,7 +3089,7 @@ Represents the domain account information.
 | ----------- | ------ | ---- | ---------- |
 | domain      | string | Yes  | Domain name.    |
 | accountName | string | Yes  | Domain account name.|
-| serverConfigId<sup>18+</sup> | string | No  | Domain account configuration ID.|
+| serverConfigId<sup>18+</sup> | string | No  | Domain account configuration ID, which is an empty string by default.|
 
 ## DomainServerConfig<sup>18+</sup>
 
@@ -3039,6 +3130,8 @@ Adds domain server configuration. This API uses a promise to return the result.
 | Promise&lt;[DomainServerConfig](#domainserverconfig18)&gt; | Promise used to return the configuration of the newly added domain server.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                    |
 | -------- | --------------------------- |
@@ -3089,6 +3182,8 @@ Removes domain server configuration. This API uses a promise to return the resul
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
@@ -3138,6 +3233,8 @@ Updates the domain server configuration. This API uses a promise to return the r
 | Promise&lt;[DomainServerConfig](#domainserverconfig18)&gt; | Promise used to return the updated domain server configuration.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                    |
 | -------- | --------------------------- |
@@ -3194,6 +3291,8 @@ Obtains the domain server configuration. This API uses a promise to return the r
 
 **Error codes**
 
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
@@ -3238,6 +3337,8 @@ Obtains the configurations of all domain servers. This API uses a promise to ret
 | Promise&lt;Array&lt;[DomainServerConfig](#domainserverconfig18)&gt;&gt; | Promise used to return the domain server configuration obtained.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                    |
 | -------- | --------------------------- |
@@ -3288,6 +3389,8 @@ Obtains the server configuration of a domain account. This API uses a promise to
 | Promise&lt;[DomainServerConfig](#domainserverconfig18)&gt; | Promise used to return the domain server configuration of the account.|
 
 **Error codes**
+
+For details about the error codes, see [Account Management Error Codes](errorcode-account.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                    |
 | -------- | --------------------------- |

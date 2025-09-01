@@ -33,10 +33,10 @@ loadModelFromFile(model: string, callback: Callback&lt;Model&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明                     |
-| -------- | ------------------------- | ---- | ------------------------ |
-| model    | string                    | 是   | 模型的完整输入路径。     |
-| callback | Callback<[Model](#model)> | 是   | 回调函数。返回模型对象。 |
+| 参数名   | 类型                      | 必填 | 说明                                             |
+| -------- | ------------------------- | ---- | ------------------------------------------------ |
+| model    | string                    | 是   | 模型的完整输入路径。字符串长度限制跟随文件系统。 |
+| callback | Callback<[Model](#model)> | 是   | 回调函数。返回模型对象。                         |
 
 **示例：** 
 
@@ -63,7 +63,7 @@ loadModelFromFile(model: string, context: Context, callback: Callback&lt;Model&g
 
 | 参数名   | 类型                                | 必填 | 说明                   |
 | -------- | ----------------------------------- | ---- | ---------------------- |
-| model    | string                              | 是   | 模型的完整输入路径。   |
+| model    | string                              | 是   | 模型的完整输入路径。字符串长度限制跟随文件系统。 |
 | context | [Context](#context) | 是 | 运行环境的配置信息。 |
 | callback | Callback<[Model](#model)> | 是   | 回调函数。返回模型对象。 |
 
@@ -92,10 +92,10 @@ loadModelFromFile(model: string, context?: Context): Promise&lt;Model&gt;
 
 **参数：**
 
-| 参数名  | 类型                | 必填 | 说明                                          |
-| ------- | ------------------- | ---- | --------------------------------------------- |
-| model   | string              | 是   | 模型的完整输入路径。                          |
-| context | [Context](#context) | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。 |
+| 参数名  | 类型                | 必填 | 说明                                             |
+| ------- | ------------------- | ---- | ------------------------------------------------ |
+| model   | string              | 是   | 模型的完整输入路径。字符串长度限制跟随文件系统。 |
+| context | [Context](#context) | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。    |
 
 **返回值：**
 
@@ -239,7 +239,7 @@ loadModelFromFd(model: number, callback: Callback&lt;Model&gt;): void
 
 | 参数名   | 类型                                | 必填 | 说明                   |
 | -------- | ----------------------------------- | ---- | ---------------------- |
-| model    | number                         | 是   | 模型的文件描述符。 |
+| model    | number                         | 是   | 模型的文件描述符。跟随文件系统返回fd值传入。 |
 | callback | Callback<[Model](#model)> | 是   | 回调函数。返回模型对象。 |
 
 **示例：** 
@@ -269,7 +269,7 @@ loadModelFromFd(model: number, context: Context, callback: Callback&lt;Model&gt;
 
 | 参数名   | 类型                                | 必填 | 说明                   |
 | -------- | ----------------------------------- | ---- | ---------------------- |
-| model    | number                   | 是   | 模型的文件描述符。 |
+| model    | number                   | 是   | 模型的文件描述符。跟随文件系统返回fd值传入。 |
 | context | [Context](#context) | 是  | 运行环境的配置信息。 |
 | callback | Callback<[Model](#model)> | 是   | 回调函数。返回模型对象。 |
 
@@ -302,7 +302,7 @@ loadModelFromFd(model: number, context?: Context): Promise&lt;Model&gt;
 
 | 参数名  | 类型                | 必填 | 说明                                          |
 | ------- | ------------------- | ---- | --------------------------------------------- |
-| model   | number              | 是   | 模型的文件描述符。                            |
+| model   | number              | 是   | 模型的文件描述符。跟随文件系统返回fd值传入。  |
 | context | [Context](#context) | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。 |
 
 **返回值：**
@@ -337,11 +337,11 @@ loadTrainModelFromFile(model: string, trainCfg?: TrainCfg, context?: Context): P
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                                           |
-| -------- | ----------------------- | ---- | ---------------------------------------------- |
-| model    | string                  | 是   | 模型的完整输入路径。                           |
-| trainCfg | [TrainCfg](#traincfg12) | 否   | 模型训练配置。默认值为TrainCfg各属性默认值。   |
-| context  | [Context](#context)     | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。 |
+| 参数名   | 类型                    | 必填 | 说明                                             |
+| -------- | ----------------------- | ---- | ------------------------------------------------ |
+| model    | string                  | 是   | 模型的完整输入路径。字符串长度限制跟随文件系统。 |
+| trainCfg | [TrainCfg](#traincfg12) | 否   | 模型训练配置。默认值为TrainCfg各属性默认值。     |
+| context  | [Context](#context)     | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。    |
 
 **返回值：**
 
@@ -414,11 +414,11 @@ loadTrainModelFromFd(model: number, trainCfg?: TrainCfg, context?: Context): Pro
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                                          |
-| -------- | ----------------------- | ---- | --------------------------------------------- |
-| model    | number                  | 是   | 训练模型的文件描述符。                        |
-| trainCfg | [TrainCfg](#traincfg12) | 否   | 模型训练配置。默认值为TrainCfg各属性默认值。  |
-| context  | [Context](#context)     | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。 |
+| 参数名   | 类型                    | 必填 | 说明                                             |
+| -------- | ----------------------- | ---- | ------------------------------------------------ |
+| model    | number                  | 是   | 训练模型的文件描述符。跟随文件系统返回fd值传入。 |
+| trainCfg | [TrainCfg](#traincfg12) | 否   | 模型训练配置。默认值为TrainCfg各属性默认值。     |
+| context  | [Context](#context)     | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。    |
 
 **返回值：**
 
@@ -1069,7 +1069,7 @@ exportModel(modelFile: string, quantizationType?: QuantizationType, exportInfere
 
 | 参数名              | 类型                                    | 必填 | 说明                                                         |
 | ------------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| modelFile           | string                                  | 是   | 导出模型的文件路径。                                         |
+| modelFile           | string                                  | 是   | 导出模型的文件路径。字符串长度限制跟随文件系统。             |
 | quantizationType    | [QuantizationType](#quantizationtype12) | 否   | 量化类型，默认为NO_QUANT。                                   |
 | exportInferenceOnly | boolean                                 | 否   | 是否只导出推理模型。true表示只导出推理模型，false表示导出训练和推理两个模型。默认为true。 |
 | outputTensorName    | string[]                                | 否   | 设置导出模型的输出张量的名称。默认为空字符串数组，表示全量导出。 |
@@ -1109,7 +1109,7 @@ exportWeightsCollaborateWithMicro(weightFile: string, isInference?: boolean, ena
 
 | 参数名                | 类型     | 必填 | 说明                                                         |
 | --------------------- | -------- | ---- | ------------------------------------------------------------ |
-| weightFile            | string   | 是   | 权重文件路径。                                               |
+| weightFile            | string   | 是   | 权重文件路径。字符串长度限制跟随文件系统。                   |
 | isInference           | boolean  | 否   | 是否从推理模型中导出权重。true表示从推理模型中导出权重，目前只支持true，默认为true。 |
 | enableFp16            | boolean  | 否   | 浮点权重是否以float16格式保存。true表示以float16格式保存，false表示不以float16格式保存。默认为false。 |
 | changeableWeightsName | string[] | 否   | 设置可变权重的名称。默认为空字符串数组。                     |

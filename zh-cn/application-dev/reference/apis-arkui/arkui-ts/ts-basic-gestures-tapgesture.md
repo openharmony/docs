@@ -19,7 +19,7 @@
 
 TapGesture(value?: TapGestureParameters)
 
-继承自[GestureInterface\<T>](ts-gesture-settings.md#gestureinterfacet11)，设置点击手势的相关参数。
+创建点击手势对象。继承自[GestureInterface\<T>](ts-gesture-settings.md#gestureinterfacet11)。
 
 触发点击手势事件的设备类型为键盘或手柄时，事件的[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)值为Unknown。
 
@@ -53,7 +53,7 @@ TapGesture(value?: TapGestureParameters)
 
 >  **说明：**
 >
->  在[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)的fingerList元素中，手指索引编号与位置相对应，即fingerList[index]的id为index。对于先按下但未参与当前手势触发的手指，fingerList中对应的位置为空。建议优先使用fingerInfos。
+>  在[GestureEvent](ts-gesture-common.md#gestureevent对象说明)的fingerList元素中，手指索引编号与位置相对应，即fingerList[index]的id为index。对于先按下但未参与当前手势触发的手指，fingerList中对应的位置为空。建议优先使用fingerInfos。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -63,7 +63,7 @@ TapGesture(value?: TapGestureParameters)
 
 onAction(event: (event: GestureEvent) => void)
 
-Tap手势识别成功回调。
+点击手势识别成功回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -73,24 +73,24 @@ Tap手势识别成功回调。
 
 | 参数名 | 类型                                       | 必填 | 说明                         |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
-| event  |  (event: [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)) => void | 是   | 手势事件回调函数。 |
+| event  |  (event: [GestureEvent](ts-gesture-common.md#gestureevent对象说明)) => void | 是   | 手势事件回调函数。 |
 
 ## EventLocationInfo<sup>20+</sup>对象说明
 
-用于点击手势获取坐标。
+用于点击手势获取点击位置坐标。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- |
-| x | number | 是 | 相对于组件左上角的x坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
-| y | number | 是 | 相对于组件左上角的y坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
-| windowX | number | 是 | 相对于窗口的左上角x坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
-| windowY | number | 是 | 相对于窗口的左上角y坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
-| displayX | number | 是 | 相对于屏幕的左上角x坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
-| displayY | number | 是 | 相对于屏幕的左上角y坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
+| x | number | 否 | 否 | 相对于组件左上角的x坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
+| y | number | 否 | 否 | 相对于组件左上角的y坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
+| windowX | number | 否 | 否 | 相对于窗口的左上角x坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
+| windowY | number | 否 | 否 | 相对于窗口的左上角y坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
+| displayX | number | 否 | 否 | 相对于屏幕的左上角x坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
+| displayY | number | 否 | 否 | 相对于屏幕的左上角y坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
 
 ## 示例
 
@@ -132,7 +132,7 @@ struct TapGestureExample {
 
 ### 示例2（获取单击手势坐标）
 
-该示例通过TapGesture获取单击手势相关的坐标。
+该示例通过TapGesture获取单击手势点击位置的坐标。
 
 ```ts
 // xxx.ets

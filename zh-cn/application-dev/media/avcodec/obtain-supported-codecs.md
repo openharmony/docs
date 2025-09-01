@@ -53,7 +53,7 @@
    ```
    若获取能力实例成功，继续向下执行。实例无显性释放接口，使用完毕后系统会自动回收。
    
-4. 按需调用相应的查询接口。详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/_a_v_capability.md)。
+4. 按需调用相应的查询接口。详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/capi-native-avcapability-h.md)。
 
 ## 场景化开发
 基于开发过程中可能遇到的具体场景，此处将举例说明能力查询接口的使用方法。
@@ -737,7 +737,7 @@ if (!isMatched) {
 
 ### 查询编解码特性支持情况并获取特性属性信息
 
-编解码特性是指在特定编解码场景中使用的可选特性，例如视频编码场景的时域可分级编码、 低时延编解码等。具体请参考[OH_AVCapabilityFeature](../../reference/apis-avcodec-kit/_a_v_capability.md#oh_avcapabilityfeature-1)。
+编解码特性是指在特定编解码场景中使用的可选特性，例如视频编码场景的时域可分级编码、 低时延编解码等。具体请参考[OH_AVCapabilityFeature](../../reference/apis-avcodec-kit/capi-native-avcapability-h.md#oh_avcapabilityfeature-1)。
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
 | OH_AVCapability_IsFeatureSupported              | 确认当前编解码器是否支持给定的特性。 |

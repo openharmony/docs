@@ -14,7 +14,6 @@
 >
 > 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 该组件不支持在Wearable设备上使用。
 
 
 ## 导入模块
@@ -47,6 +46,8 @@ TextModifier, titleBuilder?: () => void, contentMargin?: LocalizedMargin, conten
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称 | 类型 | 必填 | 装饰器类型         | 说明 |
 | -------- | -------- | -------- |---------------| -------- |
 | icon | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop        | 图标设置项。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -70,6 +71,8 @@ TextModifier, titleBuilder?: () => void, contentMargin?: LocalizedMargin, conten
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | TEXT_ARROW |  0  | 文本按钮（带右箭头）。 |
@@ -80,6 +83,8 @@ TextModifier, titleBuilder?: () => void, contentMargin?: LocalizedMargin, conten
 ## SelectOptions
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称 | 类型 | 必填 | 说明                                                                                                                                                           |
 | -------- | -------- | -------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -93,11 +98,13 @@ TextModifier, titleBuilder?: () => void, contentMargin?: LocalizedMargin, conten
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称 | 类型 | 必填 | 说明                                                                                                                                                                                                                                                       |
 | -------- | -------- | -------- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 文本内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                  |
 | action | ()=&gt;void | 否 | 事件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                    |
-| accessibilityLevel<sup>18+<sup>       | string  | 否 | 子标题右侧按钮无障碍重要性。用于控制当前项是否可被无障碍辅助服务所识别。<br/>支持的值为：<br/>"auto"：当前组件会转换'yes'。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| accessibilityLevel<sup>18+<sup>       | string  | 否 | 子标题右侧按钮无障碍重要性。用于控制当前项是否可被无障碍辅助服务所识别。<br/>支持的值为：<br/>"auto"：当前组件会转换"yes"。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | accessibilityText<sup>18+<sup>        | [ResourceStr](ts-types.md#resourcestr) | 否 | 子标题右侧按钮的无障碍文本属性。当组件不包含文本属性时，屏幕朗读选中此组件时不播报，使用者无法清楚地知道当前选中了什么组件。为了解决此场景，开发人员可为不包含文字信息的组件设置无障碍文本，当屏幕朗读选中此组件时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己选中了什么组件。<br/>默认值：类型为TEXT_ARROW和BUTTON时默认值为当前项value属性内容，其他类型默认值为“ ”。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | accessibilityDescription<sup>18+<sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 子标题右侧按钮的无障碍描述。此描述用于向用户详细解释当前组件，开发人员应为组件的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从组件的属性和无障碍文本中直接获知时。如果组件同时具备文本属性和无障碍说明属性，当组件被选中时，系统将首先播报组件的文本属性，随后播报无障碍说明属性的内容。<br/>默认值：类型为LOADING时，默认值为“正在加载”，其他类型默认值为“单指双击即可执行”。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
 | defaultFocus<sup>18+</sup> | boolean | 否 | 子标题右侧按钮是否为默认焦点。<br/>true：子标题右侧按钮是默认焦点。<br/>false：子标题右侧按钮不是默认焦点。<br />默认值：false <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                            |
@@ -107,13 +114,15 @@ TextModifier, titleBuilder?: () => void, contentMargin?: LocalizedMargin, conten
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称 | 类型 | 必填 | 说明                                                                                                                                                                                                                                              |
 | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | fontColor | Array&lt;[ResourceColor](ts-types.md#resourcecolor)&gt; | 否 | 设置[SymbolGlyph](ts-basic-components-symbolGlyph.md)颜色。<br/>默认值：不同渲染策略下默认值不同。                                                                                                                                                                       |
-| fontSize | number \|string \|[Resource](ts-types.md#resource) | 否 | 设置[SymbolGlyph](ts-basic-components-symbolGlyph.md)大小。<br/>number类型取值范围：大于等于0。<br/>设置string类型时，支持number类型取值的字符串形式，可以附带单位，例如："10"，"10fp"。<br/>默认值：系统默认值。                                                                                                 |
-| fontWeight | number \|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 否 | 设置[SymbolGlyph](ts-basic-components-symbolGlyph.md)粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
-| renderingStrategy | [SymbolRenderingStrategy](ts-basic-components-symbolGlyph.md#symbolrenderingstrategy11枚举说明) | 否 | 设置[SymbolGlyph](ts-basic-components-symbolGlyph.md)渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_trash_circle、ohos_folder_badge_plus、ohos_lungs支持分层与多色模式。                                       |
-| effectStrategy | [SymbolEffectStrategy](ts-basic-components-symbolGlyph.md#symboleffectstrategy11枚举说明) | 否 | 设置[SymbolGlyph](ts-basic-components-symbolGlyph.md)动效策略。<br/>默认值：SymbolEffectStrategy.NONE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_wifi支持层级动效模式。                                                                                       |
+| fontSize | number \|&nbsp;string \|&nbsp;[Resource](ts-types.md#resource) | 否 | 设置[SymbolGlyph](ts-basic-components-symbolGlyph.md)大小。<br/>number类型取值范围：大于等于0。<br/>设置string类型时，支持number类型取值的字符串形式，可以附带单位，例如："10"，"10fp"。<br/>默认值：系统默认值。                                                                                                 |
+| fontWeight | number \|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 否 | 设置[SymbolGlyph](ts-basic-components-symbolGlyph.md)粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal |
+| renderingStrategy | [SymbolRenderingStrategy](ts-basic-components-symbolGlyph.md#symbolrenderingstrategy11枚举说明) | 否 | 设置[SymbolGlyph](ts-basic-components-symbolGlyph.md)渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_trash_circle、ohos_folder_badge_plus、ohos_lungs支持分层与多色模式。                                       |
+| effectStrategy | [SymbolEffectStrategy](ts-basic-components-symbolGlyph.md#symboleffectstrategy11枚举说明) | 否 | 设置[SymbolGlyph](ts-basic-components-symbolGlyph.md)动效策略。<br/>默认值：SymbolEffectStrategy.NONE<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_wifi支持层级动效模式。                                                                                       |
 
 ## 事件
 不支持[通用事件](ts-component-general-events.md)。

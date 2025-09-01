@@ -1,5 +1,12 @@
 # Managing System Account Credentials (for System Application Only)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
+
 Credentials can be used to authenticate users. This topic walks you through on how to add, update, obtain, and delete credentials for a system account and authenticate the system account using the enrolled credentials.
 
 ## Credential Type
@@ -271,7 +278,7 @@ For example, delete a fingerprint, do as follows:
 
    ```ts
    let credentialId: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
-   let token: Uint8Array = new Uint8Array([1, 2, 3, 4, 5])
+   let token: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
    let credInfoList: osAccount.EnrolledCredInfo[] = await userIDM.getAuthInfo(osAccount.AuthType.FINGERPRINT);
    if (credInfoList.length != 0) {
      credentialId = credInfoList[0].credentialId;
@@ -310,4 +317,3 @@ Use [closeSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys
 ```ts
 userIDM.closeSession();
 ```
-

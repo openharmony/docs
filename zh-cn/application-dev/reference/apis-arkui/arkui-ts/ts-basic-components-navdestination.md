@@ -921,6 +921,7 @@ struct MyPageOne {
     .title('PageOne', { backgroundColor: Color.Yellow, barStyle: BarStyle.STACK })
     .toolbarConfiguration([
       {
+        // $r('sys.symbol.phone_badge_star')需要替换为开发者所需的资源文件
         value: 'item1',
         symbolIcon: new SymbolGlyphModifier($r('sys.symbol.phone_badge_star'))
       }
@@ -961,6 +962,7 @@ struct MyPageTwo {
     .title('PageTwo', { backgroundColor: Color.Yellow, barStyle: BarStyle.STACK })
     .toolbarConfiguration([
       {
+        // $r('sys.symbol.phone_badge_star')需要替换为开发者所需的资源文件
         value: 'item1',
         symbolIcon: new SymbolGlyphModifier($r('sys.symbol.phone_badge_star'))
       }

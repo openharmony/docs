@@ -27,7 +27,7 @@
 - 被\@Param装饰的变量能够在初始化自定义组件时从外部传入，当数据源也是状态变量时，数据源的修改会同步给\@Param。
 - \@Param可以接受任意类型的数据源，包括普通变量、状态变量、常量、函数返回值等。
 - \@Param装饰的变量变化时，会刷新该变量关联的组件。
-- \@Param支持对基本类型（如number、boolean、string、object、class）、内嵌类型（如[Array](#装饰array类型变量)、[Set](#装饰set类型变量)、[Map](#装饰map类型变量)、[Date](#装饰date类型变量)），以及null、undefined和[联合类型](#联合类型)进行观测。
+- \@Param支持对基本类型（如number、boolean、string、Object、class）、内嵌类型（如[Array](#装饰array类型变量)、[Set](#装饰set类型变量)、[Map](#装饰map类型变量)、[Date](#装饰date类型变量)），以及null、undefined和[联合类型](#联合类型)进行观测。
 - 对于复杂类型如类对象，\@Param会接受数据源的引用。在组件内可以修改类对象中的属性，该修改会同步到数据源。
 - \@Param的观测能力仅限于被装饰的变量本身。详见[观察变化](#观察变化)。
 

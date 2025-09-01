@@ -305,7 +305,7 @@ import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-create(context: Context) {
+function create(context: Context) {
   // 创建soundPool实例。
   let soundPool: media.SoundPool;
   let audioRendererInfo: audio.AudioRendererInfo = {
@@ -422,7 +422,7 @@ import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-create(context: Context) {
+function create(context: Context) {
   // 创建soundPool实例。
   let soundPool: media.SoundPool;
   let audioRendererInfo: audio.AudioRendererInfo = {

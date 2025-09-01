@@ -1,5 +1,12 @@
 # Managing Domain Account Plugins (for System Applications Only)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
+
 The system provides APIs for registering and unregistering a domain account plugin, which is used to customize domain account management.
 
 ## Before You Start

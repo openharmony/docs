@@ -461,7 +461,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText, o
 
 ## FontSettingOptions<sup>12+</sup>对象说明
 
-字体配置项，比如通过设置应用内组件的字体粗细，进行字体粗细的无极调节（指在一定范围内无限制的调节的状态）。
+字体配置项，比如通过设置应用内组件的字体粗细，进行可变字重调节。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -471,7 +471,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText, o
 
 | 名称     | 类型                                             | 只读 | 可选 | 说明                                                     |
 | -------- | ------------------------------------------------ | ---- | ---- | -------------------------------------------------------- |
-| enableVariableFontWeight | boolean | 否 | 是  | 是否支持字重无极调节。<br/>默认值：false<br/>值为true，表示支持字重调节，值为false，表示不支持字重调节。 |
+| enableVariableFontWeight | boolean | 否 | 是  | 是否支持可变字重调节。<br/>默认值：false<br/>值为true，表示支持字重调节，值为false，表示不支持字重调节。 |
 
 ## OnDidChangeCallback<sup>12+</sup>
 
