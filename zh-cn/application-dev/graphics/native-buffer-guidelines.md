@@ -1,5 +1,10 @@
 # NativeBuffer开发指导 (C/C++)
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @BruceXu; @li_hui180; @ding-panyun-->
+<!--Designer: @conan13234-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
 ## 场景介绍
 
 NativeBuffer是提供**共享内存**的模块。开发者可以通过`NativeBuffer`接口实现共享内存的申请、使用、属性查询、释放等操作。

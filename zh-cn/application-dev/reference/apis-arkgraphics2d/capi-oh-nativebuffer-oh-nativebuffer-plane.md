@@ -1,5 +1,10 @@
 # OH_NativeBuffer_Plane
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @BruceXu; @li_hui180; @ding-panyun-->
+<!--Designer: @conan13234-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
 ## 概述
 
 单个图像平面格式信息。
