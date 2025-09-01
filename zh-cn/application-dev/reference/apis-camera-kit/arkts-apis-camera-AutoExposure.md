@@ -29,7 +29,7 @@ getExposureMode(): ExposureMode
 
 > **说明：**
 >
-> 若未通过[setExposureMode](arkts-apis-camera-AutoExposure.md#setExposureMode11)接口进行设置，直接调用该接口查询当前曝光模式，会返回无效值。
+> 若未通过[setExposureMode](arkts-apis-camera-AutoExposure.md#setexposuremode11)接口进行设置，直接调用该接口查询当前曝光模式，会返回无效值。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
