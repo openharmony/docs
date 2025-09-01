@@ -792,6 +792,69 @@ try {
 }
 ```
 
+## window.setWatermarkImageForAppWindows<sup>21+</sup>
+
+setWatermarkImageForAppWindows(pixelMap: image.PixelMap | undefined): Promise&lt;void&gt;
+
+设置或取消本应用进程下窗口的水印图片，使用 Promise 异步回调。
+
+Stage模型下，该接口需要在[loadContent()](arkts-apis-window-Window.md#loadcontent9)或[setUIContent()](arkts-apis-window-Window.md#setuicontent9)调用生效后使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                                                          | 必填 | 说明                                                                                                           |
+| -------- | ----------------------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------------------------------- |
+| pixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) \| undefined | 是   | 传入 image.PixelMap 表示设置水印图片，传入 undefined 表示取消水印图片。<br/>图片尺寸如果超过屏幕尺寸，返回1300016错误码。<br/>图片尺寸如果超过窗口尺寸，但未超过屏幕尺寸，超出部分会被裁剪。<br/>图片尺寸如果小于窗口尺寸，会自动重复补充。|
+
+**返回值：**
+
+| 类型                | 说明                        |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | 无返回结果的 Promise 对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码 ID | 错误信息                                                                                                                  |
+| --------- | ------------------------------------------------------------------------------------------------------------------------- |
+| 801       | Capability not supported. Function setWatermarkImageForAppWindows can not work correctly due to limited device capabilities. |
+| 1300003   | This window manager service works abnormally.                                                                             |
+| 1300016   | Parameter error. Possible cause: 1. Invalid parameter range.                                                              |
+
+**示例：**
+
+```ts
+import { image } from "@kit.ImageKit";
+import { BusinessError } from "@kit.BasicServicesKit";
+
+let color: ArrayBuffer = new ArrayBuffer(0);
+let initializationOptions: image.InitializationOptions = {
+  size: {
+    height: 100,
+    width: 100,
+  },
+};
+image.createPixelMap(color, initializationOptions)
+  .then((pixelMap: image.PixelMap) => {
+    console.info("Succeeded in creating pixelmap.");
+    try {
+      let promise = window.setWatermarkImageForAppWindows(pixelMap);
+      promise.then(() => {
+          console.info("Succeeded in setting watermark image.");
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to set watermark image. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    } catch (exception) {
+      console.error(`Failed to set watermark image. Exception code: ${exception.code}, message: ${exception.message}`);
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create PixelMap. Cause code: ${err.code}, message: ${err.message}`);
+  });
+```
+
 ## window.setStartWindowBackgroundColor<sup>20+</sup>
 
 setStartWindowBackgroundColor(moduleName: string, abilityName: string, color: ColorMetrics): Promise&lt;void&gt;
