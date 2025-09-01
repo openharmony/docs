@@ -50,8 +50,6 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 
 订阅成功后，可以获取用户年龄群组的分类结果，应用可根据此结果做相应的内容推荐。
 
-此功能如果设备不支持，将返回801错误码。
-
 **系统能力**：SystemCapability.MultimodalAwareness.UserStatus
 
 **设备行为差异**：该接口在Phone中可正常调用，在其他设备类型中返回801错误码。
