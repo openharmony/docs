@@ -119,13 +119,13 @@ UIAbility的配置清单一般的名字为module.json5。
 在使能appRecovery功能后，开发者可以在UIAbility中采用主动保存状态，主动恢复或者选择被动恢复的方式使用appRecovery功能。
 下面为示例的EntryAbility。
 
-#### 导包
+**导包**
 
 ```ts
 import { AbilityConstant, appRecovery, errorManager } from '@kit.AbilityKit';
 ```
 
-#### 主动触发保存和恢复
+**主动触发保存和恢复**
 
 - 定义和注册[ErrorObserver](../reference/apis-ability-kit/js-apis-inner-application-errorObserver.md) callback，具体可参考[errorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md)里的使用方法。
 
@@ -222,7 +222,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-#### 被动保存和恢复
+**被动保存和恢复**
 
 被动保存和恢复依赖恢复框架底层触发，无需注册监听ErrorObserver callback，只需实现UIAbility的onSaveState接口数据保存和onCreate接口数据恢复流程即可。
 
@@ -255,7 +255,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-#### 故障UIAbility的重启恢复标记
+**故障UIAbility的重启恢复标记**
 
 发生故障的UIAbility再次重新启动时，在调度onCreate生命周期里，参数want的parameters成员会有[ABILITY_RECOVERY_RESTART](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params)标记数据，并且值为true。
 
