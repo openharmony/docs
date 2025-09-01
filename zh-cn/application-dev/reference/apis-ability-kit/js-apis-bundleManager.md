@@ -1518,6 +1518,32 @@ try {
 }
 ```
 
+## bundleManager.cleanBundleCacheFilesForSelf<sup>21+</sup>
+
+cleanBundleCacheFilesForSelf(): Promise\<void>
+
+清理应用自身的缓存，使用Promise异步回调。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**返回值：**
+
+| 类型                                                         | 说明                                 |
+| ------------------------------------------------------------ | ------------------------------------ |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+
+bundleManager.cleanBundleCacheFilesForSelf().then(() => {
+    console.info('cleanBundleCacheFilesForSelf complete.');
+});
+```
+
 ## ApplicationInfo
 
 type ApplicationInfo = _ApplicationInfo
