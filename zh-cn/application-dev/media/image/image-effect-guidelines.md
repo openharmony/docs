@@ -221,7 +221,7 @@ target_link_libraries(entry PUBLIC
     // 执行生效滤镜效果。
     errorCode = OH_ImageEffect_Start(imageEffect);
     if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
-    	OH_LOG_ERROR("OH_ImageEffect_GetInputSurface fail!");
+    	OH_LOG_ERROR("OH_ImageEffect_Start fail!");
         return;
     }
     ```
