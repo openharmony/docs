@@ -4654,12 +4654,12 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>, prefetchOptions
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import webview from '@ohos.web.webview';
 import business_error from '@ohos.base';
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   build() {
     Column() {
       Button('prefetchPopularPage')
@@ -4667,8 +4667,8 @@ struct WebComponent {
           try {
             // 预加载时，需要将'https://www.example.com'替换成一个真实的网站地址。
             let options = new webview.PrefetchOptions();
-            options.ignoreCacheControlNoStore‌ = true;
-            options.minTimeBetweenPrefetchesMs‌ = 100;
+            options.ignoreCacheControlNoStore = true;
+            options.minTimeBetweenPrefetchesMs = 100;
             this.controller.prefetchPage('https://www.example.com', [{ headerKey: "headerKey", headerValue: "headerValue" }], options);
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
