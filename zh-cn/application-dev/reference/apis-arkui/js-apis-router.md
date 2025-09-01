@@ -1232,7 +1232,7 @@ getLength(): string
 
 ```ts
 let size = this.getUIContext().getRouter().getLength();
-console.log('pages stack size = ' + size);
+console.info('pages stack size = ' + size);
 ```
 
 ## router.getState<sup>(deprecated)</sup>
@@ -1261,9 +1261,9 @@ getState(): RouterState
 
 ```ts
 let page = this.getUIContext().getRouter().getState();
-console.log('current index = ' + page.index);
-console.log('current name = ' + page.name);
-console.log('current path = ' + page.path);
+console.info('current index = ' + page.index);
+console.info('current name = ' + page.name);
+console.info('current path = ' + page.path);
 ```
 
 ## router.getStateByIndex<sup>(deprecated)</sup>
@@ -1299,10 +1299,10 @@ getStateByIndex(index: number): RouterState | undefined
 ```ts
 let options: router.RouterState | undefined = router.getStateByIndex(1);
 if (options != undefined) {
-  console.log('index = ' + options.index);
-  console.log('name = ' + options.name);
-  console.log('path = ' + options.path);
-  console.log('params = ' + options.params);
+  console.info('index = ' + options.index);
+  console.info('name = ' + options.name);
+  console.info('path = ' + options.path);
+  console.info('params = ' + options.params);
 }
 ```
 ## router.getStateByUrl<sup>(deprecated)</sup>
@@ -1338,10 +1338,10 @@ getStateByUrl(url: string): Array&lt;RouterState&gt;
 ```ts
 let options: Array<router.RouterState> = router.getStateByUrl('pages/index');
 for (let i: number = 0; i < options.length; i++) {
-  console.log('index = ' + options[i].index);
-  console.log('name = ' + options[i].name);
-  console.log('path = ' + options[i].path);
-  console.log('params = ' + options[i].params);
+  console.info('index = ' + options[i].index);
+  console.info('name = ' + options[i].name);
+  console.info('path = ' + options[i].path);
+  console.info('params = ' + options[i].params);
 }
 ```
 
