@@ -91,7 +91,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 ```
 
-###  onForeground
+### onForeground
 
 onForeground(): void
 
@@ -145,7 +145,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 onDestroy(): void | Promise\<void>
 
-PhotoEditorExtensionAbility生命周期回调，在销毁时回调，执行资源清理等操作。 
+当PhotoEditorExtensionAbility被销毁时，系统触发该回调。开发者可以在该生命周期中执行资源清理等相关操作。使用同步回调或Promise异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
