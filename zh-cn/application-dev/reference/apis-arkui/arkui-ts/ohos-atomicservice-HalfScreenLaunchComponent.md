@@ -63,7 +63,7 @@ import { HalfScreenLaunchComponent } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  appId: string = "576****************"; //原子化服务appId。
+  appId: string = "576****************"; // 原子化服务appId。
 
   build() {
     Column() {
