@@ -528,6 +528,15 @@ static resource(value: Resource): LengthMetrics
 | ------------- | ---------------- |
 | [LengthMetrics](#lengthmetrics12) | LengthMetrics 类的实例。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[系统资源错误码](errorcode-system-resource.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 180001   | System resources does not exist.             |
+| 180002   | The type of system resources is incorrect.         |
+
 ## ColorMetrics<sup>12+</sup>
 
 用于混合颜色。
