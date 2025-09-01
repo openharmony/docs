@@ -1,4 +1,4 @@
-# OHIPCRemoteOhject
+# OHIPCRemoteObject
 <!--Kit: IPC Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @xdx19211@luodonghui0157-->
