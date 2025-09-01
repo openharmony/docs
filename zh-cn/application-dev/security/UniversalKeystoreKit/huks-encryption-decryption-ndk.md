@@ -149,8 +149,8 @@ static struct OH_Huks_Param g_decryptParams[] = {
 };
 static const uint32_t AES_COMMON_SIZE = 1024;
 OH_Huks_Result HksAesCipherTestEncrypt(
-        const struct OH_Huks_Blob *keyAlias,
-        const struct OH_Huks_ParamSet *encryptParamSet, const struct OH_Huks_Blob *inData, struct OH_Huks_Blob *cipherText)
+        const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *encryptParamSet,
+        const struct OH_Huks_Blob *inData, struct OH_Huks_Blob *cipherText)
 {
     uint8_t handleE[sizeof(uint64_t)] = {0};
     struct OH_Huks_Blob handleEncrypt = {sizeof(uint64_t), handleE};
@@ -161,10 +161,9 @@ OH_Huks_Result HksAesCipherTestEncrypt(
     ret = OH_Huks_FinishSession(&handleEncrypt, encryptParamSet, inData, cipherText);
     return ret;
 }
-OH_Huks_Result HksAesCipherTestDecrypt(
-    const struct OH_Huks_Blob *keyAlias,
-    const struct OH_Huks_ParamSet *decryptParamSet, const struct OH_Huks_Blob *cipherText, struct OH_Huks_Blob *plainText,
-    const struct OH_Huks_Blob *inData)
+OH_Huks_Result HksAesCipherTestDecrypt(const struct OH_Huks_Blob *keyAlias,
+    const struct OH_Huks_ParamSet *decryptParamSet, const struct OH_Huks_Blob *cipherText,
+    struct OH_Huks_Blob *plainText, const struct OH_Huks_Blob *inData)
 {
     uint8_t handleD[sizeof(uint64_t)] = {0};
     struct OH_Huks_Blob handleDecrypt = {sizeof(uint64_t), handleD};
