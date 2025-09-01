@@ -118,7 +118,6 @@ struct Index {
         }
         Text('学习高数')
           .fontSize(24)
-          .fontWeight(450)
           .decoration({type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None})
       }
       .height('40%')
@@ -203,7 +202,6 @@ struct ThingsComponent1 {
       }
       Text('学习语文')
         .fontSize(24)
-        .fontWeight(450)
         .decoration({type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None})
     }
     .height('40%')
@@ -237,7 +235,6 @@ struct ThingsComponent2 {
       }
       Text('学习高数')
         .fontSize(24)
-        .fontWeight(450)
         .decoration({type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None})
     }
     .height('40%')
@@ -341,7 +338,6 @@ struct ThingsComponent {
       }
       Text(`${this.things}`)
         .fontSize(24)
-        .fontWeight(450)
         .decoration({type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None})
     }
     .height('8%')
@@ -480,7 +476,6 @@ struct ThingsComponent {
       }
       Text(`${this.things}`)
         .fontSize(24)
-        .fontWeight(450)
         .decoration({type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None})
         .onClick(() => {
           this.things += '啦';
@@ -744,7 +739,6 @@ View层根据需要来组织，但View层需要区分一下三种组件：
 
         Text(`${this.things.thingsName}`)
           .fontSize(24)
-          .fontWeight(450)
           .decoration({ type: this.things.isFinish ? TextDecorationType.LineThrough: TextDecorationType.None })
           .onClick(() => {
             this.things.addSuffixes(); // View层点击事件发生时，调用ViewModel层方法addSuffixes处理逻辑
