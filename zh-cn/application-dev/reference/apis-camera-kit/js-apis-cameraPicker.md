@@ -18,7 +18,7 @@
 import { cameraPicker as picker } from '@kit.CameraKit';
 ```
 
-## cameraPicker.pick
+## picker.pick
 
 pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: PickerProfile): Promise\<PickerResult\>
 
