@@ -6,7 +6,7 @@
 <!--Tester: @sally__-->
 <!--Adviser: @HelloCrease-->
 
-提供访问应用资源或系统资源的接口的能力。应用资源及系统资源的介绍及使用方法可参考[资源分类与访问](../../quick-start/resource-categories-and-access.md)。
+提供获取应用资源或系统资源信息的接口。应用资源及系统资源的介绍及使用方法可参考[资源分类与访问](../../quick-start/resource-categories-and-access.md)。
 
 > **说明：**
 >
@@ -17,7 +17,7 @@
 
 function $r(value: string, ...params: any[]): Resource
 
-获取应用资源或系统资源的资源信息。\$r会在编译期由工具链转换为[Resource](../apis-localization-kit/js-apis-resource-manager.md#resource9)对象。通过\$r访问应用资源或系统资源，可参考[资源分类与访问](../../quick-start/resource-categories-and-access.md)。
+获取应用资源或系统资源的信息。\$r会在编译期由工具链转换为[Resource](../apis-localization-kit/js-apis-resource-manager.md#resource9)对象。通过\$r访问应用资源或系统资源，可参考[资源分类与访问](../../quick-start/resource-categories-and-access.md)。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -56,7 +56,7 @@ struct Page {
 }
 ```
 
-访问HSP包资源示例可参考[资源分类与访问](../../quick-start/resource-categories-and-access.md#跨haphsp包应用资源)。
+访问HSP包的资源示例可参考[资源分类与访问](../../quick-start/resource-categories-and-access.md#跨haphsp包应用资源)。
 
 ## $rawfile
 
