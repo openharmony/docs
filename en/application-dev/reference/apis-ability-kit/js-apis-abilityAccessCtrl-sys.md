@@ -256,13 +256,13 @@ Obtains the flag of the specified permission of an application. This API uses a 
 | Name   | Type               | Mandatory| Description                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | Yes  | Identifier of the target application, which is the value of **accessTokenId** contained in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions              | Yes  | Permission whose flag is to be obtained. For details, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
+| permissionName | Permissions              | Yes  | Target permission. For details, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
 
 **Return value**
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the flag obtained.|
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -419,7 +419,7 @@ Obtains the data version of the permission management. This API uses a promise t
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the version obtained.|
+| Promise&lt;number&gt; | Promise used to return the version number obtained.|
 
 | ID| Error Message|
 | -------- | -------- |
@@ -494,7 +494,7 @@ atManager.getPermissionsStatus(tokenID, ['ohos.permission.CAMERA']).then((data: 
 
 on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionList: Array&lt;Permissions&gt;, callback: Callback&lt;PermissionStateChangeInfo&gt;): void
 
-Subscribes to changes in the state of specified permissions for the given applications.
+Subscribes to permission state changes of the specified applications and permissions.
 
 Multiple callbacks can be registered for the specified **tokenIDList** and **permissionList**.
 
@@ -510,10 +510,10 @@ If **tokenIDList** and **permissionList** have common values with the **tokenIDL
 
 | Name            | Type                  | Mandatory| Description                                                         |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
-| type               | string                | Yes  | Event type. The value is **'permissionStateChange'**, which indicates the permission state changes. |
-| tokenIDList        | Array&lt;number&gt;   | Yes  | List of application token IDs. If this parameter is not specified, this API will subscribe to the permission state changes of all applications. |
-| permissionList | Array&lt;Permissions&gt;   | Yes  | List of target permissions. If this parameter is not specified, this API will subscribe to state changes of all permissions. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md). |
-| callback | Callback&lt;[PermissionStateChangeInfo](js-apis-abilityAccessCtrl.md#permissionstatechangeinfo18)&gt; | Yes| Callback invoked to return the permission state change. |
+| type               | string                | Yes  | Event type. The value is **'permissionStateChange'**, which indicates the permission grant state changes. |
+| tokenIDList        | Array&lt;number&gt;   | Yes  | List of application token IDs. If this parameter is left empty, this API subscribes to the permission grant state changes of all applications.|
+| permissionList | Array&lt;Permissions&gt;   | Yes  | List of target permissions. If this parameter is not specified, this API will subscribe to state changes of all permissions. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
+| callback | Callback&lt;[PermissionStateChangeInfo](js-apis-abilityAccessCtrl.md#permissionstatechangeinfo18)&gt; | Yes| Callback invoked to return the permission grant state change.|
 
 **Error codes**
 
@@ -552,9 +552,9 @@ try {
 
 off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionList: Array&lt;Permissions&gt;, callback?: Callback&lt;PermissionStateChangeInfo&gt;): void
 
-Unsubscribes from changes in the state of specified permissions for the given applications. This API uses an asynchronous callback to return the result.
+Unsubscribes from permission grant state changes of the specified applications and permissions. This API uses an asynchronous callback to return the result.
 
-If **callback** is not specified, this API will unregister all callbacks for **tokenIDList** and **permissionList**.
+If no callback is passed in **atManager.off**, all callbacks for **tokenIDList** and **permissionList** will be unregistered.
 
 **System API**: This is a system API.
 
@@ -566,10 +566,10 @@ If **callback** is not specified, this API will unregister all callbacks for **t
 
 | Name            | Type                  | Mandatory| Description                                                         |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
-| type               | string         | Yes  | Event type. The value is **'permissionStateChange'**, which indicates the permission state changes. |
-| tokenIDList        | Array&lt;number&gt;   | Yes  | List of application token IDs. The value must be the same as that in **on()**. If this parameter is not specified, this API will unsubscribe from the permission state changes of all applications. |
+| type               | string         | Yes  | Event type. The value is **'permissionStateChange'**, which indicates the permission grant state changes. |
+| tokenIDList        | Array&lt;number&gt;   | Yes  | List of application token IDs. The value must be the same as that in **on()**. If this parameter is not specified, this API will unsubscribe from the permission state changes of all applications.|
 | permissionList | Array&lt;Permissions&gt;   | Yes  | List of target permissions. The value must be the same as that in **on()**. If this parameter is not specified, this API will unsubscribe from state changes for all permissions. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
-| callback | Callback&lt;[PermissionStateChangeInfo](js-apis-abilityAccessCtrl.md#permissionstatechangeinfo18)&gt; | No| Callback to unregister.|
+| callback | Callback&lt;[PermissionStateChangeInfo](js-apis-abilityAccessCtrl.md#permissionstatechangeinfo18)&gt; | No| Callback for the permission grant state change.|
 
 **Error codes**
 
@@ -658,8 +658,8 @@ Enumerates the permission toggle states.
 
 | Name              |    Value| Description       |
 | ------------------ | ----- | ----------- |
-| CLOSED  | 0    | The permission is toggled off. |
-| OPEN | 1     | The permission is toggled on. |
+| CLOSED  | 0    | The permission is toggled off.|
+| OPEN | 1     | The permission is toggled on.|
 
 ### PermissionStatus<sup>12+</sup>
 

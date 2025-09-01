@@ -15,7 +15,9 @@ The [user_grant permissions](app-permission-mgmt-overview.md#user_grant-user-aut
 
 ## ohos.permission.ACCESS_BLUETOOTH
 
-Allows an application to access Bluetooth and use Bluetooth capabilities, such as pairing and connecting to peripheral devices.
+Allows an application to access Bluetooth.
+
+This permission enables features such as scanning, discovering, pairing with, and connecting to nearby Bluetooth devices, as well as advertising and scanning for Bluetooth Low Energy devices.
 
 **Permission level**: normal
 
@@ -48,6 +50,8 @@ Allows an application to read the open anonymous device identifier (OAID).
 ## ohos.permission.ACTIVITY_MOTION
 
 Allows an application to read the current workout status of the user, such as detecting whether the user is working out and recording the number of steps the user has taken.
+
+For example, to determine whether the user is in motion or to record the number of steps that the user has walked.
 
 **Permission level**: normal
 
@@ -180,13 +184,13 @@ Allows an application to use NearLink, such as device pairing and connecting to 
 
 Allows an application to access the **Download** directory and its subdirectories in the user directory.
 
-Currently, this permission is available only to 2-in-1 device applications.
-
 <!--RP2--><!--RP2End-->
 
 **Permission level**: normal
 
 **Authorization mode**: user_grant
+
+**Supported devices**: PCs/2-in-1 devices | tablets
 
 **Valid since**: 11
 
@@ -196,13 +200,13 @@ Currently, this permission is available only to 2-in-1 device applications.
 
 Allows an application to access the **Documents** directory and its subdirectories in the user directory.
 
-Currently, this permission is available only to 2-in-1 device applications.
-
 <!--RP2--><!--RP2End-->
 
 **Permission level**: normal
 
 **Authorization mode**: user_grant
+
+**Supported devices**: PCs/2-in-1 devices | tablets
 
 **Valid since**: 11
 
@@ -212,15 +216,15 @@ Currently, this permission is available only to 2-in-1 device applications.
 
 Allows an application to capture screen information.
 
-With this permission, the application can perform operations such as taking screenshots and recording on-screen information. Currently, this permission is available only to applications running on tablets and 2-in-1 devices.
+With this permission, the application can perform operations such as taking screenshots.
 
-**Permission level**: system_basic
+**Permission level**: normal
 
 **Authorization mode**: user_grant
 
-**Enable via ACL**: true
+**Supported devices**: PCs/2-in-1 devices | tablets
 
-**Valid since**: 14
+**Since**: 14
 
 ## ohos.permission.READ_MEDIA
 

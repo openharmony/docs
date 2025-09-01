@@ -2,7 +2,7 @@
 
 The **abilityAccessCtrl** module provides APIs for application permission management, including authentication and authorization.
 
-> **NOTE**<br>
+> **NOTE**
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -26,7 +26,7 @@ Creates an **AtManager** instance for application access control.
 
 | Type| Description|
 | -------- | -------- |
-| [AtManager](#atmanager) | **AtManager** instance created.|
+| [AtManager](#atmanager) | **AtManager** instance obtained.|
 
 **Example**
 
@@ -42,7 +42,7 @@ Provides APIs for application access control.
 
 checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;GrantStatus&gt;
 
-Checks whether a permission is granted to an application. This API uses a promise to return the result.
+Verifies whether a permission is granted to an application. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -53,13 +53,13 @@ Checks whether a permission is granted to an application. This API uses a promis
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Identifier of the target application, which is the value of **accessTokenId** contained in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions | Yes  | Permission to check. For details about the permission, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
+| permissionName | Permissions | Yes  | Permission to verify. For details about the permission, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
 
 **Return value**
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;[GrantStatus](#grantstatus)&gt; | Promise used to return the permission grant state.|
+| Promise&lt;[GrantStatus](#grantstatus)&gt; | Promise used to return the authorization result.|
 
 **Error codes**
 
@@ -89,7 +89,7 @@ atManager.checkAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 
 checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 
-Checks whether a permission is granted to an application. This API returns the result synchronously.
+Verifies whether a permission is granted to an application. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -100,7 +100,7 @@ Checks whether a permission is granted to an application. This API returns the r
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Identifier of the target application, which is the value of **accessTokenId** contained in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions | Yes  | Permission to check. For details about the permission, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
+| permissionName | Permissions | Yes  | Permission to verify. For details about the permission, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
 
 **Return value**
 
@@ -148,7 +148,7 @@ The same callback cannot be registered for overlapping permission lists.
 | Name            | Type                  | Mandatory| Description                                                         |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | Yes  | Event type. The value is **'selfPermissionStateChange'**, which indicates the changes in the permission states specific to this application alone. |
-| permissionList | Array&lt;Permissions&gt;   | Yes  | List of target permissions. If this parameter is not specified, this API will subscribe to state changes of all permissions for this application. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
+| permissionList | Array&lt;Permissions&gt;   | Yes  | List of target permissions. If this parameter is not specified, this API will subscribe to state changes of all permissions. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
 | callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo18)&gt; | Yes| Callback used to return the permission state change.|
 
 **Error codes**
@@ -229,7 +229,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 Requests user authorization in a dialog box opened by a <!--RP1-->UIAbility<!--RP1End-->. This API uses an asynchronous callback to return the result.
 
-If the user rejects to grant the permission, the authorization dialog box cannot be displayed again. If required, the user can manually grant the permission on the **Settings** page. Alternatively, call [requestPermissionOnSetting](#requestpermissiononsetting12) to display the permission settings dialog box for the user to grant the permission.
+If the user rejects to grant permissions, the dialog box cannot be displayed again. If permission granting is required, the user can manually grant permissions on the **Settings** page. Alternatively, call [requestPermissionOnSetting](#requestpermissiononsetting12) to display the permission settings dialog box for the user to grant the permission.
 
 > **NOTE**
 >
@@ -262,7 +262,7 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 For details about the process and example of applying for user authorization, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
-
+<!--code_no_check-->
 ```ts
 import { abilityAccessCtrl, Context, PermissionRequestResult, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -287,7 +287,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 Requests user authorization in a dialog box opened by a <!--RP1-->UIAbility<!--RP1End-->. This API uses a promise to return the result.
 
-If the user rejects to grant the permission, the authorization dialog box cannot be displayed again. If required, the user can manually grant the permission on the **Settings** page. Alternatively, call [requestPermissionOnSetting](#requestpermissiononsetting12) to display the permission settings dialog box for the user to grant the permission.
+If the user rejects to grant permissions, the dialog box cannot be displayed again. If permission granting is required, the user can manually grant permissions on the **Settings** page. Alternatively, call [requestPermissionOnSetting](#requestpermissiononsetting12) to display the permission settings dialog box for the user to grant the permission.
 
 > **NOTE**
 >
@@ -304,7 +304,7 @@ If the user rejects to grant the permission, the authorization dialog box cannot
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | context | [Context](js-apis-inner-application-context.md) | Yes| Context of the <!--RP1-->UIAbility<!--RP1End--> that requests the permission.|
-| permissionList | Array&lt;Permissions&gt; | Yes| Permissions to request. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
+| permissionList | Array&lt;Permissions&gt; | Yes| Permission to verify. For details about the permission, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
 
 **Return value**
 
@@ -325,7 +325,7 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 For details about the process and example of applying for user authorization, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
-
+<!--code_no_check-->
 ```ts
 import { abilityAccessCtrl, Context, PermissionRequestResult, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -352,7 +352,7 @@ Before calling this API, the application must have called [requestPermissionsFro
 
 > **NOTE**
 >
-> This API supports only UIAbilities/UIExtensionAbilities.
+> Only UIAbility/UIExtensionAbility is supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -387,7 +387,7 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 **Example**
 For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
-
+<!--code_no_check-->
 ```ts
 import { abilityAccessCtrl, Context, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -407,11 +407,11 @@ requestGlobalSwitch(context: Context, type: SwitchType): Promise&lt;boolean&gt;
 
 Displays a dialog box for setting a global switch.
 
-When the features such as recording and photographing are disabled, the application can call this API to open the dialog box, asking the user to enable the related features. If the global switch is turned on, no dialog box will be displayed.
+When the features such as recording and photographing are disabled, the application can display the dialog box, asking the user to enable the related features. If the global switch is turned on, no dialog box will be displayed.
 
 > **NOTE**
 >
-> This API supports only UIAbilities/UIExtensionAbilities.
+> Only UIAbility/UIExtensionAbility is supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -445,7 +445,7 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 **Example**
 For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
-
+<!--code_no_check-->
 ```ts
 import { abilityAccessCtrl, Context, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -669,4 +669,4 @@ Represents the context for the ability or application. It allows access to appli
 
 | Type| Description|
 | -------- | -------- |
-| [_Context](js-apis-inner-application-context.md) | Context for an ability or application to access to application-specific resources.|
+| [_Context](js-apis-inner-application-context.md) | Represents the context for the ability or application. It allows access to application-specific resources.|
