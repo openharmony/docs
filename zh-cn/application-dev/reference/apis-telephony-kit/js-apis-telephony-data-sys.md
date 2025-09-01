@@ -1,4 +1,3 @@
-
 # @ohos.telephony.data (蜂窝数据)(系统接口)
 
 <!--Kit: Network Kit-->
