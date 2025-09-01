@@ -154,19 +154,36 @@ onDestroy(): void | Promise\<void>
 **返回值：**
 |  类型 |说明   |
 | ------------ | ------------ |
-|  void \| Promise\<void> |  无返回结果的Promise对象。 |
+|  void \| Promise\<void> |  无返回结果或者无返回结果的Promise对象。 |
 
 **示例：**
 
-```ts
-import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
+- 同步回调示例如下：
+  ```ts
+  import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
 
-const TAG: string = '[testTag] ExamplePhotoEditorAbility';
+  const TAG: string = '[testTag] ExamplePhotoEditorAbility';
 
-export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbility {
-  onDestroy() {
-    console.info(TAG, `onDestroy`);
+  export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbility {
+    onDestroy() {
+      console.info(TAG, `onDestroy`);
+      // 调用同步函数...
+    }
   }
-}
 
-```
+  ```
+- Promise异步回调示例如下：
+
+  ```ts
+  import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
+
+  const TAG: string = '[testTag] ExamplePhotoEditorAbility';
+
+  export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbility {
+    async onDestroy() {
+      console.info(TAG, `onDestroy`);
+      // 调用异步函数...
+    }
+  }
+
+  ```
