@@ -78,19 +78,19 @@ function GetHMACProperties() {
 
 async function GenerateHMACKey() {
   /*
-  * 模拟生成密钥场景
-  * 1. 确定密钥别名
-  */
+   * 模拟生成密钥场景
+   * 1. 确定密钥别名
+   */
   /*
-  * 2. 获取生成密钥算法参数配置
-  */
+   * 2. 获取生成密钥算法参数配置
+   */
   let genProperties = GetHMACProperties();
   let options: huks.HuksOptions = {
     properties: genProperties
   }
   /*
-  * 3. 调用generateKeyItem
-  */
+   * 3. 调用generateKeyItem
+   */
   await huks.generateKeyItem(keyAlias, options)
     .then(() => {
       console.info(`promise: generate HMAC Key success`);
@@ -101,23 +101,23 @@ async function GenerateHMACKey() {
 
 async function HMACData() {
   /*
-  * 模拟HMAC场景
-  * 1. 获取密钥别名
-  */
+   * 模拟HMAC场景
+   * 1. 获取密钥别名
+   */
   /*
-  * 2. 获取待哈希的数据
-  */
+   * 2. 获取待哈希的数据
+   */
   /*
-  * 3. 获取HMAC算法参数配置
-  */
+   * 3. 获取HMAC算法参数配置
+   */
   let hmacProperties = GetHMACProperties();
   let options: huks.HuksOptions = {
     properties: hmacProperties,
     inData: StringToUint8Array(plainText)
   }
   /*
-  * 4. 调用initSession获取handle
-  */
+   * 4. 调用initSession获取handle
+   */
   await huks.initSession(keyAlias, options)
     .then((data) => {
       handle = data.handle;
@@ -125,8 +125,8 @@ async function HMACData() {
       console.error(`promise: init EncryptData failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
   /*
-  * 5. 调用finishSession获取HMAC的结果
-  */
+   * 5. 调用finishSession获取HMAC的结果
+   */
   await huks.finishSession(handle, options)
     .then((data) => {
       console.info(`promise: HMAC data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));

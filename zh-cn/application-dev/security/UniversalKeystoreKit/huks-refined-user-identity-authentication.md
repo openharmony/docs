@@ -26,8 +26,8 @@ import { huks } from "@kit.UniversalKeystoreKit";
 import { BusinessError } from "@kit.BasicServicesKit";
 
 /*
-* 确定密钥别名和封装密钥属性参数集。
-*/
+ * 确定密钥别名和封装密钥属性参数集。
+ */
 let keyAlias = 'test_sm4_key_alias';
 let properties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -64,8 +64,8 @@ let huksOptions: huks.HuksOptions = {
 }
 
 /*
-* 生成密钥
-*/
+ * 生成密钥。
+ */
 async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`promise: enter generateKeyItem`);
   try {
@@ -117,8 +117,8 @@ function Uint8ArrayToString(fileData: Uint8Array) {
 }
 
 /*
-* 确定密钥别名和封装密钥属性参数集。
-*/
+ * 确定密钥别名和封装密钥属性参数集。
+ */
 let keyAlias = 'test_sm4_key_alias';
 let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string'; // 明文数据。
 let IV = cryptoFramework.createRandom().generateRandomSync(16).data;
@@ -261,7 +261,7 @@ async function userIAMAuthFinger(huksChallenge: Uint8Array) {
   }
 }
 
-/* 1.加密时不需要用户身份认证访问控制 */
+/* 1.加密时不需要用户身份认证访问控制。 */
 async function testSm4Encrypt() {
   console.info(`enter testSm4Encrypt`);
   /* 初始化密钥会话获取挑战值。 */
@@ -271,7 +271,7 @@ async function testSm4Encrypt() {
   await finishSession(handle, encryptOptions);
 }
 
-/* 2.解密时需要进行用户身份认证访问控制 */
+/* 2.解密时需要进行用户身份认证访问控制。 */
 async function testSm4Decrypt() {
   console.info(`enter testSm4Decrypt`);
   /* 初始化密钥会话获取挑战值。 */
