@@ -391,4 +391,4 @@ dark.json数据示例：
 | theme.colors.interactiveSelect             | 通用选择交互式颜色 | #33000000 |![](figures/33000000.png "#33000000")| #33ffffff |![](figures/33ffffff.png "#33ffffff")|
 | theme.colors.interactiveClick              | 通用点击交互式颜色 | #19000000 |![](figures/19000000.png "#19000000")| #19ffffff |![](figures/19ffffff.png "#19ffffff")|
 
-各个token色值可影响的组件可参考[Colors接口说明](../reference/apis-arkui/js-apis-arkui-theme.md#colors)。
+各个token色值可影响的组件可参考[Colors](../reference/apis-arkui/js-apis-arkui-theme.md#colors)接口说明。
