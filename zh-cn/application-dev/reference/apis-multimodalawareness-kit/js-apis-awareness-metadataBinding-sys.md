@@ -21,7 +21,7 @@ import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 ```
 
 ## metadataBinding.encodeImage
-encodeImage(srcImage: image.PixelMap, metadata: string): Promise&lt;image.PixelMap&gt;;
+encodeImage(srcImage: image.PixelMap, metadata: string): Promise&lt;image.PixelMap&gt;
 
 在图片中加入信息。
 
@@ -70,7 +70,7 @@ metadataBinding.encodeImage(srcImage, metadata).then((pixelMap: image.PixelMap) 
 ```
 
 ## metadataBinding.decodeImage
-function decodeImage(encodedImage: image.PixelMap): Promise&lt;string&gt;;
+function decodeImage(encodedImage: image.PixelMap): Promise&lt;string&gt;
 
 解析图片中携带的信息。
 
@@ -116,7 +116,7 @@ metadataBinding.decodeImage(encodeImage).then((metadata: string) =>{
 ```
 
 ## metadataBinding.notifyMetadataBindingEvent
-notifyMetadataBindingEvent(metadata: string): void;
+notifyMetadataBindingEvent(metadata: string): void
 
 推送待嵌入的信息给调用编码接口的应用或服务。
 
