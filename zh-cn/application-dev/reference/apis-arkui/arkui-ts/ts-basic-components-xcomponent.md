@@ -268,13 +268,15 @@ constructor()
 
 XComponentController的构造函数。
 
-```ts
-xcomponentController: XComponentController = new XComponentController();
-```
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+  ```ts
+  xcomponentController: XComponentController = new XComponentController();
+  ```
 
 ### getXComponentSurfaceId<sup>9+</sup>
 
@@ -313,7 +315,7 @@ getXComponentSurfaceId(): string
         })
           .onLoad(() => {
             let surfaceId: string = this.myXComponentController.getXComponentSurfaceId();
-            console.log("XComponent SurfaceId: " + surfaceId);
+            console.info("XComponent SurfaceId: " + surfaceId);
           })
       }
     }
@@ -459,7 +461,7 @@ onSurfaceDestroyed(surfaceId: string): void
 
 startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
-配置AI分析并启动AI分析功能，使用前需先[启用图像AI分析能力](#enableanalyzer12)。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>若该方法尚未执行完毕，此时重复调用，则会触发错误回调。
+配置AI分析并启动AI分析功能，使用前需先[启用图像AI分析能力](#enableanalyzer12)。使用Promise异步回调。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>若该方法尚未执行完毕，此时重复调用，则会触发错误回调。
 
 > **说明：**
 > 
@@ -480,7 +482,7 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
 | 类型              | 说明                                 |
 | ----------------- | ------------------------------------ |
-| Promise\<void>  | Promise对象，用于获取AI分析是否成功执行。 |
+| Promise\<void>  | Promise对象，无返回结果。用于获取AI分析是否成功执行。 |
 
 **错误码：**
 
@@ -790,17 +792,17 @@ import nativeRender from 'libnativerender.so';
 
 class MyXComponentController extends XComponentController {
   onSurfaceCreated(surfaceId: string): void {
-    console.log(`onSurfaceCreated surfaceId: ${surfaceId}`);
+    console.info(`onSurfaceCreated surfaceId: ${surfaceId}`);
     nativeRender.SetSurfaceId(BigInt(surfaceId));
   }
 
   onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
-    console.log(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`);
+    console.info(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`);
     nativeRender.ChangeSurface(BigInt(surfaceId), rect.surfaceWidth, rect.surfaceHeight);
   }
 
   onSurfaceDestroyed(surfaceId: string): void {
-    console.log(`onSurfaceDestroyed surfaceId: ${surfaceId}`);
+    console.info(`onSurfaceDestroyed surfaceId: ${surfaceId}`);
     nativeRender.DestroySurface(BigInt(surfaceId));
   }
 }
@@ -823,7 +825,7 @@ struct Index {
         .onLoad(() => {
           let surfaceRotation: SurfaceRotationOptions = { lock: this.isLock };
           this.myXComponentController.setXComponentSurfaceRotation(surfaceRotation);
-          console.log("Surface getXComponentSurfaceRotation lock = " +
+          console.info("Surface getXComponentSurfaceRotation lock = " +
           this.myXComponentController.getXComponentSurfaceRotation().lock);
         })
         .width(this.xc_width)
