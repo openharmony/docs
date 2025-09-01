@@ -693,15 +693,15 @@ class MyDataSource implements IDataSource {
     })
   }
 
-  registerDataChangeListener(listener: DataChangelistener): void {
-    if (this.listeners.index0f(listener) < 0) {
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
       console.info('add listener');
       this.listeners.push(listener);
     }
   }
 
-  unregisterDataChangeListener(listener: DataChangeListerher): void {
-    const pos = this.listeners.index0f(listener);
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
       console.info('remove listener');
       this.listeners.splice(pos, 1);
