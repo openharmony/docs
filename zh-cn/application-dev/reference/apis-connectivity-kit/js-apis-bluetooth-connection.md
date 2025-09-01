@@ -1611,7 +1611,7 @@ getLastConnectionTime(deviceId: string): Promise&lt;number&gt;
 
 | 类型                  | 说明         |
 | ------------------- | ------------- |
-| Promise&lt;number&gt; | Promise对象，返回对端蓝牙设备最近一次连接的时间点。 |
+| Promise&lt;number&gt; | Promise对象，返回对端蓝牙设备最近一次连接的时间点，格式为秒级的UNIX时间戳。 |
 
 **错误码**：
 
@@ -1632,7 +1632,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // promise
 try {
     connection.getLastConnectionTime('11:22:33:44:55:66').then((time: number) => {
-        console.info('connectionTime: ${time}');
+        console.info(`connectionTime: ${time}`);
     });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
