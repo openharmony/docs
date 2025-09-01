@@ -35,8 +35,6 @@ EXIF信息的读取与编辑相关C API接口的详细介绍请参见[OH_ImageSo
 在创建ImageSource实例后，读取、编辑EXIF信息。
 
 ```c++
-
-#include <linux/kd.h>
 #include <string>
 
 #include <hilog/log.h>
