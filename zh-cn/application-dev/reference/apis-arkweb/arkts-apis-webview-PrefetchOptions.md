@@ -6,7 +6,7 @@
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloCrease-->
 
-用来自定义预取行为，包括是否忽略Cache-Control: no-store和设置最小时间间隔。
+用来自定义网页的预取行为，包括是否忽略响应头中的Cache-Control: no-store和设置两次预取间的最小时间间隔。
 
 > **说明：**
 >
