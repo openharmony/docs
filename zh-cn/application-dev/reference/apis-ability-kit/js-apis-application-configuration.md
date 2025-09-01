@@ -1,5 +1,12 @@
 # @ohos.application.Configuration (Configuration)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wkljy-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 定义环境变化信息。Configuration是接口定义，仅做字段声明。
 
 > **说明：**
@@ -17,10 +24,10 @@ import Configuration from '@ohos.application.Configuration';
 
 **系统能力**：SystemCapability.Ability.AbilityBase
 
-  | 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| language<sup>8+</sup> | string | 是 | 是 | 表示应用程序的当前语言。例如：zh。 |
-| colorMode<sup>8+</sup> | [ConfigurationConstant.ColorMode](js-apis-application-configurationConstant.md#colormode) | 是 | 是 | 表示深浅色模式，取值范围：浅色模式（COLOR_MODE_LIGHT），深色模式（COLOR_MODE_DARK）。默认为浅色。 |
+| language<sup>8+</sup> | string | 否 | 是 | 表示应用程序的当前语言。例如：zh。 |
+| colorMode<sup>8+</sup> | [ConfigurationConstant.ColorMode](js-apis-application-configurationConstant.md#colormode) | 否 | 是 | 表示深浅色模式，取值范围：浅色模式（COLOR_MODE_LIGHT），深色模式（COLOR_MODE_DARK）。默认为浅色。 |
 
 具体字段描述参考ohos.application.Configuration.d.ts文件
 
