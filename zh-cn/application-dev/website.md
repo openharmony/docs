@@ -3563,6 +3563,7 @@
           - [Class (NativeMediaPlayerSurfaceInfo)](reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerSurfaceInfo.md)
           - [Class (PdfData)](reference/apis-arkweb/arkts-apis-webview-PdfData.md)
           - [Class (ProxyConfig)](reference/apis-arkweb/arkts-apis-webview-ProxyConfig.md)
+          - [Class (PrefetchOptions)](reference/apis-arkweb/arkts-apis-webview-PrefetchOptions.md)
           - [Class (ProxyController)](reference/apis-arkweb/arkts-apis-webview-ProxyController.md)
           - [Class (ProxyRule)](reference/apis-arkweb/arkts-apis-webview-ProxyRule.md)
           - [Class (WebviewController)](reference/apis-arkweb/arkts-apis-webview-WebviewController.md)
