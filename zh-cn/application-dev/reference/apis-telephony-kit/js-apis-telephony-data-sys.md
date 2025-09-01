@@ -59,7 +59,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 data.setDefaultCellularDataSlotId(0, (err: BusinessError) => {
     if(err) {
-        console.error(`setDefaultCellularDataSlotId fail,callback: err->${JSON.stringify(err)}.`);
+        console.error(`setDefaultCellularDataSlotId fail, callback: err->${JSON.stringify(err)}.`);
     } else {
         console.log(`setDefaultCellularDataSlotId success`);
     }
@@ -160,7 +160,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 data.enableCellularData((err: BusinessError) => {
     if(err) {
-        console.error(`enableCellularData fail,callback: err->${JSON.stringify(err)}`);
+        console.error(`enableCellularData fail, callback: err->${JSON.stringify(err)}`);
     } else {
         console.log(`enableCellularData success`);
     }
@@ -250,7 +250,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 data.disableCellularData((err: BusinessError) => {
     if(err) {
-        console.error(`disableCellularData fail,callback: err->${JSON.stringify(err)}`);
+        console.error(`disableCellularData fail, callback: err->${JSON.stringify(err)}`);
     } else {
         console.log(`disableCellularData success`);
     }
@@ -341,7 +341,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 data.enableCellularDataRoaming(0, (err: BusinessError) => {
     if(err) {
-        console.error(`enableCellularDataRoaming fail,callback: err->${JSON.stringify(err)}`);
+        console.error(`enableCellularDataRoaming fail, callback: err->${JSON.stringify(err)}`);
     } else {
         console.log(`enableCellularDataRoaming success`);
     }
@@ -440,7 +440,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 data.disableCellularDataRoaming(0, (err: BusinessError) => {
     if(err) {
-        console.error(`disableCellularDataRoaming fail,callback: err->${JSON.stringify(err)}`);
+        console.error(`disableCellularDataRoaming fail, callback: err->${JSON.stringify(err)}`);
     } else {
         console.log(`disableCellularDataRoaming success`);
     }
