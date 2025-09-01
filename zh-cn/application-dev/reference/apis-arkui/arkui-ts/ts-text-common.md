@@ -434,7 +434,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText, o
 
 ## TextDataDetectorConfig<sup>11+</sup>对象说明
 
-该配置只支持[Text](ts-basic-components-text.md#text)组件和[RichEditor](ts-basic-components-richeditor.md#richeditor)组件。
+该配置只支持[Text](ts-basic-components-text.md)组件和[RichEditor](ts-basic-components-richeditor.md)组件。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
