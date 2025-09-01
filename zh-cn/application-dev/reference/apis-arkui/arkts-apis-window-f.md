@@ -796,9 +796,7 @@ try {
 
 setWatermarkImageForAppWindows(pixelMap: image.PixelMap | undefined): Promise&lt;void&gt;
 
-设置或取消本应用进程下窗口的水印图片，使用 Promise 异步回调。
-
-Stage模型下，该接口需要在[loadContent()](arkts-apis-window-Window.md#loadcontent9)或[setUIContent()](arkts-apis-window-Window.md#setuicontent9)调用生效后使用。
+设置或取消本应用进程下窗口的水印图片，使用Promise异步回调。该接口需要在[loadContent()](arkts-apis-window-Window.md#loadcontent9)或[setUIContent()](arkts-apis-window-Window.md#setuicontent9)调用生效后使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -806,13 +804,13 @@ Stage模型下，该接口需要在[loadContent()](arkts-apis-window-Window.md#l
 
 | 参数名   | 类型                                                                          | 必填 | 说明                                                                                                           |
 | -------- | ----------------------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------------------------------- |
-| pixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) \| undefined | 是   | 传入`image.PixelMap`表示设置水印图片，传入`undefined`表示取消水印显示。<br/>如果图片尺寸超过屏幕尺寸，返回错误码1300016。<br/>如果图片尺寸超过窗口尺寸但未超过屏幕尺寸，超出部分会被裁剪。<br/>如果图片尺寸小于窗口尺寸，会自动重复补充。|
+| pixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) \| undefined | 是   | 传入`image.PixelMap`表示设置水印图片，传入`undefined`表示取消水印显示。<br/>如果图片尺寸同时超过窗口尺寸和屏幕尺寸，返回错误码1300016。<br/>如果图片尺寸超过窗口尺寸但未超过屏幕尺寸，超出部分会被裁剪。<br/>如果图片尺寸小于窗口尺寸，会自动重复补充。|
 
 **返回值：**
 
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
-| Promise&lt;void&gt; | 无返回结果的 Promise 对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。|
 
 **错误码：**
 
