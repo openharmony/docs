@@ -28,6 +28,10 @@ openToast(options: ShowToastOptions): Promise&lt;number&gt;
 
 显示即时反馈并通过Promise返回其id。
 
+> **说明：**
+> 
+> 不支持在输入法类型窗口中使用子窗（showMode设置为TOP_MOST或者SYSTEM_TOP_MOST）的openToast，详情见输入法框架的约束与限制说明[createPanel](../apis-ime-kit/js-apis-inputmethodengine.md#createpanel10-1)。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -565,7 +569,7 @@ Dialog关闭的信息。
 | ----- | ---------------------------------------- | ---- | ------- | ------- |
 | text  | string&nbsp;\|&nbsp; [Resource](arkui-ts/ts-types.md#resource) | 否   | 否   | 按钮文本内容。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | color | string&nbsp;\| &nbsp;[Resource](arkui-ts/ts-types.md#resource) | 否   | 否   | 按钮文本颜色。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| primary<sup>12+</sup> | boolean | 否    | 是   | 在弹窗获焦且未进行tab键走焦时，按钮是否默认响应Enter键。多个Button时，只允许一个Button的该字段配置为true，否则所有Button均不响应。多重弹窗可自动获焦连续响应。值为true表示按钮默认响应Entry键，值为false时，按钮不默认响应Entry键。<br/>默认值：false<br />**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| primary<sup>12+</sup> | boolean | 否    | 是   | 在弹窗获焦且未进行tab键走焦时，按钮是否默认响应Enter键。多个Button时，只允许一个Button的该字段配置为true，否则所有Button均不响应。多重弹窗可自动获焦连续响应。值为true表示按钮默认响应Enter键，值为false时，按钮不默认响应Enter键。<br/>默认值：false<br />**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## 示例
 
@@ -1249,8 +1253,8 @@ struct Index {
                 this.customDialogComponent()
               },
               onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
-                console.info("reason" + JSON.stringify(dismissDialogAction.reason));
-                console.log("dialog onWillDismiss");
+                console.info('reason' + JSON.stringify(dismissDialogAction.reason));
+                console.info('dialog onWillDismiss');
                 if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
                   dismissDialogAction.dismiss();
                 }

@@ -73,7 +73,7 @@ SQLite访问加密数据库后，查询会出现以下报错：
 # sqlite3 ./wallet_personal_info_data_relational_store
 SQLite version 3.44.4 2025-02-19 00:18:53
 Enter ".help" for usage hints.
-sqlite> select * from sqlite_mater;
+sqlite> select * from sqlite_master;
 Parse error: file is not a database (26)
 sqlite> .table
 Error: file is not a database

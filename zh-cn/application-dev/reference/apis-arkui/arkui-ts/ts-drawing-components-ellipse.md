@@ -11,7 +11,6 @@
 >  **说明：**
 >
 >  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> 从API version 11开始，该接口支持在原子化服务中使用。
 
 ## 子组件
 
@@ -35,7 +34,8 @@ Ellipse(options?: EllipseOptions)
 | options | [EllipseOptions](ts-drawing-components-ellipse.md#ellipseoptions18对象说明) | 否 | 椭圆绘制尺寸 |
 
 ## EllipseOptions<sup>18+</sup>对象说明
-用于描述椭圆绘制尺寸。
+
+用于描述Ellipse组件绘制属性。
 
 > **说明：**
 >
@@ -47,10 +47,10 @@ Ellipse(options?: EllipseOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| width<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。<br/>从API version 20开始，支持Resource类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| height<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。<br/>从API version 20开始，支持Resource类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| width<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 是 | 宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。<br/>从API version 20开始，支持Resource类型。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| height<sup>7+</sup> | [Length](ts-types.md#length) | 否 | 是 | 高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。<br/>从API version 20开始，支持Resource类型。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 

@@ -33,6 +33,7 @@
 检测原理如下图：
 
 **图1**
+
 ![thread_block](figures/thread_block.png)
 
 ### APP_INPUT_BLOCK 用户输入响应超时
@@ -44,6 +45,7 @@
 检测原理如下图：
 
 **图2**
+
 ![app_input_block](figures/app_input_block.png)
 
 ### 生命周期切换超时
@@ -335,7 +337,7 @@ ReclaimAvailBuffer:                    4676608 kB
 
 ## 日志差异性信息
 
-1. 生命周期超时事件
+生命周期超时事件
 
 ```
 DOMAIN:AAFWK

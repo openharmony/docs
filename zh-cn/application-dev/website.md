@@ -38,6 +38,7 @@
       - [集成态HSP](quick-start/integrated-hsp.md)
       - [HAR转HSP指导](quick-start/har-to-hsp.md)
       - [HSP转HAR指导](quick-start/hsp-to-har.md)
+      - [HAP转HAR指导](quick-start/hap-to-har.md)
       - [创建应用静态快捷方式](quick-start/typical-scenario-configuration.md)
       - [创建应用分身](quick-start/app-clone.md)
       - [创建应用多实例](quick-start/multiInstance.md)
@@ -83,7 +84,7 @@
             - [使用通过UIServiceExtensionAbility实现的系统悬浮窗](application-models/uiserviceextension.md)
             <!--DelEnd-->
             - [EmbeddedUIExtensionAbility](application-models/embeddeduiextensionability.md)
-            - [使用AppServiceExtensionAbility实现后台服务](application-models/app-service-extension-ability.md)
+            - [使用AppServiceExtensionAbility组件实现后台服务](application-models/app-service-extension-ability.md)
           - [AbilityStage组件管理器](application-models/abilitystage.md)
           - [应用上下文Context](application-models/application-context-stage.md)
           - 信息传递载体Want<!--want-->
@@ -877,6 +878,7 @@
             - [ArkTS卡片界面开发概述](form/arkts-ui-widget-page-overview.md)
             - [ArkTS卡片为组件添加动效](form/arkts-ui-widget-page-animation.md)
             - [ArkTS卡片使用画布组件绘制自定义图形](form/arkts-ui-widget-page-custom-drawing.md)
+            - [ArkTS卡片界面适配深浅色模式](form/arkts-ui-widget-dark-light-color-adapt.md)
           - ArkTS卡片页面刷新<!--arkts-ui-widget-interaction-->
             - [ArkTS卡片页面刷新概述](form/arkts-ui-widget-interaction-overview.md)
             - [ArkTS卡片主动刷新](form/arkts-ui-widget-active-refresh.md)
@@ -2165,7 +2167,7 @@
           - [@ohos.app.ability.EnvironmentCallback (系统环境变化监听器)](reference/apis-ability-kit/js-apis-app-ability-environmentCallback.md)
           - [@ohos.app.ability.ExtensionAbility (扩展能力基类)](reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)
           - [@ohos.app.ability.insightIntent (意图框架基础定义)](reference/apis-ability-kit/js-apis-app-ability-insightIntent.md)
-          - [@ohos.app.ability.InsightIntentContext (意图调用执行上下文)](reference/apis-ability-kit/js-apis-app-ability-insightIntentContext.md)
+          - [@ohos.app.ability.InsightIntentContext (意图执行上下文)](reference/apis-ability-kit/js-apis-app-ability-insightIntentContext.md)
           - [@ohos.app.ability.InsightIntentDecorator (意图装饰器定义)](reference/apis-ability-kit/js-apis-app-ability-InsightIntentDecorator.md)
           - [@ohos.app.ability.InsightIntentEntryExecutor (@InsightIntentEntry的意图调用执行基类)](reference/apis-ability-kit/js-apis-app-ability-InsightIntentEntryExecutor.md)
           - [@ohos.app.ability.InsightIntentExecutor (意图调用执行基类)](reference/apis-ability-kit/js-apis-app-ability-insightIntentExecutor.md)
@@ -2878,6 +2880,7 @@
           - 手势控制<!--gesture-control-->
             - [自定义手势判定](reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md)
             - [手势拦截增强](reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md)
+          - [手势公共接口](reference/apis-arkui/arkui-ts/ts-gesture-common.md)
         - 行列与堆叠<!--rows-columns-and-stacking-->
           - [Flex](reference/apis-arkui/arkui-ts/ts-container-flex.md)
           - [Column](reference/apis-arkui/arkui-ts/ts-container-column.md)
@@ -2940,7 +2943,6 @@
           - [Rating](reference/apis-arkui/arkui-ts/ts-basic-components-rating.md)
           - [Select](reference/apis-arkui/arkui-ts/ts-basic-components-select.md)
           - [Slider](reference/apis-arkui/arkui-ts/ts-basic-components-slider.md)
-          - [SegmentButtonV2](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md)
           - [ArcButton](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md)
           - [ArcSlider](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcSlider.md)
           - [选择器（Picker）公共接口](reference/apis-arkui/arkui-ts/ts-picker-common.md)
@@ -2980,7 +2982,6 @@
           - [ArcAlphabetIndexer](reference/apis-arkui/arkui-ts/ts-container-arc-alphabet-indexer.md)
           - [Badge](reference/apis-arkui/arkui-ts/ts-container-badge.md)
           - [Counter](reference/apis-arkui/arkui-ts/ts-container-counter.md)
-          - [advanced.Counter](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Counter.md)
           - [DataPanel](reference/apis-arkui/arkui-ts/ts-basic-components-datapanel.md)
           - [Gauge](reference/apis-arkui/arkui-ts/ts-basic-components-gauge.md)
           - [LoadingProgress](reference/apis-arkui/arkui-ts/ts-basic-components-loadingprogress.md)
@@ -3106,6 +3107,7 @@
           - [ProgressButton](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ProgressButton.md)
           - [ProgressButtonV2](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ProgressButtonV2.md)
           - [SegmentButton](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SegmentButton.md)
+          - [SegmentButtonV2](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md)
           - [SelectTitleBar](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectTitleBar.md)
           - [SelectionMenu](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectionMenu.md)
           - [SplitLayout](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SplitLayout.md)
@@ -3116,6 +3118,7 @@
           - [ToolBar](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ToolBar.md)
           - [ToolBarV2](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ToolBarV2.md)
           - [TreeView](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-TreeView.md)
+          - [advanced.Counter](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Counter.md)
         - 状态管理与渲染控制<!--state-management-and-rendering-control-->
           - [应用级变量的状态管理](reference/apis-arkui/arkui-ts/ts-state-management.md)
           - [状态管理V1装饰器参数](reference/apis-arkui/arkui-ts/ts-state-management-v1-parameter.md)

@@ -1,9 +1,10 @@
 # \@Extend装饰器：定义扩展组件样式
-<!--Kit: ArkUI--> 
-<!--Subsystem: ArkUI--> 
-<!--Owner: @BlYynNe--> 
-<!--SE: @lixingchi1--> 
-<!--TSE: @TerryTsao-->
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @BlYynNe-->
+<!--Designer: @lixingchi1-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 在前文的示例中，可以使用[\@Styles](arkts-style.md)用于样式的重用，在\@Styles的基础上，我们提供了\@Extend，用于扩展组件样式。
 
@@ -110,14 +111,14 @@
   @Entry
   @Component
   struct FancyUse {
-    @State fontSizeValue: number = 20
+    @State fontSizeValue: number = 20;
   
     build() {
       Row({ space: 10 }) {
         Text('Fancy')
           .fancy(this.fontSizeValue)
           .onClick(() => {
-            this.fontSizeValue = 30
+            this.fontSizeValue = 30;
           })
       }
     }

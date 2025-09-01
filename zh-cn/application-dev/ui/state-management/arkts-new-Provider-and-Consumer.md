@@ -28,7 +28,7 @@
 
 开发者在使用\@Provider和\@Consumer时要注意：
 - \@Provider和\@Consumer强依赖自定义组件层级，\@Consumer会因为所在组件的父组件不同，而被初始化为不同的值。
-- \@Provider和\@Consumer相当于把组件粘合在一起了，从组件独立角度，要减少使用\@Provider和\@Consumer。
+- \@Provider和\@Consumer相当于把组件粘合在一起了，从组件独立角度考虑，应减少使用\@Provider和\@Consumer。
 
 ## \@Provider和\@Consumer vs \@Provide和\@Consume能力对比
 在状态管理V1版本中，提供跨组件层级双向的装饰器为[\@Provide和\@Consume](./arkts-provide-and-consume.md)，当前文档介绍的是状态管理V2装饰器\@Provider和\@Consumer。虽然两者名字和功能类似，但在特性上还存在一些差异。
@@ -36,7 +36,7 @@
 
 | 能力 | V2装饰器\@Provider和\@Consumer                                             |V1装饰器\@Provide和\@Consume|
 | ------------------ | ----------------------------------------------------- |----------------------------------------------------- |
-| \@Consume(r)         |必须本地初始化，当找不到\@Provider的时候使用本地默认值。| API version 20以前，@Consume禁止本地初始化，当找不到对应\@Provide的时候，会抛出异常；从API version 20开始，@Consume支持设置默认值，如果没有设置默认值，且找不到对应\@Provide的时候，会抛出异常。 |
+| \@Consume(r)         |必须本地初始化，当找不到\@Provider时使用本地默认值。| API version 20以前，@Consume禁止本地初始化，当找不到对应\@Provide的时候，会抛出异常；从API version 20开始，@Consume支持设置默认值，如果没有设置默认值，且找不到对应\@Provide时，会抛出异常。 |
 | 支持类型           | 支持function。 | 不支持function。 |
 | 观察能力           | 仅能观察自身赋值变化，如果要观察嵌套场景，配合[\@Trace](arkts-new-observedV2-and-trace.md)一起使用。 | 观察第一层变化，如果要观察嵌套场景，配合[\@Observed和\@ObjectLink](arkts-observed-and-objectlink.md)一起使用。 |
 | alias和属性名         | alias是唯一匹配的key，缺省时默认属性名为alias。 | alias和属性名都为key，优先匹配alias，匹配不到可以匹配属性名。|
@@ -47,7 +47,7 @@
 
 ### 基本规则
 \@Provider语法：
-`@Provider(alias?: string) varName : varType = initValue`
+`@Provider(aliasName?: string) varName : varType = initValue`
 
 | \@Provider属性装饰器 | 说明                                                  |
 | ------------------ | ----------------------------------------------------- |
@@ -58,7 +58,7 @@
 | 观察能力         | 能力等同于\@Trace。变化会同步给对应的\@Consumer。 |
 
 \@Consumer语法：
-`@Consumer(alias?: string) varName : varType = initValue`
+`@Consumer(aliasName?: string) varName : varType = initValue`
 
 | \@Consumer属性装饰器 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ |
@@ -144,8 +144,8 @@ struct Child {
     - Child中`@Consumer() str: string = 'world'`向上查找，查找到Parent中声明的`@Provider() str: string = 'hello'`。
     - `@Consumer() str: string = 'world'`初始化为其查找到的`@Provider`的值，即‘hello’。
     - 两者建立双向同步关系。
-2. 点击Parent中的Button，改变\@Provider装饰的str，通知其对应的\@Consumer，对应UI刷新。
-3. 点击Child中Button，改变\@Consumer装饰的str，通知其对应的\@Provider，对应UI刷新。
+2. 点击Parent中的按钮，改变\@Provider装饰的str，通知其对应的\@Consumer，对应UI刷新。
+3. 点击Child中的按钮，改变\@Consumer装饰的str，通知其对应的\@Provider，对应UI刷新。
 
 ```ts
 @Entry
@@ -187,8 +187,8 @@ struct Child {
     - Child中`@Consumer() str: string = 'world'`向上查找，未查找到其数据提供方@Provider。
     - `@Consumer() str: string = 'world'`使用其本地默认值为‘world’。
     - 两者未建立双向同步关系。
-2. 点击Parent中的Button，改变\@Provider装饰的str1，仅刷新\@Provider关联的Button组件。
-3. 点击Child中Button，改变\@Consumer装饰的str，仅刷新\@Consumer关联的Button组件。
+2. 点击Parent中的按钮，改变\@Provider装饰的str1，仅刷新\@Provider关联的Button组件。
+3. 点击Child中的按钮，改变\@Consumer装饰的str，仅刷新\@Consumer关联的Button组件。
 
 ```ts
 @Entry
@@ -485,7 +485,7 @@ struct Parent {
   @Local childX: number = 0;
   @Local childY: number = 1;
   @Provider() onDrag: (x: number, y: number) => void = (x: number, y: number) => {
-    console.log(`onDrag event at x=${x} y:${y}`);
+    console.info(`onDrag event at x=${x} y:${y}`);
     this.childX = x;
     this.childY = y;
   }
@@ -621,8 +621,7 @@ struct Child {
 
 ### \@Provider和\@Consumer初始化\@Param
 
-- 点击```Text(`Parent @Consumer val: ${this.val}`)```，触发`@Consumer() val`的变化，变化同步给Index中`@Provider() val`，从而触发子组件```Text(`Parent @Param val2: ${this.val2}`)```的刷新。
-- `Parent @Consumer() val`的变化同步给Child，从而触发```Text(`Child @Param val ${this.val}`)```的刷新。
+\@Provider和\@Consumer装饰的变量可以初始化子组件中\@Param装饰的变量。
 
 ```ts
 @Entry
@@ -632,6 +631,7 @@ struct Index {
 
   build() {
     Column() {
+      Text(`Index @Provider val: ${this.val}`).fontSize(30)
       Parent({ val2: this.val })
     }
   }
@@ -644,7 +644,8 @@ struct Parent {
 
   build() {
     Column() {
-      Text(`Parent @Consumer val: ${this.val}`).fontSize(30).onClick(() => {
+      Text(`Parent @Consumer val: ${this.val}`).fontSize(30)
+      Button('change val').onClick(() => {
         this.val++;
       })
       Text(`Parent @Param val2: ${this.val2}`).fontSize(30)
@@ -664,4 +665,10 @@ struct Child {
   }
 }
 ```
+
+上面的例子中：
+
+- Index中\@Provider装饰的变量val与Parent中\@Consumer装饰的变量val建立双向数据绑定。Parent中\@Param装饰的变量val2接收Index中数据源val的数据，并同步其变化。Child中\@Param装饰的变量val接收Parent中数据源val的数据，并同步其变化。
+- 点击Parent中的按钮，触发`@Consumer() val`的变化，变化同步给Index中的`@Provider() val`和Child中的`@Param val`，对应UI刷新。
+- Index中`@Provider() val`的变化同步给Parent中的`@Param val2`，对应UI刷新。
 <!--no_check-->

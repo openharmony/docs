@@ -19,8 +19,8 @@
 
 ## 校验规则
 在API version 19以前，状态管理V1V2的混用规则可以总结为：
-1. V1装饰器不能和@ObserveV2一起使用。
-2. V2装饰器不能和@Observed一起使用。
+1. V1装饰器不能和[@ObserveV2](./arkts-new-observedV2-and-trace.md)一起使用。
+2. V2装饰器不能和[@Observed](./arkts-observed-and-objectlink.md)一起使用。
 3. V1->V2只能传简单类型，不允许传复杂类型，包括built-in类型Array、Map、Set、Date。
 4. V2->V1可以传简单类型和普通class，不允许传built-in类型Array、Map、Set、Date。
 

@@ -190,6 +190,8 @@ deviceSettings.setHomeWallpaper(wantTemp, fd).then(() => {
   console.info('Succeeded in setting home wallpaper');
 }).catch((err: BusinessError) => {
   console.error(`Failed to set home wallpaper. Code: ${err.code}, message: ${err.message}`);
+}).finally(() => {
+  fs.closeSync(fd);
 });
 ```
 ## deviceSettings.setUnlockWallpaper<sup>20+</sup>

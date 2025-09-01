@@ -53,7 +53,7 @@ TapGesture(value?: TapGestureParameters)
 
 >  **说明：**
 >
->  在[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)的fingerList元素中，手指索引编号与位置相对应，即fingerList[index]的id为index。对于先按下但未参与当前手势触发的手指，fingerList中对应的位置为空。建议优先使用fingerInfos。
+>  在[GestureEvent](ts-gesture-common.md#gestureevent对象说明)的fingerList元素中，手指索引编号与位置相对应，即fingerList[index]的id为index。对于先按下但未参与当前手势触发的手指，fingerList中对应的位置为空。建议优先使用fingerInfos。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -73,7 +73,7 @@ onAction(event: (event: GestureEvent) => void)
 
 | 参数名 | 类型                                       | 必填 | 说明                         |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
-| event  |  (event: [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)) => void | 是   | 手势事件回调函数。 |
+| event  |  (event: [GestureEvent](ts-gesture-common.md#gestureevent对象说明)) => void | 是   | 手势事件回调函数。 |
 
 ## EventLocationInfo<sup>20+</sup>对象说明
 
@@ -83,14 +83,14 @@ onAction(event: (event: GestureEvent) => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- |
-| x | number | 是 | 相对于组件左上角的x坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
-| y | number | 是 | 相对于组件左上角的y坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
-| windowX | number | 是 | 相对于窗口的左上角x坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
-| windowY | number | 是 | 相对于窗口的左上角y坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
-| displayX | number | 是 | 相对于屏幕的左上角x坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
-| displayY | number | 是 | 相对于屏幕的左上角y坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
+| x | number | 否 | 否 | 相对于组件左上角的x坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
+| y | number | 否 | 否 | 相对于组件左上角的y坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
+| windowX | number | 否 | 否 | 相对于窗口的左上角x坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
+| windowY | number | 否 | 否 | 相对于窗口的左上角y坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
+| displayX | number | 否 | 否 | 相对于屏幕的左上角x坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
+| displayY | number | 否 | 否 | 相对于屏幕的左上角y坐标。<br/>取值范围：[0, +∞) <br/>单位：vp |
 
 ## 示例
 

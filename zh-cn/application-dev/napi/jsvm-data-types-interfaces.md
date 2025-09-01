@@ -569,7 +569,7 @@ static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] na
 | OH_JSVM_CompileScriptWithOrigin | 编译JavaScript代码并返回绑定到当前环境的编译脚本，同时传入包括 sourceMapUrl 和源文件名在内的源代码信息，用于处理 source map 信息 |
 | OH_JSVM_CompileScriptWithOptions | 通用的编译接口，通过传入 option 数组完成前面的 compile 接口全部功能，同时支持后续选项扩展 |
 | OH_JSVM_CreateCodeCache         | 为编译脚本创建code cache                                                                  |
-| OH_JSVM_RunScript               | 执行编译脚本, 如果没有 JIT 权限支持，则打印一行日志提示开发者                                                                             |
+| OH_JSVM_RunScript               | 执行编译脚本，如果没有 JIT 权限支持，执行含wasm的脚本会失败，在特定场景下存在性能差异，并打印一行日志提示开发者                                                                             |
 
 场景示例：
 编译及执行 JS 代码（创建 VM 实例，注册函数，执行 JS，销毁 VM 实例）

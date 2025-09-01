@@ -94,6 +94,8 @@ onWindowStageCreate(windowStage: window.WindowStage): void {
 }
 ```
 
+11、如果开发者对数据持久化能力有较强的诉求，例如持久化时机，建议使用[Preferences](../../database/preferences-guidelines.md)进行数据持久化。注意：不允许混用PersistenceV2和prefrence，因为Preferences存储的数据不会有状态变量信息，反序列化的数据不能触发PersistenceV2的自动化存储。
+
 ## 使用场景
 
 ### 在两个页面之间存储数据

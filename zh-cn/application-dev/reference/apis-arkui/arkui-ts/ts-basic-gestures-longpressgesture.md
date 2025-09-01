@@ -10,9 +10,9 @@
 
 >  **说明：**
 >
->  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  部分设备会优先响应系统的双指长按手势，导致应用的双指长按手势不生效。
+>  从API version 18开始，部分设备会优先响应系统的双指长按手势，导致应用的双指长按手势不生效。
 
 
 ## 接口
@@ -66,9 +66,9 @@ LongPressGesture(options?: LongPressGestureHandlerOptions)
 
 >  **说明：**
 >
->  在[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)的fingerList元素中，手指索引编号与位置相对应，即fingerList[index]的id为index。对于先按下但未参与当前手势触发的手指，fingerList中对应的位置为空。建议优先使用fingerInfos。
+>  在[GestureEvent](ts-gesture-common.md#gestureevent对象说明)的fingerList元素中，手指索引编号与位置相对应，即fingerList[index]的id为index。对于先按下但未参与当前手势触发的手指，fingerList中对应的位置为空。建议优先使用fingerInfos。
 >
->  长按手势触发后，[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)中fingerList和fingerInfo的信息仅在有手指按下时才会更新，手指抬起时不会更新。
+>  长按手势触发后，[GestureEvent](ts-gesture-common.md#gestureevent对象说明)中fingerList和fingerInfo的信息仅在有手指按下时才会更新，手指抬起时不会更新。
 
 ### onAction
 
@@ -84,7 +84,7 @@ onAction(event: (event: GestureEvent) => void)
 
 | 参数名 | 类型                                       | 必填 | 说明                         |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
-| event  |  (event: [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)) => void | 是   | 长按手势识别成功回调函数。 |
+| event  |  (event: [GestureEvent](ts-gesture-common.md#gestureevent对象说明)) => void | 是   | 长按手势识别成功回调函数。 |
 
 ### onActionEnd
 
@@ -100,7 +100,7 @@ onActionEnd(event: (event: GestureEvent) => void)
 
 | 参数名 | 类型                                       | 必填 | 说明                         |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
-| event  |  (event: [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)) => void | 是   | 长按手势结束回调函数。 |
+| event  |  (event: [GestureEvent](ts-gesture-common.md#gestureevent对象说明)) => void | 是   | 长按手势结束回调函数。 |
 
 ### onActionCancel
 
@@ -132,7 +132,7 @@ onActionCancel(event: Callback\<GestureEvent\>)
 
 | 参数名 | 类型                                       | 必填 | 说明                         |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
-| event  |  Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是   | 长按手势取消回调函数。 |
+| event  |  Callback\<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是   | 长按手势取消回调函数。 |
 
 ## 示例
 

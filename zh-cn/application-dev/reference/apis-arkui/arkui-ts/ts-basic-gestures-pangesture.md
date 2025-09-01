@@ -250,7 +250,7 @@ getDistance(): number
 
 >  **说明：**
 >
->  在[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)的fingerList元素中，手指索引编号与位置相对应，即fingerList[index]的id为index。对于先按下但未参与当前手势触发的手指，fingerList中对应的位置为空。建议优先使用fingerInfos。
+>  在[GestureEvent](ts-gesture-common.md#gestureevent对象说明)的fingerList元素中，手指索引编号与位置相对应，即fingerList[index]的id为index。对于先按下但未参与当前手势触发的手指，fingerList中对应的位置为空。建议优先使用fingerInfos。
 
 ### onActionStart
 
@@ -266,7 +266,7 @@ onActionStart(event: (event: GestureEvent) => void)
 
 | 参数名 | 类型                                       | 必填 | 说明                         |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
-| event  |  (event: [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)) => void | 是   | 滑动手势识别成功回调。 |
+| event  |  (event: [GestureEvent](ts-gesture-common.md#gestureevent对象说明)) => void | 是   | 滑动手势识别成功回调。 |
 
 ### onActionUpdate
 
@@ -282,7 +282,7 @@ onActionUpdate(event: (event: GestureEvent) => void)
 
 | 参数名 | 类型                                       | 必填 | 说明                         |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
-| event  |  (event: [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)) => void | 是   | 滑动手势更新回调。 |
+| event  |  (event: [GestureEvent](ts-gesture-common.md#gestureevent对象说明)) => void | 是   | 滑动手势更新回调。 |
 
 ### onActionEnd
 
@@ -298,7 +298,7 @@ onActionEnd(event: (event: GestureEvent) => void)
 
 | 参数名 | 类型                                       | 必填 | 说明                         |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
-| event  |  (event: [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)) => void | 是   | 滑动手势结束回调。 |
+| event  |  (event: [GestureEvent](ts-gesture-common.md#gestureevent对象说明)) => void | 是   | 滑动手势结束回调。 |
 
 ### onActionCancel
 
@@ -330,7 +330,7 @@ onActionCancel(event: Callback\<GestureEvent\>)
 
 | 参数名 | 类型                                       | 必填 | 说明                         |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
-| event  |  Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是   | 滑动手势取消回调。 |
+| event  |  Callback\<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是   | 滑动手势取消回调。 |
 
 ## 示例
 
@@ -396,6 +396,6 @@ struct PanGestureExample {
 
 ![zh-cn_image_0000001174264374](figures/zh-cn_image_0000001174264374.png) 
 
-点击按钮修改PanGesture触发条件，双指向左下方滑动：
+点击按钮时，修改PanGesture触发条件为双指向左下方滑动：
 
  ![zh-cn_image1_0000001174264374](figures/zh-cn_image1_0000001174264374.png) 
