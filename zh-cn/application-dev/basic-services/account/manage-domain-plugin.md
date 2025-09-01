@@ -175,7 +175,7 @@ OEM厂商可以采用插件方式定制化域账号管理能力，系统提供�
 ```ts
 try {
   osAccount.DomainAccountManager.unregisterPlugin();
-  console.log('unregisterPlugin success.');
+  console.info('unregisterPlugin success.');
 } catch(err) {
   console.error('unregisterPlugin err:' + JSON.stringify(err));
 }

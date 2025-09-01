@@ -81,7 +81,7 @@ createAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
       if (err) {
         console.error('createAccount code: ' + JSON.stringify(err));
       } else {
-        console.log('createAccount successful.');
+        console.info('createAccount successful.');
       }
     });
   } catch (err) {
@@ -132,7 +132,7 @@ createAccount(name: string, options: CreateAccountOptions, callback: AsyncCallba
       if (err) {
         console.error('createAccount failed, error: ' + JSON.stringify(err));
       } else {
-        console.log('createAccount successfully');
+        console.info('createAccount successfully');
       }
     });
   } catch(err) {
@@ -185,7 +185,7 @@ createAccount(name: string, options?: CreateAccountOptions): Promise&lt;void&gt;
   }
   try {
     appAccountManager.createAccount('LiSi', options).then(() => {
-      console.log('createAccount successfully');
+      console.info('createAccount successfully');
     }).catch((err: BusinessError) => {
       console.error('createAccount failed, error: ' + JSON.stringify(err));
     });
@@ -235,8 +235,8 @@ createAccountImplicitly(owner: string, callback: AuthCallback): void
     context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
     onResultCallback(code: number, result?: appAccount.AuthResult): void {
-      console.log('resultCode: ' + code);
-      console.log('result: ' + JSON.stringify(result));
+      console.info('resultCode: ' + code);
+      console.info('result: ' + JSON.stringify(result));
     }
 
     onRequestRedirectedCallback(request: Want): void {
@@ -247,7 +247,7 @@ createAccountImplicitly(owner: string, callback: AuthCallback): void
         entities: ['entity.system.default'],
       }
       this.context.startAbility(wantInfo).then(() => {
-        console.log('startAbility successfully');
+        console.info('startAbility successfully');
       }).catch((err: BusinessError) => {
         console.error('startAbility err: ' + JSON.stringify(err));
       })
@@ -309,8 +309,8 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
     context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
     onResultCallback(code: number, result?: appAccount.AuthResult): void {
-      console.log('resultCode: ' + code);
-      console.log('result: ' + JSON.stringify(result));
+      console.info('resultCode: ' + code);
+      console.info('result: ' + JSON.stringify(result));
     }
 
     onRequestRedirectedCallback(request: Want): void {
@@ -321,7 +321,7 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
         entities: ['entity.system.default'],
       }
       this.context.startAbility(wantInfo).then(() => {
-        console.log('startAbility successfully');
+        console.info('startAbility successfully');
       }).catch((err: BusinessError) => {
         console.error('startAbility err: ' + JSON.stringify(err));
       })
@@ -381,7 +381,7 @@ removeAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
       if (err) {
         console.error('removeAccount failed, error: ' + JSON.stringify(err));
       } else {
-        console.log('removeAccount successfully');
+        console.info('removeAccount successfully');
       }
    });
   } catch(err) {
@@ -427,7 +427,7 @@ removeAccount(name: string): Promise&lt;void&gt;
 
   try {
     appAccountManager.removeAccount('Lisi').then(() => {
-      console.log('removeAccount successfully');
+      console.info('removeAccount successfully');
     }).catch((err: BusinessError) => {
       console.error('removeAccount failed, error: ' + JSON.stringify(err));
     });
@@ -475,7 +475,7 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean, callback: 
       if (err) {
         console.error('setAppAccess failed: ' + JSON.stringify(err));
       } else {
-        console.log('setAppAccess successfully');
+        console.info('setAppAccess successfully');
       }
     });
   } catch (err) {
@@ -524,7 +524,7 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean): Promise&l
 
   try {
     appAccountManager.setAppAccess('ZhangSan', 'com.example.accountjsdemo', true).then(() => {
-      console.log('setAppAccess successfully');
+      console.info('setAppAccess successfully');
     }).catch((err: BusinessError) => {
       console.error('setAppAccess failed: ' + JSON.stringify(err));
     });
@@ -571,7 +571,7 @@ checkAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;bool
         if (err) {
           console.error('checkAppAccess failed, error: ' + JSON.stringify(err));
         } else {
-          console.log('checkAppAccess successfully');
+          console.info('checkAppAccess successfully');
         }
       });
   } catch (err) {
@@ -618,7 +618,7 @@ checkAppAccess(name: string, bundleName: string): Promise&lt;boolean&gt;
 
   try {
     appAccountManager.checkAppAccess('ZhangSan', 'com.example.accountjsdemo').then((isAccessible: boolean) => {
-      console.log('checkAppAccess successfully, isAccessible: ' + isAccessible);
+      console.info('checkAppAccess successfully, isAccessible: ' + isAccessible);
     }).catch((err: BusinessError) => {
       console.error('checkAppAccess failed, error: ' + JSON.stringify(err));
     });
@@ -713,7 +713,7 @@ setDataSyncEnabled(name: string, isEnabled: boolean): Promise&lt;void&gt;
 
   try {
       appAccountManager.setDataSyncEnabled('ZhangSan', true).then(() => { 
-          console.log('setDataSyncEnabled Success');
+          console.info('setDataSyncEnabled Success');
       }).catch((err: BusinessError) => {
           console.error('setDataSyncEnabled err: ' + JSON.stringify(err));
       });
@@ -761,7 +761,7 @@ checkDataSyncEnabled(name: string, callback: AsyncCallback&lt;boolean&gt;): void
       if (err) {
         console.error('checkDataSyncEnabled failed, err: ' + JSON.stringify(err));
       } else {
-        console.log('checkDataSyncEnabled successfully, isEnabled: ' + isEnabled);
+        console.info('checkDataSyncEnabled successfully, isEnabled: ' + isEnabled);
       }
     });
   } catch (err) {
@@ -810,7 +810,7 @@ checkDataSyncEnabled(name: string): Promise&lt;boolean&gt;
 
   try {
     appAccountManager.checkDataSyncEnabled('ZhangSan').then((isEnabled: boolean) => {
-        console.log('checkDataSyncEnabled successfully, isEnabled: ' + isEnabled);
+        console.info('checkDataSyncEnabled successfully, isEnabled: ' + isEnabled);
     }).catch((err: BusinessError) => {
       console.error('checkDataSyncEnabled failed, err: ' + JSON.stringify(err));
     });
@@ -857,7 +857,7 @@ setCredential(name: string, credentialType: string, credential: string,callback:
       if (err) {
         console.error('setCredential failed, error: ' + JSON.stringify(err));
       } else {
-        console.log('setCredential successfully');
+        console.info('setCredential successfully');
       }
     });
   } catch (err) {
@@ -905,7 +905,7 @@ setCredential(name: string, credentialType: string, credential: string): Promise
 
   try {
     appAccountManager.setCredential('ZhangSan', 'PIN_SIX', 'xxxxxx').then(() => {
-      console.log('setCredential successfully');
+      console.info('setCredential successfully');
     }).catch((err: BusinessError) => {
       console.error('setCredential failed, error: ' + JSON.stringify(err));
     });
@@ -952,7 +952,7 @@ getCredential(name: string, credentialType: string, callback: AsyncCallback&lt;s
         if (err) {
           console.error('getCredential failed, error: ' + JSON.stringify(err));
         } else {
-          console.log('getCredential successfully, result: ' + result);
+          console.info('getCredential successfully, result: ' + result);
         }
       });
   } catch (err) {
@@ -1000,7 +1000,7 @@ getCredential(name: string, credentialType: string): Promise&lt;string&gt;
 
   try {
     appAccountManager.getCredential('ZhangSan', 'PIN_SIX').then((credential: string) => {
-        console.log('getCredential successfully, credential: ' + credential);
+        console.info('getCredential successfully, credential: ' + credential);
     }).catch((err: BusinessError) => {
         console.error('getCredential failed, error: ' + JSON.stringify(err));
     });
@@ -1048,7 +1048,7 @@ setCustomData(name: string, key: string, value: string, callback: AsyncCallback&
       if (err) {
         console.error('setCustomData failed, error: ' + JSON.stringify(err));
       } else {
-        console.log('setCustomData successfully');
+        console.info('setCustomData successfully');
       }
     });
   } catch (err) {
@@ -1097,7 +1097,7 @@ setCustomData(name: string, key: string, value: string): Promise&lt;void&gt;
 
   try {
     appAccountManager.setCustomData('ZhangSan', 'age', '12').then(() => {
-      console.log('setCustomData successfully');
+      console.info('setCustomData successfully');
     }).catch((err: BusinessError) => {
       console.error('setCustomData failed, error: ' + JSON.stringify(err));
     });
@@ -1144,7 +1144,7 @@ getCustomData(name: string, key: string, callback: AsyncCallback&lt;string&gt;):
       if (err) {
         console.error('getCustomData failed, error: ' + err);
       } else {
-        console.log('getCustomData successfully, data: ' + data);
+        console.info('getCustomData successfully, data: ' + data);
       }
     });
   } catch (err) {
@@ -1192,7 +1192,7 @@ getCustomData(name: string, key: string): Promise&lt;string&gt;
 
   try {
     appAccountManager.getCustomData('ZhangSan', 'age').then((data: string) => {
-      console.log('getCustomData successfully, data: ' + data);
+      console.info('getCustomData successfully, data: ' + data);
     }).catch((err: BusinessError) => {
       console.error('getCustomData failed, error: ' + JSON.stringify(err));
     });
@@ -1445,7 +1445,7 @@ on(type: 'accountChange', owners: Array&lt;string&gt;, callback: Callback&lt;Arr
 
   ```ts
   function changeOnCallback(data: appAccount.AppAccountInfo[]): void {
-  	console.log('receive change data:' + JSON.stringify(data));
+  	console.info('receive change data:' + JSON.stringify(data));
   }
   try{
   	appAccountManager.on('accountChange', ['com.example.actsaccounttest'], changeOnCallback);
@@ -1483,7 +1483,7 @@ off(type: 'accountChange', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt
 
   ```ts
   function changeOnCallback(data: appAccount.AppAccountInfo[]): void {
-  	console.log('receive change data:' + JSON.stringify(data));
+  	console.info('receive change data:' + JSON.stringify(data));
   }
   try{
   	appAccountManager.on('accountChange', ['com.example.actsaccounttest'], changeOnCallback);
@@ -1541,8 +1541,8 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
     context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
     onResultCallback(code: number, authResult?: appAccount.AuthResult): void {
-      console.log('resultCode: ' + code);
-      console.log('authResult: ' + JSON.stringify(authResult));
+      console.info('resultCode: ' + code);
+      console.info('authResult: ' + JSON.stringify(authResult));
     }
 
     onRequestRedirectedCallback(request: Want): void {
@@ -1553,7 +1553,7 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
         entities: ['entity.system.default'],
       }
       this.context.startAbility(wantInfo).then(() => {
-        console.log('startAbility successfully');
+        console.info('startAbility successfully');
       }).catch((err: BusinessError) => {
         console.error('startAbility err: ' + JSON.stringify(err));
       })
@@ -1617,8 +1617,8 @@ auth(name: string, owner: string, authType: string, options: Record<string, Obje
     context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
     onResultCallback(code: number, authResult?: appAccount.AuthResult): void {
-      console.log('resultCode: ' + code);
-      console.log('authResult: ' + JSON.stringify(authResult));
+      console.info('resultCode: ' + code);
+      console.info('authResult: ' + JSON.stringify(authResult));
     }
 
     onRequestRedirectedCallback(request: Want): void {
@@ -1629,7 +1629,7 @@ auth(name: string, owner: string, authType: string, options: Record<string, Obje
         entities: ['entity.system.default'],
       }
       this.context.startAbility(wantInfo).then(() => {
-        console.log('startAbility successfully');
+        console.info('startAbility successfully');
       }).catch((err: BusinessError) => {
         console.error('startAbility err: ' + JSON.stringify(err));
       })
@@ -1692,7 +1692,7 @@ getAuthToken(name: string, owner: string, authType: string, callback: AsyncCallb
         if (err) {
           console.error('getAuthToken failed, error: ' + JSON.stringify(err));
         } else {
-          console.log('getAuthToken successfully, token: ' + token);
+          console.info('getAuthToken successfully, token: ' + token);
         }
       });
   } catch (err) {
@@ -1741,7 +1741,7 @@ getAuthToken(name: string, owner: string, authType: string): Promise&lt;string&g
   
   try {
     appAccountManager.getAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((token: string) => {
-      console.log('getAuthToken successfully, token: ' + token);
+      console.info('getAuthToken successfully, token: ' + token);
     }).catch((err: BusinessError) => {
       console.error('getAuthToken failed, error: ' + JSON.stringify(err));
     });
@@ -1789,7 +1789,7 @@ setAuthToken(name: string, authType: string, token: string, callback: AsyncCallb
       if (err) {
         console.error('setAuthToken failed, error: ' + JSON.stringify(err));
       } else {
-        console.log('setAuthToken successfully');
+        console.info('setAuthToken successfully');
       }
     });
   } catch (err) {
@@ -1838,7 +1838,7 @@ setAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;
   
   try {
     appAccountManager.setAuthToken('LiSi', 'getSocialData', 'xxxx').then(() => {
-        console.log('setAuthToken successfully');
+        console.info('setAuthToken successfully');
     }).catch((err: BusinessError) => {
         console.error('setAuthToken failed, error: ' + JSON.stringify(err));
     });
@@ -1888,7 +1888,7 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string, ca
         if (err) {
           console.error('deleteAuthToken failed, error: ' + JSON.stringify(err));
         } else {
-          console.log('deleteAuthToken successfully');
+          console.info('deleteAuthToken successfully');
         }
       });
   } catch (err) {
@@ -1938,7 +1938,7 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string): P
   
   try {
     appAccountManager.deleteAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx').then(() => {
-      console.log('deleteAuthToken successfully');
+      console.info('deleteAuthToken successfully');
     }).catch((err: BusinessError) => {
       console.error('deleteAuthToken failed, error: ' + JSON.stringify(err));
     });
@@ -1989,7 +1989,7 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
         if (err) {
           console.error('setAuthTokenVisibility failed, error: ' + JSON.stringify(err));
         } else {
-          console.log('setAuthTokenVisibility successfully');
+          console.info('setAuthTokenVisibility successfully');
         }
       });
   } catch (err) {
@@ -2040,7 +2040,7 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
   
   try {
     appAccountManager.setAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true).then(() => {
-      console.log('setAuthTokenVisibility successfully');
+      console.info('setAuthTokenVisibility successfully');
     }).catch((err: BusinessError) => {
       console.error('setAuthTokenVisibility failed, error: ' + JSON.stringify(err));
     });
@@ -2089,7 +2089,7 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string, cal
         if (err) {
           console.error('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
         } else {
-          console.log('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
+          console.info('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
         }
       });
   } catch (err) {
@@ -2139,7 +2139,7 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string): Pr
   try {
     appAccountManager.checkAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((
       isVisible: boolean) => {
-      console.log('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
+      console.info('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
     }).catch((err: BusinessError) => {
       console.error('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
     });
@@ -2186,7 +2186,7 @@ getAllAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&l
         if (err) {
           console.error('getAllAuthTokens failed, error: ' + JSON.stringify(err));
         } else {
-          console.log('getAllAuthTokens successfully, tokenArr: ' + tokenArr);
+          console.info('getAllAuthTokens successfully, tokenArr: ' + tokenArr);
         }
       });
   } catch (err) {
@@ -2234,7 +2234,7 @@ getAllAuthTokens(name: string, owner: string): Promise&lt;Array&lt;AuthTokenInfo
   try {
     appAccountManager.getAllAuthTokens('LiSi', 'com.example.accountjsdemo').then((
       tokenArr: appAccount.AuthTokenInfo[]) => {
-      console.log('getAllAuthTokens successfully, tokenArr: ' + JSON.stringify(tokenArr));
+      console.info('getAllAuthTokens successfully, tokenArr: ' + JSON.stringify(tokenArr));
     }).catch((err: BusinessError) => {
       console.error('getAllAuthTokens failed, error: ' + JSON.stringify(err));
     });
@@ -2281,7 +2281,7 @@ getAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt;
       if (err) {
         console.error('getAuthList failed, error: ' + JSON.stringify(err));
       } else {
-        console.log('getAuthList successfully, authList: ' + authList);
+        console.info('getAuthList successfully, authList: ' + authList);
       }
     });
   } catch (err) {
@@ -2329,7 +2329,7 @@ getAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
   
   try {
     appAccountManager.getAuthList('LiSi', 'getSocialData').then((authList: string[]) => {
-        console.log('getAuthList successfully, authList: ' + authList);
+        console.info('getAuthList successfully, authList: ' + authList);
     }).catch((err: BusinessError) => {
         console.error('getAuthList failed, error: ' + JSON.stringify(err));
     });
@@ -2498,7 +2498,7 @@ queryAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorIn
         if (err) {
           console.error('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
         } else {
-          console.log('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
+          console.info('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
         }
       });
   } catch (err) {
@@ -2545,7 +2545,7 @@ queryAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
   try {
     appAccountManager.queryAuthenticatorInfo('com.example.accountjsdemo').then((
       info: appAccount.AuthenticatorInfo) => { 
-      console.log('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
+      console.info('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
     }).catch((err: BusinessError) => {
       console.error('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
     });
@@ -2597,7 +2597,7 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
         if (err) {
           console.error('checkAccountLabels failed, error: ' + JSON.stringify(err));
         } else {
-          console.log('checkAccountLabels successfully, hasAllLabels: ' + hasAllLabels);
+          console.info('checkAccountLabels successfully, hasAllLabels: ' + hasAllLabels);
         }
       });
   } catch (err) {
@@ -2650,7 +2650,7 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Pr
   try {
     appAccountManager.checkAccountLabels('zhangsan', 'com.example.accountjsdemo', labels).then((
       hasAllLabels: boolean) => {
-      console.log('checkAccountLabels successfully: ' + hasAllLabels);
+      console.info('checkAccountLabels successfully: ' + hasAllLabels);
     }).catch((err: BusinessError) => {
       console.error('checkAccountLabels failed, error: ' + JSON.stringify(err));
     });
@@ -2697,7 +2697,7 @@ deleteCredential(name: string, credentialType: string, callback: AsyncCallback&l
       if (err) {
         console.error('deleteCredential failed, error: ' + JSON.stringify(err));
       } else {
-        console.log('deleteCredential successfully');
+        console.info('deleteCredential successfully');
       }
     });
   } catch (err) {
@@ -2745,7 +2745,7 @@ deleteCredential(name: string, credentialType: string): Promise&lt;void&gt;
   
   try {
     appAccountManager.deleteCredential('zhangsan', 'PIN_SIX').then(() => {
-      console.log('deleteCredential successfully');
+      console.info('deleteCredential successfully');
     }).catch((err: BusinessError) => {
       console.error('deleteCredential failed, error: ' + JSON.stringify(err));
     });
@@ -2796,7 +2796,7 @@ selectAccountsByOptions(options: SelectAccountsOptions, callback: AsyncCallback&
         if (err) {
           console.error('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
         } else {
-          console.log('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
+          console.info('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
         }
       });
   } catch (err) {
@@ -2846,7 +2846,7 @@ selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;Array&lt;App
   };
   try {
     appAccountManager.selectAccountsByOptions(options).then((accountArr: appAccount.AppAccountInfo[]) => {
-      console.log('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
+      console.info('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
     }).catch((err: BusinessError) => {
       console.error('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
     });
@@ -2893,11 +2893,11 @@ verifyCredential(name: string, owner: string, callback: AuthCallback): void
   try {
       appAccountManager.verifyCredential('zhangsan', 'com.example.accountjsdemo', {
           onResult: (resultCode: number, result?: appAccount.AuthResult) => {
-              console.log('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
-              console.log('verifyCredential onResult, result: ' + JSON.stringify(result));
+              console.info('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
+              console.info('verifyCredential onResult, result: ' + JSON.stringify(result));
           },
           onRequestRedirected: (request: Want) => {
-              console.log('verifyCredential onRequestRedirected, request: ' + JSON.stringify(request));
+              console.info('verifyCredential onRequestRedirected, request: ' + JSON.stringify(request));
           }
       });
   } catch (err) {
@@ -2948,11 +2948,11 @@ verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, 
   try {
     appAccountManager.verifyCredential('zhangsan', 'com.example.accountjsdemo', options, {
       onResult: (resultCode: number, result?: appAccount.AuthResult) => {
-        console.log('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
-        console.log('verifyCredential onResult, result: ' + JSON.stringify(result));
+        console.info('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
+        console.info('verifyCredential onResult, result: ' + JSON.stringify(result));
       },
       onRequestRedirected: (request: Want) => {
-        console.log('verifyCredential onRequestRedirected, request: ' + JSON.stringify(request));
+        console.info('verifyCredential onRequestRedirected, request: ' + JSON.stringify(request));
       }
     });
   } catch (err) {
@@ -2996,11 +2996,11 @@ setAuthenticatorProperties(owner: string, callback: AuthCallback): void
   try {
     appAccountManager.setAuthenticatorProperties('com.example.accountjsdemo', {
       onResult: (resultCode: number, result?: appAccount.AuthResult) => {
-        console.log('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
-        console.log('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
+        console.info('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
+        console.info('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
       },
       onRequestRedirected: (request: Want) => {
-        console.log('setAuthenticatorProperties onRequestRedirected, request: ' + JSON.stringify(request));
+        console.info('setAuthenticatorProperties onRequestRedirected, request: ' + JSON.stringify(request));
       }
     });
   } catch (err) {
@@ -3048,11 +3048,11 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
   try {
     appAccountManager.setAuthenticatorProperties('com.example.accountjsdemo', options, {
       onResult: (resultCode: number, result?: appAccount.AuthResult) => {
-        console.log('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
-        console.log('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
+        console.info('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
+        console.info('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
       },
       onRequestRedirected: (request: Want) => {
-        console.log('setAuthenticatorProperties onRequestRedirected, request: ' + JSON.stringify(request));
+        console.info('setAuthenticatorProperties onRequestRedirected, request: ' + JSON.stringify(request));
       }
     });
   } catch (err) {
@@ -3151,7 +3151,7 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.addAccount('LiSi', 'token101').then(()=> { 
-    console.log('addAccount Success');
+    console.info('addAccount Success');
   }).catch((err: BusinessError) => {
     console.error('addAccount err: ' + JSON.stringify(err));
   });
@@ -3190,8 +3190,8 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
     context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
     onResultCallback(code: number, result: Record<string, Object>): void {
-      console.log('resultCode: ' + code);
-      console.log('result: ' + JSON.stringify(result));
+      console.info('resultCode: ' + code);
+      console.info('result: ' + JSON.stringify(result));
     }
 
     onRequestRedirectedCallback(request: Want): void {
@@ -3202,7 +3202,7 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
         entities: ['entity.system.default'],
       }
       this.context.startAbility(wantInfo).then(() => {
-        console.log('startAbility successfully');
+        console.info('startAbility successfully');
       }).catch((err: BusinessError) => {
         console.error('startAbility err: ' + JSON.stringify(err));
       })
@@ -3277,7 +3277,7 @@ deleteAccount(name: string): Promise&lt;void&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   appAccountManager.deleteAccount('ZhaoLiu').then(() => { 
-        console.log('deleteAccount Success');
+        console.info('deleteAccount Success');
    }).catch((err: BusinessError) => {
       console.error('deleteAccount err: ' + JSON.stringify(err));
   });
@@ -3343,7 +3343,7 @@ disableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
-      console.log('disableAppAccess Success');
+      console.info('disableAppAccess Success');
   }).catch((err: BusinessError) => {
       console.error('disableAppAccess err: ' + JSON.stringify(err));
   });
@@ -3378,7 +3378,7 @@ enableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;voi
       if (err) {
         console.error('enableAppAccess err: ' + JSON.stringify(err));
       } else {
-        console.log('enableAppAccess successful.');
+        console.info('enableAppAccess successful.');
       }
    });
   ```
@@ -3414,7 +3414,7 @@ enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
-       console.log('enableAppAccess Success');
+       console.info('enableAppAccess Success');
   }).catch((err: BusinessError) => {
       console.error('enableAppAccess err: ' + JSON.stringify(err));
   });
@@ -3450,7 +3450,7 @@ checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;):
     if (err) {
       console.error('checkAppAccountSyncEnable code: ' + JSON.stringify(err));
     } else {
-      console.log('checkAppAccountSyncEnable result: ' + result);
+      console.info('checkAppAccountSyncEnable result: ' + result);
     }
   });
   ```
@@ -3487,7 +3487,7 @@ checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.checkAppAccountSyncEnable('ZhangSan').then((data: boolean) => { 
-      console.log('checkAppAccountSyncEnable, result: ' + data);
+      console.info('checkAppAccountSyncEnable, result: ' + data);
   }).catch((err: BusinessError) => {
       console.error('checkAppAccountSyncEnable err: ' + JSON.stringify(err));
   });
@@ -3523,7 +3523,7 @@ setAccountCredential(name: string, credentialType: string, credential: string,ca
     if (err) {
       console.error('setAccountCredential err: ' + JSON.stringify(err));
     } else {
-      console.log('setAccountCredential successful.');
+      console.info('setAccountCredential successful.');
     }
   });
   ```
@@ -3560,7 +3560,7 @@ setAccountCredential(name: string, credentialType: string, credential: string): 
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001').then(() => { 
-      console.log('setAccountCredential Success');
+      console.info('setAccountCredential Success');
   }).catch((err: BusinessError) => {
       console.error('setAccountCredential err: ' + JSON.stringify(err));
   });
@@ -3596,7 +3596,7 @@ setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback&lt;
     if (err) {
       console.error('setAccountExtraInfo err: ' + JSON.stringify(err));
     } else {
-      console.log('setAccountExtraInfo successful.');
+      console.info('setAccountExtraInfo successful.');
     }
   });
   ```
@@ -3633,7 +3633,7 @@ setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002').then(() => { 
-      console.log('setAccountExtraInfo Success');
+      console.info('setAccountExtraInfo Success');
   }).catch((err: BusinessError) => {
       console.error('setAccountExtraInfo err: ' + JSON.stringify(err));
   });
@@ -3670,7 +3670,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback
     if (err) {
       console.error('setAppAccountSyncEnable err: ' + JSON.stringify(err));
     } else {
-      console.log('setAppAccountSyncEnable successful.');
+      console.info('setAppAccountSyncEnable successful.');
     }
   });
   ```
@@ -3708,7 +3708,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAppAccountSyncEnable('ZhangSan', true).then(() => { 
-      console.log('setAppAccountSyncEnable Success');
+      console.info('setAppAccountSyncEnable Success');
   }).catch((err: BusinessError) => {
       console.error('setAppAccountSyncEnable err: ' + JSON.stringify(err));
   });
@@ -3745,7 +3745,7 @@ setAssociatedData(name: string, key: string, value: string, callback: AsyncCallb
     if (err) {
       console.error('setAssociatedData err: ' + JSON.stringify(err));
     } else {
-      console.log('setAssociatedData successful.');
+      console.info('setAssociatedData successful.');
     }
   });
   ```
@@ -3783,7 +3783,7 @@ setAssociatedData(name: string, key: string, value: string): Promise&lt;void&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001').then(() => { 
-      console.log('setAssociatedData Success');
+      console.info('setAssociatedData Success');
   }).catch((err: BusinessError) => {
       console.error('setAssociatedData err: ' + JSON.stringify(err));
   });
@@ -3846,7 +3846,7 @@ getAllAccessibleAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAllAccessibleAccounts().then((data: appAccount.AppAccountInfo[]) => { 
-       console.log('getAllAccessibleAccounts: ' + data);
+       console.info('getAllAccessibleAccounts: ' + data);
   }).catch((err: BusinessError) => {
       console.error('getAllAccessibleAccounts err: ' + JSON.stringify(err));
   });
@@ -3918,7 +3918,7 @@ getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
   
   const selfBundle = 'com.example.actsgetallaaccounts';
   appAccountManager.getAllAccounts(selfBundle).then((data: appAccount.AppAccountInfo[]) => { 
-       console.log('getAllAccounts: ' + data);
+       console.info('getAllAccounts: ' + data);
   }).catch((err: BusinessError) => {
       console.error('getAllAccounts err: ' + JSON.stringify(err));
   });
@@ -3953,7 +3953,7 @@ getAccountCredential(name: string, credentialType: string, callback: AsyncCallba
     if (err) {
       console.error('getAccountCredential err: ' + JSON.stringify(err));
     } else {
-      console.log('getAccountCredential result: ' + result);
+      console.info('getAccountCredential result: ' + result);
     }
   });
   ```
@@ -3989,7 +3989,7 @@ getAccountCredential(name: string, credentialType: string): Promise&lt;string&gt
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAccountCredential('ZhangSan', 'credentialType001').then((data: string) => { 
-      console.log('getAccountCredential, result: ' + data);
+      console.info('getAccountCredential, result: ' + data);
   }).catch((err: BusinessError) => {
       console.error('getAccountCredential err: ' + JSON.stringify(err));
   });
@@ -4023,7 +4023,7 @@ getAccountExtraInfo(name: string, callback: AsyncCallback&lt;string&gt;): void
     if (err) {
       console.error('getAccountExtraInfo err: ' + JSON.stringify(err));
     } else {
-      console.log('getAccountExtraInfo result: ' + result);
+      console.info('getAccountExtraInfo result: ' + result);
     }
   });
   ```
@@ -4058,7 +4058,7 @@ getAccountExtraInfo(name: string): Promise&lt;string&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAccountExtraInfo('ZhangSan').then((data: string) => { 
-      console.log('getAccountExtraInfo, result: ' + data);
+      console.info('getAccountExtraInfo, result: ' + data);
   }).catch((err: BusinessError) => {
       console.error('getAccountExtraInfo err: ' + JSON.stringify(err));
   });
@@ -4093,7 +4093,7 @@ getAssociatedData(name: string, key: string, callback: AsyncCallback&lt;string&g
     if (err) {
       console.error('getAssociatedData err: ' + JSON.stringify(err));
     } else {
-      console.log('getAssociatedData result: ' + result);
+      console.info('getAssociatedData result: ' + result);
     }
   });
   ```
@@ -4129,7 +4129,7 @@ getAssociatedData(name: string, key: string): Promise&lt;string&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAssociatedData('ZhangSan', 'k001').then((data: string) => { 
-       console.log('getAssociatedData: ' + data);
+       console.info('getAssociatedData: ' + data);
   }).catch((err: BusinessError) => {
       console.error('getAssociatedData err: ' + JSON.stringify(err));
   });
@@ -4239,8 +4239,8 @@ authenticate(name: string, owner: string, authType: string, options: {[key: stri
     context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
     onResultCallback(code: number, result: Record<string, Object>): void {
-      console.log('resultCode: ' + code);
-      console.log('result: ' + JSON.stringify(result));
+      console.info('resultCode: ' + code);
+      console.info('result: ' + JSON.stringify(result));
     }
 
     onRequestRedirectedCallback(request: Want): void {
@@ -4251,7 +4251,7 @@ authenticate(name: string, owner: string, authType: string, options: {[key: stri
         entities: ['entity.system.default'],
       }
       this.context.startAbility(wantInfo).then(() => {
-        console.log('startAbility successfully');
+        console.info('startAbility successfully');
       }).catch((err: BusinessError) => {
         console.error('startAbility err: ' + JSON.stringify(err));
       })
@@ -4298,7 +4298,7 @@ getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCall
       if (err) {
         console.error('getOAuthToken err: ' + JSON.stringify(err));
       } else {
-        console.log('getOAuthToken token: ' + data);
+        console.info('getOAuthToken token: ' + data);
       }
     });
   ```
@@ -4335,7 +4335,7 @@ getOAuthToken(name: string, owner: string, authType: string): Promise&lt;string&
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((data: string) => {
-       console.log('getOAuthToken token: ' + data);
+       console.info('getOAuthToken token: ' + data);
   }).catch((err: BusinessError) => {
       console.error('getOAuthToken err: ' + JSON.stringify(err));
   });
@@ -4371,7 +4371,7 @@ setOAuthToken(name: string, authType: string, token: string, callback: AsyncCall
     if (err) {
       console.error('setOAuthToken err: ' + JSON.stringify(err));
     } else {
-      console.log('setOAuthToken successful.');
+      console.info('setOAuthToken successful.');
     }
   });
   ```
@@ -4408,7 +4408,7 @@ setOAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx').then(() => {
-      console.log('setOAuthToken successfully');
+      console.info('setOAuthToken successfully');
   }).catch((err: BusinessError) => {
       console.error('setOAuthToken err: ' + JSON.stringify(err));
   });
@@ -4446,7 +4446,7 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string, c
       if (err) {
         console.error('deleteOAuthToken err: ' + JSON.stringify(err));
       } else {
-        console.log('deleteOAuthToken successful.');
+        console.info('deleteOAuthToken successful.');
       }
     });
   ```
@@ -4484,7 +4484,7 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string): 
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx').then(() => {
-       console.log('deleteOAuthToken successfully');
+       console.info('deleteOAuthToken successfully');
   }).catch((err: BusinessError) => {
       console.error('deleteOAuthToken err: ' + JSON.stringify(err));
   });
@@ -4522,7 +4522,7 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
       if (err) {
         console.error('setOAuthTokenVisibility err: ' + JSON.stringify(err));
       } else {
-        console.log('setOAuthTokenVisibility successful.');
+        console.info('setOAuthTokenVisibility successful.');
       }
     });
   ```
@@ -4560,7 +4560,7 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true).then(() => {
-      console.log('setOAuthTokenVisibility successfully');
+      console.info('setOAuthTokenVisibility successfully');
   }).catch((err: BusinessError) => {
       console.error('setOAuthTokenVisibility err: ' + JSON.stringify(err));
   });
@@ -4597,7 +4597,7 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, ca
       if (err) {
         console.error('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
       } else {
-        console.log('checkOAuthTokenVisibility isVisible: ' + data);
+        console.info('checkOAuthTokenVisibility isVisible: ' + data);
       }
     });
   ```
@@ -4635,7 +4635,7 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): P
   
   appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((
     data: boolean) => {
-    console.log('checkOAuthTokenVisibility isVisible: ' + data);
+    console.info('checkOAuthTokenVisibility isVisible: ' + data);
   }).catch((err: BusinessError) => {
     console.error('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
   });
@@ -4671,7 +4671,7 @@ getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&
       if (err) {
         console.error('getAllOAuthTokens err: ' + JSON.stringify(err));
       } else {
-        console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
+        console.info('getAllOAuthTokens data: ' + JSON.stringify(data));
       }
     });
   ```
@@ -4708,7 +4708,7 @@ getAllOAuthTokens(name: string, owner: string): Promise&lt;Array&lt;OAuthTokenIn
   
   appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo').then((
     data: appAccount.OAuthTokenInfo[]) => {
-    console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
+    console.info('getAllOAuthTokens data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.error('getAllOAuthTokens err: ' + JSON.stringify(err));
   });
@@ -4743,7 +4743,7 @@ getOAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt
     if (err) {
       console.error('getOAuthList err: ' + JSON.stringify(err));
     } else {
-      console.log('getOAuthList data: ' + JSON.stringify(data));
+      console.info('getOAuthList data: ' + JSON.stringify(data));
     }
   });
   ```
@@ -4779,7 +4779,7 @@ getOAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getOAuthList('LiSi', 'getSocialData').then((data: string[]) => {
-       console.log('getOAuthList data: ' + JSON.stringify(data));
+       console.info('getOAuthList data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
       console.error('getOAuthList err: ' + JSON.stringify(err));
   });
@@ -4907,7 +4907,7 @@ getAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorInfo
       if (err) {
         console.error('getAuthenticatorInfo err: ' + JSON.stringify(err));
       } else {
-        console.log('getAuthenticatorInfo data: ' + JSON.stringify(data));
+        console.info('getAuthenticatorInfo data: ' + JSON.stringify(data));
       }
     });
   ```
@@ -4943,7 +4943,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
   
   appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo').then((
     data: appAccount.AuthenticatorInfo) => { 
-    console.log('getAuthenticatorInfo: ' + JSON.stringify(data));
+    console.info('getAuthenticatorInfo: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.error('getAuthenticatorInfo err: ' + JSON.stringify(err));
   });
