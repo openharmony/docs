@@ -119,6 +119,8 @@ didFail(code: WebNetErrorList): void
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 17100021 | The resource handler is invalid. |
 
+**系统能力：** SystemCapability.Web.Webview.Core
+
 **示例：**
 
 示例请参考[OnRequestStart](./arkts-apis-webview-WebSchemeHandler.md#onrequeststart12)。
