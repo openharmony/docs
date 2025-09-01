@@ -1740,7 +1740,7 @@ getPacFileUrl(): string
 
 获取当前PAC脚本的URL地址。
 
-**系统能力**：cSystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 **返回值：**
 
