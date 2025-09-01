@@ -291,7 +291,7 @@ writableStream.on('finish', () => {
 
 on(event: string, callback: Callback<emitter.EventData>): void
 
-注册事件处理函数来监听可写流上的不同事件。
+注册事件处理函数来监听可写流上的不同事件。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -338,7 +338,7 @@ writable.write('hello', 'utf8', () => {
 
 off(event: string, callback?: Callback<emitter.EventData>): void
 
-移除通过[on](#on)注册的事件处理函数。
+移除通过[on](#on)注册的事件处理函数。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -927,7 +927,7 @@ readable.on('data', () => {
 
 on(event: string, callback: Callback<emitter.EventData>): void
 
-注册事件处理函数来监听可读流上的不同事件。
+注册事件处理函数来监听可读流上的不同事件。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
