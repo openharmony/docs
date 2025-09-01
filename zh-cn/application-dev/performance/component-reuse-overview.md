@@ -1,5 +1,12 @@
 # 组件复用总览
 
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 组件复用是优化用户界面性能，提升应用流畅度的一种核心策略，它通过复用已存在的组件节点而非创建新的节点，大幅度降低了因频繁创建与销毁组件带来的性能损耗，从而确保UI线程的流畅性与响应速度。组件复用针对的是自定义组件，只要发生了相同自定义组件销毁和再创建的场景，都可以使用组件复用。
 
 本文系统地描述了六种复用类型及其应用场景，帮助开发者更好地理解和实施组件复用策略以优化应用性能。
@@ -332,7 +339,7 @@ struct ChildComponentA {
       Grid() {
         ForEach((new Array(20)).fill(''), (item: string,index: number) => {
           GridItem() {
-            Image($r('app.media.startIcon'))
+            Image($r('app.media.icon'))
               .height(20)
           }
         })
@@ -512,7 +519,7 @@ struct ChildComponentA {
       Grid() {
         ForEach((new Array(20)).fill(''), (item: string,index: number) => {
           GridItem() {
-            Image($r('app.media.startIcon'))
+            Image($r('app.media.icon'))
               .height(20)
           }
         })

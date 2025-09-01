@@ -52,7 +52,7 @@ libc++_shared.so被打包到应用目录下了，每个应用都有一份独立�
     NAPI_MODULE_INIT()
     {
         napi_property_descriptor desc[] = {
-            {" callNapi ", nullptr, CallNapi, nullptr, nullptr, nullptr, napi_default, nullptr}};
+            {"callNapi", nullptr, CallNapi, nullptr, nullptr, nullptr, napi_default, nullptr}};
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
         return exports;
     }
