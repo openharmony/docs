@@ -1,5 +1,10 @@
 # ImageEffect_Any
-
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zyj208-->
+<!--Designer: @wangshoucheng-->
+<!--Tester: @gengfei-->
+<!--Adviser: @zengyawen-->
 ## 概述
 
 参数结构体。
