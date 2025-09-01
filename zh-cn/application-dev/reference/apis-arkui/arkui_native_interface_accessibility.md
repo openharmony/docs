@@ -205,15 +205,15 @@ Action附加字段，对需要执行的Action进行处理说明。
 
 **描述：**
 
-用于特定组件设置组件的当前值、最大值、最小值，如Slider、Rating、Progress组件。
+用于为特定组件（如Slider、Rating、Progress组件）设置和获取其当前值、最大值和最小值。
 
 **参数:**
 
 | 名称    | 类型   | 描述     |
 | ------- | ------ | -------- |
-| min     | double | 最小值。 |
-| max     | double | 最大值。 |
-| current | double | 当前值。 |
+| min     | double | 组件的最小值。 |
+| max     | double | 组件的最大值。 |
+| current | double | 组件的当前值。 |
 
 **起始版本：**
 
@@ -225,15 +225,15 @@ Action附加字段，对需要执行的Action进行处理说明。
 
 **描述：**
 
-用于特定组件设置组件的行数、列数以及选择模式，如List、Flex、Select、Swiper组件。
+用于配置特定组件（如List、Flex、Select、Swiper组件）的网格布局属性。
 
 **参数:**
 
 | 名称          | 类型  | 描述       |
 | ------------- | ----- | ---------- |
-| rowCount      | int32 | 行数。     |
-| columnCount   | int32 | 列数。     |
-| selectionMode | int32 | 选择模式。 |
+| rowCount      | int32 | 组件的行数。     |
+| columnCount   | int32 | 组件的列数。     |
+| selectionMode | int32 | 0: 仅选择一行，否则选择多行。 |
 
 **起始版本：**
 
@@ -245,7 +245,7 @@ Action附加字段，对需要执行的Action进行处理说明。
 
 **描述：**
 
-用于特定组件设置组件的属性值，如List、Flex、Select、Swiper组件。
+用于配置特定组件（如List、Flex、Select、Swiper组件）的属性值。
 
 **参数:**
 
