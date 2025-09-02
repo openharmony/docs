@@ -1107,7 +1107,7 @@ console.info(`isDebugState = ${hidebug.isDebugState()}`)
 
 getGraphicsMemory(): Promise&lt;number&gt;
 
-获取应用显存大小，使用Promise异步回调。
+获取应用显存总大小（gl + graph），使用Promise异步回调。
 
 **原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -1115,11 +1115,13 @@ getGraphicsMemory(): Promise&lt;number&gt;
 
 **返回值：**
 
-| 类型                    | 说明                        |
-|-----------------------|---------------------------|
-| Promise&lt;number&gt; | promise对象，返回应用显存大小，单位为KB。 |
+| 类型                    | 说明                         |
+|-----------------------|----------------------------|
+| Promise&lt;number&gt; | promise对象，返回应用显存总大小，单位为KB。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[HiDebug-GraphicMemory错误码](errorcode-hiviewdfx-hidebug-graphic-memory.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
@@ -1142,7 +1144,7 @@ hidebug.getGraphicsMemory().then((ret: number) => {
 
 getGraphicsMemorySync(): number
 
-使用同步方式获取应用显存大小。
+使用同步方式获取应用显存总大小（gl + graph）。
 
 > **注意：**
 >
@@ -1156,9 +1158,11 @@ getGraphicsMemorySync(): number
 
 | 类型  | 说明             |
 | ------ |----------------|
-| number | 应用显存大小，单位为KB。 |
+| number | 应用显存总大小，单位为KB。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[HiDebug-GraphicMemory错误码](errorcode-hiviewdfx-hidebug-graphic-memory.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
@@ -1175,6 +1179,49 @@ try {
 } catch (error) {
   console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
+```
+
+## hidebug.getGraphicsMemorySummary<sup>21+</sup>
+
+getGraphicsMemorySummary(interval?: number): Promise&lt;GraphicsMemorySummary&gt;
+
+获取应用显存数据，使用Promise进行异步回调。
+
+**原子化服务API**：从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明                                                                                                          |
+| ------ | --------- |---|-------------------------------------------------------------------------------------------------------------|
+| interval  | number | 否 | 显存数据缓存值有效时间，单位为秒。默认值：300。取值范围为[2-3600]。若传入值超出取值范围时，将使用默认值。<br/>当显存数据缓存值存在时间超过该值时，获取最新显存数据并更新缓存值；否则，直接获取缓存值。 |
+
+**返回值：**
+
+| 类型                                                               | 说明                  |
+|------------------------------------------------------------------|---------------------|
+| Promise&lt;[GraphicsMemorySummary](#graphicsmemorysummary21)&gt; | promise对象，返回应用显存数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[HiDebug-GraphicMemory错误码](errorcode-hiviewdfx-hidebug-graphic-memory.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------------------------- |
+| 11400104 | Failed to get the application memory due to a remote exception. |
+
+**示例**
+
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+hidebug.getGraphicsMemorySummary().then((ret: hidebug.GraphicsMemorySummary) => {
+  console.info(`get graphicsMemory gl: ${ret.gl} graph: ${ret.graph}.`)
+}).catch((error: BusinessError) => {
+  console.error(`error code: ${error.code}, error msg: ${error.message}.`);
+})
 ```
 
 ## hidebug.dumpJsRawHeapData<sup>18+</sup>
@@ -1360,3 +1407,16 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 hidebug.setJsRawHeapTrimLevel(hidebug.JsRawHeapTrimLevel.TRIM_LEVEL_2);
 ```
+
+## GraphicsMemorySummary<sup>21+</sup>
+
+描述应用显存数据，包括gl和graph部分。
+
+**原子化服务API**：从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 名称      | 类型     | 只读  | 可选 | 说明                                                                              |
+| --------- |--------| ---- |---- |---------------------------------------------------------------------------------|
+| gl  | number |  否  |   否  | gl显存大小，进程统计的DMA内存占用，包括直接通过接口申请的DMA buffer和通过allocator_host申请的DMA buffer，以KB为单位。 |
+| graph  | number |  否  |   否  | graph显存大小，RenderService渲染进程加载所需资源占用的内存，例如图片、纹理等，以KB为单位。                         |
