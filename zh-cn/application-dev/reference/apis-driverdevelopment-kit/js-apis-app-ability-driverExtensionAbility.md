@@ -30,7 +30,7 @@ import { DriverExtensionAbility } from '@kit.DriverDevelopmentKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)  | 是 | 否 | DriverExtension的上下文环境，继承自ExtensionContext。 |
+| context | [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)  | 否 | 否 | DriverExtension的上下文环境，继承自ExtensionContext。 |
 
 ### onInit
 
