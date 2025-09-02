@@ -1,5 +1,10 @@
 # OH_NativeBuffer_Smpte2086
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @Felix-fangyang; @li_hui180; @dingpy-->
+<!--Designer: @conan13234-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
 ## 概述
 
 表示smpte2086静态元数据。
