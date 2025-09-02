@@ -1,6 +1,6 @@
 # SMS Service Development
 
-## When to Use
+## Scenario Description
 
 The Short Messaging Service (SMS) module provides basic SMS management functions. You can create and send SMS messages, and obtain the ID of the default SIM card used to send and receive SMS messages. Besides, you can obtain and set the SMSC address, and check whether the current device can send and receive SMS messages.
 
@@ -31,7 +31,7 @@ Typical development scenarios are as follows:
 ## Available APIs
 
 > **NOTE**
-> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [API Reference](../reference/apis-telephony-kit/js-apis-sms.md).
+> To maximize the application running efficiency, most APIs are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see the [API Reference](../reference/apis-telephony-kit/js-apis-sms.md).
 
 | Name                                                      | Description                                                   |
 | ------------------------------------------------------------ | ------------------------------------------------------- |
@@ -50,7 +50,7 @@ Typical development scenarios are as follows:
    - To send SMS messages, call the **sendShortMessage** API and declare the **ohos.permission.SEND\_MESSAGES** permission. The permission is of the **system\_basic** level.
    - To set the SMSC address, call the** setSmscAddr** API and declare the **ohos.permission.SET\_TELEPHONY\_STATE** permission. The permission is of the **system\_basic** level.
    - To obtain the SMSC address, call the** getSmscAddr** API and declare the **ohos.permission.GET\_TELEPHONY\_STATE** permission. The permission is of the **system\_basic** level.
-   Before requesting the permission, ensure that the [basic principles for using permissions](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Then, declare the required permission by referring to [Requesting Application Permissions](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+   Before requesting permissions, ensure that the [basic principles for using permissions](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Then, declare the requried permission by referring to [Requesting Application Permissions](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 2. Import the required modules.
 
 3. Send an SMS message.
@@ -105,7 +105,7 @@ export class Contact {
 @Entry
 @Component
 struct JumpMessage {
-    private context = getContext(this) as common.UIAbilityContext;
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     startMMSAbilityExplicit() {
         // Complete the contact and number. You can query the contact name based on the phone number. Therefore, the phone number is mainly used in this mode.
@@ -147,7 +147,7 @@ struct JumpMessage {
 
 ## Redirecting to the SMS Message Editing Page in SMS Mode
 
-### Scenario
+### Application
 
 Through the SMS protocol, you can create a hyperlink pointing to the SMS recipient so that users can directly navigate to the SMS application through the hyperlink on a web page or an application. In addition, you can define the SMS message recipient and content in the `sms:` field to save the SMS message editing time.
 
@@ -160,15 +160,15 @@ sms:106XXXXXXXXXX?body=SMS message content
 ```
 
 + `sms:`: SMS scheme, which is mandatory.
-+ `106XXXXXXXXXX`: recipient number, which is optional. If there are multiple addresses, separate them with commas (,).
++ 106XXXXXXXXXX: recipient number, which is optional. If there are multiple addresses, separate them with commas (,).
 + `?`: start declaration character of the SMS message content. This parameter is mandatory if the SMS message content is present.
 + `body-value`: SMS message content, which is optional.
 
 ### Developing a Caller Application
 
-#### On Web Pages
+**Starting from a Web Page**
 
-Hyperlinks on web pages must comply with the SMS protocol. The sample code is as follows:
+Hyperlinks on web pages must comply with the SMS protocol. Example:
 
 ```
 <a href="sms:106XXXXXXXXXX?body=%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E5%86%85%E5%AE%B9">Send Message</a>;
@@ -176,11 +176,14 @@ Hyperlinks on web pages must comply with the SMS protocol. The sample code is as
 
 In actual development, replace the recipient number with the actual number. The SMS message content can be configured as required.
 
-#### On Applications
+**Starting from an Application**
 
-Pass the SMS message string to the **uri** parameter. In the application, the context can be obtained through **getContext (this)** for a page and through **this.context** for an ability.
+Pass the sms string to the **uri** parameter. In the application, the context can be obtained through **this.getUIContext().getHostContext()** for a page and through **this.context** for an ability.
 
 ```ts
+// Sample code
+import { common, Want } from '@kit.AbilityKit';
+
 @Entry
 @Component
 struct Index {
@@ -189,7 +192,7 @@ struct Index {
     Column() {
       Button ('Send SMS')
         .onClick(() => {
-          let context = getContext(this) as common.UIAbilityContext;
+          let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
           let exampleUrl = "sms:106XXXXXXXXXX?body=%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E5%86%85%E5%AE%B9";
         
           let want: Want = {

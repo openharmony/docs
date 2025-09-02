@@ -1,5 +1,11 @@
 #  @ohos.multimodalInput.shortKey (Preset Global Hotkeys) (System API)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+
 The **shortKey** module provides APIs to set the delay for starting an ability using a shortcut key. For example, you can set the delay to 3 seconds so that a screenshot is taken when you press and hold the shortcut key for 3 seconds.
 
 > **NOTE**
@@ -86,7 +92,7 @@ Sets the delay for starting an ability using shortcut keys. This API uses a prom
 
 **Return value**
 
-| Parameters         | Description         |
+| Type         | Description         |
 | ------------- | ------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 

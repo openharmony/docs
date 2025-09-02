@@ -48,7 +48,7 @@ try {
 ```
 
 ## metadataBinding.on('operationSubmitMetadata')
-on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback\<number\>): void;  
+on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback&lt;number&gt;): void;  
 
 Subscribes to a system event to obtain the encoded metadata. The application needs to register a callback to return the encoded metadata when the registered system event occurs.
 **Atomic service API**: This API can be used in atomic services since API version 18.
@@ -59,7 +59,7 @@ Subscribes to a system event to obtain the encoded metadata. The application nee
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 |type| string|Yes|Event type. This parameter has a fixed value of **operationSubmitMetadata**, indicating the system application's attempt to obtain the encoded metadata.|
 |bundleName|string|Yes|Application bundle name.|
-|callback|Callback\<number\>|Yes|Callback used to return the encoded metadata.| 
+|callback|Callback&lt;number&gt;|Yes|Callback used to return the encoded metadata.| 
 
 **Error codes**
 
@@ -83,13 +83,13 @@ try {
     }
   });
 } catch (error) {
-  console.info("register screenshot event error");
+  console.error("register screenshot event error");
 }
 ```
 
 
 ## metadataBinding.off('operationSubmitMetadata')
-off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback\<number\>): void;
+off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback&lt;number&gt;): void;
 
 Unsubscribes from system events that are used to obtain the encoded metadata. The respective callback will be unregistered.
 **Atomic service API**: This API can be used in atomic services since API version 18.
@@ -100,7 +100,7 @@ Unsubscribes from system events that are used to obtain the encoded metadata. Th
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 |type|string|Yes|Event type. This parameter has a fixed value of **operationSubmitMetadata**, indicating the system application's attempt to obtain the encoded metadata.|
 |bundleName|string|Yes|Application bundle name.|
-|callback|Callback\<number\>|No|Callback used to return the encoded metadata.|
+|callback|Callback&lt;number&gt;|No|Callback used to return the encoded metadata.|
 
 **Error codes** 
 

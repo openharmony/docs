@@ -29,7 +29,7 @@ Checks whether WLAN is enabled.
 
   | **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if WLAN is enabled; returns **false** otherwise.|
+  | boolean |  **true** if WLAN is enabled; **false** otherwise.|
 
 **Example**
 
@@ -58,7 +58,7 @@ Starts a scan for WLAN.
 
   | **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | **true** if the operation is successful; **false** otherwise.|
 
 **Example**
 
@@ -96,8 +96,8 @@ getScanInfos(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 
 Obtains the scan result. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION or ohos.permission.GET_WIFI_PEERS_MAC (
-available only for system applications)
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
+or ohos.permission.GET_WIFI_PEERS_MAC (available only for system applications)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -165,7 +165,7 @@ Represents WLAN hotspot information.
 | capabilities | string | Yes| No| Hotspot capabilities.|
 | securityType | [WifiSecurityType](#wifisecuritytype) | Yes| No| WLAN security type.|
 | rssi | number | Yes| No| Received signal strength indicator (RSSI) of the hotspot, in dBm.|
-| band | number | Yes| No| Frequency band of the WLAN access point (AP).|
+| band | number | Yes| No| Frequency band of the WLAN access point (AP). The value **1** indicates 2.4 GHz, and the value **2** indicates 5 GHz.|
 | frequency | number | Yes| No| Frequency of the WLAN AP.|
 | channelWidth | number | Yes| No| Channel width of the WLAN AP.|
 | timestamp | number | Yes| No| Timestamp.|
@@ -516,11 +516,11 @@ Represents the WLAN connection information.
 | ssid | string | Yes| No| Service set identifier (SSID) of the hotspot, in UTF-8 format. The maximum length is 32 bytes.|
 | bssid | string | Yes| No| Hotspot BSSID, for example, **00:11:22:33:44:55**.|
 | rssi | number | Yes| No| Received signal strength indicator (RSSI) of the hotspot, in dBm.|
-| band | number | Yes| No| Frequency band of the WLAN AP.|
-| linkSpeed | number | Yes| No| Speed of the WLAN AP.|
+| band | number | Yes| No| Frequency band of the WLAN access point (AP). The value **1** indicates 2.4 GHz, and the value **2** indicates 5 GHz.|
+| linkSpeed | number | Yes| No| Speed of the WLAN AP, in Mbit/s.|
 | frequency | number | Yes| No| Frequency of the WLAN AP.|
-| isHidden | boolean | Yes| No| Whether to hide the WLAN AP.|
-| isRestricted | boolean | Yes| No| Whether to restrict data volume at the WLAN AP.|
+| isHidden | boolean | Yes| No| Whether to hide the WLAN AP. The value **true** indicates that the the network is hidden, and the value **false** indicates the opposite.|
+| isRestricted | boolean | Yes| No| Whether to restrict data volume at the WLAN AP. The value **true** means to restrict data volume at the WLAN AP, and the value **false** indicates the opposite.|
 | macAddress | string | Yes| No| MAC address of the device.|
 | ipAddress | number | Yes| No| IP address of the device that sets up the WLAN connection.|
 | connState | [ConnState](#connstate) | Yes| No| WLAN connection state.|
@@ -558,7 +558,7 @@ Checks whether the WLAN is connected.
 
   | **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the WLAN is connected; returns **false** otherwise.|
+  | boolean | **true** if the WLAN is connected; **false** otherwise.|
 
 
 
@@ -583,7 +583,7 @@ Checks whether the device supports the specified WLAN feature.
 
   | **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
+  | boolean | **true** if the feature is supported; **false** otherwise.|
 
 **Example**
 ```ts
@@ -701,7 +701,7 @@ Represents the P2P link information obtained.
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate8) | Yes| No| P2P connection state.|
-| isGroupOwner | boolean | Yes| No| Whether the device is the group owner.|
+| isGroupOwner | boolean | Yes| No| Whether the device is the group owner. The value **true** indicates that the device is the group owner, and the value **false** indicates the opposite.|
 | groupOwnerAddr | string | Yes| No| MAC address of the group.
 
 
@@ -900,7 +900,7 @@ Creates a P2P group.
 
   | Type| Description|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | **true** if the operation is successful; **false** otherwise.|
 
 **Example**
 ```ts
@@ -963,7 +963,7 @@ Removes this P2P group.
 
   | Type| Description|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | **true** if the operation is successful; **false** otherwise.|
 
 **Example**
 ```ts
@@ -997,7 +997,7 @@ Sets up a P2P connection.
 
   | Type| Description|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | **true** if the operation is successful; **false** otherwise.|
 
 
 **Example**
@@ -1081,7 +1081,7 @@ Cancels this P2P connection.
 
   | Type| Description|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | **true** if the operation is successful; **false** otherwise.|
 
 **Example**
 ```ts
@@ -1108,7 +1108,7 @@ Starts to discover devices.
 
   | Type| Description|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | **true** if the operation is successful; **false** otherwise.|
 
 **Example**
 ```ts
@@ -1135,7 +1135,7 @@ Stops discovering devices.
 
   | Type| Description|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | **true** if the operation is successful; **false** otherwise.|
 
 **Example**
 ```ts

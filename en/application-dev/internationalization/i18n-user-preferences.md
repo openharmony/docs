@@ -1,14 +1,14 @@
-# Setting User Preferences
+# User Preferences
 
 ## Use Cases
 
-In addition to system locales and application preferred languages, the system supports setting of user preferences. Currently, the system supports two user preferences: whether to use local digits and whether to use the 12/24-hour format. User preference settings are saved to system locales and application preferred languages as part of the internationalization feature.
+In addition to system locales and preferred languages, the system also supports user preference settings. Currently, it offers two such preferences: whether to use local digits and whether to adopt the 12/24-hour time format. User preference settings are saved to system locales and application preferred languages as part of the internationalization feature.
 
 ## How to Develop
 
-For details about how to use the APIs, see [System](../reference/apis-localization-kit/js-apis-i18n.md#system9).
+For details about how to use related APIs, see [System](../reference/apis-localization-kit/js-apis-i18n.md#system9).
 
-
+1. Import the **intl** module.
    ```ts
    import { i18n } from '@kit.LocalizationKit';
    import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
@@ -16,18 +16,18 @@ For details about how to use the APIs, see [System](../reference/apis-localizati
 
 2. Obtain user preferences.
    ```ts
-   // Check whether the system is using local digits.
+   // Check whether use of local digits is enabled.
    let usingLocalDigit: boolean = i18n.System.getUsingLocalDigit();
 
-   // Check whether the system is using a 24-hour clock.
+   // Check whether use of the 24-hour time format is enabled.
    let is24HourClock: boolean = i18n.System.is24HourClock();
 
-   // Listen for the common event COMMON_EVENT_TIME_CHANGED to detect changes in the system's time format.
-   let subscriber: commonEventManager.CommonEventSubscriber; //  This will hold the subscriber object once it is created.
+   // Subscribe to COMMON_EVENT_TIME_CHANGED events to detect system time format changes.
+   let subscriber: commonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
    let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
      events: [commonEventManager.Support.COMMON_EVENT_TIME_CHANGED]
    };
-   // Create the subscriber.
+   // Create a subscriber.
    commonEventManager.createSubscriber(subscribeInfo)
      .then((commonEventSubscriber: commonEventManager.CommonEventSubscriber) => {
        console.info("CreateSubscriber");
@@ -37,9 +37,9 @@ For details about how to use the APIs, see [System](../reference/apis-localizati
            console.error(`Failed to subscribe common event. error code: ${err.code}, message: ${err.message}.`);
            return;
          }
-         // Check whether the event data indicates a 24-hour format change.
+         // Distinguish between system time and system time format changes.
          if (data.data != undefined && data.data == '24HourChange') {
-            console.info("The subscribed event has occurred."); // This runs when the system time format changes.
+            console.info("The subscribed event has occurred."); // The system time format has changed.
           }
        })
      })
@@ -49,7 +49,7 @@ For details about how to use the APIs, see [System](../reference/apis-localizati
    ```
 
 <!--Del-->
-3. Enable display of local digits on the application page.
+3. Enable use of local digits.
    ```ts
    try {
      i18n.System.setUsingLocalDigit(true); // Enable use of local digits.
@@ -59,7 +59,7 @@ For details about how to use the APIs, see [System](../reference/apis-localizati
    }
    ```
 
-4. Set the 24-hour clock format.
+4. Enable use of the 24-hour time format.
    ```ts
    try {
      i18n.System.set24HourClock (true); // Set the system time to the 24-hour clock.

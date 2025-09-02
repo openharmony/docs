@@ -1,5 +1,11 @@
 # @ohos.bluetooth.map (Bluetooth MAP Module) (System API)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 The **bluetooth.map** module provides APIs for exchanging messages between devices using the Bluetooth Message Access Profile (MAP).
 
 > **NOTE**
@@ -31,7 +37,7 @@ Disconnects the MAP service for a device.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | Yes   | Address of the remote device.|
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 
 **Error codes**
 
@@ -77,7 +83,7 @@ Sets the message access authorization for a device. This API uses a promise to r
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
-| authorization | [AccessAuthorization](js-apis-bluetooth-constant-sys.md#AccessAuthorization) | Yes   | Message access authorization to set.|
+| authorization | [AccessAuthorization](js-apis-bluetooth-constant-sys.md#accessauthorization11) | Yes   | Message access authorization to set.|
 
 **Return value**
 
@@ -136,7 +142,7 @@ Obtains the message access authorization of a device. This API uses a promise to
 
 | Type                                             | Description               |
 | ------------------------------------------------- | ------------------- |
-| Promise&lt;[AccessAuthorization](js-apis-bluetooth-constant-sys.md#AccessAuthorization)&gt; | Promise used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| Promise&lt;[AccessAuthorization](js-apis-bluetooth-constant-sys.md#accessauthorization11)&gt; | Promise used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 

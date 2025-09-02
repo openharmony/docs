@@ -1,10 +1,16 @@
 # @ohos.bluetooth (Bluetooth)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 The **Bluetooth** module provides classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
 
 > **NOTE**
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The APIs provided by this module are no longer maintained since API version 9. You are advised to use profile APIs of [@ohos.bluetooth.ble](js-apis-bluetooth-ble.md).
+> The APIs provided by this module are no longer maintained since API version 9. You are advised to use APIs of [`@ohos.bluetooth.ble`](js-apis-bluetooth-ble.md).
 
 
 
@@ -870,10 +876,10 @@ Initiates an SPP connection to a remote device from the client.
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 function clientSocket(code : BusinessError, number : number) {
-  if (code.code != 0 || code == null) {
+  if (code == null || code.code != 0) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -938,10 +944,10 @@ Closes the client socket.
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 function clientSocket(code : BusinessError, number : number) {
-  if (code.code != 0 || code == null) {
+  if (code == null || code.code != 0) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -979,10 +985,10 @@ Writes data to the remote device through the socket.
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 function clientSocket(code : BusinessError, number : number) {
-  if (code.code != 0 || code == null) {
+  if (code == null || code.code != 0) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1027,10 +1033,10 @@ No value is returned.
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 function clientSocket(code : BusinessError, number : number) {
-  if (code.code != 0 || code == null) {
+  if (code == null || code.code != 0) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1071,10 +1077,10 @@ No value is returned.
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 function clientSocket(code : BusinessError, number : number) {
-  if (code.code != 0 || code == null) {
+  if (code == null || code.code != 0) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1106,7 +1112,7 @@ Obtains a profile object.
 
 | Type                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [A2dpSourceProfile](#a2dpsourceprofile) or [HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofile)| Profile object obtained. Only **A2dpSourceProfile** and **HandsFreeAudioGatewayProfile** are supported.|
+| [A2dpSourceProfile](#a2dpsourceprofile) \| [HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofile) | Profile object obtained. Only **A2dpSourceProfile** and **HandsFreeAudioGatewayProfile** are supported.|
 
 **Example**
 
@@ -2010,7 +2016,7 @@ Sends a response to a read or write request from the GATT client.
 /* send response */
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
-cccValue[0] = 1123;
+cccValue[0] = 1;
 let serverResponse : bluetooth.ServerResponse = {
     "deviceId": "XX:XX:XX:XX:XX:XX",
     "transId": 0,
@@ -2058,7 +2064,7 @@ No value is returned.
 ```js
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
-cccValue[0] = 1123;
+cccValue[0] = 1;
 function ReadCharacteristicReq(CharacteristicReadReq : bluetooth.CharacteristicReadReq) {
   let deviceId : string = CharacteristicReadReq.deviceId;
   let transId : number = CharacteristicReadReq.transId;
@@ -2229,7 +2235,7 @@ No value is returned.
 ```js
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
-descValue[0] = 1101;
+descValue[0] = 1;
 function ReadDescriptorReq(DescriptorReadReq : bluetooth.DescriptorReadReq) {
   let deviceId : string = DescriptorReadReq.deviceId;
   let transId : number = DescriptorReadReq.transId;
@@ -2478,7 +2484,7 @@ disconnect(): boolean
 Disconnects from the remote BLE device.
 
 > **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. Use **bluetoothManager.GattClientDevice.disconnect** instead.
+> This API is supported since API version 7 and deprecated since API version 9. Use [bluetoothManager.GattClientDevice.disconnect](js-apis-bluetoothManager.md#disconnectdeprecated-2) instead.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2557,12 +2563,11 @@ import { BusinessError } from '@ohos.base';
 // Callback mode.
 function getServices(code : BusinessError, gattServices : Array<bluetooth.GattService>) {
   if (code.code == 0) {
-      let services : Array<bluetooth.GattService> = gattServices;
       console.log('bluetooth code is ' + code.code);
-      console.log("bluetooth services size is ", services.length);
+      console.log("bluetooth services size is ", gattServices.length);
 
-      for (let i = 0; i < services.length; i++) {
-        console.log('bluetooth serviceUuid is ' + services[i].serviceUuid);
+      for (let i = 0; i < gattServices.length; i++) {
+        console.log('bluetooth serviceUuid is ' + gattServices[i].serviceUuid);
       }
   }
 }
@@ -3312,7 +3317,7 @@ Enumerates the SPP link types.
 Defines the GATT service API parameters.
 
 > **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. Use **bluetoothManager.GattService** instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattService](js-apis-bluetoothManager.md#gattservicedeprecated).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3701,7 +3706,7 @@ Defines the pairing state parameters.
 Defines the profile state change parameters.
 
 > **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. Use **bluetoothManager.StateChangeParam** instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.StateChangeParam](js-apis-bluetoothManager.md#statechangeparamdeprecated).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 

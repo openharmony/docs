@@ -50,7 +50,7 @@ The following uses the acceleration sensor as an example to describe the develop
    ```json
    "requestPermissions": [
          {
-           "name": "ohos.permission.ACCELEROMETER",
+           "name": "ohos.permission.ACCELEROMETER"
          },
        ]
    ```
@@ -174,11 +174,14 @@ The following uses the acceleration sensor as an example to describe the develop
                return nullptr;
            }
        }
-       OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "GetSensorInfos sucessful");
+       OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "GetSensorInfos successful");
        ret = OH_Sensor_DestroyInfos(sensors, count); // Destroy an array of instances and reclaim the memory.
        if (ret != SENSOR_SUCCESS) {
            return nullptr;
        }
+       napi_value result = nullptr;
+       napi_create_int32(env, ret, &result);
+       return result;
    }
    ```
 
@@ -225,22 +228,26 @@ The following uses the acceleration sensor as an example to describe the develop
            OH_Sensor_DestroySubscriber(g_user); // Destroy the Sensor_Subscriber instance and reclaim the memory.
            g_user = nullptr;
        }
+       napi_value result = nullptr;
+       napi_create_int32(env, ret, &result);
+       return result;
    }
    ```
    
 9. Add related APIs to the **Init** function.
 
    ```c
+   EXTERN_C_START
    static napi_value Init(napi_env env, napi_value exports)
-      {
-          napi_property_descriptor desc[] = {
-              { "getSensorInfos", nullptr, GetSensorInfos, nullptr, nullptr, nullptr, napi_default, nullptr },
-              { "subscriber", nullptr, Subscriber, nullptr, nullptr, nullptr, napi_default, nullptr }
-          };
-          napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-          return exports;
-      }
-      EXTERN_C_END
+   {
+       napi_property_descriptor desc[] = {
+           { "getSensorInfos", nullptr, GetSensorInfos, nullptr, nullptr, nullptr, napi_default, nullptr },
+           { "subscriber", nullptr, Subscriber, nullptr, nullptr, nullptr, napi_default, nullptr }
+       };
+       napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+       return exports;
+   }
+   EXTERN_C_END
    ```
 
 10. Introduce the NAPI APIs to the **index.d.ts** file in **types/libentry**.

@@ -1,5 +1,11 @@
 # SE Access Development
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @amunra03-->
+<!--Designer: @wenxiaolin-->
+<!--Tester: @zs_111-->
+
 ## Introduction
 An electronic device may have one or more secure elements (SEs), such as the embedded SE (eSE) and SIM card. A SIM card that functions as an SE must have the NFC feature.
 

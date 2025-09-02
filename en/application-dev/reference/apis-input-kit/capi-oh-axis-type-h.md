@@ -1,8 +1,16 @@
 # oh_axis_type.h
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+
 ## Overview
 
 Defines the axis event structures and enumerations.
+
+**File to include**: <multimodalinput/oh_axis_type.h>
 
 **Library**: libohinput.so
 
