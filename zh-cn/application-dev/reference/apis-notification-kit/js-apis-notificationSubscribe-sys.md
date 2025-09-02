@@ -496,7 +496,7 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| hashCode | string                | 是   | 通知唯一ID。可以通过[onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onconsume)回调的入参[SubscribeCallbackData](js-apis-inner-notification-notificationSubscriber-sys.md#subscribecallbackdata)获取其内部[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象中的hashCode。 |
+| hashCode | string                | 是   | 通知唯一ID。可以通过[onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onconsume)回调的入参[SubscribeCallbackData](js-apis-inner-notification-notificationSubscriber-sys.md#subscribecallbackdata)获取其内部[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1)对象中的hashCode。 |
 | reason   | [RemoveReason](#removereason) | 是   | 通知删除原因。         |
 | callback | AsyncCallback\<void\> | 是   | 删除指定通知回调函数。 |
 
@@ -547,7 +547,7 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
 | 参数名     | 类型       | 必填 | 说明       |
 | -------- | ---------- | ---- | ---------- |
-| hashCode | string | 是   | 通知唯一ID。可以通过[onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onconsume)回调的入参[SubscribeCallbackData](js-apis-inner-notification-notificationSubscriber-sys.md#subscribecallbackdata)获取其内部[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象中的hashCode。 |
+| hashCode | string | 是   | 通知唯一ID。可以通过[onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onconsume)回调的入参[SubscribeCallbackData](js-apis-inner-notification-notificationSubscriber-sys.md#subscribecallbackdata)获取其内部[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1)对象中的hashCode。 |
 | reason   | [RemoveReason](#removereason) | 是   | 通知删除原因。         |
 
 **返回值：**
@@ -600,7 +600,7 @@ remove(hashCodes: Array\<String\>, reason: RemoveReason, callback: AsyncCallback
 
 | 参数名       | 类型                            | 必填 | 说明                                                                                                                                                                                                                                                                                  |
 |-----------|-------------------------------| ---- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| hashCodes | Array\<String\>               | 是   | 通知唯一ID数组集合。可以通过[onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onconsume)回调的入参[SubscribeCallbackData](js-apis-inner-notification-notificationSubscriber-sys.md#subscribecallbackdata)获取其内部[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象中的hashCode。 |
+| hashCodes | Array\<String\>               | 是   | 通知唯一ID数组集合。可以通过[onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onconsume)回调的入参[SubscribeCallbackData](js-apis-inner-notification-notificationSubscriber-sys.md#subscribecallbackdata)获取其内部[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1)对象中的hashCode。 |
 | reason    | [RemoveReason](#removereason) | 是   | 通知删除原因。                                                                                                                                                                                                                                                                             |
 | callback  | AsyncCallback\<void\>         | 是   | 删除指定通知回调函数。                                                                                                                                                                                                                                                                         |
 
@@ -1019,5 +1019,5 @@ notificationSubscribe.distributeOperation(hashcode, operationInfo).then(() => {
 
 | 名称  | 类型   | 只读 | 可选 | 说明     |
 | ----- | ------ | --- | ---- | -------- |
-| actionName    | string | 否 | 是 | 描述通知中显示的操作按钮（与通知[NotificationActionButton](js-apis-inner-notification-notificationActionButton.md#notificationactionbutton)中title字段保持一致）。   |
-| userInput | string | 否 | 是 | 用户输入（用于通知跨设备快捷回复场景传递用户输入，与通知[NotificationUserInput](js-apis-inner-notification-notificationUserInput.md#notificationuserinput)中inputKey字段保持一致）。 |
+| actionName    | string | 否 | 是 | 描述通知中显示的操作按钮（与通知[NotificationActionButton](js-apis-inner-notification-notificationActionButton.md#notificationactionbutton-1)中title字段保持一致）。   |
+| userInput | string | 否 | 是 | 用户输入（用于通知跨设备快捷回复场景传递用户输入，与通知[NotificationUserInput](js-apis-inner-notification-notificationUserInput.md#notificationuserinput-1)中inputKey字段保持一致）。 |
