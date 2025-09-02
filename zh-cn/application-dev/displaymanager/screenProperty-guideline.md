@@ -118,7 +118,7 @@ try {
    };
    // 此处以监听显示设备的增加为例
    display.on("add", callback1);
-
+	
    // 关闭单个callback监听
    display.off('add', callback1);
    // 如果通过on注册多个callback，同时关闭所有callback监听
@@ -183,7 +183,7 @@ try {
      console.info('Listening enabled. Data: ' + JSON.stringify(data));
    };
    display.on('foldStatusChange', callback);
-    
+   
    // 如果通过on注册多个callback，同时关闭所有callback监听
    display.off('foldStatusChange');
    // 关闭单个callback监听
