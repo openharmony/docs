@@ -7,7 +7,7 @@
 <!--Adviser: @huipeizi-->
 <!--deprecated_code_no_check-->
 
-appManager模块提供App管理的能力，包括查询当前是否处于稳定性测试场景、查询是否为ram受限设备、获取应用程序的内存大小、获取有关运行进程的信息等。
+appManager模块提供应用管理的能力，包括查询当前系统是否处于稳定性测试场景、查询当前设备是否为RAM（Random Access Memory，随机存取存储器）受限设备、获取当前应用程序可以使用的最大内存值、获取有关运行进程的信息等。
 
 > **说明：**
 > 
@@ -23,7 +23,11 @@ import appManager from '@ohos.application.appManager';
 
 isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
-查询当前是否处于稳定性测试场景。使用callback异步回调。
+查询当前系统是否处于稳定性测试场景。使用callback异步回调。
+
+> **说明：**
+>
+> 稳定性测试场景指为验证应用在复杂、极端或长期运行条件下的可靠性而设计的特定测试环境。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -31,7 +35,7 @@ isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示当前处于稳定性测试场景；返回false表示当前不处于稳定性测试场景。 | 
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 以回调方式返回接口运行结果及当前系统是否处于稳定性测试场景，可进行错误处理或其他自定义处理。返回true表示系统处于稳定性测试场景，返回false表示系统不处于稳定性测试场景。 |
 
 **示例：**
     
@@ -52,7 +56,11 @@ isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
 isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
-查询当前是否处于稳定性测试场景。使用Promise异步回调。
+查询当前系统是否处于稳定性测试场景。使用Promise异步回调。
+
+> **说明：**
+>
+> 稳定性测试场景指为验证应用在复杂、极端或长期运行条件下的可靠性而设计的特定测试环境。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -60,7 +68,7 @@ isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise对象。返回true表示当前处于稳定性测试场景；返回false表示当前不处于稳定性测试场景。 | 
+  | Promise&lt;boolean&gt; | 以Promise方式返回接口运行结果及当前是否处于稳定性测试场景，可进行错误处理或其他自定义处理。返回true表示系统处于稳定性测试场景，返回false表示系统不处于稳定性测试场景。 |
 
 **示例：**
     
@@ -80,7 +88,7 @@ isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
 isRamConstrainedDevice(): Promise\<boolean>
 
-查询是否为ram受限设备。使用Promise异步回调。
+查询当前设备是否为RAM受限设备（内存资源严重受限的设备）。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -88,7 +96,7 @@ isRamConstrainedDevice(): Promise\<boolean>
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise对象。返回true表示是ram受限设备；返回false表示不是ram受限设备。 | 
+  | Promise&lt;boolean&gt; | 以Promise方式返回接口运行结果及当前设备是否为RAM受限设备，可进行错误处理或其他自定义处理。true：当前设备为RAM受限设备，false：当前设备为非RAM受限设备。 |
 
 **示例：**
     
@@ -107,7 +115,7 @@ isRamConstrainedDevice(): Promise\<boolean>
 
 isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
-查询是否为ram受限设备。使用callback异步回调。
+查询当前设备是否为RAM受限设备（内存资源严重受限的设备）。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -115,7 +123,7 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示当前是ram受限设备；返回false表示当前不是ram受限设备。 | 
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 以回调方式返回接口运行结果及当前设备是否为RAM受限设备，可进行错误处理或其他自定义处理。true：当前设备为RAM受限设备，false：当前设备为非RAM受限设备。 |
 
 **示例：**
     
@@ -135,7 +143,7 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
 getAppMemorySize(): Promise\<number>
 
-获取当前应用程序可以使用的内存的值。
+获取当前应用程序可以使用的最大内存（RAM）值。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -143,7 +151,7 @@ getAppMemorySize(): Promise\<number>
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;number&gt; | 获取当前应用程序可以使用的内存的值，可根据此值进行错误处理或其他自定义处理，单位是M。使用Promise异步回调。| 
+  | Promise&lt;number&gt; | 当前应用程序可以使用的最大内存（RAM）值，可根据此值进行错误处理或其他自定义处理，单位是M。使用Promise异步回调。|
 
 **示例：**
     
@@ -162,7 +170,7 @@ getAppMemorySize(): Promise\<number>
 
 getAppMemorySize(callback: AsyncCallback\<number>): void
 
-获取应用程序的内存大小。使用callback异步回调。
+获取当前应用程序可以使用的最大内存（RAM）值。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -170,7 +178,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 获取当前应用程序可以使用的内存的值，可根据此值进行错误处理或其他自定义处理，单位是M。使用callback异步回调。| 
+  | callback | AsyncCallback&lt;number&gt; | 是 | 获取当前应用程序可以使用的最大内存（RAM）值，可根据此值进行错误处理或其他自定义处理，单位是M。使用callback异步回调。|
 
 **示例：**
     

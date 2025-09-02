@@ -6,7 +6,7 @@
 <!--Tester: @lixueqing513-->
 <!--Adviser: @huipeizi-->
 
-定义应用状态监听，可以作为[on](js-apis-app-ability-appManager.md#appmanageronapplicationstate14)的入参监听当前应用的生命周期变化。
+应用状态监听器，可以作为入参传入[on('applicationState')](js-apis-app-ability-appManager.md#appmanageronapplicationstate14)方法，监听应用的生命周期变化。
 
 > **说明：**
 > 
@@ -36,7 +36,7 @@ onForegroundApplicationChanged(appStateData: AppStateData): void
 
 onAbilityStateChanged(abilityStateData: AbilityStateData): void
 
-ability状态发生变化时执行的回调函数。
+Ability状态发生变化时执行的回调函数。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
