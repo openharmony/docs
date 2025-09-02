@@ -30,6 +30,8 @@ FolderStack(options?: FolderStackOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名       | 类型                                    | 必填 | 说明                                                                 |
@@ -45,6 +47,8 @@ FolderStack(options?: FolderStackOptions)
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -68,6 +72,8 @@ alignContent(value: Alignment)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名 | 类型                                        | 必填 | 说明                                                    |
@@ -84,6 +90,8 @@ enableAnimation(value: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名 | 类型                                        | 必填 | 说明                                |
@@ -99,6 +107,8 @@ autoHalfFold(value: boolean)
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：**
 
@@ -120,6 +130,8 @@ onFolderStateChange(callback: OnFoldStatusChangeCallback)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名     | 类型                                            | 必填 | 说明                 |
@@ -137,6 +149,8 @@ onHoverStatusChange(handler: OnHoverStatusChangeCallback)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名     | 类型                                            | 必填 | 说明                 |
@@ -153,6 +167,8 @@ type OnHoverStatusChangeCallback = (param: HoverEventParam) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名     | 类型                                            | 必填 | 说明                 |
@@ -168,6 +184,8 @@ type OnFoldStatusChangeCallback = (event: OnFoldStatusChangeInfo) => void
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：**
 
@@ -188,6 +206,8 @@ type OnFoldStatusChangeCallback = (event: OnFoldStatusChangeInfo) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | foldStatus<sup>11+</sup> | [FoldStatus](ts-appendix-enums.md#foldstatus11) | 否 | 否   | 当前设备的折叠状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -197,6 +217,8 @@ type OnFoldStatusChangeCallback = (event: OnFoldStatusChangeInfo) => void
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -214,6 +236,8 @@ type WindowStatusType = WindowStatusType
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 类型        | 说明                 |
 | ---------- | ---------------------|
@@ -277,10 +301,10 @@ struct Index {
       })
       // hoverStatusChange回调 当悬停状态改变时回调
       .onHoverStatusChange((msg) => {
-        console.log('this foldStatus:' + msg.foldStatus);
-        console.log('this isHoverMode:' + msg.isHoverMode);
-        console.log('this appRotation:' + msg.appRotation);
-        console.log('this windowStatusType:' + msg.windowStatusType);
+        console.info('this foldStatus:' + msg.foldStatus);
+        console.info('this isHoverMode:' + msg.isHoverMode);
+        console.info('this appRotation:' + msg.appRotation);
+        console.info('this windowStatusType:' + msg.windowStatusType);
       })
       // folderStack如果不撑满页面全屏，作为普通Stack使用
       .alignContent(Alignment.Bottom)
@@ -325,10 +349,10 @@ class MyFolderStackModifier implements AttributeModifier<FolderStackAttribute> {
     })
     // hoverStatusChange回调 当悬停状态改变时回调
     instance.onHoverStatusChange((msg) => {
-      console.log('this foldStatus:' + msg.foldStatus);
-      console.log('this isHoverMode:' + msg.isHoverMode);
-      console.log('this appRotation:' + msg.appRotation);
-      console.log('this windowStatusType:' + msg.windowStatusType);
+      console.info('this foldStatus:' + msg.foldStatus);
+      console.info('this isHoverMode:' + msg.isHoverMode);
+      console.info('this appRotation:' + msg.appRotation);
+      console.info('this windowStatusType:' + msg.windowStatusType);
     })
   }
 }
