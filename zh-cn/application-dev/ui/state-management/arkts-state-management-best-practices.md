@@ -119,7 +119,7 @@ struct MyComponent {
   build() {
     Column({ space: 20 }) {
       ForEach(this.updateUIArr(this.realStateArr),
-        (item: Array<number>) => {
+        (item: number) => {
           Text(`${item}`)
         })
       Text("add item")
@@ -165,7 +165,7 @@ struct CompA {
   build() {
     Column({ space: 20 }) {
       ForEach(this.realStateArr,
-        (item: Array<number>) => {
+        (item: number) => {
           Text(`${item}`)
         })
       Text("add item")

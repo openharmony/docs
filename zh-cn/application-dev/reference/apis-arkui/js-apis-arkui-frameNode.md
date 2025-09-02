@@ -2208,6 +2208,109 @@ getNodePropertyValue(property: AnimationPropertyType): number[]
 
 请参考[动画创建与取消示例](#动画创建与取消示例)。
 
+### invalidateAttributes<sup>21+</sup>
+
+invalidateAttributes(): void
+
+在当前帧触发节点属性更新。
+
+当前节点的属性在构建阶段后被修改，这些改动不会立即生效，而是延迟到下一帧统一处理。
+
+此功能强制当前帧内即时节点更新，确保同步应用渲染效果。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：** 
+
+  从API version 21开始，通过if else动态切换两个节点，并且在节点创建时调用invalidateAttributes即时触发节点属性更新，避免组件切换过程中出现闪烁。
+ 
+ ```ts
+ //index.ets
+import { FrameNode, NodeController, typeNode, NodeContent } from '@kit.ArkUI';
+
+class MyNodeAdapterController extends NodeController {
+  rootNode: FrameNode | null = null;
+  imageUrl: string = "";
+  constructor(imageUrl:string) {
+    super();
+    this.imageUrl = imageUrl;
+  }
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let imageNode = typeNode.createNode(uiContext, "Image");
+    imageNode.initialize($r(this.imageUrl))
+    imageNode.attribute.syncLoad(true).width(100).height(100);
+    imageNode.invalidateAttributes();
+    return imageNode;
+  }
+}
+@Component
+struct NodeComponent3 {
+  private rootSlot: NodeContent = new NodeContent();
+  aboutToAppear(): void {
+    const uiContext = this.getUIContext();
+    let imageNode = typeNode.createNode(uiContext, "Image");
+    imageNode.initialize($r('app.media.startIcon'))
+    imageNode.attribute.syncLoad(true).width(100).height(100);
+    imageNode.invalidateAttributes();
+    this.rootSlot.addFrameNode(imageNode);
+  }
+  build() {
+    ContentSlot(this.rootSlot)
+  }
+}
+@Component
+struct NodeComponent4 {
+  private rootSlot: NodeContent = new NodeContent();
+  aboutToAppear(): void {
+    const uiContext = this.getUIContext();
+    let imageNode = typeNode.createNode(uiContext, "Image");
+    imageNode.initialize($r('app.media.startIcon'))
+    imageNode.attribute.syncLoad(true).width(100).height(100);
+    imageNode.invalidateAttributes();
+    this.rootSlot.addFrameNode(imageNode);
+  }
+  build() {
+    ContentSlot(this.rootSlot)
+  }
+}
+@Entry
+@Component
+struct ListNodeTest {
+  @State flag: boolean = true;
+  adapterController: MyNodeAdapterController = new MyNodeAdapterController('app.media.startIcon');
+  build() {
+    Column() {
+      Text("ListNode Adapter");
+      if (this.flag) {
+        NodeComponent3()
+      } else {
+        NodeComponent4()
+      }
+      if (this.flag) {
+        NodeContainer(this.adapterController)
+          .width(300).height(300)
+          .borderWidth(1).borderColor(Color.Black)
+      } else {
+        NodeContainer(this.adapterController)
+          .width(300).height(300)
+          .borderWidth(1).borderColor(Color.Black)
+      }
+      if (this.flag) {
+        Image($r('app.media.startIcon')).width(100).height(100).syncLoad(true)
+      } else {
+        Image($r('app.media.startIcon')).width(100).height(100).syncLoad(true)
+      }
+      Button('change').onClick(() => {
+        this.flag = !this.flag;
+      })
+    }.borderWidth(1)
+    .width("100%")
+  }
+}
+ ```
+
 ## TypedFrameNode<sup>12+</sup>
 
 TypedFrameNode继承自[FrameNode](#framenode-1)，用于声明具体类型的FrameNode。
@@ -2276,10 +2379,37 @@ createNode(context: UIContext, nodeType: 'Text'): Text
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Text');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    node.commonAttribute;
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 });
+    node.appendChild(col);
+    // 创建Text
+    let text = typeNode.createNode(uiContext, 'Text');
+    text.initialize("Hello").fontColor(Color.Blue).fontSize(14);
+    typeNode.getAttribute(text, 'Text')?.fontWeight(FontWeight.Bold);
+    col.appendChild(text);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('Text sample');
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
 ```
 
 ### getAttribute('Text')<sup>20+</sup>
@@ -2307,10 +2437,42 @@ getAttribute(node: FrameNode, nodeType: 'Text'): TextAttribute | undefined
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
-typeNode.getAttribute(node, 'Text');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    node.commonAttribute;
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 });
+    node.appendChild(col);
+    // 创建Text
+    let text = typeNode.createNode(uiContext, 'Text');
+    text.initialize("Hello");
+    // 获取Text的属性
+    typeNode.getAttribute(text, 'Text')?.fontColor(Color.Red)
+    col.appendChild(text);
+    // 创建另一个Text用于对比
+    let text2 = typeNode.createNode(uiContext, 'Text');
+    text2.initialize("world");
+    col.appendChild(text2);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('Text sample');
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
 ```
 
 ### bindController('Text')<sup>20+</sup>
@@ -2342,11 +2504,48 @@ bindController(node: FrameNode, controller: TextController, nodeType: 'Text'): v
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
-let controller: TextController = new TextController()
-typeNode.bindController(node, controller, 'Text');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  // 设置TextController，可以在外部获取
+  controller: TextController = new TextController()
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    node.commonAttribute;
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 });
+    node.appendChild(col);
+    // 创建Text
+    let text = typeNode.createNode(uiContext, 'Text');
+    text.initialize("Hello").fontColor(Color.Blue).fontSize(14);
+    typeNode.getAttribute(text, 'Text')?.fontWeight(FontWeight.Bold)
+    // 绑定TextController
+    typeNode.bindController(text, this.controller, 'Text');
+    col.appendChild(text);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  @State line: number = 0
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('Text bindController Sample')
+      NodeContainer(this.myNodeController)
+      Text(`Text的行数, ${this.line}`)
+      Button(`点击获取行数`)
+        .onClick(() => {
+          this.line = this.myNodeController.controller.getLayoutManager().getLineCount()
+        })
+    }
+  }
+}
 ```
 
 ### Column<sup>12+</sup>
@@ -3101,10 +3300,38 @@ createNode(context: UIContext, nodeType: 'Progress'): Progress
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Progress');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyProgressNodeController extends NodeController {
+  public uiContext: UIContext | null = null;
+  public rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.uiContext = uiContext;
+    this.rootNode = new FrameNode(uiContext);
+    let node = typeNode.createNode(uiContext, 'Progress');
+    node.initialize({
+      value: 15,
+      total: 200,
+      type: ProgressType.ScaleRing
+    }).width(100)
+      .height(100)
+    this!.rootNode!.appendChild(node);
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Sample {
+  build() {
+    Column({ space: 10 }) {
+      NodeContainer(new MyProgressNodeController()).margin(5)
+    }.width('100%').height('100%')
+
+  }
+}
 ```
 
 ### getAttribute('Progress')<sup>20+</sup>
@@ -3132,10 +3359,40 @@ getAttribute(node: FrameNode, nodeType: 'Progress'): ProgressAttribute | undefin
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
-typeNode.getAttribute(node, 'Progress');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyProgressNodeController extends NodeController {
+  public uiContext: UIContext | null = null;
+  public rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.uiContext = uiContext;
+    this.rootNode = new FrameNode(uiContext);
+    let node = typeNode.createNode(uiContext, 'Progress');
+    node.initialize({
+      value: 15,
+      total: 200,
+      type: ProgressType.ScaleRing
+    }).width(100)
+      .height(100)
+    // 获取Progress的属性
+    typeNode.getAttribute(node, 'Progress');
+    this!.rootNode!.appendChild(node);
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Sample {
+  build() {
+    Column({ space: 10 }) {
+      NodeContainer(new MyProgressNodeController()).margin(5)
+    }.width('100%').height('100%')
+
+  }
+}
 ```
 
 ### Scroll<sup>12+</sup>
@@ -3536,10 +3793,36 @@ createNode(context: UIContext, nodeType: 'LoadingProgress'): LoadingProgress
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'LoadingProgress');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyLoadingProgressNodeController extends NodeController {
+  public uiContext: UIContext | null = null;
+  public rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.uiContext = uiContext;
+    this.rootNode = new FrameNode(uiContext);
+    let node = typeNode.createNode(uiContext, 'LoadingProgress');
+    node.initialize()
+      .width(100)
+      .height(100)
+      .color(Color.Red)
+      .enableLoading(true)
+    this!.rootNode!.appendChild(node);
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Sample {
+  build() {
+    Column({ space: 10 }) {
+      NodeContainer(new MyLoadingProgressNodeController()).margin(5)
+    }.width('100%').height('100%')
+  }
+}
 ```
 
 ### getAttribute('LoadingProgress')<sup>20+</sup>
@@ -3567,10 +3850,38 @@ getAttribute(node: FrameNode, nodeType: 'LoadingProgress'): LoadingProgressAttri
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
-typeNode.getAttribute(node, 'LoadingProgress');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyLoadingProgressNodeController extends NodeController {
+  public uiContext: UIContext | null = null;
+  public rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.uiContext = uiContext;
+    this.rootNode = new FrameNode(uiContext);
+    let node = typeNode.createNode(uiContext, 'LoadingProgress');
+    node.initialize()
+      .width(100)
+      .height(100)
+      .color(Color.Red)
+      .enableLoading(true)
+    // 获取LoadingProgress的属性
+    typeNode.getAttribute(node, 'LoadingProgress');
+    this!.rootNode!.appendChild(node);
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Sample {
+  build() {
+    Column({ space: 10 }) {
+      NodeContainer(new MyLoadingProgressNodeController()).margin(5)
+    }.width('100%').height('100%')
+  }
+}
 ```
 
 ### Search<sup>12+</sup>
@@ -3612,10 +3923,38 @@ createNode(context: UIContext, nodeType: 'Search'): Search
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Search');
+iimport { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    node.commonAttribute;
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 });
+    node.appendChild(col);
+    // 创建Search
+    let search = typeNode.createNode(uiContext, 'Search');
+    search.initialize({ value: "Search" })
+      .searchButton('SEARCH')
+      .textFont({ size: 14, weight: 400 })
+    col.appendChild(search);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('Search sample');
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
 ```
 
 ### Blank<sup>12+</sup>
@@ -3735,10 +4074,46 @@ createNode(context: UIContext, nodeType: 'Image'): Image
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Image');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyImageController extends NodeController {
+  public uiContext: UIContext | null = null;
+  public rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.uiContext = uiContext;
+    this.rootNode = new FrameNode(uiContext);
+    let imageNode = typeNode.createNode(uiContext, 'Image');
+    imageNode
+      // $r('app.media.img')需要替换为开发者所需的图像资源文件。
+      .initialize($r('app.media.img'))
+      .width(100)
+      .height(100)
+      .fillColor(Color.Red)
+      .objectFit(ImageFit.Contain)
+      .renderMode(ImageRenderMode.Template)
+      .fitOriginalSize(true)
+      .matchTextDirection(true)
+      .objectRepeat(ImageRepeat.X)
+      .autoResize(true)
+
+    this!.rootNode!.appendChild(imageNode);
+    return this.rootNode;
+
+  }
+}
+
+@Entry
+@Component
+struct Sample {
+  build() {
+    Column({ space: 10 }) {
+      NodeContainer(new MyImageController()).margin(5)
+    }.width('100%').height('100%')
+
+  }
+}
 ```
 
 ### getAttribute('Image')<sup>20+</sup>
@@ -3766,10 +4141,48 @@ getAttribute(node: FrameNode, nodeType: 'Image'): ImageAttribute | undefined
 
 **示例：** 
 
-<!--code_no_check-->
 
 ```ts
-typeNode.getAttribute(node, 'Image');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyImageController extends NodeController {
+  public uiContext: UIContext | null = null;
+  public rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.uiContext = uiContext;
+    this.rootNode = new FrameNode(uiContext);
+    let imageNode = typeNode.createNode(uiContext, 'Image');
+    imageNode
+      // $r('app.media.img')需要替换为开发者所需的图像资源文件。
+      .initialize($r('app.media.img'))
+      .width(100)
+      .height(100)
+      .fillColor(Color.Red)
+      .objectFit(ImageFit.Contain)
+      .renderMode(ImageRenderMode.Template)
+      .fitOriginalSize(true)
+      .matchTextDirection(true)
+      .objectRepeat(ImageRepeat.X)
+      .autoResize(true)
+    // 获取Image的属性
+    typeNode.getAttribute(imageNode, 'Image');
+    this!.rootNode!.appendChild(imageNode);
+    return this.rootNode;
+
+  }
+}
+
+@Entry
+@Component
+struct Sample {
+  build() {
+    Column({ space: 10 }) {
+      NodeContainer(new MyImageController()).margin(5)
+    }.width('100%').height('100%')
+
+  }
+}
 ```
 
 ### List<sup>12+</sup>
@@ -4065,10 +4478,36 @@ createNode(context: UIContext, nodeType: 'TextInput'): TextInput
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'TextInput');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    node.commonAttribute;
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 });
+    node.appendChild(col);
+    // 创建TextInput
+    let textInput = typeNode.createNode(uiContext, 'TextInput');
+    textInput.initialize({ text: "TextInput" });
+    col.appendChild(textInput);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('TextInput sample')
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
 ```
 
 ### getAttribute('TextInput')<sup>20+</sup>
@@ -4096,10 +4535,38 @@ getAttribute(node: FrameNode, nodeType: 'TextInput'): TextInputAttribute | undef
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
-typeNode.getAttribute(node, 'TextInput');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    node.commonAttribute;
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 });
+    node.appendChild(col);
+    // 创建TextInput
+    let textInput = typeNode.createNode(uiContext, 'TextInput');
+    textInput.initialize({ placeholder: 'TextInput placeholderColor' });
+    // 获取TextInput的属性
+    typeNode.getAttribute(textInput, 'TextInput')?.placeholderColor(Color.Red);
+    col.appendChild(textInput);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('TextInput getAttribute sample');
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
 ```
 
 ### bindController('TextInput')<sup>20+</sup>
@@ -4130,11 +4597,41 @@ bindController(node: FrameNode, controller: TextInputController, nodeType: 'Text
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
-let controller: TextInputController = new TextInputController()
-typeNode.bindController(node, controller, 'TextInput');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    node.commonAttribute;
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 });
+    node.appendChild(col);
+    // 创建、初始化TextInput，默认获焦
+    let textInput = typeNode.createNode(uiContext, 'TextInput');
+    textInput.initialize({ text: "TextInput" })
+      .defaultFocus(true)
+    col.appendChild(textInput);
+    // 绑定TextInputController，设置光标位置
+    let controller: TextInputController = new TextInputController();
+    typeNode.bindController(textInput, controller, 'TextInput');
+    controller.caretPosition(3);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('TextInput bindController sample');
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
 ```
 
 ### Button<sup>12+</sup>
@@ -4655,7 +5152,35 @@ createNode(context: UIContext, nodeType: 'XComponent'): XComponent
 <!--code_no_check-->
 
 ```ts
-typeNode.createNode(uiContext, 'XComponent');
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col);
+    let xcomponent = typeNode.createNode(uiContext, 'XComponent');
+    xcomponent.attribute.backgroundColor(Color.Red);
+    col.appendChild(xcomponent);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('XComponentSample')
+      NodeContainer(this.myNodeController)
+    }.width('100%')
+  }
+}
 ```
 
 ### createNode('XComponent')<sup>12+</sup>
@@ -4687,12 +5212,40 @@ createNode(context: UIContext, nodeType: 'XComponent', options: XComponentOption
 <!--code_no_check-->
 
 ```ts
-let controller: XComponentController = new XComponentController();
-let options: XComponentOptions = {
-  type: XComponentType.TEXTURE,
-  controller: controller
-};
-typeNode.createNode(uiContext, 'XComponent', options);
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  controller: XComponentController = new XComponentController();
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col);
+    let options: XComponentOptions = {
+      type: XComponentType.SURFACE,
+      controller: this.controller
+    };
+    let xcomponent = typeNode.createNode(uiContext, 'XComponent', options);
+    xcomponent.attribute.backgroundColor(Color.Red);
+    col.appendChild(xcomponent);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('XComponentSample')
+      NodeContainer(this.myNodeController)
+    }.width('100%')
+  }
+}
 ```
 
 ### createNode('XComponent')<sup>19+</sup>
@@ -4724,10 +5277,39 @@ createNode(context: UIContext, nodeType: 'XComponent', parameters: NativeXCompon
 <!--code_no_check-->
 
 ```ts
-let parameters: NativeXComponentParameters = {
-  type: XComponentType.SURFACE
-};
-typeNode.createNode(uiContext, 'XComponent', parameters);
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  controller: XComponentController = new XComponentController();
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(col);
+    let parameters: NativeXComponentParameters = {
+      type: XComponentType.SURFACE
+    };
+    let xcomponent = typeNode.createNode(uiContext, 'XComponent', parameters);
+    xcomponent.attribute.backgroundColor(Color.Red);
+    col.appendChild(xcomponent);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('XComponentSample')
+      NodeContainer(this.myNodeController)
+    }.width('100%')
+  }
+}
 ```
 
 ### getAttribute('XComponent')<sup>20+</sup>
@@ -5238,10 +5820,37 @@ createNode(context: UIContext, nodeType: 'Marquee'): Marquee
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'Marquee');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    node.commonAttribute;
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 })
+    node.appendChild(col);
+    // 创建marquee
+    let marquee = typeNode.createNode(uiContext, 'Marquee');
+    marquee.initialize({start:true,src:'Marquee, if need display, src shall be long'})
+      .width(100);
+    col.appendChild(marquee);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('Marquee createNode sample');
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
 ```
 
 ### TextArea<sup>14+</sup>
@@ -5283,10 +5892,36 @@ createNode(context: UIContext, nodeType: 'TextArea'): TextArea
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'TextArea');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    node.commonAttribute
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 })
+    node.appendChild(col);
+    // 创建textArea
+    let textArea = typeNode.createNode(uiContext, 'TextArea');
+    textArea.initialize({ text: "TextArea" });
+    col.appendChild(textArea);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('TextArea create sample')
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
 ```
 
 ### getAttribute('TextArea')<sup>20+</sup>
@@ -5314,10 +5949,38 @@ getAttribute(node: FrameNode, nodeType: 'TextArea'): TextAreaAttribute | undefin
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-typeNode.getAttribute(node, 'TextArea');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    node.commonAttribute;
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 });
+    node.appendChild(col);
+    // 创建TextArea
+    let textArea = typeNode.createNode(uiContext, 'TextArea');
+    textArea.initialize({ placeholder: 'TextArea placeholderColor' });
+    col.appendChild(textArea);
+    // 获取TextArea节点的属性
+    typeNode.getAttribute(textArea, 'TextArea')?.placeholderColor(Color.Red);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('TextArea getAttribute sample');
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
 ```
 
 ### bindController('TextArea')<sup>20+</sup>
@@ -5349,11 +6012,41 @@ bindController(node: FrameNode, controller: TextAreaController, nodeType: 'TextA
 
 **示例：** 
 
-<!--code_no_check-->
-
 ```ts
-let controller: TextAreaController = new TextAreaController()
-typeNode.bindController(node, controller, 'TextArea');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    node.commonAttribute;
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 });
+    node.appendChild(col);
+    // 创建、初始化TextArea，默认获焦
+    let textArea = typeNode.createNode(uiContext, 'TextArea');
+    textArea.initialize({ text: "TextArea" })
+      .defaultFocus(true)
+    col.appendChild(textArea);
+    // 绑定TextAreaController，设置光标位置
+    let controller: TextAreaController = new TextAreaController()
+    typeNode.bindController(textArea, controller, 'TextArea');
+    controller.caretPosition(3);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('TextArea bindController sample');
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
 ```
 
 ### SymbolGlyph<sup>14+</sup>
@@ -5395,10 +6088,36 @@ createNode(context: UIContext, nodeType: 'SymbolGlyph'): SymbolGlyph
 
 **示例：**
 
-<!--code_no_check-->
-
 ```ts
-typeNode.createNode(uiContext, 'SymbolGlyph');
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    node.commonAttribute;
+    let col = typeNode.createNode(uiContext, 'Column');
+    col.initialize({ space: 5 });
+    node.appendChild(col);
+    // 创建SymbolGlyph
+    let symbolGlyph = typeNode.createNode(uiContext, 'SymbolGlyph');
+    symbolGlyph.initialize($r('sys.symbol.ohos_trash'));
+    col.appendChild(symbolGlyph);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 5 }) {
+      Text('SymbolGlyph sample');
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
 ```
 
 ### Checkbox<sup>18+</sup>

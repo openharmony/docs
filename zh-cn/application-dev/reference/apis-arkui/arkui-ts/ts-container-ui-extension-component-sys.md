@@ -198,7 +198,7 @@ onDrawReady(callback: Callback\<void>)
 
 |  名称 | 类型   | 只读 |可选 | 说明                                                 |
 | ------- | ------ | ------ | ------ |---------------------------------------------------  |
-| code    | number | 否 | 是 | 被拉起UIExtensionAbility退出时返回的结果码，返回的结果码由`terminateSelfWithResult`或者`terminateSelf`被调用时传入的数据决定。 |
+| code    | number | 否 | 否 | 被拉起UIExtensionAbility退出时返回的结果码，返回的结果码由`terminateSelfWithResult`或者`terminateSelf`被调用时传入的数据决定。 |
 | want    | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)   | 否 | 是 | 被拉起UIExtensionAbility退出时返回的数据。   |
 
 ## ReceiveCallback<sup>18+</sup>

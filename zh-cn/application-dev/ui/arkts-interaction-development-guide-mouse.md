@@ -248,10 +248,11 @@ class ListDataSource implements IDataSource {
 }
 
 @Entry
-@ComponentV2
+@Component
 struct ListExample {
   private arr: ListDataSource = new ListDataSource([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
   private allSelectedItems: Array<number> = []
+  @State isSelected: boolean[] = []
 
   @Styles
   selectedStyle(): void {
@@ -261,10 +262,12 @@ struct ListExample {
   isItemSelected(item: number): boolean {
     for (let i = 0; i < this.allSelectedItems.length; i++) {
       if (this.allSelectedItems[i] == item) {
+        this.isSelected[item] = true;
         return true;
       }
     }
-    return false
+    this.isSelected[item] = false;
+    return false;
   }
 
   build() {
@@ -276,12 +279,12 @@ struct ListExample {
               .width('100%')
               .height(100)
               .fontSize(16)
-              .fontColor(this.isItemSelected(index) ? Color.White : Color.Black)
+              .fontColor(this.isSelected[index] ? Color.White : Color.Black)
               .textAlign(TextAlign.Center)
           }
           .backgroundColor(Color.White)
           .selectable(true)
-          .selected(this.isItemSelected(index))
+          .selected(this.isSelected[index])
           .stateStyles({
             selected: this.selectedStyle
           })
@@ -298,11 +301,16 @@ struct ListExample {
               // 如果没有按着ctrl键点鼠标，则强制清理掉其他选中的条目并只让当前条目选中
               if (!isCtrlPressing) {
                 this.allSelectedItems = []
+                for (let i = 0; i < this.isSelected.length; i++) {
+                  this.isSelected[i] = false
+                }
               }
-              if (!isSelected) {
+              if (isSelected) {
                 this.allSelectedItems.filter(item => item != index)
+                this.isSelected[index] = false
               } else {
                 this.allSelectedItems.push(index)
+                this.isSelected[index] = true
               }
             }
           })

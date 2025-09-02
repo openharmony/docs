@@ -469,8 +469,8 @@ struct Index {
 
 ![AlertDialog](figures/AlertDialog.png)
 
-### 示例5（进度条弹出框）
-进度条弹出框，包含content等内容。
+### 示例5（进度加载类弹出框）
+进度加载类弹出框，包含content等内容。
 
 ```ts
 import { LoadingDialog } from '@kit.ArkUI';
@@ -488,7 +488,7 @@ struct Index {
     Row() {
       Stack() {
         Column() {
-          Button("进度条弹出框")
+          Button("进度加载类弹出框")
             .width(96)
             .height(40)
             .onClick(() => {

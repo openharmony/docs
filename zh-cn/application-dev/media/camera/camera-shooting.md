@@ -24,7 +24,7 @@
 
 2. 创建拍照输出流。
 
-   通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)类中的photoProfiles属性，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11)方法传入支持的某一个输出流及步骤一获取的SurfaceId创建拍照输出流。
+   通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)中的photoProfiles属性，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11)方法传入支持的某一个输出流及步骤一获取的SurfaceId创建拍照输出流。
 
    ```ts
    function getPhotoOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
@@ -159,9 +159,9 @@
 
 5. 触发拍照。
 
-   通过photoOutput类的[capture](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#capture-2)方法，执行拍照任务。该方法有两个参数，第一个参数为拍照设置参数的setting，setting中可以设置照片的质量和旋转角度，第二参数为回调函数。
+   通过photoOutput的[capture](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#capture-2)方法，执行拍照任务。该方法有两个参数，第一个参数为拍照设置参数的setting，setting中可以设置照片的质量和旋转角度，第二参数为回调函数。
 
-   获取拍照旋转角度的方法为，通过[PhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md)类中的[getPhotoRotation](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#getphotorotation12)方法获取rotation实际的值。
+   获取拍照旋转角度的方法为，通过[PhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md)中的[getPhotoRotation](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#getphotorotation12)方法获取rotation实际的值。
 
    ```ts
    function capture(captureLocation: camera.Location, photoOutput: camera.PhotoOutput): void {

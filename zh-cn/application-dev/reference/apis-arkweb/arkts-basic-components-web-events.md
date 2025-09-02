@@ -45,8 +45,8 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onAlert((event) => {
             if (event) {
-              console.log("event.url:" + event.url);
-              console.log("event.message:" + event.message);
+              console.info("event.url:" + event.url);
+              console.info("event.message:" + event.message);
               this.uiContext.showAlertDialog({
                 title: 'onAlert',
                 message: 'text',
@@ -204,8 +204,8 @@ onConfirm(callback: Callback\<OnConfirmEvent, boolean\>)
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onConfirm((event) => {
             if (event) {
-              console.log("event.url:" + event.url);
-              console.log("event.message:" + event.message);
+              console.info("event.url:" + event.url);
+              console.info("event.message:" + event.message);
               this.uiContext.showAlertDialog({
                 title: 'onConfirm',
                 message: 'text',
@@ -340,9 +340,9 @@ onPrompt(callback: Callback\<OnPromptEvent, boolean\>)
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
           .onPrompt((event) => {
             if (event) {
-              console.log("event.url:" + event.url);
-              console.log("event.message:" + event.message);
-              console.log("event.value:" + event.value);
+              console.info("event.url:" + event.url);
+              console.info("event.message:" + event.message);
+              console.info("event.value:" + event.value);
               this.title = "来自" + event.url + "的消息";
               this.message = event.message;
               this.promptResult = event.value;
@@ -891,7 +891,7 @@ onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
         Web({ src: 'chrome://crash/', controller: this.controller })
           .onRenderExited((event) => {
             if (event) {
-              console.log('reason:' + event.renderExitReason);
+              console.info('reason:' + event.renderExitReason);
             }
           })
       }
@@ -931,7 +931,7 @@ onRenderProcessNotResponding(callback: OnRenderProcessNotRespondingCallback)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRenderProcessNotResponding((data) => {
-            console.log("onRenderProcessNotResponding: [jsStack]= " + data.jsStack +
+            console.info("onRenderProcessNotResponding: [jsStack]= " + data.jsStack +
               ", [process]=" + data.pid + ", [reason]=" + data.reason);
           })
       }
@@ -968,7 +968,7 @@ onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRenderProcessResponding(() => {
-            console.log("onRenderProcessResponding again");
+            console.info("onRenderProcessResponding again");
           })
       }
     }
@@ -1008,7 +1008,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
        Column() {
          Web({ src: $rawfile('index.html'), controller: this.controller })
            .onShowFileSelector((event) => {
-             console.log('MyFileUploader onShowFileSelector invoked')
+             console.info('MyFileUploader onShowFileSelector invoked')
              const documentSelectOptions = new picker.DocumentSelectOptions();
              let uri: string | null = null;
              const documentViewPicker = new picker.DocumentViewPicker();
@@ -1102,11 +1102,11 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
            .onShowFileSelector((event) => {
              openCamera((result) => {
                if (event) {
-                 console.log('Title is ' + event.fileSelector.getTitle());
-                 console.log('Mode is ' + event.fileSelector.getMode());
-                 console.log('Accept types are ' + event.fileSelector.getAcceptType());
-                 console.log('Capture is ' + event.fileSelector.isCapture());
-                 console.log('Mime types are ' + event.fileSelector.getMimeTypes());
+                 console.info('Title is ' + event.fileSelector.getTitle());
+                 console.info('Mode is ' + event.fileSelector.getMode());
+                 console.info('Accept types are ' + event.fileSelector.getAcceptType());
+                 console.info('Capture is ' + event.fileSelector.isCapture());
+                 console.info('Mime types are ' + event.fileSelector.getMimeTypes());
                  event.result.handleFileList([result]);
                }
              }, this.getUIContext())
@@ -1197,7 +1197,7 @@ onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onScaleChange((event) => {
-            console.log('onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale);
+            console.info('onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale);
           })
       }
     }
@@ -2125,7 +2125,7 @@ onContextMenuHide(callback: OnContextMenuHideCallback)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onContextMenuHide(() => {
-            console.log("onContextMenuHide callback");
+            console.info("onContextMenuHide callback");
           })
       }
     }
@@ -2536,7 +2536,7 @@ onActivateContent(callback: Callback\<void>)
           })
           .onActivateContent(() => {
             //该Web需要展示到前面，建议应用在这里进行tab或window切换的动作展示此web
-            console.log("NewWebViewComp onActivateContent")
+            console.info("NewWebViewComp onActivateContent")
           })
       }.height("50%")
     }
@@ -2624,7 +2624,7 @@ onWindowExit(callback: () => void)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onWindowExit(() => {
-            console.log("onWindowExit...");
+            console.info("onWindowExit...");
           })
       }
     }
@@ -3110,7 +3110,7 @@ onRequestSelected(callback: () => void)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRequestSelected(() => {
-            console.log('onRequestSelected');
+            console.info('onRequestSelected');
           })
       }
     }
@@ -3267,7 +3267,7 @@ onControllerAttached(callback: () => void)
           .onControllerAttached(() => {
             try {
               let id = this.controller.getWebId();
-              console.log("id: " + id);
+              console.info("id: " + id);
             } catch (error) {
               let code = (error as BusinessError).code;
               let message = (error as BusinessError).message;
@@ -3978,7 +3978,7 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
           if (attributes) {
             if (attributes['data-keyboard'] == 'customKeyboard') {
               // 根据html可编辑元素的属性，判断使用不同的软键盘，例如这里如果属性包含有data-keyboard，且值为customKeyboard，则使用自定义键盘
-              console.log('WebCustomKeyboard use custom keyboard')
+              console.info('WebCustomKeyboard use custom keyboard')
               option.useSystemKeyboard = false;
               // 设置自定义键盘builder
               option.customKeyboard = () => {

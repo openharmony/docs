@@ -688,7 +688,8 @@ customNavContentTransition(delegate:(from: NavContentInfo, to: NavContentInfo, o
 
 ## NavPathStack<sup>10+</sup>
 
-Navigation导航控制器，从API version 12开始，NavPathStack允许被继承。开发者可以在派生类中新增属性方法，也可以重写基类NavPathStack的方法。派生类对象可以替代基类NavPathStack对象使用。Navigation中的NavDestination页面存在于NavPathStack中，以栈的结构管理，我们称为路由栈。使用示例参见[示例10](#示例10定义导航控制器派生类)。
+Navigation导航控制器，以栈的数据结构管理Navigation中所有的子页面，并提供栈操作的方法用于控制Navigation中子页面的切换。
+从API version 12开始，NavPathStack允许被继承，派生类对象可以替代基类NavPathStack对象使用。使用示例参见[示例10](#示例10定义导航控制器派生类)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1914,7 +1915,7 @@ type SystemBarStyle = SystemBarStyle
 
 ## 示例
 
-示例效果请以真机为准，系统路由表不支持预览器，跨平台以及模拟器。
+示例效果请以真机为准，系统路由表不支持预览器以及模拟器。
 
 ### 示例1（Navigation页面布局）
 
@@ -1953,13 +1954,16 @@ struct NavigationExample {
   @Builder
   NavigationMenus() {
     Row() {
+      // 'resources/base/media/ic_public_add.svg'需要替换为开发者所需的资源文件
       Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
+      // 'resources/base/media/ic_public_add.svg'需要替换为开发者所需的资源文件
       Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
         .margin({ left: 24 })
+      // 'resources/base/media/ic_public_add.svg'需要替换为开发者所需的资源文件
       Image('common/ic_public_more.svg')
         .width(24)
         .height(24)
@@ -2153,8 +2157,8 @@ export struct PageOne {
           .margin(20)
           .onClick(() => {
             this.pageInfos.popToName('pageTwo'); //回退路由栈到第一个名为name的NavDestination页面
-            console.info('popToName' + JSON.stringify(this.pageInfos),
-              '返回值' + JSON.stringify(this.pageInfos.popToName('pageTwo')));
+            console.info(`popToName ${JSON.stringify(this.pageInfos)}，` + 
+              `返回值 ${JSON.stringify(this.pageInfos.popToName('pageTwo'))}`); 
           })
         Button('popToIndex', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -2162,7 +2166,7 @@ export struct PageOne {
           .margin(20)
           .onClick(() => {
             this.pageInfos.popToIndex(1); // 回退路由栈到index指定的NavDestination页面
-            console.info('popToIndex' + JSON.stringify(this.pageInfos));
+            console.info(`popToIndex ${JSON.stringify(this.pageInfos)}`);
           })
         Button('moveToTop', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -2170,8 +2174,8 @@ export struct PageOne {
           .margin(20)
           .onClick(() => {
             this.pageInfos.moveToTop('pageTwo'); // 将第一个名为name的NavDestination页面移到栈顶
-            console.info('moveToTop' + JSON.stringify(this.pageInfos),
-              '返回值' + JSON.stringify(this.pageInfos.moveToTop('pageTwo')));
+            console.info(`moveToTop ${JSON.stringify(this.pageInfos)}，` + 
+              `返回值 ${JSON.stringify(this.pageInfos.popToName('pageTwo'))}`); 
           })
         Button('moveIndexToTop', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -2179,7 +2183,7 @@ export struct PageOne {
           .margin(20)
           .onClick(() => {
             this.pageInfos.moveIndexToTop(1); // 将index指定的NavDestination页面移到栈顶
-            console.info('moveIndexToTop' + JSON.stringify(this.pageInfos));
+            console.info(`moveIndexToTop ${JSON.stringify(this.pageInfos)}`);
           })
         Button('clear', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -2194,20 +2198,17 @@ export struct PageOne {
           .margin(20)
           .onClick(() => {
             console.info('-------------------');
-            console.info('获取栈中所有NavDestination页面的名称', JSON.stringify(this.pageInfos.getAllPathName()));
-            console.info('获取index指定的NavDestination页面的参数信息',
-              JSON.stringify(this.pageInfos.getParamByIndex(1)));
-            console.info('获取全部名为name的NavDestination页面的参数信息',
-              JSON.stringify(this.pageInfos.getParamByName('pageTwo')));
-            console.info('获取全部名为name的NavDestination页面的位置索引',
-              JSON.stringify(this.pageInfos.getIndexByName('pageOne')));
-            console.info('获取栈大小', JSON.stringify(this.pageInfos.size()));
+            console.info(`获取栈中所有NavDestination页面的名称 ${JSON.stringify(this.pageInfos.getAllPathName())}`);
+            console.info(`获取index指定的NavDestination页面的参数信息 ${JSON.stringify(this.pageInfos.getParamByIndex(1))}`);
+            console.info(`获取全部名为name的NavDestination页面的参数信息 ${JSON.stringify(this.pageInfos.getParamByName('pageTwo'))}`);
+            console.info(`获取全部名为name的NavDestination页面的位置索引 ${JSON.stringify(this.pageInfos.getIndexByName('pageOne'))}`);
+            console.info(`获取栈大小 ${JSON.stringify(this.pageInfos.size())}`);
           })
       }.width('100%').height('100%')
     }.title('pageOne')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      console.info('pop' + '返回值' + JSON.stringify(popDestinationInfo));
+      console.info(`pop 返回值 ${JSON.stringify(popDestinationInfo)}`);
       return true;
     }).onReady((context: NavDestinationContext) => {
       this.pageInfos = context.pathStack;
@@ -2227,15 +2228,18 @@ export struct PageTwo {
   pathStack: NavPathStack = new NavPathStack();
   private menuItems: Array<NavigationMenuItem> = [
     {
+      // 'resources/base/media/undo.svg'需要替换为开发者所需的资源文件
       value: "1",
       icon: 'resources/base/media/undo.svg',
     },
     {
+      // 'resources/base/media/redo.svg'需要替换为开发者所需的资源文件
       value: "2",
       icon: 'resources/base/media/redo.svg',
       isEnabled: false,
     },
     {
+      // 'resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: "3",
       icon: 'resources/base/media/ic_public_ok.svg',
       isEnabled: true,
@@ -2261,7 +2265,7 @@ export struct PageTwo {
     })
     .onReady((context: NavDestinationContext) => {
       this.pathStack = context.pathStack;
-      console.info("current page config info is " + JSON.stringify(context.getConfigInRouteMap()));
+      console.info(`current page config info is ${JSON.stringify(context.getConfigInRouteMap())}`);
     })
   }
 }
@@ -2836,7 +2840,7 @@ export struct PageOne {
             this.pageInfo.pushPath({
               name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
                 this.message =
-                  '[pushPath]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
+                  `[pushPath]last page is: ${popInfo.info.name},result: ${JSON.stringify(popInfo.result)}`;
               }
             }); // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
           })
@@ -2849,7 +2853,7 @@ export struct PageOne {
             let tmp = new TmpClass();
             this.pageInfo.pushPathByName('pageTwo', tmp, (popInfo) => {
               this.message =
-                '[pushPathByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
+                `[pushPathByName]last page is: ${popInfo.info.name}, result: ${JSON.stringify(popInfo.result)}`;
             }); // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
           })
 
@@ -2863,7 +2867,7 @@ export struct PageOne {
             this.pageInfo.pushDestination({
               name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
                 this.message =
-                  '[pushDestination]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
+                  `[pushDestination]last page is: ${popInfo.info.name}, result: ${JSON.stringify(popInfo.result)}`;
               }
             }).catch((error: BusinessError) => {
               console.error(`[pushDestination]failed, error code = ${error.code}, error.message = ${error.message}.`);
@@ -2880,8 +2884,8 @@ export struct PageOne {
             let tmp = new TmpClass();
             // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
             this.pageInfo.pushDestinationByName('pageTwo', tmp, (popInfo) => {
-              this.message = '[pushDestinationByName]last page is: ' + popInfo.info.name + ', result: ' +
-              JSON.stringify(popInfo.result);
+              this.message = 
+                `[pushDestinationByName]last page is: ${popInfo.info.name}, result: ${JSON.stringify(popInfo.result)}`;
             }).catch((error: BusinessError) => {
               console.error(`[pushDestinationByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
@@ -3653,7 +3657,7 @@ struct NavigationExample {
                     .backgroundColor(Color.Orange)
                     .margin({ top: 12 })
                 }
-              }, (item: string) => item)
+              }, (item: number) => item.toString())
             }
           }
         }
@@ -3814,25 +3818,25 @@ struct NavigationExample {
   @Provide('navPathStack') navPathStack: NavPathStack = new NavPathStack();
   @State menuItems: Array<NavigationMenuItem> = [
     {
+      // 'resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: 'menuItem1',
       icon: 'resources/base/media/ic_public_ok.svg' // 图标资源路径
     },
     {
-      // $r('sys.symbol.ohos_folder_badge_plus')需要替换为开发者所需的资源文件
+      // resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: 'menuItem2',
       icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red, Color.Green])
         .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
     },
     {
-      // $r('sys.symbol.ohos_lungs')需要替换为开发者所需的资源文件
       value: 'menuItem3',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
     },
   ];
   @State toolItems: Array<ToolbarItem> = [
     {
-      // $r('sys.symbol.ohos_lungs')和$r('sys.symbol.ohos_folder_badge_plus')需要替换为开发者所需的资源文件
+      // 'resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: 'toolItem1',
       icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
@@ -3843,7 +3847,7 @@ struct NavigationExample {
       }
     },
     {
-      // $r('sys.symbol.ohos_star')需要替换为开发者所需的资源文件
+      // 'resources/base/media/ic_public_more.svg'需要替换为开发者所需的资源文件
       value: 'toolItem2',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
       status: ToolbarItemStatus.ACTIVE,
@@ -3852,7 +3856,6 @@ struct NavigationExample {
       }
     },
     {
-      // $r('sys.symbol.ohos_star')和$r('sys.symbol.ohos_lungs')需要替换为开发者所需的资源文件
       value: 'toolItem3',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
       status: ToolbarItemStatus.ACTIVE,
@@ -3877,7 +3880,7 @@ struct NavigationExample {
         })
       }
     }
-    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')))// $r('sys.symbol.ohos_wifi')需要替换为开发者所需的资源文件
+    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')))
     .titleMode(NavigationTitleMode.Mini)
     .menus(this.menuItems)
     .toolbarConfiguration(this.toolItems)
@@ -3891,13 +3894,13 @@ export struct NavigationMenu {
   @Consume('navPathStack') navPathStack: NavPathStack;
   @State menuItems: Array<NavigationMenuItem> = [
     {
+      // 'resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: 'menuItem1',
       icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
       action: () => {
       }
     },
     {
-      // $r('sys.symbol.ohos_folder_badge_plus')需要替换为开发者所需的资源文件
       value: 'menuItem2',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red, Color.Green])
         .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
@@ -3905,7 +3908,6 @@ export struct NavigationMenu {
       }
     },
     {
-      // $r('sys.symbol.repeat_1')需要替换为开发者所需的资源文件
       value: 'menuItem3',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.repeat_1')),
       action: () => {
@@ -3924,8 +3926,8 @@ export struct NavigationMenu {
     }
     .hideTitleBar(false)
     .title('NavDestination title')
-    .backgroundColor($r('sys.color.ohos_id_color_titlebar_sub_bg'))// $r('sys.color.ohos_id_color_titlebar_sub_bg')需要替换为开发者所需的资源文件
-    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_star'))// $r('sys.symbol.ohos_star')需要替换为开发者所需的资源文件
+    .backgroundColor($r('sys.color.ohos_id_color_titlebar_sub_bg'))
+    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_star'))
     .fontColor([Color.Blue]))
     .menus(this.menuItems)
   }
@@ -4078,6 +4080,7 @@ struct NavigationExample {
 export struct NavDestinationExample {
   @State menuItems: Array<NavigationMenuItem> = [
     {
+      // 'resources/base/media/ic_public_ok.svg'需要替换为开发者所需的资源文件
       value: 'menuItem1',
       icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
       action: () => {
@@ -4444,13 +4447,16 @@ struct NavigationExample {
   @Builder
   NavigationMenus() {
     Row() {
+      // 'resources/base/media/ic_public_add.svg'需要替换为开发者所需的资源文件
       Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
+      // 'resources/base/media/ic_public_add.svg'需要替换为开发者所需的资源文件
       Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
         .margin({ left: 24 })
+      // 'common/ic_public_more.svg'需要替换为开发者所需的资源文件
       Image('common/ic_public_more.svg')
         .width(24)
         .height(24)
@@ -4534,17 +4540,13 @@ struct NavigationExample {
   @State enable: boolean = false
   @State menuItems:Array<NavigationMenuItem> = [
     {
-      // $r('sys.symbol.card_writer')需要替换为开发者所需的资源文件
-      value:'menuItem1',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.card_writer')),
     },
     {
-      // $r('sys.symbol.ohos_folder_badge_plus')需要替换为开发者所需的资源文件
       value:'menuItem2',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus'))
     },
     {
-      // $r('sys.symbol.ohos_lungs')需要替换为开发者所需的资源文件
       value:'menuItem3',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
     },
@@ -4552,19 +4554,16 @@ struct NavigationExample {
 
   @State toolItems:Array<ToolbarItem> = [
     {
-      // $r('sys.symbol.ohos_lungs')需要替换为开发者所需的资源文件
       value:'toolItem1',
       symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
       action:()=>{}
     },
     {
-      // $r('sys.symbol.card_migration')需要替换为开发者所需的资源文件
       value:'toolItem2',
       symbolIcon:new SymbolGlyphModifier($r('sys.symbol.card_migration')),
       action:()=>{}
     },
     {
-      // 需要替换为开发者所需的资源文件
       value:'toolItem3',
       symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
       action:()=>{}
@@ -4582,7 +4581,7 @@ struct NavigationExample {
     }
     .mode(NavigationMode.Stack)
     .enableToolBarAdaptation(this.enable) //是否启用工具栏自适应能力
-    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')))// $r('sys.symbol.ohos_wifi')需要替换为开发者所需的资源文件
+    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')))
     .titleMode(NavigationTitleMode.Mini)
     .menus(this.menuItems)
     .toolbarConfiguration(this.toolItems)

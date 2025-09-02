@@ -284,7 +284,7 @@ struct DotIndicatorDemo {
         .count(6)
         .vertical(true)
         .onChange((index: number) => {
-          console.log("current index: " + index );
+          console.info("current index: " + index );
         })
     }
   }
@@ -345,7 +345,7 @@ struct DigitIndicatorDemo {
         .count(6)
         .vertical(true)
         .onChange((index: number) => {
-          console.log("current index: " + index );
+          console.info("current index: " + index );
         })
     }
   }

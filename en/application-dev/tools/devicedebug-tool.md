@@ -15,7 +15,7 @@ devicedebug provides the capability of sending signals to applications for debug
 | kill | Kills a process with a specified PID.|
 
 
-## Help Command
+## help
 ```bash
 devicedebug help
 ```
@@ -34,7 +34,7 @@ devicedebug help
 ```
 
 
-## Kill Command
+## kill
 
 ```bash
 devicedebug kill

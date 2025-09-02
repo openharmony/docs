@@ -25,7 +25,7 @@
    >
    > 在相机设备输入之前需要先完成相机管理，详细开发步骤请参考[相机管理](camera-device-management.md)。
 
-2. 通过[cameraManager](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md)类中的[createCameraInput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createcamerainput)方法创建相机输入流。
+2. 通过[cameraManager](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md)中的[createCameraInput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createcamerainput)方法创建相机输入流。
 
    ```ts
    async function createInput(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): Promise<camera.CameraInput | undefined> {
