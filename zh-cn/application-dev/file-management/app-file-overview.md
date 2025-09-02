@@ -5,6 +5,7 @@
 <!--Owner: @wangfenging -->
 <!--Designer: @liveery; @zl_startup-->
 <!--Tester: @liuhaonan2-->
+<!--Adviser: @foryourself-->
 
 应用文件包括应用安装文件、应用资源文件和应用缓存文件，文件所有者是应用。
 
