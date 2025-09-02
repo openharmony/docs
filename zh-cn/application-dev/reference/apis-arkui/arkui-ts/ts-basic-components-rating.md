@@ -443,7 +443,7 @@ function buildRating(config: RatingConfiguration) {
               config.triggerChange(0.5);
               return
             }
-            if (config.stepSize === 1) {
+            if (config.stepSize === 1.0) {
               config.triggerChange(1);
               return
             }
@@ -464,7 +464,7 @@ function buildRating(config: RatingConfiguration) {
               config.triggerChange(1.5);
               return
             }
-            if (config.stepSize === 1) {
+            if (config.stepSize === 1.0) {
               config.triggerChange(2);
               return
             }
@@ -485,7 +485,7 @@ function buildRating(config: RatingConfiguration) {
               config.triggerChange(2.5);
               return
             }
-            if (config.stepSize === 1) {
+            if (config.stepSize === 1.0) {
               config.triggerChange(3);
               return
             }
@@ -506,7 +506,7 @@ function buildRating(config: RatingConfiguration) {
               config.triggerChange(3.5);
               return
             }
-            if (config.stepSize === 1) {
+            if (config.stepSize === 1.0) {
               config.triggerChange(4);
               return
             }
@@ -527,7 +527,7 @@ function buildRating(config: RatingConfiguration) {
               config.triggerChange(4.5);
               return
             }
-            if (config.stepSize === 1) {
+            if (config.stepSize === 1.0) {
               config.triggerChange(5);
               return
             }
