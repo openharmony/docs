@@ -828,29 +828,28 @@ setWatermarkImageForAppWindows(pixelMap: image.PixelMap | undefined): Promise&lt
 import { image } from "@kit.ImageKit";
 import { BusinessError } from "@kit.BasicServicesKit";
 
-let color: ArrayBuffer = new ArrayBuffer(0);
+let color: ArrayBuffer = new ArrayBuffer(96);
 let initializationOptions: image.InitializationOptions = {
   size: {
-    height: 100,
-    width: 100,
+    height: 4,
+    width: 6,
   },
 };
-image.createPixelMap(color, initializationOptions)
-  .then((pixelMap: image.PixelMap) => {
-    console.info("Succeeded in creating pixelmap.");
-    try {
-      let promise = window.setWatermarkImageForAppWindows(pixelMap);
-      promise.then(() => {
-          console.info("Succeeded in setting watermark image.");
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to set watermark image. Cause code: ${err.code}, message: ${err.message}`);
-      });
-    } catch (exception) {
-      console.error(`Failed to set watermark image. Exception code: ${exception.code}, message: ${exception.message}`);
-    }
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to create PixelMap. Cause code: ${err.code}, message: ${err.message}`);
-  });
+image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMap) => {
+  console.info("Succeeded in creating pixelmap.");
+  try {
+    let promise = window.setWatermarkImageForAppWindows(pixelMap);
+    promise.then(() => {
+        console.info("Succeeded in setting watermark image.");
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to set watermark image. Cause code: ${err.code}, message: ${err.message}`);
+    });
+  } catch (exception) {
+    console.error(`Failed to set watermark image. Exception code: ${exception.code}, message: ${exception.message}`);
+  }
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create PixelMap. Cause code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ## window.setStartWindowBackgroundColor<sup>20+</sup>
