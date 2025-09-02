@@ -189,14 +189,14 @@ export default {
   align-items: center;
   background-color: #F1F3F5;
 }
-.txt{
+.text{
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: fixed;
   top: 65%;
 }
-.txt{
+.text{
   margin-top: 30px;
 }
 ```
