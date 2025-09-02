@@ -63,6 +63,11 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo,callback:As
 import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
 
+class Tmp{
+  event:DragEvent|undefined = undefined
+  extraParams:string = ''
+}
+
 @Entry
 @Component
 struct DragControllerPage {
@@ -95,10 +100,6 @@ struct DragControllerPage {
                 pointerId: 0,
                 data: unifiedData,
                 extraParams: ''
-              }
-              class tmp{
-                event:DragEvent|undefined = undefined
-                extraParams:string = ''
               }
               let eve:tmp = new tmp()
               this.getUIContext().getDragController().executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => { // 建议使用 this.getUIContext().getDragController().executeDrag()接口
@@ -179,6 +180,11 @@ import { dragController } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
+class Tmp{
+  event:DragResult|undefined = undefined
+  extraParams:string = ''
+}
+
 @Entry
 @Component
 struct DragControllerPage {
@@ -236,11 +242,6 @@ struct DragControllerPage {
                 pixelMap: this.pixmap,
                 builder: ()=>{this.DraggingBuilder()},
                 extraInfo: "DragItemInfoTest"
-              }
-
-              class tmp{
-                event:DragResult|undefined = undefined
-                extraParams:string = ''
               }
               let eve:tmp = new tmp()
               this.getUIContext().getDragController().executeDrag(dragItemInfo, dragInfo) // 建议使用 this.getUIContext().getDragController().executeDrag()接口
@@ -1034,6 +1035,11 @@ import { dragController, curves, promptAction, UIContext } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+class Tmp{
+  event:DragEvent|undefined = undefined
+  extraParams:string = ''
+}
+
 @Entry()
 @Component
 struct DragControllerPage {
@@ -1094,10 +1100,6 @@ struct DragControllerPage {
               pointerId: 0,
               data: unifiedData,
               extraParams: ''
-            }
-            class tmp{
-              event:DragEvent|undefined = undefined
-              extraParams:string = ''
             }
             let eve:tmp = new tmp()
             this.getUIContext().getDragController().executeDrag(() => { // 建议使用 this.getUIContext().getDragController().executeDrag()接口
