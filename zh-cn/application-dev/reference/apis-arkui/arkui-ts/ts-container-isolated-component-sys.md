@@ -114,12 +114,15 @@ onError(callback:ErrorCallback)
   ```ts
   // OhCardWorker.ets
   import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
-  
+
   const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
-  workerPort.onmessage = (e: MessageEvents) => {}
-  workerPort.onmessageerror = (e: MessageEvents) => {}
-  workerPort.onerror = (e: ErrorEvent) => {}
+  workerPort.onmessage = (e: MessageEvents) => {
+  }
+  workerPort.onmessageerror = (e: MessageEvents) => {
+  }
+  workerPort.onerror = (e: ErrorEvent) => {
+  }
   ```
 
 - 示例应用中`EntryAbility(UIAbility)`加载首页文件`ets/pages/Index.ets`的内容如下：

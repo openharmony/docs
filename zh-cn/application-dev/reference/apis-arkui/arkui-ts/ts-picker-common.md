@@ -25,7 +25,7 @@
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 是   | 文本颜色。                     |
 | font  | [Font](ts-types.md#font)                 | 否   | 是   | 文本样式。 |
 
-## PickerDialogButtonStyle<sup>12+</sup>类型说明
+## PickerDialogButtonStyle<sup>12+</sup>对象说明
 
 选择器弹窗的按钮样式。
 

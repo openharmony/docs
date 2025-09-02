@@ -133,6 +133,8 @@ type SaveButtonCallback = (event: ClickEvent, result: SaveButtonOnClickResult, e
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
 | event | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明。|

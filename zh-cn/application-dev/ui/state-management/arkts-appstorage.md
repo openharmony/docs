@@ -380,7 +380,7 @@ struct MapSample {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.message.entries()), (item: [number, number]) => {
+        ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
           Text(`${item[0]}`).fontSize(30)
           Text(`${item[1]}`).fontSize(30)
           Divider()
@@ -425,7 +425,7 @@ struct SetSample {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.memberSet.entries()), (item: [number, string]) => {
+        ForEach(Array.from(this.memberSet.entries()), (item: [number, number]) => {
           Text(`${item[0]}`)
             .fontSize(30)
           Divider()

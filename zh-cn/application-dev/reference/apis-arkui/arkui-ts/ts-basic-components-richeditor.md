@@ -463,7 +463,7 @@ scrollBarColor(color: Optional\<ColorMetrics>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                     |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------- |
-| color  | [Optional\<ColorMetrics>](../js-apis-arkui-graphics.md#colormetrics12) | 是   | 设置组件滚动条颜色。<br />默认值：'\#66182431' |
+| color  | [Optional\<ColorMetrics>](../js-apis-arkui-graphics.md#colormetrics12) | 是   | 设置组件滚动条颜色。<br />默认值：'\#66182431'<br />**说明：** 设置异常值时按默认值处理。 |
 
 
 ## 事件
@@ -1265,7 +1265,7 @@ addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions
 
 addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): number
 
-添加用户自定义布局Span。
+在RichEditor中添加用户自定义布局（BuilderSpan）。
 
 > **说明：**
 >
@@ -1303,7 +1303,7 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 
 addSymbolSpan(value: Resource, options?: RichEditorSymbolSpanOptions ): number
 
-在Richeditor中添加SymbolSpan，如果组件光标闪烁，插入后光标位置更新为新插入Symbol的后面。
+在RichEditor中添加图标小符号（SymbolSpan），如果组件光标闪烁，插入后光标位置更新为新插入SymbolSpan的后面。
 
 暂不支持手势、复制、拖拽处理。
 
@@ -1472,7 +1472,7 @@ fromStyledString(value: StyledString): Array\<RichEditorSpan>
 
 toStyledString(value: RichEditorRange): StyledString
 
-将给定范围的组件内容转换成属性字符串。
+将给定范围的组件内容转换成属性字符串，SymbolSpan和BuilderSpan不支持转换。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

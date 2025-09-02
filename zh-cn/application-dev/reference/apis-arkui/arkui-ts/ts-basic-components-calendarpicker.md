@@ -52,8 +52,8 @@ edgeAlign(alignType: CalendarAlign, offset?: Offset)
 
 | 参数名    | 类型                                    | 必填 | 说明                                                         |
 | --------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| alignType | [CalendarAlign](#calendaralign枚举说明) | 是   | 对齐方式类型。<br/>默认值：CalendarAlign.END                 |
-| offset    | [Offset](ts-types.md#offset)            | 否   | 按照对齐方式类型对齐后，选择器相对入口组件的偏移量。<br/>默认值：{dx: 0, dy: 0} |
+| alignType | [CalendarAlign](#calendaralign枚举说明) | 是   | 对齐方式的类型。<br/>默认值：CalendarAlign.END                 |
+| offset    | [Offset](ts-types.md#offset)            | 否   | 按照对齐方式对齐后，选择器相对入口组件的偏移量。<br/>默认值：{dx: 0, dy: 0} |
 
 ### edgeAlign<sup>18+</sup>
 
@@ -69,8 +69,8 @@ edgeAlign(alignType: Optional\<CalendarAlign>, offset?: Offset)
 
 | 参数名    | 类型                                                         | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| alignType | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[CalendarAlign](#calendaralign枚举说明)> | 是   | 对齐方式类型。<br/>当alignType的值为undefined时，默认值：CalendarAlign.END |
-| offset    | [Offset](ts-types.md#offset)                                 | 否   | 按照对齐方式类型对齐后，选择器相对入口组件的偏移量。<br/>默认值：{dx: 0, dy: 0} |
+| alignType | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[CalendarAlign](#calendaralign枚举说明)> | 是   | 对齐方式的类型。<br/>默认值：CalendarAlign.END<br/>当alignType的值为undefined时，使用默认值。 |
+| offset    | [Offset](ts-types.md#offset)                                 | 否   | 按照对齐方式对齐后，选择器相对入口组件的偏移量。<br/>默认值：{dx: 0, dy: 0} |
 
 ### textStyle
 
@@ -86,7 +86,7 @@ textStyle(value: PickerTextStyle)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明) | 是   | 设置入口区的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明) | 是   | 设置入口区的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
 ### textStyle<sup>18+</sup>
 
@@ -102,7 +102,7 @@ textStyle(style: Optional\<PickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)> | 是   | 设置入口区的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明)> | 是   | 设置入口区的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>}<br/>当style的值为undefined时，使用默认值。 |
 
 ### markToday<sup>19+</sup>
 
@@ -215,7 +215,7 @@ struct CalendarPickerExample {
           .textStyle({ color: "#ff182431", font: { size: 20, weight: FontWeight.Normal } })
           .margin(10)
           .onChange((value) => {
-            console.info("CalendarPicker onChange:" + JSON.stringify(value));
+            console.info(`CalendarPicker onChange: ${value.toString()}`);
           })
       }.alignItems(HorizontalAlign.End).width("100%")
 
@@ -248,7 +248,7 @@ struct CalendarPickerExample {
           .textStyle({ color: "#ff182431", font: { size: 20, weight: FontWeight.Normal } })
           .margin(10)
           .onChange((value) => {
-            console.info("CalendarPicker onChange:" + JSON.stringify(value));
+            console.info(`CalendarPicker onChange: ${value.toString()}`);
           })
       }.alignItems(HorizontalAlign.End).width("100%")
     }.width('100%').margin({ top: 350 })
@@ -281,7 +281,7 @@ struct CalendarPickerExample {
         .margin(10)
         .markToday(true)
         .onChange((value) => {
-          console.info("CalendarPicker onChange:" + JSON.stringify(value));
+          console.info(`CalendarPicker onChange: ${value.toString()}`);
         })
     }.alignItems(HorizontalAlign.End).width('100%')
   }

@@ -27,7 +27,7 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-2. 调用cameraManager类中的[createSession](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createsession11)方法创建一个会话。
+2. 调用cameraManager中的[createSession](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createsession11)方法创建一个会话。
      
    ```ts
    function getSession(cameraManager: camera.CameraManager): camera.Session | undefined {
@@ -42,7 +42,7 @@
    }
    ```
 
-3. 调用VideoSession类中的[beginConfig](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#beginconfig11)方法配置会话。
+3. 调用VideoSession中的[beginConfig](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#beginconfig11)方法配置会话。
      
    ```ts
    function beginConfig(videoSession: camera.VideoSession): void {
@@ -56,7 +56,7 @@
    ```
 
 4. 使能。向会话中添加相机的输入流和输出流，调用[addInput](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#addinput11)添加相机的输入流；调用[addOutput](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#addoutput11)添加相机的输出流。以下示例代码以添加预览流previewOutput和拍照流photoOutput为例，即当前模式支持拍照和预览。
-     调用VideoSession类中的[commitConfig](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#commitconfig11)和[start](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#start11)方法提交相关配置，并启动会话。
+     调用VideoSession中的[commitConfig](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#commitconfig11)和[start](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#start11)方法提交相关配置，并启动会话。
 
      > **说明：**
      >
@@ -111,7 +111,7 @@
    }
    ```
 
-5. 会话控制。调用VideoSession类中的[stop](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#stop11)方法可以停止当前会话。调用[removeOutput](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#removeoutput11)和[addOutput](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#addoutput11)方法可以完成会话切换控制。以下示例代码以移除拍照流photoOutput，添加视频流videoOutput为例，完成了拍照到录像的切换。
+5. 会话控制。调用VideoSession中的[stop](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#stop11)方法可以停止当前会话。调用[removeOutput](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#removeoutput11)和[addOutput](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#addoutput11)方法可以完成会话切换控制。以下示例代码以移除拍照流photoOutput，添加视频流videoOutput为例，完成了拍照到录像的切换。
 
    ```ts
    async function switchOutput(videoSession: camera.VideoSession, videoOutput: camera.VideoOutput, photoOutput: camera.PhotoOutput): Promise<void> {

@@ -578,6 +578,41 @@ struct WebComponent {
 }
 ```
 
+加载沙箱图片。
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('loadData')
+        .onClick(() => {
+          try {
+            this.controller.loadData(
+              "<img src=bb.jpg>", // 尝试从"file:///xxx/" + "bb.jpg"加载该图片。
+              "text/html",
+              "UTF-8",
+              // 加载本地应用沙箱内的图片路径，请将路径改为实际使用的沙箱路径。
+              "file:///data/storage/el2/base/haps/entry/files/data/.cache_dir/",
+              ""
+            );
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+        .fileAccess(true) // 为了加载应用沙箱内的图片，需要启用文件访问功能。 
+    }
+  }
+}
+```
+
 ## accessForward
 
 accessForward(): boolean
@@ -2591,7 +2626,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let id = this.controller.getWebId();
-            console.log("id: " + id);
+            console.info("id: " + id);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -4617,19 +4652,83 @@ struct WebComponent {
 }
 ```
 
+## prefetchPage<sup>21+</sup>
+
+prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>, prefetchOptions?: PrefetchOptions): void
+
+在预测到将要加载的页面之前调用，可提前下载页面所需的资源（包括：主资源和子资源），但不会执行网页JavaScript代码或呈现网页，以加快页面加载速度。
+
+> **说明：**
+>
+> - 下载的页面资源会缓存五分钟左右，超过这段时间Web组件会自动释放。
+>
+> - prefetchPage对302重定向页面同样正常预取。
+>
+> - 先执行prefetchPage再加载页面时，已预取的资源将直接从缓存中加载。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名             | 类型                             | 必填  | 说明                      |
+| ------------------| --------------------------------| ---- | ------------- |
+| url               | string                          | 是    | 预加载的url。|
+| additionalHeaders | Array\<[WebHeader](./arkts-apis-webview-i.md#webheader)> | 否    | url的附加HTTP请求头。<br>默认值： [] |
+| prefetchOptions | [PrefetchOptions](./arkts-apis-webview-PrefetchOptions.md) | 否    | 用来自定义预取行为的相关选项。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 17100002 | Invalid url.                                                 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+  build() {
+    Column() {
+      Button('prefetchPopularPage')
+        .onClick(() => {
+          try {
+            // 预加载时，需要将'https://www.example.com'替换成一个真实的网站地址。
+            let options = new webview.PrefetchOptions();
+            options.ignoreCacheControlNoStore = true;
+            options.minTimeBetweenPrefetchesMs = 100;
+            this.controller.prefetchPage('https://www.example.com', [{ headerKey: "headerKey", headerValue: "headerValue" }], options);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      // 需要将'www.example1.com'替换成一个真实的网站地址。
+      Web({ src: 'www.example1.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ## prefetchPage<sup>10+</sup>
 
 prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
-在预测到将要加载的页面之前调用，提前下载页面所需的资源，包括主资源子资源，但不会执行网页JavaScript代码或呈现网页，以加快加载速度。
+在预测到将要加载的页面之前调用，可提前下载页面所需的资源（包括：主资源和子资源），但不会执行网页JavaScript代码或呈现网页，以加快页面加载速度。
 
 > **说明：**
 >
-> - 下载的页面资源，会缓存五分钟左右，超过这段时间Web组件会自动释放。
+> - 下载的页面资源会缓存五分钟左右，超过这段时间Web组件会自动释放。
 >
 > - prefetchPage对302重定向页面同样正常预取。
 >
-> - 先执行prefetchPage，再加载页面时，已预取的资源将直接从缓存中加载。
+> - 先执行prefetchPage再加载页面时，已预取的资源将直接从缓存中加载。
 >
 > - 连续prefetchPage多个url只有第一个生效。
 >
@@ -4646,7 +4745,7 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -5374,6 +5473,8 @@ enableIntelligentTrackingPrevention(enable: boolean): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**设备行为差异：** 该接口在Phone、Tablet、PC/2in1中可正常使用。从API version 18开始，在其他设备类型中返回801错误码。
+
 **参数：**
 
 | 参数名   | 类型    |  必填  | 说明                       |
@@ -5381,10 +5482,6 @@ enableIntelligentTrackingPrevention(enable: boolean): void
 |  enable | boolean | 是   | 是否启用智能防跟踪功能。<br>true表示启用智能防跟踪功能，false表示不启用智能防跟踪功能。<br>默认值：false。 |
 
 **错误码：**
-
-> **说明：**
->
-> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -5431,6 +5528,8 @@ isIntelligentTrackingPreventionEnabled(): boolean
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**设备行为差异：** 该接口在Phone、Tablet、PC/2in1中可正常使用。从API version 18开始，在其他设备类型中返回801错误码。
+
 **返回值：**
 
 | 类型    | 说明                                     |
@@ -5438,10 +5537,6 @@ isIntelligentTrackingPreventionEnabled(): boolean
 | boolean | 当前Web是否启用了智能防跟踪功能。<br>true表示启用了智能防跟踪功能，false表示未启用智能防跟踪功能。<br>默认值：false。 |
 
 **错误码：**
-
-> **说明：**
->
-> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -5487,6 +5582,8 @@ static addIntelligentTrackingPreventionBypassingList(hostList: Array\<string>): 
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**设备行为差异：** 该接口在Phone、Tablet、PC/2in1中可正常使用。从API version 18开始，在其他设备类型中返回801错误码。
+
 **参数：**
 
 | 参数名       | 类型           | 必填  | 说明                      |
@@ -5494,10 +5591,6 @@ static addIntelligentTrackingPreventionBypassingList(hostList: Array\<string>): 
 | hostList    | Array\<string> | 是   | 绕过智能防跟踪功能的域名列表。 |
 
 **错误码：**
-
-> **说明：**
->
-> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -5543,6 +5636,8 @@ static removeIntelligentTrackingPreventionBypassingList(hostList: Array\<string>
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**设备行为差异：** 该接口在Phone、Tablet、PC/2in1中可正常使用。从API version 18开始，在其他设备类型中返回801错误码。
+
 **参数：**
 
 | 参数名       | 类型           | 必填  | 说明                      |
@@ -5550,10 +5645,6 @@ static removeIntelligentTrackingPreventionBypassingList(hostList: Array\<string>
 | hostList    | Array\<string> | 是   | 绕过智能防跟踪功能的域名列表。 |
 
 **错误码：**
-
-> **说明：**
->
-> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -5599,11 +5690,9 @@ static clearIntelligentTrackingPreventionBypassingList(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**错误码：**
+**设备行为差异：** 该接口在Phone、Tablet、PC/2in1中可正常使用。从API version 18开始，在其他设备类型中返回801错误码。
 
-> **说明：**
->
-> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+**错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -5917,7 +6006,7 @@ struct WebComponent {
       Button('getRenderProcessMode')
         .onClick(() => {
           let mode = webview.WebviewController.getRenderProcessMode();
-          console.log("getRenderProcessMode: " + mode);
+          console.info("getRenderProcessMode: " + mode);
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -5965,7 +6054,7 @@ struct WebComponent {
       Button('terminateRenderProcess')
         .onClick(() => {
           let result = this.controller.terminateRenderProcess();
-          console.log("terminateRenderProcess result: " + result);
+          console.info("terminateRenderProcess result: " + result);
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -8336,6 +8425,17 @@ setPathAllowingUniversalAccess(pathList: Array\<string\>): void
 * /data/storage/el1/bundle/entry/resource/resfile
 * /data/storage/el1/bundle/entry/resource/resfile/example
 
+3.从API version 21开始，还包括了应用缓存目录及其子目录（应用缓存目录通过Ability Kit中的[Context.cacheDir](../apis-ability-kit/js-apis-inner-application-context.md#context)获取），例如：
+
+* /data/storage/el2/base/cache
+* /data/storage/el2/base/haps/entry/cache/example
+* 设置的目录路径中，不允许包含cache/web，否则会抛出异常码401。如果设置目录路径是cache，cache/web也不允许访问。
+
+4.从API version 21开始，还包括了应用临时目录及其子目录（应用临时目录通过Ability Kit中的[Context.tempDir](../apis-ability-kit/js-apis-inner-application-context.md#context)获取），例如：
+
+* /data/storage/el2/base/temp
+* /data/storage/el2/base/haps/entry/temp/example
+
 当路径列表中有其中一个路径不满足以上条件之一，则会抛出异常码401，并且设置路径列表失败。当设置的路径列表为空，则file协议可访问范围以[fileAccess](./arkts-basic-components-web-attributes.md#fileaccess)的行为为准。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -9013,9 +9113,9 @@ struct WebComponent {
         .onClick(() => {
           try {
             if (this.controller.getAttachState() == webview.ControllerAttachState.ATTACHED) {
-              console.log('Controller is attached.');
+              console.info('Controller is attached.');
             } else {
-              console.log('Controller is unattached.');
+              console.info('Controller is unattached.');
             }
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -9076,9 +9176,9 @@ struct WebComponent {
   // 构建回调函数
   handleControllerAttachStateChange = (state: webview.ControllerAttachState) => {
     if (state == webview.ControllerAttachState.UNATTACHED) {
-      console.log('handleControllerAttachStateChange: Controller is unattached.');
+      console.info('handleControllerAttachStateChange: Controller is unattached.');
     } else {
-      console.log('handleControllerAttachStateChange: Controller is attached.');
+      console.info('handleControllerAttachStateChange: Controller is attached.');
     }
   };
   aboutToAppear() {
@@ -9091,9 +9191,9 @@ struct WebComponent {
       // 注册回调以接收controller绑定状态更改通知
       this.controller.on('controllerAttachStateChange', (state: webview.ControllerAttachState) => {
         if (state == webview.ControllerAttachState.UNATTACHED) {
-          console.log('Controller is unattached.');
+          console.info('Controller is unattached.');
         } else {
-          console.log('Controller is attached.');
+          console.info('Controller is attached.');
         }
       })
     } catch (error) {
@@ -9153,13 +9253,13 @@ struct WebComponent {
     this.controller.waitForAttached(1000).then((state: webview.ControllerAttachState) => {
       if (state == webview.ControllerAttachState.ATTACHED) {
         //绑定完成或者超时都会触发回调
-        console.log('Controller is attached.');
+        console.info('Controller is attached.');
       }
     })
     try {
       const state = await this.controller.waitForAttached(1000);
       if (state == webview.ControllerAttachState.ATTACHED) {
-        console.log('Controller is attached.');
+        console.info('Controller is attached.');
       }
     } catch (error) {
       console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -9905,12 +10005,12 @@ import { webview } from '@kit.ArkWeb';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log("EntryAbility onCreate");
+    console.info("EntryAbility onCreate");
     webview.WebviewController.initializeWebEngine();
     // 设置快速销毁模式
     webview.WebviewController.setWebDestroyMode(webview.WebDestroyMode.FAST_MODE);
     AppStorage.setOrCreate("abilityWant", want);
-    console.log("EntryAbility onCreate done");
+    console.info("EntryAbility onCreate done");
   }
 }
 ```
@@ -9976,3 +10076,78 @@ static getActiveWebEngineVersion(): ArkWebEngineVersion
 **示例：**
 
 请参考[setActiveWebEngineVersion](#setactivewebengineversion20)。
+
+## setAutoPreconnect<sup>21+</sup>
+
+static setAutoPreconnect(enabled: boolean): void
+
+设置Web内核的自动预连接状态。若未设置，默认启用自动预连接。
+
+需要在[initializeWebEngine()](#initializewebengine)初始化内核或者创建Web组件之前调用。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                                                     |
+| -------- | ------- | ---- | -------------------------------------------------------- |
+| enabled | boolean | 是   | 是否启用Web内核自动预连接的开关。true表示启用，false表示禁用。 |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        webview.WebviewController.setAutoPreconnect(false);
+        webview.WebviewController.initializeWebEngine();
+        AppStorage.setOrCreate("abilityWant", want);
+    }
+}
+```
+
+## isAutoPreconnectEnabled<sup>21+</sup>
+
+static isAutoPreconnectEnabled(): boolean
+
+查询Web内核的自动预连接状态。
+
+如果没有使用[setAutoPreconnect](#setautopreconnect21)设置Web内核自动预连接的状态，则默认启用自动预连接，返回true。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型    | 说明                                     |
+| ------- | --------------------------------------- |
+| boolean | 返回Web内核是否启用了自动预连接。true表示已启用；false表示已禁用。 |
+
+**示例：**
+
+```ts
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  build() {
+    Column() {
+      Button('isAutoPreconnectEnabled')
+        .onClick(() => {
+          try {
+            let isEnabled: boolean = webview.WebviewController.isAutoPreconnectEnabled();
+            console.log("isAutoPreconnectEnabled:", isEnabled);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+    }
+  }
+}
+```

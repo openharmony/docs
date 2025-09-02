@@ -649,8 +649,6 @@ if (store != undefined) {
 ```
 **示例2：指定资产下载**
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 let asset: relationalStore.Asset = {
   name: "name",

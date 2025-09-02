@@ -1632,9 +1632,9 @@ let link = AppStorage.setAndLink('PropB', 49); // PropA -> 47, PropB -> 49
 link.aboutToBeDeleted();
 ```
 
-### info
+### info<sup>10+</sup>
 
-info(): string;
+info(): string
 
 返回属性名称。
 

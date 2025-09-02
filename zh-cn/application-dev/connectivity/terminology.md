@@ -38,6 +38,9 @@ Hand Free Profile，即免提协议。用于实现蓝牙设备间的免提通话
 Human Interface Device Profile，即人机接口协议，为经典蓝牙设计。可用于实现蓝牙无线人机交互设备连接间的低延迟双向通信。例如：键盘、鼠标、游戏手柄等设备与主机（如手机、平板和PC）间传输数据。
 ### HOGP
 HID over GATT Profile，基于低功耗蓝牙的GATT协议实现的HID规范，将传统HID功能移植到BLE设备上复用，兼容键盘、鼠标、自拍杆等BLE设备的HID交互逻辑。
+## L
+### L2CAP
+Logical Link Control and Adaptation Protocal，即逻辑链路控制和适配协议。可支持上层协议和应用的多种传输需求，提供面向连接和无连接的数据服务，并提供多路复用，分段和重组操作。
 ## M
 ### MAP
 Message Access Profile，即消息访问协议。可用于实现蓝牙设备间的消息同步，支持短信、邮件等数据传输。
@@ -53,7 +56,11 @@ Personal Area Network，即蓝牙个人局域网协议。支持设备间网络�
 Phone Book Access Profile，即蓝牙电话簿访问协议。可用于实现蓝牙设备间的电话簿数据同步，支持联系人、通话记录等数据传输。
 ### Profile
 在蓝牙子系统中，一般特指某种蓝牙技术协议或者能力。例如：A2DP、HFP和HID协议等。
+### PSM
+Protocol/Service Multiplexer，即协议/服务多路复用器。用于标识[L2CAP](#l2cap)层上的不同服务或协议。
 ## R
+### RFCOMM
+Radio Frequency Communication，即无线电频率通信协议。用于模拟传统的RS232串行通信（一种常见的有线数据传输标准），提供一种简单可靠的数据传输方式，支持多个同时连接的通道。
 ### RSSI
 Received Signal Strength Indicator，是无线通信中用于量化接收端信号强度的指标，单位是dBm。
 ## S

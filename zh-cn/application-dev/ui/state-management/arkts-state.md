@@ -361,7 +361,7 @@ struct SetSample {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.message.entries()), (item: [number]) => {
+        ForEach(Array.from(this.message.entries()), (item: [number, number]) => {
           Text(`${item[0]}`).fontSize(30)
           Divider()
         })

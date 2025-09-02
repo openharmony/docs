@@ -49,30 +49,31 @@ DatePicker(options?: DatePickerOptions)
 | start    | Date | 否  | 是  | 指定选择器的起始日期。<br/>默认值：Date('1970-1-1')<br/>取值范围：\[Date('1900-01-31'), Date('2100-12-31')]<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。          |
 | end      | Date | 否  | 是  | 指定选择器的结束日期。<br/>默认值：Date('2100-12-31')<br/>取值范围：\[Date('1900-01-31'), Date('2100-12-31')]<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
 | selected | Date | 否  | 是  | 设置选中项的日期。<br/>默认值：当前系统日期。<br/>取值范围：\[Date('1900-01-31'), Date('2100-12-31')]<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| mode<sup>18+</sup> | [DatePickerMode](#datepickermode18枚举说明) | 否  | 是  | 设置DatePicker显示的日期选项列。<br/>默认值：DatePickerMode.DATE，日期列显示年、月、日三列。 小数值做取整处理。<br/>在DatePickerDialog中，当showTime=true时，此参数不生效，显示默认年月日三列。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| mode<sup>18+</sup> | [DatePickerMode](#datepickermode18枚举说明) | 否  | 是  | 设置日期展示模式。<br/>默认值：DatePickerMode.DATE，显示年、月、日三列。 小数值做取整处理。<br/>在DatePickerDialog中，当showTime=true时，此参数不生效，显示默认年月日三列。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 >  **说明：**
 >
-> - Date的使用请参考[TimePickerOptions](ts-basic-components-timepicker.md#timepickeroptions对象说明)。  
-> - 在DatePicker组件滑动过程中修改DatePickerOptions中的属性（start、end、selected、mode），会导致这些属性无法生效。
+> - Date的使用请参考[TimePickerOptions](ts-basic-components-timepicker.md#timepickeroptions对象说明)。
+>
+> - 在DatePicker组件滑动过程中修改DatePickerOptions中的属性，会导致这些属性无法生效。
 
 **起始日期、结束日期和选中日期的异常情形说明：**
 
 | 异常情形   | 对应结果  |
 | -------- |  ------------------------------------------------------------ |
-| 起始日期晚于结束日期，选中日期未设置    | 起始日期、结束日期和选中日期都为默认值  |
-| 起始日期晚于结束日期，选中日期早于起始日期默认值    | 起始日期、结束日期都为默认值，选中日期为起始日期默认值  |
-| 起始日期晚于结束日期，选中日期晚于结束日期默认值    | 起始日期、结束日期都为默认值，选中日期为结束日期默认值  |
-| 起始日期晚于结束日期，选中日期在起始日期与结束日期默认值范围内    | 起始日期、结束日期都为默认值，选中日期为设置的值 |
-| 选中日期早于起始日期    | 选中日期为起始日期  |
-| 选中日期晚于结束日期    | 选中日期为结束日期  |
-| 起始日期晚于当前系统日期，选中日期未设置    | 选中日期为起始日期  |
-| 结束日期早于当前系统日期，选中日期未设置    | 选中日期为结束日期  |
-| 日期格式不符合规范，如‘1999-13-32’   | 取默认值  |
-| 起始日期或结束日期早于系统有效范围    | 起始日期或结束日期取起始日期默认值 |
-| 起始日期或结束日期晚于系统有效范围    | 起始日期或结束日期取结束日期默认值 |
-| 起始日期与结束日期同时早于系统有效范围 | 起始日期与结束日期取系统有效范围最早日期 |
-| 起始日期与结束日期同时晚于系统有效范围 | 起始日期与结束日期取系统有效范围最晚日期 |
+| 起始日期晚于结束日期，选中日期未设置。    | 起始日期、结束日期和选中日期都为默认值。 |
+| 起始日期晚于结束日期，选中日期早于起始日期默认值。    | 起始日期、结束日期都为默认值，选中日期为起始日期默认值。  |
+| 起始日期晚于结束日期，选中日期晚于结束日期默认值。    | 起始日期、结束日期都为默认值，选中日期为结束日期默认值。  |
+| 起始日期晚于结束日期，选中日期在起始日期与结束日期默认值范围内。    | 起始日期、结束日期都为默认值，选中日期为设置的值。 |
+| 选中日期早于起始日期。    | 选中日期为起始日期。  |
+| 选中日期晚于结束日期。    | 选中日期为结束日期。  |
+| 起始日期晚于当前系统日期，选中日期未设置。    | 选中日期为起始日期。  |
+| 结束日期早于当前系统日期，选中日期未设置。    | 选中日期为结束日期。  |
+| 日期格式不符合规范，如‘1999-13-32’。   | 取默认值。  |
+| 起始日期或结束日期早于系统有效范围。    | 起始日期或结束日期取起始日期默认值。 |
+| 起始日期或结束日期晚于系统有效范围。    | 起始日期或结束日期取结束日期默认值。 |
+| 起始日期与结束日期同时早于系统有效范围。 | 起始日期与结束日期取系统有效范围最早日期。 |
+| 起始日期与结束日期同时晚于系统有效范围。 | 起始日期与结束日期取系统有效范围最晚日期。 |
 
 >  **说明：**
 >
@@ -80,7 +81,7 @@ DatePicker(options?: DatePickerOptions)
 
 ## DatePickerMode<sup>18+</sup>枚举说明
 
-设置要显示的日期选项列。
+设置日期展示模式。
 
 **原子化服务API：** 从API version 18开始，该类型支持在原子化服务中使用。
 
@@ -88,9 +89,9 @@ DatePicker(options?: DatePickerOptions)
 
 | 名称 | 值 | 说明 |
 | -------- | - |-------- |
-| DATE | 0 | 日期列显示年、月、日三列。|
-| YEAR_AND_MONTH | 1 | 日期列显示年、月二列。|
-| MONTH_AND_DAY | 2 | 日期列显示月、日二列。<br/>此模式下，如果月份从12月变化到1月，年份不增加1年；如果月份从1月变化到12月，年份不减少1年；年份始终在当前设置的年份。|
+| DATE | 0 | 显示年、月、日三列。|
+| YEAR_AND_MONTH | 1 | 显示年、月二列。|
+| MONTH_AND_DAY | 2 | 显示月、日二列。<br/>在此模式下，年份始终保持不变。|
 
 ## 属性
 
@@ -132,7 +133,7 @@ lunar(isLunar: Optional\<boolean>)
 
 disappearTextStyle(value: PickerTextStyle)
 
-设置过渡项（以选中项为基准向上或向下的第二项）的文本样式。
+设置边缘项（以选中项为基准向上或向下的第二项）的文本样式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -142,13 +143,17 @@ disappearTextStyle(value: PickerTextStyle)
 
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明) | 是   | 过渡项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明) | 是   | 边缘项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+
+>  **说明：**
+>
+> 若选中项向上或向下的可视项数低于两项则无对应边缘项。
 
 ### disappearTextStyle<sup>18+</sup>
 
 disappearTextStyle(style: Optional\<PickerTextStyle>)
 
-设置过渡项的文本样式。与[disappearTextStyle<sup>10+</sup>](#disappeartextstyle10)相比，style参数新增了对undefined类型的支持。
+设置边缘项（以选中项为基准向上或向下的第二项）的文本样式。与[disappearTextStyle<sup>10+</sup>](#disappeartextstyle10)相比，style参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -158,17 +163,17 @@ disappearTextStyle(style: Optional\<PickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)> | 是   | 过渡项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>}<br/>当style的值为undefined时，使用默认值。 |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明)> | 是   | 边缘项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>}<br/>当style的值为undefined时，使用默认值。 |
 
 >  **说明：**
 >
-> 若选中项向上或向下的可视项数低于两项则无对应过渡项。
+> 若选中项向上或向下的可视项数低于两项则无对应边缘项。
 
 ### textStyle<sup>10+</sup>
 
 textStyle(value: PickerTextStyle)
 
-设置一般项（以选中项为基准向上或向下的第一项）的文本样式。
+设置待选项（以选中项为基准向上或向下的第一项）的文本样式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -178,13 +183,17 @@ textStyle(value: PickerTextStyle)
 
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明) | 是   | 一般项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明) | 是   | 待选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+
+>  **说明：**
+>
+> 若选中项向上或向下可视项数低于一项则无对应待选项。
 
 ### textStyle<sup>18+</sup>
 
 textStyle(style: Optional\<PickerTextStyle>)
 
-设置一般项的文本样式。与[textStyle<sup>10+</sup>](#textstyle10)相比，style参数新增了对undefined类型的支持。
+设置待选项（以选中项为基准向上或向下的第一项）的文本样式。与[textStyle<sup>10+</sup>](#textstyle10)相比，style参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -194,11 +203,11 @@ textStyle(style: Optional\<PickerTextStyle>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| style | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)> | 是   | 一般项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>}<br/>当style的值为undefined时，使用默认值。 |
+| style | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明)> | 是   | 待选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>}<br/>当style的值为undefined时，使用默认值。 |
 
 >  **说明：**
 >
-> 若选中项向上或向下可视项数低于一项则无对应一般项。
+> 若选中项向上或向下可视项数低于一项则无对应待选项。
 
 ### selectedTextStyle<sup>10+</sup>
 
@@ -214,7 +223,7 @@ selectedTextStyle(value: PickerTextStyle)
 
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明) | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明) | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
 
 ### selectedTextStyle<sup>18+</sup>
 
@@ -230,7 +239,7 @@ selectedTextStyle(style: Optional\<PickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>}<br/>}<br/>当style的值为undefined时，使用默认值。 |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>}<br/>}<br/>当style的值为undefined时，使用默认值。 |
 
 ### enableHapticFeedback<sup>18+</sup>
 
@@ -334,7 +343,7 @@ onDateChange(callback: Callback\<Date>)
 
 onDateChange(callback: Optional\<Callback\<Date>>)
 
-选择日期时触发该事件。与[onDateChange<sup>10+</sup>](#ondatechange10)相比，callback参数新增了对undefined类型的支持。
+选择日期时触发该事件。不能通过双向绑定的状态变量触发。与[onDateChange<sup>10+</sup>](#ondatechange10)相比，callback参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 

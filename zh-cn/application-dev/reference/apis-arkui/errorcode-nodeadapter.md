@@ -14,25 +14,25 @@
 
 **错误信息**
 
-A listener is required to add the NodeAdapter.
+The lazy loading adapter is not bound to the component.
 
 **错误描述**
 
-NodeAdapter需要添加监听器。
+组件未设置NodeAdapter。
 
 **可能原因**
 
-NodeAdapter未绑定DataChangeListener。
+组件未设置NodeAdapter。
 
 **处理步骤**
 
-NodeAdapter设置listener。
+为组件设置NodeAdapter。
 
 ## 106105 适配器已存在
 
 **错误信息**
 
-The NodeAdapter already exists.
+The adapter already exists.
 
 **错误描述**
 
@@ -50,7 +50,7 @@ NodeAdapter已经存在，不支持添加删除子节点。
 
 **错误信息**
 
-This component already has a child node.
+The corresponding node already has a child node and cannot add an adapter.
 
 **错误描述**
 

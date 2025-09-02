@@ -1,4 +1,10 @@
 # pixelmap_native.h
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yaozhupeng-->
+<!--Designer: @yaozhupeng-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
@@ -7,6 +13,8 @@
 **引用文件：** <multimedia/image_framework/image/pixelmap_native.h>
 
 **库：** libpixelmap.so
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **起始版本：** 12
 
@@ -87,7 +95,7 @@
 | [Image_ErrorCode OH_PixelmapNative_Crop(OH_PixelmapNative *pixelmap, Image_Region *region)](#oh_pixelmapnative_crop) | 根据输入的尺寸对图片进行裁剪。 |
 | [Image_ErrorCode OH_PixelmapNative_Release(OH_PixelmapNative *pixelmap)](#oh_pixelmapnative_release) | 释放OH_PixelmapNative指针，推荐使用[OH_PixelmapNative_Destroy](#oh_pixelmapnative_destroy)。 |
 | [Image_ErrorCode OH_PixelmapNative_Destroy(OH_PixelmapNative **pixelmap)](#oh_pixelmapnative_destroy) | 释放OH_PixelmapNative指针。 |
-| [Image_ErrorCode OH_PixelmapNative_ConvertAlphaFormat(OH_PixelmapNative* srcpixelmap,OH_PixelmapNative* dstpixelmap, const bool isPremul)](#oh_pixelmapnative_convertalphaformat) | 将pixlemap的像素数据做预乘和非预乘之间的转换。 |
+| [Image_ErrorCode OH_PixelmapNative_ConvertAlphaFormat(OH_PixelmapNative* srcpixelmap,OH_PixelmapNative* dstpixelmap, const bool isPremul)](#oh_pixelmapnative_convertalphaformat) | 将pixelmap的像素数据做预乘和非预乘之间的转换。 |
 | [Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(OH_Pixelmap_InitializationOptions *options,OH_PixelmapNative **pixelmap)](#oh_pixelmapnative_createemptypixelmap) | 利用OH_Pixelmap_InitializationOptions创建空的pixelmap对象，内存数据为0。 |
 | [Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmapUsingAllocator(OH_Pixelmap_InitializationOptions *options, IMAGE_ALLOCATOR_MODE allocator, OH_PixelmapNative **pixelmap)](#oh_pixelmapnative_createemptypixelmapusingallocator) | 根据入参options创建空的pixelmap，pixelmap使用的内存类型可以通过allocator指定。默认情况下，系统会根据图像类型、图像大小、平台能力等选择内存类型。在处理此接口返回的像素图时，需要考虑步长影响。 |
 | [Image_ErrorCode OH_PixelmapNative_GetNativeBuffer(OH_PixelmapNative *pixelmap, OH_NativeBuffer **nativeBuffer)](#oh_pixelmapnative_getnativebuffer) | 从DMA内存的PixelMap中，获取NativeBuffer对象。 |

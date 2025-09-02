@@ -1069,7 +1069,7 @@ struct LocalSetSample {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.memberSet.entries()), (item: [number, string]) => {
+        ForEach(Array.from(this.memberSet.entries()), (item: [number, number]) => {
           Text(`${item[0]}`)
             .fontSize(30)
           Divider()

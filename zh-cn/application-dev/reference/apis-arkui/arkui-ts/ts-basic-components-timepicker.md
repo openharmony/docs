@@ -53,7 +53,7 @@ TimePicker(options?: TimePickerOptions)
 
 >  **说明：**
 >
->  - 在TimePicker组件滑动过程中修改TimePickerOptions中的属性（selected、start、end），会导致这些属性无法生效。
+>  - 在TimePicker组件滑动过程中修改TimePickerOptions中的属性，会导致这些属性无法生效。
 >
 >  - Date对象用于处理日期和时间，使用方式如下。
 >
@@ -83,12 +83,12 @@ TimePicker(options?: TimePickerOptions)
 
 | 异常情形   | 对应结果  |
 | -------- |  ------------------------------------------------------------ |
-| 起始时间晚于结束时间    | 起始时间、结束时间都为默认值  |
-| 选中时间早于起始时间    | 选中时间为起始时间  |
-| 选中时间晚于结束时间    | 选中时间为结束时间  |
-| 起始时间晚于当前系统时间，选中时间未设置    | 选中时间为起始时间 |
-| 结束时间早于当前系统时间，选中时间未设置    | 选中时间为结束时间  |
-| 时间格式不符合规范，如'01:61:61'   | 取默认值  |
+| 起始时间晚于结束时间。    | 起始时间、结束时间都为默认值。  |
+| 选中时间早于起始时间。   | 选中时间为起始时间。  |
+| 选中时间晚于结束时间。    | 选中时间为结束时间。  |
+| 起始时间晚于当前系统时间，选中时间未设置。    | 选中时间为起始时间。 |
+| 结束时间早于当前系统时间，选中时间未设置。    | 选中时间为结束时间。  |
+| 时间格式不符合规范，如'01:61:61'。   | 取默认值。  |
 
 ## TimePickerFormat<sup>11+</sup>枚举说明
 
@@ -111,7 +111,7 @@ TimePicker(options?: TimePickerOptions)
 
 useMilitaryTime(value: boolean)
 
-设置展示时间是否为24小时制，默认展示时间为12小时制。
+设置时间是否以24小时制展示，默认以12小时制展示。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -121,7 +121,7 @@ useMilitaryTime(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | boolean | 是   | 展示时间是否为24小时制。<br/>- true：展示时间为24小时制。<br/>- false：展示时间为12小时制。<br/>默认值：false |
+| value  | boolean | 是   | 时间是否以24小时制展示。<br/>- true：时间以24小时制展示。<br/>- false：时间以12小时制展示。<br/>默认值：false |
 
 ### useMilitaryTime<sup>18+</sup>
 
@@ -143,7 +143,7 @@ useMilitaryTime(isMilitaryTime: Optional\<boolean>)
 
 disappearTextStyle(value: PickerTextStyle)
 
-设置过渡项（以选中项为基准向上或向下的第二项）的文本颜色、字号、字体粗细。
+设置边缘项（以选中项为基准向上或向下的第二项）的文本颜色、字号、字体粗细。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -153,13 +153,17 @@ disappearTextStyle(value: PickerTextStyle)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明) | 是   | 过渡项的文本颜色、字号和字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明) | 是   | 边缘项的文本颜色、字号和字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+
+>  **说明：**
+>
+> 若选中项向上或向下的可视项数低于两项则无对应边缘项。
 
 ### disappearTextStyle<sup>18+</sup>
 
 disappearTextStyle(style: Optional\<PickerTextStyle>)
 
-设置过渡项的文本颜色、字号、字体粗细。与[disappearTextStyle<sup>10+</sup>](#disappeartextstyle10)相比，style参数新增了对undefined类型的支持。
+设置边缘项（以选中项为基准向上或向下的第二项）的文本颜色、字号、字体粗细。与[disappearTextStyle<sup>10+</sup>](#disappeartextstyle10)相比，style参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -169,17 +173,17 @@ disappearTextStyle(style: Optional\<PickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)> | 是   | 过渡项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>}<br/>当style的值为undefined时，使用默认值。 |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明)> | 是   | 边缘项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>}<br/>当style的值为undefined时，使用默认值。 |
 
 >  **说明：**
 >
-> 若选中项向上或向下的可视项数低于两项则无对应过渡项。
+> 若选中项向上或向下的可视项数低于两项则无对应边缘项。
 
 ### textStyle<sup>10+</sup>
 
 textStyle(value: PickerTextStyle)
 
-设置一般项（以选中项为基准向上或向下的第一项）的文本颜色、字号、字体粗细。
+设置待选项（以选中项为基准向上或向下的第一项）的文本颜色、字号、字体粗细。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -189,13 +193,17 @@ textStyle(value: PickerTextStyle)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明) | 是   | 一般项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明) | 是   | 待选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+
+>  **说明：**
+>
+> 若选中项向上或向下可视项数低于一项则无对应待选项。
 
 ### textStyle<sup>18+</sup>
 
 textStyle(style: Optional\<PickerTextStyle>)
 
-设置一般项的文本颜色、字号、字体粗细。与[textStyle<sup>10+</sup>](#textstyle10)相比，style参数新增了对undefined类型的支持。
+设置待选项（以选中项为基准向上或向下的第一项）的文本颜色、字号、字体粗细。与[textStyle<sup>10+</sup>](#textstyle10)相比，style参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -205,43 +213,47 @@ textStyle(style: Optional\<PickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)> | 是   | 一般项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>}<br/>当style的值为undefined时，使用默认值。 |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明)> | 是   | 待选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>}<br/>当style的值为undefined时，使用默认值。 |
 
 >  **说明：**
 >
-> 若选中项向上或向下可视项数低于一项则无对应一般项。
+> 若选中项向上或向下可视项数低于一项则无对应待选项。
 
 ### selectedTextStyle<sup>10+</sup>
 
 selectedTextStyle(value: PickerTextStyle)
 
-设置选中项的文本颜色、字号和字体粗细。Wearable设备不支持设置该属性。
+设置选中项的文本颜色、字号和字体粗细。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该属性在Wearable设备上使用无效果，在其他设备中可正常生效。
+
 **参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明) | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+| value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明) | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
 
 ### selectedTextStyle<sup>18+</sup>
 
 selectedTextStyle(style: Optional\<PickerTextStyle>)
 
-设置选中项的文本颜色、字号及字体粗细。与[selectedTextStyle<sup>10+</sup>](#selectedtextstyle10)相比，style参数新增了对undefined类型的支持。Wearable设备不支持设置该属性。
+设置选中项的文本颜色、字号及字体粗细。与[selectedTextStyle<sup>10+</sup>](#selectedtextstyle10)相比，style参数新增了对undefined类型的支持
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该属性在Wearable设备上使用无效果，在其他设备中可正常生效。
+
 **参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle类型说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>}<br/>}<br/>当style的值为undefined时，使用默认值。 |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>}<br/>}<br/>当style的值为undefined时，使用默认值。 |
 
 ### loop<sup>11+</sup>
 
@@ -289,7 +301,7 @@ dateTimeOptions(value: DateTimeOptions)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [DateTimeOptions](#datetimeoptions12对象说明) | 是   | 设置时分秒是否显示前导0，目前只支持设置hour、minute和second参数。<br/>默认值：<br/>hour: 24小时制默认为"2-digit"，设置hour是否按照2位数字显示，如果实际数值小于10，则会补充前导0并显示，即为"0X"；12小时制默认为"numeric"，即没有前导0。<br/>minute: 默认为"2-digit"，设置minute是否按照2位数字显示，如果实际数值小于10，则会补充前导0并显示，即为"0X"。<br/>second: 默认为"2-digit"，设置second是否按照2位数字显示，如果实际数值小于10，则会补充前导0并显示，即为"0X"。<br/> 当hour、minute、second的值设置为undefined时，显示效果与其默认值规则一致。|
+| value  | [DateTimeOptions](#datetimeoptions12对象说明) | 是   | 设置时分秒是否显示前导0。<br/>默认值：<br/>hour: 24小时制默认为"2-digit"，设置hour是否按照2位数字显示，如果实际数值小于10，则会补充前导0并显示，即为"0X"；12小时制默认为"numeric"，即没有前导0。<br/>minute: 默认为"2-digit"，设置minute是否按照2位数字显示，如果实际数值小于10，则会补充前导0并显示，即为"0X"。<br/>second: 默认为"2-digit"，设置second是否按照2位数字显示，如果实际数值小于10，则会补充前导0并显示，即为"0X"。<br/> 当hour、minute、second的值设置为undefined时，显示效果与其默认值规则一致。|
 
 ### dateTimeOptions<sup>18+</sup>
 
@@ -323,6 +335,17 @@ enableHapticFeedback(enable: boolean)
 | ------ | --------------------------------------------- | ----- |-------------------------------------------------------------------------------------|
 | enable  | boolean | 是   | 设置是否开启触控反馈。<br/>- true：开启触控反馈。<br/>- false：不开启触控反馈。<br/>默认值：true<br/>设置为true后，其生效情况取决于系统的硬件是否支持。 |
 
+>  **说明：**
+>
+>  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+>  ```json
+>  "requestPermissions": [
+>  {
+>   "name": "ohos.permission.VIBRATE",
+>  }
+>  ]
+>  ```
+
 ### enableHapticFeedback<sup>18+</sup>
 
 enableHapticFeedback(enable: Optional\<boolean>)
@@ -354,7 +377,7 @@ enableHapticFeedback(enable: Optional\<boolean>)
 
 enableCascade(enabled: boolean)
 
-在设置12小时制时，上午和下午的标识是否根据小时数自动切换。
+设置上午和下午的标识是否根据小时数自动切换，仅在useMilitaryTime设置为false时生效。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -364,7 +387,7 @@ enableCascade(enabled: boolean)
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| enabled | boolean | 是   | 在设置12小时制时，上午和下午的标识是否根据小时数自动切换。<br/>- true：自动切换。<br/>- false：不自动切换。<br/>默认值：false<br/>设置为true时，仅当loop参数同时为true时生效。|
+| enabled | boolean | 是   | 上午和下午的标识是否根据小时数自动切换，仅在useMilitaryTime设置为false时生效。<br/>- true：自动切换。<br/>- false：不自动切换。<br/>默认值：false<br/>当enabled设置为true时，仅在loop参数同时为true时生效。 |
 
 ### digitalCrownSensitivity<sup>18+</sup>
 digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)

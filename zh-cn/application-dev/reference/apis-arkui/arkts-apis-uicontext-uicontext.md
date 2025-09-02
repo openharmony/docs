@@ -1468,14 +1468,14 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+    console.info('Ability onWindowStageCreate');
     windowStage.loadContent('pages/Index', (err, data) => {
       let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
       let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
       if (atomicServiceBar != undefined) {
-        hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+        console.info('Get AtomServiceBar Successfully.');
       } else {
-        hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+        console.error('Get AtomicServiceBar failed.');
       }
     });
   }

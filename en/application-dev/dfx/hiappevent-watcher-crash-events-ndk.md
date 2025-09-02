@@ -31,7 +31,7 @@ The following example describes how to subscribe to a crash event triggered by b
 
 1. Obtain the dependency **jsoncpp** of the sample project.
 
-   Specifically, obtain the **jsoncpp.cpp**, **json.h**, and **json-forwards.h** files by referring to **Amalgamated source** in [JsonCpp]((https://github.com/open-source-parsers/jsoncpp).
+   Specifically, obtain the **jsoncpp.cpp**, **json.h**, and **json-forwards.h** files by referring to **Amalgamated source** in [JsonCpp](https://github.com/open-source-parsers/jsoncpp).
 
 2. Create a native C++ project and import the preceding files to the project. The directory structure is as follows:
 

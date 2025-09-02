@@ -891,7 +891,7 @@ onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
         Web({ src: 'chrome://crash/', controller: this.controller })
           .onRenderExited((event) => {
             if (event) {
-              console.log('reason:' + event.renderExitReason);
+              console.info('reason:' + event.renderExitReason);
             }
           })
       }
@@ -931,7 +931,7 @@ onRenderProcessNotResponding(callback: OnRenderProcessNotRespondingCallback)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRenderProcessNotResponding((data) => {
-            console.log("onRenderProcessNotResponding: [jsStack]= " + data.jsStack +
+            console.info("onRenderProcessNotResponding: [jsStack]= " + data.jsStack +
               ", [process]=" + data.pid + ", [reason]=" + data.reason);
           })
       }
@@ -968,7 +968,7 @@ onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRenderProcessResponding(() => {
-            console.log("onRenderProcessResponding again");
+            console.info("onRenderProcessResponding again");
           })
       }
     }
@@ -2536,7 +2536,7 @@ onActivateContent(callback: Callback\<void>)
           })
           .onActivateContent(() => {
             //该Web需要展示到前面，建议应用在这里进行tab或window切换的动作展示此web
-            console.log("NewWebViewComp onActivateContent")
+            console.info("NewWebViewComp onActivateContent")
           })
       }.height("50%")
     }
@@ -2624,7 +2624,7 @@ onWindowExit(callback: () => void)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onWindowExit(() => {
-            console.log("onWindowExit...");
+            console.info("onWindowExit...");
           })
       }
     }
@@ -3053,7 +3053,7 @@ onLoadIntercept(callback: Callback\<OnLoadInterceptEvent, boolean\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnLoadInterceptEvent](./arkts-basic-components-web-i.md#onloadinterceptevent12), boolean\> | 是 | 截获资源加载时触发的回调。<br>返回值为boolean类型。返回true表示阻止此次加载，false表示允许此次加载。<br>默认值：false |
+| callback | Callback\<[OnLoadInterceptEvent](./arkts-basic-components-web-i.md#onloadinterceptevent12), boolean\> | 是 | 导航触发时的回调包括iframe导航，在回调中可以选择允许或者取消此次导航。<br>返回值为boolean类型。返回true表示取消此次导航，false表示允许此次导航。<br>返回undefined或null时允许此次导航。 |
 
 **示例：**
 
@@ -3267,7 +3267,7 @@ onControllerAttached(callback: () => void)
           .onControllerAttached(() => {
             try {
               let id = this.controller.getWebId();
-              console.log("id: " + id);
+              console.info("id: " + id);
             } catch (error) {
               let code = (error as BusinessError).code;
               let message = (error as BusinessError).message;
@@ -3978,7 +3978,7 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
           if (attributes) {
             if (attributes['data-keyboard'] == 'customKeyboard') {
               // 根据html可编辑元素的属性，判断使用不同的软键盘，例如这里如果属性包含有data-keyboard，且值为customKeyboard，则使用自定义键盘
-              console.log('WebCustomKeyboard use custom keyboard')
+              console.info('WebCustomKeyboard use custom keyboard')
               option.useSystemKeyboard = false;
               // 设置自定义键盘builder
               option.customKeyboard = () => {
