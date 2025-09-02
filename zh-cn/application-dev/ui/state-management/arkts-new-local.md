@@ -475,7 +475,7 @@ struct SetSample {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.message.entries()), (item: [number, string]) => { // 遍历Set的元素并渲染UI
+        ForEach(Array.from(this.message.entries()), (item: [number, number]) => { // 遍历Set的元素并渲染UI
           Text(`${item[0]}`).fontSize(30)
           Divider()
         })
