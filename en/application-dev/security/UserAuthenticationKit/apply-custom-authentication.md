@@ -1,5 +1,11 @@
 # Applying Custom Authentication
 
+<!--Kit: User Authentication Kit-->
+<!--Subsystem: UserIAM-->
+<!--Owner: @WALL_EYE-->
+<!--SE: @lichangting518-->
+<!--TSE: @jane_lz-->
+
 If the biometric authentication fails and the user taps the navigation button for a custom authentication, the unified identity authentication framework will terminate the system authentication process and instruct the caller to launch the custom authentication page.
 
 For example, if the facial or fingerprint authentication provided by the system fails in a payment process, the user can switch to the password authentication defined by the device vendor.
@@ -15,18 +21,17 @@ When the user taps this button, the application that initiates the custom authen
 As shown in the following figure, the selected area is the **WidgetParam.navigationButtonText** field. You can configure this field to guide users to switch from biometric authentication to the service password authentication customized by the application.
 
 > **NOTE**
->
 > The lock screen password authentication and custom authentication are mutually exclusive.
 
-| Authentication Type| Switch to Custom Authentication<br>(√ indicates supported, x indicates not supported)|
+| Authentication Type| Switch to Custom Authentication<br>(√ indicates supported, x indicates not supported)| 
 | -------- | -------- |
-| Lock screen password authentication| × |
-| Facial authentication| √ |
-| Fingerprint authentication| √ |
-| Facial + fingerprint authentication<sup>18+</sup>| √ |
-| Facial + lock screen password authentication| × |
-| Fingerprint + lock screen password authentication| × |
-| Facial + fingerprint + lock screen password authentication| × |
+| Lock screen password authentication| × | 
+| Facial authentication| √ | 
+| Fingerprint authentication| √ | 
+| Facial + fingerprint authentication<sup>18+</sup>| √ | 
+| Facial + lock screen password authentication| × | 
+| Fingerprint + lock screen password authentication| × | 
+| Facial + fingerprint + lock screen password authentication| × | 
 
 ## Development Example
 
@@ -42,7 +47,18 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while(retryCount < 3){
+    randData = rand?.generateRandomSync(len)?.data;
+    if(randData){
+      break;
+    }
+    retryCount++;
+  }
+  if(!randData){
+    return;
+  }
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.FACE],

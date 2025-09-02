@@ -1,9 +1,9 @@
-# Overview of Distributed Application Data Sync
+# Overview of Cross-Device Application Data Sync
 
 
 ## When to Use
 
-The distributed application data sync allows the data of an application to be synced with other devices that are connected to form a Virtual Device. This feature enables seamless sync, modification, and query of user application data across trusted devices.
+The cross-device application data sync allows the data of an application to be synced with other devices that are connected to form a Virtual Device. This feature enables seamless sync, modification, and query of user application data across trusted devices.
 
 For example, when data is added, deleted, or modified for an application on a device, the same application on another device can obtain the updated data. You can use this feature in the distributed Gallery, Notepad, Contacts, and File Manager. 
 
@@ -24,7 +24,7 @@ In a distributed scenario, cross-device collaboration demands consistent data be
 The data consistency can be classified into the following types:
 
 
-- Strong consistency: When data is inserted, deleted, or modified on a device, other devices in the same network can immediately obtain the updated data.
+- Strong consistency: When data is added, deleted, or modified on a device, other devices in the same network can immediately read data and obtain the updated data.
 
 - Weak consistency: When data is added, deleted, or modified on a device, other devices in the same network may or may not obtain the updates. The data on these devices may be inconsistent after a certain period of time.
 

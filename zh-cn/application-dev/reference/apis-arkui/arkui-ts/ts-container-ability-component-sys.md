@@ -1,4 +1,10 @@
 # AbilityComponent (系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zjsxstar-->
+<!--Designer: @sunbees-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 <!--deprecated_code_no_check-->
 
 独立显示Ability的容器。

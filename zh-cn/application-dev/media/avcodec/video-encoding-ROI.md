@@ -1,5 +1,12 @@
 # ROI视频编码
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xhjgc-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
+<!--Adviser: @zengyawen-->
+
 ## 基础概念
 
 ROI视频编码是在现有的硬件编码基础上开放的高级能力，允许开发者自主指定ROI区域，并通过调整ROI区域码率分配优化编码效果。
@@ -60,15 +67,12 @@ ROI编码接口支持开发者通过字符串形式下发配置参数，参数�
     {
         /**
         * 配置两个ROI区域，并指定对应的deltaQp。
-        * ROI1左上角坐标(0，0)，右下角坐标(64，128)，调节QP-4。
-        * ROI2左上角坐标(200，100)，右下角坐标(400，300)，调节QP+3。
+        * ROI1左上角坐标(0, 0)，右下角坐标(64, 128)，调节QP-4。
+        * ROI2左上角坐标(200, 100)，右下角坐标(400, 300)，调节QP+3。
         **/
         const char *roiInfo = "0,0-128,64=-4;100,200-300,400=3";
         OH_AVFormat_SetStringValue(parameter, OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS, roiInfo);
         OH_VideoEncoder_PushInputParameter(codec, index);
-
-        // 输入帧的数据parameter和对应的index送入inQueue队列。
-        inQueue.Enqueue(std::make_shared<CodecBufferInfo>(index, parameter));
     }
     // 2. 注册随帧参数回调。
     OH_VideoEncoder_OnNeedInputParameter inParaCb = OnNeedInputParameter;
@@ -84,8 +88,8 @@ ROI编码接口支持开发者通过字符串形式下发配置参数，参数�
     {
         /**
         * 配置两个ROI区域，并指定对应的deltaQp。
-        * ROI1左上角坐标(0，0)，右下角坐标(64，128)，调节QP-4。
-        * ROI2左上角坐标(200，100)，右下角坐标(400，300)，调节QP+3。
+        * ROI1左上角坐标(0, 0)，右下角坐标(64, 128)，调节QP-4。
+        * ROI2左上角坐标(200, 100)，右下角坐标(400, 300)，调节QP+3。
         **/
         const char *roiInfo = "0,0-128,64=-4;100,200-300,400=3";
         OH_AVFormat *parameter = OH_AVBuffer_GetParameter(buffer);

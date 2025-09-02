@@ -111,19 +111,19 @@ class MyFrontDrawModifier extends DrawModifier {
 @Entry
 @Component
 struct DrawModifierExample {
-  @State public modifier1: DrawModifier | undefined = new MyFrontDrawModifier(this.getUIContext());
-  public modifier2: MyFrontDrawModifier = new MyFrontDrawModifier(this.getUIContext());
+  @State public modifierToBeCleared: DrawModifier | undefined = new MyFrontDrawModifier(this.getUIContext());
+  public modifierToBeChanged: MyFrontDrawModifier = new MyFrontDrawModifier(this.getUIContext());
   @State public testWidth: number = 100;
 
   build() {
     Column() {
       Button("clearModifier").onClick(() => {
         // 变更前：下面代码不生效，Row组件仍旧绑定原本的modifier
-        this.modifier1 = undefined;
+        this.modifierToBeCleared = undefined;
         // 规避方法：变更前若想清空Text组件的自定义绘制效果，可将其绑定的变量变为基类对象
-        this.modifier1 = new DrawModifier();
+        this.modifierToBeCleared = new DrawModifier();
         // 变更后：若开发者期望行为和变更前保持一致，即下面代码不生效的话，只需要注释掉这一行即可
-        // this.modifier = undefined;
+        // this.modifierToBeCleared = undefined;
       })
       Column() {
         Row()
@@ -131,16 +131,16 @@ struct DrawModifierExample {
           .height(100)
           .margin(10)
           .backgroundColor(Color.Gray)
-          .drawModifier(this.modifier1)
+          .drawModifier(this.modifierToBeCleared)
       }
       .margin({ bottom: 50 })
       Button('changeModifier')
         .onClick(() => {
           this.testWidth++;
-          this.modifier2.scaleX += 0.1;
-          this.modifier2.scaleY += 0.1;
-          // 适配手动调用invalidate方法
-          this.modifier2?.invalidate();
+          this.modifierToBeChanged.scaleX += 0.1;
+          this.modifierToBeChanged.scaleY += 0.1;
+          // 变更前自动更新，变更后需要手动调用invalidate方法适配
+          this.modifierToBeChanged?.invalidate();
         })
       Column() {
         Row()
@@ -148,9 +148,9 @@ struct DrawModifierExample {
           .height(100)
           .margin(10)
           .backgroundColor(Color.Gray)
-          .drawModifier(this.modifier2)
+          .drawModifier(this.modifierToBeChanged)
         Row() {
-          Text("hello word")
+          Text("hello world")
             .width(this.testWidth)
             .height(100)
         }

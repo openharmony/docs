@@ -1,4 +1,10 @@
 # JS卡片开发指导（Stage模型）
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 Stage模型是从API 9开始支持，目前主推且会长期演进的模型。该模型采用面向对象的方式，将应用组件以类接口的形式开放给开发者，可以进行派生，利于扩展能力。
 
 ## 接口说明
@@ -14,9 +20,8 @@ FormExtensionAbility类拥有如下API接口，具体的API介绍详见[接口�
 | onFormEvent(formId:&nbsp;string,&nbsp;message:&nbsp;string):&nbsp;void                           | 卡片提供方接收处理卡片事件的通知接口。 |
 | onRemoveForm(formId:&nbsp;string):&nbsp;void                                                     | 卡片提供方接收销毁卡片的通知接口。 |
 | onConfigurationUpdate(newConfig:&nbsp;Configuration):&nbsp;void                                  | 当系统配置更新时调用。 |
-| onShareForm?(formId:&nbsp;string):&nbsp;Record&lt;string,&nbsp;Object&gt;                        | 卡片提供方接收卡片分享的通知接口。 |
 
-formProvider类有如下API接口，具体的API介绍详见[接口文档](../reference/apis-form-kit/js-apis-app-form-formProvider.md)。
+formProvider类部分API接口如下，具体的API介绍详见[接口文档](../reference/apis-form-kit/js-apis-app-form-formProvider.md)。
 
 | 接口名 | 描述 |
 | -------- | -------- |
@@ -25,7 +30,7 @@ formProvider类有如下API接口，具体的API介绍详见[接口文档](../re
 | updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;formBindingData.FormBindingData,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 更新指定的卡片。 |
 | updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;formBindingData.FormBindingData):&nbsp;Promise&lt;void&gt; | 更新指定的卡片，以promise方式返回。 |
 
-formBindingData类有如下API接口，具体的API介绍详见[接口文档](../reference/apis-form-kit/js-apis-app-form-formBindingData.md)。
+formBindingData类部分API接口如下，具体的API介绍详见[接口文档](../reference/apis-form-kit/js-apis-app-form-formBindingData.md)。
 
 | 接口名 | 描述 |
 | -------- | -------- |
@@ -79,7 +84,7 @@ Stage卡片开发，即基于[Stage模型](../application-models/stage-model-dev
         return formData;
       }
       onCastToNormalForm(formId: string): void {
-        // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
+        // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理，当前卡片使用方不存在临时卡片场景
         hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onCastToNormalForm');
       }
       onUpdateForm(formId: string): void {
@@ -297,7 +302,7 @@ export default class JsCardFormAbility extends FormExtensionAbility {
 
 - 常态卡片：卡片使用方会持久化的卡片。
 
-- 临时卡片：卡片使用方不会持久化的卡片。
+- 临时卡片：卡片使用方不会持久化的卡片，当前卡片使用方不存在临时卡片场景。
 
 由于临时卡片的数据具有非持久化的特殊性，某些场景例如卡片服务框架死亡重启，此时临时卡片数据在卡片管理服务中已经删除，且对应的卡片ID不会通知到提供方，所以卡片提供方需要自己负责清理长时间未删除的临时卡片数据。同时对应的卡片使用方可能会将之前请求的临时卡片转换为常态卡片。如果转换成功，卡片提供方也需要对对应的临时卡片ID进行处理，把卡片提供方记录的临时卡片数据转换为常态卡片数据，防止提供方在清理长时间未删除的临时卡片时，把已经转换为常态卡片的临时卡片信息删除，导致卡片信息丢失。
 
@@ -506,7 +511,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
   }
 
   .detail_text {
-      ffont-family: HarmonyHeiTi;
+      font-family: HarmonyHeiTi;
       font-size: 12px;
       color: rgba(255, 255, 255, 0.60);
       letter-spacing: 0.51px;
@@ -628,7 +633,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
 针对卡片开发，有以下相关实例可供参考：
 
-- [JS多设备自适应服务卡片（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/AdaptiveServiceWidget)
+- [JS多设备自适应服务卡片（JS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/AdaptiveServiceWidget)
 
 - [电影卡片（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Card/MovieCard)
 

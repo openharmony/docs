@@ -1,13 +1,12 @@
-# Database Backup and Restore
-
+# Database Backup and Restore (ArkTS)
 
 ## When to Use
 
 You may need to restore a database in any of the following cases:
 
-- An important operation being performed by an application is interrupted.
+An important operation being performed by an application is interrupted.
 
-- The database is unavailable due to data loss or corruption, or dirty data.
+The database is unavailable due to data loss or corruption, or dirty data.
 
 
 Both KV stores and RDB stores support database backup and restore. You can also delete KV store backups to release local storage space.
@@ -109,7 +108,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
        if (err) {
          console.error(`Fail to backup data.code:${err.code},message:${err.message}`);
        } else {
-         console.info('Succeeded in backupping data.');
+         console.info('Succeeded in backuping data.');
        }
      });
    } catch (e) {
@@ -176,7 +175,7 @@ Two backup modes are available: manual backup and automatic backup. Automatic ba
 
 ### Manual Backup
 
-Call [backup()](../reference/apis-arkdata/js-apis-data-relationalStore.md#backup) to manually back up an RDB store. <br>Example:
+Call the [backup](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#backup) API to manually back up an RDB store. <br>Example:
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -262,7 +261,7 @@ export default class EntryAbility extends UIAbility {
 
 If error 14800011 is displayed when an RDB store is created or used, an exception occurs in the database. You can delete the database and restore data.
 
-You can set **allowRebuild** in [StoreConfig](../reference/apis-arkdata/js-apis-data-relationalStore.md#storeconfig) to **true**, which allows the database to be automatically deleted when an exception occurs. The newly rebuilt RDB store is empty. You need to create tables and restore data from the database backup. For details about how to back up RDB store data, see [Backing Up an RDB Store](#backing-up-an-rdb-store). For details about how to restore RDB store data, see [Restoring RDB Store Data](#restoring-rdb-store-data).
+You can set **allowRebuild** in [StoreConfig](../reference/apis-arkdata/arkts-apis-data-relationalStore-i.md#storeconfig) to **true**, which allows the database to be automatically deleted when an exception occurs. The newly rebuilt RDB store is empty. You need to create tables and restore data from the database backup. For details about how to back up RDB store data, see [Backing Up an RDB Store](#backing-up-an-rdb-store). For details about how to restore RDB store data, see [Restoring RDB Store Data](#restoring-rdb-store-data).
 
 If **allowRebuild** in **StoreConfig** is set to **true** before the database is abnormal, the database will be automatically deleted when an exception occurs.
 
@@ -306,7 +305,7 @@ You can use **backup()** to [perform manual backup](#manual-backup) and use **re
 
 The following example contains only the code snippet for the restore process. The complete code must also contain the code for backing up data and rebuilding an RDB store.
 
-1. Throw an error code to indicate a database exception.
+1. Throws an error code to indicate a database exception.
 
    ```ts
    let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -423,7 +422,7 @@ The following example contains only the code snippet for the restore process. Th
                resultSet.close();
              } catch (e) {
                  if (e.code !== 14800014) {
-                   console.info(`Code:${err.code}, message:${err.message}`);
+                   console.error(`Code:${e.code}, message:${e.message}`);
                  }
              }
            }
@@ -436,9 +435,11 @@ The following example contains only the code snippet for the restore process. Th
              console.info(`Succeeded in restoring RdbStore.`);
            })
          }
-         console.info(`Code:${err.code}, message:${err.message}`);
+         console.error(`Code:${err.code}, message:${err.message}`);
      }
    }
    ```
 
 <!--DelEnd-->
+
+<!--RP1--><!--RP1End-->

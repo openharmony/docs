@@ -1,5 +1,11 @@
 # AVMuxer
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @mr-chencxy-->
+<!--Designer: @dpy2650--->
+<!--Tester: @baotianhao-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
@@ -177,7 +183,7 @@ API 14起，支持设置创建时间OH_MD_KEY_CREATION_TIME。若创建时间未
 
 API 20起，支持：
 - 设置文件的描述性文本信息OH_MD_KEY_COMMENT。若文件描述信息未写入成功，请排查OH_MD_KEY_COMMENT是否为字符串类型或字符长度大于等于1且小于等于256。
-- 设置MP4 moov的位置OH_MD_KEYENABLE_MOOV_FRONT。OH_MD_KEYENABLE_MOOV_FRONT为0时moov后置，为1时前置，默认后置。
+- 设置MP4 moov的位置OH_MD_KEY_ENABLE_MOOV_FRONT。OH_MD_KEY_ENABLE_MOOV_FRONT为0时moov后置，为1时前置，默认后置。
 
 **系统能力：** SystemCapability.Multimedia.Media.Muxer
 

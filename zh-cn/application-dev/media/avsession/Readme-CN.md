@@ -1,4 +1,10 @@
 # AVSession Kit（音视频播控服务）
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 - [AVSession Kit简介](avsession-overview.md)
 - 本地媒体会话<!--local-avsession-->

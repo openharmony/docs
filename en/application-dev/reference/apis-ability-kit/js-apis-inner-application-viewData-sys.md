@@ -1,5 +1,12 @@
 # ViewData (System API)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 The module defines the view data used for auto-fill.
 
 > **NOTE**
@@ -20,5 +27,5 @@ The module defines the view data used for auto-fill.
 | pageUrl       | string            | No  | No  | URL of the page.                              |
 | pageNodeInfos | Array&lt;[PageNodeInfo](js-apis-inner-application-pageNodeInfo-sys.md)&gt;    | No  | No  | Page node information.               |
 | pageRect<sup>12+</sup>    | [AutoFillRect](js-apis-inner-application-autoFillRect-sys.md)     | No  | No  | Coordinates, width, and height of the page.               |
-| isUserSelected<sup>12+</sup> | boolean | No  | No  | Whether the content is selected by the user. The value **true** means that the content is selected by the user, and **false** means the opposite.|
-| isOtherAccount<sup>12+</sup> | boolean | No  | No  | Whether to display other account information saved in the password box for the user to select. The value **true** means to display other account information saved in the password box for the user to select, and **false** means the opposite.|
+| isUserSelected<sup>12+</sup> | boolean | No  | No  | Whether the content to be filled is selected by the user. **true** if the content is selected by the user, and **false** otherwise.|
+| isOtherAccount<sup>12+</sup> | boolean | No  | No  | Whether to display other account information saved in the password box for the user to select. **true** to display, **false** otherwise.|

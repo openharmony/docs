@@ -31,18 +31,22 @@ This example uses a Worker thread to perform asynchronous transcoding. For detai
 
    ```ts
    // Create a Worker object.
+   private workerInstance?: worker.ThreadWorker;
    this.workerInstance = new worker.ThreadWorker('entry/ets/workers/task.ets');
 
-   // Register the onmessage callback. When the host thread receives a message from the Worker thread through the workerPort.postMessage interface,
-   // this callback is invoked and executed in the host thread.
+   // Register the onmessage callback. When the host thread receives a message from the Worker thread through the workerPort.postMessage interface, this callback is invoked and executed in the host thread.
    this.workerInstance.onmessage = (e: MessageEvents) => {
-       let data: string = e.data;
-       console.info("workerInstance onmessage is: ", data);
-       if (data == 'complete') {
-           console.info("complete: ", data);
-           this.workerInstance?.terminate();
-       }
-   }
+      let data: string | number = e.data;
+      if (typeof data === 'string') { // Complete event.
+        console.info('workerInstance onmessage is: ', data);
+        if (data === 'complete') {
+          console.info('complete: ', data);
+          this.workerInstance?.terminate();
+        }
+      } else if (typeof data === 'number') {
+        this.currentProgress = data; // Current progress.
+      }
+    }
 
    // Register the onErrors callback to capture global exceptions generated during the onmessage callback, timer callback, and file execution of the Worker thread. This callback is executed in the host thread.
    this.workerInstance.onerror = (err: ErrorEvent) => {
@@ -65,343 +69,170 @@ This example uses a Worker thread to perform asynchronous transcoding. For detai
 
    The parameter object model is as follows:
 
-    ```ts
-    import { sendableContextManager } from '@kit.AbilityKit';
+   ```ts
+   import { sendableContextManager } from '@kit.AbilityKit';
 
-    @Sendable
-    export class SendableObject {
-        constructor(sendableContext: sendableContextManager.SendableContext, data: string = '') {
-            this.sendableContext = sendableContext;
-            this.data = data;
-        }
+   // Decorate the parameters with @Sendable.
+   @Sendable
+   export class SendableObject {
+     constructor(sendableContext: sendableContextManager.SendableContext, data: string = '') {
+       this.sendableContext = sendableContext;
+       this.data = data;
+     }
 
-        private sendableContext: sendableContextManager.SendableContext;
-        private data: string;
+     private sendableContext: sendableContextManager.SendableContext;
+     private data: string;
 
-        public getSendableContext() {
-            return this.sendableContext;
-        }
+     public getSendableContext() {
+       return this.sendableContext;
+     }
+    
+     public getData() {
+       return this.data;
+     }
+   }
+   ```
 
-        public getData() {
-            return this.data;
-        }
-    }
-    ```
+   The logic for sending parameters is as follows:
 
-    The logic for sending parameters is as follows:
-
-    ```ts
-    // Send a message to the Worker thread.
-    this.context = this.getUIContext().getHostContext();
-    const sendableContext: sendableContextManager.SendableContext = sendableContextManager.convertFromContext(this.context);
-    const sendableObject: SendableObject = new SendableObject(sendableContext, "some information");
-    this.workerInstance.postMessageWithSharedSendable(sendableObject);
-    ```
+   ```ts
+   private context: Context | undefined;
+   // Send a message to the Worker thread.
+   this.context = this.getUIContext().getHostContext(); // Obtain the context of the ability to which the current component belongs.
+   if (this.context != undefined) {
+     const sendableContext: sendableContextManager.SendableContext = sendableContextManager.convertFromContext(
+       this.context);
+     const sendableObject: SendableObject = new SendableObject(sendableContext, 'some information');
+     this.workerInstance.postMessageWithSharedSendable(sendableObject);
+   }
+   ```
 
 3. The Worker thread receives the parameters and executes the transcoding logic.
 
    Receiving parameters:
 
-    ```ts
-    // Receive the parameters.
-    const sendableObject: SendableObject = event.data;
-    const sendableContext: sendableContextManager.SendableContext =
-    sendableObject.getSendableContext() as sendableContextManager.SendableContext;
-    const context: common.Context =
-    sendableContextManager.convertToContext(sendableContext) as common.Context;
-    // Execute the transcoding logic.
-    await doSome(context);
-    // Send a message to the main thread.
-    workerPort.postMessage('start end');
-    ```
+   ```ts
+   // Receive the parameters.
+   const sendableObject: SendableObject = event.data;
+   const sendableContext: sendableContextManager.SendableContext =
+     sendableObject.getSendableContext() as sendableContextManager.SendableContext;
+   const context: common.Context =
+     sendableContextManager.convertToContext(sendableContext) as common.Context;
+   // Execute the transcoding logic.
+   await doSome(context);
+   // Send a message to the main thread.
+   workerPort.postMessage('start end');
+   ```
 
-    Executing transcoding logic:
+   Executing transcoding logic:
 
-    ```ts
-    async function doSome(context: common.Context) {
-        console.info(`doSome in`);
-        try {
-            let transcoder = await media.createAVTranscoder();
-            // Callback function for the completion of transcoding.
-            transcoder.on('complete', async () => {
-                console.info(`transcode complete`);
-                await transcoder?.release()
-                workerPort.postMessage('complete');
-            })
-            // Callback function for transcoding errors.
-            transcoder.on('error', async (err: BusinessError) => {
-                await transcoder?.release();
-            })
-            // Callback function for transcoding progress updates.
-            transcoder.on('progressUpdate', (progress: number) => {
-            })
+   ```ts
+   async function doSome(context: common.Context) {
+     console.info(`doSome in`);
+     try {
+       let transcoder = await media.createAVTranscoder();
+       // Callback function for the completion of transcoding.
+       transcoder.on('complete', async () => {
+         console.info(`transcode complete`);
+         fs.closeSync(transcoder.fdDst); // Close fdDst.
+         await transcoder?.release()
+         workerPort.postMessage('complete');
+       })
+       // Callback function for transcoding errors.
+       transcoder.on('error', async (err: BusinessError) => {
+         fs.closeSync(transcoder.fdDst);
+         await transcoder?.release();
+       })
+       // Callback function for updating the transcoding progress.
+       transcoder.on('progressUpdate', (progress: number) => {
+         console.info(`AVTranscoder progressUpdate = ${progress}`);
+         workerPort.postMessage(progress);
+       })
 
-            try {
-                // Obtain the file descriptor of the input file. 3.mkv is a preset resource in the rawfile directory. Replace it with the actual one.
-                let fileDescriptor = await context.resourceManager.getRawFd('3.mkv');
-                transcoder.fdSrc = fileDescriptor;
-            } catch (error) {
-                console.error('Failed to get the file descriptor, please check the resource and path.');
-            }
-            let fdPath = context.filesDir + "/" + "VID_" + Date.parse(new Date().toString()) + ".mp4";
-            let file = fs.openSync(fdPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-            let fd = file.fd;
-            console.info(`file fd ${fd}`);
-            transcoder.fdDst = file.fd;
+       try {
+         // Obtain the file descriptor of the input file. H264_AAC.mp4 is a preset resource in the rawfile directory. Replace it with the actual one.
+         let fileDescriptor = await context.resourceManager.getRawFd('H264_AAC.mp4');
+         transcoder.fdSrc = fileDescriptor; // Set fdSrc.
+       } catch (error) {
+         console.error('Failed to get the file descriptor, please check the resource and path.');
+       }
+       // Set the output file path. context.filesDir is the sandbox path of the application.
+       let fdPath = context.filesDir + "/" + "VID_" + Date.parse(new Date().toString()) + ".mp4";
+       let file = fs.openSync(fdPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+       let fd = file.fd;
+       console.info(`file fd ${fd}`);
+       transcoder.fdDst = file.fd;
 
-            let config: media.AVTranscoderConfig = {
-                // audioBitrate: 200000,
-                // audioCodec: media.CodecMimeType.AUDIO_AAC,
-                fileFormat: media.ContainerFormatType.CFT_MPEG_4,
-                videoBitrate: 200000,
-                videoCodec: media.CodecMimeType.VIDEO_AVC,
-            }
-            await transcoder?.prepare(config);
-            await transcoder?.start();
-        } catch (e) {
-            console.error(`transcode error: code = ` + e.code.toString() + `, message = ${JSON.stringify(e.message)}`);
-        }
-    }
-    ```
+       let config: media.AVTranscoderConfig = {
+         fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Container format.
+         audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format.
+         videoCodec: media.CodecMimeType.VIDEO_AVC, // Video encoding format.
+         videoBitrate: 200000, // Video bit rate.
+       }
+       await transcoder?.prepare(config); 
+       await transcoder?.start();
+     } catch (e) {
+       console.error(`transcode error: code = ` + e.code.toString() + `, message = ${JSON.stringify(e.message)}`);
+     }
+   }
+   ```
 
 4. Listen for transcoding completion events and send a message to the main thread when transcoding is complete.
 
-    ```ts
-    transcoder.on('complete', async () => {
-        console.info(`transcode complete`);
-        await transcoder?.release()
-        // Send a message to the main thread, indicating that the transcoding is complete.
-        workerPort.postMessage('complete');
-    })
-    ```
+   ```ts
+   // Callback function for the completion of transcoding.
+   transcoder.on('complete', async () => {
+     console.info(`transcode complete`);
+     fs.closeSync(transcoder.fdDst); // Close fdDst.
+     await transcoder?.release()
+     workerPort.postMessage('complete');
+   })
+   ```
 
 5. The main thread receives the message from the Worker thread indicating transcoding completion and destroys the Worker thread.
 
    ```ts
    // Register the onmessage callback. When the host thread receives a message from the Worker thread through the workerPort.postMessage interface, this callback is invoked and executed in the host thread.
-       this.workerInstance.onmessage = (e: MessageEvents) => {
-           let data: string = e.data;
-           console.info("workerInstance onmessage is: ", data);
-           if (data == 'complete') {
-               console.info("complete: ", data);
-               this.workerInstance?.terminate();
-           }
+   this.workerInstance.onmessage = (e: MessageEvents) => {
+     let data: string | number = e.data;
+     if (typeof data === 'string') {
+       console.info('workerInstance onmessage is: ', data);
+       if (data === 'complete') {
+         console.info('complete: ', data);
+         this.workerInstance?.terminate();
        }
+     } else if (typeof data === 'number') {
+       this.currentProgress = data;
+     }
+   }
    ```
 
-### Core Code
+## Running the Sample Project
 
-**Index.ets(src/main/ets/pages/Index.ets)**
+Refer to the sample project to use a Worker thread to implement asynchronous transcoding.
 
-```ts
-import { ErrorEvent, MessageEvents, worker } from '@kit.ArkTS'
-import { SendableObject } from '../util/SendableObject';
-import { common, sendableContextManager } from '@kit.AbilityKit';
+1. Create a project, download the [sample project](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVTranscoder/AsyncTranscoder), and copy its resources to the corresponding directories.
+    ```
+    AsyncTranscoder
+    entry/build-profile.json5 (Configure fields to package Worker thread files into the application.)
+    entry/src/main/ets/
+    ├── pages
+    │    └── Index.ets (Transcoding screen)
+    ├── util
+    │    └── SendableObject.ets (Sendable object)
+    │
+    └── workers
+        └── task.ets (Transcoding task)
 
-@Entry
-@Component
-struct Index {
-    private workerInstance?: worker.ThreadWorker;
-    private context: Context | undefined;
-
-    build() {
-        RelativeContainer() {
-        Button('Start transcoding')
-            .onClick(async () => {
-                console.info(`Button put`);
-                await this.startWorker();
-            })
-            .alignRules({
-                center: { anchor: '__container__', align: VerticalAlign.Center },
-                middle: { anchor: '__container__', align: HorizontalAlign.Center }
-            })
-        }
-        .height('100%')
-        .width('100%')
-    }
-
-    async startWorker() {
-        // Create a Worker object.
-        this.workerInstance = new worker.ThreadWorker('entry/ets/workers/task.ets');
-
-        // Register the onmessage callback. When the host thread receives a message from the Worker thread through the workerPort.postMessage interface,
-        // this callback is invoked and executed in the host thread.
-        this.workerInstance.onmessage = (e: MessageEvents) => {
-            let data: string = e.data;
-            console.info("workerInstance onmessage is: ", data);
-            if (data == 'complete') {
-                console.info("complete: ", data);
-                this.workerInstance?.terminate();
-            }
-        }
-
-        // Register the onErrors callback to capture global exceptions generated during the onmessage callback, timer callback, and file execution of the Worker thread.
-        // this callback is invoked and executed in the host thread.
-        this.workerInstance.onerror = (err: ErrorEvent) => {
-            console.info("workerInstance onerror message is: " + err.message);
-        }
-
-        // Register the onmessageerror callback. When the Worker object receives a message that cannot be serialized, this callback is invoked and executed in the host thread.
-        this.workerInstance.onmessageerror = () => {
-            console.info('workerInstance onmessageerror');
-        }
-
-        // Register the onexit callback. When the Worker object is destroyed, this callback is invoked and executed in the host thread.
-        this.workerInstance.onexit = (e: number) => {
-            // When the Worker object exits normally, the code is 0. When the Worker object exits abnormally, the code is 1.
-            console.info("workerInstance onexit code is: ", e);
-        }
-
-        // Send a message to the Worker thread.
-        this.context = this.getUIContext().getHostContext();
-        if (this.context != undefined) {
-            const sendableContext: sendableContextManager.SendableContext = sendableContextManager.convertFromContext(this.context);
-            const sendableObject: SendableObject = new SendableObject(sendableContext, "some information");
-            this.workerInstance.postMessageWithSharedSendable(sendableObject);
-        }
-    }
-}
-```
-
-**SendableObject.ets(src/main/ets/util/SendableObject.ets)**
-
-```ts
-import { sendableContextManager } from '@kit.AbilityKit';
-
-// Decorate the parameters with @Sendable.
-@Sendable
-export class SendableObject {
-    constructor(sendableContext: sendableContextManager.SendableContext, data: string = '') {
-        this.sendableContext = sendableContext;
-        this.data = data;
-    }
-
-    private sendableContext: sendableContextManager.SendableContext;
-    private data: string;
-
-    public getSendableContext() {
-        return this.sendableContext;
-    }
-
-    public getData() {
-        return this.data;
-    }
-}
-```
-
-**task.ets(src/main/ets/workers/task.ets)**
-
-```ts
-import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
-import { media } from '@kit.MediaKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import fs from '@ohos.file.fs';
-import { SendableObject } from '../util/SendableObject';
-import { common, sendableContextManager } from '@kit.AbilityKit';
-
-const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
-
-workerPort.onmessage = async (event: MessageEvents) => {
-    console.info(`onmessage in`);
-    // Receive the parameters.
-    const sendableObject: SendableObject = event.data;
-    const sendableContext: sendableContextManager.SendableContext =
-        sendableObject.getSendableContext() as sendableContextManager.SendableContext;
-    const context: common.Context =
-        sendableContextManager.convertToContext(sendableContext) as common.Context;
-    // Execute the transcoding logic.
-    await doSome(context);
-    // Send a message to the main thread.
-    workerPort.postMessage('start end');
-};
-
-workerPort.onmessageerror = (event: MessageEvents) => {
-    console.info('workerPort onmessageerror');
-};
-
-workerPort.onerror = (event: ErrorEvent) => {
-    console.info('workerPort onerror err is: ', event.message);
-};
-
-async function doSome(context: common.Context) {
-    console.info(`doSome in`);
-    try {
-        let transcoder = await media.createAVTranscoder();
-        // Callback function for the completion of transcoding.
-        transcoder.on('complete', async () => {
-            console.info(`transcode complete`);
-            await transcoder?.release()
-            // Send a message to the main thread, indicating that the transcoding is complete.
-            workerPort.postMessage('complete');
-        })
-        // Callback function for transcoding errors.
-        transcoder.on('error', async (err: BusinessError) => {
-            await transcoder?.release();
-        })
-        // Callback function for transcoding progress updates.
-        transcoder.on('progressUpdate', (progress: number) => {
-        })
-        try {
-            // Obtain the file descriptor of the input file. 3.mkv is a preset resource in the rawfile directory. Replace it with the actual one.
-            let fileDescriptor = await context.resourceManager.getRawFd('3.mkv');
-            transcoder.fdSrc = fileDescriptor;
-        } catch (error) {
-            console.error('Failed to get the file descriptor, please check the resource and path.');
-        }
-        let fdPath = context.filesDir + "/" + "VID_" + Date.parse(new Date().toString()) + ".mp4";
-        let file = fs.openSync(fdPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-        let fd = file.fd;
-        console.info(`file fd ${fd}`);
-        transcoder.fdDst = file.fd;
-
-        let config: media.AVTranscoderConfig = {
-            fileFormat: media.ContainerFormatType.CFT_MPEG_4,
-            audioCodec: media.CodecMimeType.AUDIO_AAC,
-            videoCodec: media.CodecMimeType.VIDEO_AVC,
-            videoBitrate: 200000,
-        }
-        await transcoder?.prepare(config);
-        await transcoder?.start();
-    } catch (e) {
-        console.error(`transcode error: code = ` + e.code.toString() + `, message = ${JSON.stringify(e.message)}`);
-    }
-}
-```
-
-**build-profile.json5(build-profile.json5)**
-
-```json
-{
-    "apiType": "stageMode",
-    "buildOption": {
-        "sourceOption": {
-            "workers": [
-                "./src/main/ets/workers/task.ets",
-            ]
-        }
-    },
-    "buildOptionSet": [
-        {
-            "name": "release",
-            "arkOptions": {
-                "obfuscation": {
-                    "ruleOptions": {
-                        "enable": false,
-                        "files": [
-                        "./obfuscation-rules.txt"
-                        ]
-                    }
-                }
-            }
-        },
-    ],
-    "targets": [
-        {
-            "name": "default"
-        },
-        {
-            "name": "ohosTest",
-        }
-    ]
-}
-```
+    entry/src/main/resources/
+    ├── base
+    │   ├── element
+    │   │   ├── color.json
+    │   │   ├── float.json
+    │   │   └── string.json
+    │   └── media
+    │
+    └── rawfile
+        └── H264_AAC.mp4 (Video resource)
+    ```
+2. Compile and run the project.

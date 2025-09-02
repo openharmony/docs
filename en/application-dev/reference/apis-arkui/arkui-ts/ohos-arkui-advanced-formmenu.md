@@ -14,6 +14,10 @@ This component facilitates the quick addition of service widgets to the home scr
 > **NOTE**
 >
 > This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> This component is not supported on wearables.
+>
+> For details about how to develop a service widget, see the [service widget development guidelines](../../../form/formkit-overview.md).
 
 
 ## Modules to Import
@@ -64,7 +68,7 @@ AddFormMenuItem(
 | Name            | Type               | Mandatory| Description                                                     |
 | --------------- | ---- | ---- | ---------------------------------------------------------------- |
 | formBindingData | [formBindingData.FormBindingData](../../apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata) | No| Service widget data.|
-| callback        | AsyncCallback\<string>                                                                                                | No| Callback used to return the result. |
+| callback        | AsyncCallback\<string>                                                                                                | No| Callback used to return the result. The value **0** means that the service widget is added successfully, and a non-zero value means that the service widget fails to be added. For details about the error codes, see [Form Error Codes](../../apis-form-kit/errorcode-form.md). |
 | style           | [FormMenuItemStyle](#formmenuitemstyle)                                                                              | No| Custom menu style.|
 
 
@@ -110,9 +114,9 @@ struct Index {
           bundleName: 'com.example.myapplication', // Bundle name
           abilityName: 'EntryFormAbility', // Module ability name.
           parameters: {
-            'ohos.extra.param.key.form_dimension': 2,
-            'ohos.extra.param.key.form_name': 'widget',
-            'ohos.extra.param.key.module_name': 'entry'
+            'ohos.extra.param.key.form_dimension': 2, // Widget size: 1 for 1 x 2, 2 for 2 x 2, 3 for 2 x 4, 4 for 4 x 4, 7 for 6 x 4, 6 for 1 x 1.
+            'ohos.extra.param.key.form_name': 'widget', // Widget name.
+            'ohos.extra.param.key.module_name': 'entry' // Module name of the widget.
           },
         },
         this.compId,

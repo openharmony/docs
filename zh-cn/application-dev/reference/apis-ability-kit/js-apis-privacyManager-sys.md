@@ -1,5 +1,12 @@
 # @ohos.privacyManager (隐私管理)(系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
+
 本模块主要提供权限使用记录等隐私管理接口。
 
 > **说明：**
@@ -33,7 +40,7 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 | permissionName | Permissions | 是   | 应用权限名称。 |
 | successCount | number | 是   | 访问成功的次数。 |
 | failCount | number | 是   | 访问失败的次数。 |
-| options<sup>12+</sup> | [AddPermissionUsedRecordOptions](#addpermissionusedrecordoptions12) | 否   | 添加权限使用记录可选参数，默认值NORMAL_TYPE，从API version 12开始支持。 |
+| options<sup>12+</sup> | [AddPermissionUsedRecordOptions](#addpermissionusedrecordoptions12) | 否   | 添加权限使用记录可选参数，默认值为NORMAL_TYPE，从API version 12开始支持。 |
 
 **返回值：**
 
@@ -763,7 +770,7 @@ off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callbac
 
 取消订阅指定权限列表的权限使用状态变更事件。
 
-取消订阅不传callback时，批量删除permissionList下面的所有callback。
+取消订阅时，若不传入callback，则批量删除permissionList下的所有callback。
 
 **需要权限：** ohos.permission.PERMISSION_USED_STATS，仅系统应用可用。
 
@@ -806,7 +813,7 @@ try {
 
 ## privacyManager.getPermissionUsedTypeInfos<sup>12+</sup>
 
-getPermissionUsedTypeInfos(tokenId?: number, permissionName?: Permissions): Promise&lt;Array&lt;PermissionUsedTypeInfo&gt;&gt;
+getPermissionUsedTypeInfos(tokenId?: number | null, permissionName?: Permissions): Promise&lt;Array&lt;PermissionUsedTypeInfo&gt;&gt;
 
 查询设备上指定应用访问敏感权限时的信息（包括敏感权限名称、敏感权限访问方式）。
 
@@ -818,7 +825,7 @@ getPermissionUsedTypeInfos(tokenId?: number, permissionName?: Permissions): Prom
 
 | 参数名             | 类型                   | 必填 | 说明                                                          |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
-| tokenId            | number                | 否   | 访问敏感权限的应用身份标识，为0时表示查询所有应用的敏感权限访问类型信息。   |
+| tokenId            | number \| null                | 否   | 访问敏感权限的应用身份标识，为0时表示查询所有应用的敏感权限访问类型信息。从API20，新增支持null类型。   |
 | permissionName     | Permissions           | 否   | 被访问的敏感权限名称，为空时标识查询所有敏感权限的访问类型信息。   |
 
 **返回值：**
@@ -835,7 +842,6 @@ getPermissionUsedTypeInfos(tokenId?: number, permissionName?: Permissions): Prom
 | -------- | -------- |
 | 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_USED_STATS". |
 | 202 | Not system app. Interface caller is not a system app. |
-| 401 | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 12100001 | Invalid parameter. PermissionName exceeds 256 characters. |
 | 12100002 | The input tokenId does not exist. |
 | 12100003 | The input permissionName does not exist. |
@@ -876,7 +882,7 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
 ## PermissionUsageFlag
 
-使用记录的查询方式的枚举。
+表示使用记录的查询方式的枚举。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -891,16 +897,16 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称       | 类型             | 必填   | 说明                                       |
-| -------- | -------------- | ---- | ---------------------------------------- |
-| tokenId  | number         | 否    | 目标应用的身份标识。<br/> 默认值为0，查询所有应用。         |
-| isRemote | boolean         | 否    | 指定是否查询远端设备。<br/> 默认值false，表示查询本端设备，true表示查询远端设备。 |
-| deviceId  | string         | 否    | 目标应用所在设备的ID。<br/> 默认设备ID为本端设备ID。   |
-| bundleName | string         | 否    | 目标应用的包名。<br/> 默认查询所有应用。 |
-| permissionNames  | Array&lt;Permissions&gt;         | 否    | 需要查询的权限集合。<br/> 默认查询所有权限的使用记录。               |
-| beginTime | number         | 否    | 查询的起始时间，单位：ms。<br/>默认值0，不设定起始时间。 |
-| endTime | number         | 否    | 查询的终止时间，单位：ms。<br/>默认值0，不设定终止时间。 |
-| flag | [PermissionUsageFlag](#permissionusageflag)         | 是    | 指定查询方式。 |
+| 名称       | 类型             | 只读 | 可选 | 说明                                       |
+| -------- | -------------- | ---- | ---- | ---------------------------------------- |
+| tokenId  | number         | 否    | 是    | 目标应用的身份标识。<br/> 默认值为0，查询所有应用。         |
+| isRemote | boolean         | 否    | 是    | 指定是否查询远端设备。<br/> 默认值false，表示查询本端设备，true表示查询远端设备。 |
+| deviceId  | string         | 否    | 是    | 目标应用所在设备的ID。<br/> 默认设备ID为本端设备ID。   |
+| bundleName | string         | 否    | 是    | 目标应用的包名。<br/> 默认查询所有应用。 |
+| permissionNames  | Array&lt;Permissions&gt;         | 否    | 是    | 需要查询的权限集合。<br/> 默认查询所有权限的使用记录。               |
+| beginTime | number         | 否    | 是    | 查询的起始时间，单位：ms。<br/>默认值0，不设定起始时间。 |
+| endTime | number         | 否    | 是    | 查询的终止时间，单位：ms。<br/>默认值0，不设定终止时间。 |
+| flag | [PermissionUsageFlag](#permissionusageflag)         | 否    | 否    | 指定查询方式。 |
 
 ## PermissionUsedResponse
 
@@ -942,8 +948,8 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 | lastAccessTime | number         | 否    | 否    | 最后一次访问时间，单位：ms。 |
 | lastRejectTime | number         | 否    | 否    | 最后一次拒绝时间，单位：ms。 |
 | lastAccessDuration | number         | 否    | 否    | 最后一次访问时长，单位：ms。 |
-| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 否    | 否    | 访问记录集合，当flag为FLAG_PERMISSION_USAGE_DETAIL时生效，默认查询10条。                                 |
-| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 否    | 否    | 拒绝记录集合，当flag为FLAG_PERMISSION_USAGE_DETAIL时生效，默认查询10条。                                 |
+| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 否    | 否    | 访问记录集合，当flag为FLAG_PERMISSION_USAGE_DETAIL时生效，默认查询10条记录。                                 |
+| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 否    | 否    | 拒绝记录集合，当flag为FLAG_PERMISSION_USAGE_DETAIL时生效，默认查询10条记录。                                 |
 
 ## UsedRecordDetail
 
@@ -980,12 +986,12 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
 | 名称           | 类型                    | 只读 | 可选 | 说明                   |
 | -------------- | ---------------------- | ---- | ---- | --------------------- |
-| callingTokenId<sup>18+</sup> | number   | 否   | 是   | 接口调用方的应用身份标识，activeStatus是INACTIVE时该值无效。 |
+| callingTokenId<sup>18+</sup> | number   | 否   | 是   | 接口调用方的应用身份标识，当activeStatus为INACTIVE时该值无效。 |
 | tokenId        | number                 | 否   | 否   | 被订阅的应用身份标识。    |
 | permissionName | Permissions            | 否   | 否   | 权限使用状态发生变化的权限名。 |
 | deviceId       | string                 | 否   | 否   | 设备号。                 |
 | activeStatus   | [PermissionActiveStatus](#permissionactivestatus) | 否   | 否   | 权限使用状态变化类型。        |
-| usedType<sup>18+</sup> | [PermissionUsedType](#permissionusedtype12) | 否   | 是   | 敏感权限使用类型，activeStatus是INACTIVE时该值无效。 |
+| usedType<sup>18+</sup> | [PermissionUsedType](#permissionusedtype12) | 否   | 是   | 敏感权限使用类型，当activeStatus为INACTIVE时该值无效。 |
 
 ## PermissionUsedType<sup>12+</sup>
 
@@ -995,8 +1001,8 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
 | 名称                    | 值 | 说明              |
 | ----------------------- | -- | ---------------- |
-| NORMAL_TYPE             | 0  | 表示通过弹窗授权或设置授权的方式来使用敏感权限。   |
-| PICKER_TYPE             | 1  | 表示通过某个PICKER服务来使用敏感权限，此方式未授予权限。 |
+| NORMAL_TYPE             | 0  | 表示通过弹窗授权或设置授权来使用敏感权限。   |
+| PICKER_TYPE             | 1  | 表示通过某个PICKER服务来使用敏感权限，但此方式未授予权限。 |
 | SECURITY_COMPONENT_TYPE | 2  | 表示通过安全控件授权的方式来使用敏感权限。 |
 
 ## PermissionUsedTypeInfo<sup>12+</sup>

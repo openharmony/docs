@@ -1,4 +1,10 @@
 # @ohos.file.backup (备份恢复)(系统接口)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @lvzhenjie-->
+<!--Designer: @wang_zhangjun; @chenxi0605-->
+<!--Tester: @liuhonggang123-->
+<!--Adviser: @foryourself-->
 
 该模块为应用提供备份/恢复数据的能力。
 
@@ -10,7 +16,7 @@
 ## 导入模块
 
 ```ts
-import backup from '@ohos.file.backup';
+import { backup } from '@kit.CoreFileKit';
 ```
 
 ## FileMeta
@@ -163,15 +169,15 @@ onFileReady : AsyncCallback&lt;File&gt;
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   onFileReady: (err: BusinessError, file: backup.File) => {
     if (err) {
-      console.error('onFileReady failed with err: ' + JSON.stringify(err));
+      console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info('onFileReady success with file: ' + file.bundleName + ' ' + file.uri);
+    console.info(`onFileReady success with file: ${file.bundleName}, ${file.uri}`);
     fs.closeSync(file.fd);
   }
   ```
@@ -209,23 +215,11 @@ onBundleBegin: AsyncCallback&lt;string, void | string&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   onBundleBegin: (err: BusinessError, bundleName: string) => {
     if (err) {
-      console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code));
-      return;
-    }
-    console.info('onBundleBegin success');
-  }
-  ```
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-
-  onBundleBegin: (err: BusinessError<string>, bundleName: string) => {
-    if (err) {
-      console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+      console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info('onBundleBegin success');
@@ -266,23 +260,11 @@ onBundleEnd: AsyncCallback&lt;string, void | string&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   onBundleEnd: (err: BusinessError, bundleName: string) => {
     if (err) {
-      console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('onBundleEnd success with bundleName: ' + bundleName);
-  }
-  ```
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-
-  onBundleEnd: (err: BusinessError<string>, bundleName: string) => {
-    if (err) {
-      console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+      console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info('onBundleEnd success');
@@ -313,11 +295,11 @@ onAllBundlesEnd: AsyncCallback&lt;undefined&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   onAllBundlesEnd: (err: BusinessError) => {
     if (err) {
-      console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+      console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info('onAllBundlesEnd success');
@@ -358,7 +340,7 @@ onResultReport (bundleName: string, result: string)
 **示例：**
 
   ```ts
-  import backup from '@ohos.file.backup';
+  import { backup } from '@kit.CoreFileKit';
 
   onResultReport: (bundleName: string, result: string) => {
     console.info('onResultReport bundleName : ' + bundleName);
@@ -384,7 +366,7 @@ onProcess (bundleName: string, process: string)
 **示例：**
 
   ```ts
-  import backup from '@ohos.file.backup';
+  import { backup } from '@kit.CoreFileKit';
 
   onProcess: (bundleName: string, process: string) => {
     console.info('onProcess bundleName : ' + bundleName);
@@ -420,8 +402,8 @@ getBackupVersion(): string
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import backup from '@ohos.file.backup';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { backup } from '@kit.CoreFileKit';
 
   function getBackupVersion() {
     try {
@@ -429,7 +411,7 @@ getBackupVersion(): string
       console.info('getBackupVersion success， result: ' + result);
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error('getBackupVersion failed with err: ' + JSON.stringify(err));
+      console.error(`getBackupVersion failed. Code: ${err.code}, message: ${err.message}`);
     }
   }
   ```
@@ -471,13 +453,13 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   try {
     backup.getLocalCapabilities((err: BusinessError, fileData: backup.FileData) => {
       if (err) {
-        console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+        console.error(`getLocalCapabilities failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('getLocalCapabilities success');
@@ -486,7 +468,7 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+    console.error(`getLocalCapabilities failed. Code: ${err.code}, message: ${err.message}`);
   }
   ```
 
@@ -540,8 +522,8 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   async function getLocalCapabilities() {
     try {
@@ -551,7 +533,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
       fs.closeSync(fileData.fd);
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+      console.error(`getLocalCapabilities failed. Code: ${err.code}, message: ${err.message}`);
     }
   }
   ```
@@ -616,8 +598,8 @@ getLocalCapabilities(dataList:Array&lt;IncrementalBackupTime&gt;): Promise&lt;Fi
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   async function getLocalCapabilities() {
     try {
@@ -631,7 +613,7 @@ getLocalCapabilities(dataList:Array&lt;IncrementalBackupTime&gt;): Promise&lt;Fi
       fs.closeSync(fileData.fd);
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+      console.error(`getLocalCapabilities failed. Code: ${err.code}, message: ${err.message}`);
     }
   }
   ```
@@ -671,9 +653,8 @@ getBackupInfo(bundleToBackup: string): string
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
-  import backup from '@ohos.file.backup';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   function getBackupInfo() {
     try {
@@ -682,7 +663,7 @@ getBackupInfo(bundleToBackup: string): string
       console.info('getBackupInfo success， result: ' + result);
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error('getBackupInfo failed with err: ' + JSON.stringify(err));
+      console.error(`getBackupInfo failed. Code: ${err.code}, message: ${err.message}`);
     }
   }
   ```
@@ -721,8 +702,8 @@ updateTimer(bundleName: string, timeout: number): boolean
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import backup from '@ohos.file.backup';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { backup } from '@kit.CoreFileKit';
 
   function updateTimer() {
     try {
@@ -736,7 +717,7 @@ updateTimer(bundleName: string, timeout: number): boolean
       }
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error('updateTimer failed with err: ' + JSON.stringify(err));
+      console.error(`updateTimer failed. Code: ${err.code}, message: ${err.message}`);
     }
   }
   ```
@@ -775,8 +756,8 @@ updateSendRate(bundleName: string, sendRate: number): boolean
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import backup from '@ohos.file.backup';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { backup } from '@kit.CoreFileKit';
 
   function updateSendRate() {
     try {
@@ -790,7 +771,7 @@ updateSendRate(bundleName: string, sendRate: number): boolean
       }
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error('updateSendRate failed with err: ' + JSON.stringify(err));
+      console.error(`updateSendRate failed. Code: ${err.code}, message: ${err.message}`);
     }
   }
   ```
@@ -810,9 +791,9 @@ type OnBackupSizeReport = (reportInfo: string) => void
 **示例：**
 
   ```ts
-  import backup from '@ohos.file.backup';
+  import { backup } from '@kit.CoreFileKit';
 
-  onBackupSizeReport: (OnBackupSizeReport) => {
+  onBackupSizeReport: (OnBackupSizeReport: backup.OnBackupSizeReport) => {
     console.info('dataSizeCallback success');
     console.info('dataSizeCallback report : ' + OnBackupSizeReport);
   }
@@ -841,13 +822,13 @@ constructor(callbacks: GeneralCallbacks)
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -855,21 +836,21 @@ constructor(callbacks: GeneralCallbacks)
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.data}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -878,10 +859,10 @@ constructor(callbacks: GeneralCallbacks)
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
@@ -921,8 +902,8 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   interface test { // 用于解析能力文件
     bundleInfos: [];
@@ -948,7 +929,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
   let generalCallbacks: backup.GeneralCallbacks = { // 定义备份/恢复过程中的通用回调
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -956,21 +937,21 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -979,48 +960,50 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
-  let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
-  let basePath = '/data/storage/el2/base/backup'; 
-  let path = basePath + '/localCapabilities.json'; // 本地保存能力文件的路径
-  try {
-    let fileData = await sessionBackup.getLocalCapabilities(); // 获取本地能力文件
-    if (fileData) {
-      console.info('getLocalCapabilities success');
-      console.info('fileData info:' + fileData.fd);
-      if (!fs.accessSync(basePath)) {
-        fs.mkdirSync(basePath);
-        console.info('creat success' + basePath);
+  async function getLocalCapabilitiesTest() {
+    let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
+    let basePath = '/data/storage/el2/base/backup'; 
+    let path = basePath + '/localCapabilities.json'; // 本地保存能力文件的路径
+    try {
+      let fileData = await sessionBackup.getLocalCapabilities(); // 获取本地能力文件
+      if (fileData) {
+        console.info('getLocalCapabilities success');
+        console.info('fileData info:' + fileData.fd);
+        if (!fs.accessSync(basePath)) {
+          fs.mkdirSync(basePath);
+          console.info('creat success' + basePath);
+        }
+        fs.copyFileSync(fileData.fd, path); // 将获取的本地能力文件保存到本地
+        fs.closeSync(fileData.fd);
       }
-      fs.copyFileSync(fileData.fd, path); // 将获取的本地能力文件保存到本地
-      fs.closeSync(fileData.fd);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`getLocalCapabilities failed. Code: ${err.code}, message: ${err.message}`);
     }
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
-  }
-  let data = await fs.readTextSync(path, 'utf8'); // 从本地的能力文件中获取信息
-  try {
-    const jsonsObj: test | null = JSON.parse(data); // 解析本地的能力文件并打印部分信息
-    if (jsonsObj) {
-      const infos:BundleInfo [] = jsonsObj.bundleInfos;
-      for (let i = 0; i < infos.length; i++) {
-        console.info('name: ' + infos[i].name);
-        console.info('appIndex: ' + infos[i].appIndex);
-        console.info('allToBackup: ' + infos[i].allToBackup);
+    let data = fs.readTextSync(path, 'utf8'); // 从本地的能力文件中获取信息
+    try {
+      const jsonsObj: test | null = JSON.parse(data); // 解析本地的能力文件并打印部分信息
+      if (jsonsObj) {
+        const infos:BundleInfo [] = jsonsObj.bundleInfos;
+        for (let i = 0; i < infos.length; i++) {
+          console.info('name: ' + infos[i].name);
+          console.info('appIndex: ' + infos[i].appIndex);
+          console.info('allToBackup: ' + infos[i].allToBackup);
+        }
+        const systemFullName: string = jsonsObj.systemFullName;
+        console.info('systemFullName: ' + systemFullName);
+        const deviceType: string = jsonsObj.deviceType;
+        console.info('deviceType: ' + deviceType);
       }
-      const systemFullName: string = jsonsObj.systemFullName;
-      console.info('systemFullName: ' + systemFullName);
-      const deviceType: string = jsonsObj.deviceType;
-      console.info('deviceType: ' + deviceType);
+    } catch (error) {
+      console.error(`parse failed. message: ${error.message}`);
     }
-  } catch (error) {
-    console.error('parse failed with err: ' + JSON.stringify(error));
   }
   ```
 
@@ -1085,8 +1068,8 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   interface scanedInfos { //用于解析扫描结果
     scaned: [];
@@ -1102,7 +1085,7 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
   let generalCallbacks: backup.GeneralCallbacks = { // 定义备份/恢复过程中的通用回调
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -1110,21 +1093,21 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -1133,10 +1116,10 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     },
     onBackupSizeReport: (OnBackupSizeReport) => { // 回调函数 与getBackupDataSize配套使用，返回已获取到应用的数据量大小和正在获取数据量的应用的包名
       console.info('dataSizeCallback success');
@@ -1163,7 +1146,7 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
     sessionBackup.getBackupDataSize(false, backupApps); // 获取backupApps中指定应用的待备份的数据量大小，false表示使用非精确扫描
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('getBackupDataSize failed with err: ' + JSON.stringify(err));
+    console.error(`getBackupDataSize failed. Code: ${err.code}, message: ${err.message}`);
   }
   ```
 
@@ -1171,7 +1154,7 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
 
 ```json
 {
- "scaned" :[ // 本次扫描完成的应用，已返回结果的应用在下一次回调中不会再继续返回
+ "scaned": [ // 本次扫描完成的应用，已返回结果的应用在下一次回调中不会再继续返回
      {
          "name": "com.example.hiworld", // 应用名称
          "dataSize": 1006060, // 数据量大小
@@ -1183,7 +1166,7 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
          "incDataSize": -1
      }
  ],
- "scanning" :"com.example.smartAPP" // 正在扫描的应用，在最后一次结果返回时，该字段为空
+ "scanning": "com.example.smartAPP" // 正在扫描的应用，在最后一次结果返回时，该字段为空
 }
 ```
 
@@ -1221,13 +1204,13 @@ appendBundles(bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -1235,21 +1218,21 @@ appendBundles(bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): v
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -1258,10 +1241,10 @@ appendBundles(bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): v
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
@@ -1271,14 +1254,14 @@ appendBundles(bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): v
     ];
     sessionBackup.appendBundles(backupApps, (err: BusinessError) => {
       if (err) {
-        console.error('appendBundles failed with err: ' + JSON.stringify(err));
+        console.error(`appendBundles failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('appendBundles success');
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('appendBundles failed with err: ' + JSON.stringify(err));
+    console.error(`appendBundles failed. Code: ${err.code}, message: ${err.message}`);
   }
   ```
 
@@ -1324,13 +1307,13 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -1338,21 +1321,21 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -1361,10 +1344,10 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
@@ -1421,7 +1404,7 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
       console.info('appendBundles success');
     } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('appendBundles failed with err: ' + JSON.stringify(err));
+    console.error(`appendBundles failed. Code: ${err.code}, message: ${err.message}`);
     }
   }
   ```
@@ -1459,13 +1442,13 @@ release(): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -1473,21 +1456,21 @@ release(): Promise&lt;void&gt;
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -1496,10 +1479,10 @@ release(): Promise&lt;void&gt;
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
@@ -1542,9 +1525,8 @@ cancel(bundleName: string): number
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
-  import backup from '@ohos.file.backup';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
@@ -1552,7 +1534,7 @@ cancel(bundleName: string): number
         // 文件fd传输失败，调用取消接口，取消此应用的备份任务
         let result = sessionBackup.cancel(err.name);
         console.info('cancel result:' + result);
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -1560,21 +1542,21 @@ cancel(bundleName: string): number
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -1583,10 +1565,10 @@ cancel(bundleName: string): number
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
@@ -1815,13 +1797,13 @@ constructor(callbacks: GeneralCallbacks)
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -1829,21 +1811,21 @@ constructor(callbacks: GeneralCallbacks)
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -1852,10 +1834,10 @@ constructor(callbacks: GeneralCallbacks)
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -1895,8 +1877,8 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   interface test { // 用于解析能力文件
     bundleInfos: [];
@@ -1922,7 +1904,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
   let generalCallbacks: backup.GeneralCallbacks = { // 定义备份/恢复过程中的通用回调
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -1930,21 +1912,21 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -1953,48 +1935,50 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
-  let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
-  let basePath = '/data/storage/el2/base/backup';
-  let path = basePath + '/localCapabilities.json'; // 本地保存能力文件的路径
-  try {
-    let fileData = await sessionRestore.getLocalCapabilities(); // 获取本地能力文件
-    if (fileData) {
-      console.info('getLocalCapabilities success');
-      console.info('fileData info:' + fileData.fd);
-      if (!fs.accessSync(basePath)) {
-        fs.mkdirSync(basePath);
-        console.info('creat success' + basePath);
+  async function getLocalCapabilitiesTest() {
+    let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
+    let basePath = '/data/storage/el2/base/backup';
+    let path = basePath + '/localCapabilities.json'; // 本地保存能力文件的路径
+    try {
+      let fileData = await sessionRestore.getLocalCapabilities(); // 获取本地能力文件
+      if (fileData) {
+        console.info('getLocalCapabilities success');
+        console.info('fileData info:' + fileData.fd);
+        if (!fs.accessSync(basePath)) {
+          fs.mkdirSync(basePath);
+          console.info('creat success' + basePath);
+        }
+        fs.copyFileSync(fileData.fd, path); // 将获取的本地能力文件保存到本地
+        fs.closeSync(fileData.fd);
       }
-      fs.copyFileSync(fileData.fd, path); // 将获取的本地能力文件保存到本地
-      fs.closeSync(fileData.fd);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`getLocalCapabilities failed with code: ${err.code}, message: ${err.message}`);
     }
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
-  }
-  let data = await fs.readTextSync(path, 'utf8'); // 从本地的能力文件中获取信息
-  try {
-    const jsonsObj: test | null = JSON.parse(data); // 解析本地的能力文件并打印部分信息
-    if (jsonsObj) {
-      const infos:BundleInfo [] = jsonsObj.bundleInfos;
-      for (let i = 0; i < infos.length; i++) {
-        console.info('name: ' + infos[i].name);
-        console.info('appIndex: ' + infos[i].appIndex);
-        console.info('allToBackup: ' + infos[i].allToBackup);
+    let data = fs.readTextSync(path, 'utf8'); // 从本地的能力文件中获取信息
+    try {
+      const jsonsObj: test | null = JSON.parse(data); // 解析本地的能力文件并打印部分信息
+      if (jsonsObj) {
+        const infos:BundleInfo [] = jsonsObj.bundleInfos;
+        for (let i = 0; i < infos.length; i++) {
+          console.info('name: ' + infos[i].name);
+          console.info('appIndex: ' + infos[i].appIndex);
+          console.info('allToBackup: ' + infos[i].allToBackup);
+        }
+        const systemFullName: string = jsonsObj.systemFullName;
+        console.info('systemFullName: ' + systemFullName);
+        const deviceType: string = jsonsObj.deviceType;
+        console.info('deviceType: ' + deviceType);
       }
-      const systemFullName: string = jsonsObj.systemFullName;
-      console.info('systemFullName: ' + systemFullName);
-      const deviceType: string = jsonsObj.deviceType;
-      console.info('deviceType: ' + deviceType);
+    } catch (error) {
+      console.error(`parse failed with code: ${error.code}, message: ${error.message}`);
     }
-  } catch (error) {
-    console.error('parse failed with err: ' + JSON.stringify(error));
   }
   ```
 
@@ -2057,13 +2041,13 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback:
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -2071,21 +2055,21 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback:
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -2094,10 +2078,10 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback:
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -2113,14 +2097,14 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback:
       ];
       sessionRestore.appendBundles(fileData.fd, restoreApps, (err: BusinessError) => {
         if (err) {
-          console.error('appendBundles failed with err: ' + JSON.stringify(err));
+          console.error(`appendBundles failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('appendBundles success');
       });
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+      console.error(`getLocalCapabilities failed. Code: ${err.code}, message: ${err.message}`);
     } finally {
       fs.closeSync(fileData.fd);
     }
@@ -2175,13 +2159,13 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: s
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, backup } from '@kit.CoreFileKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -2189,21 +2173,21 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: s
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -2212,10 +2196,10 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: s
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -2244,7 +2228,7 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: s
                       "source": "com.example.hiworld", // 应用旧系统包名
                       "target": "com.example.helloworld" // 应用新系统包名
                     }
-                  ]，
+                  ],
                   "type": "app_mapping_relation"
                 }
               ],
@@ -2258,7 +2242,7 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: s
       console.info('appendBundles success');
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+      console.error(`getLocalCapabilities failed. Code: ${err.code}, message: ${err.message}`);
     } finally {
       fs.closeSync(fileData.fd);
     }
@@ -2304,13 +2288,13 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -2318,21 +2302,21 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -2341,10 +2325,10 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -2354,7 +2338,7 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
   }
   sessionRestore.getFileHandle(fileMeta, (err: BusinessError) => {
     if (err) {
-      console.error('getFileHandle failed with err: ' + JSON.stringify(err));
+      console.error(`getFileHandle failed. Code: ${err.code}, message: ${err.message}`);
     }
     console.info('getFileHandle success');
   });
@@ -2404,13 +2388,13 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -2418,21 +2402,21 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -2441,10 +2425,10 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -2458,7 +2442,7 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
       console.info('getFileHandle success');
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error('getFileHandle failed with err: ' + JSON.stringify(err));
+      console.error(`getFileHandle failed. Code: ${err.code}, message: ${err.message}`);
     }
   }
   ```
@@ -2500,8 +2484,8 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let g_session: backup.SessionRestore;
   let initMap = new Map<string, number>();
@@ -2514,21 +2498,22 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
     let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
-          console.error('onFileReady failed with err: ' + JSON.stringify(err));
+          console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onFileReady success');
         fs.closeSync(file.fd);
-        countMap[file.bundleName]++; // 实际写入文件个数更新
+        let cnt = countMap.get(file.bundleName) || 0;
+        countMap.set(file.bundleName, cnt + 1); // 实际写入文件个数更新
         // 恢复所需文件个数与实际写入文件个数相等时调用，保证数据的一致性和完整性
-        if (countMap[file.bundleName] == initMap[file.bundleName]) { // 每个包的所有文件收到后触发publishFile
+        if (countMap.get(file.bundleName) == initMap.get(file.bundleName)) { // 每个包的所有文件收到后触发publishFile
           let fileMeta: backup.FileMeta = {
             bundleName: file.bundleName,
             uri: ''
           }
           g_session.publishFile(fileMeta, (err: BusinessError) => {
             if (err) {
-              console.error('publishFile failed with err: ' + JSON.stringify(err));
+              console.error(`publishFile failed. Code: ${err.code}, message: ${err.message}`);
               return;
             }
             console.info('publishFile success');
@@ -2537,21 +2522,21 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
       },
       onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+          console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onBundleBegin success');
       },
       onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+          console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onBundleEnd success');
       },
       onAllBundlesEnd: (err: BusinessError) => {
         if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onAllBundlesEnd success');
@@ -2560,10 +2545,10 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
         console.info('service died');
       },
       onResultReport: (bundleName: string, result: string) => {
-        console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+        console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
       },
       onProcess: (bundleName: string, process: string) => {
-       console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+       console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
       }
     };
     let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -2614,8 +2599,8 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let g_session: backup.SessionRestore;
   let initMap = new Map<string, number>();
@@ -2635,35 +2620,36 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
     let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
-          console.error('onFileReady failed with err: ' + JSON.stringify(err));
+          console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onFileReady success');
         fs.closeSync(file.fd);
-        countMap[file.bundleName]++; // 实际写入文件个数更新
+        let cnt = countMap.get(file.bundleName) || 0;
+        countMap.set(file.bundleName, cnt + 1); // 实际写入文件个数更新
         // 恢复所需文件个数与实际写入文件个数相等时调用，保证数据的一致性和完整性
-        if (countMap[file.bundleName] == initMap[file.bundleName]) { // 每个包的所有文件收到后触发publishFile
+        if (countMap.get(file.bundleName) == initMap.get(file.bundleName)) { // 每个包的所有文件收到后触发publishFile
           publishFile(file);
         }
         console.info('publishFile success');
       },
       onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+          console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onBundleBegin success');
       },
       onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+          console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onBundleEnd success');
       },
       onAllBundlesEnd: (err: BusinessError) => {
         if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onAllBundlesEnd success');
@@ -2672,10 +2658,10 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
         console.info('service died');
       },
       onResultReport: (bundleName: string, result: string) => {
-        console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+        console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
       },
       onProcess: (bundleName: string, process: string) => {
-        console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+        console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
       }
     };
     let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -2717,8 +2703,8 @@ release(): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let g_session: backup.SessionRestore;
   let initMap = new Map<string, number>();
@@ -2731,21 +2717,22 @@ release(): Promise&lt;void&gt;
     let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
-          console.error('onFileReady failed with err: ' + JSON.stringify(err));
+          console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onFileReady success');
         fs.closeSync(file.fd);
-        countMap[file.bundleName]++; // 实际写入文件个数更新
+        let cnt = countMap.get(file.bundleName) || 0;
+        countMap.set(file.bundleName, cnt + 1); // 实际写入文件个数更新
         // 恢复所需文件个数与实际写入文件个数相等时调用，保证数据的一致性和完整性
-        if (countMap[file.bundleName] == initMap[file.bundleName]) { // 每个包的所有文件收到后触发publishFile
+        if (countMap.get(file.bundleName) == initMap.get(file.bundleName)) { // 每个包的所有文件收到后触发publishFile
           let fileMeta: backup.FileMeta = {
             bundleName: file.bundleName,
             uri: ''
           }
           g_session.publishFile(fileMeta, (err: BusinessError) => {
             if (err) {
-              console.error('publishFile failed with err: ' + JSON.stringify(err));
+              console.error(`publishFile failed. Code: ${err.code}, message: ${err.message}`);
               return;
             }
             console.info('publishFile success');
@@ -2754,21 +2741,21 @@ release(): Promise&lt;void&gt;
       },
       onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+          console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onBundleBegin success');
       },
       onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+          console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onBundleEnd success');
       },
       onAllBundlesEnd: (err: BusinessError) => {
         if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onAllBundlesEnd success');
@@ -2777,10 +2764,10 @@ release(): Promise&lt;void&gt;
         console.info('service died');
       },
       onResultReport: (bundleName: string, result: string) => {
-        console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+        console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
       },
       onProcess: (bundleName: string, process: string) => {
-        console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+        console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
       }
     };
     let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -2826,9 +2813,8 @@ cancel(bundleName: string): number
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
-  import backup from '@ohos.file.backup';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
@@ -2836,7 +2822,7 @@ cancel(bundleName: string): number
         // 文件fd传输失败，调用取消接口，取消此应用的恢复任务
         let result = sessionRestore.cancel(err.name);
         console.info('cancel result:' + result);
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -2844,21 +2830,21 @@ cancel(bundleName: string): number
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -2867,19 +2853,21 @@ cancel(bundleName: string): number
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
-  let fileData: backup.FileData = {
-    fd: -1
+  async function cancelTest() {
+    let fileData: backup.FileData = {
+      fd: -1
+    }
+    fileData = await backup.getLocalCapabilities(); //备份恢复框架提供的getLocalCapabilities接口获取能力集文件。
+    let backupBundles: Array<string> = ["com.example.helloWorld"];
+    sessionRestore.appendBundles(fileData.fd, backupBundles);
   }
-  fileData = await backup.getLocalCapabilities(); //备份恢复框架提供的getLocalCapabilities接口获取能力集文件。
-  let backupBundles: Array<string> = ["com.example.helloWorld"];
-  sessionRestore.appendBundles(fileData.fd, backupBundles);
   ```
 
 ### cleanBundleTempDir<sup>20+</sup>
@@ -3113,13 +3101,13 @@ constructor(callbacks: GeneralCallbacks)
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -3127,21 +3115,21 @@ constructor(callbacks: GeneralCallbacks)
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -3150,10 +3138,10 @@ constructor(callbacks: GeneralCallbacks)
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
@@ -3193,8 +3181,8 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   interface test { // 用于解析能力文件
     bundleInfos: [];
@@ -3220,7 +3208,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
   let generalCallbacks: backup.GeneralCallbacks = { // 定义备份/恢复过程中的通用回调
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -3228,21 +3216,21 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -3251,48 +3239,50 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
-  let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
-  let basePath = '/data/storage/el2/base/backup';
-  let path = basePath + '/localCapabilities.json'; // 本地保存能力文件的路径
-  try {
-    let fileData = await incrementalBackupSession.getLocalCapabilities(); // 获取本地能力文件
-    if (fileData) {
-      console.info('getLocalCapabilities success');
-      console.info('fileData info:' + fileData.fd);
-      if (!fs.accessSync(basePath)) {
-        fs.mkdirSync(basePath);
-        console.info('creat success' + basePath);
+  async function getLocalCapabilitiesTest() {
+    let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
+    let basePath = '/data/storage/el2/base/backup';
+    let path = basePath + '/localCapabilities.json'; // 本地保存能力文件的路径
+    try {
+      let fileData = await incrementalBackupSession.getLocalCapabilities(); // 获取本地能力文件
+      if (fileData) {
+        console.info('getLocalCapabilities success');
+        console.info('fileData info:' + fileData.fd);
+        if (!fs.accessSync(basePath)) {
+          fs.mkdirSync(basePath);
+          console.info('creat success' + basePath);
+        }
+        fs.copyFileSync(fileData.fd, path); // 将获取的本地能力文件保存到本地
+        fs.closeSync(fileData.fd);
       }
-      fs.copyFileSync(fileData.fd, path); // 将获取的本地能力文件保存到本地
-      fs.closeSync(fileData.fd);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`getLocalCapabilities failed. Code: ${err.code}, message: ${err.message}`);
     }
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
-  }
-  let data = await fs.readTextSync(path, 'utf8'); // 从本地的能力文件中获取信息
-  try {
-    const jsonsObj: test | null = JSON.parse(data); // 解析本地的能力文件并打印部分信息
-    if (jsonsObj) {
-      const infos:BundleInfo [] = jsonsObj.bundleInfos;
-      for (let i = 0; i < infos.length; i++) {
-        console.info('name: ' + infos[i].name);
-        console.info('appIndex: ' + infos[i].appIndex);
-        console.info('allToBackup: ' + infos[i].allToBackup);
+    let data = fs.readTextSync(path, 'utf8'); // 从本地的能力文件中获取信息
+    try {
+      const jsonsObj: test | null = JSON.parse(data); // 解析本地的能力文件并打印部分信息
+      if (jsonsObj) {
+        const infos:BundleInfo [] = jsonsObj.bundleInfos;
+        for (let i = 0; i < infos.length; i++) {
+          console.info('name: ' + infos[i].name);
+          console.info('appIndex: ' + infos[i].appIndex);
+          console.info('allToBackup: ' + infos[i].allToBackup);
+        }
+        const systemFullName: string = jsonsObj.systemFullName;
+        console.info('systemFullName: ' + systemFullName);
+        const deviceType: string = jsonsObj.deviceType;
+        console.info('deviceType: ' + deviceType);
       }
-      const systemFullName: string = jsonsObj.systemFullName;
-      console.info('systemFullName: ' + systemFullName);
-      const deviceType: string = jsonsObj.deviceType;
-      console.info('deviceType: ' + deviceType);
+    } catch (error) {
+      console.error(`parse failed. Code: ${error.code}, message: ${error.message}`);
     }
-  } catch (error) {
-    console.error('parse failed with err: ' + JSON.stringify(error));
   }
   ```
 
@@ -3301,7 +3291,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
  ```json
  {
   "backupVersion" : "16.0",
-  "bundleInfos" :[{
+  "bundleInfos" : [{
     "allToBackup" : true,
     "extensionName" : "BackupExtensionAbility",
     "name" : "com.example.hiworld",
@@ -3357,8 +3347,8 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   interface scanedInfos { // 用于解析扫描结果
     scaned: [];
@@ -3374,7 +3364,7 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => { // 定义备份/恢复过程中的通用回调
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -3382,21 +3372,21 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -3405,10 +3395,10 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     },
     onBackupSizeReport: (OnBackupSizeReport) => { // 回调函数 与getBackupDataSize配套使用，返回已获取到应用的数据量大小和正在获取数据量的应用的包名
       console.info('dataSizeCallback success');
@@ -3426,7 +3416,7 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
     }
   };
 
-  let incrementalBackupSession = new backup.incrementalBackupSession(generalCallbacks); // 创建增量备份流程
+  let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
 
   let backupApps: backup.IncrementalBackupTime[] = [{
     bundleName: "com.example.hiworld",
@@ -3436,7 +3426,7 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
     incrementalBackupSession.getBackupDataSize(true, backupApps); // 获取backupApps中指定应用的待备份的数据量大小，true表示使用精确扫描
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('getBackupDataSize failed with err: ' + JSON.stringify(err));
+    console.error(`getBackupDataSize failed. Code: ${err.code}, message: ${err.message}`);
   }
   ```
 
@@ -3444,7 +3434,7 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
 
 ```json
 {
- "scaned" :[ // 本次扫描完成的应用，已返回结果的应用在下一次回调中不会再继续返回
+ "scaned": [ // 本次扫描完成的应用，已返回结果的应用在下一次回调中不会再继续返回
      {
          "name": "com.example.hiworld", // 应用名称
          "dataSize": 1006060, // 数据量大小
@@ -3502,13 +3492,13 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;): Promise&lt;v
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -3516,21 +3506,21 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;): Promise&lt;v
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -3539,10 +3529,10 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;): Promise&lt;v
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
@@ -3555,7 +3545,7 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;): Promise&lt;v
   incrementalBackupSession.appendBundles(incrementalBackupDataArray).then(() => {
     console.info('appendBundles success');
   }).catch((err: BusinessError) => {
-    console.error('appendBundles failed with err: ' + JSON.stringify(err));
+    console.error(`appendBundles failed. Code: ${err.code}, message: ${err.message}`);
   }); // 添加需要增量备份的应用
   ```
 
@@ -3602,13 +3592,13 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;, infos: string
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -3616,21 +3606,21 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;, infos: string
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -3639,10 +3629,10 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;, infos: string
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
@@ -3696,7 +3686,7 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;, infos: string
   incrementalBackupSession.appendBundles(incrementalBackupDataArray, infos).then(() => {
     console.info('appendBundles success');
   }).catch((err: BusinessError) => {
-    console.error('appendBundles failed with err: ' + JSON.stringify(err));
+    console.error(`appendBundles failed. Code: ${err.code}, message: ${err.message}`);
   }); 
   ```
 
@@ -3734,13 +3724,13 @@ release(): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -3748,21 +3738,21 @@ release(): Promise&lt;void&gt;
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -3771,10 +3761,10 @@ release(): Promise&lt;void&gt;
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
@@ -3817,9 +3807,8 @@ cancel(bundleName: string): number
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
-  import backup from '@ohos.file.backup';
+  import { fileIo as fs, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
@@ -3827,7 +3816,7 @@ cancel(bundleName: string): number
         // 文件fd传输失败，调用取消接口，取消此应用的增量备份任务
         let result = incrementalBackupSession.cancel(err.name);
         console.info('cancel result:' + result);
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onFileReady success');
@@ -3835,21 +3824,21 @@ cancel(bundleName: string): number
     },
     onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
-        console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onAllBundlesEnd success');
@@ -3858,10 +3847,10 @@ cancel(bundleName: string): number
       console.info('service died');
     },
     onResultReport: (bundleName: string, result: string) => {
-      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
     },
     onProcess: (bundleName: string, process: string) => {
-      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     }
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程

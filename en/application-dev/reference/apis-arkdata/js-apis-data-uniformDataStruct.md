@@ -23,7 +23,7 @@ Represents data of the plain text type.
 | uniformDataType | 'general.plain-text'| Yes  | No  | Uniform data type, which has a fixed value of **general.plain-text**. For details, see [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype).               |
 | textContent | string | No  | No  | Plaintext content.               |
 | abstract    | string | No  | Yes  | Text abstract. It is an empty string by default.|
-| details | Record<string, string> | No  | Yes| Object of the dictionary type used to describe the attributes of the text content. Both the key and value of the object are of the string type. For example, the following is a **details** object used to describe the properties of a file:<br>{<br>"title":"Title of the file",<br>"content":"Content of the file"<br>}<br> By default, it is an empty dictionary object.|
+| details | Record<string, string> | No  | Yes| Object of the dictionary type used to describe the attributes of the text content. Both the key and value of the object are of the string type. For example, the following is a **details** object used to describe the properties of a file:<br>{<br>"title":"Title of the file",<br>"content":"Content of the file"<br>}<br>By default, it is an empty dictionary object. |
 
 **Example**
 
@@ -56,11 +56,11 @@ Represents data of the hyperlink type.
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
 | Name       | Type  | Read-Only| Optional| Description          |
-| ----------- | ------ | ---- | ---- |-------------- |
+| ----------- | ------ | ---- | ---- |--------------|
 | uniformDataType | 'general.hyperlink'| Yes  | No  | Uniform data type, which has a fixed value of **general.hyperlink**. For details, see [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype). |
 | url         | string | No  | No  | URL.      |
 | description | string | No  | Yes  | Description of the linked content. This parameter is optional. By default, it is an empty string.|
-| details | Record<string, string> | No  | Yes | Object of the dictionary type used to describe the attributes of the hyperlink. Both the key and value of the object are of the string type. For example, the following is a **details** object used to describe the properties of a file:<br>{<br>"title":"Title of the hyperlink",<br>"content":"Content"<br>}<br> By default, it is an empty dictionary object. |
+| details | Record<string, string> | No  | Yes | Object of the dictionary type used to describe the attributes of the hyperlink. Both the key and value of the object are of the string type. For example, the following is a **details** object used to describe the properties of a file:<br>{<br>"title":"Title of the file",<br>"content":"Content of the file"<br>}<br>By default, it is an empty dictionary object. |
 
 **Example**
 
@@ -86,12 +86,12 @@ Represents data of the HTML type.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name     | Type  | Read-Only| Optional | Description |
+| Name        | Type  | Read-Only| Optional| Description                   |
 | ------------ | ------ | ---- | ---- |-----------------------|
 | uniformDataType | 'general.html'| Yes  | No  | Uniform data type, which has a fixed value of **general.html**. For details, see [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype). |
-| htmlContent  | string | No  | No  | Content in HTML format. |
-| plainContent | string  | No  | Yes | Plaintext without HTML tags. This parameter is optional. By default, it is an empty string. |
-| details | Record<string, string> | No  | Yes  | Object of the dictionary type used to describe the attributes of the HTML content. Both the key and value of the object are of the string type. For example, the following is a **details** object used to describe the properties of a file:<br>{<br>"title":"Title of the HTML content",<br>"content":"Content"<br>}<br> By default, it is an empty dictionary object. |
+| htmlContent  | string | No  | No  | Content in HTML format.            |
+| plainContent | string | No  | Yes  | Plaintext without HTML tags. This parameter is optional. By default, it is an empty string.|
+| details | Record<string, string> | No  | Yes  | Object of the dictionary type used to describe the attributes of the HTML content. Both the key and value of the object are of the string type. For example, the following is a **details** object used to describe the properties of a file:<br>{<br>"title":"Title of the file",<br>"content":"Content of the file"<br>}<br>By default, it is an empty dictionary object. |
 
 **Example**
 
@@ -126,8 +126,7 @@ Represents data of the home screen icon type defined by the system.
 | appLabelId  | string | No  | No  | Label ID corresponding to the icon name.   |
 | bundleName  | string | No  | No  | Bundle name corresponding to the icon.|
 | abilityName | string | No  | No  | Application ability name corresponding to the icon.|
-| details | Record<string, number \| string \| Uint8Array> | No  | Yes  | Object of the dictionary type used to describe the icon. The key is of the string type, and the value can be a number, a string, or a Uint8Array. By default, it is an empty dictionary object. |
-
+| details | Record<string, number \| string \| Uint8Array> | No  | Yes  | Object of the dictionary type used to describe the icon. The key is of the string type, and the value can be a number, a string, or a Uint8Array. By default, it is an empty dictionary object.|
 
 **Example**
 
@@ -204,7 +203,6 @@ Represents data of the widget type defined by the system.
 | module     | string | No  | No | Module to which the widget belongs.|
 | details | Record<string, number \| string \| Uint8Array> | No  | Yes  | Object of the dictionary type used to describe the icon. The key is of the string type, and the value can be a number, a string, or a Uint8Array. By default, it is an empty dictionary object.|
 
-
 **Example**
 
 ```ts
@@ -237,8 +235,8 @@ Represents data of the file URI type.
 | Name        | Type  | Read-Only| Optional| Description                                                                                                                            |
 |------------| ------ | ---- |----|--------------------------------------------------------------------------------------------------------------------------------|
 | uniformDataType | 'general.file-uri'| Yes  | No | Uniform data type, which has a fixed value of **general.file-uri**. For details, see [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype). |
-| oriUri     | string | No  | No | File URI.|
-| fileType   | string | No  | No | File type.|
+| oriUri     | string | No  | No | File path.|
+| fileType   | string | No  | No | File type, which must be UTD. For details, see [Prebuilt UTDs](../../database/uniform-data-type-list.md). The maximum length of the value is 1024 bytes.|
 | details | Record<string, number \| string \| Uint8Array> | No  | Yes  | Object of the dictionary type used to describe the icon. The key is of the string type, and the value can be a number, a string, or a Uint8Array. By default, it is an empty dictionary object.|
 
 **Example**
@@ -273,7 +271,6 @@ Represents data of the pixel map type defined by the system.
 | uniformDataType | 'openharmony.pixel-map'| Yes  | No | Uniform data type, which has a fixed value of **openharmony.pixel-map**. For details, see [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype). |
 | pixelMap     | image.PixelMap | No  | No | Binary data of the pixel map.|
 | details | Record<string, number \| string \| Uint8Array> | No  | Yes  | Object of the dictionary type used to describe the icon. The key is of the string type, and the value can be a number, a string, or a Uint8Array. By default, it is an empty dictionary object.|
-
 
 **Example**
 

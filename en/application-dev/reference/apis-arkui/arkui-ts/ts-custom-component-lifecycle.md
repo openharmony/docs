@@ -14,6 +14,11 @@ aboutToAppear?(): void
 
 Invoked after a new instance of the custom component is created and before its **build()** function is executed. You can change state variables in **aboutToAppear**. The change will take effect when you execute the **build()** function next time. The **aboutToAppear** lifecycle callback of a custom component with a custom layout is invoked during the layout process.
 
+> **NOTE**
+>
+> * In this callback function, it is recommended that you only perform initialization logic for the current node component. Avoid high-time-consuming operations that may block the main thread. For high-time-consuming operations, consider caching or asynchronous solutions. For best practices, see [Optimizing Performance of UI Components: Avoiding Time-Consuming Operations During the Lifecycle of Custom Components](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-ui-component-performance-optimization#section18755173594714).
+> * In scenarios where components need to be frequently created and destroyed, this callback will be called frequently. For best practices, see [Optimizing Time-Consuming Operations in the Main Thread: Component Lifecycle Callback](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-time-optimization-of-the-main-thread#section418843713435).
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -36,6 +41,10 @@ aboutToDisappear?(): void
 
 Invoked when this component is about to disappear. Do not change state variables in the **aboutToDisappear** function as doing this can cause unexpected errors. For example, the modification of the **@Link** decorated variable may cause unstable application running.
 
+> **NOTE**
+>
+> In scenarios where components need to be frequently created and destroyed, this callback will be called frequently. For best practices, see [Optimizing Time-Consuming Operations in the Main Thread: Component Lifecycle Callback](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-time-optimization-of-the-main-thread#section418843713435).
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -46,7 +55,7 @@ Invoked when this component is about to disappear. Do not change state variables
 
 onPageShow?(): void
 
-Invoked each time the page is displayed, for example, during page redirection or when the application is switched to the foreground. It works only for the custom components decorated by **@Entry**.
+Triggered each time a router-managed page (only custom components decorated with [\@Entry](../../../../application-dev/ui/state-management/arkts-create-custom-components.md#entry)) is displayed, including scenarios such as route navigation and the application returning to the foreground.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -56,7 +65,11 @@ Invoked each time the page is displayed, for example, during page redirection or
 
 onPageHide?(): void
 
-Invoked each time the page is hidden, for example, during page redirection or when the application is switched to the background. It works only for the custom components decorated by **@Entry**.
+Triggered each time a router-managed page (only custom components decorated with [\@Entry](../../../../application-dev/ui/state-management/arkts-create-custom-components.md#entry)) is hidden, including scenarios such as route navigation and the application moving to background.
+
+> **NOTE**
+>
+> To ensure smooth UI responsiveness, avoid executing time-consuming operations within the callback function that may block the main thread. For resource-intensive tasks such as camera resource deallocation, consider implementing asynchronous solutions. For best practices, see [Reducing Application Latency: Postponing Resource Release](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-application-latency-optimization-cases#section8783201923819).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -66,11 +79,17 @@ Invoked each time the page is hidden, for example, during page redirection or wh
 
 onBackPress?(): void | boolean
 
-Invoked when the user clicks the Back button. It works only for the custom components decorated by @Entry. The value **true** means that the page executes its own return logic, and **false** (default) means that the default return logic is used.
+Triggered when the user clicks the back button (only effective for router-managed pages). The value **true** means that the page executes its own return logic, and **false** (default) means that the default return logic is used.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type               | Description       |
+| ------------------- | --------- |
+| void \| boolean | Action of the back button. The value **true** means that the page executes its own return logic, and **false** (default) means that the default return logic is used.|
 
 ```ts
 // xxx.ets
@@ -106,13 +125,13 @@ struct IndexComponent {
 ```
 ![en-us_image_lifecycle](figures/en-us_image_lifecycle.gif)
 
-## onNewParam<sup>18+</sup>
+## onNewParam<sup>19+</sup>
 
 onNewParam?(param: ESObject): void
 
-Invoked when a page that previously existed in the router stack is moved to the top of the stack through the [singleton mode](../js-apis-router.md#routermode9). This callback is effective only for custom components decorated with @Entry and used as [router](../js-apis-router.md) pages.
+Triggered when a page previously existing in the navigation stack is brought to the top through navigation in [single-instance](../js-apis-router.md#routermode9) mode. It is only effective for custom components decorated with [\@Entry](../../../../application-dev/ui/state-management/arkts-create-custom-components.md#entry) that serve as [router-managed](../js-apis-router.md) pages.
 
-**Atomic service API**: This API can be used in atomic services since API version 18.
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -169,6 +188,7 @@ struct Index {
   }
 }
 ```
+<!--code_no_check-->
 ```ts
 // pages/PageOne.ets
 import { router } from '@kit.ArkUI';
@@ -212,9 +232,14 @@ struct PageOne {
 
 ## aboutToReuse<sup>10+</sup>
 
-aboutToReuse?(params: { [key: string]: unknown }): void
+aboutToReuse?(params: Record\<string, Object | undefined | null>): void
 
 Invoked when a reusable custom component is re-added to the node tree from the reuse cache to receive construction parameters of the component.
+
+> **NOTE**
+>
+> * Avoid repeatedly updating state variables that are automatically updated, such as @Link, @ObjectLink, and @Prop decorated variables, within **aboutToReuse**. For best practices, see [Component Reuse: Avoiding Repeated Assignment of Automatically Updated State Variables in aboutToReuse()](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-component-reuse#section7441712174414).
+> * In scrolling scenarios where component reuse is implemented, this callback is typically required to update the component's state variables. As such, avoid performing time-consuming operations within this callback to prevent frame drops and UI stuttering during scrolling animations. For best practices, see [Optimizing Time-Consuming Operations in the Main Thread: Component Reuse Callback](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-time-optimization-of-the-main-thread#section20815336174316).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -222,9 +247,9 @@ Invoked when a reusable custom component is re-added to the node tree from the r
 
 **Parameters**
 
-| Name   | Type                        | Description        |
-|--------|----------------------------|------------|
-| params | { [key: string]: unknown } | Construction parameters of the custom component.|
+| Name | Type                                     | Description               |
+|--------|-------------------------------------------|---------------------|
+| params | Record\<string, Object \| undefined \| null> | Construction parameters of the custom component.|
 
 ```ts
 // xxx.ets

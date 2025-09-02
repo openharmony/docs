@@ -1,4 +1,10 @@
 # ArcSwiper
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @Hu_ZeQi-->
+<!--Designer: @jiangdayuan-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 弧形滑块视图容器，提供子组件滑动轮播显示的能力。 
 

@@ -1,4 +1,10 @@
 # ArkUI_NativeDialogAPI_3
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @houguobiao-->
+<!--Designer: @liyi0309-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
@@ -57,6 +63,10 @@ int32_t (*setLevelOrder)(ArkUI_NativeDialogHandle handle, double levelOrder)
 
 设置自定义弹窗显示的顺序。
 
+> **说明：** 
+>
+> setLevelOrder方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
+
 **起始版本：** 19
 
 **参数：**
@@ -82,6 +92,10 @@ int32_t (*registerOnWillAppear)(ArkUI_NativeDialogHandle handle, void* userData,
 
 
 注册自定义弹窗显示之前的回调函数。
+
+> **说明：** 
+>
+> registerOnWillAppear方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
 
 **起始版本：** 19
 
@@ -110,6 +124,10 @@ int32_t (*registerOnDidAppear)(ArkUI_NativeDialogHandle handle, void* userData, 
 
 注册自定义弹窗显示之后的回调函数。
 
+> **说明：** 
+>
+> registerOnDidAppear方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
+
 **起始版本：** 19
 
 **参数：**
@@ -136,6 +154,10 @@ int32_t (*registerOnWillDisappear)(ArkUI_NativeDialogHandle handle, void* userDa
 
 
 注册自定义弹窗关闭之前的回调函数。
+
+> **说明：** 
+>
+> registerOnWillDisappear方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
 
 **起始版本：** 19
 
@@ -164,6 +186,10 @@ int32_t (*registerOnDidDisappear)(ArkUI_NativeDialogHandle handle, void* userDat
 
 注册自定义弹窗关闭之后的回调函数。
 
+> **说明：** 
+>
+> registerOnDidDisappear方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
+
 **起始版本：** 19
 
 **参数：**
@@ -190,6 +216,10 @@ int32_t (*setBorderWidth)(ArkUI_NativeDialogHandle handle, float top, float righ
 
 
 设置自定义弹窗的边框宽度。
+
+> **说明：** 
+>
+> setBorderWidth方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
 
 **起始版本：** 19
 
@@ -221,6 +251,10 @@ int32_t (*setBorderColor)(ArkUI_NativeDialogHandle handle, uint32_t top, uint32_
 
 设置自定义弹窗的边框颜色。
 
+> **说明：** 
+>
+> setBorderColor方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
+
 **起始版本：** 19
 
 **参数：**
@@ -249,6 +283,10 @@ int32_t (*setBorderStyle)(ArkUI_NativeDialogHandle handle, int32_t top, int32_t 
 
 
 设置自定义弹窗的边框样式。
+
+> **说明：** 
+>
+> setBorderStyle方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
 
 **起始版本：** 19
 
@@ -279,6 +317,10 @@ int32_t (*setWidth)(ArkUI_NativeDialogHandle handle, float width, ArkUI_LengthMe
 
 设置自定义弹窗的背板宽度。
 
+> **说明：** 
+>
+> setWidth方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
+
 **起始版本：** 19
 
 **参数：**
@@ -287,7 +329,7 @@ int32_t (*setWidth)(ArkUI_NativeDialogHandle handle, float width, ArkUI_LengthMe
 | -- | -- |
 | [ArkUI_NativeDialogHandle](capi-arkui-nativemodule-arkui-nativedialog8h.md) handle | 指向自定义弹窗控制器的指针。 |
 |  float width | 背板宽度。 |
-|  [ArkUI_LengthMetricUnit](capi-native-type-h.md#arkui_lengthmetricunit) unit | 指定高度的单位，默认为vp。 |
+|  [ArkUI_LengthMetricUnit](capi-native-type-h.md#arkui_lengthmetricunit) unit | 指定宽度的单位，默认为vp。 |
 
 **返回：**
 
@@ -305,6 +347,10 @@ int32_t (*setHeight)(ArkUI_NativeDialogHandle handle, float height, ArkUI_Length
 
 
 设置自定义弹窗的背板高度。
+
+> **说明：** 
+>
+> setHeight方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
 
 **起始版本：** 19
 
@@ -333,6 +379,10 @@ int32_t (*setShadow)(ArkUI_NativeDialogHandle handle, ArkUI_ShadowStyle shadow)
 
 设置自定义弹窗的背板阴影。
 
+> **说明：** 
+>
+> setShadow方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
+
 **起始版本：** 19
 
 **参数：**
@@ -359,6 +409,10 @@ int32_t (*setCustomShadow)(ArkUI_NativeDialogHandle handle, const ArkUI_Attribut
 
 设置自定义弹窗的背板阴影。
 
+> **说明：** 
+>
+> setCustomShadow方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
+
 **起始版本：** 19
 
 **参数：**
@@ -366,7 +420,7 @@ int32_t (*setCustomShadow)(ArkUI_NativeDialogHandle handle, const ArkUI_Attribut
 | 参数项                                                                                | 描述 |
 |------------------------------------------------------------------------------------| -- |
 | [ArkUI_NativeDialogHandle](capi-arkui-nativemodule-arkui-nativedialog8h.md) handle | 指向自定义弹窗控制器的指针。 |
-| const [ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)* customShadow                                        | 自定义阴影参数，格式与NODE_SHADOW属性一致。 |
+| const [ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)* customShadow                                        | 自定义阴影参数，格式与[ArkUI_NodeAttributeType](./capi-native-node-h.md#arkui_nodeattributetype)中的NODE_SHADOW属性一致。 |
 
 **返回：**
 
@@ -384,6 +438,10 @@ int32_t (*setBackgroundBlurStyle)(ArkUI_NativeDialogHandle handle, ArkUI_BlurSty
 
 
 设置自定义弹窗的背板模糊材质。
+
+> **说明：** 
+>
+> setBackgroundBlurStyle方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
 
 **起始版本：** 19
 
@@ -411,6 +469,10 @@ int32_t (*setKeyboardAvoidMode)(ArkUI_NativeDialogHandle handle, ArkUI_KeyboardA
 
 设置自定义弹窗避让键盘模式。
 
+> **说明：** 
+>
+> setKeyboardAvoidMode方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
+
 **起始版本：** 19
 
 **参数：**
@@ -436,6 +498,10 @@ int32_t (*enableHoverMode)(ArkUI_NativeDialogHandle handle, bool enableHoverMode
 
 
 设置自定义弹窗是否相应悬停态。
+
+> **说明：** 
+>
+> enableHoverMode方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
 
 **起始版本：** 19
 
@@ -463,6 +529,10 @@ int32_t (*setHoverModeArea)(ArkUI_NativeDialogHandle handle, ArkUI_HoverModeArea
 
 设置悬停态下自定义弹窗默认展示区域。
 
+> **说明：** 
+>
+> setHoverModeArea方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
+
 **起始版本：** 19
 
 **参数：**
@@ -488,6 +558,10 @@ int32_t (*setFocusable)(ArkUI_NativeDialogHandle handle, bool focusable)
 
 
 设置自定义弹窗是否获取焦点。
+
+> **说明：** 
+>
+> setFocusable方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
 
 **起始版本：** 19
 
@@ -515,6 +589,10 @@ int32_t (*setBackgroundBlurStyleOptions)(ArkUI_NativeDialogHandle handle, const 
 
 设置自定义弹窗的背景模糊效果。
 
+> **说明：** 
+>
+> setBackgroundBlurStyleOptions方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
+
 **起始版本：** 19
 
 **参数：**
@@ -540,6 +618,10 @@ int32_t (*setBackgroundEffect)(ArkUI_NativeDialogHandle handle, const ArkUI_Attr
 
 
 设置自定义弹窗的背景效果参数。
+
+> **说明：** 
+>
+> setBackgroundEffect方法需要在调用[show](capi-arkui-nativemodule-arkui-nativedialogapi-1.md#show)之前调用。
 
 **起始版本：** 19
 

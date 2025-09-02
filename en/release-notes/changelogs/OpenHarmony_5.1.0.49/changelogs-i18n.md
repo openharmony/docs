@@ -6,7 +6,7 @@
 
 Public API
 
-**Reason for Change**
+**Reason for the Change**
 
 The display names for Burmese, Malay, and Thai languages are incorrect.
 
@@ -28,7 +28,7 @@ OpenHarmony SDK 5.1.0.49
 
 **Key API/Component Changes**
 
-i18n.system.getDisplayLanguage
+i18n.System.getDisplayLanguage
 
 **Adaptation Guide**
 

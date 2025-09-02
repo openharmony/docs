@@ -9,12 +9,14 @@ This component is implemented based on [state management V2](../../../ui/state-m
 > **NOTE**
 >
 > - This component is supported since API version 18. Updates will be marked with a superscript to indicate their earliest API version.
+> 
+> - This component is not supported on wearables.
 
 
 ## Modules to Import
 
 ```
-import { ColorMetrics, LengthMetrics, ProgressButtonV2,  ProgressButtonV2Color } from '@kit.ArkUI'
+import { ColorMetrics, LengthMetrics, ProgressButtonV2,  ProgressButtonV2Color } from '@kit.ArkUI';
 ```
 
 ## ProgressButtonV2
@@ -30,15 +32,15 @@ The **ProgressButton** component is a download button with a progress indicator 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name                               | Type                                                           | Mandatory| Decorator                 | Description                                                                                |
-|-----------------------------------|---------------------------------------------------------------|----|------------------------|------------------------------------------------------------------------------------|
-| progress                          | number                                                        | Yes | \@Require <br>\@Param | Current download progress.<br>The value ranges from 0 to 100. Values less than 0 are adjusted to **0**, and values greater than 100 are capped at **100**.<br>Default value: **0**                                                                       |
-| content                           | [ResourceStr](ts-types.md#resourcestr)                        | Yes | \@Require <br>\@Param | Button text.                                                                          |
+| Name                               | Type                                                           | Mandatory| Decorator                 | Description                                                                               |
+|-----------------------------------|---------------------------------------------------------------|----|------------------------|-----------------------------------------------------------------------------------|
+| progress                          | number                                                        | Yes | \@Require <br>\@Param | Current download progress.<br>The value ranges from 0 to 100. Values less than 0 are adjusted to **0**, and values greater than 100 are capped at **100**.<br>Default value: **0**                                                                      |
+| content                           | [ResourceStr](ts-types.md#resourcestr)                        | Yes | \@Require <br>\@Param | Button text.                                                                         |
 | progressButtonWidth               | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No | \@Param <br>\@Once  | Width of the button.<br>Default value: **44vp**                                                          |
 | onClicked                         | [ClickCallback](#clickcallback)                               | Yes | \@Param                | Callback invoked when the button is clicked.                                                      |
 | isEnabled                         | boolean                                                       | Yes | \@Param                | Whether the button can be clicked.<br> **true**: The button can be clicked.<br> **false**: The button cannot be clicked.|
 | colorOptions                      | [ProgressButtonV2Color](#progressbuttonv2color)               | No | \@Param                | Color options for the button.<br>Default value: **undefined**                                                      |
-| progressButtonRadius<sup>18+<sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No | \@Param                | Corner radius of the button. It cannot be set in percentage.<br>Value range: [0, height/2]<br>Default value: height/2<br>If an invalid value is set, the default value is used.   |
+| progressButtonRadius<sup>18+<sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No | \@Param                | Corner radius of the button. It cannot be set in percentage.<br>Value range: [0, height/2]<br>Default value: height/2<br>If an invalid value is set, the default value is used.  |
 
 ## Attributes
 The [universal attributes](ts-component-general-attributes.md) are not supported.
@@ -92,12 +94,12 @@ Provides options for customizing the color of the download button.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name             | Type          | Mandatory| Description                        |
-|-----------------|--------------|----|----------------------------|
-| progressColor   | ColorMetrics | No | Color of the progress indicator.<br>Default value: **undefined** |
-| borderColor     | ColorMetrics | No | Border color of the button.<br>Default value: **undefined**|
-| textColor       | ColorMetrics | No | Text color of the button.<br>Default value: **undefined**|
-| backgroundColor | ColorMetrics | No | Background color of the button.<br>Default value: **undefined**|
+| Name             | Type          | Mandatory| Description                       |
+|-----------------|--------------|----|---------------------------|
+| progressColor   | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)| No | Color of the progress indicator.<br>Default value: **undefined** |
+| borderColor     | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)| No | Border color of the button.<br>Default value: **undefined**|
+| textColor       | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)| No | Text color of the button.<br>Default value: **undefined**|
+| backgroundColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)| No | Background color of the button.<br>Default value: **undefined**|
 
 ## Events
 The [universal events](ts-component-general-events.md) are not supported.
@@ -106,14 +108,14 @@ The [universal events](ts-component-general-events.md) are not supported.
 
 This example demonstrates how to create a simple download button with a progress indicator that shows the loading status of a text file.
 ```ts
-import { ColorMetrics, LengthMetrics, ProgressButtonV2, ProgressButtonV2Color } from '@kit.ArkUI'
+import { LengthMetrics, ProgressButtonV2 } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
 struct Index {
   @Local progressIndex: number = 0;
   @Local textState: string = 'Download';
-  @Local ButtonWidth: LengthMetrics = LengthMetrics.vp(200);
+  @Local buttonWidth: LengthMetrics = LengthMetrics.vp(200);
   @Local isRunning: boolean = false;
   @Local enableState: boolean = true;
 
@@ -123,7 +125,7 @@ struct Index {
         Column({ space: 20 }) {
           ProgressButtonV2({
             progress: this.progressIndex,
-            progressButtonWidth: this.ButtonWidth,
+            progressButtonWidth: this.buttonWidth,
             content: this.textState,
             isEnabled: this.enableState,
             onClicked: () => {

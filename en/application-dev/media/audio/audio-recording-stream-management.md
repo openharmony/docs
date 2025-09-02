@@ -4,9 +4,9 @@ An audio recording application must notice audio stream state changes and perfor
 
 ## Reading or Listening for Audio Stream State Changes in the Application
 
-Create an AudioCapturer by referring to [Using AudioCapturer for Audio Recording](using-audiocapturer-for-recording.md) or [audio.createAudioCapturer](../../reference/apis-audio-kit/js-apis-audio.md#audiocreateaudiocapturer8). Then obtain the audio stream state changes in either of the following ways:
+Create an AudioCapturer by referring to [Using AudioCapturer for Audio Recording](using-audiocapturer-for-recording.md) or [audio.createAudioCapturer](../../reference/apis-audio-kit/arkts-apis-audio-f.md#audiocreateaudiocapturer8). Then obtain the audio stream state changes in either of the following ways:
 
-- Check the [state](../../reference/apis-audio-kit/js-apis-audio.md#attributes) of the AudioCapturer.
+- Check the [state](../../reference/apis-audio-kit/arkts-apis-audio-AudioCapturer.md#properties) of the AudioCapturer.
     
   ```ts
   let audioCapturerState: audio.AudioState = audioCapturer.state;
@@ -21,11 +21,11 @@ Create an AudioCapturer by referring to [Using AudioCapturer for Audio Recording
   });
   ```
 
-The application then performs an operation, for example, displays a message indicating the end of the recording, by comparing the obtained state with [AudioState](../../reference/apis-audio-kit/js-apis-audio.md#audiostate8).
+The application then performs an operation, for example, displays a message indicating the end of the recording, by comparing the obtained state with [AudioState](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audiostate8).
 
 ## Reading or Listening for Changes in All Audio Streams
 
-If an application needs to obtain the change information about all audio streams, it can use **AudioStreamManager** to read or listen for the changes of all audio streams.
+If an application needs to obtain the change information about all audio streams, it can use AudioStreamManager to read or listen for the changes of all audio streams.
 
 <!--Del-->
 > **NOTE**
@@ -37,15 +37,15 @@ The figure below shows the call relationship of audio stream management.
 
 ![Call relationship of recording stream management](figures/invoking-relationship-recording-stream-mgmt.png)
 
-During application development, first use **getStreamManager()** to create an **AudioStreamManager** instance. Then call **on('audioCapturerChange')** to listen for audio stream changes and obtain a notification when the audio stream state or device changes. To cancel the listening for these changes, call **off('audioCapturerChange')**. You can call **getCurrentAudioCapturerInfoArray()** to obtain information such as the unique ID of the recording stream, UID of the recording stream client, and stream status.
+During application development, first use **getStreamManager()** to create an AudioStreamManager instance. Then call **on('audioCapturerChange')** to listen for audio stream changes and obtain a notification when the audio stream state or device changes. To cancel the listening for these changes, call **off('audioCapturerChange')**. You can call **getCurrentAudioCapturerInfoArray()** to obtain information such as the unique ID of the recording stream, UID of the recording stream client, and stream status.
 
-For details about the APIs, see [AudioStreamManager](../../reference/apis-audio-kit/js-apis-audio.md#audiostreammanager9).
+For details about the APIs, see [AudioStreamManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioStreamManager.md).
 
 ## How to Develop
 
-1. Create an **AudioStreamManager** instance.
+1. Create an AudioStreamManager instance.
    
-   Before using **AudioStreamManager** APIs, you must use **getStreamManager()** to create an **AudioStreamManager** instance.
+   Before using AudioStreamManager APIs, you must use **getStreamManager()** to create an AudioStreamManager instance.
      
    ```ts
    import { audio } from '@kit.AudioKit';

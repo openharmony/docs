@@ -1,4 +1,10 @@
 # oh_data_values.h
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## 概述
 
@@ -462,7 +468,7 @@ int OH_Values_IsNull(OH_Data_Values *values, int index, bool *val)
 | ------------------------------------------------ | ------------------------------------------------------------ |
 | [OH_Data_Values](capi-rdb-oh-data-values.md) *values | 表示指向[OH_Data_Values](capi-rdb-oh-data-values.md)实例的指针。 |
 | int index                                        | 表示values中目标数据的从零开始的索引。                       |
-| bool *val                                        | 一个输出参数，ture表示空，false表示不为空。                  |
+| bool *val                                        | 一个输出参数，true表示空，false表示不为空。                  |
 
 **返回：**
 
@@ -748,7 +754,7 @@ int OH_Values_GetUnlimitedIntBand(OH_Data_Values *values, int index, size_t *len
 ### OH_Values_GetUnlimitedInt()
 
 ```
-int OH_Values_GetUnlimitedInt(OH_Data_Values *values, int index, int *sign, uint64_t *trueForm, size_t inLen,size_t *outLen)
+int OH_Values_GetUnlimitedInt(OH_Data_Values *values, int index, int *sign, uint64_t *trueForm, size_t inLen, size_t *outLen)
 ```
 
 **描述**

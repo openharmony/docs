@@ -1,4 +1,10 @@
 # 媒体会话控制方(仅对系统应用开放)
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频应用进行交互，包括获取媒体信息进行展示以及下发播控命令等。
 

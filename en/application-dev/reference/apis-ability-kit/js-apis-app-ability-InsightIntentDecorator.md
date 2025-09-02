@@ -1,5 +1,12 @@
 # @ohos.app.ability.InsightIntentDecorator (Intent Decorator)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @linjunjie6-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 The InsightIntentDecorator module provides various intent decorators that allow you to define application functionalities as intents and integrate them into AI-driven features like intelligent Q&A, search, and recommendations.
 
 - [@InsightIntentLink](#insightintentlink): decorates a URI in your application as an intent, enabling AI systems to quickly jump to your application via this intent. For details on the parameters supported by this decorator, see [LinkIntentDecoratorInfo](#linkintentdecoratorinfo).
@@ -139,7 +146,7 @@ Common properties for intent decorators, used to define basic information about 
 
 > **NOTE**
 >
-> If a matching intent is found in the standard intent list based on the **schema** and **intentVersion** fields, the system automatically populates the **intentName**, **llmDescription**, **keywords**, **parameters**, and **result** fields with the values from the matching standard intent.
+> If a matching intent is found in the standard intent list based on the **schema** and **intentVersion** fields, the system automatically populates the **intentName**, **domain**, **llmDescription**, **keywords**, **parameters**, and **result** fields with the values from the matching standard intent.
 
 | Name              | Type           | Read-Only        | Optional| Description                                                        |
 | ------------------ | ----------------| ---------- | ---- | ------------------------------------------------------------ |
@@ -289,7 +296,7 @@ This decorate is used to decorate a class, and [@InsightIntentFunctionMethod](#i
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
-## InsightIntentFunctionMethod
+## @InsightIntentFunctionMethod
 
 This decorator must be used together with the [@InsightIntentFunction](#insightintentfunction) decorator.
 

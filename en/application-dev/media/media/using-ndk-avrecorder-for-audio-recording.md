@@ -10,7 +10,7 @@ During application development, you can use the **state** property of the AVReco
 
 ![Recording state change](figures/recording-status-change-ndk.png)
 
-For details about the states, see [AVRecorderState](../../reference/apis-media-kit/js-apis-media.md#avrecorderstate9).
+For details about the states, see [AVRecorderState](../../reference/apis-media-kit/arkts-apis-media-t.md#avrecorderstate9).
 
 
 ## Requesting Permissions
@@ -240,7 +240,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
    OH_AVRecorder_Start(g_avRecorder);
    ```
 
-5. Call **OH_AVRecorder_Pause()** to pause recording. The AVRecorder enters the **paused** state. In addition, pause data input,
+5. Call **OH_AVRecorder_Pause()** to pause recording. The AVRecorder enters the **paused** state. In addition, pause data input.
 
    ```C++
    OH_AVRecorder_Pause(g_avRecorder);
@@ -273,7 +273,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 
 ## Development Example
 
-Refer to the sample code below to complete the process of creating a recorder instance, preparing for, starting, pausing, resuming, and stopping recording, resetting the recording state, and releasing the recording resources.
+Refer to the sample code below to complete the process of creating a recorder instance; preparing for recording; starting, pausing, resuming, and stopping recording; resetting the recording state; and releasing the recording resources.
 
    ```C++
    #include <fcntl.h>

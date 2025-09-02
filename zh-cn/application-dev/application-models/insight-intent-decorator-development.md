@@ -26,8 +26,7 @@
 
 以通过@InsightIntentEntry装饰器开发[查看快递](./insight-intent-access-specifications.md#查看快递)标准意图举例。
 
-1. 若涉及新增的、未被其他入口文件依赖的意图执行文件，通过`insight_intent.json`文件的"insightIntentsSrcEntry"字段声明执行器路径，使其参与编译。
-
+1. 在insight_intent.json配置文件中的"insightIntentsSrcEntry"字段声明意图执行文件。
     ```json
     {
       "insightIntentsSrcEntry": [
@@ -84,7 +83,7 @@
 
 以开发“播放音乐”自定义意图举例，需要定义意图的大语言模型描述、意图搜索关键字、意图参数定义和意图执行结果定义。
 
-1. 若涉及新增的、未被其他入口文件依赖的意图执行文件，通过`insight_intent.json`文件的"insightIntentsSrcEntry"字段声明执行器路径，使其参与编译。
+1. 在insight_intent.json配置文件中的"insightIntentsSrcEntry"字段声明意图执行文件。
 
     ```json
     {

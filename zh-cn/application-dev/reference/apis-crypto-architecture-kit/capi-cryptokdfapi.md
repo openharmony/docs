@@ -1,5 +1,12 @@
 # CryptoKdfApi
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 为应用提供密钥派生函数(KDF)接口。

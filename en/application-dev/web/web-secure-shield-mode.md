@@ -1,6 +1,6 @@
 # Using Secure Shield Mode
 
-The Secure Shield mode is <!--RP1--><!--RP1End-->a system-level security mode provided for users with high security requirements. This mode restricts basic device capabilities to enhance security and effectively defend against targeted attacks through the remote attack surface.
+The Secure Shield mode is a system-level security mode provided for users with high security requirements. This mode restricts basic device capabilities to enhance security and effectively defend against targeted attacks through the remote attack surface.
 
 ## HTML5 Features Restricted by ArkWeb
 
@@ -28,32 +28,33 @@ When the Secure Shield mode is enabled, ArkWeb reduces the attack surface by res
 
 ## Evaluating Impacts On Applications
 
-To evaluate the impact and compatibility of applications in Secure Shield mode, go to **Settings** > **Privacy & security** > **Secure Shield mode** to enable this mode.
+To evaluate the impact and compatibility of applications in Secure Shield mode, go to **Settings** > **Privacy & security** > **Secure Shield** to enable this mode.
 
 <!--RP2--><!--RP2End-->
 
 > **NOTE**
 >
-> To evaluate the compatibility of a debug version (not released on AppGallery), you need to enable the developer option and then enable the Secure Shield mode.
+> - To evaluate the compatibility of a debug version (not released on AppGallery), you need to enable **Developer options** and the Secure Shield mode.
+> - To check whether the Secure Shield mode is enabled, use <!--RP1-->the capability of querying the device security mode (C/C++) provided by <!--RP1End-->Device Security Kit.
 
-When an application is running, you can check whether the corresponding functions are affected in the following ways:
+When an application is running, you can check whether the corresponding functionalities are affected in the following ways:
 
-- Check whether WebAssembly APIs are called in the frontend code. WebAssembly provides the capability of running low-level languages such as C and C++ on the web, which is usually used in high-performance scenarios such as games and encoding and decoding. In Secure Shield mode, WebAssembly cannot be called.
+- Check whether the frontend code calls the WebAssembly APIs, which are used to run code compiled using low-level languages such as C and C++ on web pages and cannot be called in the Secure Shield mode.
 
-- Check whether WebGL APIs are called in the frontend code. WebGL provides the 3D graphics drawing capability, which cannot be called in shield daemon mode.
+- Check whether the frontend code calls the WebGL APIs, which provide the 3D graphics drawing capability and cannot be called in the Secure Shield mode.
 
-- Check whether the PDF file can be displayed online. If the Secure Shield mode is enabled, the PDF file cannot be displayed online. For example, the loadUrl API cannot be used to load the PDF link.
+- Check whether there is the functionality of displaying PDF files online. PDF files cannot be displayed online in the Secure Shield mode. For example, loadUrl cannot be used to load PDF links.
 
-- Check whether the HTML page contains the MathML syntax embedded in the \**<\math>** tag. In the Secure Shield mode, the MathML syntax cannot be properly parsed and displayed.
+- Check whether the HTML page contains the MathML syntax embedded in the **\<math>** tag. In the Secure Shield mode, the MathML syntax cannot be parsed and displayed.
 
-- Check whether APIs such as **SpeechRecognition** and **SpeechSynthesis** are called in the frontend code. In the Shield Guard mode, they cannot be called.
+- Check whether APIs such as **SpeechRecognition** and **SpeechSynthesis** are called in the frontend code. In the Secure Shield mode, they cannot be called.
 
-- Check whether WebRTC APIs such as **RTCDataChannel** and **createDataChannel** are called in the frontend code. These APIs can be used to establish a bidirectional data channel to implement real-time data exchange between peers in WebRTC and cannot be called in the Secure Shield mode.
+- Check whether the frontend code calls the WebRTC APIs such as **RTCDataChannel** and **createDataChannel**, which are used to establish bidirectional data channels for real-time data exchange between peers and cannot be called in the Secure Shield mode.
 
-- Check whether the **MediaDevices.getUserMedia** API is called in the frontend code. This API is used to request users to access streaming media devices (such as cameras and microphones). In the Secure Shield mode, the exception information "can't use getUserMedia on advancedSecurityMode!" is displayed when this API is called.
+- Check whether the frontend code calls the **MediaDevices.getUserMedia** API, which is used to access streaming media devices, such as cameras and microphones. When the Secure Shield mode is used, the exception "can't use getUserMedia on advancedSecurityMode!" is thrown when related APIs are called.
 
-- Check whether ServiceWorker APIs are called in the frontend code. This mechanism is used to implement capabilities such as offline cache, network request interception, and notification push, which cannot be created in Secure Shield mode.
+- Check whether the frontend code calls the ServiceWorker APIs, which are used to implement functionalities such as offline cache, network request interception, and notification push and cannot be created in the Secure Shield mode.
 
-- Check whether non-proxy UDP transmission is used in WebRTC. In Secure Shield mode, non-proxy UDP transmission is not allowed. When network connectivity is involved, network functions and performance in WebRTC scenarios need to be verified and evaluated.
+- Check whether WebRTC uses non-proxy UDP transmission, which is prohibited in the Secure Shield mode. The application needs to verify the network functionalities and performance in the WebRTC scenario.
 
-- Check whether JIT is used. In the Secure Shield mode, the JS performance needs to be evaluated for applications because JIT involves performance optimization.
+- The application needs to evaluate the JS performance in the Secure Shield mode.

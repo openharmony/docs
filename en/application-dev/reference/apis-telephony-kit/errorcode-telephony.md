@@ -82,19 +82,19 @@ No SIM card is inserted or the SIM card is not properly inserted.
 Insert the SIM card or remove and insert the SIM card again.
 
 
-## 8300999 Unknown Error
+## 8300999 Internal Error
 
 **Error Message**
 
-Unknown error.
+Internal error.
 
 **Description**
 
-This error code is reported if an unknown error occurs.
+This error code is reported if an internal error occurs.
 
 **Possible Causes**
 
-An unexpected error occurs in the system. The possible cause is that error codes of the bottom layer are not within the processing range.
+The problem may arise due to insufficient memory, memory operation errors, or null pointers.
 
 **Procedure**
 

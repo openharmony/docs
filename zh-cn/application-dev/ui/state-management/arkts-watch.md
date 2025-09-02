@@ -1,4 +1,10 @@
 # \@Watch装饰器：状态变量更改通知
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 
 \@Watch应用于对状态变量的监听。如果开发者需要关注某个状态变量的值是否改变，可以使用\@Watch为状态变量设置回调函数。
@@ -64,7 +70,7 @@
 // 正确写法
 @State @Watch('change') num: number = 10;
 change() {
-  console.log(`xxx`);
+  console.info(`xxx`);
 }
 ```
 
@@ -74,13 +80,13 @@ change() {
 // 错误写法，没有对应名称的函数，编译报错
 @State @Watch('change') num: number = 10;
 onChange() {
-  console.log(`xxx`);
+  console.info(`xxx`);
 }
 
 // 正确写法
 @State @Watch('change') num: number = 10;
 change() {
-  console.log(`xxx`);
+  console.info(`xxx`);
 }
 ```
 
@@ -90,13 +96,13 @@ change() {
 //错误写法
 @Watch('change') num: number = 10;
 change() {
-  console.log(`xxx`);
+  console.info(`xxx`);
 }
 
 // 正确写法
 @State @Watch('change') num: number = 10;
 change() {
-  console.log(`xxx`);
+  console.info(`xxx`);
 }
 ```
 
@@ -226,7 +232,7 @@ struct BasketModifier {
 
 ### \@Watch的触发时机
 
-为了展示\@Watch回调触发时间是根据状态变量真正变化的时间，本示例在子组件中同时使用\@Link和\@ObjectLink装饰器，分别观察不同的状态对象。通过在父组件中更改状态变量并观察\@Watch回调的先后顺序，来表明@Watch触发的时机与赋值、同步的关系。
+为了展示\@Watch回调触发时间是根据状态变量真正变化的时间，本示例在子组件中同时使用\@Link和[\@ObjectLink](./arkts-observed-and-objectlink.md)装饰器，分别观察不同的状态对象。通过在父组件中更改状态变量并观察\@Watch回调的先后顺序，来表明@Watch触发的时机与赋值、同步的关系。
 
 ```ts
 @Observed
@@ -245,11 +251,11 @@ struct ParentComponent {
   @State @Watch('onTaskBChanged') taskB: Task = new Task(false);
 
   onTaskAChanged(changedPropertyName: string): void {
-    console.log(`观测到父组件任务属性变化: ${changedPropertyName}`);
+    console.info(`观测到父组件任务属性变化: ${changedPropertyName}`);
   }
 
   onTaskBChanged(changedPropertyName: string): void {
-    console.log(`观测到父组件任务属性变化: ${changedPropertyName}`);
+    console.info(`观测到父组件任务属性变化: ${changedPropertyName}`);
   }
 
   build() {
@@ -272,11 +278,11 @@ struct ChildComponent {
   @Link @Watch('onLinkTaskChanged') taskA: Task;
 
   onObjectLinkTaskChanged(changedPropertyName: string): void {
-    console.log(`观测到子组件@ObjectLink关联的任务属性变化: ${changedPropertyName}`);
+    console.info(`观测到子组件@ObjectLink关联的任务属性变化: ${changedPropertyName}`);
   }
 
   onLinkTaskChanged(changedPropertyName: string): void {
-    console.log(`观测到子组件@Link关联的任务属性变化: ${changedPropertyName}`);
+    console.info(`观测到子组件@Link关联的任务属性变化: ${changedPropertyName}`);
   }
 
   build() {

@@ -1,5 +1,12 @@
 # @ohos.bluetooth.hid (蓝牙hid模块)(系统接口)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+<!--Adviser: @zhang_yixin13-->
+
 hid模块提供了访问蓝牙hid相关功能的方法。
 
 > **说明：**

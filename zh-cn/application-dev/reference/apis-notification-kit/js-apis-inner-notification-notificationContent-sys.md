@@ -71,12 +71,25 @@
 
 **系统接口**：此接口为系统接口。
 
-| 名称  | 类型                                                   | 只读 | 可选 | 说明             |
-| ----- | ----------------------------------------------------- | --- | --- | ----------------- |
-| name | string                                       | 否  |  否 | 按钮标识，用于区分同一通知的多个不同按钮。   |
-| iconResource | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) \| [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否  |  否 | 按钮的背景图。   |
-| text | string | 否  |  是 | 按钮展示的信息。   |
-| hidePanel | boolean | 否  |  是 | 点击按钮时，是否隐藏通知中心。默认为false。<br> - true：是。<br> - false：否。   |
+| 名称          | 类型                    | 只读 | 可选 | 说明                                      |
+| ------------ | ----------------------- | ---- | ---- | ---------------------------------------- |
+| name         | string                  | 否   |  否  | 按钮标识，用于区分同一通知的多个不同按钮。   |
+| iconResource | [IconType](#icontype18) | 否   |  否  | 按钮的背景图。                             |
+| text         | string                  | 否   |  是  | 按钮展示的信息。                           |
+| hidePanel    | boolean                 | 否   |  是  | 点击按钮时，是否隐藏通知中心。默认为false。<br> - true：是。<br> - false：否。   |
+
+## IconType<sup>18+</sup>
+
+type IconType = Resource | image.PixelMap
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+| 类型                                                             | 说明                              |
+| ---------------------------------------------------------------- | -------------------------------- |
+| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)          | 表示值类型为图片资源。             |
+| [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 表示值类型为图片。                 |
 
 ## LiveViewTypes<sup>18+</sup>
 

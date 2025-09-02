@@ -1,10 +1,16 @@
 # Interface (ImageCreator)
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--SE: @liyang_bryan-->
+<!--TSE: @xchaosioda-->
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this interface are supported since API version 9.
 
-The **ImageCreator** class provides APIs for applications to request an image native data area and compile native image data.
+The **ImageCreator** class provides APIs for applications to request an image data area and compile image data.
 
 Before calling any APIs in ImageCreator, you must create an ImageCreator instance. ImageCreator does not support multiple threads.
 
@@ -20,8 +26,8 @@ import { image } from '@kit.ImageKit';
 
 | Name    | Type                        | Read Only| Optional| Description              |
 | -------- | ---------------------------- | ---- | ---- | ------------------ |
-| capacity | number                       | Yes  | No  | Maximum number of images that can be accessed at the same time.|
-| format   | [ImageFormat](arkts-apis-image-e.md#imageformat9) | Yes  | No  | Image format.        |
+| capacity<sup>9+</sup> | number                       | Yes  | No  | Maximum number of images that can be accessed at the same time.|
+| format<sup>9+</sup>   | [ImageFormat](arkts-apis-image-e.md#imageformat9) | Yes  | No  | Image format.        |
 
 ## dequeueImage<sup>9+</sup>
 

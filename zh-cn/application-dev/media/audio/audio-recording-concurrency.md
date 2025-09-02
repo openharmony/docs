@@ -1,4 +1,10 @@
 # 共享音频输入
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 音频输入的音频源通常是由内置麦克风、外接设备或远端分布式设备的采集的音频数据，但也可能是其他应用发送到系统以供播放的音频数据。根据音频源的不同，音频输入可分为两类：内录型音频输入和外录型音频输入。
 

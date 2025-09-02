@@ -1,4 +1,10 @@
 # @ohos.enterprise.deviceSettings （设备设置管理）(系统接口)
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--Designer: @liuzuming-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供企业设备设置能力，包括获取设备息屏时间等。
 
@@ -8,7 +14,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2)后调用。
+> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-term.md#mdm应用设备管理应用)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2)后调用。
 > 
 > 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.enterprise.deviceSettings](js-apis-enterprise-deviceSettings.md)。
 
@@ -27,6 +33,8 @@ setScreenOffTime(admin: Want, time: number): void
 **需要权限：** ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -77,6 +85,8 @@ getScreenOffTime(admin: Want, callback: AsyncCallback&lt;number&gt;): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -126,6 +136,8 @@ getScreenOffTime(admin: Want): Promise&lt;number&gt;
 **需要权限：** ohos.permission.ENTERPRISE_GET_SETTINGS
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -181,6 +193,8 @@ installUserCertificate(admin: Want, certificate: CertBlob, callback: AsyncCallba
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -216,8 +230,8 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility'
 };
 let certFileArray: Uint8Array = new Uint8Array();
-// The variable context needs to be initialized in MainAbility's onCreate callback function
-// test.cer needs to be placed in the rawfile directory
+// 变量context需要在MainAbility的onCreate回调函数中进行初始化
+// test.cer需要放置在rawfile目录下
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 context.resourceManager.getRawFileContent("test.cer").then((value) => {
@@ -244,6 +258,8 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -285,8 +301,8 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility'
 };
 let certFileArray: Uint8Array = new Uint8Array();
-// The variable context needs to be initialized in MainAbility's onCreate callback function
-// test.cer needs to be placed in the rawfile directory
+// 变量context需要在MainAbility的onCreate回调函数中进行初始化
+// test.cer需要放置在rawfile目录下
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 context.resourceManager.getRawFileContent("test.cer").then((value) => {
@@ -324,6 +340,8 @@ uninstallUserCertificate(admin: Want, certUri: string, callback: AsyncCallback&l
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -357,7 +375,7 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility'
 };
 // 需根据实际情况进行替换
-let aliasStr = "certName"
+let aliasStr = "certName";
 deviceSettings.uninstallUserCertificate(wantTemp, aliasStr, (err) => {
   if (err) {
     console.error(`Failed to uninstall user certificate. Code: ${err.code}, message: ${err.message}`);
@@ -376,6 +394,8 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -434,6 +454,8 @@ setPowerPolicy(admin: Want, powerScene: PowerScene, powerPolicy: PowerPolicy): v
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -487,6 +509,8 @@ getPowerPolicy(admin: Want, powerScene: PowerScene): PowerPolicy
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -526,7 +550,7 @@ let wantTemp: Want = {
 try {
   let powerScene: deviceSettings.PowerScene = deviceSettings.PowerScene.TIME_OUT;
   let powerPolicy: deviceSettings.PowerPolicy = deviceSettings.getPowerPolicy(wantTemp, powerScene);
-  console.info(`Succeeded in getting power polilcy ${JSON.stringify(powerPolicy)}`);
+  console.info(`Succeeded in getting power policy ${JSON.stringify(powerPolicy)}`);
 } catch (err) {
   console.error(`Failed to get power policy. Code: ${err.code}, message: ${err.message}`);
 }

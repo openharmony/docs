@@ -1,4 +1,10 @@
 # @ohos.enterprise.deviceSettings （设备设置管理）
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--Designer: @liuzuming-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供企业设备设置能力，包括设置、获取设备息屏时间等。
 
@@ -20,19 +26,21 @@ import { deviceSettings } from '@kit.MDMKit';
 
 setValue(admin: Want, item: string, value: string): void
 
-修改设备设置策略。
+设置设备策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SETTINGS
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
 | 参数名 | 类型                                                    | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
-| item   | string                                                  | 是   | 设备设置策略类型。<br/>- screenOff：设备息屏策略，对于2in1设备，仅支持设置电池供电下的息屏策略。<br/>- dateTime：设置系统时间。<br/>- powerPolicy：设备电源策略，对于2in1设备，仅支持设置电池供电下的电源策略。 |
-| value  | string                                                  | 是   | 策略类型值。<br/>当item为screenOff时，value为设备息屏时间（单位：毫秒）。<br/>当item为dateTime时，value为要设置的系统时间（单位：毫秒）。<br/>当item为powerPolicy时，value为JSON字符串，格式：{"powerScene":xx,"powerPolicy":{"powerPolicyAction":xx,"delayTime":xx}}。powerScene为电源策略场景；delayTime为延迟时间（单位：毫秒），不支持设置为30000毫秒；powerPolicyAction为休眠策略。<br/>电源策略场景：<br/>- 0：超时场景。<br/>休眠策略：<br/>- 0：不执行动作。<br/>- 1：自动进入睡眠。<br/>- 2：强制进入睡眠。<br/>- 3：进入休眠。（当前电源子系统暂不支持）<br/>- 4：关机。 |
+| item   | string                                                  | 是   | 设备设置策略类型。<br/>- screenOff：设备息屏策略，对于PC/2in1设备，仅支持设置电池供电下的息屏策略。<br/>- dateTime：设置系统时间。<br/>- powerPolicy：设备电源策略，对于PC/2in1设备，仅支持设置电池供电下的电源策略。 |
+| value  | string                                                  | 是   | 策略类型值。<br/>当item为screenOff时，value为设备息屏时间（单位：毫秒）。<br/>当item为dateTime时，value为要设置的系统时间（单位：毫秒）。<br/>当item为powerPolicy时，value为JSON字符串，格式：{"powerScene":xx,"powerPolicy":{"powerPolicyAction":xx,"delayTime":xx}}。powerScene为电源策略场景；delayTime为延迟时间（单位：毫秒），不支持设置为30000毫秒；powerPolicyAction为休眠策略。<br/>电源策略场景：<br/>- 0：超时场景。<br/>休眠策略：<br/>- 0：不执行动作。<br/>- 1：自动进入睡眠。<br/>- 2：强制进入睡眠。<br/>- 3：进入休眠。（当前电源子系统不支持）<br/>- 4：关机。 |
 
 **错误码**：
 
@@ -76,18 +84,20 @@ getValue(admin: Want, item: string): string
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名 | 类型                                                    | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
-| item   | string                                                  | 是   | 设备设置策略类型。<br/>- screenOff：设备息屏策略，对于2in1设备，仅支持查询电池供电下的息屏策略。<br/>- dateTime：设置系统时间。<br/>- powerPolicy：设备电源策略，对于2in1设备，仅支持查询电池供电下的电源策略。 |
+| item   | string                                                  | 是   | 设备设置策略类型。<br/>- screenOff：设备息屏策略，对于PC/2in1设备，仅支持查询电池供电下的息屏策略。<br/>- dateTime：设置系统时间。<br/>- powerPolicy：设备电源策略，对于PC/2in1设备，仅支持查询电池供电下的电源策略。 |
 
 **返回值：**
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| string | 策略类型值。<br/>当item为screenOff时，返回设备息屏时间（单位：毫秒），对于2in1设备，返回设备电池供电下的息屏时间（单位：毫秒）。<br/>当item为dateTime时，返回设置的系统时间（单位：毫秒）。<br/>当item为powerPolicy时，返回电源策略，对于2in1设备，返回设备电池供电下的电源策略，格式为JSON字符串:{"powerScene":xx,"powerPolicy":{"powerPolicyAction":xx,"delayTime":xx}}。powerScene为电源策略场景；delayTime为延迟时间（单位：毫秒）；powerPolicyAction为休眠策略。<br/>电源策略场景：<br/>- 0：超时场景。<br/>休眠策略：<br/>- 0：不执行动作。<br/>- 1：自动进入睡眠。<br/>- 2：强制进入睡眠。<br/>- 3：进入休眠。（当前电源子系统暂不支持）<br/>- 4：关机。 |
+| string | 策略类型值。<br/>当item为screenOff时，返回设备息屏时间（单位：毫秒），对于PC/2in1设备，返回设备电池供电下的息屏时间（单位：毫秒）。<br/>当item为dateTime时，返回设置的系统时间（单位：毫秒）。<br/>当item为powerPolicy时，返回电源策略，对于PC/2in1设备，返回设备电池供电下的电源策略，格式为JSON字符串:{"powerScene":xx,"powerPolicy":{"powerPolicyAction":xx,"delayTime":xx}}。powerScene为电源策略场景；delayTime为延迟时间（单位：毫秒）；powerPolicyAction为休眠策略。<br/>电源策略场景：<br/>- 0：超时场景。<br/>休眠策略：<br/>- 0：不执行动作。<br/>- 1：自动进入睡眠。<br/>- 2：强制进入睡眠。<br/>- 3：进入休眠。（当前电源子系统暂不支持）<br/>- 4：关机。 |
 
 **错误码**：
 
@@ -136,7 +146,7 @@ setHomeWallpaper(admin: Want, fd: number): Promise&lt;void&gt;
 | 参数名 | 类型                                                    | 必填 | 说明                                 |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------ |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。               |
-| fd     | number                                                  | 是   | 需要设置为桌面壁纸图片的文件描述符，可以通过file.fs的[openSync](../apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口获取应用沙箱目录下的图片文件描述符。建议壁纸图片大小不超过100MB。 |
+| fd     | number                                                  | 是   | 需要设置为桌面壁纸图片的文件描述符，可以通过file.fs的[openSync](../apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口获取应用沙箱目录下的图片文件描述符。壁纸图片大小不能超过100MB。 |
 
 **返回值：**
 
@@ -152,6 +162,7 @@ setHomeWallpaper(admin: Want, fd: number): Promise&lt;void&gt;
 | -------- | ------------------------------------------------------------ |
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |
+| 9200012  | Parameter verification failed.                               |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **示例：**
@@ -179,6 +190,8 @@ deviceSettings.setHomeWallpaper(wantTemp, fd).then(() => {
   console.info('Succeeded in setting home wallpaper');
 }).catch((err: BusinessError) => {
   console.error(`Failed to set home wallpaper. Code: ${err.code}, message: ${err.message}`);
+}).finally(() => {
+  fs.closeSync(fd);
 });
 ```
 ## deviceSettings.setUnlockWallpaper<sup>20+</sup>
@@ -196,7 +209,7 @@ setUnlockWallpaper(admin: Want, fd: number): Promise&lt;void&gt;
 | 参数名 | 类型                                                    | 必填 | 说明                                 |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------ |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。               |
-| fd     | number                                                  | 是   | 需要设置为锁屏壁纸图片的文件描述符，可以通过file.fs的[openSync](../apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口获取应用沙箱目录下的图片文件描述符。建议壁纸图片大小不超过100MB。 |
+| fd     | number                                                  | 是   | 需要设置为锁屏壁纸图片的文件描述符，可以通过file.fs的[openSync](../apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口获取应用沙箱目录下的图片文件描述符。壁纸图片大小不能超过100MB。 |
 
 **返回值：**
 
@@ -212,6 +225,7 @@ setUnlockWallpaper(admin: Want, fd: number): Promise&lt;void&gt;
 | -------- | ------------------------------------------------------------ |
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |
+| 9200012  | Parameter verification failed.                               |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **示例：**

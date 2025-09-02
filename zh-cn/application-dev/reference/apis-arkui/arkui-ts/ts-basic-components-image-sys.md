@@ -1,4 +1,10 @@
 # Image (系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyujie43-->
+<!--Designer: @weixin_52725220-->
+<!--Tester: @xiong0104-->
+<!--Adviser: @HelloCrease-->
 
 Image为图片组件，常用于在应用中显示图片。
 
@@ -24,7 +30,7 @@ analyzerConfig(config: ImageAnalyzerConfig)
 
 | 参数名 | 类型                                          | 必填 | 说明         |
 | ------ | --------------------------------------------- | ---- | ------------ |
-| config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | 是   | AI分析类型。 |
+| config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig12) | 是   | AI分析类型。 |
 
 ### edgeAntialiasing<sup>11+</sup>
 
@@ -86,8 +92,8 @@ enhancedImageQuality(imageQuality: ResolutionQuality)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 描述                      |
-| ------ | --------------------------  |
-| Low   | 低图像分辨率，解码时间适中。   |
-| Medium | 中等图像分辨率，解码时间适中。  |
-| High   | 高图像分辨率，解码时间长。    |
+| 名称     | 值                     | 说明                    |
+| ------ | --------------------------  | --------------------------  |
+| Low   | 1  | 低图像分辨率，解码时间适中。   |
+| Medium | 2 | 中等图像分辨率，解码时间适中。  |
+| High   | 3   | 高图像分辨率，解码时间长。    |

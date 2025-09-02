@@ -1,4 +1,10 @@
 # ShortcutInfo
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 应用配置文件中定义的快捷方式信息，FA模型配置在[config.json](../../quick-start/application-configuration-file-overview-fa.md)文件中进行配置，Stage模型在开发视图的resources/base/profile下面定义配置文件即可。
 
@@ -9,7 +15,7 @@
 > 从API Version 9开始，该模块不再维护。建议使用[bundleManager-ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)替代。
 
 ## ShortcutInfo<sup>(deprecated)<sup>
-> 从API version 9开始不再维护。建议使用[bundleManager-ShortcutInfo](js-apis-bundleManager-shortcutInfo.md#shortcutinfo)替代。
+> 从API version 9开始不再维护。建议使用[bundleManager-ShortcutInfo](js-apis-bundleManager-shortcutInfo.md#shortcutinfo-1)替代。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
 

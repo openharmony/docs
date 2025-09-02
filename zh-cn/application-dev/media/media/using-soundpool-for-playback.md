@@ -1,4 +1,10 @@
 # 使用SoundPool播放短音频(ArkTS)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 使用[SoundPool](media-kit-intro.md#soundpool)（音频池）提供的接口，可以实现低时延短音播放。
 
@@ -99,18 +105,18 @@ SoundPool当前支持播放解码后1MB以下的音频资源，解码后大小�
     private streamId: number = 0;
     let playParameters: media.PlayParameters = {
       loop: 1, // 循环1次，即播放2次。
-      rate: 1, // 1倍速播放。
+      rate: 1, // 2倍速播放。
       leftVolume: 0.5, // 取值范围0.0-1.0。
       rightVolume: 0.5, // 取值范围0.0-1.0。
       priority: 0, // 最低优先级。
     };
-    // 开始播放，这边play也可带播放播放的参数PlayParameters，请在音频资源加载完毕，即收到loadComplete回调之后再执行play操作。
+    // 开始播放，调用play可携带播放参数PlayParameters。请在音频资源加载完毕，即收到loadComplete回调之后再执行play操作。
     this.soundPool!.play(this.soundId, playParameters, (error, streamID: number) => {
       if (error) {
         console.error(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
         this.streamId = streamID;
-        console.info('play success soundid:' + this.streamId);
+        console.info('play success soundId:' + this.streamId);
       }
     });
     ```
@@ -153,19 +159,19 @@ SoundPool当前支持播放解码后1MB以下的音频资源，解码后大小�
 12. 调用off('loadComplete')方法注销加载完成监听。
 
     ```ts
-    soundPool.off('loadComplete');
+    await this.soundPool!.off('loadComplete');
     ```
 
 13. 调用off('playFinished')方法注销播放完成监听。
 
     ```ts
-    soundPool.off('playFinished');
+    await this.soundPool!.off('playFinished');
     ```
 
-14. 调用off('error')方法注销错误错误类型监听。
+14. 调用off('error')方法注销错误类型监听。
 
     ```ts
-    soundPool.off('error');
+    await this.soundPool!.off('error');
     ```
 
 15. 调用release方法释放SoundPool实例。

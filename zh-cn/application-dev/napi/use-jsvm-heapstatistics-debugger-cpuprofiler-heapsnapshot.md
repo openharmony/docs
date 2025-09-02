@@ -1,4 +1,10 @@
 # 使用JSVM-API接口进行JavaScript代码调试调优
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## 简介
 
@@ -66,17 +72,12 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 ```
 
-// 样例测试JS
+样例测试JS
 
 ```c++
 const char *srcCallNative = R"JS(getVM())JS";
 ```
-<!-- @[oh_jsvm_get_vm](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getvm/src/main/cpp/hello.cpp) -->
-
-预计的输出结果：
-```
-JSVM OH_JSVM_GetVM: success
-```
+<!-- @[oh_jsvm_get_vm](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getvm/src/main/cpp/hello.cpp) -->
 
 预计的输出结果：
 ```
@@ -139,12 +140,12 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 ```
 
-// 样例测试JS
+样例测试JS
 
 ```c++
 const char *srcCallNative = R"JS(getHeapStatistics())JS";
 ```
-<!-- @[oh_jsvm_get_heap_statistics](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getheapstatistics/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_heap_statistics](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getheapstatistics/src/main/cpp/hello.cpp) -->
 预计的输出结果：
 ```
 JSVM API heap totalHeapSize: 1597440
@@ -164,7 +165,7 @@ JSVM API heap usedGlobalHandlesSize: 32
 
 以下接口的示例代码可以参考链接：
 
-[JSVM-API调试&定位](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
+[JSVM-API调试&定位](./jsvm-debugger-cpuprofiler-heapsnapshot.md)
 
 ### OH_JSVM_StartCpuProfiler
 

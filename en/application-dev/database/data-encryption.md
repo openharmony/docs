@@ -1,5 +1,4 @@
-# Database Encryption
-
+# Database Encryption (ArkTS)
 
 ## When to Use
 
@@ -74,14 +73,13 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-
 ## Encrypting an RDB Store 
 
-The **encrypt** property in [StoreConfig](../reference/apis-arkdata/js-apis-data-relationalStore.md#storeconfig) specifies whether to encrypt the RDB store. The value **true** means to encrypt the RDB store, and **false** means the opposite.
+The **encrypt** property in [StoreConfig](../reference/apis-arkdata/arkts-apis-data-relationalStore-i.md#storeconfig) specifies whether to encrypt the RDB store. The value **true** means to encrypt the RDB store, and **false** means the opposite.
 
-If **encrypt** is **true**, you can set parameters such as the key and algorithm used for encryption/decryption in **cryptoParam** in ArkTS APIs. This configuration is not supported in C/C++.
+If **encrypt** is **true**, you can set parameters such as the key and algorithm used for encryption/decryption in **cryptoParam** in ArkTS APIs.
 
-The **cryptoParam** parameter is optional.
+The **cryptoParam** setting involves the following scenarios:
 
 If **cryptoParam** is not set, the default configuration is used for database encryption and decryption.
 

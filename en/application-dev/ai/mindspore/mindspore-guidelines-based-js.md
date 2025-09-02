@@ -51,7 +51,7 @@ If you have other pre-trained models for image classification, convert the origi
 
 1. Call [@ohos.file.picker](../../reference/apis-core-file-kit/js-apis-file-picker.md) to pick up the desired image in the album.
 
-2. Based on the input image size, call [@ohos.multimedia.image](../../reference/apis-image-kit/js-apis-image.md) and [@ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md) to perform operations such as cropping the image, obtaining the image buffer, and standardizing the image.
+2. Based on the input image size, call [[@ohos.multimedia.image](../../reference/apis-image-kit/arkts-apis-image.md) and [@ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md) to perform operations such as cropping the image, obtaining the image buffer, and standardizing the image.
 
    ```ts
    // Index.ets
@@ -275,7 +275,6 @@ struct Index {
         .onClick(() => {
           let resMgr = this.getUIContext()?.getHostContext()?.getApplicationContext().resourceManager;
           resMgr?.getRawFileContent(this.modelName).then(modelBuffer => {
-            let float32View = new Float32Array(this.modelInputHeight * this.modelInputWidth * 3);
             // Image input and preprocessing
             // The buffer data of the input image is stored in float32View after preprocessing. For details, see Image Input and Preprocessing.
             let inputs: ArrayBuffer[] = [float32View.buffer];
@@ -359,5 +358,9 @@ struct Index {
 
 Touch the **photo** button on the device screen, select an image, and touch **OK**. The top 4 categories of the image are displayed below the image.
 
-<img src="figures/step1.png" width="20%"/>     <img src="figures/step2.png" width="20%"/>     <img src="figures/step3.png" width="20%"/>     <img src="figures/step4.png" width="20%"/>
+![step1](figures/step1.png)         ![step2](figures/step2.png)  
 
+![step3](figures/step3.png)         ![step4](figures/step4.png) 
+
+
+<!--RP1--><!--RP1End-->

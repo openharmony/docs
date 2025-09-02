@@ -1,5 +1,12 @@
 # @ohos.security.certManager (证书管理模块)(系统接口)
 
+<!--Kit: Device Certificate Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @chaceli-->
+<!--Designer: @chande-->
+<!--Tester: @zhangzhi1995-->
+<!--Adviser: @zengyawen-->
+
 证书管理主要提供系统级的证书管理能力，实现证书全生命周期（安装，存储，使用，销毁）的管理和安全使用。
 
 > **说明：**
@@ -61,7 +68,7 @@ try {
     if (err != null) {
       console.error(`Failed to get all app private certificates. Code: ${err.code}, message: ${err.message}`);
     } else {
-      if (cmResult == undefined) { // 私有凭据个数为0时，返回cmResult为undefined。
+      if (cmResult === undefined) { // 私有凭据个数为0时，返回cmResult为undefined。
         console.info('the count of the app private certificates is 0');
       } else if (cmResult.credentialList == undefined) {
         console.info('The result of getting all app private certificates is undefined.');
@@ -111,7 +118,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getAllAppPrivateCertificates().then((cmResult) => {
-    if (cmResult == undefined) { // 私有凭据个数为0时，返回cmResult为undefined。
+    if (cmResult === undefined) { // 私有凭据个数为0时，返回cmResult为undefined。
       console.info('the count of the app private certificates is 0');
     } else if (cmResult.credentialList == undefined) {
       console.info('The result of getting all app private certificates is undefined.');
@@ -162,7 +169,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getAllSystemAppCertificates().then((cmResult) => {
-    if (cmResult == undefined) { // 系统凭据个数为0时，返回cmResult为undefined。
+    if (cmResult === undefined) { // 系统凭据个数为0时，返回cmResult为undefined。
       console.info('the count of the system certificates is 0');
     } else if (cmResult.credentialList == undefined) {
       console.info('The result of getting all system app certificates is undefined.');

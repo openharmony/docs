@@ -1,10 +1,12 @@
 # advanced.Counter
 
-A counter is a component used to accurately adjust values.
+The **Counter** component is a component used to precisely adjust numerical values.
 
 >  **NOTE**
 >
 >  This component is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  If the **Counter** component has [universal attributes](ts-component-general-attributes.md) and [universal events](ts-component-general-events.md) configured, the compilation toolchain automatically generates an additional **__Common__** node and mounts the universal attributes and events on this node rather than the **Counter** component itself. As a result, the configured universal attributes and events may fail to take effect or behave as intended. For this reason, avoid using universal attributes and events with the **Counter** component.
 
 ## Modules to Import
 
@@ -12,7 +14,7 @@ A counter is a component used to accurately adjust values.
 import { CounterType, CounterComponent, CounterOptions, DateData } from '@kit.ArkUI';
 ```
 
-##  Child Components
+## Child Components
 
 Not supported
 
@@ -42,8 +44,8 @@ Defines the type and style parameters of the counter.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name       | Type      | Mandatory       | Description                           |
-| ----------- | ---------- | ------| --------------------------------- |
+| Name       | Type      | Mandatory| Description                           |
+| ----------- | ---------- | ---- | ------------------------------- |
 | type | [CounterType](#countertype) | Yes  | Type of the current counter.|
 | direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | No| Layout direction.<br>Default value: **Direction.Auto**|
 | numberOptions | [NumberStyleOptions](#numberstyleoptions) | No   | Parameters of the number style counter.|
@@ -82,15 +84,14 @@ Defines common attributes and events of counters.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-
 | Name           | Type                     | Mandatory| Description                                                        |
 | --------------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | focusable       | boolean                   | No  | Whether the counter is focusable.<br>**NOTE**<br>This attribute takes effect for the number style counter.<br>Default value: **true**<br>**true**: The counter is focusable.<br>**false**: The counter is not focusable.|
 | step            | number                    | No  | Step of the counter.<br>Value range: an integer greater than or equal to 1.<br>Default value: **1**|
-| onHoverIncrease | (isHover: boolean) =>void | No  | Callback invoked when the mouse pointer is moved over or away from the increase button of the counter.<br>**isHover**: whether the mouse pointer hovers over the component. The value **true** means that the mouse pointer enters the component, and the value **false** means that the mouse pointer leaves the component.|
-| onHoverDecrease | (isHover: boolean) =>void | No  | Callback invoked when the mouse pointer is moved over or away from the decrease button of the counter.<br>**isHover**: whether the mouse pointer hovers over the component. The value **true** means that the mouse pointer enters the component, and the value **false** means that the mouse pointer leaves the component.|
+| onHoverIncrease | (isHover: boolean) => void | No  | Callback invoked when the mouse pointer is moved over or away from the increase button of the counter.<br>**isHover**: whether the mouse pointer hovers over the component. The value **true** means that the mouse pointer enters the component, and the value **false** means that the mouse pointer leaves the component.|
+| onHoverDecrease | (isHover: boolean) => void | No  | Callback invoked when the mouse pointer is moved over or away from the decrease button of the counter.<br>**isHover**: whether the mouse pointer hovers over the component. The value **true** means that the mouse pointer enters the component, and the value **false** means that the mouse pointer leaves the component.|
 
-##  InlineStyleOptions
+## InlineStyleOptions
 
 Defines the attributes and events of the inline number style counter.
 
@@ -106,7 +107,7 @@ Inherits from [CommonOptions](#commonoptions).
 | min       | number                 | No  | Minimum value of the counter.<br>Default value: **0**                   |
 | max       | number                 | No  | Maximum value of the counter.<br>Default value: **999**                 |
 | textWidth | number                 | No  | Text width of the counter.<br>Default value: **0**                    |
-| onChange  | (value: number) =>void | No  | Callback invoked when the value changes. The current value is returned.<br>**value**: current value.|
+| onChange  | (value: number) => void | No  | Callback invoked when the value changes. The current value is returned.<br>**value**: current value.|
 
 ## NumberStyleOptions
 
@@ -121,10 +122,10 @@ Inherits from [InlineStyleOptions](#inlinestyleoptions).
 | Name           | Type                                  | Mandatory| Description                                         |
 | --------------- | -------------------------------------- | ---- | --------------------------------------------- |
 | label           | [ResourceStr](ts-types.md#resourcestr) | No  | Label of the counter.                      |
-| onFocusIncrease | () =>void                              | No  | Callback invoked when the increase button of the counter gains focus.|
-| onFocusDecrease | () =>void                              | No  | Callback invoked when the decrease button of the counter gains focus.|
-| onBlurIncrease  | () =>void                              | No  | Callback invoked when the increase button of the counter loses focus.|
-| onBlurDecrease  | () =>void                              | No  | Callback invoked when the decrease button of the counter loses focus.|
+| onFocusIncrease | () => void                              | No  | Callback invoked when the increase button of the counter gains focus.|
+| onFocusDecrease | () => void                              | No  | Callback invoked when the decrease button of the counter gains focus.|
+| onBlurIncrease  | () => void                              | No  | Callback invoked when the increase button of the counter loses focus.|
+| onBlurDecrease  | () => void                              | No  | Callback invoked when the decrease button of the counter loses focus.|
 
 ## DateStyleOptions
 
@@ -141,7 +142,7 @@ Inherits from [CommonOptions](#commonoptions).
 | year         | number                              | No  | Initial year of the counter.<br>Default value: **1**                   |
 | month        | number                              | No  | Initial month of the counter.<br>Default value: **1**                   |
 | day          | number                              | No  | Initial day of the counter.<br>Default value: **1**                     |
-| onDateChange | (date: [DateData](#datedata))=>void | No  | Callback invoked when the date changes. The current date is returned.<br>**date**: current date.|
+| onDateChange | (date: [DateData](#datedata)) => void | No  | Callback invoked when the date changes. The current date is returned.<br>**date**: current date.|
 
 ## DateData
 
@@ -189,7 +190,7 @@ Current date.
 | -------- | -------- |
 | string | Current date.|
 
-## Example  
+## Example
 
 ### Example 1: Implementing a List Counter
 
@@ -221,6 +222,7 @@ struct ListCounterExample {
 ```
 
 ![listcounter](figures/listcounter.gif)
+
 ### Example 2: Implementing a Compact Counter
 
 This example implements a compact counter by setting **type** to **CounterType.COMPACT** and configuring **numberOptions**.
@@ -250,7 +252,9 @@ struct CompactCounterExample {
   }
 }
 ```
+
 ![compactcounter](figures/compactcounter.gif)
+
 ### Example 3: Implementing an Inline Number Counter
 
 This example implements an inline number counter by setting **type** to **CounterType.INLINE** and configuring **inlineOptions**.
@@ -283,7 +287,9 @@ struct NumberStyleExample {
   }
 }
 ```
+
 ![numberstyle](figures/numberstyle.gif)
+
 ### Example 4: Implementing an Inline Date Counter
 
 This example implements an inline date counter by setting **type** to **CounterType.INLINE_DATE** and configuring **dateOptions**, allowing for manual date input.
@@ -312,6 +318,7 @@ struct DataStyleExample {
   }
 }
 ```
+
 ![datestyle](figures/datestyle.gif)
 
 ### Example 5: Implementing a Mirrored Layout
@@ -398,4 +405,5 @@ struct CounterPage {
   }
 }
 ```
+
 ![datestyle](figures/counter_direction.png)

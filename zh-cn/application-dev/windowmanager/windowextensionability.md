@@ -1,5 +1,10 @@
 # WindowExtensionAbility（仅对系统应用开放）
-
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 [WindowExtensionAbility](../reference/apis-arkui/js-apis-application-windowExtensionAbility-sys.md)是一种ExtensionAbility组件，用于提供界面组合扩展能力，仅允许系统应用进行跨应用的界面拉起和嵌入。
 
@@ -44,7 +49,7 @@ WindowExtensionAbility提供了onConnect()、onDisconnect()和onWindowReady()生
         onWindowReady(window: window.Window) {
             window.setUIContent('WindowExtAbility/pages/index1',(err:BusinessError) => {
               let pro = window.getWindowProperties();
-              console.log('WindowExtension pro: ${JSON.stringify(pro)}');
+              console.info(`WindowExtension pro: ${JSON.stringify(pro)}`);
               window.showWindow();
             });
         }
@@ -118,4 +123,4 @@ struct Index {
 
 针对WindowExtensionAbility开发，有以下相关实例可供参考：
 
-- [窗口扩展应用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowExtAbility)
+- [窗口扩展应用（ArkTS）（API9）（Full SDK）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowExtAbility)

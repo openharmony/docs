@@ -1,5 +1,12 @@
 # @ohos.net.webSocket (WebSocket连接)
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 > **说明：**
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -49,6 +56,7 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 根据URL地址，建立一个WebSocket连接，使用callback方式作为异步方法。
 
 > **说明：**
+>
 > 可通过监听error事件获得该接口的执行结果。
 
 **需要权限**：ohos.permission.INTERNET
@@ -105,6 +113,7 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 根据URL地址，建立一个WebSocket连接，使用callback方式作为异步方法。
 
 > **说明：**
+>
 > 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
 
 **需要权限**：ohos.permission.INTERNET
@@ -170,6 +179,7 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 根据URL地址和header，建立一个WebSocket连接。使用Promise异步回调。
 
 > **说明：**
+>
 > 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
 
 **需要权限**：ohos.permission.INTERNET
@@ -334,7 +344,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
     if (!err) {
       console.info("connect success")
     } else {
-      console.error(`connect fail. Code: ${err.code}, message: ${err.message}`)
+      console.error("connect fail. Code: ${err.code}, message: ${err.message}")
     }
 });
 
@@ -538,6 +548,7 @@ off(type: 'open', callback?: AsyncCallback\<Object\>): void
 取消订阅WebSocket的打开事件，使用callback方式作为异步方法。
 
 > **说明：**
+>
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -577,6 +588,7 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 订阅WebSocket的接收服务器消息事件，使用callback方式作为异步方法。
 
 > **说明：**
+>
 > AsyncCallback中的数据可以是字符串（API version 6开始支持）或ArrayBuffer（API version 8开始支持）。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -609,6 +621,7 @@ off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 取消订阅WebSocket的接收服务器消息事件，使用callback方式作为异步方法。
 
 > **说明：**
+>
 > AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
@@ -668,6 +681,7 @@ off(type: 'close', callback?: AsyncCallback\<CloseResult\>): void
 取消订阅WebSocket的关闭事件，使用callback方式作为异步方法。
 
 > **说明：**
+>
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -726,6 +740,7 @@ off(type: 'error', callback?: ErrorCallback): void
 取消订阅WebSocket的Error事件，使用callback方式作为异步方法。
 
 > **说明：**
+>
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -781,6 +796,7 @@ off(type: 'dataEnd', callback?: Callback\<void\>): void
 取消订阅WebSocket的数据接收结束事件，使用callback方式作为异步方法。
 
 > **说明：**
+>
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -834,6 +850,7 @@ off(type: 'headerReceive', callback?: Callback\<ResponseHeaders\>): void
 取消订阅HTTP Response Header事件，使用callback方式作为异步方法。
 
 > **说明：**
+>
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -862,7 +879,7 @@ createWebSocketServer(): WebSocketServer
 
 > **说明：**
 >
-> 目前服务端仅支持智慧屏使用，非智慧屏形态的产品调用该接口创建对象时，会返回空指针。
+> 目前该接口在TV中可正常调用，在其他设备中无效果，返回nullptr。
 
 **系统能力**: SystemCapability.Communication.NetStack
 
@@ -1396,9 +1413,9 @@ on(type: 'error', callback: ErrorCallback): void
 import { webSocket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let localServer = webSocket.createWebSocketServer();
-localServer.on('error', (err: BusinessError) => {
-  console.error(`error. Code: ${error.code}, message: ${error.message}`);
+let wsServer: webSocket.WebSocketServer = webSocket.createWebSocketServer();
+wsServer.on('error', (err: BusinessError) => {
+  console.error(`error. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1445,6 +1462,8 @@ localServer.off('error');
 | proxy<sup>12+</sup> | ProxyConfiguration |  否  | 是 | 通信过程中的代理信息，默认使用系统网络代理。 |
 | protocol<sup>12+</sup> | string |  否  | 是 | 自定义Sec-WebSocket-Protocol字段，默认为""。              |
 | skipServerCertVerification<sup>20+</sup> | boolean | 否 | 是 | 是否跳过服务器证书验证。true表示跳过服务器证书验证，false表示不跳过服务器证书验证。默认为false。 |
+| pingInterval<sup>21+</sup> | int | 否 | 是 | 自定义[心跳检测](../../network/websocket-connection.md##场景介绍)时间，默认为30s。每pingInterval周期会发起心跳检测，设置为0则表示关闭心跳检测。最大值：30000s，最小值：0s。<br>**ArkTS版本：** 该接口仅适用于ArkTS1.2。 |
+| pongTimeout<sup>21+</sup> | int | 否 | 是 | 自定义发起心跳检测后，超时断开时间，默认为30s。发起心跳检测后若pongTimeout时间未响应则断开连接。最大值：30000s，最小值：0s。pongTimeout须小于等于pingInterval。<br>**ArkTS版本：** 该接口仅适用于ArkTS1.2。|
 
 ## ClientCert<sup>11+</sup>
 
@@ -1508,7 +1527,7 @@ type ResponseHeaders = {
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| {[k:string]:string \| string[] \| undefined} | header数据类型为键值对、字符串或者undefined。 |
+| [k:string]:string \| string[] \| undefined | header数据类型为键值对、字符串或者undefined。 |
 
 ## close错误码说明
 
@@ -1592,7 +1611,8 @@ type ClientConnectionCloseCallback = (clientConnection: WebSocketConnection, clo
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称 | 类型   | 只读 | 可选 | 说明                            |
-| ---------------- | ------------------- | ---- | ------ | --------------------------------------------- |
-| clientConnection | [WebSocketConnection](#websocketconnection19) | 否 | 否 | 客户端信息，包括客户端的ip地址和端口号port。             |
-| closeReason | [CloseResult](#closeresult10) | 否 | 否 | 关闭WebSocket连接时，订阅close事件得到的关闭结果。 |
+**参数：**
+| 参数名 | 类型    | 必填 | 说明                            |
+| ---------------- | -------------------  | ------ | --------------------------------------------- |
+| clientConnection | [WebSocketConnection](#websocketconnection19) | 是 | 客户端信息，包括客户端的ip地址和端口号port。             |
+| closeReason | [CloseResult](#closeresult10)  | 是 | 关闭WebSocket连接时，订阅close事件得到的关闭结果。 |

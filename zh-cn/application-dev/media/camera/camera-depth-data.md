@@ -1,4 +1,10 @@
 # 深度信息(仅对系统应用开放)(ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 深度信息表示图像中每个像素点与相机之间的距离关系，可以辅助实现更精准的对焦和背景虚化效果等。在相机应用预览、拍照和录像场景中，支持上报深度信息。
 
@@ -13,7 +19,7 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-2. 通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)类中的depthProfiles属性获取当前设备支持的深度能力，返回depthProfilesArray数组。通过[createDepthDataOutput](../../reference/apis-camera-kit/js-apis-camera-sys.md#createdepthdataoutput13)方法创建深度流。
+2. 通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)中的depthProfiles属性获取当前设备支持的深度能力，返回depthProfilesArray数组。通过[createDepthDataOutput](../../reference/apis-camera-kit/js-apis-camera-sys.md#createdepthdataoutput13)方法创建深度流。
 
    ```ts
    function getDepthDataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.DepthDataOutput | undefined {
@@ -32,7 +38,7 @@
    }
    ```
 
-3. 使能。通过depthDataOutput类的[start](../../reference/apis-camera-kit/js-apis-camera-sys.md#start13)方法输出深度流。接口调用失败会返回相应错误码，错误码类型参见[Camera错误码](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraerrorcode)。
+3. 使能。通过depthDataOutput的[start](../../reference/apis-camera-kit/js-apis-camera-sys.md#start13)方法输出深度流。接口调用失败会返回相应错误码，错误码类型参见[Camera错误码](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraerrorcode)。
      
    ```ts
    async function startDepthDataOutput(depthDataOutput: camera.DepthDataOutput): Promise<void> {

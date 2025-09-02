@@ -1,5 +1,12 @@
 # @ohos.security.certManager (证书管理模块)
 
+<!--Kit: Device Certificate Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @chaceli-->
+<!--Designer: @chande-->
+<!--Tester: @zhangzhi1995-->
+<!--Adviser: @zengyawen-->
+
 证书管理主要提供系统级的证书管理能力，实现证书全生命周期（安装，存储，使用，销毁）的管理和安全使用。
 
 > **说明：**
@@ -110,7 +117,7 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 | keyUri          | string     | 否  | 否  | 表示凭据的唯一标识符，最大长度为256字节。 |
 | certNum          | number         | 否  | 否  | 表示凭据中包含的证书个数。 |
 | keyNum          | number   | 否  | 否  | 表示凭据中包含的密钥个数。 |
-| credentialData          | Uint8Array   | 否  | 否  | 表示凭据二进制数据，最大长度为24588字节。 |
+| credentialData          | Uint8Array   | 否  | 否  | 表示凭据二进制数据，最大长度为20480字节。 |
 
 ## CredentialAbstract
 
@@ -432,7 +439,7 @@ getPrivateCertificate(keyUri: string, callback: AsyncCallback\<CMResult>): void
 ```ts
 import { certificateManager } from '@kit.DeviceCertificateKit';
 
-let uri: string = 'test'; /* 业务安装凭据，返回唯一标识符，此处省略 */
+let uri: string = 'test'; /* 业务获取私有凭据详情，需要使用凭据的唯一标识符，此处省略 */
 try {
   certificateManager.getPrivateCertificate(uri, (err, cmResult) => {
     if (err != null) {
@@ -489,7 +496,7 @@ getPrivateCertificate(keyUri: string): Promise\<CMResult>
 import { certificateManager } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri: string = 'test'; /* 业务安装凭据，返回唯一标识符，此处省略 */
+let uri: string = 'test'; /* 业务获取私有凭据详情，需要使用凭据的唯一标识符，此处省略 */
 try {
   certificateManager.getPrivateCertificate(uri).then((cmResult) => {
     if (cmResult?.credential == undefined) {
@@ -538,7 +545,7 @@ uninstallPrivateCertificate(keyUri: string, callback: AsyncCallback\<void>): voi
 ```ts
 import { certificateManager } from '@kit.DeviceCertificateKit';
 
-let uri: string = 'test'; /* 业务安装凭据，返回唯一标识符，此处省略 */
+let uri: string = 'test'; /* 业务删除私有凭据，需要使用凭据的唯一标识符，此处省略 */
 try {
   certificateManager.uninstallPrivateCertificate(uri, (err, result) => {
     if (err != null) {
@@ -590,7 +597,7 @@ uninstallPrivateCertificate(keyUri: string): Promise\<void>
 import { certificateManager } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri: string = 'test'; /* 业务安装凭据，返回唯一标识符，此处省略 */
+let uri: string = 'test'; /* 业务删除私有凭据，需要使用凭据的唯一标识符，此处省略 */
 try {
   certificateManager.uninstallPrivateCertificate(uri).then((cmResult) => {
     console.info('Succeeded in uninstalling private certificate.');
@@ -692,7 +699,7 @@ uninstallUserTrustedCertificateSync(certUri: string) : void
 ```ts
 import {certificateManager} from '@kit.DeviceCertificateKit';
 
-let certUri: string = "test"; /* 业务安装证书，返回唯一标识符，此处省略 */
+let certUri: string = "test"; /* 业务删除证书，需要使用证书的标识符，此处省略 */
 try {
     certificateManager.uninstallUserTrustedCertificateSync(certUri);
 } catch (error) {
@@ -734,7 +741,7 @@ init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>)
 ```ts
 import { certificateManager } from '@kit.DeviceCertificateKit';
 
-let uri: string = 'test'; /* 业务安装凭据，返回唯一标识符，此处省略 */
+let uri: string = 'test'; /* 业务使用凭据进行签名、验签的初始化操作，需要使用凭据的唯一标识符，此处省略 */
 const req: certificateManager.CMSignatureSpec = {
   purpose: certificateManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
   padding: certificateManager.CmKeyPadding.CM_PADDING_PSS,
@@ -793,7 +800,7 @@ init(authUri: string, spec: CMSignatureSpec): Promise\<CMHandle>
 import { certificateManager } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri: string = 'test'; /* 业务安装凭据，返回唯一标识符，此处省略 */
+let uri: string = 'test'; /* 业务使用凭据进行签名、验签的初始化操作，需要使用凭据的唯一标识符，此处省略 */
 const req: certificateManager.CMSignatureSpec = {
   purpose: certificateManager.CmKeyPurpose.CM_KEY_PURPOSE_VERIFY,
   padding: certificateManager.CmKeyPadding.CM_PADDING_PSS,
@@ -1232,7 +1239,7 @@ getPublicCertificate(keyUri: string): Promise\<CMResult>
 import { certificateManager } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri: string = 'test'; /* 用户安装公共凭据返回的唯一标识符，此处省略 */
+let uri: string = 'test'; /* 用户获取公共凭据详情，需要使用凭据的唯一标识符，此处省略 */
 try {
   certificateManager.getPublicCertificate(uri).then((cmResult) => {
     if (cmResult?.credential == undefined) {
@@ -1295,10 +1302,10 @@ try {
       console.info('The application is not authorized by the user.');
     }
   }).catch((err: BusinessError) => {
-    console.error(`Failed to get Public certificate. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to check if the application is authorized. Code: ${err.code}, message: ${err.message}`);
   })
 } catch (error) {
-  console.error(`Failed to get Public certificate. Code: ${error.code}, message: ${error.message}`);
+  console.error(`Failed to check if the application is authorized. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -1334,7 +1341,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getAllUserTrustedCertificates().then((cmResult) => {
-    if (cmResult == undefined) { // 用户根CA证书个数为0时，返回cmResult为undefined。
+    if (cmResult === undefined) { // 用户根CA证书个数为0时，返回cmResult为undefined。
       console.info('the count of the user trusted certificates is 0');
     } else if (cmResult.certList == undefined) {
       console.info('The result of getting all user trusted certificates is undefined.');
@@ -1392,7 +1399,7 @@ try {
   /* 获取当前用户下的用户根CA证书列表; 如果需要获取设备公共位置的用户根CA列表，则传入GLOBAL_USER */
   let scope: certificateManager.CertScope = certificateManager.CertScope.CURRENT_USER;
   certificateManager.getAllUserTrustedCertificates(scope).then((cmResult) => {
-    if (cmResult == undefined) { // 用户根CA证书个数为0时，返回cmResult为undefined。
+    if (cmResult === undefined) { // 用户根CA证书个数为0时，返回cmResult为undefined。
       console.info('the count of the user trusted certificates is 0');
     } else if (cmResult.certList == undefined) {
       console.info('The result of getting current user trusted certificates is undefined.');
@@ -1422,7 +1429,7 @@ getUserTrustedCertificate(certUri: string): Promise\<CMResult>
 
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| certUri | string                   | 是   | 表示用户用户根CA证书的唯一标识符，长度限制256字节以内。 |
+| certUri | string                   | 是   | 表示用户根CA证书的唯一标识符，长度限制256字节以内。 |
 
 **返回值**：
 
@@ -1446,7 +1453,7 @@ getUserTrustedCertificate(certUri: string): Promise\<CMResult>
 import { certificateManager } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let certUri: string = 'testUserCert'; /* 用户安装用户根CA证书返回的唯一标识符，此处省略 */
+let certUri: string = 'testUserCert'; /* 用户获取用户根CA证书详情，需要使用CA证书的唯一标识符，此处省略 */
 try {
   certificateManager.getUserTrustedCertificate(certUri).then((cmResult) => {
     if (cmResult?.certInfo == undefined) {
@@ -1494,7 +1501,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getPrivateCertificates().then((cmResult) => {
-    if (cmResult == undefined) { // 应用安装的凭据个数为0时，返回cmResult为undefined。
+    if (cmResult === undefined) { // 应用安装的凭据个数为0时，返回cmResult为undefined。
       console.info('the count of the private certificates is 0');
     } else if (cmResult.credentialList == undefined) {
       console.info('The result of getting all private certificates installed by the application is undefined.');

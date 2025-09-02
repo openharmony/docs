@@ -1,5 +1,12 @@
 # 仅MDM应用可用权限
 
+<!--Kit: ArkUI-->
+<!--Subsystem: Security-->
+<!--Owner: @harylee-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
+
 以下权限仅对MDM（Mobile Device Management）设备管理应用开放。MDM应用的详细介绍，请参考[MDM Kit简介](../../mdm/mdm-kit-intro.md)。
 
 > **注意：**
@@ -583,6 +590,21 @@
 
 **起始版本**：20
 
+## ohos.permission.MANAGE_PREINSTALLED_ANTIVIRUS
+
+允许MDM应用管理系统预装的防病毒软件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
 ## ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION
 
 允许设备管理应用（MDM）设置user_grant类权限策略。
@@ -599,3 +621,18 @@
 **支持设备**：Phone | PC/2in1 | Tablet
 
 **起始版本**：20
+
+## ohos.permission.ENTERPRISE_DATA_IDENTIFY_FILE
+
+允许MDM应用识别文件敏感内容。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：21

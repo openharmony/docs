@@ -1,4 +1,10 @@
 # 焦点轴事件
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 焦点轴事件是指在与游戏手柄交互时，通过十字按键或者操作杆上报的轴事件，此轴事件通过获得焦点的组件分发并回调给应用。若组件默认可获焦，如Button，则不需要额外设置属性。若组件在默认情况下不可获焦，如Text和Image，可以通过将focusable属性设置为true来启用焦点轴事件。
 
@@ -30,16 +36,16 @@ onFocusAxisEvent(event: Callback\<FocusAxisEvent>): T
 
 ## FocusAxisEvent对象说明
 
-焦点轴事件的对象说明，继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)。
+焦点轴事件的对象说明，继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent8)。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                                    | 属性类型                                       | 描述                 |
-| ------------------------------------- | ---------------------------------------- | --------------------------- |
-| axisMap                               | Map<[AxisModel](ts-appendix-enums.md#axismodel15), number>     | 焦点轴事件的轴值表。          |
-| stopPropagation                       | Callback\<void>                           | 阻塞事件冒泡传递。            |
+| 名称                                      | 类型                  | 只读    |  可选   |         说明                 |
+| ------------------------------------- | ---------------------------------------     | ------------- | ------------- | ------------------------- |
+| axisMap                               | Map<[AxisModel](ts-appendix-enums.md#axismodel15), number>      |  否    |  否     | 焦点轴事件的轴值表。          |
+| stopPropagation                       | Callback\<void>                      |     否         |  否     |阻塞[事件冒泡](../../../ui/arkts-interaction-basic-principles.md#事件冒泡)传递。            |
 
 ## 示例
 

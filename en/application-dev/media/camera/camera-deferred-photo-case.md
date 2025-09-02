@@ -1,4 +1,9 @@
 # Practices for High-Performance Photo Capture (for System Applications Only) (ArkTS)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 
@@ -254,7 +259,7 @@ async function deferredPhotoCase(context: Context, surfaceId: string): Promise<v
   // Register a callback to listen for original images.
   photoOutput.on('photoAvailable', (err: BusinessError, photoObj: camera.Photo): void => {
     if (err) {
-      console.info(`photoAvailable error: ${err}.`);
+      console.error(`photoAvailable error: ${err}.`);
       return;
     }
     savePicture(photoObj, context).then(() => {
@@ -266,7 +271,7 @@ async function deferredPhotoCase(context: Context, surfaceId: string): Promise<v
   // Register a callback to listen for thumbnail proxies.
   photoOutput.on('deferredPhotoProxyAvailable', (err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void => {
     if (err) {
-      console.info(`deferredPhotoProxyAvailable error: ${err}.`);
+      console.error(`deferredPhotoProxyAvailable error: ${err}.`);
       return;
     }
     console.info('photoOutPutCallBack deferredPhotoProxyAvailable');

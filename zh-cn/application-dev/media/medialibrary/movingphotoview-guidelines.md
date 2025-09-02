@@ -1,4 +1,10 @@
 # 使用MovingPhotoView播放动态照片
+<!--Kit: Media Library Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @tangye123456-->
+<!--Designer: @YanSanzo-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @zengyawen-->
 
 系统提供了MovingPhotoView组件，在一些社交类、图库类应用中，可用于播放动态照片文件。
 
@@ -86,12 +92,6 @@
             Button('stop')
               .onClick(() => {
                 this.controller.stopPlayback()
-              })
-              .margin(5)
-            // 按钮：是否静音播放。
-            Button('mute')
-              .onClick(() => {
-                this.isMuted = !this.isMuted
               })
               .margin(5)
           }

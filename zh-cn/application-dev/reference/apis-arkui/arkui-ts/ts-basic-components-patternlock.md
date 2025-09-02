@@ -1,4 +1,10 @@
 # PatternLock
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyujie43-->
+<!--Designer: @weixin_52725220-->
+<!--Tester: @xiong0104-->
+<!--Adviser: @HelloCrease-->
 
 图案密码锁组件，以九宫格图案的方式输入密码，用于密码验证场景。手指在PatternLock组件区域按下时开始进入输入状态，手指离开屏幕时结束输入状态完成密码输入。
 
@@ -34,6 +40,10 @@ sideLength(value: Length)
 
 设置组件的宽度和高度（宽高相同）。当设置为0或负数时，组件不显示。
 
+> **说明：**
+> 
+> PatternLock组件设置了通用属性宽高比[aspectRatio](ts-universal-attributes-layout-constraints.md#aspectratio)，且不等于1时（组件尺寸被设定为长方形），九宫格依然绘制为正方形（超出组件范围）。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -68,6 +78,8 @@ backgroundColor(value: ResourceColor)
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
 
 | 参数名 | 类型                                       | 必填 | 说明                                                       |
 | ------ | ------------------------------------------ | ---- | ---------------------------------------------------------- |
@@ -233,6 +245,12 @@ onDotConnect(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
+| 参数名 | 类型            | 必填 | 说明                                                         |
+| ------ | --------------- | ---- | ------------------------------------------------------------ |
+| callback  | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\> | 是   | 密码输入选中宫格圆点时触发该回调。 |
+
 ## CircleStyleOptions<sup>12+</sup>对象说明
 
 圆环样式的参数说明。
@@ -240,12 +258,12 @@ onDotConnect(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 
-| 名称          | 类型 | 必填 | 说明 |
-| ------------- | ------- | ---- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 否 | 背景圆环颜色。 <br/>默认值：与pathColor值相同。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| radius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 背景圆环的半径。<br/>默认值：circleRadius的11/6。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-| enableWaveEffect | boolean | 否 | 波浪效果开关。<br/>默认值：true，表示波浪效果开关打开，显示波浪效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-| enableForeground<sup>15+</sup> | boolean | 否 | 背景圆环是否在前景显示。<br/>默认值：false，背景圆环不在前景显示。 <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| 名称          | 类型 | 只读 | 可选 | 说明 |
+| ------------- | ------- | ---- | -------- | -------- |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是 | 背景圆环颜色。 <br/>默认值：与pathColor值相同。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| radius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 是 | 背景圆环的半径。<br/>默认值：circleRadius的11/6。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| enableWaveEffect | boolean | 否 | 是 | 波浪效果开关。<br/>默认值：true，表示波浪效果开关打开，显示波浪效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| enableForeground<sup>15+</sup> | boolean | 否 | 是 | 背景圆环是否在前景显示。<br/>默认值：false，背景圆环不在前景显示。 <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## PatternLockController
 
@@ -287,7 +305,9 @@ setChallengeResult(result: PatternLockChallengeResult): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型                                                         | 必填 | 说明           |
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
 | result | [PatternLockChallengeResult](#patternlockchallengeresult11枚举说明) | 是   | 图案密码状态。 |
 
@@ -315,7 +335,7 @@ setChallengeResult(result: PatternLockChallengeResult): void
 @Entry
 @Component
 struct PatternLockExample {
-  @State passwords: Number[] = [];
+  @State passwords: number[] = [];
   @State message: string = 'please input password!';
   private patternLockController: PatternLockController = new PatternLockController();
 
@@ -332,7 +352,7 @@ struct PatternLockExample {
         .backgroundColor('#F5F5F5')
         .autoReset(true)
         .onDotConnect((index: number) => {
-          console.log("onDotConnect index: " + index);
+          console.info("onDotConnect index: " + index);
         })
     }.width('100%').height('100%')
   }
@@ -356,7 +376,7 @@ import { LengthUnit } from '@kit.ArkUI';
 @Entry
 @Component
 struct PatternLockExample {
-  @State passwords: Number[] = [];
+  @State passwords: number[] = [];
   @State message: string = 'please input password!';
   private patternLockController: PatternLockController = new PatternLockController();
 
@@ -378,7 +398,7 @@ struct PatternLockExample {
           enableWaveEffect: true
         })
         .onDotConnect((index: number) => {
-          console.log("onDotConnect index: " + index);
+          console.info("onDotConnect index: " + index);
         })
         .onPatternComplete((input: Array<number>) => {
           // 输入的密码长度小于5时，提示重新输入

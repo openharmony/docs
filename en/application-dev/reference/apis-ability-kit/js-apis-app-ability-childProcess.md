@@ -1,4 +1,10 @@
 # @ohos.app.ability.ChildProcess (Child Process Base Class)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @SKY2001-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 ChildProcess is the base class for you to customize child processes. When starting a child process through [childProcessManager](js-apis-app-ability-childProcessManager.md), you must inherit this class and override the entrypoint method.
 

@@ -1,4 +1,10 @@
 # Video
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sd-wu-->
+<!--Designer: @sunbees-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 用于播放视频文件并控制其播放状态的组件。 
 
@@ -42,11 +48,11 @@ Video(value: VideoOptions)
 
 | 名称              | 类型                                                     | 必填 | 说明                                                     |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src                 | string \| [Resource](ts-types.md#resource)                            | 否   | 视频的数据源，支持本地视频和网络视频。<br>Resource格式可以跨包/跨模块访问资源文件，常用于访问本地视频。<br/>- 仅支持rawfile文件下的资源，即通过\$rawfile引用视频文件。<br/>string格式可用于加载网络视频和本地视频，常用于加载网络视频。<br/>- 支持网络视频地址。<br/>- 支持file://路径前缀的字符串，即[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。用于读取应用沙箱路径内的资源。需要保证目录包路径下的文件有可读权限。<br/>**说明：**<br/>视频支持的格式是：mp4、mkv、TS。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| currentProgressRate | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[PlaybackSpeed<sup>8+</sup>](#playbackspeed8枚举说明) | 否   | 视频播放倍速。<br/>**说明：**<br/>number格式取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/>string格式支持number格式取值的字符串形式："0.75"，"1.0"，"1.25"，"1.75"，"2.0"。<br/>默认值：1.0 \| PlaybackSpeed.Speed_Forward_1_00_X<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| previewUri          | string&nbsp;\| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)&nbsp;\|&nbsp;[Resource](ts-types.md#resource)  | 否   | 视频未播放时的预览图片路径，默认不显示图片。<br/>string格式可用于加载本地图片和网络图片，<br/>- 支持网络图片地址。<br/>- 支持相对路径引用本地图片，例如：previewUri: “common/test.jpg”。当使用相对路径引用本地图片时，不支持跨包/跨模块调用。<br/>- 支持file://路径前缀的字符串，即[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。用于读取应用沙箱路径内的资源。需要保证目录包路径下的文件有可读权限。<br/>Resource格式可以跨包/跨模块访问资源文件。<br/>- 支持rawfile文件下的资源，即通过\\$rawfile引用图片。<br/>- 支持通过\\$r引用系统资源或者应用资源中的图片。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                 |
+| src                 | string \| [Resource](ts-types.md#resource)                            | 否   | 视频的数据源，支持本地视频和网络视频。<br>Resource格式可以跨包/跨模块访问资源文件，常用于访问本地视频。<br/>- 仅支持rawfile文件下的资源，即通过\$rawfile引用视频文件。<br/>string格式可用于加载网络视频和本地视频，常用于加载网络视频。<br/>- 支持网络视频地址。<br/>- 支持file://路径前缀的字符串，即[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。用于读取应用沙箱路径内的资源。需要保证目录包路径下的文件有可读权限。<br/>默认值：空字符串<br/>异常值：按默认值处理<br/>**说明：**<br/>视频支持的格式是：mp4、mkv、TS。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| currentProgressRate | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[PlaybackSpeed<sup>8+</sup>](#playbackspeed8枚举说明) | 否   | 视频播放倍速。<br/>**说明：**<br/>number格式取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/>string格式支持number格式取值的字符串形式："0.75"，"1.0"，"1.25"，"1.75"，"2.0"。<br/>默认值：1.0 \| PlaybackSpeed.Speed_Forward_1_00_X<br/>异常值：按默认值处理<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| previewUri          | string&nbsp;\| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)&nbsp;\|&nbsp;[Resource](ts-types.md#resource)  | 否   | 视频未播放时的预览图片路径，默认不显示图片。<br/>string格式可用于加载本地图片和网络图片，<br/>- 支持网络图片地址。<br/>- 支持相对路径引用本地图片，例如：previewUri: “common/test.jpg”。当使用相对路径引用本地图片时，不支持跨包/跨模块调用。<br/>- 支持file://路径前缀的字符串，即[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。用于读取应用沙箱路径内的资源。需要保证目录包路径下的文件有可读权限。<br/>Resource格式可以跨包/跨模块访问资源文件。<br/>- 支持rawfile文件下的资源，即通过\$rawfile引用图片。<br/>- 支持通过\$r引用系统资源或者应用资源中的图片。<br/>默认值：空字符串<br/>异常值：按默认值处理<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                 |
 | controller          | [VideoController](#videocontroller)                          | 否   | 设置视频控制器，可以控制视频的播放状态。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
-| imageAIOptions<sup>12+</sup>  | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否   | 设置图像AI分析选项，可配置分析类型或绑定一个分析控制器。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| imageAIOptions<sup>12+</sup>  | [ImageAIOptions](ts-image-common.md#imageaioptions12) | 否   | 设置图像AI分析选项，可配置分析类型或绑定一个分析控制器。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | posterOptions<sup>18+</sup>  | [PosterOptions](#posteroptions18对象说明) | 否   | 设置视频播放的首帧送显选项，可以控制视频是否支持首帧送显。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## PlaybackSpeed<sup>8+</sup>枚举说明
@@ -73,7 +79,7 @@ Video(value: VideoOptions)
 
 muted(value: boolean)
 
-设置视频是否静音。
+设置视频是否静音，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -93,7 +99,8 @@ muted(value: boolean)
 
 autoPlay(value: boolean)
 
-设置视频是否自动播放。
+设置视频是否自动播放，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
+
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -109,7 +116,8 @@ autoPlay(value: boolean)
 
 controls(value: boolean)
 
-设置控制视频播放的控制栏是否显示。
+设置控制视频播放的控制栏是否显示，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
+
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -129,7 +137,8 @@ controls(value: boolean)
 
 objectFit(value: ImageFit)
 
-设置视频的填充模式。
+设置视频的填充模式，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
+
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -145,7 +154,8 @@ objectFit(value: ImageFit)
 
 loop(value: boolean)
 
-设置是否单个视频循环播放。
+设置是否单个视频循环播放，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
+
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -190,21 +200,25 @@ analyzerConfig(config: ImageAnalyzerConfig)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | 是 | 设置AI分析识别类型。 |
+| config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig12) | 是 | 设置AI分析识别类型。 |
 
 ### enableShortcutKey<sup>15+</sup>
 
 enableShortcutKey(enabled: boolean)
 
-设置组件支持快捷键响应。
+设置组件支持快捷键响应，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 目前支持在组件获焦后响应空格键播放/暂停、上下方向键调整视频音量、左右方向键快进/快退。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                                   |
 | ------- | ------- | ---- | -------------------------------------- |
@@ -276,14 +290,7 @@ onError(event: VoidCallback | ErrorCallback)
 
 | 参数名 | 类型                                           | 必填 | 说明                                 |
 | ------ | --------------------------------------------- | ---- | ----------------------------------- |
-| event  | [VoidCallback](ts-types.md#voidcallback12) \| [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)<sup>20+</sup> | 是   | 视频播放失败时的回调函数，[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)入参用于接收异常信息。|
-
-以下错误码的详细介绍请参见[Video组件错误码](../errorcode-video.md)，其余错误码请参考[媒体错误码](../../apis-media-kit/errorcode-media.md)。
-
-|错误码ID|错误信息|
-|--|--|
-|103601 |Failed to create the media player.|
-|103602 |Not a valid source.|
+| event  | [VoidCallback](ts-types.md#voidcallback12) \| [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)<sup>20+</sup> | 是   | 视频播放失败时的回调函数。其中[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)类型入参的回调函数用于接收异常信息，回调返回的错误码详细介绍请参见[Video组件错误码](../errorcode-video.md)和[媒体错误码](../../apis-media-kit/errorcode-media.md)。|
 
 ### onStop<sup>12+</sup>
 
@@ -294,6 +301,12 @@ onStop(event: Callback&lt;void&gt;)
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                       |
+| -------- | ------ | ---- | -------------------------- |
+| event | Callback\<void> | 是   | 视频播放停止时的回调函数。 |
 
 ### onPrepared
 
@@ -433,7 +446,7 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 | 名称       | 类型    | 只读 | 可选 | 说明                         |
 | ----------- | ------- | ---- | ---- | ---------------------------- |
-| showFirstFrame   | boolean | 否 | 是 | 当前视频是否配置首帧送显。<br/>true：开启首帧送显；false：关闭首帧送显。<br/>默认值：false      |
+| showFirstFrame   | boolean | 否 | 是 | 当前视频是否配置首帧送显，当开启首帧送显时，[VideoOptions对象](#videooptions对象说明)中的previewUri字段不生效。<br/>true：开启首帧送显；false：关闭首帧送显。<br/>默认值：false      |
 
 ## VideoController
 
@@ -517,7 +530,7 @@ setCurrentTime(value: number)
 
 | 参数名   | 类型   | 必填   | 说明           |
 | ----- | ------ | ---- | -------------- |
-| value | number | 是    | 视频播放进度位置，取值范围：[0, [duration](ts-media-components-video.md#preparedinfo18对象说明)]，单位：秒。<br/>从API version 8开始，支持设置视频的跳转模式，详见[setCurrentTime<sup>8+</sup>](#setcurrenttime8)。|
+| value | number | 是    | 视频播放进度位置。<br>取值范围：[0, [duration](ts-media-components-video.md#preparedinfo18对象说明)]<br>单位：秒<br/>从API version 8开始，支持设置视频的跳转模式，详见[setCurrentTime<sup>8+</sup>](#setcurrenttime8)。|
 
 ### requestFullscreen
 
@@ -563,7 +576,7 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 | 参数名      | 类型     | 必填   | 说明           |
 | -------- | -------- | ---- | -------------- |
-| value    | number   | 是    | 视频播放进度位置，单位：秒。 |
+| value    | number   | 是    | 视频播放进度位置。<br>取值范围：[0, [duration](ts-media-components-video.md#preparedinfo18对象说明)]<br>单位：秒 |
 | seekMode | [SeekMode](#seekmode8枚举说明) | 是    | 跳转模式。          |
 
 ## SeekMode<sup>8+</sup>枚举说明
@@ -585,13 +598,14 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 ### 示例1（视频播放基础用法）
 
-基础用法包括：控制栏、预览图、自动播放、播放速度、响应快捷键、控制器（开始播放、暂停播放、停止播放、重置avPlayer、跳转等）、首帧送显以及一些状态回调方法。
+基础用法包括：控制栏、预览图、自动播放、播放速度、响应快捷键（从API version 15开始，支持通过[enableShortcutKey](#enableshortcutkey15)设置组件开启快捷键响应）、控制器（开始播放、暂停播放、停止播放、重置AVPlayer、跳转等）、首帧送显（从API version 18开始，支持通过[posterOptions](#posteroptions18对象说明)设置视频播放的首帧送显选项）以及一些状态回调方法。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct VideoCreateComponent {
+  // $rawfile('video1.mp4')、$r('app.media.poster1')需要分别替换为开发者所需的视频、图片资源文件
   @State videoSrc: Resource = $rawfile('video1.mp4');
   @State previewUri: Resource = $r('app.media.poster1');
   @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
@@ -605,10 +619,10 @@ struct VideoCreateComponent {
     Column() {
       Video({
         src: this.videoSrc,
-        previewUri: this.previewUri, //设置预览图
-        currentProgressRate: this.curRate, //设置播放速度
+        previewUri: this.previewUri, // 设置预览图
+        currentProgressRate: this.curRate, // 设置播放速度
         controller: this.controller,
-        posterOptions: { showFirstFrame: this.showFirstFrame } //关闭首帧送显
+        posterOptions: { showFirstFrame: this.showFirstFrame } // 关闭首帧送显
       })
         .width('100%')
         .height(600)
@@ -657,11 +671,12 @@ struct VideoCreateComponent {
         })
 
       Row() {
+        // $rawfile('video2.mp4')、$r('app.media.poster2')需要分别替换为开发者所需的视频、图片资源文件
         Button('src').onClick(() => {
-          this.videoSrc = $rawfile('video2.mp4') // 切换视频源
+          this.videoSrc = $rawfile('video2.mp4') // 切换视频源。
         }).margin(5)
         Button('previewUri').onClick(() => {
-          this.previewUri = $r('app.media.poster2') // 切换视频预览海报
+          this.previewUri = $r('app.media.poster2') // 切换视频预览海报。
         }).margin(5)
         Button('controls').onClick(() => {
           this.showControls = !this.showControls // 切换是否显示视频控制栏
@@ -716,13 +731,14 @@ interface FullscreenObject {
 
 ### 示例2（图像分析功能）
 
-使用enableAnalyzer属性开启图像AI分析。
+通过enableAnalyzer属性开启图像AI分析。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct ImageAnalyzerExample {
+  // $rawfile('video1.mp4')、$r('app.media.poster1')需要分别替换为开发者所需的视频、图片资源文件
   @State videoSrc: Resource = $rawfile('video1.mp4');
   @State previewUri: Resource = $r('app.media.poster1');
   controller: VideoController = new VideoController();
@@ -741,7 +757,7 @@ struct ImageAnalyzerExample {
         src: this.videoSrc,
         previewUri: this.previewUri,
         controller: this.controller,
-        imageAIOptions: this.options //设置图像AI分析选项
+        imageAIOptions: this.options // 设置图像AI分析选项
       })
         .width('100%')
         .height(600)
@@ -782,6 +798,7 @@ import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 @Entry
 @Component
 struct Index {
+  // $rawfile('video1.mp4')需要替换为开发者所需的视频资源文件
   @State videoSrc: Resource | string = $rawfile('video1.mp4');
   private controller: VideoController = new VideoController();
 
@@ -812,16 +829,16 @@ struct Index {
 ```
 ### 示例4（视频填充模式）
 
-使用objectFit属性设置视频填充模式。
+通过objectFit属性设置视频填充模式。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct VideoObject {
+  // $rawfile('rabbit.mp4')、$r('app.media.tree')需要分别替换为开发者所需的视频、图片资源文件
   @State videoSrc: Resource = $rawfile('rabbit.mp4');
   @State previewUri: Resource = $r('app.media.tree');
-  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
   @State showControls: boolean = true;
   controller: VideoController = new VideoController();
 
@@ -831,39 +848,36 @@ struct VideoObject {
       Video({
         src: this.videoSrc,
         previewUri: this.previewUri,
-        currentProgressRate: this.curRate,
         controller: this.controller
       })
         .width(350)
         .height(230)
         .controls(this.showControls)
-        .objectFit(ImageFit.Contain)//设置视频填充模式为ImageFit.Contain
+        .objectFit(ImageFit.Contain) // 设置视频填充模式为ImageFit.Contain
         .margin(5)
 
       Text("ImageFit.Fill").fontSize(12)
       Video({
         src: this.videoSrc,
         previewUri: this.previewUri,
-        currentProgressRate: this.curRate,
         controller: this.controller
       })
         .width(350)
         .height(230)
         .controls(this.showControls)
-        .objectFit(ImageFit.Fill)//设置视频填充模式为ImageFit.Fill
+        .objectFit(ImageFit.Fill) // 设置视频填充模式为ImageFit.Fill
         .margin(5)
 
       Text("ImageFit.START").fontSize(12)
       Video({
         src: this.videoSrc,
         previewUri: this.previewUri,
-        currentProgressRate: this.curRate,
         controller: this.controller
       })
         .width(350)
         .height(230)
         .controls(this.showControls)
-        .objectFit(ImageFit.START)//设置视频填充模式为ImageFit.START
+        .objectFit(ImageFit.START) // 设置视频填充模式为ImageFit.START
         .margin(5)
     }.width('100%').alignItems(HorizontalAlign.Center)
   }
@@ -873,7 +887,7 @@ struct VideoObject {
 
 ### 示例5（onError事件上报错误码）
 
-以下示例以传入不存在的视频资源路径为例，展示了如何使Video组件能够通过onError事件获取错误码。
+从API version 20开始，支持通过[onError](#onerror)获取错误信息，该示例以传入不存在的视频资源路径为例。
 
 ```ts
 // xxx.ets
@@ -881,7 +895,6 @@ struct VideoObject {
 @Component
 struct VideoErrorComponent {
   @State videoSrc: string = "video.mp4"; // 传入不存在的视频资源路径。
-  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
   @State isAutoPlay: boolean = false;
   @State showControls: boolean = true;
   @State showFirstFrame: boolean = false;
@@ -892,7 +905,6 @@ struct VideoErrorComponent {
     Column() {
       Video({
         src: this.videoSrc,
-        currentProgressRate: this.curRate,
         controller: this.controller,
       })
         .width(200)
@@ -977,6 +989,7 @@ class MyVideoModifier implements AttributeModifier<VideoAttribute> {
 @Entry
 @Component
 struct VideoModifierDemo {
+  // $rawfile('video.mp4')需要替换为开发者所需的视频资源文件
   @State videoSrc: Resource = $rawfile('video.mp4');
   @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
   @State isAutoPlay: boolean = false;

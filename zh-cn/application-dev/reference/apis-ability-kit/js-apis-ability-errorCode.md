@@ -1,5 +1,12 @@
 # @ohos.ability.errorCode (ErrorCode)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @duan-sizhao-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 ErrorCode定义启动Ability时返回的错误码，包括无效的参数、权限拒绝等。
 
 > **说明：**
@@ -22,5 +29,5 @@ import { ErrorCode } from '@kit.AbilityKit';
 | ------------------------------ | ---- | ---------------------------------------- |
 | NO_ERROR         | 0    | 没有异常。   |
 | INVALID_PARAMETER | -1   | 无效的参数。 |
-| ABILITY_NOT_FOUND | -2   | 找不到ABILITY。 |
+| ABILITY_NOT_FOUND | -2   | 找不到Ability。 |
 | PERMISSION_DENY   | -3   | 权限拒绝。   |

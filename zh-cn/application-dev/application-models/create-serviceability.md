@@ -1,4 +1,10 @@
 # 创建ServiceAbility
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @xialiangwei-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 
 1. 创建ServiceAbility。
@@ -51,7 +57,7 @@
       }
 
       onConnect(want: Want): rpc.RemoteObject {
-        hilog.info(domain, TAG, 'ServiceAbility onDisconnect' + want);
+        hilog.info(domain, TAG, 'ServiceAbility onConnect' + want);
         return new FirstServiceAbilityStub('test');
       }
 

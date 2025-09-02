@@ -1,4 +1,10 @@
 # 输入法子类型开发指南
+<!--Kit: IME Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @illybyy-->
+<!--Designer: @andeszhang-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 输入法子类型允许输入法展现不同的输入模式或语言，用户可以根据需要在不同模式和语言中切换。如：输入法的中文键盘、英文键盘等都属于输入法的子类型。
 
@@ -29,7 +35,7 @@
    }
    ```
    
-2. 子类型配置文件格式如下，字段释义参照[InputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md#ohosinputmethodsubtype-输入法子类型)，开发者需要严格按照配置文件格式及字段进行子类型信息配置，locale字段的配置参照[i18n-locale-culture](.././internationalization/i18n-locale-culture.md#实现原理)。
+2. 子类型配置文件格式如下，字段释义参照[InputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md#inputmethodsubtype)，开发者需要严格按照配置文件格式及字段进行子类型信息配置，locale字段的配置参照[i18n-locale-culture](.././internationalization/i18n-locale-culture.md#实现原理)。
    ```
    {
      "subtypes": [
@@ -56,16 +62,26 @@
    ```ts
    import { InputMethodSubtype, inputMethodEngine } from '@kit.IMEKit';
    
-   let panel: inputMethodEngine.Panel;
+   let panelInfo: inputMethodEngine.PanelInfo = {
+     type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+     flag: inputMethodEngine.PanelFlag.FLG_FIXED
+   };
    let inputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
-   inputMethodAbility.on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
-     let subType = inputMethodSubtype; // 保存当前输入法子类型, 此处也可以改变状态变量的值，布局中判断状态变量，不同的子类型显示不同的布局控件
-     if (inputMethodSubtype.id == 'InputMethodExtAbility') { // 根据不同的子类型，可以加载不同的软键盘界面
-       panel.setUiContent('pages/Index'); 
-     }
-     if (inputMethodSubtype.id == 'InputMethodExtAbility1') { // 根据不同的子类型，可以加载不同的软键盘界面
-       panel.setUiContent('pages/Index1');
-     }
+   // createPanel需要在InputMethodExtensionAbility的Create声明周期中完成，this.context是InputMethodExtensionAbility中的InputMethodExtensionContext
+   inputMethodAbility.createPanel(this.context, panelInfo).then(async (panel: inputMethodEngine.Panel) => {
+     let inputPanel: inputMethodEngine.Panel = panel;
+     inputMethodAbility.on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
+       // 保存当前输入法子类型, 此处也可以改变状态变量的值，布局中判断状态变量，不同的子类型显示不同的布局控件
+       let subType: InputMethodSubtype = inputMethodSubtype;
+       if (inputMethodSubtype.id == 'InputMethodExtAbility') { // 根据不同的子类型，可以加载不同的软键盘界面
+         inputPanel.setUiContent('pages/Index');
+       }
+       if (inputMethodSubtype.id == 'InputMethodExtAbility1') { // 根据不同的子类型，可以加载不同的软键盘界面
+         inputPanel.setUiContent('pages/Index1');
+       }
+     });
+   }).catch((err: BusinessError) => {
+     console.log(`Failed to createPanel, code: ${err.code}, message: ${err.message}`);
    });
    ```
 

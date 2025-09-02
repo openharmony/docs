@@ -1,5 +1,12 @@
 # Performance Analysis Kit（性能分析服务）<!--performance-analysis-api-->
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @mzyan-->
+<!--Designer: @liyueric-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 - ArkTS API<!--performance-analysis-arkts-->
   - [@ohos.hichecker (检测模式)](js-apis-hichecker.md)
   - [@ohos.hidebug (Debug调试)](js-apis-hidebug.md)
@@ -57,6 +64,7 @@
   - [应用事件打点错误码](errorcode-hiappevent.md)
   - [HiDebug错误码](errorcode-hiviewdfx-hidebug.md)
   - [HiDebug CpuUsage错误码](errorcode-hiviewdfx-hidebug-cpuusage.md)
+  - [HiDebug GraphicMemory错误码](errorcode-hiviewdfx-hidebug-graphic-memory.md)
   - [HiCollie错误码](errorcode-hiviewdfx-hicollie.md)
   - [JsLeakWatcher错误码](errorcode-jsleakwatcher.md)
     <!--Del-->

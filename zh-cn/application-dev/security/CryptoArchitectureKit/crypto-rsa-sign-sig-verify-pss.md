@@ -1,10 +1,17 @@
 # 使用RSA密钥对签名验签（PSS模式）(ArkTS)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 对应的算法规格请查看[签名验签算法规格：RSA](crypto-sign-sig-verify-overview.md#rsa)。
 
 **签名**
 
-1. 调用[cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10)、[AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-3)，指定密钥参数，生成RSA非对称密钥对（KeyPair）。
+1. 调用[cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10)、[AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair10)，指定密钥参数，生成RSA非对称密钥对（KeyPair）。
    如何生成RSA非对称密钥，开发者可参考下文示例，并结合[非对称密钥生成和转换规格：RSA](crypto-asym-key-generation-conversion-spec.md#rsa)和[指定密钥参数生成非对称密钥对](crypto-generate-asym-key-pair-from-key-spec.md)理解，参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
 
 2. 调用[cryptoFramework.createSign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesign)，指定字符串参数'RSA|PSS|SHA256|MGF1_SHA256'，创建非对称密钥类型为不带长度的RSA、填充模式为PSS、摘要算法为SHA256、掩码算法为MGF1_SHA256的Sign实例，用于完成签名操作。
@@ -72,7 +79,7 @@
     let rsaGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaKeyPairSpec);
     // sign和verify均支持RSA密钥带长度/不带长度的写法。
     let signer = cryptoFramework.createSign("RSA|PSS|SHA256|MGF1_SHA256");
-    let verifyer = cryptoFramework.createVerify("RSA2048|PSS|SHA256|MGF1_SHA256");
+    let verifier = cryptoFramework.createVerify("RSA2048|PSS|SHA256|MGF1_SHA256");
     let keyPair = await rsaGeneratorSpec.generateKeyPair();
     await signer.init(keyPair.priKey);
     // 在签名初始化后，对PSS参数进行set和get操作。
@@ -91,19 +98,19 @@
     await signer.update(input1);
     let signMessageBlob = await signer.sign(input2);
     // 在验签初始化前，对PSS参数进行set和get操作。
-    verifyer.setVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
-    saltLen = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
+    verifier.setVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
+    saltLen = verifier.getVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
     console.info("SaltLen == " + saltLen);
-    tf = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_TRAILER_FIELD_NUM);
+    tf = verifier.getVerifySpec(cryptoFramework.SignSpecItem.PSS_TRAILER_FIELD_NUM);
     console.info("trailer field == " + tf);
-    md = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_MD_NAME_STR);
+    md = verifier.getVerifySpec(cryptoFramework.SignSpecItem.PSS_MD_NAME_STR);
     console.info("md == " + md);
-    mgf = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_MGF_NAME_STR);
+    mgf = verifier.getVerifySpec(cryptoFramework.SignSpecItem.PSS_MGF_NAME_STR);
     console.info("mgf == " + mgf);
-    mgf1Md = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_MGF1_MD_STR);
-    await verifyer.init(keyPair.pubKey);
-    await verifyer.update(input1);
-    let verifyResult = await verifyer.verify(input2, signMessageBlob);
+    mgf1Md = verifier.getVerifySpec(cryptoFramework.SignSpecItem.PSS_MGF1_MD_STR);
+    await verifier.init(keyPair.pubKey);
+    await verifier.update(input1);
+    let verifyResult = await verifier.verify(input2, signMessageBlob);
     if (verifyResult === true) {
       console.info('verify success');
     } else {
@@ -153,7 +160,7 @@
     let rsaGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaKeyPairSpec);
     // sign和verify均支持RSA密钥带长度/不带长度的写法。
     let signer = cryptoFramework.createSign("RSA|PSS|SHA256|MGF1_SHA256");
-    let verifyer = cryptoFramework.createVerify("RSA2048|PSS|SHA256|MGF1_SHA256");
+    let verifier = cryptoFramework.createVerify("RSA2048|PSS|SHA256|MGF1_SHA256");
     let keyPair = rsaGeneratorSpec.generateKeyPairSync();
     signer.initSync(keyPair.priKey);
     // 在签名初始化后，对PSS参数进行set和get操作。
@@ -172,19 +179,19 @@
     signer.updateSync(input1);
     let signMessageBlob = signer.signSync(input2);
     // 在验签初始化前，对PSS参数进行set和get操作。
-    verifyer.setVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
-    saltLen = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
+    verifier.setVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
+    saltLen = verifier.getVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
     console.info("SaltLen == " + saltLen);
-    tf = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_TRAILER_FIELD_NUM);
+    tf = verifier.getVerifySpec(cryptoFramework.SignSpecItem.PSS_TRAILER_FIELD_NUM);
     console.info("trailer field == " + tf);
-    md = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_MD_NAME_STR);
+    md = verifier.getVerifySpec(cryptoFramework.SignSpecItem.PSS_MD_NAME_STR);
     console.info("md == " + md);
-    mgf = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_MGF_NAME_STR);
+    mgf = verifier.getVerifySpec(cryptoFramework.SignSpecItem.PSS_MGF_NAME_STR);
     console.info("mgf == " + mgf);
-    mgf1Md = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_MGF1_MD_STR);
-    verifyer.initSync(keyPair.pubKey);
-    verifyer.updateSync(input1);
-    let verifyResult = verifyer.verifySync(input2, signMessageBlob);
+    mgf1Md = verifier.getVerifySpec(cryptoFramework.SignSpecItem.PSS_MGF1_MD_STR);
+    verifier.initSync(keyPair.pubKey);
+    verifier.updateSync(input1);
+    let verifyResult = verifier.verifySync(input2, signMessageBlob);
     if (verifyResult === true) {
       console.info('verify success');
     } else {

@@ -1,5 +1,12 @@
 # 证书管理错误码
 
+<!--Kit: Device Certificate Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @chaceli-->
+<!--Designer: @chande-->
+<!--Tester: @zhangzhi1995-->
+<!--Adviser: @zengyawen-->
+
 > **说明：**
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
@@ -8,7 +15,7 @@
 
 **错误信息**
 
-Internal error.
+Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.
 
 **可能原因**
 

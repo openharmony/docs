@@ -1,4 +1,10 @@
 # 使用AVPlayer播放音频(ArkTS)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xushubo; @chennotfound-->
+<!--Designer: @dongyu_dy-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 使用[AVPlayer](media-kit-intro.md#avplayer)可以实现端到端播放原始媒体资源，本开发指导将以完整地播放一首音乐作为示例，向开发者讲解AVPlayer音频播放相关功能。如需播放PCM音频数据，请使用[AudioRenderer](../audio/using-audiorenderer-for-playback.md)。
 
@@ -28,12 +34,19 @@
 
 1. 创建实例createAVPlayer()，AVPlayer初始化idle状态。
 
+    ```ts
+    import { media } from '@kit.MediaKit';
+
+    // 创建avPlayer实例对象。
+    let avPlayer = await media.createAVPlayer();
+    ```
+
 2. 设置业务需要的监听事件，搭配全流程场景使用。支持的监听事件包括：
 
    | 事件类型 | 说明 |
    | -------- | -------- |
-   | stateChange | 必要事件，监听播放器的state属性改变。 |
-   | error | 必要事件，监听播放器的错误信息。 |
+   | stateChange | 必要事件，监听播放器的state属性改变。<br>需要播放器在idle状态下、未调用设置资源接口前完成设置监听，若在调用设置资源接口后再设置监听，可能导致无法收到资源设置过程中上报的stateChange事件。 |
+   | error | 必要事件，监听播放器的错误信息。<br>需要播放器在idle状态下、未调用设置资源接口前完成设置监听，若在调用设置资源接口后再设置监听，可能导致无法收到资源设置过程中上报的error事件。 |
    | durationUpdate | 用于进度条，监听进度条长度，刷新资源时长。 |
    | timeUpdate | 用于进度条，监听进度条当前位置，刷新当前时间。 |
    | seekDone | 响应API调用，监听seek()请求完成情况。<br/>当使用seek()跳转到指定播放位置后，如果seek操作成功，将上报该事件。 |
@@ -41,6 +54,40 @@
    | volumeChange | 响应API调用，监听setVolume()请求完成情况。<br/>当使用setVolume()调节播放音量后，如果setVolume操作成功，将上报该事件。 |
    | bufferingUpdate | 用于网络播放，监听网络播放缓冲信息，用于上报缓冲百分比以及缓存播放进度。 |
    | audioInterrupt | 监听音频焦点切换信息，搭配属性audioInterruptMode使用。<br/>如果当前设备存在多个音频正在播放，音频焦点被切换（即播放其他媒体如通话等）时将上报该事件，应用可以及时处理。 |
+
+    ```ts
+    // 此处仅为示例，开发者根据需要设置合适的监听事件。
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { audio } from '@kit.AudioKit';
+
+    avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
+        // 开发者根据需要写入业务逻辑。
+    });
+    avPlayer.on('error', (error: BusinessError) => {
+        // 开发者根据需要写入业务逻辑。
+    });
+    avPlayer.on('durationUpdate', (duration: number) => {
+        // 开发者根据需要写入业务逻辑。
+    });
+    avPlayer.on('timeUpdate', (time:number) => {
+        // 开发者根据需要写入业务逻辑。
+    });
+    avPlayer.on('seekDone', (seekDoneTime:number) => {
+        // 开发者根据需要写入业务逻辑。
+    });
+    avPlayer.on('speedDone', (speed:number) => {
+        // 开发者根据需要写入业务逻辑。
+    });
+    avPlayer.on('volumeChange', (vol: number) => {
+        // 开发者根据需要写入业务逻辑。
+    });
+    avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
+        // 开发者根据需要写入业务逻辑。
+    });
+    avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
+        // 开发者根据需要写入业务逻辑。
+    });
+    ```
 
 3. 设置资源：设置属性url，AVPlayer进入initialized状态。
    > **说明：**
@@ -57,13 +104,94 @@
    > 
    > 此外，如果需要设置音频渲染信息，则只允许在initialized状态下，第一次调用prepare()之前设置，以便音频渲染器信息在之后生效。若媒体源包含视频，则usage默认值为STREAM_USAGE_MOVIE，否则usage默认值为STREAM_USAGE_MUSIC。rendererFlags默认值为0。为了确保音频行为符合使用预期，建议根据具体业务场景和实际需求，主动配置[audio.AudioRendererInfo](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiorendererinfo8)，为音频选择恰当的流类型[usage](../../media/audio/using-right-streamusage-and-sourcetype.md)。
 
+    ```ts
+    let url = 'https://xxx.xxx.xxx.mp3';
+    if (avPlayer == null) {
+        return;
+    }
+    avPlayer.url = url;
+    ```
+
 4. 准备播放：调用prepare()，AVPlayer进入prepared状态，此时可以获取duration，设置音量。
+
+    ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    avPlayer.prepare((err: BusinessError) => {
+        if (err) {
+            console.error('Failed to prepare,error message is :' + err.message);
+        } else {
+            console.info('Succeeded in preparing');
+        }
+    });
+    ```
 
 5. 音频播控：播放play()，暂停pause()，跳转seek()，停止stop() 等操作。
 
+    ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    // 播放操作。
+    avPlayer.play().then(() => {
+        console.info('Succeeded in playing');
+    }, (err: BusinessError) => {
+        console.error('Failed to play,error message is :' + err.message);
+    });
+    // 暂停操作。
+    avPlayer.pause((err: BusinessError) => {
+        if (err) {
+            console.error('Failed to pause,error message is :' + err.message);
+        } else {
+            console.info('Succeeded in pausing');
+        }
+    });
+    // 跳转操作。
+    let seekTime: number = 1000;
+    avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC);
+    // 停止操作。
+    avPlayer.stop((err: BusinessError) => {
+        if (err) {
+            console.error('Failed to stop,error message is :' + err.message);
+        } else {
+            console.info('Succeeded in stopping');
+        }
+    });
+    ```
+
 6. （可选）更换资源：调用reset()重置资源，AVPlayer重新进入idle状态，允许更换资源url。
 
+    ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    avPlayer.reset((err: BusinessError) => {
+        avPlayer.url = url;
+        if (err) {
+            console.error('Failed to reset,error message is :' + err.message);
+        } else {
+            console.info('Succeeded in resetting');
+        }
+    });
+    // 更换url。
+    let url = 'https://xxx.xxx.xxx.mp3';
+    if (avPlayer == null) {
+        return;
+    }
+    avPlayer.url = url;
+    ```
+
 7. 退出播放：调用release()销毁实例，AVPlayer进入released状态，退出播放。
+
+    ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    avPlayer.release((err: BusinessError) => {
+        if (err) {
+            console.error('Failed to release,error message is :' + err.message);
+        } else {
+            console.info('Succeeded in releasing');
+        }
+    });
+    ```
 
 ## 运行完整示例
 

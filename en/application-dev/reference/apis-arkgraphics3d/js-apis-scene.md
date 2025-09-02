@@ -1,4 +1,9 @@
 # @ohos.graphics.scene (ArkGraphics 3D)
+<!--Kit: ArkGraphics 3D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @zzhao0-->
+<!--SE: @zdustc-->
+<!--TSE: @zhangyue283-->
 
 The @ohos.graphics.scene module brings together APIs for 3D development, streamlining the process for you to export and use them.
 

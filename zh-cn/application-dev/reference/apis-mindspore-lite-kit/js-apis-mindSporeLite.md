@@ -1,5 +1,12 @@
 # @ohos.ai.mindSporeLite (端侧AI框架)
 
+<!--Kit: MindSpore Lite Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @zhuguodong8-->
+<!--Designer: @zhuguodong8; @jjfeing-->
+<!--Tester: @principal87-->
+<!--Adviser: @ge-yafang-->
+
 MindSpore Lite是一个轻量化、高性能的端侧AI引擎，提供了标准的模型推理和训练接口，内置通用硬件高性能算子库，支持Neural Network Runtime Kit使能AI专用芯片加速推理，助力打造全场景智能应用。
 
 本模块主要介绍MindSpore Lite AI引擎支持模型端侧推理/训练的相关能力。
@@ -26,10 +33,10 @@ loadModelFromFile(model: string, callback: Callback&lt;Model&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明                     |
-| -------- | ------------------------- | ---- | ------------------------ |
-| model    | string                    | 是   | 模型的完整输入路径。     |
-| callback | Callback<[Model](#model)> | 是   | 回调函数。返回模型对象。 |
+| 参数名   | 类型                      | 必填 | 说明                                             |
+| -------- | ------------------------- | ---- | ------------------------------------------------ |
+| model    | string                    | 是   | 模型的完整输入路径。字符串长度限制跟随文件系统。 |
+| callback | Callback<[Model](#model)> | 是   | 回调函数。返回模型对象。                         |
 
 **示例：** 
 
@@ -37,7 +44,11 @@ loadModelFromFile(model: string, callback: Callback&lt;Model&gt;): void
 let modelFile : string = '/path/to/xxx.ms';
 mindSporeLite.loadModelFromFile(modelFile, (mindSporeLiteModel : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
-  console.info(modelInputs[0].name);
+  if (modelInputs == null) {
+    console.error('MS_LITE_ERR: getInputs failed.')
+  } else {
+    console.info(modelInputs[0].name);
+  }
 })
 ```
 ## mindSporeLite.loadModelFromFile
@@ -52,7 +63,7 @@ loadModelFromFile(model: string, context: Context, callback: Callback&lt;Model&g
 
 | 参数名   | 类型                                | 必填 | 说明                   |
 | -------- | ----------------------------------- | ---- | ---------------------- |
-| model    | string                              | 是   | 模型的完整输入路径。   |
+| model    | string                              | 是   | 模型的完整输入路径。字符串长度限制跟随文件系统。 |
 | context | [Context](#context) | 是 | 运行环境的配置信息。 |
 | callback | Callback<[Model](#model)> | 是   | 回调函数。返回模型对象。 |
 
@@ -64,7 +75,11 @@ context.target = ['cpu'];
 let modelFile : string = '/path/to/xxx.ms';
 mindSporeLite.loadModelFromFile(modelFile, context, (mindSporeLiteModel : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
-  console.info(modelInputs[0].name);
+  if (modelInputs == null) {
+    console.error('MS_LITE_ERR: getInputs failed.')
+  } else {
+    console.info(modelInputs[0].name);
+  }
 })
 ```
 ## mindSporeLite.loadModelFromFile
@@ -77,10 +92,10 @@ loadModelFromFile(model: string, context?: Context): Promise&lt;Model&gt;
 
 **参数：**
 
-| 参数名  | 类型                | 必填 | 说明                                          |
-| ------- | ------------------- | ---- | --------------------------------------------- |
-| model   | string              | 是   | 模型的完整输入路径。                          |
-| context | [Context](#context) | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。 |
+| 参数名  | 类型                | 必填 | 说明                                             |
+| ------- | ------------------- | ---- | ------------------------------------------------ |
+| model   | string              | 是   | 模型的完整输入路径。字符串长度限制跟随文件系统。 |
+| context | [Context](#context) | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。    |
 
 **返回值：**
 
@@ -94,7 +109,11 @@ loadModelFromFile(model: string, context?: Context): Promise&lt;Model&gt;
 let modelFile = '/path/to/xxx.ms';
 mindSporeLite.loadModelFromFile(modelFile).then((mindSporeLiteModel : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
-  console.info(modelInputs[0].name);
+  if (modelInputs == null) {
+    console.error('MS_LITE_ERR: getInputs failed.')
+  } else {
+    console.info(modelInputs[0].name);
+  }
 })
 ```
 ## mindSporeLite.loadModelFromBuffer
@@ -115,9 +134,9 @@ loadModelFromBuffer(model: ArrayBuffer, callback: Callback&lt;Model&gt;): void
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let modelFile = 'xxx.ms';
 let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
@@ -127,7 +146,9 @@ globalContext.getApplicationContext().resourceManager.getRawFileContent(modelFil
     let modelInputs: mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
     console.info('MS_LITE_LOG: ' + modelInputs[0].name);
   })
-})
+}).catch((error: BusinessError) => {
+  console.error("getRawFileContent promise error is " + error);
+});
 ```
 ## mindSporeLite.loadModelFromBuffer
 
@@ -148,9 +169,9 @@ loadModelFromBuffer(model: ArrayBuffer, context: Context, callback: Callback&lt;
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let modelFile = 'xxx.ms';
 let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
@@ -162,7 +183,9 @@ globalContext.getApplicationContext().resourceManager.getRawFileContent(modelFil
     let modelInputs: mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
     console.info('MS_LITE_LOG: ' + modelInputs[0].name);
   })
-})
+}).catch((error: BusinessError) => {
+  console.error("getRawFileContent promise error is " + error);
+});
 ```
 ## mindSporeLite.loadModelFromBuffer
 
@@ -188,9 +211,9 @@ loadModelFromBuffer(model: ArrayBuffer, context?: Context): Promise&lt;Model&gt;
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let modelFile = 'xxx.ms';
 let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
@@ -200,7 +223,9 @@ globalContext.getApplicationContext().resourceManager.getRawFileContent(modelFil
     let modelInputs: mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
     console.info('MS_LITE_LOG: ' + modelInputs[0].name);
   })
-})
+}).catch((error: BusinessError) => {
+  console.error("getRawFileContent promise error is " + error);
+});
 ```
 ## mindSporeLite.loadModelFromFd
 
@@ -214,7 +239,7 @@ loadModelFromFd(model: number, callback: Callback&lt;Model&gt;): void
 
 | 参数名   | 类型                                | 必填 | 说明                   |
 | -------- | ----------------------------------- | ---- | ---------------------- |
-| model    | number                         | 是   | 模型的文件描述符。 |
+| model    | number                         | 是   | 模型的文件描述符。跟随文件系统返回fd值传入。 |
 | callback | Callback<[Model](#model)> | 是   | 回调函数。返回模型对象。 |
 
 **示例：** 
@@ -225,7 +250,11 @@ let modelFile = '/path/to/xxx.ms';
 let file = fileIo.openSync(modelFile, fileIo.OpenMode.READ_ONLY);
 mindSporeLite.loadModelFromFd(file.fd, (mindSporeLiteModel : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
-  console.info(modelInputs[0].name);
+  if (modelInputs == null) {
+    console.error('MS_LITE_ERR: getInputs failed.')
+  } else {
+    console.info(modelInputs[0].name);
+  }
 })
 ```
 ## mindSporeLite.loadModelFromFd
@@ -240,7 +269,7 @@ loadModelFromFd(model: number, context: Context, callback: Callback&lt;Model&gt;
 
 | 参数名   | 类型                                | 必填 | 说明                   |
 | -------- | ----------------------------------- | ---- | ---------------------- |
-| model    | number                   | 是   | 模型的文件描述符。 |
+| model    | number                   | 是   | 模型的文件描述符。跟随文件系统返回fd值传入。 |
 | context | [Context](#context) | 是  | 运行环境的配置信息。 |
 | callback | Callback<[Model](#model)> | 是   | 回调函数。返回模型对象。 |
 
@@ -254,7 +283,11 @@ context.target = ['cpu'];
 let file = fileIo.openSync(modelFile, fileIo.OpenMode.READ_ONLY);
 mindSporeLite.loadModelFromFd(file.fd, context, (mindSporeLiteModel : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
-  console.info(modelInputs[0].name);
+  if (modelInputs == null) {
+    console.error('MS_LITE_ERR: getInputs failed.')
+  } else {
+    console.info(modelInputs[0].name);
+  }
 })
 ```
 ## mindSporeLite.loadModelFromFd
@@ -269,7 +302,7 @@ loadModelFromFd(model: number, context?: Context): Promise&lt;Model&gt;
 
 | 参数名  | 类型                | 必填 | 说明                                          |
 | ------- | ------------------- | ---- | --------------------------------------------- |
-| model   | number              | 是   | 模型的文件描述符。                            |
+| model   | number              | 是   | 模型的文件描述符。跟随文件系统返回fd值传入。  |
 | context | [Context](#context) | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。 |
 
 **返回值：**
@@ -286,7 +319,11 @@ let modelFile = '/path/to/xxx.ms';
 let file = fileIo.openSync(modelFile, fileIo.OpenMode.READ_ONLY);
 mindSporeLite.loadModelFromFd(file.fd).then((mindSporeLiteModel: mindSporeLite.Model) => {
   let modelInputs: mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
-  console.info(modelInputs[0].name);
+  if (modelInputs == null) {
+    console.error('MS_LITE_ERR: getInputs failed.')
+  } else {
+    console.info(modelInputs[0].name);
+  }
 })
 ```
 
@@ -300,11 +337,11 @@ loadTrainModelFromFile(model: string, trainCfg?: TrainCfg, context?: Context): P
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                                           |
-| -------- | ----------------------- | ---- | ---------------------------------------------- |
-| model    | string                  | 是   | 模型的完整输入路径。                           |
-| trainCfg | [TrainCfg](#traincfg12) | 否   | 模型训练配置。默认值为TrainCfg各属性默认值。   |
-| context  | [Context](#context)     | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。 |
+| 参数名   | 类型                    | 必填 | 说明                                             |
+| -------- | ----------------------- | ---- | ------------------------------------------------ |
+| model    | string                  | 是   | 模型的完整输入路径。字符串长度限制跟随文件系统。 |
+| trainCfg | [TrainCfg](#traincfg12) | 否   | 模型训练配置。默认值为TrainCfg各属性默认值。     |
+| context  | [Context](#context)     | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。    |
 
 **返回值：**
 
@@ -318,7 +355,11 @@ loadTrainModelFromFile(model: string, trainCfg?: TrainCfg, context?: Context): P
 let modelFile = '/path/to/xxx.ms';
 mindSporeLite.loadTrainModelFromFile(modelFile).then((mindSporeLiteModel : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
-  console.info(modelInputs[0].name);
+  if (modelInputs == null) {
+    console.error('MS_LITE_ERR: getInputs failed.')
+  } else {
+    console.info(modelInputs[0].name);
+  }
 })
 ```
 
@@ -347,9 +388,9 @@ loadTrainModelFromBuffer(model: ArrayBuffer, trainCfg?: TrainCfg, context?: Cont
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let modelFile = 'xxx.ms';
 let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
@@ -358,7 +399,9 @@ globalContext.getApplicationContext().resourceManager.getRawFileContent(modelFil
   mindSporeLite.loadTrainModelFromBuffer(modelBuffer).then((mindSporeLiteModel: mindSporeLite.Model) => {
     console.info("MSLITE trainMode: ", mindSporeLiteModel.trainMode);
   })
-})
+}).catch((error: BusinessError) => {
+  console.error("getRawFileContent promise error is " + error);
+});
 ```
 
 ## mindSporeLite.loadTrainModelFromFd<sup>12+</sup>
@@ -371,11 +414,11 @@ loadTrainModelFromFd(model: number, trainCfg?: TrainCfg, context?: Context): Pro
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                                          |
-| -------- | ----------------------- | ---- | --------------------------------------------- |
-| model    | number                  | 是   | 训练模型的文件描述符。                        |
-| trainCfg | [TrainCfg](#traincfg12) | 否   | 模型训练配置。默认值为TrainCfg各属性默认值。  |
-| context  | [Context](#context)     | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。 |
+| 参数名   | 类型                    | 必填 | 说明                                             |
+| -------- | ----------------------- | ---- | ------------------------------------------------ |
+| model    | number                  | 是   | 训练模型的文件描述符。跟随文件系统返回fd值传入。 |
+| trainCfg | [TrainCfg](#traincfg12) | 否   | 模型训练配置。默认值为TrainCfg各属性默认值。     |
+| context  | [Context](#context)     | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。    |
 
 **返回值：**
 
@@ -541,7 +584,7 @@ NNRt设备信息描述，包含设备ID，设备名称等信息。
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
-### deviceID
+### deviceID<sup>12+</sup>
 
 deviceID() : bigint
 
@@ -558,19 +601,20 @@ deviceID() : bigint
 **示例：** 
 
 ```ts
-let allDevices = mindSporeLite.getAllNNRTDeviceDescriptions();
-if (allDevices == null) {
-  console.error('getAllNNRTDeviceDescriptions is NULL.');
-}
 let context: mindSporeLite.Context = {};
 context.target = ["nnrt"];
 context.nnrt = {};
-for (let i: number = 0; i < allDevices.length; i++) {
-  console.info(allDevices[i].deviceID().toString());
+let allDevices = mindSporeLite.getAllNNRTDeviceDescriptions();
+if (allDevices == null) {
+  console.error('getAllNNRTDeviceDescriptions is NULL.');
+} else {
+  for (let i: number = 0; i < allDevices.length; i++) {
+    console.info(allDevices[i].deviceID().toString());
+  }
 }
 ```
 
-### deviceType
+### deviceType<sup>12+</sup>
 
 deviceType() : NNRTDeviceType
 
@@ -587,19 +631,20 @@ deviceType() : NNRTDeviceType
 **示例：** 
 
 ```ts
-let allDevices = mindSporeLite.getAllNNRTDeviceDescriptions();
-if (allDevices == null) {
-  console.error('getAllNNRTDeviceDescriptions is NULL.');
-}
 let context: mindSporeLite.Context = {};
 context.target = ["nnrt"];
 context.nnrt = {};
-for (let i: number = 0; i < allDevices.length; i++) {
-  console.info(allDevices[i].deviceType().toString());
+let allDevices = mindSporeLite.getAllNNRTDeviceDescriptions();
+if (allDevices == null) {
+  console.error('getAllNNRTDeviceDescriptions is NULL.');
+} else {
+  for (let i: number = 0; i < allDevices.length; i++) {
+    console.info(allDevices[i].deviceType().toString());
+  }
 }
 ```
 
-### deviceName
+### deviceName<sup>12+</sup>
 
 deviceName() : string
 
@@ -616,15 +661,16 @@ deviceName() : string
 **示例：** 
 
 ```ts
-let allDevices = mindSporeLite.getAllNNRTDeviceDescriptions();
-if (allDevices == null) {
-  console.error('getAllNNRTDeviceDescriptions is NULL.');
-}
 let context: mindSporeLite.Context = {};
 context.target = ["nnrt"];
 context.nnrt = {};
-for (let i: number = 0; i < allDevices.length; i++) {
-  console.info(allDevices[i].deviceName().toString());
+let allDevices = mindSporeLite.getAllNNRTDeviceDescriptions();
+if (allDevices == null) {
+  console.error('getAllNNRTDeviceDescriptions is NULL.');
+} else {
+  for (let i: number = 0; i < allDevices.length; i++) {
+    console.info(allDevices[i].deviceName().toString());
+  }
 }
 ```
 
@@ -723,7 +769,11 @@ getInputs(): MSTensor[]
 let modelFile = '/path/to/xxx.ms';
 mindSporeLite.loadModelFromFile(modelFile).then((mindSporeLiteModel : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
-  console.info(modelInputs[0].name);
+  if (modelInputs == null) {
+    console.error('MS_LITE_ERR: getInputs failed.')
+  } else {
+    console.info(modelInputs[0].name);
+  }
 })
 ```
 ### predict
@@ -744,9 +794,9 @@ predict(inputs: MSTensor[], callback: Callback&lt;MSTensor[]&gt;): void
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inputName = 'input_data.bin';
 let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
@@ -763,7 +813,9 @@ globalContext.getApplicationContext().resourceManager.getRawFileContent(inputNam
       console.info('MS_LITE_LOG: ' + output[i].toString());
     }
   })
-})
+}).catch((error: BusinessError) => {
+  console.error("getRawFileContent promise error is " + error);
+});
 ```
 ### predict
 
@@ -788,9 +840,9 @@ predict(inputs: MSTensor[]): Promise&lt;MSTensor[]&gt;
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inputName = 'input_data.bin';
 let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
@@ -806,7 +858,9 @@ globalContext.getApplicationContext().resourceManager.getRawFileContent(inputNam
       console.info(output[i].toString());
     }
   })
-})
+}).catch((error: BusinessError) => {
+  console.error("getRawFileContent promise error is " + error);
+});
 ```
 
 ### resize
@@ -892,9 +946,9 @@ getWeights(): MSTensor[]
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let modelFile = 'xxx.ms';
 let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
@@ -911,7 +965,9 @@ globalContext.getApplicationContext().resourceManager.getRawFileContent(modelFil
       console.info("MS_LITE weights: ", printStr);
     }
   })
-})
+}).catch((error: BusinessError) => {
+  console.error("getRawFileContent promise error is " + error);
+});
 ```
 
 ### updateWeights<sup>12+</sup>
@@ -937,9 +993,9 @@ updateWeights(weights: MSTensor[]): boolean
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let modelFile = 'xxx.ms';
 let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
@@ -952,7 +1008,9 @@ globalContext.getApplicationContext().resourceManager.getRawFileContent(modelFil
       console.error('MS_LITE_LOG: updateWeights failed.')
     }
   })
-})
+}).catch((error: BusinessError) => {
+  console.error("getRawFileContent promise error is " + error);
+});
 ```
 
 ### setupVirtualBatch<sup>12+</sup>
@@ -980,9 +1038,9 @@ setupVirtualBatch(virtualBatchMultiplier: number, lr: number, momentum: number):
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let modelFile = 'xxx.ms';
 let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
@@ -994,7 +1052,9 @@ globalContext.getApplicationContext().resourceManager.getRawFileContent(modelFil
       console.error('MS_LITE setupVirtualBatch failed.')
     }
   })
-})
+}).catch((error: BusinessError) => {
+  console.error("getRawFileContent promise error is " + error);
+});
 ```
 
 ### exportModel<sup>12+</sup>
@@ -1009,7 +1069,7 @@ exportModel(modelFile: string, quantizationType?: QuantizationType, exportInfere
 
 | 参数名              | 类型                                    | 必填 | 说明                                                         |
 | ------------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| modelFile           | string                                  | 是   | 导出模型的文件路径。                                         |
+| modelFile           | string                                  | 是   | 导出模型的文件路径。字符串长度限制跟随文件系统。             |
 | quantizationType    | [QuantizationType](#quantizationtype12) | 否   | 量化类型，默认为NO_QUANT。                                   |
 | exportInferenceOnly | boolean                                 | 否   | 是否只导出推理模型。true表示只导出推理模型，false表示导出训练和推理两个模型。默认为true。 |
 | outputTensorName    | string[]                                | 否   | 设置导出模型的输出张量的名称。默认为空字符串数组，表示全量导出。 |
@@ -1049,7 +1109,7 @@ exportWeightsCollaborateWithMicro(weightFile: string, isInference?: boolean, ena
 
 | 参数名                | 类型     | 必填 | 说明                                                         |
 | --------------------- | -------- | ---- | ------------------------------------------------------------ |
-| weightFile            | string   | 是   | 权重文件路径。                                               |
+| weightFile            | string   | 是   | 权重文件路径。字符串长度限制跟随文件系统。                   |
 | isInference           | boolean  | 否   | 是否从推理模型中导出权重。true表示从推理模型中导出权重，目前只支持true，默认为true。 |
 | enableFp16            | boolean  | 否   | 浮点权重是否以float16格式保存。true表示以float16格式保存，false表示不以float16格式保存。默认为false。 |
 | changeableWeightsName | string[] | 否   | 设置可变权重的名称。默认为空字符串数组。                     |
@@ -1124,9 +1184,9 @@ getData(): ArrayBuffer
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inputName = 'input_data.bin';
 let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
@@ -1142,7 +1202,9 @@ globalContext.getApplicationContext().resourceManager.getRawFileContent(inputNam
       console.info(output[i].toString());
     }
   })
-})
+}).catch((error: BusinessError) => {
+  console.error("getRawFileContent promise error is " + error);
+});
 ```
 
 ### setData
@@ -1162,9 +1224,9 @@ setData(inputArray: ArrayBuffer): void
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inputName = 'input_data.bin';
 let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
@@ -1174,7 +1236,9 @@ globalContext.getApplicationContext().resourceManager.getRawFileContent(inputNam
   let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(modelFile);
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
   modelInputs[0].setData(inputBuffer);
-})
+}).catch((error: BusinessError) => {
+  console.error("getRawFileContent promise error is " + error);
+});
 ```
 
 ## DataType

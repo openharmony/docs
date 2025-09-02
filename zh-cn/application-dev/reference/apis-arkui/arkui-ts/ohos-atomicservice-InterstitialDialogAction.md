@@ -1,5 +1,12 @@
 # InterstitialDialogAction
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @qq_36417014-->
+<!--Designer: @autojuan-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @zengyawen-->
+
 InterstitialDialogAction弹框在原子化服务中用于在保持当前的上下文环境时，临时展示用户需关注的信息或待处理的操作，用户点击弹框的不同区域可以触发相应的动作。
 
 > **说明：**
@@ -68,9 +75,9 @@ closeDialog(): void
 
 设置弹框特有的属性以及提供给用户自定义的点击触发动作。
 
-| 名称| 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | - | - | - | - |
-| uiContext | [UIContext](../js-apis-arkui-UIContext.md#uicontext) | 是 | UI上下文实例。 |
+| uiContext | [UIContext](../arkts-apis-uicontext-uicontext.md) | 是 | UI上下文实例。 |
 | bottomOffsetType | [BottomOffset](#bottomoffset) | 否 | 弹框距离底部偏移类型。默认值为[BottomOffset](#bottomoffset).OFFSET_FOR_BAR。 |
 | title | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹框标题文本。默认为空字符串。 |
 | subtitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹框副标题文本。默认为空字符串。 |

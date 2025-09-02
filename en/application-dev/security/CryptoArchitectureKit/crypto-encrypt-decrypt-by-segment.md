@@ -1,5 +1,12 @@
 # Encryption and Decryption by Segment
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 The Crypto framework does not have a limit on the amount of the data to be passed in one time or cumulatively during the encryption/decryption process. However, when the amount of data is greater than 2 MB, you are advised to pass in and encrypt/decrypt the data by segment to improve processing efficiency.
 
 ## Symmetric Encryption and Decryption
@@ -25,7 +32,6 @@ If the plaintext length is greater than the data length supported by a single en
 The amount of data to be passed in each time varies, depending on the key specifications.
 
 - RSA: The input data varies depending on the padding mode. Determine the amount of the data to be passed in at a time based on [RSA specifications](crypto-asym-encrypt-decrypt-spec.md#rsa).
-- SM2: The amount of the data to be encrypted must be of the fixed length. For details, see [SM2](crypto-asym-encrypt-decrypt-spec.md#sm2).
 
 The value returned by each **doFinal** must be checked. If the return value is not null, obtain and combine the data segments into the complete ciphertext or plaintext.
 

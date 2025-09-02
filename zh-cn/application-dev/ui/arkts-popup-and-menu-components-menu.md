@@ -1,4 +1,10 @@
 # 菜单控制（Menu）
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @Armstrong15-->
+<!--Designer: @zhanghaibo0-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 Menu是菜单接口，一般用于鼠标右键弹窗、点击弹窗等。具体用法请参考[菜单控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)。
 
@@ -43,6 +49,7 @@ Button('click for Menu')
 
 ```ts
 class Tmp {
+  // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
   iconStr2: ResourceStr = $r("app.media.view_list_filled");
 
   set(val: Resource) {
@@ -163,6 +170,7 @@ Button('click for Menu')
 @Component
 struct Index {
   @State message: string = 'Hello World';
+  // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
   private iconStr: Resource = $r('app.media.startIcon');
   @State index: number = 0;
   @State arrayStr: Array<string> = ['上半屏', '中轴', '下半屏'];
@@ -312,6 +320,7 @@ struct DirectiveMenuExample {
     Column() {
       Menu() {
         MenuItemGroup() {
+          // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 1", labelInfo: "" })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 2", labelInfo: "" })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 3", labelInfo: "" })

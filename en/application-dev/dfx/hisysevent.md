@@ -1,6 +1,6 @@
-# HiSysEvent
+# hisysevent
 
-HiSysEvent is a built-in tool that helps you subscribe to real-time system events and query historical system events.
+hisysevent is a built-in tool that helps you subscribe to real-time system events and query historical system events.
 
 ## Environment requirements
 
@@ -21,7 +21,7 @@ HiSysEvent is a built-in tool that helps you subscribe to real-time system event
   > **NOTE**<br>
   > With the **-g** option, four event types are available: **FAULT**, **STATISTIC**, **SECURITY**, and **BEHAVIOR**.
   >
-  > If no event type is specified, HiSysEvent subscribes to all types of system events.
+  > If no event type is specified, hisysevent subscribes to all types of system events.
 
   Example: Subscribe to system events of the **FAULT** type.
 
@@ -71,7 +71,7 @@ HiSysEvent is a built-in tool that helps you subscribe to real-time system event
   > **NOTE**<br>
   > With the **-g** option, four event types are available: **FAULT**, **STATISTIC**, **SECURITY**, and **BEHAVIOR**.
   >
-  > If no event type is specified, HiSysEvent queries all types of system events.
+  > If no event type is specified, hisysevent queries all types of system events.
 
   Example: Query system events of the **SECURITY** type.
 

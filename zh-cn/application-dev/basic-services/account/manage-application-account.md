@@ -1,5 +1,12 @@
 # 管理应用账号
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
+
 应用开发者可以使用[应用账号SDK](../../reference/apis-basic-services-kit/js-apis-appAccount.md)管理本应用的账号数据。
 
 能力限制：应用卸载场景下，被卸载应用的账号数据会被删除；本地账号删除场景下，被删除本地账号下的所有应用的账号数据会被删除。
@@ -39,10 +46,10 @@
 
    ```ts
    appAccountManager.createAccount(name, options).then(()=>{
-    console.log('createAccount successfully');
-  }).catch((err: BusinessError)=>{
-    console.error('createAccount failed, error: ' + JSON.stringify(err));
-  });
+       console.info('createAccount successfully');
+   }).catch((err: BusinessError)=>{
+       console.error(`createAccount failed, error: code is ${err.code}, message is ${err.message}`);
+   });
    ```
 
 ## 查询应用账号列表
@@ -166,7 +173,7 @@
 指定要删除的账号名称，调用[removeAccount](../../reference/apis-basic-services-kit/js-apis-appAccount.md#removeaccount9)接口删除账号。
 
    ```ts
-   let name: string = 'Zhangsan';
+   let name: string = 'ZhangSan';
    appAccountManager.removeAccount(name).then(() => {
        console.log('removeAccount successfully');
    }).catch((err: BusinessError) => {

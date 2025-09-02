@@ -1,6 +1,12 @@
 # @ohos.bundle.shortcutManager (shortcutManager模块)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
-本模块提供应用对于快捷方式管理能力，包括设置快捷方式是否显示等。
+本模块提供应用对于[快捷方式](../../quick-start/typical-scenario-configuration.md)的管理能力，包括设置快捷方式是否显示等。
 
 > **说明：**
 >
@@ -16,7 +22,7 @@ import { shortcutManager } from '@kit.AbilityKit';
 
 setShortcutVisibleForSelf(id: string, visible: boolean) : Promise\<void>
 
-设置当前应用指定ID对应的快捷方式是否显示，使用Promise异步回调。
+设置当前应用指定的快捷方式是否显示，使用Promise异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
 
@@ -93,7 +99,7 @@ type ShortcutInfo = _ShortcutInfo
 
 | 类型                                                         | 说明           |
 | ------------------------------------------------------------ | -------------- |
-| [_ShortcutInfo](./js-apis-bundleManager-shortcutInfo.md#shortcutinfo) | 应用module.json5配置文件中定义的快捷方式信息。 |
+| [_ShortcutInfo](./js-apis-bundleManager-shortcutInfo.md#shortcutinfo-1) | 应用module.json5配置文件中定义的快捷方式信息。 |
 
 ## ShortcutWant
 

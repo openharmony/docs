@@ -1,5 +1,12 @@
 # SM2签名数据格式转换 (C/C++)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 当前支持DER格式与r、s格式互转的能力。
 开发者可指定SM2密文的参数，将其转换成DER格式密文。反之，也可以从DER格式密文中提取出SM2的具体密文参数。
 
@@ -53,6 +60,7 @@ static OH_Crypto_ErrCode doTestSm2DataChange()
         OH_CryptoEccSignatureSpec_Destroy(spec);
         return ret;
     }
+    OH_Crypto_FreeDataBlob(&sig);
     OH_CryptoEccSignatureSpec_Destroy(spec);
     spec = NULL;
     return CRYPTO_SUCCESS;
@@ -98,6 +106,8 @@ static OH_Crypto_ErrCode doSm2GetRS() {
         OH_CryptoEccSignatureSpec_Destroy(eccSignSpec);
         return ret;
     }
+    OH_Crypto_FreeDataBlob(&r);
+    OH_Crypto_FreeDataBlob(&s);
     OH_CryptoEccSignatureSpec_Destroy(eccSignSpec);
     return CRYPTO_SUCCESS;
 }

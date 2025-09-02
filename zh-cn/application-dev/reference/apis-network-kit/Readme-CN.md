@@ -1,4 +1,10 @@
 # Network Kit（网络服务）<!--network-api-->
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
 
 - ArkTS API<!--network-api-arkts-->
   - [@ohos.net.connection (网络连接管理)](js-apis-net-connection.md)
@@ -38,6 +44,8 @@
     - [net_ssl_c_type.h](capi-net-ssl-c-type-h.md)
     - [net_websocket.h](capi-net-websocket-h.md)
     - [net_websocket_type.h](capi-net-websocket-type-h.md)
+    - [net_http.h](capi-net-http-h.md)
+    - [net_http_type.h](capi-net-http-type-h.md)
   - 结构体<!--network-struct-->
     - [NetConn_NetHandle](capi-netconnection-netconn-nethandle.md)
     - [NetConn_NetCapabilities](capi-netconnection-netconn-netcapabilities.md)
@@ -48,6 +56,9 @@
     - [NetConn_NetHandleList](capi-netconnection-netconn-nethandlelist.md)
     - [NetConn_NetSpecifier](capi-netconnection-netconn-netspecifier.md)
     - [NetConn_NetConnCallback](capi-netconnection-netconn-netconncallback.md)
+    - [NetConn_ProbeResultInfo](capi-netconnection-netconn-proberesultinfo.md)
+    - [NetConn_TraceRouteInfo](capi-netconnection-netconn-tracerouteinfo.md)
+    - [NetConn_TraceRouteOption](capi-netconnection-netconn-tracerouteoption.md)
     - [NetStack_CertBlob](capi-netstack-netstack-certblob.md)
     - [NetStack_CertificatePinning](capi-netstack-netstack-certificatepinning.md)
     - [NetStack_Certificates](capi-netstack-netstack-certificates.md)
@@ -58,6 +69,18 @@
     - [WebSocket_OpenResult](capi-netstack-websocket-openresult.md)
     - [WebSocket_Header](capi-netstack-websocket-header.md)
     - [WebSocket_RequestOptions](capi-netstack-websocket-requestoptions.md)
+    - [Http_Buffer](capi-netstack-http-buffer.md)
+    - [Http_HeaderValue](capi-netstack-http-headervalue.md)
+    - [Http_HeaderEntry](capi-netstack-http-headerentry.md)
+    - [Http_ClientCert](capi-netstack-http-clientcert.md)
+    - [Http_CustomProxy](capi-netstack-http-customproxy.md)
+    - [Http_Proxy](capi-netstack-http-proxy.md)
+    - [Http_PerformanceTiming](capi-netstack-http-performancetiming.md)
+    - [Http_RequestOptions](capi-netstack-http-requestoptions.md)
+    - [Http_Response](capi-netstack-http-response.md)
+    - [Http_Request](capi-netstack-http-request.md)
+    - [Http_EventsHandler](capi-netstack-http-eventshandler.md)
+    - [Http_Headers](capi-netstack-http-headers.md)
 - 已停止维护的接口<!--network-arkts-dep-->
   - [@system.network (网络状态)](js-apis-system-network.md)
   - [@system.fetch (数据请求)](js-apis-system-fetch.md)

@@ -1,4 +1,10 @@
 # 自定义组件节点 (FrameNode)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
@@ -120,8 +126,8 @@ class MyNodeController extends NodeController {
 
   operationFrameNodeWithFrameNode(frameNode: FrameNode | undefined | null) {
     if (frameNode) {
-      console.log(TEST_TAG + " get ArkTSNode success.")
-      console.log(TEST_TAG + " check rootNode whether is modifiable " + frameNode.isModifiable());
+      console.info(TEST_TAG + " get ArkTSNode success.")
+      console.info(TEST_TAG + " check rootNode whether is modifiable " + frameNode.isModifiable());
     }
     if (this.uiContext) {
       let frameNode1 = new FrameNode(this.uiContext);
@@ -134,33 +140,33 @@ class MyNodeController extends NodeController {
         .position({ x: 120, y: 60 })
       try {
         frameNode?.appendChild(frameNode1);
-        console.log(TEST_TAG + " appendChild success ");
+        console.info(TEST_TAG + " appendChild success ");
       } catch (err) {
-        console.log(TEST_TAG + " appendChild fail :" + (err as BusinessError).code + " : " +
+        console.error(TEST_TAG + " appendChild fail :" + (err as BusinessError).code + " : " +
         (err as BusinessError).message);
       }
       try {
         frameNode?.insertChildAfter(frameNode2, null);
-        console.log(TEST_TAG + " insertChildAfter success ");
+        console.info(TEST_TAG + " insertChildAfter success ");
       } catch (err) {
-        console.log(TEST_TAG + " insertChildAfter fail : " + (err as BusinessError).code + " : " +
+        console.error(TEST_TAG + " insertChildAfter fail : " + (err as BusinessError).code + " : " +
         (err as BusinessError).message);
       }
       setTimeout(() => {
         try {
           frameNode?.removeChild(frameNode?.getChild(0))
-          console.log(TEST_TAG + " removeChild success ");
+          console.info(TEST_TAG + " removeChild success ");
         } catch (err) {
-          console.log(TEST_TAG + " removeChild fail : " + (err as BusinessError).code + " : " +
+          console.error(TEST_TAG + " removeChild fail : " + (err as BusinessError).code + " : " +
           (err as BusinessError).message);
         }
       }, 2000)
       setTimeout(() => {
         try {
           frameNode?.clearChildren();
-          console.log(TEST_TAG + " clearChildren success ");
+          console.info(TEST_TAG + " clearChildren success ");
         } catch (err) {
-          console.log(TEST_TAG + " clearChildren fail : " + (err as BusinessError).code + " : " +
+          console.error(TEST_TAG + " clearChildren fail : " + (err as BusinessError).code + " : " +
           (err as BusinessError).message);
         }
       }, 4000)
@@ -185,10 +191,10 @@ class MyNodeController extends NodeController {
     try {
       if (parent && child) {
         parent.appendChild(child);
-        console.log(TEST_TAG + " appendChild success ");
+        console.info(TEST_TAG + " appendChild success ");
       }
     } catch (err) {
-      console.log(TEST_TAG + " appendChild fail : " + (err as BusinessError).code + " : " +
+      console.error(TEST_TAG + " appendChild fail : " + (err as BusinessError).code + " : " +
       (err as BusinessError).message);
     }
   }
@@ -425,7 +431,7 @@ function buttonBuilder(params: Params) {
     .borderWidth(2)
     .backgroundColor(Color.Orange)
     .onClick((event: ClickEvent) => {
-      console.log(`Button ${JSON.stringify(event)}`);
+      console.info(`Button ${JSON.stringify(event)}`);
     })
 }
 
@@ -475,7 +481,7 @@ class MyNodeController extends NodeController {
   addClickEvent(frameNode: FrameNode | null | undefined) {
     if (frameNode) {
       frameNode.commonEvent.setOnClick((event: ClickEvent) => {
-        console.log(`FrameNode ${JSON.stringify(event)}`);
+        console.info(`FrameNode ${JSON.stringify(event)}`);
       })
     }
   }
@@ -493,7 +499,7 @@ struct Index {
         Button("modify ArkTS-FrameNode")
           .onClick(() => {
             // 获取到的是当前页面中的开发者创建的FrameNode对象，该节点可修改。即节点大小与位置。
-            console.log("Check the weather the node can be modified " + this.myNodeController?.frameNode
+            console.info("Check the weather the node can be modified " + this.myNodeController?.frameNode
             ?.isModifiable());
             this.myNodeController.modifyNode(this.myNodeController?.frameNode, { width: 150, height: 100 }, {
               x: 100,
@@ -503,7 +509,7 @@ struct Index {
         Button("modify FrameNode get by BuilderNode")
           .onClick(() => {
             // 获取到的是当前页面中的BuilderNode的根节点，该节点不可修改。即节点大小与位置未发生改变。
-            console.log("Check the weather the node can be modified " +
+            console.info("Check the weather the node can be modified " +
             this.myNodeController?.buttonNode?.getFrameNode()
             ?.isModifiable());
             this.myNodeController.modifyNode(this.myNodeController?.buttonNode?.getFrameNode(), {
@@ -514,7 +520,7 @@ struct Index {
         Button("modify proxyFrameNode get by search")
           .onClick(() => {
             // rootNode调用getParent()获取到的是当前页面中的NodeContainer节点，该节点不可修改。即节点大小与位置未发生改变。
-            console.log("Check the weather the node can be modified " + this.myNodeController?.rootNode?.getParent()
+            console.info("Check the weather the node can be modified " + this.myNodeController?.rootNode?.getParent()
             ?.isModifiable());
             this.myNodeController.modifyNode(this.myNodeController?.rootNode?.getParent(), {
               width: 500,
@@ -538,7 +544,7 @@ struct Index {
           .onClick(() => {
             // 获取到的是当前页面中的开发者创建的FrameNode对象，该节点可增加点击事件。
             // 增加的点击事件参与事件竞争，即点击事件会在该节点被消费且不不再向父组件冒泡。
-            console.log("Check the weather the node can be modified " + this.myNodeController?.rootNode?.getParent()
+            console.info("Check the weather the node can be modified " + this.myNodeController?.rootNode?.getParent()
             ?.isModifiable());
             this.myNodeController.addClickEvent(this.myNodeController?.frameNode)
           })
@@ -546,7 +552,7 @@ struct Index {
           .onClick(() => {
             // 获取到的是当前页面中的BuilderNode的根节点，该类节点可增加点击事件。
             // 点击的时候优先回调通过系统组件接口设置的click事件回调，然后回调通过commonEvent增加的click监听。
-            console.log("Check the weather the node can be modified " +
+            console.info("Check the weather the node can be modified " +
             this.myNodeController?.buttonNode?.getFrameNode()
             ?.isModifiable());
             this.myNodeController.addClickEvent(this.myNodeController?.buttonNode?.getFrameNode())
@@ -554,7 +560,7 @@ struct Index {
         Button("add click event to proxyFrameNode get by search")
           .onClick(() => {
             // rootNode调用getParent()获取到的是当前页面中的NodeContainer节点，该类节点可增加点击事件。
-            console.log("Check the weather the node can be modified " + this.myNodeController?.rootNode?.getParent()
+            console.info("Check the weather the node can be modified " + this.myNodeController?.rootNode?.getParent()
             ?.isModifiable());
             this.myNodeController.addClickEvent(this.myNodeController?.rootNode?.getParent());
           })
@@ -571,7 +577,7 @@ struct Index {
         .width("100%")
         .height(100)
         .onClick((event: ClickEvent) => {
-          console.log(`NodeContainer ${JSON.stringify(event)}`);
+          console.info(`NodeContainer ${JSON.stringify(event)}`);
         })
     }
     .padding({
@@ -661,7 +667,7 @@ class MyFrameNode extends FrameNode {
           y: this.uiContext.vp2px(this.offsetY)
         });
         let layoutPosition = child.getLayoutPosition();
-        console.log("child position:" + JSON.stringify(layoutPosition));
+        console.info("child position:" + JSON.stringify(layoutPosition));
       }
     }
     this.setLayoutPosition(position);
@@ -744,9 +750,9 @@ FrameNode提供了查询接口用于返回实体节点的基础信息。具体�
 
 查找获得FrameNode的方式包括三种：
 
-1. 使用[getFrameNodeById](../reference/apis-arkui/js-apis-arkui-UIContext.md#getframenodebyid12)获取。
+1. 使用[getFrameNodeById](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getframenodebyid12)获取。
 
-2. 使用[getFrameNodeByUniqueId](../reference/apis-arkui/js-apis-arkui-UIContext.md#getframenodebyuniqueid12)获取。
+2. 使用[getFrameNodeByUniqueId](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getframenodebyuniqueid12)获取。
 
 3. 通过[无感监听](../reference/apis-arkui/js-apis-arkui-observer.md)获取。
 
@@ -788,40 +794,40 @@ class MyNodeController extends NodeController {
 
   getPositionToWindow() {
     let positionToWindow = this.rootNode?.getPositionToWindow(); // 获取FrameNode相对于窗口的位置偏移
-    console.log(`${TEST_TAG} ${JSON.stringify(positionToWindow)}`);
+    console.info(`${TEST_TAG} ${JSON.stringify(positionToWindow)}`);
   }
 
   getPositionToParent() {
     let positionToParent = this.rootNode?.getPositionToParent(); // 获取FrameNode相对于父组件的位置偏移
-    console.log(`${TEST_TAG} ${JSON.stringify(positionToParent)}`);
+    console.info(`${TEST_TAG} ${JSON.stringify(positionToParent)}`);
   }
 
   getPositionToScreen() {
     let positionToScreen = this.rootNode?.getPositionToScreen(); // 获取FrameNode相对于屏幕的位置偏移
-    console.log(`${TEST_TAG} ${JSON.stringify(positionToScreen)}`);
+    console.info(`${TEST_TAG} ${JSON.stringify(positionToScreen)}`);
   }
 
   getGlobalPositionOnDisplay() {
     let positionOnGlobalDisplay = this.rootNode?.getGlobalPositionOnDisplay(); // 获取FrameNode相对于全局屏幕的位置偏移
-    console.log(`${TEST_TAG} ${JSON.stringify(positionOnGlobalDisplay)}`);
+    console.info(`${TEST_TAG} ${JSON.stringify(positionOnGlobalDisplay)}`);
   }
 
   getPositionToWindowWithTransform() {
     let positionToWindowWithTransform =
       this.rootNode?.getPositionToWindowWithTransform(); // 获取FrameNode相对于窗口带有绘制属性的位置偏移
-    console.log(`${TEST_TAG} ${JSON.stringify(positionToWindowWithTransform)}`);
+    console.info(`${TEST_TAG} ${JSON.stringify(positionToWindowWithTransform)}`);
   }
 
   getPositionToParentWithTransform() {
     let positionToParentWithTransform =
       this.rootNode?.getPositionToParentWithTransform(); // 获取FrameNode相对于父组件带有绘制属性的位置偏移
-    console.log(`${TEST_TAG} ${JSON.stringify(positionToParentWithTransform)}`);
+    console.info(`${TEST_TAG} ${JSON.stringify(positionToParentWithTransform)}`);
   }
 
   getPositionToScreenWithTransform() {
     let positionToScreenWithTransform =
       this.rootNode?.getPositionToScreenWithTransform(); // 获取FrameNode相对于屏幕带有绘制属性的位置偏移
-    console.log(`${TEST_TAG} ${JSON.stringify(positionToScreenWithTransform)}`);
+    console.info(`${TEST_TAG} ${JSON.stringify(positionToScreenWithTransform)}`);
   }
 }
 
@@ -964,62 +970,62 @@ class MyNodeController extends NodeController {
 
   getUserConfigBorderWidth(frameNode: FrameNode) {
     let userConfigBorderWidth = frameNode?.getUserConfigBorderWidth(); // 获取用户设置的边框宽度
-    console.log(`${TEST_TAG} ${JSON.stringify(userConfigBorderWidth)}`);
+    console.info(`${TEST_TAG} ${JSON.stringify(userConfigBorderWidth)}`);
   }
 
   getUserConfigPadding(frameNode: FrameNode) {
     let userConfigPadding = frameNode?.getUserConfigPadding(); // 获取用户设置的内边距
-    console.log(`${TEST_TAG} ${JSON.stringify(userConfigPadding)}`);
+    console.info(`${TEST_TAG} ${JSON.stringify(userConfigPadding)}`);
   }
 
   getUserConfigMargin(frameNode: FrameNode) {
     let userConfigMargin = frameNode?.getUserConfigMargin(); // 获取用户设置的外边距
-    console.log(`${TEST_TAG} ${JSON.stringify(userConfigMargin)}`);
+    console.info(`${TEST_TAG} ${JSON.stringify(userConfigMargin)}`);
   }
 
   getUserConfigSize(frameNode: FrameNode) {
     let userConfigSize = frameNode?.getUserConfigSize(); // 获取用户设置的宽高
-    console.log(`${TEST_TAG} ${JSON.stringify(userConfigSize)}`);
+    console.info(`${TEST_TAG} ${JSON.stringify(userConfigSize)}`);
   }
 
   getId(frameNode: FrameNode) {
     let id = frameNode?.getId(); // 获取用户设置的节点ID
-    console.log(`${TEST_TAG} ${id}`);
+    console.info(`${TEST_TAG} ${id}`);
   }
 
   getUniqueId(frameNode: FrameNode) {
     let uniqueId = frameNode?.getUniqueId(); // 获取系统分配的唯一标识的节点UniqueID
-    console.log(`${TEST_TAG} ${uniqueId}`);
+    console.info(`${TEST_TAG} ${uniqueId}`);
   }
 
   getNodeType(frameNode: FrameNode) {
     let nodeType = frameNode?.getNodeType(); // 获取节点的类型
-    console.log(`${TEST_TAG} ${nodeType}`);
+    console.info(`${TEST_TAG} ${nodeType}`);
   }
 
   getOpacity(frameNode: FrameNode) {
     let opacity = frameNode?.getOpacity(); // 获取节点的不透明度
-    console.log(`${TEST_TAG} ${JSON.stringify(opacity)}`);
+    console.info(`${TEST_TAG} ${JSON.stringify(opacity)}`);
   }
 
   isVisible(frameNode: FrameNode) {
     let visible = frameNode?.isVisible(); // 获取节点是否可见
-    console.log(`${TEST_TAG} ${JSON.stringify(visible)}`);
+    console.info(`${TEST_TAG} ${JSON.stringify(visible)}`);
   }
 
   isClipToFrame(frameNode: FrameNode) {
     let clipToFrame = frameNode?.isClipToFrame(); // 获取节点是否是剪裁到组件区域
-    console.log(`${TEST_TAG} ${JSON.stringify(clipToFrame)}`);
+    console.info(`${TEST_TAG} ${JSON.stringify(clipToFrame)}`);
   }
 
   isAttached(frameNode: FrameNode) {
     let attached = frameNode?.isAttached(); // 获取节点是否被挂载到主节点树上
-    console.log(`${TEST_TAG} ${JSON.stringify(attached)}`);
+    console.info(`${TEST_TAG} ${JSON.stringify(attached)}`);
   }
 
   getInspectorInfo(frameNode: FrameNode) {
     let inspectorInfo = frameNode?.getInspectorInfo(); // 获取节点的结构信息
-    console.log(`${TEST_TAG} ${JSON.stringify(inspectorInfo)}`);
+    console.info(`${TEST_TAG} ${JSON.stringify(inspectorInfo)}`);
   }
 }
 
@@ -1196,7 +1202,7 @@ struct Index {
             const node: FrameNode | null = uiContext.getFrameNodeById("buildText") || null;
             if (node) {
               const property = node.getCustomProperty("key1");
-              console.log(TEST_TAG, JSON.stringify(property));
+              console.info(TEST_TAG, JSON.stringify(property));
             }
           }
         })
@@ -1275,19 +1281,19 @@ class MyNodeController extends NodeController {
 
   printUniqueId(): void {
     if (this.rootNode !== null && this.builderNode !== null) {
-      console.log(`${TEST_TAG} rootNode's uniqueId: ${this.rootNode.getUniqueId()}`);
+      console.info(`${TEST_TAG} rootNode's uniqueId: ${this.rootNode.getUniqueId()}`);
       const frameNode = this.builderNode.getFrameNode();
       if (frameNode) {
-        console.log(`${TEST_TAG} the uniqueId of builderNode's framenode: ${frameNode.getUniqueId()}`);
+        console.info(`${TEST_TAG} the uniqueId of builderNode's framenode: ${frameNode.getUniqueId()}`);
       } else {
-        console.log(`${TEST_TAG} builderNode's framenode is undefined`);
+        console.info(`${TEST_TAG} builderNode's framenode is undefined`);
       }
     }
   }
 
   disposeFrameNode(): void {
     if (this.rootNode !== null && this.builderNode !== null) {
-      console.log(`${TEST_TAG} disposeFrameNode`);
+      console.info(`${TEST_TAG} disposeFrameNode`);
       this.rootNode.removeChild(this.builderNode.getFrameNode());
       this.builderNode.dispose();
 
@@ -1430,7 +1436,7 @@ class MyNodeAdapter extends NodeAdapter {
 
   refreshData(): void {
     let items = this.getAllAvailableItems()
-    console.log(TEST_TAG + " get All items:" + items.length);
+    console.info(TEST_TAG + " get All items:" + items.length);
     this.totalNodeCount -= 1;
     this.reloadAllItems();
   }
@@ -1462,14 +1468,14 @@ class MyNodeAdapter extends NodeAdapter {
     }
     this.insertItem(from, count);
     this.totalNodeCount += count;
-    console.log(TEST_TAG + " after insert count:" + this.totalNodeCount);
+    console.info(TEST_TAG + " after insert count:" + this.totalNodeCount);
   }
 
   removeData(from: number, count: number): void {
     let arr = this.data.splice(from, count);
     this.removeItem(from, count);
     this.totalNodeCount -= arr.length;
-    console.log(TEST_TAG + " after remove count:" + this.totalNodeCount);
+    console.info(TEST_TAG + " after remove count:" + this.totalNodeCount);
   }
 
   moveData(from: number, to: number): void {
@@ -1479,32 +1485,32 @@ class MyNodeAdapter extends NodeAdapter {
   }
 
   onAttachToNode(target: FrameNode): void {
-    console.log(TEST_TAG + " onAttachToNode id:" + target.getUniqueId());
+    console.info(TEST_TAG + " onAttachToNode id:" + target.getUniqueId());
     this.hostNode = target;
   }
 
   onDetachFromNode(): void {
-    console.log(TEST_TAG + " onDetachFromNode");
+    console.info(TEST_TAG + " onDetachFromNode");
   }
 
   onGetChildId(index: number): number {
-    console.log(TEST_TAG + " onGetChildId:" + index);
+    console.info(TEST_TAG + " onGetChildId:" + index);
     return index;
   }
 
   onCreateChild(index: number): FrameNode {
-    console.log(TEST_TAG + " onCreateChild:" + index);
+    console.info(TEST_TAG + " onCreateChild:" + index);
     if (this.cachePool.length > 0) {
       let cacheNode = this.cachePool.pop();
       if (cacheNode !== undefined) {
-        console.log(TEST_TAG + " onCreateChild reused id:" + cacheNode.getUniqueId());
+        console.info(TEST_TAG + " onCreateChild reused id:" + cacheNode.getUniqueId());
         let text = cacheNode?.getFirstChild();
         let textNode = text as typeNode.Text;
         textNode?.initialize(this.data[index]).fontSize(20);
         return cacheNode;
       }
     }
-    console.log(TEST_TAG + " onCreateChild createNew");
+    console.info(TEST_TAG + " onCreateChild createNew");
     let itemNode = typeNode.createNode(this.uiContext, "ListItem");
     let textNode = typeNode.createNode(this.uiContext, "Text");
     textNode.initialize(this.data[index]).fontSize(20);
@@ -1513,10 +1519,10 @@ class MyNodeAdapter extends NodeAdapter {
   }
 
   onDisposeChild(id: number, node: FrameNode): void {
-    console.log(TEST_TAG + " onDisposeChild:" + id);
+    console.info(TEST_TAG + " onDisposeChild:" + id);
     if (this.cachePool.length < 10) {
       if (!this.cachePool.includes(node)) {
-        console.log(TEST_TAG + " caching node id:" + node.getUniqueId());
+        console.info(TEST_TAG + " caching node id:" + node.getUniqueId());
         this.cachePool.push(node);
       }
     } else {
@@ -1731,7 +1737,7 @@ function buildData(params: Params) {
           Text(item)
             .fontSize(20)
             .onAppear(() => {
-              console.log(TEST_TAG + " node appear: " + item)
+              console.info(TEST_TAG + " node appear: " + item)
             })
             .backgroundColor(Color.Pink)
             .margin({
@@ -1774,40 +1780,40 @@ class MyNodeController extends NodeController {
   }
 
   getFirstChildIndexWithoutExpand() {
-    console.log(`${TEST_TAG} getFirstChildIndexWithoutExpand: ${this.rootNode!.getFirstChildIndexWithoutExpand()}`);
+    console.info(`${TEST_TAG} getFirstChildIndexWithoutExpand: ${this.rootNode!.getFirstChildIndexWithoutExpand()}`);
   }
 
   getLastChildIndexWithoutExpand() {
-    console.log(`${TEST_TAG} getLastChildIndexWithoutExpand: ${this.rootNode!.getLastChildIndexWithoutExpand()}`);
+    console.info(`${TEST_TAG} getLastChildIndexWithoutExpand: ${this.rootNode!.getLastChildIndexWithoutExpand()}`);
   }
 
   getChildWithNotExpand() {
     const childNode = this.rootNode!.getChild(3, ExpandMode.NOT_EXPAND);
-    console.log(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND): " + childNode!.getId());
+    console.info(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND): " + childNode!.getId());
     if (childNode!.getId() === "N9") {
-      console.log(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND)  result: success.");
+      console.info(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND)  result: success.");
     } else {
-      console.log(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND)  result: fail.");
+      console.info(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND)  result: fail.");
     }
   }
 
   getChildWithExpand() {
     const childNode = this.rootNode!.getChild(3, ExpandMode.EXPAND);
-    console.log(TEST_TAG + " getChild(3, ExpandMode.EXPAND): " + childNode!.getId());
+    console.info(TEST_TAG + " getChild(3, ExpandMode.EXPAND): " + childNode!.getId());
     if (childNode!.getId() === "N3") {
-      console.log(TEST_TAG + " getChild(3, ExpandMode.EXPAND)  result: success.");
+      console.info(TEST_TAG + " getChild(3, ExpandMode.EXPAND)  result: success.");
     } else {
-      console.log(TEST_TAG + " getChild(3, ExpandMode.EXPAND)  result: fail.");
+      console.info(TEST_TAG + " getChild(3, ExpandMode.EXPAND)  result: fail.");
     }
   }
   
   getChildWithLazyExpand() {
     const childNode = this.rootNode!.getChild(3, ExpandMode.LAZY_EXPAND);
-    console.log(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND): " + childNode!.getId());
+    console.info(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND): " + childNode!.getId());
     if (childNode!.getId() === "N3") {
-      console.log(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND)  result: success.");
+      console.info(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND)  result: success.");
     } else {
-      console.log(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND)  result: fail.");
+      console.info(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND)  result: fail.");
     }
   }
 }

@@ -1,11 +1,20 @@
 # RelativeContainer
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fenglinbailu-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 相对布局组件，用于复杂场景中元素对齐的布局。
+
+子组件可以通过设置[alignRules](./ts-universal-attributes-location.md#alignrules9)来设置自身在相对容器中的对齐规则。
 
 >  **说明：**
 >
 > * 该组件从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> * 从API version 11开始，在RelativeContainer组件中，[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)设置"auto"表示自适应子组件。当width设置"auto"时，如果水平方向上子组件以容器作为锚点，则"auto"不生效，垂直方向上同理。
+> * 在RelativeContainer组件中，不设置[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)时，对应属性布局表现与设置为100%相同。
+> * 从API version 11开始，在RelativeContainer组件中，[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)设置"auto"表示自适应子组件。当width设置"auto"时，如果水平方向上子组件以容器作为锚点，则"auto"不生效（即视为不设置width），垂直方向上同理。
 > * 从API version 20开始，在RelativeContainer组件中，[width](ts-universal-attributes-size.md#width15)、[height](ts-universal-attributes-size.md#height15)设置LayoutPolicy.wrapContent表示自适应子组件且被祖先节点尺寸约束，设置LayoutPolicy.fixAtIdealSize表示自适应子组件且不被祖先节点尺寸约束。当width设置wrapContent或fixAtIdealSize时，如果水平方向上子组件直接或间接以容器作为锚点，则容器在该方向上的尺寸不自适应该组件，垂直方向上同理。
 > * 相对布局容器内的子组件的[margin](ts-universal-attributes-size.md#margin)含义不同于通用属性的margin，其含义为到该方向上的锚点的距离。若该方向上没有锚点，则该方向的margin不生效。
 
@@ -32,7 +41,7 @@ RelativeContainer()
 
 guideLine(value: Array&lt;GuideLineStyle&gt;)
 
-设置RelativeContainer容器内的辅助线，Array中每个项目即为一条guideline。
+设置RelativeContainer容器内的辅助线，Array中每个项目即为一条guideLine。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -78,30 +87,30 @@ barrier(barrierStyle: Array&lt;LocalizedBarrierStyle&gt;)
 
 ## GuideLineStyle<sup>12+</sup>对象说明
 
-guideLine参数，用于定义一条guideline的id、方向和位置。
+guideLine参数，用于定义一条guideLine的id、方向和位置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型      | 必填   | 说明                    |
-| ----- | ------- | ---- | --------------------- |
-| id  | string  | 是    | guideline的id，必须是唯一的并且不可与容器内组件重名。|
-| direction | [Axis](ts-appendix-enums.md#axis) | 是    | 指定guideline的方向。</br> 垂直方向的guideline仅能作为组件水平方向的锚点，作为垂直方向的锚点时值为0；水平方向的guideline仅能作为组件垂直方向的锚点，作为水平方向的锚点时值为0。</br>默认值：Axis.Vertical |
-| position | [GuideLinePosition](#guidelineposition12对象说明) | 是    | 指定guideline的位置。</br>当未声明或声明异常值（如undefined）时，guideline的位置默认为start: 0。start和 end两种声明方式选择一种即可。若同时声明，仅start生效。若容器在某个方向的size被声明为"auto"，则该方向上guideline的位置只能使用start方式声明（不允许使用百分比）。<br />默认值：<br />{<br />start: 0<br />} |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| id  | string  | 否 | 否    | guideLine的id，必须是唯一的并且不可与容器内组件重名。|
+| direction | [Axis](ts-appendix-enums.md#axis) | 否 | 否    | 指定guideLine的方向。</br> 垂直方向的guideLine仅能作为组件水平方向的锚点，作为垂直方向的锚点时值为0；水平方向的guideLine仅能作为组件垂直方向的锚点，作为水平方向的锚点时值为0。</br>默认值：Axis.Vertical <br />非法值：按默认值处理。 |
+| position | [GuideLinePosition](#guidelineposition12对象说明) |  否 | 否    | 指定guideLine的位置。</br>当未声明或声明异常值（如undefined）时，guideLine的位置默认为start: 0。start和end两种声明方式选择一种即可。若同时声明，仅start生效。若容器在某个方向的size被声明为"auto"，则该方向上guideLine的位置只能使用start方式声明（不允许使用百分比）。<br />默认值：<br />{<br />start: 0<br />} <br />非法值：按默认值处理。 |
 
 ## GuideLinePosition<sup>12+</sup>对象说明
 
-guideLine位置参数，用于定义guideline的位置。
+guideLine位置参数，用于定义guideLine的位置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型      | 必填   | 说明                    |
-| ----- | ------- | ---- | --------------------- |
-| start  | [Dimension](ts-types.md#dimension10)  | 否    | guideline距离容器左侧或者顶部的距离。|
-| end | [Dimension](ts-types.md#dimension10) | 否    | guideline距离容器右侧或者底部的距离。|
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| start  | [Dimension](ts-types.md#dimension10)  | 否 | 是    | guideLine距离容器左侧或者顶部的距离。|
+| end | [Dimension](ts-types.md#dimension10) | 否 | 是   | guideLine距离容器右侧或者底部的距离。|
 
 ## BarrierStyle<sup>12+</sup>对象说明
 
@@ -111,11 +120,11 @@ barrier参数，用于定义一条barrier的id、方向和生成时所依赖的�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型      | 必填   | 说明                    |
-| ----- | ------- | ---- | --------------------- |
-| id  | string  | 是    | barrier的id，必须是唯一的并且不可与容器内组件重名。|
-| direction | [BarrierDirection](ts-container-relativecontainer.md#barrierdirection12枚举说明) | 是    | 指定barrier的方向。</br>垂直方向（TOP，BOTTOM）的barrier仅能作为组件的水平方向锚点，用作垂直方向锚点时值为0；水平方向（LEFT，RIGHT）的barrier仅能作为组件的垂直方向锚点，用作水平方向锚点时值为0。<br />默认值：BarrierDirection.LEFT |
-| referencedId | Array\<string> | 是    | 指定生成barrier所依赖的组件。|
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| id  | string  | 否 | 否    | barrier的id，必须是唯一的并且不可与容器内组件重名。|
+| direction | [BarrierDirection](ts-container-relativecontainer.md#barrierdirection12枚举说明) | 否 | 否    | 指定barrier的方向。</br>垂直方向（TOP，BOTTOM）的barrier仅能作为组件的水平方向锚点，用作垂直方向锚点时值为0；水平方向（LEFT，RIGHT）的barrier仅能作为组件的垂直方向锚点，用作水平方向锚点时值为0。<br />默认值：BarrierDirection.LEFT <br />非法值：按默认值处理。 |
+| referencedId | Array\<string> | 否 | 否    | 指定生成barrier所依赖的组件。|
 
 ## BarrierDirection<sup>12+</sup>枚举说明
 
@@ -140,11 +149,11 @@ barrier参数，用于定义一条barrier的id、方向和生成时所依赖的�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型      | 必填   | 说明              |
-| ----- | ------- | ---- | --------------------- |
-| id  | string  | 是    | barrier的id，必须是唯一的并且不可与容器内组件重名。|
-| localizedDirection | [LocalizedBarrierDirection](#localizedbarrierdirection12枚举说明) | 是    | 指定barrier的方向。</br> 垂直方向（TOP，BOTTOM）的barrier仅能作为组件的水平方向锚点，作为垂直方向锚点时值为0。水平方向（START，END）的barrier仅能作为组件的垂直方向锚点，作为水平方向锚点时值为0。|
-| referencedId | Array\<string\> | 是    | 指定生成barrier所依赖的组件。|
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| id  | string  | 否 | 否   | barrier的id，必须是唯一的并且不可与容器内组件重名。|
+| localizedDirection | [LocalizedBarrierDirection](#localizedbarrierdirection12枚举说明) | 否 | 否    | 指定barrier的方向。</br> 垂直方向（TOP，BOTTOM）的barrier仅能作为组件的水平方向锚点，作为垂直方向锚点时值为0。水平方向（START，END）的barrier仅能作为组件的垂直方向锚点，作为水平方向锚点时值为0。|
+| referencedId | Array\<string\> | 否 | 否   | 指定生成barrier所依赖的组件。|
 
 ## LocalizedBarrierDirection<sup>12+</sup>枚举说明
 
@@ -160,6 +169,10 @@ barrier参数，用于定义一条barrier的id、方向和生成时所依赖的�
 | END    | 1  | 屏障在其所有[referencedId](#localizedbarrierstyle12对象说明)的最左/右侧, LTR模式时为最右侧，RTL模式时为最左侧。|
 | TOP    | 2  | 屏障在其所有[referencedId](#localizedbarrierstyle12对象说明)的最上方。|
 | BOTTOM | 3  | 屏障在其所有[referencedId](#localizedbarrierstyle12对象说明)的最下方。|
+
+## 事件
+
+支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 
@@ -393,7 +406,7 @@ struct Index {
 
 ### 示例4（设置偏移）
 
-本示例通过[bias](ts-universal-attributes-location.md#bias对象说明)实现了子组件的位置在竖直方向的两个锚点间偏移的效果。
+本示例通过[bias](ts-types.md#bias对象说明)实现了子组件的位置在垂直方向的两个锚点间偏移的效果。
 
 ```ts
 @Entry
@@ -683,7 +696,7 @@ struct Index {
 
 ### 示例8（链中设置偏移）
 
-本示例通过[chainMode](ts-universal-attributes-location.md#chainmode12)和[bias](ts-universal-attributes-location.md#bias对象说明)接口实现了水平方向的带偏移的[PACKED链](ts-universal-attributes-location.md#chainstyle12)。
+本示例通过[chainMode](ts-universal-attributes-location.md#chainmode12)和[bias](ts-types.md#bias对象说明)接口实现了水平方向的带偏移的[PACKED链](ts-universal-attributes-location.md#chainstyle12)。
 
 ```ts
 @Entry
@@ -858,7 +871,7 @@ struct Index {
           top: { anchor: "row1", align: VerticalAlign.Top }
         })
         .id("row2")
-        .chainWeight({horizontal:1})
+        .chainWeight({ horizontal: 1 })
 
         Row() {
           Text('row3')
@@ -873,7 +886,7 @@ struct Index {
           top: { anchor: "row1", align: VerticalAlign.Top }
         })
         .id("row3")
-        .chainWeight({horizontal:2})
+        .chainWeight({ horizontal: 2 })
       }
       .width(300).height(300)
       .margin({ left: 50 })

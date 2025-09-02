@@ -1,11 +1,17 @@
 # 优化跳转至新Web组件过程中的页面闪烁现象
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @wangxinbao01-->
+<!--Designer: @defeng20201-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 应用使用Navigation等路由策略导航至Web组件页面时，在网页加载过程中，页面底部可能出现闪烁现象，这会影响用户体验。
 
 ## 闪烁原因
 
 使用Navigation等路由策略导航至Web组件页面时，通常根据网页的回调通知判断是否隐藏系统导航栏。若决定隐藏，Web组件布局会进行调整。这一布局调整过程可简化为如下四个阶段：
 ![web-router-flash-optimization.png](figures/web-router-flash-optimization.png)
-图中四个状态的说明（从左至右）。
+图中四个状态的说明（从左至右）：
 
 1. 将应用路由至Web页面，页面顶部为系统导航栏，底部是Web组件。在此情况下，网页能够正常加载。
 

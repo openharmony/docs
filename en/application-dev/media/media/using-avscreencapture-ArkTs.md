@@ -6,13 +6,13 @@ You can call the ArkTS APIs of the [AVScreenCaptureRecorder](media-kit-intro.md#
 
 The AVScreenCaptureRecorder, Window, and Graphics modules together implement the entire video capture process.
 
-The full screen capture process involves creating an **AVScreenCaptureRecorder** instance, configuring audio and video capture parameters, starting and stopping screen capture, and releasing resources.
+The full screen capture process involves creating an AVScreenCaptureRecorder instance, configuring audio and video capture parameters, starting and stopping screen capture, and releasing resources.
 
 If you are in a call when screen capture starts or a call is coming during screen capture, screen capture automatically stops, and the **SCREENCAPTURE_STATE_STOPPED_BY_CALL** status is reported.
 
-This topic describes how to use the **AVScreenCaptureRecorder** APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCaptureRecorder](../../reference/apis-media-kit/js-apis-media.md#avscreencapturerecorder12).
+This topic describes how to use the AVScreenCaptureRecorder APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCaptureRecorder](../../reference/apis-media-kit/arkts-apis-media-AVScreenCaptureRecorder.md).
 
-If microphone data collection is configured, configure the permission **ohos.permission.MICROPHONE** and request a continuous task. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md) and [Continuous Task](../../task-management/continuous-task.md).
+If microphone data collection is configured, configure the permission ohos.permission.MICROPHONE and request a continuous task. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md) and [Continuous Task](../../task-management/continuous-task.md).
 
 ## Applying for Permission
 
@@ -28,7 +28,7 @@ Before your development, configure the following permissions for your applicatio
 
 ## How to Develop
 
-After an **AVScreenCaptureRecorder** instance is created, different APIs can be called to switch the AVScreenCaptureRecorder to different states and trigger the required behavior. If an API is called when the AVScreenCaptureRecorder is not in the given state, the system may throw an exception or generate other undefined behavior. Therefore, you are advised to check the AVScreenCaptureRecorder state before triggering state transition.
+After an AVScreenCaptureRecorder instance is created, different APIs can be called to switch the AVScreenCaptureRecorder to different states and trigger the required behavior. If an API is called when the AVScreenCaptureRecorder is not in the given state, the system may throw an exception or generate other undefined behavior. Therefore, you are advised to check the AVScreenCaptureRecorder state before triggering state transition.
 
 1. Add the header files.
 
@@ -100,7 +100,7 @@ After an **AVScreenCaptureRecorder** instance is created, different APIs can be 
 
 4. Set screen capture parameters.
 
-    ​After creating the **screenCapture** instance, you can set the parameters required for screen capture.
+    ​After creating the screenCapture instance, you can set the parameters required for screen capture.
 
     ​Parameters **videoBitrate**, **audioSampleRate**, **audioChannelCount**, **audioBitrate**, **preset**, and **displayId** are optional, with default values provided in the code snippet below. The audio streams of the microphone and system sound share a set of audio parameters: **audioSampleRate**, **audioChannelCount**, and **audioBitrate**.
 
@@ -131,13 +131,13 @@ After an **AVScreenCaptureRecorder** instance is created, different APIs can be 
     };
     ```
 
-5. Call **init()** to initialize the **screenCapture** instance based on the preset screen capture parameters.
+5. Call **init()** to initialize the screenCapture instance based on the preset screen capture parameters.
 
     ```javascript
     await this.screenCapture.init(this.captureConfig);
     ```
 
-6. Set the windows that will be skipped during screen capture, by entering the subwindow IDs and main window IDs. For details, see [Window API Reference](../../reference/apis-arkui/js-apis-window.md#windowproperties).
+6. Set the windows that will be skipped during screen capture, by entering the subwindow IDs and main window IDs. For details, see [Window API Reference](../../reference/apis-arkui/arkts-apis-window-i.md#windowproperties).
 
     ```javascript
     let windowIDs = [57, 86];
@@ -152,7 +152,7 @@ After an **AVScreenCaptureRecorder** instance is created, different APIs can be 
 
 8. Stop screen capture.
 
-    - When the user touches the stop button in the screen capture capsule to stop screen capture, the **screenCapture** instance triggers the **SCREENCAPTURE_STATE_STOPPED_BY_USER** callback to notify the application that the screen recording has stopped. The application does not need to call the **stopRecording()** API.
+    - When the user touches the stop button in the screen capture capsule to stop screen capture, the screenCapture instance triggers the **SCREENCAPTURE_STATE_STOPPED_BY_USER** callback to notify the application that the screen recording has stopped. The application does not need to call the **stopRecording()** API.
 
     - The application proactively calls **stopRecording()** to stop screen capture.
 

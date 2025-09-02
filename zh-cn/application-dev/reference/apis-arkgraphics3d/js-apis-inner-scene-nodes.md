@@ -1,4 +1,10 @@
 # SceneNode
+<!--Kit: ArkGraphics 3D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @zzhao0-->
+<!--Designer: @zdustc-->
+<!--Tester: @zhangyue283-->
+<!--Adviser: @ge-yafang-->
 
 本模块提供3D图形中场景资源结点的类型及操作方法。
 
@@ -38,16 +44,18 @@ getEnabled(index: number): boolean
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function layerMask() : void {
+function layerMask(): void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
     if (result) {
       let node : Node | null = result.getNodeByPath("rootNode_");
       if (node) {
           // 获取掩码的使能状态
-          let enabled: Boolean = node.layerMask.getEnabled(1);
+          let enabled: boolean = node.layerMask.getEnabled(1);
       }
     }
+  }).catch((error: Error) => {
+    console.error('Scene load failed:', error);
   });
 }
 ```
@@ -71,7 +79,7 @@ setEnabled(index: number, enabled: boolean): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function layerMask() : void {
+function layerMask(): void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
     if (result) {
@@ -81,6 +89,8 @@ function layerMask() : void {
           node.layerMask.setEnabled(1, true);
       }
     }
+  }).catch((error: Error) => {
+    console.error('Scene load failed:', error);
   });
 }
 ```
@@ -116,7 +126,7 @@ append(item: T): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function append() : void {
+function append(): void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
     if (result) {
@@ -124,6 +134,8 @@ function append() : void {
       // append 节点
       result.root?.children.get(0)?.children.append(node);
     }
+  }).catch((error: Error) => {
+    console.error('Scene load failed:', error);
   });
 }
 ```
@@ -146,14 +158,18 @@ insertAfter(item: T, sibling: T | null): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function insertAfter() : void {
+function insertAfter(): void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
     if (result) {
       let node : Node | null = result.getNodeByPath("rootNode/Scene/");
-      // insertAfter 节点
-      result.root?.children.get(0)?.children.insertAfter(node, null);
+      if (node) {
+        // insertAfter 节点
+        result.root?.children.get(0)?.children.insertAfter(node, null);
+      }
     }
+  }).catch((error: Error) => {
+    console.error('Scene load failed:', error);
   });
 }
 ```
@@ -175,14 +191,18 @@ remove(item: T): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function remove() : void {
+function remove(): void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
     if (result) {
       let node : Node | null = result.getNodeByPath("rootNode/Scene/");
-      // remove 节点
-      result.root?.children.remove(node);
+      if (node) {
+        // remove 节点
+        result.root?.children.remove(node);
+      }
     }
+  }).catch((error: Error) => {
+    console.error('Scene load failed:', error);
   });
 }
 ```
@@ -209,7 +229,7 @@ get(index: number): T | null
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function get() : void {
+function get(): void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
     if (result) {
@@ -217,6 +237,8 @@ function get() : void {
       // 从children中get 0号节点
       result.root?.children.get(0)?.children.insertAfter(node, null);
     }
+  }).catch((error: Error) => {
+    console.error('Scene load failed:', error);
   });
 }
 ```
@@ -233,14 +255,18 @@ clear(): void
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function clear() : void {
+function clear(): void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
     if (result) {
       let node : Node | null = result.getNodeByPath("rootNode/Scene/");
-      // 清空children节点
-      result.root?.children.clear();
+      if (node) {
+        // 清空 node 节点下的所有子节点
+        node.children.clear();
+      }
     }
+  }).catch((error: Error) => {
+    console.error('Scene load failed:', error);
   });
 }
 ```
@@ -262,7 +288,7 @@ count(): number
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function count() : void {
+function count(): void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
     if (result) {
@@ -318,7 +344,7 @@ getNodeByPath(path: string): Node | null
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function getNode() : void {
+function getNode(): void {
   let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: Scene) => {
     if (result && result.root) {

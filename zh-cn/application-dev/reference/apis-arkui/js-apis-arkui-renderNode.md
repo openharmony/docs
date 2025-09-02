@@ -1,4 +1,10 @@
 # RenderNode
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 提供自绘制渲染节点RenderNode，支持开发者通过C API进行开发，完成自定义绘制需求。
 
@@ -6,7 +12,6 @@
 >
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 
-> 当前不支持在预览器中使用RenderNode。
 >
 > 不建议对BuilderNode中的RenderNode进行修改操作。
 
@@ -79,7 +84,7 @@ appendChild(node: RenderNode): void
 
 | 参数名 | 类型                      | 必填 | 说明                   |
 | ------ | ------------------------- | ---- | ---------------------- |
-| node   | [RenderNode](#rendernode) | 是   | 需要添加的RenderNode。 |
+| node   | [RenderNode](#rendernode-1) | 是   | 需要添加的RenderNode。 |
 
 **示例：**
 
@@ -136,8 +141,8 @@ insertChildAfter(child: RenderNode, sibling: RenderNode | null): void
 
 | 参数名  | 类型                                        | 必填 | 说明                                                                         |
 | ------- | ------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
-| child   | [RenderNode](#rendernode)                   | 是   | 需要添加的子节点。                                                           |
-| sibling | [RenderNode](#rendernode)&nbsp;\|&nbsp;null | 是   | 新节点将插入到该节点之后。若该参数设置为空，则新节点将插入到首个子节点之前。 |
+| child   | [RenderNode](#rendernode-1)                   | 是   | 需要添加的子节点。                                                           |
+| sibling | [RenderNode](#rendernode-1)&nbsp;\|&nbsp;null | 是   | 新节点将插入到该节点之后。若该参数设置为空，则新节点将插入到首个子节点之前。 |
 
 **示例：**
 
@@ -202,7 +207,7 @@ removeChild(node: RenderNode): void
 
 | 参数名 | 类型                      | 必填 | 说明               |
 | ------ | ------------------------- | ---- | ------------------ |
-| node   | [RenderNode](#rendernode) | 是   | 需要删除的子节点。 |
+| node   | [RenderNode](#rendernode-1) | 是   | 需要删除的子节点。 |
 
 **示例：**
 ```ts
@@ -328,7 +333,7 @@ getChild(index: number): RenderNode | null
 
 | 类型                              | 说明                                                       |
 | --------------------------------- | ---------------------------------------------------------- |
-| [RenderNode](#rendernode) \| null | 子节点。若该RenderNode不包含所查询的子节点，则返回空对象null。 |
+| [RenderNode](#rendernode-1) \| null | 子节点。若该RenderNode不包含所查询的子节点，则返回空对象null。 |
 
 **示例：**
 
@@ -376,9 +381,9 @@ struct Index {
           for (let i = 0; i < 11; i++) {
             let childNode: RenderNode | null = renderNode.getChild(i);
             if (childNode == null) {
-              console.log(`the ${i} of renderNode's childNode is null`);
+              console.info(`the ${i} of renderNode's childNode is null`);
             } else {
-              console.log(`the ${i} of renderNode's childNode has a size of {${childNode.size.width},${childNode.size.height}}`);
+              console.info(`the ${i} of renderNode's childNode has a size of {${childNode.size.width},${childNode.size.height}}`);
             }
           }
 
@@ -402,7 +407,7 @@ getFirstChild(): RenderNode | null
 
 | 类型                              | 说明                                                       |
 | --------------------------------- | ---------------------------------------------------------- |
-| [RenderNode](#rendernode) \| null | 首个子节点。若该RenderNode不包含子节点，则返回空对象null。 |
+| [RenderNode](#rendernode-1) \| null | 首个子节点。若该RenderNode不包含子节点，则返回空对象null。 |
 
 **示例：**
 
@@ -448,9 +453,9 @@ struct Index {
         .onClick(() => {
           const firstChild = renderNode.getFirstChild();
           if (firstChild === null) {
-            console.log('the fist child is null');
+            console.info('the fist child is null');
           } else {
-            console.log(`the position of fist child is x: ${firstChild.position.x}, y: ${firstChild.position.y}`);
+            console.info(`the position of fist child is x: ${firstChild.position.x}, y: ${firstChild.position.y}`);
           }
         })
     }
@@ -472,7 +477,7 @@ getNextSibling(): RenderNode | null
 
 | 类型                              | 说明                                                                                   |
 | --------------------------------- | -------------------------------------------------------------------------------------- |
-| [RenderNode](#rendernode) \| null | 当前RenderNode的下一个同级节点。若该RenderNode不包含下一个同级节点，则返回空对象null。 |
+| [RenderNode](#rendernode-1) \| null | 当前RenderNode的下一个同级节点。若该RenderNode不包含下一个同级节点，则返回空对象null。 |
 
 **示例：**
 ```ts
@@ -517,10 +522,10 @@ struct Index {
         .onClick(() => {
           const child = renderNode.getChild(1);
           const nextSibling = child!.getNextSibling()
-          if (child === null || nextSibling === null) {
-            console.log('the child or nextChild is null');
+          if (nextSibling === null || child === null) {
+            console.info('the child or nextChild is null');
           } else {
-            console.log(`the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
+            console.info(`the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
               `the position of nextSibling is x: ${nextSibling.position.x}, y: ${nextSibling.position.y}`);
           }
         })
@@ -543,7 +548,7 @@ getPreviousSibling(): RenderNode | null
 
 | 类型                              | 说明                                                                                   |
 | --------------------------------- | -------------------------------------------------------------------------------------- |
-| [RenderNode](#rendernode) \| null | 当前RenderNode的上一个同级节点。若该RenderNode不包含上一个同级节点，则返回空对象null。 |
+| [RenderNode](#rendernode-1) \| null | 当前RenderNode的上一个同级节点。若该RenderNode不包含上一个同级节点，则返回空对象null。 |
 
 **示例：**
 ```ts
@@ -589,9 +594,9 @@ struct Index {
           const child = renderNode.getChild(1);
           const previousSibling = child!.getPreviousSibling()
           if (child === null || previousSibling === null) {
-            console.log('the child or previousChild is null');
+            console.info('the child or previousChild is null');
           } else {
-            console.log(`the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
+            console.info(`the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
               `the position of previousSibling is x: ${previousSibling.position.x}, y: ${previousSibling.position.y}`);
           }
         })
@@ -833,7 +838,7 @@ get size(): Size
 
 **返回值：**
 
-| 名称                                     | 说明                                            |
+| 类型                                     | 说明                                            |
 | ---------------------------------------- | ----------------------------------------------- |
 | [Size](./js-apis-arkui-graphics.md#size) | 获取当前RenderNode的大小，默认值宽度和高度为0。 |
 
@@ -1550,7 +1555,7 @@ class MyNodeController extends NodeController {
       renderChildNode.frame = { x: 0, y: 0, width: 100, height: 100 };
       renderChildNode.backgroundColor = 0xffff0000;
       renderChildNode.label = 'customRenderChildNode';
-      console.log('label:', renderChildNode.label);
+      console.info('label:', renderChildNode.label);
       renderNode.appendChild(renderChildNode);
     }
 
@@ -1765,7 +1770,7 @@ renderNode.shadowOffset = { x: 10, y: 10 };
 renderNode.shadowAlpha = 0.7
 renderNode.shadowRadius = 30;
 const shadowRadius = renderNode.shadowRadius;
-console.log(`FrameNode ${shadowRadius}`);
+console.info(`FrameNode ${shadowRadius}`);
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
@@ -2356,6 +2361,8 @@ get shapeMask(): ShapeMask
 
 获取当前RenderNode的遮罩。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -2432,7 +2439,7 @@ get shapeClip(): ShapeClip
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.clip
 
 **返回值：**
 
@@ -2443,7 +2450,7 @@ get shapeClip(): ShapeClip
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController, ShapeMask, ShapeClip } from '@kit.ArkUI';
+import { RenderNode, FrameNode, NodeController, ShapeClip } from '@kit.ArkUI';
 
 const clip = new ShapeClip();
 clip.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
@@ -2621,6 +2628,8 @@ get markNodeGroup(): boolean
 
 获取当前节点是否标记了优先绘制。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -2706,6 +2715,8 @@ set lengthMetricsUnit(unit: LengthMetricsUnit)
 get lengthMetricsUnit(): LengthMetricsUnit
 
 获取RenderNode各个属性使用的单位。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

@@ -1,6 +1,12 @@
 # @ohos.url (URL字符串解析)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
-URL代表着是统一资源定位符，本模块提供了常用的工具函数，实现了解析URL字符串和构造[URL](#url)对象等功能。
+URL代表的是统一资源定位符，本模块提供了常用的工具函数，实现了解析URL字符串和构造[URL](#url)对象等功能。
 
 > **说明：**
 >
@@ -13,7 +19,7 @@ import { url } from '@kit.ArkTS';
 ```
 ## URLParams<sup>9+</sup>
 
-URLParams接口定义了一些处理URL查询字符串的实用方法。
+URLParams是一个用于解析、构造和操作URL参数的实用类。该类提供了统一的接口来处理参数维度（如查询参数、路径参数等）。
 
 ### constructor<sup>9+</sup>
 
@@ -168,7 +174,7 @@ console.info(params.getAll('fod').toString()) // Output ["1","3"].
 
 entries(): IterableIterator<[string, string]>
 
-返回一个ES6的迭代器，迭代器的每一项都是一个JavaScript Array。Array的第一项是name，Array的第二项是value。
+返回一个ES6的迭代器，迭代器的每一项都是一个Array。Array的第一项是name，Array的第二项是value。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -260,8 +266,7 @@ get(name: string): string | null
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回第一个值。 |
-| null | 如果没找到，返回 null。 |
+| string \| null | 返回第一个值，如果没找到，返回 null。 |
 
 **错误码：**
 
@@ -324,7 +329,9 @@ let result = paramsObject.has('bard');
 
 set(name: string, value: string): void
 
-将与name关联的URLSearchParams对象中的值设置为value。如果存在名称为name的键值对，请将第一个键值对的值设置为value并删除所有其他值。如果不是，则将键值对附加到查询字符串。
+将与name关联的URLSearchParams对象中的值设置为value。
+
+如果存在名称为name的键值对，请将第一个键值对的值设置为value并删除所有其他值。如果不是，则将键值对附加到查询字符串。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -358,7 +365,7 @@ paramsObject.set('baz', '3'); // Add a third parameter.
 
 sort(): void
 
-对包含在此对象中的所有键值对进行排序，并返回undefined。排序顺序是根据键的Unicode代码点。该方法使用稳定的排序算法 （即，将保留具有相等键的键值对之间的相对顺序）。
+对包含在此对象中的所有键值对进行排序。排序顺序是根据键的Unicode代码点。该方法使用稳定的排序算法（保留具有相等键的键值对之间的相对顺序）。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -377,7 +384,7 @@ console.info(paramsObject.toString()); // Display the sorted query string // Out
 
 keys(): IterableIterator&lt;string&gt;
 
-返回一个所有键值对的name的ES6迭代器。
+返回一个包含所有键值对的name的ES6迭代器。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -387,7 +394,7 @@ keys(): IterableIterator&lt;string&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator&lt;string&gt; | 返回一个所有键值对的name的ES6迭代器。 |
+| IterableIterator&lt;string&gt; | 返回一个包含所有键值对的name的ES6迭代器。 |
 
 **示例：**
 
@@ -406,7 +413,7 @@ for (let key of keys) {
 
 values(): IterableIterator&lt;string&gt;
 
-返回一个所有键值对的value的ES6迭代器。
+返回一个包含所有键值对的value的ES6迭代器。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -416,7 +423,7 @@ values(): IterableIterator&lt;string&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator&lt;string&gt; | 返回一个所有键值对的value的ES6迭代器。 |
+| IterableIterator&lt;string&gt; | 返回一个包含所有键值对的value的ES6迭代器。 |
 
 **示例：**
 
@@ -435,7 +442,7 @@ for (let value of values) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[string, string]&gt;
 
-返回一个ES6的迭代器，迭代器的每一项都是一个JavaScript Array。Array的第一项是name，Array的第二项是value。
+返回一个ES6的迭代器，迭代器的每一项都是一个Array。Array的第一项是name，Array的第二项是value。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -509,6 +516,19 @@ console.info(params.toString()); // Output 'fod=1&bard=2&fod=3'
 | params<sup>9+</sup> | [URLParams](#urlparams9) | 是 | 否 | 获取URLParams表示URL查询参数的对象。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | username | string | 否 | 否 | 获取和设置URL的用户名部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 
+> **说明：**
+>
+> 在解析URL字符串时，如果入参中的port内容是当前protocol的默认端口，那么port将被解析为空字符串。默认端口为：
+>
+> | 协议 | 默认端口 |
+> | -------- | -------- |
+> | http: | 80 |
+> | https: | 443 |
+> | ftp: | 21 |
+> | gopher: | 70 |
+> | ws: | 80 |
+> | wss: | 443 |
+
 **示例：**
 
 ```ts
@@ -526,6 +546,10 @@ console.info("search " + that.search); // search ?foo=1&bar=2
 console.info("username " + that.username); // username username
 // that.params 返回值为URLParams对象
 console.info("params: foo " + that.params.get("foo")); // params: foo 1
+
+let urlObj = url.URL.parseURL('http://testhost:80/directory/file?foo=1');
+console.info("port " + urlObj.port); // port 
+console.info("toString " + urlObj.port); // toString http://testhost/directory/file?foo=1
 ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -794,7 +818,7 @@ console.info(params.getAll('fod').toString()) // Output ["1","3"].
 
 entries(): IterableIterator<[string, string]>
 
-返回一个ES6的迭代器，迭代器的每一项都是一个JavaScript Array。Array的第一项是name，Array的第二项是value。
+返回一个ES6的迭代器，迭代器的每一项都是一个Array。Array的第一项是name，Array的第二项是value。
 
 > **说明：**
 >
@@ -881,8 +905,7 @@ get(name: string): string | null
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回第一个值。 |
-| null | 如果没找到，返回 null。 |
+| string \| null | 返回第一个值，如果没找到，返回 null。 |
 
 **示例：**
 
@@ -1042,7 +1065,7 @@ for (let value of values) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[string, string]&gt;
 
-返回一个ES6的迭代器，迭代器的每一项都是一个JavaScript Array。Array的第一项是name，Array的第二项是value。
+返回一个ES6的迭代器，迭代器的每一项都是一个Array。Array的第一项是name，Array的第二项是value。
 
 > **说明：**
 >

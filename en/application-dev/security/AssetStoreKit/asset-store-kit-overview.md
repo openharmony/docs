@@ -1,6 +1,6 @@
 # Introduction to Asset Store Kit
 
-Asset Store Kit provides a set of asset store service (ASSET) APIs, which implement secure storage and management of sensitive data less than 1024 bytes in size, including passwords, app tokens, and other critical data (such as bank card numbers).
+Asset Store Kit (ASSET for short) provides a series of open APIs to securely store and manage short sensitive data, including but not limited to passwords (accounts/passwords), tokens (application credentials), and important plaintext (such as bank card numbers).
 
 ## Basic Concepts
 
@@ -20,7 +20,7 @@ The AES256-GCM algorithm is used to encrypt and decrypt assets. The following ac
 
 * Access control based on the lock screen status: This mechanism provides the following protection levels in ascending order of security. You can set it based on site requirements. If no protection level is set, assets are accessible only after the device is unlocked for the first time.
   * **DEVICE_POWERED_ON**: allows access to assets after the device is powered on.
-  * **DEVICE_FIRST_UNLOCKED**: allows access to assets after the device is unlocked for the first time.
+  * **DEVICE_FIRST_UNLOCKED**: allows access to assets after the device is unlocked for the first time after power-on.
   * **DEVICE_UNLOCKED**: allows access to assets only when the device is unlocked.
 
 * Access control based on the setting of the lock screen password: This mechanism allows assets to be accessed only after a lock screen password is set. By default, it is disabled.
@@ -32,6 +32,10 @@ The AES256-GCM algorithm is used to encrypt and decrypt assets. The following ac
   * You can set an authentication validity period, which allows access to multiple assets within the validity period. The maximum authentication validity period is 10 minutes.
 
 ## Constraints
+
+* Device limitations
+
+  This kit is not supported on lite wearables.
 
 * Alias-based access
 

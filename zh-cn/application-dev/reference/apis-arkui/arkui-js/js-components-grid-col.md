@@ -1,4 +1,10 @@
 # grid-col
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @lanshouren-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 >  **说明：**
 >  从API version 5开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -61,7 +67,7 @@ grid-col是栅格布局容器grid-row的子容器组件。
 
 
 ## 示例
-
+<!--code_no_check-->
 ```html
 <!-- index.hml -->
 <div class="container">

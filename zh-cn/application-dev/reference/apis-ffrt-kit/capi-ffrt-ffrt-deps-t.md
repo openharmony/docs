@@ -1,5 +1,12 @@
 # ffrt_deps_t
 
+<!--Kit: Function Flow Runtime Kit-->
+<!--Subsystem: Resourceschedule-->
+<!--Owner: @chuchihtung; @yanleo-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
+
 ## 概述
 
 依赖结构定义。
@@ -14,9 +21,9 @@
 
 ### 成员变量
 
-| 名称                                 | 描述 |
-|------------------------------------| -- |
-| uint32_t len                       | 依赖数量 |
-| const [ffrt_dependence_t](capi-ffrt-ffrt-dependence-t.md)* items | 依赖数据 |
+| 名称 | 描述 |
+| -- | -- |
+| uint32_t len | 依赖数量 |
+| const [ffrt_dependence_t*](capi-ffrt-ffrt-dependence-t.md) items | 依赖数据 |
 
 

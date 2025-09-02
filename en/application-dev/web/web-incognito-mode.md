@@ -1,9 +1,9 @@
 # Using Incognito Mode
 
 
-When creating a **Web** component, you can enable incognito mode for it by setting the optional parameter [incognitoMode](../reference/apis-arkweb/ts-basic-components-web.md#weboptions) to **true**. When incognito mode is enabled, data such as cookies and cache data during web page browsing is not stored in local persistent files. This means that such data is lost when the **Web** component is destroyed.
+When creating a **Web** component, you can enable incognito mode for it by setting the optional parameter [incognitoMode](../reference/apis-arkweb/arkts-basic-components-web-i.md#weboptions) to **true**. When incognito mode is enabled, data such as cookies and cache data during web page browsing is not stored in local persistent files. This means that such data is lost when the **Web** component is destroyed.
 
-- Create a [Web](../reference/apis-arkweb/ts-basic-components-web.md#web) component in incognito mode.
+- Create a [Web](../reference/apis-arkweb/arkts-basic-components-web.md) component in incognito mode.
  
    ```ts
   // xxx.ets
@@ -22,7 +22,7 @@ When creating a **Web** component, you can enable incognito mode for it by setti
   }
   ```
 
-- Use [isIncogntoMode](../reference/apis-arkweb/js-apis-webview.md#isincognitomode11) to check whether the current **Web** component is in incognito mode.
+- Use [isIncognitoMode](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#isincognitomode11) to determine whether incognito mode is enabled for the current **Web** component.
 
   ```ts
   // xxx.ets
@@ -53,7 +53,7 @@ When creating a **Web** component, you can enable incognito mode for it by setti
 
 In incognito mode, you can use the following APIs for geolocation information, cookies, and cache data:
 
-- Use [allowGeolocation](../reference/apis-arkweb/js-apis-webview.md#allowgeolocation) to allow the specified origin to use the geolocation information.
+- Use [allowGeolocation](../reference/apis-arkweb/arkts-apis-webview-GeolocationPermissions.md#allowgeolocation) to allow the specified origin to use the geolocation information.
 
   ```ts
   // xxx.ets
@@ -83,7 +83,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
   }
   ```
 
-- Use [deleteGeolocation](../reference/apis-arkweb/js-apis-webview.md#deletegeolocation) to clear the geolocation permission status of a specified origin.
+- Use [deleteGeolocation](../reference/apis-arkweb/arkts-apis-webview-GeolocationPermissions.md#deletegeolocation) to clear the geolocation permission status of a specified origin.
 
   ```ts
   // xxx.ets
@@ -113,7 +113,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
   }
   ```
 
-- Use [getAccessibleGeolocation](../reference/apis-arkweb/js-apis-webview.md#getaccessiblegeolocation) to asynchronously obtain the geolocation permission status of the specified origin.
+- Use [getAccessibleGeolocation](../reference/apis-arkweb/arkts-apis-webview-GeolocationPermissions.md#getaccessiblegeolocation) to asynchronously obtain the geolocation permission status of the specified origin.
 
   ```ts
   // xxx.ets
@@ -149,7 +149,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
   }
   ```
 
-- Use [deleteAllData](../reference/apis-arkweb/js-apis-webview.md#deletealldata) to delete all data in the Web SQL Database.
+- Use [deleteAllData](../reference/apis-arkweb/arkts-apis-webview-WebStorage.md#deletealldata) to delete all data in the Web SQL Database.
 
   ```ts
   // xxx.ets
@@ -223,7 +223,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
   </html>
   ```
 
-- Use [fetchCookieSync](../reference/apis-arkweb/js-apis-webview.md#fetchcookiesync11) to obtain the cookie corresponding to the specified URL.
+- Use [fetchCookieSync](../reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md#fetchcookiesync11) to obtain the cookie corresponding to the specified URL.
 
   ```ts
   // xxx.ets
@@ -253,7 +253,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
   }
   ```
 
-- Use [configCookieSync](../reference/apis-arkweb/js-apis-webview.md#configcookiesync11) to set a cookie for the specified URL.
+- Use [configCookieSync](../reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md#configcookiesync11) to set a cookie for the specified URL.
 
   ```ts
   // xxx.ets
@@ -282,7 +282,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
   }
   ```
 
-- Use [existCookie](../reference/apis-arkweb/js-apis-webview.md#existcookie) to check whether cookies exist.
+- Use [existCookie](../reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md#existcookie) to check whether cookies exist.
 
   ```ts
   // xxx.ets
@@ -307,7 +307,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
   }
   ```
 
-- Use [clearAllCookiesSync](../reference/apis-arkweb/js-apis-webview.md#clearallcookiessync11) to delete all cookies.
+- Use [clearAllCookiesSync](../reference/apis-arkweb/arkts-apis-webview-WebCookieManager.md#clearallcookiessync11) to clear all cookies.
 
   ```ts
   // xxx.ets

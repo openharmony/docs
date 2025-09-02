@@ -1,4 +1,12 @@
 # USB服务<!--usb-->
+
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 - 开发USB服务<!--usb-dev-->
   - [USB服务开发概述](usbManager/usbHost-overview.md)
   - USB Host模式开发<!--usb-host-dev-->

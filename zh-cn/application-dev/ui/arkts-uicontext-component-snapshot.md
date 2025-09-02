@@ -1,16 +1,22 @@
 # 使用组件截图（ComponentSnapshot）
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 ## 能力介绍
 组件截图是将应用内一个组件节点树的渲染结果生成位图（[PixelMap](../reference/apis-image-kit/arkts-apis-image-PixelMap.md)）的能力，支持两种方式：一种是对已挂树显示的组件进行截图，另一种是对通过Builder或ComponentContent实现的离线组件进行截图。
 
 > **说明：**
 >
-> 组件截图依赖UI上下文，需要在具备明确上下文的环境中调用，因此请优先使用UIContext的getComponentSnapshot接口返回的[ComponentSnapshot](../reference/apis-arkui/js-apis-arkui-UIContext.md#componentsnapshot12)对象的接口，不建议直接使用从`@kit.ArkUI`导入的`componentSnapshot`接口。
+> 组件截图依赖UI上下文，需要在具备明确上下文的环境中调用，因此请优先使用UIContext的getComponentSnapshot接口返回的[ComponentSnapshot](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md)对象的接口，不建议直接使用从`@kit.ArkUI`导入的`componentSnapshot`接口。
 
 
 ### 对挂树组件截图
-对已明确挂树的组件进行截图，可通过[get](../reference/apis-arkui/js-apis-arkui-UIContext.md#get12-1)或[getSync](../reference/apis-arkui/js-apis-arkui-UIContext.md#getsync12)实现，传入组件标识（需提前通过.id通用属性配置）以指定组件根节点。系统在通过指定的ID查找待截图组件时，仅遍历已挂树的组件，不对cache或离屏组件进行查找。系统以首个查找到的结果为准，故应用需**确保组件标识ID的唯一性**。
+对已明确挂树的组件进行截图，可通过[get](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md#get12-1)或[getSync](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md#getsync12)实现，传入组件标识（需提前通过.id通用属性配置）以指定组件根节点。系统在通过指定的ID查找待截图组件时，仅遍历已挂树的组件，不对cache或离屏组件进行查找。系统以首个查找到的结果为准，故应用需**确保组件标识ID的唯一性**。
 
-在已知组件的[getUniqueId](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuniqueid12)的情况下，也可以使用[getWithUniqueId](../reference/apis-arkui/js-apis-arkui-UIContext.md#getwithuniqueid15)或[getSyncWithUniqueId](../reference/apis-arkui/js-apis-arkui-UIContext.md#getsyncwithuniqueid15)接口来实现截图，这可以省去查找组件的过程。
+在已知组件的[getUniqueId](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuniqueid12)的情况下，也可以使用[getWithUniqueId](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md#getwithuniqueid15)或[getSyncWithUniqueId](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md#getsyncwithuniqueid15)接口来实现截图，这可以省去查找组件的过程。
 
 截图仅能获取最近一帧的绘制内容。若在组件触发更新的同时调用截图，更新的渲染内容不会被截取，截图将返回前一帧的绘制内容。
 
@@ -20,7 +26,7 @@
 
 
 ### 对离线组件截图
-离线组件是指通过Builder或ComponentContent封装的、尚未挂载到树上的组件，可以使用[createFromBuilder](../reference/apis-arkui/js-apis-arkui-UIContext.md#createfrombuilder12-1)和[createFromComponent](../reference/apis-arkui/js-apis-arkui-UIContext.md#createfromcomponent18)来实现。
+离线组件是指通过Builder或ComponentContent封装的、尚未挂载到树上的组件，可以使用[createFromBuilder](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md#createfrombuilder12-1)和[createFromComponent](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md#createfromcomponent18)来实现。
 
 这些组件不参与真实渲染，因此对其截图需要更长的时间，因为系统必须先进行离线构建、布局及资源加载等操作，在这些操作完成前执行的截图所获位图不符合预期。因此，通常需要通过设置delay参数指定足够的时间，确保系统能够完成这些操作。对于图片资源的加载，建议将图片组件的[syncLoad](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md#syncload8)属性设为 true，以强制同步加载，确保离线组件构建时图片已加载、下载及解码完成，从而确保截图过程中能够正确呈现图片像素。
 
@@ -268,9 +274,13 @@ export class GlobalStaticSnapshot {
 }
 ```
 
+**完整示例：**
+
+完整示例请参考[长截图](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-long-snapshot-practice#section1566681910427)。
+
 ## 组件截图最佳实践
 ### 合理控制截图时机
-在实现截图功能时，需注意组件的渲染过程非一次性完成。系统在构建与显示组件时，将经过测量、布局、提交指令等多个复杂步骤，最终在一次硬件刷新时呈现于屏幕上。因此，在特定情况下，若在组件刷新后立即调用截图，可能无法获取预期内容。
+在实现截图功能时，需注意组件的渲染过程非一次性完成。系统在构建与显示组件时，将经过测量、布局、提交指令等多个复杂步骤，最终在一次硬件刷新时呈现于屏幕上。因此，在特定情况下，若在组件刷新后立即调用截图，可能无法获取预期内容或出现截图失败报错。
 
 为了确保截图结果准确，建议在组件完全渲染后再执行截图操作。
 

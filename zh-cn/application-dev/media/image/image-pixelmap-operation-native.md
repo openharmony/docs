@@ -1,4 +1,16 @@
 # 位图操作
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yaozhupeng-->
+<!--Designer: @yaozhupeng-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @zengyawen-->
+
+> **说明：**
+>
+> 当前开发指导使用的接口为[Image](../../reference/apis-image-kit/capi-image.md)模块下的C API，可完成图片编解码，图片接收器，处理图像数据等功能。这部分API在API 11之前发布，在后续的版本不再增加新功能，**不再推荐使用**。<br>
+> 开发者可使用[Image_NativeModule](../../reference/apis-image-kit/capi-image-nativemodule.md)模块下的C API，不仅提供上述图片框架基础功能，还可以完成多图编解码等新特性，相关开发指导请参考[图片开发指导(C/C++)](image-source-c.md)节点下的内容。这部分API从API 12开始支持，并将持续演进，**推荐开发者使用**。<br>
+> 两套C API不建议同时使用，在部分场景下存在不兼容的问题。
 
 开发者可以通过本指导了解如何使用Native Image的接口完成位图操作。
 

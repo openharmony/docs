@@ -1,21 +1,21 @@
-# Managing Assets in a Group
+# Managing Assets in a Group (ArkTS)
 
 Before managing assets in a group, ensure that you are familiar with the following operations:
 
-  - [Adding an Asset (ArkTS)](asset-js-add.md)
-  - [Removing Assets (ArkTS)](asset-js-remove.md)
-  - [Updating an Asset (ArkTS)](asset-js-update.md)
-  - [Querying Assets (ArkTS)](asset-js-query.md)
+- [Adding an Asset (ArkTS)](asset-js-add.md)
+- [Removing Assets (ArkTS)](asset-js-remove.md)
+- [Updating an Asset (ArkTS)](asset-js-update.md)
+- [Querying Assets (ArkTS)](asset-js-query.md)
 
 ## Prerequisites
 
-The group ID, for example, **demo_group_id**, is configured in the **app.json** file of the HAP.
+Set the group ID **demo_group_id** in the **app.json5** file.
 
 ```json
 {
   "app": {
     // Other configuration items are omitted here.
-    "asset-access-groups": [
+    "assetAccessGroups": [
       "demo_group_id"
     ]
   }
@@ -24,7 +24,7 @@ The group ID, for example, **demo_group_id**, is configured in the **app.json** 
 
 ## Adding an Asset to a Group
 
-Add an asset to a group. The asset includes password **demo_pwd**, alias **demo_alias**, and additional information **demo_label**, and is accessible when the user unlocks the device for the first time.
+Add an asset to the group, with the password **demo_pwd**, alias **demo_alias**, and additional attribute **demo_label**. The asset can be accessed after the user unlocks the device for the first time.
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';

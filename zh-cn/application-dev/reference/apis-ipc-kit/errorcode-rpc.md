@@ -1,4 +1,10 @@
 # RPC错误码
+<!--Kit: IPC Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @xdx19211@luodonghui0157-->
+<!--Designer: @zhaopeng_gitee-->
+<!--Tester: @maxiaorong-->
+<!--Adviser: @zhang_yixin13-->
 
 > **说明：**
 >
@@ -210,7 +216,7 @@ Memory allocation failed.
 
 **可能原因**
 
-写入的数据过大。
+写入的数据过大，数据取决于当前堆上还有多少可以连续分配的内存。
 
 **处理步骤**
 

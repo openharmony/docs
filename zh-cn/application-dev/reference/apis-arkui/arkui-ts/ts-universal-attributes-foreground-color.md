@@ -1,4 +1,10 @@
 # 前景色设置
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 设置组件的前景色。
 
@@ -105,7 +111,7 @@ struct ColoringStrategyExample {
 // xxx.ets
 @Entry
 @Component
-struct foregroundColorInherit {
+struct ForegroundColorInherit {
   build() {
     Column() {
       Button('设置前景色为橘色').fontSize(20).foregroundColor(Color.Orange).backgroundColor(Color.Gray)

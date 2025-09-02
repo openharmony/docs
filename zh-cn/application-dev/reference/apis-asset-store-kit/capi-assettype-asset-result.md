@@ -1,5 +1,12 @@
 # Asset_Result
 
+<!--Kit: Asset Store Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @JeremyXu-->
+<!--Designer: @skye_you-->
+<!--Tester: @nacyli-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 关键资产查询结果，用于定义一条关键资产。

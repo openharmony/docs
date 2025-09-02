@@ -1,10 +1,15 @@
 # Preview (C/C++)
+<!--Kit: Camera Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qano-->
+<!--SE: @leo_ysl-->
+<!--TSE: @xchaosioda-->
 
 Preview is the image you see after you start the camera application but before you take photos or record videos.
 
 ## How to Develop
 
-Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API reference.
+Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API reference.
 
 1. Import the NDK, which provides camera-related attributes and methods.
      
@@ -34,7 +39,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
      
     The **XComponent**, the capabilities of which are provided by the UI, offers the surface ID for preview streams. For details, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
 
-4. Call [OH_CameraManager_GetSupportedCameraOutputCapability()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_getsupportedcameraoutputcapability) to obtain the preview capability supported by the current device based on the surface ID. Then call **OH_CameraManager_CreatePreviewOutput()** to create a **PreviewOutput** instance, with the parameters set to the **cameraManager** pointer, the first item in the **previewProfiles** array, the surface ID obtained in step 3, and the returned **previewOutput** pointer, respectively.
+4. Call [OH_CameraManager_GetSupportedCameraOutputCapability()](../../reference/apis-camera-kit/capi-camera-manager-h.md#oh_cameramanager_getsupportedcameraoutputcapability) to obtain the preview capability supported by the current device based on the surface ID. Then call [OH_CameraManager_CreatePreviewOutput()](../../reference/apis-camera-kit/capi-camera-manager-h.md#oh_cameramanager_createpreviewoutput) to create a PreviewOutput instance, with the parameters set to the **cameraManager** pointer, the first item in the **previewProfiles** array, the surface ID obtained in step 3, and the returned **previewOutput** pointer, respectively.
      
     ```c++
     Camera_PreviewOutput* CreatePreviewOutput(char* previewSurfaceIdstr, Camera_Manager* cameraManager,
@@ -50,8 +55,8 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
     }
     ```
 
-5. Configure the session. Call **commitConfig()** to commit the session configuration, and then call **start()** to start outputting the preview stream. If the call fails, an error code is returned. For details, see [Camera_ErrorCode](../../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1).
-     
+5. Configure the session. Call **commitConfig()** to commit the session configuration, and then call [OH_CaptureSession_Start()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_start) to start outputting the preview stream. If the call fails, an error code is returned. For details, see [Camera_ErrorCode](../../reference/apis-camera-kit/capi-camera-h.md#camera_errorcode).
+
    ```c++
    Camera_ErrorCode SessionStart(Camera_CaptureSession* captureSession)
    {
@@ -63,8 +68,8 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
    }
    ```
 
-6. Call [OH_CaptureSession_Stop()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_stop) to stop outputting the preview stream. If the call fails, an error code is returned. For details, see [Camera_ErrorCode](../../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1).
-     
+6. Call [OH_CaptureSession_Stop()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_stop) to stop outputting the preview stream. If the call fails, an error code is returned. For details, see[Camera_ErrorCode](../../reference/apis-camera-kit/capi-camera-h.md#camera_errorcode).
+
    ```c++
    Camera_ErrorCode SessionStop(Camera_CaptureSession* captureSession)
    {
@@ -80,8 +85,8 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 
 During camera application development, you can listen for the preview output stream status, including preview stream start, preview stream end, and preview stream output errors.
 
-- Register the **'frameStart'** event to listen for preview start events. This event can be registered when a **PreviewOutput** object is created and is triggered when the bottom layer starts exposure for the first time. The preview stream starts as long as a result is returned.
-    
+- Register the **'frameStart'** event to listen for preview start events. This event can be registered when a PreviewOutput object is created and is triggered when the bottom layer starts exposure for the first time. The preview stream starts as long as a result is returned.
+
   ```c++
   void PreviewOutputOnFrameStart(Camera_PreviewOutput* previewOutput)
   {
@@ -89,7 +94,7 @@ During camera application development, you can listen for the preview output str
   }
   ```
 
-- Register the **'frameEnd'** event to listen for preview end events. This event can be registered when a **PreviewOutput** object is created and is triggered when the last frame of preview ends. The preview stream ends as long as a result is returned.
+- Register the **'frameEnd'** event to listen for preview end events. This event can be registered when a PreviewOutput object is created and is triggered when the last frame of preview ends. The preview stream ends as long as a result is returned.
     
   ```c++
   void PreviewOutputOnFrameEnd(Camera_PreviewOutput* previewOutput, int32_t frameCount)
@@ -98,7 +103,7 @@ During camera application development, you can listen for the preview output str
   }
   ```
 
-- Register the **'error'** event to listen for preview output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [Camera_ErrorCode](../../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1).
+- Register the **'error'** event to listen for preview output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [Camera_ErrorCode](../../reference/apis-camera-kit/capi-camera-h.md#camera_errorcode).
     
   ```c++
   void PreviewOutputOnError(Camera_PreviewOutput* previewOutput, Camera_ErrorCode errorCode)

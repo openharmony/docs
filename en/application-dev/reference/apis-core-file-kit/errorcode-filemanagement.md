@@ -192,7 +192,7 @@ Permission denied
 
 1. Check the UGO permission of the file.
 
-2. Check the kernel log for [AVC log information](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-security-selinux-develop-intro.md). If yes,<!--RP1--> see [SELinux Development](../../../device-dev/subsystems/subsys-security-selinux-develop-intro.md).<!--RP1End-->
+2. Check the kernel log for [AVC log information](https://gitcode.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-security-selinux-develop-intro.md). If yes,<!--RP1--> see [SELinux Development](../../../device-dev/subsystems/subsys-security-selinux-develop-intro.md).<!--RP1End-->
 
 3. Check whether the file path is a [sandbox path](../../file-management/app-sandbox-directory.md). The File Management system does not allow operations on files outside the sandbox directory.
 
@@ -442,7 +442,7 @@ Filename too Long
 
 **Possible Causes**
 
-The file name length exceeds 256 bytes.
+The file name length exceeds 255 bytes.
 
 **Solution**
 
@@ -634,7 +634,7 @@ System resources are insufficient.
 
 Wait until a lock is released and try again.
 
-### 2300007 Network Access Failure
+### 13900044 Network Access Failure
 
 **Error Message**
 

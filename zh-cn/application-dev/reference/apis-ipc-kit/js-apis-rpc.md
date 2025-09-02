@@ -1,4 +1,10 @@
 # @ohos.rpc (RPC通信)
+<!--Kit: IPC Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @xdx19211@luodonghui0157-->
+<!--Designer: @zhaopeng_gitee-->
+<!--Tester: @maxiaorong-->
+<!--Adviser: @zhang_yixin13-->
 
 本模块提供进程间通信能力，包括设备内的进程间通信（IPC）和设备间的进程间通信（RPC），前者基于Binder驱动，后者基于软总线驱动。
 
@@ -62,7 +68,7 @@ import { rpc } from '@kit.IPCKit';
 
   在RPC或IPC过程中，发送方可以使用MessageSequence提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageSequence提供的读方法从该对象中读取特定格式的数据。数据格式包括：基础类型及数组、IPC对象、接口描述符和自定义序列化对象。
 
-### create
+### create<sup>9+</sup>
 
   static create(): MessageSequence
 
@@ -79,16 +85,24 @@ import { rpc } from '@kit.IPCKit';
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
-  hilog.info(0x0000, 'testTag', 'RpcClient: data is ' + data);
+  try {
+    let data = rpc.MessageSequence.create();
+    hilog.info(0x0000, 'testTag', 'data is ' + data);
 
-  // 当MessageSequence对象不再使用，由业务主动调用reclaim方法去释放资源。
-  data.reclaim();
+    // 当MessageSequence对象不再使用，由业务主动调用reclaim方法去释放资源。
+    data.reclaim();
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
+  }
   ```
 
-### reclaim
+### reclaim<sup>9+</sup>
 
 reclaim(): void
 
@@ -99,11 +113,21 @@ reclaim(): void
 **示例：**
 
   ```ts
-  let reply = rpc.MessageSequence.create();
-  reply.reclaim();
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let reply = rpc.MessageSequence.create();
+    reply.reclaim();
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
+  }
   ```
 
-### writeRemoteObject
+### writeRemoteObject<sup>9+</sup>
 
 writeRemoteObject(object: IRemoteObject): void
 
@@ -130,6 +154,7 @@ writeRemoteObject(object: IRemoteObject): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -137,19 +162,24 @@ writeRemoteObject(object: IRemoteObject): void
     constructor(descriptor: string) {
       super(descriptor);
     }
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      // 根据业务实际逻辑，进行相应处理
+      return true;
+    }
   }
-  let data = rpc.MessageSequence.create();
-  let testRemoteObject = new TestRemoteObject("testObject");
+
   try {
+    let data = rpc.MessageSequence.create();
+    let testRemoteObject = new TestRemoteObject("testObject");
     data.writeRemoteObject(testRemoteObject);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'Rpc write remote object fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'Rpc write remote object fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readRemoteObject
+### readRemoteObject<sup>9+</sup>
 
 readRemoteObject(): IRemoteObject
 
@@ -175,6 +205,7 @@ readRemoteObject(): IRemoteObject
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -182,21 +213,26 @@ readRemoteObject(): IRemoteObject
     constructor(descriptor: string) {
       super(descriptor);
     }
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      // 根据业务实际逻辑，进行相应处理
+      return true;
+    }
   }
-  let data = rpc.MessageSequence.create();
-  let testRemoteObject = new TestRemoteObject("testObject");
+
   try {
+    let data = rpc.MessageSequence.create();
+    let testRemoteObject = new TestRemoteObject("testObject");
     data.writeRemoteObject(testRemoteObject);
     let proxy = data.readRemoteObject();
-    hilog.info(0x0000, 'testTag', 'RpcClient: readRemoteObject is ' + proxy);
+    hilog.info(0x0000, 'testTag', 'readRemoteObject is ' + proxy);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'Rpc write remote object fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'Rpc write remote object fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeInterfaceToken
+### writeInterfaceToken<sup>9+</sup>
 
 writeInterfaceToken(token: string): void
 
@@ -208,7 +244,7 @@ writeInterfaceToken(token: string): void
 
   | 参数名 | 类型   | 必填 | 说明               |
   | ------ | ------ | ---- | ------------------ |
-  | token  | string | 是   | 字符串类型描述符。 |
+  | token  | string | 是   | 字符串类型描述符，其长度应小于40960字节。 |
 
 **错误码：**
 
@@ -222,20 +258,21 @@ writeInterfaceToken(token: string): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeInterfaceToken("aaa");
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write interface fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write interface fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readInterfaceToken
+### readInterfaceToken<sup>9+</sup>
 
 readInterfaceToken(): string
 
@@ -260,25 +297,23 @@ readInterfaceToken(): string
 **示例：**
 
 ```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-class Stub extends rpc.RemoteObject {
-  onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-    try {
-      let interfaceToken = data.readInterfaceToken();
-      hilog.info(0x0000, 'testTag', 'RpcServer: interfaceToken is ' + interfaceToken);
-    } catch (error) {
-      let e: BusinessError = error as BusinessError;
-      hilog.error(0x0000, 'testTag', 'RpcServer: read interfaceToken failed, errorCode ' + e.code);
-      hilog.error(0x0000, 'testTag', 'RpcServer: read interfaceToken failed, errorMessage ' + e.message);
-    }
-    return true;
+  try {
+    let data = rpc.MessageSequence.create();
+    data.writeInterfaceToken("aaa");
+    let interfaceToken = data.readInterfaceToken();
+    hilog.info(0x0000, 'testTag', 'RpcServer: interfaceToken is ' + interfaceToken);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
-}
 ```
 
-### getSize
+### getSize<sup>9+</sup>
 
 getSize(): number
 
@@ -295,14 +330,22 @@ getSize(): number
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
-  let size = data.getSize();
-  hilog.info(0x0000, 'testTag', 'RpcClient: size is ' + size);
+  try {
+    let data = rpc.MessageSequence.create();
+    let size = data.getSize();
+    hilog.info(0x0000, 'testTag', 'size is ' + size);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
+  }
   ```
 
-### getCapacity
+### getCapacity<sup>9+</sup>
 
 getCapacity(): number
 
@@ -319,14 +362,22 @@ getCapacity(): number
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
-  let result = data.getCapacity();
-  hilog.info(0x0000, 'testTag', 'RpcClient: capacity is ' + result);
+  try {
+    let data = rpc.MessageSequence.create();
+    let result = data.getCapacity();
+    hilog.info(0x0000, 'testTag', 'capacity is ' + result);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
+  }
   ```
 
-### setSize
+### setSize<sup>9+</sup>
 
 setSize(size: number): void
 
@@ -352,21 +403,22 @@ setSize(size: number): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
-  data.writeString('Hello World');
   try {
+    let data = rpc.MessageSequence.create();
+    data.writeString('Hello World');
     data.setSize(16);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc set size of MessageSequence fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc set size of MessageSequence fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### setCapacity
+### setCapacity<sup>9+</sup>
 
 setCapacity(size: number): void
 
@@ -393,20 +445,21 @@ setCapacity(size: number): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.setCapacity(100);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc memory alloc fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc memory alloc fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### getWritableBytes
+### getWritableBytes<sup>9+</sup>
 
 getWritableBytes(): number
 
@@ -423,18 +476,23 @@ getWritableBytes(): number
 **示例：**
 
 ```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-class Stub extends rpc.RemoteObject {
-  onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+  try {
+    let data = rpc.MessageSequence.create();
+    data.setCapacity(100);
     let getWritableBytes = data.getWritableBytes();
     hilog.info(0x0000, 'testTag', 'RpcServer: getWritableBytes is ' + getWritableBytes);
-    return true;
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
-}
 ```
 
-### getReadableBytes
+### getReadableBytes<sup>9+</sup>
 
 getReadableBytes(): number
 
@@ -451,18 +509,23 @@ getReadableBytes(): number
 **示例：**
 
 ```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-class Stub extends rpc.RemoteObject {
-  onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+  try {
+    let data = rpc.MessageSequence.create();
+    data.writeString("hello world");
     let result = data.getReadableBytes();
     hilog.info(0x0000, 'testTag', 'RpcServer: getReadableBytes is ' + result);
-    return true;
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
-}
 ```
 
-### getReadPosition
+### getReadPosition<sup>9+</sup>
 
 getReadPosition(): number
 
@@ -479,14 +542,23 @@ getReadPosition(): number
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
-  let readPos = data.getReadPosition();
-  hilog.info(0x0000, 'testTag', 'RpcClient: readPos is ' + readPos);
+  try {
+    let data = rpc.MessageSequence.create();
+    data.writeString("hello world");
+    let readPos = data.getReadPosition();
+    hilog.info(0x0000, 'testTag', 'readPos is ' + readPos);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
+  }
   ```
 
-### getWritePosition
+### getWritePosition<sup>9+</sup>
 
 getWritePosition(): number
 
@@ -503,15 +575,23 @@ getWritePosition(): number
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
-  data.writeInt(10);
-  let bwPos = data.getWritePosition();
-  hilog.info(0x0000, 'testTag', 'RpcClient: bwPos is ' + bwPos);
+  try {
+    let data = rpc.MessageSequence.create();
+    data.writeInt(10);
+    let bwPos = data.getWritePosition();
+    hilog.info(0x0000, 'testTag', 'bwPos is ' + bwPos);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
+  }
   ```
 
-### rewindRead
+### rewindRead<sup>9+</sup>
 
 rewindRead(pos: number): void
 
@@ -537,26 +617,27 @@ rewindRead(pos: number): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
-  data.writeInt(12);
-  data.writeString("sequence");
-  let number = data.readInt();
-  hilog.info(0x0000, 'testTag', 'RpcClient: number is ' + number);
   try {
+    let data = rpc.MessageSequence.create();
+    data.writeInt(12);
+    data.writeString("sequence");
+    let number = data.readInt();
+    hilog.info(0x0000, 'testTag', 'number is ' + number);
     data.rewindRead(0);
+    let number2 = data.readInt();
+    hilog.info(0x0000, 'testTag', 'rewindRead is ' + number2);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc rewind read data fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc rewind read data fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
-  let number2 = data.readInt();
-  hilog.info(0x0000, 'testTag', 'RpcClient: rewindRead is ' + number2);
   ```
 
-### rewindWrite
+### rewindWrite<sup>9+</sup>
 
 rewindWrite(pos: number): void
 
@@ -582,24 +663,25 @@ rewindWrite(pos: number): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
-  data.writeInt(4);
   try {
+    let data = rpc.MessageSequence.create();
+    data.writeInt(4);
     data.rewindWrite(0);
+    data.writeInt(5);
+    let number = data.readInt();
+    hilog.info(0x0000, 'testTag', 'rewindWrite is: ' + number);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc rewindWrite fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc rewindWrite fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
-  data.writeInt(5);
-  let number = data.readInt();
-  hilog.info(0x0000, 'testTag', 'RpcClient: rewindWrite is: ' + number);
   ```
 
-### writeByte
+### writeByte<sup>9+</sup>
 
 writeByte(val: number): void
 
@@ -625,20 +707,21 @@ writeByte(val: number): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeByte(2);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write byte fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write byte fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readByte
+### readByte<sup>9+</sup>
 
 readByte(): number
 
@@ -663,28 +746,23 @@ readByte(): number
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeByte(2);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write byte fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write byte fail, errorMessage ' + e.message);
-  }
-  try {
     let ret = data.readByte();
-    hilog.info(0x0000, 'testTag', 'RpcClient: readByte is: ' +  ret);
+    hilog.info(0x0000, 'testTag', 'readByte is: ' +  ret);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read byte fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read byte fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeShort
+### writeShort<sup>9+</sup>
 
 writeShort(val: number): void
 
@@ -710,20 +788,21 @@ writeShort(val: number): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeShort(8);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write short fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write short fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readShort
+### readShort<sup>9+</sup>
 
 readShort(): number
 
@@ -748,28 +827,23 @@ readShort(): number
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeShort(8);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write short fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write short fail, errorMessage ' + e.message);
-  }
-  try {
     let ret = data.readShort();
-    hilog.info(0x0000, 'testTag', 'RpcClient: readByte is ' + ret);
+    hilog.info(0x0000, 'testTag', 'readShort is ' + ret);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read short fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read short fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeInt
+### writeInt<sup>9+</sup>
 
 writeInt(val: number): void
 
@@ -795,20 +869,21 @@ writeInt(val: number): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeInt(10);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write int fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write int fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readInt
+### readInt<sup>9+</sup>
 
 readInt(): number
 
@@ -833,28 +908,23 @@ readInt(): number
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeInt(10);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write int fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write int fail, errorMessage ' + e.message);
-  }
-  try {
     let ret = data.readInt();
-    hilog.info(0x0000, 'testTag', 'RpcClient: readInt is ' + ret);
+    hilog.info(0x0000, 'testTag', 'readInt is ' + ret);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read int fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read int fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeLong
+### writeLong<sup>9+</sup>
 
 writeLong(val: number): void
 
@@ -880,20 +950,21 @@ writeLong(val: number): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeLong(10000);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write long fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write long fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readLong
+### readLong<sup>9+</sup>
 
 readLong(): number
 
@@ -918,32 +989,27 @@ readLong(): number
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeLong(10000);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write long fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write long fail, errorMessage ' + e.message);
-  }
-  try {
     let ret = data.readLong();
-    hilog.info(0x0000, 'testTag', 'RpcClient: readLong is ' + ret);
+    hilog.info(0x0000, 'testTag', 'readLong is ' + ret);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read long fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read long fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeFloat
+### writeFloat<sup>9+</sup>
 
 writeFloat(val: number): void
 
-将浮点值写入MessageSequence实例。
+将双精度浮点值写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -951,7 +1017,7 @@ writeFloat(val: number): void
 
   | 参数名 | 类型   | 必填 | 说明  |
   | ------ | ------ | ---- | ----- |
-  | val    | number | 是   | 要写入的浮点值。 |
+  | val    | number | 是   | 要写入的双精度浮点值。 |
 
 **错误码：**
 
@@ -965,24 +1031,25 @@ writeFloat(val: number): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeFloat(1.2);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write float fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write float fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readFloat
+### readFloat<sup>9+</sup>
 
 readFloat(): number
 
-从MessageSequence实例中读取浮点值。
+从MessageSequence实例中读取双精度浮点值。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -990,7 +1057,7 @@ readFloat(): number
 
   | 类型   | 说明         |
   | ------ | ------------ |
-  | number | 返回浮点值。 |
+  | number | 返回双精度浮点值。 |
 
 **错误码：**
 
@@ -1003,28 +1070,23 @@ readFloat(): number
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeFloat(1.2);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write float fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write float fail, errorMessage ' + e.message);
-  }
-  try {
     let ret = data.readFloat();
-    hilog.info(0x0000, 'testTag', 'RpcClient: readFloat is ' + ret);
+    hilog.info(0x0000, 'testTag', 'readFloat is ' + ret);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read float fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read float fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeDouble
+### writeDouble<sup>9+</sup>
 
 writeDouble(val: number): void
 
@@ -1050,20 +1112,21 @@ writeDouble(val: number): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeDouble(10.2);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write double fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write double fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readDouble
+### readDouble<sup>9+</sup>
 
 readDouble(): number
 
@@ -1088,28 +1151,23 @@ readDouble(): number
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeDouble(10.2);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write double fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write double fail, errorMessage ' + e.message);
-  }
-  try {
     let ret = data.readDouble();
-    hilog.info(0x0000, 'testTag', 'RpcClient: readDouble is ' +  ret);
+    hilog.info(0x0000, 'testTag', 'readDouble is ' +  ret);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read double fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read double fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeBoolean
+### writeBoolean<sup>9+</sup>
 
 writeBoolean(val: boolean): void
 
@@ -1135,20 +1193,21 @@ writeBoolean(val: boolean): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeBoolean(false);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write boolean fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write boolean fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readBoolean
+### readBoolean<sup>9+</sup>
 
 readBoolean(): boolean
 
@@ -1173,28 +1232,23 @@ readBoolean(): boolean
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeBoolean(false);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write boolean fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write boolean fail, errorMessage ' + e.message);
-  }
-  try {
     let ret = data.readBoolean();
-    hilog.info(0x0000, 'testTag', 'RpcClient: readBoolean is ' + ret);
+    hilog.info(0x0000, 'testTag', 'readBoolean is ' + ret);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read boolean fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read boolean fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeChar
+### writeChar<sup>9+</sup>
 
 writeChar(val: number): void
 
@@ -1220,20 +1274,21 @@ writeChar(val: number): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeChar(97);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write char fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write char fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readChar
+### readChar<sup>9+</sup>
 
 readChar(): number
 
@@ -1258,28 +1313,23 @@ readChar(): number
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeChar(97);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write char fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write char fail, errorMessage ' + e.message);
-  }
-  try {
     let ret = data.readChar();
-    hilog.info(0x0000, 'testTag', 'RpcClient: readChar is ' + ret);
+    hilog.info(0x0000, 'testTag', 'readChar is ' + ret);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read char fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read char fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeString
+### writeString<sup>9+</sup>
 
 writeString(val: string): void
 
@@ -1305,20 +1355,21 @@ writeString(val: string): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeString('abc');
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write string fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write string fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readString
+### readString<sup>9+</sup>
 
 readString(): string
 
@@ -1343,28 +1394,23 @@ readString(): string
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeString('abc');
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write string fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write string fail, errorMessage ' + e.message);
-  }
-  try {
     let ret = data.readString();
-    hilog.info(0x0000, 'testTag', 'RpcClient: readString is ' + ret);
+    hilog.info(0x0000, 'testTag', 'readString is ' + ret);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read string fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read string fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeParcelable
+### writeParcelable<sup>9+</sup>
 
 writeParcelable(val: Parcelable): void
 
@@ -1390,6 +1436,7 @@ writeParcelable(val: Parcelable): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1411,18 +1458,19 @@ writeParcelable(val: Parcelable): void
       return true;
     }
   }
-  let parcelable = new MyParcelable(1, "aaa");
-  let data = rpc.MessageSequence.create();
+
   try {
+    let parcelable = new MyParcelable(1, "aaa");
+    let data = rpc.MessageSequence.create();
     data.writeParcelable(parcelable);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write parcelable fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write parcelable fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readParcelable
+### readParcelable<sup>9+</sup>
 
 readParcelable(dataIn: Parcelable): void
 
@@ -1449,13 +1497,14 @@ readParcelable(dataIn: Parcelable): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
     str: string = '';
-    constructor(num: number, str: string) {
+    constructor( num: number, str: string) {
       this.num = num;
       this.str = str;
     }
@@ -1470,20 +1519,21 @@ readParcelable(dataIn: Parcelable): void
       return true;
     }
   }
-  let parcelable = new MyParcelable(1, "aaa");
-  let data = rpc.MessageSequence.create();
-  data.writeParcelable(parcelable);
-  let ret = new MyParcelable(0, "");
+
   try {
+    let parcelable = new MyParcelable(1, "aaa");
+    let data = rpc.MessageSequence.create();
+    data.writeParcelable(parcelable);
+    let ret = new MyParcelable(0, "");
     data.readParcelable(ret);
-  }catch (error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read parcelable fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read parcelable fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeByteArray
+### writeByteArray<sup>9+</sup>
 
 writeByteArray(byteArray: number[]): void
 
@@ -1509,21 +1559,22 @@ writeByteArray(byteArray: number[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
-  let ByteArrayVar = [1, 2, 3, 4, 5];
   try {
+    let data = rpc.MessageSequence.create();
+    let ByteArrayVar = [1, 2, 3, 4, 5];
     data.writeByteArray(ByteArrayVar);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readByteArray
+### readByteArray<sup>9+</sup>
 
 readByteArray(dataIn: number[]): void
 
@@ -1549,29 +1600,25 @@ readByteArray(dataIn: number[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
-  let ByteArrayVar = [1, 2, 3, 4, 5];
   try {
+    let data = rpc.MessageSequence.create();
+    let ByteArrayVar = [1, 2, 3, 4, 5];
     data.writeByteArray(ByteArrayVar);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorMessage ' + e.message);
-  }
-  try {
     let array: Array<number> = new Array(5);
     data.readByteArray(array);
+    hilog.info(0x0000, 'testTag', 'readByteArray is  ' + array);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read byteArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read byteArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readByteArray
+### readByteArray<sup>9+</sup>
 
 readByteArray(): number[]
 
@@ -1596,29 +1643,24 @@ readByteArray(): number[]
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
-  let byteArrayVar = [1, 2, 3, 4, 5];
   try {
-    data.writeByteArray(byteArrayVar);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorMessage ' + e.message);
-  }
-  try {
+    let data = rpc.MessageSequence.create();
+    let ByteArrayVar = [1, 2, 3, 4, 5];
+    data.writeByteArray(ByteArrayVar);
     let array = data.readByteArray();
-    hilog.info(0x0000, 'testTag', 'RpcClient: readByteArray is ' +  array);
+    hilog.info(0x0000, 'testTag', 'readByteArray is  ' + array);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read byteArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read byteArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeShortArray
+### writeShortArray<sup>9+</sup>
 
 writeShortArray(shortArray: number[]): void
 
@@ -1644,20 +1686,21 @@ writeShortArray(shortArray: number[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeShortArray([11, 12, 13]);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readShortArray
+### readShortArray<sup>9+</sup>
 
 readShortArray(dataIn: number[]): void
 
@@ -1683,28 +1726,24 @@ readShortArray(dataIn: number[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeShortArray([11, 12, 13]);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorMessage ' + e.message);
-  }
-  try {
     let array: Array<number> = new Array(3);
     data.readShortArray(array);
+    hilog.info(0x0000, 'testTag', 'readShortArray is  ' + array);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read shortArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read shortArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readShortArray
+### readShortArray<sup>9+</sup>
 
 readShortArray(): number[]
 
@@ -1729,28 +1768,23 @@ readShortArray(): number[]
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeShortArray([11, 12, 13]);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorMessage ' + e.message);
-  }
-  try {
     let array = data.readShortArray();
-    hilog.info(0x0000, 'testTag', 'RpcClient: readShortArray is ' + array);
+    hilog.info(0x0000, 'testTag', 'readShortArray is ' + array);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read shortArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read shortArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeIntArray
+### writeIntArray<sup>9+</sup>
 
 writeIntArray(intArray: number[]): void
 
@@ -1776,20 +1810,21 @@ writeIntArray(intArray: number[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeIntArray([100, 111, 112]);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readIntArray
+### readIntArray<sup>9+</sup>
 
 readIntArray(dataIn: number[]): void
 
@@ -1815,28 +1850,24 @@ readIntArray(dataIn: number[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeIntArray([100, 111, 112]);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorMessage ' + e.message);
-  }
-  let array: Array<number> = new Array(3);
-  try {
+    let array: Array<number> = new Array(3);
     data.readIntArray(array);
+    hilog.info(0x0000, 'testTag', 'readIntArray is  ' + array);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read intArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read intArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readIntArray
+### readIntArray<sup>9+</sup>
 
 readIntArray(): number[]
 
@@ -1861,28 +1892,23 @@ readIntArray(): number[]
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeIntArray([100, 111, 112]);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorMessage ' + e.message);
-  }
-  try {
     let array = data.readIntArray();
-    hilog.info(0x0000, 'testTag', 'RpcClient: readIntArray is ' + array);
+    hilog.info(0x0000, 'testTag', 'readIntArray is ' + array);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read intArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read intArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeLongArray
+### writeLongArray<sup>9+</sup>
 
 writeLongArray(longArray: number[]): void
 
@@ -1908,20 +1934,21 @@ writeLongArray(longArray: number[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeLongArray([1111, 1112, 1113]);
-  }catch (error){
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readLongArray
+### readLongArray<sup>9+</sup>
 
 readLongArray(dataIn: number[]): void
 
@@ -1947,28 +1974,24 @@ readLongArray(dataIn: number[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeLongArray([1111, 1112, 1113]);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorMessage ' + e.message);
-  }
-  let array: Array<number> = new Array(3);
-  try {
+    let array: Array<number> = new Array(3);
     data.readLongArray(array);
+    hilog.info(0x0000, 'testTag', 'readLongArray is ' + array);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read longArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read longArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readLongArray
+### readLongArray<sup>9+</sup>
 
 readLongArray(): number[]
 
@@ -1993,32 +2016,27 @@ readLongArray(): number[]
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeLongArray([1111, 1112, 1113]);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorMessage ' + e.message);
-  }
-  try {
     let array = data.readLongArray();
-    hilog.info(0x0000, 'testTag', 'RpcClient: readLongArray is ' + array);
+    hilog.info(0x0000, 'testTag', 'readLongArray is ' + array);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read longArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read longArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeFloatArray
+### writeFloatArray<sup>9+</sup>
 
 writeFloatArray(floatArray: number[]): void
 
-将浮点数组写入MessageSequence实例。
+将双精度浮点数组写入MessageSequence实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -2026,7 +2044,7 @@ writeFloatArray(floatArray: number[]): void
 
   | 参数名     | 类型     | 必填 | 说明                                                                                                                    |
   | ---------- | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
-  | floatArray | number[] | 是   | 要写入的浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
+  | floatArray | number[] | 是   | 要写入的双精度浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
 
 **错误码：**
 
@@ -2040,24 +2058,25 @@ writeFloatArray(floatArray: number[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeFloatArray([1.2, 1.3, 1.4]);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readFloatArray
+### readFloatArray<sup>9+</sup>
 
 readFloatArray(dataIn: number[]): void
 
-从MessageSequence实例中读取浮点数组。
+从MessageSequence实例中读取双精度浮点数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -2065,7 +2084,7 @@ readFloatArray(dataIn: number[]): void
 
   | 参数名 | 类型     | 必填 | 说明                                                                                                                    |
   | ------ | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
-  | dataIn | number[] | 是   | 要读取的浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
+  | dataIn | number[] | 是   | 要读取的双精度浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
 
 **错误码：**
 
@@ -2079,32 +2098,28 @@ readFloatArray(dataIn: number[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeFloatArray([1.2, 1.3, 1.4]);
-  }catch (error){
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorMessage ' + e.message);
-  }
-  let array: Array<number> = new Array(3);
-  try {
+    let array: Array<number> = new Array(3);
     data.readFloatArray(array);
+    hilog.info(0x0000, 'testTag', 'readFloatArray is ' + array);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read floatArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read floatArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readFloatArray
+### readFloatArray<sup>9+</sup>
 
 readFloatArray(): number[]
 
-从MessageSequence实例中读取浮点数组。
+从MessageSequence实例中读取双精度浮点数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -2112,7 +2127,7 @@ readFloatArray(): number[]
 
   | 类型     | 说明           |
   | -------- | -------------- |
-  | number[] | 返回浮点数组。 |
+  | number[] | 返回双精度浮点数组。 |
 
 **错误码：**
 
@@ -2125,28 +2140,23 @@ readFloatArray(): number[]
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeFloatArray([1.2, 1.3, 1.4]);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorMessage ' + e.message);
-  }
-  try {
     let array = data.readFloatArray();
-    hilog.info(0x0000, 'testTag', 'RpcClient: readFloatArray is ' + array);
+    hilog.info(0x0000, 'testTag', 'readFloatArray is ' + array);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read floatArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read floatArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeDoubleArray
+### writeDoubleArray<sup>9+</sup>
 
 writeDoubleArray(doubleArray: number[]): void
 
@@ -2172,20 +2182,21 @@ writeDoubleArray(doubleArray: number[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeDoubleArray([11.1, 12.2, 13.3]);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readDoubleArray
+### readDoubleArray<sup>9+</sup>
 
 readDoubleArray(dataIn: number[]): void
 
@@ -2211,28 +2222,24 @@ readDoubleArray(dataIn: number[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeDoubleArray([11.1, 12.2, 13.3]);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorMessage ' + e.message);
-  }
-  let array: Array<number> = new Array(3);
-  try {
+    let array: Array<number> = new Array(3);
     data.readDoubleArray(array);
+    hilog.info(0x0000, 'testTag', 'readDoubleArray is ' + array);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read doubleArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read doubleArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readDoubleArray
+### readDoubleArray<sup>9+</sup>
 
 readDoubleArray(): number[]
 
@@ -2257,28 +2264,23 @@ readDoubleArray(): number[]
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeDoubleArray([11.1, 12.2, 13.3]);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorMessage ' + e.message);
-  }
-  try {
     let array = data.readDoubleArray();
-    hilog.info(0x0000, 'testTag', 'RpcClient: readDoubleArray is ' + array);
+    hilog.info(0x0000, 'testTag', 'readDoubleArray is ' + array);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read doubleArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read doubleArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeBooleanArray
+### writeBooleanArray<sup>9+</sup>
 
 writeBooleanArray(booleanArray: boolean[]): void
 
@@ -2304,20 +2306,21 @@ writeBooleanArray(booleanArray: boolean[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeBooleanArray([false, true, false]);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readBooleanArray
+### readBooleanArray<sup>9+</sup>
 
 readBooleanArray(dataIn: boolean[]): void
 
@@ -2343,28 +2346,24 @@ readBooleanArray(dataIn: boolean[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeBooleanArray([false, true, false]);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorMessage ' + e.message);
-  }
-  let array: Array<boolean> = new Array(3);
-  try {
+    let array: Array<boolean> = new Array(3);
     data.readBooleanArray(array);
+    hilog.info(0x0000, 'testTag', 'readBooleanArray is ' + array);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read booleanArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read booleanArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readBooleanArray
+### readBooleanArray<sup>9+</sup>
 
 readBooleanArray(): boolean[]
 
@@ -2389,28 +2388,23 @@ readBooleanArray(): boolean[]
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeBooleanArray([false, true, false]);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorMessage ' + e.message);
-  }
-  try {
     let array = data.readBooleanArray();
-    hilog.info(0x0000, 'testTag', 'RpcClient: readBooleanArray is ' + array);
+    hilog.info(0x0000, 'testTag', 'readBooleanArray is ' + array);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read booleanArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read booleanArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeCharArray
+### writeCharArray<sup>9+</sup>
 
 writeCharArray(charArray: number[]): void
 
@@ -2436,20 +2430,21 @@ writeCharArray(charArray: number[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeCharArray([97, 98, 88]);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readCharArray
+### readCharArray<sup>9+</sup>
 
 readCharArray(dataIn: number[]): void
 
@@ -2475,28 +2470,24 @@ readCharArray(dataIn: number[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeCharArray([97, 98, 88]);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorMessage ' + e.message);
-  }
-  let array: Array<number> = new Array(3);
-  try {
+    let array: Array<number> = new Array(3);
     data.readCharArray(array);
+    hilog.info(0x0000, 'testTag', 'readCharArray is ' + array);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read charArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read charArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readCharArray
+### readCharArray<sup>9+</sup>
 
 readCharArray(): number[]
 
@@ -2521,28 +2512,23 @@ readCharArray(): number[]
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeCharArray([97, 98, 88]);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorMessage ' + e.message);
-  }
-  try {
     let array = data.readCharArray();
-    hilog.info(0x0000, 'testTag', 'RpcClient: readCharArray is ' + array);
+    hilog.info(0x0000, 'testTag', 'readCharArray is ' + array);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read charArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read charArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeStringArray
+### writeStringArray<sup>9+</sup>
 
 writeStringArray(stringArray: string[]): void
 
@@ -2568,20 +2554,21 @@ writeStringArray(stringArray: string[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeStringArray(["abc", "def"]);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readStringArray
+### readStringArray<sup>9+</sup>
 
 readStringArray(dataIn: string[]): void
 
@@ -2607,28 +2594,24 @@ readStringArray(dataIn: string[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeStringArray(["abc", "def"]);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorMessage ' + e.message);
-  }
-  let array: Array<string> = new Array(2);
-  try {
+    let array: Array<string> = new Array(2);
     data.readStringArray(array);
+    hilog.info(0x0000, 'testTag', 'readStringArray is ' + array);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read stringArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read stringArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readStringArray
+### readStringArray<sup>9+</sup>
 
 readStringArray(): string[]
 
@@ -2653,28 +2636,23 @@ readStringArray(): string[]
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let data = rpc.MessageSequence.create();
   try {
+    let data = rpc.MessageSequence.create();
     data.writeStringArray(["abc", "def"]);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorMessage ' + e.message);
-  }
-  try {
     let array = data.readStringArray();
-    hilog.info(0x0000, 'testTag', 'RpcClient: readStringArray is ' + array);
+    hilog.info(0x0000, 'testTag', 'readStringArray is ' + array);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read stringArray fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read stringArray fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeNoException
+### writeNoException<sup>9+</sup>
 
 writeNoException(): void
 
@@ -2693,6 +2671,7 @@ writeNoException(): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2719,7 +2698,7 @@ writeNoException(): void
   }
   ```
 
-### readException
+### readException<sup>9+</sup>
 
 readException(): void
 
@@ -2739,26 +2718,27 @@ readException(): void
 
 >**说明：**
 >
->在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+>在本文档的示例中，通过this.getUIContext().getHostContext()来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
   import { Want, common } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      hilog.info(0x0000, 'testTag', 'js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+      hilog.info(0x0000, 'testTag', 'onDisconnect');
     },
     onFailed: () => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+      hilog.info(0x0000, 'testTag', 'onFailed');
     }
   };
   let want: Want = {
@@ -2778,42 +2758,43 @@ readException(): void
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { BusinessError } from '@kit.BasicServicesKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
-
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageSequence.create();
-  let reply = rpc.MessageSequence.create();
-  data.writeNoException();
-  data.writeInt(6);
-  if (proxy != undefined) {
-    proxy.sendMessageRequest(1, data, reply, option)
-      .then((result: rpc.RequestResult) => {
-        if (result.errCode === 0) {
-          hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
-          try {
+  
+  try {
+    let option = new rpc.MessageOption();
+    let data = rpc.MessageSequence.create();
+    let reply = rpc.MessageSequence.create();
+    data.writeNoException();
+    data.writeInt(6);
+    if (proxy != undefined) {
+      proxy.sendMessageRequest(1, data, reply, option)
+        .then((result: rpc.RequestResult) => {
+          if (result.errCode === 0) {
+            hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
             result.reply.readException();
-          } catch (error) {
-            let e: BusinessError = error as BusinessError;
-            hilog.error(0x0000, 'testTag', 'rpc read exception fail, errorCode ' + e.code);
-            hilog.error(0x0000, 'testTag', 'rpc read exception fail, errorMessage ' + e.message);
+            let num = result.reply.readInt();
+            hilog.info(0x0000, 'testTag', 'reply num: ' + num);
+          } else {
+            hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, errCode: ' + result.errCode);
           }
-          let num = result.reply.readInt();
-          hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
-        } else {
-          hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
-        }
-      }).catch((e: Error) => {
-        hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest got exception: ' + e.message);
-      }).finally (() => {
-        hilog.info(0x0000, 'testTag', 'RPCTest: sendMessageRequest ends, reclaim parcel');
-        data.reclaim();
-        reply.reclaim();
-      });
+        }).catch((e: Error) => {
+          hilog.error(0x0000, 'testTag', 'sendMessageRequest got exception: ' + e);
+        }).finally (() => {
+          hilog.info(0x0000, 'testTag', 'sendMessageRequest ends, reclaim parcel');
+          data.reclaim();
+          reply.reclaim();
+        });
+    }
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeParcelableArray
+### writeParcelableArray<sup>9+</sup>
 
 writeParcelableArray(parcelableArray: Parcelable[]): void
 
@@ -2839,6 +2820,7 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2860,12 +2842,13 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
       return true;
     }
   }
-  let parcelable = new MyParcelable(1, "aaa");
-  let parcelable2 = new MyParcelable(2, "bbb");
-  let parcelable3 = new MyParcelable(3, "ccc");
-  let a = [parcelable, parcelable2, parcelable3];
-  let data = rpc.MessageSequence.create();
+
   try {
+    let parcelable = new MyParcelable(1, "aaa");
+    let parcelable2 = new MyParcelable(2, "bbb");
+    let parcelable3 = new MyParcelable(3, "ccc");
+    let a = [parcelable, parcelable2, parcelable3];
+    let data = rpc.MessageSequence.create();
     data.writeParcelableArray(a);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
@@ -2874,7 +2857,7 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
   }
   ```
 
-### readParcelableArray
+### readParcelableArray<sup>9+</sup>
 
 readParcelableArray(parcelableArray: Parcelable[]): void
 
@@ -2901,6 +2884,7 @@ readParcelableArray(parcelableArray: Parcelable[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2922,23 +2906,24 @@ readParcelableArray(parcelableArray: Parcelable[]): void
       return true;
     }
   }
-  let parcelable = new MyParcelable(1, "aaa");
-  let parcelable2 = new MyParcelable(2, "bbb");
-  let parcelable3 = new MyParcelable(3, "ccc");
-  let a = [parcelable, parcelable2, parcelable3];
-  let data = rpc.MessageSequence.create();
-  data.writeParcelableArray(a);
-  let b = [new MyParcelable(0, ""), new MyParcelable(0, ""), new MyParcelable(0, "")];
+
   try {
+    let parcelable = new MyParcelable(1, "aaa");
+    let parcelable2 = new MyParcelable(2, "bbb");
+    let parcelable3 = new MyParcelable(3, "ccc");
+    let a = [parcelable, parcelable2, parcelable3];
+    let data = rpc.MessageSequence.create();
+    data.writeParcelableArray(a);
+    let b = [new MyParcelable(0, ""), new MyParcelable(0, ""), new MyParcelable(0, "")];
     data.readParcelableArray(b);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read parcelable array fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read parcelable array fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write parcelable array fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write parcelable array fail, errorMessage ' + e.message);
   }
   ```
 
-### writeRemoteObjectArray
+### writeRemoteObjectArray<sup>9+</sup>
 
 writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 
@@ -2964,31 +2949,32 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
-      this.modifyLocalInterface(this, descriptor);
     }
-
-    asObject(): rpc.IRemoteObject {
-      return this;
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      // 根据业务实际逻辑，进行相应处理
+      return true;
     }
   }
-  let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
-  let data = rpc.MessageSequence.create();
+
   try {
+    let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
+    let data = rpc.MessageSequence.create();
     data.writeRemoteObjectArray(a);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write remote object array fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write remote object array fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readRemoteObjectArray
+### readRemoteObjectArray<sup>9+</sup>
 
 readRemoteObjectArray(objects: IRemoteObject[]): void
 
@@ -3014,33 +3000,35 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
-      this.modifyLocalInterface(this, descriptor);
     }
-
-    asObject(): rpc.IRemoteObject {
-      return this;
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      // 根据业务实际逻辑，进行相应处理
+      return true;
     }
   }
-  let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
-  let data = rpc.MessageSequence.create();
-  data.writeRemoteObjectArray(a);
-  let b: Array<rpc.IRemoteObject> = new Array(3);
+
   try {
+    let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
+    let data = rpc.MessageSequence.create();
+    data.writeRemoteObjectArray(a);
+    let b: Array<rpc.IRemoteObject> = new Array(3);
     data.readRemoteObjectArray(b);
+    hilog.info(0x0000, 'testTag', 'readRemoteObjectArray is ' + b);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read remote object array fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read remote object array fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readRemoteObjectArray
+### readRemoteObjectArray<sup>9+</sup>
 
 readRemoteObjectArray(): IRemoteObject[]
 
@@ -3065,33 +3053,33 @@ readRemoteObjectArray(): IRemoteObject[]
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
-      this.modifyLocalInterface(this, descriptor);
     }
-
-    asObject(): rpc.IRemoteObject {
-      return this;
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      // 根据业务实际逻辑，进行相应处理
+      return true;
     }
   }
-  let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
-  let data = rpc.MessageSequence.create();
-  data.writeRemoteObjectArray(a);
+
   try {
+    let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
+    let data = rpc.MessageSequence.create();
     let b = data.readRemoteObjectArray();
-    hilog.info(0x0000, 'testTag', 'RpcClient: readRemoteObjectArray is ' + b);
+    hilog.info(0x0000, 'testTag', 'readRemoteObjectArray is ' + b);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read remote object array fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read remote object array fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### closeFileDescriptor
+### closeFileDescriptor<sup>9+</sup>
 
 static closeFileDescriptor(fd: number): void
 
@@ -3116,22 +3104,23 @@ static closeFileDescriptor(fd: number): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { fileIo } from '@kit.CoreFileKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let filePath = "path/to/file";
-  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   try {
+    let filePath = "path/to/file"; 
+    let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
     rpc.MessageSequence.closeFileDescriptor(file.fd);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc close file descriptor fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc close file descriptor fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### dupFileDescriptor
+### dupFileDescriptor<sup>9+</sup>
 
 static dupFileDescriptor(fd: number): number
 
@@ -3163,22 +3152,23 @@ static dupFileDescriptor(fd: number): number
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { fileIo } from '@kit.CoreFileKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let filePath = "path/to/file";
-  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   try {
+    let filePath = "path/to/file"; 
+    let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
     rpc.MessageSequence.dupFileDescriptor(file.fd);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc dup file descriptor fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc dup file descriptor fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### containFileDescriptors
+### containFileDescriptors<sup>9+</sup>
 
 containFileDescriptors(): boolean
 
@@ -3195,31 +3185,25 @@ containFileDescriptors(): boolean
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { fileIo } from '@kit.CoreFileKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let sequence = new rpc.MessageSequence();
-  let filePath = "path/to/file";
-  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   try {
-    sequence.writeFileDescriptor(file.fd);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorMessage ' + e.message);
-  }
-  try {
+    let sequence = rpc.MessageSequence.create();
+    let filePath = "path/to/file";
+    let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
     let containFD = sequence.containFileDescriptors();
-    hilog.info(0x0000, 'testTag', 'RpcTest: sequence after write fd containFd result is ' + containFD);
+    hilog.info(0x0000, 'testTag', 'sequence after write fd containFd result is ' + containFD);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc contain file descriptor fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc contain file descriptor fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeFileDescriptor
+### writeFileDescriptor<sup>9+</sup>
 
 writeFileDescriptor(fd: number): void
 
@@ -3245,23 +3229,24 @@ writeFileDescriptor(fd: number): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { fileIo } from '@kit.CoreFileKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let sequence = new rpc.MessageSequence();
-  let filePath = "path/to/file";
-  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   try {
+    let sequence = rpc.MessageSequence.create();
+    let filePath = "path/to/file";
+    let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
     sequence.writeFileDescriptor(file.fd);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readFileDescriptor
+### readFileDescriptor<sup>9+</sup>
 
 readFileDescriptor(): number
 
@@ -3286,31 +3271,26 @@ readFileDescriptor(): number
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { fileIo } from '@kit.CoreFileKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let sequence = new rpc.MessageSequence();
-  let filePath = "path/to/file";
-  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   try {
+    let sequence = rpc.MessageSequence.create();
+    let filePath = "path/to/file";
+    let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
     sequence.writeFileDescriptor(file.fd);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorMessage ' + e.message);
-  }
-  try {
     let readFD = sequence.readFileDescriptor();
-    hilog.info(0x0000, 'testTag', 'RpcClient: readFileDescriptor is ' + readFD);
+    hilog.info(0x0000, 'testTag', 'readFileDescriptor is ' + readFD);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read file descriptor fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read file descriptor fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### writeAshmem
+### writeAshmem<sup>9+</sup>
 
 writeAshmem(ashmem: Ashmem): void
 
@@ -3336,28 +3316,34 @@ writeAshmem(ashmem: Ashmem): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let sequence = new rpc.MessageSequence();
-  let ashmem: rpc.Ashmem | undefined = undefined;
   try {
-    ashmem = rpc.Ashmem.create("ashmem", 1024);
-    try {
-      sequence.writeAshmem(ashmem);
-    } catch (error) {
-      let e: BusinessError = error as BusinessError;
-      hilog.error(0x0000, 'testTag', 'rpc write ashmem fail, errorCode ' + e.code);
-      hilog.error(0x0000, 'testTag', 'rpc write ashmem fail, errorMessage ' + e.message);
+    let sequence = rpc.MessageSequence.create();
+    let ashmem = rpc.Ashmem.create("ashmem", 1024);
+    // ashmem里写入数据
+    let buffer = new ArrayBuffer(1024);
+    let int32View = new Int32Array(buffer);
+    for (let i = 0; i < int32View.length; i++) {
+      int32View[i] = i * 2 + 1;
     }
+    let size = buffer.byteLength;
+    ashmem.mapReadWriteAshmem();
+    ashmem.writeDataToAshmem(buffer, size, 0);
+    // 将ashmem对象写入messageSequence对象中
+    sequence.writeAshmem(ashmem);
+    // 将传递的数据大小写入messageSequence对象中
+    sequence.writeInt(size);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc create ashmem fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc create ashmem fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### readAshmem
+### readAshmem<sup>9+</sup>
 
 readAshmem(): Ashmem
 
@@ -3382,35 +3368,44 @@ readAshmem(): Ashmem
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let sequence = new rpc.MessageSequence();
-  let ashmem: rpc.Ashmem | undefined = undefined;
   try {
-    ashmem = rpc.Ashmem.create("ashmem", 1024);
-    try {
-      sequence.writeAshmem(ashmem);
-    } catch (error) {
-      let e: BusinessError = error as BusinessError;
-      hilog.error(0x0000, 'testTag', 'rpc write ashmem fail, errorCode ' + e.code);
-      hilog.error(0x0000, 'testTag', 'rpc write ashmem fail, errorMessage ' + e.message);
+    let sequence = rpc.MessageSequence.create();
+    let ashmem = rpc.Ashmem.create("ashmem", 1024);
+    // ashmem里写入数据
+    let buffer = new ArrayBuffer(1024);
+    let int32View = new Int32Array(buffer);
+    for (let i = 0; i < int32View.length; i++) {
+      int32View[i] = i * 2 + 1;
     }
+    let size = buffer.byteLength;
+    ashmem.mapReadWriteAshmem();
+    ashmem.writeDataToAshmem(buffer, size, 0);
+    // 将传递的数据大小写入messageSequence对象中
+    sequence.writeInt(size);
+    // 将ashmem对象写入messageSequence对象中
+    sequence.writeAshmem(ashmem);
+
+    // 读取传递的数据大小
+    let dataSize = sequence.readInt();
+    // 从messageSequence对象中读取ashmem对象
+    let ashmem1 = sequence.readAshmem();
+    // 从ashmem对象中读取数据
+    ashmem1.mapReadWriteAshmem();
+    let readResult = ashmem1.readDataFromAshmem(dataSize, 0);
+    let readInt32View = new Int32Array(readResult);
+    hilog.info(0x0000, 'testTag', 'read from Ashmem result is ' + readInt32View);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc create ashmem fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc create ashmem fail, errorMessage ' + e.message);
-  }
-  try {
-    sequence.readAshmem();
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read ashmem fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read ashmem fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
-### getRawDataCapacity
+### getRawDataCapacity<sup>9+</sup>
 
 getRawDataCapacity(): number
 
@@ -3427,11 +3422,19 @@ getRawDataCapacity(): number
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-  let sequence = new rpc.MessageSequence();
-  let result = sequence.getRawDataCapacity();
-  hilog.info(0x0000, 'testTag', 'RpcTest: sequence get RawDataCapacity result is ' + result);
+  try {
+    let sequence = rpc.MessageSequence.create();
+    let result = sequence.getRawDataCapacity();
+    hilog.info(0x0000, 'testTag', 'sequence get RawDataCapacity result is ' + result);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
+  }
   ```
 
 ### writeRawData<sup>(deprecated)</sup>
@@ -3466,19 +3469,20 @@ writeRawData(rawData: number[], size: number): void
   | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let sequence = new rpc.MessageSequence();
-  let arr = [1, 2, 3, 4, 5];
   try {
+    let sequence = rpc.MessageSequence.create();
+    let arr = [1, 2, 3, 4, 5];
     sequence.writeRawData(arr, arr.length);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
@@ -3514,22 +3518,23 @@ writeRawDataBuffer(rawData: ArrayBuffer, size: number): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let buffer = new ArrayBuffer(64 * 1024);
-  let int32View = new Int32Array(buffer);
-  for (let i = 0; i < int32View.length; i++) {
-    int32View[i] = i * 2 + 1;
-  }
-  let size = buffer.byteLength;
-  let sequence = new rpc.MessageSequence();
   try {
+    let buffer = new ArrayBuffer(64 * 1024);
+    let int32View = new Int32Array(buffer);
+    for (let i = 0; i < int32View.length; i++) {
+      int32View[i] = i * 2 + 1;
+    }
+    let size = buffer.byteLength;
+    let sequence = rpc.MessageSequence.create();
     sequence.writeRawDataBuffer(buffer, size);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
@@ -3542,7 +3547,6 @@ readRawData(size: number): number[]
 > **说明：**
 >
 > 从API version 11 开始废弃，建议使用[readRawDataBuffer](#readrawdatabuffer11)替代。
-
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -3568,27 +3572,23 @@ readRawData(size: number): number[]
   | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let sequence = new rpc.MessageSequence();
-  let arr = [1, 2, 3, 4, 5];
   try {
+    let sequence = rpc.MessageSequence.create();
+    let arr = [1, 2, 3, 4, 5];
     sequence.writeRawData(arr, arr.length);
+    let size = arr.length;
+    let result = sequence.readRawData(size);
+    hilog.info(0x0000, 'testTag', 'sequence read raw data result is ' + result);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorMessage ' + e.message);
-  }
-  try {
-    let result = sequence.readRawData(5);
-    hilog.info(0x0000, 'testTag', 'RpcTest: sequence read raw data result is ' + result);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read rawdata fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read rawdata fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
@@ -3624,31 +3624,26 @@ readRawDataBuffer(size: number): ArrayBuffer
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let buffer = new ArrayBuffer(64 * 1024);
-  let int32View = new Int32Array(buffer);
-  for (let i = 0; i < int32View.length; i++) {
-    int32View[i] = i * 2 + 1;
-  }
-  let size = buffer.byteLength;
-  let sequence = new rpc.MessageSequence();
   try {
+    let buffer = new ArrayBuffer(64 * 1024);
+    let int32View = new Int32Array(buffer);
+    for (let i = 0; i < int32View.length; i++) {
+      int32View[i] = i * 2 + 1;
+    }
+    let size = buffer.byteLength;
+    let sequence = rpc.MessageSequence.create();
     sequence.writeRawDataBuffer(buffer, size);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorMessage ' + e.message);
-  }
-  try {
     let result = sequence.readRawDataBuffer(size);
     let readInt32View = new Int32Array(result);
-    hilog.info(0x0000, 'testTag', 'RpcTest: sequence read raw data result is ' + readInt32View);
+    hilog.info(0x0000, 'testTag', 'sequence read raw data result is ' + readInt32View);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read rawdata fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read rawdata fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
@@ -3680,23 +3675,22 @@ writeArrayBuffer(buf: ArrayBuffer, typeCode: TypeCode): void
 
   ```ts
   // TypeCode 类型枚举较多，示例代码以Int16Array为例
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
-  
-  const data = rpc.MessageSequence.create();
-
-  let buffer = new ArrayBuffer(10);
-  let int16View = new Int16Array(buffer);
-  for (let i = 0; i < int16View.length; i++) {
-    int16View[i] = i * 2 + 1;
-  }
 
   try {
+    let data = rpc.MessageSequence.create();
+    let buffer = new ArrayBuffer(10);
+    let int16View = new Int16Array(buffer);
+    for (let i = 0; i < int16View.length; i++) {
+      int16View[i] = i * 2 + 1;
+    }
     data.writeArrayBuffer(buffer, rpc.TypeCode.INT16_ARRAY);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffer fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffer fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
@@ -3733,32 +3727,25 @@ readArrayBuffer(typeCode: TypeCode): ArrayBuffer
 
   ```ts
   // TypeCode 类型枚举较多，示例代码以Int16Array为例
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
-  
-  const data = rpc.MessageSequence.create();
-
-  let buffer = new ArrayBuffer(10);
-  let int16View = new Int16Array(buffer);
-  for (let i = 0; i < int16View.length; i++) {
-    int16View[i] = i * 2 + 1;
-  }
 
   try {
+    let data = rpc.MessageSequence.create();
+    let buffer = new ArrayBuffer(10);
+    let int16View = new Int16Array(buffer);
+    for (let i = 0; i < int16View.length; i++) {
+      int16View[i] = i * 2 + 1;
+    }
     data.writeArrayBuffer(buffer, rpc.TypeCode.INT16_ARRAY);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffer fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffer fail, errorMessage ' + e.message);
-  }
-  try {
     let result = data.readArrayBuffer(rpc.TypeCode.INT16_ARRAY);
     let readInt16View = new Int16Array(result);
-    hilog.info(0x0000, 'testTag', 'RpcTest: read ArrayBuffer result is ' + readInt16View);
+    hilog.info(0x0000, 'testTag', 'read ArrayBuffer result is ' + readInt16View);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc read ArrayBuffer fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc read ArrayBuffer fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
@@ -3785,15 +3772,20 @@ static create(): MessageParcel
   | [MessageParcel](#messageparceldeprecated) | 返回创建的MessageParcel对象。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  hilog.info(0x0000, 'testTag', 'RpcClient: data is ' + data);
+  try {
+    let data = rpc.MessageParcel.create();
+    hilog.info(0x0000, 'testTag', 'data is ' + data);
 
-  // 当MessageParcel对象不再使用，由业务主动调用reclaim方法去释放资源。
-  data.reclaim();
+    // 当MessageParcel对象不再使用，由业务主动调用reclaim方法去释放资源。
+    data.reclaim();
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### reclaim
@@ -3805,10 +3797,17 @@ reclaim(): void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
-  let reply = rpc.MessageParcel.create();
-  reply.reclaim();
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  try {
+    let reply = rpc.MessageParcel.create();
+    reply.reclaim();
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeRemoteObject
@@ -3832,32 +3831,28 @@ writeRemoteObject(object: IRemoteObject): boolean
   | boolean | true：操作成功，false：操作失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class MyDeathRecipient implements rpc.DeathRecipient {
-    onRemoteDied() {
-      hilog.info(0x0000, 'testTag', 'server died');
-    }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
     }
-    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
+      // 根据业务实际逻辑，进行相应处理
       return true;
-    }
-    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    isObjectDead(): boolean {
-      return false;
     }
   }
-  let data = rpc.MessageParcel.create();
-  let testRemoteObject = new TestRemoteObject("testObject");
-  data.writeRemoteObject(testRemoteObject);
+
+  try {
+    let data = rpc.MessageParcel.create();
+    let testRemoteObject = new TestRemoteObject("testObject");
+    data.writeRemoteObject(testRemoteObject);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readRemoteObject
@@ -3875,34 +3870,30 @@ readRemoteObject(): IRemoteObject
   | [IRemoteObject](#iremoteobject) | 读取到的远程对象。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class MyDeathRecipient implements rpc.DeathRecipient {
-    onRemoteDied() {
-      hilog.info(0x0000, 'testTag', 'server died');
-    }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
     }
-    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
+      // 根据业务实际逻辑，进行相应处理
       return true;
-    }
-    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    isObjectDead(): boolean {
-      return false;
     }
   }
-  let data = rpc.MessageParcel.create();
-  let testRemoteObject = new TestRemoteObject("testObject");
-  data.writeRemoteObject(testRemoteObject);
-  let proxy = data.readRemoteObject();
-  hilog.info(0x0000, 'testTag', 'readRemoteObject is ' + proxy);
+
+  try {
+    let data = rpc.MessageParcel.create();
+    let testRemoteObject = new TestRemoteObject("testObject");
+    data.writeRemoteObject(testRemoteObject);
+    let proxy = data.readRemoteObject();
+    hilog.info(0x0000, 'testTag', 'readRemoteObject is ' + proxy);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeInterfaceToken
@@ -3917,7 +3908,7 @@ writeInterfaceToken(token: string): boolean
 
   | 参数名 | 类型   | 必填 | 说明               |
   | ------ | ------ | ---- | ------------------ |
-  | token  | string | 是   | 字符串类型描述符。 |
+  | token  | string | 是   | 字符串类型描述符，其长度应小于40960字节。 |
 
 **返回值：**
 
@@ -3926,13 +3917,18 @@ writeInterfaceToken(token: string): boolean
   | boolean | true：操作成功，false：操作失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeInterfaceToken("aaa");
-  hilog.info(0x0000, 'testTag', 'RpcServer: writeInterfaceToken is ' + result);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeInterfaceToken("aaa");
+    hilog.info(0x0000, 'testTag', 'RpcServer: writeInterfaceToken is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readInterfaceToken
@@ -3950,16 +3946,18 @@ readInterfaceToken(): string
   | string | 返回读取到的接口描述符。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class Stub extends rpc.RemoteObject {
-    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
-      let interfaceToken = data.readInterfaceToken();
-      hilog.info(0x0000, 'testTag', 'RpcServer: interfaceToken is ' + interfaceToken);
-      return true;
-    }
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeInterfaceToken("aaa");
+    let interfaceToken = data.readInterfaceToken();
+    hilog.info(0x0000, 'testTag', 'RpcServer: interfaceToken is ' + interfaceToken);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
   }
   ```
 
@@ -3978,13 +3976,19 @@ getSize(): number
   | number | 获取的MessageParcel的数据大小。以字节为单位。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let size = data.getSize();
-  hilog.info(0x0000, 'testTag', 'RpcClient: size is ' + size);
+  try {
+    let data = rpc.MessageParcel.create();
+    data.writeInt(1);
+    let size = data.getSize();
+    hilog.info(0x0000, 'testTag', 'size is ' + size);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### getCapacity
@@ -4002,13 +4006,19 @@ getCapacity(): number
   | number | 获取的MessageParcel的容量大小。以字节为单位。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.getCapacity();
-  hilog.info(0x0000, 'testTag', 'RpcClient: capacity is ' + result);
+  try {
+    let data = rpc.MessageParcel.create();
+    let data = rpc.MessageParcel.create();
+    let result = data.getCapacity();
+    hilog.info(0x0000, 'testTag', 'capacity is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### setSize
@@ -4032,13 +4042,18 @@ setSize(size: number): boolean
   | boolean | true：设置成功，false：设置失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let setSize = data.setSize(16);
-  hilog.info(0x0000, 'testTag', 'RpcClient: setSize is ' + setSize);
+  try {
+    let data = rpc.MessageParcel.create();
+    let setSize = data.setSize(16);
+    hilog.info(0x0000, 'testTag', 'setSize is ' + setSize);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### setCapacity
@@ -4062,13 +4077,18 @@ setCapacity(size: number): boolean
   | boolean | true：设置成功，false：设置失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.setCapacity(100);
-  hilog.info(0x0000, 'testTag', 'RpcClient: setCapacity is ' + result);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.setCapacity(100);
+    hilog.info(0x0000, 'testTag', 'setCapacity is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### getWritableBytes
@@ -4086,16 +4106,18 @@ getWritableBytes(): number
   | number | 获取到的MessageParcel的可写字节空间。以字节为单位。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class Stub extends rpc.RemoteObject {
-    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
-      let getWritableBytes = data.getWritableBytes();
-      hilog.info(0x0000, 'testTag', 'RpcServer: getWritableBytes is ' + getWritableBytes);
-      return true;
-    }
+  try {
+    let data = rpc.MessageParcel.create();
+    data.writeInt(1);
+    let getWritableBytes = data.getWritableBytes();
+    hilog.info(0x0000, 'testTag', 'RpcServer: getWritableBytes is ' + getWritableBytes);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
   }
   ```
 
@@ -4114,16 +4136,18 @@ getReadableBytes(): number
   | number | 获取到的MessageParcel的可读字节空间。以字节为单位。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class Stub extends rpc.RemoteObject {
-    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
-      let result = data.getReadableBytes();
-      hilog.info(0x0000, 'testTag', 'RpcServer: getReadableBytes is ' + result);
-      return true;
-    }
+  try {
+    let data = rpc.MessageParcel.create();
+    data.writeInt(1);
+    let result = data.getReadableBytes();
+    hilog.info(0x0000, 'testTag', 'RpcServer: getReadableBytes is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
   }
   ```
 
@@ -4142,13 +4166,18 @@ getReadPosition(): number
   | number | 返回MessageParcel实例中的当前读取位置。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let readPos = data.getReadPosition();
-  hilog.info(0x0000, 'testTag', 'RpcClient: readPos is ' + readPos);
+  try {
+    let data = rpc.MessageParcel.create();
+    let readPos = data.getReadPosition();
+    hilog.info(0x0000, 'testTag', 'readPos is ' + readPos);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### getWritePosition
@@ -4166,14 +4195,19 @@ getWritePosition(): number
   | number | 返回MessageParcel实例中的当前写入位置。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  data.writeInt(10);
-  let bwPos = data.getWritePosition();
-  hilog.info(0x0000, 'testTag', 'RpcClient: bwPos is ' + bwPos);
+  try {
+    let data = rpc.MessageParcel.create();
+    data.writeInt(10);
+    let bwPos = data.getWritePosition();
+    hilog.info(0x0000, 'testTag', 'bwPos is ' + bwPos);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### rewindRead
@@ -4197,18 +4231,23 @@ rewindRead(pos: number): boolean
   | boolean | true：读取位置发生更改，false：读取位置未发生更改。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  data.writeInt(12);
-  data.writeString("parcel");
-  let number = data.readInt();
-  hilog.info(0x0000, 'testTag', 'RpcClient: number is ' + number);
-  data.rewindRead(0);
-  let number2 = data.readInt();
-  hilog.info(0x0000, 'testTag', 'RpcClient: rewindRead is ' + number2);
+  try {
+    let data = rpc.MessageParcel.create();
+    data.writeInt(12);
+    data.writeString("parcel");
+    let number = data.readInt();
+    hilog.info(0x0000, 'testTag', 'number is ' + number);
+    data.rewindRead(0);
+    let number2 = data.readInt();
+    hilog.info(0x0000, 'testTag', 'rewindRead is ' + number2);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### rewindWrite
@@ -4232,16 +4271,21 @@ rewindWrite(pos: number): boolean
   | boolean | true：写入位置发生更改，false：写入位置未发生更改。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  data.writeInt(4);
-  data.rewindWrite(0);
-  data.writeInt(5);
-  let number = data.readInt();
-  hilog.info(0x0000, 'testTag', 'RpcClient: rewindWrite is ' + number);
+  try {
+    let data = rpc.MessageParcel.create();
+    data.writeInt(4);
+    data.rewindWrite(0);
+    data.writeInt(5);
+    let number = data.readInt();
+    hilog.info(0x0000, 'testTag', 'rewindWrite is ' + number);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeByte
@@ -4265,13 +4309,18 @@ writeByte(val: number): boolean
   | boolean | true：写入成功，false：写入失败。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeByte(2);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeByte is ' + result);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeByte(2);
+    hilog.info(0x0000, 'testTag', 'writeByte is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readByte
@@ -4289,15 +4338,20 @@ readByte(): number
   | number | 返回字节值。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeByte(2);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeByte is ' + result);
-  let ret = data.readByte();
-  hilog.info(0x0000, 'testTag', 'RpcClient: readByte is ' + ret);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeByte(2);
+    hilog.info(0x0000, 'testTag', 'writeByte is ' + result);
+    let ret = data.readByte();
+    hilog.info(0x0000, 'testTag', 'readByte is ' + ret);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeShort
@@ -4321,13 +4375,18 @@ writeShort(val: number): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeShort(8);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeShort is ' + result);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeShort(8);
+    hilog.info(0x0000, 'testTag', 'writeShort is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readShort
@@ -4345,15 +4404,20 @@ readShort(): number
   | number | 返回短整数值。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeShort(8);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeShort is ' + result);
-  let ret = data.readShort();
-  hilog.info(0x0000, 'testTag', 'RpcClient: readShort is ' + ret);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeShort(8);
+    hilog.info(0x0000, 'testTag', 'writeShort is ' + result);
+    let ret = data.readShort();
+    hilog.info(0x0000, 'testTag', 'readShort is ' + ret);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeInt
@@ -4377,13 +4441,18 @@ writeInt(val: number): boolean
   | boolean | true：写入成功，false：写入失败。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeInt(10);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeInt is ' + result);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeInt(10);
+    hilog.info(0x0000, 'testTag', 'writeInt is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readInt
@@ -4401,15 +4470,20 @@ readInt(): number
   | number | 返回整数值。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeInt(10);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeInt is ' + result);
-  let ret = data.readInt();
-  hilog.info(0x0000, 'testTag', 'RpcClient: readInt is ' + ret);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeInt(10);
+    hilog.info(0x0000, 'testTag', 'writeInt is ' + result);
+    let ret = data.readInt();
+    hilog.info(0x0000, 'testTag', 'readInt is ' + ret);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeLong
@@ -4433,13 +4507,18 @@ writeLong(val: number): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeLong(10000);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeLong is ' + result);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeLong(10000);
+    hilog.info(0x0000, 'testTag', 'writeLong is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readLong
@@ -4457,22 +4536,27 @@ readLong(): number
   | number | 返回长整数值。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeLong(10000);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeLong is ' + result);
-  let ret = data.readLong();
-  hilog.info(0x0000, 'testTag', 'RpcClient: readLong is ' + ret);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeLong(10000);
+    hilog.info(0x0000, 'testTag', 'writeLong is ' + result);
+    let ret = data.readLong();
+    hilog.info(0x0000, 'testTag', 'readLong is ' + ret);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeFloat
 
 writeFloat(val: number): boolean
 
-将浮点值写入MessageParcel实例。
+将双精度浮点值写入MessageParcel实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -4480,7 +4564,7 @@ writeFloat(val: number): boolean
 
   | 参数名 | 类型   | 必填 | 说明             |
   | ------ | ------ | ---- | ---------------- |
-  | val    | number | 是   | 要写入的浮点值。 |
+  | val    | number | 是   | 要写入的双精度浮点值。 |
 
 **返回值：**
 
@@ -4489,20 +4573,25 @@ writeFloat(val: number): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeFloat(1.2);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeFloat is ' + result);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeFloat(1.2);
+    hilog.info(0x0000, 'testTag', 'writeFloat is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readFloat
 
 readFloat(): number
 
-从MessageParcel实例中读取浮点值。
+从MessageParcel实例中读取双精度浮点值。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -4510,18 +4599,23 @@ readFloat(): number
 
   | 类型   | 说明         |
   | ------ | ------------ |
-  | number | 返回浮点值。 |
+  | number | 返回双精度浮点值。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeFloat(1.2);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeFloat is ' + result);
-  let ret = data.readFloat();
-  hilog.info(0x0000, 'testTag', 'RpcClient: readFloat is ' + ret);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeFloat(1.2);
+    hilog.info(0x0000, 'testTag', 'writeFloat is ' + result);
+    let ret = data.readFloat();
+    hilog.info(0x0000, 'testTag', 'readFloat is ' + ret);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeDouble
@@ -4545,13 +4639,18 @@ writeDouble(val: number): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeDouble(10.2);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeDouble is ' + result);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeDouble(10.2);
+    hilog.info(0x0000, 'testTag', 'writeDouble is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readDouble
@@ -4569,15 +4668,20 @@ readDouble(): number
   | number | 返回双精度浮点值。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeDouble(10.2);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeDouble is ' + result);
-  let ret = data.readDouble();
-  hilog.info(0x0000, 'testTag', 'RpcClient: readDouble is ' + ret);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeDouble(10.2);
+    hilog.info(0x0000, 'testTag', 'writeDouble is ' + result);
+    let ret = data.readDouble();
+    hilog.info(0x0000, 'testTag', 'readDouble is ' + ret);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeBoolean
@@ -4601,13 +4705,18 @@ writeBoolean(val: boolean): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeBoolean(false);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeBoolean is ' + result);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeBoolean(false);
+    hilog.info(0x0000, 'testTag', 'writeBoolean is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readBoolean
@@ -4625,15 +4734,20 @@ readBoolean(): boolean
   | boolean | 返回读取到的布尔值。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeBoolean(false);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeBoolean is ' + result);
-  let ret = data.readBoolean();
-  hilog.info(0x0000, 'testTag', 'RpcClient: readBoolean is ' + ret);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeBoolean(false);
+    hilog.info(0x0000, 'testTag', 'writeBoolean is ' + result);
+    let ret = data.readBoolean();
+    hilog.info(0x0000, 'testTag', 'readBoolean is ' + ret);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeChar
@@ -4657,13 +4771,18 @@ writeChar(val: number): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeChar(97);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeChar is ' + result);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeChar(97);
+    hilog.info(0x0000, 'testTag', 'writeChar is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readChar
@@ -4681,15 +4800,20 @@ readChar(): number
   | number | 返回单个字符值。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeChar(97);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeChar is ' + result);
-  let ret = data.readChar();
-  hilog.info(0x0000, 'testTag', 'RpcClient: readChar is ' + ret);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeChar(97);
+    hilog.info(0x0000, 'testTag', 'writeChar is ' + result);
+    let ret = data.readChar();
+    hilog.info(0x0000, 'testTag', 'readChar is ' + ret);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeString
@@ -4713,13 +4837,18 @@ writeString(val: string): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeString('abc');
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeString is ' + result);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeString('abc');
+    hilog.info(0x0000, 'testTag', 'writeString is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readString
@@ -4737,15 +4866,20 @@ readString(): string
   | string | 返回字符串值。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeString('abc');
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeString is ' + result);
-  let ret = data.readString();
-  hilog.info(0x0000, 'testTag', 'RpcClient: readString is ' + ret);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeString('abc');
+    hilog.info(0x0000, 'testTag', 'writeString is ' + result);
+    let ret = data.readString();
+    hilog.info(0x0000, 'testTag', 'readString is ' + ret);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeSequenceable
@@ -4769,8 +4903,9 @@ writeSequenceable(val: Sequenceable): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
@@ -4791,10 +4926,15 @@ writeSequenceable(val: Sequenceable): boolean
       return true;
     }
   }
-  let sequenceable = new MySequenceable(1, "aaa");
-  let data = rpc.MessageParcel.create();
-  let result = data.writeSequenceable(sequenceable);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeSequenceable is ' + result);
+
+  try {
+    let sequenceable = new MySequenceable(1, "aaa");
+    let data = rpc.MessageParcel.create();
+    let result = data.writeSequenceable(sequenceable);
+    hilog.info(0x0000, 'testTag', 'writeSequenceable is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readSequenceable
@@ -4818,8 +4958,9 @@ readSequenceable(dataIn: Sequenceable): boolean
   | boolean | true：反序列化成功，false：反序列化失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
@@ -4840,13 +4981,18 @@ readSequenceable(dataIn: Sequenceable): boolean
       return true;
     }
   }
-  let sequenceable = new MySequenceable(1, "aaa");
-  let data = rpc.MessageParcel.create();
-  let result = data.writeSequenceable(sequenceable);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeSequenceable is ' + result);
-  let ret = new MySequenceable(0, "");
-  let result2 = data.readSequenceable(ret);
-  hilog.info(0x0000, 'testTag', 'RpcClient: readSequenceable is ' + result2);
+
+  try {
+    let sequenceable = new MySequenceable(1, "aaa");
+    let data = rpc.MessageParcel.create();
+    let result = data.writeSequenceable(sequenceable);
+    hilog.info(0x0000, 'testTag', 'writeSequenceable is ' + result);
+    let ret = new MySequenceable(0, "");
+    let result2 = data.readSequenceable(ret);
+    hilog.info(0x0000, 'testTag', 'readSequenceable is ' + result2);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeByteArray
@@ -4870,14 +5016,19 @@ writeByteArray(byteArray: number[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let ByteArrayVar = [1, 2, 3, 4, 5];
-  let result = data.writeByteArray(ByteArrayVar);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeByteArray is ' + result);
+  try {
+    let data = rpc.MessageParcel.create();
+    let ByteArrayVar = [1, 2, 3, 4, 5];
+    let result = data.writeByteArray(ByteArrayVar);
+    hilog.info(0x0000, 'testTag', 'writeByteArray is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readByteArray
@@ -4895,16 +5046,21 @@ readByteArray(dataIn: number[]): void
   | dataIn | number[] | 是   | 要读取的字节数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let ByteArrayVar = [1, 2, 3, 4, 5];
-  let result = data.writeByteArray(ByteArrayVar);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeByteArray is ' + result);
-  let array: Array<number> = new Array(5);
-  data.readByteArray(array);
+  try {
+    let data = rpc.MessageParcel.create();
+    let ByteArrayVar = [1, 2, 3, 4, 5];
+    let result = data.writeByteArray(ByteArrayVar);
+    let array: Array<number> = new Array(5);
+    data.readByteArray(array);
+    hilog.info(0x0000, 'testTag', 'readByteArray is ' + array);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readByteArray
@@ -4922,16 +5078,21 @@ readByteArray(): number[]
   | number[] | 返回字节数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let ByteArrayVar = [1, 2, 3, 4, 5];
-  let result = data.writeByteArray(ByteArrayVar);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeByteArray is ' + result);
-  let array = data.readByteArray();
-  hilog.info(0x0000, 'testTag', 'RpcClient: readByteArray is ' + array);
+  try {
+    let data = rpc.MessageParcel.create();
+    let ByteArrayVar = [1, 2, 3, 4, 5];
+    let result = data.writeByteArray(ByteArrayVar);
+    hilog.info(0x0000, 'testTag', 'writeByteArray is ' + result);
+    let array = data.readByteArray();
+    hilog.info(0x0000, 'testTag', 'readByteArray is ' + array);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeShortArray
@@ -4955,13 +5116,18 @@ writeShortArray(shortArray: number[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeShortArray([11, 12, 13]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeShortArray is ' + result);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeShortArray([11, 12, 13]);
+    hilog.info(0x0000, 'testTag', 'writeShortArray is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readShortArray
@@ -4979,15 +5145,21 @@ readShortArray(dataIn: number[]): void
   | dataIn | number[] | 是   | 要读取的短整数数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeShortArray([11, 12, 13]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeShortArray is ' + result);
-  let array: Array<number> = new Array(3);
-  data.readShortArray(array);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeShortArray([11, 12, 13]);
+    hilog.info(0x0000, 'testTag', 'writeShortArray is ' + result);
+    let array: Array<number> = new Array(3);
+    data.readShortArray(array);
+    hilog.info(0x0000, 'testTag', 'readShortArray is ' + array);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readShortArray
@@ -5005,15 +5177,20 @@ readShortArray(): number[]
   | number[] | 返回短整数数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeShortArray([11, 12, 13]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeShortArray is ' + result);
-  let array = data.readShortArray();
-  hilog.info(0x0000, 'testTag', 'RpcClient: readShortArray is ' + array);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeShortArray([11, 12, 13]);
+    hilog.info(0x0000, 'testTag', 'writeShortArray is ' + result);
+    let array = data.readShortArray();
+    hilog.info(0x0000, 'testTag', 'readShortArray is ' + array);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeIntArray
@@ -5037,13 +5214,18 @@ writeIntArray(intArray: number[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeIntArray([100, 111, 112]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeIntArray is ' + result);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeIntArray([100, 111, 112]);
+    hilog.info(0x0000, 'testTag', 'writeIntArray is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readIntArray
@@ -5061,15 +5243,21 @@ readIntArray(dataIn: number[]): void
   | dataIn | number[] | 是   | 要读取的整数数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeIntArray([100, 111, 112]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeIntArray is ' + result);
-  let array: Array<number> = new Array(3);
-  data.readIntArray(array);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeIntArray([100, 111, 112]);
+    hilog.info(0x0000, 'testTag', 'writeIntArray is ' + result);
+    let array: Array<number> = new Array(3);
+    data.readIntArray(array);
+    hilog.info(0x0000, 'testTag', 'readIntArray is ' + array);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readIntArray
@@ -5087,15 +5275,20 @@ readIntArray(): number[]
   | number[] | 返回整数数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeIntArray([100, 111, 112]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeIntArray is ' + result);
-  let array = data.readIntArray();
-  hilog.info(0x0000, 'testTag', 'RpcClient: readIntArray is ' + array);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeIntArray([100, 111, 112]);
+    hilog.info(0x0000, 'testTag', 'writeIntArray is ' + result);
+    let array = data.readIntArray();
+    hilog.info(0x0000, 'testTag', 'readIntArray is ' + array);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeLongArray
@@ -5119,13 +5312,18 @@ writeLongArray(longArray: number[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeLongArray([1111, 1112, 1113]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeLongArray is ' + result);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeLongArray([1111, 1112, 1113]);
+    hilog.info(0x0000, 'testTag', 'writeLongArray is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readLongArray
@@ -5143,15 +5341,21 @@ readLongArray(dataIn: number[]): void
   | dataIn | number[] | 是   | 要读取的长整数数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeLongArray([1111, 1112, 1113]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeLongArray is ' + result);
-  let array: Array<number> = new Array(3);
-  data.readLongArray(array);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeLongArray([1111, 1112, 1113]);
+    hilog.info(0x0000, 'testTag', 'writeLongArray is ' + result);
+    let array: Array<number> = new Array(3);
+    data.readLongArray(array);
+    hilog.info(0x0000, 'testTag', 'readLongArray is ' + array);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readLongArray
@@ -5169,22 +5373,27 @@ readLongArray(): number[]
  | number[] | 返回长整数数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeLongArray([1111, 1112, 1113]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeLongArray is ' + result);
-  let array = data.readLongArray();
-  hilog.info(0x0000, 'testTag', 'RpcClient: readLongArray is ' + array);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeLongArray([1111, 1112, 1113]);
+    hilog.info(0x0000, 'testTag', 'writeLongArray is ' + result);
+    let array = data.readLongArray();
+    hilog.info(0x0000, 'testTag', 'readLongArray is ' + array);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeFloatArray
 
 writeFloatArray(floatArray: number[]): boolean
 
-将浮点数组写入MessageParcel实例。
+将双精度浮点数组写入MessageParcel实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -5192,7 +5401,7 @@ writeFloatArray(floatArray: number[]): boolean
 
   | 参数名 | 类型 | 必填 | 说明  |
   | ---------- | -------- | ---- | --- |
-  | floatArray | number[] | 是   | 要写入的浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
+  | floatArray | number[] | 是   | 要写入的双精度浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
 
 **返回值：**
 
@@ -5201,20 +5410,25 @@ writeFloatArray(floatArray: number[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeFloatArray([1.2, 1.3, 1.4]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeFloatArray is ' + result);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeFloatArray([1.2, 1.3, 1.4]);
+    hilog.info(0x0000, 'testTag', 'writeFloatArray is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readFloatArray
 
 readFloatArray(dataIn: number[]): void
 
-从MessageParcel实例中读取浮点数组。
+从MessageParcel实例中读取双精度浮点数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -5222,25 +5436,31 @@ readFloatArray(dataIn: number[]): void
 
   | 参数名 | 类型     | 必填 | 说明   |
   | ------ | -------- | ---- | ------ |
-  | dataIn | number[] | 是   | 要读取的浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
+  | dataIn | number[] | 是   | 要读取的双精度浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeFloatArray([1.2, 1.3, 1.4]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeFloatArray is ' + result);
-  let array: Array<number> = new Array(3);
-  data.readFloatArray(array);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeFloatArray([1.2, 1.3, 1.4]);
+    hilog.info(0x0000, 'testTag', 'writeFloatArray is ' + result);
+    let array: Array<number> = new Array(3);
+    data.readFloatArray(array);
+    hilog.info(0x0000, 'testTag', 'readFloatArray is ' + array);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readFloatArray
 
 readFloatArray(): number[]
 
-从MessageParcel实例中读取浮点数组。
+从MessageParcel实例中读取双精度浮点数组。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -5248,18 +5468,23 @@ readFloatArray(): number[]
 
   | 类型     | 说明           |
   | -------- | -------------- |
-  | number[] | 返回浮点数组。 |
+  | number[] | 返回双精度浮点数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeFloatArray([1.2, 1.3, 1.4]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeFloatArray is ' + result);
-  let array = data.readFloatArray();
-  hilog.info(0x0000, 'testTag', 'RpcClient: readFloatArray is ' + array);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeFloatArray([1.2, 1.3, 1.4]);
+    hilog.info(0x0000, 'testTag', 'writeFloatArray is ' + result);
+    let array = data.readFloatArray();
+    hilog.info(0x0000, 'testTag', 'readFloatArray is ' + array);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeDoubleArray
@@ -5283,13 +5508,18 @@ writeDoubleArray(doubleArray: number[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeDoubleArray is ' + result);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
+    hilog.info(0x0000, 'testTag', 'writeDoubleArray is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readDoubleArray
@@ -5307,15 +5537,21 @@ readDoubleArray(dataIn: number[]): void
   | dataIn | number[] | 是   | 要读取的双精度浮点数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeDoubleArray is ' + result);
-  let array: Array<number> = new Array(3);
-  data.readDoubleArray(array);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
+    hilog.info(0x0000, 'testTag', 'writeDoubleArray is ' + result);
+    let array: Array<number> = new Array(3);
+    data.readDoubleArray(array);
+    hilog.info(0x0000, 'testTag', 'readDoubleArray is ' + array);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readDoubleArray
@@ -5333,15 +5569,20 @@ readDoubleArray(): number[]
   | number[] | 返回双精度浮点数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeDoubleArray is ' + result);
-  let array = data.readDoubleArray();
-  hilog.info(0x0000, 'testTag', 'RpcClient: readDoubleArray is ' + array);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
+    hilog.info(0x0000, 'testTag', 'writeDoubleArray is ' + result);
+    let array = data.readDoubleArray();
+    hilog.info(0x0000, 'testTag', 'readDoubleArray is ' + array);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeBooleanArray
@@ -5365,13 +5606,18 @@ writeBooleanArray(booleanArray: boolean[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeBooleanArray([false, true, false]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeBooleanArray is ' + result);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeBooleanArray([false, true, false]);
+    hilog.info(0x0000, 'testTag', 'writeBooleanArray is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readBooleanArray
@@ -5389,15 +5635,21 @@ readBooleanArray(dataIn: boolean[]): void
   | dataIn | boolean[] | 是   | 要读取的布尔数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeBooleanArray([false, true, false]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeBooleanArray is ' + result);
-  let array: Array<boolean> = new Array(3);
-  data.readBooleanArray(array);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeBooleanArray([false, true, false]);
+    hilog.info(0x0000, 'testTag', 'writeBooleanArray is ' + result);
+    let array: Array<boolean> = new Array(3);
+    data.readBooleanArray(array);
+    hilog.info(0x0000, 'testTag', 'readBooleanArray is ' + array);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readBooleanArray
@@ -5415,15 +5667,20 @@ readBooleanArray(): boolean[]
   | boolean[] | 返回布尔数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeBooleanArray([false, true, false]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeBooleanArray is ' + result);
-  let array = data.readBooleanArray();
-  hilog.info(0x0000, 'testTag', 'RpcClient: readBooleanArray is ' + array);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeBooleanArray([false, true, false]);
+    hilog.info(0x0000, 'testTag', 'writeBooleanArray is ' + result);
+    let array = data.readBooleanArray();
+    hilog.info(0x0000, 'testTag', 'readBooleanArray is ' + array);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeCharArray
@@ -5447,13 +5704,18 @@ writeCharArray(charArray: number[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeCharArray([97, 98, 88]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeCharArray is ' + result);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeCharArray([97, 98, 88]);
+    hilog.info(0x0000, 'testTag', 'writeCharArray is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readCharArray
@@ -5471,15 +5733,21 @@ readCharArray(dataIn: number[]): void
   | dataIn | number[] | 是   | 要读取的单个字符数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeCharArray([97, 98, 99]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeCharArray is ' + result);
-  let array: Array<number> = new Array(3);
-  data.readCharArray(array);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeCharArray([97, 98, 99]);
+    hilog.info(0x0000, 'testTag', 'writeCharArray is ' + result);
+    let array: Array<number> = new Array(3);
+    data.readCharArray(array);
+    hilog.info(0x0000, 'testTag', 'writeCharArray is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readCharArray
@@ -5497,15 +5765,20 @@ readCharArray(): number[]
   | number[] | 返回单个字符数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeCharArray([97, 98, 99]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeCharArray is ' + result);
-  let array = data.readCharArray();
-  hilog.info(0x0000, 'testTag', 'RpcClient: readCharArray is ' + array);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeCharArray([97, 98, 99]);
+    hilog.info(0x0000, 'testTag', 'writeCharArray is ' + result);
+    let array = data.readCharArray();
+    hilog.info(0x0000, 'testTag', 'readCharArray is ' + array);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeStringArray
@@ -5529,13 +5802,18 @@ writeStringArray(stringArray: string[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeStringArray(["abc", "def"]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeStringArray is ' + result);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeStringArray(["abc", "def"]);
+    hilog.info(0x0000, 'testTag', 'writeStringArray is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readStringArray
@@ -5553,15 +5831,21 @@ readStringArray(dataIn: string[]): void
   | dataIn | string[] | 是   | 要读取的字符串数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeStringArray(["abc", "def"]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeStringArray is ' + result);
-  let array: Array<string> = new Array(2);
-  data.readStringArray(array);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeStringArray(["abc", "def"]);
+    hilog.info(0x0000, 'testTag', 'writeStringArray is ' + result);
+    let array: Array<string> = new Array(2);
+    data.readStringArray(array);
+    hilog.info(0x0000, 'testTag', 'readStringArray is ' + array);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readStringArray
@@ -5579,15 +5863,20 @@ readStringArray(): string[]
   | string[] | 返回字符串数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let data = rpc.MessageParcel.create();
-  let result = data.writeStringArray(["abc", "def"]);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeStringArray is ' + result);
-  let array = data.readStringArray();
-  hilog.info(0x0000, 'testTag', 'RpcClient: readStringArray is ' + array);
+  try {
+    let data = rpc.MessageParcel.create();
+    let result = data.writeStringArray(["abc", "def"]);
+    hilog.info(0x0000, 'testTag', 'writeStringArray is ' + result);
+    let array = data.readStringArray();
+    hilog.info(0x0000, 'testTag', 'readStringArray is ' + array);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeNoException<sup>8+</sup>
@@ -5599,8 +5888,9 @@ writeNoException(): void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
@@ -5612,15 +5902,7 @@ writeNoException(): void
     constructor(descriptor: string) {
       super(descriptor);
     }
-    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    isObjectDead(): boolean {
-      return false;
-    }
+
     onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
       if (code === 1) {
         hilog.info(0x0000, 'testTag', 'RpcServer: onRemoteRequest called');
@@ -5646,26 +5928,27 @@ readException(): void
 
 >**说明：**
 >
->在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+>在本文档的示例中，通过this.getUIContext().getHostContext()来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
   import { Want, common } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      hilog.info(0x0000, 'testTag', 'js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+      hilog.info(0x0000, 'testTag', 'onDisconnect');
     },
     onFailed: () => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+      hilog.info(0x0000, 'testTag', 'onFailed');
     }
   };
   let want: Want = {
@@ -5683,34 +5966,39 @@ readException(): void
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageParcel.create();
-  let reply = rpc.MessageParcel.create();
-  data.writeNoException();
-  data.writeString('hello');
-  if (proxy != undefined) {
-    let a = proxy.sendRequest(1, data, reply, option) as Object;
-    let b = a as Promise<rpc.SendRequestResult>;
-    b.then((result: rpc.SendRequestResult) => {
-      if (result.errCode === 0) {
-        hilog.info(0x0000, 'testTag', 'sendRequest got result');
-        result.reply.readException();
-        let msg = result.reply.readString();
-        hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-      } else {
-        hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
-      }
-    }).catch((e: Error) => {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest got exception: ' + e.message);
-    }).finally (() => {
-      hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
-      data.reclaim();
-      reply.reclaim();
-    });
+  try { 
+    let option = new rpc.MessageOption();
+    let data = rpc.MessageParcel.create();
+    let reply = rpc.MessageParcel.create();
+    data.writeNoException();
+    data.writeString('hello');
+    if (proxy != undefined) {
+      let a = proxy.sendRequest(1, data, reply, option) as Object;
+      let b = a as Promise<rpc.SendRequestResult>;
+      b.then((result: rpc.SendRequestResult) => {
+        if (result.errCode === 0) {
+          hilog.info(0x0000, 'testTag', 'sendRequest got result');
+          result.reply.readException();
+          let msg = result.reply.readString();
+          hilog.info(0x0000, 'testTag', 'reply msg: ' + msg);
+        } else {
+          hilog.error(0x0000, 'testTag', 'sendRequest failed, errCode: ' + result.errCode);
+        }
+      }).catch((e: Error) => {
+        hilog.error(0x0000, 'testTag', 'sendRequest got exception: ' + e);
+      }).finally (() => {
+        hilog.info(0x0000, 'testTag', 'sendRequest ends, reclaim parcel');
+        data.reclaim();
+        reply.reclaim();
+      });
+    }
+  } catch (error) { 
+    hilog.error(0x0000, 'testTag', 'error ' + error);
   }
   ```
 
@@ -5735,8 +6023,9 @@ writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
@@ -5757,13 +6046,18 @@ writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean
       return true;
     }
   }
-  let sequenceable = new MySequenceable(1, "aaa");
-  let sequenceable2 = new MySequenceable(2, "bbb");
-  let sequenceable3 = new MySequenceable(3, "ccc");
-  let a = [sequenceable, sequenceable2, sequenceable3];
-  let data = rpc.MessageParcel.create();
-  let result = data.writeSequenceableArray(a);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeSequenceableArray is ' + result);
+
+  try {
+    let sequenceable = new MySequenceable(1, "aaa");
+    let sequenceable2 = new MySequenceable(2, "bbb");
+    let sequenceable3 = new MySequenceable(3, "ccc");
+    let a = [sequenceable, sequenceable2, sequenceable3];
+    let data = rpc.MessageParcel.create();
+    let result = data.writeSequenceableArray(a);
+    hilog.info(0x0000, 'testTag', 'writeSequenceableArray is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readSequenceableArray<sup>8+</sup>
@@ -5781,8 +6075,9 @@ readSequenceableArray(sequenceableArray: Sequenceable[]): void
 | sequenceableArray | [Sequenceable](#sequenceabledeprecated)[] | 是   | 要读取的可序列化对象数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
@@ -5803,15 +6098,20 @@ readSequenceableArray(sequenceableArray: Sequenceable[]): void
       return true;
     }
   }
-  let sequenceable = new MySequenceable(1, "aaa");
-  let sequenceable2 = new MySequenceable(2, "bbb");
-  let sequenceable3 = new MySequenceable(3, "ccc");
-  let a = [sequenceable, sequenceable2, sequenceable3];
-  let data = rpc.MessageParcel.create();
-  let result = data.writeSequenceableArray(a);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeSequenceableArray is ' + result);
-  let b = [new MySequenceable(0, ""), new MySequenceable(0, ""), new MySequenceable(0, "")];
-  data.readSequenceableArray(b);
+
+  try {
+    let sequenceable = new MySequenceable(1, "aaa");
+    let sequenceable2 = new MySequenceable(2, "bbb");
+    let sequenceable3 = new MySequenceable(3, "ccc");
+    let a = [sequenceable, sequenceable2, sequenceable3];
+    let data = rpc.MessageParcel.create();
+    let result = data.writeSequenceableArray(a);
+    hilog.info(0x0000, 'testTag', 'writeSequenceableArray is ' + result);
+    let b = [new MySequenceable(0, ""), new MySequenceable(0, ""), new MySequenceable(0, "")];
+    data.readSequenceableArray(b);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeRemoteObjectArray<sup>8+</sup>
@@ -5835,37 +6135,29 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class MyDeathRecipient implements rpc.DeathRecipient {
-    onRemoteDied() {
-      hilog.info(0x0000, 'testTag', 'server died');
-    }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
-      this.attachLocalInterface(this, descriptor);
     }
-    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
+      // 具体处理由业务决定
       return true;
-    }
-    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    isObjectDead(): boolean {
-      return false;
-    }
-    asObject(): rpc.IRemoteObject {
-      return this;
     }
   }
-  let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
-  let data = rpc.MessageParcel.create();
-  let result = data.writeRemoteObjectArray(a);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeRemoteObjectArray is ' + result);
+
+  try {
+    let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
+    let data = rpc.MessageParcel.create();
+    let result = data.writeRemoteObjectArray(a);
+    hilog.info(0x0000, 'testTag', 'writeRemoteObjectArray is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readRemoteObjectArray<sup>8+</sup>
@@ -5883,38 +6175,31 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
   | objects | [IRemoteObject](#iremoteobject)[] | 是   | 从MessageParcel读取的IRemoteObject对象数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class MyDeathRecipient implements rpc.DeathRecipient {
-    onRemoteDied() {
-      hilog.info(0x0000, 'testTag', 'server died');
-    }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
-      this.attachLocalInterface(this, descriptor);
     }
-    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
+      // 具体处理由业务决定
       return true;
-    }
-    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    isObjectDead(): boolean {
-      return false;
-    }
-    asObject(): rpc.IRemoteObject {
-      return this;
     }
   }
-  let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
-  let data = rpc.MessageParcel.create();
-  data.writeRemoteObjectArray(a);
-  let b: Array<rpc.IRemoteObject> = new Array(3);
-  data.readRemoteObjectArray(b);
+
+  try {
+    let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
+    let data = rpc.MessageParcel.create();
+    data.writeRemoteObjectArray(a);
+    let b: Array<rpc.IRemoteObject> = new Array(3);
+    data.readRemoteObjectArray(b);
+    hilog.info(0x0000, 'testTag', 'readRemoteObjectArray is ' + b);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readRemoteObjectArray<sup>8+</sup>
@@ -5932,39 +6217,31 @@ readRemoteObjectArray(): IRemoteObject[]
   | [IRemoteObject](#iremoteobject)[] | 返回IRemoteObject对象数组。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class MyDeathRecipient implements rpc.DeathRecipient {
-    onRemoteDied() {
-      hilog.info(0x0000, 'testTag', 'server died');
-    }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
-      this.attachLocalInterface(this, descriptor);
     }
-    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
+      // 具体处理由业务决定
       return true;
-    }
-    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    isObjectDead(): boolean {
-      return false;
-    }
-    asObject(): rpc.IRemoteObject {
-      return this;
     }
   }
-  let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
-  let data = rpc.MessageParcel.create();
-  let result = data.writeRemoteObjectArray(a);
-  hilog.info(0x0000, 'testTag', 'RpcClient: readRemoteObjectArray is ' + result);
-  let b = data.readRemoteObjectArray();
-  hilog.info(0x0000, 'testTag', 'RpcClient: readRemoteObjectArray is ' + b);
+
+  try {
+    let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
+    let data = rpc.MessageParcel.create();
+    let result = data.writeRemoteObjectArray(a);
+    hilog.info(0x0000, 'testTag', 'readRemoteObjectArray is ' + result);
+    let b = data.readRemoteObjectArray();
+    hilog.info(0x0000, 'testTag', 'readRemoteObjectArray is ' + b);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### closeFileDescriptor<sup>8+</sup>
@@ -5982,13 +6259,19 @@ static closeFileDescriptor(fd: number): void
   | fd     | number | 是   | 要关闭的文件描述符。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let filePath = "path/to/file";
-  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-  rpc.MessageParcel.closeFileDescriptor(file.fd);
+  try {
+    let filePath = "path/to/file";
+    let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+    rpc.MessageParcel.closeFileDescriptor(file.fd);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### dupFileDescriptor<sup>8+</sup>
@@ -6012,13 +6295,19 @@ static dupFileDescriptor(fd: number) :number
   | number | 返回新的文件描述符。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let filePath = "path/to/file";
-  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-  rpc.MessageParcel.dupFileDescriptor(file.fd);
+  try {
+    let filePath = "path/to/file";
+    let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+    rpc.MessageParcel.dupFileDescriptor(file.fd);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### containFileDescriptors<sup>8+</sup>
@@ -6036,18 +6325,23 @@ containFileDescriptors(): boolean
   | boolean |true：包含文件描述符，false：未包含文件描述符。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { fileIo } from '@kit.CoreFileKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let parcel = new rpc.MessageParcel();
-  let filePath = "path/to/file";
-  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-  let writeResult = parcel.writeFileDescriptor(file.fd);
-  hilog.info(0x0000, 'testTag', 'RpcTest: parcel writeFd result is ' + writeResult);
-  let containFD = parcel.containFileDescriptors();
-  hilog.info(0x0000, 'testTag', 'RpcTest: parcel after write fd containFd result is ' + containFD);
+  try {
+    let parcel = new rpc.MessageParcel();
+    let filePath = "path/to/file";
+    let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+    let writeResult = parcel.writeFileDescriptor(file.fd);
+    hilog.info(0x0000, 'testTag', 'parcel writeFd result is ' + writeResult);
+    let containFD = parcel.containFileDescriptors();
+    hilog.info(0x0000, 'testTag', 'parcel after write fd containFd result is ' + containFD);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeFileDescriptor<sup>8+</sup>
@@ -6071,16 +6365,21 @@ writeFileDescriptor(fd: number): boolean
   | boolean | true：操作成功，false：操作失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { fileIo } from '@kit.CoreFileKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let parcel = new rpc.MessageParcel();
-  let filePath = "path/to/file";
-  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-  let writeResult = parcel.writeFileDescriptor(file.fd);
-  hilog.info(0x0000, 'testTag', 'RpcTest: parcel writeFd result is ' + writeResult);
+  try {
+    let parcel = new rpc.MessageParcel();
+    let filePath = "path/to/file";
+    let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+    let writeResult = parcel.writeFileDescriptor(file.fd);
+    hilog.info(0x0000, 'testTag', 'parcel writeFd result is ' + writeResult);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readFileDescriptor<sup>8+</sup>
@@ -6098,17 +6397,22 @@ readFileDescriptor(): number
   | number | 返回文件描述符。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { fileIo } from '@kit.CoreFileKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let parcel = new rpc.MessageParcel();
-  let filePath = "path/to/file";
-  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-  parcel.writeFileDescriptor(file.fd);
-  let readFD = parcel.readFileDescriptor();
-  hilog.info(0x0000, 'testTag', 'RpcTest: parcel read fd is ' + readFD);
+  try {
+    let parcel = new rpc.MessageParcel();
+    let filePath = "path/to/file";
+    let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+    parcel.writeFileDescriptor(file.fd);
+    let readFD = parcel.readFileDescriptor();
+    hilog.info(0x0000, 'testTag', 'parcel read fd is ' + readFD);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeAshmem<sup>8+</sup>
@@ -6132,14 +6436,19 @@ writeAshmem(ashmem: Ashmem): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let parcel = new rpc.MessageParcel();
-  let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024);
-  let isWriteSuccess = parcel.writeAshmem(ashmem);
-  hilog.info(0x0000, 'testTag', 'RpcTest: write ashmem to result is ' + isWriteSuccess);
+  try {
+    let parcel = new rpc.MessageParcel();
+    let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024);
+    let isWriteSuccess = parcel.writeAshmem(ashmem);
+    hilog.info(0x0000, 'testTag', 'write ashmem to result is ' + isWriteSuccess);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readAshmem<sup>8+</sup>
@@ -6157,16 +6466,21 @@ readAshmem(): Ashmem
 | [Ashmem](#ashmem8) | 返回匿名共享对象。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let parcel = new rpc.MessageParcel();
-  let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024);
-  let isWriteSuccess = parcel.writeAshmem(ashmem);
-  hilog.info(0x0000, 'testTag', 'RpcTest: write ashmem to result is ' + isWriteSuccess);
-  let readAshmem = parcel.readAshmem();
-  hilog.info(0x0000, 'testTag', 'RpcTest: read ashmem to result is ' + readAshmem);
+  try {
+    let parcel = new rpc.MessageParcel();
+    let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024);
+    let isWriteSuccess = parcel.writeAshmem(ashmem);
+    hilog.info(0x0000, 'testTag', 'write ashmem to result is ' + isWriteSuccess);
+    let readAshmem = parcel.readAshmem();
+    hilog.info(0x0000, 'testTag', 'read ashmem to result is ' + readAshmem);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### getRawDataCapacity<sup>8+</sup>
@@ -6184,13 +6498,18 @@ getRawDataCapacity(): number
   | number | 返回MessageParcel可以容纳的最大原始数据量，即128MB。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let parcel = new rpc.MessageParcel();
-  let result = parcel.getRawDataCapacity();
-  hilog.info(0x0000, 'testTag', 'RpcTest: parcel get RawDataCapacity result is ' + result);
+  try {
+    let parcel = new rpc.MessageParcel();
+    let result = parcel.getRawDataCapacity();
+    hilog.info(0x0000, 'testTag', 'parcel get RawDataCapacity result is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeRawData<sup>8+</sup>
@@ -6205,7 +6524,7 @@ writeRawData(rawData: number[], size: number): boolean
 
   | 参数名  | 类型     | 必填 | 说明                               |
   | ------- | -------- | ---- | ---------------------------------- |
-  | rawData | number[] | 是   | 要写入的原始数据。                 |
+  | rawData | number[] | 是   | 要写入的原始数据，大小不能超过128MB。|
   | size    | number   | 是   | 发送的原始数据大小，以字节为单位。 |
 
 **返回值：**
@@ -6215,14 +6534,19 @@ writeRawData(rawData: number[], size: number): boolean
   | boolean | true：写入成功，false：写入失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let parcel = new rpc.MessageParcel();
-  let arr = [1, 2, 3, 4, 5];
-  let isWriteSuccess = parcel.writeRawData(arr, arr.length);
-  hilog.info(0x0000, 'testTag', 'RpcTest: parcel write raw data result is ' + isWriteSuccess);
+  try {
+    let parcel = new rpc.MessageParcel();
+    let arr = [1, 2, 3, 4, 5];
+    let isWriteSuccess = parcel.writeRawData(arr, arr.length);
+    hilog.info(0x0000, 'testTag', 'parcel write raw data result is ' + isWriteSuccess);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### readRawData<sup>8+</sup>
@@ -6246,23 +6570,28 @@ readRawData(size: number): number[]
   | number[] | 返回原始数据（以字节为单位）。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let parcel = new rpc.MessageParcel();
-  let arr = [1, 2, 3, 4, 5];
-  let isWriteSuccess = parcel.writeRawData(arr, arr.length);
-  hilog.info(0x0000, 'testTag', 'RpcTest: parcel write raw data result is ' + isWriteSuccess);
-  let result = parcel.readRawData(5);
-  hilog.info(0x0000, 'testTag', 'RpcTest: parcel read raw data result is ' + result);
+  try {
+    let parcel = new rpc.MessageParcel();
+    let arr = [1, 2, 3, 4, 5];
+    let isWriteSuccess = parcel.writeRawData(arr, arr.length);
+    hilog.info(0x0000, 'testTag', 'parcel write raw data result is ' + isWriteSuccess);
+    let result = parcel.readRawData(5);
+    hilog.info(0x0000, 'testTag', 'parcel read raw data result is ' + result);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ## Parcelable<sup>9+</sup>
 
 在进程间通信（IPC）期间，将类的对象写入MessageSequence并从MessageSequence中恢复它们。
 
-### marshalling
+### marshalling<sup>9+</sup>
 
 marshalling(dataOut: MessageSequence): boolean
 
@@ -6285,6 +6614,7 @@ marshalling(dataOut: MessageSequence): boolean
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyParcelable implements rpc.Parcelable {
@@ -6302,18 +6632,23 @@ marshalling(dataOut: MessageSequence): boolean
     unmarshalling(messageSequence: rpc.MessageSequence): boolean {
       this.num = messageSequence.readInt();
       this.str = messageSequence.readString();
-      hilog.info(0x0000, 'testTag', 'RpcClient: readInt is ' + this.num + ' readString is ' + this.str);
+      hilog.info(0x0000, 'testTag', 'readInt is ' + this.num + ' readString is ' + this.str);
       return true;
     }
   }
-  let parcelable = new MyParcelable(1, "aaa");
-  let data = rpc.MessageSequence.create();
-  data.writeParcelable(parcelable);
-  let ret = new MyParcelable(0, "");
-  data.readParcelable(ret);
+
+  try {
+    let parcelable = new MyParcelable(1, "aaa");
+    let data = rpc.MessageSequence.create();
+    data.writeParcelable(parcelable);
+    let ret = new MyParcelable(0, "");
+    data.readParcelable(ret);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
-### unmarshalling
+### unmarshalling<sup>9+</sup>
 
 unmarshalling(dataIn: MessageSequence): boolean
 
@@ -6336,6 +6671,7 @@ unmarshalling(dataIn: MessageSequence): boolean
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyParcelable implements rpc.Parcelable {
@@ -6353,15 +6689,20 @@ unmarshalling(dataIn: MessageSequence): boolean
     unmarshalling(messageSequence: rpc.MessageSequence): boolean {
       this.num = messageSequence.readInt();
       this.str = messageSequence.readString();
-      hilog.info(0x0000, 'testTag', 'RpcClient: readInt is ' + this.num + ' readString is ' + this.str);
+      hilog.info(0x0000, 'testTag', 'readInt is ' + this.num + ' readString is ' + this.str);
       return true;
     }
   }
-  let parcelable = new MyParcelable(1, "aaa");
-  let data = rpc.MessageSequence.create();
-  data.writeParcelable(parcelable);
-  let ret = new MyParcelable(0, "");
-  data.readParcelable(ret);
+
+  try {
+    let parcelable = new MyParcelable(1, "aaa");
+    let data = rpc.MessageSequence.create();
+    data.writeParcelable(parcelable);
+    let ret = new MyParcelable(0, "");
+    data.readParcelable(ret);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ## Sequenceable<sup>(deprecated)</sup>
@@ -6393,8 +6734,9 @@ marshalling(dataOut: MessageParcel): boolean
   | boolean | true：封送成功，false：封送失败。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
@@ -6415,13 +6757,18 @@ marshalling(dataOut: MessageParcel): boolean
       return true;
     }
   }
-  let sequenceable = new MySequenceable(1, "aaa");
-  let data = rpc.MessageParcel.create();
-  let result = data.writeSequenceable(sequenceable);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeSequenceable is ' + result);
-  let ret = new MySequenceable(0, "");
-  let result2 = data.readSequenceable(ret);
-  hilog.info(0x0000, 'testTag', 'RpcClient: readSequenceable is ' + result2);
+
+  try {
+    let sequenceable = new MySequenceable(1, "aaa");
+    let data = rpc.MessageParcel.create();
+    let result = data.writeSequenceable(sequenceable);
+    hilog.info(0x0000, 'testTag', 'writeSequenceable is ' + result);
+    let ret = new MySequenceable(0, "");
+    let result2 = data.readSequenceable(ret);
+    hilog.info(0x0000, 'testTag', 'readSequenceable is ' + result2);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### unmarshalling
@@ -6445,8 +6792,9 @@ unmarshalling(dataIn: MessageParcel): boolean
   | boolean | true：反序列化成功，false：反序列化失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
@@ -6467,13 +6815,18 @@ unmarshalling(dataIn: MessageParcel): boolean
       return true;
     }
   }
-  let sequenceable = new MySequenceable(1, "aaa");
-  let data = rpc.MessageParcel.create();
-  let result = data.writeSequenceable(sequenceable);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeSequenceable is ' + result);
-  let ret = new MySequenceable(0, "");
-  let result2 = data.readSequenceable(ret);
-  hilog.info(0x0000, 'testTag', 'RpcClient: readSequenceable is ' + result2);
+
+  try {
+    let sequenceable = new MySequenceable(1, "aaa");
+    let data = rpc.MessageParcel.create();
+    let result = data.writeSequenceable(sequenceable);
+    hilog.info(0x0000, 'testTag', 'writeSequenceable is ' + result);
+    let ret = new MySequenceable(0, "");
+    let result2 = data.readSequenceable(ret);
+    hilog.info(0x0000, 'testTag', 'readSequenceable is ' + result2);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ## IRemoteBroker
@@ -6497,6 +6850,8 @@ asObject(): IRemoteObject
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
+
   class TestAbility extends rpc.RemoteObject {
     asObject() {
       return this;
@@ -6509,26 +6864,27 @@ asObject(): IRemoteObject
 
 >**说明：**
 >
->在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+>在本文档的示例中，通过this.getUIContext().getHostContext()来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
   import { Want, common } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      hilog.info(0x0000, 'testTag', 'js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+      hilog.info(0x0000, 'testTag', 'onDisconnect');
     },
     onFailed: () => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+      hilog.info(0x0000, 'testTag', 'onFailed');
     }
   };
   let want: Want  = {
@@ -6548,6 +6904,8 @@ asObject(): IRemoteObject
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的asObject接口方法获取代理或远端对象
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
+
   class TestProxy {
     remote: rpc.IRemoteObject;
     constructor(remote: rpc.IRemoteObject) {
@@ -6577,6 +6935,7 @@ onRemoteDied(): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
@@ -7007,27 +7366,28 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 >**说明：**
 >
->在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+>在本文档的示例中，通过this.getUIContext().getHostContext()来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
   import { Want, common } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
-     onConnect: (elementName, remoteProxy) => {
-        hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
-        proxy = remoteProxy;
-     },
-     onDisconnect: (elementName) => {
-        hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
-     },
-     onFailed: () => {
-        hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
-     }
+    onConnect: (elementName, remoteProxy) => {
+      hilog.info(0x0000, 'testTag', 'js onConnect called');
+      proxy = remoteProxy;
+    },
+    onDisconnect: (elementName) => {
+      hilog.info(0x0000, 'testTag', 'onDisconnect');
+    },
+    onFailed: () => {
+      hilog.info(0x0000, 'testTag', 'onFailed');
+    }
   };
   let want: Want = {
     bundleName: "com.ohos.server",
@@ -7044,27 +7404,32 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageParcel.create();
-  let reply = rpc.MessageParcel.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  if (proxy != undefined) {
-    let ret: boolean = proxy.sendRequest(1, data, reply, option);
-    if (ret) {
-      hilog.info(0x0000, 'testTag', 'sendRequest got result');
-      let msg = reply.readString();
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-    } else {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed');
+  try {
+    let option = new rpc.MessageOption();
+    let data = rpc.MessageParcel.create();
+    let reply = rpc.MessageParcel.create();
+    data.writeInt(1);
+    data.writeString("hello");
+    if (proxy != undefined) {
+      let ret: boolean = proxy.sendRequest(1, data, reply, option);
+      if (ret) {
+        hilog.info(0x0000, 'testTag', 'sendRequest got result');
+        let msg = reply.readString();
+        hilog.info(0x0000, 'testTag', 'reply msg: ' + msg);
+      } else {
+        hilog.error(0x0000, 'testTag', 'sendRequest failed');
+      }
+      hilog.info(0x0000, 'testTag', 'sendRequest ends, reclaim parcel');
+      data.reclaim();
+      reply.reclaim();
     }
-    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
-    data.reclaim();
-    reply.reclaim();
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error: ' + error);
   }
   ```
 
@@ -7104,26 +7469,27 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 >**说明：**
 >
->在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+>在本文档的示例中，通过this.getUIContext().getHostContext()来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
   import { Want, common } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      hilog.info(0x0000, 'testTag', 'js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+      hilog.info(0x0000, 'testTag', 'onDisconnect');
     },
     onFailed: () => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+      hilog.info(0x0000, 'testTag', 'onFailed');
     }
   };
   let want: Want = {
@@ -7143,32 +7509,37 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageSequence.create();
-  let reply = rpc.MessageSequence.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  if (proxy != undefined) {
-    proxy.sendMessageRequest(1, data, reply, option)
-    .then((result: rpc.RequestResult) => {
-      if (result.errCode === 0) {
-        hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
-        let num = result.reply.readInt();
-        let msg = result.reply.readString();
-        hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
-        hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-      } else {
-        hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
-      }
-    }).catch((e: Error) => {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, message: ' + e.message);
-    }).finally (() => {
-      hilog.info(0x0000, 'testTag', 'RPCTest: sendMessageRequest ends, reclaim parcel');
-      data.reclaim();
-      reply.reclaim();
-    });
+  try {
+    let option = new rpc.MessageOption();
+    let data = rpc.MessageSequence.create();
+    let reply = rpc.MessageSequence.create();
+    data.writeInt(1);
+    data.writeString("hello");
+    if (proxy != undefined) {
+      proxy.sendMessageRequest(1, data, reply, option)
+      .then((result: rpc.RequestResult) => {
+        if (result.errCode === 0) {
+          hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
+          let num = result.reply.readInt();
+          let msg = result.reply.readString();
+          hilog.info(0x0000, 'testTag', 'reply num: ' + num);
+          hilog.info(0x0000, 'testTag', 'reply msg: ' + msg);
+        } else {
+          hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, errCode: ' + result.errCode);
+        }
+      }).catch((e: Error) => {
+        hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, error: ' + e);
+      }).finally (() => {
+        hilog.info(0x0000, 'testTag', 'sendMessageRequest ends, reclaim parcel');
+        data.reclaim();
+        reply.reclaim();
+      });
+    }
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, error: ' + error);
   }
   ```
 
@@ -7203,26 +7574,27 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 >**说明：**
 >
->在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+>在本文档的示例中，通过this.getUIContext().getHostContext()来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
   import { Want, common } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      hilog.info(0x0000, 'testTag', 'js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+      hilog.info(0x0000, 'testTag', 'onDisconnect');
     },
     onFailed: () => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+      hilog.info(0x0000, 'testTag', 'onFailed');
     }
   };
   let want: Want = {
@@ -7240,35 +7612,40 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageParcel.create();
-  let reply = rpc.MessageParcel.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  if (proxy != undefined) {
-    let a = proxy.sendRequest(1, data, reply, option) as Object;
-    let b = a as Promise<rpc.SendRequestResult>;
-    b.then((result: rpc.SendRequestResult) => {
-      if (result.errCode === 0) {
-        hilog.info(0x0000, 'testTag', 'sendRequest got result');
-        let num = result.reply.readInt();
-        let msg = result.reply.readString();
-        hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
-        hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-      } else {
-        hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
-      }
-    }).catch((e: Error) => {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, message: ' + e.message);
-    }).finally (() => {
-      hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
-      data.reclaim();
-      reply.reclaim();
-    });
+  try {
+    let option = new rpc.MessageOption();
+    let data = rpc.MessageParcel.create();
+    let reply = rpc.MessageParcel.create();
+    data.writeInt(1);
+    data.writeString("hello");
+    if (proxy != undefined) {
+      let a = proxy.sendRequest(1, data, reply, option) as Object;
+      let b = a as Promise<rpc.SendRequestResult>;
+      b.then((result: rpc.SendRequestResult) => {
+        if (result.errCode === 0) {
+          hilog.info(0x0000, 'testTag', 'sendRequest got result');
+          let num = result.reply.readInt();
+          let msg = result.reply.readString();
+          hilog.info(0x0000, 'testTag', 'reply num: ' + num);
+          hilog.info(0x0000, 'testTag', 'reply msg: ' + msg);
+        } else {
+          hilog.error(0x0000, 'testTag', 'sendRequest failed, errCode: ' + result.errCode);
+        }
+      }).catch((e: Error) => {
+        hilog.error(0x0000, 'testTag', 'sendRequest failed, error: ' + e);
+      }).finally (() => {
+        hilog.info(0x0000, 'testTag', 'sendRequest ends, reclaim parcel');
+        data.reclaim();
+        reply.reclaim();
+      });
+    }
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'sendRequest failed, error: ' + error);
   }
   ```
 
@@ -7354,26 +7731,27 @@ getLocalInterface(interface: string): IRemoteBroker
 
 >**说明：**
 >
->在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+>在本文档的示例中，通过this.getUIContext().getHostContext()来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
   import { Want, common } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      hilog.info(0x0000, 'testTag', 'js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+      hilog.info(0x0000, 'testTag', 'onDisconnect');
     },
     onFailed: () => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+      hilog.info(0x0000, 'testTag', 'onFailed');
     }
   };
   let want: Want = {
@@ -7391,15 +7769,16 @@ getLocalInterface(interface: string): IRemoteBroker
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getLocalInterface接口方法查询接口对象
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   if (proxy != undefined) {
     try {
       let broker: rpc.IRemoteBroker = proxy.getLocalInterface("testObject");
-      hilog.info(0x0000, 'testTag', 'RpcClient: getLocalInterface is ' + broker);
+      hilog.info(0x0000, 'testTag', 'getLocalInterface is ' + broker);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorCode ' + e.code);
@@ -7436,26 +7815,27 @@ queryLocalInterface(interface: string): IRemoteBroker
 
 >**说明：**
 >
->在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+>在本文档的示例中，通过this.getUIContext().getHostContext()来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
   import { Want, common } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      hilog.info(0x0000, 'testTag', 'js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+      hilog.info(0x0000, 'testTag', 'onDisconnect');
     },
     onFailed: () => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+      hilog.info(0x0000, 'testTag', 'onFailed');
     }
   };
   let want: Want = {
@@ -7473,13 +7853,14 @@ queryLocalInterface(interface: string): IRemoteBroker
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的queryLocalInterface接口获取接口对象
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   if (proxy != undefined) {
     let broker: rpc.IRemoteBroker = proxy.queryLocalInterface("testObject");
-    hilog.info(0x0000, 'testTag', 'RpcClient: queryLocalInterface is ' + broker);
+    hilog.info(0x0000, 'testTag', 'queryLocalInterface is ' + broker);
   }
   ```
 
@@ -7511,26 +7892,27 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 >**说明：**
 >
->在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+>在本文档的示例中，通过this.getUIContext().getHostContext()来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
   import { Want, common } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      hilog.info(0x0000, 'testTag', 'js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+      hilog.info(0x0000, 'testTag', 'onDisconnect');
     },
     onFailed: () => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+      hilog.info(0x0000, 'testTag', 'onFailed');
     }
   };
   let want: Want = {
@@ -7550,6 +7932,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的registerDeathRecipient接口注册死亡回调
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -7558,9 +7941,9 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
       hilog.info(0x0000, 'testTag', 'server died');
     }
   }
-  let deathRecipient = new MyDeathRecipient();
   if (proxy != undefined) {
     try {
+      let deathRecipient = new MyDeathRecipient();
       proxy.registerDeathRecipient(deathRecipient, 0);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
@@ -7599,26 +7982,27 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 >**说明：**
 >
->在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+>在本文档的示例中，通过this.getUIContext().getHostContext()来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
   import { Want, common } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      hilog.info(0x0000, 'testTag', 'js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+      hilog.info(0x0000, 'testTag', 'onDisconnect');
     },
     onFailed: () => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+      hilog.info(0x0000, 'testTag', 'onFailed');
     }
   };
   let want: Want = {
@@ -7636,8 +8020,9 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的addDeathRecipient接口方法新增死亡回调
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
@@ -7645,8 +8030,8 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
       hilog.info(0x0000, 'testTag', 'server died');
     }
   }
-  let deathRecipient = new MyDeathRecipient();
   if (proxy != undefined) {
+    let deathRecipient = new MyDeathRecipient();
     proxy.addDeathRecipient(deathRecipient, 0);
   }
   ```
@@ -7679,26 +8064,27 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 >**说明：**
 >
->在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+>在本文档的示例中，通过this.getUIContext().getHostContext()来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
   import { Want, common } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      hilog.info(0x0000, 'testTag', 'js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+      hilog.info(0x0000, 'testTag', 'onDisconnect');
     },
     onFailed: () => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+      hilog.info(0x0000, 'testTag', 'onFailed');
     }
   };
   let want: Want = {
@@ -7718,6 +8104,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的unregisterDeathRecipient接口方法注销死亡回调
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -7726,9 +8113,9 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
       hilog.info(0x0000, 'testTag', 'server died');
     }
   }
-  let deathRecipient = new MyDeathRecipient();
   if (proxy != undefined) {
     try {
+      let deathRecipient = new MyDeathRecipient();
       proxy.registerDeathRecipient(deathRecipient, 0);
       proxy.unregisterDeathRecipient(deathRecipient, 0);
     } catch (error) {
@@ -7768,26 +8155,27 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 >**说明：**
 >
->在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+>在本文档的示例中，通过this.getUIContext().getHostContext()来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
   import { Want, common } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      hilog.info(0x0000, 'testTag', 'js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+      hilog.info(0x0000, 'testTag', 'onDisconnect');
     },
     onFailed: () => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+      hilog.info(0x0000, 'testTag', 'onFailed');
     }
   };
   let want: Want = {
@@ -7805,8 +8193,9 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的removeDeathRecipient接口方法去注册死亡回调
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
@@ -7814,8 +8203,8 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
       hilog.info(0x0000, 'testTag', 'server died');
     }
   }
-  let deathRecipient = new MyDeathRecipient();
   if (proxy != undefined) {
+    let deathRecipient = new MyDeathRecipient();
     proxy.addDeathRecipient(deathRecipient, 0);
     proxy.removeDeathRecipient(deathRecipient, 0);
   }
@@ -7848,26 +8237,27 @@ getDescriptor(): string
 
 >**说明：**
 >
->在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+>在本文档的示例中，通过this.getUIContext().getHostContext()来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
   import { Want, common } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      hilog.info(0x0000, 'testTag', 'js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+      hilog.info(0x0000, 'testTag', 'onDisconnect');
     },
     onFailed: () => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+      hilog.info(0x0000, 'testTag', 'onFailed');
     }
   };
   let want: Want = {
@@ -7886,13 +8276,14 @@ getDescriptor(): string
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getDescriptor接口方法获取对象的接口描述符
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   if (proxy != undefined) {
     try {
       let descriptor: string = proxy.getDescriptor();
-      hilog.info(0x0000, 'testTag', 'RpcClient: descriptor is ' + descriptor);
+      hilog.info(0x0000, 'testTag', 'descriptor is ' + descriptor);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       hilog.error(0x0000, 'testTag', 'rpc get interface descriptor fail, errorCode ' + e.code);
@@ -7923,26 +8314,27 @@ getInterfaceDescriptor(): string
 
 >**说明：**
 >
->在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+>在本文档的示例中，通过this.getUIContext().getHostContext()来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
   import { Want, common } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      hilog.info(0x0000, 'testTag', 'js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+      hilog.info(0x0000, 'testTag', 'onDisconnect');
     },
     onFailed: () => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+      hilog.info(0x0000, 'testTag', 'onFailed');
     }
   };
   let want: Want = {
@@ -7960,13 +8352,14 @@ getInterfaceDescriptor(): string
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getInterfaceDescriptor接口方法查询当前代理对象接口的描述符
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   if (proxy != undefined) {
     let descriptor: string = proxy.getInterfaceDescriptor();
-    hilog.info(0x0000, 'testTag', 'RpcClient: descriptor is ' + descriptor);
+    hilog.info(0x0000, 'testTag', 'descriptor is ' + descriptor);
   }
   ```
 
@@ -7988,26 +8381,27 @@ isObjectDead(): boolean
 
 >**说明：**
 >
->在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+>在本文档的示例中，通过this.getUIContext().getHostContext()来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
+  import { rpc } from '@kit.IPCKit';
   import { Want, common } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      hilog.info(0x0000, 'testTag', 'js onConnect called');
       proxy = remoteProxy;
     },
     onDisconnect: (elementName) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+      hilog.info(0x0000, 'testTag', 'onDisconnect');
     },
     onFailed: () => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+      hilog.info(0x0000, 'testTag', 'onFailed');
     }
   };
   let want: Want = {
@@ -8027,11 +8421,12 @@ isObjectDead(): boolean
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的isObjectDead接口方法判断当前对象是否已经死亡
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   if (proxy != undefined) {
     let isDead: boolean = proxy.isObjectDead();
-    hilog.info(0x0000, 'testTag', 'RpcClient: isObjectDead is ' + isDead);
+    hilog.info(0x0000, 'testTag', 'isObjectDead is ' + isDead);
   }
   ```
 
@@ -8067,6 +8462,8 @@ MessageOption构造函数。
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
+
   class TestRemoteObject extends rpc.MessageOption {
     constructor(async: boolean) {
       super(async);
@@ -8086,12 +8483,14 @@ MessageOption构造函数。
 
   | 参数名    | 类型   | 必填 | 说明                                          |
   | --------- | ------ | ---- | --------------------------------------------- |
-  | syncFlags | number | 否   | 同步调用或异步调用标志。默认同步调用。        |
+  | syncFlags | number | 否   | 同步调用或异步调用标志，同步调用标志：0；异步调用标志：1。默认同步调用。        |
   | waitTime  | number | 否   | 调用rpc最长等待时间。默认TF_WAIT_TIME。 |
 
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
+
   class TestRemoteObject extends rpc.MessageOption {
     constructor(syncFlags?: number,waitTime?: number) {
       super(syncFlags,waitTime);
@@ -8115,8 +8514,15 @@ isAsync(): boolean
 **示例：**
 
   ```ts
-  let option = new rpc.MessageOption();
-  option.isAsync();
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  try {
+    let option = new rpc.MessageOption();
+    let result = option.isAsync();
+  } catch (error) {
+    hilog.info(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### setAsync<sup>9+</sup>
@@ -8136,11 +8542,15 @@ setAsync(async: boolean): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let option = new rpc.MessageOption();
-  option.setAsync(true);
-  hilog.info(0x0000, 'testTag', 'Set asynchronization flag');
+  try {
+    let option = new rpc.MessageOption();
+    option.setAsync(true);
+  } catch (error) {
+    hilog.info(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### getFlags
@@ -8155,22 +8565,23 @@ getFlags(): number
 
   | 类型   | 说明                                 |
   | ------ | ------------------------------------ |
-  | number | 调用成功返回同步调用或异步调用标志。 |
+  | number | 调用成功返回同步调用或异步调用标志。同步调用标志：0，异步调用标志：1。 |
 
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   try {
     let option = new rpc.MessageOption();
     hilog.info(0x0000, 'testTag', 'create object successfully');
-    let flog = option.getFlags();
-    hilog.info(0x0000, 'testTag', 'run getFlags success, flog is ' + flog);
+    let flag = option.getFlags();
+    hilog.info(0x0000, 'testTag', 'run getFlags success, flag is ' + flag);
     option.setFlags(rpc.MessageOption.TF_ASYNC);
     hilog.info(0x0000, 'testTag', 'run setFlags success');
-    let flog2 = option.getFlags();
-    hilog.info(0x0000, 'testTag', 'run getFlags success, flog2 is ' + flog2);
+    let flag2 = option.getFlags();
+    hilog.info(0x0000, 'testTag', 'run getFlags success, flag2 is ' + flag2);
   } catch (error) {
     hilog.error(0x0000, 'testTag', 'error ' + error);
   }
@@ -8188,19 +8599,20 @@ setFlags(flags: number): void
 
   | 参数名 | 类型   | 必填 | 说明                     |
   | ------ | ------ | ---- | ------------------------ |
-  | flags  | number | 是   | 同步调用或异步调用标志。 |
+  | flags  | number | 是   | 同步调用或异步调用标志。同步调用标志：0；异步调用标志：1 |
 
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   try {
     let option = new rpc.MessageOption();
     option.setFlags(rpc.MessageOption.TF_ASYNC);
     hilog.info(0x0000, 'testTag', 'run setFlags success');
-    let flog = option.getFlags();
-    hilog.info(0x0000, 'testTag', 'run getFlags success, flog is ' + flog);
+    let flag = option.getFlags();
+    hilog.info(0x0000, 'testTag', 'run getFlags success, flag is ' + flag);
   } catch (error) {
     hilog.error(0x0000, 'testTag', 'error ' + error);
   }
@@ -8218,11 +8630,12 @@ getWaitTime(): number
 
   | 类型   | 说明              |
   | ------ | ----------------- |
-  | number | rpc最长等待时间。 |
+  | number | rpc最长等待时间。默认TF_WAIT_TIME。 |
 
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   try {
@@ -8254,6 +8667,7 @@ setWaitTime(waitTime: number): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   try {
@@ -8287,10 +8701,15 @@ static getContextObject(): IRemoteObject
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let samgr = rpc.IPCSkeleton.getContextObject();
-  hilog.info(0x0000, 'testTag', 'RpcServer: getContextObject result: ' + samgr);
+  try {
+    let samgr = rpc.IPCSkeleton.getContextObject();
+    hilog.info(0x0000, 'testTag', 'RpcServer: getContextObject result: ' + samgr);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### getCallingPid
@@ -8310,12 +8729,17 @@ static getCallingPid(): number
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-      let callerPid = rpc.IPCSkeleton.getCallingPid();
-      hilog.info(0x0000, 'testTag', 'RpcServer: getCallingPid result: ' + callerPid);
+      try {
+        let callerPid = rpc.IPCSkeleton.getCallingPid();
+        hilog.info(0x0000, 'testTag', 'RpcServer: getCallingPid result: ' + callerPid);
+      } catch (error) {
+        hilog.error(0x0000, 'testTag', 'error ' + error);
+      }
       return true;
     }
  }
@@ -8338,12 +8762,17 @@ static getCallingUid(): number
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-      let callerUid = rpc.IPCSkeleton.getCallingUid();
-      hilog.info(0x0000, 'testTag', 'RpcServer: getCallingUid result: ' + callerUid);
+      try {
+        let callerUid = rpc.IPCSkeleton.getCallingUid();
+        hilog.info(0x0000, 'testTag', 'RpcServer: getCallingUid result: ' + callerUid);
+      } catch (error) {
+        hilog.error(0x0000, 'testTag', 'error ' + error);
+      }
       return true;
     }
   }
@@ -8366,12 +8795,17 @@ static getCallingTokenId(): number
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-      let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
-      hilog.info(0x0000, 'testTag', 'RpcServer: getCallingTokenId result: ' + callerTokenId);
+      try {
+        let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
+        hilog.info(0x0000, 'testTag', 'RpcServer: getCallingTokenId result: ' + callerTokenId);
+      } catch (error) {
+        hilog.error(0x0000, 'testTag', 'error ' + error);
+      }
       return true;
     }
   }
@@ -8394,12 +8828,17 @@ static getCallingDeviceID(): string
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-      let callerDeviceID = rpc.IPCSkeleton.getCallingDeviceID();
-      hilog.info(0x0000, 'testTag', 'RpcServer: callerDeviceID is ' + callerDeviceID);
+      try {
+        let callerDeviceID = rpc.IPCSkeleton.getCallingDeviceID();
+        hilog.info(0x0000, 'testTag', 'RpcServer: callerDeviceID is ' + callerDeviceID);
+      } catch (error) {
+        hilog.error(0x0000, 'testTag', 'error ' + error);
+      }
       return true;
     }
   }
@@ -8422,12 +8861,17 @@ static getLocalDeviceID(): string
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-      let localDeviceID = rpc.IPCSkeleton.getLocalDeviceID();
-      hilog.info(0x0000, 'testTag', 'RpcServer: localDeviceID is ' + localDeviceID);
+      try {
+        let localDeviceID = rpc.IPCSkeleton.getLocalDeviceID();
+        hilog.info(0x0000, 'testTag', 'RpcServer: localDeviceID is ' + localDeviceID);
+      } catch (error) {
+        hilog.error(0x0000, 'testTag', 'error ' + error);
+      }
       return true;
     }
   }
@@ -8450,12 +8894,17 @@ static isLocalCalling(): boolean
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-      let isLocalCalling = rpc.IPCSkeleton.isLocalCalling();
-      hilog.info(0x0000, 'testTag', 'RpcServer: isLocalCalling is ' + isLocalCalling);
+      try {
+        let isLocalCalling = rpc.IPCSkeleton.isLocalCalling();
+        hilog.info(0x0000, 'testTag', 'RpcServer: isLocalCalling is ' + isLocalCalling);
+      } catch (error) {
+        hilog.error(0x0000, 'testTag', 'error ' + error);
+      }
       return true;
     }
   }
@@ -8486,6 +8935,7 @@ static flushCmdBuffer(object: IRemoteObject): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -8493,9 +8943,13 @@ static flushCmdBuffer(object: IRemoteObject): void
     constructor(descriptor: string) {
       super(descriptor);
     }
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      // 根据业务实际逻辑，进行相应处理
+      return true;
+    }
   }
-  let remoteObject = new TestRemoteObject("aaa");
   try {
+    let remoteObject = new TestRemoteObject("aaa");
     rpc.IPCSkeleton.flushCmdBuffer(remoteObject);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
@@ -8529,32 +8983,29 @@ static flushCommands(object: IRemoteObject): number
   | number | 如果操作成功，返回0；如果输入对象为空或RemoteObject，或者操作失败，返回错误代码。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class MyDeathRecipient implements rpc.DeathRecipient {
-    onRemoteDied() {
-      hilog.info(0x0000, 'testTag', 'server died');
-    }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
     }
-    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      // 根据业务实际逻辑，进行相应处理
       return true;
-    }
-    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    isObjectDead(): boolean {
-      return false;
     }
   }
-  let remoteObject = new TestRemoteObject("aaa");
-  let ret = rpc.IPCSkeleton.flushCommands(remoteObject);
-  hilog.info(0x0000, 'testTag', 'RpcServer: flushCommands result: ' + ret);
+  try {
+    let remoteObject = new TestRemoteObject("aaa");
+    let ret = rpc.IPCSkeleton.flushCommands(remoteObject);
+    hilog.info(0x0000, 'testTag', 'RpcServer: flushCommands result: ' + ret);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'proxy flushCmdBuffer fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'proxy flushCmdBuffer fail, errorMessage ' + e.message);
+  }
   ```
 
 ### resetCallingIdentity
@@ -8574,12 +9025,17 @@ static resetCallingIdentity(): string
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-      let callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
-      hilog.info(0x0000, 'testTag', 'RpcServer: callingIdentity is ' + callingIdentity);
+      try {
+        let callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
+        hilog.info(0x0000, 'testTag', 'RpcServer: callingIdentity is ' + callingIdentity);
+      } catch (error) {
+        hilog.error(0x0000, 'testTag', 'error ' + error);
+      }
       return true;
     }
   }
@@ -8597,7 +9053,7 @@ static restoreCallingIdentity(identity: string): void
 
   | 参数名   | 类型   | 必填 | 说明                                                               |
   | -------- | ------ | ---- | ------------------------------------------------------------------ |
-  | identity | string | 是   | 标识表示包含远程用户UID和PID的字符串。由resetCallingIdentity返回。 |
+  | identity | string | 是   | 标识表示包含远程用户UID和PID的字符串，其长度应小于40960字节。由resetCallingIdentity返回。 |
 
 **错误码：**
 
@@ -8610,13 +9066,18 @@ static restoreCallingIdentity(identity: string): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-      let callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
-      hilog.info(0x0000, 'testTag', 'RpcServer: callingIdentity is ' + callingIdentity);
-      rpc.IPCSkeleton.restoreCallingIdentity(callingIdentity);
+      try {
+        let callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
+        hilog.info(0x0000, 'testTag', 'RpcServer: callingIdentity is ' + callingIdentity);
+        rpc.IPCSkeleton.restoreCallingIdentity(callingIdentity);
+      } catch (error) {
+        hilog.error(0x0000, 'testTag', 'error ' + error);
+      }
       return true;
     }
   }
@@ -8647,16 +9108,21 @@ static setCallingIdentity(identity: string): boolean
   | boolean | true：设置成功，false：设置失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-      let callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
-      hilog.info(0x0000, 'testTag', 'RpcServer: callingIdentity is ' + callingIdentity);
-      let ret = rpc.IPCSkeleton.setCallingIdentity(callingIdentity);
-      hilog.info(0x0000, 'testTag', 'RpcServer: setCallingIdentity is ' + ret);
+      try {
+        let callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
+        hilog.info(0x0000, 'testTag', 'RpcServer: callingIdentity is ' + callingIdentity);
+        let ret = rpc.IPCSkeleton.setCallingIdentity(callingIdentity);
+        hilog.info(0x0000, 'testTag', 'RpcServer: setCallingIdentity is ' + ret);
+      } catch (error) {
+        hilog.error(0x0000, 'testTag', 'error ' + error);
+      }
       return true;
     }
   }
@@ -8678,11 +9144,13 @@ RemoteObject构造函数。
 
   | 参数名     | 类型   | 必填 | 说明         |
   | ---------- | ------ | ---- | ------------ |
-  | descriptor | string | 是   | 接口描述符。 |
+  | descriptor | string | 是   | 接口描述符，其长度应小于40960字节。 |
 
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
+
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
@@ -8717,46 +9185,38 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | boolean | true：发送成功，false：发送失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class MyDeathRecipient implements rpc.DeathRecipient {
-    onRemoteDied() {
-      hilog.info(0x0000, 'testTag', 'server died');
-    }
-  }
-  class TestRemoteObject extends rpc.RemoteObject {
-    constructor(descriptor: string) {
-      super(descriptor);
-    }
-    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+  class testRemoteObject extends rpc.RemoteObject {
+    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
+      // 根据业务实际逻辑，进行相应处理
       return true;
     }
-    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    isObjectDead(): boolean {
-      return false;
-    }
   }
-  let testRemoteObject = new TestRemoteObject("testObject");
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageParcel.create();
-  let reply = rpc.MessageParcel.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  let ret: boolean = testRemoteObject.sendRequest(1, data, reply, option);
-  if (ret) {
-    hilog.info(0x0000, 'testTag', 'sendRequest got result');
-    let msg = reply.readString();
-    hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-  } else {
-    hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed');
+  try {
+    let testRemoteObject = new TestRemoteObject("testObject");
+    let option = new rpc.MessageOption();
+    let data = rpc.MessageParcel.create();
+    let reply = rpc.MessageParcel.create();
+    data.writeInt(1);
+    data.writeString("hello");
+    let ret: boolean = testRemoteObject.sendRequest(1, data, reply, option);
+    if (ret) {
+      hilog.info(0x0000, 'testTag', 'sendRequest got result');
+      let msg = reply.readString();
+      hilog.info(0x0000, 'testTag', 'reply msg: ' + msg);
+    } else {
+      hilog.error(0x0000, 'testTag', 'sendRequest failed');
+    }
+    hilog.info(0x0000, 'testTag', 'sendRequest ends, reclaim parcel');
+    data.reclaim();
+    reply.reclaim();
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
   }
-  hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
-  data.reclaim();
-  reply.reclaim();
   ```
 
 ### sendMessageRequest<sup>9+</sup>
@@ -8782,7 +9242,6 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 | ----------------------------------------------- | ----------------------------------------- |
 | Promise&lt;[RequestResult](#requestresult9)&gt; | 返回一个期约，兑现值是RequestResult实例。 |
 
-
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
@@ -8794,37 +9253,46 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
     }
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      // 根据业务实际逻辑，进行相应处理
+      return true;
+    }
   }
-  let testRemoteObject = new TestRemoteObject("testObject");
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageSequence.create();
-  let reply = rpc.MessageSequence.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  testRemoteObject.sendMessageRequest(1, data, reply, option)
-    .then((result: rpc.RequestResult) => {
-      if (result.errCode === 0) {
-        hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
-        let num = result.reply.readInt();
-        let msg = result.reply.readString();
-        hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
-        hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-      } else {
-        hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
-      }
-    }).catch((e: Error) => {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, message: ' + e.message);
-    }).finally (() => {
-      hilog.info(0x0000, 'testTag', 'RPCTest: sendMessageRequest ends, reclaim parcel');
-      data.reclaim();
-      reply.reclaim();
-    });
+  try {
+    let testRemoteObject = new TestRemoteObject("testObject");
+    let option = new rpc.MessageOption();
+    let data = rpc.MessageSequence.create();
+    let reply = rpc.MessageSequence.create();
+    data.writeInt(1);
+    data.writeString("hello");
+    testRemoteObject.sendMessageRequest(1, data, reply, option)
+      .then((result: rpc.RequestResult) => {
+        if (result.errCode === 0) {
+          hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
+          let num = result.reply.readInt();
+          let msg = result.reply.readString();
+          hilog.info(0x0000, 'testTag', 'reply num: ' + num);
+          hilog.info(0x0000, 'testTag', 'reply msg: ' + msg);
+        } else {
+          hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, errCode: ' + result.errCode);
+        }
+      }).catch((e: Error) => {
+        hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, error: ' + e);
+      }).finally (() => {
+        hilog.info(0x0000, 'testTag', 'sendMessageRequest ends, reclaim parcel');
+        data.reclaim();
+        reply.reclaim();
+      });
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, error: ' + error);
+  }
   ```
 
 ### sendRequest<sup>(deprecated)</sup>
@@ -8855,54 +9323,49 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 | Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class MyDeathRecipient implements rpc.DeathRecipient {
-    onRemoteDied() {
-      hilog.info(0x0000, 'testTag', 'server died');
-    }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
     }
-    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
+      // 根据业务实际逻辑，进行相应处理
       return true;
-    }
-    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    isObjectDead(): boolean {
-      return false;
     }
   }
-  let testRemoteObject = new TestRemoteObject("testObject");
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageParcel.create();
-  let reply = rpc.MessageParcel.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  let a = testRemoteObject.sendRequest(1, data, reply, option) as Object;
-  let b = a as Promise<rpc.SendRequestResult>;
-  b.then((result: rpc.SendRequestResult) => {
-    if (result.errCode === 0) {
-      hilog.info(0x0000, 'testTag', 'sendRequest got result');
-      let num = result.reply.readInt();
-      let msg = result.reply.readString();
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-    } else {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
-    }
-  }).catch((e: Error) => {
-    hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, message: ' + e.message);
-  }).finally (() => {
-    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
-    data.reclaim();
-    reply.reclaim();
-  });
+  try {
+    let testRemoteObject = new TestRemoteObject("testObject");
+    let option = new rpc.MessageOption();
+    let data = rpc.MessageParcel.create();
+    let reply = rpc.MessageParcel.create();
+    data.writeInt(1);
+    data.writeString("hello");
+    let a = testRemoteObject.sendRequest(1, data, reply, option) as Object;
+    let b = a as Promise<rpc.SendRequestResult>;
+    b.then((result: rpc.SendRequestResult) => {
+      if (result.errCode === 0) {
+        hilog.info(0x0000, 'testTag', 'sendRequest got result');
+        let num = result.reply.readInt();
+        let msg = result.reply.readString();
+        hilog.info(0x0000, 'testTag', 'reply num: ' + num);
+        hilog.info(0x0000, 'testTag', 'reply msg: ' + msg);
+      } else {
+        hilog.error(0x0000, 'testTag', 'sendRequest failed, errCode: ' + result.errCode);
+      }
+    }).catch((e: Error) => {
+      hilog.error(0x0000, 'testTag', 'sendRequest failed, error: ' + e);
+    }).finally (() => {
+      hilog.info(0x0000, 'testTag', 'sendRequest ends, reclaim parcel');
+      data.reclaim();
+      reply.reclaim();
+    });
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error: ' + error);
+  }
   ```
 
 ### sendMessageRequest<sup>9+</sup>
@@ -8922,7 +9385,6 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 | reply         | [MessageSequence](#messagesequence9)                  | 是   | 接收应答数据的MessageSequence对象。                          |
 | options       | [MessageOption](#messageoption)                       | 是   | 本次请求的同异步模式，默认同步调用。                         |
 | callback      | AsyncCallback&lt;[RequestResult](#requestresult9)&gt; | 是   | 接收发送结果的回调。                                         |
-
 
 **错误码：**
 
@@ -8960,8 +9422,8 @@ onRemoteMessageRequest(code: number, data: MessageSequence, reply: MessageSequen
 
 > **说明：**
 >
->* 开发者应优先选择重载onRemoteMessageRequest方法，其中可以自由实现同步和异步的消息处理。
->* 开发者同时重载onRemoteRequest和onRemoteMessageRequest方法时，仅onRemoteMessageRequest方法生效。
+> 开发者应优先选择重载onRemoteMessageRequest方法，其中可以自由实现同步和异步的消息处理。
+> 开发者同时重载onRemoteRequest和onRemoteMessageRequest方法时，仅onRemoteMessageRequest方法生效。
 
 sendMessageRequest请求的响应处理函数，服务端在该函数里同步或异步地处理请求，回复结果。
 
@@ -8980,12 +9442,12 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 
   | 类型              | 说明                                                                                            |
   | ----------------- | ----------------------------------------------------------------------------------------------- |
-  | boolean           | 若在onRemoteMessageRequest中同步地处理请求，则返回一个布尔值：true：操作成功，false：操作失败。 |
-  | Promise\<boolean> | 若在onRemoteMessageRequest中异步地处理请求，则返回一个Promise对象。                                 |
+  | boolean \| Promise\<boolean>  | - 若在onRemoteMessageRequest中同步处理请求，则返回一个布尔值。返回true表示操作成功，返回false表示操作失败。</br>- 若在onRemoteMessageRequest中异步处理请求，则返回一个Promise对象。返回true表示操作成功，返回false表示操作失败。|
 
 **重载onRemoteMessageRequest方法同步处理请求示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
@@ -9008,6 +9470,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
   **重载onRemoteMessageRequest方法异步处理请求示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
@@ -9033,6 +9496,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 **同时重载onRemoteMessageRequest和onRemoteRequest方法同步处理请求示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
@@ -9065,6 +9529,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
   **同时重载onRemoteMessageRequest和onRemoteRequest方法异步处理请求示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -9124,27 +9589,14 @@ sendRequest请求的响应处理函数，服务端在该函数里处理请求，
   | boolean | true：操作成功，false：操作失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class MyDeathRecipient implements rpc.DeathRecipient {
-    onRemoteDied() {
-      hilog.info(0x0000, 'testTag', 'server died');
-    }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
-    }
-    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    isObjectDead(): boolean {
-      return false;
     }
     onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
       if (code === 1) {
@@ -9174,15 +9626,24 @@ getCallingUid(): number
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
     }
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      // 根据业务实际逻辑，进行相应处理
+      return true;
+    }
   }
-  let testRemoteObject = new TestRemoteObject("testObject");
-  hilog.info(0x0000, 'testTag', 'RpcServer: getCallingUid: ' + testRemoteObject.getCallingUid());
+  try {
+    let testRemoteObject = new TestRemoteObject("testObject");
+    hilog.info(0x0000, 'testTag', 'RpcServer: getCallingUid: ' + testRemoteObject.getCallingUid());
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error: ' + error);
+  }
   ```
 
 ### getCallingPid
@@ -9202,15 +9663,24 @@ getCallingPid(): number
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
     }
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      // 根据业务实际逻辑，进行相应处理
+      return true;
+    }
   }
-  let testRemoteObject = new TestRemoteObject("testObject");
-  hilog.info(0x0000, 'testTag', 'RpcServer: getCallingPid: ' + testRemoteObject.getCallingPid());
+  try {
+    let testRemoteObject = new TestRemoteObject("testObject");
+    hilog.info(0x0000, 'testTag', 'RpcServer: getCallingPid: ' + testRemoteObject.getCallingPid());
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error: ' + error);
+  }
   ```
 
 ### getLocalInterface<sup>9+</sup>
@@ -9225,7 +9695,7 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
   | 参数名     | 类型   | 必填 | 说明                 |
   | ---------- | ------ | ---- | -------------------- |
-  | descriptor | string | 是   | 接口描述符的字符串。 |
+  | descriptor | string | 是   | 接口描述符的字符串，其长度应小于40960字节。 |
 
 **返回值：**
 
@@ -9244,39 +9714,26 @@ getLocalInterface(descriptor: string): IRemoteBroker
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class MyDeathRecipient implements rpc.DeathRecipient {
-    onRemoteDied() {
-      hilog.info(0x0000, 'testTag', 'server died');
-    }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
-      this.modifyLocalInterface(this, descriptor);
     }
-    registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
-      // 方法逻辑需开发者根据业务需要实现
-    }
-    unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
-      // 方法逻辑需开发者根据业务需要实现
-    }
-    isObjectDead(): boolean {
-      return false;
-    }
-    asObject(): rpc.IRemoteObject {
-      return this;
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      // 根据业务实际逻辑，进行相应处理
+      return true;
     }
   }
-  let testRemoteObject = new TestRemoteObject("testObject");
   try {
+    let testRemoteObject = new TestRemoteObject("testObject");
     testRemoteObject.getLocalInterface("testObject");
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
@@ -9305,35 +9762,26 @@ queryLocalInterface(descriptor: string): IRemoteBroker
   | [IRemoteBroker](#iremotebroker) | 如果接口描述符对应的远端对象存在，则返回该远端对象，否则返回Null。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class MyDeathRecipient implements rpc.DeathRecipient {
-    onRemoteDied() {
-      hilog.info(0x0000, 'testTag', 'server died');
-    }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
-      this.attachLocalInterface(this, descriptor);
     }
-    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      // 根据业务实际逻辑，进行相应处理
       return true;
-    }
-    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    isObjectDead(): boolean {
-      return false;
-    }
-    asObject(): rpc.IRemoteObject {
-      return this;
     }
   }
-  let testRemoteObject = new TestRemoteObject("testObject");
-  testRemoteObject.queryLocalInterface("testObject");
+  try {
+    let testRemoteObject = new TestRemoteObject("testObject");
+    testRemoteObject.queryLocalInterface("testObject");
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error: ' + error);
+  }
   ```
 
 ### getDescriptor<sup>9+</sup>
@@ -9361,36 +9809,26 @@ getDescriptor(): string
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class MyDeathRecipient implements rpc.DeathRecipient {
-    onRemoteDied() {
-      hilog.info(0x0000, 'testTag', 'server died');
-    }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
     }
-    registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
-      // 方法逻辑需开发者根据业务需要实现
-    }
-    unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
-      // 方法逻辑需开发者根据业务需要实现
-    }
-    isObjectDead(): boolean {
-      return false;
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      // 根据业务实际逻辑，进行相应处理
+      return true;
     }
   }
-  let testRemoteObject = new TestRemoteObject("testObject");
   try {
     let descriptor = testRemoteObject.getDescriptor();
     hilog.info(0x0000, 'testTag', 'RpcServer: descriptor is ' + descriptor);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
@@ -9413,32 +9851,28 @@ getInterfaceDescriptor(): string
   | string | 返回接口描述符。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class MyDeathRecipient implements rpc.DeathRecipient {
-    onRemoteDied() {
-      hilog.info(0x0000, 'testTag', 'server died');
-    }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
     }
-    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      // 根据业务实际逻辑，进行相应处理
       return true;
-    }
-    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    isObjectDead(): boolean {
-      return false;
     }
   }
-  let testRemoteObject = new TestRemoteObject("testObject");
-  let descriptor = testRemoteObject.getInterfaceDescriptor();
-  hilog.info(0x0000, 'testTag', 'RpcServer: descriptor is: ' + descriptor);
+
+  try {
+    let testRemoteObject = new TestRemoteObject("testObject");
+    let descriptor = testRemoteObject.getInterfaceDescriptor();
+    hilog.info(0x0000, 'testTag', 'RpcServer: descriptor is: ' + descriptor);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### modifyLocalInterface<sup>9+</sup>
@@ -9454,7 +9888,7 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 | 参数名         | 类型                            | 必填 | 说明                                  |
 | -------------- | ------------------------------- | ---- | ------------------------------------- |
 | localInterface | [IRemoteBroker](#iremotebroker) | 是   | 将与描述符绑定的IRemoteBroker对象。   |
-| descriptor     | string                          | 是   | 用于与IRemoteBroker对象绑定的描述符。 |
+| descriptor     | string                          | 是   | 用于与IRemoteBroker对象绑定的描述符，其长度应小于40960字节。 |
 
 **错误码：**
 
@@ -9467,6 +9901,7 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -9482,8 +9917,8 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
         this.modifyLocalInterface(this, descriptor);
       } catch (error) {
         let e: BusinessError = error as BusinessError;
-        hilog.error(0x0000, 'testTag', ' rpc attach local interface fail, errorCode ' + e.code);
-        hilog.error(0x0000, 'testTag', ' rpc attach local interface fail, errorMessage ' + e.message);
+        hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+        hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
       }
     }
     registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
@@ -9491,12 +9926,6 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
     }
     unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
       // 方法逻辑需开发者根据业务需要实现
-    }
-    isObjectDead(): boolean {
-      return false;
-    }
-    asObject(): rpc.IRemoteObject {
-      return this;
     }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
@@ -9522,8 +9951,9 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 | descriptor     | string                          | 是   | 用于与IRemoteBroker对象绑定的描述符。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
@@ -9537,17 +9967,14 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
       this.attachLocalInterface(this, descriptor);
     }
     addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      // 方法逻辑需开发者根据业务需要实现
       return true;
     }
     removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      // 方法逻辑需开发者根据业务需要实现
       return true;
     }
-    isObjectDead(): boolean {
-      return false;
-    }
-    asObject(): rpc.IRemoteObject {
-      return this;
-    }
+
   }
   let testRemoteObject = new TestRemoteObject("testObject");
   ```
@@ -9580,8 +10007,8 @@ static create(name: string, size: number): Ashmem
 
   | 参数名 | 类型   | 必填 | 说明                         |
   | ------ | ------ | ---- | ---------------------------- |
-  | name   | string | 是   | 名称，用于查询Ashmem信息。   |
-  | size   | number | 是   | Ashmem的大小，以字节为单位。 |
+  | name   | string | 是   | Ashmem名称，用于查询Ashmem信息，其长度不能为0。   |
+  | size   | number | 是   | Ashmem的大小，其大小应大于0，以字节为单位。 |
 
 **返回值：**
 
@@ -9600,18 +10027,19 @@ static create(name: string, size: number): Ashmem
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let ashmem: rpc.Ashmem | undefined = undefined;
   try {
-    ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+    let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+    hilog.info(0x0000, 'testTag', 'create ashmem: ' + ashmem);
     let size = ashmem.getAshmemSize();
-    hilog.info(0x0000, 'testTag', 'RpcTest: get ashemm by create: ' + ashmem + ' size is ' + size);
+    hilog.info(0x0000, 'testTag',  'size is ' + size);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'Rpc creat ashmem fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'Rpc creat ashmem  fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
@@ -9641,13 +10069,20 @@ static createAshmem(name: string, size: number): Ashmem
 | [Ashmem](#ashmem8) | 返回创建的Ashmem对象；如果创建失败，返回null。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
-  let size = ashmem.getAshmemSize();
-  hilog.info(0x0000, 'testTag', 'RpcTest: get ashemm by createAshmem: ' + ashmem + ' size is ' + size);
+  try {
+    let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
+    hilog.info(0x0000, 'testTag', 'create ashmem: ' + ashmem);
+    let size = ashmem.getAshmemSize();
+    hilog.info(0x0000, 'testTag',  'size is ' + size);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
+
   ```
 
 ### create<sup>9+</sup>
@@ -9681,6 +10116,7 @@ static create(ashmem: Ashmem): Ashmem
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -9688,11 +10124,11 @@ static create(ashmem: Ashmem): Ashmem
     let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
     let ashmem2 = rpc.Ashmem.create(ashmem);
     let size = ashmem2.getAshmemSize();
-    hilog.info(0x0000, 'testTag', 'RpcTest: get ashemm by create: ' + ashmem2 + ' size is ' + size);
+    hilog.info(0x0000, 'testTag', 'size is ' + size);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'Rpc creat ashmem from existing fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'Rpc creat ashmem from existing fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
@@ -9721,14 +10157,19 @@ static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 | [Ashmem](#ashmem8) | 返回创建的Ashmem对象。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  let ashmem2 = rpc.Ashmem.createAshmemFromExisting(ashmem);
-  let size = ashmem2.getAshmemSize();
-  hilog.info(0x0000, 'testTag', 'RpcTest: get ashemm by createAshmemFromExisting: ' + ashmem2 + ' size is ' + size);
+  try {
+    let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+    let ashmem2 = rpc.Ashmem.createAshmemFromExisting(ashmem);
+    let size = ashmem2.getAshmemSize();
+    hilog.info(0x0000, 'testTag', 'size is ' + size);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error is ' + error);
+  }
   ```
 
 ### closeAshmem<sup>8+</sup>
@@ -9746,8 +10187,15 @@ closeAshmem(): void
 **示例：**
 
   ```ts
-  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  ashmem.closeAshmem();
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  try {
+    let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+    ashmem.closeAshmem();
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error is ' + error);
+  }
   ```
 
 ### unmapAshmem<sup>8+</sup>
@@ -9761,8 +10209,15 @@ unmapAshmem(): void
 **示例：**
 
   ```ts
-  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  ashmem.unmapAshmem();
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  try {
+    let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+    ashmem.unmapAshmem();
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error is ' + error);
+  }
   ```
 
 ### getAshmemSize<sup>8+</sup>
@@ -9782,11 +10237,16 @@ getAshmemSize(): number
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  let size = ashmem.getAshmemSize();
-  hilog.info(0x0000, 'testTag', 'RpcTest: get ashmem is ' + ashmem + ' size is ' + size);
+  try {
+    let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+    let size = ashmem.getAshmemSize();
+    hilog.info(0x0000, 'testTag', ' size is ' + size);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error is ' + error);
+  }
   ```
 
 ### mapTypedAshmem<sup>9+</sup>
@@ -9815,16 +10275,17 @@ mapTypedAshmem(mapType: number): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
+    let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
     ashmem.mapTypedAshmem(rpc.Ashmem.PROT_READ | rpc.Ashmem.PROT_WRITE);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'Rpc map ashmem fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'Rpc map ashmem fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
@@ -9853,13 +10314,18 @@ mapAshmem(mapType: number): boolean
   | boolean | true：映射成功，false：映射失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  let mapReadAndWrite = ashmem.mapAshmem(rpc.Ashmem.PROT_READ | rpc.Ashmem.PROT_WRITE);
-  hilog.info(0x0000, 'testTag', 'RpcTest: map ashmem result is ' + mapReadAndWrite);
+  try {
+    let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+    let mapReadAndWrite = ashmem.mapAshmem(rpc.Ashmem.PROT_READ | rpc.Ashmem.PROT_WRITE);
+    hilog.info(0x0000, 'testTag', 'map ashmem result is ' + mapReadAndWrite);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error is ' + error);
+  }
   ```
 
 ### mapReadWriteAshmem<sup>9+</sup>
@@ -9881,16 +10347,17 @@ mapReadWriteAshmem(): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
+    let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
     ashmem.mapReadWriteAshmem();
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'Rpc map read and write ashmem fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'Rpc map read and write ashmem fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
@@ -9913,13 +10380,18 @@ mapReadAndWriteAshmem(): boolean
   | boolean | true：映射成功，false：映射失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  let mapResult = ashmem.mapReadAndWriteAshmem();
-  hilog.info(0x0000, 'testTag', 'RpcTest: map ashmem result is ' + mapResult);
+  try {
+    let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+    let mapResult = ashmem.mapReadAndWriteAshmem();
+    hilog.info(0x0000, 'testTag', 'map ashmem result is ' + mapResult);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error is ' + error);
+  }
   ```
 
 ### mapReadonlyAshmem<sup>9+</sup>
@@ -9941,16 +10413,17 @@ mapReadonlyAshmem(): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
+    let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
     ashmem.mapReadonlyAshmem();
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'Rpc map read and write ashmem fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'Rpc map read and write ashmem fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
@@ -9973,13 +10446,18 @@ mapReadOnlyAshmem(): boolean
   | boolean | true：映射成功，false：映射失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  let mapResult = ashmem.mapReadOnlyAshmem();
-  hilog.info(0x0000, 'testTag', 'RpcTest: Ashmem mapReadOnlyAshmem result is ' + mapResult);
+  try {
+    let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+    let mapResult = ashmem.mapReadOnlyAshmem();
+    hilog.info(0x0000, 'testTag', 'Ashmem mapReadOnlyAshmem result is ' + mapResult);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error is ' + error);
+  }
   ```
 
 ### setProtectionType<sup>9+</sup>
@@ -10008,11 +10486,12 @@ setProtectionType(protectionType: number): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
+    let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
     ashmem.setProtectionType(rpc.Ashmem.PROT_READ);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
@@ -10046,13 +10525,19 @@ setProtection(protectionType: number): boolean
   | boolean | true：设置成功，false：设置失败。|
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  let result = ashmem.setProtection(rpc.Ashmem.PROT_READ);
-  hilog.info(0x0000, 'testTag', 'RpcTest: Ashmem setProtection result is ' + result);
+  try {
+    let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+    let result = ashmem.setProtection(rpc.Ashmem.PROT_READ);
+    hilog.info(0x0000, 'testTag', 'Ashmem setProtection result is ' + result);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'error ' + error);
+  }
   ```
 
 ### writeDataToAshmem<sup>11+</sup>
@@ -10087,23 +10572,24 @@ writeDataToAshmem(buf: ArrayBuffer, size: number, offset: number): void
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let buffer = new ArrayBuffer(1024);
-  let int32View = new Int32Array(buffer);
-  for (let i = 0; i < int32View.length; i++) {
-    int32View[i] = i * 2 + 1;
-  }
-  let size = buffer.byteLength;
-  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  ashmem.mapReadWriteAshmem();
   try {
+    let buffer = new ArrayBuffer(1024);
+    let int32View = new Int32Array(buffer);
+    for (let i = 0; i < int32View.length; i++) {
+      int32View[i] = i * 2 + 1;
+    }
+    let size = buffer.byteLength;
+    let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+    ashmem.mapReadWriteAshmem();
     ashmem.writeDataToAshmem(buffer, size, 0);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'Rpc write to ashmem fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'Rpc write to ashmem fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
@@ -10139,15 +10625,16 @@ writeAshmem(buf: number[], size: number, offset: number): void
   | 1900003  | Failed to write data to the shared memory. |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  ashmem.mapReadWriteAshmem();
-  let ByteArrayVar = [1, 2, 3, 4, 5];
   try {
+    let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+    ashmem.mapReadWriteAshmem();
+    let ByteArrayVar = [1, 2, 3, 4, 5];
     ashmem.writeAshmem(ByteArrayVar, 5, 0);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
@@ -10185,16 +10672,21 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
   | boolean | true：如果数据写入成功，false：在其他情况下，如数据写入越界或未获得写入权限。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  let mapResult = ashmem.mapReadAndWriteAshmem();
-  hilog.info(0x0000, 'testTag', 'RpcTest map ashmem result is ' + mapResult);
-  let ByteArrayVar = [1, 2, 3, 4, 5];
-  let writeResult = ashmem.writeToAshmem(ByteArrayVar, 5, 0);
-  hilog.info(0x0000, 'testTag', 'RpcTest: write to Ashmem result is ' + writeResult);
+  try {
+    let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+    let mapResult = ashmem.mapReadAndWriteAshmem();
+    hilog.info(0x0000, 'testTag', 'RpcTest map ashmem result is ' + mapResult);
+    let ByteArrayVar = [1, 2, 3, 4, 5];
+    let writeResult = ashmem.writeToAshmem(ByteArrayVar, 5, 0);
+    hilog.info(0x0000, 'testTag', 'write to Ashmem result is ' + writeResult);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error is ' + error);
+  }
   ```
 
 ### readDataFromAshmem<sup>11+</sup>
@@ -10234,32 +10726,27 @@ readDataFromAshmem(size: number, offset: number): ArrayBuffer
 **示例：**
 
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let buffer = new ArrayBuffer(1024);
-  let int32View = new Int32Array(buffer);
-  for (let i = 0; i < int32View.length; i++) {
-    int32View[i] = i * 2 + 1;
-  }
-  let size = buffer.byteLength;
-  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  ashmem.mapReadWriteAshmem();
   try {
+    let buffer = new ArrayBuffer(1024);
+    let int32View = new Int32Array(buffer);
+    for (let i = 0; i < int32View.length; i++) {
+      int32View[i] = i * 2 + 1;
+    }
+    let size = buffer.byteLength;
+    let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+    ashmem.mapReadWriteAshmem();
     ashmem.writeDataToAshmem(buffer, size, 0);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'Rpc write to ashmem fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'Rpc write to ashmem fail, errorMessage ' + e.message);
-  }
-  try {
     let readResult = ashmem.readDataFromAshmem(size, 0);
     let readInt32View = new Int32Array(readResult);
-    hilog.info(0x0000, 'testTag', 'RpcTest: read from Ashmem result is ' + readInt32View);
+    hilog.info(0x0000, 'testTag', 'read from Ashmem result is ' + readInt32View);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'Rpc read from ashmem fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'Rpc read from ashmem fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
@@ -10301,22 +10788,23 @@ readAshmem(size: number, offset: number): number[]
   | 1900004  | Failed to read data from the shared memory. |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
   ```ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  ashmem.mapReadWriteAshmem();
-  let ByteArrayVar = [1, 2, 3, 4, 5];
-  ashmem.writeAshmem(ByteArrayVar, 5, 0);
   try {
+    let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+    ashmem.mapReadWriteAshmem();
+    let ByteArrayVar = [1, 2, 3, 4, 5];
+    ashmem.writeAshmem(ByteArrayVar, 5, 0);
     let readResult = ashmem.readAshmem(5, 0);
-    hilog.info(0x0000, 'testTag', 'RpcTest: read from Ashmem result is ' + readResult);
+    hilog.info(0x0000, 'testTag', 'read from Ashmem result is ' + readResult);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'Rpc read from ashmem fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'Rpc read from ashmem fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'errorMessage ' + e.message);
   }
   ```
 
@@ -10348,16 +10836,21 @@ readFromAshmem(size: number, offset: number): number[]
   | number[] | 返回读取的数据。 |
 
 **示例：**
-
+<!--deprecated_code_no_check-->
  ``` ts
+  import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  let mapResult = ashmem.mapReadAndWriteAshmem();
-  hilog.info(0x0000, 'testTag', 'RpcTest map ashmem result is ' + mapResult);
-  let ByteArrayVar = [1, 2, 3, 4, 5];
-  let writeResult = ashmem.writeToAshmem(ByteArrayVar, 5, 0);
-  hilog.info(0x0000, 'testTag', 'RpcTest: write to Ashmem result is ' + writeResult);
-  let readResult = ashmem.readFromAshmem(5, 0);
-  hilog.info(0x0000, 'testTag', 'RpcTest: read to Ashmem result is ' + readResult);
+  try {
+    let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+    let mapResult = ashmem.mapReadAndWriteAshmem();
+    hilog.info(0x0000, 'testTag', 'RpcTest map ashmem result is ' + mapResult);
+    let ByteArrayVar = [1, 2, 3, 4, 5];
+    let writeResult = ashmem.writeToAshmem(ByteArrayVar, 5, 0);
+    hilog.info(0x0000, 'testTag', 'write to Ashmem result is ' + writeResult);
+    let readResult = ashmem.readFromAshmem(5, 0);
+    hilog.info(0x0000, 'testTag', 'read to Ashmem result is ' + readResult);
+  } catch (error) {
+    hilog.error(0x0000, 'testTag', 'error is ' + error);
+  }
  ```

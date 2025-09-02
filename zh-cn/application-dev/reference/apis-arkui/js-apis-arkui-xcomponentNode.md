@@ -1,4 +1,10 @@
 # XComponentNode
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zjsxstar-->
+<!--Designer: @sunbees-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 <!--deprecated_code_no_check-->
 
 提供XComponent节点XComponentNode，表示组件树中的[XComponent组件](arkui-ts/ts-basic-components-xcomponent.md)，用于[EGL](../native-lib/egl.md)/[OpenGLES](../native-lib/opengles.md)和媒体数据写入，并支持动态修改节点渲染类型。
@@ -29,7 +35,7 @@ XComponentNode的构造函数。
 
 | 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| uiContext   | [UIContext](js-apis-arkui-UIContext.md)                      | 是   | UI上下文，获取方式可参考[UIContext获取方法](./js-apis-arkui-node.md#uicontext获取方法)。 |
+| uiContext   | [UIContext](arkts-apis-uicontext-uicontext.md)                      | 是   | UI上下文，获取方式可参考[UIContext获取方法](./js-apis-arkui-node.md#uicontext获取方法)。 |
 | options     | [RenderOptions](./js-apis-arkui-builderNode.md#renderoptions) | 是   | XComponentNode的构造可选参数。                               |
 | id          | string                                                       | 是   | XComponent的唯一标识，支持最大的字符串长度128。详见[XComponent组件](arkui-ts/ts-basic-components-xcomponent.md)。 |
 | type        | [XComponentType](arkui-ts/ts-appendix-enums.md#xcomponenttype10) | 是   | 用于指定XComponent组件类型。详见[XComponent组件](arkui-ts/ts-basic-components-xcomponent.md)。 |
@@ -77,7 +83,7 @@ changeRenderType(type: NodeRenderType): boolean
 
 **返回值：**
 
-| 类型 | 描述                   |
+| 类型 | 说明                   |
 | ---- | ---------------------- |
 | boolean | 修改渲染类型是否成功。<br/>true：修改渲染类型成功；false：修改渲染类型失败。 |
 
@@ -139,5 +145,5 @@ struct Index {
 <!--Del-->
 > **说明：**
 >
-> 示例中的Native层编译输出动态库参考自[OpenGL三棱锥（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkOpenGL)，生成完整示例需下载该工程后将cpp目录下所有文件拷贝至本工程cpp目录下。
+> 示例中的Native层编译输出动态库参考自[OpenGL三棱锥（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkOpenGL)，生成完整示例需下载该工程后将cpp目录下所有文件拷贝至本工程cpp目录下。
 <!--DelEnd-->

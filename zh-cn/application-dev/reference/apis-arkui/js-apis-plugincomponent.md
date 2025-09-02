@@ -1,4 +1,10 @@
 # @ohos.pluginComponent (PluginComponentManager)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @dutie123-->
+<!--Designer: @lmleon-->
+<!--Tester: @fredyuan0912-->
+<!--Adviser: @HelloCrease-->
 
 用于给插件组件的使用方请求组件与数据，使用方发送组件模板和数据。
 
@@ -39,9 +45,9 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型   | 只读 | 可选 | 说明                        |
-| ------- | ------ | ---- | ---- | --------------------------- |
-|  [key: string]  | number \| string \| boolean \| [] \| [KVObject](#kvobject)  | 否 | 否   | 键值对形式存储。<br/>number：键值，表示值类型为数字。<br/> string：键值，表示值类型为字符串，可取空字符串。<br/> boolean：键值，表示值类型为布尔值。<br/> []：键值，可取值为[]。<br/>[KVObject](#kvobject)：键值，表示值类型为KVObject。            |
+| 名称    | 类型   | 必填 | 说明                        |
+| ------- | ------ | ---- | --------------------------- |
+|  [key: string]  | number \| string \| boolean \| [] \| [KVObject](#kvobject)  | 是   | 键值对形式存储。<br/>number：键值，表示值类型为数字。<br/> string：键值，表示值类型为字符串，可取空字符串。<br/> boolean：键值，表示值类型为布尔值。<br/> []：键值，可取值为[]。<br/>[KVObject](#kvobject)：键值，表示值类型为KVObject。            |
 
 
 ### PushParameters
@@ -68,7 +74,7 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 类型                               | 必填 | 可选 | 说明                                       |
+| 名称       | 类型                               | 只读 | 可选 | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---- |---------------------------------------- |
 | want     | [Want](../apis-ability-kit/js-apis-application-want.md) | 否 | 否    | 组件提供方Ability信息。                          |
 | name     | string                              | 否 | 否    | 请求组件名称。                                  |
@@ -170,7 +176,7 @@ import { pluginComponentManager } from '@kit.ArkUI';
 import { Want } from '@kit.AbilityKit';
 
 function onRequestListener(source: Want, name: string, data: pluginComponentManager.KVObject) {
-  console.error("onRequestListener");
+  console.info("onRequestListener");
   console.info("onRequestListener source=" + JSON.stringify(source));
   console.info("onRequestListener name=" + name);
   console.info("onRequestListener data=" + JSON.stringify(data));
@@ -202,6 +208,7 @@ push(param: PushParameters , callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 import { pluginComponentManager } from '@kit.ArkUI';
+
 pluginComponentManager.push(
   {
     want: {
@@ -218,7 +225,7 @@ pluginComponentManager.push(
     },
     jsonPath: "",
   },
-  (err, data) => {
+  (err) => {
     console.info("push_callback: push ok!");
   }
 )
@@ -246,6 +253,7 @@ request(param: RequestParameters, callback: AsyncCallback&lt;RequestCallbackPara
 
 ```ts
 import { pluginComponentManager } from '@kit.ArkUI';
+
 pluginComponentManager.request(
   {
     want: {
@@ -290,6 +298,7 @@ on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback ): 
 ```ts
 import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI';
 import { Want } from '@kit.AbilityKit';
+
 function onPushListener(source:Want, template:PluginComponentTemplate, data:pluginComponentManager.KVObject, extraData:pluginComponentManager.KVObject) {
   console.info("onPushListener template.source=" + template.source);
   console.info("onPushListener source=" + JSON.stringify(source));
@@ -298,7 +307,7 @@ function onPushListener(source:Want, template:PluginComponentTemplate, data:plug
   console.info("onPushListener extraData=" + JSON.stringify(extraData));
 }
 function onRequestListener(source:Want, name:string, data:pluginComponentManager.KVObject) {
-  console.error("onRequestListener");
+  console.info("onRequestListener");
   console.info("onRequestListener source=" + JSON.stringify(source));
   console.info("onRequestListener name=" + name);
   console.info("onRequestListener data=" + JSON.stringify(data));

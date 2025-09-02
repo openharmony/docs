@@ -1,8 +1,15 @@
 # OH_CryptoSm2CiphertextSpec
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
-定义SM2密文规范结构。
+定义SM2密文规格结构。
 
 **起始版本：** 20
 

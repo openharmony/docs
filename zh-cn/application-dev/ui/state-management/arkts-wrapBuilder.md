@@ -1,4 +1,10 @@
 # wrapBuilder：封装全局@Builder
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zhangboren-->
+<!--Designer: @zhangboren-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
   当在一个struct内使用多个全局@Builder函数实现UI的不同效果时，代码维护将变得非常困难，且页面不够整洁。此时，可以使用wrapBuilder封装全局@Builder。
 
@@ -7,6 +13,8 @@
 > **说明：**
 >
 > 从API version 11开始使用。
+>
+> 从API version 12开始，wrapBuilder支持在原子化服务中使用。
 
 当@Builder方法赋值给变量或者数组后，在UI方法中无法使用。
 

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The AVRecorder module provides the APIs for requesting the recording capability.
+The module provides the APIs for requesting the recording capability.
 
 You can refer to the corresponding development guide and samples based on your development requirements.
 

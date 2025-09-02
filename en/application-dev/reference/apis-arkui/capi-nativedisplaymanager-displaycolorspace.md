@@ -2,7 +2,7 @@
 
 ## Overview
 
-The NativeDisplayManager_DisplayColorSpace struct describes all the color spaces supported by a display.
+The struct describes all the color spaces supported by a display.
 
 **Since**: 14
 

@@ -1,4 +1,10 @@
 # 定位与解决Web白屏问题
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc-->
+<!--Designer: @LongLie-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Web页面出现白屏的原因众多，本文列举了若干常见白屏问题的排查步骤，供开发者快速定位。
 
@@ -83,7 +89,7 @@ Web页面出现白屏的原因众多，本文列举了若干常见白屏问题�
 ## 使用DevTools工具进行页面内容验证
 在确保网络与权限配置无误后，若仍出现白屏，则应利用DevTools工具调试前端页面以及监听Web相关错误上报接口，来定位具体报错类型。
 
-1. 查阅控制台的错误信息，定位具体的资源加载失败问题。资源加载失败会导致页面元素缺失，布局紊乱，图片和动画效果失效等，严重时可能导致渲染进程崩溃，页面呈现空白。如同所示，依次排查：<br>
+1. 查阅控制台的错误信息，定位具体的资源加载失败问题。资源加载失败会导致页面元素缺失，布局紊乱，图片和动画效果失效等，严重时可能导致渲染进程崩溃，页面呈现空白。如图所示，依次排查：<br>
   （1）元素是否完整，html元素、结构是否正确。<br> （2）控制台是否有报错。<br>（3）网络里面是否有资源加载时间特别长等。<br>
    ![web-white-devtools](figures/web-white-devtools.PNG)
 
@@ -194,6 +200,17 @@ Web页面出现白屏的原因众多，本文列举了若干常见白屏问题�
     * /data/storage/el1/bundle/entry/resource/resfile
     * /data/storage/el1/bundle/entry/resource/resfile/example
 
+    3.从API version 21开始，还包括了应用缓存目录通过[Context.cacheDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context)获取，其子目录示例如下：
+
+    * /data/storage/el2/base/cache
+    * /data/storage/el2/base/haps/entry/cache/example
+    * 设置的目录路径中，不允许包含cache/web，否则会抛出异常码401。如果设置目录路径是cache，cache/web也不允许访问。
+
+    4.从API version 21开始，还包括了应用临时目录通过[Context.tempDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context)获取，其子目录示例如下：
+
+    * /data/storage/el2/base/temp
+    * /data/storage/el2/base/haps/entry/temp/example
+
     当路径列表中的任一路径不满足上述条件时，系统将抛出异常码401，并判定路径列表设置失败。如果路径列表设置为空，file协议的可访问范围将遵循[fileAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#fileaccess)规则，具体示例如下。
 
     ```ts
@@ -298,7 +315,6 @@ Web页面出现白屏的原因众多，本文列举了若干常见白屏问题�
 若页面使用了复杂布局或渲染模式，需注意其应用场景和约束条件，不当使用可能导致布局混乱或白屏。
 Web组件提供了两种渲染模式，能够根据不同的容器大小进行适配，从而满足使用场景中对容器尺寸的需求，详情见[Web组件渲染模式](web-render-mode.md)。在使用过程中需要注意以下几点：
 - 异步渲染模式下（renderMode: [RenderMode](../reference/apis-arkweb/arkts-basic-components-web-e.md#rendermode12).ASYNC_RENDER），Web组件的宽高不能超过7,680px（物理像素），超过会导致白屏。
-- 同步渲染模式下（renderMode: [RenderMode](../reference/apis-arkweb/arkts-basic-components-web-e.md#rendermode12).SYNC_RENDER），Web组件的宽高不能超过500,000px（物理像素），超过会导致白屏。
 
 Web组件提供了自适应页面布局的能力，详情见[ Web组件大小自适应页面内容布局](web-fit-content.md)，使用时也需要注意以下约束条件：
 - 配置同步渲染模式：`webSetting({renderingMode: WebRenderingMode.SYNCHRONOUS})`。

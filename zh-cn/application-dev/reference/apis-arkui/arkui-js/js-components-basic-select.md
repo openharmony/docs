@@ -1,4 +1,10 @@
 # select
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zhanghaibo0-->
+<!--Designer: @zhanghaibo0-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 下拉选择按钮，可使用下拉菜单展示并选择内容。
 
@@ -49,7 +55,7 @@
 ```html
 <!-- xxx.hml -->
 <div class="container">
-    <select @change="onChange">
+    <select>
         <option for="{{ array }}" value="{{ $item.value }}">
             {{ $item.name }}
         </option>
@@ -86,28 +92,8 @@ export default {
                 "value": "下拉选项3", "name": "选项3"
             },
         ]
-    },
-    getData() {
-        let other = [
-            {
-                "value": "下拉选项a", "name": "选项a"
-            },
-            {
-                "value": "下拉选项b", "name": "选项b"
-            },
-            {
-                "value": "下拉选项c", "name": "选项c"
-            },
-            {
-                "value": "下拉选项d", "name": "选项d"
-            },
-        ]
-        return other
-    },
-    onChange() {
-        this.array = this.getData()
     }
 }
 ```
 
-![zh-cn_image_0000001152588538](figures/zh-cn_image_0000001152588538.gif)
+![zh-cn_image_0000001152588538](figures/zh-cn_image_0000001152588538.png)

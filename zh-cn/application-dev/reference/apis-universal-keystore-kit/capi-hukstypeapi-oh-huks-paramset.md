@@ -1,5 +1,12 @@
 # OH_Huks_ParamSet
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 定义参数集的结构体类型。
@@ -18,6 +25,6 @@
 | -- | -- |
 | uint32_t paramSetSize | 参数集的内存大小。 |
 | uint32_t paramsCnt | 参数的个数。 |
-| [struct OH_Huks_Param](capi-hukstypeapi-oh-huks-param.md) params | 参数数组。 |
+| struct [OH_Huks_Param](capi-hukstypeapi-oh-huks-param.md) params[] | 参数数组。 |
 
 

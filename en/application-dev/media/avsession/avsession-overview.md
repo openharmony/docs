@@ -1,4 +1,9 @@
 # Introduction to AVSession Kit
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--SE: @ccfriend-->
+<!--TSE: @chenmingxi1_huawei-->
 
 Audio and Video Session (AVSession) Kit provides the audio and video management service, which manages the playback behavior of all audio and video applications in the system in a unified manner. You can use the kit to quickly build unified audio and video display and control capabilities.
 
@@ -20,7 +25,7 @@ Audio and Video Session (AVSession) Kit provides the audio and video management 
 
   Through the controller, the background playback of applications is visible and controllable.
 
-  The system forcibly controls background playback. When an application that does not access AVSession switches to the background, its audio playback is forcibly paused. This prevents malicious applications from playing audio in the background.
+  The system enforces strict control over background playback. For applications that have not integrated with AVSession or do not have a valid AVSession instance when they move to the background, their audio playback are forcibly paused. This prevents malicious applications from playing audio in the background.
 
 ## Basic Concepts
 
@@ -40,11 +45,11 @@ Be familiar with the following basic concepts before development:
 
 - AVSessionController
 
-  An object that controls the playback behavior of the provider. It obtains the playback information of the audio and video application and listens for the application playback changes to synchronize the AVSession information between the application and controller. The controller is the holder of an **AVSessionController** object.
+  An object that controls the playback behavior of the provider. It obtains the playback information of the audio and video application and listens for the application playback changes to synchronize the AVSession information between the application and controller. The controller is the holder of an AVSessionController object.
 
 - AVSessionManager
 
-  An object that provides the capability of managing sessions. It can create an **AVSession** object, create an **AVSessionController** object, send control commands, and listen for session state changes.
+  An object that provides the capability of managing sessions. It can create an AVSession object, create an AVSessionController object, send control commands, and listen for session state changes.
 
 ## AVSession Interaction Process
 

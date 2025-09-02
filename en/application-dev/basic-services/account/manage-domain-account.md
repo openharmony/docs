@@ -1,5 +1,12 @@
 # Managing Domain Accounts (for System Applications Only)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
+
 The user can add a domain account to a device so that the domain account user can log in to the system and use the device.
 
 ## Before You Start

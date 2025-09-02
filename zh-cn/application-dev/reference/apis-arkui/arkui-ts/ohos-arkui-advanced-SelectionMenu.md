@@ -1,4 +1,10 @@
 # SelectionMenu
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @hddgzw-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 
 文本选择菜单，适用于[RichEditor](ts-basic-components-richeditor.md)组件通过[bindSelectionMenu](ts-basic-components-richeditor.md#bindselectionmenu)或[Text](ts-basic-components-text.md)组件通过[bindSelectionMenu](ts-basic-components-text.md#bindselectionmenu11)绑定自定义文本选择菜单，建议绑定鼠标右键或者鼠标选中方式弹出，不支持作为普通组件单独使用。
@@ -7,8 +13,6 @@
 > **说明：**
 >
 > 该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
->
-> 该组件不支持在Wearable设备上使用。
 
 
 ## 导入模块
@@ -33,6 +37,8 @@ SelectionMenu(options: SelectionMenuOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常， 异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -47,15 +53,17 @@ SelectionMenuOptions定义SelectionMenu的可选菜单类型项及其具体配�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| editorMenuOptions | Array&lt;[EditorMenuOptions](#editormenuoptions)&gt; | 否 | 编辑菜单。<br/>editorMenuOptions未配置时，不显示编辑菜单。<br/>同时配置EditorMenuOptions中action和builder时，点击图标会同时响应。<br/>点击编辑菜单图标默认不关闭整个菜单，应用可以通过action接口配置RichEditorController的closeSelectionMenu主动关闭菜单。 |
-| expandedMenuOptions | Array&lt;[ExpandedMenuOptions](#expandedmenuoptions)&gt; | 否 | 扩展下拉菜单。<br/>expandedMenuOptions参数为空时无更多按钮，不显示扩展下拉菜单。<br/>expandedMenuOptions参数不为空时显示更多按钮，配置菜单项收起在更多按钮中，点击更多按钮展示。 |
-| controller | [RichEditorController](ts-basic-components-richeditor.md#richeditorcontroller) | 否 | 富文本控制器不为空时显示默认系统菜单（包含剪切复制粘贴等部分）且默认菜单功能内置。<br/>controller为空时不显示更多按钮，expandedMenuOptions参数不为空则显示下拉菜单中。<br/>系统默认只支持复制粘贴富文本文本内容，图文混排需要应用自定义onCopy、onPaste接口。应用自行配置onCopy \| onPaste接口时，系统菜单默认复制粘贴失效，调用应用自定义函数。 <br/>**说明：**<br/> 点击自定义文本选择菜单内置复制功能选项后，自定义菜单消失选中文本高亮保留。<br/> 点击自定义文本选择菜单内置全选功能选项后，自定义菜单消失文本全选高亮。<br/> 点击自定义文本选择菜单内置粘贴功能选项后，空白处粘贴或者选中文本替换粘贴均是保留被复制文本的样式。<br/> 当富文本组件[RichEditor](ts-basic-components-richeditor.md)的copyOptions属性设置为`CopyOptions.None`时，内置的复制剪切功能不会被限制。|
-| onCopy | (event?: [EditorEventInfo](#editoreventinfo))&nbsp;=&gt;&nbsp;void | 否 | 替代内置系统菜单复制项的事件回调。<br/>生效前提是一定要有controller参数，有系统默认菜单才能替换内置复制功能。<br/>**说明：**<br/> event为返回信息。|
-| onPaste | (event?: [EditorEventInfo](#editoreventinfo))&nbsp;=&gt;&nbsp;void | 否 | 替代内置系统菜单粘贴项的事件回调。<br/>生效前提是一定要有controller参数，有系统默认菜单才能替换内置粘贴功能。<br/>**说明：**<br/> event为返回信息。 |
-| onCut | (event?: [EditorEventInfo](#editoreventinfo))&nbsp;=&gt;&nbsp;void | 否 | 替代内置系统菜单剪切项的事件回调。<br/>生效前提是一定要有controller参数，有系统默认菜单才能替换内置剪切功能。<br/>**说明：**<br/>event为返回信息。|
-| onSelectAll | (event?: [EditorEventInfo](#editoreventinfo))&nbsp;=&gt;&nbsp;void | 否 | 替代内置系统菜单全选项的事件回调。<br/>生效前提是一定要有controller参数，有系统默认菜单才能替换内置全选功能。<br/>**说明：**<br/>event为返回信息。|
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| editorMenuOptions | Array&lt;[EditorMenuOptions](#editormenuoptions)&gt; | 否 | 是 | 编辑菜单。<br/>editorMenuOptions未配置时，不显示编辑菜单。<br/>同时配置EditorMenuOptions中action和builder时，点击图标会同时响应。<br/>点击编辑菜单图标默认不关闭整个菜单，应用可以通过action接口配置RichEditorController的closeSelectionMenu主动关闭菜单。 |
+| expandedMenuOptions | Array&lt;[ExpandedMenuOptions](#expandedmenuoptions)&gt; | 否 | 是 | 扩展下拉菜单。<br/>expandedMenuOptions参数为空时无更多按钮，不显示扩展下拉菜单。<br/>expandedMenuOptions参数不为空时显示更多按钮，配置菜单项收起在更多按钮中，点击更多按钮展示。 |
+| controller | [RichEditorController](ts-basic-components-richeditor.md#richeditorcontroller) | 否 | 是 | 富文本控制器不为空时显示默认系统菜单（包含剪切复制粘贴等部分）且默认菜单功能内置。<br/>controller为空时不显示更多按钮，expandedMenuOptions参数不为空则显示下拉菜单中。<br/>系统默认只支持复制粘贴富文本文本内容，图文混排需要应用自定义onCopy、onPaste接口。应用自行配置onCopy \| onPaste接口时，系统菜单默认复制粘贴失效，调用应用自定义函数。 <br/>**说明：**<br/> 点击自定义文本选择菜单内置复制功能选项后，自定义菜单消失选中文本高亮保留。<br/> 点击自定义文本选择菜单内置全选功能选项后，自定义菜单消失文本全选高亮。<br/> 点击自定义文本选择菜单内置粘贴功能选项后，空白处粘贴或者选中文本替换粘贴均是保留被复制文本的样式。<br/> 当富文本组件[RichEditor](ts-basic-components-richeditor.md)的copyOptions属性设置为`CopyOptions.None`时，内置的复制剪切功能不会被限制。|
+| onCopy | (event?: [EditorEventInfo](#editoreventinfo))&nbsp;=&gt;&nbsp;void | 否 | 是 | 替代内置系统菜单复制项的事件回调。<br/>生效前提是一定要有controller参数，有系统默认菜单才能替换内置复制功能。<br/>**说明：**<br/> event为返回信息。|
+| onPaste | (event?: [EditorEventInfo](#editoreventinfo))&nbsp;=&gt;&nbsp;void | 否 | 是 | 替代内置系统菜单粘贴项的事件回调。<br/>生效前提是一定要有controller参数，有系统默认菜单才能替换内置粘贴功能。<br/>**说明：**<br/> event为返回信息。 |
+| onCut | (event?: [EditorEventInfo](#editoreventinfo))&nbsp;=&gt;&nbsp;void | 否 | 是 | 替代内置系统菜单剪切项的事件回调。<br/>生效前提是一定要有controller参数，有系统默认菜单才能替换内置剪切功能。<br/>**说明：**<br/>event为返回信息。|
+| onSelectAll | (event?: [EditorEventInfo](#editoreventinfo))&nbsp;=&gt;&nbsp;void | 否 | 是 | 替代内置系统菜单全选项的事件回调。<br/>生效前提是一定要有controller参数，有系统默认菜单才能替换内置全选功能。<br/>**说明：**<br/>event为返回信息。|
 
 
 ## EditorMenuOptions
@@ -64,12 +72,14 @@ SelectionMenuOptions定义SelectionMenu的可选菜单类型项及其具体配�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| icon | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。<br/>**原子化服务API：** 从API version 12始，该接口支持在原子化服务中使用。 |
-| builder | ()&nbsp;=&gt;&nbsp;void | 否 | 点击时显示用户自定义组件，自定义组件在构造时结合@Builder使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| action | ()&nbsp;=&gt;&nbsp;void | 否 | 点击菜单项的事件回调。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| symbolStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol图标资源，优先级大于icon。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 否 | 图标资源。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| builder | ()&nbsp;=&gt;&nbsp;void | 否 | 是 | 点击时显示用户自定义组件，自定义组件在构造时结合@Builder使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| action | ()&nbsp;=&gt;&nbsp;void | 否 | 是 | 点击菜单项的事件回调。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| symbolStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-text-style.md#symbolglyphmodifier12) | 否 | 是 | Symbol图标资源，优先级大于icon。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 
 ## ExpandedMenuOptions
@@ -82,9 +92,11 @@ SelectionMenuOptions定义SelectionMenu的可选菜单类型项及其具体配�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| action | ()&nbsp;=&gt;&nbsp;void | 否 | 点击菜单项的事件回调。 |
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| action | ()&nbsp;=&gt;&nbsp;void | 否 | 是 | 点击菜单项的事件回调。 |
 
 ## EditorEventInfo
 
@@ -94,9 +106,11 @@ SelectionMenuOptions定义SelectionMenu的可选菜单类型项及其具体配�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| content | [RichEditorSelection](ts-basic-components-richeditor.md#richeditorselection) | 否 | 选中内容信息。|
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| content | [RichEditorSelection](ts-basic-components-richeditor.md#richeditorselection) | 否 | 是 | 选中内容信息。|
 
 ## 属性
 
@@ -136,6 +150,7 @@ struct Index {
   private editorMenuOptions: Array<EditorMenuOptions> =
     [
       {
+        // $r('app.media.ic_notepad_textbold')需要替换为开发者所需的图像资源文件。
         icon: $r("app.media.ic_notepad_textbold"), action: () => {
         if (this.controller) {
           let selection = this.controller.getSelection();
@@ -163,6 +178,7 @@ struct Index {
       }
       },
       {
+        // $r('app.media.ic_notepad_texttilt')需要替换为开发者所需的图像资源文件。
         icon: $r("app.media.ic_notepad_texttilt"), action: () => {
         if (this.controller) {
           let selection = this.controller.getSelection();
@@ -190,6 +206,7 @@ struct Index {
       }
       },
       {
+        // $r('app.media.ic_notepad_underline')需要替换为开发者所需的图像资源文件。
         icon: $r("app.media.ic_notepad_underline"),
         action: () => {
           if (this.controller) {
@@ -222,10 +239,12 @@ struct Index {
         }
       },
       {
+        // $r('app.media.ic_notepad_fontsize')需要替换为开发者所需的图像资源文件。
         icon: $r("app.media.ic_notepad_fontsize"), action: () => {
       }, builder: (): void => this.sliderPanel()
       },
       {
+        // $r('app.media.ic_notepad_textcolor')需要替换为开发者所需的图像资源文件。
         icon: $r("app.media.ic_notepad_textcolor"), action: () => {
         if (this.controller) {
           let selection = this.controller.getSelection();
@@ -254,17 +273,19 @@ struct Index {
       }]
   private expandedMenuOptions: Array<ExpandedMenuOptions> =
     [{
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       startIcon: $r("app.media.startIcon"), content: '词典', action: () => {
       }
     }, {
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       startIcon: $r("app.media.startIcon"), content: '翻译', action: () => {
       }
     }, {
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       startIcon: $r("app.media.startIcon"), content: '搜索', action: () => {
       }
     }]
-  private expandedMenuOptions1: Array<ExpandedMenuOptions> = []
-  private editorMenuOptions1: Array<EditorMenuOptions> = []
+  private expandedMenuOptions1: Array<ExpandedMenuOptions> = [];
   private selectionMenuOptions: SelectionMenuOptions = {
     editorMenuOptions: this.editorMenuOptions,
     expandedMenuOptions: this.expandedMenuOptions,
@@ -313,7 +334,7 @@ struct Index {
         })
       }
     }
-  }
+  };
 
   @Builder
   sliderPanel() {
@@ -433,7 +454,7 @@ struct Index {
 
 ### 示例2（设置Symbol类型图标）
 
-该示例通过设置EditorMenuOptions的属性symbolStyle，展示了自定义Symbol类型图标。
+从API version 11开始，该示例通过设置[EditorMenuOptions](#editormenuoptions)的属性symbolStyle，展示了自定义Symbol类型图标。
 
 ```ts
 import {
@@ -553,6 +574,7 @@ struct Index {
         }
       },
       {
+        // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
         icon: $r("app.media.app_icon"), action: () => {
       }, builder: (): void => this.sliderPanel()
       },
@@ -585,12 +607,15 @@ struct Index {
       }]
   private expandedMenuOptions: Array<ExpandedMenuOptions> =
     [{
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       startIcon: $r("app.media.startIcon"), content: '词典', action: () => {
       }
     }, {
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       startIcon: $r("app.media.startIcon"), content: '翻译', action: () => {
       }
     }, {
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       startIcon: $r("app.media.startIcon"), content: '搜索', action: () => {
       }
     }]

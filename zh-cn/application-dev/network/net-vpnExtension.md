@@ -1,4 +1,10 @@
-# VPN应用开发指南
+# 连接VPN
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 简介
 
@@ -8,9 +14,9 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。当前提供
 
 > **说明：**
 >
-> 为了保证应用的运行效率，所有API调用都是异步的，对于异步调用的API均提供了Promise的方式，以下示例均采用Promise方式，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
-
-完整的JS API说明以及示例代码请参考：[VPN扩展应用API](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
+>- 为了保证应用的运行效率，所有API调用都是异步的，对于异步调用的API均提供了Promise的方式，以下示例均采用Promise方式，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
+>- 完整的JS API说明以及示例代码请参考：[VPN扩展应用API](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
+>- 使用该功能需要[ohos.permission.INTERNET](../security/AccessToken/permissions-for-all.md#ohospermissioninternet)权限。
 
 ## VPN应用的显示体验
 
@@ -49,7 +55,7 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。当前提供
 
 接下来您需要在创建的VpnExtensionAbility中实现VPN的配置、启动和停止操作：
 
-- 建立一个VPN的网络隧道，以UDP隧道为例（参考本文下方VPN Demo示例工程文件[napi_init](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case/entry/src/main/cpp/napi_init.cpp)的UdpConnect()方法）；
+- 建立一个VPN的网络隧道，以UDP隧道为例（参考本文下方VPN Demo示例工程文件[napi_init](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case/entry/src/main/cpp/napi_init.cpp)的UdpConnect()方法）；
 - 通过VpnConnection.[protect](../reference/apis-network-kit/js-apis-net-vpnExtension.md#protect)保护前一步建立的UDP隧道；
 - 构建VPN Config参数，参考[VPN Config参数说明](#vpn-config参数说明)；
 - 通过VpnConnection.[create](../reference/apis-network-kit/js-apis-net-vpnExtension.md#create)建立VPN网络连接；
@@ -159,6 +165,47 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 }
 ```
 
+### 生成VPN Id
+
+创建新的VPN时，应生成一个VPN Id作为VPN的唯一标识。
+可参考如下示例：
+
+```ts
+import VpnExtensionAbility from "@ohos.app.ability.VpnExtensionAbility";
+import { vpnExtension } from "@kit.NetworkKit";
+
+export default class VpnTest extends VpnExtensionAbility {
+  vpnId:string = ''
+
+  getVpnId(){
+    let vpnConnection = vpnExtension.createVpnConnection(this.context);
+    vpnConnection?.generateVpnId().then((data)=>{
+      if (data) {
+        this.vpnId = data;
+      }
+    });
+  }
+}
+```
+
+### 断开VPN
+
+若需断开VPN，可参考如下示例：
+```ts
+import VpnExtensionAbility from "@ohos.app.ability.VpnExtensionAbility";
+import { vpnExtension } from "@kit.NetworkKit";
+
+export default class VpnTest extends VpnExtensionAbility {
+  vpnId: string = 'test_vpn_id'
+  vpnConnection: vpnExtension.VpnConnection | undefined
+
+  destroy(){
+    this.vpnConnection = vpnExtension.createVpnConnection(this.context);
+    this.vpnConnection?.destroy(this.vpnId);
+  }
+}
+```
+
 ## 服务生命周期
 
 为了保障设备的网络连接，当系统观察到VPN相关应用出现异常时会主动停止VPN连接：
@@ -239,7 +286,7 @@ function vpnCreate(){
 
 ## VPN Demo示例
 
-OpenHarmony开源项目包含一个名为[VPN](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case)的示例应用。此应用展示了如何设置和连接 VPN 服务。
+OpenHarmony开源项目包含一个名为[VPN](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case)的示例应用。此应用展示了如何设置和连接 VPN 服务。
 
 
 

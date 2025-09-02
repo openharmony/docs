@@ -1,4 +1,10 @@
 # video
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zjsxstar-->
+<!--Designer: @sunbees-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 
 >  **说明：**
@@ -75,6 +81,7 @@
 ```html
 <!-- xxx.hml -->
 <div class="container">
+  <!-- '/common/myDream.mp4'需要替换为开发者所需的视频资源文件 -->
   <video id='videoId' src='/common/myDream.mp4' muted='false' autoplay='false'
          controls='true' onprepared='preparedCallback' onstart='startCallback'
          onpause='pauseCallback' onfinish='finishCallback' onerror='errorCallback'

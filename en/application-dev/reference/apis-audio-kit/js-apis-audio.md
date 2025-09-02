@@ -1,12 +1,12 @@
 # @ohos.multimedia.audio (Audio Management)
 
-The Audio module provides basic audio management capabilities, including audio volume and audio device management, and audio data collection and rendering.
+The module provides basic audio control capabilities, including volume adjustment, device management, data collection, and rendering.
 
 This module provides the following common audio-related functions:
 
-- [AudioManager](#audiomanager): audio management.
-- [AudioRenderer](#audiorenderer8): audio rendering, used to play Pulse Code Modulation (PCM) audio data.
-- [AudioCapturer](#audiocapturer8): audio capture, used to record PCM audio data.
+- [AudioManager](#audiomanager): audio manager.
+- [AudioRenderer](#audiorenderer8): audio renderer, used to play Pulse Code Modulation (PCM) audio data.
+- [AudioCapturer](#audiocapturer8): audio capturer, used to record PCM audio data.
 
 > **NOTE**
 >
@@ -38,7 +38,7 @@ const defaultInterruptGroupId = audio.DEFAULT_INTERRUPT_GROUP_ID;
 
 getAudioManager(): AudioManager
 
-Obtains an **AudioManager** instance.
+Obtains an AudioManager instance.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -46,7 +46,7 @@ Obtains an **AudioManager** instance.
 
 | Type                         | Description        |
 | ----------------------------- | ------------ |
-| [AudioManager](#audiomanager) | **AudioManager** instance.|
+| [AudioManager](#audiomanager) | AudioManager instance.|
 
 **Example**
 ```ts
@@ -59,7 +59,7 @@ let audioManager = audio.getAudioManager();
 
 createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<AudioRenderer>): void
 
-Creates an **AudioRenderer** instance. This API uses an asynchronous callback to return the result.
+Creates an AudioRenderer instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -68,7 +68,7 @@ Creates an **AudioRenderer** instance. This API uses an asynchronous callback to
 | Name  | Type                                           | Mandatory| Description            |
 | -------- | ----------------------------------------------- | ---- | ---------------- |
 | options  | [AudioRendererOptions](#audiorendereroptions8)  | Yes  | Renderer configurations.    |
-| callback | AsyncCallback<[AudioRenderer](#audiorenderer8)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **AudioRenderer** instance obtained; otherwise, **err** is an error object.|
+| callback | AsyncCallback<[AudioRenderer](#audiorenderer8)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the AudioRenderer instance obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -106,7 +106,7 @@ audio.createAudioRenderer(audioRendererOptions,(err, data) => {
 
 createAudioRenderer(options: AudioRendererOptions): Promise<AudioRenderer\>
 
-Creates an **AudioRenderer** instance. This API uses a promise to return the result.
+Creates an AudioRenderer instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -120,7 +120,7 @@ Creates an **AudioRenderer** instance. This API uses a promise to return the res
 
 | Type                                     | Description            |
 | ----------------------------------------- | ---------------- |
-| Promise<[AudioRenderer](#audiorenderer8)> | Promise used to return the **AudioRenderer** instance.|
+| Promise<[AudioRenderer](#audiorenderer8)> | Promise used to return the AudioRenderer instance.|
 
 **Example**
 
@@ -159,7 +159,7 @@ audio.createAudioRenderer(audioRendererOptions).then((data) => {
 
 createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<AudioCapturer\>): void
 
-Creates an **AudioCapturer** instance. This API uses an asynchronous callback to return the result.
+Creates an AudioCapturer instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -172,7 +172,7 @@ This permission is required when [SourceType](#sourcetype8) is set to **SOURCE_T
 | Name  | Type                                           | Mandatory| Description            |
 | :------- | :---------------------------------------------- | :--- | :--------------- |
 | options  | [AudioCapturerOptions](#audiocaptureroptions8)  | Yes  | Capturer configurations.|
-| callback | AsyncCallback<[AudioCapturer](#audiocapturer8)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **AudioCapturer** instance obtained; otherwise, **err** is an error object. If the operation fails, an error object with one of the following error codes is returned:<br>Error code 6800301: indicates a parameter verification exception, permission verification exception, or system processing exception. For details, see system logs.<br>Error code 6800101: indicates that a mandatory parameter is null or the parameter type is incorrect.|
+| callback | AsyncCallback<[AudioCapturer](#audiocapturer8)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the AudioCapturer instance obtained; otherwise, **err** is an error object. If the operation fails, an error object with one of the following error codes is returned:<br>Error code 6800301: indicates a parameter verification exception, permission verification exception, or system processing exception. For details, see system logs.<br>Error code 6800101: indicates that a mandatory parameter is null or the parameter type is incorrect.|
 
 **Example**
 
@@ -210,7 +210,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 createAudioCapturer(options: AudioCapturerOptions): Promise<AudioCapturer\>
 
-Creates an **AudioCapturer** instance. This API uses a promise to return the result.
+Creates an AudioCapturer instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -228,7 +228,7 @@ This permission is required when [SourceType](#sourcetype8) is set to **SOURCE_T
 
 | Type                                     | Description                  |
 | ----------------------------------------- |----------------------|
-| Promise<[AudioCapturer](#audiocapturer8)> | Promise used to return the result. If the operation is successful, an **AudioCapturer** instance is returned; otherwise, an error object with either of the following error codes is returned:<br>Error code 6800301: indicates a parameter verification exception, permission verification exception, or system processing exception. For details, see system logs.<br>Error code 6800101: indicates that a mandatory parameter is null or the parameter type is incorrect.|
+| Promise<[AudioCapturer](#audiocapturer8)> | Promise used to return the result. If the operation is successful, an AudioCapturer instance is returned; otherwise, an error object with either of the following error codes is returned:<br>Error code 6800301: indicates a parameter verification exception, permission verification exception, or system processing exception. For details, see system logs.<br>Error code 6800101: indicates that a mandatory parameter is null or the parameter type is incorrect.|
 
 **Example**
 
@@ -305,7 +305,7 @@ Enumerates the audio device flags.
 
 ## DeviceUsage<sup>12+</sup>
 
-Enumerates the usage scenarios of audio devices.
+Enumerates the audio device types by usage.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -320,7 +320,7 @@ Enumerates the usage scenarios of audio devices.
 
 ## DeviceRole
 
-Enumerates the audio device roles.
+Enumerates the device roles.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -333,7 +333,7 @@ Enumerates the audio device roles.
 
 ## DeviceType
 
-Enumerates the audio device types.
+Enumerates the device types.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -343,7 +343,7 @@ Enumerates the audio device types.
 | EARPIECE             | 1      | Earpiece.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | SPEAKER              | 2      | Speaker.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | WIRED_HEADSET        | 3      | Wired headset with a microphone.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| WIRED_HEADPHONES     | 4      | Wired headset without microphone.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| WIRED_HEADPHONES     | 4      | Wired headset without a microphone.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | BLUETOOTH_SCO        | 7      | Bluetooth device using Synchronous Connection Oriented (SCO) links.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | BLUETOOTH_A2DP       | 8      | Bluetooth device using Advanced Audio Distribution Profile (A2DP) links.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | MIC                  | 15     | Microphone.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -368,7 +368,7 @@ Enumerates the device types used for communication.
 
 ## AudioRingMode
 
-Enumerates the ringer modes.
+Enumerates the audio ring modes.
 
 **System capability**: SystemCapability.Multimedia.Audio.Communication
 
@@ -395,7 +395,7 @@ Enumerates the audio sample formats.
 
 ## AudioErrors<sup>9+</sup>
 
-Enumerates the audio error codes.
+Enumerates the error codes available for audio management.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -469,7 +469,7 @@ Enumerates the audio encoding types.
 
 ## AudioChannelLayout<sup>11+</sup>
 
-Enumerates the audio channel layouts.
+Enumerates the audio channel layouts of audio files.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -530,7 +530,7 @@ Enumerates the audio channel layouts.
 Enumerates the audio content types.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [StreamUsage](#streamusage) to declare the audio stream type.
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [StreamUsage](#streamusage) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -545,7 +545,7 @@ Enumerates the audio content types.
 
 ## StreamUsage
 
-Enumerates the audio stream usage.
+Enumerates the audio stream usage types.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -558,7 +558,7 @@ Enumerates the audio stream usage.
 | STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | Voice assistant.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | Audio stream for alarming.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | Voice message.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| STREAM_USAGE_NOTIFICATION_RINGTONE<sup>(deprecated)</sup> | 6      | Notification tone.<br> This enumerated value is deprecated since API version 10. You are advised to use **STREAM_USAGE_RINGTONE** instead.|
+| STREAM_USAGE_NOTIFICATION_RINGTONE<sup>(deprecated)</sup> | 6      | Notification tone.<br> This enumerated value is supported since API version 7 and deprecated since API version 10. You are advised to use **STREAM_USAGE_RINGTONE** instead.|
 | STREAM_USAGE_RINGTONE<sup>10+</sup>       | 6      | Ringtone.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | STREAM_USAGE_NOTIFICATION<sup>10+</sup>   | 7      | Notification.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8      | Accessibility.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -607,7 +607,7 @@ Enumerates the audio renderer rates.
 | ------------------ | ------ | ---------- |
 | RENDER_RATE_NORMAL | 0      | Normal rate.|
 | RENDER_RATE_DOUBLE | 1      | Double rate.   |
-| RENDER_RATE_HALF   | 2      | Half rate. |
+| RENDER_RATE_HALF   | 2      | 0.5x rate. |
 
 ## InterruptType
 
@@ -628,7 +628,7 @@ Enumerates the types of force that causes audio interruption.
 
 The force type is obtained when an [InterruptEvent](#interruptevent9) is received.
 
-This type specifies whether the audio interruption operation is forcibly performed by the system. The operation information (such as audio pause or stop) can be obtained through [InterruptHint](#interrupthint). For details about the audio interruption strategy, see [Handling Audio Focus Changes](../../media/audio/audio-playback-concurrency.md).
+This type specifies whether audio interruption is forcibly performed by the system. The operation information (such as audio pause or stop) can be obtained through [InterruptHint](#interrupthint). For details about the audio interruption strategy, see [Introduction to Audio Focus and Audio Sessions](../../media/audio/audio-playback-concurrency.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -645,9 +645,9 @@ Enumerates the hints provided along with audio interruption.
 
 The hint is obtained when an [InterruptEvent](#interruptevent9) is received.
 
-The hint specifies the operation (such as audio pause or volume adjustment) to be performed on audio streams based on the focus policy.
+The hint specifies the operation (such as audio pause or volume adjustment) to be performed on audio streams based on the focus strategy.
 
-You can determine whether the operation is forcibly performed by the system based on [InterruptForceType](#interruptforcetype9) in **InterruptEvent**. For details about the audio interruption strategy, see [Handling Audio Focus Changes](../../media/audio/audio-playback-concurrency.md).
+You can determine whether the operation is forcibly performed by the system based on [InterruptForceType](#interruptforcetype9) in **InterruptEvent**. For details, see [Introduction to Audio Focus and Audio Sessions](../../media/audio/audio-playback-concurrency.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -657,12 +657,12 @@ You can determine whether the operation is forcibly performed by the system base
 | ---------------------------------- | ------ | -------------------------------------------- |
 | INTERRUPT_HINT_NONE<sup>8+</sup>   | 0      | None.                                     |
 | INTERRUPT_HINT_RESUME              | 1      | A hint is displayed, indicating that the audio stream is restored. The application can proactively trigger operations related to rendering or recording.<br>This operation cannot be forcibly performed by the system, and the corresponding [InterruptForceType](#interruptforcetype9) must be **INTERRUPT_SHARE**.|
-| INTERRUPT_HINT_PAUSE               | 2      | A hint is displayed, indicating that the audio stream is paused and the audio focus is lost temporarily.<br>The **INTERRUPT_HINT_RESUME** event will be triggered when the focus is gained. |
+| INTERRUPT_HINT_PAUSE               | 2      | A hint is displayed, indicating that the audio stream is paused and the audio focus is lost temporarily.<br>When the audio focus is available, the **INTERRUPT_HINT_RESUME** event is received. |
 | INTERRUPT_HINT_STOP                | 3      | A hint is displayed, indicating that the audio stream stops and the audio focus is lost.               |
 | INTERRUPT_HINT_DUCK                | 4      | A hint is displayed, indicating that audio ducking starts and the audio is played at a lower volume.|
 | INTERRUPT_HINT_UNDUCK<sup>8+</sup> | 5      | A hint is displayed, indicating that audio ducking ends and the audio is played at the normal volume.           |
 
-## AudioVolumeMode<sup>18+</sup>
+## AudioVolumeMode<sup>19+</sup>
 
 Enumerates the audio volume modes.
 
@@ -695,10 +695,10 @@ Describes audio renderer information.
 
 | Name         | Type                       | Mandatory | Description           |
 | ------------- | --------------------------- | ---- | --------------- |
-| content       | [ContentType](#contenttypedeprecated) | No  | Audio content type.<br>This parameter is mandatory in API versions 8 and 9 and optional since API version 10. The default value is **CONTENT_TYPE_UNKNOWN**. [ContentType](#contenttypedeprecated) is deprecated. You are advised to use [StreamUsage](#streamusage) to declare the audio stream type.|
+| content       | [ContentType](#contenttypedeprecated) | No  | Audio content type.<br>This parameter is mandatory in API versions 8 and 9 and optional since API version 10. The default value is **CONTENT_TYPE_UNKNOWN**.<br>This API is supported since API version 7 and deprecated since API version 10. You are advised to use [StreamUsage](#streamusage) instead.|
 | usage         | [StreamUsage](#streamusage) | Yes  | Audio stream usage.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | rendererFlags | number                      | Yes  | Audio renderer flags.<br>The value **0** means an audio renderer.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| volumeMode<sup>18+</sup> | [AudioVolumeMode](#audiovolumemode18) | No| Audio volume mode. The default value is **SYSTEM_GLOBAL**.|
+| volumeMode<sup>19+</sup> | [AudioVolumeMode](#audiovolumemode19) | No| Audio volume mode. The default value is **SYSTEM_GLOBAL**.|
 
 ## AudioRendererOptions<sup>8+</sup>
 
@@ -723,7 +723,7 @@ Enumerates whether an audio stream can be recorded by other applications.
 
 ## InterruptEvent<sup>9+</sup>
 
-Describes the interruption event received by the application when playback is interrupted.
+Describes the interruption event received by the application when the audio is interrupted.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -731,9 +731,9 @@ Describes the interruption event received by the application when playback is in
 
 | Name     | Type                                      |Mandatory  | Description                                |
 | --------- | ------------------------------------------ | ---- | ------------------------------------ |
-| eventType | [InterruptType](#interrupttype)            | Yes  | Whether the interruption has started or ended.        |
-| forceType | [InterruptForceType](#interruptforcetype9) | Yes  | Whether the interruption is taken by the system or to be taken by the application.|
-| hintType  | [InterruptHint](#interrupthint)            | Yes  | Hint provided along the interruption.                          |
+| eventType | [InterruptType](#interrupttype)            | Yes  | Whether the audio interruption has started or ended.        |
+| forceType | [InterruptForceType](#interruptforcetype9) | Yes  | Whether the audio interruption is forcibly taken by the system or taken by an application.|
+| hintType  | [InterruptHint](#interrupthint)            | Yes  | Hint provided along the interruption to provide information related to the interruption event.|
 
 ## VolumeEvent<sup>9+</sup>
 
@@ -744,9 +744,9 @@ Describes the event received by the application when the volume is changed.
 | Name      | Type                               | Mandatory  | Description                                       |
 | ---------- | ----------------------------------- | ---- |-------------------------------------------|
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                   |
-| volume     | number                              | Yes  | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**. |
-| updateUi   | boolean                             | Yes  | Whether the volume change is shown on the UI. The value **true** means that the volume change is shown, and **false** means the opposite.            |
-| volumeMode<sup>18+</sup> | [AudioVolumeMode](#audiovolumemode18) | No| Audio volume mode. The default value is **SYSTEM_GLOBAL**.|
+| volume     | number                              | Yes  |Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**. |
+| updateUi   | boolean                             | Yes  |  Whether to show the volume change in UI. The value **true** means to show the volume change in UI, and **false** means the opposite.            |
+| volumeMode<sup>19+</sup> | [AudioVolumeMode](#audiovolumemode19) | No| Audio volume mode. The default value is **SYSTEM_GLOBAL**.|
 
 ## MicStateChangeEvent<sup>9+</sup>
 
@@ -756,7 +756,7 @@ Describes the event received by the application when the microphone mute status 
 
 | Name      | Type                               | Mandatory| Description                                                    |
 | ---------- | ----------------------------------- | ---- |-------------------------------------------------------- |
-| mute | boolean | Yes  | Mute status of the microphone. The value **true** means that the microphone is muted, and **false** means the opposite.         |
+| mute | boolean | Yes  | Mute status of the microphone The value **true** means that the microphone is muted, and **false** means the opposite.         |
 
 ## DeviceChangeAction
 
@@ -788,14 +788,14 @@ Enumerates the audio channel blending modes.
 
 | Name                                        |  Value    | Description                  |
 | :------------------------------------------- | :----- | :--------------------- |
-| MODE_DEFAULT | 0     | The audio channels are not blended. |
-| MODE_BLEND_LR | 1      | The left and right audio channels are blended.|
-| MODE_ALL_LEFT | 2      | The left channel is replicated into the right channel. |
-| MODE_ALL_RIGHT | 3 | The right channel is replicated into the left channel.|
+| MODE_DEFAULT | 0     | No channel mixing. |
+| MODE_BLEND_LR | 1      | Blends the left and right channels together.|
+| MODE_ALL_LEFT | 2      | Copies the left channel and applies it to both the left and right channels. |
+| MODE_ALL_RIGHT | 3 | Copies the right channel and applies it to both the left and right channels. |
 
 ## AudioStreamDeviceChangeReason<sup>11+</sup>
 
-Enumerates the reasons for audio stream device is changed.
+Enumerates the reasons for audio stream device changes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -805,7 +805,7 @@ Enumerates the reasons for audio stream device is changed.
 |:------------------------------------------| :----- |:----------------|
 | REASON_UNKNOWN | 0 | Unknown reason.          |
 | REASON_NEW_DEVICE_AVAILABLE | 1 | A new device is available.        |
-| REASON_OLD_DEVICE_UNAVAILABLE | 2 | The old device is unavailable. When this reason is reported, the application should consider pausing audio playback.|
+| REASON_OLD_DEVICE_UNAVAILABLE | 2 | The old device is unavailable. When this reason is reported, consider pausing audio playback.|
 | REASON_OVERRODE | 3 | Forcibly selected.|
 
 ## AudioStreamDeviceChangeInfo<sup>11+</sup>
@@ -851,7 +851,7 @@ Describes audio capturer configurations.
 | ----------------------------------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | streamInfo                          | [AudioStreamInfo](#audiostreaminfo8)                      | Yes  | Audio stream information.<br>**System capability**: SystemCapability.Multimedia.Audio.Capturer  |
 | capturerInfo                        | [AudioCapturerInfo](#audiocapturerinfo8)                   | Yes  | Audio capturer information.<br>**System capability**: SystemCapability.Multimedia.Audio.Capturer       |
-| playbackCaptureConfig<sup>(deprecated)</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfigdeprecated) | No  | Configuration of internal audio recording.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture<br> This API is supported since API version 10 and deprecated since API version 12. The Audio module does not provide APIs for internal recording. You can use [AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md) to perform internal recording.|
+| playbackCaptureConfig<sup>(deprecated)</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfigdeprecated) | No  | Configuration of internal audio recording.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture<br> This API is supported since API version 10 and deprecated since API version 12. You are advised to use [AVScreenCapture](../apis-media-kit/capi-avscreencapture.md) instead. |
 
 ## AudioCapturerInfo<sup>8+</sup>
 
@@ -873,11 +873,12 @@ Enumerates the audio source types.
 | SOURCE_TYPE_INVALID                          | -1     | Invalid audio source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_MIC                              | 0      | Mic source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | Voice recognition source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core |
-| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>(deprecated)</sup>   | 2 | Internal audio recording source.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture<br> This API is supported since API version 10 and deprecated since API version 12. The Audio module does not provide APIs for internal recording. You can use [AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md) to perform internal recording.|
+| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>(deprecated)</sup>   | 2 | Internal audio recording source.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture<br> This API is supported since API version 10 and deprecated since API version 12. You are advised to use [AVScreenCapture](../apis-media-kit/capi-avscreencapture.md) instead. |
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | Voice communication source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 | SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup>      | 10     | Voice message source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 | SOURCE_TYPE_CAMCORDER<sup>13+</sup>          | 13     | Video recording source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 | SOURCE_TYPE_UNPROCESSED<sup>14+</sup>     | 14 |  Audio source for raw microphone recording, where the system does not perform any algorithm processing.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
+|  SOURCE_TYPE_LIVE<sup>20+</sup>     | 17 |  Audio source in live streaming scenarios.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 
 ## AudioPlaybackCaptureConfig<sup>(deprecated)</sup>
 
@@ -885,7 +886,7 @@ Defines the configuration of internal audio recording.
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 12. The Audio module does not provide APIs for internal recording. You can use [AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md) to perform internal recording.
+> This API is supported since API version 10 and deprecated since API version 12. You are advised to use [AVScreenCapture](../apis-media-kit/capi-avscreencapture.md) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture
 
@@ -899,13 +900,13 @@ Defines the options for filtering the played audio streams to be recorded.
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 12. The Audio module does not provide APIs for internal recording. You can use [AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md) to perform internal recording.
+> This API is supported since API version 10 and deprecated since API version 12. You are advised to use [AVScreenCapture](../apis-media-kit/capi-avscreencapture.md) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture
 
 | Name  | Type                              | Mandatory| Description                                                        |
 | ------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| usages | Array<[StreamUsage](#streamusage)> | Yes  | **StreamUsage** of the audio stream to be recorded. You can specify zero or more stream usages. If the array is empty, the audio stream for which **StreamUsage** is **STREAM_USAGE_MUSIC**, **STREAM_USAGE_MOVIE**, **STREAM_USAGE_GAME**, or **STREAM_USAGE_AUDIOBOOK** is recorded by default.<br>In API version 10, **CaptureFilterOptions** supports **StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION**, and therefore the **ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO** permission is required. Only system applications can request this permission.<br>Since API version 11, **CaptureFilterOptions** does not support **StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION**. Therefore, no permission is required for calling this API.|
+| usages | Array<[StreamUsage](#streamusage)> | Yes  | **StreamUsage** of the audio stream to be recorded. You can specify zero or more stream usages. If the array is empty, the audio stream for which **StreamUsage** is **STREAM_USAGE_MUSIC**, **STREAM_USAGE_MOVIE**, **STREAM_USAGE_GAME**, or **STREAM_USAGE_AUDIOBOOK** is recorded by default.<br>In API version 10, **CaptureFilterOptions** supports **StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION**, and therefore the ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO permission is required. Only system applications can request this permission.<br>Since API version 11, **CaptureFilterOptions** does not support **StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION**. Therefore, no permission is required for calling this API.|
 
 ## AudioScene<sup>8+</sup>
 
@@ -966,7 +967,9 @@ Describes the event indicating that an audio session is deactivated.
 
 ## AudioManager
 
-Implements audio volume and audio device management. Before calling any API in **AudioManager**, you must use [getAudioManager](#audiogetaudiomanager) to create an **AudioManager** instance.
+Implements audio volume and device management.
+
+Before calling any API in AudioManager, you must use [getAudioManager](#audiogetaudiomanager) to create an AudioManager instance.
 
 ### setAudioParameter<sup>(deprecated)</sup>
 
@@ -978,7 +981,7 @@ This API is used to extend the audio configuration based on the hardware capabil
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 11. The substitute API is available only for system applications.
+> This API is supported since API version 7 and deprecated since API version 11. Its substitute is available only to system applications.
 
 **Required permissions**: ohos.permission.MODIFY_AUDIO_SETTINGS
 
@@ -1016,7 +1019,7 @@ This API is used to extend the audio configuration based on the hardware capabil
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 11. The substitute API is available only for system applications.
+> This API is supported since API version 7 and deprecated since API version 11. Its substitute is available only to system applications.
 
 **Required permissions**: ohos.permission.MODIFY_AUDIO_SETTINGS
 
@@ -1053,7 +1056,7 @@ This API is used to extend the audio configuration based on the hardware capabil
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 11. The substitute API is available only for system applications.
+> This API is supported since API version 7 and deprecated since API version 11. Its substitute is available only to system applications.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -1088,7 +1091,7 @@ This API is used to extend the audio configuration based on the hardware capabil
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 11. The substitute API is available only for system applications.
+> This API is supported since API version 7 and deprecated since API version 11. Its substitute is available only to system applications.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -1194,11 +1197,65 @@ try {
 }
 ```
 
+### on('audioSceneChange')<sup>20+</sup>
+
+on(type: 'audioSceneChange', callback: Callback\<AudioScene\>): void
+
+Subscribes to the audio scene change event. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Communication
+
+**Parameters**
+
+| Name  | Type                      | Mandatory| Description                                       |
+| :------- | :------------------------- | :--- | :------------------------------------------ |
+| type     | string                     | Yes  | Event type. The event **'audioSceneChange'** is triggered when the audio scene is changed.|
+| callback | Callback\<[AudioScene](#audioscene8)> | Yes  | Callback used to return the current audio scene.|
+
+**Example**
+
+```ts
+audioManager.on('audioSceneChange', (audioScene: audio.AudioScene) => {
+  console.info(`audio scene : ${audioScene}.`);
+});
+```
+
+### off('audioSceneChange')<sup>20+</sup>
+
+off(type: 'audioSceneChange', callback?: Callback\<AudioScene\>): void
+
+Unsubscribes from the audio scene change event. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Communication
+
+**Parameters**
+
+| Name  | Type                      | Mandatory| Description                                       |
+| :------- | :------------------------- | :--- | :------------------------------------------ |
+| type     | string                     | Yes  | Event type. The event **'audioSceneChange'** is triggered when the audio scene is changed.|
+| callback | Callback\<[AudioScene](#audioscene8)> | Yes  | Callback used to return the current audio scene.|
+
+**Example**
+
+```ts
+// Cancel all subscriptions to the event.
+audioManager.off('audioSceneChange');
+
+// For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
+let audioSceneChangeCallback = (audioScene: audio.AudioScene) => {
+  console.info(`audio scene : ${audioScene}.`);
+};
+
+audioManager.on('audioSceneChange', audioSceneChangeCallback);
+
+audioManager.off('audioSceneChange', audioSceneChangeCallback);
+```
+
 ### getVolumeManager<sup>9+</sup>
 
 getVolumeManager(): AudioVolumeManager
 
-Obtains an **AudioVolumeManager** instance.
+Obtains an AudioVolumeManager instance.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -1206,7 +1263,7 @@ Obtains an **AudioVolumeManager** instance.
 
 | Type                                     | Description                         |
 |-----------------------------------------| ----------------------------- |
-| [AudioVolumeManager](#audiovolumemanager9) | **AudioVolumeManager** instance.|
+| [AudioVolumeManager](#audiovolumemanager9) | AudioVolumeManager instance.|
 
 **Example**
 
@@ -1220,7 +1277,7 @@ let audioVolumeManager: audio.AudioVolumeManager = audioManager.getVolumeManager
 
 getStreamManager(): AudioStreamManager
 
-Obtains an **AudioStreamManager** instance.
+Obtains an AudioStreamManager instance.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -1228,7 +1285,7 @@ Obtains an **AudioStreamManager** instance.
 
 | Type                                        | Description                         |
 |--------------------------------------------| ----------------------------- |
-| [AudioStreamManager](#audiostreammanager9) | **AudioStreamManager** instance.|
+| [AudioStreamManager](#audiostreammanager9) | AudioStreamManager instance.|
 
 **Example**
 
@@ -1242,7 +1299,7 @@ let audioStreamManager: audio.AudioStreamManager = audioManager.getStreamManager
 
 getRoutingManager(): AudioRoutingManager
 
-Obtains an **AudioRoutingManager** instance.
+Obtains an AudioRoutingManager instance.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -1250,7 +1307,7 @@ Obtains an **AudioRoutingManager** instance.
 
 | Type                                      | Description                         |
 |------------------------------------------| ----------------------------- |
-| [AudioRoutingManager](#audioroutingmanager9) | **AudioRoutingManager** instance.|
+| [AudioRoutingManager](#audioroutingmanager9) | AudioRoutingManager instance.|
 
 **Example**
 
@@ -1264,7 +1321,7 @@ let audioRoutingManager: audio.AudioRoutingManager = audioManager.getRoutingMana
 
 getSessionManager(): AudioSessionManager
 
-Obtains an **AudioSessionManager** instance.
+Obtains an AudioSessionManager instance.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -1272,7 +1329,7 @@ Obtains an **AudioSessionManager** instance.
 
 | Type                                          | Description                         |
 |----------------------------------------------| ----------------------------- |
-| [AudioSessionManager](#audiosessionmanager12) | **AudioSessionManager** instance.|
+| [AudioSessionManager](#audiosessionmanager12) | AudioSessionManager instance.|
 
 **Example**
 
@@ -1286,7 +1343,7 @@ let audioSessionManager: audio.AudioSessionManager = audioManager.getSessionMana
 
 getSpatializationManager(): AudioSpatializationManager
 
-Obtains an **AudioSpatializationManager** instance.
+Obtains an AudioSpatializationManager instance.
 
 **System capability**: SystemCapability.Multimedia.Audio.Spatialization
 
@@ -1294,7 +1351,7 @@ Obtains an **AudioSpatializationManager** instance.
 
 | Type                                      | Description                         |
 |------------------------------------------| ----------------------------- |
-| [AudioSpatializationManager](#audiospatializationmanager18) | **AudioSpatializationManager** instance.|
+| [AudioSpatializationManager](#audiospatializationmanager18) | AudioSpatializationManager instance.|
 
 **Example**
 
@@ -1311,9 +1368,9 @@ Sets the volume for a stream. This API uses an asynchronous callback to return t
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only for system applications.
+> This API is supported since API version 7 and deprecated since API version 9. Its substitute is available only to system applications.
 > 
-> Applications cannot directly adjust the system volume. It is recommended that they invoke the system volume panel for users to adjust the volume. When the user adjusts the volume, a volume prompt UI is displayed to explicitly notify the user that the system volume changes. For details about the samples and introduction, see [AVVolumePanel Reference](ohos-multimedia-avvolumepanel.md).
+> Applications cannot directly adjust the system volume. They can use the system volume panel to control the volume. For details about the samples and introduction, see [AVVolumePanel Reference](ohos-multimedia-avvolumepanel.md).
 
 **Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1351,9 +1408,9 @@ Sets the volume for a stream. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only for system applications.
+> This API is supported since API version 7 and deprecated since API version 9. Its substitute is available only to system applications.
 >
-> Applications cannot directly adjust the system volume. It is recommended that they invoke the system volume panel for users to adjust the volume. When the user adjusts the volume, a volume prompt UI is displayed to explicitly notify the user that the system volume changes. For details about the samples and introduction, see [AVVolumePanel Reference](ohos-multimedia-avvolumepanel.md).
+> Applications cannot directly adjust the system volume. They can use the system volume panel to control the volume. For details about the samples and introduction, see [AVVolumePanel Reference](ohos-multimedia-avvolumepanel.md).
 
 **Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1390,7 +1447,7 @@ Obtains the volume of a stream. This API uses an asynchronous callback to return
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getVolume](#getvolume9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getVolume](#getvolume9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -1423,7 +1480,7 @@ Obtains the volume of a stream. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getVolume](#getvolume9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getVolume](#getvolume9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -1455,7 +1512,7 @@ Obtains the minimum volume allowed for a stream. This API uses an asynchronous c
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getMinVolume](#getminvolume9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getMinVolume](#getminvolume9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -1488,7 +1545,7 @@ Obtains the minimum volume allowed for a stream. This API uses a promise to retu
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getMinVolume](#getminvolume9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getMinVolume](#getminvolume9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -1520,7 +1577,7 @@ Obtains the maximum volume allowed for a stream. This API uses an asynchronous c
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getMaxVolume](#getmaxvolume9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getMaxVolume](#getmaxvolume9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -1553,7 +1610,7 @@ Obtains the maximum volume allowed for a stream. This API uses a promise to retu
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getMaxVolume](#getmaxvolume9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getMaxVolume](#getmaxvolume9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -1583,11 +1640,11 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 
 Mutes or unmutes a stream. This API uses an asynchronous callback to return the result.
 
-When the minimum volume of a stream cannot be set to 0 (for example, in the case of alarms or phone calls), muting the stream is not supported.
+When the minimum volume of a stream cannot be set to 0, muting the stream is not supported. Example scenarios: alarms or phone calls.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only for system applications.
+> This API is supported since API version 7 and deprecated since API version 9. Its substitute is available only to system applications.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -1596,7 +1653,7 @@ When the minimum volume of a stream cannot be set to 0 (for example, in the case
 | Name    | Type                               | Mandatory| Description                                 |
 | ---------- | ----------------------------------- | ---- | ------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                         |
-| mute       | boolean                             | Yes  | Mute status to set. The value **true** means to mute the stream, and **false** means the opposite.|
+| mute       | boolean                             | Yes  | Whether to mute the stream. The value **true** means to mute the stream, and **false** means the opposite.|
 | callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
@@ -1619,11 +1676,11 @@ mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
 Mutes or unmutes a stream. This API uses a promise to return the result.
 
-When the minimum volume of a stream cannot be set to 0 (for example, in the case of alarms or phone calls), muting the stream is not supported.
+When the minimum volume of a stream cannot be set to 0, muting the stream is not supported. Example scenarios: alarms or phone calls.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only for system applications.
+> This API is supported since API version 7 and deprecated since API version 9. Its substitute is available only to system applications.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -1632,7 +1689,7 @@ When the minimum volume of a stream cannot be set to 0 (for example, in the case
 | Name    | Type                               | Mandatory| Description                                 |
 | ---------- | ----------------------------------- | ---- | ------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                         |
-| mute       | boolean                             | Yes  | Mute status to set. The value **true** means to mute the stream, and **false** means the opposite.|
+| mute       | boolean                             | Yes  | Whether to mute the stream. The value **true** means to mute the stream, and **false** means the opposite.|
 
 **Return value**
 
@@ -1657,7 +1714,7 @@ Checks whether a stream is muted. This API uses an asynchronous callback to retu
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isMute](#ismute9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isMute](#ismute9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -1690,7 +1747,7 @@ Checks whether a stream is muted. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isMute](#ismute9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isMute](#ismute9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -1722,7 +1779,7 @@ Checks whether a stream is active. This API uses an asynchronous callback to ret
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isActive](#isactive9) in **AudioStreamManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isActive](#isactive9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -1755,7 +1812,7 @@ Checks whether a stream is active. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isActive](#isactive9) in **AudioStreamManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isActive](#isactive9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -1787,7 +1844,7 @@ Sets the ringer mode. This API uses an asynchronous callback to return the resul
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only for system applications.
+> This API is supported since API version 7 and deprecated since API version 9. Its substitute is available only to system applications.
 
 **Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1824,7 +1881,7 @@ Sets the ringer mode. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only for system applications.
+> This API is supported since API version 7 and deprecated since API version 9. Its substitute is available only to system applications.
 
 
 **Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
@@ -1861,7 +1918,7 @@ Obtains the ringer mode. This API uses an asynchronous callback to return the re
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getRingerMode](#getringermode9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getRingerMode](#getringermode9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Communication
 
@@ -1893,7 +1950,7 @@ Obtains the ringer mode. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getRingerMode](#getringermode9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getRingerMode](#getringermode9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Communication
 
@@ -1919,7 +1976,7 @@ Obtains the audio devices with a specific flag. This API uses an asynchronous ca
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getDevices](#getdevices9) in **AudioRoutingManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getDevices](#getdevices9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -1951,7 +2008,7 @@ Obtains the audio devices with a specific flag. This API uses a promise to retur
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getDevices](#getdevices9) in **AudioRoutingManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getDevices](#getdevices9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -1983,7 +2040,7 @@ Sets a device to the active state. This API uses an asynchronous callback to ret
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setCommunicationDevice](#setcommunicationdevice9) in **AudioRoutingManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setCommunicationDevice](#setcommunicationdevice9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -2017,7 +2074,7 @@ Sets a device to the active state. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setCommunicationDevice](#setcommunicationdevice9) in **AudioRoutingManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setCommunicationDevice](#setcommunicationdevice9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -2051,7 +2108,7 @@ Checks whether a device is active. This API uses an asynchronous callback to ret
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isCommunicationDeviceActive](#iscommunicationdeviceactive9) in **AudioRoutingManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isCommunicationDeviceActive](#iscommunicationdeviceactive9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -2084,7 +2141,7 @@ Checks whether a device is active. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isCommunicationDeviceActive](#iscommunicationdeviceactive9) in **AudioRoutingManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isCommunicationDeviceActive](#iscommunicationdeviceactive9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -2116,7 +2173,7 @@ Mutes or unmutes the microphone. This API uses an asynchronous callback to retur
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only for system applications.
+> This API is supported since API version 7 and deprecated since API version 9. Its substitute is available only to system applications.
 
 **Required permissions**: ohos.permission.MICROPHONE
 
@@ -2151,7 +2208,7 @@ Mutes or unmutes the microphone. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only for system applications.
+> This API is supported since API version 7 and deprecated since API version 9. Its substitute is available only to system applications.
 
 **Required permissions**: ohos.permission.MICROPHONE
 
@@ -2185,7 +2242,7 @@ Checks whether the microphone is muted. This API uses an asynchronous callback t
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isMicrophoneMute](#ismicrophonemute9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isMicrophoneMute](#ismicrophonemute9) instead.
 
 **Required permissions**: ohos.permission.MICROPHONE
 
@@ -2219,7 +2276,7 @@ Checks whether the microphone is muted. This API uses a promise to return the re
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isMicrophoneMute](#ismicrophonemute9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isMicrophoneMute](#ismicrophonemute9) instead.
 
 **Required permissions**: ohos.permission.MICROPHONE
 
@@ -2243,11 +2300,11 @@ audioManager.isMicrophoneMute().then((value: boolean) => {
 
 on(type: 'deviceChange', callback: Callback<DeviceChangeAction\>): void
 
-Subscribes to the audio device change event, which is triggered when the connection status of an audio device is changed. This API uses an asynchronous callback to return the result.
+Subscribes to the event indicating that the connection status of an audio device is changed. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [on('deviceChange')](#ondevicechange9) in **AudioRoutingManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [on('deviceChange')](#ondevicechange9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -2277,7 +2334,7 @@ Unsubscribes from the audio device change event. This API uses an asynchronous c
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [off('deviceChange')](#offdevicechange9) in **AudioRoutingManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [off('deviceChange')](#offdevicechange9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -2313,11 +2370,11 @@ on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAc
 
 Subscribes to the audio interruption event, which is triggered when the audio focus is changed. This API uses an asynchronous callback to return the result.
 
-Same as [on('audioInterrupt')](#onaudiointerrupt9), this API is used to listen for focus is changed. However, this API is used in scenarios without audio streams (no **AudioRenderer** instance is created), such as frequency modulation (FM) and voice wakeup.
+Same as [on('audioInterrupt')](#onaudiointerrupt9), this API is used to listen for focus is changed. However, this API is used in scenarios without audio streams (no AudioRenderer instance is created), such as frequency modulation (FM) and voice wakeup.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 11. You are advised to use [on('audioInterrupt')](#onaudiointerrupt10) in **AudioCapturer**.
+> This API is supported since API version 7 and deprecated since API version 11. You are advised to use [on('audioInterrupt')](#onaudiointerrupt10) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -2360,7 +2417,7 @@ Unsubscribes from the audio interruption event. This API uses an asynchronous ca
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 11. You are advised to use [off('audioInterrupt')](#offaudiointerrupt10) in **AudioCapturer**.
+> This API is supported since API version 7 and deprecated since API version 11. You are advised to use [off('audioInterrupt')](#offaudiointerrupt10) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -2405,7 +2462,9 @@ audioManager.off('interrupt', interAudioInterrupt, interruptCallback);
 
 ## AudioVolumeManager<sup>9+</sup>
 
-Implements audio volume management. Before calling an API in **AudioVolumeManager**, you must use [getVolumeManager](#getvolumemanager9) to obtain an **AudioVolumeManager** instance.
+Implements audio volume management.
+
+Before calling any API in AudioVolumeManager, you must use [getVolumeManager](#getvolumemanager9) to create an AudioVolumeManager instance.
 
 ### getVolumeGroupManager<sup>9+</sup>
 
@@ -2419,7 +2478,7 @@ Obtains the volume group manager. This API uses an asynchronous callback to retu
 
 | Name    | Type                                                        | Mandatory| Description                                                       |
 | ---------- | ------------------------------------------------------------ | ---- |-----------------------------------------------------------|
-| groupId    | number                                    | Yes  | Volume group ID. The default value is **LOCAL_VOLUME_GROUP_ID**.                         |
+| groupId    | number                                    | Yes  | Volume group ID. The default value is **DEFAULT_VOLUME_GROUP_ID**.                         |
 | callback   | AsyncCallback&lt;[AudioVolumeGroupManager](#audiovolumegroupmanager9)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the volume group manager obtained; otherwise, **err** is an error object.|
 
 **Example**
@@ -2451,7 +2510,7 @@ Obtains the volume group manager. This API uses a promise to return the result.
 
 | Name    | Type                                     | Mandatory| Description                              |
 | ---------- | ---------------------------------------- | ---- |----------------------------------|
-| groupId    | number                                   | Yes  | Volume group ID. The default value is **LOCAL_VOLUME_GROUP_ID**.|
+| groupId    | number                                   | Yes  | Volume group ID. The default value is **DEFAULT_VOLUME_GROUP_ID**.|
 
 **Return value**
 
@@ -2485,7 +2544,7 @@ Obtains the volume group manager. This API returns the result synchronously.
 
 | Name    | Type                                     | Mandatory| Description                              |
 | ---------- | ---------------------------------------- | ---- |----------------------------------|
-| groupId    | number                                   | Yes  | Volume group ID. The default value is **LOCAL_VOLUME_GROUP_ID**.|
+| groupId    | number                                   | Yes  | Volume group ID. The default value is **DEFAULT_VOLUME_GROUP_ID**.|
 
 **Return value**
 
@@ -2495,7 +2554,7 @@ Obtains the volume group manager. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -2516,7 +2575,7 @@ try {
 }
 ```
 
-### getAppVolumePercentage<sup>18+</sup>
+### getAppVolumePercentage<sup>19+</sup>
 
 getAppVolumePercentage(): Promise<number\>
 
@@ -2540,7 +2599,7 @@ audioVolumeManager.getAppVolumePercentage().then((value: number) => {
 });
 ```
 
-### setAppVolumePercentage<sup>18+</sup>
+### setAppVolumePercentage<sup>19+</sup>
 
 setAppVolumePercentage(volume: number\): Promise<void\>
 
@@ -2562,13 +2621,10 @@ Sets the volume for the application. This API uses a promise to return the resul
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 201 | Permission denied. |
-| 202 | Not system App. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed.|
 | 6800301 | Crash or blocking occurs in system process. |
 
@@ -2599,7 +2655,7 @@ Subscribes to the system volume change event, which is triggered when the system
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -2633,7 +2689,7 @@ Unsubscribes from the system volume change event. This API uses an asynchronous 
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -2658,7 +2714,7 @@ audioVolumeManager.on('volumeChange', volumeChangeCallback);
 audioVolumeManager.off('volumeChange', volumeChangeCallback);
 ```
 
-### on('appVolumeChange')<sup>18+</sup>
+### on('appVolumeChange')<sup>19+</sup>
 
 on(type: 'appVolumeChange', callback: Callback\<VolumeEvent>): void
 
@@ -2671,15 +2727,14 @@ Subscribes to the application-level volume change event of the application. This
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | Yes  | Event type. The event **'appVolumeChange'** is triggered when the application-level volume is changed.|
-| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | Yes  | Callback used to return the changed volume.|
+| callback | Callback<[VolumeEvent](#volumeevent9)> | Yes  | Callback used to return the changed volume.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **Example**
@@ -2692,7 +2747,7 @@ audioVolumeManager.on('appVolumeChange', (volumeEvent: audio.VolumeEvent) => {
 });
 ```
 
-### off('appVolumeChange')<sup>18+</sup>
+### off('appVolumeChange')<sup>19+</sup>
 
 off(type: 'appVolumeChange', callback?: Callback\<VolumeEvent>): void
 
@@ -2705,15 +2760,14 @@ Unsubscribes from the application-level volume change event of the application. 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | Yes  | Event type. The event **'appVolumeChange'** is triggered when the application-level volume is changed.|
-| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | No  | Callback used to return the changed volume.|
+| callback | Callback<[VolumeEvent](#volumeevent9)> | No  | Callback used to return the changed volume.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters missing; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **Example**
@@ -2734,9 +2788,83 @@ audioVolumeManager.on('appVolumeChange', appVolumeChangeCallback);
 audioVolumeManager.off('appVolumeChange', appVolumeChangeCallback);
 ```
 
+### on('activeVolumeTypeChange')<sup>20+</sup>
+
+on(type: 'activeVolumeTypeChange', callback: Callback\<AudioVolumeType>): void
+
+Subscribes to the active volume type change event. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name  | Type                                  | Mandatory| Description                                                        |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | Yes  | Event type. The event **'activeVolumeTypeChange'** is triggered when the active volume type changes.|
+| callback | Callback\<[AudioVolumeType](#audiovolumetype)> | Yes  | Callback used to return the changed active volume type.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202 | Not system App. |
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+audioVolumeManager.on('activeVolumeTypeChange', (volumeType: audio.AudioVolumeType) => {
+  console.info(`VolumeType of stream: ${volumeType} `);
+});
+```
+
+### off('activeVolumeTypeChange')<sup>20+</sup>
+
+off(type: 'activeVolumeTypeChange', callback?: Callback\<AudioVolumeType>): void
+
+Unsubscribes from the active volume type change event. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name  | Type                                  | Mandatory| Description                                                        |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | Yes  | Event type. The event **'activeVolumeTypeChange'** is triggered when the active volume type changes.|
+| callback | Callback\<[AudioVolumeType](#audiovolumetype)> | No  | Callback used to return the changed active volume type.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202 | Not system App. |
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+// Cancel all subscriptions to the event.
+audioVolumeManager.off('activeVolumeTypeChange');
+
+// For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
+let activeVolumeTypeChangeCallback = (volumeType: audio.AudioVolumeType) => {
+  console.info(`VolumeType of stream: ${volumeType} `);
+};
+
+audioVolumeManager.on('activeVolumeTypeChange', activeVolumeTypeChangeCallback);
+
+audioVolumeManager.off('activeVolumeTypeChange', activeVolumeTypeChangeCallback);
+```
+
 ## AudioVolumeGroupManager<sup>9+</sup>
 
-Manages the volume of an audio group. Before calling any API in **AudioVolumeGroupManager**, you must use [getVolumeGroupManager](#getvolumegroupmanager9) to obtain an **AudioVolumeGroupManager** instance.
+Manages the volume of an audio group.
+
+Before calling any API in AudioVolumeGroupManager, you must use [getVolumeGroupManager](#getvolumegroupmanager9) to obtain an AudioVolumeGroupManager instance.
 
 ### getVolume<sup>9+</sup>
 
@@ -2797,7 +2925,7 @@ audioVolumeGroupManager.getVolume(audio.AudioVolumeType.MEDIA).then((value: numb
 
 ### getVolumeSync<sup>10+</sup>
 
-getVolumeSync(volumeType: AudioVolumeType): number;
+getVolumeSync(volumeType: AudioVolumeType): number
 
 Obtains the volume of a stream. This API returns the result synchronously.
 
@@ -2817,7 +2945,7 @@ Obtains the volume of a stream. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -2897,7 +3025,7 @@ audioVolumeGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value: n
 
 ### getMinVolumeSync<sup>10+</sup>
 
-getMinVolumeSync(volumeType: AudioVolumeType): number;
+getMinVolumeSync(volumeType: AudioVolumeType): number
 
 Obtains the minimum volume allowed for a stream. This API returns the result synchronously.
 
@@ -2917,7 +3045,7 @@ Obtains the minimum volume allowed for a stream. This API returns the result syn
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -2997,7 +3125,7 @@ audioVolumeGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data: nu
 
 ### getMaxVolumeSync<sup>10+</sup>
 
-getMaxVolumeSync(volumeType: AudioVolumeType): number;
+getMaxVolumeSync(volumeType: AudioVolumeType): number
 
 Obtains the maximum volume allowed for a stream. This API returns the result synchronously.
 
@@ -3017,7 +3145,7 @@ Obtains the maximum volume allowed for a stream. This API returns the result syn
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3117,7 +3245,7 @@ Checks whether a stream is muted. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3233,7 +3361,7 @@ Subscribes to the ringer mode change event, which is triggered when [audioringmo
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3295,7 +3423,7 @@ Mutes or unmutes the microphone. This API uses an asynchronous callback to retur
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only for system applications.
+> This API is supported since API version 9 and deprecated since API version 11. Its substitute is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_AUDIO_CONFIG (available only for system applications)
 
@@ -3330,7 +3458,7 @@ Mutes or unmutes the microphone. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only for system applications.
+> This API is supported since API version 9 and deprecated since API version 11. Its substitute is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_AUDIO_CONFIG (available only for system applications)
 
@@ -3440,7 +3568,7 @@ on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
 
 Subscribes to the microphone state change event, which is triggered when the microphone state is changed. This API uses an asynchronous callback to return the result.
 
-Currently, when multiple **AudioManager** instances are used in a single process, only the subscription of the last instance takes effect, and the subscription of other instances is overwritten (even if the last instance does not initiate a subscription). Therefore, you are advised to use a single **AudioManager** instance.
+Currently, when multiple AudioManager instances are used in a single process, only the subscription of the last instance takes effect, and the subscription of other instances is overwritten (even if the last instance does not initiate a subscription). Therefore, you are advised to use a single AudioManager instance.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -3453,7 +3581,7 @@ Currently, when multiple **AudioManager** instances are used in a single process
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3485,7 +3613,7 @@ Unsubscribes from the microphone state change event. This API uses an asynchrono
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3548,7 +3676,7 @@ Obtains the volume gain. This API uses an asynchronous callback to return the re
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3569,6 +3697,7 @@ audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audi
   }
 });
 ```
+
 ### getSystemVolumeInDb<sup>10+</sup>
 
 getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: DeviceType): Promise&lt;number&gt;
@@ -3593,7 +3722,7 @@ Obtains the volume gain. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3637,7 +3766,7 @@ Obtains the volume gain. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3662,7 +3791,7 @@ try {
 
 getMaxAmplitudeForInputDevice(inputDevice: AudioDeviceDescriptor): Promise&lt;number&gt;
 
-Obtains the maximum amplitude of the audio stream for an input device. This API uses a promise to return the result.
+Obtains the maximum amplitude (in the range [0, 1]) of the audio stream for an input device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -3676,11 +3805,11 @@ Obtains the maximum amplitude of the audio stream for an input device. This API 
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the maximum amplitude, which ranges from 0 to 1.|
+| Promise&lt;number&gt; | Promise used to return the maximum amplitude, which is in the range [0, 1].|
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3713,7 +3842,7 @@ audio.getAudioManager().getRoutingManager().getPreferredInputDeviceForCapturerIn
 
 getMaxAmplitudeForOutputDevice(outputDevice: AudioDeviceDescriptor): Promise&lt;number&gt;
 
-Obtains the maximum amplitude of the audio stream for an output device. This API uses a promise to return the result.
+Obtains the maximum amplitude (in the range [0, 1]) of the audio stream for an output device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -3727,11 +3856,11 @@ Obtains the maximum amplitude of the audio stream for an output device. This API
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the maximum amplitude, which ranges from 0 to 1.|
+| Promise&lt;number&gt; | Promise used to return the maximum amplitude, which is in the range [0, 1].|
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3762,7 +3891,9 @@ audio.getAudioManager().getRoutingManager().getPreferOutputDeviceForRendererInfo
 
 ## AudioStreamManager<sup>9+</sup>
 
-Implements audio stream management. Before calling any API in **AudioStreamManager**, you must use [getStreamManager](#getstreammanager9) to obtain an **AudioStreamManager** instance.
+Implements audio stream management.
+
+Before calling any API in AudioStreamManager, you must use [getStreamManager](#getstreammanager9) to obtain an AudioStreamManager instance.
 
 ### getCurrentAudioRendererInfoArray<sup>9+</sup>
 
@@ -4055,7 +4186,7 @@ Subscribes to the audio renderer change event, which is triggered when the audio
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -4104,11 +4235,10 @@ Unsubscribes from the audio renderer change event. This API uses an asynchronous
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message                    |
 | ------- |--------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **Example**
@@ -4161,7 +4291,7 @@ Subscribes to the audio capturer change event, which is triggered when the audio
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -4208,11 +4338,10 @@ Unsubscribes from the audio capturer change event. This API uses an asynchronous
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **Example**
@@ -4322,11 +4451,11 @@ Checks whether a stream is active. This API returns the result synchronously.
 
 | Type                  | Description                                                    |
 | ---------------------- | -------------------------------------------------------- |
-| boolean | Check result. The value **true** means that the stream is active, **false** means the opposite.|
+| boolean | Check result. The value **true** means that the stream is active, and **false** means the opposite.|
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -4364,7 +4493,7 @@ Obtains information about the audio effect mode in use. This API uses an asynchr
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -4409,7 +4538,7 @@ Obtains information about the audio effect mode in use. This API uses a promise 
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -4451,7 +4580,7 @@ Obtains information about the audio effect mode in use. This API returns the res
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -4472,9 +4601,53 @@ try {
 }
 ```
 
+### isAcousticEchoCancelerSupported<sup>20+</sup>
+
+isAcousticEchoCancelerSupported(sourceType: SourceType): boolean
+
+Checks whether the specified audio source type supports echo cancellation.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name   | Type                               | Mandatory    | Description                        |
+| -------- | ----------------------------------- | -------- | --------------------------- |
+| sourceType    | [SourceType](#sourcetype8)         | Yes    |  Audio source type.              |
+
+**Return value**
+
+| Type                                                                     | Description                                   |
+| --------------------------------------------------------------------------| --------------------------------------- |
+|  boolean     | Check result. The value **true** means that echo cancellation is supported, and **false** means the opposite.       |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let isSupportAEC = audioStreamManager.isAcousticEchoCancelerSupported(audio.SourceType.SOURCE_TYPE_LIVE);
+  console.info(`[AEC Support] SourceType: ${audio.SourceType.SOURCE_TYPE_LIVE}, Status: ${isSupportAEC}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`isAcousticEchoCancelerSupported ERROR: ${error}`);
+}
+```
+
 ## AudioRoutingManager<sup>9+</sup>
 
-Implements audio routing management. Before calling any API in **AudioRoutingManager**, you must use [getRoutingManager](#getroutingmanager9) to obtain an **AudioRoutingManager** instance.
+Implements audio routing management.
+
+Before calling any API in AudioRoutingManager, you must use [getRoutingManager](#getroutingmanager9) to obtain an AudioRoutingManager instance.
 
 ### getDevices<sup>9+</sup>
 
@@ -4555,7 +4728,7 @@ Obtains the audio devices with a specific flag. This API returns the result sync
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -4604,9 +4777,7 @@ on(type: 'micBlockStatusChanged', callback: Callback<DeviceBlockStatusInfo\>): v
 
 Subscribes to the microphone blocked status change event. This API uses an asynchronous callback to return the result.
 
-Before using this API, check whether the current device supports microphone blocking detection. The application receives a callback only when the microphone is used for recording and the microphone's blocked status changes.
-
-Currently, this API takes effect only for the microphone on the local device.
+Before using this API, check whether the current device supports microphone blocking detection. This event is triggered when the microphone blocked status changes during recording. Currently, this API takes effect only for the microphone on the local device.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -4615,11 +4786,11 @@ Currently, this API takes effect only for the microphone on the local device.
 | Name  | Type                                                | Mandatory| Description                                      |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
 | type     | string                                               | Yes  | Event type. The event **'micBlockStatusChanged'** is triggered when the microphone blocked status is changed.|
-| callback | Callback<[DeviceBlockStatusInfo](#deviceblockstatusinfo13)\> | Yes  | Callback used to return details about whether the microphone is blocked.|
+| callback | Callback<[DeviceBlockStatusInfo](#deviceblockstatusinfo13)\> | Yes  | Callback used to return the microphone blocked status and device information.|
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -4653,11 +4824,11 @@ Unsubscribes from the microphone blocked status change event. This API uses an a
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | Yes  | Event type. The event **'micBlockStatusChanged'** is triggered when the microphone blocked status is changed.|
-| callback | Callback<[DeviceBlockStatusInfo](#deviceblockstatusinfo13)\> | No  | Callback used to return details about whether the microphone is blocked.|
+| callback | Callback<[DeviceBlockStatusInfo](#deviceblockstatusinfo13)\> | No  | Callback used to return the microphone blocked status and device information.|
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -4684,7 +4855,7 @@ audioRoutingManager.off('micBlockStatusChanged', micBlockStatusCallback);
 
 on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChangeAction\>): void
 
-Subscribes to the audio device change event, which is triggered when the connection status of an audio device is changed. This API uses an asynchronous callback to return the result.
+Subscribes to the event indicating that the connection status of an audio device is changed. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -4698,7 +4869,7 @@ Subscribes to the audio device change event, which is triggered when the connect
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -4720,7 +4891,7 @@ audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (de
 
 off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
-Unsubscribes from the audio device change event. This API uses an asynchronous callback to return the result.
+Unsubscribes from the event indicating that the connection status of an audio device is changed. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -4733,7 +4904,7 @@ Unsubscribes from the audio device change event. This API uses an asynchronous c
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -4775,8 +4946,8 @@ You are advised to use the [AVCastPicker component](../../media/avsession/using-
 
 | Name    | Type                                 | Mandatory| Description                     |
 | ---------- | ------------------------------------- | ---- |-------------------------|
-| deviceType | [CommunicationDeviceType](#communicationdevicetype9) | Yes  | Communication device type.                |
-| active     | boolean                               | Yes  | Active status of the device. The value **true** means to set the device to the active state, and **false** means the opposite.|
+| deviceType | [CommunicationDeviceType](#communicationdevicetype9) | Yes  | Audio device flag.                |
+| active     | boolean                               | Yes  | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite.|
 | callback   | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
@@ -4805,17 +4976,17 @@ Obtains the available audio devices. This API returns the result synchronously.
 
 | Name    | Type                     | Mandatory| Description            |
 | ---------- | ------------------------- | ---- | ---------------- |
-| deviceUsage| [DeviceUsage](#deviceusage12) | Yes  | Usage scenario of the device.|
+| deviceUsage| [DeviceUsage](#deviceusage12) | Yes  | Audio device type (classified by usage).|
 
 **Return value**
 
 | Type                                                        | Description                     |
 | ------------------------------------------------------------ | ------------------------- |
-| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | Device list.|
+| [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors) | Device list.|
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -4840,7 +5011,7 @@ try {
 
 on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback<DeviceChangeAction\>): void
 
-Subscribes to the available audio device change event, which is triggered when the connection status of available audio devices is changed. This API uses an asynchronous callback to return the result.
+Subscribes to the event indicating that the connection status of an available audio device is changed. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -4849,12 +5020,12 @@ Subscribes to the available audio device change event, which is triggered when t
 | Name  | Type                                                | Mandatory| Description                                      |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
 | type     | string                                               | Yes  | Event type. The event **'availableDeviceChange'** is triggered when the connection status of available audio devices is changed.|
-| deviceUsage | [DeviceUsage](#deviceusage12)                       | Yes  | Usage scenario of the device.    |
-| callback | Callback<[DeviceChangeAction](js-apis-audio.md#devicechangeaction)\> | Yes  | Callback used to return the device change details.|
+| deviceUsage | [DeviceUsage](#deviceusage12)                       | Yes  | Audio device type (classified by usage).    |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | Yes  | Callback used to return the device change details.|
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -4876,7 +5047,7 @@ audioRoutingManager.on('availableDeviceChange', audio.DeviceUsage.MEDIA_OUTPUT_D
 
 off(type: 'availableDeviceChange', callback?: Callback<DeviceChangeAction\>): void
 
-Unsubscribes from the available audio device change event. This API uses an asynchronous callback to return the result.
+Unsubscribes from the event indicating that the connection status of an available audio device is changed. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -4885,11 +5056,11 @@ Unsubscribes from the available audio device change event. This API uses an asyn
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | Yes  | Event type. The event **'availableDeviceChange'** is triggered when the connection status of available audio devices is changed.|
-| callback | Callback<[DeviceChangeAction](js-apis-audio.md#devicechangeaction)> | No  | Callback used to return the available device change details.|
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | No  | Callback used to return the available device change details.|
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -4932,7 +5103,7 @@ You are advised to use the [AVCastPicker component](../../media/avsession/using-
 | Name    | Type                                                  | Mandatory| Description              |
 | ---------- | ----------------------------------------------------- | ---- | ------------------ |
 | deviceType | [CommunicationDeviceType](#communicationdevicetype9)  | Yes  | Active audio device type.|
-| active     | boolean                                               | Yes  | Active status of the device. The value **true** means to set the device to the active state, and **false** means the opposite.    |
+| active     | boolean                                               | Yes  | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite.    |
 
 **Return value**
 
@@ -5027,7 +5198,7 @@ Checks whether a communication device is active. This API returns the result syn
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -5065,7 +5236,7 @@ Obtains the output device with the highest priority based on the audio renderer 
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message                                          |
 | ------- |--------------------------------------------------|
@@ -5115,7 +5286,7 @@ Obtains the output device with the highest priority based on the audio renderer 
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message                                         |
 | ------- |-------------------------------------------------|
@@ -5164,7 +5335,7 @@ Obtains the output device with the highest priority based on the audio renderer 
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message                    |
 | ------- |--------------------------|
@@ -5209,7 +5380,7 @@ Subscribes to the change event of the output device with the highest priority, w
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -5248,7 +5419,7 @@ Unsubscribes from the change event of the output device with the highest priorit
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -5292,7 +5463,7 @@ Obtains the input device with the highest priority based on the audio capturer i
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -5341,7 +5512,7 @@ Obtains the input device with the highest priority based on the audio capturer i
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -5389,7 +5560,7 @@ Obtains the input device with the highest priority based on the audio capturer i
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -5434,7 +5605,7 @@ Subscribes to the change event of the input device with the highest priority, wh
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -5473,7 +5644,7 @@ Unsubscribes from the change event of the input device with the highest priority
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -5502,7 +5673,9 @@ audioRoutingManager.off('preferredInputDeviceChangeForCapturerInfo', preferredIn
 
 ## AudioSessionManager<sup>12+</sup>
 
-Manages audio sessions. Before calling an API in **AudioSessionManager**, you must use [getSessionManager](#getsessionmanager12) to obtain an **AudioSessionManager** instance.
+Manages audio sessions.
+
+Before calling any API in AudioSessionManager, you must use [getSessionManager](#getsessionmanager12) to obtain an AudioSessionManager instance.
 
 ### activateAudioSession<sup>12+</sup>
 
@@ -5526,7 +5699,7 @@ Activates an audio session. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | ---------------------------------------------|
@@ -5596,7 +5769,7 @@ Checks whether this audio session is activated.
 
 | Type                                             | Description                                   |
 | ------------------------------------------------- |---------------------------------------|
-| boolean | Returns **true** if the audio session is activated; returns **false** otherwise.|
+| boolean | Check result. The value **true** means that the audio session is activated, and **false** means the opposite.|
 
 **Example**
 
@@ -5621,7 +5794,7 @@ Subscribes to the audio session deactivation event, which is triggered when an a
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -5653,7 +5826,7 @@ Unsubscribes from the audio session deactivation event. This API uses an asynchr
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -5680,7 +5853,7 @@ audioSessionManager.off('audioSessionDeactivated', audioSessionDeactivatedCallba
 
 Implements spatial audio management.
 
-Before calling an API in **AudioSpatializationManager**, you must use [getSpatializationManager](#getspatializationmanager18) to obtain an **AudioSpatializationManager** instance.
+Before calling any API in AudioSpatializationManager, you must use [getSpatializationManager](#getspatializationmanager18) to obtain an AudioSpatializationManager instance.
 
 ### isSpatializationEnabledForCurrentDevice<sup>18+</sup>
 
@@ -5694,7 +5867,7 @@ Checks whether spatial audio rendering is enabled for the current device. This A
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| boolean | Check result. The value **true** means that spatial audio rendering is enabled for the device, and **false** means the opposite.|
+| boolean | Check result. The value **true** means that spatial audio rendering is enabled, and **false** means the opposite.|
 
 **Example**
 
@@ -5722,11 +5895,10 @@ Subscribes to the spatial audio rendering status change event of the current dev
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **Example**
@@ -5756,11 +5928,10 @@ Unsubscribes from the spatial audio rendering status change event of the current
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **Example**
@@ -5847,7 +6018,7 @@ Describes the audio capturer change event.
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
 | streamId           | number                                    | Yes  | No  | Unique ID of an audio stream.               |
 | capturerInfo       | [AudioCapturerInfo](#audiocapturerinfo8)  | Yes  | No  | Audio capturer information.              |
-| deviceDescriptors  | [AudioDeviceDescriptors](#audiodevicedescriptors)      | Yes  | No  | Audio device description.|
+| deviceDescriptors  | [AudioDeviceDescriptors](#audiodevicedescriptors)      | Yes  | No  | Audio device information.|
 | muted<sup>11+</sup>  | boolean    | Yes  | No  | Whether the audio capturer is muted. The value **true** means that the audio capturer is muted, and **false** means the opposite.|
 
 **Example**
@@ -5913,9 +6084,9 @@ Describes an audio device.
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
 | deviceRole                    | [DeviceRole](#devicerole)  | Yes  | No  | Device role.<br> **System capability**: SystemCapability.Multimedia.Audio.Device<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | deviceType                    | [DeviceType](#devicetype)  | Yes  | No  | Device type.<br> **System capability**: SystemCapability.Multimedia.Audio.Device<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| id<sup>9+</sup>               | number                     | Yes  | No  | Device ID, which is unique.<br> **System capability**: SystemCapability.Multimedia.Audio.Device<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| name<sup>9+</sup>             | string                     | Yes  | No  | Device name.<br>For a Bluetooth device, you must request the **ohos.permission.USE_BLUETOOTH** permission.<br> **System capability**: SystemCapability.Multimedia.Audio.Device<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| address<sup>9+</sup>          | string                     | Yes  | No  | Device address.<br>For a Bluetooth device, you must request the **ohos.permission.USE_BLUETOOTH** permission.<br> **System capability**: SystemCapability.Multimedia.Audio.Device<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| id<sup>9+</sup>               | number                     | Yes  | No  | Unique device ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Device<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| name<sup>9+</sup>             | string                     | Yes  | No  | Device name.<br>For a Bluetooth device, you must request the ohos.permission.USE_BLUETOOTH permission.<br> **System capability**: SystemCapability.Multimedia.Audio.Device<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| address<sup>9+</sup>          | string                     | Yes  | No  | Device address.<br>For a Bluetooth device, you must request the ohos.permission.USE_BLUETOOTH permission.<br> **System capability**: SystemCapability.Multimedia.Audio.Device<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | sampleRates<sup>9+</sup>      | Array&lt;number&gt;        | Yes  | No  | Supported sampling rates.<br> **System capability**: SystemCapability.Multimedia.Audio.Device<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | channelCounts<sup>9+</sup>    | Array&lt;number&gt;        | Yes  | No  | Number of channels supported.<br> **System capability**: SystemCapability.Multimedia.Audio.Device<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | channelMasks<sup>9+</sup>     | Array&lt;number&gt;        | Yes  | No  | Supported channel masks.<br> **System capability**: SystemCapability.Multimedia.Audio.Device<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -5976,9 +6147,22 @@ Defines the callback function used to write data to the audio renderer. Once the
 |--------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
 | [AudioDataCallbackResult](#audiodatacallbackresult12) \| void | If **void** or **AudioDataCallbackResult.VALID** is returned, the data is valid and the audio data is played. If **AudioDataCallbackResult.INVALID** is returned, the data is invalid and the audio data is not played.|
 
+## AudioTimestampInfo<sup>19+</sup>
+
+Describes the information about the audio stream timestamp and the current data frame position.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+| Name| Type| Read-Only| Optional| Description                               |
+| ---------| ------ | ---- | ---- |-----------------------------------|
+| framePos | number | Yes  | No  | Position of the current data frame for playback or recording.                  |
+| timestamp | number | Yes  | No  | Timestamp corresponding to the current data frame position during playback or recording.|
+
 ## AudioRenderer<sup>8+</sup>
 
-Provides APIs for audio rendering. Before calling any API in **AudioRenderer**, you must use [createAudioRenderer](#audiocreateaudiorenderer8) to create an **AudioRenderer** instance.
+Provides APIs for audio rendering.
+
+Before calling any API in AudioRenderer, you must use [createAudioRenderer](#audiocreateaudiorenderer8) to create an AudioRenderer instance.
 
 ### Attributes
 
@@ -6056,7 +6240,7 @@ audioRenderer.getRendererInfo().then((rendererInfo: audio.AudioRendererInfo) => 
 
 getRendererInfoSync(): AudioRendererInfo
 
-Obtains the renderer information of this **AudioRenderer** instance. This API returns the result synchronously.
+Obtains the information about this audio renderer. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -6266,7 +6450,7 @@ Sets an audio effect mode. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | ----------------------------------------------|
@@ -6309,7 +6493,7 @@ Sets an audio effect mode. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | ---------------------------------------------|
@@ -6386,7 +6570,7 @@ audioRenderer.getAudioEffectMode().then((effectMode: audio.AudioEffectMode) => {
 
 start(callback: AsyncCallback<void\>): void
 
-Starts the renderer. This API uses an asynchronous callback to return the result.
+Starts this audio renderer. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -6394,7 +6578,7 @@ Starts the renderer. This API uses an asynchronous callback to return the result
 
 | Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. If the operation fails, an error object with the following error code is returned:<br>Error code 6800301: indicates abnormal status, focus preemption failure, and abnormal system processing. For details, see system logs.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. If the operation fails, an error object with one of the following error codes is returned:<br>Error code 6800301: indicates abnormal status, focus preemption failure, and abnormal system processing. For details, see system logs.|
 
 **Example**
 
@@ -6414,7 +6598,7 @@ audioRenderer.start((err: BusinessError) => {
 
 start(): Promise<void\>
 
-Starts the renderer. This API uses a promise to return the result.
+Starts this audio renderer. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -6422,7 +6606,7 @@ Starts the renderer. This API uses a promise to return the result.
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result. If the operation fails, an error object with the following error code is returned:<br>Error code 6800301: indicates abnormal status, focus preemption failure, and abnormal system processing. For details, see system logs.|
+| Promise\<void> | Promise object, which indicates that the renderer is started successfully. If the operation fails, an error object with one of the following error codes is returned:<br>Error code 6800301: indicates abnormal status, focus preemption failure, and abnormal system processing. For details, see system logs.|
 
 **Example**
 
@@ -6440,7 +6624,7 @@ audioRenderer.start().then(() => {
 
 pause(callback: AsyncCallback\<void>): void
 
-Pauses rendering. This API uses an asynchronous callback to return the result.
+Pauses this audio renderer. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -6468,7 +6652,7 @@ audioRenderer.pause((err: BusinessError) => {
 
 pause(): Promise\<void>
 
-Pauses rendering. This API uses a promise to return the result.
+Pauses this audio renderer. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -6582,7 +6766,7 @@ audioRenderer.flush().then(() => {
 
 stop(callback: AsyncCallback\<void>): void
 
-Stops rendering. This API uses an asynchronous callback to return the result.
+Stops this audio renderer. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -6610,7 +6794,7 @@ audioRenderer.stop((err: BusinessError) => {
 
 stop(): Promise\<void>
 
-Stops rendering. This API uses a promise to return the result.
+Stops this audio renderer. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -6694,7 +6878,7 @@ Writes the buffer. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 11. You are advised to use [on('writeData')](#onwritedata11) in **AudioRenderer**.
+> This API is supported since API version 8 and deprecated since API version 11. You are advised to use [on('writeData')](#onwritedata11) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -6724,7 +6908,7 @@ audioRenderer.getBufferSize().then((data: number)=> {
   // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.cacheDir;
-  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
   let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   fs.stat(filePath).then(async (stat: fs.Stat) => {
     let buf = new ArrayBuffer(bufferSize);
@@ -6759,7 +6943,7 @@ Writes the buffer. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 11. You are advised to use [on('writeData')](#onwritedata11) in **AudioRenderer**.
+> This API is supported since API version 8 and deprecated since API version 11. You are advised to use [on('writeData')](#onwritedata11) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -6794,7 +6978,7 @@ audioRenderer.getBufferSize().then((data: number) => {
   // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.cacheDir;
-  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
   let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   fs.stat(filePath).then(async (stat: fs.Stat) => {
     let buf = new ArrayBuffer(bufferSize);
@@ -6872,7 +7056,7 @@ audioRenderer.getAudioTime().then((timestamp: number) => {
 
 getAudioTimeSync(): number
 
-Obtains the timestamp of the current playback position, measured in nanoseconds from the Unix epoch (January 1, 1970). This API returns the result synchronously:
+Obtains the timestamp of the current playback position, measured in nanoseconds from the Unix epoch (January 1, 1970). This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -6890,6 +7074,76 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let timestamp: number = audioRenderer.getAudioTimeSync();
   console.info(`Current timestamp: ${timestamp}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
+### getAudioTimestampInfo<sup>19+</sup>
+
+getAudioTimestampInfo(): Promise\<AudioTimestampInfo>
+
+Obtains the information about the audio stream timestamp and the current data frame position. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Return value**
+
+| Type                                                   | Description                   |
+|-------------------------------------------------------| ----------------------- |
+| Promise\<[AudioTimestampInfo](#audiotimestampinfo19)> | Promise used to return the audio stream timestamp and the current data frame position.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800103 | Operation not permit at current state. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioRenderer.getAudioTimestampInfo().then((audioTimestampInfo: audio.AudioTimestampInfo) => {
+  console.info(`Current timestamp: ${audioTimestampInfo.timestamp}`);
+}).catch((err: BusinessError) => {
+  console.error(`ERROR: ${err}`);
+});
+```
+
+### getAudioTimestampInfoSync<sup>19+</sup>
+
+getAudioTimestampInfoSync(): AudioTimestampInfo
+
+Obtains the information about the audio stream timestamp and the current data frame position. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Return value**
+
+| Type            | Description                   |
+| ---------------- | ----------------------- |
+| [AudioTimestampInfo](#audiotimestampinfo19) | Information about the audio stream timestamp and the current data frame position.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800103 | Operation not permit at current state. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let audioTimestampInfo: audio.AudioTimestampInfo = audioRenderer.getAudioTimestampInfoSync();
+  console.info(`Current timestamp: ${audioTimestampInfo.timestamp}`);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`ERROR: ${error}`);
@@ -6994,7 +7248,7 @@ Sets the render rate. This API uses an asynchronous callback to return the resul
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 11. You are advised to use [setSpeed](#setspeed11) in **AudioRenderer**.
+> This API is supported since API version 8 and deprecated since API version 11. You are advised to use [uninitialize][setSpeed](#setspeed11) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -7027,7 +7281,7 @@ Sets the render rate. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 11. You are advised to use [setSpeed](#setspeed11) in **AudioRenderer**.
+> This API is supported since API version 8 and deprecated since API version 11. You are advised to use [uninitialize][setSpeed](#setspeed11) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -7071,7 +7325,7 @@ Sets the playback speed.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -7088,11 +7342,11 @@ audioRenderer.setSpeed(1.5);
 
 getRenderRate(callback: AsyncCallback\<AudioRendererRate>): void
 
-Obtains the current render rate. This API uses an asynchronous callback to return the result.
+Obtains the audio renderer rate. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 11. You are advised to use [getSpeed](#getspeed11) in **AudioRenderer**.
+> This API is supported since API version 8 and deprecated since API version 11. You are advised to use [getSpeed](#getspeed11) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -7116,11 +7370,11 @@ audioRenderer.getRenderRate((err: BusinessError, renderRate: audio.AudioRenderer
 
 getRenderRate(): Promise\<AudioRendererRate>
 
-Obtains the current render rate. This API uses a promise to return the result.
+Obtains the audio renderer rate. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 11. You are advised to use [getSpeed](#getspeed11) in **AudioRenderer**.
+> This API is supported since API version 8 and deprecated since API version 11. You are advised to use [getSpeed](#getspeed11) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -7146,11 +7400,11 @@ audioRenderer.getRenderRate().then((renderRate: audio.AudioRendererRate) => {
 
 getRenderRateSync(): AudioRendererRate
 
-Obtains the current render rate. This API returns the result synchronously.
+Obtains the audio renderer rate. This API returns the result synchronously.
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [getSpeed](#getspeed11) in **AudioRenderer**.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [getSpeed](#getspeed11) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -7273,7 +7527,7 @@ Sets the audio interruption mode for the application. This API returns the resul
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -7298,7 +7552,7 @@ try {
 
 setVolume(volume: number): Promise&lt;void&gt;
 
-Sets the volume for the application. This API uses a promise to return the result.
+Sets the volume for the audio stream. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -7306,7 +7560,7 @@ Sets the volume for the application. This API uses a promise to return the resul
 
 | Name    | Type   | Mandatory  | Description                |
 | ---------- | ------- | ------ | ------------------- |
-| volume     | number  | Yes    | Volume to set, which can be within the range from 0.0 to 1.0.|
+| volume     | number  | Yes    | Volume to set, which is in the range [0.0, 1.0].|
 
 **Return value**
 
@@ -7329,7 +7583,7 @@ audioRenderer.setVolume(0.5).then(() => {
 
 setVolume(volume: number, callback: AsyncCallback\<void>): void
 
-Sets the volume for the application. This API uses an asynchronous callback to return the result.
+Sets the volume for the audio stream. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -7337,7 +7591,7 @@ Sets the volume for the application. This API uses an asynchronous callback to r
 
 | Name | Type      | Mandatory  | Description                |
 | ------- | -----------| ------ | ------------------- |
-|volume   | number     | Yes    | Volume to set, which can be within the range from 0.0 to 1.0.|
+|volume   | number     | Yes    | Volume to set, which is in the range [0.0, 1.0].|
 |callback | AsyncCallback\<void> | Yes    |Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
@@ -7357,7 +7611,7 @@ audioRenderer.setVolume(0.5, (err: BusinessError) => {
 
 getVolume(): number
 
-Obtains the volume of the audio render. This API returns the result synchronously.
+Obtains the volume of the audio stream. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -7365,7 +7619,7 @@ Obtains the volume of the audio render. This API returns the result synchronousl
 
 | Type            | Description                       |
 | ---------------- | --------------------------- |
-| number | Volume, in the range [0.0-1.0].|
+| number | Volume, in the range [0.0, 1.0].|
 
 **Example**
 
@@ -7385,7 +7639,7 @@ try {
 
 getMinStreamVolume(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the minimum volume of the application from the perspective of an audio stream. This API uses an asynchronous callback to return the result.
+Obtains the minimum volume of the audio stream. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -7393,7 +7647,7 @@ Obtains the minimum volume of the application from the perspective of an audio s
 
 | Name | Type      | Mandatory  | Description                |
 | ------- | -----------| ------ | ------------------- |
-|callback |AsyncCallback&lt;number&gt; | Yes    |Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the minimum volume (range: 0-1) obtained; otherwise, **err** is an error object.|
+|callback |AsyncCallback&lt;number&gt; | Yes    |Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the minimum volume (range [0, 1]) obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -7412,7 +7666,7 @@ audioRenderer.getMinStreamVolume((err: BusinessError, minVolume: number) => {
 
 getMinStreamVolume(): Promise&lt;number&gt;
 
-Obtains the minimum volume of the application from the perspective of an audio stream. This API uses a promise to return the result.
+Obtains the minimum volume of the audio stream. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -7420,7 +7674,7 @@ Obtains the minimum volume of the application from the perspective of an audio s
 
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
-| Promise&lt;number&gt;| Promise used to return the minimum volume, ranging from 0 to 1.|
+| Promise&lt;number&gt;| Promise used to return the minimum volume, which is in the range [0, 1].|
 
 **Example**
 
@@ -7438,7 +7692,7 @@ audioRenderer.getMinStreamVolume().then((value: number) => {
 
 getMinStreamVolumeSync(): number
 
-Obtains the minimum volume of the application from the perspective of an audio stream. This API returns the result synchronously.
+Obtains the minimum volume of the audio stream. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -7446,7 +7700,7 @@ Obtains the minimum volume of the application from the perspective of an audio s
 
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
-| number| Minimum volume, ranging from 0 to 1.|
+| number| Minimum volume, which is in the range [0, 1].|
 
 **Example**
 
@@ -7466,7 +7720,7 @@ try {
 
 getMaxStreamVolume(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the maximum volume of the application from the perspective of an audio stream. This API uses an asynchronous callback to return the result.
+Obtains the maximum volume of the audio stream. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -7474,7 +7728,7 @@ Obtains the maximum volume of the application from the perspective of an audio s
 
 | Name | Type      | Mandatory  | Description                |
 | ------- | -----------| ------ | ------------------- |
-|callback | AsyncCallback&lt;number&gt; | Yes    |Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the maximum volume (range: 0-1) obtained; otherwise, **err** is an error object.|
+|callback | AsyncCallback&lt;number&gt; | Yes    |Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the maximum volume (range [0, 1]) obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -7493,7 +7747,7 @@ audioRenderer.getMaxStreamVolume((err: BusinessError, maxVolume: number) => {
 
 getMaxStreamVolume(): Promise&lt;number&gt;
 
-Obtains the maximum volume of the application from the perspective of an audio stream. This API uses a promise to return the result.
+Obtains the maximum volume of the audio stream. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -7501,7 +7755,7 @@ Obtains the maximum volume of the application from the perspective of an audio s
 
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
-| Promise&lt;number&gt;| Promise used to return the maximum volume, ranging from 0 to 1.|
+| Promise&lt;number&gt;| Promise used to return the maximum volume, which is in the range [0, 1].|
 
 **Example**
 
@@ -7519,7 +7773,7 @@ audioRenderer.getMaxStreamVolume().then((value: number) => {
 
 getMaxStreamVolumeSync(): number
 
-Obtains the maximum volume of the application from the perspective of an audio stream. This API returns the result synchronously.
+Obtains the maximum volume of the audio stream. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -7527,7 +7781,7 @@ Obtains the maximum volume of the application from the perspective of an audio s
 
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
-| number| Maximum volume, ranging from 0 to 1.|
+| number| Maximum volume, which is in the range [0, 1].|
 
 **Example**
 
@@ -7628,7 +7882,7 @@ try {
 
 getCurrentOutputDevices(callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
 
-Obtains the output device descriptors of the audio streams. This API uses an asynchronous callback to return the result.
+Obtains the output device information of the audio stream. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -7636,7 +7890,7 @@ Obtains the output device descriptors of the audio streams. This API uses an asy
 
 | Name | Type      | Mandatory  | Description                |
 | ------- | -----------| ------ | ------------------- |
-|callback | AsyncCallback\<[AudioDeviceDescriptors](#audiodevicedescriptors)>| Yes    |Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the output device descriptors obtained; otherwise, **err** is an error object.|
+|callback | AsyncCallback\<[AudioDeviceDescriptors](#audiodevicedescriptors)>| Yes    |Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the output device information obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -7664,7 +7918,7 @@ audioRenderer.getCurrentOutputDevices((err: BusinessError, deviceInfo: audio.Aud
 
 getCurrentOutputDevices(): Promise&lt;AudioDeviceDescriptors&gt;
 
-Obtains the output device descriptors of the audio streams. This API uses a promise to return the result.
+Obtains the output device information of the audio stream. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -7672,7 +7926,7 @@ Obtains the output device descriptors of the audio streams. This API uses a prom
 
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
-| Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;| Promise used to return the output device descriptors.|
+| Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;| Promise used to return the output device information.|
 
 **Example**
 
@@ -7699,7 +7953,7 @@ audioRenderer.getCurrentOutputDevices().then((deviceInfo: audio.AudioDeviceDescr
 
 getCurrentOutputDevicesSync(): AudioDeviceDescriptors
 
-Obtains the output device descriptors of the audio streams. This API returns the result synchronously.
+Obtains the output device information of the audio stream. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -7707,7 +7961,7 @@ Obtains the output device descriptors of the audio streams. This API returns the
 
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
-| [AudioDeviceDescriptors](#audiodevicedescriptors) | Output device descriptors.|
+| [AudioDeviceDescriptors](#audiodevicedescriptors) | Output device information.|
 
 **Example**
 
@@ -7747,7 +8001,7 @@ Sets the audio channel blending mode. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -7780,7 +8034,7 @@ Sets a volume ramp. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -7811,7 +8065,7 @@ If the silent mode in concurrent playback is enabled, the system mutes the audio
 
 | Name| Type                                    | Mandatory| Description                  |
 | ------ | ---------------------------------------- | ---- |----------------------|
-| on | boolean | Yes  | Whether to enable or disable the silent mode in concurrent playback for the audio stream. The value **true** means to enable the silent mode in concurrent playback, and **false** mans the opposite.|
+| on | boolean | Yes  | Whether to enable or disable the silent mode in concurrent playback for the audio stream. The value **true** means to enable the silent mode in concurrent playback, and **false** means the opposite.|
 
 **Example**
 
@@ -7843,15 +8097,15 @@ let on = audioRenderer.getSilentModeAndMixWithOthers();
 
 setDefaultOutputDevice(deviceType: DeviceType): Promise&lt;void&gt;
 
-Sets the default built-in audio output device. This API uses a promise to return the result.
+Sets the default audio output device. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> - This API applies only to the scenario where [StreamUsage](#streamusage) is set to voice messages, VoIP voice calls, and VoIP video calls and the available device types are the receiver, speaker, and system default device.
+> - This API applies only to the scenarios where [StreamUsage](#streamusage) is set to voice message, VoIP voice calls, or VoIP video calls. It supports only receivers, speakers, and system default devices.
 >
-> - This API can be called at any time after an **AudioRenderer** instance is created. The system records the device set by the application. When the application is started, if an external device such as a Bluetooth or wired headset is connected, the system preferentially uses the external device to play sound. Otherwise, the system uses this default device to play sound.
+> - This API can be called at any time after an AudioRenderer instance is created. The system records the device set by the application. When the application is started, if an external device such as a Bluetooth or wired headset is connected, the system preferentially uses the external device to play sound. Otherwise, the system uses this default device to play sound.
 >
-> - This API has a lower priority than [AVCastPicker](../apis-avsession-kit/ohos-multimedia-avcastpicker.md#avcastpicker). If you have already switched the audio device using **AVCastPicker**, using this API to switch devices again does not take effect.
+> - This API has a lower priority than [AVCastPicker](../apis-avsession-kit/ohos-multimedia-avcastpicker.md#avcastpicker). If you have already switched the audio device using AVCastPicker, using this API to switch devices again does not take effect.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -7869,7 +8123,7 @@ Sets the default built-in audio output device. This API uses a promise to return
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -7882,7 +8136,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// This API can be called at any time after an **AudioRenderer** instance is created.
+// This API can be called at any time after an AudioRenderer instance is created.
 // If the API is called when no audio is being played, the system records the default device set by the application. When the application starts playing, the sound is played from this default device.
 // If the API is called when audio is being played and no external device, such as a Bluetooth or wired headset, is connected, the system immediately switches to the default device. If an external device is connected, the system records the default device and switches to it once the external device is disconnected.
 audioRenderer.setDefaultOutputDevice(audio.DeviceType.SPEAKER).then(() => {
@@ -7898,9 +8152,9 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 Subscribes to the audio interruption event, which is triggered when the audio focus is changed. This API uses an asynchronous callback to return the result.
 
-The **AudioRenderer** instance proactively gains the focus when the **start** event occurs and releases the focus when the **pause** or **stop** event occurs. Therefore, you do not need to request to gain or release the focus.
+The AudioRenderer instance proactively gains the focus when the **start** event occurs and releases the focus when the **pause** or **stop** event occurs. Therefore, you do not need to request to gain or release the focus.
 
-After this API is called, an [InterruptEvent](#interruptevent9) is received when the **AudioRenderer** object fails to obtain the focus or an audio interruption event occurs (for example, the audio stream is interrupted by others). It is recommended that the application perform further processing based on the **InterruptEvent** information. For details, see [Handling Audio Focus Changes](../../media/audio/audio-playback-concurrency.md).
+After this API is called, an [InterruptEvent](#interruptevent9) is received when the AudioRenderer instance fails to obtain the focus or an audio interruption event occurs (for example, the audio stream is interrupted by others). It is recommended that the application perform further processing based on the **InterruptEvent** information. For details, see [Introduction to Audio Focus and Audio Sessions](../../media/audio/audio-playback-concurrency.md).
 
 **System capability**: SystemCapability.Multimedia.Audio.Interrupt
 
@@ -7913,7 +8167,7 @@ After this API is called, an [InterruptEvent](#interruptevent9) is received when
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -7997,11 +8251,10 @@ Unsubscribes from the audio interruption event. This API uses an asynchronous ca
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **Example**
@@ -8124,7 +8377,7 @@ let markReachCallback = (position: number) => {
   }
 };
 
-audioRenderer.on('markReach', markReachCallback);
+audioRenderer.on('markReach', 1000, markReachCallback);
 
 audioRenderer.off('markReach', markReachCallback);
 ```
@@ -8235,11 +8488,10 @@ Unsubscribes from the audio renderer state change event. This API uses an asynch
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **Example**
@@ -8280,7 +8532,7 @@ Subscribes to the audio output device change event, which is triggered when an a
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -8314,7 +8566,7 @@ Unsubscribes from the audio output device change event. This API uses an asynchr
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -8356,7 +8608,7 @@ Subscribes to the change event of audio output devices and reasons, which is tri
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -8391,7 +8643,7 @@ Unsubscribes from the change event of audio output devices and reasons. This API
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -8436,7 +8688,7 @@ The callback function is used only to write audio data. Do not call AudioRendere
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -8460,7 +8712,7 @@ let bufferSize: number = 0;
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let path = context.cacheDir;
 // Ensure that the resource exists in the path.
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
@@ -8505,7 +8757,7 @@ Unsubscribes from the audio data write event. This API uses an asynchronous call
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -8530,7 +8782,9 @@ audioRenderer.off('writeData', writeDataCallback);
 
 ## AudioCapturer<sup>8+</sup>
 
-Provides APIs for audio capture. Before calling any API in **AudioCapturer**, you must use [createAudioCapturer](#audiocreateaudiocapturer8) to create an **AudioCapturer** instance.
+Provides APIs for audio capture.
+
+Before calling any API in AudioCapturer, you must use [createAudioCapturer](#audiocreateaudiocapturer8) to create an AudioCapturer instance.
 
 ### Attributes
 
@@ -8552,7 +8806,7 @@ let state: audio.AudioState = audioCapturer.state;
 
 getCapturerInfo(callback: AsyncCallback<AudioCapturerInfo\>): void
 
-Obtains the capturer information of this **AudioCapturer** instance. This API uses an asynchronous callback to return the result.
+Obtains the audio capturer information. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -8583,7 +8837,7 @@ audioCapturer.getCapturerInfo((err: BusinessError, capturerInfo: audio.AudioCapt
 
 getCapturerInfo(): Promise<AudioCapturerInfo\>
 
-Obtains the capturer information of this **AudioCapturer** instance. This API uses a promise to return the result.
+Obtains the audio capturer information. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -8591,7 +8845,7 @@ Obtains the capturer information of this **AudioCapturer** instance. This API us
 
 | Type                                             | Description                               |
 | :------------------------------------------------ | :---------------------------------- |
-| Promise<[AudioCapturerInfo](#audiocapturerinfo8)\> | Promise used to return capturer information.|
+| Promise<[AudioCapturerInfo](#audiocapturerinfo8)\> | Promise used to return the audio capturer information.|
 
 **Example**
 
@@ -8616,7 +8870,7 @@ audioCapturer.getCapturerInfo().then((audioParamsGet: audio.AudioCapturerInfo) =
 
 getCapturerInfoSync(): AudioCapturerInfo
 
-Obtains the capturer information of this audio capturer. This API returns the result synchronously.
+Obtains the audio capturer information. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -8624,7 +8878,7 @@ Obtains the capturer information of this audio capturer. This API returns the re
 
 | Type                                             | Description                               |
 | :------------------------------------------------ | :---------------------------------- |
-| [AudioCapturerInfo](#audiocapturerinfo8) | Capturer information.|
+| [AudioCapturerInfo](#audiocapturerinfo8) | Audio capturer information.|
 
 **Example**
 
@@ -8853,7 +9107,7 @@ Starts capturing. This API uses a promise to return the result.
 
 | Type          | Description                         |
 | :------------- | :---------------------------- |
-| Promise<void\> | Promise used to return the result. If the operation fails, an error object with the following error code is returned:<br>Error code 6800301: indicates abnormal status, focus preemption failure, and abnormal system processing. For details, see system logs.|
+| Promise<void\> | Promise object, which indicates that the capturer is started successfully. If the operation fails, an error object with one of the following error codes is returned:<br>Error code 6800301: indicates abnormal status, focus preemption failure, and abnormal system processing. For details, see system logs.|
 
 **Example**
 
@@ -8877,7 +9131,7 @@ audioCapturer.start().then(() => {
 
 stop(callback: AsyncCallback<void\>): void
 
-Stops capturing. This API uses an asynchronous callback to return the result.
+Stops this audio capturer. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -8906,7 +9160,7 @@ audioCapturer.stop((err: BusinessError) => {
 
 stop(): Promise<void\>
 
-Stops capturing. This API uses a promise to return the result.
+Stops this audio capturer. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -8936,7 +9190,7 @@ audioCapturer.stop().then(() => {
 
 release(callback: AsyncCallback<void\>): void
 
-Releases this **AudioCapturer** instance. This API uses an asynchronous callback to return the result.
+Releases this audio capturer. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -8965,7 +9219,7 @@ audioCapturer.release((err: BusinessError) => {
 
 release(): Promise<void\>
 
-Releases this **AudioCapturer** instance. This API uses a promise to return the result.
+Releases this audio capturer. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -8997,7 +9251,7 @@ Reads the buffer. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 11. You are advised to use [on('readData')](#onreaddata11) in **AudioCapturer**.
+> This API is supported since API version 8 and deprecated since API version 11. You are advised to use [on('readData')](#onreaddata11) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -9038,7 +9292,7 @@ Reads the buffer. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 11. You are advised to use [on('readData')](#onreaddata11) in **AudioCapturer**.
+> This API is supported since API version 8 and deprecated since API version 11. You are advised to use [on('readData')](#onreaddata11) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -9131,7 +9385,7 @@ audioCapturer.getAudioTime().then((audioTime: number) => {
 
 getAudioTimeSync(): number
 
-Obtains the timestamp of the current recording position, measured in nanoseconds from the Unix epoch (January 1, 1970). This API returns the result synchronously:
+Obtains the timestamp of the current recording position, measured in nanoseconds from the Unix epoch (January 1, 1970). This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -9152,6 +9406,76 @@ try {
 } catch (err) {
   let error = err as BusinessError;
   console.error(`AudioFrameworkRecLog: AudioCapturer getAudioTimeSync : ERROR : ${error}`);
+}
+```
+
+### getAudioTimestampInfo<sup>19+</sup>
+
+getAudioTimestampInfo(): Promise\<AudioTimestampInfo>
+
+Obtains the information about the audio stream timestamp and the current data frame position. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Return value**
+
+| Type                                                   | Description                   |
+|-------------------------------------------------------| ----------------------- |
+| Promise\<[AudioTimestampInfo](#audiotimestampinfo19)> | Promise used to return the audio stream timestamp and the current data frame position.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800103 | Operation not permit at current state. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioCapturer.getAudioTimestampInfo().then((audioTimestampInfo: audio.AudioTimestampInfo) => {
+  console.info(`Current timestamp: ${audioTimestampInfo.timestamp}`);
+}).catch((err: BusinessError) => {
+  console.error(`ERROR: ${err}`);
+});
+```
+
+### getAudioTimestampInfoSync<sup>19+</sup>
+
+getAudioTimestampInfoSync(): AudioTimestampInfo
+
+Obtains the information about the audio stream timestamp and the current data frame position. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Return value**
+
+| Type            | Description                   |
+| ---------------- | ----------------------- |
+| [AudioTimestampInfo](#audiotimestampinfo19) | Information about the audio stream timestamp and the current data frame position.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800103 | Operation not permit at current state. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let audioTimestampInfo: audio.AudioTimestampInfo = audioCapturer.getAudioTimestampInfoSync();
+  console.info(`Current timestamp: ${audioTimestampInfo.timestamp}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
 }
 ```
 
@@ -9249,7 +9573,7 @@ try {
 
 getCurrentInputDevices(): AudioDeviceDescriptors
 
-Obtains the descriptors of the current input devices. This API returns the result synchronously.
+Obtains the information of the current input devices. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -9316,9 +9640,9 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 Subscribes to the audio interruption event, which is triggered when the audio focus is changed. This API uses an asynchronous callback to return the result.
 
-The **AudioCapturer** instance proactively gains the focus when the **start** event occurs and releases the focus when the **pause** or **stop** event occurs. Therefore, you do not need to request to gain or release the focus.
+The AudioCapturer instance proactively gains the focus when the **start** event occurs and releases the focus when the **pause** or **stop** event occurs. Therefore, you do not need to request to gain or release the focus.
 
-After this API is called, an [InterruptEvent](#interruptevent9) is received when the **AudioCapturer** object fails to obtain the focus or an audio interruption event occurs (for example, the audio stream is interrupted by others). It is recommended that the application perform further processing based on the **InterruptEvent** information. For details, see [Handling Audio Focus Changes](../../media/audio/audio-playback-concurrency.md).
+After this API is called, an [InterruptEvent](#interruptevent9) is received when the AudioCapturer instance fails to obtain the focus or an audio interruption event occurs (for example, the audio stream is interrupted by others). It is recommended that the application perform further processing based on the **InterruptEvent** information. For details, see [Introduction to Audio Focus and Audio Sessions](../../media/audio/audio-playback-concurrency.md).
 
 **System capability**: SystemCapability.Multimedia.Audio.Interrupt
 
@@ -9331,7 +9655,7 @@ After this API is called, an [InterruptEvent](#interruptevent9) is received when
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -9403,7 +9727,7 @@ Unsubscribes from the audio interruption event.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -9433,7 +9757,7 @@ Subscribes to the audio input device change event, which is triggered when an au
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -9466,7 +9790,7 @@ Unsubscribes from the audio input device change event. This API uses an asynchro
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -9508,7 +9832,7 @@ Subscribes to the audio capturer configuration change event, which is triggered 
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -9623,7 +9947,7 @@ let markReachCallback = (position: number) => {
   }
 };
 
-audioCapturer.on('markReach', markReachCallback);
+audioCapturer.on('markReach', 1000, markReachCallback);
 
 audioCapturer.off('markReach', markReachCallback);
 ```
@@ -9634,7 +9958,7 @@ on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
 Subscribes to the period reached event, which is triggered each time the number of frames captured reaches the value of the **frame** parameter. In other words, the information is reported periodically. This API uses an asynchronous callback to return the result.
 
-For example, if **frame** is set to **10**, the callback is invoked each time 10 frames are captured, for example, when the number of frames rendered reaches the 10th frame, 20th frame, and 30th frame.
+For example, if **frame** is set to **10**, the callback is invoked each time 10 frames are captured, for example, when the number of frames captured reaches the 10th frame, 20th frame, and 30th frame.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -9721,7 +10045,7 @@ audioCapturer.on('stateChange', (state: audio.AudioState) => {
 
 off(type: 'stateChange', callback?: Callback&lt;AudioState&gt;): void
 
-Unsubscribes from the audio renderer state change event. This API uses an asynchronous callback to return the result.
+Unsubscribes from the audio capturer state change event. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -9729,16 +10053,15 @@ Unsubscribes from the audio renderer state change event. This API uses an asynch
 
 | Name| Type  | Mandatory| Description                                               |
 | :----- | :----- | :--- | :-------------------------------------------------- |
-| type   | string | Yes  | Event type. The event **'stateChange'** is triggered when the state of the audio renderer is changed.|
+| type   | string | Yes  | Event type. The event **'stateChange'** is triggered when the state of the audio capturer is changed.|
 | callback | Callback\<[AudioState](#audiostate8)> | No| Callback used to return the audio status.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **Example**
@@ -9781,7 +10104,7 @@ The callback function is used only to read audio data. Do not call AudioCapturer
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -9844,7 +10167,7 @@ Unsubscribes from the audio data read event. This API uses an asynchronous callb
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -9921,13 +10244,53 @@ try {
 }
 ```
 
+### setWillMuteWhenInterrupted<sup>20+</sup>
+
+setWillMuteWhenInterrupted(muteWhenInterrupted: boolean): Promise&lt;void&gt;
+
+Sets whether to mute the current audio recording stream when an audio interruption occurs. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name    | Type            | Mandatory  | Description                                                     |
+| ---------- |---------------- | ------ |---------------------------------------------------------|
+| muteWhenInterrupted | boolean  | Yes | Whether to mute the current audio recording stream during an audio interruption. The value **true** means to mute it, and **false** (default value) means the opposite.|
+
+**Return value**
+
+| Type               | Description                         |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt;| Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800103 | Operation not permit at current state.    |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioRenderer.setWillMuteWhenInterrupted(true).then(() => {
+  console.info('setWillMuteWhenInterrupted Success!');
+}).catch((err: BusinessError) => {
+  console.error(`setWillMuteWhenInterrupted Fail: ${err}`);
+});
+```
+
 ## ActiveDeviceType<sup>(deprecated)</sup>
 
 Enumerates the active device types.
 
 > **NOTE**
 >
-> This API is deprecated since API version 9. You are advised to use [CommunicationDeviceType](#communicationdevicetype9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [CommunicationDeviceType](#communicationdevicetype9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -9942,7 +10305,7 @@ Enumerates the returned event types for audio interruption events.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. No substitute enum is provided. It is used together with the audio interruption events.
+> This API is supported since API version 7 and deprecated since API version 9. No substitute is provided.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -9957,7 +10320,7 @@ Describes input parameters of audio interruption events.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. No substitute enum is provided. It is used together with the audio interruption events.
+> This API is supported since API version 7 and deprecated since API version 9. No substitute is provided.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -9965,7 +10328,7 @@ Describes input parameters of audio interruption events.
 | --------------- | --------------------------- | ----| ------------------------------------------------------------ |
 | streamUsage     | [StreamUsage](#streamusage) | Yes | Audio stream usage.                                            |
 | contentType     | [ContentType](#contenttypedeprecated) | Yes | Audio content type.                                          |
-| pauseWhenDucked | boolean                     | Yes | Whether audio playback can be paused during audio interruption. The value **true** means that audio playback can be paused during audio interruption, and **false** means the opposite.|
+| pauseWhenDucked | boolean                     | Yes | Whether audio playback can be paused during an audio interruption. The value **true** means that audio playback can be paused during an audio interruption, and **false** means the opposite.|
 
 ## InterruptAction<sup>(deprecated)</sup>
 
@@ -9973,7 +10336,7 @@ Describes the callback invoked for audio interruption or focus gain events.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [InterruptEvent](#interruptevent9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [InterruptEvent](#interruptevent9) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 

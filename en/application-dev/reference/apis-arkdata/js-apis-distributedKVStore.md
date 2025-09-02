@@ -126,8 +126,8 @@ Enumerates the distributed KV store types.
 
 | Name                | Value| Description                                                        |
 | -------------------- | - | ------------------------------------------------------------ |
-| DEVICE_COLLABORATION | 0 | Device KV store.<br> The device KV store manages data by device, which eliminates conflicts. Data can be queried by device.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
-| SINGLE_VERSION       | 1 | Single KV store.<br> The single KV store does not differentiate data by device. If entries with the same key are modified on different devices, the value will be overwritten.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
+| DEVICE_COLLABORATION | 0 | Device KV store.<br>The device KV store manages data by device, which eliminates conflicts. Data can be queried by device.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
+| SINGLE_VERSION       | 1 | Single KV store.<br>The single KV store does not differentiate data by device. If entries with the same key are modified on different devices, the value will be overwritten.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
 
 ## SecurityLevel
 
@@ -168,20 +168,18 @@ Defines the schema of a KV store. You can create a **Schema** object and pass it
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-| Name   | Type                   | Readable| Writable| Description                      |
+| Name   | Type                   | Read Only| Optional| Description                      |
 | ------- | ----------------------- | ---- | ---- | -------------------------- |
-| root    | [FieldNode](#fieldnode) | Yes  | Yes  | Definitions of all the fields in **Value**.|
-| indexes | Array\<string>          | Yes  | Yes  | Indexes of the fields in **Value**. Indexes are created only for **FieldNode** with this parameter specified. If no index needs to be created, this parameter can be left empty. <br>Format: `'$.field1'`, `'$.field2'`|
-| mode    | number                  | Yes  | Yes  | Schema mode, which can be **0** (compatible mode) or **1** (strict mode).|
-| skip    | number                  | Yes  | Yes  | Number of bytes to be skipped during the value check. The value range is [0, 4 x 1024 x 1024 - 2].|
+| root    | [FieldNode](#fieldnode) | No | No | Definitions of all the fields in **Value**.|
+| indexes | Array\<string>          | No | No | Indexes of the fields in **Value**. Indexes are created only for **FieldNode** with this parameter specified. The format is **'$.field1'**, **'$.field2'**.|
+| mode    | number                  | No | No | Schema mode, which can be **0** (compatible mode) or **1** (strict mode).|
+| skip    | number                  | No | No | Number of bytes to be skipped during the value check. The value range is [0, 4 x 1024 x 1024 - 2].|
 
 Strict mode: In this mode, the value to be inserted must strictly match the schema defined, and the number and format of fields must be consistent with that defined in the schema. Otherwise, an error will be returned.
 
 Compatible mode: In this mode, the value check is successful as long as the value has the characteristics defined in the schema. Extra fields are allowed. For example, if **id** and **name** are defined, more fields such as **id**, **name**, and **age** can be inserted.
 
 ### constructor
-
-constructor()
 
 A constructor used to create a **Schema** instance.
 
@@ -214,11 +212,11 @@ Represents a **Schema** instance, which provides the methods for defining the va
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-| Name    | Type   | Readable| Writable| Description                          |
-| -------- | ------- | ---- | ---- | ------------------------------ |
-| nullable | boolean | Yes  | Yes  | Whether the field can be null. The value **true** means the node field can be null; the value **false** means the opposite.|
-| default  | string  | Yes  | Yes  | Default value of **FieldNode**.       |
-| type     | number  | Yes  | Yes  | **FieldNode** data type, which is a value of [ValueType](#valuetype). Currently, the BYTE_ARRAY type is not supported. Using this type may cause a failure in calling [getKVStore](#getkvstore).|
+| Name    | Type   | Read Only| Optional| Description                                                        |
+| -------- | ------- | ---- | ---- | ------------------------------------------------------------ |
+| nullable | boolean | No  | No  | Whether the field can be null. The value **true** means the node field can be null; the value **false** means the opposite.|
+| default  | string  | No  | No  | Default value of **FieldNode**.                                     |
+| type     | number  | No  | No  | **FieldNode** data type, which is a value of [ValueType](#valuetype). Currently, the BYTE_ARRAY type is not supported. Using this type may cause a failure in calling [getKVStore](#getkvstore).|
 
 ### constructor
 
@@ -457,7 +455,7 @@ Creates and obtains a distributed KV store based on the specified **options** an
 
 > **NOTE**
 >
-> If the database file cannot be opened (for example, the file header is damaged) when an existing distributed KV store is obtained, the automatic rebuild logic will be triggered to return a newly created distributed KV store instance. For important data that cannot be regenerated, you are advised to use the backup and restore feature to prevent data loss. For details, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
+> If the database file cannot be opened (for example, the file header is damaged) when an existing distributed KV store is obtained, the automatic rebuild logic will be triggered to return a newly created distributed KV store instance. For important data that cannot be regenerated, you are advised to use the backup and restore feature to prevent data loss. For details, see [Database Backup and Restoration](../../database/data-backup-and-restore.md).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -466,7 +464,7 @@ Creates and obtains a distributed KV store based on the specified **options** an
 | Name | Type           | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
 | storeId | string              | Yes  | Unique identifier of the KV store. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
-| options | [Options](#options) | Yes  | Configuration of the distributed KV store to create.                              |
+| options | [Options](#options) | Yes  | Configuration of the KV store to create.                              |
 
 **Return value**
 
@@ -1443,8 +1441,6 @@ Provides methods to create a **Query** object, which defines different data quer
 
 ### constructor
 
-constructor()
-
 A constructor used to create a **Query** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
@@ -2230,8 +2226,8 @@ Creates a **Query** object to specify the number of records of the query result 
 
 | Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ------------------ |
-| total  | number   | Yes  | Maximum number of results to query. The value must be a non-negative integer. If the input value is less than 0, the number of results is not limited.|
-| offset | number   | Yes  | Start position of the query result. By default, the start position is the beginning of the result set. If **offset** is a negative number, the start position is the beginning of the result set. If **offset** exceeds the end of the result set, the query result is empty.|
+| total  | number   | Yes  | Maximum number of results to query. The value must be a non-negative integer.<br>If the value is a negative number, the entire result set is queried.|
+| offset | number   | Yes  | Start position of the query result. The value must be a non-negative integer.<br>If the value is a negative number, the entire result set is queried.<br>If **offset** exceeds the end of the result set, the query result is empty.|
 
 **Return value**
 
@@ -3691,7 +3687,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Over max limits.                       |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3760,7 +3756,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Over max limits.                       |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3834,7 +3830,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Over max limits.                       |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5149,7 +5145,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
-| 15100001     | Over max limits.                       |
+| 15100001     | Over max  limits.                      |
 | 15100005     | Database or result set already closed. |
 
 **Example**
@@ -5284,7 +5280,7 @@ Unsubscribes from the cross-device data sync completion events.
 | Name      | Type                                     | Mandatory| Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
 | event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync completion event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for for the sync completion event. |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for data changes. |
 
 **Error codes**
 
@@ -6338,7 +6334,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Over max limits.                       |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6412,7 +6408,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Over max limits.                       |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6478,7 +6474,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Over max limits.                       |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6536,7 +6532,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Over max limits.                       |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6625,7 +6621,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Over max limits.                       |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6707,7 +6703,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Over max limits.                       |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6776,7 +6772,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Over max limits.                       |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 

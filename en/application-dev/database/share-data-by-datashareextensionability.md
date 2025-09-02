@@ -1,4 +1,4 @@
-# Sharing Data Using DataShareExtensionAbility
+# Sharing Data Using DataShareExtensionAbility (ArkTS) (for System Applications Only)
 
 
 ## When to Use

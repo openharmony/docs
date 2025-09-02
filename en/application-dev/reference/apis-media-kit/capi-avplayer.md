@@ -2,7 +2,7 @@
 
 ## Overview
 
-The AVPlayer module provides the APIs related to media playback.
+The module provides the APIs for media playback.
 
 You can refer to the corresponding development guide and samples based on your development requirements.
 

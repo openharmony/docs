@@ -1,5 +1,11 @@
 # 使用列表
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @yylong-->
+<!--Designer: @yylong-->
+<!--Tester: @liuzhenshuo-->
+<!--Adviser: @HelloCrease-->
 
 ArkUI开发框架在NDK接口提供了列表组件，使用列表可以轻松高效地显示结构化、可滚动的信息。列表组件支持控制滚动位置、支持分组显示内容、支持使用NodeAdapter实现懒加载以提升列表创建性能。
 
@@ -9,7 +15,7 @@ ArkUI开发框架在NDK接口提供了列表组件，使用列表可以轻松高
 
 ## 监听滚动事件 
 
-参考监听组件事件章节实现列表滚动事件监听。 
+参考[监听组件事件](ndk-listen-to-component-events.md)章节实现列表滚动事件监听。 
 
 ## 使用懒加载 
 
@@ -25,7 +31,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/capi-arkui-nativemodule-arkui-
 
 ### 实现懒加载适配器
 
-使用ArkUListItemAdapter类来管理懒加载适配器，在类的构造中创建NodeAdapter对象，并给NodeAdapter对象设置事件监听器，在类的析构函数中，销毁NodeAdapter对象。
+使用ArkUIListItemAdapter类来管理懒加载适配器，在类的构造中创建NodeAdapter对象，并给NodeAdapter对象设置事件监听器，在类的析构函数中，销毁NodeAdapter对象。
 
    ```c++
    // ArkUIListItemAdapter
@@ -42,6 +48,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/capi-arkui-nativemodule-arkui-
    #include "ArkUIListItemNode.h"
    #include "ArkUITextNode.h"
    #include "nativeModule.h"
+   #include <hilog/log.h>
    
    namespace NativeModule {
    
@@ -215,7 +222,6 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/capi-arkui-nativemodule-arkui-
    
    #include "ArkUIListItemAdapter.h"
    #include "ArkUINode.h"
-   #include <hilog/log.h>
    
    namespace NativeModule {
    class ArkUIListNode : public ArkUINode {

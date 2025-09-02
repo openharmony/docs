@@ -1,4 +1,10 @@
 # 使用运动和方向传感器监测设备状态
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zhang-yinglie-->
+<!--Designer: @handyohos-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
@@ -18,7 +24,8 @@
 
 ## 需要权限
 
-使用加速度、陀螺仪及设备运动事件接口时，需在配置文件module.json5中声明相应的传感器权限。具体配置方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+使用加速度、陀螺仪及设备运动事件接口时，需在配置文件module.json5中声明相应的传感器权限。具体配置方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)。
+
 
 ```
     "requestPermissions":[
@@ -122,10 +129,10 @@ Web组件在对接运动和方向传感器时，需配置[onPermissionRequest](.
            // 访问设备的加速度计传感器，并获取其数据。
            function getAccelerometer() {
                var acc = new Accelerometer({frequency: 60});
-               acc.addEventListener('activate', () => console.log('Ready to measure.'));
-               acc.addEventListener('error', error => console.log('Error type: ' + error.type + ', error: ' + error.error ));
+               acc.addEventListener('activate', () => console.info('Ready to measure.'));
+               acc.addEventListener('error', error => console.info('Error type: ' + error.type + ', error: ' + error.error ));
                acc.addEventListener('reading', () => {
-                   console.log(`Accelerometer ${acc.timestamp}, ${acc.x}, ${acc.y}, ${acc.z}.`);
+                   console.info(`Accelerometer ${acc.timestamp}, ${acc.x}, ${acc.y}, ${acc.z}.`);
                });
                acc.start();
            }
@@ -133,10 +140,10 @@ Web组件在对接运动和方向传感器时，需配置[onPermissionRequest](.
            // 访问设备的陀螺仪传感器，并获取其数据。
            function getGyroscope() {
                var gyr = new Gyroscope({frequency: 60});
-               gyr.addEventListener('activate', () => console.log('Ready to measure.'));
-               gyr.addEventListener('error', error => console.log('Error type: ' + error.type + ', error: ' + error.error ));
+               gyr.addEventListener('activate', () => console.info('Ready to measure.'));
+               gyr.addEventListener('error', error => console.info('Error type: ' + error.type + ', error: ' + error.error ));
                gyr.addEventListener('reading', () => {
-                   console.log(`Gyroscope ${gyr.timestamp}, ${gyr.x}, ${gyr.y}, ${gyr.z}.`);
+                   console.info(`Gyroscope ${gyr.timestamp}, ${gyr.x}, ${gyr.y}, ${gyr.z}.`);
                });
                gyr.start();
            }
@@ -144,10 +151,10 @@ Web组件在对接运动和方向传感器时，需配置[onPermissionRequest](.
            // 访问设备的方向传感器，并获取其数据。
            function getAbsoluteOrientationSensor() {
                var aos = new AbsoluteOrientationSensor({frequency: 60});
-               aos.addEventListener('activate', () => console.log('Ready to measure.'));
-               aos.addEventListener('error', error => console.log('Error type: ' + error.type + ', error: ' + error.error ));
+               aos.addEventListener('activate', () => console.info('Ready to measure.'));
+               aos.addEventListener('error', error => console.info('Error type: ' + error.type + ', error: ' + error.error ));
                aos.addEventListener('reading', () => {
-                   console.log(`AbsoluteOrientationSensor data: ${aos.timestamp}, ${aos.quaternion}`);
+                   console.info(`AbsoluteOrientationSensor data: ${aos.timestamp}, ${aos.quaternion}`);
                });
                aos.start();
            }
@@ -158,7 +165,7 @@ Web组件在对接运动和方向传感器时，需配置[onPermissionRequest](.
                if ('DeviceMotionEvent' in window) {
                    window.addEventListener('devicemotion', handleMotionEvent, false);
                } else {
-                 console.log('不支持DeviceMotionEvent');
+                 console.info('不支持DeviceMotionEvent');
                }
            }
    
@@ -167,7 +174,7 @@ Web组件在对接运动和方向传感器时，需配置[onPermissionRequest](.
                if ('DeviceMotionEvent' in window) {
                  window.removeEventListener('devicemotion', handleMotionEvent, false);
                } else {
-                 console.log('不支持DeviceMotionEvent');
+                 console.info('不支持DeviceMotionEvent');
                }
            }
    
@@ -176,7 +183,7 @@ Web组件在对接运动和方向传感器时，需配置[onPermissionRequest](.
                const x = event.accelerationIncludingGravity.x;
                const y = event.accelerationIncludingGravity.y;
                const z = event.accelerationIncludingGravity.z;
-               console.log(`DeviceMotionEvent data: ${event.timeStamp}, ${x}, ${y}, ${z}`);
+               console.info(`DeviceMotionEvent data: ${event.timeStamp}, ${x}, ${y}, ${z}`);
            }
    
            // 监听设备方向的变化，并执行相应的处理逻辑。
@@ -185,7 +192,7 @@ Web组件在对接运动和方向传感器时，需配置[onPermissionRequest](.
                if ('DeviceOrientationEvent' in window) {
                    window.addEventListener('deviceorientation', handleOrientationEvent, false);
                } else {
-                   console.log('不支持DeviceOrientationEvent');
+                   console.info('不支持DeviceOrientationEvent');
                }
            }
    
@@ -194,7 +201,7 @@ Web组件在对接运动和方向传感器时，需配置[onPermissionRequest](.
                if ('DeviceOrientationEvent' in window) {
                  window.removeEventListener('deviceorientation', handleOrientationEvent, false);
                } else {
-                 console.log('不支持DeviceOrientationEvent');
+                 console.info('不支持DeviceOrientationEvent');
                }
            }
    
@@ -204,7 +211,7 @@ Web组件在对接运动和方向传感器时，需配置[onPermissionRequest](.
                if ('DeviceOrientationEvent' in window) {
                    window.addEventListener('deviceorientationabsolute', handleOrientationEvent, false);
                } else {
-                   console.log('不支持DeviceOrientationEvent');
+                   console.info('不支持DeviceOrientationEvent');
                }
            }
    
@@ -213,13 +220,13 @@ Web组件在对接运动和方向传感器时，需配置[onPermissionRequest](.
                if ('DeviceOrientationEvent' in window) {
                  window.removeEventListener('deviceorientationabsolute', handleOrientationEvent, false);
                } else {
-                 console.log('不支持DeviceOrientationEvent');
+                 console.info('不支持DeviceOrientationEvent');
                }
            }
    
            // 处理方向事件。
            function handleOrientationEvent(event) {
-               console.log(`DeviceOrientationEvent data: ${event.timeStamp}, ${event.absolute}, ${event.alpha}, ${event.beta}, ${event.gamma}`);
+               console.info(`DeviceOrientationEvent data: ${event.timeStamp}, ${event.absolute}, ${event.alpha}, ${event.beta}, ${event.gamma}`);
            }
        </script>
    </head>

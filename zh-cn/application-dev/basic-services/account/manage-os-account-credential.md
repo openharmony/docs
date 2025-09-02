@@ -1,5 +1,12 @@
 # 管理系统账号凭据（仅对系统应用开放）
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
+
 凭据可用于认证用户的身份，本文档将介绍如何录入、认证、更新、查询和删除指定系统账号的凭据。
 
 ## 凭据类型
@@ -271,7 +278,7 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
 
    ```ts
    let credentialId: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
-   let token: Uint8Array = new Uint8Array([1, 2, 3, 4, 5])
+   let token: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
    let credInfoList: osAccount.EnrolledCredInfo[] = await userIDM.getAuthInfo(osAccount.AuthType.FINGERPRINT);
    if (credInfoList.length != 0) {
      credentialId = credInfoList[0].credentialId;

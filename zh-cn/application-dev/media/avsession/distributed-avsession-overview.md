@@ -1,4 +1,10 @@
 # 分布式媒体会话概述(仅对系统应用开放)
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 OpenHarmony提供的媒体会话允许用户把本地播放的媒体投播到远端分布式设备上，从而实现更好的播放效果，例如将平板上播放的音频投播到智能音箱。
 

@@ -1,4 +1,10 @@
 # @ohos.enterprise.deviceControl（设备控制管理）
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--Designer: @liuzuming-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供设备控制能力。
 
@@ -26,6 +32,7 @@ operateDevice(admin: Want, operate: string, addition?: string): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 

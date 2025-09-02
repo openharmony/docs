@@ -1,5 +1,12 @@
 # @ohos.bluetooth (蓝牙)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+<!--Adviser: @zhang_yixin13-->
+
 蓝牙模块提供了基础的传统蓝牙能力以及BLE的扫描、广播等功能。
 
 > **说明：**
@@ -870,10 +877,10 @@ sppConnect(device: string, option: SppOption, callback: AsyncCallback&lt;number&
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 function clientSocket(code : BusinessError, number : number) {
-  if (code.code != 0 || code == null) {
+  if (code == null || code.code != 0) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -938,10 +945,10 @@ sppCloseClientSocket(socket: number): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 function clientSocket(code : BusinessError, number : number) {
-  if (code.code != 0 || code == null) {
+  if (code == null || code.code != 0) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -979,10 +986,10 @@ sppWrite(clientSocket: number, data: ArrayBuffer): boolean
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 function clientSocket(code : BusinessError, number : number) {
-  if (code.code != 0 || code == null) {
+  if (code == null || code.code != 0) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1027,10 +1034,10 @@ on(type: 'sppRead', clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;)
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 function clientSocket(code : BusinessError, number : number) {
-  if (code.code != 0 || code == null) {
+  if (code == null || code.code != 0) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1071,10 +1078,10 @@ off(type: 'sppRead', clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 function clientSocket(code : BusinessError, number : number) {
-  if (code.code != 0 || code == null) {
+  if (code == null || code.code != 0) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1106,7 +1113,7 @@ getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfi
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [A2dpSourceProfile](#a2dpsourceprofile)或[HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofile) | 对应的profile的对象实例，当前支持A2dpSourceProfile， HandsFreeAudioGatewayProfile。 |
+| [A2dpSourceProfile](#a2dpsourceprofile) \| [HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofile) | 对应的profile的对象实例，当前支持A2dpSourceProfile， HandsFreeAudioGatewayProfile。 |
 
 **示例：**
 
@@ -2010,7 +2017,7 @@ server端回复client端的读写请求。
 /* send response */
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
-cccValue[0] = 1123;
+cccValue[0] = 1;
 let serverResponse : bluetooth.ServerResponse = {
     "deviceId": "XX:XX:XX:XX:XX:XX",
     "transId": 0,
@@ -2058,7 +2065,7 @@ server端订阅特征值读请求事件。
 ```js
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
-cccValue[0] = 1123;
+cccValue[0] = 1;
 function ReadCharacteristicReq(CharacteristicReadReq : bluetooth.CharacteristicReadReq) {
   let deviceId : string = CharacteristicReadReq.deviceId;
   let transId : number = CharacteristicReadReq.transId;
@@ -2229,7 +2236,7 @@ server端订阅描述符读请求事件。
 ```js
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
-descValue[0] = 1101;
+descValue[0] = 1;
 function ReadDescriptorReq(DescriptorReadReq : bluetooth.DescriptorReadReq) {
   let deviceId : string = DescriptorReadReq.deviceId;
   let transId : number = DescriptorReadReq.transId;
@@ -2557,12 +2564,11 @@ import { BusinessError } from '@ohos.base';
 // callback 模式
 function getServices(code : BusinessError, gattServices : Array<bluetooth.GattService>) {
   if (code.code == 0) {
-      let services : Array<bluetooth.GattService> = gattServices;
       console.log('bluetooth code is ' + code.code);
-      console.log("bluetooth services size is ", services.length);
+      console.log("bluetooth services size is ", gattServices.length);
 
-      for (let i = 0; i < services.length; i++) {
-        console.log('bluetooth serviceUuid is ' + services[i].serviceUuid);
+      for (let i = 0; i < gattServices.length; i++) {
+        console.log('bluetooth serviceUuid is ' + gattServices[i].serviceUuid);
       }
   }
 }

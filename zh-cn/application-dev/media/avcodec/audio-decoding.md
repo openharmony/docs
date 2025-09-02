@@ -1,5 +1,12 @@
 # 音频解码
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @mr-chencxy-->
+<!--Designer: @dpy2650--->
+<!--Tester: @baotianhao-->
+<!--Adviser: @zengyawen-->
+
 开发者可以调用本模块的Native API接口，完成音频解码，即将媒体数据解码为PCM码流。
 
 当前支持的解码能力请参考[AVCodec支持的格式](avcodec-support-formats.md#音频解码)。
@@ -21,7 +28,7 @@
 
 ## 开发指导
 
-详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/_audio_codec.md)。
+详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/capi-native-avcodec-audiocodec-h.md)。
 
 参考以下示例代码，完成音频解码的全流程，包括：创建解码器、设置解码参数（采样率/码率/声道数等）、开始、刷新、重置、销毁资源。
 
@@ -234,7 +241,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
    配置选项key值说明：
 
-   |             key              |       描述       |                AAC                 | Flac |               Vorbis               | MPEG |       G711mu        |          AMR(amrnb、amrwb)         | APE |          G711a          |
+   |             key              |       描述       |                AAC                 | Flac |               Vorbis               | MPEG(MP3) |       G711mu        |          AMR(amrnb、amrwb)         | APE |          G711a          |
    | ---------------------------- | :--------------: | :--------------------------------: | :--: | :--------------------------------: | :--: | :-----------------: | :-------------------------------: | :--: | :----------------------: |
    | OH_MD_KEY_AUD_SAMPLE_RATE    |      采样率      |                必须                | 必须 |                必须                 | 必须 |        必须          |                必须                | 必须 |           必须           |
    | OH_MD_KEY_AUD_CHANNEL_COUNT  |      声道数      |                必须                | 必须 |                必须                 | 必须 |        必须          |                必须                | 必须 |           必须           |
@@ -261,6 +268,14 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    | G711a       | 8000、11025、12000、16000、22050、24000、32000、44100、48000                                     |  1~6   |
    <!--RP4-->
    <!--RP4End-->
+
+   API20新增[采样率范围](../../reference/apis-avcodec-kit/capi-native-avcapability-h.md#oh_avcapability_getaudiosupportedsamplerateranges)能力查询，以下几种音频解码类型支持对范围内的任意采样率进行解码（API20之后）：
+
+   | 音频解码类型 |    采样率(Hz)   |
+   | ----------- | --------------- |
+   | Flac        | 8000 ~ 384000   |
+   | Vorbis      | 8000 ~ 192000   |
+   | APE         | 1 ~ 2147483647  |
 
    ```cpp
    // 配置音频采样率（必须）。
@@ -433,6 +448,9 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```c++
     uint32_t index = signal_->outQueue_.front();
     OH_AVBuffer *data = signal_->outBufferQueue_.front();
+    if (data == nullptr) {
+        // 异常处理
+    }
     // 获取buffer attributes。
     OH_AVCodecBufferAttr attr = {0};
     int32_t ret = OH_AVBuffer_GetBufferAttr(data, &attr);

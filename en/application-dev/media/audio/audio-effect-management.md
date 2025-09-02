@@ -1,14 +1,14 @@
 # Audio Effect Management
 
-You can manage the audio effect of a specific playback instance, for example, obtaining or setting the audio effect mode of the current audio playback stream. You can obtain the global audio effect, that is, the audio effect mode corresponding to a specific audio stream usage, which is specified by [StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage).
+You can manage the audio effect of a specific playback instance, for example, obtaining or setting the audio effect mode of the current audio playback stream. You can obtain the global audio effect, that is, the audio effect mode corresponding to a specific audio stream usage, which is specified by [StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage).
 
 ## Managing the Audio Effect of a Playback Instance
 
-You can call [getAudioEffectMode()](../../reference/apis-audio-kit/js-apis-audio.md#getaudioeffectmode10) and [setAudioEffectMode(mode: AudioEffectMode)](../../reference/apis-audio-kit/js-apis-audio.md#setaudioeffectmode10) to obtain and set the [audio effect mode](../../reference/apis-audio-kit/js-apis-audio.md#audioeffectmode10) of the current audio playback stream. The audio effect mode can be disabled (**EFFECT_NONE**) or default (**EFFECT_DEFAULT**). In the default audio effect mode, the audio effect of the corresponding scenario is automatically loaded based on [StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage) of the audio stream.
+You can call [getAudioEffectMode()](../../reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md#getaudioeffectmode10) and [setAudioEffectMode(mode: AudioEffectMode)](../../reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md#setaudioeffectmode10) to obtain and set the [audio effect mode](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audioeffectmode10) of the current audio playback stream. The audio effect mode can be disabled (**EFFECT_NONE**) or default (**EFFECT_DEFAULT**). In the default audio effect mode, the audio effect of the corresponding scenario is automatically loaded based on [StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage) of the audio stream.
 
 ### Creating a Playback Instance
 
-Before the management, you must call [createAudioRenderer(options: AudioRendererOptions)](../../reference/apis-audio-kit/js-apis-audio.md#audiocreateaudiorenderer8) to create an **AudioRenderer** instance.
+Before the management, you must call [createAudioRenderer(options: AudioRendererOptions)](../../reference/apis-audio-kit/arkts-apis-audio-f.md#audiocreateaudiorenderer8) to create an AudioRenderer instance.
 
 1. Import the audio module.
 
@@ -16,7 +16,7 @@ Before the management, you must call [createAudioRenderer(options: AudioRenderer
     import { audio } from '@kit.AudioKit';
     ```
 
-2. Configure audio rendering parameters and create an **AudioRenderer** instance. For details about the audio rendering parameters, see [AudioRendererOptions](../../reference/apis-audio-kit/js-apis-audio.md#audiorendereroptions8). For the **AudioRenderer** instance, the audio effect mode **EFFECT_DEFAULT** is used by default.
+2. Configure audio rendering parameters and create an AudioRenderer instance. For details about the audio rendering parameters, see [AudioRendererOptions](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiorendereroptions8). For the AudioRenderer instance, the audio effect mode **EFFECT_DEFAULT** is used by default.
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -102,13 +102,13 @@ Enable the default system audio effect.
 
 ## Obtaining the Global Audio Effect Mode
 
-Obtain the global audio effect mode corresponding to a specific audio stream usage, which is specified by [StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage).
+Obtain the global audio effect mode corresponding to a specific audio stream usage, which is specified by [StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage).
 
-For an audio playback application, pay attention to the audio effect mode used by the audio stream of the application and perform corresponding operations. For example, for a music application, select the audio effect mode for the music scenario. Before obtaining the global audio effect mode, call **getStreamManager()** to create an **AudioStreamManager** instance.
+For an audio playback application, pay attention to the audio effect mode used by the audio stream of the application and perform corresponding operations. For example, for a music application, select the audio effect mode for the music scenario. Before obtaining the global audio effect mode, call **getStreamManager()** to create an AudioStreamManager instance.
 
 ### Creating an AudioStreamManager Instance
 
-Before using **AudioStreamManager** APIs, you must use **getStreamManager()** to create an **AudioStreamManager** instance.
+Before using AudioStreamManager APIs, you must use **getStreamManager()** to create an AudioStreamManager instance.
 
    ```ts
    import { audio } from '@kit.AudioKit';

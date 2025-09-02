@@ -1,4 +1,10 @@
 # @ohos.data.cloudData (端云服务)(系统接口)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @lvcong_oh-->
+<!--Designer: @lvcong_oh-->
+<!--Tester: @ltttjs; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 端云服务提供端云协同、端云共享和端云策略。
 

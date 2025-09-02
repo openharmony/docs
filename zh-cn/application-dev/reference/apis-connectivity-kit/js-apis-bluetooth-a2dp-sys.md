@@ -1,5 +1,12 @@
 # @ohos.bluetooth.a2dp (蓝牙a2dp模块)(系统接口)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+<!--Adviser: @zhang_yixin13-->
+
 a2dp模块提供了访问蓝牙音频接口的方法。
 
 > **说明：**

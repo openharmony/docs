@@ -132,6 +132,6 @@ struct MouseEventExample {
 
  
 
-The figure below shows how the button looks like when clicked.
+The figure below shows how the button looks when clicked.
 
 ![mouse](figures/mouse.gif)

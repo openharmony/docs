@@ -1,12 +1,14 @@
 # 应用文件访问(C/C++)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
+<!--Designer: @gsl_1234; @wangke25-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 ## 场景介绍
 
 FileIO模块提供了部分文件基础操作能力，其他能力请参考[libc标准库](../reference/native-lib/musl.md)/[标准C++库](../reference/native-lib/cpp.md)。
-
-## 基本概念
-
-**结果集**：满足使用场景正确的URI。
 
 ## 约束限制
 
@@ -14,7 +16,7 @@ FileIO模块提供了部分文件基础操作能力，其他能力请参考[libc
 
 ## 接口说明
 
-接口的详细说明，请参考[FileIO](../reference/apis-core-file-kit/_file_i_o.md)。
+接口的详细说明，请参考[FileIO](../reference/apis-core-file-kit/capi-oh-fileio-h.md)。
 
 | 接口名称 | 描述 |
 | -------- | -------- |

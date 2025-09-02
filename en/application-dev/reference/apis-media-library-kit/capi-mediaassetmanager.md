@@ -2,7 +2,7 @@
 
 ## Overview
 
-The MediaAssetManager module provides APIs for managing media assets.
+The module provides APIs for managing media assets.
 
 For details about the development guide and sample, see [Requesting Media Assets Using MediaAssetManager (C/C++)](../../media/medialibrary/using-ndk-mediaassetmanager-for-request-resource.md).
 

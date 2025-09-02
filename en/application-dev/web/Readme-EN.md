@@ -26,6 +26,10 @@
   - [Implementing Content Scrolling](web-content-scrolling.md)
   - [Docking to the Soft Keyboard](web-docking-softkeyboard.md)
   - [Managing Focus](web-focus.md)
+  - [Interacting with Applications Using Gestures](web-gesture.md)
+  - [Zooming Web Pages](web-scale-zoom.md)
+  - [Displaying Web Page Dialog Boxes](web-dialog.md)
+  - [Implementing the Drag Functionality](web_drag.md)
 - Managing Cyber Security and Privacy for the Web Component<!--web-manage-cyber-security-privacy-->
   - [Resolving Cross-Origin Resource Access](web-cross-origin.md)
   - [Intelligent Tracking Prevention](web-intelligent-tracking-prevention.md)
@@ -45,12 +49,17 @@
 - Using Web Multimedia<!--web-use-multimedia-->
   - [Starting a Camera and Microphone with WebRTC](web-rtc.md)
   - [Taking Over the Media Playback on Web Pages](app-takeovers-web-media.md)
+  - [Enabling Picture-in-Picture](web-picture-in-picture.md)
+  - [Enabling Immersive Full-Screen Video Playback](web_full_screen.md)
 - Processing Web Page Content<!--web-process-page-content-->
   - [Printing Frontend Pages](web-print.md)
   - [Previewing PDF Files](web-pdf-preview.md)
   - [Calculating and Adjusting Safe Area Insets](web-safe-area-insets.md)
+  - [Using Web Menus](web_menu.md)
+  - [Interacting with the System Clipboard](web-clipboard.md)
 - [Using Same-Layer Rendering](web-same-layer.md)
 - [Using Offline Web Components](web-offline-mode.md)
 - Web Debugging<!--web-debugging-->
   - [Debugging Frontend Pages by Using DevTools](web-debugging-with-devtools.md)
   - [Using Crashpad to Collect Web Component Crash Information](web-crashpad.md)
+  - [Troubleshooting White Screen Issues on Web Pages](web-white-screen.md)

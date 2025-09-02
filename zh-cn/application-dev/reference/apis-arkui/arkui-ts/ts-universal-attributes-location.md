@@ -1,4 +1,10 @@
 # 位置设置
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zju_ljz-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 设置组件对齐方式、布局方向及显示位置。
 
@@ -10,7 +16,7 @@
 
 align(value: Alignment): T
 
-设置容器元素绘制区域内的子元素的对齐方式。
+设置容器元素绘制区域内的子元素的对齐方式，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -34,7 +40,7 @@ align(value: Alignment): T
 
 align(alignment: Alignment | LocalizedAlignment): T
 
-设置容器元素绘制区域内的子元素的对齐方式，增加支持镜像的能力。
+设置容器元素绘制区域内的子元素的对齐方式，增加支持镜像的能力，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
 
@@ -58,7 +64,7 @@ align(alignment: Alignment | LocalizedAlignment): T
 
 direction(value: Direction): T
 
-设置容器元素内主轴方向上的布局。
+设置容器元素内主轴方向上的布局，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -82,7 +88,7 @@ direction(value: Direction): T
 
 position(value: Position | Edges | LocalizedEdges): T
 
-绝对定位，确定子组件相对父组件内容区的位置。父组件内容区的大小为父组件大小减去border、padding、safeAreaPadding提供给子组件可布局的内容区域大小。
+绝对定位，确定子组件相对父组件内容区的位置。父组件内容区的大小为父组件大小减去border、padding、safeAreaPadding提供给子组件可布局的内容区域大小。position对位置的影响作用在组件的尺寸测量完成之后，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -106,7 +112,7 @@ position(value: Position | Edges | LocalizedEdges): T
 
 markAnchor(value: Position | LocalizedPosition): T
 
-设置元素在位置定位时的锚点。
+设置元素在位置定位时的锚点，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -130,7 +136,7 @@ markAnchor(value: Position | LocalizedPosition): T
 
 offset(value: Position | Edges | LocalizedEdges): T
 
-相对偏移，组件相对原本的布局位置进行偏移。和position一起使用时，position生效，offset不生效。
+相对偏移，组件相对原本的布局位置进行偏移。和position一起使用时，position生效，offset不生效，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -154,7 +160,7 @@ offset(value: Position | Edges | LocalizedEdges): T
 
 alignRules(value: AlignRuleOption): T
 
-指定设置在相对容器中子组件的对齐规则，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。
+指定设置在相对容器中子组件的对齐规则，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -166,7 +172,7 @@ alignRules(value: AlignRuleOption): T
 
 | 参数名 | 类型                                        | 必填 | 说明                     |
 | ------ | ------------------------------------------- | ---- | ------------------------ |
-| value  | [AlignRuleOption](#alignruleoption对象说明) | 是   | 指定设置在相对容器中子组件的对齐规则。 |
+| value  | [AlignRuleOption](#alignruleoption9对象说明) | 是   | 指定设置在相对容器中子组件的对齐规则。 |
 
 **返回值：**
 
@@ -178,7 +184,7 @@ alignRules(value: AlignRuleOption): T
 
 alignRules(alignRule: LocalizedAlignRuleOptions): T
 
-指定设置在相对容器中子组件的对齐规则，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。该方法水平方向上以start和end分别替代原方法的left和right，以便在RTL模式下能镜像显示，建议使用该方法指定设置在相对容器中子组件的对齐规则。
+指定设置在相对容器中子组件的对齐规则，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。该方法水平方向上以start和end分别替代原方法的left和right，以便在RTL模式下能镜像显示，建议使用该方法指定设置在相对容器中子组件的对齐规则，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -202,7 +208,7 @@ alignRules(alignRule: LocalizedAlignRuleOptions): T
 
 layoutGravity(alignment: LocalizedAlignment): T
 
-单独设置Stack容器中子组件的对齐规则，仅当父容器为Stack时生效。与align属性同时使用时，layoutGravity优先级更高。
+单独设置Stack容器中子组件的对齐规则，仅当父容器为Stack时生效。与align属性同时使用时，layoutGravity优先级更高，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
 
@@ -222,67 +228,59 @@ layoutGravity(alignment: LocalizedAlignment): T
 | -------- | -------- |
 | T | 返回当前组件。 |
 
-## AlignRuleOption对象说明
+## AlignRuleOption<sup>9+</sup>对象说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称   | 类型                                                         | 描述                                                         |
-| ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| left   | { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) } | 设置左对齐参数。<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br/>-&nbsp;align：设置相对于锚点组件的对齐方式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| right  | { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) } | 设置右对齐参数。<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br/>-&nbsp;align：设置相对于锚点组件的对齐方式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| middle | { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) } | 设置横向居中对齐方式的参数。<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br/>-&nbsp;align：设置相对于锚点组件的对齐方式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| top    | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } | 设置顶部对齐的参数。<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br/>-&nbsp;align：设置相对于锚点组件的对齐方式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| bottom | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } | 设置底部对齐的参数。<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br/>-&nbsp;align：设置相对于锚点组件的对齐方式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| center | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } | 设置纵向居中对齐方式的参数。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                 |
-| bias<sup>11+</sup>   | [Bias](#bias对象说明) | 设置组件在锚点约束下的偏移参数，其值为到左/上侧锚点的距离与锚点间总距离的比值。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| left   | { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) } |否|是| 设置左对齐参数。<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br/>-&nbsp;align：设置相对于锚点组件的对齐方式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| right  | { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) } |否|是| 设置右对齐参数。<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br/>-&nbsp;align：设置相对于锚点组件的对齐方式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| middle | { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) } |否|是| 设置横向居中对齐方式的参数。<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br/>-&nbsp;align：设置相对于锚点组件的对齐方式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| top    | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } |否|是| 设置顶部对齐的参数。<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br/>-&nbsp;align：设置相对于锚点组件的对齐方式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| bottom | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } |否|是| 设置底部对齐的参数。<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br/>-&nbsp;align：设置相对于锚点组件的对齐方式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| center | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } |否|是| 设置纵向居中对齐方式的参数。<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br/>-&nbsp;align：设置相对于锚点组件的对齐方式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                 |
+| bias<sup>11+</sup>   | [Bias](./ts-types.md#bias对象说明) |否|是| 设置组件在锚点约束下的偏移参数，其值为到左/上侧锚点的距离与锚点间总距离的比值。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## LocalizedAlignRuleOptions<sup>12+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称   | 类型                                                         | 描述                                                         |
-| ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| start  | [LocalizedHorizontalAlignParam](#localizedhorizontalalignparam12对象说明) | 设置横向对齐方式的参数，LTR模式时为左对齐，RTL模式时为右对齐。 |
-| end    | [LocalizedHorizontalAlignParam](#localizedhorizontalalignparam12对象说明) | 设置横向对齐方式的参数，LTR模式时为右对齐，RTL模式时为左对齐。 |
-| middle | [LocalizedHorizontalAlignParam](#localizedhorizontalalignparam12对象说明) | 设置横向居中对齐方式的参数。|
-| top    | [LocalizedVerticalAlignParam](#localizedverticalalignparam12对象说明) | 设置纵向顶部对齐的参数。 |
-| bottom | [LocalizedVerticalAlignParam](#localizedverticalalignparam12对象说明) | 设置纵向底部对齐的参数。 |
-| center | [LocalizedVerticalAlignParam](#localizedverticalalignparam12对象说明) | 设置纵向居中对齐方式的参数。      |
-| bias   | [Bias](#bias对象说明) | 设置组件在锚点约束下的偏移参数，其值为到左/上侧锚点的距离与锚点间总距离的比值。|
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| start  | [LocalizedHorizontalAlignParam](#localizedhorizontalalignparam12对象说明) |否|是| 设置横向对齐方式的参数，LTR模式时为左对齐，RTL模式时为右对齐。 |
+| end    | [LocalizedHorizontalAlignParam](#localizedhorizontalalignparam12对象说明) |否|是| 设置横向对齐方式的参数，LTR模式时为右对齐，RTL模式时为左对齐。 |
+| middle | [LocalizedHorizontalAlignParam](#localizedhorizontalalignparam12对象说明) |否|是| 设置横向居中对齐方式的参数。|
+| top    | [LocalizedVerticalAlignParam](#localizedverticalalignparam12对象说明) |否|是| 设置纵向顶部对齐的参数。 |
+| bottom | [LocalizedVerticalAlignParam](#localizedverticalalignparam12对象说明) |否|是| 设置纵向底部对齐的参数。 |
+| center | [LocalizedVerticalAlignParam](#localizedverticalalignparam12对象说明) |否|是| 设置纵向居中对齐方式的参数。      |
+| bias   | [Bias](./ts-types.md#bias对象说明) |否|是| 设置组件在锚点约束下的偏移参数，其值为到左/上侧锚点的距离与锚点间总距离的比值。|
 
 ## LocalizedHorizontalAlignParam<sup>12+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称   | 类型                                                         | 描述                                                         |
-| ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| anchor  | string  | 设置作为锚点的组件的id值。 |
-| align   | [HorizontalAlign](ts-appendix-enums.md#horizontalalign)  | 设置相对于锚点组件的横向对齐方式。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| anchor  | string  |否|否| 设置作为锚点的组件的id值。 |
+| align   | [HorizontalAlign](ts-appendix-enums.md#horizontalalign)  |否|否| 设置相对于锚点组件的横向对齐方式。 |
 
 ## LocalizedVerticalAlignParam<sup>12+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称   | 类型                                                         | 描述                                                         |
-| ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| anchor  | string | 设置作为锚点的组件的id值。 |
-| align   | [VerticalAlign](ts-appendix-enums.md#verticalalign)  | 设置相对于锚点组件的纵向对齐方式。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-## Bias对象说明
-
-设置组件在锚点约束下的偏移参数。
-<br/>以水平方向Bias为例，其值为组件到左锚点的距离 D<sub>start</sub>与组件到水平方向锚点间总距离 D<sub>start</sub> +  D<sub>end</sub>的比值。镜像语言下，D<sub>start</sub>为组件到右锚点的距离。下图中D<sub>width</sub>表示组件宽度。
-<br/>![bias_horizontal_example.png](figures/bias_horizontal_example.png)
-<br/>竖直方向同理，其值为组件到上锚点的距离D<sub>top</sub>与组件到竖直方向锚点间总距离D<sub>top</sub> + D<sub>bottom</sub>的比值。下图中D<sub>height</sub>表示组件高度。
-<br/>![bias_vertical_example.png](figures/bias_vertical_example.png)
-
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 参数名   | 类型                                       | 必填   | 说明                                       |
-| ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| horizontal  | number | &nbsp;否 | 水平方向上的bias值。<br/>当子组件的width属性有正确值并且有2个水平方向的锚点时生效。<br/>默认值：&nbsp;0.5 |
-| vertical  | number | &nbsp;否 | 垂直方向上的bias值。<br/>当子组件的height属性有正确值并且有2个垂直方向的锚点时生效。<br/>默认值：&nbsp;0.5 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| anchor  | string |否|否| 设置作为锚点的组件的id值。 |
+| align   | [VerticalAlign](ts-appendix-enums.md#verticalalign)  |否|否| 设置相对于锚点组件的纵向对齐方式。 |
 
 ## chainMode<sup>12+</sup>
 
@@ -290,6 +288,8 @@ chainMode(direction: Axis, style: ChainStyle): T
 
 指定以该组件为链头所构成的链的参数，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。链头指满足成链规则时链的第一个组件（水平方向从左边起始，镜像语言下从右边起始；竖直方向从上边起始）。
 详细用法请参考[RelativeContainer示例7（设置链）](ts-container-relativecontainer.md#示例7设置链)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -308,7 +308,7 @@ chainMode(direction: Axis, style: ChainStyle): T
 
 ## ChainStyle<sup>12+</sup>
 
-定义链的风格。
+定义链的风格，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -319,6 +319,10 @@ chainMode(direction: Axis, style: ChainStyle): T
 | SPREAD        | 组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7（设置链）](ts-container-relativecontainer.md#示例7设置链)。 |
 | SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7（设置链）](ts-container-relativecontainer.md#示例7设置链)。 |
 | PACKED        | 链内子组件无间隙。详细用法请参考[RelativeContainer示例7（设置链）](ts-container-relativecontainer.md#示例7设置链)。 |
+
+>  **说明：**
+>
+>  使用链时，RelativeContainer会为链中的相互依赖的组件定义一个大小计算顺序，大小计算完成后再确定使用ChainStyle的位置。因此使用SPREAD或PACKED风格时，只以链头组件为锚点进行布局的非链组件A和链中其他节点有相同布局优先级，当组件A的id的字典排序靠前时，此时组件A的alignRules先于链的ChainStyle生效。
 
 ## chainWeight<sup>14+</sup>
 
@@ -645,7 +649,7 @@ struct buttonTestDemo {
     Row() {
       Column() {
 
-        Row() {
+        Row({ space: 5 }) {
           Button('START')
             .onClick(() => {
               this.isLocalizedAlignmentIndex = 3
@@ -660,7 +664,7 @@ struct buttonTestDemo {
             })
         }.margin(20)
 
-        Row() {
+        Row({ space: 5 }) {
           Button('Ltr')
             .onClick(() => {
               this.isDirectionIndex = 0
@@ -674,6 +678,7 @@ struct buttonTestDemo {
               this.isDirectionIndex = 2
             })
         }.margin(20)
+
         Row() {
           Button('OK', { type: ButtonType.Capsule, stateEffect: true })
             .backgroundColor(0x317aff)
@@ -689,7 +694,7 @@ struct buttonTestDemo {
   }
 }
 ```
-![position.png](figures/position4.png)
+![position4.gif](figures/position4.gif)
 
 ### 示例6（layoutGravity属性单独设置Stack容器中子组件的对齐规则）
 

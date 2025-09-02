@@ -1,6 +1,12 @@
-# 同步方式动态加载native模块
+# 同步方式动态加载Native模块
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @shilei123-->
+<!--Designer: @yao_dashuai-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
-loadNativeModule接口的功能是同步方式动态加载native模块。它的主要目的是在需要某个native模块时才进行加载，从而避免在应用启动时加载不必要的模块。但是使用该接口时会产生加载so耗时，需要开发者自行评估是否会对功能产生影响。
+[loadNativeModule接口](../reference/common/js-apis-common-load-native-module.md)用于同步动态加载Native模块，目的是按需加载所需要的模块。使用该接口会增加加载so文件的时间，开发者需评估其对功能的影响。
 
 ## 函数说明
 
@@ -13,18 +19,18 @@ loadNativeModule(moduleName: string): Object;
 | moduleName            | 加载的模块名。       |
 
 > **说明**
-> loadNativeModule加载的模块名指的是依赖方oh-package.json5文件的dependencies中的名字。
+> loadNativeModule加载的模块名是指依赖方oh-package.json5文件的dependencies中的名字。
 >
-> loadNativeModule只能在UI主线程中加载模块。
+> loadNativeModule必须在UI主线程中调用。
 >
-> 该接口功能在加载常量字符串或变量表达式作为参数时，都需要配置依赖。
+> 该接口在加载常量字符串或变量表达式作为参数时，需要配置依赖。
 
 ## loadNativeModule支持的场景
 
 | 场景            | 示例           | 
 | :------------- | :----------------------------- | 
 | 系统库模块        | 加载@ohos.或@system.        | 
-| 应用内native模块	| 加载libNativeLibrary.so |
+| 应用内Native模块	| 加载libNativeLibrary.so |
 
 ## 使用示例
 
@@ -44,13 +50,13 @@ libentry.so的index.d.ts文件如下：
 export const add: (a: number, b: number) => number;
 ```
 
-1.在加载本地so库时，需在oh-package.json5文件中配置dependencies项。
+1.加载本地so库时，需要在oh-package.json5文件中配置dependencies项。
 
 ```json
 {
-    "dependencies": {
-        "libentry.so": "file:../src/main/cpp/types/libentry"
-    }
+  "dependencies": {
+    "libentry.so": "file:./src/main/cpp/types/libentry"
+  }
 }
 ```
 
@@ -58,19 +64,19 @@ export const add: (a: number, b: number) => number;
 
 ```json
 {
-    "buildOption" : {
-        "arkOptions" : {
-            "runtimeOnly" : {
-                "packages": [
-                    "libentry.so"
-                ]
-            }
-        }
+  "buildOption": {
+    "arkOptions": {
+      "runtimeOnly": {
+        "packages": [
+          "libentry.so"
+        ]
+      }
     }
+  }
 }
 ```
 
-3.使用loadNativeModule加载libentry.so，并调用函数add。
+3.使用loadNativeModule加载libentry.so，并调用add函数。
 
 ```js
 let module: ESObject = loadNativeModule("libentry.so");

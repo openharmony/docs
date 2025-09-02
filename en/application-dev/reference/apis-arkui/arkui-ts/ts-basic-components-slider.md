@@ -30,6 +30,8 @@ Slider(options?: SliderOptions)
 
 ## SliderOptions
 
+Provides information about the slider.
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -38,15 +40,17 @@ Slider(options?: SliderOptions)
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | No| Current progress.<br>Default value: same as the value of **min**<br>Since API version 10, this parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).<br>This parameter supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md).<br>Value range: [min, max]<br>Values less than the value of **min** are adjusted to the value of **min**, and values greater than the value of **max** are capped at the value of **max**.|
+| value | number | No| Current progress.<br>Default value: same as the value of **min**<br>Since API version 10, this parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).<br>This parameter supports two-way binding through the [!! syntax](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).<br>Value range: [min, max]<br>Values less than the value of **min** are adjusted to the value of **min**, and values greater than the value of **max** are capped at the value of **max**.|
 | min | number | No| Minimum value.<br>Default value: **0**|
 | max | number | No| Maximum value.<br>Default value: **100**<br>**NOTE**<br>If the value of **min** is greater than or equal to the value of **max**, the **min** value defaults to **0**, and the **max** value defaults to **100**.<br>If the value is not within the [min, max] range, the value of **min** or **max** is used, whichever is closer.|
 | step | number | No| Step of the slider.<br>Default value: **1**<br>Value range: [0.01, max - min]<br>**NOTE**<br>If this parameter is set to a value less than 0 or greater than the value of **max**, the default value is used.|
 | style | [SliderStyle](#sliderstyle) | No| Style of the slider thumb and track.<br>Default value: **SliderStyle.OutSet**|
 | direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | No| Whether the slider moves horizontally or vertically.<br>Default value: **Axis.Horizontal**|
-| reverse<sup>8+</sup> | boolean | No| Whether the slider values are reversed.<br>Default value: **false**<br>**true**: Horizontal sliders slide from right to left, while vertical sliders slide from bottom to top. **false**: Horizontal sliders slide from left to right, while vertical sliders slide from top to bottom.|
+| reverse<sup>8+</sup> | boolean | No| Whether the slider values are reversed.<br>Default value: **false**.<br>**true**: Horizontal sliders slide from right to left, while vertical sliders slide from bottom to top.<br>**false**: Horizontal sliders slide from left to right, while vertical sliders slide from top to bottom.|
 
 ## SliderStyle
+
+Enumerates the display styles of the slider thumb relative to the track.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -55,6 +59,12 @@ Slider(options?: SliderOptions)
 | OutSet | The thumb is on the track.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | InSet | The thumb is in the track.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | NONE<sup>12+</sup> | There is no thumb.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+
+>  **NOTE**
+>
+>  - By default, the slider has no padding.
+>  - For horizontal sliders, the default height is 40 vp, the width matches the parent container's width, and the track maintains center alignment. When **SliderStyle.OutSet** is used, it applies 9 vp (half of the [blockSize](#blocksize10) value) margins on both left and right sides. When **SliderStyle.InSet** is used, it enforces 6 vp margins on both left and right sides. Custom padding values will be applied in addition to these default margins and will not override them.
+>  - For vertical sliders, the default width is 40 vp, the height matches the parent container's height, and the track maintains center alignment. When **SliderStyle.OutSet** is used, it applies 10 vp margins on both top and bottom sides. When **SliderStyle.InSet** is used, it enforces 6 vp margins on both top and bottom sides. Custom padding values will be applied in addition to these default margins and will not override them.
 
 ## Attributes
 
@@ -102,7 +112,7 @@ Since API version 12, **LinearGradient** can be used to create a gradient effect
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient<sup>12+</sup>](ts-basic-components-datapanel.md#lineargradient10) | Yes  | Background color of the track.<br>**NOTE**<br>With gradient color settings, if the color stop values are invalid or if the color stops are empty, the gradient effect will not be applied.<br>Default value: **$r('sys.color.ohos_id_color_component_normal')**<br>The LinearGradient type cannot be used in atomic services.|
+| value  | [ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient<sup>12+</sup>](ts-basic-components-datapanel.md#lineargradient10) | Yes  | Background color of the track.<br>**NOTE**<br>With gradient color settings, if the color stop values are invalid or if the color stops are empty, the gradient effect will not be applied. Default value: **$r('sys.color.ohos_id_color_component_normal')**. The **LinearGradient** type cannot be used in atomic services.|
 
 ### selectedColor
 
@@ -128,7 +138,7 @@ selectedColor(selectedColor: ResourceColor | LinearGradient)
 
 Sets the color of the portion of the track between the minimum value and the thumb, representing the selected portion. Compared with [selectedColor](#selectedcolor), this API supports the **LinearGradient** type.
 
-Since API version 16, **LinearGradient** can be used to create a gradient effect for the selected portion.
+Since API version 18, **LinearGradient** can be used to create a gradient effect for the selected portion.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -146,7 +156,7 @@ Since API version 16, **LinearGradient** can be used to create a gradient effect
 
 showSteps(value: boolean)
 
-Sets whether to display the current step.
+Sets whether to display the step markers along the slider track.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -158,7 +168,7 @@ Sets whether to display the current step.
 
 | Name| Type   | Mandatory| Description                                      |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | boolean | Yes  | Whether to display the current step. <br>**true**: Display the current step.<br>**false**: Do not display the current step.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to display the step markers along the slider track. <br>**true**: Display the step markers.<br>**false**: Hide the step markers.<br>Default value: **false**.|
 
 ### showTips
 
@@ -180,7 +190,7 @@ The drawing area of the tooltip is the overlay of the slider.
 
 | Name               | Type                                  | Mandatory| Description                                      |
 | --------------------- | -------------------------------------- | ---- | ------------------------------------------ |
-| value                 | boolean                                | Yes  | Whether to display a tooltip when the user drags the slider.<br>Default value: **false**|
+| value                 | boolean                                | Yes  | Whether to display a tooltip when the user drags the slider. The value **true** means to display a tooltip, and **false** means the opposite.<br>Default value: **false**.|
 | content<sup>10+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Content of the tooltip. By default, the tooltip shows the current percentage value.  |
 
 ### trackThickness<sup>8+</sup>
@@ -193,7 +203,9 @@ To ensure [SliderStyle](#sliderstyle) works as expected for the thumb and track,
 
 Specially, when **style** is **[SliderStyle](#sliderstyle).OutSet**, trackThickness: [blockSize](#blocksize10) = 1:4; when **style** is **[SliderStyle](#sliderstyle).InSet**, trackThickness: [blockSize](#blocksize10) = 5:3.
 
-In changing the value of **trackThickness**, if it or the value of [blockSize](#blocksize10) exceeds the width or height of the slider, the default value is used. (When **style** is **[SliderStyle](#sliderstyle).OutSet**, it is possible that only the value of [blockSize](#blocksize10) exceeds the height of the slider.)
+If the value of **trackThickness** or [blockSize](#blocksize10) exceeds the width or height of the **Slider** component, the default value is used.
+
+When [SliderStyle](#sliderstyle) is set to **OutSet**, if the specified value of [blockSize](#blocksize10) exceeds the width or height of the **Slider** component, the default value is used, regardless of whether the value of **trackThickness** is valid or not.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -385,12 +397,6 @@ This API is deprecated since API version 9. You are advised to use **max** inste
 | ------ | ------ | ---- | -------- |
 | value  | string | Yes  | Maximum value.|
 
->  **NOTE**
->
->  - By default, the slider has no padding.
->  - A horizontal slider is displayed in the center with the following default settings: 40 vp height, width equal with that of the parent container, 10 vp left and right margins not covered by any padding (if set).
->  - A vertical slider is displayed in the center with the following default settings: 40 vp width, height equal with that of the parent container, 6 vp top and bottom margins not covered by any padding (if set).
-
 ### sliderInteractionMode<sup>12+</sup>
 
 sliderInteractionMode(value: SliderInteraction)
@@ -421,7 +427,7 @@ Sets the minimum distance required for the slider to respond.
 
 | Name| Type   | Mandatory| Description                                      |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | number | Yes  | Minimum distance required for the slider to respond. The slider will only respond and move when the sliding distance exceeds this threshold.<br>**NOTE**<br>The unit is the same as that of [min](#slideroptions) and [max](#slideroptions).<br>If the value is less than 0, greater than the result of (max - min), or invalid, the default value is used.<br>Default value: **0** |
+| value  | number | Yes  | Minimum distance required for the slider to respond. The slider will only move when the sliding distance exceeds this threshold.<br>**NOTE**<br>The unit is the same as that of [min](#slideroptions) and [max](#slideroptions).<br>If the value is less than 0, greater than the result of (max - min), or invalid, the default value is used.<br>Default value: **0** |
 
 ### contentModifier<sup>12+</sup>
 
@@ -441,8 +447,8 @@ Creates a content modifier.
 
 >  **NOTE**
 >
->  - If **contentModifier** is set, then clicks and swipes within the custom area will not trigger the **onChange** event of the original slider.
->  - The **onChange** event of the original slider can only be triggered when the **triggerChange** function is called with the correct parameter value.
+>  - If **contentModifier** is set, then clicks and gestures within the custom area will not trigger the **onChange** event of the original slider.
+>  - The **onChange** event of the original slider can only be triggered when the **triggerChange** API is called with valid parameter values.
 
 ### slideRange<sup>12+</sup>
 
@@ -499,6 +505,118 @@ Sets the sensitivity to the digital crown rotation.
 | Name     | Type                                                        | Mandatory| Description                                                   |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
 | sensitivity | [Optional\<CrownSensitivity>](ts-appendix-enums.md#crownsensitivity18) | Yes  | Sensitivity to the digital crown rotation.<br>Default value: **CrownSensitivity.MEDIUM**|
+
+### prefix<sup>20+</sup>
+
+prefix(content: ComponentContent, options?: SliderPrefixOptions)
+
+Sets the prefix of the slider.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name     | Type                                                        | Mandatory| Description                                                   |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
+| content | [ComponentContent](../js-apis-arkui-ComponentContent.md) | Yes  | Visual content of the slider prefix, which will be displayed at the start of the slider.|
+| options | [SliderPrefixOptions](#sliderprefixoptions20) | No  | Accessibility configuration of the slider prefix.|
+
+### suffix<sup>20+</sup>
+
+suffix(content: ComponentContent, options?: SliderSuffixOptions)
+
+Sets the suffix of the slider.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name     | Type                                                        | Mandatory| Description                                                   |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
+| content | [ComponentContent](../js-apis-arkui-ComponentContent.md)    | Yes  | Visual content of the slider suffix, which will be displayed at the end of the slider.|
+| options | [SliderSuffixOptions](#slidersuffixoptions20) | No  | Accessibility configuration of the slider suffix.|
+
+### showSteps<sup>20+</sup>
+
+showSteps(value: boolean, options?: SliderShowStepOptions)
+
+Sets whether to display the step markers along the slider track.
+
+You can set custom accessibility text for each step value. If no accessibility text is provided, the numeric values are used.
+
+The accessibility text settings take effect only when the step markers are displayed.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 20.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name     | Type                                                        | Mandatory| Description                                                   |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
+| value | boolean | Yes| Whether to display the step markers along the slider track. <br>**true**: Display the step markers.<br>**false**: Hide the step markers.<br>Default value: **false**.|
+| options | [SliderShowStepOptions](#slidershowstepoptions20) | No| Accessibility configuration of step markers.<br>Default value: **null**.|
+
+## SliderCustomContentOptions<sup>20+</sup>
+
+Provides accessibility configuration of the slider prefix and suffix.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name                    | Type       | Mandatory| Description                                                        |
+| ------------------------ | ----------- | ---- | ------------------------------------------------------------ |
+| accessibilityText        | [ResourceStr](ts-types.md#resourcestr) | No  | Text for assistive technologies (for example, screen readers).<br>Default value: **""**.|
+| accessibilityDescription | [ResourceStr](ts-types.md#resourcestr) | No  | Detailed functional description for assistive technologies.<br>Default value: **"Double-tap to activate"**.|
+| accessibilityLevel       | string      | No  | Whether the component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: It is treated as "yes" by the system.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**.|
+| accessibilityGroup       | boolean     | No  | Whether to enable accessibility grouping. The value **true** means to enable accessibility grouping, and **false** means the opposite. When accessibility grouping is enabled, the component and all its children are treated as a single selectable unit, and the accessibility service will no longer focus on the individual child components.<br>Default value: **false**.|
+
+## SliderPrefixOptions<sup>20+</sup>
+
+Provides accessibility configuration of the slider prefix. Inherits from [SliderCustomContentOptions](#slidercustomcontentoptions20).
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+## SliderSuffixOptions<sup>20+</sup>
+
+Provides accessibility configuration of the slider suffix. Inherits from [SliderCustomContentOptions](#slidercustomcontentoptions20).
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+## SliderStepItemAccessibility<sup>20+</sup>
+
+Provides accessibility configuration of the slider step markers.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name                    | Type       | Mandatory| Description                                                        |
+| ------------------------ | ----------- | ---- | ------------------------------------------------------------ |
+| text | [ResourceStr](ts-types.md#resourcestr) | No| Text for assistive technologies (for example, screen readers).<br>Default value: **""**.|
+
+## SliderShowStepOptions<sup>20+</sup>
+
+Provides accessibility text mapping for the slider step markers.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name                    | Type       | Mandatory| Description                                                        |
+| ------------------------ | ----------- | ---- | ------------------------------------------------------------ |
+| stepsAccessibility | Map<number, [SliderStepItemAccessibility](#sliderstepitemaccessibility20)> | No| Step value-to-text mappings for assistive technologies (for example, screen readers).<br>Value range for **Key**: [0, INT32_MAX].<br>If **Key** is set to a negative number or a decimal, the setting does not take effect.<br>Default value: **{}**.|
 
 ## SliderBlockStyle<sup>10+</sup>
 
@@ -592,6 +710,8 @@ If the coherent action is a drag action, the **Click** state will not be trigger
 
 ## SliderChangeMode
 
+Enumerates the slider states.
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -649,15 +769,15 @@ This example demonstrates how to control the display of the tooltip, current ste
 @Entry
 @Component
 struct SliderExample {
-  @State outSetValueOne: number = 40
-  @State inSetValueOne: number = 40
-  @State noneValueOne: number = 40
-  @State outSetValueTwo: number = 40
-  @State inSetValueTwo: number = 40
-  @State vOutSetValueOne: number = 40
-  @State vInSetValueOne: number = 40
-  @State vOutSetValueTwo: number = 40
-  @State vInSetValueTwo: number = 40
+  @State outSetValueOne: number = 40;
+  @State inSetValueOne: number = 40;
+  @State noneValueOne: number = 40;
+  @State outSetValueTwo: number = 40;
+  @State inSetValueTwo: number = 40;
+  @State vOutSetValueOne: number = 40;
+  @State vInSetValueOne: number = 40;
+  @State vOutSetValueTwo: number = 40;
+  @State vInSetValueTwo: number = 40;
 
   build() {
     Column({ space: 8 }) {
@@ -671,8 +791,8 @@ struct SliderExample {
         })
           .showTips(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.outSetValueOne = value
-            console.info('value:' + value + 'mode:' + mode.toString())
+            this.outSetValueOne = value;
+            console.info('value:' + value + 'mode:' + mode.toString());
           })
         // toFixed(0) converts the return value of the slider to an integer.
         Text(this.outSetValueOne.toFixed(0)).fontSize(12)
@@ -686,8 +806,8 @@ struct SliderExample {
         })
           .showSteps(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.outSetValueTwo = value
-            console.info('value:' + value + 'mode:' + mode.toString())
+            this.outSetValueTwo = value;
+            console.info('value:' + value + 'mode:' + mode.toString());
           })
         Text(this.outSetValueTwo.toFixed(0)).fontSize(12)
       }
@@ -706,8 +826,8 @@ struct SliderExample {
           .selectedColor('#4169E1')
           .showTips(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.inSetValueOne = value
-            console.info('value:' + value + 'mode:' + mode.toString())
+            this.inSetValueOne = value;
+            console.info('value:' + value + 'mode:' + mode.toString());
           })
         Text(this.inSetValueOne.toFixed(0)).fontSize(12)
       }
@@ -723,8 +843,8 @@ struct SliderExample {
           .selectedColor('#4169E1')
           .showSteps(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.inSetValueTwo = value
-            console.info('value:' + value + 'mode:' + mode.toString())
+            this.inSetValueTwo = value;
+            console.info('value:' + value + 'mode:' + mode.toString());
           })
         Text(this.inSetValueTwo.toFixed(0)).fontSize(12)
       }
@@ -743,8 +863,8 @@ struct SliderExample {
           .selectedColor('#4169E1')
           .showTips(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.noneValueOne = value
-            console.info('value:' + value + 'mode:' + mode.toString())
+            this.noneValueOne = value;
+            console.info('value:' + value + 'mode:' + mode.toString());
           })
         Text(this.noneValueOne.toFixed(0)).fontSize(12)
       }
@@ -765,8 +885,8 @@ struct SliderExample {
               .selectedColor('#4169E1')
               .showTips(true)
               .onChange((value: number, mode: SliderChangeMode) => {
-                this.vOutSetValueOne = value
-                console.info('value:' + value + 'mode:' + mode.toString())
+                this.vOutSetValueOne = value;
+                console.info('value:' + value + 'mode:' + mode.toString());
               })
             Slider({
               value: this.vOutSetValueTwo,
@@ -779,8 +899,8 @@ struct SliderExample {
               .selectedColor('#4169E1')
               .showSteps(true)
               .onChange((value: number, mode: SliderChangeMode) => {
-                this.vOutSetValueTwo = value
-                console.info('value:' + value + 'mode:' + mode.toString())
+                this.vOutSetValueTwo = value;
+                console.info('value:' + value + 'mode:' + mode.toString());
               })
           }
         }.width('50%').height(300)
@@ -796,8 +916,8 @@ struct SliderExample {
             })
               .showTips(true)
               .onChange((value: number, mode: SliderChangeMode) => {
-                this.vInSetValueOne = value
-                console.info('value:' + value + 'mode:' + mode.toString())
+                this.vInSetValueOne = value;
+                console.info('value:' + value + 'mode:' + mode.toString());
               })
             Slider({
               value: this.vInSetValueTwo,
@@ -808,8 +928,8 @@ struct SliderExample {
             })
               .showSteps(true)
               .onChange((value: number, mode: SliderChangeMode) => {
-                this.vInSetValueTwo = value
-                console.info('value:' + value + 'mode:' + mode.toString())
+                this.vInSetValueTwo = value;
+                console.info('value:' + value + 'mode:' + mode.toString());
               })
           }
         }.width('50%').height(300)
@@ -829,7 +949,7 @@ This example demonstrates how to customize the slider styles by setting **blockB
 @Entry
 @Component
 struct SliderExample {
-  @State tipsValue: number = 40
+  @State tipsValue: number = 40;
 
   build() {
     Column({ space: 8 }) {
@@ -867,7 +987,7 @@ struct SliderExample {
       Slider({ style: SliderStyle.InSet, value: this.tipsValue })
         .showTips(true, this.tipsValue.toFixed())
         .onChange(value => {
-          this.tipsValue = value
+          this.tipsValue = value;
         })
     }
   }
@@ -885,48 +1005,51 @@ This example demonstrates how to customize the **Slider** component using a styl
 ```ts
 // xxx.ets
 
-@Builder function buildSlider(config: SliderConfiguration) {
+@Builder
+function buildSlider(config: SliderConfiguration) {
   Row() {
-    Column({space: 30}) {
-      Progress({value: config.value, total: config.max, type:ProgressType.Ring})
-        .margin({ top:20 })
+    Column({ space: 30 }) {
+      Progress({ value: config.value, total: config.max, type: ProgressType.Ring })
+        .margin({ top: 20 })
 
-      Button('Increase').onClick(() => {
-        config.value = config.value + config.step
-        config.triggerChange(config.value, SliderChangeMode.Click)
-      })
+      Button('Increase')
+        .onClick(() => {
+          config.value = config.value + config.step;
+          config.triggerChange(config.value, SliderChangeMode.Click);
+        })
         .width(100)
         .height(25)
         .fontSize(10)
-        .enabled(config.value<config.max)
+        .enabled(config.value < config.max)
 
-      Button('Decrease').onClick(() => {
-        config.value=config.value-config.step
-        config.triggerChange(config.value, SliderChangeMode.Click)
-      })
+      Button('Decrease')
+        .onClick(() => {
+          config.value = config.value - config.step;
+          config.triggerChange(config.value, SliderChangeMode.Click);
+        })
         .width(100)
         .height(25)
         .fontSize(10)
-        .enabled(config.value>config.min)
+        .enabled(config.value > config.min)
 
       Slider({
         value: config.value,
         min: config.min,
         max: config.max,
-        step:config.step,
+        step: config.step,
       })
         .width(config.max)
-        .visibility((config.contentModifier as MySliderStyle).showSlider?Visibility.Visible:Visibility.Hidden)
+        .visibility((config.contentModifier as MySliderStyle).showSlider ? Visibility.Visible : Visibility.Hidden)
         .showSteps(true)
         .onChange((value: number, mode: SliderChangeMode) => {
-          config.triggerChange(value, mode)
+          config.triggerChange(value, mode);
         })
-      Text('Current state: '+ ((config.contentModifier as MySliderStyle).sliderChangeMode==0?"Begin"
-        :((config.contentModifier as MySliderStyle).sliderChangeMode==1?"Moving"
-          :((config.contentModifier as MySliderStyle).sliderChangeMode==2?"End"
-            :((config.contentModifier as MySliderStyle).sliderChangeMode==3?"Click":"None")))))
+      Text('Current state: ' + ((config.contentModifier as MySliderStyle).sliderChangeMode == 0 ? "Begin"
+        : ((config.contentModifier as MySliderStyle).sliderChangeMode == 1 ? "Moving"
+          : ((config.contentModifier as MySliderStyle).sliderChangeMode == 2 ? "End"
+            : ((config.contentModifier as MySliderStyle).sliderChangeMode == 3 ? "Click" : "None")))))
         .fontSize(10)
-      Text('Progress: '+ config.value)
+      Text('Progress: ' + config.value)
         .fontSize(10)
       Text('Min: ' + config.min)
         .fontSize(10)
@@ -942,14 +1065,16 @@ This example demonstrates how to customize the **Slider** component using a styl
 }
 
 class MySliderStyle implements ContentModifier<SliderConfiguration> {
-  showSlider:boolean=true
-  sliderChangeMode:number=0
-  constructor(showSlider: boolean,sliderChangeMode:number) {
-    this.showSlider = showSlider
-    this.sliderChangeMode = sliderChangeMode
+  showSlider: boolean = true;
+  sliderChangeMode: number = 0;
+
+  constructor(showSlider: boolean, sliderChangeMode: number) {
+    this.showSlider = showSlider;
+    this.sliderChangeMode = sliderChangeMode;
   }
-  applyContent() : WrappedBuilder<[SliderConfiguration]> {
-    return wrapBuilder(buildSlider)
+
+  applyContent(): WrappedBuilder<[SliderConfiguration]> {
+    return wrapBuilder(buildSlider);
   }
 }
 
@@ -957,12 +1082,12 @@ class MySliderStyle implements ContentModifier<SliderConfiguration> {
 @Entry
 @Component
 struct SliderExample {
-  @State showSlider:boolean=true
-  @State sliderValue: number = 0
-  @State sliderMin: number = 10
-  @State sliderMax: number = 100
-  @State sliderStep: number = 20
-  @State sliderChangeMode: number = 0
+  @State showSlider: boolean = true;
+  @State sliderValue: number = 0;
+  @State sliderMin: number = 10;
+  @State sliderMax: number = 100;
+  @State sliderStep: number = 20;
+  @State sliderChangeMode: number = 0;
 
   build() {
     Column({ space: 8 }) {
@@ -972,15 +1097,15 @@ struct SliderExample {
           value: this.sliderValue,
           min: this.sliderMin,
           max: this.sliderMax,
-          step:this.sliderStep,
+          step: this.sliderStep,
         })
           .showSteps(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.sliderValue = value
-            this.sliderChangeMode=mode
-            console.info(' [SliderLog] value:' + value + 'mode:' + mode.toString())
+            this.sliderValue = value;
+            this.sliderChangeMode = mode;
+            console.info('[SliderLog] value:' + value + 'mode:' + mode.toString());
           })
-          .contentModifier(new MySliderStyle(this.showSlider,this.sliderChangeMode))
+          .contentModifier(new MySliderStyle(this.showSlider, this.sliderChangeMode))
 
       }
       .width('100%')
@@ -991,3 +1116,373 @@ struct SliderExample {
 ```
 
 ![slider_3](figures/slider_builder.gif)
+
+### Example 4: Applying a Color Gradient Effect and Implementing Support for Digital Crown Interactions
+
+This example demonstrates how to a color gradient effect to the slider using **colorGradient** and implement support for digital crown interactions through **focusable**, **defaultFocus**, and **focusOnTouch**.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SliderExample {
+  @State inSetValueOne: number = 60
+  @State colorGradient: LinearGradient = new LinearGradient([{ color: "#FF0000FF", offset: 0 }, { color: "#FFFF0000", offset: 1 }])
+  @State sensitivity: CrownSensitivity | undefined | null = CrownSensitivity.MEDIUM
+  scroller: Scroller = new Scroller()
+
+  getIntegerDigits(num: number): string {
+    let numRound = Math.round(num);
+    return numRound.toString();
+  }
+
+  build() {
+    Column() {
+      Scroll(this.scroller){
+        Column() {
+          Row() {
+            Stack({ alignContent: Alignment.Top }) {
+              Slider({
+                value: this.inSetValueOne,
+                min: 0,
+                max: 100,
+                style: SliderStyle.NONE,
+                direction: Axis.Vertical,
+                reverse: true
+              })
+                .focusable(true)
+                .defaultFocus(true)
+                .focusOnTouch(true)
+                .digitalCrownSensitivity(this.sensitivity)
+                .trackColor("#26FFFFFF")
+                .trackThickness(52)
+                .selectedColor(this.colorGradient)
+                .onChange((value: number, mode: SliderChangeMode) => {
+                  this.inSetValueOne = value
+                })
+            }
+            .height(233 - 66)
+            .width(52)
+            .margin({ top: 33, bottom: 33, left: 56 })
+            Column() {
+              Text('Volume')
+                .fontSize(19)
+                .fontColor("#A9FFFFFF")
+                .fontWeight(500)
+                .textAlign(TextAlign.Start)
+                .margin({ left: 20 })
+              Row() {
+                Text(this.getIntegerDigits(this.inSetValueOne))
+                  .fontSize(52)
+                  .fontColor("#FFFFFFFF")
+                  .fontWeight(700)
+                  .textAlign(TextAlign.Start)
+                  .margin({ left: 20 })
+                Text('%')
+                  .fontSize(19)
+                  .fontColor("#FFFFFFFF")
+                  .fontWeight(500)
+                  .textAlign(TextAlign.Start)
+                  .margin({ left: 2 })
+              }
+            }.alignItems(HorizontalAlign.Start)
+          }
+          .width(233)
+          .height(233)
+          .borderRadius(116.5)
+          .backgroundColor(Color.Black)
+        }
+      }
+    }.width('100%')
+  }
+}
+```
+
+![slider_4](figures/slider_crown.gif)
+
+
+### Example 5: Setting the Slider Prefix and Suffix
+
+This example demonstrates how to set the prefix and suffix of the slider using **prefix** and **suffix**, defining their custom content and accessibility configuration. After the accessibility configuration is specified, the screen reader announces the accessibility text accordingly.
+
+```ts
+// xxx.ets
+import { ComponentContent } from '@kit.ArkUI';
+
+class NodeParams {
+  param: ResourceStr = ""
+
+  constructor(param: ResourceStr) {
+    this.param = param;
+  }
+}
+
+@Builder
+function textBuilder(params: NodeParams) {
+  Text(params.param)
+    .fontSize($r('sys.float.Caption_L'))
+    .clip(true)
+    .textAlign(TextAlign.Center)
+    .fontColor(Color.Black)
+}
+
+@Entry
+@Component
+struct SliderExample {
+  private pre: string = 'Low';
+  private suf: string = 'High';
+  private uiContext: UIContext = this.getUIContext();
+
+  private preNode1: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.pre));
+  private sufNode1: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.suf));
+  private preNode2: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.pre));
+  private sufNode2: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.suf));
+  private preNode3: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.pre));
+  private sufNode3: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.suf));
+  private preNode4: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.pre));
+  private sufNode4: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.suf));
+  private preNode5: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.pre));
+  private sufNode5: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.suf));
+  private preNode6: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.pre));
+  private sufNode6: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.suf));
+
+  build() {
+    Column({ space: 8 }) {
+      Text('outset slider').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(15)
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          style: SliderStyle.OutSet
+        })
+          .showTips(true)
+          .prefix(this.preNode1)
+          .suffix(this.sufNode1)
+      }
+      .width('80%')
+
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          style: SliderStyle.OutSet
+        })
+          .showTips(true)
+          .prefix(this.preNode3)
+      }
+      .width('80%')
+
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          style: SliderStyle.OutSet
+        })
+          .showTips(true)
+          .suffix(this.sufNode3)
+      }
+      .width('80%')
+
+      Text('inset slider').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(15)
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .blockColor('#191970')
+          .trackColor('#ADD8E6')
+          .selectedColor('#4169E1')
+          .showTips(true)
+          .trackThickness(36)
+          .prefix(this.preNode2)
+          .suffix(this.sufNode2)
+      }
+      .width('80%')
+
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .blockColor('#191970')
+          .trackColor('#ADD8E6')
+          .selectedColor('#4169E1')
+          .showTips(true)
+          .trackThickness(36)
+          .prefix(this.preNode4)
+      }
+      .width('80%')
+
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .blockColor('#191970')
+          .trackColor('#ADD8E6')
+          .selectedColor('#4169E1')
+          .showTips(true)
+          .trackThickness(36)
+          .suffix(this.sufNode4)
+      }
+      .width('80%')
+
+      Text('slider Show Step').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(15)
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          step:10,
+          style: SliderStyle.InSet
+        })
+          .blockColor('#191970')
+          .trackColor('#ADD8E6')
+          .selectedColor('#4169E1')
+          .showTips(true)
+          .trackThickness(36)
+          .showSteps(true)
+          .prefix(this.preNode5, {
+            accessibilityText: 'prefixText',
+            accessibilityDescription: 'prefixDescription',
+            accessibilityLevel: 'auto',
+            accessibilityGroup: true
+          })
+          .suffix(this.sufNode5, {
+            accessibilityText: 'suffixText',
+            accessibilityDescription: 'suffixDescription',
+            accessibilityLevel: 'auto',
+            accessibilityGroup: true
+          })
+      }
+      .width('80%')
+
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          step:10,
+          style: SliderStyle.InSet
+        })
+          .blockColor('#191970')
+          .trackColor('#ADD8E6')
+          .selectedColor('#4169E1')
+          .showTips(true)
+          .trackThickness(36)
+          .showSteps(true)
+          .prefix(this.preNode6, {
+            accessibilityText: 'prefixText',
+            accessibilityDescription: 'prefixDescription',
+            accessibilityLevel: 'auto',
+            accessibilityGroup: true
+          })
+      }
+      .width('80%')
+      
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          step:10,
+          style: SliderStyle.InSet
+        })
+          .blockColor('#191970')
+          .trackColor('#ADD8E6')
+          .selectedColor('#4169E1')
+          .showTips(true)
+          .trackThickness(36)
+          .showSteps(true)
+          .suffix(this.sufNode6, {
+            accessibilityText: 'suffixText',
+            accessibilityDescription: 'suffixDescription',
+            accessibilityLevel: 'auto',
+            accessibilityGroup: true
+          })
+      }
+      .width('80%')
+    }.width('100%')
+  }
+}
+```
+
+![slider_5](figures/slider_5.jpeg)
+
+
+### Example 6: Setting Accessibility Text for Slider Step Markers
+
+This example demonstrates how to set accessibility text for step markers in a **Slider** component using **showSteps**. The screen reader announces the set accessibility text accordingly.
+
+```ts
+
+class SliderBlockBorderColorModifier1 implements AttributeModifier<SliderAttribute>{
+  optionMaps:Map<number, SliderStepItemAccessibility> = new Map()
+    .set(1, {text : "123123"})
+    .set(2, {text : "Slider accessibility text"})
+    .set(3, {text : $r('app.string.stepItemText')})
+    .set(4, {text : "!@#$%^&*()"});
+  applyNormalAttribute(instance: SliderAttribute): void {
+    instance.showSteps(true, {stepsAccessibility: this.optionMaps})
+  }
+}
+@Entry
+@Component
+struct SliderExample {
+  @State show: boolean = true;
+  @State optionMaps:Map<number, SliderStepItemAccessibility> = new Map();
+  private  sliderModifier: SliderBlockBorderColorModifier1 =new SliderBlockBorderColorModifier1()
+  aboutToAppear(){
+    this.optionMaps.set(1, {text : "123123"})
+    this.optionMaps.set(2, {text : "Slider accessibility text"})
+    this.optionMaps.set(3, {text : $r('app.string.app_name')})
+    this.optionMaps.set(4, {text : "!@#$%^&*()"})
+    this.show = true;
+  }
+  build() {
+    Column({ space: 8 }) {
+      Text("show steps").fontSize(12).fontColor(0xCCCCCC).margin(15).width('90%')
+      Row() {
+        Slider({
+          style: SliderStyle.InSet,
+          value: 20,
+          step: 10,
+          max: 50,
+          min: 0,
+          direction: Axis.Horizontal
+        })
+          .stepSize(8)
+          .stepColor(Color.Yellow)
+          .showSteps(true, {stepsAccessibility: this.optionMaps})
+      } .width('80%').height(300)
+      Divider()
+      Text("modifier").fontSize(12).fontColor(0xCCCCCC).margin(15).width('90%')
+      Row() {
+        Slider({
+          style: SliderStyle.InSet,
+          value: 20,
+          step: 10,
+          max: 50,
+          min: 0,
+          direction: Axis.Horizontal
+        })
+          .stepSize(8)
+          .stepColor(Color.Yellow)
+          .attributeModifier(this.sliderModifier)
+      } .width('80%').height(300)
+      Divider()
+    }
+  }
+}
+
+```
+![slider_step_options](figures/slider_step_options.png)

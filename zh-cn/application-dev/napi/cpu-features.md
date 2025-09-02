@@ -12,7 +12,7 @@ OpenHarmony系统当前没有提供获取CPU特性的接口，开发者可以导
 
 ## 使用建议
 
-1. 在OpenHarmony系统C++工程中引入开源库，下载[cpu_features库](https://github.com/google/cpu_features)，解压到工程的cpp目录下。如下以IDE C++模版示例应用举例：
+1. 在OpenHarmony系统C++工程中引入开源库，下载[cpu_features库](https://github.com/google/cpu_features)，解压到工程的cpp目录下。如下以DevEco Studio C++模版示例应用举例：
    - 解压后目录结构如下
       ```
       MyApplication

@@ -17,11 +17,11 @@ The **DataShareExtensionAbility** module provides data share services based on t
 import { DataShareExtensionAbility } from '@kit.ArkData';
 ```
 
-## Properties
+## Attributes
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
 
-| Name| Type| Readable| Writable| Description| 
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | context<sup>10+</sup> | [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)  | Yes| No|Context of the DataShare ExtensionAbility.|
 
@@ -96,7 +96,7 @@ Inserts data into the database. This API can be overridden as required.
 | ----- | ------ | ------ | ------ |
 | uri |string | Yes | URI of the data to insert.|
 | valueBucket |[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | Yes| Data to insert.|
-| callback |AsyncCallback&lt;number&gt; | Yes| Callback used to return the index of the data inserted.|
+| callback |AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the index of the inserted data record.|
 
 **Example**
 
@@ -137,7 +137,7 @@ Updates data in the database. This API can be overridden as required.
 | uri | string | Yes | URI of the data to update.|
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes | Filter criteria for updating data.|
 | valueBucket | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | Yes| New data.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of updated data records.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of data records updated.|
 
 **Example**
 
@@ -174,7 +174,7 @@ Batch updates data into the database. This API is called by the server and can b
 | Name    | Type                                                        | Mandatory| Description                                                  |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------ |
 | operations | Record&lt;string, Array&lt;[UpdateOperation](#updateoperation12)&gt;&gt; | Yes  | Collection of the path of the data to update, update conditions, and new data.                |
-| callback   | AsyncCallback&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt;  | Yes  | Callback used to return an array of updated data records. The value **-1** means the update operation fails.|
+| callback   | AsyncCallback&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt;  | Yes  | Callback invoked to return an array of updated data records. The value **-1** means the update operation fails.|
 
 **Example**
 
@@ -224,7 +224,7 @@ Deletes data from the database. This API can be overridden as required.
 | ---------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
 | uri        | string                                                       | Yes  | URI of the data to delete.          |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria for deleting data.                    |
-| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback used to return the number of data records deleted.|
+| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the number of deleted data records.|
 
 **Example**
 
@@ -263,7 +263,7 @@ Queries data from the database. This API can be overridden as required.
 | uri | string | Yes | URI of the data to query.|
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes | Filter criteria for querying data.|
 | columns | Array&lt;string&gt; | Yes| Columns to query. If this parameter is empty, all columns will be queried.|
-| callback | AsyncCallback&lt;Object&gt; | Yes| Callback used to return the result set obtained.|
+| callback | AsyncCallback&lt;Object&gt; | Yes| Callback invoked to return the result set obtained.|
 
 **Example**
 
@@ -304,7 +304,7 @@ Batch inserts data into the database. This API is called by the server and can b
 | ------------ | ------------------------------------------------------------ | ---- | -------------------------------- |
 | uri          | string                                                       | Yes  | URI of the data to insert.    |
 | valueBuckets | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | Yes  | Data to insert.          |
-| callback     | AsyncCallback&lt;number&gt;                                  | Yes  | Callback used to return the number of inserted data records.|
+| callback     | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the number of inserted data records.|
 
 **Example**
 
@@ -342,7 +342,7 @@ Normalizes a URI. This API can be overridden as required.
 | Name    | Type                 | Mandatory| Description                   |
 | -------- | --------------------- | ---- | ----------------------- |
 | uri      | string                | Yes  | [URI](../apis-arkts/js-apis-uri.md#uri) to normalize.|
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. If the operation is successful, the normalized URI is returned. Otherwise, **null** is returned.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the result. If the operation is successful, the normalized URI is returned. Otherwise, **null** is returned.|
 
 **Example**
 
@@ -378,7 +378,7 @@ Denormalizes a URI. This API can be overridden as required.
 | Name    | Type                 | Mandatory| Description                   |
 | -------- | --------------------- | ---- | ----------------------- |
 | uri      | string                | Yes  | [URI](../apis-arkts/js-apis-uri.md#uri) to denormalize.|
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. If the operation is successful, the denormalized URI is returned. If the URI passed in is returned, denormalization is not required. If denormalization is not supported, **null** is returned.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the result. If the operation is successful, the denormalized URI is returned. If the URI passed in is returned, denormalization is not required. If denormalization is not supported, **null** is returned.|
 
 **Example**
 

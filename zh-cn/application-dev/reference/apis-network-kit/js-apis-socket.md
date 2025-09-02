@@ -1,5 +1,12 @@
 # @ohos.net.socket (Socket连接)
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 本模块提供利用Socket进行数据传输的能力，支持TCPSocket、UDPSocket、WebSocket和TLSSocket。
 
 > **说明：**
@@ -230,15 +237,16 @@ let socks5Server: socket.NetAddress = {
   address: '192.168.xx.xxx',
   port: 8080
 }
+let proxyOptions: socket.ProxyOptions = {
+  type : 1,
+  address: socks5Server,
+  username: "xxx",
+  password: "xxx"
+}
 let sendOptions: socket.UDPSendOptions = {
   data: 'Hello, server!',
   address: netAddress,
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
+  proxy: proxyOptions,
 }
 udp.send(sendOptions, (err: BusinessError) => {
   if (err) {
@@ -347,15 +355,16 @@ let socks5Server: socket.NetAddress = {
   address: '192.168.xx.xxx',
   port: 8080
 }
+let proxyOptions: socket.ProxyOptions = {
+  type : 1,
+  address: socks5Server,
+  username: "xxx",
+  password: "xxx"
+}
 let sendOptions: socket.UDPSendOptions = {
   data: 'Hello, server!',
   address: netAddress,
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
+  proxy: proxyOptions,
 }
 udp.send(sendOptions).then(() => {
   console.log('send success');
@@ -1830,15 +1839,16 @@ let socks5Server: socket.NetAddress = {
   address: '192.168.xx.xxx',
   port: 8080
 }
+let proxyOptions: socket.ProxyOptions = {
+  type : 1,
+  address: socks5Server,
+  username: "xxx",
+  password: "xxx"
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
   address: netAddress,
   timeout: 6000,
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
+  proxy: proxyOptions,
 }
 tcp.connect(tcpconnectoptions, (err: BusinessError) => {
   if (err) {
@@ -1928,15 +1938,16 @@ let socks5Server: socket.NetAddress = {
   address: '192.168.xx.xxx',
   port: 8080
 }
+let proxyOptions: socket.ProxyOptions = {
+  type : 1,
+  address: socks5Server,
+  username: "xxx",
+  password: "xxx"
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
   address: netAddress,
   timeout: 6000,
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
+  proxy: proxyOptions,
 }
 tcp.connect(tcpconnectoptions).then(() => {
   console.log('connect success')
@@ -2135,6 +2146,7 @@ close(): Promise\<void\>
 
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
@@ -3363,6 +3375,7 @@ on(type: 'connect', callback: Callback\<TCPSocketConnection\>): void
 
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 
@@ -3410,6 +3423,7 @@ off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
 
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 
@@ -3781,6 +3795,7 @@ close(): Promise\<void\>
 
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
@@ -4720,6 +4735,8 @@ getLocalAddress(): Promise\<string\>
 <!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -5384,6 +5401,8 @@ getLocalAddress(): Promise\<string\>
 <!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -5750,6 +5769,8 @@ getLocalAddress(): Promise\<string\>
 <!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -6891,16 +6912,17 @@ let twoWaySecureOptions: socket.TLSSecureOptions = {
   signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
   cipherSuite: "AES256-SHA256"
 }
+let proxyOptions: socket.ProxyOptions = {
+  type : 1,
+  address: socks5Server,
+  username: "xxx",
+  password: "xxx"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: twoWayNetAddr,
   secureOptions: twoWaySecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"],
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
+  proxy: proxyOptions,
 }
 
 tlsTwoWay.connect(tlsConnectOptions, (err: BusinessError) => {
@@ -6923,15 +6945,16 @@ let oneWaySecureOptions: socket.TLSSecureOptions = {
   ca: ["xxxx", "xxxx"],
   cipherSuite: "AES256-SHA256"
 }
+let proxyOptions: socket.ProxyOptions = {
+  type : 1,
+  address: socks5Server,
+  username: "xxx",
+  password: "xxx"
+}
 let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
   address: oneWayNetAddr,
   secureOptions: oneWaySecureOptions,
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
+  proxy: proxyOptions,
 }
 tlsOneWay.connect(tlsOneWayConnectOptions, (err: BusinessError) => {
   console.error("connect callback error" + err);
@@ -7091,16 +7114,17 @@ let twoWaySecureOptions: socket.TLSSecureOptions = {
   signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
   cipherSuite: "AES256-SHA256"
 }
+let proxyOptions: socket.ProxyOptions = {
+  type : 1,
+  address: socks5Server,
+  username: "xxx",
+  password: "xxx"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: twoWayNetAddr,
   secureOptions: twoWaySecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"],
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
+  proxy: proxyOptions,
 }
 
 tlsTwoWay.connect(tlsConnectOptions).then(() => {
@@ -7125,15 +7149,16 @@ let oneWaySecureOptions: socket.TLSSecureOptions = {
   ca: ["xxxx", "xxxx"],
   cipherSuite: "AES256-SHA256"
 }
+let proxyOptions: socket.ProxyOptions = {
+  type : 1,
+  address: socks5Server,
+  username: "xxx",
+  password: "xxx"
+}
 let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
   address: oneWayNetAddr,
   secureOptions: oneWaySecureOptions,
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
+  proxy: proxyOptions,
 }
 tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
   console.log("connect successfully");

@@ -1,4 +1,10 @@
 # 使用 JSVM-API 提供的proxy接口
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 ## 简介
 JSVM-API 提供了创建 Proxy、判断 JSVM_Value 是否为 Proxy 类型和获取 Proxy 中的目标对象的接口。
 

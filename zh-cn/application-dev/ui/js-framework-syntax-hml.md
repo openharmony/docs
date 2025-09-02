@@ -1,4 +1,10 @@
 # HML语法参考
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sunfei2021-->
+<!--Designer: @sunfei2021-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
 
 HML是一套类HTML的标记语言，通过组件，事件构建出页面的内容。页面具备数据绑定、事件绑定、列表渲染、条件渲染和逻辑控制等高级能力。
 
@@ -145,17 +151,17 @@ export default {
   <!-- xxx.hml -->
   <div>
      <!-- 使用事件冒泡模式绑定事件回调函数。5+ -->;
-      <div on:touchstart.bubble="touchstartfunc"></div>
-      <div on:touchstart="touchstartfunc"></div>
+      <div on:touchstart.bubble="touchstartfunc" style="background-color: red; width: 10%; height: 100%"></div>
+      <div on:touchstart="touchstartfunc" style="background-color: orange; width: 10%; height: 100%"></div>
       <!-- 绑定事件回调函数，但阻止事件向上传递。5+ -->
-      <div grab:touchstart.bubble="touchstartfunc"></div>
-      <div grab:touchstart="touchstartfunc"></div>
+      <div grab:touchstart.bubble="touchstartfunc" style="background-color: yellow; width: 10%; height: 100%"></div>
+      <div grab:touchstart="touchstartfunc" style="background-color: greenyellow; width: 10%; height: 100%"></div>
       <!-- 使用事件冒泡模式绑定事件回调函数。6+ -->
-      <div on:click.bubble="clickfunc"></div>
-      <div on:click="clickfunc"></div>
+      <div on:click.bubble="clickfunc" style="background-color: lightskyblue; width: 10%; height: 100%"></div>
+      <div on:click="clickfunc" style="background-color: cornflowerblue; width: 10%; height: 100%"></div>
       <!-- 绑定事件回调函数，但阻止事件向上传递。6+ -->
-      <div grab:click.bubble="clickfunc"></div>
-      <div grab:click="clickfunc"></div>
+      <div grab:click.bubble="clickfunc" style="background-color: mediumslateblue; width: 10%; height: 100%"></div>
+      <div grab:click="clickfunc" style="background-color: purple; width: 10%; height: 100%"></div>
   </div>
   ```
 
@@ -163,10 +169,10 @@ export default {
   // xxx.js
   export default {
       clickfunc: function(e) {
-          console.log(e);
+          console.info(e);
       },
       touchstartfunc: function(e) {
-          console.log(e);
+          console.info(e);
       },
   }
   ```
@@ -176,7 +182,7 @@ export default {
 
 ## 捕获事件绑定<sup>5+</sup>
 
-Touch触摸类事件支持捕获，捕获阶段位于冒泡阶段之前，捕获事件先到达父组件然后达到子组件。
+Touch触摸类事件支持捕获，捕获阶段位于冒泡阶段之前，捕获事件先到达父组件然后到达子组件。
 
 捕获事件绑定包括：
 
@@ -199,7 +205,7 @@ Touch触摸类事件支持捕获，捕获阶段位于冒泡阶段之前，捕获
   // xxx.js
   export default {
       touchstartfunc: function(e) {
-          console.log(e);
+          console.info(e);
       },
   }
   ```
@@ -309,7 +315,7 @@ export default {
 
 ![zh-cn_image_0000001118642004](figures/zh-cn_image_0000001118642004.gif)
 
-优化渲染优化：show方法。当show为true时，节点正常渲染；当为false时，仅仅设置display样式为none。
+优化渲染：show方法。当show为true时，节点正常渲染；当为false时，仅仅设置display样式为none。
 
 ```html
 <!-- xxx.hml -->

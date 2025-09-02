@@ -1,8 +1,16 @@
 # native_avscreen_capture_errors.h
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zzs_911-->
+<!--Designer: @stupig001-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
 声明用于运行屏幕录制过程中接口调用的错误码说明。
+
+**引用文件：** <multimedia/player_framework/native_avscreen_capture_errors.h>
 
 **库：** libnative_avscreen_capture.so
 

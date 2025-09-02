@@ -1,4 +1,10 @@
 # 工具栏设置
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 设置组件对应的工具栏。
 
@@ -6,11 +12,11 @@
 >
 >  从API version 20开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  该toolbar为组件通用属性，请注意与[Navigtion](ts-basic-components-navigation.md)组件自身的toolbar属性进行区分。
+>  该toolbar为组件通用属性，请注意与[Navigation](ts-basic-components-navigation.md)组件自身的toolbar属性进行区分。
 
 ## toolbar
 
-toolbar(value: CustomBuilder)
+toolbar(value: CustomBuilder): T
 
 为绑定该属性的组件，在窗口顶部标题栏相应分栏创建与该组件绑定的由[ToolBarItem](ts-basic-components-toolbaritem.md)构成的工具栏，分栏位置依据绑定该属性的组件所在分栏位置确定。[CustomBuilder](ts-types.md#custombuilder8)必须由[ToolBarItem](ts-basic-components-toolbaritem.md)构成，该工具栏才能生效。
 
@@ -21,6 +27,12 @@ toolbar(value: CustomBuilder)
 | 参数名 | 类型                                        | 必填 | 说明                                            |
 | ------ | ------------------------------------------- | ---- | ----------------------------------------------- |
 | value  | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 为当前组件配置CustomBuilder类型的自定义工具栏。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 >  **说明：**
 >  1. toolbar仅支持固定标题栏，不支持悬浮标题栏（仅限三键模式）。
@@ -39,7 +51,7 @@ toolbar(value: CustomBuilder)
 
 ## 示例
 
-该示例通过为[Navigtion](ts-basic-components-navigation.md)下的[Button](ts-basic-components-button.md)组件绑定toolbar通用属性，为标题栏Navbar分栏开头位置添加包含两个[Button](ts-basic-components-button.md)组件工具栏项。为[NavDestination](ts-basic-components-navdestination.md)下的[Text](ts-basic-components-text.md)组件绑定toolbar通用属性，为标题栏NavDestination分栏末尾位置添加包含一个滑动条组件和一个搜索栏组件工具栏项。
+该示例通过为[Navigation](ts-basic-components-navigation.md)下的[Button](ts-basic-components-button.md)组件绑定toolbar通用属性，为标题栏Navbar分栏开头位置添加包含两个[Button](ts-basic-components-button.md)组件工具栏项。为[NavDestination](ts-basic-components-navdestination.md)下的[Text](ts-basic-components-text.md)组件绑定toolbar通用属性，为标题栏NavDestination分栏末尾位置添加包含一个滑动条组件和一个搜索栏组件工具栏项。
 
 ```ts
 // xxx.ets
@@ -76,7 +88,6 @@ struct SideBarContainerExample {
 
   @Builder
   PageNavDest(name: string) {
-    if (name = "1")
     NavDestination() {
       Column() {
         Text("add toolbar")
@@ -101,7 +112,7 @@ struct SideBarContainerExample {
           .onClick(() => {
             this.current = item
           })
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }.width('100%')
       .justifyContent(FlexAlign.SpaceEvenly)
       .backgroundColor('#19000000')
@@ -148,3 +159,4 @@ struct SideBarContainerExample {
   }
 }
 ```
+![toolbar.png](figures/toolbar.png)

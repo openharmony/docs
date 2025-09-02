@@ -1,5 +1,12 @@
 # @ohos.graphics.uiEffect (效果级联)(系统接口)
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hanamaru-->
+<!--Designer: @comicchang-->
+<!--Tester: @gcw_fsLqk7gL-->
+<!--Adviser: @ge-yafang-->
+
 本模块提供组件效果的一些基础能力，包括模糊、边缘像素扩展、提亮等。效果被分为Filter和VisualEffect大类，同类效果可以级联在一个效果大类的实例下。在实际开发中，模糊可用于背景虚化，提亮可用于亮屏显示等。
 
 - [Filter](#filter)：用于添加指定Filter效果到组件上。
@@ -602,9 +609,7 @@ maskDispersion(dispersionMask: Mask, alpha: number, rFactor?: [number, number], 
 ```ts
 import {image} from '@kit.ImageKit'
 import {common2D, uiEffect} from '@kit.ArkGraphics2D'
-
-const context = getContext(this)
-const resourceMgr =context.resourceManager
+import {common} from '@kit.AbilityKit'
 
 @Entry
 @Component
@@ -615,11 +620,12 @@ struct MaskDispersion {
   @State fillColor: uiEffect.Color = { red: 0, green: 0, blue: 0, alpha: 0 }
 
   onPageShow(): void {
-    resourceMgr.getMediaContent($r("app.media.mask_alpha")).then(val => {
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext
+    context.resourceManager.getMediaContent($r("app.media.mask_alpha")).then(val => {
       let buffer = val.buffer.slice(0, val.buffer.byteLength)
       let imageSource = image.createImageSource(buffer);
-      imageSource.createPixelMap().then(pixelmap => {
-        this.pixelMap_ = pixelmap
+      imageSource.createPixelMap().then(pixelMap => {
+        this.pixelMap_ = pixelMap
       })
     })
   }
@@ -757,7 +763,7 @@ struct Index {
 ```
 
 ### directionLight<sup>20+</sup>
-directionLight(direction: common2D.Point3d, color: Color, intensity: number, bumpMask?: Mask): Filter
+directionLight(direction: common2D.Point3d, color: Color, intensity: number, mask?: Mask, factor?: number): Filter
 
 为组件内容提供基于[Mask](#mask20)和平行光的光照效果。
 
@@ -771,7 +777,8 @@ directionLight(direction: common2D.Point3d, color: Color, intensity: number, bum
 | direction  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12)         | 是   | 方向光的入射方向。|
 | color  | [Color](#color20)         | 是   | 光照颜色。|
 | intensity  | number         | 是   | 光照强度，非负数。|
-| bumpMask  | [Mask](#mask20)         | 否   | 置换贴图，用于描述二维图像表面的三维细节，通过法线增强图像局部表面细节和光照反射效果。默认为空，表现为全局无细节平面光照效果。|
+| mask  | [Mask](#mask20)         | 否   | 置换贴图，用于描述二维图像表面的三维细节，通过法线或高度图增强局部细节和光照反射效果，若输入为高度图，须与factor参数配合使用。默认为空，表现为全局无细节的平面光照效果。|
+| factor  | number         | 否   | 采样缩放系数。默认值为null，mask作为法线图采样；非默认值时，mask作为高度图采样，实际高度值为mask的采样值与factor的乘积。|
 
 **返回值：**
 
@@ -1127,8 +1134,8 @@ static createPixelMapMask(pixelMap: image.PixelMap, srcRect: common2D.Rect, dstR
 | 参数名  | 类型                                      | 必填 | 说明                       |
 | ------- | ---------------------------------------- | ---- | ------------------------- |
 | pixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是   | image模块创建的PixelMap实例。可通过图片解码或直接创建获得，具体可见[图片开发指导](../../media/image/image-overview.md)。   |
-| srcRect | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | pixelMap的待绘制区域，各元素取值范围为[0, 1]，小于0的转为0，大于1的转为1。图片最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。right需大于left，bottom需大于top。 |
-| dstRect | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | pixelMap在mask挂载的节点上的绘制区域，各元素取值范围为[0, 1]，小于0的转为0，大于1的转为1。节点最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。right需大于left，bottom需大于top。 |
+| srcRect | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | pixelMap的待绘制区域。图片最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。right需大于left，bottom需大于top。 |
+| dstRect | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | pixelMap在mask挂载的节点上的绘制区域。节点最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。right需大于left，bottom需大于top。 |
 | fillColor | [Color](#color20) | 否   |  节点上在pixelMap绘制区域之外的区域填充的颜色，各元素取值范围为[0, 1]，默认透明色，小于0的转为0，大于1的转为1。 |
 
 **返回值：**
@@ -1150,6 +1157,7 @@ static createPixelMapMask(pixelMap: image.PixelMap, srcRect: common2D.Rect, dstR
 ```ts
 import { image } from "@kit.ImageKit";
 import { uiEffect, common2D } from "@kit.ArkGraphics2D";
+import { BusinessError } from '@kit.BasicServicesKit'
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -1180,6 +1188,8 @@ image.createPixelMap(color, opts).then((pixelMap) => {
     alpha: 1
   }
   let mask = uiEffect.Mask.createPixelMapMask(pixelMap, srcRect, dstRect, fillColor);
+}).catch((error: BusinessError)=>{
+  console.error('Failed to create pixelmap. code is ${error.code}, message is ${error.message}');
 })
 ```
 ### createRadialGradientMask<sup>20+</sup>

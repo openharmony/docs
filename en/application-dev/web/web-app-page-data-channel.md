@@ -1,10 +1,10 @@
 # Establishing a Data Channel Between the Application and the Frontend Page
 
 
-The [createWebMessagePorts()](../reference/apis-arkweb/js-apis-webview.md#createwebmessageports) API allows you to create message ports to implement communication between the application and frontend page.
+The [createWebMessagePorts()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#createwebmessageports) API allows you to create message ports to implement communication between the application and frontend page.
 
 
-In the following example, **createWebMessagePorts** is used to create message ports on the application and [postMessage()](../reference/apis-arkweb/js-apis-webview.md#postmessage) is used to forward one of the message ports to the frontend page so that the application and frontend page can exchange messages with each other over the port.
+In the following example, **createWebMessagePorts** is used to create two message ports on the application and [postMessage()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#postmessage) is used to forward one of the message ports to the frontend page so that the application and frontend page can exchange messages with each other over the port.
 
 
 - Application code:

@@ -10,7 +10,7 @@ During application development, you can use the **state** property of the AVReco
 
 ![Recording state change](figures/recording-status-change-ndk.png)
 
-For details about the states, see [AVRecorderState](../../reference/apis-media-kit/js-apis-media.md#avrecorderstate9).
+For details about the states, see [AVRecorderState](../../reference/apis-media-kit/arkts-apis-media-t.md#avrecorderstate9).
 
 
 ## Requesting Permissions

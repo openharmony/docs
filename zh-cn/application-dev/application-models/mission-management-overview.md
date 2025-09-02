@@ -131,13 +131,14 @@
     missionManager.getMissionSnapShot('', this.missionId,
       (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
         if (error === null) {
+          hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
           this.getUIContext().getPromptAction().showToast({
             message: 'obtain_snapshot_success_toast'
           });
+        } else {
+          hilog.error(DOMAIN_NUMBER, TAG,
+              `getMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
         }
-        hilog.error(DOMAIN_NUMBER, TAG,
-          `getMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
-        hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
       });
     ```
     ```ts
@@ -145,13 +146,14 @@
     missionManager.getLowResolutionMissionSnapShot('', this.missionId,
       (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
         if (error === null) {
+          hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
           this.getUIContext().getPromptAction().showToast({
             message: 'obtain_low_snapshot_success_toast'
           });
+        } else {
+          hilog.error(DOMAIN_NUMBER, TAG,
+              `getLowResolutionMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
         }
-        hilog.error(DOMAIN_NUMBER, TAG,
-          `getLowResolutionMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
-        hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
       });
     ```
     ```ts
@@ -209,4 +211,4 @@
 
 针对任务管理开发，有以下相关实例可供参考：
 
-- [任务管理（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/MissionManager)
+- [任务管理（ArkTS）（Full SDK）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/MissionManager)

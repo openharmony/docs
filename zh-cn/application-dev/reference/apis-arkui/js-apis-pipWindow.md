@@ -1,10 +1,18 @@
 # @ohos.PiPWindow (画中画窗口)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 该模块提供画中画基础功能，包括判断当前系统是否支持画中画功能，以及创建画中画控制器用于启动或停止画中画等。适用于视频播放、视频通话或视频会议场景下，以小窗（画中画）模式呈现内容。
 
 > **说明：**
 >
-> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 在API version 20之前，支持在Phone、Tablet设备使用画中画功能，其他设备不可用；从API version 20开始，支持在Phone、PC/2in1、Tablet设备使用画中画功能，其他设备不可用。
 
 ## 导入模块
 
@@ -849,11 +857,13 @@ try {
 ### getPiPSettingSwitch<sup>20+</sup>
 getPiPSettingSwitch(): Promise&lt;boolean&gt;
 
-获取设置中自动启动画中画开关的状态，仅支持手机和平板设备。
+获取设置中自动启动画中画开关的状态。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在Phone设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 

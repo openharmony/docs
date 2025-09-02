@@ -1,5 +1,12 @@
 # AppFreeze（应用冻屏）检测
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @rr_cn-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## 简介
 
 用户在使用应用时，如果出现点击无反应或应用无响应等情况，并且持续时间超过一定限制，就会被定义为应用冻屏（AppFreeze），即应用无响应或卡死。系统会检测应用无响应，并生成AppFreeze日志，供应用开发者分析。
@@ -14,13 +21,13 @@
 
 > **注意：**
 >
-> Appfreeze检测仅对[release版本应用](performance-analysis-kit-terminology.md#release版本应用)生效，对[debug版本应用](performance-analysis-kit-terminology.md#debug版本应用)不生效。
+> AppFreeze检测仅对[release版本应用](performance-analysis-kit-terminology.md#release版本应用)生效，对[debug版本应用](performance-analysis-kit-terminology.md#debug版本应用)不生效。
 
 | 故障类型 | 说明 |
 | -------- | -------- |
-| THREAD_BLOCK_6S | 应用主线程卡死超时。 |
-| APP_INPUT_BLOCK | 用户输入响应超时。 |
-| LIFECYCLE_TIMEOUT | Ability生命周期切换超时。 |
+| THREAD_BLOCK_6S | 应用主线程卡死超时 |
+| APP_INPUT_BLOCK | 用户输入响应超时 |
+| LIFECYCLE_TIMEOUT | Ability生命周期切换超时 |
 
 当应用发生上述故障时，为了保证可恢复，会杀死应用。并上报应用冻屏事件，可通过HiAppEvent订阅[应用冻屏事件](hiappevent-watcher-freeze-events.md)。
 
@@ -33,6 +40,7 @@
 检测原理如下图：
 
 **图1**
+
 ![thread_block](figures/thread_block.png)
 
 ### APP_INPUT_BLOCK 用户输入响应超时
@@ -44,6 +52,7 @@
 检测原理如下图：
 
 **图2**
+
 ![app_input_block](figures/app_input_block.png)
 
 ### 生命周期切换超时
@@ -60,7 +69,7 @@
 
 ![lifecycle_timeout](figures/lifecycle_timeout.png)
 
-不同的生命周期，对应的超时时间各不相同。具体如下表所示：
+不同的生命周期超时，对应的超时时间各不相同。具体如下表所示：
 
 | 生命周期 | 超时时间 |
 | -------- | -------- |
@@ -73,7 +82,7 @@
 
 **方式一：通过DevEco Studio获取日志**
 
-DevEco Studio会收集设备/data/log/faultlog/faultlogger/路径下的进程崩溃故障日志到FaultLog下，根据进程名和故障和时间分类显示。获取日志的方法参见：[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-fault-log)。
+DevEco Studio会收集设备/data/log/faultlog/faultlogger/路径下的进程崩溃故障日志到FaultLog下，根据进程名和故障时间分类显示。获取日志的方法参见：[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-fault-log)。
 
 **方式二：通过HiAppEvent接口订阅**
 
@@ -85,11 +94,11 @@ HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hia
 
 ## 日志规格
 
-应用冻屏（AppFreeze）故障需要结合应用冻屏日志和hilog流水日志进行分析。
+应用冻屏（AppFreeze）问题需要结合应用冻屏日志和hilog流水日志进行分析。
 
 当前提供一个故障分析示例，请开发者根据具体问题具体分析。
 
-应用无响应日志主要分以下几个模块信息：
+应用冻屏日志主要分以下几个模块信息：
 
 ### 日志头部信息
 
@@ -109,6 +118,13 @@ Uid:20020177
 Reason:THREAD_BLOCK_6S
 appfreeze: com.samples.freezedebug THREAD_BLOCK_6S at 20250628140837
 DisplayPowerInfo:powerState:UNKNOWN
+Page switch history:
+  14:08:30:327 /ets/pages/Index:Appfreeze
+  14:08:28:986 /ets/pages/Index
+  14:08:26:502 :enters foreground
+  14:08:07:606 :leaves foreground
+  14:08:06:246 /ets/pages/Index:Appfreeze
+  14:08:01:955 :enters foreground
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 DOMAIN:AAFWK
 STRINGID:THREAD_BLOCK_6S
@@ -117,8 +133,11 @@ PID:13680
 UID:20020177
 PACKAGE_NAME:com.samples.freezedebug
 PROCESS_NAME:com.samples.freezedebug
+NOTE: Current fault may be caused by the system's low memory and thermal throttling, you may ignore it and analysis other faults.
 ***
 ```
+
+从API version 21开始，当整机资源告警（如整机低内存或热限频）时，会输出NOTE行。出现此行时，开发者可以忽略应用冻屏故障。在之前的API版本中，无论整机资源状态如何，均无此行输出。
 
 三种AppFreeze事件都包含以下几部分信息，具体解释如下：
 
@@ -127,6 +146,7 @@ PROCESS_NAME:com.samples.freezedebug
 | Reason | 应用无响应原因，与应用无响应检测能力点对应。 |
 | PID | 发生故障时的pid。 |
 | PACKAGE_NAME | 应用进程包名。 |
+|[Page switch history](./cppcrash-guidelines.md#有页面切换轨迹的故障场景日志规格)| 从API 21开始，维测进程会记录应用切换历史。应用发生故障后，生成的故障文件将包含页面切换历史轨迹。如果维测服务进程出现故障或未缓存切换轨迹，则不包含此字段。|
 
 ### 日志主干通用信息
 
@@ -180,18 +200,18 @@ mainHandler dump is:
 | TID | 发生故障时候的tid。 |
 | PACKAGE_NAME | 应用进程包名。 |
 | PROCESS_NAME | 应用进程名。 |
-| MSG | 发生故障时间及EventHandler 信息。 |
+| MSG | 发生故障时间及EventHandler信息。 |
 | task name | 任务队列中的任务名。 |
 | trigger time | 任务执行时间。 |
 | completeTime time | 任务执行完成时间（如果没有打印则表示该任务未执行完成）。 |
 
 ### 堆栈信息
 
-故障进程堆栈信息
+显示故障进程堆栈信息。
 
 ```
 Tid:13680, Name:les.freezedebug
-#00 pc 000000000000186c [shmm] (__kernel_gettimeofday+72)
+#00 pc 000000000000186c [shmm](__kernel_gettimeofday+72)
 #01 pc 00000000001d887c /system/lib/ld-musl-aarch64.so.1(gettimeofday+40)(f1a940981720250b920ee26d2d76af5b)
 #02 pc 000000000058fb5c /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::builtins::BuiltinsDate::Now(panda::ecmascript::EcmaRuntimeCallInfo*)+48)(0f1928b77d36d27edb5512bd89806a6f)
 #03 pc 0000000000cff5dc /system/lib64/module/arkcompiler/stub.an(RTStub_PushCallArgsAndDispatchNative+40)
@@ -223,12 +243,11 @@ Tid:13680, Name:les.freezedebug
 ```
 
 > **说明：**
->
 > 在整机高负载情况（如CPU高负载）下，采用低开销方式获取调用栈时，可能损失函数名称和build-id信息；获取用户栈失败时，build-id会为空，导致freeze堆栈只有so级别堆栈。
 
 ### 对端信息（与当前故障进程通信的进程信息）
 
-（1）BinderCatcher：进程间通信的调用信息，显示调用等待时间长的情况
+（1）BinderCatcher：显示进程间通信的调用信息及等待时间过长的情况。
 
 ```
 PeerBinderCatcher -- pid==13680
@@ -255,10 +274,10 @@ pid context     request started max ready   free_async_space
 
 | | |
 | -------- | -------- |
-| xxx:xxx to xxx:xxx | 客户端进程号、线程号 to 服务端进程号、线程号。（async：异步；无async：同步） |
+| xxx:xxx to xxx:xxx | 客户端进程号、线程号 to 服务端进程号、线程号。其中async表示异步，无async表示同步。 |
 | code | 客户端和服务端达成一致约束的业务码。 |
 | wait | 通信等待时长。 |
-| frz_state | 进程冻结状态。<br/>-1 未知<br/>1 默认<br/>2 正在向用户态发送binder状态信息<br/>3 走到了binder接收线程 |
+| frz_state | 进程冻结状态。<br/>-1 未知<br/>1 默认<br/>2 正在向用户态发送binder状态信息<br/>3 走到了binder接收线程。 |
 | ns | 客户端进程号、线程号 to 服务端进程号、线程号（非卓易通内进程显示-1）。 |
 | debug | IPC通信双方的信息补充。 |
 | active_code | 正在处理的异步消息code。 |
@@ -269,7 +288,7 @@ pid context     request started max ready   free_async_space
 | request | 请求申请的IPC线程数量。 |
 | started | 已经申请启动的IPC线程数量。 |
 | max | 可以申请的最大IPC线程数量。 |
-| ready | 空闲 IPC线程 |
+| ready | 空闲IPC线程。 |
 | free_async_space | 空闲异步空间，用于观测异步信息阻塞。 |
 
 （2）PeerBinder Stacktrace：故障进程相关的对端进程有卡死，会抓取对端的进程堆栈，即与当前进程通信的进程堆栈
@@ -336,7 +355,7 @@ ReclaimAvailBuffer:                    4676608 kB
 
 ## 日志差异性信息
 
-1. 生命周期超时
+生命周期超时事件
 
 ```
 DOMAIN:AAFWK
@@ -367,56 +386,56 @@ client actions for ability:
 client actions for app:
 ```
 
-下面结合两个完整生命周期切换的例子解释MSG中的信息。
+下面用两个完整生命周期切换示例来解释MSG中的信息。
 
 （1）load 阶段事件（应用进程未创建举例）
 
 | | | |
 | -------- | -------- | -------- |
 | server | client | 描述 |
-| AbilityRecord::LoadAbility; the LoadAbility lifecycle starts. |- | 开始 |
-| AppMgrServiceInner::LoadAbility | -| 创建进程前 |
-| AppMgrService::AttachApplication | -| 进程创建成功，进程attach |
-| ServiceInner::AttachApplication | -| 进程attach |
-| ServiceInner::LaunchApplication | -| 调度应用执行加载流程 |
-| AppRunningRecord::LaunchApplication | -| 调度应用执行加载流程 |
-| AppScheduler::ScheduleLaunchApplication | -| 调度应用执行加载流程 |
-| -| ScheduleLaunchApplication | 应用收到加载调度请求 |
-| -| HandleLaunchApplication begin | 应用加载开始 |
-| -| HandleLaunchApplication end | 应用加载结束 |
-| AppRunningRecord::LaunchPendingAbilities | -| 调度应用启动ability |
-| -| MainThread::ScheduleLaunchAbility | 应用收到请求加载ability |
-| -| MainThread::HandleLaunchAbility | 主线程处理 |
-| -| JsAbilityStage::Create | 加载abilityStage |
-| -| JsAbilityStage::OnCreate begin | abilityStage onCreate生命周期开始 |
-| -| JsAbilityStage::OnCreate end | abilityStage onCreate生命周期结束 |
-| -| AbilityThread::Attach | ability attach到ams，load过程结束 |
+| AbilityRecord::LoadAbility; the LoadAbility lifecycle starts. |- | 开始。 |
+| AppMgrServiceInner::LoadAbility | -| 创建进程前。 |
+| AppMgrService::AttachApplication | -| 进程创建成功，进程attach。 |
+| ServiceInner::AttachApplication | -| 进程attach。 |
+| ServiceInner::LaunchApplication | -| 调度应用执行加载流程。 |
+| AppRunningRecord::LaunchApplication | -| 调度应用执行加载流程。 |
+| AppScheduler::ScheduleLaunchApplication | -| 调度应用执行加载流程。 |
+| -| ScheduleLaunchApplication | 应用收到加载调度请求。 |
+| -| HandleLaunchApplication begin | 应用加载开始。 |
+| -| HandleLaunchApplication end | 应用加载结束。 |
+| AppRunningRecord::LaunchPendingAbilities | -| 调度应用启动ability。 |
+| -| MainThread::ScheduleLaunchAbility | 应用收到请求加载ability。 |
+| -| MainThread::HandleLaunchAbility | 主线程处理。 |
+| -| JsAbilityStage::Create | 加载abilityStage。 |
+| -| JsAbilityStage::OnCreate begin | abilityStage onCreate生命周期开始。 |
+| -| JsAbilityStage::OnCreate end | abilityStage onCreate生命周期结束。 |
+| -| AbilityThread::Attach | ability attach到ams，load过程结束。 |
 
 （2）foreground 阶段事件，冷启动
 
 | | | |
 | -------- | -------- | -------- |
 | server | client | 描述 |
-| AbilityRecord::ProcessForegroundAbility; the ProcessForegroundAbility lifecycle starts. |  | 开始 |
-| ServiceInner::UpdateAbilityState | -| 先调度应用前台 |
-| AppRunningRecord::ScheduleForegroundRunning | -| 调度应用前台 |
-| AppScheduler::ScheduleForegroundApplication | -| 调度应用前台 |
-| -| ScheduleForegroundApplication | 应用收到调度 |
-| -| HandleForegroundApplication | 主线程执行调度 |
-| AppMgrService::AppForegrounded | -| 应用前台完成 |
-| ServiceInner::AppForegrounded | -| 应用前台完成 |
-| -| AbilityThread::ScheduleAbilityTransaction | 应用收到ability前台调度 |
-| -| AbilityThread::HandleAbilityTransaction | 主线程执行ability前台调度 |
-| -| JsUIAbility::OnStart begin | onCreate生命周期开始 |
-| -| JsUIAbility::OnStart end | onCreate生命周期结束 |
-| -| JsUIAbility::OnSceneCreated begin | 创建窗口scene开始 |
-| -| JsUIAbility::OnSceneCreated end | 创建窗口scene结束 |
+| AbilityRecord::ProcessForegroundAbility; the ProcessForegroundAbility lifecycle starts. |  | 开始。 |
+| ServiceInner::UpdateAbilityState | -| 先调度应用前台。 |
+| AppRunningRecord::ScheduleForegroundRunning | -| 调度应用前台。 |
+| AppScheduler::ScheduleForegroundApplication | -| 调度应用前台。 |
+| -| ScheduleForegroundApplication | 应用收到调度。 |
+| -| HandleForegroundApplication | 主线程执行调度。 |
+| AppMgrService::AppForegrounded | -| 应用前台完成。 |
+| ServiceInner::AppForegrounded | -| 应用前台完成。 |
+| -| AbilityThread::ScheduleAbilityTransaction | 应用收到ability前台调度。 |
+| -| AbilityThread::HandleAbilityTransaction | 主线程执行ability前台调度。 |
+| -| JsUIAbility::OnStart begin | onCreate生命周期开始。 |
+| -| JsUIAbility::OnStart end | onCreate生命周期结束。 |
+| -| JsUIAbility::OnSceneCreated begin | 创建窗口scene开始。 |
+| -| JsUIAbility::OnSceneCreated end | 创建窗口scene结束。 |
 | -| JsUIAbility::OnWillForeground begin | -|
 | -| JsUIAbility::OnWillForeground end |- |
-| -| JsUIAbility::WindowScene::GoForeground begin | 调用窗口接口执行 goForeground |
-| -| UIAbilityImpl::WindowLifeCycleImpl::AfterForeground | 窗口迁台后回调 |
-| -| JsUIAbility::OnForeground begin | onForeground生命周期开始 |
-| -| JsUIAbility::OnForeground end | onForeground生命周期结束 |
-| -|  | 当窗口回调 和 onFroeground 都完成后，前台生命周期完成 |
+| -| JsUIAbility::WindowScene::GoForeground begin | 调用窗口接口执行 goForeground。 |
+| -| UIAbilityImpl::WindowLifeCycleImpl::AfterForeground | 窗口迁台后回调。 |
+| -| JsUIAbility::OnForeground begin | onForeground生命周期开始。 |
+| -| JsUIAbility::OnForeground end | onForeground生命周期结束。 |
+| -|  | 当窗口回调和onForeground都完成后，前台生命周期结束。 |
 
 参考[日志规格](#日志规格)分析其他日志信息。特别说明：大多数情况下，生命周期切换时主线程会卡死。可以结合两个日志的堆栈和BinderCatcher信息对比查看。

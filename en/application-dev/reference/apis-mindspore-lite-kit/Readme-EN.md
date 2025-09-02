@@ -1,26 +1,26 @@
 # MindSpore Lite Kit
 
-- ArkTS API
+- ArkTS APIs<!--mindspore-lite-arkts-->
   - [@ohos.ai.mindSporeLite (On-device AI Framework)](js-apis-mindSporeLite.md)
-  <!--Del-->
-  - [@ohos.ai.intelligentVoice (Intelligent Voice) (System API)](js-apis-intelligentVoice-sys.md)
-  <!--DelEnd-->
-- C API
-  - Modules
-    - [MindSpore](_mind_spore.md)
-  - Header Files
-    - [context.h](context_8h.md)
-    - [data_type.h](data__type_8h.md)
-    - [format.h](format_8h.md)
-    - [model.h](model_8h.md)
-    - [status.h](status_8h.md)
-    - [tensor.h](tensor_8h.md)
-    - [types.h](types_8h.md)
-  - Structs
-    - [OH_AI_CallBackParam](_o_h___a_i___call_back_param.md)
-    - [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md)
-    - [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md)
-<!--Del-->
-- Error Codes
-  - [Intelligent Voice Error Codes](errorcode-intelligentVoice.md)
-<!--DelEnd-->
+- C APIs<!--mindspore-lite-c-->
+  - Modules<!--mindspore-lite-module-->
+    - [MindSpore](capi-mindspore.md)
+  - Header Files<!--mindspore-lite-headerfile-->
+    - [context.h](capi-context-h.md)
+    - [data_type.h](capi-data-type-h.md)
+    - [format.h](capi-format-h.md)
+    - [model.h](capi-model-h.md)
+    - [status.h](capi-status-h.md)
+    - [tensor.h](capi-tensor-h.md)
+    - [types.h](capi-types-h.md)
+  - Structs<!--mindspore-lite-struct-->
+    - [OH_AI_TensorHandleArray](capi-mindspore-oh-ai-tensorhandlearray.md)
+    - [OH_AI_ShapeInfo](capi-mindspore-oh-ai-shapeinfo.md)
+    - [OH_AI_CallBackParam](capi-mindspore-oh-ai-callbackparam.md)
+    - [NNRTDeviceDesc](capi-mindspore-nnrtdevicedesc.md)
+    - [OH_AI_ContextHandle](capi-mindspore-oh-ai-contexthandle.md)
+    - [OH_AI_DeviceInfoHandle](capi-mindspore-oh-ai-DeviceInfoHandle.md)
+    - [OH_AI_TensorHandle](capi-mindspore-oh-ai-tensorHandle.md)
+    - [OH_AI_AllocatorHandle](capi-mindspore-oh-ai-allocatorhandle.md)
+    - [OH_AI_ModelHandle](capi-mindspore-oh-ai-modelhandle.md)
+    - [OH_AI_TrainCfgHandle](capi-mindspore-oh-ai-traincfghandle.md)

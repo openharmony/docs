@@ -1,4 +1,10 @@
 # @ohos.file.BackupExtensionContext (备份恢复扩展能力)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @lvzhenjie-->
+<!--Designer: @wang_zhangjun; @chenxi0605-->
+<!--Tester: @liuhonggang123-->
+<!--Adviser: @foryourself-->
 
 BackupExtensionContext是BackupExtension的上下文环境，继承自ExtensionContext。
 

@@ -1,12 +1,16 @@
 # DataAbilityHelper
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @xialiangwei-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 A DataAbilityHelper object is obtained through [acquireDataAbilityHelper](js-apis-ability-featureAbility.md#featureabilityacquiredataabilityhelper7).
 
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> 
-> Except [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap), the APIs of this module can be used only in the FA model.
 
 ## Modules to Import
 
@@ -1343,5 +1347,3 @@ Defines the PacMap type used for data storage.
 | Name| Type| Read-Only| Optional| Description|
 | ----- | ---- | ---- | ---- | ---- |
 | [key: string]  | number \| string \| boolean \| Array\<string \| number \| boolean> \| null  | No| No| Data stored in key-value pairs.|
-
-<!--no_check-->

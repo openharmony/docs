@@ -1,4 +1,10 @@
 # Repeat
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liubihao-->
+<!--Designer: @lixingchi1-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 > 
@@ -77,7 +83,7 @@ each(itemGenerator: (repeatItem: RepeatItem\<T\>) => void)
 
 | 参数名 | 类型   | 必填 | 说明 |
 | ------ | ---------- | -------- | -------- |
-| repeatItem  | [RepeatItem](#repeatitemt)\<T\> | 是 | repeat数据项。 |
+| repeatItem  | [RepeatItem](#repeatitemt)\<T\> | 否 | repeat数据项。 |
 
 **示例：**
 ```ts
@@ -102,8 +108,8 @@ key(keyGenerator: (item: T, index: number) => string)
 
 | 参数名 | 类型   | 必填 | 说明  |
 | ------ | ---------- | -------- | -------- |
-| item  | T | 是 | `arr`数组中的数据项。 |
-| index  | number | 是 | `arr`数组中的数据项索引。 |
+| item  | T | 否 | `arr`数组中的数据项。 |
+| index  | number | 否 | `arr`数组中的数据项索引。 |
 
 **示例：**
 ```ts
@@ -324,7 +330,7 @@ type RepeatItemBuilder\<T\> = (repeatItem: RepeatItem\<T\>) => void
 
 | 参数名     | 类型          | 必填      | 说明                                    |
 | ---------- | ------------- | --------------------------------------- | --------------------------------------- |
-| repeatItem | [RepeatItem](#repeatitemt)\<T\> | 是 | 将item和index结合到一起的一个状态变量。 |
+| repeatItem | [RepeatItem](#repeatitemt)\<T\> | 否 | 将item和index结合到一起的一个状态变量。 |
 
 ## TemplateOptions对象说明
 
@@ -373,5 +379,5 @@ type TemplateTypedFunc\<T\> = (item: T, index: number) => string
 
 | 参数名 | 类型   | 必填 | 说明                                         |
 | ------ | ------ | ---- | -------------------------------------------- |
-| item   | T      | 是   | arr中每一个数据项。T为开发者传入的数据类型。 |
-| index  | number | 是   | 当前数据项对应的索引。                       |
+| item   | T      | 否   | arr中每一个数据项。T为开发者传入的数据类型。 |
+| index  | number | 否   | 当前数据项对应的索引。                       |

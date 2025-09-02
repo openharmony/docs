@@ -1,9 +1,15 @@
 # 即时反馈（Toast）
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyi0309-->
+<!--Designer: @liyi0309-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 即时反馈（Toast）是一种临时性的消息提示框，用于向用户显示简短的操作反馈或状态信息。​它通常在屏幕的底部或顶部短暂弹出，随后在一段时间后自动消失。即时反馈的主要目的是提供简洁、不打扰的信息反馈，避免干扰用户当前的操作流程。
 
 
-可以通过使用[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#promptaction)对象，再通过该对象调用[showToast](../reference/apis-arkui/js-apis-arkui-UIContext.md#showtoast)创建并显示文本提示框。
+可以通过使用[UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md)中的[getPromptAction](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md)对象，再通过该对象调用[showToast](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#showtoast)创建并显示文本提示框。
 
 > **说明：** 
 >
@@ -127,7 +133,7 @@ struct toastExample {
 
 ## 显示关闭即时反馈
 
-适用于提示框提留时间较长，用户操作可以提前关闭提示框的场景。
+适用于提示框停留时间较长，用户操作可以提前关闭提示框的场景。
 
 ```ts
 import { LengthMetrics, PromptAction } from '@kit.ArkUI';
@@ -148,7 +154,7 @@ struct toastExample {
         .onClick(() => {
           try {
             this.promptAction.openToast({
-              message: 'Toast Massage',
+              message: 'Toast Message',
               duration: 10000,
             }).then((toastId: number) => {
               this.toastId = toastId;

@@ -1,4 +1,10 @@
 # @ohos.file.storageStatistics (Application Storage Statistics)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wang_zhangjun; @zhuangzhuang-->
+<!--Designer: @wang_zhangjun; @zhuangzhuang; @renguang1116-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 The **storageStatistics** module provides APIs for obtaining storage space information, including the space of built-in and plug-in memory cards, space occupied by different types of data, and space of application data.
 
@@ -28,7 +34,7 @@ Obtains the storage space (in bytes) of this application. This API uses a promis
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -63,7 +69,7 @@ Obtains the storage space (in bytes) of this application. This API uses a promis
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -135,7 +141,7 @@ Obtains the total space of the built-in storage, in bytes. This API uses an asyn
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -243,7 +249,7 @@ Obtains the available space of the built-in storage, in bytes. This API uses an 
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -309,4 +315,4 @@ try {
 | --------- | ------ | --- | -------------- |
 | appSize   | number | Yes| Size of the application installation files, in bytes.   |
 | cacheSize | number | Yes| Size of the application cache files, in bytes.  |
-| dataSize  | number | Yes| Size of other files of the application, in bytes.|
+| dataSize  | number | Yes| Size of application files (excluding application installation files), in bytes.|

@@ -12,6 +12,12 @@ Indicates that the user has restarted the application package and killed all its
 
 When the specified user restarts the application and kills all its processes, the event notification service is triggered to publish this event.
 
+> **NOTE**
+> 
+> <!--Del-->System applications can listen for the restart event of themselves and other applications.<!--DelEnd-->
+> 
+> Third-party applications can only listen for the restart event of themselves.
+
 **System capability**: SystemCapability.Notification.CommonEvent
 
 **Required permissions**: none
@@ -23,6 +29,12 @@ When the specified user restarts the application and kills all its processes, th
 Indicates the common event that the user has cleared the application package data.
 
 When the specified user clears the application package data on the device, the event notification service is triggered to publish this event.
+
+> **NOTE**
+> 
+> <!--Del-->System applications can listen for the data clearance event of themselves and other applications.<!--DelEnd-->
+> 
+> Third-party applications can only listen for the data clearance event of themselves.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -36,6 +48,12 @@ When the specified user clears the application package data on the device, the e
 Indicates the result of applying a quick fix to the application.
 
 When the specified user applies a quick fix to the application on the device, the event notification service is triggered to publish this event.
+
+> **NOTE**
+> 
+> <!--Del-->System applications can listen for the quick fix event of themselves and other applications.<!--DelEnd-->
+> 
+> Third-party applications can only listen for the quick fix event of themselves.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -61,6 +79,12 @@ Indicates that a new application package has been installed on the device.
 
 When a new application is installed by a specified user on the device, the event notification service is triggered to publish this event.
 
+> **NOTE**
+> 
+> <!--Del-->System applications can listen for the installation event of themselves and other applications.<!--DelEnd-->
+> 
+> Third-party applications can only listen for the installation event of themselves.
+
 **System capability**: SystemCapability.Notification.CommonEvent
 
 **Required permissions**: none
@@ -73,6 +97,12 @@ When a new application is installed by a specified user on the device, the event
 Indicates the common event that an installed application has been uninstalled from the device with the application data retained.
 
 When a specified application package is removed by a specified user on the device, the event notification service is triggered to publish this event.
+
+> **NOTE**
+> 
+> <!--Del-->System applications can listen for the uninstallation event of themselves and other applications.<!--DelEnd-->
+> 
+> Third-party applications can only listen for the uninstallation event of themselves.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -109,6 +139,12 @@ Indicates that an application package has been changed (for example, an ability 
 
 When an application package installed on the device is updated or an ability in the package is enabled or disabled, the event notification service is triggered to publish this event.
 
+> **NOTE**
+> 
+> <!--Del-->System applications can listen for the change event of themselves and other applications.<!--DelEnd-->
+> 
+> Third-party applications can only listen for the change event of themselves.
+
 **System capability**: SystemCapability.Notification.CommonEvent
 
 **Required permissions**: none
@@ -121,6 +157,12 @@ When an application package installed on the device is updated or an ability in 
 Indicates that the user cleared the application package cache.
 
 When the cache of an application package installed on the device is cleared, the event notification service is triggered to publish this event.
+
+> **NOTE**
+> 
+> <!--Del-->System applications can listen for the cache clearance event of themselves and other applications.<!--DelEnd-->
+> 
+> Third-party applications can only listen for the cache clearance event of themselves.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -170,8 +212,6 @@ Notifies the low memory state and package management should be started.
 
 **Value**: "usual.event.MANAGE_PACKAGE_STORAGE"
 
-
-
 ## Account Kit
 
 ### COMMON_EVENT_MINORSMODE_ON<sup>12+</sup>
@@ -202,8 +242,6 @@ When the minor mode is disabled on the device, the event notification service is
 
 **Value**: "usual.event.MINORSMODE_OFF"
 
-
-
 ## ArkUI
 
 ### COMMON_EVENT_SPLIT_SCREEN
@@ -214,13 +252,11 @@ When any of the following actions is performed, the event notification service i
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required permissions**: ohos.permission.RECEIVER_SPLIT_SCREEN
+**Required permissions**: none
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-**Value**: "usual.event.SPLIT_SCREEN"
-
-
+**Value**: "common.event.SPLIT_SCREEN"
 
 ## Notification Kit
 
@@ -237,8 +273,6 @@ When any of the following actions is performed, the event notification service i
 **Value**: "usual.event.SLOT_CHANGE"
 
 
-
-
 ## Background Tasks Kit
 
 
@@ -252,8 +286,6 @@ When the user does not use the device for the specified period of time and the s
 **Required permissions**: none
 
 **Value**: "usual.event.DEVICE_IDLE_MODE_CHANGED"
-
-
 
 
 ## Basic Services Kit
@@ -472,7 +504,7 @@ When the screen is unlocked, the event notification service is triggered to publ
 ### COMMON_EVENT_USER_PRESENT<sup>(deprecated)</sup>
 Indicates the action of a common event that the user unlocks the device.
 
-  > Notes:
+  > **NOTE**
   >
   > This API is deprecated since API Version 10 and replaced by [COMMON_EVENT_SCREEN_UNLOCKED](#common_event_screen_unlocked).
 
@@ -703,8 +735,6 @@ When the device exits the hibernation mode, the event notification service is tr
 **Value**: "usual.event.EXIT_HIBERNATE"
 
 
-
-
 ## Connectivity Kit
 
 
@@ -789,9 +819,9 @@ When the Wi-Fi access point state changes, the event notification service is tri
 
 ### COMMON_EVENT_WIFI_RSSI_VALUE
 
-Indicates that the Wi-Fi signal strength (RSSI) has changed.
+  Indicates that the Wi-Fi signal strength (RSSI) has changed.
 
-When the Wi-Fi signal strength (RSSI) changes, the event notification service is triggered to publish this event.
+  When the Wi-Fi signal strength (RSSI) changes, the event notification service is triggered to publish this event.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -801,9 +831,9 @@ When the Wi-Fi signal strength (RSSI) changes, the event notification service is
 
 ### COMMON_EVENT_WIFI_CONN_STATE
 
-Indicates that the Wi-Fi connection state has changed.
+  Indicates that the Wi-Fi connection state has changed.
 
-When the Wi-Fi connection state changes, the event notification service is triggered to publish this event.
+  When the Wi-Fi connection state changes, the event notification service is triggered to publish this event.
 
 
 **System capability**: SystemCapability.Notification.CommonEvent
@@ -950,8 +980,6 @@ When the Wi-Fi P2P group information changes, the event notification service is 
 **Value**: "usual.event.wifi.p2p.GROUP_STATE_CHANGED"
 
 
-
-
 ## MDM Kit
 
 ### COMMON_EVENT_MANAGED_BROWSER_POLICY_CHANGED
@@ -967,8 +995,6 @@ When the browser hosting policy changes, the event notification service is trigg
 **Value**: "usual.event.MANAGED_BROWSER_POLICY_CHANGED"
 
 
-
-
 ## Localization Kit
 
 ### COMMON_EVENT_LOCALE_CHANGED
@@ -981,8 +1007,6 @@ When the system language is set, the event notification service is triggered to 
 **Required permissions**: none
 
 **Value**: usual.event.LOCALE_CHANGED
-
-
 
 
 ## Network Kit
@@ -1090,8 +1114,6 @@ When the signal information of the device is updated, the event notification ser
 
 **Value**: usual.event.SIGNAL_INFO_CHANGED
 
-
-
 ## Store Kit
 This document lists the common system events provided by the Store Kit to applications.
 
@@ -1104,8 +1126,6 @@ When a user clicks **Agree** in a privacy dialog box, the event notification ser
 **Required permissions**: none
 
 **Value**: "usual.event.PRIVACY_STATE_CHANGED"
-
-
 
 ## Reserved Common Event
 
@@ -1966,4 +1986,4 @@ Indicates the common event of that the SPN information had changed.
 
 **Value**: "usual.event.SPN_INFO_CHANGED"
 
- <!--no_check--> 
+

@@ -1,5 +1,12 @@
 # AbilityAccessControl
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 提供管理进程访问控制的系统能力。

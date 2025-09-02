@@ -1,5 +1,12 @@
 # 指定PEM格式字符串数据转换非对称密钥对(C/C++)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 以RSA为例，根据指定的非对称密钥字符串数据，生成非对称密钥对（OH_CryptoKeyPair）。
 
 > **说明：**
@@ -9,8 +16,6 @@
 > - 公钥需满足X.509规范、PKCS\#1规范、PEM编码格式。
 >
 > - 私钥需满足PKCS\#8规范、PKCS\#1规范、PEM编码格式。
->
-> - 当前只支持RSA非对称密钥的转换。
 
 ## 在CMake脚本中链接相关动态库
 ```txt

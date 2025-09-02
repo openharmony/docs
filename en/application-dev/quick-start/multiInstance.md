@@ -1,4 +1,11 @@
 # Creating an Application Multi-Instance
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
+
 Multi-instance allows an application to run on multiple pages so that a user can log in multiple accounts and run the application at the same time without affecting each other. For example, a user can run several social accounts, or primary and secondary game accounts simultaneously without frequent log-in and log-out.
 
 Multiple application process pages on the home screen are independent in terms of the running, notification, and more. Instances share data with each other and can be switched using accounts.
@@ -18,6 +25,7 @@ Application multi-instance can run on only 2-in-1 devices.
     ```json
     {
       "app": {
+        //  ...
         "multiAppMode": {
           "multiAppModeType": "multiInstance",
           "maxCount": 5

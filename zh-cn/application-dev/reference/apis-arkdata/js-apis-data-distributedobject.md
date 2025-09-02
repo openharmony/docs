@@ -1,4 +1,10 @@
 # @ohos.data.distributedDataObject (分布式数据对象)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @lvcong_oh-->
+<!--Designer: @hollokin; @yuchaozhng-->
+<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 本模块提供管理基本数据对象的相关能力，包括创建、查询、删除、修改、订阅等；同时支持相同应用多设备间的分布式数据对象协同能力。分布式数据对象处理数据时，不会解析用户数据的内容，存储路径安全性较低，不建议传输个人敏感数据和隐私数据。
 
@@ -161,6 +167,8 @@ type DataObserver = (sessionId: string, fields: Array&lt;string&gt;) => void
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
+**参数：**
+
 | 参数名     | 类型                                              | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | sessionId | string                           | 是   |   标识变更对象的sessionId。长度需小于128字节，且只能包含字母、数字或下划线_。                                          |
@@ -173,6 +181,8 @@ type StatusObserver = (sessionId: string, networkId: string, status: string) => 
 定义获取分布式对象状态变更的监听回调函数。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -187,6 +197,8 @@ type ProgressObserver = (sessionId: string, progress: number) => void
 定义传输进度的监听回调函数。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |

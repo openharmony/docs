@@ -1,5 +1,11 @@
 # 画布操作及状态处理（C/C++）
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hangmengxin-->
+<!--Designer: @wangyanglan-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
 
 ## 场景介绍
 
@@ -78,7 +84,7 @@ OH_Drawing_BrushDestroy(brush);
 | ![Screenshot_20250120154655737](figures/Screenshot_20250120154655737.jpg) | ![Screenshot_20250118152812670](figures/Screenshot_20250118152812670.jpg) |
 
 
-## 矩阵变化操作
+## 矩阵变换操作
 
 矩阵变换也是常见的画布操作，是一种坐标系的转换，用于进行图形的变化。
 
@@ -249,5 +255,5 @@ OH_Drawing_MatrixDestroy(matrix);
 
 针对Drawing(C/C++)的开发，有以下相关实例可供参考：
 
-- [NDKGraphicsDraw (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKGraphicsDraw)
+- [NDKGraphicsDraw (API14)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKGraphicsDraw)
 <!--RP1End-->

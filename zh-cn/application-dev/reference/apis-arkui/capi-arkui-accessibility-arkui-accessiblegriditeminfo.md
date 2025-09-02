@@ -1,8 +1,14 @@
 # ArkUI_AccessibleGridItemInfo
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zhanghangkai10241-->
+<!--Designer: @lmleon-->
+<!--Tester: @fredyuan0912-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
-用于特定组件设置组件的属性值，如list、flex、select、swiper组件。
+用于配置特定组件（如List、Flex、Select、Swiper组件）的属性值。
 
 **起始版本：** 13
 

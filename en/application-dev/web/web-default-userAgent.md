@@ -33,7 +33,7 @@ User-Agent (UA) is a special string that contains key information such as the de
 >
 > - Currently, there are two spaces before the **ArkWeb** field of the default **User-Agent**.
 >
-> - The **viewport** parameter of the **meta** tag on the frontend HTML page is enabled or disabled based on whether **User-Agent** contains the **Mobile** field. If **User-Agent** does not contain the **Mobile** field, the **viewport** attribute in the **meta** tag is disabled by default. In this case, you can explicitly set [metaViewport](../reference/apis-arkweb/ts-basic-components-web.md#metaviewport12) to **true** to enable the **viewport** attribute.
+> - The **viewport** parameter of the **meta** tag on the frontend HTML page is enabled or disabled based on whether **User-Agent** contains the **Mobile** field. If **User-Agent** does not contain the **Mobile** field, the **viewport** attribute in the **meta** tag is disabled by default. In this case, you can explicitly set [metaViewport](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#metaviewport12) to **true** to enable the **viewport** attribute.
 >
 > - You are advised to use the **OpenHarmony** keyword to identify whether a device is an OpenHarmony device, and use the **DeviceType** keyword to identify the device type for page display on different devices. (The **ArkWeb** keyword indicates the web kernel of the device, and the **OpenHarmony** keyword indicates the operating system of the device.)
 >
@@ -41,7 +41,7 @@ User-Agent (UA) is a special string that contains key information such as the de
 
 ## Custom User-Agent Structure
 
-In the following example, [getUserAgent()](../reference/apis-arkweb/js-apis-webview.md#getuseragent) is used to obtain the default **User-Agent** string, which you can modify or extend as needed.
+In the following example, [getUserAgent()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#getuseragent) is used to obtain the default **User-Agent** string, which you can modify or extend as needed.
 
 ```ts
 // xxx.ets
@@ -70,7 +70,7 @@ struct WebComponent {
 }
 ```
 
-In the following example, [setCustomUserAgent()](../reference/apis-arkweb/js-apis-webview.md#setcustomuseragent10) is used to set a custom user agent, which overwrites the default user agent. Therefore, you are advised to add the extension field to the end of the default user agent. For example, to develop a third-party application, you can add a specific application identifier while maintaining the original user agent information.
+In the following example, [setCustomUserAgent()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setcustomuseragent10) is used to set a custom user agent, which overwrites the default user agent. Therefore, you are advised to add the extension field to the end of the default user agent. For example, to develop a third-party application, you can add a specific application identifier while maintaining the original user agent information.
 
 When **src** of the **Web** component is set to a URL, set **User-Agent** in **onControllerAttached**. For details, see the following example. Avoid setting the user agent in **onLoadIntercept**. Otherwise, the setting may fail occasionally. If **User-Agent** is not set in **onControllerAttached**, calling **setCustomUserAgent** may cause mismatches between the loaded page and the intended user agent.
 
@@ -105,7 +105,46 @@ struct WebComponent {
 }
 ```
 
-In the following example, [getCustomUserAgent()](../reference/apis-arkweb/js-apis-webview.md#getcustomuseragent10) is used to obtain the custom user agent.
+Since API version 20, you can use the [setAppCustomUserAgent()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setappcustomuseragent20) API to set an application-level custom user agent or use the [setUserAgentForHosts()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setuseragentforhosts20) API to set an application-level custom user agent for a specific website. The custom user agent overwrites the system user agent and takes effect for all **Web** components in the application.
+
+You are advised to call the **setAppCustomUserAgent** and **setUserAgentForHosts** methods to set **User-Agent** before creating a **Web** component, and then create a **Web** component with a specified **src** or use **loadUrl** to load a specific page.
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear(): void {
+    try {
+      webview.WebviewController.initializeWebEngine();
+      let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
+      let appUA = " appUA";
+      webview.WebviewController.setUserAgentForHosts(
+        appUA,
+        [
+          "www.example.com",
+          "www.baidu.com"
+        ]
+      );
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+In the following example, [getCustomUserAgent()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#getcustomuseragent10) is used to obtain the custom user agent. 
 
 ```ts
 // xxx.ets
@@ -134,6 +173,15 @@ struct WebComponent {
   }
 }
 ```
+
+## User-Agent API Priority
+
+| API| Priority| Description|
+| -------- | -------- | -------- |
+| setCustomUserAgent | Highest| Takes effect for the called **Web** component.|
+| setUserAgentForHosts | Lower than **setCustomUserAgent**| Takes effect for all **Web** components in the application to access the specified website.|
+| setAppCustomUserAgent | Lower than **setUserAgentForHosts**| Takes effect for all **Web** components in the application.|
+|  Default UA of ArkWeb| Lowest| Takes effect for all **Web** components in the application. This parameter is read-only and can be obtained using **getDefaultUserAgent**.|
 
 ## FAQs
 

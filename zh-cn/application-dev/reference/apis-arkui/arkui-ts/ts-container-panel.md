@@ -1,6 +1,13 @@
 # Panel
-<!--deprecated_code_no_check-->
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
+
+<!--deprecated_code_no_check-->
 可滑动面板，提供一种轻量的内容展示窗口，方便在不同尺寸中切换。
 
 >  **说明：**
@@ -73,7 +80,7 @@ mode(value: PanelMode)
 
 dragBar(value: boolean)
 
-设置是否存在dragbar。
+设置是否存在控制条。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -83,7 +90,7 @@ dragBar(value: boolean)
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | boolean | 是   | 设置是否存在dragbar，true表示存在，false表示不存在。<br/>默认值：true |
+| value   | boolean | 是   | 设置是否存在控制条，true表示存在，false表示不存在。<br/>默认值：true |
 
 ### customHeight<sup>10+</sup>
 
@@ -250,7 +257,7 @@ onChange(event:&nbsp;(width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;mode:&n
 | 参数名    | 类型        | 必填 | 说明                                                                                  |
 | --------- | ---------  | ---- | ------------------------------------------------------------------------------------ |
 | width     | number     | 是   | 内容区的宽度值。                                                                       |
-| height    | number     | 是   | 内容区的高度值。<br/>当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。 |
+| height    | number     | 是   | 内容区的高度值。<br/>当dragBar属性为true时，panel本身的高度值为dragBar高度加上内容区高度。 |
 | mode      | PanelMode  | 是   | 面板的状态。                                                                           |
 
 ### onHeightChange<sup>9+</sup>
@@ -267,7 +274,7 @@ onHeightChange(callback: (value: number) => void)
 
 | 参数名    | 类型                                                | 必填 | 说明       |
 | --------- | --------------------------------------------------- | ---- | ---------- |
-| value     | number  | 是   | 内容区的高度值，默认返回值单位为px。<br/>当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。<br/>因用户体验设计原因，panel最高只能滑到 fullHeight-8vp。 |
+| value     | number  | 是   | 内容区的高度值，默认返回值单位为px。<br/>当dragBar属性为true时，panel本身的高度值为dragBar高度加上内容区高度。<br/>因用户体验设计原因，panel最高只能滑到 fullHeight-8vp。 |
 
 ## 示例
 

@@ -1,10 +1,20 @@
 # picture_native.h
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
 提供获取picture数据和信息的API。
 
+**引用文件：** <multimedia/image_framework/image/picture_native.h>
+
 **库：** libpicture.so
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **起始版本：** 13
 

@@ -1,10 +1,17 @@
 # 密钥派生介绍及算法规格
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
+
 在密码学中，密钥派生函数（Key derivation function，KDF）使用伪随机函数从诸如主密码或密码的秘密值中派生出一个或多个密钥。
 
 > **说明：**  
 > * 在HUKS中只能通过HUKS托管的密钥进行密钥派生。   
-> * 轻量级设备不支持密钥派生功能。
+> * <!--RP2-->轻量级设备<!--RP2End-->不支持密钥派生功能。
 > * 使用现有密钥别名作为派生结果密钥别名会把现有密钥覆盖。
 
 ## 支持的算法

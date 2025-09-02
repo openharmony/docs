@@ -1,5 +1,11 @@
 # SceneType
-The SceneType module provides common data types in 3D graphics.
+<!--Kit: ArkGraphics 3D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @zzhao0-->
+<!--SE: @zdustc-->
+<!--TSE: @zhangyue283-->
+
+The module provides common data types in 3D graphics.
 
 > **NOTE**
 >
@@ -77,11 +83,10 @@ Rectangle in a plane.
 **System capability**: SystemCapability.ArkUi.Graphics3D
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
-| x | number | No| No| X axis component in the lower left corner of the rectangle. The value is a real number.|
-| y | number | No| No| Y axis component in the lower left corner of the rectangle. The value is a real number.|
-| width | number | No| No| Width of the rectangle. The value must be greater than 0.|
-| height | number | No| No| Height of the rectangle. The value must be greater than 0.|
-
+| x | number | No| No| X coordinate of the lower-left corner of the rectangle, in the units of the coordinate system it belongs to. It can be any real number, with the specific range depending on the scene's coordinate system settings.|
+| y | number | No| No| Y coordinate of the lower-left corner of the rectangle, in the units of the coordinate system it belongs to. It can be any real number, with the specific range depending on the scene's coordinate system settings.|
+| width | number | No| No| Width of the rectangle, in the units of the coordinate system it belongs to. The value must be greater than 0.|
+| height | number | No| No| Height of the rectangle, in the units of the coordinate system it belongs to. The value must be greater than 0.|
 ## GeometryType<sup>18+</sup>
 Enumerates the geometry types.
 
@@ -151,7 +156,7 @@ A sphere geometry type that inherits from [GeometryDefinition](#geometrydefiniti
 
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
-| radius | number | No| No| Radius of the sphere. The value must be greater than 0.|
+| radius | number | No| No| Radius of the sphere, measured in the world coordinate system's units (for example, cm, m, or km). The value must be greater than 0.|
 | segmentCount | number | No| No| Number of segments dividing the sphere along latitude and longitude. The value must be greater than 0.|
 
 ## Position3

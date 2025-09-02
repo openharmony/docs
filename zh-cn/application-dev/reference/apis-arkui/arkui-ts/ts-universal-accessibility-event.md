@@ -1,4 +1,10 @@
 # 无障碍控制操作
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zhanghangkai10241-->
+<!--Designer: @lmleon-->
+<!--Tester: @fredyuan0912-->
+<!--Adviser: @HelloCrease-->
 
 在开启无障碍模式后，需要判断是否拦截无障碍控制操作。
 
@@ -36,6 +42,8 @@ onAccessibilityFocus(callback: AccessibilityFocusCallback): T
 type AccessibilityFocusCallback = (isFocus: boolean) => void
 
 定义onAccessibilityFocus中使用的回调类型。
+
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -136,9 +144,6 @@ type AccessibilityActionInterceptCallback = (action: AccessibilityAction) => Acc
 @Component
 struct SwitchBootcamp {
   @State private isOn: boolean = false;
-  isPolygon(event: TouchEvent) {
-    return true;
-  }
 
   build() {
     NavDestination() {

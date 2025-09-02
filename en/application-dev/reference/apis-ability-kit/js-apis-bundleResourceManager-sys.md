@@ -1,4 +1,10 @@
 # @ohos.bundle.bundleResourceManager (bundleResourceManager) (System API)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The module provides APIs for obtaining resource information, including [BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md) and [LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md).
 
@@ -6,7 +12,7 @@ The module provides APIs for obtaining resource information, including [BundleRe
 >
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> Since API version 12, this module supports query of icons and names of disabled applications and applications installed by all users.
+> Starting from API version 12, this module supports query of icons and names of disabled applications and applications installed by all users.
 >
 > The APIs provided by this module are system APIs.
 
@@ -491,7 +497,7 @@ Obtains the ExtensionAbility resource information of an application based on the
 
 | Type                                                       | Description                                 |
 | ----------------------------------------------------------- | ------------------------------------- |
-| Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)> | Entry icon and name of the application.|
+| Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)> | ExtensionAbility resource information of the application, including the icon and name.|
 
 **Error codes**
 

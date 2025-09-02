@@ -2,8 +2,8 @@
 
 For a singleton application that provides system-wide management functionalities, all users share an instance, which isolates data of different users. You need to specify the user space to which the operated asset belongs when:
 
-1. The singleton application needs to store, access, and destroy assets for multiple active users.
-2. The singleton application needs to store an asset that is accessible after the device is first unlocked or accessible when the device is unlocked.
+1. When multiple users are active at the same time, the singleton application must notify the user space to which the asset to be operated belongs so that the asset can be stored, accessed, and destroyed in the user space.
+2. When storing assets accessible after the device is first unlocked or accessible when the device is unlocked, the singleton application must specify the user space to which the assets belong.
 
 To implement isolation and access control of the assets for singleton applications, ASSET provides a set of APIs for asset operations with the user space specified. These APIs are available only for system applications.
 
@@ -18,7 +18,7 @@ For details about how to request the permission, see [Requesting Permissions for
 The following table describes the APIs.
 
 | API| Description| API with User Space Not Specified<br> |
-| -------- | -------- | ----------| 
+| -------- | -------- | ----------|
 | [addAsUser](../../reference/apis-asset-store-kit/js-apis-asset-sys.md#assetaddasuser)              |   Adds an asset to the specified user space. This API uses a promise to return the result.          |  [add](asset-js-add.md)             |
 | [removeAsUser](../../reference/apis-asset-store-kit/js-apis-asset-sys.md#assetremoveasuser)              |   Removes one or more assets from the specified user space. This API uses a promise to return the result.          |  [remove](asset-js-remove.md)             |
 | [updateAsUser](../../reference/apis-asset-store-kit/js-apis-asset-sys.md#assetupdateasuser)              |   Updates an asset in the specified user space. This API uses a promise to return the result.          |  [update](asset-js-update.md)             |

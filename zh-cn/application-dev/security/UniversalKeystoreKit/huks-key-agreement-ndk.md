@@ -1,6 +1,13 @@
 # 密钥协商(C/C++)
 
-以协商密钥类型为ECDH，并密钥仅在HUKS内使用为例，完成密钥协商。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-key-generation-overview.md#支持的算法)。
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
+
+以ECDH协商密钥类型为例，在密钥由HUKS管理的情况下，完成密钥协商。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-key-generation-overview.md#支持的算法)。
 
 ## 在CMake脚本中链接相关动态库
 ```txt
@@ -210,7 +217,8 @@ static const char *g_inData = "Hks_ECDH_Agree_Test_00000000000000000000000000000
                                     "0000000000000000000000000000000000000000000000000000000000000000000000000_string";
 /* 协商密钥操作 */
 OH_Huks_Result HksEcdhAgreeFinish(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_Blob *publicKey,
-    const struct OH_Huks_ParamSet *initParamSet, const struct OH_Huks_ParamSet *finishParamSet, struct OH_Huks_Blob *outData)
+    const struct OH_Huks_ParamSet *initParamSet, const struct OH_Huks_ParamSet *finishParamSet,
+    struct OH_Huks_Blob *outData)
 {
     struct OH_Huks_Blob inData = {
         (uint32_t)strlen(g_inData),
@@ -253,7 +261,8 @@ static napi_value AgreeKey(napi_env env, napi_callback_info info)
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
-        ohResult = InitParamSet(&initParamSet01, g_agreeParamsInit01, sizeof(g_agreeParamsInit01) / sizeof(OH_Huks_Param));
+        ohResult = InitParamSet(&initParamSet01, g_agreeParamsInit01,
+            sizeof(g_agreeParamsInit01) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
@@ -262,7 +271,8 @@ static napi_value AgreeKey(napi_env env, napi_callback_info info)
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
-        ohResult = InitParamSet(&initParamSet02, g_agreeParamsInit02, sizeof(g_agreeParamsInit02) / sizeof(OH_Huks_Param));
+        ohResult = InitParamSet(&initParamSet02, g_agreeParamsInit02,
+            sizeof(g_agreeParamsInit02) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
@@ -324,7 +334,7 @@ static napi_value AgreeKey(napi_env env, napi_callback_info info)
     OH_Huks_FreeParamSet(&finishParamSet01);
     OH_Huks_FreeParamSet(&initParamSet02);
     OH_Huks_FreeParamSet(&finishParamSet02);
-    
+
     napi_value ret;
     napi_create_int32(env, ohResult.errorCode, &ret);
     return ret;

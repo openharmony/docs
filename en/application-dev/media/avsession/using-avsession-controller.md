@@ -1,4 +1,9 @@
 # AVSession Controller (for System Applications Only)
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--SE: @ccfriend-->
+<!--TSE: @chenmingxi1_huawei-->
 
 Media Controller preset in OpenHarmony functions as the controller to interact with audio and video applications, for example, obtaining and displaying media information and delivering playback control commands.
 
@@ -8,18 +13,18 @@ You can develop a system application (for example, a new playback control center
 
 - AVSessionDescriptor: session information, including the session ID, session type (audio/video), custom session name (**sessionTag**), information about the corresponding application (**elementName**), and whether the session is pined on top (isTopSession).
 
-- Top session: session with the highest priority in the system, for example, a session that is being played. Generally, the controller must hold an **AVSessionController** object to communicate with a session. However, the controller can directly communicate with the top session, for example, directly sending a playback control command or key event, without holding an **AVSessionController** object.
+- Top session: session with the highest priority in the system, for example, a session that is being played. Generally, the controller must hold an AVSessionController object to communicate with a session. However, the controller can directly communicate with the top session, for example, directly sending a playback control command or key event, without holding an AVSessionController object.
 
 ## Available APIs
 
 The key APIs used by the controller are classified into the following types:
 
-1. APIs called by the **AVSessionManager** object, which is obtained by means of import. An example API is **AVSessionManager.createController(sessionId)**.
-2. APIs called by the **AVSessionController** object. An example API is **controller.getAVPlaybackState()**.
+1. APIs called by the AVSessionManager object, which is obtained by means of import. An example API is **AVSessionManager.createController(sessionId)**.
+2. APIs called by the AVSessionController object. An example API is **controller.getAVPlaybackState()**.
 
 Asynchronous JavaScript APIs use either a callback or promise to return the result. The APIs listed below use a callback. They provide the same functions as their counterparts that use a promise.
 
-For details, see [AVSession Management](../../reference/apis-avsession-kit/js-apis-avsession.md).
+For details, see [AVSession Management](../../reference/apis-avsession-kit/arkts-apis-avsession.md).
 
 ### APIs Called by the AVSessionManager Object
 
@@ -39,7 +44,7 @@ For details, see [AVSession Management](../../reference/apis-avsession-kit/js-ap
 | getAVMetadata(callback: AsyncCallback&lt;AVMetadata&gt;): void<sup>10+<sup> | Obtains the session metadata.|
 | getOutputDevice(callback: AsyncCallback&lt;OutputDeviceInfo&gt;): void<sup>10+<sup> | Obtains the output device information.|
 | sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Sends a key event to the session corresponding to this controller.|
-| getLaunchAbility(callback: AsyncCallback&lt;WantAgent&gt;): void<sup>10+<sup> | Obtains the **WantAgent** object saved by the application in the session.|
+| getLaunchAbility(callback: AsyncCallback&lt;WantAgent&gt;): void<sup>10+<sup> | Obtains the WantAgent object saved by the application in the session.|
 | isActive(callback: AsyncCallback&lt;boolean&gt;): void<sup>10+<sup> | Checks whether the session is activated.|
 | destroy(callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Destroys this controller. A controller can no longer be used after being destroyed.|
 | getValidCommands(callback: AsyncCallback&lt;Array&lt;AVControlCommandType&gt;&gt;): void<sup>10+<sup> | Obtains valid commands supported by the session.|
@@ -61,9 +66,9 @@ For details, see [AVSession Management](../../reference/apis-avsession-kit/js-ap
 
 To enable a system application to access the AVSession service as a controller, proceed as follows:
 
-1. Obtain **AVSessionDescriptor** through AVSessionManager and create an **AVSessionController** object.
+1. Obtain AVSessionDescriptor through AVSessionManager and create an AVSessionController object.
 
-   The controller may obtain all **AVSessionDescriptor**s in the current system, and create an **AVSessionController** object for each session, so as to perform unified playback control on all the audio and video applications.
+   The controller may obtain all AVSessionDescriptors in the current system, and create an AVSessionController object for each session, so as to perform unified playback control on all the audio and video applications.
 
    ```ts
    // Import the AVSessionManager module.

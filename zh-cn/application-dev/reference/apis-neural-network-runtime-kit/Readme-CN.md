@@ -1,4 +1,10 @@
 # Neural Network Runtime Kit（Neural Network运行时服务）
+<!--Kit: Neural Network Runtime Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @GbuzhidaoR-->
+<!--Designer: @GbuzhidaoR-->
+<!--Tester: @GbuzhidaoR-->
+<!--Adviser: @ge-yafang-->
 
 - C API<!--neural-network-runtime-c-->
   - 模块<!--neural-network-runtime-module-->

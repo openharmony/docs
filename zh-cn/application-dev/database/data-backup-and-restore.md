@@ -1,4 +1,10 @@
 # 数据库备份与恢复 (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997; @dboy190-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## 场景介绍
 
@@ -61,6 +67,10 @@
              }
              console.info('Succeeded in getting KVStore.');
              kvStore = store;
+             if (kvStore !== undefined) {
+               // 进行后续操作
+               // ...
+             }
            });
          } catch (e) {
            let error = e as BusinessError;
@@ -69,12 +79,6 @@
        } catch (e) {
          let error = e as BusinessError;
          console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
-       }
-
-       if (kvStore !== undefined) {
-         kvStore = kvStore as distributedKVStore.SingleKVStore;
-         //进行后续操作
-         //...
        }
      }
    }

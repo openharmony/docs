@@ -24,6 +24,8 @@ onCreate(want: object): void
 
 **系统能力：** SystemCapability.MiscServices.Wallpaper
 
+**系统接口**：此接口为系统接口。
+
 **参数：**
 
 | 参数名 | 类型          | 必填 | 说明                             |
@@ -51,6 +53,8 @@ onWallpaperChange(wallpaperType: number): void
 
 **系统能力：** SystemCapability.MiscServices.Wallpaper
 
+**系统接口**：此接口为系统接口。
+
 **参数：**
 
 | 参数名 | 类型        | 必填 | 说明                   |
@@ -77,6 +81,8 @@ onDestroy(): void
 清理壁纸拓展应用资源。在销毁壁纸拓展应用时触发回调，执行资源清理。不支持多线程并发调用。
 
 **系统能力：** SystemCapability.MiscServices.Wallpaper
+
+**系统接口**：此接口为系统接口。
 
 **示例：**
 

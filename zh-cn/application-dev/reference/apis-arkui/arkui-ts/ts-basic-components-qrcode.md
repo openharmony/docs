@@ -1,4 +1,10 @@
 # QRCode
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyujie43-->
+<!--Designer: @weixin_52725220-->
+<!--Tester: @xiong0104-->
+<!--Adviser: @HelloCrease-->
 
 用于显示单个二维码的组件。
 
@@ -141,6 +147,7 @@ struct QRCodeExample {
   build() {
     Column({ space: 5 }) {
       RelativeContainer() {
+        // $r('app.media.ocean')需要替换为开发者所需的图像资源文件。
         Image($r('app.media.ocean'))
         // 设置二维码背景色为透明
         QRCode(this.value).width(200).height(200).backgroundColor("#00ffffff")

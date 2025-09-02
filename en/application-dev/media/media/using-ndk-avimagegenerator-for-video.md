@@ -10,7 +10,7 @@ Link the dynamic library in the CMake script.
 target_link_libraries(entry PUBLIC libavimage_generator.so libace_napi.z.so)
 ```
 
-To use [OH_PixelmapNative_ConvertPixelmapNativeToNapi()](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_convertpixelmapnativetonapi) to convert a nativePixelMap object into a PixelMapnapi object and use [OH_PixelmapNative_Release()](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_release) to release the OH_PixelmapNative object, include the following header file:
+To use [OH_PixelmapNative_ConvertPixelmapNativeToNapi()](../../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_convertpixelmapnativetonapi) to convert a nativePixelMap object into a PixelMapnapi object and use [OH_PixelmapNative_Release()](../../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_release) to release the OH_PixelmapNative object, include the following header file:
 ```
 #include <multimedia/image_framework/image/pixelmap_native.h>
 ```
@@ -30,118 +30,38 @@ In addition, link the following dynamic link library in the CMake script:
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 ```
 
+(Optional) You can use [OH_AVMetadataExtractor_FetchMetadata()](../../reference/apis-media-kit/capi-avmetadata-extractor-h.md#oh_avmetadataextractor_fetchmetadata) to obtain the duration information of the media resource (OH_AVMETADATA_EXTRACTOR_DURATION, ../../reference/apis-media-kit/capi-avmetadata-extractor-base-h.md#variables), and specify the time to obtain a video frame. Include the following header files:
+```
+#include "multimedia/player_framework/avmetadata_extractor.h"
+#include "multimedia/player_framework/avmetadata_extractor_base.h"
+```
+
+In addition, link the following dynamic link library in the CMake script:
+```
+target_link_libraries(entry PUBLIC libavmetadata_extractor.so libnative_media_core.so)
+```
+
 You can use the APIs related to video frame retrieval by including the header files [avimage_generator.h](../../reference/apis-media-kit/capi-avimage-generator-h.md), [avimage_generator_base.h](../../reference/apis-media-kit/capi-avimage-generator-base-h.md), and [native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md).
 
 Read [AVImageGenerator](../../reference/apis-media-kit/capi-avimagegenerator.md) for the API reference.
 
 1. Call [OH_AVImageGenerator_Create()](../../reference/apis-media-kit/capi-avimage-generator-h.md#oh_avimagegenerator_create) to create an instance.
+   ```c
+   #include <multimedia/player_framework/avimage_generator.h>
+   // Create an OH_AVImageGenerator instance.
+   OH_AVImageGenerator* generator = OH_AVImageGenerator_Create();
+   ```
 
 2. Call [OH_AVImageGenerator_SetFDSource()](../../reference/apis-media-kit/capi-avimage-generator-h.md#oh_avimagegenerator_setfdsource) to set the file descriptor of a video resource.
+    ```c
+    #include "napi/native_api.h"
+    #include <multimedia/player_framework/avimage_generator.h>
+    #include <multimedia/player_framework/native_averrors.h>
 
-3. Call [OH_AVImageGenerator_FetchFrameByTime()](../../reference/apis-media-kit/capi-avimage-generator-h.md#oh_avimagegenerator_fetchframebytime) to obtain the video frame at a specified time, which is an **OH_PixelmapNative** object.
-   
-   When the object is no longer required, call **OH_PixelmapNative_Release** to release the object. For details, see [Image_NativeModule](../../reference/apis-image-kit/_image___native_module.md).
-
-4. Call [OH_AVImageGenerator_Release()](../../reference/apis-media-kit/capi-avimage-generator-h.md#oh_avimagegenerator_release) to destroy the instance and release resources.
-
-## Development Example
-
-Refer to the sample code below to set the file descriptor and obtain the video frame of a video at the specified time.
-
-```c
-#include "napi/native_api.h"
-
-#include <multimedia/image_framework/image/pixelmap_native.h>
-#include <multimedia/player_framework/avimage_generator.h>
-#include <multimedia/player_framework/avimage_generator_base.h>
-#include <multimedia/player_framework/native_averrors.h>
-
-#include <hilog/log.h>
-
-#define LOG_PRINT_DOMAIN 0xFF00
-#define APP_LOG_DOMAIN 0x0001
-constexpr const char *APP_LOG_TAG = "AVImageGenerator";
-#define H_LOGI(...) ((void)OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN, APP_LOG_TAG, __VA_ARGS__))
-
-// Auxiliary function: Check the number and type of parameters.
-bool CheckArgs(napi_env env, napi_callback_info info, size_t expectedArgc) {
-    size_t argc;
-    napi_value thisArg;
-    void* data;
-    napi_get_cb_info(env, info, &argc, nullptr, &thisArg, &data);
-    if (argc < expectedArgc) {
-        napi_throw_error(env, "EINVAL", "Insufficient arguments");
-        return false;
-    }
-    napi_value argv[expectedArgc];
-    napi_get_cb_info(env, info, &argc, argv, &thisArg, &data);
-    for (size_t i = 0; i < expectedArgc; ++i) {
-        napi_valuetype type;
-        napi_typeof(env, argv[i], &type);
-        if (type != napi_number) {
-            napi_throw_type_error(env, "EINVAL", "All arguments must be numbers");
-            return false;
-        }
-    }
-    return true;
-}
-
-// Auxiliary function: Obtain a value of the int32 type and perform error processing.
-bool GetInt32Value(napi_env env, napi_value value, int32_t* result) {
-    napi_status status = napi_get_value_int32(env, value, result);
-    if (status != napi_ok) {
-        napi_throw_error(env, "EINVAL", "Failed to get int32 value");
-        return false;
-    }
-    return true;
-}
-
-// Auxiliary function: Obtain a value of the int64 type and perform error processing.
-bool GetInt64Value(napi_env env, napi_value value, int64_t* result) {
-    napi_status status = napi_get_value_int64(env, value, result);
-    if (status != napi_ok) {
-        napi_throw_error(env, "EINVAL", "Failed to get int64 value");
-        return false;
-    }
-    return true;
-}
-
-// Describe the mapped OhAvImageGeneratorFetchFrameByTime method in the index.d.ts file.
-// export const OhAvImageGeneratorFetchFrameByTime: (fdsrc : number, size : number, timeus : number, 
-// options : number, offset : number) => image.PixelMap; 
-// Pass in the media file descriptor (fdsrc), media file size (size), and specified time (timeus, in μs).
-// Specify the mappings between the time points and the video frames (options) and the offset of the media source in the file descriptor.
-// Return a PixelMap object.
-static napi_value OhAvImageGeneratorFetchFrameByTime(napi_env env, napi_callback_info info)
-{
-    if (!CheckArgs(env, info, 5)) {
-        return nullptr;
-    }
-    size_t argc = 5;
-    napi_value argv[5];
-    napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
-    int64_t timeUs = 0;
-    int64_t offset = 0;
-    int32_t fileDescribe = -1;
-    int32_t fileSize = 0;
-    int32_t options = OH_AVIMAGE_GENERATOR_QUERY_CLOSEST;
-    if (!GetInt32Value(env, argv[0], &fileDescribe)) return nullptr;
-    if (!GetInt32Value(env, argv[1], &fileSize)) return nullptr;
-    if (!GetInt64Value(env, argv[2], &timeUs)) return nullptr;
-    if (!GetInt32Value(env, argv[3], &options)) return nullptr;
-    if (!GetInt64Value(env, argv[4], &offset)) return nullptr;
-    // Verify the parameter.
-    if (options < OH_AVIMAGE_GENERATOR_QUERY_NEXT_SYNC || options > OH_AVIMAGE_GENERATOR_QUERY_CLOSEST) {
-        napi_throw_range_error(env, "EINVAL", "Invalid options value");
-        return nullptr;
-    }
-    // Create an OH_AVImageGenerator instance.
-    OH_AVImageGenerator* generator = OH_AVImageGenerator_Create();
-    // Handle exceptions.
-    if (!generator) {
-        napi_throw_error(env, "EFAILED", "Create generator failed");
-        return nullptr;
-    }
+    int64_t offset = 0; // Offset of the media source in the file descriptor.
+    int32_t fileDescribe = -1; // File descriptor of the media file.
+    int32_t fileSize = 0; // Size of the media file.
+        
     // Set the file descriptor of the video resource.
     OH_AVErrCode avErrCode = OH_AVImageGenerator_SetFDSource(generator, fileDescribe, offset, fileSize);
     // Handle exceptions.
@@ -150,54 +70,160 @@ static napi_value OhAvImageGeneratorFetchFrameByTime(napi_env env, napi_callback
         napi_throw_error(env, "EFAILED", "SetFDSource failed");
         return nullptr;
     }
-    // Obtain the video frame at a specified time.
-    OH_PixelmapNative* pixelMap = nullptr;
-    avErrCode = OH_AVImageGenerator_FetchFrameByTime(generator, timeUs,
-        (OH_AVImageGenerator_QueryOptions)options, &pixelMap);
-    // Handle exceptions.
-    if (avErrCode != AV_ERR_OK || !pixelMap) {
-        OH_AVImageGenerator_Release(generator);
-        napi_throw_error(env, "EFAILED", "FetchFrameByTime failed");
-        return nullptr;
+    ```
+
+3. (Optional) Obtain the duration information of the media resource and specify the time to obtain the video frame.
+    ```c
+    #include "napi/native_api.h"
+    #include "multimedia/player_framework/avmetadata_extractor.h"
+    #include "multimedia/player_framework/avmetadata_extractor_base.h"
+    static napi_value OhAVMetadataExtractorGetDuration(napi_env env, napi_callback_info info)
+    {
+        int64_t offset = 0;
+        int32_t fileDescribe = -1;
+        int64_t fileSize = 0;
+        // Use helper functions to obtain input parameters. For details, see the complete example.
+        if (!GetGetDurationParams(env, info, offset, fileDescribe, fileSize)) {
+            return nullptr;
+        }
+        OH_AVMetadataExtractor* mainExtractor = OH_AVMetadataExtractor_Create();
+        if (!mainExtractor) {
+            napi_throw_error(env, "EFAILED", "Create metadata extractor failed");
+            return nullptr;
+        }
+        OH_AVErrCode avErrCode = OH_AVMetadataExtractor_SetFDSource(mainExtractor, fileDescribe, offset, fileSize);
+        if (avErrCode != AV_ERR_OK) {
+            OH_AVMetadataExtractor_Release(mainExtractor);
+            napi_throw_error(env, "EFAILED", "SetFDSource for metadata extractor failed");
+            return nullptr;
+        }
+        OH_AVFormat* avMetadata = OH_AVFormat_Create();
+        // Obtain the metadata of the resource file.
+        avErrCode = OH_AVMetadataExtractor_FetchMetadata(mainExtractor, avMetadata);
+        if (avErrCode != AV_ERR_OK) {
+            OH_AVFormat_Destroy(avMetadata);
+            OH_AVMetadataExtractor_Release(mainExtractor);
+            napi_throw_error(env, "EFAILED", "Fetch metadata failed");
+            return nullptr;
+        }
+        int64_t out;
+        // Obtain the duration of the resource file from the metadata.
+        if (!OH_AVFormat_GetLongValue(avMetadata, OH_AVMETADATA_EXTRACTOR_DURATION, &out)) {
+            OH_AVFormat_Destroy(avMetadata);
+            OH_AVMetadataExtractor_Release(mainExtractor);
+            napi_throw_error(env, "EFAILED", "Get duration failed");
+            return nullptr;
+        }
+        napi_value duration;
+        napi_create_int64(env, out, &duration);
+        OH_AVFormat_Destroy(avMetadata);
+        OH_AVMetadataExtractor_Release(mainExtractor);
+        return duration;
     }
-    // Convert the nativePixelMap object into a PixelMapnapi object.
-    napi_value pixelmapNapi = nullptr;
-    Image_ErrorCode errCode = OH_PixelmapNative_ConvertPixelmapNativeToNapi(env, pixelMap, &pixelmapNapi);
-    // Release the OH_PixelmapNative resource.
-    OH_PixelmapNative_Release(pixelMap);
+    ```
+
+3. Call [OH_AVImageGenerator_FetchFrameByTime()](../../reference/apis-media-kit/capi-avimage-generator-h.md#oh_avimagegenerator_fetchframebytime) to obtain the video frame at a specified time, which is an OH_PixelmapNative object.
+   > - When the object is no longer required, call **OH_PixelmapNative_Release** to release the object. For details, see [Image_NativeModule](../../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_release).
+    ```c
+    #include "napi/native_api.h"
+    #include <multimedia/image_framework/image/pixelmap_native.h>
+    #include <multimedia/player_framework/avimage_generator.h>
+    #include <multimedia/player_framework/avimage_generator_base.h>
+    #include <multimedia/player_framework/native_averrors.h>
+
+    // Input parameters for FetchFrameByTime.
+    struct FetchFrameParams {
+        int64_t timeUs = 0; // Specified time (in us).
+        int64_t offset = 0; // Offset of the media source in the file descriptor.
+        int32_t fileDescribe = -1; // File descriptor of the media file.
+        int32_t fileSize = 0; // Size of the media file.
+        int32_t options = OH_AVIMAGE_GENERATOR_QUERY_CLOSEST; // OH_AVIMAGE_GENERATOR_QUERY_CLOSEST means that the key frame closest to the specified time is selected.
+    };
+
+    static napi_value OhAvImageGeneratorFetchFrameByTime(napi_env env, napi_callback_info info)
+    {
+        FetchFrameParams fetchFrameParams;
+        // Use helper functions to obtain input parameters. For details, see the complete example.
+        if (!GetFetchFrameByTimeParams(env, info, fetchFrameParams)) {
+            return nullptr;
+        }
+        int64_t timeUs = fetchFrameParams.timeUs;
+        int64_t offset = fetchFrameParams.offset;
+        int32_t fileDescribe = fetchFrameParams.fileDescribe;
+        int32_t fileSize = fetchFrameParams.fileSize;
+        int32_t options = fetchFrameParams.options;
+        // Create an OH_AVImageGenerator instance.
+        OH_AVImageGenerator* generator = OH_AVImageGenerator_Create();
+        // Handle exceptions.
+        if (!generator) {
+            napi_throw_error(env, "EFAILED", "Create generator failed");
+            return nullptr;
+        }
+        // Set the file descriptor of the video resource.
+        OH_AVErrCode avErrCode = OH_AVImageGenerator_SetFDSource(generator, fileDescribe, offset, fileSize);
+        // Handle exceptions.
+        if (avErrCode != AV_ERR_OK) {
+            OH_AVImageGenerator_Release(generator);
+            napi_throw_error(env, "EFAILED", "SetFDSource failed");
+            return nullptr;
+        }
+        // Obtain the video frame at a specified time.
+        OH_PixelmapNative* pixelMap = nullptr;
+        avErrCode = OH_AVImageGenerator_FetchFrameByTime(generator, timeUs,
+            (OH_AVImageGenerator_QueryOptions)options, &pixelMap);
+        // Handle exceptions.
+        if (avErrCode != AV_ERR_OK || !pixelMap) {
+            OH_AVImageGenerator_Release(generator);
+            napi_throw_error(env, "EFAILED", "FetchFrameByTime failed");
+            return nullptr;
+        }
+        // Convert the nativePixelMap object into a PixelMapnapi object.
+        napi_value pixelmapNapi = nullptr;
+        Image_ErrorCode errCode = OH_PixelmapNative_ConvertPixelmapNativeToNapi(env, pixelMap, &pixelmapNapi);
+        // Release the OH_PixelmapNative resource.
+        OH_PixelmapNative_Release(pixelMap);
+        // Release the OH_AVImageGenerator resource.
+        OH_AVImageGenerator_Release(generator);
+        // Handle exceptions.
+        if (errCode != IMAGE_SUCCESS) {
+            napi_throw_error(env, "EFAILED", "Convert PixelMap failed");
+            return nullptr;
+        }
+        return pixelmapNapi;
+    }
+    ```
+4. Call [OH_AVImageGenerator_Release()](../../reference/apis-media-kit/capi-avimage-generator-h.md#oh_avimagegenerator_release) to destroy the instance and release resources.
+    ```c
     // Release the OH_AVImageGenerator resource.
     OH_AVImageGenerator_Release(generator);
-    // Handle exceptions.
-    if (errCode != IMAGE_SUCCESS) {
-        napi_throw_error(env, "EFAILED", "Convert PixelMap failed");
-        return nullptr;
-    }
-    return pixelmapNapi;
-}
+    ```
 
-EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports)
-{
-    napi_property_descriptor desc[] = {
-        {"OhAvImageGeneratorFetchFrameByTime", nullptr, OhAvImageGeneratorFetchFrameByTime, nullptr, nullptr, nullptr, napi_default, nullptr},
-    };
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-    return exports;
-}
-EXTERN_C_END
+## Running the Sample Project
 
-static napi_module demoModule = {
-    .nm_version = 1,
-    .nm_flags = 0,
-    .nm_filename = nullptr,
-    .nm_register_func = Init,
-    .nm_modname = "entry",
-    .nm_priv = ((void *)0),
-    .reserved = {0},
-};
+Refer to the sample project to obtain the video frame at a specified time.
 
-extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
-{
-    napi_module_register(&demoModule);
-}
-```
+1. Create a project, download the [sample project](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVImageGenerator/AVImageGeneratorNDK), and copy its resources to the corresponding directories.
+    ```
+    AVImageGeneratorNDK
+    entry/src/main/ets/
+    └── pages
+        └── Index.ets (Thumbnail retrieval UI)
+    entry/src/main/
+    ├── cpp
+    │   ├── types
+    │   │   └── libentry
+    │   │       └── Index.d.ts (JavaScript mapping of NDK functions)
+    │   ├── CMakeLists.txt (CMake script)
+    │   └── napi_init.cpp (NDK functions)
+    └── resources
+        ├── base
+        │   ├── element
+        │   │   ├── color.json
+        │   │   ├── float.json
+        │   │   └── string.json
+        │   └── media
+        │
+        └── rawfile
+            └── H264_AAC.mp4 (Video resource)
+    ```
+2. Compile and run the project.

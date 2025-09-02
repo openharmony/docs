@@ -1,4 +1,4 @@
-# @ohos.app.ability.ConfigurationConstant (System Environment Information Constants)
+# @ohos.app.ability.ConfigurationConstant (Constants Related to Environment Variables)
 
 The ConfigurationConstant module provides preset enumerated values related to [Configuration](js-apis-app-ability-configuration.md) operations.
 
@@ -44,7 +44,7 @@ Enumerates the screen directions, which are used in the [Configuration.direction
 
 ## ScreenDensity
 
-Enumerates the pixel densities of the screen, which are used in the [Configuration.screenDensity](../apis-ability-kit/js-apis-app-ability-configuration.md#configuration) field. You can use these predefined enumerated values to set or obtain the pixel density of the screen.
+Enumerates the pixel densities of the screen, which are used in the [Configuration.screenDensity](../apis-ability-kit/js-apis-app-ability-configuration.md#configuration) field. You can use these predefined enumerated values to set or obtain the pixel density of the screen.<br>The font size is positively correlated with the screen pixel density. By monitoring changes in the screen pixel density, you can detect adjustments in the font size. Typically, for the same physical size, the higher the screen pixel density, the larger the font display effect.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

@@ -1,4 +1,10 @@
 # 使用JSVM-API接口创建和获取string值
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## 简介
 
@@ -21,7 +27,7 @@ string是编程中常用的数据类型。用于存储和操作文本数据，�
 | OH_JSVM_CreateStringUtf8          | 根据Utf8编码的字符串创建一个JavaScript string对象。|
 | OH_JSVM_GetValueStringUtf16      | 获取给定JavaScript string对象的Utf16编码字符串。|
 | OH_JSVM_CreateStringUtf16         | 根据Utf16编码的字符串数据创建JavaScript string对象。|
-| OH_JSVM_GetValueStringLatin1     | 获取给定JavaScript string对象的Latin1编码字符串。|
+| OH_JSVM_GetValueStringLatin1     | 获取给定JavaScript string对象的Latin-1编码字符串。|
 | OH_JSVM_CreateStringLatin1        | 根据Latin-1编码的字符串创建一个JavaScript string对象。|
 
 ## 使用示例
@@ -49,6 +55,11 @@ static JSVM_Value GetValueStringUtf8(JSVM_Env env, JSVM_CallbackInfo info)
     size_t length = 0;
     JSVM_Status status = OH_JSVM_GetValueStringUtf8(env, args[0], nullptr, 0, &length);
     char *buf = (char *)malloc(length + 1);
+    if (buf == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "malloc failed");
+        return nullptr;
+    }
+    memset(buf, 0, length + 1);
     status = OH_JSVM_GetValueStringUtf8(env, args[0], buf, length + 1, &length);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetValueStringUtf8 fail");
@@ -78,11 +89,11 @@ const char *srcCallNative = R"JS(
     let script = getValueStringUtf8(data);
 )JS";
 ```
-<!-- @[oh_jsvm_get_value_string_utf8](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringutf8/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_value_string_utf8](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringutf8/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
 ```cpp
-![GetValueStringUtf8](figures/jsvm_about_string_GetValueStringUtf8.png)
+JSVM GetValueStringUtf8 success: aaBC+-$%^你好123
 ```
 **注意事项**：`getValueStringUtf8(arg)`入参`arg`非字符串型数据时接口会调用失败。
 
@@ -128,11 +139,11 @@ const char *srcCallNative = R"JS(
     let script = createStringUtf8();
 )JS";
 ```
-<!-- @[oh_jsvm_create_string_utf8](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringutf8/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_string_utf8](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringutf8/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
 ```cpp
-![CreateStringUtf8](figures/jsvm_about_string_CreateStringUtf8.png)
+JSVM CreateStringUtf8 success: 你好, World!, successes to create UTF-8 string!
 ```
 ### OH_JSVM_GetValueStringUtf16
 
@@ -192,11 +203,11 @@ const char *srcCallNative = R"JS(
     let script = getValueStringUtf16(data);
 )JS";
 ```
-<!-- @[oh_jsvm_get_value_string_utf16](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringutf16/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_value_string_utf16](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringutf16/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
 ```cpp
-![GetValueStringUtf16](figures/jsvm_about_string_GetValueStringUtf16.png)
+JSVM GetValueStringUtf16 success: ahello。
 ```
 **注意事项**：`getValueStringUtf16(arg)`的参数`arg`必须是字符串，否则接口会调用失败。
 
@@ -249,11 +260,11 @@ const char *srcCallNative = R"JS(
     let script = createStringUtf16();
 )JS";
 ```
-<!-- @[oh_jsvm_create_string_utf16](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringutf16/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_string_utf16](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringutf16/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
 ```cpp
-![CreateStringUtf16](figures/jsvm_about_string_CreateStringUtf16.png)
+JSVM CreateStringUtf16 success: 你好, World!, successes to create UTF-16 string!
 ```
 ### OH_JSVM_GetValueStringLatin1
 
@@ -303,13 +314,12 @@ const char *srcCallNative = R"JS(
     let script = getValueStringLatin1(data);
 )JS";
 ```
-<!-- @[oh_jsvm_get_value_string_latin1](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringlatin1/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_value_string_latin1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringlatin1/src/main/cpp/hello.cpp) -->
 
-预期输出结果：
-```cpp
-*ISO-8859-1编码不支持中文，传入中文字符会导致乱码*
+预期输出结果（ISO-8859-1编码不支持中文，传入中文字符会导致乱码）：
+
 ![GetValueStringLatin1](figures/jsvm_about_string_GetValueStringLatin1.png)
-```
+
 **注意事项**：`getValueStringLatin1(arg)`入参`arg`必须为字符串类型，否则接口调用会失败。
 
 ### OH_JSVM_CreateStringLatin1
@@ -358,9 +368,9 @@ const char *srcCallNative = R"JS(
     let script = createStringLatin1();
 )JS";
 ```
-<!-- @[oh_jsvm_create_string_latin1](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringlatin1/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_string_latin1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringlatin1/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
 ```cpp
-![CreateStringLatin1](figures/jsvm_about_string_CreateStringLatin1.png)
+JSVM CreateStringLatin1 success: Hello, World! éçñ, successes to create Latin1 string!
 ```

@@ -8,7 +8,7 @@ This topic describes the general development process for using MindSpore Lite fo
 
 
 ## Available APIs
-The following table list some APIs for using MindSpore Lite for model training. For details about the APIs, see [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md).
+The following table list some APIs for using MindSpore Lite for model training. For details about the APIs, see [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md).
 
 | API       | Description       |
 | ------------------ | ----------------- |
@@ -61,7 +61,7 @@ The development process consists of the following main steps:
 
 1. Prepare the required model.
 
-    The prepared model is in `.ms` format. This topic uses [lenet_train.ms](https://gitee.com/openharmony-sig/compatibility/blob/master/test_suite/resource/master/standard%20system/acts/resource/ai/mindspore/lenet_train/lenet_train.ms) as an example. To use a custom model, perform the following steps:
+    Ensure that the prepared model is in `.ms` format. This document uses `lenet_train.ms` as an example. The operation procedure is as follows:
 
     - Use Python to create a network model based on the MindSpore architecture and export the model as a `.mindir` file. For details, see [Quick Start](https://www.mindspore.cn/tutorials/en/r2.1/beginner/quick_start.html).
     - Convert the `.mindir` model file into an `.ms` file. For details about the conversion procedure, see [Converting MindSpore Lite Models](https://www.mindspore.cn/lite/docs/en/r2.1/use/converter_train.html). The `.ms` file can be imported to the device to implement training based on the MindSpore device framework.
@@ -146,7 +146,7 @@ The development process consists of the following main steps:
     Use **OH_AI_ModelSetTrainMode** to set the training mode and use **OH_AI_RunStep** to run model training.
 
     ```c
-    // Set Traim Mode
+    // Set Train Mode
     ret = OH_AI_ModelSetTrainMode(model, true);
     if (ret != OH_AI_STATUS_SUCCESS) {
         printf("OH_AI_ModelSetTrainMode failed, ret: %d.\n", ret);
@@ -433,12 +433,12 @@ int TrainDemo(int argc, const char **argv) {
     return ret;
   }
 
-  // Set Traim Mode
+  // Set Train Mode
   ret = OH_AI_ModelSetTrainMode(model, true);
   if (ret != OH_AI_STATUS_SUCCESS) {
     printf("OH_AI_ModelSetTrainMode failed, ret: %d.\n", ret);
     OH_AI_ModelDestroy(&model);
-	OH_AI_ContextDestroy(&context);
+    OH_AI_ContextDestroy(&context);
     return ret;
   }
 
@@ -477,7 +477,8 @@ int TrainDemo(int argc, const char **argv) {
   OH_AI_ContextDestroy(&context);
 
   // Use The Exported Model to predict
-  ret = ModelPredict(strcat(export_infer_model, ".ms"));
+  char *exported_model = strcat(export_infer_model, ".ms");
+  ret = ModelPredict(exported_model);
   if (ret != OH_AI_STATUS_SUCCESS) {
     printf("Exported Model to predict failed, ret: %d.\n", ret);
     return ret;

@@ -100,7 +100,6 @@ struct Index1 {
 
 
 
-![en-us_image_0000001599813588](figures/en-us_image_0000001599813588.gif)
 
 
 ## Applying Background Blur with backgroundBlurStyle

@@ -1,6 +1,6 @@
 # @ohos.multimedia.audio (Audio Management) (System API)
 
-The **Audio** module provides basic audio management capabilities, including audio volume and audio device management, and audio data collection and rendering.
+The module provides basic audio management capabilities, including audio volume and audio device management, and audio data collection and rendering.
 
 This module provides the following common audio-related functions:
 
@@ -10,7 +10,7 @@ This module provides the following common audio-related functions:
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.multimedia.audio (Audio Management)](js-apis-audio.md).
+> - This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.multimedia.audio (Audio Management)](arkts-apis-audio.md).
 
 ## Modules to Import
 
@@ -20,26 +20,30 @@ import { audio } from '@kit.AudioKit';
 
 ## Constants
 
-| Name                                   | Type     | Readable | Writable| Description              |
-| --------------------------------------- | ----------| ---- | ---- | ------------------ |
-| LOCAL_NETWORK_ID<sup>9+</sup>           | string    | Yes  | No  | Network ID of the local device.<br>This is a system API.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+| Name                                   | Type     | Read-Only| Description              |
+| --------------------------------------- | ----------| ---- | ------------------ |
+| LOCAL_NETWORK_ID<sup>9+</sup>           | string    | Yes| Network ID of the local device.|
 
 ## audio.createTonePlayer<sup>9+</sup>
 
 createTonePlayer(options: AudioRendererInfo, callback: AsyncCallback&lt;TonePlayer&gt;): void
 
-Creates a **TonePlayer** instance. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Audio.Tone
+Creates a TonePlayer instance. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Tone
 
 **Parameters**
 
 | Name  | Type                                            | Mandatory| Description           |
 | -------- | ----------------------------------------------- | ---- | -------------- |
-| options  | [AudioRendererInfo](js-apis-audio.md#audiorendererinfo8)        | Yes  | Audio renderer information.|
-| callback | AsyncCallback<[TonePlayer](#toneplayer9)>       | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **TonePlayer** instance obtained; otherwise, **err** is an error object.|
+| options  | [AudioRendererInfo](arkts-apis-audio-i.md#audiorendererinfo8)        | Yes  | Audio renderer information.|
+| callback | AsyncCallback<[TonePlayer](#toneplayer9)>       | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the TonePlayer instance obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -67,23 +71,23 @@ audio.createTonePlayer(audioRendererInfo, (err, data) => {
 
 createTonePlayer(options: AudioRendererInfo): Promise&lt;TonePlayer&gt;
 
-Creates a **TonePlayer** instance. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Audio.Tone
+Creates a TonePlayer instance. This API uses a promise to return the result.
 
 **System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Tone
 
 **Parameters**
 
 | Name | Type                                          | Mandatory| Description        |
 | :------ | :---------------------------------------------| :--- | :----------- |
-| options | [AudioRendererInfo](js-apis-audio.md#audiorendererinfo8)      | Yes  | Audio renderer information.|
+| options | [AudioRendererInfo](arkts-apis-audio-i.md#audiorendererinfo8)      | Yes  | Audio renderer information.|
 
 **Return value**
 
 | Type                                     | Description                            |
 | ----------------------------------------- | -------------------------------- |
-| Promise<[TonePlayer](#toneplayer9)>       | Promise used to return the **TonePlayer** instance.|
+| Promise<[TonePlayer](#toneplayer9)>       | Promise used to return the TonePlayer instance.|
 
 **Example**
 
@@ -102,13 +106,19 @@ async function createTonePlayerBefore(){
 
 ## audio.createAsrProcessingController<sup>12+</sup>
 
-createAsrProcessingController(audioCapturer: AudioCapturer): AsrProcessingController;
+createAsrProcessingController(audioCapturer: AudioCapturer): AsrProcessingController
 
 Creates an Automatic Speech Recognition (ASR) processing controller.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name | Type                                          | Mandatory| Description      |
+| :------ | :---------------------------------------------| :--- |:---------|
+| audioCapturer | [AudioCapturer](arkts-apis-audio-AudioCapturer.md)      | Yes  | Callback used to return the AudioCapturer instance.|
 
 **Return value**
 
@@ -118,7 +128,7 @@ Creates an Automatic Speech Recognition (ASR) processing controller.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID  | Error Message                                    |
 |---------|------------------------------------------|
@@ -165,20 +175,23 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 Enumerates the audio stream types.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
 | Name                        | Value     | Description      |
 | ---------------------------- | ------ | ---------- |
-| ULTRASONIC<sup>10+</sup>     | 10     | Audio stream for ultrasonic.<br>This is a system API.|
-| ALL<sup>9+</sup>             | 100    | All public audio streams.<br>This is a system API.|
+| SYSTEM<sup>20+</sup>         | 6      | System sound.|
+| ULTRASONIC<sup>10+</sup>     | 10     | Audio stream for ultrasonic.|
+| ALL<sup>9+</sup>             | 100    | All public audio streams.|
 
 ## InterruptRequestResultType<sup>9+</sup>
 
 Enumerates the result types of audio interruption requests.
 
-**System capability**: SystemCapability.Multimedia.Audio.Interrupt
-
 **System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Interrupt
 
 | Name                        | Value     | Description      |
 | ---------------------------- | ------ | ---------- |
@@ -189,14 +202,16 @@ Enumerates the result types of audio interruption requests.
 
 Enumerates the audio device flags.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
 | Name                           |  Value    | Description                       |
 | ------------------------------- | ------ |---------------------------|
-| NONE_DEVICES_FLAG<sup>9+</sup>  | 0      | No device is available.<br>This is a system API.       |
-| DISTRIBUTED_OUTPUT_DEVICES_FLAG<sup>9+</sup> | 4   | Distributed output device.<br>This is a system API.   |
-| DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup>  | 8   | Distributed input device.<br>This is a system API.   |
-| ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup>    | 12  | Distributed input and output device.<br>This is a system API.|
+| NONE_DEVICES_FLAG<sup>9+</sup>  | 0      | No device is available.|
+| DISTRIBUTED_OUTPUT_DEVICES_FLAG<sup>9+</sup> | 4   | Distributed output device.|
+| DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup>  | 8   | Distributed input device.|
+| ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup>    | 12  | Distributed input and output device.|
 
 ## EffectFlag<sup>18+</sup>
 
@@ -219,25 +234,27 @@ Describes the audio effect properties.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name              | Type| Mandatory| Description      |
-| ------------------ | ---- | ---- | --------- |
-| name         | string | Yes| Audio effect name.|
-| category     | string | Yes| Audio effect category.|
-| flag        | [EffectFlag](#effectflag18) | Yes| Audio effect flag.|
+| Name              | Type| Read-Only| Optional| Description      |
+| ------------------ | ---- | ---- |---| --------- |
+| name         | string | No| No| Audio effect name.|
+| category     | string | No| No| Audio effect category.|
+| flag        | [EffectFlag](#effectflag18) | No| No| Audio effect flag.|
 
 ## StreamUsage
 
 Enumerates the audio stream usage.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name                                     |  Value   | Description                                                                                                                                         |
-| ------------------------------------------| ------ |---------------------------------------------------------------------------------------------------------------------------------------------|
-| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9      | System tone (such as screen lock sound effect or key tone).<br>This is a system API. |
-| STREAM_USAGE_DTMF<sup>10+</sup>           | 14     | Dial tone.<br>This is a system API.   |
-| STREAM_USAGE_ENFORCED_TONE<sup>10+</sup>  | 15     | Forcible tone (such as camera shutter sound effect).<br>This is a system API.  |
-| STREAM_USAGE_ULTRASONIC<sup>10+</sup>     | 16     | Ultrasonic (currently provided only for MSDP).<br>This is a system API.|
-| STREAM_USAGE_VOICE_CALL_ASSISTANT<sup>12+</sup>     | 21     | Voice assistant for calls.<br>This is a system API.|
+| Name                                     |  Value   | Description                         |
+| ------------------------------------------| ------ |-----------------------------|
+| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9      | System tone (such as screen lock sound effect or key tone).|
+| STREAM_USAGE_DTMF<sup>10+</sup>           | 14     | Dial tone.|
+| STREAM_USAGE_ENFORCED_TONE<sup>10+</sup>  | 15     | Forcible tone (such as camera shutter sound effect).|
+| STREAM_USAGE_ULTRASONIC<sup>10+</sup>     | 16     | Ultrasonic (currently provided only for MSDP).|
+| STREAM_USAGE_VOICE_CALL_ASSISTANT<sup>12+</sup>     | 21     | Voice assistant for calls.|
 
 ## InterruptRequestType<sup>9+</sup>
 
@@ -339,25 +356,27 @@ Enumerates the ASR voice mute modes.
 
 Describes the audio interruption result.
 
-**System capability**: SystemCapability.Multimedia.Audio.Interrupt
-
 **System API**: This is a system API.
 
-| Name         | Type                                                           | Mandatory| Description            |
-| --------------| -------------------------------------------------------------- | ---- | ---------------- |
-| requestResult | [InterruptRequestResultType](#interruptrequestresulttype9)     | Yes  | Audio interruption request type.|
-| interruptNode | number                                                         | Yes  | Node to interrupt.|
+**System capability**: SystemCapability.Multimedia.Audio.Interrupt
+
+| Name         | Type                                                           | Read-Only| Optional| Description            |
+| --------------| -------------------------------------------------------------- | ---- |---| ---------------- |
+| requestResult | [InterruptRequestResultType](#interruptrequestresulttype9)     | No| No| Audio interruption request type.|
+| interruptNode | number                                                         | No| No| Node to interrupt.|
 
 ## VolumeEvent<sup>9+</sup>
 
 Describes the event received by the application when the volume is changed.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
-| Name      | Type                               | Mandatory  | Description                                       |
-| ---------- | ----------------------------------- | ---- |-------------------------------------------|
-| volumeGroupId | number                           | Yes  | Volume group ID. It can be used as an input parameter of **getGroupManager**.<br>This is a system API.|
-| networkId  | string                              | Yes  | Network ID.<br>This is a system API.   |
+| Name      | Type                               | Read-Only| Optional| Description                                       |
+| ---------- | ----------------------------------- | ---- |---|-------------------------------------------|
+| volumeGroupId | number                           | No| No| Volume group ID. It can be used as an input parameter of **getGroupManager**.|
+| networkId  | string                              | No| No| Network ID.|
 
 ## ConnectType<sup>9+</sup>
 
@@ -388,7 +407,7 @@ Describes the volume group information.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
-| Name                       | Type                      | Readable| Writable| Description      |
+| Name                       | Type                      | Read-Only| Optional| Description      |
 | -------------------------- | -------------------------- | ---- | ---- | ---------- |
 | networkId<sup>9+</sup>     | string                     | Yes  | No  | Network ID of the device. |
 | groupId<sup>9+</sup>       | number                     | Yes  | No  | Group ID of the device.|
@@ -400,11 +419,15 @@ Describes the volume group information.
 
 Enumerates the audio source types.
 
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
 | Name                                        |  Value    | Description                  |
 | :------------------------------------------- | :----- | :--------------------- |
-| SOURCE_TYPE_WAKEUP <sup>10+</sup>            | 3 | Audio recording source in voice wake-up scenarios.<br>**System capability**: SystemCapability.Multimedia.Audio.Core<br>**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE <br> This is a system API.|
-| SOURCE_TYPE_VOICE_CALL<sup>11+</sup>            | 4 | Audio source in voice calls.<br>**System capability**: SystemCapability.Multimedia.Audio.Core<br>**Required permissions**: ohos.permission.RECORD_VOICE_CALL <br> This is a system API.|
-| SOURCE_TYPE_VOICE_TRANSCRIPTION<sup>18+</sup>   | 12     | Audio source for speech-to-text conversion.<br>**System capability**: SystemCapability.Multimedia.Audio.Core<br> This is a system API.|
+| SOURCE_TYPE_WAKEUP <sup>10+</sup>            | 3 | Audio recording source in voice wake-up scenarios.<br>**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE |
+| SOURCE_TYPE_VOICE_CALL<sup>11+</sup>            | 4 | Audio source in voice calls.<br>**Required permissions**: ohos.permission.RECORD_VOICE_CALL |
+| SOURCE_TYPE_VOICE_TRANSCRIPTION<sup>18+</sup>   | 12     | Audio source for speech-to-text conversion.|
 
 ## VolumeAdjustType<sup>10+</sup>
 
@@ -416,12 +439,12 @@ Enumerates the volume adjustment types.
 
 | Name                  |  Value    | Description                                         |
 | :--------------------- | :----- | :-------------------------------------------- |
-| VOLUME_UP              | 0      | Adjusts the volume upwards.<br>This is a system API.  |
-| VOLUME_DOWN            | 1      | Adjusts the volume downwards.<br>This is a system API.  |
+| VOLUME_UP              | 0      | Adjusts the volume upwards.|
+| VOLUME_DOWN            | 1      | Adjusts the volume downwards.|
 
 ## AudioManager
 
-Implements audio volume and audio device management. Before calling any API in **AudioManager**, you must use [getAudioManager](js-apis-audio.md#audiogetaudiomanager) to create an **AudioManager** instance.
+Implements audio volume and audio device management. Before calling any API in AudioManager, you must use [getAudioManager](arkts-apis-audio-f.md#audiogetaudiomanager) to create an AudioManager instance.
 
 ### setExtraParameters<sup>11+</sup>
 
@@ -450,7 +473,7 @@ Sets extended audio parameters. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message                                                                                                      |
 |-----|------------------------------------------------------------------------------------------------------------|
@@ -501,7 +524,7 @@ Obtains the value of an audio parameter. This API uses a promise to return the r
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------ | -------------------------|
@@ -536,7 +559,7 @@ Sets an audio scene. This API uses an asynchronous callback to return the result
 
 | Name  | Type                                | Mandatory| Description                |
 | :------- | :----------------------------------- | :--- | :------------------- |
-| scene    | [AudioScene](js-apis-audio.md#audioscene8) | Yes  | Audio scene to set.      |
+| scene    | [AudioScene](arkts-apis-audio-e.md#audioscene8) | Yes  | Audio scene to set.      |
 | callback | AsyncCallback<void\>                 | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
@@ -567,7 +590,7 @@ Sets an audio scene. This API uses a promise to return the result.
 
 | Name| Type                                | Mandatory| Description          |
 | :----- | :----------------------------------- | :--- | :------------- |
-| scene  | [AudioScene](js-apis-audio.md#audioscene8) | Yes  | Audio scene to set.|
+| scene  | [AudioScene](arkts-apis-audio-e.md#audioscene8) | Yes  | Audio scene to set.|
 
 **Return value**
 
@@ -591,7 +614,7 @@ audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
 
 getEffectManager(): AudioEffectManager
 
-Obtains an **AudioEffectManager** instance.
+Obtains an AudioEffectManager instance.
 
 **System API**: This is a system API.
 
@@ -601,11 +624,11 @@ Obtains an **AudioEffectManager** instance.
 
 | Type                                          | Description                         |
 |----------------------------------------------| ----------------------------- |
-| [AudioEffectManager](#audioeffectmanager18) | **AudioEffectManager** instance.|
+| [AudioEffectManager](#audioeffectmanager18) | AudioEffectManager instance.|
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -666,13 +689,13 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [on('volumeChange')](js-apis-audio.md#onvolumechange9) in **AudioVolumeManager**.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [on('volumeChange')](arkts-apis-audio-AudioVolumeManager.md#onvolumechange9) in AudioVolumeManager.
 
 Subscribes to the system volume change event, which is triggered when the system volume is changed. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API.
+Currently, when multiple AudioManager instances are used in a single process, only the subscription of the last instance takes effect, and the subscription of other instances is overwritten (even if the last instance does not initiate a subscription). Therefore, you are advised to use a single AudioManager instance.
 
-Currently, when multiple **AudioManager** instances are used in a single process, only the subscription of the last instance takes effect, and the subscription of other instances is overwritten (even if the last instance does not initiate a subscription). Therefore, you are advised to use a single **AudioManager** instance.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -697,11 +720,11 @@ audioManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 
 on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
-Subscribes to the ringer mode change event, which is triggered when [audioringmode](js-apis-audio.md#audioringmode) is changed. This API uses an asynchronous callback to return the result.
+Subscribes to the ringer mode change event, which is triggered when [audioringmode](arkts-apis-audio-e.md#audioringmode) is changed. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [on('ringerModeChange')](js-apis-audio.md#onringermodechange9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [on('ringerModeChange')](arkts-apis-audio-AudioVolumeGroupManager.md#onringermodechange9) in AudioVolumeGroupManager.
 
 **System API**: This is a system API.
 
@@ -712,7 +735,7 @@ Subscribes to the ringer mode change event, which is triggered when [audioringmo
 | Name  | Type                                     | Mandatory| Description                                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                    | Yes  | Event type. The event **'ringerModeChange'** is triggered when the ringer mode is changed.|
-| callback | Callback<[AudioRingMode](js-apis-audio.md#audioringmode)> | Yes  | Callback used to return the changed ringer mode.                                                  |
+| callback | Callback<[AudioRingMode](arkts-apis-audio-e.md#audioringmode)> | Yes  | Callback used to return the changed ringer mode.                                                  |
 
 **Example**
 
@@ -722,9 +745,57 @@ audioManager.on('ringerModeChange', (ringerMode: audio.AudioRingMode) => {
 });
 ```
 
+## forceVolumeKeyControlType<sup>20+</sup>
+
+forceVolumeKeyControlType(volumeType: AudioVolumeType, duration: number): void
+
+Sets the type of volume that the volume keys should control.
+
+**Required permissions**: ohos.permission.MODIFY_AUDIO_SETTINGS
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name  | Type                                  | Mandatory| Description                                                        |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| volumeType     | [AudioVolumeType](#audiovolumetype)                       | Yes  | Type of volume to control.|
+| duration |number | Yes  | Duration that the volume keys will control this type of volume if no volume key events occur. When this time expires, the forced volume type setting is canceled. The maximum duration is 10 seconds. If the duration is set to **-1**, the setting is canceled.|
+
+**Error codes**
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 6800101 | Parameter verification failed. |
+| 6800301  | Crash or blocking occurs in system process. |
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+let audioManager = audio.getAudioManager();
+let audioVolumeManager = audioManager.getVolumeManager();
+
+// Set the volume control type to ringtone mode.
+let volumeType = audio.AudioVolumeType.RINGTONE;
+let duration = 10;
+audioVolumeManager.forceVolumeKeyControlType(volumeType, duration);
+
+// Cancel the custom volume control, and restore the default volume control.
+let volumeTypeDefault = audio.AudioVolumeType.MEDIA;
+let durationToCancel = -1;
+audioVolumeManager.forceVolumeKeyControlType(volumeTypeDefault, durationToCancel);
+```
+
 ## AudioVolumeManager<sup>9+</sup>
 
-Implements audio volume management. Before calling an API in **AudioVolumeManager**, you must use [getVolumeManager](js-apis-audio.md#getvolumemanager9) to obtain an **AudioVolumeManager** instance.
+Implements audio volume management. Before calling an API in AudioVolumeManager, you must use [getVolumeManager](arkts-apis-audio-AudioManager.md#getvolumemanager9) to obtain an AudioVolumeManager instance.
 
 ### getVolumeGroupInfos<sup>9+</sup>
 
@@ -811,7 +882,7 @@ Obtains the volume groups. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -832,7 +903,7 @@ try {
 }
 ```
 
-### getAppVolumePercentageForUid<sup>18+</sup>
+### getAppVolumePercentageForUid<sup>19+</sup>
 
 getAppVolumePercentageForUid(uid: number\): Promise<number\>
 
@@ -862,7 +933,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | --------------------------------------------|
 | 201 | Permission denied. |
 | 202 | Not system App. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed.|
 
 **Example**
@@ -875,7 +945,7 @@ audioVolumeManager.getAppVolumePercentageForUid(20010041).then((value: number) =
 });
 ```
 
-### setAppVolumePercentageForUid<sup>18+</sup>
+### setAppVolumePercentageForUid<sup>19+</sup>
 
 setAppVolumePercentageForUid(uid: number, volume: number\): Promise<void\>
 
@@ -906,7 +976,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | --------------------------------------------|
 | 201 | Permission denied. |
 | 202 | Not system App. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed.|
 | 6800301 | Crash or blocking occurs in system process. |
 
@@ -921,7 +990,7 @@ audioVolumeManager.setAppVolumePercentageForUid(uid, volume).then(() => {
 });
 ```
 
-### isAppVolumeMutedForUid<sup>18+</sup>
+### isAppVolumeMutedForUid<sup>19+</sup>
 
 isAppVolumeMutedForUid(uid: number, owned: boolean\): Promise<boolean\>
 
@@ -956,7 +1025,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | --------------------------------------------|
 | 201 | Permission denied. |
 | 202 | Not system App. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 |  Parameter verification failed.|
 
 **Example**
@@ -964,12 +1032,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 let uid: number = 20010041; // Application ID.
 
-audioVolumeManager.setAppVolumePercentageForUid(uid, true).then((value: boolean) => {
+audioVolumeManager.isAppVolumeMutedForUid(uid, true).then((value: boolean) => {
   console.info(`app muted state is ${value}.`);
 });
 ```
 
-### setAppVolumeMutedForUid<sup>18+</sup>
+### setAppVolumeMutedForUid<sup>19+</sup>
 
 setAppVolumeMutedForUid(uid: number, muted: boolean\): Promise<void\>
 
@@ -1000,7 +1068,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | --------------------------------------------|
 | 201 | Permission denied. |
 | 202 | Not system App. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed.|
 | 6800301 | Crash or blocking occurs in system process. |
 
@@ -1009,12 +1076,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 let uid: number = 20010041; // Application ID.
 
-audioVolumeManager.setAppVolumePercentageForUid(uid, true).then(() => {
+audioVolumeManager.setAppVolumeMutedForUid(uid, true).then(() => {
   console.info(`set app mute state success.`);
 });
 ```
 
-### on('appVolumeChangeForUid')<sup>18+</sup>
+### on('appVolumeChangeForUid')<sup>19+</sup>
 
 on(type: 'appVolumeChangeForUid', uid: number, callback: Callback\<VolumeEvent>): void
 
@@ -1030,7 +1097,7 @@ Subscribes to the application-level volume change event of an application. This 
 | -------- | -------------------------------------- | ---- |-----------------------------------|
 | type     | string                                 | Yes  | Event type. The event **'appVolumeChangeForUid'** is triggered when the application-level volume is changed.|
 | uid | number |  Yes  | Application ID.                         |
-| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | Yes  | Callback used to return the changed volume.                 |
+| callback | Callback<[VolumeEvent](arkts-apis-audio-i.md#volumeevent9)> | Yes  | Callback used to return the changed volume.                 |
 
 **Error codes**
 
@@ -1040,7 +1107,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | --------------------------------------------|
 | 201 | Permission denied. |
 | 202 | Not system App. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **Example**
@@ -1055,7 +1121,7 @@ audioVolumeManager.on('appVolumeChangeForUid', uid, (volumeEvent: audio.VolumeEv
 });
 ```
 
-### off('appVolumeChangeForUid')<sup>18+</sup>
+### off('appVolumeChangeForUid')<sup>19+</sup>
 
 off(type: 'appVolumeChangeForUid', callback?: Callback\<VolumeEvent>): void
 
@@ -1070,7 +1136,7 @@ Unsubscribes from the application-level volume change event of an application. T
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string | Yes  | Event type. The event **'appVolumeChangeForUid'** is triggered when the application-level volume is changed.|
-| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | No  | Callback used to return the changed volume.|
+| callback | Callback<[VolumeEvent](arkts-apis-audio-i.md#volumeevent9)> | No  | Callback used to return the changed volume.|
 
 **Error codes**
 
@@ -1080,7 +1146,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | --------------------------------------------|
 | 201 | Permission denied. |
 | 202 | Not system App. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **Example**
@@ -1101,9 +1166,85 @@ audioVolumeManager.on('appVolumeChangeForUid', appVolumeChangeForUidCallback);
 audioVolumeManager.off('appVolumeChangeForUid', appVolumeChangeForUidCallback);
 ```
 
+### on('activeVolumeTypeChange')<sup>20+</sup>
+
+on(type: 'activeVolumeTypeChange', callback: Callback\<AudioVolumeType>): void
+
+Subscribes to the active volume type change event. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name  | Type                                  | Mandatory| Description                                                        |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | Yes  | Event type. The event **'activeVolumeTypeChange'** is triggered when the active volume type changes.|
+| callback | Callback\<[AudioVolumeType](arkts-apis-audio-e.md#audiovolumetype)> | Yes  | Callback used to return the changed active volume type.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202 | Not system App. |
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+audioVolumeManager.on('activeVolumeTypeChange', (volumeType: audio.AudioVolumeType) => {
+  console.info(`VolumeType of stream: ${volumeType} `);
+});
+```
+
+### off('activeVolumeTypeChange')<sup>20+</sup>
+
+off(type: 'activeVolumeTypeChange', callback?: Callback\<AudioVolumeType>): void
+
+Unsubscribes from the active volume type change event. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name  | Type                                  | Mandatory| Description                                                        |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | Yes  | Event type. The event **'activeVolumeTypeChange'** is triggered when the active volume type changes.|
+| callback | Callback\<[AudioVolumeType](arkts-apis-audio-e.md#audiovolumetype)> | No  | Callback used to return the changed active volume type.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202 | Not system App. |
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+// Cancel all subscriptions to the event.
+audioVolumeManager.off('activeVolumeTypeChange');
+
+// For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
+let activeVolumeTypeChangeCallback = (volumeType: audio.AudioVolumeType) => {
+  console.info(`VolumeType of stream: ${volumeType} `);
+};
+
+audioVolumeManager.on('activeVolumeTypeChange', activeVolumeTypeChangeCallback);
+
+audioVolumeManager.off('activeVolumeTypeChange', activeVolumeTypeChangeCallback);
+```
+
 ## AudioVolumeGroupManager<sup>9+</sup>
 
-Manages the volume of an audio group. Before calling any API in **AudioVolumeGroupManager**, you must use [getVolumeGroupManager](js-apis-audio.md#getvolumegroupmanager9) to obtain an **AudioVolumeGroupManager** instance.
+Manages the volume of an audio group. Before calling any API in AudioVolumeGroupManager, you must use [getVolumeGroupManager](arkts-apis-audio-AudioVolumeManager.md#getvolumegroupmanager9) to obtain an AudioVolumeGroupManager instance.
 
 ### setVolume<sup>9+</sup>
 
@@ -1124,7 +1265,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 | Name    | Type                               | Mandatory| Description                                                    |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
-| volume     | number                              | Yes  | Volume. The volume range can be obtained by calling [getMinVolume](js-apis-audio.md#getminvolume9) and [getMaxVolume](js-apis-audio.md#getmaxvolume9).|
+| volume     | number                              | Yes  | Volume. The volume range can be obtained by calling [getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolume9) and [getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolume9).|
 | callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
@@ -1160,7 +1301,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 | Name    | Type                               | Mandatory| Description                                                    |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
-| volume     | number                              | Yes  | Volume. The volume range can be obtained by calling [getMinVolume](js-apis-audio.md#getminvolume9) and [getMaxVolume](js-apis-audio.md#getmaxvolume9).|
+| volume     | number                              | Yes  | Volume. The volume range can be obtained by calling [getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolume9) and [getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolume9).|
 
 **Return value**
 
@@ -1195,7 +1336,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 | Name    | Type                               | Mandatory| Description                                  |
 | ---------- | ----------------------------------- | ---- |--------------------------------------|
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                              |
-| volume     | number                              | Yes  | Volume. The volume range can be obtained by calling [getMinVolume](js-apis-audio.md#getminvolume9) and [getMaxVolume](js-apis-audio.md#getmaxvolume9).|
+| volume     | number                              | Yes  | Volume. The volume range can be obtained by calling [getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolume9) and [getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolume9).|
 | flags      | number                              | Yes  | Whether to display the system volume bar. The value **0** means not to display the system volume bar, and **1** means the opposite.|
 
 **Return value**
@@ -1206,7 +1347,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -1310,7 +1451,7 @@ This permission is required only for muting or unmuting the ringer.
 
 | Name  | Type                           | Mandatory| Description                    |
 | -------- | ------------------------------- | ---- | ------------------------ |
-| mode     | [AudioRingMode](js-apis-audio.md#audioringmode) | Yes  | Ringer mode.          |
+| mode     | [AudioRingMode](arkts-apis-audio-e.md#audioringmode) | Yes  | Ringer mode.          |
 | callback | AsyncCallback&lt;void&gt;       | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
@@ -1345,7 +1486,7 @@ This permission is required only for muting or unmuting the ringer.
 
 | Name| Type                           | Mandatory| Description          |
 | ------ | ------------------------------- | ---- | -------------- |
-| mode   | [AudioRingMode](js-apis-audio.md#audioringmode) | Yes  | Ringer mode.|
+| mode   | [AudioRingMode](arkts-apis-audio-e.md#audioringmode) | Yes  | Ringer mode.|
 
 **Return value**
 
@@ -1387,7 +1528,7 @@ Mutes or unmutes the microphone. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -1427,7 +1568,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -1478,7 +1619,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -1523,7 +1664,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -1574,7 +1715,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | -------- | --------------------------------------------|
@@ -1596,7 +1737,7 @@ audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, au
 ```
 ## AudioEffectManager<sup>18+</sup>
 
-Manages audio effects. Before calling an API in **AudioEffectManager**, you must use [getEffectManager](#geteffectmanager18) to obtain an **AudioEffectManager** instance.
+Manages audio effects. Before calling an API in AudioEffectManager, you must use [getEffectManager](#geteffectmanager18) to obtain an AudioEffectManager instance.
 
 
 ### getSupportedAudioEffectProperty<sup>18+</sup>
@@ -1619,7 +1760,7 @@ Obtains the supported audio effects. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -1662,7 +1803,7 @@ Obtains the audio effect in use. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -1697,19 +1838,19 @@ Sets an audio effect in use. This API returns the result synchronously.
 **System capability**: SystemCapability.Multimedia.Audio.core
 
 **Parameters**
+
 | Name       | Type                                                 | Mandatory    | Description                        |
 | ------------- | ----------------------------------------------------- | -------- | ---------------------------- |
 | propertyArray | Array\<[AudioEffectProperty](#audioeffectproperty18)> | Yes      |  Property of the audio effect.       |
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied. |
 | 202 | Caller is not a system application. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. Possible causes: 1.more than one enhanceProps of the same enhanceClass in input Array; 2.input audioEnhanceProperties are not supported by current device. 3.names of enhanceProp or enhanceClass are incorrect.|
 | 6800301 | System error. Return by callback. |
 
@@ -1730,7 +1871,7 @@ try {
 
 ## AudioRoutingManager<sup>9+</sup>
 
-Implements audio routing management. Before calling any API in **AudioRoutingManager**, you must use [getRoutingManager](js-apis-audio.md#getroutingmanager9) to obtain an **AudioRoutingManager** instance.
+Implements audio routing management. Before calling any API in AudioRoutingManager, you must use [getRoutingManager](arkts-apis-audio-AudioManager.md#getroutingmanager9) to obtain an AudioRoutingManager instance.
 
 ### selectInputDevice<sup>9+</sup>
 
@@ -1746,7 +1887,7 @@ Selects an audio input device. Currently, only one input device can be selected.
 
 | Name                      | Type                                                        | Mandatory| Description                     |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| inputAudioDevices           | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | Yes  | Input device.              |
+| inputAudioDevices           | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)            | Yes  | Input device.              |
 | callback                    | AsyncCallback&lt;void&gt;                                    | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
@@ -1784,9 +1925,9 @@ async function selectInputDevice(){
 
 selectInputDevice(inputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
 
-**System API**: This is a system API.
-
 Selects an audio input device. Currently, only one input device can be selected. This API uses a promise to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -1794,7 +1935,7 @@ Selects an audio input device. Currently, only one input device can be selected.
 
 | Name                      | Type                                                        | Mandatory| Description                     |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| inputAudioDevices           | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | Yes  | Input device.              |
+| inputAudioDevices           | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)            | Yes  | Input device.              |
 
 **Return value**
 
@@ -1846,7 +1987,7 @@ Selects an audio output device. Currently, only one output device can be selecte
 
 | Name                      | Type                                                        | Mandatory| Description                     |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| outputAudioDevices          | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | Yes  | Output device.              |
+| outputAudioDevices          | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)            | Yes  | Output device.              |
 | callback                    | AsyncCallback&lt;void&gt;                                    | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
@@ -1883,9 +2024,9 @@ async function selectOutputDevice(){
 
 selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
 
-**System API**: This is a system API.
-
 Selects an audio output device. Currently, only one output device can be selected. This API uses a promise to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -1893,7 +2034,7 @@ Selects an audio output device. Currently, only one output device can be selecte
 
 | Name                      | Type                                                        | Mandatory| Description                     |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| outputAudioDevices          | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | Yes  | Output device.              |
+| outputAudioDevices          | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)            | Yes  | Output device.              |
 
 **Return value**
 
@@ -1935,9 +2076,9 @@ async function selectOutputDevice(){
 
 selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
 
-**System API**: This is a system API.
-
 Selects an audio output device based on the filter criteria. Currently, only one output device can be selected. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -1946,7 +2087,7 @@ Selects an audio output device based on the filter criteria. Currently, only one
 | Name                      | Type                                                        | Mandatory| Description                     |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
 | filter                      | [AudioRendererFilter](#audiorendererfilter9)                 | Yes  | Filter criteria.              |
-| outputAudioDevices          | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | Yes  | Output device.              |
+| outputAudioDevices          | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)            | Yes  | Output device.              |
 | callback                    | AsyncCallback&lt;void&gt;                                    | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
@@ -1992,9 +2133,9 @@ async function selectOutputDeviceByFilter(){
 
 selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
 
-**System API**: This is a system API.
-
 Selects an audio output device based on the filter criteria. Currently, only one output device can be selected. This API uses a promise to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -2003,7 +2144,7 @@ Selects an audio output device based on the filter criteria. Currently, only one
 | Name                | Type                                                        | Mandatory| Description                     |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
 | filter                | [AudioRendererFilter](#audiorendererfilter9)                 | Yes  | Filter criteria.              |
-| outputAudioDevices    | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | Yes  | Output device.              |
+| outputAudioDevices    | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)            | Yes  | Output device.              |
 
 **Return value**
 
@@ -2065,7 +2206,7 @@ Selects an audio input device based on the filter criteria. Currently, only one 
 | Name                | Type                                                               | Mandatory| Description    |
 | ----------------------|-------------------------------------------------------------------| ---- |--------|
 | filter                      | [AudioCapturerFilter](#audiocapturerfilter18)                     | Yes  | Filter criteria.|
-| inputAudioDevices | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | Yes  | Input device.|
+| inputAudioDevices | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors) | Yes  | Input device.|
 
 **Return value**
 
@@ -2080,7 +2221,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 202 | Not system App. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 |  Parameter verification failed.|
 
 
@@ -2144,7 +2284,7 @@ Obtains an audio output device based on the filter criteria.
 
 | Type                 | Description                        |
 | --------------------- | --------------------------- |
-| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)| return the device list. |
+| [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)| return the device list. |
 
 **Error codes**
 
@@ -2153,7 +2293,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 202 | Not system App. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 |  Parameter verification failed.|
 
 **Example**
@@ -2198,7 +2337,7 @@ Obtains an audio input device based on the filter criteria. Currently, only one 
 
 | Type                 | Description                        |
 | --------------------- | --------------------------- |
-| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | return the device list. |
+| [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors) | return the device list. |
 
 **Error codes**
 
@@ -2207,7 +2346,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 202 | Not system App. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 |  Parameter verification failed.|
 
 **Example**
@@ -2252,14 +2390,24 @@ Excludes output devices. Once this API is successfully called, audio will no lon
 
 | Name                      | Type                                                        | Mandatory| Description                     |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | Yes  | Device type. Only output devices can be excluded.              |
-| devices          | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | Yes  | List of output devices to exclude.              |
+| usage          | [DeviceUsage](arkts-apis-audio-e.md#deviceusage12)            | Yes  | Device type. Only output devices can be excluded.              |
+| devices          | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)            | Yes  | List of output devices to exclude.              |
 
 **Return value**
 
 | Type                 | Description                        |
 | --------------------- | --------------------------- |
 | Promise&lt;void&gt;   | Promise that returns no result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201     | Permission denied. Return by callback.      |
+| 202     | Not system App.                             |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
@@ -2309,14 +2457,24 @@ Restores previously excluded output devices. Once this API is called successfull
 
 | Name                      | Type                                                        | Mandatory| Description                     |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | Yes  | Device type. Only output devices can be excluded.              |
-| devices          | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | Yes  | Lit of output devices to restore.              |
+| usage          | [DeviceUsage](arkts-apis-audio-e.md#deviceusage12)            | Yes  | Device type. Only output devices can be excluded.              |
+| devices          | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)            | Yes  | Lit of output devices to restore.              |
 
 **Return value**
 
 | Type                 | Description                        |
 | --------------------- | --------------------------- |
 | Promise&lt;void&gt;   | Promise that returns no result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201     | Permission denied. Return by callback.      |
+| 202     | Not system App.                             |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
@@ -2366,13 +2524,23 @@ Restores all previously excluded output devices that are used for a specific pur
 
 | Name                      | Type                                                        | Mandatory| Description                     |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | Yes  | Device type. Only output devices can be excluded.              |
+| usage          | [DeviceUsage](arkts-apis-audio-e.md#deviceusage12)            | Yes  | Device type. Only output devices can be excluded.              |
 
 **Return value**
 
 | Type                 | Description                        |
 | --------------------- | --------------------------- |
 | Promise&lt;void&gt;   | Promise that returns no result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201     | Permission denied. Return by callback.      |
+| 202     | Not system App.                             |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
@@ -2407,13 +2575,23 @@ Obtains excluded output devices.
 
 | Name                      | Type                                                        | Mandatory| Description                     |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | Yes  | Device type. Only output devices can be excluded.              |
+| usage          | [DeviceUsage](arkts-apis-audio-e.md#deviceusage12)            | Yes  | Device type. Only output devices can be excluded.              |
 
 **Return value**
 
 | Type                 | Description                        |
 | --------------------- | --------------------------- |
-| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | List of excluded output devices.|
+| [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors) | List of excluded output devices.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201     | Permission denied. Return by callback.      |
+| 202     | Not system App.                             |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
@@ -2432,45 +2610,52 @@ async function getExcludedDevices(){
 
 Describes the audio renderer change event.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-| Name              | Type                                      | Readable| Writable| Description                         |
+| Name              | Type                                      | Read-Only| Optional| Description                         |
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
-| clientUid          | number                                    | Yes  | No  | UID of the audio renderer client.<br>This is a system API.|
-| rendererState      | [AudioState](js-apis-audio.md#audiostate8)                 | Yes  | No  | Audio state.<br>This is a system API.|
+| clientUid          | number                                    | Yes  | No  | UID of the audio renderer client.|
+| rendererState      | [AudioState](arkts-apis-audio-e.md#audiostate8)                 | Yes  | No  | Audio state.|
 
 ## AudioCapturerChangeInfo<sup>9+</sup>
 
 Describes the audio capturer change event.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-| Name              | Type                                      | Readable| Writable| Description                         |
+| Name              | Type                                      | Read-Only| Optional| Description                         |
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
-| clientUid          | number                                    | Yes  | No  | UID of the audio capturer client.<br>This is a system API.|
-| capturerState      | [AudioState](js-apis-audio.md#audiostate8)                 | Yes  | No  | Audio state.<br>This is a system API.|
+| clientUid          | number                                    | Yes  | No  | UID of the audio capturer client.|
+| capturerState      | [AudioState](arkts-apis-audio-e.md#audiostate8)                 | Yes  | No  | Audio state.|
 
 ## AudioDeviceDescriptor
 
 Describes an audio device.
 
-| Name                         | Type                      | Readable| Writable| Description      |
+**System API**: This is a system API.
+
+| Name                         | Type                      | Read-Only| Optional| Description      |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
-| networkId<sup>9+</sup>        | string                     | Yes  | No  | ID of the device network.<br>This is a system API.<br> **System capability**: SystemCapability.Multimedia.Audio.Device|
-| interruptGroupId<sup>9+</sup> | number                     | Yes  | No  | ID of the interruption group to which the device belongs.<br>This is a system API.<br> **System capability**: SystemCapability.Multimedia.Audio.Device|
-| volumeGroupId<sup>9+</sup>    | number                     | Yes  | No  | ID of the volume group to which the device belongs.<br>This is a system API.<br> **System capability**: SystemCapability.Multimedia.Audio.Device|
+| networkId<sup>9+</sup>        | string                     | Yes  | No  | ID of the device network.<br> **System capability**: SystemCapability.Multimedia.Audio.Device|
+| interruptGroupId<sup>9+</sup> | number                     | Yes  | No  | ID of the interruption group to which the device belongs.<br> **System capability**: SystemCapability.Multimedia.Audio.Device|
+| volumeGroupId<sup>9+</sup>    | number                     | Yes  | No  | ID of the volume group to which the device belongs.<br> **System capability**: SystemCapability.Multimedia.Audio.Device|
+| dmDeviceType<sup>18+</sup>    | number                     | Yes  | Yes| Subtype ID of the device.<br> **System capability**: SystemCapability.Multimedia.Audio.Core|
 
 ## AudioRendererFilter<sup>9+</sup>
 
-Implements filter criteria. Before calling **selectOutputDeviceByFilter**, you must obtain an **AudioRendererFilter** instance.
+Implements filter criteria. Before calling **selectOutputDeviceByFilter**, you must obtain an AudioRendererFilter instance.
 
 **System API**: This is a system API.
 
-| Name         | Type                                    | Mandatory| Description         |
-| -------------| ---------------------------------------- | ---- | -------------- |
-| uid          | number                                   |  No | Application ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Core|
-| rendererInfo | [AudioRendererInfo](js-apis-audio.md#audiorendererinfo8) |  No | Audio renderer information.<br> **System capability**: SystemCapability.Multimedia.Audio.Renderer|
-| rendererId   | number                                   |  No | Unique ID of an audio stream.<br> **System capability**: SystemCapability.Multimedia.Audio.Renderer|
+| Name         | Type                                    | Read-Only| Optional| Description         |
+| -------------| ---------------------------------------- | ---- |---| -------------- |
+| uid          | number                                   |  No | Yes| Application ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Core|
+| rendererInfo | [AudioRendererInfo](arkts-apis-audio-i.md#audiorendererinfo8) |  No | Yes| Audio renderer information.<br> **System capability**: SystemCapability.Multimedia.Audio.Renderer|
+| rendererId   | number                                   |  No | Yes| Unique ID of an audio stream.<br> **System capability**: SystemCapability.Multimedia.Audio.Renderer|
 
 **Example**
 
@@ -2486,16 +2671,17 @@ let outputAudioRendererFilter: audio.AudioRendererFilter = {
   rendererId : 0
 };
 ```
+
 ## AudioCapturerFilter<sup>18+</sup>
 
-Filter criteria. Before calling **selectOutputDeviceByFilter**, you must obtain an **AudioCapturerFilter** instance.
+Filter criteria. Before calling **selectOutputDeviceByFilter**, you must obtain an AudioCapturerFilter instance.
 
 **System API**: This is a system API.
 
-| Name         | Type                                    | Mandatory| Description         |
-| -------------| ---------------------------------------- | ---- | -------------- |
-| uid          | number                                   |  No | Application ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Core|
-| capturerInfo | [AudioCapturerInfo](js-apis-audio.md#audiocapturerinfo8) |  No | Audio capturer information.<br> **System capability**: SystemCapability.Multimedia.Audio.Capturer|
+| Name         | Type                                    | Read-Only| Optional| Description         |
+| -------------| ---------------------------------------- | ---- |---| -------------- |
+| uid          | number                                   |  No | Yes| Application ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Core|
+| capturerInfo | [AudioCapturerInfo](arkts-apis-audio-i.md#audiocapturerinfo8) |  No | Yes| Audio capturer information.<br> **System capability**: SystemCapability.Multimedia.Audio.Capturer|
 
 **Example**
 
@@ -2517,16 +2703,16 @@ Describes the enabled status of spatial audio rendering of the device.
 
 **System API**: This is a system API.
 
-**System capability**: SystemCapability.Multimedia.Audio
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
 
-| Name                | Type                                                        | Mandatory| Description                     |
-| ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
-| enabled               | boolean                                                      | Yes  | Whether spatial audio rendering or head tracking is enabled. The value **true** means that it is enabled, and **false** means the opposite. |
+| Name                | Type                                                        | Read-Only| Optional| Description                     |
+| ----------------------| ------------------------------------------------------------ | ---- |---| ------------------------- |
+| deviceDescriptor | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor)         | No| No| Descriptor of the device.    |
+| enabled               | boolean                                                      | No| No| Whether spatial audio rendering or head tracking is enabled. The value **true** means that it is enabled, and **false** means the opposite. |
 
 ## AudioSpatializationManager<sup>11+</sup>
 
-Implements spatial audio management. Before calling any API in **AudioSpatializationManager**, you must use [getSpatializationManager](js-apis-audio.md#getspatializationmanager18) to obtain an **AudioSpatializationManager** instance.
+Implements spatial audio management. Before calling any API in AudioSpatializationManager, you must use [getSpatializationManager](arkts-apis-audio-AudioManager.md#getspatializationmanager18) to obtain an AudioSpatializationManager instance.
 
 ### isSpatializationSupported<sup>11+</sup>
 
@@ -2546,7 +2732,7 @@ Checks whether the system supports spatial audio rendering. This API returns the
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -2580,7 +2766,7 @@ Checks whether a device supports spatial audio rendering. This API returns the r
 
 | Name    | Type                                                        | Mandatory| Description                |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
+| deviceDescriptor | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
 
 **Return value**
 
@@ -2590,7 +2776,7 @@ Checks whether a device supports spatial audio rendering. This API returns the r
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -2646,7 +2832,7 @@ Checks whether the system supports head tracking. This API returns the result sy
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -2681,7 +2867,7 @@ Checks whether a device supports head tracking. This API returns the result sync
 
 | Name    | Type                                                        | Mandatory| Description                |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
+| deviceDescriptor | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
 
 **Return value**
 
@@ -2691,7 +2877,7 @@ Checks whether a device supports head tracking. This API returns the result sync
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -2754,7 +2940,7 @@ Enables or disables spatial audio rendering. This API uses an asynchronous callb
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -2809,7 +2995,7 @@ Enables or disables spatial audio rendering. This API uses a promise to return t
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -2847,7 +3033,7 @@ Enables or disables spatial audio rendering for a device. This API uses a promis
 
 | Name                | Type                                                        | Mandatory| Description                     |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
+| deviceDescriptor | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
 | enabled               | boolean                                                      | Yes  | Whether to enable or disable spatial audio rendering. The value **true** means to enable spatial audio rendering, and **false** means the opposite. |
 
 **Return value**
@@ -2858,7 +3044,7 @@ Enables or disables spatial audio rendering for a device. This API uses a promis
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -2919,7 +3105,7 @@ Checks whether spatial audio rendering is enabled. This API returns the result s
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -2954,7 +3140,7 @@ Checks whether spatial audio rendering is enabled. This API returns the result s
 
 | Name                | Type                                                        | Mandatory| Description                     |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor) | Yes  | Descriptor of the device.    |
+| deviceDescriptor | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor) | Yes  | Descriptor of the device.    |
 
 **Return value**
 
@@ -2964,7 +3150,7 @@ Checks whether spatial audio rendering is enabled. This API returns the result s
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3025,7 +3211,7 @@ Subscribes to the spatial audio rendering status change event, which is triggere
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3062,7 +3248,7 @@ Subscribes to the spatial audio rendering status change event, which is triggere
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3104,7 +3290,7 @@ Unsubscribes from the spatial audio rendering status change event. This API uses
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3147,7 +3333,7 @@ Unsubscribes from the spatial audio rendering status change event. This API uses
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3199,7 +3385,7 @@ Enables or disables head tracking. This API uses an asynchronous callback to ret
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3254,7 +3440,7 @@ Enables or disables head tracking. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3293,7 +3479,7 @@ Enables or disables head tracking for a device. This API uses a promise to retur
 
 | Name                | Type                                                        | Mandatory| Description                     |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
+| deviceDescriptor | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
 | enable                | boolean                                                      | Yes  | Whether to enable or disable head tracking. The value **true** means to enable head tracking, and **false** means the opposite. |
 
 **Return value**
@@ -3304,7 +3490,7 @@ Enables or disables head tracking for a device. This API uses a promise to retur
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3364,7 +3550,7 @@ Checks whether head tracking is enabled. This API returns the result synchronous
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3387,7 +3573,7 @@ try {
 
 ### isHeadTrackingEnabled<sup>12+</sup>
 
-isHeadTrackingEnabled(): boolean
+isHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean
 
 Checks whether head tracking is enabled for a device. This API returns the result synchronously.
 
@@ -3399,7 +3585,7 @@ Checks whether head tracking is enabled for a device. This API returns the resul
 
 | Name                | Type                                                        | Mandatory| Description                     |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor) | Yes  | Descriptor of the device.    |
+| deviceDescriptor | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor) | Yes  | Descriptor of the device.    |
 
 **Return value**
 
@@ -3409,7 +3595,7 @@ Checks whether head tracking is enabled for a device. This API returns the resul
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3470,7 +3656,7 @@ Subscribes to the head tracking status change event, which is triggered when the
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3507,7 +3693,7 @@ Subscribes to the head tracking status change event, which is triggered when the
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3549,7 +3735,7 @@ Unsubscribes from the head tracking status change event. This API uses an asynch
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3594,7 +3780,7 @@ Unsubscribes from the head tracking status change event. This API uses an asynch
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3641,7 +3827,7 @@ Updates the state information of a spatial device. This API returns the result s
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3692,7 +3878,7 @@ Sets the scene type for spatial audio rendering. This API returns the result syn
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3734,7 +3920,7 @@ Obtains the scene type of spatial audio rendering in use. This API returns the r
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3763,12 +3949,12 @@ Defines the state information of a spatial device.
 
 **System capability**: SystemCapability.Multimedia.Audio.Spatialization
 
-| Name                         | Type                      | Readable| Writable| Description      |
+| Name                         | Type                      | Read-Only| Optional| Description      |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
-| address | string         | Yes  | Yes  | Address of the spatial device.|
-| isSpatializationSupported | boolean        | Yes  | Yes  | Whether the spatial device supports spatial audio rendering. The value **true** means that spatial audio rendering is supported, and **false** means the opposite.|
-| isHeadTrackingSupported | boolean        | Yes  | Yes  | Whether the spatial device supports head tracking. The value **true** means that head tracking is supported, and **false** means the opposite.|
-| spatialDeviceType | [AudioSpatialDeviceType](#audiospatialdevicetype11)   | Yes  | Yes  | Type of the spatial device.|
+| address | string         | No| No| Address of the spatial device.|
+| isSpatializationSupported | boolean        | No| No| Whether the spatial device supports spatial audio rendering. The value **true** means that spatial audio rendering is supported, and **false** means the opposite.|
+| isHeadTrackingSupported | boolean        | No| No| Whether the spatial device supports head tracking. The value **true** means that head tracking is supported, and **false** means the opposite.|
+| spatialDeviceType | [AudioSpatialDeviceType](#audiospatialdevicetype11)   | No| No| Type of the spatial device.|
 
 **Example**
 
@@ -3857,7 +4043,7 @@ Enumerates the tone types of the player.
 ## TonePlayer<sup>9+</sup>
 
 Provides APIs for playing and managing DTMF tones, such as dial tones, ringback tones, supervisory tones, and proprietary tones.
-Before calling any API in **TonePlayer**, you must use [createTonePlayer](#audiocreatetoneplayer9) to create a **TonePlayer** instance.
+Before calling any API in TonePlayer, you must use [createTonePlayer](#audiocreatetoneplayer9) to create a TonePlayer instance.
 
 **System API**: This is a system API.
 
@@ -4043,7 +4229,7 @@ tonePlayer.stop().then(() => {
 
 release(callback: AsyncCallback&lt;void&gt;): void
 
-Releases the resources associated with the **TonePlayer** instance. This API uses an asynchronous callback to return the result.
+Releases the resources associated with the TonePlayer instance. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -4074,7 +4260,7 @@ tonePlayer.release((err: BusinessError) => {
 
 release(): Promise&lt;void&gt;
 
-Releases the resources associated with the **TonePlayer** instance. This API uses a promise to return the result.
+Releases the resources associated with the TonePlayer instance. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -4106,7 +4292,7 @@ Implements an ASR processing controller.
 
 ### setAsrAecMode<sup>12+</sup>
 
-setAsrAecMode(mode: AsrAecMode): boolean;
+setAsrAecMode(mode: AsrAecMode): boolean
 
 Sets an ASR AEC mode. This API returns the result synchronously.
 
@@ -4128,7 +4314,7 @@ Sets an ASR AEC mode. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID  | Error Message                                    |
 |---------|------------------------------------------|
@@ -4145,7 +4331,7 @@ let flag = asrProcessingController.setAsrAecMode(audio.AsrAecMode.BYPASS);
 
 ### getAsrAecMode<sup>12+</sup>
 
-getAsrAecMode(): AsrAecMode;
+getAsrAecMode(): AsrAecMode
 
 Obtains the ASR AEC mode in use. This API returns the result synchronously.
 
@@ -4161,7 +4347,7 @@ Obtains the ASR AEC mode in use. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID  | Error Message                                    |
 |---------|------------------------------------------|
@@ -4177,7 +4363,7 @@ let mode = asrProcessingController.getAsrAecMode();
 
 ### setAsrNoiseSuppressionMode<sup>12+</sup>
 
-setAsrNoiseSuppressionMode(mode: AsrNoiseSuppressionMode): boolean;
+setAsrNoiseSuppressionMode(mode: AsrNoiseSuppressionMode): boolean
 
 Sets an ASR noise suppression mode. This API returns the result synchronously.
 
@@ -4199,7 +4385,7 @@ Sets an ASR noise suppression mode. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID  | Error Message                                    |
 |---------|------------------------------------------|
@@ -4216,7 +4402,7 @@ let flag = asrProcessingController.setAsrNoiseSuppressionMode(audio.AsrNoiseSupp
 
 ### getAsrNoiseSuppressionMode<sup>12+</sup>
 
-getAsrNoiseSuppressionMode(): AsrNoiseSuppressionMode;
+getAsrNoiseSuppressionMode(): AsrNoiseSuppressionMode
 
 Obtains the ASR noise suppression mode in use. This API returns the result synchronously.
 
@@ -4232,7 +4418,7 @@ Obtains the ASR noise suppression mode in use. This API returns the result synch
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID  | Error Message                                    |
 |---------|------------------------------------------|
@@ -4247,7 +4433,7 @@ let mode = asrProcessingController.getAsrNoiseSuppressionMode();
 
 ### isWhispering<sup>12+</sup>
 
-isWhispering(): boolean;
+isWhispering(): boolean
 
 Checks whether it is in the whisper state.
 
@@ -4263,7 +4449,7 @@ Checks whether it is in the whisper state.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID  | Error Message                                    |
 |---------|------------------------------------------|
@@ -4300,7 +4486,7 @@ Sets an ASR whisper detection mode.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID  | Error Message                                    |
 |---------|------------------------------------------|
@@ -4334,7 +4520,7 @@ Obtains the ASR whisper detection mode. This API returns the result synchronousl
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID  | Error Message                                    |
 |---------|------------------------------------------|
@@ -4373,7 +4559,7 @@ Sets an ASR voice control mode of the uplink channel for reporting modem and cal
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID  | Error Message                                    |
 |---------|------------------------------------------|
@@ -4413,7 +4599,7 @@ Sets an ASR voice mute mode.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
 
 | ID  | Error Message                                    |
 |---------|------------------------------------------|
@@ -4427,3 +4613,5 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 ```ts
 let flag = asrProcessingController.setAsrVoiceMuteMode(audio.AsrVoiceMuteMode.OUTPUT_MUTE, true);
 ```
+
+<!--no_check-->

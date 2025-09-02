@@ -1,4 +1,10 @@
 # OffscreenCanvasRenderingContext2D对象
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sd-wu-->
+<!--Designer: @sunbees-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 使用OffscreenCanvas在离屏Canvas画布组件上进行绘制，绘制对象可以是矩形、文本、图片等。 离屏，即GPU在当前缓冲区以外新开辟的一个缓冲区。具体请参考[OffscreenCanvasRenderingContext2D对象](../reference/apis-arkui/arkui-js/js-offscreencanvasrenderingcontext2d.md)。
 
@@ -63,6 +69,7 @@ export default {
     this.offscreen = new OffscreenCanvas(600, 500);
     this.offCanvas = this.offscreen.getContext("2d");
     this.img = new Image();
+    // "common/images/2.png"需要替换为开发者所需的图像资源文件
     this.img.src = 'common/images/2.png';
     // 图片成功获取触发方法
     let _this = this;

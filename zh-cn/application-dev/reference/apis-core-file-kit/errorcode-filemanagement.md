@@ -1,4 +1,10 @@
 # 文件管理错误码
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
+<!--Designer: @gsl_1234; @wangke25-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 > **说明：**
 >
@@ -192,7 +198,7 @@ Permission denied
 
 1.访问被DAC自主式权限控制权限拦截，请排查文件的UGO权限。
 
-2.排查内核日志中是否有[avc拦截日志](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-security-selinux-develop-intro.md)，如果存在avc拦截告警，<!--RP1-->拦截原因分析请参考[SELinux开发说明](../../../device-dev/subsystems/subsys-security-selinux-develop-intro.md)。<!--RP1End-->
+2.排查内核日志中是否有[avc拦截日志](https://gitcode.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-security-selinux-develop-intro.md)，如果存在avc拦截告警，<!--RP1-->拦截原因分析请参考[SELinux开发说明](../../../device-dev/subsystems/subsys-security-selinux-develop-intro.md)。<!--RP1End-->
 
 3.确认文件的路径是否为应用内的沙箱路径[沙箱路径地址](../../file-management/app-sandbox-directory.md)，文件管理系统禁止操作应用沙箱以外的文档。
 
@@ -656,13 +662,13 @@ Connection failed
 
 **可能原因**
 
-设备、Wifi或蓝牙状态异常，导致建立链接失败。
+设备、Wi-Fi或蓝牙状态异常，导致建立链接失败。
 
 **处理步骤**
 
 1.检查设备，确认设备状态正常。
 
-2.检查WiFi和蓝牙，确认状态正常。
+2.检查Wi-Fi和蓝牙，确认状态正常。
 
 ### 13900046 软件造成连接中断
 
@@ -672,13 +678,13 @@ Software caused connection abort
 
 **可能原因**
 
-设备下线或WiFi、蓝牙断连。
+设备下线或Wi-Fi、蓝牙断连。
 
 **处理步骤**
 
 1.检查设备，确认设备状态正常。
 
-2.检查WiFi和蓝牙，确认状态正常。
+2.检查Wi-Fi和蓝牙，确认状态正常。
 
 ## 用户数据管理错误码
 

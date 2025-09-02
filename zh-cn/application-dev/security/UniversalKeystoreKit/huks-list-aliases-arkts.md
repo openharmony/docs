@@ -1,9 +1,16 @@
 # 查询密钥别名集(ArkTS)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
+
 HUKS提供了接口供应用查询密钥别名集。
 
 >**说明：**
-> 轻量级设备不支持查询密钥别名集功能。
+> <!--RP1-->轻量级设备<!--RP1End-->不支持查询密钥别名集功能。
 
 ## 开发步骤
 

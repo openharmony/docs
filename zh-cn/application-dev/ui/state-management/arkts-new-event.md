@@ -1,4 +1,10 @@
 # \@Event装饰器：规范组件输出
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 为了实现子组件向父组件要求更新\@Param装饰变量的能力，开发者可以使用\@Event装饰器。使用\@Event装饰回调方法是一种规范，表明子组件需要传入更新数据源的回调。
 
@@ -7,12 +13,13 @@
 
 >**说明：**
 >
->从API version 12开始，在\@ComponentV2装饰的自定义组件中支持使用\@Event装饰器。
+> 从API version 12开始，在\@ComponentV2装饰的自定义组件中支持使用\@Event装饰器。
 >
+> 从API version 12开始，该装饰器支持在原子化服务中使用。
 
 ## 概述
 
-由于\@Param装饰的变量在本地无法更改，使用\@Event装饰器装饰回调方法并调用，可以实现更改数据源的变量，再通过\@Local的同步机制，将修改同步回\@Param，以此达到主动更新\@Param装饰变量的效果。
+由于\@Param装饰的变量在本地无法更改，使用\@Event装饰器装饰回调方法并调用，可以实现更新数据源的变量，再通过[\@Local](arkts-new-local.md)的同步机制，将修改同步回\@Param，以此达到主动更新\@Param装饰变量的效果。
 
 \@Event用于装饰组件对外输出的方法：
 
@@ -33,13 +40,13 @@
 
 ## 限制条件
 
-- \@Event只能用在\@ComponentV2装饰的自定义组件中。当装饰非方法类型的变量时，不会有任何作用。
+- \@Event只能用在[\@ComponentV2](arkts-new-componentV2.md)装饰的自定义组件中。当装饰非方法类型的变量时，不会有任何作用。
 
   ```ts
   @ComponentV2
   struct Index {
     @Event changeFactory: ()=>void = ()=>{}; //正确用法
-    @Event message: string = "abcd"; // 错误用法，装饰非函数类型变量，@Event无作用
+    @Event message: string = 'abcd'; // 错误用法，装饰非函数类型变量，@Event无作用
   }
   @Component
   struct Index {
@@ -58,7 +65,7 @@
 @Entry
 @ComponentV2
 struct Index {
-  @Local title: string = "Title One";
+  @Local title: string = 'Title One';
   @Local fontColor: Color = Color.Red;
 
   build() {
@@ -68,10 +75,10 @@ struct Index {
         fontColor: this.fontColor,
         changeFactory: (type: number) => {
           if (type == 1) {
-            this.title = "Title One";
+            this.title = 'Title One';
             this.fontColor = Color.Red;
           } else if (type == 2) {
-            this.title = "Title Two";
+            this.title = 'Title Two';
             this.fontColor = Color.Green;
           }
         }
@@ -90,11 +97,11 @@ struct Child {
     Column() {
       Text(`${this.title}`)
         .fontColor(this.fontColor)
-      Button("change to Title Two")
+      Button('change to Title Two')
         .onClick(() => {
           this.changeFactory(2);
         })
-      Button("change to Title One")
+      Button('change to Title One')
         .onClick(() => {
           this.changeFactory(1);
         })

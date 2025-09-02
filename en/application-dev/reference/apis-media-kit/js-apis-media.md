@@ -10,7 +10,7 @@ This subsystem offers the following audio and video services:
 
 - Audio and video playback ([AVPlayer](#avplayer9)<sup>9+</sup>)
 
-- Audio and video recording [AVRecorder](#avrecorder9)<sup>9+</sup>)
+- Audio and video recording ([AVRecorder](#avrecorder9)<sup>9+</sup>)
 
 - Video transcoding ([AVTranscoder](#avtranscoder12)<sup>12+</sup>)
 
@@ -30,12 +30,12 @@ import { media } from '@kit.MediaKit';
 
 createAVPlayer(callback: AsyncCallback\<AVPlayer>): void
 
-Creates an **AVPlayer** instance. This API uses an asynchronous callback to return the result.
+Creates an AVPlayer instance. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> - You are advised to create a maximum of 16 **AVPlayer** instances for an application in both audio and video playback scenarios.<!--Del-->
-> - The actual number of instances that can be created may be different. It depends on the specifications of the device chip in use. For example, in the case of RK3568, you are advised to create a maximum of 6 **AVPlayer** instances for an application in audio and video playback scenarios.<!--DelEnd-->
+> - You are advised to create a maximum of 16 AVPlayer instances for an application in both audio and video playback scenarios.<!--Del-->
+> - The actual number of instances that can be created may be different. It depends on the specifications of the device chip in use. For example, in the case of RK3568, you are advised to create a maximum of 6 AVPlayer instances for an application in audio and video playback scenarios.<!--DelEnd-->
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -45,7 +45,7 @@ Creates an **AVPlayer** instance. This API uses an asynchronous callback to retu
 
 | Name  | Type                                 | Mandatory| Description                                                        |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[AVPlayer](#avplayer9)> | Yes  | Callback used to return the result. If the operation is successful, an **AVPlayer** instance is returned; otherwise, **null** is returned. The instance can be used to play audio and video.|
+| callback | AsyncCallback\<[AVPlayer](#avplayer9)> | Yes  | Callback used to return the result. If the operation is successful, an AVPlayer instance is returned; otherwise, **null** is returned. The instance can be used to play audio and video.|
 
 **Error codes**
 
@@ -75,12 +75,12 @@ media.createAVPlayer((error: BusinessError, video: media.AVPlayer) => {
 
 createAVPlayer(): Promise\<AVPlayer>
 
-Creates an **AVPlayer** instance. This API uses a promise to return the result.
+Creates an AVPlayer instance. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> - You are advised to create a maximum of 16 **AVPlayer** instances for an application in both audio and video playback scenarios.<!--Del-->
-> - The actual number of instances that can be created may be different. It depends on the specifications of the device chip in use. For example, in the case of RK3568, you are advised to create a maximum of 6 **AVPlayer** instances for an application in audio and video playback scenarios.<!--DelEnd-->
+> - You are advised to create a maximum of 16 AVPlayer instances for an application in both audio and video playback scenarios.<!--Del-->
+> - The actual number of instances that can be created may be different. It depends on the specifications of the device chip in use. For example, in the case of RK3568, you are advised to create a maximum of 6 AVPlayer instances for an application in audio and video playback scenarios.<!--DelEnd-->
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -90,7 +90,7 @@ Creates an **AVPlayer** instance. This API uses a promise to return the result.
 
 | Type                           | Description                                                        |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[AVPlayer](#avplayer9)> | Promise used to return the result. If the operation is successful, an **AVPlayer** instance is returned; otherwise, **null** is returned. The instance can be used to play audio and video.|
+| Promise\<[AVPlayer](#avplayer9)> | Promise used to return the result. If the operation is successful, an AVPlayer instance is returned; otherwise, **null** is returned. The instance can be used to play audio and video.|
 
 **Error codes**
 
@@ -122,11 +122,11 @@ media.createAVPlayer().then((video: media.AVPlayer) => {
 
 createAVRecorder(callback: AsyncCallback\<AVRecorder>): void
 
-Creates an **AVRecorder** instance. This API uses an asynchronous callback to return the result.
+Creates an AVRecorder instance. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> An application can create multiple **AVRecorder** instances. However, because the device shares a common audio channel, only one instance can record audio at a time. Any attempt to create the second instance for audio recording fails due to audio channel conflicts.
+> An application can create multiple AVRecorder instances. However, because the device shares a common audio channel, only one instance can record audio at a time. Any attempt to create the second instance for audio recording fails due to audio channel conflicts.
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
@@ -134,7 +134,7 @@ Creates an **AVRecorder** instance. This API uses an asynchronous callback to re
 
 | Name  | Type                                      | Mandatory| Description                                                        |
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[AVRecorder](#avrecorder9)> | Yes  | Callback used to return the result. If the operation is successful, an **AVRecorder** instance is returned; otherwise, **null** is returned. The instance can be used to record audio and video.|
+| callback | AsyncCallback\<[AVRecorder](#avrecorder9)> | Yes  | Callback used to return the result. If the operation is successful, an AVRecorder instance is returned; otherwise, **null** is returned. The instance can be used to record audio and video.|
 
 **Error codes**
 
@@ -164,11 +164,11 @@ media.createAVRecorder((error: BusinessError, recorder: media.AVRecorder) => {
 
 createAVRecorder(): Promise\<AVRecorder>
 
-Creates an **AVRecorder** instance. This API uses a promise to return the result.
+Creates an AVRecorder instance. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> An application can create multiple **AVRecorder** instances. However, because the device shares a common audio channel, only one instance can record audio at a time. Any attempt to create the second instance for audio recording fails due to audio channel conflicts.
+> An application can create multiple AVRecorder instances. However, because the device shares a common audio channel, only one instance can record audio at a time. Any attempt to create the second instance for audio recording fails due to audio channel conflicts.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -178,7 +178,7 @@ Creates an **AVRecorder** instance. This API uses a promise to return the result
 
 | Type                                | Description                                                        |
 | ------------------------------------ | ------------------------------------------------------------ |
-| Promise\<[AVRecorder](#avrecorder9)> | Promise used to return the result. If the operation is successful, an **AVRecorder** instance is returned; otherwise, **null** is returned. The instance can be used to record audio and video.|
+| Promise\<[AVRecorder](#avrecorder9)> | Promise used to return the result. If the operation is successful, an AVRecorder instance is returned; otherwise, **null** is returned. The instance can be used to record audio and video.|
 
 **Error codes**
 
@@ -210,11 +210,11 @@ media.createAVRecorder().then((recorder: media.AVRecorder) => {
 
 createAVTranscoder(): Promise\<AVTranscoder>
 
-Creates an **AVTranscoder** instance. This API uses a promise to return the result.
+Creates an AVTranscoder instance. This API uses a promise to return the result.
 
 > **NOTE**
 
-> A maximum of 2 **AVTranscoder** instances can be created.
+> A maximum of 2 AVTranscoder instances can be created.
 
 **System capability**: SystemCapability.Multimedia.Media.AVTranscoder
 
@@ -222,7 +222,7 @@ Creates an **AVTranscoder** instance. This API uses a promise to return the resu
 
 | Type                           | Description                                                        |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[AVTranscoder](#avtranscoder12)> | Promise used to return the result. If the operation is successful, an **AVTranscoder** instance is returned; otherwise, **null** is returned. The instance can be used for video transcoding.|
+| Promise\<[AVTranscoder](#avtranscoder12)> | Promise used to return the result. If the operation is successful, an AVTranscoder instance is returned; otherwise, **null** is returned. The instance can be used for video transcoding.|
 
 **Error codes**
 
@@ -254,7 +254,7 @@ media.createAVTranscoder().then((transcoder: media.AVTranscoder) => {
 
 createAVMetadataExtractor(callback: AsyncCallback\<AVMetadataExtractor>): void
 
-Creates an **AVMetadataExtractor** instance. This API uses an asynchronous callback to return the result.
+Creates an AVMetadataExtractor instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
 
@@ -262,7 +262,7 @@ Creates an **AVMetadataExtractor** instance. This API uses an asynchronous callb
 
 | Name  | Type                                 | Mandatory| Description                                                        |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[AVMetadataExtractor](#avmetadataextractor11)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **AVMetadataExtractor** instance created; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<[AVMetadataExtractor](#avmetadataextractor11)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the AVMetadataExtractor instance created; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -292,7 +292,7 @@ media.createAVMetadataExtractor((error: BusinessError, extractor: media.AVMetada
 
 createAVMetadataExtractor(): Promise\<AVMetadataExtractor>
 
-Creates an **AVMetadataExtractor** instance. This API uses a promise to return the result.
+Creates an AVMetadataExtractor instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
 
@@ -300,7 +300,7 @@ Creates an **AVMetadataExtractor** instance. This API uses a promise to return t
 
 | Type          | Description                                    |
 | -------------- | ---------------------------------------- |
-| Promise\<[AVMetadataExtractor](#avmetadataextractor11)>  | Promise used to return the **AVMetadataExtractor** instance.|
+| Promise\<[AVMetadataExtractor](#avmetadataextractor11)>  | Promise used to return the AVMetadataExtractor instance.|
 
 **Error codes**
 
@@ -332,12 +332,12 @@ media.createAVMetadataExtractor().then((extractor: media.AVMetadataExtractor) =>
 
 createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo, callback: AsyncCallback\<SoundPool>): void
 
-Creates a **SoundPool** instance. This API uses an asynchronous callback to return the result.
+Creates a SoundPool instance. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> - In versions earlier than API version 18, the bottom layer of the created **SoundPool** object is in singleton mode. Therefore, an application process can create only one **SoundPool** instance.
-> - In API version 18 and later versions, the bottom layer of the created **SoundPool** object is in multiton mode. Therefore, an application process can create a maximum of 128 **SoundPool** instances.
+> - In versions earlier than API version 18, the bottom layer of the created SoundPool object is in singleton mode. Therefore, an application process can create only one SoundPool instance.
+> - In API version 18 and later versions, the bottom layer of the created SoundPool object is in multiton mode. Therefore, an application process can create a maximum of 128 SoundPool instances.
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
@@ -345,9 +345,9 @@ Creates a **SoundPool** instance. This API uses an asynchronous callback to retu
 
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| maxStreams | number | Yes  | Maximum number of streams that can be played by the **SoundPool** instance. The value is an integer ranging from 1 to 32.|
+| maxStreams | number | Yes  | Maximum number of streams that can be played by the SoundPool instance. The value is an integer ranging from 1 to 32.|
 | audioRenderInfo | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)  | Yes  | Audio renderer parameters. When the **usage** parameter in **audioRenderInfo** is set to **STREAM_USAGE_UNKNOWN**, **STREAM_USAGE_MUSIC**, **STREAM_USAGE_MOVIE**, or **STREAM_USAGE_AUDIOBOOK**, the SoundPool uses the audio mixing mode when playing a short sound, without interrupting the playback of other audios.|
-| callback | AsyncCallback<[SoundPool](js-apis-inner-multimedia-soundPool.md)> | Yes  | Callback used to return the result. If the operation is successful, a **SoundPool** instance is returned; otherwise, **null** is returned. The instance is used for loading and playback.|
+| callback | AsyncCallback<[SoundPool](js-apis-inner-multimedia-soundPool.md)> | Yes  | Callback used to return the result. If the operation is successful, a SoundPool instance is returned; otherwise, **null** is returned. The instance is used for loading and playback.|
 
 **Error codes**
 
@@ -366,15 +366,15 @@ let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags : 0
-}
+};
 
 media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`Failed to createSoundPool`)
+    console.error(`Failed to createSoundPool`);
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`Succeeded in createSoundPool`)
+    console.info(`Succeeded in createSoundPool`);
   }
 });
 ```
@@ -383,12 +383,12 @@ media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool)
 
 createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): Promise\<SoundPool>
 
-Creates a **SoundPool** instance. This API uses a promise to return the result.
+Creates a SoundPool instance. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> - In versions earlier than API version 18, the bottom layer of the created **SoundPool** object is in singleton mode. Therefore, an application process can create only one **SoundPool** instance.
-> - In API version 18 and later versions, the bottom layer of the created **SoundPool** object is in multiton mode. Therefore, an application process can create a maximum of 128 **SoundPool** instances.
+> - In versions earlier than API version 18, the bottom layer of the created SoundPool object is in singleton mode. Therefore, an application process can create only one SoundPool instance.
+> - In API version 18 and later versions, the bottom layer of the created SoundPool object is in multiton mode. Therefore, an application process can create a maximum of 128 SoundPool instances.
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
@@ -396,14 +396,14 @@ Creates a **SoundPool** instance. This API uses a promise to return the result.
 
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| maxStreams | number | Yes  | Maximum number of streams that can be played by the **SoundPool** instance. The value is an integer ranging from 1 to 32.|
+| maxStreams | number | Yes  | Maximum number of streams that can be played by the SoundPool instance. The value is an integer ranging from 1 to 32.|
 | audioRenderInfo | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)  | Yes  | Audio renderer parameters.|
 
 **Return value**
 
 | Type                                     | Description                                                        |
 | ----------------------------------------- | ------------------------------------------------------------ |
-| Promise<[SoundPool](js-apis-inner-multimedia-soundPool.md)> | Promise used to return the result. If the operation is successful, a **SoundPool** instance is returned; otherwise, **null** is returned. The instance is used for loading and playback.|
+| Promise<[SoundPool](js-apis-inner-multimedia-soundPool.md)> | Promise used to return the result. If the operation is successful, a SoundPool instance is returned; otherwise, **null** is returned. The instance is used for loading and playback.|
 
 **Error codes**
 
@@ -423,7 +423,7 @@ let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags : 0
-}
+};
 
 media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
   if (soundpool_ != null) {
@@ -441,7 +441,7 @@ media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) =
 
 createAVScreenCaptureRecorder(): Promise\<AVScreenCaptureRecorder>
 
-Creates an **AVScreenCaptureRecorder** instance. This API uses a promise to return the result.
+Creates an AVScreenCaptureRecorder instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -449,7 +449,7 @@ Creates an **AVScreenCaptureRecorder** instance. This API uses a promise to retu
 
 | Type                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise\<[AVScreenCaptureRecorder](#avscreencapturerecorder12)> | Promise used to return the result. If the operation is successful, an **AVScreenCaptureRecorder** instance is returned; otherwise, **null** is returned. The instance can be used for screen capture.|
+| Promise\<[AVScreenCaptureRecorder](#avscreencapturerecorder12)> | Promise used to return the result. If the operation is successful, an AVScreenCaptureRecorder instance is returned; otherwise, **null** is returned. The instance can be used for screen capture.|
 
 **Error codes**
 
@@ -623,7 +623,7 @@ Enumerates the buffering event types.
 
 ## StateChangeReason<sup>9+</sup>
 
-Enumerates the reasons for the state transition of the **AVPlayer** or **AVRecorder** instance. The enum value is reported together with **state**.
+Enumerates the reasons for the state transition of the AVPlayer or AVRecorder instance. The enum value is reported together with **state**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -636,31 +636,31 @@ Enumerates the reasons for the state transition of the **AVPlayer** or **AVRecor
 
 ## AVPlayer<sup>9+</sup>
 
-A playback management class that provides APIs to manage and play media assets. Before calling any API in **AVPlayer**, you must use [createAVPlayer()](#mediacreateavplayer9) to create an **AVPlayer** instance.
+A playback management class that provides APIs to manage and play media assets. Before calling any API in AVPlayer, you must use [createAVPlayer()](#mediacreateavplayer9) to create an AVPlayer instance.
 
 For details about the audio and video playback demo, see [Audio Playback](../../media/media/using-avplayer-for-playback.md) and [Video Playback](../../media/media/video-playback.md).
 
 > **NOTE**
 >
-> When using the **AVPlayer** instance, you are advised to register the following callbacks to proactively obtain status changes:
+> When using the AVPlayer instance, you are advised to register the following callbacks to proactively obtain status changes:
 > - [on('stateChange')](#onstatechange9): listens for AVPlayer state changes.
 > - [on('error')](#onerror9): listens for error events.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
 | Name                                               | Type                                                        | Read-Only| Optional| Description                                                        |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>9+</sup>                                    | string                                                       | No  | Yes  | URL of the media asset. It can be set only when the AVPlayer is in the idle state. <br>The video formats MP4, MPEG-TS, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, FLAC, and AMR are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>**NOTE**<br>- To set a network playback path, you must declare the [ohos.permission.INTERNET](../../security/AccessToken/permissions-for-all.md#ohospermissioninternet) permission by following the instructions provided in [Declaring Permissions](../../security/AccessToken/declare-permissions.md). The error code [201](../errorcode-universal.md) may be reported.<br>- WebM is no longer supported since API version 11.<br> - After the resource handle (FD) is transferred to an **AVPlayer** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVPlayers use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | No  | Yes  | FD of the media asset. It can be set only when the AVPlayer is in the idle state.<br>This attribute is required when media assets of an application are continuously stored in a file.<br>The video formats MP4, MPEG-TS, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, FLAC, and AMR are supported.<br>**Example:**<br>Assume that a media file that stores continuous assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor { fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor { fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor { fd = resource handle; offset = 151; length = 150; }<br>To play an independent media file, use **src=fd://xx**.<br>**NOTE**<br>WebM is no longer supported since API version 11.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| url<sup>9+</sup>                                    | string                                                       | No  | Yes  | URL of the media asset. It can be set only when the AVPlayer is in the idle state. <br>The video formats MP4, MPEG-TS, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, FLAC, and AMR are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>**NOTE**<br>- To set a network playback path, you must declare the [ohos.permission.INTERNET](../../security/AccessToken/permissions-for-all.md#ohospermissioninternet) permission by following the instructions provided in [Declaring Permissions](../../security/AccessToken/declare-permissions.md). The error code [201](../errorcode-universal.md) may be reported.<br>- WebM is no longer supported since API version 11.<br> - After the resource handle (FD) is transferred to an AVPlayer instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other AVPlayer, AVMetadataExtractor, AVImageGenerator, or AVTranscoder instance. Competition occurs when multiple AVPlayers use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | No  | Yes  | FD of the media asset. It can be set only when the AVPlayer is in the idle state.<br>This property is required when media assets of an application are continuously stored in a file.<br>The video formats MP4, MPEG-TS, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, FLAC, and AMR are supported.<br>**Example:**<br>Assume that a media file that stores continuous assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor { fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor { fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor { fd = resource handle; offset = 151; length = 150; }<br>To play an independent media file, use **src=fd://xx**.<br>**NOTE**<br>WebM is no longer supported since API version 11.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | No  | Yes  | Descriptor of a streaming media asset. It can be set only when the AVPlayer is in the idle state.<br>Use scenario: An application starts playing a media file while the file is still being downloaded from the remote to the local host.<br>The video formats MP4, MPEG-TS, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, FLAC, and AMR are supported.<br>**Example:**<br>A user is obtaining an audio and video file from a remote server and wants to play the downloaded file content. To implement this scenario, do as follows:<br>1. Obtain the total file size, in bytes. If the total size cannot be obtained, set **fileSize** to **-1**.<br>2. Implement the **func** callback to fill in data. If **fileSize** is **-1**, the format of **func** is **func(buffer: ArrayBuffer, length: number)**, and the AVPlayer obtains data in sequence; otherwise, the format is **func(buffer: ArrayBuffer, length: number, pos: number)**, and the AVPlayer seeks and obtains data in the required positions.<br>3. Set **AVDataSrcDescriptor {fileSize = size, callback = func}**.<br>**Notes:**<br>If the media file to play is in MP4/M4A format, ensure that the **moov** field (specifying the media information) is before the **mdat** field (specifying the media data) or the fields before the **moov** field is less than 10 MB. Otherwise, the parsing fails and the media file cannot be played.<br>**NOTE**<br>WebM is no longer supported since API version 11.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| surfaceId<sup>9+</sup>                              | string                                                       | No  | Yes  | Video window ID. By default, there is no video window.<br>This parameter can be set when the AVPlayer is in the initialized state.<br>It can be set again when the AVPlayer is in the prepared, playing, paused, completed, or stopped state, in the prerequisite that the video window ID has been set in the initialized state. After the new setting is performed, the video is played in the new window.<br>It is used to render the window for video playback and therefore is not required in audio-only playback scenarios.<br>**Example:**<br>[Create a surface ID through XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| loop<sup>9+</sup>                                   | boolean                                                      | No  | No  | Whether to loop playback. The value **true** means to loop playback, and **false** (default) means the opposite. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>This setting is not supported in live mode.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | No  | Yes  | Video scale type. The default value is **VIDEO_SCALE_TYPE_FIT**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9)       | No  | Yes  | Audio interruption mode. The default value is **SHARE_MODE**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>To take effect, this attribute must be set before [play()](#play9) is called for the first time.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8) | No  | Yes  | Audio renderer information. If the media source contains videos, the default value of **usage** is **STREAM_USAGE_MOVIE**. Otherwise, the default value of **usage** is **STREAM_USAGE_MUSIC**. The default value of **rendererFlags** is 0. If the default value of **usage** does not meet the requirements, configure [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8).<br>This parameter can be set only when the AVPlayer is in the initialized state.<br>To take effect, this attribute must be set before [prepare()](#prepare9) is called for the first time.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| audioEffectMode<sup>10+</sup>                       | [audio.AudioEffectMode](../apis-audio-kit/js-apis-audio.md#audioeffectmode10)  | No  | Yes  | Audio effect mode. The audio effect mode is a dynamic attribute and is restored to the default value **EFFECT_DEFAULT** when **usage** of **audioRendererInfo** is changed. It can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| surfaceId<sup>9+</sup>                              | string                                                       | No  | Yes  | Video window ID. By default, there is no video window.<br>This parameter can be set when the AVPlayer is in the initialized state.<br>It can be set again when the AVPlayer is in the prepared, playing, paused, completed, or stopped state, in the prerequisite that the video window ID has been set in the initialized state. After the new setting is performed, the video is played in the new window.<br>It is used to render the window for video playback and therefore is not required in audio-only playback scenarios.<br>**Example:**<br>[Create a surface ID through XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| loop<sup>9+</sup>                                   | boolean                                                      | No  | No  | Whether to loop playback. The value **true** means to loop playback, and **false** (default) means the opposite. It is a dynamic property<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>This setting is not supported in live mode.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | No  | Yes  | Video scale type. The default value is **VIDEO_SCALE_TYPE_FIT**. It is a dynamic property<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9)       | No  | Yes  | Audio interruption mode. The default value is **SHARE_MODE**. It is a dynamic property<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>To take effect, this property must be set before [play()](#play9) is called for the first time.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8) | No  | Yes  | Audio renderer information. If the media source contains videos, the default value of **usage** is **STREAM_USAGE_MOVIE**. Otherwise, the default value of **usage** is **STREAM_USAGE_MUSIC**. The default value of **rendererFlags** is 0. If the default value of **usage** does not meet the requirements, configure [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8).<br>This parameter can be set only when the AVPlayer is in the initialized state.<br>To take effect, this property must be set before [prepare()](#prepare9) is called for the first time.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| audioEffectMode<sup>10+</sup>                       | [audio.AudioEffectMode](../apis-audio-kit/js-apis-audio.md#audioeffectmode10)  | No  | Yes  | Audio effect mode. The audio effect mode is a dynamic property and is restored to the default value **EFFECT_DEFAULT** when **usage** of **audioRendererInfo** is changed. It can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate9)                             | Yes  | No  | AVPlayer state. It can be used as a query parameter when the AVPlayer is in any state.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                 |
 | currentTime<sup>9+</sup>                            | number                                                       | Yes  | No  | Current video playback position, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.<br>In live mode, **-1** is returned by default.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | duration<sup>9+</sup> | number                                                       | Yes  | No  | Video duration, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.<br>In live mode, **-1** is returned by default.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -720,7 +720,7 @@ avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason
       console.info('unknown state :' + state);
       break;
   }
-})
+});
 ```
 
 ### off('stateChange')<sup>9+</sup>
@@ -743,7 +743,7 @@ Unsubscribes from AVPlayer state changes.
 **Example**
 
 ```ts
-avPlayer.off('stateChange')
+avPlayer.off('stateChange');
 ```
 
 ### on('error')<sup>9+</sup>
@@ -798,9 +798,9 @@ In API versions 9 to 13, error code 5400103 is reported when the network or serv
 import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.on('error', (error: BusinessError) => {
-  console.info('error happened,and error message is :' + error.message)
-  console.info('error happened,and error code is :' + error.code)
-})
+  console.info('error happened,and error message is :' + error.message);
+  console.info('error happened,and error code is :' + error.code);
+});
 ```
 
 ### off('error')<sup>9+</sup>
@@ -823,7 +823,7 @@ Unsubscribes from AVPlayer errors.
 **Example**
 
 ```ts
-avPlayer.off('error')
+avPlayer.off('error');
 ```
 
 ### setMediaSource<sup>12+</sup>
@@ -919,7 +919,7 @@ constructor(context: Context) {
 }
 
 let player = await media.createAVPlayer();
-let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.mp4')
+let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.mp4');
 player.fdSrc = fileDescriptor
 let playStrategy : media.PlaybackStrategy = {
   preferredWidth: 1,
@@ -1005,11 +1005,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.prepare((err: BusinessError) => {
   if (err) {
-    console.error('Failed to prepare,error message is :' + err.message)
+    console.error('Failed to prepare,error message is :' + err.message);
   } else {
     console.info('Succeeded in preparing');
   }
-})
+});
 ```
 
 ### prepare<sup>9+</sup>
@@ -1047,8 +1047,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avPlayer.prepare().then(() => {
   console.info('Succeeded in preparing');
 }, (err: BusinessError) => {
-  console.error('Failed to prepare,error message is :' + err.message)
-})
+  console.error('Failed to prepare,error message is :' + err.message);
+});
 ```
 
 ### setMediaMuted<sup>12+</sup>
@@ -1090,10 +1090,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.prepare().then(() => {
   console.info('Succeeded in preparing');
-  avPlayer.setMediaMuted(media.MediaType.MEDIA_TYPE_AUD, true)
+  avPlayer.setMediaMuted(media.MediaType.MEDIA_TYPE_AUD, true);
 }, (err: BusinessError) => {
-  console.error('Failed to prepare,error message is :' + err.message)
-})
+  console.error('Failed to prepare,error message is :' + err.message);
+});
 ```
 
 ### play<sup>9+</sup>
@@ -1127,11 +1127,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.play((err: BusinessError) => {
   if (err) {
-    console.error('Failed to play,error message is :' + err.message)
+    console.error('Failed to play,error message is :' + err.message);
   } else {
     console.info('Succeeded in playing');
   }
-})
+});
 ```
 
 ### play<sup>9+</sup>
@@ -1166,8 +1166,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avPlayer.play().then(() => {
   console.info('Succeeded in playing');
 }, (err: BusinessError) => {
-  console.error('Failed to play,error message is :' + err.message)
-})
+  console.error('Failed to play,error message is :' + err.message);
+});
 ```
 
 ### pause<sup>9+</sup>
@@ -1201,11 +1201,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.pause((err: BusinessError) => {
   if (err) {
-    console.error('Failed to pause,error message is :' + err.message)
+    console.error('Failed to pause,error message is :' + err.message);
   } else {
     console.info('Succeeded in pausing');
   }
-})
+});
 ```
 
 ### pause<sup>9+</sup>
@@ -1240,8 +1240,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avPlayer.pause().then(() => {
   console.info('Succeeded in pausing');
 }, (err: BusinessError) => {
-  console.error('Failed to pause,error message is :' + err.message)
-})
+  console.error('Failed to pause,error message is :' + err.message);
+});
 ```
 
 ### stop<sup>9+</sup>
@@ -1275,11 +1275,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.stop((err: BusinessError) => {
   if (err) {
-    console.error('Failed to stop,error message is :' + err.message)
+    console.error('Failed to stop,error message is :' + err.message);
   } else {
     console.info('Succeeded in stopping');
   }
-})
+});
 ```
 
 ### stop<sup>9+</sup>
@@ -1314,8 +1314,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avPlayer.stop().then(() => {
   console.info('Succeeded in stopping');
 }, (err: BusinessError) => {
-  console.error('Failed to stop,error message is :' + err.message)
-})
+  console.error('Failed to stop,error message is :' + err.message);
+});
 ```
 
 ### reset<sup>9+</sup>
@@ -1349,11 +1349,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.reset((err: BusinessError) => {
   if (err) {
-    console.error('Failed to reset,error message is :' + err.message)
+    console.error('Failed to reset,error message is :' + err.message);
   } else {
     console.info('Succeeded in resetting');
   }
-})
+});
 ```
 
 ### reset<sup>9+</sup>
@@ -1388,8 +1388,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avPlayer.reset().then(() => {
   console.info('Succeeded in resetting');
 }, (err: BusinessError) => {
-  console.error('Failed to reset,error message is :' + err.message)
-})
+  console.error('Failed to reset,error message is :' + err.message);
+});
 ```
 
 ### release<sup>9+</sup>
@@ -1423,11 +1423,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.release((err: BusinessError) => {
   if (err) {
-    console.error('Failed to release,error message is :' + err.message)
+    console.error('Failed to release,error message is :' + err.message);
   } else {
     console.info('Succeeded in releasing');
   }
-})
+});
 ```
 
 ### release<sup>9+</sup>
@@ -1462,8 +1462,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avPlayer.release().then(() => {
   console.info('Succeeded in releasing');
 }, (err: BusinessError) => {
-  console.error('Failed to release,error message is :' + err.message)
-})
+  console.error('Failed to release,error message is :' + err.message);
+});
 ```
 
 ### getTrackDescription<sup>9+</sup>
@@ -1645,12 +1645,12 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.prepare().then(() => {
-  console.info('Succeeded in preparing')
-  let playbackPosition: number = avPlayer.getPlaybackPosition()
-  console.info(`AVPlayer getPlaybackPosition== ${playbackPosition}`)
+  console.info('Succeeded in preparing');
+  let playbackPosition: number = avPlayer.getPlaybackPosition();
+  console.info(`AVPlayer getPlaybackPosition== ${playbackPosition}`);
 }, (err: BusinessError) => {
-  console.error('Failed to prepare,error message is :' + err.message)
-})
+  console.error('Failed to prepare,error message is :' + err.message);
+});
 ```
 
 ### selectTrack<sup>12+</sup>
@@ -1782,7 +1782,7 @@ Sets the decryption configuration. When receiving a [mediaKeySystemInfoUpdate ev
 
 | Name  | Type                                                        | Mandatory| Description                                        |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------- |
-| mediaKeySession | [drm.MediaKeySession](../apis-drm-kit/js-apis-drm.md#mediakeysession) | Yes  | Decryption session.|
+| mediaKeySession | [drm.MediaKeySession](../apis-drm-kit/arkts-apis-drm-MediaKeySession.md) | Yes  | Decryption session.|
 | secureVideoPath | boolean | Yes| Secure video channel. The value **true** means that a secure video channel is selected, and **false** means that a non-secure video channel is selected.|
 
 **Error codes**
@@ -1795,7 +1795,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 **Example**
 
-For details about the DRM module, see [js-apis-drm.md](../apis-drm-kit/js-apis-drm.md).
+For details about the DRM module, see [@ohos.multimedia.drm](../apis-drm-kit/arkts-apis-drm.md).
 ```ts
 import { drm } from '@kit.DrmKit';
 
@@ -1824,7 +1824,7 @@ Obtains the media key system information of the media asset that is being played
 
 | Type                                                  | Description                                             |
 | ------------------------------------------------------ | ------------------------------------------------- |
-|  Array<[drm.MediaKeySystemInfo](../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)> | Array of **MediaKeySystemInfo** objects, each of which contains the **uuid** and **pssh** attributes.|
+|  Array<[drm.MediaKeySystemInfo](../apis-drm-kit/arkts-apis-drm-i.md#mediakeysysteminfo)> | Array of MediaKeySystemInfo objects, each of which contains the **uuid** and **pssh** properties.|
 
 **Example**
 
@@ -1854,23 +1854,23 @@ This API is not supported in live mode.
 
 | Name| Type                  | Mandatory| Description                                                        |
 | ------ | ---------------------- | ---- | ------------------------------------------------------------ |
-| timeMs | number                 | Yes  | Position to seek to, in ms. The value range is [0, [duration](#attributes)]. In SEEK_CONTINUOU mode, the value **-1** can be used to indicate the end of SEEK_CONTINUOUS mode.|
+| timeMs | number                 | Yes  | Position to seek to, in ms. The value range is [0, [duration](#properties)]. In SEEK_CONTINUOU mode, the value **-1** can be used to indicate the end of SEEK_CONTINUOUS mode.|
 | mode   | [SeekMode](#seekmode8) | No  | Seek mode based on the video I frame. The default value is **SEEK_PREV_SYNC**. **Set this parameter only for video playback.**|
 
 **Example**
 
 ```ts
-let seekTime: number = 1000
-avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC)
+let seekTime: number = 1000;
+avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC);
 ```
 
 ```ts
 // Use SEEK_CONTINUOUS with the onChange callback of the Slider. When slideMode is Moving, it triggers continuous seeking during the drag.
-let slideMovingTime: number = 2000
-avPlayer.seek(slideMovingTime, media.SeekMode.SEEK_CONTINUOUS)
+let slideMovingTime: number = 2000;
+avPlayer.seek(slideMovingTime, media.SeekMode.SEEK_CONTINUOUS);
 
 // To end the seek when slideMode is End, call seek(-1, media.SeekMode.SEEK_CONTINUOUS).
-avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS)
+avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS);
 ```
 
 ### isSeekContinuousSupported<sup>18+</sup>
@@ -1892,7 +1892,7 @@ Checks whether the media source supports [seek](#seek9) in SEEK_CONTINUOUS mode 
 **Example**
 
 ```ts
-let isSupported = avPlayer.isSeekContinuousSupported()
+let isSupported = avPlayer.isSeekContinuousSupported();
 ```
 
 ### on('seekDone')<sup>9+</sup>
@@ -1910,14 +1910,14 @@ Subscribes to the event to check whether the seek operation takes effect.
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type, which is **'seekDone'** in this case. This event is triggered each time **seek()** is called, except in SEEK_CONTINUOUS mode.|
-| callback | Callback\<number> | Yes  | Callback invoked when the event is triggered. It reports the time position requested by the user.<br>For video playback, [SeekMode](#seekmode8) may cause the actual position to be different from that requested by the user. The exact position can be obtained from the **currentTime** attribute. The time in this callback only means that the requested seek operation is complete.|
+| callback | Callback\<number> | Yes  |  Callback invoked when the event is triggered. It reports the time position requested by the user.<br>For video playback, [SeekMode](#seekmode8) may cause the actual position to be different from that requested by the user. The exact position can be obtained from the **currentTime** property. The time in this callback only means that the requested seek operation is complete.|
 
 **Example**
 
 ```ts
 avPlayer.on('seekDone', (seekDoneTime:number) => {
-  console.info('seekDone called,and seek time is:' + seekDoneTime)
-})
+  console.info('seekDone called,and seek time is:' + seekDoneTime);
+});
 ```
 
 ### off('seekDone')<sup>9+</sup>
@@ -1935,12 +1935,12 @@ Unsubscribes from the event that checks whether the seek operation takes effect.
 | Name| Type  | Mandatory| Description                                                |
 | ------ | ------ | ---- | ---------------------------------------------------- |
 | type   | string | Yes  | Event type, which is **'seekDone'** in this case.|
-| callback | Callback\<number> | No  | Callback invoked when the event is triggered. It reports the time position requested by the user.<br>For video playback, [SeekMode](#seekmode8) may cause the actual position to be different from that requested by the user. The exact position can be obtained from the **currentTime** attribute. The time in this callback only means that the requested seek operation is complete.<br>This parameter is supported since API version 12.|
+| callback | Callback\<number> | No  |  Callback invoked when the event is triggered. It reports the time position requested by the user.<br>For video playback, [SeekMode](#seekmode8) may cause the actual position to be different from that requested by the user. The exact position can be obtained from the **currentTime** property. The time in this callback only means that the requested seek operation is complete.<br>This parameter is supported since API version 12.|
 
 **Example**
 
 ```ts
-avPlayer.off('seekDone')
+avPlayer.off('seekDone');
 ```
 
 ### setSpeed<sup>9+</sup>
@@ -1963,7 +1963,7 @@ This API is not supported in live mode.
 **Example**
 
 ```ts
-avPlayer.setSpeed(media.PlaybackSpeed.SPEED_FORWARD_2_00_X)
+avPlayer.setSpeed(media.PlaybackSpeed.SPEED_FORWARD_2_00_X);
 ```
 
 ### on('speedDone')<sup>9+</sup>
@@ -1987,8 +1987,8 @@ Subscribes to the event to check whether the playback speed is successfully set.
 
 ```ts
 avPlayer.on('speedDone', (speed:number) => {
-  console.info('speedDone called,and speed value is:' + speed)
-})
+  console.info('speedDone called,and speed value is:' + speed);
+});
 ```
 
 ### off('speedDone')<sup>9+</sup>
@@ -2009,7 +2009,7 @@ Unsubscribes from the event that checks whether the playback speed is successful
 **Example**
 
 ```ts
-avPlayer.off('speedDone')
+avPlayer.off('speedDone');
 ```
 
 
@@ -2045,7 +2045,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-avPlayer.setPlaybackRate(2.0)
+avPlayer.setPlaybackRate(2.0);
 ```
 
 
@@ -2070,8 +2070,8 @@ Subscribes to the event indicating that the playback rate set by calling [setPla
 
 ```ts
 avPlayer.on('playbackRateDone', (rate:number) => {
-  console.info('playbackRateDone called,and rate value is:' + rate)
-})
+  console.info('playbackRateDone called,and rate value is:' + rate);
+});
 ```
 
 ### off('playbackRateDone')<sup>20+</sup>
@@ -2094,7 +2094,7 @@ Unsubscribes from the event indicating that the playback rate set by calling [se
 **Example**
 
 ```ts
-avPlayer.off('playbackRateDone')
+avPlayer.off('playbackRateDone');
 ```
 
 
@@ -2117,8 +2117,8 @@ Sets the bit rate for the streaming media. This API is valid only for HLS/DASH s
 **Example**
 
 ```ts
-let bitrate: number = 96000
-avPlayer.setBitrate(bitrate)
+let bitrate: number = 96000;
+avPlayer.setBitrate(bitrate);
 ```
 
 ### on('bitrateDone')<sup>9+</sup>
@@ -2142,8 +2142,8 @@ Subscribes to the event to check whether the bit rate is successfully set.
 
 ```ts
 avPlayer.on('bitrateDone', (bitrate:number) => {
-  console.info('bitrateDone called,and bitrate value is:' + bitrate)
-})
+  console.info('bitrateDone called,and bitrate value is:' + bitrate);
+});
 ```
 
 ### off('bitrateDone')<sup>9+</sup>
@@ -2164,7 +2164,7 @@ Unsubscribes from the event that checks whether the bit rate is successfully set
 **Example**
 
 ```ts
-avPlayer.off('bitrateDone')
+avPlayer.off('bitrateDone');
 ```
 
 ### on('availableBitrates')<sup>9+</sup>
@@ -2188,8 +2188,8 @@ Subscribes to available bit rates of HLS/DASH streams. This event is reported on
 
 ```ts
 avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
-  console.info('availableBitrates called,and availableBitrates length is:' + bitrates.length)
-})
+  console.info('availableBitrates called,and availableBitrates length is:' + bitrates.length);
+});
 ```
 
 ### off('availableBitrates')<sup>9+</sup>
@@ -2212,7 +2212,7 @@ Unsubscribes from available bit rates of HLS/DASH streams. This event is reporte
 **Example**
 
 ```ts
-avPlayer.off('availableBitrates')
+avPlayer.off('availableBitrates');
 ```
 
 
@@ -2231,7 +2231,7 @@ Subscribes to media key system information changes.
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type, which is **'mediaKeySystemInfoUpdate'** in this case. This event is triggered when the copyright protection information of the media asset being played changes.|
-| callback | Callback\<Array\<drm.[MediaKeySystemInfo](../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)>> | Yes  | Callback invoked when the event is triggered. It reports a **MediaKeySystemInfo** array.|
+| callback | Callback\<Array\<drm.[MediaKeySystemInfo](../apis-drm-kit/arkts-apis-drm-i.md#mediakeysysteminfo)>> | Yes  | Callback invoked when the event is triggered. It reports a **MediaKeySystemInfo** array.|
 
 **Example**
 
@@ -2243,7 +2243,7 @@ avPlayer.on('mediaKeySystemInfoUpdate', (mediaKeySystemInfo: Array<drm.MediaKeyS
       console.info('mediaKeySystemInfoUpdate happened uuid: ' + mediaKeySystemInfo[i]["uuid"]);
       console.info('mediaKeySystemInfoUpdate happened pssh: ' + mediaKeySystemInfo[i]["pssh"]);
     }
-})
+});
 ```
 
 ### off('mediaKeySystemInfoUpdate')<sup>11+</sup>
@@ -2261,12 +2261,12 @@ Unsubscribes from media key system information changes.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | Yes  | Event type, which is **'mediaKeySystemInfoUpdate'** in this case.|
-| callback | Callback\<Array\<drm.[MediaKeySystemInfo](../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)>> | No  | Callback invoked when the event is triggered. It reports a **MediaKeySystemInfo** array. If this parameter is specified, only the specified callback is unregistered. Otherwise, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback\<Array\<drm.[MediaKeySystemInfo](../apis-drm-kit/arkts-apis-drm-i.md#mediakeysysteminfo)>> | No  | Callback invoked when the event is triggered. It reports a **MediaKeySystemInfo** array. If this parameter is specified, only the specified callback is unregistered. Otherwise, all callbacks associated with the specified event will be unregistered.|
 
 **Example**
 
 ```ts
-avPlayer.off('mediaKeySystemInfoUpdate')
+avPlayer.off('mediaKeySystemInfoUpdate');
 ```
 
 ### setVolume<sup>9+</sup>
@@ -2288,8 +2288,8 @@ Sets the volume. This API can be called only when the AVPlayer is in the prepare
 **Example**
 
 ```ts
-let volume: number = 1.0
-avPlayer.setVolume(volume)
+let volume: number = 1.0;
+avPlayer.setVolume(volume);
 ```
 
 ### on('volumeChange')<sup>9+</sup>
@@ -2313,8 +2313,8 @@ Subscribes to the event to check whether the volume is successfully set.
 
 ```ts
 avPlayer.on('volumeChange', (vol: number) => {
-  console.info('volumeChange called,and new volume is :' + vol)
-})
+  console.info('volumeChange called,and new volume is :' + vol);
+});
 ```
 
 ### off('volumeChange')<sup>9+</sup>
@@ -2335,14 +2335,14 @@ Unsubscribes from the event that checks whether the volume is successfully set.
 **Example**
 
 ```ts
-avPlayer.off('volumeChange')
+avPlayer.off('volumeChange');
 ```
 
 ### on('endOfStream')<sup>9+</sup>
 
 on(type: 'endOfStream', callback: Callback\<void>): void
 
-Subscribes to the event that indicates the end of the stream being played. If **[loop](#attributes) = true** is set, the AVPlayer seeks to the beginning of the stream and plays the stream again. If **loop** is not set, the completed state is reported through the [stateChange](#onstatechange9) event.
+Subscribes to the event that indicates the end of the stream being played. If **[loop](#properties) = true** is set, the AVPlayer seeks to the beginning of the stream and plays the stream again. If **loop** is not set, the completed state is reported through the [stateChange](#onstatechange9) event.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2359,8 +2359,8 @@ Subscribes to the event that indicates the end of the stream being played. If **
 
 ```ts
 avPlayer.on('endOfStream', () => {
-  console.info('endOfStream called')
-})
+  console.info('endOfStream called');
+});
 ```
 
 ### off('endOfStream')<sup>9+</sup>
@@ -2381,7 +2381,7 @@ Unsubscribes from the event that indicates the end of the stream being played.
 **Example**
 
 ```ts
-avPlayer.off('endOfStream')
+avPlayer.off('endOfStream');
 ```
 
 ### on('timeUpdate')<sup>9+</sup>
@@ -2407,8 +2407,8 @@ The **'timeUpdate'** event is not supported in live mode.
 
 ```ts
 avPlayer.on('timeUpdate', (time:number) => {
-  console.info('timeUpdate called,and new time is :' + time)
-})
+  console.info('timeUpdate called,and new time is :' + time);
+});
 ```
 
 ### off('timeUpdate')<sup>9+</sup>
@@ -2431,7 +2431,7 @@ Unsubscribes from playback position changes.
 **Example**
 
 ```ts
-avPlayer.off('timeUpdate')
+avPlayer.off('timeUpdate');
 ```
 
 ### on('durationUpdate')<sup>9+</sup>
@@ -2457,8 +2457,8 @@ The **'durationUpdate'** event is not supported in live mode.
 
 ```ts
 avPlayer.on('durationUpdate', (duration: number) => {
-  console.info('durationUpdate called,new duration is :' + duration)
-})
+  console.info('durationUpdate called,new duration is :' + duration);
+});
 ```
 
 ### off('durationUpdate')<sup>9+</sup>
@@ -2479,7 +2479,7 @@ Unsubscribes from media asset duration changes.
 **Example**
 
 ```ts
-avPlayer.off('durationUpdate')
+avPlayer.off('durationUpdate');
 ```
 
 ### on('bufferingUpdate')<sup>9+</sup>
@@ -2503,8 +2503,8 @@ Subscribes to audio and video buffer changes. This subscription is supported onl
 
 ```ts
 avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
-  console.info('bufferingUpdate called,and infoType value is:' + infoType + ', value is :' + value)
-})
+  console.info('bufferingUpdate called,and infoType value is:' + infoType + ', value is :' + value);
+});
 ```
 
 ### off('bufferingUpdate')<sup>9+</sup>
@@ -2527,7 +2527,7 @@ Unsubscribes from audio and video buffer changes.
 **Example**
 
 ```ts
-avPlayer.off('bufferingUpdate')
+avPlayer.off('bufferingUpdate');
 ```
 
 ### on('startRenderFrame')<sup>9+</sup>
@@ -2551,8 +2551,8 @@ Subscribes to the event that indicates rendering starts for the first frame. Thi
 
 ```ts
 avPlayer.on('startRenderFrame', () => {
-  console.info('startRenderFrame called')
-})
+  console.info('startRenderFrame called');
+});
 ```
 
 ### off('startRenderFrame')<sup>9+</sup>
@@ -2573,7 +2573,7 @@ Unsubscribes from the event that indicates rendering starts for the first frame.
 **Example**
 
 ```ts
-avPlayer.off('startRenderFrame')
+avPlayer.off('startRenderFrame');
 ```
 
 ### on('videoSizeChange')<sup>9+</sup>
@@ -2597,8 +2597,8 @@ Subscribes to video size (width and height) changes. This subscription is suppor
 
 ```ts
 avPlayer.on('videoSizeChange', (width: number, height: number) => {
-  console.info('videoSizeChange called,and width is:' + width + ', height is :' + height)
-})
+  console.info('videoSizeChange called,and width is:' + width + ', height is :' + height);
+});
 ```
 
 ### off('videoSizeChange')<sup>9+</sup>
@@ -2621,7 +2621,7 @@ Unsubscribes from video size changes.
 **Example**
 
 ```ts
-avPlayer.off('videoSizeChange')
+avPlayer.off('videoSizeChange');
 ```
 
 ### on('audioInterrupt')<sup>9+</sup>
@@ -2647,8 +2647,8 @@ Subscribes to the audio interruption event. When multiple audio and video assets
 import { audio } from '@kit.AudioKit';
 
 avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
-  console.info('audioInterrupt called,and InterruptEvent info is:' + info)
-})
+  console.info('audioInterrupt called,and InterruptEvent info is:' + info);
+});
 ```
 
 ### off('audioInterrupt')<sup>9+</sup>
@@ -2671,7 +2671,7 @@ Unsubscribes from the audio interruption event.
 **Example**
 
 ```ts
-avPlayer.off('audioInterrupt')
+avPlayer.off('audioInterrupt');
 ```
 
 ### on('audioOutputDeviceChangeWithInfo')<sup>11+</sup>
@@ -2690,7 +2690,7 @@ When subscribing to this event, you are advised to implement the player behavior
 
 | Name  | Type                      | Mandatory| Description                                       |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | Yes  | Event type, which is **'outputDeviceChangeWithInfo'** in this case. The event is triggered when the output device is changed.|
+| type     | string                     | Yes  | Event type, which is **'audioOutputDeviceChangeWithInfo'** in this case.|
 | callback | Callback\<[audio.AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | Yes  | Callback used to return the output device descriptor of the current audio stream and the change reason.|
 
 **Error codes**
@@ -2723,7 +2723,7 @@ Unsubscribes from audio stream output device changes and reasons. This API uses 
 
 | Name  | Type                      | Mandatory| Description                                       |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | Yes  | Event type, which is **'outputDeviceChange'** in this case. The event is triggered when the audio output device is changed.|
+| type     | string                     | Yes  | Event type, which is **'audioOutputDeviceChangeWithInfo'** in this case.|
 | callback | Callback\<[audio.AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | No  | Callback used to return the output device descriptor of the current audio stream and the change reason.|
 
 **Error codes**
@@ -2742,7 +2742,7 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 
-Adds an external subtitle to a video based on the FD. Currently, the external subtitle must be set after **fdSrc** of the video resource is set in an **AVPlayer** instance. This API uses a promise to return the result.
+Adds an external subtitle to a video based on the FD. Currently, the external subtitle must be set after **fdSrc** of the video resource is set in an AVPlayer instance. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2781,14 +2781,14 @@ constructor(context: Context) {
 }
 let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.srt');
 
-avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length)
+avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length);
 ```
 
 ### addSubtitleFromUrl<sup>12+</sup>
 
 addSubtitleFromUrl(url: string): Promise\<void>
 
-Adds an external subtitle to a video based on the URL. Currently, the external subtitle must be set after **fdSrc** of the video resource is set in an **AVPlayer** instance. This API uses a promise to return the result.
+Adds an external subtitle to a video based on the URL. Currently, the external subtitle must be set after **fdSrc** of the video resource is set in an AVPlayer instance. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2817,10 +2817,10 @@ Adds an external subtitle to a video based on the URL. Currently, the external s
 
 <!--code_no_check-->
 ```ts
-let fdUrl:string = 'http://xxx.xxx.xxx/xx/index.srt'
+let fdUrl:string = 'http://xxx.xxx.xxx/xx/index.srt';
 
-let avPlayer: media.AVPlayer = await media.createAVPlayer()
-avPlayer.addSubtitleFromUrl(fdUrl)
+let avPlayer: media.AVPlayer = await media.createAVPlayer();
+avPlayer.addSubtitleFromUrl(fdUrl);
 ```
 
 ### on('subtitleUpdate')<sup>12+</sup>
@@ -2848,11 +2848,11 @@ avPlayer.on('subtitleUpdate', async (info: media.SubtitleInfo) => {
     let text = (!info.text) ? '' : info.text
     let startTime = (!info.startTime) ? 0 : info.startTime
     let duration = (!info.duration) ? 0 : info.duration
-    console.info('subtitleUpdate info: text=' + text + ' startTime=' + startTime +' duration=' + duration)
+    console.info('subtitleUpdate info: text=' + text + ' startTime=' + startTime +' duration=' + duration);
   } else {
-    console.info('subtitleUpdate info is null')
+    console.info('subtitleUpdate info is null');
   }
-})
+});
 ```
 
 ### off('subtitleUpdate')<sup>12+</sup>
@@ -2875,7 +2875,7 @@ Unsubscribes from subtitle update events.
 **Example**
 
 ```ts
-avPlayer.off('subtitleUpdate')
+avPlayer.off('subtitleUpdate');
 ```
 
 ### on('trackChange')<sup>12+</sup>
@@ -2899,8 +2899,8 @@ Subscribes to track change events. When the track changes, the system notifies t
 
 ```ts
 avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
-  console.info('trackChange info: index=' + index + ' isSelect=' + isSelect)
-})
+  console.info('trackChange info: index=' + index + ' isSelect=' + isSelect);
+});
 ```
 
 ### off('trackChange')<sup>12+</sup>
@@ -2923,7 +2923,7 @@ Unsubscribes from track change events.
 **Example**
 
 ```ts
-avPlayer.off('trackChange')
+avPlayer.off('trackChange');
 ```
 
 ### on('trackInfoUpdate')<sup>12+</sup>
@@ -2951,12 +2951,12 @@ avPlayer.on('trackInfoUpdate', (info: Array<media.MediaDescription>) => {
     for (let i = 0; i < info.length; i++) {
       let propertyIndex: Object = info[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
       let propertyType: Object = info[i][media.MediaDescriptionKey.MD_KEY_TRACK_TYPE];
-      console.info('track info: index=' + propertyIndex + ' tracktype=' + propertyType)
+      console.info('track info: index=' + propertyIndex + ' tracktype=' + propertyType);
     }
   } else {
-    console.info('track info is null')
+    console.info('track info is null');
   }
-})
+});
 ```
 
 ### off('trackInfoUpdate')<sup>12+</sup>
@@ -2979,7 +2979,7 @@ Unsubscribes from track information update events.
 **Example**
 
 ```ts
-avPlayer.off('trackInfoUpdate')
+avPlayer.off('trackInfoUpdate');
 ```
 
 ### on('amplitudeUpdate')<sup>13+</sup>
@@ -3001,8 +3001,8 @@ Subscribes to update events of the maximum audio level value, which is periodica
 
 ```ts
 avPlayer.on('amplitudeUpdate', (value: Array<number>) => {
-  console.info('amplitudeUpdate called,and amplitudeUpdate = ${value}')
-})
+  console.info('amplitudeUpdate called,and amplitudeUpdate = ${value}');
+});
 ```
 
 ### off('amplitudeUpdate')<sup>13+</sup>
@@ -3023,7 +3023,7 @@ Unsubscribes from update events of the maximum amplitude.
 **Example**
 
 ```ts
-avPlayer.off('amplitudeUpdate')
+avPlayer.off('amplitudeUpdate');
 ```
 
 ### on('seiMessageReceived')<sup>18+</sup>
@@ -3051,16 +3051,16 @@ import util from '@ohos.util';
 
 avPlayer.on('seiMessageReceived', [5], (messages: Array<media.SeiMessage>, playbackPosition?: number) =>
 {
-  console.info('seiMessageReceived playbackPosition ' + playbackPosition)
+  console.info('seiMessageReceived playbackPosition ' + playbackPosition);
 
   for (let key = 0; key < messages.length; key++) {
-    console.info('seiMessageReceived messages payloadType ' + messages[key].payloadType + ' payload size ' + messages[key].payload.byteLength)
+    console.info('seiMessageReceived messages payloadType ' + messages[key].payloadType + ' payload size ' + messages[key].payload.byteLength);
 
-    let textDecoder = util.TextDecoder.create("utf-8",{ignoreBOM: true})
-    let ab = messages[key]?.payload?.slice(16, messages[key].payload.byteLength)
-    let result: Uint8Array = new Uint8Array(ab)
-    let retStr: string = textDecoder.decodeToString(result)
-    console.info('seiMessageReceived messages payload ' + retStr)
+    let textDecoder = util.TextDecoder.create("utf-8",{ignoreBOM: true});
+    let ab = messages[key]?.payload?.slice(16, messages[key].payload.byteLength);
+    let result: Uint8Array = new Uint8Array(ab);
+    let retStr: string = textDecoder.decodeToString(result);
+    console.info('seiMessageReceived messages payload ' + retStr);
   }
 });
 ```
@@ -3086,7 +3086,7 @@ Unsubscribes from the events indicating that an SEI message is received.
 **Example**
 
 ```ts
-avPlayer.off('seiMessageReceived')
+avPlayer.off('seiMessageReceived');
 ```
 
 ### setSuperResolution<sup>18+</sup>
@@ -3126,7 +3126,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-avPlayer.setSuperResolution(true)
+avPlayer.setSuperResolution(true);
 ```
 
 ### setVideoWindowSize<sup>18+</sup>
@@ -3168,7 +3168,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-avPlayer.setVideoWindowSize(1920, 1080)
+avPlayer.setVideoWindowSize(1920, 1080);
 ```
 
 ### on('superResolutionChanged')<sup>18+</sup>
@@ -3192,8 +3192,8 @@ Subscribes to the event indicating that super resolution is enabled or disabled.
 
 ```ts
 avPlayer.on('superResolutionChanged', (enabled: boolean) => {
-  console.info('superResolutionChanged called, and enabled is:' + enabled)
-})
+  console.info('superResolutionChanged called, and enabled is:' + enabled);
+});
 ```
 
 ### off('superResolutionChanged')<sup>18+</sup>
@@ -3216,14 +3216,14 @@ Unsubscribes from the event indicating that super resolution is enabled or disab
 **Example**
 
 ```ts
-avPlayer.off('superResolutionChanged')
+avPlayer.off('superResolutionChanged');
 ```
 
 ## AVPlayerState<sup>9+</sup>
 
 type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' | 'completed' | 'stopped' | 'released' | 'error'
 
-Enumerates the states of the [AVPlayer](#avplayer9). Your application can proactively obtain the AVPlayer state through the **state** attribute or obtain the reported AVPlayer state by subscribing to the [stateChange](#onstatechange9) event. For details about the rules for state transition, see [Audio Playback](../../media/media/using-avplayer-for-playback.md).
+Describes the state of the [AVPlayer](#avplayer9). Your application can proactively obtain the AVPlayer state through the **state** property or obtain the reported AVPlayer state by subscribing to the [stateChange](#onstatechange9) event. For details about the rules for state transition, see [Audio Playback](../../media/media/using-avplayer-for-playback.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3231,15 +3231,15 @@ Enumerates the states of the [AVPlayer](#avplayer9). Your application can proact
 
 |              Type              | Description                                                        |
 | :-----------------------------: | :----------------------------------------------------------- |
-|              'idle'               | The AVPlayer enters this state after [createAVPlayer()](#mediacreateavplayer9) or [reset()](#reset9) is called.<br>In case [createAVPlayer()](#mediacreateavplayer9) is used, all attributes are set to their default values.<br>In case [reset()](#reset9) is called, the **url<sup>9+</sup>**, **fdSrc<sup>9+</sup>**, or **dataSrc<sup>10+</sup>** attribute and the **loop** attribute are reset, and other attributes are retained.|
-|           'initialized'           | The AVPlayer enters this state after **url<sup>9+</sup>** or **fdSrc<sup>9+</sup>** attribute is set in the idle state. In this case, you can configure static attributes such as the window and audio.|
+|              'idle'               | The AVPlayer enters this state after [createAVPlayer()](#mediacreateavplayer9) or [reset()](#reset9) is called.<br>In case [createAVPlayer()](#mediacreateavplayer9) is used, all properties are set to their default values.<br>In case [reset()](#reset9) is called, the **url<sup>9+</sup>**, **fdSrc<sup>9+</sup>**, or **dataSrc<sup>10+</sup>** property and the **loop** property are reset, and other properties are retained.|
+|           'initialized'           | The AVPlayer enters this state after **url<sup>9+</sup>** or **fdSrc<sup>9+</sup>** property is set in the idle state. In this case, you can configure static properties such as the window and audio.|
 |            'prepared'             | The AVPlayer enters this state when [prepare()](#prepare9) is called in the initialized state. In this case, the playback engine has prepared the resources.|
 |             'playing'             | The AVPlayer enters this state when [play()](#play9) is called in the prepared, paused, or completed state.|
 |             'paused'              | The AVPlayer enters this state when **pause()** is called in the playing state.|
 |            'completed'            | The AVPlayer enters this state when a media asset finishes playing and loop playback is not set (no **loop = true**). In this case, if [play()](#play9) is called, the AVPlayer enters the playing state and replays the media asset; if [stop()](#stop9) is called, the AVPlayer enters the stopped state.|
-|             'stopped'             | The AVPlayer enters this state when [stop()](#stop9) is called in the prepared, playing, paused, or completed state. In this case, the playback engine retains the attributes but releases the memory resources. You can call [prepare()](#prepare9) to prepare the resources again, call [reset()](#reset9) to reset the attributes, or call [release()](#release9) to destroy the playback engine.|
-|            'released'             | The AVPlayer enters this state when [release()](#release9) is called. The playback engine associated with the **AVPlayer** instance is destroyed, and the playback process ends. This is the final state.|
-| 'error' | The AVPlayer enters this state when an irreversible error occurs in the playback engine. You can call [reset()](#reset9) to reset the attributes or call [release()](#release9) to destroy the playback engine. For details about the error codes, see [Media Error Codes](errorcode-media.md).<br>**NOTE** Relationship between the error state and the [on('error')](#onerror9) event<br>1. When the AVPlayer enters the error state, the **on('error')** event is triggered. You can obtain the detailed error information through this event.<br>2. When the AVPlayer enters the error state, the playback service stops. This requires the client to design a fault tolerance mechanism to call [reset()](#reset9) or [release()](#release9).<br>3. The client receives **on('error')** event but the AVPlayer does not enter the error state. This situation occurs due to either of the following reasons:<br>Cause 1: The client calls an API in an incorrect state or passes in an incorrect parameter, and the AVPlayer intercepts the call. If this is the case, the client must correct its code logic.<br>Cause 2: A stream error is detected during playback. As a result, the container and decoding are abnormal for a short period of time, but continuous playback and playback control operations are not affected. If this is the case, the client does not need to design a fault tolerance mechanism.|
+|             'stopped'             | The AVPlayer enters this state when [stop()](#stop9) is called in the prepared, playing, paused, or completed state. In this case, the playback engine retains the properties but releases the memory resources. You can call [prepare()](#prepare9) to prepare the resources again, call [reset()](#reset9) to reset the properties, or call [release()](#release9) to destroy the playback engine.|
+|            'released'             | The AVPlayer enters this state when [release()](#release9) is called. The playback engine associated with the AVPlayer instance is destroyed, and the playback process ends. This is the final state.|
+| 'error' | The AVPlayer enters this state when an irreversible error occurs in the playback engine. You can call [reset()](#reset9) to reset the properties or call [release()](#release9) to destroy the playback engine. For details about the error codes, see [Media Error Codes](errorcode-media.md).<br>**NOTE** Relationship between the error state and the [on('error')](#onerror9) event<br>1. When the AVPlayer enters the error state, the **on('error')** event is triggered. You can obtain the detailed error information through this event.<br>2. When the AVPlayer enters the error state, the playback service stops. This requires the client to design a fault tolerance mechanism to call [reset()](#reset9) or [release()](#release9).<br>3. The client receives **on('error')** event but the AVPlayer does not enter the error state. This situation occurs due to either of the following reasons:<br>Cause 1: The client calls an API in an incorrect state or passes in an incorrect parameter, and the AVPlayer intercepts the call. If this is the case, the client must correct its code logic.<br>Cause 2: A stream error is detected during playback. As a result, the container and decoding are abnormal for a short period of time, but continuous playback and playback control operations are not affected. If this is the case, the client does not need to design a fault tolerance mechanism.|
 
 ## OnTrackChangeHandler<sup>12+</sup>
 
@@ -3374,7 +3374,7 @@ Defines the descriptor of an audio and video file, which is used in DataSource p
 
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| fileSize     | number | Yes  | Size of the file to play, in bytes. The value **-1** indicates that the size is unknown. If **fileSize** is set to **-1**, the playback mode is similar to the live mode. In this mode, the **seek** and **setSpeed** operations cannot be performed, and the **loop** attribute cannot be set, indicating that loop playback is unavailable.|
+| fileSize     | number | Yes  | Size of the file to play, in bytes. The value **-1** indicates that the size is unknown. If **fileSize** is set to **-1**, the playback mode is similar to the live mode. In this mode, the **seek** and **setSpeed** operations cannot be performed, and the **loop** property cannot be set, indicating that loop playback is unavailable.|
 | callback | (buffer: ArrayBuffer, length: number, pos?: number) => number | Yes  | Callback used to fill in data.<br>- Function: callback: (buffer: ArrayBuffer, length: number, pos?:number) => number;<br>- **buffer**: memory to be filled. The value is of the ArrayBuffer type. This parameter is mandatory.<br>- **length**: maximum length of the memory to be filled. The value is of the number type. This parameter is mandatory.<br>- **pos**: position of the data to be filled in the file. The value is of the number type. This parameter is optional. When **fileSize** is set to **-1**, this parameter cannot be used.<br>- Return value: length of the data filled, which is of the number type. If **-1** is returned, the end of stream is reached. If **-2** is returned, an unrecoverable error occurs.|
 
 ## SubtitleInfo<sup>12+</sup>
@@ -3462,7 +3462,7 @@ Enumerates the video scale modes.
 | ----------------------------| ---- | ------------------------------------------------ |
 | VIDEO_SCALE_TYPE_FIT        | 0    | Default mode. The video will be stretched to fit the window.               |
 | VIDEO_SCALE_TYPE_FIT_CROP   | 1    | Maintains the video's aspect ratio, and scales to fill the shortest side of the window, with the longer side cropped.    |
-| VIDEO_SCALE_TYPE_SCALED_ASPECT<sup>20+</sup> | 2    | Maintains the video's aspect ratio, and scales to fill the longer side of the window, with the shorter side centered and unfilled parts left black.<br>**Atomic service API**: This API can be used in atomic services since API version 20. |
+| VIDEO_SCALE_TYPE_FIT_ASPECT<sup>20+</sup> | 2    | Maintains the video's aspect ratio, and scales to fill the longer side of the window, with the shorter side centered and unfilled parts left black.<br>**Atomic service API**: This API can be used in atomic services since API version 20. |
 
 ## MediaDescription<sup>8+</sup>
 
@@ -3551,15 +3551,15 @@ media.createAVPlayer(async (err: BusinessError, player: media.AVPlayer) => {
 
 ## AVRecorder<sup>9+</sup>
 
-A recording management class that provides APIs to record media assets. Before calling any API in **AVRecorder**, you must use [createAVRecorder()](#mediacreateavrecorder9) to create an **AVRecorder** instance.
+A recording management class that provides APIs to record media assets. Before calling any API in AVRecorder, you must use [createAVRecorder()](#mediacreateavrecorder9) to create an AVRecorder instance.
 
 For details about the audio and video recording demo, see [Audio Recording](../../media/media/using-avrecorder-for-recording.md) and [Video Recording](../../media/media/video-recording.md).
 
 > **NOTE**
 >
-> To use the camera to record videos, the camera module is required. For details about how to use the APIs provided by the camera module, see [Camera Management](../apis-camera-kit/js-apis-camera.md).
+> To use the camera to record videos, the camera module is required. For details about how to use the APIs provided by the camera module, see [Camera Management](../apis-camera-kit/arkts-apis-camera.md).
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
@@ -3577,7 +3577,7 @@ Sets audio and video recording parameters. This API uses an asynchronous callbac
 
 This permission is required only if audio recording is involved.
 
-To use the camera to record videos, the camera module is required. For details about how to use the APIs provided by the camera module, see [Camera Management](../apis-camera-kit/js-apis-camera.md).
+To use the camera to record videos, the camera module is required. For details about how to use the APIs provided by the camera module, see [Camera Management](../apis-camera-kit/arkts-apis-camera.md).
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
@@ -3616,7 +3616,7 @@ let avRecorderProfile: media.AVRecorderProfile = {
   videoFrameWidth : 640,
   videoFrameHeight : 480,
   videoFrameRate : 30
-}
+};
 let avRecorderConfig: media.AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
@@ -3624,7 +3624,7 @@ let avRecorderConfig: media.AVRecorderConfig = {
   url : 'fd://', // Before passing in an FD to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: fd://45.
   rotation: 0, // The value can be 0, 90, 180, or 270. If any other value is used, prepare() reports an error.
   location : { latitude : 30, longitude : 130 }
-}
+};
 
 avRecorder.prepare(avRecorderConfig, (err: BusinessError) => {
   if (err) {
@@ -3632,7 +3632,7 @@ avRecorder.prepare(avRecorderConfig, (err: BusinessError) => {
   } else {
     console.info('Succeeded in preparing');
   }
-})
+});
 ```
 
 ### prepare<sup>9+</sup>
@@ -3645,7 +3645,7 @@ Sets audio and video recording parameters. This API uses a promise to return the
 
 This permission is required only if audio recording is involved.
 
-To use the camera to record videos, the camera module is required. For details about how to use the APIs provided by the camera module, see [Camera Management](../apis-camera-kit/js-apis-camera.md).
+To use the camera to record videos, the camera module is required. For details about how to use the APIs provided by the camera module, see [Camera Management](../apis-camera-kit/arkts-apis-camera.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3691,7 +3691,7 @@ let avRecorderProfile: media.AVRecorderProfile = {
   videoFrameWidth : 640,
   videoFrameHeight : 480,
   videoFrameRate : 30
-}
+};
 let avRecorderConfig: media.AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
@@ -3699,7 +3699,7 @@ let avRecorderConfig: media.AVRecorderConfig = {
   url : 'fd://', // Before passing in an FD to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: fd://45.
   rotation: 0, // The value can be 0, 90, 180, or 270. If any other value is used, prepare() reports an error.
   location : { latitude : 30, longitude : 130 }
-}
+};
 
 avRecorder.prepare(avRecorderConfig).then(() => {
   console.info('Succeeded in preparing');
@@ -3833,12 +3833,53 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let rotation = 90
+let rotation = 90;
 
 avRecorder.updateRotation(rotation).then(() => {
   console.info('Succeeded in updateRotation');
 }).catch((err: BusinessError) => {
   console.error('Failed to updateRotation and catch error is ' + err.message);
+});
+```
+
+### setWillMuteWhenInterrupted<sup>20+</sup>
+
+setWillMuteWhenInterrupted(muteWhenInterrupted: boolean): Promise&lt;void&gt;
+
+Sets whether to mute the current audio recording stream when an audio interruption occurs. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
+
+**Parameters**
+
+| Name    | Type            | Mandatory  | Description                                                     |
+| ---------- |---------------- | ------ |---------------------------------------------------------|
+| muteWhenInterrupted | boolean | Yes | Whether to mute the current audio recording stream during an audio interruption. The value **true** means to mute it, and **false** (default value) means the opposite.|
+
+**Return value**
+
+| Type               | Description                         |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt;| Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400105  | Service died. Return by promise.       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avRecorder.setWillMuteWhenInterrupted(true).then(() => {
+  console.info('setWillMuteWhenInterrupted Success!');
+}).catch((err: BusinessError) => {
+  console.error(`setWillMuteWhenInterrupted Fail: ${err}`);
 });
 ```
 
@@ -4248,7 +4289,7 @@ release(callback: AsyncCallback\<void>): void
 
 Releases the audio and video recording resources. This API uses an asynchronous callback to return the result.
 
-After the resources are released, you can no longer perform any operation on the **AVRecorder** instance.
+After the resources are released, you can no longer perform any operation on the AVRecorder instance.
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
@@ -4286,7 +4327,7 @@ release(): Promise\<void>
 
 Releases the audio and video recording resources. This API uses a promise to return the result.
 
-After the resources are released, you can no longer perform any operation on the **AVRecorder** instance.
+After the resources are released, you can no longer perform any operation on the AVRecorder instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4332,7 +4373,7 @@ This API can be called only after the **prepare()** API is called. If this API i
 
 | Name  | Type                                                        | Mandatory| Description                                |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------ |
-| callback | AsyncCallback\<[audio.AudioCapturerChangeInfo](../apis-audio-kit/js-apis-audio.md#audiocapturerchangeinfo9)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **audio.AudioCapturerChangeInfo** object obtained; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<[audio.AudioCapturerChangeInfo](../apis-audio-kit/js-apis-audio.md#audiocapturerchangeinfo9)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the audio.AudioCapturerChangeInfo object obtained; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -4840,7 +4881,7 @@ When the application initiates multiple subscriptions to this event, the last su
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  |Event type, which is **'photoAssetAvailable'** in this case. The event is triggered when a photo asset is available.|
-| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | Yes| Callback used to return the **PhotoAsset** object corresponding to the resource file created by the system.|
+| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | Yes| Callback used to return the PhotoAsset object corresponding to the resource file created by the system.|
 
 **Error codes**
 
@@ -4900,7 +4941,7 @@ Unsubscribes from media asset callback events.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | Yes  | Event type, which is **'photoAssetAvailable'** in this case.|
-| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | No| Callback used to return the **PhotoAsset** object corresponding to the resource file created by the system.|
+| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | No| Callback used to return the PhotoAsset object corresponding to the resource file created by the system.|
 
 **Example**
 
@@ -4912,7 +4953,7 @@ avRecorder.off('photoAssetAvailable');
 
 type AVRecorderState = 'idle' | 'prepared' | 'started' | 'paused' | 'stopped' | 'released' | 'error'
 
-Enumerates the AVRecorder states. You can obtain the state through the **state** attribute.
+Enumerates the AVRecorder states. You can obtain the state through the **state** property.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4926,13 +4967,13 @@ Enumerates the AVRecorder states. You can obtain the state through the **state**
 | 'paused'   | The AVRecorder enters this state when the recording is paused. In this state, you can call [AVRecorder.resume()](#resume9) to continue recording or call [AVRecorder.stop()](#stop9-2) to stop recording.|
 | 'stopped'  | The AVRecorder enters this state when the recording stops. In this state, you can call [AVRecorder.prepare()](#prepare9-2) to set recording parameters so that the AVRecorder enters the prepared state again.|
 | 'released' | The AVRecorder enters this state when the recording resources are released. In this state, no operation can be performed. In any other state, you can call [AVRecorder.release()](#release9-2) to enter the released state.|
-| 'error'    | The AVRecorder enters this state when an irreversible error occurs in the **AVRecorder** instance. In this state, the [AVRecorder.on('error') event](#onerror9-1) is reported, with the detailed error cause. In the error state, you must call [AVRecorder.reset()](#reset9-2) to reset the **AVRecorder** instance or call [AVRecorder.release()](#release9-2) to release the resources.|
+| 'error'    | The AVRecorder enters this state when an irreversible error occurs in the AVRecorder instance. In this state, the [AVRecorder.on('error') event](#onerror9-1) is reported, with the detailed error cause. In the error state, you must call [AVRecorder.reset()](#reset9-2) to reset the AVRecorder instance or call [AVRecorder.release()](#release9-2) to release the resources.|
 
 ## OnAVRecorderStateChangeHandler<sup>12+</sup>
 
 type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChangeReason) => void
 
-Describes the callback invoked for the AVRecorder state change event. 
+Describes the callback invoked for the AVRecorder state change event.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5089,18 +5130,18 @@ Enumerates the modes for creating media files.
 
 ## AVTranscoder<sup>12+</sup>
 
-A transcoding management class that provides APIs to transcode videos. Before calling any API in **AVTranscoder**, you must use [createAVTranscoder()](#mediacreateavtranscoder12) to create an **AVTranscoder** instance.
+A transcoding management class that provides APIs to transcode videos. Before calling any API in AVTranscoder, you must use [createAVTranscoder()](#mediacreateavtranscoder12) to create an AVTranscoder instance.
 
 For details about the AVTranscoder demo, see [Using AVTranscoder for Transcoding](../../media/media/using-avtranscoder-for-transcodering.md).
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Multimedia.Media.AVTranscoder
 
 | Name   | Type                                | Read-Only| Optional| Description              |
 | ------- | ------------------------------------ | ---- | ---- | ------------------ |
-| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       |  No | No  | Source media file descriptor, which specifies the data source.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor { fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br>- After the resource handle (FD) is transferred to an **AVTranscoder** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVTranscoders use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
-| fdDst<sup>12+</sup>                               | number                 |  No | No  | Destination media file descriptor, which specifies the data source. After creating an **AVTranscoder** instance, you must set both **fdSrc** and **fdDst**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an **AVTranscoder** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVTranscoders use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
+| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       |  No | No  | Source media file descriptor, which specifies the data source.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor { fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an AVTranscoder instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other AVPlayer, AVMetadataExtractor, AVImageGenerator, or AVTranscoder instance. Competition occurs when multiple AVTranscoders use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
+| fdDst<sup>12+</sup>                               | number                 |  No | No  | Destination media file descriptor, which specifies the data source. After creating an AVTranscoder instance, you must set both **fdSrc** and **fdDst**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an AVTranscoder instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other AVPlayer, AVMetadataExtractor, AVImageGenerator, or AVTranscoder instance. Competition occurs when multiple AVTranscoders use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
 
 ### prepare<sup>12+</sup>
 
@@ -5146,7 +5187,7 @@ let avTranscoderConfig: media.AVTranscoderConfig = {
   fileFormat : media.ContainerFormatType.CFT_MPEG_4,
   videoBitrate : 3000000,
   videoCodec : media.CodecMimeType.VIDEO_AVC,
-}
+};
 
 avTranscoder.prepare(avTranscoderConfig).then(() => {
   console.info('prepare success');
@@ -5313,7 +5354,7 @@ release(): Promise\<void>
 
 Releases the video transcoding resources. This API uses a promise to return the result.
 
-After the resources are released, you can no longer perform any operation on the **AVTranscoder** instance.
+After the resources are released, you can no longer perform any operation on the AVTranscoder instance.
 
 **System capability**: SystemCapability.Multimedia.Media.AVTranscoder
 
@@ -5379,7 +5420,7 @@ Unsubscribes from transcoding progress updates.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | Yes  | Event type, which is **'progressUpdate'** in this case. This event can be triggered by both user operations and the system.|
+| type   | string | Yes  | Event type, which is **'progressUpdate'** in this case.|
 | callback | [Callback\<number>](../apis-basic-services-kit/js-apis-base.md#callback) | No  | Called that has been registered to listen for progress updates. You are advised to use the default value because only the last registered callback is retained in the current callback mechanism.|
 
 **Example**
@@ -5492,7 +5533,7 @@ Unsubscribes from the event indicating that transcoding is complete.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | Yes  | Event type, which is **'complete'** in this case. This event can be triggered by both user operations and the system.|
+| type   | string | Yes  | Event type, which is **'complete'** in this case.|
 | callback | [Callback\<void>](../apis-basic-services-kit/js-apis-base.md#callback) | No  | Callback that has been registered to listen for transcoding completion events.|
 
 **Example**
@@ -5521,17 +5562,17 @@ Describes the video transcoding parameters.
 
 ## AVMetadataExtractor<sup>11+</sup>
 
-Provides APIs to obtain metadata from media resources. Before calling any API of **AVMetadataExtractor**, you must use [createAVMetadataExtractor()](#mediacreateavmetadataextractor11) to create an **AVMetadataExtractor** instance.
+Provides APIs to obtain metadata from media resources. Before calling any API of AVMetadataExtractor, you must use [createAVMetadataExtractor()](#mediacreateavmetadataextractor11) to create an AVMetadataExtractor instance.
 
 For details about the demo for obtaining audio or video metadata, see [Obtaining Audio/Video Metadata](../../media/media/avmetadataextractor.md).
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
 
 | Name                                               | Type                                                        | Readable| Writable| Description                                                        |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source. Before obtaining metadata, you must set the data source through either **fdSrc** or **dataSrc**.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor { fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br>- After the resource handle (FD) is transferred to an **AVMetadataExtractor** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVMetadataExtractor use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
+| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source. Before obtaining metadata, you must set the data source through either **fdSrc** or **dataSrc**.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor { fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an AVMetadataExtractor instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other AVPlayer, AVMetadataExtractor, AVImageGenerator, or AVTranscoder instance. Competition occurs when multiple AVMetadataExtractor use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
 | dataSrc<sup>11+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | Yes  | Yes  | Streaming media resource descriptor, which specifies the data source. Before obtaining metadata, you must set the data source through either **fdSrc** or **dataSrc**.<br> When an application obtains a media file from the remote, you can set **dataSrc** to obtain the metadata before the application finishes the downloading.|
 
 ### fetchMetadata<sup>11+</sup>
@@ -5546,7 +5587,7 @@ Obtains media metadata. This API uses an asynchronous callback to return the res
 
 | Name  | Type                                        | Mandatory| Description                               |
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback\<[AVMetadata](#avmetadata11)>       | Yes  | Callback used to return the result, which is an **AVMetadata** instance.|
+| callback | AsyncCallback\<[AVMetadata](#avmetadata11)>       | Yes  | Callback used to return the result, which is an AVMetadata instance.|
 
 **Error codes**
 
@@ -5583,7 +5624,7 @@ Obtains media metadata. This API uses a promise to return the result.
 
 | Type          | Description                                    |
 | -------------- | ---------------------------------------- |
-| Promise\<[AVMetadata](#avmetadata11)>  | Promise used to return the result, which is an **AVMetadata** instance.|
+| Promise\<[AVMetadata](#avmetadata11)>  | Promise used to return the result, which is an AVMetadata instance.|
 
 **Error codes**
 
@@ -5600,7 +5641,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 
 avMetadataExtractor.fetchMetadata().then((metadata: media.AVMetadata) => {
-  console.info(`Succeeded in fetching Metadata, genre: ${metadata.genre}`)
+  console.info(`Succeeded in fetching Metadata, genre: ${metadata.genre}`);
 }).catch((error: BusinessError) => {
   console.error(`Failed to fetch Metadata, error message:${error.message}`);
 });
@@ -5618,7 +5659,7 @@ Obtains the cover of the audio album. This API uses an asynchronous callback to 
 
 | Name  | Type                                        | Mandatory| Description                               |
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>    | Yes  | Callback used to return the album cover.|
+| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)>    | Yes  | Callback used to return the album cover.|
 
 **Error codes**
 
@@ -5658,7 +5699,7 @@ Obtains the cover of the audio album. This API uses a promise to return the resu
 
 | Type          | Description                                    |
 | -------------- | ---------------------------------------- |
-| Promise\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> |  Promise used to return the album cover.|
+| Promise\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)> |  Promise used to return the album cover.|
 
 **Error codes**
 
@@ -5688,7 +5729,7 @@ avMetadataExtractor.fetchAlbumCover().then((pixelMap: image.PixelMap) => {
 
 release(callback: AsyncCallback\<void>): void
 
-Releases this **AVMetadataExtractor** instance. This API uses an asynchronous callback to return the result.
+Releases this AVMetadataExtractor instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
 
@@ -5724,7 +5765,7 @@ avMetadataExtractor.release((error: BusinessError) => {
 
 release(): Promise\<void>
 
-Releases this **AVMetadataExtractor** instance. This API uses a promise to return the result.
+Releases this AVMetadataExtractor instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
 
@@ -5799,7 +5840,7 @@ Enumerates the HDR types.
 
 createAudioPlayer(): AudioPlayer
 
-Creates an **AudioPlayer** instance in synchronous mode.
+Creates an AudioPlayer instance in synchronous mode.
 
 > **NOTE**
 >
@@ -5811,7 +5852,7 @@ Creates an **AudioPlayer** instance in synchronous mode.
 
 | Type                       | Description                                                        |
 | --------------------------- | ------------------------------------------------------------ |
-| [AudioPlayer](#audioplayerdeprecated) | If the operation is successful, an **AudioPlayer** instance is returned; otherwise, **null** is returned. After the instance is created, you can start, pause, or stop audio playback.|
+| [AudioPlayer](#audioplayerdeprecated) | If the operation is successful, an AudioPlayer instance is returned; otherwise, **null** is returned. After the instance is created, you can start, pause, or stop audio playback.|
 
 **Example**
 
@@ -5823,7 +5864,7 @@ let audioPlayer: media.AudioPlayer = media.createAudioPlayer();
 
 createVideoPlayer(callback: AsyncCallback\<VideoPlayer>): void
 
-Creates a **VideoPlayer** instance. This API uses an asynchronous callback to return the result.
+Creates a VideoPlayer instance. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -5835,7 +5876,7 @@ Creates a **VideoPlayer** instance. This API uses an asynchronous callback to re
 
 | Name  | Type                                      | Mandatory| Description                                                        |
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[VideoPlayer](#videoplayerdeprecated)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **VideoPlayer** instance created; otherwise, **err** is an error object.|
+| callback | AsyncCallback<[VideoPlayer](#videoplayerdeprecated)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the VideoPlayer instance created; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -5857,7 +5898,7 @@ media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
 
 createVideoPlayer(): Promise\<VideoPlayer>
 
-Creates a **VideoPlayer** instance. This API uses a promise to return the result.
+Creates a VideoPlayer instance. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -5869,7 +5910,7 @@ Creates a **VideoPlayer** instance. This API uses a promise to return the result
 
 | Type                                | Description                                                        |
 | ------------------------------------ | ------------------------------------------------------------ |
-| Promise<[VideoPlayer](#videoplayerdeprecated)> | Promise used to return the result. If the operation is successful, a **VideoPlayer** instance is returned; otherwise, **null** is returned. The instance can be used to manage and play video.|
+| Promise<[VideoPlayer](#videoplayerdeprecated)> | Promise used to return the result. If the operation is successful, a VideoPlayer instance is returned; otherwise, **null** is returned. The instance can be used to manage and play video.|
 
 **Example**
 
@@ -5893,8 +5934,9 @@ media.createVideoPlayer().then((video: media.VideoPlayer) => {
 
 createAudioRecorder(): AudioRecorder
 
-Creates an **AudioRecorder** instance to control audio recording.
-Only one **AudioRecorder** instance can be created per device.
+Creates an AudioRecorder instance to control audio recording.
+
+Only one AudioRecorder instance can be created per device.
 
 > **NOTE**
 >
@@ -5906,7 +5948,7 @@ Only one **AudioRecorder** instance can be created per device.
 
 | Type                           | Description                                                        |
 | ------------------------------- | ------------------------------------------------------------ |
-| [AudioRecorder](#audiorecorderdeprecated) | If the operation is successful, an **AudioRecorder** instance is returned; otherwise, **null** is returned. The instance can be used to record audio.|
+| [AudioRecorder](#audiorecorderdeprecated) | If the operation is successful, an AudioRecorder instance is returned; otherwise, **null** is returned. The instance can be used to record audio.|
 
 **Example**
 
@@ -5943,16 +5985,16 @@ Enumerates the media error codes.
 >
 > This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVPlayer](#avplayer9) instead.
 
-Provides APIs to manage and play audio. Before calling any API in **AudioPlayer**, you must use [createAudioPlayer()](#mediacreateaudioplayerdeprecated) to create an **AudioPlayer** instance.
+Provides APIs to manage and play audio. Before calling any API in AudioPlayer, you must use [createAudioPlayer()](#mediacreateaudioplayerdeprecated) to create an AudioPlayer instance.
 
-### Attributes<sup>(deprecated)</sup>
+### Properties<sup>(deprecated)</sup>
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
 | Name                           | Type                                                  | Read-Only| Optional| Description                                                        |
 | ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | src                             | string                                                 | No  | No  | Audio file URI. The mainstream audio formats (M4A, AAC, MP3, OGG, WAV, and AMR) are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>**Required permissions**: ohos.permission.READ_MEDIA or ohos.permission.INTERNET|
-| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | No  | No  | Description of the audio file. This attribute is required when audio assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music assets consists of the following:<br>Music 1 (address offset: 0, byte length: 100)<br>Music 2 (address offset: 101; byte length: 50)<br>Music 3 (address offset: 151, byte length: 150)<br>1. To play music 1: AVFileDescriptor { fd = resource handle; offset = 0; length = 100; }<br>2. To play music 2: AVFileDescriptor { fd = resource handle; offset = 101; length = 50; }<br>3. To play music 3: AVFileDescriptor { fd = resource handle; offset = 151; length = 150; }<br>To play an independent music file, use **src=fd://xx**.<br>|
+| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | No  | No  | Description of the audio file. This property is required when audio assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music assets consists of the following:<br>Music 1 (address offset: 0, byte length: 100)<br>Music 2 (address offset: 101; byte length: 50)<br>Music 3 (address offset: 151, byte length: 150)<br>1. To play music 1: AVFileDescriptor { fd = resource handle; offset = 0; length = 100; }<br>2. To play music 2: AVFileDescriptor { fd = resource handle; offset = 101; length = 50; }<br>3. To play music 3: AVFileDescriptor { fd = resource handle; offset = 151; length = 150; }<br>To play an independent music file, use **src=fd://xx**.<br>|
 | loop                            | boolean                                                | No  | No | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
 | audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9) | Yes  | Yes  | Audio interruption mode.                                              |
 | currentTime                     | number                                                 | Yes  | No  | Current audio playback position, in ms.                      |
@@ -6226,7 +6268,7 @@ Subscribes to the audio playback events.
 
 | Name  | Type      | Mandatory| Description                                                        |
 | -------- | ---------- | ---- | ------------------------------------------------------------ |
-| type     | string     | Yes  | Event type. The following events are supported:<br>- 'play': triggered when the [play()](#playdeprecated) API is called and audio playback starts.<br>- 'pause': triggered when the [pause()](#pausedeprecated) API is called and audio playback is paused.<br>- 'stop': triggered when the [stop()](#stopdeprecated) API is called and audio playback stops.<br>- 'reset': triggered when the [reset()](#resetdeprecated) API is called and audio playback is reset.<br>- 'dataLoad': triggered when the audio data is loaded, that is, when the **src** attribute is configured.<br>- 'finish': triggered when the audio playback is finished.<br>- 'volumeChange': triggered when the [setVolume()](#setvolumedeprecated) API is called and the playback volume is changed.|
+| type     | string     | Yes  | Event type. The following events are supported:<br>- 'play': triggered when the [play()](#playdeprecated) API is called and audio playback starts.<br>- 'pause': triggered when the [pause()](#pausedeprecated) API is called and audio playback is paused.<br>- 'stop': triggered when the [stop()](#stopdeprecated) API is called and audio playback stops.<br>- 'reset': triggered when the [reset()](#resetdeprecated) API is called and audio playback is reset.<br>- 'dataLoad': triggered when the audio data is loaded, that is, when the **src** property is configured.<br>- 'finish': triggered when the audio playback is finished.<br>- 'volumeChange': triggered when the [setVolume()](#setvolumedeprecated) API is called and the playback volume is changed.|
 | callback | () => void | Yes  | Callback invoked when the event is triggered.                                          |
 
 **Example**
@@ -6236,7 +6278,7 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioPlayer: media.AudioPlayer = media.createAudioPlayer();  // Create an AudioPlayer instance.
-audioPlayer.on('dataLoad', () => {            // Set the 'dataLoad' event callback, which is triggered when the src attribute is set successfully.
+audioPlayer.on('dataLoad', () => {            // Set the 'dataLoad' event callback, which is triggered when the src property is set successfully.
   console.info('audio set source called');
   audioPlayer.play();                       // Start the playback and trigger the 'play' event callback.
 });
@@ -6280,7 +6322,7 @@ let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 fs.open(path).then((file) => {
   fdPath = fdPath + '' + file.fd;
   console.info('Succeeded in opening fd, fd is' + fdPath);
-  audioPlayer.src = fdPath;  // Set the src attribute and trigger the 'dataLoad' event callback.
+  audioPlayer.src = fdPath;  // Set the src property and trigger the 'dataLoad' event callback.
 }, (err: BusinessError) => {
   console.error('Failed to open fd, err is' + err);
 }).catch((err: BusinessError) => {
@@ -6345,8 +6387,8 @@ Subscribes to the audio interruption event. For details, see [audio.InterruptEve
 import { audio } from '@kit.AudioKit';
 
 audioPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
-  console.info('audioInterrupt called,and InterruptEvent info is:' + info)
-})
+  console.info('audioInterrupt called,and InterruptEvent info is:' + info);
+});
 ```
 
 ### on('error')<sup>(deprecated)</sup>
@@ -6383,7 +6425,7 @@ audioPlayer.setVolume(3); // Set volume to an invalid value to trigger the 'erro
 
 type AudioState = 'idle' | 'playing' | 'paused' | 'stopped' | 'error'
 
-Enumerates the audio playback states. You can obtain the state through the **state** attribute.
+Describes the audio playback state. You can obtain the state through the **state** property.
 
 > **NOTE**
 >
@@ -6405,16 +6447,16 @@ Enumerates the audio playback states. You can obtain the state through the **sta
 >
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer](#avplayer9) instead.
 
-Provides APIs to manage and play video. Before calling any API of **VideoPlayer**, you must use [createVideoPlayer()](#mediacreatevideoplayerdeprecated) to create a **VideoPlayer** instance.
+Provides APIs to manage and play video. Before calling any API of VideoPlayer, you must use [createVideoPlayer()](#mediacreatevideoplayerdeprecated) to create a VideoPlayer instance.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
 | Name                           | Type                                                  | Read-Only| Optional| Description                                                        |
 | ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | url<sup>8+</sup>                | string                                                 | No  | No  | Video URL. The video formats MP4, MPEG-TS, and MKV are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>5. File type: file\://xx<br>**NOTE**<br>WebM is no longer supported since API version 11.|
-| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | No  | No  | Description of a video file. This attribute is required when video assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor { fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor { fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor { fd = resource handle; offset = 151; length = 150; }<br>To play an independent video file, use **src=fd://xx**.<br>|
+| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | No  | No  | Description of a video file. This property is required when video assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor { fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor { fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor { fd = resource handle; offset = 151; length = 150; }<br>To play an independent video file, use **src=fd://xx**.<br>|
 | loop<sup>8+</sup>               | boolean                                                | No  | No  | Whether to loop video playback. The value **true** means to loop video playback, and **false** means the opposite.                |
 | videoScaleType<sup>9+</sup>     | [VideoScaleType](#videoscaletype9)                     | No  | Yes  | Video scale type. The default value is **VIDEO_SCALE_TYPE_FIT**.                                              |
 | audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9) | No  | Yes  | Audio interruption mode.                                              |
@@ -6434,7 +6476,7 @@ Sets a surface ID. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.surfaceId](#attributes) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.surfaceId](#properties) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -6470,7 +6512,7 @@ Sets a surface ID. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.surfaceId](#attributes) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.surfaceId](#properties) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -7378,8 +7420,8 @@ Subscribes to the audio interruption event. For details, see [audio.InterruptEve
 import { audio } from '@kit.AudioKit';
 
 videoPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
-  console.info('audioInterrupt called,and InterruptEvent info is:' + info)
-})
+  console.info('audioInterrupt called,and InterruptEvent info is:' + info);
+});
 ```
 
 ### on('error')<sup>(deprecated)</sup>
@@ -7416,7 +7458,7 @@ videoPlayer.url = 'fd://error';  // Set an incorrect URL to trigger the 'error' 
 
 type VideoPlayState = 'idle' | 'prepared' | 'playing' | 'paused' | 'stopped' | 'error'
 
-Enumerates the video playback states. You can obtain the state through the **state** attribute.
+Describes the video playback state. You can obtain the state through the **state** property.
 
 > **NOTE**
 >
@@ -7439,7 +7481,7 @@ Enumerates the video playback states. You can obtain the state through the **sta
 >
 > This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVRecorder](#avrecorder9) instead.
 
-Implements audio recording. Before calling any API of **AudioRecorder**, you must use [createAudioRecorder()](#mediacreateaudiorecorderdeprecated) to create an **AudioRecorder** instance.
+Implements audio recording. Before calling any API of AudioRecorder, you must use [createAudioRecorder()](#mediacreateaudiorecorderdeprecated) to create an AudioRecorder instance.
 
 ### prepare<sup>(deprecated)</sup>
 
@@ -7480,7 +7522,7 @@ let audioRecorderConfig: media.AudioRecorderConfig = {
   format : media.AudioOutputFormat.AAC_ADTS,
   uri : 'fd://1',       // The file must be created by the caller and granted with proper permissions.
   location : { latitude : 30, longitude : 130},
-}
+};
 audioRecorder.on('prepare', () => {    // Set the 'prepare' event callback.
   console.info('prepare called');
 });
@@ -7649,7 +7691,7 @@ let audioRecorderConfig: media.AudioRecorderConfig = {
   format : media.AudioOutputFormat.AAC_ADTS,
   uri : 'fd://xx',  // The file must be created by the caller and granted with proper permissions.
   location : { latitude : 30, longitude : 130}
-}
+};
 audioRecorder.on('error', (error: BusinessError) => {  // Set the 'error' event callback.
   console.error(`audio error called, error: ${error}`);
 });
@@ -7710,7 +7752,7 @@ let audioRecorderConfig: media.AudioRecorderConfig = {
   format : media.AudioOutputFormat.AAC_ADTS,
   uri : 'fd://xx',   // The file must be created by the caller and granted with proper permissions.
   location : { latitude : 30, longitude : 130}
-}
+};
 audioRecorder.on('error', (error: BusinessError) => {  // Set the 'error' event callback.
   console.error(`audio error called, error: ${error}`);
 });
@@ -7780,7 +7822,7 @@ Enumerates the audio output formats.
 
 createAVImageGenerator(callback: AsyncCallback\<AVImageGenerator>): void
 
-Creates an **AVImageGenerator** instance. This API uses an asynchronous callback to return the result.
+Creates an AVImageGenerator instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
 
@@ -7788,7 +7830,7 @@ Creates an **AVImageGenerator** instance. This API uses an asynchronous callback
 
 | Name  | Type                                 | Mandatory| Description                                                        |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[AVImageGenerator](#avimagegenerator12)> | Yes  | Callback used to return the result. If the operation is successful, an **AVImageGenerator** instance is returned; otherwise, **null** is returned. The API can be used to obtain a video thumbnail.|
+| callback | AsyncCallback\<[AVImageGenerator](#avimagegenerator12)> | Yes  | Callback used to return the result. If the operation is successful, an AVImageGenerator instance is returned; otherwise, **null** is returned. The API can be used to obtain a video thumbnail.|
 
 **Error codes**
 
@@ -7818,7 +7860,7 @@ media.createAVImageGenerator((error: BusinessError, generator: media.AVImageGene
 
 createAVImageGenerator(): Promise\<AVImageGenerator>
 
-Creates an **AVImageGenerator** instance. This API uses a promise to return the result.
+Creates an AVImageGenerator instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
 
@@ -7826,7 +7868,7 @@ Creates an **AVImageGenerator** instance. This API uses a promise to return the 
 
 | Type                           | Description                                                        |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[AVImageGenerator](#avimagegenerator12)> | Promise used to return the result. If the operation is successful, an **AVImageGenerator** instance is returned; otherwise, **null** is returned. The API can be used to obtain a video thumbnail.|
+| Promise\<[AVImageGenerator](#avimagegenerator12)> | Promise used to return the result. If the operation is successful, an AVImageGenerator instance is returned; otherwise, **null** is returned. The API can be used to obtain a video thumbnail.|
 
 **Error codes**
 
@@ -7856,17 +7898,17 @@ media.createAVImageGenerator().then((generator: media.AVImageGenerator) => {
 
 ## AVImageGenerator<sup>12+</sup>
 
-Provides APIs to obtain a thumbnail from a video. Before calling any API of **AVImageGenerator**, you must use [createAVImageGenerator()](#mediacreateavimagegenerator12) to create an **AVImageGenerator** instance.
+Provides APIs to obtain a thumbnail from a video. Before calling any API of AVImageGenerator, you must use [createAVImageGenerator()](#mediacreateavimagegenerator12) to create an AVImageGenerator instance.
 
 For details about the demo for obtaining video thumbnails, see [Obtaining Video Thumbnails](../../media/media/avimagegenerator.md).
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
 
 | Name                                               | Type                                                        | Readable| Writable| Description                                                        |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor { fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br>- After the resource handle (FD) is transferred to an **AVImageGenerator** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVImageGenerator use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
+| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor { fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an AVImageGenerator instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other AVPlayer, AVMetadataExtractor, AVImageGenerator, or AVTranscoder instance. Competition occurs when multiple AVImageGenerator use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
 
 ### fetchFrameByTime<sup>12+</sup>
 
@@ -7883,7 +7925,7 @@ Obtains a video thumbnail. This API uses an asynchronous callback to return the 
 | timeUs | number                   | Yes  | Time of the video for which a thumbnail is to be obtained, in μs.|
 | options | [AVImageQueryOptions](#avimagequeryoptions12)     | Yes  | Relationship between the time passed in and the video frame.|
 | param | [PixelMapParams](#pixelmapparams12)     | Yes  | Format parameters of the thumbnail to be obtained.|
-| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>   | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **PixelMap** instance obtained; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)>   | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the PixelMap instance obtained; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -7904,14 +7946,14 @@ let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
 
 // Initialize input parameters.
-let timeUs: number = 0
+let timeUs: number = 0;
 
-let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC
+let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC;
 
 let param: media.PixelMapParams = {
   width : 300,
   height : 300,
-}
+};
 
 // Obtain the thumbnail.
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
@@ -7920,8 +7962,8 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
     console.info(`Succeeded in creating AVImageGenerator`);
     avImageGenerator.fetchFrameByTime(timeUs, queryOption, param, (error: BusinessError, pixelMap) => {
       if (error) {
-        console.error(`Failed to fetch FrameByTime, err = ${JSON.stringify(error)}`)
-        return
+        console.error(`Failed to fetch FrameByTime, err = ${JSON.stringify(error)}`);
+        return;
       }
       pixel_map = pixelMap;
     });
@@ -7951,7 +7993,7 @@ Obtains a video thumbnail. This API uses a promise to return the result.
 
 | Type          | Description                                    |
 | -------------- | ---------------------------------------- |
-| Promise\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | Promise used to return the video thumbnail.|
+| Promise\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)> | Promise used to return the video thumbnail.|
 
 **Error codes**
 
@@ -7972,14 +8014,14 @@ let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
 
 // Initialize input parameters.
-let timeUs: number = 0
+let timeUs: number = 0;
 
-let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC
+let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC;
 
 let param: media.PixelMapParams = {
   width : 300,
   height : 300,
-}
+};
 
 // Obtain the thumbnail.
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
@@ -8017,7 +8059,7 @@ Fetches a scaled thumbnail from the video at a particular timestamp. This API us
 
 | Type                                                        | Description                             |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | Promise used to return the video thumbnail.|
+| Promise\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)> | Promise used to return the video thumbnail.|
 
 **Error codes**
 
@@ -8042,7 +8084,7 @@ let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_
 let outputSize: media.OutputSize = {
   width : 300,
   height : 300,
-}
+};
 // Obtain the thumbnail.
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
   if(generator != null){
@@ -8063,7 +8105,7 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 
 release(callback: AsyncCallback\<void>): void
 
-Releases this **AVMetadataExtractor** instance. This API uses an asynchronous callback to return the result.
+Releases this AVMetadataExtractor instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
 
@@ -8110,7 +8152,7 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 
 release(): Promise\<void>
 
-Releases this **AVMetadataExtractor** instance. This API uses a promise to return the result.
+Releases this AVMetadataExtractor instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
 
@@ -8209,7 +8251,7 @@ Creates a media source for streaming media to be pre-downloaded.
 
 | Type          | Description                                      |
 | -------------- | ------------------------------------------ |
-| [MediaSource](#mediasource12) | **MediaSource** instance.|
+| [MediaSource](#mediasource12) | MediaSource instance.|
 
 **Error codes**
 
@@ -8267,21 +8309,21 @@ Creates a multi-bitrate media source for streaming media. Currently, only the HT
 
 | Name | Type                                | Mandatory| Description                                                 |
 | ------- | ------------------------------------ | ---- | ----------------------------------------------------- |
-| streams | Array<[MediaStream](#mediastream19)> | Yes| Array of **MediaStream** objects. The supported streaming media format is HTTP-FLV.|
+| streams | Array<[MediaStream](#mediastream19)> | Yes| Array of MediaStream objects. The supported streaming media format is HTTP-FLV.|
 
 **Return value**
 
 | Type                         | Description               |
 | ----------------------------- | ------------------- |
-| [MediaSource](#mediasource12) | **MediaSource** instance.|
+| [MediaSource](#mediasource12) | MediaSource instance.|
 
 **Example 1**
 
 ```ts
 let streams : Array<media.MediaStream> = [];
 streams.push({url: "http://xxx/480p.flv", width: 854, height: 480, bitrate: 800000});
-streams.push({url: "http:/xxx/720p.flv", width: 1280, height: 720, bitrate: 2000000});
-streams.push({url: "http:/xxx/1080p.flv", width: 1280, height: 720, bitrate: 2000000});
+streams.push({url: "http://xxx/720p.flv", width: 1280, height: 720, bitrate: 2000000});
+streams.push({url: "http://xxx/1080p.flv", width: 1280, height: 720, bitrate: 2000000});
 let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(streams);
 ```
 
@@ -8326,7 +8368,7 @@ Sets the MIME type to help the player process extended media sources.
 
 setMediaResourceLoaderDelegate(resourceLoader: MediaSourceLoader): void
 
-Sets a **MediaSourceLoader** object, which is used to help the player request media data.
+Sets a MediaSourceLoader object, which is used to help the player request media data.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -8336,7 +8378,7 @@ Sets a **MediaSourceLoader** object, which is used to help the player request me
 
 | Name  | Type    | Mandatory| Description                |
 | -------- | -------- | ---- | -------------------- |
-| resourceLoader | [MediaSourceLoader](#mediasourceloader18) | Yes  | **MediaSourceLoader** object used to obtain media data for the player.|
+| resourceLoader | [MediaSourceLoader](#mediasourceloader18) | Yes  | MediaSourceLoader object used to obtain media data for the player.|
 
 **Example**
 
@@ -8354,18 +8396,18 @@ let sourceOpenCallback: media.SourceOpenCallback = (request: media.MediaSourceLo
   uuid += 1;
   requests.set(uuid, request);
   return uuid;
-}
+};
 
 let sourceReadCallback: media.SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => {
   console.log(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
   // Check whether the UUID is valid and store the read request. Avoid blocking the request while pushing data and header information.
-}
+};
 
 let sourceCloseCallback: media.SourceCloseCallback = (uuid: number) => {
   console.log(`Closing resource with handle ${uuid}`);
   // Clear resources related to the current UUID.
   requests.remove(uuid);
-}
+};
 
 // Implemented by applications as required.
 let resourceLoader: media.MediaSourceLoader = {
@@ -8417,14 +8459,14 @@ let sourceOpenCallback: media.SourceOpenCallback = (request: media.MediaSourceLo
   uuid += 1;
   requests.set(uuid, request);
   return uuid;
-}
+};
 ```
 
 ## SourceReadCallback<sup>18+</sup>
 
 type SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => void
 
-This callback function is implemented by applications to handle resource read requests. When data is available, applications should push it to the player using the [respondData](#responddata18) API of the corresponding **MediaSourceLoadingRequest** object.
+This callback function is implemented by applications to handle resource read requests. When data is available, applications should push it to the player using the [respondData](#responddata18) API of the corresponding MediaSourceLoadingRequest object.
 
 > **NOTE**
 >
@@ -8448,7 +8490,7 @@ This callback function is implemented by applications to handle resource read re
 let sourceReadCallback: media.SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => {
   console.log(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
   // Check whether the UUID is valid and store the read request. Avoid blocking the request while pushing data and header information.
-}
+};
 ```
 
 ## SourceCloseCallback<sup>18+</sup>
@@ -8482,7 +8524,7 @@ let sourceCloseCallback: media.SourceCloseCallback = (uuid: number) => {
   console.log(`Closing resource with handle ${uuid}`);
   // Clear resources related to the current UUID.
   requests.remove(uuid);
-}
+};
 ```
 
 ## MediaSourceLoader<sup>18+</sup>
@@ -8544,7 +8586,7 @@ Defines a loading request object. Applications use this object to obtain the loc
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -8708,7 +8750,7 @@ Describes the playback strategy.
 | preferredAudioLanguage<sup>13+</sup> | string | No| Preferred audio track language. Set this parameter based on service requirements in DASH scenarios. In non-DASH scenarios, this parameter is not supported, and you are advised to retain the default value.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 | preferredSubtitleLanguage<sup>13+</sup> | string | No| Preferred subtitle language. Set this parameter based on service requirements in DASH scenarios. In non-DASH scenarios, this parameter is not supported, and you are advised to retain the default value.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 | preferredBufferDurationForPlaying<sup>18+</sup> | number | No| Preferred buffer duration for playback. The playback starts once the buffering time exceeds this value. The value ranges from 0 to 20, in seconds.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
-| thresholdForAutoQuickPlay<sup>18+</sup> | number | No| Thread for starting smart frame catching, in seconds. The value must be greater than or equal to 2s and greater than **preferredBufferDurationForPlaying**. The default value is 5s.     <br>You can use the playback strategy to maintain the real-time quality of live streams by adjusting the smart frame-catch threshold. For FLV live streams, you can set this parameter based on service requirements. This parameter is not supported for non-FLV live streams yet. Fluctuations in network conditions can cause the player to build up a lot of data over time. The player periodically checks the gap between the current playback time and the timestamp of the latest frame in the cache. If this gap is too big, the player starts catching up at 1.2x speed. Once the gap falls below **preferredBufferDurationForPlaying**, the player stops catching up and resumes the normal playback speed.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| thresholdForAutoQuickPlay<sup>18+</sup> | number | No| Thread for starting smart frame catching, in seconds. The value must be greater than or equal to 2s and greater than **preferredBufferDurationForPlaying**. The default value is 5s.     <br>You can use the playback strategy to maintain the real-time quality of live streams by adjusting the smart frame-catch threshold. For FLV live streams, you can set this parameter based on service requirements. This parameter is not supported for non-FLV live streams yet. Fluctuations in network conditions can cause the player to build up a lot of data over time. The player periodically checks the gap between the current playback time and the timestamp of the latest frame in the cache. If this gap is too big, the player starts catching up at 1.2x speed. The [speedDone](#onspeeddone9) event is invoked with a value of 100, indicating that smart frame catching has started successfully. Once the gap falls below **preferredBufferDurationForPlaying**, the player stops catching up and resumes the normal playback speed.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## AVScreenCaptureRecordPreset<sup>12+</sup>
 
@@ -8784,7 +8826,7 @@ Defines the screen capture parameters.
 
 ## AVScreenCaptureRecorder<sup>12+</sup>
 
-Provides APIs to manage screen capture. Before calling any API in **AVScreenCaptureRecorder**, you must use [createAVScreenCaptureRecorder()](#mediacreateavscreencapturerecorder12) to create an **AVScreenCaptureRecorder** instance.
+Provides APIs to manage screen capture. Before calling any API in AVScreenCaptureRecorder, you must use [createAVScreenCaptureRecorder()](#mediacreateavscreencapturerecorder12) to create an AVScreenCaptureRecorder instance.
 
 ### init<sup>12+</sup>
 
@@ -8824,13 +8866,13 @@ let avCaptureConfig: media.AVScreenCaptureRecordConfig = {
     frameWidth: 640,
     frameHeight: 480
     // Add other parameters.
-}
+};
 
 avScreenCaptureRecorder.init(avCaptureConfig).then(() => {
     console.info('Succeeded in initing avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
     console.info('Failed to init avScreenCaptureRecorder, error: ' + err.message);
-})
+});
 ```
 
 ### startRecording<sup>12+</sup>
@@ -8863,7 +8905,7 @@ avScreenCaptureRecorder.startRecording().then(() => {
     console.info('Succeeded in starting avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
     console.info('Failed to start avScreenCaptureRecorder, error: ' + err.message);
-})
+});
 ```
 
 ### stopRecording<sup>12+</sup>
@@ -8896,7 +8938,7 @@ avScreenCaptureRecorder.stopRecording().then(() => {
     console.info('Succeeded in stopping avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
     console.info('Failed to stop avScreenCaptureRecorder, error: ' + err.message);
-})
+});
 ```
 
 ### skipPrivacyMode<sup>12+</sup>
@@ -8912,7 +8954,7 @@ For example, if a user enters a password in this application during screen captu
 
 | Name| Type   | Mandatory| Description                                                     |
 | ------ | ------- | ---- | --------------------------------------------------------- |
-| windowIDs | Array\<number> | Yes  | IDs of windows that require privacy exemption, including the main window IDs and subwindow IDs. For details about how to obtain window properties, see [Window API Reference](../apis-arkui/js-apis-window.md#getwindowproperties9).|
+| windowIDs | Array\<number> | Yes  | IDs of windows that require privacy exemption, including the main window IDs and subwindow IDs. For details about how to obtain window properties, see [Window API Reference](../apis-arkui/arkts-apis-window-Window.md#getwindowproperties9).|
 
 **Return value**
 
@@ -8937,7 +8979,7 @@ avScreenCaptureRecorder.skipPrivacyMode(windowIDs).then(() => {
     console.info('Succeeded in skipping privacy mode');
 }).catch((err: BusinessError) => {
     console.info('Failed to skip privacy mode, error: ' + err.message);
-})
+});
 ```
 
 ### setMicEnabled<sup>12+</sup>
@@ -8976,14 +9018,14 @@ avScreenCaptureRecorder.setMicEnabled(true).then(() => {
     console.info('Succeeded in setMicEnabled avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
     console.info('Failed to setMicEnabled avScreenCaptureRecorder, error: ' + err.message);
-})
+});
 ```
 
 ### release<sup>12+</sup>
 
 release(): Promise\<void>
 
-Releases this **AVScreenCaptureRecorder** instance. This API uses a promise to return the result.
+Releases this AVScreenCaptureRecorder instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -9009,7 +9051,7 @@ avScreenCaptureRecorder.release().then(() => {
     console.info('Succeeded in releasing avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
     console.info('Faile to release avScreenCaptureRecorder, error: ' + err.message);
-})
+});
 ```
 
 ### on('stateChange')<sup>12+</sup>
@@ -9032,7 +9074,7 @@ Subscribes to screen capture state changes. An application can subscribe to only
 ```ts
 avScreenCaptureRecorder.on('stateChange', (state: media.AVScreenCaptureStateCode) => {
     console.info('avScreenCaptureRecorder stateChange to ' + state);
-})
+});
 ```
 
 ### on('error')<sup>12+</sup>
@@ -9063,7 +9105,7 @@ Subscribes to AVScreenCaptureRecorder errors. You can handle the errors based on
 ```ts
 avScreenCaptureRecorder.on('error', (err: BusinessError) => {
     console.error('avScreenCaptureRecorder error:' + err.message);
-})
+});
 ```
 
 ### off('stateChange')<sup>12+</sup>
@@ -9107,3 +9149,5 @@ Unsubscribes from AVScreenCaptureRecorder errors. You can specify a callback to 
 ```ts
 avScreenCaptureRecorder.off('error');
 ```
+
+<!--no_check-->

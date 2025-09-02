@@ -1,5 +1,10 @@
 # @ohos.distributedsched.linkEnhance (增强连接)
-
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedSched-->
+<!--Owner: @wangJE-->
+<!--Designer: @lee_jet520-->
+<!--Tester: @Ytt-test-->
+<!--Adviser: @w_Machine_cc-->
 linkEnhance模块提供高效的蓝牙连接和数据传输功能，增强设备间连接的稳定性。使用多通道合并算法，增加设备间连接数，提升跨设备数据传输能力，改善用户使用体验。
 
 > **说明：**
@@ -36,7 +41,7 @@ createServer(name:&nbsp;string):&nbsp;Server
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -88,7 +93,7 @@ createConnection(deviceId:&nbsp;string,&nbsp;name:&nbsp;string):&nbsp;Connection
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -132,7 +137,7 @@ start():&nbsp;void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -170,7 +175,7 @@ stop():&nbsp;void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -208,7 +213,7 @@ close():&nbsp;void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -243,6 +248,7 @@ on(type: 'connectionAccepted', callback: Callback&lt;Connection&gt;): void
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
+**参数：**
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | 是    |   事件回调类型，支持的事件为'connectionAccepted'，收到对端连接，触发该事件。   |
@@ -250,7 +256,7 @@ on(type: 'connectionAccepted', callback: Callback&lt;Connection&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -292,6 +298,8 @@ off(type: 'connectionAccepted', callback?: Callback&lt;Connection&gt;): void
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
+**参数：**
+
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | 是    |   事件回调类型，支持的事件为'connectionAccepted'，收到对端连接，触发该事件。   |
@@ -299,7 +307,7 @@ off(type: 'connectionAccepted', callback?: Callback&lt;Connection&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -342,6 +350,8 @@ on(type: 'serverStopped', callback: Callback&lt;number&gt;): void
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
+**参数：**
+
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | 是    |   事件回调类型，支持的事件为'serverStopped'，底层服务异常时，触发该事件。   |
@@ -349,7 +359,7 @@ on(type: 'serverStopped', callback: Callback&lt;number&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -392,6 +402,8 @@ off(type: 'serverStopped', callback?: Callback&lt;number&gt;): void
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
+**参数：**
+
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
 | type | string  | 是    |   事件回调类型，支持的事件为'serverStopped'，底层服务异常时触发。   |
@@ -399,7 +411,7 @@ off(type: 'serverStopped', callback?: Callback&lt;number&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -441,7 +453,7 @@ try {
 | ----------------- | ------ | ----  | ---- | ------------------ |
 | deviceId          | string | 否    |否    | 对端设备ID，成功返回对端设备的deviceId，失败返回空字符串。     |
 | success           | boolean | 否    |否   | 连接结果，true表示连接成功，false表示连接失败。 |
-| reason            | number | 否    |否    | 连接成功返回0，连接失败返回错误码：<br>- 32390200：表示客户端连接超时。<br>- 32390201：表示服务端服务未启动。<br>- 32390300：表示内部错误。<br>更多关于错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。 |
+| reason            | number | 否    |否    | 连接成功返回0，连接失败返回错误码：<br>- 32390200：表示客户端连接超时。<br>- 32390201：表示服务端服务未启动。<br>- 32390300：表示内部错误。<br>更多关于错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。 |
 
 ## Connection
 
@@ -460,7 +472,7 @@ connect():&nbsp;void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -507,7 +519,7 @@ disconnect():&nbsp;void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -525,14 +537,13 @@ try {
   let peerDeviceId: string = "00:11:22:33:44:55";
   hilog.info(0x0000, TAG, 'connection sever deviceId = ' + peerDeviceId);
   let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
-  connection.connect();
   connection.on('connectResult', (result: linkEnhance.ConnectResult): void => {
     hilog.info(0x0000, TAG, 'clientConnectResultCallback result = ' + result.success);
     if (result.success) {
       connection.disconnect();
     }
   });
-  connection.disconnect();
+  connection.connect();
 } catch (err) {
     hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
   (err as BusinessError).message);
@@ -551,7 +562,7 @@ close():&nbsp;void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -570,13 +581,13 @@ try {
   let peerDeviceId: string = "00:11:22:33:44:55";
   hilog.info(0x0000, TAG, 'connection sever deviceId = ' + peerDeviceId);
   let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
-  connection.connect();
   connection.on('connectResult', (result: linkEnhance.ConnectResult): void => {
     hilog.info(0x0000, TAG, 'clientConnectResultCallback result = ' + result.success);
     if (result.success) {
       connection.close();
     }
   });
+  connection.connect();
 } catch (err) {
   hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
   (err as BusinessError).message);
@@ -602,7 +613,7 @@ getPeerDeviceId():&nbsp;string
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -646,7 +657,7 @@ sendData(data:&nbsp;ArrayBuffer):&nbsp;void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -667,7 +678,6 @@ try {
   let peerDeviceId: string = "00:11:22:33:44:55";
   hilog.info(0x0000, TAG, 'connection sever deviceId = ' + peerDeviceId);
   let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
-  connection.connect();
   connection.on('connectResult', (result: linkEnhance.ConnectResult): void => {
     hilog.info(0x0000, TAG, 'clientConnectResultCallback result = ' + result.success);
     if (result.success) {
@@ -675,8 +685,10 @@ try {
       let arraybuffer = new ArrayBuffer(len); // 创建需要发送的数据
       connection.sendData(arraybuffer);
       hilog.info(0x0000, TAG, "sendData data connection peerDeviceId=%{public}s" + connection.getPeerDeviceId());
+      connection.disconnect();
     }
   });
+  connection.connect();
 } catch (err) {
   hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
   (err as BusinessError).message);
@@ -702,7 +714,7 @@ on(type: 'connectResult', callback: Callback&lt;ConnectResult&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -753,7 +765,7 @@ off(type: 'connectResult', callback?: Callback&lt;ConnectResult&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -804,7 +816,7 @@ on(type: 'disconnected', callback: Callback&lt;number&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -852,7 +864,7 @@ off(type: 'disconnected', callback?: Callback&lt;number&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -903,7 +915,7 @@ on(type: 'dataReceived', callback: Callback&lt;ArrayBuffer&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -950,7 +962,7 @@ off(type: 'dataReceived', callback?: Callback&lt;ArrayBuffer&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参考[增强连接错误码](errorcode_linkEnhance.md)。
+以下错误码的详细介绍请参考[增强连接错误码](errorcode-link-enhance.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -969,11 +981,12 @@ try {
   let peerDeviceId: string = "00:11:22:33:44:55";
   hilog.info(0x0000, TAG, 'connection sever deviceId = ' + peerDeviceId);
   let connection: linkEnhance.Connection = linkEnhance.createConnection(peerDeviceId, "demo");
-  connection.connect();
+  connection.on('dataReceived', (data: ArrayBuffer)=> {
+      hilog.info(0x0000, TAG, 'recv dataLen = ' + data.byteLength);
+  });
   connection.off('dataReceived', (data: ArrayBuffer)=> {
       hilog.info(0x0000, TAG, 'recv dataLen = ' + data.byteLength);
   });
-  connection.disconnect();
 } catch (err) {
   hilog.error(0x0000, TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' +
   (err as BusinessError).message);

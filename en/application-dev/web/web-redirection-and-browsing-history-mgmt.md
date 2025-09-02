@@ -1,9 +1,10 @@
 # Managing Page Redirection and Browsing History Navigation
 
+To speed up page access, browsing history navigation allows users to switch between history pages with the forward and back buttons. The **Web** component supports redirection to other pages within the application and across different applications.
 
 ## History Navigation
 
-When a user clicks a web page link on the frontend page, the **Web** component automatically opens and loads the target website by default. When the current page is assigned a new loading link, the address of the accessed web page is automatically recorded. You can call [forward()](../reference/apis-arkweb/js-apis-webview.md#forward) or [backward()](../reference/apis-arkweb/js-apis-webview.md#backward) to browse the previous or next history record.
+When a user clicks a web page link on the frontend page, the **Web** component automatically opens and loads the target website by default. When the current page is assigned a new loading link, the address of the accessed web page is automatically recorded. You can call [forward()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#forward) and [backward()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#backward) to browse the previous or next history record.
 
 If you need to obtain online resources when loading a page, declare the network access permission in the **module.json5** file. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
@@ -41,21 +42,20 @@ struct WebComponent {
 ```
 
 
-If a previous record exists, [accessBackward()](../reference/apis-arkweb/js-apis-webview.md#accessbackward) will return **true**. Similarly, you can call [accessForward()](../reference/apis-arkweb/js-apis-webview.md#accessforward) to check whether a next record exists. If you skip the check, [forward()](../reference/apis-arkweb/js-apis-webview.md#forward) and [backward()](../reference/apis-arkweb/js-apis-webview.md#backward) will not trigger any action if the user has navigated to the end of history records.
+If a historical record exists, [accessBackward()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#accessbackward) will return **true**. Similarly, you can call [accessForward()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#accessforward) to check whether a next record exists. If you skip the check, [forward()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#forward) and [backward()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#backward) will not trigger any action if the user has navigated to the end of history records.
 
 
 ## Page Redirection
 
-The **Web** component provides the [onLoadIntercept()](../reference/apis-arkweb/ts-basic-components-web.md#onloadintercept10) API to redirect you from one page to another.
+The **Web** component provides the [onLoadIntercept()](../reference/apis-arkweb/arkts-basic-components-web-events.md#onloadintercept10) API to redirect you from one page to another.
 
-In the following example, the frontend page **route.html** is loaded on to the application home page **Index.ets**, and the user is redirected to the application page **ProfilePage.ets** when clicking the link on the **route.html** page.
+In the following example, the frontend page **route.html** is loaded on to the application home page **Index.ets**, and the user is redirected to the application page **ProfilePage.ets** when clicking the **Me** link on the **route.html** page.
 
 - Code of the **Index.ets** page:
   
   ```ts
   // index.ets
   import { webview } from '@kit.ArkWeb';
-  import { router } from '@kit.ArkUI';
 
   @Entry
   @Component
@@ -71,7 +71,7 @@ In the following example, the frontend page **route.html** is loaded on to the a
               let url: string = event.data.getRequestUrl();
               if (url.indexOf('native://') === 0) {
                 // Redirect to another page.
-                router.pushUrl({ url: url.substring(9) });
+                this.getUIContext().getRouter().pushUrl({ url: url.substring(9) });
                 return true;
               }
             }
@@ -166,8 +166,9 @@ In the following example, when a user clicks the link on the frontend page **cal
   <html>
   <body>
     <div>
-      <a href="tel://xxx xxxx xxx">Dial number</a>
+      <a href="tel://***********">Make a call</a>
     </div>
   </body>
   </html>
   ```
+![web-redirection-and-browsing-history-mgmt](figures/web-call-telephone.gif)

@@ -1,5 +1,12 @@
 # Vulkan开发指导
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphic-->
+<!--Owner: @andrew1993-->
+<!--Designer: @ext4FAT1-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
+
 ## 场景介绍
 
 Vulkan是一套用来做2D和3D渲染的图形应用程序接口，其中创建VkSurfaceKHR对象是一个非常关键的步骤，在OpenHarmony中，VkSurfaceKHR会对接到OHNativeWindow模块功能，实现Buffer轮转。
@@ -140,6 +147,6 @@ libvulkan.so
 
 针对Vulkan的使用，具体可见以下相关实例：
 
-- [XComponent组件对接Vulkan（API11）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkVulkan)
+- [XComponent组件对接Vulkan（API11）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkVulkan)
 
 后续更多vulkan的用法请参考[Vulkan官方网站](https://www.vulkan.org/)。

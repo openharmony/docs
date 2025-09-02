@@ -1,4 +1,10 @@
 # Interface (AudioVolumeGroupManager)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -496,8 +502,12 @@ getRingerMode(): Promise&lt;AudioRingMode&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 audioVolumeGroupManager.getRingerMode().then((value: audio.AudioRingMode) => {
   console.info(`Promise returned to indicate that the ringer mode is obtained ${value}.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getRingerMode. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -645,8 +655,12 @@ isMicrophoneMute(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 audioVolumeGroupManager.isMicrophoneMute().then((value: boolean) => {
   console.info(`Promise returned to indicate that the mute status of the microphone is obtained ${value}.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to isMicrophoneMute. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -954,12 +968,12 @@ let capturerInfo: audio.AudioCapturerInfo = {
 
 audio.getAudioManager().getRoutingManager().getPreferredInputDeviceForCapturerInfo(capturerInfo).then((data) => {
   audioVolumeGroupManager.getMaxAmplitudeForInputDevice(data[0]).then((value) => {
-    console.info(`mic volatileume amplitude is: ${value}`);
+    console.info(`max amplitude is: ${value}`);
   }).catch((err: BusinessError) => {
-    console.error("getMaxAmplitudeForInputDevice error" + JSON.stringify(err));
+    console.error(`getMaxAmplitudeForInputDevice error. Code: ${err.code}, message: ${err.message}`);
   })
 }).catch((err: BusinessError) => {
-  console.error("get outputDeviceId error" + JSON.stringify(err));
+  console.error(`getPreferredInputDeviceForCapturerInfo error. Code: ${err.code}, message: ${err.message}`);
 })
 ```
 
@@ -1005,12 +1019,12 @@ let rendererInfo: audio.AudioRendererInfo = {
 
 audio.getAudioManager().getRoutingManager().getPreferOutputDeviceForRendererInfo(rendererInfo).then((data) => {
   audioVolumeGroupManager.getMaxAmplitudeForOutputDevice(data[0]).then((value) => {
-    console.info(`mic volatileume amplitude is: ${value}`);
+    console.info(`max amplitude is: ${value}`);
   }).catch((err: BusinessError) => {
-    console.error("getMaxAmplitudeForOutputDevice error" + JSON.stringify(err));
+    console.error(`getMaxAmplitudeForOutputDevice error. Code: ${err.code}, message: ${err.message}`);
   })
 }).catch((err: BusinessError) => {
-  console.error("getPreferOutputDeviceForRendererInfo error" + JSON.stringify(err));
+  console.error(`getPreferOutputDeviceForRendererInfo error. Code: ${err.code}, message: ${err.message}`);
 })
 ```
 ## setMicrophoneMute<sup>(deprecated)</sup>

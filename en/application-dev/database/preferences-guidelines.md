@@ -4,13 +4,14 @@
 Use the **Preferences** module to store small amounts of data in key-value (KV) format. The data is stored in files and memory for fast access. If a large amount of data needs to be stored, consider using a KV store or RDB store.
 
 ## Constraints
-- The C APIs and ArkTS APIs of the **Preferences** module cannot be used together.
+- Prior to API version 18: ArkTS APIs support only the XML storage format, and C APIs support only the GSKV storage format. Due to incompatible formats, ArkTS and C APIs cannot operate the same **Preferences** instance.
+- API version 18 and later: Both ArkTS and C APIs support the XML and GSKV storage formats. ArkTS and C APIs can operate the same **Preferences** instance if they use the same format.
 - The maximum key length is 1024 bytes, and the maximum value length is 16 MB.
 
 
 ## Available APIs
 
-For details about the APIs, see [Preferences](../reference/apis-arkdata/_preferences.md).
+For details about the APIs, see [Preferences](../reference/apis-arkdata/capi-preferences.md).
 
 | API| Description|
 | -------- | -------- |

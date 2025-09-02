@@ -2,7 +2,7 @@
 
 With the **Web** component, you can print HTML pages through W3C standards-compliant APIs or application APIs.
 
-To start off, declare related permissions in the **module.json5** file. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+Before using the print capability, declare related permissions in the **module.json5** file. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
   ```
   "requestPermissions":[
@@ -18,6 +18,8 @@ The printing process with W3C is as follows: A print adapter is created, the pri
 You can use the frontend CSS styles, for example, **@media print**, to control the printed content. Then load the HTML page in the **Web** component.
 
 - Sample code of the **print.html** page:
+
+  Example 1:
 
   ```html
   <!DOCTYPE html>
@@ -69,6 +71,43 @@ You can use the frontend CSS styles, for example, **@media print**, to control t
       </div>
   </body>
   ```
+  
+  Example 2 (nesting a page in an iframe):
+
+
+  ```html
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Print Nested Page in an iframe</title>
+  </head>
+  <body>
+      <button id="printIframe">Print nested page in an iframe</button>
+
+      <script>
+          function setPrint() {
+              const closePrint = () => {
+                  document.body.removeChild(this);
+              };
+              this.contentWindow.onbeforeunload = closePrint;
+              this.contentWindow.onafterprint = closePrint;
+              this.contentWindow.print();
+          }
+
+          document.getElementById("printIframe").addEventListener("click", () => {
+              const hideFrame = document.createElement("iframe");
+              hideFrame.onload = setPrint;
+              hideFrame.style.display = "none"; // Hide iframe
+              hideFrame.src = "example.pdf";
+              document.body.appendChild(hideFrame);
+          });
+
+      </script>
+  </body>
+  </html>
+  ```
 
 - Application code:
 
@@ -94,7 +133,7 @@ You can use the frontend CSS styles, for example, **@media print**, to control t
   ```
 
 ## Initiating a Print Task Through the Application API
-On the application side, call [createWebPrintDocumentAdapter](../reference/apis-arkweb/js-apis-webview.md#createwebprintdocumentadapter11) to create a print adapter and pass the adapter to the **print** API to initiate printing.
+On the application side, call [createWebPrintDocumentAdapter](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#createwebprintdocumentadapter11) to create a print adapter and pass the adapter to the **print** API to initiate printing.
 
 ```ts
 // xxx.ets
@@ -113,7 +152,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let webPrintDocadapter = this.controller.createWebPrintDocumentAdapter('example.pdf');
-            print.print('example_jobid', webPrintDocadapter, null, getContext());
+            print.print('example_jobid', webPrintDocadapter, null, this.getUIContext().getHostContext());
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }

@@ -1,5 +1,12 @@
 # 对称密钥加解密算法规格
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 当前章节将说明系统目前支持的算法及其对应的规格。
 
 对于每种算法采用支持的加密模式，将会在具体的每个算法规格中介绍。

@@ -1,5 +1,12 @@
 # USB服务开发术语
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 ## B
 
 ### Baud Rate（波特率）
@@ -36,7 +43,7 @@ Device（设备）指连接到Host（主机）的外设，负责执行特定功�
 
 ### Host（主机）
 
-Host是指具有USB主机功能的设备。Host是控制和管理USB总线的设备，它负责管理总线上的连接设备，并协调数据传输和通信。Host通常是计算器或其他主机，如PC机、智能手机、平板等。Host可以连接和控制多个设备，通过USB端口与设备相连，提供数据传输和充电的功能。
+Host是指具有USB主机功能的设备。Host是控制和管理USB总线的设备，它负责管理总线上的连接设备，并协调数据传输和通信。Host通常是计算机或其他主机，如PC机、智能手机、平板等。Host可以连接和控制多个设备，通过USB端口与设备相连，提供数据传输和充电的功能。
 
 ## I
 

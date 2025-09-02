@@ -1,5 +1,12 @@
 # 适配指导案例
 
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @anxuesm-->
+<!--Designer: @qyhuo32-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @zhang_yixin13-->
+
 本文通过具体应用场景中的案例，提供在ArkTS语法规则下将TS代码适配成ArkTS代码的建议。各章以ArkTS语法规则的英文名称命名，每个案例展示适配前的TS代码和适配后的ArkTS代码。
 
 ## arkts-identifiers-as-prop-names
@@ -174,7 +181,7 @@ class Menu {
   controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
-      return new this.controller(123);
+      return new this.controller('123');
     }
     return null;
   }
@@ -717,7 +724,7 @@ declare namespace test {
 export default test;
 
 // app.ets
-import { test } from 'test';
+import test from 'test';
 
 let option = { id: '', type: 0 };
 test.foo('', option);
@@ -739,7 +746,7 @@ declare namespace test {
 export default test;
 
 // app.ets
-import { test } from 'test';
+import test from 'test';
 
 let option: test.I = { id: '', type: 0 };
 test.foo('', option);
@@ -2193,7 +2200,7 @@ class Foo {
 
 ## arkts-limited-esobj
 
-使用具体类型（如number, string）或接口代替模糊的ESObject。
+使用具体类型（如number, string）或接口代替不明确的ESObject。
 
 **应用代码**
 

@@ -1,4 +1,10 @@
 # AppStorageV2: 应用全局UI状态存储
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zzq212050299-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 为了增强状态管理框架对应用全局UI状态变量存储的能力，开发者可以使用AppStorageV2存储应用全局UI状态变量数据。
 
@@ -21,7 +27,7 @@ AppStorageV2支持应用的[主线程](../../application-models/thread-model-sta
 
 ## 使用说明
 
-### connect：创建或获取储存的数据
+### connect：创建或获取存储的数据
 
 ```JavaScript
 static connect<T extends object>(
@@ -48,7 +54,7 @@ static connect<T extends object>(
 >
 >5、关联[\@Observed](arkts-observed-and-objectlink.md)对象时，由于该类型的name属性未定义，需要指定key或者自定义name属性。
 
-### remove：删除指定key的储存数据
+### remove：删除指定key的存储数据
 
 ```JavaScript
 static remove<T>(keyOrType: string | TypeConstructorWithArgs<T>): void;
@@ -77,13 +83,15 @@ static keys(): Array<string>;
 
 ## 使用限制
 
-1、需要配合UI使用（UI线程），不能在其他线程使用，如不支持@Sendable。
+1、只支持class类型。
 
-2、不支持collections.Set、collections.Map等类型。
+2、需要配合UI使用（UI线程），不能在其他线程使用，如不支持@Sendable。
 
-3、不支持非buildin类型，如PixelMap、NativePointer、ArrayList等Native类型。
+3、不支持collections.Set、collections.Map等类型。
 
-4、不支持存储基本类型，如string、number、boolean等。
+4、不支持非built-in类型，如PixelMap、NativePointer、ArrayList等Native类型。
+
+5、不支持存储基本类型，如string、number、boolean等。注意：不支持存储基本类型意味着[connect](#connect创建或获取存储的数据)接口传入的类型不能是基本类型，但connect传入的class中可以包含基本类型。
 
 ## 使用场景
 

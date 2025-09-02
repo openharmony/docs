@@ -1,4 +1,10 @@
 # native_animate.h
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
@@ -25,10 +31,10 @@
 | [ArkUI_NativeAnimateAPI_1](capi-arkui-nativemodule-arkui-nativeanimateapi-1.md) | ArkUI_NativeAnimateAPI_1 | ArkUI提供的Native侧动画接口集合。 |
 | [ArkUI_AnimateOption](capi-arkui-nativemodule-arkui-animateoption.md) | ArkUI_AnimateOption | 设置动画效果相关参数。 |
 | [ArkUI_Curve](capi-arkui-nativemodule-arkui-curve.md) | ArkUI_Curve | 提供曲线的插值对象定义。 |
-| [ArkUI_Curve*](capi-arkui-nativemodule-arkui-curve8h.md) | ArkUI_CurveHandle | 定义曲线的插值对象指针定义。 |
+| [ArkUI_CurveHandle](capi-arkui-nativemodule-arkui-curve8h.md) | ArkUI_Curve* | 定义曲线的插值对象指针定义。 |
 | [ArkUI_KeyframeAnimateOption](capi-arkui-nativemodule-arkui-keyframeanimateoption.md) | ArkUI_KeyframeAnimateOption | 定义关键帧动画参数对象。 |
 | [ArkUI_AnimatorOption](capi-arkui-nativemodule-arkui-animatoroption.md) | ArkUI_AnimatorOption | 定义animator动画参数对象。 |
-| [ArkUI_Animator*](capi-arkui-nativemodule-arkui-animator8h.md) | ArkUI_AnimatorHandle | 定义animator动画对象指针。 |
+| [ArkUI_AnimatorHandle](capi-arkui-nativemodule-arkui-animator8h.md) | ArkUI_Animator* | 定义animator动画对象指针。 |
 | [ArkUI_AnimatorEvent](capi-arkui-nativemodule-arkui-animatorevent.md) | ArkUI_AnimatorEvent | 定义animator回调事件对象。 |
 | [ArkUI_AnimatorOnFrameEvent](capi-arkui-nativemodule-arkui-animatoronframeevent.md) | ArkUI_AnimatorOnFrameEvent | 定义animator接收到帧时回调对象。 |
 | [ArkUI_TransitionEffect](capi-arkui-nativemodule-arkui-transitioneffect.md) | ArkUI_TransitionEffect | 定义transition属性配置转场参数对象。 |
@@ -159,6 +165,12 @@ void OH_ArkUI_AnimateOption_Dispose(ArkUI_AnimateOption* option)
 销毁动画效果参数指针。
 
 **起始版本：** 12
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [ArkUI_AnimateOption](capi-arkui-nativemodule-arkui-animateoption.md)* option | 动画效果参数。 |
 
 ### OH_ArkUI_AnimateOption_GetDuration()
 
@@ -500,6 +512,10 @@ void OH_ArkUI_AnimateOption_SetICurve(ArkUI_AnimateOption* option, ArkUI_CurveHa
 
 设置动画的动画曲线。
 
+> **说明：**
+>
+> 此方法优先于[OH_ArkUI_AnimateOption_SetCurve](#oh_arkui_animateoption_setcurve)生效。
+
 **起始版本：** 12
 
 
@@ -656,7 +672,7 @@ int32_t OH_ArkUI_KeyframeAnimateOption_RegisterOnFinishCallback(ArkUI_KeyframeAn
 |-----------------------------------------| -- |
 | [ArkUI_KeyframeAnimateOption](capi-arkui-nativemodule-arkui-keyframeanimateoption.md)* option | 关键帧动画参数。 |
 | void* userData                          | 用户自定义对象指针。 |
-| onFinish                                | 回调方法。 |
+| void (\*onFinish)(void\* userData)                                | 回调方法。<br/>- userData：回调函数的入参，用户自定义对象指针。 |
 
 **返回：**
 
@@ -730,6 +746,10 @@ int32_t OH_ArkUI_KeyframeAnimateOption_SetCurve(ArkUI_KeyframeAnimateOption* opt
 
 设置关键帧动画某段关键帧使用的动画曲线。
 
+> **说明：**
+>
+> 由于springMotion、responsiveSpringMotion、interpolatingSpring曲线时长不生效，故不支持这三种曲线。
+
 **起始版本：** 12
 
 
@@ -766,8 +786,8 @@ int32_t OH_ArkUI_KeyframeAnimateOption_RegisterOnEventCallback(ArkUI_KeyframeAni
 | 参数项                                     | 描述 |
 |-----------------------------------------| -- |
 | [ArkUI_KeyframeAnimateOption](capi-arkui-nativemodule-arkui-keyframeanimateoption.md)* option | 关键帧动画参数。 |
-| event                                   | 闭包函数。 |
 | void* userData                          | 用户定义对象指针。 |
+| void (\*event)(void\* userData)                                   | 闭包函数。 |
 | int32_t index                           | 状态索引值。 |
 
 **返回：**
@@ -919,6 +939,10 @@ ArkUI_AnimatorOption* OH_ArkUI_AnimatorOption_Create(int32_t keyframeSize)
 
 创建animator动画对象参数。
 
+> **说明：**
+>
+> keyframeSize大于0时，动画插值起点默认是0，动画插值终点模式值是1。不支持设置。
+
 **起始版本：** 12
 
 
@@ -1012,6 +1036,10 @@ int32_t OH_ArkUI_AnimatorOption_SetIterations(ArkUI_AnimatorOption* option, int3
 
 设置animator动画播放次数。设置为0时不播放，设置为-1时无限次播放。
 
+> **说明：**
+>
+> 设置为除-1外其他负数视为无效取值，无效取值动画默认播放1次。
+
 **起始版本：** 12
 
 
@@ -1093,6 +1121,10 @@ int32_t OH_ArkUI_AnimatorOption_SetCurve(ArkUI_AnimatorOption* option, ArkUI_Cur
 
 设置animator动画插值曲线。
 
+> **说明：**
+>
+> 不支持springCurve，springMotion，responsiveSpringMotion，interpolatingSpring，customCurve动画曲线。
+
 **起始版本：** 12
 
 
@@ -1120,6 +1152,10 @@ int32_t OH_ArkUI_AnimatorOption_SetBegin(ArkUI_AnimatorOption* option, float val
 
 设置animator动画插值起点。
 
+> **说明：**
+>
+> 当Animator动画为keyframe动画时，此方法不生效。
+
 **起始版本：** 12
 
 
@@ -1146,6 +1182,10 @@ int32_t OH_ArkUI_AnimatorOption_SetEnd(ArkUI_AnimatorOption* option, float value
 
 
 设置animator动画插值终点。
+
+> **说明：**
+>
+> 当Animator动画为keyframe动画时，此方法不生效。
 
 **起始版本：** 12
 
@@ -1229,6 +1269,10 @@ int32_t OH_ArkUI_AnimatorOption_SetKeyframeCurve(ArkUI_AnimatorOption* option, A
 
 
 设置animator动画关键帧曲线类型。
+
+> **说明：**
+>
+> 不支持springCurve，springMotion，responsiveSpringMotion，interpolatingSpring，customCurve动画曲线。
 
 **起始版本：** 12
 
@@ -1660,7 +1704,7 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnFrameCallback(ArkUI_AnimatorOption* op
 |----------------------------------| -- |
 | [ArkUI_AnimatorOption](capi-arkui-nativemodule-arkui-animatoroption.md)* option | animator动画参数。 |
 | void* userData                         | 用户自定义参数。 |
-| callback                         | 回调函数。 |
+| void (\*callback)(ArkUI_AnimatorOnFrameEvent\* event)                         | 回调函数。<br/>- event：回调函数的入参，动画事件对象。|
 
 **返回：**
 
@@ -1688,7 +1732,7 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnFinishCallback(ArkUI_AnimatorOption* o
 | -- | -- |
 | [ArkUI_AnimatorOption](capi-arkui-nativemodule-arkui-animatoroption.md)* option | animator动画参数。 |
 | void* userData | 用户自定义参数。 |
-| callback | 回调函数。 |
+| void (\*callback)(ArkUI_AnimatorEvent\* event) | 回调函数。 <br/>- event：回调函数的入参，动画事件对象。|
 
 **返回：**
 
@@ -1716,7 +1760,7 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnCancelCallback(ArkUI_AnimatorOption* o
 | -- | -- |
 | [ArkUI_AnimatorOption](capi-arkui-nativemodule-arkui-animatoroption.md)* option | animator动画参数。 |
 | void* userData | 用户自定义参数。 |
-| callback | 回调函数。 |
+| void (\*callback)(ArkUI_AnimatorEvent\* event) | 回调函数。 <br/>- event：回调函数的入参，动画事件对象。|
 
 **返回：**
 
@@ -1744,7 +1788,7 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnRepeatCallback(ArkUI_AnimatorOption* o
 | -- | -- |
 | [ArkUI_AnimatorOption](capi-arkui-nativemodule-arkui-animatoroption.md)* option | animator动画参数。 |
 | void* userData | 用户自定义参数。 |
-| callback | 回调函数。 |
+| void (\*callback)(ArkUI_AnimatorEvent\* event) | 回调函数。<br/>- event：回调函数的入参，动画事件对象。 |
 
 **返回：**
 
@@ -2031,6 +2075,10 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateSpringMotion(float response, float dampin
 
 构造弹性动画曲线对象。如果对同一对象的同一属性进行多个弹性动画，每个动画会替换掉前一个动画，并继承之前的速度。
 
+> **说明：**
+>
+> 动画时间由曲线参数决定，不受animation、animateTo中的duration参数控制。
+
 **起始版本：** 12
 
 
@@ -2059,6 +2107,10 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateResponsiveSpringMotion(float response, fl
 
 构造弹性跟手动画曲线对象，是springMotion的一种特例，仅默认参数不同，可与springMotion混合使用。
 
+> **说明：**
+>
+> 动画时间由曲线参数决定，不受animation、animateTo中的duration参数控制。
+
 **起始版本：** 12
 
 
@@ -2086,6 +2138,10 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateInterpolatingSpring(float velocity, float
 
 
 构造插值器弹簧曲线对象，生成一条从0到1的动画曲线，实际动画值根据曲线进行插值计算。
+
+> **说明：**
+>
+> 动画时间由曲线参数决定，不受animation、animateTo中的duration参数控制。
 
 **起始版本：** 12
 
@@ -2124,7 +2180,7 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateCustomCurve(void* userData, float (*inter
 | 参数项 | 描述 |
 | -- | -- |
 | void* userData | 用户自定义数据。 |
-| interpolate | 用户自定义的插值回调函数。fraction为动画开始时的插值输入x值。取值范围：[0,1]返回值为曲线的y值。取值范围：[0,1]。fraction等于0时，返回值为0对应动画起点，返回不为0，动画在起点处有跳变效果。fraction等于1时，返回值为1对应动画终点，返回值不为1将导致动画的终值不是状态变量的值，出现大于或者小于状态变量值，再跳变到状态变量值的效果。 |
+| float (\*interpolate)(float fraction, void\* userdata) | 用户自定义的插值回调函数。fraction为动画开始时的插值输入x值。取值范围：[0,1]返回值为曲线的y值。取值范围：[0,1]。fraction等于0时，返回值为0对应动画起点，返回不为0，动画在起点处有跳变效果。fraction等于1时，返回值为1对应动画终点，返回值不为1将导致动画的终值不是状态变量的值，出现大于或者小于状态变量值，再跳变到状态变量值的效果。 |
 
 **返回：**
 
@@ -2170,7 +2226,7 @@ ArkUI_TransitionEffect* OH_ArkUI_CreateOpacityTransitionEffect(float opacity)
 
 | 参数项 | 描述 |
 | -- | -- |
-| float opacity | 透明度，取值范围： [0, 1]。 |
+| float opacity | 透明度，取值范围为[0, 1]。默认值为1。设置小于0的非法值按0处理，大于1的非法值按1处理，1表示不透明，0表示完全透明。 |
 
 **返回：**
 
@@ -2293,6 +2349,10 @@ ArkUI_TransitionEffect* OH_ArkUI_CreateAsymmetricTransitionEffect(ArkUI_Transiti
 
 创建非对称的转场效果对象。
 
+> **说明：**
+>
+> 如不通过asymmetric函数构造TransitionEffect，则表明该效果在组件出现和消失时均生效。
+
 **起始版本：** 12
 
 
@@ -2366,6 +2426,10 @@ int32_t OH_ArkUI_TransitionEffect_SetAnimation(ArkUI_TransitionEffect* effect, A
 
 
 设置转场效果动画参数。
+
+> **说明：**
+>
+> 如果通过combine进行转场效果的组合，前一转场效果的动画参数也可用于后一转场效果。
 
 **起始版本：** 12
 

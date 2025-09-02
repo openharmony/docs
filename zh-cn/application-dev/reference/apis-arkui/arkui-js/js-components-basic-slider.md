@@ -1,4 +1,10 @@
 # slider
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyi0309-->
+<!--Designer: @liyi0309-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 >  **说明：**
 >
@@ -60,8 +66,8 @@
 <!-- xxx.hml -->
 <div class="container">
     <slider min="0" max="100" value="{{ value }}" mode="outset" showtips="true"></slider>
-    <slider class="" min="0" max="100" value="{{ value }}" step="20" mode="inset"  showtips="true"></slider>
-    <slider class="" min="0" max="100" value="{{ value }}" showsteps="true" step="20" mode="inset"  showtips="false"></slider>
+    <slider class="slider" min="0" max="100" value="{{ value }}" step="20" mode="inset"  showtips="true"></slider>
+    <slider class="slider" min="0" max="100" value="{{ value }}" showsteps="true" step="20" mode="inset"  showtips="false"></slider>
 </div>
 ```
 
@@ -72,7 +78,7 @@
     justify-content: center;
     align-items: center;
 }
-slider{
+.slider{
     margin-top: 100px;
 }
 ```

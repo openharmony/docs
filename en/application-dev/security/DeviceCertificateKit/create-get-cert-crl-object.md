@@ -1,5 +1,12 @@
 # Certificate and CRL Collection Development
 
+<!--Kit: Device Certificate Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 This topic walks you through on how to filter certificates or CRLs based on a **CertCRLCollection** object.
 
 ## How to Develop
@@ -10,9 +17,9 @@ This topic walks you through on how to filter certificates or CRLs based on a **
    import { cert } from '@kit.DeviceCertificateKit';
    ```
 
-2. Use [cert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509cert) to create an X.509 certificate object.
+2. Use [cert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509cert-1) to create an X.509 certificate object.
 
-3. Use [cert.createX509CRL](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509crl11) to create an X.509 CRL object.
+3. Use [cert.createX509CRL](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509crl11-1) to create an X.509 CRL object.
 
 4. Use [cert.createCertCRLCollection](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatecertcrlcollection11) to create a [CertCRLCollection](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcrlcollection11) object.
 
@@ -35,11 +42,11 @@ async function createX509CRL(): Promise<cert.X509CRL> {
     'eavsH0Q3\n' +
     '-----END X509 CRL-----\n';
 
-  // Binary data of the CRL, which must be set based on the service.
+  // Binary data of the CRL, which needs to match your case.
   let textEncoder = new util.TextEncoder();
   let encodingBlob: cert.EncodingBlob = {
     data: textEncoder.encodeInto(crlData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   let x509CRL: cert.X509CRL = {} as cert.X509CRL;
@@ -66,7 +73,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
   let textEncoder = new util.TextEncoder();
   let encodingBlob: cert.EncodingBlob = {
     data: textEncoder.encodeInto(certData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
+    // Assign a value based on the encodingData format. FORMAT_PEM and FORMAT_DER are supported.
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -112,4 +119,4 @@ async function sample() {
 }
 ```
 
-
+## 

@@ -1,8 +1,14 @@
 # JSVM_HeapStatistics
+<!--Kit: Common Basic Capability-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## 概述
 
-Heapstatisics结构体，用于保存有关JavaScript堆内存使用情况的统计信息。
+用于保存有关JavaScript堆内存使用情况的统计信息。
 
 **起始版本：** 12
 

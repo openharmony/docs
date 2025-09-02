@@ -39,7 +39,7 @@ target_link_libraries(entry PUBLIC libohinput.so)
 
 ### 创建事件拦截
 
-#### 按键事件
+- **按键事件**
 
 ```c++
 #include "multimodalinput/oh_input_manager.h"
@@ -69,7 +69,7 @@ void TestKeyEventInterceptor()
 }
 ```
 
-#### 输入拦截（鼠标、触摸和轴事件）
+- **输入拦截（鼠标、触摸和轴事件）**
 
 ```c++
 #include "multimodalinput/oh_input_manager.h"

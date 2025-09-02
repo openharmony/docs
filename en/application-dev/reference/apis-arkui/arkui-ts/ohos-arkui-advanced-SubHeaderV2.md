@@ -10,12 +10,14 @@ This component is implemented based on [state management V2](../../../ui/state-m
 > **NOTE**
 >
 > - This component is supported since API version 18. Updates will be marked with a superscript to indicate their earliest API version.
+> 
+> - This component is not supported on wearables.
 
 
 ## Modules to Import
 
 ```ts
-import { SubHeader } from '@kit.ArkUI'
+import { SubHeaderV2 } from '@kit.ArkUI';
 ```
 
 
@@ -34,7 +36,8 @@ icon?: SubHeaderV2IconType,
 title?: SubHeaderV2Title,
 select?: SubHeaderV2Select,
 operationType?: SubHeaderV2OperationType,
-operationItems?: SubHeaderV2OperationItem
+operationItems?: SubHeaderV2OperationItem[],
+titleBuild?: SubHeaderV2TitleBuilder;
 })
 
 The **SubHeader** component represents a subheader that signifies the top of a list or the beginning a subdivision of content and tells the user what the list or subdivision is about.
@@ -52,7 +55,7 @@ The **SubHeader** component represents a subheader that signifies the top of a l
 | select| [SubHeaderV2Select](#subheaderv2select)                 | No| @Param | Content and events for selection.<br>Default value: **undefined**      |
 | operationType | [SubHeaderV2OperationType](#subheaderv2operationtype)   | No| @Param| Style of elements in the operation area.<br>Default value: **OperationType.BUTTON**|
 | operationItems | [SubHeaderV2OperationItem](#subheaderv2operationitem)[] | No| @Param| Items in the operation area.<br>Default value: **undefined**           |
-| titleBuilder | [SubHeaderV2TitleBuilder](#subheaderv2titlebuilder)                            | No| @BuildParam| Custom content for the title area.<br>Default value: **() => void**         |
+| titleBuilder | [SubHeaderV2TitleBuilder](#subheaderv2titlebuilder)                            | No| @BuilderParam | Custom content for the title area.<br>Default value: **() => void**         |
 
 ## SubHeaderV2IconType
 
@@ -133,16 +136,16 @@ Defines the content and events for selection.
 | Name| Type                                                              | Mandatory| Decorator| Description                                                                       |
 | -------- |------------------------------------------------------------------| -------- | -------- |---------------------------------------------------------------------------|
 | options | [SelectOption](ts-basic-components-select.md#selectoption)[] | Yes| @Trace | Options for the drop-down list box.                                                                  |
-| selectedIndex | number                                                           | No|@Trace | Index of the initially selected item in the drop-down list box.<br>The index of the first item is 0.<br>If this property is not set,<br>the default value **-1** is used, indicating that no item is selected.|
-| selectedContent | string                                                           | No| @Trace | Text content of the drop-down button. Default value: **''**                                                      |
+| selectedIndex | number                                                           | No|@Trace | Index of the initially selected item in the drop-down list box.<br>The index of the first item is 0.<br>If this property is not set, the default value **-1** is used, indicating that no item is selected. |
+| selectedContent | [ResourceStr](ts-types.md#resourcestr)                         | No| @Trace | Text content of the drop-down button. Default value: **''**. The Resource type is supported since API version 20.                            |
 | onSelect | [SubHeaderV2SelectOnSelect](#subheaderv2selectonselect)                                   | No| @Trace | Callback invoked when an item in the drop-down list box is selected.<br>Default value: **undefined**                                              |
-| defaultFocus | boolean | No| Whether the drop-down button is the default focus.<br>**true**: The drop-down button is the default focus.<br>**false**: The drop-down button is not the default focus.<br>Default value: **false**                                 |
+| defaultFocus | boolean | No| @Trace |Whether the drop-down button is the default focus.<br>**true**: The drop-down button is the default focus.<br>**false**: The drop-down button is not the default focus.<br>Default value: **false**                                 |
 
 ### constructor
 
 constructor(options: SubHeaderV2SelectOptions)
 
-A constructor used to create a **SubHeaderV2Select** object.
+A constructor used to create a **SubHeaderV2SelectOptions** object.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -163,10 +166,10 @@ Defines the options for initializing a **SubHeaderV2Select** object.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type                                                              | Mandatory | Description                                                                       |
-| -------- |------------------------------------------------------------------| -------- |---------------------------------------------------------------------------| 
+| -------- |------------------------------------------------------------------| -------- |---------------------------------------------------------------------------|
 | options | [SelectOption](ts-basic-components-select.md#selectoption)[] | Yes| Options for the drop-down list box.                                                                  |
 | selectedIndex | number                                                           | No| Index of the initially selected item in the drop-down list box.<br>The index of the first item is 0.<br>If this property is not set,<br>the default value **-1** is used, indicating that no item is selected.|
-| selectedContent | string                                                           | No| Text content of the drop-down button. Default value: **''**                                                     |
+| selectedContent | [ResourceStr](ts-types.md#resourcestr)                                                           | No| Text content of the drop-down button. Default value: **''**. The Resource type is supported since API version 20.                                                     |
 | onSelect | [SubHeaderV2SelectOnSelect](#subheaderv2selectonselect)          | No| Callback invoked when an item in the drop-down list box is selected.<br>Default value: **undefined**                                               |
 | defaultFocus | boolean | No| Whether the drop-down button is the default focus.<br>**true**: The drop-down button is the default focus.<br>**false**: The drop-down button is not the default focus.<br>Default value: **false**                                 |
 
@@ -182,10 +185,10 @@ Defines the callback invoked when an item in the drop-down list box is selected.
 
 **Parameters**
 
-| Type           | Description                                         |
-|:--------------|:--------------------------------------------|
-| selectIndex   | Index of the selected item.|
-| selectContent | Text content of the selected item.|
+| Name           | Type    | Mandatory| Description                      |
+|:--------------|:-------|:---|:-------------------------|
+| selectedIndex   | number | Yes | Index of the selected item.|
+| selectedContent | string | No | Value of the selected item. |
 
 ## SubHeaderV2OperationType
 
@@ -232,11 +235,11 @@ Represents an item in the operation area.
 | Name| Type| Mandatory| Decorator| Description                                                 |
 | -------- | -------- | -------- | -------- |-----------------------------------------------------|
 | content |  [SubHeaderV2OperationItemType](#subheaderv2operationitemtype)  | Yes| @Trace | Content of the item in the operation area.                                           |
-| action | SubHeaderV2OperationItemAction | No| @Trace | Event triggered when the item is operated. Default value: **() => void**                               |
+| action | [SubHeaderV2OperationItemAction](#subheaderv2operationitemaction)| No| @Trace | Event triggered when the item is operated. Default value: **() => void**.                               |
 | accessibilityText |[ResourceStr](ts-types.md#resourcestr) | No|@Trace | Accessibility text.<br>Default value: **undefined**                    |
-| accessibilityLevel |[string](ts-types.md#resourcestr) | No|@Trace | Accessibility level.<br>Default value: **"yes"**                  | 
+| accessibilityLevel |[string](ts-types.md#resourcestr) | No|@Trace | Accessibility level.<br>Default value: **"yes"**                  |
 | accessibilityDescription|[ResourceStr](ts-types.md#resourcestr) | No|@Trace | Accessibility description.<br>Default value: **"Double-tap to activate"**|
-| defaultFocus | boolean | No| Whether to receive default focus.<br>**true**: Receive default focus.<br>**false**: Do not receive default focus.<br>Default value: **false**                                                                                                                                           |
+| defaultFocus | boolean | No| @Trace |Whether to receive default focus.<br>**true**: Receive default focus.<br>**false**: Do not receive default focus.<br>Default value: **false**                                                                                                                                           |
 
 ### constructor
 
@@ -275,9 +278,9 @@ Defines the options for initializing a **SubHeaderV2OperationItem** object.
 | Name                      | Type                                         | Mandatory | Description                                                 |
 |--------------------------|---------------------------------------------| -------- |-----------------------------------------------------|
 | content                  | [SubHeaderV2OperationItemType](#subheaderv2operationitemtype) | Yes| Content of the item in the operation area.                                              |
-| action                   | [SubHeaderV2OperationItemAction](#subheaderv2operationitemaction)         | No| Event triggered when the item is operated. Default value: **() => void**                              |
+| action                   | [SubHeaderV2OperationItemAction](#subheaderv2operationitemaction)         | No| Event triggered when the item is operated. Default value: **() => void**.                              |
 | accessibilityText        | [ResourceStr](ts-types.md#resourcestr)      | No| Accessibility text.<br>Default value: **undefined**                     |
-| accessibilityLevel       | [string](ts-types.md#resourcestr)           | No| Accessibility level.<br>Default value: **"yes"**                  | 
+| accessibilityLevel       | [string](ts-types.md#resourcestr)           | No| Accessibility level.<br>Default value: **"yes"**                  |
 | accessibilityDescription | [ResourceStr](ts-types.md#resourcestr)      | No| Accessibility description.<br>Default value: **"Double-tap to activate"**|
 | defaultFocus | boolean | No| Whether to receive default focus.<br>**true**: Receive default focus.<br>**false**: Do not receive default focus.<br>Default value: **false**                                                                                                                                           |
 
@@ -304,9 +307,9 @@ import {
   SubHeaderV2,
   SubHeaderV2Title,
   SubHeaderV2OperationItem,
-  promptAction,
+  Prompt,
   TextModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -332,7 +335,7 @@ struct SubHeaderExample {
     this.operationItems = [new SubHeaderV2OperationItem({
       content: 'Operation',
       action: () => {
-        promptAction.showToast({ message: 'demo2' })
+        Prompt.showToast({ message: 'demo2' })
       }
     })]
   }
@@ -363,9 +366,9 @@ import {
   SubHeaderV2,
   SubHeaderV2Title,
   SubHeaderV2OperationItem,
-  promptAction,
+  Prompt,
   TextModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -384,7 +387,7 @@ struct SubHeaderExample {
     this.operationItems = [new SubHeaderV2OperationItem({
       content: 'More',
       action: () => {
-        promptAction.showToast({ message: 'demo2' })
+        Prompt.showToast({ message: 'demo2' })
       }
     })]
   }
@@ -415,8 +418,8 @@ import {
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
   SubHeaderV2Select,
-  promptAction
-} from '@kit.ArkUI'
+  Prompt
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -441,7 +444,7 @@ struct SubHeaderExample {
       selectedContent: this.selectedValue,
       selectedIndex: this.selectedIndex,
       onSelect: (index: number, value?: string) => {
-        promptAction.showToast({ message: 'selectdemo' })
+        Prompt.showToast({ message: 'selectdemo' })
       }
     })
 
@@ -449,19 +452,19 @@ struct SubHeaderExample {
       new SubHeaderV2OperationItem({
         content: $r('sys.media.ohos_ic_public_email'),
         action: () => {
-          promptAction.showToast({ message: 'demo' })
+          Prompt.showToast({ message: 'demo' })
         }
       }),
       new SubHeaderV2OperationItem({
         content: $r('sys.media.ohos_ic_public_email'),
         action: () => {
-          promptAction.showToast({ message: 'demo' })
+          Prompt.showToast({ message: 'demo' })
         }
       }),
       new SubHeaderV2OperationItem({
         content: $r('sys.media.ohos_ic_public_email'),
         action: () => {
-          promptAction.showToast({ message: 'demo' })
+          Prompt.showToast({ message: 'demo' })
         }
       })]
   }
@@ -491,9 +494,9 @@ import {
   SubHeaderV2OperationType,
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
-  promptAction,
+  Prompt,
   SymbolGlyphModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -514,7 +517,7 @@ struct SubHeaderExample {
         operationItems: [new SubHeaderV2OperationItem({
           content: 'Operation',
           action: () => {
-            promptAction.showToast({ message: 'demo' })
+            Prompt.showToast({ message: 'demo' })
           }
         })]
       })
@@ -535,9 +538,9 @@ import {
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
   SubHeaderV2Select,
-  promptAction,
+  Prompt,
   SymbolGlyphModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -565,7 +568,7 @@ struct SubHeaderExample {
       selectedContent: this.selectedValue,
       selectedIndex: this.selectedIndex,
       onSelect: (index: number, value?: string) => {
-        promptAction.showToast({ message: 'demo' })
+        Prompt.showToast({ message: 'demo' })
       }
     })
 
@@ -573,7 +576,7 @@ struct SubHeaderExample {
       new SubHeaderV2OperationItem({
         content: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')).fontWeight(FontWeight.Lighter),
         action: () => {
-          promptAction.showToast({ message: 'demo1' })
+          Prompt.showToast({ message: 'demo1' })
         }
       }),
       new SubHeaderV2OperationItem({
@@ -582,7 +585,7 @@ struct SubHeaderExample {
           .fontColor([Color.Blue, Color.Grey, Color.Green])
       ,
         action: () => {
-          promptAction.showToast({ message: 'demo2' })
+          Prompt.showToast({ message: 'demo2' })
         }
       }),
       new SubHeaderV2OperationItem({
@@ -591,7 +594,7 @@ struct SubHeaderExample {
           .fontColor([Color.Blue, Color.Grey, Color.Green])
       ,
         action: () => {
-          promptAction.showToast({ message: 'demo3' })
+          Prompt.showToast({ message: 'demo3' })
         }
       })]
   }
@@ -619,8 +622,8 @@ import {
   SubHeaderV2OperationType,
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
-  promptAction
-} from '@kit.ArkUI'
+  Prompt
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -636,7 +639,7 @@ struct SubHeaderExample {
     this.operationItem = [new SubHeaderV2OperationItem({
       content: 'More info',
       action: () => {
-        promptAction.showToast({ message: 'demo' })
+        Prompt.showToast({ message: 'demo' })
       }
     })]
   }
@@ -676,9 +679,9 @@ import {
   SubHeaderV2OperationType,
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
-  promptAction,
+  Prompt,
   TextModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -698,7 +701,7 @@ struct SubHeaderExample {
     this.operationItems4 = [new SubHeaderV2OperationItem({
       content: 'More info',
       action: () => {
-        promptAction.showToast({ message: 'demo' })
+        Prompt.showToast({ message: 'demo' })
       }
     })]
   }
@@ -728,8 +731,8 @@ import {
   SubHeaderV2OperationItem,
   SubHeaderV2IconType,
   SubHeaderV2Select,
-  promptAction
-} from '@kit.ArkUI'
+  Prompt
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -758,7 +761,7 @@ struct SubHeaderExample {
     this.operationItems = [new SubHeaderV2OperationItem({
       content: 'Operation',
       action: () => {
-        promptAction.showToast({ message: 'demo2' })
+        Prompt.showToast({ message: 'demo2' })
       }
     })]
   }
@@ -789,7 +792,7 @@ struct SubHeaderExample {
             onSelect: (index: number, value?: string) => {
               this.selectedIndex = index;
               this.selectedValue = value;
-              promptAction.showToast({ message: this.selectedValue })
+              Prompt.showToast({ message: this.selectedValue })
             }
           }),
           operationType: this.subHeaderOperationType3,
@@ -823,9 +826,9 @@ import {
   SubHeaderV2,
   SubHeaderV2Title,
   SubHeaderV2OperationItem,
-  promptAction,
+  Prompt,
   TextModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -851,7 +854,7 @@ struct SubHeaderExample {
       content: 'Operation',
       defaultFocus: true,
       action: () => {
-        promptAction.showToast({ message: 'demo2' })
+        Prompt.showToast({ message: 'demo2' })
       }
     })]
   }

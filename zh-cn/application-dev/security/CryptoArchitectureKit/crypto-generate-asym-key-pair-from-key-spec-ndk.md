@@ -1,5 +1,12 @@
 # 指定密钥参数生成非对称密钥对(C/C++)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 以RSA、ECC、SM2为例，根据指定的密钥参数，生成非对称密钥对（KeyPair），并获取密钥参数属性。
 
 该对象可用于后续的加解密等操作。获取的密钥参数属性可用于存储或运输。
@@ -380,6 +387,37 @@ static OH_Crypto_ErrCode doTestEccGenKeyPairBySpec()
 ```C++
 #include "CryptoArchitectureKit/crypto_architecture_kit.h"
 #include <string>
+
+static OH_Crypto_ErrCode GetEccKeyParams(OH_CryptoKeyPair *keyCtx, Crypto_DataBlob *pubKeyXData,
+                                         Crypto_DataBlob *pubKeyYData, Crypto_DataBlob *privKeyData)
+{
+    OH_CryptoPubKey *pubKey = OH_CryptoKeyPair_GetPubKey(keyCtx);
+    if (pubKey == nullptr) {
+        return CRYPTO_OPERTION_ERROR;
+    }
+    OH_Crypto_ErrCode ret = OH_CryptoPubKey_GetParam(pubKey, CRYPTO_ECC_PK_X_DATABLOB, pubKeyXData);
+    if (ret != CRYPTO_SUCCESS) {
+        return ret;
+    }
+    ret = OH_CryptoPubKey_GetParam(pubKey, CRYPTO_ECC_PK_Y_DATABLOB, pubKeyYData);
+    if (ret != CRYPTO_SUCCESS) {
+        return ret;
+    }
+
+    OH_CryptoPrivKey *privKey = OH_CryptoKeyPair_GetPrivKey(keyCtx);
+    if (privKey == nullptr) {
+        return CRYPTO_OPERTION_ERROR;
+    }
+    ret = OH_CryptoPrivKey_GetParam(privKey, CRYPTO_ECC_SK_DATABLOB, privKeyData);
+    return ret;
+}
+
+static void FreeEccKeyParams(Crypto_DataBlob *pubKeyXData, Crypto_DataBlob *pubKeyYData, Crypto_DataBlob *privKeyData)
+{
+    OH_Crypto_FreeDataBlob(pubKeyXData);
+    OH_Crypto_FreeDataBlob(pubKeyYData);
+    OH_Crypto_FreeDataBlob(privKeyData);
+}
 
 size_t ConvertHex(uint8_t* dest, size_t count, const char* src)
 {

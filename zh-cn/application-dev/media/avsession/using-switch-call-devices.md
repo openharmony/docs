@@ -1,4 +1,10 @@
 # 使用通话设备切换组件
+<!--Kit: AVSession Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 ## 切换通话输出设备
 
@@ -85,9 +91,9 @@
 
    this.audioRenderer?.start((err: BusinessError) => {
     if (err) {
-      console.error(`audioRender start faild :  Error: ${JSON.stringify(err)}`);
+      console.error(`audioRenderer start failed -Code : ${err.code}, Message ${err.message}`);
     } else {
-      console.error('audioRender start success');
+      console.info('audioRender start success');
     }
    });
    ```
@@ -121,7 +127,7 @@
 
 ### 自定义样式实现
 
-自定义样式通过设置[CustomBuilder](../../reference/apis-avsession-kit/ohos-multimedia-avcastpicker.md)类型的参数customPicker实现。
+自定义样式通过设置[CustomBuilder](../../reference/apis-arkui/arkui-ts/ts-types.md#custombuilder8)类型的参数[customPicker](../../reference/apis-avsession-kit/ohos-multimedia-avcastpicker.md#avcastpicker)实现。
 
 实现自定义样式的步骤与实现默认样式基本相同，开发者可参考[默认样式实现](#默认样式实现)，完成创建AVSession、实现音频播放等步骤。
 

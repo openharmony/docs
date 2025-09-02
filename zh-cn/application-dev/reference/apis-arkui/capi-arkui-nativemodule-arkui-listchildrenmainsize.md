@@ -1,5 +1,12 @@
 # ArkUI_ListChildrenMainSize
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @yylong-->
+<!--Designer: @yylong-->
+<!--Tester: @liuzhenshuo-->
+<!--Adviser: @HelloCrease-->
+
 ## 概述
 
 定义List的ChildrenMainSize类信息。

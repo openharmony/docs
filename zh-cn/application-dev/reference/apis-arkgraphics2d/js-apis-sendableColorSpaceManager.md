@@ -1,5 +1,12 @@
 # @ohos.graphics.sendableColorSpaceManager (可共享的色彩管理)
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphic-->
+<!--Owner: @xubo85-->
+<!--Designer: @comicchang; @wang-luyu4-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @ge-yafang-->
+
 本模块提供管理抽象化色域对象的一些基础能力，包括可共享的色彩管理的创建与可共享的色域基础属性的获取等。
 
 > **说明：**
@@ -17,7 +24,7 @@ type ISendable = lang.ISendable
 
 ISendable是所有Sendable类型（除null和undefined）的父类型。自身没有任何必须的方法和属性。
 
-**系统能力：** SystemCapability.Utils.Lang
+**系统能力：** SystemCapability.Graphic.Graphic2D.ColorManager.Core
 
 | 类型                | 说明                     |
 | ------------------ | ------------------------ |
@@ -55,7 +62,7 @@ create(colorSpaceName: colorSpaceManager.ColorSpace): ColorSpaceManager
 **示例：**
 
 ```ts
-import { colorSpaceManager } from '@kit.ArkGraphics2D';
+import { colorSpaceManager, sendableColorSpaceManager } from '@kit.ArkGraphics2D';
 let colorSpace: sendableColorSpaceManager.ColorSpaceManager;
 colorSpace = sendableColorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB);
 ```
@@ -73,7 +80,7 @@ create(primaries: colorSpaceManager.ColorSpacePrimaries, gamma: number): ColorSp
 | 参数名           | 类型                                       | 必填 | 说明                          |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | primaries       | [colorSpaceManager.ColorSpacePrimaries](js-apis-colorSpaceManager.md#colorspaceprimaries)| 是   | 色域标准三原色。               |
-| gamma           | number                                     | 是   | 色域gamma值。                 |
+| gamma           | number                                     | 是   | 色域gamma值，取值为大于0的浮点数。|
 
 **返回值：**
 
@@ -93,7 +100,7 @@ create(primaries: colorSpaceManager.ColorSpacePrimaries, gamma: number): ColorSp
 **示例：**
 
 ```ts
-import { colorSpaceManager } from '@kit.ArkGraphics2D';
+import { colorSpaceManager, sendableColorSpaceManager } from '@kit.ArkGraphics2D';
 let colorSpace: sendableColorSpaceManager.ColorSpaceManager;
 let primaries: colorSpaceManager.ColorSpacePrimaries = {
   redX: 0.1,
@@ -155,7 +162,7 @@ getWhitePoint(): collections.Array\<number\>
 
 | 类型                | 说明                     |
 | ------------------ | ------------------------ |
-| [collections.Array\<number\>](../apis-arkts/js-apis-arkts-collections.md#collectionsarray)  | 返回色域白点值[x, y]。 |
+| [collections.Array\<number\>](../apis-arkts/arkts-apis-arkts-collections-Array.md)  | 返回色域白点值[x, y]。 |
 
 **错误码：**
 

@@ -1,13 +1,19 @@
 # Requesting User Authorization for the Second Time
 
-If the user rejects to grant the permission when an application calls [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) to [request user authorization](request-user-authorization.md) in a dialog box, the application will no longer start the user authorization dialog box again by using **requestPermissionsFromUser()**. If the application still needs the permission, you can use either of the following methods:
+<!--Kit: Ability Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @xia-bubai-->
+<!--SE: @linshuqing; @hehehe-li-->
+<!--TSE: @leiyuqian-->
 
-- Allow the user to manually grant the permission using the system application **Settings** in the following path:
+If an application [requests user authorization](request-user-authorization.md) via a dialog box using [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) and the user denies it, the application cannot show the same dialog box again with this API. The user needs to manually grant the permission in **Settings**.
+
+The path in **Settings** is as follows:
 <!--RP1-->
-**Privacy** > **Permission manager** > Permission type (such as **Location**) > *App*
+**Privacy** > **Permission manager** > *Permission type (such as **Location***) > *App*
 <!--RP1End-->
 
-- Start the permission settings dialog box by using [requestPermissionOnSetting()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissiononsetting12) and guide the user to grant the permission.
+Alternatively, start the permission settings dialog box by using [requestPermissionOnSetting()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissiononsetting12) and guide the user to grant the permission.
 
 **Figure 1** Requesting user authorization for the second time
 
@@ -15,7 +21,7 @@ If the user rejects to grant the permission when an application calls [requestPe
 ![en_image_location](figures/en_image_location_second.png)
 <!--RP2End-->
 
-The following code shows how to request the ohos.permission.APPROXIMATELY_LOCATION permission in this way.
+The following sample code shows how to open the dialog box again to request ohos.permission.APPROXIMATELY_LOCATION.
 
 ```ts
 import { abilityAccessCtrl, Context, common } from '@kit.AbilityKit';

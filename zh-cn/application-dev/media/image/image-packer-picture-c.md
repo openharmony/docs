@@ -1,4 +1,10 @@
 # 使用Image_NativeModule完成多图对象编码
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 图像编码类，用于创建以及释放ImagePacker实例，并编码多图对象。
 
@@ -27,12 +33,6 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libimage
 
 ```c++
 #include <hilog/log.h>
-#include <bits/alltypes.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <sstream>
 #include <multimedia/image_framework/image/image_native.h>
 #include <multimedia/image_framework/image/image_packer_native.h>
 #include <multimedia/image_framework/image/image_source_native.h>
@@ -94,7 +94,7 @@ static napi_value PackToDataFromPicture(napi_env env, napi_callback_info info) {
     uint32_t fd = 0;
     napi_get_value_uint32(env, args[0], &fd);
     size_t outDataSize = 10000 * 10000;
-    uint8_t *outData = new uint8_t[10000 * 10000];
+    uint8_t *outData = new uint8_t[outDataSize];
 
     if (thisPicture->packerOptions == nullptr) {
         thisPicture->errorCode = OH_PackingOptions_Create(&thisPicture->packerOptions);
@@ -131,7 +131,7 @@ static napi_value PackToDataFromPicture(napi_env env, napi_callback_info info) {
         ReleaseImageSource(thisPicture->source);
     OH_LOG_DEBUG(LOG_APP, "OH_ImagePackerNative_PackToDataFromPicture success !");
     }
-
+	delete[] outData;
     return getJsResult(env, thisPicture->errorCode);
 }
 

@@ -1,4 +1,10 @@
 # Node-API常见问题
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @shilei123-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 ## 稳定性  
 1. [应用运行过程中出现高概率闪退，出现cppcrash栈，栈顶为系统库libark_jsruntime.so，崩溃栈前几帧也有libace_napi.z.so，怎么进行定位解决](napi-faq-about-stability.md#应用运行过程中出现高概率闪退怎么进行定位解决)  
@@ -30,4 +36,3 @@
 16. [Node-API接口返回值不是napi_ok时，如何排查定位](napi-faq-about-common-basic.md#node-api接口返回值不是napi_ok时如何排查定位)  
 17. [napi_wrap如何保证被wrap的对象按期望顺序析构？](napi-faq-about-common-basic.md#napi_wrap如何保证被wrap的对象按期望顺序析构)  
 18. [napi_call_threadsafe_function回调任务不执行](napi-faq-about-common-basic.md#napi_call_threadsafe_function回调任务不执行)
-

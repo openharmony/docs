@@ -1,15 +1,22 @@
 # ChipGroup
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xieziang-->
+<!--Designer: @youzhi92-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @HelloCrease-->
 
 **ChipGroup** is an advanced component that provides a group of chips for scenarios such as categorizing files or resource content.
 
 > **NOTE**
 >
 > This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+>
 
 ## Modules to Import
 
 ```typescript
-import { ChipSize, ChipGroup } from '@kit.ArkUI'
+import { ChipSize, ChipGroup } from '@kit.ArkUI';
 ```
 
 ## Child Components
@@ -26,7 +33,7 @@ ChipGroup({
   multiple?: boolean,
   chipGroupSpace?: ChipGroupSpaceOptions,
   chipGroupPadding?: ChipGroupPaddingOptions,
-  onChange?: (selectedIndexes: Array<number>) => void,
+  onChange?: Callback<Array<number>>,
   suffix?: Callback<void>
 })
 ```
@@ -37,6 +44,8 @@ ChipGroup({
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name           | Type                                           | Mandatory| Decorator| Description                                                                                    |
 | --------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------                             | ------------------------------------------------------------                             |
 | items           | [ChipGroupItemOptions[]](#chipgroupitemoptions) | Yes  | @Require  @Prop | Specific attributes of individual chips. For details, see [ChipGroupItemOptions[]](#chipgroupitemoptions).<br>If this parameter is set to **undefined**, the chip group is empty by default.              |
@@ -46,15 +55,15 @@ ChipGroup({
 | chipGroupSpace  | [ChipGroupSpaceOptions](#chipgroupspaceoptions) | No  | @Prop | Left and right padding, and the spacing between chips. For details, see [ChipGroupSpaceOptions](#chipgroupspaceoptions).<br>If this parameter is set to **undefined**, the default value is used.|
 | chipGroupPadding  | [ChipGroupPaddingOptions](#chipgrouppaddingoptions) | No  | @Prop | Top and bottom padding, used to control the overall height. For details, see [ChipGroupPaddingOptions](#chipgrouppaddingoptions).<br>If this parameter is set to **undefined**, the default value is used.|
 | onChange        | Callback\<Array\<number>>  | No  | -  | Callback invoked when the chip status changes.<br>If the value is **undefined**, the event is unbound.                                                               |
-| suffix          | ()=>void                                        | No  | @BuilderParam | Suffix, which is a builder customized by the user and requires importing the [IconGroupSuffix](#icongroupsuffix) API when used.<br>Default value: The suffix is not displayed if not passed.|
+| suffix          | Callback\<void\>                                        | No  | @BuilderParam | Suffix, which is a builder customized by the user and requires importing the [IconGroupSuffix](#icongroupsuffix) API when used.<br>Default value: The suffix is not displayed if not passed.|
 
 > **NOTE**
 >
 > 1. When **multiple** is set to **false**, if **selectedIndexes** is not passed in, the first chip is automatically selected by default. However, if the provided **selectedIndexes** includes multiple elements, the chip at the first index is selected by default.
 >
-> 2. For the **suffix** API to work, you must include the **IconGroupSuffix** API when implementing it. If no value is specified for **suffix**, no suffix will be displayed.
+> 2. To use the suffix functionality, you must explicitly import the **IconGroupSuffix** API. If **suffix** is not specified, no suffix icon will be displayed in the component.
 >
-> 3. The icon fill colors, such as **fillColor** and **activedFillColor**, are set to be consistent with the font color (**fontColor**). To differentiate the icon colors from the font color, include **prefixSymbol** when you pass in [ChipGroupSpaceOptions](#chipgroupspaceoptions).
+> 3. The icon fill colors (**fillColor** and **activedFillColor**) match the font color (**fontColor**) by default. To differentiate the icon colors from the font color, include **prefixSymbol** when you pass in [ChipGroupSpaceOptions](#chipgroupspaceoptions).
 
 ## ChipGroupItemOptions
 
@@ -62,19 +71,21 @@ Defines the specific attributes of individual chips.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name        | Type                          | Mandatory| Description                             |
 | ----------   | ----------------------------- | ---- | ----------------------------------- |
-| prefixIcon   | [IconOptions](#iconoptions)   | No  | Prefix image icon of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                  |
-| prefixSymbol | [ChipSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsymbolglyphoptions12) | No  | Prefix symbol glyph icon of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 12.            |
-| label        | [LabelOptions](#labeloptions) | Yes  | Text of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                           |
-| suffixIcon<sup>(deprecated)</sup>   | [IconOptions](#iconoptions) | No  | Suffix image icon of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**NOTE**<br>This API is supported since API version 12 and deprecated since API version 14. You are advised to use **suffixImageIcon** instead. |
-| suffixSymbol | [ChipSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsymbolglyphoptions12) | No  | Suffix symbol glyph icon of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 12.            |
-| allowClose   | boolean                       | No  | Whether to show the close icon.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
-| suffixImageIcon<sup>14+</sup> | [SuffixImageIconOptions](#suffiximageiconoptions14) | No| Suffix image icon of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| suffixSymbolOptions<sup>14+</sup> | [ChipSuffixSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsuffixsymbolglyphoptions14) | No| Suffix symbol icon of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| closeOptions<sup>14+</sup> | [CloseOptions](ohos-arkui-advanced-Chip.md#closeoptions14) | No| Accessibility options of the default close icon.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessible description of the chip. You can provide comprehensive text explanations to help users understand the operation they are about to perform and its potential consequences, especially when these cannot be inferred from the chip's attributes and accessibility text alone. If a chip contains both text information and the accessible description, the text is announced first and then the accessible description, when the chip is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| accessibilityLevel<sup>14+</sup> | string | No| Accessibility level of the chip. It determines whether the chip can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: It is treated as "yes" by the system.<br>**"yes"**: The chip can be recognized by accessibility services.<br>**"no"**: The chip cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the chip nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| prefixIcon   | [IconOptions](#iconoptions)   | No  | Prefix image icon of the chip.<br> **Atomic service API**: This API can be used in atomic services since API version 12.                  |
+| prefixSymbol | [ChipSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsymbolglyphoptions12) | No  | Prefix symbol glyph icon of the chip.<br> **Atomic service API**: This API can be used in atomic services since API version 12.            |
+| label        | [LabelOptions](#labeloptions) | Yes  | Text of the chip.<br> **Atomic service API**: This API can be used in atomic services since API version 12.                           |
+| suffixIcon<sup>(deprecated)</sup>   | [IconOptions](#iconoptions) | No  | Suffix image icon of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 12. **NOTE**<br>This API is supported since API version 12 and deprecated since API version 14. You are advised to use **suffixImageIcon** instead.|
+| suffixSymbol | [ChipSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsymbolglyphoptions12) | No  | Suffix symbol glyph icon of the chip.<br> **Atomic service API**: This API can be used in atomic services since API version 12.            |
+| allowClose   | boolean                       | No  | Whether to show the delete icon. The value **true** means to show the delete icon, and **false** means the opposite. The default value is **false**.<br> **Atomic service API**: This API can be used in atomic services since API version 12. |
+| suffixImageIcon<sup>14+</sup> | [SuffixImageIconOptions](#suffiximageiconoptions14) | No| Suffix image icon of the chip.<br> **Atomic service API**: This API can be used in atomic services since API version 14.|
+| suffixSymbolOptions<sup>14+</sup> | [ChipSuffixSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsuffixsymbolglyphoptions14) | No| Suffix symbol icon of the chip.<br> **Atomic service API**: This API can be used in atomic services since API version 14.|
+| closeOptions<sup>14+</sup> | [CloseOptions](ohos-arkui-advanced-Chip.md#closeoptions14) | No| Accessibility options of the default close icon.<br> **Atomic service API**: This API can be used in atomic services since API version 14.|
+| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessible description of the chip. You can provide comprehensive text explanations to help users understand the operation they are about to perform and its potential consequences, especially when these cannot be inferred from the chip's attributes and accessibility text alone. If a chip contains both text information and the accessible description, the text is announced first and then the accessible description, when the chip is selected.<br> **Atomic service API**: This API can be used in atomic services since API version 14.|
+| accessibilityLevel<sup>14+</sup> | string | No| Accessibility level of the chip. It determines whether the chip can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: It is treated as "yes" by the system.<br>**"yes"**: The chip can be recognized by accessibility services.<br>**"no"**: The chip cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the chip nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br> **Atomic service API**: This API can be used in atomic services since API version 14.|
 
 
 >**NOTE**
@@ -89,9 +100,11 @@ Defines the common attributes shared by all chips in the chip group.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name                   | Type                                                        | Mandatory| Description                                                        |
 | ----------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| size                    | [ChipSize](ohos-arkui-advanced-Chip.md#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | No  | Chip size. To use this API, you must import the **ChipSize** type from the **Chip** component.<br>Default value: **ChipSize**: **ChipSize.NORMAL**<br>If this parameter is set to **undefined**, the default value is used.|
+| size                    | [ChipSize](ohos-arkui-advanced-Chip.md#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | No  | Chip size. To use this API, you must import the **ChipSize** type from the **Chip** component.<br>Default value: **ChipSize**: **ChipSize.NORMAL**<br> If this parameter is set to **undefined**, the default value is used.|
 | backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Background color of the chip.<br>Default value: **$r('sys.color.ohos_id_color_button_normal')**<br>If this parameter is set to **undefined**, the default value is used.|
 | fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Font color of the chip.<br>Default value: **$r('sys.color.ohos_id_color_text_primary')**<br>If this parameter is set to **undefined**, the default value is used.|
 | selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Font color of the chip when it is activated or selected.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_contrary')**<br>If this parameter is set to **undefined**, the default value is used.|
@@ -113,7 +126,7 @@ Defines the left and right padding of the chip group, and the spacing between ch
 
 | Name      | Type           | Mandatory| Description                                            |
 | ---------- | -------------- | ---- | ------------------------------------------------ |
-| itemSpace | string \| number  | No  | Spacing between chips. Percentage values are not supported.<br>Default value: **8**<br>Unit: vp<br>If this parameter is set to **undefined**, the default value is used.     |
+| itemSpace | string \| number  | No  | Spacing between chips. Percentage values are not supported.<br>Value range:<br>Number type: a value greater than or equal to 0 (for example, **0**, **8**, **16**, or **24.5**)<br>String type: a string with units fp \|vp \|px \| lpx and a numeric part greater than or equal to 0, for example, **"8vp"**, **"16fp"**, **"12px"**, or **"10lpx"**.<br>Not supported: negative values, percentage units, and invalid string formats.<br>Default value: **8**<br>Unit: vp<br>If this parameter is set to **undefined**, the default value is used.    |
 | startSpace | [Length](ts-types.md#length)         | No  | Left padding. Percentage values are not supported.<br>Default value: **16**<br>Unit: vp<br>If this parameter is set to **undefined**, the default value is used.               |
 | endSpace   | [Length](ts-types.md#length)         | No  | Right padding. Percentage values are not supported.<br>Default value: **16**<br>Unit: vp<br>If this parameter is set to **undefined**, the default value is used.|
 
@@ -125,10 +138,12 @@ Defines the top and bottom padding of the chip group, used to control the overal
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name  | Type           | Mandatory| Description                                                     |
 | ------ | -------------- | ---- | ------------------------------------------------            |
 | top    | [Length](ts-types.md#length)         | Yes  | Top padding. Percentage values are not supported.<br>Default value: **14**<br>If this parameter is set to **undefined**, the default value is used.       |
-| bottom | [Length](ts-types.md#length)         | Yes  | Top padding. Percentage values are not supported.<br>Default value: **14**<br>If this parameter is set to **undefined**, the default value is used.        |
+| bottom | [Length](ts-types.md#length)         | Yes  | Bottom padding. Percentage values are not supported.<br>Default value: **14**<br>If this parameter is set to **undefined**, the default value is used.        |
 
 ## SuffixImageIconOptions<sup>14+</sup>
 
@@ -139,6 +154,8 @@ Inherits [IconOptions](#iconoptions).
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name| Type| Mandatory| Description|
 | ---- | ---- | --- | ---- |
@@ -154,6 +171,8 @@ Defines the options for the trailing symbol item in a chip group.
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name| Type| Mandatory| Description|
 | ---- | ---- | --- | ---- |
@@ -171,6 +190,8 @@ Defines the options for the trailing symbol item in a chip group.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name    | Type                   | Mandatory| Decorator| Description                                                             |
 | -------- | ---------------------- | ---- | ----------------------------------------------| ----------------------------------------------|
 | items    | Array<[IconItemOptions](#iconitemoptions) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) \| [ SymbolItemOptions](#symbolitemoptions14)> | Yes  | @Require  @Prop | Custom builder items.|
@@ -186,13 +207,15 @@ Defines the tail builder, which imposes limitations on the settings for the back
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name    | Type                           | Mandatory| Description                                   |
 | -------- | --------------                 | ---- | ------------------------------           |
-| icon     | [IconOptions](#iconoptions)    | Yes  | Custom builder icon.<br>When the chip size is **ChipSize.SMALL**, the suffix is at {width: 16, height: 16} by default.<br>When the chip size is **ChipSize.NORMAL**, the suffix is at {width: 24, height: 24} by default.<br>To dynamically change the size, you must use the [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) type when importing the [IconGroupSuffix](#icongroupsuffix) API.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                      |
-| action   | Callback\<void>        | Yes  | Callback of custom builder items.<br>If the value is **undefined**, the event is unbound.<br>**Atomic service API**: This API can be used in atomic services since API version 12.           |
-| accessibilityText<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility text of the trailing symbol item. If a trailing symbol item does not contain text information, it will not be announced by the screen reader when selected. In this case, the screen reader user cannot know which item is selected. To solve this problem, you can set accessibility text for trailing symbol items without text information. When such a component is selected, the screen reader announces the specified accessibility text, informing the user which component is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| icon     | [IconOptions](#iconoptions)    | Yes  | Custom builder icon.<br>When the chip size is **ChipSize.SMALL**, the suffix is at {width: 16, height: 16} by default.<br>When the chip size is **ChipSize.NORMAL**, the suffix is at {width: 24, height: 24} by default.<br> To dynamically change the size, you must use the [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) type when importing the [IconGroupSuffix](#icongroupsuffix) API.<br> **Atomic service API**: This API can be used in atomic services since API version 12.                      |
+| action   | Callback\<void>        | Yes  | Callback of custom builder items.<br>If the value is **undefined**, the event is unbound.<br> **Atomic service API**: This API can be used in atomic services since API version 12.           |
+| accessibilityText<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility text of the trailing symbol item. If a trailing symbol item does not contain text information, it will not be announced by the screen reader when selected. In this case, the screen reader user cannot know which item is selected. To solve this problem, you can set accessibility text for trailing symbol items without text information. When such a component is selected, the screen reader announces the specified accessibility text, informing the user which component is selected.<br> **Atomic service API**: This API can be used in atomic services since API version 14.|
 | accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessible description of the trailing symbol item. You can provide comprehensive text explanations to help users understand the operation they are about to perform and its potential consequences, especially when these cannot be inferred from the chip's attributes and accessibility text alone. If a trailing symbol item contains both text information and the accessible description, the text is announced first and then the accessible description, when the trailing symbol item is selected.<br> **Atomic service API**: This API can be used in atomic services since API version 14.|
-| accessibilityLevel<sup>14+</sup> | string | No| Accessibility level of the trailing symbol item. It determines whether the trailing symbol item can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: It is treated as "yes" by the system.<br>**"yes"**: The trailing symbol item can be recognized by accessibility services.<br>**"no"**: The trailing symbol item cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the trailing symbol item nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| accessibilityLevel<sup>14+</sup> | string | No| Accessibility level of the trailing symbol item. It determines whether the trailing symbol item can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: It is treated as "yes" by the system.<br>**"yes"**: The trailing symbol item can be recognized by accessibility services.<br>**"no"**: The trailing symbol item cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the trailing symbol item nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br> **Atomic service API**: This API can be used in atomic services since API version 14.|
 
 ## IconOptions
 
@@ -201,6 +224,8 @@ Defines the common attributes of icons.
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 | Name| Type                                  | Mandatory| Description                                                        |
 | ---- | -------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -215,6 +240,8 @@ Defines the common attributes of labels.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
+
 | Name| Type  | Mandatory | Description    |
 | ---- | ------ | ---- | -------- |
 | text | string | Yes  | Text of the chip. |
@@ -226,7 +253,7 @@ Defines the common attributes of labels.
 This example shows how to implement a chip group without a builder-defined suffix.
 
 ```typescript
-import { ChipSize, ChipGroup } from '@kit.ArkUI'
+import { ChipSize, ChipGroup } from '@kit.ArkUI';
 
 @Entry
 @Preview
@@ -297,7 +324,7 @@ struct Index {
 This example shows how to implement a chip group with a builder-defined suffix.
 
 ```typescript
-import { ChipSize, ChipGroup, IconGroupSuffix  } from '@kit.ArkUI'
+import { ChipSize, ChipGroup, IconGroupSuffix  } from '@kit.ArkUI';
 
 @Entry
 @Preview
@@ -387,7 +414,7 @@ struct Index {
 ### Example 3: Setting the Symbol Icon
 This example implements **IconGroupSuffix** and **ChipGroup** with **SymbolGlyph** resources.
 ```typescript
-import { ChipSize, ChipGroup, IconGroupSuffix, SymbolGlyphModifier } from '@kit.ArkUI'
+import { ChipSize, ChipGroup, IconGroupSuffix, SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
 @Preview

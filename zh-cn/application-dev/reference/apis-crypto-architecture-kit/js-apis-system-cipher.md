@@ -1,5 +1,12 @@
 # @system.cipher (加密算法)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 > **说明：**
 >
 > 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -19,9 +26,9 @@ import cipher from '@system.cipher';
 
 **系统能力**：SystemCapability.Security.Cipher
 
-| 名称 | 类型   | 可读 | 可写 |说明         |
+| 名称 | 类型   | 只读 | 可选 |说明         |
 | ------ | ------ | ---- | ---- | ------------ |
-| text   | string | 是   | 否   | 返回的内容。 |
+| text   | string | 否   | 否   | 返回的内容。 |
 
 
 ## CipherRsaOptions
@@ -126,7 +133,7 @@ export default {
            console.log(`handling success:${data.text}`);
          },
          fail: function(data, code) {
-           console.log(`### cipher.rsa encrypt fail ### ${code}:${data}`);
+           console.log(`### cipher.rsa decrypt fail ### ${code}:${data}`);
          },
          complete: function() {
            console.log(`operation complete!`);
@@ -170,7 +177,7 @@ export default {
         console.log(`handling success:${data.text}`);
         },
       fail: function(data, code) {
-        console.log(`### cipher.rsa encrypt fail ### ${code}:${data}`);
+        console.log(`### cipher.aes encrypt fail ### ${code}:${data}`);
         },
       complete: function() {
         console.log(`operation complete!`);
@@ -190,7 +197,7 @@ export default {
          console.log(`handling success:${data.text}`);
         },
        fail: function(data, code) {
-         console.log(`### cipher.aes encrypt fail ### ${code}:${data}`);
+         console.log(`### cipher.aes decrypt fail ### ${code}:${data}`);
        },
        complete: function() {
          console.log(`operation complete!`);

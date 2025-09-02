@@ -1,4 +1,10 @@
 # 通过标准化数据通路实现数据共享 (C/C++)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @jcwen-->
+<!--Designer: @junathuawei1; @zph000-->
+<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 
 ## 场景介绍
@@ -272,7 +278,7 @@ void updateDataTest()
     // 5. 构建数据操作选项。
     OH_UdmfOptions* options = OH_UdmfOptions_Create();
     // 此处key为示例，不可直接使用，其值应与OH_Udmf_SetUnifiedDataByOptions接口中获取到的key值保持一致。
-    char key[] = {"udmf://DataHub/com.ohos.test/0123456789"};
+    char key[] = "udmf://DataHub/com.ohos.test/0123456789";
     if (OH_UdmfOptions_SetIntention(options, Udmf_Intention::UDMF_INTENTION_DATA_HUB) != Udmf_ErrCode::UDMF_E_OK
         || OH_UdmfOptions_SetKey(options, key) != Udmf_ErrCode::UDMF_E_OK) {
         OH_LOG_ERROR(LOG_APP, "Set option error!");

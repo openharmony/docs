@@ -1,6 +1,12 @@
 # @ohos.bundle.shortcutManager (shortcutManager)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
-The module provides APIs to manage shortcuts, including whether to display shortcuts.
+The module provides APIs to manage [shortcuts](../../quick-start/typical-scenario-configuration.md), including whether to display shortcuts.
 
 > **NOTE**
 >
@@ -16,7 +22,7 @@ import { shortcutManager } from '@kit.AbilityKit';
 
 setShortcutVisibleForSelf(id: string, visible: boolean) : Promise\<void>
 
-Sets whether to display the shortcut with the specified ID for the current application. This API uses a promise to return the result.
+Sets whether to display the specified shortcut for the current application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
 
@@ -25,7 +31,7 @@ Sets whether to display the shortcut with the specified ID for the current appli
 | Name    | Type  | Mandatory| Description        |
 | ---------- | ------ | ---- | -------------- |
 | id         | string | Yes  | Shortcut ID, which is the value of the **shortcutId** field under the **shortcuts** tag in the [module.json5](../../quick-start/module-configuration-file.md) file. The value is a string of up to 63 bytes.|
-| visible    | boolean| Yes  | Whether to display the shortcut. The value **true** means to display the shortcut, and **false** means the opposite.|
+| visible    | boolean| Yes  | Whether to display the shortcut. **true** to display, **false** otherwise.|
 
 **Return value**
 
@@ -93,7 +99,7 @@ Defines the shortcut information defined in the [module.json5](../../quick-start
 
 | Type                                                        | Description          |
 | ------------------------------------------------------------ | -------------- |
-| [_ShortcutInfo](./js-apis-bundleManager-shortcutInfo.md#shortcutinfo) | Shortcut information defined in the configuration file.|
+| [_ShortcutInfo](./js-apis-bundleManager-shortcutInfo.md#shortcutinfo-1) | Shortcut information defined in the configuration file.|
 
 ## ShortcutWant
 

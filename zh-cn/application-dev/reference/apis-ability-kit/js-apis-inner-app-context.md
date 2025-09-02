@@ -1,4 +1,12 @@
-# Context（FA模型的上下文基类）
+# Context (FA模型的上下文基类)
+
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @xialiangwei-->
+<!--Designer: @ykzp-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 <!--deprecated_code_no_check-->
 
 Context模块提供了Ability或Application的上下文的基础能力，包括允许访问特定于应用程序的资源、请求和验证权限等。
@@ -588,7 +596,7 @@ setShowOnLockScreen(show: boolean, callback: AsyncCallback\<void>): void
 
 > **说明：**
 >
-> 从API version 9开始不再支持。建议使用window.setShowOnLockScreen替代，新接口为系统接口。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用window.setShowOnLockScreen替代，新接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -620,7 +628,7 @@ setShowOnLockScreen(show: boolean): Promise\<void>
 
 > **说明：**
 >
-> 从API version 9开始不再支持。建议使用window.setShowOnLockScreen替代，新接口为系统接口。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用window.setShowOnLockScreen替代，新接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1493,17 +1501,17 @@ context.printDrawnCompleted().then((data) => {
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称   | 类型     | 必填   | 说明    |
-| ---- | ------ | ---- | ----- |
-| pid  |number | 否    | 进程id。 |
-| uid  |number | 否    | 用户id。 |
+| 名称   | 类型     | 只读 | 可选 | 说明    |
+| ---- | ------ | ---- | ----- | ----- |
+| pid  |number | 否  | 是 | 进程id。 |
+| uid  |number | 否  | 是 | 用户id。 |
 
 ## PermissionRequestResult<sup>7+</sup>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称         | 类型             | 必填   | 说明         |
-| ----------- |-------------- | ---- | ---------- |
-| requestCode | number         | 是    | 用户传入的请求代码。 |
-| permissions | Array\<string> | 是    | 用户传入的权限。   |
-| authResults | Array\<number> | 是    | 请求权限的结果。   |
+| 名称         | 类型            | 只读 | 可选   | 说明         |
+| ----------- |-------------- | ---- | ------- |---------- |
+| requestCode | number         | 否  |  否 | 用户传入的请求代码。 |
+| permissions | Array\<string> | 否  |  否 | 用户传入的权限。   |
+| authResults | Array\<number> | 否  |  否 | 请求权限的结果。   |

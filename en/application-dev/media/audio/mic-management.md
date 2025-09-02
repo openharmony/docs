@@ -6,9 +6,9 @@ If the user mutes the microphone during audio recording, the recording process i
 
 ## How to Develop
 
-The **AudioVolumeGroupManager** class provides APIs for managing the microphone state. For details, see [API Reference](../../reference/apis-audio-kit/js-apis-audio.md#audiovolumegroupmanager9).
+The **AudioVolumeGroupManager** class provides APIs for managing the microphone state. For details, see [API Reference](../../reference/apis-audio-kit/arkts-apis-audio-AudioVolumeGroupManager.md).
 
-1. Create an **audioVolumeGroupManager** object.
+1. Create an audioVolumeGroupManager object.
      
    ```ts
    import { audio } from '@kit.AudioKit';
@@ -25,7 +25,7 @@ The **AudioVolumeGroupManager** class provides APIs for managing the microphone 
 <!--Del-->
 2. **(Optional; for system applications only)** Call **on('micStateChange')** to listen for microphone state changes. When the microphone state changes, the application will be notified of the change.
    
-   Currently, when multiple **AudioManager** instances are used in a single process, only the subscription of the last instance takes effect, and the subscription of other instances is overwritten (even if the last instance does not initiate a subscription). Therefore, you are advised to use a single **AudioManager** instance.
+   Currently, when multiple AudioManager instances are used in a single process, only the subscription of the last instance takes effect, and the subscription of other instances is overwritten (even if the last instance does not initiate a subscription). Therefore, you are advised to use a single AudioManager instance.
 
    ```ts
    // Listen for microphone state changes.

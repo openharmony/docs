@@ -1,4 +1,10 @@
 # ArcSlider
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyi0309-->
+<!--Designer: @liyi0309-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 弧形滑动条组件，通常用于在圆形屏幕的穿戴设备中快速调节设置值，如音量调节、亮度调节等应用场景。
 
@@ -164,8 +170,8 @@ ArcSliderLayoutOptions的构造函数。
 
 | 名称                 | 类型   | 必填 | 装饰器类型 | 说明                                                         |
 | -------------------- | ------ | ---- | ---------- | ------------------------------------------------------------ |
-| trackThickness       | number | 否   | @Trace     | 正常状态下弧形Slider的描边粗细，单位：vp。<br />默认值：5<br />取值范围：最小可取5，最大可取16，异常值按默认值处理。 |
-| activeTrackThickness | number | 否   | @Trace     | 放大状态下弧形Slider的描边粗细，单位：vp。<br />默认值：24<br />取值范围：最小可取24，最大可取36，异常值按默认值处理。 |
+| trackThickness       | number | 否   | @Trace     | 正常状态下弧形Slider的描边粗细，单位：vp。<br />默认值：5<br />取值范围：[5, 16]，异常值按默认值处理。 |
+| activeTrackThickness | number | 否   | @Trace     | 放大状态下弧形Slider的描边粗细，单位：vp。<br />默认值：24<br />取值范围：[24, 36]，异常值按默认值处理。 |
 | trackColor           | string | 否   | @Trace     | 设置描边背景色。<br />默认值：#33FFFFFF                      |
 | selectedColor        | string | 否   | @Trace     | 设置描边高亮色。<br />默认值：#FF5EA1FF                      |
 | trackBlur            | number | 否   | @Trace     | 设置描边背景模糊值，单位：vp。<br />默认值：20<br/>设置小于0的值时，按照默认值处理。 |
@@ -302,13 +308,15 @@ ArcSliderStyleOptions的构造信息。
 
 | 名称                 | 类型   | 必填 | 说明                                                         |
 | -------------------- | ------ | ---- | ------------------------------------------------------------ |
-| trackThickness       | number | 否   | 正常状态下弧形Slider的描边粗细，单位：vp。<br />默认值：5<br />取值范围：最小可取5，最大可取16，异常值按默认值处理。 |
-| activeTrackThickness | number | 否   | 放大状态下弧形Slider的描边粗细，单位：vp。<br />默认值：24<br />取值范围：最小可取24，最大可取36，异常值按默认值处理。 |
+| trackThickness       | number | 否   | 正常状态下弧形Slider的描边粗细，单位：vp。<br />默认值：5<br />取值范围：[5, 16]，异常值按默认值处理。 |
+| activeTrackThickness | number | 否   | 放大状态下弧形Slider的描边粗细，单位：vp。<br />默认值：24<br />取值范围：[24, 36]，异常值按默认值处理。 |
 | trackColor           | string | 否   | 设置描边背景色。<br />默认值：#33FFFFFF                      |
 | selectedColor        | string | 否   | 设置描边高亮色。<br />默认值：#FF5EA1FF                      |
 | trackBlur            | number | 否   | 设置描边背景模糊值，单位：vp。<br />默认值：20<br/>设置小于0的值时，按照默认值处理。 |
 
 ## 示例
+
+从API version 18开始，该示例展示了ArcSlider组件的基本用法。
 
 ```ts
 // xxx.ets

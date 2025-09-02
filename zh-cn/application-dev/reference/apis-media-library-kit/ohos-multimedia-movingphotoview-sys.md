@@ -1,4 +1,10 @@
 # @ohos.multimedia.movingphotoview (动态照片)(系统接口)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @tangye123456-->
+<!--Designer: @YanSanzo-->
+<!--Tester: @tinygreyy-->
+<!--Adviser: @zengyawen-->
 
 用于播放动态照片文件并控制其播放状态的组件。
 
@@ -161,7 +167,7 @@ restart()
 
 ### setPlaybackPeriod<sup>20+</sup>
 
-setPlaybackPeriod(startTime: double, endTime: double)
+setPlaybackPeriod(startTime: number, endTime: number)
 
 设置播放区间，再次播放时生效。
 
@@ -173,8 +179,8 @@ setPlaybackPeriod(startTime: double, endTime: double)
 
 | 参数名  | 类型    | 必填 | 说明                         |
 | ------- | ------- | ---- | ---------------------------- |
-| startTime| double| 是   | 区间播放开始时间，单位：ms。取值范围：大于等于0。|
-| endTime| double| 是   | 区间播放结束时间，单位：ms。取值范围：大于startTime。 |
+| startTime| number| 是   | 区间播放开始时间，单位：ms。取值范围：大于等于0。|
+| endTime| number| 是   | 区间播放结束时间，单位：ms。取值范围：大于startTime。 |
 
 **错误码：**
 

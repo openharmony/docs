@@ -1,28 +1,33 @@
-# Developing a Long List with Lazy Loading
+# Implementing a List Layout
 
-For the **List**, **Grid**, **WaterFlow**, and **Swiper** components, the [NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeadapterhandle) object is provided as an alternative to the ArkTS **LazyForEach** feature for on-demand child component generation. The specific attribute enumeration values are as follows:
 
-- **List**: **NODE_LIST_NODE_ADAPTER**
-- **Grid**: **NODE_GRID_NODE_ADAPTER**
-- **WaterFlow**: **NODE_WATER_FLOW_NODE_ADAPTER**
-- **Swiper**: **NODE_SWIPER_NODE_ADAPTER**
+The ArkUI development framework provides list components through NDK APIs, enabling efficient display of structured, scrollable content. List components allow you to control the scroll position, group display content, and use **NodeAdapter** for lazy loading to improve list creation performance.
 
-Key specifications of **NodeAdapter** include:
+## Creating a List
 
+For details about how to create a list, see [Integrating with ArkTS Pages](../ui/ndk-access-the-arkts-page.md).
+
+## Listening for Scroll Events
+
+Implement list scroll event monitoring as instructed in the component event monitoring section.
+
+## Implementing Lazy Loading
+
+### NodeAdapter Overview
+
+The NDK provides the [NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeadapterhandle) object as an alternative to the LazyForEach functionality in ArkTS for on-demand generation of child components. **NodeAdapter** works with **List**, **ListItemGroup**, **Grid**, **WaterFlow**, and **Swiper** components.
 
 - Nodes with **NodeAdapter** set do not support direct child addition APIs like **addChild**. Child components are managed entirely by **NodeAdapter**. If a parent component already has child nodes, setting **NodeAdapter** will fail and return an error code.
 
-- **NodeAdapter** uses events to notify you to generate components on demand. You must register an [event listener](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_nodeadapter_registereventreceiver) and handle logic within listener events, which are defined by [ArkUI_NodeAdapterEventType](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeadaptereventtype). **NodeAdapter** does not automatically release off-screen component objects; you must manage object release or caching during the [NODE_ADAPTER_EVENT_ON_REMOVE_NODE_FROM_ADAPTER](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeadaptereventtype) event. The following image illustrates the event triggering mechanism in a typical list scrolling scenario.
+- **NodeAdapter** notifies you of on-demand generation of components through relevant events. Similar to the component event mechanism, you need to register an [event listener](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_nodeadapter_registereventreceiver) when using **NodeAdapter** and handle logic in the listener events. Relevant events are defined by [ArkUI_NodeAdapterEventType](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeadaptereventtype). **NodeAdapter** does not actively release off-screen component objects; you must release or cache and reuse component objects in the [NODE_ADAPTER_EVENT_ON_REMOVE_NODE_FROM_ADAPTER](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeadaptereventtype) event. The following image illustrates the event triggering mechanism in a typical list scrolling scenario.
   ![en-us_image_0000001949769409](figures/en-us_image_0000001949769409.png)
 
 
-The following example optimizes the code in the [Integrating with ArkTS Pages](ndk-access-the-arkts-page.md) section, by introducing a lazy loading mechanism for a text list:
+### Implementing a Lazy Loading Adapter
 
+Use the **ArkUListItemAdapter** class to manage the lazy loading adapter. Create a **NodeAdapter** object in the class constructor and set an event listener for the **NodeAdapter** object. In the class destructor, destroy the **NodeAdapter** object.
 
-1. Integrate ArkTS into your project. For details, see [Integrating with ArkTS Pages](ndk-access-the-arkts-page.md).
-
-2. Implement lazy loading adapter functionality.
-   ```
+   ```c++
    // ArkUIListItemAdapter
    // Code for lazy loading functionality in a text list.
    
@@ -71,9 +76,9 @@ The following example optimizes the code in the [Integrating with ArkTS Pages](n
            // Remove the item at the specified index.
            data_.erase(data_.begin() + index);
            // If the index change affects the visibility of items in the visible area, the NODE_ADAPTER_EVENT_ON_REMOVE_NODE_FROM_ADAPTER event will be triggered to remove the element.
-           // If items are added, the NODE_ADAPTER_EVENT_ON_GET_NODE_ID and NODE_ADAPTER_EVENT_ON_ADD_NODE_TO_ADAPTER events will be triggered accordingly.
+           // Depending on whether there are new elements, the NODE_ADAPTER_EVENT_ON_GET_NODE_ID or NODE_ADAPTER_EVENT_ON_ADD_NODE_TO_ADAPTER event will be triggered.
            OH_ArkUI_NodeAdapter_RemoveItem(handle_, index, 1);
-           // Update the new total count.
+           // Update the total count.
            OH_ArkUI_NodeAdapter_SetTotalNodeCount(handle_, data_.size());
        }
    
@@ -82,7 +87,7 @@ The following example optimizes the code in the [Integrating with ArkTS Pages](n
            // If the index change affects the visibility of elements in the visible area, the NODE_ADAPTER_EVENT_ON_GET_NODE_ID and NODE_ADAPTER_EVENT_ON_ADD_NODE_TO_ADAPTER events will be triggered.
            // If items are removed, the NODE_ADAPTER_EVENT_ON_REMOVE_NODE_FROM_ADAPTER event will be triggered accordingly.
            OH_ArkUI_NodeAdapter_InsertItem(handle_, index, 1);
-           // Update the new total count.
+           // Update the total count.
            OH_ArkUI_NodeAdapter_SetTotalNodeCount(handle_, data_.size());
        }
    
@@ -90,7 +95,7 @@ The following example optimizes the code in the [Integrating with ArkTS Pages](n
            auto temp = data_[oldIndex];
            data_.insert(data_.begin() + newIndex, temp);
            data_.erase(data_.begin() + oldIndex);
-           // If the move changes the visibility of items within the visible area, the corresponding events will be triggered.
+           // If the move changes the visibility of items within the visible area, the corresponding events will be triggered. Otherwise, no event is triggered.
            OH_ArkUI_NodeAdapter_MoveItem(handle_, oldIndex, newIndex);
        }
    
@@ -112,7 +117,7 @@ The following example optimizes the code in the [Integrating with ArkTS Pages](n
    
    private:
        static void OnStaticAdapterEvent(ArkUI_NodeAdapterEvent *event) {
-           // Obtain the instance object and invoke its event callback.
+           // Obtain the instance object and invoke the instance event callback.
            auto itemAdapter = reinterpret_cast<ArkUIListItemAdapter *>(OH_ArkUI_NodeAdapterEvent_GetUserData(event));
            itemAdapter->OnAdapterEvent(event);
        }
@@ -152,10 +157,10 @@ The following example optimizes the code in the [Integrating with ArkTS Pages](n
                auto textItem = std::dynamic_pointer_cast<ArkUITextNode>(recycledItem->GetChildren().back());
                textItem->SetTextContent(data_[index]);
                handle = recycledItem->GetHandle();
-               // Release the reference from the cache.
+               // Release the reference in the cache pool.
                cachedItems_.pop();
            } else {
-               // Create a new item.
+               // Create an element.
                auto listItem = std::make_shared<ArkUIListItemNode>();
                auto textNode = std::make_shared<ArkUITextNode>();
                textNode->SetTextContent(data_[index]);
@@ -167,10 +172,10 @@ The following example optimizes the code in the [Integrating with ArkTS Pages](n
                listItem->AddChild(textNode);
                listItem->RegisterOnClick([index]() { OH_LOG_INFO(LOG_APP, "on %{public}d list item click", index); });
                handle = listItem->GetHandle();
-               // Keep a reference to the text list item.
+               // Maintain a reference to the text list item.
                items_.emplace(handle, listItem);
            }
-           // Set the item to be displayed.
+           // Set the element to be displayed.
            OH_ArkUI_NodeAdapterEvent_SetItem(event, handle);
        }
    
@@ -198,10 +203,12 @@ The following example optimizes the code in the [Integrating with ArkTS Pages](n
    #endif // MYAPPLICATION_ARKUILISTITEMADAPTER_H
    ```
 
-3. Enhance the encapsulated list class object used in the [Integrating with ArkTS Pages](ndk-access-the-arkts-page.md) section with additional lazy loading capabilities.
-   ```
+### Applying the Lazy Loading Adapter in a List
+
+1. Add the **SetLazyAdapter** function in **ArkUIListNode** to set the **NODE_LIST_NODE_ADAPTER** attribute for the list node and pass the **NodeAdapter** as an attribute parameter.
+   ```c++
    // ArkUIListNode.h
-   // Encapsulated list class object.
+   // List encapsulation object.
    
    #ifndef MYAPPLICATION_ARKUILISTNODE_H
    #define MYAPPLICATION_ARKUILISTNODE_H
@@ -219,7 +226,7 @@ The following example optimizes the code in the [Integrating with ArkTS Pages](n
        ~ArkUIListNode() override {
            nativeModule_->unregisterNodeEvent(handle_, NODE_LIST_ON_SCROLL_INDEX);
            if (adapter_) {
-               // Unmount UI components associated with the adapter upon destruction.
+               // Unload the UI components under the adapter during destruction.
                nativeModule_->resetAttribute(handle_, NODE_LIST_NODE_ADAPTER);
                adapter_.reset();
            }
@@ -272,72 +279,29 @@ The following example optimizes the code in the [Integrating with ArkTS Pages](n
    #endif // MYAPPLICATION_ARKUILISTNODE_H
    ```
 
-4. Write code for lazy loading of a list.
-   ```
-   // ArkUILazyTextListExample
-   // Sample code for lazy loading a list.
+2. Create example code for a **List** using lazy loading and call the **SetLazyAdapter** API of the **List** node to set the lazy loading adapter.
+   ```c++
+   // LazyTextListExample
+   // Example code for a lazy loading text list.
    
    #ifndef MYAPPLICATION_LAZYTEXTLISTEXAMPLE_H
    #define MYAPPLICATION_LAZYTEXTLISTEXAMPLE_H
    
    #include "ArkUIBaseNode.h"
    #include "ArkUIListNode.h"
-   #include "UITimer.h"
-   #include <thread>
-   #include <uv.h>
+   
    
    namespace NativeModule {
    
    std::shared_ptr<ArkUIBaseNode> CreateLazyTextListExample(napi_env env) {
-       // Create components and mount them.
+       // Create and mount the component.
        // 1: Create a List component.
        auto list = std::make_shared<ArkUIListNode>();
        list->SetPercentWidth(1);
        list->SetPercentHeight(1);
-       // 2: Create ListItem child components for lazy loading and mount them to the List component.
+       // 2: Create a ListItem child component for lazy loading and mount it to the List component.
        auto adapter = std::make_shared<ArkUIListItemAdapter>();
        list->SetLazyAdapter(adapter);
-   
-       // 3: Simulate lazy loading operations.
-       CreateNativeTimer(env, adapter.get(), 4, [](void *userdata, int32_t count) {
-           auto adapter = reinterpret_cast<ArkUIListItemAdapter *>(userdata);
-           switch (count) {
-           case 0: {
-               // Remove the 0th item.
-               adapter->RemoveItem(0);
-               break;
-           }
-           case 1: {
-               // Insert the 0th item.
-               adapter->InsertItem(0, "0");
-               break;
-           }
-           case 2: {
-               // Move an item to a new position.
-               adapter->MoveItem(0, 2);
-               break;
-           }
-           case 3: {
-               // Reload a single item.
-               adapter->ReloadItem(0, "1112");
-               break;
-           }
-           case 4: {
-               // Reload all items.
-               adapter->ReloadAllItem();
-               break;
-           }
-           default: {
-           }
-           }
-       });
-   
-       // 3: Register list-related listening events.
-       list->RegisterOnScrollIndex([](int32_t index) { OH_LOG_INFO(LOG_APP, "on list scroll index: %{public}d", index); });
-       // 4: Register the appear event.
-       list->RegisterOnAppear([]() { OH_LOG_INFO(LOG_APP, "on list mount to tree"); });
-       // 4: Register the disappear event.
-       list->RegisterOnDisappear([]() { OH_LOG_INFO(LOG_APP, "on list unmount from tree"); });
        return list;
    }
    } // namespace NativeModule
@@ -345,84 +309,9 @@ The following example optimizes the code in the [Integrating with ArkTS Pages](n
    #endif // MYAPPLICATION_LAZYTEXTLISTEXAMPLE_H
    ```
 
-5. Implement a simple timer module.
-   ```
-   // UITimer.h
-   // Timer module.
-   
-   #ifndef MYAPPLICATION_UITIMER_H
-   #define MYAPPLICATION_UITIMER_H
-   
-   #include <hilog/log.h>
-   #include <js_native_api.h>
-   #include <js_native_api_types.h>
-   #include <node_api.h>
-   #include <node_api_types.h>
-   #include <string>
-   #include <thread>
-   #include <uv.h>
-   
-   namespace NativeModule {
-   
-   struct UIData {
-       void *userData = nullptr;
-       int32_t count = 0;
-       int32_t totalCount = 0;
-       void (*func)(void *userData, int32_t count) = nullptr;
-   };
-   
-   napi_threadsafe_function threadSafeFunction = nullptr;
-   
-   void CreateNativeTimer(napi_env env, void *userData, int32_t totalCount, void (*func)(void *userData, int32_t count)) {
-       napi_value name;
-       std::string str = "UICallback";
-       napi_create_string_utf8(env, str.c_str(), str.size(), &name);
-       // UI main thread callback function.
-       napi_create_threadsafe_function(
-           env, nullptr, nullptr, name, 0, 1, nullptr, nullptr, nullptr,
-           [](napi_env env, napi_value value, void *context, void *data) {
-               auto userdata = reinterpret_cast<UIData *>(data);
-               userdata->func(userdata->userData, userdata->count);
-               delete userdata;
-           },
-           &threadSafeFunction);
-       // Start the timer to simulate data changes.
-       std::thread timerThread([data = userData, totalCount, func]() {
-           uv_loop_t *loop = uv_loop_new();
-           uv_timer_t *timer = new uv_timer_t();
-           uv_timer_init(loop, timer);
-           timer->data = new UIData{data, 0, totalCount, func};
-           uv_timer_start(
-               timer,
-               [](uv_timer_t *handle) {
-                   OH_LOG_INFO(LOG_APP, "on timeout");
-                   napi_acquire_threadsafe_function(threadSafeFunction);
-                   auto *customData = reinterpret_cast<UIData *>(handle->data);
-                   // Create callback data.
-                   auto *callbackData =
-                       new UIData{customData->userData, customData->count, customData->totalCount, customData->func};
-                   napi_call_threadsafe_function(threadSafeFunction, callbackData, napi_tsfn_blocking);
-                   customData->count++;
-                   if (customData->count > customData->totalCount) {
-                       uv_timer_stop(handle);
-                       delete handle;
-                       delete customData;
-                   }
-               },
-               4000, 4000);
-           uv_run(loop, UV_RUN_DEFAULT);
-           uv_loop_delete(loop);
-       });
-       timerThread.detach();
-   }
-   } // namespace NativeModule
-   
-   #endif // MYAPPLICATION_UITIMER_H
-   ```
-
-6. Mount the lazy loading example code onto the **ContentSlot** as described in the [Integrating with ArkTS Pages](ndk-access-the-arkts-page.md) section.
-   ```
-   // NDK API entry mount file.
+3. Call the **List** lazy loading example code in **NativeEntry.cpp**.
+   ```c++
+   // NDK API entry mounting file.
    
    #include "NativeEntry.h"
    
@@ -437,11 +326,7 @@ The following example optimizes the code in the [Integrating with ArkTS Pages](n
    #include <uv.h>
    
    namespace NativeModule {
-   namespace {
-   napi_env g_env;
-   }
    
-   napi_env GetNapiEnv() { return g_env; }
    
    napi_value CreateNativeRoot(napi_env env, napi_callback_info info) {
        size_t argc = 1;
@@ -454,20 +339,285 @@ The following example optimizes the code in the [Integrating with ArkTS Pages](n
        OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
        NativeEntry::GetInstance()->SetContentHandle(contentHandle);
    
-       // Create a lazy-loaded text list.
+       // Create a lazy loading text list.
        auto node = CreateLazyTextListExample(env);
    
-       // Keep the native side object in the management class to maintain its lifecycle.
+       // Keep the native-side object in the management class to maintain its lifecycle.
        NativeEntry::GetInstance()->SetRootNode(node);
        g_env = env;
        return nullptr;
    }
    
    napi_value DestroyNativeRoot(napi_env env, napi_callback_info info) {
-       // Release the native side object from the management class.
+       // Release the native-side object from the management class.
        NativeEntry::GetInstance()->DisposeRootNode();
        return nullptr;
    }
    
    } // namespace NativeModule
    ```
+## Controlling the List Scroll Position
+
+1. Control the list to scroll to a specified offset position.
+    ```c++
+    //ArkUIListNode.h
+    // List encapsulation object.
+    class ArkUIListNode: public ArkUINode {
+        //...
+        void ScrollTo(float offset) {
+            ArkUI_NumberValue value[] = {{.f32 =0},{.f32 = offset},{.f32 = 0}};
+            ArkUI_AttributeItem Item = {.value = value,.size = 3};
+            nativeModule_->setAttribute(handle_, NODE_SCROLL_OFFSET, &Item);
+        }
+    };
+    ```
+2. Control the list to scroll to a specified element.
+    ```c++
+    //ArkUIListNode.h
+    // List encapsulation object.
+    class ArkUIListNode : public ArkUINode {
+        //...
+        void ScrollToIndex(int32_t index) {
+            ArkUI_NumberValue value[] = {{.i32 = index}};
+            ArkUI_AttributeItem Item = {.value = value, .size = 1};
+            nativeModule_->setAttribute(handle_, NODE_LIST_SCROLL_TO_INDEX, &Item);
+        }
+    };
+    ```
+
+3. Control the list to scroll by a specified offset.
+    ```c++
+   //ArkUIListNode.h
+    // List encapsulation object.
+    class ArkUIListNode : public ArkUINode {
+        void ScrollBy(float offset) {
+            ArkUI_NumberValue value[] = {{.f32 =0},{.f32 = offset}};
+            ArkUI_AttributeItem Item = {.value = value, .size = 2};
+            nativeModule_->setAttribute(handle_, NODE_SCROLL_BY, &Item);
+        }
+    };
+    ```
+## Implementing Swipe-to-Delete for List Items
+
+1. Set the **NODE_LIST_ITEM_SWIPE_ACTION** attribute for **ListItem** and pass the **ArkUI_ListItemSwipeActionOption** object as an attribute parameter.
+    ```c++
+    // ArkUIListItemNode.h 
+    // Encapsulation class for list items.
+    #ifndef MYAPPLICATION_ARKUILISTITEMNODE_H 
+    #define MYAPPLICATION_ARKUILISTITEMNODE_H 
+    #include "ArkUINode.h" 
+    namespace NativeModule{ 
+    class ArkUIListItemNode : public ArkUINode { 
+    public: 
+        ArkUIListItemNode() 
+            : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_LIST_ITEM)) {}
+        ~ArkUIListItemNode() { 
+            if(swipeAction_) { 
+                OH_ArkUI_ListItemSwipeActionOption_Dispose(swipeAction_); 
+            }
+            if (swipeItem_) { 
+                OH_ArkUI_ListItemSwipeActionItem_Dispose(swipeItem_); 
+            }
+        } 
+        void SetSwiperAction(std::shared_ptr<ArkUINode> node) { 
+            swipeContent_ = node; 
+            swipeItem_ = OH_ArkUI_ListItemSwipeActionItem_Create(); 
+            OH_ArkUI_ListItemSwipeActionItem_SetContent(swipeItem_, node->GetHandle()); 
+            swipeAction_ = OH_ArkUI_ListItemSwipeActionOption_Create(); 
+            OH_ArkUI_ListItemSwipeActionOption_SetEnd(swipeAction_, swipeItem_); 
+            ArkUI_AttributeItem Item = {.object= swipeAction_ }; 
+            nativeModule_->setAttribute(handle_,NODE_LIST_ITEM_SWIPE_ACTION, &Item); 
+        } 
+        std::shared_ptr<ArkUINode> GetSwipeContent() const { 
+            return swipeContent_; 
+        }
+    private: 
+        ArkUI_ListItemSwipeActionOption* swipeAction_ = nullptr; 
+        ArkUI_ListItemSwipeActionItem* swipeItem_ = nullptr;
+        std::shared_ptr<ArkUINode> swipeContent_ = nullptr; 
+    }; 
+    }// namespace NativeModule 
+    #endif// MYAPPLICATION_ARKUILISTITEMNODE_H
+    ```
+
+2. When creating a **ListItem**, create the swipe action item for the **ListItem** and bind a click event to perform the data source deletion operation in the click event. When reusing a **ListItem**, update the binding event of the swipe action item.
+    ```c++
+    // ArkUIListItemAdapter.h 
+    class ArkUIListItemAdapter { 
+        //...
+        // Handle the display of new items in the visible area.
+        void OnNewItemAttached(ArkUI_NodeAdapterEvent *event) { 
+            auto index = OH_ArkUI_NodeAdapterEvent_GetItemIndex(event); 
+            ArkUI_NodeHandle handle = nullptr; 
+            if (!cachedItems_.empty()) { 
+                // Use and update the recycled cache.
+                auto recycledItem = cachedItems_.top(); 
+                auto textItem = std::dynamic_pointer_cast<ArkUITextNode>(recycledItem->GetChildren().back()); 
+                textItem->SetTextContent(data_[index]); 
+                handle = recycledItem->GetHandle(); 
+                auto swipeContent = recycledItem->GetSwipeContent(); 
+                swipeContent->RegisterOnClick([this, data = data_[index]]() { 
+                    auto it = std::find(data_.begin(), data_.end(), data); 
+                    if (it != data_.end()) { 
+                        auto index = std::distance(data_.begin(), it); 
+                        RemoveItem(index); 
+                    } 
+                }); 
+                // Release the reference in the cache pool.
+                cachedItems_.pop(); 
+            } else { 
+                // Create an element.
+                auto listItem = std::make_shared<ArkUIListItemNode>(); 
+                auto textNode = std::make_shared<ArkUITextNode>();
+                textNode->SetTextContent(data_[index]); 
+                textNode->SetFontSize(16); 
+                textNode->SetPercentWidth(1); 
+                textNode->SetHeight(100); 
+                textNode->SetBackgroundColor(0xFFfffacd); 
+                textNode->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER);
+                listItem->AddChild(textNode); 
+                // Create the swipe action item for the ListItem.
+                auto swipeNode = std::make_shared<ArkUITextNode>(); 
+                swipeNode->SetTextContent("del"); 
+                swipeNode->SetFontSize(16); 
+                swipeNode->SetFontColor(0xFFFFFFFF); 
+                swipeNode->SetWidth(100); 
+                swipeNode->SetHeight(100); 
+                swipeNode->SetBackgroundColor(0xFFFF0000); 
+                swipeNode->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER); 
+                swipeNode->RegisterOnClick([this, data = data_[index]]() { 
+                    auto it = std::find(data_.begin(), data_.end(), data); 
+                    if (it != data_.end()) { 
+                        auto index = std::distance(data_.begin(), it); 
+                        RemoveItem(index); 
+                    } 
+                }); 
+                listItem->SetSwiperAction(swipeNode); 
+                handle = listItem->GetHandle(); 
+                // Maintain a reference to the text list item.
+                items_.emplace(handle, listItem); 
+            }
+            // Set the element to be displayed.
+            OH_ArkUI_NodeAdapterEvent_SetItem(event, handle); 
+        } 
+    }
+    ```
+3. Add **RemoveItem** in **ArkUIListItemAdapter** to delete the data source and call the **OH_ArkUI_NodeAdapter_RemoveItem** API to instruct the framework to update the UI.
+    ```c++
+    // ArkUIListItemAdapter.h 
+    class ArkUIListItemAdapter { 
+        //...
+        void RemoveItem(size_t index) { 
+            // Remove the item at the specified index.
+            data_.erase(data_.begin() + index); 
+            // If the index change affects the visibility of items in the visible area, the NODE_ADAPTER_EVENT_ON_REMOVE_NODE_FROM_ADAPTER event will be triggered to remove the element.
+            // Depending on whether there are new elements, the NODE_ADAPTER_EVENT_ON_GET_NODE_ID or NODE_ADAPTER_EVENT_ON_ADD_NODE_TO_ADAPTER event will be triggered.
+            OH_ArkUI_NodeAdapter_RemoveItem(handle_, index, 1); 
+            // Update the total count.
+            OH_ArkUI_NodeAdapter_SetTotalNodeCount(handle_, data_.size()); 
+        } 
+    };
+    ```
+## Using a Grouped List
+1. Implement a grouped list using the **ListItemGroup** component, which supports features to add headers and footers and use lazy loading.
+    ```c++
+    // ArkUIListItemGroupNode.h 
+
+    #ifndef MYAPPLICATION_ARKUILISTITEMGROUPNODE_H 
+    #define MYAPPLICATION_ARKUILISTITEMGROUPNODE_H 
+    #include "ArkUINode.h" 
+    #include "ArkUIListItemAdapter.h" 
+    namespace NativeModule{ 
+    class ArkUIListItemGroupNode : public ArkUINode { 
+    public: 
+        ArkUIListItemGroupNode() 
+            : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_LIST_ITEM_GROUP)) {} 
+        void SetHeader(std::shared_ptr<ArkUINode> node) { 
+            if (node) { 
+                ArkUI_AttributeItem Item = {.object = node->GetHandle()}; 
+                nativeModule_->setAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_HEADER, &Item); 
+            } else { 
+                nativeModule_->resetAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_HEADER); 
+            } 
+        } 
+        void SetFooter(std::shared_ptr<ArkUINode> node) { 
+            if (node) { 
+                ArkUI_AttributeItem Item = {.object= node->GetHandle()}; 
+                nativeModule_->setAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_FOOTER, &Item); 
+            } else { 
+                nativeModule_->resetAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_FOOTER); 
+            } 
+        } 
+        std::shared_ptr<ArkUINode> GetHeader() const { 
+            return header_; 
+        }
+        std::shared_ptr<ArkUINode> GetFooter() const { 
+            return footer_; 
+        }
+        // Import the lazy loading module.
+        void SetLazyAdapter(const std::shared_ptr<ArkUIListItemAdapter> &adapter) { 
+            assert(handle_); 
+            ArkUI_AttributeItem item{nullptr,0, nullptr, adapter->GetHandle()}; 
+            nativeModule_->setAttribute(handle_, NODE_LIST_ITEM_GROUP_NODE_ADAPTER, &item); 
+            adapter_ = adapter; 
+        } 
+    private: 
+        std::shared_ptr<ArkUINode> header_; 
+        std::shared_ptr<ArkUINode> footer_; 
+        std::shared_ptr<ArkUIListItemAdapter> adapter_; 
+    }; 
+    }// namespace NativeModule 
+    #endif//MYAPPLICATION_ARKUILISTITEMGROUPNODE_H
+    ```
+2. Set the sticky header for the **List** component.
+    ```c++
+    // ArkUIListNode.h 
+    // List encapsulation object.
+    class ArkUIListNode : public ArkUINode{ 
+        //...
+        void SetSticky(ArkUI_StickyStyle style) { 
+            assert(handle_); 
+            ArkUI_NumberValue value[] = {{.i32 = style}}; 
+            ArkUI_AttributeItem item = {value, 1}; 
+            nativeModule_->setAttribute(handle_, NODE_LIST_STICKY, &item); 
+        }
+    };
+    ```
+3. Implement a grouped list UI using **ListItemGroup** under the **List** component.
+    ```c++
+    // LazyTextListExample.h 
+    // Example code for a lazy loading text list.
+    #ifndef MYAPPLICATION_LAZYTEXTLISTEXAMPLE_H
+    #define MYAPPLICATION_LAZYTEXTLISTEXAMPLE_H 
+    #include "ArkUIBaseNode.h" 
+    #include "ArkUIListNode.h" 
+    #include "ArkUIListItemGroupNode.h" 
+    namespace NativeModule { 
+    std::shared_ptr<ArkUIBaseNode> CreateLazyTextListExample() { 
+    // Create and mount the component.
+    // 1: Create a List component.
+        auto list = std::make_shared<ArkUIListNode>(); 
+        list->SetPercentWidth(1); 
+        list->SetPercentHeight(1); 
+        // Set the sticky header.
+        list->SetSticky(ARKUI_STICKY_STYLE_BOTH); 
+        // 2: Create a ListItemGroup and mount it to the List.
+        for (int32_t i = 0; i < 3; i++) { 
+            auto header = std::make_shared<ArkUITextNode>(); 
+            header->SetTextContent("header"); 
+            header->SetFontSize(16); 
+            header->SetPercentWidth(1); 
+            header->SetHeight(50); 
+            header->SetBackgroundColor(0xFFDCDCDC); 
+            header->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER);
+            auto listItemGroup = std::make_shared<ArkUIListItemGroupNode>(); 
+            listItemGroup->SetHeader(header); 
+            auto adapter = std::make_shared<ArkUIListItemAdapter>(4); 
+            listItemGroup->SetLazyAdapter(adapter); 
+            list->AddChild(listItemGroup); 
+        }
+        return list; 
+    }
+    }// namespace NativeModule 
+    #endif// MYAPPLICATION_LAZYTEXTLISTEXAMPLE_H
+    ```

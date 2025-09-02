@@ -1,4 +1,10 @@
 # 开发适用串口协议的设备驱动
+<!--Kit: Driver Development Kit-->
+<!--Subsystem: Driver-->
+<!--Owner: @lixinsheng2-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
 
 ## 简介
 
@@ -187,7 +193,7 @@ libusb_serial_ndk.z.so
 
 ### 调测验证
 
-驱动应用侧开发完成后，可在Openahrmony设备上安装应用，测试步骤如下：
+驱动应用侧开发完成后，可在OpenHarmony设备上安装应用，测试步骤如下：
 
 1. 在设备上点击驱动应用，应用在设备上被拉起。
 2. 点击波特率等设置按钮，可以设置串口属性。

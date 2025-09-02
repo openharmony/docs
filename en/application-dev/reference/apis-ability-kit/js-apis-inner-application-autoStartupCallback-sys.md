@@ -36,7 +36,7 @@ let autoStartupCallback: common.AutoStartupCallback = {
     console.info(`autostartupmanager onAutoStartupOn, data: ${JSON.stringify(data)}.`);
   },
   onAutoStartupOff(data: common.AutoStartupInfo) {
-    console.info(`autostartupmanager onAutoStartupOff, data: ${JSON.stringify(data)}}.`);
+    console.info(`autostartupmanager onAutoStartupOff, data: ${JSON.stringify(data)}.`);
   }
 }
 
@@ -76,7 +76,7 @@ let autoStartupCallback: common.AutoStartupCallback = {
     console.info(`autostartupmanager onAutoStartupOn, data: ${JSON.stringify(data)}.`);
   },
   onAutoStartupOff(data: common.AutoStartupInfo) {
-    console.info(`autostartupmanager onAutoStartupOff, data: ${JSON.stringify(data)}}.`);
+    console.info(`autostartupmanager onAutoStartupOff, data: ${JSON.stringify(data)}.`);
   }
 }
 

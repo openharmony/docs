@@ -1,8 +1,16 @@
 # Core File Kit（文件基础服务）<!--core-file-api-->
 
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25-->
+<!--Designer: @bubble_mao; @zhuangzhuang; @gsl_1234-->
+<!--Tester: @liuhonggang123-->
+<!--Adviser: @foryourself-->
+
 - ArkTS API<!--core-file-arkts-->
   - [@ohos.application.BackupExtensionAbility (备份恢复扩展能力)](js-apis-application-backupExtensionAbility.md)
   - [@ohos.file.cloudSync (端云同步能力)](js-apis-file-cloudsync.md)
+  - [@ohos.file.cloudSyncManager (端云同步管理能力)](js-apis-file-cloudsyncmanager.md)
   - [@ohos.file.environment (目录环境能力)](js-apis-file-environment.md)
   - [@ohos.file.fileuri (文件URI)](js-apis-file-fileuri.md)
   - [@ohos.file.fs (文件管理)](js-apis-file-fs.md)
@@ -37,19 +45,19 @@
     - [@system.file (文件存储)](js-apis-system-file.md)
 - C API<!--core-file-c-->
   - 模块<!--core-file-module-->
-    - [Environment](_environment.md)
-    - [FileIO](_file_i_o.md)
-    - [FileShare](file_share.md)
-    - [Fileuri](fileuri.md)
+    - [Environment](capi-environment.md)
+    - [FileIO](capi-fileio.md)
+    - [fileShare](capi-fileshare.md)
+    - [fileUri](capi-fileuri.md)
   - 头文件<!--core-file-headerfile-->
-    - [error_code.h](error__code_8h.md)
-    - [oh_environment.h](oh__environment_8h.md)
-    - [oh_file_share.h](oh__file__share_8h.md)
-    - [oh_file_uri.h](oh__file__uri_8h.md)
-    - [oh_fileio.h](oh__fileio_8h.md)
+    - [oh_environment.h](capi-oh-environment-h.md)
+    - [error_code.h](capi-error-code-h.md)
+    - [oh_fileio.h](capi-oh-fileio-h.md)
+    - [oh_file_share.h](capi-oh-file-share-h.md)
+    - [oh_file_uri.h](capi-oh-file-uri-h.md)
   - 结构体<!--core-file-struct-->
-    - [FileShare_PolicyErrorResult](_file_share___policy_error_result.md)
-    - [FileShare_PolicyInfo](_file_share___policy_info.md)
+    - [FileShare_PolicyErrorResult](capi-fileshare-fileshare-policyerrorresult.md)
+    - [FileShare_PolicyInfo](capi-fileshare-fileshare-policyinfo.md)
 - 错误码<!--core-file-arkts-errcode-->
   - [文件管理错误码](errorcode-filemanagement.md)
   

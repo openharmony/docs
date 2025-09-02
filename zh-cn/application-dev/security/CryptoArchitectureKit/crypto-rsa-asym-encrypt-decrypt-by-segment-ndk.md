@@ -1,5 +1,12 @@
 # 使用RSA非对称密钥分段加解密(C/C++)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 对应的算法规格请查看[非对称密钥加解密算法规格：RSA](crypto-asym-encrypt-decrypt-spec.md#rsa)。
 
 **加密**
@@ -34,6 +41,7 @@
 #include "CryptoArchitectureKit/crypto_architecture_kit.h"
 #include <algorithm>
 #include <vector>
+#include <string>
 
 static std::vector<uint8_t> doTestRsaEnc(OH_CryptoKeyPair *keyPair, std::vector<uint8_t> &plainText)
 {

@@ -57,13 +57,13 @@ AtomicServiceTabs ({
 
 | Name| Type| Mandatory| Decorator| Description|
 | --------------- | ------ | ---- | ----|----------|
-| tabContents | [[TabContentBuilder?](#tabcontentbuilder),[TabContentBuilder?](#tabcontentbuilder), [TabContentBuilder?](#tabcontentbuilder),[TabContentBuilder?](#tabcontentbuilder), [TabContentBuilder?](#tabcontentbuilder)] | No| @BuilderParam| Array of content view containers.|
-| tabBarOptionsArray | [[TabBarOptions?](#tabbaroptions),[TabBarOptions?](#tabbaroptions), [TabBarOptions?](#tabbaroptions),[TabBarOptions?](#tabbaroptions), [TabBarOptions?](#tabbaroptions)]  | Yes| @Prop | Array of tab bar container configurations.|
-| tabBarPosition | [TabBarPosition](#tabbarposition) | No  |@Prop | Position of the tab bar.|
-| layoutMode<sup>16+</sup> | [LayoutMode](ts-container-tabcontent.md#layoutmode10) | No  |@Prop | Sets the layout mode of the images and texts on the bottom tab.|
-| barBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | No| @Prop | Background color of the tab bar.|
-| index | number | No| @Prop | Index of the currently displayed tab.|
-| barOverlap | boolean| No| @Prop | Whether the tab bar is superimposed on the **TabContent** component after having its background blurred.|
+| tabContents | [[TabContentBuilder?](#tabcontentbuilder),[TabContentBuilder?](#tabcontentbuilder), [TabContentBuilder?](#tabcontentbuilder),[TabContentBuilder?](#tabcontentbuilder), [TabContentBuilder?](#tabcontentbuilder)] | No| @BuilderParam| Array of content view containers. The default value is empty.|
+| tabBarOptionsArray | [[TabBarOptions](#tabbaroptions),[TabBarOptions](#tabbaroptions), [TabBarOptions?](#tabbaroptions),[TabBarOptions?](#tabbaroptions), [TabBarOptions?](#tabbaroptions)]  | Yes| @Prop | Array of tab bar container configurations.|
+| tabBarPosition | [TabBarPosition](#tabbarposition) | No  |@Prop | Position of the tab bar. The default value is **TabBarPosition.Bottom**.|
+| layoutMode<sup>18+</sup> | [LayoutMode](ts-container-tabcontent.md#layoutmode10) | No  |@Prop | Layout mode of the images and text on the bottom tab. The default value is **LayoutMode.VERTICAL**.|
+| barBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | No| @Prop | Background color of the tab bar. The default value is transparent.|
+| index | number | No| @Prop | Index of the currently displayed tab. The index is zero-based.|
+| barOverlap | boolean| No| @Prop | Whether the tab bar overlaps the **TabContent** component with a blurred background effect. The default value is **true**.|
 | controller|[TabsController](ts-container-tabs.md#tabscontroller) | No| - |Tab controller, which is used to control switching of tabs.|
 | onChange | Callback\<number\> | No| - | Callback invoked when a tab is switched.|
 | onTabBarClick | Callback\<number\> | No| - |Callback invoked when a tab is clicked.|
@@ -86,7 +86,7 @@ type TabContentBuilder = () => void
 ### constructor
 constructor(icon: ResourceStr | TabBarSymbol, text: ResourceStr, unselectedColor?: ResourceColor, selectedColor?: ResourceColor)
 
-A constructor used to create an **TabBarOptions** instance.
+A constructor used to create a **TabBarOptions** instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -96,7 +96,7 @@ A constructor used to create an **TabBarOptions** instance.
 
 | Name| Type| Mandatory| Description|
 | --------------- | ------ |------ |------ |
-| icon | [ResourceStr](ts-types.md#resourcestr) \| [TabBarSymbol](ts-container-tabcontent.md#tabbarsymbol12) | Yes| Icon of the tab.|
+| icon | [ResourceStr](ts-types.md#resourcestr) \| [TabBarSymbol](ts-container-tabcontent.md#tabbarsymbol12) | Yes| Image of the tab.|
 | text | [ResourceStr](ts-types.md#resourcestr) | Yes| Text of the tab.|
 | unselectedColor | [ResourceColor](ts-types.md#resourcecolor) | No| Color of the tab when it is not selected.<br>Default value: **#99182431**|
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | No| Color of the tab when it is selected.<br>Default value: **#FF007DFF**|

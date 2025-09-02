@@ -33,7 +33,7 @@ View the error log to determine the cause of the error. Possible causes include 
 
 **Error Message**
 
-The DataShareHelper is not initialized successfully.
+The DataShareHelper fails to be initialized.
 
 **Description**
 
@@ -43,14 +43,14 @@ The **DataShareHelper** class fails to be created.
 
 1. The **uri** specified in **createDataHelper** is incorrect.
 2. The **context** specified in **createDataHelper** is incorrect. **DataShare** supports only the stage model.
-3. The client application does not have the permission to start **DataShareExtension** from the background when the client attempts to start **DataShareExtension** from the background to create **DataShareHelper**.
+3. The application does not have the permission to start **DataShareExtension** from the background when the client attempts to start **DataShareExtension** from the background to create **DataShareHelper**.
 
 **Solution**
 
 1. Obtain the correct URI.
 2. Check that the context of the stage model is used.
-3. Check whether the client has the read or write permission on data. Perform the following steps:
-    (1) Obtain the data provider bundle name from the URI. For example, the bundle name in uri "datashareproxy://com.acts.ohos.data.datasharetest/test" is **com.acts.ohos.data.datasharetest**.
+3. Check whether the client has the read or write permission on data. Perform the following steps:<br>
+    (1) Obtain the data provider bundle name from the URI. For example, the bundle name in uri "datashareproxy://com.acts.ohos.data.datasharetest/test" is **com.acts.ohos.data.datasharetest**.<br>
     (2) Obtain the configuration based on the bundle name. For example, run **bm dump --bundle-name com.acts.ohos.data.datasharetest** to obtain the **DataShareExtension** configuration, and check whether the data consumer has **readPermission** or **writePermission**.
 
 ## 15700011 URI Not Exist
@@ -107,3 +107,40 @@ The closed **DataShareHelper** instance cannot be used.
 **Solution**
 
 Create a new **DataShareHelper** instance for use.
+
+## 15700014 Incorrect Parameters for Shared Configuration
+
+**Error Message**
+
+The parameter format is incorrect or the value range is invalid.
+
+**Description**
+
+1. This error code is reported if the parameter format is incorrect.
+
+2. This error code is reported if the value of the parameter exceeds the expected range.
+
+**Possible Causes**
+
+1. The URI length exceeds 256 bytes.
+
+2. The value length of **proxyData** exceeds 4096 bytes.
+
+3. The number of elements in the URI array passed by the API exceeds 32.
+
+4. The number of elements in the **proxyData** array passed by the API exceeds 32.
+
+5. URI format verification fails.
+
+**Solution**
+
+1. Check whether the length of a URI in the URI array or **proxyData** array exceeds 256 bytes.
+
+2. Check whether the length of a value in the **proxyData** array exceeds 4096 bytes.
+
+3. Check whether the number of elements in the URI array exceeds 32.
+
+4. Check whether the number of elements in the **proxyData** array exceeds 32.
+
+5. Check whether the URIs in the URI array or **proxyData** array comple with the following format:<br>
+    **"datashareproxy://{*bundleName*}/{*path*}"**, where **bundleName** indicates the bundle name of the publisher application, and **path** can be set to any value.

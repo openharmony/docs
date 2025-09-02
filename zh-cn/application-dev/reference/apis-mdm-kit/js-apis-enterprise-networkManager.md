@@ -1,4 +1,10 @@
 # @ohos.enterprise.networkManager（网络管理）
+<!--Kit: MDM Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @huanleima-->
+<!--Designer: @liuzuming-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供设备网络管理能力，包括查询设备IP地址、MAC地址信息等。
 
@@ -27,6 +33,7 @@ getAllNetworkInterfacesSync(admin: Want): Array&lt;string&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -81,6 +88,7 @@ getIpAddressSync(admin: Want, networkInterface: string): string
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -137,6 +145,7 @@ getMacSync(admin: Want, networkInterface: string): string
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -193,6 +202,7 @@ isNetworkInterfaceDisabledSync(admin: Want, networkInterface: string): boolean
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -249,6 +259,7 @@ setNetworkInterfaceDisabledSync(admin: Want, networkInterface: string, isDisable
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -301,6 +312,7 @@ setGlobalProxySync(admin: Want, httpProxy: connection.HttpProxy): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -354,20 +366,23 @@ try {
 
 setGlobalProxyForAccount(admin: Want, httpProxy: connection.HttpProxy, accountId: number): void
 
-设置指定用户下的网络代理，当前仅支持2in1设备。
+设置指定用户下的网络代理。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**设备行为差异：** 该接口在PC/2in1设备中可正常调用，在其他设备中返回801错误码。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
 | 参数名    | 类型                                                         | 必填 | 说明                       |
 | --------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 设备管理应用。             |
-| accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。             |
 | httpProxy | [connection.HttpProxy](../apis-network-kit/js-apis-net-connection.md#httpproxy10) | 是   | 网络代理配置信息。 |
+| accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
 
 **错误码**：
 
@@ -379,6 +394,7 @@ setGlobalProxyForAccount(admin: Want, httpProxy: connection.HttpProxy, accountId
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
@@ -419,6 +435,7 @@ getGlobalProxySync(admin: Want): connection.HttpProxy
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -466,20 +483,23 @@ try {
 
 ## networkManager.getGlobalProxyForAccount<sup>15+</sup>
 
-getGlobalProxyForAccount(admin: Want, accountId: number): connection.HttpProxy
+getGlobalProxyForAccount(admin: Want | null, accountId: number): connection.HttpProxy
 
-获取指定用户下的网络代理，当前仅支持2in1设备。
+获取指定用户下的网络代理。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**设备行为差异：** 该接口在PC/2in1设备中可正常调用，在其他设备中返回801错误码。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | 是   | 企业设备管理扩展组件。 |
 | accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
 
 **返回值：**
@@ -497,7 +517,7 @@ getGlobalProxyForAccount(admin: Want, accountId: number): connection.HttpProxy
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
@@ -532,6 +552,7 @@ addFirewallRule(admin: Want, firewallRule: FirewallRule): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -564,7 +585,7 @@ let wantTemp: Want = {
 };
 let firewallRule: networkManager.FirewallRule = {
   // 需根据实际情况进行替换
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.22.66",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",
@@ -574,7 +595,12 @@ let firewallRule: networkManager.FirewallRule = {
   "protocol": networkManager.Protocol.UDP
 };
 
-networkManager.addFirewallRule(wantTemp, firewallRule);
+try {
+  networkManager.addFirewallRule(wantTemp, firewallRule);
+  console.info('Succeeded in adding firewall rule.');
+} catch (err) {
+  console.error(`Failed to add firewall rule. Code: ${err.code}, message: ${err.message}`);
+}
 ```
 
 ## networkManager.removeFirewallRule
@@ -588,6 +614,7 @@ removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -621,7 +648,7 @@ let wantTemp: Want = {
 
 let firewallRule: networkManager.FirewallRule = {
   // 需根据实际情况进行替换
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.22.66",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",
@@ -630,11 +657,22 @@ let firewallRule: networkManager.FirewallRule = {
   "action": networkManager.Action.DENY,
   "protocol": networkManager.Protocol.UDP
 };
+
 // 移除指定的规则
-networkManager.removeFirewallRule(wantTemp, firewallRule);
+try {
+  networkManager.removeFirewallRule(wantTemp, firewallRule);
+  console.info('Succeeded in removing firewall rule.');
+} catch (err) {
+  console.error(`Failed to remove firewall rule. Code: ${err.code}, message: ${err.message}`);
+}
 
 // 清空所有规则
-networkManager.removeFirewallRule(wantTemp);
+try {
+  networkManager.removeFirewallRule(wantTemp);
+  console.info('Succeeded in removing all firewall rule.');
+} catch (err) {
+  console.error(`Failed to remove all firewall rule. Code: ${err.code}, message: ${err.message}`);
+}
 ```
 
 ## networkManager.getFirewallRules
@@ -647,6 +685,7 @@ getFirewallRules(admin: Want): Array\<FirewallRule>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -683,7 +722,12 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility'
 };
 let firewallRule: Array<networkManager.FirewallRule>;
-firewallRule = networkManager.getFirewallRules(wantTemp);
+try {
+  firewallRule = networkManager.getFirewallRules(wantTemp);
+  console.info('Succeeded in getting firewall rules');
+} catch (err) {
+  console.error(`Failed to get firewall rules. Code: ${err.code}, message: ${err.message}`);
+}
 ```
 
 ## networkManager.addDomainFilterRule
@@ -697,6 +741,7 @@ addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -734,7 +779,12 @@ let domainFilterRule: networkManager.DomainFilterRule = {
   "action": networkManager.Action.DENY
 };
 
-networkManager.addDomainFilterRule(wantTemp, domainFilterRule);
+try {
+  networkManager.addDomainFilterRule(wantTemp, domainFilterRule);
+  console.info('Succeeded in adding domain filter rules');
+} catch (err) {
+  console.error(`Failed to add domain filter rules. Code: ${err.code}, message: ${err.message}`);
+}
 ```
 
 ## networkManager.removeDomainFilterRule
@@ -748,6 +798,7 @@ removeDomainFilterRule(admin: Want, domainFilterRule?: DomainFilterRule): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -787,10 +838,20 @@ let domainFilterRule: networkManager.DomainFilterRule = {
 };
 
 // 移除指定的规则
-networkManager.removeDomainFilterRule(wantTemp, domainFilterRule);
+try {
+  networkManager.removeDomainFilterRule(wantTemp, domainFilterRule);
+  console.info('Succeeded in removing domain filter rules');
+} catch (err) {
+  console.error(`Failed to remove domain filter rules. Code: ${err.code}, message: ${err.message}`);
+}
 
 // 清空所有规则
-networkManager.removeDomainFilterRule(wantTemp);
+try {
+  networkManager.removeDomainFilterRule(wantTemp);
+  console.info('Succeeded in removing all domain filter rules');
+} catch (err) {
+  console.error(`Failed to remove all domain filter rules. Code: ${err.code}, message: ${err.message}`);
+}
 ```
 
 ## networkManager.getDomainFilterRules
@@ -803,6 +864,7 @@ getDomainFilterRules(admin: Want): Array\<DomainFilterRule>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -839,7 +901,12 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility'
 };
 let domainFilterRule: Array<networkManager.DomainFilterRule>;
-domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
+try {
+  domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
+  console.info('Succeeded in getting  domain filter rules');
+} catch (err) {
+  console.error(`Failed to get domain filter rules. Code: ${err.code}, message: ${err.message}`);
+}
 ```
 
 ## networkManager.turnOnMobileData<sup>20+</sup>
@@ -852,6 +919,7 @@ turnOnMobileData(admin: Want, isForce: boolean): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -900,6 +968,7 @@ turnOffMobileData(admin: Want): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -947,6 +1016,7 @@ addApn(admin: Want, apnInfo: Record\<string, string>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1001,6 +1071,7 @@ deleteApn(admin: Want, apnId: string): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1049,6 +1120,7 @@ updateApn(admin: Want, apnInfo: Record\<string, string>, apnId: string): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1105,6 +1177,7 @@ setPreferredApn(admin: Want, apnId: string): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1153,6 +1226,7 @@ queryApn(admin: Want, apnInfo: Record\<string, string>): Array\<string>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1213,6 +1287,7 @@ queryApn(admin: Want, apnId: string): Record\<string, string>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1271,9 +1346,9 @@ try {
 | srcPort   | string                  | 否   | 是 |源端口。                                                     |
 | destPort  | string                  | 否   | 是 |目标端口。                                                   |
 | appUid    | string                  | 否   | 是 |应用uid。                                                    |
-| direction | [Direction](#direction) | 否   | 是 |规则链。<br/>添加防护墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的[Direction](#direction)链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
-| action    | [Action](#action)       | 否   | 是 |接收或者丢弃数据包。<br/>添加防护墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的匹配[Action](#action)规则的链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
-| protocol  | [Protocol](#protocol)   | 否   | 是 |网络协议。当值为ALL或者ICMP时，不允许设置srcPort与destPort。 |
+| direction | [Direction](#direction) | 否   | 是 |规则链。<br/>添加防火墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的[Direction](#direction)链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
+| action    | [Action](#action)       | 否   | 是 |接收或者丢弃数据包。<br/>添加防火墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的匹配[Action](#action)规则的链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
+| protocol  | [Protocol](#protocol)   | 否   | 是 |网络协议。当值为ALL或者ICMP时，设置srcPort与destPort无效。 |
 
 ## DomainFilterRule
 
@@ -1287,7 +1362,7 @@ try {
 | domainName | string            | 否   | 是 |域名。添加域名过滤规则时必填。                               |
 | appUid     | string            | 否   | 是 |应用uid。                                                    |
 | action     | [Action](#action) | 否   | 是 |接收或者丢弃数据包。<br/>添加域名过滤规则时必填；<br/>移除域名过滤规则时非必填，当值为空时，表示清空所有的匹配[Action](#action)规则的链，且domainName，appUid也必须传入空值。 |
-| direction<sup>15+</sup> | [Direction](#direction) | 否 | 是 |规则链。<br/>添加防护墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的[Direction](#direction)链，且domainName，appUid也必须传入空值。|
+| direction<sup>15+</sup> | [Direction](#direction) | 否 | 是 |规则链。<br/>添加域名过滤规则时必填；<br/>移除域名过滤规则时非必填，当值为空时，表示清空所有的[Direction](#direction)链，且domainName，appUid也必须传入空值。|
 
 ## Direction
 

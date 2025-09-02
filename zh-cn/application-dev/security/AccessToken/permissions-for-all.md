@@ -1,5 +1,12 @@
 # 开放权限（系统授权）
 
+<!--Kit: ArkUI-->
+<!--Subsystem: Security-->
+<!--Owner: @harylee-->
+<!--Designer: @linshuqing; @hehehe-li-->
+<!--Tester: @leiyuqian-->
+<!--Adviser: @zengyawen-->
+
 此列表内所有权限均为系统授权（system_grant）的开放权限，面向所有应用开放。
 
 应用申请了system_grant权限后，系统将在用户安装应用时，自动把相应权限授予给应用。
@@ -551,6 +558,34 @@
 允许应用设置主窗容器透明和去除主窗外边框阴影。
 
 获取该权限后，应用可以设置主窗口容器背景色，以及主窗口是否显示阴影。
+
+**权限级别**：normal
+
+**授权方式**：系统授权（system_grant）
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
+## ohos.permission.START_WINDOW_BELOW_LOCK_SCREEN
+
+允许应用在锁屏状态下被启动。
+
+获取该权限后，应用可以在锁屏状态下被启动。设备解锁后，可直接看到应用启动界面。
+
+**权限级别**：normal
+
+**授权方式**：系统授权（system_grant）
+
+**支持设备**：PC/2in1
+
+**起始版本**：21
+
+## ohos.permission.kernel.IGNORE_LIBRARY_VALIDATION
+
+允许独立二进制程序加载具有不同ownerid的独立二进制SO。
+
+仅对独立二进制程序生效，对HAP不生效。
 
 **权限级别**：normal
 

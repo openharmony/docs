@@ -29,6 +29,9 @@
 | [NetConn_NetHandleList](capi-netconnection-netconn-nethandlelist.md) | NetConn_NetHandleList | 网络列表。 |
 | [NetConn_NetSpecifier](capi-netconnection-netconn-netspecifier.md) | NetConn_NetSpecifier | 网络的特征集。 |
 | [NetConn_NetConnCallback](capi-netconnection-netconn-netconncallback.md) | NetConn_NetConnCallback | 网络状态监听回调集合。 |
+| [NetConn_ProbeResultInfo](capi-netconnection-netconn-proberesultinfo.md) | NetConn_ProbeResultInfo | 定义探测结果信息。 |
+| [NetConn_TraceRouteOption](capi-netconnection-netconn-tracerouteoption.md) | NetConn_TraceRouteOption | 定义网络跟踪路由选项。 |
+| [NetConn_TraceRouteInfo](capi-netconnection-netconn-tracerouteinfo.md) | NetConn_TraceRouteInfo | 定义跟踪路由信息。 |
 
 ### 枚举
 
@@ -37,7 +40,21 @@
 | [NetConn_NetCap](#netconn_netcap) | NetConn_NetCap | 网络能力集。 |
 | [NetConn_NetBearerType](#netconn_netbearertype) | NetConn_NetBearerType | 网络载体类型。 |
 | [NetConn_ErrorCode](#netconn_errorcode) | NetConn_ErrorCode | 网络连接返回值错误码。 |
+| [NetConn_PacketsType](#netconn_packetstype) | NetConn_PacketsType | 枚举跟踪路由的数据包类型。 |
 
+
+### 宏定义
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| **NETCONN_MAX_RTT_NUM** | 4 | 
+| **NETCONN_MAX_NET_SIZE** | 32 | 
+| **NETCONN_MAX_BEARER_TYPE_SIZE** | 32 | 
+| **NETCONN_MAX_CAP_SIZE** | 32 | 
+| **NETCONN_MAX_ADDR_SIZE** | 32 | 
+| **NETCONN_MAX_ROUTE_SIZE** | 64 | 
+| **NETCONN_MAX_EXCLUSION_SIZE** | 256 | 
+| **NETCONN_MAX_STR_LEN** | 256 | 
 
 ### 函数
 
@@ -115,6 +132,23 @@ enum NetConn_ErrorCode
 | NETCONN_PARAMETER_ERROR = 401 | 参数错误 |
 | NETCONN_OPERATION_FAILED = 2100002 | 无法连接到服务 |
 | NETCONN_INTERNAL_ERROR = 2100003 | 内部错误。1. 内存异常, 比如内存不足或内存拷贝失败。2. 空指针, 比如访问已释放内存的指针。 |
+
+### NetConn_PacketsType
+
+```
+enum NetConn_PacketsType
+```
+
+**描述**
+
+枚举跟踪路由的数据包类型。
+
+**起始版本：** 20
+
+| 枚举项 | 描述 |
+| -- | -- |
+| NETCONN_PACKETS_ICMP = 0 | 互联网控制消息协议。 |
+| NETCONN_PACKETS_UDP = 1 | 用户数据报协议。 |
 
 
 ## 函数说明

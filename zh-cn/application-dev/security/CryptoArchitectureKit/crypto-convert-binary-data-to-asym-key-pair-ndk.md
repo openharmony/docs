@@ -1,5 +1,12 @@
 # 指定二进制数据转换非对称密钥对(C/C++)
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 以RSA、ECC、SM2为例，根据指定的非对称密钥二进制数据，生成非对称密钥对（OH_CryptoKeyPair），即将外部或存储的二进制数据转换为算法库的密钥对象，该对象可用于后续的加解密等操作。
 
 > **说明：**
@@ -44,14 +51,14 @@ static OH_Crypto_ErrCode doTestDataCovertAsymKey()
       return ret;
    }
 
-   uint8_t rsaDatablob[] = { 48,129,159,48,13,6,9,42,134,72,134,247,13,1,1,1,5,0,3,129,141,0,
+   uint8_t rsaDataBlob[] = { 48,129,159,48,13,6,9,42,134,72,134,247,13,1,1,1,5,0,3,129,141,0,
    48,129,137,2,129,129,0,235,184,151,247,130,216,140,187,64,124,219,137,140,184,53,137,216,105,
    156,141,137,165,30,80,232,55,96,46,23,237,197,123,121,27,240,190,14,111,237,172,67,42,47,164,
    226,248,211,157,213,194,131,109,181,41,173,217,127,252,121,126,26,130,55,4,134,104,73,5,132,
    91,214,146,232,64,99,87,33,222,155,159,9,59,212,144,46,183,83,89,220,189,148,13,176,5,139,156,
    230,143,16,152,79,36,8,112,40,174,35,83,82,57,137,87,123,215,99,199,66,131,150,31,143,56,252,2,
    73,41,70,159,2,3,1,0,1 };
-   Crypto_DataBlob retBlob = { .data = rsaDatablob, .len = sizeof(rsaDatablob) };
+   Crypto_DataBlob retBlob = { .data = rsaDataBlob, .len = sizeof(rsaDataBlob) };
 
    OH_CryptoKeyPair *dupKeyPair = nullptr;
    ret = OH_CryptoAsymKeyGenerator_Convert(ctx, CRYPTO_DER, &retBlob, nullptr, &dupKeyPair);

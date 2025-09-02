@@ -1,4 +1,10 @@
 # 几何形状绘制（C/C++）
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphic-->
+<!--Owner: @hangmengxin-->
+<!--Designer: @wangyanglan-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
 
 
 ## 场景介绍
@@ -68,7 +74,7 @@ OH_Drawing_Point2D point4 = {800.0f, 800.0f};
 OH_Drawing_CanvasDrawPoint(canvas, &point4);
 OH_Drawing_Point2D point5 = {1000.0f, 1000.0f};
 OH_Drawing_CanvasDrawPoint(canvas, &point5);
-// 去除掉画布中的画笔
+// 移除画布中的画笔
 OH_Drawing_CanvasDetachPen(canvas);
 // 销毁各类对象
 OH_Drawing_PenDestroy(pen);
@@ -108,7 +114,7 @@ OH_Drawing_CanvasAttachPen(canvas, pen);
 OH_Drawing_Rect* rect = OH_Drawing_RectCreate(100, 200, 500, 300);
 // 基于矩形对象绘制圆弧
 OH_Drawing_CanvasDrawArc(canvas, rect, 10, 200);
-// 去除掉画布中的画笔
+// 移除画布中的画笔
 OH_Drawing_CanvasDetachPen(canvas);
 // 销毁各类对象
 OH_Drawing_PenDestroy(pen);
@@ -145,7 +151,7 @@ OH_Drawing_CanvasAttachPen(canvas, pen);
 OH_Drawing_Point *point = OH_Drawing_PointCreate(700, 700);
 // 基于圆心点和半径在画布上绘制圆
 OH_Drawing_CanvasDrawCircle(canvas, point, 600);
-// 去除掉画布中的画笔
+// 移除画布中的画笔
 OH_Drawing_CanvasDetachPen(canvas);
 // 销毁各类对象
 OH_Drawing_PenDestroy(pen);
@@ -181,12 +187,12 @@ OH_Drawing_PenSetWidth(pen, 10);
 // 设置 画笔转角样式
 OH_Drawing_PenSetJoin(pen, LINE_ROUND_JOIN);
 // 设置画布中的画笔
-OH_Drawing_CanvasAttachPen(canvas, pen); 
+OH_Drawing_CanvasAttachPen(canvas, pen);
 // 创建画刷，此例对闭合路径进行了颜色填充，所以需要使用画刷
 OH_Drawing_Brush *brush = OH_Drawing_BrushCreate();
 OH_Drawing_BrushSetColor(brush , OH_Drawing_ColorSetArgb(0xFF, 0x00, 0xFF, 0x00));
 // 设置画布中的画刷
-OH_Drawing_CanvasAttachBrush(canvas, brush ); 
+OH_Drawing_CanvasAttachBrush(canvas, brush);
 int len = 551;
 float aX = 630;
 float aY = 551;
@@ -211,7 +217,7 @@ OH_Drawing_PathLineTo(path, eX, eY);
 OH_Drawing_PathClose(path); 
 // 绘制闭合路径
 OH_Drawing_CanvasDrawPath(canvas, path);
-// 去除掉画布中的画笔和画刷
+// 移除画布中的画笔和画刷
 OH_Drawing_CanvasDetachPen(canvas);
 OH_Drawing_CanvasDetachBrush(canvas);
 // 销毁各类对象
@@ -251,7 +257,7 @@ OH_Drawing_RegionSetRect(region2, rect2);
 // 两个矩形区域组合
 OH_Drawing_RegionOp(region1, region2, OH_Drawing_RegionOpMode::REGION_OP_MODE_XOR); 
 OH_Drawing_CanvasDrawRegion(canvas, region1);
-// 去除掉画布中的画刷
+// 从画布移除画刷
 OH_Drawing_CanvasDetachBrush(canvas);
 // 销毁各类对象
 OH_Drawing_BrushDestroy(brush);
@@ -319,7 +325,7 @@ OH_Drawing_Rect* rect = OH_Drawing_RectCreate(100, 100, 900, 600);
 OH_Drawing_RoundRect* roundRect = OH_Drawing_RoundRectCreate(rect, 30, 30);
 // 绘制圆角矩形
 OH_Drawing_CanvasDrawRoundRect(canvas, roundRect);
-// 去除掉画布中的画刷
+// 从画布移除画刷
 OH_Drawing_CanvasDetachBrush(canvas);
 // 销毁各类对象
 OH_Drawing_BrushDestroy(brush);
@@ -338,5 +344,5 @@ OH_Drawing_RoundRectDestroy(roundRect);
 
 针对Drawing(C/C++)的开发，有以下相关实例可供参考：
 
-- [NDKGraphicsDraw (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKGraphicsDraw)
+- [NDKGraphicsDraw (API14)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKGraphicsDraw)
 <!--RP1End-->

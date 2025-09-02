@@ -1,5 +1,12 @@
 # 从Swift到ArkTS的迁移指导
 
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @fanglou-->
+<!--Designer: @qyhuo32-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @zhang_yixin13-->
+
 对于熟悉Swift的开发者而言，ArkTS作为新的开发语言，带来了全新的开发体验与机遇。ArkTS在语法和编程范式上不仅继承了现代语言的特性，还针对生态进行了深度优化。理解Swift与ArkTS的差异和共性，能够帮助开发者快速上手应用开发，避开常见的编程误区。
 
 本文档基于Swift语言对ArkTS语言进行对比和介绍。如需更详细的了解，可参考[ArkTS语言介绍](./introduction-to-arkts.md)。
@@ -40,8 +47,8 @@ let version = 5.0;
 | Swift类型体系                | ArkTS类型体系            | ArkTS示例代码                                                                 | 核心差异说明                                                                 |  
 |-----------------------------|--------------------------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------|  
 | **数组**：`var arr: [Int] = [1, 2, 3]` | **Array**：`let arr: Array<number> = [1, 2, 3];` | ```// 动态长度语法糖```<br>```let dynamicArr = [4, 5, 6];```<br> | Swift数组长度可变。<br>ArkTS的`Array`是动态数组，支持`push`/`pop`等操作；可直接用`[]`简化初始化。数组不会越界，当数组下标超过数组长度时会得到undefined。 |  
-| **集合 - List**：`var list: [String] = ["a", "b"]` | **Array**：`let strList: Array<string> = ['a', 'b'];` | ```strList.push('c'); // 向数组末尾添加元素```<br>```let firstItem = strList[0]; // 索引访问```<br> | Swift集合通过类型声明。<br>ArkTS数组兼具基础类型与集合特性，语法更简洁。 |  
-| **集合 - Dictionary**：`var dict: [String: Int] = ["key": 1]` | **Map**：`let map: Map<string, number> = new Map();` | ```map.set('key', 1); // 添加键值对```<br>```let value = map.get('key'); // 获取值```<br>```map.has('key'); // 检查键是否存在```<br> | Swift的`Dictionary`需显式声明类型。<br>ArkTS的`Map`操作更直接，支持链式调用。 |  
+| **集合 - Set**：`var mySet: Set<String> = ["a", "b"]` | **Set**：`let mySet: Set<string> = new Set(["a", "b"]);` | ```mySet.add('c'); // 向集合内添加元素```<br>```for (const item of mySet) {...); // 迭代访问```<br> | Swift集合通过类型声明。<br>ArkTS中集合的类型较灵活，适合动态场景。 |  
+| **字典 - Dictionary**：`var dict: [String: Int] = ["key": 1]` | **Map**：`let map: Map<string, number> = new Map();` | ```map.set('key', 1); // 添加键值对```<br>```let value = map.get('key'); // 获取值```<br>```map.has('key'); // 检查键是否存在```<br> | Swift的`Dictionary`需显式声明类型。<br>ArkTS的`Map`操作更直接，支持链式调用。 |  
 | **协议**：`protocol Shape { func area() -> Double }` | **interface**：`interface Shapes { area(): number; }` | ```class Rectangles implements Shapes {```<br>```  public width: number = 0;```<br>```  public height: number = 0;```<br>```  area(): number { return this.width * this.height; }```<br>```}```<br> | 语法结构相似，但ArkTS接口实现无需显式修饰符，且支持可选属性。 |  
 | **类**：`class Circle: Shape { /* 类定义 */ }` | **class**：`class Circles implements Shape { /* 类定义 */ }` | ```class Circles {```<br>```  radius: number;```<br>```  constructor(radius: number = 10) { // 支持参数默认值```<br>```    this.radius = radius;```<br>```  }```<br>```}```<br> | ArkTS类支持属性默认值、可选参数，构造函数参数可直接声明为类属性，语法更简洁。 |  
 | **枚举**：`enum Color { case red, green, blue }` | **enum**：`enum Colors { Red, Green, Blue }` | ```enum Colors { Red = 1, Green, Blue };```<br>```let color = Colors.Green; // 值为2（自动递增）```<br> | 基本概念一致，但ArkTS枚举不支持Swift中的自定义构造函数和方法，仅支持简单的数值或字符串枚举。 |  
@@ -94,13 +101,15 @@ ArkTS基础类库和容器类库增强了语言的基础功能，包括高精度
 
 ## 语言结构
 
-Swift是一种典型的面向对象的编程语言，即一切围绕类和对象展开。
+Swift是一种融合面向对象、函数式和协议导向范式的现代语言，强调安全性、性能与简洁性，适用于跨平台开发。
 
-ArkTS采用更为灵活的语言结构，融合了面向对象编程和函数式编程等多种范式。
+ArkTS融合声明式UI、函数式和面向对象范式，通过响应式系统和跨设备适配能力，高效构建多端一致的高性能应用。
 
 ### 模块与包管理
 
-在Swift中，开发者使用模块（module）来组织代码，通过import语句引入其他模块中的类。ArkTS也有自己的模块和包管理机制，同样通过import语句引入其他模块中的功能。
+在Swift中，开发者使用模块（module）来组织代码，通过import语句引入其他模块中的类。
+
+ArkTS也有自己的模块和包管理机制，同样通过import语句引入其他模块中的功能。
 
 **ArkTS示例：**
 
@@ -141,20 +150,6 @@ namespace Models {
 ```
 
 相比Swift的模块+内部类组合，ArkTS的命名空间能更直观地实现代码分层。
-
-**类成员初始化**
-
-ArkTS支持在类体内直接初始化属性。
-
-**ArkTS示例：**
-
-```typescript
-class User {
-    private name: string = 'Default'
-}
-```
-
-Swift通常在构造函数中初始化属性。
 
 ### 异步编程模型
 

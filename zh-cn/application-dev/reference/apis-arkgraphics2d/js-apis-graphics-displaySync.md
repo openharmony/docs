@@ -1,4 +1,11 @@
 #  @ohos.graphics.displaySync (可变帧率)
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hudi33-->
+<!--Designer: @hudi33-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @ge-yafang-->
+
 可变帧率支持让开发者以指定帧率来运行UI业务，一般用于开发者自绘制UI，并且对于帧率有特定诉求的场景。
 
 > **说明：**
@@ -170,7 +177,7 @@ backDisplaySync?.start()
 > **说明：**
 >
 > start接口是将DisplaySync关联到UI实例和窗口，若在非UI页面中或者一些异步回调中进行start操作，可能无法跟踪到当前UI的上下文，导致start接口失败，会进一步导致订阅函数无法执行。
-> 因此可以使用UIContext的[runScopedTask](../apis-arkui/js-apis-arkui-UIContext.md#runscopedtask)接口来指定start函数执行的UI上下文。
+> 因此可以使用UIContext的[runScopedTask](../apis-arkui/arkts-apis-uicontext-uicontext.md#runscopedtask)接口来指定start函数执行的UI上下文。
 
 **示例：**
 

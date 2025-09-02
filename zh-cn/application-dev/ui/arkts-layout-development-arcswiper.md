@@ -1,5 +1,10 @@
 # 创建弧形轮播 (ArcSwiper)（圆形屏幕推荐使用）
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @Hu_ZeQi-->
+<!--Designer: @jiangdayuan-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 ArcSwiper是弧形轮播组件，用于圆形屏幕使用，提供弧形轮播显示能力。具体用法请参考[ArcSwiper](../reference/apis-arkui/arkui-ts/ts-container-arcswiper.md)。
 
@@ -82,8 +87,6 @@ ArcSwiper支持滑动手指、点击导航点、旋转表冠和控制控制器�
     ArcButtonPosition,
     ArcSwiper,
     ArcSwiperAttribute, // ArcSwiper的属性依赖ArcSwiperAttribute对象导入，不建议删除该对象的引入。
-    ArcDotIndicator,
-    ArcDirection,
     ArcSwiperController
   } from '@kit.ArkUI';
 

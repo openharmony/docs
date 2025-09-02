@@ -5,7 +5,7 @@ The multimedia subsystem provides a set of simple and easy-to-use APIs for you t
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.multimedia.media (Media)](js-apis-media.md).
+> - This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.multimedia.media (Media)](arkts-apis-media.md).
 
 ## Modules to Import
 
@@ -17,9 +17,9 @@ import { media } from '@kit.MediaKit';
 
 createVideoRecorder(callback: AsyncCallback\<VideoRecorder>): void
 
-Creates a **VideoRecorder** instance. This API uses an asynchronous callback to return the result.
+Creates a VideoRecorder instance. This API uses an asynchronous callback to return the result.
 
-Only one **VideoRecorder** instance can be created per device.
+Only one VideoRecorder instance can be created per device.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -29,7 +29,7 @@ Only one **VideoRecorder** instance can be created per device.
 
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | Yes  | Callback used to return the result. If the operation is successful, a **VideoRecorder** instance is returned; otherwise, **null** is returned. The instance can be used to record video.|
+| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | Yes  | Callback used to return the result. If the operation is successful, a VideoRecorder instance is returned; otherwise, **null** is returned. The instance can be used to record video.|
 
 **Error codes**
 
@@ -60,9 +60,9 @@ media.createVideoRecorder((error: BusinessError, video: media.VideoRecorder) => 
 
 createVideoRecorder(): Promise\<VideoRecorder>
 
-Creates a **VideoRecorder** instance. This API uses a promise to return the result.
+Creates a VideoRecorder instance. This API uses a promise to return the result.
 
-Only one **VideoRecorder** instance can be created per device.
+Only one VideoRecorder instance can be created per device.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -72,7 +72,7 @@ Only one **VideoRecorder** instance can be created per device.
 
 | Type                                     | Description                                                        |
 | ----------------------------------------- | ------------------------------------------------------------ |
-| Promise<[VideoRecorder](#videorecorder9)> | Promise used to return the result. If the operation is successful, a **VideoRecorder** instance is returned; otherwise, **null** is returned. The instance can be used to record video.|
+| Promise<[VideoRecorder](#videorecorder9)> | Promise used to return the result. If the operation is successful, a VideoRecorder instance is returned; otherwise, **null** is returned. The instance can be used to record video.|
 
 **Error codes**
 
@@ -119,6 +119,12 @@ This API is called by the system application that creates the dialog box.
 | sessionId | number | Yes  | Session ID of the AVScreenCapture service, which is sent to the application when the AVScreenCapture server starts the privacy dialog box.|
 | choice    | string | Yes  | User choice, including whether screen capture is agreed, selected display ID, and window ID. For details, see JsonData in the example below.|
 
+**Return value**
+
+| Type            | Description                            |
+| ---------------- | -------------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
 **Error codes**
 
 | ID| Error Message                                   |
@@ -151,11 +157,60 @@ try {
 }
 ```
 
+## media.getAVScreenCaptureConfigurableParameters<sup>20+</sup>
+
+getAVScreenCaptureConfigurableParameters(sessionId: number): Promise\<string>
+
+Obtains the system privacy protection and application privacy protection settings that can be modified by the user from the server. This API uses a promise to return the result.
+
+>**NOTE**
+>
+> This API is exclusively for the system application that creates the dialog box.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**Parameters**
+
+| Name   | Type  | Mandatory| Description                                                         |
+| --------- | ------ | ---- | ------------------------------------------------------------ |
+| sessionId | number | Yes  | Session ID of the AVScreenCapture service, which is sent to the application when the AVScreenCapture server starts the privacy dialog box.|
+
+**Return value**
+
+| Type            | Description                            |
+| ---------------- | -------------------------------- |
+| Promise\<string> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 202      | Called from Non-System applications. Return by promise.               |
+| 5400109  | Sessions not exist. Return by promise.               |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+
+let sessionId: number = 0; // Use the ID of the session that starts the process.
+
+try {
+  let privacyResult: string = await media.getAVScreenCaptureConfigurableParameters(sessionId);
+} catch (error: BusinessError) {
+  console.error(`getAVScreenCaptureConfigurableParameters error, error message: ${error.message}`);
+}
+```
+
 ## media.getScreenCaptureMonitor<sup>18+</sup>
 
 getScreenCaptureMonitor(): Promise\<ScreenCaptureMonitor>
 
-Obtains a **ScreenCaptureMonitor** instance. This API uses a promise to return the result.
+Obtains a ScreenCaptureMonitor instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -165,7 +220,7 @@ Obtains a **ScreenCaptureMonitor** instance. This API uses a promise to return t
 
 | Type                                     | Description                                                        |
 | ----------------------------------------- | ------------------------------------------------------------ |
-| Promise<[ScreenCaptureMonitor](#screencapturemonitor18)> | Promise used to return the result. The instance can be used to query and monitor the status of the system screen recorder.<br>If the operation is successful, a **ScreenCaptureMonitor** instance is returned; otherwise, **null** is returned.|
+| Promise<[ScreenCaptureMonitor](#screencapturemonitor18)> | Promise used to return the result. The instance can be used to query and monitor the status of the system screen recorder.<br>If the operation is successful, a ScreenCaptureMonitor instance is returned; otherwise, **null** is returned.|
 
 **Error codes**
 
@@ -191,9 +246,9 @@ try {
 
 createParallelSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): Promise\<SoundPool>
 
-Creates a **SoundPool** instance. This API uses a promise to return the result.
+Creates a SoundPool instance. This API uses a promise to return the result.
 
-If a **SoundPool** instance created using [createSoundPool](js-apis-media.md#mediacreatesoundpool10) is used to play the same sound again, it stops the current audio and restarts the audio. However, if the instance is created using **createParallelSoundPool**, it keeps playing the first audio and starts the new one alongside it.
+If a SoundPool instance created using [createSoundPool](arkts-apis-media-f.md#mediacreatesoundpool10) is used to play the same sound again, it stops the current audio and restarts the audio. However, if the instance is created using **createParallelSoundPool**, it keeps playing the first audio and starts the new one alongside it.
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
@@ -201,14 +256,14 @@ If a **SoundPool** instance created using [createSoundPool](js-apis-media.md#med
 
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| maxStreams | number | Yes  | Maximum number of streams that can be played by the **SoundPool** instance. The value is an integer ranging from 1 to 32.|
-| audioRenderInfo | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)  | Yes  | Audio renderer parameters.|
+| maxStreams | number | Yes  | Maximum number of streams that can be played by the SoundPool instance. The value is an integer ranging from 1 to 32.|
+| audioRenderInfo | [audio.AudioRendererInfo](../apis-audio-kit/arkts-apis-audio-i.md#audiorendererinfo8)  | Yes  | Audio renderer parameters.|
 
 **Return value**
 
 | Type                                     | Description                                                        |
 | ----------------------------------------- | ------------------------------------------------------------ |
-| Promise<[SoundPool](js-apis-inner-multimedia-soundPool.md)> | Promise used to return the result. If the operation is successful, a **SoundPool** instance is returned; otherwise, **null** is returned. The instance is used for loading and playback.|
+| Promise<[SoundPool](js-apis-inner-multimedia-soundPool.md)> | Promise used to return the result. If the operation is successful, a SoundPool instance is returned; otherwise, **null** is returned. The instance is used for loading and playback.|
 
 **Error codes**
 
@@ -269,7 +324,7 @@ Enumerates the color formats supported by the video thumbnail.
 
 ## AVMetadataExtractor<sup>11+</sup>
 
-Provides APIs to obtain metadata from media assets. Before calling any API of **AVMetadataExtractor**, you must use [createAVMetadataExtractor()](js-apis-media.md#mediacreateavmetadataextractor11) to create an **AVMetadataExtractor** instance.
+Provides APIs to obtain metadata from media assets. Before calling any API of AVMetadataExtractor, you must use [createAVMetadataExtractor()](arkts-apis-media-f.md#mediacreateavmetadataextractor11) to create an AVMetadataExtractor instance.
 
 ### getTimeByFrameIndex<sup>12+</sup>
 
@@ -363,11 +418,11 @@ avMetadataExtractor.getFrameIndexByTime(0).then((index: number) => {
 
 ## AVRecorder<sup>9+</sup>
 
-A recording management class that provides APIs to record media assets. Before calling any API in **AVRecorder**, you must use [createAVRecorder()](js-apis-media.md#mediacreateavrecorder9) to create an **AVRecorder** instance.
+A recording management class that provides APIs to record media assets. Before calling any API in AVRecorder, you must use [createAVRecorder()](arkts-apis-media-f.md#mediacreateavrecorder9) to create an AVRecorder instance.
 
 > **NOTE**
 >
-> To use the camera to record videos, the camera module is required. For details about how to use the APIs provided by the camera module, see [Camera Management](../apis-camera-kit/js-apis-camera.md).
+> To use the camera to record videos, the camera module is required. For details about how to use the APIs provided by the camera module, see [Camera Management](../apis-camera-kit/arkts-apis-camera.md).
 
 ### isWatermarkSupported<sup>13+</sup>
 
@@ -375,7 +430,7 @@ isWatermarkSupported(): Promise\<boolean>
 
 Checks whether the device supports the hardware digital watermark. This API uses a promise to return the result.
 
-This API can be called after the [prepare()](js-apis-media.md#prepare9-3), [start()](js-apis-media.md#start9), or [paused()](js-apis-media.md#pause9) event is triggered.
+This API can be called after the [prepare()](arkts-apis-media-AVRecorder.md#prepare9-1), [start()](arkts-apis-media-AVRecorder.md#start9), or [paused()](arkts-apis-media-AVRecorder.md#pause9) event is triggered.
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
@@ -405,7 +460,7 @@ setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
 
 Sets a watermark for the AVRecorder. This API uses a promise to return the result.
 
-This API can be called only after the [prepare()](js-apis-media.md#prepare9-3) event is triggered and before the [start()](js-apis-media.md#start9) event is triggered.
+This API can be called only after the [prepare()](arkts-apis-media-AVRecorder.md#prepare9-1) event is triggered and before the [start()](arkts-apis-media-AVRecorder.md#start9) event is triggered.
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
@@ -415,7 +470,7 @@ This API can be called only after the [prepare()](js-apis-media.md#prepare9-3) e
 
 | Name  | Type                 | Mandatory| Description                        |
 | -------- | -------------------- | ---- | --------------------------- |
-| watermark | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)      | Yes  | PixelMap data.<br>Currently, the following specifications are supported:<br>- Only RGBA8888 is supported.<br>- If the original image is 8K, the watermark resolution should be limited to a size of 3072 x 288; if the original image is 4K, the watermark resolution should be limited to a size of 1536 x 144.|
+| watermark | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)      | Yes  | PixelMap data.<br>Currently, the following specifications are supported:<br>- Only RGBA8888 is supported.<br>- If the original image is 8K, the watermark resolution should be limited to a size of 3072 x 288; if the original image is 4K, the watermark resolution should be limited to a size of 1536 x 144.|
 | config    | [WatermarkConfig](#watermarkconfig13)   | Yes  | Watermark configuration.|
 
 **Return value**
@@ -454,7 +509,7 @@ setMetadata(metadata: Record\<string, string\>): void
 
 Sets custom metadata for the recording file of AVRecorder.
 
-This API can be called only after the [prepare()](js-apis-media.md#prepare9-3) event is successfully triggered and before the [stop()](js-apis-media.md#stop9-3) API is called.
+This API can be called only after the [prepare()](arkts-apis-media-AVRecorder.md#prepare9-1) event is successfully triggered and before the [stop()](arkts-apis-media-AVRecorder.md#stop9) API is called.
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
@@ -506,7 +561,7 @@ Describes the audio and video recording profile.
 ## VideoRecorder<sup>9+</sup>
 
 > **NOTE**
-> This class is deprecated after AVRecorder<sup>9+</sup> is released. You are advised to use [AVRecorder](js-apis-media.md#avrecorder9) instead.
+> This class is deprecated after AVRecorder<sup>9+</sup> is released. You are advised to use [AVRecorder](arkts-apis-media-AVRecorder.md) instead.
 
 Implements video recording. Before calling any API in the **VideoRecorder** class, you must use [createVideoRecorder()](#mediacreatevideorecorder9) to create a [VideoRecorder](#videorecorder9) instance.
 
@@ -1280,7 +1335,7 @@ videoRecorder.on('error', (error: BusinessError) => { // Set the 'error' event c
 
 ## VideoRecordState<sup>9+</sup>
 
-Enumerates the video recording states. You can obtain the state through the **state** attribute.
+Enumerates the video recording states. You can obtain the state through the **state** property.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -1299,7 +1354,7 @@ Enumerates the video recording states. You can obtain the state through the **st
 
 Describes the video recording parameters.
 
-The **audioSourceType** and **videoSourceType** parameters are used to distinguish video-only recording from audio and video recording. (For audio-only recording, use [AVRecorder](js-apis-media.md#avrecorder9) or [AudioRecorder](js-apis-media.md#audiorecorderdeprecated).) For video-only recording, set only **videoSourceType**. For audio and video recording, set both **audioSourceType** and **videoSourceType**.
+The **audioSourceType** and **videoSourceType** parameters are used to distinguish video-only recording from audio and video recording. (For audio-only recording, use [AVRecorder](arkts-apis-media-AVRecorder.md) or [AudioRecorder](arkts-apis-media-AudioRecorder.md).) For video-only recording, set only **videoSourceType**. For audio and video recording, set both **audioSourceType** and **videoSourceType**.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -1307,11 +1362,11 @@ The **audioSourceType** and **videoSourceType** parameters are used to distingui
 
 | Name           | Type                                          | Mandatory| Description                                                        |
 | --------------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioSourceType | [AudioSourceType](js-apis-media.md#audiosourcetype9)           | No  | Type of the audio source for video recording. This parameter is mandatory for audio recording.                     |
-| videoSourceType | [VideoSourceType](js-apis-media.md#videosourcetype9)           | Yes  | Type of the video source for video recording.                                      |
+| audioSourceType | [AudioSourceType](arkts-apis-media-e.md#audiosourcetype9)           | No  | Type of the audio source for video recording. This parameter is mandatory for audio recording.                     |
+| videoSourceType | [VideoSourceType](arkts-apis-media-e.md#videosourcetype9)           | Yes  | Type of the video source for video recording.                                      |
 | profile         | [VideoRecorderProfile](#videorecorderprofile9) | Yes  | Video recording profile.                                         |
 | rotation        | number                                         | No  | Rotation angle of the recorded video. The value can only be 0 (default), 90, 180, or 270.      |
-| location        | [Location](js-apis-media.md#location)                          | No  | Geographical location of the recorded video. By default, the geographical location information is not recorded.                |
+| location        | [Location](arkts-apis-media-i.md#location)                          | No  | Geographical location of the recorded video. By default, the geographical location information is not recorded.                |
 | url             | string                                         | Yes  | Video output URL. Supported: fd://xx (fd number)<br>![](figures/en-us_image_url.png) |
 
 ## VideoRecorderProfile<sup>9+</sup>
@@ -1326,11 +1381,11 @@ Describes the video recording profile.
 | ---------------- | -------------------------------------------- | ---- | ---------------- |
 | audioBitrate     | number                                       | No  | Audio encoding bit rate. This parameter is mandatory for audio recording.|
 | audioChannels    | number                                       | No  | Number of audio channels. This parameter is mandatory for audio recording.|
-| audioCodec       | [CodecMimeType](js-apis-media.md#codecmimetype8)             | No  | Audio encoding format. This parameter is mandatory for audio recording.  |
+| audioCodec       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | No  | Audio encoding format. This parameter is mandatory for audio recording.  |
 | audioSampleRate  | number                                       | No  | Audio sampling rate. This parameter is mandatory for audio recording.    |
-| fileFormat       | [ContainerFormatType](js-apis-media.md#containerformattype8) | Yes  | Container format of a file.|
+| fileFormat       | [ContainerFormatType](arkts-apis-media-e.md#containerformattype8) | Yes  | Container format of a file.|
 | videoBitrate     | number                                       | Yes  | Video encoding bit rate.|
-| videoCodec       | [CodecMimeType](js-apis-media.md#codecmimetype8)             | Yes  | Video encoding format.  |
+| videoCodec       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | Yes  | Video encoding format.  |
 | videoFrameWidth  | number                                       | Yes  | Width of the recorded video frame.|
 | videoFrameHeight | number                                       | Yes  | Height of the recorded video frame.|
 | videoFrameRate   | number                                       | Yes  | Video frame rate.  |
@@ -1455,3 +1510,5 @@ Specifies whether to capture the entire screen or half of the screen when the fo
 | Name                     | Type   | Mandatory| Description|
 | ------------------------ | ------- | ---- | ---- |
 | enableDeviceLevelCapture | boolean | No  | The value **true** means to capture the entire screen when the foldable PC is folded, and **false** means to capture half of the screen.|
+
+<!--no_check-->

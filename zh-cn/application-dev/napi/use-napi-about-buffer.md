@@ -1,4 +1,10 @@
 # 使用Node-API接口进行buffer相关开发
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @shilei123-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 ## 简介
 
@@ -35,6 +41,7 @@ cpp部分代码
 
 ```cpp
 #include <string>
+#include "hilog/log.h"
 #include "napi/native_api.h"
 
 static napi_value CreateBuffer(napi_env env, napi_callback_info info)
@@ -44,13 +51,17 @@ static napi_value CreateBuffer(napi_env env, napi_callback_info info)
     size_t bufferSize = str.size();
     napi_value buffer = nullptr;
     // 调用napi_create_buffer接口创建并获取一个指定大小的ArkTS Buffer
-    napi_create_buffer(env, bufferSize, &bufferPtr, &buffer);
+    napi_status status = napi_create_buffer(env, bufferSize + 1, &bufferPtr, &buffer);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "napi_create_buffer failed");
+        return nullptr;
+    }
     // 将字符串str的值复制到buffer的内存中
     strcpy((char *)bufferPtr, str.data());
     return buffer;
 }
 ```
-<!-- @[napi_create_buffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_buffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -58,7 +69,7 @@ static napi_value CreateBuffer(napi_env env, napi_callback_info info)
 // index.d.ts
 export const createBuffer: () => string;
 ```
-<!-- @[napi_create_buffer_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_buffer_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -71,7 +82,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_create_buffer error');
 }
 ```
-<!-- @[ark_napi_create_buffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_buffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_buffer_copy
 
@@ -87,16 +98,24 @@ cpp部分代码
 static napi_value CreateBufferCopy(napi_env env, napi_callback_info info)
 {
     // 要copy的内容
-    std::string str("CreateBufferCopy");
+    char str[] = "CreateBufferCopy";
     napi_value buffer = nullptr;
     // 调用napi_create_buffer_copy接口创建buffer并将str的内容copy到buffer
     void* resultData = nullptr;
-    napi_create_buffer_copy(env, str.size(), str.data(), &resultData, &buffer);
-    OH_LOG_INFO(LOG_APP, "Node-API resultData is : %{public}s.", resultData);
+    napi_status status = napi_create_buffer_copy(env, sizeof(str), str, &resultData, &buffer);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "napi_create_buffer_copy failed");
+        return nullptr;
+    }
+    if (resultData != nullptr) {
+        OH_LOG_INFO(LOG_APP, "Node-API resultData is : %{public}s.", reinterpret_cast <const char*>(resultData));
+    } else {
+        OH_LOG_INFO(LOG_APP, "Node-API resultData is nullptr.");
+    }
     return buffer;
 }
 ```
-<!-- @[napi_create_buffer_copy](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_buffer_copy](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -104,7 +123,7 @@ static napi_value CreateBufferCopy(napi_env env, napi_callback_info info)
 // index.d.ts
 export const createBufferCopy: () => string;
 ```
-<!-- @[napi_create_buffer_copy_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_buffer_copy_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -117,7 +136,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_create_buffer_copy error');
 }
 ```
-<!-- @[ark_napi_create_buffer_copy](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_buffer_copy](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_external_buffer
 
@@ -126,8 +145,9 @@ try {
 cpp部分代码
 
 ```cpp
-#include <malloc.h>
+#include <cstdlib>
 #include <string>
+#include <hilog/log.h>
 #include "napi/native_api.h"
 
 // 回调函数，用于释放内存
@@ -145,16 +165,26 @@ static napi_value CreateExternalBuffer(napi_env env, napi_callback_info info)
     // 创建一个字符串
     std::string str("CreateExternalBuffer");
     // 在堆上分配内存，大小为字符串的长度
-    void* data = malloc(str.size());
+    void* data = malloc(str.size() + 1);
+    if (data == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "malloc failed");
+        return nullptr;
+    }
+    memset(data, 0, str.size() + 1);
     // 将字符串复制到分配的内存中
     strcpy((char *)(data), (char*)(str.data()));
     // 使用napi_create_external_buffer接口创建并获取一个指定大小buffer
     napi_value buffer = nullptr;
-    napi_create_external_buffer(env, str.size(), data, FinalizeCallback, nullptr, &buffer);
+    napi_status status = napi_create_external_buffer(env, str.size(), data, FinalizeCallback, nullptr, &buffer);
+    if (status != napi_ok) {
+        free(data);
+        OH_LOG_ERROR(LOG_APP, "napi_create_external_buffer failed");
+        return nullptr;
+    }
     return buffer;
 }
 ```
-<!-- @[napi_create_external_buffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_external_buffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -162,7 +192,7 @@ static napi_value CreateExternalBuffer(napi_env env, napi_callback_info info)
 // index.d.ts
 export const createExternalBuffer: () => string;
 ```
-<!-- @[napi_create_external_buffer_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_external_buffer_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -176,7 +206,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_create_external_buffer error');
 }
 ```
-<!-- @[ark_napi_create_external_buffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_external_buffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_buffer_info
 
@@ -186,6 +216,7 @@ cpp部分代码
 
 ```cpp
 #include <string>
+#include "hilog/log.h"
 #include "napi/native_api.h"
 
 static napi_value GetBufferInfo(napi_env env, napi_callback_info info)
@@ -195,7 +226,11 @@ static napi_value GetBufferInfo(napi_env env, napi_callback_info info)
     napi_value buffer = nullptr;
     void *bufferPtr = nullptr;
     size_t bufferSize = str.size();
-    napi_create_buffer(env, bufferSize, &bufferPtr, &buffer);
+    napi_status status = napi_create_buffer(env, bufferSize + 1, &bufferPtr, &buffer);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "napi_create_buffer failed");
+        return nullptr;
+    }
     strcpy((char *)bufferPtr, str.data());
 
     // 获取Buffer的信息
@@ -204,12 +239,16 @@ static napi_value GetBufferInfo(napi_env env, napi_callback_info info)
     napi_get_buffer_info(env, buffer, &tmpBufferPtr, &bufferLength);
 
     // 创建一个新的ArkTS字符串来保存Buffer的内容并返出去
+    if (bufferLength == 0 || ((char*)tmpBufferPtr)[bufferLength - 1] != '\0') {
+        OH_LOG_ERROR(LOG_APP, "Buffer is not null-terminated");
+        return nullptr;
+    }
     napi_value returnValue = nullptr;
     napi_create_string_utf8(env, (char*)tmpBufferPtr, bufferLength, &returnValue);
     return returnValue;
 }
 ```
-<!-- @[napi_get_buffer_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_buffer_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -217,7 +256,7 @@ static napi_value GetBufferInfo(napi_env env, napi_callback_info info)
 // index.d.ts
 export const getBufferInfo: () => string;
 ```
-<!-- @[napi_get_buffer_info_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_get_buffer_info_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -230,7 +269,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_get_buffer_info error');
 }
 ```
-<!-- @[ark_napi_get_buffer_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_buffer_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_is_buffer
 
@@ -247,7 +286,8 @@ static napi_value IsBuffer(napi_env env, napi_callback_info info)
     // 创建一个Buffer对象
     std::string str = "buffer";
     napi_value buffer = nullptr;
-    napi_create_buffer(env, strlen(str.data()), (void **)(str.data()), &buffer);
+    void *bufferPtr = nullptr;
+    napi_create_buffer(env, str.size(), &bufferPtr, &buffer);
 
     // 调用napi_is_buffer接口判断创建的对象是否为buffer
     bool result = false;
@@ -258,7 +298,7 @@ static napi_value IsBuffer(napi_env env, napi_callback_info info)
     return returnValue;
 }
 ```
-<!-- @[napi_is_buffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_is_buffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -266,7 +306,7 @@ static napi_value IsBuffer(napi_env env, napi_callback_info info)
 // index.d.ts
 export const isBuffer: () => boolean;
 ```
-<!-- @[napi_is_buffer_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_is_buffer_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -279,7 +319,7 @@ try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_buffer error');
 }
 ```
-<!-- @[ark_napi_is_buffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_is_buffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_external_arraybuffer
 
@@ -298,7 +338,7 @@ typedef struct {
 void FinalizeCallback(napi_env env, void *finalize_data, void *finalize_hint)
 {
     // 获取终结时的数据
-    BufferData *bufferData = static_cast<BufferData *>(finalize_data);
+    BufferData *bufferData = static_cast<BufferData *>(finalize_hint);
 
     // 执行清理操作，比如释放资源
     delete[] bufferData->data;
@@ -331,15 +371,15 @@ napi_value CreateExternalArraybuffer(napi_env env, napi_callback_info info)
     return outputArray;
 }
 ```
-<!-- @[napi_create_external_arraybuffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_external_arraybuffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
 ```ts
 // index.d.ts
-export const createExternalArraybuffer: () => ArrayBuffer | void;
+export const createExternalArraybuffer: () => ArrayBuffer | undefined;
 ```
-<!-- @[napi_create_external_arraybuffer_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_external_arraybuffer_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -350,7 +390,7 @@ import testNapi from 'libentry.so';
 hilog.info(0x0000, 'testTag', 'Node-API createExternalArraybuffer: %{public}s',
            JSON.stringify(testNapi.createExternalArraybuffer()));
 ```
-<!-- @[ark_napi_create_external_arraybuffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_external_arraybuffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBuffer/entry/src/main/ets/pages/Index.ets) -->
 
 以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
 
@@ -358,5 +398,5 @@ hilog.info(0x0000, 'testTag', 'Node-API createExternalArraybuffer: %{public}s',
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

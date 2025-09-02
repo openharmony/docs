@@ -1,6 +1,13 @@
 # 加解密(C/C++)
 
-以AES 256密钥为例，完成加解密。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-key-generation-overview.md#支持的算法)。
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
+
+以AES256密钥为例，完成加解密。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-key-generation-overview.md#支持的算法)。
 
 ## 在CMake脚本中链接相关动态库
 ```txt
@@ -10,7 +17,7 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 
 **生成密钥**
 
-1. 指定密钥别名。
+1. 指定密钥别名，密钥别名命名规范参考[密钥生成介绍及算法规格](huks-key-generation-overview.md)。
 
 2. 初始化密钥属性集。
 
@@ -142,8 +149,8 @@ static struct OH_Huks_Param g_decryptParams[] = {
 };
 static const uint32_t AES_COMMON_SIZE = 1024;
 OH_Huks_Result HksAesCipherTestEncrypt(
-        const struct OH_Huks_Blob *keyAlias,
-        const struct OH_Huks_ParamSet *encryptParamSet, const struct OH_Huks_Blob *inData, struct OH_Huks_Blob *cipherText)
+        const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *encryptParamSet,
+        const struct OH_Huks_Blob *inData, struct OH_Huks_Blob *cipherText)
 {
     uint8_t handleE[sizeof(uint64_t)] = {0};
     struct OH_Huks_Blob handleEncrypt = {sizeof(uint64_t), handleE};
@@ -154,10 +161,9 @@ OH_Huks_Result HksAesCipherTestEncrypt(
     ret = OH_Huks_FinishSession(&handleEncrypt, encryptParamSet, inData, cipherText);
     return ret;
 }
-OH_Huks_Result HksAesCipherTestDecrypt(
-    const struct OH_Huks_Blob *keyAlias,
-    const struct OH_Huks_ParamSet *decryptParamSet, const struct OH_Huks_Blob *cipherText, struct OH_Huks_Blob *plainText,
-    const struct OH_Huks_Blob *inData)
+OH_Huks_Result HksAesCipherTestDecrypt(const struct OH_Huks_Blob *keyAlias,
+    const struct OH_Huks_ParamSet *decryptParamSet, const struct OH_Huks_Blob *cipherText,
+    struct OH_Huks_Blob *plainText, const struct OH_Huks_Blob *inData)
 {
     uint8_t handleD[sizeof(uint64_t)] = {0};
     struct OH_Huks_Blob handleDecrypt = {sizeof(uint64_t), handleD};

@@ -256,7 +256,7 @@ Obtains the current system language.
 
 **Example**
   ```ts
-  let systemLanguage: string = i18n.System.getSystemLanguage();
+  let systemLanguage: string = i18n.System.getSystemLanguage(); // If the system language is simplified Chinese, then systemLanguage is 'zh-Hans'.
   ```
 
 ### getSystemRegion<sup>9+</sup>
@@ -277,7 +277,7 @@ Obtains the current system country/region.
 
 **Example**
   ```ts
-  let systemRegion: string = i18n.System.getSystemRegion();
+  let systemRegion: string = i18n.System.getSystemRegion(); // If the system region is China, then systemRegion is CN.
   ```
 
 ### getSystemLocale<sup>9+</sup>
@@ -298,7 +298,7 @@ Obtains the current system locale.
 
 **Example**
   ```ts
-  let systemLocale: string = i18n.System.getSystemLocale();
+  let systemLocale: string = i18n.System.getSystemLocale(); // If the system language is simplified Chinese and the system region is China, then systemLocale is zh-Hans-CN.
   ```
 
 ### is24HourClock<sup>9+</sup>
@@ -321,7 +321,7 @@ Checks whether the 24-hour clock is used.
 
 **Example**
   ```ts
-  let is24HourClock: boolean = i18n.System.is24HourClock();
+  let is24HourClock: boolean = i18n.System.is24HourClock(); // If the 24-hour clock is used, then is24HourClock is true.
   ```
 
 
@@ -767,11 +767,11 @@ Defines a list of entities.
 
 **System capability**: SystemCapability.Global.I18n
 
-| Name | Type  | Readable  | Writable  | Description               |
+| Name | Type  | Read-Only  | Optional  | Description               |
 | ---- | ---- | ---- | ---- | ----------------- |
-| type | string | Yes   | Yes   | Entity type. The value can be **phone_number** or **date**. **phone_number** indicates that the entity is a phone number, and **date** indicates that the entity is a date.|
-| begin | number | Yes   | Yes   | Start position of the entity in the input string.|
-| end | number | Yes   | Yes   | End position of the entity the input string.|
+| type | string | No   | No   | Entity type. The value can be **phone_number** or **date**. **phone_number** indicates that the entity is a phone number, and **date** indicates that the entity is a date.|
+| begin | number | No   | No   | Start position of the entity in the input string.|
+| end | number | No   | No   | End position of the entity the input string.|
 
 ## Calendar<sup>8+</sup>
 
@@ -1266,8 +1266,8 @@ Checks whether the phone number is valid for the country/region in the **PhoneNu
 
 **Example**
   ```ts
-  let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
-  let isValidNumber: boolean = phonenumberfmt.isValidNumber('158****2312'); // isValidNumber = true
+  let formatter: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
+  let isValidNumber: boolean = formatter.isValidNumber('158****2312'); // isValidNumber = true
   ```
 
 
@@ -1298,18 +1298,18 @@ Formats a phone number.
 
 **Example**
   ```ts
-  let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
+  let formatter: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
   // formattedPhoneNumber = '158 **** 2312'
-  let formattedPhoneNumber: string = phonenumberfmt.format('158****2312');
+  let formattedPhoneNumber: string = formatter.format('158****2312');
 
   // Format the phone number being dialed.
   let option: i18n.PhoneNumberFormatOptions = { type: 'TYPING' };
-  let phoneNumberFmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN', option);
+  let typingFormatter: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN', option);
   let phoneNumber: string = '130493';
   let formatResult: string = '';
   for (let i = 0; i < phoneNumber.length; i++) {
     formatResult += phoneNumber.charAt(i);
-    formatResult = phoneNumberFmt.format(formatResult); // formatResult = '130 493'
+    formatResult = typingFormatter.format(formatResult); // formatResult = '130 493'
   }
   ```
 
@@ -1338,9 +1338,9 @@ Obtains the home location of a phone number.
 
 **Example**
   ```ts
-  let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
-  let locationName: string = phonenumberfmt.getLocationName('158****2345', 'zh-CN'); // locationName = 'Zhanjiang, Guangdong Province'
-  let locName: string = phonenumberfmt.getLocationName('0039312****789', 'zh-CN'); // locName = 'Italy'
+  let phonenumberFormat: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
+  let locationName: string = phonenumberFormat.getLocationName('158****2345', 'zh-CN'); // locationName = 'Zhanjiang, Guangdong Province'
+  let locName: string = phonenumberFormat.getLocationName('0039312****789', 'zh-CN'); // locName = 'Italy'
   ```
 
 
@@ -1352,9 +1352,9 @@ Options for **PhoneNumberFormat** object initialization.
 
 **System capability**: SystemCapability.Global.I18n
 
-| Name  | Type    | Readable  | Writable  | Description                                      |
+| Name  | Type    | Read-Only  | Optional  | Description                                      |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| type | string | Yes   | Yes   | Type of the phone number. The value can be **E164**, **INTERNATIONAL**, **NATIONAL**, **RFC3966**, or **TYPING**.<br>- In API version 8, **type** is mandatory.<br>- In API version 9 or later, **type** is optional.<br>- In API version 12 or later, TYPING is supported, which indicates that the dialed number is formatted in real time.|
+| type | string | No   | Yes   | Type of the phone number. The value can be **E164**, **INTERNATIONAL**, **NATIONAL**, **RFC3966**, or **TYPING**.<br>- In API version 8, **type** is mandatory.<br>- In API version 9 or later, **type** is optional.<br>- In API version 12 or later, TYPING is supported, which indicates that the dialed number is formatted in real time.|
 
 
 ## UnitInfo<sup>8+</sup>
@@ -1365,10 +1365,10 @@ Defines the measurement unit information.
 
 **System capability**: SystemCapability.Global.I18n
 
-| Name           | Type    | Readable  | Writable  | Description                                      |
+| Name           | Type    | Read-Only  | Optional  | Description                                      |
 | ------------- | ------ | ---- | ---- | ---------------------------------------- |
-| unit          | string | Yes   | Yes   | Name of the measurement unit, for example, **meter**, **inch**, or **cup**.|
-| measureSystem | string | Yes   | Yes   | Measurement system. The value can be **SI**, **US**, or **UK**.|
+| unit          | string | No   | No   | Name of the measurement unit, for example, **meter**, **inch**, or **cup**.|
+| measureSystem | string | No   | No   | Measurement system. The value can be **SI**, **US**, or **UK**.|
 
 
 ## i18n.getInstance<sup>8+</sup>
@@ -2128,7 +2128,7 @@ Obtains the timestamp of the time zone transition point.
 
 | Type      | Description        |
 | -------- | ---------- |
-| number | Timestamp of the time zone transition point. It is measured as the number of milliseconds from 00:00:00 on January 1, 1970 (UTC) to the time zone transition point, for example, 1762074000000.|
+| number | Timestamp of the time zone transition point. It is measured as the number of milliseconds from 00:00:00 on January 1, 1970 (UTC) to the time zone transition point, for example, 1762074000000. If the [raw offset](#getrawoffset) remains unchanged and DST is not used, **0** is returned.|
 
 **Example**
 ```ts
@@ -3175,13 +3175,13 @@ Represents the holiday information.
 
 **System capability**: SystemCapability.Global.I18n
 
-| Name           | Type            |  Mandatory  |  Description                                  |
-| --------------- | --------------- | ------  | --------------------------------------- |
-| baseName        | string          |   Yes   | Holiday name.             |
-| year            | number          |   Yes   | Year of the holiday.                  |
-| month           | number          |   Yes   | Month of the holiday.         |
-| day             | number          |   Yes   | Day of the holiday.                        |
-| localNames      | Array&lt;[HolidayLocalName](#holidaylocalname11)&gt;          |   No   | Local names of the holiday.         |
+| Name           | Type            |  Read-Only  |  Optional  |  Description                                  |
+| --------------- | --------------- | ------  | ------  | --------------------------------------- |
+| baseName        | string          |   No   |   No   | Holiday name.             |
+| year            | number          |   No   |   No   | Year of the holiday.                  |
+| month           | number          |   No   |   No   | Month of the holiday.         |
+| day             | number          |   No   |   No   | Day of the holiday.                        |
+| localNames      | Array&lt;[HolidayLocalName](#holidaylocalname11)&gt;          |   No   |   Yes   | Local names of the holiday.         |
 
 ## HolidayLocalName<sup>11+</sup>
 
@@ -3191,10 +3191,10 @@ Represents the name of a holiday in different languages.
 
 **System capability**: SystemCapability.Global.I18n
 
-| Name           | Type            |  Mandatory  |  Description                                  |
-| --------------- | -----------------| ------  | --------------------------------------- |
-| language        | string           |   Yes   | Language, for example, **ar**, **en**, or **tr**.         |
-| name            | string           |   Yes   | Local name of a holiday. For example, the Turkish name of Sacrifice Feast is Kurban Bayrami.     |
+| Name           | Type            |  Read-Only  |  Optional  |  Description                                  |
+| --------------- | -----------------| ------  | ------  | --------------------------------------- |
+| language        | string           |   No   |   No   | Language, for example, **ar**, **en**, or **tr**.         |
+| name            | string           |   No   |   No   | Local name of a holiday. For example, the Turkish name of Sacrifice Feast is Kurban Bayrami.     |
 
 
 ## i18n.getSimpleDateTimeFormatByPattern<sup>20+</sup>
@@ -3679,12 +3679,12 @@ Represents optional configuration items for the **NumberFormat** object.
 
 **System capability**: SystemCapability.Global.I18n
 
-| Name           | Type            |  Mandatory  |  Description                                  |
-| --------------- | --------------- | ------  | --------------------------------------- |
-| integer        | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   No   |  Text style for the integer part. The default value is the default text style.    |
-| decimal        | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   No   |  Text style for the decimal point. The default value is the default text style.   |
-| fraction       | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   No   |  Text style for the fraction part. The default value is the default text style.    |
-| unit           | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   No   |  Text style for the unit. The default value is the default text style.    |
+| Name           | Type            |  Read-Only  |  Optional  |  Description                                  |
+| --------------- | --------------- | ------  | ------  | --------------------------------------- |
+| integer        | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   No   |   Yes   |  Text style for the integer part. The default value is the default text style.    |
+| decimal        | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   No   |   Yes   |  Text style for the decimal point. The default value is the default text style.   |
+| fraction       | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   No   |   Yes   |  Text style for the fraction part. The default value is the default text style.    |
+| unit           | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   No   |   Yes   |  Text style for the unit. The default value is the default text style.    |
 
 ## i18n.getDisplayCountry<sup>(deprecated)</sup>
 
@@ -4214,6 +4214,5 @@ This API is supported since API version 8 and is deprecated since API version 9.
 | Type    | Description         |
 | ------ | ----------- |
 | string | Type of the input character.|
-
 
 <!--no_check-->

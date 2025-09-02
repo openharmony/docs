@@ -34,7 +34,7 @@ Checks whether the SIM card in the specified slot is provided by a specified car
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| boolean | Boolean value indicating whether the SIM card in the specified slot is provided by a specified carrier. The value **true** means yes and the value **false** means no.|
+| boolean | Boolean value indicating whether the SIM card in the specified slot is provided by the specified carrier.<br>- **true**: The SIM card in the specified slot is provided by the specified carrier.<br>- **false**: The SIM card in the specified slot is not provided by the specified carrier.|
 
 **Error codes**
 
@@ -1919,7 +1919,7 @@ Sets voice mailbox information for the SIM card in the specified slot. This API 
 | ---------- | -------------------- | ---- | -------------------------------------- |
 | slotId     | number               | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | mailName   | string               | Yes  | Voice mailbox name.                              |
-| mailNumber | string               | Yes  | Voice mailbox number.                              |
+| mailNumber | string               | Yes  | Voice mailbox number.                             |
 | callback   | AsyncCallback<void\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
@@ -3450,7 +3450,7 @@ Defines the contact number information.
 | ------------ | ------ | ---- | ---------- |
 | alphaTag     | string |  Yes | Tag.    |
 | number       | string |  Yes | Call transfer number.    |
-| recordNumber | number |  No | Record number.|
+| recordNumber | number |  No | Record number. If no record number is specified, the value is **undefined** by default.|
 | pin2         | string |  No | PIN 2.|
 
 ## ContactType<sup>8+</sup>

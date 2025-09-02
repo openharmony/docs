@@ -1,4 +1,10 @@
 # 属性字符串错误码
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @hddgzw-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 >
@@ -46,7 +52,7 @@ NA
 
 **错误信息**
 
-Invalid styled string.
+invalid styled string.
 
 **错误描述**
 

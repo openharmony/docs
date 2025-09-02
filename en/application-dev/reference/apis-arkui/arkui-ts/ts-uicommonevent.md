@@ -1,4 +1,4 @@
-# Common Event Callback
+# Common Event Callbacks
 
 >**NOTE**
 >
@@ -124,7 +124,7 @@ Sets the callback for the [onBlur](./ts-universal-focus-event.md#onblur) event.
 
 setOnHover(callback: HoverCallback | undefined): void
 
-Sets the callback for the [onHover](./ts-universal-mouse-key.md#onhover) event.
+Sets the callback for the [onHover](./ts-universal-mouse-key.md) event.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

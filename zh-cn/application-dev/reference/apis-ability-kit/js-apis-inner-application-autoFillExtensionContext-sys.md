@@ -1,5 +1,12 @@
 # AutoFillExtensionContext (系统接口) 
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 AutoFillExtensionContext模块是AutoFillExtensionAbility的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)。
 
 > **说明：**
@@ -22,7 +29,9 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
 }
 ```
 
-## AutoFillExtensionContext.reloadInModal<sup>13+</sup>
+## AutoFillExtensionContext
+
+### reloadInModal<sup>13+</sup>
 
 reloadInModal(customData: CustomData): Promise\<void>
 
@@ -57,7 +66,7 @@ reloadInModal(customData: CustomData): Promise\<void>
 
 通过点击账号密码输入框触发自动填充服务时，在[AutoFillExtensionAbility](js-apis-app-ability-autoFillExtensionAbility-sys.md)的onFillRequest生命周期中拉起账号选择界面。
 
-当点击账号选择界面选择任意账号时，调用reloadInModal接口再次触发自动填充服务时，在AutoFillExtensionAbility的onFillRequest生命周期中拉起模态页面。
+当点击账号选择界面选择任意账号时，调用reloadInModal接口再次触发自动填充服务，在AutoFillExtensionAbility的onFillRequest生命周期中拉起模态页面。
 
 ```ts
 // AutoFillAbility.ts
@@ -67,8 +76,8 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export default class AutoFillAbility extends AutoFillExtensionAbility {
   // ...
   onFillRequest(session: UIExtensionContentSession,
-                request: autoFillManager.FillRequest,
-                callback: autoFillManager.FillRequestCallback) {
+    request: autoFillManager.FillRequest,
+    callback: autoFillManager.FillRequestCallback) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
     try {
       let storage_fill: LocalStorage = new LocalStorage(
@@ -79,7 +88,7 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
           'viewData': request.viewData,
           'autoFillExtensionContext': this.context,
           'customData': request.customData
-        });
+        } as Record<string, Object>);
       if (request.customData == undefined) {
         // 加载自动填充处理界面
         session.loadContent('pages/AccountPage', storage_fill);

@@ -1,4 +1,10 @@
 # jsvm_types.h
+<!--Kit: Common Basic Capability-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## 概述
 
@@ -21,7 +27,7 @@
 | 名称                                                                                                | typedef关键字                              | 描述                                                                                                                                                                                                                                                                                                                                                                                                                          |
 |---------------------------------------------------------------------------------------------------|-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [JSVM_CallbackStruct](capi-jsvm-jsvm-callbackstruct.md)                                           | JSVM_CallbackStruct                     | 用户提供的native回调函数的指针和数据，这些函数通过JSVM-API接口暴露给JavaScript。                                                                                                                                                                                                                                                                                                                                                                        |
-| [JSVM_HeapStatistics](capi-jsvm-jsvm-heapstatistics.md)                                           | JSVM_HeapStatistics                     | Heapstatisics结构体，用于保存有关JavaScript堆内存使用情况的统计信息。                                                                                                                                                                                                                                                                                                                                                                              |
+| [JSVM_HeapStatistics](capi-jsvm-jsvm-heapstatistics.md)                                           | JSVM_HeapStatistics                     | 用于保存有关JavaScript堆内存使用情况的统计信息。                                                                                                                                                                                                                                                                                                                                                                              |
 | [JSVM_InitOptions](capi-jsvm-jsvm-initoptions.md)                                                 | JSVM_InitOptions                        | 初始化选项，用于初始化JavaScript虚拟机。                                                                                                                                                                                                                                                                                                                                                                                                   |
 | [JSVM_CreateVMOptions](capi-jsvm-jsvm-createvmoptions.md)                                         | JSVM_CreateVMOptions                    | 创建JavaScript虚拟机的选项。                                                                                                                                                                                                                                                                                                                                                                                                         |
 | [JSVM_VMInfo](capi-jsvm-jsvm-vminfo.md)                                                           | JSVM_VMInfo                             | JavaScript虚拟机信息。                                                                                                                                                                                                                                                                                                                                                                                                            |
@@ -199,6 +205,7 @@ enum JSVM_Status
 | JSVM_NO_EXTERNAL_BUFFERS_ALLOWED | 不允许外部缓冲区。 |
 | JSVM_CANNOT_RUN_JS | 不能执行JS。 |
 | JSVM_INVALID_TYPE | 传入的参数为非法类型。<br>**起始版本：** 18 |
+| JSVM_JIT_MODE_EXPECTED | 无 JIT 权限。<br>**起始版本：** 18 |
 
 ### JSVM_KeyCollectionMode
 

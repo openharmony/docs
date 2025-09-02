@@ -1,4 +1,10 @@
 # 使用JSVM-API接口处理异步操作
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## 简介
 
@@ -72,7 +78,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(isPromise())JS";
 ```
-<!-- @[oh_jsvm_ispromise](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/ispromise/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_ispromise](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/ispromise/src/main/cpp/hello.cpp) -->
 
 预期结果：
 ```
@@ -159,7 +165,7 @@ const char *srcCallNative = R"JS(createPromise();
                                  resolveRejectDeferred('success', 'fail', true);
                                  resolveRejectDeferred('success', 'fail', false);)JS";
 ```
-<!-- @[oh_jsvm_resolvedeferred_and_rejectdeferred](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/resolvereject/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_resolvedeferred_and_rejectdeferred](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/resolvereject/src/main/cpp/hello.cpp) -->
 
 预期结果：
 ```
@@ -240,8 +246,10 @@ static int PromiseRegisterHandler(JSVM_VM vm, JSVM_Env env) {
     // 解析 promise
     JSVM_Value resolveValue;
     CHECK_RET(OH_JSVM_CreateInt32(env, 2, &resolveValue));
-    OH_JSVM_ResolveDeferred(env, deferred, resolveValue);
-    deferred = nullptr;
+    if (deferred != nullptr) {
+        OH_JSVM_ResolveDeferred(env, deferred, resolveValue);
+        deferred = nullptr;
+    }
 
     // 获取 promise 解析后 x1 和 x2 的值
     CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "x1", &x1));

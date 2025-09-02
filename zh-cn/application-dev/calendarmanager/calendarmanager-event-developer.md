@@ -1,5 +1,12 @@
 # 日程管理
 
+<!--Kit: Calendar Kit-->
+<!--Subsystem: Applications-->
+<!--Owner: @qq_42718467-->
+<!--Designer: @huangxinwei-->
+<!--Tester: @z30055209-->
+<!--Adviser: @ge-yafang-->
+
 日程指特定的事件或者活动安排，日程管理即对这些事件、活动进行规划和控制，能更有效地利用相关资源、提高生产力和效率，使人们更好地管理时间和任务。
 
 Calendar Kit中的日程[Event](../reference/apis-calendar-kit/js-apis-calendarManager.md#event)归属于某个对应的日历账户[Calendar](../reference/apis-calendar-kit/js-apis-calendarManager.md#calendar)，一个日历账户下可以有多个日程，一个日程只属于一个Calendar。
@@ -10,15 +17,15 @@ Calendar Kit中的日程[Event](../reference/apis-calendar-kit/js-apis-calendarM
 
 以下是日程管理的相关接口，更多详细接口及使用请参考[@ohos.calendarManager](../reference/apis-calendar-kit/js-apis-calendarManager.md)。
 
-| 接口名称                                      | 描述                                                         |
-| ----------------------------------------- | ------------------------------------------------------------ |
-| getCalendarManager(context: Context): CalendarManager | 根据上下文获取CalendarManager对象，用于管理日历。            |
-| createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar> | 根据日历账户信息，创建一个Calendar对象，使用Promise异步回调。 |
-| addEvent(event: Event): Promise\<number>  | 创建日程，入参Event不填日程id，使用Promise异步回调。         |
-| editEvent(event: Event): Promise\<number> | 创建单个日程，入参Event不填日程id，调用该接口会跳转到日程创建页面，使用Promise异步回调。 |
-| deleteEvent(id: number): Promise\<void>   | 删除指定日程id的日程，使用Promise异步回调。                  |
-| updateEvent(event: Event): Promise\<void> | 更新日程，使用Promise异步回调。                              |
-| getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event[]> | 获取Calendar下符合查询条件的Event，使用Promise异步回调。     |
+| 接口名称                                      | 描述                                             |
+| ----------------------------------------- |------------------------------------------------|
+| getCalendarManager(context: Context): CalendarManager | 根据上下文获取CalendarManager对象，用于管理日历。               |
+| createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar> | 根据日历账户信息，创建一个Calendar对象，使用Promise异步回调。         |
+| addEvent(event: Event): Promise\<number>  | 创建日程，入参Event不填日程id，使用Promise异步回调。              |
+| editEvent(event: Event): Promise\<number> | 通过跳转到日程创建界面创建单个日程，入参Event不填日程id，使用Promise异步回调。 |
+| deleteEvent(id: number): Promise\<void>   | 删除指定日程id的日程，使用Promise异步回调。                     |
+| updateEvent(event: Event): Promise\<void> | 更新日程，使用Promise异步回调。                            |
+| getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event[]> | 获取Calendar下符合查询条件的Event，使用Promise异步回调。         |
 
 ## 开发步骤
 
@@ -174,8 +181,8 @@ Calendar Kit中的日程[Event](../reference/apis-calendar-kit/js-apis-calendarM
      service: {
        // 服务类型，比如一键查看、一键入会、一键追剧等。
        type: calendarManager.ServiceType.TRIP,
-       // 服务的uri。可以跳转到三方应用相应界面，格式为deeplink。使用deeplink方式需要在华为HAG云侧进行注册，注册提供的信息为应用包名、应用的服务类型。
-       // deeplink包括scheme、host、path以及参数（不包含参数值）
+       // 服务的uri。可以跳转到三方应用相应界面，格式为DeepLink。使用DeepLink方式需要在华为HAG云侧进行注册，注册提供的信息为应用包名、应用的服务类型。
+       // DeepLink包括scheme、host、path以及参数（不包含参数值）
        uri: 'xxx://xxx.xxx.com/xxx',
        // 服务辅助描述信息，可选字段
        description: '一键服务'

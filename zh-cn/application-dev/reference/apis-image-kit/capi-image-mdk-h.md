@@ -1,12 +1,20 @@
 # image_mdk.h
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
 声明访问图像矩形、大小、格式和组件数据的函数。
 
+**引用文件：** <multimedia/image_framework/image_mdk.h>
+
 **库：** libimage_ndk.z.so
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **起始版本：** 10
 

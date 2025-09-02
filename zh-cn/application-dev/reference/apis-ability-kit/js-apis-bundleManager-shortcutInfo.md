@@ -1,4 +1,10 @@
 # ShortcutInfo
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 应用[module.json5配置文件](../../quick-start/module-configuration-file.md#shortcuts标签)中定义的快捷方式信息，可以通过[getAllShortcutInfoForSelf接口](js-apis-shortcutManager.md#shortcutmanagergetallshortcutinfoforself)<!--Del-->或[getShortcutInfo接口](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetshortcutinfo9)<!--DelEnd-->获取。
 

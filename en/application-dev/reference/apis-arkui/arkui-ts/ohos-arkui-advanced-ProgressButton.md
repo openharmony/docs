@@ -7,12 +7,14 @@ The **ProgressButton** component is a download button with a progress indicator 
 > **NOTE**
 >
 > This component is supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> This component is not supported on wearables.
 
 
 ## Modules to Import
 
 ```
-import { ProgressButton } from '@kit.ArkUI'
+import { ProgressButton } from '@kit.ArkUI';
 ```
 
 ## Attributes
@@ -20,7 +22,7 @@ The [universal attributes](ts-component-general-attributes.md) are not supported
 
 ## ProgressButton
 
-ProgressButton({progress: number, content: string, progressButtonWidth?: Length, clickCallback: () =&gt; void, enable:
+ProgressButton({progress: number, content: ResourceStr, progressButtonWidth?: Length, clickCallback: () => void, enable:
 boolean, colorOptions?: ProgressButtonColorOptions, progressButtonRadius?: LengthMetrics})
 
 **Decorator**: @Component
@@ -31,9 +33,9 @@ boolean, colorOptions?: ProgressButtonColorOptions, progressButtonRadius?: Lengt
 | Name                               | Type                                                           | Mandatory| Decorator | Description                                                                                                                                  |
 |-----------------------------------|---------------------------------------------------------------|----|--------|--------------------------------------------------------------------------------------------------------------------------------------|
 | progress                          | number                                                        | Yes | \@Prop | Current download progress.<br>The value ranges from 0 to 100. Values less than 0 are adjusted to **0**, and values greater than 100 are capped at **100**.<br>Default value: **0**<br>**Atomic service API**: This API can be used in atomic services since API version 11.           |
-| content                           | string                                                        | Yes | \@Prop | Button text.<br>The default value is an empty string.<br>**NOTE**<br>The text is truncated with an ellipsis (...) if it exceeds the maximum display width of the component.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                          |
+| content                           | [ResourceStr](ts-types.md#resourcestr)                        | Yes | \@Prop | Button text.<br>The default value is an empty string.<br>**NOTE**<br>The text is truncated with an ellipsis (...) if it exceeds the maximum display width of the component. The Resource type is supported since API version 20.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                          |
 | progressButtonWidth               | [Length](ts-types.md#length)                                  | No | -      | Button width, in vp.<br>The value must be greater than or equal to 44 vp.<br>The default value is **44vp**. Values less than the default value and invalid values are adjusted to the default value.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                  |
-| clickCallback                     | () =&gt; void                                                 | Yes | -      | Callback invoked when the button is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                      |
+| clickCallback                     | () => void                                                 | Yes | -      | Callback invoked when the button is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                      |
 | enable                            | boolean                                                       | Yes | \@Prop | Whether the button can be clicked.<br> **true**: The button can be clicked.<br> **false**: The button cannot be clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                  |
 | colorOptions<sup>18+<sup>         | [ProgressButtonColorOptions](#progressbuttoncoloroptions18)   | No | \@Prop | Color options of the button.<br>**Atomic service API**: This API can be used in atomic services since API version 18.                                                                         |
 | progressButtonRadius<sup>18+<sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No | \@Prop | Corner radius of the button. It cannot be set in percentage.<br>Value range: [0, height/2]<br>Default value: height/2<br>If an invalid value is set, the default value is used.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
@@ -61,16 +63,16 @@ The [universal events](ts-component-general-events.md) are not supported.
 ### Example 1: Creating a Download Button with a Progress Indicator
 This example demonstrates how to create a simple download button with a progress indicator that shows the loading status of a text file.
 ```ts
-import { ProgressButton } from '@kit.ArkUI'
+import { ProgressButton } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  @State progressIndex: number = 0
-  @State textState: string = 'Download'
-  @State ButtonWidth: number = 200
-  @State isRunning: boolean = false
-  @State enableState: boolean = true
+  @State progressIndex: number = 0;
+  @State textState: string = 'Download';
+  @State buttonWidth: number = 200;
+  @State isRunning: boolean = false;
+  @State enableState: boolean = true;
 
   build() {
     Column() {
@@ -78,27 +80,26 @@ struct Index {
         Column({ space: 20 }) {
           ProgressButton({
             progress: this.progressIndex,
-            progressButtonWidth: this.ButtonWidth,
+            progressButtonWidth: this.buttonWidth,
             content: this.textState,
             enable: this.enableState,
             clickCallback: () => {
               if (this.textState && !this.isRunning && this.progressIndex < 100) {
-                this.textState = 'Continue'
+                this.textState = 'Continue';
               }
-              this.isRunning = !this.isRunning
+              this.isRunning = !this.isRunning;
               let timer = setInterval(() => {
                 if (this.isRunning) {
                   if (this.progressIndex === 100) {
-
                   } else {
-                    this.progressIndex++
+                    this.progressIndex++;
                     if (this.progressIndex === 100) {
-                      this.textState = 'Completed'
-                      this.enableState = false
+                      this.textState = 'Completed';
+                      this.enableState = false;
                     }
                   }
                 } else {
-                  clearInterval(timer)
+                  clearInterval(timer);
                 }
               }, 20)
             }
@@ -116,16 +117,16 @@ struct Index {
 ### Example 2: Implementing a Download Button with Custom Colors
 This example shows how to implement a download button with custom colors.
 ```ts
-import { ProgressButton } from '@kit.ArkUI'
+import { ProgressButton } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  @State progressIndex: number = 0
-  @State textState: string = 'Download'
-  @State ButtonWidth: number = 200
-  @State isRunning: boolean = false
-  @State enableState: boolean = true
+  @State progressIndex: number = 0;
+  @State textState: string = 'Download';
+  @State buttonWidth: number = 200;
+  @State isRunning: boolean = false;
+  @State enableState: boolean = true;
 
   build() {
     Column() {
@@ -140,26 +141,26 @@ struct Index {
               backgroundColor: Color.Pink
             },
             progress: this.progressIndex,
-            progressButtonWidth: this.ButtonWidth,
+            progressButtonWidth: this.buttonWidth,
             content: this.textState,
             enable: this.enableState,
             clickCallback: () => {
               if (this.textState && !this.isRunning && this.progressIndex < 100) {
-                this.textState = 'Continue'
+                this.textState = 'Continue';
               }
-              this.isRunning = !this.isRunning
+              this.isRunning = !this.isRunning;
               let timer = setInterval(() => {
                 if (this.isRunning) {
                   if (this.progressIndex === 100) {
                   } else {
-                    this.progressIndex++
+                    this.progressIndex++;
                     if (this.progressIndex === 100) {
-                      this.textState = 'Completed'
-                      this.enableState = false
+                      this.textState = 'Completed';
+                      this.enableState = false;
                     }
                   }
                 } else {
-                  clearInterval(timer)
+                  clearInterval(timer);
                 }
               }, 20)
             }
@@ -175,16 +176,16 @@ struct Index {
 ### Example 3: Implementing a Download Button with Custom Corner Radius
 This example shows how to implement a download button with custom corner radius.
 ```ts
-import { ProgressButton, LengthMetrics } from '@kit.ArkUI'
+import { ProgressButton, LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  @State progressIndex: number = 0
-  @State textState: string = 'Download'
-  @State ButtonWidth: number = 200
-  @State isRunning: boolean = false
-  @State enableState: boolean = true
+  @State progressIndex: number = 0;
+  @State textState: string = 'Download';
+  @State buttonWidth: number = 200;
+  @State isRunning: boolean = false;
+  @State enableState: boolean = true;
 
   build() {
     Column() {
@@ -193,26 +194,26 @@ struct Index {
           ProgressButton({
             progressButtonRadius: LengthMetrics.vp (8), // Set the custom corner radius to 8 vp.
             progress: this.progressIndex,
-            progressButtonWidth: this.ButtonWidth,
+            progressButtonWidth: this.buttonWidth,
             content: this.textState,
             enable: this.enableState,
             clickCallback: () => {
               if (this.textState && !this.isRunning && this.progressIndex < 100) {
-                this.textState = 'Continue'
+                this.textState = 'Continue';
               }
-              this.isRunning = !this.isRunning
+              this.isRunning = !this.isRunning;
               let timer = setInterval(() => {
                 if (this.isRunning) {
                   if (this.progressIndex === 100) {
                   } else {
-                    this.progressIndex++
+                    this.progressIndex++;
                     if (this.progressIndex === 100) {
-                      this.textState = 'Completed'
-                      this.enableState = false
+                      this.textState = 'Completed';
+                      this.enableState = false;
                     }
                   }
                 } else {
-                  clearInterval(timer)
+                  clearInterval(timer);
                 }
               }, 20)
             }

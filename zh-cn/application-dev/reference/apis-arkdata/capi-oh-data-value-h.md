@@ -1,4 +1,10 @@
 # oh_data_value.h
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## 概述
 
@@ -411,7 +417,7 @@ int OH_Value_IsNull(OH_Data_Value *value, bool *val)
 | 参数项                                        | 描述                                                       |
 | --------------------------------------------- | ---------------------------------------------------------- |
 | [OH_Data_Value](capi-rdb-oh-data-value.md) *value | 表示指向[OH_Data_Value](capi-rdb-oh-data-value.md)实例的指针。 |
-| bool *val                                     | 一个输出参数，ture表示空，false表示不为空。                |
+| bool *val                                     | 一个输出参数，true表示空，false表示不为空。                |
 
 **返回：**
 

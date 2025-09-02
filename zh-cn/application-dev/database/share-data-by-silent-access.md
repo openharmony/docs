@@ -1,4 +1,10 @@
 # 通过数据管理服务实现数据共享静默访问 (ArkTS)(仅对系统应用开放)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @woodenarow-->
+<!--Designer: @woodenarow; @xuelei3-->
+<!--Tester: @chenwan188; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 
 ## 场景介绍
@@ -190,6 +196,13 @@
        dataShare.createDataShareHelper(abilityContext, dseUri, {
          isProxy: true
        }, (err, data) => {
+         if (err) {
+          console.error(`Create DataShareHelper failed, code is:${err.code}, message is ${err.message}`);
+          return;
+         }
+         if (dsHelper != undefined) {
+           console.info("Create DataShareHelper succeed.");
+         }
          dsHelper = data;
        });
      }
@@ -266,10 +279,8 @@
      subscriberId: "111",
      bundleNameOfOwner: "com.ohos.settingsdata"
    }
-   if(dsHelper != undefined) {
-     // 使用数据管理服务修改数据时触发onCallback回调，回调内容是template中的规则查到的数据
-     let result: Array<dataShare.OperationResult> = (dsHelper as dataShare.DataShareHelper).on("rdbDataChange", [dseUri], templateId, onCallback);
-   }
+   // 使用数据管理服务修改数据时触发onCallback回调，回调内容是template中的规则查到的数据
+   let result: Array<dataShare.OperationResult> = (dsHelper as dataShare.DataShareHelper).on("rdbDataChange", [dseUri], templateId, onCallback);
    ```
 
 ## 过程数据实现说明
@@ -334,6 +345,13 @@
      onWindowStageCreate(windowStage: window.WindowStage) {
        abilityContext = this.context;
        dataShare.createDataShareHelper(abilityContext, dseUri, {isProxy : true}, (err, data) => {
+         if (err) {
+           console.error(`Create DataShareHelper failed, code is:${err.code}, message is ${err.message}`);
+           return;
+         }
+         if (dsHelper != undefined) {
+           console.info("Create DataShareHelper succeed.");
+         }
          dsHelper = data;
        });
      }

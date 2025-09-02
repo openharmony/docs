@@ -1,4 +1,10 @@
 # @ohos.file.environment (目录环境能力)
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangke25; @gsl_1234; @wuchengjun5-->
+<!--Designer: @gsl_1234; @wangke25-->
+<!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
+<!--Adviser: @foryourself-->
 
 该模块提供环境目录能力，获取内存存储根目录、公共文件根目录的JS接口。
 
@@ -16,9 +22,11 @@ import { Environment } from '@kit.CoreFileKit';
 
 getUserDownloadDir(): string
 
-获取当前用户预授权下载目录的沙箱路径。当前仅支持2in1设备使用。
+获取当前用户预授权下载目录的沙箱路径。
 
 **系统能力**：SystemCapability.FileManagement.File.Environment.FolderObtain
+
+**设备行为差异**：该接口在2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **返回值：**
 
@@ -28,7 +36,7 @@ getUserDownloadDir(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
@@ -42,9 +50,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function getUserDownloadDirExample() {
   try {
     let path = Environment.getUserDownloadDir();
-    console.log(`success to getUserDownloadDir: ${JSON.stringify(path)}`);
-  } catch (error) {
-    console.error(`failed to getUserDownloadDir, Error code: ${error.code}, message: ${error.message}`);
+    console.info(`Succeeded in getUserDownloadDir, path is ${path}`);
+  } catch (err) {
+    console.error(`Failed to getUserDownloadDir. Code: ${err.code}, message: ${err.message}`);
   }
 }
 ```
@@ -53,9 +61,11 @@ function getUserDownloadDirExample() {
 
 getUserDesktopDir(): string
 
-获取当前用户预授权桌面目录的沙箱路径。当前仅支持2in1设备使用。
+获取当前用户预授权桌面目录的沙箱路径。
 
 **系统能力**：SystemCapability.FileManagement.File.Environment.FolderObtain
+
+**设备行为差异**：该接口在2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **返回值：**
 
@@ -65,7 +75,7 @@ getUserDesktopDir(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
@@ -79,9 +89,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function getUserDesktopDirExample() {
   try {
     let path = Environment.getUserDesktopDir();
-    console.log(`success to getUserDesktopDir: ${JSON.stringify(path)}`);
-  } catch (error) {
-    console.error(`failed to getUserDesktopDir, Error code: ${error.code}, message: ${error.message}`);
+    console.info(`Succeeded in getUserDesktopDir, path is ${path}`);
+  } catch (err) {
+    console.error(`Failed to getUserDesktopDir. Code: ${err.code}, message: ${err.message}`);
   }
 }
 ```
@@ -90,9 +100,11 @@ function getUserDesktopDirExample() {
 
 getUserDocumentDir(): string
 
-获取当前用户预授权文档目录的沙箱路径。当前仅支持2in1设备使用。
+获取当前用户预授权文档目录的沙箱路径。
 
 **系统能力**：SystemCapability.FileManagement.File.Environment.FolderObtain
+
+**设备行为差异**：该接口在2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **返回值：**
 
@@ -102,7 +114,7 @@ getUserDocumentDir(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
@@ -116,9 +128,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function getUserDocumentDirExample() {
   try {
     let path = Environment.getUserDocumentDir();
-    console.log(`success to getUserDocumentDir: ${JSON.stringify(path)}`);
-  } catch (error) {
-    console.error(`failed to getUserDocumentDir, Error code: ${error.code}, message: ${error.message}`);
+    console.info(`Succeeded in getUserDocumentDir, path is ${path}`);
+  } catch (err) {
+    console.error(`Failed to getUserDocumentDir. Code: ${err.code}, message: ${err.message}`);
   }
 }
 ```

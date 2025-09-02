@@ -137,7 +137,7 @@ Imports a VCard file (that is, **.vcf** file) to the contact database. This API 
 | ------ | ------ | ---- | -------------------------------------- |
 | context   | Context                      | Yes  | Application context.|
 | filePath | string | Yes  | Address of the **.vcf** file.|
-| accountId   | number | No  | Contact account ID.|
+| accountId   | number | No  | Account ID. If this parameter is not passed, the default value **undefined** is used.|
 
 **Return value**
 

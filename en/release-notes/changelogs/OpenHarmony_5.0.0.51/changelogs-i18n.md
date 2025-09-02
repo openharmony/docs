@@ -33,7 +33,7 @@ OpenHarmony SDK 5.0.0.51
 
 **Key API/Component Changes**
 
-i18n.system.getDisplayCountry
+i18n.System.getDisplayCountry
 
 **Adaptation Guide**
 
@@ -73,7 +73,7 @@ OpenHarmony SDK 5.0.0.51
 
 **Key API/Component Changes**
 
-i18n.system.getRegionInfoArray
+i18n.SystemLocaleManager.getRegionInfoArray
 
 **Adaptation Guide**
 
@@ -178,7 +178,7 @@ OpenHarmony SDK 5.0.0.51
 
 **Key API/Component Changes**
 
-intl.PhoneNumberFormat.getLocationName
+i18n.PhoneNumberFormat.getLocationName
 
 **Adaptation Guide**
 
@@ -212,7 +212,7 @@ OpenHarmony SDK 5.0.0.51
 
 **Key API/Component Changes**
 
-i18n.system.getSystemCountries
+i18n.System.getSystemCountries
 
 **Adaptation Guide**
 

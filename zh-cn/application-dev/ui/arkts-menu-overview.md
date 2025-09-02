@@ -1,4 +1,10 @@
 # 菜单概述
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @Armstrong15-->
+<!--Designer: @zhanghaibo0-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 菜单是一种用于给用户提供可执行的操作的弹窗，一般用于鼠标右键弹窗、点击弹窗等。
 
@@ -11,6 +17,6 @@
 
 ## 规格约束
 
-* Menu通过调用[show](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11)参数弹出时，需要等待页面全部构建完成才能展示，因此show不能在页面构建中设置为true，否则会导致menu弹窗显示位置及形状错误。
-* openMenu的弹出需要传入有效的[TargetInfo](../reference/apis-arkui/js-apis-arkui-UIContext.md#targetinfo18)，否则无法弹出气泡。
-* 其他规格约束，具体可参考[菜单控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)、[openMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#openmenu18) 说明。
+* [bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11)通过调用isShow参数或[bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu12)调用isShown参数弹出时，需要等待页面全部构建完成才能展示，因此isShow或isShown不能在页面构建中设置为true，否则会导致menu弹窗显示位置及形状错误。
+* openMenu的弹出需要传入有效的[TargetInfo](../reference/apis-arkui/arkts-apis-uicontext-i.md#targetinfo18)，否则无法弹出气泡。
+* 其他规格约束，具体可参考[菜单控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)、[openMenu](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#openmenu18) 说明。

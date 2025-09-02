@@ -1,5 +1,12 @@
 # @ohos.bytrace (性能打点)
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @qq_437963121-->
+<!--Designer: @kutcherzhou1; @MontSaintMichel-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 本模块提供了追踪进程轨迹。
 
 > **说明：**

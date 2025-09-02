@@ -1,10 +1,16 @@
 # 长时任务开发指导（TaskPool）
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 此处提供使用TaskPool进行长时任务的开发指导，以定期采集传感器数据为例。
 
 ## 使用TaskPool进行传感器数据监听
 
-1. 导入需要用到的模块。
+1. 导入所需的模块。
 
    ```ts
    // Index.ets
@@ -30,7 +36,17 @@
    }
    ```
 
-3. 宿主线程定义注册及销毁的行为。
+3. 给sensor添加ohos.permission.ACCELEROMETER权限。
+
+   ```json
+   // module.json5
+   "requestPermissions": [
+     {
+       "name": "ohos.permission.ACCELEROMETER"
+     }
+   ]
+   ```
+4. 宿主线程定义注册及销毁的行为。
    - 注册：发起长时任务，并通过emitter接收监听数据。
    - 销毁：发送取消传感器监听的事件，并结束长时任务。
 
@@ -78,6 +94,6 @@
      }
    }
    ```
-   <!-- @[taskpool_listen_sensor_data](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/LongTimeTaskGuide.ets) -->
+   <!-- @[taskpool_listen_sensor_data](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/LongTimeTaskGuide.ets) -->
    
    

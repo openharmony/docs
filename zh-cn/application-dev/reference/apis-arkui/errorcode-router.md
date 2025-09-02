@@ -1,4 +1,10 @@
 # 页面路由错误码
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @mayaolll-->
+<!--Designer: @jiangdayuan-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 >
@@ -8,11 +14,13 @@
 
 **错误信息**
 
-Internal error.
+作为@ohos.router的错误码时，错误信息为：Internal error. UI execution context is not found.
+
+作为Navigation路由框架的错误码时，错误信息为：Internal error. Create NavDestination failed, probably caused by wrong UIContext.
 
 **错误描述**
 
-当出现了开发者解决不了的内部异常错误，系统会产生此错误码，并描述具体是哪种内部错误。作为@ohos.router的错误码时，该错误码为string类型。
+当出现了开发者解决不了的内部异常错误，系统会产生此错误码，并描述具体是哪种内部错误。作为@ohos.router的错误码时，该错误码为string类型。作为Navigation路由框架的错误码时，该错误码为number类型。
 
 **可能原因**
 

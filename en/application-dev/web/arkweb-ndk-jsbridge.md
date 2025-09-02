@@ -1,10 +1,11 @@
 # Mutual Invoking Between the Application and the Frontend Page (C/C++)
 
 This guide applies to the communication between ArkWeb applications and frontend pages. You can use the ArkWeb native APIs to conduct the service communication mechanism (native JSBridge for short) based on the application architecture.
+For details about how to optimize the performance of JSBridge, see [JSBridge Optimization Solution] (https://developer.huawei.com/consumer/en/doc/best-practices/bpta-web-develop-optimization#section58781855115017).
 
 ## Applicable Application Architecture
 
-If an application is developed using ArkTS and C++ language, or if its architecture is close to that of an applet and has a built-in C++ environment, you are advised to use [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) and [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) provided by ArkWeb on the native side to implement the JSBridge capabilities.
+If an application is developed using ArkTS and C++ language, or if its architecture is close to that of an applet and has a built-in C++ environment, you are advised to use [ArkWeb_ControllerAPI](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md) and [ArkWeb_ComponentAPI](../reference/apis-arkweb/capi-web-arkweb-componentapi.md) provided by ArkWeb on the native side to implement the JSBridge capabilities.
 
   ![arkweb_jsbridge_arch](figures/arkweb_jsbridge_arch.png)
 
@@ -17,9 +18,9 @@ If an application is developed using ArkTS and C++ language, or if its architect
   The native JSBridge APIs are provided to avoid unnecessary switching to the ArkTS environment and allow callback to run in non-UI threads to avoid UI blocking.
 
 ## Using Native APIs to Implement JSBridge Communication (Recommended)
-In the previous version, the return value of native synchronization APIs is fixed to void. With the continuous expansion of services, many service scenarios require APIs to provide return values to support synchronous calls. To meet this requirement, substitute APIs are introduced since API version 16. They support return values of the Boolean, string, and buffer types.
+In the previous version, the return value of native synchronization APIs is fixed to void. However, to meet service requirements, alternative APIs are introduced since API version 18 to support return values of the Boolean, string, and buffer types.
 
-In addition, the [permission](#invoking-application-functions-on-the-frontend-page) field is added for the synchronous API [registerJavaScriptProxyEx](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerjavascriptproxyex) and asynchronous API [registerAsyncJavaScriptProxyEx](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerasyncjavascriptproxyex) to control the calling permission.
+In addition, the [permission](#invoking-application-functions-on-the-frontend-page) field is added for the synchronous API [registerJavaScriptProxyEx](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md#registerjavascriptproxyex) and asynchronous API [registerAsyncJavaScriptProxyEx](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md#registerasyncjavascriptproxyex) to control the invoking permission.
 
 ### Substitute APIs
 
@@ -42,7 +43,7 @@ In addition, the [permission](#invoking-application-functions-on-the-frontend-pa
   webTag: string = 'ArkWeb1';
   controller: web_webview.WebviewController = new web_webview.WebviewController(this.webTag);
 
-  // Use aboutToAppear() to pass webTag to C++ through Node-API. The webTag uniquely identifies the C++ ArkWeb component.
+  // In the aboutToAppear method, pass webTag to the C++ side through the Node-API. The C++ side uses webTag to uniquely identify the Web component.
   aboutToAppear() {
     console.info("aboutToAppear")
     // Initialize the web NDK.
@@ -74,7 +75,7 @@ In addition, the [permission](#invoking-application-functions-on-the-frontend-pa
 
 ### Obtaining API Struct Using the Native API
 
-To invoke the native APIs, obtain the API structs on the ArkWeb native side first. You can use [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi()) to obtain the native ArkWeb API, and use [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) and [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) to obtain function pointer structs based on the input parameter type. The [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) corresponds to the [web_webview.WebviewController API](../reference/apis-arkweb/js-apis-webview.md) on ArkTS, and the [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) corresponds to the [ArkWeb component API](../reference/apis-arkweb/ts-basic-components-web.md) on ArkTS.
+On the ArkWeb native side, you need to obtain the API struct before invoking the native API in the struct. Through [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/capi-arkweb-interface-h.md#oh_arkweb_getnativeapi), you can obtain the structs of [ArkWeb_ControllerAPI](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md) and [ArkWeb_ComponentAPI](../reference/apis-arkweb/capi-web-arkweb-componentapi.md) based on the input parameter **type**. [ArkWeb_ControllerAPI](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md) corresponds to [web_webview.WebviewController API](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md) on the ArkTS side, and [ArkWeb_ComponentAPI](../reference/apis-arkweb/capi-web-arkweb-componentapi.md) corresponds to [ArkWeb Component API](../reference/apis-arkweb/arkts-basic-components-web.md) on the ArkTS side.
 
   ```c++
   static ArkWeb_ControllerAPI *controller = nullptr;
@@ -86,7 +87,7 @@ To invoke the native APIs, obtain the API structs on the ArkWeb native side firs
 
 ### Registering Component Lifecycle Callback on the Native Side
 
-Use [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) to register the component lifecycle callback. To avoid crash caused by mismatch between SDK and device ROM, you are advised to use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missing) to check whether there is a pointer to the function struct before calling an API.
+Register the component lifecycle callback using [ArkWeb_ComponentAPI](../reference/apis-arkweb/capi-web-arkweb-componentapi.md). Before calling the API, you are advised to use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#macros) to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM.
 
   ```c++
   if (!ARKWEB_MEMBER_MISSING(component, onControllerAttached)) {
@@ -120,7 +121,7 @@ Use [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md
 
 ### Invoking Application Functions on the Frontend Page
 
-Use [registerJavaScriptProxyEx](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerjavascriptproxyex) to register the application function in the frontend page. You are advised to register the function in [onControllerAttached](../reference/apis-arkweb/_ark_web___component_a_p_i.md#oncontrollerattached). In other cases, you need to call [refresh](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#refresh) for the registration.
+Use [registerJavaScriptProxyEx](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md#registerjavascriptproxyex) to register the application function with the frontend page. You are advised to register the application function in the [onControllerAttached](../reference/apis-arkweb/capi-web-arkweb-componentapi.md#oncontrollerattached) callback. To register the application function at other time, you need to call [refresh](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md#refresh) for the registration to take effect.
 
   ```c++
   // Register an object.
@@ -195,7 +196,7 @@ Use [registerJavaScriptProxyEx](../reference/apis-arkweb/_ark_web___controller_a
 
 ### Invoking Frontend Page Functions on the Application
 
-Use [runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runjavascript) to invoke frontend page functions.
+Use [runJavaScript](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md#runjavascript) to call the frontend page function.
 
   ```c++
   // Construct a struct executed in runJS.
@@ -791,7 +792,7 @@ Use [runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runj
 
 ### Obtaining API Struct Using the Native API
 
-To invoke the native APIs, obtain the API structs on the ArkWeb native side first. You can use [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi()) to obtain the native ArkWeb API, and use [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) and [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) to obtain function pointer structs based on the input parameter type. The [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) corresponds to the [web_webview.WebviewController API](../reference/apis-arkweb/js-apis-webview.md) on ArkTS, and the [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) corresponds to the [ArkWeb component API](../reference/apis-arkweb/ts-basic-components-web.md) on ArkTS.
+To invoke the native APIs, obtain the API structs on the ArkWeb native side first. Through [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/capi-arkweb-interface-h.md#oh_arkweb_getnativeapi), you can obtain the pointer structs of [ArkWeb_ControllerAPI](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md) and [ArkWeb_ComponentAPI](../reference/apis-arkweb/capi-web-arkweb-componentapi.md) based on the input parameter **type**. [ArkWeb_ControllerAPI](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md) corresponds to [web_webview.WebviewController API](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md) on the ArkTS side, and [ArkWeb_ComponentAPI](../reference/apis-arkweb/capi-web-arkweb-componentapi.md) corresponds to [ArkWeb Component API](../reference/apis-arkweb/arkts-basic-components-web.md) on the ArkTS side.
 
   ```c++
   static ArkWeb_ControllerAPI *controller = nullptr;
@@ -803,7 +804,7 @@ To invoke the native APIs, obtain the API structs on the ArkWeb native side firs
 
 ### Registering Component Lifecycle Callback on the Native Side
 
-Use [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) to register the component lifecycle callback. To avoid crash caused by mismatch between SDK and device ROM, you are advised to use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missing) to check whether there is a pointer to the function struct before calling an API.
+Register the component lifecycle callback using [ArkWeb_ComponentAPI](../reference/apis-arkweb/capi-web-arkweb-componentapi.md). Before calling the API, you are advised to use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#macros) to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM.
 
   ```c++
   if (!ARKWEB_MEMBER_MISSING(component, onControllerAttached)) {
@@ -837,7 +838,7 @@ Use [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md
 
 ### Invoking Application Functions on the Frontend Page
 
-Use [registerJavaScriptProxy](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerjavascriptproxy) to register the application function in the frontend page. You are advised to register the function in [onControllerAttached](../reference/apis-arkweb/_ark_web___component_a_p_i.md#oncontrollerattached). In other cases, you need to call [refresh](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#refresh) for the registration.
+Use [registerJavaScriptProxy](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md#registerjavascriptproxy) to register the application function with the frontend page. You are advised to register the application function in the [onControllerAttached](../reference/apis-arkweb/capi-web-arkweb-componentapi.md#oncontrollerattached) callback. To register the application function at other time, you need to call [refresh](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md#refresh) for the registration to take effect.
 
   ```c++
   // Register an object.
@@ -853,7 +854,7 @@ Use [registerJavaScriptProxy](../reference/apis-arkweb/_ark_web___controller_a_p
 
 ### Invoking Frontend Page Functions on the Application
 
-Use [runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runjavascript) to invoke frontend page functions.
+Use [runJavaScript](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md#runjavascript) to call the frontend page function.
 
   ```c++
   // Construct a struct executed in runJS.
@@ -1380,5 +1381,3 @@ Use [runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runj
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "JSBridgeObject SaySomething argc:%{public}s", say);
   }
   ```
-
-<!--no_check-->

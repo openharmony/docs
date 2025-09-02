@@ -1,4 +1,10 @@
 # OH_Predicates
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## 概述
 
@@ -116,7 +122,7 @@ OH_Predicates *(*beginWrap)(OH_Predicates *predicates)
 
 | 参数项                   | 描述                              |
 | ------------------------ | --------------------------------- |
-| H_Predicates *predicates | 表示指向OH_Predicates实例的指针。 |
+| OH_Predicates *predicates | 表示指向OH_Predicates实例的指针。 |
 
 **返回：**
 

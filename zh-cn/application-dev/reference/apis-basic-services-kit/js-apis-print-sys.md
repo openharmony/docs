@@ -1,5 +1,12 @@
 # @ohos.print (打印)(系统接口)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Print-->
+<!--Owner: @guoshengbang-->
+<!--Designer: @gcw_4D6e0BBd-->
+<!--Tester: @guoshengbang-->
+<!--Adviser: @RayShih-->
+
 该模块为基本打印的操作API，提供调用基础打印功能的接口。
 
 > **说明：**  
@@ -237,268 +244,6 @@ print.queryAllPrinterExtensionInfos().then((extensionInfos: print.PrinterExtensi
 })
 ```
 
-## print.startDiscoverPrinter
-
-startDiscoverPrinter(extensionList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
-
-加载特定的打印机扩展并开始发现打印机，使用callback异步回调。
-
-**需要权限：** ohos.permission.MANAGE_PRINT_JOB
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Print.PrintFramework
-
-**参数：**
-| **参数名** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| extensionList | Array&lt;string&gt; | 是 | 要加载的打印机扩展列表。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 异步开始发现打印机之后的回调。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
-
-| 错误码ID | 错误信息                                    |
-| -------- | ------------------------------------------- |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-
-**示例：**
-
-```ts
-import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
-
-let extensionList: string[] = [];
-//extensionList内无信息表示发现所有扩展
-print.startDiscoverPrinter(extensionList, (err: BusinessError, data : void) => {
-    if (err) {
-        console.error('failed to start Discover Printer because : ' + JSON.stringify(err));
-    } else {
-        console.log('start Discover Printer success data : ' + JSON.stringify(data));
-    }
-})
-```
-
-## print.startDiscoverPrinter
-
-startDiscoverPrinter(extensionList: Array&lt;string&gt;): Promise&lt;void&gt;
-
-加载特定的打印机扩展并开始发现打印机，使用Promise异步回调。
-
-**需要权限：** ohos.permission.MANAGE_PRINT_JOB
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Print.PrintFramework
-
-**参数：**
-| **参数名** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| extensionList | Array&lt;string&gt; | 是 | 要加载的打印机扩展列表。 |
-
-**返回值：**
-| **类型** | **说明** |
-| -------- | -------- |
-| Promise&lt;void&gt; | 加载特定的打印机扩展并开始发现打印机完成结果。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
-
-| 错误码ID | 错误信息                                    |
-| -------- | ------------------------------------------- |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-
-**示例：**
-
-```ts
-import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
-
-let extensionList: string[] = [];
-//extensionList内无信息表示发现所有扩展
-print.startDiscoverPrinter(extensionList).then((data : void) => {
-    console.log('start Discovery success data : ' + JSON.stringify(data));
-}).catch((error: BusinessError) => {
-    console.error('failed to start Discovery because : ' + JSON.stringify(error));
-})
-```
-
-## print.stopDiscoverPrinter
-
-stopDiscoverPrinter(callback: AsyncCallback&lt;void&gt;): void
-
-停止发现具有特定打印机扩展的打印机，使用callback异步回调。
-
-**需要权限：** ohos.permission.MANAGE_PRINT_JOB
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Print.PrintFramework
-
-**参数：**
-| **参数名** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 异步停止发现具有特定打印机扩展的打印机之后的回调。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
-
-| 错误码ID | 错误信息                                    |
-| -------- | ------------------------------------------- |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application |
-
-**示例：**
-
-```ts
-import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
-
-print.stopDiscoverPrinter((err: BusinessError, data : void) => {
-    if (err) {
-        console.error('failed to stop Discover Printer because : ' + JSON.stringify(err));
-    } else {
-        console.log('stop Discover Printer success data : ' + JSON.stringify(data));
-    }
-})
-```
-
-## print.stopDiscoverPrinter
-
-stopDiscoverPrinter(): Promise&lt;void&gt;
-
-停止发现具有特定打印机扩展的打印机，使用Promise异步回调。
-
-**需要权限：** ohos.permission.MANAGE_PRINT_JOB
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Print.PrintFramework
-
-**返回值：**
-| **类型** | **说明** |
-| -------- | -------- |
-| Promise&lt;void&gt; | 停止发现具有特定打印机扩展的打印机完成结果。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
-
-| 错误码ID | 错误信息                                    |
-| -------- | ------------------------------------------- |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application |
-
-**示例：**
-
-```ts
-import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
-
-print.stopDiscoverPrinter().then((data : void) => {
-    console.log('stop Discovery success data : ' + JSON.stringify(data));
-}).catch((error: BusinessError) => {
-    console.error('failed to stop Discovery because : ' + JSON.stringify(error));
-})
-```
-
-## print.connectPrinter
-
-connectPrinter(printerId: string, callback: AsyncCallback&lt;void&gt;): void
-
-连接特定打印机，使用callback异步回调。
-
-**需要权限：** ohos.permission.MANAGE_PRINT_JOB
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Print.PrintFramework
-
-**参数：**
-| **参数名** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| printerId | string | 是 | 打印机ID。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 异步连接特定打印机之后的回调。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
-
-| 错误码ID | 错误信息                                    |
-| -------- | ------------------------------------------- |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-
-**示例：**
-
-```ts
-import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
-
-let printerId: string = 'printerId_32';
-print.connectPrinter(printerId, (err: BusinessError, data : void) => {
-    if (err) {
-        console.error('failed to connect Printer because : ' + JSON.stringify(err));
-    } else {
-        console.log('start connect Printer success data : ' + JSON.stringify(data));
-    }
-})
-```
-
-## print.connectPrinter
-
-connectPrinter(printerId: string): Promise&lt;void&gt;
-
-连接特定打印机，使用Promise异步回调。
-
-**需要权限：** ohos.permission.MANAGE_PRINT_JOB
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Print.PrintFramework
-
-**参数：**
-| **参数名** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| printerId | string | 是 | 打印机ID |
-
-**返回值：**
-| **类型** | **说明** |
-| -------- | -------- |
-| Promise&lt;void&gt; | 连接特定打印机完成结果。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
-
-| 错误码ID | 错误信息                                    |
-| -------- | ------------------------------------------- |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-
-**示例：**
-
-```ts
-import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
-
-let printerId: string = 'printerId_32';
-print.connectPrinter(printerId).then((data : void) => {
-    console.log('start connect Printer success data : ' + JSON.stringify(data));
-}).catch((error: BusinessError) => {
-    console.error('failed to connect Printer because : ' + JSON.stringify(error));
-})
-```
-
 ## print.disconnectPrinter
 
 disconnectPrinter(printerId: string, callback: AsyncCallback&lt;void&gt;): void
@@ -534,11 +279,11 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId: string = 'printerId_32';
-print.disconnectPrinter(printerId, (err: BusinessError, data : void) => {
+print.disconnectPrinter(printerId, (err: BusinessError) => {
     if (err) {
         console.error('failed to disconnect Printer because : ' + JSON.stringify(err));
     } else {
-        console.log('start disconnect Printer success data : ' + JSON.stringify(data));
+        console.log('start disconnect Printer success');
     }
 })
 ```
@@ -582,8 +327,8 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId: string = 'printerId_32';
-print.disconnectPrinter(printerId).then((data : void) => {
-    console.log('start disconnect Printer success data : ' + JSON.stringify(data));
+print.disconnectPrinter(printerId).then(() => {
+    console.log('start disconnect Printer success');
 }).catch((error: BusinessError) => {
     console.error('failed to disconnect Printer because : ' + JSON.stringify(error));
 })
@@ -624,11 +369,11 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId: string = 'printerId_32';
-print.queryPrinterCapability(printerId, (err: BusinessError, data : void) => {
+print.queryPrinterCapability(printerId, (err: BusinessError) => {
     if (err) {
         console.error('failed to query Printer Capability because : ' + JSON.stringify(err));
     } else {
-        console.log('start query Printer Capability success data : ' + JSON.stringify(data));
+        console.log('start query Printer Capability success');
     }
 })
 ```
@@ -672,8 +417,8 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId: string = 'printerId_32';
-print.queryPrinterCapability(printerId).then((data : void) => {
-    console.log('start query Printer success data : ' + JSON.stringify(data));
+print.queryPrinterCapability(printerId).then(() => {
+    console.log('start query Printer success');
 }).catch((error: BusinessError) => {
     console.error('failed to query Printer Capability because : ' + JSON.stringify(error));
 })
@@ -714,27 +459,27 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobInfo : print.PrintJob = {
-    fdList : [0,1],
+    fdList : [44,45],
     jobId : 'jobId_12',
     printerId : 'printerId_32',
-    jobState : 3,
+    jobState : PRINT_JOB_COMPLETED,
     jobSubstate : print.PrintJobSubState.PRINT_JOB_COMPLETED_SUCCESS,
     copyNumber : 1,
     pageRange : {},
     isSequential : false,
     pageSize : {id : '', name : '', width : 10, height : 20},
     isLandscape : false,
-    colorMode : 6,
-    duplexMode : 6,
+    colorMode : COLOR_MODE_COLOR,
+    duplexMode : DUPLEX_MODE_NONE,
     margin : undefined,
     preview : undefined,
     options : undefined
 };
-print.startPrintJob(jobInfo, (err: BusinessError, data : void) => {
+print.startPrintJob(jobInfo, (err: BusinessError) => {
     if (err) {
         console.error('failed to start Print Job because : ' + JSON.stringify(err));
     } else {
-        console.log('start Print Job success data : ' + JSON.stringify(data));
+        console.log('start Print Job success');
     }
 })
 ```
@@ -778,24 +523,24 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobInfo : print.PrintJob = {
-    fdList : [0,1],
+    fdList : [44,45],
     jobId : 'jobId_12',
     printerId : 'printerId_32',
-    jobState : 3,
+    jobState : PRINT_JOB_COMPLETED,
     jobSubstate : print.PrintJobSubState.PRINT_JOB_COMPLETED_SUCCESS,
     copyNumber : 1,
     pageRange : {},
     isSequential : false,
     pageSize : {id : '', name : '', width : 10, height : 20},
     isLandscape : false,
-    colorMode : 6,
-    duplexMode : 6,
+    colorMode : COLOR_MODE_COLOR,
+    duplexMode : DUPLEX_MODE_NONE,
     margin : undefined,
     preview : undefined,
     options : undefined
 };
-print.startPrintJob(jobInfo).then((data : void) => {
-    console.log('start Print success data : ' + JSON.stringify(data));
+print.startPrintJob(jobInfo).then(() => {
+    console.log('start Print success');
 }).catch((error: BusinessError) => {
     console.error('failed to start Print because : ' + JSON.stringify(error));
 })
@@ -836,11 +581,11 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '121212';
-print.cancelPrintJob(jobId, (err: BusinessError, data : void) => {
+print.cancelPrintJob(jobId, (err: BusinessError) => {
     if (err) {
         console.error('cancelPrintJob failed, because : ' + JSON.stringify(err));
     } else {
-        console.log('cancelPrintJob success, data: ' + JSON.stringify(data));
+        console.log('cancelPrintJob success');
     }
 })
 ```
@@ -884,10 +629,55 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '121212';
-print.cancelPrintJob(jobId).then((data : void) => {
-    console.log('cancelPrintJob success, data : ' + JSON.stringify(data));
+print.cancelPrintJob(jobId).then(() => {
+    console.log('cancelPrintJob success');
 }).catch((error: BusinessError) => {
     console.error('cancelPrintJob failed, because : ' + JSON.stringify(error));
+})
+```
+
+## print.restartPrintJob<sup>20+</sup>
+
+restartPrintJob(jobId: string): Promise&lt;void&gt;
+
+重新打印之前打印过的打印任务，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| jobId | string | 是 | 之前打印过的打印任务ID。 |
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;void&gt; | 重新开始打印任务的结果的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
+
+**示例：**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+let jobId : string = '121212';
+print.restartPrintJob(jobId).then(() => {
+    console.log('restartPrintJob success');
+}).catch((error: BusinessError) => {
+    console.error('restartPrintJob failed, because : ' + JSON.stringify(error));
 })
 ```
 
@@ -925,18 +715,18 @@ requestPrintPreview(jobInfo: PrintJob, callback: Callback&lt;number&gt;): void
 import { print } from '@kit.BasicServicesKit';
 
 let jobInfo : print.PrintJob = {
-    fdList : [0,1],
+    fdList : [44,45],
     jobId : 'jobId_12',
     printerId : 'printerId_32',
-    jobState : 3,
+    jobState : PRINT_JOB_COMPLETED,
     jobSubstate : print.PrintJobSubState.PRINT_JOB_COMPLETED_SUCCESS,
     copyNumber : 1,
     pageRange : {},
     isSequential : false,
     pageSize : {id : '', name : '', width : 10, height : 20},
     isLandscape : false,
-    colorMode : 6,
-    duplexMode : 6,
+    colorMode : COLOR_MODE_COLOR,
+    duplexMode : DUPLEX_MODE_NONE,
     margin : undefined,
     preview : undefined,
     options : undefined
@@ -986,18 +776,18 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobInfo : print.PrintJob = {
-    fdList : [0,1],
+    fdList : [44,45],
     jobId : 'jobId_12',
     printerId : 'printerId_32',
-    jobState : 3,
+    jobState : PRINT_JOB_COMPLETED,
     jobSubstate : print.PrintJobSubState.PRINT_JOB_COMPLETED_SUCCESS,
     copyNumber : 1,
     pageRange : {},
     isSequential : false,
     pageSize : {id : '', name : '', width : 10, height : 20},
     isLandscape : false,
-    colorMode : 6,
-    duplexMode : 6,
+    colorMode : COLOR_MODE_COLOR,
+    duplexMode : DUPLEX_MODE_NONE,
     margin : undefined,
     preview : undefined,
     options : undefined
@@ -1286,11 +1076,11 @@ let printerInfo : print.PrinterInfo = {
     capability : undefined,
     options : 'opt'
 };
-print.addPrinters([printerInfo], (err: BusinessError, data : void) => {
+print.addPrinters([printerInfo], (err: BusinessError) => {
     if (err) {
         console.error('addPrinters failed, because : ' + JSON.stringify(err));
     } else {
-        console.log('addPrinters success, data : ' + JSON.stringify(data));
+        console.log('addPrinters success');
     }
 })
 ```
@@ -1342,8 +1132,8 @@ let printerInfo : print.PrinterInfo = {
     capability : undefined,
     options : 'opt'
 };
-print.addPrinters([printerInfo]).then((data : void) => {
-    console.log('add printers data : ' + JSON.stringify(data));
+print.addPrinters([printerInfo]).then(() => {
+    console.log('add printers success.');
 }).catch((error: BusinessError) => {
     console.error('add printers error : ' + JSON.stringify(error));
 })
@@ -1384,11 +1174,11 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId : string = '1212';
-print.removePrinters([printerId], (err: BusinessError, data : void) => {
+print.removePrinters([printerId], (err: BusinessError) => {
     if (err) {
         console.error('removePrinters failed, because : ' + JSON.stringify(err));
     } else {
-        console.log('removePrinters success, data : ' + JSON.stringify(data));
+        console.log('removePrinters success');
     }
 })
 ```
@@ -1432,8 +1222,8 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId : string = '1212';
-print.removePrinters([printerId]).then((data : void) => {
-    console.log('remove printers data : ' + JSON.stringify(data));
+print.removePrinters([printerId]).then(() => {
+    console.log('remove printers success');
 }).catch((error: BusinessError) => {
     console.error('remove printers error : ' + JSON.stringify(error));
 })
@@ -1482,11 +1272,11 @@ let printerInfo : print.PrinterInfo = {
     capability : undefined,
     options : 'opt'
 };
-print.updatePrinters([printerInfo], (err: BusinessError, data : void) => {
+print.updatePrinters([printerInfo], (err: BusinessError) => {
     if (err) {
         console.error('updataPrinters failed, because : ' + JSON.stringify(err));
     } else {
-        console.log('updataPrinters success, data : ' + JSON.stringify(data));
+        console.log('updataPrinters success');
     }
 })
 ```
@@ -1538,8 +1328,8 @@ let printerInfo : print.PrinterInfo = {
     capability : undefined,
     options : 'opt'
 };
-print.updatePrinters([printerInfo]).then((data : void) => {
-    console.log('update printers data : ' + JSON.stringify(data));
+print.updatePrinters([printerInfo]).then(() => {
+    console.log('update printers success');
 }).catch((error: BusinessError) => {
     console.error('update printers error : ' + JSON.stringify(error));
 })
@@ -1582,11 +1372,11 @@ import { BusinessError } from '@ohos.base';
 
 let printerId : string = '1212';
 let state : print.PrinterState = print.PrinterState.PRINTER_CONNECTED;
-print.updatePrinterState(printerId, state, (err: BusinessError, data : void) => {
+print.updatePrinterState(printerId, state, (err: BusinessError) => {
     if (err) {
-        console.error('updataPrinterState failed, because : ' + JSON.stringify(err));
+        console.error('updatePrinterState failed, because : ' + JSON.stringify(err));
     } else {
-        console.log('updataPrinterState success, data : ' + JSON.stringify(data));
+        console.log('updatePrinterState success');
     }
 })
 ```
@@ -1632,8 +1422,8 @@ import { BusinessError } from '@ohos.base';
 
 let printerId : string = '1212';
 let state : print.PrinterState = print.PrinterState.PRINTER_CONNECTED;
-print.updatePrinterState(printerId, state).then((data : void) => {
-    console.log('update printer state data : ' + JSON.stringify(data));
+print.updatePrinterState(printerId, state).then(() => {
+    console.log('update printer state success');
 }).catch((error: BusinessError) => {
     console.error('update printer state error : ' + JSON.stringify(error));
 })
@@ -1678,11 +1468,11 @@ import { BusinessError } from '@ohos.base';
 let jobId : string = '3434';
 let state : print.PrintJobState = print.PrintJobState.PRINT_JOB_PREPARE;
 let subState : print.PrintJobSubState = print.PrintJobSubState.PRINT_JOB_COMPLETED_SUCCESS;
-print.updatePrintJobState(jobId, state, subState, (err: BusinessError, data : void) => {
+print.updatePrintJobState(jobId, state, subState, (err: BusinessError) => {
     if (err) {
         console.error('updataPrintJobState failed, because : ' + JSON.stringify(err));
     } else {
-        console.log('updatePrintJobState success, data : ' + JSON.stringify(data));
+        console.log('updatePrintJobState success');
     }
 })
 ```
@@ -1730,8 +1520,8 @@ import { BusinessError } from '@ohos.base';
 let jobId : string = '3434';
 let state : print.PrintJobState = print.PrintJobState.PRINT_JOB_PREPARE;
 let subState : print.PrintJobSubState = print.PrintJobSubState.PRINT_JOB_COMPLETED_SUCCESS;
-print.updatePrintJobState(jobId, state, subState).then((data : void) => {
-    console.log('update print job state data : ' + JSON.stringify(data));
+print.updatePrintJobState(jobId, state, subState).then(() => {
+    console.log('update print job state success');
 }).catch((error: BusinessError) => {
     console.error('update print job state error : ' + JSON.stringify(error));
 })
@@ -1772,11 +1562,11 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let info : string = 'WIFI_INACTIVE';
-print.updateExtensionInfo(info, (err: BusinessError, data : void) => {
+print.updateExtensionInfo(info, (err: BusinessError) => {
     if (err) {
         console.error('updateExtensionInfo failed, because : ' + JSON.stringify(err));
     } else {
-        console.log('updateExtensionInfo success, data : ' + JSON.stringify(data));
+        console.log('updateExtensionInfo success');
     }
 })
 ```
@@ -1820,8 +1610,8 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let info : string = 'WIFI_INACTIVE';
-print.updateExtensionInfo(info).then((data : void) => {
-    console.log('update print job state data : ' + JSON.stringify(data));
+print.updateExtensionInfo(info).then(() => {
+    console.log('update print job state success');
 }).catch((error: BusinessError) => {
     console.error('update print job state error : ' + JSON.stringify(error));
 })
@@ -1862,11 +1652,11 @@ queryAllPrintJobs(callback: AsyncCallback&lt;void&gt;): void
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
-print.queryAllPrintJobs((err: BusinessError, data : void) => {
+print.queryAllPrintJobs((err: BusinessError) => {
     if (err) {
         console.error('queryAllPrintJobs failed, because : ' + JSON.stringify(err));
     } else {
-        console.log('queryAllPrintJobs success, data : ' + JSON.stringify(data));
+        console.log('queryAllPrintJobs success');
     }
 })
 ```
@@ -1906,10 +1696,49 @@ queryAllPrintJobs(): Promise&lt;void&gt;
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
-print.queryAllPrintJobs().then((data : void) => {
-    console.log('queryAllPrintJobs success, data : ' + JSON.stringify(data));
+print.queryAllPrintJobs().then(() => {
+    console.log('queryAllPrintJobs success');
 }).catch((error: BusinessError) => {
     console.error('queryAllPrintJobs failed, error : ' + JSON.stringify(error));
+})
+```
+
+## print.queryAllActivePrintJobList<sup>20+</sup>
+
+queryAllActivePrintJobList(): Promise&lt;[PrintJob](#printjob)[]&gt;
+
+查询所有活跃中的打印任务，使用Promise进行异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;[PrintJob](#printjob)[]&gt; | 包含所有活跃打印任务的列表的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
+
+**示例：**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+print.queryAllActivePrintJobList().then((printJobs : print.PrintJob[]) => {
+    console.log('queryPrinqueryAllActivePrintJobListtJobList success, data : ' + JSON.stringify(printJobs));
+}).catch((error: BusinessError) => {
+    console.error('queryAllActivePrintJobList failed, error : ' + JSON.stringify(error));
 })
 ```
 
@@ -2145,8 +1974,6 @@ class MyPrintPageSize implements print.PrintPageSize {
 let printAttributes = new MyPrintAttributes();
 printAttributes.copyNumber = 2;
 printAttributes.pageRange = new MyPrintPageRange();
-printAttributes.pageRange.startPage = 0;
-printAttributes.pageRange.endPage = 5;
 printAttributes.pageRange.pages = [1, 3];
 printAttributes.pageSize = print.PrintPageType.PAGE_ISO_A3;
 printAttributes.directionMode = print.PrintDirectionMode.DIRECTION_MODE_AUTO;
@@ -2195,11 +2022,11 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '1';
-print.notifyPrintService(jobId, 'spooler_closed_for_started', (err: BusinessError, data : void) => {
+print.notifyPrintService(jobId, 'spooler_closed_for_started', (err: BusinessError) => {
     if (err) {
         console.error('notifyPrintService failed, because : ' + JSON.stringify(err));
     } else {
-        console.log('notifyPrintService success, data : ' + JSON.stringify(data));
+        console.log('notifyPrintService success');
     }
 })
 ```
@@ -2244,8 +2071,8 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '1';
-print.notifyPrintService(jobId, 'spooler_closed_for_started').then((data : void) => {
-    console.log('notifyPrintService data : ' + JSON.stringify(data));
+print.notifyPrintService(jobId, 'spooler_closed_for_started').then(() => {
+    console.log('notifyPrintService success');
 }).catch((error: BusinessError) => {
     console.error('notifyPrintService error : ' + JSON.stringify(error));
 })
@@ -2336,8 +2163,8 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let event : print.ApplicationEvent = print.ApplicationEvent.APPLICATION_CREATED;
-print.notifyPrintServiceEvent(event).then((data : void) => {
-    console.log('notifyPrintServiceEvent data : ' + JSON.stringify(data));
+print.notifyPrintServiceEvent(event).then(() => {
+    console.log('notifyPrintServiceEvent success');
 }).catch((error: BusinessError) => {
     console.error('notifyPrintServiceEvent error : ' + JSON.stringify(error));
 })
@@ -2408,8 +2235,8 @@ let printerInformation : print.PrinterInformation = {
     printerMake : 'testPrinterMake',
     options : 'testOptions'
 };
-print.updatePrinterInformation(printerInformation).then((data : void) => {
-    console.log('updatePrinterInformation data : ' + JSON.stringify(data));
+print.updatePrinterInformation(printerInformation).then(() => {
+    console.log('updatePrinterInformation success');
 }).catch((error: BusinessError) => {
     console.error('updatePrinterInformation error : ' + JSON.stringify(error));
 })
@@ -2458,8 +2285,8 @@ let printerId : string = 'testPrinterId';
 let preferences : print.PrinterPreferences = {
     defaultDuplexMode: print.PrintDuplexMode.DUPLEX_MODE_NONE
 };
-print.setPrinterPreferences(printerId, preferences).then((data : void) => {
-    console.log('setPrinterPreferences data : ' + JSON.stringify(data));
+print.setPrinterPreferences(printerId, preferences).then(() => {
+    console.log('setPrinterPreferences success');
 }).catch((error: BusinessError) => {
     console.error('setPrinterPreferences error : ' + JSON.stringify(error));
 })
@@ -2545,8 +2372,8 @@ import { BusinessError } from '@ohos.base';
 
 let printerId : string = '1';
 let type : print.DefaultPrinterType = print.DefaultPrinterType.DEFAULT_PRINTER_TYPE_SET_BY_USER;
-print.setDefaultPrinter(printerId, type).then((data : void) => {
-    console.log('setDefaultPrinter data : ' + JSON.stringify(data));
+print.setDefaultPrinter(printerId, type).then(() => {
+    console.log('setDefaultPrinter success');
 }).catch((error: BusinessError) => {
     console.error('setDefaultPrinter error : ' + JSON.stringify(error));
 })
@@ -2593,8 +2420,8 @@ import { BusinessError } from '@ohos.base';
 
 let event : print.ApplicationEvent = print.ApplicationEvent.APPLICATION_CREATED;
 let jobId : string = '1';
-print.notifyPrintServiceEvent(event, jobId).then((data : void) => {
-    console.log('notifyPrintServiceEvent data : ' + JSON.stringify(data));
+print.notifyPrintServiceEvent(event, jobId).then(() => {
+    console.log('notifyPrintServiceEvent success');
 }).catch((error: BusinessError) => {
     console.error('notifyPrintServiceEvent error : ' + JSON.stringify(error));
 })

@@ -1,4 +1,10 @@
 # 自定义属性设置
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 当开发者希望在组件上设置自定义的属性时，可以使用自定义属性设置功能，在组件上设置自定义的属性。而这些自定义属性可以在其对应的FrameNode上获取，从而实现更自由的组件管理。
 
@@ -11,8 +17,6 @@
 customProperty(name: string, value: Optional\<Object>): T
 
 设置组件的自定义属性。[自定义组件](../../../ui/state-management/arkts-create-custom-components.md)不支持设置自定义属性。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -32,9 +36,9 @@ customProperty(name: string, value: Optional\<Object>): T
 | T | 返回当前组件。 |
 
 
-## Optional<sup>12+</sup>
+## Optional\<T><sup>12+</sup>
 
-Optional\<T>
+type Optional\<T> = T | undefined
 
 定义可选类型，其值可以是undefined。
 
@@ -43,6 +47,10 @@ Optional\<T>
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+| 类型 | 说明                       |
+| ---- | -------------------------- |
+| T \| undefined | 定义可选类型，其值可以是undefined。 |
 
 ## 示例
 

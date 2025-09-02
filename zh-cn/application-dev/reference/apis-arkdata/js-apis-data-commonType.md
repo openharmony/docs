@@ -1,4 +1,10 @@
 # @ohos.data.commonType (数据通用类型)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @lvcong_oh-->
+<!--Designer: @hollokin; @yuchaozhng-->
+<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 数据通用类型（commonType）是数据管理中通用的数据类型。
 

@@ -1,5 +1,12 @@
 # OH_BatteryInfo
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--Designer: @wangyantian0-->
+<!--Tester: @alien0208-->
+<!--Adviser: @w_Machine_cc-->
+
 ## 概述
 
 提供BatteryInfo模块的电池相关信息的能力。
