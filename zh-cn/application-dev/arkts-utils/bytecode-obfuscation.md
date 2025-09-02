@@ -794,7 +794,7 @@ a*
 
 ```txt
 class A {
-  '*'= 1
+    '*'= 1
 }
 -keep-property-name
 *
