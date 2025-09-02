@@ -154,43 +154,43 @@ TestA.i;
 
 * 在未开启`-enable-export-obfuscation`选项的情况下，被`import/export`直接导入或导出的类、对象的属性名不会被混淆。例如下面例子中的属性名`data`不会被混淆。
 
-  ```ts
-  export class MyClass {
-      data: string;
-  }
-  ```
+    ```ts
+    export class MyClass {
+        data: string;
+    }
+    ```
 
 * ArkUI组件中的属性名不会被混淆。例如下面例子中的`message`和`data`不会被混淆。
 
-  ```ts
-  // example.ets
-  @Component struct MyExample {
-      @State message: string = "hello";
-      data: number[] = [];
+    ```ts
+    // example.ets
+    @Component struct MyExample {
+        @State message: string = "hello";
+        data: number[] = [];
 
-      build() {
-      }
-  }
-  ```
+        build() {
+        }
+    }
+    ```
 
 * 被[保留选项指定的属性名](#-keep-property-name)不会被混淆。
 * SDK API列表中的属性名不会被混淆。SDK API列表是构建时从SDK中自动提取出来的一个名称列表，其缓存文件为systemApiCache.json，路径为工程目录下build/default/cache/{...}/release/obfuscation中。
 * 字符串字面量属性名不会被混淆。例如下面例子中的`firstName`和`personAge`不会被混淆。
 
-  ```ts
-  let person = {"firstName": "abc"};
-  person["personAge"] = 22;
-  ```
+    ```ts
+    let person = {"firstName": "abc"};
+    person["personAge"] = 22;
+    ```
 
 * 注解成员名不会被混淆。例如下面例子中的`authorName`和`revision`不会被混淆。
 
-  ```ts
-  // example.ets
-  @interface MyAnnotation {
-      authorName: string;
-      revision: number;
-  }
-  ```
+    ```ts
+    // example.ets
+    @interface MyAnnotation {
+        authorName: string;
+        revision: number;
+    }
+    ```
 
 ### -enable-string-property-obfuscation
 
@@ -357,40 +357,40 @@ if (flag) {
 1. 文件顶层的调用
     例如：
 
-   ```js
-   console.info("in tolevel");
-   ```
+    ```js
+    console.info("in tolevel");
+    ```
 
 2. 代码块中的调用
     例如：
 
-   ```ts
-   function foo() {
-       console.info('in block');
-   }
-   ```
+    ```ts
+    function foo() {
+        console.info('in block');
+    }
+    ```
   
 3. module或namespace中的调用
     例如：
   
-   ```ts
-   namespace ns {
-       console.info('in ns');
-   }
-   ```
+    ```ts
+    namespace ns {
+        console.info('in ns');
+    }
+    ```
   
 4. switch语句中的调用
     例如
   
-   ```js
-   switch (value) {
-       case 1:
-           console.info("in switch case");
-           break;
-       default:
-           console.info("default");
-   }
-   ```
+    ```js
+    switch (value) {
+        case 1:
+            console.info("in switch case");
+            break;
+        default:
+            console.info("default");
+    }
+    ```
 
 ### -print-namecache
 
