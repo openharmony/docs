@@ -416,6 +416,8 @@ let timeStyle: string | undefined = options.timeStyle; // timeStyle = 'medium'
 
 ## NumberFormat
 
+提供数字格式化的能力。
+
 ### constructor<sup>8+</sup>
 
 constructor()
@@ -582,6 +584,8 @@ let notation: string | undefined = options.notation; // notation = 'scientific'
 | roundingMode<sup>18+</sup>       | string  | 否    | 是    | 表示舍入模式，取值包括：<br>"ceil"：向上取整。<br>"floor"：向下取整。<br>"expand"：远离零取整。<br>"trunc"：向零取整。<br>"halfCeil"：半向上取整，大于等于增量的一半时向上取整，小于增量的一半时向下取整。<br>"halfFloor"：半向下取整，大于增量的一半时向上取整，小于等于增量的一半时向下取整。<br>"halfExpand"：半远离零取整，大于等于增量的一半时远离零取整，小于增量的一半时向零取整。<br>"halfTrunc"：半向零取整，大于增量的一半时远离零取整，小于等于增量的一半时向零取整。<br>"halfEven"：半向偶数取整，大于增量的一半时 远离零取整，小于增量的一半时向零取整，等于增量的一半时向最近的偶数位舍入。<br>默认值：halfExpand。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## Collator<sup>8+</sup>
+
+提供字符串排序的能力。
 
 ### constructor<sup>8+</sup>
 
