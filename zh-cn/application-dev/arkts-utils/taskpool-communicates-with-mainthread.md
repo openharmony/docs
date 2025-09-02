@@ -88,9 +88,7 @@
                let loadPictureTask: taskpool.Task = new taskpool.Task(loadPictureSendData, 30);
                // 设置notice方法接收Task发送的消息
                loadPictureTask.onReceiveData(notice);
-               await taskpool.execute(loadPictureTask).then((res: object) => {
-                 iconItemSourceList = res as IconItemSource[];
-               })
+               iconItemSourceList = await taskpool.execute(loadPictureTask) as IconItemSource[];
                console.info("The length of iconItemSourceList is " + iconItemSourceList.length);
              })
          }
