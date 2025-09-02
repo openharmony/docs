@@ -578,6 +578,41 @@ struct WebComponent {
 }
 ```
 
+加载沙箱图片。
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('loadData')
+        .onClick(() => {
+          try {
+            this.controller.loadData(
+              "<img src=bb.jpg>", // 尝试从"file:///xxx/" + "bb.jpg"加载该图片。
+              "text/html",
+              "UTF-8",
+              // 加载本地应用沙箱内的图片路径，请将路径改为实际使用的沙箱路径。
+              "file:///data/storage/el2/base/haps/entry/files/data/.cache_dir/",
+              ""
+            );
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+        .fileAccess(true) // 为了加载应用沙箱内的图片，需要启用文件访问功能。 
+    }
+  }
+}
+```
+
 ## accessForward
 
 accessForward(): boolean
@@ -3293,7 +3328,7 @@ struct WebComponent {
         .onClick(() => {
           try {
           let result = this.controller.scrollByWithResult(50, 50);
-          console.log("original result: " + result);
+          console.info("original result: " + result);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -6280,7 +6315,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let scrollEnabled = this.controller.getScrollable();
-            console.log("scrollEnabled: " + scrollEnabled);
+            console.info("scrollEnabled: " + scrollEnabled);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -8797,13 +8832,13 @@ struct WebComponent {
           let pageHeight = this.controller.getPageHeight();
           if (this.controllerY < 0) {
             // case1：网页向下过滚动时，可直接使用ScrollOffset.y
-            console.log(`get downwards overscroll offsetY = ${this.controllerY}`);
+            console.info(`get downwards overscroll offsetY = ${this.controllerY}`);
           } else if ((this.controllerY != 0) && (this.controllerY > (pageHeight - webHeight))) {
             // case2：网页向上过滚动时，需计算出网页下边界与Web组件下边界的偏移量
-            console.log(`get upwards overscroll offsetY = ${this.controllerY - (pageHeight >= webHeight ? (pageHeight - webHeight) : 0)}`);
+            console.info(`get upwards overscroll offsetY = ${this.controllerY - (pageHeight >= webHeight ? (pageHeight - webHeight) : 0)}`);
           } else {
             // case3：网页未发生过滚动时，可直接使用ScrollOffset.y
-            console.log(`get scroll offsetY = ${this.controllerY}`);
+            console.info(`get scroll offsetY = ${this.controllerY}`);
           }
         })
         .height(600)
@@ -8866,8 +8901,12 @@ struct WebComponent {
     Column() {
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .onScroll((event) => {
-          console.log("getPageOffset x:" + this.controller.getPageOffset().x + ",y:" +
-          this.controller.getPageOffset().y);
+          try {
+            console.info("getPageOffset x:" + this.controller.getPageOffset().x + ",y:" +
+            this.controller.getPageOffset().y);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
         })
     }
   }

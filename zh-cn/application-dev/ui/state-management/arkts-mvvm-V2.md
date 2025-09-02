@@ -676,7 +676,7 @@ struct TaskItem {
 @Entry
 @ComponentV2
 struct TodoList {
-  @Local taskList: TaskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;
+  @Local taskList: TaskList = new TaskList([]);
   @Local newTaskName: string = '';
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;

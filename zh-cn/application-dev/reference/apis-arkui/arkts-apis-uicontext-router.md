@@ -1419,9 +1419,11 @@ let uiContext: UIContext = this.getUIContext();
 
 let router: Router = uiContext.getRouter();
 let page = router.getState();
-console.info('current index = ' + page.index);
-console.info('current name = ' + page.name);
-console.info('current path = ' + page.path);
+if (page != undefined) {
+  console.info('current index = ' + page.index);
+  console.info('current name = ' + page.name);
+  console.info('current path = ' + page.path);
+}
 ```
 
 ## getStateByIndex<sup>12+</sup>

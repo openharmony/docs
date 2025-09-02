@@ -356,7 +356,7 @@ getHitTest(): HitTestType
         Button('getHitTest')
           .onClick(() => {
             let hitType = this.controller.getHitTest()
-            console.log("hitType: " + hitType)
+            console.info("hitType: " + hitType)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
