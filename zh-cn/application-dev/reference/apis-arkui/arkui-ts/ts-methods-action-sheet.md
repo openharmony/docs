@@ -466,7 +466,7 @@ struct ActionSheetExample {
 
 ### 示例5（悬停态弹窗）
 
-该示例展示了在折叠屏悬停态下设置dialog布局区域的效果。
+<!--RP1-->该示例展示了在悬停态下设置dialog布局区域的效果。<!--RP1End-->
 
 ```ts
 // xxx.ets
@@ -534,7 +534,7 @@ struct ActionSheetExample {
 }
 ```
 
-![zh-cn_image_action_style](figures/zh-cn_image_action_hovermode.gif)
+<!--RP2--><!--RP2End-->
 
 ### 示例6（弹窗生命周期）
 
