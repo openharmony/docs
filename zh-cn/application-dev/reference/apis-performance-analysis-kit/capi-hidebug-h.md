@@ -46,6 +46,7 @@
 | [HiDebug_ErrorCode OH_HiDebug_SetMallocDispatchTable(struct HiDebug_MallocDispatch *dispatchTable)](#oh_hidebug_setmallocdispatchtable) | - | 设置基础库C库MallocDispatch表，用于替换开发者自定义的内存操作函数（例如：malloc/free/calloc/realloc/mmap/munmap)。MallocDispatch表是基础库C库中封装malloc/calloc/realloc/free等内存操作函数的结构体。HiDebug_MallocDispatch只是MallocDispatch结构体的一部分。 |
 | [HiDebug_MallocDispatch* OH_HiDebug_GetDefaultMallocDispatchTable(void)](#oh_hidebug_getdefaultmallocdispatchtable) | - | 获取基础库C库当前默认MallocDispatch表，调用[OH_HiDebug_RestoreMallocDispatchTable](capi-hidebug-h.md#oh_hidebug_restoremallocdispatchtable)可恢复。 |
 | [void OH_HiDebug_RestoreMallocDispatchTable(void)](#oh_hidebug_restoremallocdispatchtable) | - | 恢复基础库C库MallocDispatch表。 |
+| [HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemorySummary(uint32_t interval, HiDebug_GraphicsMemorySummary *summary)](#oh_hidebug_getgraphicsmemorysummary) | - | 获取应用显存占用的详细数据。 |
 
 ## 函数说明
 
@@ -426,7 +427,7 @@ HiDebug_MallocDispatch* OH_HiDebug_GetDefaultMallocDispatchTable(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| HiDebug_MallocDispatch* | 当前C库默认的[HiDebug_MallocDispatch](capi-hidebug-hidebug-mallocdispatch.md)结构体指针。 |
+| [HiDebug_MallocDispatch*](capi-hidebug-hidebug-mallocdispatch.md) | 当前C库默认的[HiDebug_MallocDispatch](capi-hidebug-hidebug-mallocdispatch.md)结构体指针。 |
 
 ### OH_HiDebug_RestoreMallocDispatchTable()
 
@@ -439,5 +440,31 @@ void OH_HiDebug_RestoreMallocDispatchTable(void)
 恢复基础库C库MallocDispatch表。
 
 **起始版本：** 20
+
+### OH_HiDebug_GetGraphicsMemorySummary()
+
+```
+HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemorySummary(uint32_t interval, HiDebug_GraphicsMemorySummary *summary)
+```
+
+**描述**
+
+获取应用显存占用的详细数据。
+
+**起始版本：** 21
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| uint32_t interval | 当显存数据缓存值存在时间超过设定间隔interval（单位：秒）时，接口会获取最新的显存数据并更新缓存；否则，接口将直接返回缓存值。<br> interval的取值范围为[2，3600]，若传入的interval超出取值范围时，将使用300作为默认值。 |
+| [HiDebug_GraphicsMemorySummary](capi-hidebug-hidebug-graphicsmemorysummary.md) *summary | 表示指向[HiDebug_GraphicsMemorySummary](capi-hidebug-hidebug-graphicsmemorysummary.md)的指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [HiDebug_ErrorCode](capi-hidebug-type-h.md#hidebug_errorcode) | 返回结果具体可参考[HiDebug_ErrorCode](capi-hidebug-type-h.md#hidebug_errorcode)：<br>         HIDEBUG_SUCCESS 成功获取到应用显存数据。<br>         HIDEBUG_INVALID_ARGUMENT 无效参数。<br>         HIDEBUG_TRACE_ABNORMAL 系统内部错误。 |
 
 
