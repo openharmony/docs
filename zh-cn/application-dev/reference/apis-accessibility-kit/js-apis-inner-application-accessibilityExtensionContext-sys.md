@@ -582,27 +582,27 @@ try {
 | valueMax<sup>20+</sup>             | number                                                             | 否  | 是  | 最大值。<br>默认值：0。|
 | valueMin<sup>20+</sup>             | number                                                             | 否  | 是  | 最小值。<br>默认值：0。|
 | valueNow<sup>20+</sup>             | number                                                             | 否  | 是  | 当前值。<br>默认值：0。|
-| windowId<sup>20+</sup>             | number                                                             | 否  | 是  | 窗口 ID。<br>默认值：-1。|
+| windowId<sup>20+</sup>             | number                                                             | 否  | 是  | 窗口ID。<br>默认值：-1。|
 | offset<sup>20+</sup>             | number              | 否  | 是  | 内容区域相对于可滚动组件（如List和Grid）顶部坐标的像素偏移量。<br>默认值：0。|
 | textType<sup>20+</sup>             | string                                                             | 否  | 是  | 元素的无障碍文本类型，由组件的 accessibilityTextHint属性配置。|
 | accessibilityText<sup>20+</sup> | string                                                  | 否  | 是  | 元素的无障碍文本信息。|
 | hotArea<sup>20+</sup>             | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect)                                                              | 否  | 是  | 元素的可触摸区域。|
 | customComponentType<sup>20+</sup>             | string                                                             | 否  | 是  | 自定义组件类型。|
-| accessibilityNextFocusId<sup>20+</sup>             | number                | 否  | 是  | 下一个要获得焦点的组件的 ID。<br>默认值：-1。|
-| accessibilityPreviousFocusId<sup>20+</sup>             | number                | 否  | 是  | 上一个要获得焦点的组件的 ID。<br>默认值：-1。|
-| extraInfo<sup>20+</sup>             | string     | 否  | 是  | 元素的额外信息。值为 JSON 字符串。|
+| accessibilityNextFocusId<sup>20+</sup>             | number                | 否  | 是  | 下一个要获得焦点的组件的ID。<br>默认值：-1。|
+| accessibilityPreviousFocusId<sup>20+</sup>             | number                | 否  | 是  | 上一个要获得焦点的组件的ID。<br>默认值：-1。|
+| extraInfo<sup>20+</sup>             | string     | 否  | 是  | 元素的额外信息。值为JSON字符串。|
 | accessibilityScrollable<sup>20+</sup>             | boolean                 | 否  | 是  | 元素是否因无障碍目的而可滚动。此属性优先级高于scrollable。<br>-true表示元素可滚动，false表示元素不可滚动。<br>默认值：true。|
 | supportedActionNames<sup>20+</sup> | Array&lt;string&gt;                                                | 否  | 是  | 支持的操作名称。|
 | accessibilityGroup<sup>20+</sup>  | boolean                                                            | 否  | 是  | 元素是否为无障碍组。true表示元素是无障碍组，false表示元素不是无障碍组。<br>默认值：false。|
 | accessibilityLevel<sup>20+</sup>             | string                                                             | 否  | 是  | 组件的无障碍级别。<br>'auto'：当前组件由无障碍分组服务和ArkUI进行综合判断组件是否可被辅助功能识别。<br>'yes'：当前组件可被辅助功能识别。<br>'no'：当前组件不可被辅助功能识别。<br>'no-hide-descendants'：当前组件及其所有子组件不可被辅助功能识别。|
-| navDestinationId<sup>20+</sup>             | number                                                             | 否  | 是  | 组件的导航目标 ID。|
+| navDestinationId<sup>20+</sup>             | number                                                             | 否  | 是  | 组件的导航目标ID。|
 | currentItem<sup>20+</sup>             | [AccessibilityGrid](#accessibilitygrid20)                                                             | 否  | 是  | 组件网格中的当前项。|
 | spans<sup>20+</sup>             | [AccessibilitySpan](#accessibilityspan20)[]                                                             | 否  | 是  | 组件的跨度数组。|
 | accessibilityVisible<sup>20+</sup>  | boolean                                                            | 否  | 是  | 组件是否无障碍可见。true表示可见，false表示不可见。|
 | mainWindowId<sup>20+</sup>             | number                                                             | 否  | 是 | 组件的主窗口ID。|
 | clip<sup>20+</sup>  | boolean                                                            | 否  | 是  | 组件是否需要裁剪。true表示需要裁剪，false表示不需要裁剪。|
-| parentId<sup>20+</sup>             | number                                                             | 否  | 是  | 组件的父元素 ID。|
-| childrenIds<sup>20+</sup>             | Array\<number>                                                             | 否  | 是  | 组件的子元素 ID 列表。|
+| parentId<sup>20+</sup>             | number                                                             | 否  | 是  | 组件的父元素ID。|
+| childrenIds<sup>20+</sup>             | Array\<number>                                                             | 否  | 是  | 组件的子元素ID列表。|
 
 **示例：**
 ```ts
