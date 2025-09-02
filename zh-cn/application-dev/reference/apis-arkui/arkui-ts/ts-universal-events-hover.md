@@ -17,7 +17,7 @@
 
 onHover(event: (isHover: boolean, event: HoverEvent) => void): T
 
-鼠标或手写笔进入或退出组件时触发hover事件。
+鼠标或手写笔进入或退出组件时，触发hover事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -59,7 +59,7 @@ onHoverMove(event: Callback&lt;HoverEvent&gt;): T
 
 ## HoverEvent<sup>10+</sup>对象说明
 
-继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)。
+继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent8)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

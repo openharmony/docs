@@ -1,5 +1,12 @@
 # 系统定义的公共事件（系统接口）
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
+
 本文档提供了系统定义的公共事件清单。
 
 公共事件类型定义在[ohos.commonEventManager模块的Support枚举](../js-apis-commonEventManager.md#support)中。
@@ -371,6 +378,23 @@
 **订阅者所需权限：** ohos.permission.START_RESTORE_NOTIFICATION
 
 **取值：** "usual.event.RESTORE_START"
+
+
+## Media Kit
+
+### COMMON_EVENT_SCREEN_SHARE
+
+表示系统中发生了屏幕共享事件。
+
+这是一个受保护的公共事件，只能由系统发送。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** ohos.permission.RECEIVE_SMS（该权限仅系统应用可申请）
+
+**取值：** usual.event.SCREEN_SHARE
 
 
 ## Telephony Kit

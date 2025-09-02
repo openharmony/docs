@@ -855,11 +855,13 @@ try {
 ### getPiPSettingSwitch<sup>20+</sup>
 getPiPSettingSwitch(): Promise&lt;boolean&gt;
 
-获取设置中自动启动画中画开关的状态，仅支持手机和平板设备。
+获取设置中自动启动画中画开关的状态。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在Phone设备、Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 

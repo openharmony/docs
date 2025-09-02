@@ -47,6 +47,8 @@ create(config: FloatingBallConfiguration): Promise&lt;FloatingBallController&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
+**设备行为差异：** 该接口在Phone和Tablet设备中可正常调用，在其他设备中返回801错误码。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -334,7 +336,6 @@ let onStateChange = (state: floatingBall.FloatingBallState) => {
 };
 try {
   floatingBallController.off('stateChange', onStateChange);
-  floatingBallController.off('stateChange');
 } catch(e) {
   console.error(`Failed to off stateChange floating ball. Cause:${e.code}, message:${e.message}`);
 }
@@ -412,7 +413,6 @@ let onClick = () => {
 };
 try {
   floatingBallController.off('click', onClick);
-  floatingBallController.off('click');
 } catch(e) {
   console.error(`Failed to off click floating ball. Cause:${e.code}, message:${e.message}`);
 }
@@ -524,11 +524,11 @@ try {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 |------------|------------|------------|------------|------------|
-| template | [FloatingBallTemplate](#floatingballtemplate) | 否 | 否 | 闪控球模板。静态布局时，icon必选，content无效；普通文本布局和强调文本布局时，icon无效；纯文本布局时，content和icon均无效。 |
+| template | [FloatingBallTemplate](#floatingballtemplate) | 否 | 否 | 闪控球模板。 |
 | title | string | 否 | 否 | 闪控球标题，不可为空字符串，大小不超过64字节。 |
-| content | string | 否 | 是 | 闪控球内容，可选字段，大小不超过64字节。不传入时默认为空字符串，不显示闪控球内容。 |
-| backgroundColor | string | 否 | 是 | 闪控球背景颜色，可选字段，为不带透明度的十六进制颜色格式（例如'#008EF5'或'#FF008EF5'），不传入时闪控球使用默认颜色（浅色模式'#FFFFFF'，深色模式'#000000'）。 |
-| icon | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 是 | 闪控球图标，可选字段，图标像素的总字节数不超过192KB（图标像素的总字节数通过[getPixelBytesNumber](../apis-image-kit/arkts-apis-image-PixelMap.md#getpixelbytesnumber7)获取）。建议图标像素宽高为128px*128px。实际显示效果依赖于设备能力和闪控球UI样式，不传入时不显示闪控球图标。 |
+| content | string | 否 | 是 | 闪控球内容，大小不超过64字节。不传入时默认为空字符串，不显示闪控球内容。 |
+| backgroundColor | string | 否 | 是 | 闪控球背景颜色，为不带透明度的十六进制颜色格式（例如'#008EF5'或'#FF008EF5'），不传入时闪控球跟随系统深浅色模式的默认背景色。 |
+| icon | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 是 | 闪控球图标，图标像素的总字节数不超过192KB（图标像素的总字节数通过[getPixelBytesNumber](../apis-image-kit/arkts-apis-image-PixelMap.md#getpixelbytesnumber7)获取）。建议图标像素宽高为128px*128px。实际显示效果依赖于设备能力和闪控球UI样式。 |
 
 ## FloatingBallState
 
@@ -549,10 +549,10 @@ try {
 
 | 名称 | 值 | 说明 |
 |------------|------------|------------|
-| STATIC | 1 | 静态布局，支持图标和标题。 |
-| NORMAL | 2 | 普通文本布局，支持标题和内容。 |
-| EMPHATIC | 3 | 强调文本布局，支持标题和内容，使用不同字号区分。 |
-| SIMPLE | 4 | 纯文本布局，只支持标题，可双行展示。 |
+| STATIC | 1 | 静态布局，支持标题和图标。使用此模板时，FloatingBallParams中的title参数和icon参数必传。 |
+| NORMAL | 2 | 普通文本布局，支持标题和内容。使用此模板时，FloatingBallParams中的title参数必传。 |
+| EMPHATIC | 3 | 强调文本布局，支持图标、标题和内容。使用此模板时，FloatingBallParams中的title参数必传。 |
+| SIMPLE | 4 | 纯文本布局，只支持标题。使用此模板时，FloatingBallParams中的title参数必传。 |
 
 ## FloatingBallWindowInfo
 

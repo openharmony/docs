@@ -1,4 +1,10 @@
 # App Check Tool
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @jsjzju-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ## Overview
 
@@ -24,7 +30,7 @@ The **app_check_tool.jar** package of the tool is stored in the **toolchains** d
 java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplicate true
 ```
 
-**Parameters of the command**
+**Table 1 Parameters of the command for scanning duplicate files**
 
 | Parameter            | Mandatory| Description                                                              |
 | ---------------- | ---------- | ------------------------------------------------------------------ |
@@ -42,7 +48,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplica
     "startTime":"2023-11-17 14:48:01:265",
     "stopTime":"2023-11-17 14:48:01:434",
 	"result":[{
-        "md5":"975c41f5727b416b1ffefa5bb0f073b",
+        "md5":"975c41f5727b416b1ffefa5bb0f073b2",
         "size":1108880,
         "files":[
             "/application-entry-default.hap/libs/armeabi-v7a/example.so",
@@ -52,7 +58,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplica
 }]
 ```
 
-**Fields of the output**
+**Table 2 Field information of scanned duplicate files**
 
 | Field     | Type  | Description                       |
 | --------- | ------ | --------------------------- |
@@ -61,9 +67,9 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplica
 | param     | String | Parameter passed in by the scanning program.         |
 | startTime | String | Start time of the task.             |
 | stopTime  | String | End time of the task.             |
-| result    | Struct | [Fields of result](#section1)       |
+| result    | Struct | Fields in the duplicate file statistics result. For details, see Table 3.      |
 
-**Fields of result**<a name="section1"></a>
+**Table 3 Fields in the duplicate file statistics result**
 
 | Field | Type           | Description                      |
 | ----- | --------------- | -------------------------- |
@@ -79,13 +85,13 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplica
 java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-file-size 4
 ```
 
-**Parameters of the command**
+**The command parameters for scanning files that exceed the specified size are described as follows:**
 
 | Parameter            | Mandatory| Description                                                       |
 | ---------------- | ---------- | ----------------------------------------------------------- |
 | --input          | Yes        | Path of the HAP, HSP, or APP file.                        |
 | --out-path       | Yes        | Path of the detection reports.                                   |
-| --stat-file-size | No        | File size, in KB. A file with the size larger than this value is treated as a large file.<br>The value ranges from 0 to 4294967295, in KB.|
+| --stat-file-size | No        | Scans files that exceed the specified size, in KB.<br>The value ranges from 0 to 4294967295, in KB.|
 
 **Detection report in JSON format**
 
@@ -113,9 +119,9 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-file-si
 | param     | String | Parameter passed in by the scanning program.                 |
 | startTime | String | Start time of the task.                     |
 | stopTime  | String | End time of the task.                     |
-| result    | Struct | [Fields of result](#section2)               |
+| result    | Struct | Fields in the statistical result of the file whose size exceeds the specified size. For details, see Table 6.             |
 
-**Fields of result**<a name="section2"></a>
+**Column information about the statistical result of the file whose size exceeds the specified size**
 
 | Field| Type  | Description                                |
 | ---- | ------ | ------------------------------------ |
@@ -130,7 +136,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-file-si
 java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix true
 ```
 
-**Parameters of the command**
+**The parameters of the command for collecting statistics on the proportion of each type of file size are as follows**
 
 | Parameter         | Mandatory| Description                                                                     |
 | ------------- | ---------- | ------------------------------------------------------------------------- |
@@ -187,19 +193,19 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 | startTime | String          | Start time of the task.                                                                        |
 | stopTime  | String          | End time of the task.                                                                        |
 | pathList  | Vector\<String> | Paths of multiple HAP and HSP files.                                                                 |
-| result    | Struct          | [Fields of result](#section3)                                                                  |
+| result    | Struct          | Fields in the statistical result of the proportion of each type of file size. For details, see Table 9.                                   |
 
-**Fields of result**<a name="section3"></a>
+**Column information about the proportion of each type of file size**
 
 | Field     | Type  | Description                                      |
 | --------- | ------ | ------------------------------------------ |
 | suffix    | String | File name extension.                        |
-| totalSize | int    | Total size of the files with the same file name extension, in bytes.|
-| files     | Stuct  | [Fields of files](#section4)                      |
+| totalSize | int    | Total size of scanned files of the same type, in bytes.|
+| files     | Struct  | Path and size field information of files of the same type. For details, see Table 10.                    |
 
-**Fields of files**<a name="section4"></a>
+**Column information about the path and size of files of the same type**
 | Field    | Type  | Description                                                               |
 | -------- | ------ | ------------------------------------------------------------------- |
 | file     | String | Path of a file.                                                         |
-| size     | int    | Size of the file.                                                       |
-| compress | bool   | Whether the file is compressed. This field is displayed only for .so files.<br>**true**: The file is compressed.<br>**false**: The file is not compressed.|
+| size     | int    | with the same file name extension, in bytes.                                                       |
+| compress | bool   | Whether the file is a compressed file (displayed only for SO files).<br>**true**: The file is compressed.<br>**false**: The file is not compressed.|

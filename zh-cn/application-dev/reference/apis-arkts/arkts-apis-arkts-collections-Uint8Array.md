@@ -456,7 +456,7 @@ copyWithin(target: number, start: number, end?: number): Uint8Array
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| target | number | 是 | 目标起始位置的下标。 |
+| target | number | 是 | 目标起始位置的下标，如果`target < 0`，则会从`target + array.length`位置开始。 |
 | start | number | 是 | 源起始位置下标，如果`start < 0`，则会从`start + Uint8Array.length`位置开始。 |
 | end | number | 否 | 源终止位置下标（不包含end位置的元素），如果`end < 0`，则会从`end + Uint8Array.length`位置终止。默认为ArkTS Uint8Array的长度。|
 

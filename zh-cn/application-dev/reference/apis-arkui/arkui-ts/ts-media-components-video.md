@@ -290,14 +290,7 @@ onError(event: VoidCallback | ErrorCallback)
 
 | 参数名 | 类型                                           | 必填 | 说明                                 |
 | ------ | --------------------------------------------- | ---- | ----------------------------------- |
-| event  | [VoidCallback](ts-types.md#voidcallback12) \| [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)<sup>20+</sup> | 是   | 视频播放失败时的回调函数，[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)入参用于接收异常信息。|
-
-以下错误码的详细介绍请参见[Video组件错误码](../errorcode-video.md)，其余错误码请参考[媒体错误码](../../apis-media-kit/errorcode-media.md)。
-
-|错误码ID|错误信息|
-|--|--|
-|103601 |Failed to create the media player.|
-|103602 |Not a valid source.|
+| event  | [VoidCallback](ts-types.md#voidcallback12) \| [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)<sup>20+</sup> | 是   | 视频播放失败时的回调函数。其中[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)类型入参的回调函数用于接收异常信息，回调返回的错误码详细介绍请参见[Video组件错误码](../errorcode-video.md)和[媒体错误码](../../apis-media-kit/errorcode-media.md)。|
 
 ### onStop<sup>12+</sup>
 
@@ -612,6 +605,7 @@ setCurrentTime(value: number, seekMode: SeekMode)
 @Entry
 @Component
 struct VideoCreateComponent {
+  // $rawfile('video1.mp4')、$r('app.media.poster1')需要分别替换为开发者所需的视频、图片资源文件
   @State videoSrc: Resource = $rawfile('video1.mp4');
   @State previewUri: Resource = $r('app.media.poster1');
   @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
@@ -677,11 +671,12 @@ struct VideoCreateComponent {
         })
 
       Row() {
+        // $rawfile('video2.mp4')、$r('app.media.poster2')需要分别替换为开发者所需的视频、图片资源文件
         Button('src').onClick(() => {
-          this.videoSrc = $rawfile('video2.mp4') // 切换视频源
+          this.videoSrc = $rawfile('video2.mp4') // 切换视频源。
         }).margin(5)
         Button('previewUri').onClick(() => {
-          this.previewUri = $r('app.media.poster2') // 切换视频预览海报
+          this.previewUri = $r('app.media.poster2') // 切换视频预览海报。
         }).margin(5)
         Button('controls').onClick(() => {
           this.showControls = !this.showControls // 切换是否显示视频控制栏
@@ -743,6 +738,7 @@ interface FullscreenObject {
 @Entry
 @Component
 struct ImageAnalyzerExample {
+  // $rawfile('video1.mp4')、$r('app.media.poster1')需要分别替换为开发者所需的视频、图片资源文件
   @State videoSrc: Resource = $rawfile('video1.mp4');
   @State previewUri: Resource = $r('app.media.poster1');
   controller: VideoController = new VideoController();
@@ -802,6 +798,7 @@ import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 @Entry
 @Component
 struct Index {
+  // $rawfile('video1.mp4')需要替换为开发者所需的视频资源文件
   @State videoSrc: Resource | string = $rawfile('video1.mp4');
   private controller: VideoController = new VideoController();
 
@@ -839,6 +836,7 @@ struct Index {
 @Entry
 @Component
 struct VideoObject {
+  // $rawfile('rabbit.mp4')、$r('app.media.tree')需要分别替换为开发者所需的视频、图片资源文件
   @State videoSrc: Resource = $rawfile('rabbit.mp4');
   @State previewUri: Resource = $r('app.media.tree');
   @State showControls: boolean = true;
@@ -991,6 +989,7 @@ class MyVideoModifier implements AttributeModifier<VideoAttribute> {
 @Entry
 @Component
 struct VideoModifierDemo {
+  // $rawfile('video.mp4')需要替换为开发者所需的视频资源文件
   @State videoSrc: Resource = $rawfile('video.mp4');
   @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
   @State isAutoPlay: boolean = false;

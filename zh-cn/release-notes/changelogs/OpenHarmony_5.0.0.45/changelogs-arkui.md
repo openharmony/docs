@@ -12,7 +12,9 @@
 
 **变更影响**
 
-该变更为不兼容变更，设备宽度在600-840vp间时，SheetOptions中的preferType设置为SheetType.POPUP，原先显示居中弹窗样式，现在显示跟手弹窗样式。
+此变更涉及应用适配。
+
+设备宽度在600-840vp间时，SheetOptions中的preferType设置为SheetType.POPUP，原先显示居中弹窗样式，现在显示跟手弹窗样式。
 
 API version 14及以后，设备宽度在600-840vp间时，默认显示居中弹窗样式，增加跟手弹窗样式。
 
@@ -20,7 +22,7 @@ API version 14及以后，设备宽度在600-840vp间时，默认显示居中弹
 
 ![zh-cn_image_alert](figures/45.1.3.png)
 
-变更后：设备宽度在600-840vp间时，SheetOptions中的preferType设置为SheetType.POPUP，实际显示气泡弹窗样式。
+变更后：设备宽度在600-840vp间时，SheetOptions中的preferType设置为SheetType.POPUP，实际显示跟手弹窗样式。
 
 ![zh-cn_image_alert](figures/45.1.2.png)
 
@@ -53,7 +55,7 @@ SheetType.POPUP
 
 **变更影响**
 
-该变更为不兼容变更。
+此变更不涉及应用适配。
 
 API version 14及以后，关闭按钮不显示时，关闭按钮区域放开限制给标题栏区域布局。
 
@@ -76,8 +78,4 @@ API version 14及以后，关闭按钮不显示时，关闭按钮区域放开限
 **变更的接口/组件**
 
 showClose
-
-**适配指导**
-
-关闭按钮不显示时，关闭按钮区域放开限制给标题栏区域布局，标题栏宽度增加48vp。
 

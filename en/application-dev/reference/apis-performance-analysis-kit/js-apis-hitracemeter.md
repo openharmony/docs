@@ -1,5 +1,11 @@
 # @ohos.hiTraceMeter (Performance Tracing)
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @qq_437963121-->
+<!--SE: @MontSaintMichel-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 The **HiTraceMeter** module provides the functions of tracing service processes and monitoring the system performance. It provides the data needed for HiTraceMeter to carry out performance analysis.
 For details about the development process, see [Using HiTraceMeter](../../dfx/hitracemeter-guidelines-arkts.md).
 
@@ -175,7 +181,7 @@ If the trace tasks with the same name are not performed at the same time, the sa
 ```js
 // If the customCategory parameter is not required, pass in an empty string.
 // If the customArgs parameter is not required, do not pass in this parameter or pass in an empty string.
-const COMMERCIAL = hiTraceMeter.HiTraceOutPutLevel.COMMERCIAL;
+const COMMERCIAL = hiTraceMeter.HiTraceOutputLevel.COMMERCIAL;
 hiTraceMeter.startAsyncTrace(COMMERCIAL, "myTestFunc", 1, "", "");
 hiTraceMeter.startAsyncTrace(COMMERCIAL, "myTestFunc", 2, "");
 // Use commas (,) to separate multiple key-value pairs.
@@ -206,12 +212,12 @@ The **level**, **name**, and **taskId** used in **finishAsyncTrace** must be the
 **Example**
 
 ```js
-const COMMERCIAL = hiTraceMeter.HiTraceOutPutLevel.COMMERCIAL;
+const COMMERCIAL = hiTraceMeter.HiTraceOutputLevel.COMMERCIAL;
 hiTraceMeter.finishAsyncTrace(COMMERCIAL, "myTestFunc", 1);
 ```
 
 ```js
-const COMMERCIAL = hiTraceMeter.HiTraceOutPutLevel.COMMERCIAL;
+const COMMERCIAL = hiTraceMeter.HiTraceOutputLevel.COMMERCIAL;
 // Start trace tasks with the same name concurrently.
 // Start the first trace.
 hiTraceMeter.startAsyncTrace(COMMERCIAL, "myTestFunc", 1, "categoryTest", "key=value");
@@ -227,16 +233,16 @@ hiTraceMeter.finishAsyncTrace(COMMERCIAL, "myTestFunc", 2);
 ```
 
 ```js
-const COMMERCIAL = hiTraceMeter.HiTraceOutPutLevel.COMMERCIAL;
+const COMMERCIAL = hiTraceMeter.HiTraceOutputLevel.COMMERCIAL;
 // Start trace tasks with the same name in serial mode.
 // Start the first trace.
-hiTraceMeter.startTrace(COMMERCIAL, "myTestFunc", 1, "categoryTest", "key=value");
+hiTraceMeter.startAsyncTrace(COMMERCIAL, "myTestFunc", 1, "categoryTest", "key=value");
 // Service flow...
 // Stop the first trace.
 hiTraceMeter.finishAsyncTrace(COMMERCIAL, "myTestFunc", 1);
 // Service flow...
 // Start the second trace with the same name. The traces with the same name are executed in serial mode.
-hiTraceMeter.startTrace(COMMERCIAL, "myTestFunc", 1, "categoryTest", "key=value");
+hiTraceMeter.startAsyncTrace(COMMERCIAL, "myTestFunc", 1, "categoryTest", "key=value");
 // Service flow...
 // Stop the second trace with the same name.
 hiTraceMeter.finishAsyncTrace(COMMERCIAL, "myTestFunc", 1);
@@ -263,7 +269,7 @@ Starts a synchronous trace with the trace output level specified. For details, s
 **Example**
 
 ```js
-const COMMERCIAL = hiTraceMeter.HiTraceOutPutLevel.COMMERCIAL;
+const COMMERCIAL = hiTraceMeter.HiTraceOutputLevel.COMMERCIAL;
 // If the customArgs parameter is not required, do not pass in this parameter or pass in an empty string.
 hiTraceMeter.startSyncTrace(COMMERCIAL, "myTestFunc");
 hiTraceMeter.startSyncTrace(COMMERCIAL, "myTestFunc", "");
@@ -293,12 +299,12 @@ The **level** used in **finishSyncTrace** must be the same as that of [startSync
 **Example**
 
 ```js
-const COMMERCIAL = hiTraceMeter.HiTraceOutPutLevel.COMMERCIAL;
+const COMMERCIAL = hiTraceMeter.HiTraceOutputLevel.COMMERCIAL;
 hiTraceMeter.finishSyncTrace(COMMERCIAL);
 ```
 
 ```js
-const COMMERCIAL = hiTraceMeter.HiTraceOutPutLevel.COMMERCIAL;
+const COMMERCIAL = hiTraceMeter.HiTraceOutputLevel.COMMERCIAL;
 // The startSyncTrace and finishSyncTrace APIs can be nested and they matched each other based on proximity.
 // Start the first trace.
 hiTraceMeter.startSyncTrace(COMMERCIAL, "myTestFunc1", "key=value");
@@ -334,7 +340,7 @@ Traces an integer with the trace output level specified. **name** and **count** 
 **Example**
 
 ```js
-const COMMERCIAL = hiTraceMeter.HiTraceOutPutLevel.COMMERCIAL;
+const COMMERCIAL = hiTraceMeter.HiTraceOutputLevel.COMMERCIAL;
 let traceCount = 3;
 hiTraceMeter.traceByValue(COMMERCIAL, "myTestCount", traceCount);
 traceCount = 4;
@@ -369,5 +375,3 @@ if (hiTraceMeter.isTraceEnabled()) {
     // Service flow...
 }
 ```
-
-<!--no_check-->

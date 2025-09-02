@@ -482,8 +482,6 @@ insertSync(table: string, values: ValuesBucket,  conflict?: ConflictResolution):
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -850,8 +848,6 @@ batchInsertSync(table: string, values: Array&lt;ValuesBucket&gt;):number
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -1043,8 +1039,6 @@ batchInsertWithConflictResolutionSync(table: string, values: Array&lt;ValuesBuck
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -1488,8 +1482,6 @@ updateSync(values: ValuesBucket, predicates: RdbPredicates, conflict?: ConflictR
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
@@ -1698,8 +1690,6 @@ deleteSync(predicates: RdbPredicates):number
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if (store != undefined) {
@@ -1925,8 +1915,6 @@ querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;):ResultSet
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 if (store != undefined) {
@@ -2366,8 +2354,6 @@ querySqlSync(sql: string, bindArgs?: Array&lt;ValueType&gt;):ResultSet
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 if (store != undefined) {
   let resultSet: relationalStore.ResultSet | undefined;
   try {
@@ -2832,8 +2818,6 @@ executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 // 校验数据库完整性
 if (store != undefined) {
   const SQL_CHECK_INTEGRITY = 'PRAGMA integrity_check';
@@ -6003,5 +5987,59 @@ export default class EntryAbility extends UIAbility {
       console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     });
   }
+}
+```
+
+## setLocale<sup>20+</sup>
+
+setLocale(locale: string) : Promise\<void>
+
+设置自定义排序的语言。使用Promise异步回调。
+
+该值符合ISO 639标准，但是仅支持ICU中的部分语言，对于不支持的语言，设置自定义排序的语言时会报错14800001。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名 | 类型     | 必填 | 说明                                       |
+| ------ | ------- | ---- | ----------------------------------------- |
+| locale  | string | 是   | 设置自定义排序的语言。该值符合ISO 639标准，如："zh"。|
+
+**返回值：**
+
+| 类型          | 说明                       |
+| -------------- | ------------------------ |
+| Promise\<void> | 无返回结果的Promise对象。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                            |
+| ------------ | ---------------------------------------------------------------------- |
+| 801          | Capability not supported.                                              |
+| 14800001     | Invalid arguments. Possible causes: 1.Parameter is out of valid range. |
+| 14800014     | The RdbStore or ResultSet is already closed.                           |
+| 14800024     | SQLite: The database file is locked.                                   |
+| 14800026     | SQLite: The database is out of memory.                                 |
+| 14800034     | SQLite: Library used incorrectly.                                         |
+
+**示例：**
+
+```ts
+try {
+  if (store != undefined) {
+    await store.setLocale("zh");
+    store.querySql("SELECT * FROM EMPLOYEE ORDER BY NAME COLLATE LOCALES", async (err, resultSet) => {
+      if (err) {
+        console.error(`Query failed, code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`ResultSet rowCount ${resultSet.rowCount}`);
+    });
+  }
+} catch (err) {
+  console.error(`SetLocale failed, code: ${err.code}, message: ${err.message}`);
 }
 ```

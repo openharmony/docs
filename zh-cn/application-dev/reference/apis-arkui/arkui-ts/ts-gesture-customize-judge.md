@@ -17,7 +17,7 @@
 
 onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent) => GestureJudgeResult): T
 
-为组件绑定自定义手势判定回调。当手势被接受时，触发用户定义的回调获取结果。
+为组件绑定自定义手势判定回调。当手势即将成功时，触发用户定义的回调获取结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -26,7 +26,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 **参数：**
 | 参数名        | 类型                    | 必填  | 说明                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| callback      | (gestureInfo: [GestureInfo](#gestureinfo对象说明), event: [BaseGestureEvent](#basegestureevent对象说明)) => [GestureJudgeResult](#gesturejudgeresult11) | 是     | 给组件绑定自定义手势判定回调。当手势被接受时，触发用户定义的回调获取结果。 |
+| callback      | (gestureInfo: [GestureInfo](#gestureinfo对象说明), event: [BaseGestureEvent](#basegestureevent对象说明)) => [GestureJudgeResult](#gesturejudgeresult) | 是     | 自定义手势判定回调。当手势即将成功时，触发用户定义的回调获取结果。 |
 
 **返回值：**
 
@@ -35,7 +35,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | T | 返回当前组件。 |
 
 
-## GestureJudgeResult<sup>11+</sup>
+## GestureJudgeResult
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -44,7 +44,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | 名称  | 值 | 说明                               |
 | ----- | -------- | ----------------------- |
 | CONTINUE  | 0 | 不影响系统手势判定流程。|
-| REJECT  | 1 | 对于用户自定义的手势判定结果为失败。|
+| REJECT  | 1 | 手势判定结果为失败。|
 
 ## GestureInfo对象说明
 
@@ -54,13 +54,13 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 
 | 名称            | 类型                  | 只读 | 可选 | 说明         |
 | ---------------  | ---------------------|----|------| -----------|
-| tag              | string                | 否 | 是 | 手势标记。<br/>**说明：**<br/>未设置事件标识tag属性时，tag不返回或返回undefined。      |
-| type             | [GestureControl.GestureType](#gesturetype12) | 否 | 否 | 手势类型。<br/>**说明：**<br/> 当手势为未暴露类型的系统内置手势事件时，type的值为-1。 |
-| isSystemGesture  | boolean                 | 否 | 否 | 判断当前手势是否为组件自带手势。true表示是，false表示否。<br/>默认值：false |
+| tag              | string                | 否 | 是 | 手势标志。<br/>**说明：**<br/>未设置事件标志tag属性时，tag不返回或返回undefined。      |
+| type             | [GestureControl.GestureType](#gesturetype) | 否 | 否 | 手势类型。<br/>**说明：**<br/> 当手势为未暴露类型的系统内置手势事件时，type的值为-1。 |
+| isSystemGesture  | boolean                 | 否 | 否 | 当前手势是否为组件自带手势。true表示是，false表示否。<br/>默认值：false |
 
-## GestureType<sup>12+</sup>
+## GestureType
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -75,7 +75,11 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | DRAG    | 6 | 拖拽|
 | CLICK   | 7 | 点击|
 
-## BaseEvent对象说明<sup>8+</sup>
+## BaseEvent<sup>8+</sup>
+
+基础事件类型。
+
+### 属性
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -91,11 +95,66 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | sourceTool<sup>9+</sup> | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9) | 否 | 否 | 事件输入源的类型。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | axisHorizontal<sup>12+</sup> | number | 否 | 是 | 水平轴值。<br/>默认值：0<br/>**说明：**<br/>当前仅在鼠标滚轮或触控板双指滑动触发的Pan手势，或使用Ctrl+鼠标滚轮触发的Pinch手势中可以获取。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | axisVertical<sup>12+</sup> | number | 否 | 是 | 垂直轴值。<br/>默认值：0<br/>**说明：**<br/>当前仅在鼠标滚轮或触控板双指滑动触发的Pan手势，或使用Ctrl+鼠标滚轮触发的Pinch手势中可以获取。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | 否 | 是 | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\|'Alt'\|'Shift'。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**说明：**<br/>此接口不支持在手写笔场景下使用。|
 | deviceId<sup>12+</sup> | number | 否 | 是 | 触发当前事件的输入设备ID。<br/>默认值：0<br />取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | targetDisplayId<sup>15+</sup> | number | 否 | 是 | 事件发生的屏幕ID。  <br/>默认值：0<br />取值范围：[0, +∞)<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
-**错误码**：
+### getModifierKeyState<sup>12+</sup>
+
+getModifierKeyState?(keys: Array\<string>): boolean
+
+获取功能键按压状态。报错信息请参考以下错误码。支持功能键'Ctrl'\|'Alt'\|'Shift'。
+
+>  **说明：**
+>
+> 此接口不支持在手写笔场景下使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型         | 必填 | 说明   |
+| ------- | ----------- | ---- | --------------------- |
+| keys | Array\<string> | 是    | 需要查询的功能键。 |
+
+**返回值：**
+
+| 类型              |       说明       |
+| ------- | --------------------------------- | 
+| boolean | 功能键的按压状态。true表示功能键被按下，false表示功能键未被按下。|
+
+**错误码**
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
+
+### getModifierKeyState<sup>12+</sup>
+
+getModifierKeyState?(keys: Array&lt;string&gt;): boolean
+
+获取功能键按压状态。支持功能键 'Ctrl'\|'Alt'\|'Shift'。此接口不支持在手写笔场景下使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                              | 必填 | 说明                 |
+| ------ | --------------------------------- | ---- | -------------------- |
+| keys  | Array&lt;string&gt; | 是   | 功能键列表。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 返回功能键按压状态。当功能键均处于按压状态时返回true，否则返回false。 |
+
+**错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
@@ -104,7 +163,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 
 ## BaseGestureEvent对象说明
-继承于[BaseEvent](#baseevent对象说明8)。
+继承于[BaseEvent](#baseevent8)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -122,7 +181,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 
 | 名称      | 类型   | 只读 | 可选                                | 说明         |
 | ---------  | --- | ------|-------------------------------  | -----------|
-| tapLocation<sup>20+</sup>  | [EventLocationInfo](ts-basic-gestures-tapgesture.md#eventlocationinfo20对象说明)| 否 | 是 | 获取点击手势的坐标信息。<br/>取值范围：[0, +∞)<br/> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| tapLocation<sup>20+</sup>  | [EventLocationInfo](ts-basic-gestures-tapgesture.md#eventlocationinfo20对象说明)| 否 | 是 | 获取点击手势的坐标信息。 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## LongPressGestureEvent对象说明
 继承于[BaseGestureEvent](#basegestureevent对象说明)。可将该对象作为[onGestureJudgeBegin](#ongesturejudgebegin)的event参数来传递。
@@ -133,7 +192,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 
 | 名称      | 类型                               | 只读 | 可选       | 说明         |
 | ---------  | ----------------------------------|-----| ----------|----------|
-| repeat     | boolean                           | 否  | 是    | 是否为重复触发事件。true表示为重复触发事件，false表示非重复触发事件。  |
+| repeat     | boolean                           | 否  | 否    | 是否为重复触发事件。true表示为重复触发事件，false表示非重复触发事件。  |
 
 ## PanGestureEvent对象说明
 继承于[BaseGestureEvent](#basegestureevent对象说明)。可将该对象作为[onGestureJudgeBegin](#ongesturejudgebegin)的event参数来传递。
@@ -428,3 +487,4 @@ struct GestureDetectorExample {
 }
 
 ```
+![gestures3](figures/gestures3.gif)

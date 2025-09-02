@@ -119,20 +119,18 @@ struct NestedScroll {
 1. 如何禁用Web组件滚动手势。
 
     (1) 首先调用Web组件滚动控制器方法，设置Web禁用触摸（[setScrollable](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setscrollable12)）的滚动。
-
     ```ts
     this.webController.setScrollable(false, webview.ScrollType.EVENT);
     ```
     (2) 再使用[onGestureRecognizerJudgeBegin](../reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md#ongesturerecognizerjudgebegin13)方法，禁止Web组件自带的滑动手势触发。
-
-		```ts
-		.onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer, others: Array<GestureRecognizer>) => {
-		if (current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
-			return GestureJudgeResult.REJECT;
-		}
-		return GestureJudgeResult.CONTINUE;
-		})
-		```
+    ```ts
+    .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer, otherArray<GestureRecognizer>) => {
+      if (current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
+        return GestureJudgeResult.REJECT;
+      }
+      return GestureJudgeResult.CONTINUE;
+    })
+    ```
 2. 如何禁止[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)组件的手势。
     ```ts
 	  .enableScrollInteraction(false)
@@ -185,7 +183,6 @@ struct Index {
   private webController: webview.WebviewController = new webview.WebviewController()
   private isWebAtEnd:boolean = false
   private webHeight:number = 0
-  private scrollTop:number = 0
   @Local arr: Array<number> = []
 
   aboutToAppear(): void {
@@ -209,7 +206,7 @@ struct Index {
     }
   }
 
-  getWebScrollTop() {
+  checkScrollBottom() {
   	this.isWebAtEnd = false;
   	if (this.webController.getPageOffset().y + this.webHeight >= this.webController.getPageHeight()) {
   	  this.isWebAtEnd = true;
@@ -253,7 +250,7 @@ struct Index {
       }
     }
     .onScrollFrameBegin((offset: number, state: ScrollState)=>{
-      this.getWebScrollTop();
+      this.checkScrollBottom();
       if (offset > 0) {
         if (!this.isWebAtEnd) {
           this.webController.scrollBy(0, offset)

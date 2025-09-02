@@ -475,7 +475,7 @@ struct SetSample {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.message.entries()), (item: [number, string]) => { // 遍历Set的元素并渲染UI
+        ForEach(Array.from(this.message.entries()), (item: [number, number]) => { // 遍历Set的元素并渲染UI
           Text(`${item[0]}`).fontSize(30)
           Divider()
         })
@@ -647,7 +647,7 @@ struct Index {
           // 在执行动画前，存在额外的修改
           this.w = 100;
           this.h = 100;
-          this.message = 'Hello Word';
+          this.message = 'Hello World';
           animateToImmediately({
             duration: 0
           }, () => {

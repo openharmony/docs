@@ -1776,11 +1776,13 @@ try {
 getKeepAliveBundles(type: KeepAliveAppType, userId?: number): Promise\<Array\<KeepAliveBundleInfo>>
 
 获取指定用户下指定类型的保活应用信息。该应用信息由[KeepAliveBundleInfo](#keepalivebundleinfo14)定义。
-使用Promise异步回调。本接口当前仅支持2in1设备。
+使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_APP_KEEP_ALIVE
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口在PC/2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **系统接口**：此接口为系统接口。
 
@@ -1835,11 +1837,13 @@ try {
 
 killProcessesInBatch(pids: Array\<number>): Promise\<void>
 
-批量查杀进程。本接口当前仅支持2in1设备。
+批量查杀进程。
 
 **需要权限**：ohos.permission.KILL_APP_PROCESSES
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口在PC/2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **系统接口**：此接口为系统接口。
 
@@ -1894,12 +1898,13 @@ setKeepAliveForAppServiceExtension(bundleName: string, enabled: boolean): Promis
 为AppServiceExtensionAbility设置保活或取消保活。使用Promise异步回调。
 > **说明：**
 >
-> - 本接口当前仅支持2in1设备。
 > - 仅当应用安装在userId为1的用户下，且应用中entry类型的HAP的module.json5配置文件中的mainElement字段配置为AppServiceExtensionAbility时，该接口才生效。
 
 **需要权限**：ohos.permission.MANAGE_APP_KEEP_ALIVE
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口在PC/2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **系统接口**：此接口为系统接口。
 
@@ -1957,11 +1962,12 @@ getKeepAliveAppServiceExtensions(): Promise\<Array\<KeepAliveBundleInfo>>
 
 获取所有保活的AppServiceExtensionAbility应用信息，此信息由[KeepAliveBundleInfo](#keepalivebundleinfo14)定义。使用Promise异步回调。
 
-本接口当前仅支持2in1设备。
 
 **需要权限**：ohos.permission.MANAGE_APP_KEEP_ALIVE
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口在PC/2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **系统接口**：此接口为系统接口。
 

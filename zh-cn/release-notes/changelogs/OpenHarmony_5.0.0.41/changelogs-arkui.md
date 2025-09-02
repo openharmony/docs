@@ -91,7 +91,7 @@ CreateModalUIExtension和hideNonSecureWindows接口。
 
 **变更影响**
 
-该变更为不兼容变更。
+此变更不涉及应用适配。
 
 变更前：MenuItem组件含有超长文本时，文本缩略显示。
 

@@ -1,4 +1,10 @@
 # Compressing and Decompressing Files
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @jinsenjun-->
+<!--Designer: @jinsenjun-->
+<!--Tester: @lixueqing-->
+<!--Adviser: @Brilliantry_Rui-->
 
 This topic describes how to use functions in common compression and decompression scenarios.
 
@@ -313,6 +319,7 @@ For data in a buffer with an unknown size, use [deflate()](../../reference/apis-
            // Decompress the data in the input buffer to the output buffer.
            let inflateStatus = zip.inflate(strm, zlib.CompressFlushMode.NO_FLUSH);
            console.info('inflate ret: ' + (await inflateStatus).valueOf());
+           status = await inflateStatus;
            // Update the stream status.
            let innerStrm = zip.getZStream();
            strm.availableIn = (await innerStrm).availableIn;
@@ -369,7 +376,7 @@ For data in a buffer with an unknown size, use [deflate()](../../reference/apis-
            let inFile = fs.openSync(path + '/data.gz', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
            let outFile = fs.openSync(path + '/data.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
            inflateGzipFile(inFile, outFile).then(() => {
-             console.info('deflateGzipFile success');
+             console.info('inflateGzipFile success');
              fs.closeSync(inFile.fd);
              fs.closeSync(outFile.fd);
            })
@@ -466,6 +473,7 @@ For data in a buffer with an unknown size, use [deflate()](../../reference/apis-
            // Decompress the data in the input buffer to the output buffer.
            let inflateStatus = zip.inflate(strm, zlib.CompressFlushMode.NO_FLUSH);
            console.info('inflate ret: ' + (await inflateStatus).valueOf());
+           status = await inflateStatus;
            // Update the stream status.
            let innerStrm = zip.getZStream();
            strm.availableIn = (await innerStrm).availableIn;

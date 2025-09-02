@@ -1,5 +1,12 @@
 # Event Reporting
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @liujiaxing2024-->
+<!--Designer: @junjie_shi-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 HiAppEvent provides APIs for reporting events.
 
 ## Available APIs
@@ -10,26 +17,26 @@ For details about how to use the APIs, see [Application Event Logging](../refere
 
 | API                                   | Description                                            |
 | ----------------------------------------- | ------------------------------------------------ |
-| addProcessor(processor: Processor): number | Adds a data processor for reporting events. |
+| addProcessor(processor: Processor): number | Adds a data processor for reporting events.|
 | removeProcessor(id: number): void          | Removes a data processor.            |
 
 **User ID APIs**
 
 | API                                    | Description                                        |
 | ------------------------------------------ | -------------------------------------------- |
-| setUserId(name: string, value: string): void | Sets a user ID. The data processor can carry the user ID when reporting an event. |
+| setUserId(name: string, value: string): void | Sets a user ID. The data processor can carry the user ID when reporting an event.|
 | getUserId(name: string): string               | Obtains a user ID that has been set.                          |
 
 **User Property APIs**
 
 | API                                          | Description                                            |
 | ------------------------------------------------ | ------------------------------------------------ |
-| setUserProperty(name: string, value: string): void | Sets a user property. The data processor can carry user properties when reporting events. |
+| setUserProperty(name: string, value: string): void | Sets a user property. The data processor can carry user properties when reporting events.|
 | getUserProperty(name: string): string               | Obtains a user property.                           |
 
 ## How to Develop
 
-The following describes how to log a button onclick event and enable the data processor to report the event.
+The following describes how to develop event logging and reporting for the button click behavior.
 
 1. In the **entry/src/main/ets/ pages/Index.ets** file, add the **addprocessorTest** button with **Onclick()** to add the data processor. **analytics_demo** is the data processor library preset in the device.<!--Del--> For details, see [HiAppEvent Data Processor Library](../../device-dev/subsystems/subsys-dfx-hiappevent-extend-so.md).<!--DelEnd--> The sample code is as follows:
 
@@ -40,9 +47,9 @@ The following describes how to log a button onclick event and enable the data pr
    @Entry
    @Component
    struct Index {
-     @State message: string = 'Hello World'
+     @State message: string = 'Hello World';
 
-     processorId: number = -1
+     processorId: number = -1;
    
      build() {
        Row() {
@@ -80,7 +87,7 @@ The following describes how to log a button onclick event and enable the data pr
    }
    ```
 
-2. In the **entry/src/main/ets/ pages/Index.ets** file, add the **userIdTest** button with **onClick()** to obtain the user ID. The sample code is as follows:
+2. In the **entry/src/main/ets/pages/index.ets** file, add a button with **onClick()** to add and view the user ID. The sample code is as follows:
 
    ```ts
      Button("userIdTest").onClick(()=>{
@@ -89,11 +96,11 @@ The following describes how to log a button onclick event and enable the data pr
 
        // Obtain the user ID set in onClick().
        let userId = hiAppEvent.getUserId('testUserIdName');
-       hilog.info(0x0000, 'testTag', `userId: ${userId}`)
+       hilog.info(0x0000, 'testTag', `userId: ${userId}`);
      })
    ```
 
-3. In the **entry/src/main/ets/pages/Index.ets** file, add the **userPropertyTest** button with **onClick()** to obtain the user property. The sample code is as follows:
+3. In the **entry/src/main/ets/pages/index.ets** file, add a button with **onClick()** to add and view the user property. The sample code is as follows:
 
    ```ts
      Button("userPropertyTest").onClick(()=>{
@@ -102,11 +109,11 @@ The following describes how to log a button onclick event and enable the data pr
 
        // Obtain the user property in onClick().
        let userProperty = hiAppEvent.getUserProperty('testUserPropertyName');
-       hilog.info(0x0000, 'testTag', `userProperty: ${userProperty}`)
+       hilog.info(0x0000, 'testTag', `userProperty: ${userProperty}`);
      })
    ```
 
-4. In the **entry/src/main/ets/pages/index.ets** file, add the **writeTest** button with **onClick()** to enable an event to be logged when the button is clicked. The sample code is as follows:
+4. In the **entry/src/main/ets/pages/index.ets** file, add a button with **onClick()** to log the button click event. The sample code is as follows:
 
    ```ts
      Button("writeTest").onClick(()=>{
@@ -120,17 +127,17 @@ The following describes how to log a button onclick event and enable the data pr
          // Define the event type.
          eventType: hiAppEvent.EventType.BEHAVIOR,
          // Define the event parameters.
-         params: eventParams,
+         params: eventParams
        };
        hiAppEvent.write(eventInfo).then(() => {
-         hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`)
+         hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`);
        }).catch((err: BusinessError) => {
-         hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
+         hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
        });
      })
    ```
 
-5. In the **entry/src/main/ets/pages/index.ets** file, add the **removeProcessorTest** button with **onClick()** to remove the data processor (the one added in step 2). The sample code is as follows:
+5. In the **entry/src/main/ets/pages/index.ets** file, add a button with **onClick()** to remove the data processor. The sample code is as follows:
 
    ```ts
      Button("removeProcessorTest").onClick(()=>{

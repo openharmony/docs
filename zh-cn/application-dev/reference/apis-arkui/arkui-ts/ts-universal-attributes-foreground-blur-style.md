@@ -103,10 +103,24 @@ foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOp
 
 | 名称                        | 类型                                                | 只读 | 可选 | 说明                                                         |
 | --------------------------- | ------------------------------------------------------- | ---- | ---- |------------------------------------------------------------ |
-| colorMode     | [ThemeColorMode](ts-container-with-theme.md#themecolormode10枚举说明) | 否 | 是  | 内容模糊效果使用的深浅色模式。<br/>默认值：ThemeColorMode.SYSTEM<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| colorMode     | [ThemeColorMode](#themecolormode枚举说明) | 否 | 是  | 内容模糊效果使用的深浅色模式。<br/>默认值：ThemeColorMode.SYSTEM<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | adaptiveColor | [AdaptiveColor](#adaptivecolor10枚举说明)   | 否 | 是   | 内容模糊效果使用的取色模式。<br/>默认值：AdaptiveColor.DEFAULT<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | blurOptions<sup>11+</sup> | [BlurOptions](#bluroptions11)         | 否 | 是    | 灰阶模糊参数。<br/>默认值：grayscale: [0,0] <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | scale<sup>12+</sup> | number   | 否 | 是  | 内容模糊效果程度。<br/>默认值：1.0 <br/>取值范围：[0.0, 1.0] <br/>1.0表示模糊程度最高。 <br/>0.0表示模糊程度最低。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+
+## ThemeColorMode枚举说明
+
+设置颜色模式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 值 | 说明       |
+| ------ | --- | ------- |
+| SYSTEM | - | 跟随系统深浅色模式。 |
+| LIGHT  | - | 固定使用浅色模式。  |
+| DARK   | - | 固定使用深色模式。  |
 
 ## AdaptiveColor<sup>10+</sup>枚举说明
 
@@ -145,6 +159,7 @@ struct ForegroundBlurStyleDemo {
   build() {
     Column() {
       Text('Thin Material').fontSize(30).fontColor(0xCCCCCC)
+      // $r("app.media.bg")需要替换为开发者所需的图像资源文件。
       Image($r('app.media.bg'))
         .width(300)
         .height(350)

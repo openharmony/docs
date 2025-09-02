@@ -82,25 +82,29 @@ motionBlur(motionBlur: Optional\<MotionBlurOptions>): T
 
 ## MotionBlurOptions对象说明
 
+运动模糊选项。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型                                                        | 必填  | 说明                                                         |
-| ------------- | ----------------------------------------------------------- | ----- | ------------------------------------------------------------ |
-| radius | number      | 是    | 模糊半径，取值范围[0.0, ∞)，建议设置1.0以内。 |
-| anchor | [MotionBlurAnchor](#motionbluranchor对象说明) | 是    | 运动模糊锚点坐标。运动模糊锚点坐标设置时需要与动画缩放的锚点保持一致设置。 |
+| 名称          | 类型                                                        | 只读  | 可选  | 说明                                                         |
+| ------------- | ----------------------------------------------------------- | ----- | ----- | ------------------------------------------------------------ |
+| radius | number      | 否    | 否    | 模糊半径，取值范围[0.0, ∞)，建议设置1.0以内。 |
+| anchor | [MotionBlurAnchor](#motionbluranchor对象说明) | 否    | 否    | 运动模糊锚点坐标。运动模糊锚点坐标设置时需要与动画缩放的锚点保持一致设置。 |
 
 ## MotionBlurAnchor对象说明
 
+运动模糊锚坐标。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型                                                        | 必填  | 说明                                                         |
-| ------------- | ----------------------------------------------------------- | ----- | ------------------------------------------------------------ |
-| x | number      | 是    | 锚点坐标x值，取值范围[0.0, 1.0]。 |
-| y | number      | 是    | 锚点坐标y值，取值范围[0.0, 1.0]。 |
+| 名称          | 类型                                                        | 只读  | 可选  | 说明                                                         |
+| ------------- | ----------------------------------------------------------- | ----- | ----- | ------------------------------------------------------------ |
+| x | number      | 否    | 否    | 锚点坐标x值，取值范围[0.0, 1.0]。 |
+| y | number      | 否    | 否    | 锚点坐标y值，取值范围[0.0, 1.0]。 |
 
 ## 示例
 
@@ -111,7 +115,7 @@ import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component
-struct motionBlurTest {
+struct MotionBlurTest {
   @State widthSize: number = 400;
   @State heightSize: number = 320;
   @State flag: boolean = true;
@@ -122,6 +126,7 @@ struct motionBlurTest {
   build() {
     Column() {
       Column() {
+        // $r("app.media.testImg")需要替换为开发者所需的图像资源文件。
         Image($r('app.media.testImg'))
           .width(this.widthSize)
           .height(this.heightSize)

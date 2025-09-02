@@ -102,7 +102,7 @@ struct BuilderDemo {
 
 自定义构建函数的参数传递有[按值传递](#按值传递参数)和[按引用传递](#按引用传递参数)两种，均需遵守以下规则：
 
-- 参数的类型必须与参数声明的类型一致，不允许undefined、null和返回undefined、null的表达式。
+- @Builder装饰的函数参数类型不允许为undefined、null和返回undefined、null的表达式。
 
 - 在\@Builder装饰的函数内部，不允许改变参数值。
 
@@ -387,7 +387,8 @@ struct Parent {
 
 ### 将@Builder装饰的函数当作customBuilder类型使用
 
-当参数类型为`customBuilder`时，可以传入定义的`@Builder`函数。因为`customBuilder`实际上是`Function(() => any)`或`void`类型，而`@Builder`也是`Function`类型。所以通过传入`@Builder`可以实现特定效果。
+当参数类型为`CustomBuilder`时，可以传入定义的`@Builder`函数。因为`CustomBuilder`实际上是`Function(() => any)`或`void`类型，而`@Builder`也是`Function`类型。所以通过传入`@Builder`可以实现特定效果。
+全局`@Builder`函数当作`CustomBuilder`类型传递时需要绑定this上下文，开发者可以直接调用全局`@Builder`函数，编译工具链会自动生成绑定this上下文的代码。
 
 ```ts
 @Builder
@@ -428,10 +429,11 @@ struct customBuilderDemo {
           }
           .swipeAction({
             start: {
-              builder: overBuilder()
+              builder: overBuilder() // 编译工具链会自动绑定this上下文
             },
             end: {
               builder: () => {
+                // 在箭头函数中调用局部@Builder会自动绑定this上下文，无需编译工具链处理
                 this.privateBuilder()
               }
             }

@@ -1,5 +1,12 @@
 # @ohos.configPolicy (Configuration Policy) (System API)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Customization-->
+<!--Owner: @liule_123-->
+<!--Designer: @sunshine_1984-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
+
 The **configPolicy** module provides APIs for obtaining the custom configuration directory and file path based on the predefined configuration level.
 
 >  **NOTE**
@@ -42,21 +49,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import configPolicy from '@ohos.configPolicy';
 
-  try {
-    let relpath: string = 'etc/config.xml';
-    configPolicy.getOneCfgFile(relpath, (error: BusinessError, value: string) => {
-      if (error == null) {
-        console.log('value is ' + value);
-      } else {
-        console.error('error: ' + error.code + ', ' + error.message);
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error('error:' + code + ', ' + message);
-  }
+  let relpath: string = 'etc/config.xml';
+  configPolicy.getOneCfgFile(relpath, (error: BusinessError, value: string) => {
+    if (error == null) {
+      console.log('value is ' + value);
+    } else {
+      console.error('error: ' + error.code + ', ' + error.message);
+    }
+  });
   ```
 
 ## getOneCfgFile
@@ -85,25 +87,27 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Type                  | Description                    |
 | ---------------------- | ------------------------ |
-| Promise&lt;string&gt;  | Promise used to return the path of the configuration file.|
+| Promise&lt;string&gt;  | Promise used to return the result.|
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import configPolicy from '@ohos.configPolicy';
 
-  try {
-    let relpath: string = 'etc/config.xml';
-    configPolicy.getOneCfgFile(relpath).then((value: string) => {
+  async function fetchConfigFile() {
+    try {
+      let relpath: string = 'etc/config.xml';
+      let value: string = await configPolicy.getOneCfgFile(relpath);
       console.log('value is ' + value);
-    }).catch((error: BusinessError) => {
-      console.error('getOneCfgFile promise error: ' + error.code + ', ' + error.message);
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error('error:' + code + ', ' + message);
+    } catch (error) {
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error('error:' + code + ', ' + message);
+    }
   }
+
+  fetchConfigFile()
   ```
 
 ## getCfgFiles
@@ -134,20 +138,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import configPolicy from '@ohos.configPolicy';
 
-  try {
-    configPolicy.getCfgFiles('etc/config.xml', (error: BusinessError, value: Array<string>) => {
-      if (error == null) {
-        console.log('value is ' + value);
-      } else {
-        console.error('error: ' + error.code + ', ' + error.message);
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error('error:' + code + ', ' + message);
-  }
+  configPolicy.getCfgFiles('etc/config.xml', (error: BusinessError, value: Array<string>) => {
+    if (error == null) {
+      console.log('value is ' + value);
+    } else {
+      console.error('error: ' + error.code + ', ' + error.message);
+    }
+  });
   ```
 
 ## getCfgFiles
@@ -176,25 +175,27 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Type                              | Description    |
 | ---------------------------------- | -------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the file lists.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result.|
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import configPolicy from '@ohos.configPolicy';
 
-  try {
-    let relpath: string = 'etc/config.xml';
-    configPolicy.getCfgFiles(relpath).then((value: Array<string>) => {
+  async function fetchCfgFiles() {
+    try {
+      let relpath: string = 'etc/config.xml';
+      let value: Array<string> = await configPolicy.getCfgFiles(relpath);
       console.log('value is ' + value);
-    }).catch((error: BusinessError) => {
-      console.error('getCfgFiles promise error: ' + error.code + ', ' + error.message);
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error('error:' + code + ', ' + message);
+    } catch (error) {
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error('error:' + code + ', ' + message);
+    }
   }
+
+  fetchCfgFiles();
   ```
 
 ## getCfgDirList
@@ -223,20 +224,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import configPolicy from '@ohos.configPolicy';
 
-  try {
-    configPolicy.getCfgDirList((error: BusinessError, value: Array<string>) => {
-      if (error == null) {
-        console.log('value is ' + value);
-      } else {
-        console.error('error: ' + error.code + ', ' + error.message);
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error('error:' + code + ', ' + message);
-  }
+  configPolicy.getCfgDirList((error: BusinessError, value: Array<string>) => {
+    if (error == null) {
+      console.log('value is ' + value);
+    } else {
+      console.error('error: ' + error.code + ', ' + error.message);
+    }
+  });
   ```
 
 ## getCfgDirList
@@ -257,18 +253,20 @@ Obtains the list of configuration level directories. This API uses a promise to 
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import configPolicy from '@ohos.configPolicy';
 
-  try {
-    configPolicy.getCfgDirList().then((value: Array<string>) => {
+  async function fetchCfgDirList() {
+    try {
+      let value: Array<string> = await configPolicy.getCfgDirList();
       console.log('value is ' + value);
-    }).catch((error: BusinessError) => {
-      console.error('getCfgDirList promise error: ' + error.code + ', ' + error.message);
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error('error:' + code + ', ' + message);
+    } catch (error) {
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error('error:' + code + ', ' + message);
+    }
   }
+
+  fetchCfgDirList();
   ```
 
 ## getOneCfgFile<sup>11+</sup>
@@ -300,22 +298,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import configPolicy from '@ohos.configPolicy';
 
-  try {
-    let relpath: string = 'etc/config.xml';
-    configPolicy.getOneCfgFile(relpath, configPolicy.FollowXMode.SIM_DEFAULT,
-      (error: BusinessError, value: string) => {
+  let relpath: string = 'etc/config.xml';
+  configPolicy.getOneCfgFile(relpath, configPolicy.FollowXMode.SIM_DEFAULT,
+    (error: BusinessError, value: string) => {
       if (error == null) {
         console.log('value is ' + value);
       } else {
         console.error('error: ' + error.code + ', ' + error.message);
       }
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error('error:' + code + ', ' + message);
-  }
+
   ```
 
 ## getOneCfgFile<sup>11+</sup>
@@ -348,23 +342,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import configPolicy from '@ohos.configPolicy';
 
-  try {
-    let relpath: string = 'etc/config.xml';
-    let extra: string = 'etc/carrier/${telephony.sim.opkey0}';
-    configPolicy.getOneCfgFile(relpath, configPolicy.FollowXMode.USER_DEFINED, extra,
-      (error: BusinessError, value: string) => {
+  let relpath: string = 'etc/config.xml';
+  let extra: string = 'etc/carrier/${telephony.sim.opkey0}';
+  configPolicy.getOneCfgFile(relpath, configPolicy.FollowXMode.USER_DEFINED, extra,
+    (error: BusinessError, value: string) => {
       if (error == null) {
         console.log('value is ' + value);
       } else {
         console.error('error: ' + error.code + ', ' + error.message);
       }
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error('error:' + code + ', ' + message);
-  }
   ```
 
 ## getOneCfgFile<sup>11+</sup>
@@ -395,26 +384,28 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Type                  | Description                    |
 | ---------------------- | ------------------------ |
-| Promise&lt;string&gt;  | Promise used to return the path of the configuration file.|
+| Promise&lt;string&gt;  | Promise used to return the result.|
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import configPolicy from '@ohos.configPolicy';
 
-  try {
-    let relpath: string = 'etc/config.xml';
-    let extra: string = 'etc/carrier/${telephony.sim.opkey0}';
-    configPolicy.getOneCfgFile(relpath, configPolicy.FollowXMode.SIM_DEFAULT, extra).then((value: string) => {
+  async function fetchOneCfgFile() {
+    try {
+      let relpath: string = 'etc/config.xml';
+      let extra: string = 'etc/carrier/${telephony.sim.opkey0}';
+      let value: string = await configPolicy.getOneCfgFile(relpath, configPolicy.FollowXMode.SIM_DEFAULT, extra);
       console.log('value is ' + value);
-    }).catch((error: BusinessError) => {
-      console.error('getOneCfgFile promise error: ' + error.code + ', ' + error.message);
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error('error:' + code + ', ' + message);
+    } catch (error) {
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error('error:' + code + ', ' + message);
+    }
   }
+
+  fetchOneCfgFile();
   ```
 
 ## getOneCfgFileSync<sup>11+</sup>
@@ -445,7 +436,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Type  | Description                    |
 | ------ | ------------------------ |
-| string | Returns the path of the configuration file.|
+| string | Returns the path of the configuration file with the highest priority.|
 
 
 **Example**
@@ -494,29 +485,24 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import configPolicy from '@ohos.configPolicy';
 
-  try {
-    let relpath: string = 'etc/config.xml';
-    configPolicy.getCfgFiles(relpath, configPolicy.FollowXMode.SIM_DEFAULT,
-      (error: BusinessError, value: Array<string>) => {
+  let relpath: string = 'etc/config.xml';
+  configPolicy.getCfgFiles(relpath, configPolicy.FollowXMode.SIM_DEFAULT,
+    (error: BusinessError, value: Array<string>) => {
       if (error == null) {
         console.log('value is ' + value);
       } else {
         console.error('error: ' + error.code + ', ' + error.message);
       }
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error('error:' + code + ', ' + message);
-  }
   ```
 
 ## getCfgFiles<sup>11+</sup>
 
 getCfgFiles(relPath: string, followMode: FollowXMode, extra: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
 
-Obtains a list of configuration files based on the specified file name and custom follow rule, sorted in ascending order of priority. This API uses an asynchronous callback to return the result.
+Obtains a list of configuration files based on the specified file name and follow mode, sorted in ascending order of priority. This API uses an asynchronous callback to return the result.
 For example, there are three **config.xml** files (in ascending order of priority): **/system/etc/config.xml**, **/sys_pod/etc/config.xml**, and **/sys_pod/etc/carrier/46060/etc/config.xml**. If the opkey of card 1 is **46060**, the follow mode is **USER_DEFINED**, and the custom follow rule is **etc/carrier/${telephony.sim.opkey0}**, **/system/etc/config.xml, /sys_pod/etc/config.xml, /sys_pod/etc/carrier/46060/etc/config.xml** is returned.
 
 **System capability**: SystemCapability.Customization.ConfigPolicy
@@ -542,23 +528,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import configPolicy from '@ohos.configPolicy';
 
-  try {
-    let relpath: string = 'etc/config.xml';
-    let extra: string = 'etc/carrier/${telephony.sim.opkey0}';
-    configPolicy.getCfgFiles(relpath, configPolicy.FollowXMode.SIM_DEFAULT, extra,
-      (error: BusinessError, value: Array<string>) => {
+  let relpath: string = 'etc/config.xml';
+  let extra: string = 'etc/carrier/${telephony.sim.opkey0}';
+  configPolicy.getCfgFiles(relpath, configPolicy.FollowXMode.SIM_DEFAULT, extra,
+    (error: BusinessError, value: Array<string>) => {
       if (error == null) {
         console.log('value is ' + value);
       } else {
         console.error('error: ' + error.code + ', ' + error.message);
       }
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error('error:' + code + ', ' + message);
-  }
   ```
 
 ## getCfgFiles<sup>11+</sup>
@@ -589,26 +570,28 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Type                              | Description    |
 | ---------------------------------- | -------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the file lists.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result.|
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import configPolicy from '@ohos.configPolicy';
 
-  try {
-    let relpath: string = 'etc/config.xml';
-    let extra: string = 'etc/carrier/${telephony.sim.opkey0}';
-    configPolicy.getCfgFiles(relpath, configPolicy.FollowXMode.SIM_DEFAULT, extra).then((value: Array<string>) => {
+  async function fetchCfgFiles() {
+    try {
+      let relpath: string = 'etc/config.xml';
+      let extra: string = 'etc/carrier/${telephony.sim.opkey0}';
+      let value: Array<string> = await configPolicy.getCfgFiles(relpath, configPolicy.FollowXMode.SIM_DEFAULT, extra);
       console.log('value is ' + value);
-    }).catch((error: BusinessError) => {
-      console.error('getCfgFiles promise error: ' + error.code + ', ' + error.message);
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error('error:' + code + ', ' + message);
+    } catch (error) {
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error('error:' + code + ', ' + message);
+    }
   }
+
+  fetchCfgFiles();
   ```
 
 ## getCfgFilesSync<sup>11+</sup>
@@ -639,7 +622,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Type               | Description    |
 | ------------------- | -------- |
-| Array&lt;string&gt; | Returns the file lists.|
+| Array&lt;string&gt; | Returns a list of configuration files.|
 
 
 **Example**
