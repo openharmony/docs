@@ -12,10 +12,10 @@
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
-| 名称      | 类型                           | 必填 | 说明         |
-| -------- | ----------------------------- |---- | ------------- |
-| data   | Uint8Array | 是  | 设备证书请求数据。      |
-| defaultURL     | string                 | 是  | Provision服务（设备证书请求服务）URL。       |
+| 名称      | 类型                        | 只读 | 可选 | 说明         |
+| -------- | ------------------------|----|----| ------------- |
+| data   | Uint8Array| 否  | 否  | 设备证书请求数据。      |
+| defaultURL     | string         | 否  | 否  | Provision服务（设备证书请求服务）URL。       |
 
 ## OptionsData
 
@@ -25,10 +25,10 @@
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
-| 名称      | 类型                           | 必填 | 说明         |
-| -------- | ----------------------------- |---- | ------------- |
-| name   | string | 是  | 可选数据名。      |
-| value     | string                 | 是  | 可选数据值。       |
+| 名称      | 类型                        | 只读 | 可选 | 说明         |
+| -------- | --------------------------|----|----| ------------- |
+| name   | string | 否  | 否  | 可选数据名。      |
+| value     | string             | 否  | 否  | 可选数据值。 |
 
 ## MediaKeyRequest
 
@@ -38,11 +38,11 @@
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
-| 名称      | 类型                           | 必填 | 说明         |
-| -------- | ----------------------------- |---- | ------------- |
-| mediaKeyRequestType   | [MediaKeyRequestType](arkts-apis-drm-e.md#mediakeyrequesttype) | 是  | 媒体密钥请求类型。      |
-| data     | Uint8Array                 | 是  | 媒体密钥请求数据。       |
-| defaultURL     | string                 | 是  | 媒体密钥服务URL。       |
+| 名称      | 类型                       | 只读 | 可选 | 说明         |
+| -------- | --------------------------|----|----| ------------- |
+| mediaKeyRequestType   | [MediaKeyRequestType](arkts-apis-drm-e.md#mediakeyrequesttype)| 否  | 否  | 媒体密钥请求类型。      |
+| data     | Uint8Array               |  否  | 否  | 媒体密钥请求数据。       |
+| defaultURL     | string              |  否  | 否  | 媒体密钥服务URL。       |
 
 ## EventInfo
 
@@ -52,10 +52,10 @@
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
-| 名称      | 类型                           | 必填 | 说明         |
-| -------- | ----------------------------- |---- | ------------- |
-| info   | Uint8Array | 是  | 事件信息数据。      |
-| extraInfo     | string                 | 是  | 事件扩展信息。       |
+| 名称      | 类型                         | 只读 | 可选    | 说明         |
+| -------- | --------------------------|----|-------| ------------- |
+| info   | Uint8Array |   否 | 否      | 事件信息数据。      |
+| extraInfo     | string             |   否 | 否  | 事件扩展信息。 |
 
 ## StatisticKeyValue
 
@@ -65,10 +65,10 @@
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
-| 名称      | 类型                           | 必填 | 说明         |
-| -------- | ----------------------------- |---- | ------------- |
-| name   | string | 是  | 度量记录名。      |
-| value     | string                 | 是  | 度量记录值。       |
+| 名称      | 类型                       | 只读 | 必填   | 说明         |
+| -------- | -------------------------|----|------| ------------- |
+| name   | string | 否  | 否     | 度量记录名。      |
+| value     | string              | 否   | 否   | 度量记录值。 |
 
 ## MediaKeyStatus
 
@@ -78,10 +78,10 @@
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
-| 名称      | 类型                           | 必填 | 说明         |
-| -------- | ----------------------------- |---- | ------------- |
-| name   | string | 是  | 媒体密钥状态名称（如媒体密钥过期时间、内容保护安全级别等）。      |
-| value     | string                 | 是  | 媒体密钥状态值。       |
+| 名称      | 类型                        | 只读 | 可选      | 说明         |
+| -------- | -------------------------|----|---------| ------------- |
+| name   | string | 否  |  否       | 媒体密钥状态名称（如媒体密钥过期时间、内容保护安全级别等）。      |
+| value     | string            | 否   | 否  | 媒体密钥状态值。 |
 
 ## KeysInfo
 
@@ -91,10 +91,10 @@
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
-| 名称      | 类型                           | 必填 | 说明         |
-| -------- | ----------------------------- |---- | ------------- |
-| keyId   | Uint8Array | 是  | 媒体密钥标识。      |
-| value     | string                 | 是  | 媒体密钥状态值。       |
+| 名称      | 类型                       | 只读 | 可选 | 说明         |
+| -------- | -------------------------|----|---| ------------- |
+| keyId   | Uint8Array | 否  | 否 | 媒体密钥标识。      |
+| value     | string                 | 否  | 否 | 媒体密钥状态值。 |
 
 ## MediaKeySystemInfo
 
@@ -104,10 +104,10 @@
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
-| 名称      | 类型                           | 必填 | 说明         |
-| -------- | ----------------------------- |---- | ------------- |
-| uuid   | string | 是  | DRM内容保护系统的唯一标识。      |
-| pssh     | Uint8Array                 | 是  | DRM内容保护系统专用头（Protection System Specific Header）。       |
+| 名称      | 类型                      | 只读 | 可选 | 说明         |
+| -------- | ------------------------|----|--| ------------- |
+| uuid   | string |  否  | 否 | DRM内容保护系统的唯一标识。      |
+| pssh     | Uint8Array              |  否  | 否 | DRM内容保护系统专用头（Protection System Specific Header）。 |
 
 ## MediaKeySystemDescription<sup>12+</sup>
 
@@ -117,7 +117,7 @@
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
-| 名称      | 类型                           | 必填 | 说明         |
-| -------- | ----------------------------- |---- | ------------- |
-| name   | string | 是  | 插件名称。      |
-| uuid   | string | 是  | 插件唯一标识码。      |
+| 名称      | 类型                        | 只读 | 可选 | 说明         |
+| -------- | --------------------------|----|--| ------------- |
+| name   | string | 否  | 否 | 插件名称。      |
+| uuid   | string | 否  | 否 | 插件唯一标识码。 |

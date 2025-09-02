@@ -29,10 +29,10 @@ setConfigurationString(configName: string, value: string): void
 
 **参数：**
 
-| 参数名     | 类型                                             | 必填 | 说明                           |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| configName  | string     | 是   | 配置属性名，不能为空，属性名参考[PreDefinedConfigName](arkts-apis-drm-e.md#predefinedconfigname)，具体支持的属性名由设备上DRM解决方案决定。                   |
-| value  | string     | 是   | 配置属性值。                   |
+| 参数名     | 类型                                        | 只读 | 可选 | 说明                           |
+| -------- | -------------------------------------------|----|----| ---------------------------- |
+| configName  | string   |  否  | 否  | 配置属性名，不能为空，属性名参考[PreDefinedConfigName](arkts-apis-drm-e.md#predefinedconfigname)，具体支持的属性名由设备上DRM解决方案决定。                   |
+| value  | string   |  否  | 否  | 配置属性值。                   |
 
 **错误码：**
 
@@ -71,9 +71,9 @@ getConfigurationString(configName: string): string
 
 **参数：**
 
-| 参数名     | 类型                                             | 必填 | 说明                           |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| configName  | string     | 是   | 配置属性名，不能为空，属性名参考[PreDefinedConfigName](arkts-apis-drm-e.md#predefinedconfigname)，具体支持的属性名由设备上DRM解决方案决定。                   |
+| 参数名     | 类型                                         | 只读 | 可选 | 说明                           |
+| -------- | ------------------------------------------|----|----| ---------------------------- |
+| configName  | string  |  否  | 否  | 配置属性名，不能为空，属性名参考[PreDefinedConfigName](arkts-apis-drm-e.md#predefinedconfigname)，具体支持的属性名由设备上DRM解决方案决定。                   |
 
 **返回值：**
 
@@ -118,10 +118,10 @@ setConfigurationByteArray(configName: string, value: Uint8Array): void
 
 **参数：**
 
-| 参数名     | 类型                                             | 必填 | 说明                           |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| configName  | string     | 是   | 配置属性名，不能为空，属性名参考[PreDefinedConfigName](arkts-apis-drm-e.md#predefinedconfigname)，具体支持的属性名由设备上DRM解决方案决定。                   |
-| value  | Uint8Array     | 是   | 数组类型的配置属性值，具体属性值由设备上DRM解决方案决定。                   |
+| 参数名     | 类型                                        | 只读 | 可选 | 说明                           |
+| -------- | ------------------------------------------|----|----| ---------------------------- |
+| configName  | string   | 否   | 否  | 配置属性名，不能为空，属性名参考[PreDefinedConfigName](arkts-apis-drm-e.md#predefinedconfigname)，具体支持的属性名由设备上DRM解决方案决定。                   |
+| value  | Uint8Array  |   否 | 否  | 数组类型的配置属性值，具体属性值由设备上DRM解决方案决定。                   |
 
 **错误码：**
 
@@ -163,9 +163,9 @@ getConfigurationByteArray(configName: string): Uint8Array
 
 **参数：**
 
-| 参数名     | 类型                                             | 必填 | 说明                           |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| configName  | string     | 是   | 配置属性名，不能为空，属性名参考[PreDefinedConfigName](arkts-apis-drm-e.md#predefinedconfigname)，具体支持的属性名由设备上DRM解决方案决定。                   |
+| 参数名     | 类型                                       | 只读 | 可选 | 说明                           |
+| -------- | -----------------------------------------|----|----| ---------------------------- |
+| configName  | string   |   否 | 否  | 配置属性名，不能为空，属性名参考[PreDefinedConfigName](arkts-apis-drm-e.md#predefinedconfigname)，具体支持的属性名由设备上DRM解决方案决定。                   |
 
 **返回值：**
 
@@ -330,9 +330,9 @@ processKeySystemResponse(response: Uint8Array): Promise<void\>
 
 **参数：**
 
-| 参数名     | 类型                                             | 必填 | 说明                           |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| response  | Uint8Array     | 是   | 设备证书响应。                   |
+| 参数名     | 类型                                         | 只读 | 可选 | 说明                           |
+| -------- | -------------------------------------------|----|----| ---------------------------- |
+| response  | Uint8Array  | 否   | 否  | 设备证书响应。                   |
 
 **返回值：**
 
@@ -418,10 +418,10 @@ on(type: 'keySystemRequired', callback: (eventInfo: EventInfo) => void): void
 
 **参数：**
 
-| 参数名      | 类型                  | 必填 | 说明                                  |
-| -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | 是   | 事件类型，通过[createMediaKeySystem](arkts-apis-drm-f.md#drmcreatemediakeysystem)成功创建MediaKeySystem实例后可监听，需要设备证书时触发该事件。 |
-| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void  | 是   | 回调函数，返回事件信息。只要有该事件返回就证明需请求设备证书。                 |
+| 参数名      | 类型              | 只读 | 可选 | 说明                                  |
+| -------- | ----------------|----|----| ------------------------------------- |
+| type     | string          |  否  | 否  | 事件类型，通过[createMediaKeySystem](arkts-apis-drm-f.md#drmcreatemediakeysystem)成功创建MediaKeySystem实例后可监听，需要设备证书时触发该事件。 |
+| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void|  否  | 否  | 回调函数，返回事件信息。只要有该事件返回就证明需请求设备证书。                 |
 
 **错误码：**
 
@@ -455,10 +455,10 @@ off(type: 'keySystemRequired', callback?: (eventInfo: EventInfo) => void): void
 
 **参数：**
 
-| 参数名      | 类型                  | 必填 | 说明                                  |
-| -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | 是   | 监听事件类型，通过[createMediaKeySystem](arkts-apis-drm-f.md#drmcreatemediakeysystem)成功创建MediaKeySystem实例后可监听。 |
-| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void  | 否   | 回调函数，返回事件信息。可选。                |
+| 参数名      | 类型              | 只读 | 可选 | 说明                                  |
+| -------- | ----------------|----|----| ------------------------------------- |
+| type     | string           | 否   | 否  | 监听事件类型，通过[createMediaKeySystem](arkts-apis-drm-f.md#drmcreatemediakeysystem)成功创建MediaKeySystem实例后可监听。 |
+| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void|  否  | 是  | 回调函数，返回事件信息。可选。                |
 
 **错误码：**
 
@@ -489,9 +489,9 @@ createMediaKeySession(level: ContentProtectionLevel): MediaKeySession
 
 **参数：**
 
-| 参数名     | 类型                                             | 必填 | 说明                           |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| level  | [ContentProtectionLevel](arkts-apis-drm-e.md#contentprotectionlevel)     | 是   | 内容保护级别。                   |
+| 参数名     | 类型                                          | 只读 | 可选 | 说明                           |
+| -------- | -------------------------------------------|----|----| ---------------------------- |
+| level  | [ContentProtectionLevel](arkts-apis-drm-e.md#contentprotectionlevel)  |  否  | 否  | 内容保护级别。                   |
 
 **返回值：**
 
@@ -618,9 +618,9 @@ getOfflineMediaKeyStatus(mediaKeyId: Uint8Array): OfflineMediaKeyStatus
 
 **参数：**
 
-| 参数名     | 类型                                             | 必填 | 说明                           |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| mediaKeyId | Uint8Array     | 是   | 离线媒体密钥标识。                   |
+| 参数名     | 类型                                       | 只读 | 可选 | 说明                           |
+| -------- | ------------------------------------------|----|----| ---------------------------- |
+| mediaKeyId | Uint8Array  | 否   | 否  | 离线媒体密钥标识。                   |
 
 **返回值：**
 
@@ -667,9 +667,9 @@ clearOfflineMediaKeys(mediaKeyId: Uint8Array): void
 
 **参数：**
 
-| 参数名     | 类型                                             | 必填 | 说明                           |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| mediaKeyId  | Uint8Array     | 是   | 离线媒体密钥标识。            |
+| 参数名     | 类型                                        | 只读 | 可选 | 说明                           |
+| -------- | -----------------------------------------|----|----| ---------------------------- |
+| mediaKeyId  | Uint8Array   |  否  | 否  | 离线媒体密钥标识。            |
 
 **错误码：**
 
