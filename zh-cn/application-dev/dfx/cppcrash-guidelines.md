@@ -42,7 +42,7 @@
 
 3. ProcessDump进程将崩溃日志数据写入到临时目录下进行存储。
 
-4. ProcessDump进程收集完崩溃日志后，上报给维测进程Hiview，并补充仅Hiview有权限获取的部分信息(如整机内存状态)，然后将崩溃日志存储到“/data/log/faultlog/faultlogger”目录下并生成故障事件。
+4. ProcessDump进程收集完崩溃日志后，上报给维测进程Hiview，并补充仅Hiview有权限获取的部分信息(如整机内存状态、应用页面切换轨迹)，然后将崩溃日志存储到“/data/log/faultlog/faultlogger”目录下并生成故障事件。
 
 ### 系统处理的崩溃信号
 
@@ -179,6 +179,7 @@ HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hia
 | Version Code | 应用版本号(整数格式) | 8 | 否 | 仅在应用进程提供。 |
 | PreInstalled | 是否预制应用 | 8 | 否 | 仅在应用进程提供。 |
 | Foreground | 前后台状态 | 8 | 否 | 仅在应用进程提供。 |
+| Page switch history | 页面切换轨迹 | 20 | 否 | 如果维测服务进程出现故障或未缓存切换轨迹，则不包含此字段，详见[实现原理](#实现原理)。 |
 | Timestamp | 故障发生时间戳 | 8 | 是 | - |
 | Pid | 进程号 | 8 | 是 | - |
 | Uid | 用户ID | 8 | 是 | - |
@@ -200,7 +201,7 @@ HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hia
 | HiLog | 故障之前打印的流水日志，最多1000行 | 8 | 是 | - |
 | [truncated] | 故障日志截断标志 | 20 | 否 | 配置故障日志截断大小并发生截断时。 |
 
-不同的故障场景中日志规格略有不同，分以下六个场景的日志规格，示例如下：
+不同的故障场景中日志规格略有不同，分以下七个场景的日志规格，示例如下：
 
 - [一般故障场景日志规格](#一般故障场景日志规格)
 
@@ -213,6 +214,8 @@ HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hia
 - [异步线程栈跟踪故障场景日志规格](#异步线程栈跟踪故障场景日志规格)
 
 - [应用通过HiAppEvent设置崩溃日志配置参数场景日志规格](#应用通过hiappevent设置崩溃日志配置参数场景日志规格)
+
+- [有页面切换轨迹的故障场景日志规格](#有页面切换轨迹的故障场景日志规格)
 
 > **说明：**
 >
@@ -643,3 +646,41 @@ OpenFiles:
 ...
 [truncated]  <- 日志截断的标志符，如果有打印说明日志被截断了
 ```
+
+### 有页面切换轨迹的故障场景日志规格
+
+针对包含页面切换的应用，自API 20起，维测进程会记录应用切换历史。应用发生故障后，生成的故障文件将包含页面切换历史轨迹。
+
+故障日志文件最多记录最新的10条历史轨迹。
+
+```text
+...
+Foreground:Yes
+Page switch history:
+  14:08:30:327 /ets/pages/Index:JsError
+  14:08:28:986 /ets/pages/Index
+  14:08:07:606 :leaves foreground
+  14:08:06:246 /ets/pages/Index:AppFreeze
+  14:08:01:955 :enters foreground
+Timestamp:2025-08-20 14:08:30:327
+Pid:10208
+Uid:0
+...
+```
+
+单条记录的格式如下：
+```text
+  14:08:30:327 /ets/pages/Index:JsError
+       ^             ^            ^
+    切换时间      页面URL       页面名
+```
+
+> **注意：**
+>
+> 仅在通过Navigation跳转到子页面时才会有页面名，页面名在[系统路由表](../ui/arkts-navigation-navigation.md#系统路由表)中定义。
+>
+> 当应用发生前后台切换时，对应的页面URL为空，但是会将enters foreground、leaves foreground作为特殊的页面名进行填充。
+>
+> enters foreground：应用进入前台运行。
+>
+> leaves foreground：应用在后台运行。
