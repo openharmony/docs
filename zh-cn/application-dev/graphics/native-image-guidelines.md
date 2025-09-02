@@ -1,5 +1,10 @@
 # NativeImage开发指导 (C/C++)
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @Felix-fangyang; @li_hui180; @dingpy-->
+<!--Designer: @conan13234-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
 ## 场景介绍
 
 NativeImage是提供**Surface关联OpenGL外部纹理**的模块，表示图形队列的消费者端。开发者可以通过`NativeImage`接口接收和使用`Buffer`，并将`Buffer`关联输出到OpenGL外部纹理。
