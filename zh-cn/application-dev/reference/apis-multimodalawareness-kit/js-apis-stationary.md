@@ -28,7 +28,7 @@ import { stationary } from '@kit.MultimodalAwarenessKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| state | [ActivityState](#activitystate) | 是 | 否 | 设备状态变化返回值。 |
+| state | [ActivityState](#activitystate) | 否 | 否 | 设备状态变化返回值。 |
 
 ## ActivityType
 
