@@ -1053,7 +1053,7 @@ class DrawingRenderNode extends RenderNode {
     let font = new drawing.Font();
     font.setSize(50)
     let myString: string = "你好, HarmonyOS";
-    let length = buffer.from(myString).length;
+    let length: number = myString.length;
     let path = font.getTextPath(myString, length, 0, 100)
     canvas.drawPath(path)
   }
