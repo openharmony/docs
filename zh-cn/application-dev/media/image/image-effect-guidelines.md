@@ -60,7 +60,7 @@ target_link_libraries(entry PUBLIC
     // 添加滤镜，获取 OH_EffectFilter 实例。多次调用该接口可以添加多个滤镜，组成滤镜链。
     OH_EffectFilter *filter = OH_ImageEffect_AddFilter(imageEffect, OH_EFFECT_BRIGHTNESS_FILTER);
     if (filter == nullptr) {
-    	OH_LOG_ERROR("OH_ImageEffect_AddFilter fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_AddFilter fail!");
         return;
     }
     // 设置滤镜参数, 例如：滤镜强度设置为50。
@@ -78,14 +78,14 @@ target_link_libraries(entry PUBLIC
     // 设置输入的Pixelmap。
     errorCode = OH_ImageEffect_SetInputPixelmap(imageEffect, inputPixelmap);
     if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
-    	OH_LOG_ERROR("OH_ImageEffect_SetInputPixelmap fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_SetInputPixelmap fail!");
         return;
     }
     
     // 设置输出的Pixelmap（可选），不调用该接口时会在输入Pixelmap上直接生效滤镜效果。
     errorCode = OH_ImageEffect_SetOutputPixelmap(imageEffect, outputPixelmap);
     if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
-    	OH_LOG_ERROR("OH_ImageEffect_SetOutputPixelmap fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_SetOutputPixelmap fail!");
         return;
     }
     ```
@@ -98,14 +98,14 @@ target_link_libraries(entry PUBLIC
     // 设置输入的NativeBuffer。
     errorCode = OH_ImageEffect_SetInputNativeBuffer(imageEffect, inputNativeBuffer);
     if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
-    	OH_LOG_ERROR("OH_ImageEffect_SetInputNativeBuffer fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_SetInputNativeBuffer fail!");
         return;
     }
     
     // 设置输出的NativeBuffer（可选），不调用该接口时会在输入NativeBuffer上直接生效滤镜效果。
     errorCode = OH_ImageEffect_SetOutputNativeBuffer(imageEffect, outputNativeBuffer);
     if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
-    	OH_LOG_ERROR("OH_ImageEffect_SetOutputNativeBuffer fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_SetOutputNativeBuffer fail!");
         return;
     }
     ```
@@ -116,13 +116,13 @@ target_link_libraries(entry PUBLIC
     // 设置输入的URI。
     errorCode = OH_ImageEffect_SetInputUri(imageEffect, inputUri);
     if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
-    	OH_LOG_ERROR("OH_ImageEffect_SetInputUri fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_SetInputUri fail!");
         return;
     }
     // 设置输出的URI（可选），不调用该接口时会在输入URI上直接生效滤镜效果。
     errorCode = OH_ImageEffect_SetOutputUri(imageEffect, outputUri);
     if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
-    	OH_LOG_ERROR("OH_ImageEffect_SetOutputUri fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_SetOutputUri fail!");
         return;
     }
     ```
@@ -133,14 +133,14 @@ target_link_libraries(entry PUBLIC
     // 设置输入的纹理ID。
     errorCode = OH_ImageEffect_SetInputTextureId(imageEffect, inputTex, ColorSpaceName::SRGB);
     if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
-    	OH_LOG_ERROR("OH_ImageEffect_SetInputTextureId fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_SetInputTextureId fail!");
         return;
     }
 
     // 设置输出的纹理ID, 注意不能与输入是同一块纹理，否则可能产生渲染异常。
     errorCode = OH_ImageEffect_SetOutputTextureId(imageEffect, outputTex);
     if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
-    	OH_LOG_ERROR("OH_ImageEffect_SetOutputTextureId fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_SetOutputTextureId fail!");
         return;
     }
     ```
@@ -185,21 +185,21 @@ target_link_libraries(entry PUBLIC
      OHNativeWindow *outputNativeWindow = nullptr;
      int32_t res = OH_NativeWindow_CreateNativeWindowFromSurfaceId(outputSurfaceId, &outputNativeWindow);
     if (res != 0) {
-    	OH_LOG_ERROR("OH_NativeWindow_CreateNativeWindowFromSurfaceId fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_NativeWindow_CreateNativeWindowFromSurfaceId fail!");
         return;
     }
      
      // 设置输出显示的Surface。
      ImageEffect_ErrorCode errorCode = OH_ImageEffect_SetOutputSurface(imageEffect, outputNativeWindow);
     if (res != 0) {
-    	OH_LOG_ERROR("OH_ImageEffect_SetOutputSurface fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_SetOutputSurface fail!");
         return;
     }
      // 获取输入的Surface。注意获取的inputNativeWindow在使用结束后需要主动调用OH_NativeWindow_DestoryNativeWindow进行释放。
      OHNativeWindow *inputNativeWindow = nullptr;
      errorCode = OH_ImageEffect_GetInputSurface(imageEffect, &inputNativeWindow);
     if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
-    	OH_LOG_ERROR("OH_ImageEffect_GetInputSurface fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_GetInputSurface fail!");
         return;
      }
      
@@ -207,7 +207,7 @@ target_link_libraries(entry PUBLIC
      uint64_t inputSurfaceId = 0;
      res = OH_NativeWindow_GetSurfaceId(inputNativeWindow, &inputSurfaceId);
     if (res != 0) {
-    	OH_LOG_ERROR("OH_NativeWindow_GetSurfaceId fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_NativeWindow_GetSurfaceId fail!");
         return;
      }
      
@@ -221,7 +221,7 @@ target_link_libraries(entry PUBLIC
     // 执行生效滤镜效果。
     errorCode = OH_ImageEffect_Start(imageEffect);
     if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
-    	OH_LOG_ERROR("OH_ImageEffect_Start fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_Start fail!");
         return;
     }
     ```
@@ -232,7 +232,7 @@ target_link_libraries(entry PUBLIC
     // 停止生效滤镜效果。
     errorCode = OH_ImageEffect_Stop(imageEffect);
     if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
-    	OH_LOG_ERROR("OH_ImageEffect_Stop fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_Stop fail!");
         return;
     }
     ```
@@ -243,7 +243,7 @@ target_link_libraries(entry PUBLIC
     char *info = nullptr;
     errorCode = OH_ImageEffect_Save(imageEffect, &info);
     if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
-    	OH_LOG_ERROR("OH_ImageEffect_Save fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_Save fail!");
         return;
     }
     ```
@@ -254,7 +254,7 @@ target_link_libraries(entry PUBLIC
     // 释放imageEffect实例资源。
     errorCode = OH_ImageEffect_Release(imageEffect);
     if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
-    	OH_LOG_ERROR("OH_ImageEffect_Release fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_Release fail!");
         return;
     }
     ```
@@ -290,7 +290,7 @@ target_link_libraries(entry PUBLIC
             ImageEffect_Any value;
             ImageEffect_ErrorCode errorCode = OH_EffectFilter_GetValue(filter, "Brightness", &value);
             if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
-    			OH_LOG_ERROR("OH_EffectFilter_GetValue fail!");
+    			OH_LOG_ERROR(LOG_APP, "OH_EffectFilter_GetValue fail!");
         		return false;
     		}
             
@@ -391,7 +391,7 @@ target_link_libraries(entry PUBLIC
     // 创建 OH_EffectFilterInfo 实例。
     OH_EffectFilterInfo *customFilterInfo = OH_EffectFilterInfo_Create();
     if (customFilterInfo ==nullptr) {
-    	OH_LOG_ERROR("OH_EffectFilter_GetValue fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_EffectFilter_GetValue fail!");
         return;
     }
     
@@ -413,7 +413,7 @@ target_link_libraries(entry PUBLIC
     // 注册自定义滤镜。
     ImageEffect_ErrorCode errorCode = OH_EffectFilter_Register(customFilterInfo, &filterDelegate);
     if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
-    	OH_LOG_ERROR("OH_EffectFilter_Register fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_EffectFilter_Register fail!");
         return;
     }
     ```
@@ -434,7 +434,7 @@ target_link_libraries(entry PUBLIC
     ImageEffect_Any value = {.dataType = ImageEffect_DataType::EFFECT_DATA_TYPE_FLOAT, .dataValue.floatValue = 50.f};
     ImageEffect_ErrorCode errorCode = OH_EffectFilter_SetValue(filter, OH_EFFECT_FILTER_INTENSITY_KEY, &value);
     if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
-    	OH_LOG_ERROR("OH_EffectFilter_SetValue fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_EffectFilter_SetValue fail!");
         return;
     }
     ```
@@ -461,14 +461,14 @@ target_link_libraries(entry PUBLIC
     // 创建 OH_EffectFilterInfo 实例。
     OH_EffectFilterInfo *filterInfo = OH_EffectFilterInfo_Create();
     if (filterInfo == nullptr) {
-    	OH_LOG_ERROR("OH_EffectFilterInfo_Create fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_EffectFilterInfo_Create fail!");
         return;
     }
 
     // 根据滤镜名查询滤镜能力信息。
     ImageEffect_ErrorCode errorCode = OH_EffectFilter_LookupFilterInfo(OH_EFFECT_BRIGHTNESS_FILTER, filterInfo);
     if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
-    	OH_LOG_ERROR("OH_EffectFilter_LookupFilterInfo fail!");
+    	OH_LOG_ERROR(LOG_APP, "OH_EffectFilter_LookupFilterInfo fail!");
         return;
     }
 
