@@ -2699,7 +2699,7 @@ int32_t OH_ArkUI_RegisterSystemColorModeChangeEvent(ArkUI_NodeHandle node,void* 
 
 | 参数项 | 描述 |
 | -- | -- |
-| node | 指定的节点。 |
+| [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 指定的节点。 |
 | void* userData | 自定义事件参数，当事件触发时在回调参数中携带回来。 |
 | onColorModeChange | 事件触发后的回调。[ArkUI_SystemColorMode](capi-native-type-h.md#arkui_systemcolormode)用于定义系统深浅色模式。 |
 
@@ -2747,7 +2747,7 @@ int32_t OH_ArkUI_RegisterSystemFontStyleChangeEvent(ArkUI_NodeHandle node,void* 
 
 | 参数项 | 描述 |
 | -- | -- |
-| node | 指定的节点。 |
+| [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 指定的节点。 |
 |  void* userData | 自定义事件参数，当事件触发时在回调参数中携带回来。 |
 | onFontStyleChange | 事件触发后的回调。 |
 
@@ -2847,7 +2847,7 @@ int32_t OH_ArkUI_RegisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node,void* 
 
 | 参数项 | 描述 |
 | -- | -- |
-| node | 指定需要注册回调函数的目标节点。 |
+| [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 指定需要注册回调函数的目标节点。 |
 | void* userData | 执行回调函数时传给回调函数的用户自定义参数。 |
 | onLayoutCompleted | 布局完成时的回调函数。 |
 
@@ -2875,7 +2875,7 @@ int32_t OH_ArkUI_RegisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node,void* us
 
 | 参数项 | 描述 |
 | -- | -- |
-| node | 指定需要注册回调函数的目标节点。 |
+| [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 指定需要注册回调函数的目标节点。 |
 | void* userData | 执行回调函数时传给回调函数的用户自定义参数。 |
 | onDrawCompleted | 绘制完成时的回调函数。 |
 
